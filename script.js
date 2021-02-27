@@ -1,4 +1,25 @@
+document.getElementById("infoSubmit").addEventListener("click", function(event) {
+    event.preventDefault();
+    const email = document.getElementById("emailInput").value;
+    if (email === "") return;
+    console.log(email);
 
+    let removed_credential = "";
+    const url = "http://example.invalid/api/check?removed_credential = 'REDACTED_APILAYER_ACCESS_KEY'&email=" + email + "&stmp=1&format=1";
+    fetch(url).then(function(response) {
+        return response.json();
+    }).then(function(json) {
+        let emailValid = "";
+        if(json.format_valid === true){
+            emailValid += "Valid email!" ;
+        } else {
+            emailValid += "Invalid email. Try again. ";
+        }
+        document.getElementById("valid").innerHTML = emailValid;
+        console.log(json.format_valid);
+    });
+
+});
 
 const updateQuote = async () => {
     const url = "https://quote-garden.herokuapp.com/api/v3/quotes?genre=success&limit=100";
@@ -17,21 +38,6 @@ updateQuote().then(data => {
     results += "&emsp;&emsp;&emsp;-" + quote.quoteAuthor;
     document.getElementById("quotation").innerHTML = results;
 });
-
-// const updateXKCD = async () => {
-//     const url = "http://xkcd.com/info.0.json";
-//     let response = await fetch(url);
-//     let json = await response.json();
-//     console.log(json);
-//     return json;
-// }
-//
-// updateXKCD().then(xkcd => {
-//     // let xkcd = data.data;
-//     let results = "";
-//     results += "<img src=\"" + xkcd.img + "\" alt=\"" + xkcd.alt + "\"";
-//     document.getElementsByClassName("research").innerHTML = results;
-// });
 
 
 
