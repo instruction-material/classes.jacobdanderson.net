@@ -22,9 +22,9 @@ const {
 /* field list (admin / tutor / user share the same set) */
 const fields = [
 	{ key: "name", label: "Name" },
-	{ key: "email", label: "Email" },
-	{ key: "age", label: "Age" },
-	{ key: "state", label: "State" }
+	{ key: "email", label: "Email" }
+	// { key: "age", label: "Age" },
+	// { key: "state", label: "State" }
 ];
 
 /* fetch everything once */
@@ -96,6 +96,7 @@ onMounted(loadAll);
 
 <style scoped>
 ul {
+	list-style-type: none;
 	display: flex;
 	flex-flow: column;
 }

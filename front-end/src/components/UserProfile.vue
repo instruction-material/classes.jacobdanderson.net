@@ -60,6 +60,7 @@ const fields = [
 
 <style scoped>
 ul {
+	list-style-type: none;
 	display: flex;
 	flex-direction: column;
 }

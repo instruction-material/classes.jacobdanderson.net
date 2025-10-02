@@ -12,6 +12,8 @@ const adminSchema: Schema<IAdmin> = new Schema(
 	{
 		name: { type: String, required: true },
 		email: { type: String, required: true, unique: true, lowercase: true, trim: true, index: true },
+		// age: { type: String },
+		// state: { type: String },
 		password: { type: String, required: true },
 		editAdmins: { type: Boolean, default: false, required: true }, // Added required: true
 		saveEdit: { type: String, default: "Edit", required: true }, // Added required: true
