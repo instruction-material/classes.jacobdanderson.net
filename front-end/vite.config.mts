@@ -105,8 +105,8 @@ export default defineConfig({
 				"android-chrome-512x512.png"
 			],
 			manifest: {
-				name: "Operation Opportunity",
-				short_name: "OperationOpportunity",
+				name: "Classes",
+				short_name: "Classes",
 				theme_color: "#ffffff",
 				background_color: "#ffffff",
 				display: "standalone",

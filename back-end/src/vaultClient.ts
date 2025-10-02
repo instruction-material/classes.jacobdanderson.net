@@ -18,7 +18,7 @@ async function vaultLogin(): Promise<string> {
 
 export async function readMongoSecret() {
 	const token = await vaultLogin();
-	const r = await fetch(`${VAULT_ADDR}/v1/secret/data/opportunity/mongodb`, {
+	const r = await fetch(`${VAULT_ADDR}/v1/secret/data/classes/mongodb`, {
 		headers: { "X-Vault-Token": token }
 	});
 	if (!r.ok) throw new Error(`Vault read failed: ${r.status} ${await r.text()}`);

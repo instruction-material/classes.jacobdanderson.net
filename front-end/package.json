@@ -104,10 +104,10 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/jacoba1100254352/operationopportunity.jacobdanderson.net.git"
+		"url": "git+https://github.com/jacoba1100254352/classes.jacobdanderson.net.git"
 	},
 	"bugs": {
-		"url": "https://github.com/jacoba1100254352/operationopportunity.jacobdanderson.net/issues"
+		"url": "https://github.com/jacoba1100254352/classes.jacobdanderson.net/issues"
 	},
-	"homepage": "https://github.com/jacoba1100254352/operationopportunity.jacobdanderson.net#readme"
+	"homepage": "https://github.com/jacoba1100254352/classes.jacobdanderson.net#readme"
 }
