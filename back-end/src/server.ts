@@ -98,6 +98,18 @@ async function main() {
 
 	await mongoose.connect(mongoUri);
 	console.log("Connected to MongoDB");
+	const c = mongoose.connection;
+	console.log(
+		`Mongo connected: db=${c.db?.databaseName} host=${c.host} name=${c.name}`
+	);
+	app.get("/_dbinfo", (_req, res) => {
+		res.json({
+			databaseName: c.db?.databaseName,
+			host: c.host,
+			name: c.name,
+			usingVault: !!env.VAULT_ROLE_ID && !!env.VAULT_SECRET_ID,
+		});
+	});
 
 	// Your routes (note: you’ve commented an axios baseURL elsewhere; these are mounted as-is)
 	app.use("/tutors", tutorRoutes);

@@ -11,7 +11,7 @@ import { passwordPlugin } from "../plugins/password.js";
 const tutorSchema: Schema<ITutor> = new Schema(
 	{
 		name: { type: String, required: true },
-		email: { type: String, required: true, unique: true },
+		email: { type: String, required: true, unique: true, lowercase: true, trim: true, index: true },
 		age: { type: String },
 		state: { type: String },
 		password: { type: String, required: true },

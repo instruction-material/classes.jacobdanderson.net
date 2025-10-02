@@ -22,11 +22,13 @@ export const login: RequestHandler = async (req, res) => {
 	const { email, password } = req.body as { email?: string; password?: string };
 	if (!email || !password) return res.sendStatus(400);
 
+	const e = email.trim().toLowerCase();
+
 	// fetch all three, we’ll pick whichever isn’t null
 	const results = (await Promise.all([
-		User.findOne({ email }).exec(),
-		Tutor.findOne({ email }).exec(),
-		Admin.findOne({ email }).exec()
+		User.findOne({ email: e }).exec(),
+		Tutor.findOne({ email: e }).exec(),
+		Admin.findOne({ email: e }).exec(),
 	])) as Array<IUser | ITutor | IAdmin | null>;
 
 	// pick the first non‐null

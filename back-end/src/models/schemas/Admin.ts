@@ -11,7 +11,7 @@ import { passwordPlugin } from "../plugins/password.js";
 const adminSchema: Schema<IAdmin> = new Schema(
 	{
 		name: { type: String, required: true },
-		email: { type: String, required: true, unique: true },
+		email: { type: String, required: true, unique: true, lowercase: true, trim: true, index: true },
 		password: { type: String, required: true },
 		editAdmins: { type: Boolean, default: false, required: true }, // Added required: true
 		saveEdit: { type: String, default: "Edit", required: true }, // Added required: true
