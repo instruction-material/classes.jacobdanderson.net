@@ -111,7 +111,7 @@ async function main() {
 		res.json({ adminID: s?.adminID ?? null, tutorID: s?.tutorID ?? null, userID: s?.userID ?? null });
 	});
 
-	const PORT = env.PORT || 3002;
+	const PORT = env.PORT || 3008;
 	app.listen(PORT, () => console.log(`Server listening on port ${PORT}!`));
 }
 
