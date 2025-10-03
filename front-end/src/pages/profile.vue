@@ -31,3 +31,11 @@ div {
 	margin: 22% 0;
 }
 </style>
+
+<route lang="json">
+{
+	"meta": {
+		"layout": "default"
+	}
+}
+</route>

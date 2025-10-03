@@ -27,3 +27,11 @@ const { currentUser, currentAdmin } = storeToRefs(useAppStore());
 		<UserSignup v-if="currentUser || currentAdmin" />
 	</section>
 </template>
+
+<route lang="json">
+{
+	"meta": {
+		"layout": "default"
+	}
+}
+</route>

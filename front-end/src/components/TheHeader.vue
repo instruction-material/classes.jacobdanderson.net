@@ -8,7 +8,7 @@ const emit = defineEmits<{
 }>();
 
 const app = useAppStore();
-const { isLoggedIn } = storeToRefs(app);
+const { isLoggedIn, isAdmin } = storeToRefs(app);
 
 function logoutUser() {
 	app.logout();
@@ -68,6 +68,11 @@ function logoutUser() {
 						<li v-if="isLoggedIn" class="nav-item">
 							<router-link class="nav-link" to="/profile">
 								Profile
+							</router-link>
+						</li>
+						<li v-if="isAdmin" class="nav-item">
+							<router-link class="nav-link" to="/admin/mdmail">
+								Session Notes
 							</router-link>
 						</li>
 					</ul>

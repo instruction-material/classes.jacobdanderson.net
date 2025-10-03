@@ -17,9 +17,7 @@ defineOptions({ name: "AboutPage" });
 			src="https://tenneyschool.com/wp-content/uploads/2016/11/Confident-Student.jpg"
 			width="40%"
 		/>
-		<p class="mt-3">
-			Info
-		</p>
+		<p class="mt-3">Info</p>
 	</section>
 </template>
 
@@ -29,3 +27,11 @@ p {
 	margin: 0 10%;
 }
 </style>
+
+<route lang="json">
+{
+	"meta": {
+		"layout": "default"
+	}
+}
+</route>

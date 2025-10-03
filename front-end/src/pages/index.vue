@@ -78,9 +78,7 @@ onMounted(updateQuote);
 			width="30%"
 		/>
 		<h2>Welcome to ...!</h2>
-		<p class="mt-3">
-			Info Here
-		</p>
+		<p class="mt-3">Info Here</p>
 	</section>
 </template>
 
@@ -108,3 +106,11 @@ q,
 	}
 }
 </style>
+
+<route lang="json">
+{
+	"meta": {
+		"layout": "default"
+	}
+}
+</route>

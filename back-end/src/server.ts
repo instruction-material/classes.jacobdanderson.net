@@ -3,35 +3,39 @@ import { env, exit } from "node:process";
 import bodyParser from "body-parser";
 import cookieSession from "cookie-session";
 import express from "express";
+import rateLimit from "express-rate-limit";
 import mongoose from "mongoose";
 
 import { quoteProxy } from "./controllers/common/quoteProxy.js";
 import { accountRoutes } from "./routes/accountRoutes.js";
+import { adminMailRoutes } from "./routes/adminMailRoutes.js";
 import { adminRoutes } from "./routes/adminRoutes.js";
 import { tutorRoutes } from "./routes/tutorRoutes.js";
+
 import { userRoutes } from "./routes/userRoutes.js";
 
 import { readMongoSecret } from "./vaultClient.js";
-
 import "dotenv/config";
 
 async function main() {
 	const app = express();
 
-	// --- ultra-light liveness (no dependencies) ---
+	// health
 	app.get("/healthz", (_req, res) => res.json({ ok: true }));
 
 	const SESSION_SECRET = env.SESSION_SECRET;
 	if (!SESSION_SECRET) throw new Error("Missing SESSION_SECRET");
 
 	app.set("trust proxy", 1);
-	app.use(bodyParser.urlencoded({ extended: false }));
-	app.use(bodyParser.json());
 
+	// 1) parsers first (with limits)
+	app.use(bodyParser.urlencoded({ extended: false, limit: "256kb" }));
+	app.use(bodyParser.json({ limit: "256kb" }));
+
+	// 2) sessions BEFORE any route that needs req.session
+	///   COOKIES   ///
 	const isProd = env.NODE_ENV === "production";
 	const isCrossSite = !!env.CROSS_SITE;
-	// set CROSS_SITE=true in env if frontend and backend are on different domains
-
 	type CookieSessionOpts = Parameters<typeof cookieSession>[0];
 
 	const cookieOptions: CookieSessionOpts = {
@@ -57,7 +61,30 @@ async function main() {
 
 	app.use(cookieSession(cookieOptions));
 
-	// --- optional readiness: succeeds only when Mongo is ready ---
+	// 3) cache-control for auth endpoints
+	app.use((req, res, next) => {
+		if (req.path.startsWith("/accounts") || req.path.endsWith("/loggedin")) {
+			res.setHeader("Cache-Control", "no-store");
+		}
+		next();
+	});
+
+	// 4) rate limit (can be before or after parsers; keep before routes)
+	const rateWindowMs = Number(env.RATE_WINDOW_MS || 60000);
+	const rateMax = Number(env.RATE_MAX || 20); // v7 also accepts `limit`; be consistent
+	const adminMailLimiter = rateLimit({
+		windowMs: rateWindowMs,
+		limit: rateMax,
+		standardHeaders: true,
+		legacyHeaders: false,
+		message: { message: "Too many requests, slow down." }
+	});
+	app.use("/admin-mail", adminMailLimiter, adminMailRoutes);
+
+	//
+	app.use("/quotes", quoteProxy);
+
+	// ready
 	app.get("/readyz", (_req, res) => {
 		const s = mongoose.connection.readyState; // 1=connected, 2=connecting
 		if (s === 1) return res.json({ ready: true });
@@ -71,9 +98,6 @@ async function main() {
 		}
 		next();
 	});
-
-	// routes that don’t require DB
-	app.use("/quotes", quoteProxy);
 
 	// --- Get Mongo URI from Vault (preferred), else env fallback ---
 	let mongoUri: string | undefined;

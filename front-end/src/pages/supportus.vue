@@ -16,10 +16,16 @@ defineOptions({ name: "SupportUsPage" });
 			width="30%"
 		/>
 		<h2>Venmo</h2>
-		<p class="mt-3">
-
-		</p>
+		<p class="mt-3"></p>
 	</section>
 </template>
 
 <style scoped></style>
+
+<route lang="json">
+{
+	"meta": {
+		"layout": "default"
+	}
+}
+</route>

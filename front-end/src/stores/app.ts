@@ -56,7 +56,9 @@ export const useAppStore = defineStore("app", {
 
 	getters: {
 		isLoggedIn: (state) =>
-			!!state.currentUser || !!state.currentTutor || !!state.currentAdmin
+			!!state.currentUser || !!state.currentTutor || !!state.currentAdmin,
+
+		isAdmin: (state) => !!state.currentAdmin
 	},
 
 	actions: {
