@@ -1,4 +1,4 @@
-import type { SendMailOptions } from "nodemailer";
+import { existsSync, readFileSync, statSync } from "node:fs";
 import { env } from "node:process";
 import { Router } from "express";
 import { marked } from "marked";
@@ -19,56 +19,64 @@ const MailSchema = z.object({
 });
 
 router.post("/send", validAdmin, async (req, res) => {
-	const parsed = MailSchema.safeParse(req.body);
-	if (!parsed.success) {
-		return res
-			.status(400)
-			.json({ message: "Invalid payload", issues: parsed.error.issues });
-	}
-
-	const { to, subject, md } = parsed.data;
-
-	if (ALLOW_TO.length && !ALLOW_TO.includes(to)) {
-		return res.status(403).json({ message: "Recipient not allowed" });
-	}
-	if (md.length > MAX_MD_LEN) {
-		return res.status(413).json({ message: "Markdown too large" });
-	}
-
-	// Create transporter
-	const transporter = nodemailer.createTransport({
-		host: env.SMTP_HOST!,
-		port: Number(env.SMTP_PORT ?? 587),
-		secure: String(env.SMTP_SECURE || "").toLowerCase() === "true",
-		auth:
-			env.SMTP_USER && env.SMTP_PASS
-				? { user: env.SMTP_USER, pass: env.SMTP_PASS }
-				: undefined,
-	});
-
-	// Convert markdown to HTML and await the result
-	const htmlBody: string = await marked.parse(md);
-
-	// Build mail options
-	const mailOptions: SendMailOptions = {
-		from: FROM_ADDR,
-		to,
-		subject,
-		text: md,
-		html: htmlBody, // definitely a string here
-	};
-
 	try {
-		// Use the promise version: no callback
-		const info = await transporter.sendMail(mailOptions);
-		// TS should infer info: SentMessageInfo
+		const parsed = MailSchema.safeParse(req.body);
+		if (!parsed.success) {
+			return res.status(400).json({ message: "Invalid payload", issues: parsed.error.issues });
+		}
+		const { to, subject, md } = parsed.data;
+
+		if (ALLOW_TO.length && !ALLOW_TO.includes(to))
+			return res.status(403).json({ message: "Recipient not allowed" });
+		if (md.length > MAX_MD_LEN)
+			return res.status(413).json({ message: "Markdown too large" });
+
+		// Ensure we always pass a string to nodemailer
+		const html = await marked.parse(md);
+		if (typeof html !== "string") throw new Error("HTML render did not return a string");
+
+		function readOptionalCA(p: string) {
+			try {
+				if (existsSync(p)) {
+					const st = statSync(p);
+					if (st.size > 0) return readFileSync(p);
+				}
+			}
+			catch {}
+			return undefined;
+		}
+
+		const caBuf = readOptionalCA(env.NODE_EXTRA_CA_CERTS || "/etc/ssl/local/mail-ca.pem");
+
+		const transporter = nodemailer.createTransport({
+			host: env.SMTP_HOST,
+			port: Number(env.SMTP_PORT ?? 587),
+			secure: String(env.SMTP_SECURE || "").toLowerCase() === "true",
+			auth: env.SMTP_USER && env.SMTP_PASS ? { user: env.SMTP_USER, pass: env.SMTP_PASS } : undefined,
+			// Optional timeouts so we fail fast instead of hanging behind nginx:
+			connectionTimeout: 15000,
+			socketTimeout: 15000,
+			tls: {
+				servername: env.SMTP_SERVERNAME || env.SMTP_HOST, // SNI/hostname match
+				// only set `ca` if we actually have one
+				...(caBuf ? { ca: caBuf } : {}), // ca: readFileSync("/etc/ssl/local/mail-ca.pem"),
+				minVersion: "TLSv1.2",
+			},
+		});
+
+		const info = await transporter.sendMail({
+			from: FROM_ADDR,
+			to,
+			subject,
+			text: md,
+			html,
+		});
+
 		return res.json({ ok: true, messageId: info.messageId });
 	}
 	catch (err: any) {
-		console.error("sendMail error:", err);
-		return res
-			.status(502)
-			.json({ ok: false, message: err.message || "SMTP send failed" });
+		console.error("admin-mail/send failed:", err);
+		return res.status(502).json({ ok: false, message: err?.message ?? "Send failed" });
 	}
 });
 
