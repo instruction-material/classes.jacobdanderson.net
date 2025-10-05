@@ -47,6 +47,7 @@ router.post("/send", validAdmin, async (req, res) => {
 		}
 
 		const caBuf = readOptionalCA(env.NODE_EXTRA_CA_CERTS || "/etc/ssl/local/mail-ca.pem");
+		console.log("SMTP TLS CA path:", env.NODE_EXTRA_CA_CERTS || "/etc/ssl/local/mail-ca.pem", "exists:", !!caBuf, "len:", caBuf?.length ?? 0);
 
 		const transporter = nodemailer.createTransport({
 			host: env.SMTP_HOST,
