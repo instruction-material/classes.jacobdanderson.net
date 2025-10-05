@@ -11,8 +11,10 @@ export const install: UserModule = ({ router }) => {
 
 		const app = useAppStore();
 
+		await app.bootstrapSession();
+
 		// If we don’t already know, ask the server (cookie-session backed)
-		if (!app.currentAdmin) {
+		if (to.meta.requiresAdmin && !app.currentAdmin) {
 			try {
 				// You already have this endpoint and cookie-session configured
 				const { data } = await api.get("/admins/loggedin", {
@@ -25,7 +27,7 @@ export const install: UserModule = ({ router }) => {
 		}
 
 		// Still not an admin? block & bounce
-		if (!app.currentAdmin) {
+		if (to.meta.requiresAdmin && !app.currentAdmin) {
 			// optional: pop your login modal
 			app.setLoginBlock?.(true);
 			// redirect home (preserve intended path)
