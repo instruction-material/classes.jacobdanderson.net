@@ -22,13 +22,13 @@ function logoutUser() {
 			style="background-color: #e3f2fd"
 		>
 			<div class="container-fluid">
-				<router-link
-					aria-current="page"
-					class="nav-item navbar-brand nav-link"
-					to="/"
-				>
-					Operation Opportunity
-				</router-link>
+                                <router-link
+                                        aria-current="page"
+                                        class="nav-item navbar-brand nav-link"
+                                        to="/"
+                                >
+                                        Jacob Anderson Tutoring
+                                </router-link>
 				<button
 					aria-controls="navbarSupportedContent"
 					aria-expanded="false"
@@ -50,21 +50,21 @@ function logoutUser() {
 								Home
 							</router-link>
 						</li>
-						<li class="nav-item">
-							<router-link class="nav-link" to="/signup">
-								Signup
-							</router-link>
-						</li>
-						<li class="nav-item">
-							<router-link class="nav-link" to="/supportus">
-								Support Us
-							</router-link>
-						</li>
-						<li class="nav-item">
-							<router-link class="nav-link" to="/about">
-								About
-							</router-link>
-						</li>
+                                                <li class="nav-item">
+                                                        <router-link class="nav-link" to="/signup">
+                                                                Book a Class
+                                                        </router-link>
+                                                </li>
+                                                <li class="nav-item">
+                                                        <router-link class="nav-link" to="/supportus">
+                                                                Tuition &amp; Payment
+                                                        </router-link>
+                                                </li>
+                                                <li class="nav-item">
+                                                        <router-link class="nav-link" to="/about">
+                                                                About Jacob
+                                                        </router-link>
+                                                </li>
 						<li v-if="isLoggedIn" class="nav-item">
 							<router-link class="nav-link" to="/profile">
 								Profile
