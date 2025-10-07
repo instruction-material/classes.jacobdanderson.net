@@ -46,22 +46,22 @@ router.post("/send", validAdmin, async (req, res) => {
 			return undefined;
 		}
 
-		const caBuf = readOptionalCA(env.NODE_EXTRA_CA_CERTS || "/etc/ssl/local/mail-ca.pem");
-		console.log("SMTP TLS CA path:", env.NODE_EXTRA_CA_CERTS || "/etc/ssl/local/mail-ca.pem", "exists:", !!caBuf, "len:", caBuf?.length ?? 0);
+		// replace your ca reading bits with:
+		const caPath = env.SMTP_CA_FILE; // new optional var
+		const caBuf = caPath ? readOptionalCA(caPath) : undefined;
+		// console.log("SMTP TLS CA path:", env.SMTP_CA_FILE || "/etc/ssl/local/mail-ca.pem", "exists:", !!caBuf, "len:", caBuf?.length ?? 0);
 
 		const transporter = nodemailer.createTransport({
 			host: env.SMTP_HOST,
 			port: Number(env.SMTP_PORT ?? 587),
-			secure: String(env.SMTP_SECURE || "").toLowerCase() === "true",
+			secure: String(env.SMTP_SECURE || "").toLowerCase() === "true", // 465=true, 587=false
 			auth: env.SMTP_USER && env.SMTP_PASS ? { user: env.SMTP_USER, pass: env.SMTP_PASS } : undefined,
-			// Optional timeouts so we fail fast instead of hanging behind nginx:
 			connectionTimeout: 15000,
 			socketTimeout: 15000,
 			tls: {
-				servername: env.SMTP_SERVERNAME || env.SMTP_HOST, // SNI/hostname match
-				// only set `ca` if we actually have one
-				...(caBuf ? { ca: caBuf } : {}), // ca: readFileSync("/etc/ssl/local/mail-ca.pem"),
+				servername: env.SMTP_SERVERNAME || env.SMTP_HOST,
 				minVersion: "TLSv1.2",
+				...(caBuf ? { ca: caBuf } : {}) // only supply CA when you *really* need it
 			},
 		});
 
