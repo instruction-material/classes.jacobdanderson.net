@@ -39,28 +39,31 @@ defineOptions({ name: "AboutPage" });
 			<h2 class="text-center">Teaching philosophy</h2>
 			<ul>
 				<li>
-					<h3 class="w-100 text-center">
-						<strong>Curiosity First</strong>
-					</h3>
+					<!--					<h3 class="w-100 text-center"> -->
+					<!--						<strong>Curiosity First</strong> -->
+					<!--					</h3> -->
 					<p>
+						<strong>Curiosity First:</strong>
 						Concepts stick when students understand the "why" and
 						can experiment freely.
 					</p>
 				</li>
 				<li>
-					<h3 class="w-100 text-center">
-						<strong>Transparent Goals</strong>
-					</h3>
+					<!--					<h3 class="w-100 text-center"> -->
+					<!--						<strong>Transparent Goals</strong> -->
+					<!--					</h3> -->
 					<p>
+						<strong>Transparent Goals:</strong>
 						Every class ends with an achievable milestone or plan so
 						you always know what's next.
 					</p>
 				</li>
 				<li>
-					<h3 class="w-100 text-center">
-						<strong>Real-world Context</strong>
-					</h3>
+					<!--					<h3 class="w-100 text-center"> -->
+					<!--						<strong>Real-world Context</strong> -->
+					<!--					</h3> -->
 					<p>
+						<strong>Real-world Context:</strong>
 						We connect lessons to meaningful projects—apps, games,
 						data explorations, or engineering challenges.
 					</p>
@@ -124,16 +127,21 @@ defineOptions({ name: "AboutPage" });
 	flex-direction: column;
 	gap: 3rem;
 	color: #16202a;
+	align-items: center;
+}
+
+.About > * {
+	max-width: 1200px;
+	margin: 1% auto;
+	width: 100%;
 }
 
 .intro {
 	display: grid;
 	gap: 2.5rem;
 	align-items: center;
-	max-width: 1100px;
-	margin: 0 auto;
 
-	grid-template-columns: auto 35%;
+	grid-template-columns: auto 25%;
 	grid-template-areas:
 		"title title"
 		"copy image";
@@ -144,14 +152,9 @@ defineOptions({ name: "AboutPage" });
 	grid-area: title;
 }
 
-.philosophy {
-	display: grid;
-	margin: 0;
-}
-
 /* Title sizing (moved out of .copy) */
 .page-title {
-	font-size: clamp(2rem, 3.5vw, 2.75rem);
+	font-size: clamp(3rem, 3.5vw, 2.75rem);
 	margin: 0 0 0.25rem 0;
 	text-align: center;
 }
@@ -195,6 +198,10 @@ defineOptions({ name: "AboutPage" });
 	}
 }
 
+.philosophy {
+	display: grid;
+}
+
 .copy p,
 .philosophy p,
 .experience-grid p {
@@ -229,15 +236,13 @@ defineOptions({ name: "AboutPage" });
 	justify-content: space-around;
 	align-items: center;
 
-	max-width: 1100px;
 	width: 100%;
 	margin: 0.5rem 0 auto;
 	text-align: center;
 }
 
-.cta-group * {
+.cta-group > * {
 	width: 40%;
-	margin: 0 auto;
 }
 
 .cta {
@@ -270,16 +275,10 @@ defineOptions({ name: "AboutPage" });
 	background-color: #e9f2fb;
 }
 
-.experience {
-	max-width: 1100px;
-	margin: 0;
-	text-align: center;
-}
-
-.philosophy h2,
-.experience h2 {
+h2 {
 	font-size: clamp(1.8rem, 3vw, 2.4rem);
 	margin-bottom: 2rem;
+	text-align: center;
 }
 
 .experience-grid {
@@ -293,25 +292,23 @@ defineOptions({ name: "AboutPage" });
 	border-radius: 20px;
 	padding: 1.75rem;
 	box-shadow: 0 14px 30px rgba(18, 64, 112, 0.08);
-	text-align: left;
 }
 
-.philosophy h3,
-.experience-grid h3 {
+h3 {
 	margin-bottom: 0.75rem;
 	font-size: 1.2rem;
 	color: #1f3d5a;
+	text-align: center;
 }
 
 .experience-grid p {
 	margin: 0;
 	color: #2d3f55;
 	line-height: 1.6;
-	text-align: left;
 }
 
-article h3 {
-	text-align: center;
+section p {
+	text-align: left;
 }
 
 @media (max-width: 640px) {

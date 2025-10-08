@@ -109,11 +109,11 @@ const content = useContentStore();
 	gap: 3rem;
 	padding: 2.5rem 1.5rem 4rem;
 	color: #16202a;
+	align-items: center;
 }
 
 .intro {
 	max-width: 900px;
-	margin: 0 auto;
 	text-align: center;
 	display: grid;
 	gap: 1.5rem;

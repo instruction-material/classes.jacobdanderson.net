@@ -56,7 +56,10 @@ onMounted(() => {
 			/>
 		</div>
 
-		<section aria-labelledby="after-booking-title" class="after-booking">
+		<section
+			aria-labelledby="after-booking-title"
+			class="after-booking d-grid"
+		>
 			<h2 id="after-booking-title">After you book</h2>
 			<ol>
 				<li>I’ll send a welcome email within one business day.</li>
@@ -83,12 +86,7 @@ onMounted(() => {
 	gap: 3rem;
 	padding: 0 1.5rem 4rem;
 	color: #16202a;
-}
-
-.intro {
-	max-width: 760px;
-	text-align: center;
-	gap: 1.25rem;
+	align-items: center;
 }
 
 .intro h1 {
@@ -131,7 +129,6 @@ onMounted(() => {
 	padding: 1.5rem;
 	box-shadow: 0 18px 40px rgba(16, 42, 66, 0.08);
 	max-width: 960px;
-	margin: 0 auto;
 	width: 100%;
 
 	overflow-x: auto;
@@ -141,11 +138,11 @@ onMounted(() => {
 	box-sizing: border-box;
 }
 
+.intro,
 .after-booking {
 	max-width: 720px;
-	margin: 0 auto;
+	margin: 0;
 	text-align: center;
-	display: grid;
 	gap: 1.25rem;
 }
 
