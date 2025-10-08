@@ -40,10 +40,10 @@ const { subjectGroups, highlights } = storeToRefs(content);
 
 		<section aria-labelledby="subjects-title" class="subjects">
 			<h2 id="subjects-title">What I teach</h2>
-			<p class="intro">
+			<!--			<p class="intro">
 				Learn coding, STEM, and languages your way—with lessons and
 				projects that match your goals.
-			</p>
+			</p> -->
 			<div class="subject-grid">
 				<article
 					v-for="group in subjectGroups"
@@ -99,7 +99,7 @@ const { subjectGroups, highlights } = storeToRefs(content);
 	display: flex;
 	flex-direction: column;
 	gap: 4rem;
-	padding: 2rem 1.5rem 4rem;
+	padding: 2.5rem 1.5rem 4rem;
 	color: #16202a;
 }
 
@@ -209,13 +209,13 @@ const { subjectGroups, highlights } = storeToRefs(content);
 	margin-bottom: 0.75rem;
 }
 
-.intro {
+/*.intro {
 	max-width: 720px;
 	margin: 0 auto 2.5rem;
 	font-size: 1.05rem;
 	line-height: 1.6;
 	color: #334155;
-}
+}*/
 
 .subject-grid {
 	display: grid;

@@ -1,6 +1,23 @@
 <script lang="ts" setup>
-/* DevTools / warning-friendly name */
+import { storeToRefs } from "pinia";
+import { onMounted } from "vue";
+import { useQuoteStore } from "@/stores/quote";
+
 defineOptions({ name: "AboutPage" });
+
+const quote = useQuoteStore();
+const {
+	text: quoteText,
+	author: quoteAuthor,
+	hasQuote,
+	loading,
+	error
+} = storeToRefs(quote);
+
+// Fetch once on client; cached for 5 minutes by the store
+onMounted(() => {
+	quote.fetchQuote({ tags: ["success"], limit: 100 });
+});
 </script>
 
 <template>
@@ -36,7 +53,7 @@ defineOptions({ name: "AboutPage" });
 		</section>
 
 		<section aria-labelledby="philosophy-title" class="philosophy">
-			<h2 class="text-center">Teaching philosophy</h2>
+			<h2>Teaching philosophy</h2>
 			<ul>
 				<li>
 					<!--					<h3 class="w-100 text-center"> -->
@@ -117,6 +134,17 @@ defineOptions({ name: "AboutPage" });
 				Visit my portfolio site
 			</a>
 		</section>
+
+		<section class="">
+			<div v-if="hasQuote" class="quote">
+				<blockquote>“{{ quoteText }}”</blockquote>
+				<cite>— {{ quoteAuthor }}</cite>
+			</div>
+			<div v-else-if="loading" class="quote-skeleton">Loading…</div>
+			<div v-else-if="error" class="quote-error">
+				Couldn’t load a quote.
+			</div>
+		</section>
 	</section>
 </template>
 
@@ -137,6 +165,7 @@ defineOptions({ name: "AboutPage" });
 }
 
 .intro {
+	margin: 0 auto 1%;
 	display: grid;
 	gap: 2.5rem;
 	align-items: center;
@@ -219,6 +248,7 @@ defineOptions({ name: "AboutPage" });
 	gap: 1rem;
 }
 
+.quote,
 .philosophy li {
 	background: #f4f8fc;
 	border-radius: 16px;
@@ -309,6 +339,11 @@ h3 {
 
 section p {
 	text-align: left;
+}
+
+.quote {
+	text-align: right;
+	margin: 0 auto;
 }
 
 @media (max-width: 640px) {

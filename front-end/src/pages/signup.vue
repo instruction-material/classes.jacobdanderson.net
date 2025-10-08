@@ -84,7 +84,7 @@ onMounted(() => {
 	display: flex;
 	flex-direction: column;
 	gap: 3rem;
-	padding: 0 1.5rem 4rem;
+	padding: 2.5rem 1.5rem 4rem;
 	color: #16202a;
 	align-items: center;
 }
