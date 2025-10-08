@@ -42,6 +42,7 @@ jobs:
                   cache: npm
 
             - name: Pin npm version
+              if: matrix['node-version'] != '18.x'
               run: |
                   npm i -g npm@11.6.1
                   npm -v
@@ -115,5 +116,7 @@ jobs:
               uses: cypress-io/github-action@v6
               with:
                   install: false # we already ran npm ci
-                  start: npm run -w front-end preview -- --port 3333
+                  working-directory: front-end
+                  config-file: cypress.config.ts
+                  start: npm run preview -- --port 3333
                   wait-on: "http://localhost:3333"
