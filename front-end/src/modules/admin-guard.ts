@@ -6,7 +6,7 @@ import { useAppStore } from "@/stores/app";
 export const install: UserModule = ({ router }) => {
 	if (import.meta.env.SSR) return; // skip SSR, run in client
 
-	router.beforeEach(async (to) => {
+	router.beforeEach(async to => {
 		if (!to.meta.requiresAdmin) return;
 
 		const app = useAppStore();

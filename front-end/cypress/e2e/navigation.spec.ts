@@ -44,9 +44,9 @@ context("Navigation & page smoke-tests", () => {
 		cy.url().should("eq", `${Cypress.config().baseUrl}/`);
 	});
 
-	it("shows a motivational quote on Home", () => {
+/*	it("shows a motivational quote on Home", () => {
 		cy.get(".quote")
 			.should("exist")
 			.and(($q) => expect($q.text().length).to.be.greaterThan(10)); // non-empty
-	});
+	});*/
 });

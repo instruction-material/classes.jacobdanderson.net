@@ -32,7 +32,8 @@ router.post("/send", validAdmin, async (req, res) => {
 
 		// Ensure we always pass a string to nodemailer
 		const html = await marked.parse(md);
-		if (typeof html !== "string") { // noinspection ExceptionCaughtLocallyJS
+		if (typeof html !== "string") {
+			// noinspection ExceptionCaughtLocallyJS
 			throw new TypeError("HTML render did not return a string");
 		}
 
@@ -63,7 +64,7 @@ router.post("/send", validAdmin, async (req, res) => {
 				servername: env.SMTP_SERVERNAME || env.SMTP_HOST,
 				minVersion: "TLSv1.2",
 				...(caBuf ? { ca: caBuf } : {}) // only supply CA when you *really* need it
-			},
+			}
 		});
 
 		const info = await transporter.sendMail({

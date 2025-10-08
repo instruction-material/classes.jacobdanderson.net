@@ -71,7 +71,7 @@ export const useContentStore = defineStore("content", () => {
 
 	// ----- Helpful derived data (optional) -----
 	const allSubjects = computed<string[]>(() =>
-		subjectGroups.value.flatMap((g) => g.subjects)
+		subjectGroups.value.flatMap(g => g.subjects)
 	);
 
 	const faqs = ref<FAQ[]>([

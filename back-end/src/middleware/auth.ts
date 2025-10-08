@@ -18,7 +18,8 @@ export const validUser: RequestHandler = async (req, res, next) => {
 		}
 		req.currentUser = user;
 		next();
-	} catch (error) {
+	}
+	catch (error) {
 		console.error("Error in validUser middleware:", error);
 		res.status(500).json({ message: "Server error while validating user" });
 	}
@@ -38,7 +39,8 @@ export const validTutor: RequestHandler = async (req, res, next) => {
 		}
 		req.currentTutor = tutor;
 		next();
-	} catch (error) {
+	}
+	catch (error) {
 		console.error("Error in validTutor middleware:", error);
 		res.status(500).json({ message: "Server error while validating tutor" });
 	}
@@ -58,7 +60,8 @@ export const validAdmin: RequestHandler = async (req, res, next) => {
 		}
 		req.currentAdmin = admin;
 		next();
-	} catch (error) {
+	}
+	catch (error) {
 		console.error("Error in validAdmin middleware:", error);
 		res.status(500).json({ message: "Server error while validating admin" });
 	}
