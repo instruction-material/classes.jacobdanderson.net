@@ -168,8 +168,9 @@ async function addSignup() {
 
 					<button class="button" type="submit">Login</button>
 					<label>
+						<!--						checked="checked" -->
 						<input
-							checked="checked"
+							:checked="true"
 							name="remember"
 							type="checkbox"
 						/>
@@ -517,7 +518,7 @@ div.signupForm button:hover {
 	opacity: 1;
 }
 
-/* Clear floats */
+/* Clear floats *
 div.signupForm .clearfix::after {
 	content: "";
 	clear: both;
@@ -529,11 +530,11 @@ div.signupForm p.disclamer {
 	float: right;
 }
 
-/* The "All ready have an account" text */
+/* The "All ready have an account" text *
 div.signupForm span.account {
 	float: right;
 	padding-top: 16px;
-}
+}*/
 
 /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {

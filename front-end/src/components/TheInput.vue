@@ -1,11 +1,18 @@
 <script lang="ts" setup>
-const { modelValue } = defineModels<{
-	modelValue: string;
-}>();
+const modelValue = defineModel<string>();
 </script>
 
 <template>
 	<input
+		id="input"
+		v-model="modelValue"
+		border="~ rounded gray-200 dark:gray-700"
+		p="x-4 y-2"
+		type="text"
+		v-bind="$attrs"
+		w="250px"
+	/>
+	<!--	<input
 		id="input"
 		v-model="modelValue"
 		bg="transparent"
@@ -16,5 +23,5 @@ const { modelValue } = defineModels<{
 		type="text"
 		v-bind="$attrs"
 		w="250px"
-	/>
+	/> -->
 </template>

@@ -2,6 +2,8 @@
 import { defineStore } from "pinia";
 import { api } from "@/api";
 
+type Displayable = string | number | boolean | null | undefined;
+
 /* ------------------------------------------------------------------ */
 /*  TypeScript interfaces                                             */
 /* ------------------------------------------------------------------ */
@@ -14,6 +16,7 @@ export interface Tutor {
 	usersOfTutorLength: number;
 	editTutors: boolean;
 	saveEdit: string;
+	[key: string]: Displayable;
 }
 
 export interface User {
@@ -24,6 +27,7 @@ export interface User {
 	state: string;
 	editUsers: boolean;
 	saveEdit: string;
+	[key: string]: Displayable;
 }
 
 export interface Admin {
@@ -32,6 +36,7 @@ export interface Admin {
 	email: string;
 	editAdmins: boolean;
 	saveEdit: string;
+	[key: string]: Displayable;
 }
 
 /* ------------------------------------------------------------------ */
@@ -103,9 +108,9 @@ export const useAppStore = defineStore("app", {
 		setTutors(t: Tutor[]) {
 			this.tutors = t;
 		},
-		setAdmins(a: Admin[]) {
+		/*		setAdmins(a: Admin[]) {
 			this.admins = a;
-		},
+		}, */
 		setCurrentUser(u: User | null) {
 			this.currentUser = u;
 		},
@@ -121,9 +126,9 @@ export const useAppStore = defineStore("app", {
 		setSignupBlock(v: boolean) {
 			this.signupBlock = v;
 		},
-		setShowUsers(v: boolean) {
+		/*		setShowUsers(v: boolean) {
 			this.showUsers = v;
-		},
+		}, */
 		setError(e: string | null) {
 			this.error = e;
 		},
@@ -147,7 +152,7 @@ export const useAppStore = defineStore("app", {
 			}
 		},
 
-		async getUsersOfTutor() {
+		/*		async getUsersOfTutor() {
 			if (!this.currentTutor) return;
 			try {
 				const { data } = await api.get<User[]>(
@@ -157,7 +162,7 @@ export const useAppStore = defineStore("app", {
 			} catch (e) {
 				console.error(e);
 			}
-		},
+		}, */
 
 		/* ---------- session helpers ---------- */
 		async logout() {

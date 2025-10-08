@@ -77,18 +77,15 @@ export const useContentStore = defineStore("content", () => {
 	const faqs = ref<FAQ[]>([
 		{
 			question: "Can siblings or friends join the same session?",
-			answer:
-				"Sadly this option is not available at this time as it is harder to ensure each learner gets the attention they deserve. I’m happy to work with multiple learners back-to-back, though!"
+			answer: "Sadly this option is not available at this time as it is harder to ensure each learner gets the attention they deserve. I’m happy to work with multiple learners back-to-back, though!"
 		},
 		{
 			question: "What happens if we need to reschedule?",
-			answer:
-				"Life happens! Just please let me know as soon as possible. No fees are charged whatsoever for cancellations."
+			answer: "Life happens! Just please let me know as soon as possible. No fees are charged whatsoever for cancellations."
 		},
 		{
 			question: "Do you offer progress updates?",
-			answer:
-				"Yes. I provide quick session summaries highlighting wins, challenges, and recommended practice so parents and students can stay aligned between meetings."
+			answer: "Yes. I provide quick session summaries highlighting wins, challenges, and recommended practice so parents and students can stay aligned between meetings."
 		}
 	]);
 
