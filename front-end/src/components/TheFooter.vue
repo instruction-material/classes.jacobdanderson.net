@@ -23,7 +23,7 @@
 					</li>
 					<li>
 						<a
-							href="https://github.com/jacoba1100254352/classes.jacobdanderson.net"
+							href="https://github.com/jacoba1100254352"
 							rel="noreferrer"
 							target="_blank"
 						>
