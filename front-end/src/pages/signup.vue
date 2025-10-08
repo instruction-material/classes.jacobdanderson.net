@@ -51,7 +51,7 @@ onMounted(() => {
 			<div
 				class="calendly-inline-widget"
 				:data-url="`${calendlyUrl}?hide_gdpr_banner=1`"
-				style="min-width: 320px; height: 900px"
+				style="height: 900px"
 			/>
 		</div>
 
@@ -86,9 +86,7 @@ onMounted(() => {
 
 .intro {
 	max-width: 760px;
-	margin: 0 auto;
 	text-align: center;
-	display: grid;
 	gap: 1.25rem;
 }
 
@@ -106,7 +104,6 @@ onMounted(() => {
 .intro ul {
 	list-style: none;
 	margin: 0;
-	display: grid;
 	gap: 0.75rem;
 	text-align: left;
 	color: #1f3d5a;
@@ -140,8 +137,6 @@ onMounted(() => {
 }
 
 .calendly-inline-widget {
-	width: 100% !important;
-	min-width: 0 !important;
 	box-sizing: border-box;
 }
 

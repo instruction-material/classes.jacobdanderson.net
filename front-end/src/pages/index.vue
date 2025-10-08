@@ -107,7 +107,7 @@ const { subjectGroups, highlights } = storeToRefs(content);
 	display: grid;
 	gap: 2rem;
 	align-items: center;
-	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
 }
 
 .hero-text {
@@ -306,6 +306,10 @@ const { subjectGroups, highlights } = storeToRefs(content);
 }
 
 @media (max-width: 600px) {
+	.eyebrow {
+		text-align: center;
+	}
+
 	.Home {
 		padding: 1.5rem 1rem 3rem;
 	}

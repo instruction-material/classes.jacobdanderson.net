@@ -294,7 +294,7 @@ defineOptions({ name: "AboutPage" });
 .experience-grid {
 	display: grid;
 	gap: 1.5rem;
-	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 .experience-grid article {
