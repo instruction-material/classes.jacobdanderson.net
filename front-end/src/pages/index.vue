@@ -257,7 +257,6 @@ const { subjectGroups, highlights } = storeToRefs(content);
 	border-radius: 20px;
 	background: linear-gradient(145deg, #e7f2ff, #f7fbff);
 	box-shadow: 0 14px 30px rgba(18, 64, 112, 0.08);
-	text-align: left;
 }
 
 .highlight-card h3 {
@@ -270,6 +269,7 @@ const { subjectGroups, highlights } = storeToRefs(content);
 	margin: 0;
 	color: #2d3f55;
 	line-height: 1.6;
+	text-align: left;
 }
 
 .next-steps {

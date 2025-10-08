@@ -8,7 +8,7 @@ const content = useContentStore();
 <template>
 	<section class="Payment">
 		<div class="intro">
-			<h1>Tuition &amp; payment</h1>
+			<h1>Tuition &amp; Payment</h1>
 			<p>
 				Each class is a 50-minute 1:1 session for $40. I always leave an
 				extra 10-minute buffer so we can wrap up a project or finish
@@ -94,7 +94,7 @@ const content = useContentStore();
 				Book through Calendly or email me to coordinate a recurring spot
 				that matches your schedule.
 			</p>
-			<RouterLink class="cta" to="/signup">Book a class</RouterLink>
+			<RouterLink class="cta" to="/signup">Book a Class</RouterLink>
 			<a class="cta ghost" href="mailto:jacobdanderson@gmail.com"
 				>Email Jacob</a
 			>

@@ -7,9 +7,7 @@
 				<h3>Connect</h3>
 				<ul>
 					<li>
-						<a href="mailto:jacobdanderson@gmail.com"
-							>jacobdanderson@gmail.com</a
-						>
+						<a href="mailto:jacobdanderson@gmail.com">Email me</a>
 						<!--						<a href="mailto:jacob@jacobdanderson.net" -->
 						<!--							>jacob@jacobdanderson.net</a -->
 						<!--						> -->
@@ -25,7 +23,7 @@
 					</li>
 					<li>
 						<a
-							href="https://github.com/anderson-webops/classes.jacobdanderson.net"
+							href="https://github.com/jacoba1100254352/classes.jacobdanderson.net"
 							rel="noreferrer"
 							target="_blank"
 						>
@@ -47,11 +45,11 @@
 				<h3>Quick links</h3>
 				<ul>
 					<li>
-						<RouterLink to="/signup">Book a class</RouterLink>
+						<RouterLink to="/signup">Book a Class</RouterLink>
 					</li>
 					<li>
 						<RouterLink to="/payment"
-							>Tuition &amp; payment</RouterLink
+							>Tuition &amp; Payment</RouterLink
 						>
 					</li>
 					<li>

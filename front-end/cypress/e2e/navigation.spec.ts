@@ -2,7 +2,7 @@
 /// <reference types="cypress" />
 
 /**
- * Basic smoke-test for Operation Opportunity
+ * Basic smoke-test for Classes
  *
  * Things we prove:
  *   1. Home page renders and shows the H1 banner.
@@ -20,24 +20,24 @@ context("Navigation & page smoke-tests", () => {
 
 	it("loads the home page", () => {
 		cy.url().should("eq", `${Cypress.config().baseUrl}/`);
-		cy.contains("Operation Opportunity").should("exist"); // <h1>
+		cy.contains("Classes").should("exist"); // <h1>
 	});
 
 	it("header links work", () => {
 		// ---- About ---------------------------------------------------
 		cy.contains("About").click();
 		cy.url().should("eq", `${Cypress.config().baseUrl}/about`);
-		cy.contains("About Us").should("exist");
+		cy.contains("Meet Jacob").should("exist");
 
-		// ---- Signup --------------------------------------------------
-		cy.contains("Signup").click();
+		// ---- Book a Class --------------------------------------------------
+		cy.contains("Book a Class").click();
 		cy.url().should("eq", `${Cypress.config().baseUrl}/signup`);
-		cy.contains("Sign Up").should("exist"); // H1 in signup.vue
+		cy.contains("Schedule a Class").should("exist"); // H1 in signup.vue
 
-		// ---- Support Us ---------------------------------------------
-		cy.contains("Support Us").click();
-		cy.url().should("eq", `${Cypress.config().baseUrl}/supportus`);
-		cy.contains("Support Us").should("exist");
+		// ---- Tuition & Payment ---------------------------------------------
+		cy.contains("Tuition & Payment").click();
+		cy.url().should("eq", `${Cypress.config().baseUrl}/payment`);
+		cy.contains("Tuition & Payment").should("exist");
 
 		// ---- back to Home -------------------------------------------
 		cy.contains("Home").click();

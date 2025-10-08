@@ -21,7 +21,7 @@ onMounted(() => {
 <template>
 	<section class="Signup">
 		<section class="intro">
-			<h1>Schedule a class</h1>
+			<h1>Schedule a Class</h1>
 			<p>
 				Use Calendly to choose a time that works for you. Share a few
 				notes about the learner and the topics you’d like to cover so I
