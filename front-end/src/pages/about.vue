@@ -24,6 +24,7 @@ defineOptions({ name: "AboutPage" });
 					from their first "Hello World" program all the way to
 					launching complex capstone projects.
 				</p>
+				<br />
 				<p>
 					With Juni winding down, I'm excited to continue working
 					directly with families and adult learners. My goal is to
@@ -35,34 +36,34 @@ defineOptions({ name: "AboutPage" });
 		</section>
 
 		<section aria-labelledby="philosophy-title" class="philosophy">
-			<h2>Teaching philosophy</h2>
+			<h2 class="text-center">Teaching philosophy</h2>
 			<ul>
 				<li>
-					<div class="w-100 text-center">
+					<h3 class="w-100 text-center">
 						<strong>Curiosity First</strong>
-					</div>
-					<div>
+					</h3>
+					<p>
 						Concepts stick when students understand the "why" and
 						can experiment freely.
-					</div>
+					</p>
 				</li>
 				<li>
-					<div class="w-100 text-center">
+					<h3 class="w-100 text-center">
 						<strong>Transparent Goals</strong>
-					</div>
-					<div>
+					</h3>
+					<p>
 						Every class ends with an achievable milestone or plan so
 						you always know what's next.
-					</div>
+					</p>
 				</li>
 				<li>
-					<div class="w-100 text-center">
+					<h3 class="w-100 text-center">
 						<strong>Real-world Context</strong>
-					</div>
-					<div>
+					</h3>
+					<p>
 						We connect lessons to meaningful projects—apps, games,
 						data explorations, or engineering challenges.
-					</div>
+					</p>
 				</li>
 			</ul>
 		</section>
@@ -145,8 +146,7 @@ defineOptions({ name: "AboutPage" });
 
 .philosophy {
 	display: grid;
-	gap: 1.5rem;
-	margin: 0 auto;
+	margin: 0;
 }
 
 /* Title sizing (moved out of .copy) */
@@ -195,23 +195,13 @@ defineOptions({ name: "AboutPage" });
 	}
 }
 
-.philosophy h1 {
-	font-size: clamp(2rem, 3.5vw, 2.75rem);
-	margin-bottom: 0.25rem;
-}
-
 .copy p,
-.philosophy p {
+.philosophy p,
+.experience-grid p {
 	margin: 0;
 	line-height: 1.6;
 	color: #2d3f55;
 	font-size: 1.05rem;
-}
-
-.philosophy h2 {
-	font-size: 1.6rem;
-	margin-top: 0.5rem;
-	text-align: center;
 }
 
 .philosophy ul {
@@ -282,10 +272,11 @@ defineOptions({ name: "AboutPage" });
 
 .experience {
 	max-width: 1100px;
-	margin: 0 auto;
+	margin: 0;
 	text-align: center;
 }
 
+.philosophy h2,
 .experience h2 {
 	font-size: clamp(1.8rem, 3vw, 2.4rem);
 	margin-bottom: 2rem;
@@ -305,6 +296,7 @@ defineOptions({ name: "AboutPage" });
 	text-align: left;
 }
 
+.philosophy h3,
 .experience-grid h3 {
 	margin-bottom: 0.75rem;
 	font-size: 1.2rem;

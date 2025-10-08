@@ -20,13 +20,14 @@ onMounted(() => {
 
 <template>
 	<section class="Signup">
-		<div class="intro">
+		<section class="intro">
 			<h1>Schedule a class</h1>
 			<p>
 				Use Calendly to choose a time that works for you. Share a few
 				notes about the learner and the topics you’d like to cover so I
 				can tailor the session in advance.
 			</p>
+			<br />
 			<ul>
 				<li>
 					Sessions are 50 minutes with an optional 10-minute buffer.
@@ -45,7 +46,7 @@ onMounted(() => {
 					>.
 				</li>
 			</ul>
-		</div>
+		</section>
 
 		<div class="calendly-container">
 			<div
@@ -80,7 +81,7 @@ onMounted(() => {
 	display: flex;
 	flex-direction: column;
 	gap: 3rem;
-	padding: 2.5rem 1.5rem 4rem;
+	padding: 0 1.5rem 4rem;
 	color: #16202a;
 }
 
