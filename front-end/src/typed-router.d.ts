@@ -22,10 +22,10 @@ declare module 'vue-router/auto-routes' {
     '/[...all]': RouteRecordInfo<'/[...all]', '/:all(.*)', { all: ParamValue<true> }, { all: ParamValue<false> }>,
     '/about': RouteRecordInfo<'/about', '/about', Record<never, never>, Record<never, never>>,
     '/admin/mdmail': RouteRecordInfo<'/admin/mdmail', '/admin/mdmail', Record<never, never>, Record<never, never>>,
+    '/payment': RouteRecordInfo<'/payment', '/payment', Record<never, never>, Record<never, never>>,
     '/profile': RouteRecordInfo<'/profile', '/profile', Record<never, never>, Record<never, never>>,
     '/README': RouteRecordInfo<'/README', '/README', Record<never, never>, Record<never, never>>,
     '/signup': RouteRecordInfo<'/signup', '/signup', Record<never, never>, Record<never, never>>,
-    '/supportus': RouteRecordInfo<'/supportus', '/supportus', Record<never, never>, Record<never, never>>,
   }
 
   /**
@@ -55,6 +55,10 @@ declare module 'vue-router/auto-routes' {
       routes: '/admin/mdmail'
       views: never
     }
+    'src/pages/payment.vue': {
+      routes: '/payment'
+      views: never
+    }
     'src/pages/profile.vue': {
       routes: '/profile'
       views: never
@@ -65,10 +69,6 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/signup.vue': {
       routes: '/signup'
-      views: never
-    }
-    'src/pages/supportus.vue': {
-      routes: '/supportus'
       views: never
     }
   }

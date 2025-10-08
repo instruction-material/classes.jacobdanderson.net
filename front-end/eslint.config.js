@@ -1,12 +1,12 @@
-// front-end/eslint.config.js
-import base from "../eslint.config.js"; // shared root config
-import globals from "globals";
-import auto from "./.eslintrc-auto-import.json" with { type: "json" };
-import prettier from "eslint-plugin-prettier";
 import ppFlat from "eslint-config-prettier/flat";
+import prettier from "eslint-plugin-prettier";
 import vuePlugin from "eslint-plugin-vue";
+import globals from "globals";
 import ts from "typescript-eslint";
 import vueParser from "vue-eslint-parser";
+// front-end/eslint.config.js
+import base from "../eslint.config.js"; // shared root config
+import auto from "./.eslintrc-auto-import.json" with { type: "json" };
 
 export default base
 	/* project-specific additions */

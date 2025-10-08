@@ -15,7 +15,7 @@ const MAX_MD_LEN = Number(env.MDMAIL_MAX_MD_LEN || 200_000);
 const MailSchema = z.object({
 	to: z.email(),
 	subject: z.string().trim().min(1).max(200),
-	md: z.string().min(1),
+	md: z.string().min(1)
 });
 
 router.post("/send", validAdmin, async (req, res) => {
@@ -28,8 +28,7 @@ router.post("/send", validAdmin, async (req, res) => {
 
 		if (ALLOW_TO.length && !ALLOW_TO.includes(to))
 			return res.status(403).json({ message: "Recipient not allowed" });
-		if (md.length > MAX_MD_LEN)
-			return res.status(413).json({ message: "Markdown too large" });
+		if (md.length > MAX_MD_LEN) return res.status(413).json({ message: "Markdown too large" });
 
 		// Ensure we always pass a string to nodemailer
 		const html = await marked.parse(md);
@@ -41,8 +40,7 @@ router.post("/send", validAdmin, async (req, res) => {
 					const st = statSync(p);
 					if (st.size > 0) return readFileSync(p);
 				}
-			}
-			catch {}
+			} catch {}
 			return undefined;
 		}
 
@@ -70,12 +68,11 @@ router.post("/send", validAdmin, async (req, res) => {
 			to,
 			subject,
 			text: md,
-			html,
+			html
 		});
 
 		return res.json({ ok: true, messageId: info.messageId });
-	}
-	catch (err: any) {
+	} catch (err: any) {
 		console.error("admin-mail/send failed:", err);
 		return res.status(502).json({ ok: false, message: err?.message ?? "Send failed" });
 	}

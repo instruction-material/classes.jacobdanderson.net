@@ -53,8 +53,7 @@ if (!name || !email || !password) {
 		await admin.save();
 		// console.log(`Admin user created for ${name} with email ${email}`);
 		exit(0);
-	}
-	catch (error) {
+	} catch (error) {
 		console.error(`Error: ${error}`);
 		exit(1);
 	}

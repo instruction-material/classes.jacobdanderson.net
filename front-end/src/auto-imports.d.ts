@@ -149,6 +149,7 @@ declare global {
   const useCloned: typeof import('@vueuse/core')['useCloned']
   const useColorMode: typeof import('@vueuse/core')['useColorMode']
   const useConfirmDialog: typeof import('@vueuse/core')['useConfirmDialog']
+  const useContentStore: typeof import('./stores/content')['useContentStore']
   const useCountdown: typeof import('@vueuse/core')['useCountdown']
   const useCounter: typeof import('@vueuse/core')['useCounter']
   const useCssModule: typeof import('vue')['useCssModule']
@@ -323,6 +324,9 @@ declare global {
   // @ts-ignore
   export type { Tutor, User, Admin } from './stores/app'
   import('./stores/app')
+  // @ts-ignore
+  export type { SubjectGroup, Highlight, FAQ } from './stores/content'
+  import('./stores/content')
 }
 
 // for vue template auto import
@@ -470,6 +474,7 @@ declare module 'vue' {
     readonly useCloned: UnwrapRef<typeof import('@vueuse/core')['useCloned']>
     readonly useColorMode: UnwrapRef<typeof import('@vueuse/core')['useColorMode']>
     readonly useConfirmDialog: UnwrapRef<typeof import('@vueuse/core')['useConfirmDialog']>
+    readonly useContentStore: UnwrapRef<typeof import('./stores/content')['useContentStore']>
     readonly useCountdown: UnwrapRef<typeof import('@vueuse/core')['useCountdown']>
     readonly useCounter: UnwrapRef<typeof import('@vueuse/core')['useCounter']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>

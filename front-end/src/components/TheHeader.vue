@@ -27,7 +27,7 @@ function logoutUser() {
 					class="nav-item navbar-brand nav-link"
 					to="/"
 				>
-					Operation Opportunity
+					Classes with Jacob
 				</router-link>
 				<button
 					aria-controls="navbarSupportedContent"
@@ -42,9 +42,9 @@ function logoutUser() {
 				</button>
 				<div
 					id="navbarSupportedContent"
-					class="collapse navbar-collapse"
+					class="collapse navbar-collapse px-3"
 				>
-					<ul class="nav navbar-nav mb-lg-0 mb-2 me-auto">
+					<ul class="nav navbar-nav mb-lg-0 mb-2 me-auto gap-2">
 						<li class="nav-item">
 							<router-link class="nav-link" to="/">
 								Home
@@ -52,12 +52,12 @@ function logoutUser() {
 						</li>
 						<li class="nav-item">
 							<router-link class="nav-link" to="/signup">
-								Signup
+								Book a Class
 							</router-link>
 						</li>
 						<li class="nav-item">
-							<router-link class="nav-link" to="/supportus">
-								Support Us
+							<router-link class="nav-link" to="/payment">
+								Tuition &amp; Payment
 							</router-link>
 						</li>
 						<li class="nav-item">
