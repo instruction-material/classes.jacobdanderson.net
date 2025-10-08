@@ -47,14 +47,7 @@ router.post("/send", validAdmin, async (req, res) => {
 		// replace your ca reading bits with:
 		const caPath = env.SMTP_CA_FILE; // new optional var
 		const caBuf = caPath ? readOptionalCA(caPath) : undefined;
-		console.log(
-			"SMTP TLS CA path:",
-			env.SMTP_CA_FILE || "/etc/ssl/local/mail-ca.pem",
-			"exists:",
-			!!caBuf,
-			"len:",
-			caBuf?.length ?? 0
-		);
+		// console.log("SMTP TLS CA path:", env.SMTP_CA_FILE || "/etc/ssl/local/mail-ca.pem", "exists:", !!caBuf, "len:", caBuf?.length ?? 0);
 
 		const transporter = nodemailer.createTransport({
 			host: env.SMTP_HOST,
@@ -67,7 +60,7 @@ router.post("/send", validAdmin, async (req, res) => {
 				servername: env.SMTP_SERVERNAME || env.SMTP_HOST,
 				minVersion: "TLSv1.2",
 				...(caBuf ? { ca: caBuf } : {}) // only supply CA when you *really* need it
-			}
+			},
 		});
 
 		const info = await transporter.sendMail({
