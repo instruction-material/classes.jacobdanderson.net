@@ -32,7 +32,9 @@ router.post("/send", validAdmin, async (req, res) => {
 
 		// Ensure we always pass a string to nodemailer
 		const html = await marked.parse(md);
-		if (typeof html !== "string") throw new Error("HTML render did not return a string");
+		if (typeof html !== "string") { // noinspection ExceptionCaughtLocallyJS
+			throw new TypeError("HTML render did not return a string");
+		}
 
 		function readOptionalCA(p: string) {
 			try {
@@ -40,7 +42,8 @@ router.post("/send", validAdmin, async (req, res) => {
 					const st = statSync(p);
 					if (st.size > 0) return readFileSync(p);
 				}
-			} catch {}
+			}
+			catch {}
 			return undefined;
 		}
 
@@ -72,7 +75,8 @@ router.post("/send", validAdmin, async (req, res) => {
 		});
 
 		return res.json({ ok: true, messageId: info.messageId });
-	} catch (err: any) {
+	}
+	catch (err: any) {
 		console.error("admin-mail/send failed:", err);
 		return res.status(502).json({ ok: false, message: err?.message ?? "Send failed" });
 	}

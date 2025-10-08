@@ -10,7 +10,7 @@ const { subjectGroups, highlights } = storeToRefs(content);
 
 <template>
 	<section class="Home">
-		<div class="hero">
+		<section aria-labelledby="hero-title" class="hero">
 			<div class="hero-text">
 				<p class="eyebrow">Classes with Jacob</p>
 				<h1>Build confidence in coding, STEM, and Spanish.</h1>
@@ -21,21 +21,22 @@ const { subjectGroups, highlights } = storeToRefs(content);
 					goals—whether that’s discovering new skills or strengthening
 					existing ones.
 				</p>
-				<div class="hero-actions">
-					<RouterLink class="cta primary" to="/signup"
-						>Book a class</RouterLink
-					>
-					<RouterLink class="cta secondary" to="/payment"
-						>See tuition details</RouterLink
-					>
-				</div>
 			</div>
 			<img
 				alt="Student and tutor collaborating on a laptop"
 				class="hero-image"
 				src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1200&q=80"
 			/>
-		</div>
+		</section>
+
+		<section aria-labelledby="cta-title" class="cta-group">
+			<RouterLink class="cta primary" to="/signup"
+				>Book a class</RouterLink
+			>
+			<RouterLink class="cta secondary" to="/payment"
+				>See tuition details</RouterLink
+			>
+		</section>
 
 		<section aria-labelledby="subjects-title" class="subjects">
 			<h2 id="subjects-title">What I teach</h2>
@@ -135,10 +136,16 @@ const { subjectGroups, highlights } = storeToRefs(content);
 	font-weight: 600;
 }
 
-.hero-actions {
+.cta-group {
 	display: flex;
-	flex-wrap: wrap;
-	gap: 1rem;
+	gap: 2rem;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.cta-group * {
+	width: 40%;
+	margin: 0 auto;
 }
 
 .cta {
@@ -184,6 +191,8 @@ const { subjectGroups, highlights } = storeToRefs(content);
 	box-shadow: 0 18px 40px rgba(14, 33, 58, 0.18);
 }
 
+.hero,
+.cta-group,
 .subjects,
 .highlights,
 .next-steps {
@@ -301,8 +310,25 @@ const { subjectGroups, highlights } = storeToRefs(content);
 		padding: 1.5rem 1rem 3rem;
 	}
 
+	.Home > .hero + .cta-group {
+		margin-top: -15%; /* negative of the gap value */
+	}
+
 	.hero {
 		gap: 1.5rem;
+	}
+
+	.hero-image {
+		display: none;
+	}
+
+	.cta-group {
+		display: block;
+	}
+
+	.cta-group * {
+		margin: 1% 0;
+		width: 100%;
 	}
 
 	.subject-card,

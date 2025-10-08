@@ -106,7 +106,6 @@ onMounted(() => {
 .intro ul {
 	list-style: none;
 	margin: 0;
-	padding: 0;
 	display: grid;
 	gap: 0.75rem;
 	text-align: left;
@@ -136,6 +135,14 @@ onMounted(() => {
 	max-width: 960px;
 	margin: 0 auto;
 	width: 100%;
+
+	overflow-x: auto;
+}
+
+.calendly-inline-widget {
+	width: 100% !important;
+	min-width: 0 !important;
+	box-sizing: border-box;
 }
 
 .after-booking {

@@ -5,9 +5,17 @@ defineOptions({ name: "AboutPage" });
 
 <template>
 	<section class="About">
-		<div class="content">
+		<section aria-labelledby="intro-title" class="intro">
+			<h1 class="page-title">Meet Jacob</h1>
+
+			<div class="image-wrapper">
+				<img
+					alt="Jacob Anderson"
+					src="https://jacobdanderson.s3.us-east-1.amazonaws.com/images/Jacob_Anderson.jpg"
+				/>
+			</div>
+
 			<div class="copy">
-				<h1>Meet Jacob</h1>
 				<p>
 					I'm a lifelong learner and educator with a passion for
 					helping students fall in love with problem-solving. For the
@@ -23,51 +31,41 @@ defineOptions({ name: "AboutPage" });
 					while offering even more flexibility and personalized
 					support.
 				</p>
-
-				<h2>Teaching philosophy</h2>
-				<ul>
-					<li>
-						<strong>Curiosity first:</strong> Concepts stick when
-						students understand the "why" and can experiment freely.
-					</li>
-					<li>
-						<strong>Transparent goals:</strong> Every class ends
-						with an achievable milestone or plan so you always know
-						what's next.
-					</li>
-					<li>
-						<strong>Real-world context:</strong> We connect lessons
-						to meaningful projects—apps, games, data explorations,
-						or engineering challenges.
-					</li>
-				</ul>
-
-				<div class="cta-group">
-					<a
-						class="cta"
-						href="https://www.linkedin.com/in/jacoba1100254352/"
-						target="_blank"
-						rel="noreferrer"
-					>
-						View my LinkedIn
-					</a>
-					<a
-						class="cta ghost"
-						href="https://www.jacobdanderson.net"
-						target="_blank"
-						rel="noreferrer"
-					>
-						Visit my portfolio site
-					</a>
-				</div>
 			</div>
-			<div class="image-wrapper">
-				<img
-					alt="Jacob Anderson"
-					src="https://jacobdanderson.s3.us-east-1.amazonaws.com/images/Jacob_Anderson.jpg"
-				/>
-			</div>
-		</div>
+		</section>
+
+		<section aria-labelledby="philosophy-title" class="philosophy">
+			<h2>Teaching philosophy</h2>
+			<ul>
+				<li>
+					<div class="w-100 text-center">
+						<strong>Curiosity First</strong>
+					</div>
+					<div>
+						Concepts stick when students understand the "why" and
+						can experiment freely.
+					</div>
+				</li>
+				<li>
+					<div class="w-100 text-center">
+						<strong>Transparent Goals</strong>
+					</div>
+					<div>
+						Every class ends with an achievable milestone or plan so
+						you always know what's next.
+					</div>
+				</li>
+				<li>
+					<div class="w-100 text-center">
+						<strong>Real-world Context</strong>
+					</div>
+					<div>
+						We connect lessons to meaningful projects—apps, games,
+						data explorations, or engineering challenges.
+					</div>
+				</li>
+			</ul>
+		</section>
 
 		<section aria-labelledby="experience-title" class="experience">
 			<h2 id="experience-title">Experience snapshot</h2>
@@ -96,6 +94,25 @@ defineOptions({ name: "AboutPage" });
 				</article>
 			</div>
 		</section>
+
+		<section aria-labelledby="cta-title" class="cta-group">
+			<a
+				class="cta"
+				href="https://www.linkedin.com/in/jacoba1100254352/"
+				target="_blank"
+				rel="noreferrer"
+			>
+				View my LinkedIn
+			</a>
+			<a
+				class="cta ghost"
+				href="https://www.jacobdanderson.net"
+				target="_blank"
+				rel="noreferrer"
+			>
+				Visit my portfolio site
+			</a>
+		</section>
 	</section>
 </template>
 
@@ -108,38 +125,96 @@ defineOptions({ name: "AboutPage" });
 	color: #16202a;
 }
 
-.content {
+.intro {
 	display: grid;
 	gap: 2.5rem;
-	align-items: start;
-	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	align-items: center;
 	max-width: 1100px;
+	margin: 0 auto;
+
+	grid-template-columns: auto 35%;
+	grid-template-areas:
+		"title title"
+		"copy image";
+}
+
+/* Assign areas */
+.page-title {
+	grid-area: title;
+}
+
+.philosophy {
+	display: grid;
+	gap: 1.5rem;
 	margin: 0 auto;
 }
 
-.copy {
-	display: grid;
-	gap: 1.5rem;
+/* Title sizing (moved out of .copy) */
+.page-title {
+	font-size: clamp(2rem, 3.5vw, 2.75rem);
+	margin: 0 0 0.25rem 0;
+	text-align: center;
 }
 
-.copy h1 {
+/* let the wrapper fill the grid cell */
+.image-wrapper {
+	grid-area: image;
+	align-self: stretch;
+	width: 100%;
+	display: flex;
+}
+
+/* Make the image fill its parent’s height and keep aspect ratio */
+.image-wrapper img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 28px;
+	box-shadow: 0 20px 45px rgba(13, 38, 63, 0.18);
+}
+
+/* ===== Tablet stack: Title → Image → Text ===== */
+@media (max-width: 960px) {
+	.intro {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			"title"
+			"image";
+		gap: 2rem;
+	}
+
+	/* Make the image a bit smaller than desktop and centered */
+	.image-wrapper {
+		max-width: 55%;
+		justify-self: center;
+	}
+
+	/* Optional: tighten title size slightly on very small devices */
+	.page-title {
+		font-size: clamp(1.8rem, 6vw, 2.2rem);
+	}
+}
+
+.philosophy h1 {
 	font-size: clamp(2rem, 3.5vw, 2.75rem);
 	margin-bottom: 0.25rem;
 }
 
-.copy p {
+.copy p,
+.philosophy p {
 	margin: 0;
 	line-height: 1.6;
 	color: #2d3f55;
 	font-size: 1.05rem;
 }
 
-.copy h2 {
+.philosophy h2 {
 	font-size: 1.6rem;
 	margin-top: 0.5rem;
+	text-align: center;
 }
 
-.copy ul {
+.philosophy ul {
 	list-style: none;
 	padding: 0;
 	margin: 0;
@@ -147,7 +222,7 @@ defineOptions({ name: "AboutPage" });
 	gap: 1rem;
 }
 
-.copy li {
+.philosophy li {
 	background: #f4f8fc;
 	border-radius: 16px;
 	padding: 1rem 1.25rem;
@@ -160,7 +235,19 @@ defineOptions({ name: "AboutPage" });
 	display: flex;
 	flex-wrap: wrap;
 	gap: 1rem;
-	margin-top: 0.5rem;
+
+	justify-content: space-around;
+	align-items: center;
+
+	max-width: 1100px;
+	width: 100%;
+	margin: 0.5rem 0 auto;
+	text-align: center;
+}
+
+.cta-group * {
+	width: 40%;
+	margin: 0 auto;
 }
 
 .cta {
@@ -191,19 +278,6 @@ defineOptions({ name: "AboutPage" });
 
 .cta.ghost:hover {
 	background-color: #e9f2fb;
-}
-
-.image-wrapper {
-	width: 100%;
-	max-width: 520px;
-	justify-self: center;
-}
-
-.image-wrapper img {
-	width: 100%;
-	border-radius: 28px;
-	box-shadow: 0 20px 45px rgba(13, 38, 63, 0.18);
-	object-fit: cover;
 }
 
 .experience {
@@ -244,13 +318,22 @@ defineOptions({ name: "AboutPage" });
 	text-align: left;
 }
 
+article h3 {
+	text-align: center;
+}
+
 @media (max-width: 640px) {
 	.About {
 		padding: 2rem 1.25rem 3rem;
 	}
 
 	.cta-group {
-		justify-content: center;
+		display: block;
+	}
+
+	.cta-group * {
+		margin: 1% 0;
+		width: 100%;
 	}
 }
 </style>

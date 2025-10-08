@@ -1,8 +1,8 @@
 <script lang="ts" setup></script>
 
 <template>
-	<footer class="Footer">
-		<div class="Footer__inner">
+	<footer class="text-center">
+		<div class="content w-100">
 			<section class="contact">
 				<h3>Connect</h3>
 				<ul>
@@ -36,7 +36,7 @@
 			</section>
 
 			<section class="brand">
-				<h2>Jacob Anderson Tutoring</h2>
+				<h2>Classes with Jacob</h2>
 				<p>
 					Personalized tutoring for coding, STEM, and Spanish. Serving
 					students online across the U.S.
@@ -69,7 +69,7 @@
 </template>
 
 <style scoped>
-.Footer {
+footer {
 	background: #0f1f2f;
 	color: #e6edf5;
 	padding: 3rem 1.5rem 2rem;
@@ -78,24 +78,20 @@
 	display: block;
 }
 
-.Footer__inner {
+.content {
 	display: grid;
 	/* 3 perfectly equal columns */
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: 2rem 2.5rem;
-	align-items: start;
-	justify-items: start;
+	align-items: center;
+	justify-items: center;
+	align-content: space-around;
 
-	/* WIDTH CONTROL:
-	   - If you want it to stretch wider, increase or remove max-width.
-	   - 100% makes it edge-to-edge inside Footer’s padding. */
-	max-width: 1200px; /* try 1280px or remove this line */
-	width: 100%;
 	margin: 0 auto 2rem;
 }
 
 /* Make sure each section can’t force the column wider */
-.Footer__inner > section {
+.content > section {
 	min-width: 0;
 }
 
@@ -103,27 +99,32 @@
 .copy {
 	display: block;
 	clear: both; /* belts-and-braces if some global floats exist */
-	width: 100%;
-	text-align: center;
 	margin: 0;
 	color: #8fa6c1;
 	font-size: 0.9rem;
 }
 
-/* Tablet: 2 columns */
+/* Tablet or smaller: 2 columns */
 @media (max-width: 960px) {
-	.Footer__inner {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
+	.content {
+		grid-template-columns: 1fr;
+	}
+
+	.content > .contact {
+		order: 2;
+	}
+	.content > .brand {
+		order: 1;
+	}
+	.content > .links {
+		order: 3;
 	}
 }
 
-/* Phone: 1 column */
-@media (max-width: 600px) {
-	.Footer {
-		padding: 2.5rem 1.25rem 1.75rem;
-	}
-	.Footer__inner {
-		grid-template-columns: 1fr;
+/* On larger screens let this take up more space */
+@media (min-width: 960px) {
+	.brand {
+		width: 100%;
 	}
 }
 
@@ -133,14 +134,13 @@
 	font-size: 1.6rem;
 }
 .brand p {
-	margin: 0;
+	margin: auto;
 	line-height: 1.6;
 	color: #c8d8eb;
 }
 
 .links h3,
 .contact h3 {
-	margin: 0 0 0.75rem 0;
 	font-size: 1.1rem;
 }
 .links ul,

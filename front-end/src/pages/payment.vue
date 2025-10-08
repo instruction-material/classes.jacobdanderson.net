@@ -54,6 +54,7 @@ const content = useContentStore();
 		</section>
 
 		<section aria-labelledby="faq-title" class="faq w-100">
+			<h2 id="faq-title">FAQ</h2>
 			<div id="faqAccordion" class="accordion">
 				<div
 					v-for="(faq, i) in content.faqs"
@@ -62,12 +63,11 @@ const content = useContentStore();
 				>
 					<h2 :id="`faq${i}-heading`" class="accordion-header">
 						<button
-							class="accordion-button"
-							:class="{ collapsed: i !== 0 }"
+							class="accordion-button collapsed"
 							type="button"
 							data-bs-toggle="collapse"
 							:data-bs-target="`#faq${i}`"
-							:aria-expanded="i === 0 ? 'true' : 'false'"
+							:aria-expanded="false"
 							:aria-controls="`faq${i}`"
 						>
 							{{ faq.question }}
@@ -76,7 +76,7 @@ const content = useContentStore();
 					<div
 						:id="`faq${i}`"
 						class="accordion-collapse collapse"
-						:class="{ show: i === 0 }"
+						:class="{ show: false }"
 						:aria-labelledby="`faq${i}-heading`"
 						data-bs-parent="#faqAccordion"
 					>
@@ -95,7 +95,7 @@ const content = useContentStore();
 				that matches your schedule.
 			</p>
 			<RouterLink class="cta" to="/signup">Book a class</RouterLink>
-			<a class="cta ghost" href="mailto:jacob@jacobdanderson.net"
+			<a class="cta ghost" href="mailto:jacobdanderson@gmail.com"
 				>Email Jacob</a
 			>
 		</section>
@@ -125,7 +125,6 @@ const content = useContentStore();
 
 .intro p {
 	margin: 0 auto;
-	max-width: 680px;
 	line-height: 1.6;
 	font-size: 1.05rem;
 	color: #2d3f55;
