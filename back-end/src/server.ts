@@ -52,8 +52,7 @@ async function main() {
 			cookieOptions.sameSite = "none"; // required for cross-site
 			cookieOptions.secure = true; // required when SameSite=None
 			// cookieOptions.domain = ".example.com"; // optional if you want subdomain sharing
-		}
-		else {
+		} else {
 			cookieOptions.sameSite = "lax"; // fine for same-origin
 			cookieOptions.secure = true; // enforce HTTPS cookies
 		}
@@ -104,8 +103,7 @@ async function main() {
 	try {
 		const { uri } = await readMongoSecret(); // your Vault client should read from KV v2
 		mongoUri = uri;
-	}
-	catch (e) {
+	} catch (e) {
 		// Fail silently if Vault is not available, then probably local test (Had to do this to avoid weird requirements
 		// console.log("Vault unavailable, falling back to MONGODB_URI:", e);
 		const m: string = e?.toString() || "";
@@ -123,15 +121,13 @@ async function main() {
 	await mongoose.connect(mongoUri);
 	console.log("Connected to MongoDB");
 	const c = mongoose.connection;
-	console.log(
-		`Mongo connected: db=${c.db?.databaseName} host=${c.host} name=${c.name}`
-	);
+	console.log(`Mongo connected: db=${c.db?.databaseName} host=${c.host} name=${c.name}`);
 	app.get("/_dbinfo", (_req, res) => {
 		res.json({
 			databaseName: c.db?.databaseName,
 			host: c.host,
 			name: c.name,
-			usingVault: !!env.VAULT_ROLE_ID && !!env.VAULT_SECRET_ID,
+			usingVault: !!env.VAULT_ROLE_ID && !!env.VAULT_SECRET_ID
 		});
 	});
 

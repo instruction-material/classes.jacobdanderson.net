@@ -22,13 +22,13 @@ function logoutUser() {
 			style="background-color: #e3f2fd"
 		>
 			<div class="container-fluid">
-                                <router-link
-                                        aria-current="page"
-                                        class="nav-item navbar-brand nav-link"
-                                        to="/"
-                                >
-                                        Jacob Anderson Tutoring
-                                </router-link>
+				<router-link
+					aria-current="page"
+					class="nav-item navbar-brand nav-link"
+					to="/"
+				>
+					Classes with Jacob
+				</router-link>
 				<button
 					aria-controls="navbarSupportedContent"
 					aria-expanded="false"
@@ -42,29 +42,29 @@ function logoutUser() {
 				</button>
 				<div
 					id="navbarSupportedContent"
-					class="collapse navbar-collapse"
+					class="collapse navbar-collapse px-3"
 				>
-					<ul class="nav navbar-nav mb-lg-0 mb-2 me-auto">
+					<ul class="nav navbar-nav mb-lg-0 mb-2 me-auto gap-2">
 						<li class="nav-item">
 							<router-link class="nav-link" to="/">
 								Home
 							</router-link>
 						</li>
-                                                <li class="nav-item">
-                                                        <router-link class="nav-link" to="/signup">
-                                                                Book a Class
-                                                        </router-link>
-                                                </li>
-                                                <li class="nav-item">
-                                                        <router-link class="nav-link" to="/supportus">
-                                                                Tuition &amp; Payment
-                                                        </router-link>
-                                                </li>
-                                                <li class="nav-item">
-                                                        <router-link class="nav-link" to="/about">
-                                                                About Jacob
-                                                        </router-link>
-                                                </li>
+						<li class="nav-item">
+							<router-link class="nav-link" to="/signup">
+								Book a Class
+							</router-link>
+						</li>
+						<li class="nav-item">
+							<router-link class="nav-link" to="/payment">
+								Tuition &amp; Payment
+							</router-link>
+						</li>
+						<li class="nav-item">
+							<router-link class="nav-link" to="/about">
+								About
+							</router-link>
+						</li>
 						<li v-if="isLoggedIn" class="nav-item">
 							<router-link class="nav-link" to="/profile">
 								Profile
