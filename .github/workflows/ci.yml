@@ -42,7 +42,6 @@ jobs:
                   cache: npm
 
             - name: Pin npm version
-              if: matrix['node-version'] != '18.x'
               run: |
                   npm i -g npm@11.6.1
                   npm -v
