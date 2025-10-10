@@ -95,7 +95,7 @@ const content = useContentStore();
 				that matches your schedule.
 			</p>
 			<RouterLink class="cta" to="/signup">Book a Class</RouterLink>
-			<a class="cta ghost" href="mailto:jacobdanderson@gmail.com"
+			<a class="cta ghost" href="mailto:bascule-skaters0n@icloud.com"
 				>Email Jacob</a
 			>
 		</section>

@@ -41,8 +41,8 @@ onMounted(() => {
 					<!--					<a href="mailto:jacob@jacobdanderson.net" -->
 					<!--						>jacob@jacobdanderson.net</a -->
 					<!--					>. -->
-					<a href="mailto:jacobdanderson@gmail.com"
-						>jacobdanderson@gmail.com</a
+					<a href="mailto:bascule-skaters0n@icloud.com"
+						>bascule-skaters0n@icloud.com</a
 					>.
 				</li>
 			</ul>

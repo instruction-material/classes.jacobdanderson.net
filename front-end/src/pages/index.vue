@@ -86,7 +86,9 @@ const { subjectGroups, highlights } = storeToRefs(content);
 					>Schedule on Calendly</RouterLink
 				>
 				<!--				href="mailto:jacob@jacobdanderson.net" -->
-				<a class="cta secondary" href="mailto:jacobdanderson@gmail.com"
+				<a
+					class="cta secondary"
+					href="mailto:bascule-skaters0n@icloud.com"
 					>Email me a question</a
 				>
 			</div>
