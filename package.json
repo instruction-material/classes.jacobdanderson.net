@@ -3,7 +3,7 @@
 	"type": "module",
 	"version": "1.0.0",
 	"private": true,
-	"packageManager": "npm@11.6.1",
+	"packageManager": "npm@11.6.2",
 	"description": "Monorepo for Classes project",
 	"author": "Jacob Anderson",
 	"license": "ISC",
