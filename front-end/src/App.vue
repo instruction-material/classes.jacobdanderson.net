@@ -18,29 +18,29 @@ useHead({
 		{
 			rel: "icon",
 			type: "image/x-icon",
-			href: "/assets/Favicons/favicon.ico"
+			href: "/Favicons/favicon.ico"
 		},
 		{
 			rel: "icon",
 			type: "image/png",
 			sizes: "32x32",
-			href: "/assets/Favicons/favicon-32x32.png"
+			href: "/Favicons/favicon-32x32.png"
 		},
 		{
 			rel: "icon",
 			type: "image/png",
 			sizes: "16x16",
-			href: "/assets/Favicons/favicon-16x16.png"
+			href: "/Favicons/favicon-16x16.png"
 		},
 		{
 			rel: "apple-touch-icon",
 			sizes: "180x180",
-			href: "/assets/Favicons/apple-touch-icon.png"
+			href: "/Favicons/apple-touch-icon.png"
 		}
 		/*				{
 					rel: 'icon',
 					type: 'image/svg+xml',
-					href: () => preferredDark.value ? '/assets/Favicons/favicon-dark.svg': '/assets/Favicons/favicon.svg',
+					href: () => preferredDark.value ? '/Favicons/favicon-dark.svg': '/Favicons/favicon.svg',
 				}, */
 	]
 });

@@ -115,33 +115,33 @@ export default defineConfig({
 				display: "standalone",
 				icons: [
 					{
-						src: "/assets/Favicons/android-chrome-192x192.png",
+						src: "/Favicons/android-chrome-192x192.png",
 						sizes: "192x192",
 						type: "image/png"
 					},
 					{
-						src: "/assets/Favicons/android-chrome-512x512.png",
+						src: "/Favicons/android-chrome-512x512.png",
 						sizes: "512x512",
 						type: "image/png"
 					},
 					{
-						src: "/assets/Favicons/apple-touch-icon.png",
+						src: "/Favicons/apple-touch-icon.png",
 						sizes: "180x180",
 						type: "image/png",
 						purpose: "apple-touch-icon"
 					},
 					{
-						src: "/assets/Favicons/favicon-32x32.png",
+						src: "/Favicons/favicon-32x32.png",
 						sizes: "32x32",
 						type: "image/png"
 					},
 					{
-						src: "/assets/Favicons/favicon-16x16.png",
+						src: "/Favicons/favicon-16x16.png",
 						sizes: "16x16",
 						type: "image/png"
 					},
 					{
-						src: "/assets/Favicons/favicon.ico",
+						src: "/Favicons/favicon.ico",
 						sizes: "48x48",
 						type: "image/x-icon"
 					}
