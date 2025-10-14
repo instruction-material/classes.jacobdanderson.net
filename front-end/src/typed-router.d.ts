@@ -26,6 +26,7 @@ declare module 'vue-router/auto-routes' {
     '/profile': RouteRecordInfo<'/profile', '/profile', Record<never, never>, Record<never, never>>,
     '/README': RouteRecordInfo<'/README', '/README', Record<never, never>, Record<never, never>>,
     '/signup': RouteRecordInfo<'/signup', '/signup', Record<never, never>, Record<never, never>>,
+    '/zoom': RouteRecordInfo<'/zoom', '/zoom', Record<never, never>, Record<never, never>>,
   }
 
   /**
@@ -69,6 +70,10 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/signup.vue': {
       routes: '/signup'
+      views: never
+    }
+    'src/pages/zoom.vue': {
+      routes: '/zoom'
       views: never
     }
   }

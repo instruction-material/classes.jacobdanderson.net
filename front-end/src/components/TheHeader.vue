@@ -61,6 +61,11 @@ function logoutUser() {
 							</router-link>
 						</li>
 						<li class="nav-item">
+							<router-link class="nav-link" to="/zoom">
+								Zoom
+							</router-link>
+						</li>
+						<li class="nav-item">
 							<router-link class="nav-link" to="/about">
 								About
 							</router-link>

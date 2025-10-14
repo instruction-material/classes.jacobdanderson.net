@@ -54,6 +54,12 @@ onMounted(() => {
 				:data-url="`${calendlyUrl}?hide_gdpr_banner=1`"
 				style="height: 900px"
 			/>
+			<p class="calendly-fallback">
+				If the scheduler doesn’t load, use the direct Calendly link:
+				<a :href="calendlyUrl" rel="noopener" target="_blank">
+					{{ calendlyUrl }}
+				</a>
+			</p>
 		</div>
 
 		<section
@@ -136,6 +142,23 @@ onMounted(() => {
 
 .calendly-inline-widget {
 	box-sizing: border-box;
+}
+
+.calendly-fallback {
+	margin-top: 1.25rem;
+	font-size: 0.95rem;
+	color: #2d3f55;
+	text-align: center;
+}
+
+.calendly-fallback a {
+	color: #3a6ea5;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.calendly-fallback a:hover {
+	text-decoration: underline;
 }
 
 .intro,
