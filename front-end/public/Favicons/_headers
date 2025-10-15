@@ -1,7 +1,0 @@
-/Favicons/*
-  #cache-control: max-age=31536000
-  #cache-control: immutable
-
-  # Allow favicon updates to propagate without waiting for the 1 year cache TTL.
-  # Favicons aren't fingerprinted, so we need browsers to revalidate each request.
-  cache-control: public, max-age=0, must-revalidate
