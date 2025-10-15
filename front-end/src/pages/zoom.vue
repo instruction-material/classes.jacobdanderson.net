@@ -90,6 +90,7 @@ const zoomMeetingUrl = "https://us06web.zoom.us/j/2543520025";
 .zoom-card h2 {
 	margin: 0;
 	font-size: clamp(1.8rem, 3vw, 2.3rem);
+	text-align: center;
 }
 
 p {
@@ -98,7 +99,7 @@ p {
 }
 
 .cta {
-	justify-self: flex-start;
+	justify-self: center;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;

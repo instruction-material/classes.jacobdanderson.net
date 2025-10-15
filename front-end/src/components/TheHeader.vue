@@ -111,4 +111,8 @@ function logoutUser() {
 	</header>
 </template>
 
-<style scoped></style>
+<style scoped>
+/* temporary no-op to avoid plugin crash */
+:root {
+}
+</style>
