@@ -75,11 +75,24 @@ function logoutUser() {
 								Profile
 							</router-link>
 						</li>
-						<li v-if="isAdmin" class="nav-item">
-							<router-link class="nav-link" to="/admin/mdmail">
-								Session Notes
-							</router-link>
-						</li>
+						<template v-if="isAdmin">
+							<li class="nav-item">
+								<router-link
+									class="nav-link"
+									to="/admin/student-management"
+								>
+									Student Management
+								</router-link>
+							</li>
+							<li class="nav-item">
+								<router-link
+									class="nav-link"
+									to="/admin/mdmail"
+								>
+									Session Notes
+								</router-link>
+							</li>
+						</template>
 					</ul>
 					<!-- Logout Button -->
 					<button
