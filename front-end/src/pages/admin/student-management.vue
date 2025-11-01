@@ -1,10 +1,11 @@
 <template>
 	<section class="wrap">
 		<h2>Student Management (Admin)</h2>
-		<p class="helper-text">
-			Use the embedded spreadsheet below to manage student information
-			without leaving the dashboard.
-		</p>
+		<a
+			href="https://docs.google.com/spreadsheets/d/1UzA77-6hEakCe583WXOZTniC_RB6pqKp-2_ZLgQFOtk/edit?gid=891834841#gid=891834841"
+			class="helper-text"
+			>Open Document</a
+		>
 		<div class="iframe-wrap">
 			<iframe
 				allowfullscreen
