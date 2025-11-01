@@ -51,6 +51,13 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    '/admin/student-management': RouteRecordInfo<
+      '/admin/student-management',
+      '/admin/student-management',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     '/payment': RouteRecordInfo<
       '/payment',
       '/payment',
@@ -120,6 +127,12 @@ declare module 'vue-router/auto-routes' {
     'src/pages/admin/mdmail.vue': {
       routes:
         | '/admin/mdmail'
+      views:
+        | never
+    }
+    'src/pages/admin/student-management.vue': {
+      routes:
+        | '/admin/student-management'
       views:
         | never
     }
