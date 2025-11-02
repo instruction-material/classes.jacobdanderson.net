@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { api } from "@/api";
 import ProfileFields from "@/components/ProfileFields.vue";
 import { useDeleteAccount } from "@/composables/useDeleteAccount";
@@ -42,6 +42,10 @@ async function loadUsers() {
 }
 
 onMounted(loadUsers);
+
+const usersHeader = computed(() =>
+	currentTutor.value && users.value.length === 0 ? "No Users" : "Users"
+);
 </script>
 
 <template>
@@ -75,7 +79,7 @@ onMounted(loadUsers);
 
 		<!-- ───── Users under this tutor (read-only) ───── -->
 		<hr />
-		<h2>Users</h2>
+		<h2>{{ usersHeader }}</h2>
 
 		<div v-for="u in users" :key="u._id" class="tutorList mt-2">
 			<br />
