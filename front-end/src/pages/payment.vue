@@ -1,54 +1,44 @@
 <script lang="ts" setup>
 import { useContentStore } from "@/stores/content";
 
-defineOptions({ name: "SupportUsPage" });
+defineOptions({ name: "StudyGuidePage" });
 const content = useContentStore();
 </script>
 
 <template>
 	<section class="Payment">
 		<div class="intro">
-			<h1>Tuition &amp; Payment</h1>
+			<h1>Study Guide</h1>
 			<p>
-				Each class is a 50-minute 1:1 session for $40. I always leave an
-				extra 10-minute buffer so we can wrap up a project or finish
-				debugging without rushing.
+				Use this page as a quick reference for pacing, practice, and
+				common questions when working through the course library.
 			</p>
 			<div class="tuition-card">
 				<div class="rate">
-					<span class="amount">$40</span>
-					<span class="details">per class • 50 minutes</span>
+					<span class="amount">3</span>
+					<span class="details">Core habits</span>
 				</div>
 				<ul>
-					<li>Flexible recurring or one-time scheduling</li>
-					<li>Follow-up notes with key takeaways and next steps</li>
-					<li>
-						Homework review or project feedback between sessions
-					</li>
+					<li>Review the previous lesson before starting a new one.</li>
+					<li>Keep small notes on bugs, ideas, and questions.</li>
+					<li>Finish or revise projects before jumping levels.</li>
 				</ul>
 			</div>
 		</div>
 
-		<section aria-labelledby="payment-title" class="payment">
-			<h2 id="payment-title">How to pay</h2>
+		<section aria-labelledby="rhythm-title" class="payment">
+			<h2 id="rhythm-title">Practice Rhythm</h2>
 			<p>
-				Venmo is the easiest way to submit payment before or after
-				class. Tap the button below to open my Venmo profile in a new
-				tab.
+				Short, consistent practice usually beats infrequent marathon
+				sessions. Try to alternate between learning new material,
+				revisiting earlier work, and polishing a recent project.
 			</p>
-			<a
-				class="cta"
-				href="https://www.venmo.com/u/jacoba1100254352-classes"
-				rel="noreferrer"
-				target="_blank"
-			>
-				Open Venmo profile
-			</a>
 			<div class="note">
 				<p>
-					Prefer a different method? I can also accept CashApp, Apple
-					Cash or mailed checks—just reach out and we’ll set up what
-					works best for your family.
+					A useful pattern is: one guided lesson, one practice block,
+					and one project-improvement session each week. That balance
+					helps students keep both conceptual understanding and coding
+					fluency moving forward.
 				</p>
 			</div>
 		</section>
@@ -89,15 +79,18 @@ const content = useContentStore();
 		</section>
 
 		<section aria-labelledby="schedule-title" class="schedule">
-			<h2 id="schedule-title">Ready to schedule?</h2>
+			<h2 id="schedule-title">Next Step</h2>
 			<p>
-				Book through Calendly or email me to coordinate a recurring spot
-				that matches your schedule.
+				Choose a course, work through the first module, and use the
+				getting started page if you need help choosing a level or study
+				rhythm.
 			</p>
-			<RouterLink class="cta" to="/signup">Book a Class</RouterLink>
-			<a class="cta ghost" href="mailto:bascule-skaters0n@icloud.com"
-				>Email Jacob</a
-			>
+			<div class="cta-group">
+				<RouterLink class="cta" to="/courses">Browse Courses</RouterLink>
+				<RouterLink class="cta ghost" to="/signup">
+					Open Getting Started
+				</RouterLink>
+			</div>
 		</section>
 	</section>
 </template>
@@ -237,22 +230,14 @@ const content = useContentStore();
 	text-align: center;
 }
 
-.faq article {
-	background: white;
-	border-radius: 20px;
-	padding: 1.75rem;
-	box-shadow: 0 14px 30px rgba(18, 64, 112, 0.08);
-	display: grid;
-	gap: 0.75rem;
-}
-
-.faq h3 {
-	margin: 0;
-	font-size: 1.2rem;
-	color: #1f3d5a;
-}
-
 .schedule {
+	gap: 1rem;
+}
+
+.cta-group {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 	gap: 1rem;
 }
 
@@ -260,17 +245,5 @@ const content = useContentStore();
 	.Payment {
 		padding: 2rem 1.25rem 3rem;
 	}
-
-	.tuition-card {
-		padding: 1.75rem 1.5rem;
-	}
 }
 </style>
-
-<route lang="json">
-{
-	"meta": {
-		"layout": "default"
-	}
-}
-</route>

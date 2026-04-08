@@ -5,6 +5,7 @@
 dist
 dist-ssr
 node_modules
+.node-localstorage*
 .idea/
 *.log
 cypress/downloads
