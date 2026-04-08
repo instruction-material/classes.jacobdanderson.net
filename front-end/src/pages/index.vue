@@ -1,25 +1,36 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
+import { computed } from "vue";
 import { useContentStore } from "@/stores/content";
+import { useCoursesStore } from "@/stores/courses";
 
 defineOptions({ name: "HomePage" });
 
 const content = useContentStore();
 const { subjectGroups, highlights } = storeToRefs(content);
+const coursesStore = useCoursesStore();
+const { courses } = storeToRefs(coursesStore);
+
+const libraryStats = computed(() => ({
+	courseCount: courses.value.length,
+	trackCount: subjectGroups.value.length,
+	subjectCount: content.allSubjects.length
+}));
 </script>
 
 <template>
 	<section class="Home">
 		<section aria-labelledby="hero-title" class="hero">
 			<div class="hero-text">
-				<p class="eyebrow">Classes with Jacob</p>
-				<h1>Build confidence in coding, STEM, and Spanish.</h1>
+				<p class="eyebrow">Course Library</p>
+				<h1 id="hero-title">
+					Build confidence with reusable coding and STEM materials.
+				</h1>
 				<p>
-					I specialize in teaching programming, engineering, and
-					language topics to learners of all ages—from grade school
-					through adulthood. Every session focuses on their individual
-					goals—whether that’s discovering new skills or strengthening
-					existing ones.
+					Explore project-based course outlines, lesson prompts, and
+					progression paths that students, instructors, and families
+					can use to plan learning across programming, web
+					development, science, and problem-solving topics.
 				</p>
 			</div>
 			<img
@@ -30,20 +41,20 @@ const { subjectGroups, highlights } = storeToRefs(content);
 		</section>
 
 		<section aria-labelledby="cta-title" class="cta-group">
-			<RouterLink class="cta primary" to="/signup"
-				>Book a class</RouterLink
-			>
-			<RouterLink class="cta secondary" to="/payment"
-				>See tuition details</RouterLink
-			>
+			<RouterLink class="cta primary" to="/courses">
+				Explore Course Library
+			</RouterLink>
+			<RouterLink class="cta secondary" to="/signup">
+				Plan Your Starting Point
+			</RouterLink>
 		</section>
 
 		<section aria-labelledby="subjects-title" class="subjects">
 			<h2 id="subjects-title">What I teach</h2>
-			<!--			<p class="intro">
-				Learn coding, STEM, and languages your way—with lessons and
-				projects that match your goals.
-			</p> -->
+			<p class="intro">
+				The library is organized into subject groups so students can
+				find a suitable entry point and see where each course can lead.
+			</p>
 			<div class="subject-grid">
 				<article
 					v-for="group in subjectGroups"
@@ -74,23 +85,38 @@ const { subjectGroups, highlights } = storeToRefs(content);
 			</div>
 		</section>
 
+		<section aria-labelledby="stats-title" class="stats">
+			<h2 id="stats-title">Library Snapshot</h2>
+			<div class="stats-grid">
+				<article class="stat-card">
+					<strong>{{ libraryStats.courseCount }}</strong>
+					<span>Current courses</span>
+				</article>
+				<article class="stat-card">
+					<strong>{{ libraryStats.trackCount }}</strong>
+					<span>Subject tracks</span>
+				</article>
+				<article class="stat-card">
+					<strong>{{ libraryStats.subjectCount }}</strong>
+					<span>Topics covered</span>
+				</article>
+			</div>
+		</section>
+
 		<section aria-labelledby="next-steps-title" class="next-steps">
 			<div class="next-steps-card">
 				<h2 id="next-steps-title">Ready to get started?</h2>
 				<p>
-					Pick a time on my Calendly, tell me a bit about the learner,
-					and I’ll confirm within one business day. Returning students
-					can use the same link to book ongoing sessions.
+					Start by browsing the course library, then use the getting
+					started guide to choose a level, collect tools, and decide
+					how you want to practice between sessions or study blocks.
 				</p>
-				<RouterLink class="cta primary" to="/signup"
-					>Schedule on Calendly</RouterLink
-				>
-				<!--				href="mailto:jacob@jacobdanderson.net" -->
-				<a
-					class="cta secondary"
-					href="mailto:bascule-skaters0n@icloud.com"
-					>Email me a question</a
-				>
+				<RouterLink class="cta primary" to="/courses">
+					Open Course Library
+				</RouterLink>
+				<RouterLink class="cta secondary" to="/about">
+					How These Materials Work
+				</RouterLink>
 			</div>
 		</section>
 	</section>
@@ -197,6 +223,7 @@ const { subjectGroups, highlights } = storeToRefs(content);
 .cta-group,
 .subjects,
 .highlights,
+.stats,
 .next-steps {
 	max-width: 1100px;
 	width: 100%;
@@ -206,152 +233,77 @@ const { subjectGroups, highlights } = storeToRefs(content);
 
 .subjects h2,
 .highlights h2,
+.stats h2,
 .next-steps h2 {
 	font-size: clamp(1.8rem, 3vw, 2.4rem);
 	margin-bottom: 0.75rem;
 }
 
-/*.intro {
+.intro {
 	max-width: 720px;
 	margin: 0 auto 2.5rem;
 	font-size: 1.05rem;
 	line-height: 1.6;
 	color: #334155;
-}*/
-
-.subject-grid {
-	display: grid;
-	gap: 1.5rem;
-	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
-.subject-card {
-	padding: 1.75rem;
+.subject-grid,
+.highlight-grid,
+.stats-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: 1rem;
+}
+
+.subject-card,
+.highlight-card,
+.stat-card,
+.next-steps-card {
 	background: white;
 	border-radius: 20px;
-	box-shadow: 0 10px 30px rgba(16, 42, 66, 0.08);
-	text-align: left;
-}
-
-.subject-card h3 {
-	margin-bottom: 0.75rem;
-	font-size: 1.2rem;
-	color: #1f3d5a;
+	padding: 1.5rem;
+	box-shadow: 0 14px 30px rgba(18, 64, 112, 0.08);
 }
 
 .subject-card ul {
 	list-style: none;
 	padding: 0;
-	margin: 0;
+	margin: 1rem 0 0;
 	display: grid;
-	gap: 0.4rem;
-	color: #334155;
+	gap: 0.5rem;
 }
 
-.highlight-grid {
+.stat-card {
 	display: grid;
-	gap: 1.5rem;
-	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 0.35rem;
 }
 
-.highlight-card {
-	padding: 1.75rem;
-	border-radius: 20px;
-	background: linear-gradient(145deg, #e7f2ff, #f7fbff);
-	box-shadow: 0 14px 30px rgba(18, 64, 112, 0.08);
-}
-
-.highlight-card h3 {
-	margin-bottom: 0.75rem;
-	font-size: 1.2rem;
+.stat-card strong {
+	font-size: clamp(2rem, 4vw, 2.75rem);
 	color: #1f3d5a;
 }
 
-.highlight-card p {
-	margin: 0;
-	color: #2d3f55;
-	line-height: 1.6;
-	text-align: left;
-}
-
-.next-steps {
-	text-align: center;
+.stat-card span {
+	color: #48617a;
+	font-weight: 600;
 }
 
 .next-steps-card {
-	margin: 0 auto;
-	max-width: 720px;
-	padding: 2.5rem;
-	background: #0f1f2f;
-	color: white;
-	border-radius: 24px;
 	display: grid;
-	gap: 1.5rem;
-	box-shadow: 0 24px 50px rgba(10, 25, 40, 0.25);
+	gap: 1rem;
+	max-width: 760px;
+	margin: 0 auto;
 }
 
-.next-steps-card p {
-	margin: 0;
-	font-size: 1.05rem;
-	line-height: 1.6;
-	color: #e6edf5;
-}
-
-.next-steps-card .cta.secondary {
-	background-color: transparent;
-	color: white;
-	border-color: rgba(255, 255, 255, 0.6);
-}
-
-.next-steps-card .cta.secondary:hover {
-	background-color: rgba(255, 255, 255, 0.12);
-}
-
-@media (max-width: 600px) {
-	.eyebrow {
-		text-align: center;
-	}
-
-	.Home {
-		padding: 1.5rem 1rem 3rem;
-	}
-
-	.Home > .hero + .cta-group {
-		margin-top: -15%; /* negative of the gap value */
-	}
-
-	.hero {
-		gap: 1.5rem;
-	}
-
-	.hero-image {
-		display: none;
-	}
-
+@media (max-width: 900px) {
 	.cta-group {
-		display: block;
+		flex-direction: column;
+		gap: 1rem;
 	}
 
 	.cta-group * {
-		margin: 1% 0;
 		width: 100%;
-	}
-
-	.subject-card,
-	.highlight-card {
-		padding: 1.5rem;
-	}
-
-	.next-steps-card {
-		padding: 2rem 1.5rem;
+		max-width: 360px;
 	}
 }
 </style>
-
-<route lang="json">
-{
-	"meta": {
-		"layout": "default"
-	}
-}
-</route>

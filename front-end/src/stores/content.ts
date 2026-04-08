@@ -1,4 +1,3 @@
-// src/stores/content.ts
 import { acceptHMRUpdate, defineStore } from "pinia";
 
 export interface SubjectGroup {
@@ -17,7 +16,6 @@ export interface FAQ {
 }
 
 export const useContentStore = defineStore("content", () => {
-	// ----- Static content moved from HomePage.vue -----
 	const subjectGroups = ref<SubjectGroup[]>([
 		{
 			title: "Programming & Computer Science",
@@ -31,7 +29,7 @@ export const useContentStore = defineStore("content", () => {
 			]
 		},
 		{
-			title: "Web Technologies",
+			title: "Web Development",
 			subjects: [
 				"HTML",
 				"CSS",
@@ -48,44 +46,43 @@ export const useContentStore = defineStore("content", () => {
 
 	const highlights = ref<Highlight[]>([
 		{
-			title: "Experienced Instructor",
-			copy: "Former Juni Learning instructor now offering direct 1:1 sessions tailored to each learner's goals and pace."
+			title: "Project-Driven Learning",
+			copy: "Each course is organized around concrete builds, guided practice, and review checkpoints instead of isolated drills."
 		},
 		{
-			title: "Project-Based Learning",
-			copy: "Every class connects concepts to real-world challenges so students can apply their skills immediately."
+			title: "Clear Progression Paths",
+			copy: "Students can start with foundations, build confidence through increasingly complex projects, and branch into adjacent topics when ready."
 		},
 		{
-			title: "Flexible Scheduling",
-			copy: "50-minute lessons with a 10-minute post-class time buffer to finish tough problems without feeling rushed."
+			title: "Flexible Use Cases",
+			copy: "The material works for tutoring, classrooms, clubs, guided self-study, or parents supporting learners at home."
 		},
 		{
-			title: "Flexible Payment",
-			copy: "Only pay for classes taught—missed or last-minute canceled sessions are not billed."
+			title: "Student-Friendly Structure",
+			copy: "Lessons break larger ideas into small steps, making it easier to revisit topics, fill gaps, and practice at a manageable pace."
 		},
 		{
-			title: "Satisfaction Guarantee",
-			copy: "If you're not satisfied after any class, get a full refund. Feedback is always welcome and encouraged."
+			title: "Reusable Course Assets",
+			copy: "Many modules include starter materials, project prompts, and external references that can be reused across cohorts."
 		}
 	]);
 
-	// ----- Helpful derived data (optional) -----
 	const allSubjects = computed<string[]>(() =>
 		subjectGroups.value.flatMap(g => g.subjects)
 	);
 
 	const faqs = ref<FAQ[]>([
 		{
-			question: "Can siblings or friends join the same session?",
-			answer: "Sadly this option is not available at this time as it is harder to ensure each learner gets the attention they deserve. I’m happy to work with multiple learners back-to-back, though!"
+			question: "Do students need prior experience?",
+			answer: "Not always. Many courses start from fundamentals. Review the course descriptions, scan the first module, and begin at the level that feels challenging but still approachable."
 		},
 		{
-			question: "What happens if we need to reschedule?",
-			answer: "Life happens! Just please let me know as soon as possible. No fees are charged whatsoever for cancellations."
+			question: "Can learners skip ahead?",
+			answer: "Yes, if the prerequisites are already solid. The course library is designed so students can inspect later modules and move into a higher level once the earlier concepts feel routine."
 		},
 		{
-			question: "Do you offer progress updates?",
-			answer: "Yes. I provide quick session summaries highlighting wins, challenges, and recommended practice so parents and students can stay aligned between meetings."
+			question: "How should groups or classes use the material?",
+			answer: "Treat the course outlines as a shared roadmap. Instructors can model new ideas, assign selected projects, and adapt pacing so learners have time to practice and compare solutions."
 		}
 	]);
 

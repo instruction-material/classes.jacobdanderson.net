@@ -4,8 +4,8 @@
 	"version": "1.0.0",
 	"private": true,
 	"packageManager": "npm@11.6.2",
-	"description": "Monorepo for Classes project",
-	"author": "Jacob Anderson",
+	"description": "Monorepo for the Classes instructional materials site",
+	"author": "Instruction Material contributors",
 	"license": "ISC",
 	"keywords": [],
 	"workspaces": [

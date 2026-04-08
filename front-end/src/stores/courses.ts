@@ -1,0 +1,147 @@
+import type {
+	CourseDefinition,
+	CourseModuleItem,
+	CourseSummary,
+	RawCourse
+} from "./courses/types";
+import { defineStore } from "pinia";
+import { computed } from "vue";
+import { courseCatalog, loadRawCourse } from "./courses/index";
+
+const COMBINING_MARKS_RE = /[\u0300-\u036F]/g;
+const NON_ALPHANUMERIC_RE = /[^a-z0-9]+/g;
+const LEADING_HYPHENS_RE = /^-+/;
+const TRAILING_HYPHENS_RE = /-+$/;
+const PARAGRAPH_BREAK_RE = /\n{2,}/;
+const INSTRUCTOR_NOTE_RE = /instructor note/i;
+const EXCESS_BLANK_LINES_RE = /\n{3,}/g;
+const INTERNAL_LAB_PATHS_RE =
+	/Starter code:\s*`[^`]+`\.\s*Solution code:\s*`[^`]+`\./gi;
+const JUNI_TITLE_RE = /\bJuni\b[\s-]*/g;
+const JUNE_COMMERCE_TITLE_RE = /\bJun-E-Commerce\b/g;
+const DOUBLE_SPACES_RE = /\s{2,}/g;
+
+export type {
+	CourseDefinition,
+	CourseModule,
+	CourseModuleItem
+} from "./courses/types";
+
+function slugify(value: string): string {
+	return value
+		.toLowerCase()
+		.normalize("NFKD")
+		.replace(COMBINING_MARKS_RE, "")
+		.replace(NON_ALPHANUMERIC_RE, "-")
+		.replace(LEADING_HYPHENS_RE, "")
+		.replace(TRAILING_HYPHENS_RE, "");
+}
+
+const HIDDEN_ITEM_TITLES = new Set([
+	"session recap & assignment",
+	"recap & assignment review"
+]);
+
+function shouldHideItem(title: string) {
+	return HIDDEN_ITEM_TITLES.has(title.trim().toLowerCase());
+}
+
+function sanitizeTitle(title: string) {
+	return title
+		.replace(JUNE_COMMERCE_TITLE_RE, "E-Commerce Showcase")
+		.replace(JUNI_TITLE_RE, "")
+		.replace(DOUBLE_SPACES_RE, " ")
+		.trim();
+}
+
+function normalizeContent(content: string): string {
+	const paragraphs = content
+		.split(PARAGRAPH_BREAK_RE)
+		.map(part => part.trim())
+		.filter(Boolean)
+		.filter(part => !INSTRUCTOR_NOTE_RE.test(part));
+
+	return paragraphs
+		.join("\n\n")
+		.replace(EXCESS_BLANK_LINES_RE, "\n\n")
+		.replace(
+			INTERNAL_LAB_PATHS_RE,
+			"Use the provided starter code and compare against a reference implementation when available."
+		)
+		.trim();
+}
+
+function normalizeCourse(course: RawCourse, courseId = slugify(course.name)) {
+	return {
+		id: courseId,
+		name: course.name,
+		modules: course.modules.map(module => {
+			const moduleId = slugify(`${courseId}-${module.title}`);
+
+			const mapItems = (
+				items: typeof module.curriculum,
+				prefix: string
+			): CourseModuleItem[] =>
+				items
+					.filter(item => !shouldHideItem(item.title))
+					.map(item => ({
+						id: slugify(`${moduleId}-${prefix}-${item.title}`),
+						title: sanitizeTitle(item.title),
+						content: normalizeContent(item.content),
+						projectLink: item.projectLink,
+						datasetLink: item.datasetLink
+					}));
+
+			return {
+				id: moduleId,
+				title: module.title,
+				curriculum: mapItems(module.curriculum, "curriculum"),
+				supplementalProjects: mapItems(
+					module.supplementalProjects,
+					"supplemental"
+				)
+			};
+		})
+	} satisfies CourseDefinition;
+}
+
+const courseSummaries: CourseSummary[] = courseCatalog.map(({ id, name }) => ({
+	id,
+	name
+}));
+
+const normalizedCourseCache = new Map<string, CourseDefinition>();
+
+export const useCoursesStore = defineStore("courses", () => {
+	const courses = computed(() => courseSummaries);
+
+	function getCourseById(id: string) {
+		return normalizedCourseCache.get(id) ?? null;
+	}
+
+	async function loadCourseById(id: string) {
+		const cachedCourse = normalizedCourseCache.get(id);
+
+		if (cachedCourse) {
+			return cachedCourse;
+		}
+
+		const rawCourse = await loadRawCourse(id);
+
+		if (!rawCourse) {
+			return null;
+		}
+
+		const normalizedCourse = normalizeCourse(rawCourse, id);
+
+		normalizedCourseCache.set(id, normalizedCourse);
+
+		return normalizedCourse;
+	}
+
+	return {
+		courses,
+		getCourseById,
+		loadCourseById
+	};
+});

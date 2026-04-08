@@ -2,7 +2,7 @@
 import { storeToRefs } from "pinia";
 import { useAppStore } from "@/stores/app";
 
-const emit = defineEmits<{
+defineEmits<{
 	(e: "loginClick"): void;
 	(e: "signupClick"): void;
 }>();
@@ -27,7 +27,7 @@ function logoutUser() {
 					class="nav-item navbar-brand nav-link"
 					to="/"
 				>
-					Classes with Jacob
+					Classes
 				</router-link>
 				<button
 					aria-controls="navbarSupportedContent"
@@ -51,18 +51,23 @@ function logoutUser() {
 							</router-link>
 						</li>
 						<li class="nav-item">
+							<router-link class="nav-link" to="/courses">
+								Course Library
+							</router-link>
+						</li>
+						<li class="nav-item">
 							<router-link class="nav-link" to="/signup">
-								Book a Class
+								Getting Started
 							</router-link>
 						</li>
 						<li class="nav-item">
 							<router-link class="nav-link" to="/payment">
-								Tuition &amp; Payment
+								Study Guide
 							</router-link>
 						</li>
 						<li class="nav-item">
 							<router-link class="nav-link" to="/zoom">
-								Zoom
+								Online Prep
 							</router-link>
 						</li>
 						<li class="nav-item">
@@ -75,35 +80,32 @@ function logoutUser() {
 								Profile
 							</router-link>
 						</li>
-						<li v-if="isAdmin" class="nav-item">
-							<router-link class="nav-link" to="/admin/mdmail">
-								Session Notes
-							</router-link>
-						</li>
+						<template v-if="isAdmin">
+							<li class="nav-item">
+								<router-link
+									class="nav-link"
+									to="/admin/student-management"
+								>
+									Learner Management
+								</router-link>
+							</li>
+							<li class="nav-item">
+								<router-link
+									class="nav-link"
+									to="/admin/mdmail"
+								>
+									Session Notes
+								</router-link>
+							</li>
+						</template>
 					</ul>
-					<!-- Logout Button -->
 					<button
 						v-if="isLoggedIn"
 						class="btn-outline-danger btn"
+						type="button"
 						@click="logoutUser"
 					>
-						Logout
-					</button>
-					<!-- Login button -->
-					<button
-						v-else
-						class="btn-outline-success btn"
-						@click="emit('loginClick')"
-					>
-						Login
-					</button>
-					<!-- Signup button -->
-					<button
-						v-if="!isLoggedIn"
-						class="btn-outline-primary btn"
-						@click="emit('signupClick')"
-					>
-						Signup
+						Log Out
 					</button>
 				</div>
 			</div>
@@ -112,7 +114,6 @@ function logoutUser() {
 </template>
 
 <style scoped>
-/* temporary no-op to avoid plugin crash */
 :root {
 }
 </style>

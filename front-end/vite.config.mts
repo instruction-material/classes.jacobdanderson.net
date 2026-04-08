@@ -17,13 +17,12 @@ import { VueRouterAutoImports } from "unplugin-vue-router";
 import VueRouter from "unplugin-vue-router/vite";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
-import VueDevTools from "vite-plugin-vue-devtools";
 import Layouts from "vite-plugin-vue-layouts-next";
 import generateSitemap from "vite-ssg-sitemap";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
 	resolve: {
 		alias: {
 			"~": `${path.resolve(__dirname, "src")}/`,
@@ -161,9 +160,7 @@ export default defineConfig({
 			include: [path.resolve(__dirname, "locales/**")]
 		}),
 
-		// https://github.com/webfansplz/vite-plugin-vue-devtools
-		VueDevTools()
-	],
+	].filter(Boolean),
 
 	/* vitest */
 	// https://github.com/vitest-dev/vitest
@@ -199,4 +196,4 @@ export default defineConfig({
 			}
 		}
 	}
-});
+}));
