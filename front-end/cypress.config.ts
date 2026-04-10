@@ -1,4 +1,5 @@
 import { defineConfig } from "cypress";
+import vitePreprocessor from "cypress-vite";
 
 export default defineConfig({
 	projectId: "d8k2m8",
@@ -6,7 +7,10 @@ export default defineConfig({
 		baseUrl: "http://localhost:3333",
 		chromeWebSecurity: false,
 		specPattern: "cypress/e2e/**/*.spec.*",
-		supportFile: false
+		supportFile: false,
+		setupNodeEvents(on) {
+			on("file:preprocessor", vitePreprocessor());
+		}
 	},
 
 	component: {

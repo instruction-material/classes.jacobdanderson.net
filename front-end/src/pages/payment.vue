@@ -1,64 +1,50 @@
 <script lang="ts" setup>
-import { warmSchedulerConnections } from "@/modules/scheduler";
 import { useContentStore } from "@/stores/content";
 
-defineOptions({ name: "SupportUsPage" });
+defineOptions({ name: "StudyGuidePage" });
 const content = useContentStore();
 </script>
 
 <template>
 	<section class="Payment">
 		<div class="intro">
-			<h1>Tuition &amp; Payment</h1>
+			<h1>Study Guide</h1>
 			<p>
-				Each session is a 50-minute one-on-one class for $40, with a
-				built-in 10-minute buffer so we can wrap up a project or solve
-				one last bug without rushing the ending.
+				Use this page as a quick reference for pacing, practice, and
+				common questions when working through the course library.
 			</p>
 			<div class="tuition-card">
 				<div class="rate">
-					<span class="amount">$40</span>
-					<span class="details">Per Session • 50 Minutes</span>
+					<span class="amount">3</span>
+					<span class="details">Core habits</span>
 				</div>
 				<ul>
-					<li>Flexible recurring or one-time scheduling</li>
-					<li>
-						Short follow-up notes with key takeaways and next steps
-					</li>
-					<li>
-						Light homework review or project feedback between
-						sessions
-					</li>
+					<li>Review the previous lesson before starting a new one.</li>
+					<li>Keep small notes on bugs, ideas, and questions.</li>
+					<li>Finish or revise projects before jumping levels.</li>
 				</ul>
 			</div>
 		</div>
 
-		<section aria-labelledby="payment-title" class="payment">
-			<h2 id="payment-title">How to Pay</h2>
+		<section aria-labelledby="rhythm-title" class="payment">
+			<h2 id="rhythm-title">Practice Rhythm</h2>
 			<p>
-				Venmo and Zelle both work well. Use the links below to open my
-				Venmo profile or view the Zelle email connected to classes.
+				Short, consistent practice usually beats infrequent marathon
+				sessions. Try to alternate between learning new material,
+				revisiting earlier work, and polishing a recent project.
 			</p>
-			<a
-				class="cta"
-				href="https://www.venmo.com/u/jacoba1100254352-classes"
-				rel="noreferrer"
-				target="_blank"
-			>
-				Open Venmo
-			</a>
-			<RouterLink class="cta" to="/zelle">Pay with Zelle</RouterLink>
 			<div class="note">
 				<p>
-					Prefer a different method? I can also accept Cash App, Apple
-					Cash, or mailed checks. Just reach out and we’ll find the
-					easiest option for your family.
+					A useful pattern is: one guided lesson, one practice block,
+					and one project-improvement session each week. That balance
+					helps students keep both conceptual understanding and coding
+					fluency moving forward.
 				</p>
 			</div>
 		</section>
 
 		<section aria-labelledby="faq-title" class="faq w-100">
-			<h2 id="faq-title">Common Questions</h2>
+			<h2 id="faq-title">FAQ</h2>
 			<div id="faqAccordion" class="accordion">
 				<div
 					v-for="(faq, i) in content.faqs"
@@ -93,23 +79,18 @@ const content = useContentStore();
 		</section>
 
 		<section aria-labelledby="schedule-title" class="schedule">
-			<h2 id="schedule-title">Ready to Schedule?</h2>
+			<h2 id="schedule-title">Next Step</h2>
 			<p>
-				Book through the scheduler or email me if you want help setting
-				up a recurring time that fits your schedule.
+				Choose a course, work through the first module, and use the
+				getting started page if you need help choosing a level or study
+				rhythm.
 			</p>
-			<RouterLink
-				class="cta"
-				to="/signup"
-				@focus="warmSchedulerConnections"
-				@mouseenter="warmSchedulerConnections"
-				@touchstart.passive="warmSchedulerConnections"
-			>
-				Open Scheduler
-			</RouterLink>
-			<a class="cta ghost" href="mailto:classes@jacobdanderson.net"
-				>Email Jacob</a
-			>
+			<div class="cta-group">
+				<RouterLink class="cta" to="/courses">Browse Courses</RouterLink>
+				<RouterLink class="cta ghost" to="/signup">
+					Open Getting Started
+				</RouterLink>
+			</div>
 		</section>
 	</section>
 </template>
@@ -215,7 +196,7 @@ const content = useContentStore();
 		background-color 0.2s ease,
 		transform 0.2s ease;
 	border: 2px solid transparent;
-	width: 205px;
+	width: fit-content;
 	margin: 0 auto;
 }
 
@@ -249,22 +230,14 @@ const content = useContentStore();
 	text-align: center;
 }
 
-.faq article {
-	background: white;
-	border-radius: 20px;
-	padding: 1.75rem;
-	box-shadow: 0 14px 30px rgba(18, 64, 112, 0.08);
-	display: grid;
-	gap: 0.75rem;
-}
-
-.faq h3 {
-	margin: 0;
-	font-size: 1.2rem;
-	color: #1f3d5a;
-}
-
 .schedule {
+	gap: 1rem;
+}
+
+.cta-group {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 	gap: 1rem;
 }
 
@@ -272,17 +245,5 @@ const content = useContentStore();
 	.Payment {
 		padding: 2rem 1.25rem 3rem;
 	}
-
-	.tuition-card {
-		padding: 1.75rem 1.5rem;
-	}
 }
 </style>
-
-<route lang="json">
-{
-	"meta": {
-		"layout": "default"
-	}
-}
-</route>

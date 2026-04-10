@@ -1,42 +1,17 @@
 // src/routes/userRoutes.ts
-import type { Router } from "express";
-import type { RateLimitRequestHandler } from "express-rate-limit";
 import express from "express";
-import rateLimit from "express-rate-limit";
 import { logout as logoutUser } from "../controllers/auth/authController.js";
 import {
 	createUser,
+	deleteUser,
 	getAllUsers,
 	getLoggedInUser,
 	updateUser
 } from "../controllers/users/userController.js";
-import {
-	deleteOwnUser,
-	deleteUserAsAdmin,
-	deleteUserAsTutor,
-	getLoggedInUserCommunications,
-	getUsersOfTutor,
-	promoteUserToTutor,
-	setUserCourseAccess,
-	setUserRecipientAssociation,
-	setUserTutors
-} from "../controllers/users/userExtraController.js";
-import {
-	validAdmin,
-	validTutor,
-	validTutorOrAdminSession,
-	validUser
-} from "../middleware/auth.js";
+import { assignTutorToUser, deleteUsersUnderTutor, getUsersOfTutor } from "../controllers/users/userExtraController.js";
+import { validTutor, validUser } from "../middleware/auth.js";
 
-const router: Router = express.Router();
-
-// Rate limiter for sensitive endpoints (e.g. 100 requests per 15 minutes)
-const userCourseAccessLimiter: RateLimitRequestHandler = rateLimit({
-	windowMs: 15 * 60 * 1000, // 15 minutes
-	limit: 100, // limit each IP to 100 requests per windowMs
-	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-	legacyHeaders: false // Disable the `X-RateLimit-*` headers
-});
+const router = express.Router();
 
 // Create a user
 router.post("/", createUser);
@@ -53,29 +28,17 @@ router.put("/user/:userID", validUser, updateUser);
 // Update user info by the tutor
 router.put("/tutor/:userID", validTutor, updateUser);
 
-// Update tutor assignments for a user (admin only)
-router.put("/:userID/tutors", validAdmin, setUserTutors);
-
-// Update recipient association for a user (admin only)
-router.put("/:userID/recipient", validAdmin, setUserRecipientAssociation);
-
-// Promote a user to tutor (admin only)
-router.post("/:userID/promote", validAdmin, promoteUserToTutor);
-
-// Allow tutors and admins to manage course visibility for their students
-router.put("/:userID/courses", userCourseAccessLimiter, validTutorOrAdminSession, setUserCourseAccess);
+// Assign a tutor to a user
+router.put("/tutor/:userID/:tutorID", assignTutorToUser);
 
 // Delete the user by the user themselves
-router.delete("/user/:userID", validUser, deleteOwnUser);
+router.delete("/user/:userID", validUser, deleteUser);
 
 // Delete the user by the tutor
-router.delete("/tutor/:userID", validTutor, deleteUserAsTutor);
+router.delete("/tutor/:userID", validTutor, deleteUser);
 
-// Delete the user by the admin
-router.delete("/admin/:userID", validAdmin, deleteUserAsAdmin);
-
-// Get logged in user
-router.get("/loggedin/communications", validUser, getLoggedInUserCommunications);
+// Delete users under a tutor
+router.delete("/under/:tutorID", deleteUsersUnderTutor);
 
 // Get logged in user
 router.get("/loggedin", validUser, getLoggedInUser);

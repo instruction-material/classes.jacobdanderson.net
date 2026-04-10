@@ -1,21 +1,19 @@
 // src/controllers/common/entityController.ts
 import type { RequestHandler } from "express";
-import type { Document, Model, PopulateOptions } from "mongoose";
+import type { Document, Model } from "mongoose";
 
 export interface EntityOpts<T extends Document> {
 	model: Model<T>;
 	idParam: string; // e.g. "adminID", "tutorID", "userID"
 	sessionKey: "adminID" | "tutorID" | "userID";
 	responseKey: "currentAdmin" | "currentTutor" | "currentUser";
-	populate?: string | PopulateOptions | Array<string | PopulateOptions>;
 }
 
 export function makeEntityController<T extends Document & { comparePassword?: (pw: string) => Promise<boolean> }>({
 	model,
 	idParam,
 	sessionKey,
-	responseKey,
-	populate
+	responseKey
 }: EntityOpts<T>) {
 	// Create
 	const create: RequestHandler = async (req, res) => {
@@ -36,12 +34,7 @@ export function makeEntityController<T extends Document & { comparePassword?: (p
 	// Read all
 	const getAll: RequestHandler = async (_req, res) => {
 		try {
-			let query = model.find();
-			if (populate) {
-				if (typeof populate === "string") query = query.populate(populate);
-				else query = query.populate(populate);
-			}
-			const list = await query.exec();
+			const list = await model.find();
 			res.json(list);
 		}
 		catch (err) {
@@ -54,12 +47,7 @@ export function makeEntityController<T extends Document & { comparePassword?: (p
 	const update: RequestHandler = async (req, res) => {
 		const id = req.params[idParam];
 		try {
-			let query = model.findById(id);
-			if (populate) {
-				if (typeof populate === "string") query = query.populate(populate);
-				else query = query.populate(populate);
-			}
-			const doc = await query.exec();
+			const doc = await model.findById(id);
 			if (!doc) return res.sendStatus(404);
 			Object.assign(doc, req.body);
 			await doc.save();

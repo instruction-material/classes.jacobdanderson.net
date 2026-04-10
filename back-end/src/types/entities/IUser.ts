@@ -5,10 +5,7 @@ import type { IBaseUser } from "../abstractions/BaseUser.js";
 export interface IUser extends IBaseUser {
 	age: string;
 	state: string;
-	tutors: Types.ObjectId[];
-	courseAccess: string[];
-	recipientName?: string;
-	recipientNameKey?: string;
+	tutor?: Types.ObjectId;
 	editUsers: boolean;
 	role: string; // e.g. "user"
 }

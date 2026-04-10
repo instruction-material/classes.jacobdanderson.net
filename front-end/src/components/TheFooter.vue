@@ -1,44 +1,35 @@
-<script lang="ts" setup>
-import { warmSchedulerConnections } from "@/modules/scheduler";
-</script>
-
 <template>
 	<footer class="text-center">
 		<div class="content w-100">
 			<section class="contact">
-				<h3>Connect</h3>
+				<h3>Resources</h3>
 				<ul>
 					<li>
-						<a href="mailto:classes@jacobdanderson.net">
-							Email Jacob
+						<a
+							href="https://github.com/instruction-material"
+							rel="noreferrer"
+							target="_blank"
+						>
+							GitHub Organization
 						</a>
 					</li>
 					<li>
 						<a
-							href="https://www.linkedin.com/in/jacoba1100254352/"
+							href="https://github.com/instruction-material/classes.jacobdanderson.net"
 							rel="noreferrer"
 							target="_blank"
 						>
-							LinkedIn
-						</a>
-					</li>
-					<li>
-						<a
-							href="https://github.com/jacoba1100254352"
-							rel="noreferrer"
-							target="_blank"
-						>
-							GitHub
+							Site Repository
 						</a>
 					</li>
 				</ul>
 			</section>
 
 			<section class="brand">
-				<h2>Classes with Jacob</h2>
+				<h2>Classes</h2>
 				<p>
-					Online tutoring in coding, STEM, and Spanish for learners
-					across the U.S.
+					Project-based course materials for coding, STEM, and
+					independent learning.
 				</p>
 			</section>
 
@@ -46,28 +37,23 @@ import { warmSchedulerConnections } from "@/modules/scheduler";
 				<h3>Quick links</h3>
 				<ul>
 					<li>
-						<RouterLink
-							to="/signup"
-							@focus="warmSchedulerConnections"
-							@mouseenter="warmSchedulerConnections"
-							@touchstart.passive="warmSchedulerConnections"
-						>
-							Book a Class
-						</RouterLink>
+						<RouterLink to="/courses">Course Library</RouterLink>
 					</li>
 					<li>
-						<RouterLink to="/payment">View Tuition</RouterLink>
+						<RouterLink to="/signup">Getting Started</RouterLink>
 					</li>
 					<li>
-						<RouterLink to="/about">About Jacob</RouterLink>
+						<RouterLink to="/payment">Study Guide</RouterLink>
+					</li>
+					<li>
+						<RouterLink to="/about">About These Materials</RouterLink>
 					</li>
 				</ul>
 			</section>
 		</div>
 
 		<p class="copy">
-			© {{ new Date().getFullYear() }} Jacob Anderson. All rights
-			reserved.
+			© {{ new Date().getFullYear() }} Instruction Material contributors.
 		</p>
 	</footer>
 </template>
@@ -78,37 +64,31 @@ footer {
 	color: #e6edf5;
 	padding: 3rem 1.5rem 2rem;
 	margin-top: 4rem;
-	/* Ensure nothing weird wraps alongside */
 	display: block;
 }
 
 .content {
 	display: grid;
-	/* 3 perfectly equal columns */
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: 2rem 2.5rem;
 	align-items: center;
 	justify-items: center;
 	align-content: space-around;
-
 	margin: 0 auto 2rem;
 }
 
-/* Make sure each section can’t force the column wider */
 .content > section {
 	min-width: 0;
 }
 
-/* Copyright: own line, never next to columns */
 .copy {
 	display: block;
-	clear: both; /* belts-and-braces if some global floats exist */
+	clear: both;
 	margin: 0;
 	color: #8fa6c1;
 	font-size: 0.9rem;
 }
 
-/* Tablet or smaller: 2 columns */
 @media (max-width: 960px) {
 	.content {
 		grid-template-columns: 1fr;
@@ -117,26 +97,27 @@ footer {
 	.content > .contact {
 		order: 2;
 	}
+
 	.content > .brand {
 		order: 1;
 	}
+
 	.content > .links {
 		order: 3;
 	}
 }
 
-/* On larger screens let this take up more space */
 @media (min-width: 960px) {
 	.brand {
 		width: 100%;
 	}
 }
 
-/* Typography and links (unchanged) */
 .brand h2 {
 	margin: 0 0 0.75rem 0;
 	font-size: 1.6rem;
 }
+
 .brand p {
 	margin: auto;
 	line-height: 1.6;
@@ -147,6 +128,7 @@ footer {
 .contact h3 {
 	font-size: 1.1rem;
 }
+
 .links ul,
 .contact ul {
 	list-style: none;
@@ -162,6 +144,7 @@ footer {
 	text-decoration: none;
 	font-weight: 600;
 }
+
 .links a:hover,
 .contact a:hover {
 	text-decoration: underline;

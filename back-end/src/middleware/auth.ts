@@ -46,45 +46,6 @@ export const validTutor: RequestHandler = async (req, res, next) => {
 	}
 };
 
-// Middleware to allow either tutor or admin sessions
-export const validTutorOrAdminSession: RequestHandler = async (req, res, next) => {
-	if (req.session?.adminID) {
-		try {
-			const admin = await Admin.findById(req.session.adminID);
-			if (!admin) {
-				res.status(403).json({ message: "Admin account not found" });
-				return;
-			}
-			req.currentAdmin = admin;
-			next();
-		}
-		catch (error) {
-			console.error("Error in validTutorOrAdminSession middleware (admin):", error);
-			res.status(500).json({ message: "Server error while validating admin" });
-		}
-		return;
-	}
-
-	if (req.session?.tutorID) {
-		try {
-			const tutor = await Tutor.findById(req.session.tutorID);
-			if (!tutor) {
-				res.status(403).json({ message: "Tutor account not found" });
-				return;
-			}
-			req.currentTutor = tutor;
-			next();
-		}
-		catch (error) {
-			console.error("Error in validTutorOrAdminSession middleware (tutor):", error);
-			res.status(500).json({ message: "Server error while validating tutor" });
-		}
-		return;
-	}
-
-	res.status(403).json({ message: "Not logged in or session expired" });
-};
-
 // Middleware to validate Admin
 export const validAdmin: RequestHandler = async (req, res, next) => {
 	if (!req.session?.adminID) {

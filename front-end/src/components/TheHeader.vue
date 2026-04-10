@@ -1,9 +1,8 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
-import { warmSchedulerConnections } from "@/modules/scheduler";
 import { useAppStore } from "@/stores/app";
 
-const emit = defineEmits<{
+defineEmits<{
 	(e: "loginClick"): void;
 	(e: "signupClick"): void;
 }>();
@@ -28,7 +27,7 @@ function logoutUser() {
 					class="nav-item navbar-brand nav-link"
 					to="/"
 				>
-					Classes with Jacob
+					Classes
 				</router-link>
 				<button
 					aria-controls="navbarSupportedContent"
@@ -52,24 +51,23 @@ function logoutUser() {
 							</router-link>
 						</li>
 						<li class="nav-item">
-							<router-link
-								class="nav-link"
-								to="/signup"
-								@focus="warmSchedulerConnections"
-								@mouseenter="warmSchedulerConnections"
-								@touchstart.passive="warmSchedulerConnections"
-							>
-								Book a Class
+							<router-link class="nav-link" to="/courses">
+								Course Library
+							</router-link>
+						</li>
+						<li class="nav-item">
+							<router-link class="nav-link" to="/signup">
+								Getting Started
 							</router-link>
 						</li>
 						<li class="nav-item">
 							<router-link class="nav-link" to="/payment">
-								Tuition &amp; Payment
+								Study Guide
 							</router-link>
 						</li>
 						<li class="nav-item">
 							<router-link class="nav-link" to="/zoom">
-								Zoom
+								Online Prep
 							</router-link>
 						</li>
 						<li class="nav-item">
@@ -101,7 +99,6 @@ function logoutUser() {
 							</li>
 						</template>
 					</ul>
-					<!-- Logout Button -->
 					<button
 						v-if="isLoggedIn"
 						class="btn-outline-danger btn"
@@ -110,24 +107,6 @@ function logoutUser() {
 					>
 						Log Out
 					</button>
-					<!-- Login button -->
-					<button
-						v-else
-						class="btn-outline-success btn"
-						type="button"
-						@click="emit('loginClick')"
-					>
-						Log In
-					</button>
-					<!-- Signup button -->
-					<button
-						v-if="!isLoggedIn"
-						class="btn-outline-primary btn"
-						type="button"
-						@click="emit('signupClick')"
-					>
-						Sign Up
-					</button>
 				</div>
 			</div>
 		</nav>
@@ -135,7 +114,6 @@ function logoutUser() {
 </template>
 
 <style scoped>
-/* temporary no-op to avoid plugin crash */
 :root {
 }
 </style>

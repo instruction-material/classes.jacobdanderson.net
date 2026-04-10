@@ -13,7 +13,6 @@ const { loginBlock, signupBlock } = storeToRefs(app);
 
 const loginEmail = ref("");
 const loginPassword = ref("");
-const rememberMe = ref(false);
 const errorLogin = ref("");
 
 function changeLoginView(show: boolean) {
@@ -28,8 +27,7 @@ async function loginTutor() {
 			"/accounts/login",
 			{
 				email: loginEmail.value,
-				password: loginPassword.value,
-				remember: rememberMe.value
+				password: loginPassword.value
 			},
 			{ withCredentials: true }
 		);
@@ -37,14 +35,16 @@ async function loginTutor() {
 		if (data.currentUser) app.setCurrentUser(data.currentUser);
 		if (data.currentAdmin) app.setCurrentAdmin(data.currentAdmin);
 		changeLoginView(false);
-		rememberMe.value = false;
 	} catch (err: unknown) {
 		const e = err as AxiosError<{ message?: string }>;
-		errorLogin.value = `Login failed: ${e.response?.data?.message ?? e.message ?? "Unknown error"}`;
+		errorLogin.value = `Login failed: ${
+			e.response?.data?.message ?? e.message ?? "Unknown error"
+		}`;
 	}
 }
 
-// form state (new signups default to users)
+// form state
+const signupType = ref<"tutor" | "user">("tutor");
 const name = ref("");
 const age = ref("");
 const state = ref("");
@@ -75,22 +75,34 @@ function resetData() {
 
 // on submit, dispatch to the right endpoint
 async function addSignup() {
-	error.value = "";
 	if (!passwordMatch.value) return;
 
 	try {
-		// every self-serve signup creates a user account
-		const res = await api.post(
-			"/users",
-			{
-				name: name.value,
-				age: age.value,
-				state: state.value,
-				email: email.value,
-				password: password.value
-			},
-			{ withCredentials: true }
-		);
+		// fire the right endpoint with credentials turned on
+		const res =
+			signupType.value === "tutor"
+				? await api.post(
+						"/tutors",
+						{
+							name: name.value,
+							age: age.value,
+							state: state.value,
+							email: email.value,
+							password: password.value
+						},
+						{ withCredentials: true }
+					)
+				: await api.post(
+						"/users",
+						{
+							name: name.value,
+							age: age.value,
+							state: state.value,
+							email: email.value,
+							password: password.value
+						},
+						{ withCredentials: true }
+					);
 
 		// immediately stash the newly-created user/tutor into Pinia
 		if (res.data.currentTutor) {
@@ -103,7 +115,9 @@ async function addSignup() {
 		changeSignupView(false);
 	} catch (err: unknown) {
 		const e = err as AxiosError<{ message?: string }>;
-		error.value = `Error: ${e.response?.data?.message ?? e.message ?? "Unknown error"}`;
+		errorLogin.value = `Error: ${
+			e.response?.data?.message ?? e.message ?? "Unknown error"
+		}`;
 	}
 }
 </script>
@@ -153,9 +167,10 @@ async function addSignup() {
 					/>
 
 					<button class="button" type="submit">Login</button>
-					<label class="remember">
+					<label>
+						<!--						checked="checked" -->
 						<input
-							v-model="rememberMe"
+							:checked="true"
 							name="remember"
 							type="checkbox"
 						/>
@@ -201,6 +216,27 @@ async function addSignup() {
 					<h1 class="mb-2">Sign Up</h1>
 					<p>Please fill in this form to create a new account.</p>
 					<hr />
+
+					<!-- ─── User Type Selector ────────────────────────────────────────── -->
+					<div class="mb-3">
+						<label>
+							<input
+								v-model="signupType"
+								type="radio"
+								value="tutor"
+							/>
+							Tutor
+						</label>
+						&ensp;
+						<label>
+							<input
+								v-model="signupType"
+								type="radio"
+								value="user"
+							/>
+							User
+						</label>
+					</div>
 
 					<!-- ─── Common Fields ─────────────────────────────────────────────── -->
 					<label for="name"><b>Name</b></label>
@@ -258,7 +294,11 @@ async function addSignup() {
 					/>
 
 					<button class="signup button" type="submit">
-						Create Account
+						Sign Up as a
+						{{
+							signupType.charAt(0).toUpperCase() +
+							signupType.slice(1)
+						}}
 					</button>
 
 					<p v-if="!passwordMatch" class="passwordMatchError">

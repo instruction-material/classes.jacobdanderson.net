@@ -5,7 +5,6 @@ import type {
 	RawCourse
 } from "./courses/types";
 import { defineStore } from "pinia";
-
 import { computed } from "vue";
 import { courseCatalog, loadRawCourse } from "./courses/index";
 
@@ -16,6 +15,11 @@ const TRAILING_HYPHENS_RE = /-+$/;
 const PARAGRAPH_BREAK_RE = /\n{2,}/;
 const INSTRUCTOR_NOTE_RE = /instructor note/i;
 const EXCESS_BLANK_LINES_RE = /\n{3,}/g;
+const INTERNAL_LAB_PATHS_RE =
+	/Starter code:\s*`[^`]+`\.\s*Solution code:\s*`[^`]+`\./gi;
+const JUNI_TITLE_RE = /\bJuni\b[\s-]*/g;
+const JUNE_COMMERCE_TITLE_RE = /\bJun-E-Commerce\b/g;
+const DOUBLE_SPACES_RE = /\s{2,}/g;
 
 export type {
 	CourseDefinition,
@@ -42,15 +46,28 @@ function shouldHideItem(title: string) {
 	return HIDDEN_ITEM_TITLES.has(title.trim().toLowerCase());
 }
 
+function sanitizeTitle(title: string) {
+	return title
+		.replace(JUNE_COMMERCE_TITLE_RE, "E-Commerce Showcase")
+		.replace(JUNI_TITLE_RE, "")
+		.replace(DOUBLE_SPACES_RE, " ")
+		.trim();
+}
+
 function normalizeContent(content: string): string {
 	const paragraphs = content
 		.split(PARAGRAPH_BREAK_RE)
 		.map(part => part.trim())
 		.filter(Boolean)
 		.filter(part => !INSTRUCTOR_NOTE_RE.test(part));
+
 	return paragraphs
 		.join("\n\n")
 		.replace(EXCESS_BLANK_LINES_RE, "\n\n")
+		.replace(
+			INTERNAL_LAB_PATHS_RE,
+			"Use the provided starter code and compare against a reference implementation when available."
+		)
 		.trim();
 }
 
@@ -69,12 +86,10 @@ function normalizeCourse(course: RawCourse, courseId = slugify(course.name)) {
 					.filter(item => !shouldHideItem(item.title))
 					.map(item => ({
 						id: slugify(`${moduleId}-${prefix}-${item.title}`),
-						title: item.title,
+						title: sanitizeTitle(item.title),
 						content: normalizeContent(item.content),
 						projectLink: item.projectLink,
-						solutionLink: item.solutionLink,
-						datasetLink: item.datasetLink,
-						mediaLink: item.mediaLink
+						datasetLink: item.datasetLink
 					}));
 
 			return {

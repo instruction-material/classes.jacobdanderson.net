@@ -1,46 +1,49 @@
 <script lang="ts" setup>
-defineOptions({ name: "ZoomClassroomPage" });
-
-const zoomMeetingUrl = "https://us06web.zoom.us/j/2543520025";
+defineOptions({ name: "OnlinePrepPage" });
 </script>
 
 <template>
 	<section class="ZoomClassroom">
 		<header class="hero">
-			<h1>Join the Virtual Classroom</h1>
+			<h1>Online Class Prep</h1>
 			<p>
-				Sessions take place on Zoom. Use this page to open the classroom
-				quickly before each lesson, and bookmark it so it is always easy
-				to find.
+				Use this checklist before any remote lesson, tutoring session,
+				or independent study block that involves screen sharing, code,
+				or collaborative problem solving.
 			</p>
 		</header>
 
 		<div class="card-grid">
 			<article class="zoom-card" aria-labelledby="zoom-card-title">
-				<h2 id="zoom-card-title">Zoom Meeting Room</h2>
+				<h2 id="zoom-card-title">Before You Start</h2>
 				<p>
-					Click the button to launch Zoom in a new tab. Joining a few
-					minutes early usually makes the start of class smoother.
+					Open the tools you expect to use before the session begins
+					so the first few minutes can focus on learning instead of
+					setup.
 				</p>
 				<ul class="prep-list">
-					<li>Open Zoom a few minutes before class time.</li>
-					<li>Check audio, video, and screen-sharing permissions.</li>
-					<li>Keep any code, notes, or homework nearby.</li>
+					<li>Test audio, camera, and screen-sharing permissions.</li>
+					<li>Open the editor, browser tabs, notebook, and starter files.</li>
+					<li>Close distracting apps or unrelated browser windows.</li>
 				</ul>
-				<a
-					class="cta"
-					:href="zoomMeetingUrl"
-					rel="noopener"
-					target="_blank"
-				>
-					Join on Zoom
-				</a>
-				<p class="fallback">
-					Direct link:
-					<a :href="zoomMeetingUrl" rel="noopener" target="_blank">
-						{{ zoomMeetingUrl }}
-					</a>
-				</p>
+			</article>
+
+			<article class="zoom-card">
+				<h2>During the Session</h2>
+				<ul class="prep-list">
+					<li>Keep one place for notes, questions, and TODO items.</li>
+					<li>Pause to summarize important ideas in your own words.</li>
+					<li>Save project states at meaningful checkpoints.</li>
+				</ul>
+			</article>
+
+			<article class="zoom-card">
+				<h2>Afterward</h2>
+				<ul class="prep-list">
+					<li>Write down the next thing to practice while it is fresh.</li>
+					<li>Rename files clearly so projects are easy to revisit.</li>
+					<li>Review one bug, one concept, and one success from the session.</li>
+				</ul>
 			</article>
 		</div>
 	</section>
@@ -94,7 +97,7 @@ const zoomMeetingUrl = "https://us06web.zoom.us/j/2543520025";
 .zoom-card h2 {
 	margin: 0;
 	font-size: clamp(1.8rem, 3vw, 2.3rem);
-	text-align: center;
+	text-align: left;
 }
 
 p {
@@ -104,46 +107,10 @@ p {
 
 .prep-list {
 	margin: 0;
-	padding-left: 1.2rem;
+	padding-left: 1.25rem;
 	display: grid;
-	gap: 0.5rem;
+	gap: 0.6rem;
 	color: #2d3f55;
-}
-
-.cta {
-	justify-self: center;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	padding: 0.85rem 1.5rem;
-	border-radius: 999px;
-	font-weight: 600;
-	text-decoration: none;
-	background-color: #3a6ea5;
-	color: white;
-	transition:
-		background-color 0.2s ease,
-		transform 0.2s ease;
-}
-
-.cta:hover {
-	background-color: #2d5c8a;
-	transform: translateY(-2px);
-}
-
-.fallback {
-	font-size: 0.95rem;
-	color: #2d3f55;
-}
-
-.fallback a {
-	color: #3a6ea5;
-	font-weight: 600;
-	text-decoration: none;
-}
-
-.fallback a:hover {
-	text-decoration: underline;
 }
 
 @media (max-width: 768px) {
@@ -158,8 +125,7 @@ p {
 
 @media (min-width: 768px) {
 	.card-grid {
-		grid-template-columns: minmax(0, 540px);
-		justify-content: center;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 }
 </style>

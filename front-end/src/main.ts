@@ -7,11 +7,10 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { setupLayouts } from "virtual:generated-layouts";
+import { ViteSSG } from "vite-ssg";
 
 import { routes } from "vue-router/auto-routes";
 import App from "./App.vue";
-import { ViteSSG } from "./ssg";
-import { useAppStore } from "./stores/app";
 import "bootstrap/dist/css/bootstrap.min.css";
 // Assuming you have styles defined in these files
 // import "uno.css";
@@ -26,7 +25,7 @@ library.add(faFacebook, faGithub, faInstagram);
 export const createApp = ViteSSG(
 	App,
 	{
-		routes: setupLayouts([...routes]),
+		routes: setupLayouts(routes),
 		base: import.meta.env.BASE_URL
 	},
 	async ctx => {
@@ -45,6 +44,7 @@ export const createApp = ViteSSG(
 		if (!import.meta.env.SSR) {
 			// Load Bootstrap’s JavaScript (includes Popper via bundler)
 			await import("bootstrap");
+			const { useAppStore } = await import("./stores/app");
 			const appStore = useAppStore();
 			await appStore.bootstrapSession(); // <- rehydrate Pinia from cookies
 		}

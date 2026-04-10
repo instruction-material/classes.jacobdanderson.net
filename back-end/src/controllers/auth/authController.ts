@@ -12,33 +12,14 @@ import { User } from "../../models/schemas/User.js";
 // union of the three document types
 type Entity = IUser | ITutor | IAdmin;
 
-const THIRTY_DAYS_MS: number = 30 * 24 * 60 * 60 * 1000;
-
 // type‐guard: filters out `null` and tells TS that `u` is an Entity
 function isEntity(u: any): u is Entity {
 	return u != null && typeof u.comparePassword === "function";
 }
 
-function getEntityId(entity: Entity) {
-	return entity._id.toString();
-}
-
-function canMutate(session: CustomSession, entity: Entity) {
-	if (session.adminID) return true;
-	const entityId: string = getEntityId(entity);
-	if (entity instanceof Admin) return session.adminID === entityId;
-	if (entity instanceof Tutor) return session.tutorID === entityId;
-	if (entity instanceof User) return session.userID === entityId;
-	return false;
-}
-
 // LOGIN
 export const login: RequestHandler = async (req, res) => {
-	const { email, password, remember } = req.body as {
-		email?: string;
-		password?: string;
-		remember?: boolean;
-	};
+	const { email, password } = req.body as { email?: string; password?: string };
 	if (!email || !password) return res.sendStatus(400);
 
 	const e = email.trim().toLowerCase();
@@ -76,9 +57,6 @@ export const login: RequestHandler = async (req, res) => {
 
 	// sign‐in
 	session[sessionKey] = entity._id.toString();
-
-	const options = ((req as any).sessionOptions ??= {});
-	options.maxAge = remember ? THIRTY_DAYS_MS : undefined;
 	return res.json({ [responseKey]: entity });
 };
 
@@ -95,7 +73,7 @@ export const checkEmail: RequestHandler = async (req, res) => {
 	const { id, email } = req.body as { id?: string; email?: string };
 	if (!email) return res.status(400).json({ message: "Email required" });
 	const [u, t, a] = await Promise.all([User.findOne({ email }), Tutor.findOne({ email }), Admin.findOne({ email })]);
-	const conflict = [u, t, a].some(x => x && x._id.toString() !== id);
+	const conflict = [u, t, a].some(x => x && x.id !== id);
 	res.status(conflict ? 403 : 200).json({
 		message: conflict ? "Already in use" : "Available"
 	});
@@ -110,61 +88,15 @@ export const changeEmail: RequestHandler = async (req, res) => {
 
 	if (!newEmail) return res.status(400).json({ message: "New email is required." });
 
-	const session = req.session as CustomSession;
-	const conflictChecks = await Promise.all(
-		models.map(Model => Model.exists({ email: newEmail, _id: { $ne: ID } }))
-	);
-	if (conflictChecks.some(Boolean)) {
-		return res.status(403).json({ message: "Email already exists." });
-	}
-
 	for (const Model of models) {
 		const doc = await Model.findById(ID);
 		if (!doc) continue;
-		if (!canMutate(session, doc as Entity)) {
-			return res.status(403).json({ message: "Not authorized to update this email." });
+		if (await Model.exists({ email: newEmail })) {
+			return res.status(403).json({ message: "Email already exists." });
 		}
 		doc.email = newEmail;
 		await doc.save();
 		return res.json({ message: "Email updated successfully." });
-	}
-
-	return res.status(404).json({ message: "Entity not found." });
-};
-
-export const changePassword: RequestHandler = async (req, res) => {
-	const models = [User, Tutor, Admin] as Array<import("mongoose").Model<any>>;
-	const { ID } = req.params;
-	const { currentPassword, newPassword } = req.body as {
-		currentPassword?: string;
-		newPassword?: string;
-	};
-
-	if (!newPassword) return res.status(400).json({ message: "New password is required." });
-
-	const session: CustomSession = req.session as CustomSession;
-	for (const Model of models) {
-		const doc = await Model.findById(ID);
-		if (!doc) continue;
-
-		if (!canMutate(session, doc as Entity)) {
-			return res.status(403).json({ message: "Not authorized to update this password." });
-		}
-
-		const isAdminOverride: boolean = !!session.adminID;
-		if (!isAdminOverride) {
-			if (!currentPassword) {
-				return res.status(400).json({ message: "Current password is required." });
-			}
-			const matches = await (doc as Entity).comparePassword(currentPassword);
-			if (!matches) {
-				return res.status(403).json({ message: "Current password is incorrect." });
-			}
-		}
-
-		doc.password = newPassword;
-		await doc.save();
-		return res.json({ message: "Password updated successfully." });
 	}
 
 	return res.status(404).json({ message: "Entity not found." });

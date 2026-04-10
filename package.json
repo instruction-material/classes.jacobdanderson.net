@@ -3,9 +3,9 @@
 	"type": "module",
 	"version": "1.0.0",
 	"private": true,
-	"packageManager": "npm@11.12.0",
-	"description": "Monorepo for Classes project",
-	"author": "Jacob Anderson",
+	"packageManager": "npm@11.6.2",
+	"description": "Monorepo for the Classes instructional materials site",
+	"author": "Instruction Material contributors",
 	"license": "ISC",
 	"keywords": [],
 	"workspaces": [
@@ -13,8 +13,6 @@
 		"back-end"
 	],
 	"scripts": {
-		"audit": "npm audit --workspaces",
-		"audit-fix": "npm audit fix --workspaces",
 		"build": "npm run -w front-end build && npm run -w back-end build",
 		"dev": "npm run -w front-end dev",
 		"server": "npm run -w back-end server",
@@ -26,52 +24,20 @@
 		"lint-fix": "npm run -w front-end lint-fix && npm run -w back-end lint-fix",
 		"typecheck": "npm run -w front-end typecheck && npm run -w back-end typecheck",
 		"clean": "sudo rm -rf node_modules dist package-lock.json **/node_modules **/dist **/package-lock.json",
-		"up": "npm exec --yes -- taze major -I && npm run -w front-end up && npm run -w back-end up"
-	},
-	"overrides": {
-		"defu": "6.1.6",
-		"eslint-plugin-import": {
-			"minimatch": "^3.1.5"
-		},
-		"@vue/language-core": {
-			"minimatch": "^9.0.9"
-		},
-		"path-to-regexp": "8.4.0",
-		"serialize-javascript": "7.0.5",
-		"picomatch": "4.0.4",
-		"anymatch": {
-			"picomatch": "2.3.2"
-		},
-		"micromatch": {
-			"picomatch": "2.3.2"
-		},
-		"readdirp": {
-			"picomatch": "2.3.2"
-		},
-		"@rollup/plugin-babel": {
-			"@rollup/pluginutils": {
-				"picomatch": "2.3.2"
-			}
-		},
-		"@rollup/plugin-replace": {
-			"@rollup/pluginutils": {
-				"picomatch": "2.3.2"
-			}
-		},
-		"vue-i18n": "^11.3.0"
+		"up": "taze major -I && npm run -w front-end up && npm run -w back-end up"
 	},
 	"devDependencies": {
-		"@antfu/eslint-config": "^7.7.3",
-		"@typescript-eslint/eslint-plugin": "^8.58.0",
-		"@typescript-eslint/parser": "^8.58.0",
-		"@unocss/eslint-plugin": "^66.6.7",
-		"eslint": "^10.1.0",
+		"@antfu/eslint-config": "^6.0.0",
+		"@typescript-eslint/eslint-plugin": "^8.46.1",
+		"@typescript-eslint/parser": "^8.46.1",
+		"eslint": "^9.37.0",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-prettier": "^5.5.5",
-		"eslint-plugin-vue": "^10.8.0",
-		"globals": "^17.4.0",
-		"prettier": "^3.8.1",
-		"taze": "^19.11.0",
+		"eslint-plugin-prettier": "^5.5.4",
+		"eslint-plugin-vue": "^10.5.1",
+		"globals": "^16.4.0",
+		"prettier": "^3.6.2",
+		"taze": "^19.7.0",
 		"typescript": "^5.9.3"
-	}
+	},
+	"dependencies": {}
 }

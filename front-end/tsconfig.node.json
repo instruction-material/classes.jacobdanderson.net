@@ -6,9 +6,5 @@
 		"moduleResolution": "bundler",
 		"allowSyntheticDefaultImports": true
 	},
-	"include": [
-		"vite.config.mts",
-		"cypress.config.ts",
-		"uno.config.ts"
-	]
+	"include": ["vite.config.mts"]
 }
