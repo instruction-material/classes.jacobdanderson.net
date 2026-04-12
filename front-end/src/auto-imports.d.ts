@@ -31,6 +31,7 @@ declare global {
   const debouncedWatch: typeof import('@vueuse/core').debouncedWatch
   const defineAsyncComponent: typeof import('vue').defineAsyncComponent
   const defineComponent: typeof import('vue').defineComponent
+  const definePage: typeof import('vue-router/experimental').definePage
   const eagerComputed: typeof import('@vueuse/core').eagerComputed
   const effectScope: typeof import('vue').effectScope
   const extendRef: typeof import('@vueuse/core').extendRef
@@ -50,6 +51,7 @@ declare global {
   const isRef: typeof import('vue').isRef
   const isShallow: typeof import('vue').isShallow
   const makeDestructurable: typeof import('@vueuse/core').makeDestructurable
+  const manualResetRef: typeof import("@vueuse/core").manualResetRef
   const markRaw: typeof import('vue').markRaw
   const nextTick: typeof import('vue').nextTick
   const onActivated: typeof import('vue').onActivated
@@ -88,6 +90,7 @@ declare global {
   const refAutoReset: typeof import('@vueuse/core').refAutoReset
   const refDebounced: typeof import('@vueuse/core').refDebounced
   const refDefault: typeof import('@vueuse/core').refDefault
+  const refManualReset: typeof import('@vueuse/core').refManualReset
   const refThrottled: typeof import('@vueuse/core').refThrottled
   const refWithControl: typeof import('@vueuse/core').refWithControl
   const resolveComponent: typeof import('vue').resolveComponent
@@ -151,6 +154,7 @@ declare global {
   const useCounter: typeof import('@vueuse/core').useCounter
   const useCoursesStore: typeof import('./stores/courses').useCoursesStore
   const useCssModule: typeof import('vue').useCssModule
+  const useCssSupports: typeof import('@vueuse/core').useCssSupports
   const useCssVar: typeof import('@vueuse/core').useCssVar
   const useCssVars: typeof import('vue').useCssVars
   const useCurrentElement: typeof import('@vueuse/core').useCurrentElement

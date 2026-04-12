@@ -9,9 +9,12 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AccountManagement: typeof import('./components/AccountManagement.vue')['default']
+    AccountSecurity: typeof import('./components/AccountSecurity.vue')['default']
     AdminProfile: typeof import('./components/AdminProfile.vue')['default']
+    AdminWorkspaceShell: typeof import('./components/AdminWorkspaceShell.vue')['default']
     CourseExplorer: typeof import('./components/CourseExplorer.vue')['default']
     LazyMarkdownContent: typeof import('./components/LazyMarkdownContent.vue')['default']
+    ProfileDetailsCard: typeof import('./components/ProfileDetailsCard.vue')['default']
     ProfileFields: typeof import('./components/ProfileFields.vue')['default']
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
@@ -21,6 +24,7 @@ declare module 'vue' {
     TheHeader: typeof import('./components/TheHeader.vue')['default']
     TheInput: typeof import('./components/TheInput.vue')['default']
     TutorProfile: typeof import('./components/TutorProfile.vue')['default']
+    UserCommunicationPanel: typeof import('./components/UserCommunicationPanel.vue')['default']
     UserProfile: typeof import('./components/UserProfile.vue')['default']
     UserSignup: typeof import('./components/UserSignup.vue')['default']
   }

@@ -1,42 +1,4 @@
-import type { RawCourse, RawCourseModuleItem } from "./types";
-
-const PYTHONIC_DESIGN_PATTERNS_REPO =
-	"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns";
-
-function starterRepoLink(projectId: string) {
-	return `${PYTHONIC_DESIGN_PATTERNS_REPO}/${projectId}/starter`;
-}
-
-function solutionRepoLink(projectId: string) {
-	return `${PYTHONIC_DESIGN_PATTERNS_REPO}/${projectId}/solution`;
-}
-
-function projectItem(
-	title: string,
-	content: string,
-	projectId: string
-): RawCourseModuleItem {
-	return {
-		title,
-		content,
-		projectLink: starterRepoLink(projectId),
-		solutionLink: solutionRepoLink(projectId)
-	};
-}
-
-function patternJournal(unitTitle: string, focus: string): RawCourseModuleItem {
-	return {
-		title: `Pattern Journal: ${unitTitle}`,
-		content: `Keep a compact journal for ${unitTitle.toLowerCase()} that records the design pressure, the simplest Python feature that might solve it, the named pattern if one is still justified, and one short note about ${focus}. The habit should be diagnosis first, pattern name second.`
-	};
-}
-
-function restraintDrill(title: string, prompt: string): RawCourseModuleItem {
-	return {
-		title: `Restraint Drill: ${title}`,
-		content: `Start from a deliberately small Python example and require students to explain why they would keep it simple or add one pattern-shaped layer. ${prompt}`
-	};
-}
+import type { RawCourse } from "./types";
 
 export const pythonicDesignPatternsCourse: RawCourse = {
 	name: "Pythonic Design Patterns",
@@ -63,17 +25,37 @@ export const pythonicDesignPatternsCourse: RawCourse = {
 					title: "Pattern Names as Compression, Not Decoration",
 					content:
 						"Use Refactoring.Guru's core framing that patterns are reusable solution shapes, but keep asking whether Python already offers a lighter feature such as a function, decorator, context object, or module boundary. The course should begin by normalizing restraint."
+				},
+				{
+					title: "PDP0 Setup and Tooling: Core Project",
+					content:
+						"Use this module build as the main implementation checkpoint. Students should finish the starter, verify one custom case, and compare design choices against the reference solution afterward.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PyGames"
 				}
 			],
 			supplementalProjects: [
-				patternJournal(
-					"Setup and Tooling",
-					"which workflow choices will make later refactors observable and safe"
-				),
-				restraintDrill(
-					"Small Script or Real Design Problem?",
-					"Ask students whether a 40-line script with one branch needs a pattern, or whether the better first move is simply naming functions and separating files."
-				)
+				{
+					title: "Pattern Journal: Setup and Tooling",
+					content:
+						"Keep a compact journal for setup and tooling that records the design pressure, the simplest Python feature that might solve it, the named pattern if one is still justified, and one short note about which workflow choices will make later refactors observable and safe. The habit should be diagnosis first, pattern name second.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PyGames"
+				},
+				{
+					title: "Pythonic Design Patterns",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP0 Setup and Tooling. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic Design Patterns"
+				},
+				{
+					title: "Pythonic Design Patterns",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP0 Setup and Tooling. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic-Design-Patterns"
+				}
 			]
 		},
 		{
@@ -98,17 +80,41 @@ export const pythonicDesignPatternsCourse: RawCourse = {
 					title: "When the Textbook Form Still Helps",
 					content:
 						"Do not overcorrect into 'never use patterns in Python'. The course should make clear that explicit patterns still help when state, extension pressure, third-party integration, or team readability justify them."
+				},
+				{
+					title: "PDP1 Why Python Changes the Design-Patterns Conversation: Core Project",
+					content:
+						"Use this module build as the main implementation checkpoint. Students should finish the starter, verify one custom case, and compare design choices against the reference solution afterward.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Python Level 1"
 				}
 			],
 			supplementalProjects: [
-				patternJournal(
-					"Why Python Changes the Design-Patterns Conversation",
-					"which Python features replace ceremony and which ones simply hide it"
-				),
-				restraintDrill(
-					"Function, Class, or Module?",
-					"Require a short explanation of when a plain function is enough, when a callable object earns its keep, and when a module boundary solves the problem more clearly than either."
-				)
+				{
+					title: "Pattern Journal: Why Python Changes the Design-Patterns Conversation",
+					content:
+						"Keep a compact journal for why python changes the design-patterns conversation that records the design pressure, the simplest Python feature that might solve it, the named pattern if one is still justified, and one short note about which Python features replace ceremony and which ones simply hide it. The habit should be diagnosis first, pattern name second.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Python Level 1"
+				},
+				{
+					title: "Why Python Changes the Design Patterns Conversation supplemental 2",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP1 Why Python Changes the Design-Patterns Conversation. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX01-pdp1-why-python-changes-the-design-patterns-conv/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX01-pdp1-why-python-changes-the-design-patterns-conv/solution"
+				},
+				{
+					title: "Why Python Changes the Design Patterns Conversation supplemental 3",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP1 Why Python Changes the Design-Patterns Conversation. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX02-pdp1-why-python-changes-the-design-patterns-conv/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX02-pdp1-why-python-changes-the-design-patterns-conv/solution"
+				}
 			]
 		},
 		{
@@ -127,23 +133,47 @@ export const pythonicDesignPatternsCourse: RawCourse = {
 				{
 					title: "Data Classes, Configuration Objects, and Dependency Direction",
 					content:
-						"Use `dataclasses` and small configuration objects to make dependencies explicit and data movement readable. This sets up later Builder, Adapter, and refactoring work."
+						"Use `dataclasses` and small configuration objects to make dependencies explicit and data movement readable. This sets up later Builder, Adapter, and refactoring work. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on."
 				},
 				{
 					title: "Seams for Testing and Refactoring",
 					content:
 						"Show where to place seams for file I/O, network access, time, randomness, and external services. Good Python design should make later tests and later cleanup easier without adding fake complexity."
+				},
+				{
+					title: "PDP2 Design Foundations in Python: Core Project",
+					content:
+						"Use this module build as the main implementation checkpoint. Students should finish the starter, verify one custom case, and compare design choices against the reference solution afterward.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Python Level 2"
 				}
 			],
 			supplementalProjects: [
-				patternJournal(
-					"Design Foundations in Python",
-					"which boundary would be easiest to fake, replace, or move later"
-				),
-				restraintDrill(
-					"Protocol or Overkill?",
-					"Ask students to justify whether a `Protocol`, a docstring contract, or no extra abstraction at all is the clearest fit for a tiny collaboration boundary."
-				)
+				{
+					title: "Pattern Journal: Design Foundations in Python",
+					content:
+						"Keep a compact journal for design foundations in python that records the design pressure, the simplest Python feature that might solve it, the named pattern if one is still justified, and one short note about which boundary would be easiest to fake, replace, or move later. The habit should be diagnosis first, pattern name second.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Python Level 2"
+				},
+				{
+					title: "Design Foundations in Python supplemental 2",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP2 Design Foundations in Python. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX03-pdp2-design-foundations-in-python-supplemental-2/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX03-pdp2-design-foundations-in-python-supplemental-2/solution"
+				},
+				{
+					title: "Design Foundations in Python supplemental 3",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP2 Design Foundations in Python. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX04-pdp2-design-foundations-in-python-supplemental-3/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX04-pdp2-design-foundations-in-python-supplemental-3/solution"
+				}
 			]
 		},
 		{
@@ -167,19 +197,46 @@ export const pythonicDesignPatternsCourse: RawCourse = {
 				{
 					title: "When a Dictionary Lookup Beats a Full Pattern",
 					content:
-						"Explicitly compare Strategy with a simple mapping of names to functions. The Pythonic lesson is that structure should grow only when the problem justifies it."
+						"Explicitly compare Strategy with a simple mapping of names to functions. The Pythonic lesson is that structure should grow only when the problem justifies it. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on."
+				},
+				{
+					title: "PDP3 Strategy Without Ceremony: Core Project",
+					content:
+						"Use this module build as the main implementation checkpoint. Students should finish the starter, verify one custom case, and compare design choices against the reference solution afterward.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP1-Strategy-Rulebook/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP1-Strategy-Rulebook/solution"
 				}
 			],
 			supplementalProjects: [
-				projectItem(
-					"Project: Strategy Rulebook",
-					"Build a small rule-selection engine where pricing or scoring behavior can be swapped between plain functions, configured callables, and named selections. The goal is to see Strategy in a Pythonic form before the course grows more structural.",
-					"PDP1-Strategy-Rulebook"
-				),
-				patternJournal(
-					"Strategy Without Ceremony",
-					"when a plain callable table stays clearer than a larger class-based strategy family"
-				)
+				{
+					title: "Project: Strategy Rulebook",
+					content:
+						"Build a small rule-selection engine where pricing or scoring behavior can be swapped between plain functions, configured callables, and named selections. The goal is to see Strategy in a Pythonic form before the course grows more structural.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP1-Strategy-Rulebook/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP1-Strategy-Rulebook/solution"
+				},
+				{
+					title: "Strategy Without Ceremony supplemental 2",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP3 Strategy Without Ceremony. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX05-pdp3-strategy-without-ceremony-supplemental-2/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX05-pdp3-strategy-without-ceremony-supplemental-2/solution"
+				},
+				{
+					title: "Strategy Without Ceremony supplemental 3",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP3 Strategy Without Ceremony. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX06-pdp3-strategy-without-ceremony-supplemental-3/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX06-pdp3-strategy-without-ceremony-supplemental-3/solution"
+				}
 			]
 		},
 		{
@@ -203,19 +260,46 @@ export const pythonicDesignPatternsCourse: RawCourse = {
 				{
 					title: "What to Avoid in Python Creation Code",
 					content:
-						"Warn against creation frameworks that merely hide constructors behind more constructors. Python creation code should usually become shorter and clearer, not more ceremonial."
+						"Warn against creation frameworks that merely hide constructors behind more constructors. Python creation code should usually become shorter and clearer, not more ceremonial. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on."
+				},
+				{
+					title: "PDP4 Factory and Builder in Python: Core Project",
+					content:
+						"Use this module build as the main implementation checkpoint. Students should finish the starter, verify one custom case, and compare design choices against the reference solution afterward.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP2-Factory-and-Builder-Config-Kit/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP2-Factory-and-Builder-Config-Kit/solution"
 				}
 			],
 			supplementalProjects: [
-				projectItem(
-					"Project: Factory and Builder Config Kit",
-					"Construct reports or exporters from configuration while choosing concrete output strategies through factories and using a lightweight builder only where the setup truly gets noisy. This lab is about learning where the boundary between useful structure and needless ceremony sits.",
-					"PDP2-Factory-and-Builder-Config-Kit"
-				),
-				patternJournal(
-					"Factory and Builder in Python",
-					"which creation decisions belong in one place and which ones should remain direct"
-				)
+				{
+					title: "Project: Factory and Builder Config Kit",
+					content:
+						"Construct reports or exporters from configuration while choosing concrete output strategies through factories and using a lightweight builder only where the setup truly gets noisy. This lab is about learning where the boundary between useful structure and needless ceremony sits.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP2-Factory-and-Builder-Config-Kit/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP2-Factory-and-Builder-Config-Kit/solution"
+				},
+				{
+					title: "Factory and Builder in Python supplemental 2",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP4 Factory and Builder in Python. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX07-pdp4-factory-and-builder-in-python-supplemental-/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX07-pdp4-factory-and-builder-in-python-supplemental-/solution"
+				},
+				{
+					title: "Factory and Builder in Python supplemental 3",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP4 Factory and Builder in Python. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX08-pdp4-factory-and-builder-in-python-supplemental-/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX08-pdp4-factory-and-builder-in-python-supplemental-/solution"
+				}
 			]
 		},
 		{
@@ -239,19 +323,46 @@ export const pythonicDesignPatternsCourse: RawCourse = {
 				{
 					title: "Sync versus Async Event Flow",
 					content:
-						"Keep async treatment conceptual but concrete enough that students can reason about when immediate callbacks are sufficient and when background event handling changes the failure model."
+						"Keep async treatment conceptual but concrete enough that students can reason about when immediate callbacks are sufficient and when background event handling changes the failure model. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on."
+				},
+				{
+					title: "PDP5 Observer, Events, and Callbacks: Core Project",
+					content:
+						"Use this module build as the main implementation checkpoint. Students should finish the starter, verify one custom case, and compare design choices against the reference solution afterward.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP3-Observer-Notification-Hub/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP3-Observer-Notification-Hub/solution"
 				}
 			],
 			supplementalProjects: [
-				projectItem(
-					"Project: Observer Notification Hub",
-					"Build an event bus that fans account or order events out to several listeners such as logs, summaries, and user-facing notifications. The lab should make event boundaries and unsubscribe behavior observable rather than magical.",
-					"PDP3-Observer-Notification-Hub"
-				),
-				patternJournal(
-					"Observer, Events, and Callbacks",
-					"which information belongs in the event payload and which information would create unhealthy coupling"
-				)
+				{
+					title: "Project: Observer Notification Hub",
+					content:
+						"Build an event bus that fans account or order events out to several listeners such as logs, summaries, and user-facing notifications. The lab should make event boundaries and unsubscribe behavior observable rather than magical.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP3-Observer-Notification-Hub/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP3-Observer-Notification-Hub/solution"
+				},
+				{
+					title: "Observer, Events, and Callbacks supplemental 2",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP5 Observer, Events, and Callbacks. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX09-pdp5-observer-events-and-callbacks-supplemental-/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX09-pdp5-observer-events-and-callbacks-supplemental-/solution"
+				},
+				{
+					title: "Observer, Events, and Callbacks supplemental 3",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP5 Observer, Events, and Callbacks. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX10-pdp5-observer-events-and-callbacks-supplemental-/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX10-pdp5-observer-events-and-callbacks-supplemental-/solution"
+				}
 			]
 		},
 		{
@@ -276,18 +387,45 @@ export const pythonicDesignPatternsCourse: RawCourse = {
 					title: "Cross-Cutting Concerns without Framework Bloat",
 					content:
 						"Use caching, auth checks, tracing, and high-level service orchestration as examples of cross-cutting concerns. The course should teach students to apply these narrowly rather than building their own mini-framework by accident."
+				},
+				{
+					title: "PDP6 Decorator, Proxy, and Facade: Core Project",
+					content:
+						"Use this module build as the main implementation checkpoint. Students should finish the starter, verify one custom case, and compare design choices against the reference solution afterward.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP4-Decorator-Proxy-Facade-Toolkit/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP4-Decorator-Proxy-Facade-Toolkit/solution"
 				}
 			],
 			supplementalProjects: [
-				projectItem(
-					"Project: Decorator, Proxy, and Facade Toolkit",
-					"Wrap a small profile or content service with metrics, lightweight authorization, caching, and one simplifying facade. The goal is to see the difference between adding behavior, guarding access, and simplifying a subsystem boundary.",
-					"PDP4-Decorator-Proxy-Facade-Toolkit"
-				),
-				patternJournal(
-					"Decorator, Proxy, and Facade",
-					"which wrapper layers are adding value and which ones are only making the call path harder to explain"
-				)
+				{
+					title: "Project: Decorator, Proxy, and Facade Toolkit",
+					content:
+						"Wrap a small profile or content service with metrics, lightweight authorization, caching, and one simplifying facade. The goal is to see the difference between adding behavior, guarding access, and simplifying a subsystem boundary.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP4-Decorator-Proxy-Facade-Toolkit/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP4-Decorator-Proxy-Facade-Toolkit/solution"
+				},
+				{
+					title: "Decorator, Proxy, and Facade supplemental 2",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP6 Decorator, Proxy, and Facade. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX11-pdp6-decorator-proxy-and-facade-supplemental-2/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX11-pdp6-decorator-proxy-and-facade-supplemental-2/solution"
+				},
+				{
+					title: "Decorator, Proxy, and Facade supplemental 3",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP6 Decorator, Proxy, and Facade. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX12-pdp6-decorator-proxy-and-facade-supplemental-3/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX12-pdp6-decorator-proxy-and-facade-supplemental-3/solution"
+				}
 			]
 		},
 		{
@@ -306,24 +444,51 @@ export const pythonicDesignPatternsCourse: RawCourse = {
 				{
 					title: "Undo, Replay, and Action Queues",
 					content:
-						"Show how Command becomes more valuable when actions need history or delayed execution. This keeps the pattern tied to a real operational benefit rather than a naming exercise."
+						"Show how Command becomes more valuable when actions need history or delayed execution. This keeps the pattern tied to a real operational benefit rather than a naming exercise. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on."
 				},
 				{
 					title: "Combining State and Command Carefully",
 					content:
-						"Turn-based flows, editors, and workflow systems often use both patterns together. Students should learn to separate mode logic from action packaging so the design stays explainable."
+						"Turn-based flows, editors, and workflow systems often use both patterns together. Students should learn to separate mode logic from action packaging so the design stays explainable. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on."
+				},
+				{
+					title: "PDP7 State and Command: Core Project",
+					content:
+						"Use this module build as the main implementation checkpoint. Students should finish the starter, verify one custom case, and compare design choices against the reference solution afterward.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP5-State-Command-Quest-Loop/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP5-State-Command-Quest-Loop/solution"
 				}
 			],
 			supplementalProjects: [
-				projectItem(
-					"Project: State and Command Quest Loop",
-					"Build a small quest or workflow loop where explicit states govern allowed actions and command objects or callables power history, replay, or undo. The lab should feel like applied control-flow cleanup, not just game-themed syntax practice.",
-					"PDP5-State-Command-Quest-Loop"
-				),
-				patternJournal(
-					"State and Command",
-					"which parts of the behavior depend on mode and which parts only need action packaging"
-				)
+				{
+					title: "Project: State and Command Quest Loop",
+					content:
+						"Build a small quest or workflow loop where explicit states govern allowed actions and command objects or callables power history, replay, or undo. The lab should feel like applied control-flow cleanup, not just game-themed syntax practice.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP5-State-Command-Quest-Loop/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP5-State-Command-Quest-Loop/solution"
+				},
+				{
+					title: "State and Command supplemental 2",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP7 State and Command. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX13-pdp7-state-and-command-supplemental-2/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX13-pdp7-state-and-command-supplemental-2/solution"
+				},
+				{
+					title: "State and Command supplemental 3",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP7 State and Command. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX14-pdp7-state-and-command-supplemental-3/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX14-pdp7-state-and-command-supplemental-3/solution"
+				}
 			]
 		},
 		{
@@ -347,19 +512,46 @@ export const pythonicDesignPatternsCourse: RawCourse = {
 				{
 					title: "When a Translation Function Is Enough",
 					content:
-						"Not every adapter needs a class. A well-named translation function or lightweight wrapper may be the clearest move when the source pressure is small."
+						"Not every adapter needs a class. A well-named translation function or lightweight wrapper may be the clearest move when the source pressure is small. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on."
+				},
+				{
+					title: "PDP8 Adapter and Integration Boundaries: Core Project",
+					content:
+						"Use this module build as the main implementation checkpoint. Students should finish the starter, verify one custom case, and compare design choices against the reference solution afterward.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP6-Adapter-Template-Import-Pipeline/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP6-Adapter-Template-Import-Pipeline/solution"
 				}
 			],
 			supplementalProjects: [
-				projectItem(
-					"Project: Adapter and Import Pipeline",
-					"Normalize several awkward external record formats into one internal model, then run them through a clean import pipeline. The point is to make the integration boundary explicit and keep vendor-specific noise out of the rest of the app.",
-					"PDP6-Adapter-Template-Import-Pipeline"
-				),
-				patternJournal(
-					"Adapter and Integration Boundaries",
-					"which parts of the weirdness belong at the edge and which parts truly belong in the core model"
-				)
+				{
+					title: "Project: Adapter and Import Pipeline",
+					content:
+						"Normalize several awkward external record formats into one internal model, then run them through a clean import pipeline. The point is to make the integration boundary explicit and keep vendor-specific noise out of the rest of the app.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP6-Adapter-Template-Import-Pipeline/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP6-Adapter-Template-Import-Pipeline/solution"
+				},
+				{
+					title: "Adapter and Integration Boundaries supplemental 2",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP8 Adapter and Integration Boundaries. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX15-pdp8-adapter-and-integration-boundaries-suppleme/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX15-pdp8-adapter-and-integration-boundaries-suppleme/solution"
+				},
+				{
+					title: "Adapter and Integration Boundaries supplemental 3",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP8 Adapter and Integration Boundaries. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX16-pdp8-adapter-and-integration-boundaries-suppleme/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX16-pdp8-adapter-and-integration-boundaries-suppleme/solution"
+				}
 			]
 		},
 		{
@@ -384,18 +576,45 @@ export const pythonicDesignPatternsCourse: RawCourse = {
 					title: "Readability and Onboarding Cost",
 					content:
 						"Explain that Template Method can obscure behavior for newer readers when hooks are scattered across subclasses. Pythonic design should make the final control flow easier to follow, not harder."
+				},
+				{
+					title: "PDP9 Template Method versus Higher-Order Functions: Core Project",
+					content:
+						"Use this module build as the main implementation checkpoint. Students should finish the starter, verify one custom case, and compare design choices against the reference solution afterward.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP6-Adapter-Template-Import-Pipeline/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP6-Adapter-Template-Import-Pipeline/solution"
 				}
 			],
 			supplementalProjects: [
-				projectItem(
-					"Project: Compare Template Skeletons with Callable Pipelines",
-					"Use the same import or workflow problem in both an inheritance-based and higher-order-function form, then explain which version is easier to evolve and why. The exercise should make the Pythonic bias toward simpler extension mechanisms feel earned.",
-					"PDP6-Adapter-Template-Import-Pipeline"
-				),
-				restraintDrill(
-					"Template Method or Just a Pipeline?",
-					"Ask students to defend whether a base class with hooks actually clarifies the workflow or whether a small sequence of functions would be easier to test, extend, and explain."
-				)
+				{
+					title: "Project: Compare Template Skeletons with Callable Pipelines",
+					content:
+						"Use the same import or workflow problem in both an inheritance-based and higher-order-function form, then explain which version is easier to evolve and why. The exercise should make the Pythonic bias toward simpler extension mechanisms feel earned.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP6-Adapter-Template-Import-Pipeline/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP6-Adapter-Template-Import-Pipeline/solution"
+				},
+				{
+					title: "Method versus Higher Order Functions supplemental 2",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP9 Template Method versus Higher-Order Functions. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX17-pdp9-template-method-versus-higher-order-functio/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX17-pdp9-template-method-versus-higher-order-functio/solution"
+				},
+				{
+					title: "Method versus Higher Order Functions supplemental 3",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP9 Template Method versus Higher-Order Functions. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX18-pdp9-template-method-versus-higher-order-functio/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX18-pdp9-template-method-versus-higher-order-functio/solution"
+				}
 			]
 		},
 		{
@@ -419,18 +638,42 @@ export const pythonicDesignPatternsCourse: RawCourse = {
 				{
 					title: "When Shared Process State Is Still Legitimate",
 					content:
-						"Do not pretend every shared object is wrong. Some caches, registries, or process-wide resources are fine if their lifecycle and ownership are explicit and narrow."
+						"Do not pretend every shared object is wrong. Some caches, registries, or process-wide resources are fine if their lifecycle and ownership are explicit and narrow. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on."
+				},
+				{
+					title: "PDP10 Singleton, Global State, and Module Patterns: Core Project",
+					content:
+						"Use this module build as the main implementation checkpoint. Students should finish the starter, verify one custom case, and compare design choices against the reference solution afterward.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Python Level 3"
 				}
 			],
 			supplementalProjects: [
-				patternJournal(
-					"Singleton, Global State, and Module Patterns",
-					"which shared objects are explicit resources and which ones are just hidden dependencies"
-				),
-				restraintDrill(
-					"Global Convenience versus Local Clarity",
-					"Give students a logger, config object, or client cache and require them to explain when module-level access is acceptable and when explicit wiring would keep later refactors safer."
-				)
+				{
+					title: "Pattern Journal: Singleton, Global State, and Module Patterns",
+					content:
+						"Keep a compact journal for singleton, global state, and module patterns that records the design pressure, the simplest Python feature that might solve it, the named pattern if one is still justified, and one short note about which shared objects are explicit resources and which ones are just hidden dependencies. The habit should be diagnosis first, pattern name second.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Python Level 3"
+				},
+				{
+					title: "Singleton, Global State, and Module Patterns supplemental 2",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP10 Singleton, Global State, and Module Patterns. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX19-pdp10-singleton-global-state-and-module-patterns/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX19-pdp10-singleton-global-state-and-module-patterns/solution"
+				},
+				{
+					title: "Singleton, Global State, and Module Patterns supplemental 3",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP10 Singleton, Global State, and Module Patterns. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX20-pdp10-singleton-global-state-and-module-patterns/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX20-pdp10-singleton-global-state-and-module-patterns/solution"
+				}
 			]
 		},
 		{
@@ -455,18 +698,45 @@ export const pythonicDesignPatternsCourse: RawCourse = {
 					title: "Tests and Characterization before Structural Change",
 					content:
 						"Introduce lightweight characterization tests or scripted assertions before bigger changes land. Even in Python, safe refactoring depends on evidence that the external behavior still holds."
+				},
+				{
+					title: "PDP11 Refactoring Python Code Smells: Core Project",
+					content:
+						"Use this module build as the main implementation checkpoint. Students should finish the starter, verify one custom case, and compare design choices against the reference solution afterward.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP7-Pythonic-Refactor-Capstone/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP7-Pythonic-Refactor-Capstone/solution"
 				}
 			],
 			supplementalProjects: [
-				projectItem(
-					"Project: Pythonic Refactor Capstone Starter",
-					"Begin with a deliberately messy text-processing or workflow app, identify the dominant smells, and plan a staged cleanup that uses only the patterns the code actually earns. This is the handoff into the final capstone sequence.",
-					"PDP7-Pythonic-Refactor-Capstone"
-				),
-				patternJournal(
-					"Refactoring Python Code Smells",
-					"which cleanup step improved clarity the most before any named pattern even appeared"
-				)
+				{
+					title: "Project: Pythonic Refactor Capstone Starter",
+					content:
+						"Begin with a deliberately messy text-processing or workflow app, identify the dominant smells, and plan a staged cleanup that uses only the patterns the code actually earns. This is the handoff into the final capstone sequence.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP7-Pythonic-Refactor-Capstone/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP7-Pythonic-Refactor-Capstone/solution"
+				},
+				{
+					title: "Refactoring Python Code Smells supplemental 2",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP11 Refactoring Python Code Smells. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX21-pdp11-refactoring-python-code-smells-supplementa/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX21-pdp11-refactoring-python-code-smells-supplementa/solution"
+				},
+				{
+					title: "Refactoring Python Code Smells supplemental 3",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP11 Refactoring Python Code Smells. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX22-pdp11-refactoring-python-code-smells-supplementa/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX22-pdp11-refactoring-python-code-smells-supplementa/solution"
+				}
 			]
 		},
 		{
@@ -491,18 +761,261 @@ export const pythonicDesignPatternsCourse: RawCourse = {
 					title: "Final Review: More Pythonic, More Maintainable, Still Explainable",
 					content:
 						"The final standard is not 'contains many patterns'. The final standard is that the code is easier to read, safer to change, and easier to explain to another developer than the starting version."
+				},
+				{
+					title: "PDP12 Capstone Pythonic Refactor Studio: Core Project",
+					content:
+						"Use this module build as the main implementation checkpoint. Students should finish the starter, verify one custom case, and compare design choices against the reference solution afterward.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP7-Pythonic-Refactor-Capstone/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP7-Pythonic-Refactor-Capstone/solution"
 				}
 			],
 			supplementalProjects: [
-				projectItem(
-					"Project: Pythonic Refactor Capstone",
-					"Take the capstone starter through diagnosis, extraction, boundary cleanup, and final polish, then compare the finished structure against the original in a short architecture review. The best solutions should feel lighter and clearer, not more ornate.",
-					"PDP7-Pythonic-Refactor-Capstone"
-				),
-				patternJournal(
-					"Capstone Pythonic Refactor Studio",
-					"what made the final design more Pythonic instead of merely more abstract"
-				)
+				{
+					title: "Project: Pythonic Refactor Capstone",
+					content:
+						"Take the capstone starter through diagnosis, extraction, boundary cleanup, and final polish, then compare the finished structure against the original in a short architecture review. The best solutions should feel lighter and clearer, not more ornate.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP7-Pythonic-Refactor-Capstone/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Pythonic%20Design%20Patterns/PDP7-Pythonic-Refactor-Capstone/solution"
+				},
+				{
+					title: "Capstone Pythonic Refactor Studio supplemental 2",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP12 Capstone Pythonic Refactor Studio. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX23-pdp12-capstone-pythonic-refactor-studio-suppleme/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX23-pdp12-capstone-pythonic-refactor-studio-suppleme/solution"
+				},
+				{
+					title: "Capstone Pythonic Refactor Studio supplemental 3",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to PDP12 Capstone Pythonic Refactor Studio. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX24-pdp12-capstone-pythonic-refactor-studio-suppleme/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX24-pdp12-capstone-pythonic-refactor-studio-suppleme/solution"
+				}
+			]
+		},
+		{
+			title: "Applied Studio 14: AI Level 1",
+			curriculum: [
+				{
+					title: "AI Level 1: Core Concepts",
+					content:
+						"Introduce the main goal of Applied Studio 14: AI Level 1, define the success criteria, and review the concepts students must understand before they begin the main build or problem. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on."
+				},
+				{
+					title: "AI Level 1: Guided Example",
+					content:
+						"Walk through one representative example for Applied Studio 14: AI Level 1, naming the key inputs, the expected outputs, and the checkpoints worth verifying early. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on."
+				},
+				{
+					title: "AI Level 1: Core Project",
+					content:
+						"Build the central artifact for Applied Studio 14: AI Level 1. Break the work into a small sequence, implement the first working version, then tighten one weak spot before calling it done.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/AI Level 1"
+				},
+				{
+					title: "AI Level 1: Review and Reflection",
+					content:
+						"Close Applied Studio 14: AI Level 1 by testing the edge cases that matter most and writing down one improvement that would make the next iteration cleaner or safer. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on."
+				}
+			],
+			supplementalProjects: [
+				{
+					title: "AI Level 1: Extension Challenge",
+					content:
+						"Extend the core build from Applied Studio 14: AI Level 1 with one extra requirement, stricter input handling, or a more realistic variation of the same task. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/AI Level 1"
+				},
+				{
+					title: "Applied Studio 14: AI Level 1 supplemental 2",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to Applied Studio 14: AI Level 1. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX25-applied-studio-14-ai-level-1-supplemental-2/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX25-applied-studio-14-ai-level-1-supplemental-2/solution"
+				},
+				{
+					title: "Applied Studio 14: AI Level 1 supplemental 3",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to Applied Studio 14: AI Level 1. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX26-applied-studio-14-ai-level-1-supplemental-3/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX26-applied-studio-14-ai-level-1-supplemental-3/solution"
+				}
+			]
+		},
+		{
+			title: "Applied Studio 15: AI Level 2",
+			curriculum: [
+				{
+					title: "AI Level 2: Core Concepts",
+					content:
+						"Introduce the main goal of Applied Studio 15: AI Level 2, define the success criteria, and review the concepts students must understand before they begin the main build or problem. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on."
+				},
+				{
+					title: "AI Level 2: Guided Example",
+					content:
+						"Walk through one representative example for Applied Studio 15: AI Level 2, naming the key inputs, the expected outputs, and the checkpoints worth verifying early. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on."
+				},
+				{
+					title: "AI Level 2: Core Project",
+					content:
+						"Build the central artifact for Applied Studio 15: AI Level 2. Break the work into a small sequence, implement the first working version, then tighten one weak spot before calling it done.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/AI Level 2"
+				},
+				{
+					title: "AI Level 2: Review and Reflection",
+					content:
+						"Close Applied Studio 15: AI Level 2 by testing the edge cases that matter most and writing down one improvement that would make the next iteration cleaner or safer. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on."
+				}
+			],
+			supplementalProjects: [
+				{
+					title: "AI Level 2: Extension Challenge",
+					content:
+						"Extend the core build from Applied Studio 15: AI Level 2 with one extra requirement, stricter input handling, or a more realistic variation of the same task. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/AI Level 2"
+				},
+				{
+					title: "Applied Studio 15: AI Level 2 supplemental 2",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to Applied Studio 15: AI Level 2. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX27-applied-studio-15-ai-level-2-supplemental-2/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX27-applied-studio-15-ai-level-2-supplemental-2/solution"
+				},
+				{
+					title: "Applied Studio 15: AI Level 2 supplemental 3",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to Applied Studio 15: AI Level 2. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX28-applied-studio-15-ai-level-2-supplemental-3/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX28-applied-studio-15-ai-level-2-supplemental-3/solution"
+				}
+			]
+		},
+		{
+			title: "Applied Studio 16: Customized",
+			curriculum: [
+				{
+					title: "Customized: Core Concepts",
+					content:
+						"Introduce the main goal of Applied Studio 16: Customized, define the success criteria, and review the concepts students must understand before they begin the main build or problem. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on."
+				},
+				{
+					title: "Customized: Guided Example",
+					content:
+						"Walk through one representative example for Applied Studio 16: Customized, naming the key inputs, the expected outputs, and the checkpoints worth verifying early. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on."
+				},
+				{
+					title: "Customized: Core Project",
+					content:
+						"Build the central artifact for Applied Studio 16: Customized. Break the work into a small sequence, implement the first working version, then tighten one weak spot before calling it done.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Customized"
+				},
+				{
+					title: "Customized: Review and Reflection",
+					content:
+						"Close Applied Studio 16: Customized by testing the edge cases that matter most and writing down one improvement that would make the next iteration cleaner or safer. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on."
+				}
+			],
+			supplementalProjects: [
+				{
+					title: "Customized: Extension Challenge",
+					content:
+						"Extend the core build from Applied Studio 16: Customized with one extra requirement, stricter input handling, or a more realistic variation of the same task. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Customized"
+				},
+				{
+					title: "Applied Studio 16: Customized supplemental 2",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to Applied Studio 16: Customized. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX29-applied-studio-16-customized-supplemental-2/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX29-applied-studio-16-customized-supplemental-2/solution"
+				},
+				{
+					title: "Applied Studio 16: Customized supplemental 3",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to Applied Studio 16: Customized. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX30-applied-studio-16-customized-supplemental-3/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX30-applied-studio-16-customized-supplemental-3/solution"
+				}
+			]
+		},
+		{
+			title: "Applied Studio 17: Data Science in Python",
+			curriculum: [
+				{
+					title: "Data Science in Python: Core Concepts",
+					content:
+						"Introduce the main goal of Applied Studio 17: Data Science in Python, define the success criteria, and review the concepts students must understand before they begin the main build or problem."
+				},
+				{
+					title: "Data Science in Python: Guided Example",
+					content:
+						"Walk through one representative example for Applied Studio 17: Data Science in Python, naming the key inputs, the expected outputs, and the checkpoints worth verifying early. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on."
+				},
+				{
+					title: "Data Science in Python: Core Project",
+					content:
+						"Build the central artifact for Applied Studio 17: Data Science in Python. Break the work into a small sequence, implement the first working version, then tighten one weak spot before calling it done.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Data Science in Python"
+				},
+				{
+					title: "Data Science in Python: Review and Reflection",
+					content:
+						"Close Applied Studio 17: Data Science in Python by testing the edge cases that matter most and writing down one improvement that would make the next iteration cleaner or safer. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on."
+				}
+			],
+			supplementalProjects: [
+				{
+					title: "Data Science in Python: Extension Challenge",
+					content:
+						"Extend the core build from Applied Studio 17: Data Science in Python with one extra requirement, stricter input handling, or a more realistic variation of the same task. Anchor the lesson in one concrete example and one quick debugging or reasoning check before moving on.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/Data Science in Python"
+				},
+				{
+					title: "Applied Studio 17: Data Science in Python supplemental 2",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to Applied Studio 17: Data Science in Python. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX31-applied-studio-17-data-science-in-python-supplem/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX31-applied-studio-17-data-science-in-python-supplem/solution"
+				},
+				{
+					title: "Applied Studio 17: Data Science in Python supplemental 3",
+					content:
+						"Use the linked starter and solution for a supplemental project tied to Applied Studio 17: Data Science in Python. Have students finish the missing implementation, test at least two custom cases, and write down one design change they would make after the first working version.",
+					projectLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX32-applied-studio-17-data-science-in-python-supplem/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Courses/tree/main/PDPX32-applied-studio-17-data-science-in-python-supplem/solution"
+				}
 			]
 		}
 	]
