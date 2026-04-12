@@ -14,7 +14,6 @@ declare module 'vue' {
     AccountManagement: typeof import('./components/AccountManagement.vue')['default']
     AccountSecurity: typeof import('./components/AccountSecurity.vue')['default']
     AdminProfile: typeof import('./components/AdminProfile.vue')['default']
-    AdminWorkspaceShell: typeof import('./components/AdminWorkspaceShell.vue')['default']
     CourseExplorer: typeof import('./components/CourseExplorer.vue')['default']
     LazyMarkdownContent: typeof import('./components/LazyMarkdownContent.vue')['default']
     ProfileDetailsCard: typeof import('./components/ProfileDetailsCard.vue')['default']
