@@ -7,7 +7,6 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { setupLayouts } from "virtual:generated-layouts";
-
 import { routes } from "vue-router/auto-routes";
 import App from "./App.vue";
 import { ViteSSG } from "./ssg";

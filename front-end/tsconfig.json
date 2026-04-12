@@ -140,13 +140,6 @@
 		//"skipLibCheck": true
 		/* Skip type checking all .d.ts files. */
 	},
-	/* tell Volar about the Vue-Macros plugins (unchanged) */
-	"vueCompilerOptions": {
-		"plugins": [
-			"@vue-macros/volar/define-models",
-			"@vue-macros/volar/define-slots"
-		]
-	},
 	/* the generated .d.ts files live under src/, so no change needed */
 	"include": ["src"],
 	"exclude": ["dist", "node_modules", "cypress"],

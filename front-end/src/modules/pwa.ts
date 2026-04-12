@@ -1,14 +1,5 @@
 import type { UserModule } from "~/types";
 
-// https://github.com/antfu/vite-plugin-pwa#automatic-reload-when-new-content-available
-export const install: UserModule = ({ router }) => {
-	if (import.meta.env.SSR) return;
-
-	router
-		.isReady()
-		.then(async () => {
-			const { registerSW } = await import("virtual:pwa-register");
-			registerSW({ immediate: true });
-		})
-		.catch(() => {});
-};
+// vite-plugin-pwa does not currently ship a Vite 8-compatible release.
+// Keep the module in place so the auto-registration pattern still compiles.
+export const install: UserModule = () => {};
