@@ -164,11 +164,7 @@ button {
 }
 </style>
 
-<route lang="json">
-{
-	"meta": {
-		"layout": false,
-		"requiresAdmin": true
-	}
-}
-</route>
+<route lang="yaml">
+  meta:
+    layout: false
+    requiresAdmin: true</route>
