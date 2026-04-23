@@ -28,9 +28,8 @@ const coursePreview = computed(() => courses.value.slice(0, 6));
 			<div class="copy">
 				<p>
 					This site packages reusable course outlines, project ideas,
-					and progression paths for students learning programming,
-					web development, science, and related problem-solving
-					topics.
+					and progression paths for students learning programming, web
+					development, science, and related problem-solving topics.
 				</p>
 				<p>
 					The goal is not to prescribe a single teaching style. These
@@ -53,10 +52,7 @@ const coursePreview = computed(() => courses.value.slice(0, 6));
 		<section aria-labelledby="experience-title" class="experience">
 			<h2 id="experience-title">Subject Tracks</h2>
 			<div class="experience-grid">
-				<article
-					v-for="group in subjectGroups"
-					:key="group.title"
-				>
+				<article v-for="group in subjectGroups" :key="group.title">
 					<h3>{{ group.title }}</h3>
 					<p>{{ group.subjects.join(", ") }}</p>
 				</article>
@@ -74,7 +70,9 @@ const coursePreview = computed(() => courses.value.slice(0, 6));
 					<h3>{{ course.name }}</h3>
 				</article>
 			</div>
-			<RouterLink class="cta" to="/courses">Browse All Courses</RouterLink>
+			<RouterLink class="cta" to="/courses"
+				>Browse All Courses</RouterLink
+			>
 		</section>
 	</section>
 </template>

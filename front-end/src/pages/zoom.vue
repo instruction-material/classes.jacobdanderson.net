@@ -23,16 +23,25 @@ defineOptions({ name: "OnlinePrepPage" });
 				</p>
 				<ul class="prep-list">
 					<li>Test audio, camera, and screen-sharing permissions.</li>
-					<li>Open the editor, browser tabs, notebook, and starter files.</li>
-					<li>Close distracting apps or unrelated browser windows.</li>
+					<li>
+						Open the editor, browser tabs, notebook, and starter
+						files.
+					</li>
+					<li>
+						Close distracting apps or unrelated browser windows.
+					</li>
 				</ul>
 			</article>
 
 			<article class="zoom-card">
 				<h2>During the Session</h2>
 				<ul class="prep-list">
-					<li>Keep one place for notes, questions, and TODO items.</li>
-					<li>Pause to summarize important ideas in your own words.</li>
+					<li>
+						Keep one place for notes, questions, and TODO items.
+					</li>
+					<li>
+						Pause to summarize important ideas in your own words.
+					</li>
 					<li>Save project states at meaningful checkpoints.</li>
 				</ul>
 			</article>
@@ -40,9 +49,16 @@ defineOptions({ name: "OnlinePrepPage" });
 			<article class="zoom-card">
 				<h2>Afterward</h2>
 				<ul class="prep-list">
-					<li>Write down the next thing to practice while it is fresh.</li>
-					<li>Rename files clearly so projects are easy to revisit.</li>
-					<li>Review one bug, one concept, and one success from the session.</li>
+					<li>
+						Write down the next thing to practice while it is fresh.
+					</li>
+					<li>
+						Rename files clearly so projects are easy to revisit.
+					</li>
+					<li>
+						Review one bug, one concept, and one success from the
+						session.
+					</li>
 				</ul>
 			</article>
 		</div>
@@ -131,5 +147,6 @@ p {
 </style>
 
 <route lang="yaml">
-  meta:
-    layout: default</route>
+meta:
+    layout: default
+</route>

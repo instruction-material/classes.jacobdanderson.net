@@ -46,7 +46,9 @@
 						<RouterLink to="/payment">Study Guide</RouterLink>
 					</li>
 					<li>
-						<RouterLink to="/about">About These Materials</RouterLink>
+						<RouterLink to="/about"
+							>About These Materials</RouterLink
+						>
 					</li>
 				</ul>
 			</section>

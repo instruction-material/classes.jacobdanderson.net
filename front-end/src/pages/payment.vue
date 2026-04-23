@@ -19,7 +19,9 @@ const content = useContentStore();
 					<span class="details">Core habits</span>
 				</div>
 				<ul>
-					<li>Review the previous lesson before starting a new one.</li>
+					<li>
+						Review the previous lesson before starting a new one.
+					</li>
 					<li>Keep small notes on bugs, ideas, and questions.</li>
 					<li>Finish or revise projects before jumping levels.</li>
 				</ul>
@@ -86,7 +88,9 @@ const content = useContentStore();
 				rhythm.
 			</p>
 			<div class="cta-group">
-				<RouterLink class="cta" to="/courses">Browse Courses</RouterLink>
+				<RouterLink class="cta" to="/courses"
+					>Browse Courses</RouterLink
+				>
 				<RouterLink class="cta ghost" to="/signup">
 					Open Getting Started
 				</RouterLink>

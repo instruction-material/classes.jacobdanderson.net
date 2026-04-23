@@ -165,6 +165,7 @@ button {
 </style>
 
 <route lang="yaml">
-  meta:
+meta:
     layout: false
-    requiresAdmin: true</route>
+    requiresAdmin: true
+</route>

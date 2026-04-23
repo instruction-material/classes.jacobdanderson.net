@@ -1,23 +1,19 @@
 // src/models/plugins/password.ts
-import type { Document, Schema } from "mongoose";
+import type { HydratedDocument, Schema } from "mongoose";
 import argon2 from "argon2";
 
-// Make sure T includes both password: string AND Document
-export function passwordPlugin<T extends Document & { password: string }>(schema: Schema<T>) {
-	schema.pre("save", async function (this: T, next) {
-		// 'isModified' comes from Document
-		if (!this.isModified("password")) return next();
+export function passwordPlugin<T extends { password: string }>(schema: Schema<T>) {
+	schema.pre("save", async function (this: HydratedDocument<T>) {
+		if (!this.isModified("password")) return;
 		this.password = await argon2.hash(this.password);
-		next();
 	});
 
-	schema.methods.comparePassword = function (pw: string) {
-		// this.password is guaranteed to exist
+	schema.methods.comparePassword = function (this: HydratedDocument<T>, pw: string) {
 		return argon2.verify(this.password, pw);
 	};
 
-	schema.methods.toJSON = function () {
-		const obj = this.toObject();
+	schema.methods.toJSON = function (this: HydratedDocument<T>) {
+		const obj = this.toObject() as Record<string, unknown> & { password?: string };
 		delete obj.password;
 		return obj;
 	};
