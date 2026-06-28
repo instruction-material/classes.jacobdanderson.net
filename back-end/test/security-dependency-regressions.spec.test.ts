@@ -259,9 +259,7 @@ describe("security dependency regressions", () => {
 	});
 
 	it("keeps the canonical production origin allowed without a new deployment variable", () => {
-		expect(configuredRequestOrigins()).toContain(
-			"https://classes.jacobdanderson.net"
-		);
+		expect(configuredRequestOrigins()).toContain("https://example.com");
 	});
 
 	it("never treats forwarded loopback headers as production diagnostics authorization", async () => {
