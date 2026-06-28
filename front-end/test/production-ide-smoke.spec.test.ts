@@ -10,26 +10,26 @@ describe("production Code IDE smoke helpers", () => {
 	it("checks the single generalized IDE entry route", () => {
 		expect(
 			productionIdeSmokePageUrls(
-				"https://classes.jacobdanderson.net"
+				"https://example.com"
 			).map(url => url.pathname)
 		).toEqual(["/ide"]);
 	});
 
 	it("extracts same-origin JavaScript and CSS assets from the IDE page HTML", () => {
-		const baseUrl = new URL("https://classes.jacobdanderson.net/ide");
+		const baseUrl = new URL("https://example.com/ide");
 		const html = [
 			'<link rel="stylesheet" href="/assets/app.css">',
 			'<script type="module" src="/assets/CodeIdeWorkspace-a1b2.js"></script>',
-			'<script src="https://classes.jacobdanderson.net/assets/app-c3d4.js"></script>',
-			'<link rel="stylesheet" href="https://classes.jacobdanderson.net/assets/CodeIdeWorkspace-e5f6.css">',
+			'<script src="https://example.com/assets/app-c3d4.js"></script>',
+			'<link rel="stylesheet" href="https://example.com/assets/CodeIdeWorkspace-e5f6.css">',
 			'<script src="https://cdn.example.test/external.js"></script>'
 		].join("");
 
 		expect(pageAssetUrls(html, baseUrl)).toEqual([
-			"https://classes.jacobdanderson.net/assets/app.css",
-			"https://classes.jacobdanderson.net/assets/CodeIdeWorkspace-a1b2.js",
-			"https://classes.jacobdanderson.net/assets/app-c3d4.js",
-			"https://classes.jacobdanderson.net/assets/CodeIdeWorkspace-e5f6.css"
+			"https://example.com/assets/app.css",
+			"https://example.com/assets/CodeIdeWorkspace-a1b2.js",
+			"https://example.com/assets/app-c3d4.js",
+			"https://example.com/assets/CodeIdeWorkspace-e5f6.css"
 		]);
 	});
 
