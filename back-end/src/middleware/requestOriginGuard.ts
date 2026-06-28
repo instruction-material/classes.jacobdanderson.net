@@ -3,7 +3,7 @@ import { env } from "node:process";
 
 const SAFE_METHODS = new Set(["GET", "HEAD", "OPTIONS"]);
 const OAUTH_CALLBACK_PATH = /^\/accounts\/oauth\/(?:apple|google)\/callback$/;
-const DEFAULT_PRODUCTION_ORIGIN = "https://classes.jacobdanderson.net";
+const DEFAULT_PRODUCTION_ORIGIN = "https://example.com";
 
 function normalizedOrigin(value: string | undefined) {
 	if (!value) return null;
