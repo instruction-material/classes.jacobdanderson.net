@@ -9,14 +9,14 @@ describe("production Graph Sketcher smoke helpers", () => {
 	it("checks the public Graph Sketcher route", () => {
 		expect(
 			graphSketcherSmokePageUrl(
-				"https://classes.jacobdanderson.net"
+				"https://example.com"
 			).pathname
 		).toBe("/graph-sketcher");
 	});
 
 	it("extracts only same-origin JavaScript and CSS assets", () => {
 		const pageUrl = new URL(
-			"https://classes.jacobdanderson.net/graph-sketcher"
+			"https://example.com/graph-sketcher"
 		);
 		const html = [
 			'<link rel="stylesheet" href="/assets/app.css">',
@@ -25,8 +25,8 @@ describe("production Graph Sketcher smoke helpers", () => {
 		].join("");
 
 		expect(pageAssetUrls(html, pageUrl)).toEqual([
-			"https://classes.jacobdanderson.net/assets/app.css",
-			"https://classes.jacobdanderson.net/assets/GraphSketcherWorkspace-a1.js"
+			"https://example.com/assets/app.css",
+			"https://example.com/assets/GraphSketcherWorkspace-a1.js"
 		]);
 	});
 

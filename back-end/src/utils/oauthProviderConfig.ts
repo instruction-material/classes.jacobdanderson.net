@@ -2,7 +2,7 @@ import type { ExternalIdentityProvider } from "../types/entities/IExternalIdenti
 import { Buffer } from "node:buffer";
 import { env } from "node:process";
 
-const DEFAULT_AUTH_ORIGIN = "https://classes.jacobdanderson.net";
+const DEFAULT_AUTH_ORIGIN = "https://example.com";
 
 interface GoogleOAuthCredentials {
 	clientID: string;
