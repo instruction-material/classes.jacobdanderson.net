@@ -18,10 +18,11 @@ const externalIdentitySchema = new Schema<IExternalIdentity>(
 		},
 		emailAtLink: {
 			type: String,
-			required: true,
 			lowercase: true,
 			trim: true,
-			maxlength: 320
+			maxlength: 320,
+			select: false,
+			default: undefined
 		},
 		lastLoginAt: {
 			type: Date,
@@ -37,7 +38,8 @@ const externalIdentitySchema = new Schema<IExternalIdentity>(
 			type: String,
 			required: true,
 			trim: true,
-			maxlength: 255
+			maxlength: 255,
+			select: false
 		}
 	},
 	{ timestamps: true }

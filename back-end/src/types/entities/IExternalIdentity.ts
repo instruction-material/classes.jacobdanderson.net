@@ -9,7 +9,7 @@ export interface IExternalIdentity {
 	_id: Types.ObjectId;
 	accountID: Types.ObjectId;
 	accountRole: ExternalIdentityAccountRole;
-	emailAtLink: string;
+	emailAtLink?: string;
 	lastLoginAt: Date;
 	provider: ExternalIdentityProvider;
 	subject: string;

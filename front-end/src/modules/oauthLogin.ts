@@ -21,7 +21,7 @@ export const oauthErrorMessages: Record<string, string> = {
 	expired:
 		"That login attempt expired or was already used. Please try again.",
 	identity_conflict:
-		"That provider login is already connected to a different Classes account.",
+		"That provider login could not be linked safely. Use your existing email and password, then contact an administrator if the problem continues.",
 	provider_error:
 		"Google or Apple could not complete the login. Please try again.",
 	provider_unavailable: "That login provider is not currently available."

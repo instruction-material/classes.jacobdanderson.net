@@ -49,6 +49,24 @@ async function main() {
 	}));
 
 	// 1) parsers first (with limits)
+	app.use(
+		"/accounts/oauth/apple/callback",
+		(req, res, next) => {
+			if (
+				req.method === "POST"
+				&& !req.is("application/x-www-form-urlencoded")
+			) {
+				res.sendStatus(415);
+				return;
+			}
+			next();
+		},
+		bodyParser.urlencoded({
+			extended: false,
+			limit: "16kb",
+			parameterLimit: 10
+		})
+	);
 	app.use(codeIdeProjectJsonRoute, bodyParser.json({ limit: codeIdeProjectJsonBodyLimit }));
 	app.use(bodyParser.urlencoded({ extended: false, limit: "1mb" }));
 	app.use(bodyParser.json({ limit: "1mb" }));

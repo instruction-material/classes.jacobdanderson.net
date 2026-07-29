@@ -42,6 +42,18 @@ const loginAccountLimiter = createLoginAccountLimiter();
 const emailCheckLimiter = createEmailCheckLimiter();
 const accountMutationLimiter = createUserCourseAccessLimiter();
 
+const requireAppleOAuthFormPost: RequestHandler = (req, res, next) => {
+	if (req.params.provider !== "apple") {
+		res.sendStatus(404);
+		return;
+	}
+	if (!req.is("application/x-www-form-urlencoded")) {
+		res.sendStatus(415);
+		return;
+	}
+	next();
+};
+
 async function validExistingSessionId(
 	Model: {
 		exists: (
@@ -108,7 +120,12 @@ router.post("/password-reset/confirm", passwordResetLimiter, confirmPasswordRese
 router.get("/oauth/providers", getOAuthProviders);
 router.get("/oauth/:provider/start", oauthLoginLimiter, startOAuthLogin);
 router.get("/oauth/:provider/callback", oauthLoginLimiter, finishOAuthLogin);
-router.post("/oauth/:provider/callback", oauthLoginLimiter, finishOAuthLogin);
+router.post(
+	"/oauth/:provider/callback",
+	oauthLoginLimiter,
+	requireAppleOAuthFormPost,
+	finishOAuthLogin
+);
 
 router.delete("/logout", logout);
 router.post(

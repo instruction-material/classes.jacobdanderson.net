@@ -62,7 +62,8 @@ const originalEnvironment = {
 	APPLE_OAUTH_TEAM_ID: process.env.APPLE_OAUTH_TEAM_ID,
 	AUTH_ORIGIN: process.env.AUTH_ORIGIN,
 	GOOGLE_OAUTH_CLIENT_ID: process.env.GOOGLE_OAUTH_CLIENT_ID,
-	GOOGLE_OAUTH_CLIENT_SECRET: process.env.GOOGLE_OAUTH_CLIENT_SECRET
+	GOOGLE_OAUTH_CLIENT_SECRET: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
+	OAUTH_ENABLED: process.env.OAUTH_ENABLED
 };
 
 let storedAttempt: StoredAttempt | null;
@@ -176,6 +177,7 @@ describe("Google and Apple OAuth login", () => {
 	beforeEach(() => {
 		vi.clearAllMocks();
 		storedAttempt = null;
+		process.env.OAUTH_ENABLED = "true";
 		process.env.GOOGLE_OAUTH_CLIENT_ID = "google-client-id";
 		process.env.GOOGLE_OAUTH_CLIENT_SECRET = "google-client-secret";
 		process.env.APPLE_OAUTH_CLIENT_ID = "classes.web";
@@ -277,6 +279,10 @@ describe("Google and Apple OAuth login", () => {
 			expect(callback.status).toBe(303);
 			expect(callback.headers.get("location"))
 				.toBe("/courses?oauthStatus=success");
+			expect(callback.headers.getSetCookie()).toEqual(expect.arrayContaining([
+				expect.stringContaining("classes_oauth_apple=;"),
+				expect.stringContaining("classes_oauth_google=;")
+			]));
 			await expect(sessionResponse.json()).resolves.toEqual({
 				adminID: null,
 				courseCodeLearnerID: null,
@@ -310,7 +316,11 @@ describe("Google and Apple OAuth login", () => {
 				{
 					body: new URLSearchParams({
 						code: "apple-code",
-						state: state ?? ""
+						state: state ?? "",
+						user: JSON.stringify({
+							email: "provider-profile@example.com",
+							name: { firstName: "Private", lastName: "Profile" }
+						})
 					}),
 					headers: {
 						"content-type": "application/x-www-form-urlencoded",
@@ -326,6 +336,39 @@ describe("Google and Apple OAuth login", () => {
 			expect(request).toBeInstanceOf(Request);
 			expect(request.method).toBe("POST");
 			expect(await request.clone().text()).toContain("code=apple-code");
+			expect(await request.clone().text()).not.toContain("provider-profile");
+		});
+	});
+
+	it("rejects non-form Apple callbacks and does not expose a Google POST callback", async () => {
+		await withAccountRoutes(async baseUrl => {
+			const apple = await fetch(
+				`${baseUrl}/accounts/oauth/apple/callback`,
+				{
+					body: JSON.stringify({ code: "apple-code", state: "state" }),
+					headers: { "content-type": "application/json" },
+					method: "POST",
+					redirect: "manual"
+				}
+			);
+			const google = await fetch(
+				`${baseUrl}/accounts/oauth/google/callback`,
+				{
+					body: new URLSearchParams({
+						code: "google-code",
+						state: "state"
+					}),
+					headers: {
+						"content-type": "application/x-www-form-urlencoded"
+					},
+					method: "POST",
+					redirect: "manual"
+				}
+			);
+
+			expect(apple.status).toBe(415);
+			expect(google.status).toBe(404);
+			expect(oauthMocks.exchangeAuthorizationCode).not.toHaveBeenCalled();
 		});
 	});
 
@@ -357,5 +400,42 @@ describe("Google and Apple OAuth login", () => {
 				google: false
 			});
 		});
+	});
+
+	it("keeps provider choices disabled until OAuth is explicitly enabled", async () => {
+		delete process.env.OAUTH_ENABLED;
+
+		await withAccountRoutes(async baseUrl => {
+			const response = await fetch(`${baseUrl}/accounts/oauth/providers`);
+			await expect(response.json()).resolves.toEqual({
+				apple: false,
+				google: false
+			});
+		});
+	});
+
+	it("does not log provider error details that may contain callback secrets", async () => {
+		const log = vi.spyOn(console, "error").mockImplementation(() => undefined);
+		oauthMocks.createAuthorizationRequest.mockRejectedValue(
+			new Error("provider response contained code=secret-value")
+		);
+
+		try {
+			await withAccountRoutes(async baseUrl => {
+				const response = await fetch(
+					`${baseUrl}/accounts/oauth/google/start`,
+					{ redirect: "manual" }
+				);
+				expect(response.status).toBe(303);
+			});
+
+			const output = log.mock.calls.flat().join(" ");
+			expect(output).toContain("OAuth google login failed (Error).");
+			expect(output).not.toContain("secret-value");
+			expect(output).not.toContain("provider response");
+		}
+		finally {
+			log.mockRestore();
+		}
 	});
 });
