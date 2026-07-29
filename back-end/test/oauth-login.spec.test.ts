@@ -263,7 +263,8 @@ describe("Google and Apple OAuth login", () => {
 			expect(storedAttempt).not.toHaveProperty("idToken");
 
 			const callback = await fetch(
-				`${baseUrl}/accounts/oauth/google/callback?code=provider-code&state=${state}`,
+				`${baseUrl}/accounts/oauth/google/callback`
+				+ `?code=provider-code&state=${state}&unexpected=provider-profile`,
 				{
 					headers: {
 						cookie: `${staleSession}; ${started.bindingCookie}`
@@ -298,6 +299,13 @@ describe("Google and Apple OAuth login", () => {
 					state
 				}
 			);
+			const providerCallback
+				= oauthMocks.exchangeAuthorizationCode.mock.calls[0]?.[1] as
+					| URL
+					| undefined;
+			expect(providerCallback?.searchParams.get("code"))
+				.toBe("provider-code");
+			expect(providerCallback?.searchParams.has("unexpected")).toBe(false);
 			expect(oauthMocks.resolveAccount).toHaveBeenCalledWith({
 				email: "tutor@example.com",
 				provider: "google",
