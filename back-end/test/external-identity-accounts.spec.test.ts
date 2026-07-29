@@ -46,6 +46,7 @@ vi.mock("../src/models/schemas/ExternalIdentity.js", () => ({
 
 const {
 	ExternalIdentityAccountError,
+	externalIdentitySubjectHash,
 	resolveExternalIdentityAccount
 } = await import("../src/utils/externalIdentityAccounts.js");
 
@@ -78,7 +79,7 @@ describe("external identity account linking", () => {
 		modelMocks.externalUpdateOne.mockReturnValue(queryWith({ modifiedCount: 1 }));
 	});
 
-	it("links a verified provider email to the highest-priority existing role", async () => {
+	it("rejects an ambiguous verified email instead of selecting a privileged role", async () => {
 		const admin = makeEntity("admin");
 		const tutor = makeEntity("tutor");
 		const user = makeEntity("user");
@@ -86,22 +87,42 @@ describe("external identity account linking", () => {
 		modelMocks.tutorFindOne.mockReturnValue(queryWith(tutor));
 		modelMocks.userFindOne.mockReturnValue(queryWith(user));
 
+		await expect(resolveExternalIdentityAccount({
+			email: "shared@example.com",
+			provider: "google",
+			subject: "google-subject"
+		})).rejects.toEqual(
+			expect.objectContaining<
+				Partial<InstanceType<typeof ExternalIdentityAccountError>>
+			>({ code: "identity_conflict" })
+		);
+
+		expect(modelMocks.externalCreate).not.toHaveBeenCalled();
+	});
+
+	it("links one matching account without retaining provider PII", async () => {
+		const tutor = makeEntity("tutor");
+		modelMocks.tutorFindOne.mockReturnValue(queryWith(tutor));
+
 		const candidate = await resolveExternalIdentityAccount({
 			email: "shared@example.com",
 			provider: "google",
 			subject: "google-subject"
 		});
 
-		expect(candidate.role).toBe("admin");
-		expect(candidate.entity).toBe(admin);
+		expect(candidate.role).toBe("tutor");
+		expect(candidate.entity).toBe(tutor);
 		expect(modelMocks.externalCreate).toHaveBeenCalledWith({
-			accountID: admin._id,
-			accountRole: "admin",
-			emailAtLink: "shared@example.com",
+			accountID: tutor._id,
+			accountRole: "tutor",
 			lastLoginAt: expect.any(Date),
 			provider: "google",
-			subject: "google-subject"
+			subject: externalIdentitySubjectHash("google", "google-subject")
 		});
+		expect(modelMocks.externalCreate.mock.calls[0]?.[0])
+			.not.toHaveProperty("emailAtLink");
+		expect(modelMocks.externalCreate.mock.calls[0]?.[0].subject)
+			.not.toBe("google-subject");
 	});
 
 	it("uses the stable provider subject after linking even if the provider email changes", async () => {
@@ -130,9 +151,9 @@ describe("external identity account linking", () => {
 			{ _id: identity._id },
 			{
 				$set: {
-					emailAtLink: "new-address@example.com",
 					lastLoginAt: expect.any(Date)
-				}
+				},
+				$unset: { emailAtLink: 1 }
 			}
 		);
 	});
@@ -156,7 +177,54 @@ describe("external identity account linking", () => {
 		expect(candidate.role).toBe("tutor");
 		expect(modelMocks.externalUpdateOne).toHaveBeenCalledWith(
 			{ _id: identity._id },
-			{ $set: { lastLoginAt: expect.any(Date) } }
+			{
+				$set: { lastLoginAt: expect.any(Date) },
+				$unset: { emailAtLink: 1 }
+			}
+		);
+	});
+
+	it("migrates a legacy raw provider subject to its hash on login", async () => {
+		const tutor = makeEntity("tutor");
+		const identity = {
+			_id: new Types.ObjectId(),
+			accountID: tutor._id,
+			accountRole: "tutor"
+		};
+		modelMocks.externalFindOne
+			.mockReturnValueOnce(queryWith(null))
+			.mockReturnValueOnce(queryWith(identity));
+		modelMocks.tutorFindById.mockReturnValue(queryWith(tutor));
+
+		await resolveExternalIdentityAccount({
+			email: null,
+			provider: "apple",
+			subject: "legacy-raw-apple-subject"
+		});
+
+		expect(modelMocks.externalFindOne).toHaveBeenNthCalledWith(1, {
+			provider: "apple",
+			subject: externalIdentitySubjectHash(
+				"apple",
+				"legacy-raw-apple-subject"
+			)
+		});
+		expect(modelMocks.externalFindOne).toHaveBeenNthCalledWith(2, {
+			provider: "apple",
+			subject: "legacy-raw-apple-subject"
+		});
+		expect(modelMocks.externalUpdateOne).toHaveBeenCalledWith(
+			{ _id: identity._id },
+			{
+				$set: {
+					lastLoginAt: expect.any(Date),
+					subject: externalIdentitySubjectHash(
+						"apple",
+						"legacy-raw-apple-subject"
+					)
+				},
+				$unset: { emailAtLink: 1 }
+			}
 		);
 	});
 

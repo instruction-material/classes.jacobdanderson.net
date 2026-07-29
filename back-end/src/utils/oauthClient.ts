@@ -133,7 +133,7 @@ export async function createOAuthAuthorizationRequest(
 		nonce,
 		redirect_uri: oauthCallbackUrl(provider),
 		response_type: "code",
-		scope: provider === "apple" ? "openid email name" : "openid email profile",
+		scope: "openid email",
 		state
 	};
 

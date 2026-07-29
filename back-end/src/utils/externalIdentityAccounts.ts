@@ -3,6 +3,7 @@ import type {
 	ExternalIdentityProvider
 } from "../types/entities/IExternalIdentity.js";
 import type { AccountCandidate } from "./accountSessions.js";
+import { createHash } from "node:crypto";
 import { Admin } from "../models/schemas/Admin.js";
 import { ExternalIdentity } from "../models/schemas/ExternalIdentity.js";
 import { Tutor } from "../models/schemas/Tutor.js";
@@ -32,6 +33,17 @@ function isDuplicateKeyError(error: unknown): error is { code: number } {
 		&& error !== null
 		&& "code" in error
 		&& error.code === 11000;
+}
+
+export function externalIdentitySubjectHash(
+	provider: ExternalIdentityProvider,
+	subject: string
+) {
+	return createHash("sha256")
+		.update(provider)
+		.update("\0")
+		.update(subject)
+		.digest("hex");
 }
 
 async function candidateForRole(
@@ -74,10 +86,18 @@ async function candidateForRole(
 
 async function linkedCandidate(
 	provider: ExternalIdentityProvider,
-	subject: string,
-	email: string | null
+	subject: string
 ) {
-	const identity = await ExternalIdentity.findOne({ provider, subject }).exec();
+	const subjectHash = externalIdentitySubjectHash(provider, subject);
+	let identity = await ExternalIdentity.findOne({
+		provider,
+		subject: subjectHash
+	}).exec();
+	let usesLegacyRawSubject = false;
+	if (!identity) {
+		identity = await ExternalIdentity.findOne({ provider, subject }).exec();
+		usesLegacyRawSubject = !!identity;
+	}
 	if (!identity) return null;
 
 	const candidate = await candidateForRole(
@@ -90,11 +110,22 @@ async function linkedCandidate(
 	}
 
 	const updates: Record<string, unknown> = { lastLoginAt: new Date() };
-	if (email) updates.emailAtLink = email;
-	await ExternalIdentity.updateOne(
-		{ _id: identity._id },
-		{ $set: updates }
-	).exec();
+	if (usesLegacyRawSubject) updates.subject = subjectHash;
+	try {
+		await ExternalIdentity.updateOne(
+			{ _id: identity._id },
+			{
+				$set: updates,
+				$unset: { emailAtLink: 1 }
+			}
+		).exec();
+	}
+	catch (error) {
+		if (isDuplicateKeyError(error)) {
+			throw new ExternalIdentityAccountError("identity_conflict");
+		}
+		throw error;
+	}
 	return candidate;
 }
 
@@ -107,14 +138,19 @@ export async function resolveExternalIdentityAccount({
 	provider: ExternalIdentityProvider;
 	subject: string;
 }): Promise<AccountCandidate> {
-	const existingLink = await linkedCandidate(provider, subject, email);
+	const existingLink = await linkedCandidate(provider, subject);
 	if (existingLink?.entity) return existingLink;
 	if (!email) {
 		throw new ExternalIdentityAccountError("email_unverified");
 	}
 
 	const accounts = await findAccountsByEmail(email);
-	const candidate = accountCandidatesByPriority(accounts).find(item => item.entity);
+	const matchingCandidates = accountCandidatesByPriority(accounts)
+		.filter(item => item.entity);
+	if (matchingCandidates.length > 1) {
+		throw new ExternalIdentityAccountError("identity_conflict");
+	}
+	const candidate = matchingCandidates[0];
 	if (!candidate?.entity) {
 		throw new ExternalIdentityAccountError("account_not_found");
 	}
@@ -123,17 +159,16 @@ export async function resolveExternalIdentityAccount({
 		await ExternalIdentity.create({
 			accountID: candidate.entity._id,
 			accountRole: candidate.role,
-			emailAtLink: email,
 			lastLoginAt: new Date(),
 			provider,
-			subject
+			subject: externalIdentitySubjectHash(provider, subject)
 		});
 		return candidate;
 	}
 	catch (error) {
 		if (!isDuplicateKeyError(error)) throw error;
 
-		const racedLink = await linkedCandidate(provider, subject, email);
+		const racedLink = await linkedCandidate(provider, subject);
 		if (
 			racedLink?.entity
 			&& racedLink.role === candidate.role

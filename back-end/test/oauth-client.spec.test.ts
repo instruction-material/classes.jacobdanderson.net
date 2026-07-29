@@ -81,7 +81,8 @@ const originalEnvironment = {
 	APPLE_OAUTH_TEAM_ID: process.env.APPLE_OAUTH_TEAM_ID,
 	AUTH_ORIGIN: process.env.AUTH_ORIGIN,
 	GOOGLE_OAUTH_CLIENT_ID: process.env.GOOGLE_OAUTH_CLIENT_ID,
-	GOOGLE_OAUTH_CLIENT_SECRET: process.env.GOOGLE_OAUTH_CLIENT_SECRET
+	GOOGLE_OAUTH_CLIENT_SECRET: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
+	OAUTH_ENABLED: process.env.OAUTH_ENABLED
 };
 
 describe("OAuth provider client runtime", () => {
@@ -90,6 +91,7 @@ describe("OAuth provider client runtime", () => {
 		joseMocks.jwtCalls.length = 0;
 		resetOAuthClientCacheForTests();
 		process.env.AUTH_ORIGIN = "https://classes.example.test";
+		process.env.OAUTH_ENABLED = "true";
 		process.env.GOOGLE_OAUTH_CLIENT_ID = "google-client";
 		process.env.GOOGLE_OAUTH_CLIENT_SECRET = "google-secret";
 		process.env.APPLE_OAUTH_CLIENT_ID = "classes.web";
@@ -147,7 +149,7 @@ describe("OAuth provider client runtime", () => {
 			"https://classes.example.test/api/accounts/oauth/google/callback"
 		);
 		expect(request.redirectUrl.searchParams.get("scope"))
-			.toBe("openid email profile");
+			.toBe("openid email");
 		expect(request.redirectUrl.searchParams.get("prompt")).toBe("select_account");
 		expect(openIdMocks.clientSecretPost).toHaveBeenCalledWith("google-secret");
 	});
@@ -175,7 +177,7 @@ describe("OAuth provider client runtime", () => {
 		expect(request.redirectUrl.searchParams.get("response_mode"))
 			.toBe("form_post");
 		expect(request.redirectUrl.searchParams.get("scope"))
-			.toBe("openid email name");
+			.toBe("openid email");
 		expect(request.redirectUrl.searchParams.get("redirect_uri")).toBe(
 			"https://classes.example.test/api/accounts/oauth/apple/callback"
 		);

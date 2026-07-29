@@ -338,6 +338,21 @@ describe("account login role transfer", () => {
 		});
 	});
 
+	it("clears outstanding provider-binding cookies after password login", async () => {
+		const tutor = makeEntity("tutor", "tutor-password");
+		mockAccounts({ tutor });
+
+		await withAccountRoutes(async baseUrl => {
+			const response = await loginRequest(baseUrl, "tutor-password");
+
+			expect(response.status).toBe(200);
+			expect(response.headers.getSetCookie()).toEqual(expect.arrayContaining([
+				expect.stringContaining("classes_oauth_apple=;"),
+				expect.stringContaining("classes_oauth_google=;")
+			]));
+		});
+	});
+
 	it("replaces a classroom code session with the selected account role", async () => {
 		const tutor = makeEntity("tutor", "tutor-password");
 		mockAccounts({ tutor });

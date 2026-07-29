@@ -18,6 +18,7 @@ import {
 	getAccountID,
 	serializeAccountEntity
 } from "../../utils/accountSessions.js";
+import { clearOAuthBrowserBindings } from "../../utils/oauthBrowserBinding.js";
 import { recordSecurityAuditEvent } from "../../utils/securityAudit.js";
 import { sendTransactionalEmail } from "../../utils/transactionalEmail.js";
 
@@ -174,6 +175,7 @@ export const login: RequestHandler = async (req, res) => {
 
 	const options = ((req as any).sessionOptions ??= {});
 	options.maxAge = remember ? THIRTY_DAYS_MS : undefined;
+	clearOAuthBrowserBindings(res);
 	return res.json({
 		[selectedCandidate.responseKey]:
 			serializeAccountEntity(selectedCandidate.entity)
@@ -246,6 +248,7 @@ export const confirmPasswordReset: RequestHandler = async (req, res) => {
 		await account.save();
 		await PasswordResetToken.deleteOne({ tokenHash, claimID }).exec();
 		clearSessionRoles(req.session as CustomSession);
+		clearOAuthBrowserBindings(res);
 		await recordSecurityAuditEvent(req, {
 			action: "account.password.reset",
 			targetID: account._id,
@@ -270,6 +273,7 @@ export const confirmPasswordReset: RequestHandler = async (req, res) => {
 
 /** LOGOUT */
 export const logout: RequestHandler = (req, res) => {
+	clearOAuthBrowserBindings(res);
 	// clear cookie-session
 	// assuming your cookie-session name is “session”
 	(req.session as any) = null;
@@ -285,6 +289,7 @@ export const revokeOtherSessions: RequestHandler = async (req, res) => {
 	account.sessionVersion = (account.sessionVersion ?? 0) + 1;
 	await account.save();
 	(req.session as CustomSession).accountSessionVersion = account.sessionVersion;
+	clearOAuthBrowserBindings(res);
 	await recordSecurityAuditEvent(req, {
 		action: "account.sessions.revoke",
 		targetID: account._id,
@@ -357,6 +362,7 @@ export const changeEmail: RequestHandler = async (req, res) => {
 		if (session[roleKey] === getAccountID(doc as Entity)) {
 			session.accountSessionVersion = doc.sessionVersion;
 		}
+		clearOAuthBrowserBindings(res);
 		await recordSecurityAuditEvent(req, {
 			action: "account.email.change",
 			targetID: doc._id,
@@ -418,6 +424,7 @@ export const changePassword: RequestHandler = async (req, res) => {
 		if (session[roleKey] === getAccountID(doc as Entity)) {
 			session.accountSessionVersion = doc.sessionVersion;
 		}
+		clearOAuthBrowserBindings(res);
 		await recordSecurityAuditEvent(req, {
 			action: "account.password.change",
 			targetID: doc._id,

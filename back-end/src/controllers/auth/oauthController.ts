@@ -14,6 +14,13 @@ import {
 	resolveExternalIdentityAccount
 } from "../../utils/externalIdentityAccounts.js";
 import {
+	clearOAuthBrowserBinding,
+	clearOAuthBrowserBindings,
+	OAUTH_ATTEMPT_LIFETIME_MS,
+	oauthBrowserBindingFromRequest,
+	setOAuthBrowserBinding
+} from "../../utils/oauthBrowserBinding.js";
+import {
 	createOAuthAuthorizationRequest,
 	exchangeOAuthAuthorizationCode
 } from "../../utils/oauthClient.js";
@@ -25,7 +32,6 @@ import {
 	oauthProviderCredentials
 } from "../../utils/oauthProviderConfig.js";
 
-const OAUTH_ATTEMPT_LIFETIME_MS = 10 * 60 * 1000;
 const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
 const OAUTH_TOKEN_PATTERN = /^[\w~-]{32,256}$/u;
 
@@ -56,64 +62,6 @@ function secureHashMatch(candidate: string, expectedHash: string) {
 		&& timingSafeEqual(candidateHash, expected);
 }
 
-function browserBindingCookieName(provider: ExternalIdentityProvider) {
-	return `classes_oauth_${provider}`;
-}
-
-function browserBindingCookiePath(provider: ExternalIdentityProvider) {
-	return `/api/accounts/oauth/${provider}`;
-}
-
-function isSecureOrigin() {
-	return oauthAuthOrigin().startsWith("https://");
-}
-
-function setBrowserBindingCookie(
-	res: Response,
-	provider: ExternalIdentityProvider,
-	binding: string
-) {
-	res.cookie(browserBindingCookieName(provider), binding, {
-		httpOnly: true,
-		maxAge: OAUTH_ATTEMPT_LIFETIME_MS,
-		path: browserBindingCookiePath(provider),
-		sameSite: provider === "apple" ? "none" : "lax",
-		secure: provider === "apple" || isSecureOrigin()
-	});
-}
-
-function clearBrowserBindingCookie(
-	res: Response,
-	provider: ExternalIdentityProvider
-) {
-	res.clearCookie(browserBindingCookieName(provider), {
-		httpOnly: true,
-		path: browserBindingCookiePath(provider),
-		sameSite: provider === "apple" ? "none" : "lax",
-		secure: provider === "apple" || isSecureOrigin()
-	});
-}
-
-function requestCookie(req: ExpressRequest, name: string) {
-	const cookieHeader = req.get("cookie");
-	if (!cookieHeader) return null;
-
-	for (const pair of cookieHeader.split(";")) {
-		const separator = pair.indexOf("=");
-		if (separator < 0) continue;
-		const key = pair.slice(0, separator).trim();
-		if (key !== name) continue;
-		const rawValue = pair.slice(separator + 1).trim();
-		try {
-			return decodeURIComponent(rawValue);
-		}
-		catch {
-			return null;
-		}
-	}
-	return null;
-}
-
 function requestParameter(req: ExpressRequest, key: string) {
 	const value = req.method === "POST" ? req.body?.[key] : req.query[key];
 	return typeof value === "string" ? value : null;
@@ -132,7 +80,8 @@ function callbackRequest(
 	}
 
 	const body = new URLSearchParams();
-	for (const [key, value] of Object.entries(req.body ?? {})) {
+	for (const key of ["code", "error", "error_description", "state"]) {
+		const value = req.body?.[key];
 		if (typeof value === "string") body.set(key, value);
 	}
 	return new globalThis.Request(oauthCallbackUrl(provider), {
@@ -166,8 +115,11 @@ function redirectWithError(
 }
 
 function logOAuthFailure(provider: ExternalIdentityProvider, error: unknown) {
-	const message = error instanceof Error ? error.message : "Unknown provider error";
-	console.error(`OAuth ${provider} login failed: ${message}`);
+	const errorType = error instanceof Error
+		&& /^[A-Za-z][A-Za-z\d]{0,63}$/u.test(error.name)
+		? error.name
+		: "UnknownProviderError";
+	console.error(`OAuth ${provider} login failed (${errorType}).`);
 }
 
 export const getOAuthProviders: RequestHandler = (_req, res) => {
@@ -184,6 +136,10 @@ export const startOAuthLogin: RequestHandler = async (req, res) => {
 	const state = randomBytes(32).toString("base64url");
 	const nonce = randomBytes(32).toString("base64url");
 	const browserBinding = randomBytes(32).toString("base64url");
+	clearOAuthBrowserBinding(
+		res,
+		provider === "apple" ? "google" : "apple"
+	);
 
 	try {
 		const authorization = await createOAuthAuthorizationRequest(
@@ -201,7 +157,7 @@ export const startOAuthLogin: RequestHandler = async (req, res) => {
 			returnTo,
 			stateHash: hashSecret(state)
 		});
-		setBrowserBindingCookie(res, provider, browserBinding);
+		setOAuthBrowserBinding(res, provider, browserBinding);
 		return res.redirect(302, authorization.redirectUrl.toString());
 	}
 	catch (error) {
@@ -209,7 +165,7 @@ export const startOAuthLogin: RequestHandler = async (req, res) => {
 			provider,
 			stateHash: hashSecret(state)
 		}).exec().catch(() => undefined);
-		clearBrowserBindingCookie(res, provider);
+		clearOAuthBrowserBinding(res, provider);
 		logOAuthFailure(provider, error);
 		return redirectWithError(res, returnTo, "provider_error");
 	}
@@ -223,7 +179,7 @@ export const finishOAuthLogin: RequestHandler = async (req, res) => {
 
 	const state = requestParameter(req, "state");
 	if (!state || !OAUTH_TOKEN_PATTERN.test(state)) {
-		clearBrowserBindingCookie(res, provider);
+		clearOAuthBrowserBinding(res, provider);
 		return redirectWithError(res, "/", "expired");
 	}
 
@@ -235,16 +191,13 @@ export const finishOAuthLogin: RequestHandler = async (req, res) => {
 		.select("+browserBindingHash +codeVerifier +nonce +stateHash")
 		.exec();
 	const returnTo = normalizeOAuthReturnTo(attempt?.returnTo);
-	const browserBinding = requestCookie(
-		req,
-		browserBindingCookieName(provider)
-	);
+	const browserBinding = oauthBrowserBindingFromRequest(req, provider);
 	if (
 		!attempt
 		|| !browserBinding
 		|| !secureHashMatch(browserBinding, attempt.browserBindingHash)
 	) {
-		clearBrowserBindingCookie(res, provider);
+		clearOAuthBrowserBinding(res, provider);
 		return redirectWithError(res, returnTo, "expired");
 	}
 
@@ -254,7 +207,7 @@ export const finishOAuthLogin: RequestHandler = async (req, res) => {
 	})
 		.select("+browserBindingHash +codeVerifier +nonce +stateHash")
 		.exec();
-	clearBrowserBindingCookie(res, provider);
+	clearOAuthBrowserBindings(res);
 	if (!consumedAttempt) {
 		return redirectWithError(res, returnTo, "expired");
 	}

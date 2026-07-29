@@ -2,7 +2,7 @@ import type { RequestHandler } from "express";
 import { env } from "node:process";
 
 const SAFE_METHODS = new Set(["GET", "HEAD", "OPTIONS"]);
-const OAUTH_CALLBACK_PATH = /^\/accounts\/oauth\/(?:apple|google)\/callback$/;
+const APPLE_OAUTH_CALLBACK_PATH = /^\/accounts\/oauth\/apple\/callback$/;
 const DEFAULT_PRODUCTION_ORIGIN = "https://example.com";
 
 function normalizedOrigin(value: string | undefined) {
@@ -38,7 +38,10 @@ export function createRequestOriginGuard(
 	allowedOrigins = configuredRequestOrigins()
 ): RequestHandler {
 	return (req, res, next) => {
-		if (SAFE_METHODS.has(req.method) || OAUTH_CALLBACK_PATH.test(req.path)) {
+		const isAppleOAuthFormPost
+			= req.method === "POST"
+				&& APPLE_OAUTH_CALLBACK_PATH.test(req.path);
+		if (SAFE_METHODS.has(req.method) || isAppleOAuthFormPost) {
 			next();
 			return;
 		}

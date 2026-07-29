@@ -25,6 +25,10 @@ function configuredValue(value: string | undefined) {
 	return normalized || null;
 }
 
+export function oauthEnabled() {
+	return env.OAUTH_ENABLED?.trim().toLowerCase() === "true";
+}
+
 function applePrivateKey() {
 	const encoded = configuredValue(env.APPLE_OAUTH_PRIVATE_KEY_BASE64);
 	if (encoded) {
@@ -46,6 +50,8 @@ function applePrivateKey() {
 export function oauthProviderCredentials(
 	provider: ExternalIdentityProvider
 ): OAuthProviderCredentials | null {
+	if (!oauthEnabled()) return null;
+
 	if (provider === "google") {
 		const clientID = configuredValue(env.GOOGLE_OAUTH_CLIENT_ID);
 		const clientSecret = configuredValue(env.GOOGLE_OAUTH_CLIENT_SECRET);

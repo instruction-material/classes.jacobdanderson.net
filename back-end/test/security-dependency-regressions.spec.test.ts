@@ -38,7 +38,11 @@ async function withServer<T>(
 	app.set("trust proxy", trustProxy);
 	app.use(express.json());
 	app.use(handler);
-	app.all("/limited", (_req, res) => {
+	app.all([
+		"/limited",
+		"/accounts/oauth/apple/callback",
+		"/accounts/oauth/google/callback"
+	], (_req, res) => {
 		res.status(responseStatus).json({ ok: responseStatus < 400 });
 	});
 
@@ -254,6 +258,37 @@ describe("security dependency regressions", () => {
 				});
 				expect(rejected.status).toBe(403);
 				expect(accepted.status).toBe(200);
+			}
+		);
+	});
+
+	it("exempts only Apple's exact form-post callback from the origin guard", async () => {
+		await withServer(
+			createRequestOriginGuard(new Set(["https://classes.example.test"])),
+			async (baseUrl) => {
+				const apple = await fetch(
+					`${baseUrl}/accounts/oauth/apple/callback`,
+					{
+						headers: {
+							origin: "https://appleid.apple.com",
+							"sec-fetch-site": "cross-site"
+						},
+						method: "POST"
+					}
+				);
+				const google = await fetch(
+					`${baseUrl}/accounts/oauth/google/callback`,
+					{
+						headers: {
+							origin: "https://attacker.example",
+							"sec-fetch-site": "cross-site"
+						},
+						method: "POST"
+					}
+				);
+
+				expect(apple.status).toBe(200);
+				expect(google.status).toBe(403);
 			}
 		);
 	});
