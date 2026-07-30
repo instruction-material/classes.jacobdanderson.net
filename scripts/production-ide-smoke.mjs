@@ -1,6 +1,6 @@
 import { pathToFileURL } from "node:url";
 
-const origin = process.env.CLASSES_SITE_ORIGIN || "https://classes.jacobdanderson.net";
+const origin = process.env.CLASSES_SITE_ORIGIN || "https://example.com";
 const timeoutMs = Number(process.env.CLASSES_SITE_SMOKE_TIMEOUT_MS || 15000);
 const smokePaths = ["/ide"];
 const pageUrl = new URL(smokePaths[0], origin);
