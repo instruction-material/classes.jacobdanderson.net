@@ -660,8 +660,15 @@ describe("security dependency regressions", () => {
 		});
 	});
 
-	it("keeps the canonical production origin allowed without a new deployment variable", () => {
-		expect(configuredRequestOrigins()).toContain("https://classes.jacobdanderson.net");
+	it("keeps the neutral production origin and example configuration aligned", () => {
+		expect(configuredRequestOrigins()).toContain("https://example.com");
+		const envExample = readFileSync(resolve(__dirname, "../.env.EXAMPLE"), "utf8");
+		expect(envExample).toMatch(
+			/^ALLOWED_REQUEST_ORIGINS=https:\/\/example\.com$/m
+		);
+		expect(envExample).not.toMatch(
+			/^ALLOWED_REQUEST_ORIGINS=https:\/\/classes\.jacobdanderson\.net$/m
+		);
 	});
 
 	it("never treats forwarded loopback headers as production diagnostics authorization", async () => {

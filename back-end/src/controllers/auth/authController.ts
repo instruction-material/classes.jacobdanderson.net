@@ -33,7 +33,7 @@ const PASSWORD_RESET_TOKEN_PATTERN = /^[a-f\d]{64}$/i;
 const PASSWORD_RESET_RESPONSE = {
 	message: "If an account uses that email, a password reset link is on its way."
 };
-const DEFAULT_SITE_ORIGIN = "https://classes.jacobdanderson.net";
+const DEFAULT_SITE_ORIGIN = "https://example.com";
 
 function hashResetToken(token: string) {
 	return createHash("sha256").update(token).digest("hex");
@@ -58,7 +58,7 @@ function getPasswordResetUrl(token: string) {
 		origin = new URL(configuredOrigin).origin;
 	}
 	catch {
-		console.warn("PASSWORD_RESET_ORIGIN is invalid; using the production site origin.");
+		console.warn("PASSWORD_RESET_ORIGIN is invalid; using the fallback site origin.");
 	}
 
 	const resetUrl = new URL("/reset-password", origin);
@@ -100,9 +100,9 @@ async function deliverPasswordReset(normalizedEmail: string) {
 	try {
 		await sendTransactionalEmail({
 			to: normalizedEmail,
-			subject: "Reset your Classes with Jacob password",
+			subject: "Reset your Classes password",
 			text: [
-				"Use the link below to choose a new password for your Classes with Jacob account.",
+				"Use the link below to choose a new password for your Classes account.",
 				"",
 				resetUrl,
 				"",
@@ -110,7 +110,7 @@ async function deliverPasswordReset(normalizedEmail: string) {
 				"If you did not request this reset, you can ignore this email."
 			].join("\n"),
 			html: [
-				"<p>Use the link below to choose a new password for your Classes with Jacob account.</p>",
+				"<p>Use the link below to choose a new password for your Classes account.</p>",
 				`<p><a href="${resetUrl}">Choose a new password</a></p>`,
 				"<p>This link expires in 30 minutes and can be used once.</p>",
 				"<p>If you did not request this reset, you can ignore this email.</p>"
