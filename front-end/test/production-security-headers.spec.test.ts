@@ -80,7 +80,7 @@ describe("production security-header policy", () => {
 			"'none'"
 		]);
 		expect(contentSecurityPolicies["scheduler-embed"]["frame-src"]).toEqual(
-			["https://scheduler.classes.jacobdanderson.net"]
+			["https://scheduler.example.com"]
 		);
 		expect(contentSecurityPolicies["wheel-embed"]["frame-src"]).toEqual([
 			"https://wheeldecide.com"
@@ -204,6 +204,9 @@ describe("production security-header policy", () => {
 		expect(validateSecurityHeaders(headers, "/", "standard")).toBe(true);
 		expect(exactSecurityHeaders["referrer-policy"]).toBe(
 			"strict-origin-when-cross-origin"
+		);
+		expect(exactSecurityHeaders["strict-transport-security"]).toBe(
+			"max-age=31536000"
 		);
 		values.set("referrer-policy", "no-referrer");
 		expect(() => validateSecurityHeaders(headers, "/", "standard")).toThrow(
