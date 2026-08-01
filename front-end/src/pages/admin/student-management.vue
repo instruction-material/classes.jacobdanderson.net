@@ -5,79 +5,43 @@ import AdminWorkspaceShell from "@/components/AdminWorkspaceShell.vue";
 <template>
 	<AdminWorkspaceShell
 		:action="{
-			href: 'https://docs.google.com/spreadsheets/d/1UzA77-6hEakCe583WXOZTniC_RB6pqKp-2_ZLgQFOtk/edit?gid=891834841#gid=891834841',
-			label: 'Open full spreadsheet',
-			external: true
+			href: '/admin/people',
+			label: 'Open people workspace'
 		}"
-		intro="Use this as a secondary roster snapshot for cross-checking. Native people, access, and progress work should happen in the admin people workspace and course workspace."
-		title="Roster Spreadsheet"
+		intro="Use the native people and course workspaces for accounts, access, and progress. This source fork does not publish an external roster document."
+		title="Roster Integration"
 	>
-		<div class="sheet-panel">
-			<p class="helper-text">
-				This embedded view is for quick review. Use the full sheet for
-				editing, filters, or protected-range work.
+		<section class="roster-panel">
+			<h2>No external roster is configured</h2>
+			<p>
+				Spreadsheet edit links, published document identifiers, and
+				embedded rosters are deployment-specific student records. Add an
+				approved integration only after applying the deployment’s
+				access, privacy, and retention requirements.
 			</p>
-			<p id="spreadsheet-summary" class="helper-text">
-				Screen reader users should use the full spreadsheet link above
-				for the most complete table navigation and editing controls.
-			</p>
-			<div class="iframe-wrap">
-				<iframe
-					aria-describedby="spreadsheet-summary"
-					allowfullscreen
-					loading="lazy"
-					referrerpolicy="strict-origin-when-cross-origin"
-					sandbox="allow-forms allow-popups allow-same-origin allow-scripts"
-					src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSaHeIeRi1nujjE_klPrxwQ5v6Wf4gLNGgUrcbUIl2gnwCRuf7PQUD0EOT44SLqpotNODfm2bfjqEEN/pubhtml?gid=891834841&amp;single=true&amp;widget=true&amp;headers=false"
-					title="Roster Spreadsheet"
-				></iframe>
-			</div>
-			<noscript>
-				<p class="helper-text">
-					JavaScript is required for the embedded spreadsheet. Use the
-					full spreadsheet link above instead.
-				</p>
-			</noscript>
-		</div>
+		</section>
 	</AdminWorkspaceShell>
 </template>
 
 <style scoped>
-.sheet-panel {
+.roster-panel {
 	display: grid;
-	gap: 1rem;
-}
-
-.helper-text {
-	margin: 0;
-	color: #526779;
-	line-height: 1.6;
-}
-
-.iframe-wrap {
-	position: relative;
-	width: 100%;
-	padding-top: min(70vw, 70%);
-	border: 1px solid #d8e3ed;
+	gap: 0.8rem;
+	padding: clamp(1.25rem, 3vw, 2rem);
+	border: 1px solid var(--color-border);
 	border-radius: 22px;
-	overflow: hidden;
-	background: #fff;
-	box-shadow: inset 0 0 0 1px rgba(226, 232, 240, 0.55);
+	background: var(--color-surface-strong);
+	color: var(--color-ink);
 }
 
-.iframe-wrap iframe {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	border: 0;
+.roster-panel h2,
+.roster-panel p {
+	margin: 0;
 }
 
-@media (min-width: 992px) {
-	.iframe-wrap {
-		padding-top: 650px;
-	}
+.roster-panel p {
+	color: var(--color-ink-soft);
+	line-height: 1.65;
 }
 </style>
 
