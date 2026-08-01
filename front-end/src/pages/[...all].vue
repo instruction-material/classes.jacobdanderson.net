@@ -2,7 +2,7 @@
 const router = useRouter();
 
 useHead({
-	title: "Page not found | Classes with Jacob"
+	title: "Page not found | Classes"
 });
 
 function goBack() {
