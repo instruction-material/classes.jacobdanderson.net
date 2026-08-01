@@ -21,9 +21,9 @@ const adminTools = [
 		href: "/admin/mdmail"
 	},
 	{
-		title: "Roster spreadsheet",
+		title: "Roster integration",
 		description:
-			"Review the shared student management spreadsheet and current roster workflows.",
+			"Review the native roster workflow and whether an approved external integration is configured.",
 		href: "/admin/student-management"
 	}
 ];

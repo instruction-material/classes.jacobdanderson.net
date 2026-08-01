@@ -158,7 +158,7 @@ describe("static route normalization", () => {
 		generateProductionSitemap(options => calls.push(options));
 
 		expect(options.hostname).toBe(SITE_URL);
-		expect(options.hostname).toBe("https://classes.jacobdanderson.net");
+		expect(options.hostname).toBe("https://example.com");
 		expect(options.hostname).not.toContain("localhost");
 		expect(options.generateRobotsTxt).toBe(false);
 		expect(options.exclude).toEqual(SITEMAP_EXCLUDED_ROUTES);

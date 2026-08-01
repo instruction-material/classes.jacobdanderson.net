@@ -1,6 +1,11 @@
-# classes.jacobdanderson.net
+# instruction-material/classes.jacobdanderson.net
 
-Website and supporting API for `classes.jacobdanderson.net`.
+Forkable course catalog, Python IDE, and supporting API for private instruction workflows.
+
+This source fork intentionally ships with neutral public branding and no
+personal payment destinations, QR codes, phone numbers, or instructor profile
+data. Configure and verify deployment-specific identity, contact, scheduling,
+meeting, roster, and payment information before publishing a derived site.
 
 ## Repo Layout
 
@@ -104,7 +109,7 @@ npm run clean
 - `npm run clean` removes generated build/test output only. It never uses `sudo` and never deletes lockfiles or dependency trees.
 - Use `npm run server` and `npm run serve` when you want the API and front-end started separately.
 - Use [`HEALTHCHECKS.md`](./HEALTHCHECKS.md) for deployment monitor targets instead of `/`.
-- The booking page embeds the sibling scheduler app from `VITE_SCHEDULER_ORIGIN`, defaulting to `https://scheduler.classes.jacobdanderson.net`. For local end-to-end testing against `../scheduler.classes.jacobdanderson.net`, run that app on port `5173` and set `VITE_SCHEDULER_ORIGIN=http://localhost:5173` in `front-end/.env`.
+- The booking page embeds a scheduler app from `VITE_SCHEDULER_ORIGIN`, defaulting to `https://scheduler.example.com`. For local end-to-end testing against a sibling scheduler checkout, run that app on port `5173` and set `VITE_SCHEDULER_ORIGIN=http://localhost:5173` in `front-end/.env`.
 
 ## Production security-header gate
 

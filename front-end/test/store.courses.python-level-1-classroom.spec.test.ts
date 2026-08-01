@@ -126,7 +126,7 @@ describe("Python Level 1 classroom edition", () => {
 
 			const projectUrl = new URL(
 				item.projectLink!,
-				"https://classes.jacobdanderson.net"
+				"https://example.com"
 			);
 			expect(projectUrl.searchParams.get("classroom")).toBe("1");
 			expect(projectUrl.searchParams.get("course")).toBe(
@@ -199,7 +199,7 @@ describe("Python Level 1 classroom edition", () => {
 
 		const projectUrl = new URL(
 			exploration!.projectLink!,
-			"https://classes.jacobdanderson.net"
+			"https://example.com"
 		);
 		expect(projectUrl.searchParams.get("template")).toBe(
 			"classroom-project"
