@@ -1,4 +1,4 @@
-export const SITE_URL = "https://classes.jacobdanderson.net";
+export const SITE_URL = process.env.VITE_SITE_URL || "https://example.com";
 
 export const SITEMAP_EXCLUDED_ROUTES = [
 	"/README",
