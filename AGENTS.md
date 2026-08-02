@@ -32,6 +32,14 @@
 - Before opening a PR, ensure `npm run lint` and relevant tests pass, and include screenshots or screen recordings for UI-facing changes.
 - PR descriptions should outline scope, testing evidence, migration steps (if any), and rollout considerations.
 
+## Downstream Overlay and Remote Safety
+- Keep this fork as the current `upstream/main` commit plus exactly one intentional downstream overlay commit. Do not merge, reset, rebase, or copy the canonical repository's whole history into the fork.
+- `origin` must be `git@github.com:instruction-material/classes.jacobdanderson.net.git` and is the only writable remote. `upstream` must fetch from `git@github.com:anderson-webops/classes.jacobdanderson.net.git` and keep its push URL disabled.
+- During an explicitly requested sync, fetch only the required branch refs with `--no-tags`, create a new review branch from the exact canonical commit, and replay or adapt the prior single overlay. Never import, recreate, or clobber canonical tags.
+- Keep the GitHub CLI default repository set to `instruction-material/classes.jacobdanderson.net`. Confirm that default before any GitHub write, and never direct a PR, release, tag, or workflow mutation at `anderson-webops/classes.jacobdanderson.net` from this checkout.
+- Preserve neutral `example.com` site, authentication, reset, scheduler, and mail defaults; retain the shared `https://static.classes.jacobdanderson.net` asset host; and do not add central analytics or instructor-specific endpoints.
+- Rewrite `origin/main` only when the user explicitly authorizes the validated overlay publication, and then use an exact observed-SHA `--force-with-lease`. Routine sync preparation must not move `origin/main`, tags, releases, or deployments.
+
 ## Security & Configuration Tips
 - The API expects secrets via environment variables: `SESSION_SECRET`, Mongo credentials (`MONGODB_URI` or Vault via `VAULT_ROLE_ID`/`VAULT_SECRET_ID`), and optional `CROSS_SITE` to adjust cookie policy. Load them through `.env` files excluded from version control.
 - `npm run server` already loads `dotenv/config` and will attempt Vault retrieval via `src/vaultClient.ts`; validate both code paths when changing auth or persistence.

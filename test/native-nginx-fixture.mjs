@@ -12,7 +12,7 @@ const fixtureSource = path.join(
 	repositoryRoot,
 	"test/fixtures/native-nginx/site"
 );
-const canonicalOrigin = "https://classes.jacobdanderson.net";
+const canonicalOrigin = "https://classes.example.com";
 
 function safeNginxPath(value) {
 	assert.match(value, /^[/\w.-]+$/u, `Unsafe fixture path: ${value}`);
@@ -100,7 +100,7 @@ async function runFixture() {
 
 		let policy = replaceOnce(
 			sourcePolicy,
-			"root /srv/classes.jacobdanderson.net/current/front-end/dist;",
+			"root /srv/classes.example.com/current/front-end/dist;",
 			`root ${safeNginxPath(distDirectory)};`
 		);
 		const installedHeadersPath = "/etc/nginx/snippets/classes-static-headers.conf";
@@ -127,7 +127,7 @@ async function runFixture() {
 			"	default_type text/html;",
 			"	server {",
 			`		listen 127.0.0.1:${port};`,
-			"		server_name classes.jacobdanderson.net;",
+			"		server_name classes.example.com;",
 			`		include ${safeNginxPath(policyPath)};`,
 			"	}",
 			"}",
@@ -164,7 +164,7 @@ async function runFixture() {
 		const request = requestPath => fetch(
 			`http://127.0.0.1:${port}${requestPath}`,
 			{
-				headers: { Host: "classes.jacobdanderson.net" },
+				headers: { Host: "classes.example.com" },
 				redirect: "manual"
 			}
 		);

@@ -28,7 +28,7 @@ function netlifyContentSecurityPolicyRules(
 	return source
 		.split("[[headers]]")
 		.slice(1)
-		.flatMap(block => {
+		.flatMap((block) => {
 			const path = block.match(/^for = "([^"]+)"/mu)?.[1];
 			const policy = block.match(
 				/^Content-Security-Policy = "([^"]+)"/mu
@@ -81,14 +81,14 @@ describe("production security-header policy", () => {
 			"'none'"
 		]);
 		expect(contentSecurityPolicies["scheduler-embed"]["frame-src"]).toEqual(
-			["https://scheduler.classes.jacobdanderson.net"]
+			["https://scheduler.example.com"]
 		);
 		expect(contentSecurityPolicies["wheel-embed"]["frame-src"]).toEqual([
 			"https://wheeldecide.com"
 		]);
 		expect(
 			contentSecurityPolicies["student-management-embed"]["frame-src"]
-		).toEqual(["https://docs.google.com"]);
+		).toEqual(["'none'"]);
 		expect(contentSecurityPolicies["code-ide"]["connect-src"]).toEqual(
 			expect.arrayContaining([
 				"https://cdn.jsdelivr.net",
@@ -206,6 +206,9 @@ describe("production security-header policy", () => {
 		expect(exactSecurityHeaders["referrer-policy"]).toBe(
 			"strict-origin-when-cross-origin"
 		);
+		expect(exactSecurityHeaders["strict-transport-security"]).toBe(
+			"max-age=31536000"
+		);
 		values.set("referrer-policy", "no-referrer");
 		expect(() => validateSecurityHeaders(headers, "/", "standard")).toThrow(
 			"unexpected referrer-policy"
@@ -219,7 +222,7 @@ describe("production security-header policy", () => {
 			["cross-origin-resource-policy", "same-origin"],
 			["permissions-policy", "camera=(), geolocation=(), microphone=()"],
 			["referrer-policy", "no-referrer"],
-			["strict-transport-security", "max-age=31536000; includeSubDomains"],
+			["strict-transport-security", "max-age=31536000"],
 			["x-content-type-options", "nosniff"],
 			["x-frame-options", "DENY"]
 		]);

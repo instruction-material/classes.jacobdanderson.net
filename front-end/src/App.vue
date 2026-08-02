@@ -5,9 +5,9 @@ import { serializeJsonLd } from "@/modules/serializeJsonLd";
 // https://github.com/vueuse/head
 // you can use this to manipulate the document head in any components,
 // they will be rendered correctly in the HTML results with vite-ssg
-const siteUrl = "https://classes.jacobdanderson.net";
+const siteUrl = import.meta.env.VITE_SITE_URL || "https://example.com";
 const siteDescription =
-	"One-on-one online tutoring with Jacob Anderson for students working through coding, systems, STEM, or Spanish goals.";
+	"A reusable course catalog, browser IDE, graphing workspace, and supporting tools for instruction.";
 const route = useRoute();
 const noindexMatchers = [
 	/^\/admin(?:\/|$)/,
@@ -31,14 +31,14 @@ const structuredData = computed(() => [
 		"@context": "https://schema.org",
 		"@type": "EducationalOrganization",
 		description: siteDescription,
-		name: "Classes with Jacob",
+		name: "Classes",
 		url: siteUrl
 	},
 	{
 		"@context": "https://schema.org",
 		"@type": "WebSite",
 		description: siteDescription,
-		name: "Classes with Jacob",
+		name: "Classes",
 		url: siteUrl
 	}
 ]);
@@ -54,7 +54,7 @@ useHead(
 				},
 				{
 					property: "og:title",
-					content: "Classes with Jacob"
+					content: "Classes"
 				},
 				{
 					property: "og:description",
@@ -74,7 +74,7 @@ useHead(
 				},
 				{
 					name: "twitter:title",
-					content: "Classes with Jacob"
+					content: "Classes"
 				},
 				{
 					name: "twitter:description",
@@ -122,16 +122,6 @@ useHead(
 				}
 			],
 			script: [
-				...(import.meta.env.PROD
-					? [
-							{
-								defer: true,
-								src: "/__central-analytics/script.js",
-								"data-website-id":
-									"a1a38acf-8585-4142-b9cd-75322146e50b"
-							}
-						]
-					: []),
 				...structuredData.value.map((entry, index) => ({
 					innerHTML: serializeJsonLd(entry),
 					key: `ld-json-${index}`,

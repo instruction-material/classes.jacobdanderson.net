@@ -7,7 +7,7 @@ import process from "node:process";
 import { pathToFileURL } from "node:url";
 
 const manifestName = ".classes-native-release.json";
-const siteName = "classes.jacobdanderson.net";
+const siteName = "classes.example.com";
 const requiredFiles = Object.freeze([
 	"package.json",
 	"package-lock.json",
@@ -204,8 +204,8 @@ async function assertBranded404(candidateDirectory) {
 		sha256(notFoundPath),
 		sha256(homepagePath)
 	]);
-	if (!notFoundHtml.includes("Page not found") || !notFoundHtml.includes("Classes with Jacob")) {
-		fail("Native release 404.html is not the branded Classes page.");
+	if (!notFoundHtml.includes("Page not found | Classes")) {
+		fail("Native release 404.html is not the neutral branded Classes page.");
 	}
 	if (notFoundDigest === homepageDigest) {
 		fail("Native release 404.html must not be the homepage.");

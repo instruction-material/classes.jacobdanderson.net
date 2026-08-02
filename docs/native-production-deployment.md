@@ -8,7 +8,7 @@ MongoDB data, credentials, or backups.
 ## Authority and layout
 
 Only deploy a clean checkout whose `origin` is the canonical
-`anderson-webops/classes.jacobdanderson.net` repository. Fetch `origin/main`
+`instruction-material/classes.jacobdanderson.net` repository. Fetch `origin/main`
 and tags before beginning; neither native script fetches or mutates a remote.
 The checkout's `HEAD`, fetched `origin/main`, and exact annotated `v2.x` tag
 must resolve to the same commit. The public version is the tag; the root package
@@ -16,9 +16,9 @@ version is not the release version.
 Prepared candidates and immutable releases use these paths:
 
 ```text
-/srv/classes.jacobdanderson.net/releases/.candidates/<tag>-<revision>
-/srv/classes.jacobdanderson.net/releases/<tag>-<revision>
-/srv/classes.jacobdanderson.net/current -> releases/<tag>-<revision>
+/srv/classes.example.com/releases/.candidates/<tag>-<revision>
+/srv/classes.example.com/releases/<tag>-<revision>
+/srv/classes.example.com/current -> releases/<tag>-<revision>
 ```
 
 Every candidate carries an internal `.classes-native-release.json` containing
@@ -39,11 +39,11 @@ neither needs an interactive login:
 ```bash
 sudo useradd --system --home-dir /nonexistent --shell /usr/sbin/nologin classes
 sudo useradd --system --home-dir /nonexistent --shell /usr/sbin/nologin classes-build
-sudo install -d -o root -g root -m 0755 /srv/classes.jacobdanderson.net
-sudo install -d -o root -g root -m 0755 /srv/classes.jacobdanderson.net/releases
-sudo install -d -o classes-build -g classes-build -m 0750 /srv/classes.jacobdanderson.net/releases/.candidates
-sudo install -d -o root -g root -m 0755 /etc/classes.jacobdanderson.net
-sudo install -o root -g root -m 0600 deploy/native/api.env.example /etc/classes.jacobdanderson.net/api.env
+sudo install -d -o root -g root -m 0755 /srv/classes.example.com
+sudo install -d -o root -g root -m 0755 /srv/classes.example.com/releases
+sudo install -d -o classes-build -g classes-build -m 0750 /srv/classes.example.com/releases/.candidates
+sudo install -d -o root -g root -m 0755 /etc/classes.example.com
+sudo install -o root -g root -m 0600 deploy/native/api.env.example /etc/classes.example.com/api.env
 ```
 
 Fill `api.env` with reviewed production values. Keep the API on
@@ -96,8 +96,8 @@ as the dedicated build user:
 
 ```bash
 sudo -u classes-build ./scripts/prepare-native-release.sh \
-  --source /path/to/clean/classes.jacobdanderson.net \
-  --tag v2.7.206
+  --source /path/to/clean/classes.example.com \
+  --tag v2.7.207
 ```
 
 Promote the exact path printed by that command from the same clean tagged
@@ -105,8 +105,8 @@ checkout:
 
 ```bash
 sudo ./scripts/promote-native-release.sh \
-  --source /path/to/clean/classes.jacobdanderson.net \
-  --candidate /srv/classes.jacobdanderson.net/releases/.candidates/v2.7.206-<full-revision>
+  --source /path/to/clean/classes.example.com \
+  --candidate /srv/classes.example.com/releases/.candidates/v2.7.207-<full-revision>
 ```
 
 Promotion verifies source provenance and every manifest checksum, makes the
