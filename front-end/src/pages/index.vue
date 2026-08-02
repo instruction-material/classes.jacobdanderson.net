@@ -6,7 +6,7 @@ import { useContentStore } from "@/stores/content";
 defineOptions({ name: "HomePage" });
 
 const content = useContentStore();
-const siteUrl = "https://classes.jacobdanderson.net";
+const siteUrl = import.meta.env.VITE_SITE_URL || "https://example.com";
 const { faqs, highlights, subjectGroups } = storeToRefs(content);
 const faqStructuredData = computed(() => ({
 	"@context": "https://schema.org",
@@ -24,11 +24,11 @@ const courseStructuredData = computed(() =>
 	subjectGroups.value.map(group => ({
 		"@context": "https://schema.org",
 		"@type": "Course",
-		description: `Private instruction covering ${group.subjects.join(", ")}.`,
-		name: `${group.title} tutoring with Jacob Anderson`,
+		description: `Course materials covering ${group.subjects.join(", ")}.`,
+		name: `${group.title} courses`,
 		provider: {
-			"@type": "Person",
-			name: "Jacob Anderson",
+			"@type": "Organization",
+			name: "Instruction Material",
 			url: siteUrl
 		}
 	}))
@@ -64,19 +64,18 @@ useHead(
 		<section aria-labelledby="hero-title" class="page-hero home-hero">
 			<div class="hero-text">
 				<p class="page-eyebrow">
-					Best for active coursework and projects
+					Reusable course materials and teaching tools
 				</p>
-				<h1 id="hero-title" class="page-title">Private Tutoring</h1>
+				<h1 id="hero-title" class="page-title">Course Platform</h1>
 				<p class="page-copy">
-					Former Juni Learning instructor Jacob Anderson works best
-					with students who already have an assignment, bug, lab, or
-					course pathway in front of them. Sessions stay anchored to
-					the actual work blocking progress.
+					Browse structured courses, use the browser IDE and Graph
+					Sketcher, and adapt the supporting teaching workflows for
+					your own classroom or instruction program.
 				</p>
 				<ul class="hero-proof">
-					<li class="site-chip">Hundreds of students taught</li>
-					<li class="site-chip">Assignment and project help</li>
-					<li class="site-chip">Short written follow-up notes</li>
+					<li class="site-chip">Structured course paths</li>
+					<li class="site-chip">Browser programming tools</li>
+					<li class="site-chip">Instructor workflows</li>
 				</ul>
 			</div>
 			<figure class="media-frame home-hero__media">
@@ -96,26 +95,26 @@ useHead(
 			aria-label="Primary actions"
 			class="site-action-row home-actions"
 		>
-			<RouterLink class="site-button site-button--primary" to="/signup">
-				Book a Class
+			<RouterLink class="site-button site-button--primary" to="/courses">
+				View Courses
 			</RouterLink>
 			<RouterLink
 				class="site-button site-button--secondary"
-				to="/payment"
+				to="/graph-sketcher"
 			>
-				Tuition
+				Open Graph Sketcher
 			</RouterLink>
 		</section>
 
 		<section aria-labelledby="subjects-title" class="home-section">
 			<div class="section-heading">
-				<h2 id="subjects-title" class="section-title">What I Teach</h2>
+				<h2 id="subjects-title" class="section-title">
+					Course Subjects
+				</h2>
 				<p class="section-intro">
-					Most students come for coding and technical coursework, from
-					first projects through AP CS, algorithms, systems, web,
-					apps, data, and security. Math, science, and Spanish support
-					are also available when there is a clear course goal or
-					assignment.
+					The catalog spans first programming projects through AP CS,
+					algorithms, systems, web, apps, data, security, math,
+					science, and language study.
 				</p>
 			</div>
 			<div class="subject-grid">
@@ -153,26 +152,30 @@ useHead(
 		<section aria-labelledby="next-steps-title" class="home-section">
 			<div class="site-surface next-steps-card">
 				<h2 id="next-steps-title" class="section-title">
-					Book a Class
+					Adapt the Platform
 				</h2>
 				<p class="section-intro">
-					Use the scheduler for one-time or recurring classes. Add a
-					short note about the assignment, project, or skill gap so
-					the session starts in the right place.
+					Start with the courses and browser tools, then configure the
+					optional account, scheduling, and instructor workflows for
+					your own deployment.
 				</p>
 				<div class="site-action-row">
-					<RouterLink
-						class="site-button site-button--primary"
-						to="/signup"
-					>
-						Open Scheduler
-					</RouterLink>
 					<a
-						class="site-button site-button--secondary"
-						href="mailto:classes@jacobdanderson.net"
+						class="site-button site-button--primary"
+						href="https://github.com/instruction-material/classes.jacobdanderson.net#readme"
+						rel="noopener noreferrer"
+						target="_blank"
 					>
-						Ask a Question
+						Read Setup Notes<span class="sr-only">
+							(opens in a new tab)</span
+						>
 					</a>
+					<RouterLink
+						class="site-button site-button--secondary"
+						to="/pathways"
+					>
+						View Course Pathways
+					</RouterLink>
 				</div>
 			</div>
 		</section>

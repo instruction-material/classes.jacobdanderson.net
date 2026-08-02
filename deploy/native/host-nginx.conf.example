@@ -3,8 +3,8 @@ include /etc/nginx/snippets/classes-http-maps.conf;
 server {
 	listen 80;
 	listen [::]:80;
-	server_name classes.jacobdanderson.net;
-	return 301 https://classes.jacobdanderson.net$request_uri;
+	server_name classes.example.com;
+	return 301 https://classes.example.com$request_uri;
 }
 
 # Preserve the production certificate paths and the server's existing HTTP/2
@@ -13,10 +13,10 @@ server {
 	listen 443 ssl;
 	listen [::]:443 ssl;
 	http2 on;
-	server_name classes.jacobdanderson.net;
+	server_name classes.example.com;
 
-	ssl_certificate /etc/letsencrypt/live/classes.jacobdanderson.net/fullchain.pem;
-	ssl_certificate_key /etc/letsencrypt/live/classes.jacobdanderson.net/privkey.pem;
+	ssl_certificate /etc/letsencrypt/live/classes.example.com/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/classes.example.com/privkey.pem;
 
 	include /etc/nginx/snippets/classes-server-policy.conf;
 }
