@@ -4,7 +4,7 @@ set -euo pipefail
 umask 022
 
 classes_source_dir="$(pwd -P)"
-classes_release_root="/srv/classes.jacobdanderson.net"
+classes_release_root="/srv/classes.example.com"
 classes_candidate=""
 classes_api_service="classes-api.service"
 classes_nginx_service="nginx.service"
@@ -234,11 +234,11 @@ capture_https() {
 	local classes_body="$2"
 	local classes_headers="$3"
 	curl --silent --show-error --max-time 10 --noproxy '*' \
-		--resolve "classes.jacobdanderson.net:443:127.0.0.1" \
+		--resolve "classes.example.com:443:127.0.0.1" \
 		-D "$classes_headers" \
 		-o "$classes_body" \
 		-w '%{http_code}' \
-		"https://classes.jacobdanderson.net$classes_path"
+		"https://classes.example.com$classes_path"
 }
 
 capture_http() {
@@ -246,11 +246,11 @@ capture_http() {
 	local classes_body="$2"
 	local classes_headers="$3"
 	curl --silent --show-error --max-time 10 --noproxy '*' \
-		--resolve "classes.jacobdanderson.net:80:127.0.0.1" \
+		--resolve "classes.example.com:80:127.0.0.1" \
 		-D "$classes_headers" \
 		-o "$classes_body" \
 		-w '%{http_code}' \
-		"http://classes.jacobdanderson.net$classes_path"
+		"http://classes.example.com$classes_path"
 }
 
 require_https_redirect() {
@@ -268,7 +268,7 @@ require_https_redirect() {
 	require_one_header \
 		"$classes_probe_prefix.redirect.headers" \
 		"Location" \
-		"https://classes.jacobdanderson.net$classes_target"
+		"https://classes.example.com$classes_target"
 }
 
 verify_nginx_includes() {
@@ -311,7 +311,7 @@ smoke_release() {
 	require_one_header \
 		"$classes_probe_prefix.http.headers" \
 		"Location" \
-		"https://classes.jacobdanderson.net$classes_http_path"
+		"https://classes.example.com$classes_http_path"
 	require_https_redirect "/index.html?probe=1" "/?probe=1" "$classes_probe_prefix"
 	require_https_redirect "/courses/index.html?probe=1" "/courses/?probe=1" "$classes_probe_prefix"
 	require_https_redirect "/ide.html?probe=1" "/ide/?probe=1" "$classes_probe_prefix"
@@ -329,7 +329,7 @@ smoke_release() {
 	require_one_header "$classes_probe_prefix.root.headers" "X-Content-Type-Options" "nosniff"
 	require_one_header "$classes_probe_prefix.root.headers" "Referrer-Policy" "strict-origin-when-cross-origin"
 	require_one_header "$classes_probe_prefix.root.headers" "Permissions-Policy" "camera=(), geolocation=(), microphone=()"
-	require_one_header "$classes_probe_prefix.root.headers" "Strict-Transport-Security" "max-age=31536000; includeSubDomains"
+	require_one_header "$classes_probe_prefix.root.headers" "Strict-Transport-Security" "max-age=31536000"
 	require_one_header "$classes_probe_prefix.root.headers" "Cache-Control" "no-cache"
 	require_one_header_containing "$classes_probe_prefix.root.headers" "Content-Security-Policy" "frame-ancestors 'none'"
 
@@ -436,4 +436,4 @@ fi
 if [[ "$classes_previous_target" != "$classes_final_release" ]]; then
 	atomic_link "$classes_previous_target" "$classes_previous_link"
 fi
-printf 'Activated classes.jacobdanderson.net %s at %s.\n' "$classes_tag" "$classes_revision"
+printf 'Activated classes.example.com %s at %s.\n' "$classes_tag" "$classes_revision"
