@@ -4,9 +4,15 @@ import { onBeforeUnmount, onMounted, ref } from "vue";
 defineOptions({ name: "WheelPage" });
 
 const isWheelLoaded = ref(false);
-const wheelChoices = ["lies", "lier", "frog"];
-const wheelUrl =
-	"https://wheeldecide.com/e.php?c1=lies&c2=lier&c3=lies&c4=frog&c5=lier&c6=lies&c7=lier&c8=lies&c9=lier&c10=frog&c11=lies&c12=lier&c13=lies&c14=lier&c15=frog&t=Sophia%27s+Wheel&time=5";
+const wheelChoices = ["Option 1", "Option 2", "Option 3"];
+const wheelParameters = new URLSearchParams({
+	c1: wheelChoices[0],
+	c2: wheelChoices[1],
+	c3: wheelChoices[2],
+	t: "Class Wheel",
+	time: "5"
+});
+const wheelUrl = `https://wheeldecide.com/e.php?${wheelParameters.toString()}`;
 
 onMounted(() => {
 	document.body.classList.add("wheel-mode");
@@ -18,18 +24,18 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-	<section class="WheelPage" aria-label="Sophia's Wheel">
+	<section class="WheelPage" aria-label="Class Wheel">
 		<div class="wheel-panel">
 			<div class="wheel-heading">
 				<p>Class picker</p>
-				<h1>Sophia's Wheel</h1>
+				<h1>Class Wheel</h1>
 			</div>
 			<div class="wheel-frame" :class="{ 'is-loaded': isWheelLoaded }">
 				<div v-if="!isWheelLoaded" class="wheel-loading">
 					<span>Opening wheel...</span>
 				</div>
 				<iframe
-					title="Sophia's Wheel"
+					title="Class Wheel"
 					:src="wheelUrl"
 					width="500"
 					height="500"

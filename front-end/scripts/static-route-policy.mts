@@ -1,5 +1,5 @@
 export const FRIENDLY_NOT_FOUND_ROUTE = "/404";
-export const FRIENDLY_NOT_FOUND_TITLE = "Page not found | Classes with Jacob";
+export const FRIENDLY_NOT_FOUND_TITLE = "Page not found | Classes";
 
 const titlePattern = /<title\b[^>]*>[\s\S]*?<\/title>/iu;
 const robotsMetaPattern = /<meta\b[^>]*\bname=["']robots["'][^>]*>/iu;

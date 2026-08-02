@@ -5,7 +5,7 @@ import {
 } from "./http-smoke-client.mjs";
 
 const origin =
-	process.env.CLASSES_SITE_ORIGIN || "https://classes.jacobdanderson.net";
+	process.env.CLASSES_SITE_ORIGIN || "https://example.com";
 const timeoutMs = Number(
 	process.env.CLASSES_SITE_SMOKE_TIMEOUT_MS || 15000
 );

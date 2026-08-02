@@ -4,7 +4,7 @@ set -euo pipefail
 umask 022
 
 classes_source_dir="$(pwd -P)"
-classes_release_root="/srv/classes.jacobdanderson.net"
+classes_release_root="/srv/classes.example.com"
 classes_tag=""
 classes_build_root=""
 

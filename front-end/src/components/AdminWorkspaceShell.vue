@@ -30,7 +30,7 @@ const navItems = [
 	{ label: "People and access", to: "/admin/people" },
 	{ label: "Course workspace", to: "/courses" },
 	{ label: "Session notes", to: "/admin/mdmail" },
-	{ label: "Roster spreadsheet", to: "/admin/student-management" }
+	{ label: "Roster integration", to: "/admin/student-management" }
 ];
 
 const hasActionSlot = computed(() => !!useSlots().actions);
