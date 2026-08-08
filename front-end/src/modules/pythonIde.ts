@@ -364,8 +364,8 @@ screen.ontimer(animate, ANIMATION_DELAY_MS)
 screen.listen()
 `;
 
-export const pythonLevel1OutlineStarterCode = `import turtle
-import random
+export const pythonLevel1OutlineStarterCode = `import random
+import turtle
 
 #####################
 ###   CONSTANTS   ###
@@ -394,20 +394,20 @@ def action_two():
 ###   VARIABLES   ###
 #####################
 main_turtle = turtle.Turtle()
-# Turtle attributes here
+# Configure the main turtle here
 
-# Create Screen
+# Create the shared drawing screen
 screen = turtle.Screen()
 
-###   MORE VARIABLES HERE AS NEEDED   ###
+# Add more project state here as needed
 
-# List of Turtles
+# Store any additional turtles in one collection
 turtle_list = []
 
 # Build each extra turtle before the animation loop starts
-for turtle_index in range(NUM_TURTLES):
+for _ in range(NUM_TURTLES):
     new_turtle = turtle.Turtle()
-    # Turtle attributes here
+    # Configure each additional turtle here
     turtle_list.append(new_turtle)
 
 
@@ -424,10 +424,10 @@ screen.listen()
 #####################
 ###   MAIN CODE   ###
 #####################
-condition = True
+animation_running = True
 
-# Keep the main animation running while the condition is true
-while condition:
+# Keep the main animation running while the project is active
+while animation_running:
     main_turtle.forward(MOVE_DISTANCE)
 
     # Conditions and additional actions here
@@ -538,16 +538,29 @@ export const turtlePicassoStarterCode = `from random import choice
 from turtle import Screen, Turtle
 
 #######################
+###   CONSTANTS     ###
+#######################
+BACKGROUND_COLOR = "black"
+COLOR_PALETTE = [
+    "red",
+    "light blue",
+    "green",
+    "yellow",
+    "white",
+    "orange"
+]
+DRAWING_SPEED = 5
+
+
+#######################
 ###   VARIABLES     ###
 #######################
-colors = ["red", "light blue", "green", "yellow", "white", "orange"]
-
 screen = Screen()
-screen.bgcolor("black")
+screen.bgcolor(BACKGROUND_COLOR)
 screen.title("Picasso Keyboard Painter")
 
-t = Turtle()
-t.speed(5)
+artist = Turtle()
+artist.speed(DRAWING_SPEED)
 
 
 ########################
@@ -670,6 +683,8 @@ DEFAULT_TRAIL_COLOR = "cyan"
 MOVE_DISTANCE = 28
 TURN_ANGLE = 30
 DOT_SIZE = 10
+PEN_SIZE = 4
+DRAWING_SPEED = 6
 
 
 #####################
@@ -681,8 +696,8 @@ screen.title("Neon Trail Painter")
 
 artist = turtle.Turtle()
 artist.shape("turtle")
-artist.pensize(4)
-artist.speed(6)
+artist.pensize(PEN_SIZE)
+artist.speed(DRAWING_SPEED)
 
 
 ########################
@@ -772,6 +787,9 @@ RAY_COUNT = 16
 RAY_LENGTH = 54
 FULL_TURN = 360
 CENTER_SIZE = 16
+PEN_SIZE = 3
+DRAWING_SPEED = 0
+STARTING_FIREWORK_POSITIONS = [(-130, 60), (110, -30)]
 
 
 #####################
@@ -784,8 +802,8 @@ screen.tracer(0)
 
 artist = turtle.Turtle()
 artist.hideturtle()
-artist.speed(0)
-artist.pensize(3)
+artist.speed(DRAWING_SPEED)
+artist.pensize(PEN_SIZE)
 
 
 ########################
@@ -850,9 +868,9 @@ screen.listen()
 #####################
 ###   MAIN CODE   ###
 #####################
-# Start with two finished fireworks and invite more clicks
-draw_firework(-130, 60)
-draw_firework(110, -30)
+# Start with finished fireworks and invite more clicks
+for firework_position in STARTING_FIREWORK_POSITIONS:
+    draw_firework(firework_position[0], firework_position[1])
 `;
 
 export const turtleSpiralGalaxyStarterCode = `import turtle
@@ -869,6 +887,8 @@ DISTANCE_GROWTH = 0.34
 TURN_ANGLE = 91
 STAR_GAP = 4
 STAR_SIZE = 5
+PEN_SIZE = 2
+DRAWING_SPEED = 0
 
 
 #####################
@@ -881,8 +901,8 @@ screen.tracer(0)
 
 artist = turtle.Turtle()
 artist.hideturtle()
-artist.speed(0)
-artist.pensize(2)
+artist.speed(DRAWING_SPEED)
+artist.pensize(PEN_SIZE)
 
 
 ########################
@@ -949,6 +969,12 @@ RACER_COUNT = 4
 MIN_STEP = 2
 MAX_STEP = 10
 RACE_DELAY_MS = 55
+FINISH_LINE_BOTTOM = -180
+FINISH_SEGMENT_COUNT = 15
+FINISH_DASH_LENGTH = 12
+ANNOUNCER_COLOR = "navy"
+ANNOUNCER_POSITION = (0, 165)
+WINNER_FONT = ("Arial", 20, "bold")
 
 
 #####################
@@ -965,7 +991,7 @@ finish_line.pensize(3)
 
 announcer = turtle.Turtle()
 announcer.hideturtle()
-announcer.color("navy")
+announcer.color(ANNOUNCER_COLOR)
 announcer.penup()
 
 racers = []
@@ -1002,14 +1028,14 @@ def racer_color_for(racer_number):
 # Draw a dashed finish line
 def draw_finish_line():
     finish_line.penup()
-    finish_line.goto(FINISH_X, -180)
+    finish_line.goto(FINISH_X, FINISH_LINE_BOTTOM)
     finish_line.setheading(90)
 
-    for _ in range(15):
+    for _ in range(FINISH_SEGMENT_COUNT):
         finish_line.pendown()
-        finish_line.forward(12)
+        finish_line.forward(FINISH_DASH_LENGTH)
         finish_line.penup()
-        finish_line.forward(12)
+        finish_line.forward(FINISH_DASH_LENGTH)
 
 # Create the racers and place them in their lanes
 def create_racers():
@@ -1031,11 +1057,11 @@ def race_step():
         racer.forward(random.randint(MIN_STEP, MAX_STEP))
         if racer.xcor() >= FINISH_X:
             race_running = False
-            announcer.goto(0, 165)
+            announcer.goto(ANNOUNCER_POSITION)
             announcer.write(
                 "We have a winner!",
                 align="center",
-                font=("Arial", 20, "bold")
+                font=WINNER_FONT
             )
             add_finish_celebration(racer)
             return
@@ -1049,8 +1075,8 @@ def start_race():
         return
 
     announcer.clear()
-    for racer_number in range(len(racers)):
-        racers[racer_number].goto(
+    for racer_number, racer in enumerate(racers):
+        racer.goto(
             START_X,
             START_Y + racer_number * LANE_GAP
         )
@@ -1092,6 +1118,13 @@ PETAL_SIZE = 24
 CENTER_SIZE = 18
 STEM_LENGTH = 55
 FULL_TURN = 360
+PEN_SIZE = 4
+DRAWING_SPEED = 0
+STARTING_FLOWER_POSITIONS = [
+    (-130, -20),
+    (0, 65),
+    (135, -35)
+]
 
 
 #####################
@@ -1104,8 +1137,8 @@ screen.tracer(0)
 
 artist = turtle.Turtle()
 artist.hideturtle()
-artist.speed(0)
-artist.pensize(4)
+artist.speed(DRAWING_SPEED)
+artist.pensize(PEN_SIZE)
 
 
 ########################
@@ -1175,9 +1208,8 @@ screen.listen()
 ###   MAIN CODE   ###
 #####################
 # Begin with a small finished garden
-draw_flower(-130, -20)
-draw_flower(0, 65)
-draw_flower(135, -35)
+for flower_position in STARTING_FLOWER_POSITIONS:
+    draw_flower(flower_position[0], flower_position[1])
 `;
 
 export const turtleMazeExplorerStarterCode = `import turtle
@@ -1204,6 +1236,13 @@ WALLS = [
     (-20, -80, 10, 180),
     (100, -180, 130, 60)
 ]
+DRAWING_SPEED = 0
+UP_HEADING = 90
+DOWN_HEADING = 270
+LEFT_HEADING = 180
+RIGHT_HEADING = 0
+STATUS_POSITION = (0, 165)
+STATUS_FONT = ("Arial", 20, "bold")
 
 
 #####################
@@ -1217,7 +1256,7 @@ screen.tracer(0)
 wall_artist = turtle.Turtle()
 wall_artist.hideturtle()
 wall_artist.color(WALL_COLOR)
-wall_artist.speed(0)
+wall_artist.speed(DRAWING_SPEED)
 
 goal = turtle.Turtle()
 goal.hideturtle()
@@ -1316,11 +1355,11 @@ def check_goal():
         and abs(player.ycor() - goal_y) <= MOVE_DISTANCE
     ):
         status.clear()
-        status.goto(0, 165)
+        status.goto(STATUS_POSITION)
         status.write(
             "Maze complete!",
             align="center",
-            font=("Arial", 20, "bold")
+            font=STATUS_FONT
         )
         add_victory_art()
 
@@ -1335,19 +1374,19 @@ def move_by(x_change, y_change):
 
 # Face and move in each arrow-key direction
 def move_up():
-    player.setheading(90)
+    player.setheading(UP_HEADING)
     move_by(0, MOVE_DISTANCE)
 
 def move_down():
-    player.setheading(270)
+    player.setheading(DOWN_HEADING)
     move_by(0, -MOVE_DISTANCE)
 
 def move_left():
-    player.setheading(180)
+    player.setheading(LEFT_HEADING)
     move_by(-MOVE_DISTANCE, 0)
 
 def move_right():
-    player.setheading(0)
+    player.setheading(RIGHT_HEADING)
     move_by(MOVE_DISTANCE, 0)
 
 
@@ -1384,6 +1423,8 @@ STAR_SIZE = 42
 STAR_POINTS = 5
 STAR_TURN = 144
 SCENE_POSITIONS = [(-170, 70), (0, -20), (170, 70)]
+PEN_SIZE = 3
+DRAWING_SPEED = 0
 
 
 #####################
@@ -1396,8 +1437,8 @@ screen.tracer(0)
 
 artist = turtle.Turtle()
 artist.hideturtle()
-artist.speed(0)
-artist.pensize(3)
+artist.speed(DRAWING_SPEED)
+artist.pensize(PEN_SIZE)
 
 
 ########################
@@ -1466,6 +1507,8 @@ WIDTH = 640
 HEIGHT = 400
 PLAYER_SIZE = 72
 PLAYER_SPEED = 4
+PLAYER_IMAGE = "student"
+PLAYER_START_POSITION = (WIDTH / 2, HEIGHT / 2)
 INSTRUCTION_POSITION = (24, 24)
 INSTRUCTION_SIZE = 28
 INSTRUCTION_COLOR = "white"
@@ -1474,7 +1517,7 @@ INSTRUCTION_COLOR = "white"
 #####################
 ###   VARIABLES   ###
 #####################
-player = Actor("student", (WIDTH / 2, HEIGHT / 2))
+player = Actor(PLAYER_IMAGE, PLAYER_START_POSITION)
 player.width = PLAYER_SIZE
 player.height = PLAYER_SIZE
 
@@ -1565,15 +1608,15 @@ public class Main {
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+        Scanner inputScanner = new Scanner(System.in);
 
         int score = STARTING_SCORE;
-        String student_name = STARTING_STUDENT_NAME;
+        String studentName = STARTING_STUDENT_NAME;
         ArrayList<String> notes = new ArrayList<>();
 
         // Prompt, update variables, and call helper methods here
-        // String answer = input.nextLine();
-        notes.add(make_note(student_name, score));
+        // String answer = inputScanner.nextLine();
+        notes.add(makeNote(studentName, score));
 
         // Print each saved note on its own line
         for (String note : notes) {
@@ -1584,27 +1627,27 @@ public class Main {
     /**
      * @brief Build a readable note from a student name and score
      *
-     * @param student_name Name to show in the note
+     * @param studentName Name to show in the note
      *
      * @param score Current score value
      *
      * @return Formatted note text
      */
-    static String make_note(String student_name, int score) {
-        return student_name + ": " + score;
+    static String makeNote(String studentName, int score) {
+        return studentName + ": " + score;
     }
 
     /**
      * @brief Run the first custom action
      */
-    static void action_one() {
+    static void actionOne() {
         // Add an action here
     }
 
     /**
      * @brief Run the second custom action
      */
-    static void action_two() {
+    static void actionTwo() {
         // Add another action here
     }
 }
@@ -1642,13 +1685,13 @@ public class Main {
 
         // Open this project in BlueJ to inspect the Student object directly
         Student student = new Student(STUDENT_NAME, GRADE_LEVEL);
-        student.add_score(scores.get(0));
-        student.add_score(scores.get(1));
-        student.print_summary();
+        student.addScore(scores.get(0));
+        student.addScore(scores.get(1));
+        student.printSummary();
 
         // Mirror the same state with console-friendly browser output
         System.out.println(STUDENT_NAME + " is in grade " + GRADE_LEVEL);
-        System.out.println("Average: " + average_score(scores));
+        System.out.println("Average: " + averageScore(scores));
     }
 
     /**
@@ -1658,7 +1701,7 @@ public class Main {
      *
      * @return Average score or 0 when the list is empty
      */
-    static double average_score(ArrayList<Integer> scores) {
+    static double averageScore(ArrayList<Integer> scores) {
         // Avoid dividing by zero when no scores have been recorded
         if (scores.isEmpty()) {
             return 0;
@@ -1687,7 +1730,7 @@ public class Student {
 *****************/
 
     private final String name;
-    private final int grade_level;
+    private final int gradeLevel;
     private final ArrayList<Integer> scores;
 
 
@@ -1700,11 +1743,11 @@ public class Student {
      *
      * @param name Student name
      *
-     * @param grade_level Student grade level
+     * @param gradeLevel Student grade level
      */
-    public Student(String name, int grade_level) {
+    public Student(String name, int gradeLevel) {
         this.name = name;
-        this.grade_level = grade_level;
+        this.gradeLevel = gradeLevel;
         this.scores = new ArrayList<>();
     }
 
@@ -1713,7 +1756,7 @@ public class Student {
      *
      * @param score Score to add
      */
-    public void add_score(int score) {
+    public void addScore(int score) {
         scores.add(score);
     }
 
@@ -1722,7 +1765,7 @@ public class Student {
      *
      * @return Average score or 0 when the list is empty
      */
-    public double average_score() {
+    public double averageScore() {
         // Avoid dividing by zero when no scores have been recorded
         if (scores.isEmpty()) {
             return 0;
@@ -1741,9 +1784,9 @@ public class Student {
     /**
      * @brief Print the student summary to the console
      */
-    public void print_summary() {
-        System.out.println(name + " is in grade " + grade_level);
-        System.out.println("Average: " + average_score());
+    public void printSummary() {
+        System.out.println(name + " is in grade " + gradeLevel);
+        System.out.println("Average: " + averageScore());
     }
 }
 `;
@@ -1795,7 +1838,7 @@ public class Algo implements Directions {
         sam.turnLeft();
 
         // Move Sam across the world using the named move count
-        for (int move_index = 0; move_index < MOVE_COUNT; move_index++) {
+        for (int moveIndex = 0; moveIndex < MOVE_COUNT; moveIndex++) {
             sam.move();
         }
     }
@@ -1883,6 +1926,9 @@ WIDTH = 640
 HEIGHT = 400
 PLAYER_SPEED = 4
 ENEMY_SPEED = 2
+PLAYER_IMAGE = "student"
+PLAYER_START_POSITION = (WIDTH / 2, HEIGHT / 2)
+EXTRA_ACTOR_COUNT = 0
 TITLE_POSITION = (24, 24)
 TITLE_SIZE = 32
 TITLE_COLOR = "white"
@@ -1924,19 +1970,19 @@ def reset_game():
 #####################
 ###   VARIABLES   ###
 #####################
-# Global Variables
-player = Actor("student", (WIDTH / 2, HEIGHT / 2))
+# Create the shared game state
+player = Actor(PLAYER_IMAGE, PLAYER_START_POSITION)
 score = 0
 game_over = False
 
-###   MORE VARIABLES HERE AS NEEDED   ###
+# Add more game state here as needed
 
-# List of Actors
+# Store any additional actors in one collection
 actors = []
 # Create each extra actor before the game loop starts
-for actor_index in range(0):
-    new_actor = Actor("student", (WIDTH / 2, HEIGHT / 2))
-    # Actor attributes here
+for _ in range(EXTRA_ACTOR_COUNT):
+    new_actor = Actor(PLAYER_IMAGE, PLAYER_START_POSITION)
+    # Configure each additional actor here
     actors.append(new_actor)
 
 
@@ -1988,6 +2034,7 @@ import pandas as pd
 DATA_FILE = "scores.csv"
 FIGURE_SIZE = (7, 4)
 BAR_COLOR = "#0f766e"
+DISPLAY_PRECISION = 2
 
 
 #####################
@@ -1999,7 +2046,10 @@ scores = pd.read_csv(DATA_FILE)
 scores["growth"] = scores["post"] - scores["pre"]
 print(scores)
 print()
-print("Average growth:", round(scores["growth"].mean(), 2))
+print(
+    "Average growth:",
+    round(scores["growth"].mean(), DISPLAY_PRECISION)
+)
 
 # Build the chart from named configuration values
 plt.figure(figsize=FIGURE_SIZE)

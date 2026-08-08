@@ -11,6 +11,10 @@ import { researchBackedExpansionCourseIds } from "@/stores/courses/research-expa
 
 const authoredLearnerCourseIds = new Set(["intro-to-chemistry"]);
 const COURSE_SWEEP_TIMEOUT = 180000;
+const planningScaffoldCourseIds = [
+	...researchBackedExpansionCourseIds,
+	"python-to-java-and-cpp-bridge"
+];
 const normalizedCoursePromises = new Map<
 	string,
 	ReturnType<typeof loadRawCourse>
@@ -196,32 +200,25 @@ describe("implemented course development artifacts", () => {
 		}
 	});
 
-	it(
-		"keeps course-development planning scaffolds internal while retaining metadata",
-		async () => {
-			for (const courseId of [
-				...researchBackedExpansionCourseIds,
-				"python-to-java-and-cpp-bridge"
-			]) {
-				const course = await requireCourse(courseId);
-				const text = allText(course);
+	it.each(planningScaffoldCourseIds)(
+		"keeps course-development planning scaffolds internal for %s",
+		async courseId => {
+			const course = await requireCourse(courseId);
+			const text = allText(course);
 
-				expect(course.developmentMetadata, courseId).toBeDefined();
-				expect(
-					course.developmentMetadata?.standards.length,
-					courseId
-				).toBeGreaterThan(0);
-				expect(text, courseId).not.toContain(
-					"Full Lesson Authoring Pack"
-				);
-				expect(text, courseId).not.toContain(
-					"Full Lesson Project: Transfer Task"
-				);
-				expect(text, courseId).not.toContain("Implementation Studio");
-				expect(text, courseId).not.toContain(
-					"defines the target artifact, required behavior, and core concepts needed"
-				);
-			}
+			expect(course.developmentMetadata, courseId).toBeDefined();
+			expect(
+				course.developmentMetadata?.standards.length,
+				courseId
+			).toBeGreaterThan(0);
+			expect(text, courseId).not.toContain("Full Lesson Authoring Pack");
+			expect(text, courseId).not.toContain(
+				"Full Lesson Project: Transfer Task"
+			);
+			expect(text, courseId).not.toContain("Implementation Studio");
+			expect(text, courseId).not.toContain(
+				"defines the target artifact, required behavior, and core concepts needed"
+			);
 		},
 		COURSE_SWEEP_TIMEOUT
 	);
@@ -300,9 +297,7 @@ describe("implemented course development artifacts", () => {
 				"Reference Appendix: Chemistry Resource Bank"
 			);
 			expect(chemistryText).toContain("Core Chemistry References");
-			expect(chemistryText).toContain(
-				"Investigation Safety Checklist"
-			);
+			expect(chemistryText).toContain("Investigation Safety Checklist");
 
 			expect(
 				allText(await requireCourse("elementary-science"))
@@ -740,7 +735,9 @@ describe("implemented course development artifacts", () => {
 			"linked customer segmentation CSV from the course source repository"
 		);
 		for (const csvLink of expectedCsvLinks) {
-			expect(datasetLinks.some(link => link.includes(csvLink))).toBe(true);
+			expect(datasetLinks.some(link => link.includes(csvLink))).toBe(
+				true
+			);
 		}
 	});
 
@@ -1021,16 +1018,16 @@ describe("implemented course development artifacts", () => {
 		]) {
 			const course = await requireCourse(courseId);
 			const nextWork =
-				course.developmentMetadata?.recommendedNextWork.join("\n") ?? "";
+				course.developmentMetadata?.recommendedNextWork.join("\n") ??
+				"";
 
 			for (const staleClaim of staleNextWorkClaims) {
 				expect(nextWork, courseId).not.toMatch(staleClaim);
 			}
 		}
 
-		const preAlgebraMetadata = (
-			await requireCourse("pre-algebra-a")
-		).developmentMetadata;
+		const preAlgebraMetadata = (await requireCourse("pre-algebra-a"))
+			.developmentMetadata;
 		expect(preAlgebraMetadata?.assessmentCadence.join("\n")).toContain(
 			"retrieval spiral"
 		);
@@ -1038,9 +1035,8 @@ describe("implemented course development artifacts", () => {
 			"worksheet or Desmos"
 		);
 
-		const biologyMetadata = (
-			await requireCourse("intro-to-biology")
-		).developmentMetadata;
+		const biologyMetadata = (await requireCourse("intro-to-biology"))
+			.developmentMetadata;
 		expect(biologyMetadata?.assessmentCadence.join("\n")).toContain(
 			"curated media"
 		);
@@ -1054,7 +1050,8 @@ describe("implemented course development artifacts", () => {
 			"smart-money-personal-finance",
 			"money-minded-investing"
 		]) {
-			const metadata = (await requireCourse(courseId)).developmentMetadata;
+			const metadata = (await requireCourse(courseId))
+				.developmentMetadata;
 			const metadataText = [
 				...(metadata?.assessmentCadence ?? []),
 				...(metadata?.safetyPolicy ?? []),
@@ -1083,91 +1080,104 @@ describe("implemented course development artifacts", () => {
 		);
 	});
 
-	it("adds course-specific architecture for algebra, advanced Python, C++, Java, data/AI/ML, science, systems, and Unity", async () => {
-		for (const courseId of [
-			"algebra-1a",
-			"algebra-1b",
-			"algebra-2a",
-			"algebra-2b"
-		]) {
-			const text = allText(await requireCourse(courseId));
+	it(
+		"adds course-specific architecture for algebra, advanced Python, C++, Java, data/AI/ML, science, systems, and Unity",
+		async () => {
+			for (const courseId of [
+				"algebra-1a",
+				"algebra-1b",
+				"algebra-2a",
+				"algebra-2b"
+			]) {
+				const text = allText(await requireCourse(courseId));
 
-			expect(text, courseId).toContain(
-				"Standards-Mapped Algebra Architecture"
+				expect(text, courseId).toContain(
+					"Standards-Mapped Algebra Architecture"
+				);
+				expect(text, courseId).toContain("Course Item Labels");
+				expect(text, courseId).toContain(
+					"Required Anchor and Extension Projects"
+				);
+			}
+
+			expect(allText(await requireCourse("python-level-3"))).toContain(
+				"Advanced Python Algorithm and Engineering Studio"
 			);
-			expect(text, courseId).toContain("Course Item Labels");
-			expect(text, courseId).toContain(
-				"Required Anchor and Extension Projects"
+			expect(allText(await requireCourse("python-level-3"))).toContain(
+				"Local Document Search Engine"
 			);
-		}
 
-		expect(allText(await requireCourse("python-level-3"))).toContain(
-			"Advanced Python Algorithm and Engineering Studio"
-		);
-		expect(allText(await requireCourse("python-level-3"))).toContain(
-			"Local Document Search Engine"
-		);
+			for (const courseId of [
+				"c-level-1",
+				"cpp-level-2",
+				"cpp-level-3"
+			]) {
+				const text = allText(await requireCourse(courseId));
 
-		for (const courseId of ["c-level-1", "cpp-level-2", "cpp-level-3"]) {
-			const text = allText(await requireCourse(courseId));
+				expect(text, courseId).toContain(
+					"Modern Three-Course C++ Spine"
+				);
+				expect(text, courseId).toContain("Manual Memory Safety Rule");
+			}
 
-			expect(text, courseId).toContain("Modern Three-Course C++ Spine");
-			expect(text, courseId).toContain("Manual Memory Safety Rule");
-		}
+			for (const courseId of [
+				"java-level-1",
+				"java-level-2",
+				"java-level-3"
+			]) {
+				expect(
+					allText(await requireCourse(courseId)),
+					courseId
+				).toContain("Bridge");
+			}
 
-		for (const courseId of [
-			"java-level-1",
-			"java-level-2",
-			"java-level-3"
-		]) {
-			expect(allText(await requireCourse(courseId)), courseId).toContain(
-				"Bridge"
+			for (const courseId of [
+				"data-science-in-python",
+				"ai-level-1",
+				"machine-learning"
+			]) {
+				expect(
+					allText(await requireCourse(courseId)),
+					courseId
+				).toContain(
+					"Data Science, AI Foundations, and Machine Learning Boundary Map"
+				);
+			}
+
+			expect(
+				allText(await requireCourse("elementary-science"))
+			).toContain("K-2 and 3-5 Online Science Scope Map");
+			expect(
+				allText(await requireCourse("middle-school-integrated-science"))
+			).toContain("Middle School Integrated Science 6-8 Scope Map");
+
+			for (const courseId of [
+				"linux-systems",
+				"network-systems",
+				"network-security",
+				"c-systems-engineering",
+				"assembly",
+				"low-level-security",
+				"low-level-security-part-2",
+				"rust-systems-security"
+			]) {
+				expect(
+					allText(await requireCourse(courseId)),
+					courseId
+				).toContain("Defensive Lab Contract");
+			}
+
+			const unityText = allText(
+				await requireCourse("unity-game-development")
 			);
-		}
 
-		for (const courseId of [
-			"data-science-in-python",
-			"ai-level-1",
-			"machine-learning"
-		]) {
-			expect(allText(await requireCourse(courseId)), courseId).toContain(
-				"Data Science, AI Foundations, and Machine Learning Boundary Map"
+			expect(unityText).toContain(
+				"UGD7 Testing, Profiling, Builds, CI, and Asset Pipeline"
 			);
-		}
-
-		expect(allText(await requireCourse("elementary-science"))).toContain(
-				"K-2 and 3-5 Online Science Scope Map"
-		);
-		expect(
-			allText(await requireCourse("middle-school-integrated-science"))
-		).toContain("Middle School Integrated Science 6-8 Scope Map");
-
-		for (const courseId of [
-			"linux-systems",
-			"network-systems",
-			"network-security",
-			"c-systems-engineering",
-			"assembly",
-			"low-level-security",
-			"low-level-security-part-2",
-			"rust-systems-security"
-		]) {
-			expect(allText(await requireCourse(courseId)), courseId).toContain(
-				"Defensive Lab Contract"
+			expect(unityText).toContain(
+				"UGD8 Full-Project Starter and Review Repository Plan"
 			);
-		}
-
-		const unityText = allText(
-			await requireCourse("unity-game-development")
-		);
-
-		expect(unityText).toContain(
-			"UGD7 Testing, Profiling, Builds, CI, and Asset Pipeline"
-		);
-		expect(unityText).toContain(
-			"UGD8 Full-Project Starter and Review Repository Plan"
-		);
-		expect(unityText).toContain("current full-project baseline");
+			expect(unityText).toContain("current full-project baseline");
 		},
 		COURSE_SWEEP_TIMEOUT
 	);

@@ -31,11 +31,11 @@ degrees, and coordinates are measured from the center of the canvas.
 Useful movement examples:
 
 ```python
-player.forward(50)      # Move 50 pixels forward.
-player.left(90)         # Turn 90 degrees counterclockwise.
-player.right(45)        # Turn 45 degrees clockwise.
+player.forward(50)      # Move 50 pixels forward
+player.left(90)         # Turn 90 degrees counterclockwise
+player.right(45)        # Turn 45 degrees clockwise
 player.penup()
-player.goto(-120, 80)   # Move to x = -120, y = 80 without drawing.
+player.goto(-120, 80)   # Move to x = -120 and y = 80 without drawing
 player.pendown()
 ```
 
@@ -84,22 +84,28 @@ hide itself, lift its pen, move to a corner, clear old text, and write the new
 score.
 
 ```python
+SCORE_POSITION = (-180, 175)
+SCORE_FONT = ("Arial", 16, "normal")
+COLLISION_DISTANCE = 20
+
 score = 0
 
 score_turtle = turtle.Turtle()
 score_turtle.hideturtle()
 score_turtle.penup()
-score_turtle.goto(-180, 175)
+score_turtle.goto(SCORE_POSITION)
+
 
 def update_score():
     score_turtle.clear()
-    score_turtle.write("Score: " + str(score), font=("Arial", 16, "normal"))
+    score_turtle.write(f"Score: {score}", font=SCORE_FONT)
+
 
 def check_collision(player, target):
     global score
 
-    close_x = abs(player.xcor() - target.xcor()) < 20
-    close_y = abs(player.ycor() - target.ycor()) < 20
+    close_x = abs(player.xcor() - target.xcor()) < COLLISION_DISTANCE
+    close_y = abs(player.ycor() - target.ycor()) < COLLISION_DISTANCE
 
     if close_x and close_y:
         score += 1
@@ -125,23 +131,27 @@ stamp should be allowed.
 
 ```python
 BOUNDARY = 160
+SIDE_COUNT = 4
+RIGHT_ANGLE = 90
 
 border_turtle = turtle.Turtle()
 border_turtle.hideturtle()
 border_turtle.speed(0)
+
 
 def draw_border():
     border_turtle.penup()
     border_turtle.goto(-BOUNDARY, -BOUNDARY)
     border_turtle.pendown()
 
-    for side in range(4):
+    for _ in range(SIDE_COUNT):
         border_turtle.forward(BOUNDARY * 2)
-        border_turtle.left(90)
+        border_turtle.left(RIGHT_ANGLE)
 
-def is_inside_bounds(x, y):
-    inside_x = -BOUNDARY <= x <= BOUNDARY
-    inside_y = -BOUNDARY <= y <= BOUNDARY
+
+def is_inside_bounds(x_position, y_position):
+    inside_x = -BOUNDARY <= x_position <= BOUNDARY
+    inside_y = -BOUNDARY <= y_position <= BOUNDARY
     return inside_x and inside_y
 ```
 
@@ -150,9 +160,9 @@ turtle's current location is not enough because the current location may still
 be legal while the next move would leave the boundary.
 
 ```python
-def move_player(dx, dy):
-    next_x = player.xcor() + dx
-    next_y = player.ycor() + dy
+def move_player(x_change, y_change):
+    next_x = player.xcor() + x_change
+    next_y = player.ycor() + y_change
 
     if is_inside_bounds(next_x, next_y):
         player.goto(next_x, next_y)
@@ -173,151 +183,190 @@ import time
 import turtle
 
 
-# ------------------------------------------------------------
-# Function definitions
-# ------------------------------------------------------------
-
-def is_inside_bounds(x, y):
-    inside_x = -BOUNDARY <= x <= BOUNDARY
-    inside_y = -BOUNDARY <= y <= BOUNDARY
-    return inside_x and inside_y
-
-
-def update_score():
-    score_turtle.clear()
-    score_turtle.write("Score: " + str(score), font=("Arial", 16, "normal"))
-
-
-def draw_border():
-    border_turtle.penup()
-    border_turtle.goto(-BOUNDARY, -BOUNDARY)
-    border_turtle.pendown()
-
-    for side in range(4):
-        border_turtle.forward(BOUNDARY * 2)
-        border_turtle.left(90)
-
-
-def move_player(dx, dy):
-    next_x = player.xcor() + dx
-    next_y = player.ycor() + dy
-
-    if is_inside_bounds(next_x, next_y):
-        player.goto(next_x, next_y)
-
-
-def move_up():
-    move_player(0, PLAYER_STEP)
-
-
-def move_down():
-    move_player(0, -PLAYER_STEP)
-
-
-def move_left():
-    move_player(-PLAYER_STEP, 0)
-
-
-def move_right():
-    move_player(PLAYER_STEP, 0)
-
-
-def make_enemy(x, y, dx, dy, color):
-    enemy = turtle.Turtle()
-    enemy.shape("triangle")
-    enemy.color(color)
-    enemy.penup()
-    enemy.goto(x, y)
-    enemy.dx = dx
-    enemy.dy = dy
-    enemies.append(enemy)
-
-
-def move_enemies():
-    for enemy in enemies:
-        next_x = enemy.xcor() + enemy.dx
-        next_y = enemy.ycor() + enemy.dy
-
-        if not is_inside_bounds(next_x, enemy.ycor()):
-            enemy.dx *= -1
-            next_x = enemy.xcor() + enemy.dx
-
-        if not is_inside_bounds(enemy.xcor(), next_y):
-            enemy.dy *= -1
-            next_y = enemy.ycor() + enemy.dy
-
-        enemy.goto(next_x, next_y)
-
-
-def check_enemy_collisions():
-    global score
-
-    for enemy in enemies:
-        close_x = abs(player.xcor() - enemy.xcor()) < HIT_DISTANCE
-        close_y = abs(player.ycor() - enemy.ycor()) < HIT_DISTANCE
-
-        if close_x and close_y:
-            score += 1
-            update_score()
-            enemy.goto(random.randint(-120, 120), random.randint(-120, 120))
-
-
-# ------------------------------------------------------------
-# Variables and turtle attributes
-# ------------------------------------------------------------
+#######################
+###   CONSTANTS     ###
+#######################
 
 BOUNDARY = 160
+SIDE_COUNT = 4
+RIGHT_ANGLE = 90
 PLAYER_STEP = 15
 HIT_DISTANCE = 20
+ENEMY_RESPAWN_BOUNDARY = 120
+SCREEN_SIZE = (420, 420)
+SCORE_POSITION = (-180, 175)
+SCORE_FONT = ("Arial", 16, "normal")
+PLAYER_COLOR = "blue"
+FRAME_DELAY_SECONDS = 0.03
+ENEMY_STARTS = [
+    (-100, -70, 2, 3, "red"),
+    (80, 40, -3, 2, "purple"),
+    (20, 120, 2, -2, "orange")
+]
+
+
+#######################
+###   VARIABLES     ###
+#######################
 score = 0
 enemies = []
 
 screen = turtle.Screen()
-screen.setup(420, 420)
+screen.setup(SCREEN_SIZE[0], SCREEN_SIZE[1])
 screen.tracer(0)
 
 player = turtle.Turtle()
 player.shape("turtle")
-player.color("blue")
+player.color(PLAYER_COLOR)
 player.penup()
 
 score_turtle = turtle.Turtle()
 score_turtle.hideturtle()
 score_turtle.penup()
-score_turtle.goto(-180, 175)
+score_turtle.goto(SCORE_POSITION)
 
 border_turtle = turtle.Turtle()
 border_turtle.hideturtle()
 border_turtle.speed(0)
 
 
-# ------------------------------------------------------------
-# One-time setup logic
-# ------------------------------------------------------------
+#######################
+###   FUNCTIONS     ###
+#######################
 
-draw_border()
-update_score()
+# Check whether one position is inside the project boundary
+def is_inside_bounds(x_position, y_position):
+    inside_x = -BOUNDARY <= x_position <= BOUNDARY
+    inside_y = -BOUNDARY <= y_position <= BOUNDARY
+    return inside_x and inside_y
 
-make_enemy(-100, -70, 2, 3, "red")
-make_enemy(80, 40, -3, 2, "purple")
-make_enemy(20, 120, 2, -2, "orange")
 
-screen.listen()
+# Replace the old score text with the current value
+def update_score():
+    score_turtle.clear()
+    score_turtle.write(f"Score: {score}", font=SCORE_FONT)
+
+
+# Draw the square project boundary
+def draw_border():
+    border_turtle.penup()
+    border_turtle.goto(-BOUNDARY, -BOUNDARY)
+    border_turtle.pendown()
+
+    # Draw each side with the same length and turn
+    for _ in range(SIDE_COUNT):
+        border_turtle.forward(BOUNDARY * 2)
+        border_turtle.left(RIGHT_ANGLE)
+
+
+# Move the player only when the destination stays in bounds
+def move_player(x_change, y_change):
+    next_x = player.xcor() + x_change
+    next_y = player.ycor() + y_change
+
+    # Apply the movement only when the destination is legal
+    if is_inside_bounds(next_x, next_y):
+        player.goto(next_x, next_y)
+
+
+# Move the player up by one step
+def move_up():
+    move_player(0, PLAYER_STEP)
+
+
+# Move the player down by one step
+def move_down():
+    move_player(0, -PLAYER_STEP)
+
+
+# Move the player left by one step
+def move_left():
+    move_player(-PLAYER_STEP, 0)
+
+
+# Move the player right by one step
+def move_right():
+    move_player(PLAYER_STEP, 0)
+
+
+# Create one moving triangle enemy
+def make_enemy(x_position, y_position, x_speed, y_speed, color_name):
+    enemy = turtle.Turtle()
+    enemy.shape("triangle")
+    enemy.color(color_name)
+    enemy.penup()
+    enemy.goto(x_position, y_position)
+    enemy.x_speed = x_speed
+    enemy.y_speed = y_speed
+    enemies.append(enemy)
+
+
+# Move every enemy and reverse its speed at a boundary
+def move_enemies():
+    # Update each enemy independently
+    for enemy in enemies:
+        next_x = enemy.xcor() + enemy.x_speed
+        next_y = enemy.ycor() + enemy.y_speed
+
+        # Reverse horizontal motion before leaving the boundary
+        if not is_inside_bounds(next_x, enemy.ycor()):
+            enemy.x_speed *= -1
+            next_x = enemy.xcor() + enemy.x_speed
+
+        # Reverse vertical motion before leaving the boundary
+        if not is_inside_bounds(enemy.xcor(), next_y):
+            enemy.y_speed *= -1
+            next_y = enemy.ycor() + enemy.y_speed
+
+        enemy.goto(next_x, next_y)
+
+
+# Update the score and reset enemies that touch the player
+def check_enemy_collisions():
+    global score
+
+    # Check every enemy against the current player position
+    for enemy in enemies:
+        close_x = abs(player.xcor() - enemy.xcor()) < HIT_DISTANCE
+        close_y = abs(player.ycor() - enemy.ycor()) < HIT_DISTANCE
+
+        # Count and reset an enemy only after a collision
+        if close_x and close_y:
+            score += 1
+            update_score()
+            enemy.goto(
+                random.randint(-ENEMY_RESPAWN_BOUNDARY, ENEMY_RESPAWN_BOUNDARY),
+                random.randint(-ENEMY_RESPAWN_BOUNDARY, ENEMY_RESPAWN_BOUNDARY)
+            )
+
+###########################
+###   EVENT LISTENERS   ###
+###########################
+
 screen.onkey(move_up, "Up")
 screen.onkey(move_down, "Down")
 screen.onkey(move_left, "Left")
 screen.onkey(move_right, "Right")
+screen.listen()
 
 
-# ------------------------------------------------------------
-# Continuous game logic
-# ------------------------------------------------------------
+#######################
+###   MAIN CODE     ###
+#######################
 
+draw_border()
+update_score()
+
+# Create each enemy from the shared configuration
+for enemy_start in ENEMY_STARTS:
+    make_enemy(*enemy_start)
+
+# Continue updating the game until the window closes
 while True:
     move_enemies()
     check_enemy_collisions()
     screen.update()
-    time.sleep(0.03)
+    time.sleep(FRAME_DELAY_SECONDS)
 ```
 
 ## Moving Triangles Homework Extension
@@ -326,11 +375,11 @@ The moving-triangle extension can be built in small steps:
 
 1. Create more than one triangle turtle.
 2. Store all triangle turtles in a list.
-3. Give each triangle two movement values, such as `dx` for horizontal speed and
-   `dy` for vertical speed.
-4. In a loop, add `dx` and `dy` to each triangle's current position.
-5. If the next x-position would leave the boundary, multiply `dx` by `-1`.
-6. If the next y-position would leave the boundary, multiply `dy` by `-1`.
+3. Give each triangle two movement values, such as `x_speed` for horizontal
+   speed and `y_speed` for vertical speed.
+4. In a loop, add `x_speed` and `y_speed` to each triangle's current position.
+5. If the next x-position would leave the boundary, multiply `x_speed` by `-1`.
+6. If the next y-position would leave the boundary, multiply `y_speed` by `-1`.
 7. Move the triangle to the corrected next position.
 
 This pattern makes the triangles appear to bounce. The important idea is that

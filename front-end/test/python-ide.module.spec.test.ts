@@ -266,7 +266,9 @@ describe("python IDE project helpers", () => {
 		expect(turtleOutline.files[0]?.content).toContain(
 			"###   EVENT LISTENERS   ###"
 		);
-		expect(turtleOutline.files[0]?.content).toContain("while condition:");
+		expect(turtleOutline.files[0]?.content).toContain(
+			"while animation_running:"
+		);
 		expect(turtleOutline.files[0]?.content).toContain(
 			"for current_turtle in turtle_list:"
 		);
@@ -288,9 +290,9 @@ describe("python IDE project helpers", () => {
 		expect(javaOutline.files).toEqual([
 			{ name: "Main.java", content: javaOutlineStarterCode }
 		]);
-		expect(javaOutline.files[0]?.content).toContain("Scanner input");
+		expect(javaOutline.files[0]?.content).toContain("Scanner inputScanner");
 		expect(javaOutline.files[0]?.content).toContain("ArrayList<String>");
-		expect(javaOutline.files[0]?.content).toContain("make_note");
+		expect(javaOutline.files[0]?.content).toContain("makeNote");
 		expect(karelOutline.title).toBe("Karel Java Outline");
 		expect(karelOutline.files).toEqual([
 			{ name: "MyProgram.java", content: karelOutlineStarterCode },
@@ -320,10 +322,16 @@ describe("python IDE project helpers", () => {
 		expect(circleArt.files).toEqual([
 			{ name: "main.py", content: turtleCircleArtStarterCode }
 		]);
-		expect(circleArt.files[0]?.content).toContain("random.choice(ART_COLORS)");
+		expect(circleArt.files[0]?.content).toContain(
+			"random.choice(ART_COLORS)"
+		);
 		expect(circleArt.files[0]?.content).toContain("artist.begin_fill()");
-		expect(circleArt.files[0]?.content).toContain("artist.goto(x_position, y_position)");
-		expect(circleArt.files[0]?.content).toContain("artist.speed(DRAWING_SPEED)");
+		expect(circleArt.files[0]?.content).toContain(
+			"artist.goto(x_position, y_position)"
+		);
+		expect(circleArt.files[0]?.content).toContain(
+			"artist.speed(DRAWING_SPEED)"
+		);
 		expect(circleArt.files[0]?.content).toContain("###   NORMAL SECTION");
 		expect(circleArt.files[0]?.content).toContain("###   HARD SECTION");
 
@@ -331,20 +339,30 @@ describe("python IDE project helpers", () => {
 		expect(picasso.files).toEqual([
 			{ name: "main.py", content: turtlePicassoStarterCode }
 		]);
-		expect(picasso.files[0]?.content).toContain("from random import choice");
-		expect(picasso.files[0]?.content).toContain("from turtle import Screen, Turtle");
 		expect(picasso.files[0]?.content).toContain(
-			'colors = ["red", "light blue", "green", "yellow", "white", "orange"]'
+			"from random import choice"
 		);
-		expect(picasso.files[0]?.content).toContain('screen.bgcolor("black")');
-		expect(picasso.files[0]?.content).toContain("t = Turtle()");
-		expect(picasso.files[0]?.content).toContain("def draw_square():\n    pass");
+		expect(picasso.files[0]?.content).toContain(
+			"from turtle import Screen, Turtle"
+		);
+		expect(picasso.files[0]?.content).toContain("COLOR_PALETTE = [");
+		expect(picasso.files[0]?.content).toContain(
+			"screen.bgcolor(BACKGROUND_COLOR)"
+		);
+		expect(picasso.files[0]?.content).toContain("artist = Turtle()");
+		expect(picasso.files[0]?.content).toContain(
+			"def draw_square():\n    pass"
+		);
 		expect(picasso.files[0]?.content).toContain(
 			"Keep the name draw_square or update screen.onkey() below to match"
 		);
-		expect(picasso.files[0]?.content).toContain('screen.onkey(draw_square, "s")');
+		expect(picasso.files[0]?.content).toContain(
+			'screen.onkey(draw_square, "s")'
+		);
 		expect(picasso.files[0]?.content).toContain("screen.listen()");
-		expect(picasso.files[0]?.content).toContain("def draw_bonus_shape():\n    pass");
+		expect(picasso.files[0]?.content).toContain(
+			"def draw_bonus_shape():\n    pass"
+		);
 		expect(picasso.files[0]?.content).not.toContain("t.forward(");
 		expect(picasso.files[0]?.content).not.toContain("def clear_art");
 
@@ -359,10 +377,10 @@ describe("python IDE project helpers", () => {
 			"Use TRIANGLE_SIDE_LENGTH and TURN_ANGLE to draw three equal sides"
 		);
 		expect(triangleMotion.files[0]?.content).toContain(
-			'artist.goto(artist.xcor() + MOVE_DISTANCE, artist.ycor())'
+			"artist.goto(artist.xcor() + MOVE_DISTANCE, artist.ycor())"
 		);
 		expect(triangleMotion.files[0]?.content).toContain(
-			'artist.goto(artist.xcor() - MOVE_DISTANCE, artist.ycor())'
+			"artist.goto(artist.xcor() - MOVE_DISTANCE, artist.ycor())"
 		);
 		expect(triangleMotion.files[0]?.content).toContain(
 			'screen.onkey(move_right_and_draw, "Right")'
@@ -422,7 +440,9 @@ describe("python IDE project helpers", () => {
 		for (const { source, template, title } of templates) {
 			const project = createPythonIdeProject("turtle", { template });
 			expect(project.title).toBe(title);
-			expect(project.files).toEqual([{ name: "main.py", content: source }]);
+			expect(project.files).toEqual([
+				{ name: "main.py", content: source }
+			]);
 			expect(source, title).toContain("###   NORMAL SECTION");
 			expect(source, title).toContain("###   HARD SECTION");
 			expect(source, title).toMatch(/def \w+\([^)]*\):\n    pass/);
@@ -460,9 +480,8 @@ screen.listen()
 		const normalDefinitionIndex = adaptedSource.indexOf(
 			"def normal_addition():"
 		);
-		const completedDrawingIndex = adaptedSource.indexOf(
-			"artist.forward(40)"
-		);
+		const completedDrawingIndex =
+			adaptedSource.indexOf("artist.forward(40)");
 		const normalCallIndex = adaptedSource.indexOf(
 			"\nnormal_addition()",
 			completedDrawingIndex
@@ -475,9 +494,9 @@ screen.listen()
 		expect(listenIndex).toBeGreaterThan(normalCallIndex);
 		expect(adaptedSource).toContain("###   NORMAL SECTION");
 		expect(adaptedSource).toContain("###   HARD SECTION");
-		expect(
-			addPythonIdeClassroomSectionsToSource(adaptedSource)
-		).toBe(adaptedSource);
+		expect(addPythonIdeClassroomSectionsToSource(adaptedSource)).toBe(
+			adaptedSource
+		);
 
 		const files = addPythonIdeClassroomSections([
 			{ name: "helpers.py", content: "VALUE = 1\n" },
@@ -497,12 +516,12 @@ pgzrun.go()
 `;
 		const adaptedPyGameSource =
 			addPythonIdeClassroomSectionsToSource(pyGameSource);
-		expect(
-			adaptedPyGameSource.indexOf("\nnormal_addition()")
-		).toBeLessThan(adaptedPyGameSource.indexOf("pgzrun.go()"));
-		expect(
-			adaptedPyGameSource.indexOf("\nhard_addition()")
-		).toBeLessThan(adaptedPyGameSource.indexOf("pgzrun.go()"));
+		expect(adaptedPyGameSource.indexOf("\nnormal_addition()")).toBeLessThan(
+			adaptedPyGameSource.indexOf("pgzrun.go()")
+		);
+		expect(adaptedPyGameSource.indexOf("\nhard_addition()")).toBeLessThan(
+			adaptedPyGameSource.indexOf("pgzrun.go()")
+		);
 	});
 
 	it("keeps built-in IDE demos and templates aligned with the classroom coding standard", () => {
@@ -535,7 +554,9 @@ pgzrun.go()
 		];
 
 		for (const source of builtInTemplateSources) {
-			expect(source).toMatch(/(?:CONSTANTS|VARIABLES|FUNCTIONS|MAIN CODE)/);
+			expect(source).toMatch(
+				/(?:CONSTANTS|VARIABLES|FUNCTIONS|MAIN CODE)/
+			);
 			for (const line of source.split("\n")) {
 				const commentText =
 					line.match(INLINE_COMMENT_RE)?.[1] ??
@@ -570,17 +591,27 @@ pgzrun.go()
 			"@brief Organize an introductory Java console project with helpers and lists"
 		);
 		expect(javaOutlineStarterCode).toContain("STARTING_SCORE");
+		expect(javaOutlineStarterCode).toContain(
+			"makeNote(studentName, score)"
+		);
+		expect(javaOutlineStarterCode).not.toContain("student_name");
 		expect(blueJMainStarterCode).toContain(
 			"@brief Demonstrate a small BlueJ object-oriented project"
 		);
 		expect(blueJMainStarterCode).toContain("FIRST_SCORE");
+		expect(blueJMainStarterCode).toContain("student.addScore");
 		expect(blueJStudentStarterCode).toContain(
 			"@brief Store one student's grade level and score history"
 		);
+		expect(blueJStudentStarterCode).toContain(
+			"private final int gradeLevel"
+		);
+		expect(blueJStudentStarterCode).not.toContain("grade_level");
 		expect(karelStarterCode).toContain(
 			"@brief Demonstrate a Karel robot program with a loaded world file"
 		);
 		expect(karelStarterCode).toContain("MOVE_COUNT");
+		expect(karelStarterCode).toContain("int moveIndex");
 		expect(karelOutlineStarterCode).toContain(
 			"@brief Run the main Karel command sequence"
 		);
@@ -624,9 +655,7 @@ pgzrun.go()
 			{ name: "README.TXT", content: blueJReadmeStarterText }
 		]);
 		expect(project.files[0]?.content).toContain("new Student");
-		expect(project.files[1]?.content).toContain(
-			"private final ArrayList"
-		);
+		expect(project.files[1]?.content).toContain("private final ArrayList");
 		expect(isPythonIdeBlueJProject(project)).toBe(true);
 		expect(getPythonIdeProjectKindLabel(project)).toBe("BlueJ Java");
 		expect(getPythonIdeModeLabel(project.mode)).toBe("Java");
@@ -649,9 +678,9 @@ pgzrun.go()
 		expect(packageFile?.content).toContain("package.numTargets=2");
 		expect(packageFile?.content).toContain("target1.name=Main");
 		expect(packageFile?.content).toContain("target2.name=Student");
-		expect(files.find(file => file.name === "README.TXT")?.content).toContain(
-			"https://github.com/k-pet-group/BlueJ-Greenfoot"
-		);
+		expect(
+			files.find(file => file.name === "README.TXT")?.content
+		).toContain("https://github.com/k-pet-group/BlueJ-Greenfoot");
 
 		const archive = unzipSync(createBlueJProjectArchive(project));
 		expect(Object.keys(archive).sort()).toEqual([
@@ -660,9 +689,9 @@ pgzrun.go()
 			"BlueJ-Java-Project/Student.java",
 			"BlueJ-Java-Project/package.bluej"
 		]);
-		expect(strFromU8(archive["BlueJ-Java-Project/package.bluej"]!)).toContain(
-			"project.charset=UTF-8"
-		);
+		expect(
+			strFromU8(archive["BlueJ-Java-Project/package.bluej"]!)
+		).toContain("project.charset=UTF-8");
 	});
 
 	it("normalizes duplicate README variants in BlueJ export archives", () => {
@@ -683,9 +712,9 @@ pgzrun.go()
 		expect(readmeFiles).toEqual([
 			{ name: "README.TXT", content: "Open this first." }
 		]);
-		expect(archiveNames.filter(name => name.endsWith("/README.TXT"))).toEqual([
-			"Readme-BlueJ-Export/README.TXT"
-		]);
+		expect(
+			archiveNames.filter(name => name.endsWith("/README.TXT"))
+		).toEqual(["Readme-BlueJ-Export/README.TXT"]);
 		expect(strFromU8(archive["Readme-BlueJ-Export/README.TXT"]!)).toBe(
 			"Open this first."
 		);
@@ -698,7 +727,10 @@ pgzrun.go()
 				{ name: "Helper.java", content: "public class Helper {}" },
 				{ name: "../Escape.java", content: "public class Escape {}" },
 				{ name: "lesson-1.java", content: "class LessonOne {}" },
-				{ name: "src/PackageMain.java", content: "class PackageMain {}" },
+				{
+					name: "src/PackageMain.java",
+					content: "class PackageMain {}"
+				},
 				{ name: "package.bluej", content: "stale package data" },
 				{ name: "notes.md", content: "Safe project notes" },
 				{
@@ -796,7 +828,8 @@ pgzrun.go()
 		expect(result.hasBlueJPackage).toBe(true);
 		expect(result.files).toEqual([
 			{
-				content: "public class Main { public static void main(String[] args) {} }",
+				content:
+					"public class Main { public static void main(String[] args) {} }",
 				encoding: "text",
 				name: "Main.java"
 			},
@@ -823,9 +856,7 @@ pgzrun.go()
 	it("ignores BlueJ archive metadata after stripping the project root", () => {
 		const archiveBytes = zipSync({
 			"Student-Lab/Main.java": strToU8("public class Main {}"),
-			"Student-Lab/__MACOSX/Ghost.java": strToU8(
-				"public class Ghost {}"
-			),
+			"Student-Lab/__MACOSX/Ghost.java": strToU8("public class Ghost {}"),
 			"Student-Lab/src/._Helper.java": strToU8("metadata"),
 			"Student-Lab/.DS_Store": strToU8("metadata"),
 			"Student-Lab/images/logo.png": strToU8("not text")
@@ -925,7 +956,9 @@ pgzrun.go()
 	it("skips oversized BlueJ archive entries before import", () => {
 		const archiveBytes = zipSync({
 			"Student-Lab/Main.java": strToU8("public class Main {}"),
-			"Student-Lab/Huge.java": strToU8(`class Huge {\n${"// filler\n".repeat(64)}}`)
+			"Student-Lab/Huge.java": strToU8(
+				`class Huge {\n${"// filler\n".repeat(64)}}`
+			)
 		});
 
 		const result = importBlueJProjectArchive(archiveBytes, {
@@ -1011,7 +1044,9 @@ pgzrun.go()
 
 		expect(result.files).toHaveLength(40);
 		expect(result.files.map(file => file.name)).not.toContain("Huge.java");
-		expect(result.files.map(file => file.name)).not.toContain("File40.java");
+		expect(result.files.map(file => file.name)).not.toContain(
+			"File40.java"
+		);
 		expect(result.skippedFiles).toEqual(
 			expect.arrayContaining([
 				"Huge.java (too large)",
@@ -1557,15 +1592,9 @@ pgzrun.go()
 
 		expect(headerSource).toContain('{ label: "IDE", to: "/ide"');
 		expect(headerSource).not.toContain('label: "BlueJ IDE"');
-		expect(pageHeadSource).toContain(
-			'[/^\\/ide(?:\\/|$)/, "IDE"]'
-		);
-		expect(pageHeadSource).toContain(
-			'[/^\\/python-ide(?:\\/|$)/, "IDE"]'
-		);
-		expect(pageHeadSource).toContain(
-			'[/^\\/bluej(?:\\/|$)/, "IDE"]'
-		);
+		expect(pageHeadSource).toContain('[/^\\/ide(?:\\/|$)/, "IDE"]');
+		expect(pageHeadSource).toContain('[/^\\/python-ide(?:\\/|$)/, "IDE"]');
+		expect(pageHeadSource).toContain('[/^\\/bluej(?:\\/|$)/, "IDE"]');
 	});
 
 	it("opens explicit standalone Code IDE template routes over saved local projects", () => {
@@ -1575,17 +1604,13 @@ pgzrun.go()
 		);
 
 		expect(pageSource).toContain(
-			'return `ide-template:${requestedStarterMode.value}:${template}`;'
+			"return `ide-template:${requestedStarterMode.value}:${template}`;"
 		);
-		expect(pageSource).toContain(
-			"function standaloneProjectStarterLabel"
-		);
+		expect(pageSource).toContain("function standaloneProjectStarterLabel");
 		expect(pageSource).toContain(
 			'if (template === "demo") return "Demo project";'
 		);
-		expect(pageSource).toContain(
-			"function applyStandaloneRouteMetadata"
-		);
+		expect(pageSource).toContain("function applyStandaloneRouteMetadata");
 		expect(pageSource).toContain(
 			"project.courseProjectTitle = project.title;"
 		);
@@ -1836,13 +1861,13 @@ pgzrun.go()
 			"_bridge.setWorldCoordinates(*_world_coordinates)",
 			"_bridge.resetWorldCoordinates()",
 			"_bridge.registerShape(shape_name, json.dumps(serialized))",
-			"path.write_text(str(_bridge.exportPostScript()), encoding=\"utf-8\")",
+			'path.write_text(str(_bridge.exportPostScript()), encoding="utf-8")',
 			'def __init__(self, shape="classic", undobuffersize=1000, visible=True):',
 			"_turtles.clear()",
 			"0 < numeric_width <= 1",
 			"self._undo_stack.append(self._snapshot(render_count))",
-			"_bridge.undo(int(snapshot.get(\"render_count\", 0)))",
-			"def write(self, text, move=False, align=\"left\"",
+			'_bridge.undo(int(snapshot.get("render_count", 0)))',
+			'def write(self, text, move=False, align="left"',
 			"@contextmanager\n    def poly(self):",
 			"self.screen = _screen",
 			"return Vec2D(self.xcor(), self.ycor())",
@@ -1877,7 +1902,9 @@ pgzrun.go()
 			resolve(__dirname, "../src/components/CodeIdeWorkspace.vue"),
 			"utf8"
 		);
-		const bridgeStart = pageSource.indexOf("const turtleBridge: TurtleBridge =");
+		const bridgeStart = pageSource.indexOf(
+			"const turtleBridge: TurtleBridge ="
+		);
 		const homeStart = pageSource.indexOf("\n\thome() {", bridgeStart);
 		const homeSource = pageSource.slice(
 			homeStart,
@@ -1891,7 +1918,9 @@ pgzrun.go()
 		expect(homeSource).toContain("const toPose = currentTurtlePose();");
 		expect(homeSource).toContain("trackTurtleFillPoint(0, 0);");
 		expect(homeSource).toContain('kind: "line"');
-		expect(homeSource).toContain("durationMs: turtleMovementDuration(fromPose, toPose)");
+		expect(homeSource).toContain(
+			"durationMs: turtleMovementDuration(fromPose, toPose)"
+		);
 		expect(homeSource).not.toContain("this.goto(0, 0);");
 	});
 
@@ -1938,8 +1967,13 @@ pgzrun.go()
 			runControlStart,
 			pageSource.indexOf("const selectedModeLabel", runControlStart)
 		);
-		const bridgeStart = pageSource.indexOf("const turtleBridge: TurtleBridge =");
-		const registerStart = pageSource.indexOf("\n\tregisterKey(", bridgeStart);
+		const bridgeStart = pageSource.indexOf(
+			"const turtleBridge: TurtleBridge ="
+		);
+		const registerStart = pageSource.indexOf(
+			"\n\tregisterKey(",
+			bridgeStart
+		);
 		const registerSource = pageSource.slice(
 			registerStart,
 			pageSource.indexOf("listen()", registerStart)
@@ -1989,7 +2023,9 @@ pgzrun.go()
 			resolve(__dirname, "../src/components/CodeIdeWorkspace.vue"),
 			"utf8"
 		);
-		const focusStart = pageSource.indexOf("function focusVisualOutputForRun");
+		const focusStart = pageSource.indexOf(
+			"function focusVisualOutputForRun"
+		);
 		const focusSource = pageSource.slice(
 			focusStart,
 			pageSource.indexOf("function activateRunControl", focusStart)
@@ -2006,7 +2042,9 @@ pgzrun.go()
 		expect(focusSource).toContain(
 			'projectMode === "karel" ? karelWorldRef.value : canvasRef.value'
 		);
-		expect(focusSource).toContain("visualOutput?.focus({ preventScroll: true })");
+		expect(focusSource).toContain(
+			"visualOutput?.focus({ preventScroll: true })"
+		);
 		expect(focusSource.indexOf("visualOutput?.focus")).toBeLessThan(
 			focusSource.indexOf("window.requestAnimationFrame")
 		);
@@ -2019,18 +2057,26 @@ pgzrun.go()
 		expect(pageSource).toContain('tabindex="0"');
 		expect(pageSource).toContain(".karel-shell:focus-visible");
 		expect(pageSource).toContain("function isCanvasScrollKey");
-		expect(pageSource).toContain("const directAlias = keyboardKeyAliasMap[lowercaseKey]");
+		expect(pageSource).toContain(
+			"const directAlias = keyboardKeyAliasMap[lowercaseKey]"
+		);
 		expect(pageSource).toContain('@pointerdown="focusKarelWorldOutput"');
 		expect(pageSource).toContain(
 			'window.addEventListener("keydown", handleKeyDown, true);'
 		);
-		expect(keydownSource).toContain('selectedProject.value?.mode === "karel"');
-		expect(keydownSource).toContain('selectedProject.value?.mode === "turtle"');
+		expect(keydownSource).toContain(
+			'selectedProject.value?.mode === "karel"'
+		);
+		expect(keydownSource).toContain(
+			'selectedProject.value?.mode === "turtle"'
+		);
 		expect(keydownSource).toContain(
 			"isCanvasScrollKey(normalizedTurtleKey)"
 		);
 		expect(keydownSource).toContain("event.preventDefault();");
-		expect(keydownSource).toContain("if (isCanvasScrollKey(normalizedKey))");
+		expect(keydownSource).toContain(
+			"if (isCanvasScrollKey(normalizedKey))"
+		);
 	});
 
 	it("keeps Turtle runs animated with a visible cursor marker", () => {
@@ -2609,7 +2655,7 @@ pgzrun.go()
 		);
 		const turtleClearStart = runtimeSource.indexOf(
 			"    def clear(self):",
-				runtimeSource.indexOf("class Turtle:")
+			runtimeSource.indexOf("class Turtle:")
 		);
 		const turtleClearSource = runtimeSource.slice(
 			turtleClearStart,
@@ -4080,7 +4126,9 @@ pgzrun.go()
 			resolve(__dirname, "../src/components/CodeIdeWorkspace.vue"),
 			"utf8"
 		);
-		const settingsPanelCssStart = pageSource.indexOf(".ide-settings-panel {");
+		const settingsPanelCssStart = pageSource.indexOf(
+			".ide-settings-panel {"
+		);
 		const settingsPanelCss = pageSource.slice(
 			settingsPanelCssStart,
 			pageSource.indexOf(".ide-settings-panel,", settingsPanelCssStart)
@@ -4153,9 +4201,7 @@ pgzrun.go()
 		);
 		expect(pageSource).toContain('aria-label="IDE settings"');
 		expect(pageSource).toContain('title="IDE settings"');
-		expect(pageSource).toContain(
-			'aria-controls="code-ide-settings-panel"'
-		);
+		expect(pageSource).toContain('aria-controls="code-ide-settings-panel"');
 		expect(pageSource).toContain('id="code-ide-settings-panel"');
 		expect(pageSource).toContain(
 			'ref="ideSettingsRef" class="ide-settings"'
@@ -4166,17 +4212,13 @@ pgzrun.go()
 		expect(pageSource).toContain(
 			"function handleIdeSettingsOutsidePointerDown"
 		);
+		expect(pageSource).toContain("ideSettingsRef.value?.contains(target)");
+		expect(pageSource).toContain("showIdeSettings.value = false;");
 		expect(pageSource).toContain(
-			"ideSettingsRef.value?.contains(target)"
+			'document.addEventListener(\n\t\t"pointerdown",\n\t\thandleIdeSettingsOutsidePointerDown\n\t);'
 		);
 		expect(pageSource).toContain(
-			"showIdeSettings.value = false;"
-		);
-		expect(pageSource).toContain(
-			"document.addEventListener(\n\t\t\"pointerdown\",\n\t\thandleIdeSettingsOutsidePointerDown\n\t);"
-		);
-		expect(pageSource).toContain(
-			"document.removeEventListener(\n\t\t\"pointerdown\",\n\t\thandleIdeSettingsOutsidePointerDown\n\t);"
+			'document.removeEventListener(\n\t\t"pointerdown",\n\t\thandleIdeSettingsOutsidePointerDown\n\t);'
 		);
 		expect(pageSource).toContain("Protect local saves");
 		expect(pageSource).toContain("function storageManagerWithPersistence");
@@ -4552,14 +4594,16 @@ pgzrun.go()
 		expect(pageSource).toContain("blueJSourceUrl");
 		expect(pageSource).toContain("New BlueJ project");
 		expect(pageSource).toMatch(/createProject\(\s*'java',\s*'bluej'\s*\)/);
-		expect(pageSource).toContain("async function downloadSelectedProjectForBlueJ");
+		expect(pageSource).toContain(
+			"async function downloadSelectedProjectForBlueJ"
+		);
 		expect(pageSource).toContain('import("@/modules/blueJProjectExport")');
 		expect(pageSource).toContain("Download BlueJ ZIP");
 		expect(pageSource).toContain(
 			"Standard Java project required for ZIP export."
 		);
-		expect(pageSource).toContain(":href=\"blueJHomeUrl\"");
-		expect(pageSource).toContain(":href=\"blueJSourceUrl\"");
+		expect(pageSource).toContain(':href="blueJHomeUrl"');
+		expect(pageSource).toContain(':href="blueJSourceUrl"');
 		expect(pageSource).toContain("BlueJ source");
 		expect(pageSource).toContain("This project is BlueJ-ready");
 		expect(pageSource).toContain("createBlueJProjectArchive(project)");
@@ -4733,13 +4777,17 @@ pgzrun.go()
 		);
 		const loadProjectsSource = pageSource.slice(
 			loadProjectsStart,
-			pageSource.indexOf("interface SaveProjectOptions", loadProjectsStart)
+			pageSource.indexOf(
+				"interface SaveProjectOptions",
+				loadProjectsStart
+			)
 		);
 		const noRemoteProjectsStart = loadProjectsSource.indexOf(
 			"if (remoteProjects.length) {"
 		);
-		const emptyRemoteProjectsSource =
-			loadProjectsSource.slice(noRemoteProjectsStart);
+		const emptyRemoteProjectsSource = loadProjectsSource.slice(
+			noRemoteProjectsStart
+		);
 
 		expect(emptyRemoteProjectsSource).toContain("setProjects([]);");
 		expect(emptyRemoteProjectsSource).toContain(
@@ -4769,7 +4817,10 @@ pgzrun.go()
 		);
 		const loadProjectsSource = pageSource.slice(
 			loadProjectsStart,
-			pageSource.indexOf("interface SaveProjectOptions", loadProjectsStart)
+			pageSource.indexOf(
+				"interface SaveProjectOptions",
+				loadProjectsStart
+			)
 		);
 		const localProjectsStart = loadProjectsSource.indexOf(
 			"visibleProjectReviewCatalog.value = [];\n\t\tprojectCatalog.value = [];\n\t\tconst localProjects = await loadLocalPythonProjectsAsync"
@@ -4793,7 +4844,9 @@ pgzrun.go()
 				"const initialProject = await createInitialProject();"
 			)
 		);
-		expect(localProjectsSource).toContain("if (openedRouteProject) return;");
+		expect(localProjectsSource).toContain(
+			"if (openedRouteProject) return;"
+		);
 	});
 
 	it("suppresses CodeMirror-originated echo updates through the Vue flush", () => {
@@ -4838,7 +4891,9 @@ pgzrun.go()
 		expect(setProjectsSource).toContain(
 			"project.files,\n\t\t\tproject.activeFileName"
 		);
-		expect(setProjectsSource).toContain("projectForRoute(availableProjects)");
+		expect(setProjectsSource).toContain(
+			"projectForRoute(availableProjects)"
+		);
 		expect(pageSource).toContain(
 			"const activeFileName = resolvePythonIdeActiveFileName("
 		);
@@ -5004,10 +5059,10 @@ pgzrun.go()
 		expect(isValidPythonFileName("package/submodule/tools.py")).toBe(true);
 		expect(isValidPythonFileName("Main.java")).toBe(true);
 		expect(isValidPythonFileName("src/main/java/Main.java")).toBe(true);
-			expect(isValidPythonFileName("scores.csv")).toBe(true);
-			expect(isValidPythonFileName("notes.md")).toBe(true);
-			expect(isValidPythonFileName("drawing.eps")).toBe(true);
-			expect(isValidPythonFileName("drawing.ps")).toBe(true);
+		expect(isValidPythonFileName("scores.csv")).toBe(true);
+		expect(isValidPythonFileName("notes.md")).toBe(true);
+		expect(isValidPythonFileName("drawing.eps")).toBe(true);
+		expect(isValidPythonFileName("drawing.ps")).toBe(true);
 		expect(isValidPythonFileName("images/player.svg")).toBe(true);
 		expect(isValidPythonFileName("sounds/eep.wav")).toBe(true);
 		expect(isValidPythonFileName("music/theme.mp3")).toBe(true);
@@ -5071,9 +5126,9 @@ pgzrun.go()
 		expect(normalizeImportedPythonIdeFileName("theme.MP3")).toBe(
 			"music/theme.mp3"
 		);
-			expect(isPythonIdeTextFile("images/player.svg")).toBe(true);
-			expect(isPythonIdeTextFile("drawing.eps")).toBe(true);
-			expect(isPythonIdeTextFile("drawing.ps")).toBe(true);
+		expect(isPythonIdeTextFile("images/player.svg")).toBe(true);
+		expect(isPythonIdeTextFile("drawing.eps")).toBe(true);
+		expect(isPythonIdeTextFile("drawing.ps")).toBe(true);
 		expect(isPythonIdeTextFile("images/player.png")).toBe(false);
 		expect(isPythonIdeBinaryAssetFile({ encoding: "base64" })).toBe(true);
 	});
@@ -5126,8 +5181,9 @@ pgzrun.go()
 		expect(pack.assets.size).toBe(5);
 		expect(pack.assets.get("images/1.png")?.name).toBe("images/1.png");
 		expect(
-			pack.assets.get("images/seaweed-publicdomainvectors.org/seaweed.png")
-				?.name
+			pack.assets.get(
+				"images/seaweed-publicdomainvectors.org/seaweed.png"
+			)?.name
 		).toBe("images/seaweed-publicdomainvectors.org/seaweed.png");
 		expect(alien?.mimeType).toBe("image/png");
 		expect(alien?.width).toBe(1);
@@ -5268,8 +5324,9 @@ pgzrun.go()
 			"/python-ide/assets/images/1.png"
 		);
 		expect(
-			pack.assets.get("images/seaweed-publicdomainvectors.org/seaweed.png")
-				?.url
+			pack.assets.get(
+				"images/seaweed-publicdomainvectors.org/seaweed.png"
+			)?.url
 		).toBe(
 			"/python-ide/assets/images/seaweed-publicdomainvectors.org/seaweed.png"
 		);
@@ -6101,9 +6158,9 @@ pgzrun.go()
 		expect(pageSource).toContain("const paints = new Map(");
 		expect(pageSource).toContain("function karelCellStyle");
 		expect(pageSource).toContain("function karelCellAriaLabel");
-		expect(pageSource).toContain("paintColor: paints.get(key) ?? \"\"");
+		expect(pageSource).toContain('paintColor: paints.get(key) ?? ""');
 		expect(pageSource).toContain("'has-paint': Boolean(");
-		expect(pageSource).toContain("\"--karel-cell-color\"");
+		expect(pageSource).toContain('"--karel-cell-color"');
 		expect(pageSource).toContain(".karel-cell.has-paint");
 	});
 
@@ -6131,7 +6188,9 @@ pgzrun.go()
 		expect(pageSource).toContain(
 			"runMessage.value = `Karel step ${stepNumber} of ${stepCount}`;"
 		);
-		expect(pageSource).toContain('runMessage.value = "Animating Karel world";');
+		expect(pageSource).toContain(
+			'runMessage.value = "Animating Karel world";'
+		);
 		expect(pageSource).toContain(
 			"const completedPlayback = await playKarelWorldSteps("
 		);
