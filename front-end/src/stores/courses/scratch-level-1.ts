@@ -36,8 +36,7 @@ export const scratchLevel1Course: RawCourse = {
 **Return plan:** Revisit this same project after coordinates, variables, conditionals, and broadcasts. Each return adds one tested system instead of building the whole game at once.
 
 **Completion check:** The player starts in the same place, moves in four directions, and can reach the collectable. Explain which future feature will need a variable and which will need a condition.`,
-					projectLink: "https://scratch.mit.edu/projects/304003593/",
-					solutionLink: "https://scratch.mit.edu/projects/313184786/"
+					projectLink: "https://scratch.mit.edu/projects/304003593/"
 				},
 				{
 					title: "Starting in Scratch: Planning and Architecture",
@@ -64,8 +63,7 @@ export const scratchLevel1Course: RawCourse = {
 						moduleTitle: "Starting in Scratch",
 						section: "extension"
 					}),
-					projectLink: "https://scratch.mit.edu/projects/304003593/",
-					solutionLink: "https://scratch.mit.edu/projects/313184786/"
+					projectLink: "https://scratch.mit.edu/projects/304003593/"
 				},
 				{
 					title: "Starting in Scratch: Fluency Drill",
@@ -599,8 +597,8 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 **Extension:** Add more fortunes and questions to make the fortune teller more detailed.
 
 **Completion check:** Different answers produce different fortunes, and unexpected answers do not break the project.`,
-					projectLink: "https://scratch.mit.edu/projects/295333590/",
-					solutionLink: "https://scratch.mit.edu/projects/294540150/"
+					projectLink: "https://scratch.mit.edu/projects/297744913/",
+					solutionLink: "https://scratch.mit.edu/projects/297735619/"
 				},
 				{
 					title: "Project 3 – Number Guesser",
@@ -615,8 +613,8 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 **Extension:** Add a guess counter and congratulate the player for guessing in fewer than 5 tries.
 
 **Completion check:** A wrong guess keeps the game running, and a correct guess ends the loop with clear feedback.`,
-					projectLink: "https://scratch.mit.edu/projects/295335247/",
-					solutionLink: "https://scratch.mit.edu/projects/294541979/"
+					projectLink: "https://scratch.mit.edu/projects/295334181/",
+					solutionLink: "https://scratch.mit.edu/projects/294561252/"
 				}
 			],
 			supplementalProjects: [
@@ -632,8 +630,8 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 5. Prompts or rewards make exploration and hidden secrets clear.
 
 **Completion check:** Each major choice leads to a different visible event and updates any related variables correctly.`,
-					projectLink: "https://scratch.mit.edu/projects/330320360/",
-					solutionLink: "https://scratch.mit.edu/projects/330316142/"
+					projectLink: "https://scratch.mit.edu/projects/328309551/",
+					solutionLink: "https://scratch.mit.edu/projects/328310531/"
 				},
 				{
 					title: "GS7 Supplemental Project 2 – Space Cadets",
@@ -649,8 +647,8 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 **Design target:** Each planet feels distinct through backdrop, dialogue, sprite behavior, or point changes rather than only changing a line of text.
 
 **Completion check:** Planet choice and mission choice both affect the story path, and the variable values match the choices made.`,
-					projectLink: "https://scratch.mit.edu/projects/330321409/",
-					solutionLink: "https://scratch.mit.edu/projects/330316808/"
+					projectLink: "https://scratch.mit.edu/projects/328310783/",
+					solutionLink: "https://scratch.mit.edu/projects/328308418/"
 				},
 				{
 					title: "User Input: Open-Ended Variant",
@@ -686,8 +684,8 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 5. The game ends when the timer runs out and displays the final score.
 
 **Completion check:** Clicking different stage locations moves the mantis accurately, and touching a bug updates the game state once per catch.`,
-					projectLink: "https://scratch.mit.edu/projects/302997680/",
-					solutionLink: "https://scratch.mit.edu/projects/302865707/"
+					projectLink: "https://scratch.mit.edu/projects/297831461/",
+					solutionLink: "https://scratch.mit.edu/projects/297828061/"
 				},
 				{
 					title: "Project 2 – Cake Chaser",
@@ -705,8 +703,8 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 		**Evidence:** Test the game from a clean green-flag start, catch the cake at least three times, and confirm the score, sound, random location, and timer all change for the intended reason.
 
 		**Completion check:** The cake relocates after every catch, and the timer produces a clear end state.`,
-					projectLink: "https://scratch.mit.edu/projects/302998723/",
-					solutionLink: "https://scratch.mit.edu/projects/302865909/"
+					projectLink: "https://scratch.mit.edu/projects/299085513/",
+					solutionLink: "https://scratch.mit.edu/projects/297843021/"
 				},
 				{
 					title: "Project 3 – Talent Show",
@@ -719,8 +717,8 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 4. After every act is finished, all performers bow together.
 
 **Completion check:** The acts run in a clear order, and the final bow happens only after the individual performances finish.`,
-					projectLink: "https://scratch.mit.edu/projects/302999957/",
-					solutionLink: "https://scratch.mit.edu/projects/302866259/"
+					projectLink: "https://scratch.mit.edu/projects/295339505/",
+					solutionLink: "https://scratch.mit.edu/projects/295340057/"
 				}
 			],
 			supplementalProjects: [
@@ -734,8 +732,8 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 3. Shapes or obstacles can make the path more challenging.
 
 **Completion check:** The displayed quadrant message matches the sprite's current X/Y position.`,
-					projectLink: "https://scratch.mit.edu/projects/330290958/",
-					solutionLink: "https://scratch.mit.edu/projects/330287678/"
+					projectLink: "https://scratch.mit.edu/projects/329289426/",
+					solutionLink: "https://scratch.mit.edu/projects/329283944/"
 				},
 				{
 					title: "GS8 Supplemental Project 2 – Coordinate Drawings",
@@ -747,8 +745,8 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 3. Example coordinate sets can draw initials or simple pictures.
 
 **Completion check:** The drawn shape matches the coordinate plan, and user-entered coordinates move the sprite predictably.`,
-					projectLink: "https://scratch.mit.edu/projects/330291711/",
-					solutionLink: "https://scratch.mit.edu/projects/330288612/"
+					projectLink: "https://scratch.mit.edu/projects/329294838/",
+					solutionLink: "https://scratch.mit.edu/projects/329290359/"
 				},
 				{
 					title: "X & Y Coordinates: Open-Ended Variant",
@@ -785,8 +783,8 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 6. A high-score variable can track the best result across plays.
 
 **Completion check:** The score increases only from target clicks, and the timer reliably stops the game at zero.`,
-					projectLink: "https://scratch.mit.edu/projects/302996579/",
-					solutionLink: "https://scratch.mit.edu/projects/302864606/"
+					projectLink: "https://scratch.mit.edu/projects/299327014/",
+					solutionLink: "https://scratch.mit.edu/projects/299311602/"
 				},
 				{
 					title: "Project 2 – Spider Smash",
@@ -799,8 +797,8 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 4. Difficulty can increase by speeding up spiders over time.
 
 **Completion check:** Each spider click counts once, and the game ends cleanly when the timer expires.`,
-					projectLink: "https://scratch.mit.edu/projects/302996964/",
-					solutionLink: "https://scratch.mit.edu/projects/302865093/"
+					projectLink: "https://scratch.mit.edu/projects/299272518/",
+					solutionLink: "https://scratch.mit.edu/projects/299094220/"
 				},
 				{
 					title: "Variables: Verification and Reflection",
@@ -823,8 +821,8 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 4. Obstacles and a goal can turn the counter into a small maze challenge.
 
 **Completion check:** The steps variable increases only when movement happens, not when unrelated keys or events occur.`,
-					projectLink: "https://scratch.mit.edu/projects/330293454/",
-					solutionLink: "https://scratch.mit.edu/projects/330289893/"
+					projectLink: "https://scratch.mit.edu/projects/327635693/",
+					solutionLink: "https://scratch.mit.edu/projects/327634746/"
 				},
 				{
 					title: "GS9 Supplemental Project 2 – Hungry Crab",
@@ -837,8 +835,8 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 4. The final screen displays how much food was collected.
 
 **Completion check:** The food count increases only when the crab collects food, and the timer creates a clear end state.`,
-					projectLink: "https://scratch.mit.edu/projects/330294193/",
-					solutionLink: "https://scratch.mit.edu/projects/330290622/"
+					projectLink: "https://scratch.mit.edu/projects/327610777/",
+					solutionLink: "https://scratch.mit.edu/projects/327610727/"
 				},
 				{
 					title: "GS9 Supplemental Project 3 – Lunch Money",
@@ -852,8 +850,8 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 5. Buying continues until the money runs out.
 
 **Completion check:** Affordable purchases reduce the money variable correctly, while unaffordable purchases do not make the total go negative.`,
-					projectLink: "https://scratch.mit.edu/projects/330294909/",
-					solutionLink: "https://scratch.mit.edu/projects/330291357/"
+					projectLink: "https://scratch.mit.edu/projects/327607937/",
+					solutionLink: "https://scratch.mit.edu/projects/327607840/"
 				}
 			]
 		},
