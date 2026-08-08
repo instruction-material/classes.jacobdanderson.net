@@ -56,6 +56,12 @@ test("native Nginx keeps static, API, and hidden-file boundaries separate", asyn
 	assert.doesNotMatch(policy, /try_files[^;]*index[.]html/u);
 	assert.match(policy, /location = \/index[.]html \{/u);
 	assert.ok(policy.includes("if ($request_uri ~ ^/index[.]html"));
+	assert.match(policy, /location = \/coding_standard \{/u);
+	assert.match(policy, /location = \/coding_standard\/ \{/u);
+	assert.match(
+		policy,
+		/return 308 https:\/\/static[.]classes[.]jacobdanderson[.]net\/coding_standard[.]md\$is_args\$args;/u
+	);
 	assert.match(policy, /classes_legacy_route/u);
 	assert.match(policy, /location = \/admin\/student-management[.]html \{/u);
 	assert.match(policy, /classes_direct_index_route/u);
@@ -153,6 +159,10 @@ test("prepare and promotion scripts enforce exact provenance and rollback gates"
 	assert.match(promote, /--resolve "classes[.]jacobdanderson[.]net:80:127[.]0[.]0[.]1"/u);
 	assert.match(promote, /https:\/\/classes[.]jacobdanderson[.]net\$classes_http_path/u);
 	assert.match(promote, /capture_https \/courses\//u);
+	assert.match(
+		promote,
+		/require_coding_standard_redirect "\/coding_standard\?probe=1"/u
+	);
 	assert.match(promote, /\/api\/readyz/u);
 	assert.match(promote, /"\/404[.]html"/u);
 	assert.match(promote, /"\/courses[.]html"/u);

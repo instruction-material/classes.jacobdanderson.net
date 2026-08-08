@@ -87,6 +87,13 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    '/coding_standard': RouteRecordInfo<
+      '/coding_standard',
+      '/coding_standard',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     '/course-resource': RouteRecordInfo<
       '/course-resource',
       '/course-resource',
@@ -264,6 +271,14 @@ declare module 'vue-router/auto-routes' {
     'src/pages/bluej.vue': {
       routes:
         | '/bluej'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
+    'src/pages/coding_standard.vue': {
+      routes:
+        | '/coding_standard'
       views:
         | never
       pathParamNames:

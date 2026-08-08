@@ -5,6 +5,7 @@ describe("page head helpers", () => {
 	it.each([
 		["/", "Classes with Jacob"],
 		["/bluej", "IDE | Classes with Jacob"],
+		["/coding_standard", "Coding Standard | Classes with Jacob"],
 		["/courses", "Courses | Classes with Jacob"],
 		["/pathways", "Pathways | Classes with Jacob"],
 		[

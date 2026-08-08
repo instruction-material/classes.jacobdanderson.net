@@ -3,6 +3,7 @@ const SITE_TITLE = "Classes with Jacob";
 const ROUTE_TITLES: Array<[RegExp, string]> = [
 	[/^\/$/, SITE_TITLE],
 	[/^\/bluej(?:\/|$)/, "IDE"],
+	[/^\/coding_standard(?:\/|$)/, "Coding Standard"],
 	[/^\/courses(?:\/|$)/, "Courses"],
 	[/^\/pathways(?:\/|$)/, "Pathways"],
 	[/^\/course-resource(?:\/|$)/, "Course Resource"],

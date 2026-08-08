@@ -125,6 +125,8 @@ loopback with its real host name. The smoke gate requires:
 - canonical redirects for legacy route HTML and direct route `index.html`
   requests, while internal index resolution keeps `/` and clean nested routes
   at `200` without redirect loops;
+- the unlisted `/coding_standard` route redirect to the canonical document on
+  `static.classes.jacobdanderson.net`;
 - byte-for-byte branded 404 responses for direct `/404.html`, retired raw
   route HTML, unknown pages, dotfiles, Vite metadata, and both internal/public
   release-metadata guesses; and

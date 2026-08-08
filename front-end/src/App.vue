@@ -12,6 +12,7 @@ const route = useRoute();
 const noindexMatchers = [
 	/^\/admin(?:\/|$)/,
 	/^\/bluej(?:\/|$)/,
+	/^\/coding_standard(?:\/|$)/,
 	/^\/profile(?:\/|$)/,
 	/^\/ide(?:\/|$)/,
 	/^\/python-ide(?:\/|$)/,

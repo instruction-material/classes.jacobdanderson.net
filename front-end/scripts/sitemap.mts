@@ -8,6 +8,7 @@ export const SITEMAP_EXCLUDED_ROUTES = [
 	"/admin/people",
 	"/admin/student-management",
 	"/bluej",
+	"/coding_standard",
 	"/course-resource",
 	"/ide",
 	"/profile",

@@ -48,6 +48,10 @@ describe("static route normalization", () => {
 			join(tempDir, "course-resource.html"),
 			"<main>Course Resource</main>"
 		);
+		await writeFile(
+			join(tempDir, "coding_standard.html"),
+			"<main>Coding Standard</main>"
+		);
 		await writeFile(join(tempDir, "about.html"), "<main>About</main>");
 		await mkdir(join(tempDir, "about"), { recursive: true });
 		await writeFile(
@@ -84,6 +88,9 @@ describe("static route normalization", () => {
 			readFile(join(tempDir, "course-resource", "index.html"), "utf8")
 		).resolves.toBe("<main>Course Resource</main>");
 		await expect(
+			readFile(join(tempDir, "coding_standard", "index.html"), "utf8")
+		).resolves.toBe("<main>Coding Standard</main>");
+		await expect(
 			readFile(join(tempDir, "about", "index.html"), "utf8")
 		).resolves.toBe("<main>About</main>");
 		await expect(readFile(join(tempDir, "404.html"), "utf8")).resolves.toBe(
@@ -97,6 +104,7 @@ describe("static route normalization", () => {
 		).resolves.toBe("<main>Student management</main>");
 		for (const retiredAlias of [
 			"about.html",
+			"coding_standard.html",
 			"course-resource.html",
 			join("admin", "student-management.html")
 		]) {
@@ -197,6 +205,7 @@ describe("static route normalization", () => {
 				"/admin/people",
 				"/admin/student-management",
 				"/bluej",
+				"/coding_standard",
 				"/course-resource",
 				"/ide",
 				"/profile",

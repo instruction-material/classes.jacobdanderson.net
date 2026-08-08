@@ -13,6 +13,7 @@ const fixtureSource = path.join(
 	"test/fixtures/native-nginx/site"
 );
 const canonicalOrigin = "https://classes.jacobdanderson.net";
+const staticOrigin = "https://static.classes.jacobdanderson.net";
 
 function safeNginxPath(value) {
 	assert.match(value, /^[/\w.-]+$/u, `Unsafe fixture path: ${value}`);
@@ -197,6 +198,14 @@ async function runFixture() {
 
 		for (const [requestPath, location] of [
 			["/index.html?probe=1", `${canonicalOrigin}/?probe=1`],
+			[
+				"/coding_standard?probe=1",
+				`${staticOrigin}/coding_standard.md?probe=1`
+			],
+			[
+				"/coding_standard/?probe=1",
+				`${staticOrigin}/coding_standard.md?probe=1`
+			],
 			[
 				"/courses/index.html?probe=1",
 				`${canonicalOrigin}/courses/?probe=1`

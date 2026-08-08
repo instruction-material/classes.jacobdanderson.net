@@ -271,6 +271,23 @@ require_https_redirect() {
 		"https://classes.jacobdanderson.net$classes_target"
 }
 
+require_coding_standard_redirect() {
+	local classes_path="$1"
+	local classes_probe_prefix="$2"
+	local classes_status
+	classes_status="$(
+		capture_https \
+			"$classes_path" \
+			"$classes_probe_prefix.coding-standard.body" \
+			"$classes_probe_prefix.coding-standard.headers"
+	)"
+	[[ "$classes_status" == "308" ]]
+	require_one_header \
+		"$classes_probe_prefix.coding-standard.headers" \
+		"Location" \
+		"https://static.classes.jacobdanderson.net/coding_standard.md?probe=1"
+}
+
 verify_nginx_includes() {
 	local classes_include_count classes_target
 	local classes_nginx_dump="$1"
@@ -315,6 +332,8 @@ smoke_release() {
 	require_https_redirect "/index.html?probe=1" "/?probe=1" "$classes_probe_prefix"
 	require_https_redirect "/courses/index.html?probe=1" "/courses/?probe=1" "$classes_probe_prefix"
 	require_https_redirect "/ide.html?probe=1" "/ide/?probe=1" "$classes_probe_prefix"
+	require_coding_standard_redirect "/coding_standard?probe=1" "$classes_probe_prefix"
+	require_coding_standard_redirect "/coding_standard/?probe=1" "$classes_probe_prefix"
 	require_https_redirect \
 		"/admin/student-management.html?probe=1" \
 		"/admin/student-management/?probe=1" \
