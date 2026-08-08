@@ -149,15 +149,29 @@ describe("Python Level 2 and PyGames classroom editions", () => {
 					["choice", "challenge"].includes(item.learningPath ?? "")
 				)
 			).toBe(true);
+			expect(
+				launchProjects.every(item =>
+					launchModule.curriculum.includes(item)
+				)
+			).toBe(true);
+			expect(
+				launchModule.supplementalProjects.every(item =>
+					item.title.startsWith("Launch Remix:")
+				)
+			).toBe(true);
 			expect(launchModule.curriculum[0]?.content).toContain(
 				"**Course flow:**"
 			);
 			expect(
-				items.filter(item => item.learningPath === "choice").length
-			).toBeGreaterThanOrEqual(5);
+				launchModule.supplementalProjects.filter(
+					item => item.learningPath === "choice"
+				)
+			).toHaveLength(1);
 			expect(
-				items.filter(item => item.learningPath === "challenge").length
-			).toBeGreaterThanOrEqual(3);
+				launchModule.supplementalProjects.filter(
+					item => item.learningPath === "challenge"
+				)
+			).toHaveLength(1);
 		}
 	);
 

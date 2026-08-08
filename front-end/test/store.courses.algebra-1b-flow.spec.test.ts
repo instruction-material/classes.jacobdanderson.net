@@ -75,14 +75,17 @@ describe("Algebra 1B learner flow", () => {
 		}
 	});
 
-	it("uses the kickoff as a two-route placement menu", () => {
+	it("keeps kickoff projects core while preserving route guidance", () => {
 		const kickoff = requireModule("Algebra 1B Kick-Off and Placement");
 		expect(kickoff.curriculum.map(item => item.title)).toEqual([
-			"Kick-Off Overview"
+			"Kick-Off Overview",
+			"Project 1: Amusement Park Shenanigans",
+			"Project 2: Ride Paths and Snack Break"
 		]);
 		expect(
-			kickoff.supplementalProjects.map(item => item.learningPath)
-		).toEqual(["choice", "challenge"]);
+			kickoff.curriculum.every(item => item.learningPath === "core")
+		).toBe(true);
+		expect(kickoff.supplementalProjects).toHaveLength(0);
 		expect(kickoff.curriculum[0]?.content).toContain(
 			"rather than completing both long amusement-park projects"
 		);

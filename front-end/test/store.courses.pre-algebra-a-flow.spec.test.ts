@@ -61,26 +61,17 @@ describe("Pre-Algebra A learner flow", () => {
 		}
 	});
 
-	it("uses one readiness inventory before optional kickoff applications", () => {
+	it("keeps kickoff projects core after the readiness inventory", () => {
 		const kickoff = requireModule("Pre-Algebra A Kick-Off");
 		expect(kickoff.curriculum.map(item => item.title)).toEqual([
-			"Course Map and Readiness Check"
+			"Course Map and Readiness Check",
+			"Project: Starting a Gardening Business",
+			"Project: Growing the Gardening Business"
 		]);
 		expect(
-			kickoff.supplementalProjects.map(item => ({
-				path: item.learningPath,
-				title: item.title
-			}))
-		).toEqual([
-			{
-				path: "choice",
-				title: "Project: Starting a Gardening Business"
-			},
-			{
-				path: "challenge",
-				title: "Project: Growing the Gardening Business"
-			}
-		]);
+			kickoff.curriculum.every(item => item.learningPath === "core")
+		).toBe(true);
+		expect(kickoff.supplementalProjects).toHaveLength(0);
 		expect(kickoff.curriculum[0]?.content).toContain(
 			"completing both projects is not required"
 		);

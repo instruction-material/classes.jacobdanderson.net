@@ -8,39 +8,35 @@ interface MovedItemExpectation {
 	location: "curriculum" | "supplementalProjects";
 	itemTitle: string;
 	stableId: string;
-	currentAlias: string;
+	currentAlias?: string;
 }
 
 const MOVED_ITEM_EXPECTATIONS: MovedItemExpectation[] = [
 	{
 		courseId: "pre-algebra-a",
 		moduleTitle: "Pre-Algebra A Kick-Off",
-		location: "supplementalProjects",
+		location: "curriculum",
 		itemTitle: "Project: Starting a Gardening Business",
 		stableId:
-			"pre-algebra-a-pre-algebra-a-kick-off-curriculum-project-starting-a-gardening-business",
-		currentAlias:
-			"pre-algebra-a-pre-algebra-a-kick-off-supplemental-project-starting-a-gardening-business"
+			"pre-algebra-a-pre-algebra-a-kick-off-curriculum-project-starting-a-gardening-business"
 	},
 	{
 		courseId: "pre-algebra-b",
 		moduleTitle: "Pre-Algebra B Kick-Off",
-		location: "supplementalProjects",
+		location: "curriculum",
 		itemTitle: "Project: Pre-Algebra B Readiness Map",
 		stableId:
-			"pre-algebra-b-pre-algebra-b-kick-off-curriculum-project-pre-algebra-b-readiness-map",
-		currentAlias:
-			"pre-algebra-b-pre-algebra-b-kick-off-supplemental-project-pre-algebra-b-readiness-map"
+			"pre-algebra-b-pre-algebra-b-kick-off-curriculum-project-pre-algebra-b-readiness-map"
 	},
 	{
 		courseId: "algebra-1a",
 		moduleTitle: "Algebra 1A Kick-Off and Placement",
-		location: "supplementalProjects",
+		location: "curriculum",
 		itemTitle: "Project 1: Managing a Restaurant",
 		stableId:
 			"algebra-1a-algebra-1a-kick-off-projects-curriculum-project-1-managing-a-restaurant",
 		currentAlias:
-			"algebra-1a-algebra-1a-kick-off-and-placement-supplemental-project-1-managing-a-restaurant"
+			"algebra-1a-algebra-1a-kick-off-and-placement-curriculum-project-1-managing-a-restaurant"
 	},
 	{
 		courseId: "algebra-1a",
@@ -56,12 +52,12 @@ const MOVED_ITEM_EXPECTATIONS: MovedItemExpectation[] = [
 	{
 		courseId: "algebra-1b",
 		moduleTitle: "Algebra 1B Kick-Off and Placement",
-		location: "supplementalProjects",
+		location: "curriculum",
 		itemTitle: "Project 1: Amusement Park Shenanigans",
 		stableId:
 			"algebra-1b-algebra-1b-kick-off-project-curriculum-project-1-amusement-park-shenanigans",
 		currentAlias:
-			"algebra-1b-algebra-1b-kick-off-and-placement-supplemental-project-1-amusement-park-shenanigans"
+			"algebra-1b-algebra-1b-kick-off-and-placement-curriculum-project-1-amusement-park-shenanigans"
 	},
 	{
 		courseId: "geometry-a",
@@ -143,9 +139,13 @@ describe("math course progress compatibility", () => {
 			);
 
 			expect(item?.id, expectation.itemTitle).toBe(expectation.stableId);
-			expect(item?.aliases, expectation.itemTitle).toContain(
-				expectation.currentAlias
-			);
+			if (expectation.currentAlias) {
+				expect(item?.aliases, expectation.itemTitle).toContain(
+					expectation.currentAlias
+				);
+			} else {
+				expect(item?.aliases, expectation.itemTitle).toBeUndefined();
+			}
 		}
 	});
 

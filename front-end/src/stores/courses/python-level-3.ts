@@ -4,6 +4,7 @@ import type {
 	RawCourseModule,
 	RawCourseModuleItem
 } from "./types";
+import { isCoreProjectTitle } from "./projectGrouping";
 import { isKnownPendingStaticMedia, staticMediaUrl } from "./staticMedia";
 
 const SORT_ANIMATIONS = {
@@ -1889,9 +1890,17 @@ function configurePythonLevel3Module(
 	module.id ??= legacyModuleId;
 	preservePythonLevel3Ids(module, legacyModuleId);
 
-	const choiceTitles = new Set(config.choiceCurriculumTitles ?? []);
-	const challengeTitles = new Set(config.challengeCurriculumTitles ?? []);
-	const movedItems = module.curriculum.filter(
+	const choiceTitles = new Set(
+		(config.choiceCurriculumTitles ?? []).filter(
+			title => !isCoreProjectTitle(title)
+		)
+	);
+	const challengeTitles = new Set(
+		(config.challengeCurriculumTitles ?? []).filter(
+			title => !isCoreProjectTitle(title)
+		)
+	);
+	const movedPractice = module.curriculum.filter(
 		item => choiceTitles.has(item.title) || challengeTitles.has(item.title)
 	);
 	module.curriculum = module.curriculum.filter(
@@ -1900,7 +1909,7 @@ function configurePythonLevel3Module(
 	);
 
 	for (const item of module.curriculum) item.learningPath = "core";
-	for (const item of movedItems) {
+	for (const item of movedPractice) {
 		item.learningPath = challengeTitles.has(item.title)
 			? "challenge"
 			: "choice";
@@ -1909,7 +1918,7 @@ function configurePythonLevel3Module(
 		item.learningPath = pythonLevel3SupplementalPath(item);
 	}
 	module.supplementalProjects = [
-		...movedItems,
+		...movedPractice,
 		...module.supplementalProjects
 	];
 

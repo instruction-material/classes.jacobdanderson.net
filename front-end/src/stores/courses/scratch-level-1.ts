@@ -4,6 +4,7 @@ import type {
 	RawCourseModule,
 	RawCourseModuleItem
 } from "./types";
+import { isCoreProjectTitle } from "./projectGrouping";
 import {
 	buildScratchFluencyDrill,
 	buildScratchOpenEndedVariant
@@ -1695,25 +1696,29 @@ function configureScratchLevel1Module(
 	module.id ??= legacyModuleId;
 	preserveScratchItemIds(module, legacyModuleId);
 
-	const choiceTitles = new Set(config.choiceCurriculumTitles ?? []);
-	const movedChoices = module.curriculum.filter(item =>
-		choiceTitles.has(item.title)
+	const practiceTitles = new Set(
+		(config.choiceCurriculumTitles ?? []).filter(
+			title => !isCoreProjectTitle(title)
+		)
+	);
+	const movedPractice = module.curriculum.filter(item =>
+		practiceTitles.has(item.title)
 	);
 	module.curriculum = module.curriculum.filter(
-		item => !choiceTitles.has(item.title)
+		item => !practiceTitles.has(item.title)
 	);
 
 	for (const item of module.curriculum) {
 		item.learningPath = "core";
 	}
-	for (const item of movedChoices) {
+	for (const item of movedPractice) {
 		item.learningPath = "choice";
 	}
 	for (const item of module.supplementalProjects) {
 		item.learningPath = supplementalLearningPath(item);
 	}
 	module.supplementalProjects = [
-		...movedChoices,
+		...movedPractice,
 		...module.supplementalProjects
 	];
 

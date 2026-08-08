@@ -4,6 +4,7 @@ import type {
 	RawCourseModule,
 	RawCourseModuleItem
 } from "./types";
+import { isCoreProjectTitle } from "./projectGrouping";
 import {
 	buildScratchFluencyDrill,
 	buildScratchOpenEndedVariant
@@ -1745,9 +1746,17 @@ function configureScratchLevel2Module(
 	module.id ??= legacyModuleId;
 	preserveScratchLevel2ItemIds(module, legacyModuleId);
 
-	const choiceTitles = new Set(config.choiceCurriculumTitles ?? []);
-	const challengeTitles = new Set(config.challengeCurriculumTitles ?? []);
-	const movedItems = module.curriculum.filter(
+	const choiceTitles = new Set(
+		(config.choiceCurriculumTitles ?? []).filter(
+			title => !isCoreProjectTitle(title)
+		)
+	);
+	const challengeTitles = new Set(
+		(config.challengeCurriculumTitles ?? []).filter(
+			title => !isCoreProjectTitle(title)
+		)
+	);
+	const movedPractice = module.curriculum.filter(
 		item => choiceTitles.has(item.title) || challengeTitles.has(item.title)
 	);
 	module.curriculum = module.curriculum.filter(
@@ -1758,7 +1767,7 @@ function configureScratchLevel2Module(
 	for (const item of module.curriculum) {
 		item.learningPath = "core";
 	}
-	for (const item of movedItems) {
+	for (const item of movedPractice) {
 		item.learningPath = challengeTitles.has(item.title)
 			? "challenge"
 			: "choice";
@@ -1767,7 +1776,7 @@ function configureScratchLevel2Module(
 		item.learningPath = scratchLevel2SupplementalPath(item);
 	}
 	module.supplementalProjects = [
-		...movedItems,
+		...movedPractice,
 		...module.supplementalProjects
 	];
 

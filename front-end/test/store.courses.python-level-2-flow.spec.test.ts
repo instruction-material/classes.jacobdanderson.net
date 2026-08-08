@@ -71,7 +71,7 @@ describe("Python Level 2 learner flow", () => {
 		}
 	});
 
-	it("reduces the required path while retaining every authored card", () => {
+	it("keeps authored projects core and only supplemental work optional", () => {
 		const requiredCount = pythonLevel2Course.modules.reduce(
 			(total, module) => total + module.curriculum.length,
 			0
@@ -81,25 +81,25 @@ describe("Python Level 2 learner flow", () => {
 			0
 		);
 
-		expect(requiredCount).toBe(48);
-		expect(optionCount).toBe(58);
+		expect(requiredCount).toBe(52);
+		expect(optionCount).toBe(54);
 
 		expect(
-			requireSourceModule("PS4 Conditionals").supplementalProjects.find(
+			requireSourceModule("PS4 Conditionals").curriculum.find(
 				item =>
 					item.title === "PS4 Project 3: Credit Card Validator"
 			)?.learningPath
-		).toBe("challenge");
+		).toBe("core");
 		expect(
-			requireSourceModule("PS5 Functions").supplementalProjects.find(
+			requireSourceModule("PS5 Functions").curriculum.find(
 				item => item.title === "PS5 Project 3: Dice Roller"
 			)?.learningPath
-		).toBe("choice");
+		).toBe("core");
 		expect(
-			requireSourceModule("PS14 Blackjack").supplementalProjects.find(
+			requireSourceModule("PS14 Blackjack").curriculum.find(
 				item => item.title === "PS14 Project 2: Advanced Blackjack"
 			)?.learningPath
-		).toBe("challenge");
+		).toBe("core");
 	});
 
 	it("uses PS8 as a collections-and-cipher integration studio", () => {
@@ -110,7 +110,7 @@ describe("Python Level 2 learner flow", () => {
 		expect(ps8.keyBlocks).toContain("round-trip check");
 	});
 
-	it("preserves moved-project progress IDs and exposes their new aliases", async () => {
+	it("preserves project progress IDs in the core listing", async () => {
 		const course =
 			await useCoursesStore().loadCourseById("python-level-2");
 		expect(course).not.toBeNull();
@@ -118,16 +118,14 @@ describe("Python Level 2 learner flow", () => {
 		const conditionals = course!.modules.find(
 			module => module.title === "PS4 Conditionals"
 		);
-		const validator = conditionals?.supplementalProjects.find(
+		const validator = conditionals?.curriculum.find(
 			item => item.title === "PS4 Project 3: Credit Card Validator"
 		);
 
 		expect(validator?.id).toBe(
 			"python-level-2-ps4-conditionals-curriculum-ps4-project-3-credit-card-validator"
 		);
-		expect(validator?.aliases).toContain(
-			"python-level-2-ps4-conditionals-supplemental-ps4-project-3-credit-card-validator"
-		);
+		expect(validator?.aliases).toBeUndefined();
 	});
 
 	it("keeps method references and unavailable media out of learner actions", async () => {

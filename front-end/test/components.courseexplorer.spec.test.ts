@@ -96,8 +96,8 @@ describe("CourseExplorer.vue", () => {
 			expect(wrapper.text()).toContain("Current course");
 		});
 		expect(wrapper.text()).toContain(assignedCourse.name);
-		expect(wrapper.text()).toContain("Core lessons");
-		expect(wrapper.text()).toContain("Practice & extensions");
+		expect(wrapper.text()).toContain("Core");
+		expect(wrapper.text()).toContain("Practice");
 		expect(wrapper.text()).toContain("Done");
 		expect(wrapper.text()).toContain("Complete");
 		expect(wrapper.text()).toContain("core items");
@@ -426,10 +426,8 @@ describe("CourseExplorer.vue", () => {
 
 		expect(wrapper.find(".course-stats").text()).toContain("Modules1");
 		expect(wrapper.find(".course-stats").text()).toContain("Appendices1");
-		expect(wrapper.find(".course-stats").text()).toContain("Core lessons1");
-		expect(wrapper.find(".course-stats").text()).toContain(
-			"Practice & extensions0"
-		);
+		expect(wrapper.find(".course-stats").text()).toContain("Core1");
+		expect(wrapper.find(".course-stats").text()).toContain("Practice0");
 		expect(wrapper.text()).toContain("Choose a section");
 		expect(wrapper.text()).toContain("References");
 		expect(
@@ -439,7 +437,7 @@ describe("CourseExplorer.vue", () => {
 		).toBe(true);
 	});
 
-	it("separates optional transitions and labels paced learning paths", async () => {
+	it("labels projects as core and supplemental projects as practice", async () => {
 		const pinia = createPinia();
 		setActivePinia(pinia);
 
@@ -527,13 +525,15 @@ describe("CourseExplorer.vue", () => {
 			.trigger("click");
 		await flushPromises();
 
-		expect(wrapper.text()).toContain("Optional transition");
+		expect(wrapper.text()).toContain("Core");
 		expect(wrapper.text()).toContain("Estimated pace");
 		expect(wrapper.text()).toContain("1 optional session");
 		expect(wrapper.text()).toContain("repeat → loop");
-		expect(wrapper.text()).toContain("Core Build");
-		expect(wrapper.text()).toContain("Choose-One Practice");
-		expect(wrapper.text()).toContain("Challenge");
+		expect(wrapper.text()).toContain("Next Step Projects");
+		expect(wrapper.text()).toContain("Supplemental Projects");
+		expect(
+			wrapper.findAll(".lesson-kicker").map(kicker => kicker.text())
+		).toEqual(["Core", "Practice", "Practice"]);
 		expect(wrapper.text()).not.toContain("Mark next step complete");
 	});
 

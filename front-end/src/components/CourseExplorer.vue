@@ -707,47 +707,39 @@ const canEditActiveModuleProgress = computed(
 );
 
 const activeCurriculumSectionLabel = computed(() =>
-	activeModule.value?.kind === "appendix"
-		? "Reference"
-		: activeModule.value?.kind === "transition"
-			? "Optional transition"
-			: "Core path"
+	activeModule.value?.kind === "appendix" ? "Reference" : "Core"
 );
 
 const activeCurriculumHeading = computed(() =>
 	activeModule.value?.kind === "appendix"
 		? "Reference Materials"
 		: activeModule.value?.kind === "transition"
-			? "Next Step"
-			: "Required Builds"
+			? "Next Step Projects"
+			: "Projects"
 );
 
 const activeSupplementalSectionLabel = computed(() =>
-	activeModule.value?.kind === "appendix"
-		? "Reference practice"
-		: activeModule.value?.kind === "transition"
-			? "Optional practice"
-			: "Practice and challenge"
+	activeModule.value?.kind === "appendix" ? "Reference practice" : "Practice"
 );
 
 const activeSupplementalHeading = computed(() =>
 	activeModule.value?.kind === "appendix"
 		? "Reference Activities"
-		: "Practice & Extensions"
+		: "Supplemental Projects"
 );
 
 const activeCurriculumJumpHeading = computed(() =>
 	activeModule.value?.kind === "appendix"
 		? "References:"
 		: activeModule.value?.kind === "transition"
-			? "Next step:"
-			: "Core builds:"
+			? "Next step projects:"
+			: "Core projects:"
 );
 
 const activeSupplementalJumpHeading = computed(() =>
 	activeModule.value?.kind === "appendix"
 		? "Activities:"
-		: "Practice and challenges:"
+		: "Practice projects:"
 );
 
 const courseReaderStatus = computed(() => {
@@ -784,16 +776,6 @@ function itemLearningPath(
 	fallback: "core" | "choice"
 ) {
 	return item.learningPath ?? fallback;
-}
-
-function itemLearningPathLabel(
-	item: Pick<CourseModuleItem, "learningPath">,
-	fallback: "core" | "choice"
-) {
-	const path = itemLearningPath(item, fallback);
-	if (path === "challenge") return "Challenge";
-	if (path === "choice") return "Choose-One Practice";
-	return "Core Build";
 }
 
 const activeModuleProjectLinks = computed(() => {
@@ -1706,11 +1688,11 @@ function writeStoredValue(key: string, value: string) {
 						<dd>{{ courseStats.appendixCount }}</dd>
 					</div>
 					<div class="stat">
-						<dt>Core lessons</dt>
+						<dt>Core</dt>
 						<dd>{{ courseStats.lessonCount }}</dd>
 					</div>
 					<div class="stat">
-						<dt>Practice &amp; extensions</dt>
+						<dt>Practice</dt>
 						<dd>{{ courseStats.supplementalCount }}</dd>
 					</div>
 					<div v-if="hasProgressTracking" class="stat is-progress">
@@ -2099,10 +2081,10 @@ function writeStoredValue(key: string, value: string) {
 										<div class="lesson-title-group">
 											<p class="lesson-kicker">
 												{{
-													itemLearningPathLabel(
-														item,
-														"core"
-													)
+													activeModule.kind ===
+													"appendix"
+														? "Reference"
+														: "Core"
 												}}
 											</p>
 											<h5>{{ item.title }}</h5>
@@ -2350,12 +2332,7 @@ function writeStoredValue(key: string, value: string) {
 										</span>
 										<div class="lesson-title-group">
 											<p class="lesson-kicker">
-												{{
-													itemLearningPathLabel(
-														item,
-														"choice"
-													)
-												}}
+												Practice
 											</p>
 											<h5>{{ item.title }}</h5>
 										</div>

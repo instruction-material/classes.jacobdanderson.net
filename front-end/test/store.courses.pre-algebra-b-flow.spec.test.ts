@@ -59,17 +59,16 @@ describe("Pre-Algebra B learner flow", () => {
 		}
 	});
 
-	it("makes the kickoff project optional instead of a second prerequisite", () => {
+	it("keeps the kickoff project core with the readiness check", () => {
 		const kickoff = requireModule("Pre-Algebra B Kick-Off");
 		expect(kickoff.curriculum.map(item => item.title)).toEqual([
-			"Course Map and Readiness Check"
+			"Course Map and Readiness Check",
+			"Project: Pre-Algebra B Readiness Map"
 		]);
-		expect(kickoff.supplementalProjects).toEqual([
-			expect.objectContaining({
-				learningPath: "choice",
-				title: "Project: Pre-Algebra B Readiness Map"
-			})
-		]);
+		expect(
+			kickoff.curriculum.every(item => item.learningPath === "core")
+		).toBe(true);
+		expect(kickoff.supplementalProjects).toHaveLength(0);
 		expect(kickoff.curriculum[0]?.content).toContain(
 			"not another required unit"
 		);

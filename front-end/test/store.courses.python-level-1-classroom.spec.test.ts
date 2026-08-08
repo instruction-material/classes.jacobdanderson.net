@@ -89,6 +89,13 @@ describe("Python Level 1 classroom edition", () => {
 			"Classroom Workflow: Run, Normal, Hard",
 			"Launch Project 1: Color Circle Art",
 			"Launch Project 2: Picasso Keyboard Painter",
+			"Launch Project 3: Triangle Motion",
+			"Launch Project 4: Neon Trail Painter",
+			"Launch Project 5: Firework Festival",
+			"Launch Project 6: Spiral Galaxy",
+			"Launch Project 7: Turtle Race Day",
+			"Launch Project 8: Flower Garden Clicker",
+			"Launch Project 9: Maze Explorer",
 			"Classroom Debugging and Showcase Routine"
 		]);
 		expect(
@@ -98,12 +105,12 @@ describe("Python Level 1 classroom edition", () => {
 			launchModule.supplementalProjects.filter(
 				item => item.learningPath === "choice"
 			)
-		).toHaveLength(5);
+		).toHaveLength(1);
 		expect(
 			launchModule.supplementalProjects.filter(
 				item => item.learningPath === "challenge"
 			)
-		).toHaveLength(4);
+		).toHaveLength(1);
 	});
 
 	it("gives every classroom project Normal and Hard work areas", async () => {
@@ -161,7 +168,7 @@ describe("Python Level 1 classroom edition", () => {
 		);
 	});
 
-	it("preserves progress IDs when launch projects become optional", async () => {
+	it("preserves progress IDs when launch projects remain core", async () => {
 		const course = await useCoursesStore().loadCourseById(
 			"python-level-1-classroom"
 		);
@@ -169,16 +176,14 @@ describe("Python Level 1 classroom edition", () => {
 			module =>
 				module.title === "Classroom Launch: Normal and Hard Projects"
 		);
-		const triangle = launchModule?.supplementalProjects.find(
+		const triangle = launchModule?.curriculum.find(
 			item => item.title === "Launch Project 3: Triangle Motion"
 		);
 
 		expect(triangle?.id).toBe(
 			"python-level-1-classroom-classroom-launch-normal-and-hard-projects-curriculum-launch-project-3-triangle-motion"
 		);
-		expect(triangle?.aliases).toContain(
-			"python-level-1-classroom-classroom-launch-normal-and-hard-projects-supplemental-launch-project-3-triangle-motion"
-		);
+		expect(triangle?.aliases).toBeUndefined();
 	});
 
 	it("uses completed source projects when available and keeps source attribution", async () => {

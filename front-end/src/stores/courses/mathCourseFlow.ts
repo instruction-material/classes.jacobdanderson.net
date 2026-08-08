@@ -4,6 +4,7 @@ import type {
 	RawCourseModule,
 	RawCourseModuleItem
 } from "./types";
+import { isCoreProjectTitle } from "./projectGrouping";
 
 export interface MathCourseModuleFlow {
 	title: string;
@@ -115,6 +116,12 @@ function configureModule(
 	const choiceCurriculumTitles = flow.choiceCurriculumTitles ?? [];
 	const challengeCurriculumTitles = flow.challengeCurriculumTitles ?? [];
 	const coreSupplementalTitles = flow.coreSupplementalTitles ?? [];
+	const choicePracticeTitles = choiceCurriculumTitles.filter(
+		title => !isCoreProjectTitle(title)
+	);
+	const challengePracticeTitles = challengeCurriculumTitles.filter(
+		title => !isCoreProjectTitle(title)
+	);
 
 	requireTitles(
 		module.curriculum,
@@ -132,7 +139,7 @@ function configureModule(
 	moveItems(
 		module.curriculum,
 		module.supplementalProjects,
-		choiceCurriculumTitles,
+		choicePracticeTitles,
 		"choice",
 		legacyModuleId,
 		"curriculum"
@@ -140,7 +147,7 @@ function configureModule(
 	moveItems(
 		module.curriculum,
 		module.supplementalProjects,
-		challengeCurriculumTitles,
+		challengePracticeTitles,
 		"challenge",
 		legacyModuleId,
 		"curriculum"

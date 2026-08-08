@@ -71,7 +71,7 @@ describe("PyGames learner flow", () => {
 		}
 	});
 
-	it("keeps one coherent required path while retaining authored options", () => {
+	it("keeps authored projects core and only supplemental work optional", () => {
 		const requiredCount = pyGamesCourse.modules.reduce(
 			(total, module) => total + module.curriculum.length,
 			0
@@ -81,8 +81,8 @@ describe("PyGames learner flow", () => {
 			0
 		);
 
-		expect(requiredCount).toBe(69);
-		expect(choiceAndChallengeCount).toBe(68);
+		expect(requiredCount).toBe(82);
+		expect(choiceAndChallengeCount).toBe(55);
 
 		const actors = requireSourceModule(
 			"PyG1 Object-Oriented Programming: Actors"
@@ -93,15 +93,15 @@ describe("PyGames learner flow", () => {
 			)?.learningPath
 		).toBe("core");
 		expect(
-			actors.supplementalProjects.find(
+			actors.curriculum.find(
 				item => item.title === "PyG1 Project 1: Rainbow Fill"
 			)?.learningPath
-		).toBe("choice");
+		).toBe("core");
 		expect(
-			actors.supplementalProjects.find(
+			actors.curriculum.find(
 				item => item.title === "PyG1 Project 3: Wandering Ball"
 			)?.learningPath
-		).toBe("challenge");
+		).toBe("core");
 
 		for (const checkInTitle of [
 			"Check-In #1: Actors, Events, ZRects, Collectibles",
@@ -130,7 +130,7 @@ describe("PyGames learner flow", () => {
 		).toContain("minimum playable version");
 	});
 
-	it("preserves moved-project progress IDs and exposes their new aliases", async () => {
+	it("preserves project progress IDs in the core listing", async () => {
 		const course = await useCoursesStore().loadCourseById("pygames");
 		expect(course).not.toBeNull();
 
@@ -138,16 +138,14 @@ describe("PyGames learner flow", () => {
 			module =>
 				module.title === "PyG1 Object-Oriented Programming: Actors"
 		);
-		const rainbowFill = actors?.supplementalProjects.find(
+		const rainbowFill = actors?.curriculum.find(
 			item => item.title === "PyG1 Project 1: Rainbow Fill"
 		);
 
 		expect(rainbowFill?.id).toBe(
 			"pygames-pyg1-object-oriented-programming-actors-curriculum-pyg1-project-1-rainbow-fill"
 		);
-		expect(rainbowFill?.aliases).toContain(
-			"pygames-pyg1-object-oriented-programming-actors-supplemental-pyg1-project-1-rainbow-fill"
-		);
+		expect(rainbowFill?.aliases).toBeUndefined();
 	});
 
 	it("keeps hosted media on project cards in the normalized learner path", async () => {

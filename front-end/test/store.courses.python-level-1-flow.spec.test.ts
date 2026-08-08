@@ -73,7 +73,7 @@ describe("Python Level 1 learner flow", () => {
 		}
 	});
 
-	it("reduces the required path while retaining every authored project", () => {
+	it("keeps authored projects core and only supplemental work optional", () => {
 		const requiredCount = pythonLevel1Course.modules.reduce(
 			(total, module) => total + module.curriculum.length,
 			0
@@ -83,25 +83,27 @@ describe("Python Level 1 learner flow", () => {
 			0
 		);
 
-		expect(requiredCount).toBe(55);
-		expect(choiceAndChallengeCount).toBe(68);
+		expect(requiredCount).toBe(66);
+		expect(choiceAndChallengeCount).toBe(57);
 
 		const loops = requireSourceModule("GrS2 Loops");
 		expect(loops.curriculum.map(item => item.title)).toEqual([
-			"GrS2 Project 1: Basic Shapes"
+			"GrS2 Project 1: Basic Shapes",
+			"GrS2 Project 2: Smiley Face",
+			"GrS2 Project 3: Open Ended Project - Drawing with Loops"
 		]);
 		expect(
-			loops.supplementalProjects.find(
+			loops.curriculum.find(
 				item => item.title === "GrS2 Project 2: Smiley Face"
 			)?.learningPath
-		).toBe("choice");
+		).toBe("core");
 		expect(
-			loops.supplementalProjects.find(
+			loops.curriculum.find(
 				item =>
 					item.title ===
 					"GrS2 Project 3: Open Ended Project - Drawing with Loops"
 			)?.learningPath
-		).toBe("challenge");
+		).toBe("core");
 	});
 
 	it("adds validated Turtle input before event-driven game work", () => {
@@ -119,23 +121,21 @@ describe("Python Level 1 learner flow", () => {
 		expect(inputProject?.content).toContain("outside the accepted range");
 	});
 
-	it("preserves moved-project progress IDs and exposes their new aliases", async () => {
+	it("preserves project progress IDs in the core listing", async () => {
 		const course = await useCoursesStore().loadCourseById("python-level-1");
 		expect(course).not.toBeNull();
 
 		const loops = course!.modules.find(
 			module => module.title === "GrS2 Loops"
 		);
-		const smiley = loops?.supplementalProjects.find(
+		const smiley = loops?.curriculum.find(
 			item => item.title === "GrS2 Project 2: Smiley Face"
 		);
 
 		expect(smiley?.id).toBe(
 			"python-level-1-grs2-loops-curriculum-grs2-project-2-smiley-face"
 		);
-		expect(smiley?.aliases).toContain(
-			"python-level-1-grs2-loops-supplemental-grs2-project-2-smiley-face"
-		);
+		expect(smiley?.aliases).toBeUndefined();
 	});
 
 	it("keeps references and the normalized learner path intact", async () => {
