@@ -18,7 +18,7 @@ describe("public Scratch privacy disclosure", () => {
 		const renderedHead = await renderSSRHead(head);
 
 		expect(renderedHead.headTags).toContain(
-			"<title>Privacy | Classes with Jacob</title>"
+			"<title>Privacy | Classes</title>"
 		);
 		expect(renderedHead.headTags).toContain(
 			"How optional external Scratch solution players handle browser connections."
