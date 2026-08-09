@@ -17,9 +17,9 @@ classes_tag="$2"
 
 classes_revision="$(git -C "$classes_source_dir" rev-parse --verify 'HEAD^{commit}')"
 classes_origin_url="$(git -C "$classes_source_dir" remote get-url origin 2>/dev/null || true)"
-classes_canonical_origin_pattern='^(git@github\.com:|ssh://git@github\.com/|https://github\.com/)anderson-webops/classes\.jacobdanderson\.net([.]git)?$'
+classes_canonical_origin_pattern='^(git@github\.com:|ssh://git@github\.com/|https://github\.com/)instruction-material/classes\.jacobdanderson\.net([.]git)?$'
 if [[ ! "$classes_origin_url" =~ $classes_canonical_origin_pattern ]]; then
-	printf 'Native source origin is not anderson-webops/classes.jacobdanderson.net: %s\n' \
+	printf 'Native source origin is not instruction-material/classes.jacobdanderson.net: %s\n' \
 		"${classes_origin_url:-missing}" >&2
 	exit 1
 fi
