@@ -81,8 +81,8 @@ describe("PyGames learner flow", () => {
 			0
 		);
 
-		expect(requiredCount).toBe(82);
-		expect(choiceAndChallengeCount).toBe(55);
+		expect(requiredCount).toBe(85);
+		expect(choiceAndChallengeCount).toBe(52);
 
 		const actors = requireSourceModule(
 			"PyG1 Object-Oriented Programming: Actors"
@@ -110,10 +110,10 @@ describe("PyGames learner flow", () => {
 		]) {
 			const checkIn = requireSourceModule(checkInTitle);
 			expect(
-				checkIn.supplementalProjects.find(item =>
+				checkIn.curriculum.find(item =>
 					item.title.includes("Additional Practice Project")
 				)?.learningPath
-			).toBe("choice");
+			).toBe("core");
 		}
 	});
 

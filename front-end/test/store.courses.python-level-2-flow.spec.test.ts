@@ -81,13 +81,21 @@ describe("Python Level 2 learner flow", () => {
 			0
 		);
 
-		expect(requiredCount).toBe(52);
-		expect(optionCount).toBe(54);
+		expect(requiredCount).toBe(54);
+		expect(optionCount).toBe(52);
+
+		// Juni places these check-in projects in curriculum, despite their titles.
+		for (const title of ["Check-In #1", "Check-In #2"]) {
+			expect(
+				requireSourceModule(title).curriculum.find(item =>
+					item.title.includes("Additional Practice Project")
+				)?.learningPath
+			).toBe("core");
+		}
 
 		expect(
 			requireSourceModule("PS4 Conditionals").curriculum.find(
-				item =>
-					item.title === "PS4 Project 3: Credit Card Validator"
+				item => item.title === "PS4 Project 3: Credit Card Validator"
 			)?.learningPath
 		).toBe("core");
 		expect(
@@ -111,8 +119,7 @@ describe("Python Level 2 learner flow", () => {
 	});
 
 	it("preserves project progress IDs in the core listing", async () => {
-		const course =
-			await useCoursesStore().loadCourseById("python-level-2");
+		const course = await useCoursesStore().loadCourseById("python-level-2");
 		expect(course).not.toBeNull();
 
 		const conditionals = course!.modules.find(
@@ -143,10 +150,12 @@ describe("Python Level 2 learner flow", () => {
 			expect(text).toContain(referenceUrl);
 		}
 		expect(
-			course!.modules.flatMap(module => [
-				...module.curriculum,
-				...module.supplementalProjects
-			]).some(item => item.mediaLink)
+			course!.modules
+				.flatMap(module => [
+					...module.curriculum,
+					...module.supplementalProjects
+				])
+				.some(item => item.mediaLink)
 		).toBe(false);
 		expect(text).not.toContain("Pending Python Level 2 Assets");
 	});
