@@ -1,5 +1,6 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
+import { isCoreProjectTitle } from "./projectGrouping";
 import { buildProjectGuidance } from "./projectGuidance";
 import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
 import { buildSupportSectionGuidance } from "./supportSectionGuidance";
@@ -1472,13 +1473,15 @@ function decorateJavaLevel2Module(
 	module: RawCourse["modules"][number]
 ): RawCourse["modules"][number] {
 	const flow = JAVA_LEVEL_2_MODULE_FLOW[module.title];
-	const movedProjects = module.curriculum.filter(item =>
-		JAVA_LEVEL_2_SECONDARY_PROJECTS.has(item.title)
+	const movedProjects = module.curriculum.filter(
+		item =>
+			JAVA_LEVEL_2_SECONDARY_PROJECTS.has(item.title) &&
+			!isCoreProjectTitle(item.title)
 	);
 	let curriculum: RawCourseModuleItem[] = module.curriculum
 		.filter(
 			item =>
-				!JAVA_LEVEL_2_SECONDARY_PROJECTS.has(item.title) &&
+				!movedProjects.includes(item) &&
 				!JAVA_LEVEL_2_CONCURRENCY_ITEMS.has(item.title)
 		)
 		.map(strengthenJavaLevel2Item)
@@ -1654,16 +1657,18 @@ function decorateJavaLevel2Module(
 	};
 }
 
-function sourceJavaLevel2Items() {
-	return javaLevel2SourceCourse.modules.flatMap(module => [
-		...module.curriculum,
-		...module.supplementalProjects
-	]);
-}
-
 function buildOptionalJavaConcurrencyExtension(): RawCourse["modules"][number] {
-	const concurrencyItems = sourceJavaLevel2Items().filter(item =>
-		JAVA_LEVEL_2_CONCURRENCY_ITEMS.has(item.title)
+	const concurrencyCurriculum = javaLevel2SourceCourse.modules.flatMap(
+		module =>
+			module.curriculum.filter(item =>
+				JAVA_LEVEL_2_CONCURRENCY_ITEMS.has(item.title)
+			)
+	);
+	const concurrencySupplemental = javaLevel2SourceCourse.modules.flatMap(
+		module =>
+			module.supplementalProjects.filter(item =>
+				JAVA_LEVEL_2_CONCURRENCY_ITEMS.has(item.title)
+			)
 	);
 
 	return {
@@ -1690,9 +1695,13 @@ function buildOptionalJavaConcurrencyExtension(): RawCourse["modules"][number] {
 					"- The console animation and optional maze timer stop cleanly and leave no background worker running."
 				].join("\n"),
 				learningPath: "core"
-			}
+			},
+			...concurrencyCurriculum.map(item => ({
+				...item,
+				learningPath: "core" as const
+			}))
 		],
-		supplementalProjects: concurrencyItems.map(item => ({
+		supplementalProjects: concurrencySupplemental.map(item => ({
 			...item,
 			learningPath: javaLevel2SupplementalPath(item.title)
 		}))

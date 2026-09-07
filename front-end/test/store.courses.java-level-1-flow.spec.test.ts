@@ -17,7 +17,7 @@ const EXPECTED_PRIMARY_SEQUENCE = [
 	"J1M Master Project: Battleship Grid Game"
 ];
 
-const MOVED_PROJECTS = [
+const JUNI_CORE_PROJECTS = [
 	"JS1 Project 2: First Middle Last",
 	"JS3 Project 2: Color Mixer",
 	"JS4 Project 2: Nested Loops",
@@ -93,7 +93,7 @@ describe("Java Level 1 learner flow", () => {
 		}
 	});
 
-	it("preserves every project while reducing the required path", () => {
+	it("keeps original Juni projects in core and supplemental work in practice", () => {
 		const curriculumCount = javaLevel1Course.modules.reduce(
 			(total, module) => total + module.curriculum.length,
 			0
@@ -109,11 +109,11 @@ describe("Java Level 1 learner flow", () => {
 			module.supplementalProjects.map(item => item.title)
 		);
 
-		expect(curriculumCount).toBe(62);
-		expect(optionCount).toBe(114);
-		for (const title of MOVED_PROJECTS) {
-			expect(curriculumTitles, title).not.toContain(title);
-			expect(optionTitles, title).toContain(title);
+		expect(curriculumCount).toBe(70);
+		expect(optionCount).toBe(106);
+		for (const title of JUNI_CORE_PROJECTS) {
+			expect(curriculumTitles, title).toContain(title);
+			expect(optionTitles, title).not.toContain(title);
 		}
 		expect(optionTitles).toContain(
 			"J1X02 Java Foundations Build 13: Core Project"
@@ -164,7 +164,7 @@ describe("Java Level 1 learner flow", () => {
 		const contract = capstone.curriculum.find(
 			item => item.title === "Simple Battleship Completion Contract"
 		);
-		const advanced = capstone.supplementalProjects.find(
+		const advanced = capstone.curriculum.find(
 			item => item.title === "JS9 Master Project: Advanced Battleship"
 		);
 
@@ -172,6 +172,6 @@ describe("Java Level 1 learner flow", () => {
 		expect(contract?.content).toContain("duplicate shot");
 		expect(contract?.content).toContain("edge and corner coordinates");
 		expect(contract?.content).toContain("fresh-game reset");
-		expect(advanced?.learningPath).toBe("challenge");
+		expect(advanced?.learningPath).toBe("core");
 	});
 });

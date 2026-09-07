@@ -1,4 +1,5 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
+import { isCoreProjectTitle } from "./projectGrouping";
 import { buildProjectGuidance } from "./projectGuidance";
 import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
 import { buildSupportSectionGuidance } from "./supportSectionGuidance";
@@ -2690,13 +2691,15 @@ function decorateJavaLevel3Module(
 	module: RawCourse["modules"][number]
 ): RawCourse["modules"][number] {
 	const flow = JAVA_LEVEL_3_MODULE_FLOW[module.title];
-	const movedProjects = module.curriculum.filter(item =>
-		JAVA_LEVEL_3_SECONDARY_PROJECTS.has(item.title)
+	const movedProjects = module.curriculum.filter(
+		item =>
+			JAVA_LEVEL_3_SECONDARY_PROJECTS.has(item.title) &&
+			!isCoreProjectTitle(item.title)
 	);
 	let curriculum: RawCourseModuleItem[] = module.curriculum
 		.filter(
 			item =>
-				!JAVA_LEVEL_3_SECONDARY_PROJECTS.has(item.title) &&
+				!movedProjects.includes(item) &&
 				!JAVA_LEVEL_3_ARCHIVE_ITEMS.has(item.title)
 		)
 		.map(strengthenJavaLevel3Item)
@@ -2856,8 +2859,9 @@ function buildJavaLevel3PlacementArchive(
 		.filter(item => JAVA_LEVEL_3_ARCHIVE_ITEMS.has(item.title));
 
 	return {
+		id: "java-level-3-optional-java-foundations-bubble-sort-and-reference-archive",
 		kind: "appendix",
-		title: "Optional Java Foundations, Bubble Sort, and Reference Archive",
+		title: "Java Foundations Reference Archive",
 		estimatedTime:
 			"Choose only the review or comparison material indicated by evidence",
 		keyBlocks: [
@@ -2873,18 +2877,26 @@ function buildJavaLevel3PlacementArchive(
 				content:
 					"**Course flow:** AJ1 Review: Variables, Strings, and Input; AJ2 Review: Arrays and ArrayLists; AJ3 Review: Objects and Classes; AJ8 Bubble Sort; and AJ18 Repo Extension, Starter, and Capstone Library are optional. Use AJ0 or a check-in to name the gap, select the smallest matching item, record the new evidence, and return to the required sequence.",
 				learningPath: "core"
-			}
+			},
+			...modules.flatMap(module =>
+				module.curriculum
+					.filter(item => !JAVA_LEVEL_3_ARCHIVE_ITEMS.has(item.title))
+					.map(item => ({
+						...item,
+						learningPath: "core" as const
+					}))
+			),
+			...extractedItems.map(item => ({
+				...item,
+				learningPath: "core" as const
+			}))
 		],
-		supplementalProjects: [
-			...modules.flatMap(module => [
-				...module.curriculum,
-				...module.supplementalProjects
-			]),
-			...extractedItems
-		].map(item => ({
-			...item,
-			learningPath: javaLevel3SupplementalPath(item.title)
-		}))
+		supplementalProjects: modules.flatMap(module =>
+			module.supplementalProjects.map(item => ({
+				...item,
+				learningPath: javaLevel3SupplementalPath(item.title)
+			}))
+		)
 	};
 }
 

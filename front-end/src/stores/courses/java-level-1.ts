@@ -2,6 +2,7 @@ import type { ImplementationLabSection } from "./implementationLabGuidance";
 import type { RawCourse, RawCourseModuleItem } from "./types";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { javaLevel1GraphicsExtensionModules } from "./java-graphics-extensions";
+import { isCoreProjectTitle } from "./projectGrouping";
 import { buildProjectGuidance } from "./projectGuidance";
 import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
 import { buildSupportSectionGuidance } from "./supportSectionGuidance";
@@ -1829,11 +1830,13 @@ function decorateJavaLevel1Module(
 	module: RawCourse["modules"][number]
 ): RawCourse["modules"][number] {
 	const flow = JAVA_LEVEL_1_MODULE_FLOW[module.title];
-	const movedProjects = module.curriculum.filter(item =>
-		JAVA_LEVEL_1_SECONDARY_PROJECTS.has(item.title)
+	const movedProjects = module.curriculum.filter(
+		item =>
+			JAVA_LEVEL_1_SECONDARY_PROJECTS.has(item.title) &&
+			!isCoreProjectTitle(item.title)
 	);
 	let curriculum: RawCourseModuleItem[] = module.curriculum
-		.filter(item => !JAVA_LEVEL_1_SECONDARY_PROJECTS.has(item.title))
+		.filter(item => !movedProjects.includes(item))
 		.map(strengthenJavaLevel1Item)
 		.map((item, index) => ({
 			...item,

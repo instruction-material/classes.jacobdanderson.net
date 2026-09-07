@@ -1,4 +1,5 @@
 import type { RawCourse } from "./types";
+import { isCoreProjectTitle } from "./projectGrouping";
 
 const cppLevel1SourceCourse: RawCourse = {
 	name: "C++ Level 1",
@@ -478,11 +479,13 @@ function decorateCppLevel1Module(
 	module: RawCourse["modules"][number]
 ): RawCourse["modules"][number] {
 	const flow = CPP_LEVEL_1_MODULE_FLOW[module.title];
-	const optionalCurriculum = module.curriculum.filter(item =>
-		CPP_LEVEL_1_OPTIONAL_CURRICULUM.has(item.title)
+	const optionalCurriculum = module.curriculum.filter(
+		item =>
+			CPP_LEVEL_1_OPTIONAL_CURRICULUM.has(item.title) &&
+			!isCoreProjectTitle(item.title)
 	);
 	const coreCurriculum = module.curriculum
-		.filter(item => !CPP_LEVEL_1_OPTIONAL_CURRICULUM.has(item.title))
+		.filter(item => !optionalCurriculum.includes(item))
 		.map((item, index) => ({
 			...item,
 			content:

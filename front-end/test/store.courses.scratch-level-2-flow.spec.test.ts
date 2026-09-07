@@ -148,14 +148,17 @@ describe("Scratch Level 2 learner flow", () => {
 		}
 	});
 
-	it("keeps review targeted and moves typing practice to the optional bridge", () => {
+	it("preserves the Juni review project and keeps typing in the optional bridge", () => {
 		const reviewProject = requireModule(
 			"GM1 Level 1 Skills Review"
 		).curriculum.find(item => item.title.includes("Asteroid Dodge Remix"));
+		expect(reviewProject?.content).toContain("Play through the demo");
 		expect(reviewProject?.content).toContain(
-			"not seven required review builds"
+			"Create a comment in the project"
 		);
-		expect(reviewProject?.content).toContain("Readiness evidence");
+		expect(reviewProject?.content).toContain(
+			"Starter code is provided"
+		);
 
 		const capstone = requireModule("GM14 Master Project");
 		expect(

@@ -100,16 +100,18 @@ describe("Scratch Level 1 learner flow", () => {
 		);
 	});
 
-	it("builds Hungry Hippo in stages after each prerequisite", () => {
+	it("preserves the original Juni Hungry Hippo instructions", () => {
 		const hungryHippo = requireModule(
 			"GS1 Starting in Scratch"
 		).curriculum.find(item => item.title.includes("Hungry Hippo"));
-		expect(hungryHippo?.content).toContain("Stage 1 — start and movement");
 		expect(hungryHippo?.content).toContain(
-			"leave scoring, collision rules, and timing for later modules"
+			"• Play a sample Hungry Hippo game."
 		);
-		expect(hungryHippo?.content).not.toContain(
-			"Create a score variable that increases"
+		expect(hungryHippo?.content).toContain(
+			"• Decide which module to start in based on understanding of the controls."
+		);
+		expect(hungryHippo?.content).toContain(
+			'• Create variables for "score" and a timer'
 		);
 
 		for (const [moduleTitle, expectedReturn] of [

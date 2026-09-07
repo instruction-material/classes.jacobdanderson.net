@@ -24,18 +24,14 @@ export const scratchLevel1Course: RawCourse = {
 				},
 				{
 					title: "Project 1 – Hungry Hippo",
-					content: `**Project goal:** Begin a collection-game anchor project that grows as new Scratch ideas are introduced.
-
-**Stage 1 — start and movement:**
-1. Start by playing the sample Hungry Hippo game and identifying the player sprite, collectable objects, score, and timer.
-2. Create a custom version with a sprite of your choice.
-3. Use the green flag to place the player at a predictable starting point.
-4. Program arrow-key movement with direction and movement blocks.
-5. Add one collectable sprite to the stage, but leave scoring, collision rules, and timing for later modules.
-
-**Return plan:** Revisit this same project after coordinates, variables, conditionals, and broadcasts. Each return adds one tested system instead of building the whole game at once.
-
-**Completion check:** The player starts in the same place, moves in four directions, and can reach the collectable. Explain which future feature will need a variable and which will need a condition.`,
+					content: `
+• Play a sample Hungry Hippo game.
+• Create a custom version of the game using a sprite of your choice.
+• Make the sprite move using the left, right, up and down arrow keys (use the "point in direction" and "move 10 steps" blocks).
+• Decide which module to start in based on understanding of the controls.
+• Program the sprite to collect objects and increase its score each time it collects one.
+• Create variables for "score" and a timer; increase the score when objects are collected and decrease time as the game runs.
+`,
 					projectLink: "https://scratch.mit.edu/projects/304003593/"
 				},
 				{
@@ -97,50 +93,42 @@ export const scratchLevel1Course: RawCourse = {
 				},
 				{
 					title: "Project 1 – Spinner",
-					content: `**Project goal:** Build a spinner that responds to the green flag, arrow keys, letter keys, and the mouse pointer.
+					content: `
+It's time to build a fun spinner:
 
-**Event behaviors:**
-1. When the green flag is clicked, point the arrow to the right.
-2. When the up, left, right, or down arrow key is pressed, point the arrow in that direction.
-3. When A is pressed, turn the arrow 15 degrees left.
-4. When D is pressed, turn the arrow 15 degrees right.
-5. When the spacebar is pressed, point the arrow toward the mouse.
-
-**Completion check:** Each event changes only the intended direction or rotation, so the spinner is easy to test one key at a time.`,
+1. When the green flag is clicked, make the arrow point to the right.
+2. When the up, left, right or down arrow keys are pressed, point the arrow in the corresponding direction.
+3. When the "A" key is pressed, turn the arrow 15 degrees to the left.
+4. When the "D" key is pressed, turn the arrow 15 degrees to the right.
+5. When the spacebar is pressed, make the arrow point towards the mouse.
+`,
 					projectLink: "https://scratch.mit.edu/projects/287920173/",
 					solutionLink: "https://scratch.mit.edu/projects/287887351/"
 				},
 				{
 					title: "Project 2 – Bouncy Ball Room",
-					content: `**Project goal:** Make a ball respond to keyboard and click events while changing position, backdrop, size, sound, and color.
-
-**Event behaviors:**
-1. When the green flag is clicked, move the ball to a random position.
-2. When the space key is pressed, move 10 steps and bounce off the edge.
+					content: `
+1. When the green flag is clicked, have the ball go to a random position.
+2. When the space key is pressed, make the ball move 10 steps and bounce off the edge.
 3. When the right-arrow key is pressed, change the backdrop.
-4. When the up or down arrow is pressed, grow or shrink the ball.
+4. When the up or down arrows are pressed, make the ball grow or shrink (use negative numbers for shrinking).
 5. When the ball is clicked, play a sound and change its color.
-
-**Completion check:** The ball resets on green flag, and each input produces visible feedback.`,
+`,
 					projectLink: "https://scratch.mit.edu/projects/287924505/",
 					solutionLink: "https://scratch.mit.edu/projects/287922077/"
 				},
 				{
 					title: "Project 3 – Dragonfly Events",
-					content: `**Project goal:** Practice several event types by making the dragonfly react to startup, keys, clicks, sounds, and backdrops.
-
-**Event behaviors:**
+					content: `
 1. When the green flag is clicked, move the dragonfly to a random spot.
-2. Arrow-key events move the dragonfly 20 steps.
+2. Use the arrow keys to move the dragonfly 20 steps.
 3. When the dragonfly is clicked, change its color.
-4. When the spacebar is pressed, play a pop sound.
-5. When 1 is pressed, make the dragonfly pop and move to a random position.
-6. When 2 is pressed, have the dragonfly say something.
-7. When 3 is pressed, change the background.
-
-**Extension:** Add another sprite controlled by the W-A-S-D keys.
-
-**Completion check:** Every event is independently testable without breaking the green-flag reset.`,
+4. When the space bar is pressed, play a pop sound.
+5. When the "1" key is pressed, make the dragonfly pop and go to a random position.
+6. When the "2" key is pressed, have the dragonfly say something.
+7. When the "3" key is pressed, change the background.
+Challenge: Add another sprite controlled by the W-A-S-D keys.
+`,
 					projectLink: "https://scratch.mit.edu/projects/287707460/",
 					solutionLink: "https://scratch.mit.edu/projects/284408078/"
 				}
@@ -189,54 +177,44 @@ export const scratchLevel1Course: RawCourse = {
 				},
 				{
 					title: "Project 1 – Bouncy Ball with Pen",
-					content: `**Project goal:** Add Pen behavior to a bouncing ball so movement creates a visible trail.
+					content: `
+1. When the green flag is clicked, send the ball to a random position.
+2. When the spacebar is pressed, make the ball move 10 steps and bounce off the edge.
+3. Each time the ball moves, put the pen down so the ball leaves a trail.
+4. Each time the ball moves, change the pen color.
+5. When the green flag is clicked, erase any existing drawings and lift the pen up before moving the ball to a random position.
 
-**Build steps:**
-1. The green flag sends the ball to a random position.
-2. The spacebar makes the ball move 10 steps and bounce off the edge.
-3. Each movement puts the pen down so the ball leaves a trail.
-4. Each movement changes the pen color.
-5. The green flag erases old drawings and lifts the pen before resetting the ball.
-
-**Completion check:** The stage starts clean, the ball leaves a visible trail while moving, and repeated green-flag runs do not preserve old drawings.`,
+`,
 					projectLink: "https://scratch.mit.edu/projects/313084455/",
 					solutionLink: "https://scratch.mit.edu/projects/287952358/"
 				},
 				{
 					title: "Project 2 – Stencil Pencil",
-					content: `**Project goal:** Build a pencil tool with movement, rotation, color, size, and reset controls.
-
-**Build steps:**
-1. The up arrow moves the pencil forward, and the down arrow moves it backward.
-2. The left and right arrows rotate the pencil by 10 degrees.
-3. Pressing 1 lowers the pen to start drawing.
-4. Pressing 2 lifts the pen to stop drawing.
+					content: `
+1. The up arrow moves the pencil forward; the down arrow moves it backward.
+2. The left arrow rotates the pencil 10 degrees left; the right arrow rotates it 10 degrees right.
+3. Pressing "1" lowers the pen (start drawing).
+4. Pressing "2" lifts the pen (stop drawing).
 5. Clicking the pencil changes its pen color.
-6. Pressing 3 increases pen size, and pressing 4 decreases pen size.
-7. The green flag erases the stage, returns the pencil to the center facing right, and resets pen size and color.
+6. Pressing "3" increases the pen size; pressing "4" decreases the pen size.
+7. When the green flag is clicked, erase all drawings, move the pencil back to the middle of the stage facing right and reset the pen size/color.
 
-**Extension:** Trace shapes on other backdrops.
+Challenge: Trace shapes on other backdrops.
 
-**Completion check:** The controls feel like a drawing tool, and the green flag always returns the project to the same clean starting state.`,
+`,
 					projectLink: "https://scratch.mit.edu/projects/287738652/",
 					solutionLink: "https://scratch.mit.edu/projects/285312799/"
 				},
 				{
 					title: "Project 3 – Beetle Artist",
-					content: `**Project goal:** Turn the beetle into a keyboard-controlled drawing tool with reusable shape commands.
-
-**Build steps:**
-1. Arrow keys move the beetle 10 steps.
-2. The green flag erases all previous drawings.
-3. Pressing 1 draws a square.
-4. Pressing 2 draws a triangle.
-5. Pressing 3 draws an arrow shape.
-
-**Extension:** Trace shapes on other backdrops.
-
-**Completion check:** Each key draws only its assigned shape, and the green flag resets the drawing area cleanly.
-
-**Reasoning check:** The square, triangle, and arrow work best as repeatable command patterns instead of copied random motion. Compare the number of turns and side lengths for each shape, then explain why changing the beetle's starting direction or position does not break the next shape command.`,
+					content: `
+1. Use the arrow keys to move the beetle 10 steps.
+2. When the green flag is clicked, erase all drawings.
+3. Press "1" to draw a square.
+4. Press "2" to draw a triangle.
+5. Press "3" to draw an arrow shape.
+Challenge: Trace shapes on other backdrops.
+`,
 					projectLink: "https://scratch.mit.edu/projects/288003770/",
 					solutionLink: "https://scratch.mit.edu/projects/287999903/"
 				}
@@ -285,51 +263,38 @@ export const scratchLevel1Course: RawCourse = {
 				},
 				{
 					title: "Project 1 – Elephant Effects",
-					content: `**Project goal:** Explore loops by giving the elephant repeated size, color, visibility, costume, and sound effects.
-
-**Build steps:**
-1. Pressing 1 grows the elephant ten times.
-2. Pressing 2 shrinks the elephant ten times.
-3. Pressing 3 changes the elephant's color effect forever.
-4. Pressing 4 changes a different graphic effect forever.
-5. Pressing 5 repeats a hide, wait, and show sequence.
-6. Pressing the spacebar repeats a costume switch, sound, and return-to-original-costume sequence three times.
-
-**Completion check:** Each key demonstrates a different kind of repetition, and the repeated behavior is visible enough to compare with a non-loop version.`,
+					content: `
+1. When the "1" key is pressed, grow the elephant ten times (increase size by 10, ten times).
+2. When the "2" key is pressed, shrink the elephant ten times.
+3. When the "3" key is pressed, change the elephant's color effect forever.
+4. When the "4" key is pressed, change a different graphic effect forever.
+5. When the "5" key is pressed, hide the elephant, wait one second, then show it again (repeat this sequence).
+6. When the space bar is pressed, switch the costume, play a sound and then switch back to the original costume, repeating the whole sequence three times.
+`,
 					projectLink: "https://scratch.mit.edu/projects/291122885/",
 					solutionLink: "https://scratch.mit.edu/projects/291119943/"
 				},
 				{
 					title: "Project 2 – Hot Cross Buns",
-					content: `**Project goal:** Program a short song with the Music extension and reduce repetition with loops.
+					content: `
+This project uses the Music extension. When the green flag is clicked, play the song "Hot Cross Buns" twice:
 
-**Song pattern:**
-E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
+E D C E D C C C C C D D D D E D C.
 
-**Build steps:**
-1. The green flag plays "Hot Cross Buns" twice.
-2. Repeated note patterns go inside loops instead of copied block by block.
-3. The timing stays steady enough for the melody to be recognizable.
-
-**Extension:** Compose another short song that also has repeated sections.
-
-**Completion check:** The song plays twice from the green flag, and the repeated sections are implemented with loops.`,
+Use loops for repeated sections. Compose other songs as an extension.
+`,
 					projectLink: "https://scratch.mit.edu/projects/291117784/",
 					solutionLink: "https://scratch.mit.edu/projects/291115434/"
 				},
 				{
 					title: "Project 3 – Drawing Mouse",
-					content: `**Project goal:** Draw multiple shapes with loops and keyboard-triggered events.
-
-**Build steps:**
-1. The green flag erases all drawings.
-2. Pressing 1 draws a square with a loop at a random location.
-3. Pressing 2 draws a triangle.
-4. Pressing 3 draws a circle-like shape by repeating many small steps and turns that total 360 degrees.
-
-**Extension:** Add other shapes, such as an octagon or a star, with optional random sizes and colors.
-
-**Completion check:** Each key produces the intended shape, and the code reuses loops instead of manually copying every side or turn.`,
+					content: `
+1. Add an event listener so that when the green flag is clicked, all drawings are erased.
+2. When the "1" key is pressed, make the mouse draw a square using a loop at a random location.
+3. When the "2" key is pressed, make the mouse draw a triangle.
+4. When the "3" key is pressed, make the mouse draw a circle (explain that a circle can be drawn by repeating many small steps that turn in small increments to total 360 degrees).
+Challenge: Create other shapes, like an octagon or a star, possibly adding random sizes and colors.
+`,
 					projectLink: "https://scratch.mit.edu/projects/289744824/",
 					solutionLink: "https://scratch.mit.edu/projects/289445069/"
 				}
@@ -337,16 +302,11 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 			supplementalProjects: [
 				{
 					title: "GS4 Supplemental Project 1 – Shapify",
-					content: `**Project goal:** Draw regular polygons by connecting side count, turn angle, and loop repetition.
-
-**Build steps:**
-1. Draw a hexagon with Pen blocks. The turn angle comes from dividing 360 degrees by the number of sides.
-2. Apply the same angle pattern to an octagon, a decagon, a dodecagon, and a circle-like shape.
-3. Predict what happens if the repeat loop around the circle is replaced with a forever loop, then test the prediction.
-
-**Extension:** Draw a different circle-like shape with different step and turn values.
-
-**Completion check:** The shapes close cleanly, and the explanation connects the number of sides to the turn angle.`,
+					content: `
+1. Use Pen blocks to draw a hexagon. (Hint: divide 360 degrees by the number of sides.)
+2. Use the same method to draw an octagon, a decagon, a dodecagon and a circle.
+3. Predict what happens if the loop around the circle is replaced with a forever loop, and then try it.
+Challenge: Draw a different circle using different numbers.`,
 					projectLink: "https://scratch.mit.edu/projects/330468686/",
 					solutionLink: "https://scratch.mit.edu/projects/330429172/"
 				},
@@ -383,44 +343,32 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 				},
 				{
 					title: "Project 1 – Dino's Colors",
-					content: `**Project goal:** Make the dinosaur react to the color under its feet.
-
-**Build steps:**
-1. The dinosaur follows the mouse pointer forever.
-2. A conditional checks whether the dinosaur is standing on red and says "I'm in red!" when the condition is true.
-3. Additional color checks handle yellow, blue, and grey.
-
-**Completion check:** Moving the dinosaur onto each target color produces the matching response without triggering the wrong color message.`,
+					content: `
+1. Make the dinosaur follow the mouse pointer forever.
+2. Use conditionals to make the dinosaur say "I'm in red!" when standing in red; similarly, add conditions for yellow, blue and grey.
+`,
 					projectLink: "https://scratch.mit.edu/projects/291223299/",
 					solutionLink: "https://scratch.mit.edu/projects/291220849/"
 				},
 				{
 					title: "Project 2 – Noisy Reactions",
-					content: `**Project goal:** Build a scene where different sprites react when the bouncing ball touches them.
-
-**Build steps:**
-1. The green flag starts the ball bouncing around the screen forever.
-2. A bell-touching-ball conditional makes the bell swing back and forth and ring four times.
-3. A lightning-touching-ball conditional makes the lightning strike the ground, play thunder, and return to the cloud.
-4. A chick-touching-ball conditional makes the chick move 5 steps and chirp.
-
-**Debug target:** Watch for reactions that repeat too quickly while the ball remains touching a sprite. Add timing, movement, or reset behavior if a collision triggers more times than intended.
-
-**Completion check:** Each sprite reacts only when the ball touches it, then returns to a clear ready state for the next collision.`,
+					content: `
+1. When the green flag is clicked, make the ball bounce around the screen forever.
+2. Use a conditional so that when the bell touches the ball, the bell swings back and forth and rings four times.
+3. When the ball touches lightning, make the lightning strike the ground and play a thunder sound, then return the lightning to the cloud. (Introduce the "go to [sprite]" block.)
+4. When the chick touches the ball, make the chick move 5 steps and chirp.
+`,
 					projectLink: "https://scratch.mit.edu/projects/291542721/",
 					solutionLink: "https://scratch.mit.edu/projects/291530292/"
 				},
 				{
 					title: "Project 3 – Magic Wand",
-					content: `**Project goal:** Create a magic-wand scene where one sprite triggers different reactions from other sprites.
-
-**Build steps:**
-1. The magic wand moves to the frog and turns it into a wizard.
-2. The wand moves to the piano and plays three notes.
-3. The wand moves to the ghost and sends the ghost toward the star.
-4. When the ghost touches the star, the star grows to fill the screen.
-
-**Completion check:** Each wand action causes the intended sprite reaction, and the scene clearly shows cause and effect.`,
+					content: `
+1. Make a magic wand move to the frog and turn it into a wizard.
+2. Make the wand move to the piano and play three notes (any instrument/notes are fine).
+3. Make the wand move to the ghost and send the ghost toward the star.
+4. When the ghost touches the star, make the star grow to fill the screen.
+`,
 					projectLink: "https://scratch.mit.edu/projects/304279087/",
 					solutionLink: "https://scratch.mit.edu/projects/304279316/"
 				}
@@ -428,31 +376,20 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 			supplementalProjects: [
 				{
 					title: "GS5 Supplemental Project 1 – Camouflaging Octopus",
-					content: `**Project goal:** Build a camouflage effect that changes the octopus color based on the background.
-
-**Build steps:**
-1. Arrow-key event listeners control octopus movement.
-2. A conditional turns the octopus blue when it is on a blue background.
-3. Additional conditionals handle yellow, green, and red backgrounds.
-
-**Completion check:** The octopus matches the background color after moving onto each color zone.`,
+					content: `
+1. Use event listeners to control the octopus with the arrow keys.
+2. Use conditionals so the octopus turns blue when on a blue background.
+3. Add conditionals for yellow, green and red backgrounds.`,
 					projectLink: "https://scratch.mit.edu/projects/326209430/",
 					solutionLink: "https://scratch.mit.edu/projects/326209241/"
 				},
 				{
 					title: "GS5 Supplemental Project 2 – Playing Catch",
-					content: `**Project goal:** Simulate a game of catch where conditionals decide who receives the ball next.
-
-**Build steps:**
-1. The green flag sends the basketball to Gobo and starts continuous movement.
-2. When Pico has the ball, conditionals pass it back to Gobo.
-3. When Gobo has the ball, conditionals pass it to Pico.
-
-**Extension:** Add more sprites and make the ball pass among all players.
-
-**Completion check:** The ball moves to the correct next player based on who currently has it.
-
-**Reasoning check:** Treat the current holder as game state. Test at least two handoff moments and one restart, then explain which condition decides the next target and how the project avoids sending the ball to the wrong sprite after a repeated click or green-flag run.`,
+					content: `
+1. When the green flag is clicked, make the basketball go to Gobo and move forever.
+2. When Pico has the ball, use conditionals to pass it back to Gobo.
+3. When Gobo has the ball, pass it to Pico.
+Challenge: Add more sprites to the game and have the ball pass between them.`,
 					projectLink: "https://scratch.mit.edu/projects/326211768/",
 					solutionLink: "https://scratch.mit.edu/projects/326211724/"
 				},
@@ -482,31 +419,24 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 				},
 				{
 					title: "Project 1 – Dino's Colors II",
-					content: `**Project goal:** Add if/then/else checks so the dinosaur can tell whether it reached the requested color.
+					content: `
+1. Create controls for the dinosaur using the arrow keys.
+2. When the "b" key is pressed, have the dinosaur say "Move me to blue!" for 2 seconds.
+3. After speaking, use an if/then/else to check if the dinosaur is touching blue; if it is, say "Good job!", otherwise say "This isn't the right color!".
+4. Repeat the previous step for the "r" (red) and "y" (yellow) keys.
+5. Add sounds and costume changes for each color.
 
-**Build steps:**
-1. Arrow keys control the dinosaur.
-2. Pressing b makes the dinosaur say "Move me to blue!" for 2 seconds.
-3. After speaking, an if/then/else block checks whether the dinosaur is touching blue. It says "Good job!" for success and "This isn't the right color!" otherwise.
-4. The same pattern works for r (red) and y (yellow).
-5. Sounds and costume changes provide extra feedback for each color.
-
-**Completion check:** Correct colors and incorrect colors produce different responses for every tested key.`,
+`,
 					projectLink: "https://scratch.mit.edu/projects/293788691/",
 					solutionLink: "https://scratch.mit.edu/projects/293787944/"
 				},
 				{
 					title: "Project 2 – Hungry Dinosaur",
-					content: `**Project goal:** Build a banana-eating interaction with success and failure branches.
-
-**Build steps:**
-1. The green flag starts arrow-key controls for the dinosaur.
-2. Pressing the spacebar makes the dinosaur attempt to eat bananas.
-3. If the dinosaur is touching bananas, the project changes costume, plays a sound, or otherwise shows the bananas being eaten.
-4. If the dinosaur is not touching bananas, it says "There aren't any bananas here!".
-5. If the bananas are touching the dinosaur, they wait one second and move to a random location; otherwise, they say "I'm over here!".
-
-**Completion check:** The spacebar produces one clear branch when the dinosaur is touching bananas and a different branch when it is not.`,
+					content: `
+1. When the green flag is clicked, use if/then blocks to control the dinosaur with the arrow keys.
+2. When the space bar is pressed, the dinosaur attempts to eat bananas: if it is touching bananas, change the dinosaur's costume, play a sound or otherwise show the bananas being eaten; if not touching bananas, say "There aren't any bananas here!".
+3. When the space bar is pressed, if the bananas are touching the dinosaur, wait one second then move the bananas to a random location; otherwise have the bananas say "I'm over here!".
+`,
 					projectLink: "https://scratch.mit.edu/projects/293457751/",
 					solutionLink: "https://scratch.mit.edu/projects/293291715/"
 				},
@@ -522,29 +452,19 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 			supplementalProjects: [
 				{
 					title: "GS6 Supplemental Project 1 – Blast Off Rocketship",
-					content: `**Project goal:** Build a rocketship challenge where mouse clicks determine whether the ship climbs or falls.
-
-**Build steps:**
-1. The green flag starts the rocketship at the center bottom of the stage.
-2. If the mouse is clicked, the rocketship moves up 5 steps.
-3. Otherwise, the rocketship moves down 5 steps while still pointing upward.
-4. Reaching the star triggers a blastoff effect with sound, motion, or visual feedback.
-
-**Completion check:** Clicking and not clicking create visibly different movement, and reaching the star produces a clear win moment.`,
+					content: `
+1. When the green flag is clicked, start the rocketship at the center bottom of the stage.
+2. If the user clicks the mouse, make the rocketship move up 5 steps; otherwise, it goes down 5 steps (always pointing upward).
+3. When the rocketship reaches the star, make it blast off using sounds, motion or visual effects.`,
 					projectLink: "https://scratch.mit.edu/projects/332463981/",
 					solutionLink: "https://scratch.mit.edu/projects/332459692/"
 				},
 				{
 					title: "GS6 Supplemental Project 2 – Baby Fish",
-					content: `**Project goal:** Build a fish-following scene with an if/then/else message based on whether the baby fish found the mom fish.
-
-**Build steps:**
-1. The green flag makes the baby fish continuously go to the mouse pointer.
-2. If the baby fish touches the mom fish, it says "I found her".
-3. Otherwise, it says "Take me to my mom".
-4. The mom fish glides randomly around the screen.
-
-**Completion check:** The baby fish updates its message correctly as it touches or does not touch the mom fish.`,
+					content: `
+1. When the green flag is clicked, make the baby fish continuously go to the mouse pointer.
+2. If the baby fish is touching the mom fish, make it say "I found her"; otherwise say "Take me to my mom".
+3. Make the mom fish glide around the screen randomly.`,
 					projectLink: "https://scratch.mit.edu/projects/332468797/",
 					solutionLink: "https://scratch.mit.edu/projects/332464646/"
 				},
@@ -572,47 +492,32 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 				},
 				{
 					title: "Project 1 – Math Facts",
-					content: `**Project goal:** Build a math practice sprite that asks typed questions and reacts to answers.
-
-**Build steps:**
-1. Pressing 1 makes Gobo ask a math question such as "What's 9 - 7?" and respond with costume, sound, or speech.
-2. Pressing 2 asks a comparison question such as "What's a number less than 0?" and checks the answer.
-3. Pressing 3 asks a harder question and repeats until the answer is correct.
-4. For the harder question, answers that are too low trigger "Higher!", and answers that are too high trigger "Lower!".
-
-**Completion check:** Correct, incorrect, too-low, and too-high answers each produce clear feedback.`,
+					content: `
+1. When the "1" key is pressed, have Gobo ask a math question (e.g., "What's 9 – 7?"). Indicate whether the answer is correct or incorrect via costume, sound or speech.
+2. When the "2" key is pressed, have Gobo ask a question like "What's a number less than 0?" and indicate whether the answer is correct or incorrect.
+3. When the "3" key is pressed, have Gobo ask a harder math question and allow the user to keep answering until the answer is correct. If the answer is too low, Gobo should say "Higher!"; if too high, say "Lower!".`,
 					projectLink: "https://scratch.mit.edu/projects/295332936/",
 					solutionLink: "https://scratch.mit.edu/projects/294539961/"
 				},
 				{
 					title: "Project 2 – Fortune Teller",
-					content: `**Project goal:** Build a fortune teller that asks questions and branches based on typed answers.
-
-**Build steps:**
-1. The green flag plays an introduction and asks for the player's name.
-2. The fortune teller asks, "What do you want to know? (Type Love, Money, or Friendship)".
-3. Conditionals choose a fortune based on the typed topic.
-4. A second question, such as "Choose a number between 1 and 5", changes the next response.
-
-**Extension:** Add more fortunes and questions to make the fortune teller more detailed.
-
-**Completion check:** Different answers produce different fortunes, and unexpected answers do not break the project.`,
+					content: `
+1. When the green flag is clicked, play an introduction and ask the user their name.
+2. Ask the user "What do you want to know? (Type Love, Money, or Friendship)".
+3. Use conditionals to give a fortune based on the user's input.
+4. Ask another question such as "Choose a number between 1 and 5" and use conditionals to provide a response.
+Challenge: Add more fortunes and questions to make the fortune teller more detailed.`,
 					projectLink: "https://scratch.mit.edu/projects/297744913/",
 					solutionLink: "https://scratch.mit.edu/projects/297735619/"
 				},
 				{
 					title: "Project 3 – Number Guesser",
-					content: `**Project goal:** Build a guessing game that gives higher/lower feedback until the player finds the random number.
-
-**Build steps:**
-1. The green flag makes the sprite choose a random number between 1 and 20.
-2. The sprite asks the player to guess the number.
-3. If/then/else blocks tell the player whether the guess is too high or too low.
-4. The guessing loop continues until the answer is correct.
-
-**Extension:** Add a guess counter and congratulate the player for guessing in fewer than 5 tries.
-
-**Completion check:** A wrong guess keeps the game running, and a correct guess ends the loop with clear feedback.`,
+					content: `
+1. When the green flag is clicked, have the sprite choose a random number between 1 and 20.
+2. Ask the user to guess the number.
+3. Use if/then/else blocks to tell the user if their guess is too high or too low.
+4. Allow the user to keep guessing until they get the number right.
+Challenge: Add a counter for the number of guesses and congratulate the player if they guess the number in fewer than 5 tries.`,
 					projectLink: "https://scratch.mit.edu/projects/295334181/",
 					solutionLink: "https://scratch.mit.edu/projects/294561252/"
 				}
@@ -620,33 +525,23 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 			supplementalProjects: [
 				{
 					title: "GS7 Supplemental Project 1 – Animal Crossing",
-					content: `**Project goal:** Create a small island story where typed choices change what happens next.
-
-**Build steps:**
-1. Ask whether the player wants to build a shop, plant a tree, or explore the island.
-2. The answer determines which event occurs.
-3. Yes/no questions customize the chosen path.
-4. Variables store items collected or tasks completed.
-5. Prompts or rewards make exploration and hidden secrets clear.
-
-**Completion check:** Each major choice leads to a different visible event and updates any related variables correctly.`,
+					content: `
+1. Ask the user if they want to build a shop, plant a tree or explore the island.
+2. Use the answer to determine which event occurs.
+3. Ask the user yes/no questions to further customize the experience.
+4. Use variables to store items collected or tasks completed.
+5. Encourage the user to explore and discover secrets.`,
 					projectLink: "https://scratch.mit.edu/projects/328309551/",
 					solutionLink: "https://scratch.mit.edu/projects/328310531/"
 				},
 				{
 					title: "GS7 Supplemental Project 2 – Space Cadets",
-					content: `**Project goal:** Build a space-exploration story where typed choices control the planet, mission, and discoveries.
-
-**Build steps:**
-1. Ask for the player's name and call them "Captain".
-2. Ask which planet, such as Mars, Jupiter, or Saturn, they want to explore.
-3. Conditionals set the scene for the chosen planet.
-4. Additional questions, such as "Do you want to collect rocks or search for life?", branch the story.
-5. Variables track discoveries or points.
-
-**Design target:** Each planet feels distinct through backdrop, dialogue, sprite behavior, or point changes rather than only changing a line of text.
-
-**Completion check:** Planet choice and mission choice both affect the story path, and the variable values match the choices made.`,
+					content: `
+1. Ask the user for their name and call them "Captain".
+2. Ask which planet (Mars, Jupiter or Saturn) they want to explore.
+3. Use conditionals to set the scene for the chosen planet.
+4. Ask additional questions (e.g., "Do you want to collect rocks or search for life?") and branch the story based on the answers.
+5. Use variables to track discoveries or points.`,
 					projectLink: "https://scratch.mit.edu/projects/328310783/",
 					solutionLink: "https://scratch.mit.edu/projects/328308418/"
 				},
@@ -674,49 +569,33 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 				},
 				{
 					title: "Project 1 – Bug Eater",
-					content: `**Project goal:** Build a click-to-move collection game using X and Y coordinates.
-
-**Build steps:**
-1. The green flag places the praying mantis at a random position.
-2. A mouse click makes the mantis glide to the mouse pointer's X and Y position.
-3. When the mantis touches a bug, a broadcast makes the bug disappear and increases the score.
-4. Score and timer variables track game progress.
-5. The game ends when the timer runs out and displays the final score.
-
-**Completion check:** Clicking different stage locations moves the mantis accurately, and touching a bug updates the game state once per catch.`,
+					content: `
+1. When the green flag is clicked, make the praying mantis appear at a random position.
+2. When the mouse is clicked, make the mantis glide to the mouse pointer's X and Y position.
+3. If the mantis touches a bug, broadcast a message to make the bug disappear and increase the score.
+4. Use variables for the score and a timer.
+5. End the game when the timer runs out and display the score.`,
 					projectLink: "https://scratch.mit.edu/projects/297831461/",
 					solutionLink: "https://scratch.mit.edu/projects/297828061/"
 				},
 				{
 					title: "Project 2 – Cake Chaser",
-					content: `**Project goal:** Build a timed chase game where a player sprite collects cake at random coordinates.
-
-	**Build steps:**
-	1. Set up two sprites: a person and a slice of cake.
-	2. Arrow keys move the person around the stage.
-		3. The cake appears at random X and Y coordinates.
-		4. Touching the cake plays a sound, moves the cake to a new random location, and increases the score.
-		5. A countdown timer ends the game when it reaches zero.
-
-		**Design notes:** Keep the cake's random position separate from the player movement logic so each part can be tested on its own. The catch behavior happens once per touch, then immediately places the cake somewhere new so the game does not award repeated points for the same catch.
-
-		**Evidence:** Test the game from a clean green-flag start, catch the cake at least three times, and confirm the score, sound, random location, and timer all change for the intended reason.
-
-		**Completion check:** The cake relocates after every catch, and the timer produces a clear end state.`,
+					content: `
+1. Set up two sprites: a person and a slice of cake.
+2. Use the arrow keys to move the person around the stage.
+3. Make the cake appear at random X and Y coordinates.
+4. When the person touches the cake, play a sound, move the cake to a new random location and increase the score.
+5. Add a timer that counts down and ends the game when it reaches zero.`,
 					projectLink: "https://scratch.mit.edu/projects/299085513/",
 					solutionLink: "https://scratch.mit.edu/projects/297843021/"
 				},
 				{
 					title: "Project 3 – Talent Show",
-					content: `**Project goal:** Create a coordinated talent show with starting positions, broadcasts, and a final bow.
-
-**Build steps:**
-1. Choose three performer sprites.
-2. The green flag sends each performer to a starting position using X and Y coordinates.
-3. Broadcast messages trigger each act in sequence, such as dancing, jumping, or playing an instrument.
-4. After every act is finished, all performers bow together.
-
-**Completion check:** The acts run in a clear order, and the final bow happens only after the individual performances finish.`,
+					content: `
+1. Choose three performers (sprites).
+2. When the green flag is clicked, have each performer go to their starting position using X and Y coordinates.
+3. Use broadcast messages to make each performer do an act in sequence (dance, jump or play an instrument).
+4. After the performances, have all performers bow together.`,
 					projectLink: "https://scratch.mit.edu/projects/295339505/",
 					solutionLink: "https://scratch.mit.edu/projects/295340057/"
 				}
@@ -724,27 +603,19 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 			supplementalProjects: [
 				{
 					title: "GS8 Supplemental Project 1 – Quadrant Practice",
-					content: `**Project goal:** Practice stage coordinates by moving a sprite into each quadrant.
-
-**Build steps:**
-1. Arrow keys move a sprite around the stage.
-2. Each quadrant displays a message such as "I'm in Quadrant I" when the sprite enters it.
-3. Shapes or obstacles can make the path more challenging.
-
-**Completion check:** The displayed quadrant message matches the sprite's current X/Y position.`,
+					content: `
+1. Use the arrow keys to move a sprite to each quadrant of the stage.
+2. When the sprite reaches a quadrant, display a message such as "I'm in Quadrant I".
+3. Challenge: Add shapes or obstacles that must be avoided.`,
 					projectLink: "https://scratch.mit.edu/projects/329289426/",
 					solutionLink: "https://scratch.mit.edu/projects/329283944/"
 				},
 				{
 					title: "GS8 Supplemental Project 2 – Coordinate Drawings",
-					content: `**Project goal:** Draw pictures by moving a sprite to exact X and Y coordinates.
-
-**Build steps:**
-1. The Pen extension draws a picture as the sprite moves through chosen coordinates.
-2. Typed input lets the player enter coordinates for custom shapes.
-3. Example coordinate sets can draw initials or simple pictures.
-
-**Completion check:** The drawn shape matches the coordinate plan, and user-entered coordinates move the sprite predictably.`,
+					content: `
+1. Using the Pen extension, draw a picture by moving the sprite to various X and Y coordinates.
+2. Allow the user to enter coordinates to draw their own shapes.
+3. Encourage drawing initials or simple pictures.`,
 					projectLink: "https://scratch.mit.edu/projects/329294838/",
 					solutionLink: "https://scratch.mit.edu/projects/329290359/"
 				},
@@ -772,31 +643,22 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 				},
 				{
 					title: "Project 1 – Speed Click",
-					content: `**Project goal:** Build a timed clicking game with score, random target placement, and an end state.
-
-**Build steps:**
-1. The green flag creates or resets a timer variable to 20.
-2. A target sprite appears in random positions.
-3. Clicking the target increases the score by 1.
-4. The timer decreases by 1 every second.
-5. When the timer reaches zero, the game stops and displays the final score.
-6. A high-score variable can track the best result across plays.
-
-**Completion check:** The score increases only from target clicks, and the timer reliably stops the game at zero.`,
+					content: `
+1. When the green flag is clicked, create a timer variable and set it to 20.
+2. Make a target sprite (e.g., a button) appear in random positions.
+3. Each time the target is clicked, increase a score variable by 1.
+4. Decrease the timer by 1 every second; when the timer reaches zero, stop the game and display the final score.
+5. Consider adding a high-score variable.`,
 					projectLink: "https://scratch.mit.edu/projects/299327014/",
 					solutionLink: "https://scratch.mit.edu/projects/299311602/"
 				},
 				{
 					title: "Project 2 – Spider Smash",
-					content: `**Project goal:** Create a timed target game where spiders appear, move, and award points when clicked.
-
-**Build steps:**
-1. The green flag makes spiders appear at random positions and move downward.
-2. Clicking a spider hides it, plays a sound, and increases the score.
-3. A countdown timer ends the game when it reaches zero.
-4. Difficulty can increase by speeding up spiders over time.
-
-**Completion check:** Each spider click counts once, and the game ends cleanly when the timer expires.`,
+					content: `
+1. When the green flag is clicked, have spiders appear at random positions and move downward.
+2. When a spider is clicked, hide it, play a sound and increase the score.
+3. Create a timer that counts down; end the game when it reaches zero.
+4. Optionally increase difficulty by speeding up the spiders over time.`,
 					projectLink: "https://scratch.mit.edu/projects/299272518/",
 					solutionLink: "https://scratch.mit.edu/projects/299094220/"
 				},
@@ -812,44 +674,30 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 			supplementalProjects: [
 				{
 					title: "GS9 Supplemental Project 1 – Counting Steps",
-					content: `**Project goal:** Track movement by counting each step the sprite takes.
-
-**Build steps:**
-1. Arrow keys move a sprite around the stage.
-2. A variable called "steps" increases each time the sprite moves.
-3. The project displays the number of steps taken.
-4. Obstacles and a goal can turn the counter into a small maze challenge.
-
-**Completion check:** The steps variable increases only when movement happens, not when unrelated keys or events occur.`,
+					content: `
+1. Use the arrow keys to move a sprite around the stage.
+2. Make a variable called "steps" that increases each time the sprite moves.
+3. Display the number of steps taken.
+4. Challenge: Add obstacles and a goal to reach.`,
 					projectLink: "https://scratch.mit.edu/projects/327635693/",
 					solutionLink: "https://scratch.mit.edu/projects/327634746/"
 				},
 				{
 					title: "GS9 Supplemental Project 2 – Hungry Crab",
-					content: `**Project goal:** Build a food-collection game with arrow controls, a food counter, and a timer.
-
-**Build steps:**
-1. Arrow keys control the crab.
-2. A variable called "food" increases each time the crab eats a piece of food.
-3. A timer ends the game when time runs out.
-4. The final screen displays how much food was collected.
-
-**Completion check:** The food count increases only when the crab collects food, and the timer creates a clear end state.`,
+					content: `
+1. Control a crab with the arrow keys.
+2. Create a variable called "food" and increase it each time the crab eats a piece of food.
+3. Add a timer; when time runs out, end the game and display how much food was collected.`,
 					projectLink: "https://scratch.mit.edu/projects/327610777/",
 					solutionLink: "https://scratch.mit.edu/projects/327610727/"
 				},
 				{
 					title: "GS9 Supplemental Project 3 – Lunch Money",
-					content: `**Project goal:** Build a small shopping simulation that tracks remaining lunch money.
-
-**Build steps:**
-1. A variable called "money" starts at 10.
-2. The project asks what the player wants to buy for lunch, such as pizza, sandwich, or salad.
-3. The chosen item's cost is subtracted from the money variable.
-4. If the player cannot afford an item, a message explains the problem.
-5. Buying continues until the money runs out.
-
-**Completion check:** Affordable purchases reduce the money variable correctly, while unaffordable purchases do not make the total go negative.`,
+					content: `
+1. Start with a variable "money" set to 10.
+2. Ask the user what they want to buy for lunch (e.g., pizza, sandwich or salad) and subtract the cost from the money variable.
+3. If the user can't afford an item, display a message.
+4. Allow them to continue buying until the money runs out.`,
 					projectLink: "https://scratch.mit.edu/projects/327607937/",
 					solutionLink: "https://scratch.mit.edu/projects/327607840/"
 				}
@@ -865,36 +713,30 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 				},
 				{
 					title: "GS10 Project 1 – Dance Off",
-					content: `**Project goal:** Build a dance sequence where each sprite gets a turn to perform on the stage.
+					content: `
+It's dancing time! Let's give each sprite a turn to "perform" on the stage.
 
-**Dance sequence:**
-1. When the green flag is clicked, reset each dancer to the left side.
-2. Make the ballerina glide to the middle and cycle twice through all costumes.
-3. When the ballerina is done, glide her off to the right side.
-4. Make each other dancer follow the same pattern one by one.
-5. Add clapping or applause between performers.
-6. Add backdrop code that plays dancing music during the show.
-7. When Champ is done dancing, broadcast a message that stops the music.
+1. When the green flag is clicked, make the ballerina glide to the middle of the stage and cycle twice through all of her costumes. When she's done, have her glide off to the right side of the stage.
+2. One by one, make each of the other dancers do the same thing. Can you add some clapping between each performer? We also need to be sure to make them start back on the left when the green flag is clicked!
+3. A dance party isn't very fun without music! Add some code to the backdrop so that it plays dancing music forever. When Champ is done dancing, broadcast a message that stops the music.
+4. Can you make it so that the lights change, too? How about some clapping once everyone is done?
 
-**Extension:** Add lighting changes, a final applause sequence, or a closing pose after everyone is done.
-
-**Completion check:** The dancers perform in a clear sequence, and the music stops from a broadcast rather than an unrelated timer.`,
+`,
 					projectLink: "https://scratch.mit.edu/projects/301002220/",
 					solutionLink: "https://scratch.mit.edu/projects/300644693/"
 				},
 				{
 					title: "GS10 Project 2 – Bowl Fill",
-					content: `**Project goal:** Build a collection game where the player controls a bowl and collects different items.
+					content: `
+Let's make a game where you control a bowl and try to collect various items!
 
-**Build steps:**
-1. Program the bowl so the arrow keys control it after the green flag is clicked.
-2. When an item sprite touches the bowl, broadcast a message such as "Cheese touched".
-3. Decide what each sprite does after receiving its message. It might move, play a sound, hide, or trigger a bowl reaction.
-4. Add variables that track how many times each object has been collected.
-5. Add a 15-second timer.
-6. When the timer ends, broadcast a message that makes every sprite react, such as spinning, growing, shrinking, or showing a final result.
+1. Start by programming the bowl so that it can be controlled by the arrow keys once the green flag is clicked.
+2. When a sprite is touched by the bowl, make it broadcast a message (like "Cheese touched", for example).
+3. Think about what each sprite should do when it receives these messages. Should they move? Make a sound? What should the bowl do?
+4. Add variables to your program that keep track of the number of times each object has been collected.
+5. Add a timer that stops the game after 15 seconds. When the timer runs out, broadcast a message that makes all sprites on the screen do something (e.g., spin in a circle, grow and shrink, etc.).
 
-**Completion check:** Each collected object updates the correct variable and triggers the correct broadcast response.`,
+Finally, share the project!`,
 					projectLink: "https://scratch.mit.edu/projects/303008513/",
 					solutionLink: "https://scratch.mit.edu/projects/302811491/"
 				},
@@ -910,30 +752,24 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 			supplementalProjects: [
 				{
 					title: "GS10 Supplemental Project 1 – Magical Quest",
-					content: `**Project goal:** Design a short interactive play that uses broadcasts to coordinate scene changes and dialogue.
+					content: `
 
-**Build steps:**
-1. Create a story with 3 to 4 characters and multiple scenes.
-2. Add the sprites and backdrops needed for the story.
-3. Broadcast messages make each character speak or move at the correct time.
-4. Additional broadcasts handle scene changes or major story events.
+Design your own play, and use the broadcast blocks to set up the scene changes and dialogue between characters!
 
-**Completion check:** The story runs in a clear sequence because sprites react to broadcasts, not because unrelated scripts happen to finish at the same time.`,
+1. Come up with a story that involves 3-4 characters and scenes. You can use movies or your real life as inspiration!
+2. Add the sprites and backdrops you will need to your project.
+3. Make your story come to life! Broadcast messages between your sprites to make sure everything happens in the correct sequence.`,
 					projectLink: "https://scratch.mit.edu/projects/330301165/",
 					solutionLink: "https://scratch.mit.edu/projects/328309254/"
 				},
 				{
 					title: "GS10 Supplemental Project 2 – Cartoon Crash",
-					content: `**Project goal:** Build a partner-selection game where Dani bounces around the room with the chosen sprite.
+					content: `
+Pick a partner for Dani to play with, and they will bounce around the screen together!
 
-**Build steps:**
-1. When the green flag is clicked, reset the Start button and have Dani explain the instructions.
-2. When Start is clicked, place all sprites in their starting positions.
-3. Let the player choose a partner sprite by clicking it.
-4. If a sprite is chosen, make it bounce around the room with Dani.
-5. If a sprite is not chosen, give it an appropriate alternate reaction.
-
-**Completion check:** The chosen and unchosen sprites respond differently, and the project resets correctly with the green flag.`,
+1. When the green flag is clicked, set up the Start button in the correct position and have Dani explain the instructions.
+2. When the Start button is clicked, set up the sprites in the correct positions.
+3. Program each sprite so that if it is chosen (i.e., clicked on), it bounces around the room with Dani! If it is not chosen, it should also react appropriately.`,
 					projectLink: "https://scratch.mit.edu/projects/330302209/",
 					solutionLink: "https://scratch.mit.edu/projects/328312475/"
 				},
@@ -956,13 +792,16 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 			curriculum: [
 				{
 					title: "GS11 Project 1 – Hedgehog Race",
-					content: `**Project goal:** Build Hedgehog Race by planning the moving pieces before programming.
+					content: `
+Let's put our skills to the test! Let's use what we've learned in the course to build this Hedgehog Race game.
 
-**Planning targets:** Identify the sprite behavior, controls, event reactions, variables, scoring, and end conditions. Add a project comment that lists the implementation steps.
+Play through the demo and identify the different elements of the game that they will have to program in order to create this game. Helpful questions include: what does each sprite do? How do we control it? How does each sprite react to certain events? What variables do we need to keep track of? How does the game end?
 
-**Implementation options:** The starter project can be used as a base, or the race can be rebuilt from a blank project with original sprites, costumes, and backdrops.
+Create a comment in the project to write out the different steps of what we will need to code.
 
-**Completion check:** The race has clear starting positions, player controls, a finish condition, and visible feedback when the race ends.`,
+Starter code is provided, but it is also fine to create a project from scratch with custom sprites, costumes, and backdrops.
+
+Finally, share the project!`,
 					projectLink: "https://scratch.mit.edu/projects/304551665/",
 					solutionLink: "https://scratch.mit.edu/projects/305082197/"
 				},
@@ -994,24 +833,21 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 			supplementalProjects: [
 				{
 					title: "GS11 Supplemental Project 1 – Save the Wizard",
-					content: `**Project goal:** Help the wizard collect potions, avoid skeletons, and turn back from a frog into a wizard.
+					content: `
+Play through the demo and identify the different elements of the game that they will have to program in order to create this game. Helpful questions include: what does each sprite do? How do we control it? How does each sprite react to certain events? What variables do we need to keep track of? How does the game end?
 
-**Planning targets:** Before programming, identify the sprite behavior, controls, event reactions, variables, scoring or level rules, and end conditions. Add a project comment that lists the implementation steps.
+Create a comment in the project to write out the different steps of what we will need to code.
 
-**Build steps:**
-1. Program the frog wizard so that the green flag places it at the center, sets its size, and enables arrow-key movement.
-2. Program the skeleton to start at a random position on the far right and move left.
-3. When the skeleton touches the frog or the left edge, send it back to the right side.
-4. Program the potion with a similar reset pattern.
-5. Add a level variable, set it to 1 at the start, and use it to control win/loss progress.
-6. Create broadcasts for leveling up and leveling down.
-7. Leveling up at level 4 wins the game. Otherwise, increase the level, switch costume, and increase size.
-8. Leveling down at level 1 loses the game. Otherwise, decrease the level, switch costume, and decrease size.
-9. Broadcast the level-up or level-down messages when the skeletons or potion touch the frog.
+The wizard has been turned into a frog! Help him collect potions while avoiding skeletons to turn back into a wizard.
 
-**Extensions:** Add another skeleton for extra difficulty. Add sound effects and backdrop changes for the finishing touches. For a harder potion pattern, make the potion wait a few seconds before appearing again.
-
-**Completion check:** The level variable changes exactly once per collision event, and the win/loss broadcasts make the final state clear.`,
+1. Let's start by working on our frog wizard! Make it so when the green flag is clicked, he goes to the center of the screen, changes his size and moves when the arrow keys are pressed.
+2. Next, let's make the skeleton move! We want the skeleton to go to a random position on the far right side of the screen and constantly move left. When it is touching the frog or the left edge, make it go back to the right side.
+3. Now do the same thing to the potion. If you want to make the game more challenging, make the potion wait a few seconds before appearing on the right again. (Hint: you'll need to use show/hide blocks).
+4. Our frog needs to be able to level up and down in order to win or lose the game. Start by making a variable to keep track of the level and set it to 1 when the green flag is clicked.
+5. Make message broadcasts for leveling up and down. When they level up, if they are at level 4, they win the game. Otherwise, increase their level by 1, switch the costume and increase the size. When they level down, if they are at level 1, they lose the game. Otherwise, decrease their level by 1, switch the costume and decrease the size.
+6. Make sure to broadcast the level-up/level-down messages when the skeletons or potion touch the frog.
+7. Feel free to add another skeleton to make the game more difficult.
+8. Add sound effects and backdrop changes for the finishing touches!`,
 					projectLink: "https://scratch.mit.edu/projects/332395747/",
 					solutionLink: "https://scratch.mit.edu/projects/330724703/"
 				},
@@ -1042,17 +878,14 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 			curriculum: [
 				{
 					title: "GS12 Project 1 – Asteroid Dodge",
-					content: `**Project goal:** Build Asteroid Dodge with clear controls, collision rules, scoring or survival timing, and restart behavior.
+					content: `
+Play through the demo and identify the different elements of the game that they will have to program in order to create this game. Helpful questions include: what does each sprite do? How do we control it? How does each sprite react to certain events? What variables do we need to keep track of? How does the game end?
 
-		**Planning targets:** Identify player controls, asteroid movement, collision rules, score or survival timer, and restart behavior before programming. Add a project comment that lists the implementation steps.
+Create a comment in the project to write out the different steps of what we will need to code.
 
-		**Build options:** The starter project can be used as a base, or the same mechanics can be rebuilt from a blank project with original sprites, costumes, and backdrops.
+Starter code is provided, but it is also fine to create a project from scratch with custom sprites, costumes, and backdrops.
 
-		**Design notes:** Treat the player, asteroids, timer, and collision response as separate systems. A good first version has only one asteroid and one clear collision outcome; additional asteroids, speed changes, sounds, or polish come after the reset and end-state behavior are reliable.
-
-		**Evidence:** Test a normal dodge path, a collision path, and a restart path. The game shows what changed after a collision, resets old asteroid positions when replayed, and avoids hidden score or timer state from the previous run.
-
-		**Completion check:** The player moves reliably, asteroids reset cleanly, collisions are detected consistently, and the game has a clear ending or replay path.`,
+Finally, share the project!`,
 					projectLink: "https://scratch.mit.edu/projects/303001451/",
 					solutionLink: "https://scratch.mit.edu/projects/302948550/"
 				},
@@ -1120,32 +953,15 @@ E-D-C, E-D-C, C-C-C-C, D-D-D-D, E-D-C.
 			curriculum: [
 				{
 					title: "GS13 Project 1 – Master Project",
-					content: `**Project goal:** Design an original Scratch game that combines events, loops, conditionals, variables, coordinates, broadcasts, and project planning.
+					content: `For your Master Project, you now have the skills and knowledge to design and build a game of your own! Spend some time brainstorming what kind of game to make, thinking about the past projects created and different elements to incorporate.
 
-**Planning targets:** Choose the game type, sprites, controls, rules, win/loss condition, variables, and event structure before building.
-
-**Design questions:**
-1. What does each sprite do?
-2. How is each sprite controlled?
-3. How does each sprite react to events?
-4. Which variables track game state?
-5. How does the game end?
-
-**Build target:** A playable minimum version comes before polish. The minimum version proves the controls, main rule, score or progress state, and ending.
-
-**Completion check:** The game feels like one connected system rather than isolated scripts, and the final behavior is traceable from green flag to ending state.`
+Once there is an idea, discuss the plan for programming the game. Helpful questions include: what does each sprite do? How do we control it? How does each sprite react to certain events? What variables do we need to keep track of? How does the game end?`
 				},
 				{
 					title: "Master Project Presentation",
-					content: `**Presentation goal:** Explain how the finished game works and what design decisions shaped it.
+					content: `Once it's complete, prepare a simple presentation about how the project was programmed and share the accomplishment with friends or family.
 
-**Summary targets:**
-1. Name the main sprites and variables.
-2. Explain the most important event, loop, conditional, and broadcast or message.
-3. Describe one problem that came up during development and how it was solved.
-4. Reflect on the finished result and one improvement that would make the game stronger.
-
-**Completion check:** The explanation makes the game logic understandable to someone viewing the project for the first time.`
+Another way to celebrate the project is by sharing it with friends or family.`
 				},
 				{
 					title: "Course recap",

@@ -57,7 +57,7 @@ describe("C++ Level 1 learner flow", () => {
 		}
 	});
 
-	it("keeps one main build per stage and moves secondary builds to options", () => {
+	it("keeps original Juni projects in core and supplemental work in practice", () => {
 		const requiredCount = cppLevel1Course.modules.reduce(
 			(total, module) => total + module.curriculum.length,
 			0
@@ -72,20 +72,30 @@ describe("C++ Level 1 learner flow", () => {
 				title: item.title
 			}))
 		);
+		const curriculum = cppLevel1Course.modules.flatMap(module =>
+			module.curriculum.map(item => ({
+				path: item.learningPath,
+				title: item.title
+			}))
+		);
 
-		expect(requiredCount).toBe(23);
-		expect(optionCount).toBe(15);
-		for (const choice of [
+		expect(requiredCount).toBe(29);
+		expect(optionCount).toBe(9);
+		for (const project of [
 			"CPPF1 Project 2: Chat Bot",
 			"CPPF2 Project 2: Rock, Paper, Scissors",
 			"CPPF3 Project 2: Number Guesser",
 			"CPPF5 Project 2: Bank Accounts",
 			"CPPF6 Project 2: Defanging a Website Address"
 		]) {
-			expect(options).toContainEqual({ path: "choice", title: choice });
+			expect(curriculum).toContainEqual({
+				path: "core",
+				title: project
+			});
+			expect(options.map(item => item.title)).not.toContain(project);
 		}
-		expect(options).toContainEqual({
-			path: "challenge",
+		expect(curriculum).toContainEqual({
+			path: "core",
 			title: "CPPF2 Project 3: Fizz Buzz"
 		});
 	});

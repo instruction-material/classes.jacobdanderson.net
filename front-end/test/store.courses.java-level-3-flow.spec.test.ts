@@ -22,7 +22,7 @@ const EXPECTED_PRIMARY_SEQUENCE = [
 	"AJ17 Master Project: Google Maps"
 ];
 
-const MOVED_PROJECTS = [
+const JUNI_CORE_PROJECTS = [
 	"AJ4 Project 2: Divisible by 7",
 	"AJ5 Project 2: Big-O Practice",
 	"AJ6 Project 2: Binary Search with Recursion",
@@ -62,7 +62,7 @@ describe("Java Level 3 learner flow", () => {
 		expect(javaLevel3Course.modules.slice(18)).toMatchObject([
 			{
 				kind: "appendix",
-				title: "Optional Java Foundations, Bubble Sort, and Reference Archive"
+				title: "Java Foundations Reference Archive"
 			},
 			{
 				kind: "appendix",
@@ -98,7 +98,7 @@ describe("Java Level 3 learner flow", () => {
 		}
 	});
 
-	it("preserves all material while reducing the required path", () => {
+	it("keeps original Juni projects in core and supplemental work in practice", () => {
 		const curriculumCount = javaLevel3Course.modules.reduce(
 			(total, module) => total + module.curriculum.length,
 			0
@@ -114,18 +114,18 @@ describe("Java Level 3 learner flow", () => {
 			module.supplementalProjects.map(item => item.title)
 		);
 
-		expect(curriculumCount).toBe(93);
-		expect(optionCount).toBe(142);
-		for (const title of MOVED_PROJECTS) {
-			expect(curriculumTitles, title).not.toContain(title);
-			expect(optionTitles, title).toContain(title);
+		expect(curriculumCount).toBe(142);
+		expect(optionCount).toBe(93);
+		for (const title of JUNI_CORE_PROJECTS) {
+			expect(curriculumTitles, title).toContain(title);
+			expect(optionTitles, title).not.toContain(title);
 		}
-		expect(optionTitles).toContain("AJ1 Project 1: Mad Libs");
-		expect(optionTitles).toContain(
+		expect(curriculumTitles).toContain("AJ1 Project 1: Mad Libs");
+		expect(curriculumTitles).toContain(
 			"AJ8 Project 1: Bubble Sort Implementation"
 		);
-		expect(optionTitles).toContain("Check-In #2: Bubble Sort");
-		expect(optionTitles).toContain(
+		expect(curriculumTitles).toContain("Check-In #2: Bubble Sort");
+		expect(curriculumTitles).toContain(
 			"AJ18 Repo Extension, Starter, and Capstone Library: Core Project"
 		);
 		expect(optionTitles).toContain(

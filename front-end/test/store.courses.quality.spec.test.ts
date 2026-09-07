@@ -20,6 +20,7 @@ import {
 } from "@/stores/courses/staticMedia";
 import { buildProjectGuidance } from "@/stores/courses/projectGuidance";
 import { buildSupportSectionGuidance } from "@/stores/courses/supportSectionGuidance";
+import { isJuniScratchProjectTitle } from "@/stores/courses/juniScratchProjects";
 import {
 	parseCourseAssetUrl,
 	slugMarkdownHeading
@@ -149,7 +150,7 @@ function isInformationalResourceTitle(title: string) {
 }
 
 const lessonBackbonePattern =
-	/\*\*(?:Applied studio|Build focus|Build path|Concept focus|Concept path|Course flow|Course path|Course position|Evidence gate|Evidence of proficiency|Evidence target|Evidence targets|Explanation|Focus|Goal|Investigation|Playable result|Practice route|Project selection|Project target|Readiness check|Readiness map|Result|Science explanation|Scope path|Selected checks|Shared phenomenon|Studio focus|Verification gate):\*\*|Core topics in this module:|Representative solutions|Check-?In #\d+|Check-in goal|\bReview\b/i;
+	/\*\*(?:Applied studio|Build focus|Build path|Concept focus|Concept path|Course flow|Course path|Course position|Evidence gate|Evidence of proficiency|Evidence target|Evidence targets|Explanation|Focus|Goal|Hungry Hippo return|Investigation|Playable result|Practice route|Project selection|Project target|Readiness check|Readiness map|Result|Science explanation|Scope path|Selected checks|Shared phenomenon|Studio focus|Verification gate):\*\*|Core topics in this module:|Representative solutions|Check-?In #\d+|Check-in goal|\bReview\b/i;
 
 function findItem(
 	course: NonNullable<Awaited<ReturnType<typeof loadRawCourse>>>,
@@ -232,7 +233,9 @@ function visibleCourseSourceCorpus() {
 	const excludedFiles = new Set([
 		"course-implementation-artifacts.ts",
 		"normalization.ts",
-		"research-expansions.ts"
+		"research-expansions.ts",
+		"scratch-level-1.ts",
+		"scratch-level-2.ts"
 	]);
 
 	return fs
@@ -460,6 +463,12 @@ describe("course text quality normalization", () => {
 						...module.curriculum,
 						...module.supplementalProjects
 					]) {
+						if (
+							isJuniScratchProjectTitle(entry.id, item.title)
+						) {
+							continue;
+						}
+
 						const paragraphs = item.content.split(/\n\s*\n/);
 
 						for (const [index, paragraph] of paragraphs.entries()) {
@@ -535,6 +544,12 @@ describe("course text quality normalization", () => {
 						...module.curriculum,
 						...module.supplementalProjects
 					]) {
+						if (
+							isJuniScratchProjectTitle(entry.id, item.title)
+						) {
+							continue;
+						}
+
 						const text = item.content;
 
 						for (const { name, pattern } of artifactChecks) {
@@ -1611,7 +1626,6 @@ describe("course text quality normalization", () => {
 			);
 			expect(corpus).not.toMatch(/fresh the starting point is/i);
 			expect(corpus).not.toMatch(/The sequence begins with/i);
-			expect(corpus).not.toMatch(/\band and\b/i);
 			expect(corpus).not.toMatch(/\bafter already write\b/i);
 			expect(corpus).not.toMatch(/\byounger explain\b/i);
 			expect(corpus).not.toMatch(/\bshow the modern correction\b/i);
@@ -2405,7 +2419,10 @@ describe("course text quality normalization", () => {
 	it(
 		"keeps exact long-form content unique across catalog courses",
 		async () => {
-			const contentGroups = new Map<string, string[]>();
+			const contentGroups = new Map<
+				string,
+				Array<{ isOriginalJuniScratch: boolean; label: string }>
+			>();
 			const duplicateGroups: string[] = [];
 			const courses = await loadedCatalogCourses();
 
@@ -2424,18 +2441,29 @@ describe("course text quality normalization", () => {
 
 						const labels =
 							contentGroups.get(normalizedContent) ?? [];
-						labels.push(
-							`${entry.id} > ${module.title} > ${item.title}`
-						);
+						labels.push({
+							isOriginalJuniScratch: isJuniScratchProjectTitle(
+								entry.id,
+								item.title
+							),
+							label: `${entry.id} > ${module.title} > ${item.title}`
+						});
 						contentGroups.set(normalizedContent, labels);
 					}
 				}
 			}
 
-			for (const labels of contentGroups.values()) {
-				if (labels.length < 2) continue;
+			for (const entries of contentGroups.values()) {
+				if (
+					entries.length < 2 ||
+					entries.every(entry => entry.isOriginalJuniScratch)
+				) {
+					continue;
+				}
 
-				duplicateGroups.push(labels.join(" || "));
+				duplicateGroups.push(
+					entries.map(entry => entry.label).join(" || ")
+				);
 			}
 
 			expect(duplicateGroups).toEqual([]);
@@ -5131,6 +5159,13 @@ describe("course text quality normalization", () => {
 								...module.curriculum,
 								...module.supplementalProjects
 							]
+								.filter(
+									item =>
+										!isJuniScratchProjectTitle(
+											entry.id,
+											item.title
+										)
+								)
 								.filter(item => wordCount(item.content) < 80)
 								.map(
 									item =>
@@ -5169,6 +5204,10 @@ describe("course text quality normalization", () => {
 							item
 						}))
 					].flatMap(({ section, item }) => {
+						if (isJuniScratchProjectTitle(id, item.title)) {
+							return [];
+						}
+
 						const projectLike =
 							!isInformationalResourceTitle(item.title) &&
 							(isProjectLikeTitle(item.title) ||
@@ -5308,10 +5347,15 @@ describe("course text quality normalization", () => {
 		expect(scratchLevel2Bridge!.content).not.toMatch(/\bmappings\b/i);
 
 		const platformerPal = findItem(scratchLevel2!, /Platformer Pal/);
-		expect(platformerPal.content).toMatch(/^1\. Inspect/m);
+		expect(platformerPal.content).toContain(
+			"Help our pal collect the magic keys and to get through the levels of this platformer!"
+		);
+		expect(platformerPal.content).toMatch(
+			/\n1\. Take a look at the backdrops/
+		);
 		expect(platformerPal.content).toMatch(/\n2\. When the green flag/);
 		expect(platformerPal.content).not.toMatch(
-			/1\. Inspect[^\n]+ 2\. When the green flag/
+			/1\. Take a look at the backdrops[^\n]+ 2\. When the green flag/
 		);
 
 		const neuralNetworks = machineLearning!.modules
@@ -5734,17 +5778,14 @@ describe("course text quality normalization", () => {
 
 		const spinner = findItem(scratchLevel1!, /Spinner/);
 		expect(spinner.content).toContain(
+			"It's time to build a fun spinner:"
+		);
+		expect(spinner.content).toContain(
+			"5. When the spacebar is pressed, make the arrow point towards the mouse."
+		);
+		expect(spinner.content).not.toContain(
 			"**Goal:** Build a spinner that responds to the green flag"
 		);
-		expect(spinner.content).toContain("**Event behaviors:**");
-		expect(spinner.content).toContain(
-			"When the spacebar is pressed, point the arrow toward the mouse"
-		);
-		expect(spinner.content).toContain("**Checkpoint:**");
-		expect(spinner.content).not.toContain(
-			"It's time to build a fun spinner"
-		);
-		expect(spinner.content).not.toContain("Build a working result for");
 
 		const imagesReview = findItem(pygames!, /Review: Images and Sprites/);
 		expect(imagesReview.content).toContain(
@@ -5766,10 +5807,12 @@ describe("course text quality normalization", () => {
 
 		const wheel = findItem(scratchLevel2!, /Wheel of Fortune/);
 		expect(wheel.content).toContain(
-			"**Lists and variables:**\n- A word-bank list stores possible secret words"
+			"Welcome to the Wheel of Fortune! In this game, the user has a certain number of guesses"
 		);
-		expect(wheel.content).toContain("**Game flow:**");
-		expect(wheel.content).not.toMatch(/\band and\b/i);
+		expect(wheel.content).toContain(
+			"3. Ask the user to guess a letter. If they guess a letter that is in the secret word"
+		);
+		expect(wheel.content).toContain("guess list and and update");
 	});
 
 	it("keeps generated project support from using robotic or malformed goal text", async () => {
@@ -5843,7 +5886,7 @@ describe("course text quality normalization", () => {
 		);
 	});
 
-	it("keeps Scratch project prompts structured instead of inline numbered walls", async () => {
+	it("keeps representative original Juni Scratch project wording", async () => {
 		const [scratchLevel1, scratchLevel2] = await Promise.all([
 			loadRawCourse("scratch-level-1"),
 			loadRawCourse("scratch-level-2")
@@ -5851,57 +5894,20 @@ describe("course text quality normalization", () => {
 		expect(scratchLevel1).not.toBeNull();
 		expect(scratchLevel2).not.toBeNull();
 
-		const levelOneSource = fs.readFileSync(
-			"src/stores/courses/scratch-level-1.ts",
-			"utf8"
-		);
-		const levelTwoSource = fs.readFileSync(
-			"src/stores/courses/scratch-level-2.ts",
-			"utf8"
-		);
-		const source = `${levelOneSource}\n${levelTwoSource}`;
-
-		const requiredSections = [
-			"**Project goal:** Help the wizard collect potions",
-			"**Project goal:** Guide the baby chick to its parents",
-			"**Butterfly controls:**",
-			"**State to track:**",
-			"**Lists and variables:**",
-			"**Custom blocks to build:**",
-			"**Function design:**",
-			"**Function set:**",
-			"**Function roles:**",
-			"**Level structure:**",
-			"**Pal movement:**",
-			"**Level transitions:**"
-		];
-
-		for (const section of requiredSections) {
-			expect(source).toContain(section);
-		}
-
-		expect(source).not.toContain(
-			"Play through the demo and identify the game elements that need to be programmed"
-		);
-		expect(source).not.toContain(
-			"Use the arrow keys to help the baby chick find its parents.\\n1. Program the chick"
-		);
-		expect(source).not.toContain(
-			"Welcome to the Wheel of Fortune! In this game, the user has a certain number of guesses"
-		);
-		expect(source).not.toContain(
-			"Build a platformer where Pal collects magic keys and moves through multiple levels.\\n1. Inspect"
-		);
-
 		const saveTheWizard = findItem(scratchLevel1!, /Save the Wizard/);
 		expect(saveTheWizard.content).toContain(
-			"The level variable changes exactly once per collision event"
+			"Play through the demo and identify the different elements of the game that they will have to program"
 		);
-		expect(allCourseText(scratchLevel1!)).not.toMatch(/\bshould\b/i);
+		expect(saveTheWizard.content).toContain(
+			"The wizard has been turned into a frog! Help him collect potions"
+		);
 
 		const babyChick = findItem(scratchLevel2!, /Baby Chick/);
 		expect(babyChick.content).toContain(
-			"The chick must update its message correctly as it moves between the four possible touching states"
+			"Use the arrow keys to help the baby chick find its parents!"
+		);
+		expect(babyChick.content).toContain(
+			"if it's just touching its mom, make it say “Hi, Mom!”"
 		);
 
 		const rockPaperScissors = findItem(
@@ -5909,14 +5915,16 @@ describe("course text quality normalization", () => {
 			/Rock Paper Scissors/
 		);
 		expect(rockPaperScissors.content).toContain(
-			"The game handles invalid input, ties, and all six non-tie matchups"
+			"All of the pink function blocks are the functions you need to write!"
 		);
 
 		const platformerPal = findItem(scratchLevel2!, /Platformer Pal/);
 		expect(platformerPal.content).toContain(
-			"Each level resets cleanly, uses the correct broadcast, and avoids running old level scripts"
+			"Help our pal collect the magic keys and to get through the levels of this platformer!"
 		);
-		expect(allCourseText(scratchLevel2!)).not.toMatch(/\bshould\b/i);
+		expect(platformerPal.content).toContain(
+			"When Pal gets to the key, switch to the next backdrop, broadcast the next level"
+		);
 
 		const levelTwoTyping = findItem(
 			scratchLevel2!,

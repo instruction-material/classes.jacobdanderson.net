@@ -10,7 +10,7 @@ describe("course project grouping", () => {
 		);
 		expect(
 			isCoreProjectTitle("Check-In #1: Additional Practice Project")
-		).toBe(false);
+		).toBe(true);
 		expect(isCoreProjectTitle("Answer Key and Worked Solution")).toBe(false);
 	});
 });

@@ -17,7 +17,7 @@ const EXPECTED_PRIMARY_SEQUENCE = [
 	"JM10 Master Project"
 ];
 
-const MOVED_PROJECTS = [
+const JUNI_CORE_PROJECTS = [
 	"JM2 Project 1: Person Class",
 	"Check-In #1: Additional Practice Project",
 	"JM4 Project 2: Book and PictureBook Class",
@@ -80,7 +80,7 @@ describe("Java Level 2 learner flow", () => {
 		}
 	});
 
-	it("preserves all projects while reducing the required path", () => {
+	it("keeps original Juni projects in core and supplemental work in practice", () => {
 		const curriculumCount = javaLevel2Course.modules.reduce(
 			(total, module) => total + module.curriculum.length,
 			0
@@ -96,11 +96,11 @@ describe("Java Level 2 learner flow", () => {
 			module.supplementalProjects.map(item => item.title)
 		);
 
-		expect(curriculumCount).toBe(55);
-		expect(optionCount).toBe(72);
-		for (const title of MOVED_PROJECTS) {
-			expect(curriculumTitles, title).not.toContain(title);
-			expect(optionTitles, title).toContain(title);
+		expect(curriculumCount).toBe(65);
+		expect(optionCount).toBe(62);
+		for (const title of JUNI_CORE_PROJECTS) {
+			expect(curriculumTitles, title).toContain(title);
+			expect(optionTitles, title).not.toContain(title);
 		}
 		expect(optionTitles).toContain(
 			"JM Master Project Example Quiz Game: Core Project"
