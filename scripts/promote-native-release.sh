@@ -321,7 +321,13 @@ smoke_release() {
 	local classes_expected_release="$1"
 	local classes_expected_revision="$2"
 	local classes_probe_prefix="$3"
-	local classes_http_path classes_status
+	local classes_course_csp classes_http_path classes_status
+	classes_course_csp="$(
+		node --input-type=module -e \
+			'const policy = await import(process.argv[1]); process.stdout.write(policy.serializeContentSecurityPolicy("course-scratch"));' \
+			"$classes_source_dir/scripts/production-security-headers.mjs"
+	)"
+	[[ -n "$classes_course_csp" ]]
 	classes_http_path="/__native-http-redirect-$classes_expected_revision?probe=1"
 	classes_status="$(capture_http "$classes_http_path" "$classes_probe_prefix.http.body" "$classes_probe_prefix.http.headers")"
 	[[ "$classes_status" == "301" ]]
@@ -357,6 +363,10 @@ smoke_release() {
 	cmp --silent \
 		"$classes_probe_prefix.courses.body" \
 		"$classes_expected_release/front-end/dist/courses/index.html"
+	require_one_header \
+		"$classes_probe_prefix.courses.headers" \
+		"Content-Security-Policy" \
+		"$classes_course_csp"
 
 	classes_status="$(capture_https /api/readyz "$classes_probe_prefix.ready.body" "$classes_probe_prefix.ready.headers")"
 	[[ "$classes_status" == "200" ]]

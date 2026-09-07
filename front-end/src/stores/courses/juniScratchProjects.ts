@@ -3,10 +3,7 @@ const SCRATCH_LEVEL_1_PROJECT_TITLE_RE =
 const SCRATCH_LEVEL_2_PROJECT_TITLE_RE =
 	/^(?:GM\d+ (?:Supplemental )?Project \d+|GM1 Review Project:|Check-In (?:#\d+: Additional |\d+ )Practice Project$|Master Project Presentation$)/i;
 
-export function isJuniScratchProjectTitle(
-	courseId: string,
-	title: string
-) {
+export function isJuniScratchProjectTitle(courseId: string, title: string) {
 	const normalizedTitle = title.replace(/^Scratch Level [12]\s+/i, "");
 
 	if (courseId === "scratch-level-1") {

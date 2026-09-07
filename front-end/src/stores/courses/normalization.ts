@@ -60,13 +60,13 @@ function preserveScratchProjectInstructions(
 ) {
 	return course.modules.flatMap(module =>
 		[...module.curriculum, ...module.supplementalProjects]
-			.filter(item =>
-				isJuniScratchProjectTitle(courseId, item.title)
-			)
+			.filter(item => isJuniScratchProjectTitle(courseId, item.title))
 			.map(item => ({
 				content: item.content,
+				item,
 				itemId: item.id,
 				itemTitle: item.title,
+				module,
 				moduleId: module.id,
 				moduleTitle: module.title
 			}))
@@ -80,21 +80,27 @@ function restoreScratchProjectInstructions(
 	for (const snapshot of preserved) {
 		const module = course.modules.find(
 			candidate =>
-				candidate.id === snapshot.moduleId ||
+				candidate === snapshot.module ||
+				(snapshot.moduleId && candidate.id === snapshot.moduleId) ||
 				(snapshot.moduleId &&
 					candidate.aliases?.includes(snapshot.moduleId)) ||
 				candidate.title === snapshot.moduleTitle
 		);
-		const item = module &&
+		const item =
+			module &&
 			[...module.curriculum, ...module.supplementalProjects].find(
 				candidate =>
-					candidate.id === snapshot.itemId ||
+					candidate === snapshot.item ||
+					(snapshot.itemId && candidate.id === snapshot.itemId) ||
 					(snapshot.itemId &&
 						candidate.aliases?.includes(snapshot.itemId)) ||
 					candidate.title === snapshot.itemTitle
 			);
 
-		if (item) item.content = snapshot.content;
+		if (item) {
+			item.content = snapshot.content;
+			if (!snapshot.itemId) item.title = snapshot.itemTitle;
+		}
 	}
 }
 

@@ -1367,6 +1367,115 @@ describe("CourseExplorer.vue", () => {
 		expect(wrapper.text()).not.toContain("Solution repo");
 	});
 
+	it("loads one sandboxed Scratch player only after a learner asks to play", async () => {
+		const pinia = createPinia();
+		setActivePinia(pinia);
+
+		const appStore = useAppStore();
+		const coursesStore = useCoursesStore();
+		const assignedCourse = coursesStore.courses[0];
+		const embedUrl = "https://scratch.mit.edu/projects/214828609/embed";
+
+		vi.spyOn(coursesStore, "loadCourseById").mockResolvedValue({
+			id: assignedCourse.id,
+			name: assignedCourse.name,
+			modules: [
+				{
+					curriculum: [
+						{
+							content: "Try the activity before comparing it.",
+							id: "scratch-solution-item",
+							playableSolutionEmbedUrl: embedUrl,
+							title: "Motion challenge"
+						}
+					],
+					id: "module-1",
+					supplementalProjects: [],
+					title: "Module 1"
+				}
+			]
+		});
+
+		appStore.setCurrentUser({
+			_id: "user-1",
+			name: "Student",
+			email: "student@example.com",
+			age: 12,
+			state: "GA",
+			courseAccess: [assignedCourse.id],
+			courseProgress: [],
+			editUsers: false,
+			saveEdit: "Save"
+		});
+
+		const wrapper = mount(CourseExplorer, {
+			attachTo: document.body,
+			global: { plugins: [pinia] }
+		});
+		await flushPromises();
+
+		const playButton = wrapper.find<HTMLButtonElement>(
+			".resource-link.is-playable-solution"
+		);
+		expect(playButton.text()).toContain("Play solution");
+		expect(wrapper.find(".scratch-solution-frame iframe").exists()).toBe(
+			false
+		);
+		expect(
+			wrapper.find(`a[href^="https://scratch.mit.edu"]`).exists()
+		).toBe(false);
+
+		await playButton.trigger("click");
+		await flushPromises();
+
+		let frame = wrapper.find(".scratch-solution-frame iframe");
+		expect(wrapper.find(".scratch-solution-description").text()).toContain(
+			"Scratch may load services it controls, including third-party services."
+		);
+		expect(frame.attributes("src")).toBe(embedUrl);
+		expect(frame.attributes("sandbox")).toBe(
+			"allow-scripts allow-same-origin"
+		);
+		expect(frame.attributes("referrerpolicy")).toBe("no-referrer");
+		expect(frame.attributes("allow")).toBe("fullscreen");
+		expect(wrapper.find("dialog").attributes()).toHaveProperty("open");
+		const footerClose = wrapper.find<HTMLButtonElement>(
+			".scratch-solution-close--footer"
+		);
+		expect(footerClose.text()).toBe("Close player");
+		expect(
+			frame.element.compareDocumentPosition(footerClose.element) &
+				Node.DOCUMENT_POSITION_FOLLOWING
+		).toBeTruthy();
+
+		await footerClose.trigger("click");
+		await flushPromises();
+		expect(wrapper.find(".scratch-solution-frame iframe").exists()).toBe(
+			false
+		);
+		expect(document.activeElement).toBe(playButton.element);
+
+		await playButton.trigger("click");
+		await flushPromises();
+		await wrapper.find("dialog").trigger("cancel");
+		await flushPromises();
+		expect(wrapper.find(".scratch-solution-frame iframe").exists()).toBe(
+			false
+		);
+
+		await playButton.trigger("click");
+		await flushPromises();
+		frame = wrapper.find(".scratch-solution-frame iframe");
+		expect(frame.exists()).toBe(true);
+		await wrapper.find("dialog").trigger("click");
+		await flushPromises();
+		expect(wrapper.find(".scratch-solution-frame iframe").exists()).toBe(
+			false
+		);
+
+		wrapper.unmount();
+	});
+
 	it("renders non-file media resources as links instead of broken images", async () => {
 		const pinia = createPinia();
 		setActivePinia(pinia);

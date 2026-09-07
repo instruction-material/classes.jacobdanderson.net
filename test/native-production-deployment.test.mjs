@@ -37,6 +37,7 @@ test("native Nginx keeps static, API, and hidden-file boundaries separate", asyn
 
 	for (const profile of [
 		"standard",
+		"course-scratch",
 		"code-ide",
 		"graph-sketcher",
 		"scheduler-embed",
@@ -46,6 +47,12 @@ test("native Nginx keeps static, API, and hidden-file boundaries separate", asyn
 	]) {
 		assert.ok(maps.includes(serializeContentSecurityPolicy(profile)), `${profile} CSP drifted`);
 	}
+	assert.ok(
+		maps.includes(
+			`~^/courses(?:/|$) "${serializeContentSecurityPolicy("course-scratch")}";`
+		),
+		"/courses must bind the exact course-scratch CSP"
+	);
 	const configuredHeaders = nginxAddHeaderValues(headers);
 	for (const [name, value] of Object.entries(exactSecurityHeaders)) {
 		assert.deepEqual(configuredHeaders.get(name), [value]);
@@ -162,6 +169,13 @@ test("prepare and promotion scripts enforce exact provenance and rollback gates"
 	assert.match(
 		promote,
 		/require_coding_standard_redirect "\/coding_standard\?probe=1"/u
+	);
+	assert.ok(
+		promote.includes('serializeContentSecurityPolicy("course-scratch")')
+	);
+	assert.match(
+		promote,
+		/require_one_header\s+\\\s+"\$classes_probe_prefix[.]courses[.]headers"\s+\\\s+"Content-Security-Policy"\s+\\\s+"\$classes_course_csp"/u
 	);
 	assert.match(promote, /\/api\/readyz/u);
 	assert.match(promote, /"\/404[.]html"/u);

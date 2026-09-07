@@ -17,6 +17,7 @@ describe("page head helpers", () => {
 		["/python-ide", "IDE | Classes with Jacob"],
 		["/signup", "Book a Class | Classes with Jacob"],
 		["/payment/", "Tuition | Classes with Jacob"],
+		["/privacy", "Privacy | Classes with Jacob"],
 		["/profile", "Account | Classes with Jacob"],
 		["/reset-password?token=secret", "Reset Password | Classes with Jacob"],
 		["/admin/mdmail", "Mail Tools | Classes with Jacob"],

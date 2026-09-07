@@ -102,8 +102,7 @@ View CS Training's Code`,
 				},
 				{
 					title: "GM1 Project 6: Hedgehog Race",
-					content:
-						`Play through the demo and identify the different elements of the game that they will have to program in order to create this game. Helpful questions include: what does each sprite do? How do we control it? How does each sprite react to certain events? What variables do we need to keep track of? How does the game end?
+					content: `Play through the demo and identify the different elements of the game that they will have to program in order to create this game. Helpful questions include: what does each sprite do? How do we control it? How does each sprite react to certain events? What variables do we need to keep track of? How does the game end?
 Create a comment in the project to write out the different steps of what we will need to code.
 Starter code is provided, but it is also fine to create a project from scratch with custom sprites, costumes, and backdrops.
 View CS Training's Code`,
@@ -165,8 +164,7 @@ Starter code is provided, but it is also fine to create a project from scratch w
 				},
 				{
 					title: "GM2 Project 1: Square Inception",
-					content:
-						`1. Observe carefully the order in which the cat is drawing this pattern! First, program the cat to draw the first small square in the bottom right quadrant. (Make sure the canvas is erased and the cat's pen is down before he starts drawing.)
+					content: `1. Observe carefully the order in which the cat is drawing this pattern! First, program the cat to draw the first small square in the bottom right quadrant. (Make sure the canvas is erased and the cat's pen is down before he starts drawing.)
 2. Next, program the cat to draw the medium square, and then the large square.
 3. After the cat has drawn these three squares in the bottom right quadrant, have him turn 90 degrees and change his pen color by 25.
 4. Using nested loops, program the cat to draw the squares in the other three quadrants as well.
@@ -178,8 +176,7 @@ View CS Training's Code`,
 				},
 				{
 					title: "GM2 Project 2: Pyramid",
-					content:
-						`1. Observe carefully the order in which the cat is drawing this pattern! First, program the cat to draw the first tiny triangle. (Make sure before he starts drawing, he starts at (0,120), pointing in direction 150 degrees, with his pen down.)
+					content: `1. Observe carefully the order in which the cat is drawing this pattern! First, program the cat to draw the first tiny triangle. (Make sure before he starts drawing, he starts at (0,120), pointing in direction 150 degrees, with his pen down.)
 2. Next, program the cat to draw a slightly larger triangle, and then an even slightly larger triangle.
 3. Using nested loops and a variable, draw 15 total triangles to make the pyramid!
 Finally, share the project!`,
@@ -237,8 +234,7 @@ Finally, share the project!`,
 				},
 				{
 					title: "GM3 Project 1: Color Spotter",
-					content:
-						`1. Program controls for the cat so that he moves around on the screen when you press the arrow keys.
+					content: `1. Program controls for the cat so that he moves around on the screen when you press the arrow keys.
 2. Using conditionals, program the cat to say "I'm touching red and blue" if he is touching red and blue.
 3. Add similar conditionals for if he is touching red and yellow, and blue and yellow.
 4. If the cat is touching all three colors, make him say "I'm touching all 3 colors!"
@@ -251,8 +247,7 @@ View CS Training's Code`,
 				},
 				{
 					title: "GM3 Project 2: Strength Tester",
-					content:
-						`1. When the green flag is clicked, make the button say "Click me to see how strong you are!"
+					content: `1. When the green flag is clicked, make the button say "Click me to see how strong you are!"
 2. When the button is clicked, make it broadcast the message "How strong"
 3. When the arrow receives this message, make it go to (-130, -160), pick a random number between 0 and 300, and move up by this amount.
 4. Based on the random number, make the button say one of at least five different messages, like "You're the strongest person ever!" or "It looks like you need to go to the gym!"
@@ -318,8 +313,7 @@ Finally, share the project!`,
 				},
 				{
 					title: "GM4 Project 1: Jackson Pollock Clones",
-					content:
-						`1. Start by making the parent pencil create clones of itself continuously.
+					content: `1. Start by making the parent pencil create clones of itself continuously.
 2. When a clone is created, make it go to a random location, choose a random size and color, and then glide to another random location. Be sure to use the pen block that sets a color using a number, not the block that takes a color as an input. If the wrong block is used, only shades of blue will appear.
 Challenge: Make the brush strokes look more realistic with slightly varying angles, colors, and widths.
 Finally, share the project!
@@ -329,8 +323,7 @@ View CS Training's Code`,
 				},
 				{
 					title: "GM4 Project 2: Rainy Day",
-					content:
-						`1. Program the umbrella so that it can be moved with the left and right arrow keys.
+					content: `1. Program the umbrella so that it can be moved with the left and right arrow keys.
 2. Program the chick to continuously move forward in little steps and bounce if it hits a wall. Also make the chick switch directions randomly, once every few steps.
 3. Program the rain drop to create clones of itself continuously.
 4. When a clone is created, it should fall from the sky. Think about what should happen when it touches the chick and when the clone should be deleted, and add these scenarios into your code.
@@ -351,8 +344,7 @@ Finally, share the project!`,
 			supplementalProjects: [
 				{
 					title: "GM4 Supplemental Project 1: Fruity Fest",
-					content:
-						`1. Set up the parrot to move around with the up/down/left/right arrow keys.
+					content: `1. Set up the parrot to move around with the up/down/left/right arrow keys.
 2. Set up the fruit so that a clone is created every second. Each clone should be a random piece of fruit, and it should show up in a random location!
 3. Keep track of the total amount of fruit the parrot collects, and end the game and display the fruit platter once the parrot collects 10 pieces.`,
 					projectLink: "https://scratch.mit.edu/projects/336915372/",
@@ -421,8 +413,7 @@ Finally, share the project!`,
 				},
 				{
 					title: "Check-In #1: Additional Practice Project",
-					content:
-						`Use a variable to make the owl count from 1 to 50.
+					content: `Use a variable to make the owl count from 1 to 50.
 Add a conditional so that if the spacebar or the up arrow is pressed, the owl says something instead of the number.
 Add a conditional so that if the mouse pointer is on the owl, it gets shy and doesn\'t say anything at all!`,
 					projectLink: "https://scratch.mit.edu/projects/386649746/",
@@ -549,8 +540,7 @@ Challenge: Try to accomplish step 3 using one "say" block with many "join" block
 				},
 				{
 					title: "GM6 Project 1: Calculator",
-					content:
-						`1. Ask the user for the first number, the second number, and the operation (+, -, *, or /). Store each of them in variables.
+					content: `1. Ask the user for the first number, the second number, and the operation (+, -, *, or /). Store each of them in variables.
 2. Using conditionals, depending on what the user entered, have the calculator say the answer!
 Challenge: Add "remainder" as an operation option. For example, the remainder when 10 is divided by 3 is 1.
 Challenge #2: Add exponent (^) as operation option. For example, 2^3 = 8.
@@ -561,8 +551,7 @@ View CS Training's Code`,
 				},
 				{
 					title: "GM6 Project 2: FizzBuzz",
-					content:
-						`1. Program the butterfly to count from 1 to 50.
+					content: `1. Program the butterfly to count from 1 to 50.
 2. If the number is a multiple of 3, instead of saying the number, make the butterfly say Fizz!
 3. If the number is a multiple of 5, instead of saying the number, make the butterfly say Buzz!
 4. If the number is a multiple of 3 and 5, instead of saying the number (or any other word), make the butterfly say Fizzbuzz!
@@ -876,8 +865,7 @@ Make your sprite dance these moves forever!`,
 			curriculum: [
 				{
 					title: "GM9 Project 1: Fish Food",
-					content:
-						`Play through the demo and identify the different elements of the game to program in order to create this game. Helpful questions include: what does each sprite do? How do we control it? How does each sprite react to certain events? What variables do we need to keep track of? How does the game end?
+					content: `Play through the demo and identify the different elements of the game to program in order to create this game. Helpful questions include: what does each sprite do? How do we control it? How does each sprite react to certain events? What variables do we need to keep track of? How does the game end?
 Create a blank Scratch project and add a comment in the project to write out the different steps of what we will need to code. This is created from a blank project in preparation for the Master Project. Set up custom sprites and backdrops to create Fish Food.
 Finally, share the project!`,
 					projectLink: "https://scratch.mit.edu/projects/315901981/",
@@ -955,8 +943,7 @@ Finally, share the project!`,
 			curriculum: [
 				{
 					title: "GM10 Project 1: Treasure Cave",
-					content:
-						`Play through the demo and identify the different elements of the game that they will have to program in order to create this game. Helpful questions include: what does each sprite do? How do we control it? How does each sprite react to certain events? What variables do we need to keep track of? How does the game end?
+					content: `Play through the demo and identify the different elements of the game that they will have to program in order to create this game. Helpful questions include: what does each sprite do? How do we control it? How does each sprite react to certain events? What variables do we need to keep track of? How does the game end?
 Create a comment in the project to write out the different steps of what we will need to code.
 Starter code is provided, but it is also fine to create a project from scratch with custom sprites, costumes, and backdrops.
 Finally, share the project!`,
@@ -991,8 +978,7 @@ Finally, share the project!`,
 			supplementalProjects: [
 				{
 					title: "GM10 Supplemental Project 1: Fruit Ninja",
-					content:
-						`Play through the demo and identify the different elements of the game that they will have to program in order to create this game. Helpful questions include: what does each sprite do? How do we control it? How does each sprite react to certain events? What variables do we need to keep track of? How does the game end?
+					content: `Play through the demo and identify the different elements of the game that they will have to program in order to create this game. Helpful questions include: what does each sprite do? How do we control it? How does each sprite react to certain events? What variables do we need to keep track of? How does the game end?
 				Create a comment in the project to write out the different steps of what we will need to code.`,
 					projectLink: "https://scratch.mit.edu/projects/346953687/",
 					solutionLink: "https://scratch.mit.edu/projects/348994271/"
@@ -1025,16 +1011,14 @@ Finally, share the project!`,
 			curriculum: [
 				{
 					title: "GM11 Project 1: Master Project",
-					content:
-						`For your Master Project, you now have the skills and knowledge to design and build a game of your own! Spend some time brainstorming what kind of game to make, thinking about the past projects created and different elements to incorporate. Make sure to include lists and functions in the project.
+					content: `For your Master Project, you now have the skills and knowledge to design and build a game of your own! Spend some time brainstorming what kind of game to make, thinking about the past projects created and different elements to incorporate. Make sure to include lists and functions in the project.
 				Once there is an idea, discuss the plan for programming the game. Helpful questions include: what does each sprite do? How do we control it? How does each sprite react to certain events? What variables do we need to keep track of? How does the game end?
 				Create a new Scratch project and add a comment to write out the different steps of what we will need to code.
 				Program the game as independently as possible! As described above, this may take approximately two classes to complete.`
 				},
 				{
 					title: "Master Project Presentation",
-					content:
-						`Once it's complete, prepare a simple presentation about how the project was programmed and share the accomplishment with friends or family.
+					content: `Once it's complete, prepare a simple presentation about how the project was programmed and share the accomplishment with friends or family.
 				Another way to celebrate the project is by sharing it with friends or family.`
 				},
 				{

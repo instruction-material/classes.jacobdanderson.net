@@ -60,6 +60,9 @@
 					<li>
 						<RouterLink to="/about">About Jacob</RouterLink>
 					</li>
+					<li>
+						<RouterLink to="/privacy">Privacy</RouterLink>
+					</li>
 				</ul>
 			</section>
 		</div>

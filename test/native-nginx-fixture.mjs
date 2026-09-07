@@ -6,6 +6,7 @@ import { createServer } from "node:net";
 import os from "node:os";
 import path from "node:path";
 import process from "node:process";
+import { serializeContentSecurityPolicy } from "../scripts/production-security-headers.mjs";
 
 const repositoryRoot = path.resolve(import.meta.dirname, "..");
 const fixtureSource = path.join(
@@ -186,13 +187,18 @@ async function runFixture() {
 		}
 		assert.equal(ready, true, `Nginx fixture did not become ready.\n${stderr}`);
 
-		for (const [requestPath, marker] of [
-			["/", "Classes root fixture"],
-			["/courses/", "Classes courses fixture"],
-			["/ide/", "Classes IDE fixture"]
+		for (const [requestPath, marker, profile] of [
+			["/", "Classes root fixture", "standard"],
+			["/courses/", "Classes courses fixture", "course-scratch"],
+			["/ide/", "Classes IDE fixture", "code-ide"]
 		]) {
 			const response = await request(requestPath);
 			assert.equal(response.status, 200, `${requestPath} must not redirect`);
+			assert.equal(
+				response.headers.get("content-security-policy"),
+				serializeContentSecurityPolicy(profile),
+				`${requestPath} must use the exact ${profile} CSP`
+			);
 			assert.ok((await response.text()).includes(marker));
 		}
 

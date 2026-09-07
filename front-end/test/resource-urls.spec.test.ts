@@ -6,7 +6,8 @@ import {
 	isGitHubUrl,
 	isInstructionMaterialResourceUrl,
 	isPhetResourceUrl,
-	isScratchProjectUrl
+	isScratchProjectUrl,
+	scratchProjectEmbedUrl
 } from "@/modules/resourceUrls";
 
 describe("resource URL classification", () => {
@@ -45,6 +46,26 @@ describe("resource URL classification", () => {
 		).toBe(true);
 	});
 
+	it("derives only a canonical Scratch project embed URL", () => {
+		expect(
+			scratchProjectEmbedUrl(
+				"https://scratch.mit.edu/projects/214828609/"
+			)
+		).toBe("https://scratch.mit.edu/projects/214828609/embed");
+	});
+
+	it.each([
+		"https://scratch.mit.edu/projects/214828609/editor",
+		"https://scratch.mit.edu/projects/214828609/?ref=course",
+		"https://scratch.mit.edu/projects/214828609/#player"
+	])(
+		"keeps broad Scratch classification while refusing a noncanonical embed source: %s",
+		url => {
+			expect(isScratchProjectUrl(url)).toBe(true);
+			expect(scratchProjectEmbedUrl(url)).toBeNull();
+		}
+	);
+
 	it.each([
 		"https://github.com/",
 		"https://github.com.evil.example/owner/repo",
@@ -61,6 +82,7 @@ describe("resource URL classification", () => {
 		"http://scratch.mit.edu/projects/214828609/"
 	])("rejects a Scratch lookalike or non-project URL: %s", url => {
 		expect(isScratchProjectUrl(url)).toBe(false);
+		expect(scratchProjectEmbedUrl(url)).toBeNull();
 	});
 
 	it("identifies only exact HTTPS PhET resources", () => {

@@ -20,6 +20,7 @@ const NIST_SI_PATHS = new Set([
 ]);
 const PRIMARY_NIST_HOSTS = new Set(["nist.gov", "www.nist.gov"]);
 const SCRATCH_PROJECT_ID_RE = /^\d+$/;
+const SCRATCH_PROJECT_PATH_RE = /^\/projects\/(\d+)\/?$/;
 
 function parsePublicHttpsUrl(value: string) {
 	try {
@@ -66,6 +67,22 @@ export function isScratchProjectUrl(value: string) {
 		segments[0] === "projects" &&
 		SCRATCH_PROJECT_ID_RE.test(segments[1] ?? "")
 	);
+}
+
+export function scratchProjectEmbedUrl(value: string) {
+	const parsed = parsePublicHttpsUrl(value);
+	if (
+		parsed?.hostname !== "scratch.mit.edu" ||
+		parsed.search ||
+		parsed.hash
+	) {
+		return null;
+	}
+
+	const projectId = parsed.pathname.match(SCRATCH_PROJECT_PATH_RE)?.[1];
+	return projectId
+		? `https://scratch.mit.edu/projects/${projectId}/embed`
+		: null;
 }
 
 export function isPhetResourceUrl(value: string) {

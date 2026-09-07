@@ -7,7 +7,10 @@ import type {
 import { defineStore } from "pinia";
 
 import { computed } from "vue";
-import { isInstructionMaterialResourceUrl } from "@/modules/resourceUrls";
+import {
+	isInstructionMaterialResourceUrl,
+	scratchProjectEmbedUrl
+} from "@/modules/resourceUrls";
 import { useAppStore } from "./app";
 import { courseCatalog, loadRawCourse } from "./courses/index";
 import { isJuniScratchProjectTitle } from "./courses/juniScratchProjects";
@@ -376,9 +379,8 @@ function normalizeCourse(
 	courseId = slugify(course.name),
 	options: NormalizeCourseOptions = { includeSolutions: true }
 ) {
-	const preserveScratchProjectInstructions = courseId.startsWith(
-		"scratch-level-"
-	);
+	const preserveScratchProjectInstructions =
+		courseId.startsWith("scratch-level-");
 
 	return {
 		id: courseId,
@@ -413,22 +415,24 @@ function normalizeCourse(
 								DEDICATED_SOLUTION_SEGMENT_RE.test(
 									explicitProjectLink ?? ""
 								);
-							const legacySolutionLink =
-								projectLinkIsSolution &&
-								options.includeSolutions
-									? explicitProjectLink
-									: undefined;
+							const legacySolutionLink = projectLinkIsSolution
+								? explicitProjectLink
+								: undefined;
 							const extractedSolutionLink =
-								extractedLink?.isSolutionLink &&
-								options.includeSolutions
+								extractedLink?.isSolutionLink
 									? extractedLink.url
 									: undefined;
+							const resolvedSolutionLink =
+								normalizedSolutionLink ??
+								legacySolutionLink ??
+								extractedSolutionLink;
+							const playableSolutionEmbedUrl =
+								scratchProjectEmbedUrl(
+									resolvedSolutionLink ?? ""
+								);
 							const preserveProjectContent =
 								preserveScratchProjectInstructions &&
-								isJuniScratchProjectTitle(
-									courseId,
-									item.title
-								);
+								isJuniScratchProjectTitle(courseId, item.title);
 							const normalizedContent = preserveProjectContent
 								? item.content.trim()
 								: normalizeContent(
@@ -467,10 +471,11 @@ function normalizeCourse(
 										: undefined;
 								})(),
 								solutionLink: options.includeSolutions
-									? (normalizedSolutionLink ??
-										legacySolutionLink ??
-										extractedSolutionLink)
+									? resolvedSolutionLink
 									: undefined,
+								...(playableSolutionEmbedUrl
+									? { playableSolutionEmbedUrl }
+									: {}),
 								datasetLink: item.datasetLink,
 								mediaLink: item.mediaLink
 							};

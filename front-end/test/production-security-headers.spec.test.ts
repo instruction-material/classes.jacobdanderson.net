@@ -80,6 +80,18 @@ describe("production security-header policy", () => {
 		expect(contentSecurityPolicies.standard["frame-src"]).toEqual([
 			"'none'"
 		]);
+		expect(contentSecurityPolicies["course-scratch"]["frame-src"]).toEqual(
+			["https://scratch.mit.edu"]
+		);
+		for (const [profile, policy] of Object.entries(
+			contentSecurityPolicies
+		)) {
+			if (profile !== "course-scratch") {
+				expect(policy["frame-src"] ?? []).not.toContain(
+					"https://scratch.mit.edu"
+				);
+			}
+		}
 		expect(contentSecurityPolicies["scheduler-embed"]["frame-src"]).toEqual(
 			["https://scheduler.classes.jacobdanderson.net"]
 		);

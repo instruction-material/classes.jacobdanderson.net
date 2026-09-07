@@ -3,6 +3,7 @@ import { START_LOCATION } from "vue-router";
 
 export type SecurityHeaderProfile =
 	| "code-ide"
+	| "course-scratch"
 	| "graph-sketcher"
 	| "scheduler-embed"
 	| "standard"
@@ -23,6 +24,9 @@ export function securityHeaderProfileForPath(
 	const normalized = normalizedPath(path);
 	if (/^\/(?:bluej|ide|python-ide)(?:\/|$)/u.test(normalized)) {
 		return "code-ide";
+	}
+	if (/^\/courses(?:\/|$)/u.test(normalized)) {
+		return "course-scratch";
 	}
 	if (/^\/graph-sketcher(?:\/|$)/u.test(normalized)) {
 		return "graph-sketcher";

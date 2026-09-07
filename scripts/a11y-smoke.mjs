@@ -19,8 +19,26 @@ const routeScenarios = [
 		name: "public",
 		role: "public",
 		routes: runFullMatrix
-			? ["/", "/about", "/courses", "/graph-sketcher", "/pathways", "/signup", "/payment", "/zoom", "/wheel"]
-			: ["/", "/courses", "/graph-sketcher", "/signup", "/zoom"]
+			? [
+					"/",
+					"/about",
+					"/courses",
+					"/graph-sketcher",
+					"/pathways",
+					"/payment",
+					"/privacy",
+					"/signup",
+					"/wheel",
+					"/zoom"
+				]
+			: [
+					"/",
+					"/courses",
+					"/graph-sketcher",
+					"/privacy",
+					"/signup",
+					"/zoom"
+				]
 	},
 	{
 		name: "student",

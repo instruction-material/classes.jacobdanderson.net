@@ -114,11 +114,14 @@ npm run clean
 ## Production security-header gate
 
 `netlify.toml` assigns exact Content Security Policy profiles to ordinary pages,
-Graph Sketcher, the Code IDE aliases, signup, the wheel, and the Admin roster
-embed. The dedicated hashed plain-Python worker asset also receives its own
-narrow response profile for the Pyodide sources it loads. Because a CSP belongs
-to the loaded document, navigation across profiles performs a full page load;
-same-profile navigation remains client-side.
+the course reader, Graph Sketcher, the Code IDE aliases, signup, the wheel, and
+the Admin roster embed. The course profile permits frames only from MIT Scratch.
+Scratch solution players are created only after a learner chooses **Play
+solution** and are removed when the dialog closes, so browsing a course does not
+contact Scratch. The dedicated hashed plain-Python worker asset also receives
+its own narrow response profile for the Pyodide sources it loads. Because a CSP
+belongs to the loaded document, navigation across profiles performs a full page
+load; same-profile navigation remains client-side.
 
 After production deploys, verify the live route headers, the current IDE and
 Graph Sketcher bundles, and the discovered Python worker bundle plus its exact

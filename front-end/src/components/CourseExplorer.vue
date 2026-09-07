@@ -11,6 +11,7 @@ import type {
 import { storeToRefs } from "pinia";
 import {
 	computed,
+	nextTick,
 	onBeforeUnmount,
 	onMounted,
 	ref,
@@ -69,6 +70,11 @@ interface ResourceLink {
 	url: string;
 }
 
+interface PlayableSolution {
+	embedUrl: string;
+	title: string;
+}
+
 const IMAGE_FILE_RE = /\.(?:avif|gif|jpe?g|png|svg|webp)(?:\?|$)/i;
 const VIDEO_FILE_RE = /\.(?:mp4|webm|ogg)(?:\?|$)/i;
 const WHITESPACE_RE = /\s+/g;
@@ -114,7 +120,10 @@ const isStorageReady = ref(false);
 const hasRestoredStoredLearner = ref(false);
 const currentHashAnchor = ref(readCurrentHashAnchor());
 const prefersReducedMotion = ref(false);
+const scratchSolutionDialog = ref<HTMLDialogElement | null>(null);
+const activePlayableSolution = ref<PlayableSolution | null>(null);
 let reducedMotionQuery: MediaQueryList | null = null;
+let playableSolutionTrigger: HTMLElement | null = null;
 let progressSaveTimer: ReturnType<typeof setTimeout> | null = null;
 let progressSaveInFlight: Promise<void> | null = null;
 let pendingProgressSave: {
@@ -1547,7 +1556,53 @@ function resourceOpenUrl(resource: ResourceLink) {
 	return courseAssetViewerUrl(resource.url, resource.label);
 }
 
+async function openPlayableSolution(item: CourseModuleItem, event: MouseEvent) {
+	if (!item.playableSolutionEmbedUrl) return;
+
+	playableSolutionTrigger =
+		event.currentTarget instanceof HTMLElement ? event.currentTarget : null;
+	activePlayableSolution.value = {
+		embedUrl: item.playableSolutionEmbedUrl,
+		title: item.title
+	};
+	await nextTick();
+
+	const dialog = scratchSolutionDialog.value;
+	if (!dialog || dialog.open) return;
+	if (typeof dialog.showModal === "function") {
+		dialog.showModal();
+	} else {
+		dialog.setAttribute("open", "");
+	}
+}
+
+function finishPlayableSolutionClose() {
+	if (!activePlayableSolution.value && !playableSolutionTrigger) return;
+
+	const trigger = playableSolutionTrigger;
+	activePlayableSolution.value = null;
+	playableSolutionTrigger = null;
+	void nextTick(() => trigger?.focus({ preventScroll: true }));
+}
+
+function closePlayableSolution() {
+	const dialog = scratchSolutionDialog.value;
+	if (dialog?.open) {
+		if (typeof dialog.close === "function") {
+			dialog.close();
+		} else {
+			dialog.removeAttribute("open");
+		}
+	}
+	finishPlayableSolutionClose();
+}
+
+function closePlayableSolutionFromBackdrop(event: MouseEvent) {
+	if (event.target === event.currentTarget) closePlayableSolution();
+}
+
 watch(selectedCourseId, value => {
+	if (activePlayableSolution.value) closePlayableSolution();
 	if (!isStorageReady.value) return;
 	writeStoredValue(COURSE_SELECTION_STORAGE_KEY, value);
 });
@@ -1594,6 +1649,11 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
+	playableSolutionTrigger = null;
+	activePlayableSolution.value = null;
+	if (scratchSolutionDialog.value?.open) {
+		scratchSolutionDialog.value.close();
+	}
 	if (progressSaveTimer) {
 		clearTimeout(progressSaveTimer);
 		progressSaveTimer = null;
@@ -2125,7 +2185,10 @@ function writeStoredValue(key: string, value: string) {
 									/>
 
 									<div
-										v-if="resourceLinks(item).length > 0"
+										v-if="
+											resourceLinks(item).length > 0 ||
+											item.playableSolutionEmbedUrl
+										"
 										class="resource-list"
 									>
 										<template
@@ -2184,6 +2247,26 @@ function writeStoredValue(key: string, value: string) {
 												</small>
 											</a>
 										</template>
+										<button
+											v-if="item.playableSolutionEmbedUrl"
+											aria-controls="scratch-solution-dialog"
+											aria-haspopup="dialog"
+											class="resource-link is-playable-solution"
+											type="button"
+											@click="
+												openPlayableSolution(
+													item,
+													$event
+												)
+											"
+										>
+											<span class="resource-link-label">
+												Play solution
+											</span>
+											<small class="resource-link-host">
+												Opens the Scratch player here
+											</small>
+										</button>
 									</div>
 
 									<CourseAssetPreview
@@ -2372,7 +2455,10 @@ function writeStoredValue(key: string, value: string) {
 									/>
 
 									<div
-										v-if="resourceLinks(item).length > 0"
+										v-if="
+											resourceLinks(item).length > 0 ||
+											item.playableSolutionEmbedUrl
+										"
 										class="resource-list"
 									>
 										<template
@@ -2431,6 +2517,26 @@ function writeStoredValue(key: string, value: string) {
 												</small>
 											</a>
 										</template>
+										<button
+											v-if="item.playableSolutionEmbedUrl"
+											aria-controls="scratch-solution-dialog"
+											aria-haspopup="dialog"
+											class="resource-link is-playable-solution"
+											type="button"
+											@click="
+												openPlayableSolution(
+													item,
+													$event
+												)
+											"
+										>
+											<span class="resource-link-label">
+												Play solution
+											</span>
+											<small class="resource-link-host">
+												Opens the Scratch player here
+											</small>
+										</button>
 									</div>
 
 									<CourseAssetPreview
@@ -2569,6 +2675,76 @@ function writeStoredValue(key: string, value: string) {
 			<p>{{ emptyTitle }}</p>
 			<p class="hint">{{ emptyHint }}</p>
 		</div>
+
+		<dialog
+			id="scratch-solution-dialog"
+			ref="scratchSolutionDialog"
+			aria-describedby="scratch-solution-description"
+			aria-labelledby="scratch-solution-title"
+			class="scratch-solution-dialog"
+			@cancel.prevent="closePlayableSolution"
+			@click="closePlayableSolutionFromBackdrop"
+			@close="finishPlayableSolutionClose"
+		>
+			<div v-if="activePlayableSolution" class="scratch-solution-panel">
+				<header class="scratch-solution-header">
+					<div>
+						<p class="scratch-solution-eyebrow">
+							Playable solution
+						</p>
+						<h2 id="scratch-solution-title">
+							{{ activePlayableSolution.title }}
+						</h2>
+					</div>
+					<button
+						autofocus
+						class="scratch-solution-close"
+						type="button"
+						@click="closePlayableSolution"
+					>
+						Close
+					</button>
+				</header>
+				<p
+					id="scratch-solution-description"
+					class="scratch-solution-description"
+				>
+					This player connects to MIT Scratch only after you choose
+					Play solution. Scratch may load services it controls,
+					including third-party services. Close it when you are
+					finished.
+				</p>
+				<div class="scratch-solution-frame">
+					<iframe
+						:src="activePlayableSolution.embedUrl"
+						:aria-label="`Scratch solution player for ${activePlayableSolution.title}`"
+						allow="fullscreen"
+						allowfullscreen
+						height="402"
+						loading="lazy"
+						referrerpolicy="no-referrer"
+						sandbox="allow-scripts allow-same-origin"
+						title="Scratch solution player"
+						width="485"
+					></iframe>
+				</div>
+				<p class="scratch-solution-exit-help">
+					When keyboard focus is inside Scratch, press Tab until
+					“Close player,” then activate it.
+				</p>
+				<button
+					class="scratch-solution-close scratch-solution-close--footer"
+					type="button"
+					@click="closePlayableSolution"
+				>
+					Close player
+				</button>
+				<p class="scratch-solution-help">
+					If the player does not load, close it and ask your teacher
+					for help.
+				</p>
+			</div>
+		</dialog>
 	</section>
 </template>
 
@@ -3276,6 +3452,12 @@ function writeStoredValue(key: string, value: string) {
 		background 0.2s ease;
 }
 
+button.resource-link {
+	border: 1px solid transparent;
+	cursor: pointer;
+	font: inherit;
+}
+
 .jump-link:hover,
 .resource-link:hover {
 	transform: translateY(-1px);
@@ -3541,6 +3723,128 @@ function writeStoredValue(key: string, value: string) {
 	);
 	--course-resource-text: var(--course-solution-resource-text, #1e3a8a);
 	--course-resource-host: var(--course-solution-resource-host, #486a9c);
+}
+
+.resource-link.is-playable-solution {
+	--course-resource-bg: rgba(238, 242, 255, 0.96);
+	--course-resource-bg-hover: rgba(224, 231, 255, 0.98);
+	--course-resource-text: #3730a3;
+	--course-resource-host: #5b5aa7;
+	border-color: rgba(79, 70, 229, 0.16);
+}
+
+.scratch-solution-dialog {
+	width: min(94vw, 58rem);
+	max-width: 58rem;
+	max-height: calc(100dvh - 2rem);
+	margin: auto;
+	padding: 0;
+	border: 1px solid rgba(148, 163, 184, 0.3);
+	border-radius: 20px;
+	background: var(--course-panel, #ffffff);
+	color: var(--course-text, #0f172a);
+	box-shadow: 0 30px 80px -30px rgba(15, 23, 42, 0.55);
+	overflow: auto;
+}
+
+.scratch-solution-dialog::backdrop {
+	background: rgba(15, 23, 42, 0.68);
+}
+
+.scratch-solution-panel {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.scratch-solution-header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.scratch-solution-header h2,
+.scratch-solution-description,
+.scratch-solution-eyebrow,
+.scratch-solution-help {
+	margin: 0;
+}
+
+.scratch-solution-eyebrow {
+	color: #4f46e5;
+	font-size: 0.75rem;
+	font-weight: 800;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+.scratch-solution-header h2 {
+	margin-top: 0.3rem;
+	font-size: clamp(1.2rem, 3vw, 1.7rem);
+	line-height: 1.25;
+}
+
+.scratch-solution-close {
+	min-width: 4.75rem;
+	padding: 0.65rem 0.9rem;
+	border: 1px solid rgba(71, 85, 105, 0.28);
+	border-radius: 999px;
+	background: #ffffff;
+	color: #0f172a;
+	cursor: pointer;
+	font: inherit;
+	font-weight: 800;
+	text-align: center;
+}
+
+.scratch-solution-description,
+.scratch-solution-exit-help,
+.scratch-solution-help {
+	color: var(--course-text-soft, #475569);
+	font-size: 0.9rem;
+	line-height: 1.55;
+}
+
+.scratch-solution-exit-help {
+	text-align: center;
+}
+
+.scratch-solution-close--footer {
+	align-self: center;
+}
+
+.scratch-solution-frame {
+	width: 100%;
+	aspect-ratio: 485 / 402;
+	overflow: hidden;
+	border-radius: 14px;
+	background: #e2e8f0;
+}
+
+.scratch-solution-frame iframe {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+@media (max-width: 40rem) {
+	.scratch-solution-dialog {
+		width: calc(100vw - 1rem);
+		max-height: calc(100dvh - 1rem);
+		border-radius: 16px;
+	}
+
+	.scratch-solution-header {
+		align-items: stretch;
+		flex-direction: column;
+	}
+
+	.scratch-solution-close {
+		align-self: flex-end;
+	}
 }
 
 .resource-link.is-dataset {

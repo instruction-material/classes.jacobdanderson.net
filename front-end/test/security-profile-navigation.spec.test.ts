@@ -41,7 +41,7 @@ describe("security-profile navigation", () => {
 			"graph-sketcher"
 		);
 		expect(securityHeaderProfileForPath("/courses/python-level-1")).toBe(
-			"standard"
+			"course-scratch"
 		);
 	});
 
@@ -55,7 +55,11 @@ describe("security-profile navigation", () => {
 	});
 
 	it("reloads only when navigation crosses a document policy", () => {
-		expect(securityProfileChanges("/courses", "/about")).toBe(false);
+		expect(securityProfileChanges("/courses", "/about")).toBe(true);
+		expect(securityProfileChanges("/", "/courses")).toBe(true);
+		expect(
+			securityProfileChanges("/courses", "/courses/scratch-level-1")
+		).toBe(false);
 		expect(securityProfileChanges("/bluej", "/ide?mode=bluej")).toBe(false);
 		expect(securityProfileChanges("/", "/ide")).toBe(true);
 		expect(securityProfileChanges("/ide", "/courses")).toBe(true);

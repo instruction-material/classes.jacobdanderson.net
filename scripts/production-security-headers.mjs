@@ -58,6 +58,12 @@ const contentSecurityPolicies = Object.freeze(
 		["api", apiPolicy],
 		["standard", standardPolicy],
 		[
+			"course-scratch",
+			extendPolicy({
+				"frame-src": ["https://scratch.mit.edu"]
+			})
+		],
+		[
 			"code-ide",
 			extendPolicy({
 				"img-src": ["'self'", "data:", "blob:"],
@@ -136,6 +142,8 @@ const contentSecurityPolicies = Object.freeze(
 
 export const netlifySecurityHeaderRules = Object.freeze([
 	Object.freeze({ path: "/*", profile: "standard" }),
+	Object.freeze({ path: "/courses", profile: "course-scratch" }),
+	Object.freeze({ path: "/courses/*", profile: "course-scratch" }),
 	Object.freeze({ path: "/graph-sketcher", profile: "graph-sketcher" }),
 	Object.freeze({ path: "/graph-sketcher.html", profile: "graph-sketcher" }),
 	Object.freeze({ path: "/graph-sketcher/*", profile: "graph-sketcher" }),
@@ -174,7 +182,7 @@ export const netlifySecurityHeaderRules = Object.freeze([
 
 export const productionSecurityHeaderProbes = Object.freeze([
 	Object.freeze({ path: "/", profile: "standard" }),
-	Object.freeze({ path: "/courses/", profile: "standard" }),
+	Object.freeze({ path: "/courses/", profile: "course-scratch" }),
 	Object.freeze({ path: "/graph-sketcher", profile: "graph-sketcher" }),
 	Object.freeze({ path: "/graph-sketcher/", profile: "graph-sketcher" }),
 	Object.freeze({ path: "/ide", profile: "code-ide" }),
@@ -199,6 +207,11 @@ export const productionSecurityHeaderProbes = Object.freeze([
 
 export const productionCanonicalRouteProbes = Object.freeze([
 	Object.freeze({ path: "/index.html", profile: "standard", target: "/" }),
+	Object.freeze({
+		path: "/courses/index.html",
+		profile: "course-scratch",
+		target: "/courses/"
+	}),
 	...[
 		["graph-sketcher", "graph-sketcher"],
 		["ide", "code-ide"],

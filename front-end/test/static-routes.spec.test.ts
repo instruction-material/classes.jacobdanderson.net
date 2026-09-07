@@ -141,11 +141,12 @@ describe("static route normalization", () => {
 			includedStaticRoutes([
 				"/",
 				"/courses",
+				"/privacy",
 				"/courses",
 				"/:all(.*)*",
 				"/courses/:courseID"
 			])
-		).toEqual(["/", "/courses", FRIENDLY_NOT_FOUND_ROUTE]);
+		).toEqual(["/", "/courses", "/privacy", FRIENDLY_NOT_FOUND_ROUTE]);
 	});
 
 	it("writes a noindex title and robots policy into the rendered 404 document", () => {
@@ -214,6 +215,7 @@ describe("static route normalization", () => {
 			])
 		);
 		expect(options.exclude).not.toContain("/graph-sketcher");
+		expect(options.exclude).not.toContain("/privacy");
 		expect(calls).toEqual([options]);
 	});
 });
