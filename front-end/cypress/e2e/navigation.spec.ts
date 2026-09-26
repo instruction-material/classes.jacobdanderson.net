@@ -21,14 +21,14 @@ context("Navigation & page smoke-tests", () => {
 
 	it("loads the home page", () => {
 		cy.url().should("eq", `${Cypress.config().baseUrl}/`);
-		cy.contains("Classes").should("exist"); // <h1>
+		cy.get("h1").contains("Course Platform").should("exist");
 	});
 
 	it("header links work", () => {
 		// ---- About ---------------------------------------------------
 		cy.get(".site-nav").contains("a:visible", "About").click();
 		cy.url().should("eq", `${Cypress.config().baseUrl}/about`);
-		cy.get("h1").contains("Focused Help").should("exist");
+		cy.get("h1").contains("Courses and Teaching Tools").should("exist");
 
 		// ---- Book a Class --------------------------------------------------
 		cy.get(".site-nav").contains("a:visible", "Book a Class").click();
@@ -38,7 +38,9 @@ context("Navigation & page smoke-tests", () => {
 		// ---- Tuition & Payment ---------------------------------------------
 		cy.get(".site-nav").contains("a:visible", "Tuition").click();
 		cy.url().should("eq", `${Cypress.config().baseUrl}/payment`);
-		cy.get("h1").contains("Tuition").should("exist");
+		cy.get("h1")
+			.contains("No payment destination is configured")
+			.should("exist");
 
 		// ---- back to Home -------------------------------------------
 		cy.get(".site-nav").contains("a:visible", "Home").click();

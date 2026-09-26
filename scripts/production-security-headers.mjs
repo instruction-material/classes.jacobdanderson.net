@@ -3,7 +3,7 @@ const exactSecurityHeaders = Object.freeze({
 	"cross-origin-resource-policy": "same-origin",
 	"permissions-policy": "camera=(), geolocation=(), microphone=()",
 	"referrer-policy": "strict-origin-when-cross-origin",
-	"strict-transport-security": "max-age=31536000; includeSubDomains",
+	"strict-transport-security": "max-age=31536000",
 	"x-content-type-options": "nosniff",
 	"x-frame-options": "DENY"
 });
@@ -26,8 +26,7 @@ const standardPolicy = freezePolicy({
 		"'self'",
 		"data:",
 		"https://static.classes.jacobdanderson.net",
-		"https://images.unsplash.com",
-		"https://jacobdanderson.s3.us-east-1.amazonaws.com"
+		"https://images.unsplash.com"
 	],
 	"font-src": ["'self'"],
 	"style-src": ["'self'", "'unsafe-inline'"],
@@ -97,8 +96,8 @@ const contentSecurityPolicies = Object.freeze(
 		[
 			"scheduler-embed",
 			extendPolicy({
-				"connect-src": [...standardPolicy["connect-src"], "https://scheduler.classes.jacobdanderson.net"],
-				"frame-src": ["https://scheduler.classes.jacobdanderson.net"]
+				"connect-src": [...standardPolicy["connect-src"], "https://scheduler.example.com"],
+				"frame-src": ["https://scheduler.example.com"]
 			})
 		],
 		[
@@ -110,7 +109,7 @@ const contentSecurityPolicies = Object.freeze(
 		[
 			"student-management-embed",
 			extendPolicy({
-				"frame-src": ["https://docs.google.com"]
+				"frame-src": ["'none'"]
 			})
 		],
 		[
@@ -317,7 +316,7 @@ export function validateApiSecurityHeaders(headers, path) {
 		"cross-origin-resource-policy": "same-origin",
 		"permissions-policy": "camera=(), geolocation=(), microphone=()",
 		"referrer-policy": "no-referrer",
-		"strict-transport-security": "max-age=31536000; includeSubDomains",
+		"strict-transport-security": "max-age=31536000",
 		"x-content-type-options": "nosniff",
 		"x-frame-options": "DENY"
 	};
