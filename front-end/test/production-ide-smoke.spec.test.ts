@@ -20,26 +20,26 @@ describe("production Code IDE smoke helpers", () => {
 	it("checks the single generalized IDE entry route", () => {
 		expect(
 			productionIdeSmokePageUrls(
-				"https://classes.jacobdanderson.net"
+				"https://example.com"
 			).map(url => url.pathname)
 		).toEqual(["/ide"]);
 	});
 
 	it("extracts same-origin JavaScript and CSS assets from the IDE page HTML", () => {
-		const baseUrl = new URL("https://classes.jacobdanderson.net/ide");
+		const baseUrl = new URL("https://example.com/ide");
 		const html = [
 			'<link rel="stylesheet" href="/assets/app.css">',
 			'<script type="module" src="/assets/CodeIdeWorkspace-a1b2.js"></script>',
-			'<script src="https://classes.jacobdanderson.net/assets/app-c3d4.js"></script>',
-			'<link rel="stylesheet" href="https://classes.jacobdanderson.net/assets/CodeIdeWorkspace-e5f6.css">',
+			'<script src="https://example.com/assets/app-c3d4.js"></script>',
+			'<link rel="stylesheet" href="https://example.com/assets/CodeIdeWorkspace-e5f6.css">',
 			'<script src="https://cdn.example.test/external.js"></script>'
 		].join("");
 
 		expect(pageAssetUrls(html, baseUrl)).toEqual([
-			"https://classes.jacobdanderson.net/assets/app.css",
-			"https://classes.jacobdanderson.net/assets/CodeIdeWorkspace-a1b2.js",
-			"https://classes.jacobdanderson.net/assets/app-c3d4.js",
-			"https://classes.jacobdanderson.net/assets/CodeIdeWorkspace-e5f6.css"
+			"https://example.com/assets/app.css",
+			"https://example.com/assets/CodeIdeWorkspace-a1b2.js",
+			"https://example.com/assets/app-c3d4.js",
+			"https://example.com/assets/CodeIdeWorkspace-e5f6.css"
 		]);
 	});
 
@@ -94,7 +94,7 @@ describe("production Code IDE smoke helpers", () => {
 	});
 
 	it("extracts and deduplicates only same-origin hashed plain-Python worker assets", () => {
-		const baseUrl = new URL("https://classes.jacobdanderson.net/ide");
+		const baseUrl = new URL("https://example.com/ide");
 		const source = [
 			'new URL("/assets/pythonIdePlainWorker-a1_B2.js", import.meta.url)',
 			'new URL("/assets/pythonIdePlainWorker-a1_B2.js", import.meta.url)',
@@ -105,20 +105,20 @@ describe("production Code IDE smoke helpers", () => {
 		].join("\n");
 
 		expect(pythonIdeWorkerAssetUrls(source, baseUrl)).toEqual([
-			"https://classes.jacobdanderson.net/assets/pythonIdePlainWorker-a1_B2.js",
-			"https://classes.jacobdanderson.net/assets/pythonIdePlainWorker-c3-d4.js?worker"
+			"https://example.com/assets/pythonIdePlainWorker-a1_B2.js",
+			"https://example.com/assets/pythonIdePlainWorker-c3-d4.js?worker"
 		]);
 	});
 
 	it("follows the real IDE runtime boundary once through cycles and duplicate imports", async () => {
 		const entryUrl =
-			"https://classes.jacobdanderson.net/assets/CodeIdeWorkspace-a1.js";
+			"https://example.com/assets/CodeIdeWorkspace-a1.js";
 		const runtimeLoaderUrl =
-			"https://classes.jacobdanderson.net/assets/pythonIdeRuntime-b2.js";
+			"https://example.com/assets/pythonIdeRuntime-b2.js";
 		const runtimeUrl =
-			"https://classes.jacobdanderson.net/assets/python-ide-runtime-c3.js";
+			"https://example.com/assets/python-ide-runtime-c3.js";
 		const sharedUrl =
-			"https://classes.jacobdanderson.net/assets/shared-d4.js";
+			"https://example.com/assets/shared-d4.js";
 		const sources = new Map<string, string>([
 			[
 				entryUrl,
@@ -161,16 +161,16 @@ describe("production Code IDE smoke helpers", () => {
 		expect(
 			pythonIdeWorkerAssetUrls(
 				assets.map(asset => asset.source).join("\n"),
-				new URL("https://classes.jacobdanderson.net/ide")
+				new URL("https://example.com/ide")
 			)
 		).toEqual([
-			"https://classes.jacobdanderson.net/assets/pythonIdePlainWorker-e5F6.js"
+			"https://example.com/assets/pythonIdePlainWorker-e5F6.js"
 		]);
 	});
 
 	it("ignores cross-origin and non-asset JavaScript imports", () => {
 		const importer = new URL(
-			"https://classes.jacobdanderson.net/assets/CodeIdeWorkspace-a1.js"
+			"https://example.com/assets/CodeIdeWorkspace-a1.js"
 		);
 		const source = [
 			'import("./pythonIdeRuntime-b2.js")',
@@ -181,13 +181,13 @@ describe("production Code IDE smoke helpers", () => {
 		].join("\n");
 
 		expect(sameOriginJavaScriptImportUrls(source, importer)).toEqual([
-			"https://classes.jacobdanderson.net/assets/pythonIdeRuntime-b2.js"
+			"https://example.com/assets/pythonIdeRuntime-b2.js"
 		]);
 	});
 
 	it("enforces the worker response-body size limit", async () => {
 		const workerUrl = new URL(
-			"https://classes.jacobdanderson.net/assets/pythonIdePlainWorker-a1B2.js"
+			"https://example.com/assets/pythonIdePlainWorker-a1B2.js"
 		);
 
 		await expect(
@@ -200,7 +200,7 @@ describe("production Code IDE smoke helpers", () => {
 
 	it("enforces recursive JavaScript request and size bounds", async () => {
 		const entryUrl =
-			"https://classes.jacobdanderson.net/assets/CodeIdeWorkspace-a1.js";
+			"https://example.com/assets/CodeIdeWorkspace-a1.js";
 		const source = [
 			'import("./pythonIdeRuntime-b2.js")',
 			'import("./shared-c3.js")'
@@ -218,7 +218,7 @@ describe("production Code IDE smoke helpers", () => {
 			)
 		).rejects.toThrow("request limit");
 		expect(requests).toEqual([
-			"https://classes.jacobdanderson.net/assets/pythonIdeRuntime-b2.js"
+			"https://example.com/assets/pythonIdeRuntime-b2.js"
 		]);
 
 		await expect(

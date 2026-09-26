@@ -6,10 +6,10 @@ import nodemailer from "nodemailer";
 const PRIMARY_FROM_ADDRESS = env.MDMAIL_PRIMARY_FROM
 	|| env.MDMAIL_FROM_PRIMARY
 	|| env.MDMAIL_FROM
-	|| "classes@jacobdanderson.net";
+	|| "classes@example.com";
 const FALLBACK_FROM_ADDRESS = env.MDMAIL_FALLBACK_FROM
 	|| env.MDMAIL_FROM_FALLBACK
-	|| "jacobdanderson@gmail.com";
+	|| "classes@example.com";
 
 export interface TransactionalEmail {
 	html: string;
@@ -34,7 +34,7 @@ function createPrimaryTransporter() {
 		connectionTimeout: 15_000,
 		socketTimeout: 15_000,
 		tls: {
-			servername: env.SMTP_PRIMARY_SERVERNAME || env.SMTP_SERVERNAME || "mail.stridewithus.co",
+			servername: env.SMTP_PRIMARY_SERVERNAME || env.SMTP_SERVERNAME || "mail.example.com",
 			minVersion: "TLSv1.2",
 			...(ca ? { ca } : {})
 		}

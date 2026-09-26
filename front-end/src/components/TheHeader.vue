@@ -100,9 +100,7 @@ function isLinkActive(link: NavLink) {
 			<nav class="navbar navbar-expand-xl site-nav">
 				<div class="site-nav__inner site-surface site-surface--strong">
 					<router-link class="site-brand" to="/">
-						<span class="site-brand__title"
-							>Classes with Jacob</span
-						>
+						<span class="site-brand__title">Classes</span>
 					</router-link>
 					<button
 						aria-controls="siteNavbar"

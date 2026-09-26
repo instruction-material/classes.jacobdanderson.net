@@ -1446,7 +1446,7 @@ pgzrun.go()
 			sharedSourceID: "share_ABC1234567890_xyz",
 			starterLabel: "Shared project",
 			starterUrl:
-				"https://classes.jacobdanderson.net/ide?share=share_ABC1234567890_xyz",
+				"https://example.com/ide?share=share_ABC1234567890_xyz",
 			title: "Copy of Functions Practice"
 		});
 		const payload = pythonIdeProjectToPayload(project);
@@ -1457,7 +1457,7 @@ pgzrun.go()
 				sharedSourceID: "share_ABC1234567890_xyz",
 				starterLabel: "Shared project",
 				starterUrl:
-					"https://classes.jacobdanderson.net/ide?share=share_ABC1234567890_xyz"
+					"https://example.com/ide?share=share_ABC1234567890_xyz"
 			})
 		);
 		expect(payload).not.toHaveProperty("shared");
