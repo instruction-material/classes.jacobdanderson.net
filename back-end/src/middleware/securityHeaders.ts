@@ -12,6 +12,10 @@ export function createApiSecurityHeaders(): RequestHandler {
 			},
 			useDefaults: false
 		},
+		strictTransportSecurity: {
+			includeSubDomains: false,
+			maxAge: 31_536_000
+		},
 		xFrameOptions: { action: "deny" }
 	});
 }
