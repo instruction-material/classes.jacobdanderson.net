@@ -88,7 +88,7 @@ test("native Nginx keeps static, API, and hidden-file boundaries separate", asyn
 	assert.match(policy, /location = \/admin\/student-management[.]html \{/u);
 	assert.match(policy, /classes_direct_index_route/u);
 	assert.match(policy, /try_files \$uri =404;/u);
-	assert.match(policy, /return 308 https:\/\/classes[.]jacobdanderson[.]net/u);
+	assert.match(policy, /return 308 https:\/\/classes[.]example[.]com/u);
 	assert.match(policy, /proxy_pass http:\/\/127[.]0[.]0[.]1:3008\//u);
 	assert.match(policy, /proxy_set_header X-Forwarded-For \$remote_addr;/u);
 	assert.doesNotMatch(policy, /proxy_intercept_errors/u);
@@ -119,12 +119,12 @@ test("native smoke checks use the policy sealed with each release", async () => 
 		.split("\n")
 		.find(line => line.trim().startsWith("~^/courses(?:/|$) \""));
 	assert.ok(courseLine);
-	const legacyLine = courseLine.replaceAll(" https://analytics.jacobdanderson.net", "");
+	const legacyLine = courseLine.replaceAll(" https://images.unsplash.com", "");
 	assert.notEqual(legacyLine, courseLine);
 	const legacyMaps = maps.replace(courseLine, legacyLine);
 	assert.equal(
 		courseContentSecurityPolicy(legacyMaps),
-		currentPolicy.replaceAll(" https://analytics.jacobdanderson.net", "")
+		currentPolicy.replaceAll(" https://images.unsplash.com", "")
 	);
 	assert.throws(
 		() => courseContentSecurityPolicy(`${maps}\n${courseLine}`),
@@ -228,9 +228,9 @@ test("prepare and promotion scripts enforce exact provenance and rollback gates"
 	assert.match(promote, /__native-release-missing-\$classes_expected_revision/u);
 	assert.match(promote, /api\/__native-release-missing-\$classes_expected_revision/u);
 	assert.match(promote, /classes_preserve_work=true/u);
-	assert.match(promote, /--resolve "classes[.]jacobdanderson[.]net:443:127[.]0[.]0[.]1"/u);
-	assert.match(promote, /--resolve "classes[.]jacobdanderson[.]net:80:127[.]0[.]0[.]1"/u);
-	assert.match(promote, /https:\/\/classes[.]jacobdanderson[.]net\$classes_http_path/u);
+	assert.match(promote, /--resolve "classes[.]example[.]com:443:127[.]0[.]0[.]1"/u);
+	assert.match(promote, /--resolve "classes[.]example[.]com:80:127[.]0[.]0[.]1"/u);
+	assert.match(promote, /https:\/\/classes[.]example[.]com\$classes_http_path/u);
 	assert.match(promote, /capture_https \/courses\//u);
 	assert.match(
 		promote,
@@ -281,8 +281,8 @@ test("native provenance rejects rehashed payloads and pins the independent signe
 	]) await fs.copyFile(path.join(repositoryRoot, relativePath), path.join(candidate, relativePath));
 	await fs.cp(path.join(repositoryRoot, "deploy/native"), path.join(candidate, "deploy/native"), { recursive: true });
 	const contents = {
-		"front-end/dist/index.html": "<h1>Classes with Jacob</h1>\n",
-		"front-end/dist/404.html": "<title>Page not found | Classes with Jacob</title>\n",
+		"front-end/dist/index.html": "<h1>Course platform</h1>\n",
+		"front-end/dist/404.html": "<title>Page not found | Classes</title>\n",
 		"front-end/dist/python-runtime/runtime.js": "export {};\n",
 		"front-end/dist/python-runtime/runtime.css": "body {}\n",
 		"back-end/dist/server.js": "export {};\n",
@@ -304,7 +304,7 @@ test("native provenance rejects rehashed payloads and pins the independent signe
 	await writeManifest();
 	const trustedManifest = await fs.readFile(manifestPath);
 	const digest = createHash("sha256").update(trustedManifest).digest("hex");
-	const repository = "anderson-webops/classes.jacobdanderson.net";
+	const repository = "instruction-material/classes.jacobdanderson.net";
 	const expectedArguments = [
 		"attestation", "verify", manifestPath, "--hostname", "github.com", "--repo", repository,
 		"--signer-workflow", `${repository}/.github/workflows/native-release.yml`,
@@ -386,7 +386,7 @@ test("native source provenance requires canonical fetched origin/main and an ann
 		"remote",
 		"add",
 		"origin",
-		"git@github.com:anderson-webops/classes.jacobdanderson.net.git"
+		"git@github.com:instruction-material/classes.jacobdanderson.net.git"
 	);
 	git("update-ref", "refs/remotes/origin/main", "HEAD");
 	git("tag", "-a", "v2.7.999", "-m", "Fixture release");
@@ -405,12 +405,12 @@ test("native source provenance requires canonical fetched origin/main and an ann
 	git("remote", "set-url", "origin", "git@github.com:other/classes.git");
 	let rejected = verify();
 	assert.notEqual(rejected.status, 0);
-	assert.match(rejected.stderr, /origin is not anderson-webops/u);
+	assert.match(rejected.stderr, /origin is not instruction-material/u);
 	git(
 		"remote",
 		"set-url",
 		"origin",
-		"https://github.com/anderson-webops/classes.jacobdanderson.net.git"
+		"https://github.com/instruction-material/classes.jacobdanderson.net.git"
 	);
 
 	git("update-ref", "-d", "refs/remotes/origin/main");
@@ -473,10 +473,10 @@ test("internal manifest detects payload drift and stays out of public output", a
 	await fs.cp(path.join(repositoryRoot, "deploy/native"), path.join(candidate, "deploy/native"), {
 		recursive: true
 	});
-	await fs.writeFile(path.join(candidate, "front-end/dist/index.html"), "<h1>Classes with Jacob</h1>\n");
+	await fs.writeFile(path.join(candidate, "front-end/dist/index.html"), "<h1>Course platform</h1>\n");
 	await fs.writeFile(
 		path.join(candidate, "front-end/dist/404.html"),
-		"<title>Page not found | Classes with Jacob</title>\n"
+		"<title>Page not found | Classes</title>\n"
 	);
 	await fs.mkdir(path.join(candidate, "front-end/dist/about"));
 	await fs.writeFile(
