@@ -11,40 +11,24 @@ defineProps<{ compact?: boolean }>();
 			class="site-shell site-shell--wide site-footer__inner"
 		>
 			<section class="site-footer__brand">
-				<p class="site-footer__eyebrow">Private Online Tutoring</p>
-				<h2>Classes with Jacob</h2>
+				<p class="site-footer__eyebrow">Course Platform</p>
+				<h2>Classes</h2>
 				<p class="site-footer__summary">
-					One-on-one support for active coursework, projects, and
-					structured course paths.
+					Structured course materials, browser-based programming
+					tools, and teaching workflows.
 				</p>
 			</section>
 
 			<section class="site-footer__group">
-				<h3>Connect</h3>
+				<h3>Project</h3>
 				<ul>
 					<li>
-						<a href="mailto:classes@jacobdanderson.net">
-							Email Jacob
-						</a>
-					</li>
-					<li>
 						<a
-							href="https://www.linkedin.com/in/jacoba1100254352/"
+							href="https://github.com/instruction-material/classes.jacobdanderson.net"
 							rel="noopener noreferrer"
 							target="_blank"
 						>
-							LinkedIn<span class="sr-only">
-								(opens in a new tab)</span
-							>
-						</a>
-					</li>
-					<li>
-						<a
-							href="https://github.com/jacoba1100254352"
-							rel="noopener noreferrer"
-							target="_blank"
-						>
-							GitHub<span class="sr-only">
+							Source repository<span class="sr-only">
 								(opens in a new tab)</span
 							>
 						</a>
@@ -67,7 +51,7 @@ defineProps<{ compact?: boolean }>();
 						}}</RouterLink>
 					</li>
 					<li>
-						<RouterLink to="/about">About Jacob</RouterLink>
+						<RouterLink to="/about">About the Platform</RouterLink>
 					</li>
 					<li>
 						<RouterLink to="/privacy">Privacy</RouterLink>
@@ -77,9 +61,9 @@ defineProps<{ compact?: boolean }>();
 		</div>
 
 		<div class="site-shell site-shell--wide site-footer__bottom">
-			<p>© {{ new Date().getFullYear() }} Jacob Anderson.</p>
+			<p>© {{ new Date().getFullYear() }} Classes.</p>
 			<div v-if="compact" class="site-action-row">
-				<a href="mailto:classes@jacobdanderson.net">Help</a
+				<a href="mailto:contact@example.com">Help</a
 				><RouterLink to="/privacy">Privacy</RouterLink
 				><RouterLink to="/payment">Tuition</RouterLink>
 			</div>
