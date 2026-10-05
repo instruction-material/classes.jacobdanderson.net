@@ -28,12 +28,19 @@ context("Navigation & page smoke-tests", () => {
 		// ---- About ---------------------------------------------------
 		cy.get(".site-nav").contains("a:visible", "About").click();
 		cy.url().should("eq", `${Cypress.config().baseUrl}/about`);
-		cy.get(".about-page h1").should("have.text", "About Jacob");
+		cy.get(".about-page h1").should(heading => {
+			expect(heading.text().trim()).to.equal(
+				"Courses and Teaching Tools"
+			);
+		});
 
 		// ---- Tuition & Payment ---------------------------------------------
 		cy.get(".site-footer").contains("a:visible", "Tuition").click();
 		cy.url().should("eq", `${Cypress.config().baseUrl}/payment`);
-		cy.get("h1").contains("Tuition").should("exist");
+		cy.get("h1").should(
+			"have.text",
+			"No payment destination is configured"
+		);
 
 		// ---- back to Home -------------------------------------------
 		cy.get(".site-brand").click();
@@ -41,7 +48,7 @@ context("Navigation & page smoke-tests", () => {
 	});
 
 	it("keeps Book a Class and its scheduler within Classes navigation", () => {
-		const schedulerOrigin = "https://scheduler.classes.jacobdanderson.net";
+		const schedulerOrigin = "https://scheduler.example.com";
 		cy.intercept("GET", `${schedulerOrigin}/?*`, {
 			statusCode: 200,
 			headers: { "content-type": "text/html" },
