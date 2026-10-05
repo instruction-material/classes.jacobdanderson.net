@@ -1,45 +1,41 @@
 <script lang="ts" setup>
-import { classMeetingUrl } from "@/modules/siteNavigation";
-
 defineOptions({ name: "ZoomClassroomPage" });
-
-const zoomMeetingUrl = classMeetingUrl;
 </script>
 
 <template>
 	<section class="page-shell page-shell--narrow zoom-page">
-		<h1 class="page-title">Join Class</h1>
-		<a
-			class="site-button site-button--primary"
-			:href="zoomMeetingUrl"
-			rel="noopener noreferrer"
-			target="_blank"
-			>Join on Zoom<span class="sr-only"> (opens in a new tab)</span></a
-		>
-		<details>
-			<summary>Direct link</summary>
-			<a :href="zoomMeetingUrl" rel="noopener noreferrer" target="_blank"
-				>{{ zoomMeetingUrl
-				}}<span class="sr-only"> (opens in a new tab)</span></a
-			>
-		</details>
+		<div class="zoom-card">
+			<h1 class="page-title">No meeting room is configured</h1>
+			<p class="page-copy">
+				This source fork intentionally ships without a public meeting ID
+				or join link.
+			</p>
+			<p class="page-copy">
+				An instructor who enables video meetings must provide the link
+				through an access-controlled channel appropriate for their
+				students.
+			</p>
+			<div class="site-action-row">
+				<RouterLink
+					class="site-button site-button--primary"
+					to="/courses"
+				>
+					View Courses
+				</RouterLink>
+			</div>
+		</div>
 	</section>
 </template>
 
 <style scoped>
 .zoom-page {
+	padding-top: 1rem;
+}
+
+.zoom-card {
 	display: grid;
-	justify-items: start;
 	gap: 0.75rem;
-}
-.zoom-page details {
-	font-size: 0.9rem;
-	color: var(--color-ink-soft);
-}
-.zoom-page summary {
-	min-height: 2.75rem;
-	align-content: center;
-	cursor: pointer;
+	padding: 0;
 }
 </style>
 
