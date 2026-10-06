@@ -6,29 +6,21 @@ defineOptions({ name: "AboutPage" });
 	<section class="page-shell about-page">
 		<section aria-labelledby="intro-title" class="page-hero about-intro">
 			<div class="copy">
-				<h1 id="intro-title" class="page-title">About Jacob</h1>
+				<h1 id="intro-title" class="page-title">
+					Courses and Teaching Tools
+				</h1>
 				<p class="page-copy">
-					I taught hundreds of students through Juni Learning before
-					moving into direct private instruction. Most students come
-					to me with an assignment, bug, lab, or project that needs
-					focused one-on-one help.
+					This forkable platform combines structured course materials
+					with browser-based programming, graphing, and instructor
+					workflows.
 				</p>
 				<p class="page-copy">
-					That means sessions are built around the work in front of
-					the learner: debugging code, finishing coursework, reviewing
-					reasoning, or moving through a structured course path when
-					there is no active class assignment.
+					Operators can adapt its identity, catalog, and optional
+					services for a classroom or instruction program without
+					inheriting another instructor’s personal accounts or payment
+					details.
 				</p>
 			</div>
-			<figure class="image-wrapper">
-				<img
-					alt="Jacob Anderson"
-					height="1200"
-					loading="lazy"
-					src="https://jacobdanderson.s3.us-east-1.amazonaws.com/images/Jacob_Anderson.jpg"
-					width="960"
-				/>
-			</figure>
 		</section>
 
 		<section aria-labelledby="fit-title" class="about-section">
@@ -95,17 +87,9 @@ defineOptions({ name: "AboutPage" });
 		</section>
 
 		<section aria-label="About page actions" class="site-action-row">
-			<RouterLink class="site-button site-button--primary" to="/signup">
-				Book a Class
+			<RouterLink class="site-button site-button--primary" to="/courses">
+				View Courses
 			</RouterLink>
-			<a
-				class="site-button site-button--secondary"
-				href="https://www.linkedin.com/in/jacoba1100254352/"
-				target="_blank"
-				rel="noopener noreferrer"
-			>
-				View LinkedIn<span class="sr-only"> (opens in a new tab)</span>
-			</a>
 			<RouterLink
 				class="site-button site-button--secondary"
 				to="/pathways"
@@ -121,19 +105,7 @@ defineOptions({ name: "AboutPage" });
 	max-width: 64rem;
 }
 .about-intro {
-	display: grid;
-	grid-template-columns: minmax(0, 1fr) 10rem;
-	align-items: start;
-	gap: 2rem;
-}
-.image-wrapper {
-	margin: 0;
-	overflow: hidden;
-	border-radius: 8px;
-}
-.image-wrapper img {
-	width: 100%;
-	height: auto;
+	max-width: 52rem;
 }
 .copy,
 .about-section {
@@ -157,23 +129,6 @@ defineOptions({ name: "AboutPage" });
 .about-section p {
 	color: var(--color-ink-soft);
 	line-height: 1.65;
-}
-.about-section ul {
-	list-style: none;
-	display: grid;
-	gap: 0.75rem;
-}
-@media (max-width: 700px) {
-	.about-intro {
-		grid-template-columns: 1fr;
-	}
-	.image-wrapper {
-		display: none;
-	}
-	.fit-grid {
-		grid-template-columns: 1fr;
-		gap: 0.75rem;
-	}
 }
 </style>
 
