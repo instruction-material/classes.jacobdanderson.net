@@ -19,7 +19,7 @@ const adminTools = [
 		href: "/admin/mdmail"
 	},
 	{
-		title: "Roster spreadsheet",
+		title: "Roster integration",
 		href: "/admin/student-management"
 	}
 ];
