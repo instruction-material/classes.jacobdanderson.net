@@ -154,9 +154,9 @@ function openSignup() {
 		>
 			<h2>Get course access</h2>
 			<p>
-				Ask your tutor to assign a course, or email
-				<a class="text-link" href="mailto:classes@jacobdanderson.net">
-					classes@jacobdanderson.net
+				Email
+				<a class="text-link" href="mailto:contact@example.com">
+					contact@example.com
 				</a>
 				if access should already be enabled.
 			</p>
