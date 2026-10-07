@@ -9,10 +9,10 @@ defineProps<{ compact?: boolean }>();
 			class="site-shell site-shell--wide site-footer__inner"
 		>
 			<section class="site-footer__brand">
-				<h2>Classes with Jacob</h2>
+				<h2>Classes</h2>
 				<p class="site-footer__summary">
-					Private online tutoring, one-on-one, for coursework,
-					projects and course paths.
+					Course materials and tools for independent learning,
+					classroom instruction and one-on-one sessions.
 				</p>
 			</section>
 
@@ -20,31 +20,9 @@ defineProps<{ compact?: boolean }>();
 				<h3>Connect</h3>
 				<ul>
 					<li>
-						<a href="mailto:classes@jacobdanderson.net">
+						<a href="mailto:contact@example.com">
 							Contact<span class="sr-only">
 								(opens your email app)</span
-							>
-						</a>
-					</li>
-					<li>
-						<a
-							href="https://www.linkedin.com/in/jacoba1100254352/"
-							rel="noopener noreferrer"
-							target="_blank"
-						>
-							LinkedIn<span class="sr-only">
-								(opens in a new tab)</span
-							>
-						</a>
-					</li>
-					<li>
-						<a
-							href="https://github.com/jacoba1100254352"
-							rel="noopener noreferrer"
-							target="_blank"
-						>
-							GitHub<span class="sr-only">
-								(opens in a new tab)</span
 							>
 						</a>
 					</li>
@@ -53,9 +31,9 @@ defineProps<{ compact?: boolean }>();
 		</div>
 
 		<div class="site-shell site-shell--wide site-footer__bottom">
-			<p>© {{ new Date().getFullYear() }} Jacob Anderson.</p>
+			<p>© {{ new Date().getFullYear() }} Classes.</p>
 			<div class="site-action-row">
-				<a v-if="compact" href="mailto:classes@jacobdanderson.net"
+				<a v-if="compact" href="mailto:contact@example.com"
 					>Contact<span class="sr-only">
 						(opens your email app)</span
 					></a

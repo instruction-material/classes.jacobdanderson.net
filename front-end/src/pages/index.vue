@@ -6,17 +6,17 @@ import { useContentStore } from "@/stores/content";
 defineOptions({ name: "HomePage" });
 
 const content = useContentStore();
-const siteUrl = "https://classes.jacobdanderson.net";
+const siteUrl = import.meta.env.VITE_SITE_URL || "https://example.com";
 const { subjectGroups } = storeToRefs(content);
 const courseStructuredData = computed(() =>
 	subjectGroups.value.map(group => ({
 		"@context": "https://schema.org",
 		"@type": "Course",
-		description: `Private instruction covering ${group.subjects.join(", ")}.`,
-		name: `${group.title} tutoring with Jacob Anderson`,
+		description: `Course materials covering ${group.subjects.join(", ")}.`,
+		name: `${group.title} courses`,
 		provider: {
-			"@type": "Person",
-			name: "Jacob Anderson",
+			"@type": "Organization",
+			name: "Classes",
 			url: siteUrl
 		}
 	}))
@@ -46,10 +46,10 @@ useHead(
 	<section class="page-shell page-shell--wide home-page">
 		<section aria-labelledby="hero-title" class="page-hero home-hero">
 			<div class="hero-text">
-				<h1 id="hero-title" class="page-title">Private Tutoring</h1>
+				<h1 id="hero-title" class="page-title">Course Platform</h1>
 				<p class="page-copy">
-					Learn with Jacob Anderson, one-on-one. Bring your coursework
-					or project, or find a course to explore.
+					Explore courses and projects independently or with an
+					instructor. Open programming and graphing tools to practice.
 				</p>
 			</div>
 			<figure class="media-frame home-hero__media">
@@ -67,7 +67,9 @@ useHead(
 
 		<section aria-labelledby="subjects-title" class="home-section">
 			<div class="section-heading">
-				<h2 id="subjects-title" class="section-title">What I Teach</h2>
+				<h2 id="subjects-title" class="section-title">
+					Subjects and Course Paths
+				</h2>
 				<p class="section-intro">
 					Coding, math, science and Spanish, from first steps to
 					advanced coursework.
