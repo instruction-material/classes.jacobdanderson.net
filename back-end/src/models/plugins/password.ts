@@ -27,6 +27,7 @@ export function passwordPlugin<T extends { password: string }>(schema: Schema<T>
 		};
 		delete obj.password;
 		delete obj.sessionVersion;
+		delete obj.emailChange;
 		return obj;
 	};
 }

@@ -2,11 +2,10 @@
 import type { AdminRecipient } from "@/modules/adminRecipients";
 import DOMPurify from "dompurify";
 import { marked } from "marked";
-import { computed, inject, onMounted, ref, watch } from "vue";
+import { computed, inject, nextTick, onMounted, ref, watch } from "vue";
 import { routeLocationKey } from "vue-router";
 import { api } from "@/api";
 import AdminWorkspaceShell from "@/components/AdminWorkspaceShell.vue";
-import SessionNoteEvidenceReview from "@/components/SessionNoteEvidenceReview.vue";
 import { fetchAdminRecipients } from "@/modules/adminRecipients";
 import { retainNoteSendIntent } from "@/modules/sessionNoteSendIntent";
 
@@ -64,6 +63,7 @@ const to = ref("");
 const subject = ref("");
 const md = ref("");
 const sending = ref(false);
+const sendValidation = ref("");
 const noteStudentId = ref("");
 const pendingStudentId = ref<string | null>(null);
 const requestedStudentInvalid = ref(false);
@@ -78,6 +78,8 @@ const noteStudents = ref<
 const noteSessions = ref<{ _id: string; startAt: string; timezone: string }[]>(
 	[]
 );
+const noteStudentsLoading = ref(false);
+const noteStudentsError = ref("");
 const noteOperation = ref<SendMailResponse | null>(null);
 let pendingNoteSend: { signature: string; key: string; noteId: string } | null =
 	null;
@@ -112,16 +114,22 @@ function requestNoteStudent(studentId: string) {
 	}
 	requestedStudentInvalid.value = false;
 	if (studentId === noteStudentId.value) return;
-	if (md.value.trim() || pendingNoteSend || noteOperation.value) {
+	if (
+		noteStudentId.value &&
+		(md.value.trim() || pendingNoteSend || noteOperation.value)
+	) {
 		pendingStudentId.value = studentId;
 		return;
 	}
 	applyNoteStudent(studentId);
 }
 function applyNoteStudent(studentId: string) {
-	md.value = "";
-	subject.value = "";
-	subjectDate.value = "";
+	const switchingStudent = Boolean(noteStudentId.value);
+	if (switchingStudent) {
+		md.value = "";
+		subject.value = "";
+		subjectDate.value = "";
+	}
 	pendingNoteSend = null;
 	noteOperation.value = null;
 	pendingStudentId.value = null;
@@ -137,7 +145,9 @@ function applyNoteStudent(studentId: string) {
 			recipient => recipient.name === verified.recipientName
 		)
 			? verified.recipientName
-			: "";
+			: switchingStudent
+				? ""
+				: selectedRecipientName.value;
 }
 watch(
 	() => noteRoute?.query.student,
@@ -300,8 +310,9 @@ async function loadAdminRecipientList() {
 	}
 }
 
-onMounted(async () => {
-	await loadAdminRecipientList();
+async function loadNoteStudents() {
+	noteStudentsLoading.value = true;
+	noteStudentsError.value = "";
 	try {
 		const { data } = await api.get("/admin-mail/session-notes/identities");
 		noteStudents.value = data.students ?? [];
@@ -311,8 +322,15 @@ onMounted(async () => {
 		if (typeof requested === "string" && requested)
 			requestNoteStudent(requested);
 	} catch {
-		/* Selecting an identity remains unavailable until loading succeeds. */
+		noteStudentsError.value = "Unable to load students. Please retry.";
+	} finally {
+		noteStudentsLoading.value = false;
 	}
+}
+
+onMounted(async () => {
+	await loadAdminRecipientList();
+	await loadNoteStudents();
 });
 
 function switchTab(tab: MailTab) {
@@ -516,14 +534,83 @@ async function loadRecentSessionNotes() {
 	}
 }
 
-async function sendMail() {
-	if (
-		sending.value ||
-		requestedStudentInvalid.value ||
-		pendingStudentId.value !== null
-	) {
-		return;
+watch(
+	[
+		to,
+		subject,
+		md,
+		noteStudentId,
+		noteSessionId,
+		noteUnlinked,
+		messageKind,
+		pendingStudentId
+	],
+	() => {
+		sendValidation.value = "";
 	}
+);
+
+async function showSendValidation(message: string, fieldId: string) {
+	sendValidation.value = message;
+	activeTab.value = "compose";
+	await nextTick();
+	document.getElementById(fieldId)?.focus();
+}
+
+async function sendMail() {
+	if (sending.value) return;
+	if (!to.value.trim()) {
+		return showSendValidation(
+			"Select a recipient before sending.",
+			"recipient-select"
+		);
+	}
+	if (messageKind.value === "session-note") {
+		if (noteStudentsLoading.value || noteStudentsError.value) {
+			return showSendValidation(
+				noteStudentsError.value ||
+					"Students are still loading. Please try again.",
+				"note-student"
+			);
+		}
+		if (!noteStudentId.value || requestedStudentInvalid.value) {
+			return showSendValidation(
+				"Select the student this note belongs to before sending.",
+				"note-student"
+			);
+		}
+		if (pendingStudentId.value !== null) {
+			return showSendValidation(
+				"Keep the current student or confirm the student change before sending.",
+				"note-student"
+			);
+		}
+		if (!subjectDate.value) {
+			return showSendValidation(
+				"Choose the note's subject date before sending.",
+				"pick-subject-date"
+			);
+		}
+		if (!noteSessionId.value && !noteUnlinked.value) {
+			return showSendValidation(
+				"Select an actual session, or check Unlinked note if the session is not listed.",
+				"note-unlinked"
+			);
+		}
+	}
+	if (!subject.value.trim()) {
+		return showSendValidation(
+			"Enter a subject before sending.",
+			"subject-input"
+		);
+	}
+	if (!md.value.trim()) {
+		return showSendValidation(
+			"Write the note before sending.",
+			"markdown-input"
+		);
+	}
+	sendValidation.value = "";
 	resultText.value = "";
 	sentOk.value = false;
 	sending.value = true;
@@ -687,7 +774,6 @@ function parseDateIso(value: string): string | null {
 <template>
 	<AdminWorkspaceShell title="Notes and Mail">
 		<section class="wrap">
-			<SessionNoteEvidenceReview />
 			<div class="mail-card">
 				<label class="message-kind"
 					>Message type<select v-model="messageKind">
@@ -765,6 +851,16 @@ function parseDateIso(value: string): string | null {
 								{{ student.studentId.slice(-6) }}
 							</option>
 						</select>
+						<div v-if="noteStudentsError" role="alert">
+							{{ noteStudentsError }}
+							<button
+								type="button"
+								:disabled="noteStudentsLoading"
+								@click="loadNoteStudents"
+							>
+								Retry student list
+							</button>
+						</div>
 						<div
 							v-if="pendingStudentId !== null"
 							class="student-context-confirmation"
@@ -814,6 +910,7 @@ function parseDateIso(value: string): string | null {
 						</select>
 						<label
 							><input
+								id="note-unlinked"
 								v-model="noteUnlinked"
 								type="checkbox"
 								@change="noteSessionId = ''"
@@ -923,6 +1020,7 @@ function parseDateIso(value: string): string | null {
 						<div class="subject-row">
 							<button
 								v-if="messageKind === 'session-note'"
+								id="pick-subject-date"
 								type="button"
 								class="picker-btn"
 								@click="openDatePicker"
@@ -998,35 +1096,19 @@ function parseDateIso(value: string): string | null {
 				</div>
 
 				<div class="mail-card__footer">
+					<p v-if="sendValidation" id="send-validation" role="alert">
+						{{ sendValidation }}
+					</p>
 					<button
+						type="button"
 						class="send-btn"
-						:disabled="
-							sending ||
-							!to ||
-							!subject ||
-							!md ||
-							(messageKind === 'session-note' &&
-								(!subjectDate ||
-									!noteStudentId ||
-									requestedStudentInvalid ||
-									pendingStudentId !== null ||
-									(!noteSessionId && !noteUnlinked)))
+						:disabled="sending"
+						:aria-describedby="
+							sendValidation ? 'send-validation' : undefined
 						"
-						@click="
-							activeTab === 'compose'
-								? switchTab('preview')
-								: sendMail()
-						"
+						@click="sendMail"
 					>
-						{{
-							sending
-								? "Sending…"
-								: activeTab === "compose"
-									? "Preview before sending"
-									: messageKind === "session-note"
-										? "Send session note"
-										: "Send internal message"
-						}}
+						{{ sending ? "Sending…" : "Send" }}
 					</button>
 				</div>
 			</div>

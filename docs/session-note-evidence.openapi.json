@@ -1584,14 +1584,16 @@
             "format": "date-time"
           },
           "archivalStatus": {
-            "type": "string",
+            "type": ["string", "null"],
+            "description": "Refreshed archive state. Null means the refresh could not be read; SMTP acceptance is preserved separately and this does not authorize resend or reappend.",
             "enum": [
               "pending",
               "archiving",
               "archived",
               "retry",
               "review_required",
-              "not_applicable"
+              "not_applicable",
+              null
             ]
           },
           "associationStatus": {

@@ -80,6 +80,13 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    '/admin/session-note-recovery': RouteRecordInfo<
+      '/admin/session-note-recovery',
+      '/admin/session-note-recovery',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     '/admin/student-management': RouteRecordInfo<
       '/admin/student-management',
       '/admin/student-management',
@@ -192,6 +199,13 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    '/verify-email': RouteRecordInfo<
+      '/verify-email',
+      '/verify-email',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     '/wheel': RouteRecordInfo<
       '/wheel',
       '/wheel',
@@ -277,6 +291,14 @@ declare module 'vue-router/auto-routes' {
     'src/pages/admin/people.vue': {
       routes:
         | '/admin/people'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
+    'src/pages/admin/session-note-recovery.vue': {
+      routes:
+        | '/admin/session-note-recovery'
       views:
         | never
       pathParamNames:
@@ -405,6 +427,14 @@ declare module 'vue-router/auto-routes' {
     'src/pages/teaching.vue': {
       routes:
         | '/teaching'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
+    'src/pages/verify-email.vue': {
+      routes:
+        | '/verify-email'
       views:
         | never
       pathParamNames:

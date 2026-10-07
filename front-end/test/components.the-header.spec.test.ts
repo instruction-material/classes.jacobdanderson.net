@@ -91,7 +91,7 @@ describe("TheHeader.vue", () => {
 
 		const wrapper = mountHeader(pinia);
 
-		expect(wrapper.text()).toContain("Join class");
+		expect(wrapper.text()).not.toContain("Join class");
 		expect(wrapper.text()).toContain("IDE");
 		expect(wrapper.text()).toContain("Graphing");
 		expect(wrapper.text()).not.toContain("BlueJ");

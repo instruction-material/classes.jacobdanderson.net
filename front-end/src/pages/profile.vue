@@ -26,15 +26,6 @@ const activeProfileComponent = computed(() => {
 	return null;
 });
 
-const displayName = computed(
-	() =>
-		currentAdmin.value?.name ||
-		currentTutor.value?.name ||
-		currentUser.value?.name ||
-		currentCourseLearner.value?.username ||
-		""
-);
-
 const profileRole = computed(() => {
 	if (currentAdmin.value) return "Administrator";
 	if (currentTutor.value) return "Tutor";
@@ -46,29 +37,7 @@ const profileRole = computed(() => {
 const hasProfile = computed(() => activeProfileComponent.value !== null);
 const isWorkspaceLayout = computed(() => hasProfile.value);
 
-const heroTitle = computed(() => {
-	if (profileRole.value === "Administrator") {
-		return displayName.value
-			? `${displayName.value}'s account.`
-			: "Administrator account.";
-	}
-	if (profileRole.value === "Tutor") {
-		return displayName.value
-			? `${displayName.value}'s account.`
-			: "Tutor account.";
-	}
-	if (profileRole.value === "Student") {
-		return displayName.value
-			? `${displayName.value}'s account.`
-			: "Student account.";
-	}
-	if (profileRole.value === "Classroom") {
-		return displayName.value
-			? `${displayName.value}'s classroom workspace.`
-			: "Classroom workspace.";
-	}
-	return "Account access.";
-});
+const heroTitle = computed(() => "Account Settings");
 
 const profileComponentProps = computed(() => {
 	if (currentAdmin.value) {
@@ -507,6 +476,20 @@ function leaveClassroom() {
 	border: 0;
 	box-shadow: none;
 	background: transparent !important;
+}
+.profile-header,
+.profile-header.is-workspace-layout {
+	width: 100%;
+	max-width: none;
+}
+.profile-badge {
+	margin-left: auto;
+	order: 1;
+	background: transparent;
+	color: var(--color-ink-soft);
+	border: 0;
+	letter-spacing: normal;
+	text-transform: none;
 }
 </style>
 

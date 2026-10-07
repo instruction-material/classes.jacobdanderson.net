@@ -1,18 +1,51 @@
 import { describe, expect, it, vi } from "vitest";
 import {
 	confirmedArchiveAppend,
+	archiveDestination,
 	NoteArchiveError
 } from "../src/utils/sessionNoteArchive.js";
 
 function actions() {
 	return {
+		destination: () => "Synthetic Sent",
 		connect: vi.fn().mockResolvedValue(undefined),
-		append: vi.fn().mockResolvedValue({ path: "Synthetic Sent" }),
+		append: vi
+			.fn()
+			.mockResolvedValue({
+				destination: "Synthetic Sent",
+				uid: 42,
+				uidValidity: 1n
+			}),
 		logout: vi.fn().mockResolvedValue(undefined)
 	};
 }
 
 describe("safe archival outcome classification without mailbox access", () => {
+	it("confirms destination and optional UID information without a selected mailbox path", async () => {
+		const calls = actions();
+		await expect(confirmedArchiveAppend(calls)).resolves.toBeUndefined();
+		expect(calls.append).toHaveBeenCalledTimes(1);
+	});
+	it("does not confuse a selected mailbox path with the APPEND destination", async () => {
+		const calls = actions();
+		calls.append.mockResolvedValue({
+			destination: "Synthetic Sent",
+			path: "INBOX"
+		} as any);
+		await expect(confirmedArchiveAppend(calls)).resolves.toBeUndefined();
+		calls.append.mockResolvedValue({
+			destination: "Other",
+			path: "Synthetic Sent"
+		} as any);
+		await expect(confirmedArchiveAppend(calls)).rejects.toMatchObject({
+			outcome: "unconfirmed"
+		});
+	});
+	it("normalizes only server namespace prefixes and case-insensitive INBOX", () => {
+		expect(archiveDestination("Sent", "INBOX.")).toBe("INBOX.Sent");
+		expect(archiveDestination("INBOX.Sent", "INBOX.")).toBe("INBOX.Sent");
+		expect(archiveDestination("inbox", "INBOX.")).toBe("INBOX");
+	});
 	it("retains confirmed APPEND even if logout fails", async () => {
 		const calls = actions();
 		calls.logout.mockRejectedValue(new Error("Synthetic logout failure"));

@@ -3,6 +3,7 @@
 import type { Model } from "mongoose";
 import type { ITutor } from "../../types/entities/ITutor.js";
 import mongoose, { Schema } from "mongoose";
+import { emailVerificationPlugin } from "../plugins/emailVerification.js";
 import { passwordPlugin } from "../plugins/password.js";
 
 /**
@@ -32,6 +33,7 @@ const tutorSchema: Schema<ITutor> = new Schema(
  * Create and handle password hashing, comparison, and removal from JSON responses
  */
 tutorSchema.plugin(passwordPlugin);
+tutorSchema.plugin(emailVerificationPlugin);
 
 /**
  * Create and export Tutor model

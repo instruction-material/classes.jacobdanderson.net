@@ -75,7 +75,7 @@ describe("Profile page account routing", () => {
 			}
 		});
 
-		expect(wrapper.text()).toContain("Student One's classroom workspace.");
+		expect(wrapper.text()).toContain("Account Settings");
 		expect(wrapper.text()).toContain("Email-free classroom access");
 		expect(wrapper.text()).toContain("Open course");
 		expect(wrapper.text()).toContain("Open IDE");

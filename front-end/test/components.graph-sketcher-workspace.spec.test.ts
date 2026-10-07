@@ -67,7 +67,8 @@ describe("GraphSketcherWorkspace.vue", () => {
 				.attributes("role")
 		).toBe("group");
 
-		await buttonWithText(wrapper, "Style").trigger("click");
+		await wrapper.get('[aria-label="Graph settings"]').trigger("click");
+		await wrapper.findAll(".graph-inspector__tabs button").find(button => button.text() === "Style")!.trigger("click");
 		expect(wrapper.text()).toContain("Add linear best fit");
 
 		await wrapper
@@ -249,7 +250,7 @@ describe("GraphSketcherWorkspace.vue", () => {
 		await wrapper.vm.$nextTick();
 
 		expect(wrapper.text()).toContain("My saved graph");
-		expect(wrapper.text()).toContain(
+		expect(wrapper.text()).not.toContain(
 			"Restored the graph saved in this browser."
 		);
 	});

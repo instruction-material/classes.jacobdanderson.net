@@ -46,6 +46,9 @@ function showSignupModal() {
 		<main id="main-content" class="site-main" tabindex="-1">
 			<RouterView />
 		</main>
-		<TheFooter :compact="route.path !== '/'" />
+		<TheFooter
+			v-if="route.path !== '/graph-sketcher'"
+			:compact="route.path !== '/'"
+		/>
 	</div>
 </template>

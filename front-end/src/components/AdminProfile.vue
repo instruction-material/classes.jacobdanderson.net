@@ -8,14 +8,12 @@ import { storeToRefs } from "pinia";
 import { computed, onMounted, ref, watch } from "vue";
 import { api } from "@/api";
 import AccessibleDialog from "@/components/AccessibleDialog.vue";
-import AccountSecurity from "@/components/AccountSecurity.vue";
 import CourseAccessCodeManager from "@/components/CourseAccessCodeManager.vue";
 import LearnerCodeReviewTools from "@/components/LearnerCodeReviewTools.vue";
 import LearnerContextActions from "@/components/LearnerContextActions.vue";
 import LearnerSessionTools from "@/components/LearnerSessionTools.vue";
-import ProfileFields from "@/components/ProfileFields.vue";
+import SelfAccountSettings from "@/components/SelfAccountSettings.vue";
 import { useDeleteAccount } from "@/composables/useDeleteAccount";
-import { useEditable } from "@/composables/useEditable";
 import { fetchAdminRecipients } from "@/modules/adminRecipients";
 import {
 	cleanCourseStatusMap,
@@ -62,8 +60,6 @@ const confirmationBusy = ref(false);
 
 const viewMode = computed(() => props.mode ?? "profile");
 
-const adminDraft = ref<typeof currentAdmin.value | null>(null);
-
 const coursesStore = useCoursesStore();
 const { courses } = storeToRefs(coursesStore);
 const courseOptions = computed(() => courses.value ?? []);
@@ -92,23 +88,12 @@ const isPeopleMode = computed(
 );
 const isAccountMode = computed(() => !isPeopleMode.value);
 
-/* editable helper for the admin card */
-const {
-	editing: adminEdit,
-	toggle: toggleAdmin,
-	save: saveAdmin
-} = useEditable("admin");
-
-/* field list (admin / tutor / user share the same set) */
-const fields = [
-	{ key: "name", label: "Name" },
-	{ key: "email", label: "Email" }
-	// { key: "age", label: "Age" },
-	// { key: "state", label: "State" }
-];
-
 /* fetch everything once */
 async function loadAll() {
+	if (isAccountMode.value) {
+		await app.refreshCurrentAdmin();
+		return;
+	}
 	const recipientListRequest = fetchAdminRecipients()
 		.then(recipients => {
 			adminRecipients.value = recipients;
@@ -232,14 +217,6 @@ function recipientOptionsForUser(userID: string) {
 	return [...adminRecipientNames.value, currentValue];
 }
 
-watch(
-	currentAdmin,
-	value => {
-		adminDraft.value = value ? { ...value } : null;
-	},
-	{ immediate: true }
-);
-
 function startUserEdit(userID: string) {
 	userEditing.value = { ...userEditing.value, [userID]: true };
 	success.value = "";
@@ -352,25 +329,6 @@ async function demoteTutor(tutorID: string) {
 		error.value =
 			e.response?.data?.message ?? e.message ?? "Unable to demote tutor";
 	}
-}
-
-function toggleAdminEdit() {
-	if (!adminDraft.value && currentAdmin.value) {
-		adminDraft.value = { ...currentAdmin.value };
-	}
-	toggleAdmin();
-}
-
-function cancelAdminEdit() {
-	adminDraft.value = currentAdmin.value ? { ...currentAdmin.value } : null;
-	adminEdit.value = false;
-}
-
-async function saveAdminProfile() {
-	if (!adminDraft.value) return;
-	await saveAdmin(adminDraft.value);
-	adminEdit.value = false; // Explicitly leave edit mode.
-	success.value = "Profile updated.";
 }
 
 const userAllowedCourses = computed(() => {
@@ -602,74 +560,11 @@ function confirmDeleteAdmin() {
 		</p>
 
 		<template v-if="isAccountMode">
-			<article v-if="currentAdmin" class="workspace-sheet">
-				<div class="sheet-body">
-					<section class="sheet-panel">
-						<div class="panel-header">
-							<p class="panel-eyebrow">Admin account</p>
-							<h3>Profile details</h3>
-						</div>
-						<ul class="field-stack">
-							<ProfileFields
-								:editing="false"
-								:entity="currentAdmin"
-								:fields="fields"
-							/>
-						</ul>
-					</section>
-
-					<section class="sheet-panel security-panel">
-						<div class="panel-header">
-							<p class="panel-eyebrow">Security</p>
-							<h3>
-								{{
-									adminEdit
-										? "Admin access settings"
-										: "Password and login"
-								}}
-							</h3>
-						</div>
-						<p v-if="!adminEdit" class="security-copy">
-							Open edit mode to update the password or email for
-							the primary admin account.
-						</p>
-						<AccountSecurity
-							v-else
-							:email="currentAdmin.email"
-							:entity-id="currentAdmin._id"
-							role="admin"
-						/>
-					</section>
-				</div>
-
-				<div class="action-row">
-					<template v-if="!adminEdit">
-						<button
-							class="btn-primary btn"
-							type="button"
-							@click="toggleAdminEdit"
-						>
-							Manage account security
-						</button>
-					</template>
-					<template v-else>
-						<button
-							class="btn-secondary btn"
-							type="button"
-							@click="cancelAdminEdit"
-						>
-							Cancel
-						</button>
-						<button
-							class="btn-primary btn"
-							type="button"
-							@click="saveAdminProfile"
-						>
-							Save
-						</button>
-					</template>
-				</div>
-			</article>
+			<SelfAccountSettings
+				v-if="currentAdmin"
+				:entity="currentAdmin"
+				role="admin"
+			/>
 		</template>
 
 		<template v-else>
@@ -695,428 +590,359 @@ function confirmDeleteAdmin() {
 						:key="u._id"
 						class="directory-card"
 					>
-						<div class="directory-card-header is-user-card-header">
-							<div class="directory-card-identity">
-								<div class="directory-card-name-row">
-									<h4>{{ u.name }}</h4>
-									<p
-										v-if="u.recipientName"
-										class="recipient-association"
-									>
-										{{ u.recipientName }}
-									</p>
-								</div>
-								<p>{{ u.email }}</p>
-							</div>
-							<button
-								class="btn-secondary btn"
-								type="button"
-								:aria-label="
-									userEditing[u._id]
-										? `Close assignment editor for ${u.name}`
-										: `Edit assignments for ${u.name}`
-								"
-								@click="
-									userEditing[u._id]
-										? cancelUserEdit(u._id)
-										: startUserEdit(u._id)
-								"
-							>
-								{{
-									userEditing[u._id]
-										? "Close editor"
-										: "Edit assignments"
-								}}
-							</button>
-						</div>
-
-						<div class="info-grid">
-							<div class="summary-block is-inline">
-								<p class="summary-label">
-									{{ assignedTutorLabel(u._id) }}
-								</p>
-								<ul
-									v-if="assignedTutorNames(u._id).length"
-									class="summary-list"
-								>
-									<li
-										v-for="tutorName in assignedTutorNames(
-											u._id
-										)"
-										:key="`${u._id}-${tutorName}`"
-									>
-										{{ tutorName }}
-									</li>
-								</ul>
-								<p v-else class="summary-copy is-muted">
-									No tutor assigned yet
-								</p>
-							</div>
-							<details
-								class="summary-block is-inline is-collapsible"
-							>
-								<summary class="summary-toggle">
-									<span class="summary-label">
-										Course access
-									</span>
-								</summary>
+						<details class="person-details">
+							<summary>
+								<strong>{{ u.name }}</strong
+								><span>{{ u.email }}</span>
+							</summary>
+							<div class="person-tools">
 								<div
-									v-if="
-										userCourseGroups(String(u._id)).length
-									"
-									class="summary-course-groups"
+									class="directory-card-header is-user-card-header"
 								>
-									<div
-										v-for="group in userCourseGroups(
-											String(u._id)
-										)"
-										:key="`${u._id}-${group.key}`"
-										class="summary-course-group"
+									<button
+										class="btn-secondary btn"
+										type="button"
+										:aria-label="
+											userEditing[u._id]
+												? `Close assignment editor for ${u.name}`
+												: `Manage access for ${u.name}`
+										"
+										@click="
+											userEditing[u._id]
+												? cancelUserEdit(u._id)
+												: startUserEdit(u._id)
+										"
 									>
-										<p class="summary-group-label">
-											{{ group.label }}
+										{{
+											userEditing[u._id]
+												? "Close settings"
+												: "Edit assignments"
+										}}
+									</button>
+								</div>
+
+								<div class="info-grid">
+									<div class="summary-block is-inline">
+										<p class="summary-label">
+											{{ assignedTutorLabel(u._id) }}
 										</p>
-										<ul class="summary-list">
+										<ul
+											v-if="
+												assignedTutorNames(u._id).length
+											"
+											class="summary-list"
+										>
 											<li
-												v-for="course in group.courses"
-												:key="`${u._id}-${course.id}`"
+												v-for="tutorName in assignedTutorNames(
+													u._id
+												)"
+												:key="`${u._id}-${tutorName}`"
 											>
-												{{ course.name }}
+												{{ tutorName }}
 											</li>
 										</ul>
-									</div>
-								</div>
-								<p v-else class="summary-copy is-muted">
-									No course access yet
-								</p>
-							</details>
-						</div>
-
-						<LearnerContextActions
-							:student-id="String(u._id)"
-							can-send
-						/>
-						<LearnerSessionTools
-							:user-email="u.email"
-							:user-id="String(u._id)"
-							:user-name="u.name"
-						/>
-
-						<LearnerCodeReviewTools
-							:user-email="u.email"
-							:user-id="String(u._id)"
-							:user-name="u.name"
-						/>
-
-						<div
-							v-if="userEditing[u._id]"
-							class="assignment-editor"
-						>
-							<div class="editor-block">
-								<label
-									class="editor-label"
-									:for="`recipient-name-${u._id}`"
-								>
-									Associated recipient
-								</label>
-								<select
-									:id="`recipient-name-${u._id}`"
-									v-model="userRecipientNames[String(u._id)]"
-									class="editor-select is-single"
-								>
-									<option value="">
-										No associated recipient
-									</option>
-									<option
-										v-for="recipientName in recipientOptionsForUser(
-											String(u._id)
-										)"
-										:key="`${u._id}-${recipientName}`"
-										:value="recipientName"
-									>
-										{{ recipientName }}
-									</option>
-								</select>
-								<p class="helper-text">
-									Choose the same recipient label used in Send
-									Markdown Email. Pick the blank option to
-									remove the association.
-								</p>
-								<p
-									v-if="recipientListError"
-									class="helper-text error-text"
-								>
-									{{ recipientListError }}
-								</p>
-							</div>
-
-							<div class="editor-block">
-								<label
-									class="editor-label"
-									:for="`tutor-select-${u._id}`"
-								>
-									Assign tutors
-								</label>
-								<select
-									:id="`tutor-select-${u._id}`"
-									class="editor-select"
-									:disabled="tutors.length === 0"
-									multiple
-									:value="userAssignments[u._id] ?? []"
-									@change="
-										onTutorSelectionChange(u._id, $event)
-									"
-								>
-									<option
-										v-for="t in tutors"
-										:key="t._id"
-										:value="t._id"
-									>
-										{{ t.name }}
-									</option>
-								</select>
-							</div>
-
-							<div class="editor-block">
-								<p class="editor-label">Allowed courses</p>
-								<p class="helper-text">
-									Enable courses available from the learner's
-									assigned tutors.
-								</p>
-								<div class="course-access-groups">
-									<section
-										v-for="group in userCourseGroups(
-											String(u._id),
-											true
-										)"
-										:key="`${u._id}-edit-${group.key}`"
-										class="course-access-group"
-									>
-										<p class="course-access-group-title">
-											{{ group.label }}
+										<p v-else class="summary-copy is-muted">
+											No tutor assigned yet
 										</p>
-										<div class="checkbox-grid">
+									</div>
+									<details
+										class="summary-block is-inline is-collapsible"
+									>
+										<summary class="summary-toggle">
+											<span class="summary-label">
+												Course access
+											</span>
+										</summary>
+										<div
+											v-if="
+												userCourseGroups(String(u._id))
+													.length
+											"
+											class="summary-course-groups"
+										>
 											<div
-												v-for="course in group.courses"
-												:key="course.id"
-												class="course-choice"
-												:class="{
-													disabled:
-														!userAllowedCourses[
-															String(u._id)
-														]?.has(course.id)
-												}"
+												v-for="group in userCourseGroups(
+													String(u._id)
+												)"
+												:key="`${u._id}-${group.key}`"
+												class="summary-course-group"
 											>
-												<label>
-													<input
-														:checked="
-															userCourseSelections[
-																String(u._id)
-															]?.includes(
-																course.id
-															)
-														"
-														:disabled="
-															!userAllowedCourses[
-																String(u._id)
-															]?.has(course.id)
-														"
-														type="checkbox"
-														@change="
-															onUserCourseToggle(
-																u._id,
-																course.id,
-																(
-																	$event.target as HTMLInputElement
-																).checked
-															)
-														"
-													/>
-													<span>{{
-														course.name
-													}}</span>
-												</label>
-												<select
-													v-if="
-														userCourseSelections[
-															String(u._id)
-														]?.includes(course.id)
-													"
-													class="course-status-select"
-													:value="
-														userCourseStatus(
-															String(u._id),
-															course.id
-														)
-													"
-													:aria-label="`Set ${course.name} status for ${u.name}`"
-													@change="
-														onUserCourseStatusChange(
-															String(u._id),
-															course.id,
-															(
-																$event.target as HTMLSelectElement
-															).value
-														)
-													"
-												>
-													<option value="current">
-														Current
-													</option>
-													<option value="past">
-														Past
-													</option>
-													<option value="available">
-														Available
-													</option>
-												</select>
+												<p class="summary-group-label">
+													{{ group.label }}
+												</p>
+												<ul class="summary-list">
+													<li
+														v-for="course in group.courses"
+														:key="`${u._id}-${course.id}`"
+													>
+														{{ course.name }}
+													</li>
+												</ul>
 											</div>
 										</div>
-									</section>
+										<p v-else class="summary-copy is-muted">
+											No course access yet
+										</p>
+									</details>
+								</div>
+
+								<details class="person-advanced">
+									<summary>Advanced Settings</summary>
+									<div class="action-row">
+										<button
+											class="btn-secondary btn"
+											type="button"
+											@click="promoteToTutor(u._id)"
+										>
+											Promote to tutor
+										</button>
+										<button
+											class="btn-danger btn"
+											type="button"
+											@click="removeUser(u._id)"
+										>
+											Delete learner
+										</button>
+									</div>
+								</details>
+								<LearnerContextActions
+									:student-id="String(u._id)"
+									can-send
+								/>
+								<LearnerSessionTools
+									:user-email="u.email"
+									:user-id="String(u._id)"
+									:user-name="u.name"
+								/>
+
+								<LearnerCodeReviewTools
+									:user-email="u.email"
+									:user-id="String(u._id)"
+									:user-name="u.name"
+								/>
+
+								<div
+									v-if="userEditing[u._id]"
+									class="assignment-editor"
+								>
+									<div class="editor-block">
+										<label
+											class="editor-label"
+											:for="`recipient-name-${u._id}`"
+										>
+											Associated recipient
+										</label>
+										<select
+											:id="`recipient-name-${u._id}`"
+											v-model="
+												userRecipientNames[
+													String(u._id)
+												]
+											"
+											class="editor-select is-single"
+										>
+											<option value="">
+												No associated recipient
+											</option>
+											<option
+												v-for="recipientName in recipientOptionsForUser(
+													String(u._id)
+												)"
+												:key="`${u._id}-${recipientName}`"
+												:value="recipientName"
+											>
+												{{ recipientName }}
+											</option>
+										</select>
+
+										<p
+											v-if="recipientListError"
+											class="helper-text error-text"
+										>
+											{{ recipientListError }}
+										</p>
+									</div>
+
+									<div class="editor-block">
+										<label
+											class="editor-label"
+											:for="`tutor-select-${u._id}`"
+										>
+											Assign tutors
+										</label>
+										<select
+											:id="`tutor-select-${u._id}`"
+											class="editor-select"
+											:disabled="tutors.length === 0"
+											multiple
+											:value="
+												userAssignments[u._id] ?? []
+											"
+											@change="
+												onTutorSelectionChange(
+													u._id,
+													$event
+												)
+											"
+										>
+											<option
+												v-for="t in tutors"
+												:key="t._id"
+												:value="t._id"
+											>
+												{{ t.name }}
+											</option>
+										</select>
+									</div>
+
+									<div class="editor-block">
+										<p class="editor-label">
+											Allowed courses
+										</p>
+
+										<div class="course-access-groups">
+											<section
+												v-for="group in userCourseGroups(
+													String(u._id),
+													true
+												)"
+												:key="`${u._id}-edit-${group.key}`"
+												class="course-access-group"
+											>
+												<p
+													class="course-access-group-title"
+												>
+													{{ group.label }}
+												</p>
+												<div class="checkbox-grid">
+													<div
+														v-for="course in group.courses"
+														:key="course.id"
+														class="course-choice"
+														:class="{
+															disabled:
+																!userAllowedCourses[
+																	String(
+																		u._id
+																	)
+																]?.has(
+																	course.id
+																)
+														}"
+													>
+														<label>
+															<input
+																:checked="
+																	userCourseSelections[
+																		String(
+																			u._id
+																		)
+																	]?.includes(
+																		course.id
+																	)
+																"
+																:disabled="
+																	!userAllowedCourses[
+																		String(
+																			u._id
+																		)
+																	]?.has(
+																		course.id
+																	)
+																"
+																type="checkbox"
+																@change="
+																	onUserCourseToggle(
+																		u._id,
+																		course.id,
+																		(
+																			$event.target as HTMLInputElement
+																		)
+																			.checked
+																	)
+																"
+															/>
+															<span>{{
+																course.name
+															}}</span>
+														</label>
+														<select
+															v-if="
+																userCourseSelections[
+																	String(
+																		u._id
+																	)
+																]?.includes(
+																	course.id
+																)
+															"
+															class="course-status-select"
+															:value="
+																userCourseStatus(
+																	String(
+																		u._id
+																	),
+																	course.id
+																)
+															"
+															:aria-label="`Set ${course.name} status for ${u.name}`"
+															@change="
+																onUserCourseStatusChange(
+																	String(
+																		u._id
+																	),
+																	course.id,
+																	(
+																		$event.target as HTMLSelectElement
+																	).value
+																)
+															"
+														>
+															<option
+																value="current"
+															>
+																Current
+															</option>
+															<option
+																value="past"
+															>
+																Past
+															</option>
+															<option
+																value="available"
+															>
+																Available
+															</option>
+														</select>
+													</div>
+												</div>
+											</section>
+										</div>
+									</div>
+
+									<div class="action-row">
+										<button
+											class="btn-primary btn"
+											type="button"
+											:aria-label="`Save learner assignments for ${u.name}`"
+											@click="
+												saveUserEditorChanges(u._id)
+											"
+										>
+											Save
+										</button>
+										<button
+											class="btn-secondary btn"
+											type="button"
+											:aria-label="`Cancel learner assignment edits for ${u.name}`"
+											@click="cancelUserEdit(u._id)"
+										>
+											Cancel
+										</button>
+									</div>
 								</div>
 							</div>
-
-							<div class="action-row">
-								<button
-									class="btn-primary btn"
-									type="button"
-									:aria-label="`Save learner assignments for ${u.name}`"
-									@click="saveUserEditorChanges(u._id)"
-								>
-									Save
-								</button>
-								<button
-									class="btn-secondary btn"
-									type="button"
-									:aria-label="`Cancel learner assignment edits for ${u.name}`"
-									@click="cancelUserEdit(u._id)"
-								>
-									Cancel
-								</button>
-							</div>
-						</div>
-					</article>
-				</div>
-			</section>
-			<section class="directory-section">
-				<div class="section-heading">
-					<div>
-						<p class="workspace-eyebrow">Administrator</p>
-						<h3>Primary account</h3>
-					</div>
-					<p class="section-copy">
-						Account removal is destructive. Keep it isolated from
-						the role-management actions below.
-					</p>
-				</div>
-
-				<article v-if="currentAdmin" class="directory-card">
-					<div class="directory-card-header">
-						<div>
-							<h4>{{ currentAdmin.name }}</h4>
-							<p>{{ currentAdmin.email }}</p>
-						</div>
-					</div>
-					<div class="action-row">
-						<button
-							class="btn-danger btn"
-							type="button"
-							:aria-label="`Delete admin account for ${currentAdmin.name}`"
-							@click="confirmDeleteAdmin"
-						>
-							Delete admin account
-						</button>
-					</div>
-				</article>
-			</section>
-
-			<section class="directory-section">
-				<div class="section-heading">
-					<div>
-						<p class="workspace-eyebrow">Tutors</p>
-						<h3>{{ tutorsHeader }}</h3>
-					</div>
-					<p class="section-copy">
-						Demote tutors back to users or fully remove accounts.
-					</p>
-				</div>
-
-				<div class="directory-grid">
-					<article
-						v-for="t in tutors"
-						:key="t._id"
-						class="directory-card"
-					>
-						<div class="directory-card-header">
-							<div>
-								<h4>{{ t.name }}</h4>
-								<p>{{ t.email }}</p>
-							</div>
-						</div>
-						<div class="action-row">
-							<button
-								class="btn-secondary btn"
-								type="button"
-								:aria-label="`Demote ${t.name} to user`"
-								@click="confirmDemote(t._id)"
-							>
-								Demote to user
-							</button>
-							<button
-								class="btn-danger btn"
-								type="button"
-								:aria-label="`Delete tutor account for ${t.name}`"
-								@click="removeTutor(t._id)"
-							>
-								Delete tutor
-							</button>
-						</div>
-					</article>
-				</div>
-			</section>
-
-			<section class="directory-section">
-				<div class="section-heading">
-					<div>
-						<p class="workspace-eyebrow">Users</p>
-						<h3>{{ usersHeader }}</h3>
-					</div>
-					<p class="section-copy">
-						Promote learners to tutors when needed, or remove unused
-						accounts.
-					</p>
-				</div>
-
-				<div class="directory-grid">
-					<article
-						v-for="u in filteredUsers"
-						:key="u._id"
-						class="directory-card"
-					>
-						<div class="directory-card-header">
-							<div>
-								<h4>{{ u.name }}</h4>
-								<p>{{ u.email }}</p>
-							</div>
-						</div>
-						<div class="action-row">
-							<button
-								class="btn-primary btn"
-								type="button"
-								:aria-label="`Promote ${u.name} to tutor`"
-								@click="promoteToTutor(u._id)"
-							>
-								Promote to tutor
-							</button>
-							<button
-								class="btn-danger btn"
-								type="button"
-								:aria-label="`Delete learner account for ${u.name}`"
-								@click="removeUser(u._id)"
-							>
-								Delete user
-							</button>
-						</div>
+						</details>
 					</article>
 				</div>
 			</section>
@@ -1130,10 +956,6 @@ function confirmDeleteAdmin() {
 							<p class="workspace-eyebrow">Tutors</p>
 							<h3>{{ tutorsHeader }}</h3>
 						</div>
-						<p class="section-copy">
-							Enable course access for each tutor so learner
-							assignments always reflect the right teaching scope.
-						</p>
 					</div>
 
 					<div class="directory-grid">
@@ -1195,9 +1017,6 @@ function confirmDeleteAdmin() {
 								v-if="tutorEditing[t._id]"
 								class="course-editor"
 							>
-								<p class="helper-text">
-									Select which courses this tutor can access.
-								</p>
 								<div class="checkbox-grid">
 									<label
 										v-for="course in courseOptions"
@@ -1242,6 +1061,25 @@ function confirmDeleteAdmin() {
 									</button>
 								</div>
 							</div>
+							<details class="person-advanced">
+								<summary>Advanced Settings</summary>
+								<div class="action-row">
+									<button
+										class="btn-secondary btn"
+										type="button"
+										@click="confirmDemote(t._id)"
+									>
+										Demote to learner
+									</button>
+									<button
+										class="btn-danger btn"
+										type="button"
+										@click="removeTutor(t._id)"
+									>
+										Delete tutor
+									</button>
+								</div>
+							</details>
 						</article>
 					</div>
 				</section>
@@ -1249,6 +1087,17 @@ function confirmDeleteAdmin() {
 			<details>
 				<summary>Create or manage classroom codes</summary>
 				<CourseAccessCodeManager :courses="courseOptions" />
+			</details>
+			<details class="person-advanced">
+				<summary>Advanced Settings</summary>
+				<button
+					v-if="currentAdmin"
+					class="btn-danger btn"
+					type="button"
+					@click="confirmDeleteAdmin"
+				>
+					Delete admin account
+				</button>
 			</details>
 		</template>
 
@@ -1938,5 +1787,97 @@ function confirmDeleteAdmin() {
 .summary-block {
 	padding: 0.65rem;
 	border-radius: 6px;
+}
+
+.admin-workspace .directory-section {
+	background: transparent;
+	border: 0;
+	padding: 0;
+	gap: 0.5rem;
+	box-shadow: none;
+}
+.admin-workspace .directory-grid {
+	grid-template-columns: minmax(0, 1fr);
+	gap: 0;
+}
+.admin-workspace .directory-card {
+	padding: 0;
+	border: 0;
+	border-bottom: 1px solid var(--color-border);
+	border-radius: 0;
+	background: transparent;
+}
+.person-details > summary {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0.25rem 1rem;
+	cursor: pointer;
+	padding: 0.75rem 0.35rem;
+	list-style: none;
+}
+.person-details > summary::before {
+	content: "›";
+	font-size: 1.2rem;
+}
+.person-details[open] > summary::before {
+	content: "⌄";
+}
+.person-details > summary strong {
+	font-size: 1rem;
+	font-weight: 600;
+}
+.person-details > summary > span {
+	color: var(--color-ink-soft);
+	font-size: 0.85rem;
+	overflow-wrap: anywhere;
+}
+.person-tools {
+	padding: 0.35rem 0.75rem 1rem;
+	display: grid;
+	gap: 0.5rem;
+}
+.person-advanced > summary {
+	cursor: pointer;
+	padding-block: 0.5rem;
+	font-size: 0.85rem;
+	color: var(--color-ink-soft);
+}
+.admin-workspace .info-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	align-items: start;
+}
+.admin-workspace .info-grid > * {
+	flex: 1 1 15rem;
+	background: transparent;
+	box-shadow: none;
+	padding: 0;
+}
+.admin-workspace .checkbox-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 0.25rem;
+}
+.admin-workspace .course-choice {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	padding: 0.35rem 0.5rem;
+	border-radius: 4px;
+	box-shadow: none;
+	align-items: center;
+}
+.admin-workspace .course-choice label {
+	flex: 1 1 15rem;
+}
+.admin-workspace .course-status-select {
+	width: auto;
+	padding: 0.25rem 0.4rem;
+	border-radius: 4px;
+}
+.admin-workspace .tutor-management .directory-card {
+	padding: 0.75rem 0.35rem;
 }
 </style>

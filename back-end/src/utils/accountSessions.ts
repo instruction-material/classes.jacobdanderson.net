@@ -128,6 +128,7 @@ export function serializeAccountEntity(
 	const {
 		password: _password,
 		sessionVersion: _sessionVersion,
+		emailChange: _emailChange,
 		...safeEntity
 	}
 		= serializableEntity as Record<string, unknown>;

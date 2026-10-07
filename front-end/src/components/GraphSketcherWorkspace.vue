@@ -93,7 +93,8 @@ const graphDocument = ref<GraphDocument>(createSampleGraphDocument());
 const activeSeriesId = ref(graphDocument.value.series[0].id);
 const activeTool = ref<GraphTool>("select");
 const inspectorOpen = ref(false);
-const graphExpanded = ref(false);
+const pageElement = ref<HTMLElement>();
+const pageHeight = ref("calc(100dvh - 6rem)");
 const inspectorTab = ref<InspectorTab>("data");
 const selectedPoint = ref<SelectedPoint | null>(null);
 const selectedAnnotationId = ref<string | null>(null);
@@ -102,20 +103,9 @@ const isNewGraphConfirmationPending = ref(false);
 const expressionDraft = ref("sin(x)");
 const pastedData = ref("");
 const textDraft = ref("Label");
-const coordinatesText = ref("Move over the graph to inspect coordinates.");
-const statusMessage = ref(
-	"Sample graph loaded. Edits use this browser’s local storage."
-);
+const coordinatesText = ref("x —, y —");
+const statusMessage = ref("");
 const localSaveState = ref<"idle" | "saving" | "saved" | "error">("idle");
-const localSaveLabel = computed(
-	() =>
-		({
-			idle: "Device storage only",
-			saving: "Saving on this device…",
-			saved: "Saved on this device",
-			error: "Download required: local save unavailable"
-		})[localSaveState.value]
-);
 const importWarnings = ref<string[]>([]);
 const isFileImportReady = ref(false);
 const svgElement = ref<SVGSVGElement>();
@@ -126,6 +116,8 @@ const interactiveDocument = computed(() =>
 );
 let canvasResizeObserver: ResizeObserver | undefined;
 function updateCanvasViewport() {
+	const top = pageElement.value?.getBoundingClientRect().top ?? 0;
+	pageHeight.value = `${Math.max(0, window.innerHeight - Math.max(0, top) - 8)}px`;
 	const width = canvasShell.value?.getBoundingClientRect().width ?? 0;
 	canvasViewportWidth.value =
 		window.innerWidth <= 600 ? Math.max(320, width - 24) : 0;
@@ -587,7 +579,7 @@ function loadLocalGraph() {
 			graphDocument.value = graphDocumentFromJson(stored);
 			activeSeriesId.value = graphDocument.value.series[0].id;
 			localSaveState.value = "saved";
-			statusMessage.value = "Restored the graph saved in this browser.";
+			statusMessage.value = "";
 		} catch {
 			window.localStorage.removeItem(GRAPH_SKETCHER_STORAGE_KEY);
 			statusMessage.value =
@@ -1723,59 +1715,11 @@ onBeforeUnmount(() => {
 
 <template>
 	<section
+		ref="pageElement"
 		class="graph-sketcher-page"
-		:class="{ 'is-expanded': graphExpanded }"
+		:style="{ height: pageHeight }"
 	>
-		<WorkspaceHeader title="Graphing" :description="localSaveLabel">
-			<button
-				type="button"
-				class="graph-button graph-inspector-toggle"
-				:aria-expanded="inspectorOpen"
-				aria-controls="graph-inspector"
-				@click="inspectorOpen = !inspectorOpen"
-			>
-				{{ inspectorOpen ? "Hide inspector" : "Show inspector" }}
-			</button>
-			<button
-				type="button"
-				class="graph-button"
-				:aria-pressed="graphExpanded"
-				@click="graphExpanded = !graphExpanded"
-			>
-				{{ graphExpanded ? "Exit expanded view" : "Expand graph" }}
-			</button>
-			<div class="graph-mobile-views" aria-label="Graph views">
-				<button
-					type="button"
-					class="graph-button"
-					:aria-pressed="!inspectorOpen"
-					@click="inspectorOpen = false"
-				>
-					Graph
-				</button>
-				<button
-					type="button"
-					class="graph-button"
-					:aria-pressed="inspectorOpen && inspectorTab === 'data'"
-					@click="
-						inspectorOpen = true;
-						inspectorTab = 'data';
-					"
-				>
-					Data
-				</button>
-				<button
-					type="button"
-					class="graph-button"
-					:aria-pressed="inspectorOpen && inspectorTab === 'style'"
-					@click="
-						inspectorOpen = true;
-						inspectorTab = 'style';
-					"
-				>
-					Style
-				</button>
-			</div>
+		<WorkspaceHeader title="Graphing">
 			<details
 				class="graph-document-actions graph-project-menu"
 				role="group"
@@ -1944,10 +1888,22 @@ onBeforeUnmount(() => {
 			<section class="graph-canvas-panel" aria-labelledby="canvas-title">
 				<div class="graph-canvas-toolbar">
 					<div>
-						<p class="graph-panel-kicker">Canvas</p>
 						<h2 id="canvas-title">{{ graphDocument.title }}</h2>
 					</div>
-					<p>{{ coordinatesText }}</p>
+					<div class="graph-coordinate-tools">
+						<p>{{ coordinatesText }}</p>
+						<button
+							type="button"
+							class="graph-button graph-settings-toggle"
+							:aria-expanded="inspectorOpen"
+							aria-controls="graph-inspector"
+							aria-label="Graph settings"
+							title="Graph settings"
+							@click="inspectorOpen = !inspectorOpen"
+						>
+							<span aria-hidden="true">⚙</span>
+						</button>
+					</div>
 				</div>
 
 				<div
@@ -2330,9 +2286,16 @@ onBeforeUnmount(() => {
 					saved data and exports remain complete.
 				</p>
 
-				<div class="graph-status" role="status" aria-live="polite">
+				<div
+					v-if="statusMessage || localSaveState === 'error'"
+					class="graph-status"
+					role="status"
+					aria-live="polite"
+				>
 					<span>{{ statusMessage }}</span>
-					<span>{{ localSaveLabel }}</span>
+					<span v-if="localSaveState === 'error'"
+						>Download required: local save unavailable</span
+					>
 				</div>
 			</section>
 
@@ -2342,6 +2305,14 @@ onBeforeUnmount(() => {
 				class="graph-inspector"
 				aria-label="Graph inspector"
 			>
+				<button
+					class="graph-button graph-settings-close"
+					type="button"
+					aria-label="Close graph settings"
+					@click="inspectorOpen = false"
+				>
+					Close settings
+				</button>
 				<div class="graph-inspector__tabs" role="tablist">
 					<button
 						v-for="tab in [
@@ -3166,15 +3137,6 @@ onBeforeUnmount(() => {
 	padding: 0.5rem;
 	background: var(--color-surface);
 	box-shadow: var(--shadow-soft);
-}
-.graph-sketcher-page.is-expanded {
-	position: fixed;
-	inset: 0;
-	z-index: 1090;
-	background: var(--color-bg);
-	width: 100%;
-	padding: 0.5rem;
-	overflow: auto;
 }
 @media (max-width: 900px) {
 	.graph-canvas-panel {
@@ -4079,5 +4041,159 @@ onBeforeUnmount(() => {
 }
 .graph-inspector {
 	padding: 0.75rem;
+}
+
+.graph-sketcher-page {
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
+	width: calc(100% - 1rem);
+	max-width: 1800px;
+	margin-inline: auto;
+	padding: 0.35rem 0;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+.graph-sketcher-page > .workspace-heading {
+	flex: 0 0 auto;
+}
+.graph-sketcher-page .graph-workspace,
+.graph-sketcher-page .graph-workspace.inspector-hidden {
+	position: relative;
+	flex: 1 1 0;
+	min-height: 0;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	grid-template-rows: auto minmax(0, 1fr);
+}
+.graph-sketcher-page .graph-workspace:not(.inspector-hidden) {
+	grid-template-columns: minmax(0, 1fr) min(20rem, 35%);
+}
+.graph-sketcher-page .graph-tools {
+	grid-column: 1 / -1;
+	grid-row: 1;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 0.25rem 0.5rem;
+	border-right: 0;
+	border-bottom: 1px solid var(--graph-border);
+	overflow-x: auto;
+	overscroll-behavior: contain;
+	min-width: 0;
+}
+.graph-sketcher-page .graph-tools__list,
+.graph-sketcher-page .graph-tools__history,
+.graph-sketcher-page .graph-tools__zoom {
+	display: flex;
+	gap: 0.25rem;
+	flex: 0 0 auto;
+}
+.graph-sketcher-page .graph-tool {
+	min-height: 2.25rem;
+	padding: 0.3rem 0.5rem;
+	font-size: 0.85rem;
+	white-space: nowrap;
+}
+.graph-sketcher-page .graph-tool-draft {
+	display: flex;
+	min-width: 10rem;
+}
+.graph-sketcher-page .graph-canvas-panel {
+	grid-column: 1;
+	grid-row: 2;
+	display: flex;
+	flex-direction: column;
+	min-height: 0 !important;
+	min-width: 0;
+	overflow: hidden;
+}
+.graph-sketcher-page .graph-canvas-toolbar {
+	flex: 0 0 auto;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.35rem;
+	min-width: 0;
+}
+.graph-canvas-toolbar h2 {
+	margin: 0;
+	overflow-wrap: anywhere;
+}
+.graph-sketcher-page .graph-coordinate-tools {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	min-width: 0;
+}
+.graph-coordinate-tools p {
+	margin: 0;
+	font-size: 0.8rem;
+}
+.graph-sketcher-page .graph-coordinate-tools .graph-settings-toggle {
+	min-height: 2.25rem;
+	min-width: 2.25rem;
+	width: 2.25rem;
+	flex: 0 0 2.25rem;
+	padding: 0.2rem;
+	font-size: 1.25rem;
+}
+.graph-sketcher-page .graph-canvas-shell {
+	flex: 1 1 0;
+	min-height: 0;
+	min-width: 0;
+	padding: 0.5rem;
+	overflow: hidden;
+	display: flex;
+}
+.graph-sketcher-page .graph-canvas {
+	width: 100%;
+	height: 100%;
+	max-height: 100%;
+	aspect-ratio: auto;
+	min-height: 0;
+}
+.graph-sketcher-page .graph-inspector {
+	grid-column: 2;
+	grid-row: 2;
+	min-height: 0;
+	overflow: auto;
+	overscroll-behavior: contain;
+	padding: 0.5rem;
+}
+.graph-sketcher-page .graph-inspector__body {
+	max-height: none;
+	overflow: visible;
+}
+.graph-settings-close {
+	margin-bottom: 0.5rem;
+}
+.graph-status {
+	flex: 0 0 auto;
+	padding: 0.25rem 0.5rem;
+	font-size: 0.8rem;
+}
+@media (max-width: 760px) {
+	.graph-sketcher-page .graph-workspace:not(.inspector-hidden) {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.graph-sketcher-page
+		.graph-workspace:not(.inspector-hidden)
+		.graph-canvas-panel,
+	.graph-sketcher-page .graph-workspace:not(.inspector-hidden) .graph-tools {
+		display: flex;
+	}
+	.graph-sketcher-page .graph-inspector {
+		grid-column: 1;
+		grid-row: 2;
+		z-index: 2;
+		background: var(--graph-panel);
+	}
+	.graph-coordinate-tools p {
+		font-size: 0.75rem;
+	}
 }
 </style>

@@ -21,7 +21,7 @@ import { classifySmtpFailure, createNoteSendWorkflow, ensureNoteWorkflowIndexes,
 import { noteWriterIsActive, withSessionNoteWriter } from "../services/sessionNoteWriteFence.js";
 import { loadAdminRecipients } from "../utils/adminRecipients.js";
 import { renderMarkdownEmailHtml } from "../utils/markdownEmail.js";
-import { confirmedArchiveAppend, NoteArchiveError } from "../utils/sessionNoteArchive.js";
+import { archiveDestination, confirmedArchiveAppend, NoteArchiveError } from "../utils/sessionNoteArchive.js";
 import { sessionNoteDeliveryFromSend } from "../utils/sessionNoteDelivery.js";
 import { metadataHash, normalizeNoteEmails, noteObjectId, NoteWorkflowError, resolveNoteIdentity } from "../utils/sessionNoteIdentity.js";
 
@@ -571,6 +571,10 @@ async function appendSentMessage(
 
 	client.on("error", () => noteOperationalEvent("internal-mail", "archive_outcome_ambiguous"));
 	await confirmedArchiveAppend({
+		destination: () => {
+			const namespace = (client as ImapFlow & { namespace?: { prefix: string } | false }).namespace;
+			return archiveDestination(IMAP_SENT_MAILBOX, namespace ? namespace.prefix : "");
+		},
 		connect: () => client.connect(),
 		append: () => client.append(IMAP_SENT_MAILBOX, rawMessage, ["\\Seen"], message.date),
 		logout: () => client.logout()

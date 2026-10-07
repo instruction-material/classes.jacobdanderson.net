@@ -11,6 +11,8 @@ const app = useAppStore();
 const email = ref(props.email);
 const emailStatus = ref("");
 const emailError = ref("");
+const emailPassword = ref("");
+const emailSubmitting = ref(false);
 
 const currentPassword = ref("");
 const newPassword = ref("");
@@ -39,31 +41,36 @@ watch(
 	}
 );
 
-function refreshRole() {
-	if (props.role === "admin") app.refreshCurrentAdmin();
-	else if (props.role === "tutor") app.refreshCurrentTutor();
-	else app.refreshCurrentUser();
-}
-
 async function updateEmail() {
 	emailStatus.value = "";
 	emailError.value = "";
-	if (!email.value) {
-		emailError.value = "Email is required.";
+	if (emailSubmitting.value) return;
+	if (!email.value || !emailPassword.value) {
+		emailError.value = "Enter the new email and your current password.";
 		return;
 	}
 
+	emailSubmitting.value = true;
+	const password = emailPassword.value;
+	emailPassword.value = "";
 	try {
-		await api.post(`/accounts/changeEmail/${props.entityId}`, {
-			email: email.value
-		});
-		emailStatus.value = "Email updated successfully.";
-		refreshRole();
+		const { data } = await api.post(
+			`/accounts/changeEmail/${props.entityId}`,
+			{
+				email: email.value,
+				currentPassword: password
+			}
+		);
+		emailStatus.value =
+			data.message ?? "Check your new email to verify the change.";
 	} catch (err: any) {
 		emailError.value =
 			err.response?.data?.message ??
 			err.message ??
 			"Unable to update email.";
+	} finally {
+		emailSubmitting.value = false;
+		emailPassword.value = "";
 	}
 }
 
@@ -133,29 +140,27 @@ async function updatePassword() {
 	}
 }
 
-async function revokeOtherSessions() {
+async function signOutAllSessions() {
 	sessionStatus.value = "";
 	sessionError.value = "";
 	try {
-		const { data } = await api.post("/accounts/revoke-sessions");
+		const { data } = await api.post("/accounts/signout-all");
 		sessionStatus.value =
-			data.message ?? "Other signed-in sessions have been revoked.";
+			data.message ?? "All sessions have been signed out.";
+		await app.logout();
 	} catch (err: any) {
 		sessionError.value =
 			err.response?.data?.message ??
 			err.message ??
-			"Unable to revoke other sessions.";
+			"Unable to sign out all sessions.";
 	}
 }
 </script>
 
 <template>
 	<section class="security-card">
-		<h4>Account security</h4>
-		<p class="hint">Update your email or password whenever you need to.</p>
-
-		<div class="security-section">
-			<h5>Change email</h5>
+		<details class="security-section">
+			<summary>Change email</summary>
 			<div class="field">
 				<label :for="`${idPrefix}-email`">Email</label>
 				<input
@@ -165,12 +170,26 @@ async function revokeOtherSessions() {
 					type="email"
 				/>
 			</div>
+			<div class="field">
+				<label :for="`${idPrefix}-email-password`"
+					>Current password</label
+				>
+				<input
+					:id="`${idPrefix}-email-password`"
+					v-model="emailPassword"
+					name="email-current-password"
+					autocomplete="current-password"
+					type="password"
+					:disabled="emailSubmitting"
+				/>
+			</div>
 			<button
 				class="btn-secondary btn"
 				type="button"
+				:disabled="emailSubmitting"
 				@click="updateEmail"
 			>
-				Update email
+				Send verification
 			</button>
 			<p
 				v-if="emailStatus"
@@ -183,87 +202,90 @@ async function revokeOtherSessions() {
 			<p v-if="emailError" class="error" role="alert">
 				{{ emailError }}
 			</p>
-		</div>
+		</details>
 
-		<form
-			:aria-busy="isPasswordSubmitting ? 'true' : 'false'"
-			:aria-labelledby="`${idPrefix}-password-title`"
-			class="security-section"
-			@submit.prevent="updatePassword"
-		>
-			<h5 :id="`${idPrefix}-password-title`">Change password</h5>
-			<div class="field">
-				<label :for="`${idPrefix}-current-password`"
-					>Current password</label
-				>
-				<input
-					:id="`${idPrefix}-current-password`"
-					ref="currentPasswordInput"
-					v-model="currentPassword"
-					autocomplete="current-password"
-					:disabled="isPasswordSubmitting"
-					name="current-password"
-					type="password"
-				/>
-			</div>
-			<div class="field">
-				<label :for="`${idPrefix}-new-password`">New password</label>
-				<input
-					:id="`${idPrefix}-new-password`"
-					ref="newPasswordInput"
-					v-model="newPassword"
-					autocomplete="new-password"
-					:disabled="isPasswordSubmitting"
-					name="new-password"
-					type="password"
-				/>
-			</div>
-			<div class="field">
-				<label :for="`${idPrefix}-confirm-password`"
-					>Confirm password</label
-				>
-				<input
-					:id="`${idPrefix}-confirm-password`"
-					ref="confirmPasswordInput"
-					v-model="confirmPassword"
-					autocomplete="new-password"
-					:disabled="isPasswordSubmitting"
-					name="confirm-password"
-					type="password"
-				/>
-			</div>
-			<button
-				class="btn-primary btn"
-				:disabled="isPasswordSubmitting"
-				type="submit"
+		<details class="security-section">
+			<summary>Change password</summary>
+			<form
+				:aria-busy="isPasswordSubmitting ? 'true' : 'false'"
+				:aria-labelledby="`${idPrefix}-password-title`"
+				class="security-section"
+				@submit.prevent="updatePassword"
 			>
-				{{ isPasswordSubmitting ? "Updating…" : "Update password" }}
-			</button>
-			<p
-				v-if="passwordStatus"
-				class="status"
-				role="status"
-				aria-live="polite"
-			>
-				{{ passwordStatus }}
-			</p>
-			<p v-if="passwordError" class="error" role="alert">
-				{{ passwordError }}
-			</p>
-		</form>
+				<h5 :id="`${idPrefix}-password-title`" class="sr-only">
+					Change password
+				</h5>
+				<div class="field">
+					<label :for="`${idPrefix}-current-password`"
+						>Current password</label
+					>
+					<input
+						:id="`${idPrefix}-current-password`"
+						ref="currentPasswordInput"
+						v-model="currentPassword"
+						autocomplete="current-password"
+						:disabled="isPasswordSubmitting"
+						name="current-password"
+						type="password"
+					/>
+				</div>
+				<div class="field">
+					<label :for="`${idPrefix}-new-password`"
+						>New password</label
+					>
+					<input
+						:id="`${idPrefix}-new-password`"
+						ref="newPasswordInput"
+						v-model="newPassword"
+						autocomplete="new-password"
+						:disabled="isPasswordSubmitting"
+						name="new-password"
+						type="password"
+					/>
+				</div>
+				<div class="field">
+					<label :for="`${idPrefix}-confirm-password`"
+						>Confirm password</label
+					>
+					<input
+						:id="`${idPrefix}-confirm-password`"
+						ref="confirmPasswordInput"
+						v-model="confirmPassword"
+						autocomplete="new-password"
+						:disabled="isPasswordSubmitting"
+						name="confirm-password"
+						type="password"
+					/>
+				</div>
+				<button
+					class="btn-primary btn"
+					:disabled="isPasswordSubmitting"
+					type="submit"
+				>
+					{{ isPasswordSubmitting ? "Updating…" : "Update password" }}
+				</button>
+				<p
+					v-if="passwordStatus"
+					class="status"
+					role="status"
+					aria-live="polite"
+				>
+					{{ passwordStatus }}
+				</p>
+				<p v-if="passwordError" class="error" role="alert">
+					{{ passwordError }}
+				</p>
+			</form>
+		</details>
 
-		<div class="security-section">
-			<h5>Other signed-in sessions</h5>
-			<p class="hint">
-				Sign out other browsers or devices while keeping this session
-				active.
-			</p>
+		<details class="security-section advanced-settings">
+			<summary>Advanced Settings</summary>
 			<button
-				class="btn-secondary btn"
+				class="btn-danger btn"
 				type="button"
-				@click="revokeOtherSessions"
+				@click="signOutAllSessions"
 			>
-				Sign out other sessions
+				Sign out of all sessions
 			</button>
 			<p v-if="sessionStatus" class="status success" role="status">
 				{{ sessionStatus }}
@@ -271,52 +293,52 @@ async function revokeOtherSessions() {
 			<p v-if="sessionError" class="status error" role="alert">
 				{{ sessionError }}
 			</p>
-		</div>
+		</details>
 	</section>
 </template>
 
 <style scoped>
 .security-card {
-	margin-top: 1.5rem;
-	padding: 1.25rem;
-	border: 1px solid rgba(15, 23, 42, 0.15);
-	border-radius: 16px;
-	background: rgba(15, 23, 42, 0.02);
+	display: grid;
+	gap: 0.75rem;
 	text-align: left;
 }
-
-.security-section + .security-section {
-	margin-top: 1.5rem;
-	border-top: 1px solid rgba(15, 23, 42, 0.08);
-	padding-top: 1.25rem;
+.security-section {
+	border-top: 1px solid var(--color-border);
+	padding-top: 0.65rem;
 }
-
+.security-section > summary {
+	cursor: pointer;
+	font-size: 0.95rem;
+}
+.security-section[open] > summary {
+	margin-bottom: 0.85rem;
+}
+.security-section form {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
 .field {
-	display: flex;
-	flex-direction: column;
+	display: grid;
 	gap: 0.35rem;
 	margin-bottom: 0.75rem;
-}
-
-.field input {
-	border: 1px solid rgba(15, 23, 42, 0.18);
-	border-radius: 8px;
-	padding: 0.5rem 0.75rem;
-}
-
-.hint {
-	margin-top: 0.25rem;
-	color: rgba(15, 23, 42, 0.65);
 	font-size: 0.9rem;
 }
-
-.status {
-	color: #15803d;
-	margin-top: 0.35rem;
+.field input {
+	width: 100%;
+	border: 1px solid var(--color-border);
+	border-radius: 6px;
+	padding: 0.5rem 0.65rem;
+	color: var(--color-ink);
+	background: var(--color-surface);
 }
-
+.status {
+	color: var(--color-accent);
+	margin: 0.5rem 0 0;
+}
 .error {
-	color: #b91c1c;
-	margin-top: 0.35rem;
+	color: var(--color-danger, #b91c1c);
+	margin: 0.5rem 0 0;
 }
 </style>

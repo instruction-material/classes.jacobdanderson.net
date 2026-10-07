@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { downloadProjectZip, openProjectSidebar } from "./ide-workspace-controls.mjs";
 import { strFromU8, unzipSync } from "fflate";
 
 export async function exerciseTicTacToe(page, pack, learnerFiles) {
@@ -273,7 +274,7 @@ export async function exerciseTicTacToe(page, pack, learnerFiles) {
 			return original.call(this);
 		};
 	});
-	await page.click("button[aria-label='Download project ZIP']");
+	await downloadProjectZip(page);
 	await page.waitForFunction(() => Array.isArray(window.__tttDownloadedZip));
 	const zip = unzipSync(
 		Uint8Array.from(await page.evaluate(() => window.__tttDownloadedZip))
@@ -292,6 +293,7 @@ export async function exerciseTicTacToe(page, pack, learnerFiles) {
 		);
 	}
 	await page.reload({ waitUntil: "domcontentloaded" });
+	await openProjectSidebar(page);
 	await page.waitForSelector(".file-button");
 	const files = await page.evaluate(
 		key =>

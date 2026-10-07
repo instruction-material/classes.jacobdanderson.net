@@ -56,6 +56,36 @@ to review; none schedules another append. A successful APPEND stays confirmed
 even if logout fails. Classification follows the maintained
 [ImapFlow contract](https://imapflow.com/docs/api/imapflow-client/).
 
+Successful APPEND is checked against its returned `destination`, with the
+authenticated server's namespace prefix applied to the intended mailbox. The
+optional `path` describes the selected mailbox and is not confirmation of the
+destination. UID information is optional. A different destination stays
+unconfirmed. Dispatch refreshes the persisted archive state before responding;
+an unreadable refresh preserves SMTP acceptance and reports unknown archival
+status, never ordinary send failure.
+
+The compose action is now simply Send. Preview remains optional. Missing fields
+receive inline validation rather than a silently disabled button. Selecting the
+first student keeps an existing draft; switching an already-associated draft
+still requires confirmation. Durable identity and idempotency checks remain.
+
+Do not backfill or retry existing successful messages for this source repair.
+Archive-review records with independently verified Sent copies require the
+existing audited `archive_confirmed_present` action, after both pause gates and
+protected evidence verification. No new APPEND or SMTP attempt is warranted.
+
+October 7 source-repair acceptance used synthetic identities only: 370 backend
+tests passed (one existing test skipped), 18 focused mail/workspace client tests
+passed, and all 11 compact-workspace browser checks passed. The browser send
+regression intercepts both note-save and send requests; backend delivery tests
+use an isolated standalone database, non-relaying SMTP sink and fake IMAP.
+Lint, typecheck, production build and existing root lock provenance passed.
+No production records, mailboxes, credentials, runtime or pause flags changed.
+No schema/index migration is needed for this repair. Deploy the immutable new
+release through the existing native workflow; retain the previous artifact for
+rollback. The operator must separately reverify protected Sent evidence and use
+the audited disposition. Missing historical session records remain unlinked.
+
 The administrator review includes archival uncertainty even when the note's
 student/session association is already resolved. With both sending and recovery
 paused, an administrator can record `archive_confirmed_present`,

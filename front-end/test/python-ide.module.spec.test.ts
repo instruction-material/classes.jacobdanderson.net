@@ -4305,14 +4305,15 @@ pgzrun.go()
 		expect(pageSource).toContain(
 			'document.removeEventListener(\n\t\t"pointerdown",\n\t\thandleIdeSettingsOutsidePointerDown\n\t);'
 		);
-		expect(pageSource).toContain("Protect local saves");
+		expect(pageSource).not.toContain("Protect local saves");
+		expect(pageSource).toContain('aria-label="Download project ZIP"');
 		expect(pageSource).toContain("function storageManagerWithPersistence");
 		expect(pageSource).toContain("navigator.storage?.persist");
 		expect(pageSource).toContain("navigator.storage.persisted");
 		expect(pageSource).toContain(
 			"async function refreshPythonIdeStoragePersistenceStatus"
 		);
-		expect(pageSource).toContain(
+		expect(pageSource).not.toContain(
 			"async function requestPythonIdeStoragePersistence"
 		);
 		expect(pageSource).toContain(
@@ -4591,7 +4592,8 @@ pgzrun.go()
 		expect(pageSource).toContain("selectedProjectCanShowBlueJIntegration");
 		expect(pageSource).toContain("selectedProjectIsBlueJ");
 		expect(pageSource).toContain("requestedTemplate");
-		expect(pageSource).toContain("getPythonIdeProjectKindLabel(project)");
+		expect(pageSource).toContain("selectedProject.courseProjectTitle");
+		expect(pageSource).toContain('aria-label="Active project file"');
 		expect(pageSource).not.toContain('route.path === "/bluej"');
 		expect(pageSource).toContain('rawMode === "bluej"');
 		expect(pageSource).toContain(

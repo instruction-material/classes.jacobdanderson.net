@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { computed, useSlots } from "vue";
 import { useRoute } from "vue-router";
-import AdminReviewStatus from "@/components/AdminReviewStatus.vue";
 import WorkspaceHeader from "@/components/WorkspaceHeader.vue";
 
 interface WorkspaceAction {
@@ -25,10 +24,9 @@ withDefaults(
 const route = useRoute();
 
 const navItems = [
-	{ label: "People", to: "/admin/people" },
 	{ label: "Session notes", to: "/admin/mdmail" },
-	{ label: "Courses", to: "/courses" },
-	{ label: "Overview", to: "/admin" }
+	{ label: "People", to: "/admin/people" },
+	{ label: "IDE reports", to: "/admin/ide-reports" }
 ];
 
 const hasActionSlot = computed(() => !!useSlots().actions);
@@ -82,7 +80,6 @@ function isActive(path: string) {
 				</RouterLink>
 			</nav>
 
-			<AdminReviewStatus />
 			<div class="admin-shell__body">
 				<slot />
 			</div>

@@ -34,9 +34,9 @@ import {
 } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import IdeDiagnosticsControls from "@/components/IdeDiagnosticsControls.vue";
+import IdeEnvironmentSelect from "@/components/IdeEnvironmentSelect.vue";
 import IdeStarterPicker from "@/components/IdeStarterPicker.vue";
 import WorkspaceHeader from "@/components/WorkspaceHeader.vue";
-import WorkspaceStorageStatus from "@/components/WorkspaceStorageStatus.vue";
 import { cppBuildInstructions } from "@/modules/cppBuildInstructions";
 import {
 	createIdeDiagnostics,
@@ -58,7 +58,6 @@ import {
 	fetchVisiblePythonIdeProjectReviews,
 	getPythonIdeAssetDataUrl,
 	getPythonIdeDefaultFileContent,
-	getPythonIdeFileKindLabel,
 	getPythonIdeProjectKindLabel,
 	getPythonIdeRunnableFile,
 	isPythonIdeBinaryAssetFile,
@@ -617,7 +616,7 @@ const ideSplitPercent = ref(loadPythonIdeSplitPercentPreference());
 const isResizingIdeSplit = ref(false);
 const deleteCandidateProjectID = ref("");
 const deleteConfirmText = ref("");
-const sidebarCollapsed = ref(false);
+const sidebarCollapsed = ref(true);
 const mobileProjectsOpen = ref(false);
 const mobileView = ref<"code" | "canvas" | "console">("code");
 const stopRequested = ref(false);
@@ -865,32 +864,6 @@ async function refreshPythonIdeStoragePersistenceStatus() {
 		storagePersistenceStatus.value = "unsupported";
 		storagePersistenceMessage.value =
 			"Could not check local project storage protection in this browser.";
-	}
-}
-
-async function requestPythonIdeStoragePersistence() {
-	const storageManager = storageManagerWithPersistence();
-	if (!storageManager) {
-		storagePersistenceStatus.value = "unsupported";
-		storagePersistenceMessage.value =
-			"Your browser does not support persistent local project storage.";
-		return;
-	}
-
-	storagePersistenceStatus.value = "checking";
-	try {
-		const alreadyPersisted = await storageManager.persisted();
-		const persisted = alreadyPersisted || (await storageManager.persist());
-		storagePersistenceStatus.value = persisted
-			? "persistent"
-			: "best-effort";
-		storagePersistenceMessage.value = persisted
-			? "Local project saves are protected from automatic browser cleanup."
-			: "The browser kept local project saves in normal storage for now.";
-	} catch {
-		storagePersistenceStatus.value = "unsupported";
-		storagePersistenceMessage.value =
-			"Could not request persistent local project storage.";
 	}
 }
 
@@ -7669,6 +7642,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 			@change="importBlueJProjectArchiveFromInput"
 		/>
 		<WorkspaceHeader title="Code workspace">
+			<template #title><IdeEnvironmentSelect /></template>
 			<button
 				type="button"
 				class="site-button site-button--secondary compact-button"
@@ -7679,19 +7653,26 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 			>
 				New project
 			</button>
-			<span role="status">{{ saveMessage }}</span>
-			<strong role="status" data-testid="ide-run-status">{{
-				runMessage
-			}}</strong>
+			<span
+				v-if="
+					/fail|error|unable|conflict|offline|could not|unavailable|denied/i.test(
+						saveMessage
+					)
+				"
+				role="status"
+				>{{ saveMessage }}</span
+			>
+			<strong
+				class="sr-only"
+				role="status"
+				data-testid="ide-run-status"
+				>{{ runMessage }}</strong
+			>
 			<RouterLink
 				v-if="requestedCourseId"
 				:to="{ path: '/courses', hash: returnLessonHash }"
 				>Return to lesson</RouterLink
 			>
-			<details class="ide-help">
-				<summary>Help</summary>
-				<IdeDiagnosticsControls :capture="captureIdeDiagnostics" />
-			</details>
 		</WorkspaceHeader>
 		<IdeStarterPicker
 			:open="showProjectMenu"
@@ -7700,18 +7681,6 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 			@choose="createProjectFromMenu($event.mode, $event.template)"
 			@import="openBlueJArchiveImporterFromMenu"
 		/>
-		<WorkspaceStorageStatus
-			:label="
-				canSyncToAccount
-					? 'Storage: your account and this device.'
-					: 'Storage: this device.'
-			"
-			>{{
-				canSyncToAccount
-					? "Code projects sync when saved. Download a ZIP for a separate copy."
-					: "Edits save locally when autosave is enabled. Sign in to sync, or download a ZIP."
-			}}</WorkspaceStorageStatus
-		>
 
 		<div v-if="isLoading" class="code-ide-loading site-surface">
 			Loading code workspace...
@@ -7751,6 +7720,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 					class="site-button"
 					data-testid="ide-route-import-confirm"
 					type="button"
+					:disabled="isLoading"
 					@click="confirmRouteProjectImport"
 				>
 					Import project
@@ -7839,9 +7809,6 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 									@click="selectCatalogProject(project._id)"
 								>
 									<span>{{ projectLabel(project) }}</span>
-									<small>{{
-										getPythonIdeProjectKindLabel(project)
-									}}</small>
 								</button>
 								<button
 									:aria-label="`Delete project ${projectLabel(project)}`"
@@ -7924,9 +7891,6 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 								@click="selectFile(file.name)"
 							>
 								<span>{{ file.name }}</span>
-								<small>{{
-									getPythonIdeFileKindLabel(file.name)
-								}}</small>
 							</button>
 							<button
 								:aria-label="`Delete file ${file.name}`"
@@ -8035,20 +7999,35 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 					</button>
 				</div>
 				<div class="editor-toolbar">
-					<div class="project-title-field">
-						<label
-							class="project-title-label"
-							for="code-ide-project-title"
+					<div class="project-context">
+						<span
+							:title="
+								selectedProject.courseProjectTitle ||
+								selectedProject.title
+							"
 						>
-							Project name · {{ selectedModeLabel }}
-						</label>
-						<input
-							id="code-ide-project-title"
-							class="project-title-input"
-							:value="selectedProject.title"
-							type="text"
-							@input="updateProjectTitle"
-						/>
+							{{
+								selectedProject.courseProjectTitle ||
+								selectedProject.title
+							}}
+						</span>
+						<select
+							aria-label="Active project file"
+							:value="selectedProject.activeFileName"
+							@change="
+								selectFile(
+									($event.target as HTMLSelectElement).value
+								)
+							"
+						>
+							<option
+								v-for="file in selectedProject.files"
+								:key="file.name"
+								:value="file.name"
+							>
+								{{ file.name }}
+							</option>
+						</select>
 					</div>
 					<div
 						class="editor-actions"
@@ -8080,6 +8059,16 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 								role="dialog"
 								aria-label="IDE settings"
 							>
+								<label class="ide-project-rename">
+									<span>Project name</span>
+									<input
+										id="code-ide-project-title"
+										:value="selectedProject.title"
+										maxlength="160"
+										type="text"
+										@input="updateProjectTitle"
+									/>
+								</label>
 								<label class="ide-setting-toggle">
 									<input
 										:checked="autoSaveEnabled"
@@ -8203,41 +8192,27 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 										{{ shareMessage }}
 									</small>
 								</div>
-								<div class="ide-setting-storage">
-									<button
-										class="ide-setting-action"
-										:disabled="
-											storagePersistenceStatus ===
-											'checking'
-										"
-										type="button"
-										@click="
-											requestPythonIdeStoragePersistence
-										"
-									>
-										{{
-											storagePersistenceStatus ===
-											"checking"
-												? "Checking storage"
-												: "Protect local saves"
-										}}
-									</button>
-									<small>
-										{{ storagePersistenceMessage }}
-									</small>
-								</div>
+								<details class="ide-diagnostics-settings">
+									<summary>Diagnostics</summary>
+									<IdeDiagnosticsControls
+										:capture="captureIdeDiagnostics"
+									/>
+								</details>
+								<button
+									aria-label="Download project ZIP"
+									class="ide-setting-action"
+									:disabled="isDownloading"
+									type="button"
+									@click="downloadSelectedProject"
+								>
+									{{
+										isDownloading
+											? "Preparing…"
+											: "Download ZIP"
+									}}
+								</button>
 							</div>
 						</div>
-						<button
-							aria-label="Download project ZIP"
-							class="site-button site-button--secondary"
-							:disabled="isDownloading"
-							title="Download project ZIP"
-							type="button"
-							@click="downloadSelectedProject"
-						>
-							{{ isDownloading ? "Preparing" : "Download ZIP" }}
-						</button>
 						<button
 							class="site-button site-button--secondary"
 							:disabled="isSaving"
@@ -10941,5 +10916,179 @@ html.dark .editor-shortcuts ul {
 .code-panel,
 .result-panel {
 	border-radius: 8px;
+}
+
+.code-ide-page {
+	--code-ide-toolbar-control-size: 2.75rem;
+	--code-ide-toolbar-button-width: auto;
+}
+.code-ide-page .code-ide-workspace {
+	grid-template-columns: 13rem minmax(0, 1fr);
+	gap: 0.5rem;
+}
+.code-ide-page .code-ide-workspace.is-sidebar-collapsed {
+	grid-template-columns: 2rem minmax(0, 1fr);
+}
+.code-ide-page .code-ide-sidebar {
+	padding: 0.5rem;
+	border-radius: 6px;
+	gap: 1rem;
+	box-shadow: none;
+}
+.code-ide-page .sidebar-heading {
+	font-size: 0.75rem;
+	letter-spacing: 0;
+	text-transform: none;
+	font-weight: 600;
+}
+.code-ide-page .project-button,
+.code-ide-page .file-button {
+	padding: 0.4rem 0.5rem;
+	min-height: 2.25rem;
+	border: 0;
+	border-radius: 4px;
+	background: transparent;
+	font-size: 0.9rem;
+	font-weight: 400;
+	text-align: left;
+}
+.code-ide-page .project-button span,
+.code-ide-page .file-button span {
+	font-size: inherit;
+	font-weight: inherit;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.code-ide-page .project-button.is-active,
+.code-ide-page .file-button.is-active {
+	background: var(--color-accent-soft);
+	color: var(--color-ink);
+}
+.code-ide-page .project-row-main,
+.code-ide-page .file-row {
+	grid-template-columns: minmax(0, 1fr) 1.75rem;
+	gap: 0.2rem;
+}
+.code-ide-page .file-delete {
+	width: 1.75rem;
+	min-height: 2.25rem;
+	padding: 0;
+	border: 0;
+	border-radius: 4px;
+	font-size: 1rem;
+	background: transparent;
+}
+.code-ide-page .file-delete.is-disabled::after {
+	display: none;
+}
+.code-ide-page .code-ide-sidebar .sidebar-collapse-toggle {
+	border: 0;
+	background: transparent;
+	color: var(--color-ink-soft);
+}
+.code-ide-page .sidebar-collapse-toggle--rail {
+	width: 2rem;
+	margin: 0;
+}
+.code-ide-page .file-tool-toggle {
+	width: 2rem;
+	height: 2rem;
+	min-height: 2rem;
+	padding: 0.3rem;
+	border: 0;
+	background: transparent;
+}
+.code-ide-page .editor-toolbar {
+	align-items: center;
+	padding: 0;
+}
+.project-context {
+	min-width: 0;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0.4rem 0.75rem;
+	font-size: 0.85rem;
+	color: var(--color-ink-soft);
+}
+.project-context > span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 22rem;
+}
+.project-context select {
+	min-width: 0;
+	max-width: 100%;
+	font: inherit;
+	padding: 0.3rem 0.5rem;
+	border: 1px solid var(--color-border);
+	border-radius: 4px;
+	background: var(--color-surface);
+	color: var(--color-ink);
+}
+.code-ide-page .editor-actions {
+	align-self: center;
+	height: auto;
+	display: flex;
+	align-items: center;
+}
+.code-ide-page .editor-actions > .site-button {
+	width: auto;
+	padding: 0 0.8rem;
+	height: 2.75rem;
+	min-height: 2.75rem;
+}
+.code-ide-page .editor-actions .ide-settings-trigger {
+	width: 2.75rem;
+	height: 2.75rem;
+	min-height: 2.75rem;
+	border: 0;
+	background: transparent;
+}
+.code-ide-page .ide-settings-icon {
+	width: 1.25rem;
+	height: 1.25rem;
+}
+.ide-project-rename {
+	display: grid;
+	gap: 0.3rem;
+	font-size: 0.9rem;
+	padding-bottom: 0.75rem;
+}
+.ide-project-rename input {
+	width: 100%;
+	min-width: 0;
+	padding: 0.4rem 0.5rem;
+	font: inherit;
+	border: 1px solid var(--color-border);
+	border-radius: 4px;
+	background: var(--color-surface);
+	color: var(--color-ink);
+}
+.ide-diagnostics-settings {
+	margin-block: 0.5rem;
+}
+@media (max-width: 760px) {
+	.code-ide-page .code-ide-workspace,
+	.code-ide-page .code-ide-workspace.is-sidebar-collapsed {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.code-ide-page .sidebar-collapse-toggle--rail {
+		display: none;
+	}
+	.code-ide-page .code-ide-sidebar.mobile-projects-open {
+		max-height: 45vh;
+		overflow-y: auto;
+	}
+	.code-ide-page .editor-toolbar {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+	.project-context {
+		flex: 1 1 12rem;
+	}
 }
 </style>

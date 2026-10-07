@@ -144,6 +144,10 @@ Private administrator routes:
   review_required archives on accepted/rejected operations qualify; proven absence
   queues an archive-only repair, capped at five attempts. SMTP evidence/timestamps
   remain unchanged. Archive uncertainty is listed separately in archivalStatus.
+  Dispatch returns the refreshed archival state after optional APPEND. If the
+  refresh cannot be read, archivalStatus is null and statusReason is
+  archive_tracking_requires_attention; persisted SMTP acceptance remains true.
+  This is not authorization to send or append again.
 - `POST .../students/:studentId/writer-disposition`: confirmed_process_stopped,
   writer UUID, opaque evidenceRef and stable key. Sending and recovery must be
   paused; active writers cannot be cleared. Old markers never expire automatically.

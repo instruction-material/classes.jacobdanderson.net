@@ -23,6 +23,7 @@ function visitJavaProject(code: string) {
 			);
 		}
 	});
+	cy.get('[aria-label="Expand project sidebar"]').click();
 	cy.get(".project-button.is-active span").should("have.text", "Java limits");
 	cy.get("button.run-control").should("be.enabled").and("have.text", "Run");
 }

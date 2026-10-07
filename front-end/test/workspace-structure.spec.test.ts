@@ -76,10 +76,14 @@ describe("simplified workspaces", () => {
 		});
 		await wrapper.findAll("select")[0].setValue("cpp");
 		await wrapper.findAll("select")[1].setValue("Templates");
-		await wrapper.findAll("button")
+		await wrapper
+			.findAll("button")
 			.find(button => button.text() === "C++ Console Source")!
 			.trigger("click");
-		expect(wrapper.emitted("choose")![1][0]).toMatchObject({ mode: "cpp", template: "course" });
+		expect(wrapper.emitted("choose")![1][0]).toMatchObject({
+			mode: "cpp",
+			template: "course"
+		});
 		wrapper.unmount();
 	});
 	it("puts learner search first and keeps tutor security in Account", async () => {
@@ -155,7 +159,10 @@ describe("simplified workspaces", () => {
 		await wrapper.get("#recipient-select").setValue("Test Parent");
 		await wrapper.get("#subject-date-input").setValue("2026-10-04");
 		await wrapper.get("#markdown-input").setValue("Synthetic note");
-		expect(wrapper.get(".send-btn").attributes("disabled")).toBeDefined();
+		await wrapper.get(".send-btn").trigger("click");
+		expect(wrapper.get("#send-validation").text()).toContain(
+			"Select the student"
+		);
 		expect(api.post).not.toHaveBeenCalled();
 		wrapper.unmount();
 	});
@@ -168,7 +175,7 @@ describe("simplified workspaces", () => {
 			.get("#subject-input")
 			.setValue("Synthetic internal message");
 		await wrapper.get("#markdown-input").setValue("Synthetic body");
-		await wrapper.get(".send-btn").trigger("click");
+		await wrapper.get('[data-testid="tab-preview"]').trigger("click");
 		expect(wrapper.get('[data-testid="live-preview"]').exists()).toBe(true);
 		expect(api.post).not.toHaveBeenCalled();
 		wrapper.unmount();
@@ -335,7 +342,8 @@ describe("simplified workspaces", () => {
 		route.query.student = "foreign";
 		await flushPromises();
 		expect(wrapper.text()).toContain("requested student is unavailable");
-		expect(wrapper.get(".send-btn").attributes("disabled")).toBeDefined();
+		await wrapper.get(".send-btn").trigger("click");
+		expect(api.post).not.toHaveBeenCalled();
 		wrapper.unmount();
 	});
 });

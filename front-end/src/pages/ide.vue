@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineAsyncComponent, ref, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 
 const CodeIdeWorkspace = defineAsyncComponent(
 	() => import("@/components/AccountCodeIdeWorkspace.vue")
@@ -9,7 +9,6 @@ const ScratchIdeWorkspace = defineAsyncComponent(
 	() => import("@/components/ScratchIdeWorkspace.vue")
 );
 const route = useRoute();
-const router = useRouter();
 const scratch = computed(() => route.query.mode === "scratch");
 const scratchVisited = ref(scratch.value);
 const codeVisited = ref(!scratch.value);
@@ -24,26 +23,10 @@ watch(scratch, value => {
 		scratchWorkspace.value?.stop();
 	}
 });
-function choose(event: Event) {
-	const selected = (event.target as HTMLSelectElement).value;
-	const query = { ...route.query };
-	delete query.starter;
-	delete query.template;
-	if (selected === "scratch") query.mode = "scratch";
-	else delete query.mode;
-	void router.replace({ path: "/ide", query });
-}
 </script>
 
 <template>
 	<div class="integrated-ide">
-		<label class="ide-environment"
-			><span class="sr-only">Editor environment</span>
-			<select :value="scratch ? 'scratch' : 'code'" @change="choose">
-				<option value="code">Code: Python, Java or C++</option>
-				<option value="scratch">Scratch blocks</option>
-			</select>
-		</label>
 		<CodeIdeWorkspace
 			v-if="codeVisited"
 			v-show="!scratch"

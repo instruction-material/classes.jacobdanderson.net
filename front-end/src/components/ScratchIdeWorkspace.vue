@@ -8,6 +8,7 @@ import {
 	watch
 } from "vue";
 import { onBeforeRouteLeave, useRoute } from "vue-router";
+import IdeEnvironmentSelect from "@/components/IdeEnvironmentSelect.vue";
 import WorkspaceHeader from "@/components/WorkspaceHeader.vue";
 import WorkspaceStorageStatus from "@/components/WorkspaceStorageStatus.vue";
 import {
@@ -210,6 +211,7 @@ defineExpose({ stop: () => send("stop") });
 		aria-label="Scratch workspace"
 	>
 		<WorkspaceHeader title="Scratch blocks"
+			><template #title><IdeEnvironmentSelect /></template
 			><RouterLink
 				v-if="typeof route.query.course === 'string'"
 				:to="{

@@ -4,7 +4,11 @@ import type { RequestHandler } from "express";
 import type { CustomSession } from "../types/session/CustomSession.js";
 import { Router } from "express";
 import {
-	changeEmail,
+	confirmEmailChange,
+	requestEmailChange,
+	signOutAllSessions
+} from "../controllers/auth/accountSettingsController.js";
+import {
 	changePassword,
 	checkEmail,
 	confirmPasswordReset,
@@ -100,8 +104,10 @@ router.post(
 	"/changeEmail/:ID",
 	accountMutationLimiter,
 	validAccountSession,
-	changeEmail
+	requestEmailChange
 );
+router.post("/email-change/confirm", accountMutationLimiter, validAccountSession, confirmEmailChange);
+router.post("/signout-all", accountMutationLimiter, validAccountSession, signOutAllSessions);
 
 // Route to change password
 router.post(

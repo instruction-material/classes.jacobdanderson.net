@@ -6,14 +6,13 @@ import type {
 import { storeToRefs } from "pinia";
 import { computed, onMounted, ref, watch } from "vue";
 import { api } from "@/api";
-import AccountSecurity from "@/components/AccountSecurity.vue";
 import CourseAccessCodeManager from "@/components/CourseAccessCodeManager.vue";
 import LearnerCodeReviewTools from "@/components/LearnerCodeReviewTools.vue";
 import LearnerContextActions from "@/components/LearnerContextActions.vue";
 import LearnerSessionTools from "@/components/LearnerSessionTools.vue";
 import ProfileFields from "@/components/ProfileFields.vue";
+import SelfAccountSettings from "@/components/SelfAccountSettings.vue";
 // import { useDeleteAccount } from "@/composables/useDeleteAccount";
-import { useEditable } from "@/composables/useEditable";
 import {
 	cleanCourseStatusMap,
 	groupCoursesByLearnerStatus
@@ -38,13 +37,6 @@ const error = ref("");
 const success = ref("");
 // const deleteMe = useDeleteAccount("tutor");
 
-/* editable (the tutor card itself) */
-const {
-	editing: tutorEdit,
-	toggle: toggleTutor,
-	save: saveTutor
-} = useEditable("tutor");
-
 /* field list (read-only for now) */
 const tutorFields = [
 	{ key: "name", label: "Name" },
@@ -55,6 +47,7 @@ const tutorFields = [
 
 /* load this tutor’s users once */
 async function loadUsers() {
+	if (props.mode !== "teaching") return;
 	if (!currentTutor.value) return;
 	try {
 		const { data } = await api.get(
@@ -73,22 +66,6 @@ const usersHeader = computed(() =>
 		? "No Learners Yet"
 		: "Learners"
 );
-
-/* tutor edit flow */
-function onStartTutorEdit() {
-	if (!currentTutor.value) return;
-	toggleTutor();
-}
-
-function onCancelTutorEdit() {
-	toggleTutor();
-}
-
-async function onSaveTutorEdit() {
-	if (!currentTutor.value) return;
-	await saveTutor(currentTutor.value);
-	// If useEditable doesn't flip tutorEdit to false, you could toggleTutor() here.
-}
 
 /* users under this tutor: course editing */
 const userEditing = ref<Record<string, boolean>>({});
@@ -244,72 +221,7 @@ async function saveUserCourses(userID: string) {
 				</div>
 			</details>
 
-			<div class="sheet-body">
-				<section class="sheet-panel">
-					<div class="panel-header">
-						<p class="panel-eyebrow">Tutor account</p>
-						<h3>Profile details</h3>
-					</div>
-					<ul class="field-stack">
-						<ProfileFields
-							:editing="false"
-							:entity="currentTutor"
-							:fields="tutorFields"
-						/>
-					</ul>
-				</section>
-
-				<section class="sheet-panel security-panel">
-					<div class="panel-header">
-						<p class="panel-eyebrow">Access</p>
-						<h3>
-							{{
-								tutorEdit
-									? "Security settings"
-									: "Password and login"
-							}}
-						</h3>
-					</div>
-					<p v-if="!tutorEdit" class="security-copy">
-						Open edit mode to update your password or email
-						credentials before the next class.
-					</p>
-					<AccountSecurity
-						v-else
-						:email="currentTutor.email"
-						:entity-id="currentTutor._id"
-						role="tutor"
-					/>
-				</section>
-			</div>
-
-			<div class="action-row">
-				<template v-if="!tutorEdit">
-					<button
-						class="btn-primary btn"
-						type="button"
-						@click="onStartTutorEdit"
-					>
-						Manage account security
-					</button>
-				</template>
-				<template v-else>
-					<button
-						class="btn-secondary btn"
-						type="button"
-						@click="onCancelTutorEdit"
-					>
-						Cancel
-					</button>
-					<button
-						class="btn-primary btn"
-						type="button"
-						@click="onSaveTutorEdit"
-					>
-						Save
-					</button>
-				</template>
-			</div>
+			<SelfAccountSettings :entity="currentTutor" role="tutor" />
 		</article>
 
 		<div v-if="isTeachingMode" class="teaching-controls">

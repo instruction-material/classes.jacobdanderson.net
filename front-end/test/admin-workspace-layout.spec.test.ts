@@ -48,11 +48,10 @@ describe("admin workspace mobile layout", () => {
 		}
 	});
 
-	it("keeps the admin overview tool grid bounded on narrow screens", () => {
+	it("opens session notes by default without a duplicate overview grid", () => {
 		const source = readSource("../src/pages/admin/index.vue");
 
-		expect(source).toContain(
-			"grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));"
-		);
+		expect(source).toContain('router.replace("/admin/mdmail")');
+		expect(source).not.toContain("tool-grid");
 	});
 });

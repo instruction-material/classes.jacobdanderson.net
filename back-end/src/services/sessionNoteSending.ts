@@ -235,6 +235,13 @@ export function createNoteSendWorkflow(deps: NoteSendDependencies) {
 					await archive(id);
 				}
 				catch { event(id, "archive_tracking_requires_attention"); }
+				try {
+					const refreshed = await store.get(id);
+					if (refreshed) return safeOperation(refreshed);
+				}
+				catch {}
+				event(id, "archive_tracking_requires_attention");
+				return { ...safeOperation(recorded), archivalStatus: null, statusReason: "archive_tracking_requires_attention" };
 			}
 			else {
 				event(id, errorCode ?? "send_requires_review");

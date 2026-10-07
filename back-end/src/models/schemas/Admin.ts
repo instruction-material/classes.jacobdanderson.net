@@ -3,6 +3,7 @@
 import type { Model } from "mongoose";
 import type { IAdmin } from "../../types/entities/IAdmin.js";
 import mongoose, { Schema } from "mongoose";
+import { emailVerificationPlugin } from "../plugins/emailVerification.js";
 import { passwordPlugin } from "../plugins/password.js";
 
 /**
@@ -27,6 +28,7 @@ const adminSchema: Schema<IAdmin> = new Schema(
  * Create and handle password hashing, comparison, and removal from JSON responses
  */
 adminSchema.plugin(passwordPlugin);
+adminSchema.plugin(emailVerificationPlugin);
 
 /**
  * Create and export Admin model

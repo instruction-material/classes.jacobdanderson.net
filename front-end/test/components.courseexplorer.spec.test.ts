@@ -94,7 +94,7 @@ describe("CourseExplorer.vue", () => {
 		await flushPromises();
 
 		await vi.waitFor(() => {
-			expect(wrapper.text()).toContain("Current course");
+			expect(wrapper.find(".course-hero").exists()).toBe(false);
 		});
 		expect(wrapper.text()).toContain(assignedCourse.name);
 		expect(wrapper.text()).toContain("Core");
@@ -132,9 +132,8 @@ describe("CourseExplorer.vue", () => {
 				expect(wrapper.find(".lesson-card").exists()).toBe(true)
 			);
 			expect(wrapper.find(".course-summary").exists()).toBe(false);
-			expect(
-				wrapper.get(".course-toolbar-disclosure").attributes("open")
-			).toBeUndefined();
+			expect(wrapper.find(".course-toolbar-disclosure").exists()).toBe(false);
+			expect(wrapper.find("#course-search").exists()).toBe(true);
 			expect(wrapper.find(".reader-link-groups").exists()).toBe(false);
 			const toggle = wrapper.get(".outline-toggle");
 			expect(toggle.attributes("aria-expanded")).toBe("false");
@@ -928,7 +927,7 @@ describe("CourseExplorer.vue", () => {
 			wrapper.find<HTMLSelectElement>("#course-select").element.value
 		).toBe(currentCourse.id);
 		await vi.waitFor(() => {
-			expect(wrapper.text()).toContain("Current course");
+			expect(wrapper.find(".course-hero").exists()).toBe(false);
 		});
 	});
 
@@ -984,12 +983,12 @@ describe("CourseExplorer.vue", () => {
 				wrapper
 					.findAll("#learner-select option")
 					.map(option => option.text())
-			).toContain("All learners");
+			).toContain("All");
 		});
 
 		const allOption = wrapper
 			.findAll("#learner-select option")
-			.find(option => option.text() === "All learners");
+			.find(option => option.text() === "All");
 		expect(allOption?.exists()).toBe(true);
 		expect(
 			wrapper.find<HTMLSelectElement>("#learner-select").element.value
@@ -1002,8 +1001,8 @@ describe("CourseExplorer.vue", () => {
 
 		await vi.waitFor(() => {
 			expect(
-				wrapper.get(".course-toolbar-disclosure summary").text()
-			).toContain("All learners");
+				wrapper.get("#learner-select option:checked").text()
+			).toContain("All");
 			expect(
 				wrapper
 					.findAll("#course-select option")
@@ -1071,7 +1070,7 @@ describe("CourseExplorer.vue", () => {
 			wrapper
 				.findAll("#learner-select option")
 				.map(option => option.text())
-		).not.toContain("All learners");
+		).not.toContain("All");
 		expect(
 			wrapper.find<HTMLSelectElement>("#learner-select").element.value
 		).toBe("learner-1");
@@ -1158,8 +1157,8 @@ describe("CourseExplorer.vue", () => {
 			).toBe(unassignedCourse.id);
 		});
 		expect(
-			wrapper.get(".course-toolbar-disclosure summary").text()
-		).toContain("All learners");
+			wrapper.get("#learner-select option:checked").text()
+		).toContain("All");
 		expect(wrapper.findAll(".progress-toggle")).toHaveLength(0);
 
 		await wrapper
@@ -1227,7 +1226,7 @@ describe("CourseExplorer.vue", () => {
 		await flushPromises();
 
 		await vi.waitFor(() => {
-			expect(wrapper.text()).toContain("Learner · 1 course");
+			expect(wrapper.get("#learner-select option:checked").text()).toBe("Learner");
 			expect(wrapper.text()).toContain(assignedCourse.name);
 		});
 		expect(wrapper.text()).not.toContain("learner@example.com");
@@ -1307,7 +1306,7 @@ describe("CourseExplorer.vue", () => {
 
 		await flushPromises();
 		await vi.waitFor(() => {
-			expect(wrapper.text()).toContain("Learner · 1 course");
+			expect(wrapper.get("#learner-select option:checked").text()).toBe("Learner");
 		});
 
 		const moduleProgress = wrapper.find(".progress-toggle.is-module input");
@@ -2063,7 +2062,7 @@ describe("CourseExplorer.vue", () => {
 
 		await vi.waitFor(
 			() => {
-				const heading = wrapper.find(".course-hero h2");
+const heading = wrapper.find("#course-select option:checked");
 				expect(heading.exists()).toBe(true);
 				expect(heading.text()).toContain(
 					"Pre-Calculus and Trigonometry A"
@@ -2121,7 +2120,7 @@ describe("CourseExplorer.vue", () => {
 
 		await vi.waitFor(
 			() => {
-				const heading = wrapper.find(".course-hero h2");
+const heading = wrapper.find("#course-select option:checked");
 				expect(heading.exists()).toBe(true);
 				expect(heading.text()).toContain(
 					"Pre-Calculus and Trigonometry B"
@@ -2179,7 +2178,7 @@ describe("CourseExplorer.vue", () => {
 
 		await vi.waitFor(
 			() => {
-				const heading = wrapper.find(".course-hero h2");
+const heading = wrapper.find("#course-select option:checked");
 				expect(heading.exists()).toBe(true);
 				expect(heading.text()).toContain("AP Calculus");
 				expect(wrapper.text()).not.toContain("Loading course");

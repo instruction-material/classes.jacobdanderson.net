@@ -31,6 +31,7 @@ import { completeTwoDimensionalAttempt, verifyTwoDimensionalExport } from "./cpp
 import { checkpointPacks, checkpointRevision } from "./fixtures/cpp-build-debug-packs.mjs";
 import { rowImportPacks, rowImportRevision } from "./fixtures/cpp-row-import-packs.mjs";
 import { taskManagerPacks, taskManagerRevision } from "./fixtures/cpp-task-manager-packs.mjs";
+import { confirmProjectImport, downloadProjectZip, openProjectSidebar } from "./ide-workspace-controls.mjs";
 
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
 const bridgeRepository = "instruction-material/Python-to-Java-and-CPP-Bridge";
@@ -1115,6 +1116,19 @@ nodeTest("complete inline ownership comparison retains its published program", {
 	}
 });
 
+async function revealCourseSource(page, selector) {
+	await page.waitForFunction(() => document.querySelector(".lesson-view-toggle button") || document.querySelector(".lesson-item"));
+	if (await page.$(".lesson-view-toggle button")) {
+		for (const position of [1, 2, 3]) {
+			const view = `.lesson-view-toggle button:nth-child(${position})`;
+			await page.click(view);
+			await page.waitForSelector(`${view}[aria-pressed='true']`);
+			if (await page.$(selector)) return;
+		}
+	}
+	await page.waitForSelector(selector);
+}
+
 async function selectProjectFile(page, name) {
 	const activeFile = "select[aria-label='Active project file']";
 	if (await page.$(activeFile)) await page.select(activeFile, name);
@@ -1137,18 +1151,8 @@ async function downloadProjectFiles(page) {
 			return original.call(this);
 		};
 	});
-	const download = "button[aria-label='Download project ZIP']";
-	const settings = "button[aria-controls='code-ide-settings-panel']";
-	const openSettings = !await page.$(download);
-	if (openSettings) {
-		await page.waitForSelector(settings);
-		await page.click(settings);
-		await page.waitForSelector(download);
-	}
-	await page.click(download);
+	await downloadProjectZip(page);
 	await page.waitForFunction(() => Array.isArray(window.__cppZip));
-	if (openSettings && await page.$eval(settings, button => button.getAttribute("aria-expanded") === "true"))
-		await page.click(settings);
 	const zip = unzipSync(Uint8Array.from(await page.evaluate(() => window.__cppZip)));
 	return Object.fromEntries(Object.entries(zip).map(([path, bytes]) => [path.slice(path.indexOf("/") + 1), strFromU8(bytes)]));
 }
@@ -1261,8 +1265,12 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 			assert.ok(anchor);
 			await page.goto(`${origin}/courses#${courseId}-${anchor}`, { waitUntil: "domcontentloaded" });
 			const selector = `a[href='https://github.com/${repository}/tree/main/${folder}']:not(.is-ide-starter)`;
-			await page.waitForSelector(selector);
+			await revealCourseSource(page, selector);
 			if (isTaskPack(folder)) {
+				if (await page.$(".lesson-view-toggle button")) {
+					await page.click(".lesson-view-toggle button:first-child");
+					await page.waitForSelector(".lesson-view-toggle button:first-child[aria-pressed='true']");
+				}
 				await page.waitForFunction(() => {
 					const headings = [...document.querySelectorAll(".lesson-item .item-content-markdown h2")].map(heading => heading.textContent);
 					return headings.includes("Guided trace and self-checks") && headings.includes("Guided checks");
@@ -1272,6 +1280,7 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 				assert.match(parser, /unchanged output/);
 				assert.ok(await page.$$eval(".lesson-item", items => Boolean(items.find(item => item.querySelector("h5")?.textContent === "Scanning, Parsing, and Error Boundaries")?.querySelector("table"))), "Accepted and rejected examples remain a readable table");
 				record("verified-complete-lessons", { folder, finalSections: true, borrowingSemantics: true });
+				await revealCourseSource(page, selector);
 			}
 			if (Object.hasOwn(rowImportPacks, folder)) {
 				const briefText = await page.$eval(selector, link => link.closest(".lesson-item").textContent.replace(/\s+/g, " "));
@@ -1284,7 +1293,7 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 			}
 			if (folder === "CPPI0-Build-and-Debug-Checkpoint/starter" || folder === "CPPI0-Build-and-Debug-Checkpoint/solution") {
 				const worksheet = "a[href='https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI0-Warnings-and-Debugger-Notebook/starter/EVIDENCE.md']";
-				await page.waitForSelector(worksheet);
+				await revealCourseSource(page, worksheet);
 				assert.equal(await page.$eval(worksheet, link => link.closest(".lesson-item").querySelectorAll(".is-ide-starter").length), 0);
 				assert.equal(!!await page.$("a[href='https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI0-Warnings-and-Debugger-Notebook/solution/EVIDENCE.md']"), referenceFixture);
 				assert.equal(sourceRequests, before, "Reading the worksheet never imports code");
@@ -1296,6 +1305,7 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 					await card.asElement().screenshot({ path: join(directory, `course-import-cpp-CPPI0-debug-notebook-${referenceFixture ? "staff" : "learner"}.png`) });
 				}
 				record("verified-notebook-routing", { folder, referenceVisible: referenceFixture, noCodeImport: true });
+				await revealCourseSource(page, selector);
 			}
 			const href = await page.$eval(selector, link => [...link.closest(".lesson-item").querySelectorAll(".is-ide-starter")].find(action => new URL(action.href).searchParams.get("starterUrl") === link.href)?.getAttribute("href"));
 			assert.ok(href, "The selected source has its own IDE action");
@@ -1309,11 +1319,12 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 			await page.goto(new URL(href, origin).href, { waitUntil: "domcontentloaded" });
 			await page.waitForSelector("[data-testid='ide-route-import-confirm']");
 			assert.equal(sourceRequests, before);
-			await page.click("[data-testid='ide-route-import-confirm']");
+			await confirmProjectImport(page);
 			if (mode === "cpp") await page.waitForSelector("[aria-label='C++ build workflow']");
 			if (Object.hasOwn(dynamicMemoryFolders, folder) || Object.hasOwn(capstoneFolders, folder)) assert.match(await page.$eval("[aria-label='C++ build workflow']", element => element.textContent), /C\+\+ project/);
 			await page.waitForFunction(mode => document.querySelector(".cm-content")?.textContent.includes(mode === "java" ? "public class Main" : "#include"), {}, mode);
 			assert.equal(sourceRequests, before + 1 + Object.keys(files).length);
+			await openProjectSidebar(page);
 			if (((Object.hasOwn(dynamicMemoryPacks, folder) || Object.hasOwn(capstonePacks, folder)) && folder.endsWith("-Starter")) || ((Object.hasOwn(checkpointPacks, folder) || isTaskPack(folder)) && folder.endsWith("/starter"))) {
 				const untouched = await downloadProjectFiles(page);
 				assert.deepEqual(untouched, files);
@@ -1400,6 +1411,7 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 			if (Object.hasOwn(checkpointPacks, folder)) await verifyBuildDebugExport(directory, runNative);
 			if (folder.startsWith("CPPM")) await verifyMemoryExport(directory, folder);
 			await page.reload({ waitUntil: "domcontentloaded" });
+			await openProjectSidebar(page);
 			await page.waitForFunction(name => [...document.querySelectorAll(".file-button")].some(button => button.textContent.includes(name)), {}, entryFile);
 			await selectProjectFile(page, entryFile);
 			await page.waitForSelector(".cm-content");
@@ -1423,7 +1435,7 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 			assert.equal(await page.$("[data-testid='ide-route-import-confirm']"), null);
 			assert.equal(sourceRequests, before + 1 + Object.keys(files).length, "Reopening preserves learner edits without redownloading");
 			if (Object.hasOwn(files, "Makefile")) {
-				assert.equal(await page.evaluate(() => [...document.querySelectorAll(".file-button")].find(button => button.querySelector("span")?.textContent === "Makefile")?.querySelector("small")?.textContent.trim()), "Build file");
+				assert.ok(await page.evaluate(() => [...document.querySelectorAll(".project-context select option")].some(option => option.textContent.trim() === "Makefile")));
 			}
 			if ((folder.startsWith("CPPI0") || folder.startsWith("CPPI1") || folder.startsWith("PTJ4") || folder.startsWith("PTJ7") || folder.startsWith("CPPF") || folder.startsWith("CPPM")) && process.env.COURSE_IMPORT_SCREENSHOT_DIR) {
 				const directory = join(previousDirectory, process.env.COURSE_IMPORT_SCREENSHOT_DIR);
@@ -1458,7 +1470,8 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 				assert.equal(sourceRequests, requestsBeforeLegacy);
 				courseFixture = true;
 				await page.goto(`${origin}/courses#${courseId}-${anchor}`, { waitUntil: "domcontentloaded" });
-				await page.waitForSelector(selector);
+				await revealCourseSource(page, selector);
+				await page.waitForFunction(selector => [...document.querySelector(selector)?.closest(".lesson-item").querySelectorAll("a") ?? []].some(item => /Open current (?:starter|pack)\s+separately/.test(item.textContent)), {}, selector);
 				const freshHref = await page.$eval(selector, link => [...link.closest(".lesson-item").querySelectorAll("a")].find(item => /Open current (?:starter|pack)\s+separately/.test(item.textContent))?.getAttribute("href"));
 				assert.ok(freshHref, "Full project brief offers the separate current learner import");
 				const freshKey = new URL(freshHref, origin).searchParams.get("projectKey");
@@ -1467,7 +1480,7 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 				await page.goto(new URL(freshHref, origin).href, { waitUntil: "domcontentloaded" });
 				await page.waitForSelector("[data-testid='ide-route-import-confirm']");
 				assert.equal(sourceRequests, requestsBeforeLegacy);
-				await page.click("[data-testid='ide-route-import-confirm']");
+				await confirmProjectImport(page);
 				await page.waitForFunction(() => document.querySelector(".cm-content")?.textContent.includes("#include"));
 				assert.equal(sourceRequests, requestsBeforeLegacy + 1 + Object.keys(files).length);
 				await page.waitForFunction(key => JSON.parse(localStorage.getItem("classes-python-ide-projects:anonymous") ?? "[]").some(project => project.courseProjectKey === key), {}, freshKey);

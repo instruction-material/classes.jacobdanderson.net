@@ -3,6 +3,7 @@
 import type { Model } from "mongoose";
 import type { IUser } from "../../types/entities/IUser.ts";
 import mongoose, { Schema } from "mongoose";
+import { emailVerificationPlugin } from "../plugins/emailVerification.js";
 import { passwordPlugin } from "../plugins/password.js";
 
 /**
@@ -84,6 +85,7 @@ userSchema.index({ recipientNameKey: 1 }, { unique: true, sparse: true });
  * Create and handle password hashing, comparison, and removal from JSON responses
  */
 userSchema.plugin(passwordPlugin);
+userSchema.plugin(emailVerificationPlugin);
 
 /**
  * Create and export Tutor model

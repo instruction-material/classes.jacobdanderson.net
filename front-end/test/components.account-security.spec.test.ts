@@ -195,9 +195,9 @@ describe("AccountSecurity", () => {
 		).toBe(true);
 	});
 
-	it("lets the current account revoke other signed-in sessions", async () => {
+	it("signs out every session, including the current browser, under Advanced Settings", async () => {
 		apiMocks.post.mockResolvedValue({
-			data: { message: "Other signed-in sessions have been revoked." }
+			data: { message: "All sessions have been signed out." }
 		});
 		const wrapper = mount(AccountSecurity, {
 			props: {
@@ -208,15 +208,17 @@ describe("AccountSecurity", () => {
 		});
 		const button = wrapper
 			.findAll("button")
-			.find(candidate => candidate.text() === "Sign out other sessions");
+			.find(candidate => candidate.text() === "Sign out of all sessions");
 
 		expect(button).toBeDefined();
 		await button!.trigger("click");
 		await flushPromises();
 
-		expect(apiMocks.post).toHaveBeenCalledWith("/accounts/revoke-sessions");
+		expect(wrapper.get(".advanced-settings").attributes("open")).toBeUndefined();
+		expect(button!.classes()).toContain("btn-danger");
+		expect(apiMocks.post).toHaveBeenCalledWith("/accounts/signout-all");
 		expect(wrapper.text()).toContain(
-			"Other signed-in sessions have been revoked."
+			"All sessions have been signed out."
 		);
 	});
 });

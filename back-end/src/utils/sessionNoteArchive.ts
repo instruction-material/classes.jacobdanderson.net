@@ -8,7 +8,15 @@ export class NoteArchiveError extends Error {
 	}
 }
 
+export function archiveDestination(mailbox: string, namespacePrefix = "") {
+	if (mailbox.toUpperCase() === "INBOX") return "INBOX";
+	return mailbox.startsWith(namespacePrefix)
+		? mailbox
+		: namespacePrefix + mailbox;
+}
+
 export async function confirmedArchiveAppend(actions: {
+	destination: () => string;
 	connect: () => Promise<unknown>;
 	append: () => Promise<unknown>;
 	logout: () => Promise<unknown>;
@@ -19,9 +27,18 @@ export async function confirmedArchiveAppend(actions: {
 		appendStarted = true;
 		const result = await actions.append();
 		if (result === false) throw new NoteArchiveError("not_appended");
-		if (!result || typeof result !== "object" || Array.isArray(result)
-			|| typeof (result as { path?: unknown }).path !== "string"
-			|| !(result as { path: string }).path.length) {
+		const intended = actions.destination();
+		const destination = (result as { destination?: unknown } | null)
+			?.destination;
+		if (
+			!result
+			|| typeof result !== "object"
+			|| Array.isArray(result)
+			|| typeof destination !== "string"
+			|| !destination.length
+			|| !intended
+			|| archiveDestination(destination) !== archiveDestination(intended)
+		) {
 			throw new NoteArchiveError("unconfirmed");
 		}
 	}

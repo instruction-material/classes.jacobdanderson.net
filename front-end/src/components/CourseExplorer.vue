@@ -22,7 +22,6 @@ import {
 import { routeLocationKey, routerKey } from "vue-router";
 import { api } from "@/api";
 import {
-	courseStatusBucketForUser,
 	groupCoursesByLearnerStatus,
 	orderedCoursesByLearnerStatus
 } from "@/modules/courseAccess";
@@ -268,28 +267,13 @@ const hasCourseAccess = computed(() => {
 	return isStaffContext.value || courseList.value.length > 0;
 });
 
-const selectedCourseStatus = computed(() => {
-	if (
-		props.publicCatalog ||
-		isAllLearnersContext.value ||
-		!selectedCourseId.value
-	) {
-		return "";
-	}
-	return courseStatusBucketForUser(
-		courseGroupingOwner.value,
-		selectedCourseId.value
-	);
-});
-
-const courseEyebrow = computed(() => {
-	if (props.publicCatalog) return "Course preview";
-	if (isAllLearnersContext.value) return "Course catalog";
-	if (selectedCourseStatus.value === "past") return "Past course";
-	if (selectedCourseStatus.value === "other") return "Available course";
-	return "Current course";
-});
-
+const emptyTitle = computed(() =>
+	props.publicCatalog
+		? "No courses are available right now."
+		: isStaffContext.value
+			? "Choose a learner to open their courses."
+			: "You don't have any courses assigned yet."
+);
 const ideCourseMode = computed(() =>
 	pythonIdeModeForCourseId(selectedCourse.value?.id)
 );
@@ -299,10 +283,7 @@ const ideCourseHref = computed(() => {
 		course: selectedCourse.value.id,
 		mode: ideCourseMode.value
 	});
-	if (
-		selectedCourse.value.id === "pygames" ||
-		selectedCourse.value.id === "pygames-classroom"
-	) {
+	if (["pygames", "pygames-classroom"].includes(selectedCourse.value.id)) {
 		params.set("starter", "course");
 		params.set("projectKey", `${selectedCourse.value.id}:course`);
 		params.set("starterTitle", `${selectedCourse.value.name} Starter`);
@@ -310,19 +291,6 @@ const ideCourseHref = computed(() => {
 	}
 	return `/ide?${params.toString()}`;
 });
-const ideCourseLabel = computed(() =>
-	ideCourseMode.value
-		? `Open ${getPythonIdeModeLabel(ideCourseMode.value)} IDE`
-		: ""
-);
-
-const emptyTitle = computed(() =>
-	props.publicCatalog
-		? "No courses are available right now."
-		: isStaffContext.value
-			? "Choose a learner to open their courses."
-			: "You don't have any courses assigned yet."
-);
 
 const emptyHint = computed(() =>
 	props.publicCatalog
@@ -855,8 +823,7 @@ function preferredLearnerIdForCourse(learners: User[], courseId: string) {
 
 function learnerOptionLabel(learner: User, index: number) {
 	const name = learner.name?.trim() || `Learner ${index + 1}`;
-	const courseCount = learner.courseAccess?.length ?? 0;
-	return `${name} · ${courseCount} ${courseCount === 1 ? "course" : "courses"}`;
+	return name.split(/\s+/)[0];
 }
 
 function moduleIdFromHash(modules: VisibleModule[]) {
@@ -905,22 +872,6 @@ function isItemComplete(item: CourseModuleItem) {
 
 function selectCourse(id: string) {
 	selectedCourseId.value = id;
-}
-
-async function continueLearning() {
-	searchQuery.value = "";
-	const core = courseModules.value.filter(isCoreModule);
-	const current = core.find(module => module.id === activeModuleId.value);
-	const next =
-		current && !isModuleComplete(current)
-			? current
-			: (core.find(module => !isModuleComplete(module)) ?? core.at(-1));
-	if (!next) return;
-	activeModuleId.value = next.id;
-	await nextTick();
-	const reader = document.getElementById("course-reader-panel");
-	reader?.scrollIntoView({ block: "start" });
-	reader?.focus({ preventScroll: true });
 }
 
 async function selectModule(id: string) {
@@ -1742,149 +1693,106 @@ function writeStoredValue(key: string, value: string) {
 	<section class="course-explorer">
 		<p class="sr-only" aria-live="polite">{{ courseReaderStatus }}</p>
 		<div v-if="hasCourseAccess" class="course-shell">
-			<header v-if="selectedCourse" class="course-hero">
-				<div class="course-hero-copy">
-					<p class="sr-only">{{ courseEyebrow }}</p>
-					<h2>{{ selectedCourse.name }}</h2>
-					<div v-if="ideCourseHref" class="course-ide-action">
-						<a
-							class="site-button site-button--secondary course-ide-link"
-							:href="ideCourseHref"
-						>
-							{{ ideCourseLabel }}
-						</a>
-					</div>
-				</div>
-
-				<div class="course-resume">
-					<button
-						type="button"
-						class="site-button site-button--primary"
-						@click="continueLearning"
-					>
-						{{
-							hasProgressTracking
-								? "Continue learning"
-								: "Start course"
-						}}
-					</button>
-				</div>
-			</header>
-
 			<div class="course-navigation-controls">
-				<details class="course-toolbar-disclosure">
-					<summary>
-						<span v-if="isStaffContext"
-							>{{
-								selectedLearner?.name ||
-								(isAllLearnersContext
-									? "All learners"
-									: "Select a learner")
-							}}
-							·
-						</span>
-						Course and search
-					</summary>
-					<div
-						class="course-toolbar"
-						:class="{ 'has-learner': isStaffContext }"
+				<div
+					class="course-toolbar"
+					:class="{ 'has-learner': isStaffContext }"
+				>
+					<label
+						v-if="isStaffContext"
+						class="control-block learner-block"
+						for="learner-select"
 					>
-						<label
-							v-if="isStaffContext"
-							class="control-block learner-block"
-							for="learner-select"
+						<span class="sr-only">Learner</span>
+						<select
+							id="learner-select"
+							v-model="selectedLearnerId"
+							class="course-select"
+							:disabled="
+								managedLearnersLoading ||
+								!hasLearnerContextOptions
+							"
+							@change="clearLearnerRequest"
 						>
-							<span class="control-label">Learner context</span>
-							<select
-								id="learner-select"
-								v-model="selectedLearnerId"
-								class="course-select"
-								:disabled="
-									managedLearnersLoading ||
-									!hasLearnerContextOptions
-								"
-								@change="clearLearnerRequest"
+							<option disabled value="">
+								{{
+									managedLearnersLoading
+										? "Loading learners..."
+										: "Select a learner"
+								}}
+							</option>
+							<option
+								v-if="canUseAllLearnersContext"
+								:value="ALL_LEARNERS_CONTEXT_ID"
 							>
-								<option disabled value="">
-									{{
-										managedLearnersLoading
-											? "Loading learners..."
-											: "Select a learner"
-									}}
-								</option>
-								<option
-									v-if="canUseAllLearnersContext"
-									:value="ALL_LEARNERS_CONTEXT_ID"
-								>
-									All learners
-								</option>
-								<option
-									v-for="(learner, index) in managedLearners"
-									:key="learner._id"
-									:value="learner._id"
-								>
-									{{ learnerOptionLabel(learner, index) }}
-								</option>
-							</select>
-						</label>
-						<label class="control-block" for="course-select">
-							<span class="control-label">Course</span>
-							<select
-								id="course-select"
-								v-model="selectedCourseId"
-								class="course-select"
-								:disabled="courseList.length === 0"
-								@change="selectCourse(selectedCourseId)"
+								All
+							</option>
+							<option
+								v-for="(learner, index) in managedLearners"
+								:key="learner._id"
+								:value="learner._id"
+							>
+								{{ learnerOptionLabel(learner, index) }}
+							</option>
+						</select>
+					</label>
+					<label class="control-block" for="course-select">
+						<span class="sr-only">Course</span>
+						<select
+							id="course-select"
+							v-model="selectedCourseId"
+							class="course-select"
+							:disabled="courseList.length === 0"
+							@change="selectCourse(selectedCourseId)"
+						>
+							<option
+								v-if="courseList.length === 0"
+								disabled
+								value=""
+							>
+								No assigned courses
+							</option>
+							<optgroup
+								v-for="group in courseGroups"
+								:key="group.key"
+								:label="group.label"
 							>
 								<option
-									v-if="courseList.length === 0"
-									disabled
-									value=""
+									v-for="course in group.courses"
+									:key="course.id"
+									:value="course.id"
 								>
-									No assigned courses
+									{{ course.name }}
 								</option>
-								<optgroup
-									v-for="group in courseGroups"
-									:key="group.key"
-									:label="group.label"
-								>
-									<option
-										v-for="course in group.courses"
-										:key="course.id"
-										:value="course.id"
-									>
-										{{ course.name }}
-									</option>
-								</optgroup>
-							</select>
-						</label>
+							</optgroup>
+						</select>
+					</label>
 
-						<label
-							class="control-block search-block"
-							for="course-search"
-						>
-							<span class="control-label">Search lessons</span>
-							<div class="search-shell">
-								<input
-									id="course-search"
-									v-model="searchQuery"
-									class="course-search"
-									name="course-search"
-									placeholder="Search module titles, lessons, or keywords"
-									type="search"
-								/>
-								<button
-									v-if="searchQuery"
-									class="clear-search"
-									type="button"
-									@click="clearSearch"
-								>
-									Clear
-								</button>
-							</div>
-						</label>
-					</div>
-				</details>
+					<label
+						class="control-block search-block"
+						for="course-search"
+					>
+						<span class="control-label">Search lessons</span>
+						<div class="search-shell">
+							<input
+								id="course-search"
+								v-model="searchQuery"
+								class="course-search"
+								name="course-search"
+								placeholder="Search module titles, lessons, or keywords"
+								type="search"
+							/>
+							<button
+								v-if="searchQuery"
+								class="clear-search"
+								type="button"
+								@click="clearSearch"
+							>
+								Clear
+							</button>
+						</div>
+					</label>
+				</div>
 				<button
 					class="outline-toggle site-button site-button--secondary"
 					type="button"
@@ -1935,6 +1843,18 @@ function writeStoredValue(key: string, value: string) {
 					:class="{ 'is-open': outlineOpen }"
 				>
 					<div class="outline-header"><h3>Lessons</h3></div>
+					<a
+						v-if="ideCourseHref"
+						class="course-ide-link"
+						:href="ideCourseHref"
+						>Open
+						{{
+							ideCourseMode
+								? getPythonIdeModeLabel(ideCourseMode)
+								: ""
+						}}
+						IDE</a
+					>
 
 					<div v-if="visibleModules.length > 0" class="outline-list">
 						<section
@@ -4136,6 +4056,44 @@ button.resource-link {
 	}
 	.search-shell {
 		flex-direction: row;
+	}
+}
+
+.course-toolbar,
+.course-toolbar.has-learner {
+	display: grid;
+	grid-template-columns: minmax(12rem, 22rem) minmax(12rem, 1fr);
+	gap: 0.4rem 1.25rem;
+	align-items: end;
+	padding: 0;
+	border: 0;
+	background: transparent;
+}
+.course-toolbar .learner-block {
+	grid-column: 1;
+}
+.course-toolbar .control-block:not(.learner-block):not(.search-block) {
+	grid-column: 1;
+}
+.course-toolbar .search-block {
+	grid-column: 2;
+	grid-row: 1 / 3;
+	align-self: center;
+}
+.course-select,
+.course-search {
+	min-height: 2.65rem;
+	padding: 0.4rem 0.65rem;
+	border-radius: 6px;
+}
+@media (max-width: 640px) {
+	.course-toolbar,
+	.course-toolbar.has-learner {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.course-toolbar .search-block {
+		grid-column: 1;
+		grid-row: auto;
 	}
 }
 </style>

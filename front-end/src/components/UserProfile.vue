@@ -1,11 +1,9 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
 import { computed } from "vue";
-import AccountSecurity from "@/components/AccountSecurity.vue";
-import ProfileFields from "@/components/ProfileFields.vue";
+import SelfAccountSettings from "@/components/SelfAccountSettings.vue";
 import UserCommunicationPanel from "@/components/UserCommunicationPanel.vue";
 // import { useDeleteAccount } from "@/composables/useDeleteAccount";
-import { useEditable } from "@/composables/useEditable";
 import { groupCoursesByLearnerStatus } from "@/modules/courseAccess";
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
@@ -33,30 +31,6 @@ const courseNameMap = computed<Record<string, string>>(
 
 /* -------------------------------------------------- */
 /*  editable helper                                   */
-/* -------------------------------------------------- */
-const { editing, toggle, save } = useEditable("user");
-
-/* -------------------------------------------------- */
-/*  edit flow helpers                                 */
-/* -------------------------------------------------- */
-function onStartEdit() {
-	if (!currentUser.value) return;
-	toggle();
-}
-
-function onCancelEdit() {
-	toggle();
-}
-
-async function onSaveEdit() {
-	if (!currentUser.value) return;
-	await save(currentUser.value);
-	// Assuming `save` handles updating state / possibly toggling editing.
-	// If not, you can explicitly set editing.value = false here.
-}
-
-/* -------------------------------------------------- */
-/*  assigned tutor names                              */
 /* -------------------------------------------------- */
 const assignedTutorNames = computed(() => {
 	if (!currentUser.value?.tutors?.length) return [] as string[];
@@ -100,11 +74,6 @@ const courseAccessText = computed(() => {
 /* -------------------------------------------------- */
 /*  field list (aligned with Admin users list)        */
 /* -------------------------------------------------- */
-const fields = [
-	{ key: "name", label: "Name" },
-	{ key: "email", label: "Email" }
-	// Age / State omitted here to mirror the admin Users list.
-];
 </script>
 
 <template>
@@ -130,73 +99,7 @@ const fields = [
 				</div>
 			</details>
 
-			<div class="sheet-body" :class="{ 'is-editing': editing }">
-				<section class="sheet-panel">
-					<div class="panel-header">
-						<p class="panel-eyebrow">Profile details</p>
-						<h3>Contact information</h3>
-					</div>
-					<ul class="field-stack">
-						<ProfileFields
-							:editing="false"
-							:entity="currentUser"
-							:fields="fields"
-						/>
-					</ul>
-				</section>
-
-				<section class="sheet-panel security-panel">
-					<div class="panel-header">
-						<p class="panel-eyebrow">Access</p>
-						<h3>
-							{{
-								editing
-									? "Security settings"
-									: "Password and login"
-							}}
-						</h3>
-					</div>
-					<p v-if="!editing" class="security-copy">
-						Open edit mode to change your password or update the
-						email attached to this account.
-					</p>
-					<AccountSecurity
-						v-else
-						:email="currentUser.email"
-						:entity-id="currentUser._id"
-						role="user"
-					/>
-				</section>
-			</div>
-
-			<div class="action-row">
-				<template v-if="!editing">
-					<button
-						class="btn-primary btn"
-						type="button"
-						@click="onStartEdit"
-					>
-						Manage account security
-					</button>
-				</template>
-
-				<template v-else>
-					<button
-						class="btn-secondary btn"
-						type="button"
-						@click="onCancelEdit"
-					>
-						Cancel
-					</button>
-					<button
-						class="btn-primary btn"
-						type="button"
-						@click="onSaveEdit"
-					>
-						Save
-					</button>
-				</template>
-			</div>
+			<SelfAccountSettings :entity="currentUser" role="user" />
 		</article>
 
 		<UserCommunicationPanel v-if="currentUser" />

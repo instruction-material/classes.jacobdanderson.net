@@ -45,12 +45,14 @@ const primaryLinks = computed<NavLink[]>(() => {
 
 	if (!isSessionResolved.value) return links;
 
-	links.push({
-		label: isLoggedIn.value ? "Join class on Zoom" : siteLabels.join,
-		to: isLoggedIn.value ? classMeetingUrl : "/zoom",
-		exact: true,
-		external: isLoggedIn.value
-	});
+	if (!isAdmin.value) {
+		links.push({
+			label: isLoggedIn.value ? "Join class on Zoom" : siteLabels.join,
+			to: isLoggedIn.value ? classMeetingUrl : "/zoom",
+			exact: true,
+			external: isLoggedIn.value
+		});
+	}
 
 	if (!isAdmin.value) {
 		links.push({
@@ -446,11 +448,18 @@ function isLinkActive(link: NavLink) {
 	position: relative;
 }
 .site-account-menu summary {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	list-style: none;
 	cursor: pointer;
 	padding: 0.65rem 0.85rem;
 	border: 1px solid var(--color-border);
 	border-radius: var(--radius-sm);
 	color: var(--color-ink);
+}
+.site-account-menu summary::-webkit-details-marker {
+	display: none;
 }
 .site-account-menu__content {
 	position: absolute;

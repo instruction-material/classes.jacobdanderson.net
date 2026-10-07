@@ -321,59 +321,6 @@ export const checkEmail: RequestHandler = async (req, res) => {
 	});
 };
 
-/** CHANGE EMAIL */
-export const changeEmail: RequestHandler = async (req, res) => {
-	// to satisfy TS union‐of‐models overloads, first coerce your array to a single Model<any> type:
-	const models = [User, Tutor, Admin] as Array<import("mongoose").Model<any>>;
-	const { ID } = req.params;
-	const newEmail = typeof req.body?.email === "string"
-		? req.body.email.trim().toLowerCase()
-		: "";
-
-	if (typeof ID !== "string" || !Types.ObjectId.isValid(ID)) {
-		return res.status(400).json({ message: "A valid account ID is required." });
-	}
-	if (!isValidEmailAddress(newEmail)) {
-		return res.status(400).json({ message: "A valid new email is required." });
-	}
-
-	const session = req.session as CustomSession;
-	const conflictChecks = await Promise.all(
-		models.map(Model => Model.exists({ email: newEmail, _id: { $ne: ID } }))
-	);
-	if (conflictChecks.some(Boolean)) {
-		return res.status(403).json({ message: "Email already exists." });
-	}
-
-	for (const Model of models) {
-		const doc = await Model.findById(ID);
-		if (!doc) continue;
-		if (!canMutate(session, doc as Entity)) {
-			return res.status(403).json({ message: "Not authorized to update this email." });
-		}
-		doc.email = newEmail;
-		doc.sessionVersion = (doc.sessionVersion ?? 0) + 1;
-		await doc.save();
-		const roleKey = doc instanceof Admin
-			? "adminID"
-			: doc instanceof Tutor
-				? "tutorID"
-				: "userID";
-		if (session[roleKey] === getAccountID(doc as Entity)) {
-			session.accountSessionVersion = doc.sessionVersion;
-		}
-		clearOAuthBrowserBindings(res);
-		await recordSecurityAuditEvent(req, {
-			action: "account.email.change",
-			targetID: doc._id,
-			targetRole: roleKey.replace("ID", "") as "admin" | "tutor" | "user"
-		});
-		return res.json({ message: "Email updated successfully." });
-	}
-
-	return res.status(404).json({ message: "Entity not found." });
-};
-
 export const changePassword: RequestHandler = async (req, res) => {
 	const models = [User, Tutor, Admin] as Array<import("mongoose").Model<any>>;
 	const { ID } = req.params;
