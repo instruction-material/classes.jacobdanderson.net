@@ -23,10 +23,10 @@ import { cppLifetimeProjectBriefs } from "../front-end/src/stores/courses/cppLif
 import { cppManualCapstoneProjectBriefs } from "../front-end/src/stores/courses/cppManualCapstoneProjectBriefs.ts";
 import { cppParameterLessonBriefs } from "../front-end/src/stores/courses/cppParameterProjectBriefs.ts";
 import { completeBuildDebugFile, verifyBuildDebugDefaultExport, verifyBuildDebugExport } from "./cpp-build-debug-export-checks.mjs";
-import { checkpointPacks, checkpointRevision } from "./fixtures/cpp-build-debug-packs.mjs";
 import { completeDynamicMemoryFile, verifyDynamicMemoryDefaultExport, verifyDynamicMemoryExport } from "./cpp-dynamic-memory-export-checks.mjs";
 import { completeManualCapstoneFile, verifyManualCapstoneDefaultExport, verifyManualCapstoneExport } from "./cpp-manual-capstone-export-checks.mjs";
 import { completeTwoDimensionalAttempt, verifyTwoDimensionalExport } from "./cpp-two-dimensional-export-checks.mjs";
+import { checkpointPacks, checkpointRevision } from "./fixtures/cpp-build-debug-packs.mjs";
 
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
 const bridgeRepository = "instruction-material/Python-to-Java-and-CPP-Bridge";
@@ -853,7 +853,7 @@ nodeTest("the lifetime, pointer and diagnostics lessons compile with independent
 			["diagnostics", "42\n"]
 		]) {
 			const programs = [...cppLifetimeProjectBriefs[name].matchAll(/```cpp\n([\s\S]*?)\n```/g)];
-		assert.equal(programs.length, 1);
+			assert.equal(programs.length, 1);
 			const code = `${programs[0][1]}\n`;
 			await writeFile(join(temporary, "main.cpp"), code);
 			await compileExport(temporary, ["main.cpp"], "cpp", 20, true);
@@ -1069,7 +1069,7 @@ nodeTest("complete inline ownership comparison retains its published program", {
 	const temporary = await mkdtemp(join(tmpdir(), "cpp-capstone-inline-"));
 	try {
 		const programs = [...cppManualCapstoneProjectBriefs.ownership.matchAll(/```cpp\n([\s\S]*?)\n```/g)];
-			assert.equal(programs.length, 1);
+		assert.equal(programs.length, 1);
 		const files = await readStarter(memoryRepository, capstoneRevision, "CPPM5-Modern-Ownership-Reflection", capstonePacks["CPPM5-Modern-Ownership-Reflection"]);
 		assert.equal(`${programs[0][1]}\n`, files["main.cpp"]);
 		await writeFile(join(temporary, "main.cpp"), `${programs[0][1]}\n`);
@@ -1209,6 +1209,21 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 			await page.goto(`${origin}/courses#${courseId}-${anchor}`, { waitUntil: "domcontentloaded" });
 			const selector = `a[href='https://github.com/${repository}/tree/main/${folder}']:not(.is-ide-starter)`;
 			await page.waitForSelector(selector);
+			if (folder === "CPPI0-Build-and-Debug-Checkpoint/starter" || folder === "CPPI0-Build-and-Debug-Checkpoint/solution") {
+				const worksheet = "a[href='https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI0-Warnings-and-Debugger-Notebook/starter/EVIDENCE.md']";
+				await page.waitForSelector(worksheet);
+				assert.equal(await page.$eval(worksheet, link => link.closest(".lesson-item").querySelectorAll(".is-ide-starter").length), 0);
+				assert.equal(!!await page.$("a[href='https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI0-Warnings-and-Debugger-Notebook/solution/EVIDENCE.md']"), referenceFixture);
+				assert.equal(sourceRequests, before, "Reading the worksheet never imports code");
+				if (process.env.COURSE_IMPORT_SCREENSHOT_DIR) {
+					const directory = join(previousDirectory, process.env.COURSE_IMPORT_SCREENSHOT_DIR);
+					await mkdir(directory, { recursive: true });
+					const link = await page.$(worksheet);
+					const card = await link.evaluateHandle(element => element.closest(".lesson-item"));
+					await card.asElement().screenshot({ path: join(directory, `course-import-cpp-CPPI0-debug-notebook-${referenceFixture ? "staff" : "learner"}.png`) });
+				}
+				record("verified-notebook-routing", { folder, referenceVisible: referenceFixture, noCodeImport: true });
+			}
 			const href = await page.$eval(selector, link => [...link.closest(".lesson-item").querySelectorAll(".is-ide-starter")].find(action => new URL(action.href).searchParams.get("starterUrl") === link.href)?.getAttribute("href"));
 			assert.ok(href, "The selected source has its own IDE action");
 			const params = new URL(href, origin).searchParams;
@@ -1398,6 +1413,9 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 				activeFile: document.querySelector(".file-button.is-active")?.textContent,
 				editorCount: document.querySelectorAll(".cm-content").length,
 				pendingImport: !!document.querySelector("[data-testid='ide-route-import-confirm']"),
+				importError: document.querySelector("[data-testid='ide-route-import-error']")?.textContent,
+				consoleTail: document.querySelector(".output-panel")?.textContent?.slice(-600),
+				requestedSource: new URL(location.href).searchParams.get("starterUrl"),
 				projects: JSON.parse(localStorage.getItem("classes-python-ide-projects:anonymous") ?? "[]").map(project => ({
 					key: project.courseProjectKey,
 					mode: project.mode,

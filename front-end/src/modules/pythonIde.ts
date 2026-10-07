@@ -299,8 +299,12 @@ export function isKnownCourseWorksheetResource(url: string) {
 	return (
 		!!resource &&
 		resource.owner.toLowerCase() === "instruction-material" &&
-		resource.repo.toLowerCase() === "python-level-3" &&
-		/^AM6-Big-O-Analysis(?:\/|$)/.test(resource.path)
+		((resource.repo.toLowerCase() === "python-level-3" &&
+			/^AM6-Big-O-Analysis(?:\/|$)/.test(resource.path)) ||
+			(resource.repo.toLowerCase() === "cpp-level-3" &&
+				/^CPPI0-Warnings-and-Debugger-Notebook(?:\/|$)/.test(
+					resource.path
+				)))
 	);
 }
 

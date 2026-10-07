@@ -304,6 +304,16 @@ function canonicalizeResourceUrl(url?: string) {
 		}
 
 		const [owner, repo, _blob, ref, ...fileSegments] = pathSegments;
+		if (
+			owner.toLowerCase() === "instruction-material" &&
+			repo.toLowerCase() === "cpp-level-3" &&
+			fileSegments.length === 3 &&
+			fileSegments[0] === "CPPI0-Warnings-and-Debugger-Notebook" &&
+			["starter", "solution"].includes(fileSegments[1]) &&
+			fileSegments[2] === "EVIDENCE.md"
+		) {
+			return trimmedUrl;
+		}
 
 		if (fileSegments.length === 0) {
 			return trimmedUrl.replace(TRAILING_SLASH_RE, "");

@@ -49,6 +49,27 @@ describe("C++ Level 3 build checkpoint", () => {
 		}
 	});
 
+	it("keeps optional evidence on saved checkpoint work with a separate staff example", async () => {
+		setActivePinia(createPinia());
+		const course = (await useCoursesStore().loadCourseById("cpp-level-3"))!;
+		const module = course.modules.find(item => item.title === moduleTitle)!;
+		const notebook = module.supplementalProjects.find(
+			item =>
+				item.title ===
+				"CPPI0 Project 2: Warnings and Debugger Evidence Notebook"
+		)!;
+		expect(notebook.learningPath).toBe("choice");
+		expect(notebook.ideImport).toBe(false);
+		expect(notebook.projectLink).toBe(
+			"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI0-Warnings-and-Debugger-Notebook/starter/EVIDENCE.md"
+		);
+		expect(notebook.solutionLink).toBeUndefined();
+		expect(notebook.content).toContain("Continue that same project");
+		expect(notebook.content).toContain("Do not invent a warning");
+		expect(notebook.content).toContain("[record]");
+		expect(notebook.content).not.toContain("starts at index 1");
+	});
+
 	it("preserves older saved attempts and withholds the reference from learners", async () => {
 		setActivePinia(createPinia());
 		const course = (await useCoursesStore().loadCourseById("cpp-level-3"))!;

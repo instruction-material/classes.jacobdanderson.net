@@ -1696,6 +1696,31 @@ pgzrun.go()
 		}
 	});
 
+	it("routes the C++ evidence notebook to its worksheet while keeping code imports", () => {
+		for (const path of [
+			"tree/main/CPPI0-Warnings-and-Debugger-Notebook/starter",
+			"blob/main/CPPI0-Warnings-and-Debugger-Notebook/starter/EVIDENCE.md",
+			"blob/main/CPPI0-Warnings-and-Debugger-Notebook/solution/EVIDENCE.md",
+			"blob/main/CPPI0-Warnings-and-Debugger-Notebook/solution/main.cpp"
+		]) {
+			expect(
+				pythonIdeModeForCourseResource(
+					"cpp-level-3",
+					`https://github.com/instruction-material/CPP-Level-3/${path}`
+				)
+			).toBeNull();
+		}
+		for (const url of [
+			"https://github.com/instruction-material/CPP-Level-3/tree/main/CPPI0-Build-and-Debug-Checkpoint/starter",
+			"https://github.com/instruction-material/CPP-Level-3/tree/main/CPPI0-Warnings-and-Debugger-Notebook-Extra/starter",
+			"https://github.com/another-owner/CPP-Level-3/tree/main/CPPI0-Warnings-and-Debugger-Notebook/starter"
+		]) {
+			expect(pythonIdeModeForCourseResource("cpp-level-3", url)).toBe(
+				"cpp"
+			);
+		}
+	});
+
 	it("keeps Turtle fill and RGB color hooks wired in the runtime shim", () => {
 		const runtimeSource = readFileSync(
 			resolve(__dirname, "../src/modules/pythonIdeRuntime.ts"),

@@ -1,5 +1,6 @@
 import type { RawCourse } from "./types";
 import { cppBuildDebugProjectBrief } from "./cppBuildDebugProjectBrief";
+import { cppDebugEvidenceNotebookBrief } from "./cppDebugEvidenceNotebookBrief";
 
 const cppLevel3SourceCourse: RawCourse = {
 	name: "C++ Level 3",
@@ -25,12 +26,12 @@ const cppLevel3SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "CPPI0 Project 2: Warnings and Debugger Evidence Notebook",
-					content:
-						"Keep a short notebook entry showing the compiler command, one warning or debugger observation, and the code change made because of that evidence.",
+					content: cppDebugEvidenceNotebookBrief,
+					ideImport: false,
 					projectLink:
-						"https://github.com/instruction-material/CPP-Level-3/tree/main/CPPI0-Warnings-and-Debugger-Notebook/starter",
+						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI0-Warnings-and-Debugger-Notebook/starter/EVIDENCE.md",
 					solutionLink:
-						"https://github.com/instruction-material/CPP-Level-3/tree/main/CPPI0-Warnings-and-Debugger-Notebook/solution"
+						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI0-Warnings-and-Debugger-Notebook/solution/EVIDENCE.md"
 				}
 			]
 		},
