@@ -5,7 +5,7 @@ export function cppBuildInstructions(
 	files: PythonIdeFile[],
 	courseProjectKey?: string
 ) {
-	const standard = /^(?:(?:c|cpp)-level-1|cpp-level-2)(?:[:-]|$)/.test(
+	const standard = /^(?:(?:c|cpp)-level-1|cpp-level-[23])(?:[:-]|$)/.test(
 		courseProjectKey ?? ""
 	)
 		? 20

@@ -167,6 +167,10 @@ describe("C++ source workspace", () => {
 			"cpp-level-2:cpp-level-2-cppm0-project:starter",
 			"cpp-level-2-project",
 			"cpp-level-2",
+			"cpp-level-3:cpp-level-3-cppi0-bridge-course-setup-and-positioning-curriculum-cppi0-project-build-and-debug-checkpoint:starter",
+			"cpp-level-3:cppi0-build-and-debug-checkpoint:current-pack-v1",
+			"cpp-level-3-project",
+			"cpp-level-3",
 			"c-level-1"
 		]) {
 			expect(cppBuildInstructions(files, key).join("\n")).toContain(
@@ -183,7 +187,9 @@ describe("C++ source workspace", () => {
 			"c-level-10:project:starter",
 			"c-level-1x-project",
 			"cpp-level-20:project:starter",
-			"cpp-level-2x-project"
+			"cpp-level-2x-project",
+			"cpp-level-30:project:starter",
+			"cpp-level-3x-project"
 		]) {
 			expect(cppBuildInstructions(files, key).join("\n")).toContain(
 				"-std=c++17"
