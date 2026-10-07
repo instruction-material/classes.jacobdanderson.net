@@ -30,6 +30,28 @@ async function display(content: string) {
 }
 
 describe("course code-block formatting", () => {
+	it("keeps the final section of a complete heading-based lesson", async () => {
+		const lesson = [
+			"# Command boundaries",
+			"A parser checks syntax. A ledger checks current state. Neither changes state on rejection.",
+			"## Borrowed text",
+			"A string view reads text without copying. Its source must outlive the view.",
+			"## Final verification",
+			"A rejected completion leaves both the task list and the next identifier unchanged."
+		].join("\n\n");
+		expect(await display(lesson)).toBe(lesson);
+	});
+
+	it("keeps complete Markdown tables with or without outer pipes", async () => {
+		for (const table of [
+			"| Input | Result |\n| --- | --- |\n| done 0 | Rejected |",
+			"Input | Result\n--- | ---\ndone 0 | Rejected"
+		]) {
+			const lesson = `Parsing is separate from state. A valid request can still fail.\n\n${table}\n\nThe final check proves that rejection preserves the existing ledger.`;
+			expect(await display(lesson)).toBe(lesson);
+		}
+	});
+
 	it("preserves Python indentation and blank lines through student display", async () => {
 		const program =
 			"```python\ndef greet():\n    first = 'hello'\n\n    second = 'world'\n    return first + second\n```";

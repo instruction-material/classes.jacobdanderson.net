@@ -83,6 +83,22 @@ describe("C++ task commands and persistence", () => {
 			.find(item => item.title === moduleTitle)!
 			.curriculum.find(item => item.title === projectTitle)!;
 		expect(project.solutionLink).toBeUndefined();
+		const parser = learner.modules
+			.find(item => item.title === moduleTitle)!
+			.curriculum.find(
+				item => item.title === "Scanning, Parsing, and Error Boundaries"
+			)!;
+		expect(parser.content).toContain("without copying");
+		expect(parser.content).not.toContain("independently, but the view");
+		expect(parser.content).toContain("## Guided checks");
+		expect(parser.content).toContain("unchanged output");
+		expect(parser.content.length).toBeGreaterThan(4000);
+		const architecture = learner.modules
+			.find(item => item.title === moduleTitle)!
+			.curriculum[0];
+		expect(architecture.content).toContain("## Guided trace and self-checks");
+		expect(architecture.content).toContain("memory/file");
+		expect(architecture.content.length).toBeGreaterThan(4000);
 		expect(project.projectLink).toBe(source + "starter");
 		useAppStore().setCurrentTutor({
 			_id: "tutor",

@@ -1227,6 +1227,17 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 			await page.goto(`${origin}/courses#${courseId}-${anchor}`, { waitUntil: "domcontentloaded" });
 			const selector = `a[href='https://github.com/${repository}/tree/main/${folder}']:not(.is-ide-starter)`;
 			await page.waitForSelector(selector);
+			if (Object.hasOwn(taskManagerPacks, folder)) {
+				await page.waitForFunction(() => {
+					const headings = [...document.querySelectorAll(".lesson-item .item-content-markdown h2")].map(heading => heading.textContent);
+					return headings.includes("Guided trace and self-checks") && headings.includes("Guided checks");
+				});
+				const parser = await page.$$eval(".lesson-item", items => items.find(item => item.querySelector("h5")?.textContent === "Scanning, Parsing, and Error Boundaries")?.querySelector(".item-content-markdown")?.textContent.replace(/\s+/g, " "));
+				assert.match(parser, /without copying, but the view/);
+				assert.match(parser, /unchanged output/);
+				assert.ok(await page.$$eval(".lesson-item", items => Boolean(items.find(item => item.querySelector("h5")?.textContent === "Scanning, Parsing, and Error Boundaries")?.querySelector("table"))), "Accepted and rejected examples remain a readable table");
+				record("verified-complete-lessons", { folder, finalSections: true, borrowingSemantics: true });
+			}
 			if (folder === "CPPI0-Build-and-Debug-Checkpoint/starter" || folder === "CPPI0-Build-and-Debug-Checkpoint/solution") {
 				const worksheet = "a[href='https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI0-Warnings-and-Debugger-Notebook/starter/EVIDENCE.md']";
 				await page.waitForSelector(worksheet);

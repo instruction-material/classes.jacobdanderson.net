@@ -32,6 +32,12 @@ and staff reference, with all source/header edits, save, ZIP export, reopen and
 native checks. These expanded hosted catalog gates are required before integration;
 source publication alone does not establish their success.
 
+The catalog display now preserves complete heading-based lessons and Markdown
+tables instead of shortening them to two sentences. Learner-store checks reach
+the final architecture and parsing sections. Neutral-copy cleanup also preserves
+the technical meaning of borrowing text "without copying"; the former blanket
+rewrite incorrectly described the operation as "independently."
+
 The preceding checkpoint/notebook milestone is delivered in canonical
 [PR #147](https://github.com/anderson-webops/classes.jacobdanderson.net/pull/147)
 and downstream [PR #36](https://github.com/instruction-material/classes.jacobdanderson.net/pull/36).

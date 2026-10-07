@@ -89,6 +89,8 @@ const STRUCTURED_COURSE_SUPPORT_RE =
 	/\*\*(?:Normal|Hard|Concept focus|Project goal|Teaching flow|Learning sequence|Diagnostic guidance|Readiness check|Misconception check|Common pitfalls|Exit check|Mastery check|Remote investigation|Science explanation|Studio focus|AP connection):?\*\*/i;
 const MARKDOWN_LIST_BLOCK_RE = /(?:^|\n)\s*(?:[-*]|\d+\.)\s+\S/;
 const FENCED_CODE_BLOCK_RE = /(?:^|\n)[\t ]*(?:`{3,}|~{3,})/;
+const MARKDOWN_HEADING_RE = /(?:^|\n)[\t ]{0,3}#{1,6}[\t ]+\S/;
+const MARKDOWN_TABLE_RE = /(?:^|\n)[\t ]*(?:\|[\t ]*)?:?-{3,}:?[\t ]*\|/;
 
 interface NormalizeCourseOptions {
 	includeSolutions: boolean;
@@ -269,7 +271,9 @@ function displayCourseContent(content: string) {
 
 	if (
 		MARKDOWN_LIST_BLOCK_RE.test(normalized) ||
-		FENCED_CODE_BLOCK_RE.test(normalized)
+		FENCED_CODE_BLOCK_RE.test(normalized) ||
+		MARKDOWN_HEADING_RE.test(normalized) ||
+		MARKDOWN_TABLE_RE.test(normalized)
 	) {
 		return normalized;
 	}
