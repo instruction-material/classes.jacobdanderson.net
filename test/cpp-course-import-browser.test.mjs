@@ -1115,6 +1115,12 @@ nodeTest("complete inline ownership comparison retains its published program", {
 	}
 });
 
+async function selectProjectFile(page, name) {
+	const activeFile = "select[aria-label='Active project file']";
+	if (await page.$(activeFile)) await page.select(activeFile, name);
+	else await page.evaluate(name => [...document.querySelectorAll(".file-button")].find(button => button.textContent.includes(name)).click(), name);
+}
+
 async function downloadProjectFiles(page) {
 	await page.evaluate(() => {
 		window.__cppZip = null;
@@ -1131,8 +1137,18 @@ async function downloadProjectFiles(page) {
 			return original.call(this);
 		};
 	});
-	await page.click("button[aria-label='Download project ZIP']");
+	const download = "button[aria-label='Download project ZIP']";
+	const settings = "button[aria-controls='code-ide-settings-panel']";
+	const openSettings = !await page.$(download);
+	if (openSettings) {
+		await page.waitForSelector(settings);
+		await page.click(settings);
+		await page.waitForSelector(download);
+	}
+	await page.click(download);
 	await page.waitForFunction(() => Array.isArray(window.__cppZip));
+	if (openSettings && await page.$eval(settings, button => button.getAttribute("aria-expanded") === "true"))
+		await page.click(settings);
 	const zip = unzipSync(Uint8Array.from(await page.evaluate(() => window.__cppZip)));
 	return Object.fromEntries(Object.entries(zip).map(([path, bytes]) => [path.slice(path.indexOf("/") + 1), strFromU8(bytes)]));
 }
@@ -1305,7 +1321,7 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 				await mkdir(directory);
 				for (const [name, content] of Object.entries(untouched)) await writeFile(join(directory, name), content);
 				if (Object.hasOwn(taskManagerPacks, folder)) await verifyTaskManagerDefaultExport(directory, runNative);
-				if (Object.hasOwn(rowImportPacks, folder)) await verifyRowImportDefaultExport(directory, runNative);
+				else if (Object.hasOwn(rowImportPacks, folder)) await verifyRowImportDefaultExport(directory, runNative);
 				else if (Object.hasOwn(checkpointPacks, folder)) await verifyBuildDebugDefaultExport(directory, runNative);
 				else if (Object.hasOwn(capstonePacks, folder)) await verifyManualCapstoneDefaultExport(directory, folder, runNative);
 				else await verifyDynamicMemoryDefaultExport(directory, folder, runNative);
@@ -1319,7 +1335,7 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 				await page.waitForFunction(() => [...document.querySelectorAll(".file-button")].some(button => button.textContent.includes("src/workflow.cpp")));
 				expectedFiles["src/workflow.cpp"] = "// Add C++ function or class definitions here.\n";
 			}
-			await page.evaluate(name => [...document.querySelectorAll(".file-button")].find(button => button.textContent.includes(name)).click(), entryFile);
+			await selectProjectFile(page, entryFile);
 			// Supplied helpers can put main below the visible CodeMirror viewport.
 			const firstLine = files[entryFile].split("\n").find(line => line.trim());
 			await page.waitForFunction(line => document.querySelector(".cm-content")?.textContent.includes(line), {}, firstLine);
@@ -1342,7 +1358,7 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 			const classFiles = multiFilePack ? Object.keys(files).filter(name => name !== entryFile && /\.(?:h|cpp)$/.test(name)) : [];
 			assert.equal(classFiles.length, Object.hasOwn(rowImportPacks, folder) ? 8 : Object.hasOwn(taskManagerPacks, folder) ? 6 : Object.hasOwn(checkpointPacks, folder) ? 4 : folder.includes("Grocery-List") ? 4 : folder.includes("Dynamic-Array-Implementation") || folder.includes("CPPM5-Profile-Posts") || folder.includes("Matrix-Class") ? 2 : multiFilePack && !Object.hasOwn(dynamicMemoryFolders, folder) && !Object.hasOwn(capstoneFolders, folder) ? 2 : 0);
 			for (const name of classFiles) {
-				await page.evaluate(name => [...document.querySelectorAll(".file-button")].find(button => button.textContent.includes(name)).click(), name);
+				await selectProjectFile(page, name);
 				const first = files[name].split("\n").find(line => line.trim());
 				await page.waitForFunction(line => document.querySelector(".cm-content")?.textContent.includes(line), {}, first);
 				const source = `${Object.hasOwn(rowImportPacks, folder) ? completeRowImportFile(folder, name, files[name], rowImportReferenceFiles[folder]) : Object.hasOwn(taskManagerPacks, folder) ? completeTaskManagerFile(folder, name, files[name], taskManagerReferenceFiles[folder]) : Object.hasOwn(checkpointPacks, folder) ? completeBuildDebugFile(folder, name, files[name]) : Object.hasOwn(capstoneFolders, folder) ? completeManualCapstoneFile(folder, name, files[name], capstoneReferenceFiles[folder]) : Object.hasOwn(dynamicMemoryFolders, folder) ? completeDynamicMemoryFile(folder, name, files[name], dynamicMemoryReferenceFiles[folder]) : files[name]}\n// Browser workflow edit\n`;
@@ -1385,7 +1401,7 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 			if (folder.startsWith("CPPM")) await verifyMemoryExport(directory, folder);
 			await page.reload({ waitUntil: "domcontentloaded" });
 			await page.waitForFunction(name => [...document.querySelectorAll(".file-button")].some(button => button.textContent.includes(name)), {}, entryFile);
-			await page.evaluate(name => [...document.querySelectorAll(".file-button")].find(button => button.textContent.includes(name)).click(), entryFile);
+			await selectProjectFile(page, entryFile);
 			await page.waitForSelector(".cm-content");
 			await page.click(".cm-content");
 			// CodeMirror renders the visible lines. Navigate to the saved edit at
@@ -1395,7 +1411,7 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 			await page.keyboard.up(modifier);
 			await page.waitForFunction(() => document.querySelector(".cm-content")?.textContent.includes("Browser workflow edit"));
 			for (const name of classFiles) {
-				await page.evaluate(name => [...document.querySelectorAll(".file-button")].find(button => button.textContent.includes(name)).click(), name);
+				await selectProjectFile(page, name);
 				await page.click(".cm-content");
 				await page.keyboard.down(modifier);
 				await page.keyboard.press(modifier === "Meta" ? "ArrowDown" : "End");
@@ -1403,7 +1419,7 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 				await page.waitForFunction(() => document.querySelector(".cm-content")?.textContent.includes("Browser workflow edit"));
 				assert.equal(await page.evaluate((key, name) => JSON.parse(localStorage.getItem("classes-python-ide-projects:anonymous") ?? "[]").find(project => project.courseProjectKey === key)?.files.find(file => file.name === name)?.content, key, name), expectedFiles[name]);
 			}
-			if (classFiles.length) await page.evaluate(name => [...document.querySelectorAll(".file-button")].find(button => button.textContent.includes(name)).click(), entryFile);
+			if (classFiles.length) await selectProjectFile(page, entryFile);
 			assert.equal(await page.$("[data-testid='ide-route-import-confirm']"), null);
 			assert.equal(sourceRequests, before + 1 + Object.keys(files).length, "Reopening preserves learner edits without redownloading");
 			if (Object.hasOwn(files, "Makefile")) {

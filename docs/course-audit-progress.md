@@ -47,8 +47,10 @@ The optional Import and Reject Bad Rows source correction is integrated at
 passed all five native groups; actual job logs confirmed ordinary/sanitizer
 untouched/completed learner and reference checks, 200 independent mixed-file
 comparisons including CMake, bounded input and injected read-failure rollback,
-Make cleanup and explicit save/restart. Its separate independent main gate
-is pending. The source integrates a completed prerequisite Task Manager with
+Make cleanup and explicit save/restart. The independent
+[main source gate](https://github.com/instruction-material/CPP-Level-3/actions/runs/37642412374)
+passed at the same exact revision on attempt 2 after a GitHub startup failure;
+all five actual native job outputs were inspected. The source integrates a completed prerequisite Task Manager with
 two importer TODOs, rather than repeating the required project. Import accepts
 valid increasing-ID rows and reports rejected physical lines; complete-file
 reload still rejects the whole invalid file. Fatal input failures preserve both
