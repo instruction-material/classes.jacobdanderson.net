@@ -2435,7 +2435,6 @@ function neutralizeLessonDirectiveText(text: string) {
 			/\bwithout copying the ([a-z][^.]+?)\b/gi,
 			"without duplicating the $1"
 		)
-		.replace(/\bwithout copying\b/gi, "independently")
 		.replace(/\bHave learners trace\b/g, "Trace")
 		.replace(/\bhave learners trace\b/g, "trace")
 		.replace(/\bshow them how to\b/gi, "practice how to")

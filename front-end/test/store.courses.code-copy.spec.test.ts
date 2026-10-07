@@ -16,6 +16,12 @@ function normalized(content: string) {
 }
 
 describe("copy cleanup preserves supplied source", () => {
+	it("preserves borrowing semantics in ordinary explanation text", () => {
+		const explanation =
+			"A string view borrows the original text without copying, but the view cannot outlive that text.";
+		expect(normalized(explanation)).toContain(explanation);
+	});
+
 	it("preserves comments, strings, literal branding and grammar inside fenced programs", () => {
 		const body =
 			'// Definition of a student struct\n// Create Students, then set their fields\nconst label = "Juni";\nconst message = "A student has a input and the the result.";\n';

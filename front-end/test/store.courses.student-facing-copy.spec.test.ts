@@ -136,7 +136,7 @@ const forbiddenStudentFacingPatterns = [
 	/\bEvidence for The\b/,
 	/This lesson arc covers these sections in sequence/i,
 	/(?:^|\n|\*\*[^*]+:\*\*\s)(?:Introduce|Teach|Cover|Set expectations)\b/,
-	/\bwithout copying\b/i
+	/\bwithout copying (?:the )?(?:demonstration|wording)\b/i
 ];
 
 const forbiddenRawGeneratedPatterns = [
