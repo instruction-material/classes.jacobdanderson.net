@@ -1,6 +1,7 @@
 import type { RawCourse } from "./types";
 import { cppBuildDebugProjectBrief } from "./cppBuildDebugProjectBrief";
 import { cppDebugEvidenceNotebookBrief } from "./cppDebugEvidenceNotebookBrief";
+import { cppTaskManagerBriefs } from "./cppTaskManagerBriefs";
 
 const cppLevel3SourceCourse: RawCourse = {
 	name: "C++ Level 3",
@@ -40,18 +41,16 @@ const cppLevel3SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Command Architecture and File Persistence",
-					content:
-						"Refine the Level 1 command-loop pattern into a structure that can grow: read a line, parse the command, validate arguments, call a focused function, update state, and print a stable result. Cover: separating command interpretation from data mutation; choosing a small text format; using `ifstream`, `ofstream`, and `getline`; deciding what data gets saved; reloading state on startup; and testing persistence by closing and reopening the program. Keep the focus on readable line-based formats, not binary files or complex serialization."
+					content: cppTaskManagerBriefs.architecture
 				},
 				{
 					title: "Scanning, Parsing, and Error Boundaries",
-					content:
-						"Adapt the CS236 scanner/parser ideas at a smaller scale without turning this into a compiler course. The scanner converts raw command text into tokens such as words, numbers, quoted strings, punctuation, comments, and unknown tokens while preserving line numbers for error messages. The parser consumes those tokens through a narrow boundary with helpers such as `match`, `advance`, and `peek`, then produces either a valid command object or a clear rejection. Accepted and rejected examples belong side by side: malformed rows, missing fields, wrong types, unknown commands, unterminated strings, and extra tokens after a command. The application state is updated only after parsing and validation succeed, so bad input cannot silently corrupt saved data."
+					content: cppTaskManagerBriefs.parsing
 				},
 				{
 					title: "CPPI1 Project: Saveable Task Manager",
-					content:
-						"Build a command-driven task manager that can add tasks, mark them complete, filter by status, save to a text file, and reload on startup. The project requires at least one explicit parser function and one validation path.",
+					content: cppTaskManagerBriefs.project,
+					ideImport: true,
 					projectLink:
 						"https://github.com/instruction-material/CPP-Level-3/tree/main/CPPI1-Saveable-Task-Manager/starter",
 					solutionLink:

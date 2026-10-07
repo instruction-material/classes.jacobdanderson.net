@@ -1,3 +1,51 @@
+# Current course-audit checkpoint, 2026-10-07
+
+This section is the current status. Earlier dated milestones below are retained
+as history; their pending statements and counts are not current delivery status.
+The full 77-course audit remains active.
+
+The CPPI1 Saveable Task Manager source correction is integrated in
+[CPP Level 3 PR #5](https://github.com/instruction-material/CPP-Level-3/pull/5)
+at `402cca75d01c0df3de7c09af2779b1ab2df4d49b`, preserving reviewed tree
+`f106393a25922d8e5e8e9cb598bde06e1e701ae3`. The prior learner was generic notes
+and the reference printed a fixed checklist. Both now have nine-file C++20 packs,
+full neutral instructions, a shared driver and separate unfinished/working
+implementations. Commands validate quoted text, add and complete tasks, filter
+status, save explicitly and reload only a complete valid file. Missing reload,
+malformed late rows and failed writes preserve current or saved state.
+
+Local and hosted review acceptance passed strict ordinary and ASan/UBSan builds,
+a completed learner fixture, Make, existing CMake targets, parser/model bounds,
+save/restart, temporary conflicts and a real write failure followed by retry.
+The independent main [source gate](https://github.com/instruction-material/CPP-Level-3/actions/runs/37625942501)
+passed at that exact integrated revision, including the unchanged checkpoint,
+notebook and inventory gates. This is scoped source proof, not certification of
+all remaining C++3 projects. Ten generic learner/checklist pairs still require
+review and implementation; the optional bad-row import remains an extension of
+the saved Task Manager, with a separate acceptance/rejection policy.
+
+The catalog candidate supplies full command architecture, parsing and project
+briefs, preserves module/project titles and earlier saved attempts, and offers
+confirmed learner/reference imports plus a separate current-pack key. Browser
+acceptance now includes the Task Manager's untouched learner, completed learner
+and staff reference, with all source/header edits, save, ZIP export, reopen and
+native checks. These expanded hosted catalog gates are required before integration;
+source publication alone does not establish their success.
+
+The preceding checkpoint/notebook milestone is delivered in canonical
+[PR #147](https://github.com/anderson-webops/classes.jacobdanderson.net/pull/147)
+and downstream [PR #36](https://github.com/instruction-material/classes.jacobdanderson.net/pull/36).
+Review and independent main CI/CodeQL passed. The original signed native assets
+are published as canonical
+[v2.8.46](https://github.com/anderson-webops/classes.jacobdanderson.net/releases/tag/v2.8.46)
+and downstream
+[v2.8.4](https://github.com/instruction-material/classes.jacobdanderson.net/releases/tag/v2.8.4).
+The downstream neutral customizations are preserved. Production activation
+remains unverified. Transcript review has 51 unavailable assets; successful
+incremental checks provided no additional accessible transcript evidence.
+
+## Earlier dated milestones
+
 # CPPM2 arrays and game source/catalog audit (2026-10-06)
 
 [Source PR #5](https://github.com/instruction-material/CPP-Level-2/pull/5)

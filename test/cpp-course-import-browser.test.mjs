@@ -25,8 +25,10 @@ import { cppParameterLessonBriefs } from "../front-end/src/stores/courses/cppPar
 import { completeBuildDebugFile, verifyBuildDebugDefaultExport, verifyBuildDebugExport } from "./cpp-build-debug-export-checks.mjs";
 import { completeDynamicMemoryFile, verifyDynamicMemoryDefaultExport, verifyDynamicMemoryExport } from "./cpp-dynamic-memory-export-checks.mjs";
 import { completeManualCapstoneFile, verifyManualCapstoneDefaultExport, verifyManualCapstoneExport } from "./cpp-manual-capstone-export-checks.mjs";
+import { completeTaskManagerFile, verifyTaskManagerDefaultExport, verifyTaskManagerExport } from "./cpp-task-manager-export-checks.mjs";
 import { completeTwoDimensionalAttempt, verifyTwoDimensionalExport } from "./cpp-two-dimensional-export-checks.mjs";
 import { checkpointPacks, checkpointRevision } from "./fixtures/cpp-build-debug-packs.mjs";
+import { taskManagerPacks, taskManagerRevision } from "./fixtures/cpp-task-manager-packs.mjs";
 
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
 const bridgeRepository = "instruction-material/Python-to-Java-and-CPP-Bridge";
@@ -370,10 +372,22 @@ const capstoneReferences = {
 };
 const capstoneFolders = { ...capstonePacks, ...capstoneReferences };
 const capstoneReferenceFiles = {};
+const taskManagerReferenceFiles = {};
+const taskManagerLearnerPacks = Object.fromEntries(Object.entries(taskManagerPacks).filter(([folder]) => folder.endsWith("/starter")));
 const checkpointLearnerPacks = Object.fromEntries(Object.entries(checkpointPacks).filter(([folder]) => folder.endsWith("/starter")));
-const preservedPacks = { ...checkpointLearnerPacks, ...pointerPacks, ...arrayPacks, ...gamePacks, ...twoDimensionalPacks, ...dynamicMemoryPacks, ...capstonePacks };
+const preservedPacks = { ...taskManagerLearnerPacks, ...checkpointLearnerPacks, ...pointerPacks, ...arrayPacks, ...gamePacks, ...twoDimensionalPacks, ...dynamicMemoryPacks, ...capstonePacks };
 
 const fixtures = [
+	...Object.entries(taskManagerPacks).map(([folder, hashes]) => ({
+		repository: "instruction-material/CPP-Level-3",
+		revision: taskManagerRevision,
+		courseId: "cpp-level-3",
+		standard: 20,
+		folder,
+		hashes,
+		anchor: "cppi1-command-architecture-file-i-o-and-small-parsers",
+		reference: folder.endsWith("/solution")
+	})),
 	...Object.entries(checkpointPacks).map(([folder, hashes]) => ({
 		repository: "instruction-material/CPP-Level-3",
 		revision: checkpointRevision,
@@ -1177,7 +1191,7 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 			referenceFixture = fixture.reference ?? false;
 			const mode = folder.endsWith("/java") ? "java" : "cpp";
 			const entryFile = mode === "java" ? "Main.java" : "main.cpp";
-			await page.setViewport({ width: folder === "CPPI0-Build-and-Debug-Checkpoint/starter" || folder.startsWith("CPPM0-Lifetime") || folder === "CPPM5-Profile-Posts-Starter" || folder === "CPPM5-Modern-Ownership-Reflection" || folder.startsWith("PTJ1") || folder.startsWith("CPPF1") || folder.startsWith("CPPF3-Number-Guesser") || folder.startsWith("CPPF4-Person-Class/") || folder.startsWith("CPPF5-Bank-Accounts/") || folder.startsWith("CPPF6-Defanging-a-Website-URL/") || folder.startsWith("CPPF7-Matrix-Addition/") || folder.startsWith("CPPF8-Profile-Posts/") || mode === "java" ? 390 : 1280, height: 900 });
+			await page.setViewport({ width: folder === "CPPI1-Saveable-Task-Manager/starter" || folder === "CPPI0-Build-and-Debug-Checkpoint/starter" || folder.startsWith("CPPM0-Lifetime") || folder === "CPPM5-Profile-Posts-Starter" || folder === "CPPM5-Modern-Ownership-Reflection" || folder.startsWith("PTJ1") || folder.startsWith("CPPF1") || folder.startsWith("CPPF3-Number-Guesser") || folder.startsWith("CPPF4-Person-Class/") || folder.startsWith("CPPF5-Bank-Accounts/") || folder.startsWith("CPPF6-Defanging-a-Website-URL/") || folder.startsWith("CPPF7-Matrix-Addition/") || folder.startsWith("CPPF8-Profile-Posts/") || mode === "java" ? 390 : 1280, height: 900 });
 			files = await readStarter(repository, revision, folder, hashes);
 			if (Object.hasOwn(pointerPacks, folder)) {
 				const referenceFolder = folder.replace(/-Starter$/, "");
@@ -1200,6 +1214,10 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 			if (Object.hasOwn(capstonePacks, folder) && folder.endsWith("-Starter")) {
 				const referenceFolder = folder.replace(/-Starter$/, "");
 				capstoneReferenceFiles[folder] = await readStarter(repository, revision, referenceFolder, capstoneReferences[referenceFolder]);
+			}
+			if (Object.hasOwn(taskManagerPacks, folder) && folder.endsWith("/starter")) {
+				const referenceFolder = folder.replace(/starter$/, "solution");
+				taskManagerReferenceFiles[folder] = await readStarter(repository, revision, referenceFolder, taskManagerPacks[referenceFolder]);
 			}
 			const expectedFiles = { ...files };
 			const before = sourceRequests;
@@ -1241,13 +1259,14 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 			if (Object.hasOwn(dynamicMemoryFolders, folder) || Object.hasOwn(capstoneFolders, folder)) assert.match(await page.$eval("[aria-label='C++ build workflow']", element => element.textContent), /C\+\+ project/);
 			await page.waitForFunction(mode => document.querySelector(".cm-content")?.textContent.includes(mode === "java" ? "public class Main" : "#include"), {}, mode);
 			assert.equal(sourceRequests, before + 1 + Object.keys(files).length);
-			if (((Object.hasOwn(dynamicMemoryPacks, folder) || Object.hasOwn(capstonePacks, folder)) && folder.endsWith("-Starter")) || (Object.hasOwn(checkpointPacks, folder) && folder.endsWith("/starter"))) {
+			if (((Object.hasOwn(dynamicMemoryPacks, folder) || Object.hasOwn(capstonePacks, folder)) && folder.endsWith("-Starter")) || ((Object.hasOwn(checkpointPacks, folder) || Object.hasOwn(taskManagerPacks, folder)) && folder.endsWith("/starter"))) {
 				const untouched = await downloadProjectFiles(page);
 				assert.deepEqual(untouched, files);
 				const directory = join(temporary, `${folder.replaceAll("/", "-")}-untouched`);
 				await mkdir(directory);
 				for (const [name, content] of Object.entries(untouched)) await writeFile(join(directory, name), content);
-				if (Object.hasOwn(checkpointPacks, folder)) await verifyBuildDebugDefaultExport(directory, runNative);
+				if (Object.hasOwn(taskManagerPacks, folder)) await verifyTaskManagerDefaultExport(directory, runNative);
+				else if (Object.hasOwn(checkpointPacks, folder)) await verifyBuildDebugDefaultExport(directory, runNative);
 				else if (Object.hasOwn(capstonePacks, folder)) await verifyManualCapstoneDefaultExport(directory, folder, runNative);
 				else await verifyDynamicMemoryDefaultExport(directory, folder, runNative);
 				record("verified-unfinished-export", { folder, fileCount: Object.keys(untouched).length });
@@ -1265,7 +1284,7 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 			const firstLine = files[entryFile].split("\n").find(line => line.trim());
 			await page.waitForFunction(line => document.querySelector(".cm-content")?.textContent.includes(line), {}, firstLine);
 			const modifier = await page.evaluate(() => /Mac/.test(navigator.platform) ? "Meta" : "Control");
-			const completed = Object.hasOwn(checkpointPacks, folder) ? completeBuildDebugFile(folder, entryFile, files[entryFile]) : Object.hasOwn(capstoneFolders, folder) ? completeManualCapstoneFile(folder, entryFile, files[entryFile], capstoneReferenceFiles[folder]) : Object.hasOwn(dynamicMemoryFolders, folder) ? completeDynamicMemoryFile(folder, entryFile, files[entryFile], dynamicMemoryReferenceFiles[folder]) : completeMemoryAttempt(folder, files[entryFile]);
+			const completed = Object.hasOwn(taskManagerPacks, folder) ? completeTaskManagerFile(folder, entryFile, files[entryFile], taskManagerReferenceFiles[folder]) : Object.hasOwn(checkpointPacks, folder) ? completeBuildDebugFile(folder, entryFile, files[entryFile]) : Object.hasOwn(capstoneFolders, folder) ? completeManualCapstoneFile(folder, entryFile, files[entryFile], capstoneReferenceFiles[folder]) : Object.hasOwn(dynamicMemoryFolders, folder) ? completeDynamicMemoryFile(folder, entryFile, files[entryFile], dynamicMemoryReferenceFiles[folder]) : completeMemoryAttempt(folder, files[entryFile]);
 			const edited = `${completed}\n// Browser workflow edit\n`;
 			expectedFiles[entryFile] = edited;
 			await page.click(".cm-content");
@@ -1279,14 +1298,14 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 			await page.waitForFunction((key, source, name) => JSON.parse(localStorage.getItem("classes-python-ide-projects:anonymous") ?? "[]").some(project => project.courseProjectKey === key && project.files.some(file => file.name === name && file.content === source)), {}, key, edited, entryFile);
 			// The new class packs must preserve and save both their interface and
 			// implementation, not only the driver's text.
-			const multiFilePack = Object.hasOwn(checkpointPacks, folder) || folder.startsWith("CPPF4") || folder.startsWith("CPPF8-Profile-Posts/") || Object.hasOwn(dynamicMemoryFolders, folder) || Object.hasOwn(capstoneFolders, folder);
+			const multiFilePack = Object.hasOwn(taskManagerPacks, folder) || Object.hasOwn(checkpointPacks, folder) || folder.startsWith("CPPF4") || folder.startsWith("CPPF8-Profile-Posts/") || Object.hasOwn(dynamicMemoryFolders, folder) || Object.hasOwn(capstoneFolders, folder);
 			const classFiles = multiFilePack ? Object.keys(files).filter(name => name !== entryFile && /\.(?:h|cpp)$/.test(name)) : [];
-			assert.equal(classFiles.length, Object.hasOwn(checkpointPacks, folder) ? 4 : folder.includes("Grocery-List") ? 4 : folder.includes("Dynamic-Array-Implementation") || folder.includes("CPPM5-Profile-Posts") || folder.includes("Matrix-Class") ? 2 : multiFilePack && !Object.hasOwn(dynamicMemoryFolders, folder) && !Object.hasOwn(capstoneFolders, folder) ? 2 : 0);
+			assert.equal(classFiles.length, Object.hasOwn(taskManagerPacks, folder) ? 6 : Object.hasOwn(checkpointPacks, folder) ? 4 : folder.includes("Grocery-List") ? 4 : folder.includes("Dynamic-Array-Implementation") || folder.includes("CPPM5-Profile-Posts") || folder.includes("Matrix-Class") ? 2 : multiFilePack && !Object.hasOwn(dynamicMemoryFolders, folder) && !Object.hasOwn(capstoneFolders, folder) ? 2 : 0);
 			for (const name of classFiles) {
 				await page.evaluate(name => [...document.querySelectorAll(".file-button")].find(button => button.textContent.includes(name)).click(), name);
 				const first = files[name].split("\n").find(line => line.trim());
 				await page.waitForFunction(line => document.querySelector(".cm-content")?.textContent.includes(line), {}, first);
-				const source = `${Object.hasOwn(checkpointPacks, folder) ? completeBuildDebugFile(folder, name, files[name]) : Object.hasOwn(capstoneFolders, folder) ? completeManualCapstoneFile(folder, name, files[name], capstoneReferenceFiles[folder]) : Object.hasOwn(dynamicMemoryFolders, folder) ? completeDynamicMemoryFile(folder, name, files[name], dynamicMemoryReferenceFiles[folder]) : files[name]}\n// Browser workflow edit\n`;
+				const source = `${Object.hasOwn(taskManagerPacks, folder) ? completeTaskManagerFile(folder, name, files[name], taskManagerReferenceFiles[folder]) : Object.hasOwn(checkpointPacks, folder) ? completeBuildDebugFile(folder, name, files[name]) : Object.hasOwn(capstoneFolders, folder) ? completeManualCapstoneFile(folder, name, files[name], capstoneReferenceFiles[folder]) : Object.hasOwn(dynamicMemoryFolders, folder) ? completeDynamicMemoryFile(folder, name, files[name], dynamicMemoryReferenceFiles[folder]) : files[name]}\n// Browser workflow edit\n`;
 				expectedFiles[name] = source;
 				await page.click(".cm-content");
 				await page.keyboard.down(modifier);
@@ -1312,14 +1331,15 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 			// below; the limited browser interpreter is not its execution gate.
 			const exported = await downloadProjectFiles(page);
 			assert.deepEqual(exported, expectedFiles);
-			const directory = join(temporary, `${Object.hasOwn(checkpointPacks, folder) ? folder.replaceAll("/", "-") : folder.split("/")[0]}-${mode}`);
+			const directory = join(temporary, `${(Object.hasOwn(taskManagerPacks, folder) || Object.hasOwn(checkpointPacks, folder)) ? folder.replaceAll("/", "-") : folder.split("/")[0]}-${mode}`);
 			await mkdir(directory);
 			for (const [name, content] of Object.entries(exported)) {
 				const path = join(directory, name);
 				await mkdir(dirname(path), { recursive: true });
 				await writeFile(path, content);
 			}
-			await compileExport(directory, Object.keys(exported), mode, standard, Object.hasOwn(checkpointPacks, folder));
+			await compileExport(directory, Object.keys(exported), mode, standard, Object.hasOwn(taskManagerPacks, folder) || Object.hasOwn(checkpointPacks, folder));
+			if (Object.hasOwn(taskManagerPacks, folder)) await verifyTaskManagerExport(directory, runNative);
 			if (Object.hasOwn(checkpointPacks, folder)) await verifyBuildDebugExport(directory, runNative);
 			if (folder.startsWith("CPPM")) await verifyMemoryExport(directory, folder);
 			await page.reload({ waitUntil: "domcontentloaded" });
@@ -1348,7 +1368,7 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 			if (Object.hasOwn(files, "Makefile")) {
 				assert.equal(await page.evaluate(() => [...document.querySelectorAll(".file-button")].find(button => button.querySelector("span")?.textContent === "Makefile")?.querySelector("small")?.textContent.trim()), "Build file");
 			}
-			if ((folder.startsWith("CPPI0") || folder.startsWith("PTJ4") || folder.startsWith("PTJ7") || folder.startsWith("CPPF") || folder.startsWith("CPPM")) && process.env.COURSE_IMPORT_SCREENSHOT_DIR) {
+			if ((folder.startsWith("CPPI0") || folder.startsWith("CPPI1") || folder.startsWith("PTJ4") || folder.startsWith("PTJ7") || folder.startsWith("CPPF") || folder.startsWith("CPPM")) && process.env.COURSE_IMPORT_SCREENSHOT_DIR) {
 				const directory = join(previousDirectory, process.env.COURSE_IMPORT_SCREENSHOT_DIR);
 				await mkdir(directory, { recursive: true });
 				// Show the imported source rather than the last edited blank line.
@@ -1357,7 +1377,7 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 				await page.keyboard.press(modifier === "Meta" ? "ArrowUp" : "Home");
 				await page.keyboard.up(modifier);
 				await page.waitForFunction(line => document.querySelector(".cm-content")?.textContent.includes(line), {}, firstLine);
-				await page.screenshot({ path: join(directory, `course-import-${mode}-${Object.hasOwn(checkpointPacks, folder) ? folder.replaceAll("/", "-") : folder.split("/")[0]}-workspace.png`), fullPage: true });
+				await page.screenshot({ path: join(directory, `course-import-${mode}-${(Object.hasOwn(taskManagerPacks, folder) || Object.hasOwn(checkpointPacks, folder)) ? folder.replaceAll("/", "-") : folder.split("/")[0]}-workspace.png`), fullPage: true });
 				if (folder.startsWith("PTJ7") && mode === "cpp") {
 					await page.setViewport({ width: 390, height: 900 });
 					await page.screenshot({ path: join(directory, "course-import-cpp-PTJ7-mobile.png"), fullPage: true });
