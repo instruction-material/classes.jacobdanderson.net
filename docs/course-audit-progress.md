@@ -20,17 +20,47 @@ save/restart, temporary conflicts and a real write failure followed by retry.
 The independent main [source gate](https://github.com/instruction-material/CPP-Level-3/actions/runs/37625942501)
 passed at that exact integrated revision, including the unchanged checkpoint,
 notebook and inventory gates. This is scoped source proof, not certification of
-all remaining C++3 projects. Ten generic learner/checklist pairs still require
+all remaining C++3 projects. At that source checkpoint, ten generic learner/checklist pairs still required
 review and implementation; the optional bad-row import remains an extension of
 the saved Task Manager, with a separate acceptance/rejection policy.
 
-The catalog candidate supplies full command architecture, parsing and project
-briefs, preserves module/project titles and earlier saved attempts, and offers
-confirmed learner/reference imports plus a separate current-pack key. Browser
-acceptance now includes the Task Manager's untouched learner, completed learner
-and staff reference, with all source/header edits, save, ZIP export, reopen and
-native checks. These expanded hosted catalog gates are required before integration;
-source publication alone does not establish their success.
+The Task Manager catalog milestone is delivered in canonical
+[PR #148](https://github.com/anderson-webops/classes.jacobdanderson.net/pull/148)
+at `16867aa29e346daba86856d647081bc7b4e11961` and downstream
+[PR #37](https://github.com/instruction-material/classes.jacobdanderson.net/pull/37)
+at `50eae24301f0d7be6fd1ed4750d8c0bb9e9d09d5`. Review and independent main
+CI, CodeQL and Qodana passed. Browser acceptance verified 55 C++/Java workflows,
+19 saved-attempt cases, seven untouched learners, two notebook routes and full
+architecture/parsing text. The original exact-tag signed archives, manifests
+and bundles are published as canonical
+[v2.8.47](https://github.com/anderson-webops/classes.jacobdanderson.net/releases/tag/v2.8.47)
+and downstream
+[v2.8.5](https://github.com/instruction-material/classes.jacobdanderson.net/releases/tag/v2.8.5).
+Every packaged file digest, manifest and attestation was independently verified;
+all 75 downstream customization blobs and modes were preserved. Production
+activation remains unverified.
+
+The optional Import and Reject Bad Rows source correction is integrated at
+`6c34f9e7cf0ef3052d2823baa4859ad741cc8801`, tree
+`48dc31e5bf90f38deedf12547530eb0ac120a8c4`. Its
+[branch source gate](https://github.com/instruction-material/CPP-Level-3/actions/runs/37641720984)
+passed all five native groups; actual job logs confirmed ordinary/sanitizer
+untouched/completed learner and reference checks, 200 independent mixed-file
+comparisons including CMake, bounded input and injected read-failure rollback,
+Make cleanup and explicit save/restart. Its separate independent main gate
+is pending. The source integrates a completed prerequisite Task Manager with
+two importer TODOs, rather than repeating the required project. Import accepts
+valid increasing-ID rows and reports rejected physical lines; complete-file
+reload still rejects the whole invalid file. Fatal input failures preserve both
+the ledger and the caller's earlier report.
+
+The catalog candidate now includes the extension's full neutral 11-file brief,
+challenge classification, confirmed learner/staff imports and a distinct current
+pack route preserving earlier attempts. Twelve focused catalog checks and scoped
+source/browser lint passed. Two expanded browser/export/native workflows, one
+untouched learner and one saved-attempt case are added as required hosted gates;
+their success and catalog integration remain pending. Nine other generic C++3
+learner/checklist pairs still require review and implementation.
 
 The catalog display now preserves complete heading-based lessons and Markdown
 tables instead of shortening them to two sentences. Learner-store checks reach

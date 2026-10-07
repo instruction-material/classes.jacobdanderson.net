@@ -1,6 +1,7 @@
 import type { RawCourse } from "./types";
 import { cppBuildDebugProjectBrief } from "./cppBuildDebugProjectBrief";
 import { cppDebugEvidenceNotebookBrief } from "./cppDebugEvidenceNotebookBrief";
+import { cppRowImportProjectBrief } from "./cppRowImportProjectBrief";
 import { cppTaskManagerBriefs } from "./cppTaskManagerBriefs";
 
 const cppLevel3SourceCourse: RawCourse = {
@@ -60,8 +61,8 @@ const cppLevel3SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "CPPI1 Project 2: Import and Reject Bad Rows",
-					content:
-						"Add a small import command that reports malformed rows without stopping the entire program. Explain which data was accepted, which data was rejected, and why.",
+					content: cppRowImportProjectBrief,
+					ideImport: true,
 					projectLink:
 						"https://github.com/instruction-material/CPP-Level-3/tree/main/CPPI1-Import-and-Reject-Bad-Rows/starter",
 					solutionLink:
