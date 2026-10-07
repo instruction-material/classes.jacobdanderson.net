@@ -1283,6 +1283,7 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 				await revealCourseSource(page, selector);
 			}
 			if (Object.hasOwn(rowImportPacks, folder)) {
+				await page.waitForFunction(selector => document.querySelector(selector)?.closest(".lesson-item").textContent.includes("65536/65537"), {}, selector);
 				const briefText = await page.$eval(selector, link => link.closest(".lesson-item").textContent.replace(/\s+/g, " "));
 				assert.match(briefText, /Fatal errors and saved state/);
 				assert.match(briefText, /preserve both the ledger and the caller/i);
@@ -1500,6 +1501,12 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 		if (page) {
 			const state = await page.evaluate(() => ({
 				path: location.pathname,
+				viewportWidth: window.innerWidth,
+				workspaceClasses: document.querySelector(".code-ide-workspace")?.className,
+				sidebarPresent: !!document.querySelector("#code-ide-sidebar"),
+				fileButtonCount: document.querySelectorAll(".file-button").length,
+				activeFileOptions: document.querySelectorAll("select[aria-label='Active project file'] option").length,
+				sidebarControls: [...document.querySelectorAll("button[aria-controls='code-ide-sidebar']")].map(button => ({ label: button.getAttribute("aria-label") ?? button.textContent.trim(), expanded: button.getAttribute("aria-expanded"), visible: Boolean(button.getClientRects().length) })),
 				activeFile: document.querySelector(".file-button.is-active")?.textContent,
 				editorCount: document.querySelectorAll(".cm-content").length,
 				pendingImport: !!document.querySelector("[data-testid='ide-route-import-confirm']"),

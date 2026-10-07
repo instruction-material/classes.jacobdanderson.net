@@ -5,13 +5,19 @@ export async function confirmProjectImport(page) {
 
 export async function openProjectSidebar(page) {
 	await page.waitForSelector(".code-ide-workspace");
-	if (await page.evaluate(() => window.innerWidth <= 760)) {
+	await page.waitForSelector("select[aria-label='Active project file']");
+	if (await page.evaluate(() => window.matchMedia("(max-width: 900px)").matches)) {
 		const selector = ".mobile-workspace-navigation button";
 		await page.waitForSelector(selector);
 		if (await page.$eval(selector, button => button.getAttribute("aria-expanded")) !== "true")
-			await page.click(selector);
-	} else if (await page.$("button[aria-label='Expand project sidebar']")) {
-		await page.click("button[aria-label='Expand project sidebar']");
+			await page.locator(selector).click();
+		await page.waitForSelector(`${selector}[aria-expanded='true']`);
+	}
+	else {
+		await page.waitForFunction(() => document.querySelector("button[aria-label='Expand project sidebar']") || document.querySelector(".file-button"));
+		if (await page.$("button[aria-label='Expand project sidebar']"))
+			await page.locator("button[aria-label='Expand project sidebar']").click();
+		await page.waitForSelector("button[aria-label='Collapse project sidebar']");
 	}
 	await page.waitForSelector(".file-button");
 }
@@ -22,7 +28,8 @@ export async function downloadProjectZip(page) {
 	try {
 		await page.waitForSelector("#code-ide-settings-panel");
 		await page.click("button[aria-label='Download project ZIP']");
-	} finally {
+	}
+	finally {
 		if (!alreadyOpen) await page.click("button[aria-label='IDE settings']");
 	}
 }
