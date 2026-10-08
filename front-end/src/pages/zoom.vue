@@ -1,29 +1,38 @@
 <script lang="ts" setup>
-import { classMeetingUrl } from "@/modules/siteNavigation";
-
 defineOptions({ name: "ZoomClassroomPage" });
-
-const zoomMeetingUrl = classMeetingUrl;
 </script>
 
 <template>
 	<section class="page-shell page-shell--narrow zoom-page">
-		<h1 class="page-title">Join Class</h1>
-		<a
-			class="site-button site-button--primary"
-			:href="zoomMeetingUrl"
-			rel="noopener noreferrer"
-			target="_blank"
-			>Join on Zoom<span class="sr-only"> (opens in a new tab)</span></a
-		>
+		<div class="zoom-card">
+			<h1 class="page-title">No meeting room is configured</h1>
+			<p class="page-copy">
+				Ask your instructor for the meeting link and class time.
+			</p>
+			<p class="page-copy">
+				Use the link provided for your class to join the session.
+			</p>
+			<div class="site-action-row">
+				<RouterLink
+					class="site-button site-button--primary"
+					to="/courses"
+				>
+					View Courses
+				</RouterLink>
+			</div>
+		</div>
 	</section>
 </template>
 
 <style scoped>
 .zoom-page {
+	padding-top: 1rem;
+}
+
+.zoom-card {
 	display: grid;
-	justify-items: start;
 	gap: 0.75rem;
+	padding: 0;
 }
 </style>
 
