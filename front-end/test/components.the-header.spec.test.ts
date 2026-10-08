@@ -40,7 +40,7 @@ describe("TheHeader.vue", () => {
 		expect(html).toContain("Courses");
 		expect(html).toContain("IDE");
 		expect(html).not.toMatch(
-			/Log in|Schedule Class|About|Join on Zoom|Payment/
+			/Log in|Schedule Class|About|Join class|Payment/
 		);
 	});
 
@@ -48,7 +48,7 @@ describe("TheHeader.vue", () => {
 		const pinia = createPinia();
 		const wrapper = mountHeader(pinia, false);
 		expect(wrapper.text()).not.toMatch(
-			/Log in|Schedule Class|About|Join on Zoom|Payment/
+			/Log in|Schedule Class|About|Join class|Payment/
 		);
 		useAppStore().sessionBootstrapStatus = "ready";
 		await nextTick();
@@ -69,21 +69,21 @@ describe("TheHeader.vue", () => {
 		courses.unmount();
 	});
 
-	it("places Zoom after About and Payment immediately before login for visitors", () => {
+	it("places the class page after About and Payment immediately before login for visitors", () => {
 		const wrapper = mountHeader();
 
 		const links = wrapper.findAll(".site-nav__links a");
 		expect(links.slice(-2).map(link => link.text())).toEqual([
 			"About",
-			"Join on Zoom (opens in a new tab)"
+			"Join class"
 		]);
 		const zoom = links.at(-1)!;
 		expect(zoom.attributes("href")).toBe(
-			"https://us06web.zoom.us/j/2543520025"
+			"/zoom"
 		);
-		expect(zoom.attributes("target")).toBe("_blank");
-		expect(zoom.attributes("rel")).toBe("noopener noreferrer");
-		expect(wrapper.find('a[href="/zoom"]').exists()).toBe(false);
+		expect(zoom.attributes("target")).toBeUndefined();
+		expect(zoom.attributes("rel")).toBeUndefined();
+		expect(wrapper.find('a[href="/zoom"]').exists()).toBe(true);
 		expect(wrapper.get('a[href="/signup"]').text()).toBe("Schedule Class");
 		const payment = wrapper.get(".site-nav__payment");
 		expect(payment.attributes("href")).toBe("/payment");
