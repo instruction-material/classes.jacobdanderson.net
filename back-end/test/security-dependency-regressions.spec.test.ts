@@ -511,6 +511,9 @@ describe("security dependency regressions", () => {
 			expect(csp).not.toContain("style-src");
 			expect(csp).not.toContain("upgrade-insecure-requests");
 			expect(response.headers.get("cross-origin-resource-policy")).toBe("same-origin");
+			expect(response.headers.get("strict-transport-security")).toBe(
+				"max-age=31536000"
+			);
 			expect(response.headers.get("x-frame-options")).toBe("DENY");
 		});
 
@@ -790,8 +793,15 @@ describe("security dependency regressions", () => {
 		});
 	});
 
-	it("keeps the canonical production origin allowed without a new deployment variable", () => {
-		expect(configuredRequestOrigins()).toContain("https://classes.jacobdanderson.net");
+	it("keeps the neutral production origin and example configuration aligned", () => {
+		expect(configuredRequestOrigins()).toContain("https://example.com");
+		const envExample = readFileSync(resolve(__dirname, "../.env.EXAMPLE"), "utf8");
+		expect(envExample).toMatch(
+			/^ALLOWED_REQUEST_ORIGINS=https:\/\/example\.com$/m
+		);
+		expect(envExample).not.toMatch(
+			/^ALLOWED_REQUEST_ORIGINS=https:\/\/classes\.jacobdanderson\.net$/m
+		);
 	});
 
 	it("never treats forwarded loopback headers as production diagnostics authorization", async () => {
