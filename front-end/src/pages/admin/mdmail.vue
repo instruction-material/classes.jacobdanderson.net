@@ -6,7 +6,6 @@ import { computed, inject, nextTick, onMounted, ref, watch } from "vue";
 import { routeLocationKey } from "vue-router";
 import { api } from "@/api";
 import AdminWorkspaceShell from "@/components/AdminWorkspaceShell.vue";
-import SessionNoteGenerate from "@/components/SessionNoteGenerate.vue";
 import { fetchAdminRecipients } from "@/modules/adminRecipients";
 import { retainNoteSendIntent } from "@/modules/sessionNoteSendIntent";
 
@@ -39,7 +38,6 @@ const to = ref("");
 const subject = ref("");
 const md = ref("");
 const sending = ref(false);
-const draftGenerating = ref(false);
 const sendValidation = ref("");
 const noteStudentId = ref("");
 const pendingStudentId = ref<string | null>(null);
@@ -374,7 +372,6 @@ async function showSendValidation(message: string, fieldId: string) {
 }
 
 async function sendMail() {
-	if (draftGenerating.value) return;
 	if (sending.value) return;
 	if (noteStudentsLoading.value || noteStudentsError.value) {
 		return showSendValidation(
@@ -647,18 +644,7 @@ function parseDateIso(value: string): string | null {
 					</div>
 				</div>
 				<div class="note-editor">
-					<SessionNoteGenerate
-						:student-id="
-							pendingStudentId === null ? noteStudentId : ''
-						"
-						:student-name="selectedStudent?.name ?? ''"
-						:class-date="subjectDate"
-						:markdown="md"
-						editor-id="markdown-input"
-						:disabled="sending"
-						@generated="md = $event"
-						@busy="draftGenerating = $event"
-					/>
+					<label for="markdown-input">Notes</label>
 					<textarea
 						id="markdown-input"
 						v-model="md"
@@ -719,7 +705,7 @@ function parseDateIso(value: string): string | null {
 					<button
 						type="button"
 						class="send-btn"
-						:disabled="sending || draftGenerating"
+						:disabled="sending"
 						:aria-describedby="
 							sendValidation ? 'send-validation' : undefined
 						"

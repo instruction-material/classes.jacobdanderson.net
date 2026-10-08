@@ -24,7 +24,7 @@ describe("TheFooter.vue", () => {
 				wrapper
 					.findAll(".site-footer__bottom .site-action-row a")
 					.map(link => link.attributes("href"))
-			).toEqual(["/privacy", "mailto:classes@jacobdanderson.net"]);
+			).toEqual(["/privacy", "mailto:contact@example.com"]);
 			expect(wrapper.text()).toContain("(opens your email app)");
 		} finally {
 			wrapper.unmount();
@@ -42,12 +42,7 @@ describe("TheFooter.vue", () => {
 			);
 			expect(
 				wrapper.findAll("nav a").map(link => link.attributes("href"))
-			).toEqual([
-				"https://www.linkedin.com/in/jacoba1100254352/",
-				"https://github.com/jacoba1100254352",
-				"/privacy",
-				"mailto:classes@jacobdanderson.net"
-			]);
+			).toEqual(["/privacy", "mailto:contact@example.com"]);
 			for (const link of wrapper.findAll('a[target="_blank"]')) {
 				expect(link.attributes("rel")).toBe("noopener noreferrer");
 				expect(link.text()).toContain("(opens in a new tab)");
