@@ -5,7 +5,7 @@ defineProps<{ compact?: boolean }>();
 <template>
 	<footer class="site-footer" :class="{ 'site-footer--compact': compact }">
 		<div class="site-shell site-shell--wide site-footer__bottom">
-			<p>© {{ new Date().getFullYear() }} Jacob Anderson.</p>
+			<p>© {{ new Date().getFullYear() }} Classes.</p>
 			<button
 				class="site-footer__theme-toggle"
 				type="button"
@@ -18,24 +18,8 @@ defineProps<{ compact?: boolean }>();
 				{{ isDark ? "Light mode" : "Dark mode" }}
 			</button>
 			<nav aria-label="Footer" class="site-action-row site-footer__links">
-				<a
-					v-if="!compact"
-					href="https://www.linkedin.com/in/jacoba1100254352/"
-					rel="noopener noreferrer"
-					target="_blank"
-				>
-					LinkedIn<span class="sr-only"> (opens in a new tab)</span>
-				</a>
-				<a
-					v-if="!compact"
-					href="https://github.com/jacoba1100254352"
-					rel="noopener noreferrer"
-					target="_blank"
-				>
-					GitHub<span class="sr-only"> (opens in a new tab)</span>
-				</a>
 				<RouterLink to="/privacy">Privacy</RouterLink>
-				<a href="mailto:classes@jacobdanderson.net">
+				<a href="mailto:contact@example.com">
 					Contact<span class="sr-only"> (opens your email app)</span>
 				</a>
 			</nav>
