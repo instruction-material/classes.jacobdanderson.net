@@ -176,8 +176,8 @@ The client supports an explicit `--credential-file` override and refuses unsafe
 local credential files before making a request.
 
 ```sh
-python3 scripts/session-notes-client.py --api https://classes.jacobdanderson.net/api --token-file PRIVATE_READ_TOKEN verify --student-id 507f1f77bcf86cd799439011 --from 2026-09-01 --to 2026-09-30
-python3 scripts/session-notes-client.py --api https://classes.jacobdanderson.net/api --token-file PRIVATE_REGISTRATION_TOKEN register --metadata-file PRIVATE_METADATA_JSON
+python3 scripts/session-notes-client.py --api https://example.com/api --token-file PRIVATE_READ_TOKEN verify --student-id 507f1f77bcf86cd799439011 --from 2026-09-01 --to 2026-09-30
+python3 scripts/session-notes-client.py --api https://example.com/api --token-file PRIVATE_REGISTRATION_TOKEN register --metadata-file PRIVATE_METADATA_JSON
 ```
 
 Both token files must be owner-only. Keep read and registration credentials
