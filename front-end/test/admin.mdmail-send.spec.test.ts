@@ -48,16 +48,6 @@ beforeEach(() => {
 		if (path === `/users/${studentId}/session-notes/recent`) {
 			return { data: { sessionNotes: [] } };
 		}
-		if (path === "/session-notes/drafting/settings") {
-			return {
-				data: {
-					siteAvailable: false,
-					allowed: false,
-					ready: false,
-					tutorsEnabled: false
-				}
-			};
-		}
 		throw new Error(`Unexpected GET path: ${path}`);
 	});
 	vi.mocked(api.post).mockImplementation(async (path: string) => ({
