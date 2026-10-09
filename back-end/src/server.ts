@@ -33,7 +33,6 @@ import { adminMailRoutes, sessionNoteSending } from "./routes/adminMailRoutes.js
 import { adminRoutes } from "./routes/adminRoutes.js";
 import { courseAccessCodeRoutes } from "./routes/courseAccessCodeRoutes.js";
 import { ideReportRoutes } from "./routes/ideReportRoutes.js";
-import { sessionNoteDraftRoutes } from "./routes/sessionNoteDraftRoutes.js";
 import { sessionNoteEvidenceRoutes } from "./routes/sessionNoteEvidenceRoutes.js";
 import { sessionNoteVerificationRoutes } from "./routes/sessionNoteVerificationRoutes.js";
 import { tutorRoutes } from "./routes/tutorRoutes.js";
@@ -152,7 +151,6 @@ async function main() {
 
 	app.use("/ide-reports", ideReportRoutes);
 	app.use("/session-notes/verification", sessionNoteVerificationRoutes);
-	app.use("/session-notes/drafting", sessionNoteDraftRoutes);
 
 	app.use("/session-notes/evidence", sessionNoteEvidenceAuth, bodyParser.json({ limit: "16kb" }), sessionNoteEvidenceRoutes);
 
