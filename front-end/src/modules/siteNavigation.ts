@@ -1,10 +1,10 @@
-export const classMeetingUrl = "https://us06web.zoom.us/j/2543520025";
+export const classMeetingUrl = "/zoom";
 export const siteLabels = {
 	courses: "Courses",
 	ide: "IDE",
 	graphing: "Graphing",
 	booking: "Schedule Class",
-	join: "Join on Zoom",
+	join: "Join class",
 	account: "Account"
 } as const;
 export const workspacePaths = [
