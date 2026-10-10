@@ -74,6 +74,10 @@ const fenwickItems = new Set([
 	"usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-curriculum-core-project-fenwick-trees-ordering-and-range-structure",
 	"usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-supplemental-problem-binary-indexed-tree-fenwick-tree"
 ]);
+const knapsackItem =
+	"usaco-gold-unit-1-dynamic-programming-knapsack-and-state-design-supplemental-problem-0-1-knapsack";
+const fruitFeastItem =
+	"usaco-gold-unit-1-dynamic-programming-knapsack-and-state-design-supplemental-problem-fruit-feast";
 
 export function javaNativeBuildInstructions(courseProjectKey?: string) {
 	const [course, item, role, extra] = (courseProjectKey ?? "").split(":");
@@ -85,11 +89,40 @@ export function javaNativeBuildInstructions(courseProjectKey?: string) {
 			!setupItems.has(item ?? "") &&
 			!mootubeItems.has(item ?? "") &&
 			!orderingItems.has(item ?? "") &&
-			!fenwickPracticeItems.has(item ?? "")) ||
+			!fenwickPracticeItems.has(item ?? "") &&
+			item !== knapsackItem &&
+			item !== fruitFeastItem) ||
 		!["starter", "reference"].includes(role ?? "") ||
 		extra !== undefined
 	) {
 		return null;
+	}
+	if (item === knapsackItem) {
+		return [
+			"Save and download this project's ZIP, then extract it.",
+			"This Knapsack demonstration requires a native JDK 17 or newer. The site's Java teaching preview does not execute its dynamic programming or traceback.",
+			"Run inside the extracted folder:",
+			"javac -encoding UTF-8 Main.java",
+			"java Main",
+			"This demonstration reads no input file or standard input and creates no answer file. Edit weights, values and capacity in Main.java for changed cases. The reference also has numItems, which must match the arrays; the learner derives that count.",
+			"The default optimum is 9 with distinct indices 1 and 2 in either order. Check feasibility and optimality, not one fixed index ordering. A single weight-2, value-3 item at capacity 4 can be selected only once.",
+			"Complete the five marked learner tasks: table bases, the preceding-row skip/take recurrence, traceback selection, moving past every considered item and the final result. The untouched starter exits with status 2 and prints no answer. Check the native exit status.",
+			"Preserve the attempt before the separately saved reference. Compare tiny datasets with subset enumeration and estimate O(n*W) time and table storage before increasing the constants. The browser Input panel has no data contract for this demonstration."
+		];
+	}
+	if (item === fruitFeastItem) {
+		return [
+			"Save and download this project's ZIP, then extract it.",
+			"This Fruit Feast project requires a native JDK 17 or newer. The site's Java teaching preview does not execute its file I/O or dynamic programming.",
+			"Preserve earlier inputs and answers, then create feast.in from sample.in and run inside the extracted folder:",
+			"cp sample.in feast.in",
+			"In PowerShell, use Copy-Item sample.in feast.in.",
+			"javac -encoding UTF-8 Main.java",
+			"java Main",
+			"Read feast.out only after a successful run. The browser Input panel does not replace feast.in. The sample 8 5 6 reaches 8 by eating 6, drinking to 3 and eating 5.",
+			"Complete the five marked learner tasks: before-water states, eating transitions, floor-halving seeds, after-water eating and the maximum across both phases. Water is optional and may be used at most once. An untouched run exits with status 2 and creates no answer file; missing input, refused input and unfinished work preserve an earlier answer.",
+			"The reference assumes valid contest input. Its normal run prints no diagnostics; java Main --trace is an optional small-case reference walkthrough. The learner accepts no arguments. Predict changed cases and compare tiny cases with an independent search of (fullness, waterUsed) states before revisiting the separate reference."
+		];
 	}
 	if (setupItems.has(item!)) {
 		return [
