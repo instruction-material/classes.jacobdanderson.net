@@ -905,6 +905,94 @@ export const usacoFixtures = [
 		},
 		reference: true,
 		unfinishedTask: "MooTube"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "3c944ee24b4a55671b4e43d3cc0aa2e2101ce853",
+		courseId: "usaco-gold",
+		folder: "UG24-Why-Did-the-Cow-Cross-the-Road-III/starter",
+		anchor: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure",
+		itemId: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset-supplemental-why-did-the-cow-cross-the-road-iii",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "crossings",
+		input: "circlecross.in",
+		output: "circlecross.out",
+		sample: "sample.in",
+		expected: "3\n",
+		hashes: {
+			"Main.java": "f4e5b0225af893bdeae283e864a4f19e7d364e414ea628f7768610bb23c2bc46",
+			"README.md": "a46ddcf4506be8bdebb34d4c88cdbcace947e29660873b31c6315ee9a65380ec",
+			"sample.in": "3407b92aaa066f4144f1e3629ce87662716f97b9814dce7da2f508340ef8df64"
+		},
+		reference: false,
+		orderingPack: "CircleCross"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "3c944ee24b4a55671b4e43d3cc0aa2e2101ce853",
+		courseId: "usaco-gold",
+		folder: "UG24-Why-Did-the-Cow-Cross-the-Road-III/solution",
+		anchor: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure",
+		itemId: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset-supplemental-why-did-the-cow-cross-the-road-iii",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "crossings",
+		input: "circlecross.in",
+		output: "circlecross.out",
+		sample: "sample.in",
+		expected: "3\n",
+		hashes: {
+			"Main.java": "ea1f4bdf621a01ca72097485451c193b4ad6a92304e848085da1dd1df74ec34c",
+			"README.md": "52470ec8abde105cd83ff7bbc5e2c0d1868954d07433d8e8a9d5b38adea7bf0d",
+			"sample.in": "3407b92aaa066f4144f1e3629ce87662716f97b9814dce7da2f508340ef8df64"
+		},
+		reference: true,
+		orderingPack: "CircleCross"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "3c944ee24b4a55671b4e43d3cc0aa2e2101ce853",
+		courseId: "usaco-gold",
+		folder: "UG27-Snow-Boots/starter",
+		anchor: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure",
+		itemId: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset-supplemental-snow-boots",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "sweep",
+		input: "snowboots.in",
+		output: "snowboots.out",
+		sample: "sample.in",
+		expected: "0\n1\n1\n0\n1\n1\n1\n",
+		hashes: {
+			"Main.java": "ae034d37012a4e272d9b690fdd875e8b5ec5dfa30df76788d7231212b8ab625d",
+			"README.md": "c9231d16a11b86177a09b1fe3ac612888d9f2346e2720b68eb6ef1356fa25fd1",
+			"sample.in": "d58224733382946f0ce806338b7f81f09165486b42db03d529d2aff963dd92a3"
+		},
+		reference: false,
+		orderingPack: "Snow Boots"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "3c944ee24b4a55671b4e43d3cc0aa2e2101ce853",
+		courseId: "usaco-gold",
+		folder: "UG27-Snow-Boots/solution",
+		anchor: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure",
+		itemId: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset-supplemental-snow-boots",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "sweep",
+		input: "snowboots.in",
+		output: "snowboots.out",
+		sample: "sample.in",
+		expected: "0\n1\n1\n0\n1\n1\n1\n",
+		hashes: {
+			"Main.java": "e184f5769e7aeb4e18808e1bd2c4aa26647e9ef25acffc7caa1b4e05ba948069",
+			"README.md": "7f3df6a79d1ec102f6ae90dba4c9736630c822380e8333613699609073eb170c",
+			"sample.in": "d58224733382946f0ce806338b7f81f09165486b42db03d529d2aff963dd92a3"
+		},
+		reference: true,
+		orderingPack: "Snow Boots"
 	}
 ];
 

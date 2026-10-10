@@ -255,8 +255,7 @@ describe("restored USACO project workflows", () => {
 				`https://github.com/instruction-material/USACO-Gold/tree/main/${folder}/starter`
 			);
 			expect(item.learningPath).toBe(placement);
-			if (folder === "UG21-Moo-Tube") expect(item.ideImport).toBe(true);
-			else expect(item.ideImport).not.toBe(true);
+			expect(item.ideImport).toBe(true);
 			expect(item.solutionLink).toBeUndefined();
 			expect(item.content).toContain("Contract and reasoning");
 			expect(item.content).toContain("Check and explain");
@@ -281,7 +280,24 @@ describe("restored USACO project workflows", () => {
 				expect(item.content).toContain(
 					"reference assumes valid contest input"
 				);
-			} else expect(native).toBeNull();
+			} else {
+				const input = folder.startsWith("UG24-")
+					? "circlecross"
+					: "snowboots";
+				expect(native!.join("\n")).toContain(input + ".in");
+				expect(native!.join("\n")).toContain(input + ".out");
+				expect(item.content).toContain(
+					folder.startsWith("UG24-")
+						? "five marked learner tasks"
+						: "six marked learner tasks"
+				);
+				expect(item.content).toContain("preserve");
+				expect(item.content).not.toContain("no confirmed IDE import");
+				if (folder.startsWith("UG27-"))
+					expect(item.content).toContain(
+						"those lines are not answers"
+					);
+			}
 		}
 	});
 
