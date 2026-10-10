@@ -696,6 +696,11 @@ nodeTest(
 					const sourceBeforePlacement = sourceRequests;
 					await verifyGoldPracticePlacement(page, origin, fixture, previousDirectory);
 					assert.equal(sourceRequests, sourceBeforePlacement, "Inspecting relocated legacy practice must not fetch source");
+					// Restore the workspace so the next viewer gets a full catalog load.
+					catalog = false;
+					await page.goto(new URL(href, origin).href, { waitUntil: "domcontentloaded" });
+					await page.waitForSelector(".code-ide-workspace");
+					assert.equal(sourceRequests, sourceBeforePlacement, "Restoring the saved attempt must not fetch source");
 				}
 				record("verified-usaco-role", {
 					course: fixture.courseId,
