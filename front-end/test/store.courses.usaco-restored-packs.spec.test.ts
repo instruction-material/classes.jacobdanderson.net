@@ -119,9 +119,9 @@ describe("restored USACO project workflows", () => {
 						`## ${heading}`
 					);
 				}
-				const stdio
-					= pack.folder === "UB62-Cow-College"
-						|| pack.folder === "UB63-Feeding-the-Cows";
+				const stdio =
+					pack.folder === "UB62-Cow-College" ||
+					pack.folder === "UB63-Feeding-the-Cows";
 				expect(item.content).toContain(
 					stdio ? "prints no answer" : "no answer file"
 				);
@@ -195,6 +195,74 @@ describe("restored USACO project workflows", () => {
 			expect(javaNativeBuildInstructions(key)).toBeNull();
 		}
 	});
+	it("preserves the required Prim checkpoint and its distinct optional retry", async () => {
+		const course = (await useCoursesStore().loadCourseById("usaco-gold"))!;
+		const unit = course.modules.find(module =>
+			module.title.includes("Unit 3:")
+		)!;
+		const core = unit.curriculum.find(item =>
+			item.projectLink?.endsWith("/UG14-MST/starter")
+		)!;
+		const retry = unit.supplementalProjects.find(item =>
+			item.projectLink?.endsWith("/UG14-MST/starter")
+		)!;
+		expect(core.learningPath).toBe("core");
+		expect(retry.learningPath).toBe("choice");
+		expect(core.id).not.toBe(retry.id);
+		for (const item of [core, retry]) {
+			expect(item.ideImport).toBe(true);
+			expect(item.solutionLink).toBeUndefined();
+			for (const text of [
+				"Kruskal",
+				"3,000,000,000",
+				"Total Distance:",
+				"not historical contest limits",
+				"changed-case retry",
+				"single edge",
+				"disconnected graph",
+				"does not execute this file-I/O/matrix program",
+				"prim.in",
+				"prim.out"
+			]) {
+				expect(item.content).toContain(text);
+			}
+			expect(item.content).not.toContain("dijkstra.in");
+			expect(item.content).not.toContain("c++ -std=");
+			for (const role of ["starter", "reference"]) {
+				const instructions = javaNativeBuildInstructions(
+					`usaco-gold:${item.id}:${role}`
+				)!.join("\n");
+				expect(instructions).toContain("JDK 17 or newer");
+				expect(instructions).toContain("prim.in");
+				expect(instructions).toContain("prim.out");
+				expect(instructions).not.toContain("dijkstra.in");
+			}
+		}
+		expect(core.content).toContain("Required implementation checkpoint");
+		expect(retry.content).not.toContain(
+			"Required implementation checkpoint"
+		);
+	});
+	it("does not activate unverified MST variants or malformed native identities", () => {
+		const item =
+			"usaco-gold-unit-3-msts-dsu-and-connectivity-proofs-supplemental-problem-mst";
+		for (const key of [
+			`usaco-gold:${item}:solution`,
+			`usaco-gold:${item}:starter:extra`,
+			`java-level-1:${item}:starter`,
+			"usaco-gold:mst-ii:reference"
+		]) {
+			expect(javaNativeBuildInstructions(key)).toBeNull();
+		}
+		for (const folder of ["UG14-MST-II/starter", "UG14-MST/legacy"]) {
+			expect(
+				pythonIdeModeForCourseResource(
+					"usaco-gold",
+					`https://github.com/instruction-material/USACO-Gold/tree/main/${folder}`
+				)
+			).toBeNull();
+		}
+	});
 
 	it("keeps Marathon optional in the range unit and preserves its old identity", async () => {
 		const course = (await useCoursesStore().loadCourseById("usaco-gold"))!;
@@ -238,8 +306,7 @@ describe("restored USACO project workflows", () => {
 			if (courseId === "usaco-gold") {
 				expect(matches[0]?.content).toContain("December 2010 Silver");
 				expect(matches[0]?.content).toContain("1229981");
-			}
-			else {
+			} else {
 				expect(matches[0]?.content).toContain("O(R²)");
 			}
 		}
