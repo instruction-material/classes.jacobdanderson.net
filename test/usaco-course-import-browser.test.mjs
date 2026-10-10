@@ -681,8 +681,8 @@ nodeTest(
 					sourceRequests++;
 					assert.equal(url.pathname, `/repos/${fixture.repository}/contents/${fixture.folder}`);
 					assert.equal(url.searchParams.get("ref"), "main");
-					const paths = [...Object.keys(files), "ignored.out"];
-					void respond(JSON.stringify(paths.map(name => ({ type: "file", name, path: `${fixture.folder}/${name}`, size: name === "ignored.out" ? 1 : Buffer.byteLength(files[name]), html_url: `https://github.com/${fixture.repository}/blob/main/${fixture.folder}/${name}`, download_url: `https://raw.githubusercontent.com/${fixture.repository}/main/${fixture.folder}/${name}` }))));
+					const paths = [...Object.keys(files), "ignored.exe"];
+					void respond(JSON.stringify(paths.map(name => ({ type: "file", name, path: `${fixture.folder}/${name}`, size: name === "ignored.exe" ? 1 : Buffer.byteLength(files[name]), html_url: `https://github.com/${fixture.repository}/blob/main/${fixture.folder}/${name}`, download_url: `https://raw.githubusercontent.com/${fixture.repository}/main/${fixture.folder}/${name}` }))));
 				}
 				else if (url.hostname === "raw.githubusercontent.com") {
 					sourceRequests++;
