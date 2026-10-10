@@ -2813,7 +2813,8 @@ export function getPythonIdeFileKindLabel(value: string) {
 	if (extension === ".java") return "Java";
 	if (extension === ".json") return "JSON";
 	if (extension === ".md") return "Markdown";
-	if (extension === ".txt" || extension === ".in") return "Text";
+	if (extension === ".txt" || extension === ".in" || extension === ".out")
+		return "Text";
 	if (IMAGE_EXTENSION_RE.test(value)) return "Image";
 	if (value.startsWith("music/")) return "Music";
 	if (AUDIO_FILE_RE.test(value)) return "Sound";
@@ -2835,7 +2836,8 @@ export function getPythonIdeDefaultFileContent(fileName: string) {
 		return '/**\n * @brief Write a small Java console program\n */\npublic class Main {\n/*****************\n*   CONSTANTS   *\n*****************/\n\n    private static final String GREETING_MESSAGE = "Hello, Java!";\n\n\n/*****************\n*   FUNCTIONS   *\n*****************/\n\n    /**\n     * @brief Run the Java program\n     *\n     * @param args Command-line arguments\n     */\n    public static void main(String[] args) {\n        System.out.println(GREETING_MESSAGE);\n    }\n}\n';
 	if (extension === ".json") return '{\n\t"items": []\n}\n';
 	if (extension === ".md") return "# Notes\n\n";
-	if (extension === ".txt" || extension === ".in") return "";
+	if (extension === ".txt" || extension === ".in" || extension === ".out")
+		return "";
 	return '#####################\n###   CONSTANTS   ###\n#####################\nGREETING_MESSAGE = "Hello, Python!"\n\n\n#####################\n###   MAIN CODE   ###\n#####################\n# Store reusable text in a named constant before printing\nprint(GREETING_MESSAGE)\n';
 }
 
