@@ -546,7 +546,9 @@ nodeTest(
 				fixture = current;
 				files = await sourceFiles(fixture);
 				const sourceUrl = `https://github.com/${fixture.repository}/tree/main/${fixture.folder}`;
-				const selector = `a[href='${sourceUrl}']`;
+				const selector = fixture.folder.startsWith("UG21-Moo-Tube/")
+					? `#${fixture.anchor}-${fixture.itemId} a[href='${sourceUrl}']`
+					: `a[href='${sourceUrl}']`;
 				const screenshotKey = `${fixture.courseId}-${fixture.folder.replaceAll("/", "-")}${fixture.identityLabel ? `-${fixture.identityLabel}` : ""}`;
 				const before = sourceRequests;
 				catalog = true;
