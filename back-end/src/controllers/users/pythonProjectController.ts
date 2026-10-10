@@ -19,7 +19,7 @@ import { PythonProjectReview } from "../../models/schemas/PythonProjectReview.js
 import { User } from "../../models/schemas/User.js";
 
 const SAFE_FILE_SEGMENT_RE = /^\w[\w.-]*$/;
-const ROOT_TEXT_FILE_RE = /^(?:makefile|\w[\w.-]*\.(?:csv|eps|in|java|json|md|ps|py|tsv|txt))$/i;
+const ROOT_TEXT_FILE_RE = /^(?:makefile|\w[\w.-]*\.(?:csv|eps|in|java|json|md|out|ps|py|tsv|txt))$/i;
 const IMAGE_FILE_RE = /^images\/\w[\w.-]*\.(?:gif|jpe?g|png|svg|webp)$/i;
 const AUDIO_FILE_RE = /^(?:music|sounds)\/\w[\w.-]*\.(?:mp3|ogg|wav)$/i;
 const PYTHON_FILE_NAME_RE = /\.py$/i;
