@@ -16,6 +16,59 @@ import { usacoExistingProjectIds } from "../../test/fixtures/usaco-restored-pack
 beforeEach(() => setActivePinia(createPinia()));
 
 describe("restored USACO project workflows", () => {
+	it("keeps DP practice optional and uses the real demonstration and file contracts", async () => {
+		const course = (await useCoursesStore().loadCourseById("usaco-gold"))!;
+		const unit = course.modules.find(module =>
+			module.title.startsWith("Unit 1:")
+		)!;
+		for (const [folder, suffix] of [
+			["UG2-0-1-Knapsack", "problem-0-1-knapsack"],
+			["UG40-Fruit-Feast", "problem-fruit-feast"]
+		]) {
+			const item = unit.supplementalProjects.find(item =>
+				item.projectLink?.endsWith(`/${folder}/starter`)
+			)!;
+			expect(item.id).toBe(`${unit.id}-supplemental-${suffix}`);
+			expect(item.learningPath).toBe("choice");
+			expect(item.ideImport).toBe(true);
+			expect(item.content).toContain("five marked learner tasks");
+			expect(item.solutionLink).toBeUndefined();
+			expect(item.content).not.toContain("/solution");
+			for (const role of ["starter", "reference"]) {
+				const directions = javaNativeBuildInstructions(
+					`usaco-gold:${item.id}:${role}`
+				)!.join("\n");
+				expect(directions).toContain("javac -encoding UTF-8 Main.java");
+				if (folder === "UG2-0-1-Knapsack") {
+					expect(item.content).toContain("preceding item row");
+					expect(item.content).toContain("index 0 once");
+					expect(item.content).toContain("Any optimal subset");
+					expect(directions).toContain(
+						"reads no input file or standard input"
+					);
+					expect(directions).toContain("numItems");
+					expect(directions).not.toContain("sample.in");
+					expect(item.content).not.toContain("java Main <");
+					expect(item.content).not.toContain("contest-style input");
+				} else {
+					expect(item.content).toContain("5000000");
+					expect(item.content).toContain("floor(x/2)");
+					expect(item.content).toContain("across both phases");
+					expect(item.content).toContain("(fullness, waterUsed)");
+					expect(directions).toContain("cp sample.in feast.in");
+					expect(directions).toContain("java Main --trace");
+					expect(directions).toContain("preserve an earlier answer");
+				}
+			}
+			for (const key of [
+				`usaco-gold:${item.id}:solution`,
+				`usaco-gold:${item.id}:starter:extra`,
+				`java-level-1:${item.id}:starter`
+			]) {
+				expect(javaNativeBuildInstructions(key)).toBeNull();
+			}
+		}
+	});
 	it("keeps the three Fenwick practices optional with existing IDs and native roles", async () => {
 		const course = (await useCoursesStore().loadCourseById("usaco-gold"))!;
 		for (const [folder, id, anchor] of [

@@ -11,6 +11,7 @@ const briefs: Record<
 		input: string;
 		output: string;
 		stdio?: boolean;
+		demonstration?: boolean;
 		sampleFile?: string;
 		contract: string;
 		model: string;
@@ -20,6 +21,32 @@ const briefs: Record<
 		cost: string;
 	}
 > = {
+	"UG2-0-1-Knapsack": {
+		title: "0-1 Knapsack: state design and traceback",
+		input: "constants in Main.java",
+		output: "native terminal",
+		demonstration: true,
+		contract:
+			"This supplemental transfer exercise follows the unit's Fibonacci state design. It is a small teaching demonstration, not an official contest submission format. The dataset is written in Main.java; the program reads no input file or standard input. Select distinct zero-based item indices with total weight at most capacity and maximum total value. Any optimal subset and either index order are valid.\n\nFor changed datasets, use equal-length arrays of positive integer weights and nonnegative values, with nonnegative capacity. The learner permits at most one million table cells and requires the sum of values to fit Java int. These are limits for small teaching experiments. The reference assumes valid edited constants and has no equivalent validator. Its numItems must match the array lengths; the learner derives the count.",
+		model: "Define dp[i][w] as the best value from only the first i items with weight at most w. No items or zero capacity gives zero because weights are positive. Skipping uses the preceding row at w. Taking uses the item's value plus the preceding row at the remaining capacity, when the item fits. Both choices read the preceding item row so the same item cannot be reused.\n\nTraceback compares the current cell with the preceding row. Equality permits skipping; a larger value selects the current item. Move to the preceding row after either choice, and subtract its weight only after a take. Ties may lead to different optimal subsets.\n\nThe default weights are [1,3,4,5], values [1,4,5,7] and capacity 7. The optimum is 9 from indices 1 and 2, weight 3+4=7 and value 4+5=9. Predict feasible subsets, draw one table row and trace those indices before coding. The reference prints [2,1], but that ordering is not a grading requirement.",
+		tasks: "Complete the five marked learner tasks: allocate the table and zero bases, fill the preceding-row skip/take recurrence, decide traceback selections, move past every considered item and return the terminal value with reconstructed indices without mutating the arrays. The supplied driver checks parameter bounds and the selection's feasibility, uniqueness and reported value. It does not independently prove optimality. The untouched starter exits with status 2 and prints no answer; it creates no answer file.",
+		sample: "Independently or with an instructor, enumerate the default feasible subsets, state what one cell means, explain why taking cannot read the same row and trace the selected indices. Preserve the initial attempt and predictions before the separately saved reference. Change the arrays in a copy, predict again and explain a mismatch rather than copying the reference's index order.",
+		checks: "Check empty arrays, capacity zero, no fitting item, repeated weights, zero values and tied optimal subsets. With one item of weight 2, value 3 and capacity 4, the answer is value 3 and index 0 once. For tiny datasets, independently enumerate all subsets and compare the maximum feasible value. Also check unique in-range indices, total weight within capacity and selected value equal to the reported optimum. This distinguishes optimality from a merely feasible selection.\n\nSource acceptance compiles the untouched scaffold and tests the supplied driver with small independent probes. It does not complete or grade the learner's DP algorithm. The reference's earlier repeated-index traceback defect is corrected; its historical source remains in Git history.",
+		cost: "The two-dimensional algorithm takes O(n*W) time and O(n*W) table storage for n items and capacity W. Estimate both before increasing the constants. A later one-dimensional table is a separate extension: explain its iteration direction and how reconstruction would change."
+	},
+	"UG40-Fruit-Feast": {
+		title: "Fruit Feast: two states and one optional water transition",
+		input: "feast.in",
+		output: "feast.out",
+		sampleFile: "sample.in",
+		contract:
+			"Use this optional DP state-design project after the unit's basic examples. Read one line T A B from feast.in, with 1 <= T <= 5000000 and 1 <= A, B <= T. Starting at fullness zero, eating either fruit adds its size without exceeding T. Fruit may be eaten any number of times. Water is optional, may be used at most once and changes fullness x to floor(x/2). Write the greatest reachable fullness as one integer followed by a newline to feast.out.\n\nProblem contract: [USACO Gold Fruit Feast](https://usaco.org/index.php?page=viewproblem2&cpid=574).",
+		model: "Keep separate reachable states before and after water. Positive fruit sizes permit eating transitions in increasing fullness order. First extend the before-water states, then seed the after-water states by halving every reachable first-phase fullness. Extend that second phase using only eating, with no second water transition. Retain the maximum across both phases because drinking is optional. In the reference's equivalent target-based formulation, post-water fullness t can come from pre-water fullness 2*t or 2*t+1.\n\nFor sample 8 5 6, the before-water states are 0,5,6. Halving seeds 0,2,3; from 3, eating 5 reaches 8. The sample answer is:\n\n```text\n8\n```\n\nBefore coding, list those states and explain why the water-used flag must survive a transition. During a shared walkthrough, predict the next state and identify which transitions are legal before continuing.",
+		tasks: "Complete the five marked learner tasks: allocate the before-water states and mark zero, extend them by eating, seed the after-water states by integer halving, extend that phase without another drink and find the greatest fullness across both phases. Keep the supplied parser and output driver. It validates the header and bounds, rejects extra input and opens feast.out only after the solver succeeds. Untouched tasks exit with status 2 and create no answer file; missing input, refused input and unfinished work preserve an existing answer. These refusal guarantees do not extend to the preserved reference, which assumes valid contest input.",
+		sample: "Predict the sample, a no-water case and a case helped by water. Keep the attempt and two changed cases before the separately saved reference. The reference's normal run writes no terminal diagnostics. Its optional java Main --trace prints the fullness values considered in the water phase for a small walkthrough; those lines are not the answer. Avoid tracing at large T. The learner takes no arguments.",
+		checks: "Check T=1, equal fruit sizes, no-water optima, a water-assisted optimum and fruit sizes greater than T/2. For tiny limits, independently search states (fullness, waterUsed): add either fruit when it fits and halve fullness only before water has been used. Compare the greatest visited fullness with the answer file. A sample alone does not establish correctness. Explain how the two phases prevent a second drink and why both maxima are retained.\n\nSource checks validate the supplied roles and file driver using tiny independent probes; they do not complete or grade a learner's algorithm. The reference has been checked at T=5000000 with a local 256 MiB heap gate. That is verification evidence, not an official judge resource guarantee.",
+		cost: "The algorithm takes O(T) time and O(T) states. Two flat boolean arrays fit the starter's state model. The preserved reference uses a two-column Java array representation, whose object overhead differs; estimate actual storage as well as asymptotic space."
+	},
 	"UG23-Balanced-Photo": {
 		title: "Balanced Photo: Fenwick ordering practice",
 		input: "bphoto.in",
@@ -334,51 +361,57 @@ function projectBrief(
 				]
 			: []),
 		"## Open, save and run",
-		`Choose Open in IDE beside the starter resource, then confirm the import. The ${mode === "python" ? "Python" : mode === "java" ? "Java" : "C++20"} pack includes ${mode === "java" ? "Main.java" : `main.${mode === "python" ? "py" : "cpp"}`} and ${brief.sampleFile ?? brief.input}${folder === "UB1-Square-Pasture" ? "; the starter also includes README.md" : ", plus README.md"}. Existing saved attempts reopen with their edits. The starter and reference use separate project identities; reference resources are available in the authorized instructor view after an attempt.`,
-		...(mode === "java" && brief.sampleFile && !brief.stdio
+		`Choose Open in IDE beside the starter resource, then confirm the import. The ${mode === "python" ? "Python" : mode === "java" ? "Java" : "C++20"} pack includes ${mode === "java" ? "Main.java" : `main.${mode === "python" ? "py" : "cpp"}`}${brief.demonstration ? " and README.md" : ` and ${brief.sampleFile ?? brief.input}${folder === "UB1-Square-Pasture" ? "; the starter also includes README.md" : ", plus README.md"}`}. Existing saved attempts reopen with their edits. The starter and reference use separate project identities; reference resources are available in the authorized instructor view after an attempt.`,
+		...(brief.demonstration
 			? [
-					`Save the attempt, download its ZIP and extract it. Create ${brief.input} from the included sample.in and run in the extracted folder:`,
-					`\`\`\`sh\ncp sample.in ${brief.input}\njavac -encoding UTF-8 Main.java\njava Main\ncat ${brief.output}\n\`\`\``,
-					`In PowerShell, use Copy-Item sample.in ${brief.input} and Get-Content ${brief.output}. Check the exit status before accepting a new answer; a previous file survives unfinished or refused learner work. Keep previous source and inputs before changing cases.`,
-					`Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG21-Moo-Tube" ? "offline-connectivity" : "ordering"} program. Choosing Run displays native commands. The browser Input panel does not replace ${brief.input}. Read ${brief.output} after success; the reference assumes valid contest input.`
+					"Save the attempt, download its ZIP and extract it. Use a native JDK 17 or newer and run inside the extracted folder:",
+					"```sh\njavac -encoding UTF-8 Main.java\njava Main\n```",
+					"These commands also work in PowerShell. Read the result in the native terminal after success. Edit weights, values and capacity in Main.java for changed cases; also update numItems in the reference. This demonstration reads no input file or standard input and creates no answer file. The site IDE edits, saves and exports the source; its teaching preview does not execute the DP or traceback. Choosing Run displays native commands. The Input panel has no data contract for this demonstration."
 				]
-			: brief.stdio && mode === "java"
+			: mode === "java" && brief.sampleFile && !brief.stdio
 				? [
-						`Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this ${folder === "UG0-Contest-Contract" ? "native input/output checkpoint" : "input-driven data structure"}. Choosing Run displays native commands. The Input panel does not execute this project.`,
-						"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with sample.in redirected into standard input:",
-						"```sh\njavac -encoding UTF-8 Main.java\njava Main < sample.in\n```",
-						"Read the printed answers in the native terminal. Change sample.in and predict the results before rerunning. The untouched starter and refused input exit with status 2 and print no answer. This program creates no answer file; check the exit status before accepting a result, including any file created separately by shell redirection. Reopening a saved attempt preserves its source edits and separate starter/reference identities."
+						`Save the attempt, download its ZIP and extract it. Create ${brief.input} from the included sample.in and run in the extracted folder:`,
+						`\`\`\`sh\ncp sample.in ${brief.input}\njavac -encoding UTF-8 Main.java\njava Main\ncat ${brief.output}\n\`\`\``,
+						`In PowerShell, use Copy-Item sample.in ${brief.input} and Get-Content ${brief.output}. Check the exit status before accepting a new answer; a previous file survives unfinished or refused learner work. Keep previous source and inputs before changing cases.`,
+						`Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG40-Fruit-Feast" ? "dynamic-programming" : folder === "UG21-Moo-Tube" ? "offline-connectivity" : "ordering"} program. Choosing Run displays native commands. The browser Input panel does not replace ${brief.input}. Read ${brief.output} after success; the reference assumes valid contest input.`
 					]
-				: brief.stdio
+				: brief.stdio && mode === "java"
 					? [
-							"In the site IDE, open sample.in and copy all its lines into the Input panel. Select main.py and choose Run. The untouched starter stops with NotImplementedError and prints no answer; complete its helper before expecting results. The completed program prints its answer in Console output. The input fixture is not opened automatically by this program.",
-							"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with the sample redirected into standard input:",
-							"```sh\npython3 main.py < sample.in\n```",
-							"Change the Input panel or the redirected fixture for each custom case. Reopening a saved attempt preserves its source edits; paste the desired input again before running. Keep a copy of learner work before using the separately saved instructor reference. Compare printed results using the contract above."
+							`Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this ${folder === "UG0-Contest-Contract" ? "native input/output checkpoint" : "input-driven data structure"}. Choosing Run displays native commands. The Input panel does not execute this project.`,
+							"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with sample.in redirected into standard input:",
+							"```sh\njavac -encoding UTF-8 Main.java\njava Main < sample.in\n```",
+							"Read the printed answers in the native terminal. Change sample.in and predict the results before rerunning. The untouched starter and refused input exit with status 2 and print no answer. This program creates no answer file; check the exit status before accepting a result, including any file created separately by shell redirection. Reopening a saved attempt preserves its source edits and separate starter/reference identities."
 						]
-					: [
-							"Save the attempt, download its ZIP and extract it. Keep the input beside the source and run inside that extracted directory. The unfinished starter stops with an unfinished-task error and creates no answer file; that is the expected starting state.",
-							"```sh",
-							`rm -f ${brief.output}`,
-							...(mode === "python"
-								? ["python3 main.py"]
-								: mode === "java"
-									? [
-											"javac -encoding UTF-8 Main.java",
-											"java Main"
-										]
-									: [
-											"c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o project",
-											"./project"
-										]),
-							`cat ${brief.output}`,
-							"```",
-							mode === "java"
-								? `Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG14-MST" ? "matrix" : "priority-queue"} program. Choosing Run displays the native commands. The Input panel does not replace ${brief.input}. Read the native result in ${brief.output} after a successful run.`
-								: mode === "cpp"
-									? "The browser edits and exports C++ source; it does not compile or execute C++. Follow the native commands above with a C++20 compiler. Delete only the stale answer file before running so an old answer cannot be mistaken for a new result."
-									: "Python can also run in the site IDE. Inspect the generated output file after completing the helper; the native commands provide the same file-I/O check after export."
-						]),
+					: brief.stdio
+						? [
+								"In the site IDE, open sample.in and copy all its lines into the Input panel. Select main.py and choose Run. The untouched starter stops with NotImplementedError and prints no answer; complete its helper before expecting results. The completed program prints its answer in Console output. The input fixture is not opened automatically by this program.",
+								"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with the sample redirected into standard input:",
+								"```sh\npython3 main.py < sample.in\n```",
+								"Change the Input panel or the redirected fixture for each custom case. Reopening a saved attempt preserves its source edits; paste the desired input again before running. Keep a copy of learner work before using the separately saved instructor reference. Compare printed results using the contract above."
+							]
+						: [
+								"Save the attempt, download its ZIP and extract it. Keep the input beside the source and run inside that extracted directory. The unfinished starter stops with an unfinished-task error and creates no answer file; that is the expected starting state.",
+								"```sh",
+								`rm -f ${brief.output}`,
+								...(mode === "python"
+									? ["python3 main.py"]
+									: mode === "java"
+										? [
+												"javac -encoding UTF-8 Main.java",
+												"java Main"
+											]
+										: [
+												"c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o project",
+												"./project"
+											]),
+								`cat ${brief.output}`,
+								"```",
+								mode === "java"
+									? `Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG14-MST" ? "matrix" : "priority-queue"} program. Choosing Run displays the native commands. The Input panel does not replace ${brief.input}. Read the native result in ${brief.output} after a successful run.`
+									: mode === "cpp"
+										? "The browser edits and exports C++ source; it does not compile or execute C++. Follow the native commands above with a C++20 compiler. Delete only the stale answer file before running so an old answer cannot be mistaken for a new result."
+										: "Python can also run in the site IDE. Inspect the generated output file after completing the helper; the native commands provide the same file-I/O check after export."
+							]),
 		"Source checks validate the supplied packs; they do not grade a completed learner submission. Protected mocks and active contests begin from an empty file without these practice starters or references."
 	]
 		.join("\n\n")

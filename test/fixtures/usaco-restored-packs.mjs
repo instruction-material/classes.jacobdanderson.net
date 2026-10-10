@@ -1127,6 +1127,88 @@ export const usacoFixtures = [
 		},
 		reference: true,
 		fenwickPracticePack: "Out of Sorts, Gold bidirectional sweeps"
+	},
+	{
+		"repository": "instruction-material/USACO-Gold",
+		"revision": "1411dc946fc2144fb15014996e536165055294f8",
+		"courseId": "usaco-gold",
+		"folder": "UG2-0-1-Knapsack/starter",
+		"anchor": "usaco-gold-unit-1-dynamic-programming-knapsack-and-state-design",
+		"itemId": "usaco-gold-unit-1-dynamic-programming-knapsack-and-state-design-supplemental-problem-0-1-knapsack",
+		"mode": "java",
+		"lessonView": 2,
+		"identityLabel": "dp-practice",
+		"dpPack": "knapsack",
+		"hashes": {
+			"Main.java": "b274a092973e53f34312195293c8d22d3e6c1f246fa3e47f2137ba5ed22f3350",
+			"README.md": "f0340abec0e38193457fe59d46f2ae2ebd7fc47bd51ae3b7a03ed62973bcff4c"
+		},
+		"reference": false,
+		"demonstration": true
+	},
+	{
+		"repository": "instruction-material/USACO-Gold",
+		"revision": "1411dc946fc2144fb15014996e536165055294f8",
+		"courseId": "usaco-gold",
+		"folder": "UG2-0-1-Knapsack/solution",
+		"anchor": "usaco-gold-unit-1-dynamic-programming-knapsack-and-state-design",
+		"itemId": "usaco-gold-unit-1-dynamic-programming-knapsack-and-state-design-supplemental-problem-0-1-knapsack",
+		"mode": "java",
+		"lessonView": 2,
+		"identityLabel": "dp-practice",
+		"dpPack": "knapsack",
+		"hashes": {
+			"Main.java": "15d426f4ec5dab5ddb1e4d712084562a6e9131a24bfcc29ec4b09bcb53bddec5",
+			"README.md": "3671413a6d13c7f1c32af32949deab86a7cceb1bc5292e58e46b86d2661576d6"
+		},
+		"reference": true,
+		"demonstration": true
+	},
+	{
+		"repository": "instruction-material/USACO-Gold",
+		"revision": "1411dc946fc2144fb15014996e536165055294f8",
+		"courseId": "usaco-gold",
+		"folder": "UG40-Fruit-Feast/starter",
+		"anchor": "usaco-gold-unit-1-dynamic-programming-knapsack-and-state-design",
+		"itemId": "usaco-gold-unit-1-dynamic-programming-knapsack-and-state-design-supplemental-problem-fruit-feast",
+		"mode": "java",
+		"lessonView": 2,
+		"identityLabel": "dp-practice",
+		"dpPack": "fruit-feast",
+		"hashes": {
+			"Main.java": "bf7b5a69cfd4e8fd9a0d6737f52b5e295157f9e42e3f93d9a2933a5a06f3c4c3",
+			"README.md": "efe577a12887d46d644934c8631d80413dcf3e256b828b26093716ae40c9cbd3",
+			"sample.in": "7c1f1b1fb750363cb91a0f3b47ad7b09ea77e069165bdaa52520019ac7335245"
+		},
+		"reference": false,
+		"input": "feast.in",
+		"output": "feast.out",
+		"sample": "sample.in",
+		"expected": "8\n"
+	},
+	{
+		"repository": "instruction-material/USACO-Gold",
+		"revision": "1411dc946fc2144fb15014996e536165055294f8",
+		"courseId": "usaco-gold",
+		"folder": "UG40-Fruit-Feast/solution",
+		"anchor": "usaco-gold-unit-1-dynamic-programming-knapsack-and-state-design",
+		"itemId": "usaco-gold-unit-1-dynamic-programming-knapsack-and-state-design-supplemental-problem-fruit-feast",
+		"mode": "java",
+		"lessonView": 2,
+		"identityLabel": "dp-practice",
+		"dpPack": "fruit-feast",
+		"hashes": {
+			"Main.java": "288fa8c9dbf33ec938fdae5599801eddfda33cdcfffa830a80beb7560a97b5b6",
+			"README.md": "b8039d8c0425030728da4179a5b59df552a5876fed1a0aaf1ddf34460672b257",
+			"feast.in": "6e0e5a880cea7dbe7a77c592343b322611a0266c3f1000efa6c398c2e1c152b9",
+			"feast.out": "aa67a169b0bba217aa0aa88a65346920c84c42447c36ba5f7ea65f422c1fe5d8",
+			"sample.in": "7c1f1b1fb750363cb91a0f3b47ad7b09ea77e069165bdaa52520019ac7335245"
+		},
+		"reference": true,
+		"input": "feast.in",
+		"output": "feast.out",
+		"sample": "sample.in",
+		"expected": "8\n"
 	}
 ];
 

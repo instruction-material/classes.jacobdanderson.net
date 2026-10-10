@@ -299,10 +299,141 @@ async function verifyFenwickPracticeExport(fixture, files, directory) {
 	for (const name of ["Main.java", "README.md", fixture.sample]) assert.equal(await readFile(join(directory, name), "utf8"), files[name]);
 }
 
+function verifyKnapsackAnswer(text, weights, values, capacity) {
+	const match = /^Max value: (\d+)\nItem indic(?:es|ies) in knapsack: \[([^\]]*)\]\n$/.exec(text);
+	assert.ok(match, text);
+	const chosen = match[2].trim() ? match[2].split(",").map(value => Number(value.trim())) : [];
+	assert.equal(new Set(chosen).size, chosen.length, "An item can be selected only once");
+	assert.ok(chosen.every(index => Number.isInteger(index) && index >= 0 && index < weights.length));
+	assert.ok(chosen.reduce((sum, index) => sum + weights[index], 0) <= capacity);
+	const reported = Number(match[1]);
+	assert.equal(chosen.reduce((sum, index) => sum + values[index], 0), reported);
+	let optimum = 0;
+	for (let mask = 0; mask < 2 ** weights.length; mask++) {
+		let weight = 0;
+		let value = 0;
+		for (let index = 0; index < weights.length; index++) {
+			if (mask & 2 ** index) {
+				weight += weights[index];
+				value += values[index];
+			}
+		}
+		if (weight <= capacity) optimum = Math.max(optimum, value);
+	}
+	assert.equal(reported, optimum, "Any optimal subset and index order are accepted");
+}
+
+function fruitFeastOracle(limit, a, b) {
+	const pending = [[0, false]];
+	const visited = new Set(["0:false"]);
+	let greatest = 0;
+	for (let cursor = 0; cursor < pending.length; cursor++) {
+		const [fullness, waterUsed] = pending[cursor];
+		greatest = Math.max(greatest, fullness);
+		const next = [[fullness + a, waterUsed], [fullness + b, waterUsed]];
+		if (!waterUsed) next.push([Math.floor(fullness / 2), true]);
+		for (const [value, used] of next) {
+			const key = `${value}:${used}`;
+			if (value <= limit && !visited.has(key)) {
+				visited.add(key);
+				pending.push([value, used]);
+			}
+		}
+	}
+	return `${greatest}\n`;
+}
+
+async function verifyDpExport(fixture, files, directory) {
+	assert.match(files["README.md"], /javac -encoding UTF-8 Main.java/);
+	assert.doesNotMatch(files["README.md"], /\.\.\/README\.md/);
+	const javaHome = process.env.JAVA_HOME_21_X64 ?? process.env.JAVA_HOME;
+	const javac = process.env.JAVAC ?? (javaHome ? join(javaHome, "bin/javac") : "javac");
+	const java = process.env.JAVA ?? (javaHome ? join(javaHome, "bin/java") : "java");
+	const compileArgs = ["--release", "17", "-encoding", "UTF-8", "-Xlint:all", "-Werror", "Main.java"];
+	const compiled = await runNative(javac, compileArgs, directory);
+	assert.equal(compiled.code, 0, compiled.stderr);
+	const args = ["-ea", "-Xmx256m", "Main"];
+	if (fixture.demonstration) {
+		assert.deepEqual(Object.keys(files).sort(), ["Main.java", "README.md"]);
+		assert.match(files["README.md"], /reads no input file or terminal input/);
+		const result = await runNative(java, args, directory);
+		assert.equal(result.code, fixture.reference ? 0 : 2, result.stderr);
+		if (fixture.reference) {
+			assert.equal(result.stderr, "");
+			verifyKnapsackAnswer(result.stdout, [1, 3, 4, 5], [1, 4, 5, 7], 7);
+			const changed = files["Main.java"]
+				.replace(/int\[\] weights = \{[^}]*\};/, "int[] weights = {2};")
+				.replace(/int\[\] values = \{[^}]*\};/, "int[] values = {3};")
+				.replace("int numItems = 4;", "int numItems = 1;")
+				.replace("int maxWeight = 7;", "int maxWeight = 4;");
+			assert.notEqual(changed, files["Main.java"]);
+			try {
+				await writeFile(join(directory, "Main.java"), changed);
+				const compiledCase = await runNative(javac, compileArgs, directory);
+				assert.equal(compiledCase.code, 0, compiledCase.stderr);
+				const rerun = await runNative(java, args, directory);
+				assert.equal(rerun.code, 0, rerun.stderr);
+				assert.equal(rerun.stderr, "");
+				verifyKnapsackAnswer(rerun.stdout, [2], [3], 4);
+			}
+			finally {
+				await writeFile(join(directory, "Main.java"), files["Main.java"]);
+			}
+		}
+		else {
+			assert.equal(result.stdout, "");
+			assert.match(result.stderr, /^Cannot solve the knapsack demonstration: Complete/);
+		}
+		assert.ok((await readdir(directory)).every(name => !name.endsWith(".in") && !name.endsWith(".out")));
+	}
+	else {
+		const input = join(directory, "feast.in");
+		const output = join(directory, "feast.out");
+		assert.equal(files[fixture.sample], "8 5 6\n");
+		for (const data of [files[fixture.sample], "1 1 1\n", "10 10 10\n", "17 9 11\n", "15 4 7\n"]) {
+			await writeFile(input, data);
+			const result = await runNative(java, args, directory);
+			assert.equal(result.code, fixture.reference ? 0 : 2, result.stderr);
+			assert.equal(result.stdout, "");
+			if (fixture.reference) {
+				assert.equal(result.stderr, "");
+				assert.equal(await readFile(output, "utf8"), fruitFeastOracle(...data.trim().split(/\s+/).map(Number)));
+			}
+			else {
+				assert.match(result.stderr, /^Cannot solve feast.in: Complete/);
+				if (data === files[fixture.sample]) assert.equal(existsSync(output), false);
+				else assert.equal(await readFile(output, "utf8"), "Earlier saved answer\r\n");
+				await writeFile(output, "Earlier saved answer\r\n");
+			}
+		}
+		if (!fixture.reference) {
+			for (const data of ["0 1 1\n", "8 0 6\n", "8 9 6\n", "8 5 6 extra\n", "8 5 6\n1\n"]) {
+				await writeFile(input, data);
+				const result = await runNative(java, args, directory);
+				assert.equal(result.code, 2);
+				assert.equal(result.stdout, "");
+				assert.match(result.stderr, /^Cannot solve feast.in:/);
+				assert.equal(await readFile(output, "utf8"), "Earlier saved answer\r\n");
+			}
+			await rm(input);
+			const missing = await runNative(java, args, directory);
+			assert.equal(missing.code, 2);
+			assert.equal(missing.stdout, "");
+			assert.equal(await readFile(output, "utf8"), "Earlier saved answer\r\n");
+		}
+		assert.equal(await readFile(join(directory, fixture.sample), "utf8"), files[fixture.sample]);
+	}
+	for (const name of ["Main.java", "README.md"]) assert.equal(await readFile(join(directory, name), "utf8"), files[name]);
+}
+
 async function verifyNativeExport(fixture, files, directory) {
 	await mkdir(directory);
 	for (const [name, content] of Object.entries(files)) await writeFile(join(directory, name), content);
 	if (fixture.mode === "java") {
+		if (fixture.dpPack) {
+			await verifyDpExport(fixture, files, directory);
+			return;
+		}
 		if (fixture.fenwickPracticePack) {
 			await verifyFenwickPracticeExport(fixture, files, directory);
 			return;
@@ -617,23 +748,30 @@ nodeTest(
 			assert.throws(() =>
 				verifyStdioAnswer(feeding, "1\n2 1\nGH\n", "1\nG.\n", [2])
 			);
+			verifyKnapsackAnswer("Max value: 9\nItem indices in knapsack: [1, 2]\n", [1, 3, 4, 5], [1, 4, 5, 7], 7);
+			verifyKnapsackAnswer("Max value: 9\nItem indicies in knapsack: [2, 1]\n", [1, 3, 4, 5], [1, 4, 5, 7], 7);
+			assert.throws(() => verifyKnapsackAnswer("Max value: 6\nItem indices in knapsack: [0, 0]\n", [2], [3], 4));
+			assert.throws(() => verifyKnapsackAnswer("Max value: 7\nItem indices in knapsack: [3]\n", [1, 3, 4, 5], [1, 4, 5, 7], 7));
 			for (const fixture of usacoFixtures) {
 				const key = `${fixture.repository}/${fixture.folder}`;
 				if (verified.has(key)) continue;
 				await verifyNativeExport(fixture, await sourceFiles(fixture), join(temporary, String(verified.size)));
 				verified.add(key);
 			}
-			assert.equal(verified.size, 44);
+			assert.equal(verified.size, 48);
 			record("verified-usaco-pinned-native-contracts", {
 				roles: verified.size,
-				packs: 22,
+				packs: 24,
 				nativeJava: true,
 				samplesAndChangedInputs: true,
 				ordinaryAndSanitizedCpp: true,
 				nativeStdio: true,
 				anyOptimalFeedingLayout: true,
 				anyOptimalSleepyPlan: true,
-				goldBidirectionalSweepsAndDuplicates: true
+				goldBidirectionalSweepsAndDuplicates: true,
+				knapsackNoInputDemonstration: true,
+				anyOptimalKnapsackSubset: true,
+				fruitFeastIndependentStateSearch: true
 			});
 		}
 		finally {
@@ -739,7 +877,7 @@ nodeTest(
 				}
 				if (fixture.mode === "java") {
 					assert.match(card.text, /JDK 17 or newer/);
-					assert.match(card.text, fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute this file-I\/O\/offline-connectivity program/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute this file-I\/O\/ordering program/ : /does not execute this file-I\/O\/priority-queue program/);
+					assert.match(card.text, fixture.demonstration ? /does not execute the DP or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute this file-I\/O\/dynamic-programming program/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute this file-I\/O\/offline-connectivity program/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute this file-I\/O\/ordering program/ : /does not execute this file-I\/O\/priority-queue program/);
 					assert.match(card.text, fixture.lessonView === 1 ? /Required implementation checkpoint/ : /optional practice/);
 				}
 				if (!fixture.reference) assert.ok(card.links.every(link => !link.href.includes("/solution")), "Learner view withholds reference resources");
@@ -791,8 +929,12 @@ nodeTest(
 					assert.equal(await page.$(".stdin-panel"), null, "Native Java must not offer browser Turtle/Scanner input");
 					const output = await page.$eval(".output-panel", element => element.textContent);
 					assert.match(output, /javac -encoding UTF-8 Main.java/);
-					assert.match(output, fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute its file I\/O or offline connectivity algorithm/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute its file I\/O or ordering algorithm/ : /does not execute its file I\/O or priority queue/);
-					if (fixture.stdio) {
+					assert.match(output, fixture.demonstration ? /does not execute its dynamic programming or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute its file I\/O or dynamic programming/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute its file I\/O or offline connectivity algorithm/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute its file I\/O or ordering algorithm/ : /does not execute its file I\/O or priority queue/);
+					if (fixture.demonstration) {
+						assert.match(output, /reads no input file or standard input/);
+						assert.doesNotMatch(output, /sample.in|java Main </);
+					}
+					else if (fixture.stdio) {
 						assert.match(output, /java Main < sample.in/);
 						assert.match(output, /creates no answer file/);
 					}
@@ -936,7 +1078,8 @@ nodeTest(
 					preservedOtherAttempts: previous.length,
 					ordinaryAndSanitized: fixture.mode === "cpp",
 					unfinishedLearner: !fixture.reference,
-					nativeFileIo: !fixture.stdio,
+					nativeFileIo: !fixture.stdio && !fixture.demonstration,
+					noInputDemonstration: Boolean(fixture.demonstration),
 					nativeStdio: Boolean(fixture.stdio),
 					browserStdio: Boolean(fixture.stdio) && fixture.mode === "python",
 					nativeJava: fixture.mode === "java",
@@ -947,7 +1090,7 @@ nodeTest(
 			assert.equal(remoteWrites, 0);
 			record("verified-usaco-workflows", {
 				imports: usacoFixtures.length,
-				packs: 22,
+					packs: 24,
 				nativeJava: true,
 				roleSeparation: true,
 				consentBeforeSource: true,
