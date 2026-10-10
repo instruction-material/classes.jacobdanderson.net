@@ -11,6 +11,7 @@ const briefs: Record<
 		input: string;
 		output: string;
 		stdio?: boolean;
+		sampleFile?: string;
 		contract: string;
 		model: string;
 		tasks: string;
@@ -19,6 +20,19 @@ const briefs: Record<
 		cost: string;
 	}
 > = {
+	"UG21-Moo-Tube": {
+		title: "MooTube: weighted DSU and offline connectivity",
+		input: "mootube.in",
+		output: "mootube.out",
+		sampleFile: "sample.in",
+		contract:
+			"Use this optional practice after Unit 3's weighted DSU and sorting work; it is separate from Gold setup. The January 2018 Gold problem gives N videos and Q queries, each from 1 through 100,000. N-1 undirected edges form a tree, with one-based endpoints and relevance from 1 through 1,000,000,000. Each query gives K in that same range and a video V. Count other videos reachable using only edges with relevance at least K. The first line is N Q; the next N-1 lines are P Q R and the final Q lines are K V. Read mootube.in and write Q counts to mootube.out in original query order. Exclude V itself. [Official Gold contract](https://usaco.org/index.php?page=viewproblem2&cpid=789).",
+		model: "Sort edges by decreasing relevance and queries by decreasing K. Before answering a query, union every unused edge whose weight is at least K, including equal weights. The current DSU components are exactly those of the threshold-filtered tree. Store componentSize(V)-1 at the query's original index. This is connectivity, not a shortest-path distance or MST cost. Internal video indices are zero-based. The preserved reference uses weighted union without path compression; explain that invariant before treating compression as a later extension.",
+		tasks: "Complete the six marked learner tasks: root lookup, weighted union, root component size, descending sorting, the inclusive edge sweep and original-order answers. Keep the supplied whole-input parser and output driver. First draw a tiny filtered tree and count reachable vertices directly; in a shared walkthrough pause at the same union, size and answer-order checks. The untouched learner stops with status 2 and creates no answer file even for a one-video case. Preserve the initial optional practice before the separate changed-case retry; then close the reference, change edge weights and thresholds, reorder queries and explain one corrected mismatch.",
+		sample: "The included four-video sample has edges 1-2:3, 2-3:2 and 2-4:4. Queries (1,2), (4,1) and (3,1) produce 3, 0 and 2 on separate lines. At K=3, videos 1, 2 and 4 are connected; subtract the starting video. Process K=4 before K=3, but restore the original output order.",
+		checks: "Check N=1, no qualifying edge, equality at the threshold, repeated queries, tied edge weights, a chain, a star and reordered queries. Use independent filtered BFS or DFS for tiny trees. All answers are between 0 and N-1 and fit in int. The learner validates line/token counts and scalar bounds before solving; malformed or unfinished input leaves any old answer unchanged. The tree property is a contest precondition. The unchanged historical reference assumes valid contest input; do not claim it implements the learner's refusal behavior.",
+		cost: "Sorting costs O(N log N + Q log Q). Weighted union without path compression adds O((N+Q) log N) work, with O(N+Q) storage. A direct traversal for every query is a tiny oracle, not the full-limit Gold solution."
+	},
 	"UG0-Contest-Contract": {
 		title: "Gold setup: native input/output and 64-bit totals",
 		input: "sample.in",
@@ -225,11 +239,15 @@ function projectBrief(
 ) {
 	const brief = briefs[folder]!;
 	const placement =
-		item.learningPath === "core"
-			? "Required implementation checkpoint: complete and explain this pack before continuing."
-			: item.learningPath === "challenge"
-				? "Choose this optional challenge after the matching unit; it is not a prerequisite for completing the required spine."
-				: "This optional practice targets a diagnosed gap or an independent retry. If the same pack was already completed in the required unit, preserve that attempt and change the test cases rather than repeat identical work.";
+		folder === "UG21-Moo-Tube"
+			? item.id?.endsWith("-supplemental-gold-log-setup-and-gold-mindset")
+				? "Changed-case retry: preserve the first practice, wait at least two days, and reconstruct the DSU sweep from an empty file using tied edge weights, equality thresholds and reordered queries. Predict every result first, compare with an independent tiny traversal, and explain a corrected mismatch before revisiting the reference. This retry keeps a separate saved identity and is optional."
+				: "Optional first practice after Unit 3: trace weighted unions and descending thresholds, complete the six learner tasks, and explain component sizes and original query order. Keep this initial source attempt and two custom cases for the separate later retry. This practice does not replace Gold's native setup checkpoint."
+			: item.learningPath === "core"
+				? "Required implementation checkpoint: complete and explain this pack before continuing."
+				: item.learningPath === "challenge"
+					? "Choose this optional challenge after the matching unit; it is not a prerequisite for completing the required spine."
+					: "This optional practice targets a diagnosed gap or an independent retry. If the same pack was already completed in the required unit, preserve that attempt and change the test cases rather than repeat identical work.";
 	return [
 		`## ${brief.title}`,
 		`**Learning sequence:** ${placement}`,
@@ -251,44 +269,51 @@ function projectBrief(
 				]
 			: []),
 		"## Open, save and run",
-		`Choose Open in IDE beside the starter resource, then confirm the import. The ${mode === "python" ? "Python" : mode === "java" ? "Java" : "C++20"} pack includes ${mode === "java" ? "Main.java" : `main.${mode === "python" ? "py" : "cpp"}`} and ${brief.input}${folder === "UB1-Square-Pasture" ? "; the starter also includes README.md" : ", plus README.md"}. Existing saved attempts reopen with their edits. The starter and reference use separate project identities; reference resources are available in the authorized instructor view after an attempt.`,
-		...(brief.stdio && mode === "java"
+		`Choose Open in IDE beside the starter resource, then confirm the import. The ${mode === "python" ? "Python" : mode === "java" ? "Java" : "C++20"} pack includes ${mode === "java" ? "Main.java" : `main.${mode === "python" ? "py" : "cpp"}`} and ${brief.sampleFile ?? brief.input}${folder === "UB1-Square-Pasture" ? "; the starter also includes README.md" : ", plus README.md"}. Existing saved attempts reopen with their edits. The starter and reference use separate project identities; reference resources are available in the authorized instructor view after an attempt.`,
+		...(folder === "UG21-Moo-Tube"
 			? [
-					`Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this ${folder === "UG0-Contest-Contract" ? "native input/output checkpoint" : "input-driven data structure"}. Choosing Run displays native commands. The Input panel does not execute this project.`,
-					"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with sample.in redirected into standard input:",
-					"```sh\njavac -encoding UTF-8 Main.java\njava Main < sample.in\n```",
-					"Read the printed answers in the native terminal. Change sample.in and predict the results before rerunning. The untouched starter and refused input exit with status 2 and print no answer. This program creates no answer file; check the exit status before accepting a result, including any file created separately by shell redirection. Reopening a saved attempt preserves its source edits and separate starter/reference identities."
+					"Save the attempt, download its ZIP and extract it. Create mootube.in from the included sample.in and run in the extracted folder:",
+					"```sh\ncp sample.in mootube.in\njavac -encoding UTF-8 Main.java\njava Main\ncat mootube.out\n```",
+					"In PowerShell, use Copy-Item sample.in mootube.in and Get-Content mootube.out. Check the exit status before accepting a new answer; a previous file survives unfinished or refused learner work. Keep previous source and inputs before changing cases.",
+					"Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/offline-connectivity program. Choosing Run displays native commands. The browser Input panel does not replace mootube.in. Read mootube.out after success; the reference assumes valid contest input."
 				]
-			: brief.stdio
+			: brief.stdio && mode === "java"
 				? [
-						"In the site IDE, open sample.in and copy all its lines into the Input panel. Select main.py and choose Run. The untouched starter stops with NotImplementedError and prints no answer; complete its helper before expecting results. The completed program prints its answer in Console output. The input fixture is not opened automatically by this program.",
-						"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with the sample redirected into standard input:",
-						"```sh\npython3 main.py < sample.in\n```",
-						"Change the Input panel or the redirected fixture for each custom case. Reopening a saved attempt preserves its source edits; paste the desired input again before running. Keep a copy of learner work before using the separately saved instructor reference. Compare printed results using the contract above."
+						`Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this ${folder === "UG0-Contest-Contract" ? "native input/output checkpoint" : "input-driven data structure"}. Choosing Run displays native commands. The Input panel does not execute this project.`,
+						"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with sample.in redirected into standard input:",
+						"```sh\njavac -encoding UTF-8 Main.java\njava Main < sample.in\n```",
+						"Read the printed answers in the native terminal. Change sample.in and predict the results before rerunning. The untouched starter and refused input exit with status 2 and print no answer. This program creates no answer file; check the exit status before accepting a result, including any file created separately by shell redirection. Reopening a saved attempt preserves its source edits and separate starter/reference identities."
 					]
-				: [
-						"Save the attempt, download its ZIP and extract it. Keep the input beside the source and run inside that extracted directory. The unfinished starter stops with an unfinished-task error and creates no answer file; that is the expected starting state.",
-						"```sh",
-						`rm -f ${brief.output}`,
-						...(mode === "python"
-							? ["python3 main.py"]
-							: mode === "java"
-								? [
-										"javac -encoding UTF-8 Main.java",
-										"java Main"
-									]
-								: [
-										"c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o project",
-										"./project"
-									]),
-						`cat ${brief.output}`,
-						"```",
-						mode === "java"
-							? `Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG14-MST" ? "matrix" : "priority-queue"} program. Choosing Run displays the native commands. The Input panel does not replace ${brief.input}. Read the native result in ${brief.output} after a successful run.`
-							: mode === "cpp"
-								? "The browser edits and exports C++ source; it does not compile or execute C++. Follow the native commands above with a C++20 compiler. Delete only the stale answer file before running so an old answer cannot be mistaken for a new result."
-								: "Python can also run in the site IDE. Inspect the generated output file after completing the helper; the native commands provide the same file-I/O check after export."
-					]),
+				: brief.stdio
+					? [
+							"In the site IDE, open sample.in and copy all its lines into the Input panel. Select main.py and choose Run. The untouched starter stops with NotImplementedError and prints no answer; complete its helper before expecting results. The completed program prints its answer in Console output. The input fixture is not opened automatically by this program.",
+							"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with the sample redirected into standard input:",
+							"```sh\npython3 main.py < sample.in\n```",
+							"Change the Input panel or the redirected fixture for each custom case. Reopening a saved attempt preserves its source edits; paste the desired input again before running. Keep a copy of learner work before using the separately saved instructor reference. Compare printed results using the contract above."
+						]
+					: [
+							"Save the attempt, download its ZIP and extract it. Keep the input beside the source and run inside that extracted directory. The unfinished starter stops with an unfinished-task error and creates no answer file; that is the expected starting state.",
+							"```sh",
+							`rm -f ${brief.output}`,
+							...(mode === "python"
+								? ["python3 main.py"]
+								: mode === "java"
+									? [
+											"javac -encoding UTF-8 Main.java",
+											"java Main"
+										]
+									: [
+											"c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o project",
+											"./project"
+										]),
+							`cat ${brief.output}`,
+							"```",
+							mode === "java"
+								? `Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG14-MST" ? "matrix" : "priority-queue"} program. Choosing Run displays the native commands. The Input panel does not replace ${brief.input}. Read the native result in ${brief.output} after a successful run.`
+								: mode === "cpp"
+									? "The browser edits and exports C++ source; it does not compile or execute C++. Follow the native commands above with a C++20 compiler. Delete only the stale answer file before running so an old answer cannot be mistaken for a new result."
+									: "Python can also run in the site IDE. Inspect the generated output file after completing the helper; the native commands provide the same file-I/O check after export."
+						]),
 		"Source checks validate the supplied packs; they do not grade a completed learner submission. Protected mocks and active contests begin from an empty file without these practice starters or references."
 	]
 		.join("\n\n")

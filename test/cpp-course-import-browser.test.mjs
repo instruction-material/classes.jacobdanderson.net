@@ -1986,6 +1986,9 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 				for (const name of Object.keys(expectedFiles).filter(name => name.endsWith(".cpp"))) assert.ok(instructions.includes(`'${name}'`));
 				assert.equal(runtimeRequests, beforeRuntime, "C++ instructions never start a Python or Java runtime");
 			}
+			if (mode === "java") {
+				assert.ok(await page.$(".stdin-panel"), "Ordinary Java projects retain browser Scanner input");
+			}
 			// The Java object capstone is edited/exported here and compiled natively
 			// below; the limited browser interpreter is not its execution gate.
 			const exported = await downloadProjectFiles(page);
@@ -2120,7 +2123,7 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 					const previousStarter = (await readFile(new URL("./fixtures/dsa-quicksort-original-starter.cpp", import.meta.url), "utf8")).replaceAll("\r\n", "\n");
 					assert.equal(createHash("sha256").update(previousStarter).digest("hex"), "32ddd0d1aa8fb3f87709eb5c7bf3446265a75093483a6fff4bcdfb5c49d7fdcc");
 					assert.ok(previousStarter.includes("std::sort(values.begin(), values.end())"));
-					legacySource = "// Earlier saved learner attempt\n" + previousStarter;
+					legacySource = `// Earlier saved learner attempt\n${previousStarter}`;
 				}
 				await page.click(".cm-content");
 				await page.keyboard.down(modifier);
@@ -2165,7 +2168,7 @@ nodeTest("published bridge and C++ starters confirm, edit, save, export, reopen 
 				assert.deepEqual(Object.fromEntries(fresh.files.map(file => [file.name, file.content])), files);
 				record("verified-saved-attempt", { folder, previousKey: key, currentKey: freshKey });
 			}
-			record("verified", { repository, folder, revision, mode, standard, fileCount: Object.keys(exported).length });
+			record("verified", { repository, folder, revision, mode, standard, fileCount: Object.keys(exported).length, browserInputPanelRetained: mode === "java" });
 		}
 		assert.equal(remoteWrites, 0, "Imports never write to production services");
 	}

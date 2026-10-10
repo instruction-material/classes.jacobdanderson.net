@@ -1009,6 +1009,13 @@ const selectedProject = computed(() => {
 	return selectedProjectID.value ? null : (projects.value[0] ?? null);
 });
 
+const selectedNativeJavaInstructions = computed(() => {
+	const project = selectedProject.value;
+	return project?.mode === "java"
+		? javaNativeBuildInstructions(project.courseProjectKey)
+		: null;
+});
+
 const activeFile = computed(() => {
 	const project = selectedProject.value;
 	if (!project) return null;
@@ -8747,11 +8754,15 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 							class="input-output-grid"
 							:class="{
 								'input-output-grid--source':
-									selectedProject?.mode === 'cpp'
+									selectedProject?.mode === 'cpp' ||
+									Boolean(selectedNativeJavaInstructions)
 							}"
 						>
 							<label
-								v-if="selectedProject?.mode !== 'cpp'"
+								v-if="
+									selectedProject?.mode !== 'cpp' &&
+									!selectedNativeJavaInstructions
+								"
 								class="stdin-panel"
 							>
 								<span>Input</span>
@@ -8781,7 +8792,9 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 									{{
 										selectedProject?.mode === "cpp"
 											? "Select Build instructions for this project's native compiler command."
-											: "Output will appear here after a run."
+											: selectedNativeJavaInstructions
+												? "Select Run for this project's native Java build and input/output instructions."
+												: "Output will appear here after a run."
 									}}
 								</div>
 								<pre

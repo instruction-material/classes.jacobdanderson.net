@@ -34,7 +34,7 @@ function mooTubeGuidance(retry: boolean) {
 		"## Check and explain",
 		"Check one vertex, a threshold above every edge, a threshold equal to an edge, repeated queries, tied weights, a chain and reordered queries. For small trees, use independent BFS/DFS over edges with weight >= K as the oracle. Preserve original answer order. The supplied weighted-union reference takes O(N log N + Q log Q + (N+Q) log N) total time and O(N+Q) storage.",
 		"## Open, save and run",
-		"The historical starter folder currently contains a scope README; it is not a complete learner pack and has no confirmed IDE import. Create a separate Main.java attempt and mootube.in locally from the contract above. Use JDK 17 or newer: javac -encoding UTF-8 Main.java, then java Main. Read mootube.out after a successful run, and preserve earlier source and answer files before changing cases. Reference resources remain separate and are reviewed after an attempt. A later setup checkpoint has a different saved identity from this historical project."
+		"Choose Open in IDE and confirm the accepted learner import. Complete its six marked DSU and sweep tasks, retain the attempt, download its ZIP and create mootube.in from sample.in. Use JDK 17 or newer: javac -encoding UTF-8 Main.java, then java Main. The browser Run action shows native directions. An unfinished learner creates no answer file and preserves any earlier output. Check exit status and read mootube.out after success. The historical reference assumes valid contest input and remains separate from learner work. The first practice, changed-case retry and setup checkpoint keep distinct saved identities."
 	].join("\n\n");
 }
 
