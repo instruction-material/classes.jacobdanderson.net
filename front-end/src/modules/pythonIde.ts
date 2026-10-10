@@ -19,7 +19,7 @@ const CPP_EXTENSION_RE = /\.(?:cc|cpp|cxx)$/i;
 const CODE_EXTENSION_RE = /\.(?:cc|cpp|cxx|h|hpp|java|py)$/i;
 const SAFE_FILE_SEGMENT_RE = /^\w[\w.-]*$/;
 const ROOT_TEXT_FILE_RE =
-	/^(?:makefile|\w[\w.-]*\.(?:cc|cpp|cxx|h|hpp|csv|eps|in|java|json|md|ps|py|tsv|txt))$/i;
+	/^(?:makefile|\w[\w.-]*\.(?:cc|cpp|cxx|h|hpp|csv|eps|in|java|json|md|out|ps|py|tsv|txt))$/i;
 const IMAGE_FILE_RE = /^images\/\w[\w.-]*\.(?:gif|jpe?g|png|svg|webp)$/i;
 const AUDIO_FILE_RE = /^(?:music|sounds)\/\w[\w.-]*\.(?:mp3|ogg|wav)$/i;
 const ASSET_DIRECTORY_NAMES = new Set(["images", "music", "sounds"]);
@@ -52,7 +52,7 @@ const PYTHON_IDE_RUNTIME_RESERVED_ROOTS = new Set([
 	"zrect"
 ]);
 const TEXT_FILE_RE =
-	/^makefile$|\.(?:cc|cpp|cxx|h|hpp|csv|eps|in|java|json|md|ps|py|tsv|txt|svg)$/i;
+	/^makefile$|\.(?:cc|cpp|cxx|h|hpp|csv|eps|in|java|json|md|out|ps|py|tsv|txt|svg)$/i;
 const IMAGE_EXTENSION_RE = /\.(?:gif|jpe?g|png|svg|webp)$/i;
 const SOUND_EXTENSION_RE = /\.wav$/i;
 const MUSIC_EXTENSION_RE = /\.(?:mp3|ogg)$/i;

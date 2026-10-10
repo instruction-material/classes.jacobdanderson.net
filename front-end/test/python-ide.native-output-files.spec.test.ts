@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import {
 	listGitHubProjectFiles,
 	loadGitHubProjectFile
@@ -6,8 +6,13 @@ import {
 import {
 	getPythonIdeDefaultFileContent,
 	getPythonIdeFileKindLabel,
+	isPythonIdeTextFile,
+	isValidPythonFileName,
+	loadPythonIdeStarterFilesFromGitHub,
 	normalizeImportedPythonIdeFileName
 } from "@/modules/pythonIde";
+
+afterEach(() => vi.unstubAllGlobals());
 
 describe("native answer files", () => {
 	it("imports all five Balanced Photo reference files with the answer as text", async () => {
@@ -51,6 +56,45 @@ describe("native answer files", () => {
 		);
 		expect(getPythonIdeFileKindLabel("bphoto.out")).toBe("Text");
 		expect(getPythonIdeDefaultFileContent("bphoto.out")).toBe("");
+		expect(isValidPythonFileName("bphoto.out")).toBe(true);
+		expect(isPythonIdeTextFile("bphoto.out")).toBe(true);
+		const contents: Record<string, string> = {
+			"Main.java":
+				"class Main { public static void main(String[] args) {} }\n",
+			"README.md": "# Reference\n",
+			"sample.in": "1\n0\n",
+			"bphoto.in": "1\n0\n",
+			"bphoto.out": "3\n"
+		};
+		vi.stubGlobal("fetch", async (value: string | URL | Request) => {
+			const url = new URL(String(value));
+			if (url.hostname === "api.github.com") {
+				return new Response(
+					JSON.stringify(
+						Object.entries(contents).map(([name, content]) => ({
+							type: "file",
+							name,
+							path: `${folder}/${name}`,
+							size: content.length,
+							download_url: null
+						}))
+					)
+				);
+			}
+			const name = url.pathname.split("/").at(-1)!;
+			if (!(name in contents))
+				throw new Error(`Unexpected fixture path ${url.pathname}`);
+			return new Response(contents[name]);
+		});
+		const importedFiles = await loadPythonIdeStarterFilesFromGitHub(
+			`https://github.com/instruction-material/USACO-Gold/tree/main/${folder}`,
+			"java"
+		);
+		expect(
+			Object.fromEntries(
+				importedFiles.map(file => [file.name, file.content])
+			)
+		).toEqual(contents);
 	});
 
 	it("continues to reject binary executable content with an out suffix", async () => {
