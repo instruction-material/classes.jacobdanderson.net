@@ -12,6 +12,10 @@ const mstItems = new Set([
 	"usaco-gold-unit-3-msts-dsu-and-connectivity-proofs-curriculum-core-project-msts-dsu-and-connectivity-optimization",
 	"usaco-gold-unit-3-msts-dsu-and-connectivity-proofs-supplemental-problem-mst"
 ]);
+const mootubeItems = new Set([
+	"usaco-gold-usg0-setup-contest-contract-and-gold-mindset-curriculum-core-project-setup-and-gold-mindset",
+	"usaco-gold-usg0-setup-contest-contract-and-gold-mindset-supplemental-gold-log-setup-and-gold-mindset"
+]);
 const fenwickItems = new Set([
 	"usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-curriculum-core-project-fenwick-trees-ordering-and-range-structure",
 	"usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-supplemental-problem-binary-indexed-tree-fenwick-tree"
@@ -24,7 +28,8 @@ export function javaNativeBuildInstructions(courseProjectKey?: string) {
 		(!dijkstraItems.has(item ?? "") &&
 			!mstItems.has(item ?? "") &&
 			!fenwickItems.has(item ?? "") &&
-			!setupItems.has(item ?? "")) ||
+			!setupItems.has(item ?? "") &&
+			!mootubeItems.has(item ?? "")) ||
 		!["starter", "reference"].includes(role ?? "") ||
 		extra !== undefined
 	) {
@@ -41,6 +46,20 @@ export function javaNativeBuildInstructions(courseProjectKey?: string) {
 			"Read the sum in the native terminal. This program reads standard input and prints standard output; it creates no answer file. The site's Input panel does not run this native project.",
 			"Complete calculateTotal using a long accumulator. The untouched starter reports unfinished work; refused input exits with status 2. Both print no answer. Check exit status before accepting a result.",
 			"Change sample.in and predict the new sum before rerunning. Check N=0, negative values, cancellation, a sum beyond int range and missing or extra tokens. Preserve the first attempt before the optional changed-case retry."
+		];
+	}
+	if (mootubeItems.has(item!)) {
+		return [
+			"Save and download this project's ZIP, then extract it.",
+			"This MooTube project requires a native JDK 17 or newer. The site's Java teaching preview does not execute its file I/O or offline connectivity algorithm.",
+			"Create mootube.in from sample.in and run inside the extracted folder:",
+			"cp sample.in mootube.in",
+			"In PowerShell, use Copy-Item sample.in mootube.in.",
+			"javac -encoding UTF-8 Main.java",
+			"java Main",
+			"Read mootube.out after a successful run. The browser Input panel does not replace the native file.",
+			"Complete the six DSU and ordered-sweep tasks. An untouched learner exits with status 2 and creates no answer file. Input or task failure preserves an earlier answer; check exit status before accepting a result. The historical reference assumes valid contest input.",
+			"Change edge weights, thresholds and query order; predict filtered component sizes minus one. Preserve the first practice attempt before the separate changed-case retry."
 		];
 	}
 	if (fenwickItems.has(item!)) {

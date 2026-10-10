@@ -18,6 +18,7 @@ import { confirmProjectImport, downloadProjectZip, openProjectSidebar } from "./
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
 const taskId = process.env.CLASSES_FAMILY_TASK_ID ?? "usaco-course-import-browser-ci";
 const changes = {
+	"UG21-Moo-Tube": ["5 4\n1 2 7\n2 3 7\n3 4 7\n4 5 7\n8 3\n7 5\n1 1\n7 2\n", "0\n4\n4\n4\n"],
 	"UG0-Contest-Contract": ["3\n-1000000000 -1000000000 -1000000000\n", "-3000000000\n"],
 	"UG22-Binary-Indexed-Tree-Fenwick-Tree": ["2 5\n1000000000 1000000000\nPREFIX -1\nADD 0 1000000000\nRANGE 0 1\nADD 1 -1000000000\nPREFIX 1\n", "0\n3000000000\n2000000000\n"],
 	"UG14-MST": ["4 5\n0 1 999999999\n0 1 1000000000\n1 2 1000000000\n2 3 1000000000\n3 3 0\n", "1 0\n2 1\n3 2\nTotal Distance: 2999999999\n"],
@@ -59,7 +60,13 @@ async function verifyGoldPracticePlacement(page, origin, fixture, screenshotRoot
 		await page.waitForFunction(selector => [...document.querySelector(selector)?.querySelectorAll(".item-content-markdown h2") ?? []].some(heading => heading.textContent === "Open, save and run"), {}, selector);
 		const card = await page.$eval(selector, item => ({ text: item.textContent, links: [...item.querySelectorAll("a")].map(link => ({ href: link.getAttribute("href"), import: link.classList.contains("is-ide-starter") })) }));
 		assert.ok(card.links.some(link => link.href === `https://github.com/instruction-material/USACO-Gold/tree/main/${folder}/starter`));
-		assert.ok(card.links.every(link => !link.import), "README-only legacy packs must not offer a confirmed import");
+		const confirmed = folder === "UG21-Moo-Tube";
+		if (confirmed) {
+			assert.ok(card.links.some(link => link.import && new URL(link.href, origin).searchParams.get("projectKey") === `usaco-gold:${item}:starter`));
+		}
+		else {
+			assert.ok(card.links.every(link => !link.import), "README-only legacy packs must not offer a confirmed import");
+		}
 		if (!fixture.reference) assert.ok(card.links.every(link => !link.href.includes("/solution")));
 		assert.match(card.text, /Contract and reasoning/);
 		assert.match(card.text, /Check and explain/);
@@ -67,7 +74,7 @@ async function verifyGoldPracticePlacement(page, origin, fixture, screenshotRoot
 			const element = await page.$(selector);
 			await element.screenshot({ path: join(screenshotRoot, process.env.COURSE_IMPORT_SCREENSHOT_DIR, `course-import-usaco-gold-legacy-setup-${index}-${fixture.reference ? "reference" : "learner"}-lesson.png`) });
 		}
-		record("verified-gold-setup-placement", { preservedItemId: item, destination: module, sourceFolder: folder, role: fixture.reference ? "reference" : "learner", viewportWidth: page.viewport().width, confirmedIdeImport: false });
+		record("verified-gold-setup-placement", { preservedItemId: item, destination: module, sourceFolder: folder, role: fixture.reference ? "reference" : "learner", viewportWidth: page.viewport().width, confirmedIdeImport: confirmed });
 	}
 }
 
@@ -182,6 +189,49 @@ async function verifyNativeExport(fixture, files, directory) {
 	await mkdir(directory);
 	for (const [name, content] of Object.entries(files)) await writeFile(join(directory, name), content);
 	if (fixture.mode === "java") {
+		const mootube = fixture.folder.startsWith("UG21-Moo-Tube/");
+		if (mootube) {
+			assert.match(files["README.md"], /with both between\s+1 and 100000/);
+			assert.match(files["README.md"], /javac --release 17 -encoding UTF-8/);
+			assert.doesNotMatch(files["README.md"], /\.\.\/README\.md/);
+			const javaHome = process.env.JAVA_HOME_21_X64 ?? process.env.JAVA_HOME;
+			const javac = process.env.JAVAC ?? (javaHome ? join(javaHome, "bin/javac") : "javac");
+			const java = process.env.JAVA ?? (javaHome ? join(javaHome, "bin/java") : "java");
+			const compile = await runNative(javac, ["--release", "17", "-encoding", "UTF-8", "-Xlint:all", "-Werror", "Main.java"], directory);
+			assert.equal(compile.code, 0, compile.stderr);
+			const input = join(directory, fixture.input);
+			const output = join(directory, fixture.output);
+			await writeFile(input, files[fixture.sample]);
+			const args = ["-ea", "-Xmx256m", "Main"];
+			const result = await runNative(java, args, directory);
+			assert.equal(result.stdout, "");
+			if (fixture.reference) {
+				assert.equal(result.code, 0, result.stderr);
+				assert.equal(result.stderr, "");
+				assert.equal(await readFile(output, "utf8"), fixture.expected);
+				const [changedInput, expected] = changes["UG21-Moo-Tube"];
+				await writeFile(input, changedInput);
+				const changed = await runNative(java, args, directory);
+				assert.equal(changed.code, 0, changed.stderr);
+				assert.equal(changed.stderr, "");
+				assert.equal(changed.stdout, "");
+				assert.equal(await readFile(output, "utf8"), expected);
+			}
+			else {
+				assert.equal(result.code, 2);
+				assert.equal(result.stderr, "Cannot solve mootube.in: Complete the six MooTube tasks before producing an answer\n");
+				assert.equal(existsSync(output), false);
+				await writeFile(output, "Earlier saved answer\n");
+				await writeFile(input, "1 1\n0 1\n");
+				const refused = await runNative(java, args, directory);
+				assert.equal(refused.code, 2);
+				assert.equal(refused.stdout, "");
+				assert.match(refused.stderr, /^Cannot solve mootube.in:/);
+				assert.equal(await readFile(output, "utf8"), "Earlier saved answer\n");
+			}
+			assert.equal(await readFile(join(directory, fixture.sample), "utf8"), files[fixture.sample]);
+			return;
+		}
 		const setup = fixture.folder.startsWith("UG0-Contest-Contract/");
 		assert.match(files["README.md"], setup ? /0 <= N <= 200000/ : fixture.stdio ? /1 <= N <= 200000/ : /1 <= N <= 2000/);
 		assert.match(files["README.md"], /javac -encoding UTF-8 Main.java/);
@@ -405,10 +455,10 @@ nodeTest(
 				await verifyNativeExport(fixture, await sourceFiles(fixture), join(temporary, String(verified.size)));
 				verified.add(key);
 			}
-			assert.equal(verified.size, 32);
+			assert.equal(verified.size, 34);
 			record("verified-usaco-pinned-native-contracts", {
 				roles: verified.size,
-				packs: 16,
+				packs: 17,
 				nativeJava: true,
 				samplesAndChangedInputs: true,
 				ordinaryAndSanitizedCpp: true,
@@ -496,7 +546,9 @@ nodeTest(
 				fixture = current;
 				files = await sourceFiles(fixture);
 				const sourceUrl = `https://github.com/${fixture.repository}/tree/main/${fixture.folder}`;
-				const selector = `a[href='${sourceUrl}']`;
+				const selector = fixture.folder.startsWith("UG21-Moo-Tube/")
+					? `#${fixture.anchor}-${fixture.itemId} a[href='${sourceUrl}']`
+					: `a[href='${sourceUrl}']`;
 				const screenshotKey = `${fixture.courseId}-${fixture.folder.replaceAll("/", "-")}${fixture.identityLabel ? `-${fixture.identityLabel}` : ""}`;
 				const before = sourceRequests;
 				catalog = true;
@@ -517,7 +569,7 @@ nodeTest(
 				}
 				if (fixture.mode === "java") {
 					assert.match(card.text, /JDK 17 or newer/);
-					assert.match(card.text, fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : /does not execute this file-I\/O\/priority-queue program/);
+					assert.match(card.text, fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute this file-I\/O\/offline-connectivity program/ : /does not execute this file-I\/O\/priority-queue program/);
 					assert.match(card.text, fixture.lessonView === 1 ? /Required implementation checkpoint/ : /optional practice/);
 				}
 				if (!fixture.reference) assert.ok(card.links.every(link => !link.href.includes("/solution")), "Learner view withholds reference resources");
@@ -566,9 +618,10 @@ nodeTest(
 				if (fixture.mode === "java") {
 					await page.click("button.run-control");
 					await page.waitForFunction(() => document.querySelector("[data-testid='ide-run-status']")?.textContent.trim() === "Native build instructions");
+					assert.equal(await page.$(".stdin-panel"), null, "Native Java must not offer browser Turtle/Scanner input");
 					const output = await page.$eval(".output-panel", element => element.textContent);
 					assert.match(output, /javac -encoding UTF-8 Main.java/);
-					assert.match(output, fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : /does not execute its file I\/O or priority queue/);
+					assert.match(output, fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute its file I\/O or offline connectivity algorithm/ : /does not execute its file I\/O or priority queue/);
 					if (fixture.stdio) {
 						assert.match(output, /java Main < sample.in/);
 						assert.match(output, /creates no answer file/);
@@ -717,13 +770,14 @@ nodeTest(
 					nativeStdio: Boolean(fixture.stdio),
 					browserStdio: Boolean(fixture.stdio) && fixture.mode === "python",
 					nativeJava: fixture.mode === "java",
-					browserNativeInstructions: fixture.mode === "java"
+					browserNativeInstructions: fixture.mode === "java",
+					browserInputPanelHidden: fixture.mode === "java"
 				});
 			}
 			assert.equal(remoteWrites, 0);
 			record("verified-usaco-workflows", {
 				imports: usacoFixtures.length,
-				packs: 16,
+				packs: 17,
 				nativeJava: true,
 				roleSeparation: true,
 				consentBeforeSource: true,

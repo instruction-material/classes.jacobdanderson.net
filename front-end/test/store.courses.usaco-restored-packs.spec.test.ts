@@ -255,13 +255,33 @@ describe("restored USACO project workflows", () => {
 				`https://github.com/instruction-material/USACO-Gold/tree/main/${folder}/starter`
 			);
 			expect(item.learningPath).toBe(placement);
-			expect(item.ideImport).not.toBe(true);
+			if (folder === "UG21-Moo-Tube") expect(item.ideImport).toBe(true);
+			else expect(item.ideImport).not.toBe(true);
 			expect(item.solutionLink).toBeUndefined();
 			expect(item.content).toContain("Contract and reasoning");
 			expect(item.content).toContain("Check and explain");
-			expect(
-				javaNativeBuildInstructions(`usaco-gold:${id}:starter`)
-			).toBeNull();
+			const native = javaNativeBuildInstructions(
+				`usaco-gold:${id}:starter`
+			);
+			if (folder === "UG21-Moo-Tube") {
+				expect(native!.join("\n")).toContain("mootube.in");
+				expect(native!.join("\n")).toContain("mootube.out");
+				expect(item.content).toContain("six marked learner tasks");
+				const mootube = module.supplementalProjects.filter(entry =>
+					entry.projectLink?.includes("/UG21-Moo-Tube/starter")
+				);
+				expect(mootube).toHaveLength(2);
+				expect(mootube[0]!.content).toContain(
+					"Optional first practice after Unit 3"
+				);
+				expect(mootube[1]!.content).toContain("Changed-case retry");
+				expect(mootube[1]!.content).toContain("wait at least two days");
+				expect(mootube[0]!.content).not.toBe(mootube[1]!.content);
+				expect(item.content).toContain("original query order");
+				expect(item.content).toContain(
+					"reference assumes valid contest input"
+				);
+			} else expect(native).toBeNull();
 		}
 	});
 

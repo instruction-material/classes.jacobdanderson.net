@@ -817,6 +817,94 @@ export const usacoFixtures = [
 		},
 		reference: true,
 		unfinishedTask: "setup"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "47b24af2b35c8c228ee1ff7fc982fae024563365",
+		courseId: "usaco-gold",
+		folder: "UG21-Moo-Tube/starter",
+		anchor: "usaco-gold-unit-3-msts-dsu-and-connectivity-proofs",
+		itemId: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset-curriculum-core-project-setup-and-gold-mindset",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "practice",
+		input: "mootube.in",
+		output: "mootube.out",
+		sample: "sample.in",
+		expected: "3\n0\n2\n",
+		hashes: {
+			"Main.java": "05a8d28f3f752fa84d269ee6560582b81c236b391a915bdc53c01d38b4a16ab9",
+			"README.md": "2b865b0e1d0c28ebf1f4a093efd0ffb7103e902633a26b6531a175b27715a337",
+			"sample.in": "10f75fc39705614910e72b9bf5db112f8aa6946dbec806fabe34dd94d3bb5669"
+		},
+		reference: false,
+		unfinishedTask: "MooTube"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "47b24af2b35c8c228ee1ff7fc982fae024563365",
+		courseId: "usaco-gold",
+		folder: "UG21-Moo-Tube/solution",
+		anchor: "usaco-gold-unit-3-msts-dsu-and-connectivity-proofs",
+		itemId: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset-curriculum-core-project-setup-and-gold-mindset",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "practice",
+		input: "mootube.in",
+		output: "mootube.out",
+		sample: "sample.in",
+		expected: "3\n0\n2\n",
+		hashes: {
+			"Main.java": "0e47f318ee65993f390f6e3e27270976c8403365bff069dc5088c7b627ebd613",
+			"README.md": "45d01b0b0303c84aeb0b6bc1477a662e6706073d1666a82b4a4b0032ed24ef24",
+			"sample.in": "10f75fc39705614910e72b9bf5db112f8aa6946dbec806fabe34dd94d3bb5669"
+		},
+		reference: true,
+		unfinishedTask: "MooTube"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "47b24af2b35c8c228ee1ff7fc982fae024563365",
+		courseId: "usaco-gold",
+		folder: "UG21-Moo-Tube/starter",
+		anchor: "usaco-gold-unit-3-msts-dsu-and-connectivity-proofs",
+		itemId: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset-supplemental-gold-log-setup-and-gold-mindset",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "retry",
+		input: "mootube.in",
+		output: "mootube.out",
+		sample: "sample.in",
+		expected: "3\n0\n2\n",
+		hashes: {
+			"Main.java": "05a8d28f3f752fa84d269ee6560582b81c236b391a915bdc53c01d38b4a16ab9",
+			"README.md": "2b865b0e1d0c28ebf1f4a093efd0ffb7103e902633a26b6531a175b27715a337",
+			"sample.in": "10f75fc39705614910e72b9bf5db112f8aa6946dbec806fabe34dd94d3bb5669"
+		},
+		reference: false,
+		unfinishedTask: "MooTube"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "47b24af2b35c8c228ee1ff7fc982fae024563365",
+		courseId: "usaco-gold",
+		folder: "UG21-Moo-Tube/solution",
+		anchor: "usaco-gold-unit-3-msts-dsu-and-connectivity-proofs",
+		itemId: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset-supplemental-gold-log-setup-and-gold-mindset",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "retry",
+		input: "mootube.in",
+		output: "mootube.out",
+		sample: "sample.in",
+		expected: "3\n0\n2\n",
+		hashes: {
+			"Main.java": "0e47f318ee65993f390f6e3e27270976c8403365bff069dc5088c7b627ebd613",
+			"README.md": "45d01b0b0303c84aeb0b6bc1477a662e6706073d1666a82b4a4b0032ed24ef24",
+			"sample.in": "10f75fc39705614910e72b9bf5db112f8aa6946dbec806fabe34dd94d3bb5669"
+		},
+		reference: true,
+		unfinishedTask: "MooTube"
 	}
 ];
 
