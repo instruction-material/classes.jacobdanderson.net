@@ -122,6 +122,7 @@ describe("restored USACO project workflows", () => {
 				const stdio =
 					pack.folder === "UB62-Cow-College" ||
 					pack.folder === "UB63-Feeding-the-Cows" ||
+					pack.folder === "UG0-Contest-Contract" ||
 					pack.folder === "UG22-Binary-Indexed-Tree-Fenwick-Tree";
 				expect(item.content).toContain(
 					stdio ? "prints no answer" : "no answer file"
@@ -147,6 +148,120 @@ describe("restored USACO project workflows", () => {
 							: "python3 main.py"
 				);
 			}
+		}
+	});
+
+	it("replaces advanced setup work with a distinct native checkpoint and retry", async () => {
+		const course = (await useCoursesStore().loadCourseById("usaco-gold"))!;
+		const setup = course.modules.find(module =>
+			module.title.startsWith("USG0")
+		)!;
+		const core = setup.curriculum.find(item =>
+			item.projectLink?.includes("/UG0-Contest-Contract/starter")
+		)!;
+		const retry = setup.supplementalProjects.find(item =>
+			item.projectLink?.includes("/UG0-Contest-Contract/starter")
+		)!;
+		expect(core.id).toBe(
+			"usaco-gold-usg0-setup-contest-contract-and-gold-mindset-curriculum-core-project-native-input-output-checkpoint"
+		);
+		expect(retry.id).toBe(
+			"usaco-gold-usg0-setup-contest-contract-and-gold-mindset-supplemental-native-input-output-retry"
+		);
+		expect(core.learningPath).toBe("core");
+		expect(retry.learningPath).toBe("choice");
+		expect(core.id).not.toBe(retry.id);
+		for (const item of [core, retry]) {
+			expect(item.ideImport).toBe(true);
+			expect(item.solutionLink).toBeUndefined();
+			for (const text of [
+				"calculateTotal",
+				"2999999990",
+				"200,000,000,000,000",
+				"N=0",
+				"O(N) memory",
+				"authored sample",
+				"changed-case retry",
+				"PowerShell",
+				"java Main < sample.in"
+			])
+				expect(item.content).toContain(text);
+			for (const role of ["starter", "reference"]) {
+				const instructions = javaNativeBuildInstructions(
+					`usaco-gold:${item.id}:${role}`
+				)!.join("\n");
+				expect(instructions).toContain(
+					"native input/output checkpoint"
+				);
+				expect(instructions).toContain("creates no answer file");
+				expect(instructions).toContain("calculateTotal");
+			}
+			for (const alias of item.aliases ?? [])
+				expect(alias).not.toContain(
+					"setup-and-gold-mindset-curriculum-core-project-setup-and-gold-mindset"
+				);
+		}
+		for (const item of [...setup.curriculum, ...setup.supplementalProjects])
+			expect(item.projectLink ?? "").not.toMatch(
+				/UG21-Moo-Tube|UG24-|UG27-/
+			);
+	});
+
+	it("moves historical advanced practice after its prerequisites without changing saved keys", async () => {
+		const course = (await useCoursesStore().loadCourseById("usaco-gold"))!;
+		const prefix =
+			"usaco-gold-usg0-setup-contest-contract-and-gold-mindset";
+		for (const [suffix, unit, folder, placement] of [
+			[
+				"curriculum-core-project-setup-and-gold-mindset",
+				"Unit 3:",
+				"UG21-Moo-Tube",
+				"choice"
+			],
+			[
+				"supplemental-gold-log-setup-and-gold-mindset",
+				"Unit 3:",
+				"UG21-Moo-Tube",
+				"choice"
+			],
+			[
+				"supplemental-why-did-the-cow-cross-the-road-iii",
+				"Unit 4:",
+				"UG24-Why-Did-the-Cow-Cross-the-Road-III",
+				"choice"
+			],
+			[
+				"supplemental-snow-boots",
+				"Unit 4:",
+				"UG27-Snow-Boots",
+				"challenge"
+			]
+		]) {
+			const id = `${prefix}-${suffix}`;
+			const module = course.modules.find(module =>
+				module.title.startsWith(unit!)
+			)!;
+			const matches = course.modules
+				.flatMap(module => [
+					...module.curriculum,
+					...module.supplementalProjects
+				])
+				.filter(item => item.id === id);
+			expect(matches).toHaveLength(1);
+			const item = module.supplementalProjects.find(
+				item => item.id === id
+			)!;
+			expect(item.projectLink).toBe(
+				`https://github.com/instruction-material/USACO-Gold/tree/main/${folder}/starter`
+			);
+			expect(item.learningPath).toBe(placement);
+			expect(item.ideImport).not.toBe(true);
+			expect(item.solutionLink).toBeUndefined();
+			expect(item.content).toContain("Contract and reasoning");
+			expect(item.content).toContain("Check and explain");
+			expect(
+				javaNativeBuildInstructions(`usaco-gold:${id}:starter`)
+			).toBeNull();
 		}
 	});
 

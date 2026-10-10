@@ -2,6 +2,12 @@
 // Legacy USACO folders mix languages and may still contain only a README.
 export const usacoRestoredResources = [
 	{
+		course: "usaco-gold",
+		repository: "USACO-Gold",
+		folder: "UG0-Contest-Contract",
+		mode: "java"
+	},
+	{
 		course: "usaco-bronze",
 		repository: "USACO-Bronze",
 		folder: "UB1-Square-Pasture",
