@@ -993,6 +993,140 @@ export const usacoFixtures = [
 		},
 		reference: true,
 		orderingPack: "Snow Boots"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "6e8639fc5b532645882d844efacdaaefba29cf8c",
+		courseId: "usaco-gold",
+		folder: "UG23-Balanced-Photo/starter",
+		anchor: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure",
+		itemId: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-supplemental-problem-balanced-photo",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "fenwick-practice",
+		input: "bphoto.in",
+		output: "bphoto.out",
+		sample: "sample.in",
+		expected: "3\n",
+		hashes: {
+			"Main.java": "f80dc07f068735ed522a3d396ac9bd399dec4f5f891b8df20e45b90bdf3db0bd",
+			"README.md": "b44e9d4e472c35f00b5ac9fa7289ef3f1974287376e861b551671af50811e489",
+			"sample.in": "be912625239e5ededbc0e96c96febb67527da4731d6c8e2869159800cfbf630c"
+		},
+		reference: false,
+		fenwickPracticePack: "Balanced Photo"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "6e8639fc5b532645882d844efacdaaefba29cf8c",
+		courseId: "usaco-gold",
+		folder: "UG23-Balanced-Photo/solution",
+		anchor: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure",
+		itemId: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-supplemental-problem-balanced-photo",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "fenwick-practice",
+		input: "bphoto.in",
+		output: "bphoto.out",
+		sample: "sample.in",
+		expected: "3\n",
+		hashes: {
+			"Main.java": "0d32ca793c716e085b62d3b243ffbb0126f6257aa13d47f68384ba14cffee4ee",
+			"README.md": "8cc34df855a769bf07655cb926714c5bcde024995353b53a4f664064f5f44ec1",
+			"sample.in": "be912625239e5ededbc0e96c96febb67527da4731d6c8e2869159800cfbf630c",
+			"bphoto.in": "a519e4110b6af7e6229e43a3db8e4c0103f214c046a7bc50c79c2bc072886ba3",
+			"bphoto.out": "1121cfccd5913f0a63fec40a6ffd44ea64f9dc135c66634ba001d10bcf4302a2"
+		},
+		reference: true,
+		fenwickPracticePack: "Balanced Photo"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "6e8639fc5b532645882d844efacdaaefba29cf8c",
+		courseId: "usaco-gold",
+		folder: "UG25-Sleepy-Cow-Sorting/starter",
+		anchor: "usaco-gold-optional-gold-problem-bank",
+		itemId: "usaco-gold-optional-gold-problem-bank-supplemental-problem-sleepy-cow-sorting",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "fenwick-practice",
+		input: "sleepy.in",
+		output: "sleepy.out",
+		sample: "sample.in",
+		expected: "3\n2 2 3",
+		hashes: {
+			"Main.java": "6b5b6442a2dc4b2e645375aec1a30cb6d3d8cefcb5311f55b47355ba01c22adb",
+			"README.md": "3f79c757aa68bf23f3e1393a1d22989ef8deb4dc40d3308c63518683c7753d1e",
+			"sample.in": "4f3b6886aa85886129724c1709a7f2bc577251532c71936e252e781b4add1de2"
+		},
+		reference: false,
+		fenwickPracticePack: "Sleepy Cow Sorting"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "6e8639fc5b532645882d844efacdaaefba29cf8c",
+		courseId: "usaco-gold",
+		folder: "UG25-Sleepy-Cow-Sorting/solution",
+		anchor: "usaco-gold-optional-gold-problem-bank",
+		itemId: "usaco-gold-optional-gold-problem-bank-supplemental-problem-sleepy-cow-sorting",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "fenwick-practice",
+		input: "sleepy.in",
+		output: "sleepy.out",
+		sample: "sample.in",
+		expected: "3\n2 2 3",
+		hashes: {
+			"Main.java": "fe3b05326beffd47e07a8da55fdf7e56440cad1b70904a227b590c7e3fa97d93",
+			"README.md": "d954db54b911125863b8e8b51d0eaed2801e61c25a38060fe1d9dbe3485dd62a",
+			"sample.in": "4f3b6886aa85886129724c1709a7f2bc577251532c71936e252e781b4add1de2"
+		},
+		reference: true,
+		fenwickPracticePack: "Sleepy Cow Sorting"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "6e8639fc5b532645882d844efacdaaefba29cf8c",
+		courseId: "usaco-gold",
+		folder: "UG26-Out-of-Sorts/starter",
+		anchor: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure",
+		itemId: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-supplemental-problem-out-of-sorts",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "fenwick-practice",
+		input: "sort.in",
+		output: "sort.out",
+		sample: "sample.in",
+		expected: "2\n",
+		hashes: {
+			"Main.java": "ca259839e756bb1112c0a3f68eea43e6dd074a219adc5ae619ec848675f36104",
+			"README.md": "77d05a54908f56ae8be7fccf6a08cee336a0470ab86ea4d3da256288167785a4",
+			"sample.in": "e5b90640d67d229f05d058d59ab5b7bd84711ed4b23360c73c1d435087543417"
+		},
+		reference: false,
+		fenwickPracticePack: "Out of Sorts, Gold bidirectional sweeps"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "6e8639fc5b532645882d844efacdaaefba29cf8c",
+		courseId: "usaco-gold",
+		folder: "UG26-Out-of-Sorts/solution",
+		anchor: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure",
+		itemId: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-supplemental-problem-out-of-sorts",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "fenwick-practice",
+		input: "sort.in",
+		output: "sort.out",
+		sample: "sample.in",
+		expected: "2\n",
+		hashes: {
+			"Main.java": "301583420c366b781ff7269f804b71cc2944710f5134b569eaf60c03a18b2aff",
+			"README.md": "ddf8c023e154e966c54eb9b13336ab725893d6439fb4edc0d2f4c2bd738ac933",
+			"sample.in": "e5b90640d67d229f05d058d59ab5b7bd84711ed4b23360c73c1d435087543417"
+		},
+		reference: true,
+		fenwickPracticePack: "Out of Sorts, Gold bidirectional sweeps"
 	}
 ];
 

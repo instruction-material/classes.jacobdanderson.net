@@ -146,6 +146,56 @@ describe("Python project routes", () => {
 		}
 	});
 
+	it("saves complete native Java packs with root text answer files", async () => {
+		const files = [
+			{
+				name: "Main.java",
+				content:
+					"class Main { public static void main(String[] args) {} }\n"
+			},
+			{ name: "README.md", content: "# Native reference\n" },
+			{ name: "sample.in", content: "1\n0\n" },
+			{ name: "bphoto.in", content: "1\r\n0\r\n" },
+			{ name: "bphoto.out", content: "0\n" }
+		];
+		for (const owner of ["user", "course-code"] as const) {
+			await withPythonProjectRoute(async baseUrl => {
+				const response = await postJson(baseUrl, {
+					files,
+					activeFileName: "bphoto.out",
+					mode: "java",
+					title: "Native Java reference"
+				});
+				expect(response.status).toBe(201);
+				const body = await response.json();
+				expect(body.project.files).toEqual(
+					files.map(file => ({ ...file, encoding: "text" }))
+				);
+				expect(modelMocks.pythonProjectCreate).toHaveBeenLastCalledWith(
+					expect.objectContaining({
+						files: files.map(file => ({
+							...file,
+							encoding: "text"
+						})),
+						user: owner === "user" ? userID : courseCodeLearnerID
+					})
+				);
+				for (const name of [
+					"../bphoto.out",
+					"/bphoto.out",
+					"nested/bphoto.out",
+					"bphoto.exe"
+				]) {
+					const invalid = await postJson(baseUrl, {
+						files: [...files, { name, content: "0\n" }],
+						mode: "java"
+					});
+					expect(invalid.status).toBe(400);
+				}
+			}, owner);
+		}
+	});
+
 	it("accepts nested Python package files for signed-in IDE projects", async () => {
 		await withPythonProjectRoute(async baseUrl => {
 			const response = await postJson(baseUrl, {

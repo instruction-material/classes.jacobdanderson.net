@@ -19,7 +19,7 @@ const CPP_EXTENSION_RE = /\.(?:cc|cpp|cxx)$/i;
 const CODE_EXTENSION_RE = /\.(?:cc|cpp|cxx|h|hpp|java|py)$/i;
 const SAFE_FILE_SEGMENT_RE = /^\w[\w.-]*$/;
 const ROOT_TEXT_FILE_RE =
-	/^(?:makefile|\w[\w.-]*\.(?:cc|cpp|cxx|h|hpp|csv|eps|in|java|json|md|ps|py|tsv|txt))$/i;
+	/^(?:makefile|\w[\w.-]*\.(?:cc|cpp|cxx|h|hpp|csv|eps|in|java|json|md|out|ps|py|tsv|txt))$/i;
 const IMAGE_FILE_RE = /^images\/\w[\w.-]*\.(?:gif|jpe?g|png|svg|webp)$/i;
 const AUDIO_FILE_RE = /^(?:music|sounds)\/\w[\w.-]*\.(?:mp3|ogg|wav)$/i;
 const ASSET_DIRECTORY_NAMES = new Set(["images", "music", "sounds"]);
@@ -52,7 +52,7 @@ const PYTHON_IDE_RUNTIME_RESERVED_ROOTS = new Set([
 	"zrect"
 ]);
 const TEXT_FILE_RE =
-	/^makefile$|\.(?:cc|cpp|cxx|h|hpp|csv|eps|in|java|json|md|ps|py|tsv|txt|svg)$/i;
+	/^makefile$|\.(?:cc|cpp|cxx|h|hpp|csv|eps|in|java|json|md|out|ps|py|tsv|txt|svg)$/i;
 const IMAGE_EXTENSION_RE = /\.(?:gif|jpe?g|png|svg|webp)$/i;
 const SOUND_EXTENSION_RE = /\.wav$/i;
 const MUSIC_EXTENSION_RE = /\.(?:mp3|ogg)$/i;
@@ -2813,7 +2813,8 @@ export function getPythonIdeFileKindLabel(value: string) {
 	if (extension === ".java") return "Java";
 	if (extension === ".json") return "JSON";
 	if (extension === ".md") return "Markdown";
-	if (extension === ".txt" || extension === ".in") return "Text";
+	if (extension === ".txt" || extension === ".in" || extension === ".out")
+		return "Text";
 	if (IMAGE_EXTENSION_RE.test(value)) return "Image";
 	if (value.startsWith("music/")) return "Music";
 	if (AUDIO_FILE_RE.test(value)) return "Sound";
@@ -2835,7 +2836,8 @@ export function getPythonIdeDefaultFileContent(fileName: string) {
 		return '/**\n * @brief Write a small Java console program\n */\npublic class Main {\n/*****************\n*   CONSTANTS   *\n*****************/\n\n    private static final String GREETING_MESSAGE = "Hello, Java!";\n\n\n/*****************\n*   FUNCTIONS   *\n*****************/\n\n    /**\n     * @brief Run the Java program\n     *\n     * @param args Command-line arguments\n     */\n    public static void main(String[] args) {\n        System.out.println(GREETING_MESSAGE);\n    }\n}\n';
 	if (extension === ".json") return '{\n\t"items": []\n}\n';
 	if (extension === ".md") return "# Notes\n\n";
-	if (extension === ".txt" || extension === ".in") return "";
+	if (extension === ".txt" || extension === ".in" || extension === ".out")
+		return "";
 	return '#####################\n###   CONSTANTS   ###\n#####################\nGREETING_MESSAGE = "Hello, Python!"\n\n\n#####################\n###   MAIN CODE   ###\n#####################\n# Store reusable text in a named constant before printing\nprint(GREETING_MESSAGE)\n';
 }
 

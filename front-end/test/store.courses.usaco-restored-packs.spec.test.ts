@@ -16,6 +16,62 @@ import { usacoExistingProjectIds } from "../../test/fixtures/usaco-restored-pack
 beforeEach(() => setActivePinia(createPinia()));
 
 describe("restored USACO project workflows", () => {
+	it("keeps the three Fenwick practices optional with existing IDs and native roles", async () => {
+		const course = (await useCoursesStore().loadCourseById("usaco-gold"))!;
+		for (const [folder, id, anchor] of [
+			[
+				"UG23-Balanced-Photo",
+				"usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-supplemental-problem-balanced-photo",
+				"usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure"
+			],
+			[
+				"UG25-Sleepy-Cow-Sorting",
+				"usaco-gold-optional-gold-problem-bank-supplemental-problem-sleepy-cow-sorting",
+				"usaco-gold-optional-gold-problem-bank"
+			],
+			[
+				"UG26-Out-of-Sorts",
+				"usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-supplemental-problem-out-of-sorts",
+				"usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure"
+			]
+		]) {
+			const module = course.modules.find(module => module.id === anchor)!;
+			const item = module.supplementalProjects.find(item =>
+				item.projectLink?.endsWith(`/${folder}/starter`)
+			)!;
+			expect(item.id).toBe(id);
+			expect(item.learningPath).toBe("choice");
+			expect(item.ideImport).toBe(true);
+			expect(item.content).toContain("five marked learner tasks");
+			expect(item.content).not.toContain(
+				"maximum displacement that controls"
+			);
+			for (const role of ["starter", "reference"]) {
+				const directions = javaNativeBuildInstructions(
+					`usaco-gold:${id}:${role}`
+				)!.join("\n");
+				expect(directions).toContain("five marked learner tasks");
+				expect(directions).toContain("Every valid untouched run");
+				expect(directions).toContain("preserves earlier output");
+			}
+			expect(
+				javaNativeBuildInstructions(`usaco-gold:${id}:starter:extra`)
+			).toBeNull();
+			expect(
+				javaNativeBuildInstructions(`another-course:${id}:starter`)
+			).toBeNull();
+			if (folder === "UG26-Out-of-Sorts") {
+				expect(item.content).toContain("forward adjacent-swap sweep");
+				expect(item.content).toContain("[2,1,1]");
+				expect(item.content).toContain("duplicates are allowed");
+			}
+			if (folder === "UG25-Sleepy-Cow-Sorting")
+				expect(item.content).toContain(
+					"Any optimal sequence is accepted"
+				);
+		}
+	});
+
 	it("preserves every preexisting repaired project identity", async () => {
 		for (const previous of usacoExistingProjectIds) {
 			const course = (await useCoursesStore().loadCourseById(
