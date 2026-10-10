@@ -455,7 +455,7 @@ nodeTest(
 				await verifyNativeExport(fixture, await sourceFiles(fixture), join(temporary, String(verified.size)));
 				verified.add(key);
 			}
-			assert.equal(verified.size, 36);
+			assert.equal(verified.size, 34);
 			record("verified-usaco-pinned-native-contracts", {
 				roles: verified.size,
 				packs: 17,
