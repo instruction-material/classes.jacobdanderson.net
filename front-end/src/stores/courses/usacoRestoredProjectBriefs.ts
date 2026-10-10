@@ -177,6 +177,19 @@ const briefs: Record<
 		checks: "Check one vertex, no edges, disconnected components, a cheaper parallel edge followed by a heavier one, tied shortest paths, zero-weight cycles and stale entries. A three-edge billion-weight chain has distance 3,000,000,000, beyond a signed 32-bit integer. On small nonnegative graphs, compute distances independently with Bellman-Ford, then verify that each predecessor route starts at 0, reaches its destination, contains no cycle and uses real edges whose sum equals the reported distance. Remove all edges from source 0 and explain why other vertices remain unreachable. Refused input preserves an earlier output file, so inspect a result only after a successful run.",
 		cost: "Lazy queue operations for this multigraph take O((N+M) log(N+M)) time and O(N+M) memory. Let P be the total length of all printed paths: preparing output adds O(P) time and O(P) memory, and a chain can make P quadratic in N. The archived matrix implementation is not the active reference."
 	},
+	"UG22-Binary-Indexed-Tree-Fenwick-Tree": {
+		title: "Fenwick trees: additive updates and inclusive range sums",
+		input: "sample.in",
+		output: "",
+		stdio: true,
+		contract:
+			"This required Gold Unit 4 checkpoint is an authored data-structure practice contract, not an official contest problem. Prerequisites are arrays, signed integers, loops, ordinary prefix sums and zero-based closed ranges. Read standard input: exactly N Q on the first line, exactly N initial values on the second, then exactly Q operation lines. The maintained practice bounds are 1 <= N <= 200,000, 0 <= Q <= 200,000, and absolute initial values and individual update deltas at most 1,000,000,000; they are not historical contest limits. ADD index delta adds delta to the current value at that zero-based index; it does not assign a new value. PREFIX index returns the inclusive sum from 0 through index, with PREFIX -1 returning the empty prefix, zero. RANGE left right returns a closed-range sum, with 0 <= left <= right < N. ADD indices are in [0,N-1]; prefix indices are in [-1,N-1]. Negative values and deltas are valid. Reversed ranges, malformed or missing input, out-of-bounds indices and extra nonblank records are refused; harmless trailing blank lines are accepted. Print one integer per PREFIX or RANGE in operation order; ADD prints nothing. Use long sums: the absolute bound (N+Q)*1,000,000,000 is at most 400,000,000,000,000. The driver validates all records before processing and prints only after every operation succeeds. Refused input prints no answer and exits with status 2; the program creates no answer file.",
+		model: "Public indices are zero-based; internal slot zero is unused. Internal slot i > 0 stores the original indices [i-lowbit(i), i-1], where lowbit(i) = i & -i. Convert a public index by adding one. An additive update jumps upward through all blocks containing its index; starting at internal zero would never advance. A prefix query jumps downward through disjoint blocks that partition its prefix. A closed-range sum is prefix(right) minus prefix(left-1). Explain why subtraction works for sums and does not supply a general range-minimum query. Assignment from old to new requires delta = new - old. Compare static prefix sums when there are no updates and segment trees when the merge operation or query contract needs more flexibility. Coordinate compression, inversion counting and range updates are later extensions, not features of this pack.",
+		tasks: "Complete the four marked BinaryIndexedTree tasks in Main.java: reset/load, additive update, inclusive prefix query and closed-range subtraction. Keep the supplied parser, bounds guards and buffered output driver. The untouched starter reports unfinished work and prints no answer. For independent work, predict the visited internal slots, changed cells and printed sums before implementing. With an instructor, pause at the same steps and compare the block invariant before continuing. The optional copy is a changed-case retry of this required checkpoint: preserve the first attempt, change the update/range trace and compare with a plain-array oracle rather than repeat an identical submission.",
+		sample: "The supplied array is [3,2,-1,6,5,4,-3,3,7,2,3]. PREFIX 5 visits internal slots 6 and 4, contributing 9 and 10, so it prints 19. RANGE 2 5 subtracts prefix(1)=5 and prints 14. ADD 2 5 changes -1 to 4 and updates internal slots 3, 4 and 8; the next PREFIX 5 prints 24. RANGE 0 0 prints 3 and PREFIX -1 prints 0. After ADD 10 -3, RANGE 8 10 prints 9 and PREFIX 10 prints 33. The seven output lines are 19, 14, 24, 3, 0, 9 and 33. Draw each block and trace every operation without hard-coding these answers.",
+		checks: "Check one value, zero operations, the empty prefix, first and last indices, negative values, cancellation and repeated additive updates. Two billion-weight values sum to 2,000,000,000; after adding another billion the sum is 3,000,000,000, exposing a 32-bit accumulator. Refuse ADD at -1, index N, reversed ranges and malformed records even after a valid earlier query, without printing partial answers. Independently apply additions to a plain array and sum each requested slice; exhaust tiny arrays and compare seeded traces without copying lowbit logic into the oracle. Reload a different array and verify that old tree cells were cleared. Explain each discrepancy and why the selected interval endpoints are inclusive.",
+		cost: "Building with repeated additions takes O(N log N), and each update, prefix or range query takes O(log N). The tree uses O(N) memory. The complete validated driver uses O((N+Q) log N) time and O(N+Q) memory because it retains commands and answer text. A linear-time build is an optional later extension after the current invariant is explained."
+	},
 	"UG14-MST": {
 		title: "Minimum spanning trees: Prim's cheapest crossing edge",
 		input: "prim.in",
@@ -226,33 +239,43 @@ function projectBrief(
 			: []),
 		"## Open, save and run",
 		`Choose Open in IDE beside the starter resource, then confirm the import. The ${mode === "python" ? "Python" : mode === "java" ? "Java" : "C++20"} pack includes ${mode === "java" ? "Main.java" : `main.${mode === "python" ? "py" : "cpp"}`} and ${brief.input}${folder === "UB1-Square-Pasture" ? "; the starter also includes README.md" : ", plus README.md"}. Existing saved attempts reopen with their edits. The starter and reference use separate project identities; reference resources are available in the authorized instructor view after an attempt.`,
-		...(brief.stdio
+		...(brief.stdio && mode === "java"
 			? [
-					"In the site IDE, open sample.in and copy all its lines into the Input panel. Select main.py and choose Run. The untouched starter stops with NotImplementedError and prints no answer; complete its helper before expecting results. The completed program prints its answer in Console output. The input fixture is not opened automatically by this program.",
-					"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with the sample redirected into standard input:",
-					"```sh\npython3 main.py < sample.in\n```",
-					"Change the Input panel or the redirected fixture for each custom case. Reopening a saved attempt preserves its source edits; paste the desired input again before running. Keep a copy of learner work before using the separately saved instructor reference. Compare printed results using the contract above."
+					"Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this input-driven data structure. Choosing Run displays native commands. The Input panel does not execute this project.",
+					"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with sample.in redirected into standard input:",
+					"```sh\njavac -encoding UTF-8 Main.java\njava Main < sample.in\n```",
+					"Read the printed answers in the native terminal. Change sample.in and predict the results before rerunning. The untouched starter and refused input exit with status 2 and print no answer. This program creates no answer file; check the exit status before accepting a result, including any file created separately by shell redirection. Reopening a saved attempt preserves its source edits and separate starter/reference identities."
 				]
-			: [
-					"Save the attempt, download its ZIP and extract it. Keep the input beside the source and run inside that extracted directory. The unfinished starter stops with an unfinished-task error and creates no answer file; that is the expected starting state.",
-					"```sh",
-					`rm -f ${brief.output}`,
-					...(mode === "python"
-						? ["python3 main.py"]
-						: mode === "java"
-							? ["javac -encoding UTF-8 Main.java", "java Main"]
-							: [
-									"c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o project",
-									"./project"
-								]),
-					`cat ${brief.output}`,
-					"```",
-					mode === "java"
-						? `Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG14-MST" ? "matrix" : "priority-queue"} program. Choosing Run displays the native commands. The Input panel does not replace ${brief.input}. Read the native result in ${brief.output} after a successful run.`
-						: mode === "cpp"
-							? "The browser edits and exports C++ source; it does not compile or execute C++. Follow the native commands above with a C++20 compiler. Delete only the stale answer file before running so an old answer cannot be mistaken for a new result."
-							: "Python can also run in the site IDE. Inspect the generated output file after completing the helper; the native commands provide the same file-I/O check after export."
-				]),
+			: brief.stdio
+				? [
+						"In the site IDE, open sample.in and copy all its lines into the Input panel. Select main.py and choose Run. The untouched starter stops with NotImplementedError and prints no answer; complete its helper before expecting results. The completed program prints its answer in Console output. The input fixture is not opened automatically by this program.",
+						"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with the sample redirected into standard input:",
+						"```sh\npython3 main.py < sample.in\n```",
+						"Change the Input panel or the redirected fixture for each custom case. Reopening a saved attempt preserves its source edits; paste the desired input again before running. Keep a copy of learner work before using the separately saved instructor reference. Compare printed results using the contract above."
+					]
+				: [
+						"Save the attempt, download its ZIP and extract it. Keep the input beside the source and run inside that extracted directory. The unfinished starter stops with an unfinished-task error and creates no answer file; that is the expected starting state.",
+						"```sh",
+						`rm -f ${brief.output}`,
+						...(mode === "python"
+							? ["python3 main.py"]
+							: mode === "java"
+								? [
+										"javac -encoding UTF-8 Main.java",
+										"java Main"
+									]
+								: [
+										"c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o project",
+										"./project"
+									]),
+						`cat ${brief.output}`,
+						"```",
+						mode === "java"
+							? `Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG14-MST" ? "matrix" : "priority-queue"} program. Choosing Run displays the native commands. The Input panel does not replace ${brief.input}. Read the native result in ${brief.output} after a successful run.`
+							: mode === "cpp"
+								? "The browser edits and exports C++ source; it does not compile or execute C++. Follow the native commands above with a C++20 compiler. Delete only the stale answer file before running so an old answer cannot be mistaken for a new result."
+								: "Python can also run in the site IDE. Inspect the generated output file after completing the helper; the native commands provide the same file-I/O check after export."
+					]),
 		"Source checks validate the supplied packs; they do not grade a completed learner submission. Protected mocks and active contests begin from an empty file without these practice starters or references."
 	]
 		.join("\n\n")

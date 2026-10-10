@@ -1,4 +1,4 @@
-// These saved identities belong to the verified file-based Gold lessons.
+// These saved identities belong to the verified native Gold lessons.
 // Other Java and Karel lessons retain their existing teaching previews.
 const dijkstraItems = new Set([
 	"usaco-gold-unit-2-shortest-paths-dags-and-weighted-graphs-curriculum-core-project-shortest-paths-and-weighted-graphs",
@@ -8,16 +8,34 @@ const mstItems = new Set([
 	"usaco-gold-unit-3-msts-dsu-and-connectivity-proofs-curriculum-core-project-msts-dsu-and-connectivity-optimization",
 	"usaco-gold-unit-3-msts-dsu-and-connectivity-proofs-supplemental-problem-mst"
 ]);
+const fenwickItems = new Set([
+	"usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-curriculum-core-project-fenwick-trees-ordering-and-range-structure",
+	"usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-supplemental-problem-binary-indexed-tree-fenwick-tree"
+]);
 
 export function javaNativeBuildInstructions(courseProjectKey?: string) {
 	const [course, item, role, extra] = (courseProjectKey ?? "").split(":");
 	if (
 		course !== "usaco-gold" ||
-		(!dijkstraItems.has(item ?? "") && !mstItems.has(item ?? "")) ||
+		(!dijkstraItems.has(item ?? "") &&
+			!mstItems.has(item ?? "") &&
+			!fenwickItems.has(item ?? "")) ||
 		!["starter", "reference"].includes(role ?? "") ||
 		extra !== undefined
 	) {
 		return null;
+	}
+	if (fenwickItems.has(item!)) {
+		return [
+			"Save and download this project's ZIP, then extract it.",
+			"This Fenwick tree project requires a native JDK 17 or newer. The site's Java teaching preview does not execute its input-driven data structure.",
+			"Keep sample.in beside Main.java and run these commands inside the extracted folder:",
+			"javac -encoding UTF-8 Main.java",
+			"java Main < sample.in",
+			"Read the answers in the native terminal. This program reads standard input and prints standard output; it creates no answer file. The site's Input panel does not run this native project.",
+			"The untouched starter reports unfinished work and prints no answer. Refused input exits with status 2 and prints no answer. Check the exit status before accepting a new result.",
+			"Change sample.in, predict the updates and inclusive range sums, and rerun. ADD adds a delta; PREFIX -1 is the empty prefix. Use long sums and compare with a plain-array oracle."
+		];
 	}
 	if (mstItems.has(item!)) {
 		return [
