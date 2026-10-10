@@ -18,6 +18,7 @@ import { confirmProjectImport, downloadProjectZip, openProjectSidebar } from "./
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
 const taskId = process.env.CLASSES_FAMILY_TASK_ID ?? "usaco-course-import-browser-ci";
 const changes = {
+	"UG14-MST": ["4 5\n0 1 999999999\n0 1 1000000000\n1 2 1000000000\n2 3 1000000000\n3 3 0\n", "1 0\n2 1\n3 2\nTotal Distance: 2999999999\n"],
 	"UG9-Dijkstras-Algorithm": ["5 5\n0 1 999999999\n0 1 1000000000\n1 2 1000000000\n2 3 1000000000\n3 3 0\n", "0 1 Distance: 999999999\n0 1 2 Distance: 1999999999\n0 1 2 3 Distance: 2999999999\nUnreachable: 4\n"],
 	"US9-Number-Triangles": ["3\n1\n100 99\n0 0 100\n", "200\n"],
 	"UG7-Treasure-Chest": ["4\n8\n15\n3\n7\n", "22\n"],
@@ -174,13 +175,21 @@ async function verifyNativeExport(fixture, files, directory) {
 			await writeFile(join(directory, fixture.input), "2 1\n0 1 -1\n");
 			const refused = await runNative(java, args, directory);
 			assert.equal(refused.code, 2);
-			assert.match(refused.stderr, /Cannot solve dijkstra.in/);
+			assert.ok(refused.stderr.startsWith(`Cannot solve ${fixture.input}:`));
 			assert.equal(refused.stdout, "");
 			assert.equal(await readFile(output, "utf8"), expected);
+			if (fixture.folder.startsWith("UG14-MST/")) {
+				await writeFile(join(directory, fixture.input), "2 0\n");
+				const disconnected = await runNative(java, args, directory);
+				assert.equal(disconnected.code, 2);
+				assert.match(disconnected.stderr, /Graph is disconnected; no spanning tree/);
+				assert.equal(disconnected.stdout, "");
+				assert.equal(await readFile(output, "utf8"), expected);
+			}
 		}
 		else {
 			assert.equal(result.code, 2);
-			assert.equal(result.stderr, "Cannot solve dijkstra.in: Complete the four Dijkstra tasks before producing an answer\n");
+			assert.equal(result.stderr, `Cannot solve ${fixture.input}: Complete the four ${fixture.unfinishedTask ?? "Dijkstra"} tasks before producing an answer\n`);
 			assert.equal(existsSync(output), false);
 			await writeFile(output, "Earlier saved answer\n");
 			const refused = await runNative(java, args, directory);
@@ -394,7 +403,7 @@ nodeTest(
 				assert.match(card.text, /Contract and reasoning/);
 				if (fixture.mode === "java") {
 					assert.match(card.text, /JDK 17 or newer/);
-					assert.match(card.text, /does not execute this file-I\/O\/priority-queue program/);
+					assert.match(card.text, fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : /does not execute this file-I\/O\/priority-queue program/);
 					assert.match(card.text, fixture.lessonView === 1 ? /Required implementation checkpoint/ : /optional practice/);
 				}
 				if (!fixture.reference) assert.ok(card.links.every(link => !link.href.includes("/solution")), "Learner view withholds reference resources");
@@ -445,7 +454,8 @@ nodeTest(
 					await page.waitForFunction(() => document.querySelector("[data-testid='ide-run-status']")?.textContent.trim() === "Native build instructions");
 					const output = await page.$eval(".output-panel", element => element.textContent);
 					assert.match(output, /javac -encoding UTF-8 Main.java/);
-					assert.match(output, /does not execute its file I\/O or priority queue/);
+					assert.match(output, fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : /does not execute its file I\/O or priority queue/);
+					assert.ok(output.includes(fixture.input) && output.includes(fixture.output));
 					assert.equal(await page.$(".output-line--stdout"), null);
 				}
 				if (fixture.stdio) {

@@ -557,10 +557,104 @@ export const usacoFixtures = [
 			"dijkstra.in": "0ef97f844842d5a41ea58b90724e6782cb4b5c1fd6fc0a73476eb3dedeac849e"
 		},
 		reference: true
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "4b4a6bbf0af1f5ea5ca78dae66435c41a047e042",
+		courseId: "usaco-gold",
+		folder: "UG14-MST/starter",
+		anchor: "usaco-gold-unit-3-msts-dsu-and-connectivity-proofs",
+		itemId: "usaco-gold-unit-3-msts-dsu-and-connectivity-proofs-curriculum-core-project-msts-dsu-and-connectivity-optimization",
+		mode: "java",
+		lessonView: 1,
+		identityLabel: "required",
+		input: "prim.in",
+		output: "prim.out",
+		expected: "1 2\n2 0\n3 1\n4 3\nTotal Distance: 9\n",
+		hashes: {
+			"Main.java": "12a69527eb8a7f0ce1d17ea15aa4176a277c140c74f1e9223bb0b18b5e5dcd27",
+			"README.md": "3c97688c10bcd3d6cee57d340841cc3d8a438a18d0428b7689613e0762321b67",
+			"prim.in": "897337587171ed6bc755a11abc331db8e7f052d2bd61de306c348726f327c2b1"
+		},
+		reference: false,
+		unfinishedTask: "Prim"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "4b4a6bbf0af1f5ea5ca78dae66435c41a047e042",
+		courseId: "usaco-gold",
+		folder: "UG14-MST/solution",
+		anchor: "usaco-gold-unit-3-msts-dsu-and-connectivity-proofs",
+		itemId: "usaco-gold-unit-3-msts-dsu-and-connectivity-proofs-curriculum-core-project-msts-dsu-and-connectivity-optimization",
+		mode: "java",
+		lessonView: 1,
+		identityLabel: "required",
+		input: "prim.in",
+		output: "prim.out",
+		expected: "1 2\n2 0\n3 1\n4 3\nTotal Distance: 9\n",
+		hashes: {
+			"Main.java": "6819829941de43c44b4feb2d78b5a71834ee8885074e7181657773cc68dd1499",
+			"README.md": "ae6ea37207488de49a0e312ce1be0773ca0af25fe6849e2a48669c5b70f9a714",
+			"prim.in": "897337587171ed6bc755a11abc331db8e7f052d2bd61de306c348726f327c2b1"
+		},
+		reference: true,
+		unfinishedTask: "Prim"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "4b4a6bbf0af1f5ea5ca78dae66435c41a047e042",
+		courseId: "usaco-gold",
+		folder: "UG14-MST/starter",
+		anchor: "usaco-gold-unit-3-msts-dsu-and-connectivity-proofs",
+		itemId: "usaco-gold-unit-3-msts-dsu-and-connectivity-proofs-supplemental-problem-mst",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "retry",
+		input: "prim.in",
+		output: "prim.out",
+		expected: "1 2\n2 0\n3 1\n4 3\nTotal Distance: 9\n",
+		hashes: {
+			"Main.java": "12a69527eb8a7f0ce1d17ea15aa4176a277c140c74f1e9223bb0b18b5e5dcd27",
+			"README.md": "3c97688c10bcd3d6cee57d340841cc3d8a438a18d0428b7689613e0762321b67",
+			"prim.in": "897337587171ed6bc755a11abc331db8e7f052d2bd61de306c348726f327c2b1"
+		},
+		reference: false,
+		unfinishedTask: "Prim"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "4b4a6bbf0af1f5ea5ca78dae66435c41a047e042",
+		courseId: "usaco-gold",
+		folder: "UG14-MST/solution",
+		anchor: "usaco-gold-unit-3-msts-dsu-and-connectivity-proofs",
+		itemId: "usaco-gold-unit-3-msts-dsu-and-connectivity-proofs-supplemental-problem-mst",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "retry",
+		input: "prim.in",
+		output: "prim.out",
+		expected: "1 2\n2 0\n3 1\n4 3\nTotal Distance: 9\n",
+		hashes: {
+			"Main.java": "6819829941de43c44b4feb2d78b5a71834ee8885074e7181657773cc68dd1499",
+			"README.md": "ae6ea37207488de49a0e312ce1be0773ca0af25fe6849e2a48669c5b70f9a714",
+			"prim.in": "897337587171ed6bc755a11abc331db8e7f052d2bd61de306c348726f327c2b1"
+		},
+		reference: true,
+		unfinishedTask: "Prim"
 	}
 ];
 
 export const usacoExistingProjectIds = [
+	{
+		course: "usaco-gold",
+		id: "usaco-gold-unit-3-msts-dsu-and-connectivity-proofs-curriculum-core-project-msts-dsu-and-connectivity-optimization",
+		url: "https://github.com/instruction-material/USACO-Gold/tree/main/UG14-MST/starter"
+	},
+	{
+		course: "usaco-gold",
+		id: "usaco-gold-unit-3-msts-dsu-and-connectivity-proofs-supplemental-problem-mst",
+		url: "https://github.com/instruction-material/USACO-Gold/tree/main/UG14-MST/starter"
+	},
 	{
 		course: "usaco-gold",
 		id: "usaco-gold-unit-2-shortest-paths-dags-and-weighted-graphs-curriculum-core-project-shortest-paths-and-weighted-graphs",
