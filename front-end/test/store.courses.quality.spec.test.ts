@@ -2153,16 +2153,12 @@ describe("course text quality normalization", () => {
 				moduleTitle: "USG0 Setup, Contest Contract, and Gold Mindset",
 				items: [
 					{
-						title: "Core Project: Setup and Gold Mindset",
-						subject: "USG0 Setup and Gold Mindset"
+						title: "Core Project: Native Input/Output Checkpoint",
+						subject: "Gold setup: native input/output and 64-bit totals"
 					},
 					{
-						title: "Why Did the Cow Cross the Road III",
-						subject: "Why Did the Cow Cross the Road III"
-					},
-					{
-						title: "Snow Boots",
-						subject: "Snow Boots"
+						title: "Native Input/Output Retry",
+						subject: "Gold setup: native input/output and 64-bit totals"
 					}
 				]
 			}
@@ -2189,7 +2185,11 @@ describe("course text quality normalization", () => {
 				expect(
 					item?.content,
 					`${setupModule.courseId}: ${title}`
-				).toContain(`**${subject}**`);
+				).toContain(
+					setupModule.courseId === "usaco-gold"
+						? `## ${subject}`
+						: `**${subject}**`
+				);
 
 				return item?.content ?? "";
 			});
