@@ -63,3 +63,5 @@ pass over the hole, a slow arrival and a restart. A goal transition happens once
 In Alien Catch, schedule the next run and cancel that callback on restart.
 Explain the event, state guard and reset in the saved learner project before
 consulting its reference.
+
+For optional Golf terrain and audio, use the [Golf Terrain and Sound Guide](/course-assets/references/pgzero-golf-terrain-and-sound.md). It supplies a persistent contact-state trace, a single friction step, threshold-crossing checks and valid local sound setup. Apply one extension to a separate saved Golf attempt after the baseline game works.
