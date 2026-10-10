@@ -18,6 +18,7 @@ import { confirmProjectImport, downloadProjectZip, openProjectSidebar } from "./
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
 const taskId = process.env.CLASSES_FAMILY_TASK_ID ?? "usaco-course-import-browser-ci";
 const changes = {
+	"UG0-Contest-Contract": ["3\n-1000000000 -1000000000 -1000000000\n", "-3000000000\n"],
 	"UG22-Binary-Indexed-Tree-Fenwick-Tree": ["2 5\n1000000000 1000000000\nPREFIX -1\nADD 0 1000000000\nRANGE 0 1\nADD 1 -1000000000\nPREFIX 1\n", "0\n3000000000\n2000000000\n"],
 	"UG14-MST": ["4 5\n0 1 999999999\n0 1 1000000000\n1 2 1000000000\n2 3 1000000000\n3 3 0\n", "1 0\n2 1\n3 2\nTotal Distance: 2999999999\n"],
 	"UG9-Dijkstras-Algorithm": ["5 5\n0 1 999999999\n0 1 1000000000\n1 2 1000000000\n2 3 1000000000\n3 3 0\n", "0 1 Distance: 999999999\n0 1 2 Distance: 1999999999\n0 1 2 3 Distance: 2999999999\nUnreachable: 4\n"],
@@ -37,6 +38,37 @@ const changes = {
 
 function record(event, fields = {}) {
 	console.log(JSON.stringify({ event, parentTaskId: taskId, cwd: root, parentPid: process.pid, time: new Date().toISOString(), ...fields }));
+}
+
+async function verifyGoldPracticePlacement(page, origin, fixture, screenshotRoot) {
+	const old = "usaco-gold-usg0-setup-contest-contract-and-gold-mindset";
+	const connectivity = "usaco-gold-unit-3-msts-dsu-and-connectivity-proofs";
+	const ordering = "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure";
+	const rows = [
+		[connectivity, `${old}-curriculum-core-project-setup-and-gold-mindset`, "UG21-Moo-Tube"],
+		[connectivity, `${old}-supplemental-gold-log-setup-and-gold-mindset`, "UG21-Moo-Tube"],
+		[ordering, `${old}-supplemental-why-did-the-cow-cross-the-road-iii`, "UG24-Why-Did-the-Cow-Cross-the-Road-III"],
+		[ordering, `${old}-supplemental-snow-boots`, "UG27-Snow-Boots"]
+	];
+	for (const [index, [module, item, folder]] of rows.entries()) {
+		await page.goto(`${origin}/courses#${module}`, { waitUntil: "domcontentloaded" });
+		await page.waitForSelector(".lesson-view-toggle button:nth-child(2)");
+		await page.click(".lesson-view-toggle button:nth-child(2)");
+		const selector = `#${module}-${item}`;
+		await page.waitForSelector(selector);
+		await page.waitForFunction(selector => [...document.querySelector(selector)?.querySelectorAll(".item-content-markdown h2") ?? []].some(heading => heading.textContent === "Open, save and run"), {}, selector);
+		const card = await page.$eval(selector, item => ({ text: item.textContent, links: [...item.querySelectorAll("a")].map(link => ({ href: link.getAttribute("href"), import: link.classList.contains("is-ide-starter") })) }));
+		assert.ok(card.links.some(link => link.href === `https://github.com/instruction-material/USACO-Gold/tree/main/${folder}/starter`));
+		assert.ok(card.links.every(link => !link.import), "README-only legacy packs must not offer a confirmed import");
+		if (!fixture.reference) assert.ok(card.links.every(link => !link.href.includes("/solution")));
+		assert.match(card.text, /Contract and reasoning/);
+		assert.match(card.text, /Check and explain/);
+		if (process.env.COURSE_IMPORT_SCREENSHOT_DIR) {
+			const element = await page.$(selector);
+			await element.screenshot({ path: join(screenshotRoot, process.env.COURSE_IMPORT_SCREENSHOT_DIR, `course-import-usaco-gold-legacy-setup-${index}-${fixture.reference ? "reference" : "learner"}-lesson.png`) });
+		}
+		record("verified-gold-setup-placement", { preservedItemId: item, destination: module, sourceFolder: folder, role: fixture.reference ? "reference" : "learner", viewportWidth: page.viewport().width, confirmedIdeImport: false });
+	}
 }
 
 async function runNative(command, args, directory, environment = {}, input) {
@@ -150,7 +182,8 @@ async function verifyNativeExport(fixture, files, directory) {
 	await mkdir(directory);
 	for (const [name, content] of Object.entries(files)) await writeFile(join(directory, name), content);
 	if (fixture.mode === "java") {
-		assert.match(files["README.md"], fixture.stdio ? /1 <= N <= 200000/ : /1 <= N <= 2000/);
+		const setup = fixture.folder.startsWith("UG0-Contest-Contract/");
+		assert.match(files["README.md"], setup ? /0 <= N <= 200000/ : fixture.stdio ? /1 <= N <= 200000/ : /1 <= N <= 2000/);
 		assert.match(files["README.md"], /javac -encoding UTF-8 Main.java/);
 		assert.doesNotMatch(files["README.md"], /\.\.\/README\.md/);
 		const javaHome = process.env.JAVA_HOME_21_X64 ?? process.env.JAVA_HOME;
@@ -191,16 +224,22 @@ async function verifyNativeExport(fixture, files, directory) {
 				assert.equal(changed.code, 0, changed.stderr);
 				assert.equal(changed.stderr, "");
 				verifyStdioAnswer(fixture, input, changed.stdout, expected);
+				if (setup) {
+					const emptyList = await runNative(java, args, directory, {}, "0\n");
+					assert.equal(emptyList.code, 0, emptyList.stderr);
+					assert.equal(emptyList.stderr, "");
+					assert.equal(emptyList.stdout, "0\n");
+				}
 			}
 			else {
 				assert.equal(result.code, 2);
 				assert.equal(
 					result.stderr,
-					"Cannot solve Fenwick input: Complete the four Fenwick tasks before producing an answer\n"
+					setup ? "Cannot solve setup input: Complete the setup total task before producing an answer\n" : "Cannot solve Fenwick input: Complete the four Fenwick tasks before producing an answer\n"
 				);
 				assert.equal(result.stdout, "");
 			}
-			for (const input of ["2 2\n1 2\nPREFIX 1\nADD -1 3\n", ""]) {
+			for (const input of setup ? ["0 7\n", "1 1000000001\n", ""] : ["2 2\n1 2\nPREFIX 1\nADD -1 3\n", ""]) {
 				const refused = await runNative(
 					java,
 					args,
@@ -209,7 +248,7 @@ async function verifyNativeExport(fixture, files, directory) {
 					input
 				);
 				assert.equal(refused.code, 2);
-				assert.match(refused.stderr, /^Cannot solve Fenwick input:/);
+				assert.match(refused.stderr, setup ? /^Cannot solve setup input:/ : /^Cannot solve Fenwick input:/);
 				assert.equal(
 					refused.stdout,
 					"",
@@ -366,10 +405,10 @@ nodeTest(
 				await verifyNativeExport(fixture, await sourceFiles(fixture), join(temporary, String(verified.size)));
 				verified.add(key);
 			}
-			assert.equal(verified.size, 30);
+			assert.equal(verified.size, 32);
 			record("verified-usaco-pinned-native-contracts", {
 				roles: verified.size,
-				packs: 15,
+				packs: 16,
 				nativeJava: true,
 				samplesAndChangedInputs: true,
 				ordinaryAndSanitizedCpp: true,
@@ -473,9 +512,12 @@ nodeTest(
 				await page.waitForFunction(selector => ["Contract and reasoning", "Guided implementation", "Check and explain", "Open, save and run"].every(label => [...document.querySelector(selector)?.closest(".lesson-item")?.querySelectorAll(".item-content-markdown h2") ?? []].some(heading => heading.textContent === label)), { timeout: 15000 }, selector);
 				const card = await page.$eval(selector, link => ({ text: link.closest(".lesson-item").textContent, links: [...link.closest(".lesson-item").querySelectorAll("a")].map(action => ({ text: action.textContent, href: action.getAttribute("href"), import: action.classList.contains("is-ide-starter") })) }));
 				assert.match(card.text, /Contract and reasoning/);
+				if (fixture.folder.startsWith("UG0-Contest-Contract/")) {
+					assert.equal(await page.$$eval(".lesson-item a[href]", links => links.filter(link => /UG21-Moo-Tube|UG24-|UG27-/.test(link.getAttribute("href"))).length), 0, "Advanced practice must not remain in setup");
+				}
 				if (fixture.mode === "java") {
 					assert.match(card.text, /JDK 17 or newer/);
-					assert.match(card.text, fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : /does not execute this file-I\/O\/priority-queue program/);
+					assert.match(card.text, fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : /does not execute this file-I\/O\/priority-queue program/);
 					assert.match(card.text, fixture.lessonView === 1 ? /Required implementation checkpoint/ : /optional practice/);
 				}
 				if (!fixture.reference) assert.ok(card.links.every(link => !link.href.includes("/solution")), "Learner view withholds reference resources");
@@ -526,7 +568,7 @@ nodeTest(
 					await page.waitForFunction(() => document.querySelector("[data-testid='ide-run-status']")?.textContent.trim() === "Native build instructions");
 					const output = await page.$eval(".output-panel", element => element.textContent);
 					assert.match(output, /javac -encoding UTF-8 Main.java/);
-					assert.match(output, fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : /does not execute its file I\/O or priority queue/);
+					assert.match(output, fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : /does not execute its file I\/O or priority queue/);
 					if (fixture.stdio) {
 						assert.match(output, /java Main < sample.in/);
 						assert.match(output, /creates no answer file/);
@@ -649,6 +691,17 @@ nodeTest(
 				if (process.env.COURSE_IMPORT_SCREENSHOT_DIR) {
 					await page.screenshot({ path: join(previousDirectory, process.env.COURSE_IMPORT_SCREENSHOT_DIR, `course-import-usaco-${screenshotKey}-workspace.png`) });
 				}
+				if (fixture.folder.startsWith("UG0-Contest-Contract/") && fixture.lessonView === 2) {
+					catalog = true;
+					const sourceBeforePlacement = sourceRequests;
+					await verifyGoldPracticePlacement(page, origin, fixture, previousDirectory);
+					assert.equal(sourceRequests, sourceBeforePlacement, "Inspecting relocated legacy practice must not fetch source");
+					// Restore the workspace so the next viewer gets a full catalog load.
+					catalog = false;
+					await page.goto(new URL(href, origin).href, { waitUntil: "domcontentloaded" });
+					await page.waitForSelector(".code-ide-workspace");
+					assert.equal(sourceRequests, sourceBeforePlacement, "Restoring the saved attempt must not fetch source");
+				}
 				record("verified-usaco-role", {
 					course: fixture.courseId,
 					itemId: fixture.itemId,
@@ -670,7 +723,7 @@ nodeTest(
 			assert.equal(remoteWrites, 0);
 			record("verified-usaco-workflows", {
 				imports: usacoFixtures.length,
-				packs: 15,
+				packs: 16,
 				nativeJava: true,
 				roleSeparation: true,
 				consentBeforeSource: true,

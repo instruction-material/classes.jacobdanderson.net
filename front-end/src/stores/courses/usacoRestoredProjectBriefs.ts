@@ -19,6 +19,19 @@ const briefs: Record<
 		cost: string;
 	}
 > = {
+	"UG0-Contest-Contract": {
+		title: "Gold setup: native input/output and 64-bit totals",
+		input: "sample.in",
+		output: "",
+		stdio: true,
+		contract:
+			"This required setup checkpoint is an authored practice exercise, not an official contest problem. It requires Silver-level arrays, loops and integer input; it does not require DSU, MSTs or Fenwick trees. Read N followed by exactly N signed integer values from standard input, with whitespace across any number of lines. The maintained bounds are 0 <= N <= 200,000 and -1,000,000,000 <= value <= 1,000,000,000. Print the sum followed by one newline; for N=0 print 0. Print no prompts, labels or debug text. Missing, malformed, extra and out-of-range tokens are refused with status 2 and no answer. These are authored practice limits, not historical contest limits.",
+		model: "After consuming the first i values, the accumulator equals their sum. A Java int stores each input value, but the total may reach positive or negative 200,000,000,000,000 and requires a long. The supplied parser validates the whole input array before the calculation helper runs; an invalid late token cannot produce a partial answer. State the count, output format, invariant and numeric bound before coding.",
+		tasks: "Complete only calculateTotal in Main.java with a long accumulator and a loop over all values. Preserve the supplied input checks and output driver. In a shared walkthrough, predict a tiny mix of positive, negative and zero values before editing. For independent work, record the same trace first. An untouched learner stops as unfinished and prints no answer, including for N=0. Preserve the required attempt before an optional changed-case retry: close the reference, use new signed values, reproduce the invariant and explain one prior mismatch.",
+		sample: "The supplied input has five values: 1,000,000,000, 1,000,000,000, 1,000,000,000, -5 and -5. Print exactly 2999999990 and a newline. This is an authored sample, not an official USACO sample. Trace the accumulator after each value and explain why an int total would fail.",
+		checks: "Check N=0, one negative value, zeros, cancellation and a sum beyond 2,147,483,647. Use three -1,000,000,000 values to expect -3000000000. At the maximum count, all positive or negative boundary values test the 64-bit range. Refuse missing, extra, noninteger and out-of-range tokens without an answer. Compare small sums with independent hand arithmetic or an arbitrary-precision calculation. Reorder the values to check that the sum is unchanged, then change one value and predict exactly how the result changes.",
+		cost: "The calculation takes O(N) time and O(1) extra space. The supplied whole program uses O(N) memory for its validated array; do not claim O(1) total program memory. Use the native commands below in a POSIX shell or Windows Command Prompt. In PowerShell, use Get-Content sample.in | java Main for this numeric input. Check exit status as well as output, since shell redirection can create or truncate a separate file before Java starts."
+	},
 	"UB1-Square-Pasture": {
 		title: "Square Pasture: bounding rectangles with a square",
 		input: "square.in",
@@ -241,7 +254,7 @@ function projectBrief(
 		`Choose Open in IDE beside the starter resource, then confirm the import. The ${mode === "python" ? "Python" : mode === "java" ? "Java" : "C++20"} pack includes ${mode === "java" ? "Main.java" : `main.${mode === "python" ? "py" : "cpp"}`} and ${brief.input}${folder === "UB1-Square-Pasture" ? "; the starter also includes README.md" : ", plus README.md"}. Existing saved attempts reopen with their edits. The starter and reference use separate project identities; reference resources are available in the authorized instructor view after an attempt.`,
 		...(brief.stdio && mode === "java"
 			? [
-					"Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this input-driven data structure. Choosing Run displays native commands. The Input panel does not execute this project.",
+					`Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this ${folder === "UG0-Contest-Contract" ? "native input/output checkpoint" : "input-driven data structure"}. Choosing Run displays native commands. The Input panel does not execute this project.`,
 					"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with sample.in redirected into standard input:",
 					"```sh\njavac -encoding UTF-8 Main.java\njava Main < sample.in\n```",
 					"Read the printed answers in the native terminal. Change sample.in and predict the results before rerunning. The untouched starter and refused input exit with status 2 and print no answer. This program creates no answer file; check the exit status before accepting a result, including any file created separately by shell redirection. Reopening a saved attempt preserves its source edits and separate starter/reference identities."

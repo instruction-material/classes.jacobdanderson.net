@@ -729,6 +729,94 @@ export const usacoFixtures = [
 		},
 		reference: true,
 		unfinishedTask: "Fenwick"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "f89364e04a8ab232e4ba1d0e85c983298f2060b1",
+		courseId: "usaco-gold",
+		folder: "UG0-Contest-Contract/starter",
+		anchor: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset",
+		itemId: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset-curriculum-core-project-native-input-output-checkpoint",
+		mode: "java",
+		lessonView: 1,
+		identityLabel: "required",
+		input: "sample.in",
+		output: "",
+		stdio: true,
+		expected: "2999999990\n",
+		hashes: {
+			"Main.java": "5e06bdebdf0830cdf0fd7c84d3bd49895e6aebbb31436daeba14dd7d90131dc4",
+			"README.md": "9496a909a6660b70acd2a7cd33c56b5526bf1b80c93878c4a7d6d2331f5ad399",
+			"sample.in": "2483401c45cc7b9362813b431425b084a1c8307c168222a8218244cc43814365"
+		},
+		reference: false,
+		unfinishedTask: "setup"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "f89364e04a8ab232e4ba1d0e85c983298f2060b1",
+		courseId: "usaco-gold",
+		folder: "UG0-Contest-Contract/solution",
+		anchor: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset",
+		itemId: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset-curriculum-core-project-native-input-output-checkpoint",
+		mode: "java",
+		lessonView: 1,
+		identityLabel: "required",
+		input: "sample.in",
+		output: "",
+		stdio: true,
+		expected: "2999999990\n",
+		hashes: {
+			"Main.java": "12d43041dc4283f7b178d251b75a5287cd83ae74b3f0a73cfad16e383d331e11",
+			"README.md": "ab89bcbc44da33289982d7e4f995ce9b7bd32c84ed63616b1dbd926fab1cedde",
+			"sample.in": "2483401c45cc7b9362813b431425b084a1c8307c168222a8218244cc43814365"
+		},
+		reference: true,
+		unfinishedTask: "setup"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "f89364e04a8ab232e4ba1d0e85c983298f2060b1",
+		courseId: "usaco-gold",
+		folder: "UG0-Contest-Contract/starter",
+		anchor: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset",
+		itemId: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset-supplemental-native-input-output-retry",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "retry",
+		input: "sample.in",
+		output: "",
+		stdio: true,
+		expected: "2999999990\n",
+		hashes: {
+			"Main.java": "5e06bdebdf0830cdf0fd7c84d3bd49895e6aebbb31436daeba14dd7d90131dc4",
+			"README.md": "9496a909a6660b70acd2a7cd33c56b5526bf1b80c93878c4a7d6d2331f5ad399",
+			"sample.in": "2483401c45cc7b9362813b431425b084a1c8307c168222a8218244cc43814365"
+		},
+		reference: false,
+		unfinishedTask: "setup"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "f89364e04a8ab232e4ba1d0e85c983298f2060b1",
+		courseId: "usaco-gold",
+		folder: "UG0-Contest-Contract/solution",
+		anchor: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset",
+		itemId: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset-supplemental-native-input-output-retry",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "retry",
+		input: "sample.in",
+		output: "",
+		stdio: true,
+		expected: "2999999990\n",
+		hashes: {
+			"Main.java": "12d43041dc4283f7b178d251b75a5287cd83ae74b3f0a73cfad16e383d331e11",
+			"README.md": "ab89bcbc44da33289982d7e4f995ce9b7bd32c84ed63616b1dbd926fab1cedde",
+			"sample.in": "2483401c45cc7b9362813b431425b084a1c8307c168222a8218244cc43814365"
+		},
+		reference: true,
+		unfinishedTask: "setup"
 	}
 ];
 
@@ -847,5 +935,25 @@ export const usacoExistingProjectIds = [
 		course: "usaco-gold",
 		id: "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-treasure-chest",
 		url: "https://github.com/instruction-material/USACO-Gold/tree/main/UG7-Treasure-Chest/starter"
+	},
+	{
+		course: "usaco-gold",
+		id: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset-curriculum-core-project-setup-and-gold-mindset",
+		url: "https://github.com/instruction-material/USACO-Gold/tree/main/UG21-Moo-Tube/starter"
+	},
+	{
+		course: "usaco-gold",
+		id: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset-supplemental-gold-log-setup-and-gold-mindset",
+		url: "https://github.com/instruction-material/USACO-Gold/tree/main/UG21-Moo-Tube/starter"
+	},
+	{
+		course: "usaco-gold",
+		id: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset-supplemental-why-did-the-cow-cross-the-road-iii",
+		url: "https://github.com/instruction-material/USACO-Gold/tree/main/UG24-Why-Did-the-Cow-Cross-the-Road-III/starter"
+	},
+	{
+		course: "usaco-gold",
+		id: "usaco-gold-usg0-setup-contest-contract-and-gold-mindset-supplemental-snow-boots",
+		url: "https://github.com/instruction-material/USACO-Gold/tree/main/UG27-Snow-Boots/starter"
 	}
 ];

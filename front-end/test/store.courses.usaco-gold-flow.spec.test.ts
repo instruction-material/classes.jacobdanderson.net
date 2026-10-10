@@ -103,8 +103,12 @@ describe("USACO Gold learner flow", () => {
 		);
 
 		expect(curriculumTitles).toHaveLength(61);
-		expect(optionTitles).toHaveLength(94);
+		expect(optionTitles).toHaveLength(96);
 		for (const title of [
+			"Native Input/Output Retry",
+			"MooTube: Offline Connectivity Practice",
+			"MooTube: Changed-Case Retry",
+			"Snow Boots: Offline Sweep Extension",
 			"Problem Bank: Full Gold Repo",
 			"Problem: Roadblock",
 			"Problem: Superbull",

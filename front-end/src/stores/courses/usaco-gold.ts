@@ -2,6 +2,7 @@ import type { RawCourse, RawCourseModuleItem } from "./types";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { buildProjectGuidance } from "./projectGuidance";
 import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
+import { placeGoldSetupProjects } from "./usacoGoldSetupPlacement";
 
 const usacoGoldPendingSourceAssets = ["treasure.txt"] as const;
 
@@ -1852,6 +1853,8 @@ function buildGoldStudioAppendix(
 		)
 	};
 }
+
+placeGoldSetupProjects(usacoGoldSourceCourse);
 
 const usacoGoldPrimaryModules = usacoGoldSourceCourse.modules
 	.filter(module => USACO_GOLD_PRIMARY_TITLES.has(module.title))

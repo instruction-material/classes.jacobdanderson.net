@@ -1,5 +1,9 @@
 // These saved identities belong to the verified native Gold lessons.
 // Other Java and Karel lessons retain their existing teaching previews.
+const setupItems = new Set([
+	"usaco-gold-usg0-setup-contest-contract-and-gold-mindset-curriculum-core-project-native-input-output-checkpoint",
+	"usaco-gold-usg0-setup-contest-contract-and-gold-mindset-supplemental-native-input-output-retry"
+]);
 const dijkstraItems = new Set([
 	"usaco-gold-unit-2-shortest-paths-dags-and-weighted-graphs-curriculum-core-project-shortest-paths-and-weighted-graphs",
 	"usaco-gold-unit-2-shortest-paths-dags-and-weighted-graphs-supplemental-problem-dijkstra-s-algorithm"
@@ -19,11 +23,25 @@ export function javaNativeBuildInstructions(courseProjectKey?: string) {
 		course !== "usaco-gold" ||
 		(!dijkstraItems.has(item ?? "") &&
 			!mstItems.has(item ?? "") &&
-			!fenwickItems.has(item ?? "")) ||
+			!fenwickItems.has(item ?? "") &&
+			!setupItems.has(item ?? "")) ||
 		!["starter", "reference"].includes(role ?? "") ||
 		extra !== undefined
 	) {
 		return null;
+	}
+	if (setupItems.has(item!)) {
+		return [
+			"Save and download this project's ZIP, then extract it.",
+			"This Gold setup project requires a native JDK 17 or newer. The site's Java teaching preview does not execute this native input/output checkpoint.",
+			"Keep sample.in beside Main.java and run inside the extracted folder:",
+			"javac -encoding UTF-8 Main.java",
+			"java Main < sample.in",
+			"In PowerShell, use Get-Content sample.in | java Main for this numeric input.",
+			"Read the sum in the native terminal. This program reads standard input and prints standard output; it creates no answer file. The site's Input panel does not run this native project.",
+			"Complete calculateTotal using a long accumulator. The untouched starter reports unfinished work; refused input exits with status 2. Both print no answer. Check exit status before accepting a result.",
+			"Change sample.in and predict the new sum before rerunning. Check N=0, negative values, cancellation, a sum beyond int range and missing or extra tokens. Preserve the first attempt before the optional changed-case retry."
+		];
 	}
 	if (fenwickItems.has(item!)) {
 		return [
