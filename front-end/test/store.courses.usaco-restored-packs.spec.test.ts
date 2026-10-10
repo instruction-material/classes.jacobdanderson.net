@@ -121,18 +121,23 @@ describe("restored USACO project workflows", () => {
 				}
 				const stdio =
 					pack.folder === "UB62-Cow-College" ||
-					pack.folder === "UB63-Feeding-the-Cows";
+					pack.folder === "UB63-Feeding-the-Cows" ||
+					pack.folder === "UG22-Binary-Indexed-Tree-Fenwick-Tree";
 				expect(item.content).toContain(
 					stdio ? "prints no answer" : "no answer file"
 				);
 				if (stdio) {
 					expect(item.content).toContain("Input panel");
 					expect(item.content).toContain(
-						"python3 main.py < sample.in"
+						pack.mode === "java"
+							? "java Main < sample.in"
+							: "python3 main.py < sample.in"
 					);
 					expect(item.content).not.toContain("rm -f");
 					expect(item.content).not.toContain("cat sample.out");
-					expect(item.learningPath).not.toBe("core");
+					if (pack.mode === "python") {
+						expect(item.learningPath).not.toBe("core");
+					}
 				}
 				expect(item.content).toContain(
 					pack.mode === "cpp"
@@ -255,6 +260,80 @@ describe("restored USACO project workflows", () => {
 			expect(javaNativeBuildInstructions(key)).toBeNull();
 		}
 		for (const folder of ["UG14-MST-II/starter", "UG14-MST/legacy"]) {
+			expect(
+				pythonIdeModeForCourseResource(
+					"usaco-gold",
+					`https://github.com/instruction-material/USACO-Gold/tree/main/${folder}`
+				)
+			).toBeNull();
+		}
+	});
+
+	it("preserves the required Fenwick checkpoint, retry and native standard input", async () => {
+		const course = (await useCoursesStore().loadCourseById("usaco-gold"))!;
+		const unit = course.modules.find(module =>
+			module.title.includes("Unit 4:")
+		)!;
+		const suffix = "/UG22-Binary-Indexed-Tree-Fenwick-Tree/starter";
+		const core = unit.curriculum.find(item =>
+			item.projectLink?.endsWith(suffix)
+		)!;
+		const retry = unit.supplementalProjects.find(item =>
+			item.projectLink?.endsWith(suffix)
+		)!;
+		expect(core.learningPath).toBe("core");
+		expect(retry.learningPath).toBe("choice");
+		expect(core.id).not.toBe(retry.id);
+		for (const item of [core, retry]) {
+			expect(item.ideImport).toBe(true);
+			expect(item.solutionLink).toBeUndefined();
+			for (const text of [
+				"plain-array oracle",
+				"3,000,000,000",
+				"PREFIX -1",
+				"not historical contest limits",
+				"changed-case retry",
+				"internal slot zero is unused",
+				"O(N+Q) memory",
+				"java Main < sample.in",
+				"does not execute this input-driven data structure"
+			]) {
+				expect(item.content).toContain(text);
+			}
+			for (const text of [
+				"python3 main.py",
+				"prim.out",
+				"dijkstra.out",
+				"rm -f"
+			]) {
+				expect(item.content).not.toContain(text);
+			}
+			for (const role of ["starter", "reference"]) {
+				const instructions = javaNativeBuildInstructions(
+					`usaco-gold:${item.id}:${role}`
+				)?.join("\n");
+				expect(instructions).toContain("java Main < sample.in");
+				expect(instructions).toContain("creates no answer file");
+				expect(instructions).toContain("JDK 17 or newer");
+				expect(instructions).not.toContain("prim.out");
+			}
+		}
+		expect(core.content).toContain("Required implementation checkpoint");
+		expect(retry.content).not.toContain(
+			"Required implementation checkpoint"
+		);
+		for (const key of [
+			`usaco-gold:${core.id}:solution`,
+			`usaco-gold:${core.id}:starter:extra`,
+			`java-level-1:${core.id}:starter`,
+			"usaco-gold:fenwick-legacy:reference"
+		]) {
+			expect(javaNativeBuildInstructions(key)).toBeNull();
+		}
+		for (const folder of [
+			"UG22-Binary-Indexed-Tree-Fenwick-Tree/legacy",
+			"UG22-Binary-Indexed-Tree-Fenwick-Tree/starter/Main.java"
+		]) {
 			expect(
 				pythonIdeModeForCourseResource(
 					"usaco-gold",

@@ -84,6 +84,12 @@ export const usacoRestoredResources = [
 		repository: "USACO-Gold",
 		folder: "UG14-MST",
 		mode: "java"
+	},
+	{
+		course: "usaco-gold",
+		repository: "USACO-Gold",
+		folder: "UG22-Binary-Indexed-Tree-Fenwick-Tree",
+		mode: "java"
 	}
 ] as const;
 

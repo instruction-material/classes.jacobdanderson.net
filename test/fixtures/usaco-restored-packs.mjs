@@ -641,10 +641,108 @@ export const usacoFixtures = [
 		},
 		reference: true,
 		unfinishedTask: "Prim"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "e1f8bacc130b083b96a6a05a01e65c62ead3117e",
+		courseId: "usaco-gold",
+		folder: "UG22-Binary-Indexed-Tree-Fenwick-Tree/starter",
+		anchor: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure",
+		itemId: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-curriculum-core-project-fenwick-trees-ordering-and-range-structure",
+		mode: "java",
+		lessonView: 1,
+		identityLabel: "required",
+		input: "sample.in",
+		output: "",
+		stdio: true,
+		expected: "19\n14\n24\n3\n0\n9\n33\n",
+		hashes: {
+			"Main.java": "acf1f32d305933bf7479064ff98922344a739e0d3774b55c577e7adb2daa853f",
+			"README.md": "f551429cb50e78a7375cec31dc4f8d5017b5318588621e2e7462dcb1b269440b",
+			"sample.in": "0dd83c0d7a588a7c78078b2a3604ecadb9de82dc9e388730649b7007245a5f46"
+		},
+		reference: false,
+		unfinishedTask: "Fenwick"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "e1f8bacc130b083b96a6a05a01e65c62ead3117e",
+		courseId: "usaco-gold",
+		folder: "UG22-Binary-Indexed-Tree-Fenwick-Tree/solution",
+		anchor: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure",
+		itemId: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-curriculum-core-project-fenwick-trees-ordering-and-range-structure",
+		mode: "java",
+		lessonView: 1,
+		identityLabel: "required",
+		input: "sample.in",
+		output: "",
+		stdio: true,
+		expected: "19\n14\n24\n3\n0\n9\n33\n",
+		hashes: {
+			"Main.java": "21402feacd3e99c7485cb5d2116d16ed5d870d8f9ef33a5e26609ca4733273f2",
+			"README.md": "f5dd6407de4cc4f2efe9c802d806e7f85c4e82c647f7237dac2f49bfb5efc116",
+			"sample.in": "0dd83c0d7a588a7c78078b2a3604ecadb9de82dc9e388730649b7007245a5f46"
+		},
+		reference: true,
+		unfinishedTask: "Fenwick"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "e1f8bacc130b083b96a6a05a01e65c62ead3117e",
+		courseId: "usaco-gold",
+		folder: "UG22-Binary-Indexed-Tree-Fenwick-Tree/starter",
+		anchor: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure",
+		itemId: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-supplemental-problem-binary-indexed-tree-fenwick-tree",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "retry",
+		input: "sample.in",
+		output: "",
+		stdio: true,
+		expected: "19\n14\n24\n3\n0\n9\n33\n",
+		hashes: {
+			"Main.java": "acf1f32d305933bf7479064ff98922344a739e0d3774b55c577e7adb2daa853f",
+			"README.md": "f551429cb50e78a7375cec31dc4f8d5017b5318588621e2e7462dcb1b269440b",
+			"sample.in": "0dd83c0d7a588a7c78078b2a3604ecadb9de82dc9e388730649b7007245a5f46"
+		},
+		reference: false,
+		unfinishedTask: "Fenwick"
+	},
+	{
+		repository: "instruction-material/USACO-Gold",
+		revision: "e1f8bacc130b083b96a6a05a01e65c62ead3117e",
+		courseId: "usaco-gold",
+		folder: "UG22-Binary-Indexed-Tree-Fenwick-Tree/solution",
+		anchor: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure",
+		itemId: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-supplemental-problem-binary-indexed-tree-fenwick-tree",
+		mode: "java",
+		lessonView: 2,
+		identityLabel: "retry",
+		input: "sample.in",
+		output: "",
+		stdio: true,
+		expected: "19\n14\n24\n3\n0\n9\n33\n",
+		hashes: {
+			"Main.java": "21402feacd3e99c7485cb5d2116d16ed5d870d8f9ef33a5e26609ca4733273f2",
+			"README.md": "f5dd6407de4cc4f2efe9c802d806e7f85c4e82c647f7237dac2f49bfb5efc116",
+			"sample.in": "0dd83c0d7a588a7c78078b2a3604ecadb9de82dc9e388730649b7007245a5f46"
+		},
+		reference: true,
+		unfinishedTask: "Fenwick"
 	}
 ];
 
 export const usacoExistingProjectIds = [
+	{
+		course: "usaco-gold",
+		id: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-curriculum-core-project-fenwick-trees-ordering-and-range-structure",
+		url: "https://github.com/instruction-material/USACO-Gold/tree/main/UG22-Binary-Indexed-Tree-Fenwick-Tree/starter"
+	},
+	{
+		course: "usaco-gold",
+		id: "usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-supplemental-problem-binary-indexed-tree-fenwick-tree",
+		url: "https://github.com/instruction-material/USACO-Gold/tree/main/UG22-Binary-Indexed-Tree-Fenwick-Tree/starter"
+	},
 	{
 		course: "usaco-gold",
 		id: "usaco-gold-unit-3-msts-dsu-and-connectivity-proofs-curriculum-core-project-msts-dsu-and-connectivity-optimization",
