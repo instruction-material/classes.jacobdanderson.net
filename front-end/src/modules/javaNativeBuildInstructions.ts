@@ -16,6 +16,28 @@ const mootubeItems = new Set([
 	"usaco-gold-usg0-setup-contest-contract-and-gold-mindset-curriculum-core-project-setup-and-gold-mindset",
 	"usaco-gold-usg0-setup-contest-contract-and-gold-mindset-supplemental-gold-log-setup-and-gold-mindset"
 ]);
+const orderingItems = new Map([
+	[
+		"usaco-gold-usg0-setup-contest-contract-and-gold-mindset-supplemental-why-did-the-cow-cross-the-road-iii",
+		{
+			title: "CircleCross",
+			input: "circlecross.in",
+			output: "circlecross.out",
+			tasks: "five interval and Fenwick tasks",
+			diagnostic: false
+		}
+	],
+	[
+		"usaco-gold-usg0-setup-contest-contract-and-gold-mindset-supplemental-snow-boots",
+		{
+			title: "Snow Boots",
+			input: "snowboots.in",
+			output: "snowboots.out",
+			tasks: "six sorting, neighbor-link and maximum-gap tasks",
+			diagnostic: true
+		}
+	]
+]);
 const fenwickItems = new Set([
 	"usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-curriculum-core-project-fenwick-trees-ordering-and-range-structure",
 	"usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-supplemental-problem-binary-indexed-tree-fenwick-tree"
@@ -29,7 +51,8 @@ export function javaNativeBuildInstructions(courseProjectKey?: string) {
 			!mstItems.has(item ?? "") &&
 			!fenwickItems.has(item ?? "") &&
 			!setupItems.has(item ?? "") &&
-			!mootubeItems.has(item ?? "")) ||
+			!mootubeItems.has(item ?? "") &&
+			!orderingItems.has(item ?? "")) ||
 		!["starter", "reference"].includes(role ?? "") ||
 		extra !== undefined
 	) {
@@ -46,6 +69,24 @@ export function javaNativeBuildInstructions(courseProjectKey?: string) {
 			"Read the sum in the native terminal. This program reads standard input and prints standard output; it creates no answer file. The site's Input panel does not run this native project.",
 			"Complete calculateTotal using a long accumulator. The untouched starter reports unfinished work; refused input exits with status 2. Both print no answer. Check exit status before accepting a result.",
 			"Change sample.in and predict the new sum before rerunning. Check N=0, negative values, cancellation, a sum beyond int range and missing or extra tokens. Preserve the first attempt before the optional changed-case retry."
+		];
+	}
+	const ordering = orderingItems.get(item!);
+	if (ordering) {
+		return [
+			"Save and download this project's ZIP, then extract it.",
+			`This ${ordering.title} project requires a native JDK 17 or newer. The site's Java teaching preview does not execute its file I/O or ordering algorithm.`,
+			`Create ${ordering.input} from sample.in and run inside the extracted folder:`,
+			`cp sample.in ${ordering.input}`,
+			`In PowerShell, use Copy-Item sample.in ${ordering.input}.`,
+			"javac -encoding UTF-8 Main.java",
+			"java Main",
+			`Read ${ordering.output} only after a successful run. The browser Input panel does not replace the native file.`,
+			`The learner has ${ordering.tasks}. An untouched learner exits with status 2 and creates no answer file. Malformed input or unfinished work preserves earlier output; check exit status. The preserved reference assumes valid contest input.`,
+			ordering.diagnostic
+				? "Snow Boots writes one 0/1 answer per boot in original input order. Its historical reference prints gap diagnostics in the terminal; those lines are not answers."
+				: "CircleCross writes one unordered crossing-pair count. Predict strict endpoint alternation and compare tiny cases with direct pair counting.",
+			"Preserve the attempt, change cases and explain the new predictions before revisiting the separately saved reference."
 		];
 	}
 	if (mootubeItems.has(item!)) {
