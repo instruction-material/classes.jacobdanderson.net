@@ -1,5 +1,8 @@
 // Only these role folders have verified, runnable learner and reference packs.
 // Legacy USACO folders mix languages and may still contain only a README.
+export const matrixDijkstraSavedItemId =
+	"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-dijkstras-algorithm-ii";
+
 export const usacoRestoredResources = [
 	{
 		course: "usaco-gold",
@@ -145,6 +148,12 @@ export const usacoRestoredResources = [
 		course: "usaco-gold",
 		repository: "USACO-Gold",
 		folder: "UG22-Binary-Indexed-Tree-Fenwick-Tree",
+		mode: "java"
+	},
+	{
+		course: "usaco-gold",
+		repository: "USACO-Gold",
+		folder: "UG9-Dijkstras-Algorithm-II",
 		mode: "java"
 	}
 ] as const;

@@ -1,5 +1,8 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
-import { restoredUsacoResourceUrl } from "../../modules/usacoProjectResources";
+import {
+	matrixDijkstraSavedItemId,
+	restoredUsacoResourceUrl
+} from "../../modules/usacoProjectResources";
 
 export const marathonSavedItemId =
 	"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-marathon";
@@ -12,6 +15,7 @@ const briefs: Record<
 		output: string;
 		stdio?: boolean;
 		demonstration?: boolean;
+		retainAnswer?: boolean;
 		sampleFile?: string;
 		contract: string;
 		model: string;
@@ -21,6 +25,20 @@ const briefs: Record<
 		cost: string;
 	}
 > = {
+	"UG9-Dijkstras-Algorithm-II": {
+		title: "Dijkstra II: matrix representation comparison",
+		input: "dijkstra.in",
+		output: "dijkstra.out",
+		sampleFile: "dijkstra.in",
+		retainAnswer: true,
+		contract:
+			"Optional practice after Unit 2's core adjacency-list shortest-path checkpoint. Keep the same nonnegative-weight invariant and compare graph representations; this is not another required Dijkstra lesson or a road-crossing problem. Read N M from dijkstra.in, then exactly M undirected records a b weight. Vertices are zero-based, source is 0, and explicit teaching limits are 1 <= N <= 2000, 0 <= M <= 200000 and 0 <= weight <= 2147483647. Self-loops, parallel edges, zero-weight edges and disconnected vertices are allowed. These are teaching limits, not official contest bounds. For parallel records the matrix retains the minimum weight; -1 means absent and zero is a real edge. Write one line per destination 1 through N-1 to dijkstra.out: a simple path beginning at 0 and ending at that destination followed by Distance: total, or Unreachable: destination. Any equally optimal path is valid. N=1 produces an empty answer file. Successful runs print no answer to standard output. Use long distances: (N-1) * 2147483647 can exceed int and fits in long.",
+		model: "Store an N-by-N matrix and scan a current vertex's entire row after a fresh minimum-distance queue pop. Relax only existing edges and only on strict improvement, update predecessors and enqueue the new long distance. Skip stale queue entries before scanning a row. Compare long queue keys without subtraction. Nonnegative weights justify finalizing a fresh minimum-distance pop; strict improvement prevents zero-cost ties from continually rewriting predecessors. This preserved matrix reference makes sparse graphs pay for absent cells as well as present edges. Compare it with the core adjacency list rather than copying that implementation into this pack.",
+		tasks: "Complete the four marked learner tasks in shortestPaths: initialize long distances and predecessors, seed PriorityQueue<State>, poll and skip stale entries, then scan the matrix row and relax on strict improvement. Keep the supplied validated file driver and path checks. Before coding, draw the sample matrix and predict the first two fresh pops. With an instructor, pause at the same prediction, relaxation and stale-entry checks. Record cells scanned on a chain, star and dense graph and compare with adjacency-list edges visited. Retain the learner attempt before reviewing the separate reference.",
+		sample: "The unchanged six-vertex sample has edges 0-1:7, 0-2:9, 0-5:14, 1-2:10, 1-3:15, 2-5:2, 2-3:11, 3-4:6 and 4-5:9. Its destination distances are 7, 9, 20, 20 and 11. One valid path to vertex 4 is 0 2 5 4 Distance: 20. Explain the improvement from the direct route to vertex 5 before running.",
+		checks: "Check one vertex, isolated vertices, zero-weight cycles, tied routes, self-loops, stale entries and parallel weights 1 then 9 in both record orders. Two 1500000000-weight edges must yield 3000000000. Use a separate Bellman-Ford model for small graphs, then validate every returned path's endpoints, real edges, lack of cycles and summed cost; do not require a single tied route. The supplied learner path validator checks consistency, not optimality. Untouched work exits with status 2 and creates no answer file, even for N=1. Missing input, malformed input, size violations, negative weights, invalid vertices, extra records and unexpected arguments are refused before opening an answer file and preserve earlier output. Check exit status before treating an old answer as new. The historical reference expects valid contract input; learner refusal guarantees do not extend to it. Source acceptance independently checks the teaching limits on JDK 17 and 21. Its tiny driver probes are restricted to eight vertices and do not complete or grade a learner's algorithm.",
+		cost: "The loose worst-case time bound is O(M + N² log N + P), where M counts input records and P counts all printed path vertices. Matrix and queue storage use O(N²); the learner additionally retains O(P) answer lines before writing, while the reference streams them. A sparse graph still pays matrix allocation and row-scan costs, and printing every path can itself be quadratic. Compare the core adjacency-list bound O((N+M) log(N+M) + P) and justify which representation fits a given graph."
+	},
 	"UG2-0-1-Knapsack": {
 		title: "0-1 Knapsack: state design and traceback",
 		input: "constants in Main.java",
@@ -32,7 +50,7 @@ const briefs: Record<
 		tasks: "Complete the five marked learner tasks: allocate the table and zero bases, fill the preceding-row skip/take recurrence, decide traceback selections, move past every considered item and return the terminal value with reconstructed indices without mutating the arrays. The supplied driver checks parameter bounds and the selection's feasibility, uniqueness and reported value. It does not independently prove optimality. The untouched starter exits with status 2 and prints no answer; it creates no answer file.",
 		sample: "Independently or with an instructor, enumerate the default feasible subsets, state what one cell means, explain why taking cannot read the same row and trace the selected indices. Preserve the initial attempt and predictions before the separately saved reference. Change the arrays in a copy, predict again and explain a mismatch rather than copying the reference's index order.",
 		checks: "Check empty arrays, capacity zero, no fitting item, repeated weights, zero values and tied optimal subsets. With one item of weight 2, value 3 and capacity 4, the answer is value 3 and index 0 once. For tiny datasets, independently enumerate all subsets and compare the maximum feasible value. Also check unique in-range indices, total weight within capacity and selected value equal to the reported optimum. This distinguishes optimality from a merely feasible selection.\n\nSource acceptance compiles the untouched scaffold and tests the supplied driver with small independent probes. It does not complete or grade the learner's DP algorithm. The reference's earlier repeated-index traceback defect is corrected; its historical source remains in Git history.",
-		cost: "The two-dimensional algorithm takes O(n*W) time and O(n*W) table storage for n items and capacity W. Estimate both before increasing the constants. A later one-dimensional table is a separate extension: explain its iteration direction and how reconstruction would change."
+		cost: "The two-dimensional algorithm takes O(nW) time and O(nW) table storage for n items and capacity W. Estimate both before increasing the constants. A later one-dimensional table is a separate extension: explain its iteration direction and how reconstruction would change."
 	},
 	"UG40-Fruit-Feast": {
 		title: "Fruit Feast: two states and one optional water transition",
@@ -361,57 +379,66 @@ function projectBrief(
 				]
 			: []),
 		"## Open, save and run",
-		`Choose Open in IDE beside the starter resource, then confirm the import. The ${mode === "python" ? "Python" : mode === "java" ? "Java" : "C++20"} pack includes ${mode === "java" ? "Main.java" : `main.${mode === "python" ? "py" : "cpp"}`}${brief.demonstration ? " and README.md" : ` and ${brief.sampleFile ?? brief.input}${folder === "UB1-Square-Pasture" ? "; the starter also includes README.md" : ", plus README.md"}`}. Existing saved attempts reopen with their edits. The starter and reference use separate project identities; reference resources are available in the authorized instructor view after an attempt.`,
+		`Choose the starter's IDE action beside the starter resource, then confirm the import. The ${mode === "python" ? "Python" : mode === "java" ? "Java" : "C++20"} pack includes ${mode === "java" ? "Main.java" : `main.${mode === "python" ? "py" : "cpp"}`}${brief.demonstration ? " and README.md" : ` and ${brief.sampleFile ?? brief.input}${folder === "UB1-Square-Pasture" ? "; the starter also includes README.md" : ", plus README.md"}`}. Existing saved attempts reopen with their edits. The starter and reference use separate project identities; reference resources are available in the authorized instructor view after an attempt.`,
 		...(brief.demonstration
 			? [
 					"Save the attempt, download its ZIP and extract it. Use a native JDK 17 or newer and run inside the extracted folder:",
 					"```sh\njavac -encoding UTF-8 Main.java\njava Main\n```",
 					"These commands also work in PowerShell. Read the result in the native terminal after success. Edit weights, values and capacity in Main.java for changed cases; also update numItems in the reference. This demonstration reads no input file or standard input and creates no answer file. The site IDE edits, saves and exports the source; its teaching preview does not execute the DP or traceback. Choosing Run displays native commands. The Input panel has no data contract for this demonstration."
 				]
-			: mode === "java" && brief.sampleFile && !brief.stdio
+			: folder === "UG9-Dijkstras-Algorithm-II"
 				? [
-						`Save the attempt, download its ZIP and extract it. Create ${brief.input} from the included sample.in and run in the extracted folder:`,
-						`\`\`\`sh\ncp sample.in ${brief.input}\njavac -encoding UTF-8 Main.java\njava Main\ncat ${brief.output}\n\`\`\``,
-						`In PowerShell, use Copy-Item sample.in ${brief.input} and Get-Content ${brief.output}. Check the exit status before accepting a new answer; a previous file survives unfinished or refused learner work. Keep previous source and inputs before changing cases.`,
-						`Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG40-Fruit-Feast" ? "dynamic-programming" : folder === "UG21-Moo-Tube" ? "offline-connectivity" : "ordering"} program. Choosing Run displays native commands. The browser Input panel does not replace ${brief.input}. Read ${brief.output} after success; the reference assumes valid contest input.`
+						"Save the attempt, download its ZIP and extract it. Keep the included dijkstra.in beside Main.java. Use a native JDK 17 or newer and run inside the extracted folder:",
+						"```sh\njavac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java\njava -ea -Xmx256m Main\n```",
+						"These commands also work in PowerShell. After a successful run, read dijkstra.out with cat dijkstra.out or Get-Content dijkstra.out. Check the exit status first; unfinished or refused learner work preserves an earlier answer, which is not evidence of a successful new run. Keep previous source and inputs before changing cases. The historical reference expects valid contract input.",
+						"The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/shortest-path program. Choosing Run displays native commands. The browser Input panel does not replace dijkstra.in. Edit the included file for each custom graph and predict distances and paths before running."
 					]
-				: brief.stdio && mode === "java"
+				: mode === "java" && brief.sampleFile && !brief.stdio
 					? [
-							`Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this ${folder === "UG0-Contest-Contract" ? "native input/output checkpoint" : "input-driven data structure"}. Choosing Run displays native commands. The Input panel does not execute this project.`,
-							"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with sample.in redirected into standard input:",
-							"```sh\njavac -encoding UTF-8 Main.java\njava Main < sample.in\n```",
-							"Read the printed answers in the native terminal. Change sample.in and predict the results before rerunning. The untouched starter and refused input exit with status 2 and print no answer. This program creates no answer file; check the exit status before accepting a result, including any file created separately by shell redirection. Reopening a saved attempt preserves its source edits and separate starter/reference identities."
+							`Save the attempt, download its ZIP and extract it. Create ${brief.input} from the included sample.in and run in the extracted folder:`,
+							`\`\`\`sh\ncp sample.in ${brief.input}\njavac -encoding UTF-8 Main.java\njava Main\ncat ${brief.output}\n\`\`\``,
+							`In PowerShell, use Copy-Item sample.in ${brief.input} and Get-Content ${brief.output}. Check the exit status before accepting a new answer; a previous file survives unfinished or refused learner work. Keep previous source and inputs before changing cases.`,
+							`Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG40-Fruit-Feast" ? "dynamic-programming" : folder === "UG21-Moo-Tube" ? "offline-connectivity" : "ordering"} program. Choosing Run displays native commands. The browser Input panel does not replace ${brief.input}. Read ${brief.output} after success; the reference assumes valid contest input.`
 						]
-					: brief.stdio
+					: brief.stdio && mode === "java"
 						? [
-								"In the site IDE, open sample.in and copy all its lines into the Input panel. Select main.py and choose Run. The untouched starter stops with NotImplementedError and prints no answer; complete its helper before expecting results. The completed program prints its answer in Console output. The input fixture is not opened automatically by this program.",
-								"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with the sample redirected into standard input:",
-								"```sh\npython3 main.py < sample.in\n```",
-								"Change the Input panel or the redirected fixture for each custom case. Reopening a saved attempt preserves its source edits; paste the desired input again before running. Keep a copy of learner work before using the separately saved instructor reference. Compare printed results using the contract above."
+								`Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this ${folder === "UG0-Contest-Contract" ? "native input/output checkpoint" : "input-driven data structure"}. Choosing Run displays native commands. The Input panel does not execute this project.`,
+								"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with sample.in redirected into standard input:",
+								"```sh\njavac -encoding UTF-8 Main.java\njava Main < sample.in\n```",
+								"Read the printed answers in the native terminal. Change sample.in and predict the results before rerunning. The untouched starter and refused input exit with status 2 and print no answer. This program creates no answer file; check the exit status before accepting a result, including any file created separately by shell redirection. Reopening a saved attempt preserves its source edits and separate starter/reference identities."
 							]
-						: [
-								"Save the attempt, download its ZIP and extract it. Keep the input beside the source and run inside that extracted directory. The unfinished starter stops with an unfinished-task error and creates no answer file; that is the expected starting state.",
-								"```sh",
-								`rm -f ${brief.output}`,
-								...(mode === "python"
-									? ["python3 main.py"]
-									: mode === "java"
-										? [
-												"javac -encoding UTF-8 Main.java",
-												"java Main"
-											]
-										: [
-												"c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o project",
-												"./project"
-											]),
-								`cat ${brief.output}`,
-								"```",
-								mode === "java"
-									? `Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG14-MST" ? "matrix" : "priority-queue"} program. Choosing Run displays the native commands. The Input panel does not replace ${brief.input}. Read the native result in ${brief.output} after a successful run.`
-									: mode === "cpp"
-										? "The browser edits and exports C++ source; it does not compile or execute C++. Follow the native commands above with a C++20 compiler. Delete only the stale answer file before running so an old answer cannot be mistaken for a new result."
-										: "Python can also run in the site IDE. Inspect the generated output file after completing the helper; the native commands provide the same file-I/O check after export."
-							]),
+						: brief.stdio
+							? [
+									"In the site IDE, open sample.in and copy all its lines into the Input panel. Select main.py and choose Run. The untouched starter stops with NotImplementedError and prints no answer; complete its helper before expecting results. The completed program prints its answer in Console output. The input fixture is not opened automatically by this program.",
+									"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with the sample redirected into standard input:",
+									"```sh\npython3 main.py < sample.in\n```",
+									"Change the Input panel or the redirected fixture for each custom case. Reopening a saved attempt preserves its source edits; paste the desired input again before running. Keep a copy of learner work before using the separately saved instructor reference. Compare printed results using the contract above."
+								]
+							: [
+									"Save the attempt, download its ZIP and extract it. Keep the input beside the source and run inside that extracted directory. The unfinished starter stops with an unfinished-task error and creates no answer file; that is the expected starting state.",
+									"```sh",
+									...(brief.retainAnswer
+										? []
+										: [`rm -f ${brief.output}`]),
+									...(mode === "python"
+										? ["python3 main.py"]
+										: mode === "java"
+											? [
+													"javac -encoding UTF-8 Main.java",
+													"java Main"
+												]
+											: [
+													"c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o project",
+													"./project"
+												]),
+									`cat ${brief.output}`,
+									"```",
+									mode === "java"
+										? `Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG14-MST" ? "matrix" : "priority-queue"} program. Choosing Run displays the native commands. The Input panel does not replace ${brief.input}. Read the native result in ${brief.output} after a successful run.`
+										: mode === "cpp"
+											? "The browser edits and exports C++ source; it does not compile or execute C++. Follow the native commands above with a C++20 compiler. Delete only the stale answer file before running so an old answer cannot be mistaken for a new result."
+											: "Python can also run in the site IDE. Inspect the generated output file after completing the helper; the native commands provide the same file-I/O check after export."
+								]),
 		"Source checks validate the supplied packs; they do not grade a completed learner submission. Protected mocks and active contests begin from an empty file without these practice starters or references."
 	]
 		.join("\n\n")
@@ -450,6 +477,26 @@ export function applyRestoredUsacoProjects(
 		module =>
 			module.title === "Optional Historical and Applied Gold Studios"
 	);
+	const graphUnit = course.modules.find(module =>
+		module.title.startsWith("Unit 2:")
+	);
+	const matrixIndex =
+		previous?.supplementalProjects.findIndex(item =>
+			item.projectLink?.includes("/UG9-Dijkstras-Algorithm-II/starter")
+		) ?? -1;
+	if (previous && graphUnit && matrixIndex >= 0) {
+		const [matrix] = previous.supplementalProjects.splice(matrixIndex, 1);
+		matrix!.id = matrixDijkstraSavedItemId;
+		matrix!.title = "Dijkstra II: Matrix Representation Comparison";
+		matrix!.learningPath = "choice";
+		matrix!.content = projectBrief(
+			courseId,
+			"UG9-Dijkstras-Algorithm-II",
+			"java",
+			matrix!
+		);
+		graphUnit.supplementalProjects.push(matrix!);
+	}
 	const destination = course.modules.find(
 		module =>
 			module.title ===

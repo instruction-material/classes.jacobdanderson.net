@@ -1209,7 +1209,46 @@ export const usacoFixtures = [
 		"output": "feast.out",
 		"sample": "sample.in",
 		"expected": "8\n"
-	}
+	},
+{
+  "repository": "instruction-material/USACO-Gold",
+  "revision": "788e9e66aec0d8597e8b7e365de1f53c27b89a2a",
+  "courseId": "usaco-gold",
+  "folder": "UG9-Dijkstras-Algorithm-II/starter",
+  "anchor": "usaco-gold-unit-2-shortest-paths-dags-and-weighted-graphs",
+  "itemId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-dijkstras-algorithm-ii",
+  "mode": "java",
+  "input": "dijkstra.in",
+  "output": "dijkstra.out",
+  "sample": "dijkstra.in",
+  "expected": "0 1 Distance: 7\n0 2 Distance: 9\n0 2 3 Distance: 20\n0 2 5 4 Distance: 20\n0 2 5 Distance: 11\n",
+  "hashes": {
+    "Main.java": "dacdf2a9894c0f94ae13cc480f231504f115161462c7da9f10e69c4d2ea46479",
+    "README.md": "91e48b69c685857c3e1983bf11e942936193707875b8eb0cc06c51788c267aa9",
+    "dijkstra.in": "de7d7a29e9ad2ef22da64f0825c9c8890baba0db4dd770201bae568b180590bc"
+  },
+  "reference": false
+},
+{
+  "repository": "instruction-material/USACO-Gold",
+  "revision": "788e9e66aec0d8597e8b7e365de1f53c27b89a2a",
+  "courseId": "usaco-gold",
+  "folder": "UG9-Dijkstras-Algorithm-II/solution",
+  "anchor": "usaco-gold-unit-2-shortest-paths-dags-and-weighted-graphs",
+  "itemId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-dijkstras-algorithm-ii",
+  "mode": "java",
+  "input": "dijkstra.in",
+  "output": "dijkstra.out",
+  "sample": "dijkstra.in",
+  "expected": "0 1 Distance: 7\n0 2 Distance: 9\n0 2 3 Distance: 20\n0 2 5 4 Distance: 20\n0 2 5 Distance: 11\n",
+  "hashes": {
+    "Main.java": "e144c1316be5f85e92a297060f9adfefecbe0a87ac9da040a237479b51bf80f5",
+    "README.md": "71b710443f392b2d86bedc9098e474c18c67c1da8f6993e31a234e9acd4dd005",
+    "dijkstra.in": "de7d7a29e9ad2ef22da64f0825c9c8890baba0db4dd770201bae568b180590bc",
+    "dijkstra.out": "86ecdb7a839cddc27015d4eab02996d54843bf32d9238a57d120799b8ac3d122"
+  },
+  "reference": true
+}
 ];
 
 export const usacoExistingProjectIds = [

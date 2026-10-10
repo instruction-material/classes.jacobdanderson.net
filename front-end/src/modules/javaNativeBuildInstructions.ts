@@ -1,5 +1,7 @@
 // These saved identities belong to the verified native Gold lessons.
 // Other Java and Karel lessons retain their existing teaching previews.
+import { matrixDijkstraSavedItemId } from "./usacoProjectResources";
+
 const setupItems = new Set([
 	"usaco-gold-usg0-setup-contest-contract-and-gold-mindset-curriculum-core-project-native-input-output-checkpoint",
 	"usaco-gold-usg0-setup-contest-contract-and-gold-mindset-supplemental-native-input-output-retry"
@@ -90,12 +92,26 @@ export function javaNativeBuildInstructions(courseProjectKey?: string) {
 			!mootubeItems.has(item ?? "") &&
 			!orderingItems.has(item ?? "") &&
 			!fenwickPracticeItems.has(item ?? "") &&
+			item !== matrixDijkstraSavedItemId &&
 			item !== knapsackItem &&
 			item !== fruitFeastItem) ||
 		!["starter", "reference"].includes(role ?? "") ||
 		extra !== undefined
 	) {
 		return null;
+	}
+	if (item === matrixDijkstraSavedItemId) {
+		return [
+			"Save and download this project's ZIP, then extract it. Keep the included dijkstra.in beside Main.java.",
+			"This optional matrix-representation comparison requires a native JDK 17 or newer; source acceptance uses JDK 17 and 21. The site's Java teaching preview does not execute its file I/O or shortest-path algorithm.",
+			"Preserve earlier inputs and answers. Run inside the extracted folder:",
+			"javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java",
+			"java -ea -Xmx256m Main",
+			"Check exit status and read dijkstra.out only after success. The browser Input panel does not replace dijkstra.in. The included sample's destination distances are 7, 9, 20, 20 and 11.",
+			"Complete the four marked matrix Dijkstra tasks: initialize long distances and predecessors, seed the queue, skip stale states and relax existing edges on strict improvement. Zero weight is an edge; only -1 means absent. Minimum parallel weights are retained. Any tied minimum-cost path is valid; unreachable vertices have explicit Unreachable lines.",
+			"An untouched learner exits with status 2 and creates no answer file. Missing input, refused input and unfinished work preserve an earlier answer. Its path validator checks consistency; an independent Bellman-Ford model checks minimum distances. The historical reference expects valid contract input.",
+			"Compare matrix row scans and storage with the core adjacency-list lesson on a chain, star and dense graph. Preserve the learner attempt before consulting the separately saved reference. Include parallel records in both orders, a zero-weight cycle, an isolated vertex and totals beyond int range."
+		];
 	}
 	if (item === knapsackItem) {
 		return [

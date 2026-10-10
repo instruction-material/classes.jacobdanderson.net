@@ -7,7 +7,10 @@ import {
 	pythonIdeModeForCourseId,
 	pythonIdeModeForCourseResource
 } from "@/modules/pythonIde";
-import { usacoRestoredResources } from "@/modules/usacoProjectResources";
+import {
+	matrixDijkstraSavedItemId,
+	usacoRestoredResources
+} from "@/modules/usacoProjectResources";
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
 import { marathonSavedItemId } from "@/stores/courses/usacoRestoredProjectBriefs";
@@ -16,6 +19,91 @@ import { usacoExistingProjectIds } from "../../test/fixtures/usaco-restored-pack
 beforeEach(() => setActivePinia(createPinia()));
 
 describe("restored USACO project workflows", () => {
+	it("moves matrix comparison after core shortest paths without replacing saved work", async () => {
+		const course = (await useCoursesStore().loadCourseById("usaco-gold"))!;
+		const unit = course.modules.find(module =>
+			module.title.startsWith("Unit 2:")
+		)!;
+		const matches = course.modules.flatMap(module =>
+			[...module.curriculum, ...module.supplementalProjects].filter(
+				item =>
+					item.projectLink?.includes(
+						"/UG9-Dijkstras-Algorithm-II/starter"
+					)
+			)
+		);
+		expect(matches).toHaveLength(1);
+		const item = matches[0]!;
+		expect(unit.supplementalProjects).toContain(item);
+		expect(item.id).toBe(matrixDijkstraSavedItemId);
+		expect(item.title).toBe(
+			"Dijkstra II: Matrix Representation Comparison"
+		);
+		expect(item.learningPath).toBe("choice");
+		expect(item.ideImport).toBe(true);
+		expect(item.solutionLink).toBeUndefined();
+		expect(item.content).not.toContain("/solution");
+		expect(item.content).not.toContain("rm -f dijkstra.out");
+		expect(item.content).not.toContain("sample.in");
+		expect(item.content).not.toContain("file-I/O/ordering program");
+		for (const detail of [
+			"core adjacency-list",
+			"four marked learner tasks",
+			"2147483647",
+			"1500000000",
+			"3000000000",
+			"Bellman-Ford",
+			"strict improvement",
+			"Unreachable:",
+			"N²",
+			"preserve earlier output",
+			"historical reference expects valid contract input",
+			"Keep the included dijkstra.in beside Main.java",
+			"javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java",
+			"java -ea -Xmx256m Main",
+			"does not execute this file-I/O/shortest-path program",
+			"Check the exit status first"
+		])
+			expect(item.content).toContain(detail);
+		for (const role of ["starter", "reference"]) {
+			const directions = javaNativeBuildInstructions(
+				`usaco-gold:${item.id}:${role}`
+			)!.join("\n");
+			expect(directions).toContain(
+				"javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java"
+			);
+			expect(directions).toContain("java -ea -Xmx256m Main");
+			expect(directions).toContain(
+				"does not execute its file I/O or shortest-path algorithm"
+			);
+			expect(directions).toContain("preserve an earlier answer");
+			expect(directions).not.toContain("cp sample.in");
+		}
+		for (const key of [
+			`usaco-gold:${item.id}:solution`,
+			`usaco-gold:${item.id}:starter:extra`,
+			`java-level-1:${item.id}:starter`
+		])
+			expect(javaNativeBuildInstructions(key)).toBeNull();
+		useAppStore().currentTutor = {} as never;
+		const staff = (await useCoursesStore().loadCourseById("usaco-gold"))!;
+		const reference = staff.modules
+			.flatMap(module => [
+				...module.curriculum,
+				...module.supplementalProjects
+			])
+			.find(candidate => candidate.id === item.id)!;
+		expect(reference.solutionLink).toContain(
+			"/UG9-Dijkstras-Algorithm-II/solution"
+		);
+		expect(
+			unit.curriculum.some(candidate =>
+				candidate.projectLink?.endsWith(
+					"/UG9-Dijkstras-Algorithm/starter"
+				)
+			)
+		).toBe(true);
+	});
 	it("keeps DP practice optional and uses the real demonstration and file contracts", async () => {
 		const course = (await useCoursesStore().loadCourseById("usaco-gold"))!;
 		const unit = course.modules.find(module =>
@@ -253,7 +341,9 @@ describe("restored USACO project workflows", () => {
 					pack.mode === "cpp"
 						? "-std=c++20"
 						: pack.mode === "java"
-							? "javac -encoding UTF-8 Main.java"
+							? pack.folder === "UG9-Dijkstras-Algorithm-II"
+								? "javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java"
+								: "javac -encoding UTF-8 Main.java"
 							: "python3 main.py"
 				);
 			}
