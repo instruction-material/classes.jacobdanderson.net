@@ -38,6 +38,38 @@ const orderingItems = new Map([
 		}
 	]
 ]);
+const fenwickPracticeItems = new Map([
+	[
+		"usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-supplemental-problem-balanced-photo",
+		{
+			title: "Balanced Photo",
+			input: "bphoto.in",
+			output: "bphoto.out",
+			meaning:
+				"Count a cow only when the larger taller-side count is strictly greater than twice the smaller count. Query before marking its position; heights are distinct."
+		}
+	],
+	[
+		"usaco-gold-optional-gold-problem-bank-supplemental-problem-sleepy-cow-sorting",
+		{
+			title: "Sleepy Cow Sorting",
+			input: "sleepy.in",
+			output: "sleepy.out",
+			meaning:
+				"Only the first cow moves. Write the minimum count and any optimal legal move sequence; simulate every move and check the sorted final row. A sorted row needs zero moves."
+		}
+	],
+	[
+		"usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-supplemental-problem-out-of-sorts",
+		{
+			title: "Out of Sorts, Gold bidirectional sweeps",
+			input: "sort.in",
+			output: "sort.out",
+			meaning:
+				"Each Gold iteration makes a forward sweep, a backward sweep, then the adjacency check. Count stable-order cut deficits with a minimum of one iteration; duplicates are allowed."
+		}
+	]
+]);
 const fenwickItems = new Set([
 	"usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-curriculum-core-project-fenwick-trees-ordering-and-range-structure",
 	"usaco-gold-unit-4-fenwick-and-segment-trees-ordering-and-range-structure-supplemental-problem-binary-indexed-tree-fenwick-tree"
@@ -52,7 +84,8 @@ export function javaNativeBuildInstructions(courseProjectKey?: string) {
 			!fenwickItems.has(item ?? "") &&
 			!setupItems.has(item ?? "") &&
 			!mootubeItems.has(item ?? "") &&
-			!orderingItems.has(item ?? "")) ||
+			!orderingItems.has(item ?? "") &&
+			!fenwickPracticeItems.has(item ?? "")) ||
 		!["starter", "reference"].includes(role ?? "") ||
 		extra !== undefined
 	) {
@@ -69,6 +102,22 @@ export function javaNativeBuildInstructions(courseProjectKey?: string) {
 			"Read the sum in the native terminal. This program reads standard input and prints standard output; it creates no answer file. The site's Input panel does not run this native project.",
 			"Complete calculateTotal using a long accumulator. The untouched starter reports unfinished work; refused input exits with status 2. Both print no answer. Check exit status before accepting a result.",
 			"Change sample.in and predict the new sum before rerunning. Check N=0, negative values, cancellation, a sum beyond int range and missing or extra tokens. Preserve the first attempt before the optional changed-case retry."
+		];
+	}
+	const practice = fenwickPracticeItems.get(item!);
+	if (practice) {
+		return [
+			"Save and download this project's ZIP, then extract it.",
+			`This ${practice.title} project requires a native JDK 17 or newer. The site's Java teaching preview does not execute its file I/O or ordering algorithm.`,
+			`Create ${practice.input} from sample.in and run inside the extracted folder:`,
+			`cp sample.in ${practice.input}`,
+			`In PowerShell, use Copy-Item sample.in ${practice.input}.`,
+			"javac -encoding UTF-8 Main.java",
+			"java Main",
+			`Read ${practice.output} only after a successful run. The browser Input panel does not replace the native file.`,
+			"Complete the five marked learner tasks. Every valid untouched run exits with status 2 and creates no answer file, including the smallest or already sorted case. Missing input, malformed input or unfinished work preserves earlier output; check exit status. The preserved reference assumes valid contest input.",
+			practice.meaning,
+			"Preserve the attempt, predict changed cases and explain mismatches before revisiting the separately saved reference."
 		];
 	}
 	const ordering = orderingItems.get(item!);

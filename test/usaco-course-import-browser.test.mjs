@@ -18,6 +18,9 @@ import { confirmProjectImport, downloadProjectZip, openProjectSidebar } from "./
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
 const taskId = process.env.CLASSES_FAMILY_TASK_ID ?? "usaco-course-import-browser-ci";
 const changes = {
+	"UG23-Balanced-Photo": ["3\n1\n3\n2\n", "2\n"],
+	"UG25-Sleepy-Cow-Sorting": ["3\n3 2 1\n", "2\n2 1"],
+	"UG26-Out-of-Sorts": ["3\n2\n1\n1\n", "1\n"],
 	"UG24-Why-Did-the-Cow-Cross-the-Road-III": ["3\n1\n2\n3\n1\n2\n3\n", "3\n"],
 	"UG27-Snow-Boots": ["4 3\n0 8 8 0\n0 2\n0 3\n8 1\n", "0\n1\n1\n"],
 	"UG21-Moo-Tube": ["5 4\n1 2 7\n2 3 7\n3 4 7\n4 5 7\n8 3\n7 5\n1 1\n7 2\n", "0\n4\n4\n4\n"],
@@ -187,10 +190,123 @@ async function exportedFiles(page) {
 	return Object.fromEntries(Object.entries(zip).map(([path, bytes]) => [path.slice(path.indexOf("/") + 1), strFromU8(bytes)]));
 }
 
+function verifyFenwickPracticeAnswer(fixture, data, output) {
+	const [n, ...values] = data.trim().split(/\s+/).map(Number);
+	assert.equal(values.length, n);
+	const tokens = output.trim().split(/\s+/);
+	assert.ok(tokens.every(token => /^\d+$/.test(token)));
+	const numbers = tokens.map(Number);
+	if (fixture.folder.startsWith("UG25-")) {
+		const goal = [...values].sort((a, b) => a - b).join(",");
+		const queue = [[values, 0]];
+		const seen = new Set([values.join(",")]);
+		let minimum;
+		for (let next = 0; next < queue.length; next++) {
+			const [state, distance] = queue[next];
+			if (state.join(",") === goal) {
+				minimum = distance;
+				break;
+			}
+			for (let k = 1; k < n; k++) {
+				const moved = state.slice(1);
+				moved.splice(k, 0, state[0]);
+				const key = moved.join(",");
+				if (!seen.has(key)) {
+					seen.add(key);
+					queue.push([moved, distance + 1]);
+				}
+			}
+		}
+		assert.equal(numbers[0], minimum, "The move count must be independently minimal");
+		assert.equal(numbers.length, minimum + 1);
+		const row = [...values];
+		for (const k of numbers.slice(1)) {
+			assert.ok(k >= 1 && k < n, "Only legal front-cow moves are allowed");
+			row.splice(k, 0, row.shift());
+		}
+		assert.equal(row.join(","), goal, "Any optimal sequence must sort the row");
+		return;
+	}
+	assert.equal(numbers.length, 1);
+	let expected = 0;
+	if (fixture.folder.startsWith("UG23-")) {
+		for (let i = 0; i < n; i++) {
+			const left = values.slice(0, i).filter(height => height > values[i]).length;
+			const right = values.slice(i + 1).filter(height => height > values[i]).length;
+			if (Math.max(left, right) > 2 * Math.min(left, right)) expected++;
+		}
+	}
+	else {
+		const row = [...values];
+		do {
+			expected++;
+			for (let i = 0; i + 1 < n; i++) {
+				if (row[i] > row[i + 1]) [row[i], row[i + 1]] = [row[i + 1], row[i]];
+			}
+			for (let i = n - 2; i >= 0; i--) {
+				if (row[i] > row[i + 1]) [row[i], row[i + 1]] = [row[i + 1], row[i]];
+			}
+		} while (row.some((value, i) => i > 0 && row[i - 1] > value));
+	}
+	assert.equal(numbers[0], expected);
+}
+
+async function verifyFenwickPracticeExport(fixture, files, directory) {
+	assert.match(files["README.md"], /javac -encoding UTF-8 Main.java/);
+	assert.doesNotMatch(files["README.md"], /\.\.\/README\.md/);
+	assert.ok(files["README.md"].includes(fixture.input) && files["README.md"].includes(fixture.output));
+	const javaHome = process.env.JAVA_HOME_21_X64 ?? process.env.JAVA_HOME;
+	const javac = process.env.JAVAC ?? (javaHome ? join(javaHome, "bin/javac") : "javac");
+	const java = process.env.JAVA ?? (javaHome ? join(javaHome, "bin/java") : "java");
+	const compile = await runNative(javac, ["--release", "17", "-encoding", "UTF-8", "-Xlint:all", "-Werror", "Main.java"], directory);
+	assert.equal(compile.code, 0, compile.stderr);
+	const input = join(directory, fixture.input);
+	const output = join(directory, fixture.output);
+	const args = ["-ea", "-Xmx256m", "Main"];
+	const [changedInput] = changes[fixture.folder.split("/")[0]];
+	const single = fixture.folder.startsWith("UG25-") ? "1\n1\n" : "1\n0\n";
+	if (fixture.reference) await writeFile(output, "Earlier saved answer\n");
+	for (const data of [files[fixture.sample], changedInput, single]) {
+		await writeFile(input, data);
+		const result = await runNative(java, args, directory);
+		assert.equal(result.stdout, "");
+		if (fixture.reference) {
+			assert.equal(result.code, 0, result.stderr);
+			assert.equal(result.stderr, "");
+			verifyFenwickPracticeAnswer(fixture, data, await readFile(output, "utf8"));
+		}
+		else {
+			assert.equal(result.code, 2);
+			assert.match(result.stderr, /Complete the five .+ tasks before producing an answer/);
+			if (data === files[fixture.sample]) assert.equal(existsSync(output), false);
+			else assert.equal(await readFile(output, "utf8"), "Earlier saved answer\n");
+			await writeFile(output, "Earlier saved answer\n");
+		}
+	}
+	if (!fixture.reference) {
+		await writeFile(input, "broken\n");
+		const refused = await runNative(java, args, directory);
+		assert.equal(refused.code, 2);
+		assert.equal(refused.stdout, "");
+		assert.ok(refused.stderr.startsWith(`Cannot solve ${fixture.input}:`));
+		assert.equal(await readFile(output, "utf8"), "Earlier saved answer\n");
+		await rm(input);
+		const missing = await runNative(java, args, directory);
+		assert.equal(missing.code, 2);
+		assert.equal(missing.stdout, "");
+		assert.equal(await readFile(output, "utf8"), "Earlier saved answer\n");
+	}
+	for (const name of ["Main.java", "README.md", fixture.sample]) assert.equal(await readFile(join(directory, name), "utf8"), files[name]);
+}
+
 async function verifyNativeExport(fixture, files, directory) {
 	await mkdir(directory);
 	for (const [name, content] of Object.entries(files)) await writeFile(join(directory, name), content);
 	if (fixture.mode === "java") {
+		if (fixture.fenwickPracticePack) {
+			await verifyFenwickPracticeExport(fixture, files, directory);
+			return;
+		}
 		if (fixture.orderingPack) {
 			assert.match(files["README.md"], /javac --release 17 -encoding UTF-8/);
 			assert.doesNotMatch(files["README.md"], /\.\.\/README\.md/);
@@ -507,15 +623,17 @@ nodeTest(
 				await verifyNativeExport(fixture, await sourceFiles(fixture), join(temporary, String(verified.size)));
 				verified.add(key);
 			}
-			assert.equal(verified.size, 38);
+			assert.equal(verified.size, 44);
 			record("verified-usaco-pinned-native-contracts", {
 				roles: verified.size,
-				packs: 19,
+				packs: 22,
 				nativeJava: true,
 				samplesAndChangedInputs: true,
 				ordinaryAndSanitizedCpp: true,
 				nativeStdio: true,
-				anyOptimalFeedingLayout: true
+				anyOptimalFeedingLayout: true,
+				anyOptimalSleepyPlan: true,
+				goldBidirectionalSweepsAndDuplicates: true
 			});
 		}
 		finally {
@@ -621,7 +739,7 @@ nodeTest(
 				}
 				if (fixture.mode === "java") {
 					assert.match(card.text, /JDK 17 or newer/);
-					assert.match(card.text, fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute this file-I\/O\/offline-connectivity program/ : fixture.orderingPack ? /does not execute this file-I\/O\/ordering program/ : /does not execute this file-I\/O\/priority-queue program/);
+					assert.match(card.text, fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute this file-I\/O\/offline-connectivity program/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute this file-I\/O\/ordering program/ : /does not execute this file-I\/O\/priority-queue program/);
 					assert.match(card.text, fixture.lessonView === 1 ? /Required implementation checkpoint/ : /optional practice/);
 				}
 				if (!fixture.reference) assert.ok(card.links.every(link => !link.href.includes("/solution")), "Learner view withholds reference resources");
@@ -673,7 +791,7 @@ nodeTest(
 					assert.equal(await page.$(".stdin-panel"), null, "Native Java must not offer browser Turtle/Scanner input");
 					const output = await page.$eval(".output-panel", element => element.textContent);
 					assert.match(output, /javac -encoding UTF-8 Main.java/);
-					assert.match(output, fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute its file I\/O or offline connectivity algorithm/ : fixture.orderingPack ? /does not execute its file I\/O or ordering algorithm/ : /does not execute its file I\/O or priority queue/);
+					assert.match(output, fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute its file I\/O or offline connectivity algorithm/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute its file I\/O or ordering algorithm/ : /does not execute its file I\/O or priority queue/);
 					if (fixture.stdio) {
 						assert.match(output, /java Main < sample.in/);
 						assert.match(output, /creates no answer file/);
@@ -829,7 +947,7 @@ nodeTest(
 			assert.equal(remoteWrites, 0);
 			record("verified-usaco-workflows", {
 				imports: usacoFixtures.length,
-				packs: 19,
+				packs: 22,
 				nativeJava: true,
 				roleSeparation: true,
 				consentBeforeSource: true,

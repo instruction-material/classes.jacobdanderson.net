@@ -379,7 +379,7 @@ const usacoGoldSourceCourse: RawCourse = {
 				{
 					title: "Problem: Out of Sorts",
 					content:
-						"Use ordering and movement analysis to show how a simple-looking sorting story hides richer structure. Compare original and sorted positions, identify the maximum displacement that controls the number of passes, and include duplicate-value handling so the mapping stays stable.",
+						"Use the Gold modified bubble algorithm: each iteration makes a forward adjacent-swap sweep, a backward sweep, then an adjacency check, and runs at least once. Retain stable order for equal values. Mark the original positions of the smallest k values and count the desired left-side values still across each cut; the maximum cut requirement, with a minimum of one, gives the iteration count.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Gold/tree/main/UG26-Out-of-Sorts/starter",
 					solutionLink:

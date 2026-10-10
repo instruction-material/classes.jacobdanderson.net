@@ -4,6 +4,25 @@ export const usacoRestoredResources = [
 	{
 		course: "usaco-gold",
 		repository: "USACO-Gold",
+		folder: "UG23-Balanced-Photo",
+		mode: "java"
+	},
+	{
+		course: "usaco-gold",
+		repository: "USACO-Gold",
+		folder: "UG25-Sleepy-Cow-Sorting",
+		mode: "java"
+	},
+	{
+		course: "usaco-gold",
+		repository: "USACO-Gold",
+		folder: "UG26-Out-of-Sorts",
+		mode: "java"
+	},
+
+	{
+		course: "usaco-gold",
+		repository: "USACO-Gold",
 		folder: "UG24-Why-Did-the-Cow-Cross-the-Road-III",
 		mode: "java"
 	},
