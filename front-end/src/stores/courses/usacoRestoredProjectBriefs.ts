@@ -28,6 +28,20 @@ const briefs: Record<
 		cost: string;
 	}
 > = {
+	"UG11-Shortcut": {
+		title: "Shortcut: Selected Routes and Cow Traffic",
+		input: "shortcut.in",
+		output: "shortcut.out",
+		sampleFile: "shortcut.in",
+		retainAnswer: true,
+		contract:
+			"This optional application follows weighted shortest paths and tree rooting. A shortest-route helper is supplied so the new work is selected-tree traffic and candidate savings. It complements the core weighted-graph checkpoint; return after tree-rooting work when that prerequisite is new.\n\nThe [January 2019 Gold problem](https://usaco.org/index.php?page=viewproblem2&cpid=899)\nuses a connected undirected graph with the barn at field 1. Every cow follows\nits shortest usual route toward the barn. Tied routes use the smaller field\nlabel at their first differing position, read from the cow's field toward the\nbarn. Add one trail of length T from a chosen field to the barn. A cow uses it\nonly if its usual route visits that field and the trail shortens the remaining\ntrip. Cows do not reroute to reach the new trail.\n\n`shortcut.in` contains:\n\n| Record | Meaning and bounds |\n| --- | --- |\n| `N M T` | 1..10000 fields, N-1..50000 trails, T in 1..10000 |\n| N cow counts | Each count is in 0..10000, in field-label order |\n| M records `a b time` | Endpoints in 1..N; positive time in 1..25000 |\n\nEvery field must reach the barn. The statement does not exclude parallel trails\nor positive self-loops; the learner driver accepts them. N=1 and M=0 is valid.\n`shortcut.out` contains one integer: the greatest reduction in total travel time.\nUse `long` for total traffic and savings; field labels become zero-based indices.",
+		model: "Before coding, draw every chosen route on the included sample. Field 4 chooses\n4,2,1 over 4,3,1 when both take 8 time units. Field 5 chooses 5,3,1 over 5,4,2,1\nwhen both take 10. A shortcut at field 5 saves 8 units for each of its five cows,\nso the answer is 40. The four cows at field 4 keep their usual route even though\ntravelling through field 5 might become faster. The original total is 101; this\nshortcut changes it to 61.\n\nFor a field v, choose the lowest-labelled neighbour that can begin a shortest\nroute toward the barn. This gives the first differing step in the lexicographic\ncomparison. Its suffix is selected by the same rule. Positive trail times make\ndistances strictly decrease along parent links, so the selected routes form a\ntree rooted at the barn.\n\nTraffic through v is its own cows plus the traffic through each child. Process\nchildren before their parent. Cows in this subtree share the selected suffix\nfrom v to the barn; cows outside it never encounter a shortcut at v. Evaluate\n`gain(v) = traffic(v) * max(0, distance[v] - T)` for every field and retain the\ngreatest total, including zero when no shortcut helps.",
+		tasks: "Complete the four marked learner tasks in solve: call the supplied shortestRoutes helper, build child lists and explain the toward-barn tie rule; accumulate long traffic in iterative postorder; compare traffic[v] * max(0, distance[v] - T) without rerouting; return and explain the greatest nonnegative saving. Positive weights make parent distances strictly decrease. A 10000-field chain must not depend on recursive stack depth. Keep the validated input driver and helper. Untouched valid runs exit with status 2 and create no answer file; refused or unfinished work must preserve earlier output. The numeric range guard does not grade learner logic. The historical reference expects valid contract input.",
+		sample: "On the included sample, field 4 chooses 4,2,1 over 4,3,1; field 5 chooses 5,3,1 over 5,4,2,1. A shortcut at 5 saves 8 for each of its five cows, giving 40 and reducing total travel time from 101 to 61. Cows from field 4 keep their usual route. Predict each parent and subtree traffic before running.",
+		checks: "Check a single barn, no cows, a slow shortcut, a tied diamond, changed cow counts, reversed trail records, parallel trails and positive loops. On tiny graphs of at most eight fields, enumerate simple routes to the barn, select the least (time, toward-barn field-label sequence), and independently simulate which cows encounter each shortcut. Compare parents, traffic and savings while keeping usual routes fixed. Exercise full limits separately. Save two changed cases and a trace before reference comparison, then retry later from an empty file.",
+		cost: "The supplied lazy-queue helper takes O((N+M) log(M+1)) time and O(N+M) storage; iterative tree aggregation and candidate comparison add O(N) time and storage. Sorting by descending distance is an alternative O(N log N) order. The historical reference repeatedly traces each origin's selected route, costing the sum of path depths, at most O(N²), and scans adjacency for stale and tied queue entries. Its queue overhead depends on removals and scanned degrees. Full-bound checked cases do not prove a formal judge-runtime guarantee. Compare these repeated route walks with iterative aggregation in the learner attempt."
+	},
 	"UG10-Roadblock": {
 		title: "Roadblock: Shortest-Path Sensitivity",
 		input: "rblock.in",
@@ -439,67 +453,78 @@ function projectBrief(
 						"These commands also work in PowerShell. After a successful run, read dijkstra.out with cat dijkstra.out or Get-Content dijkstra.out. Check the exit status first; unfinished or refused learner work preserves an earlier answer, which is not evidence of a successful new run. Keep previous source and inputs before changing cases. The historical reference expects valid contract input.",
 						"The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/shortest-path program. Choosing Run displays native commands. The browser Input panel does not replace dijkstra.in. Edit the included file for each custom graph and predict distances and paths before running."
 					]
-				: folder === "UG10-Roadblock"
+				: folder === "UG11-Shortcut"
 					? [
-							"Save the attempt, download its ZIP and extract it. Keep Main.java and the included rblock.in in the same folder. Each role includes its own complete contract and guidance. Use a native JDK 17 or newer:",
+							"Save the attempt, download its ZIP and extract it. Keep Main.java and the included shortcut.in in the same folder. Each role includes its own complete contract and guidance. Use a native JDK 17 or newer:",
 							"```sh\njavac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java\njava -ea -Xmx256m Main\n```",
-							"These commands also work in PowerShell. Check the exit status first, then read rblock.out with cat rblock.out or Get-Content rblock.out. Unfinished or refused learner work preserves an earlier answer; it is not evidence of a successful new run. Keep previous source and inputs. The historical reference expects valid contract input.",
-							"The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/sensitivity program. Choosing Run displays native commands. The browser Input panel does not replace rblock.in. Predict the unchanged optimum and a changed-route trial before running."
+							"The commands also work in PowerShell. Check exit status first, then read shortcut.out with cat shortcut.out or Get-Content shortcut.out. Unfinished or refused learner work preserves an earlier answer; it is not evidence of a successful new run. The reference assumes valid contract input, and its included shortcut.out records the expected sample answer. Preserve earlier source and inputs.",
+							"The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/tree-traffic program. Choosing Run displays native commands. The browser Input panel does not replace shortcut.in. Predict selected parents and traffic before running."
 						]
-					: folder === "UG-Milk-Visits" ||
-						  folder === "UG-Time-is-Mooney"
+					: folder === "UG10-Roadblock"
 						? [
-								`Save the attempt, download its ZIP and extract it. Keep the included ${brief.input} beside Main.java. Use a native JDK 17 or newer and run inside the extracted folder:`,
+								"Save the attempt, download its ZIP and extract it. Keep Main.java and the included rblock.in in the same folder. Each role includes its own complete contract and guidance. Use a native JDK 17 or newer:",
 								"```sh\njavac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java\njava -ea -Xmx256m Main\n```",
-								`These commands also work in PowerShell. Check the exit status first, then read ${brief.output} with cat ${brief.output} or Get-Content ${brief.output}. Unfinished or refused learner work preserves an earlier answer; it is not evidence of a successful new run. Keep previous source and inputs before changing cases. The historical reference expects valid contract input.`,
-								`The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG-Milk-Visits" ? "tree-path" : "graph-DP"} program. Choosing Run displays native commands. The browser Input panel does not replace ${brief.input}. Predict a path or day/city trace before running.`
+								"These commands also work in PowerShell. Check the exit status first, then read rblock.out with cat rblock.out or Get-Content rblock.out. Unfinished or refused learner work preserves an earlier answer; it is not evidence of a successful new run. Keep previous source and inputs. The historical reference expects valid contract input.",
+								"The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/sensitivity program. Choosing Run displays native commands. The browser Input panel does not replace rblock.in. Predict the unchanged optimum and a changed-route trial before running."
 							]
-						: mode === "java" && brief.sampleFile && !brief.stdio
+						: folder === "UG-Milk-Visits" ||
+							  folder === "UG-Time-is-Mooney"
 							? [
-									`Save the attempt, download its ZIP and extract it. Create ${brief.input} from the included sample.in and run in the extracted folder:`,
-									`\`\`\`sh\ncp sample.in ${brief.input}\njavac -encoding UTF-8 Main.java\njava Main\ncat ${brief.output}\n\`\`\``,
-									`In PowerShell, use Copy-Item sample.in ${brief.input} and Get-Content ${brief.output}. Check the exit status before accepting a new answer; a previous file survives unfinished or refused learner work. Keep previous source and inputs before changing cases.`,
-									`Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG40-Fruit-Feast" ? "dynamic-programming" : folder === "UG21-Moo-Tube" ? "offline-connectivity" : "ordering"} program. Choosing Run displays native commands. The browser Input panel does not replace ${brief.input}. Read ${brief.output} after success; the reference assumes valid contest input.`
+									`Save the attempt, download its ZIP and extract it. Keep the included ${brief.input} beside Main.java. Use a native JDK 17 or newer and run inside the extracted folder:`,
+									"```sh\njavac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java\njava -ea -Xmx256m Main\n```",
+									`These commands also work in PowerShell. Check the exit status first, then read ${brief.output} with cat ${brief.output} or Get-Content ${brief.output}. Unfinished or refused learner work preserves an earlier answer; it is not evidence of a successful new run. Keep previous source and inputs before changing cases. The historical reference expects valid contract input.`,
+									`The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG-Milk-Visits" ? "tree-path" : "graph-DP"} program. Choosing Run displays native commands. The browser Input panel does not replace ${brief.input}. Predict a path or day/city trace before running.`
 								]
-							: brief.stdio && mode === "java"
+							: mode === "java" &&
+								  brief.sampleFile &&
+								  !brief.stdio
 								? [
-										`Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this ${folder === "UG0-Contest-Contract" ? "native input/output checkpoint" : "input-driven data structure"}. Choosing Run displays native commands. The Input panel does not execute this project.`,
-										"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with sample.in redirected into standard input:",
-										"```sh\njavac -encoding UTF-8 Main.java\njava Main < sample.in\n```",
-										"Read the printed answers in the native terminal. Change sample.in and predict the results before rerunning. The untouched starter and refused input exit with status 2 and print no answer. This program creates no answer file; check the exit status before accepting a result, including any file created separately by shell redirection. Reopening a saved attempt preserves its source edits and separate starter/reference identities."
+										`Save the attempt, download its ZIP and extract it. Create ${brief.input} from the included sample.in and run in the extracted folder:`,
+										`\`\`\`sh\ncp sample.in ${brief.input}\njavac -encoding UTF-8 Main.java\njava Main\ncat ${brief.output}\n\`\`\``,
+										`In PowerShell, use Copy-Item sample.in ${brief.input} and Get-Content ${brief.output}. Check the exit status before accepting a new answer; a previous file survives unfinished or refused learner work. Keep previous source and inputs before changing cases.`,
+										`Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG40-Fruit-Feast" ? "dynamic-programming" : folder === "UG21-Moo-Tube" ? "offline-connectivity" : "ordering"} program. Choosing Run displays native commands. The browser Input panel does not replace ${brief.input}. Read ${brief.output} after success; the reference assumes valid contest input.`
 									]
-								: brief.stdio
+								: brief.stdio && mode === "java"
 									? [
-											"In the site IDE, open sample.in and copy all its lines into the Input panel. Select main.py and choose Run. The untouched starter stops with NotImplementedError and prints no answer; complete its helper before expecting results. The completed program prints its answer in Console output. The input fixture is not opened automatically by this program.",
-											"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with the sample redirected into standard input:",
-											"```sh\npython3 main.py < sample.in\n```",
-											"Change the Input panel or the redirected fixture for each custom case. Reopening a saved attempt preserves its source edits; paste the desired input again before running. Keep a copy of learner work before using the separately saved instructor reference. Compare printed results using the contract above."
+											`Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this ${folder === "UG0-Contest-Contract" ? "native input/output checkpoint" : "input-driven data structure"}. Choosing Run displays native commands. The Input panel does not execute this project.`,
+											"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with sample.in redirected into standard input:",
+											"```sh\njavac -encoding UTF-8 Main.java\njava Main < sample.in\n```",
+											"Read the printed answers in the native terminal. Change sample.in and predict the results before rerunning. The untouched starter and refused input exit with status 2 and print no answer. This program creates no answer file; check the exit status before accepting a result, including any file created separately by shell redirection. Reopening a saved attempt preserves its source edits and separate starter/reference identities."
 										]
-									: [
-											"Save the attempt, download its ZIP and extract it. Keep the input beside the source and run inside that extracted directory. The unfinished starter stops with an unfinished-task error and creates no answer file; that is the expected starting state.",
-											"```sh",
-											...(brief.retainAnswer
-												? []
-												: [`rm -f ${brief.output}`]),
-											...(mode === "python"
-												? ["python3 main.py"]
-												: mode === "java"
-													? [
-															"javac -encoding UTF-8 Main.java",
-															"java Main"
-														]
+									: brief.stdio
+										? [
+												"In the site IDE, open sample.in and copy all its lines into the Input panel. Select main.py and choose Run. The untouched starter stops with NotImplementedError and prints no answer; complete its helper before expecting results. The completed program prints its answer in Console output. The input fixture is not opened automatically by this program.",
+												"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with the sample redirected into standard input:",
+												"```sh\npython3 main.py < sample.in\n```",
+												"Change the Input panel or the redirected fixture for each custom case. Reopening a saved attempt preserves its source edits; paste the desired input again before running. Keep a copy of learner work before using the separately saved instructor reference. Compare printed results using the contract above."
+											]
+										: [
+												"Save the attempt, download its ZIP and extract it. Keep the input beside the source and run inside that extracted directory. The unfinished starter stops with an unfinished-task error and creates no answer file; that is the expected starting state.",
+												"```sh",
+												...(brief.retainAnswer
+													? []
 													: [
-															"c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o project",
-															"./project"
+															`rm -f ${brief.output}`
 														]),
-											`cat ${brief.output}`,
-											"```",
-											mode === "java"
-												? `Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG14-MST" ? "matrix" : "priority-queue"} program. Choosing Run displays the native commands. The Input panel does not replace ${brief.input}. Read the native result in ${brief.output} after a successful run.`
-												: mode === "cpp"
-													? "The browser edits and exports C++ source; it does not compile or execute C++. Follow the native commands above with a C++20 compiler. Delete only the stale answer file before running so an old answer cannot be mistaken for a new result."
-													: "Python can also run in the site IDE. Inspect the generated output file after completing the helper; the native commands provide the same file-I/O check after export."
-										]),
+												...(mode === "python"
+													? ["python3 main.py"]
+													: mode === "java"
+														? [
+																"javac -encoding UTF-8 Main.java",
+																"java Main"
+															]
+														: [
+																"c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o project",
+																"./project"
+															]),
+												`cat ${brief.output}`,
+												"```",
+												mode === "java"
+													? `Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG14-MST" ? "matrix" : "priority-queue"} program. Choosing Run displays the native commands. The Input panel does not replace ${brief.input}. Read the native result in ${brief.output} after a successful run.`
+													: mode === "cpp"
+														? "The browser edits and exports C++ source; it does not compile or execute C++. Follow the native commands above with a C++20 compiler. Delete only the stale answer file before running so an old answer cannot be mistaken for a new result."
+														: "Python can also run in the site IDE. Inspect the generated output file after completing the helper; the native commands provide the same file-I/O check after export."
+											]),
 		"Source checks validate the supplied packs; they do not grade a completed learner submission. Protected mocks and active contests begin from an empty file without these practice starters or references."
 	]
 		.join("\n\n")

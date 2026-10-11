@@ -3,6 +3,7 @@ import {
 	matrixDijkstraSavedItemId,
 	milkVisitsSavedItemId,
 	roadblockSavedItemId,
+	shortcutSavedItemId,
 	timeMooneySavedItemId
 } from "../../modules/usacoProjectResources";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
@@ -224,13 +225,14 @@ const usacoGoldSourceCourse: RawCourse = {
 						"https://github.com/instruction-material/USACO-Gold/tree/main/UG9-Dijkstras-Algorithm/solution"
 				},
 				{
+					id: shortcutSavedItemId,
 					title: "Problem: Shortcut",
 					content:
 						"Use shortest-path information inside a second optimization question so distance arrays become tools, not endpoints. After building shortest-path structure, reason about how many cows use each path segment and which shortcut location creates the largest time savings.",
 					projectLink:
-						"https://github.com/instruction-material/USACO-Gold/tree/main/UG11-Shortcut/starter",
+						"https://github.com/instruction-material/USACO-Gold/tree/27e470c08a053c265fcadd619776bcb4b8d0d9df/UG11-Shortcut/starter",
 					solutionLink:
-						"https://github.com/instruction-material/USACO-Gold/tree/main/UG11-Shortcut/solution"
+						"https://github.com/instruction-material/USACO-Gold/tree/27e470c08a053c265fcadd619776bcb4b8d0d9df/UG11-Shortcut/solution"
 				},
 				{
 					title: "Problem: Fine Dining",

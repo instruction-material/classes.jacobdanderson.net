@@ -1379,6 +1379,51 @@ export const usacoFixtures = [
   "reference": true,
   "lessonView": 2,
   "roadblockPack": true
+},
+{
+  "repository": "instruction-material/USACO-Gold",
+  "revision": "27e470c08a053c265fcadd619776bcb4b8d0d9df",
+  "catalogRevision": "27e470c08a053c265fcadd619776bcb4b8d0d9df",
+  "courseId": "usaco-gold",
+  "folder": "UG11-Shortcut/starter",
+  "anchor": "usaco-gold-unit-2-shortest-paths-dags-and-weighted-graphs",
+  "itemId": "usaco-gold-unit-2-shortest-paths-dags-and-weighted-graphs-supplemental-problem-shortcut",
+  "mode": "java",
+  "input": "shortcut.in",
+  "output": "shortcut.out",
+  "sample": "shortcut.in",
+  "expected": "40\n",
+  "hashes": {
+    "Main.java": "36809b1fbcc1644a04a42ae33fdb2b8dd8dc9a5abaa2841d11a0e10d47001076",
+    "README.md": "4002db62f88460c0ede4af59acc48b1db9fe86247c6f1f6f2f1e6b79e60ff6dc",
+    "shortcut.in": "6ea334f44215abf115bd17960f11c9502cd440bfb74011dcd2ee08ecd5e7f1c0"
+  },
+  "reference": false,
+  "lessonView": 2,
+  "shortcutPack": true
+},
+{
+  "repository": "instruction-material/USACO-Gold",
+  "revision": "27e470c08a053c265fcadd619776bcb4b8d0d9df",
+  "catalogRevision": "27e470c08a053c265fcadd619776bcb4b8d0d9df",
+  "courseId": "usaco-gold",
+  "folder": "UG11-Shortcut/solution",
+  "anchor": "usaco-gold-unit-2-shortest-paths-dags-and-weighted-graphs",
+  "itemId": "usaco-gold-unit-2-shortest-paths-dags-and-weighted-graphs-supplemental-problem-shortcut",
+  "mode": "java",
+  "input": "shortcut.in",
+  "output": "shortcut.out",
+  "sample": "shortcut.in",
+  "expected": "40\n",
+  "hashes": {
+    "Main.java": "7f8fd61bf4f0c3e2f06669c8260f595e1d1ec7925ca8ec1b30d12a0cc753cf96",
+    "README.md": "752a2a86de7e3ce06858e9431be4b9b35d1422d457119654800ced3ed998d847",
+    "shortcut.in": "6ea334f44215abf115bd17960f11c9502cd440bfb74011dcd2ee08ecd5e7f1c0",
+    "shortcut.out": "673650f936cb3b0a2f93ce09d81be10748b1b203c19e8176b4eefc1964a0cf3a"
+  },
+  "reference": true,
+  "lessonView": 2,
+  "shortcutPack": true
 }
 ];
 

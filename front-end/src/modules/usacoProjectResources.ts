@@ -11,7 +11,16 @@ export const timeMooneySavedItemId =
 export const roadblockSavedItemId =
 	"usaco-gold-optional-gold-problem-bank-supplemental-problem-roadblock";
 
+export const shortcutSavedItemId =
+	"usaco-gold-unit-2-shortest-paths-dags-and-weighted-graphs-supplemental-problem-shortcut";
+
 export const usacoRestoredResources = [
+	{
+		course: "usaco-gold",
+		repository: "USACO-Gold",
+		folder: "UG11-Shortcut",
+		mode: "java"
+	},
 	{
 		course: "usaco-gold",
 		repository: "USACO-Gold",
