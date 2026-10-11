@@ -3,8 +3,8 @@
 The full 77-course audit remains active. The saved-project role labels and Gifts
 starter-link correction are merged in canonical `d9ea20ae371c2e9b541990036f5737bc153d45d8`
 and neutral `0d2e1213609c366bcc7d65b700e41fa0867213b1`. Their reviewed trees passed CI,
-CodeQL and inspected responsive views; independent merged-main CI is still being
-collected. Recovery bundles retain the retired review branches. The original
+CodeQL and inspected responsive views; independent merged-main CI and CodeQL
+now also pass. Recovery bundles retain the retired review branches. The original
 dirty downstream checkout and its unfinished changes remain preserved.
 
 The Silver source is now accepted at `8891c9ffbb61f101edb01d18cfbcba75905de141`
@@ -26,8 +26,11 @@ Local validation passes 34 focused lesson/workflow checks and six native role
 exports with 40 cases, ten malformed-input refusals, 21 documented command-guard
 checks and a direct second-comparator refusal. The full prime interval and integer
 limits are included. Every exported file matches its pinned Git blob and remains
-unchanged after checking. The browser regression now expects 164 imports across
-50 packs; that expanded workflow has not yet received acceptance. Dependencies and
+unchanged after checking. The current local browser run also passes all twelve foundation imports, including
+confirmation, save/export, native instruction guards and twelve preserved
+C++/Java migrations. The ordering example uses short paragraphs that fit mobile
+screens. The full browser regression now expects 164 imports across 50 packs;
+that expanded workflow still awaits hosted acceptance. Dependencies and
 both lockfiles are unchanged. A local provenance check encountered a missing
 shared npm cache file; no dependency tree or lockfile repair was applied.
 
