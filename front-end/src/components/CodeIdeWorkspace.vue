@@ -38,6 +38,10 @@ import IdeEnvironmentSelect from "@/components/IdeEnvironmentSelect.vue";
 import IdeStarterPicker from "@/components/IdeStarterPicker.vue";
 import WorkspaceDisclosure from "@/components/WorkspaceDisclosure.vue";
 import WorkspaceHeader from "@/components/WorkspaceHeader.vue";
+import {
+	getCodeIdeProjectAccessibleLabel,
+	getCodeIdeProjectSubtitle
+} from "@/modules/codeIdeProjectLabels";
 import { cppBuildInstructions } from "@/modules/cppBuildInstructions";
 import {
 	createIdeDiagnostics,
@@ -7836,6 +7840,11 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 						>
 							<div class="project-row-main">
 								<button
+									:aria-label="
+										getCodeIdeProjectAccessibleLabel(
+											project
+										)
+									"
 									class="project-button"
 									:class="{
 										'is-active':
@@ -7845,9 +7854,12 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 									@click="selectCatalogProject(project._id)"
 								>
 									<span>{{ projectLabel(project) }}</span>
+									<small>{{
+										getCodeIdeProjectSubtitle(project)
+									}}</small>
 								</button>
 								<button
-									:aria-label="`Delete project ${projectLabel(project)}`"
+									:aria-label="`Delete project ${getCodeIdeProjectAccessibleLabel(project)}`"
 									class="file-delete project-delete-trigger"
 									:class="{
 										'is-disabled':
@@ -7857,7 +7869,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 									:title="
 										sortedProjects.length <= 1
 											? 'Keep at least one project'
-											: `Delete project ${projectLabel(project)}`
+											: `Delete project ${getCodeIdeProjectAccessibleLabel(project)}`
 									"
 									type="button"
 									@click="requestProjectDelete(project)"
@@ -7870,18 +7882,23 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 								class="project-delete-confirm"
 							>
 								<strong>
-									Delete "{{ projectLabel(project) }}"?
+									Delete "{{
+										getCodeIdeProjectAccessibleLabel(
+											project
+										)
+									}}"?
 								</strong>
 								<p>Type confirm to permanently delete it.</p>
 								<input
 									v-model="deleteConfirmText"
-									aria-label="Type confirm to delete project"
+									:aria-label="`Type confirm to delete project ${getCodeIdeProjectAccessibleLabel(project)}`"
 									placeholder="confirm"
 									type="text"
 									@keyup.enter="confirmProjectDelete(project)"
 								/>
 								<div class="project-delete-actions">
 									<button
+										:aria-label="`Cancel deletion of ${getCodeIdeProjectAccessibleLabel(project)}`"
 										class="site-button site-button--secondary compact-button"
 										type="button"
 										@click="cancelProjectDelete"
@@ -7889,6 +7906,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 										Cancel
 									</button>
 									<button
+										:aria-label="`Confirm delete project ${getCodeIdeProjectAccessibleLabel(project)}`"
 										class="site-button project-delete-final compact-button"
 										:disabled="
 											deleteConfirmText

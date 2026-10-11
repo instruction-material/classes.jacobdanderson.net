@@ -54,6 +54,51 @@ describe("CourseExplorer.vue", () => {
 		vi.unstubAllGlobals();
 	});
 
+	it("labels the Gifts changed-preference learner source as a starter", async () => {
+		const pinia = createPinia();
+		setActivePinia(pinia);
+		useAppStore().setCurrentUser({
+			_id: "synthetic-learner",
+			name: "Example learner",
+			email: "learner@example.invalid",
+			age: 14,
+			state: "GA",
+			courseAccess: ["usaco-silver"],
+			courseProgress: [],
+			editUsers: false,
+			saveEdit: "Save"
+		});
+		window.history.replaceState(
+			{},
+			"",
+			"/courses#usaco-silver-unit-6-protected-silver-sets-postmortems-and-gold-readiness"
+		);
+		const wrapper = mount(CourseExplorer, { global: { plugins: [pinia] } });
+		try {
+			await flushPromises();
+			await vi.waitFor(() =>
+				expect(wrapper.find(".lesson-view-toggle").exists()).toBe(true)
+			);
+			await wrapper
+				.findAll(".lesson-view-toggle button")[1]
+				.trigger("click");
+			await flushPromises();
+			const card = wrapper
+				.findAll(".lesson-item")
+				.find(item => item.text().includes("Changed-Preference Retry"));
+			expect(card).toBeDefined();
+			expect(card!.get("a.resource-link.is-project").text()).toMatch(
+				/^Starter project\s/
+			);
+			expect(
+				card!.get("a.resource-link.is-project").attributes("href")
+			).toMatch(/US38-Redistributing-Gifts\/starter$/);
+			expect(card!.find("a.is-ide-starter").exists()).toBe(true);
+		} finally {
+			wrapper.unmount();
+		}
+	});
+
 	it("shows completed lessons without aggregate statistics or project shortcuts", async () => {
 		const pinia = createPinia();
 		setActivePinia(pinia);
