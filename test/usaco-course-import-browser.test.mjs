@@ -1,3 +1,4 @@
+import { verifySilverFoundationExport } from "./usaco-silver-foundation-native.mjs";
 import { verifySilverJavaExport } from "./usaco-silver-java-native.mjs";
 import { verifyRequiredCorePackExport } from "./usaco-required-core-native.mjs";
 import { captureLessonScreenshot } from "./lesson-screenshot.mjs";
@@ -797,6 +798,10 @@ async function verifyNativeExport(fixture, files, directory) {
         await writeFile(join(directory, name), content);
     }
 	if (fixture.mode === "java") {
+		if (fixture.silverFoundationPack) {
+			await verifySilverFoundationExport(fixture, files, directory, runNative, record);
+			return;
+		}
         if (fixture.silverJavaPack) { await verifySilverJavaExport(fixture, files, directory, runNative, record); return; }
         if (fixture.requiredCorePack) { await verifyRequiredCorePackExport(fixture, files, directory, runNative, record); return; }
 		if (fixture.spanningIntervalPack) {
@@ -1160,10 +1165,10 @@ nodeTest(
 				await verifyNativeExport(fixture, await sourceFiles(fixture), join(temporary, String(verified.size)));
 				verified.add(key);
 			}
-			assert.equal(verified.size, 94);
+			assert.equal(verified.size, 100);
 			record("verified-usaco-pinned-native-contracts", {
 				roles: verified.size,
-				packs: 47,
+				packs: 50,
 				nativeJava: true,
 				samplesAndChangedInputs: true,
 				ordinaryAndSanitizedCpp: true,
@@ -1306,6 +1311,10 @@ nodeTest(
 					assert.equal(sourceRequests, before, "Legacy lesson links must not fetch source");
 					record("verified-spanning-interval-legacy-anchor", { itemId: fixture.itemId, reference: fixture.reference, legacyAnchor: fixture.legacyAnchor, module: fixture.anchor });
 				}
+				if (fixture.silverFoundationPack) {
+					assert.ok(await page.$(`#${fixture.anchor}-${fixture.itemId}`));
+					record("verified-silver-foundation-placement", { itemId: fixture.itemId, moduleId: fixture.anchor, variant: fixture.coreVariant, pack: fixture.silverFoundationPack, role: fixture.reference ? "reference" : "learner", revision: fixture.catalogRevision, consentBeforeSource: sourceRequests === before });
+				}
                 if (fixture.silverJavaPack) {
                     assert.ok(await page.$(`#${fixture.anchor}-${fixture.itemId}`));
                     record("verified-silver-java-placement",{itemId:fixture.itemId,moduleId:fixture.anchor,variant:fixture.coreVariant,pack:fixture.silverJavaPack,role:fixture.reference?"reference":"learner",revision:fixture.catalogRevision,consentBeforeSource:sourceRequests===before});
@@ -1323,7 +1332,7 @@ nodeTest(
 				}
 				if (fixture.mode === "java") {
 					assert.match(card.text, /JDK 17 or newer/);
-					assert.match(card.text, fixture.silverJavaPack || fixture.requiredCorePack || fixture.spanningIntervalPack || fixture.historicalPack || fixture.implementationLab ? /does not execute this native Java exercise/ : fixture.shortcutPack ? /does not execute this file-I\/O\/tree-traffic program/ : fixture.roadblockPack ? /does not execute this file-I\/O\/sensitivity program/ : fixture.treeTimePack === "milk-visits" ? /does not execute this file-I\/O\/tree-path program/ : fixture.treeTimePack === "time-mooney" ? /does not execute this file-I\/O\/graph-DP program/ : fixture.demonstration ? /does not execute the DP or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute this file-I\/O\/dynamic-programming program/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute this file-I\/O\/offline-connectivity program/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute this file-I\/O\/ordering program/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute this file-I\/O\/shortest-path program/ : /does not execute this file-I\/O\/priority-queue program/);
+					assert.match(card.text, fixture.silverJavaPack || fixture.silverFoundationPack || fixture.requiredCorePack || fixture.spanningIntervalPack || fixture.historicalPack || fixture.implementationLab ? /does not execute this native Java exercise/ : fixture.shortcutPack ? /does not execute this file-I\/O\/tree-traffic program/ : fixture.roadblockPack ? /does not execute this file-I\/O\/sensitivity program/ : fixture.treeTimePack === "milk-visits" ? /does not execute this file-I\/O\/tree-path program/ : fixture.treeTimePack === "time-mooney" ? /does not execute this file-I\/O\/graph-DP program/ : fixture.demonstration ? /does not execute the DP or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute this file-I\/O\/dynamic-programming program/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute this file-I\/O\/offline-connectivity program/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute this file-I\/O\/ordering program/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute this file-I\/O\/shortest-path program/ : /does not execute this file-I\/O\/priority-queue program/);
 					if (fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/")) {
 						assert.match(card.text, /Keep the included dijkstra.in beside Main.java/);
 						assert.match(card.text, /javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java/);
@@ -1377,7 +1386,7 @@ nodeTest(
 					const link = await page.$(selector);
 					const element = await link.evaluateHandle(element => element.closest(".lesson-item"));
 					await captureLessonScreenshot(page, element.asElement(), join(directory, `course-import-usaco-${screenshotKey}-lesson.png`));
-                    if (fixture.spanningIntervalPack || fixture.requiredCorePack || fixture.silverJavaPack) {
+                    if (fixture.spanningIntervalPack || fixture.requiredCorePack || fixture.silverJavaPack || fixture.silverFoundationPack) {
                         await page.setViewport({width:index % 2 ? 390 : 1280,height:900});
                         await captureLessonScreenshot(page, element.asElement(), join(directory,`course-import-usaco-${screenshotKey}-opposite-lesson.png`));
                         await page.setViewport({width:index % 2 ? 1280 : 390,height:900});
@@ -1448,9 +1457,17 @@ nodeTest(
 					await page.waitForFunction(() => document.querySelector("[data-testid='ide-run-status']")?.textContent.trim() === "Native build instructions");
 					assert.equal(await page.$(".stdin-panel"), null, "Native Java must not offer browser Turtle/Scanner input");
 					const output = await page.$eval(".output-panel", element => element.textContent);
-					assert.match(output, fixture.silverJavaPack ? /javac --release 17 -encoding UTF-8 -Xlint:all -Werror -d target\/classes (?:src\/main\/java\/)?Main.java/ : fixture.requiredCorePack || fixture.spanningIntervalPack || fixture.historicalPack || fixture.implementationLab || fixture.shortcutPack || fixture.roadblockPack || fixture.treeTimePack || fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java/ : /javac -encoding UTF-8 Main.java/);
-					assert.match(output, fixture.silverJavaPack || fixture.requiredCorePack || fixture.spanningIntervalPack || fixture.historicalPack || fixture.implementationLab ? /does not execute this native Java exercise/ : fixture.shortcutPack ? /does not execute its file I\/O or tree-traffic algorithm/ : fixture.roadblockPack ? /does not execute its file I\/O or sensitivity algorithm/ : fixture.treeTimePack === "milk-visits" ? /does not execute its file I\/O or tree-path algorithm/ : fixture.treeTimePack === "time-mooney" ? /does not execute its file I\/O or graph DP algorithm/ : fixture.demonstration ? /does not execute its dynamic programming or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute its file I\/O or dynamic programming/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute its file I\/O or offline connectivity algorithm/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute its file I\/O or ordering algorithm/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute its file I\/O or shortest-path algorithm/ : /does not execute its file I\/O or priority queue/);
-					if (fixture.demonstration) {
+					assert.match(output, fixture.silverJavaPack || fixture.silverFoundationPack ? /javac --release 17 -encoding UTF-8 -Xlint:all -Werror -d target\/classes (?:src\/main\/java\/)?Main.java/ : fixture.requiredCorePack || fixture.spanningIntervalPack || fixture.historicalPack || fixture.implementationLab || fixture.shortcutPack || fixture.roadblockPack || fixture.treeTimePack || fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java/ : /javac -encoding UTF-8 Main.java/);
+					assert.match(output, fixture.silverJavaPack || fixture.silverFoundationPack || fixture.requiredCorePack || fixture.spanningIntervalPack || fixture.historicalPack || fixture.implementationLab ? /does not execute this native Java exercise/ : fixture.shortcutPack ? /does not execute its file I\/O or tree-traffic algorithm/ : fixture.roadblockPack ? /does not execute its file I\/O or sensitivity algorithm/ : fixture.treeTimePack === "milk-visits" ? /does not execute its file I\/O or tree-path algorithm/ : fixture.treeTimePack === "time-mooney" ? /does not execute its file I\/O or graph DP algorithm/ : fixture.demonstration ? /does not execute its dynamic programming or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute its file I\/O or dynamic programming/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute its file I\/O or offline connectivity algorithm/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute its file I\/O or ordering algorithm/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute its file I\/O or shortest-path algorithm/ : /does not execute its file I\/O or priority queue/);
+					if (fixture.silverFoundationPack) {
+						assert.match(output, new RegExp(`entry class ${fixture.entryClass}`));
+						assert.match(output, /sample.expected/);
+						assert.match(output, /failed compilation/);
+						assert.match(output, /preserves an earlier answer/);
+						if (fixture.noInput) assert.match(output, /reads no input file or standard input/);
+						else assert.ok(output.includes(fixture.input) && output.includes(fixture.output));
+					}
+					else if (fixture.demonstration) {
 						assert.match(output, /reads no input file or standard input/);
 						assert.doesNotMatch(output, /sample.in|java Main </);
 					}
@@ -1580,7 +1597,7 @@ nodeTest(
 				assert.equal(sourceRequests, before + (fixture.directoryRequests ?? 1) + Object.keys(files).length, "Reopening never redownloads or overwrites edits");
 				if (process.env.COURSE_IMPORT_SCREENSHOT_DIR) {
 					await page.screenshot({ path: join(previousDirectory, process.env.COURSE_IMPORT_SCREENSHOT_DIR, `course-import-usaco-${screenshotKey}-workspace.png`) });
-                    if (fixture.spanningIntervalPack || fixture.requiredCorePack || fixture.silverJavaPack) {
+                    if (fixture.spanningIntervalPack || fixture.requiredCorePack || fixture.silverJavaPack || fixture.silverFoundationPack) {
                         await page.setViewport({width:index % 2 ? 390 : 1280,height:900});
                         await openProjectSidebar(page);
                         await page.screenshot({path:join(previousDirectory,process.env.COURSE_IMPORT_SCREENSHOT_DIR,`course-import-usaco-${screenshotKey}-opposite-workspace.png`)});
@@ -1629,8 +1646,8 @@ nodeTest(
 					preservedOtherAttempts: previous.length,
 					ordinaryAndSanitized: fixture.mode === "cpp",
 					unfinishedLearner: !fixture.reference,
-					nativeFileIo: !fixture.stdio && !fixture.demonstration,
-					noInputDemonstration: Boolean(fixture.demonstration),
+					nativeFileIo: !fixture.stdio && !fixture.demonstration && !fixture.noInput,
+					noInputDemonstration: Boolean(fixture.demonstration || fixture.noInput),
 					nativeStdio: Boolean(fixture.stdio),
 					browserStdio: Boolean(fixture.stdio) && fixture.mode === "python",
 					nativeJava: fixture.mode === "java",
@@ -1641,7 +1658,7 @@ nodeTest(
 			assert.equal(remoteWrites, 0);
 			record("verified-usaco-workflows", {
 				imports: usacoFixtures.length,
-				packs: 47,
+				packs: 50,
 				nativeJava: true,
 				roleSeparation: true,
 				consentBeforeSource: true,

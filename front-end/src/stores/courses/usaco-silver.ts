@@ -1,4 +1,5 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
+import { silverFoundationPacks } from "../../modules/usacoSilverFoundationPacks";
 import { silverJavaPacks } from "../../modules/usacoSilverJavaPacks";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { buildProjectGuidance } from "./projectGuidance";
@@ -1857,6 +1858,33 @@ for (const pack of silverJavaPacks) {
 		) {
 			throw new Error(
 				`Missing or ambiguous Silver source: ${pack.folder}`
+			);
+		}
+		const { item } = matches[0]!;
+		item.id = assignment.itemId;
+		item.title = assignment.title;
+		item.learningPath = assignment.learningPath;
+		item.projectLink = `https://github.com/instruction-material/USACO-Silver/tree/${pack.revision}/${pack.folder}/starter`;
+		item.solutionLink = `https://github.com/instruction-material/USACO-Silver/tree/${pack.revision}/${pack.folder}/solution`;
+	}
+}
+
+// Preserve existing required/optional identities while distinguishing each retry.
+for (const pack of silverFoundationPacks) {
+	for (const assignment of pack.assignments) {
+		const matches = usacoSilverCourse.modules.flatMap(module =>
+			module[assignment.section]
+				.filter(item =>
+					item.projectLink?.endsWith(`/${pack.folder}/starter`)
+				)
+				.map(item => ({ module, item }))
+		);
+		if (
+			matches.length !== 1 ||
+			matches[0]!.module.title !== assignment.moduleTitle
+		) {
+			throw new Error(
+				`Missing or ambiguous Silver foundation source: ${pack.folder}`
 			);
 		}
 		const { item } = matches[0]!;

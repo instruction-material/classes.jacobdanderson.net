@@ -19,6 +19,10 @@ import {
 	requiredCoreCourseBrief
 } from "../../modules/usacoRequiredCorePacks";
 import {
+	silverFoundationAssignment,
+	silverFoundationCourseBrief
+} from "../../modules/usacoSilverFoundationPacks";
+import {
 	silverJavaAssignment,
 	silverJavaCourseBrief
 } from "../../modules/usacoSilverJavaPacks";
@@ -428,6 +432,12 @@ function projectBrief(
 	mode: "python" | "cpp" | "java",
 	item: RawCourseModuleItem
 ) {
+	const foundation =
+		courseId === "usaco-silver"
+			? silverFoundationAssignment(item.id ?? "")
+			: undefined;
+	if (foundation && foundation.pack.folder === folder)
+		return silverFoundationCourseBrief(foundation);
 	const silver =
 		courseId === "usaco-silver"
 			? silverJavaAssignment(item.id ?? "")
