@@ -1,5 +1,9 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
 import {
+	goldImplementationLabForFolder,
+	implementationLabCourseBrief
+} from "../../modules/usacoImplementationLabs";
+import {
 	matrixDijkstraSavedItemId,
 	milkVisitsSavedItemId,
 	restoredUsacoResourceUrl,
@@ -407,6 +411,13 @@ function projectBrief(
 	mode: "python" | "cpp" | "java",
 	item: RawCourseModuleItem
 ) {
+	const implementationLab = goldImplementationLabForFolder(folder);
+	if (implementationLab) {
+		return implementationLabCourseBrief(
+			implementationLab,
+			item.title.includes("Extension Challenge")
+		);
+	}
 	const brief = briefs[folder]!;
 	const placement =
 		folder === "UG21-Moo-Tube"

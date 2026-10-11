@@ -1,6 +1,10 @@
 // These saved identities belong to the verified native Gold lessons.
 // Other Java and Karel lessons retain their existing teaching previews.
 import {
+	goldImplementationLabForItem,
+	implementationLabNativeInstructions
+} from "./usacoImplementationLabs";
+import {
 	matrixDijkstraSavedItemId,
 	milkVisitsSavedItemId,
 	roadblockSavedItemId,
@@ -89,9 +93,11 @@ const fruitFeastItem =
 
 export function javaNativeBuildInstructions(courseProjectKey?: string) {
 	const [course, item, role, extra] = (courseProjectKey ?? "").split(":");
+	const implementationLab = goldImplementationLabForItem(item ?? "");
 	if (
 		course !== "usaco-gold" ||
-		(!dijkstraItems.has(item ?? "") &&
+		(!implementationLab &&
+			!dijkstraItems.has(item ?? "") &&
 			!mstItems.has(item ?? "") &&
 			!fenwickItems.has(item ?? "") &&
 			!setupItems.has(item ?? "") &&
@@ -110,6 +116,8 @@ export function javaNativeBuildInstructions(courseProjectKey?: string) {
 	) {
 		return null;
 	}
+	if (implementationLab)
+		return implementationLabNativeInstructions(implementationLab);
 	if (item === milkVisitsSavedItemId || item === timeMooneySavedItemId) {
 		const milk = item === milkVisitsSavedItemId;
 		const input = milk ? "milkvisits.in" : "time.in";
