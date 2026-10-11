@@ -1,6 +1,6 @@
 export async function confirmProjectImport(page) {
 	await page.waitForSelector("[data-testid='ide-route-import-confirm']:not([disabled])");
-	await page.click("[data-testid='ide-route-import-confirm']");
+	await page.locator("[data-testid='ide-route-import-confirm']:not([disabled])").click();
 }
 
 export async function openProjectSidebar(page) {

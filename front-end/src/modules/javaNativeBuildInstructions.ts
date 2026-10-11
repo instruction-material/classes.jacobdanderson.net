@@ -16,6 +16,11 @@ import {
 	timeMooneySavedItemId
 } from "./usacoProjectResources";
 
+import {
+	goldSpanningIntervalPack,
+	spanningIntervalNativeInstructions
+} from "./usacoSpanningIntervalPacks";
+
 const setupItems = new Set([
 	"usaco-gold-usg0-setup-contest-contract-and-gold-mindset-curriculum-core-project-native-input-output-checkpoint",
 	"usaco-gold-usg0-setup-contest-contract-and-gold-mindset-supplemental-native-input-output-retry"
@@ -98,6 +103,15 @@ const fruitFeastItem =
 export function javaNativeBuildInstructions(courseProjectKey?: string) {
 	const parts = (courseProjectKey ?? "").split(":");
 	const [course, item, role, extra] = parts;
+	const spanning = goldSpanningIntervalPack(item ?? "");
+	if (
+		course === "usaco-gold" &&
+		spanning &&
+		["starter", "reference"].includes(role ?? "") &&
+		(parts.length === 3 || (parts.length === 4 && extra === "native-java"))
+	) {
+		return spanningIntervalNativeInstructions(spanning);
+	}
 	const historical = goldHistoricalAssignment(item ?? "");
 	if (
 		course === "usaco-gold" &&

@@ -15,6 +15,11 @@ import {
 	timeMooneySavedItemId
 } from "../../modules/usacoProjectResources";
 
+import {
+	goldSpanningIntervalPack,
+	spanningIntervalCourseBrief
+} from "../../modules/usacoSpanningIntervalPacks";
+
 export const marathonSavedItemId =
 	"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-marathon";
 
@@ -415,6 +420,12 @@ function projectBrief(
 	mode: "python" | "cpp" | "java",
 	item: RawCourseModuleItem
 ) {
+	const spanning =
+		courseId === "usaco-gold"
+			? goldSpanningIntervalPack(item.id ?? "")
+			: undefined;
+	if (spanning && spanning.folder === folder)
+		return spanningIntervalCourseBrief(spanning);
 	const historical =
 		courseId === "usaco-gold"
 			? goldHistoricalAssignment(item.id ?? "")

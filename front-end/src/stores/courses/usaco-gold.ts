@@ -15,6 +15,10 @@ import {
 	shortcutSavedItemId,
 	timeMooneySavedItemId
 } from "../../modules/usacoProjectResources";
+import {
+	goldSpanningIntervalPacks,
+	spanningIntervalCourseBrief
+} from "../../modules/usacoSpanningIntervalPacks";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { buildProjectGuidance } from "./projectGuidance";
 import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
@@ -1968,5 +1972,37 @@ for (const module of usacoGoldCourse.modules) {
 						topic.checks
 					].join("\n\n");
 		}
+	}
+}
+
+// Keep observed saved identities when improving optional placement and source roles.
+for (const pack of goldSpanningIntervalPacks) {
+	const matches = usacoGoldCourse.modules.flatMap(module =>
+		module.supplementalProjects
+			.filter(item =>
+				item.projectLink?.endsWith(`/${pack.folder}/starter`)
+			)
+			.map(item => ({ module, item }))
+	);
+	const destination = usacoGoldCourse.modules.find(
+		module => module.title === pack.moduleTitle
+	);
+	if (matches.length !== 1 || !destination)
+		throw new Error(
+			`Missing or ambiguous Gold source placement: ${pack.folder}`
+		);
+	const { module, item } = matches[0]!;
+	item.id = pack.itemId;
+	item.title = pack.title;
+	item.learningPath = pack.learningPath;
+	item.content = spanningIntervalCourseBrief(pack);
+	item.projectLink = `https://github.com/instruction-material/USACO-Gold/tree/${pack.revision}/${pack.folder}/starter`;
+	item.solutionLink = `https://github.com/instruction-material/USACO-Gold/tree/${pack.revision}/${pack.folder}/solution`;
+	if (module !== destination) {
+		module.supplementalProjects.splice(
+			module.supplementalProjects.indexOf(item),
+			1
+		);
+		destination.supplementalProjects.push(item);
 	}
 }

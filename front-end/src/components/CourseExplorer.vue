@@ -45,6 +45,7 @@ import {
 	isScratchProjectUrl
 } from "@/modules/resourceUrls";
 import { goldHistoricalProjectKey } from "@/modules/usacoHistoricalPacks";
+import { goldSpanningIntervalLegacyItemId } from "@/modules/usacoSpanningIntervalPacks";
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
 import {
@@ -767,7 +768,9 @@ watch(
 			const matchingView = lessonViews.find(view =>
 				lessonItemsByView.value[view.id].some(item =>
 					progressIds(item).some(
-						id => itemAnchorId(module.id, id) === anchor
+						id =>
+							itemAnchorId(module.id, id) === anchor ||
+							goldSpanningIntervalLegacyItemId(anchor) === id
 					)
 				)
 			);
@@ -897,7 +900,11 @@ function moduleIdFromHash(modules: VisibleModule[]) {
 	for (const module of modules) {
 		const allItems = [...module.curriculum, ...module.supplementalProjects];
 		if (
-			allItems.some(item => itemAnchorId(module.id, item.id) === anchor)
+			allItems.some(
+				item =>
+					itemAnchorId(module.id, item.id) === anchor ||
+					goldSpanningIntervalLegacyItemId(anchor) === item.id
+			)
 		) {
 			return module.id;
 		}
