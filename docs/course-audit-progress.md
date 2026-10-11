@@ -1,85 +1,88 @@
 # Current course-audit checkpoint, 2026-10-11
 
-The full 77-course audit remains active. The accepted v2.8.94 source milestone
-is canonical `b44b67450ca83f02aaeecdb0f825e42b1383a375` and neutral downstream
-`0964fec50112d083c3fddaf224d842545c7442c9`. Both remotes contain only main and
-have no open pull requests at this checkpoint. Verified recovery copies preserve
-retired review tips; the original downstream checkout's unfinished working
-changes remain intact.
+The full 77-course audit remains active. The accepted v2.8.95 source milestone
+is canonical `f6168fe35aba8ee926f6fca09a91e100317d5b8c` and neutral downstream
+`3f98e29c6afdf07fa3d5bb726ee116a419c7c8c9`. Both remotes contain only main;
+the required Gold reviews are merged and their branches are retired. Verified
+recovery bundles preserve the reviewed tips. The original downstream checkout's
+unfinished working changes remain intact.
 
-All 77 normalized catalog entries load and all 392 directly linked local
-course resources exist. No complete normalized course is byte-identical to
-another. These checks do not establish semantic course-purpose distinctions,
-external resource availability, standalone reading quality, or production
-activation. Those requirements remain part of the full audit.
+All 77 normalized catalog entries load and all 392 directly linked local course
+resources exist. No complete normalized course is byte-identical to another.
+These checks do not establish semantic purpose distinctions, external resource
+availability, standalone reading quality, or production activation.
 
 ## Accepted source and website milestones
 
-The earlier quicksort task and renderer corrections have completed source,
-hosted browser, visual, integration and downstream acceptance. Historical
-checkpoints below retain their original pending states; they are superseded by
-the later accepted milestones rather than reopened as new findings. Subsequent
-accepted work supplies distinct native learners, references and lessons for
-weighted graphs, tree paths, bounded-time graphs, switch-budget DP, implementation
-labs, historical applications, spanning-tree objectives and interval merges.
+Cow Poetry, Lasers and Mirrors and Radio Contact now have confirmed native Java
+learner/reference imports in their three existing required assignments. Their
+three optional copies have distinct changed-case retry tasks and separate saved
+attempts. All six lesson/progress identities and unit placements are preserved.
+Radio Contact is one scheduling problem within the capstone; protected sets,
+postmortems and readiness checkpoints remain required.
 
-The latest milestone integrates Superbull, Moocast, 248 and Fenced In into both
-websites, keeping their distinct optional purposes, existing lesson identities
-and earlier saved attempts. Both exact review trees and independently checked
-merged-main trees pass nine required CI jobs and CodeQL. The Qodana workflow
-succeeded, but its scan step was skipped because the configured token is absent;
-this is not a completed Qodana scan. Actual acceptance covers 128 imports,
-82 native role folders across 41 packs, 102 trusted native-input boundaries,
-48 C++/Java migrations, 34 earlier saved attempts, 24 unfinished exports,
-35 Cypress scenarios, and the new native role exports. Sixty-four selected
-views are visually accepted; shared byte-identical lesson images have explicit
-comparison evidence. Backend suite results retain 46 skipped scenarios.
+The complete reading cards include contracts, worked inputs, prediction and
+implementation tasks, independent checks, and Java 17+ build instructions.
+Native execution follows export; browser Run displays native instructions and
+the browser Input panel does not supply a native input file. Learner and
+reference roles remain separate under the existing instructor-role policy.
+Earlier C++ code, notes and timestamps retain their saved identities.
+
+Exact review and independent merged-main trees in both repositories pass nine
+required CI jobs and CodeQL. Hosted acceptance covers 140 imports, 88 native role
+folders across 44 packs, 114 native Java Input guards, 60 preserved C++/Java
+migrations, 34 earlier saved attempts, 24 unfinished exports and 35 Cypress
+scenarios. All twelve new actual ZIP imports agree with their pinned source
+files and pass independent native checks, legal limit constructions and
+unfinished-learner answer preservation. All 96 new lesson and workspace views
+are visually accepted, including explicit byte identity for shared lesson
+images. Screenshot capture now retains entire tall cards across viewport
+changes. Backend suite results retain 46 skipped scenarios. Qodana completed
+its workflow with its scan step skipped; no Qodana scan is claimed.
+
+The [Gold source commit 706e67a](https://github.com/instruction-material/USACO-Gold/commit/706e67a67cc7ca4496359918ee01d84cb8fa246d)
+passes all 24 exact pushed-main workflows and 54 jobs on Java 17 and 21. The
+maintained Lasers reference returns minus one for unreachable inputs, correcting
+the original zero result. Cow Poetry and Radio Contact pass independent legal
+models and limits. Original source and replaced teaching fixtures are preserved.
+The source inventory remains 37 distinct pairs and ten remaining counterpart
+gaps among 47 active Gold folders; this is not a certificate for all source.
 
 Both immutable native source releases are published:
-[canonical v2.8.94](https://github.com/anderson-webops/classes.jacobdanderson.net/releases/tag/v2.8.94)
-and [neutral v2.8.94](https://github.com/instruction-material/classes.jacobdanderson.net/releases/tag/v2.8.94).
-Exact tagged CI provenance, signed subjects, payload hashes and actual released
-asset bytes are verified. Earlier immutable assets remain preserved. All
-98 intentional downstream customization paths keep their accepted bytes.
-Publication is a source-release milestone; native production activation and
-public served-asset acceptance remain unverified.
+[canonical v2.8.95](https://github.com/anderson-webops/classes.jacobdanderson.net/releases/tag/v2.8.95)
+and [neutral v2.8.95](https://github.com/instruction-material/classes.jacobdanderson.net/releases/tag/v2.8.95).
+Exact tagged CI provenance, signed subjects, every payload digest and actual
+released asset bytes are verified. Earlier immutable releases and their assets
+remain preserved. All 98 intentional downstream customization paths retain their
+accepted bytes. Publication is a source-release milestone; native production
+activation and public served-asset acceptance remain unverified.
 
 ## Required work still outstanding
 
-The refreshed Bronze, Silver and Gold source-tree inventory identifies 27
-required USACO assignment rows. Sixteen rows across 14 unique source packs still lack learner code, while
-19 rows across 17 unique source packs lack enabled imports. The source and
-site-workflow gaps are counted separately. All have reference files, whose presence alone is
-not an algorithm-correctness certificate. Required projects take priority over
-remaining optional Gold counterpart gaps.
+The refreshed Bronze, Silver and Gold source inventory identifies 27 required
+USACO assignment rows. Sixteen rows across 14 source packs still lack learner
+code and confirmed imports. Source presence, import configuration and actual
+workflow acceptance remain distinct checks. All have reference files, whose
+presence alone does not establish correctness. These required packs take
+priority over the ten remaining optional Gold counterpart gaps.
 
-The three required Gold projects are Cow Poetry, Lasers and Mirrors and Radio
-Contact. Complete exported-role guides and distinct unfinished learners are
-published in [Gold source commit 706e67a](https://github.com/instruction-material/USACO-Gold/commit/706e67a67cc7ca4496359918ee01d84cb8fa246d). Native baseline checks confirm the original Poetry and Radio
-references against independent models and legal limit constructions. Lasers'
-original reference incorrectly returns zero for an unreachable legal input;
-the maintained reference returns minus one and passes the independent
-point-graph cases and 100000-post construction. All 24 exact pushed-main
-workflows and 54 jobs pass. JDK 17 and 21 each verify six exported roles,
-74 reference cases, four full-limit constructions, supplied helpers, refused
-inputs and preserved unfinished-learner answers. Cow Poetry now opens the
-documented sample rather than the older larger fixture, and Lasers has the
-correct sample answer instead of a blank output. The original source and
-replaced teaching-fixture bytes are preserved. The Gold structural inventory
-is 37 distinct pairs and ten remaining counterpart gaps among 47 active
-folders; this does not certify all source or imports. Pinned site integration
-and actual browser export acceptance for the new three roles remain pending.
+Twelve other courses have a confirmed resource-import gap: 239 required source
+rows across 124 distinct GitHub paths have no resource-specific IDE mode. Every
+linked path exists at its checked published source head. Required native courses
+include C, assembly, Swift, Unity, Linux, networking, Rust, web development and
+security. Each needs confirmed source editing/export and its appropriate native
+or preview workflow. Archives, worksheets and conditional distribution lessons
+need individual assessment; a README-only archive does not by itself establish
+missing required implementation code.
 
-The course-mode inventory contains 16 courses with core GitHub resources and
-no course-wide mode. Four are USACO courses with per-resource native import
-modes; the explorer already consults resource inference without the earlier
-course-wide gate. Therefore this count is not 16 proven unsupported courses.
-The other 12 need individual native/preview workflow and required-source
-assessment. A configured mode alone does not prove a successful import.
+Saved learner and reference projects can also display identical lesson titles.
+The existing role metadata needs a visible distinction without changing project
+names, storage identities or source. This is a presentation finding; no
+permission leak is established.
 
-The complete audit still requires semantic course-purpose and delivery-format
-review, full standalone/instructor reading acceptance, relevant Juni fidelity,
-external availability, remaining source accuracy and imports, final Zoom feature
+The complete audit still requires semantic purpose and delivery-format review,
+full standalone/instructor reading acceptance, relevant Juni fidelity, external
+availability, remaining source accuracy and imports, final Zoom feature
 acceptance, and the separately authorized native production/public gates.
 Dependencies and both site lockfiles are unchanged at this milestone.
 
