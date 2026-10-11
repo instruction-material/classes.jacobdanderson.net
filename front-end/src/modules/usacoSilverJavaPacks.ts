@@ -183,6 +183,8 @@ export function silverJavaCourseBrief(
 	current: NonNullable<ReturnType<typeof silverJavaAssignment>>
 ) {
 	const { pack, assignment } = current;
+	const [workflow, mkdir, compile, run, ...nativeNotes] =
+		silverJavaNativeInstructions(current);
 	const sequence =
 		assignment.variant === "core"
 			? "**Learning sequence:** Required implementation checkpoint. Predict, state an invariant, trace a tiny case, implement and save an attempt before comparing the separate reference."
@@ -205,7 +207,9 @@ export function silverJavaCourseBrief(
 			? "Record two changed-case predictions, an independent check and a mismatch explanation. An instructor walkthrough pauses at the same invariant, trace and testing checkpoints."
 			: pack.retry,
 		"## Open, save and run",
-		...silverJavaNativeInstructions(current),
+		workflow,
+		`\`\`\`sh\n${[mkdir, compile, run].join("\n")}\n\`\`\``,
+		...nativeNotes,
 		"Open the learner resource and confirm the import before fetching files. Save the learner attempt and explanation before opening the separately saved reference. The driver validates input and answer structure, not optimality. Protected mocks and active contests start from empty files and keep solution browsing closed."
 	].join("\n\n");
 }
