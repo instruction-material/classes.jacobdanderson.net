@@ -48,7 +48,10 @@ function loadRawCourse(id: string) {
 // Literal types and console fixtures are source material, not generated prose.
 function proseForQualityChecks(content: string) {
 	return content
-		.replace(/(?:^|\n)[\t ]*(`{3,}|~{3,})[^\n]*\n[\s\S]*?\n[\t ]*\1/g, "\nCODE_BLOCK\n")
+		.replace(
+			/(?:^|\n)[\t ]*(`{3,}|~{3,})[^\n]*\n[\s\S]*?\n[\t ]*\1/g,
+			"\nCODE_BLOCK\n"
+		)
 		.replace(/`[^`\n]*`/g, "CODE_LITERAL");
 }
 
@@ -422,7 +425,8 @@ describe("course text quality normalization", () => {
 			},
 			{
 				courseId: "java-level-2",
-				moduleTitle: "Optional Java Level 2 Practice and Reference Archive",
+				moduleTitle:
+					"Optional Java Level 2 Practice and Reference Archive",
 				itemTitle: "Reference: HashMaps Examples"
 			}
 		];
@@ -475,9 +479,7 @@ describe("course text quality normalization", () => {
 						...module.curriculum,
 						...module.supplementalProjects
 					]) {
-						if (
-							isJuniScratchProjectTitle(entry.id, item.title)
-						) {
+						if (isJuniScratchProjectTitle(entry.id, item.title)) {
 							continue;
 						}
 
@@ -553,11 +555,13 @@ describe("course text quality normalization", () => {
 				check => check.name === "unfinished placeholder"
 			)!.pattern;
 			expect(
-				proseForQualityChecks("Complete one `TODO` marker in the starter.")
+				proseForQualityChecks(
+					"Complete one `TODO` marker in the starter."
+				)
 			).not.toMatch(placeholderPattern);
-			expect(proseForQualityChecks("TODO: describe the assignment.")).toMatch(
-				placeholderPattern
-			);
+			expect(
+				proseForQualityChecks("TODO: describe the assignment.")
+			).toMatch(placeholderPattern);
 
 			for (const { entry, course } of await loadedCatalogCourses()) {
 				for (const module of course.modules) {
@@ -565,19 +569,19 @@ describe("course text quality normalization", () => {
 						...module.curriculum,
 						...module.supplementalProjects
 					]) {
-						if (
-							isJuniScratchProjectTitle(entry.id, item.title)
-						) {
+						if (isJuniScratchProjectTitle(entry.id, item.title)) {
 							continue;
 						}
 
 						const text = item.content;
 
 						for (const { name, pattern } of artifactChecks) {
-							const match = (name === "duplicate generated word" ||
+							const match = (
+								name === "duplicate generated word" ||
 								name === "unfinished placeholder"
-								? proseForQualityChecks(text)
-								: text).match(pattern);
+									? proseForQualityChecks(text)
+									: text
+							).match(pattern);
 							if (!match) continue;
 
 							failures.push(
@@ -963,13 +967,9 @@ describe("course text quality normalization", () => {
 						...module.curriculum,
 						...module.supplementalProjects
 					]) {
-						const match = [
-							module.title,
-							item.title,
-							item.content
-						].join("\n").match(
-							staleStaticMediaCopyPattern
-						);
+						const match = [module.title, item.title, item.content]
+							.join("\n")
+							.match(staleStaticMediaCopyPattern);
 						if (!match) continue;
 
 						failures.push(
@@ -1236,9 +1236,7 @@ describe("course text quality normalization", () => {
 			expect(corpus).toContain("opening the starter resource");
 			expect(corpus).toContain("Open the starter resource");
 			expect(corpus).toContain("as an AI/Python project");
-			expect(corpus).toContain(
-				"replace one unfinished body at a time"
-			);
+			expect(corpus).toContain("replace one unfinished body at a time");
 			expect(corpus).toContain(
 				"Build the web-development extension challenge for **JSM1 Fundamentals Review** as a browser-visible feature with clear state, interaction, and error-handling evidence"
 			);
@@ -2154,11 +2152,13 @@ describe("course text quality normalization", () => {
 				items: [
 					{
 						title: "Core Project: Native Input/Output Checkpoint",
-						subject: "Gold setup: native input/output and 64-bit totals"
+						subject:
+							"Gold setup: native input/output and 64-bit totals"
 					},
 					{
 						title: "Native Input/Output Retry",
-						subject: "Gold setup: native input/output and 64-bit totals"
+						subject:
+							"Gold setup: native input/output and 64-bit totals"
 					}
 				]
 			}
@@ -2822,7 +2822,10 @@ describe("course text quality normalization", () => {
 
 		const unavailableProjectMedia = [
 			[/PS1 Project 1: Mad Libs/, "ps1_mad_libs.gif"],
-			[/PS6 Supplemental Project 5: Card Shuffler/, "ps6_card_shuffler.mp4"],
+			[
+				/PS6 Supplemental Project 5: Card Shuffler/,
+				"ps6_card_shuffler.mp4"
+			],
 			[/PS12 Project 1: Type Racer/, "ps12_type_racer.mp4"]
 		] as const;
 
@@ -2849,7 +2852,9 @@ describe("course text quality normalization", () => {
 		expect(course).not.toBeNull();
 
 		const hostedProject = findItem(course!, /AM1 Project 1: Mad Libs/);
-		expect(hostedProject.mediaLink).toBe(staticMediaUrl("am_1_mad_libs.mp4"));
+		expect(hostedProject.mediaLink).toBe(
+			staticMediaUrl("am_1_mad_libs.mp4")
+		);
 		expect(hostedProject.content).not.toContain("Pending media:");
 
 		const missingProject = findItem(
@@ -2968,13 +2973,15 @@ describe("course text quality normalization", () => {
 		const bronzeModule = bronzeOnDemand!.modules.find(
 			module => module.title === "Pending Static Assets"
 		);
-		const bronzeContent = bronzeModule?.curriculum
-			.map(item => item.content)
-			.join("\n\n") ?? "";
+		const bronzeContent =
+			bronzeModule?.curriculum.map(item => item.content).join("\n\n") ??
+			"";
 
 		for (const filename of ["missionTitle2.png", "nextStepTitle.png"]) {
 			expect(bronzeContent).toContain(staticMediaUrl(filename));
-			expect(hasPendingStaticMediaNotice(bronzeContent, filename)).toBe(true);
+			expect(hasPendingStaticMediaNotice(bronzeContent, filename)).toBe(
+				true
+			);
 		}
 
 		const goldModule = gold!.modules.find(
@@ -2989,7 +2996,9 @@ describe("course text quality normalization", () => {
 		const goldContent = goldItem?.content ?? "";
 
 		expect(goldContent).toContain(staticMediaUrl("treasure.txt"));
-		expect(hasPendingStaticMediaNotice(goldContent, "treasure.txt")).toBe(true);
+		expect(hasPendingStaticMediaNotice(goldContent, "treasure.txt")).toBe(
+			true
+		);
 		expect(goldContent).not.toContain("static.junilearning.com");
 	});
 
@@ -3568,9 +3577,7 @@ describe("course text quality normalization", () => {
 		expect(course).not.toBeNull();
 
 		expect(
-			course!.modules.find(
-				module => module.title === "Demo Media Status"
-			)
+			course!.modules.find(module => module.title === "Demo Media Status")
 		).toBeUndefined();
 
 		const allItems = course!.modules.flatMap(module => [
@@ -3582,9 +3589,9 @@ describe("course text quality normalization", () => {
 			["PyG5 Project 2: Golf", "pyg_5_golf.mp4"],
 			["PyG11 Project 1: Space Invaders", "pyg_11_space_invaders.mp4"]
 		] as const) {
-			expect(
-				allItems.find(item => item.title === title)?.mediaLink
-			).toBe(staticMediaUrl(filename));
+			expect(allItems.find(item => item.title === title)?.mediaLink).toBe(
+				staticMediaUrl(filename)
+			);
 		}
 
 		const learnerText = JSON.stringify(
@@ -4794,7 +4801,8 @@ describe("course text quality normalization", () => {
 				if (
 					(mode === "tree" || mode === "blob") &&
 					branch &&
-					!["main", "master"].includes(branch)
+					!["main", "master"].includes(branch) &&
+					!/^[\da-f]{40}$/.test(branch)
 				) {
 					staleBranchLinks.push(label);
 				}
@@ -5027,8 +5035,9 @@ describe("course text quality normalization", () => {
 								);
 							}
 						}
-						const repeatedWordMatch =
-							proseForQualityChecks(item.content).match(repeatedWordPattern);
+						const repeatedWordMatch = proseForQualityChecks(
+							item.content
+						).match(repeatedWordPattern);
 						if (repeatedWordMatch) {
 							repeatedWords.push(
 								`${courseCatalog[courseIndex].id} / ${module.title} / ${item.title} / ${repeatedWordMatch[0]}`
@@ -5365,9 +5374,7 @@ describe("course text quality normalization", () => {
 		expect(scratchBridge!.content).not.toMatch(/\bconnectings\b/i);
 
 		const scratchLevel2Bridge = scratchLevel2!.modules
-			.find(
-				module => module.title === "GM15 Scratch-to-Python Bridge"
-			)
+			.find(module => module.title === "GM15 Scratch-to-Python Bridge")
 			?.curriculum.find(item => /Core Concepts$/i.test(item.title));
 		expect(scratchLevel2Bridge).toBeDefined();
 		expect(scratchLevel2Bridge!.content).toContain(
@@ -5689,9 +5696,7 @@ describe("course text quality normalization", () => {
 		expect(javaLevel1Text).toContain("First-Week Karel Cadence");
 		expect(javaLevel1Text).not.toContain("Carol/Karel");
 		expect(javaLevel1Text).toContain("Five-Robot Warm-Up Set");
-		expect(javaLevel1Text).toContain(
-			"Visual Exit Ticket: Ready for Text"
-		);
+		expect(javaLevel1Text).toContain("Visual Exit Ticket: Ready for Text");
 		expect(javaLevel1Text).toContain("int x = 7; x = 9");
 		expect(javaLevel1Text).toContain("moveMany(3)");
 		expect(javaLevel1Text).toContain(
@@ -5728,7 +5733,9 @@ describe("course text quality normalization", () => {
 			"Java Graphics Extension: Pattern Parameter Swap"
 		);
 
-		expect(javaLevel1Text).not.toContain("Java Track Map: Without Graphics");
+		expect(javaLevel1Text).not.toContain(
+			"Java Track Map: Without Graphics"
+		);
 		expect(javaLevel1Text).not.toContain("Java Track Map: With Graphics");
 		expect(javaLevel1Text).not.toContain("What This Branch Keeps");
 		expect(javaLevel1Text).not.toContain("Graphics Branch Positioning");
@@ -5806,9 +5813,7 @@ describe("course text quality normalization", () => {
 		expect(pygames).not.toBeNull();
 
 		const spinner = findItem(scratchLevel1!, /Spinner/);
-		expect(spinner.content).toContain(
-			"It's time to build a fun spinner:"
-		);
+		expect(spinner.content).toContain("It's time to build a fun spinner:");
 		expect(spinner.content).toContain(
 			"5. When the spacebar is pressed, make the arrow point towards the mouse."
 		);
@@ -6600,12 +6605,7 @@ describe("course text quality normalization", () => {
 			expect(text).not.toMatch(/\bshould\b/i);
 		}
 
-		const [
-			smartMoney,
-			publicSpeaking,
-			earlyMath,
-			earlyReading
-		] = courses;
+		const [smartMoney, publicSpeaking, earlyMath, earlyReading] = courses;
 		const nonProgrammingCorpus = [
 			smartMoney,
 			publicSpeaking,
@@ -6763,7 +6763,9 @@ describe("course text quality normalization", () => {
 		expect(text).toContain("Sharpe Ratio");
 		expect(text).toContain("SPY, QQQ, and DIA");
 		expect(text).toContain("BOTZ");
-		expect(text).toContain("cyclical, defensive, growth, blue-chip, or IPO");
+		expect(text).toContain(
+			"cyclical, defensive, growth, blue-chip, or IPO"
+		);
 		expect(text).toContain("Tesla with GM");
 		expect(text).toContain("Republic.co");
 		expect(text).toContain("Alphabet, Disney, and PepsiCo");
@@ -6818,7 +6820,9 @@ describe("course text quality normalization", () => {
 		expect(text).toContain("Lean Canvas-style structure");
 		expect(text).toContain("coolmathgames.com/0-coffee-shop");
 		expect(text).toContain("Duolingo, Airbnb, or Uber");
-		expect(text).toContain("disruptive, new-market, integrative, or sustaining innovation");
+		expect(text).toContain(
+			"disruptive, new-market, integrative, or sustaining innovation"
+		);
 		expect(text).toContain("1,000 customers");
 		expect(text).toContain("**Completion evidence:**");
 		for (const anchor of expectedAnchors) {
@@ -7663,13 +7667,16 @@ describe("course text quality normalization", () => {
 				module => module.title === "Pending Static Assets"
 			);
 			expect(mediaModule?.kind).toBe("appendix");
-			const content = mediaModule?.curriculum
-				.map(item => item.content)
-				.join("\n\n") ?? "";
+			const content =
+				mediaModule?.curriculum
+					.map(item => item.content)
+					.join("\n\n") ?? "";
 
 			for (const filename of filenames) {
 				expect(content).toContain(staticMediaUrl(filename));
-				expect(hasPendingStaticMediaNotice(content, filename)).toBe(true);
+				expect(hasPendingStaticMediaNotice(content, filename)).toBe(
+					true
+				);
 			}
 			expect(content).not.toContain("static.junilearning.com");
 		}
@@ -7704,7 +7711,9 @@ describe("course text quality normalization", () => {
 		expect(text).toContain("Project: High and Low Species");
 		expect(text).toContain("Project: Mochi's Product Adventure");
 		expect(text).toContain("Project: Cookie Catering");
-		expect(text).toContain("Project: Designing the Perfect Scanning Device");
+		expect(text).toContain(
+			"Project: Designing the Perfect Scanning Device"
+		);
 		expect(text).toContain("Project: Symptom Spree");
 		expect(text).toContain("Project: Red Hot Chilli Chicken");
 		expect(text).toContain("Master Project: Pre-Algebra A");
@@ -7735,7 +7744,7 @@ describe("course text quality normalization", () => {
 			"Red Hot Chilli Chicken",
 			"Dani California 615",
 			"53 new active orders per month",
-				"at least 2 student-created problems"
+			"at least 2 student-created problems"
 		]) {
 			expect(text, originalReference).toContain(originalReference);
 		}
@@ -8070,7 +8079,9 @@ describe("course text quality normalization", () => {
 		expect(text).toContain("GEOA9 Right Triangles");
 		expect(text).toContain("GEOA10 Bisectors");
 		expect(text).toContain("GEOA11 Medians and Altitudes");
-		expect(text).toContain("GEOA12-GEOA13 Inequalities and Basic Trigonometry");
+		expect(text).toContain(
+			"GEOA12-GEOA13 Inequalities and Basic Trigonometry"
+		);
 		expect(text).toContain("Project: Geometry Notation Reference Map");
 		expect(text).toContain("Project: Proof Repair Lab");
 		expect(text).toContain("Project: Coordinate Line Design");
@@ -8142,17 +8153,25 @@ describe("course text quality normalization", () => {
 		]);
 		expect(text).toContain("GEOB1 Introduction to Quadrilaterals");
 		expect(text).toContain("GEOB1 Trapezoids");
-		expect(text).toContain("GEOB2 Parallelograms, Rhombi, Rectangles, and Squares");
+		expect(text).toContain(
+			"GEOB2 Parallelograms, Rhombi, Rectangles, and Squares"
+		);
 		expect(text).toContain("GEOB3 Properties and Area of Polygons");
-		expect(text).toContain("GEOB4 Circumference, Arcs, Chords, Areas, and Sectors");
-		expect(text).toContain("GEOB5 Inscribed, Central, Internal, and External Angles");
+		expect(text).toContain(
+			"GEOB4 Circumference, Arcs, Chords, Areas, and Sectors"
+		);
+		expect(text).toContain(
+			"GEOB5 Inscribed, Central, Internal, and External Angles"
+		);
 		expect(text).toContain("GEOB5 Tangents");
 		expect(text).toContain("GEOB6 Challenge Circle Problems");
 		expect(text).toContain("GEOB7 Translations and Rotations");
 		expect(text).toContain("GEOB8 Reflections and Dilations");
 		expect(text).toContain("GEOB9 Polyhedra, Prisms, and Pyramids");
 		expect(text).toContain("GEOB10 Cylinders, Cones, and Spheres");
-		expect(text).toContain("Project: Quadrilateral Classification Case File");
+		expect(text).toContain(
+			"Project: Quadrilateral Classification Case File"
+		);
 		expect(text).toContain("Project: Circle Measurement Design Brief");
 		expect(text).toContain("Project: Circle Challenge Walkthrough");
 		expect(text).toContain("Project: Transformation Rule Gallery");
@@ -8167,9 +8186,15 @@ describe("course text quality normalization", () => {
 		expect(text).toContain("Transformations");
 		expect(text).toContain("Three-dimensional solids");
 		expect(text).toContain("Geometry B Pending Static Assets");
-		expect(text).toContain("http://pythagoreanmath.com/wp-content/uploads/2014/08/deriving-the-volume-of-a-pyramid.png");
-		expect(text).toContain("https://ds055uzetaobb.cloudfront.net/brioche/uploads/Fv9rxkzWWN-90675.svg?width=350");
-		expect(text).toContain("https://www.mathsisfun.com/geometry/images/sphere-cylinder-area2.svg");
+		expect(text).toContain(
+			"http://pythagoreanmath.com/wp-content/uploads/2014/08/deriving-the-volume-of-a-pyramid.png"
+		);
+		expect(text).toContain(
+			"https://ds055uzetaobb.cloudfront.net/brioche/uploads/Fv9rxkzWWN-90675.svg?width=350"
+		);
+		expect(text).toContain(
+			"https://www.mathsisfun.com/geometry/images/sphere-cylinder-area2.svg"
+		);
 		for (const filename of [
 			"geob1_pset1_3(1).png",
 			"checkin1_angles_2.png",
@@ -8221,8 +8246,12 @@ describe("course text quality normalization", () => {
 		]);
 		expect(text).toContain("Concept: Piecewise Functions");
 		expect(text).toContain("Concept: Polynomial Operations and Factoring");
-		expect(text).toContain("Concept: Polynomial Long Division and Synthetic Division");
-		expect(text).toContain("Concept: Zeros, Factors, and Polynomial Structure");
+		expect(text).toContain(
+			"Concept: Polynomial Long Division and Synthetic Division"
+		);
+		expect(text).toContain(
+			"Concept: Zeros, Factors, and Polynomial Structure"
+		);
 		expect(text).toContain("Concept: Polynomial Graph Features");
 		expect(text).toContain("Concept: Sequences and Sums");
 		expect(text).toContain("Concept: Area Under a Curve");
@@ -8232,7 +8261,9 @@ describe("course text quality normalization", () => {
 		expect(text).toContain("Concept: Logarithms, Identities, and Graphs");
 		expect(text).toContain("Concept: Function Composition and Inverses");
 		expect(text).toContain("Concept: Circles and Ellipses");
-		expect(text).toContain("Concept: Parabolas, Hyperbolas, and Conic Intersections");
+		expect(text).toContain(
+			"Concept: Parabolas, Hyperbolas, and Conic Intersections"
+		);
 		expect(text).toContain("Riemann");
 		expect(text).toContain("Pascal's triangle");
 		expect(text).toContain("domain restrictions");
@@ -8419,11 +8450,19 @@ describe("course text quality normalization", () => {
 		expect(text).toContain("Continuity and Limits Involving Infinity");
 		expect(text).toContain("Rates of Change and Derivative Definitions");
 		expect(text).toContain("Basic and Advanced Derivative Rules");
-		expect(text).toContain("Chain Rule, Implicit Differentiation, Inverses, and Higher-Order Derivatives");
-		expect(text).toContain("Riemann Sums and the Fundamental Theorem of Calculus");
-		expect(text).toContain("Antiderivatives, Evaluating Integrals, and Integration Methods");
+		expect(text).toContain(
+			"Chain Rule, Implicit Differentiation, Inverses, and Higher-Order Derivatives"
+		);
+		expect(text).toContain(
+			"Riemann Sums and the Fundamental Theorem of Calculus"
+		);
+		expect(text).toContain(
+			"Antiderivatives, Evaluating Integrals, and Integration Methods"
+		);
 		expect(text).toContain("Differential Equations");
-		expect(text).toContain("Parametric Equations, Polar Coordinates, and Vector-Valued Calculus");
+		expect(text).toContain(
+			"Parametric Equations, Polar Coordinates, and Vector-Valued Calculus"
+		);
 		expect(text).toContain("Infinite Series and Convergence Tests");
 		expect(text).toContain("Power Series, Taylor Series");
 		expect(text).toContain("AP Calculus Reference Map");

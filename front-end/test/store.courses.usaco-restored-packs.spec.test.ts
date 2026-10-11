@@ -9,6 +9,7 @@ import {
 } from "@/modules/pythonIde";
 import {
 	matrixDijkstraSavedItemId,
+	roadblockSavedItemId,
 	milkVisitsSavedItemId,
 	timeMooneySavedItemId,
 	usacoRestoredResources
@@ -21,6 +22,78 @@ import { usacoExistingProjectIds } from "../../test/fixtures/usaco-restored-pack
 beforeEach(() => setActivePinia(createPinia()));
 
 describe("restored USACO project workflows", () => {
+	it("keeps Roadblock's saved identity after core graph work with separate consent-based roles", async () => {
+		const course = (await useCoursesStore().loadCourseById("usaco-gold"))!;
+		const graph = course.modules.find(module =>
+			module.title.startsWith("Unit 2:")
+		)!;
+		const matches = course.modules
+			.flatMap(module => [
+				...module.curriculum,
+				...module.supplementalProjects
+			])
+			.filter(item =>
+				item.projectLink?.endsWith("/UG10-Roadblock/starter")
+			);
+		expect(matches).toHaveLength(1);
+		const item = matches[0]!;
+		expect(item.id).toBe(roadblockSavedItemId);
+		expect(graph.supplementalProjects).toContain(item);
+		expect(item.learningPath).toBe("choice");
+		expect(item.ideImport).toBe(true);
+		expect(item.projectLink).toContain(
+			"/tree/95af2241de8b316112a6a308c2d45819b63ed3e6/"
+		);
+		expect(item.solutionLink).toBeUndefined();
+		expect(item.content).not.toContain("/solution");
+		for (const detail of [
+			"February 2014 Silver",
+			"1..250 fields",
+			"1..25000 roads",
+			"four marked learner tasks",
+			"ties",
+			"restore",
+			"Floyd-Warshall",
+			"preserve earlier output",
+			"maximum increase is 2, not 8",
+			"O(N³)"
+		])
+			expect(item.content).toContain(detail);
+		expect(item.content).not.toContain("rm -f");
+		expect(item.content).not.toContain("sample.in");
+		for (const role of ["starter", "reference"]) {
+			const instructions = javaNativeBuildInstructions(
+				`usaco-gold:${roadblockSavedItemId}:${role}`
+			)!.join("\n");
+			for (const detail of [
+				"javac --release 17",
+				"rblock.in",
+				"rblock.out",
+				"preserve an earlier answer",
+				"sensitivity algorithm"
+			])
+				expect(instructions).toContain(detail);
+		}
+		for (const key of [
+			`usaco-gold:${roadblockSavedItemId}:solution`,
+			`usaco-gold:${roadblockSavedItemId}:starter:extra`,
+			`java-level-1:${roadblockSavedItemId}:starter`
+		])
+			expect(javaNativeBuildInstructions(key)).toBeNull();
+		useAppStore().currentTutor = {} as never;
+		const staff = (await useCoursesStore().loadCourseById("usaco-gold"))!;
+		const reference = staff.modules
+			.flatMap(module => [
+				...module.curriculum,
+				...module.supplementalProjects
+			])
+			.find(item => item.id === roadblockSavedItemId)!;
+		expect(reference.solutionLink).toContain(
+			"/tree/95af2241de8b316112a6a308c2d45819b63ed3e6/UG10-Roadblock/solution"
+		);
+		expect(reference.id).toBe(item.id);
+	});
+
 	it("places tree paths and bounded-time DP in their matching units without changing saved identities", async () => {
 		const course = (await useCoursesStore().loadCourseById("usaco-gold"))!;
 		for (const [folder, unitPrefix, id, meaning, answer] of [
@@ -426,7 +499,8 @@ describe("restored USACO project workflows", () => {
 							? [
 									"UG9-Dijkstras-Algorithm-II",
 									"UG-Milk-Visits",
-									"UG-Time-is-Mooney"
+									"UG-Time-is-Mooney",
+									"UG10-Roadblock"
 								].includes(pack.folder)
 								? "javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java"
 								: "javac -encoding UTF-8 Main.java"

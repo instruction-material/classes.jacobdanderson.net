@@ -8,7 +8,16 @@ export const milkVisitsSavedItemId =
 export const timeMooneySavedItemId =
 	"usaco-gold-unit-6-advanced-dp-bitmask-state-and-combinatorics-supplemental-problem-time-is-mooney";
 
+export const roadblockSavedItemId =
+	"usaco-gold-optional-gold-problem-bank-supplemental-problem-roadblock";
+
 export const usacoRestoredResources = [
+	{
+		course: "usaco-gold",
+		repository: "USACO-Gold",
+		folder: "UG10-Roadblock",
+		mode: "java"
+	},
 	{
 		course: "usaco-gold",
 		repository: "USACO-Gold",
