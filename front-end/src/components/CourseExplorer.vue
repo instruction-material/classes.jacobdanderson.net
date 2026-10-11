@@ -45,6 +45,7 @@ import {
 	isScratchProjectUrl
 } from "@/modules/resourceUrls";
 import { goldHistoricalProjectKey } from "@/modules/usacoHistoricalPacks";
+import { silverJavaProjectKey } from "@/modules/usacoSilverJavaPacks";
 import { goldSpanningIntervalLegacyItemId } from "@/modules/usacoSpanningIntervalPacks";
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
@@ -1573,7 +1574,9 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 	const params = new URLSearchParams({
 		course: selectedCourse.value.id,
 		mode,
-		projectKey: goldHistoricalProjectKey(
+		projectKey: (selectedCourse.value.id === "usaco-silver"
+			? silverJavaProjectKey
+			: goldHistoricalProjectKey)(
 			selectedCourse.value.id,
 			item.id,
 			resource.kind === "solution" ? "reference" : "starter",

@@ -19,6 +19,10 @@ import {
 	goldRequiredCoreAssignment,
 	requiredCoreNativeInstructions
 } from "./usacoRequiredCorePacks";
+import {
+	silverJavaAssignment,
+	silverJavaNativeInstructions
+} from "./usacoSilverJavaPacks";
 
 import {
 	goldSpanningIntervalPack,
@@ -109,6 +113,15 @@ export function javaNativeBuildInstructions(
 ): string[] | null {
 	const parts = (courseProjectKey ?? "").split(":");
 	const [course, item, role, extra] = parts;
+	const silver = silverJavaAssignment(item ?? "");
+	if (
+		course === "usaco-silver" &&
+		silver &&
+		["starter", "reference"].includes(role ?? "") &&
+		(parts.length === 3 || (parts.length === 4 && extra === "native-java"))
+	) {
+		return silverJavaNativeInstructions(silver);
+	}
 	const requiredCore = goldRequiredCoreAssignment(item ?? "");
 	if (
 		course === "usaco-gold" &&

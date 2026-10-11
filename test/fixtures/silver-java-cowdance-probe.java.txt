@@ -1,0 +1,26 @@
+import java.io.StringReader;
+import java.util.Arrays;
+
+public final class LearnerProbe {
+    private LearnerProbe() {}
+    public static void main(String[] args) throws Exception {
+        try (Main.TokenReader in = new Main.TokenReader(new StringReader("4 6\n3 3 3 3\n"))) {
+            Main.InputData input = Main.readInput(in);
+            assert input.timeLimit() == 6;
+            assert Arrays.equals(input.durations(), new int[] {3, 3, 3, 3});
+            try {
+                Main.finishesWithin(input.durations(), 2, input.timeLimit());
+                throw new AssertionError("Schedule task must remain unfinished.");
+            } catch (UnsupportedOperationException expected) {
+                assert expected.getMessage().contains("finishesWithin");
+            }
+            try {
+                Main.minimumStageSize(input);
+                throw new AssertionError("Search task must remain unfinished.");
+            } catch (UnsupportedOperationException expected) {
+                assert expected.getMessage().contains("minimumStageSize");
+            }
+        }
+        System.out.println("Supplied helpers and unfinished tasks verified.");
+    }
+}

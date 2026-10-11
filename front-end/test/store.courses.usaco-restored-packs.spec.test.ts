@@ -648,34 +648,36 @@ describe("restored USACO project workflows", () => {
 					}
 				}
 				expect(item.content).toContain(
-					pack.mode === "cpp"
-						? "-std=c++20"
-						: pack.mode === "java"
-							? [
-									"UG1-Hoof-Paper-Scissors",
-									"UG13-Cow-Routing",
-									"UG16-Watering-the-Fields",
-									"UG18-I-Would-Walk-500-Miles",
-									"UG2-Talent-Show",
-									"UG9-Dijkstras-Algorithm-II",
-									"UG-Milk-Visits",
-									"UG-Time-is-Mooney",
-									"UG10-Roadblock",
-									"UG11-Shortcut",
-									"UG1-Dynamic-Programming-Practice",
-									"UG14-MST-II",
-									"UG19-Disjoint-Sets-and-Kruskals",
-									"UG15-Superbull",
-									"UG17-Moocast",
-									"UG6-248",
-									"UG20-Fenced-In",
-									"UG33-Lasers-and-Mirrors",
-									"UG28-Cow-Poetry",
-									"UG34-Radio-Contact"
-								].includes(pack.folder)
-								? "javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java"
-								: "javac -encoding UTF-8 Main.java"
-							: "python3 main.py"
+					pack.course === "usaco-silver" && pack.mode === "java"
+						? `javac --release 17 -encoding UTF-8 -Xlint:all -Werror -d target/classes ${pack.folder === "US38-Redistributing-Gifts" ? "src/main/java/Main.java" : "Main.java"}`
+						: pack.mode === "cpp"
+							? "-std=c++20"
+							: pack.mode === "java"
+								? [
+										"UG1-Hoof-Paper-Scissors",
+										"UG13-Cow-Routing",
+										"UG16-Watering-the-Fields",
+										"UG18-I-Would-Walk-500-Miles",
+										"UG2-Talent-Show",
+										"UG9-Dijkstras-Algorithm-II",
+										"UG-Milk-Visits",
+										"UG-Time-is-Mooney",
+										"UG10-Roadblock",
+										"UG11-Shortcut",
+										"UG1-Dynamic-Programming-Practice",
+										"UG14-MST-II",
+										"UG19-Disjoint-Sets-and-Kruskals",
+										"UG15-Superbull",
+										"UG17-Moocast",
+										"UG6-248",
+										"UG20-Fenced-In",
+										"UG33-Lasers-and-Mirrors",
+										"UG28-Cow-Poetry",
+										"UG34-Radio-Contact"
+									].includes(pack.folder)
+									? "javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java"
+									: "javac -encoding UTF-8 Main.java"
+								: "python3 main.py"
 				);
 			}
 		}

@@ -16,6 +16,24 @@ export const shortcutSavedItemId =
 
 export const usacoRestoredResources = [
 	{
+		course: "usaco-silver",
+		repository: "USACO-Silver",
+		folder: "US25-Why-Did-the-Cow-Cross-the-Road-II",
+		mode: "java"
+	},
+	{
+		course: "usaco-silver",
+		repository: "USACO-Silver",
+		folder: "US21-Cow-Dance-Show",
+		mode: "java"
+	},
+	{
+		course: "usaco-silver",
+		repository: "USACO-Silver",
+		folder: "US38-Redistributing-Gifts",
+		mode: "java"
+	},
+	{
 		course: "usaco-gold",
 		repository: "USACO-Gold",
 		folder: "UG33-Lasers-and-Mirrors",

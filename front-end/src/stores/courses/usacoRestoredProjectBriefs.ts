@@ -18,6 +18,10 @@ import {
 	goldRequiredCoreAssignment,
 	requiredCoreCourseBrief
 } from "../../modules/usacoRequiredCorePacks";
+import {
+	silverJavaAssignment,
+	silverJavaCourseBrief
+} from "../../modules/usacoSilverJavaPacks";
 
 import {
 	goldSpanningIntervalPack,
@@ -424,6 +428,12 @@ function projectBrief(
 	mode: "python" | "cpp" | "java",
 	item: RawCourseModuleItem
 ) {
+	const silver =
+		courseId === "usaco-silver"
+			? silverJavaAssignment(item.id ?? "")
+			: undefined;
+	if (silver && silver.pack.folder === folder)
+		return silverJavaCourseBrief(silver);
 	const requiredCore =
 		courseId === "usaco-gold"
 			? goldRequiredCoreAssignment(item.id ?? "")

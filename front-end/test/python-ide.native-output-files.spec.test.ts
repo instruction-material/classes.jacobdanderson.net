@@ -15,6 +15,59 @@ import {
 afterEach(() => vi.unstubAllGlobals());
 
 describe("native answer files", () => {
+	it("imports the complete Gifts role through three real nested directories", async () => {
+		const folder = "US38-Redistributing-Gifts/solution";
+		const contents: Record<string, string> = {
+			"README.md": "# Standalone contract and native commands\n",
+			"input.txt": "1\n1\n",
+			"sample.expected": "1\n",
+			"pom.xml": "<project/>\n",
+			"src/main/java/Main.java":
+				"class Main { public static void main(String[] args) {} }\n"
+		};
+		const directories: string[] = [];
+		vi.stubGlobal("fetch", async (value: string | URL | Request) => {
+			const url = new URL(String(value));
+			if (url.hostname === "api.github.com") {
+				const prefix = `/repos/instruction-material/USACO-Silver/contents/${folder}`;
+				expect(url.pathname.startsWith(prefix)).toBe(true);
+				const relative = url.pathname
+					.slice(prefix.length)
+					.replace(/^\//, "");
+				directories.push(relative);
+				const entries = new Map();
+				for (const [path, content] of Object.entries(contents)) {
+					if (relative && !path.startsWith(relative + "/")) continue;
+					const rest = relative
+						? path.slice(relative.length + 1)
+						: path;
+					const name = rest.split("/")[0]!;
+					entries.set(name, {
+						type: rest.includes("/") ? "dir" : "file",
+						name,
+						path: `${folder}/${relative ? relative + "/" : ""}${name}`,
+						size: content.length,
+						download_url: null
+					});
+				}
+				return new Response(JSON.stringify([...entries.values()]));
+			}
+			const prefix = `/instruction-material/USACO-Silver/main/${folder}/`;
+			expect(url.pathname.startsWith(prefix)).toBe(true);
+			const name = url.pathname.slice(prefix.length);
+			expect(Object.hasOwn(contents, name)).toBe(true);
+			return new Response(contents[name]);
+		});
+		const files = await loadPythonIdeStarterFilesFromGitHub(
+			`https://github.com/instruction-material/USACO-Silver/tree/main/${folder}`,
+			"java"
+		);
+		expect(directories).toEqual(["", "src", "src/main", "src/main/java"]);
+		expect(files[0]!.name).toBe("src/main/java/Main.java");
+		expect(
+			Object.fromEntries(files.map(file => [file.name, file.content]))
+		).toEqual(contents);
+	});
 	it("imports all five Balanced Photo reference files with the answer as text", async () => {
 		const folder = "UG23-Balanced-Photo/solution";
 		const files = await listGitHubProjectFiles(

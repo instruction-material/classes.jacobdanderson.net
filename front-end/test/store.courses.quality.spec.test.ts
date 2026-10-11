@@ -2133,8 +2133,9 @@ describe("course text quality normalization", () => {
 				moduleTitle: "USS0 Setup and Silver Transition",
 				items: [
 					{
-						title: "Core Project: Setup and Silver Transition",
-						subject: "USS0 Setup and Silver Transition"
+						title: "Core Project: Signal Repairs and Native Window Setup",
+						subject:
+							"Core Project: Signal Repairs and Native Window Setup"
 					},
 					{
 						title: "Why Did the Cow Cross the Road III",
@@ -2186,7 +2187,9 @@ describe("course text quality normalization", () => {
 					item?.content,
 					`${setupModule.courseId}: ${title}`
 				).toContain(
-					setupModule.courseId === "usaco-gold"
+					setupModule.courseId === "usaco-gold" ||
+						(setupModule.courseId === "usaco-silver" &&
+							title.startsWith("Core Project:"))
 						? `## ${subject}`
 						: `**${subject}**`
 				);

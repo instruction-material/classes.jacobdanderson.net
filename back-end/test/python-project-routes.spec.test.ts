@@ -156,7 +156,9 @@ describe("Python project routes", () => {
 			{ name: "README.md", content: "# Native reference\n" },
 			{ name: "sample.in", content: "1\n0\n" },
 			{ name: "bphoto.in", content: "1\r\n0\r\n" },
-			{ name: "bphoto.out", content: "0\n" }
+			{ name: "bphoto.out", content: "0\n" },
+			{ name: "sample.expected", content: "0\n" },
+			{ name: "pom.xml", content: "<project/>\n" }
 		];
 		for (const owner of ["user", "course-code"] as const) {
 			await withPythonProjectRoute(async baseUrl => {
@@ -184,7 +186,10 @@ describe("Python project routes", () => {
 					"../bphoto.out",
 					"/bphoto.out",
 					"nested/bphoto.out",
-					"bphoto.exe"
+					"bphoto.exe",
+					"../sample.expected",
+					"nested/pom.xml",
+					"/pom.xml"
 				]) {
 					const invalid = await postJson(baseUrl, {
 						files: [...files, { name, content: "0\n" }],

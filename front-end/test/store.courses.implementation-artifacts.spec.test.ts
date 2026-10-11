@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { courseCatalog, loadRawCourse } from "@/stores/courses/index";
+import { silverJavaPacks } from "@/modules/usacoSilverJavaPacks";
 import {
 	courseContentOnlySourcePolicies,
 	courseImplementationSourceRepos,
@@ -906,7 +907,7 @@ describe("implemented course development artifacts", () => {
 			const rootOnlyLinks = [
 				...serializedCourse.matchAll(
 					new RegExp(
-						`https://github\\.com/instruction-material/${repo}/tree/main/([^"]+)`,
+						`https://github\\.com/instruction-material/${repo}/tree/(?:main|[a-f0-9]{40})/([^"]+)`,
 						"g"
 					)
 				)
@@ -920,7 +921,7 @@ describe("implemented course development artifacts", () => {
 			const missingSolutionPairs = courseItems(course)
 				.filter(item =>
 					item.projectLink?.startsWith(
-						`https://github.com/instruction-material/${repo}/tree/main/`
+						`https://github.com/instruction-material/${repo}/tree/`
 					)
 				)
 				.filter(item => item.projectLink?.endsWith("/starter"))
@@ -933,11 +934,15 @@ describe("implemented course development artifacts", () => {
 
 			expect(rootOnlyLinks, courseId).toHaveLength(0);
 			expect(missingSolutionPairs, courseId).toHaveLength(0);
+			const revision =
+				courseId === "usaco-silver"
+					? silverJavaPacks[0].revision
+					: "main";
 			expect(serializedCourse).toContain(
-				`${repo}/tree/main/${sampleFolder}/starter`
+				`${repo}/tree/${revision}/${sampleFolder}/starter`
 			);
 			expect(serializedCourse).toContain(
-				`${repo}/tree/main/${sampleFolder}/solution`
+				`${repo}/tree/${revision}/${sampleFolder}/solution`
 			);
 		}
 	});
