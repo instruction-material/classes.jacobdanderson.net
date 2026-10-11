@@ -12,12 +12,12 @@ import { useCoursesStore } from "@/stores/courses";
 describe("historical Gold assignment migration", () => {
 	beforeEach(() => setActivePinia(createPinia()));
 
-	it("keeps eighteen lesson identities and distinct optional learning purposes", async () => {
+	it("keeps twenty lesson identities and distinct optional learning purposes", async () => {
 		const course = (await useCoursesStore().loadCourseById("usaco-gold"))!;
 		const appendix = course.modules.find(module =>
 			module.title.includes("Historical and Applied Gold Studios")
 		)!;
-		expect(goldHistoricalAssignments).toHaveLength(18);
+		expect(goldHistoricalAssignments).toHaveLength(20);
 		const items = course.modules.flatMap(module => [
 			...module.curriculum,
 			...module.supplementalProjects
@@ -74,6 +74,10 @@ describe("historical Gold assignment migration", () => {
 		expect(walk.content).toContain("P-48*N-84*(K-1)");
 		expect(talent.content).toContain("26706");
 		expect(talent.content).toContain("1066");
+		const hps = items.find(item => item.id.endsWith("core-project-hoof-paper-scissors"))!;
+		for (const detail of ["January 2017 Gold", "at most", "Bessie P/S/H", "(g+2)%3", "100000", "K=0", "hps.in", "hps.out", "100000 identical gestures"]) expect(hps.content).toContain(detail);
+		expect(hps.content).toContain("grouping consecutive cows into teams");
+		expect(hps.content).toContain("also prints the answer");
 		expect(talent.content).toContain("disposable reference working copy");
 	});
 

@@ -1144,10 +1144,10 @@ nodeTest(
 				await verifyNativeExport(fixture, await sourceFiles(fixture), join(temporary, String(verified.size)));
 				verified.add(key);
 			}
-			assert.equal(verified.size, 72);
+			assert.equal(verified.size, 74);
 			record("verified-usaco-pinned-native-contracts", {
 				roles: verified.size,
-				packs: 36,
+				packs: 37,
 				nativeJava: true,
 				samplesAndChangedInputs: true,
 				ordinaryAndSanitizedCpp: true,
@@ -1572,7 +1572,7 @@ nodeTest(
 			assert.equal(remoteWrites, 0);
 			record("verified-usaco-workflows", {
 				imports: usacoFixtures.length,
-					packs: 36,
+					packs: 37,
 				nativeJava: true,
 				roleSeparation: true,
 				consentBeforeSource: true,

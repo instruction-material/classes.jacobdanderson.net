@@ -1943,6 +1943,10 @@ for (const module of usacoGoldCourse.modules) {
 			item.projectLink = `https://github.com/instruction-material/USACO-Gold/tree/${pack.revision}/${pack.folder}/starter`;
 			item.solutionLink = `https://github.com/instruction-material/USACO-Gold/tree/${pack.revision}/${pack.folder}/solution`;
 		}
+		if (item.title === "Hoof Paper Scissors: Review and Reflection") {
+			item.content =
+				"Explain the meaning of each prefix, budget and gesture dimension, then compare your original prediction with the saved implementation and two changed tiny inputs. Distinguish literal Bessie H/P/S labels from the reference's beaten-opponent H/P/S labels. Explain why the budget permits at most K changes, why ties add no win, and why changing the first gesture spends no switch. Record a mismatch and its repair, justify O(N(K+1)) cost, and describe how two separate rolling layers preserve the previous-round invariant. For an instructor walkthrough, use the same prediction, trace, comparison and reflection. Keep the first attempt for the optional changed-case retry after at least two days.";
+		}
 		const topic = goldHistoricalTopics.find(
 			pack =>
 				item.title === `${pack.title}: Core Concepts` ||

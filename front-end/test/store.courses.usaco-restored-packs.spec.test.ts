@@ -654,6 +654,7 @@ describe("restored USACO project workflows", () => {
 						? "-std=c++20"
 						: pack.mode === "java"
 							? [
+									"UG1-Hoof-Paper-Scissors",
 									"UG13-Cow-Routing",
 									"UG16-Watering-the-Fields",
 									"UG18-I-Would-Walk-500-Miles",
