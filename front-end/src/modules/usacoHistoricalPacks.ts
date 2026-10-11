@@ -1,8 +1,8 @@
-import { goldSpanningIntervalPack } from "./usacoSpanningIntervalPacks";
 import {
 	goldImplementationLabForFolder,
 	goldImplementationLabRevision
 } from "./usacoImplementationLabs";
+import { goldSpanningIntervalPack } from "./usacoSpanningIntervalPacks";
 
 // Immutable native source accepted independently on JDK 17 and 21.
 export const goldHistoricalPacks = [

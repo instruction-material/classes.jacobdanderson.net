@@ -1987,10 +1987,11 @@ for (const pack of goldSpanningIntervalPacks) {
 	const destination = usacoGoldCourse.modules.find(
 		module => module.title === pack.moduleTitle
 	);
-	if (matches.length !== 1 || !destination)
+	if (matches.length !== 1 || !destination) {
 		throw new Error(
 			`Missing or ambiguous Gold source placement: ${pack.folder}`
 		);
+	}
 	const { module, item } = matches[0]!;
 	item.id = pack.itemId;
 	item.title = pack.title;
