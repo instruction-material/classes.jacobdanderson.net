@@ -654,10 +654,140 @@ async function verifyTreeTimeExport(fixture, files, directory) {
     for (const name of ["Main.java","README.md",fixture.input]) assert.equal(await readFile(join(directory,name),"utf8"), files[name]);
 }
 
+
+function roadblockDistances(input, changed = -1) {
+    const tokens = input.trim().split(/\s+/).map(Number);
+    const [n,m] = tokens;
+    const distances = Array.from({ length: n }, (_, a) => Array.from({ length: n }, (_, b) => a === b ? 0 : Infinity));
+    for (let i = 0; i < m; i++) {
+        const [a,b,w] = tokens.slice(2 + i * 3, 5 + i * 3);
+        const weight = w * (i === changed ? 2 : 1);
+        distances[a - 1][b - 1] = Math.min(distances[a - 1][b - 1],weight);
+        distances[b - 1][a - 1] = Math.min(distances[b - 1][a - 1],weight);
+    }
+    for (let k = 0; k < n; k++) for (let a = 0; a < n; a++) for (let b = 0; b < n; b++) distances[a][b] = Math.min(distances[a][b],distances[a][k] + distances[k][b]);
+    return distances[0][n - 1];
+}
+
+function tinyRoadblockAnswer(input) {
+    const [n,m] = input.trim().split(/\s+/).map(Number);
+    assert.ok(n <= 8, "All-road cubic oracle remains a tiny-case check");
+    const baseline = roadblockDistances(input);
+    let increase = 0;
+    for (let road = 0; road < m; road++) increase = Math.max(increase,roadblockDistances(input,road) - baseline);
+    return increase + "\n";
+}
+
+async function verifyRoadblockExport(fixture, files, directory) {
+    for (const detail of ["1..250 fields", "1..25000 roads", "1..1000000", "each undirected pair", "greatest increase", "rblock.in", "rblock.out", "javac --release 17"]) assert.ok(files["README.md"].includes(detail), `Exported role guide includes ${detail}`);
+    const javaHome = process.env.JAVA_HOME_21_X64 ?? process.env.JAVA_HOME;
+    const javac = process.env.JAVAC ?? (javaHome ? join(javaHome,"bin/javac") : "javac");
+    const java = process.env.JAVA ?? (javaHome ? join(javaHome,"bin/java") : "java");
+    const flags = ["--release","17","-encoding","UTF-8","-Xlint:all","-Werror"];
+    const compiled = await runNative(javac,[...flags,"Main.java"],directory);
+    assert.equal(compiled.code,0,compiled.stderr);
+    const input = join(directory,"rblock.in"), output = join(directory,"rblock.out");
+    const args = ["-ea","-Xmx256m","Main"];
+    const cases = [[files[fixture.input],fixture.expected],...["1 1\n1 1 7\n", "2 1\n1 2 1000000\n", "4 4\n1 2 1\n2 4 1\n1 3 1\n3 4 1\n", "3 3\n2 1 3\n2 3 4\n1 3 8\n", "3 3\n1 1 9\n1 2 2\n2 3 3\n"].map(data => [data,tinyRoadblockAnswer(data)])];
+    let state = 39811;
+    const next = bound => { state = (Math.imul(state,1664525) + 1013904223) >>> 0; return state % bound; };
+    for (let test = 0; test < 20; test++) {
+        const n = 2 + next(7), rows = [], pairs = new Set();
+        for (let b = 2; b <= n; b++) { const a = 1 + next(b - 1); rows.push(`${a} ${b} ${1 + next(31)}`); pairs.add(`${a}:${b}`); }
+        for (let a = 1; a <= n; a++) for (let b = a; b <= n; b++) if (!pairs.has(`${a}:${b}`) && next(3) === 0) rows.push(`${a} ${b} ${1 + next(31)}`);
+        const data = `${n} ${rows.length}\n${rows.join("\n")}\n`;
+        cases.push([data,tinyRoadblockAnswer(data)]);
+    }
+    const tinyCount = cases.length;
+    if (fixture.reference) {
+        for (const [chainWeight,shortcutWeight,increase] of [[1000,1000000,1000],[1,1,1],[1000000,1000000,1000000]]) {
+            const rows = [], used = new Set();
+            for (let b = 2; b <= 250; b++) { rows.push(`${b - 1} ${b} ${chainWeight}`); used.add(`${b - 1}:${b}`); }
+            for (let a = 1; a <= 250 && rows.length < 25000; a++) for (let b = a + 1; b <= 250 && rows.length < 25000; b++) if (!used.has(`${a}:${b}`)) rows.push(`${a} ${b} ${shortcutWeight}`);
+            assert.equal(rows.length,25000);
+            cases.push([`250 25000\n${rows.join("\n")}\n`,increase + "\n"]);
+        }
+        const rows = Array.from({ length: 249 },(_, i) => `${i + 1} ${i + 2} 1000000`);
+        cases.push([`250 249\n${rows.join("\n")}\n`,"1000000\n"]);
+    }
+    await rm(output,{ force: true });
+    for (const [index,[data,expected]] of cases.entries()) {
+        await writeFile(input,data);
+        const result = await runNative(java,args,directory);
+        assert.equal(result.stdout,"");
+        if (fixture.reference) {
+            assert.equal(result.code,0,result.stderr); assert.equal(result.stderr,"");
+            assert.equal(await readFile(output,"utf8"),expected);
+        }
+        else {
+            assert.equal(result.code,2,result.stderr);
+            assert.match(result.stderr,/Complete the four Roadblock sensitivity tasks/);
+            if (index === 0) assert.equal(existsSync(output),false);
+            else assert.equal(await readFile(output,"utf8"),"Earlier saved answer\n");
+            await writeFile(output,"Earlier saved answer\n");
+        }
+    }
+    if (!fixture.reference) {
+        const probe = `import java.nio.file.Path; import java.util.Arrays;
+class Probe {
+ public static void main(String[] args) throws Exception {
+  Main.Problem problem = Main.readProblem(Path.of("rblock.in"));
+  int[][] before = Arrays.stream(problem.lengths).map(int[]::clone).toArray(int[][]::new);
+  Main.ShortestPath original = Main.shortestPath(problem.lengths);
+  int[] parents = original.parent.clone();
+  int[] road = problem.roads[0]; int a = road[0], b = road[1], old = problem.lengths[a][b];
+  try { problem.lengths[a][b] = problem.lengths[b][a] = 2 * old; Main.shortestPath(problem.lengths); }
+  finally { problem.lengths[a][b] = problem.lengths[b][a] = old; }
+  try { try { problem.lengths[a][b] = problem.lengths[b][a] = 2 * old; throw new IllegalStateException("trial"); }
+        finally { problem.lengths[a][b] = problem.lengths[b][a] = old; } }
+  catch (IllegalStateException expected) { if (!"trial".equals(expected.getMessage())) throw expected; }
+  if (!Arrays.deepEquals(before,problem.lengths) || !Arrays.equals(parents,original.parent)) throw new AssertionError("Leaked trial or predecessor state");
+  System.out.println(original.distance); long weight = 0; boolean[] seen = new boolean[parents.length];
+  for (int v = parents.length - 1; v != 0; v = parents[v]) {
+   if (v < 0 || v >= parents.length || seen[v] || parents[v] < 0 || problem.lengths[v][parents[v]] < 0) throw new AssertionError("Invalid predecessor path");
+   seen[v] = true; weight += problem.lengths[v][parents[v]];
+  }
+  if (weight != original.distance) throw new AssertionError("Path weight differs from distance");
+ }
+}`;
+        await writeFile(join(directory,"Probe.java"),probe);
+        const checked = await runNative(javac,[...flags,"Main.java","Probe.java"],directory);
+        assert.equal(checked.code,0,checked.stderr);
+        for (const [data] of cases) {
+            await writeFile(input,data);
+            const result = await runNative(java,["-ea","-Xmx256m","Probe"],directory);
+            assert.equal(result.code,0,result.stderr); assert.equal(result.stderr,"");
+            assert.equal(result.stdout,roadblockDistances(data) + "\n");
+            assert.equal(await readFile(output,"utf8"),"Earlier saved answer\n");
+        }
+        for (const data of ["0 1\n", "2 2\n1 2 3\n2 1 4\n", "2 1\n1 2 0\n", "3 1\n1 2 1\n", "2 1\n1 2 1\nextra\n", "2 1\n1 3 1\n"]) {
+            await writeFile(input,data); const refused = await runNative(java,args,directory);
+            assert.equal(refused.code,2); assert.equal(refused.stdout,"");
+            assert.match(refused.stderr,/Cannot solve Roadblock:/);
+            assert.equal(await readFile(output,"utf8"),"Earlier saved answer\n");
+        }
+        await rm(input);
+        const missing = await runNative(java,args,directory);
+        assert.equal(missing.code,2); assert.equal(missing.stdout,"");
+        assert.equal(await readFile(output,"utf8"),"Earlier saved answer\n");
+        await writeFile(input,files[fixture.input]);
+        const argument = await runNative(java,[...args,"unexpected"],directory);
+        assert.equal(argument.code,2); assert.equal(argument.stdout,"");
+        assert.equal(await readFile(output,"utf8"),"Earlier saved answer\n");
+    }
+    await writeFile(input,files[fixture.input]);
+    for (const name of ["Main.java","README.md",fixture.input]) assert.equal(await readFile(join(directory,name),"utf8"),files[name]);
+    record("verified-roadblock-native-role",{ role: fixture.reference ? "reference" : "learner", fileCases: cases.length, tinyIndependentGraphs: tinyCount, maximumDensityCases: fixture.reference ? 3 : 0, maximumFields: fixture.reference ? 250 : 8, suppliedHelperPaths: !fixture.reference, baselineParentsPreserved: !fixture.reference, failedAndSuccessiveTrialsRestored: !fixture.reference, standaloneContract: true, previousAnswerPreserved: !fixture.reference, learnerRemainsUnfinished: !fixture.reference, sourceFilesUnchanged: true });
+}
+
 async function verifyNativeExport(fixture, files, directory) {
 	await mkdir(directory);
 	for (const [name, content] of Object.entries(files)) await writeFile(join(directory, name), content);
 	if (fixture.mode === "java") {
+		if (fixture.roadblockPack) {
+			await verifyRoadblockExport(fixture, files, directory);
+			return;
+		}
 		if (fixture.treeTimePack) {
 			await verifyTreeTimeExport(fixture, files, directory);
 			return;
@@ -999,10 +1129,10 @@ nodeTest(
 				await verifyNativeExport(fixture, await sourceFiles(fixture), join(temporary, String(verified.size)));
 				verified.add(key);
 			}
-			assert.equal(verified.size, 54);
+			assert.equal(verified.size, 56);
 			record("verified-usaco-pinned-native-contracts", {
 				roles: verified.size,
-				packs: 27,
+				packs: 28,
 				nativeJava: true,
 				samplesAndChangedInputs: true,
 				ordinaryAndSanitizedCpp: true,
@@ -1016,7 +1146,8 @@ nodeTest(
 				matrixDijkstraIndependentDistancesAndPaths: true,
 				matrixDijkstraLongParallelAndUnreachable: true,
 				milkVisitsIndependentPathsAndDefaultStack: true,
-				timeMooneyIndependentDaysAndNoTrip: true
+				timeMooneyIndependentDaysAndNoTrip: true,
+				roadblockIndependentAllRoadsAndRestoredTrials: true
 			});
 		}
 		finally {
@@ -1063,14 +1194,14 @@ nodeTest(
 				if (url.hostname === "api.github.com") {
 					sourceRequests++;
 					assert.equal(url.pathname, `/repos/${fixture.repository}/contents/${fixture.folder}`);
-					assert.equal(url.searchParams.get("ref"), "main");
+					assert.equal(url.searchParams.get("ref"), fixture.catalogRevision ?? "main");
 					const paths = [...Object.keys(files), "ignored.exe"];
-					void respond(JSON.stringify(paths.map(name => ({ type: "file", name, path: `${fixture.folder}/${name}`, size: name === "ignored.exe" ? 1 : Buffer.byteLength(files[name]), html_url: `https://github.com/${fixture.repository}/blob/main/${fixture.folder}/${name}`, download_url: `https://raw.githubusercontent.com/${fixture.repository}/main/${fixture.folder}/${name}` }))));
+					void respond(JSON.stringify(paths.map(name => ({ type: "file", name, path: `${fixture.folder}/${name}`, size: name === "ignored.exe" ? 1 : Buffer.byteLength(files[name]), html_url: `https://github.com/${fixture.repository}/blob/${fixture.catalogRevision ?? "main"}/${fixture.folder}/${name}`, download_url: `https://raw.githubusercontent.com/${fixture.repository}/${fixture.catalogRevision ?? "main"}/${fixture.folder}/${name}` }))));
 				}
 				else if (url.hostname === "raw.githubusercontent.com") {
 					sourceRequests++;
 					const name = url.pathname.split("/").at(-1);
-					assert.equal(url.pathname, `/${fixture.repository}/main/${fixture.folder}/${name}`);
+					assert.equal(url.pathname, `/${fixture.repository}/${fixture.catalogRevision ?? "main"}/${fixture.folder}/${name}`);
 					assert.ok(Object.hasOwn(files, name), "Only the selected role's allowed files can be fetched");
 					void respond(files[name], "text/plain");
 				}
@@ -1098,8 +1229,8 @@ nodeTest(
 			for (const [index, current] of usacoFixtures.entries()) {
 				fixture = current;
 				files = await sourceFiles(fixture);
-				const sourceUrl = `https://github.com/${fixture.repository}/tree/main/${fixture.folder}`;
-				const selector = fixture.treeTimePack || fixture.folder.startsWith("UG21-Moo-Tube/")
+				const sourceUrl = `https://github.com/${fixture.repository}/tree/${fixture.catalogRevision ?? "main"}/${fixture.folder}`;
+				const selector = fixture.roadblockPack || fixture.treeTimePack || fixture.folder.startsWith("UG21-Moo-Tube/")
 					? `#${fixture.anchor}-${fixture.itemId} a[href='${sourceUrl}']`
 					: `a[href='${sourceUrl}']`;
 				const screenshotKey = `${fixture.courseId}-${fixture.folder.replaceAll("/", "-")}${fixture.identityLabel ? `-${fixture.identityLabel}` : ""}`;
@@ -1122,7 +1253,7 @@ nodeTest(
 				}
 				if (fixture.mode === "java") {
 					assert.match(card.text, /JDK 17 or newer/);
-					assert.match(card.text, fixture.treeTimePack === "milk-visits" ? /does not execute this file-I\/O\/tree-path program/ : fixture.treeTimePack === "time-mooney" ? /does not execute this file-I\/O\/graph-DP program/ : fixture.demonstration ? /does not execute the DP or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute this file-I\/O\/dynamic-programming program/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute this file-I\/O\/offline-connectivity program/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute this file-I\/O\/ordering program/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute this file-I\/O\/shortest-path program/ : /does not execute this file-I\/O\/priority-queue program/);
+					assert.match(card.text, fixture.roadblockPack ? /does not execute this file-I\/O\/sensitivity program/ : fixture.treeTimePack === "milk-visits" ? /does not execute this file-I\/O\/tree-path program/ : fixture.treeTimePack === "time-mooney" ? /does not execute this file-I\/O\/graph-DP program/ : fixture.demonstration ? /does not execute the DP or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute this file-I\/O\/dynamic-programming program/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute this file-I\/O\/offline-connectivity program/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute this file-I\/O\/ordering program/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute this file-I\/O\/shortest-path program/ : /does not execute this file-I\/O\/priority-queue program/);
 					if (fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/")) {
 						assert.match(card.text, /Keep the included dijkstra.in beside Main.java/);
 						assert.match(card.text, /javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java/);
@@ -1138,6 +1269,17 @@ nodeTest(
                     assert.match(card.text, fixture.treeTimePack === "milk-visits" ? /inclusive/ : /C\*T\*T/);
                     assert.doesNotMatch(card.text, /rm -f|sample\.in/);
                     record("verified-gold-tree-time-placement", { sourceFolder: fixture.folder.split("/")[0], destination: fixture.anchor, preservedItemId: fixture.itemId, role: fixture.reference ? "reference" : "learner", viewportWidth: await page.evaluate(() => innerWidth), consentBeforeSource: sourceRequests === before });
+                }
+
+                if (fixture.roadblockPack) {
+                    const roadblockText = card.text.replace(/\s+/g, " ");
+                    assert.ok(await page.$(`#${fixture.anchor}-${fixture.itemId}`));
+                    assert.match(roadblockText,/February 2014 Silver/);
+                    assert.match(roadblockText,/four marked learner tasks/);
+                    assert.match(roadblockText,/maximum increase is 2, not 8/);
+                    assert.match(roadblockText,/restore both matrix directions/);
+                    assert.doesNotMatch(roadblockText,/rm -f|sample\.in/);
+                    record("verified-gold-roadblock-placement",{ destination: fixture.anchor, preservedItemId: fixture.itemId, role: fixture.reference ? "reference" : "learner", pinnedRevision: fixture.catalogRevision, consentBeforeSource: sourceRequests === before });
                 }
 				if (!fixture.reference) assert.ok(card.links.every(link => !link.href.includes("/solution")), "Learner view withholds reference resources");
 				const href = card.links.find(link => link.import && new URL(link.href, origin).searchParams.get("starterUrl") === sourceUrl)?.href;
@@ -1187,8 +1329,8 @@ nodeTest(
 					await page.waitForFunction(() => document.querySelector("[data-testid='ide-run-status']")?.textContent.trim() === "Native build instructions");
 					assert.equal(await page.$(".stdin-panel"), null, "Native Java must not offer browser Turtle/Scanner input");
 					const output = await page.$eval(".output-panel", element => element.textContent);
-					assert.match(output, fixture.treeTimePack || fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java/ : /javac -encoding UTF-8 Main.java/);
-					assert.match(output, fixture.treeTimePack === "milk-visits" ? /does not execute its file I\/O or tree-path algorithm/ : fixture.treeTimePack === "time-mooney" ? /does not execute its file I\/O or graph DP algorithm/ : fixture.demonstration ? /does not execute its dynamic programming or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute its file I\/O or dynamic programming/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute its file I\/O or offline connectivity algorithm/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute its file I\/O or ordering algorithm/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute its file I\/O or shortest-path algorithm/ : /does not execute its file I\/O or priority queue/);
+					assert.match(output, fixture.roadblockPack || fixture.treeTimePack || fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java/ : /javac -encoding UTF-8 Main.java/);
+					assert.match(output, fixture.roadblockPack ? /does not execute its file I\/O or sensitivity algorithm/ : fixture.treeTimePack === "milk-visits" ? /does not execute its file I\/O or tree-path algorithm/ : fixture.treeTimePack === "time-mooney" ? /does not execute its file I\/O or graph DP algorithm/ : fixture.demonstration ? /does not execute its dynamic programming or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute its file I\/O or dynamic programming/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute its file I\/O or offline connectivity algorithm/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute its file I\/O or ordering algorithm/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute its file I\/O or shortest-path algorithm/ : /does not execute its file I\/O or priority queue/);
 					if (fixture.demonstration) {
 						assert.match(output, /reads no input file or standard input/);
 						assert.doesNotMatch(output, /sample.in|java Main </);
@@ -1349,7 +1491,7 @@ nodeTest(
 			assert.equal(remoteWrites, 0);
 			record("verified-usaco-workflows", {
 				imports: usacoFixtures.length,
-					packs: 27,
+					packs: 28,
 				nativeJava: true,
 				roleSeparation: true,
 				consentBeforeSource: true,

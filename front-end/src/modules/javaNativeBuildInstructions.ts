@@ -3,6 +3,7 @@
 import {
 	matrixDijkstraSavedItemId,
 	milkVisitsSavedItemId,
+	roadblockSavedItemId,
 	timeMooneySavedItemId
 } from "./usacoProjectResources";
 
@@ -96,6 +97,7 @@ export function javaNativeBuildInstructions(courseProjectKey?: string) {
 			!mootubeItems.has(item ?? "") &&
 			!orderingItems.has(item ?? "") &&
 			!fenwickPracticeItems.has(item ?? "") &&
+			item !== roadblockSavedItemId &&
 			item !== matrixDijkstraSavedItemId &&
 			item !== milkVisitsSavedItemId &&
 			item !== timeMooneySavedItemId &&
@@ -125,6 +127,22 @@ export function javaNativeBuildInstructions(courseProjectKey?: string) {
 				? "Compare tiny trees with an independent BFS path checker, including identical endpoints, a matching ancestor, an absent type and sibling branches. At full scale, compare a 100000-farm unique-type chain with interval membership. Expected time and memory are O(N+M)."
 				: "Compare tiny cases with independently enumerated bounded walks, including no return route, zero rewards, high cost and repeated cycles. A layered algorithm uses O(H*(N+M)) time and O(N+M) memory for H<=1000; storing all layers uses O(H*N+M) memory. The historical reference adds priority-queue overhead.",
 			"Preserve the first attempt, a state trace and two changed cases before opening the separately saved reference. Protected mocks and active contests begin from empty files without these practice packs."
+		];
+	}
+
+	if (item === roadblockSavedItemId) {
+		return [
+			"Save and download this project's ZIP, then extract it. Keep Main.java and the included rblock.in in the same folder.",
+			"Roadblock is optional shortest-path sensitivity practice after the core weighted-graph lesson. Its origin is February 2014 Silver. Use a native JDK 17 or newer. The site's Java teaching preview does not execute its file I/O or sensitivity algorithm.",
+			"Preserve earlier source, inputs and answers. Run inside the extracted folder:",
+			"javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java",
+			"java -ea -Xmx256m Main",
+			"These commands also work in PowerShell. Check exit status first; read rblock.out only after success. The browser Input panel does not replace rblock.in.",
+			"Read N M and M undirected A B length records: 1..250 fields, 1..25000 roads, endpoints in 1..N, lengths in 1..1000000, unique undirected pairs and a connected network. Travel from 1 to N. Double exactly one road and maximize the increase over the unchanged optimum, not the new total distance. The sample baseline is 6; the changed optimum is 8, so the answer is 2.",
+			"Complete the four marked learner tasks with the supplied dense shortest-path helper: preserve one baseline predecessor path, prove its roads suffice including tied optima, compute single-road increases against the same baseline, and restore both matrix directions even after a failed trial. A positive loop cannot improve a route; coincident endpoints use an empty route.",
+			"An untouched learner exits with status 2 and creates no answer file. Missing input, refused input and unfinished work preserve an earlier answer. Numeric range guards do not grade algorithm correctness. The historical reference expects valid contract input.",
+			"Use a tiny independent all-road perturbation oracle with Floyd-Warshall or repeated edge relaxation. Include ties, a bridge, a replacement route and successive trials. The supplied dense helper uses O(N²) time per call; at most N calls give O(N³) total time and O(N²) storage. The preserved reference has different queue and stale-entry overhead.",
+			"Save the first attempt, a trial-state table and two changed cases before opening the separately saved reference. Reconstruct the reasoning on a fresh graph later. Protected mocks and active contests start from empty files."
 		];
 	}
 	if (item === matrixDijkstraSavedItemId) {

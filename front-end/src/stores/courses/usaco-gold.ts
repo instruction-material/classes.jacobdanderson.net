@@ -2,6 +2,7 @@ import type { RawCourse, RawCourseModuleItem } from "./types";
 import {
 	matrixDijkstraSavedItemId,
 	milkVisitsSavedItemId,
+	roadblockSavedItemId,
 	timeMooneySavedItemId
 } from "../../modules/usacoProjectResources";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
@@ -667,13 +668,14 @@ const usacoGoldSourceCourse: RawCourse = {
 						"https://github.com/instruction-material/USACO-Gold/tree/main"
 				},
 				{
+					id: roadblockSavedItemId,
 					title: "Problem: Roadblock",
 					content:
 						"Use shortest-path sensitivity analysis to deepen understanding of weighted-graph optimization. Start with the original shortest path, test how doubling each edge on that path changes the result, and explain why edges outside the chosen path do not need the same brute-force treatment.",
 					projectLink:
-						"https://github.com/instruction-material/USACO-Gold/tree/main/UG10-Roadblock/starter",
+						"https://github.com/instruction-material/USACO-Gold/tree/95af2241de8b316112a6a308c2d45819b63ed3e6/UG10-Roadblock/starter",
 					solutionLink:
-						"https://github.com/instruction-material/USACO-Gold/tree/main/UG10-Roadblock/solution"
+						"https://github.com/instruction-material/USACO-Gold/tree/95af2241de8b316112a6a308c2d45819b63ed3e6/UG10-Roadblock/solution"
 				},
 				{
 					title: "Problem: Superbull",
