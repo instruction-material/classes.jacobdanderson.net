@@ -9,6 +9,8 @@ import {
 } from "@/modules/pythonIde";
 import {
 	matrixDijkstraSavedItemId,
+	milkVisitsSavedItemId,
+	timeMooneySavedItemId,
 	usacoRestoredResources
 } from "@/modules/usacoProjectResources";
 import { useAppStore } from "@/stores/app";
@@ -19,6 +21,86 @@ import { usacoExistingProjectIds } from "../../test/fixtures/usaco-restored-pack
 beforeEach(() => setActivePinia(createPinia()));
 
 describe("restored USACO project workflows", () => {
+	it("places tree paths and bounded-time DP in their matching units without changing saved identities", async () => {
+		const course = (await useCoursesStore().loadCourseById("usaco-gold"))!;
+		for (const [folder, unitPrefix, id, meaning, answer] of [
+			[
+				"UG-Milk-Visits",
+				"Unit 5:",
+				milkVisitsSavedItemId,
+				"inclusive",
+				"10110"
+			],
+			[
+				"UG-Time-is-Mooney",
+				"Unit 6:",
+				timeMooneySavedItemId,
+				"C*T*T",
+				"24"
+			]
+		]) {
+			const unit = course.modules.find(module =>
+				module.title.startsWith(unitPrefix!)
+			)!;
+			const matches = course.modules
+				.flatMap(module => [
+					...module.curriculum,
+					...module.supplementalProjects
+				])
+				.filter(item =>
+					item.projectLink?.endsWith(`/${folder}/starter`)
+				);
+			expect(matches).toHaveLength(1);
+			const item = matches[0]!;
+			expect(unit.supplementalProjects).toContain(item);
+			expect(item.id).toBe(id);
+			expect(item.learningPath).toBe("choice");
+			expect(item.ideImport).toBe(true);
+			expect(item.solutionLink).toBeUndefined();
+			expect(item.content).not.toContain("/solution");
+			expect(item.content).not.toContain("rm -f");
+			expect(item.content).not.toContain("sample.in");
+			for (const detail of [
+				meaning!,
+				answer!,
+				"four marked learner tasks",
+				"preserve earlier output",
+				"historical reference expects valid contract input"
+			])
+				expect(item.content).toContain(detail);
+			for (const role of ["starter", "reference"]) {
+				const directions = javaNativeBuildInstructions(
+					`usaco-gold:${id}:${role}`
+				)!.join("\n");
+				expect(directions).toContain(
+					"javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java"
+				);
+				expect(directions).toContain("java -ea -Xmx256m Main");
+				expect(directions).toContain("preserve an earlier answer");
+			}
+			for (const key of [
+				`usaco-gold:${id}:solution`,
+				`usaco-gold:${id}:starter:extra`,
+				`java-level-1:${id}:starter`
+			])
+				expect(javaNativeBuildInstructions(key)).toBeNull();
+		}
+		useAppStore().currentTutor = {} as never;
+		const staff = (await useCoursesStore().loadCourseById("usaco-gold"))!;
+		for (const [folder, id] of [
+			["UG-Milk-Visits", milkVisitsSavedItemId],
+			["UG-Time-is-Mooney", timeMooneySavedItemId]
+		]) {
+			const reference = staff.modules
+				.flatMap(module => [
+					...module.curriculum,
+					...module.supplementalProjects
+				])
+				.find(item => item.id === id)!;
+			expect(reference.solutionLink).toContain(`/${folder}/solution`);
+		}
+	});
+
 	it("moves matrix comparison after core shortest paths without replacing saved work", async () => {
 		const course = (await useCoursesStore().loadCourseById("usaco-gold"))!;
 		const unit = course.modules.find(module =>
@@ -341,7 +423,11 @@ describe("restored USACO project workflows", () => {
 					pack.mode === "cpp"
 						? "-std=c++20"
 						: pack.mode === "java"
-							? pack.folder === "UG9-Dijkstras-Algorithm-II"
+							? [
+									"UG9-Dijkstras-Algorithm-II",
+									"UG-Milk-Visits",
+									"UG-Time-is-Mooney"
+								].includes(pack.folder)
 								? "javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java"
 								: "javac -encoding UTF-8 Main.java"
 							: "python3 main.py"

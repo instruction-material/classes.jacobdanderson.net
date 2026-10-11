@@ -1248,6 +1248,92 @@ export const usacoFixtures = [
     "dijkstra.out": "86ecdb7a839cddc27015d4eab02996d54843bf32d9238a57d120799b8ac3d122"
   },
   "reference": true
+},
+{
+  "repository": "instruction-material/USACO-Gold",
+  "revision": "064abff3288a12d22b111245820689075bad8035",
+  "courseId": "usaco-gold",
+  "folder": "UG-Milk-Visits/starter",
+  "anchor": "usaco-gold-unit-5-tree-algorithms-euler-tours-and-advanced-graph-modeling",
+  "itemId": "usaco-gold-unit-6-advanced-dp-bitmask-state-and-combinatorics-supplemental-problem-milk-visits",
+  "mode": "java",
+  "input": "milkvisits.in",
+  "output": "milkvisits.out",
+  "sample": "milkvisits.in",
+  "expected": "10110\n",
+  "hashes": {
+    "Main.java": "5aeaaa15826a58915143768cfd57a9529aeb14f00aadc9c6a567e2fd7f33ca86",
+    "README.md": "128293ea9d5ddc4c5406ac7fa6e9afcd1b02974cc24ed4b2ddef4ca6ab3fdaba",
+    "milkvisits.in": "db90d803884257fb6e3df5bca9cba972fd38d4187d8c95e92adf8c1f7b9cd81e"
+  },
+  "reference": false,
+  "lessonView": 2,
+  "treeTimePack": "milk-visits"
+},
+{
+  "repository": "instruction-material/USACO-Gold",
+  "revision": "064abff3288a12d22b111245820689075bad8035",
+  "courseId": "usaco-gold",
+  "folder": "UG-Milk-Visits/solution",
+  "anchor": "usaco-gold-unit-5-tree-algorithms-euler-tours-and-advanced-graph-modeling",
+  "itemId": "usaco-gold-unit-6-advanced-dp-bitmask-state-and-combinatorics-supplemental-problem-milk-visits",
+  "mode": "java",
+  "input": "milkvisits.in",
+  "output": "milkvisits.out",
+  "sample": "milkvisits.in",
+  "expected": "10110\n",
+  "hashes": {
+    "Main.java": "4295c22db45597bb9b056af681b6e31ab41983f125a09edf499d35fb199f2510",
+    "README.md": "7a3e6918806273eaf8d36349eea01e26d3e21a94a9fedf79cdd1e3a8daf6cbe4",
+    "milkvisits.in": "db90d803884257fb6e3df5bca9cba972fd38d4187d8c95e92adf8c1f7b9cd81e",
+    "milkvisits.out": "136712be50948e2e85058a97c177220c977adbe01130b9426c713247b5f7d22d"
+  },
+  "reference": true,
+  "lessonView": 2,
+  "treeTimePack": "milk-visits"
+},
+{
+  "repository": "instruction-material/USACO-Gold",
+  "revision": "064abff3288a12d22b111245820689075bad8035",
+  "courseId": "usaco-gold",
+  "folder": "UG-Time-is-Mooney/starter",
+  "anchor": "usaco-gold-unit-6-advanced-dp-bitmask-state-and-combinatorics",
+  "itemId": "usaco-gold-unit-6-advanced-dp-bitmask-state-and-combinatorics-supplemental-problem-time-is-mooney",
+  "mode": "java",
+  "input": "time.in",
+  "output": "time.out",
+  "sample": "time.in",
+  "expected": "24\n",
+  "hashes": {
+    "Main.java": "4ce8a2406c371f7bcfca0225aa15cdc6af3ea8977f1a7a2e5c4dc5b6fcdec8e4",
+    "README.md": "79eb38bcb7b06322a38dd6c0520b2fea7896eeb770949645a5ca92d9c1bac48e",
+    "time.in": "8e0f0e228be06c633298566b5df36651107fd911347a5a6ba190a4394e521f77"
+  },
+  "reference": false,
+  "lessonView": 2,
+  "treeTimePack": "time-mooney"
+},
+{
+  "repository": "instruction-material/USACO-Gold",
+  "revision": "064abff3288a12d22b111245820689075bad8035",
+  "courseId": "usaco-gold",
+  "folder": "UG-Time-is-Mooney/solution",
+  "anchor": "usaco-gold-unit-6-advanced-dp-bitmask-state-and-combinatorics",
+  "itemId": "usaco-gold-unit-6-advanced-dp-bitmask-state-and-combinatorics-supplemental-problem-time-is-mooney",
+  "mode": "java",
+  "input": "time.in",
+  "output": "time.out",
+  "sample": "time.in",
+  "expected": "24\n",
+  "hashes": {
+    "Main.java": "25a33bdb370cb5ba04c34a7f0dcef1f2d4603e4056da90770257618280bc87c4",
+    "README.md": "cbf842be6c5ac4e88c64f90b0ea8b5f0b91d06d58126e06a75e5767bddd06f3d",
+    "time.in": "8e0f0e228be06c633298566b5df36651107fd911347a5a6ba190a4394e521f77",
+    "time.out": "68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53"
+  },
+  "reference": true,
+  "lessonView": 2,
+  "treeTimePack": "time-mooney"
 }
 ];
 

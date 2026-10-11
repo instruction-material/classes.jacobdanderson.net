@@ -1,7 +1,9 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
 import {
 	matrixDijkstraSavedItemId,
-	restoredUsacoResourceUrl
+	milkVisitsSavedItemId,
+	restoredUsacoResourceUrl,
+	timeMooneySavedItemId
 } from "../../modules/usacoProjectResources";
 
 export const marathonSavedItemId =
@@ -25,6 +27,35 @@ const briefs: Record<
 		cost: string;
 	}
 > = {
+	"UG-Milk-Visits": {
+		title: "Milk Visits: offline tree-path queries",
+		input: "milkvisits.in",
+		output: "milkvisits.out",
+		sampleFile: "milkvisits.in",
+		retainAnswer: true,
+		contract:
+			"Optional applied practice after Gold tree rooting and Euler-tour ancestry.\nThis is USACO 2019 December **Gold**, problem 2, not the two-type Silver\nversion. Its purpose is to combine ancestor intervals with state that follows\nthe current root-to-farm path, rather than repeat a dynamic-programming unit.\n\n[Official problem](https://usaco.org/index.php?page=viewproblem2&cpid=970).\nRead `milkvisits.in` from the current role directory: `N M`, then one line\nwith N cow types, then N-1 undirected tree edges, then M queries `A B C`.\nOfficial bounds are `1 <= N, M <= 100000`; all farm IDs, cow types and query\ntypes lie in `1..N`. The edges form a connected tree. Query endpoints may\ncoincide. The driver converts IDs and types to zero-based indices internally.\n\nWrite `milkvisits.out` as exactly M bits in query order, followed by a newline.\nBit i is 1 when at least one farm on the **inclusive** A-to-B path has type C,\notherwise 0. There are no spaces between bits. Successful runs do not print\nthe answer to standard output. The two official sample answers are `10110`\nand `0110`.",
+		model: "Use the starter first. Draw a rooted tree with two branches, label entry and\nexit times, and list the active path before coding. Keep the first prediction\nand attempt before opening the separate reference. A walkthrough uses the\nsame checkpoints, with pauses to predict what enters and leaves each stack.\n\nComplete the four marked tasks in `solve`:\n\n1. Generate pre/post times with explicit traversal frames. Under the reference\n   convention, u is an ancestor of v, including itself, when\n   `pre[u] <= pre[v] && post[u] >= post[v]`.\n2. Attach each query to both endpoints. During the second traversal, maintain\n   the current root path, vertex depths and a stack of active farms per type.\n3. At endpoint x, find the last active farm p of the desired type. If p=x,\n   that query is true. Otherwise let w be the child immediately after p on\n   the active path toward x. When the other endpoint lies outside w's subtree,\n   its path to x passes through p, so mark the query true. Retain true answers\n   when processing the second endpoint. When both endpoint checks are false,\n   explain why neither side of the path to their lowest common ancestor\n   contains the desired type. No explicit LCA computation is required.\n4. Pop x from both the path and its type stack on exit. Explain why retaining\n   a farm from a completed sibling branch creates a false positive.\n\nFor the first sample, the 1-to-4 path is 1,2,4: its types are all 1. The\n5-to-5 query contains only farm 5, whose type is 2. For the second sample,\n4-to-6 goes through 4,3,2,5,6; type 1 exists in the tree but is absent on this\npath. Trace that case to distinguish an ancestor from a farm on the query path.",
+		tasks: "Complete the four marked learner tasks described above. Keep the supplied parser and output driver. Every valid untouched run exits with status 2 and creates no answer file. Missing input, refused input and unfinished learner work preserve earlier output. The historical reference expects valid contract input.",
+		sample: "Predict the included sample, trace its state changes, and retain two changed-case attempts before consulting the separately saved reference.",
+		checks: "Try one farm, identical endpoints, an absent type, a matching endpoint, a\nmatching lowest common ancestor, repeated types, a star and a chain. Build an\nindependent small-tree oracle by finding the path with BFS and examining its\ntypes. This checks a different algorithm from the reference's ancestor test.\nAt full scale, use a 100000-farm chain with unique types and 100000 queries:\nfor numbered farm types, query A B C is true exactly when C lies between A\nand B. Do not increase the JVM stack to hide a recursive traversal defect.\n\nEach edge is visited a constant number of times and each query is inspected\nat its endpoints: expected O(N+M) time with the reference's hash-based visited\nsets, O(N+M) memory. Explicit frames may occupy O(N) heap space on a chain.\nContrast this with O(NM) independent path searches. Record a state trace, an\nexplanation of both endpoint checks, source changes and two changed cases;\nthen rewrite the algorithm from an empty file in a later session.",
+		cost: "Expected O(N+M) time and O(N+M) memory with explicit traversal frames; independent BFS path searches are for tiny cases."
+	},
+	"UG-Time-is-Mooney": {
+		title: "Time is Mooney: bounded-time graph DP",
+		input: "time.in",
+		output: "time.out",
+		sampleFile: "time.in",
+		retainAnswer: true,
+		contract:
+			"Optional applied practice after directed graph modeling and dynamic-programming\nstate design. This is USACO 2020 January Gold, problem 1. Unlike a shortest-path\nproblem, a profitable trip may revisit cities: time, city and accumulated\nreward define the state, while the quadratic trip cost bounds useful time.\n\n[Official problem](https://usaco.org/index.php?page=viewproblem2&cpid=993).\nThe working directory's `time.in` contains `N M C`, then N city rewards, then\nM directed roads `a b`. Bounds: `2 <= N <= 1000`, `1 <= M <= 2000`,\n`1 <= C <= 1000`, and `0 <= reward[i] <= 1000`. City 1's reward is zero.\nRoad endpoints are distinct and numbered `1..N`. The starter converts endpoints\nto zero-based indices. The graph need not provide a route back to city 1.\n\nStart at city 1 on day 0. Each road takes one day; arrival earns that city's\nreward, including on repeated visits. Finish at city 1. A trip lasting T days\npays **one total cost** `C*T*T`, not that cost on each road. `time.out` contains\none integer and a newline: the maximum net profit. Taking no trip earns zero.\nSuccessful runs do not print answers to standard output.\n\nThe included official sample has rewards 0,10,20 on the directed cycle\n1-to-2-to-3-to-1 and C=1. One cycle earns 30 minus 9 = 21; two cycles earn\n60 minus 36 = 24; three earn 90 minus 81 = 9. The answer is 24. A directed\nroad to a profitable city without any return route still produces answer 0.",
+		model: "Keep an initial prediction and starter attempt before opening the reference.\nWith a course facilitator, pause at the same state, transition and return-trip\ncheckpoints. Complete the four marked tasks in `solve`:\n\n1. Bound useful time. Gross reward is at most `1000*T`; because C>=1, net\n   profit is nonpositive for T>=1000. Testing days through 1000 includes every\n   possible profitable trip and the no-trip option. An unexplained cutoff\n   would not be a valid general argument for arbitrary reward/cost bounds.\n2. Define the maximum **gross** reward for each reachable day/city pair. Start\n   only day 0, city 1 at zero; mark other states unreachable. Explain why\n   unreachable zeroes would invent paths.\n3. For each directed a-to-b road, move from the previous day's reachable a\n   state to the next day's b state, adding b's reward. Use a fresh layer;\n   updating the current layer in place could traverse several roads in one day.\n4. Compare returns to city 1 after subtracting C*T*T. Keep answer 0. A large\n   gross reward in a different city is not a completed trip.\n\nThe historical reference uses a priority queue ordered by increasing day and\nthen decreasing gross reward. Its full day/city table records the same state\nand return condition. Compare that schedule with explicit day layers; graph\ncycles are permitted, while the day coordinate always increases.",
+		tasks: "Complete the four marked learner tasks described above. Keep the supplied parser and output driver. Every valid untouched run exits with status 2 and creates no answer file. Missing input, refused input and unfinished learner work preserve earlier output. The historical reference expects valid contract input.",
+		sample: "Predict the included sample, trace its state changes, and retain two changed-case attempts before consulting the separately saved reference.",
+		checks: "Try no return route, all zero rewards, a two-city cycle, a high cost, unequal\ndirected roads, multiple ways to reach the same day/city state and a better\ntrip that repeats a cycle. Choose a tiny reward/cost case with a useful horizon\nof at most eight days; enumerate walks through that horizon and\ncompare only walks that return to city 1; this uses a different schedule from\nthe reference queue. Check the full city/road/reward bounds separately.\n\nA layered implementation takes O(H*(N+M)) time and O(N+M) memory with two\nday layers, for H<=1000. Keeping all layers costs O(H*N+M) memory. Explain\nthe reference's queue overhead and why nonnegative rewards bounded by 1000\nand the cost bound keep stored rewards and C*T*T within Java int range.\nRecord a state trace, source changes and two changed cases, then reconstruct\nthe recurrence from an empty file in a later session.",
+		cost: "A layered solver uses O(H*(N+M)) time and O(N+M) memory for H<=1000. A full day/city table uses O(H*N+M) memory; explain the preserved reference queue overhead."
+	},
+
 	"UG9-Dijkstras-Algorithm-II": {
 		title: "Dijkstra II: matrix representation comparison",
 		input: "dijkstra.in",
@@ -393,52 +424,59 @@ function projectBrief(
 						"These commands also work in PowerShell. After a successful run, read dijkstra.out with cat dijkstra.out or Get-Content dijkstra.out. Check the exit status first; unfinished or refused learner work preserves an earlier answer, which is not evidence of a successful new run. Keep previous source and inputs before changing cases. The historical reference expects valid contract input.",
 						"The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/shortest-path program. Choosing Run displays native commands. The browser Input panel does not replace dijkstra.in. Edit the included file for each custom graph and predict distances and paths before running."
 					]
-				: mode === "java" && brief.sampleFile && !brief.stdio
+				: folder === "UG-Milk-Visits" || folder === "UG-Time-is-Mooney"
 					? [
-							`Save the attempt, download its ZIP and extract it. Create ${brief.input} from the included sample.in and run in the extracted folder:`,
-							`\`\`\`sh\ncp sample.in ${brief.input}\njavac -encoding UTF-8 Main.java\njava Main\ncat ${brief.output}\n\`\`\``,
-							`In PowerShell, use Copy-Item sample.in ${brief.input} and Get-Content ${brief.output}. Check the exit status before accepting a new answer; a previous file survives unfinished or refused learner work. Keep previous source and inputs before changing cases.`,
-							`Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG40-Fruit-Feast" ? "dynamic-programming" : folder === "UG21-Moo-Tube" ? "offline-connectivity" : "ordering"} program. Choosing Run displays native commands. The browser Input panel does not replace ${brief.input}. Read ${brief.output} after success; the reference assumes valid contest input.`
+							`Save the attempt, download its ZIP and extract it. Keep the included ${brief.input} beside Main.java. Use a native JDK 17 or newer and run inside the extracted folder:`,
+							"```sh\njavac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java\njava -ea -Xmx256m Main\n```",
+							`These commands also work in PowerShell. Check the exit status first, then read ${brief.output} with cat ${brief.output} or Get-Content ${brief.output}. Unfinished or refused learner work preserves an earlier answer; it is not evidence of a successful new run. Keep previous source and inputs before changing cases. The historical reference expects valid contract input.`,
+							`The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG-Milk-Visits" ? "tree-path" : "graph-DP"} program. Choosing Run displays native commands. The browser Input panel does not replace ${brief.input}. Predict a path or day/city trace before running.`
 						]
-					: brief.stdio && mode === "java"
+					: mode === "java" && brief.sampleFile && !brief.stdio
 						? [
-								`Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this ${folder === "UG0-Contest-Contract" ? "native input/output checkpoint" : "input-driven data structure"}. Choosing Run displays native commands. The Input panel does not execute this project.`,
-								"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with sample.in redirected into standard input:",
-								"```sh\njavac -encoding UTF-8 Main.java\njava Main < sample.in\n```",
-								"Read the printed answers in the native terminal. Change sample.in and predict the results before rerunning. The untouched starter and refused input exit with status 2 and print no answer. This program creates no answer file; check the exit status before accepting a result, including any file created separately by shell redirection. Reopening a saved attempt preserves its source edits and separate starter/reference identities."
+								`Save the attempt, download its ZIP and extract it. Create ${brief.input} from the included sample.in and run in the extracted folder:`,
+								`\`\`\`sh\ncp sample.in ${brief.input}\njavac -encoding UTF-8 Main.java\njava Main\ncat ${brief.output}\n\`\`\``,
+								`In PowerShell, use Copy-Item sample.in ${brief.input} and Get-Content ${brief.output}. Check the exit status before accepting a new answer; a previous file survives unfinished or refused learner work. Keep previous source and inputs before changing cases.`,
+								`Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG40-Fruit-Feast" ? "dynamic-programming" : folder === "UG21-Moo-Tube" ? "offline-connectivity" : "ordering"} program. Choosing Run displays native commands. The browser Input panel does not replace ${brief.input}. Read ${brief.output} after success; the reference assumes valid contest input.`
 							]
-						: brief.stdio
+						: brief.stdio && mode === "java"
 							? [
-									"In the site IDE, open sample.in and copy all its lines into the Input panel. Select main.py and choose Run. The untouched starter stops with NotImplementedError and prints no answer; complete its helper before expecting results. The completed program prints its answer in Console output. The input fixture is not opened automatically by this program.",
-									"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with the sample redirected into standard input:",
-									"```sh\npython3 main.py < sample.in\n```",
-									"Change the Input panel or the redirected fixture for each custom case. Reopening a saved attempt preserves its source edits; paste the desired input again before running. Keep a copy of learner work before using the separately saved instructor reference. Compare printed results using the contract above."
+									`Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this ${folder === "UG0-Contest-Contract" ? "native input/output checkpoint" : "input-driven data structure"}. Choosing Run displays native commands. The Input panel does not execute this project.`,
+									"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with sample.in redirected into standard input:",
+									"```sh\njavac -encoding UTF-8 Main.java\njava Main < sample.in\n```",
+									"Read the printed answers in the native terminal. Change sample.in and predict the results before rerunning. The untouched starter and refused input exit with status 2 and print no answer. This program creates no answer file; check the exit status before accepting a result, including any file created separately by shell redirection. Reopening a saved attempt preserves its source edits and separate starter/reference identities."
 								]
-							: [
-									"Save the attempt, download its ZIP and extract it. Keep the input beside the source and run inside that extracted directory. The unfinished starter stops with an unfinished-task error and creates no answer file; that is the expected starting state.",
-									"```sh",
-									...(brief.retainAnswer
-										? []
-										: [`rm -f ${brief.output}`]),
-									...(mode === "python"
-										? ["python3 main.py"]
-										: mode === "java"
-											? [
-													"javac -encoding UTF-8 Main.java",
-													"java Main"
-												]
-											: [
-													"c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o project",
-													"./project"
-												]),
-									`cat ${brief.output}`,
-									"```",
-									mode === "java"
-										? `Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG14-MST" ? "matrix" : "priority-queue"} program. Choosing Run displays the native commands. The Input panel does not replace ${brief.input}. Read the native result in ${brief.output} after a successful run.`
-										: mode === "cpp"
-											? "The browser edits and exports C++ source; it does not compile or execute C++. Follow the native commands above with a C++20 compiler. Delete only the stale answer file before running so an old answer cannot be mistaken for a new result."
-											: "Python can also run in the site IDE. Inspect the generated output file after completing the helper; the native commands provide the same file-I/O check after export."
-								]),
+							: brief.stdio
+								? [
+										"In the site IDE, open sample.in and copy all its lines into the Input panel. Select main.py and choose Run. The untouched starter stops with NotImplementedError and prints no answer; complete its helper before expecting results. The completed program prints its answer in Console output. The input fixture is not opened automatically by this program.",
+										"Save the attempt, download its ZIP and extract it. Run inside the extracted directory with the sample redirected into standard input:",
+										"```sh\npython3 main.py < sample.in\n```",
+										"Change the Input panel or the redirected fixture for each custom case. Reopening a saved attempt preserves its source edits; paste the desired input again before running. Keep a copy of learner work before using the separately saved instructor reference. Compare printed results using the contract above."
+									]
+								: [
+										"Save the attempt, download its ZIP and extract it. Keep the input beside the source and run inside that extracted directory. The unfinished starter stops with an unfinished-task error and creates no answer file; that is the expected starting state.",
+										"```sh",
+										...(brief.retainAnswer
+											? []
+											: [`rm -f ${brief.output}`]),
+										...(mode === "python"
+											? ["python3 main.py"]
+											: mode === "java"
+												? [
+														"javac -encoding UTF-8 Main.java",
+														"java Main"
+													]
+												: [
+														"c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o project",
+														"./project"
+													]),
+										`cat ${brief.output}`,
+										"```",
+										mode === "java"
+											? `Use a native JDK 17 or newer. The site IDE edits, saves and exports this Java project; its teaching preview does not execute this file-I/O/${folder === "UG14-MST" ? "matrix" : "priority-queue"} program. Choosing Run displays the native commands. The Input panel does not replace ${brief.input}. Read the native result in ${brief.output} after a successful run.`
+											: mode === "cpp"
+												? "The browser edits and exports C++ source; it does not compile or execute C++. Follow the native commands above with a C++20 compiler. Delete only the stale answer file before running so an old answer cannot be mistaken for a new result."
+												: "Python can also run in the site IDE. Inspect the generated output file after completing the helper; the native commands provide the same file-I/O check after export."
+									]),
 		"Source checks validate the supplied packs; they do not grade a completed learner submission. Protected mocks and active contests begin from an empty file without these practice starters or references."
 	]
 		.join("\n\n")
@@ -496,6 +534,38 @@ export function applyRestoredUsacoProjects(
 			matrix!
 		);
 		graphUnit.supplementalProjects.push(matrix!);
+	}
+	const advancedDp = course.modules.find(module =>
+		module.title.startsWith("Unit 6:")
+	);
+	const treeUnit = course.modules.find(module =>
+		module.title.startsWith("Unit 5:")
+	);
+	const milkIndex =
+		advancedDp?.supplementalProjects.findIndex(item =>
+			item.projectLink?.includes("/UG-Milk-Visits/starter")
+		) ?? -1;
+	if (advancedDp && treeUnit && milkIndex >= 0) {
+		const [milk] = advancedDp.supplementalProjects.splice(milkIndex, 1);
+		milk!.id = milkVisitsSavedItemId;
+		milk!.title = "Milk Visits: Offline Tree-Path Queries";
+		milk!.learningPath = "choice";
+		milk!.content = projectBrief(courseId, "UG-Milk-Visits", "java", milk!);
+		treeUnit.supplementalProjects.push(milk!);
+	}
+	const time = advancedDp?.supplementalProjects.find(item =>
+		item.projectLink?.includes("/UG-Time-is-Mooney/starter")
+	);
+	if (time) {
+		time.id = timeMooneySavedItemId;
+		time.title = "Time is Mooney: Bounded-Time Graph DP";
+		time.learningPath = "choice";
+		time.content = projectBrief(
+			courseId,
+			"UG-Time-is-Mooney",
+			"java",
+			time
+		);
 	}
 	const destination = course.modules.find(
 		module =>

@@ -3,7 +3,25 @@
 export const matrixDijkstraSavedItemId =
 	"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-dijkstras-algorithm-ii";
 
+export const milkVisitsSavedItemId =
+	"usaco-gold-unit-6-advanced-dp-bitmask-state-and-combinatorics-supplemental-problem-milk-visits";
+export const timeMooneySavedItemId =
+	"usaco-gold-unit-6-advanced-dp-bitmask-state-and-combinatorics-supplemental-problem-time-is-mooney";
+
 export const usacoRestoredResources = [
+	{
+		course: "usaco-gold",
+		repository: "USACO-Gold",
+		folder: "UG-Milk-Visits",
+		mode: "java"
+	},
+	{
+		course: "usaco-gold",
+		repository: "USACO-Gold",
+		folder: "UG-Time-is-Mooney",
+		mode: "java"
+	},
+
 	{
 		course: "usaco-gold",
 		repository: "USACO-Gold",
