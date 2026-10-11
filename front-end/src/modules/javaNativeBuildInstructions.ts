@@ -15,6 +15,10 @@ import {
 	shortcutSavedItemId,
 	timeMooneySavedItemId
 } from "./usacoProjectResources";
+import {
+	goldRequiredCoreAssignment,
+	requiredCoreNativeInstructions
+} from "./usacoRequiredCorePacks";
 
 import {
 	goldSpanningIntervalPack,
@@ -105,6 +109,15 @@ export function javaNativeBuildInstructions(
 ): string[] | null {
 	const parts = (courseProjectKey ?? "").split(":");
 	const [course, item, role, extra] = parts;
+	const requiredCore = goldRequiredCoreAssignment(item ?? "");
+	if (
+		course === "usaco-gold" &&
+		requiredCore &&
+		["starter", "reference"].includes(role ?? "") &&
+		(parts.length === 3 || (parts.length === 4 && extra === "native-java"))
+	) {
+		return requiredCoreNativeInstructions(requiredCore);
+	}
 	const spanning = goldSpanningIntervalPack(item ?? "");
 	if (
 		course === "usaco-gold" &&

@@ -668,7 +668,10 @@ describe("restored USACO project workflows", () => {
 									"UG15-Superbull",
 									"UG17-Moocast",
 									"UG6-248",
-									"UG20-Fenced-In"
+									"UG20-Fenced-In",
+									"UG33-Lasers-and-Mirrors",
+									"UG28-Cow-Poetry",
+									"UG34-Radio-Contact"
 								].includes(pack.folder)
 								? "javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java"
 								: "javac -encoding UTF-8 Main.java"

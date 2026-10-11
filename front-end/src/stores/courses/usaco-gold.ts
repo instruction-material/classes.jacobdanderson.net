@@ -15,6 +15,7 @@ import {
 	shortcutSavedItemId,
 	timeMooneySavedItemId
 } from "../../modules/usacoProjectResources";
+import { goldRequiredCorePacks } from "../../modules/usacoRequiredCorePacks";
 import {
 	goldSpanningIntervalPacks,
 	spanningIntervalCourseBrief
@@ -2005,5 +2006,32 @@ for (const pack of goldSpanningIntervalPacks) {
 			1
 		);
 		destination.supplementalProjects.push(item);
+	}
+}
+
+// Preserve both existing checkpoint and optional retry identities in their units.
+for (const pack of goldRequiredCorePacks) {
+	for (const assignment of pack.assignments) {
+		const matches = usacoGoldCourse.modules.flatMap(module =>
+			module[assignment.section]
+				.filter(item =>
+					item.projectLink?.endsWith(`/${pack.folder}/starter`)
+				)
+				.map(item => ({ module, item }))
+		);
+		if (
+			matches.length !== 1 ||
+			matches[0]!.module.title !== assignment.moduleTitle
+		) {
+			throw new Error(
+				`Missing or ambiguous required Gold source: ${pack.folder}`
+			);
+		}
+		const { item } = matches[0]!;
+		item.id = assignment.itemId;
+		item.title = assignment.title;
+		item.learningPath = assignment.learningPath;
+		item.projectLink = `https://github.com/instruction-material/USACO-Gold/tree/${pack.revision}/${pack.folder}/starter`;
+		item.solutionLink = `https://github.com/instruction-material/USACO-Gold/tree/${pack.revision}/${pack.folder}/solution`;
 	}
 }
