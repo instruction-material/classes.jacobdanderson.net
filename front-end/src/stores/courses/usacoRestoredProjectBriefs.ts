@@ -1,5 +1,9 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
 import {
+	goldHistoricalAssignment,
+	historicalCourseBrief
+} from "../../modules/usacoHistoricalPacks";
+import {
 	goldImplementationLabForFolder,
 	implementationLabCourseBrief
 } from "../../modules/usacoImplementationLabs";
@@ -411,6 +415,12 @@ function projectBrief(
 	mode: "python" | "cpp" | "java",
 	item: RawCourseModuleItem
 ) {
+	const historical =
+		courseId === "usaco-gold"
+			? goldHistoricalAssignment(item.id ?? "")
+			: undefined;
+	if (historical && historical.pack.folder === folder)
+		return historicalCourseBrief(historical);
 	const implementationLab = goldImplementationLabForFolder(folder);
 	if (implementationLab) {
 		return implementationLabCourseBrief(

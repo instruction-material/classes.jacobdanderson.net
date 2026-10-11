@@ -1,3 +1,4 @@
+import { verifyHistoricalPackExport } from "./usaco-historical-packs-native.mjs";
 import { verifyShortcutExport } from "./usaco-shortcut-native.mjs";
 import { verifyImplementationLabExport } from "./usaco-implementation-labs-native.mjs";
 import assert from "node:assert/strict";
@@ -786,6 +787,10 @@ async function verifyNativeExport(fixture, files, directory) {
 	await mkdir(directory);
 	for (const [name, content] of Object.entries(files)) await writeFile(join(directory, name), content);
 	if (fixture.mode === "java") {
+		if (fixture.historicalPack) {
+			await verifyHistoricalPackExport(fixture, files, directory, { runNative, record });
+			return;
+		}
 		if (fixture.implementationLab) {
 			await verifyImplementationLabExport(fixture, files, directory, { runNative, record });
 			return;
@@ -1139,10 +1144,10 @@ nodeTest(
 				await verifyNativeExport(fixture, await sourceFiles(fixture), join(temporary, String(verified.size)));
 				verified.add(key);
 			}
-			assert.equal(verified.size, 64);
+			assert.equal(verified.size, 72);
 			record("verified-usaco-pinned-native-contracts", {
 				roles: verified.size,
-				packs: 32,
+				packs: 36,
 				nativeJava: true,
 				samplesAndChangedInputs: true,
 				ordinaryAndSanitizedCpp: true,
@@ -1242,7 +1247,7 @@ nodeTest(
 				fixture = current;
 				files = await sourceFiles(fixture);
 				const sourceUrl = `https://github.com/${fixture.repository}/tree/${fixture.catalogRevision ?? "main"}/${fixture.folder}`;
-				const selector = fixture.implementationLab || fixture.shortcutPack || fixture.roadblockPack || fixture.treeTimePack || fixture.folder.startsWith("UG21-Moo-Tube/")
+				const selector = fixture.projectKeySuffix || fixture.implementationLab || fixture.shortcutPack || fixture.roadblockPack || fixture.treeTimePack || fixture.folder.startsWith("UG21-Moo-Tube/")
 					? `#${fixture.anchor}-${fixture.itemId} a[href='${sourceUrl}']`
 					: `a[href='${sourceUrl}']`;
 				const screenshotKey = `${fixture.courseId}-${fixture.folder.replaceAll("/", "-")}${fixture.identityLabel ? `-${fixture.identityLabel}` : ""}`;
@@ -1265,7 +1270,7 @@ nodeTest(
 				}
 				if (fixture.mode === "java") {
 					assert.match(card.text, /JDK 17 or newer/);
-					assert.match(card.text, fixture.implementationLab ? /does not execute this native Java exercise/ : fixture.shortcutPack ? /does not execute this file-I\/O\/tree-traffic program/ : fixture.roadblockPack ? /does not execute this file-I\/O\/sensitivity program/ : fixture.treeTimePack === "milk-visits" ? /does not execute this file-I\/O\/tree-path program/ : fixture.treeTimePack === "time-mooney" ? /does not execute this file-I\/O\/graph-DP program/ : fixture.demonstration ? /does not execute the DP or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute this file-I\/O\/dynamic-programming program/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute this file-I\/O\/offline-connectivity program/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute this file-I\/O\/ordering program/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute this file-I\/O\/shortest-path program/ : /does not execute this file-I\/O\/priority-queue program/);
+					assert.match(card.text, fixture.historicalPack || fixture.implementationLab ? /does not execute this native Java exercise/ : fixture.shortcutPack ? /does not execute this file-I\/O\/tree-traffic program/ : fixture.roadblockPack ? /does not execute this file-I\/O\/sensitivity program/ : fixture.treeTimePack === "milk-visits" ? /does not execute this file-I\/O\/tree-path program/ : fixture.treeTimePack === "time-mooney" ? /does not execute this file-I\/O\/graph-DP program/ : fixture.demonstration ? /does not execute the DP or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute this file-I\/O\/dynamic-programming program/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute this file-I\/O\/offline-connectivity program/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute this file-I\/O\/ordering program/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute this file-I\/O\/shortest-path program/ : /does not execute this file-I\/O\/priority-queue program/);
 					if (fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/")) {
 						assert.match(card.text, /Keep the included dijkstra.in beside Main.java/);
 						assert.match(card.text, /javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java/);
@@ -1310,7 +1315,8 @@ nodeTest(
 				assert.ok(href, `${fixture.folder} needs its own confirmed action`);
 				const params = new URL(href, origin).searchParams;
 				assert.equal(params.get("mode"), fixture.mode);
-				assert.equal(params.get("projectKey"), `${fixture.courseId}:${fixture.itemId}:${fixture.reference ? "reference" : "starter"}`);
+				const legacyKey = `${fixture.courseId}:${fixture.itemId}:${fixture.reference ? "reference" : "starter"}`;
+				assert.equal(params.get("projectKey"), `${legacyKey}${fixture.projectKeySuffix ? `:${fixture.projectKeySuffix}` : ""}`);
 				assert.equal(sourceRequests, before);
 				if (process.env.COURSE_IMPORT_SCREENSHOT_DIR) {
 					const directory = join(previousDirectory, process.env.COURSE_IMPORT_SCREENSHOT_DIR);
@@ -1319,8 +1325,39 @@ nodeTest(
 					const element = await link.evaluateHandle(element => element.closest(".lesson-item"));
 					await element.asElement().screenshot({ path: join(directory, `course-import-usaco-${screenshotKey}-lesson.png`) });
 				}
-				catalog = false;
-				await page.goto(new URL(href, origin).href, { waitUntil: "domcontentloaded" });
+
+                let legacy;
+                if (fixture.projectKeySuffix) {
+                    legacy = {
+                        _id: `local-preserved-cpp-${index}`, title: `Saved C++ attempt ${index}`, mode: "cpp",
+                        files: [{name:"main.cpp", content:`// Earlier learner edit ${index}\nint main() { return 0; }\n`}, {name:"README.md",content:"Previous attempt notes and predictions\n"}],
+                        activeFileName:"main.cpp",courseID:fixture.courseId,courseProjectKey:legacyKey,
+                        courseProjectTitle:"Previous practice",starterLabel:"Previous source",starterUrl:fixture.previousSourceUrl,
+                        shared:false,createdAt:"2026-10-01T12:00:00.000Z",updatedAt:"2026-10-02T12:00:00.000Z"
+                    };
+                    await page.evaluate(async project=> {
+                        const name="classes-python-ide-projects:anonymous",projects=JSON.parse(localStorage.getItem(name)??"[]");
+                        projects.push(project);
+                        localStorage.setItem(name,JSON.stringify(projects));
+                        // Match real saved attempts in both the primary store and its fallback.
+                        const db=await new Promise((resolve,reject)=> {
+                            const request=indexedDB.open("classes-python-ide",1);
+                            request.onsuccess=()=>resolve(request.result);
+                            request.onerror=()=>reject(request.error);
+                        });
+                        try {
+                            await new Promise((resolve,reject)=> {
+                                const transaction=db.transaction("projectStores","readwrite");
+                                transaction.objectStore("projectStores").put({key:name,projects,updatedAt:new Date().toISOString()});
+                                transaction.oncomplete=()=>resolve();
+                                transaction.onerror=()=>reject(transaction.error);
+                                transaction.onabort=()=>reject(transaction.error);
+                            });
+                        } finally { db.close(); }
+                    },legacy);
+                }
+                catalog = false;
+                await page.goto(new URL(href, origin).href, { waitUntil: "domcontentloaded" });
 				await page.waitForSelector("[data-testid='ide-route-import-confirm']");
 				assert.equal(sourceRequests, before, "Source is not fetched before consent");
 				const previous = await page.evaluate(() => JSON.parse(localStorage.getItem("classes-python-ide-projects:anonymous") ?? "[]"));
@@ -1353,8 +1390,8 @@ nodeTest(
 					await page.waitForFunction(() => document.querySelector("[data-testid='ide-run-status']")?.textContent.trim() === "Native build instructions");
 					assert.equal(await page.$(".stdin-panel"), null, "Native Java must not offer browser Turtle/Scanner input");
 					const output = await page.$eval(".output-panel", element => element.textContent);
-					assert.match(output, fixture.implementationLab || fixture.shortcutPack || fixture.roadblockPack || fixture.treeTimePack || fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java/ : /javac -encoding UTF-8 Main.java/);
-					assert.match(output, fixture.implementationLab ? /does not execute this native Java exercise/ : fixture.shortcutPack ? /does not execute its file I\/O or tree-traffic algorithm/ : fixture.roadblockPack ? /does not execute its file I\/O or sensitivity algorithm/ : fixture.treeTimePack === "milk-visits" ? /does not execute its file I\/O or tree-path algorithm/ : fixture.treeTimePack === "time-mooney" ? /does not execute its file I\/O or graph DP algorithm/ : fixture.demonstration ? /does not execute its dynamic programming or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute its file I\/O or dynamic programming/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute its file I\/O or offline connectivity algorithm/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute its file I\/O or ordering algorithm/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute its file I\/O or shortest-path algorithm/ : /does not execute its file I\/O or priority queue/);
+					assert.match(output, fixture.historicalPack || fixture.implementationLab || fixture.shortcutPack || fixture.roadblockPack || fixture.treeTimePack || fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java/ : /javac -encoding UTF-8 Main.java/);
+					assert.match(output, fixture.historicalPack || fixture.implementationLab ? /does not execute this native Java exercise/ : fixture.shortcutPack ? /does not execute its file I\/O or tree-traffic algorithm/ : fixture.roadblockPack ? /does not execute its file I\/O or sensitivity algorithm/ : fixture.treeTimePack === "milk-visits" ? /does not execute its file I\/O or tree-path algorithm/ : fixture.treeTimePack === "time-mooney" ? /does not execute its file I\/O or graph DP algorithm/ : fixture.demonstration ? /does not execute its dynamic programming or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute its file I\/O or dynamic programming/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute its file I\/O or offline connectivity algorithm/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute its file I\/O or ordering algorithm/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute its file I\/O or shortest-path algorithm/ : /does not execute its file I\/O or priority queue/);
 					if (fixture.demonstration) {
 						assert.match(output, /reads no input file or standard input/);
 						assert.doesNotMatch(output, /sample.in|java Main </);
@@ -1481,7 +1518,27 @@ nodeTest(
 				if (process.env.COURSE_IMPORT_SCREENSHOT_DIR) {
 					await page.screenshot({ path: join(previousDirectory, process.env.COURSE_IMPORT_SCREENSHOT_DIR, `course-import-usaco-${screenshotKey}-workspace.png`) });
 				}
-				if (fixture.folder.startsWith("UG0-Contest-Contract/") && fixture.lessonView === 2) {
+
+                if (legacy) {
+                    assert.deepEqual(all.find(item=>item._id===legacy._id),legacy,"The prior C++ mode, identity, notes, code and timestamps survive Java import");
+                    const oldHref = new URL(href,origin);
+                    oldHref.searchParams.set("mode","cpp");oldHref.searchParams.set("projectKey",legacyKey);
+                    oldHref.searchParams.set("starterUrl",fixture.previousSourceUrl);
+                    await page.goto(oldHref.href,{waitUntil:"domcontentloaded"});
+                    await page.waitForSelector(".code-ide-workspace");
+                    assert.equal(await page.$("[data-testid='ide-route-import-confirm']"),null);
+                    await openProjectSidebar(page);
+                    assert.deepEqual(await exportedFiles(page),Object.fromEntries(legacy.files.map(file=>[file.name,file.content])));
+                    assert.equal(sourceRequests,before+1+Object.keys(files).length,"Resuming the older C++ attempt must not fetch or overwrite source");
+                    await page.goto(new URL(href,origin).href,{waitUntil:"domcontentloaded"});
+                    await page.waitForSelector(".code-ide-workspace");
+                    assert.equal(await page.$("[data-testid='ide-route-import-confirm']"),null);
+                    await openProjectSidebar(page);
+                    assert.deepEqual(await exportedFiles(page),expectedFiles);
+                    assert.equal(sourceRequests,before+1+Object.keys(files).length);
+                    record("verified-historical-cpp-java-migration",{itemId:fixture.itemId,role:fixture.reference?"reference":"starter",legacyKey,javaKey:key,preservedCpp:true,resumedBothWithoutFetch:true});
+                }
+                if (fixture.folder.startsWith("UG0-Contest-Contract/") && fixture.lessonView === 2) {
 					catalog = true;
 					const sourceBeforePlacement = sourceRequests;
 					await verifyGoldPracticePlacement(page, origin, fixture, previousDirectory);
@@ -1515,7 +1572,7 @@ nodeTest(
 			assert.equal(remoteWrites, 0);
 			record("verified-usaco-workflows", {
 				imports: usacoFixtures.length,
-					packs: 32,
+					packs: 36,
 				nativeJava: true,
 				roleSeparation: true,
 				consentBeforeSource: true,
