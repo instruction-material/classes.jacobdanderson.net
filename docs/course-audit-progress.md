@@ -48,6 +48,31 @@ models and limits. Original source and replaced teaching fixtures are preserved.
 The source inventory remains 37 distinct pairs and ten remaining counterpart
 gaps among 47 active Gold folders; this is not a certificate for all source.
 
+The [Silver source commit 129e588](https://github.com/instruction-material/USACO-Silver/commit/129e588aa1dcca31167673d2466daeabf4ee132e)
+adds distinct unfinished Java learners, complete neutral assignment guides and
+official sample fixtures for Why Did the Cow Cross the Road II, Cow Dance Show
+and Redistributing Gifts. The first two retain native maxcross.in/out and
+cowdance.in/out; Gifts retains stdin/stdout and its nested Java source path.
+The Gifts guide and helper accept repeated per-cow best gift IDs, since those
+best possibilities are evaluated separately across legal reassignments.
+
+All ten exact-review jobs and ten independent pushed-main jobs pass. Each Java
+17/21 runtime compiles six roles, checks 94 reference cases (three official
+samples and eight maximum-N constructions), validates supplied helpers, and
+checks 57 unfinished/malformed-input refusal cases with prior-answer
+preservation. Independent tiny models count windows, enumerate stage sizes with
+ordinary slot arrays and enumerate full legal gift assignments. All ten original
+guide/reference/Maven files retain their exact original Git blob bytes. Cross
+the Road II and Gifts references and the historical Maven file are unchanged;
+Cow Dance changes only two incorrect comments. The source requires no new
+dependency resolution. The local load guard deferred redundant native tests;
+actual hosted Java 17/21 runs supply the runtime acceptance. These source checks
+do not establish the six existing Silver lesson copies' site imports, saved
+attempts, visuals or native export acceptance. Those are the next integration
+gate, with existing required/optional unit placements and lesson identities
+preserved. The optional copies need distinct retry/log tasks, and the transition
+and capstone unit requirements extend beyond their linked contest problem.
+
 Both immutable native source releases are published:
 [canonical v2.8.95](https://github.com/anderson-webops/classes.jacobdanderson.net/releases/tag/v2.8.95)
 and [neutral v2.8.95](https://github.com/instruction-material/classes.jacobdanderson.net/releases/tag/v2.8.95).
@@ -60,11 +85,12 @@ activation and public served-asset acceptance remain unverified.
 ## Required work still outstanding
 
 The refreshed Bronze, Silver and Gold source inventory identifies 27 required
-USACO assignment rows. Sixteen rows across 14 source packs still lack learner
-code and confirmed imports. Source presence, import configuration and actual
-workflow acceptance remain distinct checks. All have reference files, whose
-presence alone does not establish correctness. These required packs take
-priority over the ten remaining optional Gold counterpart gaps.
+USACO assignment rows. Thirteen rows across 11 source packs still lack learner
+code. Sixteen rows across 14 packs still lack confirmed site imports, including
+the three newly accepted Silver source packs. Source presence, import
+configuration and actual workflow acceptance remain distinct checks. All have
+reference files, whose presence alone does not establish correctness. These
+required packs take priority over the ten remaining optional Gold counterparts.
 
 Twelve other courses have a confirmed resource-import gap: 239 required source
 rows across 124 distinct GitHub paths have no resource-specific IDE mode. Every
