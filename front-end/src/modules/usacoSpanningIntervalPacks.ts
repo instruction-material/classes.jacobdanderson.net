@@ -104,7 +104,7 @@ const nativeNotice =
 export function spanningIntervalNativeInstructions(
 	pack: NonNullable<ReturnType<typeof goldSpanningIntervalPack>>
 ) {
-	return [nativeNotice, pack.build].join("\n\n");
+	return [nativeNotice, pack.build];
 }
 
 export function spanningIntervalCourseBrief(
@@ -124,7 +124,7 @@ export function spanningIntervalCourseBrief(
 		pack.checks,
 		"For independent study or an instructor walkthrough, explain the contract, record a prediction, trace a small case, implement and save an attempt, compare two changed inputs against an independent model, and explain a mismatch. Preserve the original work before consulting the separate reference. A later retry changes the data and a boundary while closing the reference.",
 		"## Open, save and run",
-		spanningIntervalNativeInstructions(pack),
+		spanningIntervalNativeInstructions(pack).join("\n\n"),
 		"Select the native starter or permitted reference, confirm the import before any source is fetched, then save, export and run. Existing saved attempts reopen with their edits, and older C++ work remains separate. Protected mocks and active contests start from empty files with the reference closed. An untouched learner exits 2 and creates no answer file; unfinished or refused work preserves an earlier answer. The supplied result bounds do not grade optimality."
 	].join("\n\n");
 }

@@ -100,7 +100,9 @@ const knapsackItem =
 const fruitFeastItem =
 	"usaco-gold-unit-1-dynamic-programming-knapsack-and-state-design-supplemental-problem-fruit-feast";
 
-export function javaNativeBuildInstructions(courseProjectKey?: string) {
+export function javaNativeBuildInstructions(
+	courseProjectKey?: string
+): string[] | null {
 	const parts = (courseProjectKey ?? "").split(":");
 	const [course, item, role, extra] = parts;
 	const spanning = goldSpanningIntervalPack(item ?? "");

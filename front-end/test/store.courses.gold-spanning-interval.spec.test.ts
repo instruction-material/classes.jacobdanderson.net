@@ -108,7 +108,10 @@ describe("Gold spanning and interval source activation", () => {
 					)
 				).toBe(base);
 				for (const key of [base, `${base}:native-java`]) {
-					const instructions = javaNativeBuildInstructions(key)!;
+					const lines = javaNativeBuildInstructions(key)!;
+					expect(Array.isArray(lines)).toBe(true);
+					expect(lines.every(line => line.length > 1)).toBe(true);
+					const instructions = lines.join("\n");
 					expect(instructions).toContain(
 						"javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java &&"
 					);
