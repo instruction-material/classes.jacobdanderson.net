@@ -518,10 +518,150 @@ async function verifyMatrixExport(fixture, files, directory) {
 	for (const name of ["Main.java", "README.md"]) assert.equal(await readFile(join(directory, name), "utf8"), files[name]);
 }
 
+
+function tinyMilkPathAnswer(input) {
+    const values = input.trim().split(/\s+/).map(Number);
+    let at = 0;
+    const n = values[at++], m = values[at++];
+    const types = values.slice(at, at += n);
+    const edges = Array.from({ length: n }, () => []);
+    for (let i = 1; i < n; i++) {
+        const a = values[at++] - 1, b = values[at++] - 1;
+        edges[a].push(b); edges[b].push(a);
+    }
+    let answer = "";
+    for (let i = 0; i < m; i++) {
+        const a = values[at++] - 1, b = values[at++] - 1, type = values[at++];
+        const previous = Array(n).fill(-1);
+        const queue = [a]; previous[a] = a;
+        for (let j = 0; j < queue.length && previous[b] < 0; j++) {
+            for (const next of edges[queue[j]]) if (previous[next] < 0) {
+                previous[next] = queue[j]; queue.push(next);
+            }
+        }
+        assert.ok(previous[b] >= 0);
+        let found = false;
+        for (let v = b; ; v = previous[v]) {
+            found ||= types[v] === type;
+            if (v === a) break;
+        }
+        answer += found ? "1" : "0";
+    }
+    assert.equal(at, values.length);
+    return answer + "\n";
+}
+
+function tinyTimeLayerAnswer(input) {
+    const values = input.trim().split(/\s+/).map(Number);
+    const [n, m, cost] = values;
+    const rewards = values.slice(3, 3 + n);
+    const roads = Array.from({ length: m }, (_, i) => values.slice(3 + n + 2 * i, 5 + n + 2 * i).map(city => city - 1));
+    const horizon = Math.floor(Math.max(...rewards) / cost);
+    assert.ok(horizon <= 8, "Independent changed-case oracle is deliberately tiny");
+    let layer = Array(n).fill(-Infinity); layer[0] = 0;
+    let best = 0;
+    for (let day = 1; day <= horizon; day++) {
+        const next = Array(n).fill(-Infinity);
+        for (const [a,b] of roads) next[b] = Math.max(next[b], layer[a] + rewards[b]);
+        best = Math.max(best, next[0] - cost * day * day);
+        layer = next;
+    }
+    return best + "\n";
+}
+
+async function verifyTreeTimeExport(fixture, files, directory) {
+    const milk = fixture.treeTimePack === "milk-visits";
+    assert.match(files["README.md"], /javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java/);
+    assert.doesNotMatch(files["README.md"], /\.\.\/README\.md/);
+    assert.ok(files["README.md"].includes(fixture.input) && files["README.md"].includes(fixture.output));
+    const javaHome = process.env.JAVA_HOME_21_X64 ?? process.env.JAVA_HOME;
+    const javac = process.env.JAVAC ?? (javaHome ? join(javaHome, "bin/javac") : "javac");
+    const java = process.env.JAVA ?? (javaHome ? join(javaHome, "bin/java") : "java");
+    const compile = await runNative(javac, ["--release", "17", "-encoding", "UTF-8", "-Xlint:all", "-Werror", "Main.java"], directory);
+    assert.equal(compile.code, 0, compile.stderr);
+    const input = join(directory, fixture.input), output = join(directory, fixture.output);
+    const args = ["-ea", "-Xmx256m", "Main"];
+    await rm(output, { force: true });
+    const cases = [[files[fixture.input],fixture.expected]];
+    if (milk) {
+        for (let seed = 0; seed < 8; seed++) {
+            const n = 1 + seed, types = Array.from({ length: n }, (_, i) => 1 + (i * 3 + seed) % n);
+            const lines = [`${n} ${n * n * n}`,types.join(" ")];
+            for (let i = 2; i <= n; i++) lines.push(`${i} ${seed % 2 ? 1 : i - 1}`);
+            for (let a = 1; a <= n; a++) for (let b = 1; b <= n; b++) for (let c = 1; c <= n; c++) lines.push(`${a} ${b} ${c}`);
+            const data = lines.join("\n") + "\n";
+            cases.push([data,tinyMilkPathAnswer(data)]);
+        }
+        if (fixture.reference) {
+            const n = 100000, lines = [`${n} ${n}`,Array.from({ length: n }, (_, i) => i + 1).join(" ")];
+            for (let i = 2; i <= n; i++) lines.push(`${i - 1} ${i}`);
+            let answer = "";
+            for (let i = 0; i < n; i++) {
+                const a = i + 1, b = i * 37 % n + 1, c = i * 29 % n + 1;
+                lines.push(`${a} ${b} ${c}`);
+                answer += c >= Math.min(a,b) && c <= Math.max(a,b) ? "1" : "0";
+            }
+            cases.push([lines.join("\n") + "\n",answer + "\n"]);
+        }
+    }
+    else {
+        for (const data of ["2 1 1\n0 8\n1 2\n", "2 2 1\n0 8\n1 2\n2 1\n", "2 2 1000\n0 0\n1 2\n2 1\n", "3 3 2\n0 8 7\n1 2\n2 3\n3 1\n", "3 4 1\n0 2 8\n1 2\n2 1\n1 3\n3 1\n"]) cases.push([data,tinyTimeLayerAnswer(data)]);
+        if (fixture.reference) {
+            const lines = ["1000 2000 1",[0,...Array(999).fill(1000)].join(" ")];
+            for (let i = 2; i <= 1000; i++) lines.push(`1 ${i}`,`${i} 1`);
+            lines.push("2 3","3 2");
+            // Added roads can earn 1000 on consecutive non-root days; compute
+            // the optimum independently from the closed walk's best reward.
+            let best = 0;
+            for (let day = 2; day <= 1000; day++) best = Math.max(best,1000 * (day - 1) - day * day);
+            cases.push([lines.join("\n") + "\n",best + "\n"]);
+        }
+    }
+    for (const [index,[data,expected]] of cases.entries()) {
+        await writeFile(input,data);
+        const result = await runNative(java,args,directory);
+        assert.equal(result.stdout, "");
+        if (fixture.reference) {
+            assert.equal(result.code, 0, result.stderr);
+            assert.equal(result.stderr, "");
+            assert.equal(await readFile(output,"utf8"), expected);
+        }
+        else {
+            assert.equal(result.code, 2);
+            assert.match(result.stderr, /Complete the four (Milk Visits tree-path|Time is Mooney graph-DP) tasks/);
+            if (index === 0) assert.equal(existsSync(output), false);
+            else assert.equal(await readFile(output,"utf8"), "Earlier saved answer\n");
+            await writeFile(output,"Earlier saved answer\n");
+        }
+    }
+    if (!fixture.reference) {
+        const invalid = milk ? ["0 1\n", "2 1\n1 2\n1 2\n1 2 3\n"] : ["2 1 0\n0 2\n1 2\n", "2 1 1\n1 2\n1 2\n", "2 1 1\n0 2\n1 1\n"];
+        for (const data of invalid) {
+            await writeFile(input,data);
+            const result = await runNative(java,args,directory);
+            assert.equal(result.code, 2);
+            assert.equal(result.stdout, "");
+            assert.ok(result.stderr.startsWith(`Cannot solve ${fixture.input}:`));
+            assert.equal(await readFile(output,"utf8"), "Earlier saved answer\n");
+        }
+        await rm(input);
+        const missing = await runNative(java,args,directory);
+        assert.equal(missing.code, 2);
+        assert.equal(missing.stdout, "");
+        assert.equal(await readFile(output,"utf8"), "Earlier saved answer\n");
+    }
+    await writeFile(input, files[fixture.input]);
+    for (const name of ["Main.java","README.md",fixture.input]) assert.equal(await readFile(join(directory,name),"utf8"), files[name]);
+}
+
 async function verifyNativeExport(fixture, files, directory) {
 	await mkdir(directory);
 	for (const [name, content] of Object.entries(files)) await writeFile(join(directory, name), content);
 	if (fixture.mode === "java") {
+		if (fixture.treeTimePack) {
+			await verifyTreeTimeExport(fixture, files, directory);
+			return;
+		}
 		if (fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/")) {
 			await verifyMatrixExport(fixture, files, directory);
 			return;
@@ -859,10 +999,10 @@ nodeTest(
 				await verifyNativeExport(fixture, await sourceFiles(fixture), join(temporary, String(verified.size)));
 				verified.add(key);
 			}
-			assert.equal(verified.size, 50);
+			assert.equal(verified.size, 54);
 			record("verified-usaco-pinned-native-contracts", {
 				roles: verified.size,
-				packs: 25,
+				packs: 27,
 				nativeJava: true,
 				samplesAndChangedInputs: true,
 				ordinaryAndSanitizedCpp: true,
@@ -874,7 +1014,9 @@ nodeTest(
 				anyOptimalKnapsackSubset: true,
 				fruitFeastIndependentStateSearch: true,
 				matrixDijkstraIndependentDistancesAndPaths: true,
-				matrixDijkstraLongParallelAndUnreachable: true
+				matrixDijkstraLongParallelAndUnreachable: true,
+				milkVisitsIndependentPathsAndDefaultStack: true,
+				timeMooneyIndependentDaysAndNoTrip: true
 			});
 		}
 		finally {
@@ -957,7 +1099,7 @@ nodeTest(
 				fixture = current;
 				files = await sourceFiles(fixture);
 				const sourceUrl = `https://github.com/${fixture.repository}/tree/main/${fixture.folder}`;
-				const selector = fixture.folder.startsWith("UG21-Moo-Tube/")
+				const selector = fixture.treeTimePack || fixture.folder.startsWith("UG21-Moo-Tube/")
 					? `#${fixture.anchor}-${fixture.itemId} a[href='${sourceUrl}']`
 					: `a[href='${sourceUrl}']`;
 				const screenshotKey = `${fixture.courseId}-${fixture.folder.replaceAll("/", "-")}${fixture.identityLabel ? `-${fixture.identityLabel}` : ""}`;
@@ -980,7 +1122,7 @@ nodeTest(
 				}
 				if (fixture.mode === "java") {
 					assert.match(card.text, /JDK 17 or newer/);
-					assert.match(card.text, fixture.demonstration ? /does not execute the DP or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute this file-I\/O\/dynamic-programming program/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute this file-I\/O\/offline-connectivity program/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute this file-I\/O\/ordering program/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute this file-I\/O\/shortest-path program/ : /does not execute this file-I\/O\/priority-queue program/);
+					assert.match(card.text, fixture.treeTimePack === "milk-visits" ? /does not execute this file-I\/O\/tree-path program/ : fixture.treeTimePack === "time-mooney" ? /does not execute this file-I\/O\/graph-DP program/ : fixture.demonstration ? /does not execute the DP or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute this file-I\/O\/dynamic-programming program/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute this file-I\/O\/offline-connectivity program/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute this file-I\/O\/ordering program/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute this file-I\/O\/shortest-path program/ : /does not execute this file-I\/O\/priority-queue program/);
 					if (fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/")) {
 						assert.match(card.text, /Keep the included dijkstra.in beside Main.java/);
 						assert.match(card.text, /javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java/);
@@ -989,6 +1131,14 @@ nodeTest(
 					}
 					assert.match(card.text, fixture.lessonView === 1 ? /Required implementation checkpoint/ : /optional practice/);
 				}
+
+                if (fixture.treeTimePack) {
+                    assert.ok(await page.$(`#${fixture.anchor}-${fixture.itemId}`), "The preserved lesson identity must render in its intended unit");
+                    assert.match(card.text, /four marked learner tasks/);
+                    assert.match(card.text, fixture.treeTimePack === "milk-visits" ? /inclusive/ : /C\*T\*T/);
+                    assert.doesNotMatch(card.text, /rm -f|sample\.in/);
+                    record("verified-gold-tree-time-placement", { sourceFolder: fixture.folder.split("/")[0], destination: fixture.anchor, preservedItemId: fixture.itemId, role: fixture.reference ? "reference" : "learner", viewportWidth: await page.evaluate(() => innerWidth), consentBeforeSource: sourceRequests === before });
+                }
 				if (!fixture.reference) assert.ok(card.links.every(link => !link.href.includes("/solution")), "Learner view withholds reference resources");
 				const href = card.links.find(link => link.import && new URL(link.href, origin).searchParams.get("starterUrl") === sourceUrl)?.href;
 				assert.ok(href, `${fixture.folder} needs its own confirmed action`);
@@ -1037,8 +1187,8 @@ nodeTest(
 					await page.waitForFunction(() => document.querySelector("[data-testid='ide-run-status']")?.textContent.trim() === "Native build instructions");
 					assert.equal(await page.$(".stdin-panel"), null, "Native Java must not offer browser Turtle/Scanner input");
 					const output = await page.$eval(".output-panel", element => element.textContent);
-					assert.match(output, fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java/ : /javac -encoding UTF-8 Main.java/);
-					assert.match(output, fixture.demonstration ? /does not execute its dynamic programming or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute its file I\/O or dynamic programming/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute its file I\/O or offline connectivity algorithm/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute its file I\/O or ordering algorithm/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute its file I\/O or shortest-path algorithm/ : /does not execute its file I\/O or priority queue/);
+					assert.match(output, fixture.treeTimePack || fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java/ : /javac -encoding UTF-8 Main.java/);
+					assert.match(output, fixture.treeTimePack === "milk-visits" ? /does not execute its file I\/O or tree-path algorithm/ : fixture.treeTimePack === "time-mooney" ? /does not execute its file I\/O or graph DP algorithm/ : fixture.demonstration ? /does not execute its dynamic programming or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute its file I\/O or dynamic programming/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute its file I\/O or offline connectivity algorithm/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute its file I\/O or ordering algorithm/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute its file I\/O or shortest-path algorithm/ : /does not execute its file I\/O or priority queue/);
 					if (fixture.demonstration) {
 						assert.match(output, /reads no input file or standard input/);
 						assert.doesNotMatch(output, /sample.in|java Main </);
@@ -1199,7 +1349,7 @@ nodeTest(
 			assert.equal(remoteWrites, 0);
 			record("verified-usaco-workflows", {
 				imports: usacoFixtures.length,
-					packs: 25,
+					packs: 27,
 				nativeJava: true,
 				roleSeparation: true,
 				consentBeforeSource: true,

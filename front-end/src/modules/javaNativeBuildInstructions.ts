@@ -1,6 +1,10 @@
 // These saved identities belong to the verified native Gold lessons.
 // Other Java and Karel lessons retain their existing teaching previews.
-import { matrixDijkstraSavedItemId } from "./usacoProjectResources";
+import {
+	matrixDijkstraSavedItemId,
+	milkVisitsSavedItemId,
+	timeMooneySavedItemId
+} from "./usacoProjectResources";
 
 const setupItems = new Set([
 	"usaco-gold-usg0-setup-contest-contract-and-gold-mindset-curriculum-core-project-native-input-output-checkpoint",
@@ -93,12 +97,35 @@ export function javaNativeBuildInstructions(courseProjectKey?: string) {
 			!orderingItems.has(item ?? "") &&
 			!fenwickPracticeItems.has(item ?? "") &&
 			item !== matrixDijkstraSavedItemId &&
+			item !== milkVisitsSavedItemId &&
+			item !== timeMooneySavedItemId &&
 			item !== knapsackItem &&
 			item !== fruitFeastItem) ||
 		!["starter", "reference"].includes(role ?? "") ||
 		extra !== undefined
 	) {
 		return null;
+	}
+	if (item === milkVisitsSavedItemId || item === timeMooneySavedItemId) {
+		const milk = item === milkVisitsSavedItemId;
+		const input = milk ? "milkvisits.in" : "time.in";
+		const output = milk ? "milkvisits.out" : "time.out";
+		return [
+			`Save and download this project's ZIP, then extract it. Keep the included ${input} beside Main.java.`,
+			`This optional ${milk ? "tree-path application" : "bounded-time graph DP practice"} requires a native JDK 17 or newer. The site's Java teaching preview does not execute its file I/O or ${milk ? "tree-path algorithm" : "graph DP algorithm"}.`,
+			"Preserve earlier source, inputs and answers. Run inside the extracted folder:",
+			"javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java",
+			"java -ea -Xmx256m Main",
+			`Check exit status first; read ${output} only after success. The browser Input panel does not replace ${input}. These commands also work in PowerShell.`,
+			milk
+				? "The Gold Milk Visits contract allows 100000 farms and queries, with types 1..N. Write one bit per inclusive tree path, in query order, without spaces. The official sample answers are 10110 and 0110. Complete the four marked learner tasks: iterative ancestor intervals, endpoint queries and active type stacks, inclusive path decisions, and exit cleanup. Keep the JVM's default stack; use explicit traversal frames on a deep chain."
+				: "Each directed road takes one day and earns its destination's reward, including repeated visits. Finish at city 1 and subtract C*T*T once for the whole trip; no trip earns 0. The sample answer is 24. Complete the four marked learner tasks: prove a useful time bound, initialize reachable day/city states, transition from the previous day, and maximize net profit only on returns to city 1. Rewards at most 1000 and C>=1 bound useful time by 1000 days.",
+			"An untouched learner exits with status 2 and creates no answer file. Missing input, refused input and unfinished work preserve an earlier answer. The supplied driver checks contract and result structure; it does not grade a completed algorithm. The historical reference expects valid contract input.",
+			milk
+				? "Compare tiny trees with an independent BFS path checker, including identical endpoints, a matching ancestor, an absent type and sibling branches. At full scale, compare a 100000-farm unique-type chain with interval membership. Expected time and memory are O(N+M)."
+				: "Compare tiny cases with independently enumerated bounded walks, including no return route, zero rewards, high cost and repeated cycles. A layered algorithm uses O(H*(N+M)) time and O(N+M) memory for H<=1000; storing all layers uses O(H*N+M) memory. The historical reference adds priority-queue overhead.",
+			"Preserve the first attempt, a state trace and two changed cases before opening the separately saved reference. Protected mocks and active contests begin from empty files without these practice packs."
+		];
 	}
 	if (item === matrixDijkstraSavedItemId) {
 		return [

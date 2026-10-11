@@ -1,5 +1,9 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
-import { matrixDijkstraSavedItemId } from "../../modules/usacoProjectResources";
+import {
+	matrixDijkstraSavedItemId,
+	milkVisitsSavedItemId,
+	timeMooneySavedItemId
+} from "../../modules/usacoProjectResources";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { buildProjectGuidance } from "./projectGuidance";
 import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
@@ -527,6 +531,7 @@ const usacoGoldSourceCourse: RawCourse = {
 						"https://github.com/instruction-material/USACO-Gold/tree/main/UG32-Stamp-Painting/solution"
 				},
 				{
+					id: timeMooneySavedItemId,
 					title: "Problem: Time is Mooney",
 					content:
 						"Use a richer optimization problem that blends repeated transitions and scoring over time. Define the state by city and day, update scores along directed edges, and explain the stopping bound so the search does not become an unbounded walk.",
@@ -536,6 +541,7 @@ const usacoGoldSourceCourse: RawCourse = {
 						"https://github.com/instruction-material/USACO-Gold/tree/main/UG-Time-is-Mooney/solution"
 				},
 				{
+					id: milkVisitsSavedItemId,
 					title: "Problem: Milk Visits",
 					content:
 						"Use a stronger capstone-style problem to test whether multiple Gold ideas can be held together in one coherent solution.",
