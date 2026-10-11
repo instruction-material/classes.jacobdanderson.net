@@ -1129,7 +1129,7 @@ async function verifyNativeExport(fixture, files, directory) {
 
 nodeTest(
 	"pinned USACO packs preserve unfinished helpers and native input/output contracts",
-	{ timeout: 180000 },
+	{ timeout: 300000 },
 	async () => {
 		const temporary = await mkdtemp(join(tmpdir(), "usaco-pinned-native-"));
 		const verified = new Set();

@@ -67,7 +67,17 @@ describe("Silver native Java lessons", () => {
 						expect(item.content).toContain(
 							"Required implementation checkpoint"
 						);
-					else expect(item.content).toContain(pack.retry);
+					else {
+						expect(item.content).toContain(pack.retry);
+						expect(item.content).not.toContain(
+							"Required implementation checkpoint"
+						);
+						expect(item.content).toContain(
+							assignment.variant === "log"
+								? "Optional transition log"
+								: "Optional changed-case reconstruction"
+						);
+					}
 					if (assignment.variant === "log")
 						expect(item.content).toContain("one Bronze habit");
 					if (pack.slug === "gifts") {

@@ -185,6 +185,15 @@ export function silverJavaCourseBrief(
 	const { pack, assignment } = current;
 	const [workflow, mkdir, compile, run, ...nativeNotes] =
 		silverJavaNativeInstructions(current);
+	const purpose =
+		assignment.variant === "core"
+			? pack.purpose
+			: pack.purpose.replace(
+					"Required implementation checkpoint",
+					assignment.variant === "log"
+						? "Optional transition log and changed-case practice"
+						: "Optional changed-case reconstruction"
+				);
 	const sequence =
 		assignment.variant === "core"
 			? "**Learning sequence:** Required implementation checkpoint. Predict, state an invariant, trace a tiny case, implement and save an attempt before comparing the separate reference."
@@ -194,7 +203,7 @@ export function silverJavaCourseBrief(
 	return [
 		`## ${assignment.title}`,
 		sequence,
-		pack.purpose,
+		purpose,
 		"Existing saved attempts keep their code, inputs, notes and timestamps. The confirmed Java import saves separately from older C++ attempts. The existing required and optional progress entries remain separate; learner and reference have separate saved roles.",
 		"## Contract and reasoning",
 		pack.contract,
