@@ -1,0 +1,39 @@
+import java.io.StringReader;
+
+public final class LearnerProbe {
+    private LearnerProbe() {}
+    public static void main(String[] args) throws Exception {
+        try (Main.TokenReader in = new Main.TokenReader(new StringReader("3\n2 3 1\n1 3 2\n1 2 3\n"))) {
+            int[][] input = Main.readInput(in);
+            assert input.length == 3 && Main.rankOf(input[0], 2) == 0;
+            assert Main.rankOf(input[0], 1) == 2;
+            assert Main.formatAnswers(input, new int[] {2, 1, 1}).equals("2\n1\n1\n");
+            assert Main.formatAnswers(input, new int[] {1, 2, 3}).equals("1\n2\n3\n");
+            try {
+                Main.formatAnswers(input, new int[] {2, 1, 4});
+                throw new AssertionError("Out-of-range gift accepted.");
+            } catch (IllegalArgumentException expected) {
+                assert expected.getMessage().contains("range");
+            }
+            try {
+                Main.formatAnswers(new int[][] {{1, 2}, {2, 1}}, new int[] {2, 1});
+                throw new AssertionError("A worse gift was accepted.");
+            } catch (IllegalArgumentException expected) {
+                assert expected.getMessage().contains("no worse");
+            }
+            try {
+                Main.reachability(input);
+                throw new AssertionError("Reachability task must remain unfinished.");
+            } catch (UnsupportedOperationException expected) {
+                assert expected.getMessage().contains("reachability");
+            }
+            try {
+                Main.bestGifts(input, new boolean[3][3]);
+                throw new AssertionError("Best gift task must remain unfinished.");
+            } catch (UnsupportedOperationException expected) {
+                assert expected.getMessage().contains("bestGifts");
+            }
+        }
+        System.out.println("Supplied helpers and unfinished tasks verified.");
+    }
+}

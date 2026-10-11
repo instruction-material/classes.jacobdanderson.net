@@ -1,0 +1,20 @@
+import java.io.StringReader;
+
+public final class LearnerProbe {
+    private LearnerProbe() {}
+    public static void main(String[] args) throws Exception {
+        try (Main.TokenReader in = new Main.TokenReader(new StringReader(" 5 3 2\n2 1\n"))) {
+            Main.InputData input = Main.readInput(in);
+            assert input.signalCount() == 5 && input.windowLength() == 3;
+            assert input.brokenCount() == 2 && input.broken().length == 6;
+            assert input.broken()[1] && input.broken()[2] && !input.broken()[3];
+            try {
+                Main.minimumRepairs(input);
+                throw new AssertionError("Learner task must remain unfinished.");
+            } catch (UnsupportedOperationException expected) {
+                assert expected.getMessage().contains("minimumRepairs");
+            }
+        }
+        System.out.println("Supplied helpers and unfinished tasks verified.");
+    }
+}

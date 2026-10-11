@@ -56,6 +56,7 @@ const CODE_EXTENSIONS = new Set([
 	".cs",
 	".css",
 	".csv",
+	".expected",
 	".go",
 	".h",
 	".hpp",
