@@ -1,4 +1,28 @@
-# Transcript-backed follow-up review
+# Zoom follow-up review
+
+## Current coverage checkpoint, 2026-10-11
+
+The retained corpus contains 77 nonempty transcripts and 53510 utterances.
+Source hashes and complete semantic-review coverage are verified against
+76 retained review receipts; this includes classified exclusion of one
+unrelated work meeting. Review coverage and implementation acceptance are
+separate. The aggregate review does not establish that every promised feature
+or production gate is complete.
+
+All 52 known empty meeting instances were read again on October 11. They
+returned no new readable transcript or summary and no processing indication.
+They are not counted as reviewed transcripts. The connector's latest available
+room session remains October 9; its actual transcript, summary and notes are
+unchanged in the latest read. These reads establish the returned corpus, not
+completeness of recordings or history the connector does not expose.
+
+Later course, native-source and website milestones supersede the earlier
+pending states below. The accepted v2.8.94 releases include confirmed native
+imports and exported roles for the four latest optional algorithm projects.
+The full course audit and final feature mapping remain active; source release
+publication does not establish native production activation.
+
+## Earlier review and implementation evidence
 
 Reviewed on 2026-10-04 against the canonical source at `292434d4`.
 Private transcripts, meeting identifiers, participant names, and quotations are

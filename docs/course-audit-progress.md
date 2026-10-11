@@ -1,4 +1,91 @@
-# Current course-audit checkpoint, 2026-10-09
+# Current course-audit checkpoint, 2026-10-11
+
+The full 77-course audit remains active. The accepted v2.8.94 source milestone
+is canonical `b44b67450ca83f02aaeecdb0f825e42b1383a375` and neutral downstream
+`0964fec50112d083c3fddaf224d842545c7442c9`. Both remotes contain only main and
+have no open pull requests at this checkpoint. Verified recovery copies preserve
+retired review tips; the original downstream checkout's unfinished working
+changes remain intact.
+
+All 77 normalized catalog entries load and all 392 directly linked local
+course resources exist. No complete normalized course is byte-identical to
+another. These checks do not establish semantic course-purpose distinctions,
+external resource availability, standalone reading quality, or production
+activation. Those requirements remain part of the full audit.
+
+## Accepted source and website milestones
+
+The earlier quicksort task and renderer corrections have completed source,
+hosted browser, visual, integration and downstream acceptance. Historical
+checkpoints below retain their original pending states; they are superseded by
+the later accepted milestones rather than reopened as new findings. Subsequent
+accepted work supplies distinct native learners, references and lessons for
+weighted graphs, tree paths, bounded-time graphs, switch-budget DP, implementation
+labs, historical applications, spanning-tree objectives and interval merges.
+
+The latest milestone integrates Superbull, Moocast, 248 and Fenced In into both
+websites, keeping their distinct optional purposes, existing lesson identities
+and earlier saved attempts. Both exact review trees and independently checked
+merged-main trees pass nine required CI jobs and CodeQL. The Qodana workflow
+succeeded, but its scan step was skipped because the configured token is absent;
+this is not a completed Qodana scan. Actual acceptance covers 128 imports,
+82 native role folders across 41 packs, 102 trusted native-input boundaries,
+48 C++/Java migrations, 34 earlier saved attempts, 24 unfinished exports,
+35 Cypress scenarios, and the new native role exports. Sixty-four selected
+views are visually accepted; shared byte-identical lesson images have explicit
+comparison evidence. Backend suite results retain 46 skipped scenarios.
+
+Both immutable native source releases are published:
+[canonical v2.8.94](https://github.com/anderson-webops/classes.jacobdanderson.net/releases/tag/v2.8.94)
+and [neutral v2.8.94](https://github.com/instruction-material/classes.jacobdanderson.net/releases/tag/v2.8.94).
+Exact tagged CI provenance, signed subjects, payload hashes and actual released
+asset bytes are verified. Earlier immutable assets remain preserved. All
+98 intentional downstream customization paths keep their accepted bytes.
+Publication is a source-release milestone; native production activation and
+public served-asset acceptance remain unverified.
+
+## Required work still outstanding
+
+The refreshed Bronze, Silver and Gold source-tree inventory identifies 27
+required USACO assignment rows. Sixteen rows across 14 unique source packs still lack learner code, while
+19 rows across 17 unique source packs lack enabled imports. The source and
+site-workflow gaps are counted separately. All have reference files, whose presence alone is
+not an algorithm-correctness certificate. Required projects take priority over
+remaining optional Gold counterpart gaps.
+
+The three required Gold projects are Cow Poetry, Lasers and Mirrors and Radio
+Contact. Complete exported-role guides and distinct unfinished learners are
+published in [Gold source commit 706e67a](https://github.com/instruction-material/USACO-Gold/commit/706e67a67cc7ca4496359918ee01d84cb8fa246d). Native baseline checks confirm the original Poetry and Radio
+references against independent models and legal limit constructions. Lasers'
+original reference incorrectly returns zero for an unreachable legal input;
+the maintained reference returns minus one and passes the independent
+point-graph cases and 100000-post construction. All 24 exact pushed-main
+workflows and 54 jobs pass. JDK 17 and 21 each verify six exported roles,
+74 reference cases, four full-limit constructions, supplied helpers, refused
+inputs and preserved unfinished-learner answers. Cow Poetry now opens the
+documented sample rather than the older larger fixture, and Lasers has the
+correct sample answer instead of a blank output. The original source and
+replaced teaching-fixture bytes are preserved. The Gold structural inventory
+is 37 distinct pairs and ten remaining counterpart gaps among 47 active
+folders; this does not certify all source or imports. Pinned site integration
+and actual browser export acceptance for the new three roles remain pending.
+
+The course-mode inventory contains 16 courses with core GitHub resources and
+no course-wide mode. Four are USACO courses with per-resource native import
+modes; the explorer already consults resource inference without the earlier
+course-wide gate. Therefore this count is not 16 proven unsupported courses.
+The other 12 need individual native/preview workflow and required-source
+assessment. A configured mode alone does not prove a successful import.
+
+The complete audit still requires semantic course-purpose and delivery-format
+review, full standalone/instructor reading acceptance, relevant Juni fidelity,
+external availability, remaining source accuracy and imports, final Zoom feature
+acceptance, and the separately authorized native production/public gates.
+Dependencies and both site lockfiles are unchanged at this milestone.
+
+## Earlier dated checkpoints
+
+# Historical course-audit checkpoint, 2026-10-09
 
 The full 77-course audit remains unfinished. A fresh inventory of canonical
 `0115067d53d7588d82bc62b5b86d442710c058e2` loads all 77 normalized entries and
@@ -60,10 +147,7 @@ review and independent main pass 200 actual file-I/O fixtures against an indepen
 bounded square-placement oracle; the untouched starter produces no answer file.
 Site routing and actual consent/import/export acceptance are still pending.
 
-## Earlier dated checkpoints
-
-# Current course-audit checkpoint, 2026-10-08
-
+# Historical course-audit checkpoint, 2026-10-08
 
 ## Reference-guidance source checkpoint, 2026-10-09
 
@@ -1256,7 +1340,6 @@ methods skipped). Source/browser lint and syntax pass. Browser coverage is exten
 starter workflows and nine complete lesson programs. Full hosted site validation
 remains required before delivery. CPPF6–CPPF8 and the broader audit stay open.
 
-
 The first collection review head passes all 1,325 functional methods and all
 nineteen actual browser workflows, nine complete lesson programs and eleven
 Cypress checks. Bank/mobile and Vector/desktop screenshots are visually checked.
@@ -1273,7 +1356,6 @@ gates pass at reviewed `670905540454c96133aa7f87adbbf4482a5b6df0`; integrated
 file hashes match the final site pin; only the two README digests change, with
 program, lesson and archive bytes unchanged. Final exact-head site gates remain
 required before integration.
-
 
 The final [collection site PR #136](https://github.com/anderson-webops/classes.jacobdanderson.net/pull/136)
 integrates at `a4dda64e6eddbd6412e0ff030e2bf91bef2544c8`, with a tree identical
@@ -1340,7 +1422,6 @@ strings, surrounding prose, backtick/tilde fences, longer and unclosed blocks an
 inline literals. Exact-head full site and browser gates remain required before
 integration. CPPF7–CPPF8 and the broader audit remain open.
 
-
 The first parameter catalog head `5ae6ed39a1bb20c72e7870ae5d2413b129f4c12b`
 passes all twenty-two actual browser workflows, eleven complete lesson programs
 and eleven Cypress checks, plus build, typecheck, lint, accessibility and CodeQL.
@@ -1355,7 +1436,6 @@ capture returns to the start of the source after verifying the saved edit, so
 workspace review shows imported code rather than an ending blank line. Final
 exact-head full validation remains required before integration.
 
-
 The second full head `2f5c1b7ad2ae2343c1ae57b2fbbbdf792c1c39ae` passes
 all 1,331 functional methods, twenty-two actual starter workflows, eleven
 complete lesson programs and eleven Cypress checks. Three of 267 course-quality
@@ -1369,7 +1449,6 @@ source-preservation, display and parameter-project methods pass after correction
 The mobile Defanging and desktop Parameter/Chaos screenshots are inspected with
 the original code visible at the start. Full final-head hosted checks remain
 required before integration.
-
 
 ## Parameter coursework delivery and grid candidate
 
@@ -1455,7 +1534,6 @@ Hosted full catalog/browser gates, canonical integration, downstream integration
 and the corresponding native release remain required for this candidate. The
 broader 77-course audit and unavailable Zoom transcript boundary remain active.
 
-
 ## CPPI3 container source integration and catalog review
 
 The prior recursion worksheet milestone is delivered in canonical v2.8.60 and
@@ -1538,7 +1616,6 @@ visual review, integration and downstream delivery remain required.
 Two generic CPPI6 source pairs and the broader 77-course audit remain active.
 The 51 unavailable historical Zoom assets remain unavailable; no new transcript
 access is claimed by this coursework checkpoint.
-
 
 ## Rover delivery and graph navigation candidate
 
