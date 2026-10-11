@@ -14,6 +14,10 @@ import {
 	roadblockSavedItemId,
 	timeMooneySavedItemId
 } from "../../modules/usacoProjectResources";
+import {
+	goldRequiredCoreAssignment,
+	requiredCoreCourseBrief
+} from "../../modules/usacoRequiredCorePacks";
 
 import {
 	goldSpanningIntervalPack,
@@ -420,6 +424,12 @@ function projectBrief(
 	mode: "python" | "cpp" | "java",
 	item: RawCourseModuleItem
 ) {
+	const requiredCore =
+		courseId === "usaco-gold"
+			? goldRequiredCoreAssignment(item.id ?? "")
+			: undefined;
+	if (requiredCore && requiredCore.pack.folder === folder)
+		return requiredCoreCourseBrief(requiredCore);
 	const spanning =
 		courseId === "usaco-gold"
 			? goldSpanningIntervalPack(item.id ?? "")
