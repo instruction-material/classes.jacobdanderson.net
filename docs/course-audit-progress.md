@@ -1,5 +1,110 @@
 # Current course-audit checkpoint, 2026-10-11
 
+The full 77-course audit remains active. The accepted v2.8.96 source milestone
+is canonical `cff27e306cc5e46477da1e4f781208cb3fabb535` and neutral downstream
+`c2529bd39ec1604c4ce49824cba6651f73b1e548`. Both site remotes and the Silver source remote
+contain only main, with no open reviews for these changes. Recovery bundles retain
+the reviewed branch tips. The original downstream checkout's unfinished working
+changes and all 98 intentional downstream customization paths remain intact.
+
+All 77 normalized catalog entries load and all 392 directly linked local course
+resources exist. No complete normalized course is byte-identical to another.
+These checks do not establish semantic purpose distinctions, external resource
+availability, complete standalone reading quality or production activation.
+
+## Accepted Silver website milestone
+
+Why Did the Cow Cross the Road II, Cow Dance Show and Redistributing Gifts now
+have confirmed native Java learner/reference imports in their existing required
+assignments. Their optional log and changed-case retry copies have distinct
+purposes and separate saved attempts. All six lesson/progress identities and unit
+placements remain intact. Gifts is one capstone problem; protected sets,
+postmortems and Gold-readiness checkpoints still extend beyond that problem.
+
+The full reading cards include contracts, worked examples, predictions,
+implementation tasks, independent checks and Java 17+ commands. The six exported
+role guides are standalone at immutable source `de7ac589f93fe91a2bb60c728f2a8d36e46bd27f`.
+Cross the Road II and Cow Dance retain native input/output files. Gifts retains
+standard input/output, src/main/java/Main.java, root expected-output files and its
+historical pom.xml through import, save and export. No Maven resolution is needed.
+Repeated per-cow best gift IDs remain valid because possibilities are evaluated
+separately across legal reassignments. Browser Run displays native instructions;
+native execution follows export. Earlier C++ attempts retain their code, notes,
+timestamps and identities alongside separate Java attempts.
+
+Exact review and independent merged-main trees in both repositories pass all nine
+CI jobs and CodeQL. Hosted acceptance covers 152 imports, 94 native role folders
+across 47 packs, 126 native Java Input guards and 72 preserved C++/Java migrations.
+All twelve Silver imports match pinned Git blobs and pass independent tiny models,
+full-size cases and unfinished-learner preservation checks. All 96 new complete
+lesson and workspace views are inspected with exact image hashes retained. Earlier
+regressions retain 90 C++/Java imports, 34 saved attempts, 24 unfinished exports and
+35 Cypress scenarios. Backend suites retain 46 skipped scenarios. Qodana completed
+its workflow with the scan skipped; no Qodana scan is claimed.
+
+Both immutable native source releases are published:
+[canonical v2.8.96](https://github.com/anderson-webops/classes.jacobdanderson.net/releases/tag/v2.8.96)
+and [neutral v2.8.96](https://github.com/instruction-material/classes.jacobdanderson.net/releases/tag/v2.8.96).
+Exact tagged CI provenance, signed subjects, every payload digest, trusted native
+deployment files and actual released asset bytes are verified. Earlier immutable
+releases and their assets remain intact. Publication is a source milestone;
+native production activation and public served-asset/health acceptance remain
+separate. Both site lockfiles and dependencies are unchanged.
+
+## Accepted Exam and Bank Account source pack
+
+[Silver source review 5](https://github.com/instruction-material/USACO-Silver/pull/5)
+is merged at `57fbe814231945817888f79d07ec0538d0ab86ac`. It adds a separate unfinished Java learner,
+complete standalone learner/reference guides and the exact two-line demonstration
+output. Exam scores increase, account balances decrease and equal-value names
+increase using Java's case-sensitive ordering. The current reference demonstration
+is unchanged as a stored Git blob; both original migration guides are preserved.
+
+All ten exact-review and ten independent pushed-main jobs pass. Java 17 and 21
+compile both roles with strict Java 17 targeting, verify three named unfinished
+task refusals and execute both documented command guards. Broken compilation and
+successful compilation without the Main entry class cannot run older classes or
+replace an earlier answer. Existing independent checks retain four sorting
+boundary demonstrations, seventeen primality cases, and the preceding three
+Java packs' 94 reference and 57 unfinished/malformed-input cases per runtime.
+The local native guard deferred below 40 GB; hosted results provide acceptance.
+
+This source pack's website imports and two lesson identities still need acceptance.
+Its comparator exercise is one part of data-structure modeling; the required unit
+must also retain its maps/sets membership, structure choice and tracing work.
+Optional practice needs a distinct changed-key contract and saved attempt.
+
+## Remaining required workflow and audit work
+
+The refreshed source-presence inventory finds 12 required USACO rows without
+learners across ten distinct packs: eight Bronze packs plus Mother's Milk and
+Prime Palindromes. Thirteen required rows across eleven packs still lack a
+configured import. Source presence, import configuration and actual browser/native
+acceptance remain separate checks. All have reference files, whose presence alone
+does not establish correctness. Ten optional Gold counterpart gaps also remain.
+
+Twelve other courses retain a resource-specific workflow gap: 239 required source
+rows across 124 distinct GitHub paths. Their earlier dated source-path checks do
+not establish current successful editing/export or appropriate native/preview
+execution. Archives and conditional distribution lessons require individual
+assessment.
+
+Saved learner/reference and older C++/new Java projects can display identical
+titles. Existing role/language metadata needs visible and accessible distinction
+without changing names, keys, contents or deletion confirmation. The optional Gifts
+learner-source link also says Reference because the current title match finds
+reference inside preference. Its Start in IDE action correctly imports the learner.
+These presentation findings remain open under the full audit.
+
+Semantic purpose and delivery-format distinctions, complete standalone/instructor
+reading acceptance, relevant Juni fidelity, external availability, remaining source
+accuracy and imports, final Zoom feature acceptance and the native production/public
+gates remain unfinished.
+
+## Earlier dated checkpoints
+
+# Historical course-audit checkpoint, 2026-10-11 (v2.8.95)
+
 The full 77-course audit remains active. The accepted v2.8.95 source milestone
 is canonical `f6168fe35aba8ee926f6fca09a91e100317d5b8c` and neutral downstream
 `3f98e29c6afdf07fa3d5bb726ee116a419c7c8c9`. Both remotes contain only main;
@@ -111,8 +216,6 @@ full standalone/instructor reading acceptance, relevant Juni fidelity, external
 availability, remaining source accuracy and imports, final Zoom feature
 acceptance, and the separately authorized native production/public gates.
 Dependencies and both site lockfiles are unchanged at this milestone.
-
-## Earlier dated checkpoints
 
 # Historical course-audit checkpoint, 2026-10-09
 
