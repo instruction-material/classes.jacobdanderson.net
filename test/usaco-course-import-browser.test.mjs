@@ -1203,6 +1203,9 @@ nodeTest(
 			assert.ok(executablePath, "Chrome is required");
 			browser = await puppeteer.launch({ executablePath, headless: true, args: ["--no-sandbox"] });
 			page = await browser.newPage();
+			// Honor the existing reduced-motion UI while capturing complete cards.
+			// Smooth scrolling can move a card between its measured and captured bounds.
+			await page.emulateMediaFeatures([{ name: "prefers-reduced-motion", value: "reduce" }]);
 			let fixture;
 			let files;
 			let catalog = true;
