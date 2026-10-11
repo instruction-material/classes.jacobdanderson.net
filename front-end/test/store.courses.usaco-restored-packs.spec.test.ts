@@ -1,4 +1,8 @@
 import { createPinia, setActivePinia } from "pinia";
+import {
+	goldImplementationLabs,
+	goldImplementationLabRevision
+} from "@/modules/usacoImplementationLabs";
 import { beforeEach, describe, expect, it } from "vitest";
 import { lessonContentSections } from "@/modules/courseLessonPresentation";
 import { cppBuildInstructions } from "@/modules/cppBuildInstructions";
@@ -23,6 +27,80 @@ import { usacoExistingProjectIds } from "../../test/fixtures/usaco-restored-pack
 beforeEach(() => setActivePinia(createPinia()));
 
 describe("restored USACO project workflows", () => {
+	it("preserves the five implementation-lab identities, optional purposes and separately saved native roles", async () => {
+		const store = useCoursesStore();
+		const student = (await store.loadCourseById("usaco-gold"))!;
+		for (const lab of goldImplementationLabs)
+			for (const id of lab.itemIds) {
+				const matches = student.modules
+					.flatMap(module => [
+						...module.curriculum,
+						...module.supplementalProjects
+					])
+					.filter(item => item.id === id);
+				expect(matches).toHaveLength(1);
+				const item = matches[0]!;
+				expect(item.learningPath).toBe(
+					id.includes("extension-challenge") ? "challenge" : "choice"
+				);
+				expect(item.ideImport).toBe(true);
+				expect(item.projectLink).toContain(
+					`/tree/${goldImplementationLabRevision}/${lab.folder}/starter`
+				);
+				expect(item.solutionLink).toBeUndefined();
+				for (const label of [
+					"Contract and reasoning",
+					"Guided implementation",
+					"Check and explain",
+					"Open, save and run",
+					"JDK 17",
+					"four marked tasks",
+					"does not grade algorithm optimality"
+				])
+					expect(item.content).toContain(label);
+				expect(item.content).toContain(lab.contract);
+				expect(item.content).toContain(lab.prediction.split(". ")[0]!);
+				if (id.includes("extension-challenge"))
+					expect(item.content).toContain(
+						"Repeating identical sample work does not complete"
+					);
+				for (const role of ["starter", "reference"]) {
+					expect(
+						javaNativeBuildInstructions(
+							`usaco-gold:${id}:${role}`
+						)?.join("\n")
+					).toContain(
+						"does not execute this native Java exercise"
+					);
+				}
+				expect(
+					javaNativeBuildInstructions(`usaco-gold:${id}:solution`)
+				).toBeNull();
+				expect(
+					javaNativeBuildInstructions(
+						`usaco-gold:${id}:starter:extra`
+					)
+				).toBeNull();
+				expect(
+					javaNativeBuildInstructions(`java-level-1:${id}:starter`)
+				).toBeNull();
+			}
+		useAppStore().currentTutor = {} as never;
+		const staff = (await store.loadCourseById("usaco-gold"))!;
+		for (const lab of goldImplementationLabs)
+			for (const id of lab.itemIds) {
+				const item = staff.modules
+					.flatMap(module => [
+						...module.curriculum,
+						...module.supplementalProjects
+					])
+					.find(entry => entry.id === id)!;
+				expect(item.solutionLink).toContain(
+					`/tree/${goldImplementationLabRevision}/${lab.folder}/solution`
+				);
+			}
+	});
+
 	it("retains Shortcut's existing optional identity with pinned roles and native traffic guidance", async () => {
 		const course = (await useCoursesStore().loadCourseById("usaco-gold"))!;
 		const graph = course.modules.find(module =>
@@ -580,7 +658,10 @@ describe("restored USACO project workflows", () => {
 									"UG-Milk-Visits",
 									"UG-Time-is-Mooney",
 									"UG10-Roadblock",
-									"UG11-Shortcut"
+									"UG11-Shortcut",
+									"UG1-Dynamic-Programming-Practice",
+									"UG14-MST-II",
+									"UG19-Disjoint-Sets-and-Kruskals"
 								].includes(pack.folder)
 								? "javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java"
 								: "javac -encoding UTF-8 Main.java"
@@ -838,7 +919,7 @@ describe("restored USACO project workflows", () => {
 			"Required implementation checkpoint"
 		);
 	});
-	it("does not activate unverified MST variants or malformed native identities", () => {
+	it("refuses archived MST code and malformed native identities", () => {
 		const item =
 			"usaco-gold-unit-3-msts-dsu-and-connectivity-proofs-supplemental-problem-mst";
 		for (const key of [
@@ -849,7 +930,7 @@ describe("restored USACO project workflows", () => {
 		]) {
 			expect(javaNativeBuildInstructions(key)).toBeNull();
 		}
-		for (const folder of ["UG14-MST-II/starter", "UG14-MST/legacy"]) {
+		for (const folder of ["UG14-MST-II/legacy", "UG14-MST/legacy"]) {
 			expect(
 				pythonIdeModeForCourseResource(
 					"usaco-gold",

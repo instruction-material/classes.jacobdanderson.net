@@ -1,5 +1,9 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
 import {
+	goldImplementationLabRevision,
+	goldImplementationLabs
+} from "../../modules/usacoImplementationLabs";
+import {
 	matrixDijkstraSavedItemId,
 	milkVisitsSavedItemId,
 	roadblockSavedItemId,
@@ -1901,3 +1905,17 @@ export const usacoGoldCourse: RawCourse = {
 		usacoGoldAssetAppendix
 	]
 };
+
+// Preserve the observed normalized identities before pinning the newly accepted roles.
+for (const module of usacoGoldCourse.modules) {
+	for (const item of [...module.curriculum, ...module.supplementalProjects]) {
+		const lab = goldImplementationLabs.find(entry =>
+			item.projectLink?.endsWith(`/${entry.folder}/starter`)
+		);
+		if (!lab) continue;
+		item.id =
+			lab.itemIds[item.title.includes("Extension Challenge") ? 1 : 0];
+		item.projectLink = `https://github.com/instruction-material/USACO-Gold/tree/${goldImplementationLabRevision}/${lab.folder}/starter`;
+		item.solutionLink = `https://github.com/instruction-material/USACO-Gold/tree/${goldImplementationLabRevision}/${lab.folder}/solution`;
+	}
+}

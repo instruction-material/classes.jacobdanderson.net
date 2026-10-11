@@ -1,4 +1,5 @@
 import { verifyShortcutExport } from "./usaco-shortcut-native.mjs";
+import { verifyImplementationLabExport } from "./usaco-implementation-labs-native.mjs";
 import assert from "node:assert/strict";
 import { Buffer } from "node:buffer";
 import { spawn } from "node:child_process";
@@ -785,6 +786,10 @@ async function verifyNativeExport(fixture, files, directory) {
 	await mkdir(directory);
 	for (const [name, content] of Object.entries(files)) await writeFile(join(directory, name), content);
 	if (fixture.mode === "java") {
+		if (fixture.implementationLab) {
+			await verifyImplementationLabExport(fixture, files, directory, { runNative, record });
+			return;
+		}
 		if (fixture.shortcutPack) {
 			await verifyShortcutExport(fixture, files, directory, { runNative, record });
 			return;
@@ -1134,10 +1139,10 @@ nodeTest(
 				await verifyNativeExport(fixture, await sourceFiles(fixture), join(temporary, String(verified.size)));
 				verified.add(key);
 			}
-			assert.equal(verified.size, 58);
+			assert.equal(verified.size, 64);
 			record("verified-usaco-pinned-native-contracts", {
 				roles: verified.size,
-				packs: 29,
+				packs: 32,
 				nativeJava: true,
 				samplesAndChangedInputs: true,
 				ordinaryAndSanitizedCpp: true,
@@ -1153,7 +1158,8 @@ nodeTest(
 				milkVisitsIndependentPathsAndDefaultStack: true,
 				timeMooneyIndependentDaysAndNoTrip: true,
 				roadblockIndependentAllRoadsAndRestoredTrials: true,
-				shortcutIndependentRoutesTrafficAndLongSavings: true
+				shortcutIndependentRoutesTrafficAndLongSavings: true,
+				implementationLabsIndependentDpAndTreeModels: true
 			});
 		}
 		finally {
@@ -1236,7 +1242,7 @@ nodeTest(
 				fixture = current;
 				files = await sourceFiles(fixture);
 				const sourceUrl = `https://github.com/${fixture.repository}/tree/${fixture.catalogRevision ?? "main"}/${fixture.folder}`;
-				const selector = fixture.shortcutPack || fixture.roadblockPack || fixture.treeTimePack || fixture.folder.startsWith("UG21-Moo-Tube/")
+				const selector = fixture.implementationLab || fixture.shortcutPack || fixture.roadblockPack || fixture.treeTimePack || fixture.folder.startsWith("UG21-Moo-Tube/")
 					? `#${fixture.anchor}-${fixture.itemId} a[href='${sourceUrl}']`
 					: `a[href='${sourceUrl}']`;
 				const screenshotKey = `${fixture.courseId}-${fixture.folder.replaceAll("/", "-")}${fixture.identityLabel ? `-${fixture.identityLabel}` : ""}`;
@@ -1259,7 +1265,7 @@ nodeTest(
 				}
 				if (fixture.mode === "java") {
 					assert.match(card.text, /JDK 17 or newer/);
-					assert.match(card.text, fixture.shortcutPack ? /does not execute this file-I\/O\/tree-traffic program/ : fixture.roadblockPack ? /does not execute this file-I\/O\/sensitivity program/ : fixture.treeTimePack === "milk-visits" ? /does not execute this file-I\/O\/tree-path program/ : fixture.treeTimePack === "time-mooney" ? /does not execute this file-I\/O\/graph-DP program/ : fixture.demonstration ? /does not execute the DP or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute this file-I\/O\/dynamic-programming program/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute this file-I\/O\/offline-connectivity program/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute this file-I\/O\/ordering program/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute this file-I\/O\/shortest-path program/ : /does not execute this file-I\/O\/priority-queue program/);
+					assert.match(card.text, fixture.implementationLab ? /does not execute this native Java exercise/ : fixture.shortcutPack ? /does not execute this file-I\/O\/tree-traffic program/ : fixture.roadblockPack ? /does not execute this file-I\/O\/sensitivity program/ : fixture.treeTimePack === "milk-visits" ? /does not execute this file-I\/O\/tree-path program/ : fixture.treeTimePack === "time-mooney" ? /does not execute this file-I\/O\/graph-DP program/ : fixture.demonstration ? /does not execute the DP or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute this file-I\/O\/dynamic-programming program/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute this file-I\/O\/offline-connectivity program/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute this file-I\/O\/ordering program/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute this file-I\/O\/shortest-path program/ : /does not execute this file-I\/O\/priority-queue program/);
 					if (fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/")) {
 						assert.match(card.text, /Keep the included dijkstra.in beside Main.java/);
 						assert.match(card.text, /javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java/);
@@ -1347,8 +1353,8 @@ nodeTest(
 					await page.waitForFunction(() => document.querySelector("[data-testid='ide-run-status']")?.textContent.trim() === "Native build instructions");
 					assert.equal(await page.$(".stdin-panel"), null, "Native Java must not offer browser Turtle/Scanner input");
 					const output = await page.$eval(".output-panel", element => element.textContent);
-					assert.match(output, fixture.shortcutPack || fixture.roadblockPack || fixture.treeTimePack || fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java/ : /javac -encoding UTF-8 Main.java/);
-					assert.match(output, fixture.shortcutPack ? /does not execute its file I\/O or tree-traffic algorithm/ : fixture.roadblockPack ? /does not execute its file I\/O or sensitivity algorithm/ : fixture.treeTimePack === "milk-visits" ? /does not execute its file I\/O or tree-path algorithm/ : fixture.treeTimePack === "time-mooney" ? /does not execute its file I\/O or graph DP algorithm/ : fixture.demonstration ? /does not execute its dynamic programming or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute its file I\/O or dynamic programming/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute its file I\/O or offline connectivity algorithm/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute its file I\/O or ordering algorithm/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute its file I\/O or shortest-path algorithm/ : /does not execute its file I\/O or priority queue/);
+					assert.match(output, fixture.implementationLab || fixture.shortcutPack || fixture.roadblockPack || fixture.treeTimePack || fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java/ : /javac -encoding UTF-8 Main.java/);
+					assert.match(output, fixture.implementationLab ? /does not execute this native Java exercise/ : fixture.shortcutPack ? /does not execute its file I\/O or tree-traffic algorithm/ : fixture.roadblockPack ? /does not execute its file I\/O or sensitivity algorithm/ : fixture.treeTimePack === "milk-visits" ? /does not execute its file I\/O or tree-path algorithm/ : fixture.treeTimePack === "time-mooney" ? /does not execute its file I\/O or graph DP algorithm/ : fixture.demonstration ? /does not execute its dynamic programming or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute its file I\/O or dynamic programming/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute its file I\/O or offline connectivity algorithm/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute its file I\/O or ordering algorithm/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute its file I\/O or shortest-path algorithm/ : /does not execute its file I\/O or priority queue/);
 					if (fixture.demonstration) {
 						assert.match(output, /reads no input file or standard input/);
 						assert.doesNotMatch(output, /sample.in|java Main </);
@@ -1509,7 +1515,7 @@ nodeTest(
 			assert.equal(remoteWrites, 0);
 			record("verified-usaco-workflows", {
 				imports: usacoFixtures.length,
-					packs: 29,
+					packs: 32,
 				nativeJava: true,
 				roleSeparation: true,
 				consentBeforeSource: true,
