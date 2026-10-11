@@ -280,6 +280,11 @@ jobs:
                   COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
               run: JAVAC="$JAVA_HOME_21_X64/bin/javac" JAVA="$JAVA_HOME_21_X64/bin/java" node --test test/usaco-course-import-browser.test.mjs
 
+            - name: Verify saved project role labels and deletion context
+              env:
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
+              run: node --test test/ide-saved-project-labels-browser.test.mjs
+
             - name: Retain USACO project workflow screenshots
               uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
               with:

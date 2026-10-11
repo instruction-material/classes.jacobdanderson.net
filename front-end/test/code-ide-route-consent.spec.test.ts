@@ -146,6 +146,68 @@ afterEach(async () => {
 });
 
 describe("Code IDE route import consent", () => {
+	it("labels metadata-only saved rows and selects the matching full project", async () => {
+		const saved: PythonIdeProject[] = [
+			{
+				...existingProject,
+				_id: "saved-learner",
+				title: "Same project name",
+				mode: "cpp",
+				courseID: "cpp-level-2",
+				courseProjectKey: "cpp-level-2:grocery:starter"
+			},
+			{
+				...existingProject,
+				_id: "saved-reference",
+				title: "Same project name",
+				mode: "java",
+				courseID: "usaco-silver",
+				courseProjectKey: "usaco-silver:gifts:reference:native-java"
+			}
+		];
+		requests.get.mockImplementation(async (path: string) => {
+			if (path === "/users/loggedin/python-projects") {
+				return {
+					data: {
+						nextOffset: null,
+						projects: saved.map(
+							({ files: _files, ...metadata }) => metadata
+						)
+					}
+				};
+			}
+			if (path === "/users/loggedin/python-project-reviews")
+				return { data: { nextOffset: null, reviews: [] } };
+			const project = saved.find(item => path.endsWith(`/${item._id}`));
+			if (project) return { data: { project } };
+			throw new Error(`Unexpected request: ${path}`);
+		});
+		const { wrapper } = await openWorkspace("/ide");
+		await wrapper
+			.get("button[aria-label='Expand project sidebar']")
+			.trigger("click");
+		await settle();
+		const rows = wrapper.findAll(".project-button");
+		expect(rows.map(row => row.find("span").text())).toEqual([
+			"Same project name",
+			"Same project name"
+		]);
+		expect(rows.map(row => row.find("small").text())).toEqual([
+			"Learner · C++",
+			"Reference · Java"
+		]);
+		expect(rows[1].attributes("aria-label")).toBe(
+			"Same project name (Reference · Java)"
+		);
+		await rows[1].trigger("click");
+		await settle();
+		expect(workspaceState(wrapper).selectedProjectID).toBe(
+			"saved-reference"
+		);
+		expect(preview.list).not.toHaveBeenCalled();
+		expect(requests.post).not.toHaveBeenCalled();
+	});
+
 	it("renders bounded WAV handoffs as safe downloads and clears them with the run", async () => {
 		const { wrapper } = await openWorkspace("/ide");
 		await wrapper.find("button.run-control").trigger("click");

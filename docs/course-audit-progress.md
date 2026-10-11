@@ -2,10 +2,11 @@
 
 The full 77-course audit remains active. The accepted v2.8.96 source milestone
 is canonical `cff27e306cc5e46477da1e4f781208cb3fabb535` and neutral downstream
-`c2529bd39ec1604c4ce49824cba6651f73b1e548`. Both site remotes and the Silver source remote
-contain only main, with no open reviews for these changes. Recovery bundles retain
-the reviewed branch tips. The original downstream checkout's unfinished working
-changes and all 98 intentional downstream customization paths remain intact.
+`c2529bd39ec1604c4ce49824cba6651f73b1e548`. Those reviewed branches are merged and
+retired, with recovery bundles retaining their tips. The saved-project labeling
+follow-up below has separate review branches. The original downstream checkout's
+unfinished work and intentional downstream course and branding customizations
+remain preserved.
 
 All 77 normalized catalog entries load and all 392 directly linked local course
 resources exist. No complete normalized course is byte-identical to another.
@@ -74,6 +75,26 @@ Its comparator exercise is one part of data-structure modeling; the required uni
 must also retain its maps/sets membership, structure choice and tracing work.
 Optional practice needs a distinct changed-key contract and saved attempt.
 
+## Saved-project label follow-up under review
+
+Saved project rows now retain their original title and show the existing language
+with Learner or Reference when an exact supported key identifies a known course
+role. Older C++ attempts and newer native Java imports have separate labels.
+Unknown or contradictory metadata shows the language without inventing a role.
+Selection, deletion, cancellation and confirmation have complete accessible names;
+the typed confirm requirement remains intact. Renaming retains the origin label.
+
+The optional Gifts changed-preference retry's external learner link now says
+Starter project. Reference labels require the whole word reference, so preference
+cannot change the source label. Import keys, source files and permissions are
+unchanged.
+
+All 92 focused unit tests, full lint and type checks pass using existing
+dependencies. Both lockfiles and all package manifests are unchanged. The local
+browser build was deferred by the shared task load guard. Hosted browser checks,
+complete desktop/mobile visual acceptance and merged-main acceptance remain
+pending; these presentation findings are not yet closed.
+
 ## Remaining required workflow and audit work
 
 The refreshed source-presence inventory finds 12 required USACO rows without
@@ -89,12 +110,8 @@ not establish current successful editing/export or appropriate native/preview
 execution. Archives and conditional distribution lessons require individual
 assessment.
 
-Saved learner/reference and older C++/new Java projects can display identical
-titles. Existing role/language metadata needs visible and accessible distinction
-without changing names, keys, contents or deletion confirmation. The optional Gifts
-learner-source link also says Reference because the current title match finds
-reference inside preference. Its Start in IDE action correctly imports the learner.
-These presentation findings remain open under the full audit.
+The saved-project and Gifts label corrections above still need hosted browser
+and complete visual acceptance before their audit findings can be closed.
 
 Semantic purpose and delivery-format distinctions, complete standalone/instructor
 reading acceptance, relevant Juni fidelity, external availability, remaining source
