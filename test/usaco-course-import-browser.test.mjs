@@ -21,6 +21,9 @@ import { confirmProjectImport, downloadProjectZip, openProjectSidebar } from "./
 
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
 const taskId = process.env.CLASSES_FAMILY_TASK_ID ?? "usaco-course-import-browser-ci";
+// Sequential imports include native boundary checks and both viewport captures.
+// The 128-role hosted run needs room beyond ten minutes, including cleanup.
+const browserWorkflowTimeoutMs = 15 * 60 * 1000;
 const changes = {
 	"UG23-Balanced-Photo": ["3\n1\n3\n2\n", "2\n"],
 	"UG25-Sleepy-Cow-Sorting": ["3\n3 2 1\n", "2\n2 1"],
@@ -1181,7 +1184,7 @@ nodeTest(
 
 nodeTest(
 	"restored USACO roles confirm, preserve edits and export correct native I/O",
-	{ timeout: 600000 },
+	{ timeout: browserWorkflowTimeoutMs },
 	async () => {
 		let browser;
 		let server;
@@ -1191,7 +1194,7 @@ nodeTest(
 		const previousDirectory = process.cwd();
 		try {
 			process.chdir(root);
-			record("start", { command: "usaco-course-import-browser", pid: process.pid, timeoutMs: 600000 });
+			record("start", { command: "usaco-course-import-browser", pid: process.pid, timeoutMs: browserWorkflowTimeoutMs });
 			assert.ok(existsSync(join(root, "dist/index.html")), "Build this exact front end before the browser check");
 			temporary = await mkdtemp(join(tmpdir(), "usaco-course-workflow-"));
 			server = await preview({ root, preview: { host: "127.0.0.1", port: 0, strictPort: true } });
