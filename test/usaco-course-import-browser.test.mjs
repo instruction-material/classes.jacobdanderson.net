@@ -1,4 +1,5 @@
 import { verifyRequiredCorePackExport } from "./usaco-required-core-native.mjs";
+import { captureLessonScreenshot } from "./lesson-screenshot.mjs";
 import { verifySpanningIntervalPackExport } from "./usaco-spanning-interval-native.mjs";
 import { verifyHistoricalPackExport } from "./usaco-historical-packs-native.mjs";
 import { verifyShortcutExport } from "./usaco-shortcut-native.mjs";
@@ -85,7 +86,7 @@ async function verifyGoldPracticePlacement(page, origin, fixture, screenshotRoot
 		assert.match(card.text, /Check and explain/);
 		if (process.env.COURSE_IMPORT_SCREENSHOT_DIR) {
 			const element = await page.$(selector);
-			await element.screenshot({ path: join(screenshotRoot, process.env.COURSE_IMPORT_SCREENSHOT_DIR, `course-import-usaco-gold-legacy-setup-${index}-${fixture.reference ? "reference" : "learner"}-lesson.png`) });
+			await captureLessonScreenshot(page, element, join(screenshotRoot, process.env.COURSE_IMPORT_SCREENSHOT_DIR, `course-import-usaco-gold-legacy-setup-${index}-${fixture.reference ? "reference" : "learner"}-lesson.png`));
 		}
 		record("verified-gold-setup-placement", { preservedItemId: item, destination: module, sourceFolder: folder, role: fixture.reference ? "reference" : "learner", viewportWidth: page.viewport().width, confirmedIdeImport: confirmed });
 	}
@@ -1346,10 +1347,10 @@ nodeTest(
 					await mkdir(directory, { recursive: true });
 					const link = await page.$(selector);
 					const element = await link.evaluateHandle(element => element.closest(".lesson-item"));
-					await element.asElement().screenshot({ path: join(directory, `course-import-usaco-${screenshotKey}-lesson.png`) });
+					await captureLessonScreenshot(page, element.asElement(), join(directory, `course-import-usaco-${screenshotKey}-lesson.png`));
                     if (fixture.spanningIntervalPack || fixture.requiredCorePack) {
                         await page.setViewport({width:index % 2 ? 390 : 1280,height:900});
-                        await element.asElement().screenshot({path:join(directory,`course-import-usaco-${screenshotKey}-opposite-lesson.png`)});
+                        await captureLessonScreenshot(page, element.asElement(), join(directory,`course-import-usaco-${screenshotKey}-opposite-lesson.png`));
                         await page.setViewport({width:index % 2 ? 1280 : 390,height:900});
                     }
 				}
