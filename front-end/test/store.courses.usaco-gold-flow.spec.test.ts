@@ -115,7 +115,7 @@ describe("USACO Gold learner flow", () => {
 			"Problem: Fenced In",
 			"Problem: Sleepy Cow Sorting",
 			"Dynamic Programming Practice: Core Project",
-			"Hoof Paper Scissors: Core Project",
+			"Hoof, Paper, Scissors: First Implementation",
 			"Why Did the Cow Cross the Road: Core Project",
 			"Cow Routing: First Implementation",
 			"MST II: Core Project",

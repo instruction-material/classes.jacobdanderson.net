@@ -4,7 +4,34 @@ import { readFile, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import process from "node:process";
 
-// Exhaustive tiny models are separate from the four preserved solver algorithms.
+// Exhaustive tiny models are separate from the preserved solver algorithms.
+function hpsAnswer(input) {
+	const words = input.trim().split(/\s+/);
+	const [n, budget] = words.splice(0, 2).map(Number);
+	assert.ok(n <= 8);
+	assert.equal(words.length, n);
+	let best = 0;
+	const beats = { H: "S", P: "H", S: "P" };
+	// Enumerate literal gestures, rather than the reference's relabeled DP states.
+	const visit = (round, previous, changes, wins) => {
+		if (changes > budget) return;
+		if (round === n) {
+			best = Math.max(best, wins);
+			return;
+		}
+		for (const gesture of ["H", "P", "S"]) {
+			visit(
+				round + 1,
+				gesture,
+				changes + Number(previous !== null && previous !== gesture),
+				wins + Number(beats[gesture] === words[round])
+			);
+		}
+	};
+	visit(0, null, 0, 0);
+	return `${best}\n`;
+}
+
 function cowAnswer(input) {
 	const words = input.trim().split(/\s+/).map(Number);
 
@@ -157,6 +184,28 @@ function talentAnswer(input) {
 }
 
 const contracts = {
+	"hoof-paper-scissors": {
+		oracle: hpsAnswer,
+		cases: [
+			"1 0\nH\n",
+			"1 1\nP\n",
+			"1 20\nS\n",
+			"5 0\nP\nP\nH\nP\nS\n",
+			"5 1\nP\nP\nH\nP\nS\n",
+			"6 0\nH\nP\nS\nH\nP\nS\n",
+			"6 2\nH\nP\nS\nH\nP\nS\n",
+			"6 20\nH\nP\nS\nH\nP\nS\n"
+		],
+		refusedCases: [
+			"1 -1\nH\n",
+			"1 21\nH\n",
+			"100001 0\nH\n",
+			"1 0\nX\n",
+			"1 0\nHH\n",
+			"2 0\nH\n",
+			"999999999999999999999999 0\nH\n"
+		]
+	},
 	"cow-routing": {
 		oracle: cowAnswer,
 		cases: [
@@ -226,13 +275,17 @@ export async function verifyHistoricalPackExport(
 	const output = join(directory, fixture.output);
 	const input = join(directory, fixture.input);
 	const args = ["-ea", "-Xmx256m", "Main"];
+	const expectedStdout = answer =>
+		fixture.reference && fixture.historicalPack === "hoof-paper-scissors"
+			? answer
+			: "";
 
 	await rm(output, { force: true });
 
 	const first = await runNative(java, args, directory);
 
 	assert.equal(first.code, fixture.reference ? 0 : 2, first.stderr);
-	assert.equal(first.stdout, "");
+	assert.equal(first.stdout, expectedStdout(fixture.expected));
 
 	if (fixture.reference) {
 		assert.equal(await readFile(output, "utf8"), fixture.expected);
@@ -246,14 +299,32 @@ export async function verifyHistoricalPackExport(
 		await writeFile(input, data);
 
 		const result = await runNative(java, args, directory);
+		const expected = fixture.reference ? contract.oracle(data) : "Earlier saved answer\n";
 
 		assert.equal(result.code, fixture.reference ? 0 : 2, result.stderr);
-		assert.equal(result.stdout, "");
+		assert.equal(result.stdout, expectedStdout(expected));
 
 		assert.equal(
 			await readFile(output, "utf8"),
-			fixture.reference ? contract.oracle(data) : "Earlier saved answer\n"
+			expected
 		);
+	}
+	let fullConstructionCases = 0;
+	if (fixture.historicalPack === "hoof-paper-scissors") {
+		const cycle = Array.from({ length: 100000 }, (_, i) => ["H", "P", "S"][i % 3]);
+		const runs = Array.from({ length: 100000 }, (_, i) => ["H", "P", "S"][Math.floor(i * 21 / 100000) % 3]);
+		for (const [data, answer] of [
+			[`100000 20\n${"H\n".repeat(100000)}`, "100000\n"],
+			[`100000 0\n${cycle.join("\n")}\n`, "33334\n"],
+			[`100000 20\n${runs.join("\n")}\n`, "100000\n"]
+		]) {
+			await writeFile(input, data);
+			const result = await runNative(java, args, directory);
+			assert.equal(result.code, fixture.reference ? 0 : 2, result.stderr);
+			assert.equal(result.stdout, expectedStdout(answer));
+			assert.equal(await readFile(output, "utf8"), fixture.reference ? answer : "Earlier saved answer\n");
+			fullConstructionCases++;
+		}
 	}
 
 	if (fixture.reference && fixture.historicalPack === "talent-show") {
@@ -268,7 +339,7 @@ export async function verifyHistoricalPackExport(
 	}
 
 	if (!fixture.reference) {
-		for (const data of [`${files[fixture.input]}extra\n`, "", "-1\n"]) {
+		for (const data of [`${files[fixture.input]}extra\n`, "", "-1\n", ...(contract.refusedCases ?? [])]) {
 			await writeFile(input, data);
 			const refused = await runNative(java, args, directory);
 
@@ -299,6 +370,7 @@ export async function verifyHistoricalPackExport(
 		pack: fixture.historicalPack,
 		reference: fixture.reference,
 		independentTinyCases: contract.cases.length,
+		fullConstructionCases,
 		preservedHistoricalTalentInput:
 			fixture.historicalPack === "talent-show" && fixture.reference,
 		learnerRemainsUnfinished: !fixture.reference,

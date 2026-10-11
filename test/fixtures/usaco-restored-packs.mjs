@@ -2581,7 +2581,109 @@ export const usacoFixtures = [
 		identityLabel: "extension",
 		lessonView: 2,
 		previousSourceUrl: "https://github.com/instruction-material/USACO-Gold/tree/main/UG-10-applied-studio-17-talent-show-supplemental-3/solution"
-	}
+	},
+{
+	"repository": "instruction-material/USACO-Gold",
+	"revision": "9849997abcd2328fa97a86fc9a34994c5dd85c1e",
+	"catalogRevision": "9849997abcd2328fa97a86fc9a34994c5dd85c1e",
+	"courseId": "usaco-gold",
+	"folder": "UG1-Hoof-Paper-Scissors/starter",
+	"anchor": "usaco-gold-optional-historical-and-applied-gold-studios",
+	"itemId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-hoof-paper-scissors",
+	"mode": "java",
+	"input": "hps.in",
+	"output": "hps.out",
+	"expected": "4\n",
+	"hashes": {
+		"Main.java": "5d94bcfb1621df10abe62a8a5594a2ca8d344b2dd164ba66967a7995b8dbeaa3",
+		"README.md": "0f7fe91290733532a8d25f7ac760c43a3583cf5965d8a86c94a95fce6dd6a8aa",
+		"hps.in": "228e5b0dc9a766ccc303eee8d8d6c401a4fb486e6f6e08bce04cf4ab71d0c648"
+	},
+	"reference": false,
+	"historicalPack": "hoof-paper-scissors",
+	"projectKeySuffix": "native-java",
+	"historicalVariant": "first",
+	"identityLabel": "first",
+	"lessonView": 2,
+	"previousSourceUrl": "https://github.com/instruction-material/USACO-Gold/tree/main/UG1-Hoof-Paper-Scissors/starter"
+},
+{
+	"repository": "instruction-material/USACO-Gold",
+	"revision": "9849997abcd2328fa97a86fc9a34994c5dd85c1e",
+	"catalogRevision": "9849997abcd2328fa97a86fc9a34994c5dd85c1e",
+	"courseId": "usaco-gold",
+	"folder": "UG1-Hoof-Paper-Scissors/solution",
+	"anchor": "usaco-gold-optional-historical-and-applied-gold-studios",
+	"itemId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-hoof-paper-scissors",
+	"mode": "java",
+	"input": "hps.in",
+	"output": "hps.out",
+	"expected": "4\n",
+	"hashes": {
+		"Main.java": "a52e7f7af300acf277212f7d60ff24da041af318cc493eab9d45b83124cf0070",
+		"README.md": "dbb23f798b8c97f55fce31ef797457a4296aaf024d3a4752438d5d1c8be44494",
+		"hps.in": "228e5b0dc9a766ccc303eee8d8d6c401a4fb486e6f6e08bce04cf4ab71d0c648",
+		"hps.out": "7de1555df0c2700329e815b93b32c571c3ea54dc967b89e81ab73b9972b72d1d"
+	},
+	"reference": true,
+	"historicalPack": "hoof-paper-scissors",
+	"projectKeySuffix": "native-java",
+	"historicalVariant": "first",
+	"identityLabel": "first",
+	"lessonView": 2,
+	"previousSourceUrl": "https://github.com/instruction-material/USACO-Gold/tree/main/UG1-Hoof-Paper-Scissors/solution"
+},
+{
+	"repository": "instruction-material/USACO-Gold",
+	"revision": "9849997abcd2328fa97a86fc9a34994c5dd85c1e",
+	"catalogRevision": "9849997abcd2328fa97a86fc9a34994c5dd85c1e",
+	"courseId": "usaco-gold",
+	"folder": "UG1-Hoof-Paper-Scissors/starter",
+	"anchor": "usaco-gold-optional-historical-and-applied-gold-studios",
+	"itemId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-extension-challenge-hoof-paper-scissors",
+	"mode": "java",
+	"input": "hps.in",
+	"output": "hps.out",
+	"expected": "4\n",
+	"hashes": {
+		"Main.java": "5d94bcfb1621df10abe62a8a5594a2ca8d344b2dd164ba66967a7995b8dbeaa3",
+		"README.md": "0f7fe91290733532a8d25f7ac760c43a3583cf5965d8a86c94a95fce6dd6a8aa",
+		"hps.in": "228e5b0dc9a766ccc303eee8d8d6c401a4fb486e6f6e08bce04cf4ab71d0c648"
+	},
+	"reference": false,
+	"historicalPack": "hoof-paper-scissors",
+	"projectKeySuffix": "native-java",
+	"historicalVariant": "retry",
+	"identityLabel": "retry",
+	"lessonView": 2,
+	"previousSourceUrl": "https://github.com/instruction-material/USACO-Gold/tree/main/UG1-Hoof-Paper-Scissors/starter"
+},
+{
+	"repository": "instruction-material/USACO-Gold",
+	"revision": "9849997abcd2328fa97a86fc9a34994c5dd85c1e",
+	"catalogRevision": "9849997abcd2328fa97a86fc9a34994c5dd85c1e",
+	"courseId": "usaco-gold",
+	"folder": "UG1-Hoof-Paper-Scissors/solution",
+	"anchor": "usaco-gold-optional-historical-and-applied-gold-studios",
+	"itemId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-extension-challenge-hoof-paper-scissors",
+	"mode": "java",
+	"input": "hps.in",
+	"output": "hps.out",
+	"expected": "4\n",
+	"hashes": {
+		"Main.java": "a52e7f7af300acf277212f7d60ff24da041af318cc493eab9d45b83124cf0070",
+		"README.md": "dbb23f798b8c97f55fce31ef797457a4296aaf024d3a4752438d5d1c8be44494",
+		"hps.in": "228e5b0dc9a766ccc303eee8d8d6c401a4fb486e6f6e08bce04cf4ab71d0c648",
+		"hps.out": "7de1555df0c2700329e815b93b32c571c3ea54dc967b89e81ab73b9972b72d1d"
+	},
+	"reference": true,
+	"historicalPack": "hoof-paper-scissors",
+	"projectKeySuffix": "native-java",
+	"historicalVariant": "retry",
+	"identityLabel": "retry",
+	"lessonView": 2,
+	"previousSourceUrl": "https://github.com/instruction-material/USACO-Gold/tree/main/UG1-Hoof-Paper-Scissors/solution"
+}
 ];
 
 export const usacoExistingProjectIds = [

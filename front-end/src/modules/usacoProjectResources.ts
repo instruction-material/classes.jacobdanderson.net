@@ -18,6 +18,12 @@ export const usacoRestoredResources = [
 	{
 		course: "usaco-gold",
 		repository: "USACO-Gold",
+		folder: "UG1-Hoof-Paper-Scissors",
+		mode: "java"
+	},
+	{
+		course: "usaco-gold",
+		repository: "USACO-Gold",
 		folder: "UG13-Cow-Routing",
 		mode: "java"
 	},

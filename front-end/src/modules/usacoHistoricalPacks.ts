@@ -6,6 +6,23 @@ import {
 // Immutable native source accepted independently on JDK 17 and 21.
 export const goldHistoricalPacks = [
 	{
+		slug: "hoof-paper-scissors",
+		title: "Hoof Paper Scissors",
+		folder: "UG1-Hoof-Paper-Scissors",
+		revision: "9849997abcd2328fa97a86fc9a34994c5dd85c1e",
+		purpose:
+			"Optional Gold dynamic-programming application after prefix states and bounded choices. Add a switch budget and a gesture dimension to an ordered sequence. This complements the Unit 1 state-design work and is distinct from grouping consecutive cows into teams.\n\nSource contract: [USACO, January 2017 Gold, problem 2](https://usaco.org/index.php?page=viewproblem2&cpid=694).",
+		contract:
+			"Read `hps.in`: N K, then N opponent gestures, each H, P or S. N is 1..100000 and K is 0..20. Hoof beats scissors, scissors beats paper, and paper beats hoof; equal gestures tie. Choose Bessie's gesture each round while changing it at most K times. The first gesture costs no switch. Write the greatest possible number of wins as one integer in `hps.out`. The supplied learner encodes opponent H/P/S as 0/1/2 and validates every token and bound before solving.",
+		prediction:
+			"The official sample in `hps.in` is:\n\n```text\n5 1\nP\nP\nH\nP\nS\n```\n\nExpected `hps.out`:\n\n```text\n4\n```\n\nBessie can play scissors for rounds 1..4, then hoof for round 5: three wins against paper and one against scissors. Round 3 is a loss. With K=0 the same input gives three wins. A single opponent permits one win even when K exceeds the number of round boundaries. Predict the first three rounds and both budget columns before opening the reference.",
+		tasks: "1. Define prefix, at-most switch budget and literal Bessie gesture states; initialize zero rounds for every budget and gesture.\n2. Continue the current gesture using the previous round at the same budget.\n3. Compare switching from either other gesture using the previous round at budget j-1, only when j>0.\n4. Add the current cyclic win and take the greatest final value across gestures.\n\nThe learner has four marked algorithm tasks and remains deliberately unfinished. Untouched work exits 2 without writing a new answer. The supplied parser and result bounds do not prove optimality. Predict, trace, implement and save an attempt independently or with an instructor, then compare changed tiny cases with an independent model. Keep the original prediction and attempt before consulting the separate reference.",
+		model: "Define dp[i][j][g] as the greatest wins in the first i rounds, ending with literal Bessie gesture g and using at most j switches. At zero rounds every allowed budget has value zero. Take the better of continuing dp[i-1][j][g] and, when j>0, switching from dp[i-1][j-1][h] for either h different from g; then add one only when g beats this opponent. With literal H/P/S encoded as 0/1/2, a win means `(g+2)%3 == opponent`, not equality. Values fit int because they lie in 0..N.\n\nThe historical reference labels a state by the opponent gesture it beats. Its target H/P/S labels correspond to Bessie P/S/H. Equality of that target label with an opponent counts a win, not a literal-gesture tie. The cyclic relabeling preserves gesture changes. Do not combine the reference equality test with literal Bessie states. Both representations use an at-most budget, not exactly K changes.",
+		checks: "Independently enumerate all literal H/P/S sequences for at most eight rounds. Count changes between adjacent rounds, reject sequences exceeding K, count wins with the cyclic game rules, and compare the greatest count with the solver. This model does not copy the DP recurrence or its target relabeling. Cover all three single opponents, K=0, K greater than the possible boundaries, alternating opponents and the official sample.\n\nThe full table takes O(N(K+1)) time and space, with three gesture states. After the first implementation works, compare separate previous/next rolling layers using O(K+1) auxiliary space; do not overwrite a value still needed for the current round. Full-size checks use 100000 identical gestures, a zero-switch repeated cycle whose majority is counted directly, and 21 constant runs all beatable with 20 changes. Keep a boundary prediction, two changed inputs, any mismatch and its explanation, and a later reflection.",
+		input: "hps.in",
+		output: "hps.out"
+	},
+	{
 		slug: "cow-routing",
 		title: "Cow Routing",
 		folder: "UG13-Cow-Routing",
@@ -86,6 +103,22 @@ export const goldHistoricalTopics = [
 	}
 ];
 export const goldHistoricalAssignments = [
+	{
+		id: "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-hoof-paper-scissors",
+		slug: "hoof-paper-scissors",
+		variant: "first",
+		title: "Hoof, Paper, Scissors: First Implementation",
+		previousFolder: "UG1-Hoof-Paper-Scissors",
+		previousTitle: "Core Project"
+	},
+	{
+		id: "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-extension-challenge-hoof-paper-scissors",
+		slug: "hoof-paper-scissors",
+		variant: "retry",
+		title: "Hoof, Paper, Scissors: Changed-Case Retry",
+		previousFolder: "UG1-Hoof-Paper-Scissors",
+		previousTitle: "Extension Challenge"
+	},
 	{
 		id: "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-cow-routing",
 		slug: "cow-routing",
@@ -231,7 +264,9 @@ export const goldHistoricalAssignments = [
 		previousTitle: ""
 	}
 ] as const;
-const variantTasks = {
+const variantTasks: Partial<
+	Record<string, { model: string; extension: string }>
+> = {
 	"cow-routing": {
 		model: "Create Verifier.java beside a working copy of the saved solver. For at most six cities and four routes of at most four stops, enumerate each forward ticket portion, then repeatedly relax all boarding choices for at most cityCount-1 tickets. Compare money first and flights second, using long totals. This bounded relaxation must not reuse the solver's Dijkstra selection. Check unreachable and reverse-only travel, a money tie with different flight counts, A=B, and routes [1,2,3,4] and [4,1] costing 1 each: from 3 to 2, buying the first ticket twice costs 3 and takes 3 flights. Record a failing case, expected pair and repaired explanation.",
 		extension:
@@ -298,9 +333,11 @@ export function historicalNativeInstructions(
 		"java -ea -Xmx256m Main",
 		"The site's Java teaching preview does not execute this native Java exercise. Choosing Run displays these instructions; the Input panel does not run the program.",
 		`Keep the included ${pack.input} beside Main.java. Check exit status first; read ${pack.output} only after success with cat ${pack.output} or Get-Content ${pack.output}. An untouched learner exits 2 and creates no answer file. Missing input, refused input and unfinished learner work preserve an earlier answer. The historical reference expects complete valid contract input; its old answer is not evidence of a successful new run.`,
-		pack.slug === "talent-show"
-			? "The learner input is the official sample, whose answer is 1066. The reference preserves a 150-cow input and answer 26706. Its official-sample.in has answer 1066; copy it to talent.in only in a disposable reference working copy with cp official-sample.in talent.in or Copy-Item official-sample.in talent.in. The historical reference opens output while parsing; malformed-input experiments belong in a disposable copy of the guarded starter."
-			: "Preserve previous source, inputs and answers before changing cases.",
+		pack.slug === "hoof-paper-scissors"
+			? "The historical reference also prints the answer to the terminal. Its target H/P/S labels mean literal Bessie P/S/H; equality with an opponent is a win in this representation. Preserve valid input and check the new run's exit status and answer file together."
+			: pack.slug === "talent-show"
+				? "The learner input is the official sample, whose answer is 1066. The reference preserves a 150-cow input and answer 26706. Its official-sample.in has answer 1066; copy it to talent.in only in a disposable reference working copy with cp official-sample.in talent.in or Copy-Item official-sample.in talent.in. The historical reference opens output while parsing; malformed-input experiments belong in a disposable copy of the guarded starter."
+				: "Preserve previous source, inputs and answers before changing cases.",
 		pack.purpose,
 		pack.contract,
 		pack.prediction,
@@ -320,8 +357,10 @@ function historicalVariantTask(
 		return "This optional practice is a first implementation after the matching unit. Predict the sample and one transition, implement the four marked tasks, save the attempt, and compare two changed cases with an independent model before consulting the reference.";
 	if (assignment.variant === "retry")
 		return "This optional practice is a changed-case retry. Preserve the first implementation, wait at least two days, close the reference and reconstruct the four tasks using different data. Include a boundary case and an independently checked mismatch. Repeating the identical sample does not complete this retry.";
+	const tasks = variantTasks[assignment.slug];
+	if (!tasks) throw new Error("No verifier or extension task for this topic");
 	return `This optional practice follows a saved working implementation. Keep that attempt and create a working copy; reuse its solver instead of repeating the first assignment. ${
-		variantTasks[assignment.slug][assignment.variant]
+		tasks[assignment.variant]
 	}`;
 }
 
