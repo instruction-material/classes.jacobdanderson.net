@@ -4,6 +4,7 @@ import {
 	matrixDijkstraSavedItemId,
 	milkVisitsSavedItemId,
 	roadblockSavedItemId,
+	shortcutSavedItemId,
 	timeMooneySavedItemId
 } from "./usacoProjectResources";
 
@@ -97,6 +98,7 @@ export function javaNativeBuildInstructions(courseProjectKey?: string) {
 			!mootubeItems.has(item ?? "") &&
 			!orderingItems.has(item ?? "") &&
 			!fenwickPracticeItems.has(item ?? "") &&
+			item !== shortcutSavedItemId &&
 			item !== roadblockSavedItemId &&
 			item !== matrixDijkstraSavedItemId &&
 			item !== milkVisitsSavedItemId &&
@@ -130,6 +132,22 @@ export function javaNativeBuildInstructions(courseProjectKey?: string) {
 		];
 	}
 
+	if (item === shortcutSavedItemId) {
+		return [
+			"Save and download this project's ZIP, then extract it. Keep Main.java and the included shortcut.in in the same folder.",
+			"Shortcut is optional traffic practice after weighted shortest paths and tree rooting. Use a native JDK 17 or newer. The site's Java teaching preview does not execute its file I/O or tree-traffic algorithm.",
+			"Preserve earlier source, inputs and answers. Run inside the extracted folder:",
+			"javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java",
+			"java -ea -Xmx256m Main",
+			"The commands also work in PowerShell. Check exit status first, then read shortcut.out with cat shortcut.out or Get-Content shortcut.out. The browser Input panel does not replace shortcut.in.",
+			"The January 2019 Gold contract reads N M T, N cow counts, then M undirected a b time trails: N in 1..10000, M in N-1..50000, T in 1..10000, cows in 0..10000, endpoints in 1..N and positive times in 1..25000. All fields reach barn 1; parallel trails and positive loops are allowed, and N=1, M=0 is valid. Write one maximum reduction in total travel time.",
+			"Keep usual shortest routes fixed. Compare tied field-label sequences toward the barn. Only cows whose usual route encounters the candidate may use its trail. Gain is traffic[v] * max(0, distance[v] - T), using long before multiplication. On the sample, field 4 uses 4,2,1; field 5 uses 5,3,1. A shortcut at 5 saves 40, reducing total travel from 101 to 61; field 4's cows do not detour toward it.",
+			"Complete the four marked learner tasks with the supplied shortestRoutes helper: build child lists and explain ties, accumulate long traffic in an iterative postorder, compare fixed-route savings, then return and explain the greatest nonnegative gain. A 10000-field chain must not depend on recursive call-stack depth.",
+			"An untouched learner exits with status 2 and creates no answer file. Missing input, refused input and unfinished work preserve an earlier answer. The numeric range guard does not grade algorithm correctness. The reference expects valid contract input; its included shortcut.out is an expected sample answer, not proof of a new run.",
+			"For tiny graphs, enumerate simple routes and select the least (time, toward-barn field sequence); independently simulate shortcut encounters without rerouting. Check ties, zero cows, slow shortcuts, changed cow counts, reversed trails, parallel trails and loops. The supplied helper costs O((N+M) log(M+1)); iterative tree aggregation adds O(N). The preserved reference instead traces each origin's route, which can cost O(N²), with separate queue overhead.",
+			"Save a learner attempt, route/traffic trace and two changed cases before comparing the separately saved reference. Reconstruct the reasoning on a fresh case later. Protected mocks and active contests start from empty files."
+		];
+	}
 	if (item === roadblockSavedItemId) {
 		return [
 			"Save and download this project's ZIP, then extract it. Keep Main.java and the included rblock.in in the same folder.",

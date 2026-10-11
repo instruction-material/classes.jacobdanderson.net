@@ -10,6 +10,7 @@ import {
 import {
 	matrixDijkstraSavedItemId,
 	roadblockSavedItemId,
+	shortcutSavedItemId,
 	milkVisitsSavedItemId,
 	timeMooneySavedItemId,
 	usacoRestoredResources
@@ -22,6 +23,84 @@ import { usacoExistingProjectIds } from "../../test/fixtures/usaco-restored-pack
 beforeEach(() => setActivePinia(createPinia()));
 
 describe("restored USACO project workflows", () => {
+	it("retains Shortcut's existing optional identity with pinned roles and native traffic guidance", async () => {
+		const course = (await useCoursesStore().loadCourseById("usaco-gold"))!;
+		const graph = course.modules.find(module =>
+			module.title.startsWith("Unit 2:")
+		)!;
+		const matches = course.modules
+			.flatMap(module => [
+				...module.curriculum,
+				...module.supplementalProjects
+			])
+			.filter(item =>
+				item.projectLink?.endsWith("/UG11-Shortcut/starter")
+			);
+		expect(matches).toHaveLength(1);
+		const item = matches[0]!;
+		expect(item.id).toBe(
+			"usaco-gold-unit-2-shortest-paths-dags-and-weighted-graphs-supplemental-problem-shortcut"
+		);
+		expect(item.id).toBe(shortcutSavedItemId);
+		expect(graph.supplementalProjects).toContain(item);
+		expect(item.learningPath).toBe("choice");
+		expect(item.ideImport).toBe(true);
+		expect(item.projectLink).toContain(
+			"/tree/27e470c08a053c265fcadd619776bcb4b8d0d9df/"
+		);
+		expect(item.solutionLink).toBeUndefined();
+		expect(item.content).not.toContain("/solution");
+		for (const detail of [
+			"tree rooting",
+			"January 2019 Gold",
+			"1..10000",
+			"N-1..50000",
+			"four marked learner tasks",
+			"toward-barn",
+			"do not reroute",
+			"iterative postorder",
+			"40",
+			"101 to 61",
+			"preserve earlier output",
+			"O(N²)"
+		])
+			expect(item.content).toContain(detail);
+		expect(item.content).not.toContain("rm -f");
+		expect(item.content).not.toContain("sample.in");
+		for (const role of ["starter", "reference"]) {
+			const instructions = javaNativeBuildInstructions(
+				`usaco-gold:${shortcutSavedItemId}:${role}`
+			)!.join("\n");
+			for (const detail of [
+				"javac --release 17",
+				"shortcut.in",
+				"shortcut.out",
+				"preserve an earlier answer",
+				"tree-traffic algorithm",
+				"Keep usual shortest routes fixed"
+			])
+				expect(instructions).toContain(detail);
+		}
+		for (const key of [
+			`usaco-gold:${shortcutSavedItemId}:solution`,
+			`usaco-gold:${shortcutSavedItemId}:starter:extra`,
+			`java-level-1:${shortcutSavedItemId}:starter`
+		])
+			expect(javaNativeBuildInstructions(key)).toBeNull();
+		useAppStore().currentTutor = {} as never;
+		const staff = (await useCoursesStore().loadCourseById("usaco-gold"))!;
+		const reference = staff.modules
+			.flatMap(module => [
+				...module.curriculum,
+				...module.supplementalProjects
+			])
+			.find(item => item.id === shortcutSavedItemId)!;
+		expect(reference.solutionLink).toContain(
+			"/tree/27e470c08a053c265fcadd619776bcb4b8d0d9df/UG11-Shortcut/solution"
+		);
+		expect(reference.id).toBe(item.id);
+	});
+
 	it("keeps Roadblock's saved identity after core graph work with separate consent-based roles", async () => {
 		const course = (await useCoursesStore().loadCourseById("usaco-gold"))!;
 		const graph = course.modules.find(module =>
@@ -500,7 +579,8 @@ describe("restored USACO project workflows", () => {
 									"UG9-Dijkstras-Algorithm-II",
 									"UG-Milk-Visits",
 									"UG-Time-is-Mooney",
-									"UG10-Roadblock"
+									"UG10-Roadblock",
+									"UG11-Shortcut"
 								].includes(pack.folder)
 								? "javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java"
 								: "javac -encoding UTF-8 Main.java"
