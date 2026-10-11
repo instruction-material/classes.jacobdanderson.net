@@ -2260,7 +2260,7 @@ describe("course text quality normalization", () => {
 			"Dynamic Programming Practice: Practice Studio"
 		);
 		expect(corpus).toContain("Hamming Codes Transfer Practice");
-		expect(corpus).toContain("MST II Extension Practice");
+		expect(corpus).toContain("MST II: Extension");
 	});
 
 	it("keeps C++ placement appendices level-specific across Levels 1-3", async () => {

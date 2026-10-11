@@ -117,11 +117,11 @@ describe("USACO Gold learner flow", () => {
 			"Dynamic Programming Practice: Core Project",
 			"Hoof Paper Scissors: Core Project",
 			"Why Did the Cow Cross the Road: Core Project",
-			"Cow Routing: Core Project",
+			"Cow Routing: First Implementation",
 			"MST II: Core Project",
-			"Watering the Fields: Core Project",
-			"I Would Walk 500 Miles: Core Project",
-			"Talent Show: Core Project"
+			"Watering the Fields: First Implementation",
+			"I Would Walk 500 Miles: First Implementation",
+			"Talent Show: First Implementation"
 		]) {
 			expect(optionTitles, title).toContain(title);
 		}

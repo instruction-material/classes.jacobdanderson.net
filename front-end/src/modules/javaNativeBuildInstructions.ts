@@ -1,3 +1,7 @@
+import {
+	goldHistoricalAssignment,
+	historicalNativeInstructions
+} from "./usacoHistoricalPacks";
 // These saved identities belong to the verified native Gold lessons.
 // Other Java and Karel lessons retain their existing teaching previews.
 import {
@@ -92,7 +96,17 @@ const fruitFeastItem =
 	"usaco-gold-unit-1-dynamic-programming-knapsack-and-state-design-supplemental-problem-fruit-feast";
 
 export function javaNativeBuildInstructions(courseProjectKey?: string) {
-	const [course, item, role, extra] = (courseProjectKey ?? "").split(":");
+	const parts = (courseProjectKey ?? "").split(":");
+	const [course, item, role, extra] = parts;
+	const historical = goldHistoricalAssignment(item ?? "");
+	if (
+		course === "usaco-gold" &&
+		historical &&
+		["starter", "reference"].includes(role ?? "") &&
+		(parts.length === 3 || (parts.length === 4 && extra === "native-java"))
+	) {
+		return historicalNativeInstructions(historical);
+	}
 	const implementationLab = goldImplementationLabForItem(item ?? "");
 	if (
 		course !== "usaco-gold" ||

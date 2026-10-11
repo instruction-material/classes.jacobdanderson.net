@@ -44,6 +44,7 @@ import {
 	isGitHubRepositoryUrl,
 	isScratchProjectUrl
 } from "@/modules/resourceUrls";
+import { goldHistoricalProjectKey } from "@/modules/usacoHistoricalPacks";
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
 import {
@@ -1565,7 +1566,12 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 	const params = new URLSearchParams({
 		course: selectedCourse.value.id,
 		mode,
-		projectKey: `${selectedCourse.value.id}:${item.id}:${resource.kind === "solution" ? "reference" : "starter"}`,
+		projectKey: goldHistoricalProjectKey(
+			selectedCourse.value.id,
+			item.id,
+			resource.kind === "solution" ? "reference" : "starter",
+			resource.url
+		),
 		starterUrl: resource.url,
 		starterTitle: item.title,
 		starterLabel: resource.label,

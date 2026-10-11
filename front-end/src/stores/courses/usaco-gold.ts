@@ -1,5 +1,10 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
 import {
+	goldHistoricalAssignment,
+	goldHistoricalAssignments,
+	goldHistoricalTopics
+} from "../../modules/usacoHistoricalPacks";
+import {
 	goldImplementationLabRevision,
 	goldImplementationLabs
 } from "../../modules/usacoImplementationLabs";
@@ -1917,5 +1922,47 @@ for (const module of usacoGoldCourse.modules) {
 			lab.itemIds[item.title.includes("Extension Challenge") ? 1 : 0];
 		item.projectLink = `https://github.com/instruction-material/USACO-Gold/tree/${goldImplementationLabRevision}/${lab.folder}/starter`;
 		item.solutionLink = `https://github.com/instruction-material/USACO-Gold/tree/${goldImplementationLabRevision}/${lab.folder}/solution`;
+	}
+}
+
+// Redirect only observed assignments; older saved source projects remain available.
+for (const module of usacoGoldCourse.modules) {
+	for (const item of [...module.curriculum, ...module.supplementalProjects]) {
+		const assignment = goldHistoricalAssignments.find(
+			entry =>
+				item.projectLink?.includes(`/${entry.previousFolder}`) &&
+				(!entry.previousTitle ||
+					item.title.includes(entry.previousTitle))
+		);
+		if (assignment) {
+			const { pack } = goldHistoricalAssignment(assignment.id)!;
+			item.id = assignment.id;
+			item.title = assignment.title;
+			item.learningPath =
+				assignment.variant === "first" ? "choice" : "challenge";
+			item.projectLink = `https://github.com/instruction-material/USACO-Gold/tree/${pack.revision}/${pack.folder}/starter`;
+			item.solutionLink = `https://github.com/instruction-material/USACO-Gold/tree/${pack.revision}/${pack.folder}/solution`;
+		}
+		const topic = goldHistoricalTopics.find(
+			pack =>
+				item.title === `${pack.title}: Core Concepts` ||
+				item.title === `${pack.title}: Guided Example`
+		);
+		if (topic) {
+			item.content = item.title.endsWith("Core Concepts")
+				? [
+						topic.purpose,
+						"## Contract",
+						topic.contract,
+						"## State and reasoning",
+						topic.model
+					].join("\n\n")
+				: [
+						topic.prediction,
+						"Predict one transition before coding, then trace and explain it independently or with an instructor.",
+						topic.tasks,
+						topic.checks
+					].join("\n\n");
+		}
 	}
 }
