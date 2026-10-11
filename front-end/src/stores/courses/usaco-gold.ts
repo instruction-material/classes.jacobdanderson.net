@@ -1,4 +1,5 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
+import { matrixDijkstraSavedItemId } from "../../modules/usacoProjectResources";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { buildProjectGuidance } from "./projectGuidance";
 import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
@@ -945,12 +946,13 @@ const usacoGoldSourceCourse: RawCourse = {
 						"https://github.com/instruction-material/USACO-Gold/tree/main/UG8-Bookshelf/solution"
 				},
 				{
-					title: "Dijkstras Algorithm II",
+					id: matrixDijkstraSavedItemId,
+					title: "Dijkstra II: Matrix Representation Comparison",
 					content: buildProjectGuidance({
 						courseFamily: "USACO Gold",
 						moduleTitle:
-							"Why Did the Cow Cross the Road: Practice Studio",
-						projectKind: "core",
+							"Dijkstra II: Matrix Representation Comparison",
+						projectKind: "extension",
 						hasReference: true
 					}),
 					projectLink:
