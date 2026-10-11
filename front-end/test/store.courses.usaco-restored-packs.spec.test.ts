@@ -69,9 +69,7 @@ describe("restored USACO project workflows", () => {
 						javaNativeBuildInstructions(
 							`usaco-gold:${id}:${role}`
 						)?.join("\n")
-					).toContain(
-						"does not execute this native Java exercise"
-					);
+					).toContain("does not execute this native Java exercise");
 				}
 				expect(
 					javaNativeBuildInstructions(`usaco-gold:${id}:solution`)
@@ -564,7 +562,7 @@ describe("restored USACO project workflows", () => {
 		for (const [id, repo, folder] of [
 			["usaco-bronze", "USACO-Bronze", "UB1-Square-Pasture-Java"],
 			["usaco-silver", "USACO-Silver", "US8-Arithmetic-Progressions"],
-			["usaco-gold", "USACO-Gold", "UG6-248"]
+			["usaco-gold", "USACO-Gold", "UG4-Cow-Checklist"]
 		]) {
 			expect(
 				pythonIdeModeForCourseResource(
@@ -666,7 +664,11 @@ describe("restored USACO project workflows", () => {
 									"UG11-Shortcut",
 									"UG1-Dynamic-Programming-Practice",
 									"UG14-MST-II",
-									"UG19-Disjoint-Sets-and-Kruskals"
+									"UG19-Disjoint-Sets-and-Kruskals",
+									"UG15-Superbull",
+									"UG17-Moocast",
+									"UG6-248",
+									"UG20-Fenced-In"
 								].includes(pack.folder)
 								? "javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java"
 								: "javac -encoding UTF-8 Main.java"
