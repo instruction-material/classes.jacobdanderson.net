@@ -2,6 +2,7 @@ import {
 	goldImplementationLabForFolder,
 	goldImplementationLabRevision
 } from "./usacoImplementationLabs";
+import { goldSpanningIntervalPack } from "./usacoSpanningIntervalPacks";
 
 // Immutable native source accepted independently on JDK 17 and 21.
 export const goldHistoricalPacks = [
@@ -313,12 +314,14 @@ export function goldHistoricalProjectKey(
 	sourceUrl: string
 ) {
 	const base = `${courseId}:${itemId}:${role}`;
-	const assignment = goldHistoricalAssignment(itemId);
+	const pack =
+		goldHistoricalAssignment(itemId)?.pack ??
+		goldSpanningIntervalPack(itemId);
 	const pathRole = role === "reference" ? "solution" : "starter";
 	return courseId === "usaco-gold" &&
-		assignment &&
+		pack &&
 		sourceUrl ===
-			`https://github.com/instruction-material/USACO-Gold/tree/${assignment.pack.revision}/${assignment.pack.folder}/${pathRole}`
+			`https://github.com/instruction-material/USACO-Gold/tree/${pack.revision}/${pack.folder}/${pathRole}`
 		? `${base}:native-java`
 		: base;
 }
