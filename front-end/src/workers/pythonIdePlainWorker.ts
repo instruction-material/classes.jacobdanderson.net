@@ -293,7 +293,7 @@ from pathlib import Path
 
 __classes_root = Path(${escapePythonString(PROJECT_ROOT)})
 __classes_files = []
-__classes_text_suffixes = {".csv", ".in", ".json", ".md", ".py", ".svg", ".txt"}
+__classes_text_suffixes = {".csv", ".expected", ".in", ".json", ".md", ".out", ".py", ".svg", ".txt"}
 for __classes_path in sorted(__classes_root.rglob("*")):
     if not __classes_path.is_file():
         continue

@@ -101,6 +101,7 @@ import {
 	startPythonSandbox,
 	unchangedRunFiles
 } from "@/modules/pythonSandbox";
+import { bronzePythonFileIoForKey } from "@/modules/usacoBronzeRequiredPacks";
 import { useAppStore } from "@/stores/app";
 
 const props = withDefaults(
@@ -1017,6 +1018,13 @@ const selectedNativeJavaInstructions = computed(() => {
 	const project = selectedProject.value;
 	return project?.mode === "java"
 		? javaNativeBuildInstructions(project.courseProjectKey)
+		: null;
+});
+
+const selectedPythonFileIoPack = computed(() => {
+	const project = selectedProject.value;
+	return project?.mode === "python"
+		? bronzePythonFileIoForKey(project.courseProjectKey)
 		: null;
 });
 
@@ -7682,7 +7690,9 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 			@change="importBlueJProjectArchiveFromInput"
 		/>
 		<WorkspaceHeader title="Code workspace">
-			<template #title><IdeEnvironmentSelect /></template>
+			<template #title>
+				<IdeEnvironmentSelect />
+			</template>
 			<button
 				type="button"
 				class="site-button site-button--secondary compact-button"
@@ -7711,8 +7721,9 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 			<RouterLink
 				v-if="requestedCourseId"
 				:to="{ path: '/courses', hash: returnLessonHash }"
-				>Return to lesson</RouterLink
 			>
+				Return to lesson
+			</RouterLink>
 		</WorkspaceHeader>
 		<IdeStarterPicker
 			:open="showProjectMenu"
@@ -8249,7 +8260,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 								<WorkspaceDisclosure
 									class="ide-diagnostics-settings"
 								>
-									<template #label>Diagnostics</template>
+									<template #label> Diagnostics </template>
 									<IdeDiagnosticsControls
 										:capture="captureIdeDiagnostics"
 									/>
@@ -8317,7 +8328,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 					class="bluej-integration-panel"
 					aria-label="BlueJ integration"
 				>
-					<template #label>BlueJ desktop integration</template>
+					<template #label> BlueJ desktop integration </template>
 					<div>
 						<p class="bluej-integration-eyebrow">BlueJ</p>
 						<h2>BlueJ Desktop Integration</h2>
@@ -8468,7 +8479,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 									class="editor-shortcuts"
 									popover
 								>
-									<template #label>Shortcuts</template>
+									<template #label> Shortcuts </template>
 									<ul>
 										<li>Cmd/Ctrl+F opens search.</li>
 										<li>
@@ -8773,13 +8784,15 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 							:class="{
 								'input-output-grid--source':
 									selectedProject?.mode === 'cpp' ||
-									Boolean(selectedNativeJavaInstructions)
+									Boolean(selectedNativeJavaInstructions) ||
+									Boolean(selectedPythonFileIoPack)
 							}"
 						>
 							<label
 								v-if="
 									selectedProject?.mode !== 'cpp' &&
-									!selectedNativeJavaInstructions
+									!selectedNativeJavaInstructions &&
+									!selectedPythonFileIoPack
 								"
 								class="stdin-panel"
 							>
@@ -8793,6 +8806,25 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 									placeholder="One input, Turtle prompt, or Scanner value per line"
 								/>
 							</label>
+
+							<p
+								v-if="selectedPythonFileIoPack"
+								class="file-io-guidance"
+							>
+								Edit
+								<strong>{{
+									selectedPythonFileIoPack.input
+								}}</strong
+								>, select <strong>main.py</strong>, and choose
+								Run. Open
+								<strong>{{
+									selectedPythonFileIoPack.output
+								}}</strong>
+								after a successful run. On a phone, choose Code
+								to inspect a file or Console to read a failure.
+								An unfinished learner preserves an earlier
+								answer; check completion before using an output.
+							</p>
 
 							<div
 								id="ide-console-output"
@@ -8928,6 +8960,14 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 		rgba(236, 253, 245, 0.86)
 	);
 	box-shadow: var(--shadow-soft);
+}
+
+.file-io-guidance {
+	grid-column: 1 / -1;
+	margin: 0;
+	font-size: 0.875rem;
+	line-height: 1.6;
+	color: var(--color-ink-soft);
 }
 
 .code-ide-eyebrow,

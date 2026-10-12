@@ -44,6 +44,7 @@ import {
 	isGitHubRepositoryUrl,
 	isScratchProjectUrl
 } from "@/modules/resourceUrls";
+import { bronzeRequiredProjectKey } from "@/modules/usacoBronzeRequiredPacks";
 import { goldHistoricalProjectKey } from "@/modules/usacoHistoricalPacks";
 import { silverJavaProjectKey } from "@/modules/usacoSilverJavaPacks";
 import { goldSpanningIntervalLegacyItemId } from "@/modules/usacoSpanningIntervalPacks";
@@ -1574,9 +1575,12 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 	const params = new URLSearchParams({
 		course: selectedCourse.value.id,
 		mode,
-		projectKey: (selectedCourse.value.id === "usaco-silver"
-			? silverJavaProjectKey
-			: goldHistoricalProjectKey)(
+		projectKey: (selectedCourse.value.id === "usaco-bronze" ||
+			selectedCourse.value.id === "usaco-bronze-on-demand"
+			? bronzeRequiredProjectKey
+			: selectedCourse.value.id === "usaco-silver"
+				? silverJavaProjectKey
+				: goldHistoricalProjectKey)(
 			selectedCourse.value.id,
 			item.id,
 			resource.kind === "solution" ? "reference" : "starter",
@@ -1772,7 +1776,9 @@ function writeStoredValue(key: string, value: string) {
 
 <template>
 	<section class="course-explorer">
-		<p class="sr-only" aria-live="polite">{{ courseReaderStatus }}</p>
+		<p class="sr-only" aria-live="polite">
+			{{ courseReaderStatus }}
+		</p>
 		<div v-if="hasCourseAccess" class="course-shell">
 			<div class="course-navigation-controls">
 				<div
@@ -1923,7 +1929,9 @@ function writeStoredValue(key: string, value: string) {
 					class="course-outline"
 					:class="{ 'is-open': outlineOpen }"
 				>
-					<div class="outline-header"><h3>Lessons</h3></div>
+					<div class="outline-header">
+						<h3>Lessons</h3>
+					</div>
 					<a
 						v-if="ideCourseHref"
 						class="course-ide-link"
@@ -2415,7 +2423,9 @@ function writeStoredValue(key: string, value: string) {
 
 		<div v-else class="course-empty">
 			<p>{{ emptyTitle }}</p>
-			<p class="hint">{{ emptyHint }}</p>
+			<p class="hint">
+				{{ emptyHint }}
+			</p>
 		</div>
 
 		<dialog
@@ -2468,7 +2478,7 @@ function writeStoredValue(key: string, value: string) {
 						sandbox="allow-scripts allow-same-origin"
 						title="Scratch solution player"
 						width="485"
-					></iframe>
+					/>
 				</div>
 				<p class="scratch-solution-exit-help">
 					When keyboard focus is inside Scratch, press Tab until

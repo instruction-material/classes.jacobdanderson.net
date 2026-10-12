@@ -5107,7 +5107,7 @@ __classes_reserved_files = {
     "zrect.py",
 }
 __classes_reserved_dirs = {"__pycache__", "keras", "pgzero", "tensorflow"}
-__classes_text_suffixes = {".csv", ".eps", ".in", ".json", ".md", ".ps", ".py", ".svg", ".txt"}
+__classes_text_suffixes = {".csv", ".eps", ".expected", ".in", ".json", ".md", ".out", ".ps", ".py", ".svg", ".txt"}
 __classes_files = []
 
 for __classes_path in sorted(__classes_project_root.rglob("*")):

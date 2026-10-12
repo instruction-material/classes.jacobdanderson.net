@@ -1,4 +1,8 @@
 import {
+	bronzeRequiredAssignment,
+	bronzeRequiredNativeInstructions
+} from "./usacoBronzeRequiredPacks";
+import {
 	goldHistoricalAssignment,
 	historicalNativeInstructions
 } from "./usacoHistoricalPacks";
@@ -117,6 +121,14 @@ export function javaNativeBuildInstructions(
 ): string[] | null {
 	const parts = (courseProjectKey ?? "").split(":");
 	const [course, item, role, extra] = parts;
+	const bronze = bronzeRequiredAssignment(course ?? "", item ?? "");
+	if (
+		bronze?.pack.mode === "java" &&
+		["starter", "reference"].includes(role ?? "") &&
+		(parts.length === 3 || (parts.length === 4 && extra === "native-java"))
+	) {
+		return bronzeRequiredNativeInstructions(bronze);
+	}
 	const foundation = silverFoundationAssignment(item ?? "");
 	if (
 		course === "usaco-silver" &&

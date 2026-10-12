@@ -1,6 +1,7 @@
 import type { PythonIdeProject } from "./pythonIde";
 import { courseCatalog } from "@/stores/courses/index";
 import { getPythonIdeProjectKindLabel } from "./pythonIde";
+import { bronzePythonFileIoForKey } from "./usacoBronzeRequiredPacks";
 
 type ProjectLabelMetadata = Pick<
 	PythonIdeProject,
@@ -16,8 +17,11 @@ export function getCodeIdeProjectSubtitle(project: ProjectLabelMetadata) {
 	const supportedShape =
 		parts.length === 3 ||
 		(parts.length === 4 &&
-			variant === "native-java" &&
-			project.mode === "java");
+			((variant === "native-java" && project.mode === "java") ||
+				(project.mode === "python" &&
+					Boolean(
+						bronzePythonFileIoForKey(project.courseProjectKey)
+					))));
 	const courseMatches =
 		project.courseID === undefined || project.courseID === courseID;
 	const knownRole =

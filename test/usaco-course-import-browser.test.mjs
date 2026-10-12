@@ -1,3 +1,5 @@
+import { verifyBronzeRequiredExport } from "./usaco-bronze-required-native.mjs";
+import { verifyBronzePythonBrowser } from "./usaco-bronze-required-browser.mjs";
 import { verifySilverFoundationExport } from "./usaco-silver-foundation-native.mjs";
 import { verifySilverJavaExport } from "./usaco-silver-java-native.mjs";
 import { verifyRequiredCorePackExport } from "./usaco-required-core-native.mjs";
@@ -26,9 +28,20 @@ import { confirmProjectImport, downloadProjectZip, openProjectSidebar } from "./
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
 const taskId = process.env.CLASSES_FAMILY_TASK_ID ?? "usaco-course-import-browser-ci";
 // Sequential imports include native boundary checks and both viewport captures.
-// All 164 imports plus native guards took 17 minutes on the hosted runner.
+// The accepted 164-import suite took 17 minutes; 36 new imports also execute
+// named-file Python workers, completed tasks and changed cases.
 // Keep the full run bounded with room for slower runners and cleanup.
-const browserWorkflowTimeoutMs = 25 * 60 * 1000;
+const browserWorkflowTimeoutMs = 40 * 60 * 1000;
+const focusedBronze = process.env.COURSE_IMPORT_SCOPE === "bronze-required";
+assert.ok(!process.env.COURSE_IMPORT_SCOPE || focusedBronze, "Unknown local acceptance scope");
+assert.ok(!focusedBronze || !process.env.CI, "Hosted CI must verify every USACO fixture");
+const selectedFixtures = focusedBronze ? usacoFixtures.filter(fixture => fixture.bronzeRequiredPack) : usacoFixtures;
+const selectedPackCount = new Set(selectedFixtures.map(fixture => `${fixture.repository}/${fixture.folder.split("/")[0]}`)).size;
+assert.equal(usacoFixtures.length, 200);
+assert.equal(new Set(usacoFixtures.map(fixture => `${fixture.repository}/${fixture.folder.split("/")[0]}`)).size, 58);
+// Cache only immutable, hash-verified test-source bytes. Every browser action,
+// request-count assertion, native role check and saved-attempt check still runs.
+const sourceCache = new Map();
 const changes = {
 	"UG23-Balanced-Photo": ["3\n1\n3\n2\n", "2\n"],
 	"UG25-Sleepy-Cow-Sorting": ["3\n3 2 1\n", "2\n2 1"],
@@ -170,6 +183,8 @@ function verifyStdioAnswer(fixture, input, output, expected) {
 }
 
 async function sourceFiles(fixture) {
+	const identity = JSON.stringify([fixture.repository, fixture.revision, fixture.folder, fixture.hashes]);
+	if (sourceCache.has(identity)) return { ...sourceCache.get(identity) };
 	const files = {};
 	for (const [name, hash] of Object.entries(fixture.hashes)) {
 		const url = `https://raw.githubusercontent.com/${fixture.repository}/${fixture.revision}/${fixture.folder}/${name}`;
@@ -179,6 +194,7 @@ async function sourceFiles(fixture) {
 		assert.equal(createHash("sha256").update(bytes).digest("hex"), hash, url);
 		files[name] = new TextDecoder().decode(bytes);
 	}
+	sourceCache.set(identity, { ...files });
 	return files;
 }
 
@@ -792,12 +808,22 @@ class Probe {
     record("verified-roadblock-native-role",{ role: fixture.reference ? "reference" : "learner", fileCases: cases.length, tinyIndependentGraphs: tinyCount, maximumDensityCases: fixture.reference ? 3 : 0, maximumFields: fixture.reference ? 250 : 8, suppliedHelperPaths: !fixture.reference, baselineParentsPreserved: !fixture.reference, failedAndSuccessiveTrialsRestored: !fixture.reference, standaloneContract: true, previousAnswerPreserved: !fixture.reference, learnerRemainsUnfinished: !fixture.reference, sourceFilesUnchanged: true });
 }
 
+async function bronzeReferenceSource(fixture) {
+	const reference = usacoFixtures.find(other => other.bronzeRequiredPack === fixture.bronzeRequiredPack && other.reference);
+	assert.ok(reference);
+	return (await sourceFiles(reference))[reference.mainFile];
+}
+
 async function verifyNativeExport(fixture, files, directory) {
 	await mkdir(directory);
 	for (const [name, content] of Object.entries(files)) {
         await mkdir(dirname(join(directory,name)), {recursive:true});
         await writeFile(join(directory, name), content);
     }
+	if (fixture.bronzeRequiredPack) {
+		await verifyBronzeRequiredExport(fixture, files, directory, { runNative, record, referenceSource: await bronzeReferenceSource(fixture) });
+		return;
+	}
 	if (fixture.mode === "java") {
 		if (fixture.silverFoundationPack) {
 			await verifySilverFoundationExport(fixture, files, directory, runNative, record);
@@ -1160,33 +1186,35 @@ nodeTest(
 			verifyKnapsackAnswer("Max value: 9\nItem indicies in knapsack: [2, 1]\n", [1, 3, 4, 5], [1, 4, 5, 7], 7);
 			assert.throws(() => verifyKnapsackAnswer("Max value: 6\nItem indices in knapsack: [0, 0]\n", [2], [3], 4));
 			assert.throws(() => verifyKnapsackAnswer("Max value: 7\nItem indices in knapsack: [3]\n", [1, 3, 4, 5], [1, 4, 5, 7], 7));
-			for (const fixture of usacoFixtures) {
+			for (const fixture of selectedFixtures) {
 				const key = `${fixture.repository}/${fixture.folder}`;
 				if (verified.has(key)) continue;
 				await verifyNativeExport(fixture, await sourceFiles(fixture), join(temporary, String(verified.size)));
 				verified.add(key);
 			}
-			assert.equal(verified.size, 100);
+			assert.equal(verified.size, selectedPackCount * 2);
 			record("verified-usaco-pinned-native-contracts", {
 				roles: verified.size,
-				packs: 50,
+				localFocusedScope: focusedBronze,
+				bronzeRequiredPacks: selectedFixtures.some(fixture => fixture.bronzeRequiredPack),
+				packs: selectedPackCount,
 				nativeJava: true,
 				samplesAndChangedInputs: true,
-				ordinaryAndSanitizedCpp: true,
-				nativeStdio: true,
-				anyOptimalFeedingLayout: true,
-				anyOptimalSleepyPlan: true,
-				goldBidirectionalSweepsAndDuplicates: true,
-				knapsackNoInputDemonstration: true,
-				anyOptimalKnapsackSubset: true,
-				fruitFeastIndependentStateSearch: true,
-				matrixDijkstraIndependentDistancesAndPaths: true,
-				matrixDijkstraLongParallelAndUnreachable: true,
-				milkVisitsIndependentPathsAndDefaultStack: true,
-				timeMooneyIndependentDaysAndNoTrip: true,
-				roadblockIndependentAllRoadsAndRestoredTrials: true,
-				shortcutIndependentRoutesTrafficAndLongSavings: true,
-				implementationLabsIndependentDpAndTreeModels: true
+				ordinaryAndSanitizedCpp: !focusedBronze,
+				nativeStdio: !focusedBronze,
+				anyOptimalFeedingLayout: !focusedBronze,
+				anyOptimalSleepyPlan: !focusedBronze,
+				goldBidirectionalSweepsAndDuplicates: !focusedBronze,
+				knapsackNoInputDemonstration: !focusedBronze,
+				anyOptimalKnapsackSubset: !focusedBronze,
+				fruitFeastIndependentStateSearch: !focusedBronze,
+				matrixDijkstraIndependentDistancesAndPaths: !focusedBronze,
+				matrixDijkstraLongParallelAndUnreachable: !focusedBronze,
+				milkVisitsIndependentPathsAndDefaultStack: !focusedBronze,
+				timeMooneyIndependentDaysAndNoTrip: !focusedBronze,
+				roadblockIndependentAllRoadsAndRestoredTrials: !focusedBronze,
+				shortcutIndependentRoutesTrafficAndLongSavings: !focusedBronze,
+				implementationLabsIndependentDpAndTreeModels: !focusedBronze
 			});
 		}
 		finally {
@@ -1288,7 +1316,7 @@ nodeTest(
 					void request.continue();
 				}
 			});
-			for (const [index, current] of usacoFixtures.entries()) {
+			for (const [index, current] of selectedFixtures.entries()) {
 				fixture = current;
 				files = await sourceFiles(fixture);
 				const sourceUrl = `https://github.com/${fixture.repository}/tree/${fixture.catalogRevision ?? "main"}/${fixture.folder}`;
@@ -1333,14 +1361,14 @@ nodeTest(
 				}
 				if (fixture.mode === "java") {
 					assert.match(card.text, /JDK 17 or newer/);
-					assert.match(card.text, fixture.silverJavaPack || fixture.silverFoundationPack || fixture.requiredCorePack || fixture.spanningIntervalPack || fixture.historicalPack || fixture.implementationLab ? /does not execute this native Java exercise/ : fixture.shortcutPack ? /does not execute this file-I\/O\/tree-traffic program/ : fixture.roadblockPack ? /does not execute this file-I\/O\/sensitivity program/ : fixture.treeTimePack === "milk-visits" ? /does not execute this file-I\/O\/tree-path program/ : fixture.treeTimePack === "time-mooney" ? /does not execute this file-I\/O\/graph-DP program/ : fixture.demonstration ? /does not execute the DP or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute this file-I\/O\/dynamic-programming program/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute this file-I\/O\/offline-connectivity program/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute this file-I\/O\/ordering program/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute this file-I\/O\/shortest-path program/ : /does not execute this file-I\/O\/priority-queue program/);
+					assert.match(card.text, fixture.bronzeRequiredPack ? /does not execute this native file-I\/O exercise/ : fixture.silverJavaPack || fixture.silverFoundationPack || fixture.requiredCorePack || fixture.spanningIntervalPack || fixture.historicalPack || fixture.implementationLab ? /does not execute this native Java exercise/ : fixture.shortcutPack ? /does not execute this file-I\/O\/tree-traffic program/ : fixture.roadblockPack ? /does not execute this file-I\/O\/sensitivity program/ : fixture.treeTimePack === "milk-visits" ? /does not execute this file-I\/O\/tree-path program/ : fixture.treeTimePack === "time-mooney" ? /does not execute this file-I\/O\/graph-DP program/ : fixture.demonstration ? /does not execute the DP or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute this file-I\/O\/dynamic-programming program/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute this input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute this file-I\/O\/matrix program/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute this file-I\/O\/offline-connectivity program/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute this file-I\/O\/ordering program/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute this file-I\/O\/shortest-path program/ : /does not execute this file-I\/O\/priority-queue program/);
 					if (fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/")) {
 						assert.match(card.text, /Keep the included dijkstra.in beside Main.java/);
 						assert.match(card.text, /javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java/);
 						assert.match(card.text, /java -ea -Xmx256m Main/);
 						assert.doesNotMatch(card.text, /sample.in|rm -f dijkstra.out|file-I\/O\/ordering program/);
 					}
-					assert.match(card.text, fixture.lessonView === 1 ? /Required implementation checkpoint/ : /optional practice/);
+					assert.match(card.text, fixture.bronzeRequiredPack ? fixture.lessonView === 1 ? /Required implementation checkpoint/ : /Optional changed-case reconstruction/ : fixture.lessonView === 1 ? /Required implementation checkpoint/ : /optional practice/);
 				}
 
                 if (fixture.treeTimePack) {
@@ -1387,19 +1415,33 @@ nodeTest(
 					const link = await page.$(selector);
 					const element = await link.evaluateHandle(element => element.closest(".lesson-item"));
 					await captureLessonScreenshot(page, element.asElement(), join(directory, `course-import-usaco-${screenshotKey}-lesson.png`));
-                    if (fixture.spanningIntervalPack || fixture.requiredCorePack || fixture.silverJavaPack || fixture.silverFoundationPack) {
+                    if (fixture.bronzeRequiredPack || fixture.spanningIntervalPack || fixture.requiredCorePack || fixture.silverJavaPack || fixture.silverFoundationPack) {
                         await page.setViewport({width:index % 2 ? 390 : 1280,height:900});
                         await captureLessonScreenshot(page, element.asElement(), join(directory,`course-import-usaco-${screenshotKey}-opposite-lesson.png`));
                         await page.setViewport({width:index % 2 ? 1280 : 390,height:900});
                     }
+                    if (fixture.bronzeRequiredPack) {
+                        await page.evaluate(() => document.documentElement.classList.add("dark"));
+                        for (const width of [390, 1280]) {
+                            await page.setViewport({width,height:900});
+                            await captureLessonScreenshot(page, element.asElement(), join(directory, `course-import-usaco-${screenshotKey}-dark-${width}-lesson.png`));
+                        }
+                        await page.evaluate(() => document.documentElement.classList.remove("dark"));
+                        await page.setViewport({width:index % 2 ? 1280 : 390,height:900});
+                    }
+
 				}
 
                 let legacy;
                 if (fixture.projectKeySuffix) {
+                    const priorMode = fixture.previousMode ?? "cpp";
+                    const priorMain = priorMode === "python" ? "main.py" : priorMode === "java" ? "Main.java" : "main.cpp";
+                    const priorFiles = [{ name: priorMain, content: priorMode === "python" ? `# Earlier learner edit ${index}\nprint("saved attempt")\n` : priorMode === "java" ? `// Earlier learner edit ${index}\nclass Main {}\n` : `// Earlier learner edit ${index}\nint main() { return 0; }\n` }, { name: "README.md", content: "Previous attempt notes and predictions\n" }];
+                    if (fixture.bronzeRequiredPack) priorFiles.push({ name: fixture.input, content: "Earlier independent input\n" }, { name: fixture.output, content: "Earlier independent answer\n" });
                     legacy = {
-                        _id: `local-preserved-cpp-${index}`, title: `Saved C++ attempt ${index}`, mode: "cpp",
-                        files: [{name:"main.cpp", content:`// Earlier learner edit ${index}\nint main() { return 0; }\n`}, {name:"README.md",content:"Previous attempt notes and predictions\n"}],
-                        activeFileName:"main.cpp",courseID:fixture.courseId,courseProjectKey:legacyKey,
+                        _id: `local-preserved-${priorMode}-${index}`, title: `Saved ${priorMode} attempt ${index}`, mode: priorMode,
+                        files: priorFiles,
+                        activeFileName:priorMain,courseID:fixture.courseId,courseProjectKey:legacyKey,
                         courseProjectTitle:"Previous practice",starterLabel:"Previous source",starterUrl:fixture.previousSourceUrl,
                         shared:false,createdAt:"2026-10-01T12:00:00.000Z",updatedAt:"2026-10-02T12:00:00.000Z"
                     };
@@ -1410,6 +1452,9 @@ nodeTest(
                         // Match real saved attempts in both the primary store and its fallback.
                         const db=await new Promise((resolve,reject)=> {
                             const request=indexedDB.open("classes-python-ide",1);
+                            request.onupgradeneeded=()=> {
+                                if (!request.result.objectStoreNames.contains("projectStores")) request.result.createObjectStore("projectStores", {keyPath:"key"});
+                            };
                             request.onsuccess=()=>resolve(request.result);
                             request.onerror=()=>reject(request.error);
                         });
@@ -1458,8 +1503,8 @@ nodeTest(
 					await page.waitForFunction(() => document.querySelector("[data-testid='ide-run-status']")?.textContent.trim() === "Native build instructions");
 					assert.equal(await page.$(".stdin-panel"), null, "Native Java must not offer browser Turtle/Scanner input");
 					const output = await page.$eval(".output-panel", element => element.textContent);
-					assert.match(output, fixture.silverJavaPack || fixture.silverFoundationPack ? /javac --release 17 -encoding UTF-8 -Xlint:all -Werror -d target\/classes (?:src\/main\/java\/)?Main.java/ : fixture.requiredCorePack || fixture.spanningIntervalPack || fixture.historicalPack || fixture.implementationLab || fixture.shortcutPack || fixture.roadblockPack || fixture.treeTimePack || fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java/ : /javac -encoding UTF-8 Main.java/);
-					assert.match(output, fixture.silverJavaPack || fixture.silverFoundationPack || fixture.requiredCorePack || fixture.spanningIntervalPack || fixture.historicalPack || fixture.implementationLab ? /does not execute this native Java exercise/ : fixture.shortcutPack ? /does not execute its file I\/O or tree-traffic algorithm/ : fixture.roadblockPack ? /does not execute its file I\/O or sensitivity algorithm/ : fixture.treeTimePack === "milk-visits" ? /does not execute its file I\/O or tree-path algorithm/ : fixture.treeTimePack === "time-mooney" ? /does not execute its file I\/O or graph DP algorithm/ : fixture.demonstration ? /does not execute its dynamic programming or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute its file I\/O or dynamic programming/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute its file I\/O or offline connectivity algorithm/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute its file I\/O or ordering algorithm/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute its file I\/O or shortest-path algorithm/ : /does not execute its file I\/O or priority queue/);
+					assert.match(output, fixture.bronzeRequiredPack || fixture.silverJavaPack || fixture.silverFoundationPack ? /javac --release 17 -encoding UTF-8 -Xlint:all -Werror -d target\/classes (?:src\/main\/java\/)?Main.java/ : fixture.requiredCorePack || fixture.spanningIntervalPack || fixture.historicalPack || fixture.implementationLab || fixture.shortcutPack || fixture.roadblockPack || fixture.treeTimePack || fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /javac --release 17 -encoding UTF-8 -Xlint:all -Werror Main.java/ : /javac -encoding UTF-8 Main.java/);
+					assert.match(output, fixture.bronzeRequiredPack ? /does not execute this native file-I\/O exercise/ : fixture.silverJavaPack || fixture.silverFoundationPack || fixture.requiredCorePack || fixture.spanningIntervalPack || fixture.historicalPack || fixture.implementationLab ? /does not execute this native Java exercise/ : fixture.shortcutPack ? /does not execute its file I\/O or tree-traffic algorithm/ : fixture.roadblockPack ? /does not execute its file I\/O or sensitivity algorithm/ : fixture.treeTimePack === "milk-visits" ? /does not execute its file I\/O or tree-path algorithm/ : fixture.treeTimePack === "time-mooney" ? /does not execute its file I\/O or graph DP algorithm/ : fixture.demonstration ? /does not execute its dynamic programming or traceback/ : fixture.dpPack === "fruit-feast" ? /does not execute its file I\/O or dynamic programming/ : fixture.folder.startsWith("UG0-Contest-Contract/") ? /does not execute this native input\/output checkpoint/ : fixture.stdio ? /does not execute its input-driven data structure/ : fixture.folder.startsWith("UG14-MST/") ? /does not execute its file I\/O or matrix algorithm/ : fixture.folder.startsWith("UG21-Moo-Tube/") ? /does not execute its file I\/O or offline connectivity algorithm/ : fixture.orderingPack || fixture.fenwickPracticePack ? /does not execute its file I\/O or ordering algorithm/ : fixture.folder.startsWith("UG9-Dijkstras-Algorithm-II/") ? /does not execute its file I\/O or shortest-path algorithm/ : /does not execute its file I\/O or priority queue/);
 					if (fixture.silverFoundationPack) {
 						assert.match(output, new RegExp(`entry class ${fixture.entryClass}`));
 						assert.match(output, /sample.expected/);
@@ -1585,6 +1630,9 @@ nodeTest(
 					}
 				}
 				const expectedFiles = { ...files, [source]: edited };
+				if (fixture.bronzeRequiredPack && fixture.mode === "python") {
+					await verifyBronzePythonBrowser({ page, origin, fixture, files, expectedFiles, key, referenceSource: await bronzeReferenceSource(fixture), directory: join(temporary, `browser-completion-${index}`), runNative, exportedFiles, record });
+				}
 				const exported = await exportedFiles(page);
 				assert.deepEqual(exported, expectedFiles);
 				await verifyNativeExport(fixture, exported, join(temporary, String(index)));
@@ -1598,32 +1646,42 @@ nodeTest(
 				assert.equal(sourceRequests, before + (fixture.directoryRequests ?? 1) + Object.keys(files).length, "Reopening never redownloads or overwrites edits");
 				if (process.env.COURSE_IMPORT_SCREENSHOT_DIR) {
 					await page.screenshot({ path: join(previousDirectory, process.env.COURSE_IMPORT_SCREENSHOT_DIR, `course-import-usaco-${screenshotKey}-workspace.png`) });
-                    if (fixture.spanningIntervalPack || fixture.requiredCorePack || fixture.silverJavaPack || fixture.silverFoundationPack) {
+                    if (fixture.bronzeRequiredPack || fixture.spanningIntervalPack || fixture.requiredCorePack || fixture.silverJavaPack || fixture.silverFoundationPack) {
                         await page.setViewport({width:index % 2 ? 390 : 1280,height:900});
                         await openProjectSidebar(page);
                         await page.screenshot({path:join(previousDirectory,process.env.COURSE_IMPORT_SCREENSHOT_DIR,`course-import-usaco-${screenshotKey}-opposite-workspace.png`)});
                         await page.setViewport({width:index % 2 ? 1280 : 390,height:900});
                     }
+                    if (fixture.bronzeRequiredPack) {
+                        await page.evaluate(() => document.documentElement.classList.add("dark"));
+                        for (const width of [390, 1280]) {
+                            await page.setViewport({width,height:900});
+                            await openProjectSidebar(page);
+                            await page.screenshot({path:join(previousDirectory,process.env.COURSE_IMPORT_SCREENSHOT_DIR, `course-import-usaco-${screenshotKey}-dark-${width}-workspace.png`)});
+                        }
+                        await page.evaluate(() => document.documentElement.classList.remove("dark"));
+                        await page.setViewport({width:index % 2 ? 1280 : 390,height:900});
+                    }
 				}
 
                 if (legacy) {
-                    assert.deepEqual(all.find(item=>item._id===legacy._id),legacy,"The prior C++ mode, identity, notes, code and timestamps survive Java import");
+                    assert.deepEqual(all.find(item=>item._id===legacy._id),legacy,"The prior mode, identity, inputs, answers, notes, code and timestamps survive the new role import");
                     const oldHref = new URL(href,origin);
-                    oldHref.searchParams.set("mode","cpp");oldHref.searchParams.set("projectKey",legacyKey);
+                    oldHref.searchParams.set("mode",legacy.mode);oldHref.searchParams.set("projectKey",legacyKey);
                     oldHref.searchParams.set("starterUrl",fixture.previousSourceUrl);
                     await page.goto(oldHref.href,{waitUntil:"domcontentloaded"});
                     await page.waitForSelector(".code-ide-workspace");
                     assert.equal(await page.$("[data-testid='ide-route-import-confirm']"),null);
                     await openProjectSidebar(page);
                     assert.deepEqual(await exportedFiles(page),Object.fromEntries(legacy.files.map(file=>[file.name,file.content])));
-                    assert.equal(sourceRequests,before+(fixture.directoryRequests??1)+Object.keys(files).length,"Resuming the older C++ attempt must not fetch or overwrite source");
+                    assert.equal(sourceRequests,before+(fixture.directoryRequests??1)+Object.keys(files).length,"Resuming the older attempt must not fetch or overwrite source");
                     await page.goto(new URL(href,origin).href,{waitUntil:"domcontentloaded"});
                     await page.waitForSelector(".code-ide-workspace");
                     assert.equal(await page.$("[data-testid='ide-route-import-confirm']"),null);
                     await openProjectSidebar(page);
                     assert.deepEqual(await exportedFiles(page),expectedFiles);
                     assert.equal(sourceRequests,before+(fixture.directoryRequests??1)+Object.keys(files).length);
-                    record("verified-historical-cpp-java-migration",{itemId:fixture.itemId,role:fixture.reference?"reference":"starter",legacyKey,javaKey:key,preservedCpp:true,resumedBothWithoutFetch:true});
+                    record(fixture.bronzeRequiredPack ? "verified-bronze-saved-role-migration" : "verified-historical-cpp-java-migration",{itemId:fixture.itemId,role:fixture.reference?"reference":"starter",legacyKey,currentKey:key,javaKey:key,priorMode:legacy.mode,preservedCpp:legacy.mode==="cpp",preservedEarlierAttempt:true,resumedBothWithoutFetch:true});
                 }
                 if (fixture.folder.startsWith("UG0-Contest-Contract/") && fixture.lessonView === 2) {
 					catalog = true;
@@ -1653,19 +1711,22 @@ nodeTest(
 					browserStdio: Boolean(fixture.stdio) && fixture.mode === "python",
 					nativeJava: fixture.mode === "java",
 					browserNativeInstructions: fixture.mode === "java",
-					browserInputPanelHidden: fixture.mode === "java"
+					browserInputPanelHidden: fixture.mode === "java" || Boolean(fixture.bronzeRequiredPack)
 				});
 			}
 			assert.equal(remoteWrites, 0);
 			record("verified-usaco-workflows", {
-				imports: usacoFixtures.length,
-				packs: 50,
+				imports: selectedFixtures.length,
+				fullFixtureCount: usacoFixtures.length,
+				localFocusedScope: focusedBronze,
+				packs: selectedPackCount,
 				nativeJava: true,
 				roleSeparation: true,
 				consentBeforeSource: true,
 				savedAndExported: true,
-				nativeStdio: true,
-				browserStdio: true,
+				nativeStdio: selectedFixtures.some(fixture => fixture.stdio),
+				browserStdio: selectedFixtures.some(fixture => fixture.stdio && fixture.mode === "python"),
+				bronzePythonFileIo: selectedFixtures.some(fixture => fixture.bronzeRequiredPack && fixture.mode === "python"),
 				remoteWrites
 			});
 		}

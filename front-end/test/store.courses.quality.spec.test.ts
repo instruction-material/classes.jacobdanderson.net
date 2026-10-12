@@ -1241,7 +1241,7 @@ describe("course text quality normalization", () => {
 				"Build the web-development extension challenge for **JSM1 Fundamentals Review** as a browser-visible feature with clear state, interaction, and error-handling evidence"
 			);
 			expect(corpus).toContain(
-				"Solve the USACO Bronze project for **USB0 Setup and Contest Workflow** with exact input/output behavior, a traceable invariant, and evidence from sample plus custom cases"
+				"Explain cow-ID indexing and retain a trace for two interleaved cows"
 			);
 			expect(corpus).toContain(
 				"Build **Images and Sprites: Practice Studio** as a working version with runnable behavior, inspectable evidence, and a clear boundary case"
@@ -2115,8 +2115,9 @@ describe("course text quality normalization", () => {
 				moduleTitle: "USB0 Setup and Contest Workflow",
 				items: [
 					{
-						title: "Core Project: Setup and Contest Workflow",
-						subject: "USB0 Setup and Contest Workflow"
+						title: "Core Project: Road-Crossing Observations and Native Setup",
+						subject:
+							"Core Project: Road-Crossing Observations and Native Setup"
 					},
 					{
 						title: "UB 23 Why Did the Cow Cross the Road II Java",
@@ -2188,7 +2189,9 @@ describe("course text quality normalization", () => {
 					`${setupModule.courseId}: ${title}`
 				).toContain(
 					setupModule.courseId === "usaco-gold" ||
-						(setupModule.courseId === "usaco-silver" &&
+						(["usaco-bronze", "usaco-silver"].includes(
+							setupModule.courseId
+						) &&
 							title.startsWith("Core Project:"))
 						? `## ${subject}`
 						: `**${subject}**`
