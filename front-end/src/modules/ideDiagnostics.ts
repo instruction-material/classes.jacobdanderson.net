@@ -16,6 +16,7 @@ export type IdeStage =
 export type IdeCategory =
 	"none" | "student-code" | "ide-runtime" | "needs-review";
 export type IdeMode =
+	| "c"
 	| "cpp"
 	| "python"
 	| "turtle"
@@ -232,14 +233,19 @@ export function createIdeDiagnostics(
 		browser: browserVersion(navigator.userAgent),
 		runtime: {
 			engine:
-				mode === "cpp"
+				mode === "c" || mode === "cpp"
 					? ("source-editor" as const)
 					: java
 						? ("java-preview" as const)
 						: ("pyodide" as const),
-			version: java || mode === "cpp" ? "unknown" : PYODIDE_VERSION,
+			version:
+				java || mode === "c" || mode === "cpp"
+					? "unknown"
+					: PYODIDE_VERSION,
 			pythonVersion:
-				java || mode === "cpp" ? "not-loaded" : pythonVersion,
+				java || mode === "c" || mode === "cpp"
+					? "not-loaded"
+					: pythonVersion,
 			adapterRevision: build.revision,
 			blueJVersion: "unknown" as const
 		},

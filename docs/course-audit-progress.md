@@ -1881,3 +1881,45 @@ certify unreviewed sessions or other advanced C++ projects.
 The Silver foundation native verifier uses the JDK selected through PATH and fixed `java`/`javac` executable names. Environment executable overrides are ignored. Both exact review workflows completed all nine CI jobs, including 164 imports and 35 Cypress checks, before this correction; the separate CodeQL alert check identified the executable override and must pass on the corrected heads before merge.
 
 The foundation verifier additionally compares downloaded README shell blocks with reviewed commands embedded in the test source, then executes only the embedded command. Appended and substituted commands are rejected before native verification. This addresses the CodeQL network-response-to-shell trace without weakening the documented run guards.
+
+
+## Native C17 opening workflow candidate
+
+The accepted C source repair at
+`9c2ca21336c7667681091972a0abe9e55921f8fa` supplies two distinct opening
+assignments: boundary classification for setup, and translation-unit/label
+linking for Unit 1. The site candidate adds an explicit C source workspace and
+bounded C save, share and instructor-review support. C++ course behavior and
+existing saved attempts retain their identities.
+
+Only these two verified packs receive confirmed imports. Each import keeps the
+selected learner or reference directory, CMake file, unchanged parent guide,
+and the setup diagnostic fixture. The role-specific `native-c17` project key
+preserves earlier course attempts and separates reference files. The native
+build instructions retain the original CMake directory layout; compilation,
+CTest, sanitizers and debugging happen after ZIP export. The browser saves and
+edits C source without invoking the Python runner.
+
+The complete assignment reading survives course display normalization, including
+unfinished exit status 78, boundary fixtures, build commands and completion
+evidence. The two notebooks link directly to immutable README files and import
+no additional project. Existing instructor-only reference visibility is retained.
+
+Canonical verification accepted 1,690 frontend tests, 267 course-quality checks,
+414 API tests (one environment check skipped), 57 focused course-card/source
+checks, all 27 import-consent checks, and the application build. Six actual
+application ZIP exports passed 38 native contract cases; the two unfinished
+learner roles retained their expected failing status. Sixteen desktop/mobile
+light/dark browser cases checked 32 original and edited ZIP exports and retained
+saved attempts. All 23 pinned source files were read without authentication and
+matched the original bytes. Downstream lint, types and 1,682 frontend tests pass.
+
+The final C-only labels remove the unused Canvas tab and name the native output
+Build instructions. These changes pass source/template compilation; their
+runtime checks and remaining downstream gates are queued behind the system-load
+guard. Hosted checks on the final review commits must pass before merge and
+retain refreshed browser images. The Unit 1 reading names the executable from
+the source CMake file, and the export checks verify edited source bytes as well
+as untouched imports.
+This candidate establishes neither public activation nor completion of the
+remaining C content and wider 77-course audit.

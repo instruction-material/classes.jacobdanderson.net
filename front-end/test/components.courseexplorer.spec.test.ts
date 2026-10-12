@@ -54,6 +54,86 @@ describe("CourseExplorer.vue", () => {
 		vi.unstubAllGlobals();
 	});
 
+	it.each(["learner", "instructor"])(
+		"opens the confirmed C17 role from the %s course card",
+		async role => {
+			const pinia = createPinia();
+			setActivePinia(pinia);
+			const appStore = useAppStore();
+			appStore.setCurrentUser({
+				_id: "c17-learner",
+				name: "Learner",
+				email: "learner@example.invalid",
+				age: 14,
+				state: "GA",
+				courseAccess: ["c-systems-engineering"],
+				courseProgress: [],
+				editUsers: false,
+				saveEdit: "Save"
+			});
+			if (role === "instructor")
+				appStore.setCurrentTutor({
+					_id: "c17-tutor",
+					name: "Tutor",
+					email: "tutor@example.invalid",
+					age: 30,
+					state: "GA",
+					coursePermissions: ["c-systems-engineering"],
+					usersOfTutorLength: 0,
+					editTutors: false,
+					saveEdit: "Save"
+				});
+			if (role === "instructor") {
+				appStore.setUsers([appStore.currentUser!]);
+				vi.mocked(api.get).mockResolvedValueOnce({ data: [appStore.currentUser!] });
+			}
+			window.history.replaceState(
+				{},
+				"",
+				"/courses#c-systems-engineering-cse0-setup-and-tooling"
+			);
+			const wrapper = mount(CourseExplorer, {
+				global: { plugins: [pinia] }
+			});
+			try {
+				await flushPromises();
+				await vi.waitFor(() =>
+					expect(wrapper.find(".lesson-view-toggle").exists()).toBe(
+						true
+					)
+				);
+				await wrapper
+					.findAll(".lesson-view-toggle button")
+					.find(button => button.text() === "Projects")!
+					.trigger("click");
+				await flushPromises();
+				const card = wrapper
+					.findAll(".lesson-item")
+					.find(item => item.find('a.is-project[href*="/CSE-05-cse0-setup-and-tooling/starter"]').exists());
+				expect(card).toBeDefined();
+				const links = card!.findAll("a.is-ide-starter");
+				expect(links).toHaveLength(role === "instructor" ? 2 : 1);
+				for (const [index, link] of links.entries()) {
+					const url = new URL(
+						link.attributes("href"),
+						"https://example.invalid"
+					);
+					expect(url.pathname).toBe("/ide");
+					expect(url.searchParams.get("mode")).toBe("c");
+					expect(url.searchParams.get("projectKey")).toBe(
+						`c-systems-engineering:c-systems-engineering-cse0-setup-and-tooling-curriculum-core-project-c-systems-engineering:${index === 0 ? "starter" : "reference"}:native-c17`
+					);
+					expect(url.searchParams.get("starterUrl")).toBe(
+						`https://github.com/instruction-material/C-Systems-Engineering/tree/9c2ca21336c7667681091972a0abe9e55921f8fa/CSE-05-cse0-setup-and-tooling/${index === 0 ? "starter" : "solution"}`
+					);
+				}
+			} finally {
+				wrapper.unmount();
+			}
+		}
+	);
+
+
 	it("labels the Gifts changed-preference learner source as a starter", async () => {
 		const pinia = createPinia();
 		setActivePinia(pinia);

@@ -24,6 +24,7 @@ const IMAGE_FILE_RE = /^images\/\w[\w.-]*\.(?:gif|jpe?g|png|svg|webp)$/i;
 const AUDIO_FILE_RE = /^(?:music|sounds)\/\w[\w.-]*\.(?:mp3|ogg|wav)$/i;
 const PYTHON_FILE_NAME_RE = /\.py$/i;
 const JAVA_FILE_NAME_RE = /\.java$/i;
+const C_FILE_NAME_RE = /\.c$/i;
 const CPP_FILE_NAME_RE = /\.(?:cc|cpp|cxx)$/i;
 const CPP_TEXT_FILE_NAME_RE = /\.(?:cc|cpp|cxx|h|hpp)$/i;
 const ASSET_DIRECTORY_NAMES = new Set(["images", "music", "sounds"]);
@@ -100,7 +101,7 @@ function isSafeProjectFileName(value: string) {
 
 	if (isRuntimeReservedProjectPath(value)) return false;
 
-	if (PYTHON_FILE_NAME_RE.test(value) || JAVA_FILE_NAME_RE.test(value) || CPP_TEXT_FILE_NAME_RE.test(value)) {
+	if (PYTHON_FILE_NAME_RE.test(value) || JAVA_FILE_NAME_RE.test(value) || C_FILE_NAME_RE.test(value) || CPP_TEXT_FILE_NAME_RE.test(value) || segments.at(-1) === "CMakeLists.txt") {
 		const rootDirectory = segments[0]?.toLowerCase();
 		return !rootDirectory || !ASSET_DIRECTORY_NAMES.has(rootDirectory);
 	}
@@ -110,7 +111,7 @@ function isSafeProjectFileName(value: string) {
 	return IMAGE_FILE_RE.test(value) || AUDIO_FILE_RE.test(value);
 }
 
-const projectModeSchema = z.enum(["cpp", "data", "java", "karel", "pgzero", "python", "turtle"]);
+const projectModeSchema = z.enum(["c", "cpp", "data", "java", "karel", "pgzero", "python", "turtle"]);
 const projectFileSchema = z.object({
 	name: z
 		.string()
@@ -260,6 +261,7 @@ function serializePythonProjectReviewMetadata(review: IPythonProjectReview) {
 }
 
 function defaultProjectFileForMode(mode: PythonProjectMode): PythonProjectFile {
+	if (mode === "c") return { name: "main.c", content: "" };
 	if (mode === "cpp") return { name: "main.cpp", content: "" };
 	if (mode === "java") {
 		return {
@@ -279,6 +281,7 @@ function defaultProjectFileForMode(mode: PythonProjectMode): PythonProjectFile {
 }
 
 function requiredCodeFileMessage(mode: PythonProjectMode) {
+	if (mode === "c") return "Project must include at least one text C source file";
 	if (mode === "cpp") return "Project must include at least one C++ source file";
 	if (mode === "java" || mode === "karel") {
 		return "Project must include at least one Java file";
@@ -288,8 +291,9 @@ function requiredCodeFileMessage(mode: PythonProjectMode) {
 }
 
 function projectFilesMatchMode(files: PythonProjectFile[], mode: PythonProjectMode) {
-	const codeFileRe = mode === "cpp" ? CPP_FILE_NAME_RE : mode === "java" || mode === "karel" ? JAVA_FILE_NAME_RE : PYTHON_FILE_NAME_RE;
-	return files.some(file => codeFileRe.test(file.name) && (mode !== "cpp" || file.encoding !== "base64"));
+	if (mode === "c" && files.some(file => file.encoding === "base64" && (/\.(?:c|h)$/i.test(file.name) || file.name.split("/").at(-1) === "CMakeLists.txt"))) return false;
+	const codeFileRe = mode === "c" ? C_FILE_NAME_RE : mode === "cpp" ? CPP_FILE_NAME_RE : mode === "java" || mode === "karel" ? JAVA_FILE_NAME_RE : PYTHON_FILE_NAME_RE;
+	return files.some(file => codeFileRe.test(file.name) && ((mode !== "c" && mode !== "cpp") || file.encoding !== "base64"));
 }
 
 function rejectProjectFilesForMode(

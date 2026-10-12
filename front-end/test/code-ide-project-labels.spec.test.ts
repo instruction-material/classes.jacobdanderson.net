@@ -15,6 +15,8 @@ const project: PythonIdeProject = {
 
 describe("saved project labels", () => {
 	it.each([
+		["c-systems-engineering:setup:starter:native-c17", "c", "Learner · C17"],
+		["c-systems-engineering:setup:reference:native-c17", "c", "Reference · C17"],
 		["cpp-level-2:grocery:starter", "cpp", "Learner · C++"],
 		["cpp-level-2:grocery:reference", "cpp", "Reference · C++"],
 		["usaco-silver:gifts:starter", "cpp", "Learner · C++"],

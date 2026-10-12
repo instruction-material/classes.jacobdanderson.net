@@ -22,6 +22,7 @@ import {
 } from "vue";
 import { routeLocationKey, routerKey } from "vue-router";
 import { api } from "@/api";
+import { c17CourseProjectKey } from "@/modules/c17ProjectResources";
 import {
 	groupCoursesByLearnerStatus,
 	orderedCoursesByLearnerStatus
@@ -1575,12 +1576,14 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 	const params = new URLSearchParams({
 		course: selectedCourse.value.id,
 		mode,
-		projectKey: (selectedCourse.value.id === "usaco-bronze" ||
-			selectedCourse.value.id === "usaco-bronze-on-demand"
-			? bronzeRequiredProjectKey
-			: selectedCourse.value.id === "usaco-silver"
-				? silverJavaProjectKey
-				: goldHistoricalProjectKey)(
+		projectKey: (selectedCourse.value.id === "c-systems-engineering"
+			? c17CourseProjectKey
+			: selectedCourse.value.id === "usaco-bronze" ||
+				  selectedCourse.value.id === "usaco-bronze-on-demand"
+				? bronzeRequiredProjectKey
+				: selectedCourse.value.id === "usaco-silver"
+					? silverJavaProjectKey
+					: goldHistoricalProjectKey)(
 			selectedCourse.value.id,
 			item.id,
 			resource.kind === "solution" ? "reference" : "starter",
