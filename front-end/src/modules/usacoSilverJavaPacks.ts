@@ -1,3 +1,4 @@
+import { silverFoundationAssignment } from "./usacoSilverFoundationPacks";
 // Exact source roles and existing lesson identities, including the transition log.
 export const silverJavaPacks = [
 	{
@@ -140,7 +141,9 @@ export function silverJavaProjectKey(
 	sourceUrl: string
 ) {
 	const base = `${courseId}:${itemId}:${role}`;
-	const pack = silverJavaAssignment(itemId)?.pack;
+	const pack =
+		silverJavaAssignment(itemId)?.pack ??
+		silverFoundationAssignment(itemId)?.pack;
 	const pathRole = role === "reference" ? "solution" : "starter";
 	return courseId === "usaco-silver" &&
 		pack &&

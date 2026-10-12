@@ -1,5 +1,51 @@
 # Current course-audit checkpoint, 2026-10-11
 
+The full 77-course audit remains active. The saved-project role labels and Gifts
+starter-link correction are merged in canonical `d9ea20ae371c2e9b541990036f5737bc153d45d8`
+and neutral `0d2e1213609c366bcc7d65b700e41fa0867213b1`. Their reviewed trees passed CI,
+CodeQL and inspected responsive views; independent merged-main CI and CodeQL
+now also pass. Recovery bundles retain the retired review branches. The original
+dirty downstream checkout and its unfinished changes remain preserved.
+
+The Silver source is now accepted at `8891c9ffbb61f101edb01d18cfbcba75905de141`
+([source review 6](https://github.com/instruction-material/USACO-Silver/pull/6)).
+Its exact review and independent main each passed all ten jobs. Website integration
+of Exam and Bank Account Classes, Mother's Milk and Prime Palindromes is implemented
+and awaiting hosted browser and visual acceptance. Six existing required/optional
+lesson identities retain their placements and progress records. Their twelve
+learner/reference imports use pinned source files and separate native Java keys;
+earlier C++ attempts retain their saved identities.
+
+Each lesson supplies the contract, a traced example, unfinished tasks, independent
+checks and the correct Main, milk3 or pprime entry class. Optional retries require
+changed inputs or ordering data and a new explanation. The surrounding maps/sets,
+graph/grid/tree and ordering/search units retain explicit separate requirements;
+these three exercises do not complete all work in those units.
+
+Local validation passes 34 focused lesson/workflow checks and six native role
+exports with 40 cases, ten malformed-input refusals, 21 documented command-guard
+checks and a direct second-comparator refusal. The full prime interval and integer
+limits are included. Every exported file matches its pinned Git blob and remains
+unchanged after checking. The current local browser run also passes all twelve foundation imports, including
+confirmation, save/export, native instruction guards and twelve preserved
+C++/Java migrations. The ordering example uses short paragraphs that fit mobile
+screens. The full browser regression now expects 164 imports across 50 packs;
+that expanded workflow still awaits hosted acceptance. Dependencies and
+both lockfiles are unchanged. A local provenance check encountered a missing
+shared npm cache file; no dependency tree or lockfile repair was applied.
+
+
+The exact hosted runs exercised all 164 imports, 84 saved C++/Java migrations
+and the new foundation native cases without an assertion failure, but the
+browser test exceeded its 15-minute deadline (1022 and 986 seconds). Those runs
+are failed acceptance evidence. The full test now has a bounded 25-minute
+deadline; native-operation limits, assertions, imports and the 45-minute CI job
+limit remain unchanged. Fresh exact-head hosted acceptance is required.
+
+Production activation and public served-asset/health acceptance remain unverified.
+
+# Earlier accepted Java checkpoint, 2026-10-11
+
 The full 77-course audit remains active. The accepted v2.8.96 source milestone
 is canonical `cff27e306cc5e46477da1e4f781208cb3fabb535` and neutral downstream
 `c2529bd39ec1604c4ce49824cba6651f73b1e548`. Those reviewed branches are merged and
@@ -1816,3 +1862,7 @@ by accepted work. The September 30 ambiguous spoken domain occurs in a Scratch
 publishing discussion and does not establish a new AP Computer Science request.
 The wider transcript/course audit remains active; this checkpoint does not
 certify unreviewed sessions or other advanced C++ projects.
+
+The Silver foundation native verifier uses the JDK selected through PATH and fixed `java`/`javac` executable names. Environment executable overrides are ignored. Both exact review workflows completed all nine CI jobs, including 164 imports and 35 Cypress checks, before this correction; the separate CodeQL alert check identified the executable override and must pass on the corrected heads before merge.
+
+The foundation verifier additionally compares downloaded README shell blocks with reviewed commands embedded in the test source, then executes only the embedded command. Appended and substituted commands are rejected before native verification. This addresses the CodeQL network-response-to-shell trace without weakening the documented run guards.

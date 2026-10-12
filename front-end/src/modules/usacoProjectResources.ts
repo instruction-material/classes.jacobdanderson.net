@@ -18,6 +18,24 @@ export const usacoRestoredResources = [
 	{
 		course: "usaco-silver",
 		repository: "USACO-Silver",
+		folder: "US4-Exam-and-Bank-Account-Classes",
+		mode: "java"
+	},
+	{
+		course: "usaco-silver",
+		repository: "USACO-Silver",
+		folder: "US6-Mothers-Milk",
+		mode: "java"
+	},
+	{
+		course: "usaco-silver",
+		repository: "USACO-Silver",
+		folder: "US10-Prime-Palindromes",
+		mode: "java"
+	},
+	{
+		course: "usaco-silver",
+		repository: "USACO-Silver",
 		folder: "US25-Why-Did-the-Cow-Cross-the-Road-II",
 		mode: "java"
 	},

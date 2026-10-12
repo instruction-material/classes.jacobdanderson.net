@@ -20,6 +20,10 @@ import {
 	requiredCoreNativeInstructions
 } from "./usacoRequiredCorePacks";
 import {
+	silverFoundationAssignment,
+	silverFoundationNativeInstructions
+} from "./usacoSilverFoundationPacks";
+import {
 	silverJavaAssignment,
 	silverJavaNativeInstructions
 } from "./usacoSilverJavaPacks";
@@ -113,6 +117,15 @@ export function javaNativeBuildInstructions(
 ): string[] | null {
 	const parts = (courseProjectKey ?? "").split(":");
 	const [course, item, role, extra] = parts;
+	const foundation = silverFoundationAssignment(item ?? "");
+	if (
+		course === "usaco-silver" &&
+		foundation &&
+		["starter", "reference"].includes(role ?? "") &&
+		(parts.length === 3 || (parts.length === 4 && extra === "native-java"))
+	) {
+		return silverFoundationNativeInstructions(foundation);
+	}
 	const silver = silverJavaAssignment(item ?? "");
 	if (
 		course === "usaco-silver" &&
