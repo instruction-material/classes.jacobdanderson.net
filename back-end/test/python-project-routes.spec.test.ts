@@ -997,13 +997,13 @@ describe("Python project routes", () => {
 
 		expect(sources).toContain('app.get("/healthz"');
 		expect(sources).toContain(
-			'const projectModeSchema = z.enum(["cpp", "data", "java", "karel", "pgzero", "python", "turtle"])'
+			'const projectModeSchema = z.enum(["c", "cpp", "data", "java", "karel", "pgzero", "python", "turtle"])'
 		);
 		expect(sources).toContain(
-			'export type PythonProjectMode = "cpp" | "data" | "java" | "karel" | "pgzero" | "python" | "turtle";'
+			'export type PythonProjectMode = "c" | "cpp" | "data" | "java" | "karel" | "pgzero" | "python" | "turtle";'
 		);
 		expect(sources).toContain(
-			'enum: ["cpp", "data", "java", "karel", "pgzero", "python", "turtle"]'
+			'enum: ["c", "cpp", "data", "java", "karel", "pgzero", "python", "turtle"]'
 		);
 		expect(sources).toContain("ROOT_TEXT_FILE_RE =");
 		expect(sources).toContain("java|json");

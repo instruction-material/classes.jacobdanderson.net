@@ -1905,8 +1905,9 @@ unfinished exit status 78, boundary fixtures, build commands and completion
 evidence. The two notebooks link directly to immutable README files and import
 no additional project. Existing instructor-only reference visibility is retained.
 
-Local workspace lint, types, all twelve C source/import/export checks and all
-27 import-consent checks pass. The full suites, C save/review routes, application
+Canonical local workspace lint and types, 57 course-card/source workflow checks,
+all 27 import-consent checks, and 414 API tests pass; one API environment check
+is skipped. The full frontend/course suites, downstream validation, application
 build, six exported native builds and sixteen desktop/mobile light/dark browser
 cases remain pending final acceptance. Local heavy checks are queued behind the
 system-load guard; hosted CI adds the C browser cases and retains their images.
