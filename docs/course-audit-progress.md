@@ -34,6 +34,14 @@ that expanded workflow still awaits hosted acceptance. Dependencies and
 both lockfiles are unchanged. A local provenance check encountered a missing
 shared npm cache file; no dependency tree or lockfile repair was applied.
 
+
+The exact hosted runs exercised all 164 imports, 84 saved C++/Java migrations
+and the new foundation native cases without an assertion failure, but the
+browser test exceeded its 15-minute deadline (1022 and 986 seconds). Those runs
+are failed acceptance evidence. The full test now has a bounded 25-minute
+deadline; native-operation limits, assertions, imports and the 45-minute CI job
+limit remain unchanged. Fresh exact-head hosted acceptance is required.
+
 Production activation and public served-asset/health acceptance remain unverified.
 
 # Earlier accepted Java checkpoint, 2026-10-11

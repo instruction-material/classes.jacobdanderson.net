@@ -26,8 +26,9 @@ import { confirmProjectImport, downloadProjectZip, openProjectSidebar } from "./
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
 const taskId = process.env.CLASSES_FAMILY_TASK_ID ?? "usaco-course-import-browser-ci";
 // Sequential imports include native boundary checks and both viewport captures.
-// The full hosted role run needs room beyond ten minutes, including cleanup.
-const browserWorkflowTimeoutMs = 15 * 60 * 1000;
+// All 164 imports plus native guards took 17 minutes on the hosted runner.
+// Keep the full run bounded with room for slower runners and cleanup.
+const browserWorkflowTimeoutMs = 25 * 60 * 1000;
 const changes = {
 	"UG23-Balanced-Photo": ["3\n1\n3\n2\n", "2\n"],
 	"UG25-Sleepy-Cow-Sorting": ["3\n3 2 1\n", "2\n2 1"],
