@@ -1,7 +1,6 @@
 import assert from "node:assert/strict";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { delimiter, join } from "node:path";
-import process from "node:process";
 
 function bucketAnswer(capacity) {
 	const states = [[0, 0, capacity[2]]];
@@ -117,9 +116,9 @@ export async function verifySilverFoundationExport(
 	assert.doesNotMatch(files["README.md"], /\.\.\/README\.md/);
 	assert.ok(Object.hasOwn(files, "sample.expected"));
 	assert.equal(files["sample.expected"], fixture.expected);
-	const java = process.env.COURSE_IMPORT_JAVA ?? process.env.JAVA ?? "java";
-	const javac
-		= process.env.COURSE_IMPORT_JAVAC ?? process.env.JAVAC ?? "javac";
+	// CI selects the JDK through PATH; executable overrides must not run code.
+	const java = "java";
+	const javac = "javac";
 	const originalSource = files["Main.java"];
 	const previous = "Earlier saved answer\n";
 	const compile = async (cwd) => {

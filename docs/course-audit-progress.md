@@ -1862,3 +1862,5 @@ by accepted work. The September 30 ambiguous spoken domain occurs in a Scratch
 publishing discussion and does not establish a new AP Computer Science request.
 The wider transcript/course audit remains active; this checkpoint does not
 certify unreviewed sessions or other advanced C++ projects.
+
+The Silver foundation native verifier uses the JDK selected through PATH and fixed `java`/`javac` executable names. Environment executable overrides are ignored. Both exact review workflows completed all nine CI jobs, including 164 imports and 35 Cypress checks, before this correction; the separate CodeQL alert check identified the executable override and must pass on the corrected heads before merge.
