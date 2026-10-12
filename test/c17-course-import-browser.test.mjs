@@ -36,6 +36,11 @@ test("native C imports require consent and preserve source, saved attempts, role
 		page = await context.newPage();
 		await page.evaluateOnNewDocument((key, existing) => {
 			if (localStorage.getItem(key) === null) localStorage.setItem(key, JSON.stringify([existing]));
+			const click = HTMLAnchorElement.prototype.click;
+			HTMLAnchorElement.prototype.click = function () {
+				if (this.download.endsWith(".zip") && this.href.startsWith("blob:")) return;
+				return click.call(this);
+			};
 			const create = URL.createObjectURL;
 			URL.createObjectURL = (blob) => {
 				if (blob.type === "application/zip") window.__c17Archive = blob;
@@ -89,6 +94,9 @@ test("native C imports require consent and preserve source, saved attempts, role
 						await page.waitForSelector(".cm-content", { visible: true });
 						await page.waitForSelector("button.run-control:not([disabled])");
 						assert.equal(await page.$eval("button.run-control", button => button.textContent.trim()), "Build instructions");
+						assert.equal(await page.$(".mobile-view-picker button[data-view='canvas']"), null);
+						assert.equal(await page.$eval(".mobile-view-picker button[data-view='console']", button => button.textContent.trim()), "Instructions");
+						assert.equal(await page.$eval(".result-panel .panel-header > span", span => span.textContent.trim()), "Build instructions");
 						await page.click("button.run-control");
 						await page.waitForFunction(() => [...document.querySelectorAll(".output-line")].some(line => line.textContent.includes("ctest --test-dir build")));
 						assert.equal(await page.$("iframe[title='Isolated Python output']"), null);
@@ -106,6 +114,8 @@ test("native C imports require consent and preserve source, saved attempts, role
 							assert.equal(strFromU8(entries[path]), source.content);
 							assert.equal(createHash("sha256").update(entries[path]).digest("hex"), source.sha256);
 						}
+						if (width < 900) await page.locator(".mobile-view-picker button[data-view='code']").click();
+						await page.waitForSelector(".cm-content", { visible: true });
 						const edit = `${saved.files.find(file => file.name === `${role}/main.c`).content}\n/* Saved C editor attempt. */\n`;
 						await page.click(".cm-content");
 						const modifier = await page.evaluate(() => /Mac/.test(navigator.platform) ? "Meta" : "Control");
@@ -118,20 +128,33 @@ test("native C imports require consent and preserve source, saved attempts, role
 						await page.keyboard.up(modifier);
 						await page.waitForFunction((storageKey, key, name, content) => JSON.parse(localStorage.getItem(storageKey)).find(project => project.courseProjectKey === key)?.files.some(file => file.name === name && file.content === content), {}, storageKey, key, `${role}/main.c`, edit);
 						const expectedSavedFiles = saved.files.map(file => file.name === `${role}/main.c` ? { ...file, content: edit } : file);
+						await downloadProjectZip(page);
+						const editedZip = await page.evaluate(async () => {
+							const bytes = new Uint8Array(await window.__c17Archive.arrayBuffer());
+							return btoa(Array.from(bytes, byte => String.fromCharCode(byte)).join(""));
+						});
+						const editedEntries = unzipSync(Buffer.from(editedZip, "base64"));
+						assert.equal(Object.keys(editedEntries).length, expectedSavedFiles.length);
+						for (const file of expectedSavedFiles) {
+							const path = Object.keys(editedEntries).find(path => path.endsWith(`/${file.name}`));
+							assert.ok(path);
+							assert.equal(strFromU8(editedEntries[path]), file.content);
+						}
+						assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
 						const capture = `course-import-c17-${pack}-${role}-${width}-${theme}.png`;
 						await page.screenshot({ path: join(captures, capture), fullPage: true });
 						await page.reload({ waitUntil: "domcontentloaded" });
 						await page.waitForSelector("button.run-control:not([disabled])");
 						const reloaded = await page.evaluate((storageKey, key) => JSON.parse(localStorage.getItem(storageKey)).find(project => project.courseProjectKey === key), storageKey, key);
 						assert.deepEqual(reloaded.files, expectedSavedFiles);
-						proof.push({ pack, role, width, theme, files: saved.files.length, capture, byteExact: true, savedAttemptPreserved: true });
+						proof.push({ pack, role, width, theme, files: saved.files.length, capture, byteExact: true, editedExportPreserved: true, savedAttemptPreserved: true });
 					}
 				}
 			}
 		}
 		assert.equal(proof.length, 16);
 		await writeFile(join(captures, "c17-workflow-proof.json"), `${JSON.stringify({ revision: fixture.revision, imports: proof.length, cases: proof }, null, 2)}\n`);
-		console.log(JSON.stringify({ event: "c17-browser-workflow-accepted", sourceRevision: fixture.revision, imports: proof.length, exports: proof.length, savedAttemptPreserved: true }));
+		console.log(JSON.stringify({ event: "c17-browser-workflow-accepted", sourceRevision: fixture.revision, imports: proof.length, exports: proof.length * 2, editedExports: proof.length, savedAttemptPreserved: true }));
 	}
 	finally {
 		await page?.close();

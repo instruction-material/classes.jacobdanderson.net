@@ -1905,11 +1905,21 @@ unfinished exit status 78, boundary fixtures, build commands and completion
 evidence. The two notebooks link directly to immutable README files and import
 no additional project. Existing instructor-only reference visibility is retained.
 
-Canonical local workspace lint and types, 57 course-card/source workflow checks,
-all 27 import-consent checks, and 414 API tests pass; one API environment check
-is skipped. The full frontend/course suites, downstream validation, application
-build, six exported native builds and sixteen desktop/mobile light/dark browser
-cases remain pending final acceptance. Local heavy checks are queued behind the
-system-load guard; hosted CI adds the C browser cases and retains their images.
+Canonical verification accepted 1,690 frontend tests, 267 course-quality checks,
+414 API tests (one environment check skipped), 57 focused course-card/source
+checks, all 27 import-consent checks, and the application build. Six actual
+application ZIP exports passed 38 native contract cases; the two unfinished
+learner roles retained their expected failing status. Sixteen desktop/mobile
+light/dark browser cases checked 32 original and edited ZIP exports and retained
+saved attempts. All 23 pinned source files were read without authentication and
+matched the original bytes. Downstream lint, types and 1,682 frontend tests pass.
+
+The final C-only labels remove the unused Canvas tab and name the native output
+Build instructions. These changes pass source/template compilation; their
+runtime checks and remaining downstream gates are queued behind the system-load
+guard. Hosted checks on the final review commits must pass before merge and
+retain refreshed browser images. The Unit 1 reading names the executable from
+the source CMake file, and the export checks verify edited source bytes as well
+as untouched imports.
 This candidate establishes neither public activation nor completion of the
 remaining C content and wider 77-course audit.

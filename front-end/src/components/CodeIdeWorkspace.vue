@@ -1130,6 +1130,18 @@ const usesNativeSourceWorkspace = computed(
 const nativeSourceLanguage = computed(() =>
 	selectedProject.value?.mode === "c" ? "C17" : "C++"
 );
+const mobileWorkspaceViews = computed(() =>
+	selectedProject.value?.mode === "c"
+		? (["code", "console"] as const)
+		: (["code", "canvas", "console"] as const)
+);
+watch(
+	() => selectedProject.value?.mode,
+	mode => {
+		if (mode === "c" && mobileView.value === "canvas")
+			mobileView.value = "code";
+	}
+);
 const newFileNamePlaceholder = computed(() => {
 	if (selectedProject.value?.mode === "c")
 		return "main.c, src/helpers.c or include/reading.h";
@@ -8462,7 +8474,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 					aria-label="Code and output views"
 				>
 					<button
-						v-for="view in ['code', 'canvas', 'console'] as const"
+						v-for="view in mobileWorkspaceViews"
 						:key="view"
 						:data-view="view"
 						type="button"
@@ -8475,7 +8487,9 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 								? "Code"
 								: view === "canvas"
 									? "Canvas"
-									: "Console"
+									: selectedProject?.mode === "c"
+										? "Instructions"
+										: "Console"
 						}}
 					</button>
 				</div>
@@ -8601,13 +8615,15 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 					>
 						<div class="panel-header">
 							<span>{{
-								consoleExpanded
-									? "Console"
-									: usesKarelWorld
-										? "Karel world"
-										: usesDrawingCanvas
-											? `${selectedModeLabel} canvas`
-											: "Runtime"
+								selectedProject?.mode === "c"
+									? "Build instructions"
+									: consoleExpanded
+										? "Console"
+										: usesKarelWorld
+											? "Karel world"
+											: usesDrawingCanvas
+												? `${selectedModeLabel} canvas`
+												: "Runtime"
 							}}</span>
 							<div class="result-panel-actions">
 								<button

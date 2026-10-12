@@ -87,6 +87,11 @@ describe("native C17 source workspace", () => {
 			expect(item.ideImport).toBe(true);
 			expect(item.content).toContain("exits 78");
 			expect(item.content).toContain("ctest --test-dir build");
+			const pack = new URL(item.projectLink!).pathname.split("/").at(-2)!;
+			const executable = fixture.files[
+				`${pack}/starter/CMakeLists.txt`
+			].content.match(/^add_executable\((\w+) main\.c/m)![1];
+			expect(item.content).toContain(`./build/${executable}`);
 			expect(
 				pythonIdeModeForCourseResource(course!.id, item.projectLink!)
 			).toBe("c");
