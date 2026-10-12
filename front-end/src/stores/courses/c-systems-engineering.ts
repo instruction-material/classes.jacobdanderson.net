@@ -30,16 +30,13 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 				},
 				{
 					title: "CSE0 Setup and Tooling: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "CSE0 Setup and Tooling",
-						projectKind: "core",
-						hasReference: true
-					}),
+					ideImport: true,
+					content:
+						"### Required project: C17 diagnostic readiness\n\n Open the learner pack after confirming the import. The site editor saves source; download and extract the ZIP for native compilation with Clang or GCC, CMake 3.20+, and LLDB or GDB. Read `reading.h`, then implement only `classify_reading` in `starter/main.c`: below 0 returns -1, 0 through 100 returns 0, above 100 returns 1. Direct comparisons avoid overflow at INT_MIN and INT_MAX. Preserve the driver, signature, and nine boundary fixtures in `tests.c`. The unfinished program builds but exits 78 and fails its contract test.\n\nFrom the extracted `starter` folder run `cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug`, `cmake --build build`, `ctest --test-dir build --output-on-failure`, then `./build/cse0_starter`. Record tool versions and the five-reading trace. Add a predicted fixture, demonstrate that changing `> 100` to `>= 100` fails the boundary test, restore the correct code, and rebuild. Follow the included root `README.md` for a sanitizer build, a separate deliberate `unsafe_probe.c` diagnostic, and a debugger breakpoint. Save the attempt before opening the separate reference. Completion evidence is passing contract tests, the expected trace, the diagnostic report, and an explanation of the boundary. An instructor can pause at prediction, failure, correction, and comparison; the same sequence works independently.",
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-05-cse0-setup-and-tooling/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/9c2ca21336c7667681091972a0abe9e55921f8fa/CSE-05-cse0-setup-and-tooling/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-05-cse0-setup-and-tooling/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/9c2ca21336c7667681091972a0abe9e55921f8fa/CSE-05-cse0-setup-and-tooling/solution"
 				}
 			],
 			supplementalProjects: [
@@ -48,9 +45,7 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 					content:
 						"Keep a short engineering notebook for setup and tooling that records the byte view, memory view, compiler or runtime evidence, and one plain-language explanation of why the code worked or failed. Focus especially on toolchain identity, compiler/debugger verification, and the difference between editing and building to build the habit of explaining systems behavior instead of only trusting output.",
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-05-cse0-setup-and-tooling/starter",
-					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-05-cse0-setup-and-tooling/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/blob/9c2ca21336c7667681091972a0abe9e55921f8fa/CSE-05-cse0-setup-and-tooling/README.md"
 				},
 				{
 					title: "Setup and Tooling Transfer Practice",
@@ -105,16 +100,13 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 				},
 				{
 					title: "Unit 1: Why C for Systems Work: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 1: Why C for Systems Work",
-						projectKind: "core",
-						hasReference: true
-					}),
+					ideImport: true,
+					content:
+						"### Required project: translation units and linking\n\n Reuse the reading-classification contract from setup to isolate a new skill: separate declarations in `reading.h` from definitions in `reading.c` and `labels.c`, and link them with the driver in `main.c`. The classifier is provided. Complete only `reading_label` in `starter/labels.c` so categories -1, 0, 1 map to below, within, above, and every other category maps to invalid. The learner TODO returns NULL, so the unfinished executable exits 78 and its tests fail. Preserve all six label fixtures and four cross-file cases in `tests.c`.\n\nConfirm the learner import, save it, download and extract the ZIP, and work from `starter`: `cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug`, `cmake --build build`, `ctest --test-dir build --output-on-failure`, and `./build/cse1_starter`. Read the included root `README.md` for preprocessing, assembly, object-symbol inspection, debugger and sanitizer commands. Predict what each build stage produces, then reproduce and explain a missing-definition link failure and a duplicate-definition link failure in temporary builds. Restore all sources and pass the complete test suite. Save the attempt before opening the separate reference. Completion requires the category-label trace, passing tests, and evidence that declarations, definitions, object files, and the final executable have distinct jobs. An instructor can guide the predictions and failure explanations without changing the independent reading path.",
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-06-unit-1-why-c-for-systems-work/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/9c2ca21336c7667681091972a0abe9e55921f8fa/CSE-06-unit-1-why-c-for-systems-work/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-06-unit-1-why-c-for-systems-work/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/9c2ca21336c7667681091972a0abe9e55921f8fa/CSE-06-unit-1-why-c-for-systems-work/solution"
 				}
 			],
 			supplementalProjects: [
@@ -123,9 +115,7 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 					content:
 						"Keep a short engineering notebook for why C matters in systems work that records the byte view, memory view, compiler or runtime evidence, and one plain-language explanation of why the code worked or failed. Focus especially on source-to-binary boundaries, declarations vs definitions, and what the runtime model exposes to build the habit of explaining systems behavior instead of only trusting output.",
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-06-unit-1-why-c-for-systems-work/starter",
-					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-06-unit-1-why-c-for-systems-work/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/blob/9c2ca21336c7667681091972a0abe9e55921f8fa/CSE-06-unit-1-why-c-for-systems-work/README.md"
 				},
 				{
 					title: "Translation Boundary Transfer Practice",

@@ -1421,7 +1421,9 @@ function memberCompletionMapForMode(mode: PythonIdeMode = "python") {
 }
 
 function isPythonCodeMirrorMode(mode: PythonIdeMode = "python") {
-	return mode !== "cpp" && mode !== "java" && mode !== "karel";
+	return (
+		mode !== "c" && mode !== "cpp" && mode !== "java" && mode !== "karel"
+	);
 }
 
 function isJavaCodeMirrorMode(mode: PythonIdeMode = "python") {
@@ -1433,7 +1435,7 @@ export function pythonIdeCompletionsForMode(
 	receiver?: string,
 	assetCompletions?: PythonCodeMirrorAssetCompletionNames
 ) {
-	if (mode === "cpp") return [];
+	if (mode === "c" || mode === "cpp") return [];
 	if (!receiver) return runtimeCompletionsForMode(mode);
 	const staticOptions = memberCompletionMapForMode(mode)[receiver] ?? [];
 	if (mode !== "pgzero") return staticOptions;
@@ -3039,7 +3041,7 @@ export function createPythonCodeMirrorExtensions(
 		syntaxHighlighting(pythonHighlightStyle),
 		bracketPairColorExtension,
 		Prec.highest(closingTokenSkipKeymap),
-		mode === "cpp" ? [] : Prec.highest(pythonNewlineKeymap),
+		mode === "c" || mode === "cpp" ? [] : Prec.highest(pythonNewlineKeymap),
 		Prec.highest(pythonEditorActionKeymap(options)),
 		Prec.highest(keymap.of([codeEditorTabBinding])),
 		Prec.high(wrapSelectionKeymap),

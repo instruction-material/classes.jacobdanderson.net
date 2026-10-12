@@ -1,12 +1,17 @@
 import type { CodeIdeAccountScope } from "@/modules/codeIdeAccountScope";
 import { api } from "@/api";
+import {
+	c17CourseResource,
+	c17ImportFiles
+} from "@/modules/c17ProjectResources";
+import { cStarterCode, cWorkspaceReadme } from "@/modules/cIdeSource";
+
 import { codeIdeAccountRequest } from "@/modules/codeIdeAccountScope";
 import {
 	listGitHubProjectFiles,
 	loadGitHubProjectFile,
 	parseGitHubResource
 } from "@/modules/codePreview";
-
 import { courseReferenceExamples } from "@/modules/courseReferenceExamples";
 import { cppStarterCode, cppWorkspaceReadme } from "@/modules/cppIdeSource";
 import { restoredUsacoResource } from "@/modules/usacoProjectResources";
@@ -15,11 +20,12 @@ const WHITESPACE_RE = /\s+/g;
 const FILE_EXTENSION_RE = /\.[\dA-Z]+$/i;
 const JAVA_EXTENSION_RE = /\.java$/i;
 const PYTHON_EXTENSION_RE = /\.py$/i;
+const C_EXTENSION_RE = /\.c$/i;
 const CPP_EXTENSION_RE = /\.(?:cc|cpp|cxx)$/i;
-const CODE_EXTENSION_RE = /\.(?:cc|cpp|cxx|h|hpp|java|py)$/i;
+const CODE_EXTENSION_RE = /\.(?:c|cc|cpp|cxx|h|hpp|java|py)$/i;
 const SAFE_FILE_SEGMENT_RE = /^\w[\w.-]*$/;
 const ROOT_TEXT_FILE_RE =
-	/^(?:makefile|\w[\w.-]*\.(?:cc|cpp|cxx|h|hpp|csv|eps|expected|in|java|json|md|out|ps|py|tsv|txt|xml))$/i;
+	/^(?:makefile|\w[\w.-]*\.(?:c|cc|cpp|cxx|h|hpp|csv|eps|expected|in|java|json|md|out|ps|py|tsv|txt|xml))$/i;
 const IMAGE_FILE_RE = /^images\/\w[\w.-]*\.(?:gif|jpe?g|png|svg|webp)$/i;
 const AUDIO_FILE_RE = /^(?:music|sounds)\/\w[\w.-]*\.(?:mp3|ogg|wav)$/i;
 const ASSET_DIRECTORY_NAMES = new Set(["images", "music", "sounds"]);
@@ -52,7 +58,7 @@ const PYTHON_IDE_RUNTIME_RESERVED_ROOTS = new Set([
 	"zrect"
 ]);
 const TEXT_FILE_RE =
-	/^makefile$|\.(?:cc|cpp|cxx|h|hpp|csv|eps|expected|in|java|json|md|out|ps|py|tsv|txt|xml|svg)$/i;
+	/^makefile$|\.(?:c|cc|cpp|cxx|h|hpp|csv|eps|expected|in|java|json|md|out|ps|py|tsv|txt|xml|svg)$/i;
 const IMAGE_EXTENSION_RE = /\.(?:gif|jpe?g|png|svg|webp)$/i;
 const SOUND_EXTENSION_RE = /\.wav$/i;
 const MUSIC_EXTENSION_RE = /\.(?:mp3|ogg)$/i;
@@ -68,7 +74,7 @@ const PYTHON_IDE_SHARE_ID_RE = /^[\w-]{20,80}$/;
 export type PythonIdeFileEncoding = "text" | "base64";
 
 export type PythonIdeMode =
-	"cpp" | "data" | "java" | "karel" | "pgzero" | "python" | "turtle";
+	"c" | "cpp" | "data" | "java" | "karel" | "pgzero" | "python" | "turtle";
 export type PythonIdeProjectTemplate =
 	| "blank"
 	| "bluej"
@@ -221,6 +227,7 @@ interface PythonIdeProjectStorageRecord {
 export const pythonIdeStorageNamespace = "classes-python-ide-projects";
 export const pythonIdeAllowedFileExtensions = [
 	".py",
+	".c",
 	".java",
 	".cpp",
 	".cc",
@@ -251,6 +258,7 @@ export const pythonIdeFileUploadAccept =
 let pythonIdeStorageDbPromise: Promise<IDBDatabase> | null = null;
 
 const pythonIdeCourseModes: Record<string, PythonIdeMode> = {
+	"c-systems-engineering": "c",
 	"c-level-1": "cpp",
 	"cpp-level-1": "cpp",
 	"cpp-level-2": "cpp",
@@ -283,6 +291,7 @@ export function normalizePythonIdeMode(
 ): PythonIdeMode {
 	if (value === "bluej") return "java";
 	if (
+		value === "c" ||
 		value === "cpp" ||
 		value === "data" ||
 		value === "java" ||
@@ -333,6 +342,8 @@ export function isKnownCourseWorksheetResource(url: string) {
 export function pythonIdeModeForCourseResource(courseId: string, url: string) {
 	const resource = parseGitHubResource(url);
 	if (!resource || isKnownCourseWorksheetResource(url)) return null;
+	if (courseId === "c-systems-engineering")
+		return c17CourseResource(url) ? "c" : null;
 	if (courseId.startsWith("usaco-")) {
 		return (
 			restoredUsacoResource(
@@ -2166,6 +2177,7 @@ plt.tight_layout()
 `;
 
 export function getPythonIdeModeLabel(mode: PythonIdeMode) {
+	if (mode === "c") return "C17";
 	if (mode === "cpp") return "C++";
 	if (mode === "data") return "Data / AI";
 	if (mode === "java") return "Java";
@@ -2209,6 +2221,7 @@ export function getPythonIdeProjectKindLabel(
 }
 
 function getDemoStarterCode(mode: PythonIdeMode) {
+	if (mode === "c") return cStarterCode;
 	if (mode === "cpp") return cppStarterCode;
 	if (mode === "data") return dataScienceStarterCode;
 	if (mode === "java") return javaStarterCode;
@@ -2227,6 +2240,12 @@ function clonePythonIdeFiles(files: PythonIdeFile[]) {
 }
 
 function getBlankStarterFiles(mode: PythonIdeMode): PythonIdeFile[] {
+	if (mode === "c") {
+		return [
+			{ name: "main.c", content: cStarterCode },
+			{ name: "README.md", content: cWorkspaceReadme }
+		];
+	}
 	if (mode === "cpp") {
 		return [
 			{ name: "main.cpp", content: cppStarterCode },
@@ -2254,6 +2273,12 @@ function getBlankStarterFiles(mode: PythonIdeMode): PythonIdeFile[] {
 }
 
 function getCourseStarterFiles(mode: PythonIdeMode): PythonIdeFile[] {
+	if (mode === "c") {
+		return [
+			{ name: "main.c", content: cStarterCode },
+			{ name: "README.md", content: cWorkspaceReadme }
+		];
+	}
 	if (mode === "cpp") {
 		return [
 			{ name: "main.cpp", content: cppStarterCode },
@@ -2296,7 +2321,7 @@ function getCourseStarterFiles(mode: PythonIdeMode): PythonIdeFile[] {
 }
 
 function getDemoStarterFiles(mode: PythonIdeMode): PythonIdeFile[] {
-	if (mode === "cpp" || mode === "java" || mode === "karel")
+	if (mode === "c" || mode === "cpp" || mode === "java" || mode === "karel")
 		return getCourseStarterFiles(mode);
 
 	const files = [
@@ -2324,6 +2349,12 @@ function getDemoStarterFiles(mode: PythonIdeMode): PythonIdeFile[] {
 }
 
 function getOutlineStarterFiles(mode: PythonIdeMode): PythonIdeFile[] {
+	if (mode === "c") {
+		return [
+			{ name: "main.c", content: cStarterCode },
+			{ name: "README.md", content: cWorkspaceReadme }
+		];
+	}
 	if (mode === "cpp") {
 		return [
 			{ name: "main.cpp", content: cppStarterCode },
@@ -2562,6 +2593,7 @@ export function resolvePythonIdeActiveFileName(
 		files.find(file => file.name === preferredFileName)?.name ??
 		files.find(file => file.name === "Main.java")?.name ??
 		files.find(file => file.name === "Algo.java")?.name ??
+		files.find(file => /(?:^|\/)main\.c$/i.test(file.name))?.name ??
 		files.find(file => file.name === "main.cpp")?.name ??
 		files.find(file => file.name === "main.py")?.name ??
 		files.find(file => CPP_EXTENSION_RE.test(file.name))?.name ??
@@ -2576,6 +2608,7 @@ function projectTitleForMode(
 	mode: PythonIdeMode,
 	template: PythonIdeProjectTemplate = "blank"
 ) {
+	if (mode === "c") return "C17 Project";
 	if (mode === "cpp") return "C++ Project";
 	if (template === "bluej" && mode === "java") return "BlueJ Java Project";
 	if (template === "circle-art" && mode === "turtle")
@@ -2732,7 +2765,7 @@ export function isValidPythonFileName(value: string) {
 
 	if (isPythonIdeRuntimeReservedPath(value)) return false;
 
-	if (CODE_EXTENSION_RE.test(value)) {
+	if (CODE_EXTENSION_RE.test(value) || baseName(value) === "CMakeLists.txt") {
 		const rootDirectory = segments[0]?.toLowerCase();
 		return !rootDirectory || !ASSET_DIRECTORY_NAMES.has(rootDirectory);
 	}
@@ -2754,6 +2787,7 @@ export function isPythonIdeRunnableFile(
 	value: string,
 	mode: PythonIdeMode = "python"
 ) {
+	if (mode === "c") return C_EXTENSION_RE.test(value);
 	if (mode === "cpp") return CPP_EXTENSION_RE.test(value);
 	return mode === "java" || mode === "karel"
 		? isPythonIdeJavaFile(value)
@@ -2804,8 +2838,10 @@ export function getPythonIdeAssetDataUrl(file: PythonIdeFile) {
 }
 
 export function getPythonIdeFileKindLabel(value: string) {
-	if (/^makefile$/i.test(value)) return "Build file";
+	if (/^makefile$/i.test(value) || baseName(value) === "CMakeLists.txt")
+		return "Build file";
 	const extension = value.match(FILE_EXTENSION_RE)?.[0]?.toLowerCase();
+	if (extension === ".c") return "C";
 	if ([".cpp", ".cc", ".cxx"].includes(extension ?? "")) return "C++";
 	if ([".h", ".hpp"].includes(extension ?? "")) return "Header";
 	if (extension === ".csv") return "CSV";
@@ -2821,13 +2857,26 @@ export function getPythonIdeFileKindLabel(value: string) {
 	return "Python";
 }
 
-export function getPythonIdeDefaultFileContent(fileName: string) {
-	if (/^makefile$/i.test(fileName)) return "";
+export function getPythonIdeDefaultFileContent(
+	fileName: string,
+	mode?: PythonIdeMode
+) {
+	if (/^makefile$/i.test(fileName) || baseName(fileName) === "CMakeLists.txt")
+		return "";
 	const extension = fileName.match(FILE_EXTENSION_RE)?.[0]?.toLowerCase();
 	if ([".cpp", ".cc", ".cxx"].includes(extension ?? "")) {
 		return /^main\.(?:cc|cpp|cxx)$/i.test(baseName(fileName))
 			? cppStarterCode
 			: "// Add C++ function or class definitions here.\n";
+	}
+	if (extension === ".c") {
+		return baseName(fileName).toLowerCase() === "main.c"
+			? cStarterCode
+			: "/* Add C function definitions here. */\n";
+	}
+	if (extension === ".h" && mode === "c") {
+		const guard = `PROJECT_${fileName.replaceAll(/\W/g, "_").toUpperCase()}`;
+		return `#ifndef ${guard}\n#define ${guard}\n\n#endif\n`;
 	}
 	if ([".h", ".hpp"].includes(extension ?? "")) return "#pragma once\n\n";
 	if (extension === ".csv") return "name,value\nsample,1\n";
@@ -2894,6 +2943,28 @@ export async function loadPythonIdeStarterFilesFromGitHub(
 		throw new Error(
 			"Only public GitHub starter links can open in the IDE."
 		);
+	}
+
+	if (mode === "c") {
+		const selected = c17ImportFiles(starterUrl);
+		if (!selected) {
+			throw new Error(
+				"This C pack has no verified site import. Use its documented native workflow."
+			);
+		}
+		const files: PythonIdeFile[] = [];
+		for (const { name, file } of selected) {
+			if (!isValidPythonFileName(name) || !isPythonIdeTextFile(name)) {
+				throw new Error(
+					"The C pack contains an unsupported file path."
+				);
+			}
+			const preview = await loadGitHubProjectFile(file);
+			if (preview.truncated)
+				throw new Error("The C source import is incomplete.");
+			files.push({ name, content: preview.content, encoding: "text" });
+		}
+		return files;
 	}
 
 	const previewFiles = await listGitHubProjectFiles(starterUrl);

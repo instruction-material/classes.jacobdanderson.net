@@ -73,6 +73,7 @@ async function openWorkspace(url: string, signedIn = true) {
 
 beforeEach(() => {
 	vi.clearAllMocks();
+	requests.put.mockReset();
 	storageDescriptor = Object.getOwnPropertyDescriptor(window, "localStorage");
 	const values = new Map<string, string>();
 	Object.defineProperty(window, "localStorage", {
@@ -146,6 +147,38 @@ afterEach(async () => {
 });
 
 describe("Code IDE route import consent", () => {
+	it.each(["starter", "solution"] as const)("confirms a C %s import before fetching and keeps the existing attempt", async role => {
+		const revision = "9c2ca21336c7667681091972a0abe9e55921f8fa";
+		const pack = "CSE-05-cse0-setup-and-tooling";
+		const key = `c-systems-engineering:setup:${role === "starter" ? "starter" : "reference"}:native-c17`;
+		const url = `https://github.com/instruction-material/C-Systems-Engineering/tree/${revision}/${pack}/${role}`;
+		preview.load.mockImplementation(async (file: { path: string }) => ({
+			content: file.path.endsWith("main.c") ? "int main(void) { return 78; }\n" : "/* preserved C pack file */\n",
+			truncated: false
+		}));
+		requests.post.mockImplementationOnce(async (_path: string, payload: PythonIdeProject) => ({ data: { project: { ...payload, _id: "imported-project-1", createdAt: "2026-10-12T05:00:00.000Z", updatedAt: "2026-10-12T05:00:00.000Z" } } }));
+		const params = new URLSearchParams({ course: "c-systems-engineering", mode: "c", projectKey: key, starterUrl: url });
+		const { wrapper } = await openWorkspace(`/ide?${params}`);
+		expect(preview.load).not.toHaveBeenCalled();
+		expect(requests.post).not.toHaveBeenCalled();
+		await wrapper.find("[data-testid='ide-route-import-confirm']").trigger("click");
+		await settle();
+		expect(preview.list).not.toHaveBeenCalled();
+		expect(preview.load).toHaveBeenCalledTimes(6);
+		const payload = requests.post.mock.calls[0][1] as PythonIdeProject;
+		expect(payload.mode).toBe("c");
+		expect(payload.activeFileName).toBe(`${role}/main.c`);
+		expect(payload.courseProjectKey).toBe(key);
+		expect(payload.files.some(file => file.name.startsWith(role === "starter" ? "solution/" : "starter/"))).toBe(false);
+		expect(workspaceState(wrapper).projects.find(project => project._id === "existing-project")?.files).toEqual(existingProject.files);
+		requests.put.mockImplementation(async (_path: string, updated: PythonIdeProject) => ({ data: { project: { ...JSON.parse(JSON.stringify(updated)), _id: "imported-project-1", createdAt: "2026-10-12T05:00:00.000Z", updatedAt: "2026-10-12T05:00:01.000Z" } } }));
+		expect(wrapper.find("button.run-control").text()).toBe("Build instructions");
+		await wrapper.find("button.run-control").trigger("click");
+		await settle();
+		expect(wrapper.text()).toContain("ctest --test-dir build --output-on-failure");
+		expect(wrapper.find("iframe[title='Isolated Python output']").exists()).toBe(false);
+	});
+
 	it("labels metadata-only saved rows and selects the matching full project", async () => {
 		const saved: PythonIdeProject[] = [
 			{

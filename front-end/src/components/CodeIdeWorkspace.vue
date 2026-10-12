@@ -38,6 +38,7 @@ import IdeEnvironmentSelect from "@/components/IdeEnvironmentSelect.vue";
 import IdeStarterPicker from "@/components/IdeStarterPicker.vue";
 import WorkspaceDisclosure from "@/components/WorkspaceDisclosure.vue";
 import WorkspaceHeader from "@/components/WorkspaceHeader.vue";
+import { cBuildInstructions } from "@/modules/cBuildInstructions";
 import {
 	getCodeIdeProjectAccessibleLabel,
 	getCodeIdeProjectSubtitle
@@ -1121,7 +1122,17 @@ const selectedModeLabel = computed(() =>
 		? getPythonIdeProjectKindLabel(selectedProject.value)
 		: "Code"
 );
+const usesNativeSourceWorkspace = computed(
+	() =>
+		selectedProject.value?.mode === "c" ||
+		selectedProject.value?.mode === "cpp"
+);
+const nativeSourceLanguage = computed(() =>
+	selectedProject.value?.mode === "c" ? "C17" : "C++"
+);
 const newFileNamePlaceholder = computed(() => {
+	if (selectedProject.value?.mode === "c")
+		return "main.c, src/helpers.c or include/reading.h";
 	if (selectedProject.value?.mode === "cpp")
 		return "main.cpp, src/helpers.cpp or include/Helper.h";
 	if (selectedProject.value?.mode === "karel")
@@ -3493,11 +3504,13 @@ function addFile() {
 	if (!selectedProject.value) return;
 	const fileName = normalizePythonFileName(
 		newFileName.value,
-		selectedProject.value.mode === "cpp"
-			? ".cpp"
-			: isJavaIdeMode(selectedProject.value.mode)
-				? ".java"
-				: ".py"
+		selectedProject.value.mode === "c"
+			? ".c"
+			: selectedProject.value.mode === "cpp"
+				? ".cpp"
+				: isJavaIdeMode(selectedProject.value.mode)
+					? ".java"
+					: ".py"
 	);
 	if (!isValidPythonFileName(fileName)) {
 		appendOutput(
@@ -3513,7 +3526,10 @@ function addFile() {
 
 	selectedProject.value.files.push({
 		name: fileName,
-		content: getPythonIdeDefaultFileContent(fileName)
+		content: getPythonIdeDefaultFileContent(
+			fileName,
+			selectedProject.value.mode
+		)
 	});
 	selectedProject.value.activeFileName = fileName;
 	newFileName.value = "";
@@ -6724,6 +6740,13 @@ async function runCurrentProject() {
 		diagnosticStage.value = "completed";
 		return;
 	}
+	if (project.mode === "c") {
+		for (const line of cBuildInstructions(project.files))
+			appendOutput("system", line);
+		runMessage.value = "Native build instructions";
+		diagnosticStage.value = "completed";
+		return;
+	}
 	if (project.mode === "cpp") {
 		for (const line of cppBuildInstructions(
 			project.files,
@@ -8097,8 +8120,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 					<div
 						class="editor-actions"
 						:class="{
-							'editor-actions--cpp':
-								selectedProject?.mode === 'cpp'
+							'editor-actions--cpp': usesNativeSourceWorkspace
 						}"
 					>
 						<div ref="ideSettingsRef" class="ide-settings">
@@ -8292,8 +8314,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 							class="site-button site-button--primary run-control"
 							:class="{
 								'run-control--stop': runControlIsStop,
-								'run-control--build':
-									selectedProject?.mode === 'cpp'
+								'run-control--build': usesNativeSourceWorkspace
 							}"
 							:disabled="!runControlIsStop && isSaving"
 							type="button"
@@ -8302,7 +8323,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 							{{
 								runControlIsStop
 									? "Stop"
-									: selectedProject?.mode === "cpp"
+									: usesNativeSourceWorkspace
 										? "Build instructions"
 										: "Run"
 							}}
@@ -8311,15 +8332,15 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 				</div>
 
 				<section
-					v-if="selectedProject?.mode === 'cpp'"
+					v-if="usesNativeSourceWorkspace"
 					class="site-surface cpp-build-panel"
-					aria-label="C++ build workflow"
+					:aria-label="`${nativeSourceLanguage} build workflow`"
 				>
 					<p>
-						Edit and save the C++ project here. Download the ZIP and
-						extract it before compiling with a native C++ compiler.
-						The browser provides source editing and build
-						instructions.
+						Edit and save the {{ nativeSourceLanguage }} project
+						here. Download the ZIP and extract it before compiling
+						with a native {{ nativeSourceLanguage }} compiler. The
+						browser provides source editing and build instructions.
 					</p>
 				</section>
 
@@ -8783,14 +8804,14 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 							class="input-output-grid"
 							:class="{
 								'input-output-grid--source':
-									selectedProject?.mode === 'cpp' ||
+									usesNativeSourceWorkspace ||
 									Boolean(selectedNativeJavaInstructions) ||
 									Boolean(selectedPythonFileIoPack)
 							}"
 						>
 							<label
 								v-if="
-									selectedProject?.mode !== 'cpp' &&
+									!usesNativeSourceWorkspace &&
 									!selectedNativeJavaInstructions &&
 									!selectedPythonFileIoPack
 								"
@@ -8840,7 +8861,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 									class="empty-output"
 								>
 									{{
-										selectedProject?.mode === "cpp"
+										usesNativeSourceWorkspace
 											? "Select Build instructions for this project's native compiler command."
 											: selectedNativeJavaInstructions
 												? "Select Run for this project's native Java build and input/output instructions."

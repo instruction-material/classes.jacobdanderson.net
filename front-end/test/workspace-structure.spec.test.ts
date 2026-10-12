@@ -63,8 +63,8 @@ describe("simplified workspaces", () => {
 			props: { open: true },
 			global: { stubs: { Teleport: true } }
 		});
-		expect(ideStarters).toHaveLength(22);
-		expect(new Set(ideStarters.map(item => item.id)).size).toBe(22);
+		expect(ideStarters).toHaveLength(23);
+		expect(new Set(ideStarters.map(item => item.id)).size).toBe(23);
 		await wrapper.findAll("select")[0].setValue("java");
 		expect(wrapper.text()).toContain("Java Outline");
 		expect(wrapper.text()).not.toContain("Python Level 1 Outline");

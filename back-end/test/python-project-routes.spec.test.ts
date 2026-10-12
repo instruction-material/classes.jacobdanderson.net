@@ -89,6 +89,67 @@ describe("Python project routes", () => {
 		}));
 	});
 
+	it("stores exact nested C17 pack files for user and course-code owners", async () => {
+		const fixture = JSON.parse(
+			readFileSync(
+				resolve(
+					process.cwd(),
+					"../test/fixtures/c17-opening-contracts.json"
+				),
+				"utf8"
+			)
+		);
+		const pack = "CSE-06-unit-1-why-c-for-systems-work";
+		const files = Object.entries(
+			fixture.files as Record<string, { content: string }>
+		)
+			.filter(
+				([path]) =>
+					path.startsWith(`${pack}/starter/`) ||
+					path === `${pack}/README.md`
+			)
+			.map(([path, file]) => ({
+				name: path.slice(pack.length + 1),
+				content: file.content,
+				encoding: "text"
+			}));
+		for (const owner of ["user", "course-code"] as const) {
+			await withPythonProjectRoute(async baseUrl => {
+				const response = await postJson(baseUrl, {
+					mode: "c",
+					files,
+					activeFileName: "starter/main.c"
+				});
+				expect(response.status).toBe(201);
+				const body = await response.json();
+				expect(body.project.mode).toBe("c");
+				expect(body.project.activeFileName).toBe("starter/main.c");
+				expect(body.project.files).toEqual(files);
+			}, owner);
+		}
+		expect(modelMocks.pythonProjectCreate).toHaveBeenCalledTimes(2);
+	});
+
+
+	it("requires text C code and preserves bounded safe-path rules", async () => {
+		await withPythonProjectRoute(async baseUrl => {
+			const source = { name: "main.c", content: "int main(void) { return 0; }" };
+			const invalidFiles = [
+				[{ name: "main.c", content: "aW50IG1haW4=", encoding: "base64" }],
+				[{ name: "main.cpp", content: "int main() {}" }],
+				[source, { name: "reading.h", content: "YQ==", encoding: "base64" }],
+				[source, { name: "starter/CMakeLists.txt", content: "YQ==", encoding: "base64" }],
+				[{ name: "README.md", content: "No source" }],
+				...["../main.c", "/main.c", "src//main.c", "images/main.c", "images/CMakeLists.txt", "src/notes.txt", "src/README.md", "turtle.py"].map(name => [source, { name, content: "" }])
+			];
+			for (const files of invalidFiles) {
+				const response = await postJson(baseUrl, { mode: "c", files });
+				expect(response.status).toBe(400);
+			}
+		});
+		expect(modelMocks.pythonProjectCreate).not.toHaveBeenCalled();
+	});
+
 	it("rejects project creation when the account storage quota is reached", async () => {
 		modelMocks.pythonProjectCountDocuments.mockReturnValue({
 			exec: vi.fn().mockResolvedValue(200)

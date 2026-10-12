@@ -1881,3 +1881,34 @@ certify unreviewed sessions or other advanced C++ projects.
 The Silver foundation native verifier uses the JDK selected through PATH and fixed `java`/`javac` executable names. Environment executable overrides are ignored. Both exact review workflows completed all nine CI jobs, including 164 imports and 35 Cypress checks, before this correction; the separate CodeQL alert check identified the executable override and must pass on the corrected heads before merge.
 
 The foundation verifier additionally compares downloaded README shell blocks with reviewed commands embedded in the test source, then executes only the embedded command. Appended and substituted commands are rejected before native verification. This addresses the CodeQL network-response-to-shell trace without weakening the documented run guards.
+
+
+## Native C17 opening workflow candidate
+
+The accepted C source repair at
+`9c2ca21336c7667681091972a0abe9e55921f8fa` supplies two distinct opening
+assignments: boundary classification for setup, and translation-unit/label
+linking for Unit 1. The site candidate adds an explicit C source workspace and
+bounded C save, share and instructor-review support. C++ course behavior and
+existing saved attempts retain their identities.
+
+Only these two verified packs receive confirmed imports. Each import keeps the
+selected learner or reference directory, CMake file, unchanged parent guide,
+and the setup diagnostic fixture. The role-specific `native-c17` project key
+preserves earlier course attempts and separates reference files. The native
+build instructions retain the original CMake directory layout; compilation,
+CTest, sanitizers and debugging happen after ZIP export. The browser saves and
+edits C source without invoking the Python runner.
+
+The complete assignment reading survives course display normalization, including
+unfinished exit status 78, boundary fixtures, build commands and completion
+evidence. The two notebooks link directly to immutable README files and import
+no additional project. Existing instructor-only reference visibility is retained.
+
+Local workspace lint, types, all twelve C source/import/export checks and all
+27 import-consent checks pass. The full suites, C save/review routes, application
+build, six exported native builds and sixteen desktop/mobile light/dark browser
+cases remain pending final acceptance. Local heavy checks are queued behind the
+system-load guard; hosted CI adds the C browser cases and retains their images.
+This candidate establishes neither public activation nor completion of the
+remaining C content and wider 77-course audit.

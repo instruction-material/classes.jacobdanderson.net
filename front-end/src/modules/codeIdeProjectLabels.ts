@@ -17,7 +17,10 @@ export function getCodeIdeProjectSubtitle(project: ProjectLabelMetadata) {
 	const supportedShape =
 		parts.length === 3 ||
 		(parts.length === 4 &&
-			((variant === "native-java" && project.mode === "java") ||
+			((variant === "native-c17" &&
+				project.mode === "c" &&
+				courseID === "c-systems-engineering") ||
+				(variant === "native-java" && project.mode === "java") ||
 				(project.mode === "python" &&
 					Boolean(
 						bronzePythonFileIoForKey(project.courseProjectKey)
