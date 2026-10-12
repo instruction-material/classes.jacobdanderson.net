@@ -648,7 +648,10 @@ describe("restored USACO project workflows", () => {
 					}
 				}
 				expect(item.content).toContain(
-					pack.course === "usaco-silver" && pack.mode === "java"
+					(pack.course === "usaco-silver" ||
+						pack.folder ===
+							"UB-22-Why-Did-the-Cow-Cross-the-Road-Java") &&
+						pack.mode === "java"
 						? `javac --release 17 -encoding UTF-8 -Xlint:all -Werror -d target/classes ${pack.folder === "US38-Redistributing-Gifts" ? "src/main/java/Main.java" : "Main.java"}`
 						: pack.mode === "cpp"
 							? "-std=c++20"

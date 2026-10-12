@@ -594,7 +594,7 @@ export function bronzeRequiredNativeInstructions(
 			? "The site's Java teaching preview does not execute this native file-I/O exercise. Choosing Run displays these instructions. Save the attempt, download its ZIP and extract the whole role folder. Use JDK 17 or newer."
 			: `This Python file-I/O project can run in the site IDE. Select main.py, edit ${pack.input} and choose Run; then open the generated ${pack.output} file. On a phone, choose Code to inspect a file or Console to read a failure. It reads that project file, so there is no browser Input panel for this imported role. Save and export the complete attempt for a native run with Python 3.9 or newer.`,
 		`Keep ${pack.mainFile}, ${pack.input}, README.md and sample.expected together. Learner and reference use separate saved roles and folders. An included old ${pack.output} is historical sample data; inspect a new result only after a successful run.`,
-		`${pack.mode === "java" ? "The untouched Java learner exits 2" : "The untouched Python learner raises NotImplementedError"} and preserves an earlier answer. Predict changed-case results independently; a matching sample alone does not prove correctness.`,
+		`${pack.mode === "java" ? "The untouched Java learner exits 2" : "The untouched Python learner raises NotImplementedError"}, creates no answer file and preserves an earlier answer. Predict changed-case results independently; a matching sample alone does not prove correctness.`,
 		"Run the following tested shell guard from the extracted role folder. It executes current source in a separate temporary folder, compares the sample and publishes only a successful matching result. Failed or unfinished work preserves an earlier answer. In another terminal follow the same steps, checking each exit status before continuing.",
 		pack.guard,
 		`After changing ${pack.input}, predict a separate expected file and use that comparison before publishing ${pack.output}. Keep earlier source, inputs, notes and answers. A driver validates its stated structure; it does not grade the completed algorithm.`
@@ -621,7 +621,7 @@ export function bronzeRequiredCourseBrief(
 	return [
 		`## ${assignment.title}`,
 		sequence,
-		"Existing progress identities and saved attempts retain their source, inputs, notes and timestamps. The confirmed file-I/O import saves separately from an earlier attempt; required and optional entries, and learner and reference roles, remain distinct.",
+		"Existing saved attempts and progress identities retain their source, inputs, notes and timestamps. The confirmed file-I/O import saves separately from an earlier attempt; required and optional entries, and learner and reference roles, remain distinct.",
 		"## Contract and reasoning",
 		pack.contract,
 		"## Guided implementation",
@@ -640,6 +640,6 @@ export function bronzeRequiredCourseBrief(
 		...native.slice(0, 4),
 		`\`\`\`sh\n${pack.guard}\n\`\`\``,
 		...native.slice(5),
-		"Open the learner action and confirm before any source fetch. Preserve the attempt and explanation before opening the separately saved reference. Protected mocks and active contests start from empty files with reference browsing closed."
+		"Open the learner action and confirm the import before any source fetch. Preserve the attempt and explanation before opening the separately saved reference. Protected mocks and active contests start from empty files with reference browsing closed."
 	].join("\n\n");
 }

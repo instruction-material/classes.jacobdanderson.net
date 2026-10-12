@@ -34,11 +34,20 @@ permitted text formats. Unfinished tasks retain the earlier output. Native Java
 imports require exported JDK execution, with explicit commands and guarded exact
 comparison; the teaching preview is not presented as native execution.
 
-Local validation passes 272 lesson/artifact checks, 179 IDE/sandbox checks, full
-lint/type checks in both sites and the updated canonical production build.
-All 16 native source roles passed independent sample, changed-case,
-unfinished-learner and owned command-guard checks before the browser persistence
-correction. Full current browser and downstream build acceptance remain pending.
+Local validation passes 272 lesson/artifact checks, 24 saved-role label checks,
+179 IDE/sandbox checks and full lint/type checks in both sites. Both initial
+integration candidates build. All 36 imports pass actual browser acceptance,
+including 164 Python worker executions and 36 preserved prior-role migrations;
+288 responsive views are retained. All 16 source roles also pass independent
+native sample, changed-case, unfinished-learner and owned command-guard checks.
+
+The initial hosted core suite passed 1671 checks and exposed one reading-contract
+failure. The lessons now explicitly name import confirmation, preservation of
+existing saved attempts and refusal to create an answer file for unfinished work.
+The shared regression checks the new Bronze Java pack's strict JDK compile command
+with its separate output directory. All 26 focused restored-pack/Bronze checks
+pass. The broader local core rerun was deferred by the shared load guard; fresh
+hosted acceptance of the corrected heads remains required before merge.
 Hosted CI must exercise all 200 imports across 58 packs and 116 native roles;
 local Bronze focus cannot be enabled in CI. The sequential browser deadline is
 bounded at 40 minutes and the enclosing CI job at 65 minutes. Existing assertions
