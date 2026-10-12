@@ -1,5 +1,10 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
 import {
+	applyBronzeRequiredAssignments,
+	bronzeRequiredAssignment,
+	bronzeRequiredCourseBrief
+} from "../../modules/usacoBronzeRequiredPacks";
+import {
 	goldHistoricalAssignment,
 	historicalCourseBrief
 } from "../../modules/usacoHistoricalPacks";
@@ -432,6 +437,9 @@ function projectBrief(
 	mode: "python" | "cpp" | "java",
 	item: RawCourseModuleItem
 ) {
+	const bronze = bronzeRequiredAssignment(courseId, item.id ?? "");
+	if (bronze && bronze.pack.folder === folder)
+		return bronzeRequiredCourseBrief(bronze);
 	const foundation =
 		courseId === "usaco-silver"
 			? silverFoundationAssignment(item.id ?? "")
@@ -602,6 +610,8 @@ export function applyRestoredUsacoProjects(
 	course: RawCourse
 ) {
 	if (!courseId.startsWith("usaco-")) return;
+	if (courseId === "usaco-bronze" || courseId === "usaco-bronze-on-demand")
+		applyBronzeRequiredAssignments(courseId, course);
 	for (const module of course.modules) {
 		for (const section of ["curriculum", "supplementalProjects"] as const) {
 			for (const item of module[section]) {

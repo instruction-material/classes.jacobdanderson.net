@@ -16,6 +16,54 @@ export const shortcutSavedItemId =
 
 export const usacoRestoredResources = [
 	{
+		course: "usaco-bronze",
+		repository: "USACO-Bronze",
+		folder: "UB-22-Why-Did-the-Cow-Cross-the-Road-Java",
+		mode: "java"
+	},
+	{
+		course: "usaco-bronze",
+		repository: "USACO-Bronze",
+		folder: "UB10-Transformations",
+		mode: "python"
+	},
+	{
+		course: "usaco-bronze",
+		repository: "USACO-Bronze",
+		folder: "UB16-Wormholes",
+		mode: "python"
+	},
+	{
+		course: "usaco-bronze",
+		repository: "USACO-Bronze",
+		folder: "UB25-The-Lost-Cow",
+		mode: "python"
+	},
+	{
+		course: "usaco-bronze",
+		repository: "USACO-Bronze",
+		folder: "UB37-Diamond-Collector",
+		mode: "python"
+	},
+	{
+		course: "usaco-bronze",
+		repository: "USACO-Bronze",
+		folder: "UB50-Milking-Order",
+		mode: "python"
+	},
+	{
+		course: "usaco-bronze",
+		repository: "USACO-Bronze",
+		folder: "UB51-Family-Tree",
+		mode: "python"
+	},
+	{
+		course: "usaco-bronze",
+		repository: "USACO-Bronze",
+		folder: "UB6-Milking-Cows",
+		mode: "python"
+	},
+	{
 		course: "usaco-silver",
 		repository: "USACO-Silver",
 		folder: "US4-Exam-and-Bank-Account-Classes",

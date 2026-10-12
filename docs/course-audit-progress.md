@@ -1,48 +1,54 @@
-# Current course-audit checkpoint, 2026-10-11
+# Current course-audit checkpoint, 2026-10-12
 
-The full 77-course audit remains active. The saved-project role labels and Gifts
-starter-link correction are merged in canonical `d9ea20ae371c2e9b541990036f5737bc153d45d8`
-and neutral `0d2e1213609c366bcc7d65b700e41fa0867213b1`. Their reviewed trees passed CI,
-CodeQL and inspected responsive views; independent merged-main CI and CodeQL
-now also pass. Recovery bundles retain the retired review branches. The original
-dirty downstream checkout and its unfinished changes remain preserved.
+The full 77-course audit remains active. Silver foundation website integration is
+merged in canonical `88da06844f9074c9760c7363f8b896a06de2ac31` and downstream
+`8dadfbebb473870c734c79dce2c66abb032957e5`, following accepted exact review CI and
+source analysis. Independently verified downstream main also passed all nine
+jobs and actual source analysis. Canonical main's browser job reached its
+45-minute limit; the other eight jobs passed. That cancelled run is retained as
+incomplete acceptance evidence. Production activation remains unverified.
 
-The Silver source is now accepted at `8891c9ffbb61f101edb01d18cfbcba75905de141`
-([source review 6](https://github.com/instruction-material/USACO-Silver/pull/6)).
-Its exact review and independent main each passed all ten jobs. Website integration
-of Exam and Bank Account Classes, Mother's Milk and Prime Palindromes is implemented
-and awaiting hosted browser and visual acceptance. Six existing required/optional
-lesson identities retain their placements and progress records. Their twelve
-learner/reference imports use pinned source files and separate native Java keys;
-earlier C++ attempts retain their saved identities.
+Bronze source is accepted at `f189f7d71b170cfaf69798d411747234ab25d8c4`
+([source review 5](https://github.com/instruction-material/USACO-Bronze/pull/5)).
+Eight packs are connected to 18 existing lesson identities through 36 separate
+learner/reference imports. Source contracts, predictions, named unfinished tasks,
+independent checks and exact sample input/output appear directly in reading
+cards. Learner and reference projects retain separate saved identities. Earlier
+attempts, notes, inputs, answers and timestamps remain independently resumable.
 
-Each lesson supplies the contract, a traced example, unfinished tasks, independent
-checks and the correct Main, milk3 or pprime entry class. Optional retries require
-changed inputs or ordering data and a new explanation. The surrounding maps/sets,
-graph/grid/tree and ordering/search units retain explicit separate requirements;
-these three exercises do not complete all work in those units.
+Lost Cow and its retry move to the simulation unit, retaining their progress IDs.
+Wormholes becomes a required exhaustive-search checkpoint. Two new mastery gates
+require independent cases and explanations. Optional Constructive Witness
+Practice supplies a worked four-cow example, witness validation and changed
+cases; its separate five-cow exit gate requires an independent 120-permutation
+oracle. The wider maps, sets, sorting and prefix work remains required beyond
+Diamond Collector's provided quadratic algorithm. Milking Order imports support
+preparation and postmortems outside the protected three-problem mock; completing
+a supplied helper cannot earn mock or tier-transition completion.
 
-Local validation passes 34 focused lesson/workflow checks and six native role
-exports with 40 cases, ten malformed-input refusals, 21 documented command-guard
-checks and a direct second-comparator refusal. The full prime interval and integer
-limits are included. Every exported file matches its pinned Git blob and remains
-unchanged after checking. The current local browser run also passes all twelve foundation imports, including
-confirmation, save/export, native instruction guards and twelve preserved
-C++/Java migrations. The ordering example uses short paragraphs that fit mobile
-screens. The full browser regression now expects 164 imports across 50 packs;
-that expanded workflow still awaits hosted acceptance. Dependencies and
-both lockfiles are unchanged. A local provenance check encountered a missing
-shared npm cache file; no dependency tree or lockfile repair was applied.
+Named-file Python exercises identify their input, output and main file, hide the
+unrelated Input panel and explain switching between Code and Console on a phone.
+An actual browser check found that successful runs omitted `.out` and `.expected`
+files from runtime capture. Both Python execution paths now capture these already
+permitted text formats. Unfinished tasks retain the earlier output. Native Java
+imports require exported JDK execution, with explicit commands and guarded exact
+comparison; the teaching preview is not presented as native execution.
 
+Local validation passes 272 lesson/artifact checks, 179 IDE/sandbox checks, full
+lint/type checks in both sites and the updated canonical production build.
+All 16 native source roles passed independent sample, changed-case,
+unfinished-learner and owned command-guard checks before the browser persistence
+correction. Full current browser and downstream build acceptance remain pending.
+Hosted CI must exercise all 200 imports across 58 packs and 116 native roles;
+local Bronze focus cannot be enabled in CI. The sequential browser deadline is
+bounded at 40 minutes and the enclosing CI job at 65 minutes. Existing assertions
+and other jobs are retained.
 
-The exact hosted runs exercised all 164 imports, 84 saved C++/Java migrations
-and the new foundation native cases without an assertion failure, but the
-browser test exceeded its 15-minute deadline (1022 and 986 seconds). Those runs
-are failed acceptance evidence. The full test now has a bounded 25-minute
-deadline; native-operation limits, assertions, imports and the 45-minute CI job
-limit remain unchanged. Fresh exact-head hosted acceptance is required.
-
-Production activation and public served-asset/health acceptance remain unverified.
+Both lockfiles and all dependency manifests are unchanged. A local registry
+provenance check encountered a missing shared npm cache file; no lockfile or
+dependency-tree repair was applied. Fresh exact-head hosted acceptance, source
+review, responsive inspection and any later native release/public verification
+must complete before this candidate is described as shipped.
 
 # Earlier accepted Java checkpoint, 2026-10-11
 
