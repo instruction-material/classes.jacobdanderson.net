@@ -1864,3 +1864,5 @@ The wider transcript/course audit remains active; this checkpoint does not
 certify unreviewed sessions or other advanced C++ projects.
 
 The Silver foundation native verifier uses the JDK selected through PATH and fixed `java`/`javac` executable names. Environment executable overrides are ignored. Both exact review workflows completed all nine CI jobs, including 164 imports and 35 Cypress checks, before this correction; the separate CodeQL alert check identified the executable override and must pass on the corrected heads before merge.
+
+The foundation verifier additionally compares downloaded README shell blocks with reviewed commands embedded in the test source, then executes only the embedded command. Appended and substituted commands are rejected before native verification. This addresses the CodeQL network-response-to-shell trace without weakening the documented run guards.

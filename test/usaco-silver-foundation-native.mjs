@@ -2,6 +2,64 @@ import assert from "node:assert/strict";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { delimiter, join } from "node:path";
 
+// These reviewed commands are source code, never downloaded shell input.
+const foundationGuards = Object.freeze({
+	records: String.raw`if rm -rf target/classes \
+    && mkdir -p target/classes \
+    && javac --release 17 -encoding UTF-8 -Xlint:all -Werror -d target/classes Main.java \
+    && java -cp target/classes Main > answer.new \
+    && diff -u sample.expected answer.new; then
+    mv answer.new answer.txt
+else
+    status=$?
+    rm -f answer.new
+    exit "$status"
+fi`,
+	milk3: String.raw`task_classes="$(pwd)/target/classes"
+task_run=$(mktemp -d) || exit 1
+trap 'rm -rf "$task_run"' EXIT
+if rm -rf target/classes \
+    && mkdir -p target/classes \
+    && javac --release 17 -encoding UTF-8 -Xlint:all -Werror -d target/classes Main.java \
+    && cp milk3.in "$task_run/milk3.in" \
+    && (cd "$task_run" && java -cp "$task_classes" milk3) \
+    && diff -u sample.expected "$task_run/milk3.out" \
+    && cp "$task_run/milk3.out" milk3.out.new \
+    && mv milk3.out.new milk3.out; then
+    printf 'Verified milk3.out\n'
+else
+    task_status=$?
+    rm -f milk3.out.new
+    exit "$task_status"
+fi`,
+	pprime: String.raw`task_classes="$(pwd)/target/classes"
+task_run=$(mktemp -d) || exit 1
+trap 'rm -rf "$task_run"' EXIT
+if rm -rf target/classes \
+    && mkdir -p target/classes \
+    && javac --release 17 -encoding UTF-8 -Xlint:all -Werror -d target/classes Main.java \
+    && cp pprime.in "$task_run/pprime.in" \
+    && (cd "$task_run" && java -cp "$task_classes" pprime) \
+    && diff -u sample.expected "$task_run/pprime.out" \
+    && cp "$task_run/pprime.out" pprime.out.new \
+    && mv pprime.out.new pprime.out; then
+    printf 'Verified pprime.out\n'
+else
+    task_status=$?
+    rm -f pprime.out.new
+    exit "$task_status"
+fi`
+});
+
+function documentedFoundationGuard(slug, guide) {
+	assert.ok(Object.hasOwn(foundationGuards, slug));
+	const script = foundationGuards[slug];
+	const matches = [...guide.matchAll(/```sh\n([\s\S]*?)\n```/g)];
+	assert.equal(matches.length, 1);
+	assert.equal(matches[0][1], script, "Downloaded guide command differs from the checked-in guard");
+	return script;
+}
+
 function bucketAnswer(capacity) {
 	const states = [[0, 0, capacity[2]]];
 	const visited = new Set([states[0].join(",")]);
@@ -119,6 +177,16 @@ export async function verifySilverFoundationExport(
 	// CI selects the JDK through PATH; executable overrides must not run code.
 	const java = "java";
 	const javac = "javac";
+	const script = documentedFoundationGuard(slug, files["README.md"]);
+	for (const malicious of [
+		`${script}\nprintf injected`,
+		script.replace("javac --release", "printf injected; javac --release")
+	]) {
+		assert.throws(
+			() => documentedFoundationGuard(slug, files["README.md"].replace(script, malicious)),
+			/Downloaded guide command differs from the checked-in guard/
+		);
+	}
 	const originalSource = files["Main.java"];
 	const previous = "Earlier saved answer\n";
 	const compile = async (cwd) => {
@@ -306,14 +374,6 @@ class BankTaskProbe {
 		}
 		await writeFile(join(directory, fixture.input), files[fixture.input]);
 	}
-	const guardMatches = [
-		...files["README.md"].matchAll(/```sh\n([\s\S]*?)\n```/g)
-	];
-	assert.equal(guardMatches.length, 1);
-	const quoteShell = value => `'${value.replaceAll("'", "'\\''")}'`;
-	const script = guardMatches[0][1]
-		.replace("javac --release", `${quoteShell(javac)} --release`)
-		.replace("java -cp", `${quoteShell(java)} -cp`);
 	let documentedGuards = 0;
 	for (const variant of [
 		"normal",
@@ -383,6 +443,8 @@ class BankTaskProbe {
 		cases: cases.length,
 		malformedCases,
 		documentedGuards,
+		guideCommandRejections: 2,
+		scriptFromRepository: true,
 		maximumPrimeInterval: slug === "pprime" && fixture.reference,
 		integerLimitOrdering: slug === "records",
 		directBankTaskRefusal,
