@@ -7,10 +7,7 @@ import type {
 import { defineStore } from "pinia";
 
 import { computed } from "vue";
-import {
-	c17OpeningPacks,
-	c17SourceRevision
-} from "@/modules/c17ProjectResources";
+import { c17VerifiedPacks } from "@/modules/c17ProjectResources";
 import {
 	isInstructionMaterialResourceUrl,
 	scratchProjectEmbedUrl
@@ -37,7 +34,6 @@ const SENTENCE_SPLIT_RE = /(?<=[.!?])\s+/;
 const TRAILING_SLASH_RE = /\/$/;
 const TRAILING_URL_PUNCTUATION_RE = /[),.;:]+$/;
 const GITHUB_BLOB_SEGMENT_RE = /\/blob\//i;
-const C17_OPENING_PACK_NAMES = new Set<string>(c17OpeningPacks);
 const DEDICATED_SOLUTION_SEGMENT_RE =
 	/(?:^|\/)solution(?:\/|$)|(?:^|[-_])solution(?:[-_]|$)/i;
 const REFERENCE_LEAD_LABEL_RE = /reference|repo|starter/i;
@@ -317,9 +313,10 @@ function canonicalizeResourceUrl(url?: string) {
 		if (
 			owner === "instruction-material" &&
 			repo === "C-Systems-Engineering" &&
-			ref === c17SourceRevision &&
 			fileSegments.length === 2 &&
-			C17_OPENING_PACK_NAMES.has(fileSegments[0]) &&
+			c17VerifiedPacks.some(
+				pack => pack.pack === fileSegments[0] && pack.revision === ref
+			) &&
 			fileSegments[1] === "README.md"
 		) {
 			return trimmedUrl;

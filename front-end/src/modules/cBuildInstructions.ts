@@ -1,7 +1,13 @@
 import type { PythonIdeFile } from "@/modules/pythonIde";
+import { c17CourseResource } from "@/modules/c17ProjectResources";
 import { isValidPythonFileName } from "@/modules/pythonIde";
 
-export function cBuildInstructions(files: PythonIdeFile[]) {
+export function cBuildInstructions(
+	files: PythonIdeFile[],
+	starterUrl?: string
+) {
+	const selected = c17CourseResource(starterUrl ?? "");
+	const tooling = selected?.pack === "CSE-09-unit-11-systems-tooling";
 	const textFiles = files.filter(file => file.encoding !== "base64");
 	const roles = ["starter", "solution"].filter(role =>
 		textFiles.some(file => file.name === `${role}/CMakeLists.txt`)
@@ -21,7 +27,11 @@ export function cBuildInstructions(files: PythonIdeFile[]) {
 			"Read ../README.md for the executable name, debugger pass, sanitizer build and expected output.",
 			...(role === "starter"
 				? [
-						"The untouched learner executable exits 78 and its contract test fails until the named TODO is completed."
+						tooling
+							? "The untouched learner intentionally fails strict compilation. Follow ../README.md to repair the marked format mismatch, inspect the missing symbol, and diagnose signed overflow before the completed builds pass. Keep warning and sanitizer checks enabled."
+							: selected
+								? "The untouched learner executable exits 78 and its contract test fails until the named TODOs are completed."
+								: "Read ../README.md for the untouched learner's expected failure and the required repairs before comparing completed test output."
 					]
 				: [
 						"Compare the separate reference with a saved learner attempt and explain the boundary tests."

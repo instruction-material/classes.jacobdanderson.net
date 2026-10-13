@@ -1,4 +1,5 @@
 import type { RawCourse } from "./types";
+import { c17CoreProjectReading } from "./c17CoreProjectReading";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { buildProjectGuidance } from "./projectGuidance";
 
@@ -586,16 +587,15 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 				},
 				{
 					title: "Unit 8: Function Pointers and Dispatch: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 8: Function Pointers and Dispatch",
-						projectKind: "core",
-						hasReference: true
-					}),
+					ideImport: true,
+					content:
+						c17CoreProjectReading[
+							"CSE-07-unit-8-function-pointers-and-dispatch"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-07-unit-8-function-pointers-and-dispatch/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/390d99a65ce272dbd690537870811756a06bd9bf/CSE-07-unit-8-function-pointers-and-dispatch/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-07-unit-8-function-pointers-and-dispatch/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/390d99a65ce272dbd690537870811756a06bd9bf/CSE-07-unit-8-function-pointers-and-dispatch/solution"
 				}
 			],
 			supplementalProjects: [
@@ -604,9 +604,7 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 					content:
 						"Keep a short engineering notebook for function pointers and dispatch that records the byte view, memory view, compiler or runtime evidence, and one plain-language explanation of why the code worked or failed. Focus especially on which values select which handlers and why a dispatch table can be clearer than a giant if-else chain to build the habit of explaining systems behavior instead of only trusting output.",
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-07-unit-8-function-pointers-and-dispatch/starter",
-					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-07-unit-8-function-pointers-and-dispatch/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/blob/390d99a65ce272dbd690537870811756a06bd9bf/CSE-07-unit-8-function-pointers-and-dispatch/README.md"
 				},
 				{
 					title: "Dispatch Transfer Practice",
@@ -727,16 +725,15 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 				},
 				{
 					title: "Unit 10: Engineering Math in Code: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 10: Engineering Math in Code",
-						projectKind: "core",
-						hasReference: true
-					}),
+					ideImport: true,
+					content:
+						c17CoreProjectReading[
+							"CSE-08-unit-10-engineering-math-in-code"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-08-unit-10-engineering-math-in-code/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/008e3e6c7f9a5f469820ec43824ef75d51e01dfd/CSE-08-unit-10-engineering-math-in-code/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-08-unit-10-engineering-math-in-code/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/008e3e6c7f9a5f469820ec43824ef75d51e01dfd/CSE-08-unit-10-engineering-math-in-code/solution"
 				}
 			],
 			supplementalProjects: [
@@ -745,9 +742,7 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 					content:
 						"Keep a short engineering notebook for engineering math in code that records the byte view, memory view, compiler or runtime evidence, and one plain-language explanation of why the code worked or failed. Focus especially on scaling choices, overflow checks, and why the chosen units make the transform safer to reason about.",
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-08-unit-10-engineering-math-in-code/starter",
-					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-08-unit-10-engineering-math-in-code/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/blob/008e3e6c7f9a5f469820ec43824ef75d51e01dfd/CSE-08-unit-10-engineering-math-in-code/README.md"
 				},
 				{
 					title: "Numeric Reliability Transfer Practice",
@@ -802,16 +797,13 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 				},
 				{
 					title: "Unit 11: Systems Tooling: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 11: Systems Tooling",
-						projectKind: "core",
-						hasReference: true
-					}),
+					ideImport: true,
+					content:
+						c17CoreProjectReading["CSE-09-unit-11-systems-tooling"],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-09-unit-11-systems-tooling/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/aa4ccdf9398472351985c8cce3d20a719addca5a/CSE-09-unit-11-systems-tooling/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-09-unit-11-systems-tooling/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/aa4ccdf9398472351985c8cce3d20a719addca5a/CSE-09-unit-11-systems-tooling/solution"
 				}
 			],
 			supplementalProjects: [
@@ -820,9 +812,7 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 					content:
 						"Keep a short engineering notebook for systems tooling that records the byte view, memory view, compiler or runtime evidence, and one plain-language explanation of why the code worked or failed. Focus especially on which tool produced the most useful evidence for a given bug or observation and why to build the habit of explaining systems behavior instead of only trusting output.",
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-09-unit-11-systems-tooling/starter",
-					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-09-unit-11-systems-tooling/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/blob/aa4ccdf9398472351985c8cce3d20a719addca5a/CSE-09-unit-11-systems-tooling/README.md"
 				},
 				{
 					title: "Tooling Evidence Transfer Practice",

@@ -15,10 +15,27 @@ import { confirmProjectImport, downloadProjectZip } from "./ide-workspace-contro
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
 const fixture = JSON.parse(await readFile(new URL("./fixtures/c17-opening-contracts.json", import.meta.url), "utf8"));
 const packs = [...new Set(Object.keys(fixture.files).map(path => path.split("/")[0]))];
+const primarySources = {
+	"CSE-05-cse0-setup-and-tooling": "main.c",
+	"CSE-06-unit-1-why-c-for-systems-work": "labels.c",
+	"CSE-07-unit-8-function-pointers-and-dispatch": "dispatch.c",
+	"CSE-08-unit-10-engineering-math-in-code": "engineering_math.c",
+	"CSE-09-unit-11-systems-tooling": "engineering_math.c"
+};
 const storageKey = "classes-python-ide-projects:anonymous";
 const preserved = { _id: "c17-preserved-attempt", title: "Earlier attempt", mode: "python", files: [{ name: "main.py", content: "# retain this attempt\n" }], activeFileName: "main.py", courseProjectKey: "c-systems-engineering:setup:starter" };
+const legacyAttempts = [1280, 360].flatMap(width =>
+	["light", "dark"].flatMap(theme =>
+		packs.flatMap(pack =>
+			["starter", "reference"].map((role) => {
+				const key = `c-systems-engineering:${pack}-${width}-${theme}:${role}`;
+				return { ...preserved, _id: `legacy:${key}`, title: "Earlier matching attempt", courseProjectKey: key };
+			})
+		)
+	)
+);
 
-test("native C imports require consent and preserve source, saved attempts, roles and ZIP layout", { timeout: 360_000 }, async () => {
+test("native C imports require consent and preserve source, saved attempts, roles and ZIP layout", { timeout: 600_000 }, async () => {
 	let server;
 	let browser;
 	let context;
@@ -35,7 +52,9 @@ test("native C imports require consent and preserve source, saved attempts, role
 		context = await browser.createBrowserContext();
 		page = await context.newPage();
 		await page.evaluateOnNewDocument((key, existing) => {
-			if (localStorage.getItem(key) === null) localStorage.setItem(key, JSON.stringify([existing]));
+			// Seed every older attempt before the first IndexedDB migration.
+			// Later navigations must use the editor's persisted project snapshot.
+			if (localStorage.getItem(key) === null) localStorage.setItem(key, JSON.stringify(existing));
 			const click = HTMLAnchorElement.prototype.click;
 			HTMLAnchorElement.prototype.click = function () {
 				if (this.download.endsWith(".zip") && this.href.startsWith("blob:")) return;
@@ -46,15 +65,16 @@ test("native C imports require consent and preserve source, saved attempts, role
 				if (blob.type === "application/zip") window.__c17Archive = blob;
 				return create(blob);
 			};
-		}, storageKey, preserved);
+		}, storageKey, [preserved, ...legacyAttempts]);
 		await page.setRequestInterception(true);
 		let sourceRequests = [];
 		page.on("request", (request) => {
 			const url = new URL(request.url());
 			if (url.hostname === "raw.githubusercontent.com") {
 				sourceRequests.push(url.pathname);
-				const prefix = `/${fixture.repository}/${fixture.revision}/`;
-				const file = url.pathname.startsWith(prefix) ? fixture.files[url.pathname.slice(prefix.length)] : null;
+				const prefix = `/${fixture.repository}/`;
+				const [revision, pack, ...parts] = url.pathname.slice(prefix.length).split("/");
+				const file = url.pathname.startsWith(prefix) && revision === fixture.revisions[pack] ? fixture.files[`${pack}/${parts.join("/")}`] : null;
 				void request.respond({ status: file ? 200 : 404, contentType: "text/plain", headers: { "access-control-allow-origin": "*" }, body: file?.content ?? "Unknown source" });
 			}
 			else if (url.origin !== origin || url.pathname.startsWith("/api/")) {
@@ -67,6 +87,7 @@ test("native C imports require consent and preserve source, saved attempts, role
 		for (const width of [1280, 360]) {
 			for (const theme of ["light", "dark"]) {
 				for (const pack of packs) {
+					const revision = fixture.revisions[pack];
 					for (const role of ["starter", "solution"]) {
 						await page.setViewport({ width, height: 900 });
 						await page.emulateMediaFeatures([{ name: "prefers-color-scheme", value: theme }]);
@@ -74,7 +95,7 @@ test("native C imports require consent and preserve source, saved attempts, role
 						// previously saved project's files or the original course progress IDs.
 						const item = `${pack}-${width}-${theme}`;
 						const key = `c-systems-engineering:${item}:${role === "starter" ? "starter" : "reference"}:native-c17`;
-						const params = new URLSearchParams({ course: "c-systems-engineering", mode: "c", projectKey: key, starterUrl: `https://github.com/${fixture.repository}/tree/${fixture.revision}/${pack}/${role}`, starterTitle: "C17 opening project" });
+						const params = new URLSearchParams({ course: "c-systems-engineering", mode: "c", projectKey: key, starterUrl: `https://github.com/${fixture.repository}/tree/${revision}/${pack}/${role}`, starterTitle: "C17 core project" });
 						sourceRequests = [];
 						await page.goto(`${origin}/ide?${params}`, { waitUntil: "domcontentloaded" });
 						await page.waitForSelector("[data-testid='ide-route-import-confirm']");
@@ -83,10 +104,14 @@ test("native C imports require consent and preserve source, saved attempts, role
 						await page.waitForFunction((storageKey, key) => JSON.parse(localStorage.getItem(storageKey) ?? "[]").some(project => project.courseProjectKey === key), {}, storageKey, key);
 						const projects = await page.evaluate(key => JSON.parse(localStorage.getItem(key)), storageKey);
 						assert.deepEqual(projects.find(project => project._id === preserved._id), preserved);
+						const legacyKey = key.replace(/:native-c17$/, "");
+						const legacyAttempt = { ...preserved, _id: `legacy:${legacyKey}`, title: "Earlier matching attempt", courseProjectKey: legacyKey };
+						assert.deepEqual(projects.find(project => project.courseProjectKey === legacyKey), legacyAttempt);
 						const saved = projects.find(project => project.courseProjectKey === key);
 						assert.equal(saved.mode, "c");
 						assert.equal(saved.activeFileName, `${role}/main.c`);
-						assert.equal(saved.files.length, pack.startsWith("CSE-05") ? 6 : 7);
+						const expectedNames = Object.keys(fixture.files).filter(path => path.startsWith(`${pack}/${role}/`) || path === `${pack}/README.md` || path === `${pack}/unsafe_probe.c`).map(path => path.slice(pack.length + 1));
+						assert.deepEqual(saved.files.map(file => file.name).sort(), expectedNames.sort());
 						assert.equal(sourceRequests.length, saved.files.length);
 						assert.ok(sourceRequests.every(path => !path.includes(role === "starter" ? "/solution/" : "/starter/")));
 						for (const file of saved.files) assert.equal(file.content, fixture.files[`${pack}/${file.name}`].content);
@@ -99,6 +124,9 @@ test("native C imports require consent and preserve source, saved attempts, role
 						assert.equal(await page.$eval(".result-panel .panel-header > span", span => span.textContent.trim()), "Build instructions");
 						await page.click("button.run-control");
 						await page.waitForFunction(() => [...document.querySelectorAll(".output-line")].some(line => line.textContent.includes("ctest --test-dir build")));
+						if (pack.startsWith("CSE-09") && role === "starter") {
+							assert.ok(await page.$eval(".result-panel", panel => panel.textContent.includes("intentionally fails strict compilation")));
+						}
 						assert.equal(await page.$("iframe[title='Isolated Python output']"), null);
 						assert.ok(await page.$eval("body", body => body.textContent.includes("C17 build workflow") || document.querySelector("[aria-label='C17 build workflow']") !== null));
 						await downloadProjectZip(page);
@@ -116,7 +144,11 @@ test("native C imports require consent and preserve source, saved attempts, role
 						}
 						if (width < 900) await page.locator(".mobile-view-picker button[data-view='code']").click();
 						await page.waitForSelector(".cm-content", { visible: true });
-						const edit = `${saved.files.find(file => file.name === `${role}/main.c`).content}\n/* Saved C editor attempt. */\n`;
+						const editFile = `${role}/${primarySources[pack]}`;
+						assert.ok(primarySources[pack], "Every verified pack identifies its actual learner implementation file");
+						await page.select("select[aria-label='Active project file']", editFile);
+						await page.waitForFunction((storageKey, key, name) => JSON.parse(localStorage.getItem(storageKey)).find(project => project.courseProjectKey === key)?.activeFileName === name, {}, storageKey, key, editFile);
+						const edit = `${saved.files.find(file => file.name === editFile).content}\n/* Saved C editor attempt. */\n`;
 						await page.click(".cm-content");
 						const modifier = await page.evaluate(() => /Mac/.test(navigator.platform) ? "Meta" : "Control");
 						await page.keyboard.down(modifier);
@@ -126,8 +158,8 @@ test("native C imports require consent and preserve source, saved attempts, role
 						await page.keyboard.down(modifier);
 						await page.keyboard.press("s");
 						await page.keyboard.up(modifier);
-						await page.waitForFunction((storageKey, key, name, content) => JSON.parse(localStorage.getItem(storageKey)).find(project => project.courseProjectKey === key)?.files.some(file => file.name === name && file.content === content), {}, storageKey, key, `${role}/main.c`, edit);
-						const expectedSavedFiles = saved.files.map(file => file.name === `${role}/main.c` ? { ...file, content: edit } : file);
+						await page.waitForFunction((storageKey, key, name, content) => JSON.parse(localStorage.getItem(storageKey)).find(project => project.courseProjectKey === key)?.files.some(file => file.name === name && file.content === content), {}, storageKey, key, editFile, edit);
+						const expectedSavedFiles = saved.files.map(file => file.name === editFile ? { ...file, content: edit } : file);
 						await downloadProjectZip(page);
 						const editedZip = await page.evaluate(async () => {
 							const bytes = new Uint8Array(await window.__c17Archive.arrayBuffer());
@@ -147,14 +179,17 @@ test("native C imports require consent and preserve source, saved attempts, role
 						await page.waitForSelector("button.run-control:not([disabled])");
 						const reloaded = await page.evaluate((storageKey, key) => JSON.parse(localStorage.getItem(storageKey)).find(project => project.courseProjectKey === key), storageKey, key);
 						assert.deepEqual(reloaded.files, expectedSavedFiles);
-						proof.push({ pack, role, width, theme, files: saved.files.length, capture, byteExact: true, editedExportPreserved: true, savedAttemptPreserved: true });
+						assert.equal(reloaded.activeFileName, editFile);
+						const legacyReloaded = await page.evaluate((storageKey, legacyKey) => JSON.parse(localStorage.getItem(storageKey)).find(project => project.courseProjectKey === legacyKey), storageKey, legacyKey);
+						assert.deepEqual(legacyReloaded, legacyAttempt);
+						proof.push({ pack, revision, role, width, theme, editedFile: editFile, matchingLegacySlotPreserved: true, files: saved.files.length, capture, byteExact: true, editedExportPreserved: true, savedAttemptPreserved: true });
 					}
 				}
 			}
 		}
-		assert.equal(proof.length, 16);
-		await writeFile(join(captures, "c17-workflow-proof.json"), `${JSON.stringify({ revision: fixture.revision, imports: proof.length, cases: proof }, null, 2)}\n`);
-		console.log(JSON.stringify({ event: "c17-browser-workflow-accepted", sourceRevision: fixture.revision, imports: proof.length, exports: proof.length * 2, editedExports: proof.length, savedAttemptPreserved: true }));
+		assert.equal(proof.length, packs.length * 8);
+		await writeFile(join(captures, "c17-workflow-proof.json"), `${JSON.stringify({ revisions: fixture.revisions, imports: proof.length, cases: proof }, null, 2)}\n`);
+		console.log(JSON.stringify({ event: "c17-browser-workflow-accepted", sourceRevision: fixture.revision, sourceRevisions: fixture.revisions, packs: packs.length, imports: proof.length, exports: proof.length * 2, editedExports: proof.length, savedAttemptPreserved: true, legacySlotsPreserved: proof.length, primarySourceEdits: true }));
 	}
 	finally {
 		await page?.close();

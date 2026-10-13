@@ -9,6 +9,8 @@ import { useAppStore } from "@/stores/app";
 import { cBuildInstructions } from "@/modules/cBuildInstructions";
 import {
 	c17CourseProjectKey,
+	c17CourseResource,
+	c17VerifiedPacks,
 	c17OpeningPacks,
 	c17SourceRevision
 } from "@/modules/c17ProjectResources";
@@ -36,11 +38,18 @@ const fixture = JSON.parse(
 	)
 ) as {
 	revision: string;
+	revisions: Record<string, string>;
 	files: Record<string, { content: string; sha256: string }>;
 };
 const root = `https://github.com/instruction-material/C-Systems-Engineering/tree/${c17SourceRevision}/`;
-const roles = c17OpeningPacks.flatMap(pack =>
-	(["starter", "solution"] as const).map(role => ({ pack, role }))
+const roles = c17VerifiedPacks.flatMap(
+	({ pack, revision, roleFiles, supportFiles }) =>
+		(["starter", "solution"] as const).map(role => ({
+			pack,
+			role,
+			revision,
+			fileCount: roleFiles.length + supportFiles.length
+		}))
 );
 
 afterEach(() => {
@@ -49,7 +58,7 @@ afterEach(() => {
 });
 
 describe("native C17 source workspace", () => {
-	it("connects only the two verified core cards and retains their progress identities", async () => {
+	it("retains the two opening core cards and retains their progress identities", async () => {
 		setActivePinia(createPinia());
 		useAppStore().setCurrentTutor({
 			_id: "c17-tutor",
@@ -114,15 +123,144 @@ describe("native C17 source workspace", () => {
 		);
 	});
 
+	it("connects all five verified core packs with complete reading, guide-only notebooks, and separate reference visibility", async () => {
+		setActivePinia(createPinia());
+		useAppStore().setCurrentTutor({
+			_id: "c17-tutor",
+			name: "Tutor",
+			email: "tutor@example.invalid",
+			age: 30,
+			state: "GA",
+			usersOfTutorLength: 0,
+			coursePermissions: ["c-systems-engineering"],
+			editTutors: false,
+			saveEdit: "Save"
+		});
+		const course = await useCoursesStore().loadCourseById(
+			"c-systems-engineering"
+		);
+		const core = course!.modules
+			.flatMap(module => module.curriculum)
+			.filter(item => c17CourseResource(item.projectLink ?? ""));
+		expect(core).toHaveLength(5);
+		const ids = core.map(item => item.id);
+		expect(ids).toEqual([
+			"c-systems-engineering-cse0-setup-and-tooling-curriculum-core-project-c-systems-engineering",
+			"c-systems-engineering-unit-1-why-c-for-systems-work-curriculum-core-project-why-c-for-systems-work",
+			"c-systems-engineering-unit-8-function-pointers-and-dispatch-curriculum-core-project-function-pointers-and-dispatch",
+			"c-systems-engineering-unit-10-engineering-math-in-code-curriculum-core-project-engineering-math-in-code",
+			"c-systems-engineering-unit-11-systems-tooling-curriculum-core-project-systems-tooling"
+		]);
+		for (const item of core.slice(2)) {
+			const selected = c17CourseResource(item.projectLink!)!;
+			const guide = fixture.files[`${selected.pack}/README.md`].content;
+			expect(item.content).toContain(
+				guide
+					.slice(guide.indexOf("\n") + 1)
+					.replaceAll("An instructor", "A course facilitator")
+					.replaceAll("instructor", "course facilitator")
+					.replaceAll(
+						"The existing dispatcher should accept it without",
+						"The existing dispatcher accepts it without"
+					)
+					.replaceAll(
+						"the two TODO comments in",
+						"the two `TODO` comments in"
+					)
+					.replaceAll(
+						"the TODO in `main.c`",
+						"the `TODO` in `main.c`"
+					)
+					.replaceAll(
+						"Use `starter` for the learner attempt.",
+						"The `starter` directory contains the implementation to complete."
+					)
+					.replaceAll(
+						"Unlike earlier learners,",
+						"Unlike earlier starter projects,"
+					)
+					.trim()
+			);
+			expect(item.ideImport).toBe(true);
+			expect(item.content).toContain("Completion evidence");
+			expect(
+				pythonIdeModeForCourseResource(course!.id, item.solutionLink!)
+			).toBe("c");
+			const notebook = course!.modules
+				.flatMap(module => module.supplementalProjects)
+				.find(candidate =>
+					candidate.projectLink?.includes(
+						`/${selected.pack}/README.md`
+					)
+				)!;
+			expect(notebook).toBeDefined();
+			expect(notebook.projectLink).toContain(
+				`/blob/${selected.resource.ref}/`
+			);
+			expect(notebook.ideImport).not.toBe(true);
+			expect(notebook.solutionLink).toBeUndefined();
+		}
+		useAppStore().setCurrentTutor(null);
+		const learner = await useCoursesStore().loadCourseById(
+			"c-systems-engineering"
+		);
+		const learnerCore = learner!.modules
+			.flatMap(module => module.curriculum)
+			.filter(item => c17CourseResource(item.projectLink ?? ""));
+		expect(learnerCore.map(item => item.id)).toEqual(ids);
+		expect(learnerCore.every(item => item.solutionLink === undefined)).toBe(
+			true
+		);
+	});
+
+	it.each(c17VerifiedPacks)(
+		"rejects a mismatched accepted revision for $pack without fetching source",
+		async ({ pack, revision }) => {
+			const wrong =
+				revision === c17SourceRevision
+					? "aa4ccdf9398472351985c8cce3d20a719addca5a"
+					: c17SourceRevision;
+			const url = `${root.replace(c17SourceRevision, wrong)}${pack}/starter`;
+			const fetcher = vi.fn();
+			vi.stubGlobal("fetch", fetcher);
+			expect(c17CourseResource(url)).toBeNull();
+			await expect(
+				loadPythonIdeStarterFilesFromGitHub(url, "c")
+			).rejects.toThrow("no verified site import");
+			expect(fetcher).not.toHaveBeenCalled();
+		}
+	);
+
+	it("describes the deliberate tooling compilation failure before its link and sanitizer repairs", async () => {
+		const pack = c17VerifiedPacks[4];
+		const url = `${root.replace(c17SourceRevision, pack.revision)}${pack.pack}/starter`;
+		const files = [
+			...pack.roleFiles.map(name => ({
+				name: `starter/${name}`,
+				content: fixture.files[`${pack.pack}/starter/${name}`].content
+			})),
+			{
+				name: "README.md",
+				content: fixture.files[`${pack.pack}/README.md`].content
+			}
+		];
+		const text = cBuildInstructions(files, url).join("\n");
+		expect(text).toContain("intentionally fails strict compilation");
+		expect(text).toContain("missing symbol");
+		expect(text).toContain("signed overflow");
+		expect(text).not.toContain("exits 78");
+		expect(cBuildInstructions(files).join("\n")).not.toContain("exits 78");
+	});
+
 	it.each(roles)(
 		"imports and exports exact $pack/$role bytes with only the selected role",
-		async ({ pack, role }) => {
+		async ({ pack, role, revision, fileCount }) => {
 			const requests: string[] = [];
 			vi.stubGlobal(
 				"fetch",
 				vi.fn(async (url: string) => {
 					requests.push(url);
-					const prefix = `https://raw.githubusercontent.com/instruction-material/C-Systems-Engineering/${c17SourceRevision}/`;
+					const prefix = `https://raw.githubusercontent.com/instruction-material/C-Systems-Engineering/${revision}/`;
 					expect(url.startsWith(prefix)).toBe(true);
 					const source = fixture.files[url.slice(prefix.length)];
 					if (!source)
@@ -131,7 +269,7 @@ describe("native C17 source workspace", () => {
 				})
 			);
 			expect(fixture.revision).toBe(c17SourceRevision);
-			const url = `${root}${pack}/${role}`;
+			const url = `${root.replace(c17SourceRevision, revision)}${pack}/${role}`;
 			expect(
 				pythonIdeModeForCourseResource("c-systems-engineering", url)
 			).toBe("c");
@@ -178,7 +316,7 @@ describe("native C17 source workspace", () => {
 					createHash("sha256").update(exported).digest("hex")
 				).toBe(source.sha256);
 			}
-			expect(files).toHaveLength(pack === c17OpeningPacks[0] ? 6 : 7);
+			expect(files).toHaveLength(fileCount);
 			expect(
 				requests.some(url =>
 					url.includes(
@@ -186,14 +324,16 @@ describe("native C17 source workspace", () => {
 					)
 				)
 			).toBe(false);
-			expect(cBuildInstructions(files).join("\n")).toContain(
+			expect(cBuildInstructions(files, url).join("\n")).toContain(
 				`cd ${role}`
 			);
-			expect(cBuildInstructions(files).join("\n")).toContain(
+			expect(cBuildInstructions(files, url).join("\n")).toContain(
 				"ctest --test-dir build"
 			);
 			expect(
-				cBuildInstructions(files).join("\n").includes("unsafe_probe.c")
+				cBuildInstructions(files, url)
+					.join("\n")
+					.includes("unsafe_probe.c")
 			).toBe(pack === c17OpeningPacks[0]);
 		}
 	);
@@ -275,36 +415,39 @@ describe("native C17 source workspace", () => {
 			expect(isValidPythonFileName(path)).toBe(false);
 	});
 
-	it("preserves an existing attempt when learner and reference keys are created", () => {
-		const existing = createPythonIdeProject("python", {
-			courseProjectKey: "c-systems-engineering:lesson:starter"
-		});
-		existing.files[0].content = "# saved before native imports\n";
-		const original = structuredClone(existing);
-		const learner = createPythonIdeProject("c", {
-			courseProjectKey: c17CourseProjectKey(
-				"c-systems-engineering",
-				"lesson",
-				"starter",
-				`${root}${c17OpeningPacks[0]}/starter`
-			)
-		});
-		const reference = createPythonIdeProject("c", {
-			courseProjectKey: c17CourseProjectKey(
-				"c-systems-engineering",
-				"lesson",
-				"reference",
-				`${root}${c17OpeningPacks[0]}/solution`
-			)
-		});
-		expect(
-			new Set([
-				existing.courseProjectKey,
-				learner.courseProjectKey,
-				reference.courseProjectKey
-			]).size
-		).toBe(3);
-		saveLocalPythonProjects([existing, learner, reference]);
-		expect(loadLocalPythonProjects()[0]).toEqual(original);
-	});
+	it.each(c17VerifiedPacks)(
+		"preserves earlier attempts when $pack learner and reference keys are created",
+		({ pack, revision }) => {
+			const existing = createPythonIdeProject("python", {
+				courseProjectKey: "c-systems-engineering:lesson:starter"
+			});
+			existing.files[0].content = "# saved before native imports\n";
+			const original = structuredClone(existing);
+			const learner = createPythonIdeProject("c", {
+				courseProjectKey: c17CourseProjectKey(
+					"c-systems-engineering",
+					"lesson",
+					"starter",
+					`${root.replace(c17SourceRevision, revision)}${pack}/starter`
+				)
+			});
+			const reference = createPythonIdeProject("c", {
+				courseProjectKey: c17CourseProjectKey(
+					"c-systems-engineering",
+					"lesson",
+					"reference",
+					`${root.replace(c17SourceRevision, revision)}${pack}/solution`
+				)
+			});
+			expect(
+				new Set([
+					existing.courseProjectKey,
+					learner.courseProjectKey,
+					reference.courseProjectKey
+				]).size
+			).toBe(3);
+			saveLocalPythonProjects([existing, learner, reference]);
+			expect(loadLocalPythonProjects()[0]).toEqual(original);
+		}
+	);
 });
