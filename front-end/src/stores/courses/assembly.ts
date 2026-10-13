@@ -1,6 +1,8 @@
 import type { RawCourse } from "./types";
+import { assemblyArrayProjectReading } from "./assemblyArrayProjectReading";
 import { assemblyCalculatorProjectReading } from "./assemblyCalculatorProjectReading";
 import { assemblyOpeningProjectReading } from "./assemblyOpeningProjectReading";
+import { assemblyStringProjectReading } from "./assemblyStringProjectReading";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { buildProjectGuidance } from "./projectGuidance";
 
@@ -312,12 +314,13 @@ const assemblySourceCourse: RawCourse = {
 				},
 				{
 					title: "Project: Array Sum and Search Routines",
-					content:
-						"The array lab connects loops, comparisons, pointer stepping, and return values in one traceable routine. Each pass through the loop reveals the accumulator or search state more clearly, and the branch condition explains exactly why the loop continues or exits.",
+					id: "assembly-unit-4-branching-and-loops-curriculum-project-array-sum-and-search-routines",
+					ideImport: true,
+					content: assemblyArrayProjectReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM2-Array-Sum-and-Search/starter",
+						"https://github.com/instruction-material/Assembly/tree/4e82e4d5f02067a830f92c19e148d0822220ffe9/ASM2-Array-Sum-and-Search/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM2-Array-Sum-and-Search/solution"
+						"https://github.com/instruction-material/Assembly/tree/4e82e4d5f02067a830f92c19e148d0822220ffe9/ASM2-Array-Sum-and-Search/solution"
 				}
 			],
 			supplementalProjects: [
@@ -326,9 +329,7 @@ const assemblySourceCourse: RawCourse = {
 					content:
 						"Use a focused trace worksheet for branching and loops that records the key registers, flag changes, memory addresses, and one plain-language explanation of why the control flow moved the way it did. Focus especially on loop counters, branch conditions, and which instruction actually decides whether the next iteration runs so the worksheet narrates instruction flow rather than only skimming mnemonics. A complete entry records the instruction address, the value before the instruction, the value after the instruction, and the evidence that explains the next branch, call, or return.",
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM2-Array-Sum-and-Search/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM2-Array-Sum-and-Search/solution"
+						"https://github.com/instruction-material/Assembly/blob/4e82e4d5f02067a830f92c19e148d0822220ffe9/ASM2-Array-Sum-and-Search/README.md"
 				},
 				{
 					title: "Branch Trace Transfer Practice",
@@ -519,12 +520,13 @@ const assemblySourceCourse: RawCourse = {
 				},
 				{
 					title: "Project: String Length and Copy Routines",
-					content:
-						"The string lab makes pointer walking, null termination, and capacity-aware copying visible one instruction at a time. Every load, store, and branch has a concrete justification in address movement, byte values, and buffer boundaries.",
+					id: "assembly-unit-7-memory-addressing-and-data-structures-curriculum-project-string-length-and-copy-routines",
+					ideImport: true,
+					content: assemblyStringProjectReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM3-String-Length-and-Copy/starter",
+						"https://github.com/instruction-material/Assembly/tree/3d66cd9cd20139f8176098475193b791edd2bcd8/ASM3-String-Length-and-Copy/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM3-String-Length-and-Copy/solution"
+						"https://github.com/instruction-material/Assembly/tree/3d66cd9cd20139f8176098475193b791edd2bcd8/ASM3-String-Length-and-Copy/solution"
 				}
 			],
 			supplementalProjects: [
@@ -533,9 +535,7 @@ const assemblySourceCourse: RawCourse = {
 					content:
 						"Use a focused trace worksheet for memory addressing and data structures that records the key registers, flag changes, memory addresses, and one plain-language explanation of why the control flow moved the way it did. Focus especially on address formulas, stop conditions, and where each byte load or store lands in memory so the worksheet narrates instruction flow rather than only skimming mnemonics. A complete entry records the instruction address, the value before the instruction, the value after the instruction, and the evidence that explains the next branch, call, or return.",
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM3-String-Length-and-Copy/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM3-String-Length-and-Copy/solution"
+						"https://github.com/instruction-material/Assembly/blob/3d66cd9cd20139f8176098475193b791edd2bcd8/ASM3-String-Length-and-Copy/README.md"
 				},
 				{
 					title: "Addressing Mode Transfer Practice",

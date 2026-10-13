@@ -279,7 +279,7 @@ jobs:
               run: sudo apt-get update && sudo apt-get install -y gdb
 
             - name: Export Assembly default and pack workspaces
-              run: ASSEMBLY_EXPORT_PROOF_DIR="$GITHUB_WORKSPACE/output/assembly-exports" npm exec -w front-end -- vitest run test/assembly-workspace.spec.test.ts test/assembly-calculator-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+              run: ASSEMBLY_EXPORT_PROOF_DIR="$GITHUB_WORKSPACE/output/assembly-exports" npm exec -w front-end -- vitest run test/assembly-workspace.spec.test.ts test/assembly-calculator-workspace.spec.test.ts test/assembly-memory-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
 
             - name: Verify Assembly imports, saved source and ZIP exports
               env:
@@ -293,6 +293,10 @@ jobs:
                   python3 test/assembly-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-native-gcc.json
                   python3 test/assembly-exported-contracts.py --project calculator --cc clang --archives output/assembly-exports --proof output/playwright/assembly-calculator-native-clang.json
                   python3 test/assembly-exported-contracts.py --project calculator --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-calculator-native-gcc.json
+                  python3 test/assembly-exported-contracts.py --project array --cc clang --archives output/assembly-exports --proof output/playwright/assembly-array-native-clang.json
+                  python3 test/assembly-exported-contracts.py --project array --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-array-native-gcc.json
+                  python3 test/assembly-exported-contracts.py --project string --cc clang --archives output/assembly-exports --proof output/playwright/assembly-string-native-clang.json
+                  python3 test/assembly-exported-contracts.py --project string --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-string-native-gcc.json
 
             - name: Retain Assembly workflow and native validation
               uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a

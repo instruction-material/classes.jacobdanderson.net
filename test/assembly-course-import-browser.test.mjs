@@ -16,8 +16,35 @@ import {
 } from "./ide-workspace-controls.mjs";
 
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
-const fixtures = await Promise.all(["assembly-opening-contracts.json", "assembly-calculator-contracts.json"].map(async name => JSON.parse(await readFile(new URL(`./fixtures/${name}`, import.meta.url), "utf8"))));
+const fixtures = await Promise.all(["assembly-opening-contracts.json", "assembly-calculator-contracts.json", "assembly-array-contracts.json", "assembly-string-contracts.json"].map(async name => JSON.parse(await readFile(new URL(`./fixtures/${name}`, import.meta.url), "utf8"))));
 let fixture = fixtures[0];
+const workflowDefinitions = {
+  "ASM-04-asm0-setup-and-tooling": {
+    "primary": "routine.S",
+    "title": "Build and Trace a Linux x86-64 Function",
+    "lesson": "assembly-asm0-setup-and-tooling-assembly-asm0-setup-and-tooling-curriculum-core-project-assembly",
+    "referenceToken": "total=100"
+  },
+  "ASM1-Integer-Calculator": {
+    "primary": "calculator.S",
+    "title": "Integer Calculator in Assembly",
+    "lesson": "assembly-unit-2-registers-and-data-movement-assembly-unit-2-registers-and-data-movement-curriculum-project-integer-calculator-in-assembly",
+    "referenceToken": "12,589"
+  },
+  "ASM2-Array-Sum-and-Search": {
+    "primary": "array_routines.S",
+    "title": "Array Sum and Search Routines",
+    "lesson": "assembly-unit-4-branching-and-loops-assembly-unit-4-branching-and-loops-curriculum-project-array-sum-and-search-routines",
+    "referenceToken": "11,280"
+  },
+  "ASM3-String-Length-and-Copy": {
+    "primary": "string_routines.S",
+    "title": "String Length and Copy Routines",
+    "lesson": "assembly-unit-7-memory-addressing-and-data-structures-assembly-unit-7-memory-addressing-and-data-structures-curriculum-project-string-length-and-copy-routines",
+    "referenceToken": "35,900"
+  }
+};
+
 
 const storageKey = "classes-python-ide-projects:anonymous";
 const legacy = {
@@ -126,8 +153,8 @@ test(
 			});
 			for (const current of fixtures) {
 				fixture = current;
-				const calculator = fixture.pack === "ASM1-Integer-Calculator";
-				const primary = calculator ? "calculator.S" : "routine.S";
+				const definition = workflowDefinitions[fixture.pack];
+				const { primary, referenceToken } = definition;
 				for (const width of [1280, 360]) {
 					for (const theme of ["light", "dark"]) {
 						for (const role of ["starter", "solution"]) {
@@ -136,14 +163,14 @@ test(
 								{ name: "prefers-color-scheme", value: theme }
 							]);
 							const key = `assembly:${fixture.pack}-${width}-${theme}:${role === "starter" ? "starter" : "reference"}:native-assembly`;
-							const lesson = calculator ? "assembly-unit-2-registers-and-data-movement-assembly-unit-2-registers-and-data-movement-curriculum-project-integer-calculator-in-assembly" : "assembly-asm0-setup-and-tooling-assembly-asm0-setup-and-tooling-curriculum-core-project-assembly";
+							const lesson = definition.lesson;
 							const params = new URLSearchParams({
 								course: "assembly",
 								mode: "assembly",
 								projectKey: key,
 								lesson,
 								starterUrl: `https://github.com/instruction-material/Assembly/tree/${fixture.revision}/${fixture.pack}/${role}`,
-								starterTitle: calculator ? "Integer Calculator in Assembly" : "Build and Trace a Linux x86-64 Function"
+								starterTitle: definition.title
 							});
 							requests = [];
 							await page.goto(`${origin}/ide?${params}`, {
@@ -240,14 +267,14 @@ test(
 							assert.ok(
 								await page.$eval(
 									".result-panel",
-									(p, { role, calculator }) =>
+									(p, { role, referenceToken }) =>
 										p.textContent.includes("Linux x86-64")
 										&& p.textContent.includes(
 											role === "starter"
 												? "exits 78"
-												: calculator ? "12,589" : "total=100"
+												: referenceToken
 										),
-									{ role, calculator }
+									{ role, referenceToken }
 								)
 							);
 							assert.equal(

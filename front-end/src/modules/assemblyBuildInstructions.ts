@@ -1,7 +1,9 @@
 import type { PythonIdeFile } from "@/modules/pythonIde";
 import {
+	assemblyArrayPack,
 	assemblyCalculatorPack,
-	assemblyCourseResource
+	assemblyCourseResource,
+	assemblyStringPack
 } from "@/modules/assemblyProjectResources";
 
 export function assemblyBuildInstructions(
@@ -31,6 +33,40 @@ export function assemblyBuildInstructions(
 			selected.role === "starter"
 				? "Addition, subtraction and multiplication already work. Complete CALC_DIV, CALC_AND and CALC_XOR in calculator.S; the untouched demo exits 78 without successful result rows."
 				: "The reference prints six valid result rows, passes 12,589 arithmetic cases and returns result=-7 for the negative division example."
+		];
+	}
+	if (
+		selected?.pack === assemblyArrayPack &&
+		files.some(file => file.name === `${selected.role}/CMakeLists.txt`)
+	) {
+		return [
+			...lines,
+			`From the extracted project folder: cd ${selected.role}`,
+			"cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang",
+			"cmake --build build",
+			"ctest --test-dir build --output-on-failure",
+			"./build/assembly_array",
+			"Read ../README.md for the exact function contract, GCC/Release builds, bounded memory cases and GDB trace.",
+			selected.role === "starter"
+				? "Complete ARRAY_SEARCH in array_routines.S; summation already works. The untouched demo exits 78 with no successful rows."
+				: "The reference prints sum=48 and first-match indices 0, 3 and -1 and passes 11,280 array cases."
+		];
+	}
+	if (
+		selected?.pack === assemblyStringPack &&
+		files.some(file => file.name === `${selected.role}/CMakeLists.txt`)
+	) {
+		return [
+			...lines,
+			`From the extracted project folder: cd ${selected.role}`,
+			"cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang",
+			"cmake --build build",
+			"ctest --test-dir build --output-on-failure",
+			"./build/assembly_strings",
+			"Read ../README.md for the exact function contract, GCC/Release builds, bounded memory cases and GDB trace.",
+			selected.role === "starter"
+				? "Complete COPY_SOURCE_LENGTH in string_routines.S; length and bounded-copy loops are present. The untouched demo exits 78 with no successful rows."
+				: "The reference returns source length 8 for full, truncated and zero-capacity copies, stores assem in the six-byte buffer and passes 35,900 string cases."
 		];
 	}
 	if (
