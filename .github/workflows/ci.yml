@@ -275,6 +275,11 @@ jobs:
             - name: Build front-end
               run: npm run -w front-end build
 
+            - name: Verify native C17 imports, source editing and ZIP exports
+              env:
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
+              run: node --test test/c17-course-import-browser.test.mjs
+
             - name: Verify restored USACO imports and native file I/O
               env:
                   COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
@@ -311,16 +316,13 @@ jobs:
                   COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
               run: JAVAC="$JAVA_HOME_21_X64/bin/javac" node --test test/cpp-course-import-browser.test.mjs
 
-            - name: Verify native C17 imports, source editing and ZIP exports
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
-              run: node --test test/c17-course-import-browser.test.mjs
-
             - name: Retain C++ and Java workspace screenshots
               uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
               with:
                   name: cpp-workspace-screenshots
-                  path: output/playwright/course-import-*.png
+                  path: |
+                      output/playwright/course-import-*.png
+                      output/playwright/c17-workflow-proof.json
                   if-no-files-found: ignore
                   retention-days: 7
 

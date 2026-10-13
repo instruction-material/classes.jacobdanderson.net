@@ -24,6 +24,16 @@ const primarySources = {
 };
 const storageKey = "classes-python-ide-projects:anonymous";
 const preserved = { _id: "c17-preserved-attempt", title: "Earlier attempt", mode: "python", files: [{ name: "main.py", content: "# retain this attempt\n" }], activeFileName: "main.py", courseProjectKey: "c-systems-engineering:setup:starter" };
+const legacyAttempts = [1280, 360].flatMap(width =>
+	["light", "dark"].flatMap(theme =>
+		packs.flatMap(pack =>
+			["starter", "reference"].map((role) => {
+				const key = `c-systems-engineering:${pack}-${width}-${theme}:${role}`;
+				return { ...preserved, _id: `legacy:${key}`, title: "Earlier matching attempt", courseProjectKey: key };
+			})
+		)
+	)
+);
 
 test("native C imports require consent and preserve source, saved attempts, roles and ZIP layout", { timeout: 600_000 }, async () => {
 	let server;
@@ -42,16 +52,9 @@ test("native C imports require consent and preserve source, saved attempts, role
 		context = await browser.createBrowserContext();
 		page = await context.newPage();
 		await page.evaluateOnNewDocument((key, existing) => {
-			if (localStorage.getItem(key) === null) localStorage.setItem(key, JSON.stringify([existing]));
-			const requested = new URL(location.href).searchParams.get("projectKey");
-			if (requested?.endsWith(":native-c17")) {
-				const legacy = requested.replace(/:native-c17$/, "");
-				const projects = JSON.parse(localStorage.getItem(key));
-				if (!projects.some(project => project.courseProjectKey === legacy)) {
-					projects.push({ ...existing, _id: `legacy:${legacy}`, title: "Earlier matching attempt", courseProjectKey: legacy });
-					localStorage.setItem(key, JSON.stringify(projects));
-				}
-			}
+			// Seed every older attempt before the first IndexedDB migration.
+			// Later navigations must use the editor's persisted project snapshot.
+			if (localStorage.getItem(key) === null) localStorage.setItem(key, JSON.stringify(existing));
 			const click = HTMLAnchorElement.prototype.click;
 			HTMLAnchorElement.prototype.click = function () {
 				if (this.download.endsWith(".zip") && this.href.startsWith("blob:")) return;
@@ -62,7 +65,7 @@ test("native C imports require consent and preserve source, saved attempts, role
 				if (blob.type === "application/zip") window.__c17Archive = blob;
 				return create(blob);
 			};
-		}, storageKey, preserved);
+		}, storageKey, [preserved, ...legacyAttempts]);
 		await page.setRequestInterception(true);
 		let sourceRequests = [];
 		page.on("request", (request) => {
