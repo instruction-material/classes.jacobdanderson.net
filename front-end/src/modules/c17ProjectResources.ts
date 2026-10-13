@@ -1,3 +1,4 @@
+import { c17StudioContinuations } from "@/modules/c17StudioLessons";
 import { githubRawUrl, parseGitHubResource } from "@/modules/codePreview";
 
 export const c17SourceRevision = "9c2ca21336c7667681091972a0abe9e55921f8fa";
@@ -174,6 +175,54 @@ export const c17VerifiedPacks = [
 			"CMakeLists.txt"
 		],
 		supportFiles: ["README.md"]
+	},
+	{
+		pack: "CSE-01-systems-build-14",
+		revision: "1dd55eee27866efca1080bc623bfdadaa43ff8db",
+		roleFiles: [
+			"main.c",
+			"sensor.c",
+			"sensor.h",
+			"tests.c",
+			"CMakeLists.txt"
+		],
+		supportFiles: ["README.md"]
+	},
+	{
+		pack: "CSE-02-systems-build-15",
+		revision: "1dd55eee27866efca1080bc623bfdadaa43ff8db",
+		roleFiles: [
+			"main.c",
+			"regions.c",
+			"regions.h",
+			"tests.c",
+			"CMakeLists.txt"
+		],
+		supportFiles: ["README.md"]
+	},
+	{
+		pack: "CSE-03-systems-build-16",
+		revision: "1dd55eee27866efca1080bc623bfdadaa43ff8db",
+		roleFiles: [
+			"main.c",
+			"stream.c",
+			"stream.h",
+			"tests.c",
+			"CMakeLists.txt"
+		],
+		supportFiles: ["README.md"]
+	},
+	{
+		pack: "CSE-04-systems-build-17",
+		revision: "1dd55eee27866efca1080bc623bfdadaa43ff8db",
+		roleFiles: [
+			"main.c",
+			"window.c",
+			"window.h",
+			"tests.c",
+			"CMakeLists.txt"
+		],
+		supportFiles: ["README.md"]
 	}
 ] as const;
 
@@ -209,13 +258,18 @@ export function c17CourseProjectKey(
 	url: string
 ) {
 	const selected = c17CourseResource(url);
+	const continuation = c17StudioContinuations.find(
+		lesson => lesson.id === itemID && lesson.pack === selected?.pack
+	);
 	const maintainedItemID =
 		courseID === "c-systems-engineering" &&
 		selected?.pack === "CSE7-Dynamic-Ring-Buffer" &&
 		itemID ===
 			"c-systems-engineering-unit-9-data-structures-in-c-curriculum-project-pass-extend-the-dynamic-ring-buffer"
 			? "c-systems-engineering-unit-7-dynamic-memory-and-lifetime-curriculum-project-dynamic-ring-buffer"
-			: itemID;
+			: courseID === "c-systems-engineering" && continuation
+				? continuation.baseLessonID
+				: itemID;
 	const base = `${courseID}:${maintainedItemID}:${role}`;
 	return courseID === "c-systems-engineering" && c17CourseResource(url)
 		? `${base}:native-c17`

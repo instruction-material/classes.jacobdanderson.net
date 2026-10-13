@@ -146,6 +146,13 @@ const informationalResourceTitlePattern = new RegExp(
 	"i"
 );
 
+function proseForParagraphReview(content: string) {
+	return content.replace(
+		/(^|\n)(`{3,}|~{3,})[^\n]*\n[\s\S]*?\n\2[ \t]*(?=\n|$)/g,
+		"$1"
+	);
+}
+
 function isExplicitProjectTitle(title: string) {
 	return (
 		explicitProjectTitlePattern.test(title) ||
@@ -467,6 +474,19 @@ describe("course text quality normalization", () => {
 		expect(item.projectLink).not.toContain("amazon.com");
 	});
 
+	it("reviews prose after complete code fences and retains incomplete fences", () => {
+		for (const fence of ["~~~", "```", "````"]) {
+			const prose = "A paragraph after the code still requires review.";
+			expect(
+				proseForParagraphReview(
+					`${fence}c\nCHECK(a); CHECK(b);\n${fence}\n\n${prose}`
+				).trim()
+			).toBe(prose);
+			const incomplete = `${fence}c\nCHECK(a);\n\n${prose}`;
+			expect(proseForParagraphReview(incomplete)).toBe(incomplete);
+		}
+	});
+
 	it(
 		"keeps support-labeled course content split into readable paragraphs",
 		async () => {
@@ -483,7 +503,9 @@ describe("course text quality normalization", () => {
 							continue;
 						}
 
-						const paragraphs = item.content.split(/\n\s*\n/);
+						const paragraphs = proseForParagraphReview(
+							item.content
+						).split(/\n\s*\n/);
 
 						for (const [index, paragraph] of paragraphs.entries()) {
 							const text = paragraph.replace(/\s+/g, " ").trim();
@@ -2037,7 +2059,12 @@ describe("course text quality normalization", () => {
 		expect(corpus).toContain("Dispatch Extension Practice");
 		expect(corpus).toContain("Systems Build 14: Byte Inspector Studio");
 		expect(corpus).toContain("Systems Build 17: Capstone Utility Studio");
-		expect(corpus).toContain("Capstone Utility Studio Extension Practice");
+		expect(corpus).toContain(
+			"Extension Practice: Reject malformed rows without changing a sample"
+		);
+		expect(corpus).toContain(
+			"Extension Challenge: Preserve a report when ordering or capacity fails"
+		);
 		expect(source).not.toMatch(/This section covers/i);
 		expect(source).not.toMatch(/Key idea:/i);
 		expect(source).not.toMatch(/Skill target:/i);

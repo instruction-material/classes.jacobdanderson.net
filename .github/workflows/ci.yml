@@ -278,7 +278,14 @@ jobs:
             - name: Verify native C17 imports, source editing and ZIP exports
               env:
                   COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
+                  C17_BROWSER_EXPORT_PROOF_DIR: output/c17-exports
               run: node --test test/c17-course-import-browser.test.mjs
+
+            - name: Verify C17 studio readings and exported native contracts
+              run: |
+                  CSE_CC=clang python3 test/c17-studio-readings.py --archives output/c17-exports
+                  CSE_CC=gcc python3 test/c17-studio-readings.py --archives output/c17-exports
+
 
             - name: Verify restored USACO imports and native file I/O
               env:
@@ -323,6 +330,7 @@ jobs:
                   path: |
                       output/playwright/course-import-*.png
                       output/playwright/c17-workflow-proof.json
+                      output/playwright/c17-studio-native-proof-*.json
                   if-no-files-found: ignore
                   retention-days: 7
 
