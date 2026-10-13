@@ -2008,3 +2008,28 @@ The October 13 Zoom refresh returned no additional matching meetings after the
 latest reviewed October 9 session and no notes modified since the previous
 refresh. Existing semantic receipts remain the source for implementation
 follow-ups; the wider audit is unfinished.
+
+
+## Required Bitflag project: complete reading and native IDE imports
+
+The existing required Unit 3 Bitflag Configuration Parser retains its lesson
+identity and now includes the complete accepted source guide. The guide covers
+the byte layout, bitwise truth table, promotions and masks, every mode and the
+reserved-bit reporting policy, exact input/output, independent builds, three
+implementation tasks, predictions and completion evidence. It explicitly
+describes the encryption bit as a reported flag. The notebook links the guide
+without duplicating its implementation import.
+
+The starter and reference are pinned to accepted source
+1221f76d800f52d4f33728c7c1f85dbecd71a48b. Confirmed imports contain exactly the
+selected role's seven files and the unchanged guide, preserving older attempts.
+The source was accepted on Clang and GCC after exhaustive byte and guard checks,
+whole-input and unfinished-learner checks, and six deliberate regressions.
+Both sites pass 139 focused checks, 267 course-quality checks, full lint, types
+and application builds. Each passes 56 C browser imports, 112 original/edited
+exports and preservation of 56 matching older attempts. Actual Bitflag ZIPs
+pass native Clang checks for every byte value in the reference and an
+independently completed learner, 10,752 model checks, input/failure guards and
+six deliberate regressions. Full hosted CI, security and final-head visual
+acceptance remain pending.
+The full 77-course audit and release/public verification remain unfinished.

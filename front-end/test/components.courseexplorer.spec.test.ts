@@ -67,10 +67,11 @@ describe("CourseExplorer.vue", () => {
 					"unit-8-function-pointers-and-dispatch",
 					"unit-10-engineering-math-in-code",
 					"unit-11-systems-tooling",
-					"unit-2-binary-hex-and-number-representation"
+					"unit-2-binary-hex-and-number-representation",
+					"unit-3-bitwise-operations"
 				][index]!,
 				projectPrefix:
-					index === 5
+					index >= 5
 						? "curriculum-project"
 						: "curriculum-core-project",
 				project: [
@@ -79,7 +80,8 @@ describe("CourseExplorer.vue", () => {
 					"function-pointers-and-dispatch",
 					"engineering-math-in-code",
 					"systems-tooling",
-					"hex-and-binary-inspector"
+					"hex-and-binary-inspector",
+					"bitflag-configuration-parser"
 				][index]!
 			}))
 		)
