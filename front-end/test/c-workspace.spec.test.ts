@@ -337,6 +337,67 @@ describe("native C17 source workspace", () => {
 		expect(text).not.toContain("debugger pass");
 	});
 
+	it("retains XOR as an optional challenge with complete reading and its existing identity", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById(
+			"c-systems-engineering"
+		);
+		const module = course!.modules.find(
+			item => item.title === "Unit 3: Bitwise Operations"
+		)!;
+		expect(
+			module.curriculum.some(item =>
+				item.projectLink?.includes("CSE3-XOR-Encoder-Decoder")
+			)
+		).toBe(false);
+		const item = module.supplementalProjects.find(
+			item => item.title === "Project: XOR Encoder Decoder"
+		)!;
+		expect(item.id).toBe(
+			"c-systems-engineering-unit-3-bitwise-operations-supplemental-project-xor-encoder-decoder"
+		);
+		expect(item.learningPath).toBe("challenge");
+		expect(item.ideImport).toBe(true);
+		const selected = c17CourseResource(item.projectLink!)!;
+		expect(selected.pack).toBe("CSE3-XOR-Encoder-Decoder");
+		const guide = fixture.files[selected.pack + "/README.md"].content;
+		expect(item.content).toContain(
+			guide.slice(guide.indexOf("\n") + 1).trim()
+		);
+		expect(item.content).toContain("Optional transfer project");
+		expect(item.content).toContain("all 65,536 input/key byte pairs");
+		expect(item.solutionLink).toBeUndefined();
+		const notebook = module.supplementalProjects.find(
+			item => item.title === "Engineering Notebook: Bitwise Operations"
+		)!;
+		expect(notebook.projectLink).toContain(
+			"CSE2-Bitflag-Configuration-Parser/README.md"
+		);
+		expect(notebook.ideImport).not.toBe(true);
+		expect(notebook.solutionLink).toBeUndefined();
+	});
+
+	it("describes XOR key/message limits and the named learner tasks without claiming encryption", () => {
+		const definition = c17VerifiedPacks.find(
+			item => item.pack === "CSE3-XOR-Encoder-Decoder"
+		)!;
+		const url = `https://github.com/instruction-material/C-Systems-Engineering/tree/${definition.revision}/${definition.pack}/starter`;
+		const files = c17ImportFiles(url)!.map(({ name }) => ({
+			name,
+			content: fixture.files[`${definition.pack}/${name}`].content
+		}));
+		const text = cBuildInstructions(files, url).join("\n");
+		expect(text).toContain(
+			"Keys are whole decimal or 0x hexadecimal values in 0..255"
+		);
+		expect(text).toContain("at most 127 bytes");
+		expect(text).toContain("empty messages are valid");
+		expect(text).toContain("no secrecy or authentication");
+		expect(text).toContain("select_xor_key and xor_byte");
+		expect(text).toContain("Invalid input exits 2");
+		expect(text).not.toContain("debugger pass");
+	});
+
 	it.each(c17VerifiedPacks)(
 		"rejects a mismatched accepted revision for $pack without fetching source",
 		async ({ pack, revision }) => {

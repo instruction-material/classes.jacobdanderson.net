@@ -22,7 +22,8 @@ const primarySources = {
 	"CSE-08-unit-10-engineering-math-in-code": "engineering_math.c",
 	"CSE-09-unit-11-systems-tooling": "engineering_math.c",
 	"CSE1-Hex-and-Binary-Inspector": "representation.c",
-	"CSE2-Bitflag-Configuration-Parser": "configuration.c"
+	"CSE2-Bitflag-Configuration-Parser": "configuration.c",
+	"CSE3-XOR-Encoder-Decoder": "transform.c"
 };
 const storageKey = "classes-python-ide-projects:anonymous";
 const preserved = { _id: "c17-preserved-attempt", title: "Earlier attempt", mode: "python", files: [{ name: "main.py", content: "# retain this attempt\n" }], activeFileName: "main.py", courseProjectKey: "c-systems-engineering:setup:starter" };
@@ -135,6 +136,10 @@ test("native C imports require consent and preserve source, saved attempts, role
 						if (pack === "CSE2-Bitflag-Configuration-Parser") {
 							assert.ok(await page.$eval(".result-panel", panel => panel.textContent.includes("all four modes are valid") && panel.textContent.includes("encryption flag only reports a bit")));
 							if (role === "starter") assert.ok(await page.$eval(".result-panel", panel => panel.textContent.includes("Invalid input exits 2") && panel.textContent.includes("three configuration functions")));
+						}
+						if (pack === "CSE3-XOR-Encoder-Decoder") {
+							assert.ok(await page.$eval(".result-panel", panel => panel.textContent.includes("at most 127 bytes") && panel.textContent.includes("empty messages are valid") && panel.textContent.includes("no secrecy or authentication")));
+							if (role === "starter") assert.ok(await page.$eval(".result-panel", panel => panel.textContent.includes("select_xor_key and xor_byte") && panel.textContent.includes("Invalid input exits 2")));
 						}
 						assert.equal(await page.$("iframe[title='Isolated Python output']"), null);
 						assert.ok(await page.$eval("body", body => body.textContent.includes("C17 build workflow") || document.querySelector("[aria-label='C17 build workflow']") !== null));

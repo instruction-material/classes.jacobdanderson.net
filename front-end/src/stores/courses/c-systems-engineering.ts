@@ -2,6 +2,7 @@ import type { RawCourse } from "./types";
 import { c17BitflagProjectReading } from "./c17BitflagProjectReading";
 import { c17CoreProjectReading } from "./c17CoreProjectReading";
 import { c17InspectorProjectReading } from "./c17InspectorProjectReading";
+import { c17XorProjectReading } from "./c17XorProjectReading";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { buildProjectGuidance } from "./projectGuidance";
 
@@ -245,12 +246,13 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 				},
 				{
 					title: "Project: XOR Encoder Decoder",
-					content:
-						"Use the XOR lab to compare the original bytes, encoded bytes, and decoded bytes for the same message. Explain why the transform is reversible and what XOR is really doing to each bit.",
+					id: "c-systems-engineering-unit-3-bitwise-operations-supplemental-project-xor-encoder-decoder",
+					ideImport: true,
+					content: c17XorProjectReading,
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE3-XOR-Encoder-Decoder/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/ecf421bd45977b9b63d79b9c2b7af20a921de0c2/CSE3-XOR-Encoder-Decoder/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE3-XOR-Encoder-Decoder/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/ecf421bd45977b9b63d79b9c2b7af20a921de0c2/CSE3-XOR-Encoder-Decoder/solution"
 				}
 			],
 			supplementalProjects: [

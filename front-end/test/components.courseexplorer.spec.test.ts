@@ -68,12 +68,15 @@ describe("CourseExplorer.vue", () => {
 					"unit-10-engineering-math-in-code",
 					"unit-11-systems-tooling",
 					"unit-2-binary-hex-and-number-representation",
+					"unit-3-bitwise-operations",
 					"unit-3-bitwise-operations"
 				][index]!,
 				projectPrefix:
-					index >= 5
-						? "curriculum-project"
-						: "curriculum-core-project",
+					index === 7
+						? "supplemental-project"
+						: index >= 5
+							? "curriculum-project"
+							: "curriculum-core-project",
 				project: [
 					"c-systems-engineering",
 					"why-c-for-systems-work",
@@ -81,7 +84,8 @@ describe("CourseExplorer.vue", () => {
 					"engineering-math-in-code",
 					"systems-tooling",
 					"hex-and-binary-inspector",
-					"bitflag-configuration-parser"
+					"bitflag-configuration-parser",
+					"xor-encoder-decoder"
 				][index]!
 			}))
 		)
@@ -140,7 +144,8 @@ describe("CourseExplorer.vue", () => {
 					.find(
 						button =>
 							button.text() ===
-							(pack === "CSE1-Hex-and-Binary-Inspector"
+							(pack === "CSE1-Hex-and-Binary-Inspector" ||
+							pack === "CSE3-XOR-Encoder-Decoder"
 								? "Supplemental Projects"
 								: "Projects")
 					)!
