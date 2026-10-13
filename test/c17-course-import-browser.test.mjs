@@ -35,15 +35,24 @@ const primarySources = {
 	"CSE-03-systems-build-16": "stream.c",
 	"CSE-04-systems-build-17": "window.c"
 };
+function courseItem(pack, width, theme) {
+	if (width === 1280 && theme === "light") {
+		const unit = fixture.unitLessons.find(lesson => lesson.pack === pack);
+		const studio = fixture.studioLessons.find(lesson => lesson.pack === pack);
+		if (unit || studio) return (unit ?? studio).baseLessonID;
+	}
+	return `${pack}-${width}-${theme}`;
+}
 const storageKey = "classes-python-ide-projects:anonymous";
 const preserved = { _id: "c17-preserved-attempt", title: "Earlier attempt", mode: "python", files: [{ name: "main.py", content: "# retain this attempt\n" }], activeFileName: "main.py", courseProjectKey: "c-systems-engineering:setup:starter" };
 const ringUnit9Legacy = ["starter", "reference"].map(role => ({ ...preserved, _id: `legacy-ring-unit9:${role}`, title: "Earlier Unit 9 attempt", courseProjectKey: `c-systems-engineering:c-systems-engineering-unit-9-data-structures-in-c-curriculum-project-pass-extend-the-dynamic-ring-buffer:${role}` }));
 const studioLegacyAttempts = fixture.studioLessons.flatMap(lesson => lesson.continuationIDs.flatMap(id => ["starter", "reference"].map(role => ({ ...preserved, _id: `legacy-studio:${id}:${role}`, title: "Earlier studio practice attempt", courseProjectKey: `c-systems-engineering:${id}:${role}` }))));
+const unitLegacyAttempts = fixture.unitLessons.flatMap(lesson => ["starter", "reference"].map(role => ({ ...preserved, _id: `legacy-unit:${lesson.id}:${role}`, title: "Earlier unit practice attempt", courseProjectKey: `c-systems-engineering:${lesson.id}:${role}` })));
 const legacyAttempts = [1280, 360].flatMap(width =>
 	["light", "dark"].flatMap(theme =>
 		packs.flatMap(pack =>
 			["starter", "reference"].map((role) => {
-				const item = pack === "CSE7-Dynamic-Ring-Buffer" && width === 1280 && theme === "light" ? "c-systems-engineering-unit-7-dynamic-memory-and-lifetime-curriculum-project-dynamic-ring-buffer" : width === 1280 && theme === "light" && fixture.studioLessons.some(lesson => lesson.pack === pack) ? fixture.studioLessons.find(lesson => lesson.pack === pack).baseLessonID : `${pack}-${width}-${theme}`;
+				const item = courseItem(pack, width, theme);
 				const key = `c-systems-engineering:${item}:${role}`;
 				return { ...preserved, _id: `legacy:${key}`, title: "Earlier matching attempt", courseProjectKey: key };
 			})
@@ -81,7 +90,7 @@ test("native C imports require consent and preserve source, saved attempts, role
 				if (blob.type === "application/zip") window.__c17Archive = blob;
 				return create(blob);
 			};
-		}, storageKey, [preserved, ...legacyAttempts, ...ringUnit9Legacy, ...studioLegacyAttempts]);
+		}, storageKey, [preserved, ...legacyAttempts, ...ringUnit9Legacy, ...studioLegacyAttempts, ...unitLegacyAttempts]);
 		await page.setRequestInterception(true);
 		let sourceRequests = [];
 		page.on("request", (request) => {
@@ -109,7 +118,7 @@ test("native C imports require consent and preserve source, saved attempts, role
 						await page.emulateMediaFeatures([{ name: "prefers-color-scheme", value: theme }]);
 						// Each responsive case creates its own role key without changing any
 						// previously saved project's files or the original course progress IDs.
-						const item = pack === "CSE7-Dynamic-Ring-Buffer" && width === 1280 && theme === "light" ? "c-systems-engineering-unit-7-dynamic-memory-and-lifetime-curriculum-project-dynamic-ring-buffer" : width === 1280 && theme === "light" && fixture.studioLessons.some(lesson => lesson.pack === pack) ? fixture.studioLessons.find(lesson => lesson.pack === pack).baseLessonID : `${pack}-${width}-${theme}`;
+						const item = courseItem(pack, width, theme);
 						const key = `c-systems-engineering:${item}:${role === "starter" ? "starter" : "reference"}:native-c17`;
 						const params = new URLSearchParams({ course: "c-systems-engineering", mode: "c", projectKey: key, starterUrl: `https://github.com/${fixture.repository}/tree/${revision}/${pack}/${role}`, starterTitle: "C17 core project" });
 						sourceRequests = [];
@@ -162,7 +171,7 @@ test("native C imports require consent and preserve source, saved attempts, role
 							return btoa(Array.from(bytes, byte => String.fromCharCode(byte)).join(""));
 						});
 						const entries = unzipSync(Buffer.from(base64, "base64"));
-						if (process.env.C17_BROWSER_EXPORT_PROOF_DIR && width === 1280 && theme === "light" && fixture.studioLessons.some(lesson => lesson.pack === pack)) {
+						if (process.env.C17_BROWSER_EXPORT_PROOF_DIR && width === 1280 && theme === "light") {
 							await mkdir(process.env.C17_BROWSER_EXPORT_PROOF_DIR, { recursive: true });
 							await writeFile(join(process.env.C17_BROWSER_EXPORT_PROOF_DIR, `${pack}-${role}.zip`), Buffer.from(base64, "base64"));
 						}
@@ -251,7 +260,26 @@ test("native C imports require consent and preserve source, saved attempts, role
 								maintainedStudioLessons.push(id);
 							}
 						}
-						proof.push({ pack, revision, role, width, theme, maintainedRingAttempt, maintainedStudioLessons, editedFile: editFile, matchingLegacySlotPreserved: true, files: saved.files.length, capture, byteExact: true, editedExportPreserved: true, savedAttemptPreserved: true });
+
+						const maintainedUnitLessons = [];
+						if (width === 1280 && theme === "light") {
+							const beforeCount = await page.evaluate(key => JSON.parse(localStorage.getItem(key)).length, storageKey);
+							for (const lesson of fixture.unitLessons.filter(lesson => lesson.pack === pack)) {
+								params.set("lesson", lesson.anchor);
+								sourceRequests = [];
+								await page.goto(`${origin}/ide?${params}`, { waitUntil: "domcontentloaded" });
+								await page.waitForSelector("button.run-control:not([disabled])");
+								const maintained = await page.evaluate((storageKey, key) => JSON.parse(localStorage.getItem(storageKey)).find(project => project.courseProjectKey === key), storageKey, key);
+								assert.deepEqual(maintained.files, expectedSavedFiles);
+								assert.equal(maintained.activeFileName, editFile);
+								assert.equal(sourceRequests.length, 0, "Unit continuation must reopen its maintained saved program");
+								assert.equal(await page.evaluate(key => JSON.parse(localStorage.getItem(key)).length, storageKey), beforeCount);
+								assert.ok(await page.$(`a[href='/courses#${lesson.anchor}']`), "Unit continuation retains its own return link");
+								for (const older of unitLegacyAttempts) assert.deepEqual(await page.evaluate((key, id) => JSON.parse(localStorage.getItem(key)).find(project => project._id === id), storageKey, older._id), older);
+								maintainedUnitLessons.push(lesson.id);
+							}
+						}
+						proof.push({ pack, revision, role, width, theme, maintainedRingAttempt, maintainedStudioLessons, maintainedUnitLessons, editedFile: editFile, matchingLegacySlotPreserved: true, files: saved.files.length, capture, byteExact: true, editedExportPreserved: true, savedAttemptPreserved: true });
 					}
 				}
 			}
@@ -259,8 +287,9 @@ test("native C imports require consent and preserve source, saved attempts, role
 		assert.equal(proof.length, packs.length * 8);
 		assert.equal(proof.filter(item => item.maintainedRingAttempt).length, 2);
 		assert.equal(proof.flatMap(item => item.maintainedStudioLessons).length, 24);
+		assert.equal(proof.flatMap(item => item.maintainedUnitLessons).length, 52);
 		await writeFile(join(captures, "c17-workflow-proof.json"), `${JSON.stringify({ revisions: fixture.revisions, imports: proof.length, cases: proof }, null, 2)}\n`);
-		console.log(JSON.stringify({ event: "c17-browser-workflow-accepted", sourceRevision: fixture.revision, sourceRevisions: fixture.revisions, packs: packs.length, imports: proof.length, exports: proof.length * 2, editedExports: proof.length, savedAttemptPreserved: true, legacySlotsPreserved: proof.length, primarySourceEdits: true, studioContinuationReopens: 24 }));
+		console.log(JSON.stringify({ event: "c17-browser-workflow-accepted", sourceRevision: fixture.revision, sourceRevisions: fixture.revisions, packs: packs.length, imports: proof.length, exports: proof.length * 2, editedExports: proof.length, savedAttemptPreserved: true, legacySlotsPreserved: proof.length, primarySourceEdits: true, studioContinuationReopens: 24, unitContinuationReopens: 52 }));
 	}
 	finally {
 		await page?.close();
