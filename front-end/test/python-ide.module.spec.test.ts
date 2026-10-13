@@ -1495,7 +1495,7 @@ pgzrun.go()
 			sharedSourceID: "share_ABC1234567890_xyz",
 			starterLabel: "Shared project",
 			starterUrl:
-				"https://example.com/ide?share=share_ABC1234567890_xyz",
+				"https://classes.jacobdanderson.net/ide?share=share_ABC1234567890_xyz",
 			title: "Copy of Functions Practice"
 		});
 		const payload = pythonIdeProjectToPayload(project);
@@ -1506,7 +1506,7 @@ pgzrun.go()
 				sharedSourceID: "share_ABC1234567890_xyz",
 				starterLabel: "Shared project",
 				starterUrl:
-					"https://example.com/ide?share=share_ABC1234567890_xyz"
+					"https://classes.jacobdanderson.net/ide?share=share_ABC1234567890_xyz"
 			})
 		);
 		expect(payload).not.toHaveProperty("shared");
@@ -4661,7 +4661,7 @@ pgzrun.go()
 		).toHaveLength(10);
 		expect(
 			ideStarters.filter(item => item.category === "Templates")
-		).toHaveLength(7);
+		).toHaveLength(8);
 		expect(pageSource).toContain("requestedClassroomProject");
 		expect(pageSource).toContain(
 			"addPythonIdeClassroomSections(loadedFiles)"
