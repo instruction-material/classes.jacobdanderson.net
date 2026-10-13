@@ -104,6 +104,76 @@ export const c17VerifiedPacks = [
 			"CMakeLists.txt"
 		],
 		supportFiles: ["README.md"]
+	},
+	{
+		pack: "CSE4-Memory-Visualizer",
+		revision: "7e301cb656d73e56182bc5d9bba279c9adf78372",
+		roleFiles: [
+			"main.c",
+			"layout.c",
+			"layout.h",
+			"tests.c",
+			"CMakeLists.txt"
+		],
+		supportFiles: ["README.md"]
+	},
+	{
+		pack: "CSE5-Byte-Buffer-Workbench",
+		revision: "7e301cb656d73e56182bc5d9bba279c9adf78372",
+		roleFiles: [
+			"main.c",
+			"buffers.c",
+			"buffers.h",
+			"tests.c",
+			"CMakeLists.txt"
+		],
+		supportFiles: ["README.md"]
+	},
+	{
+		pack: "CSE6-Packet-Serializer-Deserializer",
+		revision: "7e301cb656d73e56182bc5d9bba279c9adf78372",
+		roleFiles: [
+			"main.c",
+			"packet.c",
+			"packet.h",
+			"tests.c",
+			"CMakeLists.txt"
+		],
+		supportFiles: ["README.md"]
+	},
+	{
+		pack: "CSE7-Dynamic-Ring-Buffer",
+		revision: "7e301cb656d73e56182bc5d9bba279c9adf78372",
+		roleFiles: [
+			"main.c",
+			"ring.c",
+			"ring.h",
+			"allocation.c",
+			"allocation.h",
+			"test_allocation.c",
+			"test_allocation.h",
+			"tests.c",
+			"CMakeLists.txt"
+		],
+		supportFiles: ["README.md"]
+	},
+	{
+		pack: "CSE8-Fixed-Size-Log-File-Reader",
+		revision: "7e301cb656d73e56182bc5d9bba279c9adf78372",
+		roleFiles: ["main.c", "log.c", "log.h", "tests.c", "CMakeLists.txt"],
+		supportFiles: ["README.md"]
+	},
+	{
+		pack: "CSE9-Capstone-Telemetry-Transform-CLI",
+		revision: "7e301cb656d73e56182bc5d9bba279c9adf78372",
+		roleFiles: [
+			"main.c",
+			"telemetry.c",
+			"telemetry.h",
+			"tests.c",
+			"CMakeLists.txt"
+		],
+		supportFiles: ["README.md"]
 	}
 ] as const;
 
@@ -138,7 +208,15 @@ export function c17CourseProjectKey(
 	role: "starter" | "reference",
 	url: string
 ) {
-	const base = `${courseID}:${itemID}:${role}`;
+	const selected = c17CourseResource(url);
+	const maintainedItemID =
+		courseID === "c-systems-engineering" &&
+		selected?.pack === "CSE7-Dynamic-Ring-Buffer" &&
+		itemID ===
+			"c-systems-engineering-unit-9-data-structures-in-c-curriculum-project-pass-extend-the-dynamic-ring-buffer"
+			? "c-systems-engineering-unit-7-dynamic-memory-and-lifetime-curriculum-project-dynamic-ring-buffer"
+			: itemID;
+	const base = `${courseID}:${maintainedItemID}:${role}`;
 	return courseID === "c-systems-engineering" && c17CourseResource(url)
 		? `${base}:native-c17`
 		: base;

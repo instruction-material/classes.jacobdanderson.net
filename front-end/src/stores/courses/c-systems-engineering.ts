@@ -2,6 +2,7 @@ import type { RawCourse } from "./types";
 import { c17BitflagProjectReading } from "./c17BitflagProjectReading";
 import { c17CoreProjectReading } from "./c17CoreProjectReading";
 import { c17InspectorProjectReading } from "./c17InspectorProjectReading";
+import { c17SystemsProjectReading } from "./c17SystemsProjectReading";
 import { c17XorProjectReading } from "./c17XorProjectReading";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { buildProjectGuidance } from "./projectGuidance";
@@ -311,12 +312,13 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 				},
 				{
 					title: "Project: Memory Visualizer for Arrays and Structs",
-					content:
-						"Use the memory visualizer to print stack, heap, and static addresses alongside member offsets in a small struct. Identify likely padding and explain why adjacent array elements move by one element size rather than one byte.",
+					id: "c-systems-engineering-unit-4-memory-and-layout-curriculum-project-memory-visualizer-for-arrays-and-structs",
+					ideImport: true,
+					content: c17SystemsProjectReading["CSE4-Memory-Visualizer"],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE4-Memory-Visualizer/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE4-Memory-Visualizer/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE4-Memory-Visualizer/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE4-Memory-Visualizer/solution"
 				}
 			],
 			supplementalProjects: [
@@ -325,9 +327,7 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 					content:
 						"Keep a short engineering notebook for memory and layout that records the byte view, memory view, compiler or runtime evidence, and one plain-language explanation of why the code worked or failed. Focus especially on storage duration, member offsets, and why alignment changes total struct size to build the habit of explaining systems behavior instead of only trusting output.",
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE4-Memory-Visualizer/starter",
-					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE4-Memory-Visualizer/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/blob/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE4-Memory-Visualizer/README.md"
 				},
 				{
 					title: "Memory Layout Transfer Practice",
@@ -377,12 +377,14 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 				},
 				{
 					title: "Project: Byte Buffer Workbench",
+					id: "c-systems-engineering-unit-5-strings-and-byte-buffers-curriculum-project-byte-buffer-workbench",
+					ideImport: true,
 					content:
-						"Use the byte-buffer lab to compare a safe fixed-size text copy with a raw packet buffer that contains non-text bytes and an embedded zero. The project requires a clear justification for why `strlen` is valid for one buffer and a bad assumption for the other.",
+						c17SystemsProjectReading["CSE5-Byte-Buffer-Workbench"],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE5-Byte-Buffer-Workbench/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE5-Byte-Buffer-Workbench/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE5-Byte-Buffer-Workbench/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE5-Byte-Buffer-Workbench/solution"
 				}
 			],
 			supplementalProjects: [
@@ -391,9 +393,7 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 					content:
 						"Keep a short engineering notebook for strings and byte buffers that records the byte view, memory view, compiler or runtime evidence, and one plain-language explanation of why the code worked or failed. Focus especially on terminators, capacity checks, and why byte dumps tell a truer story than text output alone to build the habit of explaining systems behavior instead of only trusting output.",
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE5-Byte-Buffer-Workbench/starter",
-					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE5-Byte-Buffer-Workbench/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/blob/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE5-Byte-Buffer-Workbench/README.md"
 				},
 				{
 					title: "Byte Buffer Transfer Practice",
@@ -443,21 +443,29 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 				},
 				{
 					title: "Project: Packet Serializer Deserializer",
+					id: "c-systems-engineering-unit-6-files-streams-and-parsing-curriculum-project-packet-serializer-deserializer",
+					ideImport: true,
 					content:
-						"Use the packet lab to write a compact record into an explicit little-endian byte format, then validate and parse it back into readable fields. The lesson is that stable on-the-wire or on-disk formats come from explicit serialization, not from dumping a struct blindly.",
+						c17SystemsProjectReading[
+							"CSE6-Packet-Serializer-Deserializer"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE6-Packet-Serializer-Deserializer/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE6-Packet-Serializer-Deserializer/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE6-Packet-Serializer-Deserializer/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE6-Packet-Serializer-Deserializer/solution"
 				},
 				{
 					title: "Project: Fixed Size Log File Reader",
+					id: "c-systems-engineering-unit-6-files-streams-and-parsing-supplemental-project-fixed-size-log-file-reader",
+					ideImport: true,
 					content:
-						"Use the log-reader lab to generate a small binary log file, read each fixed-size record through `FILE *`, and validate its checksum before printing a summary. This makes binary parsing, validation, and repeated record handling visible in one place.",
+						c17SystemsProjectReading[
+							"CSE8-Fixed-Size-Log-File-Reader"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE8-Fixed-Size-Log-File-Reader/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE8-Fixed-Size-Log-File-Reader/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE8-Fixed-Size-Log-File-Reader/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE8-Fixed-Size-Log-File-Reader/solution"
 				}
 			],
 			supplementalProjects: [
@@ -466,9 +474,7 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 					content:
 						"Keep a short engineering notebook for files, streams, and parsing that records the byte view, memory view, compiler or runtime evidence, and one plain-language explanation of why the code worked or failed. Focus especially on record boundaries, validation order, and why bad input must be rejected before decoding proceeds to build the habit of explaining systems behavior instead of only trusting output.",
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE6-Packet-Serializer-Deserializer/starter",
-					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE6-Packet-Serializer-Deserializer/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/blob/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE6-Packet-Serializer-Deserializer/README.md"
 				},
 				{
 					title: "Parser Transfer Practice",
@@ -518,12 +524,14 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 				},
 				{
 					title: "Project: Dynamic Ring Buffer",
+					id: "c-systems-engineering-unit-7-dynamic-memory-and-lifetime-curriculum-project-dynamic-ring-buffer",
+					ideImport: true,
 					content:
-						"Use the ring-buffer lab to make heap ownership concrete with allocation, resize logic, queue state, and cleanup. The project requires head, count, capacity, and final `free` responsibilities to stay explicit.",
+						c17SystemsProjectReading["CSE7-Dynamic-Ring-Buffer"],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE7-Dynamic-Ring-Buffer/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE7-Dynamic-Ring-Buffer/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE7-Dynamic-Ring-Buffer/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE7-Dynamic-Ring-Buffer/solution"
 				}
 			],
 			supplementalProjects: [
@@ -532,9 +540,7 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 					content:
 						"Keep a short engineering notebook for dynamic memory and lifetime that records the byte view, memory view, compiler or runtime evidence, and one plain-language explanation of why the code worked or failed. Focus especially on allocation ownership, resize rules, and what cleanup path makes the data structure safe to destroy to build the habit of explaining systems behavior instead of only trusting output.",
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE7-Dynamic-Ring-Buffer/starter",
-					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE7-Dynamic-Ring-Buffer/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/blob/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE7-Dynamic-Ring-Buffer/README.md"
 				},
 				{
 					title: "Lifetime Transfer Practice",
@@ -656,12 +662,13 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 				},
 				{
 					title: "Project Pass: Extend the Dynamic Ring Buffer",
-					content:
-						"Return to the ring-buffer lab and use it as the main data-structure case study for invariants, queue order, and resizing behavior. Treat the structure as a maintained system with rules, not as a one-off container that 'seems to work.'",
+					id: "c-systems-engineering-unit-9-data-structures-in-c-curriculum-project-pass-extend-the-dynamic-ring-buffer",
+					ideImport: true,
+					content: c17SystemsProjectReading.ringContinuation,
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE7-Dynamic-Ring-Buffer/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE7-Dynamic-Ring-Buffer/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE7-Dynamic-Ring-Buffer/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE7-Dynamic-Ring-Buffer/solution"
 				}
 			],
 			supplementalProjects: [
@@ -670,9 +677,7 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 					content:
 						"Keep a short engineering notebook for data structures in C that records the byte view, memory view, compiler or runtime evidence, and one plain-language explanation of why the code worked or failed. Focus especially on container choice, invariants, and what evidence shows the structure is preserving logical order to build the habit of explaining systems behavior instead of only trusting output.",
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE7-Dynamic-Ring-Buffer/starter",
-					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE7-Dynamic-Ring-Buffer/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/blob/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE7-Dynamic-Ring-Buffer/README.md"
 				},
 				{
 					title: "Structure Invariants Transfer Practice",
@@ -864,12 +869,16 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 				},
 				{
 					title: "Project: Capstone Telemetry Transform CLI",
+					id: "c-systems-engineering-unit-12-capstone-engineering-utility-curriculum-project-capstone-telemetry-transform-cli",
+					ideImport: true,
 					content:
-						"Use the capstone CLI to read structured telemetry input, validate ranges, apply fixed-point transforms, and write normalized output. This project ties together representation, parsing, validation, numeric care, and low-level engineering habits in one small but defensible utility.",
+						c17SystemsProjectReading[
+							"CSE9-Capstone-Telemetry-Transform-CLI"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE9-Capstone-Telemetry-Transform-CLI/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE9-Capstone-Telemetry-Transform-CLI/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE9-Capstone-Telemetry-Transform-CLI/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE9-Capstone-Telemetry-Transform-CLI/solution"
 				}
 			],
 			supplementalProjects: [
@@ -878,9 +887,7 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 					content:
 						"Keep a short engineering notebook for the capstone engineering utility that records the byte view, memory view, compiler or runtime evidence, and one plain-language explanation of why the code worked or failed. Focus especially on input validation order, derived-field logic, and why the final output format is trustworthy.",
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE9-Capstone-Telemetry-Transform-CLI/starter",
-					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE9-Capstone-Telemetry-Transform-CLI/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/blob/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE9-Capstone-Telemetry-Transform-CLI/README.md"
 				},
 				{
 					title: "Capstone Utility Transfer Practice",
@@ -1461,7 +1468,7 @@ function decorateCSystemsModule(
 			content: [
 				"**Completion evidence:**",
 				"- Versioned input/output format, clean C17 build, deterministic test command, and sample fixture from a fresh checkout.",
-				"- Cases for empty input, valid record, minimum and maximum accepted values, malformed field, unsupported version, bad checksum, truncation at each field boundary, extra bytes, overflow attempt, and failed output write.",
+				"- Cases for header-only input, valid rows, exact numeric boundaries, malformed decimal fields, wrong header, missing or extra columns, overlong or embedded-zero lines, overflow attempts, existing destinations, equal input/output paths, and failed output writes.",
 				"- Previous trusted output remains intact after rejected input or write failure, and all temporary allocations and files are cleaned up.",
 				"- Warning-clean and sanitizer-clean results plus one byte-level trace, one corrected failure, and one portability limitation."
 			].join("\n"),

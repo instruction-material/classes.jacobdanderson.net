@@ -124,7 +124,7 @@ describe("native C17 source workspace", () => {
 		);
 	});
 
-	it("connects all six verified core packs with complete reading, guide-only notebooks, and separate reference visibility", async () => {
+	it("connects the earlier six core packs with complete reading, guide-only notebooks, and separate reference visibility", async () => {
 		setActivePinia(createPinia());
 		useAppStore().setCurrentTutor({
 			_id: "c17-tutor",
@@ -142,7 +142,15 @@ describe("native C17 source workspace", () => {
 		);
 		const core = course!.modules
 			.flatMap(module => module.curriculum)
-			.filter(item => c17CourseResource(item.projectLink ?? ""));
+			.filter(item =>
+				c17VerifiedPacks
+					.slice(0, 8)
+					.some(
+						definition =>
+							c17CourseResource(item.projectLink ?? "")?.pack ===
+							definition.pack
+					)
+			);
 		expect(core).toHaveLength(6);
 		const ids = core.map(item => item.id);
 		expect(ids).toEqual([
@@ -208,7 +216,15 @@ describe("native C17 source workspace", () => {
 		);
 		const learnerCore = learner!.modules
 			.flatMap(module => module.curriculum)
-			.filter(item => c17CourseResource(item.projectLink ?? ""));
+			.filter(item =>
+				c17VerifiedPacks
+					.slice(0, 8)
+					.some(
+						definition =>
+							c17CourseResource(item.projectLink ?? "")?.pack ===
+							definition.pack
+					)
+			);
 		expect(learnerCore.map(item => item.id)).toEqual(ids);
 		expect(learnerCore.every(item => item.solutionLink === undefined)).toBe(
 			true
@@ -397,6 +413,171 @@ describe("native C17 source workspace", () => {
 		expect(text).toContain("Invalid input exits 2");
 		expect(text).not.toContain("debugger pass");
 	});
+
+	it("retains all seven systems lesson identities, complete guides, optional log classification and the maintained ring attempt", async () => {
+		setActivePinia(createPinia());
+		useAppStore().setCurrentTutor({
+			_id: "systems-tutor",
+			name: "Tutor",
+			email: "tutor@example.invalid",
+			age: 30,
+			state: "GA",
+			usersOfTutorLength: 0,
+			coursePermissions: ["c-systems-engineering"],
+			editTutors: false,
+			saveEdit: "Save"
+		});
+		const course = (await useCoursesStore().loadCourseById(
+			"c-systems-engineering"
+		))!;
+		const definitions = c17VerifiedPacks.slice(8);
+		const cards = course.modules.flatMap(module => [
+			...module.curriculum,
+			...module.supplementalProjects
+		]);
+		const items = cards.filter(item =>
+			definitions.some(
+				definition =>
+					c17CourseResource(item.projectLink ?? "")?.pack ===
+					definition.pack
+			)
+		);
+		expect(items.map(item => item.id).sort()).toEqual(
+			[
+				"c-systems-engineering-unit-4-memory-and-layout-curriculum-project-memory-visualizer-for-arrays-and-structs",
+				"c-systems-engineering-unit-5-strings-and-byte-buffers-curriculum-project-byte-buffer-workbench",
+				"c-systems-engineering-unit-6-files-streams-and-parsing-curriculum-project-packet-serializer-deserializer",
+				"c-systems-engineering-unit-7-dynamic-memory-and-lifetime-curriculum-project-dynamic-ring-buffer",
+				"c-systems-engineering-unit-6-files-streams-and-parsing-supplemental-project-fixed-size-log-file-reader",
+				"c-systems-engineering-unit-12-capstone-engineering-utility-curriculum-project-capstone-telemetry-transform-cli",
+				"c-systems-engineering-unit-9-data-structures-in-c-curriculum-project-pass-extend-the-dynamic-ring-buffer"
+			].sort()
+		);
+		for (const item of items) {
+			const selected = c17CourseResource(item.projectLink!)!;
+			const guide = fixture.files[`${selected.pack}/README.md`].content;
+			expect(item.content).toContain(
+				guide
+					.slice(guide.indexOf("\n") + 1)
+					.replaceAll("An instructor", "A course facilitator")
+					.replaceAll("an instructor", "a course facilitator")
+					.replaceAll("instructor", "course facilitator")
+					.replaceAll("Start with ", "The sequence opens with ")
+					.replaceAll("Require ", "Check for ")
+					.replaceAll(
+						"Native CLI checks exercise",
+						"Native CLI tests cover"
+					)
+					.replaceAll(
+						"These CLI checks run before the learner tasks",
+						"These CLI checks are supplied"
+					)
+					.replaceAll(
+						"The --sample helper is supplied and can work before learner tasks are complete.",
+						"The --sample helper is supplied and already works."
+					)
+					.trim()
+			);
+			expect(item.ideImport).toBe(true);
+			expect(
+				pythonIdeModeForCourseResource(course.id, item.solutionLink!)
+			).toBe("c");
+			const module = course.modules.find(module =>
+				[...module.curriculum, ...module.supplementalProjects].some(
+					candidate => candidate.id === item.id
+				)
+			)!;
+			expect(
+				module.curriculum.some(candidate => candidate.id === item.id)
+			).toBe(selected.pack !== "CSE8-Fixed-Size-Log-File-Reader");
+			if (selected.pack === "CSE8-Fixed-Size-Log-File-Reader")
+				expect(item.learningPath).toBe("challenge");
+		}
+		const core = course.modules
+			.flatMap(module => module.curriculum)
+			.filter(item => c17CourseResource(item.projectLink ?? ""));
+		expect(core).toHaveLength(12);
+		expect(
+			new Set(
+				core.map(item => c17CourseResource(item.projectLink!)!.pack)
+			).size
+		).toBe(11);
+		const notebooks = cards.filter(
+			item =>
+				item.title.startsWith("Engineering Notebook:") &&
+				definitions.some(definition =>
+					item.projectLink?.includes(`/${definition.pack}/README.md`)
+				)
+		);
+		expect(notebooks).toHaveLength(6);
+		for (const item of notebooks) {
+			expect(item.projectLink).toContain(
+				"/blob/7e301cb656d73e56182bc5d9bba279c9adf78372/"
+			);
+			expect(item.ideImport).not.toBe(true);
+			expect(item.solutionLink).toBeUndefined();
+			expect(c17CourseResource(item.projectLink!)).toBeNull();
+		}
+		const ring = items.filter(
+			item =>
+				c17CourseResource(item.projectLink!)!.pack ===
+				"CSE7-Dynamic-Ring-Buffer"
+		);
+		expect(ring).toHaveLength(2);
+		for (const role of ["starter", "reference"] as const) {
+			const keys = ring.map(item =>
+				c17CourseProjectKey(
+					course.id,
+					item.id,
+					role,
+					role === "starter" ? item.projectLink! : item.solutionLink!
+				)
+			);
+			expect(keys).toEqual([
+				`c-systems-engineering:c-systems-engineering-unit-7-dynamic-memory-and-lifetime-curriculum-project-dynamic-ring-buffer:${role}:native-c17`,
+				`c-systems-engineering:c-systems-engineering-unit-7-dynamic-memory-and-lifetime-curriculum-project-dynamic-ring-buffer:${role}:native-c17`
+			]);
+		}
+		useAppStore().setCurrentTutor(null);
+		const learner = (await useCoursesStore().loadCourseById(course.id))!;
+		const learnerItems = learner.modules
+			.flatMap(module => [
+				...module.curriculum,
+				...module.supplementalProjects
+			])
+			.filter(item => items.some(original => original.id === item.id));
+		expect(learnerItems).toHaveLength(7);
+		expect(
+			learnerItems.every(item => item.solutionLink === undefined)
+		).toBe(true);
+	});
+
+	it.each([
+		"CSE8-Fixed-Size-Log-File-Reader",
+		"CSE9-Capstone-Telemetry-Transform-CLI"
+	])(
+		"explains the supplied sample helper separately from the unfinished %s implementation",
+		pack => {
+			const definition = c17VerifiedPacks.find(
+				item => item.pack === pack
+			)!;
+			const url = `https://github.com/instruction-material/C-Systems-Engineering/tree/${definition.revision}/${pack}/starter`;
+			const files = c17ImportFiles(url)!.map(({ name }) => ({
+				name,
+				content: fixture.files[`${pack}/${name}`].content
+			}));
+			const instructions = cBuildInstructions(files, url).join("\n");
+			expect(instructions).toContain("--sample NEWpath");
+			expect(instructions).toContain("helper already works");
+			expect(instructions).toContain("exits 78");
+			expect(instructions).toContain("existing");
+			expect(instructions).not.toContain("debugger pass");
+			if (pack.startsWith("CSE9-"))
+				expect(instructions).toContain(
+					"invalid input never creates output"
+				);
+		}
+	);
 
 	it.each(c17VerifiedPacks)(
 		"rejects a mismatched accepted revision for $pack without fetching source",
