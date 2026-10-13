@@ -4,8 +4,8 @@ import { c17CoreProjectReading } from "./c17CoreProjectReading";
 import { c17InspectorProjectReading } from "./c17InspectorProjectReading";
 import { c17StudioProjectReading } from "./c17StudioProjectReading";
 import { c17SystemsProjectReading } from "./c17SystemsProjectReading";
+import { c17UnitProjectReading } from "./c17UnitProjectReading";
 import { c17XorProjectReading } from "./c17XorProjectReading";
-import { buildProjectGuidance } from "./projectGuidance";
 
 const cSystemsEngineeringSourceCourse: RawCourse = {
 	name: "C Systems Engineering",
@@ -53,30 +53,30 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 						"https://github.com/instruction-material/C-Systems-Engineering/blob/9c2ca21336c7667681091972a0abe9e55921f8fa/CSE-05-cse0-setup-and-tooling/README.md"
 				},
 				{
-					title: "Setup and Tooling Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "CSE0 Setup and Tooling",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Transfer Practice: Compare compiler results at classification boundaries",
+					id: "c-systems-engineering-cse0-setup-and-tooling-supplemental-c-systems-engineering-setup-transfer-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-cse0-setup-and-tooling-supplemental-c-systems-engineering-setup-transfer-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-01-cse0-setup-and-tooling-supplemental-2/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/9c2ca21336c7667681091972a0abe9e55921f8fa/CSE-05-cse0-setup-and-tooling/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-01-cse0-setup-and-tooling-supplemental-2/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/9c2ca21336c7667681091972a0abe9e55921f8fa/CSE-05-cse0-setup-and-tooling/solution"
 				},
 				{
-					title: "Setup and Tooling Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "CSE0 Setup and Tooling",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Extension Practice: Make a format mismatch fail before execution",
+					id: "c-systems-engineering-cse0-setup-and-tooling-supplemental-c-systems-engineering-setup-extension-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-cse0-setup-and-tooling-supplemental-c-systems-engineering-setup-extension-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-02-cse0-setup-and-tooling-supplemental-3/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/9c2ca21336c7667681091972a0abe9e55921f8fa/CSE-05-cse0-setup-and-tooling/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-02-cse0-setup-and-tooling-supplemental-3/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/9c2ca21336c7667681091972a0abe9e55921f8fa/CSE-05-cse0-setup-and-tooling/solution"
 				}
 			]
 		},
@@ -123,30 +123,30 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 						"https://github.com/instruction-material/C-Systems-Engineering/blob/9c2ca21336c7667681091972a0abe9e55921f8fa/CSE-06-unit-1-why-c-for-systems-work/README.md"
 				},
 				{
-					title: "Translation Boundary Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 1: Why C for Systems Work",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Transfer Practice: Omit a translation unit and diagnose the missing definition",
+					id: "c-systems-engineering-unit-1-why-c-for-systems-work-supplemental-translation-boundary-transfer-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-1-why-c-for-systems-work-supplemental-translation-boundary-transfer-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-03-unit-1-why-c-for-systems-work-supplemental-2/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/9c2ca21336c7667681091972a0abe9e55921f8fa/CSE-06-unit-1-why-c-for-systems-work/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-03-unit-1-why-c-for-systems-work-supplemental-2/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/9c2ca21336c7667681091972a0abe9e55921f8fa/CSE-06-unit-1-why-c-for-systems-work/solution"
 				},
 				{
-					title: "Translation Boundary Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 1: Why C for Systems Work",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Extension Practice: Reject two owners of one exported function",
+					id: "c-systems-engineering-unit-1-why-c-for-systems-work-supplemental-translation-boundary-extension-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-1-why-c-for-systems-work-supplemental-translation-boundary-extension-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-04-unit-1-why-c-for-systems-work-supplemental-3/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/9c2ca21336c7667681091972a0abe9e55921f8fa/CSE-06-unit-1-why-c-for-systems-work/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-04-unit-1-why-c-for-systems-work-supplemental-3/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/9c2ca21336c7667681091972a0abe9e55921f8fa/CSE-06-unit-1-why-c-for-systems-work/solution"
 				}
 			]
 		},
@@ -188,32 +188,30 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 						"https://github.com/instruction-material/C-Systems-Engineering/blob/24c52499af8db18b93f5f2807b9631fbe931620c/CSE1-Hex-and-Binary-Inspector/README.md"
 				},
 				{
-					title: "Representation Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle:
-							"Unit 2: Binary, Hex, and Number Representation",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Transfer Practice: Interpret the same sixteen bits as signed values and nibbles",
+					id: "c-systems-engineering-unit-2-binary-hex-and-number-representation-supplemental-representation-transfer-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-2-binary-hex-and-number-representation-supplemental-representation-transfer-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-05-unit-2-binary-hex-and-number-representation-supplemental-2/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/24c52499af8db18b93f5f2807b9631fbe931620c/CSE1-Hex-and-Binary-Inspector/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-05-unit-2-binary-hex-and-number-representation-supplemental-2/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/24c52499af8db18b93f5f2807b9631fbe931620c/CSE1-Hex-and-Binary-Inspector/solution"
 				},
 				{
-					title: "Representation Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle:
-							"Unit 2: Binary, Hex, and Number Representation",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Extension Practice: Reconstruct every signed sixteen-bit pattern independently",
+					id: "c-systems-engineering-unit-2-binary-hex-and-number-representation-supplemental-representation-extension-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-2-binary-hex-and-number-representation-supplemental-representation-extension-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-06-unit-2-binary-hex-and-number-representation-supplemental-3/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/24c52499af8db18b93f5f2807b9631fbe931620c/CSE1-Hex-and-Binary-Inspector/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-06-unit-2-binary-hex-and-number-representation-supplemental-3/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/24c52499af8db18b93f5f2807b9631fbe931620c/CSE1-Hex-and-Binary-Inspector/solution"
 				}
 			]
 		},
@@ -265,30 +263,30 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 						"https://github.com/instruction-material/C-Systems-Engineering/blob/1221f76d800f52d4f33728c7c1f85dbecd71a48b/CSE2-Bitflag-Configuration-Parser/README.md"
 				},
 				{
-					title: "Bitmask Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 3: Bitwise Operations",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Transfer Practice: Update one flag while preserving mode and reserved bits",
+					id: "c-systems-engineering-unit-3-bitwise-operations-supplemental-bitmask-transfer-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-3-bitwise-operations-supplemental-bitmask-transfer-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-07-unit-3-bitwise-operations-supplemental-2/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1221f76d800f52d4f33728c7c1f85dbecd71a48b/CSE2-Bitflag-Configuration-Parser/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-07-unit-3-bitwise-operations-supplemental-2/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1221f76d800f52d4f33728c7c1f85dbecd71a48b/CSE2-Bitflag-Configuration-Parser/solution"
 				},
 				{
-					title: "Bitmask Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 3: Bitwise Operations",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Extension Practice: Round-trip a binary XOR payload containing zero bytes",
+					id: "c-systems-engineering-unit-3-bitwise-operations-supplemental-bitmask-extension-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-3-bitwise-operations-supplemental-bitmask-extension-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-08-unit-3-bitwise-operations-supplemental-3/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/ecf421bd45977b9b63d79b9c2b7af20a921de0c2/CSE3-XOR-Encoder-Decoder/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-08-unit-3-bitwise-operations-supplemental-3/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/ecf421bd45977b9b63d79b9c2b7af20a921de0c2/CSE3-XOR-Encoder-Decoder/solution"
 				}
 			]
 		},
@@ -330,30 +328,30 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 						"https://github.com/instruction-material/C-Systems-Engineering/blob/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE4-Memory-Visualizer/README.md"
 				},
 				{
-					title: "Memory Layout Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 4: Memory and Layout",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Transfer Practice: Measure a reordered record on the current compiler",
+					id: "c-systems-engineering-unit-4-memory-and-layout-supplemental-memory-layout-transfer-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-4-memory-and-layout-supplemental-memory-layout-transfer-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-09-unit-4-memory-and-layout-supplemental-2/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE4-Memory-Visualizer/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-09-unit-4-memory-and-layout-supplemental-2/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE4-Memory-Visualizer/solution"
 				},
 				{
-					title: "Memory Layout Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 4: Memory and Layout",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Extension Practice: Reject overlapping and overflowing member descriptions",
+					id: "c-systems-engineering-unit-4-memory-and-layout-supplemental-memory-layout-extension-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-4-memory-and-layout-supplemental-memory-layout-extension-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-10-unit-4-memory-and-layout-supplemental-3/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE4-Memory-Visualizer/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-10-unit-4-memory-and-layout-supplemental-3/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE4-Memory-Visualizer/solution"
 				}
 			]
 		},
@@ -396,30 +394,30 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 						"https://github.com/instruction-material/C-Systems-Engineering/blob/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE5-Byte-Buffer-Workbench/README.md"
 				},
 				{
-					title: "Byte Buffer Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 5: Strings and Byte Buffers",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Transfer Practice: Count UTF-8 bytes when a label is truncated",
+					id: "c-systems-engineering-unit-5-strings-and-byte-buffers-supplemental-byte-buffer-transfer-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-5-strings-and-byte-buffers-supplemental-byte-buffer-transfer-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-11-unit-5-strings-and-byte-buffers-supplemental-2/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE5-Byte-Buffer-Workbench/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-11-unit-5-strings-and-byte-buffers-supplemental-2/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE5-Byte-Buffer-Workbench/solution"
 				},
 				{
-					title: "Byte Buffer Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 5: Strings and Byte Buffers",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Extension Practice: Separate a string prefix from the complete binary span",
+					id: "c-systems-engineering-unit-5-strings-and-byte-buffers-supplemental-byte-buffer-extension-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-5-strings-and-byte-buffers-supplemental-byte-buffer-extension-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-12-unit-5-strings-and-byte-buffers-supplemental-3/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE5-Byte-Buffer-Workbench/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-12-unit-5-strings-and-byte-buffers-supplemental-3/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE5-Byte-Buffer-Workbench/solution"
 				}
 			]
 		},
@@ -477,30 +475,30 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 						"https://github.com/instruction-material/C-Systems-Engineering/blob/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE6-Packet-Serializer-Deserializer/README.md"
 				},
 				{
-					title: "Parser Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 6: Files, Streams, and Parsing",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Transfer Practice: Decode fixed-size log records and reject a partial record",
+					id: "c-systems-engineering-unit-6-files-streams-and-parsing-supplemental-parser-transfer-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-6-files-streams-and-parsing-supplemental-parser-transfer-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-13-unit-6-files-streams-and-parsing-supplemental-2/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE8-Fixed-Size-Log-File-Reader/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-13-unit-6-files-streams-and-parsing-supplemental-2/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE8-Fixed-Size-Log-File-Reader/solution"
 				},
 				{
-					title: "Parser Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 6: Files, Streams, and Parsing",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Extension Practice: Reject an unsupported packet version even with a valid checksum",
+					id: "c-systems-engineering-unit-6-files-streams-and-parsing-supplemental-parser-extension-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-6-files-streams-and-parsing-supplemental-parser-extension-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-14-unit-6-files-streams-and-parsing-supplemental-3/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE6-Packet-Serializer-Deserializer/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-14-unit-6-files-streams-and-parsing-supplemental-3/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE6-Packet-Serializer-Deserializer/solution"
 				}
 			]
 		},
@@ -543,30 +541,30 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 						"https://github.com/instruction-material/C-Systems-Engineering/blob/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE7-Dynamic-Ring-Buffer/README.md"
 				},
 				{
-					title: "Lifetime Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 7: Dynamic Memory and Lifetime",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Transfer Practice: Grow a wrapped ring while preserving FIFO order",
+					id: "c-systems-engineering-unit-7-dynamic-memory-and-lifetime-supplemental-lifetime-transfer-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-7-dynamic-memory-and-lifetime-supplemental-lifetime-transfer-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-15-unit-7-dynamic-memory-and-lifetime-supplemental-2/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE7-Dynamic-Ring-Buffer/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-15-unit-7-dynamic-memory-and-lifetime-supplemental-2/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE7-Dynamic-Ring-Buffer/solution"
 				},
 				{
-					title: "Lifetime Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 7: Dynamic Memory and Lifetime",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Extension Practice: Inject a failed allocation without losing the queue",
+					id: "c-systems-engineering-unit-7-dynamic-memory-and-lifetime-supplemental-lifetime-extension-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-7-dynamic-memory-and-lifetime-supplemental-lifetime-extension-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-16-unit-7-dynamic-memory-and-lifetime-supplemental-3/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE7-Dynamic-Ring-Buffer/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-16-unit-7-dynamic-memory-and-lifetime-supplemental-3/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE7-Dynamic-Ring-Buffer/solution"
 				}
 			]
 		},
@@ -615,30 +613,30 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 						"https://github.com/instruction-material/C-Systems-Engineering/blob/390d99a65ce272dbd690537870811756a06bd9bf/CSE-07-unit-8-function-pointers-and-dispatch/README.md"
 				},
 				{
-					title: "Dispatch Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 8: Function Pointers and Dispatch",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Transfer Practice: Supply a new command table through callbacks",
+					id: "c-systems-engineering-unit-8-function-pointers-and-dispatch-supplemental-dispatch-transfer-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-8-function-pointers-and-dispatch-supplemental-dispatch-transfer-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-17-unit-8-function-pointers-and-dispatch-supplemental-2/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/390d99a65ce272dbd690537870811756a06bd9bf/CSE-07-unit-8-function-pointers-and-dispatch/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-17-unit-8-function-pointers-and-dispatch-supplemental-2/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/390d99a65ce272dbd690537870811756a06bd9bf/CSE-07-unit-8-function-pointers-and-dispatch/solution"
 				},
 				{
-					title: "Dispatch Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 8: Function Pointers and Dispatch",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Extension Practice: Check duplicate names and validation of the whole table",
+					id: "c-systems-engineering-unit-8-function-pointers-and-dispatch-supplemental-dispatch-extension-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-8-function-pointers-and-dispatch-supplemental-dispatch-extension-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-18-unit-8-function-pointers-and-dispatch-supplemental-3/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/390d99a65ce272dbd690537870811756a06bd9bf/CSE-07-unit-8-function-pointers-and-dispatch/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-18-unit-8-function-pointers-and-dispatch-supplemental-3/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/390d99a65ce272dbd690537870811756a06bd9bf/CSE-07-unit-8-function-pointers-and-dispatch/solution"
 				}
 			]
 		},
@@ -680,30 +678,30 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 						"https://github.com/instruction-material/C-Systems-Engineering/blob/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE7-Dynamic-Ring-Buffer/README.md"
 				},
 				{
-					title: "Structure Invariants Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 9: Data Structures in C",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Transfer Practice: Compare the ring with an independent contiguous FIFO model",
+					id: "c-systems-engineering-unit-9-data-structures-in-c-supplemental-structure-invariants-transfer-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-9-data-structures-in-c-supplemental-structure-invariants-transfer-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-19-unit-9-data-structures-in-c-supplemental-2/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE7-Dynamic-Ring-Buffer/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-19-unit-9-data-structures-in-c-supplemental-2/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE7-Dynamic-Ring-Buffer/solution"
 				},
 				{
-					title: "Structure Invariants Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 9: Data Structures in C",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Extension Practice: Count growth events before claiming amortized cost",
+					id: "c-systems-engineering-unit-9-data-structures-in-c-supplemental-structure-invariants-extension-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-9-data-structures-in-c-supplemental-structure-invariants-extension-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-20-unit-9-data-structures-in-c-supplemental-3/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE7-Dynamic-Ring-Buffer/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-20-unit-9-data-structures-in-c-supplemental-3/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE7-Dynamic-Ring-Buffer/solution"
 				}
 			]
 		},
@@ -752,30 +750,30 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 						"https://github.com/instruction-material/C-Systems-Engineering/blob/008e3e6c7f9a5f469820ec43824ef75d51e01dfd/CSE-08-unit-10-engineering-math-in-code/README.md"
 				},
 				{
-					title: "Numeric Reliability Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 10: Engineering Math in Code",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Transfer Practice: Keep three numeric rounding policies distinct",
+					id: "c-systems-engineering-unit-10-engineering-math-in-code-supplemental-numeric-reliability-transfer-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-10-engineering-math-in-code-supplemental-numeric-reliability-transfer-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-21-unit-10-engineering-math-in-code-supplemental-2/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/008e3e6c7f9a5f469820ec43824ef75d51e01dfd/CSE-08-unit-10-engineering-math-in-code/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-21-unit-10-engineering-math-in-code-supplemental-2/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/008e3e6c7f9a5f469820ec43824ef75d51e01dfd/CSE-08-unit-10-engineering-math-in-code/solution"
 				},
 				{
-					title: "Numeric Reliability Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 10: Engineering Math in Code",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Extension Practice: Preserve numeric outputs on rejection and overflow",
+					id: "c-systems-engineering-unit-10-engineering-math-in-code-supplemental-numeric-reliability-extension-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-10-engineering-math-in-code-supplemental-numeric-reliability-extension-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-22-unit-10-engineering-math-in-code-supplemental-3/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/008e3e6c7f9a5f469820ec43824ef75d51e01dfd/CSE-08-unit-10-engineering-math-in-code/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-22-unit-10-engineering-math-in-code-supplemental-3/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/008e3e6c7f9a5f469820ec43824ef75d51e01dfd/CSE-08-unit-10-engineering-math-in-code/solution"
 				}
 			]
 		},
@@ -822,30 +820,30 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 						"https://github.com/instruction-material/C-Systems-Engineering/blob/aa4ccdf9398472351985c8cce3d20a719addca5a/CSE-09-unit-11-systems-tooling/README.md"
 				},
 				{
-					title: "Tooling Evidence Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 11: Systems Tooling",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Transfer Practice: Compare Debug and Release behavior without assuming addresses",
+					id: "c-systems-engineering-unit-11-systems-tooling-supplemental-tooling-evidence-transfer-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-11-systems-tooling-supplemental-tooling-evidence-transfer-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-23-unit-11-systems-tooling-supplemental-2/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/aa4ccdf9398472351985c8cce3d20a719addca5a/CSE-09-unit-11-systems-tooling/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-23-unit-11-systems-tooling-supplemental-2/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/aa4ccdf9398472351985c8cce3d20a719addca5a/CSE-09-unit-11-systems-tooling/solution"
 				},
 				{
-					title: "Tooling Evidence Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 11: Systems Tooling",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Extension Practice: Detect a rounding bug that sanitizers cannot diagnose",
+					id: "c-systems-engineering-unit-11-systems-tooling-supplemental-tooling-evidence-extension-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-11-systems-tooling-supplemental-tooling-evidence-extension-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-24-unit-11-systems-tooling-supplemental-3/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/aa4ccdf9398472351985c8cce3d20a719addca5a/CSE-09-unit-11-systems-tooling/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-24-unit-11-systems-tooling-supplemental-3/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/aa4ccdf9398472351985c8cce3d20a719addca5a/CSE-09-unit-11-systems-tooling/solution"
 				}
 			]
 		},
@@ -890,30 +888,30 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 						"https://github.com/instruction-material/C-Systems-Engineering/blob/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE9-Capstone-Telemetry-Transform-CLI/README.md"
 				},
 				{
-					title: "Capstone Utility Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 12: Capstone Engineering Utility",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Transfer Practice: Transform telemetry at temperature status boundaries",
+					id: "c-systems-engineering-unit-12-capstone-engineering-utility-supplemental-capstone-utility-transfer-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-12-capstone-engineering-utility-supplemental-capstone-utility-transfer-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-25-unit-12-capstone-engineering-utility-supplemental-2/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE9-Capstone-Telemetry-Transform-CLI/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-25-unit-12-capstone-engineering-utility-supplemental-2/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE9-Capstone-Telemetry-Transform-CLI/solution"
 				},
 				{
-					title: "Capstone Utility Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Unit 12: Capstone Engineering Utility",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Extension Practice: Reject a bad final telemetry row before creating output",
+					id: "c-systems-engineering-unit-12-capstone-engineering-utility-supplemental-capstone-utility-extension-practice",
+					ideImport: true,
+					content:
+						c17UnitProjectReading[
+							"c-systems-engineering-unit-12-capstone-engineering-utility-supplemental-capstone-utility-extension-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-26-unit-12-capstone-engineering-utility-supplemental-3/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE9-Capstone-Telemetry-Transform-CLI/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-26-unit-12-capstone-engineering-utility-supplemental-3/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/7e301cb656d73e56182bc5d9bba279c9adf78372/CSE9-Capstone-Telemetry-Transform-CLI/solution"
 				}
 			]
 		},

@@ -2000,7 +2000,6 @@ describe("course text quality normalization", () => {
 	it("keeps generated project guidance labels aligned to course families", () => {
 		const courseFamilies = new Map([
 			["src/stores/courses/ai-level-1.ts", "AI/Python"],
-			["src/stores/courses/c-systems-engineering.ts", "C systems"],
 			[
 				"src/stores/courses/data-science-in-python.ts",
 				"data science in Python"
@@ -2027,6 +2026,12 @@ describe("course text quality normalization", () => {
 			expect(source, path).not.toContain('courseFamily: "C++"');
 		}
 
+		const cSystemsSource = fs.readFileSync(
+			"src/stores/courses/c-systems-engineering.ts",
+			"utf8"
+		);
+		expect(cSystemsSource).toContain("c17UnitProjectReading");
+		expect(cSystemsSource).not.toContain("buildProjectGuidance");
 		expect(
 			fs.readFileSync(
 				"src/stores/courses/c-systems-engineering.ts",
@@ -2053,10 +2058,14 @@ describe("course text quality normalization", () => {
 			"Heap allocation calls are explicit ownership decisions instead of generic ways to 'make more memory.'"
 		);
 		expect(corpus).toContain(
-			"C Systems Engineering Setup Transfer Practice"
+			"Transfer Practice: Compare compiler results at classification boundaries"
 		);
-		expect(corpus).toContain("Representation Transfer Practice");
-		expect(corpus).toContain("Dispatch Extension Practice");
+		expect(corpus).toContain(
+			"Transfer Practice: Interpret the same sixteen bits as signed values and nibbles"
+		);
+		expect(corpus).toContain(
+			"Extension Practice: Check duplicate names and validation of the whole table"
+		);
 		expect(corpus).toContain("Systems Build 14: Byte Inspector Studio");
 		expect(corpus).toContain("Systems Build 17: Capstone Utility Studio");
 		expect(corpus).toContain(

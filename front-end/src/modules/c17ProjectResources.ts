@@ -1,4 +1,5 @@
 import { c17StudioContinuations } from "@/modules/c17StudioLessons";
+import { c17UnitContinuations } from "@/modules/c17UnitLessons";
 import { githubRawUrl, parseGitHubResource } from "@/modules/codePreview";
 
 export const c17SourceRevision = "9c2ca21336c7667681091972a0abe9e55921f8fa";
@@ -258,9 +259,10 @@ export function c17CourseProjectKey(
 	url: string
 ) {
 	const selected = c17CourseResource(url);
-	const continuation = c17StudioContinuations.find(
-		lesson => lesson.id === itemID && lesson.pack === selected?.pack
-	);
+	const continuation = [
+		...c17StudioContinuations,
+		...c17UnitContinuations
+	].find(lesson => lesson.id === itemID && lesson.pack === selected?.pack);
 	const maintainedItemID =
 		courseID === "c-systems-engineering" &&
 		selected?.pack === "CSE7-Dynamic-Ring-Buffer" &&

@@ -2102,3 +2102,24 @@ All eighteen verified packs require confirmation before IDE import and retain
 the selected role and unchanged full guide during export. This batch does not
 complete the broader 77-course audit: twenty-six unit practice cards still need
 their separate purpose repair. Production activation has not been performed.
+
+## C17 unit continuations use maintained projects and distinct evidence
+
+All twenty-six primary-unit practice cards now have complete readings,
+executable changed cases and correct immutable source links. They cover compiler
+and linker diagnostics, mathematical representation, field-preserving masks,
+binary XOR, measured layout, bounded byte spans, exact record/protocol parsing,
+FIFO ownership, caller-defined callbacks, independent queue models, geometric
+growth counts, explicit rounding policies and staged telemetry output.
+Each card reopens the appropriate maintained project while preserving its own
+lesson identity, progress and return anchor and every older generic attempt.
+
+The C course retains all 140 lesson IDs and the required twelve code cards backed
+by eleven distinct required packs. Its 57 coding cards now use eighteen verified
+packs, including the optional studios. Source pins and imported guides remain
+unchanged. Inlined guide role wording is neutral; distinct examples and failure
+experiments retain the documented API and file-handling contracts.
+
+Native validation includes fourteen independent learner completions as well as
+the references. The broader 77-course audit, Juni/Zoom reconciliation and
+authenticated release/production verification remain active.

@@ -955,5 +955,623 @@
       "content": "COMPLETIONS = {\n    \"CSE-01-systems-build-14\": {\n        \"SENSOR_DECODE\": r\"\"\"\n  const struct SensorFrame decoded = {raw, (uint8_t)(raw / 4096U),\n                                      (uint16_t)(raw % 4096U)};\n  *out = decoded;\n  return FRAME_OK;\n\"\"\",\n        \"SENSOR_SCALE\": r\"\"\"\n  const uint32_t scaled = (uint32_t)count * reference_mv;\n  const uint32_t quotient = scaled / 4095U, remainder = scaled % 4095U;\n  *out = (uint16_t)(quotient + (remainder * 2U >= 4095U ? 1U : 0U));\n  return FRAME_OK;\n\"\"\",\n        \"SENSOR_BITS\": r\"\"\"\n  char result[17];\n  result[16] = '\\0';\n  uint32_t value = raw;\n  for (size_t i = 16; i > 0; --i) {\n    result[i - 1U] = (value % 2U) != 0U ? '1' : '0';\n    value /= 2U;\n  }\n  for (size_t i = 0; i < 17; ++i)\n    buffer[i] = result[i];\n  return FRAME_OK;\n\"\"\",\n    },\n    \"CSE-02-systems-build-15\": {\n        \"REGION_PLAN\": r\"\"\"\n  struct RegionPlan value = {0};\n  value.count = count;\n  size_t end = 0;\n  for (size_t i = 0; i < count; ++i) {\n    const size_t previous = end;\n    while (end % specs[i].alignment != 0U) {\n      if (end == SIZE_MAX)\n        return REGION_OVERFLOW;\n      ++end;\n    }\n    value.padding += end - previous;\n    if (specs[i].length > SIZE_MAX - end)\n      return REGION_OVERFLOW;\n    value.regions[i] =\n        (struct RegionPlacement){end, specs[i].length, specs[i].alignment};\n    end += specs[i].length;\n  }\n  if (end > limit)\n    return REGION_NO_SPACE;\n  value.total = end;\n  *out = value;\n  return REGION_OK;\n\"\"\",\n        \"REGION_LOCATE\": r\"\"\"\n  if (position >= plan->total)\n    return REGION_OUTSIDE;\n  for (size_t i = 0; i < plan->count; ++i) {\n    const struct RegionPlacement *p = &plan->regions[i];\n    const size_t end = p->offset + p->length;\n    if (position >= p->offset && position < end) {\n      *out = (struct RegionAddress){i, position - p->offset};\n      return REGION_OK;\n    }\n  }\n  return REGION_PADDING;\n\"\"\",\n    },\n    \"CSE-03-systems-build-16\": {\n        \"STREAM_FEED\": r\"\"\"\n  if (d->phase == STREAM_FAILED)\n    return d->error;\n  for (size_t i = 0; i < count; ++i) {\n    const uint8_t byte = data[i];\n    enum StreamResult failure = STREAM_OK;\n    if (d->phase == STREAM_MAGIC) {\n      if (byte != 0xA5U)\n        failure = STREAM_INVALID;\n      else {\n        d->crc = crc8_update(0, byte);\n        d->phase = STREAM_VERSION;\n      }\n    } else if (d->phase == STREAM_VERSION) {\n      if (byte != 1U)\n        failure = STREAM_INVALID;\n      else {\n        d->crc = crc8_update(d->crc, byte);\n        d->phase = STREAM_LENGTH;\n      }\n    } else if (d->phase == STREAM_LENGTH) {\n      if (byte > 32U)\n        failure = STREAM_INVALID;\n      else {\n        d->length = byte;\n        d->used = 0;\n        d->crc = crc8_update(d->crc, byte);\n        d->phase = byte == 0U ? STREAM_CHECKSUM : STREAM_PAYLOAD;\n      }\n    } else if (d->phase == STREAM_PAYLOAD) {\n      d->payload[d->used] = byte;\n      ++d->used;\n      d->crc = crc8_update(d->crc, byte);\n      if (d->used == d->length)\n        d->phase = STREAM_CHECKSUM;\n    } else if (d->phase == STREAM_CHECKSUM) {\n      if (byte != d->crc)\n        failure = STREAM_INVALID;\n      else if (d->frames == SIZE_MAX)\n        failure = STREAM_LIMIT;\n      else if (!d->callback(d->payload, d->length, d->context))\n        failure = STREAM_CALLBACK_ERROR;\n      else {\n        d->frames += 1U;\n        d->used = 0;\n        d->length = 0;\n        d->crc = 0;\n        d->phase = STREAM_MAGIC;\n      }\n    } else\n      failure = STREAM_INVALID;\n    if (failure != STREAM_OK) {\n      d->phase = STREAM_FAILED;\n      d->error = failure;\n      return failure;\n    }\n  }\n  return STREAM_OK;\n\"\"\",\n        \"STREAM_FINISH\": r\"\"\"\n  if (d->phase == STREAM_MAGIC)\n    return STREAM_OK;\n  if (d->phase == STREAM_FAILED)\n    return d->error;\n  return STREAM_TRUNCATED;\n\"\"\",\n    },\n    \"CSE-04-systems-build-17\": {\n        \"WINDOW_PARSE\": r\"\"\"\n  size_t comma = length;\n  for (size_t i = 0; i < length; ++i)\n    if (text[i] == ',') {\n      if (comma != length)\n        return WINDOW_INVALID;\n      comma = i;\n    }\n  if (comma == length)\n    return WINDOW_INVALID;\n  uint64_t timestamp = 0, absolute = 0;\n  if (!decimal(text, comma, UINT32_MAX, &timestamp))\n    return WINDOW_INVALID;\n  size_t start = comma + 1U;\n  const bool negative = start < length && text[start] == '-';\n  if (negative)\n    ++start;\n  if (!decimal(text + start, length - start, negative ? 40000U : 125000U,\n               &absolute))\n    return WINDOW_INVALID;\n  struct Sample value = {(uint32_t)timestamp, (int32_t)absolute};\n  if (negative)\n    value.temp_milli_c = -value.temp_milli_c;\n  *out = value;\n  return WINDOW_OK;\n\"\"\",\n        \"WINDOW_AGGREGATE\": r\"\"\"\n  for (size_t i = 0; i < count; ++i) {\n    if (samples[i].temp_milli_c < -40000 || samples[i].temp_milli_c > 125000)\n      return WINDOW_INVALID;\n    if (i > 0U && samples[i - 1U].timestamp_ms > samples[i].timestamp_ms)\n      return WINDOW_ORDER;\n  }\n  struct Bucket temporary[WINDOW_MAX_SAMPLES];\n  size_t groups = 0, first = 0;\n  while (first < count) {\n    const uint32_t key = (samples[first].timestamp_ms / width) * width;\n    size_t last = first;\n    int64_t total = 0;\n    int32_t minimum = 125000, maximum = -40000;\n    while (last < count &&\n           (samples[last].timestamp_ms / width) * width == key) {\n      const int32_t t = samples[last].temp_milli_c;\n      total += t;\n      if (t < minimum)\n        minimum = t;\n      if (t > maximum)\n        maximum = t;\n      ++last;\n    }\n    const size_t amount = last - first;\n    temporary[groups++] = (struct Bucket){\n        key, amount, (int32_t)(total / (int64_t)amount), minimum, maximum};\n    first = last;\n  }\n  if (groups > capacity)\n    return WINDOW_NO_SPACE;\n  for (size_t i = 0; i < groups; ++i)\n    out[i] = temporary[i];\n  *used = groups;\n  return WINDOW_OK;\n\"\"\",\n    },\n}\n",
       "sha256": "962b1eecf9a7f5357fd3723427c12766488d53636484b5ae8aa5745fb02e04b9"
     }
+  },
+  "unitLessons": [
+    {
+      "id": "c-systems-engineering-cse0-setup-and-tooling-supplemental-c-systems-engineering-setup-transfer-practice",
+      "pack": "CSE-05-cse0-setup-and-tooling",
+      "revision": "9c2ca21336c7667681091972a0abe9e55921f8fa",
+      "baseLessonID": "c-systems-engineering-cse0-setup-and-tooling-curriculum-core-project-c-systems-engineering",
+      "libraryFiles": [
+        "main.c"
+      ],
+      "renameMain": true,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-cse0-setup-and-tooling-c-systems-engineering-cse0-setup-and-tooling-supplemental-c-systems-engineering-setup-transfer-practice"
+    },
+    {
+      "id": "c-systems-engineering-cse0-setup-and-tooling-supplemental-c-systems-engineering-setup-extension-practice",
+      "pack": "CSE-05-cse0-setup-and-tooling",
+      "revision": "9c2ca21336c7667681091972a0abe9e55921f8fa",
+      "baseLessonID": "c-systems-engineering-cse0-setup-and-tooling-curriculum-core-project-c-systems-engineering",
+      "libraryFiles": [
+        "main.c"
+      ],
+      "renameMain": true,
+      "diagnostics": [
+        {
+          "kind": "compile",
+          "name": "format_probe.c",
+          "bad": "#include <stdio.h>\nint main(void){int value=47;printf(\"%ld\\n\",value);return 0;}\n",
+          "good": "#include <stdio.h>\nint main(void){int value=47;printf(\"%d\\n\",value);return 0;}\n",
+          "stdout": "47\n"
+        }
+      ],
+      "anchor": "c-systems-engineering-cse0-setup-and-tooling-c-systems-engineering-cse0-setup-and-tooling-supplemental-c-systems-engineering-setup-extension-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-1-why-c-for-systems-work-supplemental-translation-boundary-transfer-practice",
+      "pack": "CSE-06-unit-1-why-c-for-systems-work",
+      "revision": "9c2ca21336c7667681091972a0abe9e55921f8fa",
+      "baseLessonID": "c-systems-engineering-unit-1-why-c-for-systems-work-curriculum-core-project-why-c-for-systems-work",
+      "libraryFiles": [
+        "reading.c",
+        "labels.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [
+        {
+          "kind": "missing-definition",
+          "omitted": "labels.c"
+        }
+      ],
+      "anchor": "c-systems-engineering-unit-1-why-c-for-systems-work-c-systems-engineering-unit-1-why-c-for-systems-work-supplemental-translation-boundary-transfer-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-1-why-c-for-systems-work-supplemental-translation-boundary-extension-practice",
+      "pack": "CSE-06-unit-1-why-c-for-systems-work",
+      "revision": "9c2ca21336c7667681091972a0abe9e55921f8fa",
+      "baseLessonID": "c-systems-engineering-unit-1-why-c-for-systems-work-curriculum-core-project-why-c-for-systems-work",
+      "libraryFiles": [
+        "reading.c",
+        "labels.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [
+        {
+          "kind": "duplicate-definition",
+          "name": "duplicate_label.c",
+          "source": "#include \"reading.h\"\nconst char *reading_label(int category){(void)category;return \"duplicate\";}\n"
+        }
+      ],
+      "anchor": "c-systems-engineering-unit-1-why-c-for-systems-work-c-systems-engineering-unit-1-why-c-for-systems-work-supplemental-translation-boundary-extension-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-2-binary-hex-and-number-representation-supplemental-representation-transfer-practice",
+      "pack": "CSE1-Hex-and-Binary-Inspector",
+      "revision": "24c52499af8db18b93f5f2807b9631fbe931620c",
+      "baseLessonID": "c-systems-engineering-unit-2-binary-hex-and-number-representation-curriculum-project-hex-and-binary-inspector",
+      "libraryFiles": [
+        "representation.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-2-binary-hex-and-number-representation-c-systems-engineering-unit-2-binary-hex-and-number-representation-supplemental-representation-transfer-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-2-binary-hex-and-number-representation-supplemental-representation-extension-practice",
+      "pack": "CSE1-Hex-and-Binary-Inspector",
+      "revision": "24c52499af8db18b93f5f2807b9631fbe931620c",
+      "baseLessonID": "c-systems-engineering-unit-2-binary-hex-and-number-representation-curriculum-project-hex-and-binary-inspector",
+      "libraryFiles": [
+        "representation.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-2-binary-hex-and-number-representation-c-systems-engineering-unit-2-binary-hex-and-number-representation-supplemental-representation-extension-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-3-bitwise-operations-supplemental-bitmask-transfer-practice",
+      "pack": "CSE2-Bitflag-Configuration-Parser",
+      "revision": "1221f76d800f52d4f33728c7c1f85dbecd71a48b",
+      "baseLessonID": "c-systems-engineering-unit-3-bitwise-operations-curriculum-project-bitflag-configuration-parser",
+      "libraryFiles": [
+        "configuration.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-3-bitwise-operations-c-systems-engineering-unit-3-bitwise-operations-supplemental-bitmask-transfer-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-3-bitwise-operations-supplemental-bitmask-extension-practice",
+      "pack": "CSE3-XOR-Encoder-Decoder",
+      "revision": "ecf421bd45977b9b63d79b9c2b7af20a921de0c2",
+      "baseLessonID": "c-systems-engineering-unit-3-bitwise-operations-supplemental-project-xor-encoder-decoder",
+      "libraryFiles": [
+        "transform.c",
+        "input.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-3-bitwise-operations-c-systems-engineering-unit-3-bitwise-operations-supplemental-bitmask-extension-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-4-memory-and-layout-supplemental-memory-layout-transfer-practice",
+      "pack": "CSE4-Memory-Visualizer",
+      "revision": "7e301cb656d73e56182bc5d9bba279c9adf78372",
+      "baseLessonID": "c-systems-engineering-unit-4-memory-and-layout-curriculum-project-memory-visualizer-for-arrays-and-structs",
+      "libraryFiles": [
+        "layout.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-4-memory-and-layout-c-systems-engineering-unit-4-memory-and-layout-supplemental-memory-layout-transfer-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-4-memory-and-layout-supplemental-memory-layout-extension-practice",
+      "pack": "CSE4-Memory-Visualizer",
+      "revision": "7e301cb656d73e56182bc5d9bba279c9adf78372",
+      "baseLessonID": "c-systems-engineering-unit-4-memory-and-layout-curriculum-project-memory-visualizer-for-arrays-and-structs",
+      "libraryFiles": [
+        "layout.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-4-memory-and-layout-c-systems-engineering-unit-4-memory-and-layout-supplemental-memory-layout-extension-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-5-strings-and-byte-buffers-supplemental-byte-buffer-transfer-practice",
+      "pack": "CSE5-Byte-Buffer-Workbench",
+      "revision": "7e301cb656d73e56182bc5d9bba279c9adf78372",
+      "baseLessonID": "c-systems-engineering-unit-5-strings-and-byte-buffers-curriculum-project-byte-buffer-workbench",
+      "libraryFiles": [
+        "buffers.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-5-strings-and-byte-buffers-c-systems-engineering-unit-5-strings-and-byte-buffers-supplemental-byte-buffer-transfer-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-5-strings-and-byte-buffers-supplemental-byte-buffer-extension-practice",
+      "pack": "CSE5-Byte-Buffer-Workbench",
+      "revision": "7e301cb656d73e56182bc5d9bba279c9adf78372",
+      "baseLessonID": "c-systems-engineering-unit-5-strings-and-byte-buffers-curriculum-project-byte-buffer-workbench",
+      "libraryFiles": [
+        "buffers.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-5-strings-and-byte-buffers-c-systems-engineering-unit-5-strings-and-byte-buffers-supplemental-byte-buffer-extension-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-6-files-streams-and-parsing-supplemental-parser-transfer-practice",
+      "pack": "CSE8-Fixed-Size-Log-File-Reader",
+      "revision": "7e301cb656d73e56182bc5d9bba279c9adf78372",
+      "baseLessonID": "c-systems-engineering-unit-6-files-streams-and-parsing-supplemental-project-fixed-size-log-file-reader",
+      "libraryFiles": [
+        "log.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-6-files-streams-and-parsing-c-systems-engineering-unit-6-files-streams-and-parsing-supplemental-parser-transfer-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-6-files-streams-and-parsing-supplemental-parser-extension-practice",
+      "pack": "CSE6-Packet-Serializer-Deserializer",
+      "revision": "7e301cb656d73e56182bc5d9bba279c9adf78372",
+      "baseLessonID": "c-systems-engineering-unit-6-files-streams-and-parsing-curriculum-project-packet-serializer-deserializer",
+      "libraryFiles": [
+        "packet.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-6-files-streams-and-parsing-c-systems-engineering-unit-6-files-streams-and-parsing-supplemental-parser-extension-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-7-dynamic-memory-and-lifetime-supplemental-lifetime-transfer-practice",
+      "pack": "CSE7-Dynamic-Ring-Buffer",
+      "revision": "7e301cb656d73e56182bc5d9bba279c9adf78372",
+      "baseLessonID": "c-systems-engineering-unit-7-dynamic-memory-and-lifetime-curriculum-project-dynamic-ring-buffer",
+      "libraryFiles": [
+        "ring.c",
+        "allocation.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-7-dynamic-memory-and-lifetime-c-systems-engineering-unit-7-dynamic-memory-and-lifetime-supplemental-lifetime-transfer-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-7-dynamic-memory-and-lifetime-supplemental-lifetime-extension-practice",
+      "pack": "CSE7-Dynamic-Ring-Buffer",
+      "revision": "7e301cb656d73e56182bc5d9bba279c9adf78372",
+      "baseLessonID": "c-systems-engineering-unit-7-dynamic-memory-and-lifetime-curriculum-project-dynamic-ring-buffer",
+      "libraryFiles": [
+        "ring.c",
+        "test_allocation.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-7-dynamic-memory-and-lifetime-c-systems-engineering-unit-7-dynamic-memory-and-lifetime-supplemental-lifetime-extension-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-8-function-pointers-and-dispatch-supplemental-dispatch-transfer-practice",
+      "pack": "CSE-07-unit-8-function-pointers-and-dispatch",
+      "revision": "390d99a65ce272dbd690537870811756a06bd9bf",
+      "baseLessonID": "c-systems-engineering-unit-8-function-pointers-and-dispatch-curriculum-core-project-function-pointers-and-dispatch",
+      "libraryFiles": [
+        "dispatch.c",
+        "handlers.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-8-function-pointers-and-dispatch-c-systems-engineering-unit-8-function-pointers-and-dispatch-supplemental-dispatch-transfer-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-8-function-pointers-and-dispatch-supplemental-dispatch-extension-practice",
+      "pack": "CSE-07-unit-8-function-pointers-and-dispatch",
+      "revision": "390d99a65ce272dbd690537870811756a06bd9bf",
+      "baseLessonID": "c-systems-engineering-unit-8-function-pointers-and-dispatch-curriculum-core-project-function-pointers-and-dispatch",
+      "libraryFiles": [
+        "dispatch.c",
+        "handlers.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-8-function-pointers-and-dispatch-c-systems-engineering-unit-8-function-pointers-and-dispatch-supplemental-dispatch-extension-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-9-data-structures-in-c-supplemental-structure-invariants-transfer-practice",
+      "pack": "CSE7-Dynamic-Ring-Buffer",
+      "revision": "7e301cb656d73e56182bc5d9bba279c9adf78372",
+      "baseLessonID": "c-systems-engineering-unit-7-dynamic-memory-and-lifetime-curriculum-project-dynamic-ring-buffer",
+      "libraryFiles": [
+        "ring.c",
+        "allocation.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-9-data-structures-in-c-c-systems-engineering-unit-9-data-structures-in-c-supplemental-structure-invariants-transfer-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-9-data-structures-in-c-supplemental-structure-invariants-extension-practice",
+      "pack": "CSE7-Dynamic-Ring-Buffer",
+      "revision": "7e301cb656d73e56182bc5d9bba279c9adf78372",
+      "baseLessonID": "c-systems-engineering-unit-7-dynamic-memory-and-lifetime-curriculum-project-dynamic-ring-buffer",
+      "libraryFiles": [
+        "ring.c",
+        "allocation.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-9-data-structures-in-c-c-systems-engineering-unit-9-data-structures-in-c-supplemental-structure-invariants-extension-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-10-engineering-math-in-code-supplemental-numeric-reliability-transfer-practice",
+      "pack": "CSE-08-unit-10-engineering-math-in-code",
+      "revision": "008e3e6c7f9a5f469820ec43824ef75d51e01dfd",
+      "baseLessonID": "c-systems-engineering-unit-10-engineering-math-in-code-curriculum-core-project-engineering-math-in-code",
+      "libraryFiles": [
+        "engineering_math.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-10-engineering-math-in-code-c-systems-engineering-unit-10-engineering-math-in-code-supplemental-numeric-reliability-transfer-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-10-engineering-math-in-code-supplemental-numeric-reliability-extension-practice",
+      "pack": "CSE-08-unit-10-engineering-math-in-code",
+      "revision": "008e3e6c7f9a5f469820ec43824ef75d51e01dfd",
+      "baseLessonID": "c-systems-engineering-unit-10-engineering-math-in-code-curriculum-core-project-engineering-math-in-code",
+      "libraryFiles": [
+        "engineering_math.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-10-engineering-math-in-code-c-systems-engineering-unit-10-engineering-math-in-code-supplemental-numeric-reliability-extension-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-11-systems-tooling-supplemental-tooling-evidence-transfer-practice",
+      "pack": "CSE-09-unit-11-systems-tooling",
+      "revision": "aa4ccdf9398472351985c8cce3d20a719addca5a",
+      "baseLessonID": "c-systems-engineering-unit-11-systems-tooling-curriculum-core-project-systems-tooling",
+      "libraryFiles": [
+        "engineering_math.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-11-systems-tooling-c-systems-engineering-unit-11-systems-tooling-supplemental-tooling-evidence-transfer-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-11-systems-tooling-supplemental-tooling-evidence-extension-practice",
+      "pack": "CSE-09-unit-11-systems-tooling",
+      "revision": "aa4ccdf9398472351985c8cce3d20a719addca5a",
+      "baseLessonID": "c-systems-engineering-unit-11-systems-tooling-curriculum-core-project-systems-tooling",
+      "libraryFiles": [
+        "engineering_math.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [
+        {
+          "kind": "logic",
+          "name": "logic_probe.c",
+          "bad": "#include <stdint.h>\nint main(void){uint32_t mv=(uint32_t)((UINT64_C(512)*3300U)/1023U);return mv==1652U?0:1;}\n",
+          "good": "#include <stdint.h>\nint main(void){uint32_t mv=(uint32_t)((UINT64_C(512)*3300U+511U)/1023U);return mv==1652U?0:1;}\n",
+          "stdout": ""
+        }
+      ],
+      "anchor": "c-systems-engineering-unit-11-systems-tooling-c-systems-engineering-unit-11-systems-tooling-supplemental-tooling-evidence-extension-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-12-capstone-engineering-utility-supplemental-capstone-utility-transfer-practice",
+      "pack": "CSE9-Capstone-Telemetry-Transform-CLI",
+      "revision": "7e301cb656d73e56182bc5d9bba279c9adf78372",
+      "baseLessonID": "c-systems-engineering-unit-12-capstone-engineering-utility-curriculum-project-capstone-telemetry-transform-cli",
+      "libraryFiles": [
+        "telemetry.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-12-capstone-engineering-utility-c-systems-engineering-unit-12-capstone-engineering-utility-supplemental-capstone-utility-transfer-practice"
+    },
+    {
+      "id": "c-systems-engineering-unit-12-capstone-engineering-utility-supplemental-capstone-utility-extension-practice",
+      "pack": "CSE9-Capstone-Telemetry-Transform-CLI",
+      "revision": "7e301cb656d73e56182bc5d9bba279c9adf78372",
+      "baseLessonID": "c-systems-engineering-unit-12-capstone-engineering-utility-curriculum-project-capstone-telemetry-transform-cli",
+      "libraryFiles": [
+        "telemetry.c"
+      ],
+      "renameMain": false,
+      "diagnostics": [],
+      "anchor": "c-systems-engineering-unit-12-capstone-engineering-utility-c-systems-engineering-unit-12-capstone-engineering-utility-supplemental-capstone-utility-extension-practice"
+    }
+  ],
+  "unitCompletionRecipes": {
+    "recipes": {
+      "CSE-05-cse0-setup-and-tooling": [
+        {
+          "file": "main.c",
+          "kind": "literal",
+          "before": "    /* TODO: implement the three ranges declared in reading.h. */\n    (void)value;\n    return 0;",
+          "after": "    return (value > 100) - (value < 0);"
+        }
+      ],
+      "CSE-06-unit-1-why-c-for-systems-work": [
+        {
+          "file": "labels.c",
+          "kind": "literal",
+          "before": "    /* TODO: return the four labels declared in reading.h. */\n    (void)category;\n    return NULL;",
+          "after": "    static const char* labels[] = {\"below\", \"within\", \"above\"};\n    if (category < -1 || category > 1) {\n        return \"invalid\";\n    }\n    return labels[category + 1];"
+        }
+      ],
+      "CSE-07-unit-8-function-pointers-and-dispatch": [
+        {
+          "file": "dispatch.c",
+          "kind": "literal",
+          "before": "    /* TODO: validate the contract, select the first exact name, and call its handler. */\n    (void)state;\n    (void)entries;\n    (void)count;\n    (void)command;\n    (void)argument;\n    return COMMAND_UNKNOWN;",
+          "after": "    if (state == NULL || command == NULL ||\n        state->level < 0 || state->level > DEVICE_CAPACITY ||\n        (count != 0 && entries == NULL)) {\n        return COMMAND_BAD_ARGUMENT;\n    }\n    const CommandEntry* selected = NULL;\n    size_t remaining = count;\n    while (remaining != 0) {\n        const CommandEntry* entry = &entries[--remaining];\n        if (entry->name == NULL || entry->handler == NULL) {\n            return COMMAND_BAD_ARGUMENT;\n        }\n        if (strcmp(command, entry->name) == 0) {\n            selected = entry;\n        }\n    }\n    return selected == NULL ? COMMAND_UNKNOWN : selected->handler(state, argument);"
+        }
+      ],
+      "CSE-08-unit-10-engineering-math-in-code": [
+        {
+          "file": "engineering_math.c",
+          "kind": "literal",
+          "before": "    /* TODO: truncate scaled conversion toward zero, check range, then store. */\n    (void)centi_celsius;\n    (void)centi_fahrenheit;\n    return MATH_BAD_ARGUMENT;",
+          "after": "    if (centi_fahrenheit == NULL) {\n        return MATH_BAD_ARGUMENT;\n    }\n    const int64_t input = centi_celsius;\n    const int64_t converted = (input / 5) * 9 + ((input % 5) * 9) / 5 + 3200;\n    if (converted > INT32_MAX || converted < INT32_MIN) {\n        return MATH_OVERFLOW;\n    }\n    *centi_fahrenheit = (int32_t)converted;\n    return MATH_OK;"
+        },
+        {
+          "file": "engineering_math.c",
+          "kind": "literal",
+          "before": "    /* TODO: round upward to whole ticks, check range, then store. */\n    (void)duration_us;\n    (void)frequency_hz;\n    (void)ticks;\n    return MATH_BAD_ARGUMENT;",
+          "after": "    if (frequency_hz == 0 || ticks == NULL) {\n        return MATH_BAD_ARGUMENT;\n    }\n    const uint64_t scaled = (uint64_t)frequency_hz * duration_us;\n    const uint64_t converted = scaled == 0 ? 0 : 1 + (scaled - 1) / 1000000;\n    if (converted > UINT32_MAX) {\n        return MATH_OVERFLOW;\n    }\n    *ticks = (uint32_t)converted;\n    return MATH_OK;"
+        }
+      ],
+      "CSE1-Hex-and-Binary-Inspector": [
+        {
+          "file": "representation.c",
+          "kind": "literal",
+          "before": "    /* TODO: compute the signed 16-bit interpretation in an int32_t. */\n    (void)value;\n    return INT32_MIN;",
+          "after": "    return (int32_t)(value % 32768u) - (value >= 32768u ? 32768 : 0);"
+        },
+        {
+          "file": "representation.c",
+          "kind": "literal",
+          "before": "    /* TODO: extract position 0..3; return UINT_MAX for other positions. */\n    (void)value;\n    (void)position;\n    return UINT_MAX;",
+          "after": "    if (position >= 4) {\n        return UINT_MAX;\n    }\n    unsigned int divisor = 1;\n    for (unsigned int i = 0; i < position; ++i) {\n        divisor *= 16;\n    }\n    return ((unsigned int)value / divisor) % 16;"
+        },
+        {
+          "file": "representation.c",
+          "kind": "literal",
+          "before": "    /* TODO: return 1 when bit 15 is set, otherwise return 0. */\n    (void)value;\n    return -1;",
+          "after": "    return value / 32768u != 0;"
+        }
+      ],
+      "CSE2-Bitflag-Configuration-Parser": [
+        {
+          "file": "configuration.c",
+          "kind": "literal",
+          "before": "    /* TODO: guard bit 0..3, then return its 0/1 state; invalid bits return -1. */\n    (void)config;\n    (void)bit;\n    return -2;",
+          "after": "    if (bit >= 4u) return -1;\n    unsigned int divisor = 1;\n    for (unsigned int index = 0; index < bit; ++index) divisor *= 2u;\n    return (int)(((unsigned int)config / divisor) % 2u);"
+        },
+        {
+          "file": "configuration.c",
+          "kind": "literal",
+          "before": "    /* TODO: extract exactly the mode bits at positions 4 and 5. */\n    (void)config;\n    return UINT_MAX;",
+          "after": "    return ((unsigned int)config / 16u) % 4u;"
+        },
+        {
+          "file": "configuration.c",
+          "kind": "literal",
+          "before": "    /* TODO: validate before shifting or writing, then set/clear only the flag. */\n    (void)original;\n    (void)bit;\n    (void)enabled;\n    (void)updated;\n    return false;",
+          "after": "    if (bit >= 4u || updated == NULL) return false;\n    unsigned int divisor = 1;\n    for (unsigned int index = 0; index < bit; ++index) divisor *= 2u;\n    const int existing = (int)(((unsigned int)original / divisor) % 2u);\n    const int changed = (int)original + ((enabled ? 1 : 0) - existing) * (int)divisor;\n    *updated = (uint8_t)changed;\n    return true;"
+        }
+      ],
+      "CSE3-XOR-Encoder-Decoder": [
+        {
+          "file": "transform.c",
+          "kind": "literal",
+          "before": "    /* TODO: validate output, choose 0x5A for NULL text, otherwise use the checked parser. */\n    (void)text;\n    (void)key;\n    return false;",
+          "after": "    if (key == NULL) return false;\n    if (text != NULL) return parse_xor_key_input(text, key);\n    *key = 90u;\n    return true;"
+        },
+        {
+          "file": "transform.c",
+          "kind": "literal",
+          "before": "    /* TODO: return the byte-level XOR result in 0..255. */\n    (void)input;\n    (void)key;\n    return UINT_MAX;",
+          "after": "    unsigned int result = 0;\n    unsigned int power = 1;\n    for (unsigned int index = 0; index < 8u; ++index) {\n        const unsigned int a = (unsigned int)input / power % 2u;\n        const unsigned int b = (unsigned int)key / power % 2u;\n        if (a != b) result += power;\n        power *= 2u;\n    }\n    return result;"
+        }
+      ],
+      "CSE-09-unit-11-systems-tooling": [
+        {
+          "file": "main.c",
+          "kind": "literal",
+          "before": "printf(\"timer product: %d\\n\", product);",
+          "after": "printf(\"timer product: %\" PRIu64 \"\\n\", product);"
+        },
+        {
+          "file": "engineering_math.c",
+          "kind": "literal",
+          "before": "MathStatus duration_to_tick(",
+          "after": "MathStatus duration_to_ticks("
+        },
+        {
+          "file": "engineering_math.c",
+          "kind": "literal",
+          "before": "(int64_t)(centi_celsius * 9) / 5 + 3200",
+          "after": "(int64_t)centi_celsius * 9 / 5 + 3200"
+        }
+      ],
+      "CSE4-Memory-Visualizer": [
+        {
+          "file": "layout.c",
+          "kind": "regex",
+          "before": "[ \\t]*/\\* TODO\\s+LAYOUT_ANALYZE:.*?\\*/\\s*.*?return\\s+(?:[A-Z_]+UNFINISHED|UINT_MAX);",
+          "after": "if(members[0].offset!=0) return LAYOUT_INVALID;\n size_t used=0,last=0; struct LayoutReport result={0};\n for(size_t n=0;n<count;++n) {\n  size_t offset=members[n].offset,width=members[n].width;\n  if(width==0 || offset<last || offset>size || width>size-offset) return LAYOUT_INVALID;\n  result.before[n]=offset-last; used+=width; last=offset+width;\n }\n result.count=count; result.tail=size-last; result.member_bytes=used; result.padding_bytes=size-used;\n *out=result; return LAYOUT_OK;"
+        },
+        {
+          "file": "layout.c",
+          "kind": "regex",
+          "before": "[ \\t]*/\\* TODO\\s+LAYOUT_EXPERIMENT:.*?\\*/\\s*.*?return\\s+(?:[A-Z_]+UNFINISHED|UINT_MAX);",
+          "after": "struct AddedRecord { char tag; uint32_t sample_count; uint16_t error_code; char status; double calibration; };\n struct ExperimentLayout candidate={\n  .size=sizeof(struct AddedRecord),.alignment=_Alignof(struct AddedRecord),\n  .members={{offsetof(struct AddedRecord,tag),sizeof(char)},\n   {offsetof(struct AddedRecord,sample_count),sizeof(uint32_t)},\n   {offsetof(struct AddedRecord,error_code),sizeof(uint16_t)},\n   {offsetof(struct AddedRecord,status),sizeof(char)},\n   {offsetof(struct AddedRecord,calibration),sizeof(double)}}\n };\n enum LayoutResult result=analyze_layout(candidate.members,5,candidate.size,&candidate.report);\n if(result==LAYOUT_OK) *out=candidate;\n return result;"
+        }
+      ],
+      "CSE5-Byte-Buffer-Workbench": [
+        {
+          "file": "buffers.c",
+          "kind": "regex",
+          "before": "[ \\t]*/\\* TODO\\s+BUFFER_COPY:.*?\\*/\\s*.*?return\\s+(?:[A-Z_]+UNFINISHED|UINT_MAX);",
+          "after": "size_t length=0;\n while(length<capacity-1 && source[length]!='\\0') ++length;\n int complete=source[length]=='\\0';\n for(size_t n=0;n<capacity;++n) destination[n]='\\0';\n for(size_t n=0;n<length;++n) destination[n]=source[n];\n return complete?COPY_COMPLETE:COPY_TRUNCATED;"
+        },
+        {
+          "file": "buffers.c",
+          "kind": "regex",
+          "before": "[ \\t]*/\\* TODO\\s+BUFFER_FIND:.*?\\*/\\s*.*?return\\s+(?:[A-Z_]+UNFINISHED|UINT_MAX);",
+          "after": "size_t first=SIZE_MAX;\n for(size_t remaining=capacity;remaining>0;--remaining) if(bytes[remaining-1]==0) first=remaining-1;\n if(first==SIZE_MAX) return BUFFER_NO_TERMINATOR;\n *length=first; return BUFFER_OK;"
+        }
+      ],
+      "CSE6-Packet-Serializer-Deserializer": [
+        {
+          "file": "packet.c",
+          "kind": "regex",
+          "before": "[ \\t]*/\\* TODO\\s+PACKET_ENCODE:.*?\\*/\\s*.*?return\\s+(?:[A-Z_]+UNFINISHED|UINT_MAX);",
+          "after": "uint8_t record[7];\n record[0]=195; record[1]=1; record[2]=packet->channel; record[3]=packet->flags;\n record[4]=(uint8_t)((unsigned int)packet->reading_mv & 255u);\n record[5]=(uint8_t)((unsigned int)packet->reading_mv >> 8);\n record[6]=(uint8_t)checksum(record);\n for(size_t n=0;n<7;++n) bytes[n]=record[n];\n *used=7; return PACKET_OK;"
+        },
+        {
+          "file": "packet.c",
+          "kind": "regex",
+          "before": "[ \\t]*/\\* TODO\\s+PACKET_DECODE:.*?\\*/\\s*.*?return\\s+(?:[A-Z_]+UNFINISHED|UINT_MAX);",
+          "after": "if(bytes[0]!=195 || bytes[1]!=1 || (unsigned int)bytes[6]!=checksum(bytes)) return PACKET_INVALID;\n struct Packet result={.version=1,.channel=bytes[2],.flags=bytes[3],\n  .reading_mv=(uint16_t)(((unsigned int)bytes[5]<<8) | (unsigned int)bytes[4])};\n *out=result; return PACKET_OK;"
+        }
+      ],
+      "CSE7-Dynamic-Ring-Buffer": [
+        {
+          "file": "ring.c",
+          "kind": "regex",
+          "before": "[ \\t]*/\\* TODO\\s+RING_INIT:.*?\\*/\\s*.*?return\\s+(?:[A-Z_]+UNFINISHED|UINT_MAX);",
+          "after": "if(buffer->data!=NULL || buffer->capacity!=0 || buffer->head!=0 || buffer->count!=0) return RING_INVALID;\n int *owned=cse_allocate(sizeof(int)*capacity);\n if(owned==NULL) return RING_NO_MEMORY;\n buffer->data=owned; buffer->head=0; buffer->count=0; buffer->capacity=capacity;\n return RING_OK;"
+        },
+        {
+          "file": "ring.c",
+          "kind": "regex",
+          "before": "[ \\t]*/\\* TODO\\s+RING_PUSH:.*?\\*/\\s*.*?return\\s+(?:[A-Z_]+UNFINISHED|UINT_MAX);",
+          "after": "if(buffer->data==NULL || buffer->capacity==0 || buffer->capacity>SIZE_MAX/sizeof(int)\n   || buffer->head>=buffer->capacity || buffer->count>buffer->capacity) return RING_INVALID;\n if(buffer->count==buffer->capacity) { enum RingResult status=grow_full(buffer); if(status!=RING_OK) return status; }\n size_t position=(buffer->head+buffer->count)%buffer->capacity;\n buffer->data[position]=value; buffer->count+=1; return RING_OK;"
+        },
+        {
+          "file": "ring.c",
+          "kind": "regex",
+          "before": "[ \\t]*/\\* TODO\\s+RING_POP:.*?\\*/\\s*.*?return\\s+(?:[A-Z_]+UNFINISHED|UINT_MAX);",
+          "after": "if(buffer->data==NULL || buffer->capacity==0 || buffer->capacity>SIZE_MAX/sizeof(int)\n  || buffer->head>=buffer->capacity || buffer->count>buffer->capacity) return RING_INVALID;\n if(buffer->count==0) return RING_EMPTY;\n int oldest=buffer->data[buffer->head];\n buffer->count-=1; buffer->head=(buffer->head+1)%buffer->capacity; *out=oldest;\n return RING_OK;"
+        }
+      ],
+      "CSE8-Fixed-Size-Log-File-Reader": [
+        {
+          "file": "log.c",
+          "kind": "regex",
+          "before": "[ \\t]*/\\* TODO\\s+LOG_CHECKSUM:.*?\\*/\\s*.*?return\\s+(?:[A-Z_]+UNFINISHED|UINT_MAX);",
+          "after": "unsigned int checksum=0,weight=1;\n for(unsigned int bit=0;bit<8;++bit) {\n  unsigned int parity=0;\n  for(size_t n=0;n<count;++n) parity=(parity+((unsigned int)bytes[n]/weight)%2u)%2u;\n  checksum+=parity*weight; weight*=2;\n }\n return checksum;"
+        },
+        {
+          "file": "log.c",
+          "kind": "regex",
+          "before": "[ \\t]*/\\* TODO\\s+LOG_DECODE:.*?\\*/\\s*.*?return\\s+(?:[A-Z_]+UNFINISHED|UINT_MAX);",
+          "after": "if((unsigned int)bytes[7]!=log_checksum(bytes,7)) return LOG_INVALID;\n uint64_t timestamp=0,power=1;\n for(size_t n=0;n<4;++n) { timestamp+=(uint64_t)bytes[n]*power; power*=256; }\n struct LogRecord candidate={.timestamp=(uint32_t)timestamp,.level=bytes[4],.sensor=bytes[5],.reading=bytes[6]};\n *out=candidate; return LOG_OK;"
+        }
+      ],
+      "CSE9-Capstone-Telemetry-Transform-CLI": [
+        {
+          "file": "telemetry.c",
+          "kind": "regex",
+          "before": "[ \\t]*/\\* TODO\\s+TELEMETRY_PARSE:.*?\\*/\\s*.*?return\\s+(?:[A-Z_]+UNFINISHED|UINT_MAX);",
+          "after": "const uint32_t positive[]={255,125000,5000,255},negative[]={0,40000,0,0};\n int32_t fields[4]={0}; size_t cursor=0;\n for(size_t field=0;field<4;++field) if(!decimal_field(text,length,&cursor,positive[field],negative[field],field==3,&fields[field])) return TELEMETRY_INVALID;\n struct TelemetryRow candidate={.sample_id=(uint8_t)fields[0],.temp_milli_c=fields[1],.voltage_mv=(uint16_t)fields[2],.flags=(uint8_t)fields[3]};\n *out=candidate; return TELEMETRY_OK;"
+        },
+        {
+          "file": "telemetry.c",
+          "kind": "regex",
+          "before": "[ \\t]*/\\* TODO\\s+TELEMETRY_TRANSFORM:.*?\\*/\\s*.*?return\\s+(?:[A-Z_]+UNFINISHED|UINT_MAX);",
+          "after": "if(row->temp_milli_c < -40000 || row->temp_milli_c > 125000 || row->voltage_mv>5000) return TELEMETRY_INVALID;\n int64_t magnitude=row->temp_milli_c<0?-(int64_t)row->temp_milli_c:(int64_t)row->temp_milli_c;\n int64_t scaled=(magnitude*9)/5;\n struct TransformedRow candidate={.input=*row,.temp_milli_f=(int32_t)((row->temp_milli_c<0?-scaled:scaled)+32000),.status=TEMPERATURE_NORMAL};\n if(row->temp_milli_c<0) candidate.status=TEMPERATURE_COLD;\n if(row->temp_milli_c>60000) candidate.status=TEMPERATURE_HOT;\n *out=candidate; return TELEMETRY_OK;"
+        }
+      ]
+    },
+    "evidence": [
+      {
+        "revision": "9c2ca21336c7667681091972a0abe9e55921f8fa",
+        "path": "test/native_opening_contracts.py",
+        "sha256": "b9849fbc19240abd4232b5cb5377c1166bedb72a6763c60a4ee93456bbeff734"
+      },
+      {
+        "revision": "390d99a65ce272dbd690537870811756a06bd9bf",
+        "path": "test/native_dispatch_contracts.py",
+        "sha256": "f4e19500f62f0ab74e1382a81da3fd222539e4feecf3a047fd09b8afcd13e06a"
+      },
+      {
+        "revision": "008e3e6c7f9a5f469820ec43824ef75d51e01dfd",
+        "path": "test/native_math_contracts.py",
+        "sha256": "9a7689e8db390ed82dd6c3936326c2f1bc813ae4d679b2bb30e62e8c75d99c65"
+      },
+      {
+        "revision": "24c52499af8db18b93f5f2807b9631fbe931620c",
+        "path": "test/native_inspector_contracts.py",
+        "sha256": "ed53a58e9100567fa6e5a1af7553427e814d3675861fed2e7c76bdf58dd4aaa9"
+      },
+      {
+        "revision": "1221f76d800f52d4f33728c7c1f85dbecd71a48b",
+        "path": "test/native_bitflag_contracts.py",
+        "sha256": "7c05a66c0888357e4bc4d8002f6ae93fb09e84c1b1573a5ba18b91377807c9e2"
+      },
+      {
+        "revision": "ecf421bd45977b9b63d79b9c2b7af20a921de0c2",
+        "path": "test/native_xor_contracts.py",
+        "sha256": "36ebc8c32f31b93b9d954c1bfb248bec3bfc4d74f3a54a86231a8671a8bfc3f2"
+      },
+      {
+        "revision": "aa4ccdf9398472351985c8cce3d20a719addca5a",
+        "path": "test/native_tooling_contracts.py",
+        "sha256": "df6158febc967335b4dad57f1f254d934852b75d28d6bf507e4fd6ccdedeafeb"
+      },
+      {
+        "revision": "7e301cb656d73e56182bc5d9bba279c9adf78372",
+        "path": "test/systems_learner_completions.py",
+        "sha256": "cd6f30b757054ed242dcd3f7bc244c949fca1499ef9638b5fc6bd889f062ca27"
+      }
+    ],
+    "acceptedSourcePins": {
+      "CSE-05-cse0-setup-and-tooling": "9c2ca21336c7667681091972a0abe9e55921f8fa",
+      "CSE-06-unit-1-why-c-for-systems-work": "9c2ca21336c7667681091972a0abe9e55921f8fa",
+      "CSE-07-unit-8-function-pointers-and-dispatch": "390d99a65ce272dbd690537870811756a06bd9bf",
+      "CSE-08-unit-10-engineering-math-in-code": "008e3e6c7f9a5f469820ec43824ef75d51e01dfd",
+      "CSE-09-unit-11-systems-tooling": "aa4ccdf9398472351985c8cce3d20a719addca5a",
+      "CSE1-Hex-and-Binary-Inspector": "24c52499af8db18b93f5f2807b9631fbe931620c",
+      "CSE2-Bitflag-Configuration-Parser": "1221f76d800f52d4f33728c7c1f85dbecd71a48b",
+      "CSE3-XOR-Encoder-Decoder": "ecf421bd45977b9b63d79b9c2b7af20a921de0c2",
+      "CSE4-Memory-Visualizer": "7e301cb656d73e56182bc5d9bba279c9adf78372",
+      "CSE5-Byte-Buffer-Workbench": "7e301cb656d73e56182bc5d9bba279c9adf78372",
+      "CSE6-Packet-Serializer-Deserializer": "7e301cb656d73e56182bc5d9bba279c9adf78372",
+      "CSE7-Dynamic-Ring-Buffer": "7e301cb656d73e56182bc5d9bba279c9adf78372",
+      "CSE8-Fixed-Size-Log-File-Reader": "7e301cb656d73e56182bc5d9bba279c9adf78372",
+      "CSE9-Capstone-Telemetry-Transform-CLI": "7e301cb656d73e56182bc5d9bba279c9adf78372",
+      "CSE-01-systems-build-14": "1dd55eee27866efca1080bc623bfdadaa43ff8db",
+      "CSE-02-systems-build-15": "1dd55eee27866efca1080bc623bfdadaa43ff8db",
+      "CSE-03-systems-build-16": "1dd55eee27866efca1080bc623bfdadaa43ff8db",
+      "CSE-04-systems-build-17": "1dd55eee27866efca1080bc623bfdadaa43ff8db"
+    }
   }
 }

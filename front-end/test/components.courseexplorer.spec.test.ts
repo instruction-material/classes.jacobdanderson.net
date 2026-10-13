@@ -6,6 +6,7 @@ import { routeLocationKey, routerKey } from "vue-router";
 import { api } from "@/api";
 import { resetCourseAssetPreviewCache } from "@/modules/courseAssetPreview";
 import { c17StudioContinuations } from "@/modules/c17StudioLessons";
+import { c17UnitContinuations } from "@/modules/c17UnitLessons";
 import { c17VerifiedPacks } from "@/modules/c17ProjectResources";
 import CourseExplorer from "@/components/CourseExplorer.vue";
 import { useAppStore } from "@/stores/app";
@@ -114,19 +115,22 @@ describe("CourseExplorer.vue", () => {
 				][index]!
 			}))
 		),
-		...c17StudioContinuations.flatMap(lesson =>
-			["learner", "instructor"].map(role => ({
-				pack: lesson.pack,
-				revision: c17VerifiedPacks.find(
-					definition => definition.pack === lesson.pack
-				)!.revision,
-				role,
-				module: "optional-systems-build-and-transfer-archive",
-				projectPrefix: "",
-				project: "",
-				lessonID: lesson.id,
-				maintainedItemID: lesson.baseLessonID
-			}))
+		...[...c17StudioContinuations, ...c17UnitContinuations].flatMap(
+			lesson =>
+				["learner", "instructor"].map(role => ({
+					pack: lesson.pack,
+					revision: c17VerifiedPacks.find(
+						definition => definition.pack === lesson.pack
+					)!.revision,
+					role,
+					module: lesson.id
+						.split("-supplemental-")[0]
+						.replace("c-systems-engineering-", ""),
+					projectPrefix: "",
+					project: "",
+					lessonID: lesson.id,
+					maintainedItemID: lesson.baseLessonID
+				}))
 		)
 	])(
 		"opens the confirmed $pack role from the $role course card",
@@ -192,7 +196,8 @@ describe("CourseExplorer.vue", () => {
 					.find(
 						button =>
 							button.text() ===
-							(pack === "CSE1-Hex-and-Binary-Inspector" ||
+							(lessonID ||
+							pack === "CSE1-Hex-and-Binary-Inspector" ||
 							pack === "CSE3-XOR-Encoder-Decoder" ||
 							pack === "CSE8-Fixed-Size-Log-File-Reader" ||
 							module ===

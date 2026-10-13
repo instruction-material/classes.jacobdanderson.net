@@ -16,6 +16,8 @@ import {
 	c17SourceRevision
 } from "@/modules/c17ProjectResources";
 import { c17StudioContinuations } from "@/modules/c17StudioLessons";
+import { c17UnitContinuations } from "@/modules/c17UnitLessons";
+import { c17UnitProjectReading } from "@/stores/courses/c17UnitProjectReading";
 import { getCodeIdeProjectSubtitle } from "@/modules/codeIdeProjectLabels";
 import { createProjectArchive } from "@/modules/projectArchive";
 import { pythonIdeCompletionsForMode } from "@/modules/pythonCodeMirror";
@@ -85,7 +87,11 @@ describe("native C17 source workspace", () => {
 		]);
 		const notebooks = course!.modules
 			.flatMap(module => module.supplementalProjects)
-			.filter(item => item.projectLink?.includes(c17SourceRevision));
+			.filter(
+				item =>
+					item.projectLink?.includes(c17SourceRevision) &&
+					item.projectLink.endsWith("/README.md")
+			);
 		expect(notebooks).toHaveLength(2);
 		for (const item of notebooks) {
 			expect(item.projectLink).toMatch(
@@ -436,12 +442,14 @@ describe("native C17 source workspace", () => {
 			...module.curriculum,
 			...module.supplementalProjects
 		]);
-		const items = cards.filter(item =>
-			definitions.some(
-				definition =>
-					c17CourseResource(item.projectLink ?? "")?.pack ===
-					definition.pack
-			)
+		const items = cards.filter(
+			item =>
+				!c17UnitContinuations.some(lesson => lesson.id === item.id) &&
+				definitions.some(
+					definition =>
+						c17CourseResource(item.projectLink ?? "")?.pack ===
+						definition.pack
+				)
 		);
 		expect(items.map(item => item.id).sort()).toEqual(
 			[
@@ -736,7 +744,7 @@ describe("native C17 source workspace", () => {
 		).toBe(11);
 		expect(
 			cards.filter(item => c17CourseResource(item.projectLink ?? ""))
-		).toHaveLength(31);
+		).toHaveLength(57);
 		store.setCurrentTutor(null);
 		const learner = (await useCoursesStore().loadCourseById(course.id))!;
 		const learnerItems = learner.modules
@@ -751,8 +759,137 @@ describe("native C17 source workspace", () => {
 		).toBe(true);
 	});
 
-	it.each(c17StudioContinuations)(
-		"keeps the earlier generic attempt separate while sharing the matching native studio for $id",
+	it("connects all 26 unit continuations to distinct cases and complete base contracts", async () => {
+		setActivePinia(createPinia());
+		useAppStore().setCurrentTutor({
+			_id: "unit-tutor",
+			name: "Tutor",
+			email: "tutor@example.invalid",
+			age: 30,
+			state: "GA",
+			usersOfTutorLength: 0,
+			coursePermissions: ["c-systems-engineering"],
+			editTutors: false,
+			saveEdit: "Save"
+		});
+		const course = (await useCoursesStore().loadCourseById(
+			"c-systems-engineering"
+		))!;
+		const cards = course.modules.flatMap(module => [
+			...module.curriculum,
+			...module.supplementalProjects
+		]);
+		const continuations = cards.filter(item =>
+			c17UnitContinuations.some(lesson => lesson.id === item.id)
+		);
+		expect(continuations).toHaveLength(26);
+		expect(new Set(continuations.map(item => item.title)).size).toBe(26);
+		for (const lesson of c17UnitContinuations) {
+			const item = continuations.find(item => item.id === lesson.id)!;
+			const selected = c17CourseResource(item.projectLink!)!;
+			expect(selected.pack).toBe(lesson.pack);
+			expect(selected.resource.ref).toBe(fixture.revisions[lesson.pack]);
+			expect(item.ideImport).toBe(true);
+			expect(item.solutionLink).toBe(
+				item.projectLink!.replace(/\/starter$/, "/solution")
+			);
+			expect(
+				course.modules.some(module => module.curriculum.includes(item))
+			).toBe(false);
+			expect(item.learningPath).toBe(
+				item.title.startsWith("Transfer Practice:")
+					? "choice"
+					: "challenge"
+			);
+			const guide = fixture.files[`${lesson.pack}/README.md`].content
+				.split("\n")
+				.slice(1)
+				.join("\n")
+				.trim()
+				.replaceAll(
+					"for the learner attempt",
+					"for the implementation attempt"
+				)
+				.replaceAll(
+					"before learner tasks are complete",
+					"before implementation tasks are complete"
+				)
+				.replaceAll(
+					"before the learner tasks",
+					"before implementation tasks"
+				)
+				.replaceAll(
+					"The existing dispatcher should accept it without",
+					"The existing dispatcher accepts it without"
+				)
+				.replaceAll(
+					"the two TODO comments in",
+					"the two `TODO` comments in"
+				)
+				.replaceAll("the TODO in `main.c`", "the `TODO` in `main.c`")
+				.replaceAll(
+					"Unlike earlier learners,",
+					"Unlike earlier starter projects,"
+				)
+				.replaceAll(
+					"A learner can follow this sequence alone;",
+					"This sequence works for independent study;"
+				)
+				.replaceAll(
+					"Native CLI checks exercise",
+					"Native CLI tests cover"
+				)
+				.replaceAll(
+					"A student can follow this sequence alone;",
+					"This sequence works for independent study;"
+				)
+				.replace(/\bRequire\b/g, "Check for");
+			expect(c17UnitProjectReading[lesson.id]).toContain(guide);
+			for (const heading of [
+				"## Executable case",
+				"## Additional evidence",
+				"## Explanation and guided review"
+			])
+				expect(item.content).toContain(heading);
+			expect(item.content).toContain("./case");
+			for (const role of ["starter", "reference"] as const) {
+				const url =
+					role === "starter" ? item.projectLink! : item.solutionLink!;
+				expect(c17CourseProjectKey(course.id, item.id, role, url)).toBe(
+					`c-systems-engineering:${lesson.baseLessonID}:${role}:native-c17`
+				);
+				const wrong = c17VerifiedPacks.find(
+					pack => pack.pack !== lesson.pack
+				)!;
+				const wrongUrl = `https://github.com/instruction-material/C-Systems-Engineering/tree/${wrong.revision}/${wrong.pack}/starter`;
+				expect(
+					c17CourseProjectKey(course.id, item.id, role, wrongUrl)
+				).toBe(`c-systems-engineering:${item.id}:${role}:native-c17`);
+				expect(
+					c17CourseProjectKey(
+						course.id,
+						item.id,
+						role,
+						url.replace(selected.resource.ref, "main")
+					)
+				).toBe(`c-systems-engineering:${item.id}:${role}`);
+			}
+		}
+		useAppStore().setCurrentTutor(null);
+		const learner = (await useCoursesStore().loadCourseById(course.id))!;
+		const learnerItems = learner.modules
+			.flatMap(module => module.supplementalProjects)
+			.filter(item =>
+				c17UnitContinuations.some(lesson => lesson.id === item.id)
+			);
+		expect(learnerItems).toHaveLength(26);
+		expect(
+			learnerItems.every(item => item.solutionLink === undefined)
+		).toBe(true);
+	});
+
+	it.each([...c17StudioContinuations, ...c17UnitContinuations])(
+		"keeps the earlier generic attempt separate while sharing the matching native project for $id",
 		({ id, pack, baseLessonID }) => {
 			const definition = c17VerifiedPacks.find(
 				candidate => candidate.pack === pack
