@@ -1883,7 +1883,7 @@ The Silver foundation native verifier uses the JDK selected through PATH and fix
 The foundation verifier additionally compares downloaded README shell blocks with reviewed commands embedded in the test source, then executes only the embedded command. Appended and substituted commands are rejected before native verification. This addresses the CodeQL network-response-to-shell trace without weakening the documented run guards.
 
 
-## Native C17 opening workflow candidate
+## Native C17 opening workflow: merged baseline
 
 The accepted C source repair at
 `9c2ca21336c7667681091972a0abe9e55921f8fa` supplies two distinct opening
@@ -1892,7 +1892,7 @@ linking for Unit 1. The site candidate adds an explicit C source workspace and
 bounded C save, share and instructor-review support. C++ course behavior and
 existing saved attempts retain their identities.
 
-Only these two verified packs receive confirmed imports. Each import keeps the
+This baseline introduced two verified packs with confirmed imports. Each import keeps the
 selected learner or reference directory, CMake file, unchanged parent guide,
 and the setup diagnostic fixture. The role-specific `native-c17` project key
 preserves earlier course attempts and separates reference files. The native
@@ -1915,12 +1915,12 @@ saved attempts. All 23 pinned source files were read without authentication and
 matched the original bytes. Downstream lint, types and 1,682 frontend tests pass.
 
 The final C-only labels remove the unused Canvas tab and name the native output
-Build instructions. These changes pass source/template compilation; their
-runtime checks and remaining downstream gates are queued behind the system-load
-guard. Hosted checks on the final review commits must pass before merge and
-retain refreshed browser images. The Unit 1 reading names the executable from
-the source CMake file, and the export checks verify edited source bytes as well
-as untouched imports.
+Build instructions. Canonical PR193 and downstream PR77 are merged. Independent
+checks on both exact merged-main trees accepted all nine CI jobs and zero new
+CodeQL findings; the Qodana scan step was skipped. Eight representative final
+images were reviewed across the identical source trees. The Unit 1 reading
+names the executable from the source CMake file, and the export checks verify
+edited source bytes as well as untouched imports.
 This candidate establishes neither public activation nor completion of the
 remaining C content and wider 77-course audit.
 
@@ -1948,3 +1948,12 @@ three tooling diagnoses. Site import/edit/save/export and responsive browser
 acceptance must independently pass for the new site commits. Remaining C
 utilities, optional exercises and the wider 77-course audit remain unfinished;
 these changes establish neither a release nor public activation.
+
+
+The five-pack browser gate edits each actual implementation file through the
+file selector, saves and reopens it, and verifies original and edited ZIP bytes.
+Every responsive learner/reference case also preserves an earlier three-part
+project key for the same lesson and role. The committed shared source passed
+109 focused checks, type checking and lint independently on both sites. The
+broader local unit runs timed out and are not accepted evidence; hosted full
+CI and browser images remain required for the new site heads.

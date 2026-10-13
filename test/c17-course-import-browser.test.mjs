@@ -15,6 +15,13 @@ import { confirmProjectImport, downloadProjectZip } from "./ide-workspace-contro
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
 const fixture = JSON.parse(await readFile(new URL("./fixtures/c17-opening-contracts.json", import.meta.url), "utf8"));
 const packs = [...new Set(Object.keys(fixture.files).map(path => path.split("/")[0]))];
+const primarySources = {
+	"CSE-05-cse0-setup-and-tooling": "main.c",
+	"CSE-06-unit-1-why-c-for-systems-work": "labels.c",
+	"CSE-07-unit-8-function-pointers-and-dispatch": "dispatch.c",
+	"CSE-08-unit-10-engineering-math-in-code": "engineering_math.c",
+	"CSE-09-unit-11-systems-tooling": "engineering_math.c"
+};
 const storageKey = "classes-python-ide-projects:anonymous";
 const preserved = { _id: "c17-preserved-attempt", title: "Earlier attempt", mode: "python", files: [{ name: "main.py", content: "# retain this attempt\n" }], activeFileName: "main.py", courseProjectKey: "c-systems-engineering:setup:starter" };
 
@@ -36,6 +43,15 @@ test("native C imports require consent and preserve source, saved attempts, role
 		page = await context.newPage();
 		await page.evaluateOnNewDocument((key, existing) => {
 			if (localStorage.getItem(key) === null) localStorage.setItem(key, JSON.stringify([existing]));
+			const requested = new URL(location.href).searchParams.get("projectKey");
+			if (requested?.endsWith(":native-c17")) {
+				const legacy = requested.replace(/:native-c17$/, "");
+				const projects = JSON.parse(localStorage.getItem(key));
+				if (!projects.some(project => project.courseProjectKey === legacy)) {
+					projects.push({ ...existing, _id: `legacy:${legacy}`, title: "Earlier matching attempt", courseProjectKey: legacy });
+					localStorage.setItem(key, JSON.stringify(projects));
+				}
+			}
 			const click = HTMLAnchorElement.prototype.click;
 			HTMLAnchorElement.prototype.click = function () {
 				if (this.download.endsWith(".zip") && this.href.startsWith("blob:")) return;
@@ -85,6 +101,9 @@ test("native C imports require consent and preserve source, saved attempts, role
 						await page.waitForFunction((storageKey, key) => JSON.parse(localStorage.getItem(storageKey) ?? "[]").some(project => project.courseProjectKey === key), {}, storageKey, key);
 						const projects = await page.evaluate(key => JSON.parse(localStorage.getItem(key)), storageKey);
 						assert.deepEqual(projects.find(project => project._id === preserved._id), preserved);
+						const legacyKey = key.replace(/:native-c17$/, "");
+						const legacyAttempt = { ...preserved, _id: `legacy:${legacyKey}`, title: "Earlier matching attempt", courseProjectKey: legacyKey };
+						assert.deepEqual(projects.find(project => project.courseProjectKey === legacyKey), legacyAttempt);
 						const saved = projects.find(project => project.courseProjectKey === key);
 						assert.equal(saved.mode, "c");
 						assert.equal(saved.activeFileName, `${role}/main.c`);
@@ -122,7 +141,11 @@ test("native C imports require consent and preserve source, saved attempts, role
 						}
 						if (width < 900) await page.locator(".mobile-view-picker button[data-view='code']").click();
 						await page.waitForSelector(".cm-content", { visible: true });
-						const edit = `${saved.files.find(file => file.name === `${role}/main.c`).content}\n/* Saved C editor attempt. */\n`;
+						const editFile = `${role}/${primarySources[pack]}`;
+						assert.ok(primarySources[pack], "Every verified pack identifies its actual learner implementation file");
+						await page.select("select[aria-label='Active project file']", editFile);
+						await page.waitForFunction((storageKey, key, name) => JSON.parse(localStorage.getItem(storageKey)).find(project => project.courseProjectKey === key)?.activeFileName === name, {}, storageKey, key, editFile);
+						const edit = `${saved.files.find(file => file.name === editFile).content}\n/* Saved C editor attempt. */\n`;
 						await page.click(".cm-content");
 						const modifier = await page.evaluate(() => /Mac/.test(navigator.platform) ? "Meta" : "Control");
 						await page.keyboard.down(modifier);
@@ -132,8 +155,8 @@ test("native C imports require consent and preserve source, saved attempts, role
 						await page.keyboard.down(modifier);
 						await page.keyboard.press("s");
 						await page.keyboard.up(modifier);
-						await page.waitForFunction((storageKey, key, name, content) => JSON.parse(localStorage.getItem(storageKey)).find(project => project.courseProjectKey === key)?.files.some(file => file.name === name && file.content === content), {}, storageKey, key, `${role}/main.c`, edit);
-						const expectedSavedFiles = saved.files.map(file => file.name === `${role}/main.c` ? { ...file, content: edit } : file);
+						await page.waitForFunction((storageKey, key, name, content) => JSON.parse(localStorage.getItem(storageKey)).find(project => project.courseProjectKey === key)?.files.some(file => file.name === name && file.content === content), {}, storageKey, key, editFile, edit);
+						const expectedSavedFiles = saved.files.map(file => file.name === editFile ? { ...file, content: edit } : file);
 						await downloadProjectZip(page);
 						const editedZip = await page.evaluate(async () => {
 							const bytes = new Uint8Array(await window.__c17Archive.arrayBuffer());
@@ -153,14 +176,17 @@ test("native C imports require consent and preserve source, saved attempts, role
 						await page.waitForSelector("button.run-control:not([disabled])");
 						const reloaded = await page.evaluate((storageKey, key) => JSON.parse(localStorage.getItem(storageKey)).find(project => project.courseProjectKey === key), storageKey, key);
 						assert.deepEqual(reloaded.files, expectedSavedFiles);
-						proof.push({ pack, revision, role, width, theme, files: saved.files.length, capture, byteExact: true, editedExportPreserved: true, savedAttemptPreserved: true });
+						assert.equal(reloaded.activeFileName, editFile);
+						const legacyReloaded = await page.evaluate((storageKey, legacyKey) => JSON.parse(localStorage.getItem(storageKey)).find(project => project.courseProjectKey === legacyKey), storageKey, legacyKey);
+						assert.deepEqual(legacyReloaded, legacyAttempt);
+						proof.push({ pack, revision, role, width, theme, editedFile: editFile, matchingLegacySlotPreserved: true, files: saved.files.length, capture, byteExact: true, editedExportPreserved: true, savedAttemptPreserved: true });
 					}
 				}
 			}
 		}
 		assert.equal(proof.length, packs.length * 8);
 		await writeFile(join(captures, "c17-workflow-proof.json"), `${JSON.stringify({ revisions: fixture.revisions, imports: proof.length, cases: proof }, null, 2)}\n`);
-		console.log(JSON.stringify({ event: "c17-browser-workflow-accepted", sourceRevision: fixture.revision, sourceRevisions: fixture.revisions, packs: packs.length, imports: proof.length, exports: proof.length * 2, editedExports: proof.length, savedAttemptPreserved: true }));
+		console.log(JSON.stringify({ event: "c17-browser-workflow-accepted", sourceRevision: fixture.revision, sourceRevisions: fixture.revisions, packs: packs.length, imports: proof.length, exports: proof.length * 2, editedExports: proof.length, savedAttemptPreserved: true, legacySlotsPreserved: proof.length, primarySourceEdits: true }));
 	}
 	finally {
 		await page?.close();
