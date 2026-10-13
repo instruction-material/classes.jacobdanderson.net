@@ -1,4 +1,5 @@
 import type { RawCourse } from "./types";
+import { c17BitflagProjectReading } from "./c17BitflagProjectReading";
 import { c17CoreProjectReading } from "./c17CoreProjectReading";
 import { c17InspectorProjectReading } from "./c17InspectorProjectReading";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
@@ -234,12 +235,13 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 				},
 				{
 					title: "Project: Bitflag Configuration Parser",
-					content:
-						"Use the bitflag parser to unpack a compact configuration byte into readable feature toggles and a small mode field. The key lesson is that one byte can carry multiple meanings safely when the masks and shifts are explicit.",
+					id: "c-systems-engineering-unit-3-bitwise-operations-curriculum-project-bitflag-configuration-parser",
+					ideImport: true,
+					content: c17BitflagProjectReading,
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE2-Bitflag-Configuration-Parser/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1221f76d800f52d4f33728c7c1f85dbecd71a48b/CSE2-Bitflag-Configuration-Parser/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE2-Bitflag-Configuration-Parser/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1221f76d800f52d4f33728c7c1f85dbecd71a48b/CSE2-Bitflag-Configuration-Parser/solution"
 				},
 				{
 					title: "Project: XOR Encoder Decoder",
@@ -257,9 +259,7 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 					content:
 						"Keep a short engineering notebook for bitwise operations that records the byte view, memory view, compiler or runtime evidence, and one plain-language explanation of why the code worked or failed. Focus especially on mask design, packed fields, and why each operator changes the bits the way it does to build the habit of explaining systems behavior instead of only trusting output.",
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE2-Bitflag-Configuration-Parser/starter",
-					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE2-Bitflag-Configuration-Parser/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/blob/1221f76d800f52d4f33728c7c1f85dbecd71a48b/CSE2-Bitflag-Configuration-Parser/README.md"
 				},
 				{
 					title: "Bitmask Transfer Practice",

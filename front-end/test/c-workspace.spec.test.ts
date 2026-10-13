@@ -10,6 +10,7 @@ import { cBuildInstructions } from "@/modules/cBuildInstructions";
 import {
 	c17CourseProjectKey,
 	c17CourseResource,
+	c17ImportFiles,
 	c17VerifiedPacks,
 	c17OpeningPacks,
 	c17SourceRevision
@@ -123,7 +124,7 @@ describe("native C17 source workspace", () => {
 		);
 	});
 
-	it("connects all five verified core packs with complete reading, guide-only notebooks, and separate reference visibility", async () => {
+	it("connects all six verified core packs with complete reading, guide-only notebooks, and separate reference visibility", async () => {
 		setActivePinia(createPinia());
 		useAppStore().setCurrentTutor({
 			_id: "c17-tutor",
@@ -142,11 +143,12 @@ describe("native C17 source workspace", () => {
 		const core = course!.modules
 			.flatMap(module => module.curriculum)
 			.filter(item => c17CourseResource(item.projectLink ?? ""));
-		expect(core).toHaveLength(5);
+		expect(core).toHaveLength(6);
 		const ids = core.map(item => item.id);
 		expect(ids).toEqual([
 			"c-systems-engineering-cse0-setup-and-tooling-curriculum-core-project-c-systems-engineering",
 			"c-systems-engineering-unit-1-why-c-for-systems-work-curriculum-core-project-why-c-for-systems-work",
+			"c-systems-engineering-unit-3-bitwise-operations-curriculum-project-bitflag-configuration-parser",
 			"c-systems-engineering-unit-8-function-pointers-and-dispatch-curriculum-core-project-function-pointers-and-dispatch",
 			"c-systems-engineering-unit-10-engineering-math-in-code-curriculum-core-project-engineering-math-in-code",
 			"c-systems-engineering-unit-11-systems-tooling-curriculum-core-project-systems-tooling"
@@ -256,7 +258,7 @@ describe("native C17 source workspace", () => {
 			guide
 				.slice(guide.indexOf("\n") + 1)
 				.trim()
-				.replace("instructor-guided", "course-facilitated")
+				.replace("an instructor-guided", "a course-facilitated")
 		);
 		expect(item.content).toContain("all 65536 bit patterns");
 		const notebook = module.supplementalProjects.find(candidate =>
@@ -312,6 +314,26 @@ describe("native C17 source workspace", () => {
 		);
 		expect(text).toContain("complete input grammar");
 		expect(text).toContain("ctest --test-dir build");
+		expect(text).not.toContain("debugger pass");
+	});
+
+	it("explains the required byte parser's valid layout and incomplete learner separately from bad input", () => {
+		const definition = c17VerifiedPacks.find(
+			item => item.pack === "CSE2-Bitflag-Configuration-Parser"
+		)!;
+		const url = `https://github.com/instruction-material/C-Systems-Engineering/tree/${definition.revision}/${definition.pack}/starter`;
+		const files = c17ImportFiles(url)!.map(({ name }) => ({
+			name,
+			content: fixture.files[`${definition.pack}/${name}`].content
+		}));
+		const text = cBuildInstructions(files, url).join("\n");
+		expect(text).toContain(
+			"All byte values 0..255 and all four modes are valid"
+		);
+		expect(text).toContain("Reserved bits produce a warning");
+		expect(text).toContain("encryption flag only reports a bit");
+		expect(text).toContain("three configuration functions");
+		expect(text).toContain("Invalid input exits 2");
 		expect(text).not.toContain("debugger pass");
 	});
 

@@ -76,6 +76,20 @@ export const c17VerifiedPacks = [
 			"CMakeLists.txt"
 		],
 		supportFiles: ["README.md"]
+	},
+	{
+		pack: "CSE2-Bitflag-Configuration-Parser",
+		revision: "1221f76d800f52d4f33728c7c1f85dbecd71a48b",
+		roleFiles: [
+			"main.c",
+			"input.c",
+			"input.h",
+			"configuration.c",
+			"configuration.h",
+			"tests.c",
+			"CMakeLists.txt"
+		],
+		supportFiles: ["README.md"]
 	}
 ] as const;
 
