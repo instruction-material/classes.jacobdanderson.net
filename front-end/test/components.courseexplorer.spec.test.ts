@@ -5,6 +5,7 @@ import { nextTick, reactive } from "vue";
 import { routeLocationKey, routerKey } from "vue-router";
 import { api } from "@/api";
 import { resetCourseAssetPreviewCache } from "@/modules/courseAssetPreview";
+import { c17StudioContinuations } from "@/modules/c17StudioLessons";
 import { c17VerifiedPacks } from "@/modules/c17ProjectResources";
 import CourseExplorer from "@/components/CourseExplorer.vue";
 import { useAppStore } from "@/stores/app";
@@ -55,12 +56,14 @@ describe("CourseExplorer.vue", () => {
 		vi.unstubAllGlobals();
 	});
 
-	it.each(
-		c17VerifiedPacks.flatMap(({ pack, revision }, index) =>
+	it.each([
+		...c17VerifiedPacks.flatMap(({ pack, revision }, index) =>
 			["learner", "instructor"].map(role => ({
 				pack,
 				revision,
 				role,
+				lessonID: "",
+				maintainedItemID: "",
 				module: [
 					"cse0-setup-and-tooling",
 					"unit-1-why-c-for-systems-work",
@@ -75,14 +78,20 @@ describe("CourseExplorer.vue", () => {
 					"unit-6-files-streams-and-parsing",
 					"unit-7-dynamic-memory-and-lifetime",
 					"unit-6-files-streams-and-parsing",
-					"unit-12-capstone-engineering-utility"
+					"unit-12-capstone-engineering-utility",
+					"optional-systems-build-and-transfer-archive",
+					"optional-systems-build-and-transfer-archive",
+					"optional-systems-build-and-transfer-archive",
+					"optional-systems-build-and-transfer-archive"
 				][index]!,
 				projectPrefix:
-					index === 7 || index === 12
-						? "supplemental-project"
-						: index >= 5
-							? "curriculum-project"
-							: "curriculum-core-project",
+					index >= 14
+						? "supplemental-core-project"
+						: index === 7 || index === 12
+							? "supplemental-project"
+							: index >= 5
+								? "curriculum-project"
+								: "curriculum-core-project",
 				project: [
 					"c-systems-engineering",
 					"why-c-for-systems-work",
@@ -97,13 +106,40 @@ describe("CourseExplorer.vue", () => {
 					"packet-serializer-deserializer",
 					"dynamic-ring-buffer",
 					"fixed-size-log-file-reader",
-					"capstone-telemetry-transform-cli"
+					"capstone-telemetry-transform-cli",
+					"byte-inspector-studio",
+					"memory-layout-studio",
+					"binary-parser-studio",
+					"capstone-utility-studio"
 				][index]!
 			}))
+		),
+		...c17StudioContinuations.flatMap(lesson =>
+			["learner", "instructor"].map(role => ({
+				pack: lesson.pack,
+				revision: c17VerifiedPacks.find(
+					definition => definition.pack === lesson.pack
+				)!.revision,
+				role,
+				module: "optional-systems-build-and-transfer-archive",
+				projectPrefix: "",
+				project: "",
+				lessonID: lesson.id,
+				maintainedItemID: lesson.baseLessonID
+			}))
 		)
-	)(
+	])(
 		"opens the confirmed $pack role from the $role course card",
-		async ({ pack, revision, role, module, project, projectPrefix }) => {
+		async ({
+			pack,
+			revision,
+			role,
+			module,
+			project,
+			projectPrefix,
+			lessonID,
+			maintainedItemID
+		}) => {
 			const pinia = createPinia();
 			setActivePinia(pinia);
 			const appStore = useAppStore();
@@ -158,7 +194,9 @@ describe("CourseExplorer.vue", () => {
 							button.text() ===
 							(pack === "CSE1-Hex-and-Binary-Inspector" ||
 							pack === "CSE3-XOR-Encoder-Decoder" ||
-							pack === "CSE8-Fixed-Size-Log-File-Reader"
+							pack === "CSE8-Fixed-Size-Log-File-Reader" ||
+							module ===
+								"optional-systems-build-and-transfer-archive"
 								? "Supplemental Projects"
 								: "Projects")
 					)!
@@ -167,9 +205,14 @@ describe("CourseExplorer.vue", () => {
 				const card = wrapper
 					.findAll(".lesson-item")
 					.find(item =>
-						item
-							.find(`a.is-project[href*="/${pack}/starter"]`)
-							.exists()
+						lessonID
+							? item.attributes("id") ===
+								`c-systems-engineering-${module}-${lessonID}`
+							: item
+									.find(
+										`a.is-project[href*="/${pack}/starter"]`
+									)
+									.exists()
 					);
 				expect(card).toBeDefined();
 				const links = card!.findAll("a.is-ide-starter");
@@ -182,8 +225,12 @@ describe("CourseExplorer.vue", () => {
 					expect(url.pathname).toBe("/ide");
 					expect(url.searchParams.get("mode")).toBe("c");
 					expect(url.searchParams.get("projectKey")).toBe(
-						`c-systems-engineering:c-systems-engineering-${module}-${projectPrefix}-${project}:${index === 0 ? "starter" : "reference"}:native-c17`
+						`c-systems-engineering:${maintainedItemID || `c-systems-engineering-${module}-${projectPrefix}-${project}`}:${index === 0 ? "starter" : "reference"}:native-c17`
 					);
+					if (lessonID)
+						expect(url.searchParams.get("lesson")).toBe(
+							`c-systems-engineering-${module}-${lessonID}`
+						);
 					expect(url.searchParams.get("starterUrl")).toBe(
 						`https://github.com/instruction-material/C-Systems-Engineering/tree/${revision}/${pack}/${index === 0 ? "starter" : "solution"}`
 					);

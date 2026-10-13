@@ -28,6 +28,26 @@ const notes: Record<string, { input: string; learner: string }> = {
 		input: "Use no arguments for a temporary demonstration or existing-input.csv NEW-output.csv. Validate the entire input before creating a new destination; existing destinations and the same input/output path are refused. --sample NEWpath explicitly creates sample input. Four whole decimal fields are required; temperatures use milli-units and Fahrenheit conversion truncates toward zero.",
 		learner:
 			"Complete parse_telemetry_row and transform_telemetry_row in telemetry.c. The untouched normal learner exits 78 and its contract test fails. The supplied --sample helper already works; invalid input never creates output and existing files remain unchanged."
+	},
+	"CSE-01-systems-build-14": {
+		input: "Use no arguments or a whole decimal/0x word in 0..65535 and an optional decimal/0x reference in 1..5000 mV. All sixteen-bit words are valid. The channel occupies the top four bits and the ADC count the bottom twelve; voltage rounds to the nearest millivolt. A valid word alone establishes no integrity.",
+		learner:
+			"Complete decode_sensor_frame, adc_count_to_mv and format_bits16 in sensor.c. The untouched normal learner exits 78 and its contract test fails. Failed conversion and undersized formatting preserve output."
+	},
+	"CSE-02-systems-build-15": {
+		input: "Use no arguments. Plan relative region offsets for positive lengths and power-of-two alignments in 1..64. Padding, outside positions, insufficient space and arithmetic overflow have distinct statuses. A plan computes offsets; actual base alignment and object construction require their own preconditions.",
+		learner:
+			"Complete plan_regions and locate_region in regions.c. The untouched normal learner exits 78 and its contract test fails. All rejected plans and lookups preserve output."
+	},
+	"CSE-03-systems-build-16": {
+		input: "Use no arguments for a temporary sample or one existing read-only binary file. --sample NEWpath explicitly creates a sample and refuses existing paths. Frames use A5, version 1, length 0..32, a binary payload and CRC-8/0x07. Callbacks accept individual frames; the CLI reports only a wholly valid file. A CRC establishes no sender authentication.",
+		learner:
+			"Complete stream_feed and stream_finish in stream.c. The untouched normal learner exits 78 and its contract test fails. The supplied --sample helper already works. Payload storage is borrowed during callbacks; existing files remain unchanged."
+	},
+	"CSE-04-systems-build-17": {
+		input: "Use no arguments for a temporary sample, one existing CSV path, or a CSV path and positive decimal window width in milliseconds. --sample NEWpath explicitly creates a sample and refuses existing paths. Ordered timestamps and milli-Celsius values form at most 256 samples; bucket means truncate toward zero. Existing inputs remain unchanged.",
+		learner:
+			"Complete parse_sample_row and aggregate_samples in window.c. The untouched normal learner exits 78 and its contract test fails. The supplied --sample helper already works. Invalid input produces no report; failed aggregation preserves the previous output and used count."
 	}
 };
 

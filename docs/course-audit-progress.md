@@ -2083,3 +2083,22 @@ lint, type checking, complete builds, 112 browser import cases and 224 ZIP
 exports each. Each site's twelve actual exported roles also passed the full
 six-lab native suite. Hosted CI and final artifact review remain pending. This batch does not complete the 77-course audit or
 activate a production release.
+
+## Optional C17 studio integration and distinct continuations
+
+Four accepted native studios now use immutable starter/reference imports and
+their complete self-study guides: sensor-word decoding, bounded region planning,
+incremental CRC-framed parsing and ordered time-window aggregation. Twelve
+continuation cards have concrete independent vectors, executable case drivers,
+additional checks and explanations instead of repeated generic programs.
+The sixteen existing coding lesson identities remain stable. Each continuation
+reopens its matching studio attempt while keeping separate progress and return
+anchors; earlier generic saved attempts remain separate.
+
+The studio archive remains optional. The required path still contains twelve
+code cards backed by eleven distinct required packs. Existing source pins are
+unchanged; the four studio packs use accepted source 1dd55eee27866efca1080bc623bfdadaa43ff8db.
+All eighteen verified packs require confirmation before IDE import and retain
+the selected role and unchanged full guide during export. This batch does not
+complete the broader 77-course audit: twenty-six unit practice cards still need
+their separate purpose repair. Production activation has not been performed.

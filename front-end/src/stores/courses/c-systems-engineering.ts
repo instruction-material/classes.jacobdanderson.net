@@ -2,9 +2,9 @@ import type { RawCourse } from "./types";
 import { c17BitflagProjectReading } from "./c17BitflagProjectReading";
 import { c17CoreProjectReading } from "./c17CoreProjectReading";
 import { c17InspectorProjectReading } from "./c17InspectorProjectReading";
+import { c17StudioProjectReading } from "./c17StudioProjectReading";
 import { c17SystemsProjectReading } from "./c17SystemsProjectReading";
 import { c17XorProjectReading } from "./c17XorProjectReading";
-import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { buildProjectGuidance } from "./projectGuidance";
 
 const cSystemsEngineeringSourceCourse: RawCourse = {
@@ -922,79 +922,75 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Byte Inspector Studio: Core Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 14: Byte Inspector Studio",
-						section: "concepts"
-					})
+					content:
+						c17StudioProjectReading[
+							"CSE-01-systems-build-14/concepts"
+						]
 				},
 				{
 					title: "Byte Inspector Studio: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 14: Byte Inspector Studio",
-						section: "example"
-					})
+					content:
+						c17StudioProjectReading[
+							"CSE-01-systems-build-14/example"
+						]
 				},
 				{
 					title: "Byte Inspector Studio: Core Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 14: Byte Inspector Studio",
-						section: "coreProject"
-					}),
+					id: "c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-core-project-byte-inspector-studio",
+					ideImport: true,
+					content: c17StudioProjectReading["CSE-01-systems-build-14"],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-01-systems-build-14/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-01-systems-build-14/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-01-systems-build-14/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-01-systems-build-14/solution"
 				},
 				{
 					title: "Byte Inspector Studio: Review",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 14: Byte Inspector Studio",
-						section: "review"
-					})
+					content:
+						c17StudioProjectReading[
+							"CSE-01-systems-build-14/review"
+						]
 				}
 			],
 			supplementalProjects: [
 				{
-					title: "Byte Inspector Studio: Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 14: Byte Inspector Studio",
-						section: "extension"
-					}),
+					title: "Extension Challenge: Trace corrupted bits and the limits of a valid frame",
+					id: "c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-extension-challenge-byte-inspector-studio",
+					ideImport: true,
+					content:
+						c17StudioProjectReading[
+							"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-extension-challenge-byte-inspector-studio"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-01-systems-build-14/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-01-systems-build-14/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-01-systems-build-14/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-01-systems-build-14/solution"
 				},
 				{
-					title: "Byte Inspector Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 14: Byte Inspector Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Transfer Practice: Decode channel and count from a sensor frame",
+					id: "c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-byte-inspector-transfer-practice",
+					ideImport: true,
+					content:
+						c17StudioProjectReading[
+							"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-byte-inspector-transfer-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-27-applied-studio-14-systems-build-14-supplemental-2/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-01-systems-build-14/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-27-applied-studio-14-systems-build-14-supplemental-2/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-01-systems-build-14/solution"
 				},
 				{
-					title: "Byte Inspector Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 14: Byte Inspector Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Extension Practice: Calibrate the ADC and preserve failed outputs",
+					id: "c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-byte-inspector-extension-practice",
+					ideImport: true,
+					content:
+						c17StudioProjectReading[
+							"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-byte-inspector-extension-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-28-applied-studio-14-systems-build-14-supplemental-3/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-01-systems-build-14/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-28-applied-studio-14-systems-build-14-supplemental-3/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-01-systems-build-14/solution"
 				}
 			]
 		},
@@ -1003,79 +999,75 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Memory Layout Studio: Core Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 15: Memory Layout Studio",
-						section: "concepts"
-					})
+					content:
+						c17StudioProjectReading[
+							"CSE-02-systems-build-15/concepts"
+						]
 				},
 				{
 					title: "Memory Layout Studio: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 15: Memory Layout Studio",
-						section: "example"
-					})
+					content:
+						c17StudioProjectReading[
+							"CSE-02-systems-build-15/example"
+						]
 				},
 				{
 					title: "Memory Layout Studio: Core Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 15: Memory Layout Studio",
-						section: "coreProject"
-					}),
+					id: "c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-core-project-memory-layout-studio",
+					ideImport: true,
+					content: c17StudioProjectReading["CSE-02-systems-build-15"],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-02-systems-build-15/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-02-systems-build-15/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-02-systems-build-15/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-02-systems-build-15/solution"
 				},
 				{
 					title: "Memory Layout Studio: Review",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 15: Memory Layout Studio",
-						section: "review"
-					})
+					content:
+						c17StudioProjectReading[
+							"CSE-02-systems-build-15/review"
+						]
 				}
 			],
 			supplementalProjects: [
 				{
-					title: "Memory Layout Studio: Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 15: Memory Layout Studio",
-						section: "extension"
-					}),
+					title: "Extension Challenge: Compare relative alignment with an actual base address",
+					id: "c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-extension-challenge-memory-layout-studio",
+					ideImport: true,
+					content:
+						c17StudioProjectReading[
+							"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-extension-challenge-memory-layout-studio"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-02-systems-build-15/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-02-systems-build-15/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-02-systems-build-15/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-02-systems-build-15/solution"
 				},
 				{
-					title: "Memory Layout Studio Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 15: Memory Layout Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Transfer Practice: Reorder aligned regions and account for padding",
+					id: "c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-memory-layout-studio-transfer-practice",
+					ideImport: true,
+					content:
+						c17StudioProjectReading[
+							"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-memory-layout-studio-transfer-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-29-applied-studio-15-systems-build-15-supplemental-2/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-02-systems-build-15/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-29-applied-studio-15-systems-build-15-supplemental-2/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-02-systems-build-15/solution"
 				},
 				{
-					title: "Memory Layout Studio Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 15: Memory Layout Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Extension Practice: Distinguish padding, outside bytes and arithmetic overflow",
+					id: "c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-memory-layout-studio-extension-practice",
+					ideImport: true,
+					content:
+						c17StudioProjectReading[
+							"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-memory-layout-studio-extension-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-30-applied-studio-15-systems-build-15-supplemental-3/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-02-systems-build-15/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-30-applied-studio-15-systems-build-15-supplemental-3/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-02-systems-build-15/solution"
 				}
 			]
 		},
@@ -1084,79 +1076,75 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Binary Parser Studio: Core Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 16: Binary Parser Studio",
-						section: "concepts"
-					})
+					content:
+						c17StudioProjectReading[
+							"CSE-03-systems-build-16/concepts"
+						]
 				},
 				{
 					title: "Binary Parser Studio: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 16: Binary Parser Studio",
-						section: "example"
-					})
+					content:
+						c17StudioProjectReading[
+							"CSE-03-systems-build-16/example"
+						]
 				},
 				{
 					title: "Binary Parser Studio: Core Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 16: Binary Parser Studio",
-						section: "coreProject"
-					}),
+					id: "c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-core-project-binary-parser-studio",
+					ideImport: true,
+					content: c17StudioProjectReading["CSE-03-systems-build-16"],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-03-systems-build-16/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-03-systems-build-16/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-03-systems-build-16/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-03-systems-build-16/solution"
 				},
 				{
 					title: "Binary Parser Studio: Review",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 16: Binary Parser Studio",
-						section: "review"
-					})
+					content:
+						c17StudioProjectReading[
+							"CSE-03-systems-build-16/review"
+						]
 				}
 			],
 			supplementalProjects: [
 				{
-					title: "Binary Parser Studio: Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 16: Binary Parser Studio",
-						section: "extension"
-					}),
+					title: "Extension Challenge: Test CRC-valid edits and repeated frames",
+					id: "c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-extension-challenge-binary-parser-studio",
+					ideImport: true,
+					content:
+						c17StudioProjectReading[
+							"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-extension-challenge-binary-parser-studio"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-03-systems-build-16/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-03-systems-build-16/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-03-systems-build-16/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-03-systems-build-16/solution"
 				},
 				{
-					title: "Binary Parser Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 16: Binary Parser Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Transfer Practice: Decode the same frames across every chunk boundary",
+					id: "c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-binary-parser-transfer-practice",
+					ideImport: true,
+					content:
+						c17StudioProjectReading[
+							"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-binary-parser-transfer-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-31-applied-studio-16-systems-build-16-supplemental-2/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-03-systems-build-16/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-31-applied-studio-16-systems-build-16-supplemental-2/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-03-systems-build-16/solution"
 				},
 				{
-					title: "Binary Parser Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle: "Systems Build 16: Binary Parser Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Extension Practice: Separate accepted frames from a rejected file report",
+					id: "c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-binary-parser-extension-practice",
+					ideImport: true,
+					content:
+						c17StudioProjectReading[
+							"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-binary-parser-extension-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-32-applied-studio-16-systems-build-16-supplemental-3/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-03-systems-build-16/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-32-applied-studio-16-systems-build-16-supplemental-3/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-03-systems-build-16/solution"
 				}
 			]
 		},
@@ -1165,86 +1153,75 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Capstone Utility Studio: Core Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle:
-							"Systems Build 17: Capstone Utility Studio",
-						section: "concepts"
-					})
+					content:
+						c17StudioProjectReading[
+							"CSE-04-systems-build-17/concepts"
+						]
 				},
 				{
 					title: "Capstone Utility Studio: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle:
-							"Systems Build 17: Capstone Utility Studio",
-						section: "example"
-					})
+					content:
+						c17StudioProjectReading[
+							"CSE-04-systems-build-17/example"
+						]
 				},
 				{
 					title: "Capstone Utility Studio: Core Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle:
-							"Systems Build 17: Capstone Utility Studio",
-						section: "coreProject"
-					}),
+					id: "c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-core-project-capstone-utility-studio",
+					ideImport: true,
+					content: c17StudioProjectReading["CSE-04-systems-build-17"],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-04-systems-build-17/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-04-systems-build-17/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-04-systems-build-17/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-04-systems-build-17/solution"
 				},
 				{
 					title: "Capstone Utility Studio: Review",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle:
-							"Systems Build 17: Capstone Utility Studio",
-						section: "review"
-					})
+					content:
+						c17StudioProjectReading[
+							"CSE-04-systems-build-17/review"
+						]
 				}
 			],
 			supplementalProjects: [
 				{
-					title: "Capstone Utility Studio: Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C systems",
-						moduleTitle:
-							"Systems Build 17: Capstone Utility Studio",
-						section: "extension"
-					}),
+					title: "Extension Challenge: Preserve a report when ordering or capacity fails",
+					id: "c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-extension-challenge-capstone-utility-studio",
+					ideImport: true,
+					content:
+						c17StudioProjectReading[
+							"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-extension-challenge-capstone-utility-studio"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-04-systems-build-17/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-04-systems-build-17/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-04-systems-build-17/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-04-systems-build-17/solution"
 				},
 				{
-					title: "Capstone Utility Studio Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle:
-							"Systems Build 17: Capstone Utility Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Transfer Practice: Change the time window and explain signed means",
+					id: "c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-capstone-utility-studio-transfer-practice",
+					ideImport: true,
+					content:
+						c17StudioProjectReading[
+							"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-capstone-utility-studio-transfer-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-33-applied-studio-17-systems-build-17-supplemental-2/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-04-systems-build-17/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-33-applied-studio-17-systems-build-17-supplemental-2/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-04-systems-build-17/solution"
 				},
 				{
-					title: "Capstone Utility Studio Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C systems",
-						moduleTitle:
-							"Systems Build 17: Capstone Utility Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Extension Practice: Reject malformed rows without changing a sample",
+					id: "c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-capstone-utility-studio-extension-practice",
+					ideImport: true,
+					content:
+						c17StudioProjectReading[
+							"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-capstone-utility-studio-extension-practice"
+						],
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-34-applied-studio-17-systems-build-17-supplemental-3/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-04-systems-build-17/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE-34-applied-studio-17-systems-build-17-supplemental-3/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/1dd55eee27866efca1080bc623bfdadaa43ff8db/CSE-04-systems-build-17/solution"
 				}
 			]
 		}

@@ -15,6 +15,7 @@ import {
 	c17OpeningPacks,
 	c17SourceRevision
 } from "@/modules/c17ProjectResources";
+import { c17StudioContinuations } from "@/modules/c17StudioLessons";
 import { getCodeIdeProjectSubtitle } from "@/modules/codeIdeProjectLabels";
 import { createProjectArchive } from "@/modules/projectArchive";
 import { pythonIdeCompletionsForMode } from "@/modules/pythonCodeMirror";
@@ -430,7 +431,7 @@ describe("native C17 source workspace", () => {
 		const course = (await useCoursesStore().loadCourseById(
 			"c-systems-engineering"
 		))!;
-		const definitions = c17VerifiedPacks.slice(8);
+		const definitions = c17VerifiedPacks.slice(8, 14);
 		const cards = course.modules.flatMap(module => [
 			...module.curriculum,
 			...module.supplementalProjects
@@ -576,6 +577,225 @@ describe("native C17 source workspace", () => {
 				expect(instructions).toContain(
 					"invalid input never creates output"
 				);
+		}
+	);
+
+	it("retains every C lesson identity and connects sixteen optional studio cards to complete distinct readings", async () => {
+		setActivePinia(createPinia());
+		const store = useAppStore();
+		store.setCurrentTutor({
+			_id: "studio-tutor",
+			name: "Tutor",
+			email: "tutor@example.invalid",
+			age: 30,
+			state: "GA",
+			usersOfTutorLength: 0,
+			coursePermissions: ["c-systems-engineering"],
+			editTutors: false,
+			saveEdit: "Save"
+		});
+		const course = (await useCoursesStore().loadCourseById(
+			"c-systems-engineering"
+		))!;
+		const cards = course.modules.flatMap(module => [
+			...module.curriculum,
+			...module.supplementalProjects
+		]);
+		const oldIDs = JSON.parse(
+			readFileSync(
+				resolve(
+					process.cwd(),
+					"../test/fixtures/c17-studio-lesson-identities.json"
+				),
+				"utf8"
+			)
+		);
+		expect(cards.map(item => item.id).sort()).toEqual(oldIDs);
+		const studioPacks = c17VerifiedPacks.slice(14);
+		expect(studioPacks).toHaveLength(4);
+		const items = cards.filter(item =>
+			studioPacks.some(
+				definition =>
+					c17CourseResource(item.projectLink ?? "")?.pack ===
+					definition.pack
+			)
+		);
+		expect(items.map(item => item.id).sort()).toEqual([
+			"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-binary-parser-extension-practice",
+			"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-binary-parser-transfer-practice",
+			"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-byte-inspector-extension-practice",
+			"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-byte-inspector-transfer-practice",
+			"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-capstone-utility-studio-extension-practice",
+			"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-capstone-utility-studio-transfer-practice",
+			"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-core-project-binary-parser-studio",
+			"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-core-project-byte-inspector-studio",
+			"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-core-project-capstone-utility-studio",
+			"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-core-project-memory-layout-studio",
+			"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-extension-challenge-binary-parser-studio",
+			"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-extension-challenge-byte-inspector-studio",
+			"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-extension-challenge-capstone-utility-studio",
+			"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-extension-challenge-memory-layout-studio",
+			"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-memory-layout-studio-extension-practice",
+			"c-systems-engineering-optional-systems-build-and-transfer-archive-supplemental-memory-layout-studio-transfer-practice"
+		]);
+		const archive = course.modules.find(
+			module =>
+				module.id ===
+				"c-systems-engineering-optional-systems-build-and-transfer-archive"
+		)!;
+		expect(archive.kind).toBe("appendix");
+		for (const item of items) {
+			const selected = c17CourseResource(item.projectLink!)!;
+			expect(
+				archive.supplementalProjects.some(
+					candidate => candidate.id === item.id
+				)
+			).toBe(true);
+			expect(item.ideImport).toBe(true);
+			expect(item.content).toContain(
+				fixture.files[`${selected.pack}/README.md`].content
+					.replace(
+						"before learner\ntasks are completed",
+						"before implementation\ntasks are completed"
+					)
+					.split("\n")
+					.slice(1)
+					.join("\n")
+					.trim()
+			);
+			expect(item.solutionLink).toBe(
+				item.projectLink!.replace(/\/starter$/, "/solution")
+			);
+			expect(selected.resource.ref).toBe(
+				"1dd55eee27866efca1080bc623bfdadaa43ff8db"
+			);
+			const continuation = c17StudioContinuations.find(
+				lesson => lesson.id === item.id
+			);
+			if (continuation) {
+				expect(item.content).toContain("## Executable case");
+				expect(item.content).toContain("## Additional evidence");
+				expect(item.learningPath).toBe(
+					item.title.includes("Transfer Practice")
+						? "choice"
+						: "challenge"
+				);
+				for (const role of ["starter", "reference"] as const) {
+					const url =
+						role === "starter"
+							? item.projectLink!
+							: item.solutionLink!;
+					expect(
+						c17CourseProjectKey(course.id, item.id, role, url)
+					).toBe(
+						`c-systems-engineering:${continuation.baseLessonID}:${role}:native-c17`
+					);
+					const wrongPack = `https://github.com/instruction-material/C-Systems-Engineering/tree/${c17SourceRevision}/${c17OpeningPacks[0]}/starter`;
+					expect(
+						c17CourseProjectKey(course.id, item.id, role, wrongPack)
+					).toBe(
+						`c-systems-engineering:${item.id}:${role}:native-c17`
+					);
+					const unverified = url.replace(
+						"1dd55eee27866efca1080bc623bfdadaa43ff8db",
+						"main"
+					);
+					expect(
+						c17CourseProjectKey(
+							course.id,
+							item.id,
+							role,
+							unverified
+						)
+					).toBe(`c-systems-engineering:${item.id}:${role}`);
+				}
+			}
+		}
+		expect(
+			new Set(
+				items
+					.filter(item =>
+						c17StudioContinuations.some(
+							lesson => lesson.id === item.id
+						)
+					)
+					.map(
+						item =>
+							item.content.split("## Complete studio contract")[0]
+					)
+			).size
+		).toBe(12);
+		const core = course.modules
+			.flatMap(module => module.curriculum)
+			.filter(item => c17CourseResource(item.projectLink ?? ""));
+		expect(core).toHaveLength(12);
+		expect(
+			new Set(
+				core.map(item => c17CourseResource(item.projectLink!)!.pack)
+			).size
+		).toBe(11);
+		expect(
+			cards.filter(item => c17CourseResource(item.projectLink ?? ""))
+		).toHaveLength(31);
+		store.setCurrentTutor(null);
+		const learner = (await useCoursesStore().loadCourseById(course.id))!;
+		const learnerItems = learner.modules
+			.flatMap(module => [
+				...module.curriculum,
+				...module.supplementalProjects
+			])
+			.filter(item => items.some(original => original.id === item.id));
+		expect(learnerItems).toHaveLength(16);
+		expect(
+			learnerItems.every(item => item.solutionLink === undefined)
+		).toBe(true);
+	});
+
+	it.each(c17StudioContinuations)(
+		"keeps the earlier generic attempt separate while sharing the matching native studio for $id",
+		({ id, pack, baseLessonID }) => {
+			const definition = c17VerifiedPacks.find(
+				candidate => candidate.pack === pack
+			)!;
+			for (const role of ["starter", "reference"] as const) {
+				const url = `https://github.com/instruction-material/C-Systems-Engineering/tree/${definition.revision}/${pack}/${role === "starter" ? "starter" : "solution"}`;
+				const legacy = createPythonIdeProject("c", {
+					courseID: "c-systems-engineering",
+					courseProjectKey: `c-systems-engineering:${id}:${role}`
+				});
+				const native = createPythonIdeProject("c", {
+					courseID: "c-systems-engineering",
+					courseProjectKey: c17CourseProjectKey(
+						"c-systems-engineering",
+						baseLessonID,
+						role,
+						url
+					),
+					files: [
+						{
+							name: "saved.c",
+							content: "/* earlier studio work */"
+						}
+					]
+				});
+				saveLocalPythonProjects([legacy, native]);
+				const loaded = loadLocalPythonProjects();
+				expect(
+					loaded.find(
+						project =>
+							project.courseProjectKey ===
+							c17CourseProjectKey(
+								"c-systems-engineering",
+								id,
+								role,
+								url
+							)
+					)?.files
+				).toEqual(native.files);
+				expect(
+					loaded.find(project => project._id === legacy._id)
+				).toEqual(legacy);
+			}
 		}
 	);
 
