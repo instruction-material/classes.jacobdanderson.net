@@ -55,6 +55,20 @@ describe("CourseExplorer.vue", () => {
 				module: "unit-2-registers-and-data-movement",
 				item: "assembly-unit-2-registers-and-data-movement-curriculum-project-integer-calculator-in-assembly",
 				revision: "37756ab58d42d47a3ae1449950125f444691273f"
+			},
+			{
+				role,
+				pack: "ASM2-Array-Sum-and-Search",
+				module: "unit-4-branching-and-loops",
+				item: "assembly-unit-4-branching-and-loops-curriculum-project-array-sum-and-search-routines",
+				revision: "4e82e4d5f02067a830f92c19e148d0822220ffe9"
+			},
+			{
+				role,
+				pack: "ASM3-String-Length-and-Copy",
+				module: "unit-7-memory-addressing-and-data-structures",
+				item: "assembly-unit-7-memory-addressing-and-data-structures-curriculum-project-string-length-and-copy-routines",
+				revision: "3d66cd9cd20139f8176098475193b791edd2bcd8"
 			}
 		])
 	)(

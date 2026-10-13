@@ -15,6 +15,11 @@ export const assemblyRoleFiles = [
 export const assemblyCalculatorRevision =
 	"37756ab58d42d47a3ae1449950125f444691273f";
 export const assemblyCalculatorPack = "ASM1-Integer-Calculator";
+export const assemblyArrayRevision = "4e82e4d5f02067a830f92c19e148d0822220ffe9";
+export const assemblyArrayPack = "ASM2-Array-Sum-and-Search";
+export const assemblyStringRevision =
+	"3d66cd9cd20139f8176098475193b791edd2bcd8";
+export const assemblyStringPack = "ASM3-String-Length-and-Copy";
 export const assemblyVerifiedPacks = [
 	{
 		pack: assemblyOpeningPack,
@@ -28,6 +33,30 @@ export const assemblyVerifiedPacks = [
 			"calculator.S",
 			"main.c",
 			"calculator.h",
+			"abi_checks.S",
+			"tests.c",
+			"CMakeLists.txt"
+		]
+	},
+	{
+		pack: assemblyArrayPack,
+		revision: assemblyArrayRevision,
+		roleFiles: [
+			"array_routines.S",
+			"main.c",
+			"array_routines.h",
+			"abi_checks.S",
+			"tests.c",
+			"CMakeLists.txt"
+		]
+	},
+	{
+		pack: assemblyStringPack,
+		revision: assemblyStringRevision,
+		roleFiles: [
+			"string_routines.S",
+			"main.c",
+			"string_routines.h",
 			"abi_checks.S",
 			"tests.c",
 			"CMakeLists.txt"
