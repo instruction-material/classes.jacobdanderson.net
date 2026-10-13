@@ -2695,6 +2695,10 @@ export function createPythonIdeProject(
 	const files = options.files?.length
 		? clonePythonIdeFiles(options.files)
 		: getStarterFilesForTemplate(mode, template);
+	const assemblySource =
+		mode === "assembly"
+			? assemblyCourseResource(options.starterUrl ?? "")
+			: null;
 	return {
 		_id: `local-${crypto.randomUUID()}`,
 		title: options.title ?? projectTitleForMode(mode, template),
@@ -2703,7 +2707,9 @@ export function createPythonIdeProject(
 		activeFileName: resolvePythonIdeActiveFileName(
 			files,
 			mode === "assembly"
-				? files.find(file => /\.s$/i.test(file.name))?.name
+				? assemblySource
+					? `${assemblySource.role}/${assemblySource.definition.roleFiles[0]}`
+					: files.find(file => /\.s$/i.test(file.name))?.name
 				: undefined
 		),
 		courseID: options.courseID,

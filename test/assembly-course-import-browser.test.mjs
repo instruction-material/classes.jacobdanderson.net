@@ -16,35 +16,58 @@ import {
 } from "./ide-workspace-controls.mjs";
 
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
-const fixtures = await Promise.all(["assembly-opening-contracts.json", "assembly-calculator-contracts.json", "assembly-array-contracts.json", "assembly-string-contracts.json"].map(async name => JSON.parse(await readFile(new URL(`./fixtures/${name}`, import.meta.url), "utf8"))));
+const fixtures = await Promise.all(["assembly-opening-contracts.json", "assembly-calculator-contracts.json", "assembly-array-contracts.json", "assembly-string-contracts.json", "assembly-helper-contracts.json", "assembly-parser-contracts.json"].map(async name => JSON.parse(await readFile(new URL(`./fixtures/${name}`, import.meta.url), "utf8"))));
 let fixture = fixtures[0];
 const workflowDefinitions = {
-  "ASM-04-asm0-setup-and-tooling": {
-    "primary": "routine.S",
-    "title": "Build and Trace a Linux x86-64 Function",
-    "lesson": "assembly-asm0-setup-and-tooling-assembly-asm0-setup-and-tooling-curriculum-core-project-assembly",
-    "referenceToken": "total=100"
-  },
-  "ASM1-Integer-Calculator": {
-    "primary": "calculator.S",
-    "title": "Integer Calculator in Assembly",
-    "lesson": "assembly-unit-2-registers-and-data-movement-assembly-unit-2-registers-and-data-movement-curriculum-project-integer-calculator-in-assembly",
-    "referenceToken": "12,589"
-  },
-  "ASM2-Array-Sum-and-Search": {
-    "primary": "array_routines.S",
-    "title": "Array Sum and Search Routines",
-    "lesson": "assembly-unit-4-branching-and-loops-assembly-unit-4-branching-and-loops-curriculum-project-array-sum-and-search-routines",
-    "referenceToken": "11,280"
-  },
-  "ASM3-String-Length-and-Copy": {
-    "primary": "string_routines.S",
-    "title": "String Length and Copy Routines",
-    "lesson": "assembly-unit-7-memory-addressing-and-data-structures-assembly-unit-7-memory-addressing-and-data-structures-curriculum-project-string-length-and-copy-routines",
-    "referenceToken": "35,900"
-  }
+	"ASM-04-asm0-setup-and-tooling": {
+		primary: "routine.S",
+		title: "Build and Trace a Linux x86-64 Function",
+		lesson: "assembly-asm0-setup-and-tooling-assembly-asm0-setup-and-tooling-curriculum-core-project-assembly",
+		referenceToken: "total=100"
+	},
+	"ASM1-Integer-Calculator": {
+		primary: "calculator.S",
+		title: "Integer Calculator in Assembly",
+		lesson: "assembly-unit-2-registers-and-data-movement-assembly-unit-2-registers-and-data-movement-curriculum-project-integer-calculator-in-assembly",
+		referenceToken: "12,589"
+	},
+	"ASM2-Array-Sum-and-Search": {
+		primary: "array_routines.S",
+		title: "Array Sum and Search Routines",
+		lesson: "assembly-unit-4-branching-and-loops-assembly-unit-4-branching-and-loops-curriculum-project-array-sum-and-search-routines",
+		referenceToken: "11,280"
+	},
+	"ASM3-String-Length-and-Copy": {
+		primary: "string_routines.S",
+		title: "String Length and Copy Routines",
+		lesson: "assembly-unit-7-memory-addressing-and-data-structures-assembly-unit-7-memory-addressing-and-data-structures-curriculum-project-string-length-and-copy-routines",
+		referenceToken: "35,900"
+	},
+	"ASM4-Call-C-Helper-from-Assembly": {
+		primary: "scale_and_clamp.S",
+		title: "Call a C Helper from Assembly",
+		lesson: "assembly-unit-6-calling-conventions-and-abi-assembly-unit-6-calling-conventions-and-abi-curriculum-project-call-a-c-helper-from-assembly",
+		referenceToken: "11,280"
+	},
+	"ASM5-Tiny-Command-Line-Parser": {
+		primary: "parser.S",
+		title: "Tiny Command-Line Parser",
+		lesson: "assembly-unit-8-system-calls-and-runtime-interaction-assembly-unit-8-system-calls-and-runtime-interaction-curriculum-project-tiny-command-line-parser",
+		referenceToken: "9,157"
+	},
+	"ASM6-Reverse-Engineering-Toy-Program": {
+		primary: "reconstructed.c",
+		title: "Reverse-Engineer a Toy Program Back into Pseudocode",
+		lesson: "assembly-unit-12-security-and-reliability-visibility-assembly-unit-12-security-and-reliability-visibility-curriculum-project-reverse-engineer-a-toy-program-back-into-pseudocode",
+		referenceToken: "10,033"
+	},
+	"ASM-07-unit-5-the-stack-and-function-calls": {
+		primary: "routine.S",
+		title: "Core Project: The Stack and Function Calls",
+		lesson: "assembly-unit-5-the-stack-and-function-calls-assembly-unit-5-the-stack-and-function-calls-curriculum-core-project-the-stack-and-function-calls",
+		referenceToken: "10,012"
+	}
 };
-
 
 const storageKey = "classes-python-ide-projects:anonymous";
 const legacy = {
@@ -61,7 +84,7 @@ const legacy = {
 
 test(
 	"Assembly consent, exact role imports, saved edits, native exports and lesson return",
-	{ timeout: 180_000 },
+	{ timeout: 240_000 },
 	async () => {
 		let server, browser, context, page;
 		const captures
@@ -158,6 +181,7 @@ test(
 				for (const width of [1280, 360]) {
 					for (const theme of ["light", "dark"]) {
 						for (const role of ["starter", "solution"]) {
+							const expectedFiles = Object.keys(fixture.files).filter(path => path.startsWith(`${fixture.pack}/${role}/`) || path === `${fixture.pack}/README.md`);
 							await page.setViewport({ width, height: 900 });
 							await page.emulateMediaFeatures([
 								{ name: "prefers-color-scheme", value: theme }
@@ -219,8 +243,8 @@ test(
 							);
 							assert.equal(saved.mode, "assembly");
 							assert.equal(saved.activeFileName, `${role}/${primary}`);
-							assert.equal(saved.files.length, 7);
-							assert.equal(requests.length, 7);
+							assert.deepEqual(saved.files.map(file => `${fixture.pack}/${file.name}`).sort(), expectedFiles.sort());
+							assert.equal(requests.length, expectedFiles.length);
 							assert.ok(
 								requests.every(
 									path =>
@@ -297,7 +321,7 @@ test(
 							const entries = unzipSync(
 								Buffer.from(base64, "base64")
 							);
-							assert.equal(Object.keys(entries).length, 7);
+							assert.equal(Object.keys(entries).length, expectedFiles.length);
 							for (const file of saved.files) {
 								const source
 									= fixture.files[`${fixture.pack}/${file.name}`];
@@ -378,7 +402,7 @@ test(
 							);
 							assert.equal(
 								requests.length,
-								7,
+								expectedFiles.length,
 								"Reload reuses saved work without fetching source"
 							);
 							await downloadProjectZip(page);

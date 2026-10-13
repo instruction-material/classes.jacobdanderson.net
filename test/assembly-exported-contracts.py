@@ -12,7 +12,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
-parser.add_argument("--project", choices=["opening", "calculator", "array", "string"], default="opening")
+parser.add_argument("--project", choices=["opening", "calculator", "array", "string", "helper", "parser", "reverse", "stack"], default="opening")
 parser.add_argument("--archives", type=Path, required=True)
 parser.add_argument("--cc", choices=["clang", "gcc"], required=True)
 parser.add_argument("--skip-debugger", action="store_true")
@@ -50,7 +50,7 @@ with tempfile.TemporaryDirectory(prefix="assembly-site-export-") as work:
         archive = args.archives / (fixture["pack"] + "-" + role + ".zip")
         with zipfile.ZipFile(archive) as source:
             expected = {path.removeprefix(fixture["pack"] + "/"): file for path, file in fixture["files"].items() if path.startswith(fixture["pack"] + "/" + role + "/") or path == fixture["pack"] + "/README.md"}
-            assert len(source.namelist()) == len(expected) == 7
+            assert len(source.namelist()) == len(expected) and len(expected) > 1
             for name, file in expected.items():
                 matches = [path for path in source.namelist() if path.endswith("/" + name)]
                 assert len(matches) == 1
@@ -87,4 +87,4 @@ with tempfile.TemporaryDirectory(prefix="assembly-site-export-") as work:
     receipt["siteExportedFiles"] = hashes
     receipt["sourceRevision"] = fixture["revision"]
     args.proof.write_text(json.dumps(receipt, indent=2) + "\n")
-print(json.dumps(dict(compiler=args.cc, acceptedProfiles=len(receipt["acceptedProfiles"]), nativeCases=sum(p[{"opening": "arithmeticCases", "calculator": "arithmeticCases", "array": "arrayCases", "string": "stringCases"}[args.project]] for p in receipt["acceptedProfiles"]), debugger=receipt["debugger"]["status"], exactSiteExportedFiles=len(hashes))))
+print(json.dumps(dict(compiler=args.cc, acceptedProfiles=len(receipt["acceptedProfiles"]), nativeCases=sum(p[{"opening": "arithmeticCases", "calculator": "arithmeticCases", "array": "arrayCases", "string": "stringCases", "helper": "helperCases", "parser": "parserCases", "reverse": "reverseCases", "stack": "stackCases"}[args.project]] for p in receipt["acceptedProfiles"]), debugger=receipt["debugger"]["status"], exactSiteExportedFiles=len(hashes))))

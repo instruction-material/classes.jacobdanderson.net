@@ -41,7 +41,7 @@ function installLocalStorageStub() {
 
 describe("CourseExplorer.vue", () => {
 	it.each(
-		["learner", "instructor"].flatMap(role => [
+		["learner", "instructor"].flatMap((role) => [
 			{
 				role,
 				pack: "ASM-04-asm0-setup-and-tooling",
@@ -69,6 +69,34 @@ describe("CourseExplorer.vue", () => {
 				module: "unit-7-memory-addressing-and-data-structures",
 				item: "assembly-unit-7-memory-addressing-and-data-structures-curriculum-project-string-length-and-copy-routines",
 				revision: "3d66cd9cd20139f8176098475193b791edd2bcd8"
+			},
+			{
+				role,
+				pack: "ASM4-Call-C-Helper-from-Assembly",
+				module: "unit-6-calling-conventions-and-abi",
+				item: "assembly-unit-6-calling-conventions-and-abi-curriculum-project-call-a-c-helper-from-assembly",
+				revision: "4519a6ecbdb0dc6e932932a8af50a24f2449c8ef"
+			},
+			{
+				role,
+				pack: "ASM5-Tiny-Command-Line-Parser",
+				module: "unit-8-system-calls-and-runtime-interaction",
+				item: "assembly-unit-8-system-calls-and-runtime-interaction-curriculum-project-tiny-command-line-parser",
+				revision: "b87661c22a4bc08245cac18a0d6b8d672723eec8"
+			},
+			{
+				role,
+				pack: "ASM6-Reverse-Engineering-Toy-Program",
+				module: "unit-12-security-and-reliability-visibility",
+				item: "assembly-unit-12-security-and-reliability-visibility-curriculum-project-reverse-engineer-a-toy-program-back-into-pseudocode",
+				revision: "8856f11c649863d5eee9914658c11cfb801ead4b"
+			},
+			{
+				role,
+				pack: "ASM-07-unit-5-the-stack-and-function-calls",
+				module: "unit-5-the-stack-and-function-calls",
+				item: "assembly-unit-5-the-stack-and-function-calls-curriculum-core-project-the-stack-and-function-calls",
+				revision: "005e375894ade846a1077e96d4880faea680aed8"
 			}
 		])
 	)(
@@ -118,12 +146,12 @@ describe("CourseExplorer.vue", () => {
 				);
 				await wrapper
 					.findAll(".lesson-view-toggle button")
-					.find(b => b.text() === "Projects")!
+					.find((b) => b.text() === "Projects")!
 					.trigger("click");
 				await flushPromises();
 				const card = wrapper
 					.findAll(".lesson-item")
-					.find(item =>
+					.find((item) =>
 						item
 							.find(`a.is-project[href*="/${pack}/starter"]`)
 							.exists()
@@ -169,7 +197,7 @@ describe("CourseExplorer.vue", () => {
 
 	it.each([
 		...c17VerifiedPacks.flatMap(({ pack, revision }, index) =>
-			["learner", "instructor"].map(role => ({
+			["learner", "instructor"].map((role) => ({
 				pack,
 				revision,
 				role,
@@ -226,11 +254,11 @@ describe("CourseExplorer.vue", () => {
 			}))
 		),
 		...[...c17StudioContinuations, ...c17UnitContinuations].flatMap(
-			lesson =>
-				["learner", "instructor"].map(role => ({
+			(lesson) =>
+				["learner", "instructor"].map((role) => ({
 					pack: lesson.pack,
 					revision: c17VerifiedPacks.find(
-						definition => definition.pack === lesson.pack
+						(definition) => definition.pack === lesson.pack
 					)!.revision,
 					role,
 					module: lesson.id
@@ -304,7 +332,7 @@ describe("CourseExplorer.vue", () => {
 				await wrapper
 					.findAll(".lesson-view-toggle button")
 					.find(
-						button =>
+						(button) =>
 							button.text() ===
 							(lessonID ||
 							pack === "CSE1-Hex-and-Binary-Inspector" ||
@@ -319,7 +347,7 @@ describe("CourseExplorer.vue", () => {
 				await flushPromises();
 				const card = wrapper
 					.findAll(".lesson-item")
-					.find(item =>
+					.find((item) =>
 						lessonID
 							? item.attributes("id") ===
 								`c-systems-engineering-${module}-${lessonID}`
@@ -387,7 +415,9 @@ describe("CourseExplorer.vue", () => {
 			await flushPromises();
 			const card = wrapper
 				.findAll(".lesson-item")
-				.find(item => item.text().includes("Changed-Preference Retry"));
+				.find((item) =>
+					item.text().includes("Changed-Preference Retry")
+				);
 			expect(card).toBeDefined();
 			expect(card!.get("a.resource-link.is-project").text()).toMatch(
 				/^Starter project\s/
@@ -513,10 +543,10 @@ describe("CourseExplorer.vue", () => {
 		const appStore = useAppStore();
 		const coursesStore = useCoursesStore();
 		const assignedCourse = coursesStore.courses.find(
-			course => course.id === "python-level-1"
+			(course) => course.id === "python-level-1"
 		);
 		const otherCourse = coursesStore.courses.find(
-			course => course.id !== assignedCourse?.id
+			(course) => course.id !== assignedCourse?.id
 		);
 		if (!assignedCourse || !otherCourse) {
 			throw new Error("Expected at least two course catalog entries.");
@@ -583,7 +613,7 @@ describe("CourseExplorer.vue", () => {
 		const app = useAppStore();
 		const courses = useCoursesStore();
 		const [assigned, other] = courses.courses;
-		vi.spyOn(courses, "loadCourseById").mockImplementation(async id => ({
+		vi.spyOn(courses, "loadCourseById").mockImplementation(async (id) => ({
 			id,
 			name: id,
 			modules: [
@@ -664,7 +694,7 @@ describe("CourseExplorer.vue", () => {
 		const appStore = useAppStore();
 		const coursesStore = useCoursesStore();
 		const pythonCourse = coursesStore.courses.find(
-			course => course.id === "python-level-1"
+			(course) => course.id === "python-level-1"
 		);
 
 		if (!pythonCourse) throw new Error("Expected Python Level 1 course.");
@@ -713,7 +743,7 @@ describe("CourseExplorer.vue", () => {
 
 		const link = wrapper
 			.findAll("a")
-			.find(candidate => candidate.text() === "Open Turtle IDE");
+			.find((candidate) => candidate.text() === "Open Turtle IDE");
 		expect(link?.exists()).toBe(true);
 		const href = link?.attributes("href") ?? "";
 		const query = new URLSearchParams(href.split("?")[1] ?? "");
@@ -762,7 +792,7 @@ describe("CourseExplorer.vue", () => {
 			const appStore = useAppStore();
 			const coursesStore = useCoursesStore();
 			const pythonCourse = coursesStore.courses.find(
-				course => course.id === courseId
+				(course) => course.id === courseId
 			);
 
 			if (!pythonCourse)
@@ -831,7 +861,7 @@ describe("CourseExplorer.vue", () => {
 
 			const link = wrapper
 				.findAll("a")
-				.find(candidate => candidate.text().includes("Start in IDE"));
+				.find((candidate) => candidate.text().includes("Start in IDE"));
 			expect(link?.exists()).toBe(true);
 			const href = link?.attributes("href") ?? "";
 			const query = new URLSearchParams(href.split("?")[1] ?? "");
@@ -857,7 +887,7 @@ describe("CourseExplorer.vue", () => {
 		const appStore = useAppStore();
 		const coursesStore = useCoursesStore();
 		const pygamesCourse = coursesStore.courses.find(
-			course => course.id === "pygames"
+			(course) => course.id === "pygames"
 		);
 
 		if (!pygamesCourse) throw new Error("Expected PyGames course.");
@@ -906,7 +936,7 @@ describe("CourseExplorer.vue", () => {
 
 		const link = wrapper
 			.findAll("a")
-			.find(candidate => candidate.text() === "Open PyGame Zero IDE");
+			.find((candidate) => candidate.text() === "Open PyGame Zero IDE");
 		expect(link?.exists()).toBe(true);
 		const href = link?.attributes("href") ?? "";
 		const query = new URLSearchParams(href.split("?")[1] ?? "");
@@ -1333,13 +1363,13 @@ describe("CourseExplorer.vue", () => {
 		const appStore = useAppStore();
 		const coursesStore = useCoursesStore();
 		const currentCourse = coursesStore.courses.find(
-			course => course.id === "python-level-1"
+			(course) => course.id === "python-level-1"
 		);
 		const pastCourse = coursesStore.courses.find(
-			course => course.id === "python-level-2"
+			(course) => course.id === "python-level-2"
 		);
 		const availableCourse = coursesStore.courses.find(
-			course => course.id === "python-level-3"
+			(course) => course.id === "python-level-3"
 		);
 
 		if (!currentCourse || !pastCourse || !availableCourse) {
@@ -1375,7 +1405,7 @@ describe("CourseExplorer.vue", () => {
 		});
 
 		const groups = wrapper.findAll("optgroup");
-		expect(groups.map(group => group.attributes("label"))).toEqual([
+		expect(groups.map((group) => group.attributes("label"))).toEqual([
 			"Current courses",
 			"Past courses",
 			"Other available courses"
@@ -1383,7 +1413,7 @@ describe("CourseExplorer.vue", () => {
 		expect(
 			wrapper
 				.findAll("#course-select option")
-				.map(option => option.text())
+				.map((option) => option.text())
 		).toEqual([currentCourse.name, pastCourse.name, availableCourse.name]);
 		expect(
 			wrapper.find<HTMLSelectElement>("#course-select").element.value
@@ -1402,7 +1432,7 @@ describe("CourseExplorer.vue", () => {
 		const assignedCourse = coursesStore.courses[0];
 		const unassignedCourse =
 			coursesStore.courses.find(
-				course => course.id !== assignedCourse.id
+				(course) => course.id !== assignedCourse.id
 			) ?? coursesStore.courses[1];
 
 		if (!assignedCourse || !unassignedCourse) {
@@ -1444,13 +1474,13 @@ describe("CourseExplorer.vue", () => {
 			expect(
 				wrapper
 					.findAll("#learner-select option")
-					.map(option => option.text())
+					.map((option) => option.text())
 			).toContain("All");
 		});
 
 		const allOption = wrapper
 			.findAll("#learner-select option")
-			.find(option => option.text() === "All");
+			.find((option) => option.text() === "All");
 		expect(allOption?.exists()).toBe(true);
 		expect(
 			wrapper.find<HTMLSelectElement>("#learner-select").element.value
@@ -1468,7 +1498,7 @@ describe("CourseExplorer.vue", () => {
 			expect(
 				wrapper
 					.findAll("#course-select option")
-					.map(option => option.text())
+					.map((option) => option.text())
 			).toContain(unassignedCourse.name);
 		});
 		expect(
@@ -1531,7 +1561,7 @@ describe("CourseExplorer.vue", () => {
 		expect(
 			wrapper
 				.findAll("#learner-select option")
-				.map(option => option.text())
+				.map((option) => option.text())
 		).not.toContain("All");
 		expect(
 			wrapper.find<HTMLSelectElement>("#learner-select").element.value
@@ -1539,7 +1569,7 @@ describe("CourseExplorer.vue", () => {
 		expect(
 			wrapper
 				.findAll("#course-select option")
-				.map(option => option.text())
+				.map((option) => option.text())
 		).toContain(assignedCourse.name);
 	});
 
@@ -1555,7 +1585,7 @@ describe("CourseExplorer.vue", () => {
 
 		const unassignedCourse =
 			coursesStore.courses.find(
-				course => course.id !== assignedCourse.id
+				(course) => course.id !== assignedCourse.id
 			) ?? coursesStore.courses[1];
 
 		if (!unassignedCourse) throw new Error("Expected course fixtures.");
@@ -1595,7 +1625,7 @@ describe("CourseExplorer.vue", () => {
 			]
 		});
 		vi.spyOn(coursesStore, "loadCourseById").mockImplementation(
-			async courseId => {
+			async (courseId) => {
 				if (courseId === unassignedCourse.id) {
 					return unassignedCourseDefinition;
 				}
@@ -1756,7 +1786,7 @@ describe("CourseExplorer.vue", () => {
 		(api.put as any)
 			.mockImplementationOnce(
 				() =>
-					new Promise(resolve => {
+					new Promise((resolve) => {
 						resolveFirstSave = resolve;
 					})
 			)
@@ -1821,7 +1851,7 @@ describe("CourseExplorer.vue", () => {
 		const coursesStore = useCoursesStore();
 		const fallbackCourse = coursesStore.courses[0];
 		const chemistryCourse = coursesStore.courses.find(
-			course => course.id === "intro-to-chemistry"
+			(course) => course.id === "intro-to-chemistry"
 		);
 
 		if (!chemistryCourse)
@@ -1847,7 +1877,7 @@ describe("CourseExplorer.vue", () => {
 		window.history.replaceState({}, "", `/courses#${hashAnchor}`);
 
 		vi.spyOn(coursesStore, "loadCourseById").mockImplementation(
-			async courseId => {
+			async (courseId) => {
 				if (courseId === chemistryCourse.id) {
 					return {
 						id: chemistryCourse.id,
@@ -1965,7 +1995,7 @@ describe("CourseExplorer.vue", () => {
 		const coursesStore = useCoursesStore();
 		const fallbackCourse = coursesStore.courses[0];
 		const chemistryCourse = coursesStore.courses.find(
-			course => course.id === "intro-to-chemistry"
+			(course) => course.id === "intro-to-chemistry"
 		);
 
 		if (!chemistryCourse)
@@ -3238,7 +3268,7 @@ describe("CourseExplorer.vue", () => {
 		const appStore = useAppStore();
 		const coursesStore = useCoursesStore();
 		const assignedCourse =
-			coursesStore.courses.find(course => course.id === "pygames") ??
+			coursesStore.courses.find((course) => course.id === "pygames") ??
 			coursesStore.courses[0];
 		const rootUrl =
 			"https://github.com/instruction-material/PyGames/tree/main";
@@ -3397,7 +3427,7 @@ describe("CourseExplorer.vue", () => {
 			saveEdit: "Save"
 		});
 		vi.mocked(api.get).mockResolvedValue({
-			data: ["a", "b"].map(id => ({
+			data: ["a", "b"].map((id) => ({
 				_id: id,
 				name: "Same name",
 				email: "shared@example.invalid",

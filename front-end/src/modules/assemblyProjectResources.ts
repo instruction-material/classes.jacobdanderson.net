@@ -20,6 +20,17 @@ export const assemblyArrayPack = "ASM2-Array-Sum-and-Search";
 export const assemblyStringRevision =
 	"3d66cd9cd20139f8176098475193b791edd2bcd8";
 export const assemblyStringPack = "ASM3-String-Length-and-Copy";
+export const assemblyHelperRevision =
+	"4519a6ecbdb0dc6e932932a8af50a24f2449c8ef";
+export const assemblyHelperPack = "ASM4-Call-C-Helper-from-Assembly";
+export const assemblyParserRevision =
+	"b87661c22a4bc08245cac18a0d6b8d672723eec8";
+export const assemblyParserPack = "ASM5-Tiny-Command-Line-Parser";
+export const assemblyReverseRevision =
+	"8856f11c649863d5eee9914658c11cfb801ead4b";
+export const assemblyReversePack = "ASM6-Reverse-Engineering-Toy-Program";
+export const assemblyStackRevision = "005e375894ade846a1077e96d4880faea680aed8";
+export const assemblyStackPack = "ASM-07-unit-5-the-stack-and-function-calls";
 export const assemblyVerifiedPacks = [
 	{
 		pack: assemblyOpeningPack,
@@ -57,6 +68,56 @@ export const assemblyVerifiedPacks = [
 			"string_routines.S",
 			"main.c",
 			"string_routines.h",
+			"abi_checks.S",
+			"tests.c",
+			"CMakeLists.txt"
+		]
+	},
+	{
+		pack: assemblyHelperPack,
+		revision: assemblyHelperRevision,
+		roleFiles: [
+			"scale_and_clamp.S",
+			"main.c",
+			"helper.c",
+			"helper.h",
+			"abi_checks.S",
+			"tests.c",
+			"CMakeLists.txt"
+		]
+	},
+	{
+		pack: assemblyParserPack,
+		revision: assemblyParserRevision,
+		roleFiles: [
+			"parser.S",
+			"main.c",
+			"parser.h",
+			"abi_checks.S",
+			"tests.c",
+			"CMakeLists.txt"
+		]
+	},
+	{
+		pack: assemblyReversePack,
+		revision: assemblyReverseRevision,
+		roleFiles: [
+			"reconstructed.c",
+			"mystery.S",
+			"main.c",
+			"reverse.h",
+			"abi_checks.S",
+			"tests.c",
+			"CMakeLists.txt"
+		]
+	},
+	{
+		pack: assemblyStackPack,
+		revision: assemblyStackRevision,
+		roleFiles: [
+			"routine.S",
+			"main.c",
+			"stack.h",
 			"abi_checks.S",
 			"tests.c",
 			"CMakeLists.txt"
