@@ -16,12 +16,9 @@ import {
 } from "./ide-workspace-controls.mjs";
 
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
-const fixture = JSON.parse(
-	await readFile(
-		new URL("./fixtures/assembly-opening-contracts.json", import.meta.url),
-		"utf8"
-	)
-);
+const fixtures = await Promise.all(["assembly-opening-contracts.json", "assembly-calculator-contracts.json"].map(async name => JSON.parse(await readFile(new URL(`./fixtures/${name}`, import.meta.url), "utf8"))));
+let fixture = fixtures[0];
+
 const storageKey = "classes-python-ide-projects:anonymous";
 const legacy = {
 	_id: "earlier-assembly",
@@ -127,298 +124,290 @@ test(
 					void request.continue();
 				}
 			});
-			for (const width of [1280, 360]) {
-				for (const theme of ["light", "dark"]) {
-					for (const role of ["starter", "solution"]) {
-						await page.setViewport({ width, height: 900 });
-						await page.emulateMediaFeatures([
-							{ name: "prefers-color-scheme", value: theme }
-						]);
-						const key = `assembly:opening-${width}-${theme}:${role === "starter" ? "starter" : "reference"}:native-assembly`;
-						const lesson
-							= "assembly-asm0-setup-and-tooling-assembly-asm0-setup-and-tooling-curriculum-core-project-assembly";
-						const params = new URLSearchParams({
-							course: "assembly",
-							mode: "assembly",
-							projectKey: key,
-							lesson,
-							starterUrl: `https://github.com/instruction-material/Assembly/tree/${fixture.revision}/${fixture.pack}/${role}`,
-							starterTitle:
-								"Build and Trace a Linux x86-64 Function"
-						});
-						requests = [];
-						await page.goto(`${origin}/ide?${params}`, {
-							waitUntil: "domcontentloaded"
-						});
-						await page.waitForSelector(
-							"[data-testid='ide-route-import-confirm']"
-						);
-						assert.equal(
-							requests.length,
-							0,
-							"Source requires confirmation"
-						);
-						await page.keyboard.press("Escape");
-						assert.equal(
-							requests.length,
-							0,
-							"Cancelling must not fetch source"
-						);
-						await page.goto(`${origin}/ide?${params}`, {
-							waitUntil: "domcontentloaded"
-						});
-						await page.waitForSelector(
-							"[data-testid='ide-route-import-confirm']"
-						);
-						await confirmProjectImport(page);
-						await page.waitForFunction(
-							(s, k) =>
-								JSON.parse(
-									localStorage.getItem(s) ?? "[]"
-								).some(p => p.courseProjectKey === k),
-							{},
-							storageKey,
-							key
-						);
-						const projects = await page.evaluate(
-							s => JSON.parse(localStorage.getItem(s)),
-							storageKey
-						);
-						assert.deepEqual(
-							projects.find(p => p._id === legacy._id),
-							legacy
-						);
-						const saved = projects.find(
-							p => p.courseProjectKey === key
-						);
-						assert.equal(saved.mode, "assembly");
-						assert.equal(saved.activeFileName, `${role}/routine.S`);
-						assert.equal(saved.files.length, 7);
-						assert.equal(requests.length, 7);
-						assert.ok(
-							requests.every(
-								path =>
-									!path.includes(
-										role === "starter"
-											? "/solution/"
-											: "/starter/"
-									)
-							)
-						);
-						if (width < 900) {
-							await page
-								.locator(
-									".mobile-view-picker button[data-view='code']"
+			for (const current of fixtures) {
+				fixture = current;
+				const calculator = fixture.pack === "ASM1-Integer-Calculator";
+				const primary = calculator ? "calculator.S" : "routine.S";
+				for (const width of [1280, 360]) {
+					for (const theme of ["light", "dark"]) {
+						for (const role of ["starter", "solution"]) {
+							await page.setViewport({ width, height: 900 });
+							await page.emulateMediaFeatures([
+								{ name: "prefers-color-scheme", value: theme }
+							]);
+							const key = `assembly:${fixture.pack}-${width}-${theme}:${role === "starter" ? "starter" : "reference"}:native-assembly`;
+							const lesson = calculator ? "assembly-unit-2-registers-and-data-movement-assembly-unit-2-registers-and-data-movement-curriculum-project-integer-calculator-in-assembly" : "assembly-asm0-setup-and-tooling-assembly-asm0-setup-and-tooling-curriculum-core-project-assembly";
+							const params = new URLSearchParams({
+								course: "assembly",
+								mode: "assembly",
+								projectKey: key,
+								lesson,
+								starterUrl: `https://github.com/instruction-material/Assembly/tree/${fixture.revision}/${fixture.pack}/${role}`,
+								starterTitle: calculator ? "Integer Calculator in Assembly" : "Build and Trace a Linux x86-64 Function"
+							});
+							requests = [];
+							await page.goto(`${origin}/ide?${params}`, {
+								waitUntil: "domcontentloaded"
+							});
+							await page.waitForSelector(
+								"[data-testid='ide-route-import-confirm']"
+							);
+							assert.equal(
+								requests.length,
+								0,
+								"Source requires confirmation"
+							);
+							await page.keyboard.press("Escape");
+							assert.equal(
+								requests.length,
+								0,
+								"Cancelling must not fetch source"
+							);
+							await page.goto(`${origin}/ide?${params}`, {
+								waitUntil: "domcontentloaded"
+							});
+							await page.waitForSelector(
+								"[data-testid='ide-route-import-confirm']"
+							);
+							await confirmProjectImport(page);
+							await page.waitForFunction(
+								(s, k) =>
+									JSON.parse(
+										localStorage.getItem(s) ?? "[]"
+									).some(p => p.courseProjectKey === k),
+								{},
+								storageKey,
+								key
+							);
+							const projects = await page.evaluate(
+								s => JSON.parse(localStorage.getItem(s)),
+								storageKey
+							);
+							assert.deepEqual(
+								projects.find(p => p._id === legacy._id),
+								legacy
+							);
+							const saved = projects.find(
+								p => p.courseProjectKey === key
+							);
+							assert.equal(saved.mode, "assembly");
+							assert.equal(saved.activeFileName, `${role}/${primary}`);
+							assert.equal(saved.files.length, 7);
+							assert.equal(requests.length, 7);
+							assert.ok(
+								requests.every(
+									path =>
+										!path.includes(
+											role === "starter"
+												? "/solution/"
+												: "/starter/"
+										)
 								)
-								.click();
-						}
-						await page.waitForSelector(".cm-content", {
-							visible: true
-						});
-						assert.equal(
-							await page.$(
-								".mobile-view-picker button[data-view='canvas']"
-							),
-							null
-						);
-						await page.waitForSelector(
-							"button.run-control:not([disabled])"
-						);
-						assert.equal(
-							await page.$eval("button.run-control", b =>
-								b.textContent.trim()),
-							"Build instructions"
-						);
-						await page.click("button.run-control");
-						await page.waitForFunction(() =>
-							[...document.querySelectorAll(".output-line")].some(
-								line =>
-									line.textContent.includes(
-										"ctest --test-dir build"
+							);
+							if (width < 900) {
+								await page
+									.locator(
+										".mobile-view-picker button[data-view='code']"
 									)
-							)
-						);
-						assert.ok(
-							await page.$eval(
-								".result-panel",
-								(p, role) =>
-									p.textContent.includes("Linux x86-64")
-									&& p.textContent.includes(
-										role === "starter"
-											? "exits 78"
-											: "total=100"
-									),
-								role
-							)
-						);
-						assert.equal(
-							await page.$(
-								"iframe[title='Isolated Python output']"
-							),
-							null
-						);
-						await downloadProjectZip(page);
-						const base64 = await page.evaluate(async () =>
-							btoa(
-								Array.from(
-									new Uint8Array(
-										await window.__assemblyArchive.arrayBuffer()
-									),
-									byte => String.fromCharCode(byte)
-								).join("")
-							)
-						);
-						const entries = unzipSync(
-							Buffer.from(base64, "base64")
-						);
-						assert.equal(Object.keys(entries).length, 7);
-						for (const file of saved.files) {
-							const source
-								= fixture.files[`${fixture.pack}/${file.name}`];
-							const path = Object.keys(entries).find(path =>
-								path.endsWith(`/${file.name}`)
-							);
-							assert.equal(file.content, source.content);
+									.click();
+							}
+							await page.waitForSelector(".cm-content", {
+								visible: true
+							});
 							assert.equal(
-								strFromU8(entries[path]),
-								source.content
+								await page.$(
+									".mobile-view-picker button[data-view='canvas']"
+								),
+								null
+							);
+							await page.waitForSelector(
+								"button.run-control:not([disabled])"
 							);
 							assert.equal(
-								createHash("sha256")
-									.update(entries[path])
-									.digest("hex"),
-								source.sha256
+								await page.$eval("button.run-control", b =>
+									b.textContent.trim()),
+								"Build instructions"
 							);
-						}
-						if (width === 1280 && theme === "light") {
-							await writeFile(
-								join(exports, `${fixture.pack}-${role}.zip`),
+							await page.click("button.run-control");
+							await page.waitForFunction(() =>
+								[...document.querySelectorAll(".output-line")].some(
+									line =>
+										line.textContent.includes(
+											"ctest --test-dir build"
+										)
+								)
+							);
+							assert.ok(
+								await page.$eval(
+									".result-panel",
+									(p, { role, calculator }) =>
+										p.textContent.includes("Linux x86-64")
+										&& p.textContent.includes(
+											role === "starter"
+												? "exits 78"
+												: calculator ? "12,589" : "total=100"
+										),
+									{ role, calculator }
+								)
+							);
+							assert.equal(
+								await page.$(
+									"iframe[title='Isolated Python output']"
+								),
+								null
+							);
+							await downloadProjectZip(page);
+							const base64 = await page.evaluate(async () =>
+								btoa(
+									Array.from(
+										new Uint8Array(
+											await window.__assemblyArchive.arrayBuffer()
+										),
+										byte => String.fromCharCode(byte)
+									).join("")
+								)
+							);
+							const entries = unzipSync(
 								Buffer.from(base64, "base64")
 							);
-						}
-						if (width < 900) {
-							await page
-								.locator(
-									".mobile-view-picker button[data-view='code']"
-								)
-								.click();
-						}
-						const name = `${role}/routine.S`;
-						const edit = `${saved.files.find(file => file.name === name).content}\n/* Saved Assembly attempt. */\n`;
-						await page.click(".cm-content");
-						const modifier = await page.evaluate(() =>
-							/Mac/.test(navigator.platform) ? "Meta" : "Control"
-						);
-						await page.keyboard.down(modifier);
-						await page.keyboard.press("a");
-						await page.keyboard.up(modifier);
-						await page.keyboard.sendCharacter(edit);
-						await page.keyboard.down(modifier);
-						await page.keyboard.press("s");
-						await page.keyboard.up(modifier);
-						await page.waitForFunction(
-							(s, k, n, c) =>
-								JSON.parse(localStorage.getItem(s))
-									.find(p => p.courseProjectKey === k)
-									?.files
-									.some(
-										f => f.name === n && f.content === c
-									),
-							{},
-							storageKey,
-							key,
-							name,
-							edit
-						);
-						await page.reload({ waitUntil: "domcontentloaded" });
-						await page.waitForSelector(
-							"button.run-control:not([disabled])"
-						);
-						const reloaded = await page.evaluate(
-							(s, k) =>
-								JSON.parse(localStorage.getItem(s)).find(
-									p => p.courseProjectKey === k
-								),
-							storageKey,
-							key
-						);
-						assert.deepEqual(
-							reloaded.files,
-							saved.files.map(file =>
-								file.name === name
-									? { ...file, content: edit }
-									: file
-							)
-						);
-						assert.equal(
-							requests.length,
-							7,
-							"Reload reuses saved work without fetching source"
-						);
-						await downloadProjectZip(page);
-						const edited = await page.evaluate(async () =>
-							btoa(
-								Array.from(
-									new Uint8Array(
-										await window.__assemblyArchive.arrayBuffer()
-									),
-									byte => String.fromCharCode(byte)
-								).join("")
-							)
-						);
-						const editedEntries = unzipSync(
-							Buffer.from(edited, "base64")
-						);
-						for (const file of reloaded.files) {
-							assert.equal(
-								strFromU8(
-									editedEntries[
-										Object.keys(editedEntries).find(path =>
-											path.endsWith(`/${file.name}`)
-										)
-									]
-								),
-								file.content
+							assert.equal(Object.keys(entries).length, 7);
+							for (const file of saved.files) {
+								const source
+									= fixture.files[`${fixture.pack}/${file.name}`];
+								const path = Object.keys(entries).find(path =>
+									path.endsWith(`/${file.name}`)
+								);
+								assert.equal(file.content, source.content);
+								assert.equal(
+									strFromU8(entries[path]),
+									source.content
+								);
+								assert.equal(
+									createHash("sha256")
+										.update(entries[path])
+										.digest("hex"),
+									source.sha256
+								);
+							}
+							if (width === 1280 && theme === "light") {
+								await writeFile(
+									join(exports, `${fixture.pack}-${role}.zip`),
+									Buffer.from(base64, "base64")
+								);
+							}
+							if (width < 900) {
+								await page
+									.locator(
+										".mobile-view-picker button[data-view='code']"
+									)
+									.click();
+							}
+							const name = `${role}/${primary}`;
+							const edit = `${saved.files.find(file => file.name === name).content}\n/* Saved Assembly attempt. */\n`;
+							await page.click(".cm-content");
+							const modifier = await page.evaluate(() =>
+								/Mac/.test(navigator.platform) ? "Meta" : "Control"
 							);
-						}
-						const returnHref = await page.$$eval("a", links =>
-							links
-								.find(
-									link =>
-										link.textContent.trim()
-										=== "Return to lesson"
+							await page.keyboard.down(modifier);
+							await page.keyboard.press("a");
+							await page.keyboard.up(modifier);
+							await page.keyboard.sendCharacter(edit);
+							await page.keyboard.down(modifier);
+							await page.keyboard.press("s");
+							await page.keyboard.up(modifier);
+							await page.waitForFunction(
+								(s, k, n, c) =>
+									JSON.parse(localStorage.getItem(s))
+										.find(p => p.courseProjectKey === k)
+										?.files
+										.some(
+											f => f.name === n && f.content === c
+										),
+								{},
+								storageKey,
+								key,
+								name,
+								edit
+							);
+							await page.reload({ waitUntil: "domcontentloaded" });
+							await page.waitForSelector(
+								"button.run-control:not([disabled])"
+							);
+							const reloaded = await page.evaluate(
+								(s, k) =>
+									JSON.parse(localStorage.getItem(s)).find(
+										p => p.courseProjectKey === k
+									),
+								storageKey,
+								key
+							);
+							assert.deepEqual(
+								reloaded.files,
+								saved.files.map(file =>
+									file.name === name
+										? { ...file, content: edit }
+										: file
 								)
-								?.getAttribute("href"));
-						assert.equal(returnHref, `/courses#${lesson}`);
-						assert.ok(
-							await page.evaluate(
-								() =>
-									document.documentElement.scrollWidth
-									<= innerWidth + 1
-							)
-						);
-						const capture = `course-import-assembly-${role}-${width}-${theme}.png`;
-						await page.screenshot({
-							path: join(captures, capture),
-							fullPage: true
-						});
-						proof.push({
-							role,
-							width,
-							theme,
-							files: saved.files.map(f => ({
+							);
+							assert.equal(
+								requests.length,
+								7,
+								"Reload reuses saved work without fetching source"
+							);
+							await downloadProjectZip(page);
+							const edited = await page.evaluate(async () =>
+								btoa(
+									Array.from(
+										new Uint8Array(
+											await window.__assemblyArchive.arrayBuffer()
+										),
+										byte => String.fromCharCode(byte)
+									).join("")
+								)
+							);
+							const editedEntries = unzipSync(
+								Buffer.from(edited, "base64")
+							);
+							for (const file of reloaded.files) {
+								assert.equal(
+									strFromU8(
+										editedEntries[
+											Object.keys(editedEntries).find(path =>
+												path.endsWith(`/${file.name}`)
+											)
+										]
+									),
+									file.content
+								);
+							}
+							const returnHref = await page.$$eval("a", links =>
+								links
+									.find(
+										link =>
+											link.textContent.trim()
+											=== "Return to lesson"
+									)
+									?.getAttribute("href"));
+							assert.equal(returnHref, `/courses#${lesson}`);
+							assert.ok(
+								await page.evaluate(
+									() =>
+										document.documentElement.scrollWidth
+										<= innerWidth + 1
+								)
+							);
+							const capture = `course-import-assembly-${fixture.pack}-${role}-${width}-${theme}.png`;
+							await page.screenshot({
+								path: join(captures, capture),
+								fullPage: true
+							});
+							proof.push({ pack: fixture.pack, role, width, theme, files: saved.files.map(f => ({
 								name: f.name,
 								sha256: createHash("sha256")
 									.update(f.content)
 									.digest("hex")
-							})),
-							confirmedBeforeFetch: true,
-							savedEditReloaded: true,
-							editedExportExact: true,
-							legacyPreserved: true,
-							returnHref,
-							capture
-						});
+							})), confirmedBeforeFetch: true, savedEditReloaded: true, editedExportExact: true, legacyPreserved: true, returnHref, capture });
+						}
 					}
 				}
 			}
@@ -430,7 +419,7 @@ test(
 		catch (error) {
 			if (page) {
 				await page.screenshot({ path: join(captures, "assembly-failure.png"), fullPage: true });
-				await writeFile(join(captures, "assembly-failure.json"), JSON.stringify(await page.evaluate(s => ({ url: location.href, body: document.body.innerText.slice(-7000), storage: localStorage.getItem(s) }), storageKey), null, 2));
+				await writeFile(join(captures, "assembly-failure.json"), JSON.stringify(await page.evaluate(s => ({ url: location.href, body: (document.body.textContent ?? "").slice(-7000), storage: localStorage.getItem(s) }), storageKey), null, 2));
 			}
 			throw error;
 		}

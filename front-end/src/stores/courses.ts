@@ -7,10 +7,7 @@ import type {
 import { defineStore } from "pinia";
 
 import { computed } from "vue";
-import {
-	assemblyOpeningPack,
-	assemblySourceRevision
-} from "@/modules/assemblyProjectResources";
+import { assemblyVerifiedPacks } from "@/modules/assemblyProjectResources";
 import { c17VerifiedPacks } from "@/modules/c17ProjectResources";
 import {
 	isInstructionMaterialResourceUrl,
@@ -340,8 +337,11 @@ function canonicalizeResourceUrl(url?: string) {
 		if (
 			owner.toLowerCase() === "instruction-material" &&
 			repo.toLowerCase() === "assembly" &&
-			ref === assemblySourceRevision &&
-			fileSegments.join("/") === `${assemblyOpeningPack}/README.md`
+			assemblyVerifiedPacks.some(
+				pack =>
+					pack.revision === ref &&
+					fileSegments.join("/") === `${pack.pack}/README.md`
+			)
 		) {
 			return trimmedUrl;
 		}

@@ -12,25 +12,50 @@ export const assemblyRoleFiles = [
 	"CMakeLists.txt"
 ] as const;
 
+export const assemblyCalculatorRevision =
+	"37756ab58d42d47a3ae1449950125f444691273f";
+export const assemblyCalculatorPack = "ASM1-Integer-Calculator";
+export const assemblyVerifiedPacks = [
+	{
+		pack: assemblyOpeningPack,
+		revision: assemblySourceRevision,
+		roleFiles: assemblyRoleFiles
+	},
+	{
+		pack: assemblyCalculatorPack,
+		revision: assemblyCalculatorRevision,
+		roleFiles: [
+			"calculator.S",
+			"main.c",
+			"calculator.h",
+			"abi_checks.S",
+			"tests.c",
+			"CMakeLists.txt"
+		]
+	}
+] as const;
+
 export function assemblyCourseResource(url: string) {
 	const resource = parseGitHubResource(url);
 	if (
 		!resource ||
 		resource.owner.toLowerCase() !== "instruction-material" ||
-		resource.repo.toLowerCase() !== "assembly" ||
-		resource.ref !== assemblySourceRevision
+		resource.repo.toLowerCase() !== "assembly"
 	) {
 		return null;
 	}
 	const [pack, role, ...rest] = resource.path.split("/");
+	const definition = assemblyVerifiedPacks.find(
+		p => p.pack === pack && p.revision === resource.ref
+	);
 	if (
-		pack !== assemblyOpeningPack ||
+		!definition ||
 		rest.length ||
 		(role !== "starter" && role !== "solution")
 	) {
 		return null;
 	}
-	return { resource, pack, role };
+	return { resource, pack, role, definition };
 }
 
 export function assemblyCourseProjectKey(
@@ -48,9 +73,9 @@ export function assemblyCourseProjectKey(
 export function assemblyImportFiles(url: string) {
 	const selected = assemblyCourseResource(url);
 	if (!selected) return null;
-	const { resource, pack, role } = selected;
+	const { resource, pack, role, definition } = selected;
 	return [
-		...assemblyRoleFiles.map(name => `${role}/${name}`),
+		...definition.roleFiles.map(name => `${role}/${name}`),
 		"README.md"
 	].map(name => {
 		const path = `${pack}/${name}`;

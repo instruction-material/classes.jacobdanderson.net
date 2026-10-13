@@ -40,9 +40,26 @@ function installLocalStorageStub() {
 }
 
 describe("CourseExplorer.vue", () => {
-	it.each(["learner", "instructor"])(
-		"opens the Assembly opening card with separate %s role links",
-		async role => {
+	it.each(
+		["learner", "instructor"].flatMap(role => [
+			{
+				role,
+				pack: "ASM-04-asm0-setup-and-tooling",
+				module: "asm0-setup-and-tooling",
+				item: "assembly-asm0-setup-and-tooling-curriculum-core-project-assembly",
+				revision: "117e34fb8ff90c2046da71090c37e7b45ef20624"
+			},
+			{
+				role,
+				pack: "ASM1-Integer-Calculator",
+				module: "unit-2-registers-and-data-movement",
+				item: "assembly-unit-2-registers-and-data-movement-curriculum-project-integer-calculator-in-assembly",
+				revision: "37756ab58d42d47a3ae1449950125f444691273f"
+			}
+		])
+	)(
+		"opens the $pack card with separate $role role links",
+		async ({ role, pack, module, item, revision }) => {
 			const pinia = createPinia();
 			setActivePinia(pinia);
 			const app = useAppStore();
@@ -74,11 +91,7 @@ describe("CourseExplorer.vue", () => {
 					data: [app.currentUser!]
 				});
 			}
-			window.history.replaceState(
-				{},
-				"",
-				"/courses#assembly-asm0-setup-and-tooling"
-			);
+			window.history.replaceState({}, "", `/courses#assembly-${module}`);
 			const wrapper = mount(CourseExplorer, {
 				global: { plugins: [pinia] }
 			});
@@ -98,9 +111,7 @@ describe("CourseExplorer.vue", () => {
 					.findAll(".lesson-item")
 					.find(item =>
 						item
-							.find(
-								'a.is-project[href*="/ASM-04-asm0-setup-and-tooling/starter"]'
-							)
+							.find(`a.is-project[href*="/${pack}/starter"]`)
 							.exists()
 					)!;
 				expect(card).toBeDefined();
@@ -113,10 +124,10 @@ describe("CourseExplorer.vue", () => {
 					);
 					expect(url.searchParams.get("mode")).toBe("assembly");
 					expect(url.searchParams.get("projectKey")).toBe(
-						`assembly:assembly-asm0-setup-and-tooling-curriculum-core-project-assembly:${index === 0 ? "starter" : "reference"}:native-assembly`
+						`assembly:${item}:${index === 0 ? "starter" : "reference"}:native-assembly`
 					);
 					expect(url.searchParams.get("starterUrl")).toBe(
-						`https://github.com/instruction-material/Assembly/tree/117e34fb8ff90c2046da71090c37e7b45ef20624/ASM-04-asm0-setup-and-tooling/${index === 0 ? "starter" : "solution"}`
+						`https://github.com/instruction-material/Assembly/tree/${revision}/${pack}/${index === 0 ? "starter" : "solution"}`
 					);
 				}
 			} finally {

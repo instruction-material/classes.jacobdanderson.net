@@ -2627,7 +2627,6 @@ export function resolvePythonIdeActiveFileName(
 		files.find(file => file.name === preferredFileName)?.name ??
 		files.find(file => file.name === "Main.java")?.name ??
 		files.find(file => file.name === "Algo.java")?.name ??
-		files.find(file => /(?:^|\/)routine\.S$/.test(file.name))?.name ??
 		files.find(file => /(?:^|\/)main\.c$/i.test(file.name))?.name ??
 		files.find(file => file.name === "main.cpp")?.name ??
 		files.find(file => file.name === "main.py")?.name ??
@@ -2701,7 +2700,12 @@ export function createPythonIdeProject(
 		title: options.title ?? projectTitleForMode(mode, template),
 		mode,
 		files,
-		activeFileName: resolvePythonIdeActiveFileName(files),
+		activeFileName: resolvePythonIdeActiveFileName(
+			files,
+			mode === "assembly"
+				? files.find(file => /\.s$/i.test(file.name))?.name
+				: undefined
+		),
 		courseID: options.courseID,
 		courseProjectKey: options.courseProjectKey,
 		courseProjectTitle: options.courseProjectTitle,

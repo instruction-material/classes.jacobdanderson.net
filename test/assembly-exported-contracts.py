@@ -12,12 +12,13 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
+parser.add_argument("--project", choices=["opening", "calculator"], default="opening")
 parser.add_argument("--archives", type=Path, required=True)
 parser.add_argument("--cc", choices=["clang", "gcc"], required=True)
 parser.add_argument("--skip-debugger", action="store_true")
 parser.add_argument("--proof", type=Path, required=True)
 args = parser.parse_args()
-fixture = json.loads((ROOT / "test/fixtures/assembly-opening-contracts.json").read_text())
+fixture = json.loads((ROOT / ("test/fixtures/assembly-" + args.project + "-contracts.json")).read_text())
 args.proof.parent.mkdir(parents=True, exist_ok=True)
 
 def run(command, cwd):
@@ -62,17 +63,18 @@ with tempfile.TemporaryDirectory(prefix="assembly-site-export-") as work:
                     assert path.read_bytes() == data
                 path.write_bytes(data)
                 hashes[name] = file["sha256"]
-    with zipfile.ZipFile(args.archives / "assembly-default.zip") as source:
-        demo = root / "default"
-        demo.mkdir()
-        assert len(source.namelist()) == 3
-        for name in ["routine.S", "main.c", "README.md"]:
-            matches = [path for path in source.namelist() if path.endswith("/" + name)]
-            assert len(matches) == 1
-            (demo / name).write_bytes(source.read(matches[0]))
-        run([args.cc, "-std=c17", "-Wall", "-Wextra", "-Wpedantic", "-Werror", "main.c", "routine.S", "-o", "example"], demo)
-        assert run([str(demo / "example")], demo) == b"result=11\n"
-    verifier = root / "test/verify_opening.py"
+    if args.project == "opening":
+        with zipfile.ZipFile(args.archives / "assembly-default.zip") as source:
+            demo = root / "default"
+            demo.mkdir()
+            assert len(source.namelist()) == 3
+            for name in ["routine.S", "main.c", "README.md"]:
+                matches = [path for path in source.namelist() if path.endswith("/" + name)]
+                assert len(matches) == 1
+                (demo / name).write_bytes(source.read(matches[0]))
+            run([args.cc, "-std=c17", "-Wall", "-Wextra", "-Wpedantic", "-Werror", "main.c", "routine.S", "-o", "example"], demo)
+            assert run([str(demo / "example")], demo) == b"result=11\n"
+    verifier = root / ("test/verify_" + args.project + ".py")
     verifier.parent.mkdir()
     verifier.write_text(fixture["nativeVerification"])
     command = ["python3", str(verifier), "--cc", args.cc, "--proof", str(args.proof.resolve())]
@@ -80,7 +82,8 @@ with tempfile.TemporaryDirectory(prefix="assembly-site-export-") as work:
         command.append("--skip-debugger")
     run(command, root)
     receipt = json.loads(args.proof.read_text())
-    receipt["defaultWorkspaceNativeOutput"] = "result=11\n"
+    if args.project == "opening":
+        receipt["defaultWorkspaceNativeOutput"] = "result=11\n"
     receipt["siteExportedFiles"] = hashes
     receipt["sourceRevision"] = fixture["revision"]
     args.proof.write_text(json.dumps(receipt, indent=2) + "\n")
