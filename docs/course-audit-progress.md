@@ -1954,6 +1954,15 @@ The five-pack browser gate edits each actual implementation file through the
 file selector, saves and reopens it, and verifies original and edited ZIP bytes.
 Every responsive learner/reference case also preserves an earlier three-part
 project key for the same lesson and role. The committed shared source passed
-109 focused checks, type checking and lint independently on both sites. The
+115 focused checks including the full catalog neutral-copy guard, type checking
+and lint independently on both sites. The
 broader local unit runs timed out and are not accepted evidence; hosted full
 CI and browser images remain required for the new site heads.
+
+The full hosted unit gate caught three instructor-facing sentences in the new
+project reading. They now describe the starter implementation directly; the
+complete guide checks allow only these explicit copy edits and the existing
+neutral role wording. Both sites also pass all 267 course-quality checks. The catalog copy guard
+remains unchanged. Earlier
+failed review runs are retained and were stopped before replacement browser
+runs, so each site has at most one active browser job.

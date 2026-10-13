@@ -159,6 +159,26 @@ describe("native C17 source workspace", () => {
 					.slice(guide.indexOf("\n") + 1)
 					.replaceAll("An instructor", "A course facilitator")
 					.replaceAll("instructor", "course facilitator")
+					.replaceAll(
+						"The existing dispatcher should accept it without",
+						"The existing dispatcher accepts it without"
+					)
+					.replaceAll(
+						"the two TODO comments in",
+						"the two `TODO` comments in"
+					)
+					.replaceAll(
+						"the TODO in `main.c`",
+						"the `TODO` in `main.c`"
+					)
+					.replaceAll(
+						"Use `starter` for the learner attempt.",
+						"The `starter` directory contains the implementation to complete."
+					)
+					.replaceAll(
+						"Unlike earlier learners,",
+						"Unlike earlier starter projects,"
+					)
 					.trim()
 			);
 			expect(item.ideImport).toBe(true);
