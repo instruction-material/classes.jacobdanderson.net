@@ -90,6 +90,20 @@ export const c17VerifiedPacks = [
 			"CMakeLists.txt"
 		],
 		supportFiles: ["README.md"]
+	},
+	{
+		pack: "CSE3-XOR-Encoder-Decoder",
+		revision: "ecf421bd45977b9b63d79b9c2b7af20a921de0c2",
+		roleFiles: [
+			"main.c",
+			"input.c",
+			"input.h",
+			"transform.c",
+			"transform.h",
+			"tests.c",
+			"CMakeLists.txt"
+		],
+		supportFiles: ["README.md"]
 	}
 ] as const;
 

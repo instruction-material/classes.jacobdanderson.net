@@ -2030,6 +2030,35 @@ and application builds. Each passes 56 C browser imports, 112 original/edited
 exports and preservation of 56 matching older attempts. Actual Bitflag ZIPs
 pass native Clang checks for every byte value in the reference and an
 independently completed learner, 10,752 model checks, input/failure guards and
-six deliberate regressions. Full hosted CI, security and final-head visual
-acceptance remain pending.
+six deliberate regressions. All required hosted CI and exact-source security
+checks were subsequently accepted. The actual 56 C screenshots and generated
+case proofs per site were retained with verified artifact hashes and reviewed
+before both Bitflag changes were merged.
 The full 77-course audit and release/public verification remain unfinished.
+
+
+## Optional XOR transfer: complete reading and confirmed native imports
+
+The existing optional Unit 3 XOR Encoder Decoder retains its lesson ID and
+now includes the complete accepted guide. The reading covers XOR's truth
+table and reversal, explicit C operator syntax, checked byte keys, message
+and C-string limits, every provided file, independent build/output contracts,
+two learner tasks, predictions, completion evidence and the optional trace.
+The shared bitwise notebook remains a guide resource without adding a
+duplicate XOR assignment or import.
+
+Both roles are pinned to accepted source
+ecf421bd45977b9b63d79b9c2b7af20a921de0c2. Each confirmed import contains only
+the selected role's seven files and unchanged README; earlier attempts remain
+separate. Build instructions distinguish unfinished valid input from malformed
+keys/messages and accurately describe the byte transformation's limits.
+
+Exact source-main Clang and GCC checks accepted all byte/key pairs in the
+reference and independently completed learner, Debug/Release and direct builds,
+CLI boundaries and six deliberate regressions. Both sites passed 147 focused
+tests, 267 course-quality checks, lint, typecheck, build, 64 browser imports and
+128 exports with saved and legacy attempts preserved. Each actual learner and
+reference ZIP matched the pinned source and passed independent Clang native
+checks, including Debug/Release, CLI boundaries and six deliberate regressions.
+Hosted review acceptance and branch consolidation are pending. The full
+77-course audit and authenticated release/public verification remain unfinished.
