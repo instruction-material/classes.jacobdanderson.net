@@ -69,10 +69,16 @@ describe("CourseExplorer.vue", () => {
 					"unit-11-systems-tooling",
 					"unit-2-binary-hex-and-number-representation",
 					"unit-3-bitwise-operations",
-					"unit-3-bitwise-operations"
+					"unit-3-bitwise-operations",
+					"unit-4-memory-and-layout",
+					"unit-5-strings-and-byte-buffers",
+					"unit-6-files-streams-and-parsing",
+					"unit-7-dynamic-memory-and-lifetime",
+					"unit-6-files-streams-and-parsing",
+					"unit-12-capstone-engineering-utility"
 				][index]!,
 				projectPrefix:
-					index === 7
+					index === 7 || index === 12
 						? "supplemental-project"
 						: index >= 5
 							? "curriculum-project"
@@ -85,7 +91,13 @@ describe("CourseExplorer.vue", () => {
 					"systems-tooling",
 					"hex-and-binary-inspector",
 					"bitflag-configuration-parser",
-					"xor-encoder-decoder"
+					"xor-encoder-decoder",
+					"memory-visualizer-for-arrays-and-structs",
+					"byte-buffer-workbench",
+					"packet-serializer-deserializer",
+					"dynamic-ring-buffer",
+					"fixed-size-log-file-reader",
+					"capstone-telemetry-transform-cli"
 				][index]!
 			}))
 		)
@@ -145,7 +157,8 @@ describe("CourseExplorer.vue", () => {
 						button =>
 							button.text() ===
 							(pack === "CSE1-Hex-and-Binary-Inspector" ||
-							pack === "CSE3-XOR-Encoder-Decoder"
+							pack === "CSE3-XOR-Encoder-Decoder" ||
+							pack === "CSE8-Fixed-Size-Log-File-Reader"
 								? "Supplemental Projects"
 								: "Projects")
 					)!

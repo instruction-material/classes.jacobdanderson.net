@@ -23,15 +23,23 @@ const primarySources = {
 	"CSE-09-unit-11-systems-tooling": "engineering_math.c",
 	"CSE1-Hex-and-Binary-Inspector": "representation.c",
 	"CSE2-Bitflag-Configuration-Parser": "configuration.c",
-	"CSE3-XOR-Encoder-Decoder": "transform.c"
+	"CSE3-XOR-Encoder-Decoder": "transform.c",
+	"CSE4-Memory-Visualizer": "layout.c",
+	"CSE5-Byte-Buffer-Workbench": "buffers.c",
+	"CSE6-Packet-Serializer-Deserializer": "packet.c",
+	"CSE7-Dynamic-Ring-Buffer": "ring.c",
+	"CSE8-Fixed-Size-Log-File-Reader": "log.c",
+	"CSE9-Capstone-Telemetry-Transform-CLI": "telemetry.c"
 };
 const storageKey = "classes-python-ide-projects:anonymous";
 const preserved = { _id: "c17-preserved-attempt", title: "Earlier attempt", mode: "python", files: [{ name: "main.py", content: "# retain this attempt\n" }], activeFileName: "main.py", courseProjectKey: "c-systems-engineering:setup:starter" };
+const ringUnit9Legacy = ["starter", "reference"].map(role => ({ ...preserved, _id: `legacy-ring-unit9:${role}`, title: "Earlier Unit 9 attempt", courseProjectKey: `c-systems-engineering:c-systems-engineering-unit-9-data-structures-in-c-curriculum-project-pass-extend-the-dynamic-ring-buffer:${role}` }));
 const legacyAttempts = [1280, 360].flatMap(width =>
 	["light", "dark"].flatMap(theme =>
 		packs.flatMap(pack =>
 			["starter", "reference"].map((role) => {
-				const key = `c-systems-engineering:${pack}-${width}-${theme}:${role}`;
+				const item = pack === "CSE7-Dynamic-Ring-Buffer" && width === 1280 && theme === "light" ? "c-systems-engineering-unit-7-dynamic-memory-and-lifetime-curriculum-project-dynamic-ring-buffer" : `${pack}-${width}-${theme}`;
+				const key = `c-systems-engineering:${item}:${role}`;
 				return { ...preserved, _id: `legacy:${key}`, title: "Earlier matching attempt", courseProjectKey: key };
 			})
 		)
@@ -68,7 +76,7 @@ test("native C imports require consent and preserve source, saved attempts, role
 				if (blob.type === "application/zip") window.__c17Archive = blob;
 				return create(blob);
 			};
-		}, storageKey, [preserved, ...legacyAttempts]);
+		}, storageKey, [preserved, ...legacyAttempts, ...ringUnit9Legacy]);
 		await page.setRequestInterception(true);
 		let sourceRequests = [];
 		page.on("request", (request) => {
@@ -96,7 +104,7 @@ test("native C imports require consent and preserve source, saved attempts, role
 						await page.emulateMediaFeatures([{ name: "prefers-color-scheme", value: theme }]);
 						// Each responsive case creates its own role key without changing any
 						// previously saved project's files or the original course progress IDs.
-						const item = `${pack}-${width}-${theme}`;
+						const item = pack === "CSE7-Dynamic-Ring-Buffer" && width === 1280 && theme === "light" ? "c-systems-engineering-unit-7-dynamic-memory-and-lifetime-curriculum-project-dynamic-ring-buffer" : `${pack}-${width}-${theme}`;
 						const key = `c-systems-engineering:${item}:${role === "starter" ? "starter" : "reference"}:native-c17`;
 						const params = new URLSearchParams({ course: "c-systems-engineering", mode: "c", projectKey: key, starterUrl: `https://github.com/${fixture.repository}/tree/${revision}/${pack}/${role}`, starterTitle: "C17 core project" });
 						sourceRequests = [];
@@ -196,12 +204,30 @@ test("native C imports require consent and preserve source, saved attempts, role
 						assert.equal(reloaded.activeFileName, editFile);
 						const legacyReloaded = await page.evaluate((storageKey, legacyKey) => JSON.parse(localStorage.getItem(storageKey)).find(project => project.courseProjectKey === legacyKey), storageKey, legacyKey);
 						assert.deepEqual(legacyReloaded, legacyAttempt);
-						proof.push({ pack, revision, role, width, theme, editedFile: editFile, matchingLegacySlotPreserved: true, files: saved.files.length, capture, byteExact: true, editedExportPreserved: true, savedAttemptPreserved: true });
+						let maintainedRingAttempt = false;
+						if (pack === "CSE7-Dynamic-Ring-Buffer" && width === 1280 && theme === "light") {
+							const beforeCount = await page.evaluate(key => JSON.parse(localStorage.getItem(key)).length, storageKey);
+							params.set("lesson", "c-systems-engineering-unit-9-data-structures-in-c-c-systems-engineering-unit-9-data-structures-in-c-curriculum-project-pass-extend-the-dynamic-ring-buffer");
+							sourceRequests = [];
+							await page.goto(`${origin}/ide?${params}`, { waitUntil: "domcontentloaded" });
+							await page.waitForSelector("button.run-control:not([disabled])");
+							const maintained = await page.evaluate((storageKey, key) => JSON.parse(localStorage.getItem(storageKey)).find(project => project.courseProjectKey === key), storageKey, key);
+							assert.deepEqual(maintained.files, expectedSavedFiles);
+							assert.equal(maintained.activeFileName, editFile);
+							assert.equal(sourceRequests.length, 0, "Unit 9 must reuse saved source without a new import");
+							assert.equal(await page.evaluate(key => JSON.parse(localStorage.getItem(key)).length, storageKey), beforeCount);
+							for (const older of ringUnit9Legacy) {
+								assert.deepEqual(await page.evaluate((key, id) => JSON.parse(localStorage.getItem(key)).find(project => project._id === id), storageKey, older._id), older);
+							}
+							maintainedRingAttempt = true;
+						}
+						proof.push({ pack, revision, role, width, theme, maintainedRingAttempt, editedFile: editFile, matchingLegacySlotPreserved: true, files: saved.files.length, capture, byteExact: true, editedExportPreserved: true, savedAttemptPreserved: true });
 					}
 				}
 			}
 		}
 		assert.equal(proof.length, packs.length * 8);
+		assert.equal(proof.filter(item => item.maintainedRingAttempt).length, 2);
 		await writeFile(join(captures, "c17-workflow-proof.json"), `${JSON.stringify({ revisions: fixture.revisions, imports: proof.length, cases: proof }, null, 2)}\n`);
 		console.log(JSON.stringify({ event: "c17-browser-workflow-accepted", sourceRevision: fixture.revision, sourceRevisions: fixture.revisions, packs: packs.length, imports: proof.length, exports: proof.length * 2, editedExports: proof.length, savedAttemptPreserved: true, legacySlotsPreserved: proof.length, primarySourceEdits: true }));
 	}

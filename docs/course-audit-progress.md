@@ -2062,3 +2062,24 @@ reference ZIP matched the pinned source and passed independent Clang native
 checks, including Debug/Release, CLI boundaries and six deliberate regressions.
 Hosted review acceptance and branch consolidation are pending. The full
 77-course audit and authenticated release/public verification remain unfinished.
+
+
+## Native C systems labs: six accepted source packs
+
+The memory, byte-buffer, packet, dynamic-ring, optional binary-log and telemetry
+projects use immutable source 7e301cb656d73e56182bc5d9bba279c9adf78372.
+Complete guides remain available in each lesson and unchanged in the exported
+role pack. Notebook links are guide-only resources. Unit 9 retains separate
+lesson progress while reopening the saved Unit 7 ring-buffer implementation
+for distinct invariant, trace and operation-cost evidence.
+
+The source passed hosted Clang/GCC checks, six independently completed learner
+implementations, 18 Debug and 18 Release profiles, two layout profiles,
+18 direct builds, 250 CLI and 184 real-file cases, and six deliberate
+regressions. Existing files are preserved during log reads and telemetry
+validation; sample creation and new output paths are explicit. Original source
+and site bytes are retained separately. Both site candidates passed 186 focused checks, 267 course-quality checks,
+lint, type checking, complete builds, 112 browser import cases and 224 ZIP
+exports each. Each site's twelve actual exported roles also passed the full
+six-lab native suite. Hosted CI and final artifact review remain pending. This batch does not complete the 77-course audit or
+activate a production release.
