@@ -580,97 +580,107 @@ describe("Python project review routes", () => {
 		});
 	});
 
-	it("saves, shares, and edits a C17 review while preserving the learner's complete pack", async () => {
-		const fixture = JSON.parse(
-			readFileSync(
-				resolve(
-					process.cwd(),
-					"../test/fixtures/c17-opening-contracts.json"
-				),
-				"utf8"
+	it.each(["c", "assembly"] as const)(
+		"saves, shares, and edits a %s review while preserving the learner's complete pack",
+		async mode => {
+			const fixture = JSON.parse(
+				readFileSync(
+					resolve(
+						process.cwd(),
+						mode === "assembly"
+							? "../test/fixtures/assembly-opening-contracts.json"
+							: "../test/fixtures/c17-opening-contracts.json"
+					),
+					"utf8"
+				)
+			);
+			const pack =
+				mode === "assembly"
+					? "ASM-04-asm0-setup-and-tooling"
+					: "CSE-06-unit-1-why-c-for-systems-work";
+			const activeFileName =
+				mode === "assembly" ? "starter/routine.S" : "starter/main.c";
+			const files = Object.entries(
+				fixture.files as Record<string, { content: string }>
 			)
-		);
-		const pack = "CSE-06-unit-1-why-c-for-systems-work";
-		const files = Object.entries(
-			fixture.files as Record<string, { content: string }>
-		)
-			.filter(
-				([path]) =>
-					path.startsWith(`${pack}/starter/`) ||
-					path === `${pack}/README.md`
-			)
-			.map(([path, file]) => ({
-				name: path.slice(pack.length + 1),
-				content: file.content,
-				encoding: "text"
-			}));
-		const project = makeProject({
-			mode: "c",
-			files,
-			activeFileName: "starter/main.c",
-			courseID: "c-systems-engineering",
-			courseProjectKey:
-				"c-systems-engineering:linking:starter:native-c17",
-			shared: true,
-			shareID: "share_C17_native_123456789"
-		});
-		modelMocks.pythonProjectFindOne.mockResolvedValue(project);
-		modelMocks.pythonProjectReviewFindOne.mockResolvedValueOnce(null);
-		await withUserRoutes(async baseUrl => {
-			const update = await putJson(
-				baseUrl,
-				`/users/loggedin/python-projects/${projectID}`,
-				{ files, activeFileName: "starter/main.c" },
-				{ "x-user-id": studentID.toString() }
+				.filter(
+					([path]) =>
+						path.startsWith(`${pack}/starter/`) ||
+						path === `${pack}/README.md`
+				)
+				.map(([path, file]) => ({
+					name: path.slice(pack.length + 1),
+					content: file.content,
+					encoding: "text"
+				}));
+			const project = makeProject({
+				mode,
+				files,
+				activeFileName,
+				courseID: mode === "assembly" ? "assembly" : "c-systems-engineering",
+				courseProjectKey:
+					mode === "assembly" ? "assembly:opening:starter:native-assembly" : "c-systems-engineering:linking:starter:native-c17",
+				shared: true,
+				shareID: "share_C17_native_123456789"
+			});
+			modelMocks.pythonProjectFindOne.mockResolvedValue(project);
+			modelMocks.pythonProjectReviewFindOne.mockResolvedValueOnce(null);
+			await withUserRoutes(async baseUrl => {
+				const update = await putJson(
+					baseUrl,
+					`/users/loggedin/python-projects/${projectID}`,
+					{ files, activeFileName },
+					{ "x-user-id": studentID.toString() }
+				);
+				expect(update.status).toBe(200);
+				expect((await update.json()).project.files).toEqual(files);
+				const shared = await fetch(
+					`${baseUrl}/users/python-projects/shared/${project.shareID}`
+				);
+				expect(shared.status).toBe(200);
+				const sharedBody = await shared.json();
+				expect(sharedBody.project.mode).toBe(mode);
+				expect(sharedBody.project.files).toEqual(files);
+				const created = await postJson(
+					baseUrl,
+					`/users/${studentID}/python-projects/${projectID}/review`,
+					{},
+					{ "x-admin-id": adminID.toString() }
+				);
+				expect(created.status).toBe(201);
+				expect((await created.json()).review.files).toEqual(files);
+			});
+			const review = makeReview({
+				mode,
+				files: structuredClone(files),
+				activeFileName
+			});
+			modelMocks.pythonProjectReviewFindOne.mockResolvedValue(review);
+			const revised = files.map(file =>
+				file.name ===
+				(mode === "assembly" ? "starter/routine.S" : "starter/labels.c")
+					? {
+							...file,
+							content: file.content + "\n/* staff feedback */\n"
+						}
+					: file
 			);
-			expect(update.status).toBe(200);
-			expect((await update.json()).project.files).toEqual(files);
-			const shared = await fetch(
-				`${baseUrl}/users/python-projects/shared/${project.shareID}`
-			);
-			expect(shared.status).toBe(200);
-			const sharedBody = await shared.json();
-			expect(sharedBody.project.mode).toBe("c");
-			expect(sharedBody.project.files).toEqual(files);
-			const created = await postJson(
-				baseUrl,
-				`/users/${studentID}/python-projects/${projectID}/review`,
-				{},
-				{ "x-admin-id": adminID.toString() }
-			);
-			expect(created.status).toBe(201);
-			expect((await created.json()).review.files).toEqual(files);
-		});
-		const review = makeReview({
-			mode: "c",
-			files: structuredClone(files),
-			activeFileName: "starter/main.c"
-		});
-		modelMocks.pythonProjectReviewFindOne.mockResolvedValue(review);
-		const revised = files.map(file =>
-			file.name === "starter/labels.c"
-				? {
-						...file,
-						content: file.content + "\n/* staff feedback */\n"
-					}
-				: file
-		);
-		await withUserRoutes(async baseUrl => {
-			const response = await putJson(
-				baseUrl,
-				`/users/${studentID}/python-projects/${projectID}/review/${reviewID}`,
-				{ files: revised, visibleToStudent: true },
-				{ "x-admin-id": adminID.toString() }
-			);
-			expect(response.status).toBe(200);
-			const body = await response.json();
-			expect(body.review.mode).toBe("c");
-			expect(body.review.files).toEqual(revised);
-			expect(body.project.files).toEqual(files);
-			expect(project.files).toEqual(files);
-		});
-	});
-
+			await withUserRoutes(async baseUrl => {
+				const response = await putJson(
+					baseUrl,
+					`/users/${studentID}/python-projects/${projectID}/review/${reviewID}`,
+					{ files: revised, visibleToStudent: true },
+					{ "x-admin-id": adminID.toString() }
+				);
+				expect(response.status).toBe(200);
+				const body = await response.json();
+				expect(body.review.mode).toBe(mode);
+				expect(body.review.files).toEqual(revised);
+				expect(body.project.files).toEqual(files);
+				expect(project.files).toEqual(files);
+			});
+		}
+	);
 
 	it("lets staff create and edit Java IDE review copies without backend execution", async () => {
 		const javaFiles = [

@@ -1,4 +1,6 @@
 import type { RawCourse } from "./types";
+import { assemblyCalculatorProjectReading } from "./assemblyCalculatorProjectReading";
+import { assemblyOpeningProjectReading } from "./assemblyOpeningProjectReading";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { buildProjectGuidance } from "./projectGuidance";
 
@@ -29,17 +31,14 @@ const assemblySourceCourse: RawCourse = {
 						"Position the course after `C Systems Engineering` or equivalent low-level C work. Already be comfortable with pointers, structs, stack versus heap, compilation, and debugger basics before the course asks them to read registers, trace stack frames, and explain calling conventions at the instruction level."
 				},
 				{
-					title: "ASM0 Setup and Tooling: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle: "ASM0 Setup and Tooling",
-						projectKind: "core",
-						hasReference: true
-					}),
+					title: "Core Project: Build and Trace a Linux x86-64 Function",
+					id: "assembly-asm0-setup-and-tooling-curriculum-core-project-assembly",
+					ideImport: true,
+					content: assemblyOpeningProjectReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-04-asm0-setup-and-tooling/starter",
+						"https://github.com/instruction-material/Assembly/tree/117e34fb8ff90c2046da71090c37e7b45ef20624/ASM-04-asm0-setup-and-tooling/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-04-asm0-setup-and-tooling/solution"
+						"https://github.com/instruction-material/Assembly/tree/117e34fb8ff90c2046da71090c37e7b45ef20624/ASM-04-asm0-setup-and-tooling/solution"
 				}
 			],
 			supplementalProjects: [
@@ -48,9 +47,7 @@ const assemblySourceCourse: RawCourse = {
 					content:
 						"Use a focused trace worksheet for setup and tooling that records the key registers, flag changes, memory addresses, and one plain-language explanation of why the control flow moved the way it did. Focus especially on toolchain identity, architecture choice, and why x86-64 is the starting point for the course so the worksheet narrates instruction flow rather than only skimming mnemonics. A complete entry records the instruction address, the value before the instruction, the value after the instruction, and the evidence that explains the next branch, call, or return.",
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-04-asm0-setup-and-tooling/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-04-asm0-setup-and-tooling/solution"
+						"https://github.com/instruction-material/Assembly/blob/117e34fb8ff90c2046da71090c37e7b45ef20624/ASM-04-asm0-setup-and-tooling/README.md"
 				},
 				{
 					title: "Setup and Tooling Transfer Practice",
@@ -175,12 +172,13 @@ const assemblySourceCourse: RawCourse = {
 				},
 				{
 					title: "Project: Integer Calculator in Assembly",
-					content:
-						"The calculator lab makes register flow visible through arithmetic on function arguments and operator-driven dispatch. The project stays small enough to trace by hand while still moving values through argument registers and return registers intentionally.",
+					id: "assembly-unit-2-registers-and-data-movement-curriculum-project-integer-calculator-in-assembly",
+					ideImport: true,
+					content: assemblyCalculatorProjectReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM1-Integer-Calculator/starter",
+						"https://github.com/instruction-material/Assembly/tree/37756ab58d42d47a3ae1449950125f444691273f/ASM1-Integer-Calculator/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM1-Integer-Calculator/solution"
+						"https://github.com/instruction-material/Assembly/tree/37756ab58d42d47a3ae1449950125f444691273f/ASM1-Integer-Calculator/solution"
 				}
 			],
 			supplementalProjects: [
@@ -189,9 +187,7 @@ const assemblySourceCourse: RawCourse = {
 					content:
 						"Use a focused trace worksheet for registers and data movement that records the key registers, flag changes, memory addresses, and one plain-language explanation of why the control flow moved the way it did. Focus especially on which register holds each live value and how width changes alter the interpretation so the worksheet narrates instruction flow rather than only skimming mnemonics. A complete entry records the instruction address, the value before the instruction, the value after the instruction, and the evidence that explains the next branch, call, or return.",
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM1-Integer-Calculator/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM1-Integer-Calculator/solution"
+						"https://github.com/instruction-material/Assembly/blob/37756ab58d42d47a3ae1449950125f444691273f/ASM1-Integer-Calculator/README.md"
 				},
 				{
 					title: "Register Flow Transfer Practice",

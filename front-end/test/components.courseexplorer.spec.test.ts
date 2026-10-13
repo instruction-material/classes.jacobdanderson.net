@@ -40,6 +40,102 @@ function installLocalStorageStub() {
 }
 
 describe("CourseExplorer.vue", () => {
+	it.each(
+		["learner", "instructor"].flatMap(role => [
+			{
+				role,
+				pack: "ASM-04-asm0-setup-and-tooling",
+				module: "asm0-setup-and-tooling",
+				item: "assembly-asm0-setup-and-tooling-curriculum-core-project-assembly",
+				revision: "117e34fb8ff90c2046da71090c37e7b45ef20624"
+			},
+			{
+				role,
+				pack: "ASM1-Integer-Calculator",
+				module: "unit-2-registers-and-data-movement",
+				item: "assembly-unit-2-registers-and-data-movement-curriculum-project-integer-calculator-in-assembly",
+				revision: "37756ab58d42d47a3ae1449950125f444691273f"
+			}
+		])
+	)(
+		"opens the $pack card with separate $role role links",
+		async ({ role, pack, module, item, revision }) => {
+			const pinia = createPinia();
+			setActivePinia(pinia);
+			const app = useAppStore();
+			app.setCurrentUser({
+				_id: "assembly-learner",
+				name: "Learner",
+				email: "learner@example.invalid",
+				age: 14,
+				state: "GA",
+				courseAccess: ["assembly"],
+				courseProgress: [],
+				editUsers: false,
+				saveEdit: "Save"
+			});
+			if (role === "instructor") {
+				app.setCurrentTutor({
+					_id: "assembly-tutor",
+					name: "Tutor",
+					email: "tutor@example.invalid",
+					age: 30,
+					state: "GA",
+					coursePermissions: ["assembly"],
+					usersOfTutorLength: 0,
+					editTutors: false,
+					saveEdit: "Save"
+				});
+				app.setUsers([app.currentUser!]);
+				vi.mocked(api.get).mockResolvedValueOnce({
+					data: [app.currentUser!]
+				});
+			}
+			window.history.replaceState({}, "", `/courses#assembly-${module}`);
+			const wrapper = mount(CourseExplorer, {
+				global: { plugins: [pinia] }
+			});
+			try {
+				await flushPromises();
+				await vi.waitFor(() =>
+					expect(wrapper.find(".lesson-view-toggle").exists()).toBe(
+						true
+					)
+				);
+				await wrapper
+					.findAll(".lesson-view-toggle button")
+					.find(b => b.text() === "Projects")!
+					.trigger("click");
+				await flushPromises();
+				const card = wrapper
+					.findAll(".lesson-item")
+					.find(item =>
+						item
+							.find(`a.is-project[href*="/${pack}/starter"]`)
+							.exists()
+					)!;
+				expect(card).toBeDefined();
+				const links = card.findAll("a.is-ide-starter");
+				expect(links).toHaveLength(role === "instructor" ? 2 : 1);
+				for (const [index, link] of links.entries()) {
+					const url = new URL(
+						link.attributes("href"),
+						"https://example.invalid"
+					);
+					expect(url.searchParams.get("mode")).toBe("assembly");
+					expect(url.searchParams.get("projectKey")).toBe(
+						`assembly:${item}:${index === 0 ? "starter" : "reference"}:native-assembly`
+					);
+					expect(url.searchParams.get("starterUrl")).toBe(
+						`https://github.com/instruction-material/Assembly/tree/${revision}/${pack}/${index === 0 ? "starter" : "solution"}`
+					);
+				}
+			} finally {
+				wrapper.unmount();
+			}
+		}
+	);
+
 	beforeEach(() => {
 		setActivePinia(createPinia());
 		vi.clearAllMocks();

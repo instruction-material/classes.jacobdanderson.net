@@ -63,8 +63,8 @@ describe("simplified workspaces", () => {
 			props: { open: true },
 			global: { stubs: { Teleport: true } }
 		});
-		expect(ideStarters).toHaveLength(23);
-		expect(new Set(ideStarters.map(item => item.id)).size).toBe(23);
+		expect(ideStarters).toHaveLength(24);
+		expect(new Set(ideStarters.map(item => item.id)).size).toBe(24);
 		await wrapper.findAll("select")[0].setValue("java");
 		expect(wrapper.text()).toContain("Java Outline");
 		expect(wrapper.text()).not.toContain("Python Level 1 Outline");
@@ -86,6 +86,24 @@ describe("simplified workspaces", () => {
 		expect(wrapper.emitted("choose")![1][0]).toMatchObject({
 			mode: "cpp",
 			template: "course"
+		});
+		await wrapper.findAll("select")[0].setValue("assembly");
+		await wrapper
+			.findAll("button")
+			.find(button => button.text() === "Assembly and C Caller")!
+			.trigger("click");
+		expect(wrapper.emitted("choose")![2][0]).toMatchObject({
+			mode: "assembly",
+			template: "course"
+		});
+		await wrapper.findAll("select")[1].setValue("Blank");
+		await wrapper
+			.findAll("button")
+			.find(button => button.text() === "Blank Assembly")!
+			.trigger("click");
+		expect(wrapper.emitted("choose")![3][0]).toMatchObject({
+			mode: "assembly",
+			template: "blank"
 		});
 		wrapper.unmount();
 	});

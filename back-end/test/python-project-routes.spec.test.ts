@@ -89,47 +89,56 @@ describe("Python project routes", () => {
 		}));
 	});
 
-	it("stores exact nested C17 pack files for user and course-code owners", async () => {
-		const fixture = JSON.parse(
-			readFileSync(
-				resolve(
-					process.cwd(),
-					"../test/fixtures/c17-opening-contracts.json"
-				),
-				"utf8"
+	it.each(["c", "assembly"] as const)(
+		"stores exact nested %s pack files for user and course-code owners",
+		async mode => {
+			const fixture = JSON.parse(
+				readFileSync(
+					resolve(
+						process.cwd(),
+						mode === "assembly"
+							? "../test/fixtures/assembly-opening-contracts.json"
+							: "../test/fixtures/c17-opening-contracts.json"
+					),
+					"utf8"
+				)
+			);
+			const pack =
+				mode === "assembly"
+					? "ASM-04-asm0-setup-and-tooling"
+					: "CSE-06-unit-1-why-c-for-systems-work";
+			const activeFileName =
+				mode === "assembly" ? "starter/routine.S" : "starter/main.c";
+			const files = Object.entries(
+				fixture.files as Record<string, { content: string }>
 			)
-		);
-		const pack = "CSE-06-unit-1-why-c-for-systems-work";
-		const files = Object.entries(
-			fixture.files as Record<string, { content: string }>
-		)
-			.filter(
-				([path]) =>
-					path.startsWith(`${pack}/starter/`) ||
-					path === `${pack}/README.md`
-			)
-			.map(([path, file]) => ({
-				name: path.slice(pack.length + 1),
-				content: file.content,
-				encoding: "text"
-			}));
-		for (const owner of ["user", "course-code"] as const) {
-			await withPythonProjectRoute(async baseUrl => {
-				const response = await postJson(baseUrl, {
-					mode: "c",
-					files,
-					activeFileName: "starter/main.c"
-				});
-				expect(response.status).toBe(201);
-				const body = await response.json();
-				expect(body.project.mode).toBe("c");
-				expect(body.project.activeFileName).toBe("starter/main.c");
-				expect(body.project.files).toEqual(files);
-			}, owner);
+				.filter(
+					([path]) =>
+						path.startsWith(`${pack}/starter/`) ||
+						path === `${pack}/README.md`
+				)
+				.map(([path, file]) => ({
+					name: path.slice(pack.length + 1),
+					content: file.content,
+					encoding: "text"
+				}));
+			for (const owner of ["user", "course-code"] as const) {
+				await withPythonProjectRoute(async baseUrl => {
+					const response = await postJson(baseUrl, {
+						mode,
+						files,
+						activeFileName
+					});
+					expect(response.status).toBe(201);
+					const body = await response.json();
+					expect(body.project.mode).toBe(mode);
+					expect(body.project.activeFileName).toBe(activeFileName);
+					expect(body.project.files).toEqual(files);
+				}, owner);
+			}
+			expect(modelMocks.pythonProjectCreate).toHaveBeenCalledTimes(2);
 		}
-		expect(modelMocks.pythonProjectCreate).toHaveBeenCalledTimes(2);
-	});
-
+	);
 
 	it("requires text C code and preserves bounded safe-path rules", async () => {
 		await withPythonProjectRoute(async baseUrl => {
@@ -146,6 +155,40 @@ describe("Python project routes", () => {
 				const response = await postJson(baseUrl, { mode: "c", files });
 				expect(response.status).toBe(400);
 			}
+		});
+		expect(modelMocks.pythonProjectCreate).not.toHaveBeenCalled();
+	});
+
+	it("rejects binary Assembly sources, missing routines and unsafe pack paths", async () => {
+		await withPythonProjectRoute(async baseUrl => {
+			const source = {
+				name: "starter/routine.S",
+				content: ".intel_syntax noprefix\nret\n"
+			};
+			const invalidFiles = [
+				[{ name: "main.c", content: "int main(void) { return 0; }" }],
+				[{ ...source, content: "YQ==", encoding: "base64" }],
+				...[
+					"starter/main.c",
+					"starter/transform.h",
+					"starter/CMakeLists.txt"
+				].map(name => [
+					source,
+					{ name, content: "YQ==", encoding: "base64" }
+				]),
+				...[
+					"../routine.S",
+					"/routine.S",
+					"src//routine.S",
+					"images/routine.S",
+					"turtle.py"
+				].map(name => [source, { name, content: "" }])
+			];
+			for (const files of invalidFiles)
+				expect(
+					(await postJson(baseUrl, { mode: "assembly", files }))
+						.status
+				).toBe(400);
 		});
 		expect(modelMocks.pythonProjectCreate).not.toHaveBeenCalled();
 	});
@@ -997,13 +1040,13 @@ describe("Python project routes", () => {
 
 		expect(sources).toContain('app.get("/healthz"');
 		expect(sources).toContain(
-			'const projectModeSchema = z.enum(["c", "cpp", "data", "java", "karel", "pgzero", "python", "turtle"])'
+			'const projectModeSchema = z.enum(["assembly", "c", "cpp", "data", "java", "karel", "pgzero", "python", "turtle"])'
 		);
 		expect(sources).toContain(
-			'export type PythonProjectMode = "c" | "cpp" | "data" | "java" | "karel" | "pgzero" | "python" | "turtle";'
+			'export type PythonProjectMode = "assembly" | "c" | "cpp" | "data" | "java" | "karel" | "pgzero" | "python" | "turtle";'
 		);
 		expect(sources).toContain(
-			'enum: ["c", "cpp", "data", "java", "karel", "pgzero", "python", "turtle"]'
+			'enum: ["assembly", "c", "cpp", "data", "java", "karel", "pgzero", "python", "turtle"]'
 		);
 		expect(sources).toContain("ROOT_TEXT_FILE_RE =");
 		expect(sources).toContain("java|json");
