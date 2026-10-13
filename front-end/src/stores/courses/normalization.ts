@@ -1206,7 +1206,8 @@ function hasMarkdownSupportLabel(text: string) {
 
 function supportBaseContent(text: string) {
 	// A short supplied program is still structured source, not one prose line.
-	if (/^[ \t]*(?:`{3}|~{3})/m.test(text)) return text.trim();
+	if (/^[ \t]*(?:`{3}|~{3})/m.test(text) || /^(?: {4}|\t)/m.test(text))
+		return text.replace(/^\n+|\n+$/g, "");
 	if (!preservesBlockStructure(text)) return compactWhitespace(text);
 
 	return text.replace(/\n{3,}/g, "\n\n").trim();
@@ -1337,10 +1338,13 @@ function enrichBriefConceptLesson(
 	item: RawCourseModuleItem
 ) {
 	if (compactWhitespace(item.content).length >= 220) return item;
-	if (/^[ \t]*(?:`{3}|~{3})/m.test(item.content)) {
+	if (
+		/^[ \t]*(?:`{3}|~{3})/m.test(item.content) ||
+		/^(?: {4}|\t)/m.test(item.content)
+	) {
 		return {
 			...item,
-			content: `${item.content.trim()}\n\n${briefConceptAddendum(module, item)}`
+			content: `${item.content.replace(/^\n+|\n+$/g, "")}\n\n${briefConceptAddendum(module, item)}`
 		};
 	}
 

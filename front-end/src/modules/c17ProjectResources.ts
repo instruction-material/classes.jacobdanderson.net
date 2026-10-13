@@ -62,6 +62,20 @@ export const c17VerifiedPacks = [
 			"CMakeLists.txt"
 		],
 		supportFiles: ["README.md"]
+	},
+	{
+		pack: "CSE1-Hex-and-Binary-Inspector",
+		revision: "24c52499af8db18b93f5f2807b9631fbe931620c",
+		roleFiles: [
+			"main.c",
+			"input.c",
+			"input.h",
+			"representation.c",
+			"representation.h",
+			"tests.c",
+			"CMakeLists.txt"
+		],
+		supportFiles: ["README.md"]
 	}
 ] as const;
 

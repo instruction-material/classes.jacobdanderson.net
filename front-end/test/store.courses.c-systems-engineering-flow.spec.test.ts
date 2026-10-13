@@ -81,9 +81,13 @@ describe("C Systems Engineering learner flow", () => {
 			}))
 		);
 
-		expect(curriculumCount).toBe(60);
-		expect(optionCount).toBe(69);
+		expect(curriculumCount).toBe(59);
+		expect(optionCount).toBe(70);
 		expect(archive.supplementalProjects).toHaveLength(28);
+		expect(options).toContainEqual({
+			path: "choice",
+			title: "Project: Hex and Binary Inspector"
+		});
 		expect(options).toContainEqual({
 			path: "challenge",
 			title: "Project: XOR Encoder Decoder"

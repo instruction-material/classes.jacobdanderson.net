@@ -1966,3 +1966,45 @@ neutral role wording. Both sites also pass all 267 course-quality checks. The ca
 remains unchanged. Earlier
 failed review runs are retained and were stopped before replacement browser
 runs, so each site has at most one active browser job.
+
+
+
+## Optional C17 representation inspector
+
+The Hex and Binary Inspector source is accepted on actual main 24c52499 under
+Clang and GCC. The complete guide explains the representation model, checked
+input grammar, provided infrastructure, three distinct implementation tasks,
+native build/run commands, default output, boundary predictions and completion
+evidence. The site reading keeps this information available independently.
+
+This project moves from the required list to optional Unit2 practice while
+retaining its existing curriculum lesson identity. The notebook links to its
+immutable guide without creating a duplicate project. Its two confirmed C
+imports include only the selected role, seven build/source/test files and the
+unchanged parent guide. Native project keys preserve earlier attempts.
+
+The site build instructions distinguish valid-but-unfinished exit78 from
+invalid-input exit2. Existing core projects retain their revisions and IDs.
+Source-main validation covers every 16-bit pattern in the reference and an
+independently completed learner, full input rejection, and five deliberate
+regressions. Both sites now pass 132 focused checks, 267 course-quality checks,
+full types, lint and application build. Actual IDE exports pass native Clang
+checks for all 65,536 patterns in both the reference and an independently
+completed learner, invalid-input rejection and five deliberate regressions.
+Each site passes 48 responsive cases across the six verified C packs, 96 original
+and edited exports, and preservation of 48 matching earlier attempts. Hosted
+full CI, security and final-head image acceptance remain required. The wider
+77-course audit remains active; no release or public activation is established.
+
+
+The shared reader now preserves both indented and fenced examples through
+brief-lesson enrichment, copy cleanup and displayed-course normalization.
+Regression checks preserve program indentation, comments, strings and literal
+branding; prose cleanup remains available around the program. Separately
+linked notebook resources retain their own entries instead of being merged
+into the preceding project and losing their links.
+
+The October 13 Zoom refresh returned no additional matching meetings after the
+latest reviewed October 9 session and no notes modified since the previous
+refresh. Existing semantic receipts remain the source for implementation
+follow-ups; the wider audit is unfinished.

@@ -42,6 +42,7 @@ export function mapMarkdownProse(
 	let result = "";
 	let prose = "";
 	let fence = "";
+	let indented = false;
 	for (const line of text.match(/[^\n]*(?:\n|$)/g) ?? []) {
 		if (fence) {
 			result += line;
@@ -54,11 +55,25 @@ export function mapMarkdownProse(
 			}
 			continue;
 		}
+		if (indented) {
+			if (/^(?: {4}|\t)/.test(line) || line.trim() === "") {
+				result += line;
+				continue;
+			}
+			indented = false;
+		}
 		const opening = line.match(/^[ \t]*(`{3,}|~{3,})/);
 		if (opening) {
 			result += inlineProse(prose) + line;
 			prose = "";
 			fence = opening[1];
+		} else if (
+			/^(?: {4}|\t)/.test(line) &&
+			(prose === "" || /\n[ \t]*\n$/.test(prose))
+		) {
+			result += inlineProse(prose) + line;
+			prose = "";
+			indented = true;
 		} else {
 			prose += line;
 		}
