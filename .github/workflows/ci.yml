@@ -425,7 +425,10 @@ jobs:
                   node-version: 24.18.0
                   cache: npm
             - name: Pin npm version
-              run: npm install --global npm@12.0.1
+              run: |
+                  npm i -g npm@12.0.1
+                  npm -v
+                  test "$(npm --version)" = "12.0.1"
             - name: Install deps
               run: npm ci
             - name: Build front-end
