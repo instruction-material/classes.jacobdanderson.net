@@ -1923,3 +1923,28 @@ the source CMake file, and the export checks verify edited source bytes as well
 as untouched imports.
 This candidate establishes neither public activation nor completion of the
 remaining C content and wider 77-course audit.
+
+
+## Three further native C17 core imports
+
+Units 8, 10 and 11 now use the independently accepted dispatcher, scaled unit
+conversion, and native diagnosis packs at immutable revisions 390d99a6,
+008e3e6c and aa4ccdf9. The two opening imports retain their original 9c2ca213
+revision. Each of the five packs imports only the selected role, its build and
+tests, and its unchanged parent reading. Full project contracts and walkthroughs
+appear in the course reading. Existing course progress and saved-attempt keys
+remain distinct from each new native learner/reference import.
+
+The three engineering notebooks link to their accepted guides and do not
+create duplicate projects. Unit 11 reuses the math utility to teach a different
+skill: a deliberate format compilation failure, a missing linked definition,
+and signed-overflow diagnosis, followed by debugger, symbol and disassembly
+evidence. Its learner build instructions describe those deliberate failures
+rather than claiming the unfinished executable already builds.
+
+Exact source-main checks passed under Clang and GCC: 308 native cases across
+five packs per compiler, including independent learner completions and the
+three tooling diagnoses. Site import/edit/save/export and responsive browser
+acceptance must independently pass for the new site commits. Remaining C
+utilities, optional exercises and the wider 77-course audit remain unfinished;
+these changes establish neither a release nor public activation.

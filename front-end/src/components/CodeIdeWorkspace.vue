@@ -6753,7 +6753,10 @@ async function runCurrentProject() {
 		return;
 	}
 	if (project.mode === "c") {
-		for (const line of cBuildInstructions(project.files))
+		for (const line of cBuildInstructions(
+			project.files,
+			project.starterUrl
+		))
 			appendOutput("system", line);
 		runMessage.value = "Native build instructions";
 		diagnosticStage.value = "completed";

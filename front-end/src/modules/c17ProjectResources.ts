@@ -6,27 +6,88 @@ export const c17OpeningPacks = [
 	"CSE-06-unit-1-why-c-for-systems-work"
 ] as const;
 
+export const c17VerifiedPacks = [
+	{
+		pack: c17OpeningPacks[0],
+		revision: c17SourceRevision,
+		roleFiles: ["main.c", "reading.h", "tests.c", "CMakeLists.txt"],
+		supportFiles: ["README.md", "unsafe_probe.c"]
+	},
+	{
+		pack: c17OpeningPacks[1],
+		revision: c17SourceRevision,
+		roleFiles: [
+			"main.c",
+			"reading.h",
+			"tests.c",
+			"CMakeLists.txt",
+			"reading.c",
+			"labels.c"
+		],
+		supportFiles: ["README.md"]
+	},
+	{
+		pack: "CSE-07-unit-8-function-pointers-and-dispatch",
+		revision: "390d99a65ce272dbd690537870811756a06bd9bf",
+		roleFiles: [
+			"main.c",
+			"dispatch.h",
+			"handlers.c",
+			"dispatch.c",
+			"tests.c",
+			"CMakeLists.txt"
+		],
+		supportFiles: ["README.md"]
+	},
+	{
+		pack: "CSE-08-unit-10-engineering-math-in-code",
+		revision: "008e3e6c7f9a5f469820ec43824ef75d51e01dfd",
+		roleFiles: [
+			"main.c",
+			"engineering_math.h",
+			"engineering_math.c",
+			"tests.c",
+			"CMakeLists.txt"
+		],
+		supportFiles: ["README.md"]
+	},
+	{
+		pack: "CSE-09-unit-11-systems-tooling",
+		revision: "aa4ccdf9398472351985c8cce3d20a719addca5a",
+		roleFiles: [
+			"main.c",
+			"engineering_math.h",
+			"engineering_math.c",
+			"tests.c",
+			"CMakeLists.txt"
+		],
+		supportFiles: ["README.md"]
+	}
+] as const;
+
 export function c17CourseResource(url: string) {
 	const resource = parseGitHubResource(url);
 	if (
 		!resource ||
 		resource.mode !== "tree" ||
 		resource.owner.toLowerCase() !== "instruction-material" ||
-		resource.repo.toLowerCase() !== "c-systems-engineering" ||
-		resource.ref !== c17SourceRevision
+		resource.repo.toLowerCase() !== "c-systems-engineering"
 	) {
 		return null;
 	}
 	const [pack, role, extra] = resource.path.split("/");
-	const selectedPack = c17OpeningPacks.find(candidate => candidate === pack);
+	const selected = c17VerifiedPacks.find(
+		candidate =>
+			candidate.pack === pack && candidate.revision === resource.ref
+	);
 	if (
 		extra !== undefined ||
-		!selectedPack ||
+		!selected ||
 		(role !== "starter" && role !== "solution")
 	) {
 		return null;
 	}
-	return { resource, pack: selectedPack, role };
+	return { resource, pack: selected.pack, role, definition: selected };
 }
 
 export function c17CourseProjectKey(
@@ -46,12 +107,11 @@ export function c17CourseProjectKey(
 export function c17ImportFiles(url: string) {
 	const selected = c17CourseResource(url);
 	if (!selected) return null;
-	const { resource, pack, role } = selected;
-	const roleFiles = ["main.c", "reading.h", "tests.c", "CMakeLists.txt"];
-	if (pack === c17OpeningPacks[1]) roleFiles.push("reading.c", "labels.c");
-	const paths = roleFiles.map(name => `${role}/${name}`);
-	paths.push("README.md");
-	if (pack === c17OpeningPacks[0]) paths.push("unsafe_probe.c");
+	const { resource, pack, role, definition } = selected;
+	const paths = [
+		...definition.roleFiles.map(name => `${role}/${name}`),
+		...definition.supportFiles
+	];
 	return paths.map(name => {
 		const path = `${pack}/${name}`;
 		return {

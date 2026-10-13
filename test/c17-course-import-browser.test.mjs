@@ -18,7 +18,7 @@ const packs = [...new Set(Object.keys(fixture.files).map(path => path.split("/")
 const storageKey = "classes-python-ide-projects:anonymous";
 const preserved = { _id: "c17-preserved-attempt", title: "Earlier attempt", mode: "python", files: [{ name: "main.py", content: "# retain this attempt\n" }], activeFileName: "main.py", courseProjectKey: "c-systems-engineering:setup:starter" };
 
-test("native C imports require consent and preserve source, saved attempts, roles and ZIP layout", { timeout: 360_000 }, async () => {
+test("native C imports require consent and preserve source, saved attempts, roles and ZIP layout", { timeout: 600_000 }, async () => {
 	let server;
 	let browser;
 	let context;
@@ -53,8 +53,9 @@ test("native C imports require consent and preserve source, saved attempts, role
 			const url = new URL(request.url());
 			if (url.hostname === "raw.githubusercontent.com") {
 				sourceRequests.push(url.pathname);
-				const prefix = `/${fixture.repository}/${fixture.revision}/`;
-				const file = url.pathname.startsWith(prefix) ? fixture.files[url.pathname.slice(prefix.length)] : null;
+				const prefix = `/${fixture.repository}/`;
+				const [revision, pack, ...parts] = url.pathname.slice(prefix.length).split("/");
+				const file = url.pathname.startsWith(prefix) && revision === fixture.revisions[pack] ? fixture.files[`${pack}/${parts.join("/")}`] : null;
 				void request.respond({ status: file ? 200 : 404, contentType: "text/plain", headers: { "access-control-allow-origin": "*" }, body: file?.content ?? "Unknown source" });
 			}
 			else if (url.origin !== origin || url.pathname.startsWith("/api/")) {
@@ -67,6 +68,7 @@ test("native C imports require consent and preserve source, saved attempts, role
 		for (const width of [1280, 360]) {
 			for (const theme of ["light", "dark"]) {
 				for (const pack of packs) {
+					const revision = fixture.revisions[pack];
 					for (const role of ["starter", "solution"]) {
 						await page.setViewport({ width, height: 900 });
 						await page.emulateMediaFeatures([{ name: "prefers-color-scheme", value: theme }]);
@@ -74,7 +76,7 @@ test("native C imports require consent and preserve source, saved attempts, role
 						// previously saved project's files or the original course progress IDs.
 						const item = `${pack}-${width}-${theme}`;
 						const key = `c-systems-engineering:${item}:${role === "starter" ? "starter" : "reference"}:native-c17`;
-						const params = new URLSearchParams({ course: "c-systems-engineering", mode: "c", projectKey: key, starterUrl: `https://github.com/${fixture.repository}/tree/${fixture.revision}/${pack}/${role}`, starterTitle: "C17 opening project" });
+						const params = new URLSearchParams({ course: "c-systems-engineering", mode: "c", projectKey: key, starterUrl: `https://github.com/${fixture.repository}/tree/${revision}/${pack}/${role}`, starterTitle: "C17 core project" });
 						sourceRequests = [];
 						await page.goto(`${origin}/ide?${params}`, { waitUntil: "domcontentloaded" });
 						await page.waitForSelector("[data-testid='ide-route-import-confirm']");
@@ -86,7 +88,8 @@ test("native C imports require consent and preserve source, saved attempts, role
 						const saved = projects.find(project => project.courseProjectKey === key);
 						assert.equal(saved.mode, "c");
 						assert.equal(saved.activeFileName, `${role}/main.c`);
-						assert.equal(saved.files.length, pack.startsWith("CSE-05") ? 6 : 7);
+						const expectedNames = Object.keys(fixture.files).filter(path => path.startsWith(`${pack}/${role}/`) || path === `${pack}/README.md` || path === `${pack}/unsafe_probe.c`).map(path => path.slice(pack.length + 1));
+						assert.deepEqual(saved.files.map(file => file.name).sort(), expectedNames.sort());
 						assert.equal(sourceRequests.length, saved.files.length);
 						assert.ok(sourceRequests.every(path => !path.includes(role === "starter" ? "/solution/" : "/starter/")));
 						for (const file of saved.files) assert.equal(file.content, fixture.files[`${pack}/${file.name}`].content);
@@ -99,6 +102,9 @@ test("native C imports require consent and preserve source, saved attempts, role
 						assert.equal(await page.$eval(".result-panel .panel-header > span", span => span.textContent.trim()), "Build instructions");
 						await page.click("button.run-control");
 						await page.waitForFunction(() => [...document.querySelectorAll(".output-line")].some(line => line.textContent.includes("ctest --test-dir build")));
+						if (pack.startsWith("CSE-09") && role === "starter") {
+							assert.ok(await page.$eval(".result-panel", panel => panel.textContent.includes("intentionally fails strict compilation")));
+						}
 						assert.equal(await page.$("iframe[title='Isolated Python output']"), null);
 						assert.ok(await page.$eval("body", body => body.textContent.includes("C17 build workflow") || document.querySelector("[aria-label='C17 build workflow']") !== null));
 						await downloadProjectZip(page);
@@ -147,14 +153,14 @@ test("native C imports require consent and preserve source, saved attempts, role
 						await page.waitForSelector("button.run-control:not([disabled])");
 						const reloaded = await page.evaluate((storageKey, key) => JSON.parse(localStorage.getItem(storageKey)).find(project => project.courseProjectKey === key), storageKey, key);
 						assert.deepEqual(reloaded.files, expectedSavedFiles);
-						proof.push({ pack, role, width, theme, files: saved.files.length, capture, byteExact: true, editedExportPreserved: true, savedAttemptPreserved: true });
+						proof.push({ pack, revision, role, width, theme, files: saved.files.length, capture, byteExact: true, editedExportPreserved: true, savedAttemptPreserved: true });
 					}
 				}
 			}
 		}
-		assert.equal(proof.length, 16);
-		await writeFile(join(captures, "c17-workflow-proof.json"), `${JSON.stringify({ revision: fixture.revision, imports: proof.length, cases: proof }, null, 2)}\n`);
-		console.log(JSON.stringify({ event: "c17-browser-workflow-accepted", sourceRevision: fixture.revision, imports: proof.length, exports: proof.length * 2, editedExports: proof.length, savedAttemptPreserved: true }));
+		assert.equal(proof.length, packs.length * 8);
+		await writeFile(join(captures, "c17-workflow-proof.json"), `${JSON.stringify({ revisions: fixture.revisions, imports: proof.length, cases: proof }, null, 2)}\n`);
+		console.log(JSON.stringify({ event: "c17-browser-workflow-accepted", sourceRevision: fixture.revision, sourceRevisions: fixture.revisions, packs: packs.length, imports: proof.length, exports: proof.length * 2, editedExports: proof.length, savedAttemptPreserved: true }));
 	}
 	finally {
 		await page?.close();
