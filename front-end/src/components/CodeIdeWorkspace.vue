@@ -38,6 +38,7 @@ import IdeEnvironmentSelect from "@/components/IdeEnvironmentSelect.vue";
 import IdeStarterPicker from "@/components/IdeStarterPicker.vue";
 import WorkspaceDisclosure from "@/components/WorkspaceDisclosure.vue";
 import WorkspaceHeader from "@/components/WorkspaceHeader.vue";
+import { assemblyBuildInstructions } from "@/modules/assemblyBuildInstructions";
 import { cBuildInstructions } from "@/modules/cBuildInstructions";
 import {
 	getCodeIdeProjectAccessibleLabel,
@@ -65,6 +66,7 @@ import {
 	fetchVisiblePythonIdeProjectReviews,
 	getPythonIdeAssetDataUrl,
 	getPythonIdeDefaultFileContent,
+	getPythonIdeModeLabel,
 	getPythonIdeProjectKindLabel,
 	getPythonIdeRunnableFile,
 	isPythonIdeBinaryAssetFile,
@@ -1124,25 +1126,37 @@ const selectedModeLabel = computed(() =>
 );
 const usesNativeSourceWorkspace = computed(
 	() =>
+		selectedProject.value?.mode === "assembly" ||
 		selectedProject.value?.mode === "c" ||
 		selectedProject.value?.mode === "cpp"
 );
 const nativeSourceLanguage = computed(() =>
-	selectedProject.value?.mode === "c" ? "C17" : "C++"
+	selectedProject.value?.mode === "assembly"
+		? "Assembly (Linux x86-64)"
+		: selectedProject.value?.mode === "c"
+			? "C17"
+			: "C++"
 );
 const mobileWorkspaceViews = computed(() =>
-	selectedProject.value?.mode === "c"
+	selectedProject.value?.mode === "c" ||
+	selectedProject.value?.mode === "assembly"
 		? (["code", "console"] as const)
 		: (["code", "canvas", "console"] as const)
 );
 watch(
 	() => selectedProject.value?.mode,
 	mode => {
-		if (mode === "c" && mobileView.value === "canvas")
+		if (
+			(mode === "c" || mode === "assembly") &&
+			mobileView.value === "canvas"
+		) {
 			mobileView.value = "code";
+		}
 	}
 );
 const newFileNamePlaceholder = computed(() => {
+	if (selectedProject.value?.mode === "assembly")
+		return "routine.S, caller.c or include/transform.h";
 	if (selectedProject.value?.mode === "c")
 		return "main.c, src/helpers.c or include/reading.h";
 	if (selectedProject.value?.mode === "cpp")
@@ -3516,13 +3530,15 @@ function addFile() {
 	if (!selectedProject.value) return;
 	const fileName = normalizePythonFileName(
 		newFileName.value,
-		selectedProject.value.mode === "c"
-			? ".c"
-			: selectedProject.value.mode === "cpp"
-				? ".cpp"
-				: isJavaIdeMode(selectedProject.value.mode)
-					? ".java"
-					: ".py"
+		selectedProject.value.mode === "assembly"
+			? ".S"
+			: selectedProject.value.mode === "c"
+				? ".c"
+				: selectedProject.value.mode === "cpp"
+					? ".cpp"
+					: isJavaIdeMode(selectedProject.value.mode)
+						? ".java"
+						: ".py"
 	);
 	if (!isValidPythonFileName(fileName)) {
 		appendOutput(
@@ -3682,7 +3698,7 @@ function deleteFile(file: PythonIdeFile) {
 	) {
 		appendOutput(
 			"system",
-			`Keep at least one ${isJavaIdeMode(project.mode) ? "Java" : "Python"} file so the project can run.`
+			`Keep at least one ${getPythonIdeModeLabel(project.mode)} source file in the project.`
 		);
 		return;
 	}
@@ -6752,6 +6768,16 @@ async function runCurrentProject() {
 		diagnosticStage.value = "completed";
 		return;
 	}
+	if (project.mode === "assembly") {
+		for (const line of assemblyBuildInstructions(
+			project.files,
+			project.starterUrl
+		))
+			appendOutput("system", line);
+		runMessage.value = "Native build instructions";
+		diagnosticStage.value = "completed";
+		return;
+	}
 	if (project.mode === "c") {
 		for (const line of cBuildInstructions(
 			project.files,
@@ -8490,7 +8516,8 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 								? "Code"
 								: view === "canvas"
 									? "Canvas"
-									: selectedProject?.mode === "c"
+									: selectedProject?.mode === "c" ||
+										  selectedProject?.mode === "assembly"
 										? "Instructions"
 										: "Console"
 						}}
@@ -8618,7 +8645,8 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 					>
 						<div class="panel-header">
 							<span>{{
-								selectedProject?.mode === "c"
+								selectedProject?.mode === "c" ||
+								selectedProject?.mode === "assembly"
 									? "Build instructions"
 									: consoleExpanded
 										? "Console"

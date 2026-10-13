@@ -40,6 +40,91 @@ function installLocalStorageStub() {
 }
 
 describe("CourseExplorer.vue", () => {
+	it.each(["learner", "instructor"])(
+		"opens the Assembly opening card with separate %s role links",
+		async role => {
+			const pinia = createPinia();
+			setActivePinia(pinia);
+			const app = useAppStore();
+			app.setCurrentUser({
+				_id: "assembly-learner",
+				name: "Learner",
+				email: "learner@example.invalid",
+				age: 14,
+				state: "GA",
+				courseAccess: ["assembly"],
+				courseProgress: [],
+				editUsers: false,
+				saveEdit: "Save"
+			});
+			if (role === "instructor") {
+				app.setCurrentTutor({
+					_id: "assembly-tutor",
+					name: "Tutor",
+					email: "tutor@example.invalid",
+					age: 30,
+					state: "GA",
+					coursePermissions: ["assembly"],
+					usersOfTutorLength: 0,
+					editTutors: false,
+					saveEdit: "Save"
+				});
+				app.setUsers([app.currentUser!]);
+				vi.mocked(api.get).mockResolvedValueOnce({
+					data: [app.currentUser!]
+				});
+			}
+			window.history.replaceState(
+				{},
+				"",
+				"/courses#assembly-asm0-setup-and-tooling"
+			);
+			const wrapper = mount(CourseExplorer, {
+				global: { plugins: [pinia] }
+			});
+			try {
+				await flushPromises();
+				await vi.waitFor(() =>
+					expect(wrapper.find(".lesson-view-toggle").exists()).toBe(
+						true
+					)
+				);
+				await wrapper
+					.findAll(".lesson-view-toggle button")
+					.find(b => b.text() === "Projects")!
+					.trigger("click");
+				await flushPromises();
+				const card = wrapper
+					.findAll(".lesson-item")
+					.find(item =>
+						item
+							.find(
+								'a.is-project[href*="/ASM-04-asm0-setup-and-tooling/starter"]'
+							)
+							.exists()
+					)!;
+				expect(card).toBeDefined();
+				const links = card.findAll("a.is-ide-starter");
+				expect(links).toHaveLength(role === "instructor" ? 2 : 1);
+				for (const [index, link] of links.entries()) {
+					const url = new URL(
+						link.attributes("href"),
+						"https://example.invalid"
+					);
+					expect(url.searchParams.get("mode")).toBe("assembly");
+					expect(url.searchParams.get("projectKey")).toBe(
+						`assembly:assembly-asm0-setup-and-tooling-curriculum-core-project-assembly:${index === 0 ? "starter" : "reference"}:native-assembly`
+					);
+					expect(url.searchParams.get("starterUrl")).toBe(
+						`https://github.com/instruction-material/Assembly/tree/117e34fb8ff90c2046da71090c37e7b45ef20624/ASM-04-asm0-setup-and-tooling/${index === 0 ? "starter" : "solution"}`
+					);
+				}
+			} finally {
+				wrapper.unmount();
+			}
+		}
+	);
+
 	beforeEach(() => {
 		setActivePinia(createPinia());
 		vi.clearAllMocks();
