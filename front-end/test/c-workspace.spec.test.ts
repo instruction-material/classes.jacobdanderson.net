@@ -213,6 +213,108 @@ describe("native C17 source workspace", () => {
 		);
 	});
 
+	it("keeps the inspector optional with its original identity, complete reading and a guide-only notebook", async () => {
+		setActivePinia(createPinia());
+		useAppStore().setCurrentTutor({
+			_id: "c17-tutor",
+			name: "Tutor",
+			email: "tutor@example.invalid",
+			age: 30,
+			state: "GA",
+			usersOfTutorLength: 0,
+			coursePermissions: ["c-systems-engineering"],
+			editTutors: false,
+			saveEdit: "Save"
+		});
+		const course = await useCoursesStore().loadCourseById(
+			"c-systems-engineering"
+		);
+		const module = course!.modules.find(
+			item =>
+				item.title === "Unit 2: Binary, Hex, and Number Representation"
+		)!;
+		expect(
+			module.curriculum.some(item =>
+				item.projectLink?.includes("CSE1-Hex-and-Binary-Inspector")
+			)
+		).toBe(false);
+		const item = module.supplementalProjects.find(
+			candidate => candidate.title === "Project: Hex and Binary Inspector"
+		)!;
+		const id =
+			"c-systems-engineering-unit-2-binary-hex-and-number-representation-curriculum-project-hex-and-binary-inspector";
+		expect(item.id).toBe(id);
+		expect(item.learningPath).toBe("choice");
+		expect(item.ideImport).toBe(true);
+		const selected = c17CourseResource(item.projectLink!)!;
+		expect(selected.pack).toBe("CSE1-Hex-and-Binary-Inspector");
+		expect(selected.resource.ref).toBe(
+			"24c52499af8db18b93f5f2807b9631fbe931620c"
+		);
+		const guide = fixture.files[selected.pack + "/README.md"].content;
+		expect(item.content).toContain(
+			guide
+				.slice(guide.indexOf("\n") + 1)
+				.trim()
+				.replace("instructor-guided", "course-facilitated")
+		);
+		expect(item.content).toContain("all 65536 bit patterns");
+		const notebook = module.supplementalProjects.find(candidate =>
+			candidate.projectLink?.includes("/" + selected.pack + "/README.md")
+		)!;
+		expect(notebook.projectLink).toBe(
+			"https://github.com/instruction-material/C-Systems-Engineering/blob/" +
+				selected.resource.ref +
+				"/" +
+				selected.pack +
+				"/README.md"
+		);
+		expect(notebook.ideImport).not.toBe(true);
+		expect(notebook.solutionLink).toBeUndefined();
+		for (const role of ["starter", "reference"] as const) {
+			const url =
+				role === "starter" ? item.projectLink! : item.solutionLink!;
+			const key = c17CourseProjectKey(course!.id, id, role, url);
+			expect(key).toBe(
+				course!.id + ":" + id + ":" + role + ":native-c17"
+			);
+		}
+		useAppStore().setCurrentTutor(null);
+		const learner = await useCoursesStore().loadCourseById(
+			"c-systems-engineering"
+		);
+		const learnerItem = learner!.modules
+			.flatMap(m => m.supplementalProjects)
+			.find(candidate => candidate.id === id)!;
+		expect(learnerItem).toBeDefined();
+		expect(learnerItem.solutionLink).toBeUndefined();
+	});
+
+	it("shows the inspector input and unfinished-task contracts in native build instructions", () => {
+		const definition = c17VerifiedPacks.find(
+			item => item.pack === "CSE1-Hex-and-Binary-Inspector"
+		)!;
+		const files = definition.roleFiles.map(name => ({
+			name: "starter/" + name,
+			content: fixture.files[definition.pack + "/starter/" + name].content
+		}));
+		const url =
+			"https://github.com/instruction-material/C-Systems-Engineering/tree/" +
+			definition.revision +
+			"/" +
+			definition.pack +
+			"/starter";
+		const text = cBuildInstructions(files, url).join("\n");
+		expect(text).toContain("With valid input");
+		expect(text).toContain("exits 78");
+		expect(text).toContain(
+			"Invalid input exits 2 without printing a result"
+		);
+		expect(text).toContain("complete input grammar");
+		expect(text).toContain("ctest --test-dir build");
+		expect(text).not.toContain("debugger pass");
+	});
+
 	it.each(c17VerifiedPacks)(
 		"rejects a mismatched accepted revision for $pack without fetching source",
 		async ({ pack, revision }) => {

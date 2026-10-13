@@ -66,20 +66,26 @@ describe("CourseExplorer.vue", () => {
 					"unit-1-why-c-for-systems-work",
 					"unit-8-function-pointers-and-dispatch",
 					"unit-10-engineering-math-in-code",
-					"unit-11-systems-tooling"
+					"unit-11-systems-tooling",
+					"unit-2-binary-hex-and-number-representation"
 				][index]!,
+				projectPrefix:
+					index === 5
+						? "curriculum-project"
+						: "curriculum-core-project",
 				project: [
 					"c-systems-engineering",
 					"why-c-for-systems-work",
 					"function-pointers-and-dispatch",
 					"engineering-math-in-code",
-					"systems-tooling"
+					"systems-tooling",
+					"hex-and-binary-inspector"
 				][index]!
 			}))
 		)
 	)(
 		"opens the confirmed $pack role from the $role course card",
-		async ({ pack, revision, role, module, project }) => {
+		async ({ pack, revision, role, module, project, projectPrefix }) => {
 			const pinia = createPinia();
 			setActivePinia(pinia);
 			const appStore = useAppStore();
@@ -129,7 +135,13 @@ describe("CourseExplorer.vue", () => {
 				);
 				await wrapper
 					.findAll(".lesson-view-toggle button")
-					.find(button => button.text() === "Projects")!
+					.find(
+						button =>
+							button.text() ===
+							(pack === "CSE1-Hex-and-Binary-Inspector"
+								? "Supplemental Projects"
+								: "Projects")
+					)!
 					.trigger("click");
 				await flushPromises();
 				const card = wrapper
@@ -150,7 +162,7 @@ describe("CourseExplorer.vue", () => {
 					expect(url.pathname).toBe("/ide");
 					expect(url.searchParams.get("mode")).toBe("c");
 					expect(url.searchParams.get("projectKey")).toBe(
-						`c-systems-engineering:c-systems-engineering-${module}-curriculum-core-project-${project}:${index === 0 ? "starter" : "reference"}:native-c17`
+						`c-systems-engineering:c-systems-engineering-${module}-${projectPrefix}-${project}:${index === 0 ? "starter" : "reference"}:native-c17`
 					);
 					expect(url.searchParams.get("starterUrl")).toBe(
 						`https://github.com/instruction-material/C-Systems-Engineering/tree/${revision}/${pack}/${index === 0 ? "starter" : "solution"}`

@@ -1,5 +1,6 @@
 import type { RawCourse } from "./types";
 import { c17CoreProjectReading } from "./c17CoreProjectReading";
+import { c17InspectorProjectReading } from "./c17InspectorProjectReading";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { buildProjectGuidance } from "./projectGuidance";
 
@@ -166,12 +167,13 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 				},
 				{
 					title: "Project: Hex and Binary Inspector",
-					content:
-						"Use the inspector lab to print one value in decimal, hex, and grouped binary, then compare its signed and unsigned 16-bit interpretations. The project makes two's complement visible and requires explicit reasoning about nibbles and bytes instead of hand-waving about 'the number.'",
+					id: "c-systems-engineering-unit-2-binary-hex-and-number-representation-curriculum-project-hex-and-binary-inspector",
+					ideImport: true,
+					content: c17InspectorProjectReading,
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE1-Hex-and-Binary-Inspector/starter",
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/24c52499af8db18b93f5f2807b9631fbe931620c/CSE1-Hex-and-Binary-Inspector/starter",
 					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE1-Hex-and-Binary-Inspector/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/tree/24c52499af8db18b93f5f2807b9631fbe931620c/CSE1-Hex-and-Binary-Inspector/solution"
 				}
 			],
 			supplementalProjects: [
@@ -180,9 +182,7 @@ const cSystemsEngineeringSourceCourse: RawCourse = {
 					content:
 						"Keep a short engineering notebook for binary, hex, and number representation that records the byte view, memory view, compiler or runtime evidence, and one plain-language explanation of why the code worked or failed. Focus especially on signedness, top-bit meaning, and how grouped bits map cleanly to hex digits to build the habit of explaining systems behavior instead of only trusting output.",
 					projectLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE1-Hex-and-Binary-Inspector/starter",
-					solutionLink:
-						"https://github.com/instruction-material/C-Systems-Engineering/tree/main/CSE1-Hex-and-Binary-Inspector/solution"
+						"https://github.com/instruction-material/C-Systems-Engineering/blob/24c52499af8db18b93f5f2807b9631fbe931620c/CSE1-Hex-and-Binary-Inspector/README.md"
 				},
 				{
 					title: "Representation Transfer Practice",
@@ -1251,6 +1251,7 @@ interface CSystemsModuleFlow {
 const C_SYSTEMS_PRIMARY_MODULE_COUNT = 13;
 
 const C_SYSTEMS_OPTIONAL_CURRICULUM = new Set([
+	"Project: Hex and Binary Inspector",
 	"Project: XOR Encoder Decoder",
 	"Project: Fixed Size Log File Reader"
 ]);

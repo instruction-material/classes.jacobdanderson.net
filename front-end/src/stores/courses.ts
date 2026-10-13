@@ -145,6 +145,13 @@ function normalizeContent(content: string): string {
 	let prose: string[] = [];
 	let code: string[] = [];
 	let fence = "";
+	let indented = false;
+	const flushIndentedCode = () => {
+		while (code.at(-1)?.trim() === "") code.pop();
+		if (code.length) chunks.push(code.join("\n"));
+		code = [];
+		indented = false;
+	};
 	const flushProse = () => {
 		const text = prose
 			.join("\n")
@@ -174,18 +181,33 @@ function normalizeContent(content: string): string {
 			}
 			continue;
 		}
+		if (indented) {
+			if (/^(?: {4}|\t)/.test(line) || line.trim() === "") {
+				code.push(line);
+				continue;
+			}
+			flushIndentedCode();
+		}
 		const opening = line.match(/^[\t ]*(`{3,}|~{3,})/)?.[1];
 		if (opening) {
 			flushProse();
 			fence = opening;
+			code = [line];
+		} else if (
+			/^(?: {4}|\t)/.test(line) &&
+			(prose.length === 0 || prose.at(-1)?.trim() === "")
+		) {
+			flushProse();
+			indented = true;
 			code = [line];
 		} else {
 			prose.push(line);
 		}
 	}
 	flushProse();
+	if (indented) flushIndentedCode();
 	if (code.length) chunks.push(code.join("\n"));
-	return chunks.join("\n\n").trim();
+	return chunks.join("\n\n").replace(/^\n+|\n+$/g, "");
 }
 
 function ensureSentence(text: string) {
@@ -274,6 +296,7 @@ function displayCourseContent(content: string) {
 		MARKDOWN_LIST_BLOCK_RE.test(normalized) ||
 		/\[[^\]\n]+\]\(\/ide\?[^)\n]+\)/.test(normalized) ||
 		FENCED_CODE_BLOCK_RE.test(normalized) ||
+		/^(?: {4}|\t)/m.test(normalized) ||
 		MARKDOWN_HEADING_RE.test(normalized) ||
 		MARKDOWN_TABLE_RE.test(normalized)
 	) {
@@ -469,6 +492,7 @@ function mergeAdjacentSupportItems(
 
 		if (
 			previousItem &&
+			!item.projectLink &&
 			canMerge(previousItem, item) &&
 			(MERGE_INTO_PREVIOUS_TITLE_RE.test(item.title) ||
 				(PRESENTATION_TITLE_RE.test(item.title) &&

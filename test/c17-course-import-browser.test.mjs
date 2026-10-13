@@ -20,7 +20,8 @@ const primarySources = {
 	"CSE-06-unit-1-why-c-for-systems-work": "labels.c",
 	"CSE-07-unit-8-function-pointers-and-dispatch": "dispatch.c",
 	"CSE-08-unit-10-engineering-math-in-code": "engineering_math.c",
-	"CSE-09-unit-11-systems-tooling": "engineering_math.c"
+	"CSE-09-unit-11-systems-tooling": "engineering_math.c",
+	"CSE1-Hex-and-Binary-Inspector": "representation.c"
 };
 const storageKey = "classes-python-ide-projects:anonymous";
 const preserved = { _id: "c17-preserved-attempt", title: "Earlier attempt", mode: "python", files: [{ name: "main.py", content: "# retain this attempt\n" }], activeFileName: "main.py", courseProjectKey: "c-systems-engineering:setup:starter" };
@@ -126,6 +127,9 @@ test("native C imports require consent and preserve source, saved attempts, role
 						await page.waitForFunction(() => [...document.querySelectorAll(".output-line")].some(line => line.textContent.includes("ctest --test-dir build")));
 						if (pack.startsWith("CSE-09") && role === "starter") {
 							assert.ok(await page.$eval(".result-panel", panel => panel.textContent.includes("intentionally fails strict compilation")));
+						}
+						if (pack === "CSE1-Hex-and-Binary-Inspector" && role === "starter") {
+							assert.ok(await page.$eval(".result-panel", panel => panel.textContent.includes("Invalid input exits 2") && panel.textContent.includes("three representation functions")));
 						}
 						assert.equal(await page.$("iframe[title='Isolated Python output']"), null);
 						assert.ok(await page.$eval("body", body => body.textContent.includes("C17 build workflow") || document.querySelector("[aria-label='C17 build workflow']") !== null));

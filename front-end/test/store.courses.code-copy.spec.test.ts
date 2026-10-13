@@ -16,6 +16,25 @@ function normalized(content: string) {
 }
 
 describe("copy cleanup preserves supplied source", () => {
+	it("preserves indented program literals while cleaning surrounding prose", () => {
+		for (const indent of ["    ", "\t"]) {
+			const program = [
+				indent + "// Instructor note: preserve this literal source",
+				indent + 'const label = "Juni";',
+				"",
+				indent + 'const message = "A student has a input.";'
+			].join("\n");
+			const result = normalized(
+				"A student reads a input.\n\n" +
+					program +
+					"\n\nA student records the output."
+			);
+			expect(result).toContain(program);
+			expect(result).toContain("A learner reads an input.");
+			expect(result).toContain("A learner records the output.");
+		}
+	});
+
 	it("preserves borrowing semantics in ordinary explanation text", () => {
 		const explanation =
 			"A string view borrows the original text without copying, but the view cannot outlive that text.";
