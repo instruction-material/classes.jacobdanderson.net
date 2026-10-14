@@ -23,7 +23,14 @@ packs = json.loads((fixture_dir / "linux-owned-labs-contracts.json").read_text()
 identity = json.loads((fixture_dir / "linux-owned-labs-source-verifier.json").read_text())
 verifier = (fixture_dir / "linux-owned-labs-source-verifier.py").read_bytes()
 assert hashlib.sha256(verifier).hexdigest() == identity["sha256"]
-assert {p["revision"] for p in packs} == {identity["revision"]}
+legacy_packs = [pack for pack in packs if pack["revision"] == identity["revision"]]
+assert len(legacy_packs) == 5
+proxy_packs = [pack for pack in packs if pack["pack"] == "LS3-Nginx-Reverse-Proxy-App"]
+assert len(proxy_packs) == 1
+proxy_identity = json.loads((fixture_dir / "linux-reverse-proxy-source-verifier.json").read_text())
+proxy_verifier = (fixture_dir / "linux-reverse-proxy-source-verifier.py").read_bytes()
+assert hashlib.sha256(proxy_verifier).hexdigest() == proxy_identity["sha256"]
+assert proxy_packs[0]["revision"] == proxy_identity["revision"]
 args.proof = args.proof.resolve()
 args.proof.parent.mkdir(parents=True, exist_ok=True)
 archives = []
@@ -54,7 +61,7 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
             archives.append({"pack": pack["pack"], "role": role,
                              "sha256": hashlib.sha256(archive_path.read_bytes()).hexdigest(),
                              "files": sorted(expected)})
-    assert len(archives) == 10
+    assert len(archives) == 12
     (work / "test").mkdir()
     script = work / "test" / "verify_owned_labs.py"
     script.write_bytes(verifier)
@@ -87,8 +94,34 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
     assert native["accepted"] and native["commandCount"] == 108
     assert len(native["profiles"]) == 14
     expected_hashes = {pack["pack"] + "/" + name: file["sha256"]
-                       for pack in packs for name, file in pack["files"].items()}
+                       for pack in legacy_packs for name, file in pack["files"].items()}
     assert native["sourceHashes"] == expected_hashes
+    proxy_script = work / "test" / "verify_reverse_proxy.py"
+    proxy_script.write_bytes(proxy_verifier)
+    proxy_proof = args.proof.with_name(args.proof.stem + "-proxy-native.json")
+    proxy_command = [sys.executable, str(proxy_script), "--proof", str(proxy_proof)]
+    proxy_started = time.time()
+    proxy_child = subprocess.Popen(proxy_command, cwd=work, start_new_session=True)
+    proxy_cleanup = "process exited"
+    try:
+        proxy_status = proxy_child.wait(timeout=180)
+    except BaseException:
+        os.killpg(proxy_child.pid, signal.SIGTERM)
+        try:
+            proxy_child.wait(timeout=3)
+        except subprocess.TimeoutExpired:
+            os.killpg(proxy_child.pid, signal.SIGKILL)
+            proxy_child.wait()
+        proxy_cleanup = "process group terminated"
+        raise
+    finally:
+        with args.proof.with_suffix(".processes.jsonl").open("a") as stream:
+            stream.write(json.dumps({"parentTaskId": os.environ.get("CLASSES_FAMILY_TASK_ID", "linux-proxy-site-export-ci"), "parentPid": os.getpid(), "pid": proxy_child.pid, "command": proxy_command, "cwd": str(work), "startTime": proxy_started, "endTime": time.time(), "exitCode": proxy_child.returncode, "timeoutSeconds": 180, "childProcessGroupCleanup": proxy_cleanup}) + "\n")
+    assert proxy_status == 0
+    proxy_native = json.loads(proxy_proof.read_text())
+    assert proxy_native["accepted"] and not proxy_native["appOnly"]
+    assert len(proxy_native["profiles"]) == 3 and len(proxy_native["observations"]) == 75
+    assert proxy_native["sourceHashes"] == {name: file["sha256"] for name, file in proxy_packs[0]["files"].items()}
     default = work / "default-workspace"
     default.mkdir()
     default_archive = args.archives / "default-linux.zip"
@@ -132,6 +165,8 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
     assert diagnostics == b""
     args.proof.write_text(json.dumps({"sourceIdentity": identity, "archives": archives,
                                      "nativeProof": str(native_proof),
+                                     "proxySourceIdentity": proxy_identity,
+                                     "proxyNativeProof": str(proxy_proof),
                                      "defaultWorkspace": {"fileHashes": default_hashes,
                                                           "stdout": output.decode(),
                                                           "status": default_child.returncode},
