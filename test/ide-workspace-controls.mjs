@@ -23,13 +23,18 @@ export async function openProjectSidebar(page) {
 }
 
 export async function downloadProjectZip(page) {
-	const alreadyOpen = Boolean(await page.$("#code-ide-settings-panel"));
-	if (!alreadyOpen) await page.click("button[aria-label='IDE settings']");
+	const trigger = "button[aria-label='IDE settings']";
+	await page.waitForSelector(trigger);
+	const alreadyOpen = await page.$eval(trigger, button => button.getAttribute("aria-expanded") === "true");
+	if (!alreadyOpen) await page.locator(trigger).click();
 	try {
-		await page.waitForSelector("#code-ide-settings-panel");
-		await page.click("button[aria-label='Download project ZIP']");
+		await page.waitForSelector("#code-ide-settings-panel", { visible: true });
+		await page.locator("button[aria-label='Download project ZIP']:not([disabled])").click();
 	}
 	finally {
-		if (!alreadyOpen) await page.click("button[aria-label='IDE settings']");
+		if (!alreadyOpen) {
+			await page.locator(trigger).click();
+			await page.waitForSelector("#code-ide-settings-panel", { hidden: true });
+		}
 	}
 }
