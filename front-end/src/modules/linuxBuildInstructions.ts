@@ -95,6 +95,30 @@ export function linuxBuildInstructions(files: PythonIdeFile[], url?: string) {
 		"LS6-Backup-Cron-and-Timer": [
 			"Follow the README's fabricated source and separate backup-directory setup before running backup_home.sh with both explicit arguments.",
 			"Complete the starter retention TODO; verify retention and restore exact bytes. The supplied service and timer are user units. Record actual scheduled output, identity and undo separately."
+		],
+		"LS-07-unit-4-editing-and-configuration": [
+			"Read ../README.md for the owned lab, complete two-terminal workflow, JSON rules and the named validated apply step.",
+			"lab=$(mktemp -d)",
+			'bash task.sh init "$lab"',
+			'python3 config_app.py run "$lab/config.json"',
+			"Use only this lab process's reported PID. Observe unchanged cached output before HUP, accepted reload, rejected candidate and reload, exact backup/rollback and clean shutdown. Record edit-notes.md."
+		],
+		"LS-09-unit-4-editing-and-configuration-supplemental-2": [
+			"Read ../README.md for trusted Bash assignment syntax and the distinction between source and export. Complete the named MESSAGE and REPEAT export step.",
+			"lab=$(mktemp -d)",
+			'cp -- settings.env "$lab/settings.env"',
+			'bash task.sh "$lab/settings.env" --watch',
+			"Observe actual child PID/UID and environment, file edits before and after restart, explicit message overrides, quoted values, syntax versus value failures, unchanged parent state and cleanup. Record environment-notes.md."
+		],
+		"LS-10-unit-4-editing-and-configuration-supplemental-3": [
+			"Read ../README.md for the explicit two-file lab and literal key/value format. Complete only the anchored timeout replacement.",
+			"lab=$(mktemp -d)",
+			'bash task.sh init "$lab"',
+			'bash task.sh preview "$lab" 25',
+			'bash task.sh apply "$lab" 25',
+			"Set backup to the exact backup= path printed by apply before running rollback; the full reading shows the comparisons to make first.",
+			'bash task.sh rollback "$lab" "$backup"',
+			"Verify exact preview/backup bytes, modes, unchanged comments and unrelated numbers, invalid batches, a failed second rename and explicit recovery of both files. Per-file renames do not make the pair atomic. Record replacement-notes.md."
 		]
 	};
 	return [

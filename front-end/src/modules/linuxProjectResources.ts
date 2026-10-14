@@ -73,7 +73,7 @@ export const linuxVerifiedPacks = [
 	},
 	{
 		pack: "LS4-Apache-Virtual-Host-Compare",
-		revision: "883dce18a4c434b853423e280aa93c45e0ebdede",
+		revision: "237c62880e9c96f759a04fa5f171c03797e7453d",
 		roleFiles: [
 			"linux-systems-apache.conf",
 			"linux-systems-nginx.conf",
@@ -156,6 +156,48 @@ export const linuxVerifiedPacks = [
 		roleFiles: ["logrotate.conf", "task.sh", "retention-notes.md"],
 		coreItemId:
 			"linux-systems-unit-7-logging-and-observability-supplemental-log-investigation-extension-practice",
+		notebookItemId: null
+	},
+	{
+		pack: "LS-07-unit-4-editing-and-configuration",
+		revision: "237c62880e9c96f759a04fa5f171c03797e7453d",
+		roleFiles: [
+			"task.sh",
+			"config_app.py",
+			"config.json",
+			"candidate.json",
+			"edit-notes.md"
+		],
+		coreItemId:
+			"linux-systems-unit-4-editing-and-configuration-curriculum-core-project-editing-and-configuration",
+		notebookItemId:
+			"linux-systems-unit-4-editing-and-configuration-supplemental-troubleshooting-notebook-editing-and-configuration"
+	},
+	{
+		pack: "LS-09-unit-4-editing-and-configuration-supplemental-2",
+		revision: "237c62880e9c96f759a04fa5f171c03797e7453d",
+		roleFiles: [
+			"task.sh",
+			"environment_app.py",
+			"settings.env",
+			"environment-notes.md"
+		],
+		coreItemId:
+			"linux-systems-unit-4-editing-and-configuration-supplemental-configuration-editing-transfer-practice",
+		notebookItemId: null
+	},
+	{
+		pack: "LS-10-unit-4-editing-and-configuration-supplemental-3",
+		revision: "237c62880e9c96f759a04fa5f171c03797e7453d",
+		roleFiles: [
+			"task.sh",
+			"validate_config.py",
+			"primary.conf",
+			"secondary.conf",
+			"replacement-notes.md"
+		],
+		coreItemId:
+			"linux-systems-unit-4-editing-and-configuration-supplemental-configuration-editing-extension-practice",
 		notebookItemId: null
 	}
 ] as const;

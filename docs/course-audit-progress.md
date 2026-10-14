@@ -2280,3 +2280,38 @@ Native source acceptance covers both compilers, three controlled profiles at bot
   ten-record report. The repinned integration passes fresh course, API, lint, type, build and
   lockfile checks. Responsive import/save/export acceptance is retained with the
   exact source hashes; hosted export acceptance remains required before merge.
+
+### Configuration editing: apply/reload, child environments and exact recovery
+
+- Replaced three unrelated duplicate log-counting tasks with a required
+  configuration-edit loop, a separate optional environment-file transfer and a
+  separate optional controlled-replacement extension. The core notebook reuses
+  the core attempt. Existing lesson/progress identities and earlier saved work
+  remain intact.
+- Full neutral readings explain the formats, supplied equipment, commands,
+  predictions, named unfinished learner steps, changed cases, diagnostics,
+  observed process behavior and cleanup. Each supports independent reading or
+  paced discussion. The environment file is explicitly trusted Bash source;
+  the two-file replacement explicitly requires recovery after partial apply.
+- The three packs pin accepted source
+  `237c62880e9c96f759a04fa5f171c03797e7453d`. Source acceptance covers nine
+  editing profiles, 166 observations, three core processes, four watched
+  environment processes, two forced second-rename failures and nine cleanups.
+  The Apache observer pins that same accepted revision to wait for the old
+  workers to retire before checking a graceful reload. All existing exact
+  HTTP checks remain; eight actual worker-generation transitions are retained.
+  Apache source bytes are unchanged and the other twelve existing pack pins
+  remain intact. All 42 newly pinned source files are anonymously fetchable with
+  exact hashes.
+- The site now imports sixteen verified packs with 140 immutable source files
+  and 156 role-file comparisons. Configuration JSON, the named settings.env
+  file and evidence notes survive save/share/review through matching client/API
+  policies. Each new project opens task.sh after explicit import consent.
+- Local checks pass 309 catalog/workspace cases, 125 save/review API cases,
+  lint, type checks, unchanged-lockfile provenance and the production build.
+  Browser acceptance passes 128 responsive role/theme profiles, 25 actual course
+  actions, nine notebook reuses and 33 exact ZIP downloads. Phone core and
+  desktop replacement captures were inspected. Hosted native execution of the
+  actual site exports remains required before merge. The broader 77-course/Juni/Zoom audit and 36
+  remaining generic Linux references are still open; this is not public
+  activation.

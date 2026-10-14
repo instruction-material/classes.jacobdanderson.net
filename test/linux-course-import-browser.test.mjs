@@ -86,6 +86,21 @@ const definitions = {
 		"unit-8-scheduling-and-automation",
 		"project-write-a-backup-script-and-schedule-it-with-cron-and-a-timer",
 		"scheduling-and-automation"
+	],
+	"LS-07-unit-4-editing-and-configuration": [
+		"unit-4-editing-and-configuration",
+		"core-project-editing-and-configuration",
+		"editing-and-configuration"
+	],
+	"LS-09-unit-4-editing-and-configuration-supplemental-2": [
+		"unit-4-editing-and-configuration",
+		"configuration-editing-transfer-practice",
+		null
+	],
+	"LS-10-unit-4-editing-and-configuration-supplemental-3": [
+		"unit-4-editing-and-configuration",
+		"configuration-editing-extension-practice",
+		null
 	]
 };
 const storageKey = "classes-python-ide-projects:anonymous";
@@ -251,7 +266,9 @@ test(
 					"LS-13-unit-6-services-and-systemd-supplemental-2",
 					"LS-14-unit-6-services-and-systemd-supplemental-3",
 					"LS-15-unit-7-logging-and-observability-supplemental-2",
-					"LS-16-unit-7-logging-and-observability-supplemental-3"
+					"LS-16-unit-7-logging-and-observability-supplemental-3",
+					"LS-09-unit-4-editing-and-configuration-supplemental-2",
+					"LS-10-unit-4-editing-and-configuration-supplemental-3"
 				].includes(fixture.pack)
 					? "supplemental"
 					: "curriculum";
@@ -312,7 +329,10 @@ test(
 									? `${role}/logrotate.conf`
 									: [
 												"LS-09-unit-7-logging-and-observability",
-												"LS-15-unit-7-logging-and-observability-supplemental-2"
+												"LS-15-unit-7-logging-and-observability-supplemental-2",
+												"LS-07-unit-4-editing-and-configuration",
+												"LS-09-unit-4-editing-and-configuration-supplemental-2",
+												"LS-10-unit-4-editing-and-configuration-supplemental-3"
 										  ].includes(fixture.pack)
 										? `${role}/task.sh`
 										: fixture.pack ===
@@ -505,7 +525,13 @@ test(
 								"LS-15-unit-7-logging-and-observability-supplemental-2":
 									"linux-logging-transfer",
 								"LS-16-unit-7-logging-and-observability-supplemental-3":
-									"linux-logging-retention"
+									"linux-logging-retention",
+								"LS-07-unit-4-editing-and-configuration":
+									"linux-editing-core",
+								"LS-09-unit-4-editing-and-configuration-supplemental-2":
+									"linux-editing-environment",
+								"LS-10-unit-4-editing-and-configuration-supplemental-3":
+									"linux-editing-replacement"
 							}[fixture.pack];
 							if (capture) {
 								await page.screenshot({
@@ -670,12 +696,12 @@ test(
 				);
 			}
 			await writeFile(join(output, "default-linux.zip"), defaultArchive);
-			assert.equal(proof.length, 104);
-			assert.equal(courseButtons.length, 21);
+			assert.equal(proof.length, 128);
+			assert.equal(courseButtons.length, 25);
 			assert.equal(
 				courseButtons.filter(action => action.reusesExistingAttempt)
 					.length,
-				8
+				9
 			);
 			await writeFile(
 				join(output, "browser-proof.json"),

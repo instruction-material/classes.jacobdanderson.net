@@ -50,11 +50,22 @@ supplemental_verifier = (fixture_dir / "linux-systemd-supplemental-source-verifi
 assert hashlib.sha256(supplemental_verifier).hexdigest() == supplemental_identity["sha256"]
 assert all(pack["revision"] == supplemental_identity["revision"] for pack in supplemental_packs)
 logging_packs = [pack for pack in packs if pack["pack"] in ("LS-09-unit-7-logging-and-observability", "LS-15-unit-7-logging-and-observability-supplemental-2", "LS-16-unit-7-logging-and-observability-supplemental-3")]
-assert len(logging_packs) == 3 and len(packs) == 13
+assert len(logging_packs) == 3 and len(packs) == 16
 logging_identity = json.loads((fixture_dir / "linux-logging-source-verifier.json").read_text())
 logging_verifier = (fixture_dir / "linux-logging-source-verifier.py").read_bytes()
 assert hashlib.sha256(logging_verifier).hexdigest() == logging_identity["sha256"]
 assert all(pack["revision"] == logging_identity["revision"] for pack in logging_packs)
+editing_core_packs = [pack for pack in packs if pack["pack"] == "LS-07-unit-4-editing-and-configuration"]
+editing_optional_packs = [pack for pack in packs if pack["pack"] in ("LS-09-unit-4-editing-and-configuration-supplemental-2", "LS-10-unit-4-editing-and-configuration-supplemental-3")]
+assert len(editing_core_packs) == 1 and len(editing_optional_packs) == 2
+editing_core_identity = json.loads((fixture_dir / "linux-editing-core-source-verifier.json").read_text())
+editing_core_verifier = (fixture_dir / "linux-editing-core-source-verifier.py").read_bytes()
+editing_optional_identity = json.loads((fixture_dir / "linux-editing-optional-source-verifier.json").read_text())
+editing_optional_verifier = (fixture_dir / "linux-editing-optional-source-verifier.py").read_bytes()
+assert hashlib.sha256(editing_core_verifier).hexdigest() == editing_core_identity["sha256"]
+assert hashlib.sha256(editing_optional_verifier).hexdigest() == editing_optional_identity["sha256"]
+assert editing_core_packs[0]["revision"] == editing_core_identity["revision"]
+assert all(pack["revision"] == editing_optional_identity["revision"] for pack in editing_optional_packs)
 args.proof = args.proof.resolve()
 args.proof.parent.mkdir(parents=True, exist_ok=True)
 archives = []
@@ -110,7 +121,7 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
             archives.append({"pack": pack["pack"], "role": role,
                              "sha256": hashlib.sha256(archive_path.read_bytes()).hexdigest(),
                              "files": sorted(expected)})
-    assert len(archives) == 26
+    assert len(archives) == 32
     (work / "test").mkdir()
     native_proof = args.proof.with_name(args.proof.stem + "-native.json")
     native = run_pinned_contract(work, "verify_owned_labs.py", verifier, native_proof, 300)
@@ -132,6 +143,30 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
     assert apache_native["sourceHashes"] == {name: file["sha256"] for name, file in apache_packs[0]["files"].items()}
     assert all(profile["actualLinuxSockets"] and profile["rejectedSyntaxLeavesServing"] and profile["ownedListenersRemoved"] for profile in apache_native["profiles"])
     assert sum(profile["changedAndRestored"] for profile in apache_native["profiles"]) == 2
+    apache_reload_generations = 0
+    apache_expected_bodies = {hashlib.sha256(apache_packs[0]["files"][name]["content"].encode()).hexdigest()
+                              for name in ("solution/index.html", "solution/second.html")}
+    for profile in apache_native["profiles"]:
+        assert profile["exactPages"]
+        generations = profile["reloadGenerations"]
+        assert len(generations) == (0 if profile["role"] == "starter" else 4)
+        transitions = set()
+        for generation in generations:
+            server = generation["server"]
+            assert generation["signal"] == {"apache": "SIGUSR1", "nginx": "SIGHUP"}[server]
+            assert generation["previousWorkersRetired"]
+            assert generation["before"] and generation["after"]
+            before_workers = {(worker["pid"], worker["startTicks"]) for worker in generation["before"]}
+            after_workers = {(worker["pid"], worker["startTicks"]) for worker in generation["after"]}
+            assert before_workers.isdisjoint(after_workers)
+            assert all(worker["parentPid"] == generation["masterPid"] for worker in generation["before"] + generation["after"])
+            transitions.add((server, generation["expectedBodySha256"]))
+            apache_reload_generations += 1
+        if profile["role"] != "starter":
+            assert transitions == {(server, body) for server in ("apache", "nginx") for body in apache_expected_bodies}
+            assert all(len({generation["masterPid"] for generation in generations if generation["server"] == server}) == 1
+                       for server in ("apache", "nginx"))
+    assert apache_reload_generations == 8
     systemd_proof = args.proof.with_name(args.proof.stem + "-systemd-native.json")
     systemd_native = run_pinned_contract(work, "verify_systemd_service.py", systemd_verifier, systemd_proof, 180)
     assert systemd_native["accepted"] and not systemd_native["appOnly"]
@@ -179,6 +214,41 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
     assert len(scope_rows) == 2 and all(row["managerRows"] > 0 and row["fieldCollisions"] > 0 and row["expectedEvents"] == row["reportedEvents"] for row in scope_rows)
     logging_cleanup = [row for row in logging_native["observations"] if row.get("kind") == "cleanup"]
     assert len(logging_cleanup) == 6 and all(all(value for value in row.values() if isinstance(value, bool)) for row in logging_cleanup)
+    editing_core_proof = args.proof.with_name(args.proof.stem + "-editing-core-native.json")
+    editing_core = run_pinned_contract(work, "verify_editing_core.py", editing_core_verifier, editing_core_proof, 180)
+    assert editing_core["accepted"] and editing_core["platform"] == "linux" and editing_core["sourceUnchanged"]
+    assert not editing_core["offlineOnly"] and not editing_core["localProcessPreflight"]
+    assert editing_core["sourceHashes"] == {name: file["sha256"] for name, file in editing_core_packs[0]["files"].items()}
+    assert len(editing_core["profiles"]) == 3
+    assert {profile["role"] for profile in editing_core["profiles"]} == {"starter", "solution", "independent-completion"}
+    assert all(profile["actualOwnedProcess"] and profile["ownedUid"] > 0 and profile["processStopped"] for profile in editing_core["profiles"])
+    assert next(profile for profile in editing_core["profiles"] if profile["role"] == "starter")["namedUnfinishedStatus"] == 78
+    assert all(all(profile[key] for key in ("exactBackupAndApply", "cachedBeforeReload", "validReload", "invalidCandidateNoWrite", "invalidCurrentPreservesBackup", "invalidReloadKeepsProcess", "exactRollback", "changedCase", "modePreserved", "symlinkBoundary", "invalidBackupRejected")) for profile in editing_core["profiles"] if profile["role"] != "starter")
+    core_lifecycles = [row for row in editing_core["observations"] if row.get("kind") == "process-lifecycle"]
+    assert len(core_lifecycles) == 3 and all(row["exitCode"] == 0 and row["uid"] > 0 and row["processStopped"] and row["readerStopped"] for row in core_lifecycles)
+    core_cleanup = [row for row in editing_core["observations"] if row.get("kind") == "cleanup"]
+    assert len(core_cleanup) == 3 and all(row["processStopped"] and row["temporaryDirectoryRemoved"] for row in core_cleanup)
+    editing_optional_proof = args.proof.with_name(args.proof.stem + "-editing-optional-native.json")
+    editing_optional = run_pinned_contract(work, "verify_editing_optional.py", editing_optional_verifier, editing_optional_proof, 180)
+    assert editing_optional["accepted"] and editing_optional["platform"] == "linux" and editing_optional["nativeGNUVerified"] and editing_optional["sourceUnchanged"]
+    assert not editing_optional["offlineOnly"] and not editing_optional["localProcessPreflight"]
+    assert editing_optional["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in editing_optional_packs for name, file in pack["files"].items()}
+    assert len(editing_optional["profiles"]) == 6
+    for kind in ("environment", "replacement"):
+        group = [profile for profile in editing_optional["profiles"] if profile["kind"] == kind]
+        assert {profile["role"] for profile in group} == {"starter", "solution", "independent-completion"}
+        assert next(profile for profile in group if profile["role"] == "starter")["namedUnfinishedStatus"] == 78
+        for profile in group:
+            if profile["role"] == "starter":
+                continue
+            keys = ("actualChildEnvironment", "callerValuesIsolated", "parentEnvironmentUnchanged", "fileEditLeavesRunningEnvironment", "restartLoadsNewFile", "explicitOverride", "overrideLeavesFileUnchanged", "syntaxFailureBeforeApplication", "valueFailureDistinct", "singleQuotesRemainLiteral", "watchedProcessesStopped") if kind == "environment" else ("previewLeavesBytesUnchanged", "exactAnchoredEdits", "commentsAndUnrelatedNumbersPreserved", "completeBackupsExact", "modesPreserved", "missingAndDuplicateRejectedBeforeApply", "invalidRequestedValuesRejected", "changedWhitespaceCase", "actualSecondRenameFailure", "explicitRollbackRestoresBoth", "outsideBackupRefused", "symlinkRefused", "invalidBackupLeavesCurrentUnchanged", "stagingRemoved")
+            assert all(profile[key] for key in keys)
+    watched = [row for row in editing_optional["observations"] if row.get("kind") == "watched-lifecycle"]
+    assert len(watched) == 4 and all(row["exitCode"] == 0 and row["uid"] > 0 and row["processStopped"] and row["readerStopped"] for row in watched)
+    partial = [row for row in editing_optional["observations"] if row.get("kind") == "forced-second-rename-failure"]
+    assert len(partial) == 2 and all(row["status"] == 99 and row["firstFileChanged"] and row["secondFileUnchanged"] and row["completeBackupExact"] for row in partial)
+    optional_cleanup = [row for row in editing_optional["observations"] if row.get("kind") == "cleanup"]
+    assert len(optional_cleanup) == 6 and all(row["processesStopped"] and row["temporaryDirectoryRemoved"] for row in optional_cleanup)
     default = work / "default-workspace"
     default.mkdir()
     default_archive = args.archives / "default-linux.zip"
@@ -226,12 +296,17 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
                                      "proxyNativeProof": str(proxy_proof),
                                      "apacheSourceIdentity": apache_identity,
                                      "apacheNativeProof": str(apache_proof),
+                                     "apacheReloadGenerations": apache_reload_generations,
                                      "systemdSourceIdentity": systemd_identity,
                                      "systemdNativeProof": str(systemd_proof),
                                      "supplementalSourceIdentity": supplemental_identity,
                                      "supplementalNativeProof": str(supplemental_proof),
                                      "loggingSourceIdentity": logging_identity,
                                      "loggingNativeProof": str(logging_proof),
+                                     "editingCoreSourceIdentity": editing_core_identity,
+                                     "editingCoreNativeProof": str(editing_core_proof),
+                                     "editingOptionalSourceIdentity": editing_optional_identity,
+                                     "editingOptionalNativeProof": str(editing_optional_proof),
                                      "defaultWorkspace": {"fileHashes": default_hashes,
                                                           "stdout": output.decode(),
                                                           "status": default_child.returncode},
