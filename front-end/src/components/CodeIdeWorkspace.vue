@@ -11207,10 +11207,11 @@ html.dark .editor-shortcuts ul {
 	color: var(--color-ink-soft);
 }
 .project-context > span {
+	min-width: 0;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	max-width: 22rem;
+	max-width: min(22rem, 100%);
 }
 .project-context select {
 	min-width: 0;
@@ -11283,6 +11284,10 @@ html.dark .editor-shortcuts ul {
 	}
 	.project-context {
 		flex: 1 1 12rem;
+	}
+	.project-context > span {
+		white-space: normal;
+		overflow-wrap: anywhere;
 	}
 }
 </style>

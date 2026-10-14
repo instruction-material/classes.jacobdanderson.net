@@ -26,7 +26,7 @@ const fixtures = await Promise.all(
 		"assembly-parser-contracts.json",
 		"assembly-reverse-contracts.json",
 		"assembly-stack-contracts.json"
-	].map(async (name) =>
+	].map(async name =>
 		JSON.parse(
 			await readFile(
 				new URL(`./fixtures/${name}`, import.meta.url),
@@ -93,7 +93,7 @@ assert.equal(
 	"All eight verified packs require browser coverage"
 );
 assert.deepEqual(
-	fixtures.map((row) => row.pack).sort(),
+	fixtures.map(row => row.pack).sort(),
 	Object.keys(workflowDefinitions).sort(),
 	"Browser fixtures must cover every workflow definition"
 );
@@ -117,11 +117,11 @@ test(
 	{ timeout: 240_000 },
 	async () => {
 		let server, browser, context, page;
-		const captures =
-			process.env.COURSE_IMPORT_SCREENSHOT_DIR ?? "output/playwright";
-		const exports =
-			process.env.ASSEMBLY_BROWSER_EXPORT_PROOF_DIR ??
-			"output/assembly-exports";
+		const captures
+			= process.env.COURSE_IMPORT_SCREENSHOT_DIR ?? "output/playwright";
+		const exports
+			= process.env.ASSEMBLY_BROWSER_EXPORT_PROOF_DIR
+				?? "output/assembly-exports";
 		const proof = [];
 		await mkdir(captures, { recursive: true });
 		await mkdir(exports, { recursive: true });
@@ -137,7 +137,7 @@ test(
 				"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
 				"/usr/bin/google-chrome",
 				"/usr/bin/chromium"
-			].find((path) => path && existsSync(path));
+			].find(path => path && existsSync(path));
 			assert.ok(
 				executablePath,
 				"An existing Chrome installation is required"
@@ -156,8 +156,8 @@ test(
 					const click = HTMLAnchorElement.prototype.click;
 					HTMLAnchorElement.prototype.click = function () {
 						if (
-							this.download.endsWith(".zip") &&
-							this.href.startsWith("blob:")
+							this.download.endsWith(".zip")
+							&& this.href.startsWith("blob:")
 						) {
 							return;
 						}
@@ -189,16 +189,18 @@ test(
 						headers: { "access-control-allow-origin": "*" },
 						body: file?.content ?? "Unknown source"
 					});
-				} else if (
-					url.origin !== origin ||
-					url.pathname.startsWith("/api/")
+				}
+				else if (
+					url.origin !== origin
+					|| url.pathname.startsWith("/api/")
 				) {
 					void request.respond({
 						status: 200,
 						contentType: "application/json",
 						body: "{}"
 					});
-				} else {
+				}
+				else {
 					void request.continue();
 				}
 			});
@@ -212,7 +214,7 @@ test(
 							const expectedFiles = Object.keys(
 								fixture.files
 							).filter(
-								(path) =>
+								path =>
 									path.startsWith(
 										`${fixture.pack}/${role}/`
 									) || path === `${fixture.pack}/README.md`
@@ -260,21 +262,21 @@ test(
 								(s, k) =>
 									JSON.parse(
 										localStorage.getItem(s) ?? "[]"
-									).some((p) => p.courseProjectKey === k),
+									).some(p => p.courseProjectKey === k),
 								{},
 								storageKey,
 								key
 							);
 							const projects = await page.evaluate(
-								(s) => JSON.parse(localStorage.getItem(s)),
+								s => JSON.parse(localStorage.getItem(s)),
 								storageKey
 							);
 							assert.deepEqual(
-								projects.find((p) => p._id === legacy._id),
+								projects.find(p => p._id === legacy._id),
 								legacy
 							);
 							const saved = projects.find(
-								(p) => p.courseProjectKey === key
+								p => p.courseProjectKey === key
 							);
 							assert.equal(saved.mode, "assembly");
 							assert.equal(
@@ -284,7 +286,7 @@ test(
 							assert.deepEqual(
 								saved.files
 									.map(
-										(file) => `${fixture.pack}/${file.name}`
+										file => `${fixture.pack}/${file.name}`
 									)
 									.sort(),
 								expectedFiles.sort()
@@ -292,7 +294,7 @@ test(
 							assert.equal(requests.length, expectedFiles.length);
 							assert.ok(
 								requests.every(
-									(path) =>
+									path =>
 										!path.includes(
 											role === "starter"
 												? "/solution/"
@@ -320,16 +322,15 @@ test(
 								"button.run-control:not([disabled])"
 							);
 							assert.equal(
-								await page.$eval("button.run-control", (b) =>
-									b.textContent.trim()
-								),
+								await page.$eval("button.run-control", b =>
+									b.textContent.trim()),
 								"Build instructions"
 							);
 							await page.click("button.run-control");
 							await page.waitForFunction(() =>
 								[
 									...document.querySelectorAll(".output-line")
-								].some((line) =>
+								].some(line =>
 									line.textContent.includes(
 										"ctest --test-dir build"
 									)
@@ -341,8 +342,8 @@ test(
 									(p, { role, referenceToken }) =>
 										p.textContent.includes(
 											"Linux x86-64"
-										) &&
-										p.textContent.includes(
+										)
+										&& p.textContent.includes(
 											role === "starter"
 												? "exits 78"
 												: referenceToken
@@ -363,7 +364,7 @@ test(
 										new Uint8Array(
 											await window.__assemblyArchive.arrayBuffer()
 										),
-										(byte) => String.fromCharCode(byte)
+										byte => String.fromCharCode(byte)
 									).join("")
 								)
 							);
@@ -375,11 +376,11 @@ test(
 								expectedFiles.length
 							);
 							for (const file of saved.files) {
-								const source =
-									fixture.files[
+								const source
+									= fixture.files[
 										`${fixture.pack}/${file.name}`
 									];
-								const path = Object.keys(entries).find((path) =>
+								const path = Object.keys(entries).find(path =>
 									path.endsWith(`/${file.name}`)
 								);
 								assert.equal(file.content, source.content);
@@ -411,7 +412,7 @@ test(
 									.click();
 							}
 							const name = `${role}/${primary}`;
-							const edit = `${saved.files.find((file) => file.name === name).content}\n/* Saved Assembly attempt. */\n`;
+							const edit = `${saved.files.find(file => file.name === name).content}\n/* Saved Assembly attempt. */\n`;
 							await page.click(".cm-content");
 							const modifier = await page.evaluate(() =>
 								/Mac/.test(navigator.platform)
@@ -428,9 +429,10 @@ test(
 							await page.waitForFunction(
 								(s, k, n, c) =>
 									JSON.parse(localStorage.getItem(s))
-										.find((p) => p.courseProjectKey === k)
-										?.files.some(
-											(f) =>
+										.find(p => p.courseProjectKey === k)
+										?.files
+										.some(
+											f =>
 												f.name === n && f.content === c
 										),
 								{},
@@ -448,14 +450,14 @@ test(
 							const reloaded = await page.evaluate(
 								(s, k) =>
 									JSON.parse(localStorage.getItem(s)).find(
-										(p) => p.courseProjectKey === k
+										p => p.courseProjectKey === k
 									),
 								storageKey,
 								key
 							);
 							assert.deepEqual(
 								reloaded.files,
-								saved.files.map((file) =>
+								saved.files.map(file =>
 									file.name === name
 										? { ...file, content: edit }
 										: file
@@ -473,7 +475,7 @@ test(
 										new Uint8Array(
 											await window.__assemblyArchive.arrayBuffer()
 										),
-										(byte) => String.fromCharCode(byte)
+										byte => String.fromCharCode(byte)
 									).join("")
 								)
 							);
@@ -485,7 +487,7 @@ test(
 									strFromU8(
 										editedEntries[
 											Object.keys(editedEntries).find(
-												(path) =>
+												path =>
 													path.endsWith(
 														`/${file.name}`
 													)
@@ -495,21 +497,20 @@ test(
 									file.content
 								);
 							}
-							const returnHref = await page.$$eval("a", (links) =>
+							const returnHref = await page.$$eval("a", links =>
 								links
 									.find(
-										(link) =>
-											link.textContent.trim() ===
-											"Return to lesson"
+										link =>
+											link.textContent.trim()
+											=== "Return to lesson"
 									)
-									?.getAttribute("href")
-							);
+									?.getAttribute("href"));
 							assert.equal(returnHref, `/courses#${lesson}`);
 							assert.ok(
 								await page.evaluate(
 									() =>
-										document.documentElement.scrollWidth <=
-										innerWidth + 1
+										document.documentElement.scrollWidth
+										<= innerWidth + 1
 								)
 							);
 							const capture = `course-import-assembly-${fixture.pack}-${role}-${width}-${theme}.png`;
@@ -522,7 +523,7 @@ test(
 								role,
 								width,
 								theme,
-								files: saved.files.map((f) => ({
+								files: saved.files.map(f => ({
 									name: f.name,
 									sha256: createHash("sha256")
 										.update(f.content)
@@ -548,7 +549,23 @@ test(
 				join(captures, "assembly-workflow-proof.json"),
 				`${JSON.stringify(proof, null, 2)}\n`
 			);
-		} catch (error) {
+		}
+		catch (error) {
+			await writeFile(join(captures, "assembly-workflow-partial.json"), JSON.stringify(proof, null, 2));
+			if (page) {
+				const geometry = await page.evaluate(() => ({
+					url: location.href,
+					viewport: innerWidth,
+					documentWidth: document.documentElement.scrollWidth,
+					overflow: [...document.querySelectorAll("body *")].map((node) => {
+						const box = node.getBoundingClientRect();
+						const style = getComputedStyle(node);
+						return { tag: node.tagName, className: (node.getAttribute("class") ?? "").slice(0, 140), right: box.right, width: box.width, minWidth: style.minWidth, overflowX: style.overflowX };
+					}).filter(node => node.width > 0 && node.right > innerWidth + 1).slice(0, 20)
+				}));
+				console.log(JSON.stringify({ event: "assembly-browser-failure-geometry", ...geometry }));
+				await writeFile(join(captures, "assembly-failure-geometry.json"), JSON.stringify(geometry, null, 2));
+			}
 			if (page) {
 				await page.screenshot({
 					path: join(captures, "assembly-failure.png"),
@@ -558,7 +575,7 @@ test(
 					join(captures, "assembly-failure.json"),
 					JSON.stringify(
 						await page.evaluate(
-							(s) => ({
+							s => ({
 								url: location.href,
 								body: (document.body.textContent ?? "").slice(
 									-7000
@@ -573,7 +590,8 @@ test(
 				);
 			}
 			throw error;
-		} finally {
+		}
+		finally {
 			await page?.close();
 			await context?.close();
 			await browser?.close();

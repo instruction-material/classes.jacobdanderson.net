@@ -307,11 +307,13 @@ jobs:
                   python3 test/assembly-exported-contracts.py --project stack --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-stack-native-gcc.json
 
             - name: Retain Assembly workflow and native validation
+              if: always()
               uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
               with:
                   name: assembly-workflow-validation
                   path: |
                       output/playwright/course-import-assembly-*.png
+                      output/playwright/assembly-failure.png
                       output/playwright/assembly-*.json
                       output/playwright/assembly-*.jsonl
                       output/assembly-exports/*.zip
