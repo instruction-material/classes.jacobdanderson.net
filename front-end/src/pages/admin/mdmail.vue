@@ -30,6 +30,8 @@ interface SendMailResponse {
 	operationId?: string;
 	evidenceStatus?: string;
 	statusReason?: string;
+	sendingPaused?: boolean;
+	archivalStatus?: string | null;
 	ok: boolean;
 }
 
@@ -50,6 +52,9 @@ const noteStudents = ref<
 const noteStudentsLoading = ref(false);
 const noteStudentsError = ref("");
 const noteOperation = ref<SendMailResponse | null>(null);
+const sendingStatus = ref<"checking" | "paused" | "not-paused" | "unavailable">(
+	"checking"
+);
 let pendingNoteSend: { signature: string; key: string; noteId: string } | null =
 	null;
 const previewOpen = ref(false);
@@ -119,11 +124,39 @@ async function checkNoteOperation() {
 			`/admin-mail/session-notes/operations/${noteOperation.value.operationId}`
 		);
 		noteOperation.value = data;
-		resultText.value = `Operation ${data.operationId}: ${data.evidenceStatus}. ${data.statusReason ?? ""}`;
+		if (typeof data.sendingPaused === "boolean") {
+			sendingStatus.value = data.sendingPaused ? "paused" : "not-paused";
+		}
+		resultText.value = describeNoteOperation(data);
 	} catch {
 		resultText.value =
 			"Tracking unavailable. Keep the operation reference and do not send again.";
 	}
+}
+
+function describeNoteOperation(operation: SendMailResponse): string {
+	const reference = `Operation ${operation.operationId}: `;
+	if (operation.evidenceStatus === "queued") {
+		return operation.sendingPaused
+			? `${reference}Queued while session-note sending is paused. Operator activation is required before another SMTP attempt. No SMTP acceptance is recorded. Do not submit again.`
+			: `${reference}Queued; SMTP has not accepted the message. Check this operation before taking further action. Do not submit again.`;
+	}
+	if (operation.evidenceStatus === "smtp_accepted") {
+		const archive =
+			operation.archivalStatus === "archived"
+				? "The Sent copy was archived."
+				: operation.archivalStatus === "review_required"
+					? "The Sent copy requires separate archival review; do not resend."
+					: "Sent-copy archival is not confirmed.";
+		return `${reference}Primary recipient accepted by SMTP; remote handoff and inbox delivery are not confirmed. ${archive}`;
+	}
+	if (
+		operation.evidenceStatus === "smtp_rejected" ||
+		operation.evidenceStatus === "send_failed"
+	) {
+		return `${reference}Delivery was not accepted or dispatch failed. Review the operation before any audited retry; do not create a new send.`;
+	}
+	return `${reference}Delivery outcome is unconfirmed. Keep this reference and do not send again without review.`;
 }
 
 // helper to render + sanitize MD -> HTML
@@ -237,7 +270,25 @@ async function reloadRecipients() {
 	await loadAdminRecipientList();
 	await loadNoteStudents();
 }
-onMounted(reloadRecipients);
+async function loadSendingStatus() {
+	try {
+		const { data } = await api.get<{ sendingPaused: boolean }>(
+			"/admin-mail/session-notes/sending-status"
+		);
+		sendingStatus.value =
+			data.sendingPaused === true
+				? "paused"
+				: data.sendingPaused === false
+					? "not-paused"
+					: "unavailable";
+	} catch {
+		sendingStatus.value = "unavailable";
+	}
+}
+onMounted(() => {
+	void reloadRecipients();
+	void loadSendingStatus();
+});
 
 function clearRecipient() {
 	requestNoteStudent("");
@@ -472,7 +523,12 @@ async function sendMail() {
 		);
 		if (data.operationId) {
 			noteOperation.value = data;
-			resultText.value = `Operation ${data.operationId}: ${data.evidenceStatus}. ${data.ok ? "Primary recipient accepted by SMTP; inbox delivery is not confirmed." : "Keep this reference. Do not create another send while this outcome is pending or unconfirmed."}`;
+			if (typeof data.sendingPaused === "boolean") {
+				sendingStatus.value = data.sendingPaused
+					? "paused"
+					: "not-paused";
+			}
+			resultText.value = describeNoteOperation(data);
 			if (data.ok) await loadRecentSessionNotes();
 		} else {
 			resultText.value =
@@ -509,6 +565,22 @@ function parseDateIso(value: string): string | null {
 	<AdminWorkspaceShell title="Session notes">
 		<section class="wrap">
 			<div class="mail-card">
+				<p v-if="sendingStatus === 'paused'" class="hint" role="status">
+					Session-note sending was paused when last checked. While it
+					remains paused, submitting a note queues a request; operator
+					activation is required before delivery can be attempted.
+					Check the operation result and do not submit the same note
+					again.
+				</p>
+				<p
+					v-else-if="sendingStatus === 'unavailable'"
+					class="hint"
+					role="status"
+				>
+					Sending status is unavailable. Do not assume a note was
+					emailed; check its operation status before taking further
+					action.
+				</p>
 				<div class="field-grid">
 					<div class="field">
 						<label class="field-label" for="recipient-select"
@@ -711,7 +783,13 @@ function parseDateIso(value: string): string | null {
 						"
 						@click="sendMail"
 					>
-						{{ sending ? "Sending…" : "Send" }}
+						{{
+							sending
+								? "Submitting…"
+								: sendingStatus === "not-paused"
+									? "Send"
+									: "Submit note"
+						}}
 					</button>
 				</div>
 			</div>

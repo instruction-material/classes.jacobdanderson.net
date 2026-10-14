@@ -32,6 +32,9 @@ beforeEach(() => {
 		{ name: "Synthetic Student", emails: ["student@example.invalid"] }
 	]);
 	vi.mocked(api.get).mockImplementation(async (path: string) => {
+		if (path === "/admin-mail/session-notes/sending-status") {
+			return { data: { sendingPaused: false } };
+		}
 		if (path === "/admin-mail/session-notes/identities") {
 			return {
 				data: {
@@ -125,6 +128,94 @@ describe("direct, safely validated session-note sending", () => {
 		);
 		expect(wrapper.find('[data-testid="live-preview"]').exists()).toBe(
 			false
+		);
+	});
+	it("shows operator activation for a paused queued note without repeating the send", async () => {
+		const originalGet = vi.mocked(api.get).getMockImplementation()!;
+		vi.mocked(api.get).mockImplementation(
+			async (path: string, ...args: any[]) => {
+				if (path === "/admin-mail/session-notes/sending-status")
+					return { data: { sendingPaused: true } };
+				if (
+					path ===
+					"/admin-mail/session-notes/operations/synthetic-operation"
+				)
+					return {
+						data: {
+							operationId: "synthetic-operation",
+							evidenceStatus: "queued",
+							sendingPaused: true,
+							ok: false
+						}
+					};
+				return originalGet(path, ...args);
+			}
+		);
+		vi.mocked(api.post).mockImplementation(async path => ({
+			data: path.endsWith("/session-notes")
+				? { sessionNote: { _id: noteId } }
+				: {
+						operationId: "synthetic-operation",
+						evidenceStatus: "queued",
+						sendingPaused: true,
+						ok: false
+					}
+		}));
+		await compose();
+		expect(wrapper.text()).toContain("operator activation is required");
+		expect(wrapper.get(".send-btn").text()).toBe("Submit note");
+		await wrapper.get(".send-btn").trigger("click");
+		await flushPromises();
+		expect(wrapper.get(".result").text()).toContain(
+			"No SMTP acceptance is recorded"
+		);
+		expect(wrapper.get(".result").text()).toContain("Do not submit again");
+		expect(api.post).toHaveBeenCalledTimes(2);
+		await wrapper
+			.findAll("button")
+			.find(button => button.text() === "Check send status")!
+			.trigger("click");
+		await flushPromises();
+		expect(api.get).toHaveBeenCalledWith(
+			"/admin-mail/session-notes/operations/synthetic-operation"
+		);
+		expect(api.post).toHaveBeenCalledTimes(2);
+		expect(retainNoteSendIntent).toHaveBeenCalledTimes(1);
+	});
+	it("does not imply delivery when the pause check is unavailable", async () => {
+		const originalGet = vi.mocked(api.get).getMockImplementation()!;
+		vi.mocked(api.get).mockImplementation(
+			async (path: string, ...args: any[]) => {
+				if (path === "/admin-mail/session-notes/sending-status")
+					throw new Error("Synthetic status outage");
+				return originalGet(path, ...args);
+			}
+		);
+		await compose();
+		expect(wrapper.text()).toContain("Sending status is unavailable");
+		expect(wrapper.get(".send-btn").text()).toBe("Submit note");
+		expect(api.post).not.toHaveBeenCalled();
+	});
+	it("keeps SMTP acceptance distinct from later Sent-copy archival review", async () => {
+		vi.mocked(api.post).mockImplementation(async path => ({
+			data: path.endsWith("/session-notes")
+				? { sessionNote: { _id: noteId } }
+				: {
+						operationId: "synthetic-operation",
+						evidenceStatus: "smtp_accepted",
+						archivalStatus: "review_required",
+						ok: true
+					}
+		}));
+		await compose();
+		await wrapper.get(".send-btn").trigger("click");
+		await flushPromises();
+		expect(wrapper.get(".result").text()).toContain("accepted by SMTP");
+		expect(wrapper.get(".result").text()).toContain(
+			"inbox delivery are not confirmed"
+		);
+		expect(wrapper.get(".result").text()).toContain(
+			"archival review; do not resend"
 		);
 	});
 	it("never guesses a scheduled session from the selected subject date", async () => {

@@ -620,6 +620,9 @@ router.get("/session-notes/identities", validAdmin, async (_req, res) => {
 	}
 	catch { res.status(503).json({ message: "Student identities unavailable" }); }
 });
+router.get("/session-notes/sending-status", validAdmin, (_req, res) => {
+	res.json({ sendingPaused: env.SESSION_NOTES_SEND_ENABLED !== "true" });
+});
 router.get("/session-notes/operations/:operationId", validAdmin, async (req, res) => {
 	try {
 		if (!z.uuid().safeParse(req.params.operationId).success) return res.status(400).json({ message: "Invalid operation" });
@@ -636,7 +639,7 @@ router.get("/session-notes/review", validAdmin, async (_req, res) => {
 		const resolvedIds = new Set(resolved.map(n => String(n._id)));
 		const unlinkedNotes = await SessionNote.find({ associationStatus: "unlinked_review_required", associationReviewResolved: { $ne: true } }).select({ _id: 1, user: 1 }).limit(100).maxTimeMS(2000).lean();
 		const externalEvidence = await SessionNoteEvidence.find({ associationStatus: "unlinked_review_required" }).select({ _id: 1, studentId: 1, evidenceType: 1, correctionReason: 1 }).limit(100).maxTimeMS(2000).lean();
-		res.set("Cache-Control", "no-store").json({ writerMarkers, operations: records.filter(r => !(r.state === "smtp_accepted" && resolvedIds.has(r.noteId) && r.archiveState !== "review_required")).map(safeOperation), externalEvidence: externalEvidence.map(e => ({ recordId: String(e._id), studentId: e.studentId, evidenceStatus: externalEvidenceStatus(e) })), unlinkedNotes: unlinkedNotes.map(n => ({ noteId: String(n._id), studentId: n.user ? String(n.user) : null })), limit: 100 });
+		res.set("Cache-Control", "no-store").json({ sendingPaused: env.SESSION_NOTES_SEND_ENABLED !== "true", writerMarkers, operations: records.filter(r => !(r.state === "smtp_accepted" && resolvedIds.has(r.noteId) && r.archiveState !== "review_required")).map(record => safeOperation(record)), externalEvidence: externalEvidence.map(e => ({ recordId: String(e._id), studentId: e.studentId, evidenceStatus: externalEvidenceStatus(e) })), unlinkedNotes: unlinkedNotes.map(n => ({ noteId: String(n._id), studentId: n.user ? String(n.user) : null })), limit: 100 });
 	}
 	catch { res.status(503).json({ message: "Review queue unavailable" }); }
 });

@@ -1451,7 +1451,40 @@ describe.skipIf(!existsSync(mongod))(
 				noteId: saved.sessionNote._id,
 				idempotencyKey: "guardian-revoked-synthetic"
 			};
-			expect((await post("/admin-mail/send", body)).status).toBe(202);
+			const queuedResponse = await post("/admin-mail/send", body);
+			expect(queuedResponse.status).toBe(202);
+			const queued = await queuedResponse.json();
+			expect(queued).toMatchObject({
+				evidenceStatus: "queued",
+				sendingPaused: true,
+				ok: false
+			});
+			const polled = await fetch(
+				apiBase +
+					"/admin-mail/session-notes/operations/" +
+					queued.operationId,
+				{ headers: adminHeaders }
+			);
+			expect(await polled.json()).toMatchObject({
+				operationId: queued.operationId,
+				evidenceStatus: "queued",
+				sendingPaused: true
+			});
+			const repeated = await post("/admin-mail/send", body);
+			expect((await repeated.json()).operationId).toBe(
+				queued.operationId
+			);
+			expect(
+				await SessionNoteSend.countDocuments({
+					noteId: saved.sessionNote._id
+				})
+			).toBe(1);
+			expect(received).toBe(0);
+			const review = await fetch(
+				apiBase + "/admin-mail/session-notes/review",
+				{ headers: adminHeaders }
+			);
+			expect((await review.json()).sendingPaused).toBe(true);
 			vi.stubEnv("ADMIN_MAIL_RECIPIENTS_JSON", "[]");
 			vi.stubEnv("SESSION_NOTES_SEND_ENABLED", "true");
 			const response = await post("/admin-mail/send", body);

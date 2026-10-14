@@ -560,6 +560,53 @@
         }
       }
     },
+    "/admin-mail/session-notes/sending-status": {
+      "get": {
+        "operationId": "getSessionNoteSendingStatus",
+        "description": "Current administrator-only send pause flag. False does not establish SMTP availability or delivery, and this route never changes the flag.",
+        "security": [
+          {
+            "AdministratorSession": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Bounded current sending state",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sendingPaused": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": ["sendingPaused"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Administrator session required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/admin-mail/session-notes/operations/{operationId}": {
       "get": {
         "operationId": "getNoteOperation",
@@ -1573,6 +1620,10 @@
           "statusReason": {
             "type": "string"
           },
+          "sendingPaused": {
+            "type": "boolean",
+            "description": "Current session-note send pause flag. It does not alter this operation's historical SMTP or archival evidence. An exceptional reconciliation response can omit this field."
+          },
           "ok": {
             "type": "boolean"
           },
@@ -1774,6 +1825,10 @@
       "ReviewQueue": {
         "type": "object",
         "properties": {
+          "sendingPaused": {
+            "type": "boolean",
+            "description": "Current session-note send pause flag. A false value is not proof of SMTP delivery."
+          },
           "operations": {
             "type": "array",
             "maxItems": 100,
@@ -1870,6 +1925,7 @@
           }
         },
         "required": [
+          "sendingPaused",
           "operations",
           "externalEvidence",
           "unlinkedNotes",
