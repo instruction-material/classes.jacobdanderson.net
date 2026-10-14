@@ -3,6 +3,10 @@ import { assemblyArrayProjectReading } from "./assemblyArrayProjectReading";
 import { assemblyCalculatorProjectReading } from "./assemblyCalculatorProjectReading";
 import { assemblyCompilerProjectReading } from "./assemblyCompilerProjectReading";
 import { assemblyDebugProjectReading } from "./assemblyDebugProjectReading";
+import {
+	assemblyHardeningProjectReading,
+	assemblyHardeningTraceReading
+} from "./assemblyHardeningProjectReading";
 import { assemblyHelperProjectReading } from "./assemblyHelperProjectReading";
 import { assemblyOpeningProjectReading } from "./assemblyOpeningProjectReading";
 import { assemblyParserProjectReading } from "./assemblyParserProjectReading";
@@ -883,32 +887,24 @@ const assemblySourceCourse: RawCourse = {
 						"https://github.com/instruction-material/Assembly/blob/8856f11c649863d5eee9914658c11cfb801ead4b/ASM6-Reverse-Engineering-Toy-Program/README.md"
 				},
 				{
-					title: "Reliability Visibility Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle:
-							"Unit 12: Security and Reliability Visibility",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Binary Hardening Evidence Lab",
+					id: "assembly-unit-12-security-and-reliability-visibility-supplemental-reliability-visibility-transfer-practice",
+					ideImport: true,
+					content: assemblyHardeningProjectReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-25-unit-12-security-and-reliability-visibility-supplemental-2/starter",
+						"https://github.com/instruction-material/Assembly/tree/fd561a16c6855b7816850eaf3aa6206b6fa895da/ASM-25-unit-12-security-and-reliability-visibility-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-25-unit-12-security-and-reliability-visibility-supplemental-2/solution"
+						"https://github.com/instruction-material/Assembly/tree/fd561a16c6855b7816850eaf3aa6206b6fa895da/ASM-25-unit-12-security-and-reliability-visibility-supplemental-2/solution"
 				},
 				{
-					title: "Reliability Visibility Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle:
-							"Unit 12: Security and Reliability Visibility",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Runtime Hardening Trace Companion",
+					id: "assembly-unit-12-security-and-reliability-visibility-supplemental-reliability-visibility-extension-practice",
+					ideImport: true,
+					content: assemblyHardeningTraceReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-26-unit-12-security-and-reliability-visibility-supplemental-3/starter",
+						"https://github.com/instruction-material/Assembly/tree/fd561a16c6855b7816850eaf3aa6206b6fa895da/ASM-26-unit-12-security-and-reliability-visibility-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-26-unit-12-security-and-reliability-visibility-supplemental-3/solution"
+						"https://github.com/instruction-material/Assembly/tree/fd561a16c6855b7816850eaf3aa6206b6fa895da/ASM-26-unit-12-security-and-reliability-visibility-supplemental-3/solution"
 				}
 			]
 		},

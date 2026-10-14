@@ -41,6 +41,12 @@ export const assemblyPerformanceRevision =
 	"dfe6d181f0e6e793aebf78270f7c391e3a0225aa";
 export const assemblyPerformancePack =
 	"ASM-10-unit-11-performance-and-code-shape";
+export const assemblyHardeningRevision =
+	"fd561a16c6855b7816850eaf3aa6206b6fa895da";
+export const assemblyHardeningPack =
+	"ASM-25-unit-12-security-and-reliability-visibility-supplemental-2";
+export const assemblyHardeningTracePack =
+	"ASM-26-unit-12-security-and-reliability-visibility-supplemental-3";
 export const assemblyVerifiedPacks = [
 	{
 		pack: assemblyOpeningPack,
@@ -172,6 +178,37 @@ export const assemblyVerifiedPacks = [
 			"CMakeLists.txt",
 			"analysis.md"
 		]
+	},
+	{
+		pack: assemblyHardeningPack,
+		revision: assemblyHardeningRevision,
+		roleFiles: [
+			"analysis.md",
+			"trace.md",
+			"bytes.S",
+			"model.c",
+			"main.c",
+			"hardening.h",
+			"tests.c",
+			"abi_checks.S",
+			"CMakeLists.txt"
+		]
+	},
+	{
+		pack: assemblyHardeningTracePack,
+		importPack: assemblyHardeningPack,
+		revision: assemblyHardeningRevision,
+		roleFiles: [
+			"trace.md",
+			"analysis.md",
+			"bytes.S",
+			"model.c",
+			"main.c",
+			"hardening.h",
+			"tests.c",
+			"abi_checks.S",
+			"CMakeLists.txt"
+		]
 	}
 ] as const;
 
@@ -214,11 +251,13 @@ export function assemblyImportFiles(url: string) {
 	const selected = assemblyCourseResource(url);
 	if (!selected) return null;
 	const { resource, pack, role, definition } = selected;
+	const importPack =
+		"importPack" in definition ? definition.importPack : pack;
 	return [
 		...definition.roleFiles.map(name => `${role}/${name}`),
 		"README.md"
 	].map(name => {
-		const path = `${pack}/${name}`;
+		const path = `${importPack}/${name}`;
 		return {
 			name,
 			file: {

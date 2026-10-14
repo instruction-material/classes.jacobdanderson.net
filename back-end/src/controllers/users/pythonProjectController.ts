@@ -19,7 +19,7 @@ import { PythonProjectReview } from "../../models/schemas/PythonProjectReview.js
 import { User } from "../../models/schemas/User.js";
 
 const SAFE_FILE_SEGMENT_RE = /^\w[\w.-]*$/;
-const NATIVE_WORKSHEET_FILE_RE = /^(?:starter|solution)\/analysis\.md$/i;
+const NATIVE_WORKSHEET_FILE_RE = /^(?:starter|solution)\/(?:analysis|trace)\.md$/i;
 const ROOT_TEXT_FILE_RE = /^(?:makefile|\w[\w.-]*\.(?:csv|eps|expected|in|java|json|md|out|ps|py|tsv|txt|xml))$/i;
 const IMAGE_FILE_RE = /^images\/\w[\w.-]*\.(?:gif|jpe?g|png|svg|webp)$/i;
 const AUDIO_FILE_RE = /^(?:music|sounds)\/\w[\w.-]*\.(?:mp3|ogg|wav)$/i;

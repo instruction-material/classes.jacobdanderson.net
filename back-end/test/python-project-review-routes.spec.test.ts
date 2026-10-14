@@ -62,7 +62,10 @@ const userOwnerClause = {
 	$or: [{ ownerRole: "user" }, { ownerRole: { $exists: false } }]
 };
 
-function ownedProjectQuery(ownerID: Types.ObjectId, ownerRole: "admin" | "tutor" | "user") {
+function ownedProjectQuery(
+	ownerID: Types.ObjectId,
+	ownerRole: "admin" | "tutor" | "user"
+) {
 	if (ownerRole === "user") {
 		return {
 			user: ownerID,
@@ -84,9 +87,12 @@ function queryWith<T>(result: T) {
 		skip: vi.fn(() => query),
 		limit: vi.fn(() => query),
 		lean: vi.fn().mockResolvedValue(result),
-		then: (resolve: (value: T) => unknown, reject: (reason: unknown) => unknown) =>
-			Promise.resolve(result).then(resolve, reject),
-		catch: (reject: (reason: unknown) => unknown) => Promise.resolve(result).catch(reject)
+		then: (
+			resolve: (value: T) => unknown,
+			reject: (reason: unknown) => unknown
+		) => Promise.resolve(result).then(resolve, reject),
+		catch: (reject: (reason: unknown) => unknown) =>
+			Promise.resolve(result).catch(reject)
 	};
 	return query;
 }
@@ -163,7 +169,9 @@ function makeReview(overrides: Record<string, unknown> = {}) {
 	return review;
 }
 
-async function withUserRoutes<T>(run: (baseUrl: string) => Promise<T>): Promise<T> {
+async function withUserRoutes<T>(
+	run: (baseUrl: string) => Promise<T>
+): Promise<T> {
 	const app = express();
 	app.use(express.json({ limit: "15mb" }));
 	app.use((req: any, _res, next) => {
@@ -201,7 +209,12 @@ async function withUserRoutes<T>(run: (baseUrl: string) => Promise<T>): Promise<
 	}
 }
 
-async function postJson(baseUrl: string, path: string, body: unknown, headers: Record<string, string> = {}) {
+async function postJson(
+	baseUrl: string,
+	path: string,
+	body: unknown,
+	headers: Record<string, string> = {}
+) {
 	return fetch(`${baseUrl}${path}`, {
 		method: "POST",
 		headers: {
@@ -212,7 +225,12 @@ async function postJson(baseUrl: string, path: string, body: unknown, headers: R
 	});
 }
 
-async function putJson(baseUrl: string, path: string, body: unknown, headers: Record<string, string> = {}) {
+async function putJson(
+	baseUrl: string,
+	path: string,
+	body: unknown,
+	headers: Record<string, string> = {}
+) {
 	return fetch(`${baseUrl}${path}`, {
 		method: "PUT",
 		headers: {
@@ -251,7 +269,9 @@ describe("Python project review routes", () => {
 					})
 				: Promise.resolve(null)
 		);
-		modelMocks.userFindById.mockImplementation(() => queryWith(makeStudent()));
+		modelMocks.userFindById.mockImplementation(() =>
+			queryWith(makeStudent())
+		);
 		modelMocks.pythonProjectCreate.mockImplementation(async payload =>
 			makeProject({
 				_id: new Types.ObjectId(),
@@ -260,23 +280,36 @@ describe("Python project review routes", () => {
 				...payload
 			})
 		);
-		modelMocks.pythonProjectFind.mockReturnValue(queryWith([makeProject()]));
+		modelMocks.pythonProjectFind.mockReturnValue(
+			queryWith([makeProject()])
+		);
 		modelMocks.pythonProjectFindOne.mockResolvedValue(makeProject());
-		modelMocks.pythonProjectReviewFind.mockReturnValue(queryWith([makeReview()]));
+		modelMocks.pythonProjectReviewFind.mockReturnValue(
+			queryWith([makeReview()])
+		);
 		modelMocks.pythonProjectReviewFindOne.mockResolvedValue(makeReview());
-		modelMocks.pythonProjectReviewCreate.mockImplementation(async payload => makeReview(payload));
-		modelMocks.pythonProjectReviewDeleteMany.mockResolvedValue({ deletedCount: 1 });
+		modelMocks.pythonProjectReviewCreate.mockImplementation(async payload =>
+			makeReview(payload)
+		);
+		modelMocks.pythonProjectReviewDeleteMany.mockResolvedValue({
+			deletedCount: 1
+		});
 	});
 
 	it("lets signed-in students list their own Code IDE projects", async () => {
 		await withUserRoutes(async baseUrl => {
-			const response = await fetch(`${baseUrl}/users/loggedin/python-projects`, {
-				headers: { "x-user-id": studentID.toString() }
-			});
+			const response = await fetch(
+				`${baseUrl}/users/loggedin/python-projects`,
+				{
+					headers: { "x-user-id": studentID.toString() }
+				}
+			);
 			const body = await response.json();
 
 			expect(response.status).toBe(200);
-			expect(modelMocks.pythonProjectFind).toHaveBeenCalledWith(ownedProjectQuery(studentID, "user"));
+			expect(modelMocks.pythonProjectFind).toHaveBeenCalledWith(
+				ownedProjectQuery(studentID, "user")
+			);
 			expect(body.projects).toHaveLength(1);
 			expect(body.projects[0]).not.toHaveProperty("files");
 			expect(body.nextOffset).toBeNull();
@@ -287,53 +320,80 @@ describe("Python project review routes", () => {
 		["x-user-id", studentID.toString(), studentID.toString()],
 		["x-tutor-id", tutorID.toString(), `tutor:${tutorID}`],
 		["x-admin-id", adminID.toString(), `admin:${adminID}`]
-	])("rejects stale workspace ownership before every own route for %s", async (header, accountID, expectedOwner) => {
-		await withUserRoutes(async baseUrl => {
-			const routes = [
-				["GET", "/python-projects"],
-				["POST", "/python-projects"],
-				["GET", `/python-projects/${projectID}`],
-				["PUT", `/python-projects/${projectID}`],
-				["DELETE", `/python-projects/${projectID}`],
-				["PUT", `/python-projects/${projectID}/share`],
-				["GET", "/python-project-reviews"],
-				["GET", `/python-project-reviews/${reviewID}`]
-			];
-			for (const [method, path] of routes) {
-				const response = await fetch(`${baseUrl}/users/loggedin${path}`, {
-					method,
-					headers: { [header]: accountID, "X-Code-IDE-Owner": `other-${expectedOwner}` }
-				});
-				expect(response.status, `${method} ${path}`).toBe(409);
-				expect(await response.json()).toEqual({ message: "Workspace account changed. Reopen the workspace before syncing." });
-			}
-			expect(modelMocks.pythonProjectCreate).not.toHaveBeenCalled();
-			expect(modelMocks.pythonProjectFind).not.toHaveBeenCalled();
-			expect(modelMocks.pythonProjectFindOne).not.toHaveBeenCalled();
-			expect(modelMocks.pythonProjectReviewFind).not.toHaveBeenCalled();
-			expect(modelMocks.pythonProjectReviewFindOne).not.toHaveBeenCalled();
-			const valid = await postJson(baseUrl, "/users/loggedin/python-projects", {
-				title: "Matching owner",
-				files: [{ name: "main.py", content: "print('synthetic')" }]
-			}, { [header]: accountID, "X-Code-IDE-Owner": expectedOwner });
-			expect(valid.status).toBe(201);
-		});
-	});
+	])(
+		"rejects stale workspace ownership before every own route for %s",
+		async (header, accountID, expectedOwner) => {
+			await withUserRoutes(async baseUrl => {
+				const routes = [
+					["GET", "/python-projects"],
+					["POST", "/python-projects"],
+					["GET", `/python-projects/${projectID}`],
+					["PUT", `/python-projects/${projectID}`],
+					["DELETE", `/python-projects/${projectID}`],
+					["PUT", `/python-projects/${projectID}/share`],
+					["GET", "/python-project-reviews"],
+					["GET", `/python-project-reviews/${reviewID}`]
+				];
+				for (const [method, path] of routes) {
+					const response = await fetch(
+						`${baseUrl}/users/loggedin${path}`,
+						{
+							method,
+							headers: {
+								[header]: accountID,
+								"X-Code-IDE-Owner": `other-${expectedOwner}`
+							}
+						}
+					);
+					expect(response.status, `${method} ${path}`).toBe(409);
+					expect(await response.json()).toEqual({
+						message:
+							"Workspace account changed. Reopen the workspace before syncing."
+					});
+				}
+				expect(modelMocks.pythonProjectCreate).not.toHaveBeenCalled();
+				expect(modelMocks.pythonProjectFind).not.toHaveBeenCalled();
+				expect(modelMocks.pythonProjectFindOne).not.toHaveBeenCalled();
+				expect(
+					modelMocks.pythonProjectReviewFind
+				).not.toHaveBeenCalled();
+				expect(
+					modelMocks.pythonProjectReviewFindOne
+				).not.toHaveBeenCalled();
+				const valid = await postJson(
+					baseUrl,
+					"/users/loggedin/python-projects",
+					{
+						title: "Matching owner",
+						files: [
+							{ name: "main.py", content: "print('synthetic')" }
+						]
+					},
+					{ [header]: accountID, "X-Code-IDE-Owner": expectedOwner }
+				);
+				expect(valid.status).toBe(201);
+			});
+		}
+	);
 
 	it("paginates project metadata without returning file contents", async () => {
-		modelMocks.pythonProjectFind.mockReturnValue(queryWith(
-			Array.from({ length: 26 }, (_value, index) =>
-				makeProject({
-					_id: new Types.ObjectId(),
-					files: [{
-						content: `private-${index}`,
-						encoding: "text",
-						name: "main.py"
-					}],
-					title: `Project ${index}`
-				})
+		modelMocks.pythonProjectFind.mockReturnValue(
+			queryWith(
+				Array.from({ length: 26 }, (_value, index) =>
+					makeProject({
+						_id: new Types.ObjectId(),
+						files: [
+							{
+								content: `private-${index}`,
+								encoding: "text",
+								name: "main.py"
+							}
+						],
+						title: `Project ${index}`
+					})
+				)
 			)
-		));
+		);
 
 		await withUserRoutes(async baseUrl => {
 			const response = await fetch(
@@ -394,9 +454,12 @@ describe("Python project review routes", () => {
 		);
 
 		await withUserRoutes(async baseUrl => {
-			const response = await fetch(`${baseUrl}/users/loggedin/python-projects/${projectID}`, {
-				headers: { "x-user-id": studentID.toString() }
-			});
+			const response = await fetch(
+				`${baseUrl}/users/loggedin/python-projects/${projectID}`,
+				{
+					headers: { "x-user-id": studentID.toString() }
+				}
+			);
 			const body = await response.json();
 
 			expect(response.status).toBe(200);
@@ -458,20 +521,27 @@ describe("Python project review routes", () => {
 			expect(project.activeFileName).toBe("../secret.py");
 			expect(project.save).toHaveBeenCalled();
 			expect(body.project.title).toBe("Cleaned loops practice");
-			expect(body.project.files.map((file: { name: string }) => file.name)).toEqual(["main.py"]);
+			expect(
+				body.project.files.map((file: { name: string }) => file.name)
+			).toEqual(["main.py"]);
 			expect(body.project.activeFileName).toBe("main.py");
 		});
 	});
 
 	it("lets admins list saved projects with their staff review copies", async () => {
 		await withUserRoutes(async baseUrl => {
-			const response = await fetch(`${baseUrl}/users/${studentID}/python-projects`, {
-				headers: { "x-admin-id": adminID.toString() }
-			});
+			const response = await fetch(
+				`${baseUrl}/users/${studentID}/python-projects`,
+				{
+					headers: { "x-admin-id": adminID.toString() }
+				}
+			);
 			const body = await response.json();
 
 			expect(response.status).toBe(200);
-			expect(modelMocks.pythonProjectFind).toHaveBeenCalledWith(ownedProjectQuery(studentID, "user"));
+			expect(modelMocks.pythonProjectFind).toHaveBeenCalledWith(
+				ownedProjectQuery(studentID, "user")
+			);
 			expect(body.projects).toHaveLength(1);
 			expect(body.projects[0].project).not.toHaveProperty("files");
 			expect(body.projects[0].review).not.toHaveProperty("files");
@@ -482,8 +552,12 @@ describe("Python project review routes", () => {
 			);
 			const detailBody = await detailResponse.json();
 			expect(detailResponse.status).toBe(200);
-			expect(detailBody.project.files[0].content).toBe("print('student')\n");
-			expect(detailBody.review.files[0].content).toContain("Try a for loop");
+			expect(detailBody.project.files[0].content).toBe(
+				"print('student')\n"
+			);
+			expect(detailBody.review.files[0].content).toContain(
+				"Try a for loop"
+			);
 		});
 	});
 
@@ -580,35 +654,43 @@ describe("Python project review routes", () => {
 		});
 	});
 
-	it.each(["c", "assembly", "compiler"] as const)(
+	it.each([
+		"c",
+		"assembly",
+		"compiler",
+		"hardening",
+		"hardening-trace"
+	] as const)(
 		"saves, shares, and edits a %s review while preserving the learner's complete pack",
 		async mode => {
-			const requestedMode = mode === "compiler" ? "assembly" : mode;
+			const requestedMode = mode === "c" ? "c" : "assembly";
 			const fixture = JSON.parse(
 				readFileSync(
 					resolve(
 						process.cwd(),
-						mode === "compiler"
-							? "../test/fixtures/assembly-compiler-contracts.json"
-							: mode === "assembly"
-								? "../test/fixtures/assembly-opening-contracts.json"
-								: "../test/fixtures/c17-opening-contracts.json"
+						mode === "hardening" || mode === "hardening-trace"
+							? "../test/fixtures/assembly-hardening-contracts.json"
+							: mode === "compiler"
+								? "../test/fixtures/assembly-compiler-contracts.json"
+								: mode === "assembly"
+									? "../test/fixtures/assembly-opening-contracts.json"
+									: "../test/fixtures/c17-opening-contracts.json"
 					),
 					"utf8"
 				)
 			);
 			const pack =
-				mode === "compiler"
-					? "ASM-08-unit-9-reading-compiler-output"
-					: mode === "assembly"
-						? "ASM-04-asm0-setup-and-tooling"
-						: "CSE-06-unit-1-why-c-for-systems-work";
+				mode === "c"
+					? "CSE-06-unit-1-why-c-for-systems-work"
+					: fixture.pack;
 			const activeFileName =
-				mode === "compiler"
-					? "starter/analysis.md"
-					: mode === "assembly"
-						? "starter/routine.S"
-						: "starter/main.c";
+				mode === "hardening-trace"
+					? "starter/trace.md"
+					: mode === "compiler" || mode === "hardening"
+						? "starter/analysis.md"
+						: mode === "assembly"
+							? "starter/routine.S"
+							: "starter/main.c";
 			const files = Object.entries(
 				fixture.files as Record<string, { content: string }>
 			)
@@ -672,11 +754,7 @@ describe("Python project review routes", () => {
 			modelMocks.pythonProjectReviewFindOne.mockResolvedValue(review);
 			const revised = files.map(file =>
 				file.name ===
-				(mode === "compiler"
-					? "starter/analysis.md"
-					: mode === "assembly"
-						? "starter/routine.S"
-						: "starter/labels.c")
+				(mode === "c" ? "starter/labels.c" : activeFileName)
 					? {
 							...file,
 							content: file.content + "\n/* staff feedback */\n"
@@ -704,7 +782,8 @@ describe("Python project review routes", () => {
 		const javaFiles = [
 			{
 				name: "Main.java",
-				content: "public class Main { public static void main(String[] args) {} }",
+				content:
+					"public class Main { public static void main(String[] args) {} }",
 				encoding: "text"
 			},
 			{
@@ -727,7 +806,9 @@ describe("Python project review routes", () => {
 		});
 		modelMocks.pythonProjectFindOne.mockResolvedValueOnce(javaProject);
 		modelMocks.pythonProjectReviewFindOne.mockResolvedValueOnce(null);
-		modelMocks.pythonProjectReviewCreate.mockImplementationOnce(async payload => makeReview(payload));
+		modelMocks.pythonProjectReviewCreate.mockImplementationOnce(
+			async payload => makeReview(payload)
+		);
 
 		await withUserRoutes(async baseUrl => {
 			const createResponse = await postJson(
@@ -748,10 +829,11 @@ describe("Python project review routes", () => {
 				})
 			);
 			expect(createBody.review.mode).toBe("java");
-			expect(createBody.review.files.map((file: { name: string }) => file.name)).toEqual([
-				"Main.java",
-				"Helper.java"
-			]);
+			expect(
+				createBody.review.files.map(
+					(file: { name: string }) => file.name
+				)
+			).toEqual(["Main.java", "Helper.java"]);
 		});
 
 		modelMocks.pythonProjectFindOne.mockResolvedValue(javaProject);
@@ -766,7 +848,8 @@ describe("Python project review routes", () => {
 					files: [
 						{
 							name: "Main.java",
-							content: "public class Main { public static void main(String[] args) { System.out.println(\"reviewed\"); } }"
+							content:
+								'public class Main { public static void main(String[] args) { System.out.println("reviewed"); } }'
 						}
 					],
 					visibleToStudent: true
@@ -782,7 +865,8 @@ describe("Python project review routes", () => {
 			expect(updateBody.review.files).toEqual([
 				{
 					name: "Main.java",
-					content: "public class Main { public static void main(String[] args) { System.out.println(\"reviewed\"); } }",
+					content:
+						'public class Main { public static void main(String[] args) { System.out.println("reviewed"); } }',
 					encoding: "text"
 				}
 			]);
@@ -791,7 +875,9 @@ describe("Python project review routes", () => {
 	});
 
 	it("blocks tutors from reviewing code for students not assigned to them", async () => {
-		modelMocks.userFindById.mockImplementation(() => queryWith(makeStudent([otherTutorID])));
+		modelMocks.userFindById.mockImplementation(() =>
+			queryWith(makeStudent([otherTutorID]))
+		);
 
 		await withUserRoutes(async baseUrl => {
 			const response = await postJson(
@@ -818,7 +904,8 @@ describe("Python project review routes", () => {
 					files: [
 						{
 							name: "main.py",
-							content: "# Nice decomposition.\nprint('reviewed')\n"
+							content:
+								"# Nice decomposition.\nprint('reviewed')\n"
 						}
 					],
 					activeFileName: "main.py",
@@ -832,9 +919,13 @@ describe("Python project review routes", () => {
 			expect(response.status).toBe(200);
 			expect(review.save).toHaveBeenCalled();
 			expect(body.project.files[0].content).toBe("print('student')\n");
-			expect(body.review.files[0].content).toContain("Nice decomposition");
+			expect(body.review.files[0].content).toContain(
+				"Nice decomposition"
+			);
 			expect(body.review.visibleToStudent).toBe(true);
-			expect(body.review.note).toBe("Review this before the next lesson.");
+			expect(body.review.note).toBe(
+				"Review this before the next lesson."
+			);
 			expect(body.review.lastEditedByRole).toBe("tutor");
 		});
 	});
@@ -952,23 +1043,30 @@ describe("Python project review routes", () => {
 			expect(review.activeFileName).toBe("../secret.py");
 			expect(review.visibleToStudent).toBe(true);
 			expect(review.save).toHaveBeenCalled();
-			expect(body.review.files.map((file: { name: string }) => file.name)).toEqual(["main.py"]);
+			expect(
+				body.review.files.map((file: { name: string }) => file.name)
+			).toEqual(["main.py"]);
 			expect(body.review.activeFileName).toBe("main.py");
 		});
 	});
 
 	it("lists only visible review copies for the logged-in student", async () => {
-		modelMocks.pythonProjectReviewFind.mockReturnValue(queryWith([
-			makeReview({
-				visibleToStudent: true,
-				note: "Tutor comments are in the code."
-			})
-		]));
+		modelMocks.pythonProjectReviewFind.mockReturnValue(
+			queryWith([
+				makeReview({
+					visibleToStudent: true,
+					note: "Tutor comments are in the code."
+				})
+			])
+		);
 
 		await withUserRoutes(async baseUrl => {
-			const response = await fetch(`${baseUrl}/users/loggedin/python-project-reviews`, {
-				headers: { "x-user-id": studentID.toString() }
-			});
+			const response = await fetch(
+				`${baseUrl}/users/loggedin/python-project-reviews`,
+				{
+					headers: { "x-user-id": studentID.toString() }
+				}
+			);
 			const body = await response.json();
 
 			expect(response.status).toBe(200);
@@ -978,7 +1076,9 @@ describe("Python project review routes", () => {
 			});
 			expect(body.reviews).toHaveLength(1);
 			expect(body.reviews[0].sourceProject).toBe(projectID.toString());
-			expect(body.reviews[0].note).toBe("Tutor comments are in the code.");
+			expect(body.reviews[0].note).toBe(
+				"Tutor comments are in the code."
+			);
 		});
 	});
 
@@ -1079,7 +1179,9 @@ describe("Python project review routes", () => {
 			expect(project.activeFileName).toBe("../secret.py");
 			expect(project.shareID).toBe(shareID);
 			expect(project.save).toHaveBeenCalled();
-			expect(body.project.files.map((file: { name: string }) => file.name)).toEqual(["main.py"]);
+			expect(
+				body.project.files.map((file: { name: string }) => file.name)
+			).toEqual(["main.py"]);
 			expect(body.project.activeFileName).toBe("main.py");
 		});
 	});
@@ -1305,7 +1407,9 @@ describe("Python project review routes", () => {
 				...ownedProjectQuery(studentID, "user")
 			});
 			expect(project.deleteOne).toHaveBeenCalled();
-			expect(modelMocks.pythonProjectReviewDeleteMany).toHaveBeenCalledWith({
+			expect(
+				modelMocks.pythonProjectReviewDeleteMany
+			).toHaveBeenCalledWith({
 				sourceProject: projectID
 			});
 		});
