@@ -44,6 +44,9 @@ context("Compact content-first workspaces", () => {
 		cy.intercept("GET", "**/api/admin-mail/session-notes/identities", {
 			body: { students: [] }
 		});
+		cy.intercept("GET", "**/api/admin-mail/session-notes/sending-status", {
+			body: { sendingPaused: false }
+		}).as("sendingStatus");
 		cy.intercept("GET", "**/api/admin-mail/recipients", { body: [] });
 		cy.intercept("POST", "**/api/**", { statusCode: 403, body: {} });
 		cy.viewport(1440, 900);
@@ -147,6 +150,9 @@ context("Compact content-first workspaces", () => {
 			}
 		}).as("sendNote");
 		cy.visit("/admin/mdmail");
+		cy.wait("@sendingStatus")
+			.its("response.body.sendingPaused")
+			.should("eq", false);
 		cy.get("#recipient-select").select(studentId);
 		cy.wait("@recentNotes").its("response.statusCode").should("eq", 200);
 		cy.get(".history-note").should("have.length", 1);
