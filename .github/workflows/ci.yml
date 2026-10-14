@@ -279,7 +279,7 @@ jobs:
               run: sudo apt-get update && sudo apt-get install -y gdb
 
             - name: Export Assembly default and pack workspaces
-              run: ASSEMBLY_EXPORT_PROOF_DIR="$GITHUB_WORKSPACE/output/assembly-exports" npm exec -w front-end -- vitest run test/assembly-workspace.spec.test.ts test/assembly-calculator-workspace.spec.test.ts test/assembly-memory-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+              run: ASSEMBLY_EXPORT_PROOF_DIR="$GITHUB_WORKSPACE/output/assembly-exports" npm exec -w front-end -- vitest run test/assembly-workspace.spec.test.ts test/assembly-calculator-workspace.spec.test.ts test/assembly-memory-workspace.spec.test.ts test/assembly-call-parser-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
 
             - name: Verify Assembly imports, saved source and ZIP exports
               env:
@@ -297,13 +297,23 @@ jobs:
                   python3 test/assembly-exported-contracts.py --project array --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-array-native-gcc.json
                   python3 test/assembly-exported-contracts.py --project string --cc clang --archives output/assembly-exports --proof output/playwright/assembly-string-native-clang.json
                   python3 test/assembly-exported-contracts.py --project string --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-string-native-gcc.json
+                  python3 test/assembly-exported-contracts.py --project helper --cc clang --archives output/assembly-exports --proof output/playwright/assembly-helper-native-clang.json
+                  python3 test/assembly-exported-contracts.py --project helper --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-helper-native-gcc.json
+                  python3 test/assembly-exported-contracts.py --project parser --cc clang --archives output/assembly-exports --proof output/playwright/assembly-parser-native-clang.json
+                  python3 test/assembly-exported-contracts.py --project parser --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-parser-native-gcc.json
+                  python3 test/assembly-exported-contracts.py --project reverse --cc clang --archives output/assembly-exports --proof output/playwright/assembly-reverse-native-clang.json
+                  python3 test/assembly-exported-contracts.py --project reverse --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-reverse-native-gcc.json
+                  python3 test/assembly-exported-contracts.py --project stack --cc clang --archives output/assembly-exports --proof output/playwright/assembly-stack-native-clang.json
+                  python3 test/assembly-exported-contracts.py --project stack --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-stack-native-gcc.json
 
             - name: Retain Assembly workflow and native validation
+              if: always()
               uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
               with:
                   name: assembly-workflow-validation
                   path: |
                       output/playwright/course-import-assembly-*.png
+                      output/playwright/assembly-failure.png
                       output/playwright/assembly-*.json
                       output/playwright/assembly-*.jsonl
                       output/assembly-exports/*.zip

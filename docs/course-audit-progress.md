@@ -1,4 +1,44 @@
-# Current course-audit checkpoint, 2026-10-12
+# Current course-audit source checkpoint, 2026-10-13
+
+The full 77-course audit remains active. Eight distinct Assembly source projects
+now have accepted native Linux x86-64 Clang/GCC contracts and real debugger
+traces: opening toolchain, calculator, bounded arrays, bounded strings, C helper
+interop, signed CLI parsing, reverse reconstruction and nested assembly calls. Their immutable source
+revisions are preserved by the verified import fixtures. This source verification
+does not establish completion of the wider course content or site audit.
+
+The reverse reconstruction preserves the original mystery instruction body. Its
+C arithmetic matches full-width instruction behavior with unsigned arithmetic,
+a signed threshold comparison and explicit bit interpretation. Each compiler
+passes four Debug/Release reference and independently completed learner profiles,
+10,033 cases per profile, a separate arbitrary-precision oracle, C undefined-
+behavior checks and real GDB. All eight source gates total 882,104 accepted
+profile cases. The source repair is merged at
+`8856f11c649863d5eee9914658c11cfb801ead4b`.
+
+The next site candidate connects the helper, parser, reverse and stack projects to
+confirmed role-specific imports, complete neutral reading cards, guide-only
+trace worksheets and native build instructions. The reverse project opens
+reconstructed.c for the required C task, while its supplied mystery assembly
+remains available. Existing lesson/progress identities and prior saved attempts
+are retained. Exact source checks cover 15 helper, 13 parser, 15 reverse and 13 stack
+blobs. Imports include only the selected role plus its unchanged README.
+
+Site acceptance requires 64 desktop/mobile light/dark role cases, 17 actual
+workspace ZIPs and 16 native Clang/GCC export/debugger receipts. These candidate
+checks remain required; source receipts alone cannot establish site behavior.
+The preceding array/string site reviews passed complete 200-import, 58-pack
+USACO workflow checks and are merged in both sites. Dependencies and both lockfiles are unchanged.
+The stack unit now exercises two actual assembly calls, ordered arguments, caller-saved
+clobbers and balanced frames, with accepted source at
+`005e375894ade846a1077e96d4880faea680aed8`. It preserves the existing lesson
+identity and has a distinct purpose before C interop.
+
+Native release provenance and public activation remain separate unfinished
+milestones. Generic Assembly units/studios and the other course families remain
+within the full audit scope.
+
+## Earlier course-audit checkpoint, 2026-10-12
 
 The full 77-course audit remains active. Silver foundation website integration is
 merged in canonical `88da06844f9074c9760c7363f8b896a06de2ac31` and downstream
@@ -59,7 +99,7 @@ dependency-tree repair was applied. Fresh exact-head hosted acceptance, source
 review, responsive inspection and any later native release/public verification
 must complete before this candidate is described as shipped.
 
-# Earlier accepted Java checkpoint, 2026-10-11
+## Earlier accepted Java checkpoint, 2026-10-11
 
 The full 77-course audit remains active. The accepted v2.8.96 source milestone
 is canonical `cff27e306cc5e46477da1e4f781208cb3fabb535` and neutral downstream
@@ -74,7 +114,7 @@ resources exist. No complete normalized course is byte-identical to another.
 These checks do not establish semantic purpose distinctions, external resource
 availability, complete standalone reading quality or production activation.
 
-## Accepted Silver website milestone
+### Accepted Silver website milestone
 
 Why Did the Cow Cross the Road II, Cow Dance Show and Redistributing Gifts now
 have confirmed native Java learner/reference imports in their existing required
@@ -113,7 +153,7 @@ releases and their assets remain intact. Publication is a source milestone;
 native production activation and public served-asset/health acceptance remain
 separate. Both site lockfiles and dependencies are unchanged.
 
-## Accepted Exam and Bank Account source pack
+### Accepted Exam and Bank Account source pack
 
 [Silver source review 5](https://github.com/instruction-material/USACO-Silver/pull/5)
 is merged at `57fbe814231945817888f79d07ec0538d0ab86ac`. It adds a separate unfinished Java learner,
@@ -136,7 +176,7 @@ Its comparator exercise is one part of data-structure modeling; the required uni
 must also retain its maps/sets membership, structure choice and tracing work.
 Optional practice needs a distinct changed-key contract and saved attempt.
 
-## Saved-project label follow-up under review
+### Saved-project label follow-up under review
 
 Saved project rows now retain their original title and show the existing language
 with Learner or Reference when an exact supported key identifies a known course
@@ -156,7 +196,7 @@ browser build was deferred by the shared task load guard. Hosted browser checks,
 complete desktop/mobile visual acceptance and merged-main acceptance remain
 pending; these presentation findings are not yet closed.
 
-## Remaining required workflow and audit work
+### Remaining required workflow and audit work
 
 The refreshed source-presence inventory finds 12 required USACO rows without
 learners across ten distinct packs: eight Bronze packs plus Mother's Milk and
@@ -179,9 +219,9 @@ reading acceptance, relevant Juni fidelity, external availability, remaining sou
 accuracy and imports, final Zoom feature acceptance and the native production/public
 gates remain unfinished.
 
-## Earlier dated checkpoints
+### Earlier dated checkpoints
 
-# Historical course-audit checkpoint, 2026-10-11 (v2.8.95)
+## Historical course-audit checkpoint, 2026-10-11 (v2.8.95)
 
 The full 77-course audit remains active. The accepted v2.8.95 source milestone
 is canonical `f6168fe35aba8ee926f6fca09a91e100317d5b8c` and neutral downstream
@@ -195,7 +235,7 @@ resources exist. No complete normalized course is byte-identical to another.
 These checks do not establish semantic purpose distinctions, external resource
 availability, standalone reading quality, or production activation.
 
-## Accepted source and website milestones
+### Accepted source and website milestones
 
 Cow Poetry, Lasers and Mirrors and Radio Contact now have confirmed native Java
 learner/reference imports in their three existing required assignments. Their
@@ -265,7 +305,7 @@ remain preserved. All 98 intentional downstream customization paths retain their
 accepted bytes. Publication is a source-release milestone; native production
 activation and public served-asset acceptance remain unverified.
 
-## Required work still outstanding
+### Required work still outstanding
 
 The refreshed Bronze, Silver and Gold source inventory identifies 27 required
 USACO assignment rows. Thirteen rows across 11 source packs still lack learner
@@ -295,7 +335,7 @@ availability, remaining source accuracy and imports, final Zoom feature
 acceptance, and the separately authorized native production/public gates.
 Dependencies and both site lockfiles are unchanged at this milestone.
 
-# Historical course-audit checkpoint, 2026-10-09
+## Historical course-audit checkpoint, 2026-10-09
 
 The full 77-course audit remains unfinished. A fresh inventory of canonical
 `0115067d53d7588d82bc62b5b86d442710c058e2` loads all 77 normalized entries and
@@ -357,9 +397,9 @@ review and independent main pass 200 actual file-I/O fixtures against an indepen
 bounded square-placement oracle; the untouched starter produces no answer file.
 Site routing and actual consent/import/export acceptance are still pending.
 
-# Historical course-audit checkpoint, 2026-10-08
+## Historical course-audit checkpoint, 2026-10-08
 
-## Reference-guidance source checkpoint, 2026-10-09
+### Reference-guidance source checkpoint, 2026-10-09
 
 The full 77-course audit remains unfinished. All 76 available Zoom transcripts,
 covering 52,690 utterances, now have complete semantic-review receipts. The
@@ -463,7 +503,7 @@ The full 77-course audit remains unfinished. The prior accepted downstream
 `v2.8.20` at `6c4b8bfa36df7cfcd43abcf743eeb280246a6b30` remains preserved.
 Production activation is unverified.
 
-## Earlier accepted ownership checkpoint, 2026-10-08
+### Earlier accepted ownership checkpoint, 2026-10-08
 
 The full 77-course audit remains unfinished. Branch consolidation is complete;
 removed tips remain in verified recovery bundles. Production activation is
@@ -540,9 +580,9 @@ receipts; 56 remain pending. Retrieval is not counted as semantic review.
 Remaining DSA placeholders, algorithm audits and advanced course source
 validation remain open. No milestone certifies the full catalog or live site.
 
-## Earlier October 8 checkpoint
+### Earlier October 8 checkpoint
 
-# Course-audit checkpoint before ownership integration, 2026-10-08
+## Course-audit checkpoint before ownership integration, 2026-10-08
 
 The full 77-course audit remains unfinished. This checkpoint records verified
 source and review status; the dated sections below retain historical evidence.
@@ -639,9 +679,9 @@ bundles. Other DSA placeholder and correctness findings and remaining advanced
 course source validation remain open. No source milestone here certifies the full
 catalog or a live deployment.
 
-## Earlier dated milestones
+### Earlier dated milestones
 
-# Earlier course-audit checkpoint, 2026-10-07
+## Earlier course-audit checkpoint, 2026-10-07
 
 This section gives current verified status. Earlier checkpoints retain their
 historical evidence; their pending statements and counts are not current status.
@@ -690,9 +730,9 @@ The latest Zoom increment finds one single-attendee PMI meeting with no transcri
 or recording; it adds no teaching transcript coverage. The 51 unavailable
 historical assets remain unavailable. The broader audit is unfinished.
 
-## Earlier dated milestones
+### Earlier dated milestones
 
-# Earlier Task Manager and row-import checkpoint, 2026-10-07
+## Earlier Task Manager and row-import checkpoint, 2026-10-07
 
 The CPPI1 Saveable Task Manager source correction is integrated in
 [CPP Level 3 PR #5](https://github.com/instruction-material/CPP-Level-3/pull/5)
@@ -772,7 +812,7 @@ The downstream neutral customizations are preserved. Production activation
 remains unverified. Transcript review has 51 unavailable assets; successful
 incremental checks provided no additional accessible transcript evidence.
 
-# CPPM2 arrays and game source/catalog audit (2026-10-06)
+## CPPM2 arrays and game source/catalog audit (2026-10-06)
 
 [Source PR #5](https://github.com/instruction-material/CPP-Level-2/pull/5)
 merged the complete array packs at `b6d08a149db2ea53b33c990816d87cd0feb7556f`
@@ -829,9 +869,9 @@ learner workflows and two saved-attempt checks. Immutable
 retains the original exact-tag signed native archive, manifest and bundle.
 Production activation is unverified. The broader 77-course audit remains active.
 
-# Course audit progress
+## Course audit progress
 
-## Latest C++ delivery checkpoint
+### Latest C++ delivery checkpoint
 
 The lifetime and ownership catalog milestone is integrated in
 [PR #140](https://github.com/anderson-webops/classes.jacobdanderson.net/pull/140)
@@ -884,7 +924,7 @@ native acceptance tests. These expanded hosted gates remain required before
 catalog integration; source publication alone does not establish their success.
 The broader 77-course source/content/workflow audit remains active.
 
-## Scope and evidence boundary
+### Scope and evidence boundary
 
 The audit covers course availability, distinct delivery purposes, self-contained
 student reading and instructor walkthroughs, neutral copy, core and supplemental
@@ -900,7 +940,7 @@ The 2026-10-04 availability sweep used the normalized catalog at `v2.8.15`:
 - This was a local source check, not an HTTP check of every external resource,
   an inline-Markdown link audit, or a production deployment check.
 
-## Starter-import corrections
+### Starter-import corrections
 
 Previously, linked starter failures could fall through to a generic demo carrying
 the requested project's title and source metadata. README-only starters could
@@ -931,7 +971,7 @@ The corrected workflow:
 No dependencies, lockfiles, saved projects, course identifiers, or progress keys
 were changed. Existing learner projects are not automatically rewritten.
 
-## Source-pack reconciliation and corrections
+### Source-pack reconciliation and corrections
 
 An untruncated public tree at Python Level 3 source revision
 `d3610afbe355ce2ab3fa6747ef438bce2c83c3be` confirmed the local finding: 44 linked
@@ -1071,7 +1111,7 @@ bridge extension packs. Several local folders titled as C++ practice contained
 Java starters; selecting a working Java runtime does not resolve that coursework
 content mismatch.
 
-## Interactive search follow-up
+### Interactive search follow-up
 
 [Source PR #7](https://github.com/instruction-material/Python-Level-3/pull/7)
 at integrated source `2473272796d28401c2b8a3f50b472070d9272e3a` completes three
@@ -1120,7 +1160,7 @@ remains separate and unverified. Thirty-five authored coding/review pairs, one
 supplied-code analysis and one worksheet are checked. Seven genuine coding
 placeholders and the broader course/purpose/source/workflow audit remained open.
 
-## Crazy Name Tags follow-up
+### Crazy Name Tags follow-up
 
 [Source PR #8](https://github.com/instruction-material/Python-Level-3/pull/8)
 at integrated source `efd0cdfb190a9110ec1a160786e13f724a60153f` replaces the
@@ -1169,7 +1209,7 @@ passed. Production activation remains unverified.
 Thirty-six authored coding/review pairs were checked; six coding
 placeholders and the full course/purpose/source/workflow audit remain open.
 
-## Conway simulation and ownership follow-up
+### Conway simulation and ownership follow-up
 
 [Source PR #9](https://github.com/instruction-material/Python-Level-3/pull/9)
 integrated at `5e32ed800087ac4d9b0a45d28a3e815e28d58a24` supplies complete
@@ -1230,7 +1270,7 @@ Thirty-eight authored coding/review pairs, one supplied-code analysis and one
 worksheet are checked. Four Tic Tac Toe coding placeholders and the broader
 course purpose/source/workflow audit remain open. No live activation is claimed.
 
-## Tic Tac Toe interface, tactics, evaluation and forks
+### Tic Tac Toe interface, tactics, evaluation and forks
 
 [Source PR #10](https://github.com/instruction-material/Python-Level-3/pull/10)
 integrated at `94ddb35a81a5f768ef0a44d91e107cf1b4e66cf5` completes the last four
@@ -1309,7 +1349,7 @@ native verification gate. Exact-head push/review checks and independent
 passed all 167 methods. Current Java Level 1/2/3 mappings use their own source
 repositories; historical archived Java material does not establish Python parity.
 
-## Artifact retention and GitHub release locking
+### Artifact retention and GitHub release locking
 
 The repository policy requires preserving published tags and artifact bytes.
 That retention policy must be distinguished from GitHub's platform-enforced
@@ -1328,7 +1368,7 @@ release delivery must verify the enabled policy before publication and confirm
 the individual release lock afterward. Live application activation remains a
 separate, unverified boundary.
 
-## C++ input foundations and native workspace workflow
+### C++ input foundations and native workspace workflow
 
 [Site PR #133](https://github.com/anderson-webops/classes.jacobdanderson.net/pull/133)
 integrated at `e51ad398f74545058f396165d682ffcb85f4a4af`, with a tree identical
@@ -1349,7 +1389,7 @@ Games desktop workspace were visually inspected. Qodana skipped its unconfigured
 scan; that workflow success is not an analysis result. Independent integrated-main
 checks, release provenance and downstream delivery remain separate gates.
 
-## C++ functions, probability and guessing contracts
+### C++ functions, probability and guessing contracts
 
 [Source PR #3](https://github.com/instruction-material/CPP-Level-1/pull/3)
 integrated at `3f6b9281239df72ae5182cf20fb389eefe4b563c` restores the original
@@ -1416,7 +1456,7 @@ are preserved. Downstream tags and releases are unchanged. Independent
 and [CodeQL](https://github.com/instruction-material/classes.jacobdanderson.net/actions/runs/37381448557)
 passed for the published overlay commit. CPPF4–CPPF8 and the broader audit stay open.
 
-## Verification authority
+### Verification authority
 
 Functional regression tests exercise confirmation, remote and local failure,
 retry, unchanged existing work, Java source import, source-size limits, preview
@@ -1429,7 +1469,7 @@ The broad audit remains open for assignment-level source correctness, full
 course purpose and content review, justified duplication, original-source
 identity reconciliation, and workflow verification across supported environments.
 
-## C++ class-project candidate
+### C++ class-project candidate
 
 [Source PR #5](https://github.com/instruction-material/CPP-Level-1/pull/5)
 restores Person Class and separates Cat starter/reference packs. At reviewed
@@ -1512,7 +1552,7 @@ pass. An explicit observed-main lease protected publication. Neutral branding,
 example configuration, shared static assets and the analytics boundary remain
 intact. Downstream tags and releases are unchanged.
 
-## C++ collection-project candidate
+### C++ collection-project candidate
 
 [Source PR #7](https://github.com/instruction-material/CPP-Level-1/pull/7) integrates
 at `e729baca982fc3683ef4f42f38fc72e05d3ca974` with the exact reviewed tree.
@@ -1596,7 +1636,7 @@ also pass. The exact overlay, neutral defaults, analytics boundary and dependenc
 locks remain intact. Publication used the observed-main lease and the authorized
 one-time offline hook fallback; global hooks and downstream releases are unchanged.
 
-## C++ parameter-passing candidate
+### C++ parameter-passing candidate
 
 [Source PR #10](https://github.com/instruction-material/CPP-Level-1/pull/10)
 integrates at `f4648ea457a587715dd33667f62e539c84d15406`, matching reviewed
@@ -1660,7 +1700,7 @@ The mobile Defanging and desktop Parameter/Chaos screenshots are inspected with
 the original code visible at the start. Full final-head hosted checks remain
 required before integration.
 
-## Parameter coursework delivery and grid candidate
+### Parameter coursework delivery and grid candidate
 
 [Site PR #137](https://github.com/anderson-webops/classes.jacobdanderson.net/pull/137)
 integrates reviewed `785760c0e0df001c0c233a6eb99e77fd1b15a0ff` at
@@ -1710,7 +1750,7 @@ extended to twenty-four actual starter workflows and twelve complete lesson
 programs; those gates remain required before integration. CPPF8 and the broader
 77-course content/workflow audit remain active.
 
-## Two-dimensional array source and catalog integration
+### Two-dimensional array source and catalog integration
 
 The CPPM2 array and Tic Tac Toe milestone is delivered in immutable
 [v2.8.41](https://github.com/anderson-webops/classes.jacobdanderson.net/releases/tag/v2.8.41),
@@ -1744,7 +1784,7 @@ Hosted full catalog/browser gates, canonical integration, downstream integration
 and the corresponding native release remain required for this candidate. The
 broader 77-course audit and unavailable Zoom transcript boundary remain active.
 
-## CPPI3 container source integration and catalog review
+### CPPI3 container source integration and catalog review
 
 The prior recursion worksheet milestone is delivered in canonical v2.8.60 and
 downstream v2.8.9. Production activation remains unverified.
@@ -1780,7 +1820,7 @@ The 51 unavailable historical assets remain unavailable. The broader 77-course
 audit and remaining C++ packs/lessons continue; this scoped milestone does not
 certify unreviewed coursework.
 
-## CPPI4 delivery, C++3 Learn placement and C++5 catalog candidate
+### CPPI4 delivery, C++3 Learn placement and C++5 catalog candidate
 
 The resource-safety milestone is published as canonical
 [v2.8.66](https://github.com/anderson-webops/classes.jacobdanderson.net/releases/tag/v2.8.66)
@@ -1827,7 +1867,7 @@ Two generic CPPI6 source pairs and the broader 77-course audit remain active.
 The 51 unavailable historical Zoom assets remain unavailable; no new transcript
 access is claimed by this coursework checkpoint.
 
-## Rover delivery and graph navigation candidate
+### Rover delivery and graph navigation candidate
 
 The rover milestone is published as canonical
 [v2.8.69](https://github.com/anderson-webops/classes.jacobdanderson.net/releases/tag/v2.8.69)
@@ -1883,7 +1923,7 @@ The Silver foundation native verifier uses the JDK selected through PATH and fix
 The foundation verifier additionally compares downloaded README shell blocks with reviewed commands embedded in the test source, then executes only the embedded command. Appended and substituted commands are rejected before native verification. This addresses the CodeQL network-response-to-shell trace without weakening the documented run guards.
 
 
-## Native C17 opening workflow: merged baseline
+### Native C17 opening workflow: merged baseline
 
 The accepted C source repair at
 `9c2ca21336c7667681091972a0abe9e55921f8fa` supplies two distinct opening
@@ -1925,7 +1965,7 @@ This candidate establishes neither public activation nor completion of the
 remaining C content and wider 77-course audit.
 
 
-## Three further native C17 core imports
+### Three further native C17 core imports
 
 Units 8, 10 and 11 now use the independently accepted dispatcher, scaled unit
 conversion, and native diagnosis packs at immutable revisions 390d99a6,
@@ -1969,7 +2009,7 @@ runs, so each site has at most one active browser job.
 
 
 
-## Optional C17 representation inspector
+### Optional C17 representation inspector
 
 The Hex and Binary Inspector source is accepted on actual main 24c52499 under
 Clang and GCC. The complete guide explains the representation model, checked
@@ -2010,7 +2050,7 @@ refresh. Existing semantic receipts remain the source for implementation
 follow-ups; the wider audit is unfinished.
 
 
-## Required Bitflag project: complete reading and native IDE imports
+### Required Bitflag project: complete reading and native IDE imports
 
 The existing required Unit 3 Bitflag Configuration Parser retains its lesson
 identity and now includes the complete accepted source guide. The guide covers
@@ -2037,7 +2077,7 @@ before both Bitflag changes were merged.
 The full 77-course audit and release/public verification remain unfinished.
 
 
-## Optional XOR transfer: complete reading and confirmed native imports
+### Optional XOR transfer: complete reading and confirmed native imports
 
 The existing optional Unit 3 XOR Encoder Decoder retains its lesson ID and
 now includes the complete accepted guide. The reading covers XOR's truth
@@ -2064,7 +2104,7 @@ Hosted review acceptance and branch consolidation are pending. The full
 77-course audit and authenticated release/public verification remain unfinished.
 
 
-## Native C systems labs: six accepted source packs
+### Native C systems labs: six accepted source packs
 
 The memory, byte-buffer, packet, dynamic-ring, optional binary-log and telemetry
 projects use immutable source 7e301cb656d73e56182bc5d9bba279c9adf78372.
@@ -2084,7 +2124,7 @@ exports each. Each site's twelve actual exported roles also passed the full
 six-lab native suite. Hosted CI and final artifact review remain pending. This batch does not complete the 77-course audit or
 activate a production release.
 
-## Optional C17 studio integration and distinct continuations
+### Optional C17 studio integration and distinct continuations
 
 Four accepted native studios now use immutable starter/reference imports and
 their complete self-study guides: sensor-word decoding, bounded region planning,
@@ -2103,7 +2143,7 @@ the selected role and unchanged full guide during export. This batch does not
 complete the broader 77-course audit: twenty-six unit practice cards still need
 their separate purpose repair. Production activation has not been performed.
 
-## C17 unit continuations use maintained projects and distinct evidence
+### C17 unit continuations use maintained projects and distinct evidence
 
 All twenty-six primary-unit practice cards now have complete readings,
 executable changed cases and correct immutable source links. They cover compiler

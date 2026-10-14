@@ -16,35 +16,88 @@ import {
 } from "./ide-workspace-controls.mjs";
 
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
-const fixtures = await Promise.all(["assembly-opening-contracts.json", "assembly-calculator-contracts.json", "assembly-array-contracts.json", "assembly-string-contracts.json"].map(async name => JSON.parse(await readFile(new URL(`./fixtures/${name}`, import.meta.url), "utf8"))));
+const fixtures = await Promise.all(
+	[
+		"assembly-opening-contracts.json",
+		"assembly-calculator-contracts.json",
+		"assembly-array-contracts.json",
+		"assembly-string-contracts.json",
+		"assembly-helper-contracts.json",
+		"assembly-parser-contracts.json",
+		"assembly-reverse-contracts.json",
+		"assembly-stack-contracts.json"
+	].map(async name =>
+		JSON.parse(
+			await readFile(
+				new URL(`./fixtures/${name}`, import.meta.url),
+				"utf8"
+			)
+		)
+	)
+);
 let fixture = fixtures[0];
 const workflowDefinitions = {
-  "ASM-04-asm0-setup-and-tooling": {
-    "primary": "routine.S",
-    "title": "Build and Trace a Linux x86-64 Function",
-    "lesson": "assembly-asm0-setup-and-tooling-assembly-asm0-setup-and-tooling-curriculum-core-project-assembly",
-    "referenceToken": "total=100"
-  },
-  "ASM1-Integer-Calculator": {
-    "primary": "calculator.S",
-    "title": "Integer Calculator in Assembly",
-    "lesson": "assembly-unit-2-registers-and-data-movement-assembly-unit-2-registers-and-data-movement-curriculum-project-integer-calculator-in-assembly",
-    "referenceToken": "12,589"
-  },
-  "ASM2-Array-Sum-and-Search": {
-    "primary": "array_routines.S",
-    "title": "Array Sum and Search Routines",
-    "lesson": "assembly-unit-4-branching-and-loops-assembly-unit-4-branching-and-loops-curriculum-project-array-sum-and-search-routines",
-    "referenceToken": "11,280"
-  },
-  "ASM3-String-Length-and-Copy": {
-    "primary": "string_routines.S",
-    "title": "String Length and Copy Routines",
-    "lesson": "assembly-unit-7-memory-addressing-and-data-structures-assembly-unit-7-memory-addressing-and-data-structures-curriculum-project-string-length-and-copy-routines",
-    "referenceToken": "35,900"
-  }
+	"ASM-04-asm0-setup-and-tooling": {
+		primary: "routine.S",
+		title: "Build and Trace a Linux x86-64 Function",
+		lesson: "assembly-asm0-setup-and-tooling-assembly-asm0-setup-and-tooling-curriculum-core-project-assembly",
+		referenceToken: "total=100"
+	},
+	"ASM1-Integer-Calculator": {
+		primary: "calculator.S",
+		title: "Integer Calculator in Assembly",
+		lesson: "assembly-unit-2-registers-and-data-movement-assembly-unit-2-registers-and-data-movement-curriculum-project-integer-calculator-in-assembly",
+		referenceToken: "12,589"
+	},
+	"ASM2-Array-Sum-and-Search": {
+		primary: "array_routines.S",
+		title: "Array Sum and Search Routines",
+		lesson: "assembly-unit-4-branching-and-loops-assembly-unit-4-branching-and-loops-curriculum-project-array-sum-and-search-routines",
+		referenceToken: "11,280"
+	},
+	"ASM3-String-Length-and-Copy": {
+		primary: "string_routines.S",
+		title: "String Length and Copy Routines",
+		lesson: "assembly-unit-7-memory-addressing-and-data-structures-assembly-unit-7-memory-addressing-and-data-structures-curriculum-project-string-length-and-copy-routines",
+		referenceToken: "35,900"
+	},
+	"ASM4-Call-C-Helper-from-Assembly": {
+		primary: "scale_and_clamp.S",
+		title: "Call a C Helper from Assembly",
+		lesson: "assembly-unit-6-calling-conventions-and-abi-assembly-unit-6-calling-conventions-and-abi-curriculum-project-call-a-c-helper-from-assembly",
+		referenceToken: "11,280"
+	},
+	"ASM5-Tiny-Command-Line-Parser": {
+		primary: "parser.S",
+		title: "Tiny Command-Line Parser",
+		lesson: "assembly-unit-8-system-calls-and-runtime-interaction-assembly-unit-8-system-calls-and-runtime-interaction-curriculum-project-tiny-command-line-parser",
+		referenceToken: "9,157"
+	},
+	"ASM6-Reverse-Engineering-Toy-Program": {
+		primary: "reconstructed.c",
+		title: "Reverse-Engineer a Toy Program Back into Pseudocode",
+		lesson: "assembly-unit-12-security-and-reliability-visibility-assembly-unit-12-security-and-reliability-visibility-curriculum-project-reverse-engineer-a-toy-program-back-into-pseudocode",
+		referenceToken: "10,033"
+	},
+	"ASM-07-unit-5-the-stack-and-function-calls": {
+		primary: "routine.S",
+		title: "Core Project: The Stack and Function Calls",
+		lesson: "assembly-unit-5-the-stack-and-function-calls-assembly-unit-5-the-stack-and-function-calls-curriculum-core-project-the-stack-and-function-calls",
+		referenceToken: "10,012"
+	}
 };
 
+assert.equal(
+	fixtures.length,
+	8,
+	"All eight verified packs require browser coverage"
+);
+assert.deepEqual(
+	fixtures.map(row => row.pack).sort(),
+	Object.keys(workflowDefinitions).sort(),
+	"Browser fixtures must cover every workflow definition"
+);
+const expectedProfiles = fixtures.length * 2 * 2 * 2;
 
 const storageKey = "classes-python-ide-projects:anonymous";
 const legacy = {
@@ -61,7 +114,7 @@ const legacy = {
 
 test(
 	"Assembly consent, exact role imports, saved edits, native exports and lesson return",
-	{ timeout: 180_000 },
+	{ timeout: 240_000 },
 	async () => {
 		let server, browser, context, page;
 		const captures
@@ -158,6 +211,14 @@ test(
 				for (const width of [1280, 360]) {
 					for (const theme of ["light", "dark"]) {
 						for (const role of ["starter", "solution"]) {
+							const expectedFiles = Object.keys(
+								fixture.files
+							).filter(
+								path =>
+									path.startsWith(
+										`${fixture.pack}/${role}/`
+									) || path === `${fixture.pack}/README.md`
+							);
 							await page.setViewport({ width, height: 900 });
 							await page.emulateMediaFeatures([
 								{ name: "prefers-color-scheme", value: theme }
@@ -218,9 +279,19 @@ test(
 								p => p.courseProjectKey === key
 							);
 							assert.equal(saved.mode, "assembly");
-							assert.equal(saved.activeFileName, `${role}/${primary}`);
-							assert.equal(saved.files.length, 7);
-							assert.equal(requests.length, 7);
+							assert.equal(
+								saved.activeFileName,
+								`${role}/${primary}`
+							);
+							assert.deepEqual(
+								saved.files
+									.map(
+										file => `${fixture.pack}/${file.name}`
+									)
+									.sort(),
+								expectedFiles.sort()
+							);
+							assert.equal(requests.length, expectedFiles.length);
 							assert.ok(
 								requests.every(
 									path =>
@@ -257,18 +328,21 @@ test(
 							);
 							await page.click("button.run-control");
 							await page.waitForFunction(() =>
-								[...document.querySelectorAll(".output-line")].some(
-									line =>
-										line.textContent.includes(
-											"ctest --test-dir build"
-										)
+								[
+									...document.querySelectorAll(".output-line")
+								].some(line =>
+									line.textContent.includes(
+										"ctest --test-dir build"
+									)
 								)
 							);
 							assert.ok(
 								await page.$eval(
 									".result-panel",
 									(p, { role, referenceToken }) =>
-										p.textContent.includes("Linux x86-64")
+										p.textContent.includes(
+											"Linux x86-64"
+										)
 										&& p.textContent.includes(
 											role === "starter"
 												? "exits 78"
@@ -297,10 +371,15 @@ test(
 							const entries = unzipSync(
 								Buffer.from(base64, "base64")
 							);
-							assert.equal(Object.keys(entries).length, 7);
+							assert.equal(
+								Object.keys(entries).length,
+								expectedFiles.length
+							);
 							for (const file of saved.files) {
 								const source
-									= fixture.files[`${fixture.pack}/${file.name}`];
+									= fixture.files[
+										`${fixture.pack}/${file.name}`
+									];
 								const path = Object.keys(entries).find(path =>
 									path.endsWith(`/${file.name}`)
 								);
@@ -318,7 +397,10 @@ test(
 							}
 							if (width === 1280 && theme === "light") {
 								await writeFile(
-									join(exports, `${fixture.pack}-${role}.zip`),
+									join(
+										exports,
+										`${fixture.pack}-${role}.zip`
+									),
 									Buffer.from(base64, "base64")
 								);
 							}
@@ -333,7 +415,9 @@ test(
 							const edit = `${saved.files.find(file => file.name === name).content}\n/* Saved Assembly attempt. */\n`;
 							await page.click(".cm-content");
 							const modifier = await page.evaluate(() =>
-								/Mac/.test(navigator.platform) ? "Meta" : "Control"
+								/Mac/.test(navigator.platform)
+									? "Meta"
+									: "Control"
 							);
 							await page.keyboard.down(modifier);
 							await page.keyboard.press("a");
@@ -348,7 +432,8 @@ test(
 										.find(p => p.courseProjectKey === k)
 										?.files
 										.some(
-											f => f.name === n && f.content === c
+											f =>
+												f.name === n && f.content === c
 										),
 								{},
 								storageKey,
@@ -356,7 +441,9 @@ test(
 								name,
 								edit
 							);
-							await page.reload({ waitUntil: "domcontentloaded" });
+							await page.reload({
+								waitUntil: "domcontentloaded"
+							});
 							await page.waitForSelector(
 								"button.run-control:not([disabled])"
 							);
@@ -378,7 +465,7 @@ test(
 							);
 							assert.equal(
 								requests.length,
-								7,
+								expectedFiles.length,
 								"Reload reuses saved work without fetching source"
 							);
 							await downloadProjectZip(page);
@@ -399,8 +486,11 @@ test(
 								assert.equal(
 									strFromU8(
 										editedEntries[
-											Object.keys(editedEntries).find(path =>
-												path.endsWith(`/${file.name}`)
+											Object.keys(editedEntries).find(
+												path =>
+													path.endsWith(
+														`/${file.name}`
+													)
 											)
 										]
 									),
@@ -428,25 +518,76 @@ test(
 								path: join(captures, capture),
 								fullPage: true
 							});
-							proof.push({ pack: fixture.pack, role, width, theme, files: saved.files.map(f => ({
-								name: f.name,
-								sha256: createHash("sha256")
-									.update(f.content)
-									.digest("hex")
-							})), confirmedBeforeFetch: true, savedEditReloaded: true, editedExportExact: true, legacyPreserved: true, returnHref, capture });
+							proof.push({
+								pack: fixture.pack,
+								role,
+								width,
+								theme,
+								files: saved.files.map(f => ({
+									name: f.name,
+									sha256: createHash("sha256")
+										.update(f.content)
+										.digest("hex")
+								})),
+								confirmedBeforeFetch: true,
+								savedEditReloaded: true,
+								editedExportExact: true,
+								legacyPreserved: true,
+								returnHref,
+								capture
+							});
 						}
 					}
 				}
 			}
+			assert.equal(
+				proof.length,
+				expectedProfiles,
+				"Every pack, role, width and theme must complete"
+			);
 			await writeFile(
 				join(captures, "assembly-workflow-proof.json"),
 				`${JSON.stringify(proof, null, 2)}\n`
 			);
 		}
 		catch (error) {
+			await writeFile(join(captures, "assembly-workflow-partial.json"), JSON.stringify(proof, null, 2));
 			if (page) {
-				await page.screenshot({ path: join(captures, "assembly-failure.png"), fullPage: true });
-				await writeFile(join(captures, "assembly-failure.json"), JSON.stringify(await page.evaluate(s => ({ url: location.href, body: (document.body.textContent ?? "").slice(-7000), storage: localStorage.getItem(s) }), storageKey), null, 2));
+				const geometry = await page.evaluate(() => ({
+					url: location.href,
+					viewport: innerWidth,
+					documentWidth: document.documentElement.scrollWidth,
+					overflow: [...document.querySelectorAll("body *")].map((node) => {
+						const box = node.getBoundingClientRect();
+						const style = getComputedStyle(node);
+						return { tag: node.tagName, className: (node.getAttribute("class") ?? "").slice(0, 140), right: box.right, width: box.width, minWidth: style.minWidth, overflowX: style.overflowX };
+					}).filter(node => node.width > 0 && node.right > innerWidth + 1).slice(0, 20)
+				}));
+				console.log(JSON.stringify({ event: "assembly-browser-failure-geometry", ...geometry }));
+				await writeFile(join(captures, "assembly-failure-geometry.json"), JSON.stringify(geometry, null, 2));
+			}
+			if (page) {
+				await page.screenshot({
+					path: join(captures, "assembly-failure.png"),
+					fullPage: true
+				});
+				await writeFile(
+					join(captures, "assembly-failure.json"),
+					JSON.stringify(
+						await page.evaluate(
+							s => ({
+								url: location.href,
+								body: (document.body.textContent ?? "").slice(
+									-7000
+								),
+								storage: localStorage.getItem(s)
+							}),
+							storageKey
+						),
+						null,
+						2
+					)
+				);
 			}
 			throw error;
 		}

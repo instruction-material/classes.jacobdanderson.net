@@ -1,7 +1,11 @@
 import type { RawCourse } from "./types";
 import { assemblyArrayProjectReading } from "./assemblyArrayProjectReading";
 import { assemblyCalculatorProjectReading } from "./assemblyCalculatorProjectReading";
+import { assemblyHelperProjectReading } from "./assemblyHelperProjectReading";
 import { assemblyOpeningProjectReading } from "./assemblyOpeningProjectReading";
+import { assemblyParserProjectReading } from "./assemblyParserProjectReading";
+import { assemblyReverseProjectReading } from "./assemblyReverseProjectReading";
+import { assemblyStackProjectReading } from "./assemblyStackProjectReading";
 import { assemblyStringProjectReading } from "./assemblyStringProjectReading";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { buildProjectGuidance } from "./projectGuidance";
@@ -384,16 +388,13 @@ const assemblySourceCourse: RawCourse = {
 				},
 				{
 					title: "Unit 5: The Stack and Function Calls: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle: "Unit 5: The Stack and Function Calls",
-						projectKind: "core",
-						hasReference: true
-					}),
+					id: "assembly-unit-5-the-stack-and-function-calls-curriculum-core-project-the-stack-and-function-calls",
+					ideImport: true,
+					content: assemblyStackProjectReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-07-unit-5-the-stack-and-function-calls/starter",
+						"https://github.com/instruction-material/Assembly/tree/005e375894ade846a1077e96d4880faea680aed8/ASM-07-unit-5-the-stack-and-function-calls/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-07-unit-5-the-stack-and-function-calls/solution"
+						"https://github.com/instruction-material/Assembly/tree/005e375894ade846a1077e96d4880faea680aed8/ASM-07-unit-5-the-stack-and-function-calls/solution"
 				}
 			],
 			supplementalProjects: [
@@ -402,9 +403,7 @@ const assemblySourceCourse: RawCourse = {
 					content:
 						"Use a focused trace worksheet for the stack and function calls that records the key registers, flag changes, memory addresses, and one plain-language explanation of why the control flow moved the way it did. Focus especially on return addresses, saved registers, and why the stack pointer moves when a function prepares for another call so the worksheet narrates instruction flow rather than only skimming mnemonics. A complete entry records the instruction address, the value before the instruction, the value after the instruction, and the evidence that explains the next branch, call, or return.",
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-07-unit-5-the-stack-and-function-calls/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-07-unit-5-the-stack-and-function-calls/solution"
+						"https://github.com/instruction-material/Assembly/blob/005e375894ade846a1077e96d4880faea680aed8/ASM-07-unit-5-the-stack-and-function-calls/README.md"
 				},
 				{
 					title: "Stack Frame Transfer Practice",
@@ -454,12 +453,13 @@ const assemblySourceCourse: RawCourse = {
 				},
 				{
 					title: "Project: Call a C Helper from Assembly",
-					content:
-						"Use the mixed-language lab to sum values in assembly, then call back into a C helper that clamps or formats the result. The project requires explicit tracking of argument registers, preserved registers, and stack alignment across the language boundary.",
+					id: "assembly-unit-6-calling-conventions-and-abi-curriculum-project-call-a-c-helper-from-assembly",
+					ideImport: true,
+					content: assemblyHelperProjectReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM4-Call-C-Helper-from-Assembly/starter",
+						"https://github.com/instruction-material/Assembly/tree/4519a6ecbdb0dc6e932932a8af50a24f2449c8ef/ASM4-Call-C-Helper-from-Assembly/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM4-Call-C-Helper-from-Assembly/solution"
+						"https://github.com/instruction-material/Assembly/tree/4519a6ecbdb0dc6e932932a8af50a24f2449c8ef/ASM4-Call-C-Helper-from-Assembly/solution"
 				}
 			],
 			supplementalProjects: [
@@ -468,9 +468,7 @@ const assemblySourceCourse: RawCourse = {
 					content:
 						"Use a focused trace worksheet for calling conventions and abi that records the key registers, flag changes, memory addresses, and one plain-language explanation of why the control flow moved the way it did. Focus especially on argument registers, preserved registers, and what must be restored before returning so the worksheet narrates instruction flow rather than only skimming mnemonics. A complete entry records the instruction address, the value before the instruction, the value after the instruction, and the evidence that explains the next branch, call, or return.",
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM4-Call-C-Helper-from-Assembly/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM4-Call-C-Helper-from-Assembly/solution"
+						"https://github.com/instruction-material/Assembly/blob/4519a6ecbdb0dc6e932932a8af50a24f2449c8ef/ASM4-Call-C-Helper-from-Assembly/README.md"
 				},
 				{
 					title: "Calling Convention Transfer Practice",
@@ -587,12 +585,13 @@ const assemblySourceCourse: RawCourse = {
 				},
 				{
 					title: "Project: Tiny Command-Line Parser",
-					content:
-						"Use the parser lab to read `argv`, compare command names, parse decimal input, and dispatch a tiny operation. This keeps runtime interaction concrete while still reinforcing loops, comparisons, and mixed C plus assembly workflow.",
+					id: "assembly-unit-8-system-calls-and-runtime-interaction-curriculum-project-tiny-command-line-parser",
+					ideImport: true,
+					content: assemblyParserProjectReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM5-Tiny-Command-Line-Parser/starter",
+						"https://github.com/instruction-material/Assembly/tree/b87661c22a4bc08245cac18a0d6b8d672723eec8/ASM5-Tiny-Command-Line-Parser/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM5-Tiny-Command-Line-Parser/solution"
+						"https://github.com/instruction-material/Assembly/tree/b87661c22a4bc08245cac18a0d6b8d672723eec8/ASM5-Tiny-Command-Line-Parser/solution"
 				}
 			],
 			supplementalProjects: [
@@ -601,9 +600,7 @@ const assemblySourceCourse: RawCourse = {
 					content:
 						"Use a focused trace worksheet for system calls and runtime interaction that records the key registers, flag changes, memory addresses, and one plain-language explanation of why the control flow moved the way it did. Focus especially on argument pointers, parse-state changes, and the exact point where invalid input stops the flow so the worksheet narrates instruction flow rather than only skimming mnemonics. A complete entry records the instruction address, the value before the instruction, the value after the instruction, and the evidence that explains the next branch, call, or return.",
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM5-Tiny-Command-Line-Parser/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM5-Tiny-Command-Line-Parser/solution"
+						"https://github.com/instruction-material/Assembly/blob/b87661c22a4bc08245cac18a0d6b8d672723eec8/ASM5-Tiny-Command-Line-Parser/README.md"
 				},
 				{
 					title: "System Call Transfer Practice",
@@ -880,12 +877,13 @@ const assemblySourceCourse: RawCourse = {
 				},
 				{
 					title: "Project: Reverse-Engineer a Toy Program Back into Pseudocode",
-					content:
-						"Use the reverse-engineering lab to inspect a hand-written assembly routine, reconstruct its logic in C or pseudocode, and compare the outputs. The main lesson is recovering real structure from instruction flow instead of treating a disassembly listing as unreadable noise.",
+					id: "assembly-unit-12-security-and-reliability-visibility-curriculum-project-reverse-engineer-a-toy-program-back-into-pseudocode",
+					ideImport: true,
+					content: assemblyReverseProjectReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM6-Reverse-Engineering-Toy-Program/starter",
+						"https://github.com/instruction-material/Assembly/tree/8856f11c649863d5eee9914658c11cfb801ead4b/ASM6-Reverse-Engineering-Toy-Program/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM6-Reverse-Engineering-Toy-Program/solution"
+						"https://github.com/instruction-material/Assembly/tree/8856f11c649863d5eee9914658c11cfb801ead4b/ASM6-Reverse-Engineering-Toy-Program/solution"
 				}
 			],
 			supplementalProjects: [
@@ -894,9 +892,7 @@ const assemblySourceCourse: RawCourse = {
 					content:
 						"Use a focused trace worksheet for security and reliability visibility that records the key registers, flag changes, memory addresses, and one plain-language explanation of why the control flow moved the way it did. Focus especially on where the hardening or bug evidence appears around the function and what that reveals about runtime behavior so the worksheet narrates instruction flow rather than only skimming mnemonics. A complete entry records the instruction address, the value before the instruction, the value after the instruction, and the evidence that explains the next branch, call, or return.",
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM6-Reverse-Engineering-Toy-Program/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM6-Reverse-Engineering-Toy-Program/solution"
+						"https://github.com/instruction-material/Assembly/blob/8856f11c649863d5eee9914658c11cfb801ead4b/ASM6-Reverse-Engineering-Toy-Program/README.md"
 				},
 				{
 					title: "Reliability Visibility Transfer Practice",
