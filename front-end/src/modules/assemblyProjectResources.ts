@@ -37,6 +37,10 @@ export const assemblyCompilerPack = "ASM-08-unit-9-reading-compiler-output";
 export const assemblyDebugRevision = "337648e72f375e30b235936f8deb5cd9ac64cfde";
 export const assemblyDebugPack =
 	"ASM-09-unit-10-debugging-at-instruction-level";
+export const assemblyPerformanceRevision =
+	"dfe6d181f0e6e793aebf78270f7c391e3a0225aa";
+export const assemblyPerformancePack =
+	"ASM-10-unit-11-performance-and-code-shape";
 export const assemblyVerifiedPacks = [
 	{
 		pack: assemblyOpeningPack,
@@ -148,6 +152,20 @@ export const assemblyVerifiedPacks = [
 		roleFiles: [
 			"routine.S",
 			"debug_lab.h",
+			"main.c",
+			"tests.c",
+			"abi_checks.S",
+			"CMakeLists.txt",
+			"analysis.md"
+		]
+	},
+	{
+		pack: assemblyPerformancePack,
+		revision: assemblyPerformanceRevision,
+		roleFiles: [
+			"loops.S",
+			"performance.h",
+			"dataset.c",
 			"main.c",
 			"tests.c",
 			"abi_checks.S",
