@@ -82,9 +82,16 @@ it("preserves core and notebook identities, complete reading, reference privacy 
 		const core = items.find(i => i.id === definition.coreItemId)!;
 		const notebook = items.find(i => i.id === definition.notebookItemId)!;
 		expect(core).toBeDefined();
-		expect(notebook).toBeDefined();
 		expect(core.ideImport).toBe(true);
-		expect(notebook.ideImport).toBe(true);
+		if (definition.notebookItemId) {
+			expect(notebook).toBeDefined();
+			expect(notebook.ideImport).toBe(true);
+			expect(notebook.projectLink).toBe(core.projectLink);
+			expect(notebook.solutionLink).toBe(core.solutionLink);
+			expect(notebook.content).toContain(
+				"reopens the matching core project"
+			);
+		}
 		expect(core.content).toContain(
 			fixtures
 				.find(f => f.pack === definition.pack)!
@@ -92,16 +99,24 @@ it("preserves core and notebook identities, complete reading, reference privacy 
 				.replace(/\bTODO\b/g, "`TODO`")
 				.replace("Instructor walkthrough", "Walkthrough")
 		);
-		expect(notebook.content).toContain("reopens the matching core project");
 		for (const role of ["starter", "reference"] as const) {
 			const link =
 				role === "starter" ? core.projectLink! : core.solutionLink!;
 			expect(link).toBe(
 				`${sourceRoot(definition.revision)}/${definition.pack}/${role === "starter" ? "starter" : "solution"}`
 			);
-			expect(
-				linuxCourseProjectKey("linux-systems", notebook.id, role, link)
-			).toBe(linuxCourseProjectKey("linux-systems", core.id, role, link));
+			if (definition.notebookItemId) {
+				expect(
+					linuxCourseProjectKey(
+						"linux-systems",
+						notebook.id,
+						role,
+						link
+					)
+				).toBe(
+					linuxCourseProjectKey("linux-systems", core.id, role, link)
+				);
+			}
 		}
 	}
 	useAppStore().setCurrentTutor(null);
@@ -226,6 +241,15 @@ it("retains literal Linux names and rejects unsafe paths and unverified imports"
 	expect(normalizePythonFileName("app 1.py")).toBe("app_1.py");
 	expect(isValidPythonFileName("main.html")).toBe(false);
 	expect(isValidPythonFileName("Makefile.sh", "cpp")).toBe(false);
+	expect(isValidPythonFileName("starter/compare-notes.md", "linux")).toBe(
+		true
+	);
+	expect(isValidPythonFileName("starter/compare-notes.md", "python")).toBe(
+		false
+	);
+	expect(isValidPythonFileName("starter/compare-notes.md", "cpp")).toBe(
+		false
+	);
 	for (const name of [
 		"../task.sh",
 		"starter/../task.sh",

@@ -70,6 +70,20 @@ export const linuxVerifiedPacks = [
 			"linux-systems-unit-11-web-servers-curriculum-project-run-a-small-app-behind-nginx",
 		notebookItemId:
 			"linux-systems-unit-11-web-servers-supplemental-troubleshooting-notebook-web-servers"
+	},
+	{
+		pack: "LS4-Apache-Virtual-Host-Compare",
+		revision: "883dce18a4c434b853423e280aa93c45e0ebdede",
+		roleFiles: [
+			"linux-systems-apache.conf",
+			"linux-systems-nginx.conf",
+			"index.html",
+			"second.html",
+			"compare-notes.md"
+		],
+		coreItemId:
+			"linux-systems-unit-11-web-servers-curriculum-project-configure-an-apache-virtual-host-and-compare-it-to-nginx",
+		notebookItemId: null
 	}
 ] as const;
 

@@ -189,7 +189,10 @@ describe("Python project routes", () => {
 					encoding: "text"
 				}));
 			const activeFileName = files.find(
-				file => file.name.endsWith(".sh") || file.name.endsWith(".py")
+				file =>
+					file.name.endsWith(".sh") ||
+					file.name.endsWith(".py") ||
+					file.name.endsWith(".conf")
 			)!.name;
 			for (const owner of ["user", "course-code"] as const) {
 				await withPythonProjectRoute(async baseUrl => {
