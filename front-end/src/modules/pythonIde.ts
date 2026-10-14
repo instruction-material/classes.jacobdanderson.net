@@ -2835,7 +2835,11 @@ export function isPythonIdeRuntimeReservedPath(value: string) {
 	);
 }
 
-export function isValidPythonFileName(value: string) {
+export function isValidPythonFileName(
+	value: string,
+	mode: PythonIdeMode = "python"
+) {
+	const linuxPath = mode === "linux" && isLinuxProjectTextPath(value);
 	if (!value || value.length > 80) return false;
 	if (value.startsWith("/") || value.includes("\\") || value.includes("//"))
 		return false;
@@ -2848,9 +2852,7 @@ export function isValidPythonFileName(value: string) {
 				segment === "." ||
 				segment === ".." ||
 				!(
-					isLinuxProjectTextPath(value)
-						? linuxFileSegmentPattern
-						: SAFE_FILE_SEGMENT_RE
+					linuxPath ? linuxFileSegmentPattern : SAFE_FILE_SEGMENT_RE
 				).test(segment)
 		)
 	) {
@@ -2863,7 +2865,7 @@ export function isValidPythonFileName(value: string) {
 		CODE_EXTENSION_RE.test(value) ||
 		baseName(value) === "CMakeLists.txt" ||
 		NATIVE_WORKSHEET_FILE_RE.test(value) ||
-		isLinuxProjectTextPath(value)
+		linuxPath
 	) {
 		const rootDirectory = segments[0]?.toLowerCase();
 		return !rootDirectory || !ASSET_DIRECTORY_NAMES.has(rootDirectory);
@@ -3075,7 +3077,10 @@ export async function loadPythonIdeStarterFilesFromGitHub(
 		}
 		const files: PythonIdeFile[] = [];
 		for (const { name, file } of selected) {
-			if (!isValidPythonFileName(name) || !isPythonIdeTextFile(name)) {
+			if (
+				!isValidPythonFileName(name, mode) ||
+				!isPythonIdeTextFile(name)
+			) {
 				throw new Error(
 					"The native pack contains an unsupported file path."
 				);

@@ -91,20 +91,21 @@ function isRuntimeReservedProjectPath(value: string) {
 	return PYTHON_FILE_NAME_RE.test(normalized) && RUNTIME_RESERVED_ROOTS.has(root);
 }
 
-function isSafeProjectFileName(value: string) {
+function isSafeProjectFileName(value: string, mode: PythonProjectMode = "python") {
+	const linuxPath = mode === "linux" && isLinuxProjectTextPath(value);
 	if (!value || value.length > 80) return false;
 	if (value.startsWith("/") || value.includes("\\") || value.includes("//")) return false;
 
 	const segments = value.split("/");
 	if (
-		segments.some(segment => !segment || segment === "." || segment === ".." || !(isLinuxProjectTextPath(value) ? linuxFileSegmentPattern : SAFE_FILE_SEGMENT_RE).test(segment))
+		segments.some(segment => !segment || segment === "." || segment === ".." || !(linuxPath ? linuxFileSegmentPattern : SAFE_FILE_SEGMENT_RE).test(segment))
 	) {
 		return false;
 	}
 
 	if (isRuntimeReservedProjectPath(value)) return false;
 
-	if (PYTHON_FILE_NAME_RE.test(value) || JAVA_FILE_NAME_RE.test(value) || C_FILE_NAME_RE.test(value) || ASSEMBLY_FILE_NAME_RE.test(value) || CPP_TEXT_FILE_NAME_RE.test(value) || segments.at(-1) === "CMakeLists.txt" || NATIVE_WORKSHEET_FILE_RE.test(value) || isLinuxProjectTextPath(value)) {
+	if (PYTHON_FILE_NAME_RE.test(value) || JAVA_FILE_NAME_RE.test(value) || C_FILE_NAME_RE.test(value) || ASSEMBLY_FILE_NAME_RE.test(value) || CPP_TEXT_FILE_NAME_RE.test(value) || segments.at(-1) === "CMakeLists.txt" || NATIVE_WORKSHEET_FILE_RE.test(value) || linuxPath) {
 		const rootDirectory = segments[0]?.toLowerCase();
 		return !rootDirectory || !ASSET_DIRECTORY_NAMES.has(rootDirectory);
 	}
@@ -122,7 +123,7 @@ const projectFileSchema = z.object({
 		.min(1)
 		.max(80)
 		.refine(
-			isSafeProjectFileName,
+			value => isSafeProjectFileName(value, "linux"),
 			"Use a safe code file, root data/text file, or images/, sounds/, or music/ asset file that does not use a runtime-reserved module name"
 		),
 	content: z.string().max(MAX_FILE_LENGTH),
@@ -298,6 +299,7 @@ function requiredCodeFileMessage(mode: PythonProjectMode) {
 }
 
 function projectFilesMatchMode(files: PythonProjectFile[], mode: PythonProjectMode) {
+	if (!files.every(file => isSafeProjectFileName(file.name, mode))) return false;
 	if (mode === "linux") return files.every(file => file.encoding !== "base64") && files.some(file => isLinuxProjectTextPath(file.name));
 	if (mode === "assembly") return !files.some(file => file.encoding === "base64" && (/\.[sch]$/i.test(file.name) || file.name.split("/").at(-1) === "CMakeLists.txt")) && files.some(file => ASSEMBLY_FILE_NAME_RE.test(file.name) && file.encoding !== "base64");
 	if (mode === "c" && files.some(file => file.encoding === "base64" && (/\.(?:c|h)$/i.test(file.name) || file.name.split("/").at(-1) === "CMakeLists.txt"))) return false;

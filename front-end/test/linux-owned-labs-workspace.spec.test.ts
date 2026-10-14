@@ -66,7 +66,15 @@ it("preserves core and notebook identities, complete reading, reference privacy 
 		...m.curriculum,
 		...m.supplementalProjects
 	]);
-	const baseline = JSON.parse(readFileSync(resolve(process.cwd(), "../test/fixtures/linux-published-identities.json"), "utf8")) as {moduleId:string;id:string}[];
+	const baseline = JSON.parse(
+		readFileSync(
+			resolve(
+				process.cwd(),
+				"../test/fixtures/linux-published-identities.json"
+			),
+			"utf8"
+		)
+	) as { moduleId: string; id: string }[];
 	expect(items.map(i => i.id).sort()).toEqual(baseline.map(i => i.id).sort());
 	for (const definition of linuxVerifiedPacks) {
 		const core = items.find(i => i.id === definition.coreItemId)!;
@@ -79,7 +87,8 @@ it("preserves core and notebook identities, complete reading, reference privacy 
 			fixtures
 				.find(f => f.pack === definition.pack)!
 				.files["README.md"]!.content.trim()
-				.replace(/\bTODO\b/g, "`TODO`").replace("Instructor walkthrough", "Walkthrough")
+				.replace(/\bTODO\b/g, "`TODO`")
+				.replace("Instructor walkthrough", "Walkthrough")
 		);
 		expect(notebook.content).toContain("reopens the matching core project");
 		for (const role of ["starter", "reference"] as const) {
@@ -136,7 +145,7 @@ it.each(
 		expect(files.map(f => f.name).sort()).toEqual(expected);
 		expect(requests.sort()).toEqual(expected);
 		for (const file of files) {
-			expect(isValidPythonFileName(file.name)).toBe(true);
+			expect(isValidPythonFileName(file.name, "linux")).toBe(true);
 			expect(
 				createHash("sha256").update(file.content).digest("hex")
 			).toBe(fixture.files[file.name]!.sha256);
@@ -197,6 +206,8 @@ it("retains literal Linux names and rejects unsafe paths and unverified imports"
 		"app 1.log"
 	);
 	expect(normalizePythonFileName("app 1.py")).toBe("app_1.py");
+	expect(isValidPythonFileName("main.html")).toBe(false);
+	expect(isValidPythonFileName("Makefile.sh", "cpp")).toBe(false);
 	for (const name of [
 		"../task.sh",
 		"starter/../task.sh",
@@ -209,7 +220,7 @@ it("retains literal Linux names and rejects unsafe paths and unverified imports"
 		"pgzero.py",
 		"starter/reports/app 1.py"
 	]) {
-		expect(isValidPythonFileName(name), name).toBe(false);
+		expect(isValidPythonFileName(name, "linux"), name).toBe(false);
 	}
 	const unverified = `${sourceRoot}/LS-03-unit-1-shell-foundations-supplemental-2/starter`;
 	expect(linuxCourseResource(unverified)).toBeNull();

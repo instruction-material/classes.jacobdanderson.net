@@ -3550,10 +3550,10 @@ function addFile() {
 							: ".py",
 		selectedProject.value.mode
 	);
-	if (!isValidPythonFileName(fileName)) {
+	if (!isValidPythonFileName(fileName, selectedProject.value.mode)) {
 		appendOutput(
 			"stderr",
-			`Use a safe root code/data file or images/, sounds/, music/ asset file ending in ${pythonIdeAllowedFileExtensions.join(", ")}.`
+			`Use a safe path supported by the selected workspace. Supported file extensions include ${pythonIdeAllowedFileExtensions.join(", ")}.`
 		);
 		return;
 	}
@@ -3632,7 +3632,7 @@ async function importProjectFiles(event: Event) {
 			file.name,
 			selectedProject.value.mode
 		);
-		if (!isValidPythonFileName(fileName)) {
+		if (!isValidPythonFileName(fileName, selectedProject.value.mode)) {
 			skippedFiles.push(file.name);
 			continue;
 		}

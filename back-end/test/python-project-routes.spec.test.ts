@@ -913,7 +913,7 @@ describe("Python project routes", () => {
 			for (const name of [
 				"../Makefile",
 				"src/Makefile",
-				"Makefile.exe"
+				"Makefile.sh"
 			]) {
 				const response = await postJson(baseUrl, {
 					mode: "cpp",
