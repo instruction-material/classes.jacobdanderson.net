@@ -22,6 +22,15 @@ import {
 } from "@/modules/codePreview";
 import { courseReferenceExamples } from "@/modules/courseReferenceExamples";
 import { cppStarterCode, cppWorkspaceReadme } from "@/modules/cppIdeSource";
+import { linuxStarterCode, linuxStarterFiles } from "@/modules/linuxIdeSource";
+import {
+	isLinuxProjectTextPath,
+	linuxFileSegmentPattern
+} from "@/modules/linuxProjectFiles";
+import {
+	linuxCourseResource,
+	linuxImportFiles
+} from "@/modules/linuxProjectResources";
 import { restoredUsacoResource } from "@/modules/usacoProjectResources";
 
 const WHITESPACE_RE = /\s+/g;
@@ -90,6 +99,7 @@ export type PythonIdeMode =
 	| "data"
 	| "java"
 	| "karel"
+	| "linux"
 	| "pgzero"
 	| "python"
 	| "turtle";
@@ -244,6 +254,13 @@ interface PythonIdeProjectStorageRecord {
 
 export const pythonIdeStorageNamespace = "classes-python-ide-projects";
 export const pythonIdeAllowedFileExtensions = [
+	".sh",
+	".log",
+	".conf",
+	".service",
+	".timer",
+	".html",
+	".example",
 	".S",
 	".s",
 	".py",
@@ -278,6 +295,7 @@ export const pythonIdeFileUploadAccept =
 let pythonIdeStorageDbPromise: Promise<IDBDatabase> | null = null;
 
 const pythonIdeCourseModes: Record<string, PythonIdeMode> = {
+	"linux-systems": "linux",
 	assembly: "assembly",
 	"c-systems-engineering": "c",
 	"c-level-1": "cpp",
@@ -313,6 +331,7 @@ export function normalizePythonIdeMode(
 	if (value === "bluej") return "java";
 	if (
 		value === "assembly" ||
+		value === "linux" ||
 		value === "c" ||
 		value === "cpp" ||
 		value === "data" ||
@@ -364,6 +383,8 @@ export function isKnownCourseWorksheetResource(url: string) {
 export function pythonIdeModeForCourseResource(courseId: string, url: string) {
 	const resource = parseGitHubResource(url);
 	if (!resource || isKnownCourseWorksheetResource(url)) return null;
+	if (courseId === "linux-systems")
+		return linuxCourseResource(url) ? "linux" : null;
 	if (courseId === "assembly")
 		return assemblyCourseResource(url) ? "assembly" : null;
 	if (courseId === "c-systems-engineering")
@@ -2201,6 +2222,7 @@ plt.tight_layout()
 `;
 
 export function getPythonIdeModeLabel(mode: PythonIdeMode) {
+	if (mode === "linux") return "Linux";
 	if (mode === "assembly") return "Assembly";
 	if (mode === "c") return "C17";
 	if (mode === "cpp") return "C++";
@@ -2246,6 +2268,7 @@ export function getPythonIdeProjectKindLabel(
 }
 
 function getDemoStarterCode(mode: PythonIdeMode) {
+	if (mode === "linux") return linuxStarterCode;
 	if (mode === "assembly") return assemblyStarterCode;
 	if (mode === "c") return cStarterCode;
 	if (mode === "cpp") return cppStarterCode;
@@ -2266,6 +2289,7 @@ function clonePythonIdeFiles(files: PythonIdeFile[]) {
 }
 
 function getBlankStarterFiles(mode: PythonIdeMode): PythonIdeFile[] {
+	if (mode === "linux") return linuxStarterFiles();
 	if (mode === "assembly") return assemblyStarterFiles();
 	if (mode === "c") {
 		return [
@@ -2300,6 +2324,7 @@ function getBlankStarterFiles(mode: PythonIdeMode): PythonIdeFile[] {
 }
 
 function getCourseStarterFiles(mode: PythonIdeMode): PythonIdeFile[] {
+	if (mode === "linux") return linuxStarterFiles();
 	if (mode === "assembly") return assemblyStarterFiles();
 	if (mode === "c") {
 		return [
@@ -2384,6 +2409,7 @@ function getDemoStarterFiles(mode: PythonIdeMode): PythonIdeFile[] {
 }
 
 function getOutlineStarterFiles(mode: PythonIdeMode): PythonIdeFile[] {
+	if (mode === "linux") return linuxStarterFiles();
 	if (mode === "assembly") return assemblyStarterFiles();
 	if (mode === "c") {
 		return [
@@ -2568,6 +2594,7 @@ function getStarterFilesForTemplate(
 	mode: PythonIdeMode,
 	template: PythonIdeProjectTemplate
 ) {
+	if (mode === "linux") return linuxStarterFiles();
 	if (
 		(template === "event-reference" && mode === "pgzero") ||
 		(template === "melody-reference" && mode === "python") ||
@@ -2644,6 +2671,7 @@ function projectTitleForMode(
 	mode: PythonIdeMode,
 	template: PythonIdeProjectTemplate = "blank"
 ) {
+	if (mode === "linux") return "Linux Project";
 	if (mode === "assembly") return "Assembly Project";
 	if (mode === "c") return "C17 Project";
 	if (mode === "cpp") return "C++ Project";
@@ -2697,6 +2725,8 @@ export function createPythonIdeProject(
 	const files = options.files?.length
 		? clonePythonIdeFiles(options.files)
 		: getStarterFilesForTemplate(mode, template);
+	const linuxSource =
+		mode === "linux" ? linuxCourseResource(options.starterUrl ?? "") : null;
 	const assemblySource =
 		mode === "assembly"
 			? assemblyCourseResource(options.starterUrl ?? "")
@@ -2708,11 +2738,15 @@ export function createPythonIdeProject(
 		files,
 		activeFileName: resolvePythonIdeActiveFileName(
 			files,
-			mode === "assembly"
-				? assemblySource
-					? `${assemblySource.role}/${assemblySource.definition.roleFiles[0]}`
-					: files.find(file => /\.s$/i.test(file.name))?.name
-				: undefined
+			mode === "linux"
+				? linuxSource
+					? `${linuxSource.role}/${linuxSource.definition.roleFiles[0]}`
+					: files.find(file => /\.sh$/i.test(file.name))?.name
+				: mode === "assembly"
+					? assemblySource
+						? `${assemblySource.role}/${assemblySource.definition.roleFiles[0]}`
+						: files.find(file => /\.s$/i.test(file.name))?.name
+					: undefined
 		),
 		courseID: options.courseID,
 		courseProjectKey: options.courseProjectKey,
@@ -2755,8 +2789,15 @@ export function pythonIdeStorageKey(userID?: string | null) {
 
 export function normalizePythonFileName(
 	value: string,
-	defaultExtension = ".py"
+	defaultExtension = ".py",
+	mode?: PythonIdeMode
 ) {
+	if (mode === "linux") {
+		const name = value.trim();
+		return !name || FILE_EXTENSION_RE.test(name)
+			? name
+			: `${name}${defaultExtension}`;
+	}
 	const cleaned = value
 		.trim()
 		.replaceAll("\\", "/")
@@ -2806,7 +2847,11 @@ export function isValidPythonFileName(value: string) {
 				!segment ||
 				segment === "." ||
 				segment === ".." ||
-				!SAFE_FILE_SEGMENT_RE.test(segment)
+				!(
+					isLinuxProjectTextPath(value)
+						? linuxFileSegmentPattern
+						: SAFE_FILE_SEGMENT_RE
+				).test(segment)
 		)
 	) {
 		return false;
@@ -2817,7 +2862,8 @@ export function isValidPythonFileName(value: string) {
 	if (
 		CODE_EXTENSION_RE.test(value) ||
 		baseName(value) === "CMakeLists.txt" ||
-		NATIVE_WORKSHEET_FILE_RE.test(value)
+		NATIVE_WORKSHEET_FILE_RE.test(value) ||
+		isLinuxProjectTextPath(value)
 	) {
 		const rootDirectory = segments[0]?.toLowerCase();
 		return !rootDirectory || !ASSET_DIRECTORY_NAMES.has(rootDirectory);
@@ -2840,6 +2886,7 @@ export function isPythonIdeRunnableFile(
 	value: string,
 	mode: PythonIdeMode = "python"
 ) {
+	if (mode === "linux") return false;
 	if (mode === "assembly") return /\.s$/i.test(value);
 	if (mode === "c") return C_EXTENSION_RE.test(value);
 	if (mode === "cpp") return CPP_EXTENSION_RE.test(value);
@@ -2849,7 +2896,7 @@ export function isPythonIdeRunnableFile(
 }
 
 export function isPythonIdeTextFile(value: string) {
-	return TEXT_FILE_RE.test(value);
+	return isLinuxProjectTextPath(value) || TEXT_FILE_RE.test(value);
 }
 
 export function isPythonIdeBinaryAssetFile(
@@ -2858,9 +2905,16 @@ export function isPythonIdeBinaryAssetFile(
 	return file.encoding === "base64";
 }
 
-export function normalizeImportedPythonIdeFileName(value: string) {
+export function normalizeImportedPythonIdeFileName(
+	value: string,
+	mode?: PythonIdeMode
+) {
 	const baseName = value.split(/[\\/]/).pop() ?? value;
-	const normalized = normalizePythonFileName(baseName);
+	const normalized = normalizePythonFileName(
+		baseName,
+		mode === "linux" ? ".sh" : ".py",
+		mode
+	);
 	if (IMAGE_EXTENSION_RE.test(normalized)) return `images/${normalized}`;
 	if (SOUND_EXTENSION_RE.test(normalized)) return `sounds/${normalized}`;
 	if (MUSIC_EXTENSION_RE.test(normalized)) return `music/${normalized}`;
@@ -2896,6 +2950,10 @@ export function getPythonIdeFileKindLabel(value: string) {
 		return "Build file";
 	const extension = value.match(FILE_EXTENSION_RE)?.[0]?.toLowerCase();
 	if (extension === ".s") return "Assembly";
+	if (extension === ".sh") return "Shell";
+	if (extension === ".log") return "Log";
+	if (extension === ".html") return "HTML";
+	if (isLinuxProjectTextPath(value)) return "Linux text";
 	if (extension === ".c") return "C";
 	if ([".cpp", ".cc", ".cxx"].includes(extension ?? "")) return "C++";
 	if ([".h", ".hpp"].includes(extension ?? "")) return "Header";
@@ -2919,6 +2977,8 @@ export function getPythonIdeDefaultFileContent(
 	if (/^makefile$/i.test(fileName) || baseName(fileName) === "CMakeLists.txt")
 		return "";
 	const extension = fileName.match(FILE_EXTENSION_RE)?.[0]?.toLowerCase();
+	if (extension === ".sh") return linuxStarterCode;
+	if (isLinuxProjectTextPath(fileName)) return "";
 	if ([".cpp", ".cc", ".cxx"].includes(extension ?? "")) {
 		return /^main\.(?:cc|cpp|cxx)$/i.test(baseName(fileName))
 			? cppStarterCode
@@ -3001,11 +3061,13 @@ export async function loadPythonIdeStarterFilesFromGitHub(
 		);
 	}
 
-	if (mode === "c" || mode === "assembly") {
+	if (mode === "c" || mode === "assembly" || mode === "linux") {
 		const selected =
-			mode === "assembly"
-				? assemblyImportFiles(starterUrl)
-				: c17ImportFiles(starterUrl);
+			mode === "linux"
+				? linuxImportFiles(starterUrl)
+				: mode === "assembly"
+					? assemblyImportFiles(starterUrl)
+					: c17ImportFiles(starterUrl);
 		if (!selected) {
 			throw new Error(
 				`${getPythonIdeModeLabel(mode)} source has no verified site import. Use its documented native workflow.`

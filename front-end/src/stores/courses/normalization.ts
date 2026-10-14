@@ -62,9 +62,14 @@ function preserveScratchProjectInstructions(
 ) {
 	return course.modules.flatMap(module =>
 		[...module.curriculum, ...module.supplementalProjects]
-			.filter(item => isJuniScratchProjectTitle(courseId, item.title))
+			.filter(
+				item =>
+					item.preserveInstructions === true ||
+					isJuniScratchProjectTitle(courseId, item.title)
+			)
 			.map(item => ({
 				content: item.content,
+				preserveTitle: isJuniScratchProjectTitle(courseId, item.title),
 				item,
 				itemId: item.id,
 				itemTitle: item.title,
@@ -101,7 +106,8 @@ function restoreScratchProjectInstructions(
 
 		if (item) {
 			item.content = snapshot.content;
-			if (!snapshot.itemId) item.title = snapshot.itemTitle;
+			if (!snapshot.itemId && snapshot.preserveTitle)
+				item.title = snapshot.itemTitle;
 		}
 	}
 }

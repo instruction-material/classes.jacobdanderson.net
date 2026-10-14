@@ -17,6 +17,7 @@ import { z } from "zod";
 import { PythonProject } from "../../models/schemas/PythonProject.js";
 import { PythonProjectReview } from "../../models/schemas/PythonProjectReview.js";
 import { User } from "../../models/schemas/User.js";
+import { isLinuxProjectTextPath, linuxFileSegmentPattern } from "../../utils/linuxProjectFiles.js";
 
 const SAFE_FILE_SEGMENT_RE = /^\w[\w.-]*$/;
 const NATIVE_WORKSHEET_FILE_RE = /^(?:starter|solution)\/(?:analysis|trace)\.md$/i;
@@ -96,14 +97,14 @@ function isSafeProjectFileName(value: string) {
 
 	const segments = value.split("/");
 	if (
-		segments.some(segment => !segment || segment === "." || segment === ".." || !SAFE_FILE_SEGMENT_RE.test(segment))
+		segments.some(segment => !segment || segment === "." || segment === ".." || !(isLinuxProjectTextPath(value) ? linuxFileSegmentPattern : SAFE_FILE_SEGMENT_RE).test(segment))
 	) {
 		return false;
 	}
 
 	if (isRuntimeReservedProjectPath(value)) return false;
 
-	if (PYTHON_FILE_NAME_RE.test(value) || JAVA_FILE_NAME_RE.test(value) || C_FILE_NAME_RE.test(value) || ASSEMBLY_FILE_NAME_RE.test(value) || CPP_TEXT_FILE_NAME_RE.test(value) || segments.at(-1) === "CMakeLists.txt" || NATIVE_WORKSHEET_FILE_RE.test(value)) {
+	if (PYTHON_FILE_NAME_RE.test(value) || JAVA_FILE_NAME_RE.test(value) || C_FILE_NAME_RE.test(value) || ASSEMBLY_FILE_NAME_RE.test(value) || CPP_TEXT_FILE_NAME_RE.test(value) || segments.at(-1) === "CMakeLists.txt" || NATIVE_WORKSHEET_FILE_RE.test(value) || isLinuxProjectTextPath(value)) {
 		const rootDirectory = segments[0]?.toLowerCase();
 		return !rootDirectory || !ASSET_DIRECTORY_NAMES.has(rootDirectory);
 	}
@@ -113,7 +114,7 @@ function isSafeProjectFileName(value: string) {
 	return IMAGE_FILE_RE.test(value) || AUDIO_FILE_RE.test(value);
 }
 
-const projectModeSchema = z.enum(["assembly", "c", "cpp", "data", "java", "karel", "pgzero", "python", "turtle"]);
+const projectModeSchema = z.enum(["assembly", "c", "cpp", "data", "java", "karel", "linux", "pgzero", "python", "turtle"]);
 const projectFileSchema = z.object({
 	name: z
 		.string()
@@ -263,6 +264,7 @@ function serializePythonProjectReviewMetadata(review: IPythonProjectReview) {
 }
 
 function defaultProjectFileForMode(mode: PythonProjectMode): PythonProjectFile {
+	if (mode === "linux") return { name: "main.sh", content: "" };
 	if (mode === "assembly") return { name: "routine.S", content: "" };
 	if (mode === "c") return { name: "main.c", content: "" };
 	if (mode === "cpp") return { name: "main.cpp", content: "" };
@@ -284,6 +286,7 @@ function defaultProjectFileForMode(mode: PythonProjectMode): PythonProjectFile {
 }
 
 function requiredCodeFileMessage(mode: PythonProjectMode) {
+	if (mode === "linux") return "Project must include a text Linux script or configuration file";
 	if (mode === "assembly") return "Project must include at least one text Assembly source file";
 	if (mode === "c") return "Project must include at least one text C source file";
 	if (mode === "cpp") return "Project must include at least one C++ source file";
@@ -295,6 +298,7 @@ function requiredCodeFileMessage(mode: PythonProjectMode) {
 }
 
 function projectFilesMatchMode(files: PythonProjectFile[], mode: PythonProjectMode) {
+	if (mode === "linux") return files.every(file => file.encoding !== "base64") && files.some(file => isLinuxProjectTextPath(file.name));
 	if (mode === "assembly") return !files.some(file => file.encoding === "base64" && (/\.[sch]$/i.test(file.name) || file.name.split("/").at(-1) === "CMakeLists.txt")) && files.some(file => ASSEMBLY_FILE_NAME_RE.test(file.name) && file.encoding !== "base64");
 	if (mode === "c" && files.some(file => file.encoding === "base64" && (/\.(?:c|h)$/i.test(file.name) || file.name.split("/").at(-1) === "CMakeLists.txt"))) return false;
 	const codeFileRe = mode === "c" ? C_FILE_NAME_RE : mode === "cpp" ? CPP_FILE_NAME_RE : mode === "java" || mode === "karel" ? JAVA_FILE_NAME_RE : PYTHON_FILE_NAME_RE;

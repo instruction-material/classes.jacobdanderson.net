@@ -287,6 +287,28 @@ jobs:
                   ASSEMBLY_BROWSER_EXPORT_PROOF_DIR: output/assembly-exports
               run: node --test test/assembly-course-import-browser.test.mjs
 
+            - name: Verify Linux confirmed imports, notebook reuse and exact exports
+              env:
+                  LINUX_BROWSER_EXPORT_PROOF_DIR: output/linux-exports
+              run: node --test test/linux-course-import-browser.test.mjs
+
+            - name: Verify exported Linux lab contracts
+              run: |
+                  if ! command -v nginx >/dev/null 2>&1; then
+                    sudo apt-get update
+                    sudo apt-get install --no-install-recommends --yes nginx
+                  fi
+                  python3 test/linux-exported-contracts.py --archives output/linux-exports --proof output/linux-exports/exported-contracts.json
+
+            - name: Retain Linux workflow and native validation
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: linux-workflow-validation
+                  path: output/linux-exports/
+                  if-no-files-found: error
+                  retention-days: 7
+
             - name: Verify exported Assembly contracts and native debugger traces
               run: |
                   python3 test/assembly-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/playwright/assembly-native-clang.json

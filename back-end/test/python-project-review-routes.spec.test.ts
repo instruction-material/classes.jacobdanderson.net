@@ -778,6 +778,107 @@ describe("Python project review routes", () => {
 		}
 	);
 
+	it.each(
+		JSON.parse(
+			readFileSync(
+				resolve(
+					process.cwd(),
+					"../test/fixtures/linux-owned-labs-contracts.json"
+				),
+				"utf8"
+			)
+		).flatMap(
+			(fixture: {
+				pack: string;
+				files: Record<string, { content: string }>;
+			}) => ["starter", "solution"].map(role => ({ fixture, role }))
+		)
+	)(
+		"preserves exact Linux $fixture.pack/$role source through API workflows",
+		async ({ fixture, role }) => {
+			const requestedMode = "linux";
+			const files = Object.entries(
+				fixture.files as Record<string, { content: string }>
+			)
+				.filter(
+					([path]) =>
+						path === "README.md" || path.startsWith(`${role}/`)
+				)
+				.map(([name, file]) => ({
+					name,
+					content: file.content,
+					encoding: "text"
+				}));
+			const activeFileName = files.find(file =>
+				file.name.endsWith(".sh")
+			)!.name;
+			const project = makeProject({
+				mode: requestedMode,
+				files,
+				activeFileName,
+				courseID: "linux-systems",
+				courseProjectKey: `linux-systems:${fixture.pack}:${role === "starter" ? "starter" : "reference"}:native-linux`,
+				shared: true,
+				shareID: "share_C17_native_123456789"
+			});
+			modelMocks.pythonProjectFindOne.mockResolvedValue(project);
+			modelMocks.pythonProjectReviewFindOne.mockResolvedValueOnce(null);
+			await withUserRoutes(async baseUrl => {
+				const update = await putJson(
+					baseUrl,
+					`/users/loggedin/python-projects/${projectID}`,
+					{ files, activeFileName },
+					{ "x-user-id": studentID.toString() }
+				);
+				expect(update.status).toBe(200);
+				expect((await update.json()).project.files).toEqual(files);
+				const shared = await fetch(
+					`${baseUrl}/users/python-projects/shared/${project.shareID}`
+				);
+				expect(shared.status).toBe(200);
+				const sharedBody = await shared.json();
+				expect(sharedBody.project.mode).toBe(requestedMode);
+				expect(sharedBody.project.files).toEqual(files);
+				const created = await postJson(
+					baseUrl,
+					`/users/${studentID}/python-projects/${projectID}/review`,
+					{},
+					{ "x-admin-id": adminID.toString() }
+				);
+				expect(created.status).toBe(201);
+				expect((await created.json()).review.files).toEqual(files);
+			});
+			const review = makeReview({
+				mode: requestedMode,
+				files: structuredClone(files),
+				activeFileName
+			});
+			modelMocks.pythonProjectReviewFindOne.mockResolvedValue(review);
+			const revised = files.map(file =>
+				file.name === activeFileName
+					? {
+							...file,
+							content: file.content + "\n# staff feedback\n"
+						}
+					: file
+			);
+			await withUserRoutes(async baseUrl => {
+				const response = await putJson(
+					baseUrl,
+					`/users/${studentID}/python-projects/${projectID}/review/${reviewID}`,
+					{ files: revised, visibleToStudent: true },
+					{ "x-admin-id": adminID.toString() }
+				);
+				expect(response.status).toBe(200);
+				const body = await response.json();
+				expect(body.review.mode).toBe(requestedMode);
+				expect(body.review.files).toEqual(revised);
+				expect(body.project.files).toEqual(files);
+				expect(project.files).toEqual(files);
+			});
+		}
+	);
+
 	it("lets staff create and edit Java IDE review copies without backend execution", async () => {
 		const javaFiles = [
 			{

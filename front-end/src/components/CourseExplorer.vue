@@ -33,6 +33,7 @@ import {
 	isLessonLearningItem,
 	lessonContentSections
 } from "@/modules/courseLessonPresentation";
+import { linuxCourseProjectKey } from "@/modules/linuxProjectResources";
 import { fetchManagedLearners } from "@/modules/managedLearners";
 import {
 	getPythonIdeModeLabel,
@@ -1577,16 +1578,18 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 	const params = new URLSearchParams({
 		course: selectedCourse.value.id,
 		mode,
-		projectKey: (selectedCourse.value.id === "assembly"
-			? assemblyCourseProjectKey
-			: selectedCourse.value.id === "c-systems-engineering"
-				? c17CourseProjectKey
-				: selectedCourse.value.id === "usaco-bronze" ||
-					  selectedCourse.value.id === "usaco-bronze-on-demand"
-					? bronzeRequiredProjectKey
-					: selectedCourse.value.id === "usaco-silver"
-						? silverJavaProjectKey
-						: goldHistoricalProjectKey)(
+		projectKey: (selectedCourse.value.id === "linux-systems"
+			? linuxCourseProjectKey
+			: selectedCourse.value.id === "assembly"
+				? assemblyCourseProjectKey
+				: selectedCourse.value.id === "c-systems-engineering"
+					? c17CourseProjectKey
+					: selectedCourse.value.id === "usaco-bronze" ||
+						  selectedCourse.value.id === "usaco-bronze-on-demand"
+						? bronzeRequiredProjectKey
+						: selectedCourse.value.id === "usaco-silver"
+							? silverJavaProjectKey
+							: goldHistoricalProjectKey)(
 			selectedCourse.value.id,
 			item.id,
 			resource.kind === "solution" ? "reference" : "starter",

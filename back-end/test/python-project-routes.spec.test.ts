@@ -157,6 +157,96 @@ describe("Python project routes", () => {
 		}
 	);
 
+	it.each(
+		JSON.parse(
+			readFileSync(
+				resolve(
+					process.cwd(),
+					"../test/fixtures/linux-owned-labs-contracts.json"
+				),
+				"utf8"
+			)
+		).flatMap(
+			(fixture: {
+				pack: string;
+				files: Record<string, { content: string }>;
+			}) => ["starter", "solution"].map(role => ({ fixture, role }))
+		)
+	)(
+		"preserves exact Linux $fixture.pack/$role source through API workflows",
+		async ({ fixture, role }) => {
+			const requestedMode = "linux";
+			const files = Object.entries(
+				fixture.files as Record<string, { content: string }>
+			)
+				.filter(
+					([path]) =>
+						path === "README.md" || path.startsWith(`${role}/`)
+				)
+				.map(([name, file]) => ({
+					name,
+					content: file.content,
+					encoding: "text"
+				}));
+			const activeFileName = files.find(file =>
+				file.name.endsWith(".sh")
+			)!.name;
+			for (const owner of ["user", "course-code"] as const) {
+				await withPythonProjectRoute(async baseUrl => {
+					const response = await postJson(baseUrl, {
+						mode: requestedMode,
+						files,
+						activeFileName
+					});
+					expect(response.status).toBe(201);
+					const body = await response.json();
+					expect(body.project.mode).toBe(requestedMode);
+					expect(body.project.activeFileName).toBe(activeFileName);
+					expect(body.project.files).toEqual(files);
+				}, owner);
+			}
+			expect(modelMocks.pythonProjectCreate).toHaveBeenCalledTimes(2);
+		}
+	);
+
+	it("rejects unsafe Linux paths and encoded source before persistence", async () => {
+		await withPythonProjectRoute(async baseUrl => {
+			const source = {
+				name: "main.sh",
+				content: "#!/usr/bin/env bash\n"
+			};
+			for (const name of [
+				"../task.sh",
+				"starter/../task.sh",
+				"/task.sh",
+				"starter//task.sh",
+				"starter/reports/app\t1.log",
+				"images/task.sh",
+				"starter/notes.md",
+				"starter/reports/app 1.py",
+				"pgzero.py"
+			]) {
+				const response = await postJson(baseUrl, {
+					mode: "linux",
+					files: [source, { name, content: "" }]
+				});
+				expect(response.status, name).toBe(400);
+			}
+			const encoded = await postJson(baseUrl, {
+				mode: "linux",
+				files: [
+					{
+						...source,
+						content: "IyEvYmluL2Jhc2g=",
+						encoding: "base64"
+					}
+				]
+			});
+			expect(encoded.status).toBe(400);
+		});
+		expect(modelMocks.pythonProjectCreate).not.toHaveBeenCalled();
+	});
+
 	it("requires text C code and preserves bounded safe-path rules", async () => {
 		await withPythonProjectRoute(async baseUrl => {
 			const source = {
@@ -820,7 +910,11 @@ describe("Python project routes", () => {
 
 	it("keeps build files inert and rejects unsupported build-file paths", async () => {
 		await withPythonProjectRoute(async baseUrl => {
-			for (const name of ["../Makefile", "src/Makefile", "Makefile.sh"]) {
+			for (const name of [
+				"../Makefile",
+				"src/Makefile",
+				"Makefile.exe"
+			]) {
 				const response = await postJson(baseUrl, {
 					mode: "cpp",
 					files: [
@@ -1092,13 +1186,13 @@ describe("Python project routes", () => {
 
 		expect(sources).toContain('app.get("/healthz"');
 		expect(sources).toContain(
-			'const projectModeSchema = z.enum(["assembly", "c", "cpp", "data", "java", "karel", "pgzero", "python", "turtle"])'
+			'const projectModeSchema = z.enum(["assembly", "c", "cpp", "data", "java", "karel", "linux", "pgzero", "python", "turtle"])'
 		);
 		expect(sources).toContain(
-			'export type PythonProjectMode = "assembly" | "c" | "cpp" | "data" | "java" | "karel" | "pgzero" | "python" | "turtle";'
+			'export type PythonProjectMode = "assembly" | "c" | "cpp" | "data" | "java" | "karel" | "linux" | "pgzero" | "python" | "turtle";'
 		);
 		expect(sources).toContain(
-			'enum: ["assembly", "c", "cpp", "data", "java", "karel", "pgzero", "python", "turtle"]'
+			'enum: ["assembly", "c", "cpp", "data", "java", "karel", "linux", "pgzero", "python", "turtle"]'
 		);
 		expect(sources).toContain("ROOT_TEXT_FILE_RE =");
 		expect(sources).toContain("java|json");

@@ -1,5 +1,6 @@
 import type { RawCourse } from "./types";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
+import { applyLinuxProjectReading } from "./linuxProjectReading";
 import { buildProjectGuidance } from "./projectGuidance";
 
 const linuxSystemsSourceCourse: RawCourse = {
@@ -1764,5 +1765,5 @@ export const linuxSystemsCourse: RawCourse = {
 		...linuxPrimaryModules,
 		linuxCapstoneModule,
 		buildOptionalLinuxStudioArchive(linuxOptionalStudioModules)
-	]
+	].map(applyLinuxProjectReading)
 };

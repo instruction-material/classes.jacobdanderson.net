@@ -53,6 +53,7 @@ import {
 import { startJavaPreview } from "@/modules/javaIdeWorker";
 import { javaNativeBuildInstructions } from "@/modules/javaNativeBuildInstructions";
 import { createKarelWorldPlaybackController } from "@/modules/karelWorldPlayback";
+import { linuxBuildInstructions } from "@/modules/linuxBuildInstructions";
 import {
 	addPythonIdeClassroomSections,
 	clearLocalPythonProjectsAsync,
@@ -1126,18 +1127,22 @@ const selectedModeLabel = computed(() =>
 );
 const usesNativeSourceWorkspace = computed(
 	() =>
+		selectedProject.value?.mode === "linux" ||
 		selectedProject.value?.mode === "assembly" ||
 		selectedProject.value?.mode === "c" ||
 		selectedProject.value?.mode === "cpp"
 );
 const nativeSourceLanguage = computed(() =>
-	selectedProject.value?.mode === "assembly"
-		? "Assembly (Linux x86-64)"
-		: selectedProject.value?.mode === "c"
-			? "C17"
-			: "C++"
+	selectedProject.value?.mode === "linux"
+		? "Linux"
+		: selectedProject.value?.mode === "assembly"
+			? "Assembly (Linux x86-64)"
+			: selectedProject.value?.mode === "c"
+				? "C17"
+				: "C++"
 );
 const mobileWorkspaceViews = computed(() =>
+	selectedProject.value?.mode === "linux" ||
 	selectedProject.value?.mode === "c" ||
 	selectedProject.value?.mode === "assembly"
 		? (["code", "console"] as const)
@@ -1147,7 +1152,7 @@ watch(
 	() => selectedProject.value?.mode,
 	mode => {
 		if (
-			(mode === "c" || mode === "assembly") &&
+			(mode === "linux" || mode === "c" || mode === "assembly") &&
 			mobileView.value === "canvas"
 		) {
 			mobileView.value = "code";
@@ -1155,6 +1160,8 @@ watch(
 	}
 );
 const newFileNamePlaceholder = computed(() => {
+	if (selectedProject.value?.mode === "linux")
+		return "task.sh, reports/app 1.log or linux-backup.service";
 	if (selectedProject.value?.mode === "assembly")
 		return "routine.S, caller.c or include/transform.h";
 	if (selectedProject.value?.mode === "c")
@@ -3530,15 +3537,18 @@ function addFile() {
 	if (!selectedProject.value) return;
 	const fileName = normalizePythonFileName(
 		newFileName.value,
-		selectedProject.value.mode === "assembly"
-			? ".S"
-			: selectedProject.value.mode === "c"
-				? ".c"
-				: selectedProject.value.mode === "cpp"
-					? ".cpp"
-					: isJavaIdeMode(selectedProject.value.mode)
-						? ".java"
-						: ".py"
+		selectedProject.value.mode === "linux"
+			? ".sh"
+			: selectedProject.value.mode === "assembly"
+				? ".S"
+				: selectedProject.value.mode === "c"
+					? ".c"
+					: selectedProject.value.mode === "cpp"
+						? ".cpp"
+						: isJavaIdeMode(selectedProject.value.mode)
+							? ".java"
+							: ".py",
+		selectedProject.value.mode
 	);
 	if (!isValidPythonFileName(fileName)) {
 		appendOutput(
@@ -3618,7 +3628,10 @@ async function importProjectFiles(event: Event) {
 	let importedCount = 0;
 
 	for (const file of files) {
-		const fileName = normalizeImportedPythonIdeFileName(file.name);
+		const fileName = normalizeImportedPythonIdeFileName(
+			file.name,
+			selectedProject.value.mode
+		);
 		if (!isValidPythonFileName(fileName)) {
 			skippedFiles.push(file.name);
 			continue;
@@ -6768,6 +6781,16 @@ async function runCurrentProject() {
 		diagnosticStage.value = "completed";
 		return;
 	}
+	if (project.mode === "linux") {
+		for (const line of linuxBuildInstructions(
+			project.files,
+			project.starterUrl
+		))
+			appendOutput("system", line);
+		runMessage.value = "Linux execution instructions";
+		diagnosticStage.value = "completed";
+		return;
+	}
 	if (project.mode === "assembly") {
 		for (const line of assemblyBuildInstructions(
 			project.files,
@@ -8365,7 +8388,9 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 								runControlIsStop
 									? "Stop"
 									: usesNativeSourceWorkspace
-										? "Build instructions"
+										? selectedProject?.mode === "linux"
+											? "Linux instructions"
+											: "Build instructions"
 										: "Run"
 							}}
 						</button>
@@ -8375,9 +8400,16 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 				<section
 					v-if="usesNativeSourceWorkspace"
 					class="site-surface cpp-build-panel"
-					:aria-label="`${nativeSourceLanguage} build workflow`"
+					:aria-label="`${nativeSourceLanguage} ${selectedProject?.mode === 'linux' ? 'execution' : 'build'} workflow`"
 				>
-					<p>
+					<p v-if="selectedProject?.mode === 'linux'">
+						Edit and save Linux scripts, configuration and
+						observations here. Download and extract the ZIP, then
+						follow its README in an owned Linux lab or WSL terminal.
+						Use Linux instructions for the selected lab’s execution
+						and verification steps.
+					</p>
+					<p v-else>
 						Edit and save the {{ nativeSourceLanguage }} project
 						here. Download the ZIP and extract it before compiling
 						with a native {{ nativeSourceLanguage }} compiler. The
@@ -8517,7 +8549,9 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 								: view === "canvas"
 									? "Canvas"
 									: selectedProject?.mode === "c" ||
-										  selectedProject?.mode === "assembly"
+										  selectedProject?.mode ===
+												"assembly" ||
+										  selectedProject?.mode === "linux"
 										? "Instructions"
 										: "Console"
 						}}
@@ -8646,8 +8680,11 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 						<div class="panel-header">
 							<span>{{
 								selectedProject?.mode === "c" ||
-								selectedProject?.mode === "assembly"
-									? "Build instructions"
+								selectedProject?.mode === "assembly" ||
+								selectedProject?.mode === "linux"
+									? selectedProject?.mode === "linux"
+										? "Linux instructions"
+										: "Build instructions"
 									: consoleExpanded
 										? "Console"
 										: usesKarelWorld

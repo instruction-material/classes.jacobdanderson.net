@@ -20,6 +20,7 @@ watch(
 	}
 );
 const blankStarters: IdeStarter[] = [
+	"linux",
 	"assembly",
 	"turtle",
 	"python",
@@ -31,7 +32,7 @@ const blankStarters: IdeStarter[] = [
 	"karel"
 ].map(mode => ({
 	id: `blank-${mode}`,
-	label: `Blank ${mode === "assembly" ? "Assembly" : mode === "turtle" ? "Python Turtle" : mode === "pgzero" ? "Pygame" : mode === "data" ? "Python Data / AI" : mode === "karel" ? "Karel Java" : mode === "java" ? "Java" : mode === "c" ? "C17" : mode === "cpp" ? "C++" : "Python"}`,
+	label: `Blank ${mode === "linux" ? "Linux" : mode === "assembly" ? "Assembly" : mode === "turtle" ? "Python Turtle" : mode === "pgzero" ? "Pygame" : mode === "data" ? "Python Data / AI" : mode === "karel" ? "Karel Java" : mode === "java" ? "Java" : mode === "c" ? "C17" : mode === "cpp" ? "C++" : "Python"}`,
 	category: "Templates",
 	mode: mode as IdeStarter["mode"],
 	template: "blank"
@@ -65,6 +66,9 @@ const visible = computed(() =>
 					<option value="java">Java / BlueJ</option>
 					<option value="assembly">
 						Assembly source (Linux x86-64)
+					</option>
+					<option value="linux">
+						Linux scripts and configuration
 					</option>
 					<option value="c">C17 source</option>
 					<option value="cpp">C++ source</option>
