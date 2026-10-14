@@ -809,8 +809,8 @@ describe("Python project review routes", () => {
 					content: file.content,
 					encoding: "text"
 				}));
-			const activeFileName = files.find(file =>
-				file.name.endsWith(".sh")
+			const activeFileName = files.find(
+				file => file.name.endsWith(".sh") || file.name.endsWith(".py")
 			)!.name;
 			const project = makeProject({
 				mode: requestedMode,

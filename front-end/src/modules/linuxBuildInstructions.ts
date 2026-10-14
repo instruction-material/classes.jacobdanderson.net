@@ -23,6 +23,14 @@ export function linuxBuildInstructions(files: PythonIdeFile[], url?: string) {
 		];
 	}
 	const commands: Record<string, string[]> = {
+		"LS3-Nginx-Reverse-Proxy-App": [
+			"APP_PORT=8081 python3 app.py",
+			"Keep the app in its terminal; use a second terminal for direct health and inspection requests before starting the owned Nginx prefix from README.md.",
+			"curl -i http://127.0.0.1:8081/health",
+			"curl -i 'http://127.0.0.1:8081/inspect?mode=read&mode=write&blank='",
+			"The untouched starter returns JSON 501 for inspection until its named function is completed. The reference reports the actual path, query, peer and received headers.",
+			"Follow README.md for the separate loopback proxy, header comparisons, socket/PID evidence, app-down 502, restored 200 and undo. A parsed user unit is not evidence that a service manager operated it."
+		],
 		"LS1-Personal-Lab-VM": [
 			"bash lab_bootstrap_report.sh",
 			"Record the actual distribution, identity, workspace, missing tools and snapshot/reset route. This report does not provision a VM."

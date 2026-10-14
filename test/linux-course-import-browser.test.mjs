@@ -22,6 +22,11 @@ const fixtures = JSON.parse(
 	)
 );
 const definitions = {
+	"LS3-Nginx-Reverse-Proxy-App": [
+		"unit-11-web-servers",
+		"project-run-a-small-app-behind-nginx",
+		"web-servers"
+	],
 	"LS1-Personal-Lab-VM": [
 		"ls0-setup-and-tooling",
 		"project-provision-a-personal-linux-lab-vm",
@@ -261,8 +266,11 @@ test(
 							assert.equal(saved.mode, "linux");
 							assert.equal(
 								saved.activeFileName,
-								saved.files.find(f => f.name.endsWith(".sh"))
-									.name
+								saved.files.find(
+									f =>
+										f.name.endsWith(".sh")
+										|| f.name.endsWith(".py")
+								).name
 							);
 							if (width < 900) {
 								await page
@@ -343,11 +351,11 @@ test(
 									? "Meta"
 									: "Control"
 							);
-							const edit
-								= `${saved.files.find(
+							const edit = `${
+								saved.files.find(
 									f => f.name === saved.activeFileName
 								).content
-								}\n# independent Linux observation\n`;
+							}\n# independent Linux observation\n`;
 							await page.keyboard.down(modifier);
 							await page.keyboard.press("a");
 							await page.keyboard.up(modifier);
@@ -516,22 +524,44 @@ test(
 				}
 			}
 
-			catalog = false; sourceRequests = [];
-			await page.goto(`${origin}/ide?mode=linux&template=demo`, { waitUntil: "domcontentloaded" });
-			await confirmProjectImport(page); await waitSaved("ide-template:linux:demo");
+			catalog = false;
+			sourceRequests = [];
+			await page.goto(`${origin}/ide?mode=linux&template=demo`, {
+				waitUntil: "domcontentloaded"
+			});
+			await confirmProjectImport(page);
+			await waitSaved("ide-template:linux:demo");
 			const defaultWorkspace = await savedFor("ide-template:linux:demo");
 			assert.equal(defaultWorkspace.mode, "linux");
-			assert.deepEqual(defaultWorkspace.files.map(f => f.name), ["main.sh", "README.md"]);
+			assert.deepEqual(
+				defaultWorkspace.files.map(f => f.name),
+				["main.sh", "README.md"]
+			);
 			assert.equal(sourceRequests.length, 0);
 			await page.waitForSelector("button.run-control:not([disabled])");
 			await page.locator("button.run-control").click();
-			await page.waitForFunction(() => [...document.querySelectorAll(".output-line")].some(line => line.textContent.includes("bash main.sh")));
+			await page.waitForFunction(() =>
+				[...document.querySelectorAll(".output-line")].some(line =>
+					line.textContent.includes("bash main.sh")
+				)
+			);
 			const defaultArchive = await captureArchive();
 			const defaultEntries = unzipSync(defaultArchive);
-			for (const file of defaultWorkspace.files) assert.equal(strFromU8(defaultEntries[Object.keys(defaultEntries).find(path => path.endsWith(`/${file.name}`))]), file.content);
+			for (const file of defaultWorkspace.files) {
+				assert.equal(
+					strFromU8(
+						defaultEntries[
+							Object.keys(defaultEntries).find(path =>
+								path.endsWith(`/${file.name}`)
+							)
+						]
+					),
+					file.content
+				);
+			}
 			await writeFile(join(output, "default-linux.zip"), defaultArchive);
-			assert.equal(proof.length, 40);
-			assert.equal(courseButtons.length, 10);
+			assert.equal(proof.length, 48);
+			assert.equal(courseButtons.length, 12);
 			await writeFile(
 				join(output, "browser-proof.json"),
 				JSON.stringify({ profiles: proof, courseButtons }, null, 2)

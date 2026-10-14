@@ -188,8 +188,8 @@ describe("Python project routes", () => {
 					content: file.content,
 					encoding: "text"
 				}));
-			const activeFileName = files.find(file =>
-				file.name.endsWith(".sh")
+			const activeFileName = files.find(
+				file => file.name.endsWith(".sh") || file.name.endsWith(".py")
 			)!.name;
 			for (const owner of ["user", "course-code"] as const) {
 				await withPythonProjectRoute(async baseUrl => {
@@ -208,6 +208,27 @@ describe("Python project routes", () => {
 			expect(modelMocks.pythonProjectCreate).toHaveBeenCalledTimes(2);
 		}
 	);
+
+	it("preserves a Linux Python app after companion files are removed", async () => {
+		await withPythonProjectRoute(async baseUrl => {
+			const files = [
+				{
+					name: "app.py",
+					content: "print('Linux app')\n",
+					encoding: "text"
+				}
+			];
+			const response = await postJson(baseUrl, {
+				mode: "linux",
+				files,
+				activeFileName: "app.py"
+			});
+			expect(response.status).toBe(201);
+			const body = await response.json();
+			expect(body.project.mode).toBe("linux");
+			expect(body.project.files).toEqual(files);
+		});
+	});
 
 	it("rejects unsafe Linux paths and encoded source before persistence", async () => {
 		await withPythonProjectRoute(async baseUrl => {
@@ -910,11 +931,7 @@ describe("Python project routes", () => {
 
 	it("keeps build files inert and rejects unsupported build-file paths", async () => {
 		await withPythonProjectRoute(async baseUrl => {
-			for (const name of [
-				"../Makefile",
-				"src/Makefile",
-				"Makefile.sh"
-			]) {
+			for (const name of ["../Makefile", "src/Makefile", "Makefile.sh"]) {
 				const response = await postJson(baseUrl, {
 					mode: "cpp",
 					files: [

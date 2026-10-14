@@ -8,6 +8,7 @@ import { linuxBuildInstructions } from "@/modules/linuxBuildInstructions";
 import {
 	linuxCourseProjectKey,
 	linuxCourseResource,
+	linuxPinnedCourseUrl,
 	linuxVerifiedPacks
 } from "@/modules/linuxProjectResources";
 import { getCodeIdeProjectSubtitle } from "@/modules/codeIdeProjectLabels";
@@ -41,7 +42,8 @@ const fixtures = JSON.parse(
 		"utf8"
 	)
 ) as Pack[];
-const sourceRoot = `https://github.com/instruction-material/Linux-Systems/tree/${fixtures[0]!.revision}`;
+const sourceRoot = (revision: string) =>
+	`https://github.com/instruction-material/Linux-Systems/tree/${revision}`;
 
 afterEach(() => {
 	vi.unstubAllGlobals();
@@ -95,7 +97,7 @@ it("preserves core and notebook identities, complete reading, reference privacy 
 			const link =
 				role === "starter" ? core.projectLink! : core.solutionLink!;
 			expect(link).toBe(
-				`${sourceRoot}/${definition.pack}/${role === "starter" ? "starter" : "solution"}`
+				`${sourceRoot(definition.revision)}/${definition.pack}/${role === "starter" ? "starter" : "solution"}`
 			);
 			expect(
 				linuxCourseProjectKey("linux-systems", notebook.id, role, link)
@@ -134,7 +136,7 @@ it.each(
 				});
 			})
 		);
-		const url = `${sourceRoot}/${fixture.pack}/${role}`;
+		const url = `${sourceRoot(fixture.revision)}/${fixture.pack}/${role}`;
 		expect(pythonIdeModeForCourseResource("linux-systems", url)).toBe(
 			"linux"
 		);
@@ -198,6 +200,22 @@ it.each(
 	}
 );
 
+it("pins each verified lab to its own accepted revision", () => {
+	for (const definition of linuxVerifiedPacks) {
+		const main = `${sourceRoot("main")}/${definition.pack}/starter`;
+		const pinned = `${sourceRoot(definition.revision)}/${definition.pack}/starter`;
+		expect(linuxPinnedCourseUrl(main)).toBe(pinned);
+		expect(linuxPinnedCourseUrl(pinned)).toBe(pinned);
+		expect(linuxCourseResource(pinned)?.definition).toBe(definition);
+		const wrongRevision = fixtures.find(
+			f => f.revision !== definition.revision
+		)!.revision;
+		const wrong = `${sourceRoot(wrongRevision)}/${definition.pack}/starter`;
+		expect(linuxPinnedCourseUrl(wrong)).toBe(wrong);
+		expect(linuxCourseResource(wrong)).toBeNull();
+	}
+});
+
 it("retains literal Linux names and rejects unsafe paths and unverified imports", async () => {
 	expect(
 		normalizePythonFileName("starter/reports/app 1.log", ".sh", "linux")
@@ -222,7 +240,7 @@ it("retains literal Linux names and rejects unsafe paths and unverified imports"
 	]) {
 		expect(isValidPythonFileName(name, "linux"), name).toBe(false);
 	}
-	const unverified = `${sourceRoot}/LS-03-unit-1-shell-foundations-supplemental-2/starter`;
+	const unverified = `${sourceRoot(fixtures[0]!.revision)}/LS-03-unit-1-shell-foundations-supplemental-2/starter`;
 	expect(linuxCourseResource(unverified)).toBeNull();
 	expect(
 		pythonIdeModeForCourseResource("linux-systems", unverified)

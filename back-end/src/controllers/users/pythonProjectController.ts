@@ -287,7 +287,7 @@ function defaultProjectFileForMode(mode: PythonProjectMode): PythonProjectFile {
 }
 
 function requiredCodeFileMessage(mode: PythonProjectMode) {
-	if (mode === "linux") return "Project must include a text Linux script or configuration file";
+	if (mode === "linux") return "Project must include a text Linux script, application or configuration file";
 	if (mode === "assembly") return "Project must include at least one text Assembly source file";
 	if (mode === "c") return "Project must include at least one text C source file";
 	if (mode === "cpp") return "Project must include at least one C++ source file";
@@ -300,7 +300,7 @@ function requiredCodeFileMessage(mode: PythonProjectMode) {
 
 function projectFilesMatchMode(files: PythonProjectFile[], mode: PythonProjectMode) {
 	if (!files.every(file => isSafeProjectFileName(file.name, mode))) return false;
-	if (mode === "linux") return files.every(file => file.encoding !== "base64") && files.some(file => isLinuxProjectTextPath(file.name));
+	if (mode === "linux") return files.every(file => file.encoding !== "base64") && files.some(file => isLinuxProjectTextPath(file.name) || PYTHON_FILE_NAME_RE.test(file.name));
 	if (mode === "assembly") return !files.some(file => file.encoding === "base64" && (/\.[sch]$/i.test(file.name) || file.name.split("/").at(-1) === "CMakeLists.txt")) && files.some(file => ASSEMBLY_FILE_NAME_RE.test(file.name) && file.encoding !== "base64");
 	if (mode === "c" && files.some(file => file.encoding === "base64" && (/\.(?:c|h)$/i.test(file.name) || file.name.split("/").at(-1) === "CMakeLists.txt"))) return false;
 	const codeFileRe = mode === "c" ? C_FILE_NAME_RE : mode === "cpp" ? CPP_FILE_NAME_RE : mode === "java" || mode === "karel" ? JAVA_FILE_NAME_RE : PYTHON_FILE_NAME_RE;
