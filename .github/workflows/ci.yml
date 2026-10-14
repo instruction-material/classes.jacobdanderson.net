@@ -315,6 +315,8 @@ jobs:
                   name: assembly-workflow-validation
                   path: |
                       output/playwright/course-import-assembly-*.png
+                      output/playwright/compiler-clang-generated/
+                      output/playwright/compiler-gcc-generated/
                       output/playwright/assembly-failure.png
                       output/playwright/assembly-*.json
                       output/playwright/assembly-*.jsonl
