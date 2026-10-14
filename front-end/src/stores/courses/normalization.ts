@@ -2262,12 +2262,6 @@ function neutralizeLessonDirectiveText(text: string) {
 			"$1Clear expectations are established"
 		)
 		.replace(
-			/(^|\n\s*|[.!?]\s+|:\s+)Explain that ([a-z])/g,
-			(_match, prefix, first) =>
-				`${prefix}${capitalizeFirstLetter(first)}`
-		)
-		.replace(/(^|\n\s*|[.!?]\s+|:\s+)Explain that (?=["“`])/g, "$1")
-		.replace(
 			/(^|\n\s*|[.!?]\s+|:\s+)Discuss real-life examples of ([^.]+)\./g,
 			"$1Real-life examples of $2 connect the idea to familiar situations."
 		)
