@@ -32,7 +32,7 @@ const pythonProjectSchema: Schema<IPythonProject> = new Schema(
 		title: { type: String, required: true, trim: true, maxlength: 120 },
 		mode: {
 			type: String,
-			enum: ["assembly", "c", "cpp", "data", "java", "karel", "pgzero", "python", "turtle"],
+			enum: ["assembly", "c", "cpp", "data", "java", "karel", "linux", "pgzero", "python", "turtle"],
 			default: "python",
 			required: true
 		},

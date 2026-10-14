@@ -1,5 +1,9 @@
 import type { PythonIdeFile, PythonIdeProject } from "@/modules/pythonIde";
 import { strToU8, zipSync } from "fflate";
+import {
+	isLinuxProjectTextPath,
+	linuxFileSegmentPattern
+} from "@/modules/linuxProjectFiles";
 
 const FALLBACK_PROJECT_ARCHIVE_NAME = "Code Project";
 const SAFE_ARCHIVE_FILE_SEGMENT_RE = /^\w[\w.-]*$/;
@@ -52,7 +56,11 @@ function safeProjectArchiveFilePath(value: string) {
 				!segment ||
 				segment === "." ||
 				segment === ".." ||
-				!SAFE_ARCHIVE_FILE_SEGMENT_RE.test(segment)
+				!(
+					isLinuxProjectTextPath(value)
+						? linuxFileSegmentPattern
+						: SAFE_ARCHIVE_FILE_SEGMENT_RE
+				).test(segment)
 		)
 	) {
 		throw new Error(`Cannot download unsafe project file path: ${value}`);

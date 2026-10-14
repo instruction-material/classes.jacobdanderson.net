@@ -578,8 +578,12 @@ function normalizeCourse(
 									resolvedSolutionLink ?? ""
 								);
 							const preserveProjectContent =
-								preserveScratchProjectInstructions &&
-								isJuniScratchProjectTitle(courseId, item.title);
+								item.preserveInstructions === true ||
+								(preserveScratchProjectInstructions &&
+									isJuniScratchProjectTitle(
+										courseId,
+										item.title
+									));
 							const normalizedContent = preserveProjectContent
 								? item.content.trim()
 								: normalizeContent(

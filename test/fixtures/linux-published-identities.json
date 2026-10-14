@@ -1,0 +1,546 @@
+[
+  {
+    "moduleId": "linux-systems-ls0-setup-and-tooling",
+    "id": "linux-systems-ls0-setup-and-tooling-curriculum-linux-systems-core-concepts"
+  },
+  {
+    "moduleId": "linux-systems-ls0-setup-and-tooling",
+    "id": "linux-systems-ls0-setup-and-tooling-curriculum-project-provision-a-personal-linux-lab-vm"
+  },
+  {
+    "moduleId": "linux-systems-ls0-setup-and-tooling",
+    "id": "linux-systems-ls0-setup-and-tooling-supplemental-troubleshooting-notebook-setup-and-tooling"
+  },
+  {
+    "moduleId": "linux-systems-ls0-setup-and-tooling",
+    "id": "linux-systems-ls0-setup-and-tooling-supplemental-linux-systems-setup-transfer-practice"
+  },
+  {
+    "moduleId": "linux-systems-ls0-setup-and-tooling",
+    "id": "linux-systems-ls0-setup-and-tooling-supplemental-linux-systems-setup-extension-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-1-shell-foundations",
+    "id": "linux-systems-unit-1-shell-foundations-curriculum-shell-foundations-core-concepts"
+  },
+  {
+    "moduleId": "linux-systems-unit-1-shell-foundations",
+    "id": "linux-systems-unit-1-shell-foundations-curriculum-build-small-pipelines-before-writing-scripts"
+  },
+  {
+    "moduleId": "linux-systems-unit-1-shell-foundations",
+    "id": "linux-systems-unit-1-shell-foundations-curriculum-core-project-shell-foundations"
+  },
+  {
+    "moduleId": "linux-systems-unit-1-shell-foundations",
+    "id": "linux-systems-unit-1-shell-foundations-supplemental-troubleshooting-notebook-shell-foundations"
+  },
+  {
+    "moduleId": "linux-systems-unit-1-shell-foundations",
+    "id": "linux-systems-unit-1-shell-foundations-supplemental-shell-pipeline-transfer-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-1-shell-foundations",
+    "id": "linux-systems-unit-1-shell-foundations-supplemental-shell-pipeline-extension-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose",
+    "id": "linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose-curriculum-filesystem-hierarchy-and-directory-purpose-core-concepts"
+  },
+  {
+    "moduleId": "linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose",
+    "id": "linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose-curriculum-project-deploy-a-static-site-from-srv"
+  },
+  {
+    "moduleId": "linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose",
+    "id": "linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-troubleshooting-notebook-filesystem-hierarchy-and-directory-purpose"
+  },
+  {
+    "moduleId": "linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose",
+    "id": "linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-filesystem-layout-transfer-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose",
+    "id": "linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-filesystem-layout-extension-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-3-users-groups-and-permissions",
+    "id": "linux-systems-unit-3-users-groups-and-permissions-curriculum-users-groups-and-permissions-core-concepts"
+  },
+  {
+    "moduleId": "linux-systems-unit-3-users-groups-and-permissions",
+    "id": "linux-systems-unit-3-users-groups-and-permissions-curriculum-core-project-users-groups-and-permissions"
+  },
+  {
+    "moduleId": "linux-systems-unit-3-users-groups-and-permissions",
+    "id": "linux-systems-unit-3-users-groups-and-permissions-supplemental-troubleshooting-notebook-users-groups-and-permissions"
+  },
+  {
+    "moduleId": "linux-systems-unit-3-users-groups-and-permissions",
+    "id": "linux-systems-unit-3-users-groups-and-permissions-supplemental-permissions-transfer-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-3-users-groups-and-permissions",
+    "id": "linux-systems-unit-3-users-groups-and-permissions-supplemental-permissions-extension-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-4-editing-and-configuration",
+    "id": "linux-systems-unit-4-editing-and-configuration-curriculum-editing-and-configuration-core-concepts"
+  },
+  {
+    "moduleId": "linux-systems-unit-4-editing-and-configuration",
+    "id": "linux-systems-unit-4-editing-and-configuration-curriculum-core-project-editing-and-configuration"
+  },
+  {
+    "moduleId": "linux-systems-unit-4-editing-and-configuration",
+    "id": "linux-systems-unit-4-editing-and-configuration-supplemental-troubleshooting-notebook-editing-and-configuration"
+  },
+  {
+    "moduleId": "linux-systems-unit-4-editing-and-configuration",
+    "id": "linux-systems-unit-4-editing-and-configuration-supplemental-configuration-editing-transfer-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-4-editing-and-configuration",
+    "id": "linux-systems-unit-4-editing-and-configuration-supplemental-configuration-editing-extension-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-5-processes-and-job-control",
+    "id": "linux-systems-unit-5-processes-and-job-control-curriculum-processes-and-job-control-core-concepts"
+  },
+  {
+    "moduleId": "linux-systems-unit-5-processes-and-job-control",
+    "id": "linux-systems-unit-5-processes-and-job-control-curriculum-core-project-processes-and-job-control"
+  },
+  {
+    "moduleId": "linux-systems-unit-5-processes-and-job-control",
+    "id": "linux-systems-unit-5-processes-and-job-control-supplemental-troubleshooting-notebook-processes-and-job-control"
+  },
+  {
+    "moduleId": "linux-systems-unit-5-processes-and-job-control",
+    "id": "linux-systems-unit-5-processes-and-job-control-supplemental-process-control-transfer-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-5-processes-and-job-control",
+    "id": "linux-systems-unit-5-processes-and-job-control-supplemental-process-control-extension-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-6-services-and-systemd",
+    "id": "linux-systems-unit-6-services-and-systemd-curriculum-services-and-systemd-core-concepts"
+  },
+  {
+    "moduleId": "linux-systems-unit-6-services-and-systemd",
+    "id": "linux-systems-unit-6-services-and-systemd-curriculum-project-create-a-systemd-service-for-a-toy-app"
+  },
+  {
+    "moduleId": "linux-systems-unit-6-services-and-systemd",
+    "id": "linux-systems-unit-6-services-and-systemd-supplemental-troubleshooting-notebook-services-and-systemd"
+  },
+  {
+    "moduleId": "linux-systems-unit-6-services-and-systemd",
+    "id": "linux-systems-unit-6-services-and-systemd-supplemental-systemd-service-transfer-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-6-services-and-systemd",
+    "id": "linux-systems-unit-6-services-and-systemd-supplemental-systemd-service-extension-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-7-logging-and-observability",
+    "id": "linux-systems-unit-7-logging-and-observability-curriculum-logging-and-observability-core-concepts"
+  },
+  {
+    "moduleId": "linux-systems-unit-7-logging-and-observability",
+    "id": "linux-systems-unit-7-logging-and-observability-curriculum-core-project-logging-and-observability"
+  },
+  {
+    "moduleId": "linux-systems-unit-7-logging-and-observability",
+    "id": "linux-systems-unit-7-logging-and-observability-supplemental-troubleshooting-notebook-logging-and-observability"
+  },
+  {
+    "moduleId": "linux-systems-unit-7-logging-and-observability",
+    "id": "linux-systems-unit-7-logging-and-observability-supplemental-log-investigation-transfer-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-7-logging-and-observability",
+    "id": "linux-systems-unit-7-logging-and-observability-supplemental-log-investigation-extension-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-8-scheduling-and-automation",
+    "id": "linux-systems-unit-8-scheduling-and-automation-curriculum-scheduling-and-automation-core-concepts"
+  },
+  {
+    "moduleId": "linux-systems-unit-8-scheduling-and-automation",
+    "id": "linux-systems-unit-8-scheduling-and-automation-curriculum-project-write-a-backup-script-and-schedule-it-with-cron-and-a-timer"
+  },
+  {
+    "moduleId": "linux-systems-unit-8-scheduling-and-automation",
+    "id": "linux-systems-unit-8-scheduling-and-automation-supplemental-troubleshooting-notebook-scheduling-and-automation"
+  },
+  {
+    "moduleId": "linux-systems-unit-8-scheduling-and-automation",
+    "id": "linux-systems-unit-8-scheduling-and-automation-supplemental-automation-transfer-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-8-scheduling-and-automation",
+    "id": "linux-systems-unit-8-scheduling-and-automation-supplemental-automation-extension-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-9-package-management-and-software-layout",
+    "id": "linux-systems-unit-9-package-management-and-software-layout-curriculum-package-management-and-software-layout-core-concepts"
+  },
+  {
+    "moduleId": "linux-systems-unit-9-package-management-and-software-layout",
+    "id": "linux-systems-unit-9-package-management-and-software-layout-curriculum-package-install-vs-source-build-vs-tarball-drop"
+  },
+  {
+    "moduleId": "linux-systems-unit-9-package-management-and-software-layout",
+    "id": "linux-systems-unit-9-package-management-and-software-layout-curriculum-core-project-package-management-and-software-layout"
+  },
+  {
+    "moduleId": "linux-systems-unit-9-package-management-and-software-layout",
+    "id": "linux-systems-unit-9-package-management-and-software-layout-supplemental-troubleshooting-notebook-package-management-and-software-layout"
+  },
+  {
+    "moduleId": "linux-systems-unit-9-package-management-and-software-layout",
+    "id": "linux-systems-unit-9-package-management-and-software-layout-supplemental-package-layout-transfer-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-9-package-management-and-software-layout",
+    "id": "linux-systems-unit-9-package-management-and-software-layout-supplemental-package-layout-extension-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-10-networking-from-a-systems-view",
+    "id": "linux-systems-unit-10-networking-from-a-systems-view-curriculum-networking-from-a-systems-view-core-concepts"
+  },
+  {
+    "moduleId": "linux-systems-unit-10-networking-from-a-systems-view",
+    "id": "linux-systems-unit-10-networking-from-a-systems-view-curriculum-core-project-networking-from-a-systems-view"
+  },
+  {
+    "moduleId": "linux-systems-unit-10-networking-from-a-systems-view",
+    "id": "linux-systems-unit-10-networking-from-a-systems-view-supplemental-troubleshooting-notebook-networking-from-a-systems-view"
+  },
+  {
+    "moduleId": "linux-systems-unit-10-networking-from-a-systems-view",
+    "id": "linux-systems-unit-10-networking-from-a-systems-view-supplemental-network-diagnostics-transfer-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-10-networking-from-a-systems-view",
+    "id": "linux-systems-unit-10-networking-from-a-systems-view-supplemental-network-diagnostics-extension-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-11-web-servers",
+    "id": "linux-systems-unit-11-web-servers-curriculum-web-servers-core-concepts"
+  },
+  {
+    "moduleId": "linux-systems-unit-11-web-servers",
+    "id": "linux-systems-unit-11-web-servers-curriculum-project-run-a-small-app-behind-nginx"
+  },
+  {
+    "moduleId": "linux-systems-unit-11-web-servers",
+    "id": "linux-systems-unit-11-web-servers-curriculum-project-configure-an-apache-virtual-host-and-compare-it-to-nginx"
+  },
+  {
+    "moduleId": "linux-systems-unit-11-web-servers",
+    "id": "linux-systems-unit-11-web-servers-supplemental-troubleshooting-notebook-web-servers"
+  },
+  {
+    "moduleId": "linux-systems-unit-11-web-servers",
+    "id": "linux-systems-unit-11-web-servers-supplemental-web-server-deployment-transfer-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-11-web-servers",
+    "id": "linux-systems-unit-11-web-servers-supplemental-web-server-deployment-extension-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-12-storage-backups-and-reliability",
+    "id": "linux-systems-unit-12-storage-backups-and-reliability-curriculum-storage-backups-and-reliability-core-concepts"
+  },
+  {
+    "moduleId": "linux-systems-unit-12-storage-backups-and-reliability",
+    "id": "linux-systems-unit-12-storage-backups-and-reliability-curriculum-core-project-storage-backups-and-reliability"
+  },
+  {
+    "moduleId": "linux-systems-unit-12-storage-backups-and-reliability",
+    "id": "linux-systems-unit-12-storage-backups-and-reliability-supplemental-troubleshooting-notebook-storage-backups-and-reliability"
+  },
+  {
+    "moduleId": "linux-systems-unit-12-storage-backups-and-reliability",
+    "id": "linux-systems-unit-12-storage-backups-and-reliability-supplemental-backup-reliability-transfer-practice"
+  },
+  {
+    "moduleId": "linux-systems-unit-12-storage-backups-and-reliability",
+    "id": "linux-systems-unit-12-storage-backups-and-reliability-supplemental-backup-reliability-extension-practice"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-lab-17-operations-capstone-studio",
+    "id": "linux-systems-linux-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-core-concepts"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-lab-17-operations-capstone-studio",
+    "id": "linux-systems-linux-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-guided-example"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-lab-17-operations-capstone-studio",
+    "id": "linux-systems-linux-systems-lab-17-operations-capstone-studio-curriculum-core-project-operations-capstone-studio"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-lab-17-operations-capstone-studio",
+    "id": "linux-systems-linux-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-review"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-lab-17-operations-capstone-studio",
+    "id": "linux-systems-linux-systems-lab-17-operations-capstone-studio-supplemental-extension-challenge-operations-capstone-studio"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-lab-17-operations-capstone-studio",
+    "id": "linux-systems-linux-systems-lab-17-operations-capstone-studio-supplemental-operations-capstone-transfer-practice"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-lab-17-operations-capstone-studio",
+    "id": "linux-systems-linux-systems-lab-17-operations-capstone-studio-supplemental-operations-capstone-extension-practice"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-curriculum-linux-integration-studio-archive-guide"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-service-deployment-studio-core-concepts"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-service-deployment-studio-guided-example"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-core-project-service-deployment-studio"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-service-deployment-studio-review"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-extension-challenge-service-deployment-studio"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-service-deployment-transfer-practice"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-service-deployment-extension-practice"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-automation-and-observability-studio-core-concepts"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-automation-and-observability-studio-guided-example"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-core-project-automation-and-observability-studio"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-automation-and-observability-studio-review"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-extension-challenge-automation-and-observability-studio"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-automation-observability-transfer-practice"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-automation-observability-extension-practice"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-backup-recovery-studio-core-concepts"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-backup-recovery-studio-guided-example"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-core-project-backup-recovery-studio"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-backup-recovery-studio-review"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-extension-challenge-backup-recovery-studio"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-backup-recovery-transfer-practice"
+  },
+  {
+    "moduleId": "linux-systems-optional-linux-integration-studio-archive",
+    "id": "linux-systems-optional-linux-integration-studio-archive-supplemental-backup-recovery-extension-practice"
+  },
+  {
+    "moduleId": "linux-systems-standards-map",
+    "id": "linux-systems-standards-map-curriculum-linux-systems-reference-guide"
+  },
+  {
+    "moduleId": "linux-systems-standards-map",
+    "id": "linux-systems-standards-map-curriculum-linux-systems-core-skills"
+  },
+  {
+    "moduleId": "linux-systems-standards-map",
+    "id": "linux-systems-standards-map-curriculum-linux-systems-next-topics"
+  },
+  {
+    "moduleId": "linux-systems-standards-map",
+    "id": "linux-systems-standards-map-curriculum-linux-systems-boundaries"
+  },
+  {
+    "moduleId": "linux-systems-standards-map",
+    "id": "linux-systems-standards-map-supplemental-linux-systems-prerequisite-check"
+  },
+  {
+    "moduleId": "linux-systems-standards-map",
+    "id": "linux-systems-standards-map-supplemental-linux-systems-pathway-map"
+  },
+  {
+    "moduleId": "linux-systems-course-roadmap",
+    "id": "linux-systems-course-roadmap-curriculum-linux-systems-follow-up-path"
+  },
+  {
+    "moduleId": "linux-systems-course-roadmap",
+    "id": "linux-systems-course-roadmap-curriculum-linux-systems-resource-map"
+  },
+  {
+    "moduleId": "linux-systems-course-roadmap",
+    "id": "linux-systems-course-roadmap-curriculum-linux-systems-module-alignment-guide"
+  },
+  {
+    "moduleId": "linux-systems-course-roadmap",
+    "id": "linux-systems-course-roadmap-curriculum-linux-systems-reference-map"
+  },
+  {
+    "moduleId": "linux-systems-course-roadmap",
+    "id": "linux-systems-course-roadmap-supplemental-linux-systems-prerequisite-map"
+  },
+  {
+    "moduleId": "linux-systems-course-roadmap",
+    "id": "linux-systems-course-roadmap-supplemental-linux-systems-resource-inventory"
+  },
+  {
+    "moduleId": "linux-systems-project-practice-guide",
+    "id": "linux-systems-project-practice-guide-curriculum-linux-systems-project-ladder"
+  },
+  {
+    "moduleId": "linux-systems-project-practice-guide",
+    "id": "linux-systems-project-practice-guide-curriculum-linux-systems-checkpoints"
+  },
+  {
+    "moduleId": "linux-systems-project-practice-guide",
+    "id": "linux-systems-project-practice-guide-curriculum-linux-systems-rubric"
+  },
+  {
+    "moduleId": "linux-systems-project-practice-guide",
+    "id": "linux-systems-project-practice-guide-curriculum-linux-systems-capstone-gate"
+  },
+  {
+    "moduleId": "linux-systems-project-practice-guide",
+    "id": "linux-systems-project-practice-guide-supplemental-practice-project-personal-shell-toolkit"
+  },
+  {
+    "moduleId": "linux-systems-project-practice-guide",
+    "id": "linux-systems-project-practice-guide-supplemental-practice-project-log-parser-or-report-script"
+  },
+  {
+    "moduleId": "linux-systems-project-practice-guide",
+    "id": "linux-systems-project-practice-guide-supplemental-practice-project-systemd-service-for-a-toy-app"
+  },
+  {
+    "moduleId": "linux-systems-project-practice-guide",
+    "id": "linux-systems-project-practice-guide-supplemental-practice-project-secure-ssh-setup-in-a-lab-vm"
+  },
+  {
+    "moduleId": "linux-systems-project-practice-guide",
+    "id": "linux-systems-project-practice-guide-supplemental-practice-project-backup-and-restore-simulation"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-systems-and-security-lab-safety-policy",
+    "id": "linux-systems-linux-systems-systems-and-security-lab-safety-policy-curriculum-linux-systems-allowed-lab-scope"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-systems-and-security-lab-safety-policy",
+    "id": "linux-systems-linux-systems-systems-and-security-lab-safety-policy-curriculum-linux-systems-disallowed-work"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-systems-and-security-lab-safety-policy",
+    "id": "linux-systems-linux-systems-systems-and-security-lab-safety-policy-curriculum-linux-systems-evidence-and-remediation-format"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-systems-and-security-lab-safety-policy",
+    "id": "linux-systems-linux-systems-systems-and-security-lab-safety-policy-curriculum-linux-systems-tooling-setup-and-recovery"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-systems-and-security-lab-safety-policy",
+    "id": "linux-systems-linux-systems-systems-and-security-lab-safety-policy-supplemental-linux-systems-safety-project-threat-model-and-scope-sheet"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-systems-and-security-lab-safety-policy",
+    "id": "linux-systems-linux-systems-systems-and-security-lab-safety-policy-supplemental-linux-systems-safety-project-patch-and-evidence-report"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-defensive-lab-contract",
+    "id": "linux-systems-linux-systems-defensive-lab-contract-curriculum-linux-systems-environment-and-tooling-baseline"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-defensive-lab-contract",
+    "id": "linux-systems-linux-systems-defensive-lab-contract-curriculum-linux-systems-prohibited-activity"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-defensive-lab-contract",
+    "id": "linux-systems-linux-systems-defensive-lab-contract-curriculum-linux-systems-signature-project"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-defensive-lab-contract",
+    "id": "linux-systems-linux-systems-defensive-lab-contract-curriculum-linux-systems-evidence-rubric"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-defensive-lab-contract",
+    "id": "linux-systems-linux-systems-defensive-lab-contract-supplemental-linux-systems-defensive-lab-scope-and-reset-drill"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-defensive-lab-contract",
+    "id": "linux-systems-linux-systems-defensive-lab-contract-supplemental-linux-systems-defensive-lab-evidence-to-remediation-report"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-toolchain-and-version-assumptions",
+    "id": "linux-systems-linux-systems-toolchain-and-version-assumptions-curriculum-linux-systems-setup-assumptions"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-toolchain-and-version-assumptions",
+    "id": "linux-systems-linux-systems-toolchain-and-version-assumptions-curriculum-linux-systems-upgrade-rule"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-toolchain-and-version-assumptions",
+    "id": "linux-systems-linux-systems-toolchain-and-version-assumptions-curriculum-linux-systems-platform-fallbacks"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-toolchain-and-version-assumptions",
+    "id": "linux-systems-linux-systems-toolchain-and-version-assumptions-curriculum-linux-systems-reproducibility-notes"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-toolchain-and-version-assumptions",
+    "id": "linux-systems-linux-systems-toolchain-and-version-assumptions-supplemental-linux-systems-first-run-smoke-test"
+  },
+  {
+    "moduleId": "linux-systems-linux-systems-toolchain-and-version-assumptions",
+    "id": "linux-systems-linux-systems-toolchain-and-version-assumptions-supplemental-linux-systems-version-drift-review"
+  }
+]
