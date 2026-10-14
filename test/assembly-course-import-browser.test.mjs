@@ -16,7 +16,25 @@ import {
 } from "./ide-workspace-controls.mjs";
 
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
-const fixtures = await Promise.all(["assembly-opening-contracts.json", "assembly-calculator-contracts.json", "assembly-array-contracts.json", "assembly-string-contracts.json", "assembly-helper-contracts.json", "assembly-parser-contracts.json"].map(async name => JSON.parse(await readFile(new URL(`./fixtures/${name}`, import.meta.url), "utf8"))));
+const fixtures = await Promise.all(
+	[
+		"assembly-opening-contracts.json",
+		"assembly-calculator-contracts.json",
+		"assembly-array-contracts.json",
+		"assembly-string-contracts.json",
+		"assembly-helper-contracts.json",
+		"assembly-parser-contracts.json",
+		"assembly-reverse-contracts.json",
+		"assembly-stack-contracts.json"
+	].map(async (name) =>
+		JSON.parse(
+			await readFile(
+				new URL(`./fixtures/${name}`, import.meta.url),
+				"utf8"
+			)
+		)
+	)
+);
 let fixture = fixtures[0];
 const workflowDefinitions = {
 	"ASM-04-asm0-setup-and-tooling": {
@@ -69,6 +87,18 @@ const workflowDefinitions = {
 	}
 };
 
+assert.equal(
+	fixtures.length,
+	8,
+	"All eight verified packs require browser coverage"
+);
+assert.deepEqual(
+	fixtures.map((row) => row.pack).sort(),
+	Object.keys(workflowDefinitions).sort(),
+	"Browser fixtures must cover every workflow definition"
+);
+const expectedProfiles = fixtures.length * 2 * 2 * 2;
+
 const storageKey = "classes-python-ide-projects:anonymous";
 const legacy = {
 	_id: "earlier-assembly",
@@ -87,11 +117,11 @@ test(
 	{ timeout: 240_000 },
 	async () => {
 		let server, browser, context, page;
-		const captures
-			= process.env.COURSE_IMPORT_SCREENSHOT_DIR ?? "output/playwright";
-		const exports
-			= process.env.ASSEMBLY_BROWSER_EXPORT_PROOF_DIR
-				?? "output/assembly-exports";
+		const captures =
+			process.env.COURSE_IMPORT_SCREENSHOT_DIR ?? "output/playwright";
+		const exports =
+			process.env.ASSEMBLY_BROWSER_EXPORT_PROOF_DIR ??
+			"output/assembly-exports";
 		const proof = [];
 		await mkdir(captures, { recursive: true });
 		await mkdir(exports, { recursive: true });
@@ -107,7 +137,7 @@ test(
 				"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
 				"/usr/bin/google-chrome",
 				"/usr/bin/chromium"
-			].find(path => path && existsSync(path));
+			].find((path) => path && existsSync(path));
 			assert.ok(
 				executablePath,
 				"An existing Chrome installation is required"
@@ -126,8 +156,8 @@ test(
 					const click = HTMLAnchorElement.prototype.click;
 					HTMLAnchorElement.prototype.click = function () {
 						if (
-							this.download.endsWith(".zip")
-							&& this.href.startsWith("blob:")
+							this.download.endsWith(".zip") &&
+							this.href.startsWith("blob:")
 						) {
 							return;
 						}
@@ -159,18 +189,16 @@ test(
 						headers: { "access-control-allow-origin": "*" },
 						body: file?.content ?? "Unknown source"
 					});
-				}
-				else if (
-					url.origin !== origin
-					|| url.pathname.startsWith("/api/")
+				} else if (
+					url.origin !== origin ||
+					url.pathname.startsWith("/api/")
 				) {
 					void request.respond({
 						status: 200,
 						contentType: "application/json",
 						body: "{}"
 					});
-				}
-				else {
+				} else {
 					void request.continue();
 				}
 			});
@@ -181,7 +209,14 @@ test(
 				for (const width of [1280, 360]) {
 					for (const theme of ["light", "dark"]) {
 						for (const role of ["starter", "solution"]) {
-							const expectedFiles = Object.keys(fixture.files).filter(path => path.startsWith(`${fixture.pack}/${role}/`) || path === `${fixture.pack}/README.md`);
+							const expectedFiles = Object.keys(
+								fixture.files
+							).filter(
+								(path) =>
+									path.startsWith(
+										`${fixture.pack}/${role}/`
+									) || path === `${fixture.pack}/README.md`
+							);
 							await page.setViewport({ width, height: 900 });
 							await page.emulateMediaFeatures([
 								{ name: "prefers-color-scheme", value: theme }
@@ -225,29 +260,39 @@ test(
 								(s, k) =>
 									JSON.parse(
 										localStorage.getItem(s) ?? "[]"
-									).some(p => p.courseProjectKey === k),
+									).some((p) => p.courseProjectKey === k),
 								{},
 								storageKey,
 								key
 							);
 							const projects = await page.evaluate(
-								s => JSON.parse(localStorage.getItem(s)),
+								(s) => JSON.parse(localStorage.getItem(s)),
 								storageKey
 							);
 							assert.deepEqual(
-								projects.find(p => p._id === legacy._id),
+								projects.find((p) => p._id === legacy._id),
 								legacy
 							);
 							const saved = projects.find(
-								p => p.courseProjectKey === key
+								(p) => p.courseProjectKey === key
 							);
 							assert.equal(saved.mode, "assembly");
-							assert.equal(saved.activeFileName, `${role}/${primary}`);
-							assert.deepEqual(saved.files.map(file => `${fixture.pack}/${file.name}`).sort(), expectedFiles.sort());
+							assert.equal(
+								saved.activeFileName,
+								`${role}/${primary}`
+							);
+							assert.deepEqual(
+								saved.files
+									.map(
+										(file) => `${fixture.pack}/${file.name}`
+									)
+									.sort(),
+								expectedFiles.sort()
+							);
 							assert.equal(requests.length, expectedFiles.length);
 							assert.ok(
 								requests.every(
-									path =>
+									(path) =>
 										!path.includes(
 											role === "starter"
 												? "/solution/"
@@ -275,25 +320,29 @@ test(
 								"button.run-control:not([disabled])"
 							);
 							assert.equal(
-								await page.$eval("button.run-control", b =>
-									b.textContent.trim()),
+								await page.$eval("button.run-control", (b) =>
+									b.textContent.trim()
+								),
 								"Build instructions"
 							);
 							await page.click("button.run-control");
 							await page.waitForFunction(() =>
-								[...document.querySelectorAll(".output-line")].some(
-									line =>
-										line.textContent.includes(
-											"ctest --test-dir build"
-										)
+								[
+									...document.querySelectorAll(".output-line")
+								].some((line) =>
+									line.textContent.includes(
+										"ctest --test-dir build"
+									)
 								)
 							);
 							assert.ok(
 								await page.$eval(
 									".result-panel",
 									(p, { role, referenceToken }) =>
-										p.textContent.includes("Linux x86-64")
-										&& p.textContent.includes(
+										p.textContent.includes(
+											"Linux x86-64"
+										) &&
+										p.textContent.includes(
 											role === "starter"
 												? "exits 78"
 												: referenceToken
@@ -314,18 +363,23 @@ test(
 										new Uint8Array(
 											await window.__assemblyArchive.arrayBuffer()
 										),
-										byte => String.fromCharCode(byte)
+										(byte) => String.fromCharCode(byte)
 									).join("")
 								)
 							);
 							const entries = unzipSync(
 								Buffer.from(base64, "base64")
 							);
-							assert.equal(Object.keys(entries).length, expectedFiles.length);
+							assert.equal(
+								Object.keys(entries).length,
+								expectedFiles.length
+							);
 							for (const file of saved.files) {
-								const source
-									= fixture.files[`${fixture.pack}/${file.name}`];
-								const path = Object.keys(entries).find(path =>
+								const source =
+									fixture.files[
+										`${fixture.pack}/${file.name}`
+									];
+								const path = Object.keys(entries).find((path) =>
 									path.endsWith(`/${file.name}`)
 								);
 								assert.equal(file.content, source.content);
@@ -342,7 +396,10 @@ test(
 							}
 							if (width === 1280 && theme === "light") {
 								await writeFile(
-									join(exports, `${fixture.pack}-${role}.zip`),
+									join(
+										exports,
+										`${fixture.pack}-${role}.zip`
+									),
 									Buffer.from(base64, "base64")
 								);
 							}
@@ -354,10 +411,12 @@ test(
 									.click();
 							}
 							const name = `${role}/${primary}`;
-							const edit = `${saved.files.find(file => file.name === name).content}\n/* Saved Assembly attempt. */\n`;
+							const edit = `${saved.files.find((file) => file.name === name).content}\n/* Saved Assembly attempt. */\n`;
 							await page.click(".cm-content");
 							const modifier = await page.evaluate(() =>
-								/Mac/.test(navigator.platform) ? "Meta" : "Control"
+								/Mac/.test(navigator.platform)
+									? "Meta"
+									: "Control"
 							);
 							await page.keyboard.down(modifier);
 							await page.keyboard.press("a");
@@ -369,10 +428,10 @@ test(
 							await page.waitForFunction(
 								(s, k, n, c) =>
 									JSON.parse(localStorage.getItem(s))
-										.find(p => p.courseProjectKey === k)
-										?.files
-										.some(
-											f => f.name === n && f.content === c
+										.find((p) => p.courseProjectKey === k)
+										?.files.some(
+											(f) =>
+												f.name === n && f.content === c
 										),
 								{},
 								storageKey,
@@ -380,21 +439,23 @@ test(
 								name,
 								edit
 							);
-							await page.reload({ waitUntil: "domcontentloaded" });
+							await page.reload({
+								waitUntil: "domcontentloaded"
+							});
 							await page.waitForSelector(
 								"button.run-control:not([disabled])"
 							);
 							const reloaded = await page.evaluate(
 								(s, k) =>
 									JSON.parse(localStorage.getItem(s)).find(
-										p => p.courseProjectKey === k
+										(p) => p.courseProjectKey === k
 									),
 								storageKey,
 								key
 							);
 							assert.deepEqual(
 								reloaded.files,
-								saved.files.map(file =>
+								saved.files.map((file) =>
 									file.name === name
 										? { ...file, content: edit }
 										: file
@@ -412,7 +473,7 @@ test(
 										new Uint8Array(
 											await window.__assemblyArchive.arrayBuffer()
 										),
-										byte => String.fromCharCode(byte)
+										(byte) => String.fromCharCode(byte)
 									).join("")
 								)
 							);
@@ -423,28 +484,32 @@ test(
 								assert.equal(
 									strFromU8(
 										editedEntries[
-											Object.keys(editedEntries).find(path =>
-												path.endsWith(`/${file.name}`)
+											Object.keys(editedEntries).find(
+												(path) =>
+													path.endsWith(
+														`/${file.name}`
+													)
 											)
 										]
 									),
 									file.content
 								);
 							}
-							const returnHref = await page.$$eval("a", links =>
+							const returnHref = await page.$$eval("a", (links) =>
 								links
 									.find(
-										link =>
-											link.textContent.trim()
-											=== "Return to lesson"
+										(link) =>
+											link.textContent.trim() ===
+											"Return to lesson"
 									)
-									?.getAttribute("href"));
+									?.getAttribute("href")
+							);
 							assert.equal(returnHref, `/courses#${lesson}`);
 							assert.ok(
 								await page.evaluate(
 									() =>
-										document.documentElement.scrollWidth
-										<= innerWidth + 1
+										document.documentElement.scrollWidth <=
+										innerWidth + 1
 								)
 							);
 							const capture = `course-import-assembly-${fixture.pack}-${role}-${width}-${theme}.png`;
@@ -452,29 +517,63 @@ test(
 								path: join(captures, capture),
 								fullPage: true
 							});
-							proof.push({ pack: fixture.pack, role, width, theme, files: saved.files.map(f => ({
-								name: f.name,
-								sha256: createHash("sha256")
-									.update(f.content)
-									.digest("hex")
-							})), confirmedBeforeFetch: true, savedEditReloaded: true, editedExportExact: true, legacyPreserved: true, returnHref, capture });
+							proof.push({
+								pack: fixture.pack,
+								role,
+								width,
+								theme,
+								files: saved.files.map((f) => ({
+									name: f.name,
+									sha256: createHash("sha256")
+										.update(f.content)
+										.digest("hex")
+								})),
+								confirmedBeforeFetch: true,
+								savedEditReloaded: true,
+								editedExportExact: true,
+								legacyPreserved: true,
+								returnHref,
+								capture
+							});
 						}
 					}
 				}
 			}
+			assert.equal(
+				proof.length,
+				expectedProfiles,
+				"Every pack, role, width and theme must complete"
+			);
 			await writeFile(
 				join(captures, "assembly-workflow-proof.json"),
 				`${JSON.stringify(proof, null, 2)}\n`
 			);
-		}
-		catch (error) {
+		} catch (error) {
 			if (page) {
-				await page.screenshot({ path: join(captures, "assembly-failure.png"), fullPage: true });
-				await writeFile(join(captures, "assembly-failure.json"), JSON.stringify(await page.evaluate(s => ({ url: location.href, body: (document.body.textContent ?? "").slice(-7000), storage: localStorage.getItem(s) }), storageKey), null, 2));
+				await page.screenshot({
+					path: join(captures, "assembly-failure.png"),
+					fullPage: true
+				});
+				await writeFile(
+					join(captures, "assembly-failure.json"),
+					JSON.stringify(
+						await page.evaluate(
+							(s) => ({
+								url: location.href,
+								body: (document.body.textContent ?? "").slice(
+									-7000
+								),
+								storage: localStorage.getItem(s)
+							}),
+							storageKey
+						),
+						null,
+						2
+					)
+				);
 			}
 			throw error;
-		}
-		finally {
+		} finally {
 			await page?.close();
 			await context?.close();
 			await browser?.close();
