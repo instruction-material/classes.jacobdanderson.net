@@ -32,6 +32,7 @@ const C_EXTENSION_RE = /\.c$/i;
 const CPP_EXTENSION_RE = /\.(?:cc|cpp|cxx)$/i;
 const CODE_EXTENSION_RE = /\.(?:[sch]|cc|cpp|cxx|hpp|java|py)$/i;
 const SAFE_FILE_SEGMENT_RE = /^\w[\w.-]*$/;
+const NATIVE_WORKSHEET_FILE_RE = /^(?:starter|solution)\/analysis\.md$/i;
 const ROOT_TEXT_FILE_RE =
 	/^(?:makefile|\w[\w.-]*\.(?:[sch]|cc|cpp|cxx|hpp|csv|eps|expected|in|java|json|md|out|ps|py|tsv|txt|xml))$/i;
 const IMAGE_FILE_RE = /^images\/\w[\w.-]*\.(?:gif|jpe?g|png|svg|webp)$/i;
@@ -2812,7 +2813,11 @@ export function isValidPythonFileName(value: string) {
 
 	if (isPythonIdeRuntimeReservedPath(value)) return false;
 
-	if (CODE_EXTENSION_RE.test(value) || baseName(value) === "CMakeLists.txt") {
+	if (
+		CODE_EXTENSION_RE.test(value) ||
+		baseName(value) === "CMakeLists.txt" ||
+		NATIVE_WORKSHEET_FILE_RE.test(value)
+	) {
 		const rootDirectory = segments[0]?.toLowerCase();
 		return !rootDirectory || !ASSET_DIRECTORY_NAMES.has(rootDirectory);
 	}

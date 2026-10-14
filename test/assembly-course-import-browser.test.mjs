@@ -25,7 +25,9 @@ const fixtures = await Promise.all(
 		"assembly-helper-contracts.json",
 		"assembly-parser-contracts.json",
 		"assembly-reverse-contracts.json",
-		"assembly-stack-contracts.json"
+		"assembly-stack-contracts.json",
+		"assembly-compiler-contracts.json",
+		"assembly-debug-contracts.json"
 	].map(async name =>
 		JSON.parse(
 			await readFile(
@@ -84,13 +86,15 @@ const workflowDefinitions = {
 		title: "Core Project: The Stack and Function Calls",
 		lesson: "assembly-unit-5-the-stack-and-function-calls-assembly-unit-5-the-stack-and-function-calls-curriculum-core-project-the-stack-and-function-calls",
 		referenceToken: "10,012"
-	}
+	},
+	"ASM-08-unit-9-reading-compiler-output": { primary: "model.c", taskFile: "analysis.md", title: "Core Project: Reading Compiler Output", lesson: "assembly-unit-9-reading-compiler-output-assembly-unit-9-reading-compiler-output-curriculum-core-project-reading-compiler-output", referenceToken: "10,013", starterToken: "analysis.md" },
+	"ASM-09-unit-10-debugging-at-instruction-level": { primary: "routine.S", taskFile: "analysis.md", title: "Core Project: Debugging at Instruction Level", lesson: "assembly-unit-10-debugging-at-instruction-level-assembly-unit-10-debugging-at-instruction-level-curriculum-core-project-debugging-at-instruction-level", referenceToken: "10,019", starterToken: "exits 1" }
 };
 
 assert.equal(
 	fixtures.length,
-	8,
-	"All eight verified packs require browser coverage"
+	10,
+	"All ten verified packs require browser coverage"
 );
 assert.deepEqual(
 	fixtures.map(row => row.pack).sort(),
@@ -207,7 +211,7 @@ test(
 			for (const current of fixtures) {
 				fixture = current;
 				const definition = workflowDefinitions[fixture.pack];
-				const { primary, referenceToken } = definition;
+				const { primary, referenceToken, starterToken = "exits 78", taskFile } = definition;
 				for (const width of [1280, 360]) {
 					for (const theme of ["light", "dark"]) {
 						for (const role of ["starter", "solution"]) {
@@ -339,16 +343,16 @@ test(
 							assert.ok(
 								await page.$eval(
 									".result-panel",
-									(p, { role, referenceToken }) =>
+									(p, { role, referenceToken, starterToken }) =>
 										p.textContent.includes(
 											"Linux x86-64"
 										)
 										&& p.textContent.includes(
 											role === "starter"
-												? "exits 78"
+												? starterToken
 												: referenceToken
 										),
-									{ role, referenceToken }
+									{ role, referenceToken, starterToken }
 								)
 							);
 							assert.equal(
@@ -411,8 +415,12 @@ test(
 									)
 									.click();
 							}
-							const name = `${role}/${primary}`;
-							const edit = `${saved.files.find(file => file.name === name).content}\n/* Saved Assembly attempt. */\n`;
+							const name = `${role}/${taskFile ?? primary}`;
+							if (taskFile) {
+								await page.select("select[aria-label='Active project file']", name);
+								await page.waitForFunction(name => document.querySelector("select[aria-label='Active project file']")?.value === name, {}, name);
+							}
+							const edit = `${saved.files.find(file => file.name === name).content}${taskFile ? "\nSaved worksheet observation: record the actual compiler and trace.\n" : "\n/* Saved Assembly attempt. */\n"}`;
 							await page.click(".cm-content");
 							const modifier = await page.evaluate(() =>
 								/Mac/.test(navigator.platform)

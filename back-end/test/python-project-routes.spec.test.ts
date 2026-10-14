@@ -89,26 +89,35 @@ describe("Python project routes", () => {
 		}));
 	});
 
-	it.each(["c", "assembly"] as const)(
+	it.each(["c", "assembly", "compiler"] as const)(
 		"stores exact nested %s pack files for user and course-code owners",
 		async mode => {
+			const requestedMode = mode === "compiler" ? "assembly" : mode;
 			const fixture = JSON.parse(
 				readFileSync(
 					resolve(
 						process.cwd(),
-						mode === "assembly"
-							? "../test/fixtures/assembly-opening-contracts.json"
-							: "../test/fixtures/c17-opening-contracts.json"
+						mode === "compiler"
+							? "../test/fixtures/assembly-compiler-contracts.json"
+							: mode === "assembly"
+								? "../test/fixtures/assembly-opening-contracts.json"
+								: "../test/fixtures/c17-opening-contracts.json"
 					),
 					"utf8"
 				)
 			);
 			const pack =
-				mode === "assembly"
-					? "ASM-04-asm0-setup-and-tooling"
-					: "CSE-06-unit-1-why-c-for-systems-work";
+				mode === "compiler"
+					? "ASM-08-unit-9-reading-compiler-output"
+					: mode === "assembly"
+						? "ASM-04-asm0-setup-and-tooling"
+						: "CSE-06-unit-1-why-c-for-systems-work";
 			const activeFileName =
-				mode === "assembly" ? "starter/routine.S" : "starter/main.c";
+				mode === "compiler"
+					? "starter/analysis.md"
+					: mode === "assembly"
+						? "starter/routine.S"
+						: "starter/main.c";
 			const files = Object.entries(
 				fixture.files as Record<string, { content: string }>
 			)
@@ -125,13 +134,13 @@ describe("Python project routes", () => {
 			for (const owner of ["user", "course-code"] as const) {
 				await withPythonProjectRoute(async baseUrl => {
 					const response = await postJson(baseUrl, {
-						mode,
+						mode: requestedMode,
 						files,
 						activeFileName
 					});
 					expect(response.status).toBe(201);
 					const body = await response.json();
-					expect(body.project.mode).toBe(mode);
+					expect(body.project.mode).toBe(requestedMode);
 					expect(body.project.activeFileName).toBe(activeFileName);
 					expect(body.project.files).toEqual(files);
 				}, owner);
@@ -149,7 +158,7 @@ describe("Python project routes", () => {
 				[source, { name: "reading.h", content: "YQ==", encoding: "base64" }],
 				[source, { name: "starter/CMakeLists.txt", content: "YQ==", encoding: "base64" }],
 				[{ name: "README.md", content: "No source" }],
-				...["../main.c", "/main.c", "src//main.c", "images/main.c", "images/CMakeLists.txt", "src/notes.txt", "src/README.md", "turtle.py"].map(name => [source, { name, content: "" }])
+				...["../main.c", "/main.c", "src//main.c", "images/main.c", "images/CMakeLists.txt", "src/notes.txt", "src/README.md", "turtle.py", "starter/../analysis.md", "starter/notes.md", "starter/nested/analysis.md", "images/analysis.md"].map(name => [source, { name, content: "" }])
 			];
 			for (const files of invalidFiles) {
 				const response = await postJson(baseUrl, { mode: "c", files });

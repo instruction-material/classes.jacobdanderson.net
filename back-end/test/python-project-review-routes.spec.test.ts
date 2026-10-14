@@ -580,26 +580,35 @@ describe("Python project review routes", () => {
 		});
 	});
 
-	it.each(["c", "assembly"] as const)(
+	it.each(["c", "assembly", "compiler"] as const)(
 		"saves, shares, and edits a %s review while preserving the learner's complete pack",
 		async mode => {
+			const requestedMode = mode === "compiler" ? "assembly" : mode;
 			const fixture = JSON.parse(
 				readFileSync(
 					resolve(
 						process.cwd(),
-						mode === "assembly"
-							? "../test/fixtures/assembly-opening-contracts.json"
-							: "../test/fixtures/c17-opening-contracts.json"
+						mode === "compiler"
+							? "../test/fixtures/assembly-compiler-contracts.json"
+							: mode === "assembly"
+								? "../test/fixtures/assembly-opening-contracts.json"
+								: "../test/fixtures/c17-opening-contracts.json"
 					),
 					"utf8"
 				)
 			);
 			const pack =
-				mode === "assembly"
-					? "ASM-04-asm0-setup-and-tooling"
-					: "CSE-06-unit-1-why-c-for-systems-work";
+				mode === "compiler"
+					? "ASM-08-unit-9-reading-compiler-output"
+					: mode === "assembly"
+						? "ASM-04-asm0-setup-and-tooling"
+						: "CSE-06-unit-1-why-c-for-systems-work";
 			const activeFileName =
-				mode === "assembly" ? "starter/routine.S" : "starter/main.c";
+				mode === "compiler"
+					? "starter/analysis.md"
+					: mode === "assembly"
+						? "starter/routine.S"
+						: "starter/main.c";
 			const files = Object.entries(
 				fixture.files as Record<string, { content: string }>
 			)
@@ -614,12 +623,17 @@ describe("Python project review routes", () => {
 					encoding: "text"
 				}));
 			const project = makeProject({
-				mode,
+				mode: requestedMode,
 				files,
 				activeFileName,
-				courseID: mode === "assembly" ? "assembly" : "c-systems-engineering",
+				courseID:
+					requestedMode === "assembly"
+						? "assembly"
+						: "c-systems-engineering",
 				courseProjectKey:
-					mode === "assembly" ? "assembly:opening:starter:native-assembly" : "c-systems-engineering:linking:starter:native-c17",
+					requestedMode === "assembly"
+						? "assembly:compiler:starter:native-assembly"
+						: "c-systems-engineering:linking:starter:native-c17",
 				shared: true,
 				shareID: "share_C17_native_123456789"
 			});
@@ -639,7 +653,7 @@ describe("Python project review routes", () => {
 				);
 				expect(shared.status).toBe(200);
 				const sharedBody = await shared.json();
-				expect(sharedBody.project.mode).toBe(mode);
+				expect(sharedBody.project.mode).toBe(requestedMode);
 				expect(sharedBody.project.files).toEqual(files);
 				const created = await postJson(
 					baseUrl,
@@ -651,14 +665,18 @@ describe("Python project review routes", () => {
 				expect((await created.json()).review.files).toEqual(files);
 			});
 			const review = makeReview({
-				mode,
+				mode: requestedMode,
 				files: structuredClone(files),
 				activeFileName
 			});
 			modelMocks.pythonProjectReviewFindOne.mockResolvedValue(review);
 			const revised = files.map(file =>
 				file.name ===
-				(mode === "assembly" ? "starter/routine.S" : "starter/labels.c")
+				(mode === "compiler"
+					? "starter/analysis.md"
+					: mode === "assembly"
+						? "starter/routine.S"
+						: "starter/labels.c")
 					? {
 							...file,
 							content: file.content + "\n/* staff feedback */\n"
@@ -674,7 +692,7 @@ describe("Python project review routes", () => {
 				);
 				expect(response.status).toBe(200);
 				const body = await response.json();
-				expect(body.review.mode).toBe(mode);
+				expect(body.review.mode).toBe(requestedMode);
 				expect(body.review.files).toEqual(revised);
 				expect(body.project.files).toEqual(files);
 				expect(project.files).toEqual(files);

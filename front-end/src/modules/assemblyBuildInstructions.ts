@@ -2,7 +2,9 @@ import type { PythonIdeFile } from "@/modules/pythonIde";
 import {
 	assemblyArrayPack,
 	assemblyCalculatorPack,
+	assemblyCompilerPack,
 	assemblyCourseResource,
+	assemblyDebugPack,
 	assemblyHelperPack,
 	assemblyParserPack,
 	assemblyReversePack,
@@ -147,6 +149,52 @@ export function assemblyBuildInstructions(
 			selected.role === "starter"
 				? "Complete STACK_CALLS in routine.S; keep both real leaf calls, live values, aligned call sites and balanced restoration. The untouched demo exits 78 with no successful rows."
 				: "The reference returns 30, 38, 10 and 8 in the four demo rows and passes 10,012 full-width pair cases, with actual ordered calls and aligned leaf entries."
+		];
+	}
+	if (
+		selected?.pack === assemblyCompilerPack &&
+		files.some(file => file.name === `${selected.role}/CMakeLists.txt`)
+	) {
+		return [
+			...lines,
+			`From the extracted project folder: cd ${selected.role}`,
+			'cmake -S . -B build-O0 -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang -DCMAKE_C_FLAGS_DEBUG="-O0 -g"',
+			"cmake --build build-O0",
+			"ctest --test-dir build-O0 --output-on-failure",
+			"./build-O0/assembly_compiler",
+			'cmake -S . -B build-O2 -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang -DCMAKE_C_FLAGS_RELEASE="-O2 -g -DNDEBUG"',
+			"cmake --build build-O2",
+			"ctest --test-dir build-O2 --output-on-failure",
+			"./build-O2/assembly_compiler",
+			"mkdir -p observed",
+			"clang -std=c17 -O0 -g -S -masm=intel -fverbose-asm model.c -o observed/model-O0.s",
+			"clang -std=c17 -O2 -g -S -masm=intel -fverbose-asm model.c -o observed/model-O2.s",
+			"objdump -d -M intel build-O0/assembly_compiler > observed/linked-O0.txt",
+			"objdump -d -M intel build-O2/assembly_compiler > observed/linked-O2.txt",
+			"Both supplied roles work immediately and check 10,013 full-width triplets plus preserved registers. Successful compilation or execution does not complete the analysis worksheet.",
+			"Read ../README.md for the exact modular contract, actual generated listings, GCC comparison, changed-case predictions and GDB trace. The commands above run from the selected role folder.",
+			selected.role === "starter"
+				? "Complete analysis.md with the actual target/flags, four predictions, instruction mapping, optimization comparison, an independent changed case, a debugger trace and a bounded explanation. Keep model.c unchanged for the primary comparison."
+				: "The reference analysis.md supplies portable reasoning and a changed-case example; record the current compiler version, real listings and debugger addresses separately."
+		];
+	}
+	if (
+		selected?.pack === assemblyDebugPack &&
+		files.some(file => file.name === `${selected.role}/CMakeLists.txt`)
+	) {
+		return [
+			...lines,
+			`From the extracted project folder: cd ${selected.role}`,
+			"cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang",
+			"cmake --build build",
+			"./build/assembly_debug",
+			"ctest --test-dir build --output-on-failure",
+			"gdb ./build/assembly_debug",
+			"The original branch misinterprets a negative int32_t value using an unsigned condition. Inspect debug_branch_decision, the actual next instruction and SF/OF/ZF/CF before editing.",
+			"Read ../README.md for the exact count/memory/ABI contract, unchanged tests, actual debugger steps, GCC/Release builds and independently predicted zero-containing case.",
+			selected.role === "starter"
+				? "Record the failing trace in analysis.md before repairing DEBUG_SIGNED_BRANCH in routine.S. The untouched demo exits 1 with observed=0 expected=2; retain that evidence, make the minimal signed-branch correction and repeat the same trace."
+				: "The reference returns observed=2 expected=2 and passes 10,019 cases. Compare the saved faulty/corrected instruction states; passing code alone does not complete analysis.md."
 		];
 	}
 	if (

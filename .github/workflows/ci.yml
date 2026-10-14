@@ -279,7 +279,7 @@ jobs:
               run: sudo apt-get update && sudo apt-get install -y gdb
 
             - name: Export Assembly default and pack workspaces
-              run: ASSEMBLY_EXPORT_PROOF_DIR="$GITHUB_WORKSPACE/output/assembly-exports" npm exec -w front-end -- vitest run test/assembly-workspace.spec.test.ts test/assembly-calculator-workspace.spec.test.ts test/assembly-memory-workspace.spec.test.ts test/assembly-call-parser-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+              run: ASSEMBLY_EXPORT_PROOF_DIR="$GITHUB_WORKSPACE/output/assembly-exports" npm exec -w front-end -- vitest run test/assembly-workspace.spec.test.ts test/assembly-calculator-workspace.spec.test.ts test/assembly-memory-workspace.spec.test.ts test/assembly-call-parser-workspace.spec.test.ts test/assembly-compiler-workspace.spec.test.ts test/assembly-debug-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
 
             - name: Verify Assembly imports, saved source and ZIP exports
               env:
@@ -305,6 +305,10 @@ jobs:
                   python3 test/assembly-exported-contracts.py --project reverse --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-reverse-native-gcc.json
                   python3 test/assembly-exported-contracts.py --project stack --cc clang --archives output/assembly-exports --proof output/playwright/assembly-stack-native-clang.json
                   python3 test/assembly-exported-contracts.py --project stack --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-stack-native-gcc.json
+                  python3 test/assembly-exported-contracts.py --project compiler --cc clang --archives output/assembly-exports --proof output/playwright/assembly-compiler-native-clang.json
+                  python3 test/assembly-exported-contracts.py --project compiler --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-compiler-native-gcc.json
+                  python3 test/assembly-exported-contracts.py --project debug --cc clang --archives output/assembly-exports --proof output/playwright/assembly-debug-native-clang.json
+                  python3 test/assembly-exported-contracts.py --project debug --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-debug-native-gcc.json
 
             - name: Retain Assembly workflow and native validation
               if: always()
@@ -313,6 +317,10 @@ jobs:
                   name: assembly-workflow-validation
                   path: |
                       output/playwright/course-import-assembly-*.png
+                      output/playwright/compiler-clang-generated/
+                      output/playwright/compiler-gcc-generated/
+                      output/playwright/debug-clang-traces/
+                      output/playwright/debug-gcc-traces/
                       output/playwright/assembly-failure.png
                       output/playwright/assembly-*.json
                       output/playwright/assembly-*.jsonl
