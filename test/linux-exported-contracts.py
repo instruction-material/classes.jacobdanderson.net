@@ -37,6 +37,18 @@ apache_identity = json.loads((fixture_dir / "linux-apache-source-verifier.json")
 apache_verifier = (fixture_dir / "linux-apache-source-verifier.py").read_bytes()
 assert hashlib.sha256(apache_verifier).hexdigest() == apache_identity["sha256"]
 assert apache_packs[0]["revision"] == apache_identity["revision"]
+systemd_packs = [pack for pack in packs if pack["pack"] == "LS5-Systemd-Toy-Service"]
+assert len(systemd_packs) == 1
+systemd_identity = json.loads((fixture_dir / "linux-systemd-source-verifier.json").read_text())
+systemd_verifier = (fixture_dir / "linux-systemd-source-verifier.py").read_bytes()
+assert hashlib.sha256(systemd_verifier).hexdigest() == systemd_identity["sha256"]
+assert systemd_packs[0]["revision"] == systemd_identity["revision"]
+supplemental_packs = [pack for pack in packs if pack["pack"] in ("LS-13-unit-6-services-and-systemd-supplemental-2", "LS-14-unit-6-services-and-systemd-supplemental-3")]
+assert len(supplemental_packs) == 2
+supplemental_identity = json.loads((fixture_dir / "linux-systemd-supplemental-source-verifier.json").read_text())
+supplemental_verifier = (fixture_dir / "linux-systemd-supplemental-source-verifier.py").read_bytes()
+assert hashlib.sha256(supplemental_verifier).hexdigest() == supplemental_identity["sha256"]
+assert all(pack["revision"] == supplemental_identity["revision"] for pack in supplemental_packs)
 args.proof = args.proof.resolve()
 args.proof.parent.mkdir(parents=True, exist_ok=True)
 archives = []
@@ -92,7 +104,7 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
             archives.append({"pack": pack["pack"], "role": role,
                              "sha256": hashlib.sha256(archive_path.read_bytes()).hexdigest(),
                              "files": sorted(expected)})
-    assert len(archives) == 14
+    assert len(archives) == 20
     (work / "test").mkdir()
     native_proof = args.proof.with_name(args.proof.stem + "-native.json")
     native = run_pinned_contract(work, "verify_owned_labs.py", verifier, native_proof, 300)
@@ -114,6 +126,38 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
     assert apache_native["sourceHashes"] == {name: file["sha256"] for name, file in apache_packs[0]["files"].items()}
     assert all(profile["actualLinuxSockets"] and profile["rejectedSyntaxLeavesServing"] and profile["ownedListenersRemoved"] for profile in apache_native["profiles"])
     assert sum(profile["changedAndRestored"] for profile in apache_native["profiles"]) == 2
+    systemd_proof = args.proof.with_name(args.proof.stem + "-systemd-native.json")
+    systemd_native = run_pinned_contract(work, "verify_systemd_service.py", systemd_verifier, systemd_proof, 180)
+    assert systemd_native["accepted"] and not systemd_native["appOnly"]
+    assert systemd_native["sourceUnchanged"] and systemd_native["managerVersion"]
+    assert len(systemd_native["profiles"]) == 3
+    assert systemd_native["sourceHashes"] == {name: file["sha256"] for name, file in systemd_packs[0]["files"].items()}
+    assert all(profile["actualManager"] for profile in systemd_native["profiles"])
+    learner = next(profile for profile in systemd_native["profiles"] if profile["role"] == "starter")
+    assert learner["namedUnfinishedStatus"] == 78 and learner["restartLoopPrevented"]
+    completed = [profile for profile in systemd_native["profiles"] if profile["role"] != "starter"]
+    assert len(completed) == 2
+    assert all(all(profile[key] for key in ("actualJournal", "manualRestart", "automaticRestart", "persistentEnable", "enabledAndStopped", "invalidEnvironmentFailure", "recovered")) for profile in completed)
+    cleanup = [row for row in systemd_native["observations"] if row.get("kind") == "cleanup"]
+    assert len(cleanup) == 3
+    assert all(all(row[key] for key in ("unitRemoved", "processStopped", "activationRemoved", "installRemoved")) for row in cleanup)
+    supplemental_proof = args.proof.with_name(args.proof.stem + "-supplemental-native.json")
+    supplemental_native = run_pinned_contract(work, "verify_systemd_supplemental.py", supplemental_verifier, supplemental_proof, 300)
+    assert supplemental_native["accepted"] and not supplemental_native["appOnly"]
+    assert supplemental_native["managerVersion"] and supplemental_native["sourceUnchanged"]
+    assert len(supplemental_native["profiles"]) == 6
+    assert supplemental_native["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in supplemental_packs for name, file in pack["files"].items()}
+    assert all(profile["actualManager"] for profile in supplemental_native["profiles"])
+    transfer = [profile for profile in supplemental_native["profiles"] if profile["kind"] == "transfer"]
+    extension = [profile for profile in supplemental_native["profiles"] if profile["kind"] == "extension"]
+    assert len(transfer) == 3 and len(extension) == 3
+    assert next(profile for profile in transfer if profile["role"] == "starter")["namedWorkingDirectoryFailure"]
+    assert all(all(profile[key] for key in ("actualHttpAndSocket", "actualJournal", "manualRestart", "automaticRestart", "workingDirectoryFaultAndRecovery", "baseUnitUnchanged", "enabledAndStopped")) for profile in transfer if profile["role"] != "starter")
+    assert all(all(profile[key] for key in ("actualJournal", "actualProcessEnvironment", "dropInRemovalRestoresBase", "baseUnitUnchanged")) for profile in extension)
+    assert all(all(profile[key] for key in ("resetAndReplacementObserved", "fileEditNeedsRestart", "invalidOverrideFailureAndRecovery")) for profile in extension if profile["role"] != "starter")
+    assert next(profile for profile in extension if profile["role"] == "starter")["ignoredInvalidOverrideObserved"]
+    supplemental_cleanup = [row for row in supplemental_native["observations"] if row.get("kind") == "cleanup"]
+    assert len(supplemental_cleanup) == 6 and all(all(row[key] for key in ("unitRemoved", "processStopped", "activationRemoved", "dropInRemoved", "installRemoved")) for row in supplemental_cleanup)
     default = work / "default-workspace"
     default.mkdir()
     default_archive = args.archives / "default-linux.zip"
@@ -161,6 +205,10 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
                                      "proxyNativeProof": str(proxy_proof),
                                      "apacheSourceIdentity": apache_identity,
                                      "apacheNativeProof": str(apache_proof),
+                                     "systemdSourceIdentity": systemd_identity,
+                                     "systemdNativeProof": str(systemd_proof),
+                                     "supplementalSourceIdentity": supplemental_identity,
+                                     "supplementalNativeProof": str(supplemental_proof),
                                      "defaultWorkspace": {"fileHashes": default_hashes,
                                                           "stdout": output.decode(),
                                                           "status": default_child.returncode},

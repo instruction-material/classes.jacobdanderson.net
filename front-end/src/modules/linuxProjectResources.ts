@@ -84,6 +84,48 @@ export const linuxVerifiedPacks = [
 		coreItemId:
 			"linux-systems-unit-11-web-servers-curriculum-project-configure-an-apache-virtual-host-and-compare-it-to-nginx",
 		notebookItemId: null
+	},
+	{
+		pack: "LS5-Systemd-Toy-Service",
+		revision: "80d1edc95b7152c55e2c000adda086c9cbadf545",
+		roleFiles: [
+			"heartbeat_app.py",
+			"linux-heartbeat.service",
+			"heartbeat.env.example",
+			"service-notes.md"
+		],
+		coreItemId:
+			"linux-systems-unit-6-services-and-systemd-curriculum-project-create-a-systemd-service-for-a-toy-app",
+		notebookItemId:
+			"linux-systems-unit-6-services-and-systemd-supplemental-troubleshooting-notebook-services-and-systemd"
+	},
+	{
+		pack: "LS-13-unit-6-services-and-systemd-supplemental-2",
+		revision: "80d1edc95b7152c55e2c000adda086c9cbadf545",
+		roleFiles: [
+			"linux-service-transfer.service",
+			"transfer_app.py",
+			"transfer.env.example",
+			"service-transfer-notes.md"
+		],
+		coreItemId:
+			"linux-systems-unit-6-services-and-systemd-supplemental-systemd-service-transfer-practice",
+		notebookItemId: null
+	},
+	{
+		pack: "LS-14-unit-6-services-and-systemd-supplemental-3",
+		revision: "80d1edc95b7152c55e2c000adda086c9cbadf545",
+		roleFiles: [
+			"20-lab-settings.conf",
+			"heartbeat_app.py",
+			"linux-service-extension.service",
+			"base.env.example",
+			"override.env.example",
+			"service-extension-notes.md"
+		],
+		coreItemId:
+			"linux-systems-unit-6-services-and-systemd-supplemental-systemd-service-extension-practice",
+		notebookItemId: null
 	}
 ] as const;
 
