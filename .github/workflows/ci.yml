@@ -292,6 +292,19 @@ jobs:
                   LINUX_BROWSER_EXPORT_PROOF_DIR: output/linux-exports
               run: node --test test/linux-course-import-browser.test.mjs
 
+            - name: Prepare the disposable Linux user manager and journal
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install --no-install-recommends --yes dbus-user-session
+                  native_lab_uid=$(id -u)
+                  native_lab_user=$(id -un)
+                  native_lab_runtime=/run/user/$native_lab_uid
+                  sudo loginctl enable-linger "$native_lab_user"
+                  sudo systemctl start "user@$native_lab_uid.service"
+                  sudo install -d -m 2755 -o root -g systemd-journal /var/log/journal
+                  sudo journalctl --flush
+                  printf 'XDG_RUNTIME_DIR=%s\nDBUS_SESSION_BUS_ADDRESS=unix:path=%s/bus\n' "$native_lab_runtime" "$native_lab_runtime" >>"$GITHUB_ENV"
+
             - name: Verify exported Linux lab contracts
               run: |
                   if ! command -v nginx >/dev/null 2>&1 || ! command -v apache2 >/dev/null 2>&1; then

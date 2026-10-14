@@ -22,6 +22,13 @@ const fixtures = JSON.parse(
 	)
 );
 const definitions = {
+	"LS-13-unit-6-services-and-systemd-supplemental-2": ["unit-6-services-and-systemd", "systemd-service-transfer-practice", null],
+	"LS-14-unit-6-services-and-systemd-supplemental-3": ["unit-6-services-and-systemd", "systemd-service-extension-practice", null],
+	"LS5-Systemd-Toy-Service": [
+		"unit-6-services-and-systemd",
+		"project-create-a-systemd-service-for-a-toy-app",
+		"services-and-systemd"
+	],
 	"LS4-Apache-Virtual-Host-Compare": [
 		"unit-11-web-servers",
 		"project-configure-an-apache-virtual-host-and-compare-it-to-nginx",
@@ -219,7 +226,8 @@ test(
 				fixture = current;
 				const [module, core] = definitions[fixture.pack];
 				const moduleID = `linux-systems-${module}`;
-				const itemID = `${moduleID}-curriculum-${core}`;
+				const placement = ["LS-13-unit-6-services-and-systemd-supplemental-2", "LS-14-unit-6-services-and-systemd-supplemental-3"].includes(fixture.pack) ? "supplemental" : "curriculum";
+				const itemID = `${moduleID}-${placement}-${core}`;
 				for (const width of [1280, 360]) {
 					for (const theme of ["light", "dark"]) {
 						for (const role of ["starter", "solution"]) {
@@ -271,12 +279,16 @@ test(
 							assert.equal(saved.mode, "linux");
 							assert.equal(
 								saved.activeFileName,
-								saved.files.find(
-									f =>
-										f.name.endsWith(".sh")
-										|| f.name.endsWith(".py")
-										|| f.name.endsWith(".conf")
-								).name
+								fixture.pack === "LS-13-unit-6-services-and-systemd-supplemental-2"
+									? `${role}/linux-service-transfer.service`
+									: fixture.pack === "LS-14-unit-6-services-and-systemd-supplemental-3"
+										? `${role}/20-lab-settings.conf`
+										: saved.files.find(
+											f =>
+												f.name.endsWith(".sh")
+												|| f.name.endsWith(".py")
+												|| f.name.endsWith(".conf")
+										).name
 							);
 							if (width < 900) {
 								await page
@@ -439,6 +451,9 @@ test(
 									fullPage: false
 								});
 							}
+							if (["LS-13-unit-6-services-and-systemd-supplemental-2", "LS-14-unit-6-services-and-systemd-supplemental-3"].includes(fixture.pack)) {
+								await page.screenshot({ path: join(output, `linux-${fixture.pack.includes("supplemental-2") ? "transfer" : "extension"}-${role}-${width}-${theme}.png`), fullPage: false });
+							}
 							proof.push({
 								pack: fixture.pack,
 								role,
@@ -453,6 +468,12 @@ test(
 							if (fixture.pack === "LS4-Apache-Virtual-Host-Compare") {
 								await page.screenshot({
 									path: join(output, `linux-apache-${role}-${width}-${theme}.png`),
+									fullPage: false
+								});
+							}
+							if (fixture.pack === "LS5-Systemd-Toy-Service") {
+								await page.screenshot({
+									path: join(output, `linux-systemd-${role}-${width}-${theme}.png`),
 									fullPage: false
 								});
 							}
@@ -504,6 +525,9 @@ test(
 					assert.equal(sourceRequests.length, 0);
 					if (!reuse) {
 						const card = `#${moduleID}-${id}`;
+						await page.$eval(card, element =>
+							element.scrollIntoView({ block: "start" }));
+						await page.waitForSelector(`${card} pre code`);
 						assert.ok(
 							await page.$(`${card} pre code`),
 							"The course renders runnable commands as code blocks"
@@ -572,8 +596,8 @@ test(
 				);
 			}
 			await writeFile(join(output, "default-linux.zip"), defaultArchive);
-			assert.equal(proof.length, 56);
-			assert.equal(courseButtons.length, 13);
+			assert.equal(proof.length, 80);
+			assert.equal(courseButtons.length, 17);
 			await writeFile(
 				join(output, "browser-proof.json"),
 				JSON.stringify({ profiles: proof, courseButtons }, null, 2)

@@ -1,45 +1,55 @@
 # Current course-audit checkpoint, 2026-10-14
 
-The full 77-course audit remains active. A fresh normalized-catalog check loads
-all 77 entries and finds all 392 directly linked local resources. That result
-covers catalog loading and local presence; external availability, complete
-reading, purposeful course distinctions and the full Zoom reconciliation still
-require their own evidence.
+The full 77-course audit remains active. The normalized catalog loads all 77
+entries and finds all 392 directly linked local resources. That evidence covers
+loading and local presence, not complete semantic, external, Juni or Zoom review.
 
-Six Linux packs now have accepted source and confirmed IDE import, save, review
-and exact-export workflows. Canonical review 209 is merged at
-`bc7a9b2cd50e2b359257ed590840466548dabc32`. Its exact-head acceptance includes
-48 responsive role profiles, 12 actual course actions, six notebook reuses,
-13 ZIPs, the preceding 14 native profiles/108 commands and three real proxy
-profiles/75 observations. All 42 immutable source files match the accepted
-revisions. Full units/API, 35 Cypress workflows and the complete 200-import,
-58-pack, 116-native-role USACO gate passed. The matching downstream review 93
-preserves all 97 overlay paths and has independent local and hosted Linux
-acceptance; its final broad workflow gate remains required before merge.
+The accepted seven-pack Apache site integration is merged in canonical review
+210 at 9bcb4e96d10a895fb05097511f75e4fabd027a7b and downstream review 94 at
+585496577814f998f4b7badf6bf8a4ccf6c3f87f. Required checks include full units,
+35 Cypress workflows and the complete 200-import, 58-pack, 116-native-role USACO
+workflow. The exact tested trees and all 97 downstream overlay paths are
+preserved. Both merged branches are retired with recovery bundles.
 
-The Apache comparison source repair is merged at
-`883dce18a4c434b853423e280aa93c45e0ebdede`. Its complete reading, owned Apache and
-Nginx configurations, two host/page mappings and named learner DocumentRoot task
-pass three actual Linux profiles and 99 observations. Acceptance covers exact
-UTF-8 bodies, HEAD, loopback sockets/PIDs, missing and unknown-host cases,
-rejected configuration while existing servers continue, graceful root changes,
-restoration and cleanup. All 11 source hashes match the accepted artifact.
-The original files and the initial socket-check failure are retained.
+Systemd source review 6 is merged at
+80d1edc95b7152c55e2c000adda086c9cbadf545. The core reading is complete and uses
+neutral confirmation wording, with setup guarded against an existing lab.
+The two formerly identical log-counting placeholders now have different optional
+tasks: transfer a supplied working HTTP app into a user unit by correcting its
+working directory and app argument, and select an environment file through a
+reset/replacement drop-in without changing the base fragment. Original source
+is preserved. The source branch is retired with its tested tree unchanged.
 
-The Apache site candidate preserves the existing core lesson and all earlier
-lesson/progress identities. It imports the selected role's complete files and
-reading at that immutable revision, with the comparison record permitted only
-in Linux mode. The existing web-server notebook continues to reuse the separate
-reverse-proxy attempt. Source correctness is accepted. Local site acceptance passes 17 import/reading
-checks, 89 API save/review checks, lint, typecheck, build and all 56 responsive
-browser profiles, with 13 actual course actions and 15 exact ZIPs. Hosted
-exported-Linux acceptance remains required. Both lockfiles are unchanged.
+Source acceptance includes all earlier Linux gates, three core service manager
+profiles/223 observations and six supplemental manager profiles/359 observations.
+All 22 supplemental hashes match the accepted source. Actual evidence covers
+named startup/configuration failures, owned HTTP sockets and readiness, journal
+and UID/PID correlation, restarts, enabled/stopped state, environment precedence,
+fresh output before and after restart, invalid-setting recovery, drop-in rollback
+and six complete owned-lab cleanups. App-only checks remain separate evidence.
 
-Remaining generic Linux packs, the systemd service exercise, other course
-families, archived external resources and the full Juni/Zoom reconciliation
-remain within the audit. Tagged native release provenance and public activation
-remain separate milestones. The current work does not establish full audit
-completion.
+Canonical review 211 is being updated to ten accepted packs at their immutable
+revisions. It preserves every published lesson/progress identifier, keeps both
+extra service tasks optional, and reuses the core attempt only for the matching
+troubleshooting notebook. Each task opens its relevant app, unit or drop-in after
+consent; save, review and export retain complete reading and selected-role files.
+The new environment examples and evidence records are permitted only in Linux
+mode. Local site acceptance passes 297 front-end checks (including all course-quality
+checks), 101 API checks, lint, typecheck and build, plus 80 role/theme/viewport
+browser profiles, 17 actual course actions, seven notebook reuses and 21 ZIPs.
+All 94 role-file comparisons match 84 unique source files. The unit and drop-in
+open directly for the named tasks. Phone and desktop screenshots are inspected. Exported native validation must run
+three core and six supplemental profiles on an actual Linux user manager.
+
+The earlier eight-pack site gate passed actual core manager operation, but broad
+copy/quality checks caught wording in its source reading. The accepted revision
+above addresses both issues. Full course-quality and exact-head hosted gates
+remain required for the ten-pack candidate. Both manifests and lockfiles are
+unchanged; no new native release or public activation is claimed.
+
+Remaining Linux and other course-family findings, external resources and full
+Juni/Zoom reconciliation stay within scope. This checkpoint does not establish
+full audit completion.
 
 ## Earlier source checkpoint, 2026-10-13
 

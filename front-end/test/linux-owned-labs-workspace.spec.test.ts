@@ -241,6 +241,21 @@ it("retains literal Linux names and rejects unsafe paths and unverified imports"
 	expect(normalizePythonFileName("app 1.py")).toBe("app_1.py");
 	expect(isValidPythonFileName("main.html")).toBe(false);
 	expect(isValidPythonFileName("Makefile.sh", "cpp")).toBe(false);
+	for (const name of [
+		"starter/service-notes.md",
+		"starter/service-transfer-notes.md",
+		"solution/service-extension-notes.md",
+		"starter/transfer.env.example",
+		"solution/base.env.example",
+		"starter/override.env.example",
+		"solution/service-notes.md",
+		"starter/heartbeat.env.example",
+		"solution/heartbeat.env.example"
+	]) {
+		expect(isValidPythonFileName(name, "linux"), name).toBe(true);
+		expect(isValidPythonFileName(name, "python"), name).toBe(false);
+		expect(isValidPythonFileName(name, "cpp"), name).toBe(false);
+	}
 	expect(isValidPythonFileName("starter/compare-notes.md", "linux")).toBe(
 		true
 	);
@@ -258,6 +273,7 @@ it("retains literal Linux names and rejects unsafe paths and unverified imports"
 		"starter\\task.sh",
 		"starter/reports/app\t1.log",
 		"starter/notes.md",
+		"starter/other.env.example",
 		"images/task.sh",
 		"pgzero.py",
 		"starter/reports/app 1.py"

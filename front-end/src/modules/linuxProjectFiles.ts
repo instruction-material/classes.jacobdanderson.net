@@ -3,9 +3,12 @@ export const linuxFileSegmentPattern = /^\w(?:[\w .-]*[\w.-])?$/;
 
 export function isLinuxProjectTextPath(value: string) {
 	return (
+		/^(?:starter|solution)\/(?:heartbeat|transfer|base|override)\.env\.example$/.test(
+			value
+		) ||
 		/\.(?:sh|log|conf|service|timer|html)$/i.test(value) ||
 		value.split("/").at(-1) === "crontab.example" ||
-		/^(?:starter|solution)\/(?:permissions|compare-notes)\.md$/.test(
+		/^(?:starter|solution)\/(?:permissions|compare-notes|service-notes|service-transfer-notes|service-extension-notes)\.md$/.test(
 			value
 		) ||
 		/^(?:starter|solution)\/reports\/[^/]+\.txt$/.test(value)
