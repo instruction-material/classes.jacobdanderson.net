@@ -2240,3 +2240,43 @@ The site imports all eight selected-role files plus the complete guide after exp
 Replace the two generic Unit 12 arithmetic exercises with an optional static binary comparison and a distinct optional runtime trace, preserving both published lesson identifiers. Both import the accepted working program at fd561a16c6855b7816850eaf3aa6206b6fa895da; the static workspace opens analysis.md and the companion opens trace.md, with separate saved attempts and explicit source consent. The complete build guide and selected-role code/worksheets are retained in each export.
 
 Native source acceptance covers both compilers, three controlled profiles at both optimization levels for both roles, 241,896 cases, seven rejected regressions per compiler, 100 retained raw observation files and four GDB traces containing the observed randomization setting. Handwritten bytes match an independently assembled Linux ELF object. The source collection builds 24 demos. Site acceptance must cover thirteen assignment workspaces in 104 role/theme/viewport profiles, 27 exact ZIPs and 24 unique-pack native proofs totaling 1,364,464 cases. Full catalog/Juni/Zoom completion and public activation remain unproven.
+
+
+### Logging: scoped incidents, application records and disposable retention
+
+- Replaced the three duplicate logging source packs with distinct required and
+  optional work. The core selects an incident by user unit, boot and time window;
+  transfer classifies completed application responses by numeric status; retention
+  observes two compressed archives with real logrotate. The notebook continues the
+  core attempt. Existing lesson and progress identities remain unchanged.
+- Pinned the three packs and the copied native verifier to accepted source
+  `bbb586068e7cdfb6260153f33a01b7d1d0260941`, reachable from source main
+  `19dba7c998fc3b35f03d52487398a4bab7c522b3`. All 25 source files are anonymously
+  fetchable with exact hashes. Readings include complete setup, predictions,
+  changed cases, language explanations, evidence records and cleanup.
+- Corrected recovery chronology in both analyzers. A newer relevant failure
+  reopens the case; an earlier successful retry no longer hides it. The journal
+  retains both first and latest diagnostics. Source acceptance covers nine native
+  profiles and 148 observations, including actual reopened journal cases,
+  UID/PID/boot/priority, invocation recovery, compressed contents and six cleanups.
+- Expanded the catalog integration from ten to thirteen verified packs, preserving
+  all prior pins and adding only the named Linux evidence-note paths. The
+  retention project opens its policy directly. Focused acceptance passes 303
+  frontend checks including the complete catalog quality and implementation
+  suites, plus 113 API preservation/review checks, lint, typecheck, build, workflow
+  validation and unchanged-lockfile provenance.
+- Browser acceptance passes 104 responsive role profiles, 21 actual course
+  actions and eight notebook reuses. All 27 ZIP downloads preserve 122 role-file
+  comparisons against 109 immutable Git source files. Phone core and desktop
+  retention captures were inspected. Hosted native acceptance of the actual site
+  exports remains required before merge. The
+  broader 77-course/Juni/Zoom audit and 39 remaining generic Linux references
+  remain open; this section does not establish public activation.
+
+- Retained native evidence exposed manager entries whose own unit was init.scope
+  while USER_UNIT named the investigated service. Both unit fields now participate
+  in selection before boot/time filtering. The redacted fixture exercises that
+  conflict, and two real completed roles each include six manager entries in their
+  ten-record report. The repinned integration passes fresh course, API, lint, type, build and
+  lockfile checks. Responsive import/save/export acceptance is retained with the
+  exact source hashes; hosted export acceptance remains required before merge.

@@ -295,7 +295,7 @@ jobs:
             - name: Prepare the disposable Linux user manager and journal
               run: |
                   sudo apt-get update
-                  sudo apt-get install --no-install-recommends --yes dbus-user-session
+                  sudo apt-get install --no-install-recommends --yes dbus-user-session logrotate
                   native_lab_uid=$(id -u)
                   native_lab_user=$(id -un)
                   native_lab_runtime=/run/user/$native_lab_uid
