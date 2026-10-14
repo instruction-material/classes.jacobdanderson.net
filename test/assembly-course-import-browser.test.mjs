@@ -27,7 +27,8 @@ const fixtures = await Promise.all(
 		"assembly-reverse-contracts.json",
 		"assembly-stack-contracts.json",
 		"assembly-compiler-contracts.json",
-		"assembly-debug-contracts.json"
+		"assembly-debug-contracts.json",
+		"assembly-performance-contracts.json"
 	].map(async name =>
 		JSON.parse(
 			await readFile(
@@ -88,13 +89,14 @@ const workflowDefinitions = {
 		referenceToken: "10,012"
 	},
 	"ASM-08-unit-9-reading-compiler-output": { primary: "model.c", taskFile: "analysis.md", title: "Core Project: Reading Compiler Output", lesson: "assembly-unit-9-reading-compiler-output-assembly-unit-9-reading-compiler-output-curriculum-core-project-reading-compiler-output", referenceToken: "10,013", starterToken: "analysis.md" },
-	"ASM-09-unit-10-debugging-at-instruction-level": { primary: "routine.S", taskFile: "analysis.md", title: "Core Project: Debugging at Instruction Level", lesson: "assembly-unit-10-debugging-at-instruction-level-assembly-unit-10-debugging-at-instruction-level-curriculum-core-project-debugging-at-instruction-level", referenceToken: "10,019", starterToken: "exits 1" }
+	"ASM-09-unit-10-debugging-at-instruction-level": { primary: "routine.S", taskFile: "analysis.md", title: "Core Project: Debugging at Instruction Level", lesson: "assembly-unit-10-debugging-at-instruction-level-assembly-unit-10-debugging-at-instruction-level-curriculum-core-project-debugging-at-instruction-level", referenceToken: "10,019", starterToken: "exits 1" },
+	"ASM-10-unit-11-performance-and-code-shape": { primary: "loops.S", taskFile: "analysis.md", title: "Core Project: Performance and Code Shape", lesson: "assembly-unit-11-performance-and-code-shape-assembly-unit-11-performance-and-code-shape-curriculum-core-project-performance-and-code-shape", referenceToken: "10,026", starterToken: "analysis.md" }
 };
 
 assert.equal(
 	fixtures.length,
-	10,
-	"All ten verified packs require browser coverage"
+	11,
+	"All eleven verified packs require browser coverage"
 );
 assert.deepEqual(
 	fixtures.map(row => row.pack).sort(),

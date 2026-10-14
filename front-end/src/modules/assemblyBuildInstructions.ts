@@ -7,6 +7,7 @@ import {
 	assemblyDebugPack,
 	assemblyHelperPack,
 	assemblyParserPack,
+	assemblyPerformancePack,
 	assemblyReversePack,
 	assemblyStackPack,
 	assemblyStringPack
@@ -195,6 +196,32 @@ export function assemblyBuildInstructions(
 			selected.role === "starter"
 				? "Record the failing trace in analysis.md before repairing DEBUG_SIGNED_BRANCH in routine.S. The untouched demo exits 1 with observed=0 expected=2; retain that evidence, make the minimal signed-branch correction and repeat the same trace."
 				: "The reference returns observed=2 expected=2 and passes 10,019 cases. Compare the saved faulty/corrected instruction states; passing code alone does not complete analysis.md."
+		];
+	}
+	if (
+		selected?.pack === assemblyPerformancePack &&
+		files.some(file => file.name === `${selected.role}/CMakeLists.txt`)
+	) {
+		return [
+			...lines,
+			`From the extracted project folder: cd ${selected.role}`,
+			'cmake -S . -B build-debug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang -DCMAKE_C_FLAGS_DEBUG="-O0 -g"',
+			"cmake --build build-debug",
+			"ctest --test-dir build-debug --output-on-failure",
+			"./build-debug/assembly_performance --example",
+			'cmake -S . -B build-release -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang -DCMAKE_C_FLAGS_RELEASE="-O2 -g -DNDEBUG"',
+			"cmake --build build-release",
+			"ctest --test-dir build-release --output-on-failure",
+			"./build-release/assembly_performance --benchmark > release-default.csv",
+			"./build-release/assembly_performance --benchmark 64 3 2 > release-small.csv",
+			"Both roles provide a working baseline. The example returns branch=3 cmov=3 indexed=3 expected=3; CTest checks 11 fixed and guard-page cases.",
+			"Native validation additionally exercised 10,015 independent cases, for 10,026 per profile, with six preserved registers.",
+			"The default benchmark records 60 rows and the changed-count example records 24. Keep matching checksums, every trial, compiler/flags and machine context; no elapsed-time target or universal winner is supplied.",
+			"Compare identity/permuted indexed access on nonnegative values first. Permuting mixed signs also changes branch outcomes, and sequential/indexed comparisons add index-load overhead.",
+			"Read ../README.md for the exact modulo/count/index contract, actual debugger steps, monotonic-clock limitations and the complete measurement/interpretation sequence.",
+			selected.role === "starter"
+				? "Complete analysis.md with predictions, successful correctness evidence, actual repeated measurements, instruction mapping, a changed case and a bounded conclusion."
+				: "The reference analysis.md explains invariants and confounders; retain current raw measurements and machine context separately."
 		];
 	}
 	if (

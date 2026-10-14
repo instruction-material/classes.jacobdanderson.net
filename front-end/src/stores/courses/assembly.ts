@@ -6,6 +6,7 @@ import { assemblyDebugProjectReading } from "./assemblyDebugProjectReading";
 import { assemblyHelperProjectReading } from "./assemblyHelperProjectReading";
 import { assemblyOpeningProjectReading } from "./assemblyOpeningProjectReading";
 import { assemblyParserProjectReading } from "./assemblyParserProjectReading";
+import { assemblyPerformanceProjectReading } from "./assemblyPerformanceProjectReading";
 import { assemblyReverseProjectReading } from "./assemblyReverseProjectReading";
 import { assemblyStackProjectReading } from "./assemblyStackProjectReading";
 import { assemblyStringProjectReading } from "./assemblyStringProjectReading";
@@ -799,27 +800,22 @@ const assemblySourceCourse: RawCourse = {
 				},
 				{
 					title: "Unit 11: Performance and Code Shape: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle: "Unit 11: Performance and Code Shape",
-						projectKind: "core",
-						hasReference: true
-					}),
+					id: "assembly-unit-11-performance-and-code-shape-curriculum-core-project-performance-and-code-shape",
+					ideImport: true,
+					content: assemblyPerformanceProjectReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-10-unit-11-performance-and-code-shape/starter",
+						"https://github.com/instruction-material/Assembly/tree/dfe6d181f0e6e793aebf78270f7c391e3a0225aa/ASM-10-unit-11-performance-and-code-shape/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-10-unit-11-performance-and-code-shape/solution"
+						"https://github.com/instruction-material/Assembly/tree/dfe6d181f0e6e793aebf78270f7c391e3a0225aa/ASM-10-unit-11-performance-and-code-shape/solution"
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Register-Trace Worksheet: Performance and Code Shape",
 					content:
-						"Use a focused trace worksheet for performance and code shape that records the key registers, flag changes, memory addresses, and one plain-language explanation of why the control flow moved the way it did. Focus especially on branch frequency, memory-access patterns, and which cost assumptions came from evidence versus guesswork so the worksheet narrates instruction flow rather than only skimming mnemonics. A complete entry records the instruction address, the value before the instruction, the value after the instruction, and the evidence that explains the next branch, call, or return.",
+						"Optional transfer after the required performance analysis: inspect the conditional-move or indexed routine on a different fixture/order. Record the actual instruction address, value before the instruction, value after the instruction, flags and evidence for the next branch, call, or return. For indexed access, also explain the index load and effective data address. Compare nonnegative and mixed-sign outcomes, and distinguish branch-order changes from access-order changes. This companion extends the core branch trace; it links to the guide for native commands.",
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-10-unit-11-performance-and-code-shape/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-10-unit-11-performance-and-code-shape/solution"
+						"https://github.com/instruction-material/Assembly/blob/dfe6d181f0e6e793aebf78270f7c391e3a0225aa/ASM-10-unit-11-performance-and-code-shape/README.md"
 				},
 				{
 					title: "Code Shape Transfer Practice",
