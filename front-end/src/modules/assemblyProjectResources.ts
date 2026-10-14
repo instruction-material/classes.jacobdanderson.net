@@ -31,6 +31,9 @@ export const assemblyReverseRevision =
 export const assemblyReversePack = "ASM6-Reverse-Engineering-Toy-Program";
 export const assemblyStackRevision = "005e375894ade846a1077e96d4880faea680aed8";
 export const assemblyStackPack = "ASM-07-unit-5-the-stack-and-function-calls";
+export const assemblyCompilerRevision =
+	"4fabbbe92deb893d14e2572121fc2393ae426c7b";
+export const assemblyCompilerPack = "ASM-08-unit-9-reading-compiler-output";
 export const assemblyVerifiedPacks = [
 	{
 		pack: assemblyOpeningPack,
@@ -121,6 +124,19 @@ export const assemblyVerifiedPacks = [
 			"abi_checks.S",
 			"tests.c",
 			"CMakeLists.txt"
+		]
+	},
+	{
+		pack: assemblyCompilerPack,
+		revision: assemblyCompilerRevision,
+		roleFiles: [
+			"model.c",
+			"model.h",
+			"main.c",
+			"tests.c",
+			"abi_checks.S",
+			"CMakeLists.txt",
+			"analysis.md"
 		]
 	}
 ] as const;

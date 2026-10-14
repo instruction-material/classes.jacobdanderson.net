@@ -1,6 +1,7 @@
 import type { RawCourse } from "./types";
 import { assemblyArrayProjectReading } from "./assemblyArrayProjectReading";
 import { assemblyCalculatorProjectReading } from "./assemblyCalculatorProjectReading";
+import { assemblyCompilerProjectReading } from "./assemblyCompilerProjectReading";
 import { assemblyHelperProjectReading } from "./assemblyHelperProjectReading";
 import { assemblyOpeningProjectReading } from "./assemblyOpeningProjectReading";
 import { assemblyParserProjectReading } from "./assemblyParserProjectReading";
@@ -657,27 +658,22 @@ const assemblySourceCourse: RawCourse = {
 				},
 				{
 					title: "Unit 9: Reading Compiler Output: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle: "Unit 9: Reading Compiler Output",
-						projectKind: "core",
-						hasReference: true
-					}),
+					id: "assembly-unit-9-reading-compiler-output-curriculum-core-project-reading-compiler-output",
+					ideImport: true,
+					content: assemblyCompilerProjectReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-08-unit-9-reading-compiler-output/starter",
+						"https://github.com/instruction-material/Assembly/tree/4fabbbe92deb893d14e2572121fc2393ae426c7b/ASM-08-unit-9-reading-compiler-output/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-08-unit-9-reading-compiler-output/solution"
+						"https://github.com/instruction-material/Assembly/tree/4fabbbe92deb893d14e2572121fc2393ae426c7b/ASM-08-unit-9-reading-compiler-output/solution"
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Register-Trace Worksheet: Reading Compiler Output",
 					content:
-						"Use a focused trace worksheet for reading compiler output that records the key registers, flag changes, memory addresses, and one plain-language explanation of why the control flow moved the way it did. Focus especially on source-to-instruction mapping, optimization differences, and what evidence proves two versions still implement the same logic so the worksheet narrates instruction flow rather than only skimming mnemonics. A complete entry records the instruction address, the value before the instruction, the value after the instruction, and the evidence that explains the next branch, call, or return.",
+						"Optional follow-up after the required analysis.md evidence: compare another compiler or a separately changed C expression. Record the target, flags, input, observed instruction addresses and entry/return values, then explain which observation changed. Keep the required baseline comparison and saved learner worksheet intact.",
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-08-unit-9-reading-compiler-output/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-08-unit-9-reading-compiler-output/solution"
+						"https://github.com/instruction-material/Assembly/blob/4fabbbe92deb893d14e2572121fc2393ae426c7b/ASM-08-unit-9-reading-compiler-output/README.md"
 				},
 				{
 					title: "Compiler Output Transfer Practice",

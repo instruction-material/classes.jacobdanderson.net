@@ -2163,3 +2163,9 @@ experiments retain the documented API and file-handling contracts.
 Native validation includes fourteen independent learner completions as well as
 the references. The broader 77-course audit, Juni/Zoom reconciliation and
 authenticated release/production verification remain active.
+
+## Compiler-output observation project
+
+The Unit 9 core project imports the exact corrected compiler pack at `4fabbbe92deb893d14e2572121fc2393ae426c7b`. Both roles provide a working C baseline; the required learner task is the separate `analysis.md` worksheet. The full reading explains modular arithmetic, real -O0/-O2 assembly generation, linked disassembly, predictions, changed cases and debugger evidence. The optional trace item now describes a follow-up comparison and links to the guide without starting another workspace.
+
+Pending site verification must cover all nine packs: 72 browser profiles/screenshots, 19 actual ZIP exports and 18 Clang/GCC native plus debugger proofs, including the compiler baseline and saved worksheet. Source acceptance covers 80,104 compiler cases and eight generated listings; it does not imply site acceptance or worksheet completion. Local validation passed all 72 browser profiles with 72 screenshots and 19 exact ZIPs, four compiler workflow tests, the account save/share/review API tests, lint, type checks and the build. Hosted native export/debugger and complete integration gates remain pending.

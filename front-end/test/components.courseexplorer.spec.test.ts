@@ -97,6 +97,13 @@ describe("CourseExplorer.vue", () => {
 				module: "unit-5-the-stack-and-function-calls",
 				item: "assembly-unit-5-the-stack-and-function-calls-curriculum-core-project-the-stack-and-function-calls",
 				revision: "005e375894ade846a1077e96d4880faea680aed8"
+			},
+			{
+				role,
+				pack: "ASM-08-unit-9-reading-compiler-output",
+				module: "unit-9-reading-compiler-output",
+				item: "assembly-unit-9-reading-compiler-output-curriculum-core-project-reading-compiler-output",
+				revision: "4fabbbe92deb893d14e2572121fc2393ae426c7b"
 			}
 		])
 	)(
