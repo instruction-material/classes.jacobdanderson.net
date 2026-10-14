@@ -77,7 +77,7 @@ describe.each([
 		reading: "assemblyParserProjectReading",
 		token: "9,157",
 		marker: "PARSE_BOUND",
-		contract: "INT64_MIN",
+		contract: "-9223372036854775808",
 		task: "Complete PARSE_SIGN and PARSE_BOUND in parser.S; equality and the digit loop are present. The untouched demo exits 78 with no successful rows.",
 		reference:
 			"The reference prints sum=15, max=12 and xor=-9, accepts the full signed 64-bit range and passes 9,157 parser/equality cases."
@@ -196,6 +196,13 @@ describe.each([
 		);
 		expect(project.content).toContain(row.marker);
 		expect(project.content).toContain(row.contract);
+		if (row.label === "parser") {
+			expect(project.content).toContain("9223372036854775807");
+			expect(project.content).toContain(
+				"without changing the output slot"
+			);
+		}
+
 		const guide = course.modules
 			.flatMap((module) => module.supplementalProjects)
 			.find((item) =>
