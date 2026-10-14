@@ -31,9 +31,40 @@ proxy_identity = json.loads((fixture_dir / "linux-reverse-proxy-source-verifier.
 proxy_verifier = (fixture_dir / "linux-reverse-proxy-source-verifier.py").read_bytes()
 assert hashlib.sha256(proxy_verifier).hexdigest() == proxy_identity["sha256"]
 assert proxy_packs[0]["revision"] == proxy_identity["revision"]
+apache_packs = [pack for pack in packs if pack["pack"] == "LS4-Apache-Virtual-Host-Compare"]
+assert len(apache_packs) == 1
+apache_identity = json.loads((fixture_dir / "linux-apache-source-verifier.json").read_text())
+apache_verifier = (fixture_dir / "linux-apache-source-verifier.py").read_bytes()
+assert hashlib.sha256(apache_verifier).hexdigest() == apache_identity["sha256"]
+assert apache_packs[0]["revision"] == apache_identity["revision"]
 args.proof = args.proof.resolve()
 args.proof.parent.mkdir(parents=True, exist_ok=True)
 archives = []
+
+
+def run_pinned_contract(work, name, source, proof, timeout):
+    script = work / "test" / name
+    script.write_bytes(source)
+    command = [sys.executable, str(script), "--proof", str(proof)]
+    started = time.time()
+    child = subprocess.Popen(command, cwd=work, start_new_session=True)
+    cleanup = "process exited"
+    try:
+        status = child.wait(timeout=timeout)
+    except BaseException:
+        os.killpg(child.pid, signal.SIGTERM)
+        try:
+            child.wait(timeout=3)
+        except subprocess.TimeoutExpired:
+            os.killpg(child.pid, signal.SIGKILL)
+            child.wait()
+        cleanup = "process group terminated"
+        raise
+    finally:
+        with args.proof.with_suffix(".processes.jsonl").open("a") as stream:
+            stream.write(json.dumps({"parentTaskId": os.environ.get("CLASSES_FAMILY_TASK_ID", "linux-site-export-ci"), "parentPid": os.getpid(), "pid": child.pid, "command": command, "cwd": str(work), "startTime": started, "endTime": time.time(), "exitCode": child.returncode, "timeoutSeconds": timeout, "childProcessGroupCleanup": cleanup}) + "\n")
+    assert status == 0
+    return json.loads(proof.read_text())
 
 with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
     work = Path(directory)
@@ -61,67 +92,28 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
             archives.append({"pack": pack["pack"], "role": role,
                              "sha256": hashlib.sha256(archive_path.read_bytes()).hexdigest(),
                              "files": sorted(expected)})
-    assert len(archives) == 12
+    assert len(archives) == 14
     (work / "test").mkdir()
-    script = work / "test" / "verify_owned_labs.py"
-    script.write_bytes(verifier)
     native_proof = args.proof.with_name(args.proof.stem + "-native.json")
-    command = [sys.executable, str(script), "--proof", str(native_proof)]
-    started = time.time()
-    child = subprocess.Popen(command, cwd=work, start_new_session=True)
-    cleanup = "process exited"
-    try:
-        status = child.wait(timeout=300)
-    except BaseException:
-        os.killpg(child.pid, signal.SIGTERM)
-        try:
-            child.wait(timeout=3)
-        except subprocess.TimeoutExpired:
-            os.killpg(child.pid, signal.SIGKILL)
-            child.wait()
-        cleanup = "process group terminated"
-        raise
-    finally:
-        args.proof.with_suffix(".processes.jsonl").write_text(json.dumps({
-            "parentTaskId": os.environ.get("CLASSES_FAMILY_TASK_ID", "linux-site-export-ci"),
-            "parentPid": os.getpid(), "pid": child.pid, "command": command,
-            "cwd": str(work), "startTime": started, "endTime": time.time(),
-            "exitCode": child.returncode, "timeoutSeconds": 300,
-            "childProcessGroupCleanup": cleanup}) + "\n")
-    assert status == 0
-    native = json.loads(native_proof.read_text())
+    native = run_pinned_contract(work, "verify_owned_labs.py", verifier, native_proof, 300)
     assert len(native["sourceHashes"]) == 35
     assert native["accepted"] and native["commandCount"] == 108
     assert len(native["profiles"]) == 14
     expected_hashes = {pack["pack"] + "/" + name: file["sha256"]
                        for pack in legacy_packs for name, file in pack["files"].items()}
     assert native["sourceHashes"] == expected_hashes
-    proxy_script = work / "test" / "verify_reverse_proxy.py"
-    proxy_script.write_bytes(proxy_verifier)
     proxy_proof = args.proof.with_name(args.proof.stem + "-proxy-native.json")
-    proxy_command = [sys.executable, str(proxy_script), "--proof", str(proxy_proof)]
-    proxy_started = time.time()
-    proxy_child = subprocess.Popen(proxy_command, cwd=work, start_new_session=True)
-    proxy_cleanup = "process exited"
-    try:
-        proxy_status = proxy_child.wait(timeout=180)
-    except BaseException:
-        os.killpg(proxy_child.pid, signal.SIGTERM)
-        try:
-            proxy_child.wait(timeout=3)
-        except subprocess.TimeoutExpired:
-            os.killpg(proxy_child.pid, signal.SIGKILL)
-            proxy_child.wait()
-        proxy_cleanup = "process group terminated"
-        raise
-    finally:
-        with args.proof.with_suffix(".processes.jsonl").open("a") as stream:
-            stream.write(json.dumps({"parentTaskId": os.environ.get("CLASSES_FAMILY_TASK_ID", "linux-proxy-site-export-ci"), "parentPid": os.getpid(), "pid": proxy_child.pid, "command": proxy_command, "cwd": str(work), "startTime": proxy_started, "endTime": time.time(), "exitCode": proxy_child.returncode, "timeoutSeconds": 180, "childProcessGroupCleanup": proxy_cleanup}) + "\n")
-    assert proxy_status == 0
-    proxy_native = json.loads(proxy_proof.read_text())
+    proxy_native = run_pinned_contract(work, "verify_reverse_proxy.py", proxy_verifier, proxy_proof, 180)
     assert proxy_native["accepted"] and not proxy_native["appOnly"]
     assert len(proxy_native["profiles"]) == 3 and len(proxy_native["observations"]) == 75
     assert proxy_native["sourceHashes"] == {name: file["sha256"] for name, file in proxy_packs[0]["files"].items()}
+    apache_proof = args.proof.with_name(args.proof.stem + "-apache-native.json")
+    apache_native = run_pinned_contract(work, "verify_apache_comparison.py", apache_verifier, apache_proof, 180)
+    assert apache_native["accepted"] and apache_native["sourceUnchanged"]
+    assert len(apache_native["profiles"]) == 3 and len(apache_native["observations"]) == 99
+    assert apache_native["sourceHashes"] == {name: file["sha256"] for name, file in apache_packs[0]["files"].items()}
+    assert all(profile["actualLinuxSockets"] and profile["rejectedSyntaxLeavesServing"] and profile["ownedListenersRemoved"] for profile in apache_native["profiles"])
+    assert sum(profile["changedAndRestored"] for profile in apache_native["profiles"]) == 2
     default = work / "default-workspace"
     default.mkdir()
     default_archive = args.archives / "default-linux.zip"
@@ -167,6 +159,8 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
                                      "nativeProof": str(native_proof),
                                      "proxySourceIdentity": proxy_identity,
                                      "proxyNativeProof": str(proxy_proof),
+                                     "apacheSourceIdentity": apache_identity,
+                                     "apacheNativeProof": str(apache_proof),
                                      "defaultWorkspace": {"fileHashes": default_hashes,
                                                           "stdout": output.decode(),
                                                           "status": default_child.returncode},

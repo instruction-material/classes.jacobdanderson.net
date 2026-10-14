@@ -294,9 +294,9 @@ jobs:
 
             - name: Verify exported Linux lab contracts
               run: |
-                  if ! command -v nginx >/dev/null 2>&1; then
+                  if ! command -v nginx >/dev/null 2>&1 || ! command -v apache2 >/dev/null 2>&1; then
                     sudo apt-get update
-                    sudo apt-get install --no-install-recommends --yes nginx
+                    sudo apt-get install --no-install-recommends --yes nginx apache2-bin
                   fi
                   python3 test/linux-exported-contracts.py --archives output/linux-exports --proof output/linux-exports/exported-contracts.json
 

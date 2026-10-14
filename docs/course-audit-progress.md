@@ -1,4 +1,47 @@
-# Current course-audit source checkpoint, 2026-10-13
+# Current course-audit checkpoint, 2026-10-14
+
+The full 77-course audit remains active. A fresh normalized-catalog check loads
+all 77 entries and finds all 392 directly linked local resources. That result
+covers catalog loading and local presence; external availability, complete
+reading, purposeful course distinctions and the full Zoom reconciliation still
+require their own evidence.
+
+Six Linux packs now have accepted source and confirmed IDE import, save, review
+and exact-export workflows. Canonical review 209 is merged at
+`bc7a9b2cd50e2b359257ed590840466548dabc32`. Its exact-head acceptance includes
+48 responsive role profiles, 12 actual course actions, six notebook reuses,
+13 ZIPs, the preceding 14 native profiles/108 commands and three real proxy
+profiles/75 observations. All 42 immutable source files match the accepted
+revisions. Full units/API, 35 Cypress workflows and the complete 200-import,
+58-pack, 116-native-role USACO gate passed. The matching downstream review 93
+preserves all 97 overlay paths and has independent local and hosted Linux
+acceptance; its final broad workflow gate remains required before merge.
+
+The Apache comparison source repair is merged at
+`883dce18a4c434b853423e280aa93c45e0ebdede`. Its complete reading, owned Apache and
+Nginx configurations, two host/page mappings and named learner DocumentRoot task
+pass three actual Linux profiles and 99 observations. Acceptance covers exact
+UTF-8 bodies, HEAD, loopback sockets/PIDs, missing and unknown-host cases,
+rejected configuration while existing servers continue, graceful root changes,
+restoration and cleanup. All 11 source hashes match the accepted artifact.
+The original files and the initial socket-check failure are retained.
+
+The Apache site candidate preserves the existing core lesson and all earlier
+lesson/progress identities. It imports the selected role's complete files and
+reading at that immutable revision, with the comparison record permitted only
+in Linux mode. The existing web-server notebook continues to reuse the separate
+reverse-proxy attempt. Source correctness is accepted. Local site acceptance passes 17 import/reading
+checks, 89 API save/review checks, lint, typecheck, build and all 56 responsive
+browser profiles, with 13 actual course actions and 15 exact ZIPs. Hosted
+exported-Linux acceptance remains required. Both lockfiles are unchanged.
+
+Remaining generic Linux packs, the systemd service exercise, other course
+families, archived external resources and the full Juni/Zoom reconciliation
+remain within the audit. Tagged native release provenance and public activation
+remain separate milestones. The current work does not establish full audit
+completion.
+
+## Earlier source checkpoint, 2026-10-13
 
 The full 77-course audit remains active. Eight distinct Assembly source projects
 now have accepted native Linux x86-64 Clang/GCC contracts and real debugger

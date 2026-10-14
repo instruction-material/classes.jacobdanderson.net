@@ -22,6 +22,11 @@ const fixtures = JSON.parse(
 	)
 );
 const definitions = {
+	"LS4-Apache-Virtual-Host-Compare": [
+		"unit-11-web-servers",
+		"project-configure-an-apache-virtual-host-and-compare-it-to-nginx",
+		null
+	],
 	"LS3-Nginx-Reverse-Proxy-App": [
 		"unit-11-web-servers",
 		"project-run-a-small-app-behind-nginx",
@@ -270,6 +275,7 @@ test(
 									f =>
 										f.name.endsWith(".sh")
 										|| f.name.endsWith(".py")
+										|| f.name.endsWith(".conf")
 								).name
 							);
 							if (width < 900) {
@@ -444,6 +450,12 @@ test(
 								lessonReturn: true,
 								consentBeforeFetch: true
 							});
+							if (fixture.pack === "LS4-Apache-Virtual-Host-Compare") {
+								await page.screenshot({
+									path: join(output, `linux-apache-${role}-${width}-${theme}.png`),
+									fullPage: false
+								});
+							}
 						}
 					}
 				}
@@ -454,7 +466,7 @@ test(
 				let original;
 				for (const [id, reuse] of [
 					[itemID, false],
-					[notebookID, true]
+					...(notebook ? [[notebookID, true]] : [])
 				]) {
 					catalog = true;
 					sourceRequests = [];
@@ -560,8 +572,8 @@ test(
 				);
 			}
 			await writeFile(join(output, "default-linux.zip"), defaultArchive);
-			assert.equal(proof.length, 48);
-			assert.equal(courseButtons.length, 12);
+			assert.equal(proof.length, 56);
+			assert.equal(courseButtons.length, 13);
 			await writeFile(
 				join(output, "browser-proof.json"),
 				JSON.stringify({ profiles: proof, courseButtons }, null, 2)

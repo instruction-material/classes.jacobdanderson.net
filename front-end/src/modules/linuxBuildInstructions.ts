@@ -19,10 +19,17 @@ export function linuxBuildInstructions(files: PythonIdeFile[], url?: string) {
 	if (!files.some(file => file.name === script)) {
 		return [
 			...lines,
-			"The selected lab script is missing. Restore the selected role files and follow README.md."
+			"The selected lab file is missing. Restore the selected role files and follow README.md."
 		];
 	}
 	const commands: Record<string, string[]> = {
+		"LS4-Apache-Virtual-Host-Compare": [
+			"Read ../README.md for the owned-prefix setup and explicit Apache environment values before starting either server.",
+			'apache2 -f "$lab_root/apache.conf" -t',
+			'nginx -p "$lab_root/" -c nginx.conf -t',
+			"The untouched learner Apache primary host returns 404 for /index.html until its DocumentRoot task is complete; the supplied Nginx comparison and second host already serve their pages.",
+			"Compare exact bytes, Host routing, HEAD, missing files, real loopback sockets/PIDs, rejected configuration, graceful reload, restored roots and cleanup. Complete compare-notes.md with actual observations."
+		],
 		"LS3-Nginx-Reverse-Proxy-App": [
 			"APP_PORT=8081 python3 app.py",
 			"Keep the app in its terminal; use a second terminal for direct health and inspection requests before starting the owned Nginx prefix from README.md.",
