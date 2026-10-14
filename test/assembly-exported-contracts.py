@@ -4,20 +4,21 @@ import datetime
 import hashlib
 import json
 import os
-from pathlib import Path
 import signal
 import subprocess
 import tempfile
 import zipfile
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
-parser.add_argument("--project", choices=["opening", "calculator", "array", "string", "helper", "parser", "reverse", "stack", "compiler", "debug", "performance"], default="opening")
+parser.add_argument("--project", choices=["opening", "calculator", "array", "string", "helper", "parser", "reverse", "stack", "compiler", "debug", "performance", "hardening"], default="opening")
 parser.add_argument("--archives", type=Path, required=True)
 parser.add_argument("--cc", choices=["clang", "gcc"], required=True)
 parser.add_argument("--skip-debugger", action="store_true")
 parser.add_argument("--proof", type=Path, required=True)
 args = parser.parse_args()
+assert not (args.project == "hardening" and args.skip_debugger), "Hardening acceptance requires actual GDB setting and return traces"
 fixture = json.loads((ROOT / ("test/fixtures/assembly-" + args.project + "-contracts.json")).read_text())
 args.proof.parent.mkdir(parents=True, exist_ok=True)
 
@@ -38,7 +39,7 @@ def run(command, cwd):
         raise
     finally:
         with args.proof.with_suffix(".wrapper-processes.jsonl").open("a") as stream:
-            stream.write(json.dumps(dict(parentTaskId=os.environ.get("CLASSES_FAMILY_TASK_ID", "assembly-site-export"), command=command, cwd=str(cwd), pid=child.pid, startTime=start, endTime=datetime.datetime.now(datetime.timezone.utc).isoformat(), exitCode=child.returncode, timeoutSeconds=180, childProcessGroupCleanup=cleanup)) + "\n")
+            stream.write(json.dumps({"parentTaskId": os.environ.get("CLASSES_FAMILY_TASK_ID", "assembly-site-export"), "command": command, "cwd": str(cwd), "pid": child.pid, "startTime": start, "endTime": datetime.datetime.now(datetime.timezone.utc).isoformat(), "exitCode": child.returncode, "timeoutSeconds": 180, "childProcessGroupCleanup": cleanup}) + "\n")
     assert child.returncode == 0, (command, child.returncode, (out + err).decode(errors="replace"))
     return out
 
@@ -87,4 +88,10 @@ with tempfile.TemporaryDirectory(prefix="assembly-site-export-") as work:
     receipt["siteExportedFiles"] = hashes
     receipt["sourceRevision"] = fixture["revision"]
     args.proof.write_text(json.dumps(receipt, indent=2) + "\n")
-print(json.dumps(dict(compiler=args.cc, acceptedProfiles=len(receipt["acceptedProfiles"]), nativeCases=sum(p[{"opening": "arithmeticCases", "calculator": "arithmeticCases", "array": "arrayCases", "string": "stringCases", "helper": "helperCases", "parser": "parserCases", "reverse": "reverseCases", "stack": "stackCases", "compiler": "compilerCases", "debug": "debugCases", "performance": "performanceCases"}[args.project]] for p in receipt["acceptedProfiles"]), debugger=receipt["debugger"]["status"], exactSiteExportedFiles=len(hashes))))
+if args.project == "hardening":
+    assert receipt["realGdb"] and len(receipt["traces"]) == 2
+    summary = {"compiler": args.cc, "acceptedProfiles": len(receipt["profiles"]), "nativeCases": receipt["nativeCases"], "debugger": "accepted", "exactSiteExportedFiles": len(hashes)}
+else:
+    fields = {"opening": "arithmeticCases", "calculator": "arithmeticCases", "array": "arrayCases", "string": "stringCases", "helper": "helperCases", "parser": "parserCases", "reverse": "reverseCases", "stack": "stackCases", "compiler": "compilerCases", "debug": "debugCases", "performance": "performanceCases"}
+    summary = {"compiler": args.cc, "acceptedProfiles": len(receipt["acceptedProfiles"]), "nativeCases": sum(p[fields[args.project]] for p in receipt["acceptedProfiles"]), "debugger": receipt["debugger"]["status"], "exactSiteExportedFiles": len(hashes)}
+print(json.dumps(summary))

@@ -5,6 +5,8 @@ import {
 	assemblyCompilerPack,
 	assemblyCourseResource,
 	assemblyDebugPack,
+	assemblyHardeningPack,
+	assemblyHardeningTracePack,
 	assemblyHelperPack,
 	assemblyParserPack,
 	assemblyPerformancePack,
@@ -222,6 +224,34 @@ export function assemblyBuildInstructions(
 			selected.role === "starter"
 				? "Complete analysis.md with predictions, successful correctness evidence, actual repeated measurements, instruction mapping, a changed case and a bounded conclusion."
 				: "The reference analysis.md explains invariants and confounders; retain current raw measurements and machine context separately."
+		];
+	}
+	if (
+		(selected?.pack === assemblyHardeningPack ||
+			selected?.pack === assemblyHardeningTracePack) &&
+		files.some(file => file.name === `${selected.role}/CMakeLists.txt`)
+	) {
+		return [
+			...lines,
+			`From the extracted project folder: cd ${selected.role}`,
+			"Both supplied programs are a working baseline. The task is recording and explaining binary evidence.",
+			"cmake -S . -B build-baseline -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang -DLAB_PROFILE=baseline",
+			"cmake --build build-baseline",
+			"ctest --test-dir build-baseline --output-on-failure",
+			"./build-baseline/assembly_hardening",
+			"cmake -S . -B build-guard -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang -DLAB_PROFILE=guard",
+			"cmake --build build-guard",
+			"ctest --test-dir build-guard --output-on-failure",
+			"cmake -S . -B build-guard-pie -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang -DLAB_PROFILE=guard-pie",
+			"cmake --build build-guard-pie",
+			"ctest --test-dir build-guard-pie --output-on-failure",
+			"./build-guard-pie/assembly_hardening ABC",
+			"Each profile passes 69 physical/fixed and 10,010 independent cases, for 10,079 per profile. Repeat both optimization levels and compilers as described in ../README.md.",
+			"The profiles isolate C stack guarding and position independence. Handwritten instructions remain unchanged; a guard is not a bounds or pointer-validity check.",
+			"Read ../README.md for the exact byte/count contract, all three profiles, function disassembly and GDB commands, including show disable-randomization. Record the observed policy and its limits.",
+			selected.pack === assemblyHardeningTracePack
+				? "Complete trace.md with actual entry registers, executed instructions, returns, changed inputs and debugger-policy evidence. This saved workspace is separate from the static analysis."
+				: "Complete analysis.md with predictions, exact build commands, function-scoped guard evidence, ELF types, unchanged results and bounded conclusions. The separate trace worksheet extends this investigation."
 		];
 	}
 	if (

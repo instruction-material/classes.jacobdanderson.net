@@ -89,35 +89,43 @@ describe("Python project routes", () => {
 		}));
 	});
 
-	it.each(["c", "assembly", "compiler"] as const)(
+	it.each([
+		"c",
+		"assembly",
+		"compiler",
+		"hardening",
+		"hardening-trace"
+	] as const)(
 		"stores exact nested %s pack files for user and course-code owners",
 		async mode => {
-			const requestedMode = mode === "compiler" ? "assembly" : mode;
+			const requestedMode = mode === "c" ? "c" : "assembly";
 			const fixture = JSON.parse(
 				readFileSync(
 					resolve(
 						process.cwd(),
-						mode === "compiler"
-							? "../test/fixtures/assembly-compiler-contracts.json"
-							: mode === "assembly"
-								? "../test/fixtures/assembly-opening-contracts.json"
-								: "../test/fixtures/c17-opening-contracts.json"
+						mode === "hardening" || mode === "hardening-trace"
+							? "../test/fixtures/assembly-hardening-contracts.json"
+							: mode === "compiler"
+								? "../test/fixtures/assembly-compiler-contracts.json"
+								: mode === "assembly"
+									? "../test/fixtures/assembly-opening-contracts.json"
+									: "../test/fixtures/c17-opening-contracts.json"
 					),
 					"utf8"
 				)
 			);
 			const pack =
-				mode === "compiler"
-					? "ASM-08-unit-9-reading-compiler-output"
-					: mode === "assembly"
-						? "ASM-04-asm0-setup-and-tooling"
-						: "CSE-06-unit-1-why-c-for-systems-work";
+				mode === "c"
+					? "CSE-06-unit-1-why-c-for-systems-work"
+					: fixture.pack;
 			const activeFileName =
-				mode === "compiler"
-					? "starter/analysis.md"
-					: mode === "assembly"
-						? "starter/routine.S"
-						: "starter/main.c";
+				mode === "hardening-trace"
+					? "starter/trace.md"
+					: mode === "compiler" || mode === "hardening"
+						? "starter/analysis.md"
+						: mode === "assembly"
+							? "starter/routine.S"
+							: "starter/main.c";
 			const files = Object.entries(
 				fixture.files as Record<string, { content: string }>
 			)
@@ -151,14 +159,49 @@ describe("Python project routes", () => {
 
 	it("requires text C code and preserves bounded safe-path rules", async () => {
 		await withPythonProjectRoute(async baseUrl => {
-			const source = { name: "main.c", content: "int main(void) { return 0; }" };
+			const source = {
+				name: "main.c",
+				content: "int main(void) { return 0; }"
+			};
 			const invalidFiles = [
-				[{ name: "main.c", content: "aW50IG1haW4=", encoding: "base64" }],
+				[
+					{
+						name: "main.c",
+						content: "aW50IG1haW4=",
+						encoding: "base64"
+					}
+				],
 				[{ name: "main.cpp", content: "int main() {}" }],
-				[source, { name: "reading.h", content: "YQ==", encoding: "base64" }],
-				[source, { name: "starter/CMakeLists.txt", content: "YQ==", encoding: "base64" }],
+				[
+					source,
+					{ name: "reading.h", content: "YQ==", encoding: "base64" }
+				],
+				[
+					source,
+					{
+						name: "starter/CMakeLists.txt",
+						content: "YQ==",
+						encoding: "base64"
+					}
+				],
 				[{ name: "README.md", content: "No source" }],
-				...["../main.c", "/main.c", "src//main.c", "images/main.c", "images/CMakeLists.txt", "src/notes.txt", "src/README.md", "turtle.py", "starter/../analysis.md", "starter/notes.md", "starter/nested/analysis.md", "images/analysis.md"].map(name => [source, { name, content: "" }])
+				...[
+					"../main.c",
+					"/main.c",
+					"src//main.c",
+					"images/main.c",
+					"images/CMakeLists.txt",
+					"src/notes.txt",
+					"src/README.md",
+					"turtle.py",
+					"starter/../analysis.md",
+					"starter/notes.md",
+					"starter/nested/analysis.md",
+					"images/analysis.md",
+					"starter/../trace.md",
+					"starter/nested/trace.md",
+					"images/trace.md"
+				].map(name => [source, { name, content: "" }])
 			];
 			for (const files of invalidFiles) {
 				const response = await postJson(baseUrl, { mode: "c", files });
