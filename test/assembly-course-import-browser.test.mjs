@@ -26,7 +26,8 @@ const fixtures = await Promise.all(
 		"assembly-parser-contracts.json",
 		"assembly-reverse-contracts.json",
 		"assembly-stack-contracts.json",
-		"assembly-compiler-contracts.json"
+		"assembly-compiler-contracts.json",
+		"assembly-debug-contracts.json"
 	].map(async name =>
 		JSON.parse(
 			await readFile(
@@ -86,13 +87,14 @@ const workflowDefinitions = {
 		lesson: "assembly-unit-5-the-stack-and-function-calls-assembly-unit-5-the-stack-and-function-calls-curriculum-core-project-the-stack-and-function-calls",
 		referenceToken: "10,012"
 	},
-	"ASM-08-unit-9-reading-compiler-output": { primary: "model.c", taskFile: "analysis.md", title: "Core Project: Reading Compiler Output", lesson: "assembly-unit-9-reading-compiler-output-assembly-unit-9-reading-compiler-output-curriculum-core-project-reading-compiler-output", referenceToken: "10,013", starterToken: "analysis.md" }
+	"ASM-08-unit-9-reading-compiler-output": { primary: "model.c", taskFile: "analysis.md", title: "Core Project: Reading Compiler Output", lesson: "assembly-unit-9-reading-compiler-output-assembly-unit-9-reading-compiler-output-curriculum-core-project-reading-compiler-output", referenceToken: "10,013", starterToken: "analysis.md" },
+	"ASM-09-unit-10-debugging-at-instruction-level": { primary: "routine.S", taskFile: "analysis.md", title: "Core Project: Debugging at Instruction Level", lesson: "assembly-unit-10-debugging-at-instruction-level-assembly-unit-10-debugging-at-instruction-level-curriculum-core-project-debugging-at-instruction-level", referenceToken: "10,019", starterToken: "exits 1" }
 };
 
 assert.equal(
 	fixtures.length,
-	9,
-	"All nine verified packs require browser coverage"
+	10,
+	"All ten verified packs require browser coverage"
 );
 assert.deepEqual(
 	fixtures.map(row => row.pack).sort(),

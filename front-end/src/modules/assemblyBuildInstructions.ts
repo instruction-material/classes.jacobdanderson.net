@@ -4,6 +4,7 @@ import {
 	assemblyCalculatorPack,
 	assemblyCompilerPack,
 	assemblyCourseResource,
+	assemblyDebugPack,
 	assemblyHelperPack,
 	assemblyParserPack,
 	assemblyReversePack,
@@ -175,6 +176,25 @@ export function assemblyBuildInstructions(
 			selected.role === "starter"
 				? "Complete analysis.md with the actual target/flags, four predictions, instruction mapping, optimization comparison, an independent changed case, a debugger trace and a bounded explanation. Keep model.c unchanged for the primary comparison."
 				: "The reference analysis.md supplies portable reasoning and a changed-case example; record the current compiler version, real listings and debugger addresses separately."
+		];
+	}
+	if (
+		selected?.pack === assemblyDebugPack &&
+		files.some(file => file.name === `${selected.role}/CMakeLists.txt`)
+	) {
+		return [
+			...lines,
+			`From the extracted project folder: cd ${selected.role}`,
+			"cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang",
+			"cmake --build build",
+			"./build/assembly_debug",
+			"ctest --test-dir build --output-on-failure",
+			"gdb ./build/assembly_debug",
+			"The original branch misinterprets a negative int32_t value using an unsigned condition. Inspect debug_branch_decision, the actual next instruction and SF/OF/ZF/CF before editing.",
+			"Read ../README.md for the exact count/memory/ABI contract, unchanged tests, actual debugger steps, GCC/Release builds and independently predicted zero-containing case.",
+			selected.role === "starter"
+				? "Record the failing trace in analysis.md before repairing DEBUG_SIGNED_BRANCH in routine.S. The untouched demo exits 1 with observed=0 expected=2; retain that evidence, make the minimal signed-branch correction and repeat the same trace."
+				: "The reference returns observed=2 expected=2 and passes 10,019 cases. Compare the saved faulty/corrected instruction states; passing code alone does not complete analysis.md."
 		];
 	}
 	if (

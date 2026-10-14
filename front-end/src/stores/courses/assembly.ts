@@ -2,6 +2,7 @@ import type { RawCourse } from "./types";
 import { assemblyArrayProjectReading } from "./assemblyArrayProjectReading";
 import { assemblyCalculatorProjectReading } from "./assemblyCalculatorProjectReading";
 import { assemblyCompilerProjectReading } from "./assemblyCompilerProjectReading";
+import { assemblyDebugProjectReading } from "./assemblyDebugProjectReading";
 import { assemblyHelperProjectReading } from "./assemblyHelperProjectReading";
 import { assemblyOpeningProjectReading } from "./assemblyOpeningProjectReading";
 import { assemblyParserProjectReading } from "./assemblyParserProjectReading";
@@ -728,27 +729,22 @@ const assemblySourceCourse: RawCourse = {
 				},
 				{
 					title: "Unit 10: Debugging at Instruction Level: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle: "Unit 10: Debugging at Instruction Level",
-						projectKind: "core",
-						hasReference: true
-					}),
+					id: "assembly-unit-10-debugging-at-instruction-level-curriculum-core-project-debugging-at-instruction-level",
+					ideImport: true,
+					content: assemblyDebugProjectReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-09-unit-10-debugging-at-instruction-level/starter",
+						"https://github.com/instruction-material/Assembly/tree/337648e72f375e30b235936f8deb5cd9ac64cfde/ASM-09-unit-10-debugging-at-instruction-level/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-09-unit-10-debugging-at-instruction-level/solution"
+						"https://github.com/instruction-material/Assembly/tree/337648e72f375e30b235936f8deb5cd9ac64cfde/ASM-09-unit-10-debugging-at-instruction-level/solution"
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Register-Trace Worksheet: Debugging at Instruction Level",
 					content:
-						"Use a focused trace worksheet for debugging at instruction level that records the key registers, flag changes, memory addresses, and one plain-language explanation of why the control flow moved the way it did. Focus especially on where execution stopped, which machine state changed next, and what the next branch decision depends on so the worksheet narrates instruction flow rather than only skimming mnemonics. A complete entry records the instruction address, the value before the instruction, the value after the instruction, and the evidence that explains the next branch, call, or return.",
+						"Optional transfer after the required fault-and-repair record: inspect the decision from linked disassembly without relying on source-line stepping. Predict a different input, locate the actual instruction address, and record the value before the instruction, the value after the instruction, relevant flags and the evidence for the next branch, call, or return. Compare the result with the saved core trace and explain any display-label or address differences. Keep the original failure record, repaired source and unchanged contracts intact.",
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-09-unit-10-debugging-at-instruction-level/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-09-unit-10-debugging-at-instruction-level/solution"
+						"https://github.com/instruction-material/Assembly/blob/337648e72f375e30b235936f8deb5cd9ac64cfde/ASM-09-unit-10-debugging-at-instruction-level/README.md"
 				},
 				{
 					title: "Instruction Debugging Transfer Practice",

@@ -104,6 +104,13 @@ describe("CourseExplorer.vue", () => {
 				module: "unit-9-reading-compiler-output",
 				item: "assembly-unit-9-reading-compiler-output-curriculum-core-project-reading-compiler-output",
 				revision: "4fabbbe92deb893d14e2572121fc2393ae426c7b"
+			},
+			{
+				role,
+				pack: "ASM-09-unit-10-debugging-at-instruction-level",
+				module: "unit-10-debugging-at-instruction-level",
+				item: "assembly-unit-10-debugging-at-instruction-level-curriculum-core-project-debugging-at-instruction-level",
+				revision: "337648e72f375e30b235936f8deb5cd9ac64cfde"
 			}
 		])
 	)(

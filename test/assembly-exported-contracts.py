@@ -12,7 +12,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
-parser.add_argument("--project", choices=["opening", "calculator", "array", "string", "helper", "parser", "reverse", "stack", "compiler"], default="opening")
+parser.add_argument("--project", choices=["opening", "calculator", "array", "string", "helper", "parser", "reverse", "stack", "compiler", "debug"], default="opening")
 parser.add_argument("--archives", type=Path, required=True)
 parser.add_argument("--cc", choices=["clang", "gcc"], required=True)
 parser.add_argument("--skip-debugger", action="store_true")
@@ -87,4 +87,4 @@ with tempfile.TemporaryDirectory(prefix="assembly-site-export-") as work:
     receipt["siteExportedFiles"] = hashes
     receipt["sourceRevision"] = fixture["revision"]
     args.proof.write_text(json.dumps(receipt, indent=2) + "\n")
-print(json.dumps(dict(compiler=args.cc, acceptedProfiles=len(receipt["acceptedProfiles"]), nativeCases=sum(p[{"opening": "arithmeticCases", "calculator": "arithmeticCases", "array": "arrayCases", "string": "stringCases", "helper": "helperCases", "parser": "parserCases", "reverse": "reverseCases", "stack": "stackCases", "compiler": "compilerCases"}[args.project]] for p in receipt["acceptedProfiles"]), debugger=receipt["debugger"]["status"], exactSiteExportedFiles=len(hashes))))
+print(json.dumps(dict(compiler=args.cc, acceptedProfiles=len(receipt["acceptedProfiles"]), nativeCases=sum(p[{"opening": "arithmeticCases", "calculator": "arithmeticCases", "array": "arrayCases", "string": "stringCases", "helper": "helperCases", "parser": "parserCases", "reverse": "reverseCases", "stack": "stackCases", "compiler": "compilerCases", "debug": "debugCases"}[args.project]] for p in receipt["acceptedProfiles"]), debugger=receipt["debugger"]["status"], exactSiteExportedFiles=len(hashes))))
