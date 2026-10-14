@@ -49,6 +49,12 @@ supplemental_identity = json.loads((fixture_dir / "linux-systemd-supplemental-so
 supplemental_verifier = (fixture_dir / "linux-systemd-supplemental-source-verifier.py").read_bytes()
 assert hashlib.sha256(supplemental_verifier).hexdigest() == supplemental_identity["sha256"]
 assert all(pack["revision"] == supplemental_identity["revision"] for pack in supplemental_packs)
+logging_packs = [pack for pack in packs if pack["pack"] in ("LS-09-unit-7-logging-and-observability", "LS-15-unit-7-logging-and-observability-supplemental-2", "LS-16-unit-7-logging-and-observability-supplemental-3")]
+assert len(logging_packs) == 3 and len(packs) == 13
+logging_identity = json.loads((fixture_dir / "linux-logging-source-verifier.json").read_text())
+logging_verifier = (fixture_dir / "linux-logging-source-verifier.py").read_bytes()
+assert hashlib.sha256(logging_verifier).hexdigest() == logging_identity["sha256"]
+assert all(pack["revision"] == logging_identity["revision"] for pack in logging_packs)
 args.proof = args.proof.resolve()
 args.proof.parent.mkdir(parents=True, exist_ok=True)
 archives = []
@@ -104,7 +110,7 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
             archives.append({"pack": pack["pack"], "role": role,
                              "sha256": hashlib.sha256(archive_path.read_bytes()).hexdigest(),
                              "files": sorted(expected)})
-    assert len(archives) == 20
+    assert len(archives) == 26
     (work / "test").mkdir()
     native_proof = args.proof.with_name(args.proof.stem + "-native.json")
     native = run_pinned_contract(work, "verify_owned_labs.py", verifier, native_proof, 300)
@@ -158,6 +164,21 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
     assert next(profile for profile in extension if profile["role"] == "starter")["ignoredInvalidOverrideObserved"]
     supplemental_cleanup = [row for row in supplemental_native["observations"] if row.get("kind") == "cleanup"]
     assert len(supplemental_cleanup) == 6 and all(all(row[key] for key in ("unitRemoved", "processStopped", "activationRemoved", "dropInRemoved", "installRemoved")) for row in supplemental_cleanup)
+    logging_proof = args.proof.with_name(args.proof.stem + "-logging-native.json")
+    logging_native = run_pinned_contract(work, "verify_logging_labs.py", logging_verifier, logging_proof, 300)
+    assert logging_native["accepted"] and not logging_native["offlineOnly"] and logging_native["preflightPassed"]
+    assert logging_native["sourceUnchanged"] and logging_native["temporaryFilesCleaned"]
+    assert logging_native["managerVersion"] and logging_native["logrotateVersion"]
+    assert len(logging_native["profiles"]) == 9
+    assert logging_native["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in logging_packs for name, file in pack["files"].items()}
+    assert all(all(value for value in profile.values() if isinstance(value, bool)) for profile in logging_native["profiles"])
+    for kind in ("journal", "application", "retention"):
+        group = [profile for profile in logging_native["profiles"] if profile["kind"] == kind]
+        assert len(group) == 3 and {profile["role"] for profile in group} == {"starter", "solution", "independent-completion"}
+    scope_rows = [row for row in logging_native["observations"] if row.get("kind") == "unit-scope-analysis"]
+    assert len(scope_rows) == 2 and all(row["managerRows"] > 0 and row["fieldCollisions"] > 0 and row["expectedEvents"] == row["reportedEvents"] for row in scope_rows)
+    logging_cleanup = [row for row in logging_native["observations"] if row.get("kind") == "cleanup"]
+    assert len(logging_cleanup) == 6 and all(all(value for value in row.values() if isinstance(value, bool)) for row in logging_cleanup)
     default = work / "default-workspace"
     default.mkdir()
     default_archive = args.archives / "default-linux.zip"
@@ -209,6 +230,8 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
                                      "systemdNativeProof": str(systemd_proof),
                                      "supplementalSourceIdentity": supplemental_identity,
                                      "supplementalNativeProof": str(supplemental_proof),
+                                     "loggingSourceIdentity": logging_identity,
+                                     "loggingNativeProof": str(logging_proof),
                                      "defaultWorkspace": {"fileHashes": default_hashes,
                                                           "stdout": output.decode(),
                                                           "status": default_child.returncode},

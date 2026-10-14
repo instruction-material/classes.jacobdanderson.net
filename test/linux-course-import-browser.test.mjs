@@ -22,8 +22,31 @@ const fixtures = JSON.parse(
 	)
 );
 const definitions = {
-	"LS-13-unit-6-services-and-systemd-supplemental-2": ["unit-6-services-and-systemd", "systemd-service-transfer-practice", null],
-	"LS-14-unit-6-services-and-systemd-supplemental-3": ["unit-6-services-and-systemd", "systemd-service-extension-practice", null],
+	"LS-09-unit-7-logging-and-observability": [
+		"unit-7-logging-and-observability",
+		"core-project-logging-and-observability",
+		"logging-and-observability"
+	],
+	"LS-15-unit-7-logging-and-observability-supplemental-2": [
+		"unit-7-logging-and-observability",
+		"log-investigation-transfer-practice",
+		null
+	],
+	"LS-16-unit-7-logging-and-observability-supplemental-3": [
+		"unit-7-logging-and-observability",
+		"log-investigation-extension-practice",
+		null
+	],
+	"LS-13-unit-6-services-and-systemd-supplemental-2": [
+		"unit-6-services-and-systemd",
+		"systemd-service-transfer-practice",
+		null
+	],
+	"LS-14-unit-6-services-and-systemd-supplemental-3": [
+		"unit-6-services-and-systemd",
+		"systemd-service-extension-practice",
+		null
+	],
 	"LS5-Systemd-Toy-Service": [
 		"unit-6-services-and-systemd",
 		"project-create-a-systemd-service-for-a-toy-app",
@@ -84,9 +107,9 @@ test(
 	{ timeout: 600_000 },
 	async () => {
 		let server, browser, context, page;
-		const output
-			= process.env.LINUX_BROWSER_EXPORT_PROOF_DIR
-				?? "output/linux-exports";
+		const output =
+			process.env.LINUX_BROWSER_EXPORT_PROOF_DIR ??
+			"output/linux-exports";
 		await mkdir(output, { recursive: true });
 		const proof = [];
 		const courseButtons = [];
@@ -119,7 +142,7 @@ test(
 					if (localStorage.getItem(key) === null)
 						localStorage.setItem(key, JSON.stringify([earlier]));
 					const create = URL.createObjectURL;
-					URL.createObjectURL = (blob) => {
+					URL.createObjectURL = blob => {
 						if (blob.type === "application/zip")
 							window.__linuxArchive = blob;
 						return create(blob);
@@ -127,8 +150,8 @@ test(
 					const click = HTMLAnchorElement.prototype.click;
 					HTMLAnchorElement.prototype.click = function () {
 						if (
-							this.download.endsWith(".zip")
-							&& this.href.startsWith("blob:")
+							this.download.endsWith(".zip") &&
+							this.href.startsWith("blob:")
 						) {
 							return;
 						}
@@ -139,7 +162,7 @@ test(
 				legacy
 			);
 			await page.setRequestInterception(true);
-			page.on("request", (request) => {
+			page.on("request", request => {
 				const url = new URL(request.url());
 				if (url.hostname === "raw.githubusercontent.com") {
 					const prefix = `/instruction-material/Linux-Systems/${fixture.revision}/${fixture.pack}/`;
@@ -156,10 +179,9 @@ test(
 						headers: { "access-control-allow-origin": "*" },
 						body: file?.content ?? "Unknown source"
 					});
-				}
-				else if (
-					url.origin !== origin
-					|| url.pathname.startsWith("/api/")
+				} else if (
+					url.origin !== origin ||
+					url.pathname.startsWith("/api/")
 				) {
 					let body = {};
 					if (catalog && url.pathname === "/api/accounts/me")
@@ -182,8 +204,7 @@ test(
 						contentType: "application/json",
 						body: JSON.stringify(body)
 					});
-				}
-				else {
+				} else {
 					void request.continue();
 				}
 			});
@@ -226,7 +247,14 @@ test(
 				fixture = current;
 				const [module, core] = definitions[fixture.pack];
 				const moduleID = `linux-systems-${module}`;
-				const placement = ["LS-13-unit-6-services-and-systemd-supplemental-2", "LS-14-unit-6-services-and-systemd-supplemental-3"].includes(fixture.pack) ? "supplemental" : "curriculum";
+				const placement = [
+					"LS-13-unit-6-services-and-systemd-supplemental-2",
+					"LS-14-unit-6-services-and-systemd-supplemental-3",
+					"LS-15-unit-7-logging-and-observability-supplemental-2",
+					"LS-16-unit-7-logging-and-observability-supplemental-3"
+				].includes(fixture.pack)
+					? "supplemental"
+					: "curriculum";
 				const itemID = `${moduleID}-${placement}-${core}`;
 				for (const width of [1280, 360]) {
 					for (const theme of ["light", "dark"]) {
@@ -264,8 +292,8 @@ test(
 							const expected = Object.keys(fixture.files)
 								.filter(
 									name =>
-										name === "README.md"
-										|| name.startsWith(`${role}/`)
+										name === "README.md" ||
+										name.startsWith(`${role}/`)
 								)
 								.sort();
 							assert.deepEqual(
@@ -279,16 +307,32 @@ test(
 							assert.equal(saved.mode, "linux");
 							assert.equal(
 								saved.activeFileName,
-								fixture.pack === "LS-13-unit-6-services-and-systemd-supplemental-2"
-									? `${role}/linux-service-transfer.service`
-									: fixture.pack === "LS-14-unit-6-services-and-systemd-supplemental-3"
-										? `${role}/20-lab-settings.conf`
-										: saved.files.find(
-											f =>
-												f.name.endsWith(".sh")
-												|| f.name.endsWith(".py")
-												|| f.name.endsWith(".conf")
-										).name
+								fixture.pack ===
+									"LS-16-unit-7-logging-and-observability-supplemental-3"
+									? `${role}/logrotate.conf`
+									: [
+												"LS-09-unit-7-logging-and-observability",
+												"LS-15-unit-7-logging-and-observability-supplemental-2"
+										  ].includes(fixture.pack)
+										? `${role}/task.sh`
+										: fixture.pack ===
+											  "LS-13-unit-6-services-and-systemd-supplemental-2"
+											? `${role}/linux-service-transfer.service`
+											: fixture.pack ===
+												  "LS-14-unit-6-services-and-systemd-supplemental-3"
+												? `${role}/20-lab-settings.conf`
+												: saved.files.find(
+														f =>
+															f.name.endsWith(
+																".sh"
+															) ||
+															f.name.endsWith(
+																".py"
+															) ||
+															f.name.endsWith(
+																".conf"
+															)
+													).name
 							);
 							if (width < 900) {
 								await page
@@ -311,7 +355,8 @@ test(
 							);
 							assert.equal(
 								await page.$eval("button.run-control", b =>
-									b.textContent.trim()),
+									b.textContent.trim()
+								),
 								"Linux instructions"
 							);
 							await page.locator("button.run-control").click();
@@ -385,8 +430,7 @@ test(
 								(storage, k) =>
 									JSON.parse(localStorage.getItem(storage))
 										.find(p => p.courseProjectKey === k)
-										?.files
-										.some(f =>
+										?.files.some(f =>
 											f.content.includes(
 												"# independent Linux observation"
 											)
@@ -439,9 +483,9 @@ test(
 							);
 							assert.equal(href, `/courses#${lesson}`);
 							if (
-								fixture.pack
-								=== "LS-05-unit-1-shell-foundations"
-								&& role === "starter"
+								fixture.pack ===
+									"LS-05-unit-1-shell-foundations" &&
+								role === "starter"
 							) {
 								await page.screenshot({
 									path: join(
@@ -451,8 +495,26 @@ test(
 									fullPage: false
 								});
 							}
-							if (["LS-13-unit-6-services-and-systemd-supplemental-2", "LS-14-unit-6-services-and-systemd-supplemental-3"].includes(fixture.pack)) {
-								await page.screenshot({ path: join(output, `linux-${fixture.pack.includes("supplemental-2") ? "transfer" : "extension"}-${role}-${width}-${theme}.png`), fullPage: false });
+							const capture = {
+								"LS-13-unit-6-services-and-systemd-supplemental-2":
+									"linux-transfer",
+								"LS-14-unit-6-services-and-systemd-supplemental-3":
+									"linux-extension",
+								"LS-09-unit-7-logging-and-observability":
+									"linux-logging-core",
+								"LS-15-unit-7-logging-and-observability-supplemental-2":
+									"linux-logging-transfer",
+								"LS-16-unit-7-logging-and-observability-supplemental-3":
+									"linux-logging-retention"
+							}[fixture.pack];
+							if (capture) {
+								await page.screenshot({
+									path: join(
+										output,
+										`${capture}-${role}-${width}-${theme}.png`
+									),
+									fullPage: false
+								});
 							}
 							proof.push({
 								pack: fixture.pack,
@@ -465,15 +527,24 @@ test(
 								lessonReturn: true,
 								consentBeforeFetch: true
 							});
-							if (fixture.pack === "LS4-Apache-Virtual-Host-Compare") {
+							if (
+								fixture.pack ===
+								"LS4-Apache-Virtual-Host-Compare"
+							) {
 								await page.screenshot({
-									path: join(output, `linux-apache-${role}-${width}-${theme}.png`),
+									path: join(
+										output,
+										`linux-apache-${role}-${width}-${theme}.png`
+									),
 									fullPage: false
 								});
 							}
 							if (fixture.pack === "LS5-Systemd-Toy-Service") {
 								await page.screenshot({
-									path: join(output, `linux-systemd-${role}-${width}-${theme}.png`),
+									path: join(
+										output,
+										`linux-systemd-${role}-${width}-${theme}.png`
+									),
 									fullPage: false
 								});
 							}
@@ -508,10 +579,13 @@ test(
 							[...element.querySelectorAll("a")]
 								.find(
 									a =>
-										a.href.includes("starterUrl=")
-										&& new URL(a.href).searchParams.get("starterUrl").endsWith("/starter")
+										a.href.includes("starterUrl=") &&
+										new URL(a.href).searchParams
+											.get("starterUrl")
+											.endsWith("/starter")
 								)
-								?.getAttribute("href"));
+								?.getAttribute("href")
+						);
 						if (href) break;
 					}
 					assert.ok(
@@ -526,7 +600,8 @@ test(
 					if (!reuse) {
 						const card = `#${moduleID}-${id}`;
 						await page.$eval(card, element =>
-							element.scrollIntoView({ block: "start" }));
+							element.scrollIntoView({ block: "start" })
+						);
 						await page.waitForSelector(`${card} pre code`);
 						assert.ok(
 							await page.$(`${card} pre code`),
@@ -541,8 +616,7 @@ test(
 						await confirmProjectImport(page);
 						await waitSaved(coreKey);
 						original = await savedFor(coreKey);
-					}
-					else {
+					} else {
 						await page.waitForSelector(".cm-content");
 						assert.equal(sourceRequests.length, 0);
 						assert.equal(
@@ -596,14 +670,18 @@ test(
 				);
 			}
 			await writeFile(join(output, "default-linux.zip"), defaultArchive);
-			assert.equal(proof.length, 80);
-			assert.equal(courseButtons.length, 17);
+			assert.equal(proof.length, 104);
+			assert.equal(courseButtons.length, 21);
+			assert.equal(
+				courseButtons.filter(action => action.reusesExistingAttempt)
+					.length,
+				8
+			);
 			await writeFile(
 				join(output, "browser-proof.json"),
 				JSON.stringify({ profiles: proof, courseButtons }, null, 2)
 			);
-		}
-		catch (error) {
+		} catch (error) {
 			await writeFile(
 				join(output, "browser-partial.json"),
 				JSON.stringify(
@@ -627,8 +705,7 @@ test(
 				);
 			}
 			throw error;
-		}
-		finally {
+		} finally {
 			await page?.close();
 			await context?.close();
 			await browser?.close();

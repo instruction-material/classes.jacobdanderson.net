@@ -23,6 +23,21 @@ export function linuxBuildInstructions(files: PythonIdeFile[], url?: string) {
 		];
 	}
 	const commands: Record<string, string[]> = {
+		"LS-09-unit-7-logging-and-observability": [
+			"Read ../README.md for the journal fields, scalar JSON records, prediction and owned user-manager setup.",
+			"Complete in_scope in task.sh, then run bash task.sh sample.log linux-observe-demo.service aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 100 500.",
+			"Observe the actual missing/invalid configuration exit, journal UID/PID/boot/priority, later invocation recovery, current oneshot state and cleanup. Record incident-notes.md separately from a printed prediction."
+		],
+		"LS-15-unit-7-logging-and-observability-supplemental-2": [
+			"Read ../README.md and complete is_server_failure in task.sh using completion events and numeric HTTP status.",
+			"bash task.sh sample.log case-7",
+			"Predict request scoping, 503 then 200, incomplete retries, client responses, timezone offsets and malformed-input failures. Record application-notes.md; redacted records do not prove current live health."
+		],
+		"LS-16-unit-7-logging-and-observability-supplemental-3": [
+			"Read ../README.md for the private marker-protected disposable directory and actual logrotate prerequisite.",
+			'Complete the two-archive policy in logrotate.conf before running bash task.sh "$lab".',
+			"Observe compressed contents, expiration, private active-file creation, empty-run and debug behavior, unchanged external sentinel and cleanup. Record retention-notes.md; manual rotations do not prove scheduling."
+		],
 		"LS-13-unit-6-services-and-systemd-supplemental-2": [
 			"Read ../README.md for the guarded owned user-unit installation and supplied HTTP app.",
 			"Complete the named WorkingDirectory and ExecStart app-argument tasks in linux-service-transfer.service. Observe 200/CHDIR and Python exit 2 separately before correcting both paths.",

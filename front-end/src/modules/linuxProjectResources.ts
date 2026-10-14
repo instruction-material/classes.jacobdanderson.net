@@ -126,6 +126,37 @@ export const linuxVerifiedPacks = [
 		coreItemId:
 			"linux-systems-unit-6-services-and-systemd-supplemental-systemd-service-extension-practice",
 		notebookItemId: null
+	},
+	{
+		pack: "LS-09-unit-7-logging-and-observability",
+		revision: "bbb586068e7cdfb6260153f33a01b7d1d0260941",
+		roleFiles: [
+			"task.sh",
+			"incident_app.sh",
+			"linux-logging-case.service",
+			"sample.log",
+			"incident-notes.md"
+		],
+		coreItemId:
+			"linux-systems-unit-7-logging-and-observability-curriculum-core-project-logging-and-observability",
+		notebookItemId:
+			"linux-systems-unit-7-logging-and-observability-supplemental-troubleshooting-notebook-logging-and-observability"
+	},
+	{
+		pack: "LS-15-unit-7-logging-and-observability-supplemental-2",
+		revision: "bbb586068e7cdfb6260153f33a01b7d1d0260941",
+		roleFiles: ["task.sh", "sample.log", "application-notes.md"],
+		coreItemId:
+			"linux-systems-unit-7-logging-and-observability-supplemental-log-investigation-transfer-practice",
+		notebookItemId: null
+	},
+	{
+		pack: "LS-16-unit-7-logging-and-observability-supplemental-3",
+		revision: "bbb586068e7cdfb6260153f33a01b7d1d0260941",
+		roleFiles: ["logrotate.conf", "task.sh", "retention-notes.md"],
+		coreItemId:
+			"linux-systems-unit-7-logging-and-observability-supplemental-log-investigation-extension-practice",
+		notebookItemId: null
 	}
 ] as const;
 

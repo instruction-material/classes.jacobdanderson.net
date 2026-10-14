@@ -8,7 +8,7 @@ export function isLinuxProjectTextPath(value: string) {
 		) ||
 		/\.(?:sh|log|conf|service|timer|html)$/i.test(value) ||
 		value.split("/").at(-1) === "crontab.example" ||
-		/^(?:starter|solution)\/(?:permissions|compare-notes|service-notes|service-transfer-notes|service-extension-notes)\.md$/.test(
+		/^(?:starter|solution)\/(?:permissions|compare-notes|service-notes|service-transfer-notes|service-extension-notes|incident-notes|application-notes|retention-notes)\.md$/.test(
 			value
 		) ||
 		/^(?:starter|solution)\/reports\/[^/]+\.txt$/.test(value)
