@@ -182,7 +182,7 @@ export function createNoteSendWorkflow(deps: NoteSendDependencies) {
 		}
 	}
 	async function dispatch(id: string) {
-		if (!enabled()) return safeOperation(await store.get(id));
+		if (!enabled()) return safeOperation(await store.get(id), false);
 		const claimId = randomUUID();
 		const claimed = await store.change(id, { "state": "queued", "attempts.19": { $exists: false } }, {
 			$set: { state: "sending", claimId, claimedAt: new Date() },
@@ -295,7 +295,7 @@ export function createNoteSendWorkflow(deps: NoteSendDependencies) {
 	}
 	return { prepare, dispatch, recover, archive };
 }
-export function safeOperation(record: SessionNoteSendRecord | null) {
+export function safeOperation(record: SessionNoteSendRecord | null, sendingEnabled = env.SESSION_NOTES_SEND_ENABLED === "true") {
 	if (!record) throw new NoteWorkflowError(404, "operation_not_found");
 	return {
 		operationId: record._id,
@@ -303,6 +303,7 @@ export function safeOperation(record: SessionNoteSendRecord | null) {
 		noteVersion: record.noteVersion,
 		evidenceStatus: record.state,
 		statusReason: record.errorCode ?? record.state,
+		sendingPaused: !sendingEnabled,
 		ok: record.state === "smtp_accepted",
 		sentAt: record.sentAt?.toISOString() ?? null,
 		archivalStatus: record.archiveState,

@@ -132,8 +132,17 @@ problems return 202 with safe operationId. A 202 does not authorize a fresh rese
 
 Private administrator routes:
 
+- `GET /api/admin-mail/session-notes/sending-status`: no-store, admin-only
+  Boolean `sendingPaused`. It reports the current session-note send flag, not
+  SMTP availability or delivery. Each normal operation response includes the
+  same current flag; a queued operation returned while paused will not attempt
+  SMTP until the operator enables sending. Previously accepted operations retain
+  their own SMTP and archival evidence regardless of the current flag. Never
+  enable sending merely to test the UI: pending requests would become eligible
+  for dispatch.
 - `GET /api/admin-mail/session-notes/operations/:operationId`: safe status.
-- `GET /api/admin-mail/session-notes/review`: bounded queue.
+- `GET /api/admin-mail/session-notes/review`: bounded queue with the current
+  `sendingPaused` flag. The recovery view shows this gate without changing it.
 - `POST .../operations/:operationId/disposition`: confirmed_not_accepted,
   keep_unconfirmed or retry_nonaccepted, opaque evidenceRef and stable key. The
   explicit retry queues an existing intent only after established nonacceptance,

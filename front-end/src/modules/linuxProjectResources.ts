@@ -73,7 +73,7 @@ export const linuxVerifiedPacks = [
 	},
 	{
 		pack: "LS4-Apache-Virtual-Host-Compare",
-		revision: "883dce18a4c434b853423e280aa93c45e0ebdede",
+		revision: "237c62880e9c96f759a04fa5f171c03797e7453d",
 		roleFiles: [
 			"linux-systems-apache.conf",
 			"linux-systems-nginx.conf",
@@ -156,6 +156,73 @@ export const linuxVerifiedPacks = [
 		roleFiles: ["logrotate.conf", "task.sh", "retention-notes.md"],
 		coreItemId:
 			"linux-systems-unit-7-logging-and-observability-supplemental-log-investigation-extension-practice",
+		notebookItemId: null
+	},
+	{
+		pack: "LS-07-unit-4-editing-and-configuration",
+		revision: "237c62880e9c96f759a04fa5f171c03797e7453d",
+		roleFiles: [
+			"task.sh",
+			"config_app.py",
+			"config.json",
+			"candidate.json",
+			"edit-notes.md"
+		],
+		coreItemId:
+			"linux-systems-unit-4-editing-and-configuration-curriculum-core-project-editing-and-configuration",
+		notebookItemId:
+			"linux-systems-unit-4-editing-and-configuration-supplemental-troubleshooting-notebook-editing-and-configuration"
+	},
+	{
+		pack: "LS-09-unit-4-editing-and-configuration-supplemental-2",
+		revision: "237c62880e9c96f759a04fa5f171c03797e7453d",
+		roleFiles: [
+			"task.sh",
+			"environment_app.py",
+			"settings.env",
+			"environment-notes.md"
+		],
+		coreItemId:
+			"linux-systems-unit-4-editing-and-configuration-supplemental-configuration-editing-transfer-practice",
+		notebookItemId: null
+	},
+	{
+		pack: "LS-10-unit-4-editing-and-configuration-supplemental-3",
+		revision: "237c62880e9c96f759a04fa5f171c03797e7453d",
+		roleFiles: [
+			"task.sh",
+			"validate_config.py",
+			"primary.conf",
+			"secondary.conf",
+			"replacement-notes.md"
+		],
+		coreItemId:
+			"linux-systems-unit-4-editing-and-configuration-supplemental-configuration-editing-extension-practice",
+		notebookItemId: null
+	},
+	{
+		pack: "LS-08-unit-5-processes-and-job-control",
+		revision: "e0435ba87eaab0cee4d3d9d48071cb5e555dfb90",
+		roleFiles: ["process-notes.md", "process_worker.py"],
+		coreItemId:
+			"linux-systems-unit-5-processes-and-job-control-curriculum-core-project-processes-and-job-control",
+		notebookItemId:
+			"linux-systems-unit-5-processes-and-job-control-supplemental-troubleshooting-notebook-processes-and-job-control"
+	},
+	{
+		pack: "LS-11-unit-5-processes-and-job-control-supplemental-2",
+		revision: "f52d55e992742d51ee034a4489cf5982f6031652",
+		roleFiles: ["pipeline-notes.md", "pipeline_worker.py"],
+		coreItemId:
+			"linux-systems-unit-5-processes-and-job-control-supplemental-process-control-transfer-practice",
+		notebookItemId: null
+	},
+	{
+		pack: "LS-12-unit-5-processes-and-job-control-supplemental-3",
+		revision: "f52d55e992742d51ee034a4489cf5982f6031652",
+		roleFiles: ["adoption-notes.md", "adoption_lab.py"],
+		coreItemId:
+			"linux-systems-unit-5-processes-and-job-control-supplemental-process-control-extension-practice",
 		notebookItemId: null
 	}
 ] as const;

@@ -129,6 +129,26 @@ afterEach(() => {
 });
 
 describe("session-note HTTP fail-closed boundaries", () => {
+	it("exposes only the paused send flag to current administrators", async () => {
+		const previous = process.env.SESSION_NOTES_SEND_ENABLED;
+		try {
+			await withMail(async url => {
+				process.env.SESSION_NOTES_SEND_ENABLED = "false";
+				const paused = await fetch(`${url}/session-notes/sending-status`, { headers: { "x-admin": adminID } });
+				expect(paused.status).toBe(200);
+				expect(paused.headers.get("cache-control")).toBe("no-store");
+				expect(await paused.json()).toEqual({ sendingPaused: true });
+				process.env.SESSION_NOTES_SEND_ENABLED = "true";
+				expect(await (await fetch(`${url}/session-notes/sending-status`, { headers: { "x-admin": adminID } })).json()).toEqual({ sendingPaused: false });
+				expect((await fetch(`${url}/session-notes/sending-status`)).status).toBe(403);
+				expect(mocks.send).not.toHaveBeenCalled();
+			});
+		}
+		finally {
+			if (previous === undefined) delete process.env.SESSION_NOTES_SEND_ENABLED;
+			else process.env.SESSION_NOTES_SEND_ENABLED = previous;
+		}
+	});
 	it("requires a student, saved note version and durable key before SMTP", async () => {
 		await withMail(async url => {
 			expect((await send(url)).status).toBe(400);

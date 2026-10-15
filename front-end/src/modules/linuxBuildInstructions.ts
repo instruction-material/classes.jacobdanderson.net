@@ -23,6 +23,21 @@ export function linuxBuildInstructions(files: PythonIdeFile[], url?: string) {
 		];
 	}
 	const commands: Record<string, string[]> = {
+		"LS-08-unit-5-processes-and-job-control": [
+			"Read ../README.md for real process identities, owned signals, waiting and interactive Bash job control.",
+			"Complete process-notes.md using the supplied working process_worker.py; both roles provide equipment, not completed observation records.",
+			"Use an actual Linux terminal. Follow the full guide for Ctrl+Z/bg/fg/Ctrl+C, actual wait statuses, changed lifetimes, rejected arguments and owned cleanup. The troubleshooting notebook continues this same attempt."
+		],
+		"LS-11-unit-5-processes-and-job-control-supplemental-2": [
+			"Read ../README.md and use a fresh interactive Bash terminal with monitor mode and an empty job table.",
+			"Complete pipeline-notes.md using produce and consume modes of pipeline_worker.py; keep this optional transfer separate from the core attempt.",
+			"Observe both actual PIDs and their shared process group, group STOP/CONT/INT, resumed data, immediate PIPESTATUS with and without pipefail, the early reader's SIGPIPE and complete owned-job cleanup."
+		],
+		"LS-12-unit-5-processes-and-job-control-supplemental-3": [
+			"Read ../README.md for Linux /proc, the per-process child-subreaper flag, two-terminal observations and explicit record paths.",
+			"Complete adoption-notes.md using the supplied working adoption_lab.py and a fresh evidence filename; earlier records are not overwritten.",
+			"Observe the actual zombie before wait, the original parent handshake, the same live child's new PPID, internal wait results and overall status, changed timing, separate interruption and owned cleanup. Keep this optional extension separate from the core attempt."
+		],
 		"LS-09-unit-7-logging-and-observability": [
 			"Read ../README.md for the journal fields, scalar JSON records, prediction and owned user-manager setup.",
 			"Complete in_scope in task.sh, then run bash task.sh sample.log linux-observe-demo.service aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 100 500.",
@@ -95,6 +110,30 @@ export function linuxBuildInstructions(files: PythonIdeFile[], url?: string) {
 		"LS6-Backup-Cron-and-Timer": [
 			"Follow the README's fabricated source and separate backup-directory setup before running backup_home.sh with both explicit arguments.",
 			"Complete the starter retention TODO; verify retention and restore exact bytes. The supplied service and timer are user units. Record actual scheduled output, identity and undo separately."
+		],
+		"LS-07-unit-4-editing-and-configuration": [
+			"Read ../README.md for the owned lab, complete two-terminal workflow, JSON rules and the named validated apply step.",
+			"lab=$(mktemp -d)",
+			'bash task.sh init "$lab"',
+			'python3 config_app.py run "$lab/config.json"',
+			"Use only this lab process's reported PID. Observe unchanged cached output before HUP, accepted reload, rejected candidate and reload, exact backup/rollback and clean shutdown. Record edit-notes.md."
+		],
+		"LS-09-unit-4-editing-and-configuration-supplemental-2": [
+			"Read ../README.md for trusted Bash assignment syntax and the distinction between source and export. Complete the named MESSAGE and REPEAT export step.",
+			"lab=$(mktemp -d)",
+			'cp -- settings.env "$lab/settings.env"',
+			'bash task.sh "$lab/settings.env" --watch',
+			"Observe actual child PID/UID and environment, file edits before and after restart, explicit message overrides, quoted values, syntax versus value failures, unchanged parent state and cleanup. Record environment-notes.md."
+		],
+		"LS-10-unit-4-editing-and-configuration-supplemental-3": [
+			"Read ../README.md for the explicit two-file lab and literal key/value format. Complete only the anchored timeout replacement.",
+			"lab=$(mktemp -d)",
+			'bash task.sh init "$lab"',
+			'bash task.sh preview "$lab" 25',
+			'bash task.sh apply "$lab" 25',
+			"Set backup to the exact backup= path printed by apply before running rollback; the full reading shows the comparisons to make first.",
+			'bash task.sh rollback "$lab" "$backup"',
+			"Verify exact preview/backup bytes, modes, unchanged comments and unrelated numbers, invalid batches, a failed second rename and explicit recovery of both files. Per-file renames do not make the pair atomic. Record replacement-notes.md."
 		]
 	};
 	return [

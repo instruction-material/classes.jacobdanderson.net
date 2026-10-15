@@ -40,6 +40,10 @@ const MIME_TYPES = new Map([
 ]);
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
+const bundledArchivePath = path.resolve(
+	scriptDir,
+	"../vendor/code-ide-assets-6ab65a71.zip"
+);
 const configuredFrontEndDir =
 	env.CODE_IDE_ASSETS_FRONT_END_DIR || env.PYTHON_IDE_ASSETS_FRONT_END_DIR;
 const frontEndDir = configuredFrontEndDir
@@ -106,6 +110,13 @@ async function stageCodeIdeAssets() {
 		);
 		return;
 	}
+	if (!forceRefresh && sourceUrl === DEFAULT_ASSETS_ZIP_URL) {
+		await extractAssets(await readReviewedBundledArchive());
+		console.log(
+			`[code-ide-assets] rebuilt ${relativeManifestPath()} from the reviewed bundled archive`
+		);
+		return;
+	}
 
 	try {
 		const { bytes, response } = await withAssetNetworkRetry(
@@ -155,6 +166,13 @@ async function stageCodeIdeAssets() {
 			await extractAssets(localInfo.archive.bytes);
 			console.warn(
 				`[code-ide-assets] download failed, rebuilt ${relativeManifestPath()} from the verified cached archive: ${formatError(error)}`
+			);
+			return;
+		}
+		if (sourceUrl === DEFAULT_ASSETS_ZIP_URL) {
+			await extractAssets(await readReviewedBundledArchive());
+			console.warn(
+				`[code-ide-assets] download failed, rebuilt ${relativeManifestPath()} from the reviewed bundled archive: ${formatError(error)}`
 			);
 			return;
 		}
@@ -264,6 +282,14 @@ async function readReviewedCachedArchive() {
 	return await readReviewedAssetArchiveFile(cacheZipPath, {
 		expectedBytes: REVIEWED_ASSETS_ZIP_BYTES,
 		expectedSha256: REVIEWED_ASSETS_ZIP_SHA256
+	});
+}
+
+async function readReviewedBundledArchive() {
+	return await readReviewedAssetArchiveFile(bundledArchivePath, {
+		expectedBytes: REVIEWED_ASSETS_ZIP_BYTES,
+		expectedSha256: REVIEWED_ASSETS_ZIP_SHA256,
+		label: "bundled Code IDE asset pack"
 	});
 }
 

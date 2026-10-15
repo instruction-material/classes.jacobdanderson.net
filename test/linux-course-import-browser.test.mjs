@@ -22,6 +22,21 @@ const fixtures = JSON.parse(
 	)
 );
 const definitions = {
+	"LS-08-unit-5-processes-and-job-control": [
+		"unit-5-processes-and-job-control",
+		"core-project-processes-and-job-control",
+		"processes-and-job-control"
+	],
+	"LS-11-unit-5-processes-and-job-control-supplemental-2": [
+		"unit-5-processes-and-job-control",
+		"process-control-transfer-practice",
+		null
+	],
+	"LS-12-unit-5-processes-and-job-control-supplemental-3": [
+		"unit-5-processes-and-job-control",
+		"process-control-extension-practice",
+		null
+	],
 	"LS-09-unit-7-logging-and-observability": [
 		"unit-7-logging-and-observability",
 		"core-project-logging-and-observability",
@@ -86,7 +101,28 @@ const definitions = {
 		"unit-8-scheduling-and-automation",
 		"project-write-a-backup-script-and-schedule-it-with-cron-and-a-timer",
 		"scheduling-and-automation"
+	],
+	"LS-07-unit-4-editing-and-configuration": [
+		"unit-4-editing-and-configuration",
+		"core-project-editing-and-configuration",
+		"editing-and-configuration"
+	],
+	"LS-09-unit-4-editing-and-configuration-supplemental-2": [
+		"unit-4-editing-and-configuration",
+		"configuration-editing-transfer-practice",
+		null
+	],
+	"LS-10-unit-4-editing-and-configuration-supplemental-3": [
+		"unit-4-editing-and-configuration",
+		"configuration-editing-extension-practice",
+		null
 	]
+};
+const processFirstFiles = {
+	"LS-08-unit-5-processes-and-job-control": "process-notes.md",
+	"LS-11-unit-5-processes-and-job-control-supplemental-2":
+		"pipeline-notes.md",
+	"LS-12-unit-5-processes-and-job-control-supplemental-3": "adoption-notes.md"
 };
 const storageKey = "classes-python-ide-projects:anonymous";
 const legacy = {
@@ -248,10 +284,14 @@ test(
 				const [module, core] = definitions[fixture.pack];
 				const moduleID = `linux-systems-${module}`;
 				const placement = [
+					"LS-11-unit-5-processes-and-job-control-supplemental-2",
+					"LS-12-unit-5-processes-and-job-control-supplemental-3",
 					"LS-13-unit-6-services-and-systemd-supplemental-2",
 					"LS-14-unit-6-services-and-systemd-supplemental-3",
 					"LS-15-unit-7-logging-and-observability-supplemental-2",
-					"LS-16-unit-7-logging-and-observability-supplemental-3"
+					"LS-16-unit-7-logging-and-observability-supplemental-3",
+					"LS-09-unit-4-editing-and-configuration-supplemental-2",
+					"LS-10-unit-4-editing-and-configuration-supplemental-3"
 				].includes(fixture.pack)
 					? "supplemental"
 					: "curriculum";
@@ -307,32 +347,37 @@ test(
 							assert.equal(saved.mode, "linux");
 							assert.equal(
 								saved.activeFileName,
-								fixture.pack ===
-									"LS-16-unit-7-logging-and-observability-supplemental-3"
-									? `${role}/logrotate.conf`
-									: [
-												"LS-09-unit-7-logging-and-observability",
-												"LS-15-unit-7-logging-and-observability-supplemental-2"
-										  ].includes(fixture.pack)
-										? `${role}/task.sh`
-										: fixture.pack ===
-											  "LS-13-unit-6-services-and-systemd-supplemental-2"
-											? `${role}/linux-service-transfer.service`
+								processFirstFiles[fixture.pack]
+									? `${role}/${processFirstFiles[fixture.pack]}`
+									: fixture.pack ===
+										  "LS-16-unit-7-logging-and-observability-supplemental-3"
+										? `${role}/logrotate.conf`
+										: [
+													"LS-09-unit-7-logging-and-observability",
+													"LS-15-unit-7-logging-and-observability-supplemental-2",
+													"LS-07-unit-4-editing-and-configuration",
+													"LS-09-unit-4-editing-and-configuration-supplemental-2",
+													"LS-10-unit-4-editing-and-configuration-supplemental-3"
+											  ].includes(fixture.pack)
+											? `${role}/task.sh`
 											: fixture.pack ===
-												  "LS-14-unit-6-services-and-systemd-supplemental-3"
-												? `${role}/20-lab-settings.conf`
-												: saved.files.find(
-														f =>
-															f.name.endsWith(
-																".sh"
-															) ||
-															f.name.endsWith(
-																".py"
-															) ||
-															f.name.endsWith(
-																".conf"
-															)
-													).name
+												  "LS-13-unit-6-services-and-systemd-supplemental-2"
+												? `${role}/linux-service-transfer.service`
+												: fixture.pack ===
+													  "LS-14-unit-6-services-and-systemd-supplemental-3"
+													? `${role}/20-lab-settings.conf`
+													: saved.files.find(
+															f =>
+																f.name.endsWith(
+																	".sh"
+																) ||
+																f.name.endsWith(
+																	".py"
+																) ||
+																f.name.endsWith(
+																	".conf"
+																)
+														).name
 							);
 							if (width < 900) {
 								await page
@@ -496,6 +541,12 @@ test(
 								});
 							}
 							const capture = {
+								"LS-08-unit-5-processes-and-job-control":
+									"linux-process-core",
+								"LS-11-unit-5-processes-and-job-control-supplemental-2":
+									"linux-process-pipeline",
+								"LS-12-unit-5-processes-and-job-control-supplemental-3":
+									"linux-process-adoption",
 								"LS-13-unit-6-services-and-systemd-supplemental-2":
 									"linux-transfer",
 								"LS-14-unit-6-services-and-systemd-supplemental-3":
@@ -505,7 +556,13 @@ test(
 								"LS-15-unit-7-logging-and-observability-supplemental-2":
 									"linux-logging-transfer",
 								"LS-16-unit-7-logging-and-observability-supplemental-3":
-									"linux-logging-retention"
+									"linux-logging-retention",
+								"LS-07-unit-4-editing-and-configuration":
+									"linux-editing-core",
+								"LS-09-unit-4-editing-and-configuration-supplemental-2":
+									"linux-editing-environment",
+								"LS-10-unit-4-editing-and-configuration-supplemental-3":
+									"linux-editing-replacement"
 							}[fixture.pack];
 							if (capture) {
 								await page.screenshot({
@@ -670,12 +727,12 @@ test(
 				);
 			}
 			await writeFile(join(output, "default-linux.zip"), defaultArchive);
-			assert.equal(proof.length, 104);
-			assert.equal(courseButtons.length, 21);
+			assert.equal(proof.length, 152);
+			assert.equal(courseButtons.length, 29);
 			assert.equal(
 				courseButtons.filter(action => action.reusesExistingAttempt)
 					.length,
-				8
+				10
 			);
 			await writeFile(
 				join(output, "browser-proof.json"),

@@ -12,6 +12,7 @@ interface Operation {
 	archivalStatus: string;
 }
 const operations = ref<Operation[]>([]);
+const sendingPaused = ref<boolean | null>(null);
 const unlinked = ref<{ noteId: string; studentId: string | null }[]>([]);
 const external = ref<
 	{ recordId: string; studentId: string; evidenceStatus: string }[]
@@ -46,10 +47,13 @@ async function loadReview() {
 	try {
 		const { data } = await api.get("/admin-mail/session-notes/review");
 		operations.value = data.operations;
+		sendingPaused.value =
+			typeof data.sendingPaused === "boolean" ? data.sendingPaused : null;
 		unlinked.value = data.unlinkedNotes ?? [];
 		external.value = data.externalEvidence ?? [];
 		writers.value = data.writerMarkers ?? [];
 	} catch {
+		sendingPaused.value = null;
 		message.value = "Review queue unavailable.";
 	} finally {
 		loading.value = false;
@@ -168,6 +172,11 @@ async function registerEvidence() {
 			Use verified student and session IDs. Dates and shared mailboxes do
 			not identify a class. A proven-nonacceptance retry queues delivery;
 			uncertain outcomes remain blocked.
+		</p>
+		<p v-if="sendingPaused === true" role="status">
+			Session-note sending is paused. Queued operations require operator
+			activation before they can attempt SMTP; do not submit duplicate
+			sends.
 		</p>
 		<button type="button" :disabled="loading" @click="loadReview">
 			Refresh review queue

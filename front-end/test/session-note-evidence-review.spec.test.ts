@@ -41,6 +41,34 @@ describe("administrator archival review", () => {
 		expect(wrapper.text()).toContain("Pause sending and recovery");
 		wrapper.unmount();
 	});
+	it("shows the operator gate for paused queued work without sending", async () => {
+		mocks.get.mockResolvedValue({
+			data: {
+				sendingPaused: true,
+				operations: [
+					{
+						operationId,
+						noteId: "synthetic-note",
+						evidenceStatus: "queued",
+						statusReason: "queued",
+						archivalStatus: "not_applicable"
+					}
+				],
+				unlinkedNotes: [],
+				externalEvidence: [],
+				writerMarkers: []
+			}
+		});
+		const wrapper = mount(SessionNoteEvidenceReview);
+		await wrapper.find("button").trigger("click");
+		await flushPromises();
+		expect(wrapper.text()).toContain(
+			"Queued operations require operator activation"
+		);
+		expect(wrapper.text()).toContain("queued");
+		expect(mocks.post).not.toHaveBeenCalled();
+		wrapper.unmount();
+	});
 	it("records protected archival evidence without sending mail", async () => {
 		const wrapper = mount(SessionNoteEvidenceReview);
 		const form = wrapper.find("form");
