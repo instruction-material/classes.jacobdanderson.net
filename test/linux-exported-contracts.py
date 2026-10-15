@@ -50,7 +50,7 @@ supplemental_verifier = (fixture_dir / "linux-systemd-supplemental-source-verifi
 assert hashlib.sha256(supplemental_verifier).hexdigest() == supplemental_identity["sha256"]
 assert all(pack["revision"] == supplemental_identity["revision"] for pack in supplemental_packs)
 logging_packs = [pack for pack in packs if pack["pack"] in ("LS-09-unit-7-logging-and-observability", "LS-15-unit-7-logging-and-observability-supplemental-2", "LS-16-unit-7-logging-and-observability-supplemental-3")]
-assert len(logging_packs) == 3 and len(packs) == 34
+assert len(logging_packs) == 3 and len(packs) == 36
 logging_identity = json.loads((fixture_dir / "linux-logging-source-verifier.json").read_text())
 logging_verifier = (fixture_dir / "linux-logging-source-verifier.py").read_bytes()
 assert hashlib.sha256(logging_verifier).hexdigest() == logging_identity["sha256"]
@@ -120,6 +120,12 @@ permissions_packs = [pack for pack in packs if pack["pack"] in ['LS-07-unit-3-us
 assert len(permissions_packs) == 2
 assert hashlib.sha256(permissions_verifier).hexdigest() == permissions_identity["sha256"]
 assert all(pack["revision"] == permissions_identity["revision"] for pack in permissions_packs)
+setup_identity = json.loads((fixture_dir / "linux-setup-optional-source-verifier.json").read_text())
+setup_verifier = (fixture_dir / "linux-setup-optional-source-verifier.py").read_bytes()
+setup_packs = [pack for pack in packs if pack["pack"] in ['LS-01-ls0-setup-and-tooling-supplemental-2', 'LS-02-ls0-setup-and-tooling-supplemental-3']]
+assert len(setup_packs) == 2
+assert hashlib.sha256(setup_verifier).hexdigest() == setup_identity["sha256"]
+assert all(pack["revision"] == setup_identity["revision"] for pack in setup_packs)
 args.proof = args.proof.resolve()
 args.proof.parent.mkdir(parents=True, exist_ok=True)
 archives = []
@@ -379,6 +385,14 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
     assert permissions["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in permissions_packs for name, file in pack["files"].items()}
     assert len(permissions["profiles"]) == 6 and permissions["actualCases"] == 102
     assert all(profile["passed"] and profile["workspaceEntriesAndModeRestored"] and profile["outsideSentinelPreserved"] for profile in permissions["profiles"])
+    setup_records = args.proof.parent / "setup-records"
+    setup_records.mkdir(exist_ok=True)
+    setup_proof = setup_records / (args.proof.stem + "-setup-native.json")
+    setup = run_pinned_contract(work, "verify_setup_optional.py", setup_verifier, setup_proof, 90)
+    assert setup["nativePassed"] and setup["sourceUnchanged"] and setup["temporaryCasesRemoved"]
+    assert setup["callerPathUnchanged"] and setup["actualCases"] == setup["processLifecycles"] == 94
+    assert setup["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in setup_packs for name, file in pack["files"].items()}
+    assert len(setup["profiles"]) == 6 and all(profile["passed"] and profile["inputsUnchanged"] and profile["temporaryModesRestored"] and profile["outsideSentinelPreserved"] for profile in setup["profiles"])
     default = work / "default-workspace"
     default.mkdir()
     default_archive = args.archives / "default-linux.zip"
@@ -439,6 +453,8 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
                                      "editingOptionalNativeProof": str(editing_optional_proof),
                                      "filesystemOptionalSourceIdentity": filesystem_identity,
                                      "filesystemOptionalNativeProof": str(filesystem_proof),
+                                     "setupOptionalSourceIdentity": setup_identity,
+                                     "setupOptionalNativeProof": str(setup_proof),
                                      "permissionsOptionalSourceIdentity": permissions_identity,
                                      "permissionsOptionalNativeProof": str(permissions_proof),
                                      "shellOptionalSourceIdentity": shell_identity,

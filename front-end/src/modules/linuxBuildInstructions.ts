@@ -23,6 +23,16 @@ export function linuxBuildInstructions(files: PythonIdeFile[], url?: string) {
 		];
 	}
 	const commands: Record<string, string[]> = {
+		"LS-01-ls0-setup-and-tooling-supplemental-2": [
+			"Read ../README.md and complete lookup-notes.md in an ordinary external Linux lab with Bash. Preserve the complete inspected tools folder; after ZIP extraction, give only its three lab-tool.sh fixtures execute permission.",
+			"Compare the first and second tool directories in both search orders, then put the controlled failing tool first. Repair the named readiness condition to require both actual command lookup and the version request to succeed.",
+			"Retain the empty-search command-not-found case, actual stderr and separate statuses, then verify recovery and nonexecutable-entry fallback. Preserve the caller PATH and fixture bytes; the controlled version result does not certify a real installed package."
+		],
+		"LS-02-ls0-setup-and-tooling-supplemental-3": [
+			"Read ../README.md and complete launch-notes.md with task.sh and args-demo.sh together. Use an ordinary owned Linux lab with Bash at /bin/bash, record the actual /bin/sh implementation, and execute outside the site IDE.",
+			"Repair the named launcher to select the required running Bash while preserving the script path and quoted arguments. Compare empty arguments, spaces, literal wildcards and changed caller directories without changing the demo.",
+			"Use only the guide\u2019s private copy for read and execute mode experiments. Keep direct-execution denial, explicit-sh syntax failure, actual recovery and cleanup distinct; a noexec filesystem can still reject direct launch."
+		],
 		"LS-07-unit-3-users-groups-and-permissions-supplemental-2": [
 			"Read ../README.md and complete unlink-notes.md with task.sh and permission_observer.py together in an ordinary external Linux account. Use an empty owned workspace.",
 			"Predict file append, directory listing and unlink separately; repair the named unlink decision using owner write and search on the containing directory. Keep real EACCES results separate from the prediction-match status.",

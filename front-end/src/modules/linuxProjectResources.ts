@@ -401,6 +401,28 @@ export const linuxVerifiedPacks = [
 			"linux-systems-unit-3-users-groups-and-permissions-supplemental-permissions-extension-practice",
 		notebookItemId: null,
 		revision: "de4ff7b50cd6daaa00e60b1ced3b9f43968e57d2"
+	},
+	{
+		pack: "LS-01-ls0-setup-and-tooling-supplemental-2",
+		roleFiles: [
+			"lookup-notes.md",
+			"task.sh",
+			"tools/first/lab-tool.sh",
+			"tools/second/lab-tool.sh",
+			"tools/failing/lab-tool.sh"
+		],
+		coreItemId:
+			"linux-systems-ls0-setup-and-tooling-supplemental-linux-systems-setup-transfer-practice",
+		notebookItemId: null,
+		revision: "98743638e0b857301b17afb07b4b0289c7a257ff"
+	},
+	{
+		pack: "LS-02-ls0-setup-and-tooling-supplemental-3",
+		roleFiles: ["launch-notes.md", "task.sh", "args-demo.sh"],
+		coreItemId:
+			"linux-systems-ls0-setup-and-tooling-supplemental-linux-systems-setup-extension-practice",
+		notebookItemId: null,
+		revision: "98743638e0b857301b17afb07b4b0289c7a257ff"
 	}
 ] as const;
 

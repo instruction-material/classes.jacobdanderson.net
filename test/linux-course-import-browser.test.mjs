@@ -22,6 +22,8 @@ const fixtures = JSON.parse(
 	)
 );
 const definitions = {
+"LS-01-ls0-setup-and-tooling-supplemental-2": ["ls0-setup-and-tooling", "linux-systems-setup-transfer-practice", null],
+"LS-02-ls0-setup-and-tooling-supplemental-3": ["ls0-setup-and-tooling", "linux-systems-setup-extension-practice", null],
 "LS-07-unit-3-users-groups-and-permissions-supplemental-2": ["unit-3-users-groups-and-permissions", "permissions-transfer-practice", null],
 "LS-08-unit-3-users-groups-and-permissions-supplemental-3": ["unit-3-users-groups-and-permissions", "permissions-extension-practice", null],
 "LS-05-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-2": ["unit-2-filesystem-hierarchy-and-directory-purpose", "filesystem-layout-transfer-practice", null],
@@ -170,6 +172,8 @@ const definitions = {
 	]
 };
 const notesFirstFiles = {
+"LS-01-ls0-setup-and-tooling-supplemental-2": "lookup-notes.md",
+"LS-02-ls0-setup-and-tooling-supplemental-3": "launch-notes.md",
 "LS-07-unit-3-users-groups-and-permissions-supplemental-2": "unlink-notes.md",
 "LS-08-unit-3-users-groups-and-permissions-supplemental-3": "umask-notes.md",
 "LS-05-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-2": "path-notes.md",
@@ -359,6 +363,8 @@ test(
 				const [module, core] = definitions[fixture.pack];
 				const moduleID = `linux-systems-${module}`;
 				const placement = [
+"LS-01-ls0-setup-and-tooling-supplemental-2",
+"LS-02-ls0-setup-and-tooling-supplemental-3",
 "LS-07-unit-3-users-groups-and-permissions-supplemental-2",
 "LS-08-unit-3-users-groups-and-permissions-supplemental-3",
 "LS-05-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-2",
@@ -628,6 +634,8 @@ test(
 								});
 							}
 							const capture = {
+"LS-01-ls0-setup-and-tooling-supplemental-2": "linux-setup-lookup",
+"LS-02-ls0-setup-and-tooling-supplemental-3": "linux-setup-launch",
 "LS-07-unit-3-users-groups-and-permissions-supplemental-2": "linux-permissions-unlink",
 "LS-08-unit-3-users-groups-and-permissions-supplemental-3": "linux-permissions-umask",
 "LS-05-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-2": "linux-filesystem-paths",
@@ -835,8 +843,8 @@ test(
 				);
 			}
 			await writeFile(join(output, "default-linux.zip"), defaultArchive);
-			assert.equal(proof.length, 272);
-			assert.equal(courseButtons.length, 47);
+			assert.equal(proof.length, 288);
+			assert.equal(courseButtons.length, 49);
 			assert.equal(
 				courseButtons.filter(action => action.reusesExistingAttempt)
 					.length,
