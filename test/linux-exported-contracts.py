@@ -50,7 +50,7 @@ supplemental_verifier = (fixture_dir / "linux-systemd-supplemental-source-verifi
 assert hashlib.sha256(supplemental_verifier).hexdigest() == supplemental_identity["sha256"]
 assert all(pack["revision"] == supplemental_identity["revision"] for pack in supplemental_packs)
 logging_packs = [pack for pack in packs if pack["pack"] in ("LS-09-unit-7-logging-and-observability", "LS-15-unit-7-logging-and-observability-supplemental-2", "LS-16-unit-7-logging-and-observability-supplemental-3")]
-assert len(logging_packs) == 3 and len(packs) == 16
+assert len(logging_packs) == 3 and len(packs) == 19
 logging_identity = json.loads((fixture_dir / "linux-logging-source-verifier.json").read_text())
 logging_verifier = (fixture_dir / "linux-logging-source-verifier.py").read_bytes()
 assert hashlib.sha256(logging_verifier).hexdigest() == logging_identity["sha256"]
@@ -66,6 +66,17 @@ assert hashlib.sha256(editing_core_verifier).hexdigest() == editing_core_identit
 assert hashlib.sha256(editing_optional_verifier).hexdigest() == editing_optional_identity["sha256"]
 assert editing_core_packs[0]["revision"] == editing_core_identity["revision"]
 assert all(pack["revision"] == editing_optional_identity["revision"] for pack in editing_optional_packs)
+process_core_packs = [pack for pack in packs if pack["pack"] == "LS-08-unit-5-processes-and-job-control"]
+process_optional_packs = [pack for pack in packs if pack["pack"] in ("LS-11-unit-5-processes-and-job-control-supplemental-2", "LS-12-unit-5-processes-and-job-control-supplemental-3")]
+assert len(process_core_packs) == 1 and len(process_optional_packs) == 2
+process_core_identity = json.loads((fixture_dir / "linux-process-core-source-verifier.json").read_text())
+process_core_verifier = (fixture_dir / "linux-process-core-source-verifier.py").read_bytes()
+process_optional_identity = json.loads((fixture_dir / "linux-process-optional-source-verifier.json").read_text())
+process_optional_verifier = (fixture_dir / "linux-process-optional-source-verifier.py").read_bytes()
+assert hashlib.sha256(process_core_verifier).hexdigest() == process_core_identity["sha256"]
+assert hashlib.sha256(process_optional_verifier).hexdigest() == process_optional_identity["sha256"]
+assert process_core_packs[0]["revision"] == process_core_identity["revision"]
+assert all(pack["revision"] == process_optional_identity["revision"] for pack in process_optional_packs)
 args.proof = args.proof.resolve()
 args.proof.parent.mkdir(parents=True, exist_ok=True)
 archives = []
@@ -249,6 +260,18 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
     assert len(partial) == 2 and all(row["status"] == 99 and row["firstFileChanged"] and row["secondFileUnchanged"] and row["completeBackupExact"] for row in partial)
     optional_cleanup = [row for row in editing_optional["observations"] if row.get("kind") == "cleanup"]
     assert len(optional_cleanup) == 6 and all(row["processesStopped"] and row["temporaryDirectoryRemoved"] for row in optional_cleanup)
+    process_core_proof = args.proof.with_name(args.proof.stem + "-process-core-native.json")
+    process_core = run_pinned_contract(work, "verify_process_core.py", process_core_verifier, process_core_proof, 90)
+    assert process_core["accepted"] and process_core["sourceUnchanged"] and process_core["worksheetCompletionNotInferred"]
+    assert process_core["sourceHashes"] == {name: file["sha256"] for name, file in process_core_packs[0]["files"].items()}
+    assert len(process_core["profiles"]) == 3 and len(process_core["observations"]) == 45
+    assert all(profile["actualForegroundStatus"] == 130 and profile["actualBashWaitStatuses"] == [0, 137] for profile in process_core["profiles"])
+    process_optional_proof = args.proof.with_name(args.proof.stem + "-process-optional-native.json")
+    process_optional = run_pinned_contract(work, "verify_process_optional.py", process_optional_verifier, process_optional_proof, 120)
+    assert process_optional["accepted"] and process_optional["sourceUnchanged"] and process_optional["worksheetCompletionNotInferred"]
+    assert process_optional["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in process_optional_packs for name, file in pack["files"].items()}
+    assert len(process_optional["profiles"]) == 6 and len(process_optional["observations"]) == 66
+    assert all(value for profile in process_optional["profiles"] for value in profile.values() if isinstance(value, bool))
     default = work / "default-workspace"
     default.mkdir()
     default_archive = args.archives / "default-linux.zip"
@@ -307,6 +330,10 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
                                      "editingCoreNativeProof": str(editing_core_proof),
                                      "editingOptionalSourceIdentity": editing_optional_identity,
                                      "editingOptionalNativeProof": str(editing_optional_proof),
+                                     "processCoreSourceIdentity": process_core_identity,
+                                     "processCoreNativeProof": str(process_core_proof),
+                                     "processOptionalSourceIdentity": process_optional_identity,
+                                     "processOptionalNativeProof": str(process_optional_proof),
                                      "defaultWorkspace": {"fileHashes": default_hashes,
                                                           "stdout": output.decode(),
                                                           "status": default_child.returncode},

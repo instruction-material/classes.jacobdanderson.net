@@ -199,6 +199,31 @@ export const linuxVerifiedPacks = [
 		coreItemId:
 			"linux-systems-unit-4-editing-and-configuration-supplemental-configuration-editing-extension-practice",
 		notebookItemId: null
+	},
+	{
+		pack: "LS-08-unit-5-processes-and-job-control",
+		revision: "e0435ba87eaab0cee4d3d9d48071cb5e555dfb90",
+		roleFiles: ["process-notes.md", "process_worker.py"],
+		coreItemId:
+			"linux-systems-unit-5-processes-and-job-control-curriculum-core-project-processes-and-job-control",
+		notebookItemId:
+			"linux-systems-unit-5-processes-and-job-control-supplemental-troubleshooting-notebook-processes-and-job-control"
+	},
+	{
+		pack: "LS-11-unit-5-processes-and-job-control-supplemental-2",
+		revision: "f52d55e992742d51ee034a4489cf5982f6031652",
+		roleFiles: ["pipeline-notes.md", "pipeline_worker.py"],
+		coreItemId:
+			"linux-systems-unit-5-processes-and-job-control-supplemental-process-control-transfer-practice",
+		notebookItemId: null
+	},
+	{
+		pack: "LS-12-unit-5-processes-and-job-control-supplemental-3",
+		revision: "f52d55e992742d51ee034a4489cf5982f6031652",
+		roleFiles: ["adoption-notes.md", "adoption_lab.py"],
+		coreItemId:
+			"linux-systems-unit-5-processes-and-job-control-supplemental-process-control-extension-practice",
+		notebookItemId: null
 	}
 ] as const;
 

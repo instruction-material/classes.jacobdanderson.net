@@ -23,6 +23,21 @@ export function linuxBuildInstructions(files: PythonIdeFile[], url?: string) {
 		];
 	}
 	const commands: Record<string, string[]> = {
+		"LS-08-unit-5-processes-and-job-control": [
+			"Read ../README.md for real process identities, owned signals, waiting and interactive Bash job control.",
+			"Complete process-notes.md using the supplied working process_worker.py; both roles provide equipment, not completed observation records.",
+			"Use an actual Linux terminal. Follow the full guide for Ctrl+Z/bg/fg/Ctrl+C, actual wait statuses, changed lifetimes, rejected arguments and owned cleanup. The troubleshooting notebook continues this same attempt."
+		],
+		"LS-11-unit-5-processes-and-job-control-supplemental-2": [
+			"Read ../README.md and use a fresh interactive Bash terminal with monitor mode and an empty job table.",
+			"Complete pipeline-notes.md using produce and consume modes of pipeline_worker.py; keep this optional transfer separate from the core attempt.",
+			"Observe both actual PIDs and their shared process group, group STOP/CONT/INT, resumed data, immediate PIPESTATUS with and without pipefail, the early reader's SIGPIPE and complete owned-job cleanup."
+		],
+		"LS-12-unit-5-processes-and-job-control-supplemental-3": [
+			"Read ../README.md for Linux /proc, the per-process child-subreaper flag, two-terminal observations and explicit record paths.",
+			"Complete adoption-notes.md using the supplied working adoption_lab.py and a fresh evidence filename; earlier records are not overwritten.",
+			"Observe the actual zombie before wait, the original parent handshake, the same live child's new PPID, internal wait results and overall status, changed timing, separate interruption and owned cleanup. Keep this optional extension separate from the core attempt."
+		],
 		"LS-09-unit-7-logging-and-observability": [
 			"Read ../README.md for the journal fields, scalar JSON records, prediction and owned user-manager setup.",
 			"Complete in_scope in task.sh, then run bash task.sh sample.log linux-observe-demo.service aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 100 500.",
