@@ -268,6 +268,38 @@ test(
 				(key, earlier) => {
 					if (localStorage.getItem(key) === null)
 						localStorage.setItem(key, JSON.stringify([earlier]));
+					// Inspect the committed primary store independently of the UI.
+					// The localStorage compatibility mirror can fill before IndexedDB.
+					window.__linuxSavedProjects = () => new Promise((resolve, reject) => {
+						const opening = indexedDB.open("classes-python-ide", 1);
+						opening.onupgradeneeded = () => {
+							opening.transaction.abort();
+							reject(new Error("The application has not initialized its project store"));
+						};
+						opening.onerror = () => reject(opening.error);
+						opening.onsuccess = () => {
+							const database = opening.result;
+							if (!database.objectStoreNames.contains("projectStores")) {
+								database.close();
+								reject(new Error("The primary project store is missing"));
+								return;
+							}
+							const transaction = database.transaction("projectStores", "readonly");
+							const reading = transaction.objectStore("projectStores").get(key);
+							let projects;
+							reading.onsuccess = () => { projects = reading.result?.projects; };
+							transaction.oncomplete = () => {
+								database.close();
+								resolve(Array.isArray(projects) ? projects : []);
+							};
+							transaction.onerror = transaction.onabort = () => {
+								database.close();
+								reject(transaction.error ?? new Error("Primary project read failed"));
+							};
+						};
+					});
+					window.__linuxSavedProject = async projectKey =>
+						(await window.__linuxSavedProjects()).find(project => project.courseProjectKey === projectKey);
 					const create = URL.createObjectURL;
 					URL.createObjectURL = (blob) => {
 						if (blob.type === "application/zip")
@@ -339,21 +371,13 @@ test(
 			});
 			const savedFor = async key =>
 				page.evaluate(
-					(storage, k) =>
-						JSON.parse(localStorage.getItem(storage) ?? "[]").find(
-							p => p.courseProjectKey === k
-						),
-					storageKey,
+					k => window.__linuxSavedProject(k),
 					key
 				);
 			const waitSaved = async key =>
 				page.waitForFunction(
-					(storage, k) =>
-						JSON.parse(localStorage.getItem(storage) ?? "[]").some(
-							p => p.courseProjectKey === k
-						),
+					async k => Boolean(await window.__linuxSavedProject(k)),
 					{},
-					storageKey,
 					key
 				);
 			const captureArchive = async () => {
@@ -585,9 +609,8 @@ test(
 							await page.keyboard.press("s");
 							await page.keyboard.up(modifier);
 							await page.waitForFunction(
-								(storage, k) =>
-									JSON.parse(localStorage.getItem(storage))
-										.find(p => p.courseProjectKey === k)
+								async k =>
+									(await window.__linuxSavedProject(k))
 										?.files
 										.some(f =>
 											f.content.includes(
@@ -595,7 +618,6 @@ test(
 											)
 										),
 								{},
-								storageKey,
 								key
 							);
 							const edited = await savedFor(key);
@@ -627,11 +649,8 @@ test(
 							}
 							assert.deepEqual(
 								await page.evaluate(
-									(storage, id) =>
-										JSON.parse(
-											localStorage.getItem(storage)
-										).find(p => p._id === id),
-									storageKey,
+									async id =>
+										(await window.__linuxSavedProjects()).find(p => p._id === id),
 									legacy._id
 								),
 								legacy
@@ -881,9 +900,43 @@ test(
 			);
 			assert.equal(courseButtons.filter(action => action.reusesExistingAttempt && action.item.includes("troubleshooting-notebook")).length, 13);
 			assert.equal(courseButtons.filter(action => action.reusesExistingAttempt && action.item.endsWith("extension-challenge-service-deployment-studio")).length, 1);
+			const storageEvidence = await page.evaluate(async (key, earlier) => {
+				const projects = await window.__linuxSavedProjects();
+				const serialized = JSON.stringify(projects);
+				const mirrorBefore = localStorage.getItem(key);
+				let mirrorWriteFailure = null;
+				try {
+					localStorage.setItem(key, serialized);
+				} catch (error) {
+					mirrorWriteFailure = error.name;
+				}
+				const primaryAfter = await window.__linuxSavedProjects();
+				return {
+					primaryProjectCount: projects.length,
+					primaryCharacters: serialized.length,
+					projectKeys: projects.map(project => project.courseProjectKey),
+					mirrorProjectCount: JSON.parse(mirrorBefore ?? "[]").length,
+					mirrorCharacters: mirrorBefore?.length ?? 0,
+					mirrorWriteFailure,
+					failedMirrorUnchanged: localStorage.getItem(key) === mirrorBefore,
+					primaryUnchanged: JSON.stringify(primaryAfter) === serialized,
+					priorAttemptUnchanged: JSON.stringify(projects.find(project => project._id === earlier._id)) === JSON.stringify(earlier)
+				};
+			}, storageKey, legacy);
+			const expectedKeys = new Set([
+				legacy.courseProjectKey,
+				"ide-template:linux:demo",
+				...proof.map(profile => `linux-systems:${profile.pack}-${profile.width}-${profile.theme}:${profile.role === "starter" ? "starter" : "reference"}:native-linux`),
+				...courseButtons.map(action => action.coreKey)
+			]);
+			assert.deepEqual(new Set(storageEvidence.projectKeys), expectedKeys);
+			assert.equal(storageEvidence.primaryProjectCount, expectedKeys.size);
+			assert.equal(storageEvidence.mirrorWriteFailure, "QuotaExceededError");
+			assert.ok(storageEvidence.mirrorProjectCount < storageEvidence.primaryProjectCount);
+			assert.ok(storageEvidence.failedMirrorUnchanged && storageEvidence.primaryUnchanged && storageEvidence.priorAttemptUnchanged);
 			await writeFile(
 				join(output, "browser-proof.json"),
-				JSON.stringify({ profiles: proof, courseButtons }, null, 2)
+				JSON.stringify({ profiles: proof, courseButtons, storageEvidence }, null, 2)
 			);
 		}
 		catch (error) {
@@ -900,10 +953,27 @@ test(
 				await writeFile(
 					join(output, "failure-state.json"),
 					JSON.stringify(
-						await page.evaluate(() => ({
-							url: location.href,
-							body: document.body.textContent.slice(-6000)
-						})),
+						await page.evaluate(async storage => {
+							let primary = [], readError = null;
+							try {
+								primary = await window.__linuxSavedProjects();
+							} catch (error) {
+								readError = String(error);
+							}
+							const mirror = localStorage.getItem(storage);
+							const currentKey = new URL(location.href).searchParams.get("projectKey");
+							return {
+								url: location.href,
+								body: document.body.innerText.slice(-6000),
+								storage: {
+									readError,
+									primaryProjectCount: primary.length,
+									primaryHasCurrent: primary.some(project => project.courseProjectKey === currentKey),
+									mirrorProjectCount: JSON.parse(mirror ?? "[]").length,
+									mirrorCharacters: mirror?.length ?? 0
+								}
+							};
+						}, storageKey),
 						null,
 						2
 					)
