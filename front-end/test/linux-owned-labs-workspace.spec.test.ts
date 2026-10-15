@@ -102,6 +102,30 @@ it("preserves core and notebook identities, complete reading, reference privacy 
 				// The import/export checks below still require original source bytes.
 				.replaceAll("With an instructor, inspect", "Inspect")
 				.replaceAll(
+					"The active link should name",
+					"The active link names"
+				)
+				.replaceAll(
+					"and the runtime should report",
+					"and the runtime reports"
+				)
+				.replaceAll(
+					"A subsequent `check` should fail",
+					"A subsequent `check` fails"
+				)
+				.replaceAll(
+					"The unpacked program should report",
+					"The unpacked program reports"
+				)
+				.replaceAll(
+					"Predict what should happen",
+					"Predict what happens"
+				)
+				.replaceAll(
+					"Require a nonzero status",
+					"Confirm a nonzero status"
+				)
+				.replaceAll(
 					"Completion and instructor walkthrough",
 					"Completion and guided walkthrough"
 				)

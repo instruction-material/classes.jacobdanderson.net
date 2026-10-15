@@ -39,8 +39,8 @@ away from contact, so it cannot keep awarding a point for the same drop. The
 Score monitor's checkbox controls visibility; hiding it does not clear Score.
 
 **Check:** Predict the untouched starter's score after a miss: it stays at 0.
-After the Normal task, restart, catch once and miss once; Score should return
-to 0. Catch three times and require three distinct drops and three points.
+After the Normal task, restart, catch once and miss once; confirm Score returns
+to 0. Catch three times and confirm three distinct drops and three points.
 Hold an arrow to observe continuous movement and the boundary clamp. Restart
 while Token is low: Score returns to 0, Player returns to its start and a fresh
 drop begins at the top. Record actual output and repair one failed check.
@@ -97,7 +97,7 @@ the repair, the same branch moves the projectile and tests touching edge?.
 All of the needed actions are supplied; complete the named comparison rather
 than replacing the entire project.
 
-**Check one flight:** Restart with Space released. Require hidden Projectile
+**Check one flight:** Restart with Space released. Confirm Projectile is hidden
 and isFired = 0. Press Space: it appears at Player and moves right. Move Player
 while it is flying: the projectile keeps its own position and is not teleported
 back to Player. Hold Space through the edge: it hides, returns to 0 and remains
@@ -152,21 +152,21 @@ ordered execution rather than assuming that only one if can run.
 
 **Run and predict:** In the untouched starter, scoring works but Level stays
 at 1 and FallSpeed stays at 3 because the two action areas are empty. After
-the Normal task, collect three drops: require Level 2 and visibly faster falls.
-Collect until Score reaches 6: require Level 3 and speed 7. Miss after earning
+the Normal task, collect three drops: confirm Level 2 and visibly faster falls.
+Collect until Score reaches 6: confirm Level 3 and speed 7. Miss after earning
 each level and confirm its speed is retained. The score monitor alone cannot
 prove that the speed changed; watch the fall and inspect the named value.
 
 **Check boundaries and restart:** Test scores 2, 3, 5 and 6. In a separate
 changed case, set Score to 6 while Level is 1 and predict the final values.
-Restart after reaching Level 3 and require Score 0, Level 1, FallSpeed 3, the
+Restart after reaching Level 3 and confirm Score 0, Level 1, FallSpeed 3, the
 starting Player position and a fresh top-of-stage drop. A second restart must
 give the same reset. Avoid turbo when comparing the normal difficulty rules.
 
 **Hard:** Choose different thresholds and speeds, document them, then test
 just below and at each threshold. Optionally switch a backdrop when a level
 changes, but retain the speed rule as observable gameplay. Design an ending
-only after the three-level progression is reliable. State what should stop,
+only after the three-level progression is reliable. State what stops,
 what remains visible and how the green flag restores the next round.
 
 **Verification:**
