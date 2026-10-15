@@ -57,6 +57,8 @@ try:
 except RuntimeError:
     pass
 pygame.init()
+# Music started during setup must survive the runner starting its draw loop.
+music.play("mixer_fixture")
 
 WIDTH = 160
 HEIGHT = 120
@@ -318,6 +320,22 @@ test(
 							`${folder} stopped when the mixer quit`
 						);
 					}
+					const startupMusic = audioEvents.findLastIndex(
+						event =>
+							event.action === "play" &&
+							event.src.includes("/music/mixer_fixture.wav")
+					);
+					assert.ok(startupMusic >= 0);
+					assert.ok(
+						!audioEvents
+							.slice(startupMusic + 1)
+							.some(
+								event =>
+									event.action === "pause" &&
+									event.src === audioEvents[startupMusic].src
+							),
+						"Runner setup preserves music started by the program"
+					);
 					await runtime.waitForFunction(
 						() => {
 							const canvas = document.querySelector(

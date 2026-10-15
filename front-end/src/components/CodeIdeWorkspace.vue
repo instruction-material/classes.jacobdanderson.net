@@ -5226,7 +5226,6 @@ function resetGameCanvas(width = 640, height = 400) {
 	gameTickQueued = false;
 	gameTickCallback = null;
 	gameContinuousFrameRunner = null;
-	stopAllGameAudio();
 	gameState.width = Math.max(1, width);
 	gameState.height = Math.max(1, height);
 	gameState.background = "#111827";
@@ -6739,6 +6738,7 @@ function createGuardedGameBridgeRun(): GameBridge {
 }
 
 function resetActiveCanvas() {
+	stopAllGameAudio();
 	if (selectedProject.value?.mode === "pgzero") {
 		resetGameCanvas(gameState.width, gameState.height);
 		return;
