@@ -23,6 +23,16 @@ export function linuxBuildInstructions(files: PythonIdeFile[], url?: string) {
 		];
 	}
 	const commands: Record<string, string[]> = {
+		"LS-03-unit-1-shell-foundations-supplemental-2": [
+			"Read ../README.md and complete search-notes.md in an ordinary Linux terminal with Bash, GNU grep and GNU sort. Keep every supplied records path exactly, including spaces and the leading dash.",
+			"Repair the final status decision after the actual grep -F -l -Z and sort -z -u pipeline. Retain literal match, no-match, missing/unreadable input and newline-filename observations with their actual separate tool statuses.",
+			"The binary filename stream uses NUL boundaries; inspect it with the guide's read -d loop. Preserve the supplied files, record a changed literal search and remove only the disposable case. Keep this optional transfer separate from the core."
+		],
+		"LS-04-unit-1-shell-foundations-supplemental-3": [
+			"Read ../README.md and complete pipeline-notes.md with count.awk and the complete records folder preserved. Execute the supplied cat/awk pipeline in an ordinary external Linux terminal.",
+			"Observe the starter's misleading success with valid plus missing input. Repair the named condition using both saved PIPESTATUS entries, then compare empty input, changed operand order and quoted paths.",
+			"In a disposable copy trigger an actual awk syntax error, retain both original stage statuses, restore exact count.awk bytes and verify recovery. Keep this optional extension separate from the core; a printed summary is not evidence that every input was read."
+		],
 		"LS-12-unit-12-storage-backups-and-reliability": [
 			"Read ../README.md and complete restore-notes.md in an ordinary Debian/Ubuntu Linux terminal. Initialize only a fresh child of the private mktemp parent printed by the guide.",
 			"Record actual df/du capacity, logical versus allocated bytes, mount identity and inodes. Create and independently checksum the baseline; compare exclusions, binary content, modes and current ownership after a separate restore.",

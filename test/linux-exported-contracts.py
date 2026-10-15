@@ -50,7 +50,7 @@ supplemental_verifier = (fixture_dir / "linux-systemd-supplemental-source-verifi
 assert hashlib.sha256(supplemental_verifier).hexdigest() == supplemental_identity["sha256"]
 assert all(pack["revision"] == supplemental_identity["revision"] for pack in supplemental_packs)
 logging_packs = [pack for pack in packs if pack["pack"] in ("LS-09-unit-7-logging-and-observability", "LS-15-unit-7-logging-and-observability-supplemental-2", "LS-16-unit-7-logging-and-observability-supplemental-3")]
-assert len(logging_packs) == 3 and len(packs) == 28
+assert len(logging_packs) == 3 and len(packs) == 30
 logging_identity = json.loads((fixture_dir / "linux-logging-source-verifier.json").read_text())
 logging_verifier = (fixture_dir / "linux-logging-source-verifier.py").read_bytes()
 assert hashlib.sha256(logging_verifier).hexdigest() == logging_identity["sha256"]
@@ -102,6 +102,12 @@ storage_packs = [pack for pack in packs if pack["pack"] in storage_names]
 assert len(storage_packs) == 3
 assert hashlib.sha256(storage_verifier).hexdigest() == storage_identity["sha256"]
 assert all(pack["revision"] == storage_identity["revision"] for pack in storage_packs)
+shell_identity = json.loads((fixture_dir / "linux-shell-optional-source-verifier.json").read_text())
+shell_verifier = (fixture_dir / "linux-shell-optional-source-verifier.py").read_bytes()
+shell_packs = [pack for pack in packs if pack["pack"] in ['LS-03-unit-1-shell-foundations-supplemental-2', 'LS-04-unit-1-shell-foundations-supplemental-3']]
+assert len(shell_packs) == 2
+assert hashlib.sha256(shell_verifier).hexdigest() == shell_identity["sha256"]
+assert all(pack["revision"] == shell_identity["revision"] for pack in shell_packs)
 args.proof = args.proof.resolve()
 args.proof.parent.mkdir(parents=True, exist_ok=True)
 archives = []
@@ -335,6 +341,14 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
     assert all(value for profile in storage["profiles"] for value in profile.values() if isinstance(value, bool))
     storage_reports = list(storage_records.glob("[012]-*-storage-observation.json"))
     assert len(storage_reports) == 9
+    shell_records = args.proof.parent / "shell-records"
+    shell_records.mkdir(exist_ok=True)
+    shell_proof = shell_records / (args.proof.stem + "-shell-native.json")
+    shell = run_pinned_contract(work, "verify_shell_optional.py", shell_verifier, shell_proof, 90)
+    assert shell["nativePassed"] and shell["sourceUnchanged"] and shell["ownedTemporaryCasesRemoved"]
+    assert shell["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in shell_packs for name, file in pack["files"].items()}
+    assert len(shell["profiles"]) == 6 and shell["actualCases"] == 81
+    assert all(profile["passed"] and profile["inputAndHelperRestored"] for profile in shell["profiles"])
     default = work / "default-workspace"
     default.mkdir()
     default_archive = args.archives / "default-linux.zip"
@@ -393,6 +407,8 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
                                      "editingCoreNativeProof": str(editing_core_proof),
                                      "editingOptionalSourceIdentity": editing_optional_identity,
                                      "editingOptionalNativeProof": str(editing_optional_proof),
+                                     "shellOptionalSourceIdentity": shell_identity,
+                                     "shellOptionalNativeProof": str(shell_proof),
                                      "storageSourceIdentity": storage_identity,
                                      "storageNativeProof": str(storage_proof),
                                      "networkSourceIdentity": network_identity,

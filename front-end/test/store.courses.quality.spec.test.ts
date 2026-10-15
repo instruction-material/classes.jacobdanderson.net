@@ -4395,7 +4395,9 @@ describe("course text quality normalization", () => {
 		expect(corpus).toContain(
 			"`journalctl` is the central way to read systemd-managed service output"
 		);
-		expect(corpus).toContain("Shell Pipeline Transfer Practice");
+		expect(corpus).toContain(
+			"Literal Search, Filename Boundaries and Three Outcomes"
+		);
 		expect(corpus).toContain("systemd Service Transfer Practice");
 		expect(corpus).toContain(
 			"Reviewed Retention and a Verified Recovery Window"

@@ -298,6 +298,10 @@ it("retains literal Linux names and rejects unsafe paths and unverified imports"
 	expect(isValidPythonFileName("main.html")).toBe(false);
 	expect(isValidPythonFileName("Makefile.sh", "cpp")).toBe(false);
 	for (const name of [
+		"starter/search-notes.md",
+		"solution/count.awk",
+		"starter/records/-dash.txt",
+		"solution/records/with space.txt",
 		"starter/service-notes.md",
 		"starter/service-transfer-notes.md",
 		"solution/service-extension-notes.md",
@@ -326,6 +330,8 @@ it("retains literal Linux names and rejects unsafe paths and unverified imports"
 		"starter/../task.sh",
 		"/task.sh",
 		"starter//task.sh",
+		"starter/records/../task.sh",
+		"starter/records/-bad\tname.txt",
 		"starter\\task.sh",
 		"starter/reports/app\t1.log",
 		"starter/notes.md",

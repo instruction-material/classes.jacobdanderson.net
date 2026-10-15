@@ -244,6 +244,8 @@ describe("Python project routes", () => {
 				"starter/../task.sh",
 				"/task.sh",
 				"starter//task.sh",
+				"starter/records/../task.sh",
+				"starter/records/-bad\tname.txt",
 				"starter/reports/app\t1.log",
 				"images/task.sh",
 				"starter/notes.md",

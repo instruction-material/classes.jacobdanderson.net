@@ -340,6 +340,35 @@ export const linuxVerifiedPacks = [
 		coreItemId:
 			"linux-systems-unit-12-storage-backups-and-reliability-supplemental-backup-reliability-extension-practice",
 		notebookItemId: null
+	},
+	{
+		pack: "LS-03-unit-1-shell-foundations-supplemental-2",
+		roleFiles: [
+			"search-notes.md",
+			"task.sh",
+			"records/alpha.txt",
+			"records/with space.txt",
+			"records/-dash.txt"
+		],
+		coreItemId:
+			"linux-systems-unit-1-shell-foundations-supplemental-shell-pipeline-transfer-practice",
+		notebookItemId: null,
+		revision: "d96bf056157ed05c95cfe2ef5c2bee66501c7f17"
+	},
+	{
+		pack: "LS-04-unit-1-shell-foundations-supplemental-3",
+		roleFiles: [
+			"pipeline-notes.md",
+			"task.sh",
+			"count.awk",
+			"records/alpha.txt",
+			"records/with space.txt",
+			"records/-dash.txt"
+		],
+		coreItemId:
+			"linux-systems-unit-1-shell-foundations-supplemental-shell-pipeline-extension-practice",
+		notebookItemId: null,
+		revision: "d96bf056157ed05c95cfe2ef5c2bee66501c7f17"
 	}
 ] as const;
 
