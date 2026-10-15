@@ -3,6 +3,20 @@ import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { applyLinuxProjectReading } from "./linuxProjectReading";
 import { buildProjectGuidance } from "./projectGuidance";
 
+const deploymentStudioContext = {
+	focus: "current-release pointers, actual readiness identity, payload digests, concurrent publishers and reversible activation inside one selected optional studio",
+	artifact:
+		"release transition record with actual HTTP responses, symlink targets and a verified rollback",
+	invariant:
+		"the current pointer advances only when the selected candidate satisfies the recorded readiness and integrity conditions; a rejected candidate restores the previous target",
+	exampleCase:
+		"activate release B from A, retain the served page and readiness bytes, then submit a candidate whose health response is 200 but identifies a different release",
+	boundaryCase:
+		"reject missing health content, retain the prior pointer after failure, reverse the initial release and repeat; investigate manifest tampering and file-lock contention in the separate transfer and extension projects",
+	reviewEvidence:
+		"actual account and tools, candidate/current symlink targets, status and body bytes, before/after payload hashes, rollback and recovery, independent lock probes where applicable, owned PID/listener cleanup and the limits of a locally supplied manifest"
+};
+
 const linuxSystemsSourceCourse: RawCourse = {
 	name: "Linux Systems",
 	modules: [
@@ -982,7 +996,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 14: Service Deployment Studio",
-						section: "concepts"
+						section: "concepts",
+						context: deploymentStudioContext
 					})
 				},
 				{
@@ -991,7 +1006,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 14: Service Deployment Studio",
-						section: "example"
+						section: "example",
+						context: deploymentStudioContext
 					})
 				},
 				{
@@ -1000,7 +1016,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 14: Service Deployment Studio",
-						section: "coreProject"
+						section: "coreProject",
+						context: deploymentStudioContext
 					}),
 					projectLink:
 						"https://github.com/instruction-material/Linux-Systems/tree/main/LS-01-linux-systems-lab-14/starter",
@@ -1013,7 +1030,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 14: Service Deployment Studio",
-						section: "review"
+						section: "review",
+						context: deploymentStudioContext
 					})
 				}
 			],
@@ -1024,7 +1042,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 14: Service Deployment Studio",
-						section: "extension"
+						section: "extension",
+						context: deploymentStudioContext
 					}),
 					projectLink:
 						"https://github.com/instruction-material/Linux-Systems/tree/main/LS-01-linux-systems-lab-14/starter",

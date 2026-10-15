@@ -50,7 +50,7 @@ supplemental_verifier = (fixture_dir / "linux-systemd-supplemental-source-verifi
 assert hashlib.sha256(supplemental_verifier).hexdigest() == supplemental_identity["sha256"]
 assert all(pack["revision"] == supplemental_identity["revision"] for pack in supplemental_packs)
 logging_packs = [pack for pack in packs if pack["pack"] in ("LS-09-unit-7-logging-and-observability", "LS-15-unit-7-logging-and-observability-supplemental-2", "LS-16-unit-7-logging-and-observability-supplemental-3")]
-assert len(logging_packs) == 3 and len(packs) == 36
+assert len(logging_packs) == 3 and len(packs) == 43
 logging_identity = json.loads((fixture_dir / "linux-logging-source-verifier.json").read_text())
 logging_verifier = (fixture_dir / "linux-logging-source-verifier.py").read_bytes()
 assert hashlib.sha256(logging_verifier).hexdigest() == logging_identity["sha256"]
@@ -126,6 +126,24 @@ setup_packs = [pack for pack in packs if pack["pack"] in ['LS-01-ls0-setup-and-t
 assert len(setup_packs) == 2
 assert hashlib.sha256(setup_verifier).hexdigest() == setup_identity["sha256"]
 assert all(pack["revision"] == setup_identity["revision"] for pack in setup_packs)
+scheduling_identity = json.loads((fixture_dir / "linux-scheduling-optional-source-verifier.json").read_text())
+scheduling_verifier = (fixture_dir / "linux-scheduling-optional-source-verifier.py").read_bytes()
+scheduling_packs = [pack for pack in packs if pack["pack"] in ['LS-17-unit-8-scheduling-and-automation-supplemental-2', 'LS-18-unit-8-scheduling-and-automation-supplemental-3']]
+assert len(scheduling_packs) == 2
+assert hashlib.sha256(scheduling_verifier).hexdigest() == scheduling_identity["sha256"]
+assert all(pack["revision"] == scheduling_identity["revision"] for pack in scheduling_packs)
+web_identity = json.loads((fixture_dir / "linux-web-optional-source-verifier.json").read_text())
+web_verifier = (fixture_dir / "linux-web-optional-source-verifier.py").read_bytes()
+web_packs = [pack for pack in packs if pack["pack"] in ['LS-23-unit-11-web-servers-supplemental-2', 'LS-24-unit-11-web-servers-supplemental-3']]
+assert len(web_packs) == 2
+assert hashlib.sha256(web_verifier).hexdigest() == web_identity["sha256"]
+assert all(pack["revision"] == web_identity["revision"] for pack in web_packs)
+deployment_identity = json.loads((fixture_dir / "linux-deployment-studio-source-verifier.json").read_text())
+deployment_verifier = (fixture_dir / "linux-deployment-studio-source-verifier.py").read_bytes()
+deployment_packs = [pack for pack in packs if pack["pack"] in ['LS-01-linux-systems-lab-14', 'LS-27-applied-studio-14-linux-systems-lab-14-supplemental-2', 'LS-28-applied-studio-14-linux-systems-lab-14-supplemental-3']]
+assert len(deployment_packs) == 3
+assert hashlib.sha256(deployment_verifier).hexdigest() == deployment_identity["sha256"]
+assert all(pack["revision"] == deployment_identity["revision"] for pack in deployment_packs)
 args.proof = args.proof.resolve()
 args.proof.parent.mkdir(parents=True, exist_ok=True)
 archives = []
@@ -393,6 +411,39 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
     assert setup["callerPathUnchanged"] and setup["actualCases"] == setup["processLifecycles"] == 94
     assert setup["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in setup_packs for name, file in pack["files"].items()}
     assert len(setup["profiles"]) == 6 and all(profile["passed"] and profile["inputsUnchanged"] and profile["temporaryModesRestored"] and profile["outsideSentinelPreserved"] for profile in setup["profiles"])
+    scheduling_records = args.proof.parent / "scheduling-records"
+    scheduling_records.mkdir(exist_ok=True)
+    scheduling_proof = scheduling_records / (args.proof.stem + "-scheduling-native.json")
+    scheduling = run_pinned_contract(work, "verify_scheduling_optional.py", scheduling_verifier, scheduling_proof, 150)
+    assert scheduling["nativePassed"] and scheduling["sourceUnchanged"] and scheduling["temporaryCasesRemoved"]
+    assert scheduling["systemClockProgressionPreserved"] and scheduling["actualCases"] == scheduling["loggedOuterLifecycles"] == 64
+    assert scheduling["calendarToolLifecycles"] == 24 and scheduling["actualUserTimerLifecycles"] == 9
+    assert scheduling["actualInterruptedTimerLifecycles"] == 3 and scheduling["actualWorkerEvents"] > 0
+    assert scheduling["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in scheduling_packs for name, file in pack["files"].items()}
+    assert len(scheduling["profiles"]) == 6 and all(profile["passed"] and profile["inputsUnchanged"] and profile["ownedResourcesRemoved"] and profile["outsideSentinelPreserved"] for profile in scheduling["profiles"])
+    web_records = args.proof.parent / "web-records"
+    web_records.mkdir(exist_ok=True)
+    web_proof = web_records / (args.proof.stem + "-web-native.json")
+    web = run_pinned_contract(work, "verify_web_optional.py", web_verifier, web_proof, 150)
+    assert web["nativePassed"] and web["sourceUnchanged"] and web["temporaryCasesRemoved"]
+    assert web["actualCases"] == web["loggedOuterLifecycles"] == 66 and web["actualHttpRequests"] == 171
+    assert web["actualNginxLifecycles"] == 24 and web["actualInterruptedNginxLifecycles"] == 6
+    assert web["actualSyntaxRejections"] == web["actualCreationDenials"] == 6 and web["actualNativeCommands"] == 60
+    assert web["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in web_packs for name, file in pack["files"].items()}
+    assert len(web["profiles"]) == 6 and all(profile["passed"] and profile["inputsUnchanged"] and profile["ownedResourcesRemoved"] and profile["outsideSentinelPreserved"] for profile in web["profiles"])
+    deployment_records = args.proof.parent / "deployment-studio-records"
+    deployment_records.mkdir(exist_ok=True)
+    deployment_proof = deployment_records / (args.proof.stem + "-deployment-studio-native.json")
+    deployment = run_pinned_contract(work, "verify_deployment_studio.py", deployment_verifier, deployment_proof, 180)
+    assert deployment["nativePassed"] and deployment["sourceUnchanged"] and deployment["temporaryCasesRemoved"]
+    assert deployment["actualCases"] == deployment["loggedOuterLifecycles"] == 93
+    assert deployment["actualHttpRequests"] == 162 and deployment["actualNginxLifecycles"] == 24
+    assert deployment["actualPublisherLifecycles"] == 33 and deployment["actualContentionExits"] == 4
+    assert deployment["actualPublisherSigintCases"] == 6 and deployment["actualPublisherCleanupTerminations"] == 3
+    assert deployment["actualObserverInterruptions"] == deployment["actualCreationDenials"] == 9
+    assert deployment["actualSyntaxRejections"] == 6 and deployment["actualNativeCommands"] == 60
+    assert deployment["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in deployment_packs for name, file in pack["files"].items()}
+    assert len(deployment["profiles"]) == 9 and all(profile["passed"] and profile["inputsUnchanged"] and profile["ownedResourcesRemoved"] and profile["outsideSentinelPreserved"] for profile in deployment["profiles"])
     default = work / "default-workspace"
     default.mkdir()
     default_archive = args.archives / "default-linux.zip"
@@ -453,6 +504,12 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
                                      "editingOptionalNativeProof": str(editing_optional_proof),
                                      "filesystemOptionalSourceIdentity": filesystem_identity,
                                      "filesystemOptionalNativeProof": str(filesystem_proof),
+                                     "schedulingOptionalSourceIdentity": scheduling_identity,
+                                     "schedulingOptionalNativeProof": str(scheduling_proof),
+                                     "deploymentStudioSourceIdentity": deployment_identity,
+                                     "deploymentStudioNativeProof": str(deployment_proof),
+                                     "webOptionalSourceIdentity": web_identity,
+                                     "webOptionalNativeProof": str(web_proof),
                                      "setupOptionalSourceIdentity": setup_identity,
                                      "setupOptionalNativeProof": str(setup_proof),
                                      "permissionsOptionalSourceIdentity": permissions_identity,

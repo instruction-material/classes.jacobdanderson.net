@@ -423,6 +423,106 @@ export const linuxVerifiedPacks = [
 			"linux-systems-ls0-setup-and-tooling-supplemental-linux-systems-setup-extension-practice",
 		notebookItemId: null,
 		revision: "98743638e0b857301b17afb07b4b0289c7a257ff"
+	},
+	{
+		pack: "LS-17-unit-8-scheduling-and-automation-supplemental-2",
+		roleFiles: ["calendar-notes.md", "task.sh", "calendar_observer.py"],
+		coreItemId:
+			"linux-systems-unit-8-scheduling-and-automation-supplemental-automation-transfer-practice",
+		notebookItemId: null,
+		revision: "74b7e6bef4b0b0cdd52804703a95d2c612d05c9d"
+	},
+	{
+		pack: "LS-18-unit-8-scheduling-and-automation-supplemental-3",
+		roleFiles: [
+			"timer-notes.md",
+			"task.sh",
+			"timer_observer.py",
+			"timer_worker.py"
+		],
+		coreItemId:
+			"linux-systems-unit-8-scheduling-and-automation-supplemental-automation-extension-practice",
+		notebookItemId: null,
+		revision: "74b7e6bef4b0b0cdd52804703a95d2c612d05c9d"
+	},
+	{
+		pack: "LS-23-unit-11-web-servers-supplemental-2",
+		roleFiles: [
+			"host-notes.md",
+			"task.sh",
+			"task.py",
+			"nginx_lab.py",
+			"alpha.txt",
+			"beta.txt"
+		],
+		coreItemId:
+			"linux-systems-unit-11-web-servers-supplemental-web-server-deployment-transfer-practice",
+		notebookItemId: null,
+		revision: "c274675e51e2f44e960dc5a320aff74c74548c82"
+	},
+	{
+		pack: "LS-24-unit-11-web-servers-supplemental-3",
+		roleFiles: [
+			"validator-notes.md",
+			"task.sh",
+			"task.py",
+			"nginx_lab.py",
+			"resource.txt"
+		],
+		coreItemId:
+			"linux-systems-unit-11-web-servers-supplemental-web-server-deployment-extension-practice",
+		notebookItemId: null,
+		revision: "c274675e51e2f44e960dc5a320aff74c74548c82"
+	},
+	{
+		pack: "LS-01-linux-systems-lab-14",
+		roleFiles: [
+			"deployment-notes.md",
+			"task.sh",
+			"task.py",
+			"nginx_lab.py",
+			"release-a-health.txt",
+			"release-a-index.txt",
+			"release-b-health.txt",
+			"release-b-index.txt"
+		],
+		coreItemId:
+			"linux-systems-optional-linux-integration-studio-archive-supplemental-core-project-service-deployment-studio",
+		notebookItemId: null,
+		continuationItemId:
+			"linux-systems-optional-linux-integration-studio-archive-supplemental-extension-challenge-service-deployment-studio",
+		revision: "fa2fadac8c2d8982a91e48d32ab1c44cbe4d42f9"
+	},
+	{
+		pack: "LS-27-applied-studio-14-linux-systems-lab-14-supplemental-2",
+		roleFiles: [
+			"artifact-notes.md",
+			"task.sh",
+			"task.py",
+			"nginx_lab.py",
+			"release-a-health.txt",
+			"release-a-index.txt",
+			"release-b-health.txt",
+			"release-b-index.txt",
+			"release-manifest.json"
+		],
+		coreItemId:
+			"linux-systems-optional-linux-integration-studio-archive-supplemental-service-deployment-transfer-practice",
+		notebookItemId: null,
+		revision: "fa2fadac8c2d8982a91e48d32ab1c44cbe4d42f9"
+	},
+	{
+		pack: "LS-28-applied-studio-14-linux-systems-lab-14-supplemental-3",
+		roleFiles: [
+			"locking-notes.md",
+			"task.sh",
+			"lock_observer.py",
+			"publisher.py"
+		],
+		coreItemId:
+			"linux-systems-optional-linux-integration-studio-archive-supplemental-service-deployment-extension-practice",
+		notebookItemId: null,
+		revision: "fa2fadac8c2d8982a91e48d32ab1c44cbe4d42f9"
 	}
 ] as const;
 
@@ -480,7 +580,9 @@ export function linuxCourseProjectKey(
 		courseID === "linux-systems" ? linuxCourseResource(url) : null;
 	if (!selected) return `${courseID}:${itemID}:${role}`;
 	const sharedItemID =
-		itemID === selected.definition.notebookItemId
+		itemID === selected.definition.notebookItemId ||
+		("continuationItemId" in selected.definition &&
+			itemID === selected.definition.continuationItemId)
 			? selected.definition.coreItemId
 			: itemID;
 	return `${courseID}:${sharedItemID}:${role}:native-linux`;

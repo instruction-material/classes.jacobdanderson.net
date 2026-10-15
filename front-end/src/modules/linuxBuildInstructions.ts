@@ -23,6 +23,41 @@ export function linuxBuildInstructions(files: PythonIdeFile[], url?: string) {
 		];
 	}
 	const commands: Record<string, string[]> = {
+		"LS-01-linux-systems-lab-14": [
+			"Read ../README.md and complete deployment-notes.md with all release fixtures, task.sh, task.py and nginx_lab.py together. Use an ordinary owned Linux lab with Bash, Python 3.8+ and Nginx; the site IDE edits and exports the project.",
+			"Repair only readiness_ok to require both the actual HTTP status and expected identity bytes. Retain the current symlink and served page before, during and after good, wrong-identity and missing-health candidates; reverse the initial release and repeat.",
+			"Keep syntax rejection, interruption, actual recovery and owned PID/listener cleanup. This project is central within the optional deployment studio; the archive does not add another required course project."
+		],
+		"LS-27-applied-studio-14-linux-systems-lab-14-supplemental-2": [
+			"Read ../README.md and complete artifact-notes.md. Preserve the supplied release-manifest.json and every release text fixture beside task.sh, task.py and nginx_lab.py. Run in an ordinary external Linux account with Bash, Python 3.8+ and Nginx.",
+			"Repair only manifest_ok to compare actual member digests with the manifest. Retain intact, tampered, missing and restored bytes, digests and HTTP results; reverse which member changes without changing the source fixtures.",
+			"Explain why status 200 alone does not prove payload integrity and why a class manifest does not establish external builder provenance. Retain actual syntax failure, interruption, guards, recovery and owned cleanup."
+		],
+		"LS-28-applied-studio-14-linux-systems-lab-14-supplemental-3": [
+			"Read ../README.md and complete locking-notes.md with task.sh, lock_observer.py and publisher.py together. Use Bash and Python 3.8+ under an ordinary owned Linux account; Nginx is not needed.",
+			"Repair only acquire_lock to take a nonblocking exclusive kernel file lock. Compare independently probed lock state, contender status and actual shared generations; reverse the first actor and repeat.",
+			"Retain the rejected contender, successful retry, interrupted publisher, recovery publication and final released-lock probe. Distinguish lost updates from elapsed time, and verify every owned child and temporary directory is removed."
+		],
+		"LS-23-unit-11-web-servers-supplemental-2": [
+			"Read ../README.md and complete host-notes.md in an ordinary external Linux lab with Bash, Python 3.8+ and Nginx. Keep task.sh, task.py, nginx_lab.py and both text fixtures together in the extracted role folder.",
+			"Use an empty owned nonsymlink parent. Compare actual named and unknown Host requests, HTTP/1.0 and HTTP/1.1 without Host, missing files and HEAD. Repair only explicit_default, then reverse the named blocks and retain the independent fallback behavior.",
+			"Retain actual syntax rejection, failure, recovery and held-run interruption. Verify the owned foreground PID and listener are gone and the parent is empty. Host routing does not provide authentication; preserve all supplied source bytes."
+		],
+		"LS-24-unit-11-web-servers-supplemental-3": [
+			"Read ../README.md and complete validator-notes.md in an ordinary external Linux lab with Bash, Python 3.8+ and Nginx. Keep the two Python files, task.sh and resource.txt together in the extracted role folder.",
+			"Repair only etag_setting. Compare actual GET and HEAD, matching and different entity tags, modification-date checks and response bodies. Retain both private file changes: changed size/time, then changed bytes with preserved metadata.",
+			"Compare the actual validators and SHA-256 values without inferring a browser cache or completed notes. Retain syntax rejection, recovery, interruption, input guards and owned PID/socket cleanup; remove only the empty owned parent after saving evidence."
+		],
+		"LS-17-unit-8-scheduling-and-automation-supplemental-2": [
+			"Read ../README.md and complete calendar-notes.md in an ordinary external Linux lab with Bash, Python 3.8+ and systemd-analyze with --base-time. Enter the extracted role folder with task.sh and calendar_observer.py together.",
+			"Predict daily UTC, weekday and leap-day forecasts. Repair only include_base so the real parser receives the requested anchor; retain quoted arguments, all three actual timestamps, stdout, stderr and the bounded child process.",
+			"Compare the independent systemd-analyze command, then retain actual invalid-expression and invalid-base rejections followed by recovery. Preserve the system clock; successful parsing does not establish an installed timer or successful service."
+		],
+		"LS-18-unit-8-scheduling-and-automation-supplemental-3": [
+			"Read ../README.md and complete timer-notes.md in a disposable owned external Linux lab with Bash, Python 3.8+, systemd-run and an available ordinary-account user manager. Keep task.sh, timer_observer.py and timer_worker.py together in the extracted role folder.",
+			"Create a fresh empty nonsymlink workspace, predict the completed oneshot state, then repair only RemainAfterExit from yes to no. Observe the uniquely named user timer, worker UIDs/PIDs and complete nonoverlapping events for short and long profiles.",
+			"Retain prerequisite failures, actual states, Ctrl-C interruption and recovery. Verify only the generated user units are unloaded, observed workers have exited and the workspace is empty. Do not install schedules or use broad unit-stop patterns; reference observations do not complete the independent notes."
+		],
 		"LS-01-ls0-setup-and-tooling-supplemental-2": [
 			"Read ../README.md and complete lookup-notes.md in an ordinary external Linux lab with Bash. Preserve the complete inspected tools folder; after ZIP extraction, give only its three lab-tool.sh fixtures execute permission.",
 			"Compare the first and second tool directories in both search orders, then put the controlled failing tool first. Repair the named readiness condition to require both actual command lookup and the version request to succeed.",

@@ -81,6 +81,17 @@ it("preserves core and notebook identities, complete reading, reference privacy 
 	for (const definition of linuxVerifiedPacks) {
 		const core = items.find(i => i.id === definition.coreItemId)!;
 		const notebook = items.find(i => i.id === definition.notebookItemId)!;
+		const continuation = "continuationItemId" in definition
+			? items.find(i => i.id === definition.continuationItemId)
+			: undefined;
+		if ("continuationItemId" in definition) {
+			expect(continuation).toBeDefined();
+			expect(continuation!.title).toContain("Extension Challenge");
+			expect(continuation!.content).toContain("Continue the existing deployment attempt");
+			expect(continuation!.content).not.toContain("Opening this notebook");
+			expect(continuation!.projectLink).toBe(core.projectLink);
+			expect(continuation!.solutionLink).toBe(core.solutionLink);
+		}
 		expect(core).toBeDefined();
 		expect(core.ideImport).toBe(true);
 		if (definition.notebookItemId) {
@@ -98,6 +109,7 @@ it("preserves core and notebook identities, complete reading, reference privacy 
 				.files["README.md"]!.content.trim()
 				.replace(/\bTODO\b/g, "`TODO`")
 				.replace("Instructor walkthrough", "Walkthrough")
+				.replaceAll("an instructor walkthrough", "a guided walkthrough")
 				// Keep the complete reading after these explicit editorial changes.
 				// The import/export checks below still require original source bytes.
 				.replaceAll("With an instructor, inspect", "Inspect")
@@ -161,6 +173,10 @@ it("preserves core and notebook identities, complete reading, reference privacy 
 			expect(link).toBe(
 				`${sourceRoot(definition.revision)}/${definition.pack}/${role === "starter" ? "starter" : "solution"}`
 			);
+			if (continuation) {
+				expect(linuxCourseProjectKey("linux-systems", continuation.id, role, link))
+					.toBe(linuxCourseProjectKey("linux-systems", core.id, role, link));
+			}
 			if (definition.notebookItemId) {
 				expect(
 					linuxCourseProjectKey(
@@ -300,6 +316,19 @@ it("retains literal Linux names and rejects unsafe paths and unverified imports"
 	for (const name of [
 		"starter/lookup-notes.md",
 		"solution/launch-notes.md",
+		"starter/calendar-notes.md",
+		"solution/timer-notes.md",
+		"starter/deployment-notes.md",
+		"solution/artifact-notes.md",
+		"starter/locking-notes.md",
+		"starter/release-a-health.txt",
+		"solution/release-b-index.txt",
+		"starter/release-manifest.json",
+		"starter/host-notes.md",
+		"solution/validator-notes.md",
+		"starter/alpha.txt",
+		"solution/beta.txt",
+		"starter/resource.txt",
 		"starter/unlink-notes.md",
 		"solution/umask-notes.md",
 		"starter/path-notes.md",

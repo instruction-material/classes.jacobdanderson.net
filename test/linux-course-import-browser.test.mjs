@@ -22,6 +22,13 @@ const fixtures = JSON.parse(
 	)
 );
 const definitions = {
+"LS-01-linux-systems-lab-14": ["optional-linux-integration-studio-archive", "core-project-service-deployment-studio", null, "extension-challenge-service-deployment-studio"],
+"LS-27-applied-studio-14-linux-systems-lab-14-supplemental-2": ["optional-linux-integration-studio-archive", "service-deployment-transfer-practice", null, null],
+"LS-28-applied-studio-14-linux-systems-lab-14-supplemental-3": ["optional-linux-integration-studio-archive", "service-deployment-extension-practice", null, null],
+"LS-23-unit-11-web-servers-supplemental-2": ["unit-11-web-servers", "web-server-deployment-transfer-practice", null],
+"LS-24-unit-11-web-servers-supplemental-3": ["unit-11-web-servers", "web-server-deployment-extension-practice", null],
+"LS-17-unit-8-scheduling-and-automation-supplemental-2": ["unit-8-scheduling-and-automation", "automation-transfer-practice", null],
+"LS-18-unit-8-scheduling-and-automation-supplemental-3": ["unit-8-scheduling-and-automation", "automation-extension-practice", null],
 "LS-01-ls0-setup-and-tooling-supplemental-2": ["ls0-setup-and-tooling", "linux-systems-setup-transfer-practice", null],
 "LS-02-ls0-setup-and-tooling-supplemental-3": ["ls0-setup-and-tooling", "linux-systems-setup-extension-practice", null],
 "LS-07-unit-3-users-groups-and-permissions-supplemental-2": ["unit-3-users-groups-and-permissions", "permissions-transfer-practice", null],
@@ -172,6 +179,13 @@ const definitions = {
 	]
 };
 const notesFirstFiles = {
+"LS-01-linux-systems-lab-14": "deployment-notes.md",
+"LS-27-applied-studio-14-linux-systems-lab-14-supplemental-2": "artifact-notes.md",
+"LS-28-applied-studio-14-linux-systems-lab-14-supplemental-3": "locking-notes.md",
+"LS-23-unit-11-web-servers-supplemental-2": "host-notes.md",
+"LS-24-unit-11-web-servers-supplemental-3": "validator-notes.md",
+"LS-17-unit-8-scheduling-and-automation-supplemental-2": "calendar-notes.md",
+"LS-18-unit-8-scheduling-and-automation-supplemental-3": "timer-notes.md",
 "LS-01-ls0-setup-and-tooling-supplemental-2": "lookup-notes.md",
 "LS-02-ls0-setup-and-tooling-supplemental-3": "launch-notes.md",
 "LS-07-unit-3-users-groups-and-permissions-supplemental-2": "unlink-notes.md",
@@ -363,6 +377,13 @@ test(
 				const [module, core] = definitions[fixture.pack];
 				const moduleID = `linux-systems-${module}`;
 				const placement = [
+"LS-01-linux-systems-lab-14",
+"LS-27-applied-studio-14-linux-systems-lab-14-supplemental-2",
+"LS-28-applied-studio-14-linux-systems-lab-14-supplemental-3",
+"LS-23-unit-11-web-servers-supplemental-2",
+"LS-24-unit-11-web-servers-supplemental-3",
+"LS-17-unit-8-scheduling-and-automation-supplemental-2",
+"LS-18-unit-8-scheduling-and-automation-supplemental-3",
 "LS-01-ls0-setup-and-tooling-supplemental-2",
 "LS-02-ls0-setup-and-tooling-supplemental-3",
 "LS-07-unit-3-users-groups-and-permissions-supplemental-2",
@@ -634,6 +655,13 @@ test(
 								});
 							}
 							const capture = {
+"LS-01-linux-systems-lab-14": "linux-deployment-readiness",
+"LS-27-applied-studio-14-linux-systems-lab-14-supplemental-2": "linux-deployment-integrity",
+"LS-28-applied-studio-14-linux-systems-lab-14-supplemental-3": "linux-deployment-locks",
+"LS-23-unit-11-web-servers-supplemental-2": "linux-web-host",
+"LS-24-unit-11-web-servers-supplemental-3": "linux-web-validators",
+"LS-17-unit-8-scheduling-and-automation-supplemental-2": "linux-scheduling-calendar",
+"LS-18-unit-8-scheduling-and-automation-supplemental-3": "linux-scheduling-timer",
 "LS-01-ls0-setup-and-tooling-supplemental-2": "linux-setup-lookup",
 "LS-02-ls0-setup-and-tooling-supplemental-3": "linux-setup-launch",
 "LS-07-unit-3-users-groups-and-permissions-supplemental-2": "linux-permissions-unlink",
@@ -728,13 +756,14 @@ test(
 					}
 				}
 				await page.setViewport({ width: 1280, height: 900 });
-				const [, , notebook] = definitions[fixture.pack];
+				const [, , notebook, continuation] = definitions[fixture.pack];
 				const notebookID = `${moduleID}-supplemental-troubleshooting-notebook-${notebook}`;
 				const coreKey = `linux-systems:${itemID}:starter:native-linux`;
 				let original;
 				for (const [id, reuse] of [
 					[itemID, false],
-					...(notebook ? [[notebookID, true]] : [])
+					...(notebook ? [[notebookID, true]] : []),
+					...(continuation ? [[`${moduleID}-supplemental-${continuation}`, true]] : [])
 				]) {
 					catalog = true;
 					sourceRequests = [];
@@ -843,13 +872,15 @@ test(
 				);
 			}
 			await writeFile(join(output, "default-linux.zip"), defaultArchive);
-			assert.equal(proof.length, 288);
-			assert.equal(courseButtons.length, 49);
+			assert.equal(proof.length, 344);
+			assert.equal(courseButtons.length, 57);
 			assert.equal(
 				courseButtons.filter(action => action.reusesExistingAttempt)
 					.length,
-				13
+				14
 			);
+			assert.equal(courseButtons.filter(action => action.reusesExistingAttempt && action.item.includes("troubleshooting-notebook")).length, 13);
+			assert.equal(courseButtons.filter(action => action.reusesExistingAttempt && action.item.endsWith("extension-challenge-service-deployment-studio")).length, 1);
 			await writeFile(
 				join(output, "browser-proof.json"),
 				JSON.stringify({ profiles: proof, courseButtons }, null, 2)
