@@ -98,6 +98,29 @@ it("preserves core and notebook identities, complete reading, reference privacy 
 				.files["README.md"]!.content.trim()
 				.replace(/\bTODO\b/g, "`TODO`")
 				.replace("Instructor walkthrough", "Walkthrough")
+				// Keep the complete reading after these explicit editorial changes.
+				// The import/export checks below still require original source bytes.
+				.replaceAll("With an instructor, inspect", "Inspect")
+				.replaceAll(
+					"Completion and instructor walkthrough",
+					"Completion and guided walkthrough"
+				)
+				.replaceAll(
+					"record with an instructor, including",
+					"record in a guided walkthrough, including"
+				)
+				.replaceAll(
+					"Have the instructor provision missing tools before\nthe experiment.",
+					"Arrange for missing tools to be available before\nthe experiment."
+				)
+				.replaceAll(
+					"paced walkthrough\nwith an instructor.",
+					"paced walkthrough."
+				)
+				.replaceAll(
+					"pauses in an instructor walkthrough.",
+					"pauses in a guided walkthrough."
+				)
 		);
 		for (const role of ["starter", "reference"] as const) {
 			const link =
