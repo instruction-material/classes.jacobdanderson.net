@@ -5506,6 +5506,16 @@ ${createInputBootstrap(options.inputText, options.mode)}
 if ${options.mode === "pgzero" ? "True" : "False"}:
     import _classes_pgzero
     _classes_pgzero.install_builtins()
+    # Juni programs also access these objects through sys.modules["__main__"].
+    # Install them before student code, while preserving later student bindings.
+    for __classes_pgzero_name in (
+        "Actor", "Rect", "ZRect", "screen", "keyboard", "keys", "mouse",
+        "keymods", "clock", "Animation", "animate", "tone", "sounds",
+        "music", "images", "pgzrun",
+    ):
+        __classes_sys.modules["__main__"].__dict__[__classes_pgzero_name] = getattr(
+            builtins, __classes_pgzero_name
+        )
 if ${options.mode === "data" || importedModules.has("matplotlib") ? "True" : "False"}:
     try:
         import matplotlib

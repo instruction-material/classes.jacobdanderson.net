@@ -177,6 +177,14 @@ it("preserves every published lesson while making two networking notebooks conti
 				""
 			)
 			.replace("should retain", "retains")
+			.replace(
+				/agreed\s+instructor checkpoint/g,
+				"agreed review checkpoint"
+			)
+			.replace(
+				"Independent and instructor use",
+				"Independent and guided use"
+			)
 			.trim();
 		expect(core.content).toContain(reading);
 		expect(core.learningPath).toBe("core");

@@ -10,6 +10,16 @@ import { publicRuntimeHeaders, pythonFrame } from "./python-frame-fixture.mjs";
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
 const code = `import pygame
 from pygame import Surface, SRCALPHA
+import builtins
+import sys
+
+# Course programs use the running main module as well as injected built-ins.
+for runtime_name in (
+    "Actor", "Rect", "ZRect", "screen", "keyboard", "keys", "mouse",
+    "keymods", "clock", "Animation", "animate", "tone", "sounds",
+    "music", "images", "pgzrun",
+):
+    assert getattr(sys.modules["__main__"], runtime_name) is getattr(builtins, runtime_name)
 
 WIDTH = 160
 HEIGHT = 120
