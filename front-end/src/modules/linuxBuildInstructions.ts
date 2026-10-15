@@ -23,6 +23,36 @@ export function linuxBuildInstructions(files: PythonIdeFile[], url?: string) {
 		];
 	}
 	const commands: Record<string, string[]> = {
+		"LS-12-unit-12-storage-backups-and-reliability": [
+			"Read ../README.md and complete restore-notes.md in an ordinary Debian/Ubuntu Linux terminal. Initialize only a fresh child of the private mktemp parent printed by the guide.",
+			"Record actual df/du capacity, logical versus allocated bytes, mount identity and inodes. Create and independently checksum the baseline; compare exclusions, binary content, modes and current ownership after a separate restore.",
+			"Change the source and restore both recovery points into different new destinations. Observe reserve rejection and destination/name refusal without replacing earlier evidence. The core notebook continues this saved attempt."
+		],
+		"LS-25-unit-12-storage-backups-and-reliability-supplemental-2": [
+			"Read ../README.md and complete integrity-notes.md in a separate fresh owned lab; retain a verified baseline and trusted checksum record.",
+			"Compare the actual successful listing of a flipped payload with its failed integrity check; separately observe a truncated archive and refusal before a restore destination is created.",
+			"Create a new verified repaired artifact and compare actual restored bytes, modes and ownership. Preserve good and damaged historical evidence; keep this optional transfer separate from the core."
+		],
+		"LS-26-unit-12-storage-backups-and-reliability-supplemental-3": [
+			"Read ../README.md and complete backup-retention-notes.md in its own fresh lab. Create three versioned backups and review the exact keep-two plan before applying it.",
+			"Add a newer alphabetically earlier name, observe stale-plan refusal, review a fresh hash/sequence selection, then confirm exactly the selected old copies were removed and the retained copies are unchanged.",
+			"Restore both retained recovery points to new paths and explain which older version is no longer available. Keep source data and outside evidence unchanged; a retention count does not replace restoration or an independently protected copy."
+		],
+		"LS-11-unit-10-networking-from-a-systems-view": [
+			"Read ../README.md and complete network-notes.md in an ordinary Linux terminal. Keep terminal A running bash task.sh serve and record its actual port and PID.",
+			"In terminal B, enter read -r -p 'Port from the ready line: ' port, then run bash task.sh inspect --port \"$port\" --report first.json.",
+			"Compare real interface, selected route, ICMP, exact listener/PID and HTTP evidence. Retain missing-path, stopped and restored cases, a changed prediction and owned cleanup. A saved report does not complete the worksheet; the core notebook continues this attempt."
+		],
+		"LS-21-unit-10-networking-from-a-systems-view-supplemental-2": [
+			"Read ../README.md and complete listener-notes.md using two foreground terminals and each server's actual ready port.",
+			"Compare a 127.0.0.2 bind with a 127.0.0.1 request, then a matching destination. Separately observe ready 200, missing path 404, unavailable 503 and recovery.",
+			"Read curl status, HTTP status/body and exact socket/PID separately. Keep this optional transfer as its own attempt, preserve each report and stop only the owned foreground server."
+		],
+		"LS-22-unit-10-networking-from-a-systems-view-supplemental-3": [
+			"Read ../README.md and complete resolver-notes.md. Terminal A runs bash task.sh serve; terminal B runs bash task.sh dns --answer ready. Keep both running and record their actual separate ports/PIDs.",
+			'In terminal C enter HTTP and DNS ports, then run bash task.sh inspect --dns-port "$dns_port" --http-port "$http_port" --report ready.json. Use the guide\'s explicit dig server/port query for comparison.',
+			"Compare ready, wrong and missing DNS answers plus restored state and owned TCP/UDP cleanup. An explicit curl --resolve address bypass tests the app; it does not repair the system resolver. Retain all report bytes and keep this optional extension separate from the core."
+		],
 		"LS-10-unit-9-package-management-and-software-layout": [
 			"Read ../README.md and complete package-notes.md in an ordinary Debian/Ubuntu Linux terminal.",
 			"bash task.sh --package bash --command bash --report bash-first.json",

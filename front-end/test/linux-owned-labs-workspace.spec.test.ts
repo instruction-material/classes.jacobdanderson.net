@@ -102,6 +102,15 @@ it("preserves core and notebook identities, complete reading, reference privacy 
 				// The import/export checks below still require original source bytes.
 				.replaceAll("With an instructor, inspect", "Inspect")
 				.replaceAll(
+					"Start with a fresh private parent and keep this shell open:",
+					"Create a fresh private parent and keep this shell open:"
+				)
+				.replaceAll("NXDOMAIN should differ", "NXDOMAIN differ")
+				.replaceAll(
+					"that selected answer should fail to connect",
+					"that selected answer fails to connect"
+				)
+				.replaceAll(
 					"The active link should name",
 					"The active link names"
 				)

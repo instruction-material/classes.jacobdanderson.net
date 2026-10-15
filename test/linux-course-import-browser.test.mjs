@@ -22,6 +22,36 @@ const fixtures = JSON.parse(
 	)
 );
 const definitions = {
+	"LS-12-unit-12-storage-backups-and-reliability": [
+		"unit-12-storage-backups-and-reliability",
+		"core-project-storage-backups-and-reliability",
+		"storage-backups-and-reliability"
+	],
+	"LS-25-unit-12-storage-backups-and-reliability-supplemental-2": [
+		"unit-12-storage-backups-and-reliability",
+		"backup-reliability-transfer-practice",
+		null
+	],
+	"LS-26-unit-12-storage-backups-and-reliability-supplemental-3": [
+		"unit-12-storage-backups-and-reliability",
+		"backup-reliability-extension-practice",
+		null
+	],
+	"LS-11-unit-10-networking-from-a-systems-view": [
+		"unit-10-networking-from-a-systems-view",
+		"core-project-networking-from-a-systems-view",
+		"networking-from-a-systems-view"
+	],
+	"LS-21-unit-10-networking-from-a-systems-view-supplemental-2": [
+		"unit-10-networking-from-a-systems-view",
+		"network-diagnostics-transfer-practice",
+		null
+	],
+	"LS-22-unit-10-networking-from-a-systems-view-supplemental-3": [
+		"unit-10-networking-from-a-systems-view",
+		"network-diagnostics-extension-practice",
+		null
+	],
 	"LS-10-unit-9-package-management-and-software-layout": [
 		"unit-9-package-management-and-software-layout",
 		"core-project-package-management-and-software-layout",
@@ -134,6 +164,16 @@ const definitions = {
 	]
 };
 const notesFirstFiles = {
+	"LS-12-unit-12-storage-backups-and-reliability": "restore-notes.md",
+	"LS-25-unit-12-storage-backups-and-reliability-supplemental-2":
+		"integrity-notes.md",
+	"LS-26-unit-12-storage-backups-and-reliability-supplemental-3":
+		"backup-retention-notes.md",
+	"LS-11-unit-10-networking-from-a-systems-view": "network-notes.md",
+	"LS-21-unit-10-networking-from-a-systems-view-supplemental-2":
+		"listener-notes.md",
+	"LS-22-unit-10-networking-from-a-systems-view-supplemental-3":
+		"resolver-notes.md",
 	"LS-10-unit-9-package-management-and-software-layout": "package-notes.md",
 	"LS-19-unit-9-package-management-and-software-layout-supplemental-2":
 		"manual-notes.md",
@@ -304,6 +344,10 @@ test(
 				const [module, core] = definitions[fixture.pack];
 				const moduleID = `linux-systems-${module}`;
 				const placement = [
+					"LS-25-unit-12-storage-backups-and-reliability-supplemental-2",
+					"LS-26-unit-12-storage-backups-and-reliability-supplemental-3",
+					"LS-21-unit-10-networking-from-a-systems-view-supplemental-2",
+					"LS-22-unit-10-networking-from-a-systems-view-supplemental-3",
 					"LS-19-unit-9-package-management-and-software-layout-supplemental-2",
 					"LS-20-unit-9-package-management-and-software-layout-supplemental-3",
 					"LS-11-unit-5-processes-and-job-control-supplemental-2",
@@ -563,6 +607,18 @@ test(
 								});
 							}
 							const capture = {
+								"LS-12-unit-12-storage-backups-and-reliability":
+									"linux-storage-core",
+								"LS-25-unit-12-storage-backups-and-reliability-supplemental-2":
+									"linux-storage-corruption",
+								"LS-26-unit-12-storage-backups-and-reliability-supplemental-3":
+									"linux-storage-retention",
+								"LS-11-unit-10-networking-from-a-systems-view":
+									"linux-network-layers",
+								"LS-21-unit-10-networking-from-a-systems-view-supplemental-2":
+									"linux-network-listener",
+								"LS-22-unit-10-networking-from-a-systems-view-supplemental-3":
+									"linux-network-resolver",
 								"LS-10-unit-9-package-management-and-software-layout":
 									"linux-package-core",
 								"LS-19-unit-9-package-management-and-software-layout-supplemental-2":
@@ -755,12 +811,12 @@ test(
 				);
 			}
 			await writeFile(join(output, "default-linux.zip"), defaultArchive);
-			assert.equal(proof.length, 176);
-			assert.equal(courseButtons.length, 33);
+			assert.equal(proof.length, 224);
+			assert.equal(courseButtons.length, 41);
 			assert.equal(
 				courseButtons.filter(action => action.reusesExistingAttempt)
 					.length,
-				11
+				13
 			);
 			await writeFile(
 				join(output, "browser-proof.json"),

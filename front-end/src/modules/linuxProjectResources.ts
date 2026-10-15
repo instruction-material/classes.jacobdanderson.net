@@ -260,6 +260,86 @@ export const linuxVerifiedPacks = [
 		coreItemId:
 			"linux-systems-unit-9-package-management-and-software-layout-supplemental-package-layout-extension-practice",
 		notebookItemId: null
+	},
+	{
+		pack: "LS-11-unit-10-networking-from-a-systems-view",
+		revision: "a1405c46ae27a23358a735c60e483b7d6b237e49",
+		roleFiles: [
+			"network-notes.md",
+			"task.sh",
+			"network_lab.py",
+			"network_tools.py"
+		],
+		coreItemId:
+			"linux-systems-unit-10-networking-from-a-systems-view-curriculum-core-project-networking-from-a-systems-view",
+		notebookItemId:
+			"linux-systems-unit-10-networking-from-a-systems-view-supplemental-troubleshooting-notebook-networking-from-a-systems-view"
+	},
+	{
+		pack: "LS-21-unit-10-networking-from-a-systems-view-supplemental-2",
+		revision: "a1405c46ae27a23358a735c60e483b7d6b237e49",
+		roleFiles: [
+			"listener-notes.md",
+			"task.sh",
+			"network_lab.py",
+			"network_tools.py"
+		],
+		coreItemId:
+			"linux-systems-unit-10-networking-from-a-systems-view-supplemental-network-diagnostics-transfer-practice",
+		notebookItemId: null
+	},
+	{
+		pack: "LS-22-unit-10-networking-from-a-systems-view-supplemental-3",
+		revision: "a1405c46ae27a23358a735c60e483b7d6b237e49",
+		roleFiles: [
+			"resolver-notes.md",
+			"task.sh",
+			"network_lab.py",
+			"network_tools.py"
+		],
+		coreItemId:
+			"linux-systems-unit-10-networking-from-a-systems-view-supplemental-network-diagnostics-extension-practice",
+		notebookItemId: null
+	},
+	{
+		pack: "LS-12-unit-12-storage-backups-and-reliability",
+		revision: "9c7902a4b13005fd1a5184db09b9a496a1c5fe10",
+		roleFiles: [
+			"restore-notes.md",
+			"task.sh",
+			"storage_lab.py",
+			"storage_tools.py"
+		],
+		coreItemId:
+			"linux-systems-unit-12-storage-backups-and-reliability-curriculum-core-project-storage-backups-and-reliability",
+		notebookItemId:
+			"linux-systems-unit-12-storage-backups-and-reliability-supplemental-troubleshooting-notebook-storage-backups-and-reliability"
+	},
+	{
+		pack: "LS-25-unit-12-storage-backups-and-reliability-supplemental-2",
+		revision: "9c7902a4b13005fd1a5184db09b9a496a1c5fe10",
+		roleFiles: [
+			"integrity-notes.md",
+			"task.sh",
+			"storage_lab.py",
+			"storage_tools.py"
+		],
+		coreItemId:
+			"linux-systems-unit-12-storage-backups-and-reliability-supplemental-backup-reliability-transfer-practice",
+		notebookItemId: null
+	},
+	{
+		pack: "LS-26-unit-12-storage-backups-and-reliability-supplemental-3",
+		revision: "9c7902a4b13005fd1a5184db09b9a496a1c5fe10",
+		roleFiles: [
+			"backup-retention-notes.md",
+			"task.sh",
+			"storage_lab.py",
+			"storage_tools.py"
+		],
+		coreItemId:
+			"linux-systems-unit-12-storage-backups-and-reliability-supplemental-backup-reliability-extension-practice",
+		notebookItemId: null
 	}
 ] as const;
 

@@ -4397,7 +4397,9 @@ describe("course text quality normalization", () => {
 		);
 		expect(corpus).toContain("Shell Pipeline Transfer Practice");
 		expect(corpus).toContain("systemd Service Transfer Practice");
-		expect(corpus).toContain("Backup Reliability Extension Practice");
+		expect(corpus).toContain(
+			"Reviewed Retention and a Verified Recovery Window"
+		);
 		expect(corpus).toContain(
 			"Linux Systems Lab 14: Service Deployment Studio"
 		);

@@ -50,7 +50,7 @@ supplemental_verifier = (fixture_dir / "linux-systemd-supplemental-source-verifi
 assert hashlib.sha256(supplemental_verifier).hexdigest() == supplemental_identity["sha256"]
 assert all(pack["revision"] == supplemental_identity["revision"] for pack in supplemental_packs)
 logging_packs = [pack for pack in packs if pack["pack"] in ("LS-09-unit-7-logging-and-observability", "LS-15-unit-7-logging-and-observability-supplemental-2", "LS-16-unit-7-logging-and-observability-supplemental-3")]
-assert len(logging_packs) == 3 and len(packs) == 22
+assert len(logging_packs) == 3 and len(packs) == 28
 logging_identity = json.loads((fixture_dir / "linux-logging-source-verifier.json").read_text())
 logging_verifier = (fixture_dir / "linux-logging-source-verifier.py").read_bytes()
 assert hashlib.sha256(logging_verifier).hexdigest() == logging_identity["sha256"]
@@ -88,6 +88,20 @@ assert hashlib.sha256(package_core_verifier).hexdigest() == package_core_identit
 assert hashlib.sha256(package_optional_verifier).hexdigest() == package_optional_identity["sha256"]
 assert package_core_packs[0]["revision"] == package_core_identity["revision"]
 assert all(pack["revision"] == package_optional_identity["revision"] for pack in package_optional_packs)
+network_identity = json.loads((fixture_dir / "linux-network-source-verifier.json").read_text())
+network_verifier = (fixture_dir / "linux-network-source-verifier.py").read_bytes()
+network_names = ['LS-11-unit-10-networking-from-a-systems-view', 'LS-21-unit-10-networking-from-a-systems-view-supplemental-2', 'LS-22-unit-10-networking-from-a-systems-view-supplemental-3']
+network_packs = [pack for pack in packs if pack["pack"] in network_names]
+assert len(network_packs) == 3
+assert hashlib.sha256(network_verifier).hexdigest() == network_identity["sha256"]
+assert all(pack["revision"] == network_identity["revision"] for pack in network_packs)
+storage_identity = json.loads((fixture_dir / "linux-storage-source-verifier.json").read_text())
+storage_verifier = (fixture_dir / "linux-storage-source-verifier.py").read_bytes()
+storage_names = ['LS-12-unit-12-storage-backups-and-reliability', 'LS-25-unit-12-storage-backups-and-reliability-supplemental-2', 'LS-26-unit-12-storage-backups-and-reliability-supplemental-3']
+storage_packs = [pack for pack in packs if pack["pack"] in storage_names]
+assert len(storage_packs) == 3
+assert hashlib.sha256(storage_verifier).hexdigest() == storage_identity["sha256"]
+assert all(pack["revision"] == storage_identity["revision"] for pack in storage_packs)
 args.proof = args.proof.resolve()
 args.proof.parent.mkdir(parents=True, exist_ok=True)
 archives = []
@@ -296,6 +310,31 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
     assert package_optional["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in package_optional_packs for name,file in pack["files"].items()}
     assert len(package_optional["profiles"]) == 6
     assert all(value for profile in package_optional["profiles"] for value in profile.values() if isinstance(value,bool))
+    network_records = args.proof.parent / "network-records"
+    network_records.mkdir(exist_ok=True)
+    network_proof = network_records / (args.proof.stem + "-network-native.json")
+    network = run_pinned_contract(work, "verify_network_labs.py", network_verifier, network_proof, 240)
+    assert network["accepted"] and network["sourceUnchanged"] and network["loopbackAddressesAndMainRoutesUnchanged"]
+    assert network["worksheetCompletionNotInferred"] and network["temporaryFilesCleaned"]
+    assert network["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in network_packs for name, file in pack["files"].items()}
+    assert len(network["profiles"]) == 9 and network["loggedLifecycles"] == 148
+    assert network["foregroundServicesClosed"] == 30
+    network_reports = [json.loads(path.read_text()) for path in network_records.glob("[012]-*.json")]
+    assert len(network_reports) == 39
+    assert sum(len(report["commands"]) for report in network_reports) == 255
+    assert all(report["learnerWorksheetCompletionInferred"] is False for report in network_reports)
+    assert all(value for profile in network["profiles"] for value in profile.values() if isinstance(value, bool))
+    storage_records = args.proof.parent / "storage-records"
+    storage_records.mkdir(exist_ok=True)
+    storage_proof = storage_records / (args.proof.stem + "-storage-native.json")
+    storage = run_pinned_contract(work, "verify_storage_labs.py", storage_verifier, storage_proof, 180)
+    assert all(storage[key] for key in ["accepted", "sourceUnchanged", "temporaryFilesCleaned", "worksheetCompletionNotInferred", "hostStorageConfigurationUnchanged"])
+    assert storage["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in storage_packs for name, file in pack["files"].items()}
+    assert len(storage["profiles"]) == 9 and storage["loggedOuterLifecycles"] == 177
+    assert storage["nativeCommandRecords"] == 246 and storage["partialArchiveInterruptionProfiles"] == 3
+    assert all(value for profile in storage["profiles"] for value in profile.values() if isinstance(value, bool))
+    storage_reports = list(storage_records.glob("[012]-*-storage-observation.json"))
+    assert len(storage_reports) == 9
     default = work / "default-workspace"
     default.mkdir()
     default_archive = args.archives / "default-linux.zip"
@@ -354,6 +393,10 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
                                      "editingCoreNativeProof": str(editing_core_proof),
                                      "editingOptionalSourceIdentity": editing_optional_identity,
                                      "editingOptionalNativeProof": str(editing_optional_proof),
+                                     "storageSourceIdentity": storage_identity,
+                                     "storageNativeProof": str(storage_proof),
+                                     "networkSourceIdentity": network_identity,
+                                     "networkNativeProof": str(network_proof),
                                      "packageCoreSourceIdentity": package_core_identity,
                                      "packageCoreNativeProof": str(package_core_proof),
                                      "packageOptionalSourceIdentity": package_optional_identity,

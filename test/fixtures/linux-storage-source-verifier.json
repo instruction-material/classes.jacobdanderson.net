@@ -1,0 +1,6 @@
+{
+  "repository": "instruction-material/Linux-Systems",
+  "revision": "9c7902a4b13005fd1a5184db09b9a496a1c5fe10",
+  "path": "test/verify_storage_labs.py",
+  "sha256": "33d82b32059e18b25d67332bf19519b109fd5f6ebdf44f1bb304209662ffd4a2"
+}
