@@ -1,5 +1,6 @@
 import type { RawCourse } from "./types";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
+import { withNetworkProjectReadings } from "./networkProjectReading";
 import { buildProjectGuidance } from "./projectGuidance";
 
 const networkSystemsSourceCourse: RawCourse = {
@@ -1709,5 +1710,5 @@ export const networkSystemsCourse: RawCourse = {
 		...networkPrimaryModules,
 		networkCapstoneModule,
 		buildOptionalNetworkStudioArchive(networkOptionalStudioModules)
-	]
+	].map(withNetworkProjectReadings)
 };

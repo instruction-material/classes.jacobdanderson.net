@@ -292,6 +292,23 @@ jobs:
                   LINUX_BROWSER_EXPORT_PROOF_DIR: output/linux-exports
               run: node --test test/linux-course-import-browser.test.mjs
 
+            - name: Verify Network Systems foundation imports and notebook reuse
+              env:
+                  NETWORK_BROWSER_EXPORT_PROOF_DIR: output/network-exports
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
+              run: node --test test/network-course-import-browser.test.mjs
+
+            - name: Retain Network Systems foundation workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: network-foundations-workflows
+                  path: |
+                      output/network-exports/
+                      output/playwright/course-import-network-*.png
+                  if-no-files-found: ignore
+                  retention-days: 7
+
             - name: Prepare the disposable Linux user manager and journal
               run: |
                   sudo apt-get update

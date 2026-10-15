@@ -26,6 +26,9 @@ export function getCodeIdeProjectSubtitle(project: ProjectLabelMetadata) {
 				(variant === "native-linux" &&
 					project.mode === "linux" &&
 					courseID === "linux-systems") ||
+				(variant === "native-network" &&
+					project.mode === "linux" &&
+					courseID === "network-systems") ||
 				(variant === "native-java" && project.mode === "java") ||
 				(project.mode === "python" &&
 					Boolean(

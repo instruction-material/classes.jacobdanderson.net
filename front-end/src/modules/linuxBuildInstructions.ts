@@ -1,7 +1,10 @@
 import type { PythonIdeFile } from "@/modules/pythonIde";
 import { linuxCourseResource } from "@/modules/linuxProjectResources";
+import { networkBuildInstructions } from "@/modules/networkBuildInstructions";
 
 export function linuxBuildInstructions(files: PythonIdeFile[], url?: string) {
+	const network = networkBuildInstructions(files, url ?? "");
+	if (network) return network;
 	const selected = linuxCourseResource(url ?? "");
 	const lines = [
 		"Save and download the ZIP, then extract it in an owned Linux lab or WSL distribution.",

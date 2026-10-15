@@ -1,0 +1,542 @@
+[
+  {
+    "moduleId": "network-systems-ns0-setup-and-tooling",
+    "id": "network-systems-ns0-setup-and-tooling-curriculum-network-systems-core-concepts"
+  },
+  {
+    "moduleId": "network-systems-ns0-setup-and-tooling",
+    "id": "network-systems-ns0-setup-and-tooling-curriculum-core-project-network-systems"
+  },
+  {
+    "moduleId": "network-systems-ns0-setup-and-tooling",
+    "id": "network-systems-ns0-setup-and-tooling-supplemental-operations-notebook-setup-and-tooling"
+  },
+  {
+    "moduleId": "network-systems-ns0-setup-and-tooling",
+    "id": "network-systems-ns0-setup-and-tooling-supplemental-network-systems-setup-transfer-practice"
+  },
+  {
+    "moduleId": "network-systems-ns0-setup-and-tooling",
+    "id": "network-systems-ns0-setup-and-tooling-supplemental-network-systems-setup-extension-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-1-the-network-stack-in-plain-english",
+    "id": "network-systems-unit-1-the-network-stack-in-plain-english-curriculum-the-network-stack-in-plain-english-core-concepts"
+  },
+  {
+    "moduleId": "network-systems-unit-1-the-network-stack-in-plain-english",
+    "id": "network-systems-unit-1-the-network-stack-in-plain-english-curriculum-core-project-the-network-stack-in-plain-english"
+  },
+  {
+    "moduleId": "network-systems-unit-1-the-network-stack-in-plain-english",
+    "id": "network-systems-unit-1-the-network-stack-in-plain-english-supplemental-operations-notebook-the-network-stack-in-plain-english"
+  },
+  {
+    "moduleId": "network-systems-unit-1-the-network-stack-in-plain-english",
+    "id": "network-systems-unit-1-the-network-stack-in-plain-english-supplemental-network-stack-transfer-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-1-the-network-stack-in-plain-english",
+    "id": "network-systems-unit-1-the-network-stack-in-plain-english-supplemental-network-stack-extension-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-2-addresses-and-naming",
+    "id": "network-systems-unit-2-addresses-and-naming-curriculum-addresses-and-naming-core-concepts"
+  },
+  {
+    "moduleId": "network-systems-unit-2-addresses-and-naming",
+    "id": "network-systems-unit-2-addresses-and-naming-curriculum-ipv6-address-categories-in-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-2-addresses-and-naming",
+    "id": "network-systems-unit-2-addresses-and-naming-curriculum-core-project-addresses-and-naming"
+  },
+  {
+    "moduleId": "network-systems-unit-2-addresses-and-naming",
+    "id": "network-systems-unit-2-addresses-and-naming-supplemental-operations-notebook-addresses-and-naming"
+  },
+  {
+    "moduleId": "network-systems-unit-2-addresses-and-naming",
+    "id": "network-systems-unit-2-addresses-and-naming-supplemental-addressing-transfer-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-2-addresses-and-naming",
+    "id": "network-systems-unit-2-addresses-and-naming-supplemental-addressing-extension-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-3-switches-routers-nat-and-the-internet-edge",
+    "id": "network-systems-unit-3-switches-routers-nat-and-the-internet-edge-curriculum-switches-routers-nat-and-the-internet-edge-core-concepts"
+  },
+  {
+    "moduleId": "network-systems-unit-3-switches-routers-nat-and-the-internet-edge",
+    "id": "network-systems-unit-3-switches-routers-nat-and-the-internet-edge-curriculum-core-project-switches-routers-nat-and-the-internet-edge"
+  },
+  {
+    "moduleId": "network-systems-unit-3-switches-routers-nat-and-the-internet-edge",
+    "id": "network-systems-unit-3-switches-routers-nat-and-the-internet-edge-supplemental-operations-notebook-switches-routers-nat-and-the-internet-edge"
+  },
+  {
+    "moduleId": "network-systems-unit-3-switches-routers-nat-and-the-internet-edge",
+    "id": "network-systems-unit-3-switches-routers-nat-and-the-internet-edge-supplemental-routing-edge-transfer-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-3-switches-routers-nat-and-the-internet-edge",
+    "id": "network-systems-unit-3-switches-routers-nat-and-the-internet-edge-supplemental-routing-edge-extension-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-4-ports-and-listening-services",
+    "id": "network-systems-unit-4-ports-and-listening-services-curriculum-ports-and-listening-services-core-concepts"
+  },
+  {
+    "moduleId": "network-systems-unit-4-ports-and-listening-services",
+    "id": "network-systems-unit-4-ports-and-listening-services-curriculum-project-map-all-listening-services-on-a-linux-host"
+  },
+  {
+    "moduleId": "network-systems-unit-4-ports-and-listening-services",
+    "id": "network-systems-unit-4-ports-and-listening-services-supplemental-operations-notebook-ports-and-listening-services"
+  },
+  {
+    "moduleId": "network-systems-unit-4-ports-and-listening-services",
+    "id": "network-systems-unit-4-ports-and-listening-services-supplemental-port-inventory-transfer-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-4-ports-and-listening-services",
+    "id": "network-systems-unit-4-ports-and-listening-services-supplemental-port-inventory-extension-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-5-dns-and-name-resolution",
+    "id": "network-systems-unit-5-dns-and-name-resolution-curriculum-dns-and-name-resolution-core-concepts"
+  },
+  {
+    "moduleId": "network-systems-unit-5-dns-and-name-resolution",
+    "id": "network-systems-unit-5-dns-and-name-resolution-curriculum-project-compare-ipv4-and-ipv6-resolution-for-the-same-hostname"
+  },
+  {
+    "moduleId": "network-systems-unit-5-dns-and-name-resolution",
+    "id": "network-systems-unit-5-dns-and-name-resolution-supplemental-operations-notebook-dns-and-name-resolution"
+  },
+  {
+    "moduleId": "network-systems-unit-5-dns-and-name-resolution",
+    "id": "network-systems-unit-5-dns-and-name-resolution-supplemental-dns-resolution-transfer-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-5-dns-and-name-resolution",
+    "id": "network-systems-unit-5-dns-and-name-resolution-supplemental-dns-resolution-extension-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-6-core-diagnostics",
+    "id": "network-systems-unit-6-core-diagnostics-curriculum-core-diagnostics-core-concepts"
+  },
+  {
+    "moduleId": "network-systems-unit-6-core-diagnostics",
+    "id": "network-systems-unit-6-core-diagnostics-curriculum-project-diagnose-why-a-service-is-reachable-locally-but-not-from-another-machine"
+  },
+  {
+    "moduleId": "network-systems-unit-6-core-diagnostics",
+    "id": "network-systems-unit-6-core-diagnostics-supplemental-operations-notebook-core-diagnostics"
+  },
+  {
+    "moduleId": "network-systems-unit-6-core-diagnostics",
+    "id": "network-systems-unit-6-core-diagnostics-supplemental-diagnostic-trace-transfer-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-6-core-diagnostics",
+    "id": "network-systems-unit-6-core-diagnostics-supplemental-diagnostic-trace-extension-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-7-linux-interface-and-route-management",
+    "id": "network-systems-unit-7-linux-interface-and-route-management-curriculum-linux-interface-and-route-management-core-concepts"
+  },
+  {
+    "moduleId": "network-systems-unit-7-linux-interface-and-route-management",
+    "id": "network-systems-unit-7-linux-interface-and-route-management-curriculum-project-simulate-a-router-and-nat-lab-in-a-disposable-linux-topology"
+  },
+  {
+    "moduleId": "network-systems-unit-7-linux-interface-and-route-management",
+    "id": "network-systems-unit-7-linux-interface-and-route-management-supplemental-operations-notebook-linux-interface-and-route-management"
+  },
+  {
+    "moduleId": "network-systems-unit-7-linux-interface-and-route-management",
+    "id": "network-systems-unit-7-linux-interface-and-route-management-supplemental-linux-interface-transfer-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-7-linux-interface-and-route-management",
+    "id": "network-systems-unit-7-linux-interface-and-route-management-supplemental-linux-interface-extension-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-8-ipv6-in-practice",
+    "id": "network-systems-unit-8-ipv6-in-practice-curriculum-in-practice-core-concepts"
+  },
+  {
+    "moduleId": "network-systems-unit-8-ipv6-in-practice",
+    "id": "network-systems-unit-8-ipv6-in-practice-curriculum-ipv6-diagnostics-core-project"
+  },
+  {
+    "moduleId": "network-systems-unit-8-ipv6-in-practice",
+    "id": "network-systems-unit-8-ipv6-in-practice-supplemental-operations-notebook-ipv6-in-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-8-ipv6-in-practice",
+    "id": "network-systems-unit-8-ipv6-in-practice-supplemental-ipv6-transfer-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-8-ipv6-in-practice",
+    "id": "network-systems-unit-8-ipv6-in-practice-supplemental-ipv6-extension-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-9-firewalls-and-host-policy",
+    "id": "network-systems-unit-9-firewalls-and-host-policy-curriculum-firewalls-and-host-policy-core-concepts"
+  },
+  {
+    "moduleId": "network-systems-unit-9-firewalls-and-host-policy",
+    "id": "network-systems-unit-9-firewalls-and-host-policy-curriculum-project-build-and-verify-a-ufw-policy-for-a-web-server"
+  },
+  {
+    "moduleId": "network-systems-unit-9-firewalls-and-host-policy",
+    "id": "network-systems-unit-9-firewalls-and-host-policy-supplemental-operations-notebook-firewalls-and-host-policy"
+  },
+  {
+    "moduleId": "network-systems-unit-9-firewalls-and-host-policy",
+    "id": "network-systems-unit-9-firewalls-and-host-policy-supplemental-firewall-policy-transfer-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-9-firewalls-and-host-policy",
+    "id": "network-systems-unit-9-firewalls-and-host-policy-supplemental-firewall-policy-extension-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-10-packet-capture-and-deep-inspection",
+    "id": "network-systems-unit-10-packet-capture-and-deep-inspection-curriculum-packet-capture-and-deep-inspection-core-concepts"
+  },
+  {
+    "moduleId": "network-systems-unit-10-packet-capture-and-deep-inspection",
+    "id": "network-systems-unit-10-packet-capture-and-deep-inspection-curriculum-project-capture-and-analyze-a-local-http-request-with-tcpdump"
+  },
+  {
+    "moduleId": "network-systems-unit-10-packet-capture-and-deep-inspection",
+    "id": "network-systems-unit-10-packet-capture-and-deep-inspection-supplemental-operations-notebook-packet-capture-and-deep-inspection"
+  },
+  {
+    "moduleId": "network-systems-unit-10-packet-capture-and-deep-inspection",
+    "id": "network-systems-unit-10-packet-capture-and-deep-inspection-supplemental-packet-capture-transfer-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-10-packet-capture-and-deep-inspection",
+    "id": "network-systems-unit-10-packet-capture-and-deep-inspection-supplemental-packet-capture-extension-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-11-common-application-protocols",
+    "id": "network-systems-unit-11-common-application-protocols-curriculum-common-application-protocols-core-concepts"
+  },
+  {
+    "moduleId": "network-systems-unit-11-common-application-protocols",
+    "id": "network-systems-unit-11-common-application-protocols-curriculum-core-project-common-application-protocols"
+  },
+  {
+    "moduleId": "network-systems-unit-11-common-application-protocols",
+    "id": "network-systems-unit-11-common-application-protocols-supplemental-operations-notebook-common-application-protocols"
+  },
+  {
+    "moduleId": "network-systems-unit-11-common-application-protocols",
+    "id": "network-systems-unit-11-common-application-protocols-supplemental-application-protocol-transfer-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-11-common-application-protocols",
+    "id": "network-systems-unit-11-common-application-protocols-supplemental-application-protocol-extension-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-12-secure-exposure-of-services",
+    "id": "network-systems-unit-12-secure-exposure-of-services-curriculum-secure-exposure-of-services-core-concepts"
+  },
+  {
+    "moduleId": "network-systems-unit-12-secure-exposure-of-services",
+    "id": "network-systems-unit-12-secure-exposure-of-services-curriculum-project-pass-validate-the-nat-and-exposure-topology-from-outside"
+  },
+  {
+    "moduleId": "network-systems-unit-12-secure-exposure-of-services",
+    "id": "network-systems-unit-12-secure-exposure-of-services-supplemental-operations-notebook-secure-exposure-of-services"
+  },
+  {
+    "moduleId": "network-systems-unit-12-secure-exposure-of-services",
+    "id": "network-systems-unit-12-secure-exposure-of-services-supplemental-secure-exposure-transfer-practice"
+  },
+  {
+    "moduleId": "network-systems-unit-12-secure-exposure-of-services",
+    "id": "network-systems-unit-12-secure-exposure-of-services-supplemental-secure-exposure-extension-practice"
+  },
+  {
+    "moduleId": "network-systems-network-systems-lab-17-operations-capstone-studio",
+    "id": "network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-core-concepts"
+  },
+  {
+    "moduleId": "network-systems-network-systems-lab-17-operations-capstone-studio",
+    "id": "network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-guided-example"
+  },
+  {
+    "moduleId": "network-systems-network-systems-lab-17-operations-capstone-studio",
+    "id": "network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-core-project-operations-capstone-studio"
+  },
+  {
+    "moduleId": "network-systems-network-systems-lab-17-operations-capstone-studio",
+    "id": "network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-review"
+  },
+  {
+    "moduleId": "network-systems-network-systems-lab-17-operations-capstone-studio",
+    "id": "network-systems-network-systems-lab-17-operations-capstone-studio-supplemental-extension-challenge-operations-capstone-studio"
+  },
+  {
+    "moduleId": "network-systems-network-systems-lab-17-operations-capstone-studio",
+    "id": "network-systems-network-systems-lab-17-operations-capstone-studio-supplemental-operations-capstone-transfer-practice"
+  },
+  {
+    "moduleId": "network-systems-network-systems-lab-17-operations-capstone-studio",
+    "id": "network-systems-network-systems-lab-17-operations-capstone-studio-supplemental-operations-capstone-extension-practice"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-curriculum-network-expansion-and-integration-archive-guide"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-vpn-and-tunneling-concepts"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-bgp-and-internet-routing-at-a-high-level"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-wireless-and-home-network-variations"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-cloud-networking-patterns"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-core-project-expansion-ideas-and-next-steps"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-operations-notebook-expansion-ideas-and-next-steps"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-next-steps-transfer-practice"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-next-steps-extension-practice"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-diagnostic-workflow-studio-core-concepts"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-diagnostic-workflow-studio-guided-example"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-core-project-diagnostic-workflow-studio"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-diagnostic-workflow-studio-review"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-extension-challenge-diagnostic-workflow-studio"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-diagnostic-workflow-transfer-practice"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-diagnostic-workflow-extension-practice"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-service-exposure-studio-core-concepts"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-service-exposure-studio-guided-example"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-core-project-service-exposure-studio"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-service-exposure-studio-review"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-extension-challenge-service-exposure-studio"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-service-exposure-transfer-practice"
+  },
+  {
+    "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
+    "id": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-service-exposure-extension-practice"
+  },
+  {
+    "moduleId": "network-systems-standards-map",
+    "id": "network-systems-standards-map-curriculum-network-systems-reference-guide"
+  },
+  {
+    "moduleId": "network-systems-standards-map",
+    "id": "network-systems-standards-map-curriculum-network-systems-core-skills"
+  },
+  {
+    "moduleId": "network-systems-standards-map",
+    "id": "network-systems-standards-map-curriculum-network-systems-next-topics"
+  },
+  {
+    "moduleId": "network-systems-standards-map",
+    "id": "network-systems-standards-map-curriculum-network-systems-boundaries"
+  },
+  {
+    "moduleId": "network-systems-standards-map",
+    "id": "network-systems-standards-map-supplemental-network-systems-prerequisite-check"
+  },
+  {
+    "moduleId": "network-systems-standards-map",
+    "id": "network-systems-standards-map-supplemental-network-systems-pathway-map"
+  },
+  {
+    "moduleId": "network-systems-course-roadmap",
+    "id": "network-systems-course-roadmap-curriculum-network-systems-follow-up-path"
+  },
+  {
+    "moduleId": "network-systems-course-roadmap",
+    "id": "network-systems-course-roadmap-curriculum-network-systems-resource-map"
+  },
+  {
+    "moduleId": "network-systems-course-roadmap",
+    "id": "network-systems-course-roadmap-curriculum-network-systems-module-alignment-guide"
+  },
+  {
+    "moduleId": "network-systems-course-roadmap",
+    "id": "network-systems-course-roadmap-curriculum-network-systems-reference-map"
+  },
+  {
+    "moduleId": "network-systems-course-roadmap",
+    "id": "network-systems-course-roadmap-supplemental-network-systems-prerequisite-map"
+  },
+  {
+    "moduleId": "network-systems-course-roadmap",
+    "id": "network-systems-course-roadmap-supplemental-network-systems-resource-inventory"
+  },
+  {
+    "moduleId": "network-systems-project-practice-guide",
+    "id": "network-systems-project-practice-guide-curriculum-network-systems-project-ladder"
+  },
+  {
+    "moduleId": "network-systems-project-practice-guide",
+    "id": "network-systems-project-practice-guide-curriculum-network-systems-checkpoints"
+  },
+  {
+    "moduleId": "network-systems-project-practice-guide",
+    "id": "network-systems-project-practice-guide-curriculum-network-systems-rubric"
+  },
+  {
+    "moduleId": "network-systems-project-practice-guide",
+    "id": "network-systems-project-practice-guide-curriculum-network-systems-capstone-gate"
+  },
+  {
+    "moduleId": "network-systems-project-practice-guide",
+    "id": "network-systems-project-practice-guide-supplemental-practice-project-dns-lookup-explorer"
+  },
+  {
+    "moduleId": "network-systems-project-practice-guide",
+    "id": "network-systems-project-practice-guide-supplemental-practice-project-http-request-inspector"
+  },
+  {
+    "moduleId": "network-systems-project-practice-guide",
+    "id": "network-systems-project-practice-guide-supplemental-practice-project-local-client-server-toy-protocol"
+  },
+  {
+    "moduleId": "network-systems-project-practice-guide",
+    "id": "network-systems-project-practice-guide-supplemental-practice-project-packet-capture-lab-using-safe-local-traffic"
+  },
+  {
+    "moduleId": "network-systems-project-practice-guide",
+    "id": "network-systems-project-practice-guide-supplemental-practice-project-network-troubleshooting-case-study"
+  },
+  {
+    "moduleId": "network-systems-network-systems-systems-and-security-lab-safety-policy",
+    "id": "network-systems-network-systems-systems-and-security-lab-safety-policy-curriculum-network-systems-allowed-lab-scope"
+  },
+  {
+    "moduleId": "network-systems-network-systems-systems-and-security-lab-safety-policy",
+    "id": "network-systems-network-systems-systems-and-security-lab-safety-policy-curriculum-network-systems-disallowed-work"
+  },
+  {
+    "moduleId": "network-systems-network-systems-systems-and-security-lab-safety-policy",
+    "id": "network-systems-network-systems-systems-and-security-lab-safety-policy-curriculum-network-systems-evidence-and-remediation-format"
+  },
+  {
+    "moduleId": "network-systems-network-systems-systems-and-security-lab-safety-policy",
+    "id": "network-systems-network-systems-systems-and-security-lab-safety-policy-curriculum-network-systems-tooling-setup-and-recovery"
+  },
+  {
+    "moduleId": "network-systems-network-systems-systems-and-security-lab-safety-policy",
+    "id": "network-systems-network-systems-systems-and-security-lab-safety-policy-supplemental-network-systems-safety-project-threat-model-and-scope-sheet"
+  },
+  {
+    "moduleId": "network-systems-network-systems-systems-and-security-lab-safety-policy",
+    "id": "network-systems-network-systems-systems-and-security-lab-safety-policy-supplemental-network-systems-safety-project-patch-and-evidence-report"
+  },
+  {
+    "moduleId": "network-systems-network-systems-defensive-lab-contract",
+    "id": "network-systems-network-systems-defensive-lab-contract-curriculum-network-systems-environment-and-tooling-baseline"
+  },
+  {
+    "moduleId": "network-systems-network-systems-defensive-lab-contract",
+    "id": "network-systems-network-systems-defensive-lab-contract-curriculum-network-systems-prohibited-activity"
+  },
+  {
+    "moduleId": "network-systems-network-systems-defensive-lab-contract",
+    "id": "network-systems-network-systems-defensive-lab-contract-curriculum-network-systems-signature-project"
+  },
+  {
+    "moduleId": "network-systems-network-systems-defensive-lab-contract",
+    "id": "network-systems-network-systems-defensive-lab-contract-curriculum-network-systems-evidence-rubric"
+  },
+  {
+    "moduleId": "network-systems-network-systems-defensive-lab-contract",
+    "id": "network-systems-network-systems-defensive-lab-contract-supplemental-network-systems-defensive-lab-scope-and-reset-drill"
+  },
+  {
+    "moduleId": "network-systems-network-systems-defensive-lab-contract",
+    "id": "network-systems-network-systems-defensive-lab-contract-supplemental-network-systems-defensive-lab-evidence-to-remediation-report"
+  },
+  {
+    "moduleId": "network-systems-network-systems-toolchain-and-version-assumptions",
+    "id": "network-systems-network-systems-toolchain-and-version-assumptions-curriculum-network-systems-setup-assumptions"
+  },
+  {
+    "moduleId": "network-systems-network-systems-toolchain-and-version-assumptions",
+    "id": "network-systems-network-systems-toolchain-and-version-assumptions-curriculum-network-systems-upgrade-rule"
+  },
+  {
+    "moduleId": "network-systems-network-systems-toolchain-and-version-assumptions",
+    "id": "network-systems-network-systems-toolchain-and-version-assumptions-curriculum-network-systems-platform-fallbacks"
+  },
+  {
+    "moduleId": "network-systems-network-systems-toolchain-and-version-assumptions",
+    "id": "network-systems-network-systems-toolchain-and-version-assumptions-curriculum-network-systems-reproducibility-notes"
+  },
+  {
+    "moduleId": "network-systems-network-systems-toolchain-and-version-assumptions",
+    "id": "network-systems-network-systems-toolchain-and-version-assumptions-supplemental-network-systems-first-run-smoke-test"
+  },
+  {
+    "moduleId": "network-systems-network-systems-toolchain-and-version-assumptions",
+    "id": "network-systems-network-systems-toolchain-and-version-assumptions-supplemental-network-systems-version-drift-review"
+  }
+]

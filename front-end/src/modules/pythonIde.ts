@@ -31,6 +31,10 @@ import {
 	linuxCourseResource,
 	linuxImportFiles
 } from "@/modules/linuxProjectResources";
+import {
+	networkCourseResource,
+	networkImportFiles
+} from "@/modules/networkProjectResources";
 import { restoredUsacoResource } from "@/modules/usacoProjectResources";
 
 const WHITESPACE_RE = /\s+/g;
@@ -383,6 +387,8 @@ export function isKnownCourseWorksheetResource(url: string) {
 export function pythonIdeModeForCourseResource(courseId: string, url: string) {
 	const resource = parseGitHubResource(url);
 	if (!resource || isKnownCourseWorksheetResource(url)) return null;
+	if (courseId === "network-systems")
+		return networkCourseResource(url) ? "linux" : null;
 	if (courseId === "linux-systems")
 		return linuxCourseResource(url) ? "linux" : null;
 	if (courseId === "assembly")
@@ -2726,7 +2732,10 @@ export function createPythonIdeProject(
 		? clonePythonIdeFiles(options.files)
 		: getStarterFilesForTemplate(mode, template);
 	const linuxSource =
-		mode === "linux" ? linuxCourseResource(options.starterUrl ?? "") : null;
+		mode === "linux"
+			? (linuxCourseResource(options.starterUrl ?? "") ??
+				networkCourseResource(options.starterUrl ?? ""))
+			: null;
 	const assemblySource =
 		mode === "assembly"
 			? assemblyCourseResource(options.starterUrl ?? "")
@@ -3066,7 +3075,8 @@ export async function loadPythonIdeStarterFilesFromGitHub(
 	if (mode === "c" || mode === "assembly" || mode === "linux") {
 		const selected =
 			mode === "linux"
-				? linuxImportFiles(starterUrl)
+				? (linuxImportFiles(starterUrl) ??
+					networkImportFiles(starterUrl))
 				: mode === "assembly"
 					? assemblyImportFiles(starterUrl)
 					: c17ImportFiles(starterUrl);
