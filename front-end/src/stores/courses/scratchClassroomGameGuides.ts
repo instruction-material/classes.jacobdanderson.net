@@ -50,6 +50,8 @@ predict which makes catching easier. Keep the one-outcome rule and reset.
 Use an attached comment to explain why falling is outside the collision test.
 Draw a trace for a catch, a miss and a tick with neither contact.
 
+**Verification:**
+
 **Partner routine:** One person drives while the other predicts the next
 outcome and checks the score. Swap after a saved checkpoint. Download and
 reopen the .sb3 before handing it over. This is a shared review/handoff routine;
@@ -110,6 +112,8 @@ reading Player's current direction on every tick could turn a shot in midair.
 Specify a target-hit transition before adding targets; an edge and a target
 must not trigger duplicate outcomes for the same projectile.
 
+**Verification:**
+
 **Explain and retain:** Label the two states, their entry actions, the Space
 trigger, the edge return and both self-loops. Explain why a hidden sprite still
 exists and why isFired uses 0/1 comparisons here. Add a concise block comment,
@@ -164,6 +168,8 @@ just below and at each threshold. Optionally switch a backdrop when a level
 changes, but retain the speed rule as observable gameplay. Design an ending
 only after the three-level progression is reliable. State what should stop,
 what remains visible and how the green flag restores the next round.
+
+**Verification:**
 
 **Explain and retain:** Show which variable is score, which is state, which
 controls movement and which conditions cause a transition. Use a partner as a

@@ -148,6 +148,11 @@ export async function checkScratchConditionalCourse(page, origin, setRole) {
 					return url.pathname === "/ide" && url.searchParams.get("mode") === "scratch" && url.searchParams.get("starter") === id;
 				}), JSON.stringify(links));
 				assert.ok(links.includes(`/scratch-projects/${id}.sb3`));
+				const completionIsOptional = await page.$$eval(".lesson-item", (items, title) => {
+					const card = items.find(item => item.querySelector("h5")?.textContent.includes(title));
+					return [...card.querySelectorAll(".assignment-aside.is-optional")].some(section => section.textContent.includes("Download this starter") || section.textContent.includes("Explain and retain") || section.textContent.includes("Partner routine"));
+				}, title);
+				assert.equal(completionIsOptional, false, "Saving and explaining the Normal task remain outside Hard");
 				assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
 				if (process.env.SCRATCH_SCREENSHOT_DIR) {
 					const card = await page.evaluateHandle(title => [...document.querySelectorAll(".lesson-item")].find(item => item.querySelector("h5")?.textContent.includes(title)), title);

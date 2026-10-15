@@ -7,6 +7,7 @@ import {
 	scratchDownloadName
 } from "../src/modules/scratch/frame";
 import { scratchLevel1ClassroomCourse } from "../src/stores/courses/scratch-level-1-classroom";
+import { lessonContentSections } from "../src/modules/courseLessonPresentation";
 
 describe("Scratch classroom", () => {
 	it("shows the full Normal and Hard instructions in the learner view", async () => {
@@ -84,6 +85,11 @@ describe("Scratch classroom", () => {
 			expect(item.content).toContain(`/scratch-projects/${item.id}.sb3`);
 			expect(item.content).toContain("**Normal");
 			expect(item.content).toContain("**Check");
+			const sections = lessonContentSections(item.content);
+			const optionalContent = sections.filter(section => section.kind === "optional").map(section => section.content).join("\n");
+			expect(optionalContent).not.toContain("Download this starter");
+			expect(optionalContent).not.toContain("**Explain");
+			expect(sections.filter(section => section.kind === "assignment").some(section => section.content.includes(`/scratch-projects/${item.id}.sb3`))).toBe(true);
 			expect(finalUnit.curriculum.some(core => core.id === item.id)).toBe(false);
 		}
 		expect(continuations?.[0].content).toContain("one drop from being counted as both");
