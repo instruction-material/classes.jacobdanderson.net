@@ -23,6 +23,28 @@ export function linuxBuildInstructions(files: PythonIdeFile[], url?: string) {
 		];
 	}
 	const commands: Record<string, string[]> = {
+		"LS-07-unit-3-users-groups-and-permissions-supplemental-2": [
+			"Read ../README.md and complete unlink-notes.md with task.sh and permission_observer.py together in an ordinary external Linux account. Use an empty owned workspace.",
+			"Predict file append, directory listing and unlink separately; repair the named unlink decision using owner write and search on the containing directory. Keep real EACCES results separate from the prediction-match status.",
+			"Retain independent commands, the changed workspace, actual rejection and recovery, unchanged outside entries and cleanup. These controlled mode-bit observations do not establish another service account\u2019s access."
+		],
+		"LS-08-unit-3-users-groups-and-permissions-supplemental-3": [
+			"Read ../README.md and complete umask-notes.md with task.sh and creation_observer.py together in an ordinary external Linux account. Use a plain empty owned workspace without a default ACL.",
+			"Repair the regular-file prediction using the actual requested 0666 mode and bit clearing. Compare actual file/directory modes under changed masks and the existing 0640 document\u2019s unchanged bytes.",
+			"Run the independent Bash/stat comparison in a child shell, retain invalid-mask and corrected-input evidence, and verify inherited mask restoration and cleanup. The reference method does not fill in the observations."
+		],
+		"LS-05-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-2":
+			[
+				"Read ../README.md and complete path-notes.md in an ordinary external Linux terminal with Bash. Predict logical and physical paths and both parents before each run.",
+				"Repair the named physical-parent traversal. Decode the NUL-delimited records with the supplied loop, retaining spaces and trailing newlines. Compare direct paths, alternate links and a broken target, then verify recovery.",
+				"Use only the private temporary directories from the guide. A link name does not establish containment. A successful observation is not completion of the evidence notes; preserve inputs and remove only the disposable case."
+			],
+		"LS-06-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-3":
+			[
+				"Read ../README.md and complete filesystem-notes.md with task.sh and filesystem_observer.py together. Use an ordinary external Linux account with Python 3.8+, GNU stat/head and util-linux findmnt.",
+				"Repair the named content-empty decision using actual successful read bytes. Compare a nonempty ordinary file, an empty file and /proc/uptime using metadata, mounted filesystem, captured bytes and the independent commands from the guide.",
+				"Retain the bounded-read, quoted-path, permission failure and corrected-path observations. Restore the temporary file mode and remove only the private case. Metadata and reads are separate snapshots; completed observations do not infer completion of the evidence notes."
+			],
 		"LS-03-unit-1-shell-foundations-supplemental-2": [
 			"Read ../README.md and complete search-notes.md in an ordinary Linux terminal with Bash, GNU grep and GNU sort. Keep every supplied records path exactly, including spaces and the leading dash.",
 			"Repair the final status decision after the actual grep -F -l -Z and sort -z -u pipeline. Retain literal match, no-match, missing/unreadable input and newline-filename observations with their actual separate tool statuses.",

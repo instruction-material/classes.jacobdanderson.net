@@ -298,6 +298,10 @@ it("retains literal Linux names and rejects unsafe paths and unverified imports"
 	expect(isValidPythonFileName("main.html")).toBe(false);
 	expect(isValidPythonFileName("Makefile.sh", "cpp")).toBe(false);
 	for (const name of [
+		"starter/unlink-notes.md",
+		"solution/umask-notes.md",
+		"starter/path-notes.md",
+		"solution/filesystem-notes.md",
 		"starter/search-notes.md",
 		"solution/count.awk",
 		"starter/records/-dash.txt",
@@ -315,6 +319,11 @@ it("retains literal Linux names and rejects unsafe paths and unverified imports"
 		expect(isValidPythonFileName(name, "linux"), name).toBe(true);
 		expect(isValidPythonFileName(name, "python"), name).toBe(false);
 		expect(isValidPythonFileName(name, "cpp"), name).toBe(false);
+	}
+	for (const mode of ["linux", "python", "cpp"] as const) {
+		expect(
+			isValidPythonFileName("starter/filesystem_observer.py", mode)
+		).toBe(true);
 	}
 	expect(isValidPythonFileName("starter/compare-notes.md", "linux")).toBe(
 		true

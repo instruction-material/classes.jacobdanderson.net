@@ -369,6 +369,38 @@ export const linuxVerifiedPacks = [
 			"linux-systems-unit-1-shell-foundations-supplemental-shell-pipeline-extension-practice",
 		notebookItemId: null,
 		revision: "d96bf056157ed05c95cfe2ef5c2bee66501c7f17"
+	},
+	{
+		pack: "LS-05-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-2",
+		roleFiles: ["path-notes.md", "task.sh"],
+		coreItemId:
+			"linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-filesystem-layout-transfer-practice",
+		notebookItemId: null,
+		revision: "0f7955eba8c8cf27312a980b722f116ab5bf0611"
+	},
+	{
+		pack: "LS-06-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-3",
+		roleFiles: ["filesystem-notes.md", "task.sh", "filesystem_observer.py"],
+		coreItemId:
+			"linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-filesystem-layout-extension-practice",
+		notebookItemId: null,
+		revision: "0f7955eba8c8cf27312a980b722f116ab5bf0611"
+	},
+	{
+		pack: "LS-07-unit-3-users-groups-and-permissions-supplemental-2",
+		roleFiles: ["unlink-notes.md", "task.sh", "permission_observer.py"],
+		coreItemId:
+			"linux-systems-unit-3-users-groups-and-permissions-supplemental-permissions-transfer-practice",
+		notebookItemId: null,
+		revision: "de4ff7b50cd6daaa00e60b1ced3b9f43968e57d2"
+	},
+	{
+		pack: "LS-08-unit-3-users-groups-and-permissions-supplemental-3",
+		roleFiles: ["umask-notes.md", "task.sh", "creation_observer.py"],
+		coreItemId:
+			"linux-systems-unit-3-users-groups-and-permissions-supplemental-permissions-extension-practice",
+		notebookItemId: null,
+		revision: "de4ff7b50cd6daaa00e60b1ced3b9f43968e57d2"
 	}
 ] as const;
 

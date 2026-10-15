@@ -22,6 +22,10 @@ const fixtures = JSON.parse(
 	)
 );
 const definitions = {
+"LS-07-unit-3-users-groups-and-permissions-supplemental-2": ["unit-3-users-groups-and-permissions", "permissions-transfer-practice", null],
+"LS-08-unit-3-users-groups-and-permissions-supplemental-3": ["unit-3-users-groups-and-permissions", "permissions-extension-practice", null],
+"LS-05-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-2": ["unit-2-filesystem-hierarchy-and-directory-purpose", "filesystem-layout-transfer-practice", null],
+"LS-06-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-3": ["unit-2-filesystem-hierarchy-and-directory-purpose", "filesystem-layout-extension-practice", null],
 	"LS-03-unit-1-shell-foundations-supplemental-2": ["unit-1-shell-foundations", "shell-pipeline-transfer-practice", null],
 	"LS-04-unit-1-shell-foundations-supplemental-3": ["unit-1-shell-foundations", "shell-pipeline-extension-practice", null],
 	"LS-12-unit-12-storage-backups-and-reliability": [
@@ -166,6 +170,10 @@ const definitions = {
 	]
 };
 const notesFirstFiles = {
+"LS-07-unit-3-users-groups-and-permissions-supplemental-2": "unlink-notes.md",
+"LS-08-unit-3-users-groups-and-permissions-supplemental-3": "umask-notes.md",
+"LS-05-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-2": "path-notes.md",
+"LS-06-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-3": "filesystem-notes.md",
 	"LS-03-unit-1-shell-foundations-supplemental-2": "search-notes.md",
 	"LS-04-unit-1-shell-foundations-supplemental-3": "pipeline-notes.md",
 	"LS-12-unit-12-storage-backups-and-reliability": "restore-notes.md",
@@ -204,7 +212,8 @@ const digest = value => createHash("sha256").update(value).digest("hex");
 
 test(
 	"Linux confirmed imports, exact role exports, saved edits and shared notebook attempts",
-	{ timeout: 600_000 },
+	// Retain every scenario and allow time to close the browser and server.
+	{ timeout: 900_000 },
 	async () => {
 		let server, browser, context, page;
 		const output
@@ -350,6 +359,10 @@ test(
 				const [module, core] = definitions[fixture.pack];
 				const moduleID = `linux-systems-${module}`;
 				const placement = [
+"LS-07-unit-3-users-groups-and-permissions-supplemental-2",
+"LS-08-unit-3-users-groups-and-permissions-supplemental-3",
+"LS-05-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-2",
+"LS-06-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-3",
 					"LS-03-unit-1-shell-foundations-supplemental-2",
 					"LS-04-unit-1-shell-foundations-supplemental-3",
 					"LS-25-unit-12-storage-backups-and-reliability-supplemental-2",
@@ -615,6 +628,10 @@ test(
 								});
 							}
 							const capture = {
+"LS-07-unit-3-users-groups-and-permissions-supplemental-2": "linux-permissions-unlink",
+"LS-08-unit-3-users-groups-and-permissions-supplemental-3": "linux-permissions-umask",
+"LS-05-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-2": "linux-filesystem-paths",
+"LS-06-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-3": "linux-filesystem-kernel",
 								"LS-03-unit-1-shell-foundations-supplemental-2": "linux-shell-search",
 								"LS-04-unit-1-shell-foundations-supplemental-3": "linux-shell-status",
 								"LS-12-unit-12-storage-backups-and-reliability":
@@ -818,8 +835,8 @@ test(
 				);
 			}
 			await writeFile(join(output, "default-linux.zip"), defaultArchive);
-			assert.equal(proof.length, 240);
-			assert.equal(courseButtons.length, 43);
+			assert.equal(proof.length, 272);
+			assert.equal(courseButtons.length, 47);
 			assert.equal(
 				courseButtons.filter(action => action.reusesExistingAttempt)
 					.length,
