@@ -4414,7 +4414,8 @@ describe("course text quality normalization", () => {
 		expect(corpus).toContain(
 			"Linux Systems Lab 17: Operations Capstone Studio"
 		);
-		expect(corpus).toContain("Operations Capstone Extension Practice");
+		expect(corpus).toContain("Recovery Point Selection from a Verified Archive History");
+        expect(corpus).toContain("Accepting a Restore Against Independently Expected State");
 	});
 
 	it("keeps Web Development Foundations guidance specific", async () => {

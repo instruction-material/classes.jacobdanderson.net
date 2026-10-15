@@ -23,6 +23,21 @@ export function linuxBuildInstructions(files: PythonIdeFile[], url?: string) {
 		];
 	}
 	const commands: Record<string, string[]> = {
+		"LS-33-applied-studio-17-linux-systems-lab-17-supplemental-2": [
+			"Read ../README.md and complete recovery-notes.md. Preserve all eight role files; edit/save/export in the site IDE and run with Bash and Python 3.8+ under an ordinary account in the external owned Linux lab.",
+			"Repair only choose_backup: validate actual published archives, apply the recorded manifest-time cutoff and choose the eligible maximum. Compare first, expected, latest-complete and no-eligible targets against misleading mtimes, a corrupt archive and an unpublished partial candidate.",
+			"Retain actual verify/restore child statuses, archive and restored bytes, reversed enumeration, interruption and a successful rerun. Preserve trusted archives, source files and the outside sentinel, then remove only the exact empty owned parent."
+		],
+		"LS-34-applied-studio-17-linux-systems-lab-17-supplemental-3": [
+			"Read ../README.md and complete recovery-notes.md. Keep every role file together. Use an ordinary external Linux account with Bash/Python; the required capstone separately establishes actual manager, timer, proxy and service behavior.",
+			"Repair only recovered_matches to compare exactly the three actual restored payload files with independently expected hashes. Compare all three intact generations, change the target without changing the restores, and reject a missing member.",
+			"Retain real separate restores, digest and application-state distinctions, existing-destination refusal, changed order, interruption/recovery and owned cleanup. Successful extraction or internally valid archive bytes alone do not establish the intended recovery point."
+		],
+		"LS-04-linux-systems-lab-17": [
+			"Read ../README.md and complete operations-notes.md across the required 8\u201312-session capstone. Preserve all eleven role files. Edit, save and export in the site IDE; run the actual units and Nginx only inside the owned disposable Linux environment with systemd and approved sudo access.",
+			"Complete the four named starter repairs: loopback listen host, release identity, service WorkingDirectory and the backup member set. Render and inspect the unit files before activation; observe a dedicated non-root service identity, read-only code, direct and proxied health, journal identity and an actual scheduled backup.",
+			"Inject the documented missing-working-directory failure, retain direct refusal and proxy 502, correct and restart, then compare changed fictional data before and after a new invocation. Verify manifests, failed candidates and tamper refusals, restore twice into distinct new paths, preserve trusted backups and record exact disable/remove cleanup in the versioned runbook."
+		],
 		"LS-01-linux-systems-lab-14": [
 			"Read ../README.md and complete deployment-notes.md with all release fixtures, task.sh, task.py and nginx_lab.py together. Use an ordinary owned Linux lab with Bash, Python 3.8+ and Nginx; the site IDE edits and exports the project.",
 			"Repair only readiness_ok to require both the actual HTTP status and expected identity bytes. Retain the current symlink and served page before, during and after good, wrong-identity and missing-health candidates; reverse the initial release and repeat.",

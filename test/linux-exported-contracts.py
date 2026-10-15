@@ -50,7 +50,7 @@ supplemental_verifier = (fixture_dir / "linux-systemd-supplemental-source-verifi
 assert hashlib.sha256(supplemental_verifier).hexdigest() == supplemental_identity["sha256"]
 assert all(pack["revision"] == supplemental_identity["revision"] for pack in supplemental_packs)
 logging_packs = [pack for pack in packs if pack["pack"] in ("LS-09-unit-7-logging-and-observability", "LS-15-unit-7-logging-and-observability-supplemental-2", "LS-16-unit-7-logging-and-observability-supplemental-3")]
-assert len(logging_packs) == 3 and len(packs) == 43
+assert len(logging_packs) == 3 and len(packs) == 46
 logging_identity = json.loads((fixture_dir / "linux-logging-source-verifier.json").read_text())
 logging_verifier = (fixture_dir / "linux-logging-source-verifier.py").read_bytes()
 assert hashlib.sha256(logging_verifier).hexdigest() == logging_identity["sha256"]
@@ -144,6 +144,18 @@ deployment_packs = [pack for pack in packs if pack["pack"] in ['LS-01-linux-syst
 assert len(deployment_packs) == 3
 assert hashlib.sha256(deployment_verifier).hexdigest() == deployment_identity["sha256"]
 assert all(pack["revision"] == deployment_identity["revision"] for pack in deployment_packs)
+capstone_identity = json.loads((fixture_dir / "linux-operations-capstone-source-verifier.json").read_text())
+capstone_verifier = (fixture_dir / "linux-operations-capstone-source-verifier.py").read_bytes()
+capstone_packs = [pack for pack in packs if pack["pack"] == "LS-04-linux-systems-lab-17"]
+assert len(capstone_packs) == 1
+assert hashlib.sha256(capstone_verifier).hexdigest() == capstone_identity["sha256"]
+assert capstone_packs[0]["revision"] == capstone_identity["revision"]
+recovery_identity = json.loads((fixture_dir / "linux-capstone-recovery-source-verifier.json").read_text())
+recovery_verifier = (fixture_dir / "linux-capstone-recovery-source-verifier.py").read_bytes()
+recovery_packs = [pack for pack in packs if pack["pack"] in ['LS-33-applied-studio-17-linux-systems-lab-17-supplemental-2', 'LS-34-applied-studio-17-linux-systems-lab-17-supplemental-3']]
+assert len(recovery_packs) == 2
+assert hashlib.sha256(recovery_verifier).hexdigest() == recovery_identity["sha256"]
+assert all(pack["revision"] == recovery_identity["revision"] for pack in recovery_packs)
 args.proof = args.proof.resolve()
 args.proof.parent.mkdir(parents=True, exist_ok=True)
 archives = []
@@ -444,6 +456,29 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
     assert deployment["actualSyntaxRejections"] == 6 and deployment["actualNativeCommands"] == 60
     assert deployment["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in deployment_packs for name, file in pack["files"].items()}
     assert len(deployment["profiles"]) == 9 and all(profile["passed"] and profile["inputsUnchanged"] and profile["ownedResourcesRemoved"] and profile["outsideSentinelPreserved"] for profile in deployment["profiles"])
+    capstone_records = args.proof.parent / "operations-capstone-records"
+    capstone_records.mkdir(exist_ok=True)
+    capstone_proof = capstone_records / (args.proof.stem + "-operations-capstone-native.json")
+    capstone = run_pinned_contract(work, "verify_operations_capstone.py", capstone_verifier, capstone_proof, 240)
+    assert capstone["nativePassed"] and capstone["sourceUnchanged"] and capstone["realSystemManager"]
+    # Actual readiness and timer polling counts vary with the runner; reconcile
+    # every observed lifecycle and require the same concrete manager transitions.
+    assert capstone["actualCommandCases"] == capstone["loggedCommandLifecycles"] > 0
+    assert capstone["actualHttpRequests"] > 0 and not capstone["learnerWorksheetCompletionInferred"]
+    assert all(profile["evidence"]["actualWorkingDirectoryFailure"]["ExecMainStatus"] == "200" for profile in capstone["profiles"])
+    assert all(profile["evidence"]["initialScheduledBackup"]["timer"]["LastTriggerUSec"] not in ("", "n/a", "0") for profile in capstone["profiles"])
+    assert all(profile["evidence"]["changedScheduledBackup"]["manager"]["Result"] == "success" for profile in capstone["profiles"] if profile["profile"] != "starter")
+    assert capstone["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in capstone_packs for name, file in pack["files"].items()}
+    assert len(capstone["profiles"]) == 3 and all(profile["passed"] and profile["inputsUnchanged"] and profile["evidence"]["ownedResourcesRemoved"] for profile in capstone["profiles"])
+    recovery_records = args.proof.parent / "capstone-recovery-records"
+    recovery_records.mkdir(exist_ok=True)
+    recovery_proof = recovery_records / (args.proof.stem + "-capstone-recovery-native.json")
+    recovery = run_pinned_contract(work, "verify_capstone_recovery.py", recovery_verifier, recovery_proof, 180)
+    assert recovery["nativePassed"] and recovery["sourceUnchanged"] and recovery["platform"] == "Linux" and recovery["uid"] > 0
+    assert recovery["actualCases"] == recovery["loggedOuterLifecycles"] == 48
+    assert recovery["actualBackupChildLifecycles"] == 246 and not recovery["learnerWorksheetCompletionInferred"]
+    assert recovery["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in recovery_packs for name, file in pack["files"].items()}
+    assert len(recovery["profiles"]) == 6 and all(profile["passed"] and profile["inputsUnchanged"] and profile["outsideSentinelPreserved"] and profile["ownedResourcesRemoved"] for profile in recovery["profiles"])
     default = work / "default-workspace"
     default.mkdir()
     default_archive = args.archives / "default-linux.zip"
@@ -506,6 +541,10 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
                                      "filesystemOptionalNativeProof": str(filesystem_proof),
                                      "schedulingOptionalSourceIdentity": scheduling_identity,
                                      "schedulingOptionalNativeProof": str(scheduling_proof),
+                                     "capstoneRecoverySourceIdentity": recovery_identity,
+                                     "capstoneRecoveryNativeProof": str(recovery_proof),
+                                     "operationsCapstoneSourceIdentity": capstone_identity,
+                                     "operationsCapstoneNativeProof": str(capstone_proof),
                                      "deploymentStudioSourceIdentity": deployment_identity,
                                      "deploymentStudioNativeProof": str(deployment_proof),
                                      "webOptionalSourceIdentity": web_identity,
