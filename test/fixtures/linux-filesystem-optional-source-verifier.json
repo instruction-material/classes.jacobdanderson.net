@@ -1,0 +1,6 @@
+{
+  "repository": "instruction-material/Linux-Systems",
+  "revision": "0f7955eba8c8cf27312a980b722f116ab5bf0611",
+  "path": "test/verify_filesystem_optional.py",
+  "sha256": "6de7ab1395b984a9d707aa262b4efb0e131b2e7ff67e970e547a81e7d7bd9c52"
+}

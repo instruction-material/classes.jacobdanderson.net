@@ -23,6 +23,18 @@ export function linuxBuildInstructions(files: PythonIdeFile[], url?: string) {
 		];
 	}
 	const commands: Record<string, string[]> = {
+		"LS-05-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-2":
+			[
+				"Read ../README.md and complete path-notes.md in an ordinary external Linux terminal with Bash. Predict logical and physical paths and both parents before each run.",
+				"Repair the named physical-parent traversal. Decode the NUL-delimited records with the supplied loop, retaining spaces and trailing newlines. Compare direct paths, alternate links and a broken target, then verify recovery.",
+				"Use only the private temporary directories from the guide. A link name does not establish containment. A successful observation is not completion of the evidence notes; preserve inputs and remove only the disposable case."
+			],
+		"LS-06-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-3":
+			[
+				"Read ../README.md and complete filesystem-notes.md with task.sh and filesystem_observer.py together. Use an ordinary external Linux account with Python 3.8+, GNU stat/head and util-linux findmnt.",
+				"Repair the named content-empty decision using actual successful read bytes. Compare a nonempty ordinary file, an empty file and /proc/uptime using metadata, mounted filesystem, captured bytes and the independent commands from the guide.",
+				"Retain the bounded-read, quoted-path, permission failure and corrected-path observations. Restore the temporary file mode and remove only the private case. Metadata and reads are separate snapshots; completed observations do not infer completion of the evidence notes."
+			],
 		"LS-03-unit-1-shell-foundations-supplemental-2": [
 			"Read ../README.md and complete search-notes.md in an ordinary Linux terminal with Bash, GNU grep and GNU sort. Keep every supplied records path exactly, including spaces and the leading dash.",
 			"Repair the final status decision after the actual grep -F -l -Z and sort -z -u pipeline. Retain literal match, no-match, missing/unreadable input and newline-filename observations with their actual separate tool statuses.",
