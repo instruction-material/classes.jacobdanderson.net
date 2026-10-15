@@ -1,10 +1,6 @@
 import { parseGitHubResource } from "./codePreview";
 
-export const pyGamesSourceRevision = "45b42afa13fd956959a05680fe9847b1a79002cb";
-// The later file at the default pin contains an unrelated cryptography exercise.
-const sourceFileRevisions: Record<string, string> = {
-	"PyG4-Falling-Squares.py": "7d14ecd52342b19dfeb1b76ec5eeb2a568e769b0"
-};
+export const pyGamesSourceRevision = "abc7a6c6cb9bc991b37ca6eb239f3d418185b09f";
 export const pyGamesLessonSourceFiles: Record<string, string> = {
 	"pyg1 project 1: rainbow fill": "PyG1-Rainbow-Fill.py",
 	"pyg1 project 2: bouncing alien": "PyG1-Bouncing-Alien.py",
@@ -160,7 +156,7 @@ const sourceFiles = new Set([
 ]);
 
 export function pyGamesPinnedSourceUrl(file: string) {
-	const revision = sourceFileRevisions[file] ?? pyGamesSourceRevision;
+	const revision = pyGamesSourceRevision;
 	return `https://github.com/instruction-material/PyGames/blob/${revision}/${file}`;
 }
 
@@ -170,9 +166,7 @@ export function pyGamesPinnedResourceUrl(url: string) {
 		!resource ||
 		resource.owner.toLowerCase() !== "instruction-material" ||
 		resource.repo.toLowerCase() !== "pygames" ||
-		(resource.ref !== "main" &&
-			resource.ref !== pyGamesSourceRevision &&
-			resource.ref !== sourceFileRevisions[resource.path]) ||
+		(resource.ref !== "main" && resource.ref !== pyGamesSourceRevision) ||
 		!sourceFiles.has(resource.path)
 	) {
 		return url;
@@ -201,8 +195,14 @@ export function pyGamesCourseProjectKey(
 			? classroomSharedActivities[itemID]
 			: undefined) ??
 		itemID;
+	const correctedLegacyModel =
+		itemID ===
+			"pygames-check-in-3-system-control-projectiles-enemy-ai-curriculum-check-in-3-additional-practice-project" &&
+		(courseID === "pygames-classroom" || role === "reference");
 	const version =
-		versionedActivities.has(itemID) || versionedActivities.has(shared)
+		versionedActivities.has(itemID) ||
+		versionedActivities.has(shared) ||
+		correctedLegacyModel
 			? ":juni-pygames"
 			: "";
 	return `${courseID}:${shared}:${role}${version}`;

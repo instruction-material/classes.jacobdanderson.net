@@ -681,6 +681,7 @@ const gameEvents: GameInputEvent[] = [];
 const gameImageCache = new Map<string, CachedGameImage>();
 const activeGameMouseButtons = new Set<number>();
 const gameSoundAudio = new Map<string, Set<HTMLAudioElement>>();
+const intentionallyStoppedGameAudio = new WeakSet<HTMLAudioElement>();
 const gameToneAudio = new Map<number, GameToneHandle>();
 const codeEditorViewStates = new Map<string, CodeEditorViewState>();
 const codeEditorStateSnapshots = new Map<string, CodeEditorState>();
@@ -5479,6 +5480,7 @@ function playProjectAudio(
 	const audio = new Audio(src);
 	audio.loop = loop;
 	void audio.play().catch(() => {
+		if (intentionallyStoppedGameAudio.has(audio)) return;
 		onPlaybackBlocked?.(audio);
 		reportGameAudioPlaybackBlocked();
 	});
@@ -5542,6 +5544,7 @@ function playGameSound(name: string, loops = 0) {
 	cleanup = trackGameSoundAudio(name, audio, { cleanupOnEnded: false });
 	let remainingLoops = repeatCount;
 	audio.addEventListener("ended", () => {
+		if (intentionallyStoppedGameAudio.has(audio)) return;
 		if (remainingLoops <= 0) {
 			cleanup?.();
 			return;
@@ -5550,6 +5553,7 @@ function playGameSound(name: string, loops = 0) {
 		remainingLoops -= 1;
 		audio.currentTime = 0;
 		void audio.play().catch(() => {
+			if (intentionallyStoppedGameAudio.has(audio)) return;
 			cleanup?.();
 			reportGameAudioPlaybackBlocked();
 		});
@@ -5557,9 +5561,17 @@ function playGameSound(name: string, loops = 0) {
 }
 
 function stopGameSound(name: string) {
+	if (!name) {
+		for (const soundName of [...gameSoundAudio.keys()])
+			stopGameSound(soundName);
+		stopAllGameTones();
+		suspendGameAudioContext();
+		return;
+	}
 	const activeSounds = gameSoundAudio.get(name);
 	if (!activeSounds) return;
 	for (const audio of activeSounds) {
+		intentionallyStoppedGameAudio.add(audio);
 		audio.pause();
 		audio.currentTime = 0;
 	}
@@ -5593,8 +5605,12 @@ function pauseGameMusic() {
 }
 
 function unpauseGameMusic() {
-	if (!gameMusicAudio) return;
-	void gameMusicAudio.play().catch(() => reportGameAudioPlaybackBlocked());
+	const audio = gameMusicAudio;
+	if (!audio) return;
+	void audio.play().catch(() => {
+		if (!intentionallyStoppedGameAudio.has(audio))
+			reportGameAudioPlaybackBlocked();
+	});
 }
 
 function setGameMusicVolume(volume: number) {
@@ -5604,6 +5620,7 @@ function setGameMusicVolume(volume: number) {
 
 function stopGameMusic() {
 	if (!gameMusicAudio) return;
+	intentionallyStoppedGameAudio.add(gameMusicAudio);
 	gameMusicAudio.pause();
 	gameMusicAudio.currentTime = 0;
 	gameMusicAudio = null;

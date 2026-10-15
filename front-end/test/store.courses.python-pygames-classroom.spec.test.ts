@@ -258,7 +258,7 @@ describe("Python Level 2 and PyGames classroom editions", () => {
 				"https://example.com"
 			).searchParams.get("starterUrl")
 		).toBe(
-			"https://github.com/instruction-material/PyGames/blob/45b42afa13fd956959a05680fe9847b1a79002cb/PyG1-Bouncing-Alien.py"
+			"https://github.com/instruction-material/PyGames/blob/abc7a6c6cb9bc991b37ca6eb239f3d418185b09f/PyG1-Bouncing-Alien.py"
 		);
 	});
 });

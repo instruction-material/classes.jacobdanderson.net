@@ -34,7 +34,18 @@ const launch =
 	"pygames-classroom-classroom-launch-play-extend-explain-curriculum-launch-project-1-bouncing-alien";
 const practice =
 	"pygames-pyg2-event-handling-supplemental-event-handling-transfer-practice";
+const correctedCheckpoint =
+	"pygames-check-in-3-system-control-projectiles-enemy-ai-curriculum-check-in-3-additional-practice-project";
 const activities = [
+	{
+		name: "classroom-corrected-checkpoint",
+		course: "pygames-classroom",
+		module: "pygames-check-in-3-system-control-projectiles-enemy-ai",
+		item: correctedCheckpoint,
+		key: `pygames-classroom:${correctedCheckpoint}:starter:juni-pygames`,
+		file: "Check_in_3_Additional_Practice_Solution.py",
+		staff: false
+	},
 	{
 		name: "independent-build",
 		course: "pygames",
@@ -92,6 +103,15 @@ const earlier = {
 	createdAt: "2026-10-01T12:00:00.000Z",
 	updatedAt: "2026-10-01T12:00:00.000Z"
 };
+const earlierCheckpoint = {
+	...earlier,
+	_id: "earlier-pygames-checkpoint",
+	title: "Earlier checkpoint attempt",
+	courseID: "pygames-classroom",
+	courseProjectKey: `pygames-classroom:${correctedCheckpoint}:starter`,
+	files: [{ name: "main.py", content: "# earlier checkpoint work\n" }]
+};
+
 async function savedProjects(page) {
 	return page.evaluate(
 		key =>
@@ -358,10 +378,13 @@ nodeTest(
 					saveEdit: "Save"
 				};
 				await page.evaluateOnNewDocument(
-					(key, old) => {
+					(key, old, checkpoint) => {
 						if (window !== window.top) return;
 						if (localStorage.getItem(key) === null)
-							localStorage.setItem(key, JSON.stringify([old]));
+							localStorage.setItem(
+								key,
+								JSON.stringify([old, checkpoint])
+							);
 						const create = URL.createObjectURL;
 						URL.createObjectURL = blob => {
 							if (blob.type === "application/zip")
@@ -379,7 +402,8 @@ nodeTest(
 						};
 					},
 					storageKey,
-					earlier
+					earlier,
+					earlierCheckpoint
 				);
 				await page.setRequestInterception(true);
 				page.on("request", request => {
@@ -564,6 +588,15 @@ nodeTest(
 						assert.ok(previous);
 						for (const key of Object.keys(earlier))
 							assert.deepEqual(previous[key], earlier[key]);
+						const priorCheckpoint = (
+							await savedProjects(page)
+						).find(p => p._id === earlierCheckpoint._id);
+						assert.ok(priorCheckpoint);
+						for (const key of Object.keys(earlierCheckpoint))
+							assert.deepEqual(
+								priorCheckpoint[key],
+								earlierCheckpoint[key]
+							);
 						assert.equal(
 							(await savedProjects(page)).filter(
 								p => p.courseProjectKey === activity.key
@@ -753,7 +786,7 @@ nodeTest(
 						context = null;
 					}
 				}
-			assert.equal(profiles.length, 10);
+			assert.equal(profiles.length, 12);
 			assert.equal(runtimeProfiles.length, 86);
 			assert.ok([...mediaRequests].some(p => /\/images\//.test(p)));
 			await writeFile(

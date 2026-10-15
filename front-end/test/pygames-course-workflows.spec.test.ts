@@ -109,7 +109,7 @@ it.each(ids)(
 					).searchParams.get("starterUrl")
 				: falling.solutionLink;
 		expect(fallingSource).toBe(
-			"https://github.com/instruction-material/PyGames/blob/7d14ecd52342b19dfeb1b76ec5eeb2a568e769b0/PyG4-Falling-Squares.py"
+			"https://github.com/instruction-material/PyGames/blob/abc7a6c6cb9bc991b37ca6eb239f3d418185b09f/PyG4-Falling-Squares.py"
 		);
 		expect(JSON.stringify(course)).not.toMatch(
 			/\/PG-\d+-|VALUE_MULTIPLIER|transform\(values/
@@ -314,4 +314,57 @@ it("labels media directories and the open-ended capstone brief by their actual p
 			"https://github.com/example/PyGames/tree/main/images"
 		)
 	).toBeNull();
+});
+
+it("starts a corrected legacy classroom model while retaining the earlier attempt", async () => {
+	const itemID =
+		"pygames-check-in-3-system-control-projectiles-enemy-ai-curriculum-check-in-3-additional-practice-project";
+	const oldKey = `pygames-classroom:${itemID}:starter`;
+	const freshKey = pyGamesCourseProjectKey(
+		"pygames-classroom",
+		itemID,
+		"starter"
+	);
+	expect(freshKey).toBe(`${oldKey}:juni-pygames`);
+	expect(pyGamesCourseProjectKey("pygames", itemID, "starter")).toBe(
+		`pygames:${itemID}:starter`
+	);
+	expect(pyGamesCourseProjectKey("pygames", itemID, "reference")).toBe(
+		`pygames:${itemID}:reference:juni-pygames`
+	);
+	const course = await loadCourse("pygames-classroom", false);
+	const item = course.modules
+		.flatMap(module => [
+			...module.curriculum,
+			...module.supplementalProjects
+		])
+		.find(item => item.id === itemID)!;
+	expect(
+		new URL(item.projectLink!, "https://classes.local").searchParams.get(
+			"projectKey"
+		)
+	).toBe(freshKey);
+	const previous = createPythonIdeProject("pgzero", {
+		courseID: "pygames-classroom",
+		courseProjectKey: oldKey,
+		files: [{ name: "main.py", content: "# earlier checkpoint work\n" }]
+	});
+	const corrected = createPythonIdeProject("pgzero", {
+		courseID: "pygames-classroom",
+		courseProjectKey: freshKey,
+		files: [
+			{
+				name: "main.py",
+				content:
+					fixture.programs[
+						"Check_in_3_Additional_Practice_Solution.py"
+					].content
+			}
+		]
+	});
+	saveLocalPythonProjects([previous, corrected]);
+	expect(loadLocalPythonProjects()).toEqual([previous, corrected]);
+	expect(corrected.files[0].content).toContain(
+		"random.randint(0, HEIGHT // 2)"
+	);
 });

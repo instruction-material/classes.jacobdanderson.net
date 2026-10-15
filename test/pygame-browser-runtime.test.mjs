@@ -8,6 +8,25 @@ import { publicRuntimeHeaders, pythonFrame } from "./python-frame-fixture.mjs";
 
 // Uses the real IDE and Pyodide runtime. No account or backend is required.
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
+const audioFixture = Buffer.alloc(44 + 4000);
+audioFixture.write("RIFF", 0);
+audioFixture.writeUInt32LE(audioFixture.length - 8, 4);
+audioFixture.write("WAVEfmt ", 8);
+audioFixture.writeUInt32LE(16, 16);
+audioFixture.writeUInt16LE(1, 20);
+audioFixture.writeUInt16LE(1, 22);
+audioFixture.writeUInt32LE(8000, 24);
+audioFixture.writeUInt32LE(16000, 28);
+audioFixture.writeUInt16LE(2, 32);
+audioFixture.writeUInt16LE(16, 34);
+audioFixture.write("data", 36);
+audioFixture.writeUInt32LE(4000, 40);
+for (let i = 0; i < 2000; i++)
+	audioFixture.writeInt16LE(
+		Math.round(2000 * Math.sin((2 * Math.PI * 440 * i) / 8000)),
+		44 + i * 2
+	);
+
 const code = `import pygame
 from pygame import Surface, SRCALPHA
 import builtins
@@ -20,6 +39,24 @@ for runtime_name in (
     "music", "images", "pgzrun",
 ):
     assert getattr(sys.modules["__main__"], runtime_name) is getattr(builtins, runtime_name)
+
+# Exercise the unmodified mixer startup sequence present in the Juni checkpoint.
+pygame.mixer.pre_init(22050, -16, 2, 1024)
+pygame.init()
+pygame.mixer.quit()
+assert pygame.mixer.get_init() is None
+pygame.mixer.init(22050, -16, 2, 1024)
+assert pygame.mixer.get_init() == (22050, -16, 2)
+sounds.mixer_fixture.play(loops=-1)
+music.play("mixer_fixture")
+pygame.mixer.quit()
+assert pygame.mixer.get_init() is None
+try:
+    sounds.mixer_fixture.play()
+    raise AssertionError("Uninitialized mixer accepted playback")
+except RuntimeError:
+    pass
+pygame.init()
 
 WIDTH = 160
 HEIGHT = 120
@@ -147,7 +184,7 @@ test(
 			});
 			const page = await browser.newPage();
 			await page.setViewport({ width: 1440, height: 1000 });
-			// Suppress network-only shared assets; this fixture uses generated images.
+			// This isolated Surface/mixer fixture uses generated images and a real WAV.
 			await page.setRequestInterception(true);
 			page.on("request", request => {
 				if (new URL(request.url()).pathname.startsWith("/api/")) {
@@ -171,11 +208,28 @@ test(
 									mimeType: "image/svg+xml",
 									width: 1,
 									height: 1,
-									url: "/ide/assets/fixture.svg"
+									url: "/ide/assets/images/fixture.svg"
+								},
+								{
+									name: "sounds/mixer_fixture.wav",
+									mimeType: "audio/wav",
+									url: "/ide/assets/sounds/mixer_fixture.wav"
+								},
+								{
+									name: "music/mixer_fixture.wav",
+									mimeType: "audio/wav",
+									url: "/ide/assets/music/mixer_fixture.wav"
 								}
 							]
 						}),
 						headers: publicRuntimeHeaders
+					});
+				} else if (request.url().endsWith("/mixer_fixture.wav")) {
+					void request.respond({
+						status: 200,
+						contentType: "audio/wav",
+						headers: publicRuntimeHeaders,
+						body: audioFixture
 					});
 				} else if (request.url().endsWith("/fixture.svg")) {
 					void request.respond({
@@ -189,6 +243,14 @@ test(
 				}
 			});
 			await page.evaluateOnNewDocument(code => {
+				window.__mixerAudioLog = [];
+				for (const action of ["play", "pause"]) {
+					const original = HTMLMediaElement.prototype[action];
+					HTMLMediaElement.prototype[action] = function (...args) {
+						window.__mixerAudioLog.push({ action, src: this.src });
+						return original.apply(this, args);
+					};
+				}
 				if (window !== window.top) return;
 				const now = new Date().toISOString();
 				localStorage.setItem(
@@ -212,6 +274,14 @@ test(
 			});
 			await page.waitForSelector("button.run-control:not([disabled])");
 			for (let run = 0; run < 2; run += 1) {
+				const oldFrameElement = await page.$(
+					'iframe[title="Isolated Python output"]'
+				);
+				const oldFrame = await oldFrameElement?.contentFrame();
+				if (oldFrame)
+					await oldFrame.evaluate(() => {
+						window.__mixerAudioLog = [];
+					});
 				await page.locator("button.run-control").click();
 				const runtime = await pythonFrame(page);
 				try {
@@ -222,6 +292,32 @@ test(
 								?.textContent?.includes("SURFACE_TEST_PASS"),
 						{ timeout: 90000 }
 					);
+					const audioEvents = await runtime.evaluate(
+						() => window.__mixerAudioLog ?? []
+					);
+					for (const folder of ["sounds", "music"]) {
+						const played = audioEvents.findIndex(
+							event =>
+								event.action === "play" &&
+								event.src.includes(
+									`/${folder}/mixer_fixture.wav`
+								)
+						);
+						assert.ok(
+							played >= 0,
+							`${folder} playback used the actual audio element`
+						);
+						assert.ok(
+							audioEvents
+								.slice(played + 1)
+								.some(
+									event =>
+										event.action === "pause" &&
+										event.src === audioEvents[played].src
+								),
+							`${folder} stopped when the mixer quit`
+						);
+					}
 					await runtime.waitForFunction(
 						() => {
 							const canvas = document.querySelector(
