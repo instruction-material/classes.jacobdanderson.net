@@ -108,6 +108,70 @@ const projectTitles: Record<string, string> = {
 		"Zombie State, Waiting and Observed Adoption"
 };
 
+const networkCommandCheckpoints: Record<string, string> = {
+	"LS-11-unit-10-networking-from-a-systems-view": [
+		"## Copy core networking commands",
+		"",
+		"In terminal A, from the extracted role folder, keep the server running:",
+		"",
+		"~~~bash",
+		"bash task.sh serve",
+		"~~~",
+		"",
+		"In terminal B, from the same folder, enter the actual port printed by terminal A:",
+		"",
+		"~~~bash",
+		"read -r -p 'Port from the ready line: ' port",
+		'bash task.sh inspect --port "$port" --report first.json',
+		"~~~",
+		"",
+		"Retain this first report and use fresh report names for the changed cases in the complete guide above. Stop the owned foreground server with Ctrl-C and verify its socket is gone as described there."
+	].join("\n"),
+	"LS-21-unit-10-networking-from-a-systems-view-supplemental-2": [
+		"## Copy listener comparison commands",
+		"",
+		"In terminal A, from the extracted role folder, keep the server bound to 127.0.0.2 running:",
+		"",
+		"~~~bash",
+		"bash task.sh serve --bind 127.0.0.2",
+		"~~~",
+		"",
+		"In terminal B, from the same folder, enter terminal A's actual port. This deliberately requests the different address 127.0.0.1:",
+		"",
+		"~~~bash",
+		"read -r -p 'Port from the ready line: ' port",
+		'bash task.sh inspect --port "$port" --address 127.0.0.1 --report wrong-bind.json',
+		"~~~",
+		"",
+		"A refused connection is the expected observation for this address mismatch. Keep terminal A running while comparing the corrected destination. Follow the complete guide above for the separate 404, 503, recovery and cleanup cases, retaining each report under a fresh name."
+	].join("\n"),
+	"LS-22-unit-10-networking-from-a-systems-view-supplemental-3": [
+		"## Copy DNS comparison commands",
+		"",
+		"In terminal A, from the extracted role folder, keep the HTTP server running:",
+		"",
+		"~~~bash",
+		"bash task.sh serve",
+		"~~~",
+		"",
+		"In terminal B, from the same folder, keep the controlled DNS server running:",
+		"",
+		"~~~bash",
+		"bash task.sh dns --answer ready",
+		"~~~",
+		"",
+		"In terminal C, from the same folder, enter the actual HTTP and DNS ports printed by terminals A and B:",
+		"",
+		"~~~bash",
+		"read -r -p 'HTTP port from terminal A: ' http_port",
+		"read -r -p 'DNS port from terminal B: ' dns_port",
+		'bash task.sh inspect --dns-port "$dns_port" --http-port "$http_port" --report ready.json',
+		"~~~",
+		"",
+		"Retain ready.json before changing the DNS answer. Use the complete guide above for the wrong-answer, NXDOMAIN, restored-answer and cleanup cases. Each restarted server prints a new port; enter that actual value and use a fresh report name."
+	].join("\n")
+};
+
 export function applyLinuxProjectReading(module: RawCourse["modules"][number]) {
 	const decorate = (
 		item: RawCourse["modules"][number]["curriculum"][number]
@@ -132,7 +196,16 @@ export function applyLinuxProjectReading(module: RawCourse["modules"][number]) {
 			preserveInstructions: true,
 			content: notebook
 				? `${item.content}\n\n**Continue the existing lab:** Opening this notebook's starter or reference in the IDE reopens the matching core project. Keep the notebook's own progress record; edit the same source attempt rather than creating a second program. The imported README contains the complete operating guide.\n\n**Independent investigation:** Record the Linux host and active identity, the exact command and input, a prediction, stdout, stderr, exit status, the first differing observation, a focused correction, a changed case and the verified undo. Include the module's worksheet or provisioning, serving, restoration and scheduler observations where relevant. A supplied reference run does not complete this record.`
-				: `**Project workflow:** Open one selected role after confirming the IDE import. Save and download the ZIP, preserve every role path and fixture, then execute the commands in an owned Linux lab. Earlier work remains available as a separate project.\n\n${linuxProjectGuides[selected.pack]!.replace(/\bTODO\b/g, "`TODO`").replace("Instructor walkthrough", "Walkthrough")}`
+				: [
+						"**Project workflow:** Open one selected role after confirming the IDE import. Save and download the ZIP, preserve every role path and fixture, then execute the commands in an owned Linux lab. Earlier work remains available as a separate project.",
+						linuxProjectGuides[selected.pack]!.replace(
+							/\bTODO\b/g,
+							"`TODO`"
+						).replace("Instructor walkthrough", "Walkthrough"),
+						networkCommandCheckpoints[selected.pack]
+					]
+						.filter(Boolean)
+						.join("\n\n")
 		};
 	};
 	return {
