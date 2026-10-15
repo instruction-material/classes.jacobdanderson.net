@@ -212,7 +212,8 @@ const digest = value => createHash("sha256").update(value).digest("hex");
 
 test(
 	"Linux confirmed imports, exact role exports, saved edits and shared notebook attempts",
-	{ timeout: 600_000 },
+	// Retain every scenario and allow time to close the browser and server.
+	{ timeout: 900_000 },
 	async () => {
 		let server, browser, context, page;
 		const output

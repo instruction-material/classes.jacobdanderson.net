@@ -1,6 +1,6 @@
 {
   "repository": "instruction-material/Linux-Systems",
-  "revision": "1d0f3ddcb98901a365d668f92cebb852b03fc6af",
+  "revision": "de4ff7b50cd6daaa00e60b1ced3b9f43968e57d2",
   "path": "test/verify_permissions_optional.py",
   "sha256": "df608e9b7d11ad0f39f0e0a77055bb760f7dc208172d5d3c37ec648d50ae08b9"
 }

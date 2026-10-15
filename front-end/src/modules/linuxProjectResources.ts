@@ -392,7 +392,7 @@ export const linuxVerifiedPacks = [
 		coreItemId:
 			"linux-systems-unit-3-users-groups-and-permissions-supplemental-permissions-transfer-practice",
 		notebookItemId: null,
-		revision: "1d0f3ddcb98901a365d668f92cebb852b03fc6af"
+		revision: "de4ff7b50cd6daaa00e60b1ced3b9f43968e57d2"
 	},
 	{
 		pack: "LS-08-unit-3-users-groups-and-permissions-supplemental-3",
@@ -400,7 +400,7 @@ export const linuxVerifiedPacks = [
 		coreItemId:
 			"linux-systems-unit-3-users-groups-and-permissions-supplemental-permissions-extension-practice",
 		notebookItemId: null,
-		revision: "1d0f3ddcb98901a365d668f92cebb852b03fc6af"
+		revision: "de4ff7b50cd6daaa00e60b1ced3b9f43968e57d2"
 	}
 ] as const;
 
