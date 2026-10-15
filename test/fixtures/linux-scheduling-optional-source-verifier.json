@@ -1,0 +1,6 @@
+{
+  "repository": "instruction-material/Linux-Systems",
+  "revision": "74b7e6bef4b0b0cdd52804703a95d2c612d05c9d",
+  "path": "test/verify_scheduling_optional.py",
+  "sha256": "dbd292a4e0ad7780d06c25afdccb0ff565703d630c38dba36a720e4029ec753c"
+}

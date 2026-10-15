@@ -8995,6 +8995,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 	--code-ide-toolbar-control-size: 2.75rem;
 	--code-ide-toolbar-button-width: 5rem;
 	--code-ide-toolbar-control-radius: 8px;
+	--python-panel-heading: #0f766e;
 	--python-code-bg: #f8fafc;
 	--python-code-ink: #1e293b;
 	--python-code-muted: #64748b;
@@ -9084,7 +9085,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 	font-weight: 800;
 	letter-spacing: 0.14em;
 	text-transform: uppercase;
-	color: #0f766e;
+	color: var(--python-panel-heading);
 }
 
 .code-ide-hero h1 {
@@ -9184,6 +9185,7 @@ html.dark .ide-setting-storage small {
 }
 
 html.dark .code-ide-page {
+	--python-panel-heading: #5eead4;
 	--python-code-bg: #07111f;
 	--python-code-ink: #d7fbe8;
 	--python-code-muted: #94a3b8;
