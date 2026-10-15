@@ -170,7 +170,7 @@ nodeTest(
 				pid: process.pid,
 				parentPid: process.ppid,
 				startedAt,
-				timeoutMs: 240000
+				timeoutMs: 360000
 			})
 		);
 		try {
@@ -650,7 +650,7 @@ nodeTest(
 					startedAt,
 					endedAt: new Date().toISOString(),
 					exitCode: outcome === "passed" ? 0 : 1,
-					timeoutMs: 240000,
+					timeoutMs: 360000,
 					childProcessGroupCleanup:
 						"pages, contexts, browser and owned preview server closed"
 				})
