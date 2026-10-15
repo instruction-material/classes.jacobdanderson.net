@@ -50,7 +50,7 @@ supplemental_verifier = (fixture_dir / "linux-systemd-supplemental-source-verifi
 assert hashlib.sha256(supplemental_verifier).hexdigest() == supplemental_identity["sha256"]
 assert all(pack["revision"] == supplemental_identity["revision"] for pack in supplemental_packs)
 logging_packs = [pack for pack in packs if pack["pack"] in ("LS-09-unit-7-logging-and-observability", "LS-15-unit-7-logging-and-observability-supplemental-2", "LS-16-unit-7-logging-and-observability-supplemental-3")]
-assert len(logging_packs) == 3 and len(packs) == 32
+assert len(logging_packs) == 3 and len(packs) == 34
 logging_identity = json.loads((fixture_dir / "linux-logging-source-verifier.json").read_text())
 logging_verifier = (fixture_dir / "linux-logging-source-verifier.py").read_bytes()
 assert hashlib.sha256(logging_verifier).hexdigest() == logging_identity["sha256"]
@@ -114,6 +114,12 @@ filesystem_packs = [pack for pack in packs if pack["pack"] in ['LS-05-unit-2-fil
 assert len(filesystem_packs) == 2
 assert hashlib.sha256(filesystem_verifier).hexdigest() == filesystem_identity["sha256"]
 assert all(pack["revision"] == filesystem_identity["revision"] for pack in filesystem_packs)
+permissions_identity = json.loads((fixture_dir / "linux-permissions-optional-source-verifier.json").read_text())
+permissions_verifier = (fixture_dir / "linux-permissions-optional-source-verifier.py").read_bytes()
+permissions_packs = [pack for pack in packs if pack["pack"] in ['LS-07-unit-3-users-groups-and-permissions-supplemental-2', 'LS-08-unit-3-users-groups-and-permissions-supplemental-3']]
+assert len(permissions_packs) == 2
+assert hashlib.sha256(permissions_verifier).hexdigest() == permissions_identity["sha256"]
+assert all(pack["revision"] == permissions_identity["revision"] for pack in permissions_packs)
 args.proof = args.proof.resolve()
 args.proof.parent.mkdir(parents=True, exist_ok=True)
 archives = []
@@ -364,6 +370,15 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
     assert filesystem["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in filesystem_packs for name, file in pack["files"].items()}
     assert len(filesystem["profiles"]) == 6 and filesystem["actualCases"] == 68 and filesystem["innerNativeCommands"] == 96
     assert all(profile["passed"] and profile["readOnlyInputsPreserved"] and profile["outsideSentinelPreserved"] for profile in filesystem["profiles"])
+    permissions_records = args.proof.parent / "permissions-records"
+    permissions_records.mkdir(exist_ok=True)
+    permissions_proof = permissions_records / (args.proof.stem + "-permissions-native.json")
+    permissions = run_pinned_contract(work, "verify_permissions_optional.py", permissions_verifier, permissions_proof, 90)
+    assert permissions["nativePassed"] and permissions["sourceUnchanged"] and permissions["temporaryCasesRemoved"]
+    assert permissions["actualAccessProbes"] == 108 and permissions["actualCreationExperiments"] == 27
+    assert permissions["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in permissions_packs for name, file in pack["files"].items()}
+    assert len(permissions["profiles"]) == 6 and permissions["actualCases"] == 102
+    assert all(profile["passed"] and profile["workspaceEntriesAndModeRestored"] and profile["outsideSentinelPreserved"] for profile in permissions["profiles"])
     default = work / "default-workspace"
     default.mkdir()
     default_archive = args.archives / "default-linux.zip"
@@ -424,6 +439,8 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
                                      "editingOptionalNativeProof": str(editing_optional_proof),
                                      "filesystemOptionalSourceIdentity": filesystem_identity,
                                      "filesystemOptionalNativeProof": str(filesystem_proof),
+                                     "permissionsOptionalSourceIdentity": permissions_identity,
+                                     "permissionsOptionalNativeProof": str(permissions_proof),
                                      "shellOptionalSourceIdentity": shell_identity,
                                      "shellOptionalNativeProof": str(shell_proof),
                                      "storageSourceIdentity": storage_identity,

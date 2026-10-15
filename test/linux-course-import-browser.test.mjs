@@ -22,6 +22,8 @@ const fixtures = JSON.parse(
 	)
 );
 const definitions = {
+"LS-07-unit-3-users-groups-and-permissions-supplemental-2": ["unit-3-users-groups-and-permissions", "permissions-transfer-practice", null],
+"LS-08-unit-3-users-groups-and-permissions-supplemental-3": ["unit-3-users-groups-and-permissions", "permissions-extension-practice", null],
 "LS-05-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-2": ["unit-2-filesystem-hierarchy-and-directory-purpose", "filesystem-layout-transfer-practice", null],
 "LS-06-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-3": ["unit-2-filesystem-hierarchy-and-directory-purpose", "filesystem-layout-extension-practice", null],
 	"LS-03-unit-1-shell-foundations-supplemental-2": ["unit-1-shell-foundations", "shell-pipeline-transfer-practice", null],
@@ -168,6 +170,8 @@ const definitions = {
 	]
 };
 const notesFirstFiles = {
+"LS-07-unit-3-users-groups-and-permissions-supplemental-2": "unlink-notes.md",
+"LS-08-unit-3-users-groups-and-permissions-supplemental-3": "umask-notes.md",
 "LS-05-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-2": "path-notes.md",
 "LS-06-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-3": "filesystem-notes.md",
 	"LS-03-unit-1-shell-foundations-supplemental-2": "search-notes.md",
@@ -354,6 +358,8 @@ test(
 				const [module, core] = definitions[fixture.pack];
 				const moduleID = `linux-systems-${module}`;
 				const placement = [
+"LS-07-unit-3-users-groups-and-permissions-supplemental-2",
+"LS-08-unit-3-users-groups-and-permissions-supplemental-3",
 "LS-05-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-2",
 "LS-06-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-3",
 					"LS-03-unit-1-shell-foundations-supplemental-2",
@@ -621,6 +627,8 @@ test(
 								});
 							}
 							const capture = {
+"LS-07-unit-3-users-groups-and-permissions-supplemental-2": "linux-permissions-unlink",
+"LS-08-unit-3-users-groups-and-permissions-supplemental-3": "linux-permissions-umask",
 "LS-05-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-2": "linux-filesystem-paths",
 "LS-06-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-3": "linux-filesystem-kernel",
 								"LS-03-unit-1-shell-foundations-supplemental-2": "linux-shell-search",
@@ -826,8 +834,8 @@ test(
 				);
 			}
 			await writeFile(join(output, "default-linux.zip"), defaultArchive);
-			assert.equal(proof.length, 256);
-			assert.equal(courseButtons.length, 45);
+			assert.equal(proof.length, 272);
+			assert.equal(courseButtons.length, 47);
 			assert.equal(
 				courseButtons.filter(action => action.reusesExistingAttempt)
 					.length,

@@ -385,6 +385,22 @@ export const linuxVerifiedPacks = [
 			"linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-filesystem-layout-extension-practice",
 		notebookItemId: null,
 		revision: "0f7955eba8c8cf27312a980b722f116ab5bf0611"
+	},
+	{
+		pack: "LS-07-unit-3-users-groups-and-permissions-supplemental-2",
+		roleFiles: ["unlink-notes.md", "task.sh", "permission_observer.py"],
+		coreItemId:
+			"linux-systems-unit-3-users-groups-and-permissions-supplemental-permissions-transfer-practice",
+		notebookItemId: null,
+		revision: "1d0f3ddcb98901a365d668f92cebb852b03fc6af"
+	},
+	{
+		pack: "LS-08-unit-3-users-groups-and-permissions-supplemental-3",
+		roleFiles: ["umask-notes.md", "task.sh", "creation_observer.py"],
+		coreItemId:
+			"linux-systems-unit-3-users-groups-and-permissions-supplemental-permissions-extension-practice",
+		notebookItemId: null,
+		revision: "1d0f3ddcb98901a365d668f92cebb852b03fc6af"
 	}
 ] as const;
 
