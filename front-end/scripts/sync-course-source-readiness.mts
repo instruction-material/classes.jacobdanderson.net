@@ -6,7 +6,9 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { courseImplementationSourceRepos } from "../src/stores/courses/course-implementation-artifacts";
-import { courseCatalog, loadRawCourse } from "../src/stores/courses/index";
+import "../../scripts/course-raw-text-loader.mjs";
+const { courseCatalog, loadRawCourse } =
+	await import("../src/stores/courses/index");
 import {
 	parseSourceReadinessOptions,
 	sourceReadinessRepositoryRoot,

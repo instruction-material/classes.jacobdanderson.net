@@ -304,7 +304,13 @@ nodeTest(
 				const bytes = Buffer.from(await response.arrayBuffer());
 				assert.equal(bytes.length, asset.byteLength, asset.name);
 				const local = await readFile(
-					join(root, "public", asset.url.slice(1))
+					join(
+						root,
+						"public",
+						decodeURIComponent(
+							new URL(asset.url, origin).pathname
+						).slice(1)
+					)
 				);
 				assert.equal(digest(bytes), digest(local));
 				assetEvidence.push({

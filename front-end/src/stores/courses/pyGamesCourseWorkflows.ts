@@ -6,7 +6,7 @@ import {
 	pyGamesPinnedResourceUrl,
 	pyGamesPinnedSourceUrl,
 	pyGamesSourceRevision
-} from "@/modules/pyGamesProjectResources";
+} from "../../modules/pyGamesProjectResources";
 
 export const pyGamesPracticeActivities: Record<
 	string,
@@ -30,7 +30,7 @@ export const pyGamesPracticeActivities: Record<
 		{
 			file: "PyG1-Rainbow-Fill.py",
 			topic: "Setup and asset workflow",
-			task: "Introduce one deliberate misspelling in a name used by draw(), record the traceback and repair it. Then document a fresh-start run from the exported project.",
+			task: "Make one deliberate misspelling in a name used by draw(), record the traceback and repair it. Then document a fresh-start run from the exported project.",
 			checks: "Compare the original and changed frame. Explain the file selected by Run, where the saved source lives, and how the traceback identifies the failing line.",
 			challenge: true
 		},
@@ -212,7 +212,7 @@ export const pyGamesPracticeActivities: Record<
 		{
 			file: "PyG9-Shark-Chase.py",
 			topic: "Enemy decisions",
-			task: "Introduce a named detection distance and make the enemy chase only while the player is within it. Show the current enemy state.",
+			task: "Define a named detection distance and make the enemy chase only while the player is within it. Show the current enemy state.",
 			checks: "Test outside, exactly at and inside the detection boundary, then entering and leaving the added state. Explain the input used by each decision.",
 			challenge: false
 		},

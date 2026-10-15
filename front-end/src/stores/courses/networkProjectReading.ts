@@ -1,10 +1,10 @@
 import type { RawCourse } from "./types";
-import setupReading from "@/assets/course-guides/network-setup.md?raw";
-import transportReading from "@/assets/course-guides/network-transport.md?raw";
+import setupReading from "../../assets/course-guides/network-setup.md?raw";
+import transportReading from "../../assets/course-guides/network-transport.md?raw";
 import {
 	networkCourseResource,
 	networkPinnedCourseUrl
-} from "@/modules/networkProjectResources";
+} from "../../modules/networkProjectResources";
 
 const readings: Record<string, string> = {
 	"NS-04-ns0-setup-and-tooling": setupReading,
@@ -27,6 +27,14 @@ export function withNetworkProjectReadings(
 				""
 			)
 			.replace("should retain", "retains")
+			.replace(
+				/agreed\s+instructor checkpoint/g,
+				"agreed review checkpoint"
+			)
+			.replace(
+				"Independent and instructor use",
+				"Independent and guided use"
+			)
 			.trim();
 		return {
 			...item,

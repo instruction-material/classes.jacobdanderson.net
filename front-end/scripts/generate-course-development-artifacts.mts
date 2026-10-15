@@ -1,6 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
-import { courseCatalog, loadRawCourse } from "../src/stores/courses/index";
+import "../../scripts/course-raw-text-loader.mjs";
+const { courseCatalog, loadRawCourse } =
+	await import("../src/stores/courses/index");
 import {
 	coursePublicPathwayByCourseId,
 	coursePublicPathways
