@@ -387,6 +387,8 @@ export function isKnownCourseWorksheetResource(url: string) {
 export function pythonIdeModeForCourseResource(courseId: string, url: string) {
 	const resource = parseGitHubResource(url);
 	if (!resource || isKnownCourseWorksheetResource(url)) return null;
+	if (resource.mode === "blob" && !CODE_EXTENSION_RE.test(resource.path))
+		return null;
 	if (courseId === "network-systems")
 		return networkCourseResource(url) ? "linux" : null;
 	if (courseId === "linux-systems")

@@ -7,8 +7,6 @@ import type {
 import { defineStore } from "pinia";
 
 import { computed } from "vue";
-import { assemblyVerifiedPacks } from "@/modules/assemblyProjectResources";
-import { c17VerifiedPacks } from "@/modules/c17ProjectResources";
 import {
 	isInstructionMaterialResourceUrl,
 	scratchProjectEmbedUrl
@@ -323,118 +321,14 @@ function canonicalizeResourceUrl(url?: string) {
 			return trimmedUrl;
 		}
 
-		if (!GITHUB_BLOB_SEGMENT_RE.test(parsed.pathname)) {
-			return trimmedUrl.replace(TRAILING_SLASH_RE, "");
-		}
-
-		const pathSegments = parsed.pathname.split("/").filter(Boolean);
-
-		if (pathSegments.length < 5 || pathSegments[2] !== "blob") {
-			return trimmedUrl;
-		}
-
-		const [owner, repo, _blob, ref, ...fileSegments] = pathSegments;
-		if (
-			owner.toLowerCase() === "instruction-material" &&
-			repo.toLowerCase() === "assembly" &&
-			assemblyVerifiedPacks.some(
-				pack =>
-					pack.revision === ref &&
-					fileSegments.join("/") === `${pack.pack}/README.md`
-			)
-		) {
-			return trimmedUrl;
-		}
-		if (
-			owner === "instruction-material" &&
-			repo === "C-Systems-Engineering" &&
-			fileSegments.length === 2 &&
-			c17VerifiedPacks.some(
-				pack => pack.pack === fileSegments[0] && pack.revision === ref
-			) &&
-			fileSegments[1] === "README.md"
-		) {
-			return trimmedUrl;
-		}
-		if (
-			owner.toLowerCase() === "instruction-material" &&
-			repo.toLowerCase() === "data-structures-and-algorithms-in-cpp" &&
-			[
-				"DSCPP1-Task-Manager-CLI/README.md",
-				"DSCPP2-Graph-Navigation/README.md",
-				"DSCPP3-Markov-Text-Generator/README.md",
-				"DSCPP4-Recursive-Maze-Pathfinder/README.md",
-				"DSCPP5-Quicksort-Toolkit/README.md",
-				"DSA-08-dscpp0-setup-and-positioning/README.md",
-				"DSA-01-dscpp0-setup-and-positioning-supplemental-2/README.md",
-				"DSA-02-dscpp0-setup-and-positioning-supplemental-3/README.md"
-			].includes(fileSegments.join("/"))
-		) {
-			return trimmedUrl;
-		}
-		if (
-			owner.toLowerCase() === "instruction-material" &&
-			repo.toLowerCase() === "cpp-level-3" &&
-			fileSegments.length === 3 &&
-			((fileSegments[0] === "CPPI0-Warnings-and-Debugger-Notebook" &&
-				["starter", "solution"].includes(fileSegments[1]) &&
-				fileSegments[2] === "EVIDENCE.md") ||
-				(fileSegments[0] === "CPPI2-Recursion-Trace-Drill" &&
-					((fileSegments[1] === "starter" &&
-						fileSegments[2] === "WORKSHEET.md") ||
-						(fileSegments[1] === "solution" &&
-							fileSegments[2] === "WORKED-TRACE.md"))) ||
-				(fileSegments[0] === "CPPI3-Container-Tradeoff-Audit" &&
-					((fileSegments[1] === "starter" &&
-						fileSegments[2] === "WORKSHEET.md") ||
-						(fileSegments[1] === "solution" &&
-							fileSegments[2] === "WORKED-AUDIT.md"))) ||
-				(fileSegments[0] === "CPPI4-Ownership-Rewrite-Reflection" &&
-					((fileSegments[1] === "starter" &&
-						fileSegments[2] === "NOTES.md") ||
-						(fileSegments[1] === "solution" &&
-							fileSegments[2] === "WORKED.md"))))
-		) {
-			return trimmedUrl;
-		}
-
-		if (
-			owner.toLowerCase() === "instruction-material" &&
-			repo.toLowerCase() === "cpp-level-3" &&
-			fileSegments.length === 2 &&
-			[
-				"CPPI5-Template-Error-Reading-Drill",
-				"CPPI6-Enum-vs-Polymorphic-State-Review"
-			].includes(fileSegments[0]) &&
-			fileSegments[1] === "WORKSHEET.md"
-		) {
-			return trimmedUrl;
-		}
-
-		if (fileSegments.length === 0) {
-			return trimmedUrl.replace(TRAILING_SLASH_RE, "");
-		}
-
-		const directorySegments = fileSegments.slice(0, -1);
-		parsed.pathname =
-			directorySegments.length > 0
-				? `/${owner}/${repo}/tree/${ref}/${directorySegments.join("/")}`
-				: `/${owner}/${repo}/tree/${ref}`;
-		parsed.search = "";
-		parsed.hash = "";
-
-		return parsed.toString().replace(TRAILING_SLASH_RE, "");
+		// A file link identifies that exact source or reading. Import policies
+		// resolve required companion files separately from its display URL.
+		return GITHUB_BLOB_SEGMENT_RE.test(parsed.pathname)
+			? trimmedUrl
+			: trimmedUrl.replace(TRAILING_SLASH_RE, "");
 	} catch {
 		return trimmedUrl;
 	}
-}
-
-function shouldExposeLegacySolutionAsProject(title: string, url?: string) {
-	if (!url || !PROJECT_TITLE_RE.test(title)) {
-		return false;
-	}
-
-	return !DEDICATED_SOLUTION_SEGMENT_RE.test(url);
 }
 
 function extractLeadingResourceLink(title: string, content: string) {
@@ -490,6 +384,7 @@ function extractLeadingResourceLink(title: string, content: string) {
 type CourseModuleItemDraft = Omit<CourseModuleItem, "id" | "aliases"> & {
 	stableAliases?: string[];
 	stableId?: string;
+	preserveReferenceAssignment?: boolean;
 };
 
 function mergeAdjacentSupportItems(
@@ -505,6 +400,7 @@ function mergeAdjacentSupportItems(
 		if (
 			previousItem &&
 			!item.projectLink &&
+			!item.preserveReferenceAssignment &&
 			canMerge(previousItem, item) &&
 			(MERGE_INTO_PREVIOUS_TITLE_RE.test(item.title) ||
 				(PRESENTATION_TITLE_RE.test(item.title) &&
@@ -591,6 +487,14 @@ function normalizeCourse(
 									);
 
 							return {
+								// A worked reference does not become a starter. Retain the
+								// assignment itself when its reference is hidden for learners.
+								preserveReferenceAssignment:
+									!!normalizedSolutionLink &&
+									PROJECT_TITLE_RE.test(item.title) &&
+									!DEDICATED_SOLUTION_SEGMENT_RE.test(
+										normalizedSolutionLink
+									),
 								stableAliases: item.aliases,
 								stableId: item.id,
 								title: item.title,
@@ -614,13 +518,7 @@ function normalizeCourse(
 										return extractedLink.url;
 									}
 
-									return options.includeSolutions &&
-										shouldExposeLegacySolutionAsProject(
-											item.title,
-											normalizedSolutionLink
-										)
-										? normalizedSolutionLink
-										: undefined;
+									return undefined;
 								})(),
 								solutionLink: options.includeSolutions
 									? resolvedSolutionLink
@@ -655,6 +553,8 @@ function normalizeCourse(
 					const {
 						stableAliases: _stableAliases,
 						stableId: _stableId,
+						preserveReferenceAssignment:
+							_preserveReferenceAssignment,
 						...normalizedItem
 					} = item;
 

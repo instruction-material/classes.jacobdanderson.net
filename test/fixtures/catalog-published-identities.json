@@ -1,0 +1,310 @@
+{
+  "ai-level-1": {
+    "items": 156,
+    "sha256": "414ede0a27b4774f7cb13af4f12ced96d7c5b25725312d3fdb6f1d5b9b8538e7"
+  },
+  "algebra-1a": {
+    "items": 115,
+    "sha256": "e6f9a61c19cf40f7a4977286c05a6c8ba0df99a04fed8b0f6c57d2d3f13a4416"
+  },
+  "algebra-1b": {
+    "items": 130,
+    "sha256": "705fe10d966d082efdae7e94b291c6e256684fb5cf2f3e375cef68ecc6fcd036"
+  },
+  "algebra-2a": {
+    "items": 95,
+    "sha256": "0c39d1ad5bfda1b061b5846b967515a5066bb749461b231bbf2c8ca6300d9ec0"
+  },
+  "algebra-2b": {
+    "items": 84,
+    "sha256": "6488bdffc618e20d91586174ca9b5b79e7ed1d5b05d93708985b66ee15716f22"
+  },
+  "ap-calculus": {
+    "items": 86,
+    "sha256": "86d77fcca5b92006cf17cb0240de4c09f38ee2ffa1e94720ee56a111f6c5af45"
+  },
+  "ap-computer-science-a": {
+    "items": 177,
+    "sha256": "0d8ff638645022dbbcc3b547075320f6ffb862d0fd183fe5e34e2de481d223a4"
+  },
+  "assembly": {
+    "items": 130,
+    "sha256": "8e7cbdfb7bacfc029e7964e07b0170f73f857497c386bdabdbf8f74c318706b9"
+  },
+  "c-level-1": {
+    "items": 77,
+    "sha256": "5b5a90831ed1de59df59c49fbd7a14dfe45bbf1128c126079b71212a12d43b0e"
+  },
+  "c-systems-engineering": {
+    "items": 140,
+    "sha256": "f63abd8aaf69bba948a34d70dda729663a8cae63767b13b642705f7b2ee542a6"
+  },
+  "cpp-level-2": {
+    "items": 71,
+    "sha256": "90160c2fbff650f011ff07bea9526782efb064b001616a1914a25f86772be3ba"
+  },
+  "cpp-level-3": {
+    "items": 75,
+    "sha256": "15b4771960d2e40d58e82e668780d2b59334109e0272dfce55dcbffce528a920"
+  },
+  "data-science-in-python": {
+    "items": 141,
+    "sha256": "b71efd8e17e6dd336f6f6cc5487024961b5460d9a8c9eef221c30dd74151544a"
+  },
+  "data-structures-and-algorithms-in-cpp": {
+    "items": 152,
+    "sha256": "ca155a29a8a15f514b58aaefb0aea85f586852ce5894da5526a720bda827bed7"
+  },
+  "design-patterns-in-cpp": {
+    "items": 138,
+    "sha256": "1ce4d4f25b270311ac91204de1a6ae21dec9aeb0246ccf46b02f70e8d0770581"
+  },
+  "design-patterns-in-java-part-2": {
+    "items": 159,
+    "sha256": "a062cb3c0ceeddc159209cf310308a9fc4f996820e9ab0ac8d51c0ae30afb527"
+  },
+  "design-patterns-in-java": {
+    "items": 134,
+    "sha256": "3af10b2bfcd5c98fc9386ca8fb24ad0d12634be54eaadb6d5140729cb9724cd9"
+  },
+  "early-elementary-a-math": {
+    "items": 85,
+    "sha256": "45de5a9a2c9b0e7c9cfefeca34b7c138b94bc60e21e61ab3698919523434a37c"
+  },
+  "early-elementary-a-reading": {
+    "items": 35,
+    "sha256": "5f0bf0cd623e7e2f70e8a7b689504814bb4266ade28d8d501605bac589350d59"
+  },
+  "early-elementary-b-math": {
+    "items": 73,
+    "sha256": "e3ff906eeedfe35080905bd1fa2af3b5fcceb3c370b6ca4ed58ab21c5fd9ffd5"
+  },
+  "early-elementary-b-picture-book": {
+    "items": 49,
+    "sha256": "0517a35135e85ca33d0c81da22d0cc087133760626d96295c1bf5de1dad976fe"
+  },
+  "elementary-science": {
+    "items": 111,
+    "sha256": "10f03bcb8ce7f6d61d123ab10f251091c7573ea4c577153b997d3626ed3b27db"
+  },
+  "entrepreneurship-101": {
+    "items": 41,
+    "sha256": "a29a8ee9c32f1d9b705df1b38728323108197ef39609669db9b2ddb6a2a98f84"
+  },
+  "geometry-a": {
+    "items": 25,
+    "sha256": "d7138d0f2eef355384c9244751b778ded6f5f8dadd37223f2504e396b37fae19"
+  },
+  "geometry-b": {
+    "items": 30,
+    "sha256": "3ef6d4a34cdeb01aa25b97f0f350e0385aa1730732a4da1545e843b2652ff91f"
+  },
+  "intro-to-biology": {
+    "items": 68,
+    "sha256": "f82265bb6dba7a939eead196b3b81a7b86addd53284678cd58f1b572b5204e86"
+  },
+  "intro-to-chemistry": {
+    "items": 113,
+    "sha256": "c9f48ae1560ad708927319baf276ed53233f83cfd64e2ac20c2fc89c0befde43"
+  },
+  "intro-to-environmental-science": {
+    "items": 68,
+    "sha256": "8a52ba8badbad823dab5ddb0ff4839ffb547a8202b9234e24d78378a1762882a"
+  },
+  "intro-to-physics": {
+    "items": 182,
+    "sha256": "30018b1660b07cfbef412c2f70b65d81c0c3120a37435911c56e1cbaf08415c0"
+  },
+  "intro-to-swift-app-development": {
+    "items": 188,
+    "sha256": "561d214b6999bd44573ab206ba8268ffe73235bdfed4fc55fe9aae077d4994ff"
+  },
+  "introduction-to-public-speaking": {
+    "items": 37,
+    "sha256": "7c2aea4153659411e1dd43c5b5867dbce0808c69310d56f4d7582eea02a824c9"
+  },
+  "java-level-1": {
+    "items": 188,
+    "sha256": "ac1344b61d51f1aa9c39849ff49dcb127d482013a2a7277596098e530e584626"
+  },
+  "java-level-2": {
+    "items": 144,
+    "sha256": "baf1b4c8e8e3a1929927f4e828553444b5d884f690612b8c3e667dfd86f8e724"
+  },
+  "java-level-3": {
+    "items": 217,
+    "sha256": "fbd575917dcbde4ec053fd80cd9c9b443241c83e198526a294cdbfae580bb0d2"
+  },
+  "javascript-level-1-javascript-superstar": {
+    "items": 160,
+    "sha256": "43ad1e46171ce1bf83561ecb2a62c082922e96569ed415586121a510f60280b2"
+  },
+  "javascript-level-2-javascript-master": {
+    "items": 160,
+    "sha256": "090d7bbf5c409c76d2a3169333d01f775d6130683c3645f7c2fe86980c446238"
+  },
+  "late-elementary-a-math": {
+    "items": 73,
+    "sha256": "91ca789c4eb5e6febce2a5bcbf4b8f19127d9034e42e6bbda8ef4d1d22fee8b0"
+  },
+  "late-elementary-b-math": {
+    "items": 77,
+    "sha256": "72e476882335fcf9099684aef4d9878bd976d1b923659e8ba79097b8bc7ffc63"
+  },
+  "linux-systems": {
+    "items": 136,
+    "sha256": "62704e8dfc9427189e9429dbaf4136ea679faa3b8fe51ae72158422f3ee28918"
+  },
+  "low-level-security-part-2": {
+    "items": 135,
+    "sha256": "50c98ea12df373592b2d1acb186fef641bdca72011ca2ab450aaec27ba26efe2"
+  },
+  "low-level-security": {
+    "items": 120,
+    "sha256": "ebeae104ba5d703fdcad69669edb327c4915c1ec0400db56742ad0a2f3df71a7"
+  },
+  "machine-learning": {
+    "items": 155,
+    "sha256": "429e8a1e7686fae58aef4d1aed4c81d1a6a8883ac05fbb9b0c96163ad9aacb4d"
+  },
+  "middle-school-a-literature": {
+    "items": 52,
+    "sha256": "5d80c8ba178621d31a539569fc757a0812f11cdbddddce41023c0ab8da0278e6"
+  },
+  "middle-school-b-writing-retake": {
+    "items": 68,
+    "sha256": "ebc451998b97b364f16b5a9891b43f1853b882e973aed1a1bb6cb19337e9f1b5"
+  },
+  "middle-school-b-writing": {
+    "items": 54,
+    "sha256": "791b99af30ffcfa37532c1e4d43510ce91f0feb6413a70c2e67e8caff2d2c54c"
+  },
+  "middle-school-c-grammar": {
+    "items": 87,
+    "sha256": "ce5d5cd2f789644fd8cd3abf36d56a9fd7fa6a6a30daf519e006990703dd898c"
+  },
+  "middle-school-integrated-science": {
+    "items": 123,
+    "sha256": "aee057e25ecb5f0294b9700effb6f4333d952fbd928c91fadfea07bdca273626"
+  },
+  "money-minded-investing": {
+    "items": 53,
+    "sha256": "1a9f4bce7d14447ee7abb5ce968db3efef187b77baffa449722f41cc69d36c53"
+  },
+  "network-security": {
+    "items": 144,
+    "sha256": "a7474730cd42be7074233d140130f3d038faffd162d334a84557dc1ee50328f5"
+  },
+  "network-systems": {
+    "items": 135,
+    "sha256": "d8e758063ea98b495dc304a18d452f63c13deeb9b4d940850954340abac8de8a"
+  },
+  "novel-writing": {
+    "items": 59,
+    "sha256": "2b3dc7116e369c5a28a7afa6a297c2c73a96b74cff36d76e99d59b5bb888d546"
+  },
+  "physics-level-2": {
+    "items": 173,
+    "sha256": "a563fbe2bceff3f8c9563e931fad3ac67066428c67d0e2835400e099ec879358"
+  },
+  "pre-algebra-a": {
+    "items": 34,
+    "sha256": "8cfbb0ff5b6f522e8210c41ed3994c9dca1c59b4d1f66267643a4db1b4051743"
+  },
+  "pre-algebra-b": {
+    "items": 35,
+    "sha256": "4aaca8c5fd5056a18535457c8d298fb798726e201f640422521fc4f020b16ffc"
+  },
+  "pre-calculus-a": {
+    "items": 65,
+    "sha256": "0e1163d8e7c77c5a62cc214f2823c48d2f272606253bf559daf043586c3dad87"
+  },
+  "pre-calculus-b": {
+    "items": 62,
+    "sha256": "52059d3253c25de0698914eabdb09dda17994730086a6086be7fa4cd36be0249"
+  },
+  "pygames-classroom": {
+    "items": 158,
+    "sha256": "7dcf7693c7174330b3faaf0d41cc3c71c67820fb36fc0e313cc63d01be64070d"
+  },
+  "pygames": {
+    "items": 143,
+    "sha256": "ed0db31c52b42f9b9bfb13354a9a326ebe6bc9235c427668f59263d2b989e240"
+  },
+  "python-level-1-classroom": {
+    "items": 154,
+    "sha256": "8a2ade5262b0ddacd62bb697eed04feb85903772e6be2c22ecc2f79ca1e0a193"
+  },
+  "python-level-1": {
+    "items": 146,
+    "sha256": "b1162d9863c6962c27f36936027898dc2cc6da7135c5de2d649d985fd3ed750c"
+  },
+  "python-level-2-classroom": {
+    "items": 141,
+    "sha256": "9a06dcdf0941d82ae306de58bf0f2acf6d0a0ca7c460194a47017164cabe960a"
+  },
+  "python-level-2": {
+    "items": 128,
+    "sha256": "79b50740c8f86c960d5fa518e1a66e1b864f5c8ba5478851713e924fcd981987"
+  },
+  "python-level-3": {
+    "items": 135,
+    "sha256": "72d7ae774e07193fceba66ce6588306ef77437cd4fe32b1368528892d1b58c31"
+  },
+  "python-to-java-and-cpp-bridge": {
+    "items": 43,
+    "sha256": "505f8ea230c52bda8347af1fba288c8a59dadbb6317d20396cfc2f403de298a5"
+  },
+  "pythonic-design-patterns": {
+    "items": 111,
+    "sha256": "1795ae1eee8102476caffa189855533e627190e603af3b61473d2b595f468311"
+  },
+  "rust-systems-security": {
+    "items": 107,
+    "sha256": "c4ce8802c57847e7765ccb7c78f0b9f1667ffbdd92440cf187fd4a16d5979ce6"
+  },
+  "scratch-level-1-bootcamp": {
+    "items": 26,
+    "sha256": "747bde32d5a96775e135302087b96e3fff8b2e6b588209eb03bcb72d3ec34525"
+  },
+  "scratch-level-1-classroom": {
+    "items": 33,
+    "sha256": "0d805ead9af5146fac26e0fd6cdd5a8acfbca9c8cee9e32f975802942a57bc34"
+  },
+  "scratch-level-1": {
+    "items": 138,
+    "sha256": "cc01e070f7e0611b74589103b97f0aab75e5e40ccbfe8a44affb3804420f363a"
+  },
+  "scratch-level-2": {
+    "items": 137,
+    "sha256": "0e6563855ef013203d25019560b8174e4011324096a692e5241a7eb5d357b2e1"
+  },
+  "smart-money-personal-finance": {
+    "items": 41,
+    "sha256": "d11661cf4526c7b0c40bb619a2613980fa2ad5ce7ab1f804f067b40aee9f2038"
+  },
+  "unity-game-development": {
+    "items": 99,
+    "sha256": "a4cb6563add5856aa06c4c9726a21733e27ca8c53ceddca225492492e4611e3e"
+  },
+  "usaco-bronze-on-demand": {
+    "items": 180,
+    "sha256": "3b6fb3f9886cc2ab3793f459fc8136387566b3b54880f23b7b9ead01e9010d3a"
+  },
+  "usaco-bronze": {
+    "items": 149,
+    "sha256": "25b122a50234a8f3bf8b49f86835eecc06634f03af9dd5cbcd48ab0069954436"
+  },
+  "usaco-gold": {
+    "items": 157,
+    "sha256": "aac25dd4f315e49f23671687e1e354906612db4586ba137ea7ee56442f17dd66"
+  },
+  "usaco-silver": {
+    "items": 148,
+    "sha256": "166bf35b0544ddfb2a6637b8fb3d9bbda7cd526efa7fccbb16454e73fa4c9fee"
+  },
+  "web-development-foundations": {
+    "items": 127,
+    "sha256": "1397f80ab6baea633a58a6ca013f8e4a56a9d65771df454744395e72f1dc33aa"
+  }
+}

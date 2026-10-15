@@ -3,6 +3,7 @@ import { applyCourseImplementationArtifacts } from "./course-implementation-arti
 import { isJuniScratchProjectTitle } from "./juniScratchProjects";
 import { mapMarkdownProse } from "./markdownProse";
 import { buildProjectGuidance } from "./projectGuidance";
+import { applyPyGamesCourseWorkflows } from "./pyGamesCourseWorkflows";
 import { applyResearchBackedExpansions } from "./research-expansions";
 import {
 	canonicalStaticMediaUrl,
@@ -9569,5 +9570,6 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 		applyCourseLearningPaths(course);
 	}
 	restoreScratchProjectInstructions(course, preservedScratchInstructions);
+	applyPyGamesCourseWorkflows(course, id);
 	return course;
 }
