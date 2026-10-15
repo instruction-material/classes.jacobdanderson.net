@@ -10,11 +10,23 @@ The September 26 growth sequence is refined by September 30: begin with Animate 
 4. Offer Hard or original costume/backdrop art once Normal works. Keep a working checkpoint. Discuss bitmap/vector art and real transparency.
 5. Download each student's `.sb3`, reopen it, and finish with a short demonstration (5 minutes). School-approved tools may import the same files. No claim of institutional approval is implied.
 
-The generation script creates twelve original, self-contained starters and optional teacher reference completions. Reference completions are for Normal; Hard intentionally allows multiple designs. Teacher files remain in the local teaching pack and are not published with student downloads. The separate blank independent-project download contains a backdrop and sprite but no scripts or solution; it is available through Start in IDE and the host New project button. Download existing work before replacing it.
+The generation script creates twelve original core starters, three optional game continuations and teacher reference completions. Reference completions are for Normal; Hard intentionally allows multiple designs. Teacher files remain in the local teaching pack and are not published with student downloads. The separate blank independent-project download contains a backdrop and sprite but no scripts or solution; it is available through Start in IDE and the host New project button. Download existing work before replacing it.
 
 ```sh
 node front-end/scripts/scratch/generate-projects.mjs /path/to/Starters /path/to/Teacher-Solutions
 ```
+
+## Optional game continuations
+
+The October 14 classroom follow-up adds three separate projects within the existing Variables and games unit. These preserve the twelve core starters, six module IDs, independent mini-game and distinct one-to-one course.
+
+- **Falling Catch: Catch or Miss** supplies held-key movement, fixed-top/random-x drops and a working catch. Normal adds the missing miss penalty. One conditional branch gives each drop one outcome.
+- **Ready and Flying: A Two-State Projectile** keeps the catch game separate and supplies a ready/flying state machine. Normal replaces a deliberately false comparison with `isFired = 1`. Launch, edge return and held-Space release gates remain explicit.
+- **Three-Level Catch Game** carries forward the completed catcher. Normal completes two transition bodies: score 3 advances to level 2 at speed 5, and score 6 advances to level 3 at speed 7. Misses do not demote an earned level; the flag resets all shared values before broadcasting the next round.
+
+The readings include predictions, actor ownership, named completion areas, changed cases, reset checks and saving/reopening. Driver/navigator roles use saved-file handoff; simultaneous multi-user editing is not promised. The required independent mini-game still starts blank and asks for an original rule.
+
+The browser acceptance fixture observes the actual pinned Scratch GUI VM through a test-only assignment in its served adapter. It executes physical sprite collisions, held keyboard input, projectile flight and edge return, threshold boundaries and round trips through the real `.sb3` serializer. Production editor code does not expose that test handle.
 
 ## References and authorship
 

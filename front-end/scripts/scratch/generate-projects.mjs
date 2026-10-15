@@ -1,85 +1,120 @@
+import { Buffer } from "node:buffer";
 import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
 import path from "node:path";
-import { zipSync, strToU8 } from "fflate";
+import process from "node:process";
+import { fileURLToPath } from "node:url";
+import { strToU8, zipSync } from "fflate";
 
 export const lessons = JSON.parse(
 	await readFile(new URL("./projects.json", import.meta.url), "utf8")
 );
 const number = value => [1, [4, String(value)]];
 const text = value => [1, [10, String(value)]];
-const block = (opcode, inputs = {}, fields = {}, substacks = {}) => ({
-	opcode,
-	inputs,
-	fields,
-	substacks
-});
+function block(opcode, inputs = {}, fields = {}, substacks = {}) {
+	return {
+		opcode,
+		inputs,
+		fields,
+		substacks
+	};
+}
 const flag = () => block("event_whenflagclicked");
 const click = () => block("event_whenthisspriteclicked");
-const key = value =>
-	block("event_whenkeypressed", {}, { KEY_OPTION: [value, null] });
+function key(value) {
+	return block("event_whenkeypressed", {}, { KEY_OPTION: [value, null] });
+}
 const x = value => block("motion_changexby", { DX: number(value) });
 const y = value => block("motion_changeyby", { DY: number(value) });
 const go = (a, b) => block("motion_gotoxy", { X: number(a), Y: number(b) });
-const glide = (a, b) =>
-	block("motion_glidesecstoxy", {
+function glide(a, b) {
+	return block("motion_glidesecstoxy", {
 		SECS: number(1),
 		X: number(a),
 		Y: number(b)
 	});
+}
 const turn = value => block("motion_turnright", { DEGREES: number(value) });
 const wait = value => block("control_wait", { DURATION: number(value) });
-const say = message =>
-	block("looks_sayforsecs", { MESSAGE: text(message), SECS: number(2) });
-const repeat = (count, blocks) =>
-	block("control_repeat", { TIMES: number(count) }, {}, { SUBSTACK: blocks });
-const forever = blocks =>
-	block("control_forever", {}, {}, { SUBSTACK: blocks });
-const color = () =>
-	block(
+function say(message) {
+	return block("looks_sayforsecs", {
+		MESSAGE: text(message),
+		SECS: number(2)
+	});
+}
+function repeat(count, blocks) {
+	return block(
+		"control_repeat",
+		{ TIMES: number(count) },
+		{},
+		{ SUBSTACK: blocks }
+	);
+}
+function forever(blocks) {
+	return block("control_forever", {}, {}, { SUBSTACK: blocks });
+}
+function color() {
+	return block(
 		"looks_changeeffectby",
 		{ CHANGE: number(25) },
 		{ EFFECT: ["COLOR", null] }
 	);
-const score = () =>
-	block(
+}
+function score() {
+	return block(
 		"data_changevariableby",
 		{ VALUE: number(1) },
 		{ VARIABLE: ["Score", "score"] }
 	);
-const resetScore = () =>
-	block(
+}
+function resetScore() {
+	return block(
 		"data_setvariableto",
 		{ VALUE: number(0) },
 		{ VARIABLE: ["Score", "score"] }
 	);
-const random = () =>
-	block("motion_goto", {
+}
+function random() {
+	return block("motion_goto", {
 		TO: {
 			reporter: block("motion_goto_menu", {}, { TO: ["_random_", null] }),
 			shadow: true
 		}
 	});
-const touching = name => ({
-	reporter: block("sensing_touchingobject", {
-		TOUCHINGOBJECTMENU: {
-			reporter: block(
-				"sensing_touchingobjectmenu",
-				{},
-				{ TOUCHINGOBJECTMENU: [name, null] }
-			),
-			shadow: true
-		}
-	})
-});
-const ifBlock = (condition, blocks) =>
-	block("control_if", { CONDITION: condition }, {}, { SUBSTACK: blocks });
+}
+function touching(name) {
+	return {
+		reporter: block("sensing_touchingobject", {
+			TOUCHINGOBJECTMENU: {
+				reporter: block(
+					"sensing_touchingobjectmenu",
+					{},
+					{ TOUCHINGOBJECTMENU: [name, null] }
+				),
+				shadow: true
+			}
+		})
+	};
+}
+function ifBlock(condition, blocks) {
+	return block(
+		"control_if",
+		{ CONDITION: condition },
+		{},
+		{ SUBSTACK: blocks }
+	);
+}
 
 export function createProject(id, solution = false) {
-	const lesson = id === "blank"
-		? { name: "Independent Mini-Game", normal: "Plan your own player, goal and controls; write your own scripts.", hard: "Extend your own working game.", check: "Test movement, your rule, an ending and restarting." }
-		: lessons.find(item => item.id === id);
+	const lesson =
+		id === "blank"
+			? {
+					name: "Independent Mini-Game",
+					normal: "Plan your own player, goal and controls; write your own scripts.",
+					hard: "Extend your own working game.",
+					check: "Test movement, your rule, an ending and restarting."
+				}
+			: lessons.find(item => item.id === id);
 	if (!lesson) throw new Error("Unknown Scratch lesson");
 	const assets = {};
 	let nextId = 0;
@@ -148,10 +183,13 @@ export function createProject(id, solution = false) {
 	const player = target("Player");
 	const targets = [stage, player];
 	function stack(t, specs, parent = null, top = true) {
-		let first = null,
-			previous = null;
+		let first = null;
+		let previous = null;
 		for (const spec of specs) {
 			const id = `b${++nextId}`;
+			const position = Object.values(t.blocks).filter(
+				v => v.topLevel
+			).length;
 			const entry = {
 				opcode: spec.opcode,
 				next: null,
@@ -162,20 +200,8 @@ export function createProject(id, solution = false) {
 				topLevel: top && !previous,
 				...(top && !previous
 					? {
-							x:
-								40 +
-								(Object.values(t.blocks).filter(v => v.topLevel)
-									.length %
-									3) *
-									300,
-							y:
-								50 +
-								Math.floor(
-									Object.values(t.blocks).filter(
-										v => v.topLevel
-									).length / 3
-								) *
-									260
+							x: 40 + (position % 3) * 300,
+							y: 50 + Math.floor(position / 3) * 260
 						}
 					: {})
 			};
@@ -187,11 +213,14 @@ export function createProject(id, solution = false) {
 					const child = stack(t, [value.reporter], id, false);
 					t.blocks[child].shadow = Boolean(value.shadow);
 					entry.inputs[name] = [value.shadow ? 1 : 2, child];
-				} else entry.inputs[name] = value;
+				} else {
+					entry.inputs[name] = value;
+				}
 			}
-			for (const [name, list] of Object.entries(spec.substacks))
+			for (const [name, list] of Object.entries(spec.substacks)) {
 				if (list.length)
 					entry.inputs[name] = [2, stack(t, list, id, false)];
+			}
 			previous = id;
 		}
 		return first;
@@ -273,11 +302,12 @@ export function createProject(id, solution = false) {
 					),
 					glide(c, d)
 				]);
-			} else
+			} else {
 				note(
 					s,
 					`${name}: complete the reset and click scripts using Hat as your example. Drag the sprite before reading its coordinates.`
 				);
+			}
 		}
 	}
 	if (id === "animate-word") {
@@ -295,8 +325,8 @@ export function createProject(id, solution = false) {
 			block("looks_switchbackdropto", { BACKDROP: text("Day") })
 		]);
 		// Original short PCM chime; package the sound so offline imports remain self-contained.
-		const rate = 22050,
-			samples = 3308;
+		const rate = 22050;
+		const samples = 3308;
 		const wav = Buffer.alloc(44 + samples * 2);
 		wav.write("RIFF");
 		wav.writeUInt32LE(wav.length - 8, 4);
@@ -310,7 +340,7 @@ export function createProject(id, solution = false) {
 		wav.writeUInt16LE(16, 34);
 		wav.write("data", 36);
 		wav.writeUInt32LE(samples * 2, 40);
-		for (let n = 0; n < samples; n++)
+		for (let n = 0; n < samples; n++) {
 			wav.writeInt16LE(
 				Math.round(
 					6000 *
@@ -319,6 +349,7 @@ export function createProject(id, solution = false) {
 				),
 				44 + n * 2
 			);
+		}
 		const soundId = createHash("md5").update(wav).digest("hex");
 		assets[`${soundId}.wav`] = wav;
 		for (const [i, letter] of [..."CODE"].entries()) {
@@ -356,12 +387,13 @@ export function createProject(id, solution = false) {
 					say("Hello!")
 				]);
 			}
-			if (i === 3)
+			if (i === 3) {
 				stack(s, [
 					click(),
 					block("looks_changesizeby", { CHANGE: number(10) }),
 					block("looks_nextbackdrop")
 				]);
+			}
 		}
 	}
 	if (id === "scene-switch") {
@@ -374,7 +406,7 @@ export function createProject(id, solution = false) {
 			)
 		);
 		stack(stage, [key("space"), block("looks_nextbackdrop")]);
-		if (solution)
+		if (solution) {
 			stack(stage, [
 				flag(),
 				block("looks_switchbackdropto", {
@@ -388,6 +420,7 @@ export function createProject(id, solution = false) {
 					}
 				})
 			]);
+		}
 	}
 	if (id === "conversation") {
 		const s = second();
@@ -399,7 +432,7 @@ export function createProject(id, solution = false) {
 				BROADCAST_INPUT: [1, [11, "reply", "reply"]]
 			})
 		]);
-		if (solution)
+		if (solution) {
 			stack(s, [
 				block(
 					"event_whenbroadcastreceived",
@@ -408,13 +441,14 @@ export function createProject(id, solution = false) {
 				),
 				say("Me too! What shall we make?")
 			]);
+		}
 	}
 	if (id === "dance-loop") {
 		const s = second();
 		stack(player, [flag(), repeat(12, [turn(30), wait(0.15)])]);
 		if (solution) stack(s, [flag(), repeat(12, [turn(-30), wait(0.15)])]);
 	}
-	if (id === "patrol")
+	if (id === "patrol") {
 		stack(player, [
 			flag(),
 			go(0, 0),
@@ -424,6 +458,7 @@ export function createProject(id, solution = false) {
 				...(solution ? [wait(0.04)] : [])
 			])
 		]);
+	}
 	if (id === "maze-reset") {
 		arrows(true);
 		player.x = -180;
@@ -476,9 +511,287 @@ export function createProject(id, solution = false) {
 			])
 		]);
 	}
+	if (["falling-catch", "catch-levels", "projectile-state"].includes(id)) {
+		const set = (name, value) =>
+			block(
+				"data_setvariableto",
+				{ VALUE: number(value) },
+				{ VARIABLE: [name, name] }
+			);
+		const read = name => ({
+			reporter: block("data_variable", {}, { VARIABLE: [name, name] })
+		});
+		const compare = (opcode, left, right) => ({
+			reporter: block(opcode, { OPERAND1: left, OPERAND2: right })
+		});
+		const equals = (name, value) =>
+			compare("operator_equals", read(name), number(value));
+		const pressed = name => ({
+			reporter: block("sensing_keypressed", {
+				KEY_OPTION: {
+					reporter: block(
+						"sensing_keyoptions",
+						{},
+						{ KEY_OPTION: [name, null] }
+					),
+					shadow: true
+				}
+			})
+		});
+		const not = input => ({
+			reporter: block("operator_not", { OPERAND: input })
+		});
+		const ready = () =>
+			block(
+				"event_whenbroadcastreceived",
+				{},
+				{ BROADCAST_OPTION: ["Round ready", "round-ready"] }
+			);
+		const changeScore = amount =>
+			block(
+				"data_changevariableby",
+				{ VALUE: number(amount) },
+				{ VARIABLE: ["Score", "score"] }
+			);
+		const ifElse = (condition, yes, no) =>
+			block(
+				"control_if_else",
+				{ CONDITION: condition },
+				{},
+				{ SUBSTACK: yes, SUBSTACK2: no }
+			);
+		stage.broadcasts["round-ready"] = "Round ready";
+		player.x = -120;
+		player.y = -130;
+		player.size = 50;
+		player.rotationStyle = "left-right";
+		stack(player, [
+			ready(),
+			go(-120, -130),
+			forever([
+				ifBlock(pressed("left arrow"), [x(-5)]),
+				ifBlock(pressed("right arrow"), [x(5)]),
+				ifBlock(
+					compare(
+						"operator_lt",
+						{ reporter: block("motion_xposition") },
+						number(-200)
+					),
+					[block("motion_setx", { X: number(-200) })]
+				),
+				ifBlock(
+					compare(
+						"operator_gt",
+						{ reporter: block("motion_xposition") },
+						number(200)
+					),
+					[block("motion_setx", { X: number(200) })]
+				),
+				wait(0.03)
+			])
+		]);
+		if (id === "projectile-state") {
+			stage.variables.isFired = ["isFired", 0];
+			stack(stage, [
+				flag(),
+				set("isFired", 0),
+				block("event_broadcast", {
+					BROADCAST_INPUT: [1, [11, "Round ready", "round-ready"]]
+				})
+			]);
+			const projectile = target("Projectile", false, -120, -130, [
+				costume(
+					"Projectile",
+					'<circle cx="8" cy="8" r="7" fill="#ea8648" stroke="#733b18"/>',
+					16,
+					16
+				)
+			]);
+			projectile.size = 100;
+			projectile.visible = false;
+			targets.push(projectile);
+			const follow = () =>
+				block("motion_goto", {
+					TO: {
+						reporter: block(
+							"motion_goto_menu",
+							{},
+							{ TO: ["Player", null] }
+						),
+						shadow: true
+					}
+				});
+			stack(projectile, [
+				ready(),
+				block("looks_hide"),
+				block("control_wait_until", {
+					CONDITION: not(pressed("space"))
+				}),
+				forever([
+					ifBlock(equals("isFired", 0), [
+						follow(),
+						ifBlock(pressed("space"), [
+							block("motion_pointindirection", {
+								DIRECTION: number(90)
+							}),
+							block("looks_show"),
+							set("isFired", 1)
+						])
+					]),
+					ifBlock(
+						solution
+							? equals("isFired", 1)
+							: compare("operator_equals", number(0), number(1)),
+						[
+							block("motion_movesteps", { STEPS: number(8) }),
+							ifBlock(touching("_edge_"), [
+								block("looks_hide"),
+								set("isFired", 0),
+								block("control_wait_until", {
+									CONDITION: not(pressed("space"))
+								})
+							])
+						]
+					),
+					wait(0.03)
+				])
+			]);
+			note(
+				projectile,
+				solution
+					? "Ready (0) follows Player while hidden. Flying (1) moves the same visible projectile until an edge. Release Space before the next shot."
+					: "NORMAL: in the flying branch, replace the left 0 in <0 = 1> with the oval isFired reporter. The comparison makes the Boolean hexagon. Until then the visible projectile waits in state 1; the flag restores ready/hidden."
+			);
+		} else {
+			const levels = id === "catch-levels";
+			stage.variables.score = ["Score", 0];
+			if (levels) {
+				stage.variables.Level = ["Level", 1];
+				stage.variables.FallSpeed = ["FallSpeed", 3];
+			}
+			stack(stage, [
+				flag(),
+				resetScore(),
+				...(levels ? [set("Level", 1), set("FallSpeed", 3)] : []),
+				block("event_broadcast", {
+					BROADCAST_INPUT: [1, [11, "Round ready", "round-ready"]]
+				})
+			]);
+			const ground = target("Ground", false, 0, -165, [
+				costume(
+					"Ground",
+					'<rect width="480" height="18" fill="#8b6340"/>',
+					480,
+					18
+				)
+			]);
+			ground.size = 100;
+			targets.push(ground);
+			const token = target("Token", false, 120, 145, [
+				costume(
+					"Token",
+					'<circle cx="12" cy="12" r="10" fill="#db4a6b" stroke="#7e2342" stroke-width="2"/>',
+					24,
+					24
+				)
+			]);
+			token.size = 80;
+			targets.push(token);
+			const respawn = () =>
+				block("motion_gotoxy", {
+					X: {
+						reporter: block("operator_random", {
+							FROM: number(-200),
+							TO: number(200)
+						})
+					},
+					Y: number(145)
+				});
+			const fall = levels
+				? block("motion_changeyby", {
+						DY: {
+							reporter: block("operator_subtract", {
+								NUM1: number(0),
+								NUM2: read("FallSpeed")
+							})
+						}
+					})
+				: y(-3);
+			stack(token, [
+				ready(),
+				respawn(),
+				forever([
+					fall,
+					ifElse(
+						touching("Player"),
+						[changeScore(1), respawn()],
+						[
+							ifBlock(touching("Ground"), [
+								...(solution || levels
+									? [changeScore(-1)]
+									: []),
+								respawn()
+							])
+						]
+					),
+					wait(0.03)
+				])
+			]);
+			if (levels) {
+				const condition = (level, threshold) => ({
+					reporter: block("operator_and", {
+						OPERAND1: equals("Level", level),
+						OPERAND2: compare(
+							"operator_gt",
+							{
+								reporter: block(
+									"data_variable",
+									{},
+									{ VARIABLE: ["Score", "score"] }
+								)
+							},
+							number(threshold - 1)
+						)
+					})
+				});
+				stack(stage, [
+					ready(),
+					forever([
+						ifBlock(
+							condition(1, 3),
+							solution
+								? [set("Level", 2), set("FallSpeed", 5)]
+								: []
+						),
+						ifBlock(
+							condition(2, 6),
+							solution
+								? [set("Level", 3), set("FallSpeed", 7)]
+								: []
+						),
+						wait(0.03)
+					])
+				]);
+				note(
+					stage,
+					solution
+						? "Level only advances: Score >= 3 moves 1 -> 2 at speed 5; Score >= 6 moves 2 -> 3 at speed 7. A miss cannot demote the level. The flag resets all three shared values before Round ready."
+						: "NORMAL: fill both empty Stage conditions. In the first, set Level to 2 and FallSpeed to 5; in the second, set Level to 3 and FallSpeed to 7. Score remains integer-valued. Leave the working catcher and score rules intact."
+				);
+			} else {
+				note(
+					token,
+					solution
+						? "One drop has one outcome: catch +1 has priority, otherwise Ground -1, then respawn at y 145 with random x. The main loop continues falling."
+						: "NORMAL: the catch +1 is a working example. In the Ground branch, add change Score by -1 before the existing respawn. An untouched miss respawns without losing a point. Keep falling outside both conditions."
+				);
+			}
+		}
+	}
+
 	note(
 		targets[1],
-		`${lesson.name}\n${solution ? "TEACHER REFERENCE: one possible Normal completion." : "NORMAL: " + lesson.normal}\nHARD: ${lesson.hard}\nCHECK: ${lesson.check}`
+		`${lesson.name}\n${solution ? "TEACHER REFERENCE: one possible Normal completion." : `NORMAL: ${lesson.normal}`}\nHARD: ${lesson.hard}\nCHECK: ${lesson.check}`
 	);
 	targets.forEach((item, index) => {
 		item.layerOrder = index;
@@ -512,6 +825,30 @@ export function createProject(id, solution = false) {
 			agent: "Classes classroom project generator"
 		}
 	};
+	for (const [name, initial] of [
+		["isFired", 0],
+		["Level", 1],
+		["FallSpeed", 3]
+	]) {
+		if (!stage.variables[name]) continue;
+		project.monitors.push({
+			id: name,
+			mode: "default",
+			opcode: "data_variable",
+			params: { VARIABLE: name },
+			spriteName: null,
+			value: initial,
+			width: 0,
+			height: 0,
+			x: 5,
+			y: 5 + project.monitors.length * 30,
+			visible: true,
+			sliderMin: 0,
+			sliderMax: 100,
+			isDiscrete: true
+		});
+	}
+
 	const archive = zipSync(
 		{ "project.json": strToU8(JSON.stringify(project)), ...assets },
 		{ level: 6, mtime: new Date(2026, 0, 1) }
@@ -522,21 +859,25 @@ export function createProject(id, solution = false) {
 export async function generateProjects(output, teachers) {
 	await mkdir(output, { recursive: true });
 	if (teachers) await mkdir(teachers, { recursive: true });
-	await writeFile(path.join(output, "blank.sb3"), createProject("blank").archive);
+	await writeFile(
+		path.join(output, "blank.sb3"),
+		createProject("blank").archive
+	);
 	for (const lesson of lessons) {
 		await writeFile(
 			path.join(output, `${lesson.id}.sb3`),
 			createProject(lesson.id).archive
 		);
-		if (teachers)
+		if (teachers) {
 			await writeFile(
 				path.join(teachers, `${lesson.id}-solution.sb3`),
 				createProject(lesson.id, true).archive
 			);
+		}
 	}
 	await writeFile(
 		path.join(output, "catalog.json"),
-		JSON.stringify(lessons, null, 2) + "\n"
+		`${JSON.stringify(lessons, null, 2)}\n`
 	);
 }
 if (

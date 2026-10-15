@@ -70,6 +70,26 @@ describe("Scratch classroom", () => {
 		expect(independent?.content).toContain("/scratch-projects/blank.sb3");
 		expect(independent?.solutionLink).toBeUndefined();
 	});
+	it("keeps the three guided game continuations optional within the six existing units", () => {
+		expect(scratchLevel1ClassroomCourse.modules.map(module => module.id)).toEqual(
+			Array.from({ length: 6 }, (_, index) => `scratch-classroom-${index + 1}`)
+		);
+		const finalUnit = scratchLevel1ClassroomCourse.modules[5];
+		const continuations = finalUnit.supplementalProjects?.filter(item => item.projectLink);
+		expect(continuations?.map(item => item.id)).toEqual(["falling-catch", "projectile-state", "catch-levels"]);
+		for (const item of continuations ?? []) {
+			expect(item.learningPath).toBe("choice");
+			expect(item.preserveInstructions).toBe(true);
+			expect(item.projectLink).toBe(`/ide?mode=scratch&starter=${item.id}`);
+			expect(item.content).toContain(`/scratch-projects/${item.id}.sb3`);
+			expect(item.content).toContain("**Normal");
+			expect(item.content).toContain("**Check");
+			expect(finalUnit.curriculum.some(core => core.id === item.id)).toBe(false);
+		}
+		expect(continuations?.[0].content).toContain("one drop from being counted as both");
+		expect(continuations?.[1].content).toContain("Ready (0), Space pressed");
+		expect(continuations?.[2].content).toContain("does not demote an earned level");
+	});
 	it("limits frame resources to the editor and public Scratch assets", () => {
 		const frame = scratchFrameDocument("https://example.test", "channel");
 		expect(frame).toContain(

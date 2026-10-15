@@ -106,5 +106,35 @@
     "normal": "The player moves and Score resets. Inside the token's touching-Player condition, add change Score by 1 before it goes to a random position.",
     "hard": "Add a win condition, a second item, or another scene. Sketch the rule first and keep a working checkpoint.",
     "check": "Collect three tokens, check the score, then restart and confirm the player and score reset."
+  },
+  {
+    "id": "falling-catch",
+    "name": "Falling Catch: Catch or Miss",
+    "unit": "Variables and games",
+    "optional": true,
+    "concept": "A falling object, held-key controls and one scoring outcome per drop.",
+    "normal": "Keep the working catch branch; add change Score by -1 before the existing Ground respawn.",
+    "hard": "Change one movement value and compare difficulty while preserving the reset and one-outcome rule.",
+    "check": "Catch once, miss once, check Score 0; hold/release arrows and restart while Token is low."
+  },
+  {
+    "id": "projectile-state",
+    "name": "Ready and Flying: A Two-State Projectile",
+    "unit": "Variables and games",
+    "optional": true,
+    "concept": "A stored state and Boolean comparison control one projectile through a flight.",
+    "normal": "On Projectile, replace the left 0 in the flying condition <0 = 1> with the isFired reporter.",
+    "hard": "Capture Player direction once at launch to support left/right flights; define a target-hit transition.",
+    "check": "Verify ready/hidden, one flight, independent movement, edge return, release before the next shot and restart while flying."
+  },
+  {
+    "id": "catch-levels",
+    "name": "Three-Level Catch Game",
+    "unit": "Variables and games",
+    "optional": true,
+    "concept": "A level is state that changes a visible gameplay rule.",
+    "normal": "Complete the two Stage transition areas: Level 2/FallSpeed 5 at Score >= 3, then Level 3/FallSpeed 7 at Score >= 6.",
+    "hard": "Choose different thresholds and speeds, then test just below and at each threshold.",
+    "check": "Verify scores 2/3/5/6, retained level after a miss, an ordered jump from 1 to 3, and complete green-flag reset."
   }
 ]
