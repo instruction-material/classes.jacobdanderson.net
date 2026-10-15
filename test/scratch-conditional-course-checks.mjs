@@ -130,6 +130,37 @@ export async function checkScratchConditionalCourse(page, origin, setRole) {
 				await card.asElement().screenshot({ path: join(process.env.SCRATCH_SCREENSHOT_DIR, `scratch-conditionals-ending-${role}-${width}.png`) });
 			}
 			console.log(JSON.stringify({ event: "verified-scratch-ending-guidance", role, width, starter: "maze-reset", hideShowRestartAndMessageOrder: true }));
+			if (await page.$eval(".outline-toggle", button => Boolean(button.offsetWidth || button.offsetHeight)))
+				await page.click(".outline-toggle");
+			await page.click(".outline-button[aria-label*='Variables and games']");
+			await page.click(".lesson-view-toggle button:nth-child(2)");
+			for (const [title, id, required] of [
+				["Falling Catch: Catch or Miss", "falling-catch", "one drop from being counted as both"],
+				["Ready and Flying: A Two-State Projectile", "projectile-state", "Holding"],
+				["Three-Level Catch Game", "catch-levels", "does not demote an earned level"]
+			]) {
+				const content = await readLesson(page, title, id === "projectile-state" ? "Draw the states before coding" : required);
+				assert.ok(content.includes("Normal"));
+				assert.ok(content.includes("Check"));
+				const links = await page.$$eval(".lesson-item", (items, title) => [...items.find(item => item.querySelector("h5")?.textContent.includes(title)).querySelectorAll("a[href]")].map(link => link.getAttribute("href")), title);
+				assert.ok(links.some((href) => {
+					const url = new URL(href, origin);
+					return url.pathname === "/ide" && url.searchParams.get("mode") === "scratch" && url.searchParams.get("starter") === id;
+				}), JSON.stringify(links));
+				assert.ok(links.includes(`/scratch-projects/${id}.sb3`));
+				const completionIsOptional = await page.$$eval(".lesson-item", (items, title) => {
+					const card = items.find(item => item.querySelector("h5")?.textContent.includes(title));
+					return [...card.querySelectorAll(".assignment-aside.is-optional")].some(section => section.textContent.includes("Download this starter") || section.textContent.includes("Explain and retain") || section.textContent.includes("Partner routine"));
+				}, title);
+				assert.equal(completionIsOptional, false, "Saving and explaining the Normal task remain outside Hard");
+				assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+				if (process.env.SCRATCH_SCREENSHOT_DIR) {
+					const card = await page.evaluateHandle(title => [...document.querySelectorAll(".lesson-item")].find(item => item.querySelector("h5")?.textContent.includes(title)), title);
+					await card.asElement().screenshot({ path: join(process.env.SCRATCH_SCREENSHOT_DIR, `scratch-conditionals-${id}-${role}-${width}.png`) });
+					await card.dispose();
+				}
+			}
+			console.log(JSON.stringify({ event: "verified-scratch-optional-game-readings", role, width, continuations: 3, downloadAndIdeLinks: true, readableWithoutOverflow: true }));
 		}
 	}
 }

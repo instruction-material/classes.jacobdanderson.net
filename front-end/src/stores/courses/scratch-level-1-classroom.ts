@@ -1,5 +1,6 @@
 import type { RawCourse } from "./types";
 import projects from "../../../scripts/scratch/projects.json";
+import { scratchClassroomGameGuides } from "./scratchClassroomGameGuides";
 
 const units = [...new Set(projects.map(project => project.unit))];
 const introductions: Record<string, string> = {
@@ -49,7 +50,7 @@ export const scratchLevel1ClassroomCourse: RawCourse = {
 				content: `**Concept focus:** ${introductions[unit]}\n\n**Optional planning warmup:** Play a familiar small game, name its input -> action -> feedback rule, then sketch or paper-test one variation before coding. Predict a check a partner could perform. Keep this brief; Normal and Hard still use the saved working starter.\n\n**Class routine:** Run the supplied example together, predict one change, complete **Normal**, and demonstrate the check. **Hard** extends the same project after a working checkpoint. You can also contribute original costumes or backgrounds: show the difference between bitmap and vector art, and use actual transparency rather than a checkerboard drawn into the image.\n\nDownload a starter below or open it in the website IDE. At the end of class, download your own .sb3 file with a recognizable name. Reopen it to verify the saved copy. Use your school's approved Scratch-compatible tool when required.`
 			},
 			...projects
-				.filter(project => project.unit === unit)
+				.filter(project => project.unit === unit && !project.optional)
 				.map(project => ({
 					id: project.id,
 					title: project.name,
@@ -81,7 +82,17 @@ export const scratchLevel1ClassroomCourse: RawCourse = {
 				title: `${unit}: Remix Practice`,
 				content:
 					"Reopen your saved project and make a second version with your own art, names, or scene. Keep the original Normal behavior working. Ask a partner to test the check without coaching, then fix one confusing behavior and explain the repair."
-			}
+			},
+			...projects
+				.filter(project => project.unit === unit && project.optional)
+				.map(project => ({
+					id: project.id,
+					title: project.name,
+					learningPath: "choice" as const,
+					preserveInstructions: true,
+					projectLink: `/ide?mode=scratch&starter=${project.id}`,
+					content: `${scratchClassroomGameGuides[project.id]}\n\n[Download this starter (.sb3)](/scratch-projects/${project.id}.sb3). Open the downloaded file with **Open .sb3** in the site IDE or an approved Scratch-compatible editor. Save the prior game under a separate name before importing a continuation.`
+				}))
 		]
 	}))
 };

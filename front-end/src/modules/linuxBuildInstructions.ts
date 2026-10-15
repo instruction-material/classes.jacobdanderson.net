@@ -23,6 +23,61 @@ export function linuxBuildInstructions(files: PythonIdeFile[], url?: string) {
 		];
 	}
 	const commands: Record<string, string[]> = {
+		"LS-03-unit-1-shell-foundations-supplemental-2": [
+			"Read ../README.md and complete search-notes.md in an ordinary Linux terminal with Bash, GNU grep and GNU sort. Keep every supplied records path exactly, including spaces and the leading dash.",
+			"Repair the final status decision after the actual grep -F -l -Z and sort -z -u pipeline. Retain literal match, no-match, missing/unreadable input and newline-filename observations with their actual separate tool statuses.",
+			"The binary filename stream uses NUL boundaries; inspect it with the guide's read -d loop. Preserve the supplied files, record a changed literal search and remove only the disposable case. Keep this optional transfer separate from the core."
+		],
+		"LS-04-unit-1-shell-foundations-supplemental-3": [
+			"Read ../README.md and complete pipeline-notes.md with count.awk and the complete records folder preserved. Execute the supplied cat/awk pipeline in an ordinary external Linux terminal.",
+			"Observe the starter's misleading success with valid plus missing input. Repair the named condition using both saved PIPESTATUS entries, then compare empty input, changed operand order and quoted paths.",
+			"In a disposable copy trigger an actual awk syntax error, retain both original stage statuses, restore exact count.awk bytes and verify recovery. Keep this optional extension separate from the core; a printed summary is not evidence that every input was read."
+		],
+		"LS-12-unit-12-storage-backups-and-reliability": [
+			"Read ../README.md and complete restore-notes.md in an ordinary Debian/Ubuntu Linux terminal. Initialize only a fresh child of the private mktemp parent printed by the guide.",
+			"Record actual df/du capacity, logical versus allocated bytes, mount identity and inodes. Create and independently checksum the baseline; compare exclusions, binary content, modes and current ownership after a separate restore.",
+			"Change the source and restore both recovery points into different new destinations. Observe reserve rejection and destination/name refusal without replacing earlier evidence. The core notebook continues this saved attempt."
+		],
+		"LS-25-unit-12-storage-backups-and-reliability-supplemental-2": [
+			"Read ../README.md and complete integrity-notes.md in a separate fresh owned lab; retain a verified baseline and trusted checksum record.",
+			"Compare the actual successful listing of a flipped payload with its failed integrity check; separately observe a truncated archive and refusal before a restore destination is created.",
+			"Create a new verified repaired artifact and compare actual restored bytes, modes and ownership. Preserve good and damaged historical evidence; keep this optional transfer separate from the core."
+		],
+		"LS-26-unit-12-storage-backups-and-reliability-supplemental-3": [
+			"Read ../README.md and complete backup-retention-notes.md in its own fresh lab. Create three versioned backups and review the exact keep-two plan before applying it.",
+			"Add a newer alphabetically earlier name, observe stale-plan refusal, review a fresh hash/sequence selection, then confirm exactly the selected old copies were removed and the retained copies are unchanged.",
+			"Restore both retained recovery points to new paths and explain which older version is no longer available. Keep source data and outside evidence unchanged; a retention count does not replace restoration or an independently protected copy."
+		],
+		"LS-11-unit-10-networking-from-a-systems-view": [
+			"Read ../README.md and complete network-notes.md in an ordinary Linux terminal. Keep terminal A running bash task.sh serve and record its actual port and PID.",
+			"In terminal B, enter read -r -p 'Port from the ready line: ' port, then run bash task.sh inspect --port \"$port\" --report first.json.",
+			"Compare real interface, selected route, ICMP, exact listener/PID and HTTP evidence. Retain missing-path, stopped and restored cases, a changed prediction and owned cleanup. A saved report does not complete the worksheet; the core notebook continues this attempt."
+		],
+		"LS-21-unit-10-networking-from-a-systems-view-supplemental-2": [
+			"Read ../README.md and complete listener-notes.md using two foreground terminals and each server's actual ready port.",
+			"Compare a 127.0.0.2 bind with a 127.0.0.1 request, then a matching destination. Separately observe ready 200, missing path 404, unavailable 503 and recovery.",
+			"Read curl status, HTTP status/body and exact socket/PID separately. Keep this optional transfer as its own attempt, preserve each report and stop only the owned foreground server."
+		],
+		"LS-22-unit-10-networking-from-a-systems-view-supplemental-3": [
+			"Read ../README.md and complete resolver-notes.md. Terminal A runs bash task.sh serve; terminal B runs bash task.sh dns --answer ready. Keep both running and record their actual separate ports/PIDs.",
+			'In terminal C enter HTTP and DNS ports, then run bash task.sh inspect --dns-port "$dns_port" --http-port "$http_port" --report ready.json. Use the guide\'s explicit dig server/port query for comparison.',
+			"Compare ready, wrong and missing DNS answers plus restored state and owned TCP/UDP cleanup. An explicit curl --resolve address bypass tests the app; it does not repair the system resolver. Retain all report bytes and keep this optional extension separate from the core."
+		],
+		"LS-10-unit-9-package-management-and-software-layout": [
+			"Read ../README.md and complete package-notes.md in an ordinary Debian/Ubuntu Linux terminal.",
+			"bash task.sh --package bash --command bash --report bash-first.json",
+			"Compare actual package metadata, current state versus requested action, file layout and command ownership. Retain a changed package, missing-query failures and preserved report bytes; the core notebook continues this same attempt."
+		],
+		"LS-19-unit-9-package-management-and-software-layout-supplemental-2": [
+			"Read ../README.md and complete manual-notes.md; use a fresh owned lab with the supplied working C source and drivers.",
+			"Follow the guide for actual C17 builds, exact archives, owned release installation, real package-ownership queries, version 1.0/2.0 selection and runtime-verified rollback.",
+			"Record duplicate/changed archive failures, active-link and byte checks, bounded removal and the unchanged outside sentinel. Keep this optional transfer separate from the core."
+		],
+		"LS-20-unit-9-package-management-and-software-layout-supplemental-3": [
+			"Read ../README.md and complete dependency-notes.md in a separate owned Debian package root; use the supplied driver without sudo.",
+			"Observe real missing/wrong-version dependency failures, unpacked versus configured state, runtime success before configuration, upgrade/recovery and dependent-removal rejection.",
+			"Read requested action, error flag and current state separately. Retain actual query, audit, runtime and reverse-order removal evidence plus a changed base-first sequence. Keep this optional extension separate from the core."
+		],
 		"LS-08-unit-5-processes-and-job-control": [
 			"Read ../README.md for real process identities, owned signals, waiting and interactive Bash job control.",
 			"Complete process-notes.md using the supplied working process_worker.py; both roles provide equipment, not completed observation records.",

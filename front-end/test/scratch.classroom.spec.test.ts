@@ -7,6 +7,7 @@ import {
 	scratchDownloadName
 } from "../src/modules/scratch/frame";
 import { scratchLevel1ClassroomCourse } from "../src/stores/courses/scratch-level-1-classroom";
+import { lessonContentSections } from "../src/modules/courseLessonPresentation";
 
 describe("Scratch classroom", () => {
 	it("shows the full Normal and Hard instructions in the learner view", async () => {
@@ -69,6 +70,31 @@ describe("Scratch classroom", () => {
 		);
 		expect(independent?.content).toContain("/scratch-projects/blank.sb3");
 		expect(independent?.solutionLink).toBeUndefined();
+	});
+	it("keeps the three guided game continuations optional within the six existing units", () => {
+		expect(scratchLevel1ClassroomCourse.modules.map(module => module.id)).toEqual(
+			Array.from({ length: 6 }, (_, index) => `scratch-classroom-${index + 1}`)
+		);
+		const finalUnit = scratchLevel1ClassroomCourse.modules[5];
+		const continuations = finalUnit.supplementalProjects?.filter(item => item.projectLink);
+		expect(continuations?.map(item => item.id)).toEqual(["falling-catch", "projectile-state", "catch-levels"]);
+		for (const item of continuations ?? []) {
+			expect(item.learningPath).toBe("choice");
+			expect(item.preserveInstructions).toBe(true);
+			expect(item.projectLink).toBe(`/ide?mode=scratch&starter=${item.id}`);
+			expect(item.content).toContain(`/scratch-projects/${item.id}.sb3`);
+			expect(item.content).toContain("**Normal");
+			expect(item.content).toContain("**Check");
+			const sections = lessonContentSections(item.content);
+			const optionalContent = sections.filter(section => section.kind === "optional").map(section => section.content).join("\n");
+			expect(optionalContent).not.toContain("Download this starter");
+			expect(optionalContent).not.toContain("**Explain");
+			expect(sections.filter(section => section.kind === "assignment").some(section => section.content.includes(`/scratch-projects/${item.id}.sb3`))).toBe(true);
+			expect(finalUnit.curriculum.some(core => core.id === item.id)).toBe(false);
+		}
+		expect(continuations?.[0].content).toContain("one drop from being counted as both");
+		expect(continuations?.[1].content).toContain("Ready (0), Space pressed");
+		expect(continuations?.[2].content).toContain("does not demote an earned level");
 	});
 	it("limits frame resources to the editor and public Scratch assets", () => {
 		const frame = scratchFrameDocument("https://example.test", "channel");

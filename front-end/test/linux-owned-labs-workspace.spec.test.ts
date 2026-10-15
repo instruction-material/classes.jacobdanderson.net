@@ -98,6 +98,62 @@ it("preserves core and notebook identities, complete reading, reference privacy 
 				.files["README.md"]!.content.trim()
 				.replace(/\bTODO\b/g, "`TODO`")
 				.replace("Instructor walkthrough", "Walkthrough")
+				// Keep the complete reading after these explicit editorial changes.
+				// The import/export checks below still require original source bytes.
+				.replaceAll("With an instructor, inspect", "Inspect")
+				.replaceAll(
+					"Start with a fresh private parent and keep this shell open:",
+					"Create a fresh private parent and keep this shell open:"
+				)
+				.replaceAll("NXDOMAIN should differ", "NXDOMAIN differ")
+				.replaceAll(
+					"that selected answer should fail to connect",
+					"that selected answer fails to connect"
+				)
+				.replaceAll(
+					"The active link should name",
+					"The active link names"
+				)
+				.replaceAll(
+					"and the runtime should report",
+					"and the runtime reports"
+				)
+				.replaceAll(
+					"A subsequent `check` should fail",
+					"A subsequent `check` fails"
+				)
+				.replaceAll(
+					"The unpacked program should report",
+					"The unpacked program reports"
+				)
+				.replaceAll(
+					"Predict what should happen",
+					"Predict what happens"
+				)
+				.replaceAll(
+					"Require a nonzero status",
+					"Confirm a nonzero status"
+				)
+				.replaceAll(
+					"Completion and instructor walkthrough",
+					"Completion and guided walkthrough"
+				)
+				.replaceAll(
+					"record with an instructor, including",
+					"record in a guided walkthrough, including"
+				)
+				.replaceAll(
+					"Have the instructor provision missing tools before\nthe experiment.",
+					"Arrange for missing tools to be available before\nthe experiment."
+				)
+				.replaceAll(
+					"paced walkthrough\nwith an instructor.",
+					"paced walkthrough."
+				)
+				.replaceAll(
+					"pauses in an instructor walkthrough.",
+					"pauses in a guided walkthrough."
+				)
 		);
 		for (const role of ["starter", "reference"] as const) {
 			const link =
@@ -242,6 +298,10 @@ it("retains literal Linux names and rejects unsafe paths and unverified imports"
 	expect(isValidPythonFileName("main.html")).toBe(false);
 	expect(isValidPythonFileName("Makefile.sh", "cpp")).toBe(false);
 	for (const name of [
+		"starter/search-notes.md",
+		"solution/count.awk",
+		"starter/records/-dash.txt",
+		"solution/records/with space.txt",
 		"starter/service-notes.md",
 		"starter/service-transfer-notes.md",
 		"solution/service-extension-notes.md",
@@ -270,6 +330,8 @@ it("retains literal Linux names and rejects unsafe paths and unverified imports"
 		"starter/../task.sh",
 		"/task.sh",
 		"starter//task.sh",
+		"starter/records/../task.sh",
+		"starter/records/-bad\tname.txt",
 		"starter\\task.sh",
 		"starter/reports/app\t1.log",
 		"starter/notes.md",

@@ -246,7 +246,7 @@ jobs:
 
     test-e2e:
         runs-on: ubuntu-24.04
-        timeout-minutes: 45
+        timeout-minutes: 60
         steps:
             - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
               with:
@@ -295,7 +295,7 @@ jobs:
             - name: Prepare the disposable Linux user manager and journal
               run: |
                   sudo apt-get update
-                  sudo apt-get install --no-install-recommends --yes dbus-user-session logrotate
+                  sudo apt-get install --no-install-recommends --yes dbus-user-session logrotate iproute2 iputils-ping curl dnsutils coreutils tar
                   native_lab_uid=$(id -u)
                   native_lab_user=$(id -un)
                   native_lab_runtime=/run/user/$native_lab_uid

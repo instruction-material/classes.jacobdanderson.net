@@ -15,11 +15,12 @@ import {
 	lessons
 } from "../front-end/scripts/scratch/generate-projects.mjs";
 import { checkScratchConditionalCourse, scratchCourseAccount } from "./scratch-conditional-course-checks.mjs";
+import { checkScratchGameProgression } from "./scratch-game-progression-checks.mjs";
 
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
 nodeTest(
 	"scratch imports classroom projects, runs events and exports reusable files in isolation",
-	{ timeout: 180000 },
+	{ timeout: 240000 },
 	async () => {
 		let server, browser;
 		const previous = process.cwd();
@@ -63,7 +64,7 @@ nodeTest(
 						}
 					}
 				],
-				server: { host: "127.0.0.1", port: 5198, strictPort: true }
+				server: { host: "127.0.0.1", port: 5198, strictPort: true, watch: null }
 			});
 			await server.listen();
 			const executablePath = [
@@ -81,10 +82,16 @@ nodeTest(
 			const errors = [];
 			page.on("pageerror", error => errors.push(error.message));
 			page.on("dialog", dialog => dialog.accept());
+			const adapter = await readFile(new URL("../front-end/public/scratch-runtime/editor.js", import.meta.url), "utf8");
+			assert.equal(adapter.split("vm = value;").length, 2);
+			const observedAdapter = adapter.replace("vm = value;", "vm = value; window.__courseTestVm = vm;");
 			await page.setRequestInterception(true);
 			let courseRole = null;
 			page.on("request", (request) => {
-				if (new URL(request.url()).pathname.startsWith("/api/")) {
+				if (new URL(request.url()).pathname === "/scratch-runtime/editor.js") {
+					void request.respond({ status: 200, contentType: "application/javascript", headers: { "Access-Control-Allow-Origin": "*" }, body: observedAdapter });
+				}
+				else if (new URL(request.url()).pathname.startsWith("/api/")) {
 					void request.respond({
 						status: 200,
 						contentType: "application/json",
@@ -305,6 +312,12 @@ nodeTest(
 				}
 			}
 			await setProjectMenuOpen(false);
+			await checkScratchGameProgression(page, frame, files, async (filename) => {
+				await setProjectMenuOpen(true);
+				await (await page.$(".file-control input")).uploadFile(filename);
+				await loaded();
+				await setProjectMenuOpen(false);
+			});
 			// September 30 first lesson: sprite clicks are local, size changes
 			// accumulate, and the documented green-flag reset restores the scene.
 			await selectStarter("animate-word");

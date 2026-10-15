@@ -22,6 +22,53 @@ const fixtures = JSON.parse(
 	)
 );
 const definitions = {
+	"LS-03-unit-1-shell-foundations-supplemental-2": ["unit-1-shell-foundations", "shell-pipeline-transfer-practice", null],
+	"LS-04-unit-1-shell-foundations-supplemental-3": ["unit-1-shell-foundations", "shell-pipeline-extension-practice", null],
+	"LS-12-unit-12-storage-backups-and-reliability": [
+		"unit-12-storage-backups-and-reliability",
+		"core-project-storage-backups-and-reliability",
+		"storage-backups-and-reliability"
+	],
+	"LS-25-unit-12-storage-backups-and-reliability-supplemental-2": [
+		"unit-12-storage-backups-and-reliability",
+		"backup-reliability-transfer-practice",
+		null
+	],
+	"LS-26-unit-12-storage-backups-and-reliability-supplemental-3": [
+		"unit-12-storage-backups-and-reliability",
+		"backup-reliability-extension-practice",
+		null
+	],
+	"LS-11-unit-10-networking-from-a-systems-view": [
+		"unit-10-networking-from-a-systems-view",
+		"core-project-networking-from-a-systems-view",
+		"networking-from-a-systems-view"
+	],
+	"LS-21-unit-10-networking-from-a-systems-view-supplemental-2": [
+		"unit-10-networking-from-a-systems-view",
+		"network-diagnostics-transfer-practice",
+		null
+	],
+	"LS-22-unit-10-networking-from-a-systems-view-supplemental-3": [
+		"unit-10-networking-from-a-systems-view",
+		"network-diagnostics-extension-practice",
+		null
+	],
+	"LS-10-unit-9-package-management-and-software-layout": [
+		"unit-9-package-management-and-software-layout",
+		"core-project-package-management-and-software-layout",
+		"package-management-and-software-layout"
+	],
+	"LS-19-unit-9-package-management-and-software-layout-supplemental-2": [
+		"unit-9-package-management-and-software-layout",
+		"package-layout-transfer-practice",
+		null
+	],
+	"LS-20-unit-9-package-management-and-software-layout-supplemental-3": [
+		"unit-9-package-management-and-software-layout",
+		"package-layout-extension-practice",
+		null
+	],
 	"LS-08-unit-5-processes-and-job-control": [
 		"unit-5-processes-and-job-control",
 		"core-project-processes-and-job-control",
@@ -118,7 +165,24 @@ const definitions = {
 		null
 	]
 };
-const processFirstFiles = {
+const notesFirstFiles = {
+	"LS-03-unit-1-shell-foundations-supplemental-2": "search-notes.md",
+	"LS-04-unit-1-shell-foundations-supplemental-3": "pipeline-notes.md",
+	"LS-12-unit-12-storage-backups-and-reliability": "restore-notes.md",
+	"LS-25-unit-12-storage-backups-and-reliability-supplemental-2":
+		"integrity-notes.md",
+	"LS-26-unit-12-storage-backups-and-reliability-supplemental-3":
+		"backup-retention-notes.md",
+	"LS-11-unit-10-networking-from-a-systems-view": "network-notes.md",
+	"LS-21-unit-10-networking-from-a-systems-view-supplemental-2":
+		"listener-notes.md",
+	"LS-22-unit-10-networking-from-a-systems-view-supplemental-3":
+		"resolver-notes.md",
+	"LS-10-unit-9-package-management-and-software-layout": "package-notes.md",
+	"LS-19-unit-9-package-management-and-software-layout-supplemental-2":
+		"manual-notes.md",
+	"LS-20-unit-9-package-management-and-software-layout-supplemental-3":
+		"dependency-notes.md",
 	"LS-08-unit-5-processes-and-job-control": "process-notes.md",
 	"LS-11-unit-5-processes-and-job-control-supplemental-2":
 		"pipeline-notes.md",
@@ -143,9 +207,9 @@ test(
 	{ timeout: 600_000 },
 	async () => {
 		let server, browser, context, page;
-		const output =
-			process.env.LINUX_BROWSER_EXPORT_PROOF_DIR ??
-			"output/linux-exports";
+		const output
+			= process.env.LINUX_BROWSER_EXPORT_PROOF_DIR
+				?? "output/linux-exports";
 		await mkdir(output, { recursive: true });
 		const proof = [];
 		const courseButtons = [];
@@ -178,7 +242,7 @@ test(
 					if (localStorage.getItem(key) === null)
 						localStorage.setItem(key, JSON.stringify([earlier]));
 					const create = URL.createObjectURL;
-					URL.createObjectURL = blob => {
+					URL.createObjectURL = (blob) => {
 						if (blob.type === "application/zip")
 							window.__linuxArchive = blob;
 						return create(blob);
@@ -186,8 +250,8 @@ test(
 					const click = HTMLAnchorElement.prototype.click;
 					HTMLAnchorElement.prototype.click = function () {
 						if (
-							this.download.endsWith(".zip") &&
-							this.href.startsWith("blob:")
+							this.download.endsWith(".zip")
+							&& this.href.startsWith("blob:")
 						) {
 							return;
 						}
@@ -198,7 +262,7 @@ test(
 				legacy
 			);
 			await page.setRequestInterception(true);
-			page.on("request", request => {
+			page.on("request", (request) => {
 				const url = new URL(request.url());
 				if (url.hostname === "raw.githubusercontent.com") {
 					const prefix = `/instruction-material/Linux-Systems/${fixture.revision}/${fixture.pack}/`;
@@ -215,9 +279,10 @@ test(
 						headers: { "access-control-allow-origin": "*" },
 						body: file?.content ?? "Unknown source"
 					});
-				} else if (
-					url.origin !== origin ||
-					url.pathname.startsWith("/api/")
+				}
+				else if (
+					url.origin !== origin
+					|| url.pathname.startsWith("/api/")
 				) {
 					let body = {};
 					if (catalog && url.pathname === "/api/accounts/me")
@@ -240,7 +305,8 @@ test(
 						contentType: "application/json",
 						body: JSON.stringify(body)
 					});
-				} else {
+				}
+				else {
 					void request.continue();
 				}
 			});
@@ -284,6 +350,14 @@ test(
 				const [module, core] = definitions[fixture.pack];
 				const moduleID = `linux-systems-${module}`;
 				const placement = [
+					"LS-03-unit-1-shell-foundations-supplemental-2",
+					"LS-04-unit-1-shell-foundations-supplemental-3",
+					"LS-25-unit-12-storage-backups-and-reliability-supplemental-2",
+					"LS-26-unit-12-storage-backups-and-reliability-supplemental-3",
+					"LS-21-unit-10-networking-from-a-systems-view-supplemental-2",
+					"LS-22-unit-10-networking-from-a-systems-view-supplemental-3",
+					"LS-19-unit-9-package-management-and-software-layout-supplemental-2",
+					"LS-20-unit-9-package-management-and-software-layout-supplemental-3",
 					"LS-11-unit-5-processes-and-job-control-supplemental-2",
 					"LS-12-unit-5-processes-and-job-control-supplemental-3",
 					"LS-13-unit-6-services-and-systemd-supplemental-2",
@@ -332,8 +406,8 @@ test(
 							const expected = Object.keys(fixture.files)
 								.filter(
 									name =>
-										name === "README.md" ||
-										name.startsWith(`${role}/`)
+										name === "README.md"
+										|| name.startsWith(`${role}/`)
 								)
 								.sort();
 							assert.deepEqual(
@@ -347,34 +421,34 @@ test(
 							assert.equal(saved.mode, "linux");
 							assert.equal(
 								saved.activeFileName,
-								processFirstFiles[fixture.pack]
-									? `${role}/${processFirstFiles[fixture.pack]}`
-									: fixture.pack ===
-										  "LS-16-unit-7-logging-and-observability-supplemental-3"
+								notesFirstFiles[fixture.pack]
+									? `${role}/${notesFirstFiles[fixture.pack]}`
+									: fixture.pack
+										=== "LS-16-unit-7-logging-and-observability-supplemental-3"
 										? `${role}/logrotate.conf`
 										: [
-													"LS-09-unit-7-logging-and-observability",
-													"LS-15-unit-7-logging-and-observability-supplemental-2",
-													"LS-07-unit-4-editing-and-configuration",
-													"LS-09-unit-4-editing-and-configuration-supplemental-2",
-													"LS-10-unit-4-editing-and-configuration-supplemental-3"
-											  ].includes(fixture.pack)
-											? `${role}/task.sh`
-											: fixture.pack ===
-												  "LS-13-unit-6-services-and-systemd-supplemental-2"
-												? `${role}/linux-service-transfer.service`
-												: fixture.pack ===
-													  "LS-14-unit-6-services-and-systemd-supplemental-3"
-													? `${role}/20-lab-settings.conf`
-													: saved.files.find(
+												"LS-09-unit-7-logging-and-observability",
+												"LS-15-unit-7-logging-and-observability-supplemental-2",
+												"LS-07-unit-4-editing-and-configuration",
+												"LS-09-unit-4-editing-and-configuration-supplemental-2",
+												"LS-10-unit-4-editing-and-configuration-supplemental-3"
+											].includes(fixture.pack)
+												? `${role}/task.sh`
+												: fixture.pack
+													=== "LS-13-unit-6-services-and-systemd-supplemental-2"
+													? `${role}/linux-service-transfer.service`
+													: fixture.pack
+														=== "LS-14-unit-6-services-and-systemd-supplemental-3"
+														? `${role}/20-lab-settings.conf`
+														: saved.files.find(
 															f =>
 																f.name.endsWith(
 																	".sh"
-																) ||
-																f.name.endsWith(
+																)
+																|| f.name.endsWith(
 																	".py"
-																) ||
-																f.name.endsWith(
+																)
+																|| f.name.endsWith(
 																	".conf"
 																)
 														).name
@@ -400,8 +474,7 @@ test(
 							);
 							assert.equal(
 								await page.$eval("button.run-control", b =>
-									b.textContent.trim()
-								),
+									b.textContent.trim()),
 								"Linux instructions"
 							);
 							await page.locator("button.run-control").click();
@@ -475,7 +548,8 @@ test(
 								(storage, k) =>
 									JSON.parse(localStorage.getItem(storage))
 										.find(p => p.courseProjectKey === k)
-										?.files.some(f =>
+										?.files
+										.some(f =>
 											f.content.includes(
 												"# independent Linux observation"
 											)
@@ -528,9 +602,9 @@ test(
 							);
 							assert.equal(href, `/courses#${lesson}`);
 							if (
-								fixture.pack ===
-									"LS-05-unit-1-shell-foundations" &&
-								role === "starter"
+								fixture.pack
+								=== "LS-05-unit-1-shell-foundations"
+								&& role === "starter"
 							) {
 								await page.screenshot({
 									path: join(
@@ -541,6 +615,26 @@ test(
 								});
 							}
 							const capture = {
+								"LS-03-unit-1-shell-foundations-supplemental-2": "linux-shell-search",
+								"LS-04-unit-1-shell-foundations-supplemental-3": "linux-shell-status",
+								"LS-12-unit-12-storage-backups-and-reliability":
+									"linux-storage-core",
+								"LS-25-unit-12-storage-backups-and-reliability-supplemental-2":
+									"linux-storage-corruption",
+								"LS-26-unit-12-storage-backups-and-reliability-supplemental-3":
+									"linux-storage-retention",
+								"LS-11-unit-10-networking-from-a-systems-view":
+									"linux-network-layers",
+								"LS-21-unit-10-networking-from-a-systems-view-supplemental-2":
+									"linux-network-listener",
+								"LS-22-unit-10-networking-from-a-systems-view-supplemental-3":
+									"linux-network-resolver",
+								"LS-10-unit-9-package-management-and-software-layout":
+									"linux-package-core",
+								"LS-19-unit-9-package-management-and-software-layout-supplemental-2":
+									"linux-package-manual",
+								"LS-20-unit-9-package-management-and-software-layout-supplemental-3":
+									"linux-package-dependency",
 								"LS-08-unit-5-processes-and-job-control":
 									"linux-process-core",
 								"LS-11-unit-5-processes-and-job-control-supplemental-2":
@@ -585,8 +679,8 @@ test(
 								consentBeforeFetch: true
 							});
 							if (
-								fixture.pack ===
-								"LS4-Apache-Virtual-Host-Compare"
+								fixture.pack
+								=== "LS4-Apache-Virtual-Host-Compare"
 							) {
 								await page.screenshot({
 									path: join(
@@ -636,13 +730,10 @@ test(
 							[...element.querySelectorAll("a")]
 								.find(
 									a =>
-										a.href.includes("starterUrl=") &&
-										new URL(a.href).searchParams
-											.get("starterUrl")
-											.endsWith("/starter")
+										a.href.includes("starterUrl=")
+										&& new URL(a.href).searchParams.get("starterUrl").endsWith("/starter")
 								)
-								?.getAttribute("href")
-						);
+								?.getAttribute("href"));
 						if (href) break;
 					}
 					assert.ok(
@@ -657,8 +748,7 @@ test(
 					if (!reuse) {
 						const card = `#${moduleID}-${id}`;
 						await page.$eval(card, element =>
-							element.scrollIntoView({ block: "start" })
-						);
+							element.scrollIntoView({ block: "start" }));
 						await page.waitForSelector(`${card} pre code`);
 						assert.ok(
 							await page.$(`${card} pre code`),
@@ -673,7 +763,8 @@ test(
 						await confirmProjectImport(page);
 						await waitSaved(coreKey);
 						original = await savedFor(coreKey);
-					} else {
+					}
+					else {
 						await page.waitForSelector(".cm-content");
 						assert.equal(sourceRequests.length, 0);
 						assert.equal(
@@ -727,18 +818,19 @@ test(
 				);
 			}
 			await writeFile(join(output, "default-linux.zip"), defaultArchive);
-			assert.equal(proof.length, 152);
-			assert.equal(courseButtons.length, 29);
+			assert.equal(proof.length, 240);
+			assert.equal(courseButtons.length, 43);
 			assert.equal(
 				courseButtons.filter(action => action.reusesExistingAttempt)
 					.length,
-				10
+				13
 			);
 			await writeFile(
 				join(output, "browser-proof.json"),
 				JSON.stringify({ profiles: proof, courseButtons }, null, 2)
 			);
-		} catch (error) {
+		}
+		catch (error) {
 			await writeFile(
 				join(output, "browser-partial.json"),
 				JSON.stringify(
@@ -762,7 +854,8 @@ test(
 				);
 			}
 			throw error;
-		} finally {
+		}
+		finally {
 			await page?.close();
 			await context?.close();
 			await browser?.close();

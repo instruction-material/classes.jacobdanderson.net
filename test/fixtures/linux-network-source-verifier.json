@@ -1,0 +1,6 @@
+{
+  "repository": "instruction-material/Linux-Systems",
+  "revision": "a1405c46ae27a23358a735c60e483b7d6b237e49",
+  "path": "test/verify_network_labs.py",
+  "sha256": "f7e7482ce74f53c2f0209655798e5353cf666816a7f50a671d570327b62e15ff"
+}
