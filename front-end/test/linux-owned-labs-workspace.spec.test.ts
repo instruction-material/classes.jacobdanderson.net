@@ -298,6 +298,8 @@ it("retains literal Linux names and rejects unsafe paths and unverified imports"
 	expect(isValidPythonFileName("main.html")).toBe(false);
 	expect(isValidPythonFileName("Makefile.sh", "cpp")).toBe(false);
 	for (const name of [
+		"starter/lookup-notes.md",
+		"solution/launch-notes.md",
 		"starter/unlink-notes.md",
 		"solution/umask-notes.md",
 		"starter/path-notes.md",
