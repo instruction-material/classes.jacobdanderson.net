@@ -1,0 +1,6 @@
+{
+  "repository": "instruction-material/Linux-Systems",
+  "revision": "49effd3de02a3844d438f37d975a9a5c49848310",
+  "path": "test/verify_capstone_recovery.py",
+  "sha256": "96dd194d746be2a02b3b1db23d3f3b3eb9be52550862e61b54979d7a0fbf5536"
+}

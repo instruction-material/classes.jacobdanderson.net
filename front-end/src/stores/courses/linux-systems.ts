@@ -17,6 +17,20 @@ const deploymentStudioContext = {
 		"actual account and tools, candidate/current symlink targets, status and body bytes, before/after payload hashes, rollback and recovery, independent lock probes where applicable, owned PID/listener cleanup and the limits of a locally supplied manifest"
 };
 
+const operationsCapstoneContext = {
+	focus: "one loopback service, a dedicated dynamic identity, read-only code, actual systemd state and journals, timer-triggered backups, separate restores and controlled incident recovery",
+	artifact:
+		"a versioned operations runbook with service and timer invocation identities, actual HTTP observations, verified backup manifests, two distinct restore drills and exact cleanup",
+	invariant:
+		"only the owned units and service tree change; successful activation requires actual health identity, backups publish only after validation and restoration never overwrites an existing destination",
+	exampleCase:
+		"correct the four named starter defects, render the units, verify a direct and proxied health response and inspect the first completed timer-triggered archive",
+	boundaryCase:
+		"restart with a missing working directory, retain the manager failure and proxy 502, restore the correct directory and observe a new invocation; reject tampered archives and preserve the last trusted backup",
+	reviewEvidence:
+		"environment and snapshot, exact unit and account, manager PID/UID/invocation, denied code writes, direct/proxied status and bytes, timer trigger and backup journal, digests and restored bytes, failure and corrected retest, changed fictional data, retained backups, removed units and closed listeners"
+};
+
 const linuxSystemsSourceCourse: RawCourse = {
 	name: "Linux Systems",
 	modules: [
@@ -1265,7 +1279,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 17: Operations Capstone Studio",
-						section: "concepts"
+						section: "concepts",
+						context: operationsCapstoneContext
 					})
 				},
 				{
@@ -1274,7 +1289,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 17: Operations Capstone Studio",
-						section: "example"
+						section: "example",
+						context: operationsCapstoneContext
 					})
 				},
 				{
@@ -1283,7 +1299,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 17: Operations Capstone Studio",
-						section: "coreProject"
+						section: "coreProject",
+						context: operationsCapstoneContext
 					}),
 					projectLink:
 						"https://github.com/instruction-material/Linux-Systems/tree/main/LS-04-linux-systems-lab-17/starter",
@@ -1296,7 +1313,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 17: Operations Capstone Studio",
-						section: "review"
+						section: "review",
+						context: operationsCapstoneContext
 					})
 				}
 			],
@@ -1307,7 +1325,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 17: Operations Capstone Studio",
-						section: "extension"
+						section: "extension",
+						context: operationsCapstoneContext
 					}),
 					projectLink:
 						"https://github.com/instruction-material/Linux-Systems/tree/main/LS-04-linux-systems-lab-17/starter",

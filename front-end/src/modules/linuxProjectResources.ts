@@ -523,6 +523,62 @@ export const linuxVerifiedPacks = [
 			"linux-systems-optional-linux-integration-studio-archive-supplemental-service-deployment-extension-practice",
 		notebookItemId: null,
 		revision: "fa2fadac8c2d8982a91e48d32ab1c44cbe4d42f9"
+	},
+	{
+		pack: "LS-04-linux-systems-lab-17",
+		revision: "03a48030a2673e4a118668814d8187bbc7bfe8b1",
+		roleFiles: [
+			"operations-notes.md",
+			"app.py",
+			"backup.py",
+			"config.json",
+			"data.json",
+			"nginx.conf",
+			"render_lab.py",
+			"signal-garden-backup.service",
+			"signal-garden-backup.timer",
+			"signal-garden.service",
+			"task.sh"
+		],
+		coreItemId:
+			"linux-systems-linux-systems-lab-17-operations-capstone-studio-curriculum-core-project-operations-capstone-studio",
+		notebookItemId: null,
+		continuationItemId:
+			"linux-systems-linux-systems-lab-17-operations-capstone-studio-supplemental-extension-challenge-operations-capstone-studio"
+	},
+	{
+		pack: "LS-33-applied-studio-17-linux-systems-lab-17-supplemental-2",
+		roleFiles: [
+			"recovery-notes.md",
+			"task.sh",
+			"task.py",
+			"history_lab.py",
+			"backup.py",
+			"app.py",
+			"config.json",
+			"data.json"
+		],
+		coreItemId:
+			"linux-systems-linux-systems-lab-17-operations-capstone-studio-supplemental-operations-capstone-transfer-practice",
+		notebookItemId: null,
+		revision: "49effd3de02a3844d438f37d975a9a5c49848310"
+	},
+	{
+		pack: "LS-34-applied-studio-17-linux-systems-lab-17-supplemental-3",
+		roleFiles: [
+			"recovery-notes.md",
+			"task.sh",
+			"task.py",
+			"history_lab.py",
+			"backup.py",
+			"app.py",
+			"config.json",
+			"data.json"
+		],
+		coreItemId:
+			"linux-systems-linux-systems-lab-17-operations-capstone-studio-supplemental-operations-capstone-extension-practice",
+		notebookItemId: null,
+		revision: "49effd3de02a3844d438f37d975a9a5c49848310"
 	}
 ] as const;
 

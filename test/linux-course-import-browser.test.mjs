@@ -22,6 +22,9 @@ const fixtures = JSON.parse(
 	)
 );
 const definitions = {
+"LS-33-applied-studio-17-linux-systems-lab-17-supplemental-2": ["linux-systems-lab-17-operations-capstone-studio", "operations-capstone-transfer-practice", null],
+"LS-34-applied-studio-17-linux-systems-lab-17-supplemental-3": ["linux-systems-lab-17-operations-capstone-studio", "operations-capstone-extension-practice", null],
+"LS-04-linux-systems-lab-17": ["linux-systems-lab-17-operations-capstone-studio", "core-project-operations-capstone-studio", null, "extension-challenge-operations-capstone-studio"],
 "LS-01-linux-systems-lab-14": ["optional-linux-integration-studio-archive", "core-project-service-deployment-studio", null, "extension-challenge-service-deployment-studio"],
 "LS-27-applied-studio-14-linux-systems-lab-14-supplemental-2": ["optional-linux-integration-studio-archive", "service-deployment-transfer-practice", null, null],
 "LS-28-applied-studio-14-linux-systems-lab-14-supplemental-3": ["optional-linux-integration-studio-archive", "service-deployment-extension-practice", null, null],
@@ -179,6 +182,9 @@ const definitions = {
 	]
 };
 const notesFirstFiles = {
+"LS-33-applied-studio-17-linux-systems-lab-17-supplemental-2": "recovery-notes.md",
+"LS-34-applied-studio-17-linux-systems-lab-17-supplemental-3": "recovery-notes.md",
+"LS-04-linux-systems-lab-17": "operations-notes.md",
 "LS-01-linux-systems-lab-14": "deployment-notes.md",
 "LS-27-applied-studio-14-linux-systems-lab-14-supplemental-2": "artifact-notes.md",
 "LS-28-applied-studio-14-linux-systems-lab-14-supplemental-3": "locking-notes.md",
@@ -401,6 +407,8 @@ test(
 				const [module, core] = definitions[fixture.pack];
 				const moduleID = `linux-systems-${module}`;
 				const placement = [
+"LS-33-applied-studio-17-linux-systems-lab-17-supplemental-2",
+"LS-34-applied-studio-17-linux-systems-lab-17-supplemental-3",
 "LS-01-linux-systems-lab-14",
 "LS-27-applied-studio-14-linux-systems-lab-14-supplemental-2",
 "LS-28-applied-studio-14-linux-systems-lab-14-supplemental-3",
@@ -674,6 +682,9 @@ test(
 								});
 							}
 							const capture = {
+"LS-33-applied-studio-17-linux-systems-lab-17-supplemental-2": "linux-capstone-selection",
+"LS-34-applied-studio-17-linux-systems-lab-17-supplemental-3": "linux-capstone-acceptance",
+"LS-04-linux-systems-lab-17": "linux-operations-capstone",
 "LS-01-linux-systems-lab-14": "linux-deployment-readiness",
 "LS-27-applied-studio-14-linux-systems-lab-14-supplemental-2": "linux-deployment-integrity",
 "LS-28-applied-studio-14-linux-systems-lab-14-supplemental-3": "linux-deployment-locks",
@@ -891,15 +902,16 @@ test(
 				);
 			}
 			await writeFile(join(output, "default-linux.zip"), defaultArchive);
-			assert.equal(proof.length, 344);
-			assert.equal(courseButtons.length, 57);
+			assert.equal(proof.length, 368);
+			assert.equal(courseButtons.length, 61);
 			assert.equal(
 				courseButtons.filter(action => action.reusesExistingAttempt)
 					.length,
-				14
+				15
 			);
 			assert.equal(courseButtons.filter(action => action.reusesExistingAttempt && action.item.includes("troubleshooting-notebook")).length, 13);
 			assert.equal(courseButtons.filter(action => action.reusesExistingAttempt && action.item.endsWith("extension-challenge-service-deployment-studio")).length, 1);
+			assert.equal(courseButtons.filter(action => action.reusesExistingAttempt && action.item.endsWith("extension-challenge-operations-capstone-studio")).length, 1);
 			const storageEvidence = await page.evaluate(async (key, earlier) => {
 				const projects = await window.__linuxSavedProjects();
 				const serialized = JSON.stringify(projects);

@@ -1,0 +1,6 @@
+{
+  "repository": "instruction-material/Linux-Systems",
+  "revision": "03a48030a2673e4a118668814d8187bbc7bfe8b1",
+  "path": "test/verify_operations_capstone.py",
+  "sha256": "8ce3ffa15f2acd5ba699d5d06760caa37c128f664527ef15c5407d8c69107600"
+}

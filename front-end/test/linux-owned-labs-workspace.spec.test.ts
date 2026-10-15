@@ -87,10 +87,15 @@ it("preserves core and notebook identities, complete reading, reference privacy 
 		if ("continuationItemId" in definition) {
 			expect(continuation).toBeDefined();
 			expect(continuation!.title).toContain("Extension Challenge");
-			expect(continuation!.content).toContain("Continue the existing deployment attempt");
+			expect(continuation!.content).toContain(definition.pack === "LS-04-linux-systems-lab-17" ? "Continue the existing operations attempt" : "Continue the existing deployment attempt");
 			expect(continuation!.content).not.toContain("Opening this notebook");
 			expect(continuation!.projectLink).toBe(core.projectLink);
 			expect(continuation!.solutionLink).toBe(core.solutionLink);
+		}
+		if (definition.pack === "LS-04-linux-systems-lab-17") {
+			expect(core.learningPath).toBe("core");
+			expect(core.id).toBe("linux-systems-linux-systems-lab-17-operations-capstone-studio-curriculum-core-project-operations-capstone-studio");
+			expect(continuation!.learningPath).toBe("challenge");
 		}
 		expect(core).toBeDefined();
 		expect(core.ideImport).toBe(true);
@@ -110,6 +115,7 @@ it("preserves core and notebook identities, complete reading, reference privacy 
 				.replace(/\bTODO\b/g, "`TODO`")
 				.replace("Instructor walkthrough", "Walkthrough")
 				.replaceAll("an instructor walkthrough", "a guided walkthrough")
+                .replaceAll("## Policy model and the named repair", "## Policy model and implementation")
 				// Keep the complete reading after these explicit editorial changes.
 				// The import/export checks below still require original source bytes.
 				.replaceAll("With an instructor, inspect", "Inspect")
@@ -318,6 +324,9 @@ it("retains literal Linux names and rejects unsafe paths and unverified imports"
 		"solution/launch-notes.md",
 		"starter/calendar-notes.md",
 		"solution/timer-notes.md",
+		"starter/recovery-notes.md",
+		"starter/operations-notes.md",
+		"solution/data.json",
 		"starter/deployment-notes.md",
 		"solution/artifact-notes.md",
 		"starter/locking-notes.md",
