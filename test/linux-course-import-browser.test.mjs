@@ -22,6 +22,12 @@ const fixtures = JSON.parse(
 	)
 );
 const definitions = {
+"LS-03-linux-systems-lab-16": ["optional-linux-integration-studio-archive", "core-project-backup-recovery-studio", null, "extension-challenge-backup-recovery-studio"],
+"LS-31-applied-studio-16-linux-systems-lab-16-supplemental-2": ["optional-linux-integration-studio-archive", "backup-recovery-transfer-practice", null, null],
+"LS-32-applied-studio-16-linux-systems-lab-16-supplemental-3": ["optional-linux-integration-studio-archive", "backup-recovery-extension-practice", null, null],
+"LS-02-linux-systems-lab-15": ["optional-linux-integration-studio-archive", "core-project-automation-and-observability-studio", null, "extension-challenge-automation-and-observability-studio"],
+"LS-29-applied-studio-15-linux-systems-lab-15-supplemental-2": ["optional-linux-integration-studio-archive", "automation-observability-transfer-practice", null, null],
+"LS-30-applied-studio-15-linux-systems-lab-15-supplemental-3": ["optional-linux-integration-studio-archive", "automation-observability-extension-practice", null, null],
 "LS-33-applied-studio-17-linux-systems-lab-17-supplemental-2": ["linux-systems-lab-17-operations-capstone-studio", "operations-capstone-transfer-practice", null],
 "LS-34-applied-studio-17-linux-systems-lab-17-supplemental-3": ["linux-systems-lab-17-operations-capstone-studio", "operations-capstone-extension-practice", null],
 "LS-04-linux-systems-lab-17": ["linux-systems-lab-17-operations-capstone-studio", "core-project-operations-capstone-studio", null, "extension-challenge-operations-capstone-studio"],
@@ -182,6 +188,12 @@ const definitions = {
 	]
 };
 const notesFirstFiles = {
+"LS-03-linux-systems-lab-16": "backup-notes.md",
+"LS-31-applied-studio-16-linux-systems-lab-16-supplemental-2": "backup-notes.md",
+"LS-32-applied-studio-16-linux-systems-lab-16-supplemental-3": "backup-notes.md",
+"LS-02-linux-systems-lab-15": "observability-notes.md",
+"LS-29-applied-studio-15-linux-systems-lab-15-supplemental-2": "observability-notes.md",
+"LS-30-applied-studio-15-linux-systems-lab-15-supplemental-3": "observability-notes.md",
 "LS-33-applied-studio-17-linux-systems-lab-17-supplemental-2": "recovery-notes.md",
 "LS-34-applied-studio-17-linux-systems-lab-17-supplemental-3": "recovery-notes.md",
 "LS-04-linux-systems-lab-17": "operations-notes.md",
@@ -236,8 +248,8 @@ const digest = value => createHash("sha256").update(value).digest("hex");
 
 test(
 	"Linux confirmed imports, exact role exports, saved edits and shared notebook attempts",
-	// Retain every scenario and allow time to close the browser and server.
-	{ timeout: 900_000 },
+	// All 416 profiles need time for storage checks and browser cleanup.
+	{ timeout: 1_200_000 },
 	async () => {
 		let server, browser, context, page;
 		const output
@@ -407,6 +419,12 @@ test(
 				const [module, core] = definitions[fixture.pack];
 				const moduleID = `linux-systems-${module}`;
 				const placement = [
+"LS-03-linux-systems-lab-16",
+"LS-31-applied-studio-16-linux-systems-lab-16-supplemental-2",
+"LS-32-applied-studio-16-linux-systems-lab-16-supplemental-3",
+"LS-02-linux-systems-lab-15",
+"LS-29-applied-studio-15-linux-systems-lab-15-supplemental-2",
+"LS-30-applied-studio-15-linux-systems-lab-15-supplemental-3",
 "LS-33-applied-studio-17-linux-systems-lab-17-supplemental-2",
 "LS-34-applied-studio-17-linux-systems-lab-17-supplemental-3",
 "LS-01-linux-systems-lab-14",
@@ -682,6 +700,12 @@ test(
 								});
 							}
 							const capture = {
+"LS-03-linux-systems-lab-16": "linux-backup-coherence",
+"LS-31-applied-studio-16-linux-systems-lab-16-supplemental-2": "linux-backup-attributes",
+"LS-32-applied-studio-16-linux-systems-lab-16-supplemental-3": "linux-backup-retention",
+"LS-02-linux-systems-lab-15": "linux-observability-output",
+"LS-29-applied-studio-15-linux-systems-lab-15-supplemental-2": "linux-observability-correlation",
+"LS-30-applied-studio-15-linux-systems-lab-15-supplemental-3": "linux-observability-progress",
 "LS-33-applied-studio-17-linux-systems-lab-17-supplemental-2": "linux-capstone-selection",
 "LS-34-applied-studio-17-linux-systems-lab-17-supplemental-3": "linux-capstone-acceptance",
 "LS-04-linux-systems-lab-17": "linux-operations-capstone",
@@ -902,16 +926,32 @@ test(
 				);
 			}
 			await writeFile(join(output, "default-linux.zip"), defaultArchive);
-			assert.equal(proof.length, 368);
-			assert.equal(courseButtons.length, 61);
-			assert.equal(
-				courseButtons.filter(action => action.reusesExistingAttempt)
-					.length,
-				15
+			assert.equal(proof.length, 416);
+			assert.equal(courseButtons.length, 69);
+			const sharedAttempts = courseButtons.filter(
+				action => action.reusesExistingAttempt
 			);
-			assert.equal(courseButtons.filter(action => action.reusesExistingAttempt && action.item.includes("troubleshooting-notebook")).length, 13);
-			assert.equal(courseButtons.filter(action => action.reusesExistingAttempt && action.item.endsWith("extension-challenge-service-deployment-studio")).length, 1);
-			assert.equal(courseButtons.filter(action => action.reusesExistingAttempt && action.item.endsWith("extension-challenge-operations-capstone-studio")).length, 1);
+			assert.equal(sharedAttempts.length, 17);
+			assert.equal(
+				sharedAttempts.filter(action =>
+					action.item.includes("troubleshooting-notebook")
+				).length,
+				13
+			);
+			for (const continuation of [
+				"service-deployment-studio",
+				"operations-capstone-studio",
+				"automation-and-observability-studio",
+				"backup-recovery-studio"
+			]) {
+				assert.equal(
+					sharedAttempts.filter(action =>
+						action.item.endsWith(`extension-challenge-${continuation}`)
+					).length,
+					1,
+					`Exactly one shared attempt for ${continuation}`
+				);
+			}
 			const storageEvidence = await page.evaluate(async (key, earlier) => {
 				const projects = await window.__linuxSavedProjects();
 				const serialized = JSON.stringify(projects);

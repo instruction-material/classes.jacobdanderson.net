@@ -87,7 +87,7 @@ it("preserves core and notebook identities, complete reading, reference privacy 
 		if ("continuationItemId" in definition) {
 			expect(continuation).toBeDefined();
 			expect(continuation!.title).toContain("Extension Challenge");
-			expect(continuation!.content).toContain(definition.pack === "LS-04-linux-systems-lab-17" ? "Continue the existing operations attempt" : "Continue the existing deployment attempt");
+			expect(continuation!.content).toContain(definition.pack === "LS-02-linux-systems-lab-15" ? "Continue the existing observability attempt" : definition.pack === "LS-03-linux-systems-lab-16" ? "Continue the existing backup attempt" : definition.pack === "LS-04-linux-systems-lab-17" ? "Continue the existing operations attempt" : "Continue the existing deployment attempt");
 			expect(continuation!.content).not.toContain("Opening this notebook");
 			expect(continuation!.projectLink).toBe(core.projectLink);
 			expect(continuation!.solutionLink).toBe(core.solutionLink);
@@ -324,6 +324,8 @@ it("retains literal Linux names and rejects unsafe paths and unverified imports"
 		"solution/launch-notes.md",
 		"starter/calendar-notes.md",
 		"solution/timer-notes.md",
+		"starter/observability-notes.md",
+		"starter/backup-notes.md",
 		"starter/recovery-notes.md",
 		"starter/operations-notes.md",
 		"solution/data.json",

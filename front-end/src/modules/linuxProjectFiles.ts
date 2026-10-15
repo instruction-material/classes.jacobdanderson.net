@@ -16,7 +16,7 @@ export function isLinuxProjectTextPath(value: string) {
 			value
 		) ||
 		value.split("/").at(-1) === "crontab.example" ||
-		/^(?:starter|solution)\/(?:permissions|compare-notes|service-notes|service-transfer-notes|service-extension-notes|incident-notes|application-notes|retention-notes|edit-notes|environment-notes|replacement-notes|process-notes|pipeline-notes|adoption-notes|package-notes|manual-notes|dependency-notes|network-notes|listener-notes|resolver-notes|restore-notes|integrity-notes|backup-retention-notes|search-notes|path-notes|filesystem-notes|unlink-notes|umask-notes|lookup-notes|launch-notes|calendar-notes|timer-notes|host-notes|validator-notes|deployment-notes|artifact-notes|locking-notes|operations-notes|recovery-notes)\.md$/.test(
+		/^(?:starter|solution)\/(?:permissions|compare-notes|service-notes|service-transfer-notes|service-extension-notes|incident-notes|application-notes|retention-notes|edit-notes|environment-notes|replacement-notes|process-notes|pipeline-notes|adoption-notes|package-notes|manual-notes|dependency-notes|network-notes|listener-notes|resolver-notes|restore-notes|integrity-notes|backup-retention-notes|search-notes|path-notes|filesystem-notes|unlink-notes|umask-notes|lookup-notes|launch-notes|calendar-notes|timer-notes|host-notes|validator-notes|deployment-notes|artifact-notes|locking-notes|operations-notes|recovery-notes|observability-notes|backup-notes)\.md$/.test(
 			value
 		) ||
 		/^(?:starter|solution)\/(?:reports|records)\/[^/]+\.txt$/.test(value)

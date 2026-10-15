@@ -50,7 +50,7 @@ supplemental_verifier = (fixture_dir / "linux-systemd-supplemental-source-verifi
 assert hashlib.sha256(supplemental_verifier).hexdigest() == supplemental_identity["sha256"]
 assert all(pack["revision"] == supplemental_identity["revision"] for pack in supplemental_packs)
 logging_packs = [pack for pack in packs if pack["pack"] in ("LS-09-unit-7-logging-and-observability", "LS-15-unit-7-logging-and-observability-supplemental-2", "LS-16-unit-7-logging-and-observability-supplemental-3")]
-assert len(logging_packs) == 3 and len(packs) == 46
+assert len(logging_packs) == 3 and len(packs) == 52
 logging_identity = json.loads((fixture_dir / "linux-logging-source-verifier.json").read_text())
 logging_verifier = (fixture_dir / "linux-logging-source-verifier.py").read_bytes()
 assert hashlib.sha256(logging_verifier).hexdigest() == logging_identity["sha256"]
@@ -156,6 +156,18 @@ recovery_packs = [pack for pack in packs if pack["pack"] in ['LS-33-applied-stud
 assert len(recovery_packs) == 2
 assert hashlib.sha256(recovery_verifier).hexdigest() == recovery_identity["sha256"]
 assert all(pack["revision"] == recovery_identity["revision"] for pack in recovery_packs)
+observability_identity = json.loads((fixture_dir / "linux-observability-studio-source-verifier.json").read_text())
+observability_verifier = (fixture_dir / "linux-observability-studio-source-verifier.py").read_bytes()
+observability_packs = [pack for pack in packs if pack["pack"] in ['LS-02-linux-systems-lab-15', 'LS-29-applied-studio-15-linux-systems-lab-15-supplemental-2', 'LS-30-applied-studio-15-linux-systems-lab-15-supplemental-3']]
+assert len(observability_packs) == 3
+assert hashlib.sha256(observability_verifier).hexdigest() == observability_identity["sha256"]
+assert all(pack["revision"] == observability_identity["revision"] for pack in observability_packs)
+backup_studio_identity = json.loads((fixture_dir / "linux-backup-studio-source-verifier.json").read_text())
+backup_studio_verifier = (fixture_dir / "linux-backup-studio-source-verifier.py").read_bytes()
+backup_studio_packs = [pack for pack in packs if pack["pack"] in ['LS-03-linux-systems-lab-16', 'LS-31-applied-studio-16-linux-systems-lab-16-supplemental-2', 'LS-32-applied-studio-16-linux-systems-lab-16-supplemental-3']]
+assert len(backup_studio_packs) == 3
+assert hashlib.sha256(backup_studio_verifier).hexdigest() == backup_studio_identity["sha256"]
+assert all(pack["revision"] == backup_studio_identity["revision"] for pack in backup_studio_packs)
 args.proof = args.proof.resolve()
 args.proof.parent.mkdir(parents=True, exist_ok=True)
 archives = []
@@ -479,6 +491,30 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
     assert recovery["actualBackupChildLifecycles"] == 246 and not recovery["learnerWorksheetCompletionInferred"]
     assert recovery["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in recovery_packs for name, file in pack["files"].items()}
     assert len(recovery["profiles"]) == 6 and all(profile["passed"] and profile["inputsUnchanged"] and profile["outsideSentinelPreserved"] and profile["ownedResourcesRemoved"] for profile in recovery["profiles"])
+    observability_records = args.proof.parent / "observability-studio-records"
+    observability_records.mkdir(exist_ok=True)
+    observability_proof = observability_records / (args.proof.stem + "-observability-studio-native.json")
+    observability = run_pinned_contract(work, "verify_observability_studio.py", observability_verifier, observability_proof, 240)
+    assert observability["nativePassed"] and observability["sourceUnchanged"] and observability["platform"] == "Linux" and observability["uid"] > 0
+    assert observability["actualCases"] == observability["loggedOuterLifecycles"] == 72
+    assert observability["actualServiceInvocations"] == observability["actualManagedProcessObservations"] == observability["actualObservationGates"] == 81
+    assert observability["actualOwnedTimers"] == observability["actualScheduledGateObservations"] == 72
+    assert observability["actualWorkerEvents"] == 144 and observability["actualPolicyDecisions"] == 81 and observability["actualOperatorRetests"] == 9
+    assert observability["error"] is None and not observability["learnerWorksheetCompletionInferred"]
+    assert observability["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in observability_packs for name, file in pack["files"].items()}
+    assert len(observability["profiles"]) == 9 and all(profile["passed"] and profile["inputsUnchanged"] and profile["outsideSentinelPreserved"] and profile["ownedResourcesRemoved"] for profile in observability["profiles"])
+    backup_studio_records = args.proof.parent / "backup-studio-records"
+    backup_studio_records.mkdir(exist_ok=True)
+    backup_studio_proof = backup_studio_records / (args.proof.stem + "-backup-studio-native.json")
+    backup_studio = run_pinned_contract(work, "verify_backup_studio.py", backup_studio_verifier, backup_studio_proof, 240)
+    assert backup_studio["nativePassed"] and backup_studio["sourceUnchanged"] and backup_studio["platform"] == "Linux" and backup_studio["uid"] > 0
+    assert backup_studio["actualCases"] == backup_studio["loggedOuterLifecycles"] == 75
+    assert backup_studio["actualCommandObservations"] == 216 and backup_studio["actualChildLifecycles"] == 201
+    assert backup_studio["actualSpawnRefusals"] == 15 and backup_studio["actualPublishedArchives"] == 67
+    assert backup_studio["actualDeletions"] == 6 and backup_studio["actualSeparateRestores"] == 45 and backup_studio["actualInterruptions"] == 9
+    assert backup_studio["error"] is None and not backup_studio["learnerWorksheetCompletionInferred"]
+    assert backup_studio["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in backup_studio_packs for name, file in pack["files"].items()}
+    assert len(backup_studio["profiles"]) == 9 and all(profile["passed"] and profile["inputsUnchanged"] and profile["outsideSentinelPreserved"] and profile["ownedResourcesRemoved"] for profile in backup_studio["profiles"])
     default = work / "default-workspace"
     default.mkdir()
     default_archive = args.archives / "default-linux.zip"
@@ -541,6 +577,10 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
                                      "filesystemOptionalNativeProof": str(filesystem_proof),
                                      "schedulingOptionalSourceIdentity": scheduling_identity,
                                      "schedulingOptionalNativeProof": str(scheduling_proof),
+                                     "backupStudioSourceIdentity": backup_studio_identity,
+                                     "backupStudioNativeProof": str(backup_studio_proof),
+                                     "observabilityStudioSourceIdentity": observability_identity,
+                                     "observabilityStudioNativeProof": str(observability_proof),
                                      "capstoneRecoverySourceIdentity": recovery_identity,
                                      "capstoneRecoveryNativeProof": str(recovery_proof),
                                      "operationsCapstoneSourceIdentity": capstone_identity,

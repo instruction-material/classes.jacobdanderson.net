@@ -23,6 +23,36 @@ export function linuxBuildInstructions(files: PythonIdeFile[], url?: string) {
 		];
 	}
 	const commands: Record<string, string[]> = {
+		"LS-03-linux-systems-lab-16": [
+			"Read ../README.md and complete backup-notes.md. Preserve all eight role files. Save/export through the IDE and use Bash, Python 3.9+ and readable /proc in an ordinary external owned Linux account.",
+			"Repair only capture_under_lock: hold a shared flock on the existing cooperating lock throughout the capture callback. Compare the actual partial writer state, kernel WRITE/pending READ rows, manifest integrity and separately restored application generations.",
+			"Reverse which file changes first, change the generation, interrupt while the real writer holds its lock and verify exact child cleanup, a fresh independent lock probe and a successful recovery retest."
+		],
+		"LS-31-applied-studio-16-linux-systems-lab-16-supplemental-2": [
+			"Read ../README.md and complete backup-notes.md. Keep task.sh, task.py, backup_studio.py, backup.py, app.py, config.json and data.json together after export.",
+			"Repair only restore_attributes to restore the independently observed ordinary mode and mtime for each declared file. Compare exact payload hashes, before/after stat values and actual executable-start refusal or success.",
+			"Reverse metadata enumeration, change the fictional generation and interrupt after the actual separate restore. This exercise covers ordinary mode bits and modification time; the guide states the limits for owners, ACLs, extended attributes and links."
+		],
+		"LS-32-applied-studio-16-linux-systems-lab-16-supplemental-3": [
+			"Read ../README.md and complete backup-notes.md in an ordinary owned external Linux lab. The IDE edits/saves the source; the private lab performs the real backup history and restores.",
+			"Repair only choose_retirements. Select verified published ordinary archives older than the manifest-time cutoff and outside the two protected anchors. Retain the whole-plan guard decision, actual deletions and unchanged corrupt/partial/link evidence.",
+			"Restore both retained anchors to separate destinations. Reverse enumeration, change generation, test --keep-all, interrupt before planning and demonstrate a clean rerun with source and sentinel preservation."
+		],
+		"LS-02-linux-systems-lab-15": [
+			"Read ../README.md and complete observability-notes.md. Keep all five role files. Save/export through the IDE, then use Bash, Python 3.9+ and a working ordinary-user systemd manager/journal in the external owned Linux lab.",
+			"Repair only artifact_is_current. Compare actual successful scheduled jobs that write fresh output or leave the seeded earlier artifact; validate ordinary nonsymlink output bytes against the independently expected SHA-256.",
+			"Retain actual timer triggers, service invocation/PID/UID, journal, output bytes and policy decisions. Change the value, reverse order, interrupt/recover and confirm only the exact owned units, workers and private case are removed."
+		],
+		"LS-29-applied-studio-15-linux-systems-lab-15-supplemental-2": [
+			"Read ../README.md and complete observability-notes.md. The site edits and saves source; a working ordinary-user systemd manager and journal run the external Linux experiment.",
+			"Repair only select_completed. Compare the actual current invocation, the same service's prior error-marked invocation and an independently named unrelated invocation. Select journal end rows for the requested invocation exactly.",
+			"Keep actual restart requests separate from new-invocation observations. Retain journal identities, changed order, interruption/recovery, source preservation and exact owned cleanup."
+		],
+		"LS-30-applied-studio-15-linux-systems-lab-15-supplemental-3": [
+			"Read ../README.md and complete observability-notes.md. Preserve task.sh, task.py, studio_observer.py and studio_worker.py with the worksheet in the selected role.",
+			"Repair only classify_progress. Use actual manager state, start/end events and monotonic samples to distinguish exited success, explicit exit-7 failure, a live worker before its budget and that worker after the declared budget.",
+			"Choose a documented budget, retain real sample times and kernel process identities, reverse order and observe interruption/recovery. An accepted restart, live PID or successful scheduling request does not prove completed work."
+		],
 		"LS-33-applied-studio-17-linux-systems-lab-17-supplemental-2": [
 			"Read ../README.md and complete recovery-notes.md. Preserve all eight role files; edit/save/export in the site IDE and run with Bash and Python 3.8+ under an ordinary account in the external owned Linux lab.",
 			"Repair only choose_backup: validate actual published archives, apply the recorded manifest-time cutoff and choose the eligible maximum. Compare first, expected, latest-complete and no-eligible targets against misleading mtimes, a corrupt archive and an unpublished partial candidate.",
