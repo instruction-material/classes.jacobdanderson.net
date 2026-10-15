@@ -22,6 +22,21 @@ const fixtures = JSON.parse(
 	)
 );
 const definitions = {
+	"LS-10-unit-9-package-management-and-software-layout": [
+		"unit-9-package-management-and-software-layout",
+		"core-project-package-management-and-software-layout",
+		"package-management-and-software-layout"
+	],
+	"LS-19-unit-9-package-management-and-software-layout-supplemental-2": [
+		"unit-9-package-management-and-software-layout",
+		"package-layout-transfer-practice",
+		null
+	],
+	"LS-20-unit-9-package-management-and-software-layout-supplemental-3": [
+		"unit-9-package-management-and-software-layout",
+		"package-layout-extension-practice",
+		null
+	],
 	"LS-08-unit-5-processes-and-job-control": [
 		"unit-5-processes-and-job-control",
 		"core-project-processes-and-job-control",
@@ -118,7 +133,12 @@ const definitions = {
 		null
 	]
 };
-const processFirstFiles = {
+const notesFirstFiles = {
+	"LS-10-unit-9-package-management-and-software-layout": "package-notes.md",
+	"LS-19-unit-9-package-management-and-software-layout-supplemental-2":
+		"manual-notes.md",
+	"LS-20-unit-9-package-management-and-software-layout-supplemental-3":
+		"dependency-notes.md",
 	"LS-08-unit-5-processes-and-job-control": "process-notes.md",
 	"LS-11-unit-5-processes-and-job-control-supplemental-2":
 		"pipeline-notes.md",
@@ -284,6 +304,8 @@ test(
 				const [module, core] = definitions[fixture.pack];
 				const moduleID = `linux-systems-${module}`;
 				const placement = [
+					"LS-19-unit-9-package-management-and-software-layout-supplemental-2",
+					"LS-20-unit-9-package-management-and-software-layout-supplemental-3",
 					"LS-11-unit-5-processes-and-job-control-supplemental-2",
 					"LS-12-unit-5-processes-and-job-control-supplemental-3",
 					"LS-13-unit-6-services-and-systemd-supplemental-2",
@@ -347,8 +369,8 @@ test(
 							assert.equal(saved.mode, "linux");
 							assert.equal(
 								saved.activeFileName,
-								processFirstFiles[fixture.pack]
-									? `${role}/${processFirstFiles[fixture.pack]}`
+								notesFirstFiles[fixture.pack]
+									? `${role}/${notesFirstFiles[fixture.pack]}`
 									: fixture.pack ===
 										  "LS-16-unit-7-logging-and-observability-supplemental-3"
 										? `${role}/logrotate.conf`
@@ -541,6 +563,12 @@ test(
 								});
 							}
 							const capture = {
+								"LS-10-unit-9-package-management-and-software-layout":
+									"linux-package-core",
+								"LS-19-unit-9-package-management-and-software-layout-supplemental-2":
+									"linux-package-manual",
+								"LS-20-unit-9-package-management-and-software-layout-supplemental-3":
+									"linux-package-dependency",
 								"LS-08-unit-5-processes-and-job-control":
 									"linux-process-core",
 								"LS-11-unit-5-processes-and-job-control-supplemental-2":
@@ -727,12 +755,12 @@ test(
 				);
 			}
 			await writeFile(join(output, "default-linux.zip"), defaultArchive);
-			assert.equal(proof.length, 152);
-			assert.equal(courseButtons.length, 29);
+			assert.equal(proof.length, 176);
+			assert.equal(courseButtons.length, 33);
 			assert.equal(
 				courseButtons.filter(action => action.reusesExistingAttempt)
 					.length,
-				10
+				11
 			);
 			await writeFile(
 				join(output, "browser-proof.json"),

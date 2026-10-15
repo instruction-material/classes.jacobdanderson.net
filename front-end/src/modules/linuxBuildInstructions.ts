@@ -23,6 +23,21 @@ export function linuxBuildInstructions(files: PythonIdeFile[], url?: string) {
 		];
 	}
 	const commands: Record<string, string[]> = {
+		"LS-10-unit-9-package-management-and-software-layout": [
+			"Read ../README.md and complete package-notes.md in an ordinary Debian/Ubuntu Linux terminal.",
+			"bash task.sh --package bash --command bash --report bash-first.json",
+			"Compare actual package metadata, current state versus requested action, file layout and command ownership. Retain a changed package, missing-query failures and preserved report bytes; the core notebook continues this same attempt."
+		],
+		"LS-19-unit-9-package-management-and-software-layout-supplemental-2": [
+			"Read ../README.md and complete manual-notes.md; use a fresh owned lab with the supplied working C source and drivers.",
+			"Follow the guide for actual C17 builds, exact archives, owned release installation, real package-ownership queries, version 1.0/2.0 selection and runtime-verified rollback.",
+			"Record duplicate/changed archive failures, active-link and byte checks, bounded removal and the unchanged outside sentinel. Keep this optional transfer separate from the core."
+		],
+		"LS-20-unit-9-package-management-and-software-layout-supplemental-3": [
+			"Read ../README.md and complete dependency-notes.md in a separate owned Debian package root; use the supplied driver without sudo.",
+			"Observe real missing/wrong-version dependency failures, unpacked versus configured state, runtime success before configuration, upgrade/recovery and dependent-removal rejection.",
+			"Read requested action, error flag and current state separately. Retain actual query, audit, runtime and reverse-order removal evidence plus a changed base-first sequence. Keep this optional extension separate from the core."
+		],
 		"LS-08-unit-5-processes-and-job-control": [
 			"Read ../README.md for real process identities, owned signals, waiting and interactive Bash job control.",
 			"Complete process-notes.md using the supplied working process_worker.py; both roles provide equipment, not completed observation records.",

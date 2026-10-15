@@ -50,7 +50,7 @@ supplemental_verifier = (fixture_dir / "linux-systemd-supplemental-source-verifi
 assert hashlib.sha256(supplemental_verifier).hexdigest() == supplemental_identity["sha256"]
 assert all(pack["revision"] == supplemental_identity["revision"] for pack in supplemental_packs)
 logging_packs = [pack for pack in packs if pack["pack"] in ("LS-09-unit-7-logging-and-observability", "LS-15-unit-7-logging-and-observability-supplemental-2", "LS-16-unit-7-logging-and-observability-supplemental-3")]
-assert len(logging_packs) == 3 and len(packs) == 19
+assert len(logging_packs) == 3 and len(packs) == 22
 logging_identity = json.loads((fixture_dir / "linux-logging-source-verifier.json").read_text())
 logging_verifier = (fixture_dir / "linux-logging-source-verifier.py").read_bytes()
 assert hashlib.sha256(logging_verifier).hexdigest() == logging_identity["sha256"]
@@ -77,6 +77,17 @@ assert hashlib.sha256(process_core_verifier).hexdigest() == process_core_identit
 assert hashlib.sha256(process_optional_verifier).hexdigest() == process_optional_identity["sha256"]
 assert process_core_packs[0]["revision"] == process_core_identity["revision"]
 assert all(pack["revision"] == process_optional_identity["revision"] for pack in process_optional_packs)
+package_core_packs = [pack for pack in packs if pack["pack"] == "LS-10-unit-9-package-management-and-software-layout"]
+package_optional_packs = [pack for pack in packs if pack["pack"] in ("LS-19-unit-9-package-management-and-software-layout-supplemental-2", "LS-20-unit-9-package-management-and-software-layout-supplemental-3")]
+assert len(package_core_packs) == 1 and len(package_optional_packs) == 2
+package_core_identity = json.loads((fixture_dir / "linux-package-core-source-verifier.json").read_text())
+package_core_verifier = (fixture_dir / "linux-package-core-source-verifier.py").read_bytes()
+package_optional_identity = json.loads((fixture_dir / "linux-package-optional-source-verifier.json").read_text())
+package_optional_verifier = (fixture_dir / "linux-package-optional-source-verifier.py").read_bytes()
+assert hashlib.sha256(package_core_verifier).hexdigest() == package_core_identity["sha256"]
+assert hashlib.sha256(package_optional_verifier).hexdigest() == package_optional_identity["sha256"]
+assert package_core_packs[0]["revision"] == package_core_identity["revision"]
+assert all(pack["revision"] == package_optional_identity["revision"] for pack in package_optional_packs)
 args.proof = args.proof.resolve()
 args.proof.parent.mkdir(parents=True, exist_ok=True)
 archives = []
@@ -272,6 +283,19 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
     assert process_optional["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in process_optional_packs for name, file in pack["files"].items()}
     assert len(process_optional["profiles"]) == 6 and len(process_optional["observations"]) == 66
     assert all(value for profile in process_optional["profiles"] for value in profile.values() if isinstance(value, bool))
+    package_core_proof = args.proof.with_name(args.proof.stem + "-package-core-native.json")
+    package_core = run_pinned_contract(work, "verify_package_core.py", package_core_verifier, package_core_proof, 90)
+    assert package_core["accepted"] and package_core["sourceUnchanged"] and package_core["hostPackageDatabaseUnchanged"]
+    assert package_core["worksheetCompletionNotInferred"] and package_core["temporaryFilesCleaned"]
+    assert package_core["sourceHashes"] == {name: file["sha256"] for name, file in package_core_packs[0]["files"].items()}
+    assert len(package_core["profiles"]) == 3 and package_core["loggedLifecycles"] == 26
+    package_optional_proof = args.proof.with_name(args.proof.stem + "-package-optional-native.json")
+    package_optional = run_pinned_contract(work, "verify_package_optional.py", package_optional_verifier, package_optional_proof, 180)
+    assert package_optional["accepted"] and package_optional["sourceUnchanged"] and package_optional["hostPackageDatabaseUnchanged"]
+    assert package_optional["worksheetCompletionNotInferred"] and package_optional["temporaryFilesCleaned"]
+    assert package_optional["sourceHashes"] == {pack["pack"] + "/" + name: file["sha256"] for pack in package_optional_packs for name,file in pack["files"].items()}
+    assert len(package_optional["profiles"]) == 6
+    assert all(value for profile in package_optional["profiles"] for value in profile.values() if isinstance(value,bool))
     default = work / "default-workspace"
     default.mkdir()
     default_archive = args.archives / "default-linux.zip"
@@ -330,6 +354,10 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
                                      "editingCoreNativeProof": str(editing_core_proof),
                                      "editingOptionalSourceIdentity": editing_optional_identity,
                                      "editingOptionalNativeProof": str(editing_optional_proof),
+                                     "packageCoreSourceIdentity": package_core_identity,
+                                     "packageCoreNativeProof": str(package_core_proof),
+                                     "packageOptionalSourceIdentity": package_optional_identity,
+                                     "packageOptionalNativeProof": str(package_optional_proof),
                                      "processCoreSourceIdentity": process_core_identity,
                                      "processCoreNativeProof": str(process_core_proof),
                                      "processOptionalSourceIdentity": process_optional_identity,

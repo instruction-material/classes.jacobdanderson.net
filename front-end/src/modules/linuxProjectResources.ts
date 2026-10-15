@@ -224,6 +224,42 @@ export const linuxVerifiedPacks = [
 		coreItemId:
 			"linux-systems-unit-5-processes-and-job-control-supplemental-process-control-extension-practice",
 		notebookItemId: null
+	},
+	{
+		pack: "LS-10-unit-9-package-management-and-software-layout",
+		revision: "6b0dde464ac98599e98b28c0af29fc9fee9e66dd",
+		roleFiles: ["package-notes.md", "task.sh", "package_report.py"],
+		coreItemId:
+			"linux-systems-unit-9-package-management-and-software-layout-curriculum-core-project-package-management-and-software-layout",
+		notebookItemId:
+			"linux-systems-unit-9-package-management-and-software-layout-supplemental-troubleshooting-notebook-package-management-and-software-layout"
+	},
+	{
+		pack: "LS-19-unit-9-package-management-and-software-layout-supplemental-2",
+		revision: "6b0dde464ac98599e98b28c0af29fc9fee9e66dd",
+		roleFiles: [
+			"manual-notes.md",
+			"task.sh",
+			"manual_layout.py",
+			"owned_lab.py",
+			"layout_demo.c"
+		],
+		coreItemId:
+			"linux-systems-unit-9-package-management-and-software-layout-supplemental-package-layout-transfer-practice",
+		notebookItemId: null
+	},
+	{
+		pack: "LS-20-unit-9-package-management-and-software-layout-supplemental-3",
+		revision: "6b0dde464ac98599e98b28c0af29fc9fee9e66dd",
+		roleFiles: [
+			"dependency-notes.md",
+			"task.sh",
+			"dependency_lab.py",
+			"owned_lab.py"
+		],
+		coreItemId:
+			"linux-systems-unit-9-package-management-and-software-layout-supplemental-package-layout-extension-practice",
+		notebookItemId: null
 	}
 ] as const;
 
