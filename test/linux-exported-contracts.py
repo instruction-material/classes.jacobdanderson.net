@@ -132,7 +132,7 @@ with tempfile.TemporaryDirectory(prefix="linux-site-exports-") as directory:
             archives.append({"pack": pack["pack"], "role": role,
                              "sha256": hashlib.sha256(archive_path.read_bytes()).hexdigest(),
                              "files": sorted(expected)})
-    assert len(archives) == 32
+    assert len(archives) == len(packs) * 2
     (work / "test").mkdir()
     native_proof = args.proof.with_name(args.proof.stem + "-native.json")
     native = run_pinned_contract(work, "verify_owned_labs.py", verifier, native_proof, 300)
