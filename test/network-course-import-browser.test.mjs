@@ -16,17 +16,18 @@ import {
 } from "./ide-workspace-controls.mjs";
 
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
-const fixtures = JSON.parse(
-	await readFile(
-		new URL(
+const fixtures = (
+	await Promise.all(
+		[
 			"./fixtures/network-foundations-contracts.json",
-			import.meta.url
-		),
-		"utf8"
+			"./fixtures/network-naming-contracts.json"
+		].map(async path =>
+			JSON.parse(await readFile(new URL(path, import.meta.url), "utf8"))
+		)
 	)
-);
+).flat();
 const storageKey = "classes-python-ide-projects:anonymous";
-const earlier = {
+const earlierTemplate = {
 	_id: "earlier-network-work",
 	title: "Earlier observation",
 	mode: "python",
@@ -125,8 +126,8 @@ async function courseAction(page, origin, fixture, itemID, role) {
 }
 
 nodeTest(
-	"Network course buttons, consent, exact role exports, notebook saves and attempt reuse",
-	{ timeout: 240000 },
+	"Network course buttons, consent, exact role exports, saved edits, notebook continuation and optional attempt reuse",
+	{ timeout: 360000 },
 	async t => {
 		let server, browser, context;
 		let outcome = "failed";
@@ -199,6 +200,10 @@ nodeTest(
 			for (const fixture of fixtures)
 				for (const width of [390, 1280])
 					for (const role of ["starter", "solution"]) {
+						const earlier = {
+							...earlierTemplate,
+							courseProjectKey: `network-systems:${fixture.coreItemId}:${role === "starter" ? "starter" : "reference"}`
+						};
 						context = await browser.createBrowserContext();
 						const page = await context.newPage();
 						let catalog = true;
@@ -386,12 +391,13 @@ nodeTest(
 							);
 							assert.deepEqual(
 								saved.files.map(file => file.name).sort(),
-								[
-									"README.md",
-									`${role}/main.py`,
-									`${role}/network_lab.py`,
-									`${role}/network-notes.md`
-								].sort()
+								Object.keys(fixture.files)
+									.filter(
+										name =>
+											name === "README.md" ||
+											name.startsWith(`${role}/`)
+									)
+									.sort()
 							);
 							assert.deepEqual(
 								[...requests].sort(),
@@ -399,7 +405,10 @@ nodeTest(
 							);
 							const exact = await exportedBytes(page);
 							const entries = unzipSync(exact);
-							assert.equal(Object.keys(entries).length, 4);
+							assert.equal(
+								Object.keys(entries).length,
+								saved.files.length
+							);
 							for (const file of saved.files) {
 								assert.equal(
 									digest(file.content),
@@ -524,7 +533,7 @@ nodeTest(
 								page,
 								origin,
 								fixture,
-								fixture.notebookItemId,
+								fixture.notebookItemId ?? fixture.coreItemId,
 								role
 							);
 							assert.equal(
@@ -608,7 +617,10 @@ nodeTest(
 								savedProjectID: edited._id,
 								primaryStoreRead: true,
 								savedEditReopened: true,
-								notebookReusedSameAttempt: true,
+								notebookReusedSameAttempt: Boolean(
+									fixture.notebookItemId
+								),
+								reopenedSameAttempt: true,
 								previousWorkPreserved: true,
 								nativeInstructions: true,
 								remoteWrites
@@ -619,7 +631,7 @@ nodeTest(
 							context = null;
 						}
 					}
-			assert.equal(profiles.length, 8);
+			assert.equal(profiles.length, fixtures.length * 4);
 			await writeFile(
 				join(output, "network-browser-proof.json"),
 				JSON.stringify({ profiles }, null, 2) + "\n"

@@ -1,4 +1,8 @@
 import type { RawCourse } from "./types";
+import namingReading2 from "../../assets/course-guides/network-addresses-families.md?raw";
+import namingReading1 from "../../assets/course-guides/network-addresses-transfer.md?raw";
+import namingReading0 from "../../assets/course-guides/network-addresses.md?raw";
+
 import setupReading from "../../assets/course-guides/network-setup.md?raw";
 import transportReading from "../../assets/course-guides/network-transport.md?raw";
 import {
@@ -8,7 +12,10 @@ import {
 
 const readings: Record<string, string> = {
 	"NS-04-ns0-setup-and-tooling": setupReading,
-	"NS-05-unit-1-the-network-stack-in-plain-english": transportReading
+	"NS-05-unit-1-the-network-stack-in-plain-english": transportReading,
+	"NS-06-unit-2-addresses-and-naming": namingReading0,
+	"NS-05-unit-2-addresses-and-naming-supplemental-2": namingReading1,
+	"NS-06-unit-2-addresses-and-naming-supplemental-3": namingReading2
 };
 
 export function withNetworkProjectReadings(

@@ -1,7 +1,7 @@
 import { githubRawUrl, parseGitHubResource } from "./codePreview";
 
 export const networkSourceRevision = "1fdd3faef06af8782a0d029ba880422b0a9775eb";
-export const networkVerifiedPacks = [
+export const networkFoundationPacks = [
 	{
 		pack: "NS-04-ns0-setup-and-tooling",
 		revision: networkSourceRevision,
@@ -20,6 +20,56 @@ export const networkVerifiedPacks = [
 		notebookItemId:
 			"network-systems-unit-1-the-network-stack-in-plain-english-supplemental-operations-notebook-the-network-stack-in-plain-english"
 	}
+] as const;
+
+export const networkNamingSourceRevision =
+	"4947560f34919e27c74cecf30099ddbf85c3cef6";
+export const networkNamingPacks = [
+	{
+		pack: "NS-06-unit-2-addresses-and-naming",
+		revision: networkNamingSourceRevision,
+		roleFiles: [
+			"network-notes.md",
+			"main.py",
+			"network_lab.py",
+			"naming_lab.py"
+		],
+		coreItemId:
+			"network-systems-unit-2-addresses-and-naming-curriculum-core-project-addresses-and-naming",
+		notebookItemId:
+			"network-systems-unit-2-addresses-and-naming-supplemental-operations-notebook-addresses-and-naming"
+	},
+	{
+		pack: "NS-05-unit-2-addresses-and-naming-supplemental-2",
+		revision: networkNamingSourceRevision,
+		roleFiles: [
+			"network-notes.md",
+			"main.py",
+			"network_lab.py",
+			"naming_lab.py"
+		],
+		coreItemId:
+			"network-systems-unit-2-addresses-and-naming-supplemental-addressing-transfer-practice",
+		notebookItemId: undefined
+	},
+	{
+		pack: "NS-06-unit-2-addresses-and-naming-supplemental-3",
+		revision: networkNamingSourceRevision,
+		roleFiles: [
+			"network-notes.md",
+			"main.py",
+			"network_lab.py",
+			"naming_lab.py"
+		],
+		coreItemId:
+			"network-systems-unit-2-addresses-and-naming-supplemental-addressing-extension-practice",
+		notebookItemId: undefined
+	}
+] as const;
+
+export const networkVerifiedPacks = [
+	...networkFoundationPacks,
+	...networkNamingPacks
 ] as const;
 
 export function networkCourseResource(url: string) {

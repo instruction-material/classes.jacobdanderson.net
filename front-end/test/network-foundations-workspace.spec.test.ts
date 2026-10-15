@@ -31,18 +31,31 @@ import { useCoursesStore } from "@/stores/courses";
 
 type Fixture = {
 	pack: string;
+	moduleId: string;
+	learningPath?: string;
 	revision: string;
 	files: Record<string, { content: string; sha256: string }>;
 };
-const fixtures: Fixture[] = JSON.parse(
-	readFileSync(
-		resolve(
-			process.cwd(),
-			"../test/fixtures/network-foundations-contracts.json"
-		),
-		"utf8"
+const fixtures: Fixture[] = [
+	...JSON.parse(
+		readFileSync(
+			resolve(
+				process.cwd(),
+				"../test/fixtures/network-foundations-contracts.json"
+			),
+			"utf8"
+		)
+	),
+	...JSON.parse(
+		readFileSync(
+			resolve(
+				process.cwd(),
+				"../test/fixtures/network-naming-contracts.json"
+			),
+			"utf8"
+		)
 	)
-);
+];
 const identities = JSON.parse(
 	readFileSync(
 		resolve(
@@ -67,14 +80,14 @@ it.each(
 		["learner", "instructor"].map(role => ({ definition, role }))
 	)
 )(
-	"opens the actual $definition.pack lesson and notebook with separate $role controls",
+	"opens the actual $definition.pack project with separate $role controls",
 	async ({ definition, role }) => {
 		const pinia = createPinia();
 		setActivePinia(pinia);
 		window.history.replaceState(
 			{},
 			"",
-			`/courses#${definition.coreItemId.split("-curriculum-")[0]}`
+			`/courses#${fixtures.find(fixture => fixture.pack === definition.pack)!.moduleId}`
 		);
 		const learner = {
 			_id: "network-learner",
@@ -110,6 +123,17 @@ it.each(
 					wrapper.findAll("a.is-ide-starter").length
 				).toBeGreaterThan(0)
 			);
+			const fixture = fixtures.find(row => row.pack === definition.pack)!;
+			if (
+				fixture.learningPath === "choice" ||
+				fixture.learningPath === "challenge"
+			) {
+				await wrapper
+					.findAll(".lesson-view-toggle button")
+					.find(button => button.text() === "Supplemental Projects")!
+					.trigger("click");
+				await flushPromises();
+			}
 			const core = wrapper
 				.findAll(".lesson-item")
 				.find(card =>
@@ -138,7 +162,7 @@ it.each(
 	}
 );
 
-it("preserves every published lesson while making two networking notebooks continue their core attempts", async () => {
+it("preserves every published lesson while preserving core notebooks and distinct optional networking attempts", async () => {
 	setActivePinia(createPinia());
 	useAppStore().setCurrentTutor({
 		_id: "network-tutor",
@@ -187,7 +211,12 @@ it("preserves every published lesson while making two networking notebooks conti
 			)
 			.trim();
 		expect(core.content).toContain(reading);
-		expect(core.learningPath).toBe("core");
+		expect(core.learningPath).toBe(source.learningPath ?? "core");
+		if (!definition.notebookItemId) {
+			expect(core.ideImport).toBe(true);
+			expect(source.learningPath).toMatch(/choice|challenge/);
+			continue;
+		}
 		expect(notebook.learningPath).toBe("core");
 		expect(core.ideImport).toBe(true);
 		expect(notebook.ideImport).toBe(true);
@@ -239,7 +268,10 @@ it.each(
 			"README.md",
 			`${role}/network-notes.md`,
 			`${role}/main.py`,
-			`${role}/network_lab.py`
+			`${role}/network_lab.py`,
+			...(fixture.files[`${role}/naming_lab.py`]
+				? [`${role}/naming_lab.py`]
+				: [])
 		].sort();
 		expect(files.map(file => file.name).sort()).toEqual(expected);
 		expect(requests.sort()).toEqual(expected);
@@ -287,7 +319,7 @@ it.each(
 		saveLocalPythonProjects([before, project]);
 		expect(loadLocalPythonProjects()).toEqual([before, project]);
 		const exactArchive = unzipSync(createProjectArchive(project));
-		expect(Object.keys(exactArchive).length).toBe(4);
+		expect(Object.keys(exactArchive).length).toBe(files.length);
 		for (const file of files)
 			expect(
 				strFromU8(exactArchive[`${project.title}/${file.name}`])
