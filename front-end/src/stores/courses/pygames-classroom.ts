@@ -42,6 +42,8 @@ const classroomLaunchModule = createClassroomLaunchModule({
 
 Complete the **Normal** section first and save a playable checkpoint. The **Hard** section is independent and may remain empty without breaking the game. Add one system at a time and replay the same test after every change.
 
+The imported normal_addition() and hard_addition() functions run once after setup; they do not run on every frame. Use them for setup changes. Movement, drawing and input changes belong in the existing update(), draw() or event callback. Label each changed block with a Normal or Hard comment so its purpose remains clear. For a shared setting, update the named game variable rather than creating a temporary local value inside an addition function.
+
 During a class share, demonstrate the controls, goal, feedback, and reset or end state. Explain one Normal change before showing any Hard extension.`
 		},
 		launchProject(

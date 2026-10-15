@@ -451,7 +451,7 @@ ${classroom ? `**Normal:** ${practice.challenge ? "Run the supplied model, ident
 
 **Pacing:** An independent run follows prediction, change, playtest and explanation. A guided session pauses after the prediction and the first changed result. ${classroom ? "Keep a working Normal checkpoint; Hard work is chosen extension practice." : "Choose this optional transfer or challenge when another application of this concept is useful."}
 
-Model source: [Juni course program](${pyGamesPinnedSourceUrl(practice.file)}).`;
+Model source: [Course program](${pyGamesPinnedSourceUrl(practice.file)}).`;
 				continue;
 			}
 			const asset = assetActivities[item.id];
@@ -476,12 +476,12 @@ Model source: [Juni course program](${pyGamesPinnedSourceUrl(practice.file)}).`;
 
 **${classroom ? "Hard" : "Challenge"}:** ${asset.kind === "music" ? "Reproduce and repair a source-name or resource-path failure after exporting and reopening the project. Record the exact failing filename and the corrected layout." : asset.kind === "images" ? "Change to a differently sized sprite while preserving its chosen center, then verify complete visibility at each window edge. Explain each position or boundary correction." : "Choose one additional mechanic from the capstone pitch, state three acceptance cases and add it without breaking end, restart or cleanup. Preserve a working baseline for comparison."}
 
-Keep the prediction, changed source, observed result and repaired failure with the core project’s evidence. This is an optional extension of that project.`
+**Completion checks:** Reopen the saved core and confirm its controls still work. Repeat the extension check from a fresh run, then describe the specific source or asset change that explains the result. Keep the prediction, changed source, observed result and repaired failure with the core project’s evidence. This is an optional extension of that project.`
 					: asset.kind === "music"
 						? setupReading
 						: asset.kind === "images"
 							? imageReading
-							: "**Build and verification checkpoint:** Continue the game defined in the Master Project card. This card opens the same saved capstone. Complete controls and drawing, one successful interaction, the end state and a deterministic restart before the original extension. Keep the pitch, state diagram, expected/actual playtest table and exported source/media together. Demonstrate two restarts and explain one repaired failure. The Master Project reading supplies the full independent and paced build sequence.";
+							: "**Build and verification checkpoint:** Continue the game defined in the Master Project card. This card opens the same saved capstone. Complete controls and drawing, one successful interaction, the end state and a deterministic restart before the original extension. Keep the pitch, state diagram, expected/actual playtest table and exported source/media together. **Completion checks:** Demonstrate two restarts and explain one repaired failure. Record the starting and restored values for score, actors, timers and collections. Confirm that required image and audio files travel with the exported project. The Master Project reading supplies the full independent and paced build sequence.";
 				if (classroom) {
 					item.content +=
 						"\n\n**Normal:** Complete the working core evidence and keep its saved checkpoint.\n\n**Hard:** Choose the matching extension after the Normal checkpoint; keep the baseline available for comparison.";

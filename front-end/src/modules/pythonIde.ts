@@ -2512,6 +2512,9 @@ export const pythonIdeClassroomSectionsCode = `########################
 ########################
 # Complete the Normal task from the course project card
 # The completed project still runs while this function is empty
+# This setup function runs once, not on each animation frame
+# For movement/input changes, edit the matching callback with a Normal comment
+# Update shared game settings directly; a local variable here does not replace them
 def normal_addition():
     pass
 
@@ -2521,6 +2524,7 @@ def normal_addition():
 ######################
 # Complete the Hard task after the Normal version works
 # This section can remain empty without breaking the project
+# For an event-driven extension, label the corresponding callback change Hard
 def hard_addition():
     pass
 `;

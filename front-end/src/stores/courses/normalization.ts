@@ -9050,7 +9050,7 @@ function adaptClassroomCourse(course: RawCourse, courseId: string) {
 				!item.content.includes("**Hard:**")
 			) {
 				const challenge = classroomChallenges(courseId, module.title);
-				item.content += `\n\n**Classroom build:** Run the completed framework first, then work only inside the labeled Normal and Hard sections. Save a working Normal checkpoint before changing the Hard section.\n\n**Normal:** ${challenge.normal}.\n\n**Hard:** ${challenge.hard}.`;
+				item.content += `\n\n**Classroom build:** Run the completed framework first, then label each addition Normal or Hard. Use the supplied sections for setup work. For event-driven changes, edit the matching movement, drawing or input callback and mark the changed block with a Normal or Hard comment. Save a working Normal checkpoint before changing the Hard section.\n\n**Normal:** ${challenge.normal}.\n\n**Hard:** ${challenge.hard}.`;
 			}
 
 			const template =
