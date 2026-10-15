@@ -1031,7 +1031,7 @@ describe("CourseExplorer.vue", () => {
 		}
 	});
 
-	it("keeps configured learner and staff-reference imports in distinct saved projects", async () => {
+	it("keeps learner and staff-reference imports distinct without a project opt-in", async () => {
 		const pinia = createPinia();
 		setActivePinia(pinia);
 		const courses = useCoursesStore();
@@ -1053,7 +1053,7 @@ describe("CourseExplorer.vue", () => {
 								"Attempt first, then compare with the reference.",
 							projectLink: base + "CPPM4-Grocery-List-Starter",
 							solutionLink: base + "CPPM4-Grocery-List",
-							ideImport: true
+							ideImport: false
 						}
 					]
 				}

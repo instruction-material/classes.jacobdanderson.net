@@ -1564,7 +1564,8 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 		!selectedCourse.value ||
 		(resource.kind !== "project" && resource.kind !== "solution") ||
 		resource.host !== "github.com" ||
-		(!item.ideImport &&
+		(resource.kind !== "solution" &&
+			!item.ideImport &&
 			!STARTER_RE.test(`${resource.label} ${resource.url}`))
 	) {
 		return "";
