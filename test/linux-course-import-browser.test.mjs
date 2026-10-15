@@ -248,8 +248,8 @@ const digest = value => createHash("sha256").update(value).digest("hex");
 
 test(
 	"Linux confirmed imports, exact role exports, saved edits and shared notebook attempts",
-	// Retain every scenario and allow time to close the browser and server.
-	{ timeout: 900_000 },
+	// All 416 profiles need time for storage checks and browser cleanup.
+	{ timeout: 1_200_000 },
 	async () => {
 		let server, browser, context, page;
 		const output
@@ -928,14 +928,30 @@ test(
 			await writeFile(join(output, "default-linux.zip"), defaultArchive);
 			assert.equal(proof.length, 416);
 			assert.equal(courseButtons.length, 69);
-			assert.equal(
-				courseButtons.filter(action => action.reusesExistingAttempt)
-					.length,
-				15
+			const sharedAttempts = courseButtons.filter(
+				action => action.reusesExistingAttempt
 			);
-			assert.equal(courseButtons.filter(action => action.reusesExistingAttempt && action.item.includes("troubleshooting-notebook")).length, 13);
-			assert.equal(courseButtons.filter(action => action.reusesExistingAttempt && action.item.endsWith("extension-challenge-service-deployment-studio")).length, 1);
-			assert.equal(courseButtons.filter(action => action.reusesExistingAttempt && action.item.endsWith("extension-challenge-operations-capstone-studio")).length, 1);
+			assert.equal(sharedAttempts.length, 17);
+			assert.equal(
+				sharedAttempts.filter(action =>
+					action.item.includes("troubleshooting-notebook")
+				).length,
+				13
+			);
+			for (const continuation of [
+				"service-deployment-studio",
+				"operations-capstone-studio",
+				"automation-and-observability-studio",
+				"backup-recovery-studio"
+			]) {
+				assert.equal(
+					sharedAttempts.filter(action =>
+						action.item.endsWith(`extension-challenge-${continuation}`)
+					).length,
+					1,
+					`Exactly one shared attempt for ${continuation}`
+				);
+			}
 			const storageEvidence = await page.evaluate(async (key, earlier) => {
 				const projects = await window.__linuxSavedProjects();
 				const serialized = JSON.stringify(projects);
