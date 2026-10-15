@@ -17,6 +17,34 @@ const deploymentStudioContext = {
 		"actual account and tools, candidate/current symlink targets, status and body bytes, before/after payload hashes, rollback and recovery, independent lock probes where applicable, owned PID/listener cleanup and the limits of a locally supplied manifest"
 };
 
+const observabilityStudioContext = {
+	focus: "actual timer-triggered work, fresh output identity, invocation-scoped journal evidence and progress budgets inside one selected optional integration studio",
+	artifact:
+		"an observability record with actual manager state, kernel PID/UID, timer trigger, journal invocation, output bytes and timed policy decisions",
+	invariant:
+		"a scheduling request or successful exit is insufficient without the selected work evidence; journal selection uses the requested invocation and overdue decisions use a declared monotonic budget",
+	exampleCase:
+		"compare two actual successful scheduled jobs when one writes the expected fresh artifact and the other leaves earlier output; record the named artifact_is_current repair",
+	boundaryCase:
+		"change the output value and run order; use separate optional projects to reject historical/unrelated journal completions and distinguish a stalled worker from an explicit exit-7 failure",
+	reviewEvidence:
+		"ordinary account and tools, predictions, timer trigger, actual invocation/PID/UID and journal, artifact digests or selected rows, monotonic sample times and budget, interruption/recovery, unchanged source, removed owned units/workers and independent worksheet reasoning"
+};
+
+const backupStudioContext = {
+	focus: "one coherent multi-file capture under a cooperating writer, independently recorded restore attributes and guarded retirement with preserved recovery anchors inside optional backup integration practice",
+	artifact:
+		"a backup investigation record with actual kernel locks, archive and restored bytes, modes and modification times, retention plans, deletion effects and two verified anchor restores",
+	invariant:
+		"valid payload digests do not alone establish a coherent application generation or preserved operating attributes; retention removes only verified eligible private archives and protects the declared recovery anchors",
+	exampleCase:
+		"observe a real writer after its first JSON-file update, hold a shared lock through capture and compare a complete coherent restore with the unfinished policy's internally valid mixed-generation archive",
+	boundaryCase:
+		"reverse writer order and change generation, interrupt with a real held lock and recover; use the separate transfer and extension projects to restore metadata and reject unsafe retention plans or an empty-eligibility cutoff",
+	reviewEvidence:
+		"account and tools, prediction and named policy, actual process/lock timing, manifest and payload digests, separate restore and application result, actual stat/execute observations or guarded deletions, reversed/changed cases, interruption/recovery, exact cleanup and independent worksheet reasoning"
+};
+
 const operationsCapstoneContext = {
 	focus: "one loopback service, a dedicated dynamic identity, read-only code, actual systemd state and journals, timer-triggered backups, separate restores and controlled incident recovery",
 	artifact:
@@ -1103,7 +1131,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 15: Automation and Observability Studio",
-						section: "concepts"
+						section: "concepts",
+						...observabilityStudioContext
 					})
 				},
 				{
@@ -1112,7 +1141,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 15: Automation and Observability Studio",
-						section: "example"
+						section: "example",
+						...observabilityStudioContext
 					})
 				},
 				{
@@ -1121,7 +1151,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 15: Automation and Observability Studio",
-						section: "coreProject"
+						section: "coreProject",
+						...observabilityStudioContext
 					}),
 					projectLink:
 						"https://github.com/instruction-material/Linux-Systems/tree/main/LS-02-linux-systems-lab-15/starter",
@@ -1134,7 +1165,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 15: Automation and Observability Studio",
-						section: "review"
+						section: "review",
+						...observabilityStudioContext
 					})
 				}
 			],
@@ -1145,7 +1177,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 15: Automation and Observability Studio",
-						section: "extension"
+						section: "extension",
+						...observabilityStudioContext
 					}),
 					projectLink:
 						"https://github.com/instruction-material/Linux-Systems/tree/main/LS-02-linux-systems-lab-15/starter",
@@ -1191,7 +1224,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 16: Backup Recovery Studio",
-						section: "concepts"
+						section: "concepts",
+						...backupStudioContext
 					})
 				},
 				{
@@ -1200,7 +1234,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 16: Backup Recovery Studio",
-						section: "example"
+						section: "example",
+						...backupStudioContext
 					})
 				},
 				{
@@ -1209,7 +1244,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 16: Backup Recovery Studio",
-						section: "coreProject"
+						section: "coreProject",
+						...backupStudioContext
 					}),
 					projectLink:
 						"https://github.com/instruction-material/Linux-Systems/tree/main/LS-03-linux-systems-lab-16/starter",
@@ -1222,7 +1258,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 16: Backup Recovery Studio",
-						section: "review"
+						section: "review",
+						...backupStudioContext
 					})
 				}
 			],
@@ -1233,7 +1270,8 @@ const linuxSystemsSourceCourse: RawCourse = {
 						courseFamily: "Linux systems",
 						moduleTitle:
 							"Linux Systems Lab 16: Backup Recovery Studio",
-						section: "extension"
+						section: "extension",
+						...backupStudioContext
 					}),
 					projectLink:
 						"https://github.com/instruction-material/Linux-Systems/tree/main/LS-03-linux-systems-lab-16/starter",

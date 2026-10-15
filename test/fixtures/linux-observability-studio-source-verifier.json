@@ -1,0 +1,6 @@
+{
+  "repository": "instruction-material/Linux-Systems",
+  "revision": "302c24ed602ce9dbe92abd330bfb40ad9380780f",
+  "path": "test/verify_observability_studio.py",
+  "sha256": "7ae1ead76435befd6712590c5621910e3e64e497a1abd1b549bf8a41ba2384c8"
+}

@@ -579,6 +579,103 @@ export const linuxVerifiedPacks = [
 			"linux-systems-linux-systems-lab-17-operations-capstone-studio-supplemental-operations-capstone-extension-practice",
 		notebookItemId: null,
 		revision: "49effd3de02a3844d438f37d975a9a5c49848310"
+	},
+	{
+		pack: "LS-02-linux-systems-lab-15",
+		roleFiles: [
+			"observability-notes.md",
+			"task.sh",
+			"task.py",
+			"studio_observer.py",
+			"studio_worker.py"
+		],
+		coreItemId:
+			"linux-systems-optional-linux-integration-studio-archive-supplemental-core-project-automation-and-observability-studio",
+		notebookItemId: null,
+		revision: "302c24ed602ce9dbe92abd330bfb40ad9380780f",
+		continuationItemId:
+			"linux-systems-optional-linux-integration-studio-archive-supplemental-extension-challenge-automation-and-observability-studio"
+	},
+	{
+		pack: "LS-29-applied-studio-15-linux-systems-lab-15-supplemental-2",
+		roleFiles: [
+			"observability-notes.md",
+			"task.sh",
+			"task.py",
+			"studio_observer.py",
+			"studio_worker.py"
+		],
+		coreItemId:
+			"linux-systems-optional-linux-integration-studio-archive-supplemental-automation-observability-transfer-practice",
+		notebookItemId: null,
+		revision: "302c24ed602ce9dbe92abd330bfb40ad9380780f"
+	},
+	{
+		pack: "LS-30-applied-studio-15-linux-systems-lab-15-supplemental-3",
+		roleFiles: [
+			"observability-notes.md",
+			"task.sh",
+			"task.py",
+			"studio_observer.py",
+			"studio_worker.py"
+		],
+		coreItemId:
+			"linux-systems-optional-linux-integration-studio-archive-supplemental-automation-observability-extension-practice",
+		notebookItemId: null,
+		revision: "302c24ed602ce9dbe92abd330bfb40ad9380780f"
+	},
+	{
+		pack: "LS-03-linux-systems-lab-16",
+		roleFiles: [
+			"backup-notes.md",
+			"task.sh",
+			"task.py",
+			"backup_studio.py",
+			"backup.py",
+			"app.py",
+			"config.json",
+			"data.json"
+		],
+		coreItemId:
+			"linux-systems-optional-linux-integration-studio-archive-supplemental-core-project-backup-recovery-studio",
+		notebookItemId: null,
+		revision: "56db200d22ab9bf1147935c94bf825590a9e009b",
+		continuationItemId:
+			"linux-systems-optional-linux-integration-studio-archive-supplemental-extension-challenge-backup-recovery-studio"
+	},
+	{
+		pack: "LS-31-applied-studio-16-linux-systems-lab-16-supplemental-2",
+		roleFiles: [
+			"backup-notes.md",
+			"task.sh",
+			"task.py",
+			"backup_studio.py",
+			"backup.py",
+			"app.py",
+			"config.json",
+			"data.json"
+		],
+		coreItemId:
+			"linux-systems-optional-linux-integration-studio-archive-supplemental-backup-recovery-transfer-practice",
+		notebookItemId: null,
+		revision: "56db200d22ab9bf1147935c94bf825590a9e009b"
+	},
+	{
+		pack: "LS-32-applied-studio-16-linux-systems-lab-16-supplemental-3",
+		roleFiles: [
+			"backup-notes.md",
+			"task.sh",
+			"task.py",
+			"backup_studio.py",
+			"backup.py",
+			"app.py",
+			"config.json",
+			"data.json"
+		],
+		coreItemId:
+			"linux-systems-optional-linux-integration-studio-archive-supplemental-backup-recovery-extension-practice",
+		notebookItemId: null,
+		revision: "56db200d22ab9bf1147935c94bf825590a9e009b"
 	}
 ] as const;
 
