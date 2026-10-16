@@ -219,7 +219,10 @@ describe("Python Level 2 and PyGames classroom editions", () => {
 					projectUrl.searchParams.get("projectKey"),
 					label
 				).toContain(`${expectation.classroomId}:`);
-				if (projectUrl.searchParams.has("classroomSource")) {
+				if (
+					projectUrl.searchParams.has("classroomSource") ||
+					projectUrl.searchParams.has("starterUrl")
+				) {
 					completedSourceCount += 1;
 				}
 			}
@@ -253,7 +256,9 @@ describe("Python Level 2 and PyGames classroom editions", () => {
 			new URL(
 				bouncingAlien!.projectLink!,
 				"https://example.com"
-			).searchParams.get("classroomSource")
-		).toBe("PyGames/blob/main/PyG1-Bouncing-Alien.py");
+			).searchParams.get("starterUrl")
+		).toBe(
+			"https://github.com/instruction-material/PyGames/blob/abc7a6c6cb9bc991b37ca6eb239f3d418185b09f/PyG1-Bouncing-Alien.py"
+		);
 	});
 });

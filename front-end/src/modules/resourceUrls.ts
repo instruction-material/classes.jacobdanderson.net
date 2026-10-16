@@ -115,6 +115,29 @@ export function isInstructionMaterialResourceUrl(value: string) {
 export function externalDatasetResourceLabel(value: string) {
 	const parsed = parsePublicHttpsUrl(value);
 	if (!parsed) return null;
+	if (parsed.hostname === "github.com") {
+		const parts = pathSegments(parsed);
+		if (
+			parts.length === 5 &&
+			parts[0].toLowerCase() === "instruction-material" &&
+			parts[1].toLowerCase() === "pygames" &&
+			/^(?:main|[a-f0-9]{40})$/.test(parts[3])
+		) {
+			if (parts[2] === "tree") {
+				return (
+					(
+						{
+							images: "Image assets",
+							music: "Music assets",
+							sounds: "Sound effects"
+						} as Record<string, string>
+					)[parts[4]] ?? null
+				);
+			}
+			if (parts[2] === "blob" && parts[4] === "PyG12-Master-Project.py")
+				return "Original capstone brief";
+		}
+	}
 
 	const pathname = parsed.pathname.toLowerCase().replace(/\/+$/u, "") || "/";
 	if (hostnameIsDomain(parsed.hostname, "acs.org")) {

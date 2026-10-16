@@ -1,0 +1,634 @@
+[
+  {
+    "moduleId": "pygames-classroom-classroom-launch-play-extend-explain",
+    "id": "pygames-classroom-classroom-launch-play-extend-explain-curriculum-classroom-workflow-play-normal-hard"
+  },
+  {
+    "moduleId": "pygames-classroom-classroom-launch-play-extend-explain",
+    "id": "pygames-classroom-classroom-launch-play-extend-explain-curriculum-launch-project-1-bouncing-alien"
+  },
+  {
+    "moduleId": "pygames-classroom-classroom-launch-play-extend-explain",
+    "id": "pygames-classroom-classroom-launch-play-extend-explain-curriculum-launch-project-2-apple-collector"
+  },
+  {
+    "moduleId": "pygames-classroom-classroom-launch-play-extend-explain",
+    "id": "pygames-classroom-classroom-launch-play-extend-explain-curriculum-launch-project-3-asteroid-dodge"
+  },
+  {
+    "moduleId": "pygames-classroom-classroom-launch-play-extend-explain",
+    "id": "pygames-classroom-classroom-launch-play-extend-explain-curriculum-launch-project-4-jewel-catch"
+  },
+  {
+    "moduleId": "pygames-classroom-classroom-launch-play-extend-explain",
+    "id": "pygames-classroom-classroom-launch-play-extend-explain-curriculum-launch-project-5-keep-up"
+  },
+  {
+    "moduleId": "pygames-classroom-classroom-launch-play-extend-explain",
+    "id": "pygames-classroom-classroom-launch-play-extend-explain-curriculum-launch-project-6-platformer-game"
+  },
+  {
+    "moduleId": "pygames-classroom-classroom-launch-play-extend-explain",
+    "id": "pygames-classroom-classroom-launch-play-extend-explain-curriculum-launch-project-7-alien-catch"
+  },
+  {
+    "moduleId": "pygames-classroom-classroom-launch-play-extend-explain",
+    "id": "pygames-classroom-classroom-launch-play-extend-explain-curriculum-launch-project-8-target-shoot"
+  },
+  {
+    "moduleId": "pygames-classroom-classroom-launch-play-extend-explain",
+    "id": "pygames-classroom-classroom-launch-play-extend-explain-curriculum-launch-project-9-space-battle"
+  },
+  {
+    "moduleId": "pygames-classroom-classroom-launch-play-extend-explain",
+    "id": "pygames-classroom-classroom-launch-play-extend-explain-curriculum-launch-project-10-space-invaders"
+  },
+  {
+    "moduleId": "pygames-classroom-classroom-launch-play-extend-explain",
+    "id": "pygames-classroom-classroom-launch-play-extend-explain-curriculum-classroom-playtest-and-showcase-routine"
+  },
+  {
+    "moduleId": "pygames-classroom-classroom-launch-play-extend-explain",
+    "id": "pygames-classroom-classroom-launch-play-extend-explain-supplemental-launch-remix-controls-and-feedback"
+  },
+  {
+    "moduleId": "pygames-classroom-classroom-launch-play-extend-explain",
+    "id": "pygames-classroom-classroom-launch-play-extend-explain-supplemental-launch-remix-difficulty-and-replay"
+  },
+  {
+    "moduleId": "pygames-pyg0-setup-editors-and-asset-workflow",
+    "id": "pygames-classroom-pyg0-setup-editors-and-asset-workflow-curriculum-setup-editors-and-asset-workflow-core-concepts"
+  },
+  {
+    "moduleId": "pygames-pyg0-setup-editors-and-asset-workflow",
+    "id": "pygames-pyg0-setup-editors-and-asset-workflow-curriculum-pyg0-setup-editors-and-asset-workflow-core-project"
+  },
+  {
+    "moduleId": "pygames-pyg0-setup-editors-and-asset-workflow",
+    "id": "pgzero-events-reference"
+  },
+  {
+    "moduleId": "pygames-pyg0-setup-editors-and-asset-workflow",
+    "id": "pygames-pyg0-setup-editors-and-asset-workflow-supplemental-pyg0-setup-editors-and-asset-workflow-extension-challenge"
+  },
+  {
+    "moduleId": "pygames-pyg0-setup-editors-and-asset-workflow",
+    "id": "pygames-pyg0-setup-editors-and-asset-workflow-supplemental-transfer-practice-setup-editors-and-asset-workflow"
+  },
+  {
+    "moduleId": "pygames-pyg0-setup-editors-and-asset-workflow",
+    "id": "pygames-pyg0-setup-editors-and-asset-workflow-supplemental-setup-editors-and-asset-workflow-extension-practice"
+  },
+  {
+    "moduleId": "pygames-images-and-sprites-practice-studio",
+    "id": "pygames-images-and-sprites-practice-studio-curriculum-images-and-sprites-core-concepts"
+  },
+  {
+    "moduleId": "pygames-images-and-sprites-practice-studio",
+    "id": "pygames-images-and-sprites-practice-studio-curriculum-images-and-sprites-guided-example"
+  },
+  {
+    "moduleId": "pygames-images-and-sprites-practice-studio",
+    "id": "pygames-images-and-sprites-practice-studio-curriculum-images-and-sprites-core-project"
+  },
+  {
+    "moduleId": "pygames-images-and-sprites-practice-studio",
+    "id": "pygames-images-and-sprites-practice-studio-curriculum-images-and-sprites-review-and-reflection"
+  },
+  {
+    "moduleId": "pygames-images-and-sprites-practice-studio",
+    "id": "pygames-images-and-sprites-practice-studio-supplemental-images-and-sprites-extension-challenge"
+  },
+  {
+    "moduleId": "pygames-images-and-sprites-practice-studio",
+    "id": "pygames-images-and-sprites-practice-studio-supplemental-images-and-sprites-transfer-practice"
+  },
+  {
+    "moduleId": "pygames-images-and-sprites-practice-studio",
+    "id": "pygames-images-and-sprites-practice-studio-supplemental-images-and-sprites-extension-practice"
+  },
+  {
+    "moduleId": "pygames-pyg1-object-oriented-programming-actors",
+    "id": "pygames-pyg1-object-oriented-programming-actors-curriculum-pygame-setup-with-mu"
+  },
+  {
+    "moduleId": "pygames-pyg1-object-oriented-programming-actors",
+    "id": "pygames-pyg1-object-oriented-programming-actors-curriculum-actors"
+  },
+  {
+    "moduleId": "pygames-pyg1-object-oriented-programming-actors",
+    "id": "pygames-pyg1-object-oriented-programming-actors-curriculum-position-keywords"
+  },
+  {
+    "moduleId": "pygames-pyg1-object-oriented-programming-actors",
+    "id": "pygames-pyg1-object-oriented-programming-actors-curriculum-global-variables-bouncing"
+  },
+  {
+    "moduleId": "pygames-pyg1-object-oriented-programming-actors",
+    "id": "pygames-pyg1-object-oriented-programming-actors-curriculum-pyg1-project-1-rainbow-fill"
+  },
+  {
+    "moduleId": "pygames-pyg1-object-oriented-programming-actors",
+    "id": "pygames-pyg1-object-oriented-programming-actors-curriculum-pyg1-project-2-bouncing-alien"
+  },
+  {
+    "moduleId": "pygames-pyg1-object-oriented-programming-actors",
+    "id": "pygames-pyg1-object-oriented-programming-actors-curriculum-pyg1-project-3-wandering-ball"
+  },
+  {
+    "moduleId": "pygames-pyg1-object-oriented-programming-actors",
+    "id": "pygames-pyg1-object-oriented-programming-actors-supplemental-object-oriented-programming-actors-extension-challenge"
+  },
+  {
+    "moduleId": "pygames-pyg1-object-oriented-programming-actors",
+    "id": "pygames-pyg1-object-oriented-programming-actors-supplemental-object-oriented-programming-actors-transfer-practice"
+  },
+  {
+    "moduleId": "pygames-pyg1-object-oriented-programming-actors",
+    "id": "pygames-pyg1-object-oriented-programming-actors-supplemental-object-oriented-programming-actors-extension-practice"
+  },
+  {
+    "moduleId": "pygames-pyg2-event-handling",
+    "id": "pygames-pyg2-event-handling-curriculum-keyboard-events"
+  },
+  {
+    "moduleId": "pygames-pyg2-event-handling",
+    "id": "pygames-pyg2-event-handling-curriculum-mouse-events"
+  },
+  {
+    "moduleId": "pygames-pyg2-event-handling",
+    "id": "pygames-pyg2-event-handling-curriculum-pyg2-project-1-arrow-point"
+  },
+  {
+    "moduleId": "pygames-pyg2-event-handling",
+    "id": "pygames-pyg2-event-handling-curriculum-pyg2-project-2-apple-collector"
+  },
+  {
+    "moduleId": "pygames-pyg2-event-handling",
+    "id": "pygames-pyg2-event-handling-curriculum-pyg2-project-3-art-box"
+  },
+  {
+    "moduleId": "pygames-pyg2-event-handling",
+    "id": "pygames-pyg2-event-handling-supplemental-event-handling-extension-challenge"
+  },
+  {
+    "moduleId": "pygames-pyg2-event-handling",
+    "id": "pygames-pyg2-event-handling-supplemental-event-handling-transfer-practice"
+  },
+  {
+    "moduleId": "pygames-pyg2-event-handling",
+    "id": "pygames-pyg2-event-handling-supplemental-event-handling-extension-practice"
+  },
+  {
+    "moduleId": "pygames-pyg3-object-oriented-programming-advanced-actors",
+    "id": "pygames-classroom-pyg3-object-oriented-programming-advanced-actors-curriculum-advanced-actors-core-concepts"
+  },
+  {
+    "moduleId": "pygames-pyg3-object-oriented-programming-advanced-actors",
+    "id": "pygames-pyg3-object-oriented-programming-advanced-actors-curriculum-pyg3-project-1-zrect-art"
+  },
+  {
+    "moduleId": "pygames-pyg3-object-oriented-programming-advanced-actors",
+    "id": "pygames-pyg3-object-oriented-programming-advanced-actors-curriculum-pyg3-project-2-light-control"
+  },
+  {
+    "moduleId": "pygames-pyg3-object-oriented-programming-advanced-actors",
+    "id": "pygames-pyg3-object-oriented-programming-advanced-actors-curriculum-pyg3-project-3-beach-ball-chase"
+  },
+  {
+    "moduleId": "pygames-pyg3-object-oriented-programming-advanced-actors",
+    "id": "pygames-pyg3-object-oriented-programming-advanced-actors-supplemental-pyg3-supplemental-project-1-asteroid-dodge"
+  },
+  {
+    "moduleId": "pygames-pyg3-object-oriented-programming-advanced-actors",
+    "id": "pygames-pyg3-object-oriented-programming-advanced-actors-supplemental-object-oriented-programming-advanced-actors-transfer-practice"
+  },
+  {
+    "moduleId": "pygames-pyg3-object-oriented-programming-advanced-actors",
+    "id": "pygames-pyg3-object-oriented-programming-advanced-actors-supplemental-object-oriented-programming-advanced-actors-extension-practice"
+  },
+  {
+    "moduleId": "pygames-pyg4-managing-multiple-objects-collectibles",
+    "id": "pygames-pyg4-managing-multiple-objects-collectibles-curriculum-lists-of-actors"
+  },
+  {
+    "moduleId": "pygames-pyg4-managing-multiple-objects-collectibles",
+    "id": "pygames-pyg4-managing-multiple-objects-collectibles-curriculum-pyg4-project-1-bouncy-ball-room"
+  },
+  {
+    "moduleId": "pygames-pyg4-managing-multiple-objects-collectibles",
+    "id": "pygames-pyg4-managing-multiple-objects-collectibles-curriculum-pyg4-project-2-falling-squares"
+  },
+  {
+    "moduleId": "pygames-pyg4-managing-multiple-objects-collectibles",
+    "id": "pygames-pyg4-managing-multiple-objects-collectibles-curriculum-pyg4-project-3-jewel-catch"
+  },
+  {
+    "moduleId": "pygames-pyg4-managing-multiple-objects-collectibles",
+    "id": "pygames-pyg4-managing-multiple-objects-collectibles-supplemental-managing-multiple-objects-collectibles-extension-challenge"
+  },
+  {
+    "moduleId": "pygames-pyg4-managing-multiple-objects-collectibles",
+    "id": "pygames-pyg4-managing-multiple-objects-collectibles-supplemental-managing-multiple-objects-collectibles-transfer-practice"
+  },
+  {
+    "moduleId": "pygames-pyg4-managing-multiple-objects-collectibles",
+    "id": "pygames-pyg4-managing-multiple-objects-collectibles-supplemental-managing-multiple-objects-collectibles-extension-practice"
+  },
+  {
+    "moduleId": "pygames-check-in-1-actors-events-zrects-collectibles",
+    "id": "pygames-classroom-check-in-1-actors-events-zrects-collectibles-curriculum-actors-events-zrects-collectibles-core-concepts"
+  },
+  {
+    "moduleId": "pygames-check-in-1-actors-events-zrects-collectibles",
+    "id": "pygames-check-in-1-actors-events-zrects-collectibles-curriculum-check-in-1-additional-practice-project"
+  },
+  {
+    "moduleId": "pygames-check-in-1-actors-events-zrects-collectibles",
+    "id": "pygames-check-in-1-actors-events-zrects-collectibles-supplemental-check-in-1-actors-events-zrects-collectibles-extension-challenge"
+  },
+  {
+    "moduleId": "pygames-check-in-1-actors-events-zrects-collectibles",
+    "id": "pygames-check-in-1-actors-events-zrects-collectibles-supplemental-check-in-1-actors-events-zrects-collectibles-transfer-practice"
+  },
+  {
+    "moduleId": "pygames-check-in-1-actors-events-zrects-collectibles",
+    "id": "pygames-check-in-1-actors-events-zrects-collectibles-supplemental-check-in-1-actors-events-zrects-collectibles-extension-practice"
+  },
+  {
+    "moduleId": "pygames-pyg5-physics",
+    "id": "pygames-pyg5-physics-curriculum-gravity-and-wind"
+  },
+  {
+    "moduleId": "pygames-pyg5-physics",
+    "id": "pygames-pyg5-physics-curriculum-pyg5-project-1-keep-up"
+  },
+  {
+    "moduleId": "pygames-pyg5-physics",
+    "id": "pygames-pyg5-physics-curriculum-friction"
+  },
+  {
+    "moduleId": "pygames-pyg5-physics",
+    "id": "pygames-pyg5-physics-curriculum-pyg5-project-2-golf"
+  },
+  {
+    "moduleId": "pygames-pyg5-physics",
+    "id": "pygames-pyg5-physics-curriculum-pyg5-project-3-ball-pit"
+  },
+  {
+    "moduleId": "pygames-pyg5-physics",
+    "id": "pygames-pyg5-physics-supplemental-physics-extension-challenge"
+  },
+  {
+    "moduleId": "pygames-pyg5-physics",
+    "id": "pygames-pyg5-physics-supplemental-physics-transfer-practice"
+  },
+  {
+    "moduleId": "pygames-pyg5-physics",
+    "id": "pygames-pyg5-physics-supplemental-physics-extension-practice"
+  },
+  {
+    "moduleId": "pygames-pyg6-managing-multiple-objects-obstacles-and-surfaces",
+    "id": "pygames-classroom-pyg6-managing-multiple-objects-obstacles-and-surfaces-curriculum-obstacles-and-surfaces-core-concepts"
+  },
+  {
+    "moduleId": "pygames-pyg6-managing-multiple-objects-obstacles-and-surfaces",
+    "id": "pygames-pyg6-managing-multiple-objects-obstacles-and-surfaces-curriculum-pyg6-project-1-stay-on-the-platform"
+  },
+  {
+    "moduleId": "pygames-pyg6-managing-multiple-objects-obstacles-and-surfaces",
+    "id": "pygames-pyg6-managing-multiple-objects-obstacles-and-surfaces-curriculum-pyg6-project-2-platformer-game"
+  },
+  {
+    "moduleId": "pygames-pyg6-managing-multiple-objects-obstacles-and-surfaces",
+    "id": "pygames-pyg6-managing-multiple-objects-obstacles-and-surfaces-curriculum-pyg6-project-3-falling-jump"
+  },
+  {
+    "moduleId": "pygames-pyg6-managing-multiple-objects-obstacles-and-surfaces",
+    "id": "pygames-pyg6-managing-multiple-objects-obstacles-and-surfaces-supplemental-managing-multiple-objects-obstacles-and-surfaces-extension-challenge"
+  },
+  {
+    "moduleId": "pygames-pyg6-managing-multiple-objects-obstacles-and-surfaces",
+    "id": "pygames-pyg6-managing-multiple-objects-obstacles-and-surfaces-supplemental-managing-multiple-objects-obstacles-and-surfaces-transfer-practice"
+  },
+  {
+    "moduleId": "pygames-pyg6-managing-multiple-objects-obstacles-and-surfaces",
+    "id": "pygames-pyg6-managing-multiple-objects-obstacles-and-surfaces-supplemental-managing-multiple-objects-obstacles-and-surfaces-extension-practice"
+  },
+  {
+    "moduleId": "pygames-check-in-2-gravity-friction-platforms",
+    "id": "pygames-classroom-check-in-2-gravity-friction-platforms-curriculum-gravity-friction-platforms-core-concepts"
+  },
+  {
+    "moduleId": "pygames-check-in-2-gravity-friction-platforms",
+    "id": "pygames-check-in-2-gravity-friction-platforms-curriculum-check-in-2-additional-practice-project"
+  },
+  {
+    "moduleId": "pygames-check-in-2-gravity-friction-platforms",
+    "id": "pygames-check-in-2-gravity-friction-platforms-supplemental-check-in-2-gravity-friction-platforms-extension-challenge"
+  },
+  {
+    "moduleId": "pygames-check-in-2-gravity-friction-platforms",
+    "id": "pygames-check-in-2-gravity-friction-platforms-supplemental-check-in-2-gravity-friction-platforms-transfer-practice"
+  },
+  {
+    "moduleId": "pygames-check-in-2-gravity-friction-platforms",
+    "id": "pygames-check-in-2-gravity-friction-platforms-supplemental-check-in-2-gravity-friction-platforms-extension-practice"
+  },
+  {
+    "moduleId": "pygames-pyg7-levels-and-system-control",
+    "id": "pygames-classroom-pyg7-levels-and-system-control-curriculum-levels-and-system-control-core-concepts"
+  },
+  {
+    "moduleId": "pygames-pyg7-levels-and-system-control",
+    "id": "pygames-pyg7-levels-and-system-control-curriculum-pyg7-project-1-alien-catch"
+  },
+  {
+    "moduleId": "pygames-pyg7-levels-and-system-control",
+    "id": "pygames-pyg7-levels-and-system-control-curriculum-pyg7-project-2-beach-ball-dodge"
+  },
+  {
+    "moduleId": "pygames-pyg7-levels-and-system-control",
+    "id": "pygames-pyg7-levels-and-system-control-curriculum-pyg7-project-3-number-count"
+  },
+  {
+    "moduleId": "pygames-pyg7-levels-and-system-control",
+    "id": "pygames-pyg7-levels-and-system-control-supplemental-levels-and-system-control-extension-challenge"
+  },
+  {
+    "moduleId": "pygames-pyg7-levels-and-system-control",
+    "id": "pygames-pyg7-levels-and-system-control-supplemental-levels-and-system-control-transfer-practice"
+  },
+  {
+    "moduleId": "pygames-pyg7-levels-and-system-control",
+    "id": "pygames-pyg7-levels-and-system-control-supplemental-levels-and-system-control-extension-practice"
+  },
+  {
+    "moduleId": "pygames-pyg8-game-elements-projectiles",
+    "id": "pygames-pyg8-game-elements-projectiles-curriculum-single-projectile-mechanics"
+  },
+  {
+    "moduleId": "pygames-pyg8-game-elements-projectiles",
+    "id": "pygames-pyg8-game-elements-projectiles-curriculum-pyg8-project-1-target-shoot"
+  },
+  {
+    "moduleId": "pygames-pyg8-game-elements-projectiles",
+    "id": "pygames-pyg8-game-elements-projectiles-curriculum-multiple-projectiles-with-lists"
+  },
+  {
+    "moduleId": "pygames-pyg8-game-elements-projectiles",
+    "id": "pygames-pyg8-game-elements-projectiles-curriculum-pyg8-project-2-asteroid-shoot"
+  },
+  {
+    "moduleId": "pygames-pyg8-game-elements-projectiles",
+    "id": "pygames-pyg8-game-elements-projectiles-supplemental-game-elements-projectiles-extension-challenge"
+  },
+  {
+    "moduleId": "pygames-pyg8-game-elements-projectiles",
+    "id": "pygames-pyg8-game-elements-projectiles-supplemental-game-elements-projectiles-transfer-practice"
+  },
+  {
+    "moduleId": "pygames-pyg8-game-elements-projectiles",
+    "id": "pygames-pyg8-game-elements-projectiles-supplemental-game-elements-projectiles-extension-practice"
+  },
+  {
+    "moduleId": "pygames-pyg9-game-elements-enemy-ai",
+    "id": "pygames-pyg9-game-elements-enemy-ai-curriculum-pyg9-project-1-shark-chase-fish-bowl"
+  },
+  {
+    "moduleId": "pygames-pyg9-game-elements-enemy-ai",
+    "id": "pygames-pyg9-game-elements-enemy-ai-curriculum-pyg9-project-2-space-battle"
+  },
+  {
+    "moduleId": "pygames-pyg9-game-elements-enemy-ai",
+    "id": "pygames-pyg9-game-elements-enemy-ai-curriculum-game-elements-enemy-ai-planning-and-architecture"
+  },
+  {
+    "moduleId": "pygames-pyg9-game-elements-enemy-ai",
+    "id": "pygames-pyg9-game-elements-enemy-ai-curriculum-game-elements-enemy-ai-verification-and-reflection"
+  },
+  {
+    "moduleId": "pygames-pyg9-game-elements-enemy-ai",
+    "id": "pygames-pyg9-game-elements-enemy-ai-supplemental-game-elements-enemy-ai-extension-challenge"
+  },
+  {
+    "moduleId": "pygames-pyg9-game-elements-enemy-ai",
+    "id": "pygames-pyg9-game-elements-enemy-ai-supplemental-game-elements-enemy-ai-transfer-practice"
+  },
+  {
+    "moduleId": "pygames-pyg9-game-elements-enemy-ai",
+    "id": "pygames-pyg9-game-elements-enemy-ai-supplemental-game-elements-enemy-ai-extension-practice"
+  },
+  {
+    "moduleId": "pygames-check-in-3-system-control-projectiles-enemy-ai",
+    "id": "pygames-check-in-3-system-control-projectiles-enemy-ai-curriculum-check-in-3-system-control"
+  },
+  {
+    "moduleId": "pygames-check-in-3-system-control-projectiles-enemy-ai",
+    "id": "pygames-check-in-3-system-control-projectiles-enemy-ai-curriculum-check-in-3-projectiles-and-enemy-ai"
+  },
+  {
+    "moduleId": "pygames-check-in-3-system-control-projectiles-enemy-ai",
+    "id": "pygames-check-in-3-system-control-projectiles-enemy-ai-curriculum-check-in-3-additional-practice-project"
+  },
+  {
+    "moduleId": "pygames-check-in-3-system-control-projectiles-enemy-ai",
+    "id": "pygames-check-in-3-system-control-projectiles-enemy-ai-curriculum-check-in-3-system-control-projectiles-enemy-ai-verification-and-reflection"
+  },
+  {
+    "moduleId": "pygames-check-in-3-system-control-projectiles-enemy-ai",
+    "id": "pygames-check-in-3-system-control-projectiles-enemy-ai-supplemental-check-in-3-system-control-projectiles-enemy-ai-extension-challenge"
+  },
+  {
+    "moduleId": "pygames-check-in-3-system-control-projectiles-enemy-ai",
+    "id": "pygames-check-in-3-system-control-projectiles-enemy-ai-supplemental-check-in-3-system-control-projectiles-enemy-ai-transfer-practice"
+  },
+  {
+    "moduleId": "pygames-check-in-3-system-control-projectiles-enemy-ai",
+    "id": "pygames-check-in-3-system-control-projectiles-enemy-ai-supplemental-check-in-3-system-control-projectiles-enemy-ai-extension-practice"
+  },
+  {
+    "moduleId": "pygames-pyg10-ninja-versus-alien",
+    "id": "pygames-pyg10-ninja-versus-alien-curriculum-pyg10-project-1-ninja-versus-alien"
+  },
+  {
+    "moduleId": "pygames-pyg10-ninja-versus-alien",
+    "id": "pygames-pyg10-ninja-versus-alien-curriculum-ninja-versus-alien-debugging-and-failure-modes"
+  },
+  {
+    "moduleId": "pygames-pyg10-ninja-versus-alien",
+    "id": "pygames-pyg10-ninja-versus-alien-curriculum-ninja-versus-alien-planning-and-architecture"
+  },
+  {
+    "moduleId": "pygames-pyg10-ninja-versus-alien",
+    "id": "pygames-pyg10-ninja-versus-alien-curriculum-ninja-versus-alien-verification-and-reflection"
+  },
+  {
+    "moduleId": "pygames-pyg10-ninja-versus-alien",
+    "id": "pygames-pyg10-ninja-versus-alien-supplemental-ninja-versus-alien-extension-challenge"
+  },
+  {
+    "moduleId": "pygames-pyg10-ninja-versus-alien",
+    "id": "pygames-pyg10-ninja-versus-alien-supplemental-ninja-versus-alien-transfer-practice"
+  },
+  {
+    "moduleId": "pygames-pyg10-ninja-versus-alien",
+    "id": "pygames-pyg10-ninja-versus-alien-supplemental-ninja-versus-alien-extension-practice"
+  },
+  {
+    "moduleId": "pygames-pyg11-space-invaders",
+    "id": "pygames-pyg11-space-invaders-curriculum-pyg11-project-1-space-invaders"
+  },
+  {
+    "moduleId": "pygames-pyg11-space-invaders",
+    "id": "pygames-pyg11-space-invaders-curriculum-space-invaders-debugging-and-failure-modes"
+  },
+  {
+    "moduleId": "pygames-pyg11-space-invaders",
+    "id": "pygames-pyg11-space-invaders-curriculum-space-invaders-planning-and-architecture"
+  },
+  {
+    "moduleId": "pygames-pyg11-space-invaders",
+    "id": "pygames-pyg11-space-invaders-curriculum-space-invaders-verification-and-reflection"
+  },
+  {
+    "moduleId": "pygames-pyg11-space-invaders",
+    "id": "pygames-pyg11-space-invaders-supplemental-space-invaders-extension-challenge"
+  },
+  {
+    "moduleId": "pygames-pyg11-space-invaders",
+    "id": "pygames-pyg11-space-invaders-supplemental-space-invaders-transfer-practice"
+  },
+  {
+    "moduleId": "pygames-pyg11-space-invaders",
+    "id": "pygames-pyg11-space-invaders-supplemental-space-invaders-extension-practice"
+  },
+  {
+    "moduleId": "pygames-pyg12-master-project",
+    "id": "pygames-pyg12-master-project-curriculum-recap-readiness-check"
+  },
+  {
+    "moduleId": "pygames-pyg12-master-project",
+    "id": "pygames-pyg12-master-project-curriculum-pyg12-project-1-master-project"
+  },
+  {
+    "moduleId": "pygames-pyg12-master-project",
+    "id": "pygames-pyg12-master-project-curriculum-master-project-presentation"
+  },
+  {
+    "moduleId": "pygames-pyg12-master-project",
+    "id": "pygames-pyg12-master-project-curriculum-course-recap-next-course"
+  },
+  {
+    "moduleId": "pygames-pyg12-master-project",
+    "id": "pygames-pyg12-master-project-curriculum-bridge-to-larger-python-projects"
+  },
+  {
+    "moduleId": "pygames-pyg12-master-project",
+    "id": "pygames-pyg12-master-project-curriculum-pyg12-master-project-core-project"
+  },
+  {
+    "moduleId": "pygames-pyg12-master-project",
+    "id": "pygames-pyg12-master-project-curriculum-bonus-concepts-for-assets"
+  },
+  {
+    "moduleId": "pygames-pyg12-master-project",
+    "id": "pygames-pyg12-master-project-supplemental-pyg12-master-project-extension-challenge"
+  },
+  {
+    "moduleId": "pygames-pyg12-master-project",
+    "id": "pygames-pyg12-master-project-supplemental-master-project-transfer-practice"
+  },
+  {
+    "moduleId": "pygames-pyg12-master-project",
+    "id": "pygames-pyg12-master-project-supplemental-master-project-extension-practice"
+  },
+  {
+    "moduleId": "pygames-classroom-standards-map",
+    "id": "pygames-classroom-standards-map-curriculum-pygames-classroom-edition-reference-guide"
+  },
+  {
+    "moduleId": "pygames-classroom-standards-map",
+    "id": "pygames-classroom-standards-map-curriculum-pygames-classroom-edition-core-skills"
+  },
+  {
+    "moduleId": "pygames-classroom-standards-map",
+    "id": "pygames-classroom-standards-map-curriculum-pygames-classroom-edition-next-topics"
+  },
+  {
+    "moduleId": "pygames-classroom-standards-map",
+    "id": "pygames-classroom-standards-map-curriculum-pygames-classroom-edition-boundaries"
+  },
+  {
+    "moduleId": "pygames-classroom-standards-map",
+    "id": "pygames-classroom-standards-map-supplemental-pygames-classroom-edition-prerequisite-check"
+  },
+  {
+    "moduleId": "pygames-classroom-standards-map",
+    "id": "pygames-classroom-standards-map-supplemental-pygames-classroom-edition-pathway-map"
+  },
+  {
+    "moduleId": "pygames-classroom-course-roadmap",
+    "id": "pygames-classroom-course-roadmap-curriculum-pygames-classroom-edition-follow-up-path"
+  },
+  {
+    "moduleId": "pygames-classroom-course-roadmap",
+    "id": "pygames-classroom-course-roadmap-curriculum-pygames-classroom-edition-resource-map"
+  },
+  {
+    "moduleId": "pygames-classroom-course-roadmap",
+    "id": "pygames-classroom-course-roadmap-curriculum-pygames-classroom-edition-module-alignment-guide"
+  },
+  {
+    "moduleId": "pygames-classroom-course-roadmap",
+    "id": "pygames-classroom-course-roadmap-curriculum-pygames-classroom-edition-reference-map"
+  },
+  {
+    "moduleId": "pygames-classroom-course-roadmap",
+    "id": "pygames-classroom-course-roadmap-supplemental-pygames-classroom-edition-prerequisite-map"
+  },
+  {
+    "moduleId": "pygames-classroom-course-roadmap",
+    "id": "pygames-classroom-course-roadmap-supplemental-pygames-classroom-edition-resource-inventory"
+  },
+  {
+    "moduleId": "pygames-classroom-project-practice-guide",
+    "id": "pygames-classroom-project-practice-guide-curriculum-pygames-classroom-edition-project-ladder"
+  },
+  {
+    "moduleId": "pygames-classroom-project-practice-guide",
+    "id": "pygames-classroom-project-practice-guide-curriculum-pygames-classroom-edition-checkpoints"
+  },
+  {
+    "moduleId": "pygames-classroom-project-practice-guide",
+    "id": "pygames-classroom-project-practice-guide-curriculum-pygames-classroom-edition-rubric"
+  },
+  {
+    "moduleId": "pygames-classroom-project-practice-guide",
+    "id": "pygames-classroom-project-practice-guide-curriculum-pygames-classroom-edition-capstone-gate"
+  },
+  {
+    "moduleId": "pygames-classroom-project-practice-guide",
+    "id": "pygames-classroom-project-practice-guide-supplemental-practice-project-pong-or-breakout-clone-with-difficulty-levels"
+  },
+  {
+    "moduleId": "pygames-classroom-project-practice-guide",
+    "id": "pygames-classroom-project-practice-guide-supplemental-practice-project-tile-based-maze-loaded-from-a-text-file"
+  },
+  {
+    "moduleId": "pygames-classroom-project-practice-guide",
+    "id": "pygames-classroom-project-practice-guide-supplemental-practice-project-top-down-collection-game-with-enemies"
+  },
+  {
+    "moduleId": "pygames-classroom-project-practice-guide",
+    "id": "pygames-classroom-project-practice-guide-supplemental-practice-project-platformer-prototype-with-collision-constraints"
+  },
+  {
+    "moduleId": "pygames-classroom-project-practice-guide",
+    "id": "pygames-classroom-project-practice-guide-supplemental-practice-project-arcade-capstone-with-menu-scoring-restart-and-one-extension-mechanic"
+  },
+  {
+    "moduleId": "pygames-classroom-pending-source-media-inventory",
+    "id": "pygames-classroom-pending-source-media-inventory-curriculum-pygames-classroom-edition-pending-source-media"
+  }
+]

@@ -6,10 +6,9 @@ import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import vm from "node:vm";
 import { findJuniScratchInstructionCorrection } from "../front-end/src/stores/courses/juniScratchInstructionCorrections";
-import {
-	courseCatalog,
-	loadRawCourse
-} from "../front-end/src/stores/courses/index";
+import "./course-raw-text-loader.mjs";
+const { courseCatalog, loadRawCourse } =
+	await import("../front-end/src/stores/courses/index");
 
 const SOURCE_REF = process.env.JUNI_SOURCE_REF ?? "bd194492";
 const PROJECT_TITLE_RE = /\b(?:project|capstone)\b/i;

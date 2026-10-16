@@ -274,16 +274,34 @@ if (unknownMissing.length > 0 || unnotedPending.length > 0) {
 }
 `;
 
-const tempDir = await mkdtemp(join(process.cwd(), "front-end", ".static-media-audit-"));
+const tempDir = await mkdtemp(
+	join(process.cwd(), "front-end", ".static-media-audit-")
+);
 const auditFile = join(tempDir, "audit.ts");
 
 try {
 	await writeFile(auditFile, auditSource);
-	const tsxCli = fileURLToPath(import.meta.resolve("tsx/cli"));
-
-	const child = spawn(process.execPath, [tsxCli, auditFile], {
-		stdio: "inherit"
-	});
+	const child = spawn(
+		process.execPath,
+		[
+			"--import",
+			"tsx",
+			"--import",
+			fileURLToPath(
+				new URL("./course-raw-text-loader.mjs", import.meta.url)
+			),
+			auditFile
+		],
+		{
+			stdio: "inherit",
+			env: {
+				...process.env,
+				TSX_TSCONFIG_PATH: fileURLToPath(
+					new URL("../front-end/tsconfig.json", import.meta.url)
+				)
+			}
+		}
+	);
 
 	const exitCode = await new Promise((resolve, reject) => {
 		child.once("error", reject);

@@ -4,6 +4,10 @@ import { rawCourseProse } from "./courseProse";
 import { createPinia, setActivePinia } from "pinia";
 import { useCoursesStore } from "@/stores/courses";
 import {
+	pyGamesPinnedSourceUrl,
+	pyGamesSourceRevision
+} from "@/modules/pyGamesProjectResources";
+import {
 	courseCatalog,
 	loadRawCourse as loadRawCourseWithoutCache
 } from "@/stores/courses/index";
@@ -1266,7 +1270,7 @@ describe("course text quality normalization", () => {
 				"Explain cow-ID indexing and retain a trace for two interleaved cows"
 			);
 			expect(corpus).toContain(
-				"Build **Images and Sprites: Practice Studio** as a working version with runnable behavior, inspectable evidence, and a clear boundary case"
+				"Load an image by name, place its Actor and explain its visible bounds before adding movement."
 			);
 			expect(corpus).not.toMatch(
 				/Open the starter and name the concrete inputs, outputs, state changes, data structures, or system boundaries involved/
@@ -4414,8 +4418,12 @@ describe("course text quality normalization", () => {
 		expect(corpus).toContain(
 			"Linux Systems Lab 17: Operations Capstone Studio"
 		);
-		expect(corpus).toContain("Recovery Point Selection from a Verified Archive History");
-        expect(corpus).toContain("Accepting a Restore Against Independently Expected State");
+		expect(corpus).toContain(
+			"Recovery Point Selection from a Verified Archive History"
+		);
+		expect(corpus).toContain(
+			"Accepting a Restore Against Independently Expected State"
+		);
 	});
 
 	it("keeps Web Development Foundations guidance specific", async () => {
@@ -4720,8 +4728,7 @@ describe("course text quality normalization", () => {
 			expect(pyGamesCourse).not.toBeNull();
 			if (!pyGamesCourse) return;
 
-			const root =
-				"https://github.com/instruction-material/PyGames/tree/main";
+			const root = `https://github.com/instruction-material/PyGames/tree/${pyGamesSourceRevision}`;
 			const allItems = pyGamesCourse.modules.flatMap(module => [
 				...module.curriculum,
 				...module.supplementalProjects
@@ -4729,27 +4736,29 @@ describe("course text quality normalization", () => {
 			const broadRootPairs = allItems
 				.filter(
 					item =>
-						item.projectLink === root && item.solutionLink === root
+						/^https:\/\/github.com\/instruction-material\/PyGames\/tree\/[^/]+$/.test(
+							item.projectLink ?? ""
+						) && item.solutionLink === item.projectLink
 				)
 				.map(item => item.title);
 			const generatedPracticeItem = allItems.find(
 				item =>
-					item.projectLink?.includes(
-						"/PG-03-pyg1-object-oriented-programming-actors-supplemental-2/starter"
-					) &&
-					item.solutionLink?.includes(
-						"/PG-03-pyg1-object-oriented-programming-actors-supplemental-2/solution"
-					)
+					item.title ===
+					"Object Oriented Programming: Actors Transfer Practice"
 			);
 			const assetFolderItems = allItems.filter(item =>
 				[root + "/music", root + "/sounds", root + "/images"].includes(
-					item.projectLink ?? ""
+					item.datasetLink ?? ""
 				)
 			);
 
 			expect(broadRootPairs).toEqual([]);
-			expect(generatedPracticeItem?.title).toBe(
-				"Object Oriented Programming: Actors Transfer Practice"
+			expect(generatedPracticeItem?.projectLink).toBe(
+				pyGamesPinnedSourceUrl("PyG1-Bouncing-Alien.py")
+			);
+			expect(generatedPracticeItem?.solutionLink).toBeUndefined();
+			expect(generatedPracticeItem?.content).toContain(
+				"**Required variation:**"
 			);
 			expect(assetFolderItems.length).toBeGreaterThan(0);
 			expect(

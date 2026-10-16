@@ -4131,11 +4131,17 @@ def _run_animations(now):
         if not animation.running and animation in _animations:
             _animations.remove(animation)
 
+def _require_audio_initialized():
+    pygame_module = __import__("sys").modules.get("pygame")
+    if pygame_module is not None and pygame_module.mixer.get_init() is None:
+        raise RuntimeError("pygame mixer is not initialized; call pygame.mixer.init() before playback.")
+
 class _Sound:
     def __init__(self, name):
         self.name = str(name)
 
     def play(self, loops=0, *_args, **_kwargs):
+        _require_audio_initialized()
         _bridge.playSound(self.name, int(_number(loops, 0)))
         return None
 
@@ -4162,11 +4168,13 @@ class _Music:
         self._queued = None
 
     def play(self, name):
+        _require_audio_initialized()
         _bridge.playMusic(str(name), True)
         self._playing = True
         self._queued = None
 
     def play_once(self, name):
+        _require_audio_initialized()
         _bridge.playMusic(str(name), False)
         self._playing = True
         self._queued = None
@@ -4224,6 +4232,7 @@ class _ToneSound:
         self._active_ids = []
 
     def play(self, *_args, **_kwargs):
+        _require_audio_initialized()
         tone_id = int(_bridge.playTone(float(self.frequency), float(self.duration)))
         if tone_id:
             self._active_ids.append(tone_id)
@@ -5506,6 +5515,18 @@ ${createInputBootstrap(options.inputText, options.mode)}
 if ${options.mode === "pgzero" ? "True" : "False"}:
     import _classes_pgzero
     _classes_pgzero.install_builtins()
+    import pygame
+    pygame.init()
+    # Juni programs also access these objects through sys.modules["__main__"].
+    # Install them before student code, while preserving later student bindings.
+    for __classes_pgzero_name in (
+        "Actor", "Rect", "ZRect", "screen", "keyboard", "keys", "mouse",
+        "keymods", "clock", "Animation", "animate", "tone", "sounds",
+        "music", "images", "pgzrun",
+    ):
+        __classes_sys.modules["__main__"].__dict__[__classes_pgzero_name] = getattr(
+            builtins, __classes_pgzero_name
+        )
 if ${options.mode === "data" || importedModules.has("matplotlib") ? "True" : "False"}:
     try:
         import matplotlib

@@ -35,6 +35,8 @@ import {
 } from "@/modules/courseLessonPresentation";
 import { linuxCourseProjectKey } from "@/modules/linuxProjectResources";
 import { fetchManagedLearners } from "@/modules/managedLearners";
+import { networkCourseProjectKey } from "@/modules/networkProjectResources";
+import { pyGamesCourseProjectKey } from "@/modules/pyGamesProjectResources";
 import {
 	getPythonIdeModeLabel,
 	isKnownCourseWorksheetResource,
@@ -1271,6 +1273,7 @@ function repositoryArchiveLabel(item: CourseModuleItem) {
 }
 
 function projectLabel(item: CourseModuleItem, url: string) {
+	if (url.startsWith("/ide?")) return "Start in IDE";
 	const normalizedTitle = item.title.toLowerCase();
 	const normalizedUrl = url.toLowerCase();
 
@@ -1579,18 +1582,25 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 	const params = new URLSearchParams({
 		course: selectedCourse.value.id,
 		mode,
-		projectKey: (selectedCourse.value.id === "linux-systems"
-			? linuxCourseProjectKey
-			: selectedCourse.value.id === "assembly"
-				? assemblyCourseProjectKey
-				: selectedCourse.value.id === "c-systems-engineering"
-					? c17CourseProjectKey
-					: selectedCourse.value.id === "usaco-bronze" ||
-						  selectedCourse.value.id === "usaco-bronze-on-demand"
-						? bronzeRequiredProjectKey
-						: selectedCourse.value.id === "usaco-silver"
-							? silverJavaProjectKey
-							: goldHistoricalProjectKey)(
+		projectKey: (["pygames", "pygames-classroom"].includes(
+			selectedCourse.value.id
+		)
+			? pyGamesCourseProjectKey
+			: selectedCourse.value.id === "network-systems"
+				? networkCourseProjectKey
+				: selectedCourse.value.id === "linux-systems"
+					? linuxCourseProjectKey
+					: selectedCourse.value.id === "assembly"
+						? assemblyCourseProjectKey
+						: selectedCourse.value.id === "c-systems-engineering"
+							? c17CourseProjectKey
+							: selectedCourse.value.id === "usaco-bronze" ||
+								  selectedCourse.value.id ===
+										"usaco-bronze-on-demand"
+								? bronzeRequiredProjectKey
+								: selectedCourse.value.id === "usaco-silver"
+									? silverJavaProjectKey
+									: goldHistoricalProjectKey)(
 			selectedCourse.value.id,
 			item.id,
 			resource.kind === "solution" ? "reference" : "starter",

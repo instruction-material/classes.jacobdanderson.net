@@ -23,7 +23,8 @@ const courseCodeLearnerID = new Types.ObjectId();
 
 async function withPythonProjectRoute<T>(
 	run: (baseUrl: string) => Promise<T>,
-	owner: "course-code" | "user" = "user"
+	owner: "course-code" | "user" = "user",
+	courseID = "python-level-1"
 ): Promise<T> {
 	const app = express();
 	app.use(express.json({ limit: "15mb" }));
@@ -31,7 +32,7 @@ async function withPythonProjectRoute<T>(
 		if (owner === "course-code") {
 			req.currentCourseCodeLearner = {
 				_id: courseCodeLearnerID,
-				courseID: "python-level-1"
+				courseID
 			};
 		} else {
 			req.currentUser = {
@@ -207,6 +208,90 @@ describe("Python project routes", () => {
 					expect(body.project.activeFileName).toBe(activeFileName);
 					expect(body.project.files).toEqual(files);
 				}, owner);
+			}
+			expect(modelMocks.pythonProjectCreate).toHaveBeenCalledTimes(2);
+		}
+	);
+
+	it.each(
+		JSON.parse(
+			readFileSync(
+				resolve(
+					process.cwd(),
+					"../test/fixtures/network-foundations-contracts.json"
+				),
+				"utf8"
+			)
+		).flatMap(
+			(fixture: {
+				pack: string;
+				revision: string;
+				coreItemId: string;
+				files: Record<string, { content: string }>;
+			}) => ["starter", "solution"].map(role => ({ fixture, role }))
+		)
+	)(
+		"preserves exact Network $fixture.pack/$role files, notebook selection and role metadata through API saves",
+		async ({ fixture, role }) => {
+			const files = Object.entries(
+				fixture.files as Record<string, { content: string }>
+			)
+				.filter(
+					([name]) =>
+						name === "README.md" || name.startsWith(`${role}/`)
+				)
+				.map(([name, file]) => ({
+					name,
+					content: file.content,
+					encoding: "text"
+				}));
+			const activeFileName = `${role}/network-notes.md`;
+			const courseProjectKey = `network-systems:${fixture.coreItemId}:${role === "starter" ? "starter" : "reference"}:native-network`;
+			const starterUrl = `https://github.com/instruction-material/Network-Systems/tree/${fixture.revision}/${fixture.pack}/${role}`;
+			for (const owner of ["user", "course-code"] as const) {
+				await withPythonProjectRoute(
+					async baseUrl => {
+						const response = await postJson(baseUrl, {
+							title: "Network observation",
+							mode: "linux",
+							files,
+							activeFileName,
+							courseID: "network-systems",
+							courseProjectKey,
+							starterUrl,
+							starterLabel:
+								role === "starter"
+									? "Starter project"
+									: "Solution repo"
+						});
+						expect(response.status).toBe(201);
+						const body = await response.json();
+						expect(body.project.files).toEqual(files);
+						expect(body.project.activeFileName).toBe(
+							activeFileName
+						);
+						expect(body.project.courseProjectKey).toBe(
+							courseProjectKey
+						);
+						expect(body.project.courseID).toBe("network-systems");
+						expect(body.project.starterUrl).toBe(starterUrl);
+						expect(body.project.mode).toBe("linux");
+						expect(
+							modelMocks.pythonProjectCreate
+						).toHaveBeenLastCalledWith(
+							expect.objectContaining({
+								files,
+								activeFileName,
+								courseProjectKey,
+								courseID: "network-systems",
+								starterUrl,
+								mode: "linux"
+							})
+						);
+					},
+					owner,
+					"network-systems"
+				);
 			}
 			expect(modelMocks.pythonProjectCreate).toHaveBeenCalledTimes(2);
 		}

@@ -31,6 +31,10 @@ import {
 	linuxCourseResource,
 	linuxImportFiles
 } from "@/modules/linuxProjectResources";
+import {
+	networkCourseResource,
+	networkImportFiles
+} from "@/modules/networkProjectResources";
 import { restoredUsacoResource } from "@/modules/usacoProjectResources";
 
 const WHITESPACE_RE = /\s+/g;
@@ -383,6 +387,10 @@ export function isKnownCourseWorksheetResource(url: string) {
 export function pythonIdeModeForCourseResource(courseId: string, url: string) {
 	const resource = parseGitHubResource(url);
 	if (!resource || isKnownCourseWorksheetResource(url)) return null;
+	if (resource.mode === "blob" && !CODE_EXTENSION_RE.test(resource.path))
+		return null;
+	if (courseId === "network-systems")
+		return networkCourseResource(url) ? "linux" : null;
 	if (courseId === "linux-systems")
 		return linuxCourseResource(url) ? "linux" : null;
 	if (courseId === "assembly")
@@ -2504,6 +2512,9 @@ export const pythonIdeClassroomSectionsCode = `########################
 ########################
 # Complete the Normal task from the course project card
 # The completed project still runs while this function is empty
+# This setup function runs once, not on each animation frame
+# For movement/input changes, edit the matching callback with a Normal comment
+# Update shared game settings directly; a local variable here does not replace them
 def normal_addition():
     pass
 
@@ -2513,6 +2524,7 @@ def normal_addition():
 ######################
 # Complete the Hard task after the Normal version works
 # This section can remain empty without breaking the project
+# For an event-driven extension, label the corresponding callback change Hard
 def hard_addition():
     pass
 `;
@@ -2726,7 +2738,10 @@ export function createPythonIdeProject(
 		? clonePythonIdeFiles(options.files)
 		: getStarterFilesForTemplate(mode, template);
 	const linuxSource =
-		mode === "linux" ? linuxCourseResource(options.starterUrl ?? "") : null;
+		mode === "linux"
+			? (linuxCourseResource(options.starterUrl ?? "") ??
+				networkCourseResource(options.starterUrl ?? ""))
+			: null;
 	const assemblySource =
 		mode === "assembly"
 			? assemblyCourseResource(options.starterUrl ?? "")
@@ -3066,7 +3081,8 @@ export async function loadPythonIdeStarterFilesFromGitHub(
 	if (mode === "c" || mode === "assembly" || mode === "linux") {
 		const selected =
 			mode === "linux"
-				? linuxImportFiles(starterUrl)
+				? (linuxImportFiles(starterUrl) ??
+					networkImportFiles(starterUrl))
 				: mode === "assembly"
 					? assemblyImportFiles(starterUrl)
 					: c17ImportFiles(starterUrl);

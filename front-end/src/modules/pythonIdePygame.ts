@@ -5,7 +5,7 @@ import math
 import operator
 import weakref
 from js import document, CSS
-from _classes_pgzero import Rect, _bridge
+from _classes_pgzero import Rect, _bridge, music as _game_music
 
 SRCALPHA = 65536
 _surfaces = weakref.WeakSet()
@@ -324,6 +324,70 @@ class _Transform:
         return result
 
 transform = _Transform()
+
+class _Mixer:
+    # Pygame Zero playback uses the real browser sound/music bridge. These are
+    # logical mixer preferences; the browser controls its physical output format.
+    def __init__(self):
+        self._defaults = (44100, -16, 2, 512)
+        self._configuration = None
+        self._notice_shown = False
+
+    def _settings(self, frequency, size, channels, buffer, defaults):
+        values = tuple(operator.index(value) for value in (frequency, size, channels, buffer))
+        frequency, size, channels, buffer = tuple(value or default for value, default in zip(values, defaults))
+        if frequency <= 0 or size not in (-8, 8, -16, 16, 32) or channels not in (1, 2, 4, 6) or buffer <= 0:
+            raise ValueError("Invalid mixer frequency, sample format, channels or buffer.")
+        return frequency, size, channels, 1 << (buffer - 1).bit_length()
+
+    def pre_init(self, frequency=44100, size=-16, channels=2, buffer=512, devicename=None, allowedchanges=5):
+        if devicename is not None:
+            raise NotImplementedError("Browser audio cannot select an SDL output device.")
+        operator.index(allowedchanges)
+        self._defaults = self._settings(frequency, size, channels, buffer, (44100, -16, 2, 512))
+        if not self._notice_shown:
+            _bridge.log("Mixer startup preferences are retained; the browser controls its audio device format and buffering.")
+            self._notice_shown = True
+
+    def init(self, frequency=0, size=0, channels=0, buffer=0, devicename=None, allowedchanges=-1):
+        if self._configuration is not None:
+            return None
+        if devicename is not None:
+            raise NotImplementedError("Browser audio cannot select an SDL output device.")
+        operator.index(allowedchanges)
+        self._configuration = self._settings(frequency, size, channels, buffer, self._defaults)
+        return None
+
+    def get_init(self):
+        return self._configuration[:3] if self._configuration is not None else None
+
+    def quit(self):
+        _bridge.stopSound("")
+        _game_music.stop()
+        self._configuration = None
+        return None
+
+    def __getattr__(self, name):
+        raise AttributeError("pygame.mixer.{} is not available in this browser runtime. Use Pygame Zero sounds/music for playback or export for SDL mixer APIs.".format(name))
+
+mixer = _Mixer()
+_initialized = False
+
+def init():
+    global _initialized
+    mixer.init()
+    _initialized = True
+    return (1, 0)
+
+def get_init():
+    return _initialized
+
+def quit():
+    global _initialized
+    mixer.quit()
+    _bridge.stopLoop()
+    _initialized = False
+    return None
 
 def __getattr__(name):
     raise AttributeError("pygame.{} is not implemented in this browser runtime. Use Pygame Zero draw/update callbacks; Surface, Rect, draw and transform helpers are available.".format(name))
