@@ -38,6 +38,7 @@ function setup(
 		onOutput: vi.fn(),
 		onFiles: vi.fn(),
 		onActivity: vi.fn(),
+		onError: vi.fn(),
 		onStage: vi.fn(),
 		onPythonVersion: vi.fn(),
 		onAudio: vi.fn()
@@ -88,6 +89,33 @@ function wavData(payloadSize = 2) {
 }
 
 describe("isolated Python contract", () => {
+	it("reports a game error after initial execution completes and closes its frame", async () => {
+		const { handle, receive, callbacks, frame } = setup("pgzero");
+		receive({ type: "ready" });
+		receive({ type: "done" });
+		await handle.done;
+		receive({ type: "error", message: "late tick failure" });
+		expect(callbacks.onError).toHaveBeenCalledExactlyOnceWith(
+			"late tick failure"
+		);
+		expect(callbacks.onActivity).toHaveBeenLastCalledWith(false);
+		expect(frame.isConnected).toBe(false);
+		receive({ type: "error", message: "stale failure" });
+		expect(callbacks.onError).toHaveBeenCalledTimes(1);
+	});
+
+	it("ignores late error reports from another frame or an obsolete run", async () => {
+		const { handle, receive, callbacks } = setup("pgzero");
+		receive({ type: "ready" });
+		receive({ type: "done" });
+		await handle.done;
+		receive({ type: "error", message: "forged failure" }, "null", window);
+		expect(callbacks.onError).not.toHaveBeenCalled();
+		callbacks.isCurrent.mockReturnValue(false);
+		receive({ type: "error", message: "stale failure" });
+		expect(callbacks.onError).not.toHaveBeenCalled();
+	});
+
 	it.each(["python", "turtle", "pgzero", "data"] as const)(
 		"replaces the %s runtime context and rejects results from its previous run",
 		async mode => {

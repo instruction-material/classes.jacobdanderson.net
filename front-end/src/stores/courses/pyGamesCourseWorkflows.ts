@@ -1,12 +1,13 @@
 import type { RawCourse, RawCourseModule, RawCourseModuleItem } from "./types";
+import { pyGamesCoreUrl } from "../../modules/pyGamesCoreProjectResources";
 import {
 	isPyGamesPinnedSourceUrl,
 	pyGamesCourseProjectKey,
 	pyGamesLessonSourceFiles,
 	pyGamesPinnedResourceUrl,
-	pyGamesPinnedSourceUrl,
-	pyGamesSourceRevision
+	pyGamesPinnedSourceUrl
 } from "../../modules/pyGamesProjectResources";
+import { pyGamesCoreReadings } from "./pyGamesCoreProjectReading";
 
 export const pyGamesPracticeActivities: Record<
 	string,
@@ -362,54 +363,65 @@ function originalSource(module: RawCourseModule, item: RawCourseModuleItem) {
 	return undefined;
 }
 
-const setupReading = `**Goal:** Establish one project that opens, runs, saves and reopens predictably. The following image studio introduces sprite loading.
+const corePacks = {
+	music: "PG-CORE-Workspace-and-Assets",
+	images: "PG-CORE-Image-Anchors",
+	sounds: "PG-CORE-Arena-Capstone"
+} as const;
 
-Create a source file with window constants and a draw callback. Pygame Zero calls draw() to render each frame; screen.fill() paints the window. A visible background distinguishes a running program from an empty file.
+function coreWorkspace(
+	courseID: string,
+	item: RawCourseModuleItem,
+	kind: string
+) {
+	const pack = corePacks[kind as keyof typeof corePacks];
+	if (!pack) throw new Error("Unknown PyGames core project.");
+	const params = new URL(workspace(courseID, item), "https://classes.local")
+		.searchParams;
+	const classroom = courseID === "pygames-classroom";
+	params.set(
+		"starterUrl",
+		pyGamesCoreUrl(pack, classroom ? "solution" : "starter")
+	);
+	if (classroom) params.set("classroom", "1");
+	return `/ide?${params.toString()}`;
+}
 
-~~~python
-WIDTH = 640
-HEIGHT = 400
+function coreReading(kind: string, classroom: boolean) {
+	const reading = pyGamesCoreReadings[kind]
+		?.replace(/^# [^\n]+\n\n/, "")
+		.replace(
+			"Start with the `starter` role.",
+			"Open the `starter` project."
+		);
+	if (!reading) throw new Error("Missing PyGames core project reading.");
+	if (!classroom) return reading;
+	const normal =
+		kind === "music"
+			? "Change the working framework to a 500 by 300 window, predict its center, and compare the visible result. Keep center() derived from the dimensions. Restore the prescribed dimensions before running the default contracts."
+			: kind === "images"
+				? "Change the working viewport to 500 by 300, derive the valid center intervals, and demonstrate the full sprite at both opposite corners. Record the changed bounds, then restore the default viewport."
+				: "Change one declared goal or round-time setting in the working framework. Predict the changed success or timeout boundary, then demonstrate end and restart behavior. Keep a playable checkpoint before another change.";
+	const hard =
+		kind === "music"
+			? "Reproduce one misspelled asset-name failure in a disposable copy. Use the traceback and project layout to repair it, then export and run the repaired copy with its own PNG."
+			: kind === "images"
+				? "Choose an image with different dimensions and adapt the placement rule while preserving center, complete visibility, and the left-button filter. Verify the replacement from an exported project."
+				: "Add one original mechanic with normal, boundary, end and restart cases. Keep the working Normal version available for comparison.";
+	return `**Classroom framework:** The workspace starts with the complete working reference. The shared reading below also defines the separate independent repair tasks. For classroom work, record a baseline and label the changed block for the selected variation.
 
-def draw():
-    screen.fill((30, 40, 70))
-~~~
+**Normal:** ${normal}
 
-Start the course workspace, enter the example and Run. Change one color value, rerun and compare. Save, close and reopen the same project, then download its ZIP and inspect the source. The site stores source in the project; the selected file and its saved contents determine what runs.
+**Hard:** ${hard}
 
-For local use, install Python and Pygame Zero in the chosen editor environment and run pgzrun followed by the source filename from that project folder. Keep images, sounds and music beside the program when those resources are used. The site’s asset library supplies the course media for browser play.
-
-Deliberately misspell screen in the draw callback once. Read the exception name, source filename and line, restore the name and rerun. An independent session records the prediction and observed frame. A paced walkthrough pauses at the first working frame and at the traceback before making the repair.
-
-Completion evidence: the original frame, a changed frame, a repaired traceback, a reopened saved project and its exported source.\n\nPrimary API references: [Pygame Zero built-ins](https://pygame-zero.readthedocs.io/en/stable/builtins.html) and [running in an IDE](https://pygame-zero.readthedocs.io/en/stable/ide-mode.html).`;
-
-const imageReading = `**Goal:** Load an image by name, place its Actor and explain its visible bounds before adding movement.
-
-The images folder contains the artwork. Actor("alien") uses the name alien without the .png extension; the file is images/alien.png. The Actor holds position and image state. Its center, edges and dimensions describe the same rectangle using different measurements. draw() renders it.
-
-~~~python
-WIDTH = 640
-HEIGHT = 400
-actor = Actor("alien")
-actor.center = (WIDTH / 2, HEIGHT / 2)
-
-def draw():
-    screen.fill((30, 40, 70))
-    actor.draw()
-~~~
-
-Run the example with the course image library. Record center, width, height and one edge value. Select a second image from the library, change actor.image and restore actor.center. Compare the bounds while keeping the same center. A different-sized image can change its edges without changing the chosen center.
-
-Place the sprite near each window edge and identify when its full rectangle remains visible. Test one misspelled image name, read the failure and restore it. In the supplied classroom model, first locate the Actor construction and draw callback; movement is revisited in the following Actors module.
-
-Save and reopen the project. When exporting a game that uses course images, include its assets through the IDE’s asset/export controls, or place the matching image files in an images folder beside the local program. Verify the exported layout before running pgzrun locally.
-
-Completion evidence: two image names, their dimensions, center-preserving swaps, four edge checks, a repaired missing-image case and a short explanation linking file, Actor and draw callback. The same sequence supports an independent reading or a paced demonstration.\n\nPrimary API reference: [Pygame Zero resources and Actors](https://pygame-zero.readthedocs.io/en/stable/builtins.html).`;
+${reading}`;
+}
 
 const capstoneReading = `**Goal:** Design and finish one original playable game using the course’s actors, input events, update/draw loop and state management. Reuse earlier work deliberately and credit any supplied model or media.
 
 Write a one-paragraph pitch naming the player action, goal, progress feedback and failure or completion condition. Draw a state diagram containing at least start, play and end states with a restart path. Choose one finishable vertical slice before adding a second mechanic.
 
-Begin with a small window and one controllable actor. Separate input handling, updates and drawing. Add one interaction with an observable consequence, then the score, health or progress needed by the chosen goal. Add a clear end condition and make restart restore actors, collections, timers, score and state. A game may use physics, surfaces, projectiles or enemy behavior when its design calls for them.
+Begin with a small window and one controllable actor. Separate input handling, updates and drawing. Add one interaction with an observable consequence, then the score, health or progress needed by the chosen goal. Add a clear end condition and make restart restore actors, collections, timers, score and state. Include the course's actors, event handling, projectiles, physics, rendered surfaces, system control and enemy behavior. Use a collection to manage repeated objects and make each required system visible in the playtest evidence.
 
 Build in checkpoints: controls and drawing; one complete interaction; end and restart; then one original extension. Keep a working saved version after each checkpoint. The classroom workspace supplies an integrated game as an editable starting point; adapt the theme and central mechanic to the pitch. An independent construction can begin with the course scaffold or a copy of a completed personal game.
 
@@ -456,49 +468,44 @@ Model source: [Course program](${pyGamesPinnedSourceUrl(practice.file)}).`;
 			}
 			const asset = assetActivities[item.id];
 			if (asset) {
-				const file =
-					asset.kind === "music"
-						? "PyG1-Rainbow-Fill.py"
-						: asset.kind === "images"
-							? "PyG1-Bouncing-Alien.py"
-							: "PyG11-Space-Invaders.py";
-				item.projectLink = workspace(
-					courseID,
-					item,
-					classroom ? file : undefined
-				);
-				delete item.solutionLink;
+				const pack = corePacks[asset.kind as keyof typeof corePacks];
+				item.projectLink = coreWorkspace(courseID, item, asset.kind);
+				item.solutionLink = pyGamesCoreUrl(pack, "solution");
 				item.ideImport = true;
 				item.preserveInstructions = true;
-				item.datasetLink = `https://github.com/instruction-material/PyGames/tree/${pyGamesSourceRevision}/${asset.kind}`;
+				delete item.datasetLink;
 				item.content = asset.challenge
 					? `Continue the matching ${asset.kind === "music" ? "setup" : asset.kind === "images" ? "image studio" : "capstone"} project and keep its working checkpoint. Opening this card continues the same saved attempt.
 
 **${classroom ? "Hard" : "Challenge"}:** ${asset.kind === "music" ? "Reproduce and repair a source-name or resource-path failure after exporting and reopening the project. Record the exact failing filename and the corrected layout." : asset.kind === "images" ? "Change to a differently sized sprite while preserving its chosen center, then verify complete visibility at each window edge. Explain each position or boundary correction." : "Choose one additional mechanic from the capstone pitch, state three acceptance cases and add it without breaking end, restart or cleanup. Preserve a working baseline for comparison."}
 
 **Success criteria:** Reopen the saved core and confirm its controls still work. Repeat the extension check from a fresh run, then describe the specific source or asset change that explains the result. Keep the prediction, changed source, observed result and repaired failure with the core project’s evidence. This is an optional extension of that project.`
-					: asset.kind === "music"
-						? setupReading
-						: asset.kind === "images"
-							? imageReading
-							: "**Build and verification checkpoint:** Continue the game defined in the Master Project card. This card opens the same saved capstone. Complete controls and drawing, one successful interaction, the end state and a deterministic restart before the original extension. Keep the pitch, state diagram, expected/actual playtest table and exported source/media together. **Success criteria:** Demonstrate two restarts and explain one repaired failure. Record the starting and restored values for score, actors, timers and collections. Confirm that required image and audio files travel with the exported project. The Master Project reading supplies the full independent and paced build sequence.";
-				if (classroom) {
+					: `${asset.kind === "sounds" ? "**Build checkpoint:** This card and the Master Project card continue the same saved capstone. An original design can meet the same integrated-system criteria; the Arena Delivery reading supplies a complete worked example.\n\n" : ""}${coreReading(asset.kind, classroom)}`;
+				if (asset.challenge && classroom) {
 					item.content +=
-						"\n\n**Normal:** Complete the working core evidence and keep its saved checkpoint.\n\n**Hard:** Choose the matching extension after the Normal checkpoint; keep the baseline available for comparison.";
+						"\n\n**Normal:** Reopen the saved working core and record its unchanged behavior.\n\n**Hard:** Complete the named extension with a separate working checkpoint.";
 				}
 				continue;
 			}
 			const file = originalSource(module, item);
+			if (file === "PyG12-Master-Project.py") {
+				item.projectLink = coreWorkspace(courseID, item, "sounds");
+				item.solutionLink = pyGamesCoreUrl(
+					corePacks.sounds,
+					"solution"
+				);
+				item.datasetLink = pyGamesPinnedSourceUrl(file);
+				item.ideImport = true;
+				item.preserveInstructions = true;
+				item.content = `${capstoneReading}\n\n**Workspace:** This card and the build checkpoint continue the same saved capstone. A new workspace starts with Arena Delivery; an existing saved game continues unchanged. Use the shared example or implement an original design that demonstrates the same required systems.`;
+				if (classroom)
+					item.content += `\n\n${coreReading("sounds", true)}`;
+				continue;
+			}
+
 			if (!classroom && file) {
 				item.projectLink = workspace(courseID, item);
-				if (file === "PyG12-Master-Project.py") {
-					delete item.solutionLink;
-					item.datasetLink = pyGamesPinnedSourceUrl(file);
-					item.content = capstoneReading;
-					item.preserveInstructions = true;
-				} else {
-					item.solutionLink = pyGamesPinnedSourceUrl(file);
-				}
+				item.solutionLink = pyGamesPinnedSourceUrl(file);
 				item.content +=
 					"\n\n**Project workflow:** Start a separate course workspace for this activity and build from the stated prompt. Save a small working checkpoint before the next feature. Record expected and actual normal/boundary behavior, then reopen and export the source with its required assets. The worked source is available in the staff reference after the independent attempt or review checkpoint.";
 				continue;
@@ -526,16 +533,6 @@ Model source: [Course program](${pyGamesPinnedSourceUrl(practice.file)}).`;
 						pyGamesCourseProjectKey(courseID, item.id, "starter")
 					);
 					item.projectLink = `/ide?${url.searchParams.toString()}`;
-				} else if (file === "PyG12-Master-Project.py") {
-					item.projectLink = workspace(
-						courseID,
-						item,
-						"PyG11-Space-Invaders.py"
-					);
-					item.content = `${
-						capstoneReading
-					}\n\n**Normal:** Complete one playable slice with end and restart.\n\n**Hard:** Add the chosen original extension while preserving the Normal checkpoint.`;
-					item.preserveInstructions = true;
 				}
 			}
 		}

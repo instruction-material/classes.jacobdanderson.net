@@ -35,6 +35,7 @@ import {
 	networkCourseResource,
 	networkImportFiles
 } from "@/modules/networkProjectResources";
+import { loadPyGamesCoreFiles } from "@/modules/pyGamesCoreProjectResources";
 import { restoredUsacoResource } from "@/modules/usacoProjectResources";
 
 const WHITESPACE_RE = /\s+/g;
@@ -3076,6 +3077,11 @@ export async function loadPythonIdeStarterFilesFromGitHub(
 		throw new Error(
 			"Only public GitHub starter links can open in the IDE."
 		);
+	}
+
+	if (mode === "pgzero") {
+		const files = await loadPyGamesCoreFiles(starterUrl);
+		if (files) return files;
 	}
 
 	if (mode === "c" || mode === "assembly" || mode === "linux") {

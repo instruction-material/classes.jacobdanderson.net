@@ -99,6 +99,11 @@ import {
 	pythonIdeAssetCandidateNames,
 	pythonIdeAssetLookupAliases
 } from "@/modules/pythonIdeCourseAssets";
+import {
+	preparePythonIdeGameCanvas,
+	pythonIdeGamePointerPosition,
+	waitForPythonIdeGameImage
+} from "@/modules/pythonIdeGameGraphics";
 import { primePythonRuntimeConnection } from "@/modules/pythonIdeRuntimeHints";
 import {
 	sandboxRun,
@@ -5169,22 +5174,9 @@ function exportTurtlePostScript() {
 
 function setGameCanvasTransform() {
 	const canvas = canvasRef.value;
-	const context = getCanvasContext();
-	if (!canvas || !context) return null;
-
-	const rect = canvas.getBoundingClientRect();
-	const dpr = window.devicePixelRatio || 1;
-	syncCanvasBitmapSize(canvas, rect, dpr);
-	context.setTransform(
-		dpr * (rect.width / gameState.width),
-		0,
-		0,
-		dpr * (rect.height / gameState.height),
-		0,
-		0
-	);
-
-	return context;
+	return canvas
+		? preparePythonIdeGameCanvas(canvas, gameState.width, gameState.height)
+		: null;
 }
 
 function gameCanvasFillStyle(
@@ -5447,6 +5439,31 @@ function courseAssetSize(asset: ResolvedGameAsset | null) {
 	}
 
 	return { height: 64, width: 64 };
+}
+
+async function prepareProjectGameImages() {
+	await Promise.all(
+		(selectedProject.value?.files ?? []).map(async file => {
+			if (
+				!imageAssetExtensions.some(ext =>
+					file.name.toLowerCase().endsWith(ext)
+				)
+			) {
+				return;
+			}
+			const src = getPythonIdeAssetDataUrl(file);
+			if (!src) return;
+			const entry = getGameImageEntry({
+				key: `project:${file.name}`,
+				src
+			});
+			if (!entry) return;
+			entry.loaded = await waitForPythonIdeGameImage(entry.element);
+			entry.failed = !entry.loaded;
+			if (entry.failed)
+				throw new Error(`Unable to decode project image: ${file.name}`);
+		})
+	);
 }
 
 function gameImageSizeJson(name: string) {
@@ -5769,6 +5786,13 @@ async function runGameTick(loopID: number) {
 		);
 		recordIdeFailure(error);
 		stopGameLoop();
+		runMessage.value = "Run failed";
+		if (props.runtimeOnly) {
+			emit("runtimeMessage", {
+				type: "error",
+				message: formatPythonRuntimeError(error).slice(0, 16_000)
+			});
+		}
 	} finally {
 		if (loopID === activeGameLoopID) {
 			gameTickInFlight = false;
@@ -6929,6 +6953,21 @@ async function runCurrentProject() {
 					account === storageUserID.value &&
 					!shouldStopPythonIdeRun(runID, project._id),
 				onOutput: appendOutput,
+				onError: message => {
+					if (
+						account !== storageUserID.value ||
+						shouldStopPythonIdeRun(runID, project._id)
+					) {
+						return;
+					}
+					sandboxPresent.value = false;
+					runMessage.value = "Run failed";
+					recordIdeFailure(new Error(message));
+					void markPythonRuntimeErrorInEditor(
+						message,
+						runnableFile.name
+					);
+				},
 				onAudio: (title, data) =>
 					appendArtifact({ title, data, mimeType: "audio/wav" }),
 				onStage: stage => {
@@ -6973,6 +7012,8 @@ async function runCurrentProject() {
 			runMessage.value = "Loading assets";
 			diagnosticStage.value = "loading-assets";
 			prepareGameAssetsForExplicitRun();
+			await prepareProjectGameImages();
+			if (shouldStopPythonIdeRun(runID, project._id)) return;
 			await ensureGameCourseAssetsLoaded();
 			if (shouldStopPythonIdeRun(runID, project._id)) return;
 		}
@@ -7305,10 +7346,13 @@ function gamePointerPosition(event: MouseEvent) {
 	if (!canvas) return { x: 0, y: 0 };
 
 	const rect = canvas.getBoundingClientRect();
-	return {
-		x: ((event.clientX - rect.left) / rect.width) * gameState.width,
-		y: ((event.clientY - rect.top) / rect.height) * gameState.height
-	};
+	return pythonIdeGamePointerPosition(
+		event.clientX,
+		event.clientY,
+		rect,
+		gameState.width,
+		gameState.height
+	);
 }
 
 function gameMouseButton(event: MouseEvent): GameInputEvent["button"] {

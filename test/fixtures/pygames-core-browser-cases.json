@@ -1,0 +1,45 @@
+{
+  "revision": "16643ac61f4f30dd0f5127ac7bbc418f62246bb4",
+  "sprite": {
+    "sha256": "a435b65656cdecdebd8b2c5510092217995b4754d1afd4bc2fdbd583040c8263",
+    "size": [
+      66,
+      92
+    ],
+    "bodyRgb": [
+      241,
+      156,
+      183
+    ],
+    "bodyPixels": 941,
+    "bodyBounds": [
+      2,
+      56,
+      60,
+      90
+    ]
+  },
+  "packs": [
+    {
+      "kind": "setup",
+      "pack": "PG-CORE-Workspace-and-Assets",
+      "task": "workspace_config.py",
+      "module": "pygames-pyg0-setup-editors-and-asset-workflow",
+      "item": "pygames-pyg0-setup-editors-and-asset-workflow-curriculum-pyg0-setup-editors-and-asset-workflow-core-project"
+    },
+    {
+      "kind": "sprites",
+      "pack": "PG-CORE-Image-Anchors",
+      "task": "geometry.py",
+      "module": "pygames-images-and-sprites-practice-studio",
+      "item": "pygames-images-and-sprites-practice-studio-curriculum-images-and-sprites-core-project"
+    },
+    {
+      "kind": "master",
+      "pack": "PG-CORE-Arena-Capstone",
+      "task": "game_logic.py",
+      "module": "pygames-pyg12-master-project",
+      "item": "pygames-pyg12-master-project-curriculum-pyg12-master-project-core-project"
+    }
+  ]
+}

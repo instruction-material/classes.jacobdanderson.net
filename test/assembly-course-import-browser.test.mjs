@@ -53,6 +53,13 @@ fixtures.push(
 	)
 );
 fixtures.push(...JSON.parse(await readFile(new URL("./fixtures/assembly-syscall-contracts.json", import.meta.url), "utf8")));
+fixtures.push(...JSON.parse(await readFile(new URL("./fixtures/assembly-register-contracts.json", import.meta.url), "utf8")));
+fixtures.push(...JSON.parse(await readFile(new URL("./fixtures/assembly-logic-contracts.json", import.meta.url), "utf8")));
+fixtures.push(...JSON.parse(await readFile(new URL("./fixtures/assembly-machine-contracts.json", import.meta.url), "utf8")));
+fixtures.push(...JSON.parse(await readFile(new URL("./fixtures/assembly-control-contracts.json", import.meta.url), "utf8")));
+fixtures.push(...JSON.parse(await readFile(new URL("./fixtures/assembly-stack-optional-contracts.json", import.meta.url), "utf8")));
+fixtures.push(...JSON.parse(await readFile(new URL("./fixtures/assembly-abi-optional-contracts.json", import.meta.url), "utf8")));
+fixtures.push(...JSON.parse(await readFile(new URL("./fixtures/assembly-memory-layout-optional-contracts.json", import.meta.url), "utf8")));
 const hardening = fixtures.find(
 	row =>
 		row.pack
@@ -65,6 +72,160 @@ fixtures.push({
 });
 let fixture = fixtures[0];
 const workflowDefinitions = {
+
+    "ASM-15-unit-7-memory-addressing-and-data-structures-supplemental-2": {
+        "primary": "routine.S",
+        "taskFile": "routine.S",
+        "title": "Pointer Table Lookup and Record Fields",
+        "lesson": "assembly-unit-7-memory-addressing-and-data-structures-assembly-unit-7-memory-addressing-and-data-structures-supplemental-addressing-mode-transfer-practice",
+        "moduleId": "assembly-unit-7-memory-addressing-and-data-structures",
+        "memoryLayoutMode": "table",
+        "starterToken": "POINTER_LOOKUP",
+        "referenceToken": "separate reference passes"
+    },
+    "ASM-16-unit-7-memory-addressing-and-data-structures-supplemental-3": {
+        "primary": "routine.S",
+        "taskFile": "routine.S",
+        "title": "Bounded Overlap Copy Direction",
+        "lesson": "assembly-unit-7-memory-addressing-and-data-structures-assembly-unit-7-memory-addressing-and-data-structures-supplemental-addressing-mode-extension-practice",
+        "moduleId": "assembly-unit-7-memory-addressing-and-data-structures",
+        "memoryLayoutMode": "overlap",
+        "starterToken": "COPY_DIRECTION",
+        "referenceToken": "separate reference passes"
+    }
+,
+
+    "ASM-13-unit-6-calling-conventions-and-abi-supplemental-2": {
+        "primary": "routine.S",
+        "taskFile": "routine.S",
+        "title": "Six Integer Argument Registers",
+        "lesson": "assembly-unit-6-calling-conventions-and-abi-assembly-unit-6-calling-conventions-and-abi-supplemental-calling-convention-transfer-practice",
+        "moduleId": "assembly-unit-6-calling-conventions-and-abi",
+        "abiOptionalMode": "registers",
+        "starterToken": "ARGUMENT_REGISTER",
+        "referenceToken": "separate reference passes"
+    },
+    "ASM-14-unit-6-calling-conventions-and-abi-supplemental-3": {
+        "primary": "routine.S",
+        "taskFile": "routine.S",
+        "title": "Seventh Integer Argument and Stack Location",
+        "lesson": "assembly-unit-6-calling-conventions-and-abi-assembly-unit-6-calling-conventions-and-abi-supplemental-calling-convention-extension-practice",
+        "moduleId": "assembly-unit-6-calling-conventions-and-abi",
+        "abiOptionalMode": "stack",
+        "starterToken": "STACK_ARGUMENT",
+        "referenceToken": "separate reference passes"
+    }
+,
+
+    "ASM-11-unit-5-the-stack-and-function-calls-supplemental-2": {
+        "primary": "routine.S",
+        "taskFile": "routine.S",
+        "title": "LIFO Value Order and Stack Restoration",
+        "lesson": "assembly-unit-5-the-stack-and-function-calls-assembly-unit-5-the-stack-and-function-calls-supplemental-stack-frame-transfer-practice",
+        "moduleId": "assembly-unit-5-the-stack-and-function-calls",
+        "stackOptionalMode": "lifo",
+        "starterToken": "LIFO_POP",
+        "referenceToken": "separate reference passes"
+    },
+    "ASM-12-unit-5-the-stack-and-function-calls-supplemental-3": {
+        "primary": "routine.S",
+        "taskFile": "routine.S",
+        "title": "Caller-Owned Locals Across a Nested Call",
+        "lesson": "assembly-unit-5-the-stack-and-function-calls-assembly-unit-5-the-stack-and-function-calls-supplemental-stack-frame-extension-practice",
+        "moduleId": "assembly-unit-5-the-stack-and-function-calls",
+        "stackOptionalMode": "frame",
+        "starterToken": "LOCAL_RELOAD",
+        "referenceToken": "separate reference passes"
+    }
+,
+
+    "ASM-09-unit-4-branching-and-loops-supplemental-2": {
+        "primary": "routine.S",
+        "taskFile": "routine.S",
+        "title": "Switch Dispatch and Fall-Through Investigation",
+        "lesson": "assembly-unit-4-branching-and-loops-assembly-unit-4-branching-and-loops-supplemental-branch-trace-transfer-practice",
+        "moduleId": "assembly-unit-4-branching-and-loops",
+        "controlMode": "dispatch",
+        "starterToken": "DISPATCH_JOIN",
+        "referenceToken": "separate reference passes"
+    },
+    "ASM-10-unit-4-branching-and-loops-supplemental-3": {
+        "primary": "routine.S",
+        "taskFile": "routine.S",
+        "title": "Loop Exit Boundary and Invariant Investigation",
+        "lesson": "assembly-unit-4-branching-and-loops-assembly-unit-4-branching-and-loops-supplemental-branch-trace-extension-practice",
+        "moduleId": "assembly-unit-4-branching-and-loops",
+        "controlMode": "loop",
+        "starterToken": "LOOP_EXIT",
+        "referenceToken": "separate reference passes"
+    }
+,
+
+    "ASM-03-unit-1-machine-model-and-toolchain-supplemental-2": {
+        "primary": "routine.S",
+        "taskFile": "routine.S",
+        "title": "Byte Order and Memory Access Width Investigation",
+        "lesson": "assembly-unit-1-machine-model-and-toolchain-assembly-unit-1-machine-model-and-toolchain-supplemental-toolchain-trace-transfer-practice",
+        "moduleId": "assembly-unit-1-machine-model-and-toolchain",
+        "machineMode": "memory",
+        "starterToken": "MEMORY_SPAN",
+        "referenceToken": "separate reference passes"
+    },
+    "ASM-04-unit-1-machine-model-and-toolchain-supplemental-3": {
+        "primary": "routine.S",
+        "taskFile": "routine.S",
+        "title": "Effective Address Calculation Investigation",
+        "lesson": "assembly-unit-1-machine-model-and-toolchain-assembly-unit-1-machine-model-and-toolchain-supplemental-toolchain-trace-extension-practice",
+        "moduleId": "assembly-unit-1-machine-model-and-toolchain",
+        "machineMode": "lea",
+        "starterToken": "ADDRESS_SCALE",
+        "referenceToken": "separate reference passes"
+    }
+,
+
+    "ASM-07-unit-3-arithmetic-and-logic-supplemental-2": {
+        "primary": "routine.S",
+        "taskFile": "routine.S",
+        "title": "Signed and Unsigned Comparison Investigation",
+        "lesson": "assembly-unit-3-arithmetic-and-logic-assembly-unit-3-arithmetic-and-logic-supplemental-flag-logic-transfer-practice",
+        "moduleId": "assembly-unit-3-arithmetic-and-logic",
+        "logicMode": "compare",
+        "starterToken": "COMPARE_SIGNED",
+        "referenceToken": "separate reference passes"
+    },
+    "ASM-08-unit-3-arithmetic-and-logic-supplemental-3": {
+        "primary": "routine.S",
+        "taskFile": "routine.S",
+        "title": "Variable Shift Count Investigation",
+        "lesson": "assembly-unit-3-arithmetic-and-logic-assembly-unit-3-arithmetic-and-logic-supplemental-flag-logic-extension-practice",
+        "moduleId": "assembly-unit-3-arithmetic-and-logic",
+        "logicMode": "shift",
+        "starterToken": "SHIFT_SIGNED",
+        "referenceToken": "separate reference passes"
+    }
+,
+
+    "ASM-05-unit-2-registers-and-data-movement-supplemental-2": {
+        "primary": "routine.S",
+        "taskFile": "routine.S",
+        "title": "Partial-Register Write Investigation",
+        "lesson": "assembly-unit-2-registers-and-data-movement-assembly-unit-2-registers-and-data-movement-supplemental-register-flow-transfer-practice",
+        "moduleId": "assembly-unit-2-registers-and-data-movement",
+        "registerMode": "partial",
+        "starterToken": "WIDTH_SEED",
+        "referenceToken": "separate reference passes"
+    },
+    "ASM-06-unit-2-registers-and-data-movement-supplemental-3": {
+        "primary": "routine.S",
+        "taskFile": "routine.S",
+        "title": "Signed and Unsigned Widening Investigation",
+        "lesson": "assembly-unit-2-registers-and-data-movement-assembly-unit-2-registers-and-data-movement-supplemental-register-flow-extension-practice",
+        "moduleId": "assembly-unit-2-registers-and-data-movement",
+        "registerMode": "extension",
+        "starterToken": "SIGN_BYTE",
+        "referenceToken": "separate reference passes"
+    }
+,
 
 	"ASM-17-unit-8-system-calls-and-runtime-interaction-supplemental-2": {
 		primary: "routine.S",
@@ -212,8 +373,8 @@ const workflowDefinitions = {
 
 assert.equal(
 	fixtures.length,
-	19,
-	"All nineteen verified assignment workspaces require browser coverage"
+	33,
+	"All twenty-one verified assignment workspaces require browser coverage"
 );
 assert.deepEqual(
 	fixtures.map(row => row.pack).sort(),
@@ -221,6 +382,8 @@ assert.deepEqual(
 	"Browser fixtures must cover every workflow definition"
 );
 const expectedProfiles = fixtures.length * 2 * 2 * 2;
+// Include startup, course actions and cleanup as the complete matrix grows.
+const workflowTimeoutMs = 60_000 + expectedProfiles * 2_500;
 
 const storageKey = "classes-python-ide-projects:anonymous";
 const legacy = {
@@ -315,7 +478,7 @@ async function verifyHardeningCourseButton(
 		key
 	);
 	assert.equal(saved.activeFileName, `starter/${definition.primary}`);
-	const expectedCount = definition.syscallMode ? 8 : definition.setupMode ? 7 : 10;
+	const expectedCount = (definition.memoryLayoutMode || definition.abiOptionalMode || definition.stackOptionalMode || definition.controlMode || definition.machineMode || definition.logicMode || definition.registerMode) ? 9 : definition.syscallMode ? 8 : definition.setupMode ? 7 : 10;
 	assert.equal(saved.files.length, expectedCount);
 	assert.equal(sourceRequests(), expectedCount);
 	return {
@@ -331,7 +494,7 @@ async function verifyHardeningCourseButton(
 
 test(
 	"Assembly consent, exact role imports, saved edits, native exports and lesson return",
-	{ timeout: 360_000 },
+	{ timeout: workflowTimeoutMs },
 	async () => {
 		let server, browser, context, page;
 		const captures
@@ -456,7 +619,7 @@ test(
 								width === 1280
 								&& theme === "light"
 								&& role === "starter"
-								&& (definition.setupMode || definition.syscallMode
+								&& (definition.memoryLayoutMode || definition.abiOptionalMode || definition.stackOptionalMode || definition.controlMode || definition.machineMode || definition.logicMode || definition.registerMode || definition.setupMode || definition.syscallMode
 									|| (fixture.pack.startsWith("ASM-2")
 										&& ["analysis.md", "trace.md"].includes(
 											primary
@@ -692,7 +855,49 @@ test(
 								file => file.name === name
 							).content;
 							const edit
-								= definition.syscallMode
+								= definition.memoryLayoutMode
+                                    ? role === "starter"
+                                        ? fixture.files[`${fixture.pack}/solution/routine.S`].content
+                                        : definition.memoryLayoutMode === "table"
+                                            ? original.replace("    movzx r9d, WORD PTR [r8 + 8]\n", "    movzx r9d, BYTE PTR [r8 + 8]\n")
+                                            : original.replace("    ja lab_backward\n", "    jmp lab_forward\n")
+                                    : definition.abiOptionalMode
+                                    ? role === "starter"
+                                        ? fixture.files[`${fixture.pack}/solution/routine.S`].content
+                                        : definition.abiOptionalMode === "registers"
+                                            ? original.replace("    imul r10, r9, 13\n", "    imul r10, r8, 13\n")
+                                            : original.replace("    imul r11, r11, 17\n", "    imul r11, r11, 19\n")
+                                    : definition.stackOptionalMode
+                                    ? role === "starter"
+                                        ? fixture.files[`${fixture.pack}/solution/routine.S`].content
+                                        : definition.stackOptionalMode === "lifo"
+                                            ? original.replace("    push rdi # save initial first\n", "    push rsi # wrong first saved value\n")
+                                            : original.replace("    mov r9, QWORD PTR [rsp + 8] # saved incoming\n", "    mov r9, QWORD PTR [rsp + 0] # wrong incoming slot\n")
+                                    : definition.controlMode
+                                    ? role === "starter"
+                                        ? fixture.files[`${fixture.pack}/solution/routine.S`].content
+                                        : definition.controlMode === "dispatch"
+                                            ? original.replace("    jmp lab_join # selected-case exit\n", "    jmp lab_case0 # wrong selected-case exit\n")
+                                            : original.replace("    add rax, rsi\n", "    sub rax, rsi\n")
+                                    : definition.machineMode
+                                    ? role === "starter"
+                                        ? fixture.files[`${fixture.pack}/solution/routine.S`].content
+                                        : definition.machineMode === "memory"
+                                            ? original.replace("    mov rax, QWORD PTR [rsp + 0]\n", "    mov rax, QWORD PTR [rsp + 0]\n    bswap rax\n")
+                                            : original.replace("    lea rax, [rdi + rsi*8 - 7]\n", "    lea rax, [rdi + rsi*4 - 7]\n")
+                                    : definition.logicMode
+                                    ? role === "starter"
+                                        ? fixture.files[`${fixture.pack}/solution/routine.S`].content
+                                        : definition.logicMode === "compare"
+                                            ? original.replace("    mov eax, 0\n.globl lab_stage2", "    xor eax, eax\n.globl lab_stage2")
+                                            : original.replace("    mov rcx, rsi\n.globl lab_stage0", "    mov ecx, esi\n    and ecx, 31\n.globl lab_stage0")
+                                    : definition.registerMode
+                                    ? role === "starter"
+                                        ? fixture.files[`${fixture.pack}/solution/routine.S`].content
+                                        : definition.registerMode === "partial"
+                                            ? original.replace("    mov eax, esi\n", "    mov ax, si\n")
+                                            : original.replace("    movzx eax, si\n", "    movsx rax, si\n")
+                                    : definition.syscallMode
 									? role === "starter"
 										? fixture.files[`${fixture.pack}/solution/routine.S`].content
 										: definition.syscallMode === "write"
@@ -801,7 +1006,7 @@ test(
 									file.content
 								);
 							}
-							if (definition.setupMode || definition.syscallMode) {
+							if (definition.memoryLayoutMode || definition.abiOptionalMode || definition.stackOptionalMode || definition.controlMode || definition.machineMode || definition.logicMode || definition.registerMode || definition.setupMode || definition.syscallMode) {
 								await writeFile(
 									join(
 										exports,
@@ -854,8 +1059,14 @@ test(
 						}
 					}
 				}
+				console.log(JSON.stringify({
+					event: "assembly-pack-complete",
+					pack: fixture.pack,
+					completedProfiles: proof.length,
+					expectedProfiles
+				}));
 			}
-			assert.equal(courseButtons.length, 6);
+			assert.equal(courseButtons.length, 20);
 			await writeFile(
 				join(captures, "assembly-course-buttons-proof.json"),
 				JSON.stringify(courseButtons, null, 2)

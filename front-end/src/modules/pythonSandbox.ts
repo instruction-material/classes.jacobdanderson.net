@@ -147,6 +147,7 @@ export interface SandboxCallbacks {
 	onOutput: (kind: "stdout" | "stderr" | "system", text: string) => void;
 	onFiles: (files: PythonIdeFile[]) => void;
 	onActivity: (active: boolean) => void;
+	onError?: (message: string) => void;
 	onStage?: (stage: IdeStage) => void;
 	onPythonVersion?: (version: string) => void;
 	onAudio?: (title: string, data: string) => void;
@@ -237,11 +238,15 @@ export function startPythonSandbox(
 		}
 	}
 	function fail(message: string) {
-		if (!finished) {
-			finished = true;
-			rejectDone(new Error(message));
+		try {
+			callbacks.onError?.(message);
+		} finally {
+			if (!finished) {
+				finished = true;
+				rejectDone(new Error(message));
+			}
+			destroy();
 		}
-		destroy();
 	}
 	function releasePointer(event: MouseEvent) {
 		if (!active || !started || !callbacks.isCurrent() || !isDrawingRun) {

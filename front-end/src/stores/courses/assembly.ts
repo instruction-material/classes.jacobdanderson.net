@@ -2,6 +2,10 @@ import type { RawCourse } from "./types";
 import setupPreprocessReading from "../../assets/course-guides/assembly-setup-preprocess.md?raw";
 import setupSymbolsReading from "../../assets/course-guides/assembly-setup-symbols.md?raw";
 import {
+	assemblySeventhArgumentReading,
+	assemblySixArgumentReading
+} from "./assemblyAbiOptionalProjectReading";
+import {
 	assemblyArithmeticConceptReading,
 	assemblyArithmeticProjectReading,
 	assemblyArithmeticTraceReading
@@ -9,12 +13,28 @@ import {
 import { assemblyArrayProjectReading } from "./assemblyArrayProjectReading";
 import { assemblyCalculatorProjectReading } from "./assemblyCalculatorProjectReading";
 import { assemblyCompilerProjectReading } from "./assemblyCompilerProjectReading";
+import {
+	assemblyDispatchReading,
+	assemblyLoopReading
+} from "./assemblyControlProjectReading";
 import { assemblyDebugProjectReading } from "./assemblyDebugProjectReading";
 import {
 	assemblyHardeningProjectReading,
 	assemblyHardeningTraceReading
 } from "./assemblyHardeningProjectReading";
 import { assemblyHelperProjectReading } from "./assemblyHelperProjectReading";
+import {
+	assemblyComparisonReading,
+	assemblyShiftReading
+} from "./assemblyLogicProjectReading";
+import {
+	assemblyAddressReading,
+	assemblyMemoryReading
+} from "./assemblyMachineProjectReading";
+import {
+	assemblyOverlapCopyReading,
+	assemblyPointerTableReading
+} from "./assemblyMemoryLayoutProjectReading";
 import { assemblyOpeningProjectReading } from "./assemblyOpeningProjectReading";
 import { assemblyParserProjectReading } from "./assemblyParserProjectReading";
 import { assemblyPerformanceProjectReading } from "./assemblyPerformanceProjectReading";
@@ -23,7 +43,15 @@ import {
 	assemblyRecordProjectReading,
 	assemblyRecordTraceReading
 } from "./assemblyRecordProjectReading";
+import {
+	assemblyPartialRegisterReading,
+	assemblyWideningReading
+} from "./assemblyRegisterProjectReading";
 import { assemblyReverseProjectReading } from "./assemblyReverseProjectReading";
+import {
+	assemblyCallerFrameReading,
+	assemblyLifoReading
+} from "./assemblyStackOptionalProjectReading";
 import { assemblyStackProjectReading } from "./assemblyStackProjectReading";
 import { assemblyStringProjectReading } from "./assemblyStringProjectReading";
 import {
@@ -138,30 +166,28 @@ const assemblySourceCourse: RawCourse = {
 						"https://github.com/instruction-material/Assembly/tree/2ded92a0103d3e518e08cc152a69428d748aafb7/ASM-05-unit-1-machine-model-and-toolchain/solution"
 				},
 				{
-					title: "Toolchain Trace Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle: "Unit 1: Machine Model and Toolchain",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Byte Order and Memory Access Width Investigation",
+					id: "assembly-unit-1-machine-model-and-toolchain-supplemental-toolchain-trace-transfer-practice",
+					learningPath: "choice",
+					preserveInstructions: true,
+					ideImport: true,
+					content: assemblyMemoryReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-03-unit-1-machine-model-and-toolchain-supplemental-2/starter",
+						"https://github.com/instruction-material/Assembly/tree/6ab461632744b36324d331cd15902acff3204513/ASM-03-unit-1-machine-model-and-toolchain-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-03-unit-1-machine-model-and-toolchain-supplemental-2/solution"
+						"https://github.com/instruction-material/Assembly/tree/6ab461632744b36324d331cd15902acff3204513/ASM-03-unit-1-machine-model-and-toolchain-supplemental-2/solution"
 				},
 				{
-					title: "Toolchain Trace Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle: "Unit 1: Machine Model and Toolchain",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Effective Address Calculation Investigation",
+					id: "assembly-unit-1-machine-model-and-toolchain-supplemental-toolchain-trace-extension-practice",
+					learningPath: "challenge",
+					preserveInstructions: true,
+					ideImport: true,
+					content: assemblyAddressReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-04-unit-1-machine-model-and-toolchain-supplemental-3/starter",
+						"https://github.com/instruction-material/Assembly/tree/6ab461632744b36324d331cd15902acff3204513/ASM-04-unit-1-machine-model-and-toolchain-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-04-unit-1-machine-model-and-toolchain-supplemental-3/solution"
+						"https://github.com/instruction-material/Assembly/tree/6ab461632744b36324d331cd15902acff3204513/ASM-04-unit-1-machine-model-and-toolchain-supplemental-3/solution"
 				}
 			]
 		},
@@ -203,30 +229,27 @@ const assemblySourceCourse: RawCourse = {
 						"https://github.com/instruction-material/Assembly/blob/37756ab58d42d47a3ae1449950125f444691273f/ASM1-Integer-Calculator/README.md"
 				},
 				{
-					title: "Register Flow Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle: "Unit 2: Registers and Data Movement",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Partial-Register Write Investigation",
+					id: "assembly-unit-2-registers-and-data-movement-supplemental-register-flow-transfer-practice",
+					preserveInstructions: true,
+					ideImport: true,
+					content: assemblyPartialRegisterReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-05-unit-2-registers-and-data-movement-supplemental-2/starter",
+						"https://github.com/instruction-material/Assembly/tree/3e07b75a56e27321180080ef347957d65521f22e/ASM-05-unit-2-registers-and-data-movement-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-05-unit-2-registers-and-data-movement-supplemental-2/solution"
+						"https://github.com/instruction-material/Assembly/tree/3e07b75a56e27321180080ef347957d65521f22e/ASM-05-unit-2-registers-and-data-movement-supplemental-2/solution"
 				},
 				{
-					title: "Register Flow Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle: "Unit 2: Registers and Data Movement",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Signed and Unsigned Widening Investigation",
+					id: "assembly-unit-2-registers-and-data-movement-supplemental-register-flow-extension-practice",
+					learningPath: "challenge",
+					preserveInstructions: true,
+					ideImport: true,
+					content: assemblyWideningReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-06-unit-2-registers-and-data-movement-supplemental-3/starter",
+						"https://github.com/instruction-material/Assembly/tree/3e07b75a56e27321180080ef347957d65521f22e/ASM-06-unit-2-registers-and-data-movement-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-06-unit-2-registers-and-data-movement-supplemental-3/solution"
+						"https://github.com/instruction-material/Assembly/tree/3e07b75a56e27321180080ef347957d65521f22e/ASM-06-unit-2-registers-and-data-movement-supplemental-3/solution"
 				}
 			]
 		},
@@ -265,30 +288,27 @@ const assemblySourceCourse: RawCourse = {
 						"https://github.com/instruction-material/Assembly/tree/0e6243fe594793b931117133c8dc070983af1617/ASM-06-unit-3-arithmetic-and-logic/solution"
 				},
 				{
-					title: "Flag Logic Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle: "Unit 3: Arithmetic and Logic",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Signed and Unsigned Comparison Investigation",
+					id: "assembly-unit-3-arithmetic-and-logic-supplemental-flag-logic-transfer-practice",
+					preserveInstructions: true,
+					ideImport: true,
+					content: assemblyComparisonReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-07-unit-3-arithmetic-and-logic-supplemental-2/starter",
+						"https://github.com/instruction-material/Assembly/tree/b56c6b50ed43b6c27d1da8117fe507a32f96032d/ASM-07-unit-3-arithmetic-and-logic-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-07-unit-3-arithmetic-and-logic-supplemental-2/solution"
+						"https://github.com/instruction-material/Assembly/tree/b56c6b50ed43b6c27d1da8117fe507a32f96032d/ASM-07-unit-3-arithmetic-and-logic-supplemental-2/solution"
 				},
 				{
-					title: "Flag Logic Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle: "Unit 3: Arithmetic and Logic",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Variable Shift Count Investigation",
+					id: "assembly-unit-3-arithmetic-and-logic-supplemental-flag-logic-extension-practice",
+					learningPath: "challenge",
+					preserveInstructions: true,
+					ideImport: true,
+					content: assemblyShiftReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-08-unit-3-arithmetic-and-logic-supplemental-3/starter",
+						"https://github.com/instruction-material/Assembly/tree/b56c6b50ed43b6c27d1da8117fe507a32f96032d/ASM-08-unit-3-arithmetic-and-logic-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-08-unit-3-arithmetic-and-logic-supplemental-3/solution"
+						"https://github.com/instruction-material/Assembly/tree/b56c6b50ed43b6c27d1da8117fe507a32f96032d/ASM-08-unit-3-arithmetic-and-logic-supplemental-3/solution"
 				}
 			]
 		},
@@ -330,30 +350,28 @@ const assemblySourceCourse: RawCourse = {
 						"https://github.com/instruction-material/Assembly/blob/4e82e4d5f02067a830f92c19e148d0822220ffe9/ASM2-Array-Sum-and-Search/README.md"
 				},
 				{
-					title: "Branch Trace Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle: "Unit 4: Branching and Loops",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Switch Dispatch and Fall-Through Investigation",
+					id: "assembly-unit-4-branching-and-loops-supplemental-branch-trace-transfer-practice",
+					learningPath: "choice",
+					preserveInstructions: true,
+					ideImport: true,
+					content: assemblyDispatchReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-09-unit-4-branching-and-loops-supplemental-2/starter",
+						"https://github.com/instruction-material/Assembly/tree/610827243f0b8369cd5dd59bcfa029966dd24aac/ASM-09-unit-4-branching-and-loops-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-09-unit-4-branching-and-loops-supplemental-2/solution"
+						"https://github.com/instruction-material/Assembly/tree/610827243f0b8369cd5dd59bcfa029966dd24aac/ASM-09-unit-4-branching-and-loops-supplemental-2/solution"
 				},
 				{
-					title: "Branch Trace Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle: "Unit 4: Branching and Loops",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Loop Exit Boundary and Invariant Investigation",
+					id: "assembly-unit-4-branching-and-loops-supplemental-branch-trace-extension-practice",
+					learningPath: "challenge",
+					preserveInstructions: true,
+					ideImport: true,
+					content: assemblyLoopReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-10-unit-4-branching-and-loops-supplemental-3/starter",
+						"https://github.com/instruction-material/Assembly/tree/610827243f0b8369cd5dd59bcfa029966dd24aac/ASM-10-unit-4-branching-and-loops-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-10-unit-4-branching-and-loops-supplemental-3/solution"
+						"https://github.com/instruction-material/Assembly/tree/610827243f0b8369cd5dd59bcfa029966dd24aac/ASM-10-unit-4-branching-and-loops-supplemental-3/solution"
 				}
 			]
 		},
@@ -400,30 +418,28 @@ const assemblySourceCourse: RawCourse = {
 						"https://github.com/instruction-material/Assembly/blob/005e375894ade846a1077e96d4880faea680aed8/ASM-07-unit-5-the-stack-and-function-calls/README.md"
 				},
 				{
-					title: "Stack Frame Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle: "Unit 5: The Stack and Function Calls",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "LIFO Value Order and Stack Restoration",
+					id: "assembly-unit-5-the-stack-and-function-calls-supplemental-stack-frame-transfer-practice",
+					learningPath: "choice",
+					preserveInstructions: true,
+					ideImport: true,
+					content: assemblyLifoReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-11-unit-5-the-stack-and-function-calls-supplemental-2/starter",
+						"https://github.com/instruction-material/Assembly/tree/ad7243e4c7577630ec04ce50b03661924d2adfef/ASM-11-unit-5-the-stack-and-function-calls-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-11-unit-5-the-stack-and-function-calls-supplemental-2/solution"
+						"https://github.com/instruction-material/Assembly/tree/ad7243e4c7577630ec04ce50b03661924d2adfef/ASM-11-unit-5-the-stack-and-function-calls-supplemental-2/solution"
 				},
 				{
-					title: "Stack Frame Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle: "Unit 5: The Stack and Function Calls",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Caller-Owned Locals Across a Nested Call",
+					id: "assembly-unit-5-the-stack-and-function-calls-supplemental-stack-frame-extension-practice",
+					learningPath: "challenge",
+					preserveInstructions: true,
+					ideImport: true,
+					content: assemblyCallerFrameReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-12-unit-5-the-stack-and-function-calls-supplemental-3/starter",
+						"https://github.com/instruction-material/Assembly/tree/ad7243e4c7577630ec04ce50b03661924d2adfef/ASM-12-unit-5-the-stack-and-function-calls-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-12-unit-5-the-stack-and-function-calls-supplemental-3/solution"
+						"https://github.com/instruction-material/Assembly/tree/ad7243e4c7577630ec04ce50b03661924d2adfef/ASM-12-unit-5-the-stack-and-function-calls-supplemental-3/solution"
 				}
 			]
 		},
@@ -465,30 +481,28 @@ const assemblySourceCourse: RawCourse = {
 						"https://github.com/instruction-material/Assembly/blob/4519a6ecbdb0dc6e932932a8af50a24f2449c8ef/ASM4-Call-C-Helper-from-Assembly/README.md"
 				},
 				{
-					title: "Calling Convention Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle: "Unit 6: Calling Conventions and ABI",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Six Integer Argument Registers",
+					id: "assembly-unit-6-calling-conventions-and-abi-supplemental-calling-convention-transfer-practice",
+					learningPath: "choice",
+					preserveInstructions: true,
+					ideImport: true,
+					content: assemblySixArgumentReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-13-unit-6-calling-conventions-and-abi-supplemental-2/starter",
+						"https://github.com/instruction-material/Assembly/tree/b398a79fd3f3ed025540ac2eff178cc7dc697c4a/ASM-13-unit-6-calling-conventions-and-abi-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-13-unit-6-calling-conventions-and-abi-supplemental-2/solution"
+						"https://github.com/instruction-material/Assembly/tree/b398a79fd3f3ed025540ac2eff178cc7dc697c4a/ASM-13-unit-6-calling-conventions-and-abi-supplemental-2/solution"
 				},
 				{
-					title: "Calling Convention Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle: "Unit 6: Calling Conventions and ABI",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Seventh Integer Argument and Stack Location",
+					id: "assembly-unit-6-calling-conventions-and-abi-supplemental-calling-convention-extension-practice",
+					learningPath: "challenge",
+					preserveInstructions: true,
+					ideImport: true,
+					content: assemblySeventhArgumentReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-14-unit-6-calling-conventions-and-abi-supplemental-3/starter",
+						"https://github.com/instruction-material/Assembly/tree/b398a79fd3f3ed025540ac2eff178cc7dc697c4a/ASM-14-unit-6-calling-conventions-and-abi-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-14-unit-6-calling-conventions-and-abi-supplemental-3/solution"
+						"https://github.com/instruction-material/Assembly/tree/b398a79fd3f3ed025540ac2eff178cc7dc697c4a/ASM-14-unit-6-calling-conventions-and-abi-supplemental-3/solution"
 				}
 			]
 		},
@@ -530,32 +544,28 @@ const assemblySourceCourse: RawCourse = {
 						"https://github.com/instruction-material/Assembly/blob/3d66cd9cd20139f8176098475193b791edd2bcd8/ASM3-String-Length-and-Copy/README.md"
 				},
 				{
-					title: "Addressing Mode Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle:
-							"Unit 7: Memory Addressing and Data Structures",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Pointer Table Lookup and Record Fields",
+					id: "assembly-unit-7-memory-addressing-and-data-structures-supplemental-addressing-mode-transfer-practice",
+					learningPath: "choice",
+					preserveInstructions: true,
+					ideImport: true,
+					content: assemblyPointerTableReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-15-unit-7-memory-addressing-and-data-structures-supplemental-2/starter",
+						"https://github.com/instruction-material/Assembly/tree/5c2f24f268db0634d11c587328a0ceb3d0aadeb0/ASM-15-unit-7-memory-addressing-and-data-structures-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-15-unit-7-memory-addressing-and-data-structures-supplemental-2/solution"
+						"https://github.com/instruction-material/Assembly/tree/5c2f24f268db0634d11c587328a0ceb3d0aadeb0/ASM-15-unit-7-memory-addressing-and-data-structures-supplemental-2/solution"
 				},
 				{
-					title: "Addressing Mode Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "assembly",
-						moduleTitle:
-							"Unit 7: Memory Addressing and Data Structures",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					title: "Bounded Overlap Copy Direction",
+					id: "assembly-unit-7-memory-addressing-and-data-structures-supplemental-addressing-mode-extension-practice",
+					learningPath: "challenge",
+					preserveInstructions: true,
+					ideImport: true,
+					content: assemblyOverlapCopyReading,
 					projectLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-16-unit-7-memory-addressing-and-data-structures-supplemental-3/starter",
+						"https://github.com/instruction-material/Assembly/tree/5c2f24f268db0634d11c587328a0ceb3d0aadeb0/ASM-16-unit-7-memory-addressing-and-data-structures-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Assembly/tree/main/ASM-16-unit-7-memory-addressing-and-data-structures-supplemental-3/solution"
+						"https://github.com/instruction-material/Assembly/tree/5c2f24f268db0634d11c587328a0ceb3d0aadeb0/ASM-16-unit-7-memory-addressing-and-data-structures-supplemental-3/solution"
 				}
 			]
 		},

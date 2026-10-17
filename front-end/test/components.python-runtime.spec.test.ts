@@ -13,6 +13,55 @@ const calls = vi.hoisted(() => ({
 vi.mock("@/api", () => ({ api: calls }));
 
 describe("runtime-only Python surface", () => {
+	it("reports a later game frame failure and clears the running status", async () => {
+		vi.stubGlobal(
+			"ResizeObserver",
+			class {
+				observe() {}
+				disconnect() {}
+			}
+		);
+		vi.stubGlobal(
+			"requestAnimationFrame",
+			vi.fn(() => 1)
+		);
+		vi.stubGlobal("cancelAnimationFrame", vi.fn());
+		const router = createRouter({
+			history: createMemoryHistory(),
+			routes: [{ path: "/", component: { template: "<div/>" } }]
+		});
+		await router.push("/");
+		let wrapper: ReturnType<typeof mount> | undefined;
+		try {
+			wrapper = mount(CodeIdeWorkspace, {
+				props: { runtimeOnly: true },
+				global: { plugins: [createPinia(), router] }
+			});
+			const runtime = wrapper.vm.$.setupState as {
+				startGameLoop: (tick: () => Promise<void>) => void;
+				runMessage: string;
+				isGameLoopActive: boolean;
+			};
+			runtime.startGameLoop(async () => {
+				throw new Error("late tick failure");
+			});
+			await flushPromises();
+			const errors = wrapper
+				.emitted("runtimeMessage")
+				?.map(
+					([message]) => message as { type: string; message?: string }
+				)
+				.filter(message => message.type === "error");
+			expect(errors).toHaveLength(1);
+			expect(errors![0].message).toContain("late tick failure");
+			expect(runtime.runMessage).toBe("Run failed");
+			expect(runtime.isGameLoopActive).toBe(false);
+		} finally {
+			wrapper?.unmount();
+			vi.unstubAllGlobals();
+		}
+	});
+
 	it("mounts and unmounts without account requests, persistence or editor controls", async () => {
 		const storage = Object.getOwnPropertyDescriptor(
 			window,

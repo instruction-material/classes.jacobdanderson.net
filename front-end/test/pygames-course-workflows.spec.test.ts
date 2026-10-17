@@ -218,7 +218,7 @@ it.each(ids)(
 			"same saved capstone"
 		);
 		expect(items.find(item => item.id === setup)!.content).toContain(
-			"screen.fill((30, 40, 70))"
+			"WORKSPACE_CONFIG"
 		);
 	}
 );

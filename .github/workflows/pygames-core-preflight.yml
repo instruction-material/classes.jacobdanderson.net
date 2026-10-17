@@ -1,0 +1,73 @@
+name: PyGames core preflight
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pygames-core-preflight-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      CLASSES_FAMILY_TASK_ID: pygames-core-preflight-${{ github.run_id }}
+      COURSE_CATALOG_PROOF_DIR: ${{ github.workspace }}/output/pygames-core-preflight/catalog
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - name: Pin the supported npm toolchain
+        run: npm install --global npm@12.0.1
+      - name: Verify root clean install
+        run: node scripts/classes-family-heavy-task.mjs -- npm ci
+      - name: Lint both workspaces
+        run: node scripts/classes-family-heavy-task.mjs -- npm run lint
+      - name: Check both workspace types
+        run: node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+      - name: Verify core imports, saved files, ZIPs and catalog roles
+        run: >-
+          node scripts/classes-family-heavy-task.mjs --
+          npm exec -w front-end -- vitest run
+          test/pygames-core-import.spec.test.ts
+          test/python-ide-game-graphics.spec.test.ts
+          test/python-sandbox.spec.test.ts
+          test/components.python-runtime.spec.test.ts
+          test/python-ide.module.spec.test.ts
+          test/pygames-core-catalog.spec.test.ts
+          test/pygames-course-workflows.spec.test.ts
+          test/store.courses.python-pygames-classroom.spec.test.ts
+          test/store.courses.catalog-identities.spec.test.ts
+          --no-file-parallelism --maxWorkers=1
+      - name: Build the complete site
+        run: node scripts/classes-family-heavy-task.mjs -- npm run build
+      - name: Verify class loops and execution limits
+        run: node scripts/classes-family-heavy-task.mjs -- python3 test/python-runtime-loop-guards.test.py
+      - name: Verify actual PyGames core browser workflows
+        env:
+          PYGAMES_CORE_BROWSER_PROOF_DIR: output/pygames-core-exports
+        run: node scripts/classes-family-heavy-task.mjs -- node --test test/pygames-core-browser.test.mjs
+      - name: Retain PyGames core browser evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: pygames-core-browser-workflows
+          path: output/pygames-core-exports
+          if-no-files-found: error
+          retention-days: 14
+      - name: Retain complete catalog evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: pygames-core-preflight
+          path: output/pygames-core-preflight
+          if-no-files-found: error
+          retention-days: 14

@@ -117,7 +117,231 @@ export const assemblySyscallPacks = [
 	}
 ] as const;
 
+export const assemblyRegisterPacks = [
+	{
+		pack: "ASM-05-unit-2-registers-and-data-movement-supplemental-2",
+		revision: "3e07b75a56e27321180080ef347957d65521f22e",
+		roleFiles: [
+			"routine.S",
+			"main.c",
+			"lab.h",
+			"model.c",
+			"tests.c",
+			"abi_checks.S",
+			"CMakeLists.txt",
+			"trace.md"
+		]
+	},
+	{
+		pack: "ASM-06-unit-2-registers-and-data-movement-supplemental-3",
+		revision: "3e07b75a56e27321180080ef347957d65521f22e",
+		roleFiles: [
+			"routine.S",
+			"main.c",
+			"lab.h",
+			"model.c",
+			"tests.c",
+			"abi_checks.S",
+			"CMakeLists.txt",
+			"trace.md"
+		]
+	}
+] as const;
+
+export const assemblyLogicPacks = [
+	{
+		pack: "ASM-07-unit-3-arithmetic-and-logic-supplemental-2",
+		revision: "b56c6b50ed43b6c27d1da8117fe507a32f96032d",
+		roleFiles: [
+			"routine.S",
+			"main.c",
+			"lab.h",
+			"model.c",
+			"tests.c",
+			"abi_checks.S",
+			"CMakeLists.txt",
+			"trace.md"
+		]
+	},
+	{
+		pack: "ASM-08-unit-3-arithmetic-and-logic-supplemental-3",
+		revision: "b56c6b50ed43b6c27d1da8117fe507a32f96032d",
+		roleFiles: [
+			"routine.S",
+			"main.c",
+			"lab.h",
+			"model.c",
+			"tests.c",
+			"abi_checks.S",
+			"CMakeLists.txt",
+			"trace.md"
+		]
+	}
+] as const;
+
+export const assemblyMachinePacks = [
+	{
+		pack: "ASM-03-unit-1-machine-model-and-toolchain-supplemental-2",
+		revision: "6ab461632744b36324d331cd15902acff3204513",
+		roleFiles: [
+			"routine.S",
+			"main.c",
+			"lab.h",
+			"model.c",
+			"tests.c",
+			"abi_checks.S",
+			"CMakeLists.txt",
+			"trace.md"
+		]
+	},
+	{
+		pack: "ASM-04-unit-1-machine-model-and-toolchain-supplemental-3",
+		revision: "6ab461632744b36324d331cd15902acff3204513",
+		roleFiles: [
+			"routine.S",
+			"main.c",
+			"lab.h",
+			"model.c",
+			"tests.c",
+			"abi_checks.S",
+			"CMakeLists.txt",
+			"trace.md"
+		]
+	}
+] as const;
+
+export const assemblyControlPacks = [
+	{
+		pack: "ASM-09-unit-4-branching-and-loops-supplemental-2",
+		revision: "610827243f0b8369cd5dd59bcfa029966dd24aac",
+		roleFiles: [
+			"routine.S",
+			"main.c",
+			"lab.h",
+			"model.c",
+			"tests.c",
+			"abi_checks.S",
+			"CMakeLists.txt",
+			"trace.md"
+		]
+	},
+	{
+		pack: "ASM-10-unit-4-branching-and-loops-supplemental-3",
+		revision: "610827243f0b8369cd5dd59bcfa029966dd24aac",
+		roleFiles: [
+			"routine.S",
+			"main.c",
+			"lab.h",
+			"model.c",
+			"tests.c",
+			"abi_checks.S",
+			"CMakeLists.txt",
+			"trace.md"
+		]
+	}
+] as const;
+
+export const assemblyStackOptionalPacks = [
+	{
+		pack: "ASM-11-unit-5-the-stack-and-function-calls-supplemental-2",
+		revision: "ad7243e4c7577630ec04ce50b03661924d2adfef",
+		roleFiles: [
+			"routine.S",
+			"main.c",
+			"lab.h",
+			"model.c",
+			"tests.c",
+			"abi_checks.S",
+			"CMakeLists.txt",
+			"trace.md"
+		]
+	},
+	{
+		pack: "ASM-12-unit-5-the-stack-and-function-calls-supplemental-3",
+		revision: "ad7243e4c7577630ec04ce50b03661924d2adfef",
+		roleFiles: [
+			"routine.S",
+			"main.c",
+			"lab.h",
+			"model.c",
+			"tests.c",
+			"abi_checks.S",
+			"CMakeLists.txt",
+			"trace.md"
+		]
+	}
+] as const;
+
+export const assemblyAbiOptionalPacks = [
+	{
+		pack: "ASM-13-unit-6-calling-conventions-and-abi-supplemental-2",
+		revision: "b398a79fd3f3ed025540ac2eff178cc7dc697c4a",
+		roleFiles: [
+			"routine.S",
+			"main.c",
+			"lab.h",
+			"model.c",
+			"tests.c",
+			"abi_checks.S",
+			"CMakeLists.txt",
+			"trace.md"
+		]
+	},
+	{
+		pack: "ASM-14-unit-6-calling-conventions-and-abi-supplemental-3",
+		revision: "b398a79fd3f3ed025540ac2eff178cc7dc697c4a",
+		roleFiles: [
+			"routine.S",
+			"main.c",
+			"lab.h",
+			"model.c",
+			"tests.c",
+			"abi_checks.S",
+			"CMakeLists.txt",
+			"trace.md"
+		]
+	}
+] as const;
+
+export const assemblyMemoryLayoutOptionalPacks = [
+	{
+		pack: "ASM-15-unit-7-memory-addressing-and-data-structures-supplemental-2",
+		revision: "5c2f24f268db0634d11c587328a0ceb3d0aadeb0",
+		roleFiles: [
+			"routine.S",
+			"main.c",
+			"lab.h",
+			"model.c",
+			"tests.c",
+			"abi_checks.S",
+			"CMakeLists.txt",
+			"trace.md"
+		]
+	},
+	{
+		pack: "ASM-16-unit-7-memory-addressing-and-data-structures-supplemental-3",
+		revision: "5c2f24f268db0634d11c587328a0ceb3d0aadeb0",
+		roleFiles: [
+			"routine.S",
+			"main.c",
+			"lab.h",
+			"model.c",
+			"tests.c",
+			"abi_checks.S",
+			"CMakeLists.txt",
+			"trace.md"
+		]
+	}
+] as const;
+
 export const assemblyVerifiedPacks = [
+	...assemblyMemoryLayoutOptionalPacks,
+	...assemblyAbiOptionalPacks,
+	...assemblyStackOptionalPacks,
+	...assemblyControlPacks,
+	...assemblyMachinePacks,
+	...assemblyLogicPacks,
+	...assemblyRegisterPacks,
 	...assemblySyscallPacks,
 	...assemblySetupPacks,
 	{

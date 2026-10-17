@@ -4,6 +4,10 @@ import { rawCourseProse } from "./courseProse";
 import { createPinia, setActivePinia } from "pinia";
 import { useCoursesStore } from "@/stores/courses";
 import {
+	pyGamesCoreResource,
+	pyGamesCoreSourceRevision
+} from "@/modules/pyGamesCoreProjectResources";
+import {
 	pyGamesPinnedSourceUrl,
 	pyGamesSourceRevision
 } from "@/modules/pyGamesProjectResources";
@@ -1269,9 +1273,22 @@ describe("course text quality normalization", () => {
 			expect(corpus).toContain(
 				"Explain cow-ID indexing and retain a trace for two interleaved cows"
 			);
-			expect(corpus).toContain(
-				"Load an image by name, place its Actor and explain its visible bounds before adding movement."
-			);
+			const imageCore = (await loadRawCourse("pygames"))?.modules
+				.flatMap(module => module.curriculum)
+				.find(
+					item =>
+						item.id ===
+						"pygames-images-and-sprites-practice-studio-curriculum-images-and-sprites-core-project"
+				);
+			expect(imageCore).toBeDefined();
+			for (const concept of [
+				'Actor("alien")',
+				"66 by 92",
+				"clamp_center",
+				"ANCHOR_POSITION",
+				"movement physics is a later task"
+			])
+				expect(imageCore!.content).toContain(concept);
 			expect(corpus).not.toMatch(
 				/Open the starter and name the concrete inputs, outputs, state changes, data structures, or system boundaries involved/
 			);
@@ -4731,7 +4748,7 @@ describe("course text quality normalization", () => {
 	);
 
 	it(
-		"hides broad PyGames repo root pairs while preserving specific source folders",
+		"keeps complete PyGames packs separate from broad asset folders",
 		async () => {
 			const pyGamesCourse = await loadRawCourse("pygames");
 			expect(pyGamesCourse).not.toBeNull();
@@ -4760,6 +4777,16 @@ describe("course text quality normalization", () => {
 					item.datasetLink ?? ""
 				)
 			);
+			const completePackItems = allItems.flatMap(item => {
+				if (!item.projectLink?.startsWith("/ide?")) return [];
+				const starter = new URL(
+					item.projectLink,
+					"https://classes.local"
+				).searchParams.get("starterUrl");
+				return starter?.includes("/PG-CORE-")
+					? [{ item, starter }]
+					: [];
+			});
 
 			expect(broadRootPairs).toEqual([]);
 			expect(generatedPracticeItem?.projectLink).toBe(
@@ -4769,7 +4796,27 @@ describe("course text quality normalization", () => {
 			expect(generatedPracticeItem?.content).toContain(
 				"**Required variation:**"
 			);
-			expect(assetFolderItems.length).toBeGreaterThan(0);
+			expect(completePackItems).toHaveLength(7);
+			for (const { item, starter } of completePackItems) {
+				const source = pyGamesCoreResource(starter);
+				expect(source).not.toBeNull();
+				expect(source?.role).toBe("starter");
+				expect(source?.resource.ref).toBe(pyGamesCoreSourceRevision);
+				expect(item.solutionLink).toBe(
+					`https://github.com/instruction-material/PyGames/tree/${pyGamesCoreSourceRevision}/${source?.pack}/solution`
+				);
+			}
+			const selfContainedCoreItems = completePackItems.filter(
+				({ item }) =>
+					item.id?.endsWith("-core-project") ||
+					item.id?.endsWith("-extension-challenge")
+			);
+			expect(selfContainedCoreItems).toHaveLength(6);
+			expect(
+				selfContainedCoreItems.every(
+					({ item }) => item.datasetLink === undefined
+				)
+			).toBe(true);
 			expect(
 				assetFolderItems.every(item => item.solutionLink === undefined)
 			).toBe(true);
@@ -9742,7 +9789,42 @@ describe("course text quality normalization", () => {
 		);
 		expect(corpus).toContain(".globl lab_answer");
 		expect(corpus).toContain("LAB_ASM_LANGUAGE");
-		expect(corpus).toContain("Register Flow Transfer Practice");
+		expect(corpus).toContain("Partial-Register Write Investigation");
+		expect(corpus).toContain("Signed and Unsigned Widening Investigation");
+		expect(corpus).toContain("WIDTH_SEED");
+		expect(corpus).toContain("SIGN_BYTE");
+		expect(corpus).toContain(
+			"Signed and Unsigned Comparison Investigation"
+		);
+		expect(corpus).toContain("Variable Shift Count Investigation");
+		expect(corpus).toContain("COMPARE_SIGNED");
+		expect(corpus).toContain("SHIFT_SIGNED");
+		expect(corpus).toContain(
+			"Byte Order and Memory Access Width Investigation"
+		);
+		expect(corpus).toContain("Effective Address Calculation Investigation");
+		expect(corpus).toContain("MEMORY_SPAN");
+		expect(corpus).toContain("ADDRESS_SCALE");
+		expect(corpus).toContain(
+			"Switch Dispatch and Fall-Through Investigation"
+		);
+		expect(corpus).toContain(
+			"Loop Exit Boundary and Invariant Investigation"
+		);
+		expect(corpus).toContain("DISPATCH_JOIN");
+		expect(corpus).toContain("LOOP_EXIT");
+		expect(corpus).toContain("LIFO Value Order and Stack Restoration");
+		expect(corpus).toContain("Caller-Owned Locals Across a Nested Call");
+		expect(corpus).toContain("LIFO_POP");
+		expect(corpus).toContain("LOCAL_RELOAD");
+		expect(corpus).toContain("Six Integer Argument Registers");
+		expect(corpus).toContain("Seventh Integer Argument and Stack Location");
+		expect(corpus).toContain("ARGUMENT_REGISTER");
+		expect(corpus).toContain("STACK_ARGUMENT");
+		expect(corpus).toContain("Pointer Table Lookup and Record Fields");
+		expect(corpus).toContain("Bounded Overlap Copy Direction");
+		expect(corpus).toContain("POINTER_LOOKUP");
+		expect(corpus).toContain("COPY_DIRECTION");
 		expect(corpus).toContain("Assembly Lab 15: Stack Trace Studio");
 		expect(corpus).toContain("Assembly Lab 16: ABI Integration Studio");
 		expect(corpus).toContain("Assembly Lab 17: Reverse Trace Studio");

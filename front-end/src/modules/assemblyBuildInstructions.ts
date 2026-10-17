@@ -1,19 +1,26 @@
 import type { PythonIdeFile } from "@/modules/pythonIde";
 import {
+	assemblyAbiOptionalPacks,
 	assemblyArithmeticPack,
 	assemblyArrayPack,
 	assemblyCalculatorPack,
 	assemblyCompilerPack,
+	assemblyControlPacks,
 	assemblyCourseResource,
 	assemblyDebugPack,
 	assemblyHardeningPack,
 	assemblyHardeningTracePack,
 	assemblyHelperPack,
+	assemblyLogicPacks,
+	assemblyMachinePacks,
+	assemblyMemoryLayoutOptionalPacks,
 	assemblyParserPack,
 	assemblyPerformancePack,
 	assemblyRecordPack,
+	assemblyRegisterPacks,
 	assemblyReversePack,
 	assemblySetupPacks,
+	assemblyStackOptionalPacks,
 	assemblyStackPack,
 	assemblyStringPack,
 	assemblySyscallPacks
@@ -29,6 +36,319 @@ export function assemblyBuildInstructions(
 		"Assembly compilation, tests and debugging require Linux x86-64, the System V AMD64 ABI, GNU/Clang assembly with the syntax specified in README.md, and a native Clang or GCC toolchain.",
 		"The workspace edits and saves source. Use an x86-64 Linux VM or lab on macOS, or an x86-64 WSL distribution on Windows."
 	];
+	if (
+		selected &&
+		assemblyMemoryLayoutOptionalPacks.some(
+			pack => pack.pack === selected.pack
+		)
+	) {
+		if (
+			!selected.definition.roleFiles.every(name =>
+				files.some(file => file.name === `${selected.role}/${name}`)
+			) ||
+			!files.some(file => file.name === "README.md")
+		) {
+			return [
+				...lines,
+				"This memory investigation is incomplete. Preserve the saved attempt, then restore all eight selected role files and README.md."
+			];
+		}
+		const table =
+			selected.pack === assemblyMemoryLayoutOptionalPacks[0].pack;
+		return [
+			...lines,
+			"Use GNU Intel source syntax and ordinary-user Linux x86-64 with CMake 3.20+, Clang or GCC, GDB and binutils.",
+			`From the extracted project folder: cd ${selected.role}`,
+			"cmake -S . -B build-Debug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang",
+			"cmake --build build-Debug --verbose --parallel 1",
+			"./build-Debug/app",
+			"ctest --test-dir build-Debug --output-on-failure",
+			"./build-Debug/app --changed",
+			"cmake -S . -B build-Release -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang",
+			"cmake --build build-Release --verbose --parallel 1",
+			"ctest --test-dir build-Release --output-on-failure",
+			"./build-Release/app --changed",
+			"Repeat with GCC in separate build directories. Explicit comparisons keep all contracts active in Release.",
+			table
+				? "Complete POINTER_LOOKUP in routine.S. At lab_lookup record the masked index, eight-byte pointer slot and stored record address. At lab_selected compare the sixteen-byte C record and exact tag/state/weight access widths."
+				: "Complete COPY_DIRECTION in routine.S. At lab_ready record all sixteen original bytes, both offsets and the clamped count. Follow the actual byte load/store labels and show why the overlap requires the selected direction.",
+			"At routine entry RDI and RSI hold the unsigned inputs and RDX the owned output pointer. Preserve RBX, RBP, R12–R15, RSP and the caller return address. The zero-input changed example conceals the named mistakes; retain a separate nonzero or boundary prediction.",
+			"objdump -d -M intel build-Debug/app",
+			"readelf -Ws build-Debug/CMakeFiles/app.dir/routine.S.o",
+			"gdb ./build-Debug/app",
+			"In GDB set disassembly-flavor intel, break lab_operation and run. Save set $entry_sp = $rsp, set $return_pc = *(unsigned long long*)$rsp and set $output = $rdx. Record current PCs, valid owned addresses, access widths and values before/after each selected load or store. At lab_return inspect outputs through $output, verify the original stack and step RET to the actual caller PC.",
+			"Keep main.c, lab.h, model.c, tests.c and abi_checks.S unchanged. Complete only the named routine task and trace.md. Read ../README.md for the five output fields, predictions and controlled regression. Passing 10269 independent pairs does not complete the memory worksheet.",
+			selected.role === "starter"
+				? "The untouched program builds but its default demonstration exits 78 and contracts fail. Preserve that observation, make the named repair and export routine.S and trace.md together."
+				: "The separate reference passes the unchanged contracts and both demonstrations. Retain actual memory and address evidence beside the predictions."
+		];
+	}
+	if (
+		selected &&
+		assemblyAbiOptionalPacks.some(pack => pack.pack === selected.pack)
+	) {
+		if (
+			!selected.definition.roleFiles.every(name =>
+				files.some(file => file.name === `${selected.role}/${name}`)
+			) ||
+			!files.some(file => file.name === "README.md")
+		) {
+			return [
+				...lines,
+				"This ABI argument investigation is incomplete. Preserve the saved attempt, then restore all eight selected role files and README.md."
+			];
+		}
+		const registers = selected.pack === assemblyAbiOptionalPacks[0].pack;
+		return [
+			...lines,
+			"Use GNU Intel source syntax and ordinary-user Linux x86-64 with CMake 3.20+, Clang or GCC, GDB and binutils.",
+			`From the extracted project folder: cd ${selected.role}`,
+			"cmake -S . -B build-Debug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang",
+			"cmake --build build-Debug --verbose --parallel 1",
+			"./build-Debug/app",
+			"ctest --test-dir build-Debug --output-on-failure",
+			"./build-Debug/app --changed",
+			"cmake -S . -B build-Release -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang",
+			"cmake --build build-Release --verbose --parallel 1",
+			"ctest --test-dir build-Release --output-on-failure",
+			"./build-Release/app --changed",
+			"Repeat with GCC in separate build directories. Explicit comparisons keep all contracts active in Release.",
+			registers
+				? "Complete ARGUMENT_REGISTER in routine.S. Record all six integer argument registers at lab_call and lab_helper, then the returned RAX and cleared caller-saved registers at lab_after_call."
+				: "Complete STACK_ARGUMENT in routine.S. Record the caller's argument slot at call-site RSP, the pushed return address and the seventh argument at helper-entry RSP+8. Preserve the 40-byte frame and owned saved slots.",
+			"At routine entry, RDI and RSI hold the original unsigned inputs, RDX the owned output pointer. Preserve RBX, RBP, R12–R15 and the caller's stack state. Equal inputs conceal these named mistakes; retain an unequal boundary prediction.",
+			"objdump -d -M intel build-Debug/app",
+			"readelf -Ws build-Debug/CMakeFiles/app.dir/routine.S.o",
+			"gdb ./build-Debug/app",
+			"In GDB set disassembly-flavor intel, break lab_operation and run. Save set $entry_sp = $rsp, set $return_pc = *(unsigned long long*)$rsp and set $output = $rdx. At lab_call predict RDI, RSI, RDX, RCX, R8 and R9. Step the helper call, observe the actual return address and argument state, and verify RAX and the original values after the reloads. Record both real return PCs and restored stack.",
+			"Keep main.c, lab.h, model.c, tests.c and abi_checks.S unchanged. Complete only the named routine task and trace.md. Read ../README.md for all expected fields, default/changed inputs and controlled regressions. Passing 10269 independent pairs does not complete the worksheet.",
+			selected.role === "starter"
+				? "The untouched program builds but its default demonstration exits 78 and contracts fail. Preserve that observation, make the minimal repair and export routine.S and trace.md together."
+				: "The separate reference passes the unchanged contracts and both demonstrations. Retain actual stack and return-address evidence beside the predictions."
+		];
+	}
+	if (
+		selected &&
+		assemblyStackOptionalPacks.some(pack => pack.pack === selected.pack)
+	) {
+		if (
+			!selected.definition.roleFiles.every(name =>
+				files.some(file => file.name === `${selected.role}/${name}`)
+			) ||
+			!files.some(file => file.name === "README.md")
+		) {
+			return [
+				...lines,
+				"This stack investigation is incomplete. Preserve the saved attempt, then restore all eight selected role files and README.md."
+			];
+		}
+		const lifo = selected.pack === assemblyStackOptionalPacks[0].pack;
+		return [
+			...lines,
+			"Use GNU Intel source syntax and ordinary-user Linux x86-64 with CMake 3.20+, Clang or GCC, GDB and binutils.",
+			`From the extracted project folder: cd ${selected.role}`,
+			"cmake -S . -B build-Debug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang",
+			"cmake --build build-Debug --verbose --parallel 1",
+			"./build-Debug/app",
+			"ctest --test-dir build-Debug --output-on-failure",
+			"./build-Debug/app --changed",
+			"cmake -S . -B build-Release -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang",
+			"cmake --build build-Release --verbose --parallel 1",
+			"ctest --test-dir build-Release --output-on-failure",
+			"./build-Release/app --changed",
+			"Repeat with GCC in separate build directories. Explicit comparisons keep all contracts active in Release.",
+			lifo
+				? "Complete LIFO_POP in routine.S. Trace both owned pushed words and POP destinations at lab_pops, then verify lab_restored and the original return address."
+				: "Complete LOCAL_RELOAD in routine.S. Trace the three caller-owned local slots, the aligned nested call, the helper's clobbered argument registers and the return to lab_after_call.",
+			"At routine entry, RDI and RSI hold the original unsigned inputs, RDX the owned output pointer. Preserve RBX, RBP, R12–R15 and the caller's stack state. Equal inputs conceal these named mistakes; retain an unequal boundary prediction.",
+			"objdump -d -M intel build-Debug/app",
+			"readelf -Ws build-Debug/CMakeFiles/app.dir/routine.S.o",
+			"gdb ./build-Debug/app",
+			lifo
+				? "In GDB set disassembly-flavor intel, break lab_operation and run. Save set $entry_sp = $rsp, set $return_pc = *(unsigned long long*)$rsp and set $output = $rdx before stepping. Record both owned pushed words, POP destinations and current PCs. At lab_return inspect the outputs through $output, then step RET to verify the original return PC and restored stack."
+				: "In GDB set disassembly-flavor intel, break lab_operation and run. Save set $entry_sp = $rsp, set $return_pc = *(unsigned long long*)$rsp and set $output = $rdx before stepping. Record the owned local slots and actual inner/outer return PCs. Inspect final output through $output because the helper clears RDX, and verify stack restoration.",
+			"Keep main.c, lab.h, model.c, tests.c and abi_checks.S unchanged. Complete only the named routine task and trace.md. Read ../README.md for all expected fields, default/changed inputs and controlled regressions. Passing 10269 independent pairs does not complete the worksheet.",
+			selected.role === "starter"
+				? "The untouched program builds but its default demonstration exits 78 and contracts fail. Preserve that observation, make the minimal repair and export routine.S and trace.md together."
+				: "The separate reference passes the unchanged contracts and both demonstrations. Retain actual stack and return-address evidence beside the predictions."
+		];
+	}
+	if (
+		selected &&
+		assemblyControlPacks.some(pack => pack.pack === selected.pack)
+	) {
+		if (
+			!selected.definition.roleFiles.every(name =>
+				files.some(file => file.name === `${selected.role}/${name}`)
+			) ||
+			!files.some(file => file.name === "README.md")
+		) {
+			return [
+				...lines,
+				"This control-flow investigation is incomplete. Preserve the saved attempt, then restore all eight selected role files and README.md."
+			];
+		}
+		const dispatch = selected.pack === assemblyControlPacks[0].pack;
+		return [
+			...lines,
+			"Use GNU Intel source syntax and ordinary-user Linux x86-64 with CMake 3.20+, Clang or GCC, GDB and binutils.",
+			`From the extracted project folder: cd ${selected.role}`,
+			"cmake -S . -B build-Debug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang",
+			"cmake --build build-Debug --verbose --parallel 1",
+			"./build-Debug/app",
+			"ctest --test-dir build-Debug --output-on-failure",
+			"./build-Debug/app --changed",
+			"cmake -S . -B build-Release -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang",
+			"cmake --build build-Release --verbose --parallel 1",
+			"ctest --test-dir build-Release --output-on-failure",
+			"./build-Release/app --changed",
+			"Repeat both build profiles with GCC in separate directories. Explicit comparisons keep all contracts active in Release.",
+			dispatch
+				? "Complete DISPATCH_JOIN in routine.S. Trace the chosen case and its actual successor into lab_join. Compare the selector, result, visited-case mask and comparison count with the unchanged model."
+				: "Complete LOOP_EXIT in routine.S. At lab_check explain the unsigned equality boundary before entering lab_body. Retain the count/index/sum/visits/mask invariant and test zero, one and fifteen visits.",
+			"RDI holds the selector/count input, RSI the 64-bit payload and RDX the owned output buffer. Preserve RBX, RBP, R12–R15 and the caller's stack state.",
+			"objdump -d -M intel --disassemble=lab_operation build-Debug/app",
+			"readelf -Ws build-Debug/CMakeFiles/app.dir/routine.S.o",
+			"gdb ./build-Debug/app",
+			"In GDB set disassembly-flavor intel, break lab_operation and run. Record x/i $pc, registers and flags before si, then inspect the actual successor PC. At lab_join observe the stores; at lab_return inspect all output fields before returning.",
+			"Keep main.c, lab.h, model.c, tests.c and abi_checks.S unchanged. Complete only the named routine task and trace.md. Read ../README.md for every expected field, default/changed input, controlled regression and required observation. Passing 10269 independent pairs does not complete the worksheet.",
+			selected.role === "starter"
+				? "The untouched program builds but exits 78 and its contracts fail. Preserve that observation, make the minimal repair and export routine.S and trace.md together."
+				: "The separate reference passes the unchanged contracts and both demonstrations. Retain the current control-flow evidence beside the predictions."
+		];
+	}
+	if (
+		selected &&
+		assemblyMachinePacks.some(pack => pack.pack === selected.pack)
+	) {
+		if (
+			!selected.definition.roleFiles.every(name =>
+				files.some(file => file.name === `${selected.role}/${name}`)
+			) ||
+			!files.some(file => file.name === "README.md")
+		) {
+			return [
+				...lines,
+				"This memory or address investigation is incomplete. Preserve the saved attempt, then restore all eight selected role files and README.md."
+			];
+		}
+		const memory = selected.pack === assemblyMachinePacks[0].pack;
+		return [
+			...lines,
+			"Use GNU Intel source syntax and ordinary-user Linux x86-64 with CMake 3.20+, Clang or GCC, GDB and binutils.",
+			`From the extracted project folder: cd ${selected.role}`,
+			"cmake -S . -B build-Debug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang",
+			"cmake --build build-Debug --verbose --parallel 1",
+			"./build-Debug/app",
+			"ctest --test-dir build-Debug --output-on-failure",
+			"./build-Debug/app --changed",
+			"cmake -S . -B build-Release -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang",
+			"cmake --build build-Release --verbose --parallel 1",
+			"ctest --test-dir build-Release --output-on-failure",
+			"./build-Release/app --changed",
+			"Repeat both build profiles with GCC using separate build directories; explicit comparisons keep all checks active in Release.",
+			memory
+				? "Complete MEMORY_SPAN in routine.S. Draw the 16 owned bytes at RSP in increasing address order. At lab_stage4 load the full eight-byte span from offset 3 and compare all six results with the unchanged byte model."
+				: "Complete ADDRESS_SCALE in routine.S. At lab_stage2 preserve the base and displacement while using scale 4. Compare all five 64-bit LEA results with the unchanged model; the generated numeric values remain calculations rather than memory loads.",
+			"RDI and RSI hold the two input words or the base/index bit patterns. RDX points to the owned output buffer. Store each full 64-bit result in its assigned slot and preserve RBX, RBP, R12–R15 and the caller's stack state.",
+			"objdump -d -M intel --disassemble=lab_operation build-Debug/app",
+			"readelf -Ws build-Debug/CMakeFiles/app.dir/routine.S.o",
+			"gdb ./build-Debug/app",
+			"In GDB set disassembly-flavor intel, break lab_stage0, run, and use x/i $pc and si for the operation and its following store. The PC then already reaches the next stage label. Record registers and output slots there before continuing. For memory, capture x/16bx $rsp; for LEA, compare CMP-produced CF/ZF/SF/OF before and after each calculation.",
+			"Keep main.c, lab.h, model.c, tests.c and abi_checks.S unchanged. Complete only the named routine task and trace.md. Read ../README.md for every default/changed row, byte-span and address models, controlled regression and required evidence. Passing 10269 independent operand pairs does not complete the worksheet.",
+			selected.role === "starter"
+				? "The untouched program builds but exits 78 and its contracts fail. Retain that observation, make the minimal repair and export the saved routine.S and trace.md together."
+				: "The separate reference passes the unchanged contracts and both demonstrations. Record the current register and output values beside the prediction."
+		];
+	}
+	if (
+		selected &&
+		assemblyLogicPacks.some(pack => pack.pack === selected.pack)
+	) {
+		if (
+			!selected.definition.roleFiles.every(name =>
+				files.some(file => file.name === `${selected.role}/${name}`)
+			) ||
+			!files.some(file => file.name === "README.md")
+		) {
+			return [
+				...lines,
+				"This comparison or shift investigation is incomplete. Preserve the saved attempt, then restore all eight selected role files and README.md."
+			];
+		}
+		const compare = selected.pack === assemblyLogicPacks[0].pack;
+		return [
+			...lines,
+			"Use GNU Intel source syntax and ordinary-user Linux x86-64 with CMake 3.20+, Clang or GCC, GDB and binutils.",
+			`From the extracted project folder: cd ${selected.role}`,
+			"cmake -S . -B build-Debug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang",
+			"cmake --build build-Debug --verbose --parallel 1",
+			"./build-Debug/app",
+			"ctest --test-dir build-Debug --output-on-failure",
+			"./build-Debug/app --changed",
+			"cmake -S . -B build-Release -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang",
+			"cmake --build build-Release --verbose --parallel 1",
+			"ctest --test-dir build-Release --output-on-failure",
+			"./build-Release/app --changed",
+			"Repeat both build profiles with GCC using separate build directories; explicit comparisons keep all checks active in Release.",
+			compare
+				? "Complete COMPARE_SIGNED in routine.S. CMP produces flags; MOV EAX,0 preserves them before SETcc. Compare all six unsigned, signed and equality decisions with the unchanged model, including opposite-sign boundary inputs."
+				: "Complete SHIFT_SIGNED in routine.S. Compare SHL, SHR and SAR using the low six count bits. The 64-bit count wraps at 64; distinguish zero fill from sign fill and record the separate effective-count result.",
+			"The contract takes the initial register in RDI, incoming bits in RSI and a valid owned output buffer in RDX. Store each full 64-bit result in its assigned slot. Preserve RBX, RBP, R12–R15 and the caller's stack state.",
+			"objdump -d -M intel --disassemble=lab_operation build-Debug/app",
+			"readelf -Ws build-Debug/CMakeFiles/app.dir/routine.S.o",
+			"gdb ./build-Debug/app",
+			"In GDB set disassembly-flavor intel, break lab_stage0 and the later stage labels, run, use info registers rdi rsi rdx rax rcx rip eflags, x/i $pc and si. Record RAX before/after each instruction and x/gx at the output slot after its store. For comparisons record CF/ZF/SF/OF from the producing CMP; for shifts record RCX & 63 and avoid claims about undefined flags.",
+			"Keep main.c, lab.h, model.c, tests.c and abi_checks.S unchanged. Complete only the named routine task and trace.md. Read ../README.md for every default/changed row, comparison and shift models, controlled regression and required evidence. Passing 10269 independent operand pairs does not complete the worksheet.",
+			selected.role === "starter"
+				? "The untouched program builds but exits 78 and its contracts fail. Retain that observation, make the minimal repair and export the saved routine.S and trace.md together."
+				: "The separate reference passes the unchanged contracts and both demonstrations. Record the current register and output values beside the prediction."
+		];
+	}
+	if (
+		selected &&
+		assemblyRegisterPacks.some(pack => pack.pack === selected.pack)
+	) {
+		if (
+			!selected.definition.roleFiles.every(name =>
+				files.some(file => file.name === `${selected.role}/${name}`)
+			) ||
+			!files.some(file => file.name === "README.md")
+		) {
+			return [
+				...lines,
+				"This register investigation is incomplete. Preserve the saved attempt, then restore all eight selected role files and README.md."
+			];
+		}
+		const partial = selected.pack === assemblyRegisterPacks[0].pack;
+		return [
+			...lines,
+			"Use GNU Intel source syntax and ordinary-user Linux x86-64 with CMake 3.20+, Clang or GCC, GDB and binutils.",
+			`From the extracted project folder: cd ${selected.role}`,
+			"cmake -S . -B build-Debug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang",
+			"cmake --build build-Debug --verbose --parallel 1",
+			"./build-Debug/app",
+			"ctest --test-dir build-Debug --output-on-failure",
+			"./build-Debug/app --changed",
+			"cmake -S . -B build-Release -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_ASM_COMPILER=clang",
+			"cmake --build build-Release --verbose --parallel 1",
+			"ctest --test-dir build-Release --output-on-failure",
+			"./build-Release/app --changed",
+			"Repeat both build profiles with GCC using separate build directories; explicit comparisons keep all checks active in Release.",
+			partial
+				? "Complete WIDTH_SEED in routine.S. Begin each AL/AX/EAX/RAX write from the full initial register. Byte and word writes retain upper bits; a dword write clears the upper 32 bits. Compare all four snapshots with the unchanged model."
+				: "Complete SIGN_BYTE in routine.S. Compare MOVSX, MOVZX and MOVSXD at byte, word and dword widths. A 32-bit destination clears upper bits; a signed 32-to-64 conversion uses MOVSXD. Compare all six snapshots with the unchanged model.",
+			"The contract takes the initial register in RDI, incoming bits in RSI and a valid owned output buffer in RDX. Store each full 64-bit result in its assigned slot. Preserve RBX, RBP, R12–R15 and the caller's stack state.",
+			"objdump -d -M intel --disassemble=lab_operation build-Debug/app",
+			"readelf -Ws build-Debug/CMakeFiles/app.dir/routine.S.o",
+			"gdb ./build-Debug/app",
+			"In GDB set disassembly-flavor intel, break lab_operation, run and step the seed load. Use break lab_stage0 and the later stage labels, info registers rdi rsi rdx rax rip, x/i $pc and si. Record RAX before/after the width instruction and x/gx at the owned output slot after its store.",
+			"Keep main.c, lab.h, model.c, tests.c and abi_checks.S unchanged. Complete only the named routine task and trace.md. Read ../README.md for every default/changed row, unsigned-mask model, controlled regression and required evidence. Passing 10269 independent width cases does not complete the worksheet.",
+			selected.role === "starter"
+				? "The untouched program builds but exits 78 and its contracts fail. Retain that observation, make the minimal repair and export the saved routine.S and trace.md together."
+				: "The separate reference passes the unchanged contracts and both demonstrations. Record the current register and output values beside the prediction."
+		];
+	}
 	if (
 		selected &&
 		assemblySyscallPacks.some(pack => pack.pack === selected.pack)

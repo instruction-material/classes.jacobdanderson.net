@@ -21,7 +21,7 @@ export { pythonIdeImportedTopLevelModules } from "@/modules/pythonImportScanner"
 
 const PROJECT_ROOT = "/home/pyodide/classes_project";
 const PYTHON_IDE_RUNTIME_BOOTSTRAP_VERSION =
-	"2026-07-09-python-314-turtle-parity";
+	"2026-10-17-python-314-class-loop-guards";
 const PYTHON_EXTENSION_RE = /\.py$/i;
 const FOR_LOOP_ITERATION_LIMIT = 500000;
 const WHILE_LOOP_ITERATION_LIMIT = 25000;
@@ -660,6 +660,7 @@ for __classes_builtin_name in (
     "show_chart",
     "show_plots",
     "__classes_loop_guard",
+    "__classes_loop_guard__",
     "__classes_schedule_turtle_loop",
 ):
     if not hasattr(builtins, __classes_builtin_name):
@@ -841,7 +842,7 @@ def __classes_sleep(_seconds=0):
 
 __classes_time.sleep = __classes_sleep
 
-def __classes_loop_guard(kind):
+def __classes_loop_guard__(kind):
     limit = __classes_loop_iteration_limits.get(kind, ${WHILE_LOOP_ITERATION_LIMIT})
     if limit <= 0:
         return
@@ -865,7 +866,7 @@ class __ClassesLoopGuardTransformer(ast.NodeTransformer):
         return ast.copy_location(
             ast.Expr(
                 value=ast.Call(
-                    func=ast.Name(id="__classes_loop_guard", ctx=ast.Load()),
+                    func=ast.Name(id="__classes_loop_guard__", ctx=ast.Load()),
                     args=[ast.Constant(value=kind)],
                     keywords=[],
                 )
@@ -1099,7 +1100,7 @@ def __classes_schedule_turtle_loop(body_source, filename, line_number, namespace
 
     def __classes_run_turtle_loop():
         try:
-            __classes_loop_guard("turtle while")
+            __classes_loop_guard__("turtle while")
             exec(body_code, namespace)
             __classes_turtle_bridge.scheduleTimer(
                 __classes_turtle_loop_delay_ms,
@@ -1119,7 +1120,7 @@ def __classes_schedule_turtle_loop(body_source, filename, line_number, namespace
         __classes_turtle_loop_proxies[loop_key],
     )
 
-builtins.__classes_loop_guard = __classes_loop_guard
+builtins.__classes_loop_guard__ = __classes_loop_guard__
 builtins.__classes_schedule_turtle_loop = __classes_schedule_turtle_loop
 `;
 }

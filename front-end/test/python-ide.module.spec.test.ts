@@ -2531,7 +2531,9 @@ pgzrun.go()
 			"const PYTHON_IDE_RUNTIME_BOOTSTRAP_VERSION"
 		);
 		expect(runtimeSource).toContain("__classes_runtime_bootstrap_version");
-		expect(runtimeSource).toContain("2026-07-09-python-314-turtle-parity");
+		expect(runtimeSource).toContain(
+			"2026-10-17-python-314-class-loop-guards"
+		);
 		expect(runtimeSource).toContain("const WHILE_LOOP_ITERATION_LIMIT");
 		expect(runtimeSource).toContain(
 			"const TURTLE_COOPERATIVE_WHILE_LOOP_ITERATION_LIMIT"
@@ -2543,7 +2545,7 @@ pgzrun.go()
 			"const TURTLE_COOPERATIVE_LOOP_DELAY_MS = 8"
 		);
 		expect(runtimeSource).toContain("class __ClassesLoopGuardTransformer");
-		expect(runtimeSource).toContain("def __classes_loop_guard(kind):");
+		expect(runtimeSource).toContain("def __classes_loop_guard__(kind):");
 		expect(runtimeSource).toContain("if limit <= 0:");
 		expect(runtimeSource).toContain("__classes_loop_iteration_limits");
 		expect(runtimeSource).toContain(
@@ -3001,7 +3003,7 @@ pgzrun.go()
 			"syncCanvasBitmapSize(canvas, rect, dpr);"
 		);
 		expect(gameTransformSource).toContain(
-			"syncCanvasBitmapSize(canvas, rect, dpr);"
+			"preparePythonIdeGameCanvas(canvas, gameState.width, gameState.height)"
 		);
 		expect(pageSource).toContain("function redrawActiveCanvas");
 		expect(pageSource).toContain("renderTurtleScene();");
@@ -4088,7 +4090,7 @@ pgzrun.go()
 			"return _classes_compile_student_source(source, path)"
 		);
 		expect(runtimeSource).toContain(
-			"builtins.__classes_loop_guard = __classes_loop_guard"
+			"builtins.__classes_loop_guard__ = __classes_loop_guard__"
 		);
 		expect(runtimeSource).toContain(
 			"builtins.__classes_schedule_turtle_loop = __classes_schedule_turtle_loop"
@@ -4179,7 +4181,7 @@ pgzrun.go()
 		);
 		expect(runtimeSource).toContain('"Actor"');
 		expect(runtimeSource).toContain('"show_chart"');
-		expect(runtimeSource).toContain('"__classes_loop_guard"');
+		expect(runtimeSource).toContain('"__classes_loop_guard__"');
 		expect(runtimeSource).toContain(
 			'__classes_builtin_name.startswith("__classes_")'
 		);
@@ -6142,7 +6144,12 @@ pgzrun.go()
 		expect(runtimeSource).toContain("_run_animations(now)");
 		expect(pageSource).toContain("await ensureGameCourseAssetsLoaded()");
 		expect(pageSource).toContain(
-			"prepareGameAssetsForExplicitRun();\n\t\t\tawait ensureGameCourseAssetsLoaded();"
+			"prepareGameAssetsForExplicitRun();\n\t\t\tawait prepareProjectGameImages();"
+		);
+		expect(
+			pageSource.indexOf("await prepareProjectGameImages();")
+		).toBeLessThan(
+			pageSource.indexOf("await ensureGameCourseAssetsLoaded();")
 		);
 		expect(pageSource).toContain(
 			"if (entry.failed) gameImageCache.delete(key);"
