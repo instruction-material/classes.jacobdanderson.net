@@ -35,7 +35,7 @@ class NativeCandidateOwnershipTests(unittest.TestCase):
                 ["init", "-b", "main"], ["config", "user.email", "fixture@example.invalid"],
                 ["config", "user.name", "Synthetic fixture"], ["add", "."],
                 ["commit", "-m", "Synthetic native fixture"],
-                ["remote", "add", "origin", "https://github.com/anderson-webops/classes.jacobdanderson.net.git"],
+                ["remote", "add", "origin", "https://github.com/instruction-material/classes.jacobdanderson.net.git"],
                 ["update-ref", "refs/remotes/origin/main", "HEAD"],
                 ["tag", "-a", "v2.8.4", "-m", "Synthetic fixture"]
             ]:
@@ -50,7 +50,7 @@ class NativeCandidateOwnershipTests(unittest.TestCase):
             shutil.copytree(source / "deploy/native", candidate / "deploy/native")
             for relative, content in {
                 "front-end/dist/index.html": "<h1>Classes</h1>",
-                "front-end/dist/404.html": "<title>Page not found | Classes with Jacob</title>",
+                "front-end/dist/404.html": "<title>Page not found | Classes</title>",
                 "front-end/dist/python-runtime/runtime.js": "export {};",
                 "front-end/dist/python-runtime/runtime.css": "body {}",
                 "back-end/dist/server.js": "export {};",
