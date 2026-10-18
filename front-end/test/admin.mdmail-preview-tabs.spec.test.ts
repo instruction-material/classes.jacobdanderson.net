@@ -21,7 +21,7 @@ describe("compact session-note preview", () => {
 		await flushPromises();
 		expect(wrapper.find("[data-testid=\"md-input\"]").exists()).toBe(true);
 		expect(wrapper.find("[data-testid=\"live-preview\"]").exists()).toBe(false);
-		expect(wrapper.find("label[for='markdown-input']").text()).toBe("Markdown");
+		expect(wrapper.find("label[for='markdown-input']").text()).toBe("Notes");
 		expect(wrapper.find("[role=\"tablist\"]").exists()).toBe(false);
 		expect(wrapper.find("[data-testid=\"preview-toggle\"]").attributes("aria-expanded")).toBe("false");
 	});

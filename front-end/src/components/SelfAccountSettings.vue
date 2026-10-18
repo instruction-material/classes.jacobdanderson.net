@@ -2,7 +2,6 @@
 import { onBeforeUnmount, ref, watch } from "vue";
 import { api } from "@/api";
 import AccountSecurity from "@/components/AccountSecurity.vue";
-import SessionNoteDraftSettings from "@/components/SessionNoteDraftSettings.vue";
 import { useAppStore } from "@/stores/app";
 
 const props = defineProps<{
@@ -131,11 +130,7 @@ async function saveName() {
 			:email="entity.email"
 			:role="role"
 			@busy="securityBusy = $event"
-		>
-			<template #advanced
-				><SessionNoteDraftSettings v-if="role === 'admin'"
-			/></template>
-		</AccountSecurity>
+		/>
 	</section>
 </template>
 
