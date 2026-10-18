@@ -30,7 +30,7 @@ credentials are configured and `OAUTH_ENABLED=true`.
 
 1. In Google Cloud, create an OAuth 2.0 Client ID of type **Web application**.
 2. Add this exact authorized redirect URI:
-   `https://classes.jacobdanderson.net/api/accounts/oauth/google/callback`.
+   `https://example.com/api/accounts/oauth/google/callback`.
 3. Set `GOOGLE_OAUTH_CLIENT_ID` and `GOOGLE_OAUTH_CLIENT_SECRET` in the
    back-end production environment.
 
@@ -38,9 +38,9 @@ credentials are configured and `OAUTH_ENABLED=true`.
 
 1. In Apple Developer, enable Sign in with Apple on a primary App ID.
 2. Create a Services ID for the website and configure
-   `classes.jacobdanderson.net` as its domain.
+   `example.com` as its domain.
 3. Register this exact return URL:
-   `https://classes.jacobdanderson.net/api/accounts/oauth/apple/callback`.
+   `https://example.com/api/accounts/oauth/apple/callback`.
 4. Create a Sign in with Apple key and retain the downloaded `.p8` file.
 5. Set `APPLE_OAUTH_CLIENT_ID` to the Services ID, then configure
    `APPLE_OAUTH_TEAM_ID`, `APPLE_OAUTH_KEY_ID`, and
@@ -52,9 +52,9 @@ Generate the base64 value without changing the key file:
 base64 < AuthKey_KEYID.p8 | tr -d '\n'
 ```
 
-Set `AUTH_ORIGIN=https://classes.jacobdanderson.net` and enable the feature only
-after the provider consoles and callback URLs are ready by setting
-`OAUTH_ENABLED=true`. Then restart the API and
+Set `AUTH_ORIGIN=https://example.com` and enable the feature only after the
+provider consoles and callback URLs are ready by setting `OAUTH_ENABLED=true`.
+Then restart the API and
 confirm `/api/accounts/oauth/providers` reports only the providers intended for
 use. The production proxy must preserve callback `Set-Cookie` headers and must
 not record callback query strings or request bodies in access logs; they can

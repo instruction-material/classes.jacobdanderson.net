@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
     build:
-        if: github.repository == 'anderson-webops/classes.jacobdanderson.net'
+        if: github.repository == 'instruction-material/classes.jacobdanderson.net'
         runs-on: ubuntu-24.04-arm
         timeout-minutes: 45
         steps:
@@ -75,8 +75,8 @@ jobs:
                   for subject in publish/classes-native-linux-arm64.tar.gz publish/classes-native-linux-arm64.manifest.json; do
                     gh attestation verify "$subject" --hostname github.com \
                       --bundle publish/classes-native-linux-arm64.sigstore.json \
-                      --repo anderson-webops/classes.jacobdanderson.net \
-                      --signer-workflow anderson-webops/classes.jacobdanderson.net/.github/workflows/native-release.yml \
+                      --repo instruction-material/classes.jacobdanderson.net \
+                      --signer-workflow instruction-material/classes.jacobdanderson.net/.github/workflows/native-release.yml \
                       --source-digest "$GITHUB_SHA" --signer-digest "$GITHUB_SHA" \
                       --source-ref "refs/tags/$RELEASE_TAG" --deny-self-hosted-runners
                   done
