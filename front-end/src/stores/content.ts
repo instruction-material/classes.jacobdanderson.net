@@ -85,7 +85,7 @@ export const useContentStore = defineStore("content", () => {
 		},
 		{
 			title: "Simple Booking and Payment",
-			copy: "Book one-time or recurring sessions and pay after completed classes."
+			copy: "Your instructor provides scheduling and payment details for your program."
 		}
 	]);
 
@@ -108,7 +108,7 @@ export const useContentStore = defineStore("content", () => {
 		},
 		{
 			question: "Are sessions one-on-one?",
-			answer: "Yes. One learner works directly with me for the full session."
+			answer: "One learner works directly with an instructor for the full session."
 		},
 		{
 			question: "What if we need to reschedule?",

@@ -190,11 +190,8 @@ function openSignup() {
 							? "Ask an administrator to enable your teaching courses, or email"
 							: "Ask your tutor to assign a course, or email"
 					}}
-					<a
-						class="text-link"
-						href="mailto:classes@jacobdanderson.net"
-					>
-						classes@jacobdanderson.net
+					<a class="text-link" href="mailto:contact@example.com">
+						contact@example.com
 					</a>
 					if access should already be enabled.
 				</p>
