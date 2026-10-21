@@ -1,6 +1,6 @@
-import { resolve } from "node:path";
-import { readFileSync } from "node:fs";
 import type { Server } from "node:http";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import express from "express";
 import { Types } from "mongoose";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -186,7 +186,7 @@ async function withUserRoutes<T>(
 	});
 	app.use("/users", userRoutes);
 
-	const server = await new Promise<Server>(resolve => {
+	const server = await new Promise<Server>((resolve) => {
 		const instance = app.listen(0, "127.0.0.1", () => resolve(instance));
 	});
 	const address = server.address();
@@ -196,9 +196,10 @@ async function withUserRoutes<T>(
 
 	try {
 		return await run(`http://127.0.0.1:${address.port}`);
-	} finally {
+	}
+	finally {
 		await new Promise<void>((resolve, reject) => {
-			server.close(error => {
+			server.close((error) => {
 				if (error) {
 					reject(error);
 					return;
@@ -241,7 +242,7 @@ async function putJson(
 	});
 }
 
-describe("Python project review routes", () => {
+describe("python project review routes", () => {
 	beforeEach(() => {
 		vi.clearAllMocks();
 		modelMocks.pythonProjectCountDocuments.mockReturnValue({
@@ -297,7 +298,7 @@ describe("Python project review routes", () => {
 	});
 
 	it("lets signed-in students list their own Code IDE projects", async () => {
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const response = await fetch(
 				`${baseUrl}/users/loggedin/python-projects`,
 				{
@@ -323,7 +324,7 @@ describe("Python project review routes", () => {
 	])(
 		"rejects stale workspace ownership before every own route for %s",
 		async (header, accountID, expectedOwner) => {
-			await withUserRoutes(async baseUrl => {
+			await withUserRoutes(async (baseUrl) => {
 				const routes = [
 					["GET", "/python-projects"],
 					["POST", "/python-projects"],
@@ -390,12 +391,11 @@ describe("Python project review routes", () => {
 							}
 						],
 						title: `Project ${index}`
-					})
-				)
+					}))
 			)
 		);
 
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const response = await fetch(
 				`${baseUrl}/users/loggedin/python-projects?offset=0&limit=25`,
 				{ headers: { "x-user-id": studentID.toString() } }
@@ -413,7 +413,7 @@ describe("Python project review routes", () => {
 	});
 
 	it("rejects unbounded project-list pagination values", async () => {
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const response = await fetch(
 				`${baseUrl}/users/loggedin/python-projects?limit=26`,
 				{ headers: { "x-user-id": studentID.toString() } }
@@ -453,7 +453,7 @@ describe("Python project review routes", () => {
 			})
 		);
 
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const response = await fetch(
 				`${baseUrl}/users/loggedin/python-projects/${projectID}`,
 				{
@@ -502,7 +502,7 @@ describe("Python project review routes", () => {
 		});
 		modelMocks.pythonProjectFindOne.mockResolvedValue(project);
 
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const response = await putJson(
 				baseUrl,
 				`/users/loggedin/python-projects/${projectID}`,
@@ -529,7 +529,7 @@ describe("Python project review routes", () => {
 	});
 
 	it("lets admins list saved projects with their staff review copies", async () => {
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const response = await fetch(
 				`${baseUrl}/users/${studentID}/python-projects`,
 				{
@@ -564,7 +564,7 @@ describe("Python project review routes", () => {
 	it("lets assigned tutors create a staff review copy from a student project", async () => {
 		modelMocks.pythonProjectReviewFindOne.mockResolvedValue(null);
 
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const response = await postJson(
 				baseUrl,
 				`/users/${studentID}/python-projects/${projectID}/review`,
@@ -615,7 +615,7 @@ describe("Python project review routes", () => {
 		modelMocks.pythonProjectFindOne.mockResolvedValue(unsafeProject);
 		modelMocks.pythonProjectReviewFindOne.mockResolvedValue(null);
 
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const response = await postJson(
 				baseUrl,
 				`/users/${studentID}/python-projects/${projectID}/review`,
@@ -655,10 +655,20 @@ describe("Python project review routes", () => {
 	});
 
 	it.each([
+		"web",
+		"web-modules",
+		"web-notifications",
 		"rust",
 		"rust-ownership",
 		"rust-borrowing",
 		"rust-typed-errors",
+		"rust-label-slices",
+		"rust-state-models",
+		"rust-trait-pipeline",
+		"rust-bounded-cli",
+		"rust-concurrency",
+		"rust-boundary-review",
+		"rust-record-hardening",
 		"c",
 		"assembly",
 		"compiler",
@@ -667,36 +677,67 @@ describe("Python project review routes", () => {
 	] as const)(
 		"saves, shares, and edits a %s review while preserving the learner's complete pack",
 		async mode => {
-			const rustMode =
-				mode === "rust" ||
-				mode === "rust-ownership" ||
-				mode === "rust-borrowing" ||
-				mode === "rust-typed-errors";
+			const webMode =
+				mode === "web" ||
+				mode === "web-modules" ||
+				mode === "web-notifications";
+			const rustMode = mode === "rust" || mode.startsWith("rust-");
 			const requestedMode = rustMode
 				? "rust"
-				: mode === "c"
-					? "c"
-					: "assembly";
+				: webMode
+					? "web"
+					: mode === "c"
+						? "c"
+						: "assembly";
 			const fixture = JSON.parse(
 				readFileSync(
 					resolve(
 						process.cwd(),
-						mode === "rust-typed-errors"
-							? "../test/fixtures/rust-typed-errors-contracts.json"
-							: mode === "rust-borrowing"
-								? "../test/fixtures/rust-borrowing-contracts.json"
-								: mode === "rust-ownership"
-									? "../test/fixtures/rust-ownership-contracts.json"
-									: mode === "rust"
-										? "../test/fixtures/rust-cargo-contracts.json"
-										: mode === "hardening" ||
-											  mode === "hardening-trace"
-											? "../test/fixtures/assembly-hardening-contracts.json"
-											: mode === "compiler"
-												? "../test/fixtures/assembly-compiler-contracts.json"
-												: mode === "assembly"
-													? "../test/fixtures/assembly-opening-contracts.json"
-													: "../test/fixtures/c17-opening-contracts.json"
+						webMode
+							? mode === "web-notifications"
+								? "../test/fixtures/web-notification-source.json"
+								: mode === "web-modules"
+									? "../test/fixtures/web-portfolio-module-source.json"
+									: "../test/fixtures/web-portfolio-source.json"
+							: mode === "rust-concurrency"
+								? "../test/fixtures/rust-concurrency-contracts.json"
+								: mode === "rust-boundary-review"
+									? "../test/fixtures/rust-boundary-review-contracts.json"
+									: mode === "rust-record-hardening"
+										? "../test/fixtures/rust-record-hardening-contracts.json"
+										: mode === "rust-bounded-cli"
+											? "../test/fixtures/rust-bounded-cli-contracts.json"
+											: mode === "rust-trait-pipeline"
+												? "../test/fixtures/rust-trait-pipeline-contracts.json"
+												: mode === "rust-state-models"
+													? "../test/fixtures/rust-state-models-contracts.json"
+													: mode ===
+														  "rust-label-slices"
+														? "../test/fixtures/rust-label-slices-contracts.json"
+														: mode ===
+															  "rust-typed-errors"
+															? "../test/fixtures/rust-typed-errors-contracts.json"
+															: mode ===
+																  "rust-borrowing"
+																? "../test/fixtures/rust-borrowing-contracts.json"
+																: mode ===
+																	  "rust-ownership"
+																	? "../test/fixtures/rust-ownership-contracts.json"
+																	: mode ===
+																		  "rust"
+																		? "../test/fixtures/rust-cargo-contracts.json"
+																		: mode ===
+																					"hardening" ||
+																			  mode ===
+																					"hardening-trace"
+																			? "../test/fixtures/assembly-hardening-contracts.json"
+																			: mode ===
+																				  "compiler"
+																				? "../test/fixtures/assembly-compiler-contracts.json"
+																				: mode ===
+																					  "assembly"
+																					? "../test/fixtures/assembly-opening-contracts.json"
+																					: "../test/fixtures/c17-opening-contracts.json"
 					),
 					"utf8"
 				)
@@ -707,23 +748,29 @@ describe("Python project review routes", () => {
 					: fixture.pack;
 			const activeFileName = rustMode
 				? "starter/observations.md"
-				: mode === "hardening-trace"
-					? "starter/trace.md"
-					: mode === "compiler" || mode === "hardening"
-						? "starter/analysis.md"
-						: mode === "assembly"
-							? "starter/routine.S"
-							: "starter/main.c";
+				: webMode
+					? "index.html"
+					: mode === "hardening-trace"
+						? "starter/trace.md"
+						: mode === "compiler" || mode === "hardening"
+							? "starter/analysis.md"
+							: mode === "assembly"
+								? "starter/routine.S"
+								: "starter/main.c";
 			const files = Object.entries(
 				fixture.files as Record<string, { content: string }>
 			)
 				.filter(
 					([path]) =>
 						path.startsWith(`${pack}/starter/`) ||
-						path === `${pack}/README.md`
+						path === `${pack}/README.md` ||
+						(mode === "web-notifications" &&
+							path === `${pack}/serve.mjs`)
 				)
 				.map(([path, file]) => ({
-					name: path.slice(pack.length + 1),
+					name: webMode
+						? path.split("/").at(-1)!
+						: path.slice(pack.length + 1),
 					content: file.content,
 					encoding: "text"
 				}));
@@ -734,15 +781,19 @@ describe("Python project review routes", () => {
 				courseID:
 					requestedMode === "rust"
 						? "rust-systems-security"
-						: requestedMode === "assembly"
-							? "assembly"
-							: "c-systems-engineering",
+						: requestedMode === "web"
+							? "web-development-foundations"
+							: requestedMode === "assembly"
+								? "assembly"
+								: "c-systems-engineering",
 				courseProjectKey:
 					requestedMode === "rust"
 						? "rust-systems-security:cargo:starter:native-rust"
-						: requestedMode === "assembly"
-							? "assembly:compiler:starter:native-assembly"
-							: "c-systems-engineering:linking:starter:native-c17",
+						: requestedMode === "web"
+							? `web-development-foundations:${mode === "web-notifications" ? "notification-state" : "portfolio"}:starter:web-source-v${mode === "web-modules" ? 2 : 1}`
+							: requestedMode === "assembly"
+								? "assembly:compiler:starter:native-assembly"
+								: "c-systems-engineering:linking:starter:native-c17",
 				shared: true,
 				shareID: "share_C17_native_123456789"
 			});
@@ -784,7 +835,7 @@ describe("Python project review routes", () => {
 				(mode === "c" ? "starter/labels.c" : activeFileName)
 					? {
 							...file,
-							content: file.content + "\n/* staff feedback */\n"
+							content: `${file.content}\n${webMode ? "<!-- staff feedback -->" : "/* staff feedback */"}\n`
 						}
 					: file
 			);
@@ -838,9 +889,9 @@ describe("Python project review routes", () => {
 				}));
 			const activeFileName = files.find(
 				file =>
-					file.name.endsWith(".sh") ||
-					file.name.endsWith(".py") ||
-					file.name.endsWith(".conf")
+					file.name.endsWith(".sh")
+					|| file.name.endsWith(".py")
+					|| file.name.endsWith(".conf")
 			)!.name;
 			const project = makeProject({
 				mode: requestedMode,
@@ -853,7 +904,7 @@ describe("Python project review routes", () => {
 			});
 			modelMocks.pythonProjectFindOne.mockResolvedValue(project);
 			modelMocks.pythonProjectReviewFindOne.mockResolvedValueOnce(null);
-			await withUserRoutes(async baseUrl => {
+			await withUserRoutes(async (baseUrl) => {
 				const update = await putJson(
 					baseUrl,
 					`/users/loggedin/python-projects/${projectID}`,
@@ -888,11 +939,11 @@ describe("Python project review routes", () => {
 				file.name === activeFileName
 					? {
 							...file,
-							content: file.content + "\n# staff feedback\n"
+							content: `${file.content}\n# staff feedback\n`
 						}
 					: file
 			);
-			await withUserRoutes(async baseUrl => {
+			await withUserRoutes(async (baseUrl) => {
 				const response = await putJson(
 					baseUrl,
 					`/users/${studentID}/python-projects/${projectID}/review/${reviewID}`,
@@ -941,7 +992,7 @@ describe("Python project review routes", () => {
 			async payload => makeReview(payload)
 		);
 
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const createResponse = await postJson(
 				baseUrl,
 				`/users/${studentID}/python-projects/${projectID}/review`,
@@ -970,7 +1021,7 @@ describe("Python project review routes", () => {
 		modelMocks.pythonProjectFindOne.mockResolvedValue(javaProject);
 		modelMocks.pythonProjectReviewFindOne.mockResolvedValue(javaReview);
 
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const updateResponse = await putJson(
 				baseUrl,
 				`/users/${studentID}/python-projects/${projectID}/review/${reviewID}`,
@@ -980,7 +1031,7 @@ describe("Python project review routes", () => {
 						{
 							name: "Main.java",
 							content:
-								'public class Main { public static void main(String[] args) { System.out.println("reviewed"); } }'
+								"public class Main { public static void main(String[] args) { System.out.println(\"reviewed\"); } }"
 						}
 					],
 					visibleToStudent: true
@@ -997,7 +1048,7 @@ describe("Python project review routes", () => {
 				{
 					name: "Main.java",
 					content:
-						'public class Main { public static void main(String[] args) { System.out.println("reviewed"); } }',
+						"public class Main { public static void main(String[] args) { System.out.println(\"reviewed\"); } }",
 					encoding: "text"
 				}
 			]);
@@ -1010,7 +1061,7 @@ describe("Python project review routes", () => {
 			queryWith(makeStudent([otherTutorID]))
 		);
 
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const response = await postJson(
 				baseUrl,
 				`/users/${studentID}/python-projects/${projectID}/review`,
@@ -1027,7 +1078,7 @@ describe("Python project review routes", () => {
 		const review = makeReview();
 		modelMocks.pythonProjectReviewFindOne.mockResolvedValue(review);
 
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const response = await putJson(
 				baseUrl,
 				`/users/${studentID}/python-projects/${projectID}/review/${reviewID}`,
@@ -1095,7 +1146,7 @@ describe("Python project review routes", () => {
 		modelMocks.pythonProjectFindOne.mockResolvedValue(project);
 		modelMocks.pythonProjectReviewFindOne.mockResolvedValue(review);
 
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const response = await putJson(
 				baseUrl,
 				`/users/${studentID}/python-projects/${projectID}/review/${reviewID}`,
@@ -1155,7 +1206,7 @@ describe("Python project review routes", () => {
 		});
 		modelMocks.pythonProjectReviewFindOne.mockResolvedValue(review);
 
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const response = await putJson(
 				baseUrl,
 				`/users/${studentID}/python-projects/${projectID}/review/${reviewID}`,
@@ -1191,7 +1242,7 @@ describe("Python project review routes", () => {
 			])
 		);
 
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const response = await fetch(
 				`${baseUrl}/users/loggedin/python-project-reviews`,
 				{
@@ -1217,7 +1268,7 @@ describe("Python project review routes", () => {
 		const project = makeProject();
 		modelMocks.pythonProjectFindOne.mockResolvedValue(project);
 
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const enableResponse = await putJson(
 				baseUrl,
 				`/users/loggedin/python-projects/${projectID}/share`,
@@ -1293,7 +1344,7 @@ describe("Python project review routes", () => {
 		});
 		modelMocks.pythonProjectFindOne.mockResolvedValue(project);
 
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const response = await putJson(
 				baseUrl,
 				`/users/loggedin/python-projects/${projectID}/share`,
@@ -1325,7 +1376,7 @@ describe("Python project review routes", () => {
 		});
 		modelMocks.pythonProjectFindOne.mockResolvedValue(adminProject);
 
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const createResponse = await postJson(
 				baseUrl,
 				"/users/loggedin/python-projects",
@@ -1385,7 +1436,7 @@ describe("Python project review routes", () => {
 			})
 		);
 
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const response = await fetch(
 				`${baseUrl}/users/python-projects/shared/${shareID}`
 			);
@@ -1446,7 +1497,7 @@ describe("Python project review routes", () => {
 			})
 		);
 
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const response = await fetch(
 				`${baseUrl}/users/python-projects/shared/${shareID}`
 			);
@@ -1483,7 +1534,7 @@ describe("Python project review routes", () => {
 			}
 		);
 
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const revokedBeforeResponse = await fetch(
 				`${baseUrl}/users/python-projects/shared/${revokedShareID}`
 			);
@@ -1523,7 +1574,7 @@ describe("Python project review routes", () => {
 		const project = makeProject();
 		modelMocks.pythonProjectFindOne.mockResolvedValue(project);
 
-		await withUserRoutes(async baseUrl => {
+		await withUserRoutes(async (baseUrl) => {
 			const response = await fetch(
 				`${baseUrl}/users/loggedin/python-projects/${projectID}`,
 				{

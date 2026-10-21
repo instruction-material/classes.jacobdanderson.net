@@ -16,6 +16,7 @@ export type IdeStage =
 export type IdeCategory =
 	"none" | "student-code" | "ide-runtime" | "needs-review";
 export type IdeMode =
+	| "web"
 	| "rust"
 	| "linux"
 	| "assembly"
@@ -236,6 +237,7 @@ export function createIdeDiagnostics(
 		browser: browserVersion(navigator.userAgent),
 		runtime: {
 			engine:
+				mode === "web" ||
 				mode === "rust" ||
 				mode === "linux" ||
 				mode === "assembly" ||
@@ -247,6 +249,7 @@ export function createIdeDiagnostics(
 						: ("pyodide" as const),
 			version:
 				java ||
+				mode === "web" ||
 				mode === "rust" ||
 				mode === "linux" ||
 				mode === "assembly" ||
@@ -256,6 +259,7 @@ export function createIdeDiagnostics(
 					: PYODIDE_VERSION,
 			pythonVersion:
 				java ||
+				mode === "web" ||
 				mode === "rust" ||
 				mode === "linux" ||
 				mode === "assembly" ||

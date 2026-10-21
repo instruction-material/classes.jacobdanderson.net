@@ -1,5 +1,7 @@
 import type { VueWrapper } from "@vue/test-utils";
 import type { PythonIdeProject } from "@/modules/pythonIde";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { flushPromises, mount } from "@vue/test-utils";
 import { createPinia } from "pinia";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -147,6 +149,166 @@ afterEach(async () => {
 });
 
 describe("Code IDE route import consent", () => {
+	it.each([
+		["starter", 1],
+		["solution", 1],
+		["starter", 2],
+		["solution", 2],
+		["starter", 3],
+		["solution", 3]
+	] as const)(
+		"confirms a web %s edition %d import and reopens edited source without another fetch",
+		async (role, edition) => {
+			const fixture = JSON.parse(
+				readFileSync(
+					resolve(
+						edition === 3
+							? "../test/fixtures/web-notification-source.json"
+							: edition === 1
+								? "../test/fixtures/web-portfolio-source.json"
+								: "../test/fixtures/web-portfolio-module-source.json"
+					),
+					"utf8"
+				)
+			);
+			const root = `https://github.com/instruction-material/Web-Development-Foundations/tree/${fixture.revision}/${fixture.pack}`;
+			const serverProjects = [structuredClone(existingProject)];
+			preview.load.mockImplementation(async (file: { path: string }) => ({
+				content: fixture.files[file.path].content,
+				truncated: false
+			}));
+			requests.get.mockImplementation(async (path: string) => {
+				if (path === "/users/loggedin/python-projects")
+					return {
+						data: {
+							projects: structuredClone(serverProjects),
+							nextOffset: null
+						}
+					};
+				if (path === "/users/loggedin/python-project-reviews")
+					return { data: { reviews: [], nextOffset: null } };
+				const project = serverProjects.find(
+					row => path === `/users/loggedin/python-projects/${row._id}`
+				);
+				if (project)
+					return { data: { project: structuredClone(project) } };
+				throw new Error(`Unexpected request: ${path}`);
+			});
+			requests.post.mockImplementation(
+				async (_path: string, payload: PythonIdeProject) => {
+					const project = {
+						...JSON.parse(JSON.stringify(payload)),
+						_id: "web-project",
+						createdAt: "2026-10-20T12:00:00.000Z",
+						updatedAt: "2026-10-20T12:00:00.000Z"
+					};
+					serverProjects.push(project);
+					return { data: { project: structuredClone(project) } };
+				}
+			);
+			requests.put.mockImplementation(
+				async (path: string, payload: PythonIdeProject) => {
+					const project = {
+						...JSON.parse(JSON.stringify(payload)),
+						_id: path.split("/").at(-1)!,
+						createdAt: "2026-10-20T12:00:00.000Z",
+						updatedAt: "2026-10-20T12:00:01.000Z"
+					};
+					serverProjects[
+						serverProjects.findIndex(row => row._id === project._id)
+					] = project;
+					return { data: { project: structuredClone(project) } };
+				}
+			);
+			const key = `web-development-foundations:${edition === 3 ? "notification-state" : "portfolio"}:${role === "starter" ? "starter" : "reference"}:web-source-v${edition === 3 ? 1 : edition}`;
+			const params = new URLSearchParams({
+				course: "web-development-foundations",
+				mode: "web",
+				projectKey: key,
+				starterUrl: `${root}/${role}`
+			});
+			const { wrapper } = await openWorkspace(`/ide?${params}`);
+			expect(preview.load).not.toHaveBeenCalled();
+			expect(requests.post).not.toHaveBeenCalled();
+			await wrapper
+				.find("[data-testid='ide-route-import-confirm']")
+				.trigger("click");
+			await settle();
+			expect(preview.list).not.toHaveBeenCalled();
+			expect(preview.load).toHaveBeenCalledTimes(
+				edition === 3 ? 12 : edition === 1 ? 5 : 6
+			);
+			const project = workspaceState(wrapper).projects.find(
+				row => row._id === "web-project"
+			)!;
+			expect(project.mode).toBe("web");
+			expect(project.activeFileName).toBe("index.html");
+			expect(project.files.map(file => file.name)).toEqual(
+				edition === 3
+					? [
+							"index.html",
+							"app.mjs",
+							"state.mjs",
+							"styles.css",
+							"events.json",
+							"empty.json",
+							"invalid.json",
+							"malformed.json",
+							"history.json",
+							"out-of-order.json",
+							"README.md",
+							"serve.mjs"
+						]
+					: [
+							"index.html",
+							"main.js",
+							"styles.css",
+							"package.json",
+							...(edition === 2 ? ["project-idea.js"] : []),
+							"README.md"
+						]
+			);
+			const script = project.files.find(
+				file => file.name === (edition === 3 ? "state.mjs" : "main.js")
+			)!;
+			script.content += "\n// saved source edit\n";
+			expect(wrapper.find("button.run-control").text()).toBe(
+				"Run instructions"
+			);
+			await wrapper.find("button.run-control").trigger("click");
+			await settle();
+			expect(wrapper.text()).toContain(
+				edition === 3
+					? "node serve.mjs"
+					: `npm ci --workspace ${fixture.pack}/${role}`
+			);
+			expect(
+				wrapper.find("iframe[title='Isolated Python output']").exists()
+			).toBe(false);
+			const saved = JSON.parse(JSON.stringify(project.files));
+			expect(
+				serverProjects.find(row => row._id === "web-project")!.files
+			).toEqual(saved);
+			expect(
+				serverProjects.find(row => row._id === existingProject._id)!
+					.files
+			).toEqual(existingProject.files);
+			wrappers.splice(wrappers.indexOf(wrapper), 1);
+			wrapper.unmount();
+			const { wrapper: reopened } = await openWorkspace(`/ide?${params}`);
+			await settle();
+			expect(
+				workspaceState(reopened).projects.find(
+					row => row._id === "web-project"
+				)!.files
+			).toEqual(saved);
+			expect(preview.load).toHaveBeenCalledTimes(
+				edition === 3 ? 12 : edition === 1 ? 5 : 6
+			);
+			expect(requests.post).toHaveBeenCalledTimes(1);
+		}
+	);
+
 	it.each(["starter", "solution"] as const)("confirms a C %s import before fetching and keeps the existing attempt", async role => {
 		const revision = "9c2ca21336c7667681091972a0abe9e55921f8fa";
 		const pack = "CSE-05-cse0-setup-and-tooling";

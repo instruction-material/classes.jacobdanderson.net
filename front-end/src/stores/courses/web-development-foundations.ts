@@ -1564,7 +1564,7 @@ const WEB_DEVELOPMENT_FOUNDATIONS_MODULE_FLOW: Record<
 		answerSection: "validated-api-key",
 		route: "Build the contact API on loopback with fictional input, explicit request and response contracts, server-side schema validation, stable errors, bounded bodies, a stream or test email transport, health behavior, and clean shutdown.",
 		standardsRoute:
-			"Use Node.js 24 LTS and the scaffolded Express 5 and Nodemailer 8 versions. Keep credentials server-side, validate again at the server, return no stack trace or raw provider error, and make real SMTP optional.",
+			"Use Node.js 24 LTS and the scaffolded Express 5 and Nodemailer 10 versions. Keep credentials server-side, validate again at the server, return no stack trace or raw provider error, and make real SMTP optional.",
 		evidence:
 			"The API matrix covers valid, missing, malformed, overlength, wrong content type, repeated, timeout, simulated delivery failure, redacted log, health, shutdown, and restart cases with expected status and body.",
 		primaryReference: {

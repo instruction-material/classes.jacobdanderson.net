@@ -50,7 +50,7 @@ function courseItems(
 
 function markdownHeadingSlugs(markdown: string) {
 	return new Set(
-		[...markdown.matchAll(/^#{1,6}\s+(.+)$/gmu)].map(([, heading]) =>
+		[...markdown.matchAll(/^#{1,6}[ \t]+(\S.*)$/gmu)].map(([, heading]) =>
 			heading
 				.toLowerCase()
 				.replace(/[`*_]/gu, "")
@@ -72,7 +72,7 @@ function assetText(filename: string) {
 	);
 }
 
-describe("Rust Systems Security learner flow", () => {
+describe("rust Systems Security learner flow", () => {
 	it("keeps one coherent Rust systems progression ending in one capstone", async () => {
 		const loaded = await requireRustSystemsCourse();
 		const loadedCore = loaded.modules.filter(
@@ -163,26 +163,26 @@ describe("Rust Systems Security learner flow", () => {
 		}
 	});
 
-	it("uses a current Rust release and edition without rewriting source history", async () => {
+	it("uses the pinned Rust toolchain and edition without rewriting source history", async () => {
 		const text = JSON.stringify(await requireRustSystemsCourse());
 
 		expect(text).toContain("Rust 1.97.1");
 		expect(text).toContain("Rust 2024 edition");
-		expect(text).toContain("Rust 2021 edition");
+		expect(text).toContain("pinned Rust 2024 Cargo workspaces");
 		expect(text).toContain(
 			"cargo clippy --all-targets --all-features -- -D warnings"
 		);
 		expect(text).toContain("cargo test --locked");
 	});
 
-	it("states the linked checkpoint limitation instead of overstating source depth", async () => {
+	it("describes the complete pinned workspaces and preserves the earlier checkpoint distinction", async () => {
 		const metadata = (await requireRustSystemsCourse()).developmentMetadata;
 
 		expect(metadata?.sourcePolicy).toContain(
-			"lightweight label-sanitization checkpoints"
+			"module-specific Rust 2024 Cargo workspaces"
 		);
 		expect(metadata?.sourcePolicy).toContain(
-			"rather than distinct implementations of every named module"
+			"Earlier label-sanitization checkpoints remain historical source and saved work"
 		);
 		expect(metadata?.sourcePolicy).toContain(
 			"supplied Rust cases and verification guide"
@@ -233,12 +233,8 @@ describe("Rust Systems Security learner flow", () => {
 		expect(text).toContain(
 			"The key question is which guarantees the compiler stops checking"
 		);
-		expect(text).toContain(
-			"Label Input Boundary Cases"
-		);
-		expect(text).toContain(
-			"Capstone: Harden a Legacy Tool Extension Practice"
-		);
+		expect(text).toContain("Label Input Boundary Cases");
+		expect(text).toContain("A Bounded Mutation and Claim Review");
 	});
 
 	it("publishes a complete metadata, safety, and capstone contract", async () => {

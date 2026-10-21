@@ -20,6 +20,7 @@ watch(
 	}
 );
 const blankStarters: IdeStarter[] = [
+	"web",
 	"rust",
 	"linux",
 	"assembly",
@@ -33,7 +34,7 @@ const blankStarters: IdeStarter[] = [
 	"karel"
 ].map(mode => ({
 	id: `blank-${mode}`,
-	label: `Blank ${mode === "rust" ? "Rust" : mode === "linux" ? "Linux" : mode === "assembly" ? "Assembly" : mode === "turtle" ? "Python Turtle" : mode === "pgzero" ? "Pygame" : mode === "data" ? "Python Data / AI" : mode === "karel" ? "Karel Java" : mode === "java" ? "Java" : mode === "c" ? "C17" : mode === "cpp" ? "C++" : "Python"}`,
+	label: `Blank ${mode === "web" ? "Web" : mode === "rust" ? "Rust" : mode === "linux" ? "Linux" : mode === "assembly" ? "Assembly" : mode === "turtle" ? "Python Turtle" : mode === "pgzero" ? "Pygame" : mode === "data" ? "Python Data / AI" : mode === "karel" ? "Karel Java" : mode === "java" ? "Java" : mode === "c" ? "C17" : mode === "cpp" ? "C++" : "Python"}`,
 	category: "Templates",
 	mode: mode as IdeStarter["mode"],
 	template: "blank"
@@ -72,6 +73,7 @@ const visible = computed(() =>
 						Linux scripts and configuration
 					</option>
 					<option value="rust">Rust / Cargo source</option>
+					<option value="web">HTML, CSS and JavaScript source</option>
 					<option value="c">C17 source</option>
 					<option value="cpp">C++ source</option>
 					<option value="karel">Karel Java</option>

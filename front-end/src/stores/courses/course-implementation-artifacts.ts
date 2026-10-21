@@ -190,7 +190,7 @@ export const courseToolchainAssumptions: Record<string, string[]> = {
 		"Supplied command transcripts, DNS answers, route tables, listener maps, firewall rules, and packet excerpts provide a complete no-VM and no-capture route."
 	],
 	"rust-systems-security": [
-		"Rust 1.97.1 stable with rustup, Cargo, rustfmt, Clippy, and Rust 2024 edition for course-authored work; linked source checkpoints currently declare Rust 2021 edition and remain valid migration exercises.",
+		"Rust 1.97.1 stable with rustup, Cargo, rustfmt, Clippy, and Rust 2024 edition in the pinned RSS0–RSS10 Cargo workspaces.",
 		"Use a committed Cargo.lock where applicable, cargo fmt --check, cargo clippy --all-targets --all-features -- -D warnings, and cargo test --locked as the repeatable baseline.",
 		"cargo audit is an installed RustSec tool whose live advisory refresh may require network access; the supplied advisory case provides an offline-equivalent dependency review.",
 		"Miri and cargo fuzz are optional, bounded advanced tools: both require a compatible nightly toolchain, and cargo fuzz also requires a supported Unix-like x86-64 or AArch64 environment.",
@@ -202,7 +202,7 @@ export const courseToolchainAssumptions: Record<string, string[]> = {
 		"Local play-mode/build checks before capstone publication."
 	],
 	"web-development-foundations": [
-		"Node.js 24 LTS with the package-manager and lockfile state recorded for every reusable scaffold; source projects currently pin Vite 8, Express 5, Mongoose 9, Zod 4, Nodemailer 8, and Socket.IO 4 where applicable.",
+		"Node.js 24 LTS with the package-manager and lockfile state recorded for every reusable scaffold; source projects currently pin Vite 8, Express 5, Mongoose 9, Zod 4, Nodemailer 10, and Socket.IO 4 where applicable.",
 		"Localhost is the required runtime boundary: static files, supplied fixtures, in-memory adapters, test transports, and local databases provide a complete route without a public account or deployment.",
 		"Browser checks cover keyboard and pointer use, visible focus, status and error communication, reduced motion, 200% zoom, and narrow and desktop widths.",
 		"Server checks cover request size, schema validation, stable error shapes, timeouts, rate or resource limits, clean shutdown, health and readiness, and redacted logs.",
@@ -679,7 +679,7 @@ const standardsOverrides: Record<string, string[]> = {
 	"web-development-foundations": [
 		"Node.js 24 LTS release and package-management documentation.",
 		"WHATWG HTML, ECMA-262, MDN, WCAG 2.2, and WAI-ARIA Authoring Practices for front-end structure, state, interaction, and accessibility.",
-		"Vite 8, Express 5, Mongoose 9, MongoDB, Zod 4, Nodemailer 8, and Socket.IO 4 first-party documentation where the preserved source projects use those tools.",
+		"Vite 8, Express 5, Mongoose 9, MongoDB, Zod 4, Nodemailer 10, and Socket.IO 4 first-party documentation where the preserved source projects use those tools.",
 		"OWASP input-validation, secrets, logging, REST, WebSocket, and deployment guidance for local teaching services.",
 		"HTTP, DNS, TLS, CORS, reverse-proxy, health-check, backup, restore, and observability references for deployment-readiness evidence."
 	],
@@ -1144,7 +1144,7 @@ function sourcePolicyFor(courseId: string) {
 		}
 
 		if (courseId === "rust-systems-security") {
-			return `Source-backed course. Canonical source repository: ${url}. The linked RUST-* starter/solution folders are lightweight label-sanitization checkpoints, currently using Rust 2021 edition, rather than distinct implementations of every named module. Existing URLs remain traceable; the supplied Rust cases and verification guide provide the module-specific ownership, parser, concurrency, unsafe, dependency, and capstone evidence.`;
+			return `Canonical source repository: ${url}. RSS0–RSS10 use pinned, module-specific Rust 2024 Cargo workspaces with complete starter and reference roles. Each project includes its reading and observation worksheet; the supplied Rust cases and verification guide add independent review exercises. Earlier label-sanitization checkpoints remain historical source and saved work.`;
 		}
 
 		if (courseId === "javascript-level-1-javascript-superstar") {

@@ -152,6 +152,192 @@ jobs:
                   if-no-files-found: error
                   retention-days: 7
 
+            - name: Verify complete label-slices imports and source exports
+              env:
+                  RUST_LABEL_SLICES_EXPORT_PROOF_DIR: output/rust-label-slices-exports
+              run: npm exec -w front-end -- vitest run test/rust-label-slices-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+            - name: Verify actual label-slices course actions and saved continuations
+              env:
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/rust-label-slices-screenshots
+                  RUST_LABEL_SLICES_BROWSER_PROOF_DIR: output/rust-label-slices-browser
+              run: node --test test/rust-label-slices-course-browser.test.mjs
+
+            - name: Compile original and browser-edited label-slices exports
+              run: python3 test/rust-cargo-exported-contracts.py --lesson label-slices --exports front-end/output/rust-label-slices-exports --browser output/rust-label-slices-browser --proof output/rust-label-slices-native/proof.json
+
+            - name: Retain label-slices browser and native evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: rust-label-slices-workflows
+                  path: |
+                      front-end/output/rust-label-slices-exports/
+                      output/rust-label-slices-browser/
+                      output/rust-label-slices-native/
+                      output/rust-label-slices-screenshots/
+                  include-hidden-files: true
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify complete state-models imports and source exports
+              env:
+                  RUST_STATE_MODELS_EXPORT_PROOF_DIR: output/rust-state-models-exports
+              run: npm exec -w front-end -- vitest run test/rust-state-models-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+            - name: Verify actual state-models course actions and saved continuations
+              env:
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/rust-state-models-screenshots
+                  RUST_STATE_MODELS_BROWSER_PROOF_DIR: output/rust-state-models-browser
+              run: node --test test/rust-state-models-course-browser.test.mjs
+
+            - name: Compile original and browser-edited state-models exports
+              run: python3 test/rust-cargo-exported-contracts.py --lesson state-models --exports front-end/output/rust-state-models-exports --browser output/rust-state-models-browser --proof output/rust-state-models-native/proof.json
+
+            - name: Retain state-models browser and native evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: rust-state-models-workflows
+                  path: |
+                      front-end/output/rust-state-models-exports/
+                      output/rust-state-models-browser/
+                      output/rust-state-models-native/
+                      output/rust-state-models-screenshots/
+                  include-hidden-files: true
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify complete trait-pipeline imports and source exports
+              env:
+                  RUST_TRAIT_PIPELINE_EXPORT_PROOF_DIR: output/rust-trait-pipeline-exports
+              run: npm exec -w front-end -- vitest run test/rust-trait-pipeline-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+            - name: Verify actual trait-pipeline course actions and saved continuations
+              env:
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/rust-trait-pipeline-screenshots
+                  RUST_TRAIT_PIPELINE_BROWSER_PROOF_DIR: output/rust-trait-pipeline-browser
+              run: node --test test/rust-trait-pipeline-course-browser.test.mjs
+
+            - name: Compile original and browser-edited trait-pipeline exports
+              run: python3 test/rust-cargo-exported-contracts.py --lesson trait-pipeline --exports front-end/output/rust-trait-pipeline-exports --browser output/rust-trait-pipeline-browser --proof output/rust-trait-pipeline-native/proof.json
+
+            - name: Retain trait-pipeline browser and native evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: rust-trait-pipeline-workflows
+                  path: |
+                      front-end/output/rust-trait-pipeline-exports/
+                      output/rust-trait-pipeline-browser/
+                      output/rust-trait-pipeline-native/
+                      output/rust-trait-pipeline-screenshots/
+                  include-hidden-files: true
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify complete bounded-cli imports and source exports
+              env:
+                  RUST_BOUNDED_CLI_EXPORT_PROOF_DIR: output/rust-bounded-cli-exports
+              run: npm exec -w front-end -- vitest run test/rust-bounded-cli-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+            - name: Verify actual bounded-cli course actions and saved continuations
+              env:
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/rust-bounded-cli-screenshots
+                  RUST_BOUNDED_CLI_BROWSER_PROOF_DIR: output/rust-bounded-cli-browser
+              run: node --test test/rust-bounded-cli-course-browser.test.mjs
+
+            - name: Compile original and browser-edited bounded-cli exports
+              run: python3 test/rust-cargo-exported-contracts.py --lesson bounded-cli --exports front-end/output/rust-bounded-cli-exports --browser output/rust-bounded-cli-browser --proof output/rust-bounded-cli-native/proof.json
+
+            - name: Retain bounded-cli browser and native evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: rust-bounded-cli-workflows
+                  path: |
+                      front-end/output/rust-bounded-cli-exports/
+                      output/rust-bounded-cli-browser/
+                      output/rust-bounded-cli-native/
+                      output/rust-bounded-cli-screenshots/
+                  include-hidden-files: true
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify complete concurrency, boundary and capstone imports and exports
+              env:
+                  RUST_FINAL_EXPORT_PROOF_DIR: output
+              run: npm exec -w front-end -- vitest run test/rust-final-workspaces.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+            - name: Verify actual concurrency course actions and saved continuations
+              env:
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/rust-concurrency-screenshots
+                  RUST_CONCURRENCY_BROWSER_PROOF_DIR: output/rust-concurrency-browser
+              run: node --test test/rust-concurrency-course-browser.test.mjs
+
+            - name: Compile original and browser-edited concurrency exports without Git
+              run: python3 test/rust-cargo-exported-contracts.py --lesson concurrency --exports front-end/output/rust-concurrency-exports --browser output/rust-concurrency-browser --proof output/rust-concurrency-native/proof.json
+
+            - name: Retain concurrency browser and native evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: rust-concurrency-workflows
+                  path: |
+                      front-end/output/rust-concurrency-exports/
+                      output/rust-concurrency-browser/
+                      output/rust-concurrency-native/
+                      output/rust-concurrency-screenshots/
+                  include-hidden-files: true
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify actual boundary-review course actions and saved continuations
+              env:
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/rust-boundary-review-screenshots
+                  RUST_BOUNDARY_REVIEW_BROWSER_PROOF_DIR: output/rust-boundary-review-browser
+              run: node --test test/rust-boundary-review-course-browser.test.mjs
+
+            - name: Compile original and browser-edited boundary-review exports without Git
+              run: python3 test/rust-cargo-exported-contracts.py --lesson boundary-review --exports front-end/output/rust-boundary-review-exports --browser output/rust-boundary-review-browser --proof output/rust-boundary-review-native/proof.json
+
+            - name: Retain boundary-review browser and native evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: rust-boundary-review-workflows
+                  path: |
+                      front-end/output/rust-boundary-review-exports/
+                      output/rust-boundary-review-browser/
+                      output/rust-boundary-review-native/
+                      output/rust-boundary-review-screenshots/
+                  include-hidden-files: true
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify actual record-hardening course actions and saved continuations
+              env:
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/rust-record-hardening-screenshots
+                  RUST_RECORD_HARDENING_BROWSER_PROOF_DIR: output/rust-record-hardening-browser
+              run: node --test test/rust-record-hardening-course-browser.test.mjs
+
+            - name: Compile original and browser-edited record-hardening exports without Git
+              run: python3 test/rust-cargo-exported-contracts.py --lesson record-hardening --exports front-end/output/rust-record-hardening-exports --browser output/rust-record-hardening-browser --proof output/rust-record-hardening-native/proof.json
+
+            - name: Retain record-hardening browser and native evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: rust-record-hardening-workflows
+                  path: |
+                      front-end/output/rust-record-hardening-exports/
+                      output/rust-record-hardening-browser/
+                      output/rust-record-hardening-native/
+                      output/rust-record-hardening-screenshots/
+                  include-hidden-files: true
+                  if-no-files-found: error
+                  retention-days: 7
+
     backend-install:
         runs-on: ubuntu-24.04
         steps:
@@ -406,6 +592,9 @@ jobs:
                   npm i -g npm@12.0.1
                   npm -v
                   test "$(npm --version)" = "12.0.1"
+
+            - name: Verify preview readiness failure recovery
+              run: node --test test/preview-readiness.test.mjs
 
             - name: Install deps
               run: npm ci
@@ -711,12 +900,14 @@ jobs:
 
             - name: Cypress
               uses: cypress-io/github-action@fa4a118725a8f001170d49631ea89e5d66fee626 # v7.4.1
+              env:
+                  CYPRESS_BASE_URL: http://127.0.0.1:3333
               with:
                   install: false
                   working-directory: front-end
                   config-file: cypress.config.ts
-                  start: npm run preview -- --port 3333
-                  wait-on: "http://localhost:3333"
+                  start: npm run preview -- --host 127.0.0.1 --port 3333 --strictPort
+                  wait-on: "node ../scripts/wait-for-loopback-preview.mjs"
 
     course-workflows:
         runs-on: ubuntu-24.04
@@ -749,6 +940,41 @@ jobs:
               with:
                   name: course-catalog-workflows
                   path: output/course-catalog/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify notification source imports and saved code exports
+              env:
+                  WEB_NOTIFICATION_EXPORT_DIR: output/web-notification-exports
+              run: npm exec -w front-end -- vitest run test/web-notification-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+            - name: Run actual exported notification projects and contracts
+              run: node test/web-notification-exported-contracts.mjs --exports front-end/output/web-notification-exports --proof output/web-notification-native/proof.json
+
+            - name: Retain notification source and native export evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: web-notification-workflows
+                  path: |
+                      front-end/output/web-notification-exports/
+                      output/web-notification-native/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify Web course consent, saved editions and source exports
+              env:
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/web-source-screenshots
+              run: node --test test/web-source-course-browser.test.mjs
+
+            - name: Retain Web course browser evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: web-source-course-workflows
+                  path: |
+                      output/web-source-browser/
+                      output/web-source-screenshots/
                   if-no-files-found: error
                   retention-days: 7
 

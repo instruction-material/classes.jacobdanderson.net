@@ -63,8 +63,8 @@ describe("simplified workspaces", () => {
 			props: { open: true },
 			global: { stubs: { Teleport: true } }
 		});
-		expect(ideStarters).toHaveLength(25);
-		expect(new Set(ideStarters.map(item => item.id)).size).toBe(25);
+		expect(ideStarters).toHaveLength(26);
+		expect(new Set(ideStarters.map(item => item.id)).size).toBe(26);
 		await wrapper.findAll("select")[0].setValue("java");
 		expect(wrapper.text()).toContain("Java Outline");
 		expect(wrapper.text()).not.toContain("Python Level 1 Outline");
@@ -122,6 +122,16 @@ describe("simplified workspaces", () => {
 			.trigger("click");
 		expect(wrapper.emitted("choose")![5][0]).toMatchObject({
 			mode: "rust",
+			template: "blank"
+		});
+		await wrapper.findAll("select")[0].setValue("web");
+		await wrapper.findAll("select")[1].setValue("Templates");
+		await wrapper
+			.findAll("button")
+			.find(button => button.text() === "HTML, CSS and JavaScript")!
+			.trigger("click");
+		expect(wrapper.emitted("choose")![6][0]).toMatchObject({
+			mode: "web",
 			template: "blank"
 		});
 		wrapper.unmount();

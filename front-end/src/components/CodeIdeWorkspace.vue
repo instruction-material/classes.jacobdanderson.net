@@ -112,6 +112,8 @@ import {
 } from "@/modules/pythonSandbox";
 import { rustBuildInstructions } from "@/modules/rustBuildInstructions";
 import { bronzePythonFileIoForKey } from "@/modules/usacoBronzeRequiredPacks";
+import { webBuildInstructions } from "@/modules/webBuildInstructions";
+import { webCourseResource } from "@/modules/webProjectResources";
 import { useAppStore } from "@/stores/app";
 
 const props = withDefaults(
@@ -1134,24 +1136,35 @@ const selectedModeLabel = computed(() =>
 );
 const usesNativeSourceWorkspace = computed(
 	() =>
+		selectedProject.value?.mode === "web" ||
 		selectedProject.value?.mode === "linux" ||
 		selectedProject.value?.mode === "assembly" ||
 		selectedProject.value?.mode === "c" ||
 		selectedProject.value?.mode === "cpp" ||
 		selectedProject.value?.mode === "rust"
 );
+const webProjectRequirement = computed(() => {
+	const selected = webCourseResource(selectedProject.value?.starterUrl ?? "");
+	if (!selected) return "Requires a local web server.";
+	return selected.definition.workflow === "standalone"
+		? "Requires Node.js 24."
+		: "Requires Node.js 24 and the complete source repository's lockfile.";
+});
 const nativeSourceLanguage = computed(() =>
-	selectedProject.value?.mode === "rust"
-		? "Rust"
-		: selectedProject.value?.mode === "linux"
-			? "Linux"
-			: selectedProject.value?.mode === "assembly"
-				? "Assembly (Linux x86-64)"
-				: selectedProject.value?.mode === "c"
-					? "C17"
-					: "C++"
+	selectedProject.value?.mode === "web"
+		? "Web"
+		: selectedProject.value?.mode === "rust"
+			? "Rust"
+			: selectedProject.value?.mode === "linux"
+				? "Linux"
+				: selectedProject.value?.mode === "assembly"
+					? "Assembly (Linux x86-64)"
+					: selectedProject.value?.mode === "c"
+						? "C17"
+						: "C++"
 );
 const mobileWorkspaceViews = computed(() =>
+	selectedProject.value?.mode === "web" ||
 	selectedProject.value?.mode === "rust" ||
 	selectedProject.value?.mode === "linux" ||
 	selectedProject.value?.mode === "c" ||
@@ -1163,7 +1176,8 @@ watch(
 	() => selectedProject.value?.mode,
 	mode => {
 		if (
-			(mode === "rust" ||
+			(mode === "web" ||
+				mode === "rust" ||
 				mode === "linux" ||
 				mode === "c" ||
 				mode === "assembly") &&
@@ -1174,6 +1188,8 @@ watch(
 	}
 );
 const newFileNamePlaceholder = computed(() => {
+	if (selectedProject.value?.mode === "web")
+		return "index.html, main.js or styles.css";
 	if (selectedProject.value?.mode === "rust")
 		return "src/main.rs, src/helpers.rs or Cargo.toml";
 	if (selectedProject.value?.mode === "linux")
@@ -3553,19 +3569,21 @@ function addFile() {
 	if (!selectedProject.value) return;
 	const fileName = normalizePythonFileName(
 		newFileName.value,
-		selectedProject.value.mode === "rust"
-			? ".rs"
-			: selectedProject.value.mode === "linux"
-				? ".sh"
-				: selectedProject.value.mode === "assembly"
-					? ".S"
-					: selectedProject.value.mode === "c"
-						? ".c"
-						: selectedProject.value.mode === "cpp"
-							? ".cpp"
-							: isJavaIdeMode(selectedProject.value.mode)
-								? ".java"
-								: ".py",
+		selectedProject.value.mode === "web"
+			? ".html"
+			: selectedProject.value.mode === "rust"
+				? ".rs"
+				: selectedProject.value.mode === "linux"
+					? ".sh"
+					: selectedProject.value.mode === "assembly"
+						? ".S"
+						: selectedProject.value.mode === "c"
+							? ".c"
+							: selectedProject.value.mode === "cpp"
+								? ".cpp"
+								: isJavaIdeMode(selectedProject.value.mode)
+									? ".java"
+									: ".py",
 		selectedProject.value.mode
 	);
 	if (!isValidPythonFileName(fileName, selectedProject.value.mode)) {
@@ -6824,6 +6842,13 @@ async function runCurrentProject() {
 	if (shouldStopPythonIdeRun(runID, project._id)) return;
 
 	clearOutput();
+	if (project.mode === "web") {
+		for (const line of webBuildInstructions(project.starterUrl))
+			appendOutput("system", line);
+		runMessage.value = "Local web instructions";
+		diagnosticStage.value = "completed";
+		return;
+	}
 	if (project.mode === "rust") {
 		for (const line of rustBuildInstructions(
 			project.files,
@@ -8471,9 +8496,11 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 								runControlIsStop
 									? "Stop"
 									: usesNativeSourceWorkspace
-										? selectedProject?.mode === "linux"
-											? "Linux instructions"
-											: "Build instructions"
+										? selectedProject?.mode === "web"
+											? "Run instructions"
+											: selectedProject?.mode === "linux"
+												? "Linux instructions"
+												: "Build instructions"
 										: "Run"
 							}}
 						</button>
@@ -8483,7 +8510,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 				<section
 					v-if="usesNativeSourceWorkspace"
 					class="site-surface cpp-build-panel"
-					:aria-label="`${nativeSourceLanguage} ${selectedProject?.mode === 'linux' ? 'execution' : 'build'} workflow`"
+					:aria-label="`${nativeSourceLanguage} ${selectedProject?.mode === 'linux' || selectedProject?.mode === 'web' ? 'execution' : 'build'} workflow`"
 				>
 					<p v-if="selectedProject?.mode === 'linux'">
 						Edit and save Linux scripts, configuration and
@@ -8491,6 +8518,9 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 						follow its README in an owned Linux lab or WSL terminal.
 						Use Linux instructions for the selected lab’s execution
 						and verification steps.
+					</p>
+					<p v-else-if="selectedProject?.mode === 'web'">
+						{{ webProjectRequirement }}
 					</p>
 					<p v-else-if="selectedProject?.mode === 'rust'">
 						Requires a native Rust toolchain.
@@ -8634,7 +8664,8 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 								? "Code"
 								: view === "canvas"
 									? "Canvas"
-									: selectedProject?.mode === "rust" ||
+									: selectedProject?.mode === "web" ||
+										  selectedProject?.mode === "rust" ||
 										  selectedProject?.mode === "c" ||
 										  selectedProject?.mode ===
 												"assembly" ||
@@ -8766,13 +8797,16 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 					>
 						<div class="panel-header">
 							<span>{{
+								selectedProject?.mode === "web" ||
 								selectedProject?.mode === "rust" ||
 								selectedProject?.mode === "c" ||
 								selectedProject?.mode === "assembly" ||
 								selectedProject?.mode === "linux"
-									? selectedProject?.mode === "linux"
-										? "Linux instructions"
-										: "Build instructions"
+									? selectedProject?.mode === "web"
+										? "Run instructions"
+										: selectedProject?.mode === "linux"
+											? "Linux instructions"
+											: "Build instructions"
 									: consoleExpanded
 										? "Console"
 										: usesKarelWorld
@@ -9029,7 +9063,10 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 								@keydown="selectAllConsoleOutput"
 							>
 								<div
-									v-if="!outputLines.length"
+									v-if="
+										!outputLines.length &&
+										selectedProject?.mode !== 'web'
+									"
 									class="empty-output"
 								>
 									{{

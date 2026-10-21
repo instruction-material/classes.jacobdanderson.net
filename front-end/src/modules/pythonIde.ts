@@ -43,6 +43,15 @@ import {
 	rustImportFiles
 } from "@/modules/rustProjectResources";
 import { restoredUsacoResource } from "@/modules/usacoProjectResources";
+import { webStarterCode, webStarterFiles } from "@/modules/webIdeSource";
+import {
+	isWebProjectSourcePath,
+	isWebProjectTextPath
+} from "@/modules/webProjectFiles";
+import {
+	webCourseResource,
+	webImportFiles
+} from "@/modules/webProjectResources";
 
 const WHITESPACE_RE = /\s+/g;
 const FILE_EXTENSION_RE = /\.[\dA-Z]+$/i;
@@ -114,7 +123,8 @@ export type PythonIdeMode =
 	| "pgzero"
 	| "python"
 	| "rust"
-	| "turtle";
+	| "turtle"
+	| "web";
 export type PythonIdeProjectTemplate =
 	| "blank"
 	| "bluej"
@@ -266,6 +276,10 @@ interface PythonIdeProjectStorageRecord {
 
 export const pythonIdeStorageNamespace = "classes-python-ide-projects";
 export const pythonIdeAllowedFileExtensions = [
+	".js",
+	".mjs",
+	".cjs",
+	".css",
 	".rs",
 	".toml",
 	".lock",
@@ -310,6 +324,7 @@ export const pythonIdeFileUploadAccept =
 let pythonIdeStorageDbPromise: Promise<IDBDatabase> | null = null;
 
 const pythonIdeCourseModes: Record<string, PythonIdeMode> = {
+	"web-development-foundations": "web",
 	"rust-systems-security": "rust",
 	"linux-systems": "linux",
 	assembly: "assembly",
@@ -347,6 +362,7 @@ export function normalizePythonIdeMode(
 	if (value === "bluej") return "java";
 	if (
 		value === "assembly" ||
+		value === "web" ||
 		value === "rust" ||
 		value === "linux" ||
 		value === "c" ||
@@ -400,6 +416,8 @@ export function isKnownCourseWorksheetResource(url: string) {
 export function pythonIdeModeForCourseResource(courseId: string, url: string) {
 	const resource = parseGitHubResource(url);
 	if (!resource || isKnownCourseWorksheetResource(url)) return null;
+	if (courseId === "web-development-foundations")
+		return webCourseResource(url) ? "web" : null;
 	if (resource.mode === "blob" && !CODE_EXTENSION_RE.test(resource.path))
 		return null;
 	if (courseId === "network-systems")
@@ -2245,6 +2263,7 @@ plt.tight_layout()
 `;
 
 export function getPythonIdeModeLabel(mode: PythonIdeMode) {
+	if (mode === "web") return "Web";
 	if (mode === "rust") return "Rust";
 	if (mode === "linux") return "Linux";
 	if (mode === "assembly") return "Assembly";
@@ -2627,6 +2646,7 @@ function getStarterFilesForTemplate(
 	mode: PythonIdeMode,
 	template: PythonIdeProjectTemplate
 ) {
+	if (mode === "web") return webStarterFiles();
 	if (mode === "rust") return rustStarterFiles();
 	if (mode === "linux") return linuxStarterFiles();
 	if (
@@ -2705,6 +2725,7 @@ function projectTitleForMode(
 	mode: PythonIdeMode,
 	template: PythonIdeProjectTemplate = "blank"
 ) {
+	if (mode === "web") return "Web Project";
 	if (mode === "rust") return "Rust Project";
 	if (mode === "linux") return "Linux Project";
 	if (mode === "assembly") return "Assembly Project";
@@ -2778,19 +2799,22 @@ export function createPythonIdeProject(
 		files,
 		activeFileName: resolvePythonIdeActiveFileName(
 			files,
-			mode === "rust"
-				? rustSource
-					? `${rustSource.role}/observations.md`
-					: "src/main.rs"
-				: mode === "linux"
-					? linuxSource
-						? `${linuxSource.role}/${linuxSource.definition.roleFiles[0]}`
-						: files.find(file => /\.sh$/i.test(file.name))?.name
-					: mode === "assembly"
-						? assemblySource
-							? `${assemblySource.role}/${assemblySource.definition.roleFiles[0]}`
-							: files.find(file => /\.s$/i.test(file.name))?.name
-						: undefined
+			mode === "web"
+				? "index.html"
+				: mode === "rust"
+					? rustSource
+						? `${rustSource.role}/observations.md`
+						: "src/main.rs"
+					: mode === "linux"
+						? linuxSource
+							? `${linuxSource.role}/${linuxSource.definition.roleFiles[0]}`
+							: files.find(file => /\.sh$/i.test(file.name))?.name
+						: mode === "assembly"
+							? assemblySource
+								? `${assemblySource.role}/${assemblySource.definition.roleFiles[0]}`
+								: files.find(file => /\.s$/i.test(file.name))
+										?.name
+							: undefined
 		),
 		courseID: options.courseID,
 		courseProjectKey: options.courseProjectKey,
@@ -2905,6 +2929,7 @@ export function isValidPythonFileName(
 	}
 
 	if (isPythonIdeRuntimeReservedPath(value)) return false;
+	if (mode === "web") return isWebProjectTextPath(value);
 
 	if (
 		CODE_EXTENSION_RE.test(value) ||
@@ -2934,6 +2959,7 @@ export function isPythonIdeRunnableFile(
 	value: string,
 	mode: PythonIdeMode = "python"
 ) {
+	if (mode === "web") return isWebProjectSourcePath(value);
 	if (mode === "linux") return false;
 	if (mode === "rust") return /\.rs$/i.test(value);
 	if (mode === "assembly") return /\.s$/i.test(value);
@@ -2946,6 +2972,7 @@ export function isPythonIdeRunnableFile(
 
 export function isPythonIdeTextFile(value: string) {
 	return (
+		isWebProjectTextPath(value) ||
 		isRustProjectTextPath(value) ||
 		isLinuxProjectTextPath(value) ||
 		TEXT_FILE_RE.test(value)
@@ -2965,7 +2992,13 @@ export function normalizeImportedPythonIdeFileName(
 	const baseName = value.split(/[\\/]/).pop() ?? value;
 	const normalized = normalizePythonFileName(
 		baseName,
-		mode === "rust" ? ".rs" : mode === "linux" ? ".sh" : ".py",
+		mode === "web"
+			? ".html"
+			: mode === "rust"
+				? ".rs"
+				: mode === "linux"
+					? ".sh"
+					: ".py",
 		mode
 	);
 	if (IMAGE_EXTENSION_RE.test(normalized)) return `images/${normalized}`;
@@ -3005,6 +3038,8 @@ export function getPythonIdeFileKindLabel(value: string) {
 		return "Build file";
 	const extension = value.match(FILE_EXTENSION_RE)?.[0]?.toLowerCase();
 	if (extension === ".s") return "Assembly";
+	if (extension === ".css") return "CSS";
+	if ([".js", ".mjs", ".cjs"].includes(extension ?? "")) return "JavaScript";
 	if (extension === ".sh") return "Shell";
 	if (extension === ".log") return "Log";
 	if (extension === ".html") return "HTML";
@@ -3029,6 +3064,7 @@ export function getPythonIdeDefaultFileContent(
 	fileName: string,
 	mode?: PythonIdeMode
 ) {
+	if (mode === "web") return fileName === "index.html" ? webStarterCode : "";
 	if (/^makefile$/i.test(fileName) || baseName(fileName) === "CMakeLists.txt")
 		return "";
 	const extension = fileName.match(FILE_EXTENSION_RE)?.[0]?.toLowerCase();
@@ -3125,20 +3161,23 @@ export async function loadPythonIdeStarterFilesFromGitHub(
 	}
 
 	if (
+		mode === "web" ||
 		mode === "rust" ||
 		mode === "c" ||
 		mode === "assembly" ||
 		mode === "linux"
 	) {
 		const selected =
-			mode === "rust"
-				? rustImportFiles(starterUrl)
-				: mode === "linux"
-					? (linuxImportFiles(starterUrl) ??
-						networkImportFiles(starterUrl))
-					: mode === "assembly"
-						? assemblyImportFiles(starterUrl)
-						: c17ImportFiles(starterUrl);
+			mode === "web"
+				? webImportFiles(starterUrl)
+				: mode === "rust"
+					? rustImportFiles(starterUrl)
+					: mode === "linux"
+						? (linuxImportFiles(starterUrl) ??
+							networkImportFiles(starterUrl))
+						: mode === "assembly"
+							? assemblyImportFiles(starterUrl)
+							: c17ImportFiles(starterUrl);
 		if (!selected) {
 			throw new Error(
 				`${getPythonIdeModeLabel(mode)} source has no verified site import. Use its documented native workflow.`

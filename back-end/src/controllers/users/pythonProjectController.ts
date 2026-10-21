@@ -19,6 +19,7 @@ import { PythonProjectReview } from "../../models/schemas/PythonProjectReview.js
 import { User } from "../../models/schemas/User.js";
 import { isLinuxProjectTextPath, linuxFileSegmentPattern } from "../../utils/linuxProjectFiles.js";
 import { isRustProjectTextPath } from "../../utils/rustProjectFiles.js";
+import { isWebProjectSourcePath, isWebProjectTextPath } from "../../utils/webProjectFiles.js";
 
 const SAFE_FILE_SEGMENT_RE = /^\w[\w.-]*$/;
 const NATIVE_WORKSHEET_FILE_RE = /^(?:starter|solution)\/(?:analysis|trace)\.md$/i;
@@ -105,6 +106,7 @@ function isSafeProjectFileName(value: string, mode: PythonProjectMode = "python"
 	}
 
 	if (isRuntimeReservedProjectPath(value)) return false;
+	if (mode === "web") return isWebProjectTextPath(value);
 
 	if (PYTHON_FILE_NAME_RE.test(value) || JAVA_FILE_NAME_RE.test(value) || C_FILE_NAME_RE.test(value) || ASSEMBLY_FILE_NAME_RE.test(value) || CPP_TEXT_FILE_NAME_RE.test(value) || segments.at(-1) === "CMakeLists.txt" || NATIVE_WORKSHEET_FILE_RE.test(value) || linuxPath || (mode === "rust" && isRustProjectTextPath(value))) {
 		const rootDirectory = segments[0]?.toLowerCase();
@@ -116,7 +118,7 @@ function isSafeProjectFileName(value: string, mode: PythonProjectMode = "python"
 	return IMAGE_FILE_RE.test(value) || AUDIO_FILE_RE.test(value);
 }
 
-const projectModeSchema = z.enum(["assembly", "c", "cpp", "data", "java", "karel", "linux", "pgzero", "python", "rust", "turtle"]);
+const projectModeSchema = z.enum(["assembly", "c", "cpp", "data", "java", "karel", "linux", "pgzero", "python", "rust", "turtle", "web"]);
 const projectFileSchema = z.object({
 	name: z
 		.string()
@@ -124,7 +126,7 @@ const projectFileSchema = z.object({
 		.min(1)
 		.max(80)
 		.refine(
-			value => isSafeProjectFileName(value, "linux") || isSafeProjectFileName(value, "rust"),
+			value => isSafeProjectFileName(value, "linux") || isSafeProjectFileName(value, "rust") || isSafeProjectFileName(value, "web"),
 			"Use a safe code file, root data/text file, or images/, sounds/, or music/ asset file that does not use a runtime-reserved module name"
 		),
 	content: z.string().max(MAX_FILE_LENGTH),
@@ -266,6 +268,7 @@ function serializePythonProjectReviewMetadata(review: IPythonProjectReview) {
 }
 
 function defaultProjectFileForMode(mode: PythonProjectMode): PythonProjectFile {
+	if (mode === "web") return { name: "index.html", content: "" };
 	if (mode === "rust") return { name: "src/main.rs", content: "" };
 	if (mode === "linux") return { name: "main.sh", content: "" };
 	if (mode === "assembly") return { name: "routine.S", content: "" };
@@ -289,6 +292,7 @@ function defaultProjectFileForMode(mode: PythonProjectMode): PythonProjectFile {
 }
 
 function requiredCodeFileMessage(mode: PythonProjectMode) {
+	if (mode === "web") return "Project must include at least one text HTML or JavaScript source file";
 	if (mode === "rust") return "Project must include at least one text Rust source file";
 	if (mode === "linux") return "Project must include a text Linux script, application or configuration file";
 	if (mode === "assembly") return "Project must include at least one text Assembly source file";
@@ -303,6 +307,7 @@ function requiredCodeFileMessage(mode: PythonProjectMode) {
 
 function projectFilesMatchMode(files: PythonProjectFile[], mode: PythonProjectMode) {
 	if (!files.every(file => isSafeProjectFileName(file.name, mode))) return false;
+	if (mode === "web") return files.every(file => file.encoding !== "base64") && files.some(file => isWebProjectSourcePath(file.name));
 	if (mode === "rust") return files.every(file => file.encoding !== "base64") && files.some(file => /\.rs$/i.test(file.name));
 	if (mode === "linux") return files.every(file => file.encoding !== "base64") && files.some(file => isLinuxProjectTextPath(file.name) || PYTHON_FILE_NAME_RE.test(file.name));
 	if (mode === "assembly") return !files.some(file => file.encoding === "base64" && (/\.[sch]$/i.test(file.name) || file.name.split("/").at(-1) === "CMakeLists.txt")) && files.some(file => ASSEMBLY_FILE_NAME_RE.test(file.name) && file.encoding !== "base64");

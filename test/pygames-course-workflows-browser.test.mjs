@@ -1,8 +1,10 @@
 import assert from "node:assert/strict";
+import { Buffer } from "node:buffer";
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { join } from "node:path";
+import { freemem, totalmem } from "node:os";
+import { basename, join } from "node:path";
 import process from "node:process";
 // eslint-disable-next-line test/no-import-node-test -- Native browser CI entrypoint.
 import { test as nodeTest } from "node:test";
@@ -15,6 +17,7 @@ import {
 	downloadProjectZip
 } from "./ide-workspace-controls.mjs";
 import { pythonFrame } from "./python-frame-fixture.mjs";
+
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
 const fixtures = JSON.parse(
 	await readFile(
@@ -24,18 +27,19 @@ const fixtures = JSON.parse(
 );
 const storageKey = "classes-python-ide-projects:anonymous";
 const digest = value => createHash("sha256").update(value).digest("hex");
-const sourceUrl = name =>
-	`https://github.com/instruction-material/PyGames/blob/${fixtures.programs[name].revision ?? fixtures.revision}/${name}`;
-const sourceError =
-	/Traceback \(most recent call last\)|(?:Name|Type|Attribute|FileNotFound|Key|Syntax|Import|Value|Index|Runtime)Error:|Could not load shared PyGame/;
-const bounce =
-	"pygames-pyg1-object-oriented-programming-actors-curriculum-pyg1-project-2-bouncing-alien";
-const launch =
-	"pygames-classroom-classroom-launch-play-extend-explain-curriculum-launch-project-1-bouncing-alien";
-const practice =
-	"pygames-pyg2-event-handling-supplemental-event-handling-transfer-practice";
-const correctedCheckpoint =
-	"pygames-check-in-3-system-control-projectiles-enemy-ai-curriculum-check-in-3-additional-practice-project";
+function sourceUrl(name) {
+	return `https://github.com/instruction-material/PyGames/blob/${fixtures.programs[name].revision ?? fixtures.revision}/${name}`;
+}
+const sourceError
+	= /Traceback \(most recent call last\)|(?:Name|Type|Attribute|FileNotFound|Key|Syntax|Import|Value|Index|Runtime)Error:|Could not load shared PyGame/;
+const bounce
+	= "pygames-pyg1-object-oriented-programming-actors-curriculum-pyg1-project-2-bouncing-alien";
+const launch
+	= "pygames-classroom-classroom-launch-play-extend-explain-curriculum-launch-project-1-bouncing-alien";
+const practice
+	= "pygames-pyg2-event-handling-supplemental-event-handling-transfer-practice";
+const correctedCheckpoint
+	= "pygames-check-in-3-system-control-projectiles-enemy-ai-curriculum-check-in-3-additional-practice-project";
 const activities = [
 	{
 		name: "classroom-corrected-checkpoint",
@@ -144,8 +148,8 @@ async function savedProjects(page) {
 					transaction.onerror = transaction.onabort = () => {
 						database.close();
 						reject(
-							transaction.error ??
-								new Error("Primary store read failed")
+							transaction.error
+							?? new Error("Primary store read failed")
 						);
 					};
 				};
@@ -184,7 +188,9 @@ function assertSource(project, name, classroom) {
 	const file = project.files.find(f => f.name === project.activeFileName);
 	assert.ok(file);
 	const original = fixtures.programs[name].content;
-	if (!classroom) assert.equal(file.content, original);
+	if (!classroom) {
+		assert.equal(file.content, original);
+	}
 	else {
 		assert.ok(file.content.includes("###   NORMAL SECTION"));
 		assert.ok(file.content.includes("###   HARD SECTION"));
@@ -213,24 +219,54 @@ async function retainArchive(page, project, output, name) {
 	await writeFile(join(output, filename), bytes);
 	return { name: filename, sha256: digest(bytes) };
 }
+// Sample only this test's browser process tree. RSS can count shared pages
+// more than once; these observations diagnose CI pressure, not a memory limit.
+async function browserResources(browser) {
+	const rootPid = browser?.process()?.pid;
+	const result = { recordedAt: new Date().toISOString(), browserPid: rootPid, harnessRssBytes: process.memoryUsage().rss, hostFreeBytes: freemem(), hostTotalBytes: totalmem(), observedProcessCount: 0, observedRssKiB: null, processSampleTruncated: false };
+	if (process.platform !== "linux" || !rootPid) return result;
+	const pending = [rootPid];
+	const seen = new Set();
+	let rss = 0;
+	while (pending.length && seen.size < 64) {
+		const pid = pending.shift();
+		if (seen.has(pid)) continue;
+		seen.add(pid);
+		const [status, children] = await Promise.all([
+			readFile(`/proc/${pid}/status`, "utf8").catch(() => ""),
+			readFile(`/proc/${pid}/task/${pid}/children`, "utf8").catch(() => "")
+		]);
+		const resident = status.match(/^VmRSS:\s+(\d+) kB$/m);
+		if (resident) {
+			rss += Number(resident[1]);
+			result.observedProcessCount++;
+		}
+		for (const child of children.trim().split(/\s+/)) {
+			const value = Number(child);
+			if (Number.isSafeInteger(value) && value > 0 && !seen.has(value)) pending.push(value);
+		}
+	}
+	result.observedRssKiB = result.observedProcessCount ? rss : null;
+	result.processSampleTruncated = pending.length > 0;
+	return result;
+}
+
 async function boundedRuntimeDiagnostic(action) {
 	let timer;
 	try {
 		return await Promise.race([
 			action(),
-			new Promise(resolve => {
-				timer = setTimeout(
-					() =>
-						resolve({
-							diagnosticError: "Five-second diagnostic deadline"
-						}),
-					5000
-				);
+			new Promise((resolve) => {
+				timer = setTimeout(resolve, 5000, {
+					diagnosticError: "Five-second diagnostic deadline"
+				});
 			})
 		]);
-	} catch (error) {
+	}
+	catch (error) {
 		return { diagnosticError: error.message };
-	} finally {
+	}
+	finally {
 		clearTimeout(timer);
 	}
 }
@@ -243,10 +279,11 @@ async function retainRuntimeFailure(
 	phase,
 	error,
 	profiles,
-	runtimeProfiles
+	runtimeProfiles,
+	browserDiagnostics
 ) {
-	const label =
-		`runtime-failure-${identity.classroom ? "classroom" : "original"}-${identity.name}`.replace(
+	const label
+		= `runtime-failure-${identity.classroom ? "classroom" : "original"}-${identity.name}`.replace(
 			/[^a-z0-9.-]/gi,
 			"_"
 		);
@@ -296,7 +333,8 @@ async function retainRuntimeFailure(
 					: null,
 				output: document
 					.querySelector(".output-panel")
-					?.textContent.slice(-8000),
+					?.textContent
+					.slice(-8000),
 				frames: [...document.querySelectorAll("iframe")].map(e => ({
 					src: e.getAttribute("src"),
 					title: e.title
@@ -338,12 +376,13 @@ async function retainRuntimeFailure(
 		screenshot,
 		completedCourseProfiles: profiles,
 		completedRuntimeProfiles: runtimeProfiles,
+		browserDiagnostics,
 		fullCoverageStillRequired: { courseProfiles: 12, runtimeProfiles: 86 }
 	};
 	const filename = `${label}.json`;
 	await writeFile(
 		join(output, filename),
-		JSON.stringify(evidence, null, 2) + "\n"
+		`${JSON.stringify(evidence, null, 2)}\n`
 	);
 	console.log(
 		JSON.stringify({
@@ -373,11 +412,11 @@ async function courseAction(page, origin, activity) {
 			card,
 			(element, key) =>
 				[...element.querySelectorAll("a")]
-					.find(a => {
+					.find((a) => {
 						const u = new URL(a.href);
 						return (
-							u.pathname === "/ide" &&
-							u.searchParams.get("projectKey") === key
+							u.pathname === "/ide"
+							&& u.searchParams.get("projectKey") === key
 						);
 					})
 					?.getAttribute("href"),
@@ -390,27 +429,38 @@ async function courseAction(page, origin, activity) {
 nodeTest(
 	"PyGames actual course buttons, confirmed source, persistence, exports and original game runtime",
 	{ timeout: 2100000 },
-	async t => {
-		const taskId =
-			process.env.CLASSES_FAMILY_TASK_ID ?? "pygames-course-workflows-ci";
+	async (t) => {
+		const taskId
+			= process.env.CLASSES_FAMILY_TASK_ID ?? "pygames-course-workflows-ci";
 		const startedAt = new Date().toISOString();
 		let server, browser, context;
 		let outcome = "failed";
-		const output =
-			process.env.PYGAMES_BROWSER_EXPORT_PROOF_DIR ??
-			"output/pygames-exports";
+		const output
+			= process.env.PYGAMES_BROWSER_EXPORT_PROOF_DIR
+				?? "output/pygames-exports";
 		const profiles = [];
 		const runtimeProfiles = [];
 		const mediaRequests = new Set();
+		const browserSessions = [];
+		let currentBrowserSession;
+		async function closeBrowser(reason) {
+			const closing = browser;
+			const session = currentBrowserSession;
+			if (!closing) return;
+			browser = null;
+			currentBrowserSession = null;
+			const child = closing.process();
+			await closing.close();
+			Object.assign(session, { endedAt: new Date().toISOString(), completedRuntimeProfiles: runtimeProfiles.length - session.firstRuntimeProfile, exitCode: child?.exitCode ?? null, signalCode: child?.signalCode ?? null, childProcessGroupCleanup: "owned browser closed after its contexts", reason });
+			console.log(JSON.stringify({ event: "browser-end", taskId, ...session }));
+		}
+
 		const cleanup = async () => {
 			if (context) {
 				await context.close().catch(() => {});
 				context = null;
 			}
-			if (browser) {
-				await browser.close();
-				browser = null;
-			}
+			await closeBrowser("test cleanup");
 			if (server) {
 				await server.close();
 				server = null;
@@ -492,11 +542,19 @@ nodeTest(
 				"/usr/bin/chromium"
 			].find(p => p && existsSync(p));
 			assert.ok(executablePath);
-			browser = await puppeteer.launch({
-				executablePath,
-				headless: true,
-				args: ["--no-sandbox"]
-			});
+			async function launchBrowser() {
+				assert.equal(context, null);
+				assert.ok(!browser);
+				const launchStartedAt = new Date().toISOString();
+				browser = await puppeteer.launch({ executablePath, headless: ["chrome-headless-shell", "headless_shell", "chrome-headless-shell.exe"].includes(basename(executablePath)) ? "shell" : true, args: ["--no-sandbox"] });
+				const child = browser.process();
+				currentBrowserSession = { id: browserSessions.length, pid: child?.pid, parentPid: process.pid, cwd: root, command: child?.spawnargs, startedAt: launchStartedAt, timeoutMs: 2100000, firstRuntimeProfile: runtimeProfiles.length, resources: [] };
+				browserSessions.push(currentBrowserSession);
+				console.log(JSON.stringify({ event: "browser-start", taskId, ...currentBrowserSession }));
+			}
+			// Course save/reopen continuity stays within each existing context.
+			context = null;
+			await launchBrowser();
 			async function openPage(course, staff, width) {
 				context = await browser.createBrowserContext();
 				const page = await context.newPage();
@@ -525,13 +583,14 @@ nodeTest(
 				await page.evaluateOnNewDocument(
 					(key, old, checkpoint) => {
 						if (window !== window.top) return;
-						if (localStorage.getItem(key) === null)
+						if (localStorage.getItem(key) === null) {
 							localStorage.setItem(
 								key,
 								JSON.stringify([old, checkpoint])
 							);
+						}
 						const create = URL.createObjectURL;
-						URL.createObjectURL = blob => {
+						URL.createObjectURL = (blob) => {
 							if (blob.type === "application/zip")
 								window.__pyGamesArchive = blob;
 							return create(blob);
@@ -539,10 +598,11 @@ nodeTest(
 						const click = HTMLAnchorElement.prototype.click;
 						HTMLAnchorElement.prototype.click = function () {
 							if (
-								this.download.endsWith(".zip") &&
-								this.href.startsWith("blob:")
-							)
+								this.download.endsWith(".zip")
+								&& this.href.startsWith("blob:")
+							) {
 								return;
+							}
 							return click.call(this);
 						};
 					},
@@ -551,7 +611,7 @@ nodeTest(
 					earlierCheckpoint
 				);
 				await page.setRequestInterception(true);
-				page.on("request", request => {
+				page.on("request", (request) => {
 					const url = new URL(request.url());
 					if (url.hostname === "raw.githubusercontent.com") {
 						const match = url.pathname.match(
@@ -559,10 +619,10 @@ nodeTest(
 						);
 						const name = match ? decodeURIComponent(match[2]) : "";
 						const file = fixtures.programs[name];
-						const valid =
-							match &&
-							file &&
-							match[1] === (file.revision ?? fixtures.revision);
+						const valid
+							= match
+								&& file
+								&& match[1] === (file.revision ?? fixtures.revision);
 						state.requests.push({
 							name,
 							revision: match?.[1],
@@ -574,49 +634,56 @@ nodeTest(
 							headers: { "access-control-allow-origin": "*" },
 							body: valid ? file.content : "Unrecognized source"
 						});
-					} else if (url.pathname.startsWith("/api/")) {
+					}
+					else if (url.pathname.startsWith("/api/")) {
 						if (!["GET", "OPTIONS"].includes(request.method()))
 							state.remoteWrites++;
 						let body = {};
 						if (
-							state.catalog &&
-							url.pathname === "/api/accounts/me"
-						)
+							state.catalog
+							&& url.pathname === "/api/accounts/me"
+						) {
 							body = staff
 								? { tutorID: tutor._id }
 								: { userID: learner._id };
+						}
 						if (
-							state.catalog &&
-							url.pathname === "/api/users/loggedin"
-						)
+							state.catalog
+							&& url.pathname === "/api/users/loggedin"
+						) {
 							body = { currentUser: learner };
+						}
 						if (
-							state.catalog &&
-							url.pathname === "/api/tutors/loggedin"
-						)
+							state.catalog
+							&& url.pathname === "/api/tutors/loggedin"
+						) {
 							body = { currentTutor: tutor };
+						}
 						if (
-							state.catalog &&
-							url.pathname === `/api/users/oftutor/${tutor._id}`
-						)
+							state.catalog
+							&& url.pathname === `/api/users/oftutor/${tutor._id}`
+						) {
 							body = [learner];
+						}
 						void request.respond({
 							status: 200,
 							contentType: "application/json",
 							body: JSON.stringify(body)
 						});
-					} else {
+					}
+					else {
 						if (
-							url.origin === origin &&
-							/\/(?:python-ide|ide)\/assets\//.test(url.pathname)
-						)
+							url.origin === origin
+							&& /\/(?:python-ide|ide)\/assets\//.test(url.pathname)
+						) {
 							mediaRequests.add(url.pathname);
+						}
 						void request.continue();
 					}
 				});
 				return { page, state };
 			}
-			for (const activity of activities)
+			for (const activity of activities) {
 				for (const width of [390, 1280]) {
 					const { page, state } = await openPage(
 						activity.course,
@@ -641,7 +708,7 @@ nodeTest(
 						// Keep the observed href and actual button; navigate its target in this controlled tab.
 						await page.$eval(
 							`a[href=${JSON.stringify(href)}]`,
-							a => {
+							(a) => {
 								a.target = "_self";
 							}
 						);
@@ -663,12 +730,13 @@ nodeTest(
 							"select[aria-label='Active project file']"
 						);
 						const saved = await waitSaved(page, activity.key);
-						if (activity.file)
+						if (activity.file) {
 							assertSource(
 								saved,
 								activity.file,
 								activity.course.endsWith("classroom")
 							);
+						}
 						assert.equal(
 							state.requests.length,
 							activity.file ? 1 : 0
@@ -681,21 +749,22 @@ nodeTest(
 							output,
 							`${label}-exact`
 						);
-						if (width < 900)
+						if (width < 900) {
 							await page
 								.locator(
 									".mobile-view-picker button[data-view='code']"
 								)
 								.click();
+						}
 						await page.waitForSelector(".cm-content", {
 							visible: true
 						});
 						await page.focus(".cm-content");
-						const changed =
-							saved.files.find(
+						const changed
+							= `${saved.files.find(
 								f => f.name === saved.activeFileName
-							).content +
-							`\n# Saved course observation ${label}\n`;
+							).content
+							}\n# Saved course observation ${label}\n`;
 						const modifier = await page.evaluate(() =>
 							/Mac/.test(navigator.platform) ? "Meta" : "Control"
 						);
@@ -707,8 +776,7 @@ nodeTest(
 						await page.keyboard.press("s");
 						await page.keyboard.up(modifier);
 						const edited = await waitSaved(page, activity.key, p =>
-							p.files.some(f => f.content === changed)
-						);
+							p.files.some(f => f.content === changed));
 						await page.reload({ waitUntil: "domcontentloaded" });
 						await page.waitForSelector(".cm-content");
 						assert.equal(
@@ -737,11 +805,12 @@ nodeTest(
 							await savedProjects(page)
 						).find(p => p._id === earlierCheckpoint._id);
 						assert.ok(priorCheckpoint);
-						for (const key of Object.keys(earlierCheckpoint))
+						for (const key of Object.keys(earlierCheckpoint)) {
 							assert.deepEqual(
 								priorCheckpoint[key],
 								earlierCheckpoint[key]
 							);
+						}
 						assert.equal(
 							(await savedProjects(page)).filter(
 								p => p.courseProjectKey === activity.key
@@ -752,8 +821,8 @@ nodeTest(
 						assert.equal(
 							await page.evaluate(
 								() =>
-									document.documentElement.scrollWidth <=
-									innerWidth
+									document.documentElement.scrollWidth
+									<= innerWidth
 							),
 							true
 						);
@@ -780,12 +849,14 @@ nodeTest(
 							editedFiles: edited.files,
 							remoteWrites: state.remoteWrites
 						});
-					} finally {
+					}
+					finally {
 						await page.close();
 						await context.close();
 						context = null;
 					}
 				}
+			}
 			const gameNames = Object.keys(fixtures.programs).filter(
 				name =>
 					![
@@ -795,8 +866,14 @@ nodeTest(
 					].includes(name)
 			);
 			assert.equal(gameNames.length, 43);
-			for (const name of gameNames)
+			for (const name of gameNames) {
 				for (const classroom of [false, true]) {
+					// These runtime profiles already use independent contexts.
+					// Bound repeated Pyodide generations in each browser process.
+					if (runtimeProfiles.length % 8 === 0) {
+						await closeBrowser("runtime batch complete");
+						await launchBrowser();
+					}
 					const course = classroom ? "pygames-classroom" : "pygames";
 					const { page, state } = await openPage(course, false, 1280);
 					state.catalog = false;
@@ -809,7 +886,7 @@ nodeTest(
 					});
 					if (classroom) params.set("classroom", "1");
 					let runtimePhase = "open-runtime";
-					const checkpoint = phase => {
+					const checkpoint = (phase) => {
 						runtimePhase = phase;
 						console.log(
 							JSON.stringify({
@@ -861,15 +938,18 @@ nodeTest(
 											0,
 											c.width,
 											c.height
-										).data;
-									for (let i = 0; i < pixels.length; i += 4)
-										if (
-											pixels[i + 3] > 0 &&
-											(pixels[i] ||
-												pixels[i + 1] ||
-												pixels[i + 2])
 										)
+										.data;
+									for (let i = 0; i < pixels.length; i += 4) {
+										if (
+											pixels[i + 3] > 0
+											&& (pixels[i]
+												|| pixels[i + 1]
+												|| pixels[i + 2])
+										) {
 											return true;
+										}
+									}
 									return false;
 								},
 								{ timeout: 90000 }
@@ -905,8 +985,7 @@ nodeTest(
 							);
 							assert.equal(
 								await page.$eval("button.run-control", e =>
-									e.textContent.trim()
-								),
+									e.textContent.trim()),
 								"Stop"
 							);
 							checkpoint("retain-rendered-canvas");
@@ -925,7 +1004,8 @@ nodeTest(
 								() =>
 									document
 										.querySelector("button.run-control")
-										?.textContent.trim() === "Run"
+										?.textContent
+										.trim() === "Run"
 							);
 							runtimeProfiles.push({
 								name,
@@ -939,7 +1019,8 @@ nodeTest(
 								stopped: true,
 								sourceFiles: saved.files
 							});
-						} catch (error) {
+						}
+						catch (error) {
 							const evidence = await retainRuntimeFailure(
 								page,
 								frame,
@@ -953,30 +1034,36 @@ nodeTest(
 								runtimePhase,
 								error,
 								profiles,
-								runtimeProfiles
+								runtimeProfiles,
+								{ sessions: browserSessions, current: await browserResources(browser) }
 							);
 							throw new Error(
 								`${name} classroom=${classroom} phase=${runtimePhase}: ${error.message}; retained ${evidence}`,
 								{ cause: error }
 							);
 						}
+						currentBrowserSession.resources.push({ profile: runtimeProfiles.length, ...await browserResources(browser) });
 						assert.equal(state.remoteWrites, 0);
-					} finally {
+					}
+					finally {
 						await page.close();
 						await context.close();
 						context = null;
 					}
 				}
+			}
+			await closeBrowser("all runtime profiles complete");
 			assert.equal(profiles.length, 12);
 			assert.equal(runtimeProfiles.length, 86);
 			assert.ok([...mediaRequests].some(p => /\/images\//.test(p)));
 			await writeFile(
 				join(output, "pygames-browser-proof.json"),
-				JSON.stringify(
+				`${JSON.stringify(
 					{
 						profiles,
 						runtimeProfiles,
 						assetEvidence,
+						browserSessions,
 						mediaRequests: [...mediaRequests],
 						sourceRevision: fixtures.revision,
 						nonRuntimeSources: fixtures.provenanceNotes,
@@ -984,10 +1071,11 @@ nodeTest(
 					},
 					null,
 					2
-				) + "\n"
+				)}\n`
 			);
 			outcome = "passed";
-		} finally {
+		}
+		finally {
 			await cleanup();
 			console.log(
 				JSON.stringify({

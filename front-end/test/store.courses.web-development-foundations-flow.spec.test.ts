@@ -27,9 +27,17 @@ const EXPECTED_APPENDICES = [
 	"WDF12 Expansion Ideas and Next Steps"
 ];
 
-const EXPECTED_NORMALIZED_CORE_SEQUENCE = EXPECTED_CORE_SEQUENCE.map(title =>
-	title.replace(/^Full Stack/u, "Full-Stack")
-);
+const EXPECTED_NORMALIZED_CORE_SEQUENCE = EXPECTED_CORE_SEQUENCE.map(title => {
+	if (title === "WDF1 Positioning, Goals, and Suggested Course Family")
+		return "WDF1 Browser, Server, and Data Boundaries";
+	if (title === "WDF2 Stage 1: Strengthen the Existing JavaScript Courses")
+		return "WDF2 Files, Git, and Browser Debugging";
+	if (title === "WDF3 Stage 2: Web Development Foundations")
+		return "WDF3 Accessible Portfolio, Modules, and Forms";
+	if (title === "WDF4 Stage 3: Front-End Applications")
+		return "WDF4 Notification Views and Asynchronous State";
+	return title.replace(/^Full Stack/u, "Full-Stack");
+});
 
 const PRACTICE_SECTIONS = [
 	"toolchain-preflight-case",
@@ -219,7 +227,7 @@ describe("Web Development Foundations learner flow", () => {
 
 		expect(metadata?.toolchain.join(" ")).toContain("Node.js 24 LTS");
 		expect(metadata?.toolchain.join(" ")).toContain(
-			"Vite 8, Express 5, Mongoose 9, Zod 4, Nodemailer 8, and Socket.IO 4"
+			"Vite 8, Express 5, Mongoose 9, Zod 4, Nodemailer 10, and Socket.IO 4"
 		);
 		expect(metadata?.sourcePolicy).toContain(
 			"substantive teaching skeletons"

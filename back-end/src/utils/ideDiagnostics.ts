@@ -37,6 +37,7 @@ export const ideDiagnosticSchema = z
 			})
 			.strict(),
 		mode: z.enum([
+			"web",
 			"assembly",
 			"c",
 			"linux",

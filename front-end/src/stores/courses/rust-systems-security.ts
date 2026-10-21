@@ -926,7 +926,7 @@ const RUST_SYSTEMS_MODULE_FLOW: Record<string, RustSystemsModuleFlow> = {
 		answerSection: "toolchain-baseline-and-build-evidence-key",
 		route: "Create or migrate a tiny Rust 2024 workspace, record `rustc -Vv` and `cargo -V`, inspect the manifest and lock state, then run format, Clippy, tests, and the program from a clean terminal. Compare each tool's evidence with the C or C++ bug class it does and does not address.",
 		safeRoute:
-			"Use the supplied build transcript when Rust installation, a network-backed advisory refresh, or a new dependency is unavailable. The linked source checkpoints currently declare Rust 2021 edition, so treat edition migration as an explicit compatibility exercise rather than silently rewriting the source claim.",
+			"Use the supplied build transcript when Rust installation, a network-backed advisory refresh, or a new dependency is unavailable. RSS0–RSS10 use pinned Rust 2024 Cargo workspaces. Record each manifest and lock before comparing build evidence.",
 		evidence:
 			"The baseline records Rust 1.97.1 stable, Cargo, Rust 2024 edition for course-authored work, lock behavior, exact checks, observed output, one compiler diagnostic explained in plain language, and the security limit of every tool.",
 		primaryReference: {

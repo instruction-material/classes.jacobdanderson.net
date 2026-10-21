@@ -58,12 +58,6 @@ export function applyRustCargoCourseWorkflows(
 	const module = course.modules.find(item => item.title.startsWith("RSS0 "));
 	if (!module) return;
 	module.id = rustCargoModuleId;
-	for (const item of module.curriculum) {
-		item.content = item.content.replace(
-			"The linked source checkpoints currently declare Rust 2021 edition, so treat edition migration as an explicit compatibility exercise rather than silently rewriting the source claim.",
-			"The RSS0 Cargo baseline declares Rust 2024 edition. Check each later checkpoint's manifest before comparing editions; treat any migration as an explicit compatibility exercise."
-		);
-	}
 	for (const activity of activities) {
 		const item = module[activity.section].find(candidate =>
 			activity.match.test(candidate.title)

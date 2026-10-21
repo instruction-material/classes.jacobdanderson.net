@@ -1224,7 +1224,19 @@ describe("implemented course development artifacts", () => {
 								"github.com/instruction-material/"
 							) &&
 							item.projectLink.includes("/starter") &&
-							!item.solutionLink?.includes("/solution")
+							!item.solutionLink?.includes("/solution") &&
+							!(
+								(item.learningPath === "choice" ||
+									item.learningPath === "challenge") &&
+								/no separate reference implementation|core reference does not (?:include|contain)|supplied reference contains no|supplied reference covers the core views, not this extra filter/i.test(
+									item.content
+								) &&
+								module.curriculum.some(
+									core =>
+										core.projectLink === item.projectLink &&
+										core.solutionLink?.includes("/solution")
+								)
+							)
 					)
 				);
 				const duplicateSolutionItems = course.modules.flatMap(module =>

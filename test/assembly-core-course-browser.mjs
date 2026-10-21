@@ -24,7 +24,6 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 	const courseID = definition.courseID ?? "assembly";
 	const mode = definition.mode ?? "assembly";
 	const sourceRepository = definition.sourceRepository ?? "Assembly";
-	const continuationIDs = definition.continuationIDs ?? [definition.traceID];
 	const primaryFile = definition.primaryFile ?? "routine.S";
 	const taskFile = definition.taskFile ?? "trace.md";
 	const initialFile = definition.initialFile ?? primaryFile;
@@ -199,11 +198,11 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 		const origin = server.resolvedUrls.local[0].replace(/\/$/, "");
 		const executablePath = [
 			process.env.PUPPETEER_EXECUTABLE_PATH,
-			puppeteer.executablePath(),
+			await puppeteer.executablePath(),
 			"/usr/bin/google-chrome",
 			"/usr/bin/chromium",
 			"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-		].find(path => path && existsSync(path));
+		].find(path => typeof path === "string" && path && existsSync(path));
 		assert.ok(
 			executablePath,
 			"An existing Chrome installation is required"
@@ -215,8 +214,21 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 		});
 		for (const width of [390, 1280]) {
 			for (const role of ["starter", "solution"]) {
-				const key = `${courseID}:${coreID}:${role === "starter" ? "starter" : "reference"}:native-${mode}`;
-				const earlier = {
+				const continuationIDs = definition.continuationsByRole?.[
+					role
+				] ??
+					definition.continuationIDs ?? [definition.traceID];
+				const selectedFileName = name =>
+					definition.flatFiles ? name : `${role}/${name}`;
+				const sourceFileName = name =>
+					definition.flatFiles &&
+					!(definition.sharedFiles ?? ["README.md"]).includes(name)
+						? `${role}/${name}`
+						: name;
+				const key =
+					definition.projectKey?.(role) ??
+					`${courseID}:${coreID}:${role === "starter" ? "starter" : "reference"}:native-${mode}`;
+				const earlier = definition.previousProject?.(role) ?? {
 					_id: "earlier-record-attempt",
 					title: "Earlier work",
 					mode: "python",
@@ -296,7 +308,9 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 							);
 							const file =
 								url.pathname.startsWith(prefix) &&
-								(name === "README.md" ||
+								((
+									definition.sharedFiles ?? ["README.md"]
+								).includes(name) ||
 									name.startsWith(`${role}/`))
 									? fixture.files[`${fixture.pack}/${name}`]
 									: null;
@@ -389,17 +403,26 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 					assert.equal(saved.mode, mode);
 					assert.equal(
 						saved.activeFileName,
-						`${role}/${initialFile}`
+						selectedFileName(initialFile)
 					);
 					assert.equal(saved.files.length, definition.fileCount);
 					assert.deepEqual(
-						[...requests].sort(),
+						requests
+							.map(name =>
+								definition.flatFiles &&
+								name.startsWith(`${role}/`)
+									? name.slice(role.length + 1)
+									: name
+							)
+							.sort(),
 						saved.files.map(file => file.name).sort()
 					);
 					for (const file of saved.files) {
 						assert.equal(
 							digest(file.content),
-							fixture.files[`${fixture.pack}/${file.name}`].sha256
+							fixture.files[
+								`${fixture.pack}/${sourceFileName(file.name)}`
+							].sha256
 						);
 					}
 					const exact = await archive(page);
@@ -439,8 +462,8 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 					);
 					const edits = {};
 					for (const filename of [
-						`${role}/${primaryFile}`,
-						`${role}/${taskFile}`
+						selectedFileName(primaryFile),
+						selectedFileName(taskFile)
 					]) {
 						await page.select(
 							"select[aria-label='Active project file']",
@@ -460,7 +483,7 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 							visible: true
 						});
 						await page.focus(".cm-content");
-						const note = /\.(?:S|rs)$/.test(filename)
+						const note = /\.(?:S|rs|m?js)$/.test(filename)
 							? `\n/* Independent ${definition.kind} observation ${width} */\n`
 							: `\n# Independent ${definition.kind} observation ${width}\n`;
 						const content =
@@ -590,7 +613,7 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 						revision: fixture.revision,
 						key,
 						coreAction: core.href,
-						worksheetAction: trace.href,
+						worksheetAction: trace?.href ?? null,
 						continuationActions,
 						sourceFiles: saved.files.map(file => ({
 							name: file.name,
