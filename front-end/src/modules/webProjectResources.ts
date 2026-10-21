@@ -17,6 +17,54 @@ export const webPortfolioRoleFiles = [
 export const webNotificationRevision = webMaintainedSourceRevision;
 export const webNotificationPack = "WDF4-Realtime-Chat-App/local-client";
 export const webNotificationRoot = `https://github.com/instruction-material/Web-Development-Foundations/tree/${webNotificationRevision}/${webNotificationPack}`;
+export const webChatRevision = "b179a9e0e523a95fc5c71de3434322a7f7840579";
+export const webChatPack = "WDF4-Realtime-Chat-App";
+export const webChatRoot = `https://github.com/instruction-material/Web-Development-Foundations/tree/${webChatRevision}/${webChatPack}`;
+export const webChatRoleFiles = [
+	"src/server.js",
+	"public/index.html",
+	"public/chat.js",
+	"package.json"
+] as const;
+export const webContactRevision = "aed8ef2fcd7488c25c0b977b2099640e7431c55a";
+export const webContactPack = "WDF3-Booking-Contact-App";
+export const webContactRoot = `https://github.com/instruction-material/Web-Development-Foundations/tree/${webContactRevision}/${webContactPack}`;
+export const webContactRoleFiles = [
+	"src/validation.js",
+	"src/app.js",
+	"src/server.js",
+	"src/lib/mailer.js",
+	"public/index.html",
+	"public/app.js",
+	"public/styles.css",
+	"package.json"
+] as const;
+export const webNotesRevision = "8d48a2672e987b5ab1c1b7b93ea395f6da5c37a2";
+export const webNotesPack = "WDF2-Notes-App-with-MongoDB";
+export const webNotesRoot = `https://github.com/instruction-material/Web-Development-Foundations/tree/${webNotesRevision}/${webNotesPack}`;
+export const webNotesRoleFiles = [
+	"src/models/note.js",
+	"src/store.js",
+	"src/routes/notes.js",
+	"src/app.js",
+	"src/server.js",
+	"public/index.html",
+	"public/app.js",
+	"public/styles.css",
+	"package.json"
+] as const;
+export const webDeploymentRevision = "781eba647bbdcb3f89aa0417011dabe2fca30d53";
+export const webDeploymentPack = "WDF5-Separate-Deployment-Lab";
+export const webDeploymentRoot = `https://github.com/instruction-material/Web-Development-Foundations/tree/${webDeploymentRevision}/${webDeploymentPack}`;
+export const webDeploymentRoleFiles = [
+	"backend/package.json",
+	"backend/src/server.js",
+	"frontend/index.html",
+	"frontend/main.js",
+	"frontend/serve.mjs",
+	"release.mjs",
+	"release-model.mjs"
+] as const;
 
 const definitions = [
 	{
@@ -56,6 +104,47 @@ const definitions = [
 			"out-of-order.json"
 		],
 		shared: ["README.md", "serve.mjs"]
+	},
+	{
+		revision: webChatRevision,
+		pack: webChatPack,
+		project: "live-chat",
+		version: 1,
+		workflow: "node",
+		files: webChatRoleFiles,
+		extraRoleFiles: { starter: [], solution: ["public/styles.css"] },
+		shared: ["README.md"]
+	},
+	{
+		revision: webContactRevision,
+		pack: webContactPack,
+		project: "contact-api",
+		version: 1,
+		workflow: "node",
+		files: webContactRoleFiles,
+		shared: ["README.md"]
+	},
+	{
+		revision: webNotesRevision,
+		pack: webNotesPack,
+		project: "notes-api",
+		version: 1,
+		workflow: "node",
+		files: webNotesRoleFiles,
+		shared: ["README.md"]
+	},
+	{
+		revision: webDeploymentRevision,
+		pack: webDeploymentPack,
+		project: "deployment",
+		version: 1,
+		workflow: "separate-services",
+		files: webDeploymentRoleFiles,
+		extraRoleFiles: {
+			starter: ["frontend/env.template.js"],
+			solution: ["frontend/env.js", "frontend/styles.css"]
+		},
+		shared: ["README.md"]
 	}
 ] as const;
 const originalPortfolioRevision = "2c7a9fa89e052cd5cdc51987ebf837ae81e3557f";
@@ -83,12 +172,24 @@ export function webCourseResource(url: string) {
 		`${webModulePortfolioPack}/starter`,
 		`${webModulePortfolioPack}/solution`
 	].includes(resource.path);
+	const liveChatPath = [
+		`${webChatPack}/starter`,
+		`${webChatPack}/solution`
+	].includes(resource.path);
 	// Existing main URLs identify the original four-file saved project.
 	const ref =
 		resource.ref === "main"
 			? originalMainPath
 				? originalPortfolioRevision
-				: webMaintainedSourceRevision
+				: liveChatPath
+					? webChatRevision
+					: resource.path.startsWith(`${webContactPack}/`)
+						? webContactRevision
+						: resource.path.startsWith(`${webNotesPack}/`)
+							? webNotesRevision
+							: resource.path.startsWith(`${webDeploymentPack}/`)
+								? webDeploymentRevision
+								: webMaintainedSourceRevision
 			: resource.ref;
 	const definition = [...definitions, ...historicalDefinitions].find(
 		row =>
@@ -132,8 +233,12 @@ export function webImportFiles(url: string) {
 	const selected = webCourseResource(url);
 	if (!selected) return null;
 	const { resource, pack, role, definition } = selected;
+	const files =
+		"extraRoleFiles" in definition
+			? [...definition.files, ...definition.extraRoleFiles[role]]
+			: definition.files;
 	const imports = [
-		...definition.files.map(name => ({
+		...files.map(name => ({
 			name,
 			path: `${pack}/${role}/${name}`
 		})),

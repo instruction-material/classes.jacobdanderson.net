@@ -72,14 +72,51 @@ Implement the contract with an in-memory adapter first. Optionally repeat agains
 
 ## Deployment Preflight Case
 
-For the separate-deployment scaffold, make a table of:
+Use the maintained Separate Deployment Lab at source revision
+`781eba647bbdcb3f89aa0417011dabe2fca30d53`. Its shared README and course reading
+supply the complete startup, byte/inventory contracts and shell-specific settings.
+Complete `digestBytes` and `assertInventory` in the starter's `release-model.mjs`.
+Run the API and static front end independently on their owned loopback ports.
+The defaults are API 4001 and front end 4173; `frontend/env.js` names the API,
+while `FRONTEND_ORIGIN` permits the page's origin.
 
-- process, build artifact, local port, public path, and owner;
-- environment value and whether it is public configuration or secret;
-- browser origin, allowed API origin, proxy hop, and TLS termination plan;
-- health, readiness, log, resource-limit, backup, restore, and rollback evidence.
+Map each process, public route and configuration value. Identify which copied
+files make up a front-end artifact, which process still needs the maintained
+root dependency lockfile, and why public `env.js` cannot contain credentials.
+Retain the normal browser result and API response before changing anything.
 
-Run local smoke checks for normal load, wrong origin, unavailable API, restart, restore, and rollback rehearsal. Do not change public DNS or publish a listener.
+From the complete repository root, create a parent `wdf5-releases` folder and run:
+
+```sh
+node WDF5-Separate-Deployment-Lab/starter/release.mjs build wdf5-releases/starter-a
+node WDF5-Separate-Deployment-Lab/starter/release.mjs verify wdf5-releases/starter-a
+```
+
+Keep A unchanged. Serve its copied `serve.mjs` after stopping only the original
+front end. Then change the editable source's `apiBaseUrl` to
+`http://127.0.0.1:4001/not-a-status-prefix`, build B into a new target, and verify B.
+Serve B on the same front-end port. Predict why integrity succeeds while the
+browser request fails and the unchanged API's real `/api/status` still works.
+
+Restore A into a separate new target:
+
+```sh
+node WDF5-Separate-Deployment-Lab/starter/release.mjs restore wdf5-releases/starter-a wdf5-releases/restored-a
+node WDF5-Separate-Deployment-Lab/starter/release.mjs verify wdf5-releases/restored-a
+```
+
+Serve the restored target without restarting the API or rebuilding from source.
+Compare every retained and restored file, including the manifest bytes. Confirm
+that the editable source still contains B's wrong URL until separately corrected.
+Change a file in a disposable artifact copy and confirm verification rejects it.
+
+Complete a case table for normal load, wrong allowed origin, stopped API, API
+restart, B's bad path, and A's recovery. Record changed value, expected result,
+actual URL/status, browser outcome, owned process/port and recovery. Distinguish
+static availability, API response, browser CORS acceptance and artifact integrity.
+This status API has no database or separate readiness endpoint. Describe private
+settings and persistent data as separate backup subjects if added later. Public
+hosting is optional and is not established by these local checks.
 
 ## Feature Slice Capstone Case
 

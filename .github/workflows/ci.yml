@@ -978,6 +978,168 @@ jobs:
                   if-no-files-found: error
                   retention-days: 7
 
+            - name: Verify contact source imports and saved nested-file exports
+              env:
+                  WEB_CONTACT_EXPORT_DIR: output/web-contact-exports
+              run: npm exec -w front-end -- vitest run test/web-contact-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+            - name: Verify contact course consent, roles and saved continuations
+              env:
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/web-contact-screenshots
+              run: node --test test/web-contact-course-browser.test.mjs
+
+            - name: Fetch the maintained contact dependency graph
+              uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+              with:
+                  repository: instruction-material/Web-Development-Foundations
+                  ref: aed8ef2fcd7488c25c0b977b2099640e7431c55a
+                  path: output/web-contact-native-source
+                  persist-credentials: false
+
+            - name: Install the maintained contact root lockfile
+              working-directory: output/web-contact-native-source
+              run: npm ci
+
+            - name: Run actual saved and browser-edited contact exports
+              run: node test/web-contact-exported-contracts.mjs --source output/web-contact-native-source --exports front-end/output/web-contact-exports --browser output/web-contact-browser --proof output/web-contact-native/proof.json
+
+            - name: Retain contact course, source and native export evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: web-contact-workflows
+                  path: |
+                      front-end/output/web-contact-exports/
+                      output/web-contact-browser/
+                      output/web-contact-native/
+                      output/web-contact-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify notes imports, complete readings and saved nested-file exports
+              env:
+                  WEB_NOTES_EXPORT_DIR: output/web-notes-exports
+              run: npm exec -w front-end -- vitest run test/web-notes-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+            - name: Verify notes course consent, roles and saved continuations
+              env:
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/web-notes-screenshots
+              run: node --test test/web-notes-course-browser.test.mjs
+
+            - name: Fetch the maintained notes dependency graph
+              uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+              with:
+                  repository: instruction-material/Web-Development-Foundations
+                  ref: 8d48a2672e987b5ab1c1b7b93ea395f6da5c37a2
+                  path: output/web-notes-native-source
+                  persist-credentials: false
+
+            - name: Install the maintained notes root lockfile
+              working-directory: output/web-notes-native-source
+              run: npm ci
+
+            - name: Run actual saved and browser-edited notes exports
+              run: node test/web-notes-exported-contracts.mjs --source output/web-notes-native-source --exports front-end/output/web-notes-exports --browser output/web-notes-browser --proof output/web-notes-native/proof.json
+
+            - name: Retain notes course, source and native export evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: web-notes-workflows
+                  path: |
+                      front-end/output/web-notes-exports/
+                      output/web-notes-browser/
+                      output/web-notes-native/
+                      output/web-notes-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify deployment readings and complete saved role exports
+              env:
+                  WEB_DEPLOYMENT_EXPORT_DIR: output/web-deployment-exports
+              run: npm exec -w front-end -- vitest run test/web-deployment-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+            - name: Verify deployment consent, both roles and saved continuations
+              env:
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/web-deployment-screenshots
+              run: node --test test/web-deployment-course-browser.test.mjs
+
+            - name: Fetch the maintained deployment source
+              uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+              with:
+                  repository: instruction-material/Web-Development-Foundations
+                  ref: 781eba647bbdcb3f89aa0417011dabe2fca30d53
+                  path: output/web-deployment-native-source
+                  persist-credentials: false
+
+            - name: Verify and reuse the identical maintained dependency graph
+              run: |
+                  for input in package.json package-lock.json WDF5-Separate-Deployment-Lab/starter/backend/package.json WDF5-Separate-Deployment-Lab/solution/backend/package.json; do
+                    cmp "output/web-notes-native-source/$input" "output/web-deployment-native-source/$input"
+                  done
+                  test -d output/web-notes-native-source/node_modules
+                  test ! -e output/web-deployment-native-source/node_modules
+                  ln -s ../web-notes-native-source/node_modules output/web-deployment-native-source/node_modules
+
+            - name: Verify actual exported deployment artifacts and browser rollback
+              run: node test/web-deployment-exported-contracts.mjs --source output/web-deployment-native-source --exports front-end/output/web-deployment-exports --browser output/web-deployment-browser --proof output/web-deployment-native/proof.json
+
+            - name: Retain deployment course and native recovery evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: web-deployment-workflows
+                  path: |
+                      front-end/output/web-deployment-exports/
+                      output/web-deployment-browser/
+                      output/web-deployment-native/
+                      output/web-deployment-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify live chat readings and saved role exports
+              env:
+                  WEB_CHAT_EXPORT_DIR: output/web-live-chat-exports
+              run: npm exec -w front-end -- vitest run test/web-live-chat-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+            - name: Verify live chat consent, separate fixture work and saved source
+              env:
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/web-live-chat-screenshots
+              run: node --test test/web-live-chat-course-browser.test.mjs
+
+            - name: Fetch the maintained live chat source
+              uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+              with:
+                  repository: instruction-material/Web-Development-Foundations
+                  ref: b179a9e0e523a95fc5c71de3434322a7f7840579
+                  path: output/web-live-chat-native-source
+                  persist-credentials: false
+
+            - name: Reuse the identical maintained chat dependencies
+              run: |
+                  for input in package.json package-lock.json WDF4-Realtime-Chat-App/starter/package.json WDF4-Realtime-Chat-App/solution/package.json; do
+                    cmp "output/web-notes-native-source/$input" "output/web-live-chat-native-source/$input"
+                  done
+                  test -d output/web-notes-native-source/node_modules
+                  test ! -e output/web-live-chat-native-source/node_modules
+                  ln -s ../web-notes-native-source/node_modules output/web-live-chat-native-source/node_modules
+
+            - name: Run saved and browser-edited chat exports with two actual clients
+              run: node test/web-live-chat-exported-contracts.mjs --source output/web-live-chat-native-source --exports front-end/output/web-live-chat-exports --browser output/web-live-chat-browser --proof output/web-live-chat-native/proof.json
+
+            - name: Retain live chat import and native recovery evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: web-live-chat-workflows
+                  path: |
+                      front-end/output/web-live-chat-exports/
+                      output/web-live-chat-browser/
+                      output/web-live-chat-native/
+                      output/web-live-chat-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
             - name: Verify Network Systems foundation imports and notebook reuse
               env:
                   NETWORK_BROWSER_EXPORT_PROOF_DIR: output/network-exports

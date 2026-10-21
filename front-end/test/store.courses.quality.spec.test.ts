@@ -184,8 +184,8 @@ function hasLessonBackbone(item: { title: string; content: string }) {
 		(
 			wordCount(item.content) >= 300 &&
 			(item.content.match(/^## /gm)?.length ?? 0) >= 5 &&
-			/^## Files and (?:roles|startup)/m.test(item.content) &&
-			/^## .*contract/im.test(item.content) &&
+			/^## (?:Files and (?:roles|startup)|The route through the project)/m.test(item.content) &&
+			/^## (?:.*contract|Input and stored data)/im.test(item.content) &&
 			/^## .*(?:check|project)/im.test(item.content)
 		)
 	);

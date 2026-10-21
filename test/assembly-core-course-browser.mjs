@@ -405,7 +405,12 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 						saved.activeFileName,
 						selectedFileName(initialFile)
 					);
-					assert.equal(saved.files.length, definition.fileCount);
+					assert.equal(
+						saved.files.length,
+						typeof definition.fileCount === "function"
+							? definition.fileCount(role)
+							: definition.fileCount
+					);
 					assert.deepEqual(
 						requests
 							.map(name =>

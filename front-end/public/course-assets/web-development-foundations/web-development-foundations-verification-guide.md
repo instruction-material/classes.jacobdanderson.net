@@ -32,7 +32,40 @@ The same versioned note contract works through the in-memory adapter and optiona
 
 ## Deployment Preflight Key
 
-Every process, artifact, route, origin, proxy hop, environment value, and dependency has an owner and verification method. Secrets never enter browser configuration. The plan covers TLS termination, proxy trust, CORS, least exposure, redacted logs, health and readiness, resource limits, backup, restore, smoke checks, rollback trigger, rollback steps, and post-rollback verification. Public hosting is optional.
+The front end serves public files on loopback 4173; the independent API serves
+`/api/status` on loopback 4001. The browser reads `env.js` before `main.js`, then
+requests the API base URL plus `/api/status`. The API's allowed origin describes
+the page, not the API. Public configuration contains no credential. Backend
+source, private settings and the artifact manifest are not static routes.
+
+| Case | Expected evidence and explanation |
+| --- | --- |
+| Normal startup | The selected-role API message appears in the page. The native API response is 200 and its CORS response permits the actual page origin. |
+| Wrong allowed origin | Restarting only the API with another `FRONTEND_ORIGIN` can leave a native 200 response while the real browser refuses access. Restore the correct value and restart the owned API. |
+| Stopped API | The static page still loads and reports an API error. Restarting the API at its original port and origin restores the message. |
+| Retained A | `build` and `verify` exit zero with `ok: true` and a manifest digest; the copied front end works with the existing API. |
+| Consistently built B | Its manifest matches the saved wrong configuration, so integrity passes. The browser requests `/not-a-status-prefix/api/status` and reports an error, although the real API status route still succeeds. |
+| Restored A | `restore` writes a new target and retains A's original manifest bytes. Every file matches A, the page works again, and the API process was not restarted during this front-end rollback. The edited source still has B's URL. |
+| Changed copy | Altering `main.js` without changing its manifest makes `verify` fail with `artifact_integrity_mismatch`. A remains unchanged; restoring from the corrupt copy fails before creating the destination. |
+
+`digestBytes` hashes bytes directly with SHA-256. Inventory comparison rejects
+unequal lengths, duplicate names, changed lengths and changed digests; ordering
+alone makes no difference and neither input is mutated. Validation also rejects
+unknown files, malformed manifests and the wrong role. Existing output targets
+and targets inside the source artifact are refused.
+
+The rollback trigger is a failed acceptance case with retained working A.
+Recovery verifies A, restores its bytes to a separate target, switches only the
+front-end process, then checks browser and API behavior. It does not rebuild A
+from the broken working tree. A checksum is consistency evidence, not proof of
+who built the artifact, and API process startup is not dependency readiness.
+
+A's retained public files do not back up private API settings or data added by
+another project. A database-backed extension needs its own compatible data
+backup and separately verified restore. DNS, TLS termination, proxy route/trust,
+listener exposure, logs and resource limits must be checked in an actual chosen
+public environment before claiming public deployment. The local lab makes no
+such activation or authenticated-provenance claim.
 
 ## Feature Slice Capstone Key
 

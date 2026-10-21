@@ -111,9 +111,9 @@ describe("Web Development Foundations learner flow", () => {
 		const loadedAppendixTitles = loaded.modules
 			.filter(module => module.kind === "appendix")
 			.map(module => module.title);
-		expect(loadedAppendixTitles.slice(0, EXPECTED_APPENDICES.length)).toEqual(
-			EXPECTED_APPENDICES
-		);
+		expect(
+			loadedAppendixTitles.slice(0, EXPECTED_APPENDICES.length)
+		).toEqual(EXPECTED_APPENDICES);
 		expect(loaded.modules[1]?.kind).toBe("transition");
 		expect(loadedAppendixTitles).toContain(
 			"Web Development Foundations: Toolchain and Version Assumptions"
@@ -241,16 +241,21 @@ describe("Web Development Foundations learner flow", () => {
 	});
 
 	it("makes local, fictional, reversible work the completion route", async () => {
-		const text = JSON.stringify(await requireWebDevelopmentFoundationsCourse());
+		const text = JSON.stringify(
+			await requireWebDevelopmentFoundationsCourse()
+		);
 
 		expect(text).toContain(
 			"Use only fictional names, messages, notes, bookings, contact details"
 		);
 		expect(text).toContain("Keep required services on loopback");
-		expect(text).toContain("stream or test email transport");
-		expect(text).toContain("no cloud database requirement");
+		expect(text).toContain("JSON-only Nodemailer transport sends no email");
 		expect(text).toContain(
-			"Public hosting, production DNS, and a custom domain are optional"
+			"The default memory adapter runs without a database."
+		);
+		expect(text).toContain("The optional MongoDB adapter");
+		expect(text).toContain(
+			"Any optional publishing uses a learner-owned environment"
 		);
 		expect(text).toContain(
 			"no project claims production-ready identity, authorization, moderation"
