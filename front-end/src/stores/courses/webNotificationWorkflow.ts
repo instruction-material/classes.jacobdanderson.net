@@ -1,7 +1,8 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
+import liveChat from "../../assets/course-guides/web-live-chat.md?raw";
 import reading from "../../assets/course-guides/web-notification-state.md?raw";
 import {
-	webNotificationRevision,
+	webChatRoot,
 	webNotificationRoot
 } from "../../modules/webProjectResources";
 
@@ -60,8 +61,12 @@ export function applyWebNotificationWorkflow(
 		"core"
 	);
 	chat.id = `${id}-supplemental-project-real-time-chat-or-notification-app`;
-	chat.projectLink = `https://github.com/instruction-material/Web-Development-Foundations/tree/${webNotificationRevision}/WDF4-Realtime-Chat-App/starter`;
-	chat.solutionLink = `https://github.com/instruction-material/Web-Development-Foundations/tree/${webNotificationRevision}/WDF4-Realtime-Chat-App/solution`;
+	chat.title = "Choice: Trace Live Chat after WDF5";
+	chat.content = liveChat.trim();
+	chat.preserveInstructions = true;
+	chat.projectLink = `${webChatRoot}/starter`;
+	chat.solutionLink = `${webChatRoot}/solution`;
+	chat.ideImport = true;
 	chat.learningPath = "choice";
 	update(
 		choice,

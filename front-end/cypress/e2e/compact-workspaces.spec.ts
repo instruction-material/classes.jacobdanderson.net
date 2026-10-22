@@ -146,7 +146,8 @@ context("Compact content-first workspaces", () => {
 			body: {
 				ok: true,
 				operationId: "synthetic-operation",
-				evidenceStatus: "smtp_accepted"
+				evidenceStatus: "smtp_accepted",
+				archivalStatus: "archived"
 			}
 		}).as("sendNote");
 		cy.visit("/admin/mdmail");
@@ -165,6 +166,22 @@ context("Compact content-first workspaces", () => {
 			.trigger("input", { force: true });
 		cy.get("#markdown-input").type("Synthetic note body");
 		cy.get("#markdown-input").should("have.value", "Synthetic note body");
+		cy.get('[data-testid="preview-toggle"]').click();
+		cy.get("#markdown-input").should("not.be.visible");
+		cy.get('[data-testid="live-preview-body"]')
+			.should("be.visible")
+			.and("contain.text", "Synthetic note body");
+		cy.get('[data-testid="live-preview-body"]').should(
+			"not.contain.text",
+			"Verify homework"
+		);
+		cy.screenshot("session-note-preview", { capture: "viewport" });
+		cy.get('[data-testid="compose-toggle"]').click();
+		cy.get('[data-testid="live-preview"]').should("not.exist");
+		cy.get("#markdown-input")
+			.should("be.visible")
+			.and("have.value", "Synthetic note body");
+		cy.screenshot("session-note-compose", { capture: "viewport" });
 		cy.get(
 			"#note-student, #note-session, #note-unlinked, #saved-note"
 		).should("not.exist");
@@ -182,7 +199,15 @@ context("Compact content-first workspaces", () => {
 			unlinked: true,
 			subject: "Session Notes (09/30)"
 		});
-		cy.contains("Primary recipient accepted by SMTP").should("be.visible");
+		cy.get("@saveNote")
+			.its("request.body.markdown")
+			.should("eq", "Synthetic note body");
+		cy.get("@sendNote")
+			.its("request.body")
+			.should("not.have.property", "reviewWarnings");
+		cy.contains(
+			"Submitted successfully; Sent copy saved. Recipient delivery is not tracked."
+		).should("be.visible");
 		cy.get('[data-testid="live-preview"]').should("not.exist");
 	});
 	it("uses compact stacked course and learner selectors, and puts search beside them", () => {

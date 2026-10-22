@@ -155,18 +155,26 @@ describe("Code IDE route import consent", () => {
 		["starter", 2],
 		["solution", 2],
 		["starter", 3],
-		["solution", 3]
+		["solution", 3],
+		["starter", 4],
+		["solution", 4],
+		["starter", 5],
+		["solution", 5]
 	] as const)(
 		"confirms a web %s edition %d import and reopens edited source without another fetch",
 		async (role, edition) => {
 			const fixture = JSON.parse(
 				readFileSync(
 					resolve(
-						edition === 3
-							? "../test/fixtures/web-notification-source.json"
-							: edition === 1
-								? "../test/fixtures/web-portfolio-source.json"
-								: "../test/fixtures/web-portfolio-module-source.json"
+						edition === 5
+							? "../test/fixtures/web-notes-source.json"
+							: edition === 4
+							? "../test/fixtures/web-contact-source.json"
+							: edition === 3
+								? "../test/fixtures/web-notification-source.json"
+								: edition === 1
+									? "../test/fixtures/web-portfolio-source.json"
+									: "../test/fixtures/web-portfolio-module-source.json"
 					),
 					"utf8"
 				)
@@ -220,7 +228,9 @@ describe("Code IDE route import consent", () => {
 					return { data: { project: structuredClone(project) } };
 				}
 			);
-			const key = `web-development-foundations:${edition === 3 ? "notification-state" : "portfolio"}:${role === "starter" ? "starter" : "reference"}:web-source-v${edition === 3 ? 1 : edition}`;
+			const key = `web-development-foundations:${edition === 5 ? "notes-api" : edition === 4 ? "contact-api" : edition === 3 ? "notification-state" : "portfolio"}:${role === "starter" ? "starter" : "reference"}:web-source-v${edition >= 3 ? 1 : edition}`;
+			const fileCount =
+				edition === 5 ? 10 : edition === 4 ? 9 : edition === 3 ? 12 : edition === 1 ? 5 : 6;
 			const params = new URLSearchParams({
 				course: "web-development-foundations",
 				mode: "web",
@@ -235,41 +245,51 @@ describe("Code IDE route import consent", () => {
 				.trigger("click");
 			await settle();
 			expect(preview.list).not.toHaveBeenCalled();
-			expect(preview.load).toHaveBeenCalledTimes(
-				edition === 3 ? 12 : edition === 1 ? 5 : 6
-			);
+			expect(preview.load).toHaveBeenCalledTimes(fileCount);
 			const project = workspaceState(wrapper).projects.find(
 				row => row._id === "web-project"
 			)!;
 			expect(project.mode).toBe("web");
-			expect(project.activeFileName).toBe("index.html");
+			expect(project.activeFileName).toBe(
+				edition === 5 ? "src/models/note.js" : edition === 4 ? "src/validation.js" : "index.html"
+			);
 			expect(project.files.map(file => file.name)).toEqual(
-				edition === 3
-					? [
-							"index.html",
-							"app.mjs",
-							"state.mjs",
-							"styles.css",
-							"events.json",
-							"empty.json",
-							"invalid.json",
-							"malformed.json",
-							"history.json",
-							"out-of-order.json",
-							"README.md",
-							"serve.mjs"
-						]
-					: [
-							"index.html",
-							"main.js",
-							"styles.css",
-							"package.json",
-							...(edition === 2 ? ["project-idea.js"] : []),
-							"README.md"
-						]
+				edition >= 4
+					? [...fixture.roleFiles, "README.md"]
+					: edition === 3
+						? [
+								"index.html",
+								"app.mjs",
+								"state.mjs",
+								"styles.css",
+								"events.json",
+								"empty.json",
+								"invalid.json",
+								"malformed.json",
+								"history.json",
+								"out-of-order.json",
+								"README.md",
+								"serve.mjs"
+							]
+						: [
+								"index.html",
+								"main.js",
+								"styles.css",
+								"package.json",
+								...(edition === 2 ? ["project-idea.js"] : []),
+								"README.md"
+							]
 			);
 			const script = project.files.find(
-				file => file.name === (edition === 3 ? "state.mjs" : "main.js")
+				file =>
+					file.name ===
+					(edition === 5
+						? "src/models/note.js"
+						: edition === 4
+						? "src/validation.js"
+						: edition === 3
+							? "state.mjs"
+							: "main.js")
 			)!;
 			script.content += "\n// saved source edit\n";
 			expect(wrapper.find("button.run-control").text()).toBe(
@@ -278,9 +298,11 @@ describe("Code IDE route import consent", () => {
 			await wrapper.find("button.run-control").trigger("click");
 			await settle();
 			expect(wrapper.text()).toContain(
-				edition === 3
-					? "node serve.mjs"
-					: `npm ci --workspace ${fixture.pack}/${role}`
+				edition >= 4
+					? `npm run start --workspace ${fixture.pack}/${role}`
+					: edition === 3
+						? "node serve.mjs"
+						: `npm ci --workspace ${fixture.pack}/${role}`
 			);
 			expect(
 				wrapper.find("iframe[title='Isolated Python output']").exists()
@@ -302,9 +324,7 @@ describe("Code IDE route import consent", () => {
 					row => row._id === "web-project"
 				)!.files
 			).toEqual(saved);
-			expect(preview.load).toHaveBeenCalledTimes(
-				edition === 3 ? 12 : edition === 1 ? 5 : 6
-			);
+			expect(preview.load).toHaveBeenCalledTimes(fileCount);
 			expect(requests.post).toHaveBeenCalledTimes(1);
 		}
 	);

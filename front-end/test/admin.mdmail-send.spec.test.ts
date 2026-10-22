@@ -107,29 +107,38 @@ describe("direct, safely validated session-note sending", () => {
 		])
 			expect(wrapper.find(selector).exists()).toBe(false);
 	});
-	it("sends a complete unlinked note from Compose with one click", async () => {
-		await compose();
-		expect(wrapper.get(".send-btn").text()).toBe("Send");
-		expect(wrapper.get(".send-btn").attributes("disabled")).toBeUndefined();
-		await wrapper.get(".send-btn").trigger("click");
-		await flushPromises();
-		expect(api.post).toHaveBeenCalledTimes(2);
-		expect(api.post).toHaveBeenLastCalledWith(
-			"/admin-mail/send",
-			expect.objectContaining({
-				studentId,
-				noteId,
-				unlinked: true,
-				scheduledSessionId: undefined,
-				idempotencyKey: "synthetic-send-idempotency-key",
-				subject: "Session Notes (09/30)"
-			}),
-			{ withCredentials: true }
-		);
-		expect(wrapper.find('[data-testid="live-preview"]').exists()).toBe(
-			false
-		);
-	});
+	it.each(["Compose", "Preview"])(
+		"sends a complete unlinked note from %s with one click",
+		async view => {
+			await compose();
+			if (view === "Preview")
+				await wrapper
+					.get('[data-testid="preview-toggle"]')
+					.trigger("click");
+			expect(wrapper.get(".send-btn").text()).toBe("Send");
+			expect(
+				wrapper.get(".send-btn").attributes("disabled")
+			).toBeUndefined();
+			await wrapper.get(".send-btn").trigger("click");
+			await flushPromises();
+			expect(api.post).toHaveBeenCalledTimes(2);
+			expect(api.post).toHaveBeenLastCalledWith(
+				"/admin-mail/send",
+				expect.objectContaining({
+					studentId,
+					noteId,
+					unlinked: true,
+					scheduledSessionId: undefined,
+					idempotencyKey: "synthetic-send-idempotency-key",
+					subject: "Session Notes (09/30)"
+				}),
+				{ withCredentials: true }
+			);
+			expect(wrapper.find('[data-testid="live-preview"]').exists()).toBe(
+				view === "Preview"
+			);
+		}
+	);
 	it("shows operator activation for a paused queued note without repeating the send", async () => {
 		const originalGet = vi.mocked(api.get).getMockImplementation()!;
 		vi.mocked(api.get).mockImplementation(
@@ -210,13 +219,34 @@ describe("direct, safely validated session-note sending", () => {
 		await compose();
 		await wrapper.get(".send-btn").trigger("click");
 		await flushPromises();
-		expect(wrapper.get(".result").text()).toContain("accepted by SMTP");
 		expect(wrapper.get(".result").text()).toContain(
-			"inbox delivery are not confirmed"
+			"Submitted successfully"
+		);
+		expect(wrapper.get(".result").text()).toContain(
+			"Recipient delivery is not tracked"
 		);
 		expect(wrapper.get(".result").text()).toContain(
 			"archival review; do not resend"
 		);
+	});
+	it("describes an accepted submission and confirmed Sent copy without claiming inbox delivery", async () => {
+		vi.mocked(api.post).mockImplementation(async path => ({
+			data: path.endsWith("/session-notes")
+				? { sessionNote: { _id: noteId } }
+				: {
+						operationId: "synthetic-operation",
+						evidenceStatus: "smtp_accepted",
+						archivalStatus: "archived",
+						ok: true
+					}
+		}));
+		await compose();
+		await wrapper.get(".send-btn").trigger("click");
+		await flushPromises();
+		expect(wrapper.get(".result").text()).toContain(
+			"Submitted successfully; Sent copy saved. Recipient delivery is not tracked."
+		);
+		expect(wrapper.get(".result").text()).not.toContain("delivered");
 	});
 	it("never guesses a scheduled session from the selected subject date", async () => {
 		await compose();

@@ -17,6 +17,7 @@ import { webBuildInstructions } from "@/modules/webBuildInstructions";
 import {
 	webCourseProjectKey,
 	webCourseResourceUrl,
+	webChatRoot,
 	webNotificationRoot
 } from "@/modules/webProjectResources";
 import { useAppStore } from "@/stores/app";
@@ -83,9 +84,9 @@ describe("web notification source workflow", () => {
 		const source = fixture.files[`${fixture.pack}/README.md`].content;
 		const [intro, body] = source.split("## Files and startup");
 		expect(learner.curriculum[0].content).toContain(intro.trim());
-		expect(learner.curriculum[0].content.replaceAll("`TODO`", "TODO")).toContain(
-			`## Files and startup${body}`.trim()
-		);
+		expect(
+			learner.curriculum[0].content.replaceAll("`TODO`", "TODO")
+		).toContain(`## Files and startup${body}`.trim());
 		expect(learner.curriculum[0].content).toBe(
 			readFileSync(
 				resolve("src/assets/course-guides/web-notification-state.md"),
@@ -106,8 +107,8 @@ describe("web notification source workflow", () => {
 		expect(
 			learner.supplementalProjects.map(row => row.learningPath)
 		).toEqual(["choice", "choice", "challenge"]);
-		expect(staff.supplementalProjects[0].projectLink).toContain(
-			`/tree/${fixture.revision}/WDF4-Realtime-Chat-App/starter`
+		expect(staff.supplementalProjects[0].projectLink).toBe(
+			`${webChatRoot}/starter`
 		);
 		expect(
 			staff.supplementalProjects.slice(1).every(row => !row.solutionLink)
