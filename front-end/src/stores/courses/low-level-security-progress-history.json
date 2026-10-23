@@ -1,0 +1,187 @@
+{
+	"modules": {
+		"low-level-security-low-level-security-lab-7-sanitizer-triage-studio": [
+			"low-level-security-low-level-security-lab-7"
+		],
+		"low-level-security-low-level-security-lab-8-bounds-regression-studio": [
+			"low-level-security-low-level-security-lab-8"
+		],
+		"low-level-security-low-level-security-lab-9-binary-parser-hardening-studio": [
+			"low-level-security-low-level-security-lab-9"
+		],
+		"low-level-security-low-level-security-lab-10-integer-state-safety-studio": [
+			"low-level-security-low-level-security-lab-10"
+		],
+		"low-level-security-low-level-security-lab-11-fuzzing-regression-studio": [
+			"low-level-security-low-level-security-lab-11"
+		],
+		"low-level-security-low-level-security-lab-12-patch-review-handoff-studio": [
+			"low-level-security-low-level-security-lab-12"
+		]
+	},
+	"items": {
+		"low-level-security-lls1-memory-layout-and-security-tooling-supplemental-memory-layout-transfer-practice": [
+			"low-level-security-lls1-memory-layout-and-security-tooling-supplemental-transfer-practice-memory-layout-and-security-tooling"
+		],
+		"low-level-security-lls1-memory-layout-and-security-tooling-supplemental-memory-layout-extension-practice": [
+			"low-level-security-lls1-memory-layout-and-security-tooling-supplemental-extension-practice-memory-layout-and-security-tooling"
+		],
+		"low-level-security-lls2-bounds-arrays-and-safer-copy-patterns-supplemental-bounds-copy-transfer-practice": [
+			"low-level-security-lls2-bounds-arrays-and-safer-copy-patterns-supplemental-transfer-practice-bounds-arrays-and-safer-copy-patterns"
+		],
+		"low-level-security-lls2-bounds-arrays-and-safer-copy-patterns-supplemental-bounds-copy-extension-practice": [
+			"low-level-security-lls2-bounds-arrays-and-safer-copy-patterns-supplemental-extension-practice-bounds-arrays-and-safer-copy-patterns"
+		],
+		"low-level-security-lls3-defensive-parsers-and-binary-input-supplemental-parser-hardening-transfer-practice": [
+			"low-level-security-lls3-defensive-parsers-and-binary-input-supplemental-transfer-practice-defensive-parsers-and-binary-input"
+		],
+		"low-level-security-lls3-defensive-parsers-and-binary-input-supplemental-parser-hardening-extension-practice": [
+			"low-level-security-lls3-defensive-parsers-and-binary-input-supplemental-extension-practice-defensive-parsers-and-binary-input"
+		],
+		"low-level-security-lls4-integer-safety-state-and-defensive-data-structures-supplemental-integer-state-transfer-practice": [
+			"low-level-security-lls4-integer-safety-state-and-defensive-data-structures-supplemental-transfer-practice-integer-safety-state-and-defensive-data-structures"
+		],
+		"low-level-security-lls4-integer-safety-state-and-defensive-data-structures-supplemental-ring-buffer-extension-practice": [
+			"low-level-security-lls4-integer-safety-state-and-defensive-data-structures-supplemental-extension-practice-integer-safety-state-and-defensive-data-structures"
+		],
+		"low-level-security-lls5-bug-hunting-with-sanitizers-and-fuzzing-supplemental-sanitizer-fuzzing-transfer-practice": [
+			"low-level-security-lls5-bug-hunting-with-sanitizers-and-fuzzing-supplemental-transfer-practice-bug-hunting-with-sanitizers-and-fuzzing"
+		],
+		"low-level-security-lls5-bug-hunting-with-sanitizers-and-fuzzing-supplemental-fuzzing-regression-extension-practice": [
+			"low-level-security-lls5-bug-hunting-with-sanitizers-and-fuzzing-supplemental-extension-practice-bug-hunting-with-sanitizers-and-fuzzing"
+		],
+		"low-level-security-lls6-patching-review-and-responsible-research-supplemental-patch-review-transfer-practice": [
+			"low-level-security-lls6-patching-review-and-responsible-research-supplemental-transfer-practice-patching-review-and-responsible-research"
+		],
+		"low-level-security-lls6-patching-review-and-responsible-research-supplemental-responsible-research-extension-practice": [
+			"low-level-security-lls6-patching-review-and-responsible-research-supplemental-extension-practice-patching-review-and-responsible-research"
+		],
+		"low-level-security-low-level-security-lab-7-sanitizer-triage-studio-curriculum-low-level-security-lab-7-core-concepts": [
+			"low-level-security-low-level-security-lab-7-curriculum-low-level-security-lab-7-core-concepts"
+		],
+		"low-level-security-low-level-security-lab-7-sanitizer-triage-studio-curriculum-low-level-security-lab-7-guided-example": [
+			"low-level-security-low-level-security-lab-7-curriculum-low-level-security-lab-7-guided-example"
+		],
+		"low-level-security-low-level-security-lab-7-sanitizer-triage-studio-curriculum-core-project-low-level-security-lab-7": [
+			"low-level-security-low-level-security-lab-7-curriculum-core-project-low-level-security-lab-7"
+		],
+		"low-level-security-low-level-security-lab-7-sanitizer-triage-studio-curriculum-review-low-level-security-lab-7": [
+			"low-level-security-low-level-security-lab-7-curriculum-review-low-level-security-lab-7"
+		],
+		"low-level-security-low-level-security-lab-7-sanitizer-triage-studio-supplemental-extension-challenge-low-level-security-lab-7": [
+			"low-level-security-low-level-security-lab-7-supplemental-extension-challenge-low-level-security-lab-7"
+		],
+		"low-level-security-low-level-security-lab-7-sanitizer-triage-studio-supplemental-sanitizer-triage-transfer-practice": [
+			"low-level-security-low-level-security-lab-7-supplemental-transfer-practice-low-level-security-lab-7"
+		],
+		"low-level-security-low-level-security-lab-7-sanitizer-triage-studio-supplemental-sanitizer-triage-extension-practice": [
+			"low-level-security-low-level-security-lab-7-supplemental-extension-practice-low-level-security-lab-7"
+		],
+		"low-level-security-low-level-security-lab-8-bounds-regression-studio-curriculum-low-level-security-lab-8-core-concepts": [
+			"low-level-security-low-level-security-lab-8-curriculum-low-level-security-lab-8-core-concepts"
+		],
+		"low-level-security-low-level-security-lab-8-bounds-regression-studio-curriculum-low-level-security-lab-8-guided-example": [
+			"low-level-security-low-level-security-lab-8-curriculum-low-level-security-lab-8-guided-example"
+		],
+		"low-level-security-low-level-security-lab-8-bounds-regression-studio-curriculum-core-project-low-level-security-lab-8": [
+			"low-level-security-low-level-security-lab-8-curriculum-core-project-low-level-security-lab-8"
+		],
+		"low-level-security-low-level-security-lab-8-bounds-regression-studio-curriculum-review-low-level-security-lab-8": [
+			"low-level-security-low-level-security-lab-8-curriculum-review-low-level-security-lab-8"
+		],
+		"low-level-security-low-level-security-lab-8-bounds-regression-studio-supplemental-extension-challenge-low-level-security-lab-8": [
+			"low-level-security-low-level-security-lab-8-supplemental-extension-challenge-low-level-security-lab-8"
+		],
+		"low-level-security-low-level-security-lab-8-bounds-regression-studio-supplemental-bounds-regression-transfer-practice": [
+			"low-level-security-low-level-security-lab-8-supplemental-transfer-practice-low-level-security-lab-8"
+		],
+		"low-level-security-low-level-security-lab-8-bounds-regression-studio-supplemental-bounds-regression-extension-practice": [
+			"low-level-security-low-level-security-lab-8-supplemental-extension-practice-low-level-security-lab-8"
+		],
+		"low-level-security-low-level-security-lab-9-binary-parser-hardening-studio-curriculum-low-level-security-lab-9-core-concepts": [
+			"low-level-security-low-level-security-lab-9-curriculum-low-level-security-lab-9-core-concepts"
+		],
+		"low-level-security-low-level-security-lab-9-binary-parser-hardening-studio-curriculum-low-level-security-lab-9-guided-example": [
+			"low-level-security-low-level-security-lab-9-curriculum-low-level-security-lab-9-guided-example"
+		],
+		"low-level-security-low-level-security-lab-9-binary-parser-hardening-studio-curriculum-core-project-low-level-security-lab-9": [
+			"low-level-security-low-level-security-lab-9-curriculum-core-project-low-level-security-lab-9"
+		],
+		"low-level-security-low-level-security-lab-9-binary-parser-hardening-studio-curriculum-review-low-level-security-lab-9": [
+			"low-level-security-low-level-security-lab-9-curriculum-review-low-level-security-lab-9"
+		],
+		"low-level-security-low-level-security-lab-9-binary-parser-hardening-studio-supplemental-extension-challenge-low-level-security-lab-9": [
+			"low-level-security-low-level-security-lab-9-supplemental-extension-challenge-low-level-security-lab-9"
+		],
+		"low-level-security-low-level-security-lab-9-binary-parser-hardening-studio-supplemental-binary-parser-transfer-practice": [
+			"low-level-security-low-level-security-lab-9-supplemental-transfer-practice-low-level-security-lab-9"
+		],
+		"low-level-security-low-level-security-lab-9-binary-parser-hardening-studio-supplemental-binary-parser-extension-practice": [
+			"low-level-security-low-level-security-lab-9-supplemental-extension-practice-low-level-security-lab-9"
+		],
+		"low-level-security-low-level-security-lab-10-integer-state-safety-studio-curriculum-low-level-security-lab-10-core-concepts": [
+			"low-level-security-low-level-security-lab-10-curriculum-low-level-security-lab-10-core-concepts"
+		],
+		"low-level-security-low-level-security-lab-10-integer-state-safety-studio-curriculum-low-level-security-lab-10-guided-example": [
+			"low-level-security-low-level-security-lab-10-curriculum-low-level-security-lab-10-guided-example"
+		],
+		"low-level-security-low-level-security-lab-10-integer-state-safety-studio-curriculum-core-project-low-level-security-lab-10": [
+			"low-level-security-low-level-security-lab-10-curriculum-core-project-low-level-security-lab-10"
+		],
+		"low-level-security-low-level-security-lab-10-integer-state-safety-studio-curriculum-review-low-level-security-lab-10": [
+			"low-level-security-low-level-security-lab-10-curriculum-review-low-level-security-lab-10"
+		],
+		"low-level-security-low-level-security-lab-10-integer-state-safety-studio-supplemental-extension-challenge-low-level-security-lab-10": [
+			"low-level-security-low-level-security-lab-10-supplemental-extension-challenge-low-level-security-lab-10"
+		],
+		"low-level-security-low-level-security-lab-10-integer-state-safety-studio-supplemental-integer-state-safety-transfer-practice": [
+			"low-level-security-low-level-security-lab-10-supplemental-transfer-practice-low-level-security-lab-10"
+		],
+		"low-level-security-low-level-security-lab-10-integer-state-safety-studio-supplemental-integer-state-safety-extension-practice": [
+			"low-level-security-low-level-security-lab-10-supplemental-extension-practice-low-level-security-lab-10"
+		],
+		"low-level-security-low-level-security-lab-11-fuzzing-regression-studio-curriculum-low-level-security-lab-11-core-concepts": [
+			"low-level-security-low-level-security-lab-11-curriculum-low-level-security-lab-11-core-concepts"
+		],
+		"low-level-security-low-level-security-lab-11-fuzzing-regression-studio-curriculum-low-level-security-lab-11-guided-example": [
+			"low-level-security-low-level-security-lab-11-curriculum-low-level-security-lab-11-guided-example"
+		],
+		"low-level-security-low-level-security-lab-11-fuzzing-regression-studio-curriculum-core-project-low-level-security-lab-11": [
+			"low-level-security-low-level-security-lab-11-curriculum-core-project-low-level-security-lab-11"
+		],
+		"low-level-security-low-level-security-lab-11-fuzzing-regression-studio-curriculum-review-low-level-security-lab-11": [
+			"low-level-security-low-level-security-lab-11-curriculum-review-low-level-security-lab-11"
+		],
+		"low-level-security-low-level-security-lab-11-fuzzing-regression-studio-supplemental-extension-challenge-low-level-security-lab-11": [
+			"low-level-security-low-level-security-lab-11-supplemental-extension-challenge-low-level-security-lab-11"
+		],
+		"low-level-security-low-level-security-lab-11-fuzzing-regression-studio-supplemental-fuzzing-regression-transfer-practice": [
+			"low-level-security-low-level-security-lab-11-supplemental-transfer-practice-low-level-security-lab-11"
+		],
+		"low-level-security-low-level-security-lab-11-fuzzing-regression-studio-supplemental-fuzzing-regression-extension-practice": [
+			"low-level-security-low-level-security-lab-11-supplemental-extension-practice-low-level-security-lab-11"
+		],
+		"low-level-security-low-level-security-lab-12-patch-review-handoff-studio-curriculum-low-level-security-lab-12-core-concepts": [
+			"low-level-security-low-level-security-lab-12-curriculum-low-level-security-lab-12-core-concepts"
+		],
+		"low-level-security-low-level-security-lab-12-patch-review-handoff-studio-curriculum-low-level-security-lab-12-guided-example": [
+			"low-level-security-low-level-security-lab-12-curriculum-low-level-security-lab-12-guided-example"
+		],
+		"low-level-security-low-level-security-lab-12-patch-review-handoff-studio-curriculum-core-project-low-level-security-lab-12": [
+			"low-level-security-low-level-security-lab-12-curriculum-core-project-low-level-security-lab-12"
+		],
+		"low-level-security-low-level-security-lab-12-patch-review-handoff-studio-curriculum-review-low-level-security-lab-12": [
+			"low-level-security-low-level-security-lab-12-curriculum-review-low-level-security-lab-12",
+			"low-level-security-course-roadmap-curriculum-low-level-security-current-references"
+		],
+		"low-level-security-low-level-security-lab-12-patch-review-handoff-studio-supplemental-extension-challenge-low-level-security-lab-12": [
+			"low-level-security-low-level-security-lab-12-supplemental-extension-challenge-low-level-security-lab-12"
+		],
+		"low-level-security-low-level-security-lab-12-patch-review-handoff-studio-supplemental-patch-review-handoff-transfer-practice": [
+			"low-level-security-low-level-security-lab-12-supplemental-transfer-practice-low-level-security-lab-12"
+		],
+		"low-level-security-low-level-security-lab-12-patch-review-handoff-studio-supplemental-patch-review-handoff-extension-practice": [
+			"low-level-security-low-level-security-lab-12-supplemental-extension-practice-low-level-security-lab-12"
+		]
+	}
+}

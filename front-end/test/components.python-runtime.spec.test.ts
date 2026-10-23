@@ -3,6 +3,7 @@ import { createPinia } from "pinia";
 import { describe, expect, it, vi } from "vitest";
 import { createMemoryHistory, createRouter } from "vue-router";
 import CodeIdeWorkspace from "@/components/CodeIdeWorkspace.vue";
+import { createPythonIdeProject } from "@/modules/pythonIde";
 
 const calls = vi.hoisted(() => ({
 	get: vi.fn(),
@@ -13,6 +14,185 @@ const calls = vi.hoisted(() => ({
 vi.mock("@/api", () => ({ api: calls }));
 
 describe("runtime-only Python surface", () => {
+	it("bounds mixed sound and tone playback while preserving ordinary loops", async () => {
+		class TestAudio extends EventTarget {
+			static instances: TestAudio[] = [];
+			static rejectNext = false;
+			currentTime = 0;
+			loop = false;
+			volume = 1;
+			playCount = 0;
+
+			constructor(_source: string) {
+				super();
+				TestAudio.instances.push(this);
+			}
+
+			play() {
+				this.playCount += 1;
+				if (TestAudio.rejectNext) {
+					TestAudio.rejectNext = false;
+					return Promise.reject(new Error("blocked"));
+				}
+				return Promise.resolve();
+			}
+
+			pause() {}
+		}
+		class TestAudioContext {
+			static instances: TestAudioContext[] = [];
+			static oscillators = 0;
+			static disconnectedOscillators = 0;
+			currentTime = 0;
+			destination = {};
+			state = "running";
+
+			constructor() {
+				TestAudioContext.instances.push(this);
+			}
+
+			createOscillator() {
+				TestAudioContext.oscillators += 1;
+				return {
+					type: "sine",
+					frequency: { setValueAtTime() {} },
+					addEventListener() {},
+					connect() {},
+					disconnect() {
+						TestAudioContext.disconnectedOscillators += 1;
+					},
+					start() {},
+					stop() {}
+				};
+			}
+
+			createGain() {
+				return {
+					gain: {
+						context: this,
+						setValueAtTime() {},
+						exponentialRampToValueAtTime() {},
+						cancelScheduledValues() {}
+					},
+					connect() {},
+					disconnect() {}
+				};
+			}
+
+			resume() {
+				return Promise.resolve();
+			}
+
+			suspend() {
+				this.state = "suspended";
+				return Promise.resolve();
+			}
+		}
+		vi.stubGlobal("Audio", TestAudio);
+		vi.stubGlobal("AudioContext", TestAudioContext);
+		vi.stubGlobal(
+			"ResizeObserver",
+			class {
+				observe() {}
+				disconnect() {}
+			}
+		);
+		const router = createRouter({
+			history: createMemoryHistory(),
+			routes: [{ path: "/", component: { template: "<div/>" } }]
+		});
+		await router.push("/");
+		let wrapper: ReturnType<typeof mount> | undefined;
+		try {
+			wrapper = mount(CodeIdeWorkspace, {
+				props: { runtimeOnly: true },
+				global: { plugins: [createPinia(), router] }
+			});
+			const runtime = wrapper.vm.$.setupState as {
+				projects: ReturnType<typeof createPythonIdeProject>[];
+				playGameSound: (name: string, loops?: number) => void;
+				playGameTone: (frequency: number, duration: number) => number;
+				stopGameSound: (name: string) => void;
+				stopAllGameAudio: () => void;
+			};
+			const project = createPythonIdeProject("pgzero");
+			project.files.push({
+				name: "sounds/beep.wav",
+				content: "UklGRg==",
+				encoding: "base64"
+			});
+			runtime.projects.push(project);
+			for (let count = 0; count < 64; count += 1)
+				runtime.playGameSound("missing");
+			runtime.playGameSound("beep");
+			expect(TestAudio.instances).toHaveLength(1);
+			runtime.stopGameSound("beep");
+			TestAudio.instances.length = 0;
+
+			for (let count = 0; count < 16; count += 1)
+				runtime.playGameSound("beep", -1);
+			for (let count = 0; count < 16; count += 1)
+				expect(runtime.playGameTone(440, 10)).toBeGreaterThan(0);
+			expect(TestAudio.instances).toHaveLength(16);
+			expect(TestAudio.instances.every(audio => audio.loop)).toBe(true);
+			expect(TestAudioContext.oscillators).toBe(16);
+			runtime.playGameSound("beep");
+			expect(runtime.playGameTone(440, 10)).toBe(0);
+			expect(TestAudio.instances).toHaveLength(16);
+			expect(TestAudioContext.oscillators).toBe(16);
+
+			TestAudio.instances[0].dispatchEvent(new Event("error"));
+			expect(runtime.playGameTone(440, 10)).toBeGreaterThan(0);
+			runtime.stopGameSound("beep");
+			TestAudio.rejectNext = true;
+			runtime.playGameSound("beep");
+			await flushPromises();
+			for (let count = 0; count < 15; count += 1)
+				expect(runtime.playGameTone(440, 10)).toBeGreaterThan(0);
+			expect(runtime.playGameTone(440, 10)).toBe(0);
+			runtime.stopAllGameAudio();
+			expect(TestAudioContext.disconnectedOscillators).toBe(32);
+
+			runtime.playGameSound("beep", 2);
+			const repeated = TestAudio.instances.at(-1)!;
+			expect(repeated.loop).toBe(false);
+			for (let count = 0; count < 3; count += 1)
+				repeated.dispatchEvent(new Event("ended"));
+			expect(repeated.playCount).toBe(3);
+			runtime.playGameSound("beep", 33);
+			expect(TestAudio.instances).toHaveLength(18);
+			runtime.stopAllGameAudio();
+			expect(runtime.playGameTone(440, 0.2)).toBeGreaterThan(0);
+			runtime.stopAllGameAudio();
+			vi.useFakeTimers();
+			TestAudioContext.instances[0].state = "suspended";
+			const priorDisconnects = TestAudioContext.disconnectedOscillators;
+			expect(runtime.playGameTone(440, 0.02)).toBeGreaterThan(0);
+			vi.advanceTimersByTime(100);
+			expect(TestAudioContext.disconnectedOscillators).toBe(
+				priorDisconnects + 1
+			);
+			vi.useRealTimers();
+
+			vi.spyOn(performance, "now").mockReturnValue(
+				performance.now() + 1000
+			);
+			for (let count = 0; count < 32; count += 1)
+				runtime.playGameSound("beep", 2);
+			const burst = TestAudio.instances.slice(-32);
+			expect(burst).toHaveLength(32);
+			burst.forEach(audio => audio.dispatchEvent(new Event("ended")));
+			expect(burst.every(audio => audio.playCount === 2)).toBe(true);
+			burst.forEach(audio => audio.dispatchEvent(new Event("ended")));
+			expect(burst.every(audio => audio.playCount === 2)).toBe(true);
+		} finally {
+			wrapper?.unmount();
+			vi.useRealTimers();
+			vi.restoreAllMocks();
+			vi.unstubAllGlobals();
+		}
+	});
+
 	it("reports a later game frame failure and clears the running status", async () => {
 		vi.stubGlobal(
 			"ResizeObserver",

@@ -100,6 +100,7 @@ export const aiLevel1Course: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "Reference Archive: AI Level 1 Workspace",
+					aliases: ["Legacy Archive: AI Level 1 Workspace"],
 					content:
 						"The AI Level 1 workspace archive is a reference map for the course's Python search and game-AI materials. It identifies the folder layout, starter files, graph and grid examples, trace-output patterns, and earlier classroom variants that may clarify how a lab is organized. The archive is most useful for comparing state representation, action rules, search order, scoring logic, and reflection notes across projects. A strong use of the archive names the file being inspected, the behavior it demonstrates, and the part of the current project it helps verify; it is not a shortcut around explaining the algorithm.",
 					projectLink:
@@ -478,6 +479,7 @@ export const aiLevel1Course: RawCourse = {
 				},
 				{
 					title: "Project: Book Rule System",
+					aliases: ["Project: Juni Book Rule System"],
 					content:
 						"Use a structured decision or lookup problem to practice explicit rules, routing, and explainability. Justify each program choice in natural language.",
 					projectLink:
@@ -1198,6 +1200,7 @@ export const aiLevel1Course: RawCourse = {
 				},
 				{
 					title: "Unbeatable TicTacToe AI 1 Transfer Practice",
+					aliases: ["Transfer Practice: Unbeatable TicTacToe AI 1"],
 					content: buildProjectGuidance({
 						courseFamily: "AI/Python",
 						moduleTitle:
@@ -1212,6 +1215,7 @@ export const aiLevel1Course: RawCourse = {
 				},
 				{
 					title: "Unbeatable TicTacToe AI 1 Extension Practice",
+					aliases: ["Extension Practice: Unbeatable TicTacToe AI 1"],
 					content: buildProjectGuidance({
 						courseFamily: "AI/Python",
 						moduleTitle:
@@ -1595,3 +1599,23 @@ function configureAiLevel1Flow(course: RawCourse) {
 }
 
 configureAiLevel1Flow(aiLevel1Course);
+
+for (const previousTitle of [
+	"AI Search Lab 13",
+	"AI Search Lab 14",
+	"AI Search Lab 15",
+	"AI Search Lab 16",
+	"AI Search Lab 17",
+	"Unbeatable TicTacToe AI 1",
+	"The Marble Game AI"
+]) {
+	const module = aiLevel1Course.modules.find(
+		entry => entry.title === `${previousTitle}: Practice Studio`
+	);
+	if (!module) {
+		throw new Error(
+			`AI Level 1 is missing ${previousTitle}: Practice Studio.`
+		);
+	}
+	module.aliases = [...(module.aliases ?? []), previousTitle];
+}

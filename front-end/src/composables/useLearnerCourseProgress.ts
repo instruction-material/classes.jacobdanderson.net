@@ -1,9 +1,15 @@
 import type { Ref } from "vue";
+import type { HistoricalProgressEntry } from "@/modules/courseProgressHistory";
 import type { CourseProgress, User } from "@/stores/app";
-import type { CourseDefinition, CourseModuleItem } from "@/stores/courses";
+import type {
+	CourseDefinition,
+	CourseModule,
+	CourseModuleItem
+} from "@/stores/courses";
 import { ref, watch } from "vue";
 import { api } from "@/api";
 import { groupCoursesByLearnerStatus } from "@/modules/courseAccess";
+import { unmatchedCourseProgress } from "@/modules/courseProgressHistory";
 
 type RefreshUsers = () => Promise<void> | void;
 type LoadCourse = (courseId: string) => Promise<CourseDefinition | null>;
@@ -16,6 +22,18 @@ interface AssignedCourseGroup {
 
 function unique(values: string[]) {
 	return [...new Set(values.map(value => value.trim()).filter(Boolean))];
+}
+
+function progressIds(
+	entity: { aliases?: string[]; id: string },
+	courseId: string
+) {
+	return [
+		entity.id,
+		...(entity.aliases ?? []).filter(alias =>
+			alias.startsWith(`${courseId}-`)
+		)
+	];
 }
 
 function groupedAssignedCourses(user: User | undefined): AssignedCourseGroup[] {
@@ -93,6 +111,16 @@ export function useLearnerCourseProgress(
 	function assignedCourseGroups(userID: string) {
 		return groupedAssignedCourses(
 			users.value.find(user => user._id === userID)
+		);
+	}
+
+	function unassignedProgressForUser(userID: string) {
+		const assigned = new Set(assignedCourseIds(userID));
+		return (progressDrafts.value[userID] ?? []).filter(
+			progress =>
+				!assigned.has(progress.courseId) &&
+				(progress.completedModuleIds.length > 0 ||
+					progress.completedItemIds.length > 0)
 		);
 	}
 
@@ -187,13 +215,50 @@ export function useLearnerCourseProgress(
 		return !!courseId && !!progressCourseLoading.value[courseId];
 	}
 
+	function progressForUser(userID: string, courseId: string) {
+		return ensureDraft(userID, courseId);
+	}
+
+	function removeHistoricalProgress(
+		userID: string,
+		courseId: string,
+		entry: HistoricalProgressEntry
+	) {
+		if (!assignedCourseIds(userID).includes(courseId)) return;
+		const course = progressCourseCache.value[courseId] ?? null;
+		const draft = ensureDraft(userID, courseId);
+		if (
+			!unmatchedCourseProgress(course, draft).some(
+				candidate =>
+					candidate.id === entry.id && candidate.kind === entry.kind
+			)
+		) {
+			return;
+		}
+
+		updateDraft(userID, courseId, current => ({
+			...current,
+			...(entry.kind === "module"
+				? {
+						completedModuleIds: current.completedModuleIds.filter(
+							id => id !== entry.id
+						)
+					}
+				: {
+						completedItemIds: current.completedItemIds.filter(
+							id => id !== entry.id
+						)
+					})
+		}));
+	}
+
 	function isModuleComplete(
 		userID: string,
 		courseId: string,
-		moduleId: string
+		module: CourseModule
 	) {
-		return ensureDraft(userID, courseId).completedModuleIds.includes(
-			moduleId
+		return progressIds(module, courseId).some(id =>
+			ensureDraft(userID, courseId).completedModuleIds.includes(id)
 		);
 	}
 
@@ -202,20 +267,24 @@ export function useLearnerCourseProgress(
 		courseId: string,
 		item: CourseModuleItem
 	) {
-		return ensureDraft(userID, courseId).completedItemIds.includes(item.id);
+		return progressIds(item, courseId).some(id =>
+			ensureDraft(userID, courseId).completedItemIds.includes(id)
+		);
 	}
 
 	function toggleModule(
 		userID: string,
 		courseId: string,
-		moduleId: string,
+		module: CourseModule,
 		checked: boolean
 	) {
 		updateDraft(userID, courseId, draft => ({
 			...draft,
 			completedModuleIds: checked
-				? unique([...draft.completedModuleIds, moduleId])
-				: draft.completedModuleIds.filter(id => id !== moduleId)
+				? unique([...draft.completedModuleIds, module.id])
+				: draft.completedModuleIds.filter(
+						id => !progressIds(module, courseId).includes(id)
+					)
 		}));
 	}
 
@@ -229,7 +298,9 @@ export function useLearnerCourseProgress(
 			...draft,
 			completedItemIds: checked
 				? unique([...draft.completedItemIds, item.id])
-				: draft.completedItemIds.filter(id => id !== item.id)
+				: draft.completedItemIds.filter(
+						id => !progressIds(item, courseId).includes(id)
+					)
 		}));
 	}
 
@@ -257,12 +328,15 @@ export function useLearnerCourseProgress(
 	return {
 		assignedCourseGroups,
 		assignedCourseIds,
+		unassignedProgressForUser,
 		isItemComplete,
 		isModuleComplete,
 		isProgressCourseLoading,
 		loadSelectedProgressCourse,
 		progressCourseForUser,
+		progressForUser,
 		progressSummary,
+		removeHistoricalProgress,
 		saveProgress,
 		selectProgressCourse,
 		selectedProgressCourseId,

@@ -426,9 +426,11 @@ function buildStandardsModule(
 	return {
 		kind: "appendix",
 		title: "Standards Map",
+		aliases: ["Course Foundations"],
 		curriculum: [
 			{
 				title: expansionTitle(courseLabel, "Reference Guide"),
+				aliases: [expansionTitle(courseLabel, "Source Map")],
 				content: [
 					`**Reference map:** ${courseLabel} uses these standards, documentation, and tooling references to keep examples, projects, and expectations aligned with current practice.`,
 					`**Core references:**\n${sourceBullets(profile.sources)}`,
@@ -472,6 +474,10 @@ function buildStandardsModule(
 		supplementalProjects: [
 			{
 				title: `${courseLabel} Prerequisite Check`,
+				aliases: [
+					`${courseLabel} Standards Checkpoint`,
+					`${courseLabel} Readiness Check`
+				],
 				content: [
 					`**Prerequisite check:** Deeper ${courseLabel} work relies on clear prerequisite skills, target references, and first observable success criteria.`,
 					`**Course check:** ${courseLabel} separates prerequisite knowledge, required content, optional enrichment, and reference-only material. Each major skill connects to a project or assessment that shows the skill can be used independently.`,
@@ -480,6 +486,11 @@ function buildStandardsModule(
 			},
 			{
 				title: expansionTitle(courseLabel, "Pathway Map"),
+				aliases: [
+					expansionTitle(courseLabel, "Sequence Map"),
+					expansionTitle(courseLabel, "Learning Sequence"),
+					`${courseLabel} Learning Sequence`
+				],
 				content: [
 					`**Pathway map:** The ${courseLabel} pathway organizes prerequisite skills, core concepts, project practice, assessments, enrichment, and reference material in dependency order.`,
 					`**Ordering rule:** ${courseLabel} pathway decisions are based on dependency, not convenience. If any ${courseLabel} project expects a skill that has not appeared in a worked example or smaller practice task, a bridge item belongs before that project.`,
@@ -497,9 +508,14 @@ function buildSequencingModule(
 	return {
 		kind: "appendix",
 		title: "Course Roadmap",
+		aliases: ["Course Next Steps"],
 		curriculum: [
 			{
 				title: `${courseLabel} Follow-Up Path`,
+				aliases: [
+					`${courseLabel} Module Options`,
+					`${courseLabel} Next Module Ideas`
+				],
 				content: [
 					`**Extension path:** These ${profile.family} topics show natural directions after the ${courseLabel} core sequence. The ${courseLabel} order follows prerequisite dependency so each extension builds on skills already practiced.`,
 					`**Possible next topics:**\n${bullets(profile.moduleAdditions)}`,
@@ -509,6 +525,7 @@ function buildSequencingModule(
 			},
 			{
 				title: `${courseLabel} Resource Map`,
+				aliases: [`${courseLabel} Resources`],
 				content: [
 					`**Resource map:** ${courseLabel} materials identify the code, datasets, simulations, version choices, and references used in the course.`,
 					`**Materials and tools:**\n${bullets(profile.materials)}`,
@@ -520,6 +537,7 @@ function buildSequencingModule(
 			},
 			{
 				title: `${courseLabel} Module Alignment Guide`,
+				aliases: [`${courseLabel} Readiness Checklist`],
 				content: [
 					`**Alignment guide:** Strong ${courseLabel} modules connect the concept, example, project, and checkpoint to the same module outcome.`,
 					`**Alignment test:** In a complete ${courseLabel} module, the concept, project, and checkpoint all practice the same skill. If the checkpoint for ${courseLabel} checks a different skill than the project practices, the module needs a clearer project target before it is ready.`,
@@ -528,6 +546,10 @@ function buildSequencingModule(
 			},
 			{
 				title: `${courseLabel} Reference Map`,
+				aliases: [
+					`${courseLabel} Reference Refresh`,
+					`${courseLabel} Resource Updates`
+				],
 				content: [
 					`**Reference map:** ${courseLabel} references are most useful when their role is clear: concept explanation, starter code, dataset, simulation, exam standard, official documentation, or optional background.`,
 					`**Version note:** Stable ${courseLabel} concepts can use long-lived references, while tool versions, code repositories, exam links, data licenses, and simulation URLs need clear version or access notes.`,
@@ -538,6 +560,7 @@ function buildSequencingModule(
 		supplementalProjects: [
 			{
 				title: `${courseLabel} Prerequisite Map`,
+				aliases: [`${courseLabel} Dependency Graph`],
 				content: [
 					`**Map purpose:** The ${courseLabel} prerequisite map shows which modules unlock later projects and which topics work as optional enrichment.`,
 					`**Map reading:** Each ${courseLabel} node is a concrete skill or module, not a broad course label. Each dependency edge in ${courseLabel} explains the prerequisite in plain language, such as "requires arrays before 2D grids" or "requires variables before simulation state."`,
@@ -546,6 +569,10 @@ function buildSequencingModule(
 			},
 			{
 				title: `${courseLabel} Resource Inventory`,
+				aliases: [
+					`${courseLabel} Materials Readiness`,
+					`${courseLabel} Resource Checklist`
+				],
 				content: [
 					`**Inventory purpose:** The ${courseLabel} resource inventory identifies source code, starter/reference files, datasets, simulations, diagrams, rubrics, and tool versions used by the course.`,
 					`**Inventory reading:** A missing resource in ${courseLabel} is not automatically a blocker, but it needs a clear classification: required, replaceable, provided, created during the course, optional enrichment, or reference-only. That classification prevents unlisted materials from becoming required by accident.`,

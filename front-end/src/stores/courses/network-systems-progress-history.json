@@ -1,0 +1,192 @@
+{
+	"network-systems": {
+		"network-systems-ns0-setup-and-tooling-supplemental-network-systems-setup-transfer-practice": [
+			"network-systems-ns0-setup-and-tooling-supplemental-transfer-practice-network-systems",
+			"network-systems-ns0-setup-and-tooling-supplemental-setup-and-tooling-transfer-practice"
+		],
+		"network-systems-ns0-setup-and-tooling-supplemental-network-systems-setup-extension-practice": [
+			"network-systems-ns0-setup-and-tooling-supplemental-extension-practice-network-systems",
+			"network-systems-ns0-setup-and-tooling-supplemental-setup-and-tooling-extension-practice"
+		],
+		"network-systems-unit-1-the-network-stack-in-plain-english-supplemental-network-stack-transfer-practice": [
+			"network-systems-unit-1-the-network-stack-in-plain-english-supplemental-transfer-practice-the-network-stack-in-plain-english",
+			"network-systems-unit-1-the-network-stack-in-plain-english-supplemental-network-stack-transfer-practice"
+		],
+		"network-systems-unit-1-the-network-stack-in-plain-english-supplemental-network-stack-extension-practice": [
+			"network-systems-unit-1-the-network-stack-in-plain-english-supplemental-extension-practice-the-network-stack-in-plain-english",
+			"network-systems-unit-1-the-network-stack-in-plain-english-supplemental-network-stack-extension-practice"
+		],
+		"network-systems-unit-2-addresses-and-naming-supplemental-addressing-transfer-practice": [
+			"network-systems-unit-2-addresses-and-naming-supplemental-transfer-practice-addresses-and-naming",
+			"network-systems-unit-2-addresses-and-naming-supplemental-addressing-transfer-practice"
+		],
+		"network-systems-unit-2-addresses-and-naming-supplemental-addressing-extension-practice": [
+			"network-systems-unit-2-addresses-and-naming-supplemental-extension-practice-addresses-and-naming",
+			"network-systems-unit-2-addresses-and-naming-supplemental-addressing-extension-practice"
+		],
+		"network-systems-unit-3-switches-routers-nat-and-the-internet-edge-supplemental-routing-edge-transfer-practice": [
+			"network-systems-unit-3-switches-routers-nat-and-the-internet-edge-supplemental-transfer-practice-switches-routers-nat-and-the-internet-edge",
+			"network-systems-unit-3-switches-routers-nat-and-the-internet-edge-supplemental-routing-edge-transfer-practice"
+		],
+		"network-systems-unit-3-switches-routers-nat-and-the-internet-edge-supplemental-routing-edge-extension-practice": [
+			"network-systems-unit-3-switches-routers-nat-and-the-internet-edge-supplemental-extension-practice-switches-routers-nat-and-the-internet-edge",
+			"network-systems-unit-3-switches-routers-nat-and-the-internet-edge-supplemental-routing-edge-extension-practice"
+		],
+		"network-systems-unit-4-ports-and-listening-services-supplemental-port-inventory-transfer-practice": [
+			"network-systems-unit-4-ports-and-listening-services-supplemental-transfer-practice-ports-and-listening-services",
+			"network-systems-unit-4-ports-and-listening-services-supplemental-port-inventory-transfer-practice"
+		],
+		"network-systems-unit-4-ports-and-listening-services-supplemental-port-inventory-extension-practice": [
+			"network-systems-unit-4-ports-and-listening-services-supplemental-extension-practice-ports-and-listening-services",
+			"network-systems-unit-4-ports-and-listening-services-supplemental-port-inventory-extension-practice"
+		],
+		"network-systems-unit-5-dns-and-name-resolution-supplemental-dns-resolution-transfer-practice": [
+			"network-systems-unit-5-dns-and-name-resolution-supplemental-transfer-practice-dns-and-name-resolution",
+			"network-systems-unit-5-dns-and-name-resolution-supplemental-dns-resolution-transfer-practice"
+		],
+		"network-systems-unit-5-dns-and-name-resolution-supplemental-dns-resolution-extension-practice": [
+			"network-systems-unit-5-dns-and-name-resolution-supplemental-extension-practice-dns-and-name-resolution",
+			"network-systems-unit-5-dns-and-name-resolution-supplemental-dns-resolution-extension-practice"
+		],
+		"network-systems-unit-6-core-diagnostics-supplemental-diagnostic-trace-transfer-practice": [
+			"network-systems-unit-6-core-diagnostics-supplemental-transfer-practice-core-diagnostics",
+			"network-systems-unit-6-core-diagnostics-supplemental-diagnostic-trace-transfer-practice"
+		],
+		"network-systems-unit-6-core-diagnostics-supplemental-diagnostic-trace-extension-practice": [
+			"network-systems-unit-6-core-diagnostics-supplemental-extension-practice-core-diagnostics",
+			"network-systems-unit-6-core-diagnostics-supplemental-diagnostic-trace-extension-practice"
+		],
+		"network-systems-unit-7-linux-interface-and-route-management-supplemental-linux-interface-transfer-practice": [
+			"network-systems-unit-7-linux-interface-and-route-management-supplemental-transfer-practice-linux-interface-and-route-management",
+			"network-systems-unit-7-linux-interface-and-route-management-supplemental-linux-interface-transfer-practice"
+		],
+		"network-systems-unit-7-linux-interface-and-route-management-supplemental-linux-interface-extension-practice": [
+			"network-systems-unit-7-linux-interface-and-route-management-supplemental-extension-practice-linux-interface-and-route-management",
+			"network-systems-unit-7-linux-interface-and-route-management-supplemental-linux-interface-extension-practice"
+		],
+		"network-systems-unit-9-firewalls-and-host-policy-supplemental-firewall-policy-transfer-practice": [
+			"network-systems-unit-9-firewalls-and-host-policy-supplemental-transfer-practice-firewalls-and-host-policy",
+			"network-systems-unit-9-firewalls-and-host-policy-supplemental-firewall-policy-transfer-practice"
+		],
+		"network-systems-unit-9-firewalls-and-host-policy-supplemental-firewall-policy-extension-practice": [
+			"network-systems-unit-9-firewalls-and-host-policy-supplemental-extension-practice-firewalls-and-host-policy",
+			"network-systems-unit-9-firewalls-and-host-policy-supplemental-firewall-policy-extension-practice"
+		],
+		"network-systems-unit-10-packet-capture-and-deep-inspection-supplemental-packet-capture-transfer-practice": [
+			"network-systems-unit-10-packet-capture-and-deep-inspection-supplemental-transfer-practice-packet-capture-and-deep-inspection",
+			"network-systems-unit-10-packet-capture-and-deep-inspection-supplemental-packet-capture-transfer-practice"
+		],
+		"network-systems-unit-10-packet-capture-and-deep-inspection-supplemental-packet-capture-extension-practice": [
+			"network-systems-unit-10-packet-capture-and-deep-inspection-supplemental-extension-practice-packet-capture-and-deep-inspection",
+			"network-systems-unit-10-packet-capture-and-deep-inspection-supplemental-packet-capture-extension-practice"
+		],
+		"network-systems-unit-11-common-application-protocols-supplemental-application-protocol-transfer-practice": [
+			"network-systems-unit-11-common-application-protocols-supplemental-transfer-practice-common-application-protocols",
+			"network-systems-unit-11-common-application-protocols-supplemental-application-protocol-transfer-practice"
+		],
+		"network-systems-unit-11-common-application-protocols-supplemental-application-protocol-extension-practice": [
+			"network-systems-unit-11-common-application-protocols-supplemental-extension-practice-common-application-protocols",
+			"network-systems-unit-11-common-application-protocols-supplemental-application-protocol-extension-practice"
+		],
+		"network-systems-unit-12-secure-exposure-of-services-supplemental-secure-exposure-transfer-practice": [
+			"network-systems-unit-12-secure-exposure-of-services-supplemental-transfer-practice-secure-exposure-of-services",
+			"network-systems-unit-12-secure-exposure-of-services-supplemental-secure-exposure-transfer-practice"
+		],
+		"network-systems-unit-12-secure-exposure-of-services-supplemental-secure-exposure-extension-practice": [
+			"network-systems-unit-12-secure-exposure-of-services-supplemental-extension-practice-secure-exposure-of-services",
+			"network-systems-unit-12-secure-exposure-of-services-supplemental-secure-exposure-extension-practice"
+		],
+		"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-next-steps-transfer-practice": [
+			"network-systems-ns13-expansion-ideas-and-next-steps-supplemental-transfer-practice-expansion-ideas-and-next-steps",
+			"network-systems-ns13-expansion-ideas-and-next-steps-supplemental-next-steps-transfer-practice"
+		],
+		"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-next-steps-extension-practice": [
+			"network-systems-ns13-expansion-ideas-and-next-steps-supplemental-extension-practice-expansion-ideas-and-next-steps",
+			"network-systems-ns13-expansion-ideas-and-next-steps-supplemental-next-steps-extension-practice"
+		],
+		"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-diagnostic-workflow-studio-core-concepts": [
+			"network-systems-network-systems-lab-15-curriculum-network-systems-lab-15-core-concepts",
+			"network-systems-network-systems-lab-15-diagnostic-workflow-studio-curriculum-diagnostic-workflow-studio-core-concepts"
+		],
+		"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-diagnostic-workflow-studio-guided-example": [
+			"network-systems-network-systems-lab-15-curriculum-network-systems-lab-15-guided-example",
+			"network-systems-network-systems-lab-15-diagnostic-workflow-studio-curriculum-diagnostic-workflow-studio-guided-example"
+		],
+		"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-core-project-diagnostic-workflow-studio": [
+			"network-systems-network-systems-lab-15-curriculum-core-project-network-systems-lab-15",
+			"network-systems-network-systems-lab-15-diagnostic-workflow-studio-curriculum-core-project-diagnostic-workflow-studio"
+		],
+		"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-diagnostic-workflow-studio-review": [
+			"network-systems-network-systems-lab-15-curriculum-review-network-systems-lab-15",
+			"network-systems-network-systems-lab-15-diagnostic-workflow-studio-curriculum-diagnostic-workflow-studio-review"
+		],
+		"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-extension-challenge-diagnostic-workflow-studio": [
+			"network-systems-network-systems-lab-15-supplemental-extension-challenge-network-systems-lab-15",
+			"network-systems-network-systems-lab-15-diagnostic-workflow-studio-supplemental-extension-challenge-diagnostic-workflow-studio"
+		],
+		"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-diagnostic-workflow-transfer-practice": [
+			"network-systems-network-systems-lab-15-supplemental-transfer-practice-network-systems-lab-15",
+			"network-systems-network-systems-lab-15-diagnostic-workflow-studio-supplemental-diagnostic-workflow-transfer-practice"
+		],
+		"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-diagnostic-workflow-extension-practice": [
+			"network-systems-network-systems-lab-15-supplemental-extension-practice-network-systems-lab-15",
+			"network-systems-network-systems-lab-15-diagnostic-workflow-studio-supplemental-diagnostic-workflow-extension-practice"
+		],
+		"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-service-exposure-studio-core-concepts": [
+			"network-systems-network-systems-lab-16-curriculum-network-systems-lab-16-core-concepts",
+			"network-systems-network-systems-lab-16-service-exposure-studio-curriculum-service-exposure-studio-core-concepts"
+		],
+		"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-service-exposure-studio-guided-example": [
+			"network-systems-network-systems-lab-16-curriculum-network-systems-lab-16-guided-example",
+			"network-systems-network-systems-lab-16-service-exposure-studio-curriculum-service-exposure-studio-guided-example"
+		],
+		"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-core-project-service-exposure-studio": [
+			"network-systems-network-systems-lab-16-curriculum-core-project-network-systems-lab-16",
+			"network-systems-network-systems-lab-16-service-exposure-studio-curriculum-core-project-service-exposure-studio"
+		],
+		"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-service-exposure-studio-review": [
+			"network-systems-network-systems-lab-16-curriculum-review-network-systems-lab-16",
+			"network-systems-network-systems-lab-16-service-exposure-studio-curriculum-service-exposure-studio-review"
+		],
+		"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-extension-challenge-service-exposure-studio": [
+			"network-systems-network-systems-lab-16-supplemental-extension-challenge-network-systems-lab-16",
+			"network-systems-network-systems-lab-16-service-exposure-studio-supplemental-extension-challenge-service-exposure-studio"
+		],
+		"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-service-exposure-transfer-practice": [
+			"network-systems-network-systems-lab-16-supplemental-transfer-practice-network-systems-lab-16",
+			"network-systems-network-systems-lab-16-service-exposure-studio-supplemental-service-exposure-transfer-practice"
+		],
+		"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-service-exposure-extension-practice": [
+			"network-systems-network-systems-lab-16-supplemental-extension-practice-network-systems-lab-16",
+			"network-systems-network-systems-lab-16-service-exposure-studio-supplemental-service-exposure-extension-practice"
+		],
+		"network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-core-concepts": [
+			"network-systems-network-systems-lab-17-curriculum-network-systems-lab-17-core-concepts",
+			"network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-core-concepts"
+		],
+		"network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-guided-example": [
+			"network-systems-network-systems-lab-17-curriculum-network-systems-lab-17-guided-example",
+			"network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-guided-example"
+		],
+		"network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-core-project-operations-capstone-studio": [
+			"network-systems-network-systems-lab-17-curriculum-core-project-network-systems-lab-17",
+			"network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-core-project-operations-capstone-studio"
+		],
+		"network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-review": [
+			"network-systems-network-systems-lab-17-curriculum-review-network-systems-lab-17",
+			"network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-review"
+		],
+		"network-systems-network-systems-lab-17-operations-capstone-studio-supplemental-extension-challenge-operations-capstone-studio": [
+			"network-systems-network-systems-lab-17-supplemental-extension-challenge-network-systems-lab-17",
+			"network-systems-network-systems-lab-17-operations-capstone-studio-supplemental-extension-challenge-operations-capstone-studio"
+		],
+		"network-systems-network-systems-lab-17-operations-capstone-studio-supplemental-operations-capstone-transfer-practice": [
+			"network-systems-network-systems-lab-17-supplemental-transfer-practice-network-systems-lab-17",
+			"network-systems-network-systems-lab-17-operations-capstone-studio-supplemental-operations-capstone-transfer-practice"
+		],
+		"network-systems-network-systems-lab-17-operations-capstone-studio-supplemental-operations-capstone-extension-practice": [
+			"network-systems-network-systems-lab-17-supplemental-extension-practice-network-systems-lab-17",
+			"network-systems-network-systems-lab-17-operations-capstone-studio-supplemental-operations-capstone-extension-practice"
+		]
+	}
+}

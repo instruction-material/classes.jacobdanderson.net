@@ -156,6 +156,7 @@ const javaLevel1SourceCourse: RawCourse = {
 	modules: [
 		{
 			title: "J1A Visual Java Launch: Karel Robot Worlds",
+			aliases: ["J1A Visual Java Launch: Carol/Karel Robot Worlds"],
 			curriculum: [
 				{
 					title: "Course Launch: Start Java Visually",
@@ -258,6 +259,7 @@ const javaLevel1SourceCourse: RawCourse = {
 		},
 		{
 			title: "J1C Text Bridge: Variables, Strings, and Input",
+			aliases: ["JS1 Variable Types & Input/Output"],
 			curriculum: [
 				{
 					title: "Introductions and Java Setup",
@@ -341,6 +343,7 @@ const javaLevel1SourceCourse: RawCourse = {
 		},
 		{
 			title: "J1D Text Bridge: Casting, Operators, and Coordinate Reasoning",
+			aliases: ["JS2 Casting and Operators"],
 			curriculum: [
 				{
 					title: "Casting",
@@ -424,6 +427,7 @@ const javaLevel1SourceCourse: RawCourse = {
 		},
 		{
 			title: "J1E Branching Logic: Console Choices and Visual Decisions",
+			aliases: ["JS3 Conditionals"],
 			curriculum: [
 				{
 					title: "Conditionals",
@@ -507,6 +511,7 @@ const javaLevel1SourceCourse: RawCourse = {
 		},
 		{
 			title: "J1F Repetition: Console Patterns and Grid Moves",
+			aliases: ["JS4 Loops"],
 			curriculum: [
 				{
 					title: "For Loops",
@@ -578,6 +583,7 @@ const javaLevel1SourceCourse: RawCourse = {
 		},
 		{
 			title: "J1G Loops, Conditionals, and Randomized Games",
+			aliases: ["JS5 Practice with Loops & Conditionals"],
 			curriculum: [
 				{
 					title: "Random Numbers and Letters",
@@ -655,6 +661,7 @@ const javaLevel1SourceCourse: RawCourse = {
 		},
 		{
 			title: "J1H Check-In: Visual-to-Text Foundations",
+			aliases: ["Check-In #1"],
 			curriculum: [
 				{
 					title: "Check-In #1 Overview",
@@ -735,6 +742,7 @@ const javaLevel1SourceCourse: RawCourse = {
 		},
 		{
 			title: "J1I Methods: Helpers, Parameters, and Reuse",
+			aliases: ["JS6 Methods"],
 			curriculum: [
 				{
 					title: "Methods",
@@ -817,6 +825,7 @@ const javaLevel1SourceCourse: RawCourse = {
 		},
 		{
 			title: "J1J Lists of State: Arrays and ArrayLists",
+			aliases: ["JS7 Arrays and ArrayLists"],
 			curriculum: [
 				{
 					title: "Arrays",
@@ -924,6 +933,7 @@ const javaLevel1SourceCourse: RawCourse = {
 		},
 		{
 			title: "J1K Grid Data: Two-Dimensional Arrays",
+			aliases: ["JS8 Two-Dimensional Arrays"],
 			curriculum: [
 				{
 					title: "Two-Dimensional Arrays",
@@ -989,6 +999,7 @@ const javaLevel1SourceCourse: RawCourse = {
 		},
 		{
 			title: "J1L Check-In: Methods and Data Structures",
+			aliases: ["Check-In #2"],
 			curriculum: [
 				{
 					title: "Check-In #2 Overview",
@@ -1066,6 +1077,7 @@ const javaLevel1SourceCourse: RawCourse = {
 		},
 		{
 			title: "J1M Master Project: Battleship Grid Game",
+			aliases: ["JS9 Master Project: Battleship"],
 			curriculum: [
 				{
 					title: "JS9 Master Project: Simple Battleship",

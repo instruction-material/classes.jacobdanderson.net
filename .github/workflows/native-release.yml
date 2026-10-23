@@ -3,6 +3,7 @@ name: Native release
 on:
     push:
         tags: [v2.*.*]
+    workflow_dispatch: {}
 
 permissions:
     contents: read
@@ -13,7 +14,7 @@ concurrency:
 
 jobs:
     build:
-        if: github.repository == 'instruction-material/classes.jacobdanderson.net'
+        if: github.repository == 'instruction-material/classes.jacobdanderson.net' && startsWith(github.ref, 'refs/tags/v2.')
         runs-on: ubuntu-24.04-arm
         timeout-minutes: 45
         steps:
@@ -31,12 +32,23 @@ jobs:
                   RELEASE_TAG: ${{ github.ref_name }}
               run: |
                   test "$(uname -m)" = aarch64
+                  npm run test:native-deployment
                   mkdir -p "$RUNNER_TEMP/native/releases/.candidates" "$RUNNER_TEMP/publish"
                   bash scripts/prepare-native-release.sh --source "$GITHUB_WORKSPACE" --release-root "$RUNNER_TEMP/native" --tag "$RELEASE_TAG"
                   candidate="$RUNNER_TEMP/native/releases/.candidates/$RELEASE_TAG-$GITHUB_SHA"
                   node scripts/verify-native-release.mjs "$candidate"
-                  tar -czf "$RUNNER_TEMP/publish/classes-native-linux-arm64.tar.gz" -C "$candidate" .
+                  tar --hard-dereference -czf "$RUNNER_TEMP/publish/classes-native-linux-arm64.tar.gz" -C "$candidate" .
                   cp "$candidate/.classes-native-release.json" "$RUNNER_TEMP/publish/classes-native-linux-arm64.manifest.json"
+                  extracted="$RUNNER_TEMP/native-release-validation"
+                  mkdir -p "$extracted"
+                  tar -xzf "$RUNNER_TEMP/publish/classes-native-linux-arm64.tar.gz" -C "$extracted"
+                  test -z "$(find "$extracted" -type f -links +1 -print -quit)"
+                  node scripts/verify-native-release.mjs "$extracted"
+                  cmp "$extracted/.classes-native-release.json" "$RUNNER_TEMP/publish/classes-native-linux-arm64.manifest.json"
+                  snapshot="$RUNNER_TEMP/native-release-snapshot"
+                  python3 -B test/verify-native-archive-snapshot.py "$extracted" "$snapshot"
+                  node scripts/verify-native-release.mjs "$snapshot"
+                  cmp "$snapshot/.classes-native-release.json" "$RUNNER_TEMP/publish/classes-native-linux-arm64.manifest.json"
             - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
               with:
                   name: native-release

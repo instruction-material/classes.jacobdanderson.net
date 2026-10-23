@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import type { LearnerCourseProgressController } from "@/composables/useLearnerCourseProgress";
-import type { CourseModuleItem } from "@/stores/courses";
+import type { CourseModule, CourseModuleItem } from "@/stores/courses";
 import { computed } from "vue";
+import HistoricalCourseProgress from "@/components/HistoricalCourseProgress.vue";
 import WorkspaceDisclosure from "@/components/WorkspaceDisclosure.vue";
 
 const props = defineProps<{
@@ -26,6 +27,9 @@ const selectedCourseId = computed(() =>
 const selectedCourse = computed(() =>
 	props.progress.progressCourseForUser(props.userId)
 );
+const unassignedProgress = computed(() =>
+	props.progress.unassignedProgressForUser(props.userId)
+);
 const isLoading = computed(() =>
 	props.progress.isProgressCourseLoading(props.userId)
 );
@@ -39,11 +43,11 @@ function loadCourse() {
 	void props.progress.loadSelectedProgressCourse(props.userId);
 }
 
-function isModuleComplete(moduleId: string) {
+function isModuleComplete(module: CourseModule) {
 	return props.progress.isModuleComplete(
 		props.userId,
 		selectedCourseId.value,
-		moduleId
+		module
 	);
 }
 
@@ -55,12 +59,12 @@ function isItemComplete(item: CourseModuleItem) {
 	);
 }
 
-function toggleModule(moduleId: string, event: Event) {
+function toggleModule(module: CourseModule, event: Event) {
 	const target = event.target as HTMLInputElement;
 	props.progress.toggleModule(
 		props.userId,
 		selectedCourseId.value,
-		moduleId,
+		module,
 		target.checked
 	);
 }
@@ -130,10 +134,10 @@ function toggleItem(item: CourseModuleItem, event: Event) {
 					</template>
 					<label class="progress-check is-module">
 						<input
-							:checked="isModuleComplete(module.id)"
+							:checked="isModuleComplete(module)"
 							type="checkbox"
 							:aria-label="`Mark module ${module.title} complete`"
-							@change="toggleModule(module.id, $event)"
+							@change="toggleModule(module, $event)"
 						/>
 						<span>Module complete</span>
 					</label>
@@ -157,6 +161,25 @@ function toggleItem(item: CourseModuleItem, event: Event) {
 					</div>
 				</WorkspaceDisclosure>
 			</div>
+			<HistoricalCourseProgress
+				v-if="selectedCourse"
+				:key="selectedCourseId"
+				:course="selectedCourse"
+				:progress="progress.progressForUser(userId, selectedCourseId)"
+				editable
+				@remove="
+					progress.removeHistoricalProgress(
+						userId,
+						selectedCourseId,
+						$event
+					)
+				"
+			/>
+			<HistoricalCourseProgress
+				v-else-if="!isLoading && selectedCourseId"
+				:course="null"
+				:progress="progress.progressForUser(userId, selectedCourseId)"
+			/>
 
 			<div class="progress-actions">
 				<button
@@ -175,6 +198,13 @@ function toggleItem(item: CourseModuleItem, event: Event) {
 				</button>
 			</div>
 		</template>
+		<section v-if="unassignedProgress.length" class="progress-archive">
+			<p class="progress-title">Earlier course progress</p>
+			<div v-for="saved in unassignedProgress" :key="saved.courseId">
+				<code>{{ saved.courseId }}</code>
+				<HistoricalCourseProgress :course="null" :progress="saved" />
+			</div>
+		</section>
 	</section>
 </template>
 

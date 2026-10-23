@@ -1426,16 +1426,18 @@ describe("CourseExplorer.vue", () => {
 		const appStore = useAppStore();
 		const coursesStore = useCoursesStore();
 		const assignedCourse = coursesStore.courses[0];
+		const legacyModuleId = `${assignedCourse.id}-legacy-module-id`;
+		const legacyItemId = `${assignedCourse.id}-legacy-item-id`;
 
 		vi.spyOn(coursesStore, "loadCourseById").mockResolvedValueOnce({
 			id: assignedCourse.id,
 			name: assignedCourse.name,
 			modules: [
 				{
-					aliases: ["legacy-module-id"],
+					aliases: [legacyModuleId],
 					curriculum: [
 						{
-							aliases: ["legacy-item-id"],
+							aliases: [legacyItemId],
 							content: "Read the starter and explain the result.",
 							id: "stable-item-id",
 							title: "Stable Lesson"
@@ -1458,8 +1460,8 @@ describe("CourseExplorer.vue", () => {
 			courseProgress: [
 				{
 					courseId: assignedCourse.id,
-					completedModuleIds: ["legacy-module-id"],
-					completedItemIds: ["legacy-item-id"]
+					completedModuleIds: [legacyModuleId],
+					completedItemIds: [legacyItemId]
 				}
 			],
 			editUsers: false,
@@ -1478,6 +1480,22 @@ describe("CourseExplorer.vue", () => {
 		});
 		expect(wrapper.find(".course-stats").exists()).toBe(false);
 		expect(wrapper.text()).toContain("Complete");
+
+		appStore.setCurrentUser({
+			...appStore.currentUser!,
+			courseProgress: [
+				{
+					courseId: assignedCourse.id,
+					completedModuleIds: ["legacy-module-id"],
+					completedItemIds: ["legacy-item-id"]
+				}
+			]
+		});
+		await nextTick();
+		expect(wrapper.find(".complete-pill").exists()).toBe(false);
+		expect(wrapper.get(".historical-progress").text()).toContain(
+			"Earlier completions (2)"
+		);
 	});
 
 	it("groups learner course dropdown options by current, past, and available status", async () => {
@@ -1697,6 +1715,73 @@ describe("CourseExplorer.vue", () => {
 		).toContain(assignedCourse.name);
 	});
 
+	it("does not grant a tutor another tutor's learner course or its solutions", async () => {
+		const pinia = createPinia();
+		setActivePinia(pinia);
+
+		const appStore = useAppStore();
+		appStore.setCurrentTutor({
+			_id: "tutor-1",
+			name: "Tutor",
+			email: "tutor@example.com",
+			age: 30,
+			state: "GA",
+			usersOfTutorLength: 1,
+			coursePermissions: ["scratch-level-1"],
+			editTutors: false,
+			saveEdit: "Save"
+		});
+		vi.mocked(api.get).mockResolvedValue({
+			data: [
+				{
+					_id: "learner-1",
+					name: "Learner",
+					email: "learner@example.com",
+					age: 12,
+					state: "GA",
+					courseAccess: ["ap-computer-science-a"],
+					courseProgress: [],
+					editUsers: false,
+					saveEdit: "Save"
+				}
+			]
+		});
+
+		const assignedView = mount(CourseExplorer, {
+			global: { plugins: [pinia] }
+		});
+		try {
+			await flushPromises();
+			expect(
+				assignedView
+					.findAll("#course-select option")
+					.map(option => option.element.value)
+			).not.toContain("ap-computer-science-a");
+		} finally {
+			assignedView.unmount();
+		}
+
+		const catalogView = mount(CourseExplorer, {
+			props: { browseAll: true },
+			global: { plugins: [pinia] }
+		});
+		try {
+			await flushPromises();
+			await catalogView
+				.get("#course-select")
+				.setValue("ap-computer-science-a");
+			await vi.waitFor(() =>
+				expect(
+					catalogView.findAll(".lesson-item").length
+				).toBeGreaterThan(0)
+			);
+			expect(catalogView.html()).not.toContain("APCS1-Mad-Libs/solution");
+			expect(catalogView.findAll(".progress-toggle")).toHaveLength(0);
+		} finally {
+			catalogView.unmount();
+		}
+	});
+
 	it("keeps progress controls hidden while learner course context realigns", async () => {
 		const pinia = createPinia();
 		setActivePinia(pinia);
@@ -1864,6 +1949,75 @@ describe("CourseExplorer.vue", () => {
 			}
 		);
 		expect(wrapper.text()).toContain("Saved");
+	});
+
+	it("lets staff remove one retired completion without changing current progress", async () => {
+		vi.useFakeTimers();
+		const pinia = createPinia();
+		setActivePinia(pinia);
+		const appStore = useAppStore();
+		const coursesStore = useCoursesStore();
+		const assignedCourse = coursesStore.courses[0];
+		const course = await coursesStore.loadCourseById(assignedCourse.id);
+		const currentItemId = course?.modules[0]?.curriculum[0]?.id;
+		if (!currentItemId) throw new Error("Expected test course item.");
+		const retiredItemId = `${assignedCourse.id}-retired-item`;
+
+		appStore.setCurrentTutor({
+			_id: "tutor-1",
+			name: "Tutor",
+			email: "tutor@example.com",
+			age: 30,
+			state: "GA",
+			usersOfTutorLength: 1,
+			coursePermissions: [assignedCourse.id],
+			editTutors: false,
+			saveEdit: "Save"
+		});
+		vi.mocked(api.get).mockResolvedValueOnce({
+			data: [
+				{
+					_id: "learner-1",
+					name: "Learner",
+					email: "learner@example.com",
+					age: 12,
+					state: "GA",
+					courseAccess: [assignedCourse.id],
+					courseProgress: [
+						{
+							courseId: assignedCourse.id,
+							completedModuleIds: [],
+							completedItemIds: [currentItemId, retiredItemId]
+						}
+					],
+					editUsers: false,
+					saveEdit: "Save"
+				}
+			]
+		});
+		vi.mocked(api.put).mockResolvedValueOnce({ data: {} });
+		const wrapper = mount(CourseExplorer, {
+			global: { plugins: [pinia] }
+		});
+		await flushPromises();
+
+		const history = wrapper.get(".historical-progress");
+		expect(history.text()).toContain(retiredItemId);
+		expect(history.text()).not.toContain(currentItemId);
+		await history
+			.get('button[aria-label^="Remove earlier"]')
+			.trigger("click");
+		await vi.advanceTimersByTimeAsync(701);
+		await flushPromises();
+		expect(api.put).toHaveBeenCalledWith(
+			"/users/learner-1/course-progress",
+			{
+				courseId: assignedCourse.id,
+				completedModuleIds: [],
+				completedItemIds: [currentItemId]
+			}
+		);
+		expect(wrapper.find(".historical-progress").exists()).toBe(false);
 	});
 
 	it("keeps learner progress changes queued while a save is in flight", async () => {

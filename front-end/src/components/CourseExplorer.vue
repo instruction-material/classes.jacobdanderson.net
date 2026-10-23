@@ -3,6 +3,7 @@ import type { CodePreviewResource } from "@/modules/codePreview";
 import type { CourseCodeLearner } from "@/modules/courseAccessCodes";
 import type { CourseAssetResource } from "@/modules/courseAssetPreview";
 import type { LessonView } from "@/modules/courseLessonPresentation";
+import type { HistoricalProgressEntry } from "@/modules/courseProgressHistory";
 import type { CourseProgress, User } from "@/stores/app";
 import type {
 	CourseDefinition,
@@ -33,6 +34,7 @@ import {
 	isLessonLearningItem,
 	lessonContentSections
 } from "@/modules/courseLessonPresentation";
+import { unmatchedCourseProgress } from "@/modules/courseProgressHistory";
 import { linuxCourseProjectKey } from "@/modules/linuxProjectResources";
 import { fetchManagedLearners } from "@/modules/managedLearners";
 import { networkCourseProjectKey } from "@/modules/networkProjectResources";
@@ -50,6 +52,10 @@ import {
 	isScratchProjectUrl
 } from "@/modules/resourceUrls";
 import { rustCourseProjectKey } from "@/modules/rustProjectResources";
+import {
+	swiftCourseProjectKey,
+	swiftCourseResourceUrl
+} from "@/modules/swiftProjectResources";
 import { bronzeRequiredProjectKey } from "@/modules/usacoBronzeRequiredPacks";
 import { goldHistoricalProjectKey } from "@/modules/usacoHistoricalPacks";
 import { silverJavaProjectKey } from "@/modules/usacoSilverJavaPacks";
@@ -69,6 +75,7 @@ import {
 import CodePreview from "./CodePreview.vue";
 import CourseAssetPreview from "./CourseAssetPreview.vue";
 import CourseAssignmentContent from "./CourseAssignmentContent.vue";
+import HistoricalCourseProgress from "./HistoricalCourseProgress.vue";
 import LazyMarkdownContent from "./LazyMarkdownContent.vue";
 
 const props = withDefaults(
@@ -190,9 +197,15 @@ let pendingProgressSave: {
 
 const allCourses = computed(() => courses.value ?? []);
 
-const canViewSolutions = computed(
-	() => !!currentTutor.value || !!currentAdmin.value
-);
+const canViewSolutions = computed(() => {
+	if (props.publicCatalog) return false;
+	if (currentAdmin.value) return true;
+	return (
+		currentTutor.value?.coursePermissions?.includes(
+			selectedCourseId.value
+		) ?? false
+	);
+});
 
 const isStaffContext = computed(
 	() => !props.publicCatalog && (!!currentTutor.value || !!currentAdmin.value)
@@ -236,7 +249,12 @@ const permittedCourseIds = computed(() => {
 		if (isAllLearnersContext.value) {
 			return allCourses.value.map(course => course.id);
 		}
-		return selectedLearner.value?.courseAccess ?? [];
+		const learnerCourses = selectedLearner.value?.courseAccess ?? [];
+		if (currentAdmin.value) return learnerCourses;
+		const tutorCourses = new Set(
+			currentTutor.value?.coursePermissions ?? []
+		);
+		return learnerCourses.filter(courseId => tutorCourses.has(courseId));
 	}
 	if (currentTutor.value) return currentTutor.value.coursePermissions ?? [];
 	if (currentUser.value) return currentUser.value.courseAccess ?? [];
@@ -343,6 +361,7 @@ const canEditProgress = computed(() => {
 		!!courseId &&
 		!!course &&
 		course.id === courseId &&
+		permittedCourseIds.value.includes(courseId) &&
 		learnerCanAccessCourse(learner, courseId)
 	);
 });
@@ -547,6 +566,7 @@ watch(
 
 		isCourseLoading.value = true;
 		courseLoadError.value = "";
+		selectedCourse.value = null;
 
 		const course = await coursesStore.loadCourseById(courseId);
 
@@ -941,16 +961,28 @@ function itemMatches(item: CourseModuleItem, query: string) {
 	);
 }
 
-function progressIds(entity: { aliases?: string[]; id: string }) {
-	return [entity.id, ...(entity.aliases ?? [])];
+function progressIds(
+	entity: { aliases?: string[]; id: string },
+	courseId?: string
+) {
+	return [
+		entity.id,
+		...(entity.aliases ?? []).filter(
+			alias => !courseId || alias.startsWith(`${courseId}-`)
+		)
+	];
 }
 
 function isModuleComplete(module: CourseModule) {
-	return progressIds(module).some(id => completedModuleIdSet.value.has(id));
+	return progressIds(module, selectedCourseId.value).some(id =>
+		completedModuleIdSet.value.has(id)
+	);
 }
 
 function isItemComplete(item: CourseModuleItem) {
-	return progressIds(item).some(id => completedItemIdSet.value.has(id));
+	return progressIds(item, selectedCourseId.value).some(id =>
+		completedItemIdSet.value.has(id)
+	);
 }
 
 function selectCourse(id: string) {
@@ -1060,7 +1092,7 @@ function toggleModuleProgress(module: CourseModule, checked: boolean) {
 		completedModuleIds: checked
 			? unique([...progress.completedModuleIds, module.id])
 			: progress.completedModuleIds.filter(
-					id => !progressIds(module).includes(id)
+					id => !progressIds(module, courseId).includes(id)
 				)
 	}));
 }
@@ -1075,8 +1107,39 @@ function toggleItemProgress(item: CourseModuleItem, checked: boolean) {
 		completedItemIds: checked
 			? unique([...progress.completedItemIds, item.id])
 			: progress.completedItemIds.filter(
-					id => !progressIds(item).includes(id)
+					id => !progressIds(item, courseId).includes(id)
 				)
+	}));
+}
+
+function removeHistoricalProgress(entry: HistoricalProgressEntry) {
+	const learner = selectedLearner.value;
+	const courseId = selectedCourseId.value;
+	const course = selectedCourse.value;
+	const progress = selectedCourseProgress.value;
+	if (!canEditProgress.value || !learner || !courseId || !progress) return;
+	if (
+		!unmatchedCourseProgress(course, progress).some(
+			candidate =>
+				candidate.id === entry.id && candidate.kind === entry.kind
+		)
+	) {
+		return;
+	}
+
+	updateProgressDraft(learner._id, courseId, current => ({
+		...current,
+		...(entry.kind === "module"
+			? {
+					completedModuleIds: current.completedModuleIds.filter(
+						id => id !== entry.id
+					)
+				}
+			: {
+					completedItemIds: current.completedItemIds.filter(
+						id => id !== entry.id
+					)
+				})
 	}));
 }
 
@@ -1585,36 +1648,42 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 	if (!mode) return "";
 
 	const starterUrl =
-		mode === "web"
-			? (webCourseResourceUrl(resource.url) ?? resource.url)
-			: resource.url;
+		mode === "swift"
+			? (swiftCourseResourceUrl(resource.url) ?? resource.url)
+			: mode === "web"
+				? (webCourseResourceUrl(resource.url) ?? resource.url)
+				: resource.url;
 	const params = new URLSearchParams({
 		course: selectedCourse.value.id,
 		mode,
-		projectKey: (mode === "web"
-			? webCourseProjectKey
-			: ["pygames", "pygames-classroom"].includes(selectedCourse.value.id)
-				? pyGamesCourseProjectKey
-				: selectedCourse.value.id === "rust-systems-security"
-					? rustCourseProjectKey
-					: selectedCourse.value.id === "network-systems"
-						? networkCourseProjectKey
-						: selectedCourse.value.id === "linux-systems"
-							? linuxCourseProjectKey
-							: selectedCourse.value.id === "assembly"
-								? assemblyCourseProjectKey
-								: selectedCourse.value.id ===
-									  "c-systems-engineering"
-									? c17CourseProjectKey
+		projectKey: (mode === "swift"
+			? swiftCourseProjectKey
+			: mode === "web"
+				? webCourseProjectKey
+				: ["pygames", "pygames-classroom"].includes(
+							selectedCourse.value.id
+					  )
+					? pyGamesCourseProjectKey
+					: selectedCourse.value.id === "rust-systems-security"
+						? rustCourseProjectKey
+						: selectedCourse.value.id === "network-systems"
+							? networkCourseProjectKey
+							: selectedCourse.value.id === "linux-systems"
+								? linuxCourseProjectKey
+								: selectedCourse.value.id === "assembly"
+									? assemblyCourseProjectKey
 									: selectedCourse.value.id ===
-												"usaco-bronze" ||
-										  selectedCourse.value.id ===
-												"usaco-bronze-on-demand"
-										? bronzeRequiredProjectKey
+										  "c-systems-engineering"
+										? c17CourseProjectKey
 										: selectedCourse.value.id ===
-											  "usaco-silver"
-											? silverJavaProjectKey
-											: goldHistoricalProjectKey)(
+													"usaco-bronze" ||
+											  selectedCourse.value.id ===
+													"usaco-bronze-on-demand"
+											? bronzeRequiredProjectKey
+											: selectedCourse.value.id ===
+												  "usaco-silver"
+												? silverJavaProjectKey
+												: goldHistoricalProjectKey)(
 			selectedCourse.value.id,
 			item.id,
 			resource.kind === "solution" ? "reference" : "starter",
@@ -2044,6 +2113,14 @@ function writeStoredValue(key: string, value: string) {
 							Show all sections
 						</button>
 					</div>
+					<HistoricalCourseProgress
+						v-if="hasProgressTracking && selectedCourseProgress"
+						:key="selectedCourseId"
+						:course="selectedCourse"
+						:progress="selectedCourseProgress"
+						:editable="canEditProgress"
+						@remove="removeHistoricalProgress"
+					/>
 				</aside>
 
 				<div

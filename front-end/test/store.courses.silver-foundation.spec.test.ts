@@ -45,7 +45,9 @@ describe("Silver foundation native imports", () => {
 	it.each([false, true])(
 		"preserves progress, placements and reference access for tutor=%s",
 		async tutor => {
-			useAppStore().currentTutor = tutor ? ({} as never) : null;
+			useAppStore().currentTutor = tutor
+				? ({ coursePermissions: ["usaco-silver"] } as never)
+				: null;
 			const course =
 				(await useCoursesStore().loadCourseById("usaco-silver"))!;
 			expect(course.modules).toHaveLength(12);

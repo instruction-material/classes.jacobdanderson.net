@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
 	buildSchedulerEmbedUrl,
 	buildSchedulerUrl,
@@ -78,6 +78,55 @@ describe("scheduler embed helpers", () => {
 		expect(buildSchedulerUrl("//example.invalid/portal")).toBe(
 			schedulerUrl
 		);
+	});
+
+	it("keeps reparsed scheduler paths on the configured origin", () => {
+		const escapingPaths = [
+			"/\\example.invalid/portal",
+			"\\\\example.invalid/portal",
+			"/\t/example.invalid/portal",
+			`${DEFAULT_SCHEDULER_ORIGIN}//example.invalid/portal`
+		];
+		for (const path of escapingPaths) {
+			expect(buildSchedulerUrl(path)).toBe(schedulerUrl);
+			expect(buildSchedulerEmbedUrl("light", path)).toBe(
+				`${schedulerUrl}?embed=1&theme=light`
+			);
+		}
+	});
+
+	it("preserves ordinary scheduler paths and explicit search parameters", () => {
+		expect(
+			buildSchedulerUrl("/booking/manage?tab=active#details", {
+				page: 0,
+				preview: false
+			})
+		).toBe(
+			`${DEFAULT_SCHEDULER_ORIGIN}/booking/manage?tab=active&page=0&preview=false#details`
+		);
+		expect(buildSchedulerUrl(`${DEFAULT_SCHEDULER_ORIGIN}/portal`)).toBe(
+			`${DEFAULT_SCHEDULER_ORIGIN}/portal`
+		);
+		expect(buildSchedulerUrl("/%5Cexample.invalid/portal")).toBe(
+			`${DEFAULT_SCHEDULER_ORIGIN}/%5Cexample.invalid/portal`
+		);
+	});
+
+	it("uses the configured local scheduler origin for the final URL check", async () => {
+		vi.stubEnv("VITE_SCHEDULER_ORIGIN", "http://localhost:5173");
+		vi.resetModules();
+		try {
+			const localScheduler = await import("@/modules/scheduler");
+			expect(localScheduler.buildSchedulerUrl("/portal")).toBe(
+				"http://localhost:5173/portal"
+			);
+			expect(
+				localScheduler.buildSchedulerUrl("/\\example.invalid/portal")
+			).toBe("http://localhost:5173/");
+		} finally {
+			vi.unstubAllEnvs();
+			vi.resetModules();
+		}
 	});
 
 	it("exposes the theme message contract used by the iframe", () => {

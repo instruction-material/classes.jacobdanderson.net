@@ -1,6 +1,6 @@
 import type { Types } from "mongoose";
 
-export type PythonProjectMode = "assembly" | "c" | "cpp" | "data" | "java" | "karel" | "linux" | "pgzero" | "python" | "rust" | "turtle" | "web";
+export type PythonProjectMode = "assembly" | "c" | "cpp" | "data" | "java" | "karel" | "linux" | "pgzero" | "python" | "rust" | "swift" | "turtle" | "web";
 export type PythonProjectFileEncoding = "text" | "base64";
 export type PythonProjectOwnerRole = "admin" | "courseCodeLearner" | "tutor" | "user";
 
@@ -12,6 +12,7 @@ export interface PythonProjectFile {
 
 export interface IPythonProject {
 	_id: Types.ObjectId;
+	__v?: number;
 	user: Types.ObjectId;
 	ownerRole?: PythonProjectOwnerRole;
 	title: string;

@@ -519,7 +519,8 @@ describe("Python Level 3 learner flow", () => {
 				`python-level-3-check-in-${number}-curriculum-check-in-${number}-overview`
 			);
 			expect(item.aliases).toEqual([
-				`python-level-3-check-in-${number}-curriculum-python-level-3-check-in-${number}-overview`
+				`python-level-3-check-in-${number}-curriculum-python-level-3-check-in-${number}-overview`,
+				`check-in-${number}-overview`
 			]);
 			expect(item.learningPath).toBe("core");
 			expect(item.projectLink).toBe(

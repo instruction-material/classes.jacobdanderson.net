@@ -148,6 +148,49 @@ describe("courses page access gate", () => {
 		expect(wrapper.text()).toContain("contact@example.com");
 	});
 
+	it("shows only the signed-in learner's saved progress from retired courses", async () => {
+		const pinia = createPinia();
+		setActivePinia(pinia);
+		const oldIds = [
+			"java-without-graphics-standards-map-curriculum-java-without-graphics-source-map",
+			"java-without-graphics-java-level-1-check-in-1-curriculum-check-in-1-additional-practice-project",
+			"java-without-graphics-java-level-3-aj22-concurrency-services-and-capstone-architecture-supplemental-transfer-practice-java-level-3-aj22-concurrency-services-and-capstone-architecture"
+		];
+		useAppStore().setCurrentUser({
+			_id: "learner-with-history",
+			name: "Learner",
+			email: "learner@example.invalid",
+			age: 14,
+			state: "GA",
+			courseAccess: [],
+			courseProgress: [
+				{
+					courseId: "java-without-graphics",
+					completedModuleIds: [],
+					completedItemIds: oldIds
+				}
+			],
+			editUsers: false,
+			saveEdit: "Save"
+		});
+
+		const wrapper = mount(CoursesPage, {
+			global: { plugins: [pinia], stubs: { RouterLink: true } }
+		});
+		await flushPromises();
+
+		expect(wrapper.text()).toContain("Earlier course progress");
+		expect(
+			wrapper
+				.findAll(".historical-progress code")
+				.map(item => item.text())
+		).toEqual(oldIds);
+		expect(wrapper.find('.historical-progress button[aria-label^="Remove earlier"]').exists()).toBe(
+			false
+		);
+		wrapper.unmount();
+	});
+
 	it("keeps booking calls out of the assigned-course view", async () => {
 		const pinia = createPinia();
 		setActivePinia(pinia);

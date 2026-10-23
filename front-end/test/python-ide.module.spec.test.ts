@@ -2,8 +2,17 @@ import { ideStarters } from "../src/modules/ideStarterCatalog";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { python } from "@codemirror/lang-python";
 import { EditorState } from "@codemirror/state";
-import { existsSync, readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { spawnSync } from "node:child_process";
+import {
+	existsSync,
+	mkdirSync,
+	mkdtempSync,
+	readFileSync,
+	rmSync,
+	writeFileSync
+} from "node:fs";
+import { tmpdir } from "node:os";
+import { join, resolve } from "node:path";
 import { strFromU8, strToU8, unzipSync, zipSync } from "fflate";
 import {
 	blueJProjectArchiveName,
@@ -83,6 +92,7 @@ import {
 import { resetCodePreviewCaches } from "../src/modules/codePreview";
 import {
 	findPythonIdeCourseAsset,
+	findPythonIdeProjectAssetFile,
 	getPythonIdeCourseAssetObjectUrl,
 	loadPythonIdeCourseAssetPack,
 	parsePythonIdeCourseAssetZip,
@@ -94,6 +104,8 @@ import {
 	resetPythonIdeCourseAssetPackCache
 } from "../src/modules/pythonIdeCourseAssets";
 import {
+	createInputBootstrap,
+	createTrustedPythonImportPrelude,
 	pythonIdeImportedTopLevelModules,
 	pythonIdeProjectModuleNames,
 	warmPythonRuntime
@@ -269,7 +281,13 @@ describe("python IDE project helpers", () => {
 			"###   EVENT LISTENERS   ###"
 		);
 		expect(turtleOutline.files[0]?.content).toContain(
-			"while animation_running:"
+			"while animation_running and animation_steps < MAX_ANIMATION_STEPS:"
+		);
+		expect(turtleOutline.files[0]?.content).toContain(
+			"MAX_ANIMATION_STEPS = 120"
+		);
+		expect(turtleOutline.files[0]?.content).toContain(
+			"animation_steps += 1"
 		);
 		expect(turtleOutline.files[0]?.content).toContain(
 			"for current_turtle in turtle_list:"
@@ -911,6 +929,29 @@ pgzrun.go()
 			}
 		]);
 		expect(result.skippedFiles).toEqual([]);
+	});
+
+	it("strips the full nested BlueJ package root without importing siblings", () => {
+		const archiveBytes = zipSync({
+			"bundle/student.lab/package.bluej": strToU8("#BlueJ package file"),
+			"bundle/student.lab/Main.java": strToU8("public class Main {}"),
+			"bundle/student.lab/src/Helper.java": strToU8("class Helper {}"),
+			"bundle/Other.java": strToU8("class Other {}")
+		});
+
+		const result = importBlueJProjectArchive(archiveBytes, {
+			maxFiles: 10,
+			maxTextFileBytes: 1024
+		});
+
+		expect(result.hasBlueJPackage).toBe(true);
+		expect(result.files.map(file => file.name)).toEqual([
+			"Main.java",
+			"src/Helper.java"
+		]);
+		expect(result.skippedFiles).toEqual([
+			"bundle/Other.java (outside BlueJ project)"
+		]);
 	});
 
 	it("keeps BlueJ project root stripping stable when unsupported sibling folders are present", () => {
@@ -1706,6 +1747,8 @@ pgzrun.go()
 		expect(pythonIdeModeForCourseId("java-level-2")).toBe("java");
 		expect(pythonIdeModeForCourseId("ap-computer-science-a")).toBe("java");
 		expect(pythonIdeModeForCourseId("scratch-level-1")).toBeNull();
+		for (const courseId of ["constructor", "toString", "__proto__"])
+			expect(pythonIdeModeForCourseId(courseId)).toBeNull();
 		expect(normalizePythonIdeMode("pgzero", "turtle")).toBe("pgzero");
 		expect(normalizePythonIdeMode("java", "turtle")).toBe("java");
 		expect(normalizePythonIdeMode("karel", "python")).toBe("karel");
@@ -2112,7 +2155,7 @@ pgzrun.go()
 		expect(runtimeSource).toContain("def _release_all_callbacks():");
 		expect(runtimeSource).toContain("releaseRuntimeCallbackRegistries");
 		expect(runtimeSource).toContain("releasePythonIdeRuntimeCallbacks");
-		expect(pageSource).toContain("scheduleTimer(delayMs: number");
+		expect(pageSource).toContain("scheduleTimer(\n");
 		expect(pageSource).toContain("clearTurtleTimers()");
 		expect(pageSource).toContain("let turtleTimerGeneration = 0;");
 		expect(pageSource).toContain("turtleTimerGeneration += 1;");
@@ -2121,9 +2164,12 @@ pgzrun.go()
 		expect(pageSource).toContain(
 			"if (timerGeneration !== turtleTimerGeneration) return;"
 		);
-		expect(pageSource).toContain(
-			"void runTurtleTimerCallback(callback, timerGeneration).finally("
+		expect(pageSource).toContain("turtleTimerRegistry.schedule(");
+		expect(pageSource).toContain("turtleTimerRegistry.clear()");
+		expect(runtimeSource).toContain(
+			"_bridge.scheduleTimer(float(t), callback, callback)"
 		);
+		expect(runtimeSource).not.toContain('storage_key = ("timer"');
 		expect(pageSource).toContain("releaseIdlePythonRuntimeCallbacks()");
 	});
 
@@ -2267,6 +2313,37 @@ pgzrun.go()
 		expect(pageSource).toContain("cancelTurtleAnimation()");
 	});
 
+	it("limits Turtle work per run across tracer changes and canvas resets", () => {
+		const pageSource = readFileSync(
+			resolve(__dirname, "../src/components/CodeIdeWorkspace.vue"),
+			"utf8"
+		);
+		const queueSource = pageSource.slice(
+			pageSource.indexOf("function queueTurtleStep"),
+			pageSource.indexOf("function waitForTurtleAnimation")
+		);
+		const resetSource = pageSource.slice(
+			pageSource.indexOf("function resetTurtleCanvas"),
+			pageSource.indexOf("function cancelActiveTurtleDrawingSteps")
+		);
+		const fillSource = pageSource.slice(
+			pageSource.indexOf("function trackTurtleFillPoint"),
+			pageSource.indexOf("function teleportTurtle")
+		);
+
+		expect(queueSource).toContain("reserveTurtleAnimationStep(");
+		expect(queueSource.indexOf("reserveTurtleAnimationStep(")).toBeLessThan(
+			queueSource.indexOf("if (!turtleTracerEnabled)")
+		);
+		expect(resetSource).not.toContain("createTurtleAnimationBudget()");
+		expect(fillSource).toContain(
+			"assertTurtleStepAvailable(turtleAnimationBudget);"
+		);
+		expect(pageSource).toContain(
+			'if (project.mode === "turtle")\n\t\tturtleAnimationBudget = createTurtleAnimationBudget();'
+		);
+	});
+
 	it("keeps Turtle trail drawing synchronized to the visible cursor pose", () => {
 		const pageSource = readFileSync(
 			resolve(__dirname, "../src/components/CodeIdeWorkspace.vue"),
@@ -2356,6 +2433,17 @@ pgzrun.go()
 			"extent_degrees = self._angle_to_degrees(extent)"
 		);
 		expect(circleSource).toContain("steps = 1 + int(");
+		expect(runtimeSource).toContain("_max_circle_steps = 360");
+		expect(circleSource).toContain(
+			"if steps < 1 or steps > _max_circle_steps:"
+		);
+		expect(
+			circleSource.indexOf("if steps < 1 or steps > _max_circle_steps:")
+		).toBeLessThan(
+			circleSource.indexOf(
+				"self._push_undo(steps if self._pen_down else 0)"
+			)
+		);
 		expect(circleSource).toContain("turn = extent_degrees / steps");
 		expect(circleSource).toContain("half_turn = turn * 0.5");
 		expect(circleSource).toContain(
@@ -2384,6 +2472,10 @@ pgzrun.go()
 		);
 
 		expect(runtimeSource).toContain("def _looks_like_color(value):");
+		expect(runtimeSource).toContain("from itertools import islice");
+		expect(
+			runtimeSource.match(/sequence = list\(islice\(value, 3\)\)/g)
+		).toHaveLength(2);
 		expect(runtimeSource).toContain(
 			"return len(sequence) >= 3 and all(_is_number(part) for part in sequence[:3])"
 		);
@@ -2531,9 +2623,7 @@ pgzrun.go()
 			"const PYTHON_IDE_RUNTIME_BOOTSTRAP_VERSION"
 		);
 		expect(runtimeSource).toContain("__classes_runtime_bootstrap_version");
-		expect(runtimeSource).toContain(
-			"2026-10-17-python-314-class-loop-guards"
-		);
+		expect(runtimeSource).toContain("2026-10-23-conditional-turtle-loops");
 		expect(runtimeSource).toContain("const WHILE_LOOP_ITERATION_LIMIT");
 		expect(runtimeSource).toContain(
 			"const TURTLE_COOPERATIVE_WHILE_LOOP_ITERATION_LIMIT"
@@ -2558,7 +2648,9 @@ pgzrun.go()
 		expect(runtimeSource).toContain("def _module_turtle_helper_names");
 		expect(runtimeSource).toContain("def _is_forever_while_loop");
 		expect(runtimeSource).toContain("node.test.value in (True, 1)");
-		expect(runtimeSource).toContain("function.id in turtle_helper_names");
+		expect(runtimeSource).toContain(
+			"function.id in self.turtle_action_names | helper_names"
+		);
 		expect(runtimeSource).toContain("def __classes_sleep(_seconds=0):");
 		expect(runtimeSource).toContain(
 			"__classes_time.sleep = __classes_sleep"
@@ -2592,6 +2684,99 @@ pgzrun.go()
 			"RuntimeError: Stopped a long-running (?:for|while) loop"
 		);
 		expect(pageSource).toContain("formatPythonRuntimeError(error)");
+	});
+
+	it("guards ordinary loops without losing verified Turtle animation", () => {
+		const projectRoot = mkdtempSync(
+			join(tmpdir(), "classes-turtle-guard-")
+		);
+		try {
+			const sources = [
+				"class Cache:\n    def update(self):\n        pass\ncache = Cache()\nwhile True:\n    cache.update()\n",
+				"import turtle\nwhile True:\n    if False:\n        turtle.forward(1)\n",
+				"while True:\n    sprite.forward(1)\n",
+				"import turtle as drawing\ndrawing = object()\nwhile True:\n    drawing.forward(1)\n",
+				"import turtle\nwhile True:\n    import other as turtle\n    turtle.forward(1)\n",
+				"from turtle import forward as move\nfrom other import move\nwhile True:\n    move(1)\n",
+				"import turtle\ndef step():\n    if False:\n        turtle.forward(1)\nwhile True:\n    step()\n",
+				"import turtle\nasync def step():\n    turtle.forward(1)\nwhile True:\n    step()\n",
+				"import turtle\ndef step():\n    turtle.forward(1)\n    yield 1\nwhile True:\n    step()\n",
+				"import turtle\n@ (lambda function: lambda: None)\ndef step():\n    turtle.forward(1)\nwhile True:\n    step()\n",
+				"import turtle\nwhile True:\n    turtle.forward(1)\n",
+				"from turtle import Turtle\nartist = Turtle()\nwhile True:\n    artist.forward(1)\n",
+				"from turtle import forward as move\nwhile True:\n    move(1)\n",
+				"from turtle import *\nwhile True:\n    forward(1)\n",
+				"import turtle\ndef step():\n    turtle.forward(1)\nwhile True:\n    step()\n",
+				"from turtle import *\nfrom math import *\nwhile True:\n    degrees(1)\n",
+				"import turtle\ndef unused():\n    turtle = None\nwhile True:\n    turtle.forward(1)\n",
+				"from turtle import Turtle\nartist = Turtle()\nalias = artist\nwhile True:\n    alias.forward(1)\n",
+				"import turtle\ndef step():\n    amount = 1\n    turtle.forward(amount)\nwhile True:\n    step()\n",
+				"import turtle\ndef step():\n    turtle = object()\n    turtle.forward(1)\nwhile True:\n    step()\n",
+				"import turtle\ndef step():\n    turtle.forward(1)\nfrom other import step\nwhile True:\n    step()\n",
+				"import turtle\ndef change():\n    global turtle\n    turtle = object()\nwhile True:\n    turtle.forward(1)\n",
+				"import turtle\ndef step():\n    turtle.forward(1)\ndef change():\n    global step\n    step = lambda: None\nwhile True:\n    step()\n"
+			];
+			sources.push(
+				"import turtle\nadvance = True\nwhile True:\n    if advance:\n        turtle.forward(1)\n",
+				"import turtle\nadvance = True\nwhile True:\n    if advance:\n        pass\n    else:\n        turtle.forward(1)\n",
+				"import turtle\nwhile True:\n    if True:\n        pass\n    else:\n        turtle.forward(1)\n",
+				"import turtle\nwhile True:\n    def unused():\n        turtle.forward(1)\n",
+				"class Cache:\n    def update(self):\n        pass\ncache = Cache()\nadvance = True\nwhile True:\n    if advance:\n        cache.update()\n",
+				readFileSync(
+					resolve(__dirname, "../../test/fixtures/turtle-orbit.py"),
+					"utf8"
+				)
+			);
+			const pythonSource = `
+${createTrustedPythonImportPrelude(projectRoot)}
+${createInputBootstrap("", "turtle", projectRoot)}
+import ast
+import json
+sources = json.loads(${JSON.stringify(JSON.stringify(sources))})
+
+def is_cooperative(source, allow_turtle_cooperative=True):
+    tree = __ClassesLoopGuardTransformer(
+        source, "main.py", allow_turtle_cooperative=allow_turtle_cooperative
+    ).visit(ast.parse(source))
+    last_statement = tree.body[-1]
+    return (
+        isinstance(last_statement, ast.Expr)
+        and isinstance(last_statement.value, ast.Call)
+        and isinstance(last_statement.value.func, ast.Name)
+        and last_statement.value.func.id == "__classes_schedule_turtle_loop"
+    )
+
+print(json.dumps([is_cooperative(source) for source in sources]))
+print(json.dumps(is_cooperative(
+    "import turtle\\nwhile True:\\n    turtle.forward(1)\\n", False
+)))
+__classes_loop_iteration_limits["while"] = 3
+class Cache:
+    def update(self):
+        pass
+try:
+    exec(__classes_compile_student_source(
+        "cache = Cache()\\nwhile True:\\n    cache.update()\\n", "main.py"
+    ), globals())
+except RuntimeError as error:
+    assert "Stopped a long-running while loop" in str(error), str(error)
+else:
+    raise AssertionError("Ordinary while loop escaped the guard")
+print("guarded")
+`;
+			const result = spawnSync("python3", ["-I", "-c", pythonSource], {
+				encoding: "utf8",
+				timeout: 10000
+			});
+			expect(result.status, result.stderr).toBe(0);
+			expect(result.stdout.trim().split("\n")).toEqual([
+				"[false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, false, true, true, true, false, false, false, false, true, true, false, false, false, true]",
+				"false",
+				"guarded"
+			]);
+		} finally {
+			rmSync(projectRoot, { recursive: true, force: true });
+		}
 	});
 
 	it("keeps tiny Turtle animation steps responsive for continuous movement", () => {
@@ -3546,6 +3731,17 @@ pgzrun.go()
 			"gameImageCache.set(asset.key, entry);"
 		);
 		expect(getGameImageEntrySource).toContain("requestGameTick();");
+		const courseAssetSizeSource = pageSource.slice(
+			pageSource.indexOf(
+				"function courseAssetSize",
+				getGameImageEntryStart
+			),
+			pageSource.indexOf(
+				"async function prepareProjectGameImages",
+				getGameImageEntryStart
+			)
+		);
+		expect(courseAssetSizeSource).toContain("cached?.src === asset.src");
 	});
 
 	it("runs plain Python projects in a terminable Pyodide worker", () => {
@@ -3988,6 +4184,64 @@ pgzrun.go()
 		]);
 	});
 
+	it("discovers inline imports after strings, comments, and multiline text", () => {
+		expect([
+			...pythonIdeImportedTopLevelModules([
+				{
+					name: "main.py",
+					content: [
+						'heading = "# not a comment"; import numpy as np',
+						'"""module note # still text',
+						"import hidden",
+						'"""; from pandas.io import reader',
+						'import scipy; print("import hidden_too")',
+						"if True: import seaborn",
+						"# import also_hidden",
+						"from sklearn.model_selection import train_test_split"
+					].join("\n")
+				},
+				{
+					name: "helper.py",
+					content: '"""unclosed text\nimport hidden_in_this_file'
+				},
+				{
+					name: "later.py",
+					content: "import matplotlib.pyplot as plt"
+				}
+			])
+		]).toEqual([
+			"numpy",
+			"pandas",
+			"scipy",
+			"seaborn",
+			"sklearn",
+			"matplotlib"
+		]);
+	});
+
+	it("scans imports after and within long statements without quadratic joining", () => {
+		expect([
+			...pythonIdeImportedTopLevelModules([
+				{
+					name: "main.py",
+					content: `${"x".repeat(100_000)}\nimport ${" ".repeat(100_000)}altair`
+				}
+			])
+		]).toEqual(["altair"]);
+	});
+
+	it("recognizes continued imports and comments across CRLF and CR lines", () => {
+		expect([
+			...pythonIdeImportedTopLevelModules([
+				{
+					name: "main.py",
+					content:
+						"import os, \\\r\n numpy\r# import hidden\rfrom pandas.io import reader"
+				}
+			])
+		]).toEqual(["os", "numpy", "pandas"]);
+	});
+
 	it("normalizes local Python project module names for fresh imports", () => {
 		expect(
 			pythonIdeProjectModuleNames([
@@ -4095,6 +4349,199 @@ pgzrun.go()
 		expect(runtimeSource).toContain(
 			"builtins.__classes_schedule_turtle_loop = __classes_schedule_turtle_loop"
 		);
+	});
+
+	it.each(["turtle", "pgzero", "data"] as const)(
+		"tolerates non-string search entries before the next %s bootstrap",
+		mode => {
+			const projectRoot = mkdtempSync(join(tmpdir(), "classes-path-reset-"));
+			try {
+				const source = `
+import os
+import sys
+class IgnoredPath:
+    def __fspath__(self):
+        raise AssertionError("An ignored path entry was evaluated")
+os.chdir(${JSON.stringify(projectRoot)})
+sys.path.insert(0, ${JSON.stringify(projectRoot)})
+sys.path.extend([1, None, ["not a path"], b"ignored", IgnoredPath()])
+str = "student variable"
+isinstance = 7
+${createTrustedPythonImportPrelude(projectRoot)}
+assert all(__classes_import_builtins.isinstance(entry, __classes_import_builtins.str) for entry in sys.path)
+assert ${JSON.stringify(projectRoot)} not in sys.path
+${createInputBootstrap("", mode, projectRoot)}
+import json
+import os
+import sys
+assert json.loads('{"ready": true}')["ready"] is True
+os.chdir(${JSON.stringify(projectRoot)})
+sys.path.insert(0, ${JSON.stringify(projectRoot + "/nested")})
+sys.path.extend([{}, 3, None])
+${createTrustedPythonImportPrelude(projectRoot)}
+assert all(__classes_import_builtins.isinstance(entry, __classes_import_builtins.str) for entry in sys.path)
+assert not any(entry.startswith(${JSON.stringify(projectRoot)}) for entry in sys.path)
+${createInputBootstrap("", mode, projectRoot)}
+import json
+assert json.loads('[1, 2]') == [1, 2]
+print("second run ready")
+`;
+				const result = spawnSync("python3", ["-I", "-c", source], {
+					encoding: "utf8",
+					timeout: 10000
+				});
+				expect(result.status, result.stderr).toBe(0);
+				expect(result.stdout.trim()).toBe("second run ready");
+			} finally {
+				rmSync(projectRoot, { recursive: true, force: true });
+			}
+		}
+	);
+
+	it.each(["turtle", "pgzero", "data"] as const)(
+		"restores mutated path helpers before the next %s bootstrap",
+		mode => {
+			const projectRoot = mkdtempSync(join(tmpdir(), "classes-path-helpers-"));
+			try {
+				const source = `
+import os
+os.makedirs(${JSON.stringify(projectRoot)}, exist_ok=True)
+for name in ("posixpath", "genericpath", "importlib"):
+    with open(${JSON.stringify(projectRoot)} + "/" + name + ".py", "w") as file:
+        file.write('raise AssertionError("Project path helpers were imported")\\n')
+${createTrustedPythonImportPrelude(projectRoot)}
+${createInputBootstrap("", mode, projectRoot)}
+import os
+import sys
+os.chdir(${JSON.stringify(projectRoot)})
+sys.path.insert(0, ${JSON.stringify(projectRoot)})
+sys.modules.pop("genericpath", None)
+os.path.realpath = None
+os.path.dirname = None
+str = "student variable"
+getattr = None
+${createTrustedPythonImportPrelude(projectRoot)}
+assert __classes_import_builtins.callable(os.path.realpath)
+assert not any(entry.startswith(${JSON.stringify(projectRoot)}) for entry in sys.path)
+${createInputBootstrap("", mode, projectRoot)}
+import os
+import sys
+import json
+assert json.loads('[1, 2]') == [1, 2]
+os.chdir(${JSON.stringify(projectRoot)})
+sys.path.insert(0, ${JSON.stringify(projectRoot + "/nested")})
+os.path.realpath = lambda value: ${JSON.stringify(projectRoot + "/wrong")}
+${createTrustedPythonImportPrelude(projectRoot)}
+assert not any(entry.startswith(${JSON.stringify(projectRoot)}) for entry in sys.path)
+${createInputBootstrap("", mode, projectRoot)}
+import os
+assert os.path.realpath("/") == "/"
+print("path helpers ready")
+`;
+				const proofDirectory = process.env.PYTHON_PATH_RECOVERY_PROOF_DIR;
+				if (proofDirectory) {
+					mkdirSync(proofDirectory, { recursive: true });
+					writeFileSync(join(proofDirectory, `${mode}-path-recovery.py`), source);
+				}
+				const result = spawnSync("python3", ["-I", "-c", source], { encoding: "utf8", timeout: 10000 });
+				expect(result.status, result.stderr).toBe(0);
+				expect(result.stdout.trim()).toBe("path helpers ready");
+			} finally {
+				rmSync(projectRoot, { recursive: true, force: true });
+			}
+		}
+	);
+
+	it.each(["ast", "pathlib"])(
+		"loads trusted %s before making project imports visible",
+		moduleName => {
+			const projectRoot = mkdtempSync(
+				join(tmpdir(), "classes-python-import-")
+			);
+			try {
+				writeFileSync(
+					join(projectRoot, `${moduleName}.py`),
+					'throwaway = 1\nraise RuntimeError("untrusted import")\n'
+				);
+				writeFileSync(
+					join(projectRoot, "helper.py"),
+					"while True:\n    pass\n"
+				);
+				const pythonSource = `
+import os
+import sys
+os.chdir(${JSON.stringify(projectRoot)})
+sys.path.insert(0, ${JSON.stringify(projectRoot)})
+sys.modules.pop(${JSON.stringify(moduleName)}, None)
+${createTrustedPythonImportPrelude(projectRoot)}
+${createInputBootstrap("", "turtle", projectRoot)}
+import os as __classes_os
+__classes_os.chdir(${JSON.stringify(projectRoot)})
+__classes_sys.path.insert(0, ${JSON.stringify(projectRoot)})
+try:
+    import helper
+except RuntimeError as error:
+    if "Stopped a long-running while loop" not in str(error):
+        raise
+    print("guarded")
+else:
+    raise AssertionError("Project helper ran without a loop guard")
+${createTrustedPythonImportPrelude(projectRoot)}
+sys.modules.pop(${JSON.stringify(moduleName)}, None)
+${createInputBootstrap("", "turtle", projectRoot)}
+import os as __classes_os
+__classes_os.chdir(${JSON.stringify(projectRoot)})
+__classes_sys.path.insert(0, ${JSON.stringify(projectRoot)})
+try:
+    import helper
+except RuntimeError as error:
+    if "Stopped a long-running while loop" not in str(error):
+        raise
+    print("guarded")
+else:
+    raise AssertionError("Project helper ran without a loop guard")
+`;
+				const pythonExecutables = ["python3"];
+				if (spawnSync("python3.14", ["--version"]).status === 0)
+					pythonExecutables.push("python3.14");
+				for (const pythonExecutable of pythonExecutables) {
+					const result = spawnSync(
+						pythonExecutable,
+						["-I", "-c", pythonSource],
+						{
+							encoding: "utf8",
+							timeout: 10000
+						}
+					);
+					expect(result.status, result.stderr).toBe(0);
+					expect(result.stdout.trim().split("\n")).toEqual([
+						"guarded",
+						"guarded"
+					]);
+					expect(result.stderr).not.toContain("untrusted import");
+				}
+			} finally {
+				rmSync(projectRoot, { recursive: true, force: true });
+			}
+		}
+	);
+
+	it("isolates project imports before runtime preparation and after trusted bootstrap", () => {
+		const runtimeSource = readFileSync(
+			resolve(__dirname, "../src/modules/pythonIdeRuntime.ts"),
+			"utf8"
+		);
+		const runSource = runtimeSource.slice(
+			runtimeSource.indexOf("export async function runPythonProject")
+		);
+		expect(
+			runSource.indexOf("createTrustedPythonImportPrelude()")
+		).toBeLessThan(
+			runSource.indexOf("releaseRuntimeCallbackRegistries(pyodide)")
+		);
+		expect(
+			runSource.indexOf("createInputBootstrap(options.inputText")
+		).toBeLessThan(runSource.indexOf("__classes_os.chdir("));
 	});
 
 	it("avoids double-underscore global reads inside generated Python classes", () => {
@@ -4284,19 +4731,18 @@ pgzrun.go()
 		);
 	});
 
-	it("clears stale local account fallback after successful remote syncs", () => {
+	it("retains unrelated recovery drafts after remote syncs", () => {
 		const pageSource = readFileSync(
 			resolve(__dirname, "../src/components/CodeIdeWorkspace.vue"),
 			"utf8"
 		);
 
-		expect(pageSource).toContain("await clearLocalPythonProjectsAsync(");
-		expect(pageSource).toContain("async function syncProjectsToAccount");
+		expect(pageSource).not.toContain("await clearLocalPythonProjectsAsync(");
+		expect(pageSource).not.toContain("async function syncProjectsToAccount");
+		expect(pageSource).toContain("loadPythonIdeRecoveryDrafts(");
+		expect(pageSource).toContain("acknowledgePythonIdeRecoveryDraft(");
 		expect(pageSource).toContain(
-			'saveMessage.value = "Synced recovered local edits";'
-		);
-		expect(pageSource).toContain(
-			'saveMessage.value = "Recovered local edits";'
+			'saveMessage.value = "Recovered local copies; Save to sync";'
 		);
 		expect(pageSource).toContain("Saved locally after sync issue");
 		expect(pageSource).toContain("const isRemoteProject =");
@@ -4437,20 +4883,15 @@ pgzrun.go()
 		expect(pageSource).toContain(
 			"async function persistLocalProjectSnapshot"
 		);
-		expect(pageSource).toContain(
-			"async function discardLocalProjectSnapshot"
-		);
-		expect(pageSource).toContain(
-			"async function discardLocalProjectSnapshotIfSafe"
-		);
-		expect(pageSource).toContain("await localSnapshotInFlight;");
-		expect(pageSource).toContain("unsyncedProjectIDs.clear();");
+		expect(pageSource).toContain("savePythonIdeRecoveryDraft(");
+		expect(pageSource).toContain("acknowledgePythonIdeRecoveryDraft(");
+		expect(pageSource).not.toContain("async function discardLocalProjectSnapshot");
+		expect(pageSource).not.toContain("unsyncedProjectIDs.clear();");
 		expect(pageSource).toContain("function scheduleLocalProjectSnapshot");
 		expect(pageSource).toContain("scheduleLocalProjectSnapshot();");
-		expect(pageSource).toContain("await discardLocalProjectSnapshot();");
 		expect(pageSource).toContain("if (!autoSaveEnabled.value)");
 		expect(pageSource).toContain(
-			"await persistLocalProjects({ quiet: true });"
+			"const savedDraft = await savePythonIdeRecoveryDraft(project, owner);"
 		);
 		expect(pageSource).toContain(
 			'message: "Saved locally after sync issue"'
@@ -4663,7 +5104,7 @@ pgzrun.go()
 		).toHaveLength(10);
 		expect(
 			ideStarters.filter(item => item.category === "Templates")
-		).toHaveLength(10);
+		).toHaveLength(11);
 		expect(pageSource).toContain("requestedClassroomProject");
 		expect(pageSource).toContain(
 			"addPythonIdeClassroomSections(loadedFiles)"
@@ -5042,11 +5483,12 @@ pgzrun.go()
 		expect(pageSource).toContain("async function saveProjectOnce");
 		expect(pageSource).toContain("async function savePendingProjects");
 		expect(pageSource).toContain("const pendingSaveProjectIDs");
-		expect(pageSource).toContain("const startedUpdatedAt");
+		expect(pageSource).toContain("const savedDraft = await savePythonIdeRecoveryDraft(project, owner);");
 		expect(pageSource).toContain(
 			"? await createRemotePythonIdeProject(payload, accountScope)"
 		);
 		expect(pageSource).toContain("const projectChangedDuringSave");
+		expect(pageSource).toContain("JSON.stringify(pythonIdeProjectToPayload(currentProject))");
 		expect(pageSource).toContain("saveQueued = true");
 		expect(pageSource).toContain(
 			"} while (saveQueued || pendingSaveProjectIDs.size);"
@@ -5401,6 +5843,40 @@ pgzrun.go()
 		expect(alienLeft?.name).toBe("images/alien-left.png");
 		expect(orange?.name).toBe("images/orange (2).png");
 		expect(battleTheme?.name).toBe("music/Battle Theme.mp3");
+	});
+
+	it("prefers exact project asset paths over earlier alias collisions", () => {
+		const files = [
+			{ name: "images/alien-left.png" },
+			{ name: "images/alien_left.png" },
+			{ name: "images/forest/hero.png" },
+			{ name: "images/hero.png" }
+		];
+
+		expect(
+			findPythonIdeProjectAssetFile(
+				files,
+				pythonIdeAssetCandidateNames("images", "alien_left", [".png"])
+			)
+		).toBe(files[1]);
+		expect(
+			findPythonIdeProjectAssetFile(
+				files,
+				pythonIdeAssetCandidateNames("images", "alien-left", [".png"])
+			)
+		).toBe(files[0]);
+		expect(
+			findPythonIdeProjectAssetFile(
+				files,
+				pythonIdeAssetCandidateNames("images", "hero", [".png"])
+			)
+		).toBe(files[3]);
+		expect(
+			findPythonIdeProjectAssetFile(
+				files.slice(0, 1),
+				pythonIdeAssetCandidateNames("images", "alien_left", [".png"])
+			)
+		).toBe(files[0]);
 	});
 
 	it("reuses and revokes generated PyGame Zero asset object URLs", async () => {
@@ -6278,6 +6754,19 @@ pgzrun.go()
 
 		project.files = [
 			{
+				name: "Helper.java",
+				content: `public class Helper {
+    public void main(String[] args) {}
+    void call() { main(new String[0]); }
+}`
+			},
+			project.files[1]!
+		];
+		project.activeFileName = "Helper.java";
+		expect(getPythonIdeRunnableFile(project)?.name).toBe("App.java");
+
+		project.files = [
+			{
 				name: "Notes.java",
 				content: `public class Notes {
     // public static void main(String[] args) belongs in App.java.
@@ -6290,7 +6779,96 @@ pgzrun.go()
 		project.activeFileName = "Notes.java";
 
 		expect(getPythonIdeRunnableFile(project)?.name).toBe("App.java");
+
+		project.files = [
+			{
+				name: "Main.java",
+				content: "public class Main { void help() {} }"
+			},
+			project.files[1]!
+		];
+		expect(getPythonIdeRunnableFile(project)?.name).toBe("App.java");
 	});
+
+	it.each([
+		["String[] args", "Exception"],
+		["String args[]", "java.io.IOException, RuntimeException"],
+		["String... args", "Exception"]
+	])("selects Java main with throws clauses for %s", (parameters, exceptions) => {
+		const project = createPythonIdeProject("java");
+		project.files = [
+			{ name: "Main.java", content: "public class Main { void help() {} }" },
+			{ name: "Helper.java", content: "public class Helper {}" },
+			{
+				name: "App.java",
+				content: `public class App {
+    public static void main(${parameters}) throws ${exceptions} {
+        System.out.println(total(2, 3));
+    }
+    static int total(int left, int right) throws java.io.IOException {
+        return left + right;
+    }
+}`
+			}
+		];
+		for (const activeFileName of ["Helper.java", "Main.java", "App.java"]) {
+			project.activeFileName = activeFileName;
+			expect(getPythonIdeRunnableFile(project)?.name).toBe("App.java");
+			const result = runJavaIdeProject(project);
+			expect(result.stdout).toEqual(["5"]);
+			expect(result.stderr).toEqual([]);
+		}
+	});
+
+	it.each([
+		"public static final",
+		"public static synchronized",
+		"synchronized static public final",
+		"public strictfp static",
+		"static final public"
+	])("selects and runs Java main with %s modifiers", modifiers => {
+		const project = createPythonIdeProject("java");
+		project.files = [
+			{ name: "Main.java", content: "public class Main { void help() {} }" },
+			{ name: "Helper.java", content: "public class Helper {}" },
+			{ name: "App.java", content: `public class App {
+    ${modifiers} void main(String[] args) { System.out.println(total(2, 3)); }
+    static int total(int left, int right) { return left + right; }
+}` }
+		];
+		for (const activeFileName of ["Helper.java", "Main.java"]) {
+			project.activeFileName = activeFileName;
+			expect(getPythonIdeRunnableFile(project)?.name).toBe("App.java");
+			expect(runJavaIdeProject(project)).toMatchObject({ stdout: ["5"], stderr: [] });
+		}
+	});
+
+	it.each(["private static", "public", "static"])(
+		"does not select a non-launcher Java method with %s modifiers",
+		modifiers => {
+			const project = createPythonIdeProject("java");
+			project.files = [
+				{ name: "Helper.java", content: `class Helper { ${modifiers} void main(String[] args) {} }` },
+				{ name: "App.java", content: "class App { public static void main(String[] args) { System.out.println(5); } }" }
+			];
+			project.activeFileName = "Helper.java";
+			expect(getPythonIdeRunnableFile(project)?.name).toBe("App.java");
+		}
+	);
+
+	it.each(["// Example shape: {", "/* Example shape: } */"])(
+		"keeps Java field scope across comment braces: %s",
+		comment => {
+			const project = createPythonIdeProject("java");
+			project.files = [{ name: "Main.java", content: `public class Main {
+    ${comment}
+    static final int BASE = 7;
+    public static void main(String[] args) { System.out.println(total()); }
+    static int total() { return BASE + 5; }
+}` }];
+			expect(runJavaIdeProject(project)).toMatchObject({ stdout: ["12"], stderr: [] });
+		}
+	);
 
 	it("runs Karel driver files instead of active helper classes", () => {
 		const project = createPythonIdeProject("karel", {
@@ -6311,7 +6889,21 @@ pgzrun.go()
 
 		expect(getPythonIdeRunnableFile(project)?.name).toBe("MyProgram.java");
 
-		project.files[2] = {
+		project.files = [
+			{
+				name: "Helper.java",
+				content: `public class Helper {
+    void call(MyProgram program) { program.run(); }
+    public void run() {}
+}`
+			},
+			project.files[0]!,
+			{ name: "world.txt", content: karelStarterWorld }
+		];
+		project.activeFileName = "Helper.java";
+		expect(getPythonIdeRunnableFile(project)?.name).toBe("MyProgram.java");
+
+		project.files[0] = {
 			name: "Helper.java",
 			content: `public class Helper {
     // public void run() stays in MyProgram.java.
@@ -6335,6 +6927,16 @@ pgzrun.go()
 		project.activeFileName = "Helper.java";
 
 		expect(getPythonIdeRunnableFile(project)?.name).toBe("Algo.java");
+
+		project.files = [
+			{
+				name: "MyProgram.java",
+				content: "public class MyProgram { void help() {} }"
+			},
+			{ name: "Driver.java", content: karelStarterCode },
+			{ name: "world.txt", content: karelStarterWorld }
+		];
+		expect(getPythonIdeRunnableFile(project)?.name).toBe("Driver.java");
 	});
 
 	it("runs the Karel starter through visible world snapshots", () => {

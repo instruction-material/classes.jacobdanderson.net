@@ -242,6 +242,30 @@ export function findPythonIdeCourseAsset(
 	return null;
 }
 
+export function findPythonIdeProjectAssetFile<Asset extends { name: string }>(
+	files: readonly Asset[],
+	candidateNames: Iterable<string>
+): Asset | null {
+	const candidates = [...candidateNames].map(
+		normalizePythonIdeAssetLookupPath
+	);
+	for (const candidate of candidates) {
+		const exact = files.find(
+			file => normalizePythonIdeAssetLookupPath(file.name) === candidate
+		);
+		if (exact) return exact;
+	}
+
+	const candidateSet = new Set(candidates);
+	return (
+		files.find(file =>
+			pythonIdeAssetLookupAliases(file.name).some(alias =>
+				candidateSet.has(alias)
+			)
+		) ?? null
+	);
+}
+
 export function getPythonIdeCourseAssetObjectUrl(asset: PythonIdeCourseAsset) {
 	if (asset.url) return asset.url;
 

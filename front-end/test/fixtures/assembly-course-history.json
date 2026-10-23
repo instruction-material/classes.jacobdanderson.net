@@ -1,0 +1,314 @@
+[
+	{
+		"kind": "item",
+		"oldId": "assembly-asm0-setup-and-tooling-supplemental-transfer-practice-assembly",
+		"newId": "assembly-asm0-setup-and-tooling-supplemental-setup-and-tooling-transfer-practice",
+		"currentId": "assembly-asm0-setup-and-tooling-supplemental-assembly-setup-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-asm0-setup-and-tooling-supplemental-extension-practice-assembly",
+		"newId": "assembly-asm0-setup-and-tooling-supplemental-setup-and-tooling-extension-practice",
+		"currentId": "assembly-asm0-setup-and-tooling-supplemental-assembly-setup-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-1-machine-model-and-toolchain-supplemental-transfer-practice-machine-model-and-toolchain",
+		"newId": "assembly-unit-1-machine-model-and-toolchain-supplemental-toolchain-trace-transfer-practice",
+		"currentId": "assembly-unit-1-machine-model-and-toolchain-supplemental-toolchain-trace-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-1-machine-model-and-toolchain-supplemental-extension-practice-machine-model-and-toolchain",
+		"newId": "assembly-unit-1-machine-model-and-toolchain-supplemental-toolchain-trace-extension-practice",
+		"currentId": "assembly-unit-1-machine-model-and-toolchain-supplemental-toolchain-trace-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-2-registers-and-data-movement-supplemental-transfer-practice-registers-and-data-movement",
+		"newId": "assembly-unit-2-registers-and-data-movement-supplemental-register-flow-transfer-practice",
+		"currentId": "assembly-unit-2-registers-and-data-movement-supplemental-register-flow-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-2-registers-and-data-movement-supplemental-extension-practice-registers-and-data-movement",
+		"newId": "assembly-unit-2-registers-and-data-movement-supplemental-register-flow-extension-practice",
+		"currentId": "assembly-unit-2-registers-and-data-movement-supplemental-register-flow-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-3-arithmetic-and-logic-supplemental-transfer-practice-arithmetic-and-logic",
+		"newId": "assembly-unit-3-arithmetic-and-logic-supplemental-flag-logic-transfer-practice",
+		"currentId": "assembly-unit-3-arithmetic-and-logic-supplemental-flag-logic-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-3-arithmetic-and-logic-supplemental-extension-practice-arithmetic-and-logic",
+		"newId": "assembly-unit-3-arithmetic-and-logic-supplemental-flag-logic-extension-practice",
+		"currentId": "assembly-unit-3-arithmetic-and-logic-supplemental-flag-logic-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-4-branching-and-loops-supplemental-transfer-practice-branching-and-loops",
+		"newId": "assembly-unit-4-branching-and-loops-supplemental-branch-trace-transfer-practice",
+		"currentId": "assembly-unit-4-branching-and-loops-supplemental-branch-trace-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-4-branching-and-loops-supplemental-extension-practice-branching-and-loops",
+		"newId": "assembly-unit-4-branching-and-loops-supplemental-branch-trace-extension-practice",
+		"currentId": "assembly-unit-4-branching-and-loops-supplemental-branch-trace-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-5-the-stack-and-function-calls-supplemental-transfer-practice-the-stack-and-function-calls",
+		"newId": "assembly-unit-5-the-stack-and-function-calls-supplemental-stack-frame-transfer-practice",
+		"currentId": "assembly-unit-5-the-stack-and-function-calls-supplemental-stack-frame-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-5-the-stack-and-function-calls-supplemental-extension-practice-the-stack-and-function-calls",
+		"newId": "assembly-unit-5-the-stack-and-function-calls-supplemental-stack-frame-extension-practice",
+		"currentId": "assembly-unit-5-the-stack-and-function-calls-supplemental-stack-frame-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-6-calling-conventions-and-abi-supplemental-transfer-practice-calling-conventions-and-abi",
+		"newId": "assembly-unit-6-calling-conventions-and-abi-supplemental-calling-convention-transfer-practice",
+		"currentId": "assembly-unit-6-calling-conventions-and-abi-supplemental-calling-convention-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-6-calling-conventions-and-abi-supplemental-extension-practice-calling-conventions-and-abi",
+		"newId": "assembly-unit-6-calling-conventions-and-abi-supplemental-calling-convention-extension-practice",
+		"currentId": "assembly-unit-6-calling-conventions-and-abi-supplemental-calling-convention-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-7-memory-addressing-and-data-structures-supplemental-transfer-practice-memory-addressing-and-data-structures",
+		"newId": "assembly-unit-7-memory-addressing-and-data-structures-supplemental-addressing-mode-transfer-practice",
+		"currentId": "assembly-unit-7-memory-addressing-and-data-structures-supplemental-addressing-mode-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-7-memory-addressing-and-data-structures-supplemental-extension-practice-memory-addressing-and-data-structures",
+		"newId": "assembly-unit-7-memory-addressing-and-data-structures-supplemental-addressing-mode-extension-practice",
+		"currentId": "assembly-unit-7-memory-addressing-and-data-structures-supplemental-addressing-mode-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-8-system-calls-and-runtime-interaction-supplemental-transfer-practice-system-calls-and-runtime-interaction",
+		"newId": "assembly-unit-8-system-calls-and-runtime-interaction-supplemental-system-call-transfer-practice",
+		"currentId": "assembly-unit-8-system-calls-and-runtime-interaction-supplemental-system-call-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-8-system-calls-and-runtime-interaction-supplemental-extension-practice-system-calls-and-runtime-interaction",
+		"newId": "assembly-unit-8-system-calls-and-runtime-interaction-supplemental-system-call-extension-practice",
+		"currentId": "assembly-unit-8-system-calls-and-runtime-interaction-supplemental-system-call-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-9-reading-compiler-output-supplemental-transfer-practice-reading-compiler-output",
+		"newId": "assembly-unit-9-reading-compiler-output-supplemental-compiler-output-transfer-practice",
+		"currentId": "assembly-unit-9-reading-compiler-output-supplemental-compiler-output-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-9-reading-compiler-output-supplemental-extension-practice-reading-compiler-output",
+		"newId": "assembly-unit-9-reading-compiler-output-supplemental-compiler-output-extension-practice",
+		"currentId": "assembly-unit-9-reading-compiler-output-supplemental-compiler-output-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-10-debugging-at-instruction-level-supplemental-transfer-practice-debugging-at-instruction-level",
+		"newId": "assembly-unit-10-debugging-at-instruction-level-supplemental-instruction-debugging-transfer-practice",
+		"currentId": "assembly-unit-10-debugging-at-instruction-level-supplemental-instruction-debugging-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-10-debugging-at-instruction-level-supplemental-extension-practice-debugging-at-instruction-level",
+		"newId": "assembly-unit-10-debugging-at-instruction-level-supplemental-instruction-debugging-extension-practice",
+		"currentId": "assembly-unit-10-debugging-at-instruction-level-supplemental-instruction-debugging-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-11-performance-and-code-shape-supplemental-transfer-practice-performance-and-code-shape",
+		"newId": "assembly-unit-11-performance-and-code-shape-supplemental-code-shape-transfer-practice",
+		"currentId": "assembly-unit-11-performance-and-code-shape-supplemental-code-shape-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-11-performance-and-code-shape-supplemental-extension-practice-performance-and-code-shape",
+		"newId": "assembly-unit-11-performance-and-code-shape-supplemental-code-shape-extension-practice",
+		"currentId": "assembly-unit-11-performance-and-code-shape-supplemental-code-shape-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-12-security-and-reliability-visibility-supplemental-transfer-practice-security-and-reliability-visibility",
+		"newId": "assembly-unit-12-security-and-reliability-visibility-supplemental-reliability-visibility-transfer-practice",
+		"currentId": "assembly-unit-12-security-and-reliability-visibility-supplemental-reliability-visibility-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-unit-12-security-and-reliability-visibility-supplemental-extension-practice-security-and-reliability-visibility",
+		"newId": "assembly-unit-12-security-and-reliability-visibility-supplemental-reliability-visibility-extension-practice",
+		"currentId": "assembly-unit-12-security-and-reliability-visibility-supplemental-reliability-visibility-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-asm13-expansion-ideas-and-next-steps-supplemental-transfer-practice-expansion-ideas-and-next-steps",
+		"newId": "assembly-asm13-expansion-ideas-and-next-steps-supplemental-next-steps-transfer-practice",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-next-steps-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-asm13-expansion-ideas-and-next-steps-supplemental-extension-practice-expansion-ideas-and-next-steps",
+		"newId": "assembly-asm13-expansion-ideas-and-next-steps-supplemental-next-steps-extension-practice",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-next-steps-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "assembly-assembly-lab-15",
+		"newId": "assembly-assembly-lab-15-stack-trace-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-15-curriculum-assembly-lab-15-core-concepts",
+		"newId": "assembly-assembly-lab-15-stack-trace-studio-curriculum-stack-trace-studio-core-concepts",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-stack-trace-studio-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-15-curriculum-assembly-lab-15-guided-example",
+		"newId": "assembly-assembly-lab-15-stack-trace-studio-curriculum-stack-trace-studio-guided-example",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-stack-trace-studio-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-15-curriculum-core-project-assembly-lab-15",
+		"newId": "assembly-assembly-lab-15-stack-trace-studio-curriculum-core-project-stack-trace-studio",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-core-project-stack-trace-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-15-curriculum-review-assembly-lab-15",
+		"newId": "assembly-assembly-lab-15-stack-trace-studio-curriculum-stack-trace-studio-review",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-stack-trace-studio-review"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-15-supplemental-extension-challenge-assembly-lab-15",
+		"newId": "assembly-assembly-lab-15-stack-trace-studio-supplemental-extension-challenge-stack-trace-studio",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-extension-challenge-stack-trace-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-15-supplemental-transfer-practice-assembly-lab-15",
+		"newId": "assembly-assembly-lab-15-stack-trace-studio-supplemental-stack-trace-transfer-practice",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-stack-trace-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-15-supplemental-extension-practice-assembly-lab-15",
+		"newId": "assembly-assembly-lab-15-stack-trace-studio-supplemental-stack-trace-extension-practice",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-stack-trace-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "assembly-assembly-lab-16",
+		"newId": "assembly-assembly-lab-16-abi-integration-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-16-curriculum-assembly-lab-16-core-concepts",
+		"newId": "assembly-assembly-lab-16-abi-integration-studio-curriculum-abi-integration-studio-core-concepts",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-abi-integration-studio-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-16-curriculum-assembly-lab-16-guided-example",
+		"newId": "assembly-assembly-lab-16-abi-integration-studio-curriculum-abi-integration-studio-guided-example",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-abi-integration-studio-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-16-curriculum-core-project-assembly-lab-16",
+		"newId": "assembly-assembly-lab-16-abi-integration-studio-curriculum-core-project-abi-integration-studio",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-core-project-abi-integration-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-16-curriculum-review-assembly-lab-16",
+		"newId": "assembly-assembly-lab-16-abi-integration-studio-curriculum-abi-integration-studio-review",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-abi-integration-studio-review"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-16-supplemental-extension-challenge-assembly-lab-16",
+		"newId": "assembly-assembly-lab-16-abi-integration-studio-supplemental-extension-challenge-abi-integration-studio",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-extension-challenge-abi-integration-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-16-supplemental-transfer-practice-assembly-lab-16",
+		"newId": "assembly-assembly-lab-16-abi-integration-studio-supplemental-abi-integration-transfer-practice",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-abi-integration-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-16-supplemental-extension-practice-assembly-lab-16",
+		"newId": "assembly-assembly-lab-16-abi-integration-studio-supplemental-abi-integration-extension-practice",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-abi-integration-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "assembly-assembly-lab-17",
+		"newId": "assembly-assembly-lab-17-reverse-trace-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-17-curriculum-assembly-lab-17-core-concepts",
+		"newId": "assembly-assembly-lab-17-reverse-trace-studio-curriculum-reverse-trace-studio-core-concepts",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-reverse-trace-studio-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-17-curriculum-assembly-lab-17-guided-example",
+		"newId": "assembly-assembly-lab-17-reverse-trace-studio-curriculum-reverse-trace-studio-guided-example",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-reverse-trace-studio-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-17-curriculum-core-project-assembly-lab-17",
+		"newId": "assembly-assembly-lab-17-reverse-trace-studio-curriculum-core-project-reverse-trace-studio",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-core-project-reverse-trace-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-17-curriculum-review-assembly-lab-17",
+		"newId": "assembly-assembly-lab-17-reverse-trace-studio-curriculum-reverse-trace-studio-review",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-reverse-trace-studio-review"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-17-supplemental-extension-challenge-assembly-lab-17",
+		"newId": "assembly-assembly-lab-17-reverse-trace-studio-supplemental-extension-challenge-reverse-trace-studio",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-extension-challenge-reverse-trace-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-17-supplemental-transfer-practice-assembly-lab-17",
+		"newId": "assembly-assembly-lab-17-reverse-trace-studio-supplemental-reverse-trace-transfer-practice",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-reverse-trace-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "assembly-assembly-lab-17-supplemental-extension-practice-assembly-lab-17",
+		"newId": "assembly-assembly-lab-17-reverse-trace-studio-supplemental-reverse-trace-extension-practice",
+		"currentId": "assembly-optional-assembly-pathways-and-studio-archive-supplemental-reverse-trace-extension-practice"
+	}
+]

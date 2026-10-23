@@ -1,0 +1,458 @@
+[
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-supplemental-transfer-practice-code-smells-and-safe-refactoring-workflow",
+		"newId": "design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-supplemental-code-smells-and-safe-refactoring-workflow-transfer-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-supplemental-code-smells-and-safe-refactoring-workflow-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-supplemental-extension-practice-code-smells-and-safe-refactoring-workflow",
+		"newId": "design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-supplemental-code-smells-and-safe-refactoring-workflow-extension-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-supplemental-code-smells-and-safe-refactoring-workflow-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr2-composing-methods-supplemental-transfer-practice-composing-methods",
+		"newId": "design-patterns-in-java-part-2-dpr2-composing-methods-supplemental-composing-methods-transfer-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr2-composing-methods-supplemental-composing-methods-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr2-composing-methods-supplemental-extension-practice-composing-methods",
+		"newId": "design-patterns-in-java-part-2-dpr2-composing-methods-supplemental-composing-methods-extension-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr2-composing-methods-supplemental-composing-methods-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-supplemental-transfer-practice-moving-features-between-objects",
+		"newId": "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-supplemental-moving-features-between-objects-transfer-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-supplemental-moving-features-between-objects-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-supplemental-extension-practice-moving-features-between-objects",
+		"newId": "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-supplemental-moving-features-between-objects-extension-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-supplemental-moving-features-between-objects-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr4-organizing-data-supplemental-transfer-practice-organizing-data",
+		"newId": "design-patterns-in-java-part-2-dpr4-organizing-data-supplemental-organizing-data-transfer-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr4-organizing-data-supplemental-organizing-data-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr4-organizing-data-supplemental-extension-practice-organizing-data",
+		"newId": "design-patterns-in-java-part-2-dpr4-organizing-data-supplemental-organizing-data-extension-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr4-organizing-data-supplemental-organizing-data-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-supplemental-transfer-practice-simplifying-conditional-expressions",
+		"newId": "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-supplemental-simplifying-conditional-expressions-transfer-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-supplemental-simplifying-conditional-expressions-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-supplemental-extension-practice-simplifying-conditional-expressions",
+		"newId": "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-supplemental-simplifying-conditional-expressions-extension-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-supplemental-simplifying-conditional-expressions-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-transfer-practice-simplifying-method-calls",
+		"newId": "design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-simplifying-method-calls-transfer-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-simplifying-method-calls-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-extension-practice-simplifying-method-calls",
+		"newId": "design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-simplifying-method-calls-extension-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-simplifying-method-calls-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-transfer-practice-dealing-with-generalization",
+		"newId": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dealing-with-generalization-transfer-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dealing-with-generalization-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-extension-practice-dealing-with-generalization",
+		"newId": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dealing-with-generalization-extension-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dealing-with-generalization-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-transfer-practice-refactoring-toward-patterns",
+		"newId": "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-refactoring-toward-patterns-transfer-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-refactoring-toward-patterns-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-extension-practice-refactoring-toward-patterns",
+		"newId": "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-refactoring-toward-patterns-extension-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-refactoring-toward-patterns-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-transfer-practice-testability-di-and-refactoring-with-confidence",
+		"newId": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-testability-di-and-refactoring-with-confidence-transfer-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-testability-di-and-refactoring-with-confidence-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-extension-practice-testability-di-and-refactoring-with-confidence",
+		"newId": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-testability-di-and-refactoring-with-confidence-extension-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-testability-di-and-refactoring-with-confidence-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-transfer-practice-capstone-refactoring-studio",
+		"newId": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-capstone-refactoring-studio-transfer-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-capstone-refactoring-studio-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-extension-practice-capstone-refactoring-studio",
+		"newId": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-capstone-refactoring-studio-extension-practice",
+		"currentId": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-capstone-refactoring-studio-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-11",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-11-practice-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-11-curriculum-refactoring-clinic-11-core-concepts",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-11-practice-studio-curriculum-refactoring-clinic-11-core-concepts",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-11-curriculum-refactoring-clinic-11-guided-example",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-11-practice-studio-curriculum-refactoring-clinic-11-guided-example",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-11-curriculum-core-project-refactoring-clinic-11",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-11-practice-studio-curriculum-core-project-refactoring-clinic-11",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-11"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-11-curriculum-review-refactoring-clinic-11",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-11-practice-studio-curriculum-review-refactoring-clinic-11",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-11"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-11-supplemental-extension-challenge-refactoring-clinic-11",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-11-practice-studio-supplemental-extension-challenge-refactoring-clinic-11",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-11"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-11-supplemental-transfer-practice-refactoring-clinic-11",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-11-practice-studio-supplemental-refactoring-clinic-11-transfer-practice",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-11-supplemental-extension-practice-refactoring-clinic-11",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-11-practice-studio-supplemental-refactoring-clinic-11-extension-practice",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-12",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-12-practice-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-12-curriculum-refactoring-clinic-12-core-concepts",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-12-practice-studio-curriculum-refactoring-clinic-12-core-concepts",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-12-curriculum-refactoring-clinic-12-guided-example",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-12-practice-studio-curriculum-refactoring-clinic-12-guided-example",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-12-curriculum-core-project-refactoring-clinic-12",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-12-practice-studio-curriculum-core-project-refactoring-clinic-12",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-12"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-12-curriculum-review-refactoring-clinic-12",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-12-practice-studio-curriculum-review-refactoring-clinic-12",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-12"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-12-supplemental-extension-challenge-refactoring-clinic-12",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-12-practice-studio-supplemental-extension-challenge-refactoring-clinic-12",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-12"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-12-supplemental-transfer-practice-refactoring-clinic-12",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-12-practice-studio-supplemental-refactoring-clinic-12-transfer-practice",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-12-supplemental-extension-practice-refactoring-clinic-12",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-12-practice-studio-supplemental-refactoring-clinic-12-extension-practice",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-13",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-13-practice-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-13-curriculum-refactoring-clinic-13-core-concepts",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-13-practice-studio-curriculum-refactoring-clinic-13-core-concepts",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-13-curriculum-refactoring-clinic-13-guided-example",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-13-practice-studio-curriculum-refactoring-clinic-13-guided-example",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-13-curriculum-core-project-refactoring-clinic-13",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-13-practice-studio-curriculum-core-project-refactoring-clinic-13",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-13"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-13-curriculum-review-refactoring-clinic-13",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-13-practice-studio-curriculum-review-refactoring-clinic-13",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-13"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-13-supplemental-extension-challenge-refactoring-clinic-13",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-13-practice-studio-supplemental-extension-challenge-refactoring-clinic-13",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-13"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-13-supplemental-transfer-practice-refactoring-clinic-13",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-13-practice-studio-supplemental-refactoring-clinic-13-transfer-practice",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-13-supplemental-extension-practice-refactoring-clinic-13",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-13-practice-studio-supplemental-refactoring-clinic-13-extension-practice",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-14",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-14-practice-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-14-curriculum-refactoring-clinic-14-core-concepts",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-14-practice-studio-curriculum-refactoring-clinic-14-core-concepts",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-14-curriculum-refactoring-clinic-14-guided-example",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-14-practice-studio-curriculum-refactoring-clinic-14-guided-example",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-14-curriculum-core-project-refactoring-clinic-14",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-14-practice-studio-curriculum-core-project-refactoring-clinic-14",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-14"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-14-curriculum-review-refactoring-clinic-14",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-14-practice-studio-curriculum-review-refactoring-clinic-14",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-14"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-14-supplemental-extension-challenge-refactoring-clinic-14",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-14-practice-studio-supplemental-extension-challenge-refactoring-clinic-14",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-14"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-14-supplemental-transfer-practice-refactoring-clinic-14",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-14-practice-studio-supplemental-refactoring-clinic-14-transfer-practice",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-14-supplemental-extension-practice-refactoring-clinic-14",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-14-practice-studio-supplemental-refactoring-clinic-14-extension-practice",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-15",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-15-practice-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-15-curriculum-refactoring-clinic-15-core-concepts",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-15-practice-studio-curriculum-refactoring-clinic-15-core-concepts",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-15-curriculum-refactoring-clinic-15-guided-example",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-15-practice-studio-curriculum-refactoring-clinic-15-guided-example",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-15-curriculum-core-project-refactoring-clinic-15",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-15-practice-studio-curriculum-core-project-refactoring-clinic-15",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-15"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-15-curriculum-review-refactoring-clinic-15",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-15-practice-studio-curriculum-review-refactoring-clinic-15",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-15"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-15-supplemental-extension-challenge-refactoring-clinic-15",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-15-practice-studio-supplemental-extension-challenge-refactoring-clinic-15",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-15"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-15-supplemental-transfer-practice-refactoring-clinic-15",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-15-practice-studio-supplemental-refactoring-clinic-15-transfer-practice",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-15-supplemental-extension-practice-refactoring-clinic-15",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-15-practice-studio-supplemental-refactoring-clinic-15-extension-practice",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-16",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-16-practice-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-16-curriculum-refactoring-clinic-16-core-concepts",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-16-practice-studio-curriculum-refactoring-clinic-16-core-concepts",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-16-curriculum-refactoring-clinic-16-guided-example",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-16-practice-studio-curriculum-refactoring-clinic-16-guided-example",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-16-curriculum-core-project-refactoring-clinic-16",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-16-practice-studio-curriculum-core-project-refactoring-clinic-16",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-16"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-16-curriculum-review-refactoring-clinic-16",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-16-practice-studio-curriculum-review-refactoring-clinic-16",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-16"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-16-supplemental-extension-challenge-refactoring-clinic-16",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-16-practice-studio-supplemental-extension-challenge-refactoring-clinic-16",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-16"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-16-supplemental-transfer-practice-refactoring-clinic-16",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-16-practice-studio-supplemental-refactoring-clinic-16-transfer-practice",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-16-supplemental-extension-practice-refactoring-clinic-16",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-16-practice-studio-supplemental-refactoring-clinic-16-extension-practice",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-17",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-17-practice-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-17-curriculum-refactoring-clinic-17-core-concepts",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-17-practice-studio-curriculum-refactoring-clinic-17-core-concepts",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-17-curriculum-refactoring-clinic-17-guided-example",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-17-practice-studio-curriculum-refactoring-clinic-17-guided-example",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-17-curriculum-core-project-refactoring-clinic-17",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-17-practice-studio-curriculum-core-project-refactoring-clinic-17",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-17"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-17-curriculum-review-refactoring-clinic-17",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-17-practice-studio-curriculum-review-refactoring-clinic-17",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-17"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-17-supplemental-extension-challenge-refactoring-clinic-17",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-17-practice-studio-supplemental-extension-challenge-refactoring-clinic-17",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-17"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-17-supplemental-transfer-practice-refactoring-clinic-17",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-17-practice-studio-supplemental-refactoring-clinic-17-transfer-practice",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-refactoring-clinic-17-supplemental-extension-practice-refactoring-clinic-17",
+		"newId": "design-patterns-in-java-part-2-refactoring-clinic-17-practice-studio-supplemental-refactoring-clinic-17-extension-practice",
+		"currentId": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-extension-practice"
+	}
+]

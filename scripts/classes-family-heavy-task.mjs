@@ -26,6 +26,7 @@ acquireLock();
 const startedAt = new Date();
 let child = null;
 let timeout = null;
+let stopping = false;
 
 logEvent({
 	event: "start",
@@ -51,11 +52,9 @@ try {
 			event: "timeout",
 			taskId: TASK_ID,
 			childPid: child?.pid,
-			timeoutMs: TIMEOUT_MS,
-			endedAt: new Date().toISOString()
+			timeoutMs: TIMEOUT_MS
 		});
-		terminateChild();
-		exit(124);
+		stopAfterCleanup(124);
 	}, TIMEOUT_MS);
 
 	for (const signal of ["SIGINT", "SIGTERM", "SIGHUP"]) {
@@ -67,13 +66,12 @@ try {
 				childPid: child?.pid,
 				endedAt: new Date().toISOString()
 			});
-			terminateChild();
-			releaseLock();
-			process.kill(pid, signal);
+			stopAfterCleanup(null, signal);
 		});
 	}
 
 	child.on("exit", (code, signal) => {
+		if (stopping) return;
 		if (timeout) clearTimeout(timeout);
 		markDependencyTreesNonIndexable();
 		logEvent({
@@ -90,6 +88,15 @@ try {
 		releaseLock();
 		exit(code ?? (signal ? 1 : 0));
 	});
+	child.on("error", error => {
+		if (stopping) return;
+		logEvent({
+			event: "error",
+			taskId: TASK_ID,
+			message: error.message
+		});
+		stopAfterCleanup(1);
+	});
 } catch (error) {
 	if (timeout) clearTimeout(timeout);
 	logEvent({
@@ -100,9 +107,44 @@ try {
 		message: error instanceof Error ? error.message : String(error),
 		endedAt: new Date().toISOString()
 	});
-	terminateChild();
+	await terminateChild();
 	releaseLock();
 	throw error;
+}
+
+function stopAfterCleanup(exitCode, signal = null) {
+	if (stopping) return;
+	stopping = true;
+	if (timeout) clearTimeout(timeout);
+	void terminateChild().then(cleanup => {
+		markDependencyTreesNonIndexable();
+		logEvent({
+			event: "end",
+			taskId: TASK_ID,
+			cwd: cwd(),
+			command: command.join(" "),
+			childPid: child?.pid,
+			startedAt: startedAt.toISOString(),
+			endedAt: new Date().toISOString(),
+			exitCode,
+			signal,
+			...cleanup
+		});
+		releaseLock();
+		if (signal) kill(pid, signal);
+		else exit(exitCode);
+	}).catch(error => {
+		logEvent({
+			event: "cleanup-failed",
+			taskId: TASK_ID,
+			childPid: child?.pid,
+			message: error.message,
+			lockRetained: true,
+			endedAt: new Date().toISOString()
+		});
+		console.error(error.message);
+		exit(1);
+	});
 }
 
 function numberFromEnv(name, fallback) {
@@ -157,7 +199,10 @@ function acquireLock() {
 		if (error?.code !== "EEXIST") throw error;
 
 		const existing = readExistingLock();
-		if (existing?.parentPid && !isProcessAlive(existing.parentPid)) {
+		if (
+			existing?.parentPid && !isProcessAlive(existing.parentPid)
+			&& (!existing.childPid || !isProcessGroupAlive(existing.childPid))
+		) {
 			rmSync(LOCK_PATH, { force: true, recursive: true });
 			mkdirSync(LOCK_PATH);
 			writeLockMetadata(new Date(), null);
@@ -202,8 +247,62 @@ function isProcessAlive(processId) {
 	try {
 		kill(processId, 0);
 		return true;
-	} catch {
-		return false;
+	} catch (error) {
+		return error.code === "EPERM";
+	}
+}
+
+function isProcessGroupAlive(groupId) {
+	if (platform === "win32") return isProcessAlive(groupId);
+	try {
+		kill(-groupId, 0);
+		return true;
+	} catch (error) {
+		return error.code === "EPERM";
+	}
+}
+
+async function waitUntil(predicate, timeoutMs) {
+	const deadline = Date.now() + timeoutMs;
+	while (!predicate()) {
+		if (Date.now() >= deadline) return false;
+		await new Promise(resolve => setTimeout(resolve, 25));
+	}
+	return true;
+}
+
+function signalOwnedGroup(groupId, signal) {
+	try {
+		if (platform === "win32") child.kill(signal);
+		else kill(-groupId, signal);
+	} catch (error) {
+		if (error.code !== "ESRCH") throw error;
+	}
+}
+
+async function killOwnedDescendants(groupId) {
+	if (platform === "win32") return;
+	const deadline = Date.now() + 2000;
+	while (Date.now() < deadline) {
+		const members = execFileSync("ps", ["-e", "-o", "pid=,ppid=,pgid="], {
+			encoding: "utf8", timeout: 1000
+		}).trim().split("\n").map(line => {
+			const [processId, parentId, processGroup] = line.trim().split(/\s+/).map(Number);
+			return { processId, parentId, processGroup };
+		}).filter(member => member.processGroup === groupId);
+		const parents = new Set(members.map(member => member.parentId));
+		const leaves = members.filter(member => member.processId !== groupId && !parents.has(member.processId));
+		if (!leaves.length) return;
+		for (const member of leaves) {
+			try { kill(member.processId, "SIGKILL"); }
+			catch (error) { if (error.code !== "ESRCH") throw error; }
+		}
+		// Keep their parents alive long enough to reap exited descendants.
+		const reaped = await waitUntil(
+			() => leaves.every(member => !isProcessAlive(member.processId)),
+			Math.max(1, Math.min(1000, deadline - Date.now()))
+		);
+		if (!reaped) return;
 	}
 }
 
@@ -211,24 +310,23 @@ function releaseLock() {
 	rmSync(LOCK_PATH, { force: true, recursive: true });
 }
 
-function terminateChild() {
-	if (!child?.pid) return;
-	try {
-		if (platform === "win32") {
-			child.kill("SIGTERM");
-			return;
-		}
-		kill(-child.pid, "SIGTERM");
-		setTimeout(() => {
-			try {
-				kill(-child.pid, "SIGKILL");
-			} catch {
-				// The child process group already exited.
-			}
-		}, 3000).unref();
-	} catch {
-		// The child process group already exited.
+async function terminateChild() {
+	if (!child?.pid) return { childProcessGroupCleanup: "not started" };
+	const target = child;
+	const groupId = target.pid;
+	signalOwnedGroup(groupId, "SIGTERM");
+	const stopped = await waitUntil(() => !isProcessGroupAlive(groupId), 3000);
+	if (!stopped) {
+		await killOwnedDescendants(groupId);
+		signalOwnedGroup(groupId, "SIGKILL");
 	}
+	const childExitObserved = await waitUntil(
+		() => target.exitCode !== null || target.signalCode !== null, 2000
+	);
+	const groupGone = await waitUntil(() => !isProcessGroupAlive(groupId), 2000);
+	if (!childExitObserved || !groupGone)
+		throw new Error("Owned heavy-task process cleanup did not finish; retaining its lock.");
+	return { childProcessGroupCleanup: "terminated and reaped", childExitObserved, processGroupAlive: false };
 }
 
 function markDependencyTreesNonIndexable() {

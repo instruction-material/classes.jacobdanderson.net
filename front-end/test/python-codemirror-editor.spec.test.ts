@@ -183,20 +183,18 @@ describe("python IDE CodeMirror editor", () => {
 		);
 		expect(routeSource).not.toContain("new EditorView");
 		expect(routeSource).not.toContain("loadPythonIdeRuntime");
-		expect(legacyRouteSource).toContain("defineAsyncComponent");
-		expect(legacyRouteSource).toContain(
-			'() => import("@/components/AccountCodeIdeWorkspace.vue")'
-		);
+		expect(legacyRouteSource).not.toContain("defineAsyncComponent");
+		expect(legacyRouteSource).not.toContain("AccountCodeIdeWorkspace.vue");
 		expect(legacyRouteSource).toContain('path: "/ide"');
-		expect(legacyRouteSource).toContain("<CodeIdeWorkspace />");
+		expect(legacyRouteSource).not.toContain("<CodeIdeWorkspace />");
 		expect(legacyRouteSource).not.toContain("new EditorView");
 		expect(legacyRouteSource).not.toContain("loadPythonIdeRuntime");
-		expect(blueJLegacyRouteSource).toContain("defineAsyncComponent");
+		expect(blueJLegacyRouteSource).not.toContain("defineAsyncComponent");
 		expect(blueJLegacyRouteSource).toContain('path: "/ide"');
 		expect(blueJLegacyRouteSource).toContain(
 			'mode: route.query.mode ?? "bluej"'
 		);
-		expect(blueJLegacyRouteSource).toContain("<CodeIdeWorkspace />");
+		expect(blueJLegacyRouteSource).not.toContain("<CodeIdeWorkspace />");
 		expect(workspaceSource).not.toContain('route.path === "/bluej"');
 		expect(workspaceSource).toContain(
 			'<WorkspaceHeader title="Code workspace">'
@@ -645,6 +643,12 @@ describe("python IDE CodeMirror editor", () => {
 				"toString"
 			])
 		);
+		for (const receiver of ["constructor", "toString", "__proto__"]) {
+			expect(
+				javaIdeCompletionsForMode("java", receiver),
+				receiver
+			).toEqual(expect.any(Array));
+		}
 
 		const commented = runStateCommand(selectedBodyLines, toggleComment);
 		expect(commented.result).toBe(true);
@@ -2144,6 +2148,11 @@ describe("python IDE CodeMirror editor", () => {
 				doc: 't.dot(24, "dark o',
 				from: 't.dot(24, "'.length,
 				labels: ["dark olive green", "dark orange"]
+			},
+			{
+				doc: 't.dot(abs(24), "dark o',
+				from: 't.dot(abs(24), "'.length,
+				labels: ["dark olive green", "dark orange"]
 			}
 		];
 
@@ -2163,6 +2172,48 @@ describe("python IDE CodeMirror editor", () => {
 			);
 			expect(result?.validFor.test(doc.slice(from))).toBe(true);
 		}
+	});
+
+	it("bounds completion work on adversarially long editor lines", () => {
+		const longPrefix = '"x",'.repeat(4000);
+		const turtleDoc = `${longPrefix}t.color("red", "`;
+		const turtleState = EditorState.create({ doc: turtleDoc });
+		expect(
+			pythonIdeCompletionSource("turtle")({
+				explicit: true,
+				pos: turtleDoc.length,
+				state: turtleState,
+				matchBefore: expression =>
+					completionMatchBefore(
+						turtleDoc,
+						turtleDoc.length,
+						expression
+					)
+			})
+		).toBeNull();
+		expect(
+			autocompleteLabelsForDoc("karel", `${longPrefix}paintCorner("`)
+		).not.toContain("purple");
+		expect(
+			autocompleteLabelsForDoc("java", `${longPrefix}names.`)
+		).not.toContain("put");
+	});
+
+	it("keeps Java type-aware completions in large projects", () => {
+		const doc = [
+			"ArrayList<String> names = new ArrayList<>();",
+			"//" + "a".repeat(9000),
+			"names."
+		].join("\n");
+		const labels = autocompleteLabelsForDoc("java", doc);
+		expect(labels).toContain("add");
+		expect(labels).not.toContain("put");
+	});
+
+	it("handles near-limit adversarial Java declarations without backtracking", () => {
+		const doc = `Foo ${" ".repeat(3000)}<${" ".repeat(10)}\nitem.`;
+		const labels = autocompleteLabelsForDoc("java", doc);
+		expect(labels).toContain("equals");
 	});
 
 	it("bounds custom bracket-pair colorization to the visible editor range", () => {
@@ -2374,6 +2425,31 @@ describe("python IDE CodeMirror editor", () => {
 		);
 	});
 
+	it("does not parse project notes as Java source", () => {
+		const options = {
+			mode: "java" as const,
+			onChange: vi.fn(),
+			onCursorCountChange: vi.fn()
+		};
+		const note = EditorState.create({
+			doc: "Project notes: this is not Java source.",
+			extensions: createPythonCodeMirrorExtensions({
+				...options,
+				fileName: "README.md"
+			})
+		});
+		const source = EditorState.create({
+			doc: "class Main {}",
+			extensions: createPythonCodeMirrorExtensions({
+				...options,
+				fileName: "Main.java"
+			})
+		});
+
+		expect(note.languageDataAt("autocomplete", 0)).toEqual([]);
+		expect(source.languageDataAt("autocomplete", 0)).not.toEqual([]);
+	});
+
 	it("maps runtime traceback lines to editor diagnostics", () => {
 		const state = EditorState.create({
 			doc: ["total = 1", "print(total / 0)", "print('done')"].join("\n"),
@@ -2396,5 +2472,22 @@ describe("python IDE CodeMirror editor", () => {
 		expect(
 			pythonRuntimeDiagnosticForLine(state, 0, "Invalid line")
 		).toBeNull();
+		const emptyState = EditorState.create({ doc: "" });
+		const emptyDiagnostic = pythonRuntimeDiagnosticForLine(
+			emptyState,
+			1,
+			"Empty file"
+		);
+		expect(emptyDiagnostic).toMatchObject({ from: 0, to: 0 });
+		if (emptyDiagnostic) {
+			expect(() =>
+				emptyState.update({
+					selection: {
+						anchor: emptyDiagnostic.from,
+						head: emptyDiagnostic.to
+					}
+				})
+			).not.toThrow();
+		}
 	});
 });

@@ -181,13 +181,13 @@ const lessonBackbonePattern =
 function hasLessonBackbone(item: { title: string; content: string }) {
 	return (
 		lessonBackbonePattern.test(`${item.title}\n${item.content}`) ||
-		(
-			wordCount(item.content) >= 300 &&
+		(wordCount(item.content) >= 300 &&
 			(item.content.match(/^## /gm)?.length ?? 0) >= 5 &&
-			/^## (?:Files and (?:roles|startup)|The route through the project)/m.test(item.content) &&
+			/^## (?:Files and (?:roles|startup)|The route through the project)/m.test(
+				item.content
+			) &&
 			/^## (?:.*contract|Input and stored data)/im.test(item.content) &&
-			/^## .*(?:check|project)/im.test(item.content)
-		)
+			/^## .*(?:check|project)/im.test(item.content))
 	);
 }
 
@@ -1087,6 +1087,12 @@ describe("course text quality normalization", () => {
 			const dataScienceText = dataScienceCourse
 				? allCourseText(dataScienceCourse)
 				: "";
+			const elementaryScienceCourse = loadedCourses.find(
+				({ entry }) => entry.id === "elementary-science"
+			)?.course;
+			const elementaryScienceText = elementaryScienceCourse
+				? allCourseText(elementaryScienceCourse)
+				: "";
 
 			expect(badTitles).toEqual([]);
 			expect(corpus).toContain(
@@ -1097,6 +1103,12 @@ describe("course text quality normalization", () => {
 			expect(corpus).toContain("Median and Mode Practice");
 			expect(dataScienceText).not.toContain(
 				"equipment-free investigation writeup"
+			);
+			expect(dataScienceText).toContain(
+				"a notebook or script that turns a defined dataset"
+			);
+			expect(elementaryScienceText).not.toContain(
+				"a notebook or script that turns a defined dataset"
 			);
 		},
 		COURSE_SWEEP_TIMEOUT
@@ -4478,14 +4490,18 @@ describe("course text quality normalization", () => {
 			"src/stores/courses/web-development-foundations.ts",
 			"utf8"
 		);
+		const authoredSource = source.replace(
+			/^[ \t]*aliases: \[[^\]]*\],?\n/gm,
+			""
+		);
 
 		expect(corpus).not.toMatch(/This section covers/i);
 		expect(corpus).not.toMatch(/Key idea:/i);
 		expect(corpus).not.toMatch(/Skill target:/i);
 		expect(corpus).not.toMatch(/The goal is to/i);
-		expect(source).not.toMatch(/should include/i);
-		expect(source).not.toMatch(/\bsupplemental [23]\b/i);
-		expect(source).not.toMatch(/\bshould\b/i);
+		expect(authoredSource).not.toMatch(/should include/i);
+		expect(authoredSource).not.toMatch(/\bsupplemental [23]\b/i);
+		expect(authoredSource).not.toMatch(/\bshould\b/i);
 		expect(source).not.toContain("local dev server`");
 		expect(corpus).toContain("Project Files and a Local Server");
 		expect(corpus).toContain(
@@ -5249,7 +5265,7 @@ describe("course text quality normalization", () => {
 			"src/stores/courses/course-implementation-artifacts.ts",
 			"src/stores/courses/research-expansions.ts"
 		]
-			.map(path => fs.readFileSync(path, "utf8"))
+			.map(path => rawCourseProse(fs.readFileSync(path, "utf8")))
 			.join("\n");
 		const normalizerCorpus = fs.readFileSync(
 			"src/stores/courses/normalization.ts",
@@ -5416,8 +5432,7 @@ describe("course text quality normalization", () => {
 				(course?.modules ?? [])
 					.filter(module => module.kind !== "appendix")
 					.filter(
-						module =>
-							!module.curriculum.some(hasLessonBackbone)
+						module => !module.curriculum.some(hasLessonBackbone)
 					)
 					.map(module => `${id} | ${module.title}`)
 			);
@@ -5683,9 +5698,11 @@ describe("course text quality normalization", () => {
 		const course = await loadRawCourse("design-patterns-in-java-part-2");
 		expect(course).not.toBeNull();
 
-		const source = fs.readFileSync(
-			"src/stores/courses/design-patterns-in-java-part-2.ts",
-			"utf8"
+		const source = rawCourseProse(
+			fs.readFileSync(
+				"src/stores/courses/design-patterns-in-java-part-2.ts",
+				"utf8"
+			)
 		);
 		const corpus = allCourseText(course);
 
@@ -5742,9 +5759,11 @@ describe("course text quality normalization", () => {
 		const course = await loadRawCourse("design-patterns-in-java");
 		expect(course).not.toBeNull();
 		const corpus = allCourseText(course);
-		const source = fs.readFileSync(
-			"src/stores/courses/design-patterns-in-java.ts",
-			"utf8"
+		const source = rawCourseProse(
+			fs.readFileSync(
+				"src/stores/courses/design-patterns-in-java.ts",
+				"utf8"
+			)
 		);
 
 		expect(source).not.toMatch(/Pattern Implementation Lab 1[5-7]/);
@@ -6594,9 +6613,11 @@ describe("course text quality normalization", () => {
 		const course = await loadRawCourse("intro-to-swift-app-development");
 		expect(course).not.toBeNull();
 
-		const source = fs.readFileSync(
-			"src/stores/courses/intro-to-swift-app-development.ts",
-			"utf8"
+		const source = rawCourseProse(
+			fs.readFileSync(
+				"src/stores/courses/intro-to-swift-app-development.ts",
+				"utf8"
+			)
 		);
 		const corpus = allCourseText(course);
 

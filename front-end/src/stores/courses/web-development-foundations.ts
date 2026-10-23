@@ -59,6 +59,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Setup and Tooling Transfer Practice",
+					aliases: ["Setup and Tooling supplemental 2"],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle: "WDF0 Setup and Tooling",
@@ -72,6 +73,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Setup and Tooling Extension Practice",
+					aliases: ["Setup and Tooling supplemental 3"],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle: "WDF0 Setup and Tooling",
@@ -90,6 +92,9 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "JavaScript Path Into Web Development",
+					aliases: [
+						"Why the JavaScript Path Should Expand into Web Development"
+					],
 					content:
 						"Position this course as the bridge from browser-focused JavaScript to full web-development fluency. The current JavaScript courses are still valuable for programming, DOM work, and browser APIs, and now those skills connect to project structure, back-end services, databases, deployment, hosting, and operations."
 				},
@@ -140,6 +145,9 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Course Path Transfer Practice",
+					aliases: [
+						"Positioning, Goals, and Suggested Course Family supplemental 2"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -154,6 +162,9 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Course Path Extension Practice",
+					aliases: [
+						"Positioning, Goals, and Suggested Course Family supplemental 3"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -218,6 +229,9 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "JavaScript Bridge Transfer Practice",
+					aliases: [
+						"Stage 1: Strengthen the Existing JavaScript Courses supplemental 2"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -232,6 +246,9 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "JavaScript Bridge Extension Practice",
+					aliases: [
+						"Stage 1: Strengthen the Existing JavaScript Courses supplemental 3"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -296,6 +313,9 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Web Foundations Transfer Practice",
+					aliases: [
+						"Stage 2: Web Development Foundations supplemental 2"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -310,6 +330,9 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Web Foundations Extension Practice",
+					aliases: [
+						"Stage 2: Web Development Foundations supplemental 3"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -369,6 +392,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Front-End Apps Transfer Practice",
+					aliases: ["Stage 3: Front End Applications supplemental 2"],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle: "WDF4 Stage 3: Front-End Applications",
@@ -382,6 +406,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Front-End Apps Extension Practice",
+					aliases: ["Stage 3: Front End Applications supplemental 3"],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle: "WDF4 Stage 3: Front-End Applications",
@@ -444,6 +469,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Back-End Basics Transfer Practice",
+					aliases: ["Stage 4: Back End Basics supplemental 2"],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle: "WDF5 Stage 4: Back-End Basics",
@@ -457,6 +483,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Back-End Basics Extension Practice",
+					aliases: ["Stage 4: Back End Basics supplemental 3"],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle: "WDF5 Stage 4: Back-End Basics",
@@ -519,6 +546,9 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Database Models Transfer Practice",
+					aliases: [
+						"Stage 5: Databases and Data Models supplemental 2"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle: "WDF6 Stage 5: Databases and Data Models",
@@ -532,6 +562,9 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Database Models Extension Practice",
+					aliases: [
+						"Stage 5: Databases and Data Models supplemental 3"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle: "WDF6 Stage 5: Databases and Data Models",
@@ -594,6 +627,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Hosting Deployment Transfer Practice",
+					aliases: ["Stage 6: Hosting and Deployment supplemental 2"],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle: "WDF7 Stage 6: Hosting and Deployment",
@@ -607,6 +641,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Hosting Deployment Extension Practice",
+					aliases: ["Stage 6: Hosting and Deployment supplemental 3"],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle: "WDF7 Stage 6: Hosting and Deployment",
@@ -670,6 +705,9 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Hosting Ops Transfer Practice",
+					aliases: [
+						"Hosting and Operations Topics to Add supplemental 2"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -684,6 +722,9 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Hosting Ops Extension Practice",
+					aliases: [
+						"Hosting and Operations Topics to Add supplemental 3"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -759,6 +800,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Practical Projects Transfer Practice",
+					aliases: ["Good Practical Projects supplemental 2"],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle: "WDF9 Good Practical Projects",
@@ -772,6 +814,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Practical Projects Extension Practice",
+					aliases: ["Good Practical Projects supplemental 3"],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle: "WDF9 Good Practical Projects",
@@ -834,6 +877,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Operations Strand Transfer Practice",
+					aliases: ["Suggested Advanced Strand supplemental 2"],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle: "WDF10 Suggested Advanced Strand",
@@ -847,6 +891,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Operations Strand Extension Practice",
+					aliases: ["Suggested Advanced Strand supplemental 3"],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle: "WDF10 Suggested Advanced Strand",
@@ -909,6 +954,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Network Integration Transfer Practice",
+					aliases: ["Integration with Network Topics supplemental 2"],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle: "WDF11 Integration with Network Topics",
@@ -922,6 +968,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Network Integration Extension Practice",
+					aliases: ["Integration with Network Topics supplemental 3"],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle: "WDF11 Integration with Network Topics",
@@ -984,6 +1031,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Next Steps Transfer Practice",
+					aliases: ["Expansion Ideas and Next Steps supplemental 2"],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle: "WDF12 Expansion Ideas and Next Steps",
@@ -997,6 +1045,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Next Steps Extension Practice",
+					aliases: ["Expansion Ideas and Next Steps supplemental 3"],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle: "WDF12 Expansion Ideas and Next Steps",
@@ -1012,9 +1061,11 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 		},
 		{
 			title: "Full Stack Web Lab 14: Feature Slice Studio",
+			aliases: ["Full Stack Web Lab 14: Implementation Lab"],
 			curriculum: [
 				{
 					title: "Feature Slice Studio: Core Concepts",
+					aliases: ["Full Stack Web Lab 14: Core Concepts"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1024,6 +1075,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Feature Slice Studio: Guided Example",
+					aliases: ["Full Stack Web Lab 14: Guided Example"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1033,6 +1085,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Feature Slice Studio: Core Project",
+					aliases: ["Full Stack Web Lab 14: Core Project"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1046,6 +1099,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Feature Slice Studio: Review",
+					aliases: ["Full Stack Web Lab 14: Review and Reflection"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1057,6 +1111,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "Feature Slice Studio: Extension Challenge",
+					aliases: ["Full Stack Web Lab 14: Extension Challenge"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1070,6 +1125,10 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Feature Slice Transfer Practice",
+					aliases: [
+						"Full Stack Web Lab 14 Transfer Practice",
+						"Full Stack Web Lab 14 supplemental 2: Implementation Lab"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1084,6 +1143,10 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Feature Slice Extension Practice",
+					aliases: [
+						"Full Stack Web Lab 14 Extension Practice",
+						"Full Stack Web Lab 14 supplemental 3: Implementation Lab"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1100,9 +1163,11 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 		},
 		{
 			title: "Full Stack Web Lab 15: API Integration Studio",
+			aliases: ["Full Stack Web Lab 15: Implementation Lab"],
 			curriculum: [
 				{
 					title: "API Integration Studio: Core Concepts",
+					aliases: ["Full Stack Web Lab 15: Core Concepts"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1112,6 +1177,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "API Integration Studio: Guided Example",
+					aliases: ["Full Stack Web Lab 15: Guided Example"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1121,6 +1187,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "API Integration Studio: Core Project",
+					aliases: ["Full Stack Web Lab 15: Core Project"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1134,6 +1201,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "API Integration Studio: Review",
+					aliases: ["Full Stack Web Lab 15: Review and Reflection"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1145,6 +1213,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "API Integration Studio: Extension Challenge",
+					aliases: ["Full Stack Web Lab 15: Extension Challenge"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1158,6 +1227,10 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "API Integration Transfer Practice",
+					aliases: [
+						"Full Stack Web Lab 15 Transfer Practice",
+						"Full Stack Web Lab 15 supplemental 2: Implementation Lab"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1172,6 +1245,10 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "API Integration Extension Practice",
+					aliases: [
+						"Full Stack Web Lab 15 Extension Practice",
+						"Full Stack Web Lab 15 supplemental 3: Implementation Lab"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1188,9 +1265,11 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 		},
 		{
 			title: "Full Stack Web Lab 16: Data Persistence Studio",
+			aliases: ["Full Stack Web Lab 16: Implementation Lab"],
 			curriculum: [
 				{
 					title: "Data Persistence Studio: Core Concepts",
+					aliases: ["Full Stack Web Lab 16: Core Concepts"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1200,6 +1279,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Data Persistence Studio: Guided Example",
+					aliases: ["Full Stack Web Lab 16: Guided Example"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1209,6 +1289,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Data Persistence Studio: Core Project",
+					aliases: ["Full Stack Web Lab 16: Core Project"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1222,6 +1303,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Data Persistence Studio: Review",
+					aliases: ["Full Stack Web Lab 16: Review and Reflection"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1233,6 +1315,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "Data Persistence Studio: Extension Challenge",
+					aliases: ["Full Stack Web Lab 16: Extension Challenge"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1246,6 +1329,10 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Data Persistence Transfer Practice",
+					aliases: [
+						"Full Stack Web Lab 16 Transfer Practice",
+						"Full Stack Web Lab 16 supplemental 2: Implementation Lab"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1260,6 +1347,10 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Data Persistence Extension Practice",
+					aliases: [
+						"Full Stack Web Lab 16 Extension Practice",
+						"Full Stack Web Lab 16 supplemental 3: Implementation Lab"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1276,9 +1367,11 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 		},
 		{
 			title: "Full Stack Web Lab 17: Deployment Readiness Studio",
+			aliases: ["Full Stack Web Lab 17: Implementation Lab"],
 			curriculum: [
 				{
 					title: "Deployment Readiness Studio: Core Concepts",
+					aliases: ["Full Stack Web Lab 17: Core Concepts"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1288,6 +1381,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Deployment Readiness Studio: Guided Example",
+					aliases: ["Full Stack Web Lab 17: Guided Example"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1297,6 +1391,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Deployment Readiness Studio: Core Project",
+					aliases: ["Full Stack Web Lab 17: Core Project"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1310,6 +1405,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Deployment Readiness Studio: Review",
+					aliases: ["Full Stack Web Lab 17: Review and Reflection"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1321,6 +1417,7 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "Deployment Readiness Studio: Extension Challenge",
+					aliases: ["Full Stack Web Lab 17: Extension Challenge"],
 					content: buildImplementationLabGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1334,6 +1431,10 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Deployment Readiness Transfer Practice",
+					aliases: [
+						"Full Stack Web Lab 17 Transfer Practice",
+						"Full Stack Web Lab 17 supplemental 2: Implementation Lab"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle:
@@ -1348,6 +1449,10 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 				},
 				{
 					title: "Deployment Readiness Extension Practice",
+					aliases: [
+						"Full Stack Web Lab 17 Extension Practice",
+						"Full Stack Web Lab 17 supplemental 3: Implementation Lab"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "web development",
 						moduleTitle:

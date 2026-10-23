@@ -2,7 +2,7 @@ import type { Server } from "node:http";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import express from "express";
-import { Types } from "mongoose";
+import mongoose, { Types } from "mongoose";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const modelMocks = vi.hoisted(() => ({
@@ -128,6 +128,7 @@ function makeProject(overrides: Record<string, unknown> = {}) {
 		shareCreatedAt: undefined,
 		createdAt: now,
 		updatedAt: now,
+		__v: 0,
 		deleteOne: vi.fn().mockResolvedValue(undefined),
 		save: vi.fn().mockResolvedValue(undefined),
 		...overrides
@@ -506,7 +507,7 @@ describe("python project review routes", () => {
 			const response = await putJson(
 				baseUrl,
 				`/users/loggedin/python-projects/${projectID}`,
-				{ title: "Cleaned loops practice" },
+				{ title: "Cleaned loops practice", expectedRevision: 0 },
 				{ "x-user-id": studentID.toString() }
 			);
 			const body = await response.json();
@@ -525,6 +526,86 @@ describe("python project review routes", () => {
 				body.project.files.map((file: { name: string }) => file.name)
 			).toEqual(["main.py"]);
 			expect(body.project.activeFileName).toBe("main.py");
+		});
+	});
+
+	it("rejects a stale project revision without changing the saved project", async () => {
+		const project = makeProject({ __v: 7 });
+		modelMocks.pythonProjectFindOne.mockResolvedValue(project);
+
+		await withUserRoutes(async (baseUrl) => {
+			const response = await putJson(
+				baseUrl,
+				`/users/loggedin/python-projects/${projectID}`,
+				{ title: "Stale overwrite", expectedRevision: 6 },
+				{ "x-user-id": studentID.toString() }
+			);
+
+			expect(response.status).toBe(409);
+			expect(project.save).not.toHaveBeenCalled();
+			expect(project.title).toBe("Loops practice");
+			expect(await response.text()).not.toContain("Stale overwrite");
+		});
+	});
+
+	it("requires a project revision before updating stored work", async () => {
+		const project = makeProject();
+		modelMocks.pythonProjectFindOne.mockResolvedValue(project);
+
+		await withUserRoutes(async (baseUrl) => {
+			const response = await putJson(
+				baseUrl,
+				`/users/loggedin/python-projects/${projectID}`,
+				{ title: "Unversioned overwrite" },
+				{ "x-user-id": studentID.toString() }
+			);
+
+			expect(response.status).toBe(400);
+			expect(project.save).not.toHaveBeenCalled();
+		});
+	});
+
+	it("returns a conflict when another update wins during save", async () => {
+		const project = makeProject({ __v: 7 });
+		project.save.mockRejectedValueOnce(
+			new mongoose.Error.VersionError(
+				{ _doc: { _id: projectID } } as unknown as mongoose.Document,
+				7,
+				["title"]
+			)
+		);
+		modelMocks.pythonProjectFindOne.mockResolvedValue(project);
+
+		await withUserRoutes(async (baseUrl) => {
+			const response = await putJson(
+				baseUrl,
+				`/users/loggedin/python-projects/${projectID}`,
+				{ title: "Concurrent overwrite", expectedRevision: 7 },
+				{ "x-user-id": studentID.toString() }
+			);
+
+			expect(response.status).toBe(409);
+			expect(await response.text()).not.toContain("Concurrent overwrite");
+		});
+	});
+
+	it("returns the next revision after a matching project update", async () => {
+		const project = makeProject({ __v: 7 });
+		project.save.mockImplementation(async () => { project.__v += 1; });
+		modelMocks.pythonProjectFindOne.mockResolvedValue(project);
+
+		await withUserRoutes(async (baseUrl) => {
+			const response = await putJson(
+				baseUrl,
+				`/users/loggedin/python-projects/${projectID}`,
+				{ title: "Updated practice", expectedRevision: 7 },
+				{ "x-user-id": studentID.toString() }
+			);
+			const body = await response.json();
+
+			expect(response.status).toBe(200);
+			expect(project.save).toHaveBeenCalledOnce();
+			expect(body.project.revision).toBe(8);
 		});
 	});
 
@@ -803,7 +884,7 @@ describe("python project review routes", () => {
 				const update = await putJson(
 					baseUrl,
 					`/users/loggedin/python-projects/${projectID}`,
-					{ files, activeFileName },
+					{ files, activeFileName, expectedRevision: 0 },
 					{ "x-user-id": studentID.toString() }
 				);
 				expect(update.status).toBe(200);
@@ -908,7 +989,7 @@ describe("python project review routes", () => {
 				const update = await putJson(
 					baseUrl,
 					`/users/loggedin/python-projects/${projectID}`,
-					{ files, activeFileName },
+					{ files, activeFileName, expectedRevision: 0 },
 					{ "x-user-id": studentID.toString() }
 				);
 				expect(update.status).toBe(200);

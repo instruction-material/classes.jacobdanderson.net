@@ -1,0 +1,165 @@
+{
+	"modules": {
+		"usaco-bronze-unit-3-frequency-maps-sets-sorting-and-prefix-counts": [
+			"usaco-bronze-unit-3-counting-sorting-and-ranking"
+		],
+		"usaco-bronze-unit-4-complete-search-structured-state-and-construction": [
+			"usaco-bronze-unit-4-search-flavored-bronze-problems"
+		],
+		"usaco-bronze-unit-5-mock-contests-postmortems-and-silver-readiness": [
+			"usaco-bronze-unit-5-contest-sets-and-tier-transition"
+		]
+	},
+	"items": {
+		"usaco-bronze-unit-3-frequency-maps-sets-sorting-and-prefix-counts-curriculum-frequency-maps-sets-sorting-and-prefix-counts-core-concepts": [
+			"usaco-bronze-unit-3-counting-sorting-and-ranking-curriculum-counting-sorting-and-ranking-core-concepts"
+		],
+		"usaco-bronze-unit-3-frequency-maps-sets-sorting-and-prefix-counts-curriculum-core-project-counting-sorting-and-ranking": [
+			"usaco-bronze-unit-3-counting-sorting-and-ranking-curriculum-core-project-counting-sorting-and-ranking"
+		],
+		"usaco-bronze-unit-3-frequency-maps-sets-sorting-and-prefix-counts-supplemental-problem-diamond-collector": [
+			"usaco-bronze-unit-3-counting-sorting-and-ranking-supplemental-problem-diamond-collector"
+		],
+		"usaco-bronze-unit-3-frequency-maps-sets-sorting-and-prefix-counts-supplemental-problem-promotion-counting": [
+			"usaco-bronze-unit-3-counting-sorting-and-ranking-supplemental-problem-promotion-counting"
+		],
+		"usaco-bronze-unit-3-frequency-maps-sets-sorting-and-prefix-counts-supplemental-problem-acowdemia": [
+			"usaco-bronze-unit-3-counting-sorting-and-ranking-supplemental-problem-acowdemia"
+		],
+		"usaco-bronze-unit-3-frequency-maps-sets-sorting-and-prefix-counts-supplemental-transformations-java": [
+			"usaco-bronze-unit-3-counting-sorting-and-ranking-supplemental-transformations-java"
+		],
+		"usaco-bronze-unit-4-complete-search-structured-state-and-construction-curriculum-complete-search-structured-state-and-construction-core-concepts": [
+			"usaco-bronze-unit-4-search-flavored-bronze-problems-curriculum-search-flavored-bronze-problems-core-concepts"
+		],
+		"usaco-bronze-unit-4-complete-search-structured-state-and-construction-curriculum-core-project-search-flavored-bronze-problems": [
+			"usaco-bronze-unit-4-search-flavored-bronze-problems-curriculum-core-project-search-flavored-bronze-problems"
+		],
+		"usaco-bronze-unit-4-complete-search-structured-state-and-construction-supplemental-problem-the-lost-cow": [
+			"usaco-bronze-unit-4-search-flavored-bronze-problems-supplemental-problem-the-lost-cow"
+		],
+		"usaco-bronze-unit-4-complete-search-structured-state-and-construction-supplemental-problem-wormholes": [
+			"usaco-bronze-unit-4-search-flavored-bronze-problems-supplemental-problem-wormholes"
+		],
+		"usaco-bronze-unit-4-complete-search-structured-state-and-construction-supplemental-problem-family-tree": [
+			"usaco-bronze-unit-4-search-flavored-bronze-problems-supplemental-problem-family-tree"
+		],
+		"usaco-bronze-unit-5-mock-contests-postmortems-and-silver-readiness-curriculum-mock-contests-postmortems-and-silver-readiness-core-concepts": [
+			"usaco-bronze-unit-5-contest-sets-and-tier-transition-curriculum-contest-sets-and-tier-transition-core-concepts"
+		],
+		"usaco-bronze-unit-5-mock-contests-postmortems-and-silver-readiness-curriculum-core-project-contest-sets-and-tier-transition": [
+			"usaco-bronze-unit-5-contest-sets-and-tier-transition-curriculum-core-project-contest-sets-and-tier-transition"
+		],
+		"usaco-bronze-unit-5-mock-contests-postmortems-and-silver-readiness-supplemental-problem-milking-order": [
+			"usaco-bronze-unit-5-contest-sets-and-tier-transition-supplemental-problem-milking-order"
+		],
+		"usaco-bronze-unit-5-mock-contests-postmortems-and-silver-readiness-supplemental-problem-feeding-the-cows": [
+			"usaco-bronze-unit-5-contest-sets-and-tier-transition-supplemental-problem-feeding-the-cows"
+		],
+		"usaco-bronze-unit-5-mock-contests-postmortems-and-silver-readiness-supplemental-problem-just-stalling": [
+			"usaco-bronze-unit-5-contest-sets-and-tier-transition-supplemental-problem-just-stalling"
+		],
+		"usaco-bronze-unit-5-mock-contests-postmortems-and-silver-readiness-supplemental-mixing-milk-java": [
+			"usaco-bronze-unit-5-contest-sets-and-tier-transition-supplemental-mixing-milk-java"
+		],
+		"usaco-bronze-optional-bronze-problem-bank-and-language-mirrors-supplemental-simulation-arrays-and-grid-practice": [
+			"usaco-bronze-unit-6-optional-bronze-problem-bank-curriculum-simulation-arrays-and-grid-practice"
+		],
+		"usaco-bronze-optional-bronze-problem-bank-and-language-mirrors-supplemental-core-project-optional-bronze-problem-bank": [
+			"usaco-bronze-unit-6-optional-bronze-problem-bank-curriculum-core-project-optional-bronze-problem-bank"
+		],
+		"usaco-bronze-optional-bronze-problem-bank-and-language-mirrors-supplemental-problem-bank-full-bronze-repo": [
+			"usaco-bronze-unit-6-optional-bronze-problem-bank-supplemental-problem-bank-full-bronze-repo"
+		],
+		"usaco-bronze-optional-bronze-problem-bank-and-language-mirrors-supplemental-problem-mixing-milk": [
+			"usaco-bronze-unit-6-optional-bronze-problem-bank-supplemental-problem-mixing-milk"
+		],
+		"usaco-bronze-optional-bronze-problem-bank-and-language-mirrors-supplemental-problem-hoof-paper-scissors": [
+			"usaco-bronze-unit-6-optional-bronze-problem-bank-supplemental-problem-hoof-paper-scissors"
+		],
+		"usaco-bronze-optional-bronze-problem-bank-and-language-mirrors-supplemental-problem-circular-barn": [
+			"usaco-bronze-unit-6-optional-bronze-problem-bank-supplemental-problem-circular-barn"
+		],
+		"usaco-bronze-optional-bronze-problem-bank-and-language-mirrors-supplemental-problem-cow-college": [
+			"usaco-bronze-unit-6-optional-bronze-problem-bank-supplemental-problem-cow-college"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-12-barn-repair-java-core-concepts": [
+			"usaco-bronze-ub-12-barn-repair-java-practice-studio-curriculum-ub-12-barn-repair-java-core-concepts"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-12-barn-repair-java-guided-example": [
+			"usaco-bronze-ub-12-barn-repair-java-practice-studio-curriculum-ub-12-barn-repair-java-guided-example"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-12-barn-repair-java": [
+			"usaco-bronze-ub-12-barn-repair-java-practice-studio-curriculum-core-project-ub-12-barn-repair-java"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-review-ub-12-barn-repair-java": [
+			"usaco-bronze-ub-12-barn-repair-java-practice-studio-curriculum-review-ub-12-barn-repair-java"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-12-barn-repair-java": [
+			"usaco-bronze-ub-12-barn-repair-java-practice-studio-supplemental-extension-challenge-ub-12-barn-repair-java"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-combination-lock": [
+			"usaco-bronze-ub-12-barn-repair-java-practice-studio-supplemental-combination-lock"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-prime-cryptarithm": [
+			"usaco-bronze-ub-12-barn-repair-java-practice-studio-supplemental-prime-cryptarithm"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-13-combination-lock-java-core-concepts": [
+			"usaco-bronze-ub-13-combination-lock-java-practice-studio-curriculum-ub-13-combination-lock-java-core-concepts"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-13-combination-lock-java-guided-example": [
+			"usaco-bronze-ub-13-combination-lock-java-practice-studio-curriculum-ub-13-combination-lock-java-guided-example"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-13-combination-lock-java": [
+			"usaco-bronze-ub-13-combination-lock-java-practice-studio-curriculum-core-project-ub-13-combination-lock-java"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-review-ub-13-combination-lock-java": [
+			"usaco-bronze-ub-13-combination-lock-java-practice-studio-curriculum-review-ub-13-combination-lock-java"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-13-combination-lock-java": [
+			"usaco-bronze-ub-13-combination-lock-java-practice-studio-supplemental-extension-challenge-ub-13-combination-lock-java"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-ski-course-design": [
+			"usaco-bronze-ub-13-combination-lock-java-practice-studio-supplemental-ski-course-design"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-14-prime-cryptarithm-java-core-concepts": [
+			"usaco-bronze-ub-14-prime-cryptarithm-java-practice-studio-curriculum-ub-14-prime-cryptarithm-java-core-concepts"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-14-prime-cryptarithm-java-guided-example": [
+			"usaco-bronze-ub-14-prime-cryptarithm-java-practice-studio-curriculum-ub-14-prime-cryptarithm-java-guided-example"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-14-prime-cryptarithm-java": [
+			"usaco-bronze-ub-14-prime-cryptarithm-java-practice-studio-curriculum-core-project-ub-14-prime-cryptarithm-java"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-review-ub-14-prime-cryptarithm-java": [
+			"usaco-bronze-ub-14-prime-cryptarithm-java-practice-studio-curriculum-review-ub-14-prime-cryptarithm-java"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-14-prime-cryptarithm-java": [
+			"usaco-bronze-ub-14-prime-cryptarithm-java-practice-studio-supplemental-extension-challenge-ub-14-prime-cryptarithm-java"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-the-cow-signal": [
+			"usaco-bronze-ub-14-prime-cryptarithm-java-practice-studio-supplemental-the-cow-signal"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-15-ski-course-design-java-core-concepts": [
+			"usaco-bronze-ub-15-ski-course-design-java-practice-studio-curriculum-ub-15-ski-course-design-java-core-concepts"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-15-ski-course-design-java-guided-example": [
+			"usaco-bronze-ub-15-ski-course-design-java-practice-studio-curriculum-ub-15-ski-course-design-java-guided-example"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-15-ski-course-design-java": [
+			"usaco-bronze-ub-15-ski-course-design-java-practice-studio-curriculum-core-project-ub-15-ski-course-design-java"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-review-ub-15-ski-course-design-java": [
+			"usaco-bronze-ub-15-ski-course-design-java-practice-studio-curriculum-review-ub-15-ski-course-design-java"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-15-ski-course-design-java": [
+			"usaco-bronze-ub-15-ski-course-design-java-practice-studio-supplemental-extension-challenge-ub-15-ski-course-design-java"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-your-ride-is-here-java": [
+			"usaco-bronze-ub-15-ski-course-design-java-practice-studio-supplemental-your-ride-is-here-java"
+		],
+		"usaco-bronze-optional-java-bronze-practice-studios-supplemental-cow-tipping": [
+			"usaco-bronze-ub-15-ski-course-design-java-practice-studio-supplemental-cow-tipping"
+		]
+	}
+}

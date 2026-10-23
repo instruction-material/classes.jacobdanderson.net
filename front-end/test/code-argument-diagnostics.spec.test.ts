@@ -1,7 +1,8 @@
 import { java } from "@codemirror/lang-java";
 import { python } from "@codemirror/lang-python";
+import { ensureSyntaxTree } from "@codemirror/language";
 import { EditorState } from "@codemirror/state";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { codeArgumentDiagnostics } from "../src/modules/codeArgumentDiagnostics";
 
 function diagnostics(code: string, language: "python" | "java" = "python") {
@@ -198,5 +199,79 @@ draw()
 				`${"# filler\n".repeat(25000)}def draw(x): pass\ndraw()`
 			)
 		).toEqual([]);
+	});
+	it.each(["python", "java"] as const)(
+		"bounds work for deeply nested %s source",
+		language => {
+			const nested = `${"(".repeat(180)}1${")".repeat(180)}`;
+			const code =
+				language === "python"
+					? `def draw(x): pass\ndraw()\n${nested}\n`
+					: `class Main { void draw(int x) {} void test() { draw(); int value = ${nested}; } }`;
+			const state = EditorState.create({
+				doc: code,
+				extensions: [language === "python" ? python() : java()]
+			});
+			expect(ensureSyntaxTree(state, code.length, 5000)?.length).toBe(
+				code.length
+			);
+			expect(codeArgumentDiagnostics(state, language).map(item => item.message)).toEqual(
+				language === "python"
+					? ["draw() is missing required argument: 'x'."]
+					: ["draw() requires at least 1 argument; 0 provided."]
+			);
+		}
+	);
+	it("does not copy complete nested argument spans", () => {
+		const code = `def draw(x): pass\n${"draw(".repeat(80)}1${")".repeat(80)}`;
+		let state = EditorState.create({ doc: code, extensions: [python()] });
+		expect(ensureSyntaxTree(state, code.length, 5000)?.length).toBe(
+			code.length
+		);
+		state = state.update({}).state;
+		const slices = vi.spyOn(state, "sliceDoc");
+		expect(codeArgumentDiagnostics(state, "python")).toEqual([]);
+		expect(
+			slices.mock.calls.reduce(
+				(longest, [from, to]) => Math.max(longest, to - from),
+				0
+			)
+		).toBeLessThan(100);
+	});
+	it("reuses Python parameter analysis across calls", () => {
+		const count = 250;
+		const parameters = Array.from(
+			{ length: count },
+			(_, index) => `a${index}=0`
+		).join(",");
+		const code = `def draw(${parameters}): pass\n${"draw()\n".repeat(count)}`;
+		let state = EditorState.create({ doc: code, extensions: [python()] });
+		expect(ensureSyntaxTree(state, code.length, 5000)?.length).toBe(
+			code.length
+		);
+		state = state.update({}).state;
+		const slices = vi.spyOn(state, "sliceDoc");
+		expect(codeArgumentDiagnostics(state, "python")).toEqual([]);
+		expect(slices.mock.calls.length).toBeLessThan(10_000);
+	});
+	it("indexes Java class methods across calls", () => {
+		const count = 250;
+		const methods = Array.from(
+			{ length: count },
+			(_, index) => `void m${index}() {}`
+		).join(" ");
+		const calls = Array.from(
+			{ length: count },
+			(_, index) => `m${index}();`
+		).join(" ");
+		const code = `class Main { ${methods} void run() { ${calls} } }`;
+		let state = EditorState.create({ doc: code, extensions: [java()] });
+		expect(ensureSyntaxTree(state, code.length, 5000)?.length).toBe(
+			code.length
+		);
+		state = state.update({}).state;
+		const slices = vi.spyOn(state, "sliceDoc");
+		expect(codeArgumentDiagnostics(state, "java")).toEqual([]);
+		expect(slices.mock.calls.length).toBeLessThan(10_000);
 	});
 });

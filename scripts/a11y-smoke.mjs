@@ -6,6 +6,7 @@ import net from "node:net";
 import process from "node:process";
 import puppeteer from "puppeteer";
 import { isTransientA11yError, runAxeInPage } from "./a11y-axe-runtime.mjs";
+import { waitForChildExitWithin } from "./wait-for-child-exit.mjs";
 
 const require = createRequire(import.meta.url);
 const axeSourcePath = require.resolve("axe-core/axe.min.js");
@@ -313,29 +314,16 @@ async function assertPortAvailable(port, label) {
 	}
 }
 
-function waitForChildExit(child) {
-	return new Promise((resolve) => {
-		if (child.exitCode !== null || child.signalCode) {
-			resolve();
-			return;
-		}
-		child.once("exit", resolve);
-	});
-}
-
 async function stopChild(child) {
 	if (child.exitCode !== null || child.signalCode) return;
 
 	killChild(child, "SIGTERM");
-	const exited = await Promise.race([
-		waitForChildExit(child).then(() => true),
-		new Promise(resolve => setTimeout(resolve, 5_000, false))
-	]);
+	const exited = await waitForChildExitWithin(child, 5_000);
 
 	if (exited) return;
 
 	killChild(child, "SIGKILL");
-	await Promise.race([waitForChildExit(child), new Promise(resolve => setTimeout(resolve, 2_000))]);
+	await waitForChildExitWithin(child, 2_000);
 }
 
 async function runAxeAudit(page, url) {

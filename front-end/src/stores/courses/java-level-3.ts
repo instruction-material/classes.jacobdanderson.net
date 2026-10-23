@@ -1271,6 +1271,7 @@ const javaLevel3SourceCourse: RawCourse = {
 				},
 				{
 					title: "AJ10 Project 1: Bakery Model",
+					aliases: ["AJ10 Project 1: Juni Bakery"],
 					content:
 						"Use nested classes to model a bakery, its workers, and its baked goods, then collect input and print the resulting bakery state.",
 					projectLink:
@@ -1795,6 +1796,7 @@ const javaLevel3SourceCourse: RawCourse = {
 				},
 				{
 					title: "AJ15 Project 2: Mini Search Engine",
+					aliases: ["AJ15 Project 2: Juni Search Engine"],
 					content:
 						"Use the custom `HashMap`, file reading, and string splitting to build a simple keyword search engine over a text corpus of URLs and tags.",
 					projectLink:
@@ -2963,6 +2965,59 @@ const javaLevel3AdvancedModules = javaLevel3SourceCourse.modules.filter(
 	module => JAVA_LEVEL_3_ADVANCED_MODULES.has(module.title)
 );
 const javaLevel3PendingMediaModule = javaLevel3SourceCourse.modules.at(-1)!;
+
+const previousJavaPracticeModules = new Set([
+	"AJ1 Review: Variables, Strings, and Input",
+	"AJ3 Review: Objects and Classes",
+	"AJ4 Recursion",
+	"AJ5 Linear Search and Big-O Notation",
+	"AJ6 Binary Search",
+	"Check-In #1",
+	"AJ7 Selection and Insertion Sort",
+	"AJ8 Bubble Sort",
+	"AJ9 Merge Sort",
+	"Check-In #2",
+	"AJ10 Sustainable Programming",
+	"AJ11 Linked Lists",
+	"AJ13 Priority Queues and Maps",
+	"Check-In #3",
+	"AJ14 Binary Search Trees",
+	"AJ15 Hash Tables",
+	"AJ16 Graphs",
+	"Check-In #4",
+	"AJ17 Master Project: Google Maps"
+]);
+
+function previousJavaProgressSlug(value: string) {
+	return value
+		.toLowerCase()
+		.normalize("NFKD")
+		.replace(/[\u0300-\u036F]/g, "")
+		.replace(/[^a-z0-9]+/g, "-")
+		.replace(/^-+|-+$/g, "");
+}
+
+for (const module of [
+	...javaLevel3PrimaryModules,
+	...javaLevel3PlacementArchiveModules
+]) {
+	if (!previousJavaPracticeModules.has(module.title)) continue;
+	const previousTopic = module.title.replace(/^AJ\d+ (?:Review: )?/u, "");
+	const previousModuleId = previousJavaProgressSlug(
+		`java-level-3-${module.title}`
+	);
+	for (const item of module.supplementalProjects) {
+		const practiceNumber = item.projectLink?.match(
+			/-supplemental-([23])\/starter$/u
+		)?.[1];
+		if (!practiceNumber) continue;
+		const purpose = practiceNumber === "2" ? "Transfer" : "Extension";
+		const previousId = previousJavaProgressSlug(
+			`${previousModuleId}-supplemental-${purpose} Practice: ${previousTopic}`
+		);
+		item.aliases = [...new Set([...(item.aliases ?? []), previousId])];
+	}
+}
 
 export const javaLevel3Course: RawCourse = {
 	...javaLevel3SourceCourse,

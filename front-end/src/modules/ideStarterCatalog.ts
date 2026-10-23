@@ -12,6 +12,13 @@ export interface IdeStarter {
 }
 export const ideStarters: IdeStarter[] = [
 	{
+		id: "swift:blank",
+		label: "SwiftUI App Source",
+		mode: "swift",
+		template: "blank",
+		category: "Templates"
+	},
+	{
 		id: "web:blank",
 		label: "HTML, CSS and JavaScript",
 		mode: "web",

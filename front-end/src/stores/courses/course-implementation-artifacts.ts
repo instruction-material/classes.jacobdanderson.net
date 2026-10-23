@@ -3408,6 +3408,9 @@ function addUnityFullProjectWorkflowModules(
 			},
 			{
 				title: "Checkpoint Workflow",
+				aliases: [
+					"unity-game-development-ugd8-full-project-starter-and-review-repository-plan-curriculum-session-workflow"
+				],
 				content:
 					"**Concept path:** A repeating development loop keeps Unity work from turning into untracked editor-only changes: prework, implementation, tagged checkpoint or pull request, rubric review, and reflection note. Each cycle preserves evidence of what changed, what was tested, and what the next action is.\n\n**Checkpoint contents:** The checkpoint identifies the scene or system touched, scripts changed, test or play-mode result, bug or design decision, and next action. A checkpoint can be a commit, tag, pull request, screenshot plus note, or recorded build output, but it must identify the project state clearly enough to resume later.\n\n**Evidence target:** Each development cycle produces a visible checkpoint and next action."
 			}
@@ -4237,6 +4240,7 @@ function supplementalProjectFor(
 
 	return {
 		title: supplementalTransferTitle(topic),
+		aliases: ["Applied Challenge"],
 		content: supplementalTransferContent(topic, next, courseId)
 	};
 }

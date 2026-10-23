@@ -21,7 +21,7 @@ export { pythonIdeImportedTopLevelModules } from "@/modules/pythonImportScanner"
 
 const PROJECT_ROOT = "/home/pyodide/classes_project";
 const PYTHON_IDE_RUNTIME_BOOTSTRAP_VERSION =
-	"2026-10-17-python-314-class-loop-guards";
+	"2026-10-23-conditional-turtle-loops";
 const PYTHON_EXTENSION_RE = /\.py$/i;
 const FOR_LOOP_ITERATION_LIMIT = 500000;
 const WHILE_LOOP_ITERATION_LIMIT = 25000;
@@ -176,6 +176,7 @@ export interface GameBridge {
 	setMusicVolume: (volume: number) => void;
 	stopMusic: () => void;
 	playTone: (frequency: number, duration: number) => number;
+	isToneActive: (toneID: number) => boolean;
 	stopTone: (toneID: number) => void;
 	log: (text: string) => void;
 }
@@ -269,7 +270,11 @@ export interface TurtleBridge {
 		button: string,
 		callback: ((x: number, y: number) => void) | null
 	) => void;
-	scheduleTimer: (delayMs: number, callback: (() => void) | null) => void;
+	scheduleTimer: (
+		delayMs: number,
+		callback: (() => void) | null,
+		ownedCallback?: (() => void) | null
+	) => void;
 	listen: () => void;
 	registerShape: (name: string, definitionJson: string) => void;
 	setShape: (shape: string) => void;
@@ -502,11 +507,6 @@ export async function releasePythonIdeRuntimeCallbacks() {
 	releaseRuntimeCallbackRegistries(await pyodidePromise);
 }
 
-function getPlainPythonWorker() {
-	plainPythonWorker ??= new PythonWorker();
-	return plainPythonWorker;
-}
-
 function terminatePlainPythonWorker() {
 	plainPythonWorker?.terminate();
 	plainPythonWorker = null;
@@ -541,15 +541,22 @@ async function runPlainPythonProjectInWorker(options: RunPythonProjectOptions) {
 	if (!activeFile)
 		throw new Error("Project does not have a runnable Python file.");
 
-	const worker = getPlainPythonWorker();
+	stopActivePlainPythonWorkerRun?.("Python run replaced.");
+	const worker = new PythonWorker();
+	plainPythonWorker = worker;
+	const channel = new MessageChannel();
+	const replyPort = channel.port1;
 	const runID = ++plainPythonWorkerRunID;
+	worker.postMessage({ type: "connect" }, [channel.port2]);
 
 	return new Promise<void>((resolve, reject) => {
 		let settled = false;
 		let activeStopRun: ((reason: string) => void) | null = null;
 		const cleanup = () => {
-			worker.removeEventListener("message", handleMessage);
+			replyPort.removeEventListener("message", handleMessage);
+			replyPort.close();
 			worker.removeEventListener("error", handleWorkerError);
+			if (plainPythonWorker === worker) terminatePlainPythonWorker();
 			if (stopActivePlainPythonWorkerRun === activeStopRun)
 				stopActivePlainPythonWorkerRun = null;
 		};
@@ -560,11 +567,9 @@ async function runPlainPythonProjectInWorker(options: RunPythonProjectOptions) {
 			finish();
 		};
 		activeStopRun = (reason: string) => {
-			terminatePlainPythonWorker();
 			settle(() => reject(new Error(reason)));
 		};
 		function handleWorkerError(event: ErrorEvent) {
-			terminatePlainPythonWorker();
 			settle(() =>
 				reject(
 					new Error(
@@ -606,16 +611,19 @@ async function runPlainPythonProjectInWorker(options: RunPythonProjectOptions) {
 				settle(() => reject(new Error(message.message)));
 				return;
 			}
-			options.onProjectFilesUpdate?.(
-				filterCapturedProjectTextFiles(message.files)
-			);
-			settle(resolve);
+			if (message.type === "done") {
+				options.onProjectFilesUpdate?.(
+					filterCapturedProjectTextFiles(message.files)
+				);
+				settle(resolve);
+			}
 		}
 
 		stopActivePlainPythonWorkerRun = activeStopRun;
-		worker.addEventListener("message", handleMessage);
+		replyPort.addEventListener("message", handleMessage);
+		replyPort.start();
 		worker.addEventListener("error", handleWorkerError);
-		worker.postMessage({
+		replyPort.postMessage({
 			type: "run",
 			id: runID,
 			activeFileName: activeFile.name,
@@ -683,7 +691,36 @@ function escapePythonString(value: string) {
 	return JSON.stringify(value);
 }
 
-function createInputBootstrap(inputText: string, mode: PythonIdeMode) {
+export function createTrustedPythonImportPrelude(projectRoot = PROJECT_ROOT) {
+	return `
+import builtins as __classes_import_builtins
+import os
+import sys
+sys.meta_path[:] = [
+    __classes_import_finder for __classes_import_finder in sys.meta_path
+    if not __classes_import_builtins.getattr(
+        __classes_import_finder, "__classes_python_ide_project_finder__", False
+    )
+]
+import _frozen_importlib as __classes_import_bootstrap
+__classes_import_bootstrap.FrozenImporter.exec_module(os.path)
+__classes_project_root_path = os.path.realpath(${escapePythonString(projectRoot)})
+sys.path[:] = [
+    entry for entry in sys.path
+    if __classes_import_builtins.isinstance(entry, __classes_import_builtins.str) and entry and not (
+        os.path.realpath(entry) == __classes_project_root_path
+        or os.path.realpath(entry).startswith(__classes_project_root_path + os.sep)
+    )
+]
+os.chdir(os.path.dirname(__classes_project_root_path))
+`;
+}
+
+export function createInputBootstrap(
+	inputText: string,
+	mode: PythonIdeMode,
+	projectRoot = PROJECT_ROOT
+) {
 	const inputLines = inputText.replaceAll("\r\n", "\n").split("\n");
 	return `
 def _classes_reset_main_namespace():
@@ -719,7 +756,7 @@ from pathlib import Path as __ClassesPath
 __classes_input_values = iter(__import__("json").loads(${escapePythonString(JSON.stringify(inputLines))}))
 __classes_python_ide_mode = ${escapePythonString(mode)}
 __classes_runtime_bootstrap_version = ${escapePythonString(PYTHON_IDE_RUNTIME_BOOTSTRAP_VERSION)}
-__classes_project_root = __ClassesPath(${escapePythonString(PROJECT_ROOT)})
+__classes_project_root = __ClassesPath(${escapePythonString(projectRoot)})
 __classes_project_root_resolved = __classes_project_root.resolve()
 __classes_reserved_import_roots = set(
     __import__("json").loads(${escapePythonString(JSON.stringify(PYTHON_IDE_RUNTIME_MODULES))})
@@ -856,10 +893,14 @@ def __classes_loop_guard__(kind):
         )
 
 class __ClassesLoopGuardTransformer(ast.NodeTransformer):
-    def __init__(self, source, filename, allow_turtle_cooperative=False):
+    def __init__(self, source, filename, allow_turtle_cooperative=None):
         self.source = source
         self.filename = filename
         self.allow_turtle_cooperative = allow_turtle_cooperative
+        self.turtle_module_names = set()
+        self.turtle_action_names = set()
+        self.turtle_object_names = set()
+        self.turtle_written_names = set()
         super().__init__()
 
     def _guard_statement(self, node, kind):
@@ -887,23 +928,175 @@ class __ClassesLoopGuardTransformer(ast.NodeTransformer):
                         return True
             if isinstance(statement, ast.ImportFrom):
                 module = statement.module or ""
-                if module == "turtle" or module.startswith("turtle."):
+                if statement.level == 0 and (module == "turtle" or module.startswith("turtle.")):
                     return True
         return False
 
-    def _node_uses_turtle_api(self, node, turtle_helper_names=None):
-        if turtle_helper_names is None:
-            turtle_helper_names = set()
-        for child in ast.walk(node):
-            if not isinstance(child, ast.Call):
+    def _module_turtle_bindings(self, node):
+        module_names = set()
+        action_names = set()
+        factory_names = set()
+        trusted_imports = {}
+        turtle_wildcard = False
+        factory_methods = {"Turtle", "RawTurtle", "Screen", "getscreen", "getturtle", "getpen"}
+        for statement in node.body:
+            if isinstance(statement, ast.Import):
+                for alias in statement.names:
+                    if alias.name == "turtle":
+                        name = alias.asname or alias.name
+                        module_names.add(name)
+                        trusted_imports[name] = trusted_imports.get(name, 0) + 1
+            elif (
+                isinstance(statement, ast.ImportFrom)
+                and statement.level == 0
+                and statement.module == "turtle"
+            ):
+                for alias in statement.names:
+                    if alias.name == "*":
+                        turtle_wildcard = True
+                    else:
+                        name = alias.asname or alias.name
+                        trusted_imports[name] = trusted_imports.get(name, 0) + 1
+                        if alias.name in _classes_turtle_animation_call_names:
+                            action_names.add(name)
+                        if alias.name in factory_methods:
+                            factory_names.add(name)
+
+        writes = {}
+        imports = {}
+        attribute_writes = set()
+        other_wildcard = False
+        definitions = {}
+        global_names = set()
+        scoped_nodes = []
+        pending = list(node.body)
+        while pending:
+            child = pending.pop()
+            scoped_nodes.append(child)
+            if isinstance(child, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+                definitions[child.name] = definitions.get(child.name, 0) + 1
+                global_names.update(
+                    name for nested in ast.walk(child)
+                    if isinstance(nested, ast.Global) for name in nested.names
+                )
                 continue
-            function = child.func
-            if isinstance(function, ast.Attribute) and function.attr in _classes_turtle_animation_call_names:
-                return True
-            if isinstance(function, ast.Name) and function.id in _classes_turtle_animation_call_names:
-                return True
-            if isinstance(function, ast.Name) and function.id in turtle_helper_names:
-                return True
+            if isinstance(child, ast.Lambda):
+                continue
+            pending.extend(ast.iter_child_nodes(child))
+        for child in scoped_nodes:
+            if isinstance(child, ast.Name) and isinstance(child.ctx, (ast.Store, ast.Del)):
+                writes[child.id] = writes.get(child.id, 0) + 1
+            elif isinstance(child, ast.Attribute) and isinstance(child.ctx, (ast.Store, ast.Del)):
+                if isinstance(child.value, ast.Name):
+                    attribute_writes.add(child.value.id)
+            elif isinstance(child, (ast.Import, ast.ImportFrom)):
+                for alias in child.names:
+                    if alias.name == "*":
+                        if not (
+                            isinstance(child, ast.ImportFrom)
+                            and child.level == 0
+                            and child.module == "turtle"
+                        ):
+                            other_wildcard = True
+                        continue
+                    name = alias.asname or alias.name.split(".", 1)[0]
+                    imports[name] = imports.get(name, 0) + 1
+        if turtle_wildcard and not other_wildcard:
+            action_names.update(_classes_turtle_animation_call_names)
+            factory_names.update(factory_methods)
+        if other_wildcard:
+            action_names.clear()
+            factory_names.clear()
+        self.turtle_written_names = set(writes) | global_names
+        self.turtle_helper_blocked_names = (
+            self.turtle_written_names | set(imports)
+            | {name for name, count in definitions.items() if count != 1}
+        )
+        import_rebindings = {
+            name for name, count in imports.items()
+            if count != trusted_imports.get(name, 0) or count > 1
+        }
+        rebound = self.turtle_written_names | set(definitions) | attribute_writes | import_rebindings
+        module_names.difference_update(rebound)
+        action_names.difference_update(rebound)
+        factory_names.difference_update(rebound)
+
+        def is_turtle_factory(value):
+            if not isinstance(value, ast.Call):
+                return False
+            function = value.func
+            if isinstance(function, ast.Name):
+                return function.id in factory_names
+            return (
+                isinstance(function, ast.Attribute)
+                and function.attr in factory_methods
+                and isinstance(function.value, ast.Name)
+                and function.value.id in module_names
+            )
+
+        object_names = set()
+        for statement in node.body:
+            if isinstance(statement, ast.Assign) and len(statement.targets) == 1:
+                target, value = statement.targets[0], statement.value
+            elif isinstance(statement, ast.AnnAssign):
+                target, value = statement.target, statement.value
+            else:
+                continue
+            if isinstance(target, ast.Name) and (
+                is_turtle_factory(value)
+                or isinstance(value, ast.Name) and value.id in object_names
+            ):
+                if (
+                    writes.get(target.id) == 1
+                    and target.id not in set(definitions) | attribute_writes | import_rebindings
+                ):
+                    object_names.add(target.id)
+
+        self.turtle_module_names = module_names
+        self.turtle_action_names = action_names
+        self.turtle_object_names = object_names
+
+    def _node_uses_turtle_api(self, node, turtle_helper_names=None, blocked_names=None, require_first=False):
+        helper_names = turtle_helper_names or set()
+        blocked = blocked_names or set()
+        for statement in node.body:
+            if isinstance(statement, ast.Expr) and isinstance(statement.value, ast.Constant):
+                if isinstance(statement.value.value, str):
+                    continue
+            if isinstance(statement, (ast.Expr, ast.Assign, ast.AnnAssign, ast.Return)):
+                call = statement.value
+            else:
+                call = None
+            if isinstance(call, ast.Call):
+                function = call.func
+                if isinstance(function, ast.Name):
+                    if function.id not in blocked and function.id in self.turtle_action_names | helper_names:
+                        return True
+                elif isinstance(function, ast.Attribute):
+                    if (
+                        function.attr in _classes_turtle_animation_call_names
+                        and isinstance(function.value, ast.Name)
+                        and function.value.id not in blocked
+                        and function.value.id in self.turtle_module_names | self.turtle_object_names
+                    ):
+                        return True
+            if not require_first and isinstance(statement, ast.If):
+                branches = [statement.body, statement.orelse]
+                if isinstance(statement.test, ast.Constant):
+                    branches = [statement.body if statement.test.value else statement.orelse]
+                for branch in branches:
+                    if self._node_uses_turtle_api(
+                        ast.Module(body=branch, type_ignores=[]), helper_names, blocked
+                    ):
+                        return True
+            if require_first:
+                if (
+                    isinstance(statement, ast.Assign)
+                    and all(isinstance(target, ast.Name) for target in statement.targets)
+                    and isinstance(statement.value, (ast.Constant, ast.Name))
+                ):
+                    continue
+                return False
         return False
 
     def _module_turtle_helper_names(self, node):
@@ -912,11 +1105,38 @@ class __ClassesLoopGuardTransformer(ast.NodeTransformer):
         while changed:
             changed = False
             for statement in node.body:
-                if not isinstance(statement, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                if not isinstance(statement, ast.FunctionDef):
                     continue
-                if statement.name in helper_names:
+                if statement.name in helper_names or statement.name in self.turtle_helper_blocked_names:
                     continue
-                if self._node_uses_turtle_api(statement, helper_names):
+                if statement.decorator_list or any(
+                    isinstance(child, (ast.Yield, ast.YieldFrom, ast.Await))
+                    for child in ast.walk(statement)
+                ):
+                    continue
+                arguments = statement.args
+                blocked_names = {
+                    argument.arg for argument in (
+                        arguments.posonlyargs + arguments.args + arguments.kwonlyargs
+                    )
+                }
+                if arguments.vararg:
+                    blocked_names.add(arguments.vararg.arg)
+                if arguments.kwarg:
+                    blocked_names.add(arguments.kwarg.arg)
+                blocked_names.update(
+                    child.id for child in ast.walk(statement)
+                    if isinstance(child, ast.Name) and isinstance(child.ctx, (ast.Store, ast.Del))
+                )
+                for child in ast.walk(statement):
+                    if isinstance(child, (ast.Import, ast.ImportFrom)):
+                        blocked_names.update(
+                            alias.asname or alias.name.split(".", 1)[0]
+                            for alias in child.names if alias.name != "*"
+                        )
+                if self._node_uses_turtle_api(
+                    statement, helper_names, blocked_names, require_first=True
+                ):
                     helper_names.add(statement.name)
                     changed = True
         return helper_names
@@ -942,7 +1162,7 @@ class __ClassesLoopGuardTransformer(ast.NodeTransformer):
             ast.YieldFrom,
         )
         return (
-            (module_allows_turtle_loop or self._node_uses_turtle_api(node, turtle_helper_names))
+            module_allows_turtle_loop
             and self._node_uses_turtle_api(node, turtle_helper_names)
             and not any(isinstance(child, unsupported_nodes) for child in ast.walk(node))
         )
@@ -983,8 +1203,10 @@ class __ClassesLoopGuardTransformer(ast.NodeTransformer):
 
     def visit_Module(self, node):
         module_allows_turtle_loop = (
-            self.allow_turtle_cooperative or self._module_imports_turtle(node)
+            self.allow_turtle_cooperative is not False
+            and (self.allow_turtle_cooperative is True or self._module_imports_turtle(node))
         )
+        self._module_turtle_bindings(node)
         turtle_helper_names = self._module_turtle_helper_names(node)
         rewritten_body = []
         for statement in node.body:
@@ -1008,8 +1230,8 @@ class __ClassesLoopGuardTransformer(ast.NodeTransformer):
         return self._guard_loop(node, "while")
 
 def __classes_compile_student_source(source, filename, allow_turtle_cooperative=None):
-    if allow_turtle_cooperative is None:
-        allow_turtle_cooperative = __classes_python_ide_mode == "turtle"
+    if allow_turtle_cooperative is None and __classes_python_ide_mode == "turtle":
+        allow_turtle_cooperative = True
     tree = ast.parse(source, filename=filename, mode="exec")
     tree = __ClassesLoopGuardTransformer(
         source,
@@ -1031,7 +1253,7 @@ def _classes_is_project_path(path):
         return False
 
 class __ClassesProjectSourceLoader(importlib.machinery.SourceFileLoader):
-    def source_to_code(self, data, path, *, _optimize=-1):
+    def source_to_code(self, data, path, _fullname=None, *, _optimize=-1):
         source = data.decode("utf-8") if isinstance(data, (bytes, bytearray)) else str(data)
         return _classes_compile_student_source(source, path)
 _ClassesProjectSourceLoader = __ClassesProjectSourceLoader
@@ -1127,6 +1349,7 @@ builtins.__classes_schedule_turtle_loop = __classes_schedule_turtle_loop
 
 const turtleShim = `
 from contextlib import contextmanager
+from itertools import islice
 import json
 import math
 from pathlib import Path
@@ -1146,8 +1369,8 @@ _screen_mode = "standard"
 _screen_title = ""
 _screen_width = 640
 _tracer_value = 1.0
-_timer_counter = 0
 _turtle_counter = 0
+_max_circle_steps = 360
 _world_coordinates = None
 _builtin_shapes = {"arrow", "blank", "circle", "classic", "fancy", "square", "triangle", "turtle"}
 _registered_shapes = {name: {"kind": "builtin"} for name in _builtin_shapes}
@@ -1200,7 +1423,7 @@ def _normalize_color(*values):
         if isinstance(value, str):
             return value.replace(" ", "")
         try:
-            sequence = list(value)
+            sequence = list(islice(value, 3))
         except TypeError:
             return str(value)
         if len(sequence) >= 3 and all(_is_number(part) for part in sequence[:3]):
@@ -1246,7 +1469,7 @@ def _looks_like_color(value):
     if isinstance(value, str):
         return True
     try:
-        sequence = list(value)
+        sequence = list(islice(value, 3))
     except TypeError:
         return False
     return len(sequence) >= 3 and all(_is_number(part) for part in sequence[:3])
@@ -1394,22 +1617,9 @@ def _stored_callback(kind, key, function, add=None):
     return proxy
 
 def _timer_callback(function):
-    global _timer_counter
     if function is None:
         return None
-
-    _timer_counter += 1
-    storage_key = ("timer", str(_timer_counter))
-
-    def run_timer():
-        try:
-            function()
-        finally:
-            _release_proxy(_callback_proxies.pop(storage_key, None))
-
-    proxy = create_proxy(run_timer)
-    _callback_proxies[storage_key] = proxy
-    return proxy
+    return create_proxy(function)
 
 def _release_all_callbacks():
     for proxy in list(_callback_proxies.values()):
@@ -1524,7 +1734,8 @@ class _Screen:
         )
 
     def ontimer(self, function, t=0):
-        _bridge.scheduleTimer(float(t), _timer_callback(function))
+        callback = _timer_callback(function)
+        _bridge.scheduleTimer(float(t), callback, callback)
 
     def onclick(self, function, btn=1, add=None):
         _bridge.registerClick(
@@ -2138,6 +2349,8 @@ class Turtle:
             steps = 1 + int(min(11 + abs(radius) / 6.0, 59.0) * fraction)
         else:
             steps = int(steps)
+        if steps < 1 or steps > _max_circle_steps:
+            raise ValueError("circle steps must be between 1 and {}".format(_max_circle_steps))
 
         self._push_undo(steps if self._pen_down else 0)
         self._suspend_undo += 1
@@ -4234,6 +4447,7 @@ class _ToneSound:
 
     def play(self, *_args, **_kwargs):
         _require_audio_initialized()
+        self._active_ids = [tone_id for tone_id in self._active_ids if _bridge.isToneActive(int(tone_id))]
         tone_id = int(_bridge.playTone(float(self.frequency), float(self.duration)))
         if tone_id:
             self._active_ids.append(tone_id)
@@ -5440,6 +5654,7 @@ export async function runPythonProject(options: RunPythonProjectOptions) {
 
 	const pyodide = await loadRuntime();
 	throwIfRunStopped(options);
+	pyodide.runPython(createTrustedPythonImportPrelude());
 	options.onPythonVersion?.(
 		String(pyodide.runPython('__import__("sys").version.split()[0]'))
 	);
@@ -5507,12 +5722,13 @@ export async function runPythonProject(options: RunPythonProjectOptions) {
 	pyodide.runPython(`
 import os
 import sys
-os.chdir(${escapePythonString(PROJECT_ROOT)})
-if ${escapePythonString(PROJECT_ROOT)} not in sys.path:
-    sys.path.insert(0, ${escapePythonString(PROJECT_ROOT)})
 for __classes_module_name in __import__("json").loads(${escapePythonString(JSON.stringify(projectModuleNames))}):
     sys.modules.pop(__classes_module_name, None)
 ${createInputBootstrap(options.inputText, options.mode)}
+import os as __classes_os
+__classes_os.chdir(${escapePythonString(PROJECT_ROOT)})
+if ${escapePythonString(PROJECT_ROOT)} not in __classes_sys.path:
+    __classes_sys.path.insert(0, ${escapePythonString(PROJECT_ROOT)})
 if ${options.mode === "pgzero" ? "True" : "False"}:
     import _classes_pgzero
     _classes_pgzero.install_builtins()

@@ -17,6 +17,7 @@ describe("Scratch conditional project support", () => {
 					age: 30,
 					state: "GA",
 					usersOfTutorLength: 0,
+					coursePermissions: ["scratch-level-1"],
 					editTutors: false,
 					saveEdit: "Save"
 				});

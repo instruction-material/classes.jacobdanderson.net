@@ -1,0 +1,1514 @@
+[
+	{
+		"course": "usaco-bronze",
+		"kind": "module",
+		"oldId": "usaco-bronze-ub-12-barn-repair-java",
+		"newId": "usaco-bronze-ub-12-barn-repair-java-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-12-barn-repair-java-curriculum-ub-12-barn-repair-java-core-concepts",
+		"newId": "usaco-bronze-ub-12-barn-repair-java-practice-studio-curriculum-ub-12-barn-repair-java-core-concepts",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-12-barn-repair-java-core-concepts"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-12-barn-repair-java-curriculum-ub-12-barn-repair-java-guided-example",
+		"newId": "usaco-bronze-ub-12-barn-repair-java-practice-studio-curriculum-ub-12-barn-repair-java-guided-example",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-12-barn-repair-java-guided-example"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-12-barn-repair-java-curriculum-core-project-ub-12-barn-repair-java",
+		"newId": "usaco-bronze-ub-12-barn-repair-java-practice-studio-curriculum-core-project-ub-12-barn-repair-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-12-barn-repair-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-12-barn-repair-java-curriculum-review-ub-12-barn-repair-java",
+		"newId": "usaco-bronze-ub-12-barn-repair-java-practice-studio-curriculum-review-ub-12-barn-repair-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-review-ub-12-barn-repair-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-12-barn-repair-java-supplemental-extension-challenge-ub-12-barn-repair-java",
+		"newId": "usaco-bronze-ub-12-barn-repair-java-practice-studio-supplemental-extension-challenge-ub-12-barn-repair-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-12-barn-repair-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-12-barn-repair-java-supplemental-combination-lock",
+		"newId": "usaco-bronze-ub-12-barn-repair-java-practice-studio-supplemental-combination-lock",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-combination-lock"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-12-barn-repair-java-supplemental-prime-cryptarithm",
+		"newId": "usaco-bronze-ub-12-barn-repair-java-practice-studio-supplemental-prime-cryptarithm",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-prime-cryptarithm"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "module",
+		"oldId": "usaco-bronze-ub-13-combination-lock-java",
+		"newId": "usaco-bronze-ub-13-combination-lock-java-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-13-combination-lock-java-curriculum-ub-13-combination-lock-java-core-concepts",
+		"newId": "usaco-bronze-ub-13-combination-lock-java-practice-studio-curriculum-ub-13-combination-lock-java-core-concepts",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-13-combination-lock-java-core-concepts"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-13-combination-lock-java-curriculum-ub-13-combination-lock-java-guided-example",
+		"newId": "usaco-bronze-ub-13-combination-lock-java-practice-studio-curriculum-ub-13-combination-lock-java-guided-example",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-13-combination-lock-java-guided-example"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-13-combination-lock-java-curriculum-core-project-ub-13-combination-lock-java",
+		"newId": "usaco-bronze-ub-13-combination-lock-java-practice-studio-curriculum-core-project-ub-13-combination-lock-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-13-combination-lock-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-13-combination-lock-java-curriculum-review-ub-13-combination-lock-java",
+		"newId": "usaco-bronze-ub-13-combination-lock-java-practice-studio-curriculum-review-ub-13-combination-lock-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-review-ub-13-combination-lock-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-13-combination-lock-java-supplemental-extension-challenge-ub-13-combination-lock-java",
+		"newId": "usaco-bronze-ub-13-combination-lock-java-practice-studio-supplemental-extension-challenge-ub-13-combination-lock-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-13-combination-lock-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-13-combination-lock-java-supplemental-ski-course-design",
+		"newId": "usaco-bronze-ub-13-combination-lock-java-practice-studio-supplemental-ski-course-design",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ski-course-design"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-13-combination-lock-java-supplemental-block-game",
+		"newId": "usaco-bronze-ub-13-combination-lock-java-practice-studio-supplemental-block-game",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-block-game"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "module",
+		"oldId": "usaco-bronze-ub-14-prime-cryptarithm-java",
+		"newId": "usaco-bronze-ub-14-prime-cryptarithm-java-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-14-prime-cryptarithm-java-curriculum-ub-14-prime-cryptarithm-java-core-concepts",
+		"newId": "usaco-bronze-ub-14-prime-cryptarithm-java-practice-studio-curriculum-ub-14-prime-cryptarithm-java-core-concepts",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-14-prime-cryptarithm-java-core-concepts"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-14-prime-cryptarithm-java-curriculum-ub-14-prime-cryptarithm-java-guided-example",
+		"newId": "usaco-bronze-ub-14-prime-cryptarithm-java-practice-studio-curriculum-ub-14-prime-cryptarithm-java-guided-example",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-14-prime-cryptarithm-java-guided-example"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-14-prime-cryptarithm-java-curriculum-core-project-ub-14-prime-cryptarithm-java",
+		"newId": "usaco-bronze-ub-14-prime-cryptarithm-java-practice-studio-curriculum-core-project-ub-14-prime-cryptarithm-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-14-prime-cryptarithm-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-14-prime-cryptarithm-java-curriculum-review-ub-14-prime-cryptarithm-java",
+		"newId": "usaco-bronze-ub-14-prime-cryptarithm-java-practice-studio-curriculum-review-ub-14-prime-cryptarithm-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-review-ub-14-prime-cryptarithm-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-14-prime-cryptarithm-java-supplemental-extension-challenge-ub-14-prime-cryptarithm-java",
+		"newId": "usaco-bronze-ub-14-prime-cryptarithm-java-practice-studio-supplemental-extension-challenge-ub-14-prime-cryptarithm-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-14-prime-cryptarithm-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-14-prime-cryptarithm-java-supplemental-the-cow-signal",
+		"newId": "usaco-bronze-ub-14-prime-cryptarithm-java-practice-studio-supplemental-the-cow-signal",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-the-cow-signal"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-14-prime-cryptarithm-java-supplemental-don-t-be-last",
+		"newId": "usaco-bronze-ub-14-prime-cryptarithm-java-practice-studio-supplemental-don-t-be-last",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-don-t-be-last"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "module",
+		"oldId": "usaco-bronze-ub-15-ski-course-design-java",
+		"newId": "usaco-bronze-ub-15-ski-course-design-java-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-15-ski-course-design-java-curriculum-ub-15-ski-course-design-java-core-concepts",
+		"newId": "usaco-bronze-ub-15-ski-course-design-java-practice-studio-curriculum-ub-15-ski-course-design-java-core-concepts",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-15-ski-course-design-java-core-concepts"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-15-ski-course-design-java-curriculum-ub-15-ski-course-design-java-guided-example",
+		"newId": "usaco-bronze-ub-15-ski-course-design-java-practice-studio-curriculum-ub-15-ski-course-design-java-guided-example",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-15-ski-course-design-java-guided-example"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-15-ski-course-design-java-curriculum-core-project-ub-15-ski-course-design-java",
+		"newId": "usaco-bronze-ub-15-ski-course-design-java-practice-studio-curriculum-core-project-ub-15-ski-course-design-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-15-ski-course-design-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-15-ski-course-design-java-curriculum-review-ub-15-ski-course-design-java",
+		"newId": "usaco-bronze-ub-15-ski-course-design-java-practice-studio-curriculum-review-ub-15-ski-course-design-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-review-ub-15-ski-course-design-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-15-ski-course-design-java-supplemental-extension-challenge-ub-15-ski-course-design-java",
+		"newId": "usaco-bronze-ub-15-ski-course-design-java-practice-studio-supplemental-extension-challenge-ub-15-ski-course-design-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-15-ski-course-design-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-15-ski-course-design-java-supplemental-your-ride-is-here-java",
+		"newId": "usaco-bronze-ub-15-ski-course-design-java-practice-studio-supplemental-your-ride-is-here-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-your-ride-is-here-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-15-ski-course-design-java-supplemental-cow-tipping",
+		"newId": "usaco-bronze-ub-15-ski-course-design-java-practice-studio-supplemental-cow-tipping",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-cow-tipping"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "module",
+		"oldId": "usaco-bronze-ub-16-wormholes-java",
+		"newId": "usaco-bronze-ub-16-wormholes-java-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-16-wormholes-java-curriculum-ub-16-wormholes-java-core-concepts",
+		"newId": "usaco-bronze-ub-16-wormholes-java-practice-studio-curriculum-ub-16-wormholes-java-core-concepts",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-16-wormholes-java-core-concepts"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-16-wormholes-java-curriculum-ub-16-wormholes-java-guided-example",
+		"newId": "usaco-bronze-ub-16-wormholes-java-practice-studio-curriculum-ub-16-wormholes-java-guided-example",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-16-wormholes-java-guided-example"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-16-wormholes-java-curriculum-core-project-ub-16-wormholes-java",
+		"newId": "usaco-bronze-ub-16-wormholes-java-practice-studio-curriculum-core-project-ub-16-wormholes-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-16-wormholes-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-16-wormholes-java-curriculum-review-ub-16-wormholes-java",
+		"newId": "usaco-bronze-ub-16-wormholes-java-practice-studio-curriculum-review-ub-16-wormholes-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-review-ub-16-wormholes-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-16-wormholes-java-supplemental-extension-challenge-ub-16-wormholes-java",
+		"newId": "usaco-bronze-ub-16-wormholes-java-practice-studio-supplemental-extension-challenge-ub-16-wormholes-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-16-wormholes-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-16-wormholes-java-supplemental-why-did-the-cow-cross-the-road",
+		"newId": "usaco-bronze-ub-16-wormholes-java-practice-studio-supplemental-why-did-the-cow-cross-the-road",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-why-did-the-cow-cross-the-road"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-16-wormholes-java-supplemental-why-did-the-cow-cross-the-road-ii",
+		"newId": "usaco-bronze-ub-16-wormholes-java-practice-studio-supplemental-why-did-the-cow-cross-the-road-ii",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-why-did-the-cow-cross-the-road-ii"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "module",
+		"oldId": "usaco-bronze-ub-17-block-game-java",
+		"newId": "usaco-bronze-ub-17-block-game-java-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-17-block-game-java-curriculum-ub-17-block-game-java-core-concepts",
+		"newId": "usaco-bronze-ub-17-block-game-java-practice-studio-curriculum-ub-17-block-game-java-core-concepts",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-17-block-game-java-core-concepts"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-17-block-game-java-curriculum-ub-17-block-game-java-guided-example",
+		"newId": "usaco-bronze-ub-17-block-game-java-practice-studio-curriculum-ub-17-block-game-java-guided-example",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-17-block-game-java-guided-example"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-17-block-game-java-curriculum-core-project-ub-17-block-game-java",
+		"newId": "usaco-bronze-ub-17-block-game-java-practice-studio-curriculum-core-project-ub-17-block-game-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-17-block-game-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-17-block-game-java-curriculum-review-ub-17-block-game-java",
+		"newId": "usaco-bronze-ub-17-block-game-java-practice-studio-curriculum-review-ub-17-block-game-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-review-ub-17-block-game-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-17-block-game-java-supplemental-extension-challenge-ub-17-block-game-java",
+		"newId": "usaco-bronze-ub-17-block-game-java-practice-studio-supplemental-extension-challenge-ub-17-block-game-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-17-block-game-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-17-block-game-java-supplemental-why-did-the-cow-cross-the-road-iii",
+		"newId": "usaco-bronze-ub-17-block-game-java-practice-studio-supplemental-why-did-the-cow-cross-the-road-iii",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-why-did-the-cow-cross-the-road-iii"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-17-block-game-java-supplemental-the-lost-cow-java",
+		"newId": "usaco-bronze-ub-17-block-game-java-practice-studio-supplemental-the-lost-cow-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-the-lost-cow-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "module",
+		"oldId": "usaco-bronze-ub-18-the-cow-signal-java",
+		"newId": "usaco-bronze-ub-18-the-cow-signal-java-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-18-the-cow-signal-java-curriculum-ub-18-the-cow-signal-java-core-concepts",
+		"newId": "usaco-bronze-ub-18-the-cow-signal-java-practice-studio-curriculum-ub-18-the-cow-signal-java-core-concepts",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-18-the-cow-signal-java-core-concepts"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-18-the-cow-signal-java-curriculum-ub-18-the-cow-signal-java-guided-example",
+		"newId": "usaco-bronze-ub-18-the-cow-signal-java-practice-studio-curriculum-ub-18-the-cow-signal-java-guided-example",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-18-the-cow-signal-java-guided-example"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-18-the-cow-signal-java-curriculum-core-project-ub-18-the-cow-signal-java",
+		"newId": "usaco-bronze-ub-18-the-cow-signal-java-practice-studio-curriculum-core-project-ub-18-the-cow-signal-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-18-the-cow-signal-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-18-the-cow-signal-java-curriculum-review-ub-18-the-cow-signal-java",
+		"newId": "usaco-bronze-ub-18-the-cow-signal-java-practice-studio-curriculum-review-ub-18-the-cow-signal-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-review-ub-18-the-cow-signal-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-18-the-cow-signal-java-supplemental-extension-challenge-ub-18-the-cow-signal-java",
+		"newId": "usaco-bronze-ub-18-the-cow-signal-java-practice-studio-supplemental-extension-challenge-ub-18-the-cow-signal-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-18-the-cow-signal-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-18-the-cow-signal-java-supplemental-bovine-genomics",
+		"newId": "usaco-bronze-ub-18-the-cow-signal-java-practice-studio-supplemental-bovine-genomics",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-bovine-genomics"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-18-the-cow-signal-java-supplemental-bovine-genomics-java",
+		"newId": "usaco-bronze-ub-18-the-cow-signal-java-practice-studio-supplemental-bovine-genomics-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-bovine-genomics-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "module",
+		"oldId": "usaco-bronze-ub-19-don-t-be-last-java",
+		"newId": "usaco-bronze-ub-19-don-t-be-last-java-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-19-don-t-be-last-java-curriculum-ub-19-don-t-be-last-java-core-concepts",
+		"newId": "usaco-bronze-ub-19-don-t-be-last-java-practice-studio-curriculum-ub-19-don-t-be-last-java-core-concepts",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-19-don-t-be-last-java-core-concepts"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-19-don-t-be-last-java-curriculum-ub-19-don-t-be-last-java-guided-example",
+		"newId": "usaco-bronze-ub-19-don-t-be-last-java-practice-studio-curriculum-ub-19-don-t-be-last-java-guided-example",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-19-don-t-be-last-java-guided-example"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-19-don-t-be-last-java-curriculum-core-project-ub-19-don-t-be-last-java",
+		"newId": "usaco-bronze-ub-19-don-t-be-last-java-practice-studio-curriculum-core-project-ub-19-don-t-be-last-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-19-don-t-be-last-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-19-don-t-be-last-java-curriculum-review-ub-19-don-t-be-last-java",
+		"newId": "usaco-bronze-ub-19-don-t-be-last-java-practice-studio-curriculum-review-ub-19-don-t-be-last-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-review-ub-19-don-t-be-last-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-19-don-t-be-last-java-supplemental-extension-challenge-ub-19-don-t-be-last-java",
+		"newId": "usaco-bronze-ub-19-don-t-be-last-java-practice-studio-supplemental-extension-challenge-ub-19-don-t-be-last-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-19-don-t-be-last-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-19-don-t-be-last-java-supplemental-modern-art",
+		"newId": "usaco-bronze-ub-19-don-t-be-last-java-practice-studio-supplemental-modern-art",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-modern-art"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-19-don-t-be-last-java-supplemental-modern-art-java",
+		"newId": "usaco-bronze-ub-19-don-t-be-last-java-practice-studio-supplemental-modern-art-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-modern-art-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "module",
+		"oldId": "usaco-bronze-ub-20-hoof-paper-scissors-java",
+		"newId": "usaco-bronze-ub-20-hoof-paper-scissors-java-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-20-hoof-paper-scissors-java-curriculum-ub-20-hoof-paper-scissors-java-core-concepts",
+		"newId": "usaco-bronze-ub-20-hoof-paper-scissors-java-practice-studio-curriculum-ub-20-hoof-paper-scissors-java-core-concepts",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-20-hoof-paper-scissors-java-core-concepts"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-20-hoof-paper-scissors-java-curriculum-ub-20-hoof-paper-scissors-java-guided-example",
+		"newId": "usaco-bronze-ub-20-hoof-paper-scissors-java-practice-studio-curriculum-ub-20-hoof-paper-scissors-java-guided-example",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-20-hoof-paper-scissors-java-guided-example"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-20-hoof-paper-scissors-java-curriculum-core-project-ub-20-hoof-paper-scissors-java",
+		"newId": "usaco-bronze-ub-20-hoof-paper-scissors-java-practice-studio-curriculum-core-project-ub-20-hoof-paper-scissors-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-20-hoof-paper-scissors-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-20-hoof-paper-scissors-java-curriculum-review-ub-20-hoof-paper-scissors-java",
+		"newId": "usaco-bronze-ub-20-hoof-paper-scissors-java-practice-studio-curriculum-review-ub-20-hoof-paper-scissors-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-review-ub-20-hoof-paper-scissors-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-20-hoof-paper-scissors-java-supplemental-extension-challenge-ub-20-hoof-paper-scissors-java",
+		"newId": "usaco-bronze-ub-20-hoof-paper-scissors-java-practice-studio-supplemental-extension-challenge-ub-20-hoof-paper-scissors-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-20-hoof-paper-scissors-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-20-hoof-paper-scissors-java-supplemental-fence-painting",
+		"newId": "usaco-bronze-ub-20-hoof-paper-scissors-java-practice-studio-supplemental-fence-painting",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-fence-painting"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-20-hoof-paper-scissors-java-supplemental-fence-painting-java",
+		"newId": "usaco-bronze-ub-20-hoof-paper-scissors-java-practice-studio-supplemental-fence-painting-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-fence-painting-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "module",
+		"oldId": "usaco-bronze-ub-21-cow-tipping-java",
+		"newId": "usaco-bronze-ub-21-cow-tipping-java-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-21-cow-tipping-java-curriculum-ub-21-cow-tipping-java-core-concepts",
+		"newId": "usaco-bronze-ub-21-cow-tipping-java-practice-studio-curriculum-ub-21-cow-tipping-java-core-concepts",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-21-cow-tipping-java-core-concepts"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-21-cow-tipping-java-curriculum-ub-21-cow-tipping-java-guided-example",
+		"newId": "usaco-bronze-ub-21-cow-tipping-java-practice-studio-curriculum-ub-21-cow-tipping-java-guided-example",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-ub-21-cow-tipping-java-guided-example"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-21-cow-tipping-java-curriculum-core-project-ub-21-cow-tipping-java",
+		"newId": "usaco-bronze-ub-21-cow-tipping-java-practice-studio-curriculum-core-project-ub-21-cow-tipping-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-21-cow-tipping-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-21-cow-tipping-java-curriculum-review-ub-21-cow-tipping-java",
+		"newId": "usaco-bronze-ub-21-cow-tipping-java-practice-studio-curriculum-review-ub-21-cow-tipping-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-review-ub-21-cow-tipping-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-21-cow-tipping-java-supplemental-extension-challenge-ub-21-cow-tipping-java",
+		"newId": "usaco-bronze-ub-21-cow-tipping-java-practice-studio-supplemental-extension-challenge-ub-21-cow-tipping-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-21-cow-tipping-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-21-cow-tipping-java-supplemental-speeding-ticket-java",
+		"newId": "usaco-bronze-ub-21-cow-tipping-java-practice-studio-supplemental-speeding-ticket-java",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-speeding-ticket-java"
+	},
+	{
+		"course": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-ub-21-cow-tipping-java-supplemental-friday-the-thirteenth",
+		"newId": "usaco-bronze-ub-21-cow-tipping-java-practice-studio-supplemental-friday-the-thirteenth",
+		"currentId": "usaco-bronze-optional-java-bronze-practice-studios-supplemental-friday-the-thirteenth"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "module",
+		"oldId": "usaco-gold-dynamic-programming-practice",
+		"newId": "usaco-gold-dynamic-programming-practice-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-dynamic-programming-practice-curriculum-dynamic-programming-practice-core-concepts",
+		"newId": "usaco-gold-dynamic-programming-practice-practice-studio-curriculum-dynamic-programming-practice-core-concepts",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-dynamic-programming-practice-core-concepts"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-dynamic-programming-practice-curriculum-dynamic-programming-practice-guided-example",
+		"newId": "usaco-gold-dynamic-programming-practice-practice-studio-curriculum-dynamic-programming-practice-guided-example",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-dynamic-programming-practice-guided-example"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-dynamic-programming-practice-curriculum-core-project-dynamic-programming-practice",
+		"newId": "usaco-gold-dynamic-programming-practice-practice-studio-curriculum-core-project-dynamic-programming-practice",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-dynamic-programming-practice"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-dynamic-programming-practice-curriculum-review-dynamic-programming-practice",
+		"newId": "usaco-gold-dynamic-programming-practice-practice-studio-curriculum-review-dynamic-programming-practice",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-review-dynamic-programming-practice"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-dynamic-programming-practice-supplemental-extension-challenge-dynamic-programming-practice",
+		"newId": "usaco-gold-dynamic-programming-practice-practice-studio-supplemental-extension-challenge-dynamic-programming-practice",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-extension-challenge-dynamic-programming-practice"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-dynamic-programming-practice-supplemental-cow-checklist",
+		"newId": "usaco-gold-dynamic-programming-practice-practice-studio-supplemental-cow-checklist",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-cow-checklist"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-dynamic-programming-practice-supplemental-marathon",
+		"newId": "usaco-gold-dynamic-programming-practice-practice-studio-supplemental-marathon",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-marathon"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "module",
+		"oldId": "usaco-gold-hoof-paper-scissors",
+		"newId": "usaco-gold-hoof-paper-scissors-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-hoof-paper-scissors-curriculum-hoof-paper-scissors-core-concepts",
+		"newId": "usaco-gold-hoof-paper-scissors-practice-studio-curriculum-hoof-paper-scissors-core-concepts",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-hoof-paper-scissors-core-concepts"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-hoof-paper-scissors-curriculum-hoof-paper-scissors-guided-example",
+		"newId": "usaco-gold-hoof-paper-scissors-practice-studio-curriculum-hoof-paper-scissors-guided-example",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-hoof-paper-scissors-guided-example"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-hoof-paper-scissors-curriculum-core-project-hoof-paper-scissors",
+		"newId": "usaco-gold-hoof-paper-scissors-practice-studio-curriculum-core-project-hoof-paper-scissors",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-hoof-paper-scissors"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-hoof-paper-scissors-curriculum-review-hoof-paper-scissors",
+		"newId": "usaco-gold-hoof-paper-scissors-practice-studio-curriculum-review-hoof-paper-scissors",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-review-hoof-paper-scissors"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-hoof-paper-scissors-supplemental-extension-challenge-hoof-paper-scissors",
+		"newId": "usaco-gold-hoof-paper-scissors-practice-studio-supplemental-extension-challenge-hoof-paper-scissors",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-extension-challenge-hoof-paper-scissors"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-hoof-paper-scissors-supplemental-248",
+		"newId": "usaco-gold-hoof-paper-scissors-practice-studio-supplemental-248",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-248"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-hoof-paper-scissors-supplemental-treasure-chest",
+		"newId": "usaco-gold-hoof-paper-scissors-practice-studio-supplemental-treasure-chest",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-treasure-chest"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "module",
+		"oldId": "usaco-gold-why-did-the-cow-cross-the-road",
+		"newId": "usaco-gold-why-did-the-cow-cross-the-road-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-why-did-the-cow-cross-the-road-curriculum-why-did-the-cow-cross-the-road-core-concepts",
+		"newId": "usaco-gold-why-did-the-cow-cross-the-road-practice-studio-curriculum-why-did-the-cow-cross-the-road-core-concepts",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-why-did-the-cow-cross-the-road-core-concepts"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-why-did-the-cow-cross-the-road-curriculum-why-did-the-cow-cross-the-road-guided-example",
+		"newId": "usaco-gold-why-did-the-cow-cross-the-road-practice-studio-curriculum-why-did-the-cow-cross-the-road-guided-example",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-why-did-the-cow-cross-the-road-guided-example"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-why-did-the-cow-cross-the-road-curriculum-core-project-why-did-the-cow-cross-the-road",
+		"newId": "usaco-gold-why-did-the-cow-cross-the-road-practice-studio-curriculum-core-project-why-did-the-cow-cross-the-road",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-why-did-the-cow-cross-the-road"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-why-did-the-cow-cross-the-road-curriculum-review-why-did-the-cow-cross-the-road",
+		"newId": "usaco-gold-why-did-the-cow-cross-the-road-practice-studio-curriculum-review-why-did-the-cow-cross-the-road",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-review-why-did-the-cow-cross-the-road"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-why-did-the-cow-cross-the-road-supplemental-extension-challenge-why-did-the-cow-cross-the-road",
+		"newId": "usaco-gold-why-did-the-cow-cross-the-road-practice-studio-supplemental-extension-challenge-why-did-the-cow-cross-the-road",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-extension-challenge-why-did-the-cow-cross-the-road"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-why-did-the-cow-cross-the-road-supplemental-bookshelf",
+		"newId": "usaco-gold-why-did-the-cow-cross-the-road-practice-studio-supplemental-bookshelf",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-bookshelf"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-why-did-the-cow-cross-the-road-supplemental-dijkstras-algorithm-ii",
+		"newId": "usaco-gold-why-did-the-cow-cross-the-road-practice-studio-supplemental-dijkstras-algorithm-ii",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-dijkstras-algorithm-ii"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "module",
+		"oldId": "usaco-gold-cow-routing",
+		"newId": "usaco-gold-cow-routing-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-cow-routing-curriculum-cow-routing-core-concepts",
+		"newId": "usaco-gold-cow-routing-practice-studio-curriculum-cow-routing-core-concepts",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-cow-routing-core-concepts"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-cow-routing-curriculum-cow-routing-guided-example",
+		"newId": "usaco-gold-cow-routing-practice-studio-curriculum-cow-routing-guided-example",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-cow-routing-guided-example"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-cow-routing-curriculum-core-project-cow-routing",
+		"newId": "usaco-gold-cow-routing-practice-studio-curriculum-core-project-cow-routing",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-cow-routing"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-cow-routing-curriculum-review-cow-routing",
+		"newId": "usaco-gold-cow-routing-practice-studio-curriculum-review-cow-routing",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-review-cow-routing"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-cow-routing-supplemental-extension-challenge-cow-routing",
+		"newId": "usaco-gold-cow-routing-practice-studio-supplemental-extension-challenge-cow-routing",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-extension-challenge-cow-routing"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-cow-routing-supplemental-transfer-practice-cow-routing",
+		"newId": "usaco-gold-cow-routing-practice-studio-supplemental-cow-routing-transfer-practice",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-cow-routing-transfer-practice"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-cow-routing-supplemental-extension-practice-cow-routing",
+		"newId": "usaco-gold-cow-routing-practice-studio-supplemental-cow-routing-extension-practice",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-cow-routing-extension-practice"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "module",
+		"oldId": "usaco-gold-mst-ii",
+		"newId": "usaco-gold-mst-ii-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-mst-ii-curriculum-mst-ii-core-concepts",
+		"newId": "usaco-gold-mst-ii-practice-studio-curriculum-mst-ii-core-concepts",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-mst-ii-core-concepts"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-mst-ii-curriculum-mst-ii-guided-example",
+		"newId": "usaco-gold-mst-ii-practice-studio-curriculum-mst-ii-guided-example",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-mst-ii-guided-example"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-mst-ii-curriculum-core-project-mst-ii",
+		"newId": "usaco-gold-mst-ii-practice-studio-curriculum-core-project-mst-ii",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-mst-ii"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-mst-ii-curriculum-review-mst-ii",
+		"newId": "usaco-gold-mst-ii-practice-studio-curriculum-review-mst-ii",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-review-mst-ii"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-mst-ii-supplemental-extension-challenge-mst-ii",
+		"newId": "usaco-gold-mst-ii-practice-studio-supplemental-extension-challenge-mst-ii",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-extension-challenge-mst-ii"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-mst-ii-supplemental-transfer-practice-mst-ii",
+		"newId": "usaco-gold-mst-ii-practice-studio-supplemental-mst-ii-transfer-practice",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-mst-ii-transfer-practice"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-mst-ii-supplemental-extension-practice-mst-ii",
+		"newId": "usaco-gold-mst-ii-practice-studio-supplemental-mst-ii-extension-practice",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-mst-ii-extension-practice"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "module",
+		"oldId": "usaco-gold-watering-the-fields",
+		"newId": "usaco-gold-watering-the-fields-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-watering-the-fields-curriculum-watering-the-fields-core-concepts",
+		"newId": "usaco-gold-watering-the-fields-practice-studio-curriculum-watering-the-fields-core-concepts",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-watering-the-fields-core-concepts"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-watering-the-fields-curriculum-watering-the-fields-guided-example",
+		"newId": "usaco-gold-watering-the-fields-practice-studio-curriculum-watering-the-fields-guided-example",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-watering-the-fields-guided-example"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-watering-the-fields-curriculum-core-project-watering-the-fields",
+		"newId": "usaco-gold-watering-the-fields-practice-studio-curriculum-core-project-watering-the-fields",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-watering-the-fields"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-watering-the-fields-curriculum-review-watering-the-fields",
+		"newId": "usaco-gold-watering-the-fields-practice-studio-curriculum-review-watering-the-fields",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-review-watering-the-fields"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-watering-the-fields-supplemental-extension-challenge-watering-the-fields",
+		"newId": "usaco-gold-watering-the-fields-practice-studio-supplemental-extension-challenge-watering-the-fields",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-extension-challenge-watering-the-fields"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-watering-the-fields-supplemental-transfer-practice-watering-the-fields",
+		"newId": "usaco-gold-watering-the-fields-practice-studio-supplemental-watering-the-fields-transfer-practice",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-watering-the-fields-transfer-practice"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-watering-the-fields-supplemental-extension-practice-watering-the-fields",
+		"newId": "usaco-gold-watering-the-fields-practice-studio-supplemental-watering-the-fields-extension-practice",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-watering-the-fields-extension-practice"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "module",
+		"oldId": "usaco-gold-i-would-walk-500-miles",
+		"newId": "usaco-gold-i-would-walk-500-miles-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-i-would-walk-500-miles-curriculum-i-would-walk-500-miles-core-concepts",
+		"newId": "usaco-gold-i-would-walk-500-miles-practice-studio-curriculum-i-would-walk-500-miles-core-concepts",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-i-would-walk-500-miles-core-concepts"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-i-would-walk-500-miles-curriculum-i-would-walk-500-miles-guided-example",
+		"newId": "usaco-gold-i-would-walk-500-miles-practice-studio-curriculum-i-would-walk-500-miles-guided-example",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-i-would-walk-500-miles-guided-example"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-i-would-walk-500-miles-curriculum-core-project-i-would-walk-500-miles",
+		"newId": "usaco-gold-i-would-walk-500-miles-practice-studio-curriculum-core-project-i-would-walk-500-miles",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-i-would-walk-500-miles"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-i-would-walk-500-miles-curriculum-review-i-would-walk-500-miles",
+		"newId": "usaco-gold-i-would-walk-500-miles-practice-studio-curriculum-review-i-would-walk-500-miles",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-review-i-would-walk-500-miles"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-i-would-walk-500-miles-supplemental-extension-challenge-i-would-walk-500-miles",
+		"newId": "usaco-gold-i-would-walk-500-miles-practice-studio-supplemental-extension-challenge-i-would-walk-500-miles",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-extension-challenge-i-would-walk-500-miles"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-i-would-walk-500-miles-supplemental-transfer-practice-i-would-walk-500-miles",
+		"newId": "usaco-gold-i-would-walk-500-miles-practice-studio-supplemental-i-would-walk-500-miles-transfer-practice",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-i-would-walk-500-miles-transfer-practice"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-i-would-walk-500-miles-supplemental-extension-practice-i-would-walk-500-miles",
+		"newId": "usaco-gold-i-would-walk-500-miles-practice-studio-supplemental-i-would-walk-500-miles-extension-practice",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-i-would-walk-500-miles-extension-practice"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "module",
+		"oldId": "usaco-gold-talent-show",
+		"newId": "usaco-gold-talent-show-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-talent-show-curriculum-talent-show-core-concepts",
+		"newId": "usaco-gold-talent-show-practice-studio-curriculum-talent-show-core-concepts",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-talent-show-core-concepts"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-talent-show-curriculum-talent-show-guided-example",
+		"newId": "usaco-gold-talent-show-practice-studio-curriculum-talent-show-guided-example",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-talent-show-guided-example"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-talent-show-curriculum-core-project-talent-show",
+		"newId": "usaco-gold-talent-show-practice-studio-curriculum-core-project-talent-show",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-talent-show"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-talent-show-curriculum-review-talent-show",
+		"newId": "usaco-gold-talent-show-practice-studio-curriculum-review-talent-show",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-review-talent-show"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-talent-show-supplemental-extension-challenge-talent-show",
+		"newId": "usaco-gold-talent-show-practice-studio-supplemental-extension-challenge-talent-show",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-extension-challenge-talent-show"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-talent-show-supplemental-transfer-practice-talent-show",
+		"newId": "usaco-gold-talent-show-practice-studio-supplemental-talent-show-transfer-practice",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-talent-show-transfer-practice"
+	},
+	{
+		"course": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-talent-show-supplemental-extension-practice-talent-show",
+		"newId": "usaco-gold-talent-show-practice-studio-supplemental-talent-show-extension-practice",
+		"currentId": "usaco-gold-optional-historical-and-applied-gold-studios-supplemental-talent-show-extension-practice"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "module",
+		"oldId": "usaco-silver-us-berry-picking",
+		"newId": "usaco-silver-us-berry-picking-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-us-berry-picking-curriculum-us-berry-picking-core-concepts",
+		"newId": "usaco-silver-us-berry-picking-practice-studio-curriculum-us-berry-picking-core-concepts",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-us-berry-picking-core-concepts"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-us-berry-picking-curriculum-us-berry-picking-guided-example",
+		"newId": "usaco-silver-us-berry-picking-practice-studio-curriculum-us-berry-picking-guided-example",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-us-berry-picking-guided-example"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-us-berry-picking-curriculum-core-project-us-berry-picking",
+		"newId": "usaco-silver-us-berry-picking-practice-studio-curriculum-core-project-us-berry-picking",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-core-project-us-berry-picking"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-us-berry-picking-curriculum-review-us-berry-picking",
+		"newId": "usaco-silver-us-berry-picking-practice-studio-curriculum-review-us-berry-picking",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-review-us-berry-picking"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-us-berry-picking-supplemental-extension-challenge-us-berry-picking",
+		"newId": "usaco-silver-us-berry-picking-practice-studio-supplemental-extension-challenge-us-berry-picking",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-extension-challenge-us-berry-picking"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-us-berry-picking-supplemental-subset-equality",
+		"newId": "usaco-silver-us-berry-picking-practice-studio-supplemental-subset-equality",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-subset-equality"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-us-berry-picking-supplemental-closest-cow-wins",
+		"newId": "usaco-silver-us-berry-picking-practice-studio-supplemental-closest-cow-wins",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-closest-cow-wins"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "module",
+		"oldId": "usaco-silver-superprime-rib",
+		"newId": "usaco-silver-superprime-rib-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-superprime-rib-curriculum-superprime-rib-core-concepts",
+		"newId": "usaco-silver-superprime-rib-practice-studio-curriculum-superprime-rib-core-concepts",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-superprime-rib-core-concepts"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-superprime-rib-curriculum-superprime-rib-guided-example",
+		"newId": "usaco-silver-superprime-rib-practice-studio-curriculum-superprime-rib-guided-example",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-superprime-rib-guided-example"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-superprime-rib-curriculum-core-project-superprime-rib",
+		"newId": "usaco-silver-superprime-rib-practice-studio-curriculum-core-project-superprime-rib",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-core-project-superprime-rib"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-superprime-rib-curriculum-review-superprime-rib",
+		"newId": "usaco-silver-superprime-rib-practice-studio-curriculum-review-superprime-rib",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-review-superprime-rib"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-superprime-rib-supplemental-extension-challenge-superprime-rib",
+		"newId": "usaco-silver-superprime-rib-practice-studio-supplemental-extension-challenge-superprime-rib",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-extension-challenge-superprime-rib"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-superprime-rib-supplemental-custom-classes-with-hashsets-and-hashmaps",
+		"newId": "usaco-silver-superprime-rib-practice-studio-supplemental-custom-classes-with-hashsets-and-hashmaps",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-custom-classes-with-hashsets-and-hashmaps"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-superprime-rib-supplemental-dfs",
+		"newId": "usaco-silver-superprime-rib-practice-studio-supplemental-dfs",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-dfs"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "module",
+		"oldId": "usaco-silver-the-castle",
+		"newId": "usaco-silver-the-castle-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-the-castle-curriculum-the-castle-core-concepts",
+		"newId": "usaco-silver-the-castle-practice-studio-curriculum-the-castle-core-concepts",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-the-castle-core-concepts"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-the-castle-curriculum-the-castle-guided-example",
+		"newId": "usaco-silver-the-castle-practice-studio-curriculum-the-castle-guided-example",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-the-castle-guided-example"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-the-castle-curriculum-core-project-the-castle",
+		"newId": "usaco-silver-the-castle-practice-studio-curriculum-core-project-the-castle",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-core-project-the-castle"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-the-castle-curriculum-review-the-castle",
+		"newId": "usaco-silver-the-castle-practice-studio-curriculum-review-the-castle",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-review-the-castle"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-the-castle-supplemental-extension-challenge-the-castle",
+		"newId": "usaco-silver-the-castle-practice-studio-supplemental-extension-challenge-the-castle",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-extension-challenge-the-castle"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-the-castle-supplemental-stacks",
+		"newId": "usaco-silver-the-castle-practice-studio-supplemental-stacks",
+		"currentId": null
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-the-castle-supplemental-bfs",
+		"newId": "usaco-silver-the-castle-practice-studio-supplemental-bfs",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-bfs"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "module",
+		"oldId": "usaco-silver-sorting-a-three-valued-sequence",
+		"newId": "usaco-silver-sorting-a-three-valued-sequence-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-sorting-a-three-valued-sequence-curriculum-sorting-a-three-valued-sequence-core-concepts",
+		"newId": "usaco-silver-sorting-a-three-valued-sequence-practice-studio-curriculum-sorting-a-three-valued-sequence-core-concepts",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-sorting-a-three-valued-sequence-core-concepts"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-sorting-a-three-valued-sequence-curriculum-sorting-a-three-valued-sequence-guided-example",
+		"newId": "usaco-silver-sorting-a-three-valued-sequence-practice-studio-curriculum-sorting-a-three-valued-sequence-guided-example",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-sorting-a-three-valued-sequence-guided-example"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-sorting-a-three-valued-sequence-curriculum-core-project-sorting-a-three-valued-sequence",
+		"newId": "usaco-silver-sorting-a-three-valued-sequence-practice-studio-curriculum-core-project-sorting-a-three-valued-sequence",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-core-project-sorting-a-three-valued-sequence"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-sorting-a-three-valued-sequence-curriculum-review-sorting-a-three-valued-sequence",
+		"newId": "usaco-silver-sorting-a-three-valued-sequence-practice-studio-curriculum-review-sorting-a-three-valued-sequence",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-review-sorting-a-three-valued-sequence"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-sorting-a-three-valued-sequence-supplemental-extension-challenge-sorting-a-three-valued-sequence",
+		"newId": "usaco-silver-sorting-a-three-valued-sequence-practice-studio-supplemental-extension-challenge-sorting-a-three-valued-sequence",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-extension-challenge-sorting-a-three-valued-sequence"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-sorting-a-three-valued-sequence-supplemental-queues",
+		"newId": "usaco-silver-sorting-a-three-valued-sequence-practice-studio-supplemental-queues",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-queues"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-sorting-a-three-valued-sequence-supplemental-arithmetic-progressions",
+		"newId": "usaco-silver-sorting-a-three-valued-sequence-practice-studio-supplemental-arithmetic-progressions",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-arithmetic-progressions"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "module",
+		"oldId": "usaco-silver-healthy-holsteins",
+		"newId": "usaco-silver-healthy-holsteins-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-healthy-holsteins-curriculum-healthy-holsteins-core-concepts",
+		"newId": "usaco-silver-healthy-holsteins-practice-studio-curriculum-healthy-holsteins-core-concepts",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-healthy-holsteins-core-concepts"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-healthy-holsteins-curriculum-healthy-holsteins-guided-example",
+		"newId": "usaco-silver-healthy-holsteins-practice-studio-curriculum-healthy-holsteins-guided-example",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-healthy-holsteins-guided-example"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-healthy-holsteins-curriculum-core-project-healthy-holsteins",
+		"newId": "usaco-silver-healthy-holsteins-practice-studio-curriculum-core-project-healthy-holsteins",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-core-project-healthy-holsteins"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-healthy-holsteins-curriculum-review-healthy-holsteins",
+		"newId": "usaco-silver-healthy-holsteins-practice-studio-curriculum-review-healthy-holsteins",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-review-healthy-holsteins"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-healthy-holsteins-supplemental-extension-challenge-healthy-holsteins",
+		"newId": "usaco-silver-healthy-holsteins-practice-studio-supplemental-extension-challenge-healthy-holsteins",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-extension-challenge-healthy-holsteins"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-healthy-holsteins-supplemental-number-triangles",
+		"newId": "usaco-silver-healthy-holsteins-practice-studio-supplemental-number-triangles",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-number-triangles"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-healthy-holsteins-supplemental-extension-practice-healthy-holsteins",
+		"newId": "usaco-silver-healthy-holsteins-practice-studio-supplemental-healthy-holsteins-extension-practice",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-healthy-holsteins-extension-practice"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "module",
+		"oldId": "usaco-silver-hamming-codes",
+		"newId": "usaco-silver-hamming-codes-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-hamming-codes-curriculum-hamming-codes-core-concepts",
+		"newId": "usaco-silver-hamming-codes-practice-studio-curriculum-hamming-codes-core-concepts",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-hamming-codes-core-concepts"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-hamming-codes-curriculum-hamming-codes-guided-example",
+		"newId": "usaco-silver-hamming-codes-practice-studio-curriculum-hamming-codes-guided-example",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-hamming-codes-guided-example"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-hamming-codes-curriculum-core-project-hamming-codes",
+		"newId": "usaco-silver-hamming-codes-practice-studio-curriculum-core-project-hamming-codes",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-core-project-hamming-codes"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-hamming-codes-curriculum-review-hamming-codes",
+		"newId": "usaco-silver-hamming-codes-practice-studio-curriculum-review-hamming-codes",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-review-hamming-codes"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-hamming-codes-supplemental-extension-challenge-hamming-codes",
+		"newId": "usaco-silver-hamming-codes-practice-studio-supplemental-extension-challenge-hamming-codes",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-extension-challenge-hamming-codes"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-hamming-codes-supplemental-transfer-practice-hamming-codes",
+		"newId": "usaco-silver-hamming-codes-practice-studio-supplemental-hamming-codes-transfer-practice",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-hamming-codes-transfer-practice"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-hamming-codes-supplemental-extension-practice-hamming-codes",
+		"newId": "usaco-silver-hamming-codes-practice-studio-supplemental-hamming-codes-extension-practice",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-hamming-codes-extension-practice"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "module",
+		"oldId": "usaco-silver-priority-queues",
+		"newId": "usaco-silver-priority-queues-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-priority-queues-curriculum-priority-queues-core-concepts",
+		"newId": "usaco-silver-priority-queues-practice-studio-curriculum-priority-queues-core-concepts",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-priority-queues-core-concepts"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-priority-queues-curriculum-priority-queues-guided-example",
+		"newId": "usaco-silver-priority-queues-practice-studio-curriculum-priority-queues-guided-example",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-priority-queues-guided-example"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-priority-queues-curriculum-core-project-priority-queues",
+		"newId": "usaco-silver-priority-queues-practice-studio-curriculum-core-project-priority-queues",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-core-project-priority-queues"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-priority-queues-curriculum-review-priority-queues",
+		"newId": "usaco-silver-priority-queues-practice-studio-curriculum-review-priority-queues",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-review-priority-queues"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-priority-queues-supplemental-extension-challenge-priority-queues",
+		"newId": "usaco-silver-priority-queues-practice-studio-supplemental-extension-challenge-priority-queues",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-extension-challenge-priority-queues"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-priority-queues-supplemental-transfer-practice-priority-queues",
+		"newId": "usaco-silver-priority-queues-practice-studio-supplemental-priority-queues-transfer-practice",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-priority-queues-transfer-practice"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-priority-queues-supplemental-extension-practice-priority-queues",
+		"newId": "usaco-silver-priority-queues-practice-studio-supplemental-priority-queues-extension-practice",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-priority-queues-extension-practice"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "module",
+		"oldId": "usaco-silver-hoof-paper-scissors",
+		"newId": "usaco-silver-hoof-paper-scissors-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-hoof-paper-scissors-curriculum-hoof-paper-scissors-core-concepts",
+		"newId": "usaco-silver-hoof-paper-scissors-practice-studio-curriculum-hoof-paper-scissors-core-concepts",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-hoof-paper-scissors-core-concepts"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-hoof-paper-scissors-curriculum-hoof-paper-scissors-guided-example",
+		"newId": "usaco-silver-hoof-paper-scissors-practice-studio-curriculum-hoof-paper-scissors-guided-example",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-hoof-paper-scissors-guided-example"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-hoof-paper-scissors-curriculum-core-project-hoof-paper-scissors",
+		"newId": "usaco-silver-hoof-paper-scissors-practice-studio-curriculum-core-project-hoof-paper-scissors",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-core-project-hoof-paper-scissors"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-hoof-paper-scissors-curriculum-review-hoof-paper-scissors",
+		"newId": "usaco-silver-hoof-paper-scissors-practice-studio-curriculum-review-hoof-paper-scissors",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-review-hoof-paper-scissors"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-hoof-paper-scissors-supplemental-extension-challenge-hoof-paper-scissors",
+		"newId": "usaco-silver-hoof-paper-scissors-practice-studio-supplemental-extension-challenge-hoof-paper-scissors",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-extension-challenge-hoof-paper-scissors"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-hoof-paper-scissors-supplemental-transfer-practice-hoof-paper-scissors",
+		"newId": "usaco-silver-hoof-paper-scissors-practice-studio-supplemental-hoof-paper-scissors-transfer-practice",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-hoof-paper-scissors-transfer-practice"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-hoof-paper-scissors-supplemental-extension-practice-hoof-paper-scissors",
+		"newId": "usaco-silver-hoof-paper-scissors-practice-studio-supplemental-hoof-paper-scissors-extension-practice",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-hoof-paper-scissors-extension-practice"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "module",
+		"oldId": "usaco-silver-why-did-the-cow-cross-the-road",
+		"newId": "usaco-silver-why-did-the-cow-cross-the-road-practice-studio",
+		"currentId": null
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-why-did-the-cow-cross-the-road-curriculum-why-did-the-cow-cross-the-road-core-concepts",
+		"newId": "usaco-silver-why-did-the-cow-cross-the-road-practice-studio-curriculum-why-did-the-cow-cross-the-road-core-concepts",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-why-did-the-cow-cross-the-road-core-concepts"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-why-did-the-cow-cross-the-road-curriculum-why-did-the-cow-cross-the-road-guided-example",
+		"newId": "usaco-silver-why-did-the-cow-cross-the-road-practice-studio-curriculum-why-did-the-cow-cross-the-road-guided-example",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-why-did-the-cow-cross-the-road-guided-example"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-why-did-the-cow-cross-the-road-curriculum-core-project-why-did-the-cow-cross-the-road",
+		"newId": "usaco-silver-why-did-the-cow-cross-the-road-practice-studio-curriculum-core-project-why-did-the-cow-cross-the-road",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-core-project-why-did-the-cow-cross-the-road"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-why-did-the-cow-cross-the-road-curriculum-review-why-did-the-cow-cross-the-road",
+		"newId": "usaco-silver-why-did-the-cow-cross-the-road-practice-studio-curriculum-review-why-did-the-cow-cross-the-road",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-review-why-did-the-cow-cross-the-road"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-why-did-the-cow-cross-the-road-supplemental-extension-challenge-why-did-the-cow-cross-the-road",
+		"newId": "usaco-silver-why-did-the-cow-cross-the-road-practice-studio-supplemental-extension-challenge-why-did-the-cow-cross-the-road",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-extension-challenge-why-did-the-cow-cross-the-road"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-why-did-the-cow-cross-the-road-supplemental-transfer-practice-why-did-the-cow-cross-the-road",
+		"newId": "usaco-silver-why-did-the-cow-cross-the-road-practice-studio-supplemental-why-did-the-cow-cross-the-road-transfer-practice",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-why-did-the-cow-cross-the-road-transfer-practice"
+	},
+	{
+		"course": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-why-did-the-cow-cross-the-road-supplemental-extension-practice-why-did-the-cow-cross-the-road",
+		"newId": "usaco-silver-why-did-the-cow-cross-the-road-practice-studio-supplemental-why-did-the-cow-cross-the-road-extension-practice",
+		"currentId": "usaco-silver-optional-historical-and-applied-silver-studios-supplemental-why-did-the-cow-cross-the-road-extension-practice"
+	}
+]

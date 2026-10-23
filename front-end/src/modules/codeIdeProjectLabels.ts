@@ -17,9 +17,12 @@ export function getCodeIdeProjectSubtitle(project: ProjectLabelMetadata) {
 	const supportedShape =
 		parts.length === 3 ||
 		(parts.length === 4 &&
-			((variant === "native-rust" &&
-				project.mode === "rust" &&
-				courseID === "rust-systems-security") ||
+			((variant === "native-swift-v1" &&
+				project.mode === "swift" &&
+				courseID === "intro-to-swift-app-development") ||
+				(variant === "native-rust" &&
+					project.mode === "rust" &&
+					courseID === "rust-systems-security") ||
 				(variant === "native-assembly" &&
 					project.mode === "assembly" &&
 					courseID === "assembly") ||

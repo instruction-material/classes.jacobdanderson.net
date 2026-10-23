@@ -617,6 +617,7 @@ export const pythonLevel2Course: RawCourse = {
 				},
 				{
 					title: "PS2 Supplemental Project 8: Archery Simulator",
+					aliases: ["PS2 Supplemental Project 8: Juni Archery"],
 					content: projectBrief({
 						goal: "Simulate an archery session with nested rounds, random outcomes, and a running score.",
 						build: [
@@ -1211,6 +1212,7 @@ export const pythonLevel2Course: RawCourse = {
 				},
 				{
 					title: "PS5 Supplemental Project 2: Word Translator",
+					aliases: ["PS5 Supplemental Project 2: Juni Latin"],
 					content: projectBrief({
 						goal: "Write a reusable word-translation function for a simplified Pig Latin-style rule.",
 						build: [
@@ -2123,6 +2125,7 @@ export const pythonLevel2Course: RawCourse = {
 				},
 				{
 					title: "PS11 Supplemental Project 2: Theme Park Planner",
+					aliases: ["PS11 Supplemental Project 2: Juni World"],
 					content: projectBrief({
 						goal: "Plan a theme-park visit by tracking ride choices and remaining time.",
 						build: [

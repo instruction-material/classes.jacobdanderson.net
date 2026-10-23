@@ -250,14 +250,25 @@ function commonBlueJArchiveRoot(paths: string[]) {
 function blueJArchiveProjectPath(archivePath: string, commonRoot: string) {
 	const segments = blueJArchivePathSegments(archivePath);
 	if (!segments.length || segments[0] === "__MACOSX") return "";
-	if (commonRoot && segments[0] === commonRoot) segments.shift();
+	const rootSegments = blueJArchivePathSegments(commonRoot);
+	if (
+		rootSegments.length > 0 &&
+		rootSegments.every((segment, index) => segments[index] === segment)
+	) {
+		segments.splice(0, rootSegments.length);
+	}
 	return segments.join("/");
 }
 
-function blueJArchiveCandidateProjectPaths(archivePath: string) {
+function blueJArchiveCandidateProjectPaths(
+	archivePath: string,
+	projectRoot: string
+) {
 	const segments = blueJArchivePathSegments(archivePath);
 	const candidates = [segments.join("/")];
-	if (segments.length > 1 && segments[0] !== "__MACOSX") {
+	if (projectRoot && isInsideBlueJArchiveRoot(archivePath, projectRoot)) {
+		candidates.push(blueJArchiveProjectPath(archivePath, projectRoot));
+	} else if (segments.length > 1 && segments[0] !== "__MACOSX") {
 		candidates.push(segments.slice(1).join("/"));
 	}
 	return candidates.filter(Boolean);
@@ -354,8 +365,10 @@ export function importBlueJProjectArchive(
 			const archivePath = normalizedBlueJArchivePath(file.name);
 			if (!archivePath || archivePath.endsWith("/")) return false;
 
-			const candidateProjectPaths =
-				blueJArchiveCandidateProjectPaths(archivePath);
+			const candidateProjectPaths = blueJArchiveCandidateProjectPaths(
+				archivePath,
+				blueJProjectRoot
+			);
 			if (
 				candidateProjectPaths.some(isBlueJArchiveMetadataPath) ||
 				!candidateProjectPaths.length

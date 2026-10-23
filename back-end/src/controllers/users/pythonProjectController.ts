@@ -12,13 +12,14 @@ import type {
 } from "../../types/entities/IPythonProjectReview.js";
 import { randomBytes } from "node:crypto";
 import { env } from "node:process";
-import { Types } from "mongoose";
+import mongoose, { Types } from "mongoose";
 import { z } from "zod";
 import { PythonProject } from "../../models/schemas/PythonProject.js";
 import { PythonProjectReview } from "../../models/schemas/PythonProjectReview.js";
 import { User } from "../../models/schemas/User.js";
 import { isLinuxProjectTextPath, linuxFileSegmentPattern } from "../../utils/linuxProjectFiles.js";
 import { isRustProjectTextPath } from "../../utils/rustProjectFiles.js";
+import { isSwiftProjectTextPath } from "../../utils/swiftProjectFiles.js";
 import { isWebProjectSourcePath, isWebProjectTextPath } from "../../utils/webProjectFiles.js";
 
 const SAFE_FILE_SEGMENT_RE = /^\w[\w.-]*$/;
@@ -106,6 +107,7 @@ function isSafeProjectFileName(value: string, mode: PythonProjectMode = "python"
 	}
 
 	if (isRuntimeReservedProjectPath(value)) return false;
+	if (mode === "swift") return isSwiftProjectTextPath(value);
 	if (mode === "web") return isWebProjectTextPath(value);
 
 	if (PYTHON_FILE_NAME_RE.test(value) || JAVA_FILE_NAME_RE.test(value) || C_FILE_NAME_RE.test(value) || ASSEMBLY_FILE_NAME_RE.test(value) || CPP_TEXT_FILE_NAME_RE.test(value) || segments.at(-1) === "CMakeLists.txt" || NATIVE_WORKSHEET_FILE_RE.test(value) || linuxPath || (mode === "rust" && isRustProjectTextPath(value))) {
@@ -118,7 +120,7 @@ function isSafeProjectFileName(value: string, mode: PythonProjectMode = "python"
 	return IMAGE_FILE_RE.test(value) || AUDIO_FILE_RE.test(value);
 }
 
-const projectModeSchema = z.enum(["assembly", "c", "cpp", "data", "java", "karel", "linux", "pgzero", "python", "rust", "turtle", "web"]);
+const projectModeSchema = z.enum(["assembly", "c", "cpp", "data", "java", "karel", "linux", "pgzero", "python", "rust", "swift", "turtle", "web"]);
 const projectFileSchema = z.object({
 	name: z
 		.string()
@@ -126,7 +128,7 @@ const projectFileSchema = z.object({
 		.min(1)
 		.max(80)
 		.refine(
-			value => isSafeProjectFileName(value, "linux") || isSafeProjectFileName(value, "rust") || isSafeProjectFileName(value, "web"),
+			value => isSafeProjectFileName(value, "linux") || isSafeProjectFileName(value, "rust") || isSafeProjectFileName(value, "web") || isSafeProjectFileName(value, "swift"),
 			"Use a safe code file, root data/text file, or images/, sounds/, or music/ asset file that does not use a runtime-reserved module name"
 		),
 	content: z.string().max(MAX_FILE_LENGTH),
@@ -152,6 +154,9 @@ const projectPayloadSchema = z.object({
 	starterLabel: z.string().trim().min(1).max(80).optional(),
 	starterUrl: z.string().trim().url().max(500).optional(),
 	sharedSourceID: z.string().trim().regex(SHARE_ID_RE).optional()
+});
+const updateProjectPayloadSchema = projectPayloadSchema.partial().extend({
+	expectedRevision: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER)
 });
 const projectSharePayloadSchema = z.object({
 	shared: z.boolean()
@@ -182,7 +187,8 @@ function serializePythonProject(project: IPythonProject) {
 		shareCreatedAt: project.shared ? project.shareCreatedAt : undefined,
 		sharedSourceID: project.sharedSourceID,
 		createdAt: project.createdAt,
-		updatedAt: project.updatedAt
+		updatedAt: project.updatedAt,
+		revision: project.__v ?? 0
 	};
 }
 
@@ -202,7 +208,8 @@ function serializePythonProjectMetadata(project: IPythonProject) {
 		shareCreatedAt: project.shared ? project.shareCreatedAt : undefined,
 		sharedSourceID: project.sharedSourceID,
 		createdAt: project.createdAt,
-		updatedAt: project.updatedAt
+		updatedAt: project.updatedAt,
+		revision: project.__v ?? 0
 	};
 }
 
@@ -268,6 +275,7 @@ function serializePythonProjectReviewMetadata(review: IPythonProjectReview) {
 }
 
 function defaultProjectFileForMode(mode: PythonProjectMode): PythonProjectFile {
+	if (mode === "swift") return { name: "ContentView.swift", content: "" };
 	if (mode === "web") return { name: "index.html", content: "" };
 	if (mode === "rust") return { name: "src/main.rs", content: "" };
 	if (mode === "linux") return { name: "main.sh", content: "" };
@@ -292,6 +300,7 @@ function defaultProjectFileForMode(mode: PythonProjectMode): PythonProjectFile {
 }
 
 function requiredCodeFileMessage(mode: PythonProjectMode) {
+	if (mode === "swift") return "Project must include at least one text Swift source file";
 	if (mode === "web") return "Project must include at least one text HTML or JavaScript source file";
 	if (mode === "rust") return "Project must include at least one text Rust source file";
 	if (mode === "linux") return "Project must include a text Linux script, application or configuration file";
@@ -307,6 +316,7 @@ function requiredCodeFileMessage(mode: PythonProjectMode) {
 
 function projectFilesMatchMode(files: PythonProjectFile[], mode: PythonProjectMode) {
 	if (!files.every(file => isSafeProjectFileName(file.name, mode))) return false;
+	if (mode === "swift") return files.every(file => file.encoding !== "base64") && files.some(file => /\.swift$/i.test(file.name));
 	if (mode === "web") return files.every(file => file.encoding !== "base64") && files.some(file => isWebProjectSourcePath(file.name));
 	if (mode === "rust") return files.every(file => file.encoding !== "base64") && files.some(file => /\.rs$/i.test(file.name));
 	if (mode === "linux") return files.every(file => file.encoding !== "base64") && files.some(file => isLinuxProjectTextPath(file.name) || PYTHON_FILE_NAME_RE.test(file.name));
@@ -872,9 +882,12 @@ export const updatePythonProject: RequestHandler = async (req, res) => {
 	const project = await findOwnedProject(req, res);
 	if (!project) return;
 
-	const parsed = projectPayloadSchema.partial().safeParse(req.body ?? {});
+	const parsed = updateProjectPayloadSchema.safeParse(req.body ?? {});
 	if (!parsed.success) {
 		return res.status(400).json({ message: "Invalid project payload", issues: parsed.error.issues });
+	}
+	if (parsed.data.expectedRevision !== (project.__v ?? 0)) {
+		return res.status(409).json({ message: "Project changed in another session; keep your local copy and review before saving." });
 	}
 
 	const nextMode = parsed.data.mode ?? project.mode;
@@ -899,7 +912,15 @@ export const updatePythonProject: RequestHandler = async (req, res) => {
 	project.ownerRole ??= "user";
 	if (parsed.data.files || parsed.data.activeFileName) project.activeFileName = nextActiveFileName;
 
-	await project.save();
+	try {
+		await project.save();
+	}
+	catch (error) {
+		if (error instanceof mongoose.Error.VersionError) {
+			return res.status(409).json({ message: "Project changed in another session; keep your local copy and review before saving." });
+		}
+		throw error;
+	}
 	res.json({ project: serializePythonProject(project) });
 };
 
@@ -926,7 +947,15 @@ export const updatePythonProjectShare: RequestHandler = async (req, res) => {
 		project.shareCreatedAt = undefined;
 	}
 
-	await project.save();
+	try {
+		await project.save();
+	}
+	catch (error) {
+		if (error instanceof mongoose.Error.VersionError) {
+			return res.status(409).json({ message: "Project changed in another session; reload before changing sharing." });
+		}
+		throw error;
+	}
 	res.json({ project: serializePythonProject(project) });
 };
 

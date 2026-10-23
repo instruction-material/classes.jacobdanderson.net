@@ -1,6 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
+import { createPinia, setActivePinia } from "pinia";
 import { describe, expect, it } from "vitest";
+import { useCoursesStore } from "@/stores/courses";
 import { loadRawCourse } from "@/stores/courses/index";
 import { introToSwiftAppDevelopmentCourse } from "@/stores/courses/intro-to-swift-app-development";
 
@@ -188,7 +190,7 @@ describe("Intro to Swift App Development learner flow", () => {
 		}
 	});
 
-	it("turns every lesson and project into a substantial linked practice card", () => {
+	it("provides substantial project reading or linked practice for every activity", () => {
 		const items = allItems();
 		const titles = items.map(item => item.title);
 
@@ -200,15 +202,28 @@ describe("Intro to Swift App Development learner flow", () => {
 		expect(titles).toContain("SW7 State and Data Flow: Readiness Check");
 
 		for (const item of items) {
-			expect(item.content, item.title).toContain("**Course position:**");
-			expect(item.content, item.title).toContain("**Build focus:**");
-			expect(item.content, item.title).toContain(
-				"**Verification gate:**"
-			);
-			expect(item.content, item.title).toContain(
-				"**Toolchain and access boundary:**"
-			);
-			expect(item.content, item.title).toContain("**Local continuity:**");
+			if (item.title === "Project: Welcome Profile App") {
+				for (const section of [
+					"## Open one complete source role",
+					"## Read the app from its entry point",
+					"## Follow the data into both screens",
+					"## Work through modifier order",
+					"## Core project",
+					"## Read the reference after an attempt",
+					"## Distinct follow-up work"
+				])
+					expect(item.content).toContain(section);
+			} else {
+				expect(item.content, item.title).toContain("**Course position:**");
+				expect(item.content, item.title).toContain("**Build focus:**");
+				expect(item.content, item.title).toContain(
+					"**Verification gate:**"
+				);
+				expect(item.content, item.title).toContain(
+					"**Toolchain and access boundary:**"
+				);
+				expect(item.content, item.title).toContain("**Local continuity:**");
+			}
 			expect(item.projectLink, item.title).toMatch(/^https:\/\//u);
 			expect(item.solutionLink, item.title).toBeTruthy();
 			expect(item.datasetLink, item.title).toMatch(
@@ -301,9 +316,14 @@ describe("Intro to Swift App Development learner flow", () => {
 			expect(practiceHeadings, item.title).toContain(
 				item.datasetLink?.split("#")[1]
 			);
-			expect(item.content, item.title).toContain(
-				"/course-assets/swift/intro-swift-verification-guide.md#"
-			);
+			if (item.title === "Project: Welcome Profile App") {
+				expect(item.content).toContain("expected result, observed result");
+				expect(item.content).toContain("two simulator sizes");
+			} else {
+				expect(item.content, item.title).toContain(
+					"/course-assets/swift/intro-swift-verification-guide.md#"
+				);
+			}
 		}
 
 		expect(practice).toContain("Canonical project spine");
@@ -380,18 +400,66 @@ describe("Intro to Swift App Development learner flow", () => {
 		);
 	});
 
-	it("avoids the old inverted-order and generic-output regressions", () => {
-		const source = fs.readFileSync(
-			path.resolve(
-				"src/stores/courses/intro-to-swift-app-development.ts"
-			),
-			"utf8"
+	it("recognizes saved IDs from the original module and lesson titles", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById(
+			"intro-to-swift-app-development"
 		);
+		const module = course?.modules.find(
+			candidate => candidate.title === "SW1 Mac Setup and First Launch"
+		);
+		expect(module?.aliases).toContain(
+			"intro-to-swift-app-development-sad2-mac-setup-and-project-tooling"
+		);
+		expect(
+			module?.curriculum.find(
+				item =>
+					item.title === "Machine Requirements and Platform Reality"
+			)?.aliases
+		).toContain(
+			"intro-to-swift-app-development-sad2-mac-setup-and-project-tooling-curriculum-machine-requirements-and-platform-reality"
+		);
+		expect(
+			module?.supplementalProjects.find(item =>
+				item.title.includes("Readiness Check")
+			)?.aliases
+		).toContain(
+			"intro-to-swift-app-development-sad2-mac-setup-and-project-tooling-supplemental-diagnostic-checkpoint"
+		);
+		const publishingModule = course?.modules.find(
+			candidate =>
+				candidate.title ===
+				"SW16 Apple Development and Distribution Map"
+		);
+		expect(
+			publishingModule?.supplementalProjects.find(
+				item =>
+					item.title === "Distribution Pipeline Reference Walkthrough"
+			)?.aliases
+		).toContain(
+			"intro-to-swift-app-development-sad1-apple-developer-ecosystem-overview-supplemental-mod5pro3"
+		);
+	});
+
+	it("avoids the old inverted-order and generic-output regressions", () => {
+		const visibleText = introToSwiftAppDevelopmentCourse.modules
+			.flatMap(module => [
+				module.title,
+				...module.curriculum.flatMap(item => [
+					item.title,
+					item.content
+				]),
+				...module.supplementalProjects.flatMap(item => [
+					item.title,
+					item.content
+				])
+			])
+			.join("\n");
 		const titles = allItems().map(item => item.title);
 
-		expect(source).not.toMatch(/\bshould\b/iu);
-		expect(source).not.toMatch(/\bMini Lab\b/iu);
-		expect(source).not.toMatch(/\bsupplemental [23]\b/iu);
+		expect(visibleText).not.toMatch(/\bshould\b/iu);
+		expect(visibleText).not.toMatch(/\bMini Lab\b/iu);
+		expect(visibleText).not.toMatch(/\bsupplemental [23]\b/iu);
 		expect(titles).not.toContain("Diagnostic Checkpoint");
 		expect(
 			introToSwiftAppDevelopmentCourse.modules[0]?.title

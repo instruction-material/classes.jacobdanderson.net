@@ -32,7 +32,7 @@ const pythonProjectSchema: Schema<IPythonProject> = new Schema(
 		title: { type: String, required: true, trim: true, maxlength: 120 },
 		mode: {
 			type: String,
-			enum: ["assembly", "c", "cpp", "data", "java", "karel", "linux", "pgzero", "python", "rust", "turtle", "web"],
+			enum: ["assembly", "c", "cpp", "data", "java", "karel", "linux", "pgzero", "python", "rust", "swift", "turtle", "web"],
 			default: "python",
 			required: true
 		},
@@ -57,7 +57,7 @@ const pythonProjectSchema: Schema<IPythonProject> = new Schema(
 		shareCreatedAt: { type: Date },
 		sharedSourceID: { type: String, trim: true, maxlength: 80 }
 	},
-	{ timestamps: true }
+	{ timestamps: true, optimisticConcurrency: true }
 );
 
 pythonProjectSchema.index({ user: 1, ownerRole: 1, updatedAt: -1 });

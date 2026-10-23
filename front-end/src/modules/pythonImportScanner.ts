@@ -5,38 +5,21 @@ const FROM_IMPORT_MODULE_RE =
 	/^from\s+([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)*)\s+import\b/;
 const PYTHON_IDENTIFIER_RE = /^[A-Z_]\w*$/i;
 const PYTHON_IMPORT_KEYWORD = "import";
-const PYTHON_IMPORT_SEPARATOR_RE = /\s*,\s*/;
-const PYTHON_IMPORT_ALIAS_RE = /\s+as\s+/i;
-const PYTHON_MODULE_SEPARATOR_RE = /\./;
-const PYTHON_LINE_CONTINUATION_RE = /\\\s*$/;
+const PYTHON_MODULE_PREFIX_RE = /^[A-Z_]\w*/i;
 const PYTHON_TRIPLE_QUOTE_DELIMITERS = ['"""', "'''"] as const;
-type PythonTripleQuoteDelimiter =
-	(typeof PYTHON_TRIPLE_QUOTE_DELIMITERS)[number];
+const IMPORT_STATEMENT_CHUNK_LENGTH = 4096;
+type PythonStringDelimiter = "'" | '"' | "'''" | '"""';
 
 function isPythonFileName(value: string) {
 	return PYTHON_EXTENSION_RE.test(value);
-}
-
-function codeBeforeComment(line: string) {
-	return line.split("#")[0] ?? "";
-}
-
-function lineContinues(line: string) {
-	return PYTHON_LINE_CONTINUATION_RE.test(codeBeforeComment(line));
-}
-
-function withoutLineContinuation(line: string) {
-	return codeBeforeComment(line)
-		.replace(PYTHON_LINE_CONTINUATION_RE, "")
-		.trim();
 }
 
 function importedTopLevelModulesFromLine(line: string) {
 	const trimmed = line.trim();
 	const fromMatch = trimmed.match(FROM_IMPORT_MODULE_RE);
 	if (fromMatch) {
-		return [fromMatch[1].split(PYTHON_MODULE_SEPARATOR_RE)[0]].filter(
-			moduleName => PYTHON_IDENTIFIER_RE.test(moduleName)
+		return [fromMatch[1].split(".")[0]].filter(moduleName =>
+			PYTHON_IDENTIFIER_RE.test(moduleName)
 		);
 	}
 
@@ -46,101 +29,116 @@ function importedTopLevelModulesFromLine(line: string) {
 
 	return trimmed
 		.slice(PYTHON_IMPORT_KEYWORD.length)
-		.split("#")[0]
-		.split(PYTHON_IMPORT_SEPARATOR_RE)
-		.map(
-			specifier =>
-				specifier
-					.split(PYTHON_IMPORT_ALIAS_RE)[0]
-					.trim()
-					.split(PYTHON_MODULE_SEPARATOR_RE)[0]
-		)
-		.filter(moduleName => PYTHON_IDENTIFIER_RE.test(moduleName));
-}
-
-function nextTripleQuoteDelimiter(
-	line: string,
-	activeDelimiter: PythonTripleQuoteDelimiter | null
-) {
-	let delimiter = activeDelimiter;
-	let offset = 0;
-	const lineCode = codeBeforeComment(line);
-
-	while (offset < lineCode.length) {
-		if (delimiter) {
-			const closingIndex = lineCode.indexOf(delimiter, offset);
-			if (closingIndex === -1) return delimiter;
-			offset = closingIndex + delimiter.length;
-			delimiter = null;
-			continue;
-		}
-
-		let nextIndex = -1;
-		let nextDelimiter: PythonTripleQuoteDelimiter | null = null;
-		for (const candidate of PYTHON_TRIPLE_QUOTE_DELIMITERS) {
-			const candidateIndex = lineCode.indexOf(candidate, offset);
-			if (
-				candidateIndex !== -1 &&
-				(nextIndex === -1 || candidateIndex < nextIndex)
-			) {
-				nextIndex = candidateIndex;
-				nextDelimiter = candidate;
-			}
-		}
-		if (!nextDelimiter) return null;
-
-		delimiter = nextDelimiter;
-		offset = nextIndex + nextDelimiter.length;
-	}
-
-	return delimiter;
+		.split(",")
+		.map(specifier => {
+			const trimmedSpecifier = specifier.trimStart();
+			const moduleName = trimmedSpecifier.match(
+				PYTHON_MODULE_PREFIX_RE
+			)?.[0];
+			if (!moduleName) return undefined;
+			const nextCharacter = trimmedSpecifier[moduleName.length];
+			return !nextCharacter ||
+				nextCharacter === "." ||
+				/\s/.test(nextCharacter)
+				? moduleName
+				: undefined;
+		})
+		.filter((moduleName): moduleName is string => Boolean(moduleName));
 }
 
 export function pythonIdeImportedTopLevelModules(files: PythonIdeFile[]) {
 	const modules = new Set<string>();
-	let activeMultilineStringDelimiter: PythonTripleQuoteDelimiter | null =
-		null;
-	let continuedLine = "";
-
-	for (const line of files
-		.filter(file => isPythonFileName(file.name))
-		.map(file => file.content)
-		.join("\n")
-		.split("\n")) {
-		const startsInsideMultilineString =
-			activeMultilineStringDelimiter !== null;
-		activeMultilineStringDelimiter = nextTripleQuoteDelimiter(
-			line,
-			activeMultilineStringDelimiter
-		);
-		if (!startsInsideMultilineString) {
-			if (continuedLine) {
-				continuedLine =
-					`${continuedLine} ${withoutLineContinuation(line)}`.trim();
-				if (lineContinues(line)) continue;
-
-				for (const moduleName of importedTopLevelModulesFromLine(
-					continuedLine
-				))
-					modules.add(moduleName);
-				continuedLine = "";
-				continue;
-			}
-
-			if (lineContinues(line)) {
-				continuedLine = withoutLineContinuation(line);
-				continue;
-			}
-
-			for (const moduleName of importedTopLevelModulesFromLine(line))
+	for (const file of files) {
+		if (!isPythonFileName(file.name)) continue;
+		let delimiter: PythonStringDelimiter | null = null;
+		let statementChunk = "";
+		const statementChunks: string[] = [];
+		const finishStatement = () => {
+			const statement = statementChunks.length
+				? statementChunks.join("") + statementChunk
+				: statementChunk;
+			for (const moduleName of importedTopLevelModulesFromLine(statement))
 				modules.add(moduleName);
+			statementChunk = "";
+			statementChunks.length = 0;
+		};
+		const append = (character: string) => {
+			statementChunk += character;
+			if (statementChunk.length === IMPORT_STATEMENT_CHUNK_LENGTH) {
+				statementChunks.push(statementChunk);
+				statementChunk = "";
+			}
+		};
+
+		for (let index = 0; index < file.content.length; index++) {
+			const character = file.content[index];
+			const nextCharacter = file.content[index + 1];
+			const newline = character === "\n" || character === "\r";
+			if (delimiter) {
+				if (character === "\\") {
+					index +=
+						nextCharacter === "\r" &&
+						file.content[index + 2] === "\n"
+							? 2
+							: 1;
+					continue;
+				}
+				if (file.content.startsWith(delimiter, index)) {
+					index += delimiter.length - 1;
+					delimiter = null;
+					continue;
+				}
+				if (newline) {
+					finishStatement();
+					if (character === "\r" && nextCharacter === "\n") index++;
+				}
+				continue;
+			}
+			if (character === "#") {
+				while (
+					index < file.content.length &&
+					file.content[index] !== "\n" &&
+					file.content[index] !== "\r"
+				) {
+					index++;
+				}
+				if (
+					file.content[index] === "\r" &&
+					file.content[index + 1] === "\n"
+				) {
+					index++;
+				}
+				finishStatement();
+				continue;
+			}
+			if (character === "'" || character === '"') {
+				const triple = PYTHON_TRIPLE_QUOTE_DELIMITERS.find(value =>
+					file.content.startsWith(value, index)
+				);
+				delimiter = triple ?? character;
+				index += delimiter.length - 1;
+				append(" ");
+				continue;
+			}
+			if (
+				character === "\\" &&
+				(nextCharacter === "\n" || nextCharacter === "\r")
+			) {
+				index +=
+					nextCharacter === "\r" && file.content[index + 2] === "\n"
+						? 2
+						: 1;
+				append(" ");
+				continue;
+			}
+			if (character === ";" || character === ":" || newline) {
+				finishStatement();
+				if (character === "\r" && nextCharacter === "\n") index++;
+				continue;
+			}
+			append(character);
 		}
+		finishStatement();
 	}
-
-	if (continuedLine) {
-		for (const moduleName of importedTopLevelModulesFromLine(continuedLine))
-			modules.add(moduleName);
-	}
-
 	return modules;
 }

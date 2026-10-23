@@ -1,5 +1,5 @@
 import type { VueWrapper } from "@vue/test-utils";
-import type { PythonIdeProject } from "@/modules/pythonIde";
+import type { PythonIdeProject, PythonIdeProjectPayload } from "@/modules/pythonIde";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { flushPromises, mount } from "@vue/test-utils";
@@ -33,6 +33,7 @@ vi.mock("@/modules/codePreview", async importOriginal => ({
 
 const existingProject: PythonIdeProject = {
 	_id: "existing-project",
+	revision: 0,
 	activeFileName: "main.py",
 	files: [{ name: "main.py", content: "print('existing')" }],
 	mode: "python",
@@ -123,7 +124,8 @@ beforeEach(() => {
 			data: {
 				project: {
 					...payload,
-					_id: `imported-project-${++createdProjects}`
+					_id: `imported-project-${++createdProjects}`,
+					revision: 0
 				}
 			}
 		})
@@ -207,6 +209,7 @@ describe("Code IDE route import consent", () => {
 					const project = {
 						...JSON.parse(JSON.stringify(payload)),
 						_id: "web-project",
+						revision: 0,
 						createdAt: "2026-10-20T12:00:00.000Z",
 						updatedAt: "2026-10-20T12:00:00.000Z"
 					};
@@ -215,10 +218,11 @@ describe("Code IDE route import consent", () => {
 				}
 			);
 			requests.put.mockImplementation(
-				async (path: string, payload: PythonIdeProject) => {
+				async (path: string, payload: PythonIdeProjectPayload) => {
 					const project = {
 						...JSON.parse(JSON.stringify(payload)),
 						_id: path.split("/").at(-1)!,
+						revision: (payload.expectedRevision ?? 0) + 1,
 						createdAt: "2026-10-20T12:00:00.000Z",
 						updatedAt: "2026-10-20T12:00:01.000Z"
 					};
@@ -621,6 +625,35 @@ describe("Code IDE route import consent", () => {
 				}
 			]
 		});
+	});
+
+	it("loads the remote detail selected after deleting a local recovery copy", async () => {
+		const { wrapper } = await openWorkspace("/ide");
+		const state = wrapper.findComponent(CodeIdeWorkspace).vm.$.setupState as {
+			projects: PythonIdeProject[];
+			projectCatalog: Array<Omit<PythonIdeProject, "files">>;
+			selectedProjectID: string;
+			deleteProject: (project: PythonIdeProject) => Promise<void>;
+			activeFile: { content: string } | null;
+		};
+		const recovery = { ...structuredClone(existingProject), _id: "local-recovery-copy", title: "Recovery copy" };
+		const { files: _files, ...remote } = existingProject;
+		state.projects = [recovery];
+		state.projectCatalog = [recovery, remote];
+		state.selectedProjectID = recovery._id;
+		await settle();
+		requests.get.mockClear();
+		expect(state.projects.some(project => project._id === remote._id)).toBe(false);
+		await state.deleteProject(recovery);
+		await settle();
+		expect(requests.get).toHaveBeenCalledWith(
+			"/users/loggedin/python-projects/existing-project",
+			expect.anything()
+		);
+		expect(state.selectedProjectID).toBe(remote._id);
+		expect(state.projects.map(project => project._id)).toEqual([remote._id]);
+		expect(state.activeFile?.content).toBe("print('existing')");
+		expect(requests.delete).not.toHaveBeenCalled();
 	});
 
 	it("does not fetch or save a URL-supplied starter before explicit approval", async () => {

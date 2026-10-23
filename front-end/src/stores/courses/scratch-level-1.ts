@@ -1045,6 +1045,7 @@ Typing practice is not required to complete the Scratch course, but it can make 
 			curriculum: [
 				{
 					title: "Game Polish Concepts",
+					aliases: ["Core Concepts"],
 					content:
 						"A polished Scratch game is more than a set of working controls. It needs clear instructions, visible score or progress feedback, balanced difficulty, sound or visual polish, and an ending state that makes the result feel complete. The project is easy to trace from green flag to reset, normal play, win/loss state, and replay."
 				},
@@ -1055,6 +1056,7 @@ Typing practice is not required to complete the Scratch course, but it can make 
 				},
 				{
 					title: "Polish Build Requirements",
+					aliases: ["Build Requirements"],
 					content:
 						"Build a title screen, clear controls, score feedback, timer or lives, win/loss messages, and a replay path. Test the whole game from the green flag so the finished behavior is visible as one connected experience rather than isolated scripts."
 				},
@@ -1077,6 +1079,7 @@ Typing practice is not required to complete the Scratch course, but it can make 
 				},
 				{
 					title: "Mini Game Bug Patterns",
+					aliases: ["Common Bug Patterns"],
 					content:
 						"Look for scripts that do not reset on the green flag, messages that fire too early, variables that keep old values, clones that never delete, and forever loops that prevent the ending from appearing."
 				},
@@ -1092,6 +1095,7 @@ Typing practice is not required to complete the Scratch course, but it can make 
 			curriculum: [
 				{
 					title: "Branching Story Concepts",
+					aliases: ["Core Concepts"],
 					content:
 						"An interactive story uses events, broadcasts, costumes, backdrops, and variables to make choices visible. The project shows how a scene starts, which choice changes the story state, what message moves the project to the next scene, and how each ending is reached."
 				},
@@ -1102,6 +1106,7 @@ Typing practice is not required to complete the Scratch course, but it can make 
 				},
 				{
 					title: "Story Build Requirements",
+					aliases: ["Build Requirements"],
 					content:
 						"Build scene transitions, dialogue timing, character reactions, choice variables, and alternate endings. Test the story from the green flag through at least two different paths so the branching behavior is visible."
 				},
@@ -1124,6 +1129,7 @@ Typing practice is not required to complete the Scratch course, but it can make 
 				},
 				{
 					title: "Story Bug Patterns",
+					aliases: ["Common Bug Patterns"],
 					content:
 						"Look for scripts that do not reset on the green flag, messages that fire too early, variables that keep old values, clones that never delete, and forever loops that prevent the ending from appearing."
 				},
@@ -1139,6 +1145,7 @@ Typing practice is not required to complete the Scratch course, but it can make 
 			curriculum: [
 				{
 					title: "Debugging Concepts",
+					aliases: ["Core Concepts"],
 					content:
 						"Scratch debugging starts by making the project state visible. Check green-flag setup, forever loops, sprite visibility, variable resets, coordinates, clone cleanup, and broadcast timing before changing features. A good repair explains what was broken, why it happened, and what evidence shows the fix worked."
 				},
@@ -1149,6 +1156,7 @@ Typing practice is not required to complete the Scratch course, but it can make 
 				},
 				{
 					title: "Repair Build Requirements",
+					aliases: ["Build Requirements"],
 					content:
 						"Repair broken controls, missing score updates, sprites hidden at start, scripts running in the wrong order, and games that never end. Test each repair from the green flag and keep a short bug log that connects symptoms to script changes."
 				},
@@ -1171,6 +1179,7 @@ Typing practice is not required to complete the Scratch course, but it can make 
 				},
 				{
 					title: "Debugging Pitfalls",
+					aliases: ["Common Bug Patterns"],
 					content:
 						"Look for scripts that do not reset on the green flag, messages that fire too early, variables that keep old values, clones that never delete, and forever loops that prevent the ending from appearing."
 				},
@@ -1186,6 +1195,7 @@ Typing practice is not required to complete the Scratch course, but it can make 
 			curriculum: [
 				{
 					title: "Scratch-to-Python Concepts",
+					aliases: ["Core Concepts"],
 					content:
 						"Scratch blocks can be translated into text-code ideas: events become starting points, loops become repeated instructions, conditionals become branches, variables store state, custom blocks resemble functions, and coordinates act like numeric data. The bridge task is to explain a Scratch script in pseudocode before writing any Python-style version."
 				},
@@ -1196,6 +1206,7 @@ Typing practice is not required to complete the Scratch course, but it can make 
 				},
 				{
 					title: "Translation Build Requirements",
+					aliases: ["Build Requirements"],
 					content:
 						"Translate Scratch block screenshots or descriptions into pseudocode and then into simple Python-style statements. For each translated script, identify the start event, stored state, repeated behavior, condition, and output."
 				},
@@ -1218,6 +1229,7 @@ Typing practice is not required to complete the Scratch course, but it can make 
 				},
 				{
 					title: "Translation Pitfalls",
+					aliases: ["Common Bug Patterns"],
 					content:
 						"Look for scripts that do not reset on the green flag, messages that fire too early, variables that keep old values, clones that never delete, and forever loops that prevent the ending from appearing."
 				},

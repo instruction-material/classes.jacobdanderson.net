@@ -1174,6 +1174,21 @@ function insertPythonicPatternsItem(
 	return [...items.slice(0, index), item, ...items.slice(index)];
 }
 
+function priorPracticeTitle(moduleTitle: string, itemTitle: string) {
+	const moduleMatch = /^PDP(\d{1,2}) /.exec(moduleTitle);
+	if (!moduleMatch) return null;
+	const moduleNumber = Number(moduleMatch[1]);
+	if (moduleNumber < 1 || moduleNumber > 12) return null;
+	const moduleTopic = moduleTitle.slice(moduleMatch[0].length);
+	const practice = itemTitle.endsWith("Transfer Practice")
+		? "Transfer Practice"
+		: itemTitle.endsWith("Extension Practice")
+			? "Extension Practice"
+			: null;
+	if (!practice) return null;
+	return `${practice}: ${moduleTopic.replace(/^Template /, "")}`;
+}
+
 function decoratePythonicPatternsModule(
 	module: RawCourse["modules"][number]
 ): RawCourse["modules"][number] {
@@ -1431,10 +1446,16 @@ function decoratePythonicPatternsModule(
 		estimatedTime: flow.estimatedTime,
 		keyBlocks: flow.keyBlocks,
 		curriculum,
-		supplementalProjects: module.supplementalProjects.map(item => ({
-			...item,
-			learningPath: pythonicPatternsOptionPath(item.title)
-		}))
+		supplementalProjects: module.supplementalProjects.map(item => {
+			const previousTitle = priorPracticeTitle(module.title, item.title);
+			return {
+				...item,
+				...(previousTitle
+					? { aliases: [...(item.aliases ?? []), previousTitle] }
+					: {}),
+				learningPath: pythonicPatternsOptionPath(item.title)
+			};
+		})
 	};
 }
 

@@ -1,0 +1,3425 @@
+[
+	{
+		"courseId": "scratch-level-1",
+		"kind": "item",
+		"oldId": "scratch-level-1-gs14-mini-game-polish-studio-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "scratch-level-1-gs13-mini-game-polish-studio-curriculum-mini-game-polish-studio-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "scratch-level-1",
+		"kind": "item",
+		"oldId": "scratch-level-1-gs15-interactive-story-studio-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "scratch-level-1-gs14-interactive-story-studio-curriculum-interactive-story-studio-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "scratch-level-1",
+		"kind": "item",
+		"oldId": "scratch-level-1-gs16-debugging-and-remix-studio-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "scratch-level-1-gs15-debugging-and-remix-studio-curriculum-debugging-and-remix-studio-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "scratch-level-1",
+		"kind": "item",
+		"oldId": "scratch-level-1-gs17-text-based-programming-bridge-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "scratch-level-1-gs17-scratch-to-python-bridge-curriculum-scratch-to-python-bridge-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "scratch-level-2",
+		"kind": "item",
+		"oldId": "scratch-level-2-gm1-review-events-loops-conditionals-broadcasting-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "scratch-level-2-gm1-level-1-skills-review-curriculum-level-1-skills-review-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "scratch-level-2",
+		"kind": "item",
+		"oldId": "scratch-level-2-gm1-review-events-loops-conditionals-broadcasting-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": "scratch-level-2-gm1-level-1-skills-review-curriculum-level-1-skills-review-application-check",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "scratch-level-2",
+		"kind": "item",
+		"oldId": "scratch-level-2-gm12-arcade-systems-studio-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "scratch-level-2-gm11-arcade-systems-studio-curriculum-arcade-systems-studio-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "scratch-level-2",
+		"kind": "item",
+		"oldId": "scratch-level-2-gm13-simulation-and-data-studio-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "scratch-level-2-gm12-simulation-and-data-studio-curriculum-simulation-and-data-studio-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "scratch-level-2",
+		"kind": "item",
+		"oldId": "scratch-level-2-gm14-code-organization-and-debugging-studio-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "scratch-level-2-gm13-code-organization-and-debugging-studio-curriculum-code-organization-and-debugging-studio-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "scratch-level-2",
+		"kind": "item",
+		"oldId": "scratch-level-2-gm15-text-based-programming-bridge-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "scratch-level-2-gm15-scratch-to-python-bridge-curriculum-scratch-to-python-bridge-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-level-1",
+		"kind": "item",
+		"oldId": "python-level-1-check-in-1-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "python-level-1-check-in-1-curriculum-python-level-1-check-in-1-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-level-1",
+		"kind": "item",
+		"oldId": "python-level-1-check-in-1-supplemental-check-in-1-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-1",
+		"kind": "item",
+		"oldId": "python-level-1-check-in-1-supplemental-check-in-1-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-1",
+		"kind": "item",
+		"oldId": "python-level-1-check-in-2-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "python-level-1-check-in-2-curriculum-python-level-1-check-in-2-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-level-1",
+		"kind": "item",
+		"oldId": "python-level-1-check-in-2-supplemental-check-in-2-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-1",
+		"kind": "item",
+		"oldId": "python-level-1-check-in-2-supplemental-check-in-2-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-1",
+		"kind": "item",
+		"oldId": "python-level-1-check-in-3-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "python-level-1-check-in-3-curriculum-python-level-1-check-in-3-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-level-1",
+		"kind": "item",
+		"oldId": "python-level-1-check-in-3-supplemental-check-in-3-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-1",
+		"kind": "item",
+		"oldId": "python-level-1-check-in-3-supplemental-check-in-3-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-1",
+		"kind": "item",
+		"oldId": "python-level-1-grs15-master-project-supplemental-grs15-master-project-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-1",
+		"kind": "item",
+		"oldId": "python-level-1-grs15-master-project-supplemental-grs15-master-project-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "pygames",
+		"kind": "item",
+		"oldId": "pygames-pyg0-setup-editors-and-asset-workflow-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "pygames-pyg0-setup-editors-and-asset-workflow-curriculum-setup-editors-and-asset-workflow-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "pygames",
+		"kind": "item",
+		"oldId": "pygames-pyg1-object-oriented-programming-actors-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "pygames",
+		"kind": "item",
+		"oldId": "pygames-pyg3-object-oriented-programming-advanced-actors-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "pygames-pyg3-object-oriented-programming-advanced-actors-curriculum-advanced-actors-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "pygames",
+		"kind": "item",
+		"oldId": "pygames-check-in-1-actors-events-zrects-collectibles-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "pygames-check-in-1-actors-events-zrects-collectibles-curriculum-actors-events-zrects-collectibles-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "pygames",
+		"kind": "item",
+		"oldId": "pygames-pyg6-managing-multiple-objects-obstacles-and-surfaces-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "pygames-pyg6-managing-multiple-objects-obstacles-and-surfaces-curriculum-obstacles-and-surfaces-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "pygames",
+		"kind": "item",
+		"oldId": "pygames-check-in-2-gravity-friction-platforms-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "pygames-check-in-2-gravity-friction-platforms-curriculum-gravity-friction-platforms-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "pygames",
+		"kind": "item",
+		"oldId": "pygames-pyg7-levels-and-system-control-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "pygames-pyg7-levels-and-system-control-curriculum-levels-and-system-control-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "pygames",
+		"kind": "item",
+		"oldId": "pygames-pyg12-master-project-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-2",
+		"kind": "item",
+		"oldId": "python-level-2-ps1-variables-strings-and-input-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "python-level-2-ps1-variables-strings-and-input-curriculum-variables-strings-and-input-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-level-2",
+		"kind": "item",
+		"oldId": "python-level-2-check-in-1-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "python-level-2-check-in-1-curriculum-python-level-2-check-in-1-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-level-2",
+		"kind": "item",
+		"oldId": "python-level-2-check-in-1-supplemental-check-in-1-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-2",
+		"kind": "item",
+		"oldId": "python-level-2-check-in-1-supplemental-check-in-1-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-2",
+		"kind": "item",
+		"oldId": "python-level-2-ps8-ciphers-and-music-supplemental-ps8-ciphers-and-music-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-2",
+		"kind": "item",
+		"oldId": "python-level-2-ps8-ciphers-and-music-supplemental-ps8-ciphers-and-music-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-2",
+		"kind": "item",
+		"oldId": "python-level-2-check-in-2-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "python-level-2-check-in-2-curriculum-python-level-2-check-in-2-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-level-2",
+		"kind": "item",
+		"oldId": "python-level-2-check-in-2-supplemental-check-in-2-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-2",
+		"kind": "item",
+		"oldId": "python-level-2-check-in-2-supplemental-check-in-2-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-2",
+		"kind": "module",
+		"oldId": "python-level-2-ps10-todo-list",
+		"currentId": "python-level-2-ps10-to-do-list",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-level-2",
+		"kind": "item",
+		"oldId": "python-level-2-ps10-todo-list-curriculum-ps10-project-1-todo-list",
+		"currentId": "python-level-2-ps10-to-do-list-curriculum-ps10-project-1-to-do-list",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-level-2",
+		"kind": "item",
+		"oldId": "python-level-2-ps10-todo-list-supplemental-ps10-supplemental-project-1-us-capitals-quiz",
+		"currentId": "python-level-2-ps10-to-do-list-supplemental-ps10-supplemental-project-1-us-capitals-quiz",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-level-2",
+		"kind": "item",
+		"oldId": "python-level-2-ps10-todo-list-supplemental-ps10-supplemental-project-2-field-day",
+		"currentId": "python-level-2-ps10-to-do-list-supplemental-ps10-supplemental-project-2-field-day",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-level-2",
+		"kind": "item",
+		"oldId": "python-level-2-ps10-todo-list-supplemental-ps10-supplemental-project-3-field-day-ii",
+		"currentId": "python-level-2-ps10-to-do-list-supplemental-ps10-supplemental-project-3-field-day-ii",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-level-2",
+		"kind": "item",
+		"oldId": "python-level-2-ps15-master-project-supplemental-ps15-master-project-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-2",
+		"kind": "item",
+		"oldId": "python-level-2-ps15-master-project-supplemental-ps15-master-project-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am1-review-variables-strings-input-loops-conditionals-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "python-level-3-am1-review-variables-strings-input-loops-conditionals-curriculum-variables-strings-input-loops-conditionals-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am1-review-variables-strings-input-loops-conditionals-supplemental-am1-review-variables-strings-input-loops-conditionals-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am1-review-variables-strings-input-loops-conditionals-supplemental-am1-review-variables-strings-input-loops-conditionals-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am2-review-functions-lists-supplemental-am2-review-functions-lists-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am2-review-functions-lists-supplemental-am2-review-functions-lists-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am3-review-dictionaries-recap-supplemental-am3-review-dictionaries-recap-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am3-review-dictionaries-recap-supplemental-am3-review-dictionaries-recap-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am4-recursion-part-1-supplemental-am4-recursion-part-1-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-check-in-1-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "python-level-3-check-in-1-curriculum-python-level-3-check-in-1-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-check-in-1-supplemental-check-in-1-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-check-in-1-supplemental-check-in-1-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am6-introduction-to-algorithms-runtime-analysis-supplemental-am6-introduction-to-algorithms-runtime-analysis-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am6-introduction-to-algorithms-runtime-analysis-supplemental-am6-introduction-to-algorithms-runtime-analysis-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am7-binary-search-supplemental-am7-binary-search-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am8-selection-sort-insertion-sort-supplemental-am8-selection-sort-insertion-sort-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am8-selection-sort-insertion-sort-supplemental-am8-selection-sort-insertion-sort-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-check-in-2-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "python-level-3-check-in-2-curriculum-python-level-3-check-in-2-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-check-in-2-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": "python-level-3-check-in-2-curriculum-check-in-2-application-check",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-check-in-2-supplemental-check-in-2-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-check-in-2-supplemental-check-in-2-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am9-bubble-sort-supplemental-am9-bubble-sort-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am9-bubble-sort-supplemental-am9-bubble-sort-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am10-merge-sort-supplemental-am10-merge-sort-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am10-merge-sort-supplemental-am10-merge-sort-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am11-quicksort-supplemental-am11-quicksort-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am11-quicksort-supplemental-am11-quicksort-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am12-file-input-output-supplemental-am12-file-input-output-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am12-file-input-output-supplemental-am12-file-input-output-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-check-in-3-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "python-level-3-check-in-3-curriculum-python-level-3-check-in-3-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-check-in-3-supplemental-check-in-3-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-check-in-3-supplemental-check-in-3-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am13-master-project-conway-s-game-of-life-supplemental-am13-master-project-conway-s-game-of-life-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am13-master-project-conway-s-game-of-life-supplemental-am13-master-project-conway-s-game-of-life-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am14-master-project-tic-tac-toe-ai-supplemental-am14-master-project-tic-tac-toe-ai-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "python-level-3",
+		"kind": "item",
+		"oldId": "python-level-3-am14-master-project-tic-tac-toe-ai-supplemental-am14-master-project-tic-tac-toe-ai-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "data-science-in-python",
+		"kind": "item",
+		"oldId": "data-science-in-python-dsp0-setup-and-tooling-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "data-science-in-python-dsp0-setup-and-tooling-curriculum-data-science-in-python-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "data-science-in-python",
+		"kind": "item",
+		"oldId": "data-science-in-python-module-1-what-data-science-is-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "data-science-in-python-module-1-what-data-science-is-curriculum-what-data-science-is-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "data-science-in-python",
+		"kind": "item",
+		"oldId": "data-science-in-python-module-2-notebook-workflow-and-reproducibility-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "data-science-in-python-module-2-notebook-workflow-and-reproducibility-curriculum-notebook-workflow-and-reproducibility-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "data-science-in-python",
+		"kind": "item",
+		"oldId": "data-science-in-python-module-3-pandas-foundations-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "data-science-in-python-module-3-pandas-foundations-curriculum-pandas-foundations-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "data-science-in-python",
+		"kind": "item",
+		"oldId": "data-science-in-python-module-4-cleaning-and-validation-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "data-science-in-python-module-4-cleaning-and-validation-curriculum-cleaning-and-validation-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "data-science-in-python",
+		"kind": "item",
+		"oldId": "data-science-in-python-module-5-visualization-and-statistics-in-context-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "data-science-in-python-module-5-visualization-and-statistics-in-context-curriculum-visualization-and-statistics-in-context-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "data-science-in-python",
+		"kind": "item",
+		"oldId": "data-science-in-python-module-6-storytelling-with-data-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "data-science-in-python-module-6-storytelling-with-data-curriculum-storytelling-with-data-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "data-science-in-python",
+		"kind": "item",
+		"oldId": "data-science-in-python-module-7-dashboards-with-altair-and-streamlit-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "data-science-in-python-module-7-dashboards-with-altair-and-streamlit-curriculum-dashboards-with-altair-and-streamlit-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "data-science-in-python",
+		"kind": "item",
+		"oldId": "data-science-in-python-module-8-domain-projects-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "data-science-in-python-module-8-domain-projects-curriculum-domain-projects-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "data-science-in-python",
+		"kind": "item",
+		"oldId": "data-science-in-python-module-9-data-science-capstone-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "data-science-in-python-module-9-data-science-capstone-curriculum-data-science-capstone-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "ai-level-1",
+		"kind": "item",
+		"oldId": "ai-level-1-unit-1-ai-landscape-and-state-representation-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "ai-level-1-unit-1-ai-landscape-and-state-representation-curriculum-ai-landscape-and-state-representation-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "ai-level-1",
+		"kind": "item",
+		"oldId": "ai-level-1-unit-2-stacks-queues-and-traversal-intuition-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "ai-level-1-unit-2-stacks-queues-and-traversal-intuition-curriculum-stacks-queues-and-traversal-intuition-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "ai-level-1",
+		"kind": "item",
+		"oldId": "ai-level-1-unit-3-dfs-bfs-and-reachability-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "ai-level-1-unit-3-dfs-bfs-and-reachability-curriculum-dfs-bfs-and-reachability-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "ai-level-1",
+		"kind": "item",
+		"oldId": "ai-level-1-unit-4-informed-and-bounded-search-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "ai-level-1-unit-4-informed-and-bounded-search-curriculum-informed-and-bounded-search-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "ai-level-1",
+		"kind": "item",
+		"oldId": "ai-level-1-unit-5-rule-based-systems-and-puzzle-framing-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "ai-level-1-unit-5-rule-based-systems-and-puzzle-framing-curriculum-rule-based-systems-and-puzzle-framing-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "ai-level-1",
+		"kind": "item",
+		"oldId": "ai-level-1-unit-6-heuristics-and-game-ai-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "ai-level-1-unit-6-heuristics-and-game-ai-curriculum-heuristics-and-game-ai-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "ai-level-1",
+		"kind": "item",
+		"oldId": "ai-level-1-unit-7-features-evaluation-and-responsible-ai-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "ai-level-1-unit-7-features-evaluation-and-responsible-ai-curriculum-features-evaluation-and-responsible-ai-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "ai-level-1",
+		"kind": "item",
+		"oldId": "ai-level-1-unit-8-capstone-and-portfolio-build-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "ai-level-1-unit-8-capstone-and-portfolio-build-curriculum-capstone-and-portfolio-build-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "ai-level-1",
+		"kind": "item",
+		"oldId": "ai-level-1-unit-9-repo-extension-bank-and-canonical-variants-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "ai-level-1-unit-9-repo-extension-bank-and-canonical-variants-curriculum-repo-extension-bank-and-canonical-variants-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "algebra-1a",
+		"kind": "item",
+		"oldId": "algebra-1a-aa2-solving-single-step-linear-equations-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "algebra-1a-aa2-solving-single-step-linear-equations-curriculum-solving-single-step-linear-equations-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "algebra-1a",
+		"kind": "item",
+		"oldId": "algebra-1a-aa4-solving-multi-step-linear-equations-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "algebra-1a-aa4-solving-multi-step-linear-equations-curriculum-solving-multi-step-linear-equations-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "algebra-1b",
+		"kind": "item",
+		"oldId": "algebra-1b-ab2-multiplying-polynomials-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "algebra-1b-ab2-multiplying-polynomials-curriculum-multiplying-polynomials-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "algebra-1b",
+		"kind": "item",
+		"oldId": "algebra-1b-ab3-fractions-with-polynomials-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "algebra-2a",
+		"kind": "item",
+		"oldId": "algebra-2a-ala2-quadratic-functions-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "algebra-2a-ala2-quadratic-functions-curriculum-quadratic-functions-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-to-java-and-cpp-bridge",
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-ptj0-positioning-and-workflow-translation-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "python-to-java-and-cpp-bridge-ptj0-positioning-and-workflow-translation-curriculum-positioning-and-workflow-translation-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-to-java-and-cpp-bridge",
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-ptj1-functions-parameters-and-return-types-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "python-to-java-and-cpp-bridge-ptj1-functions-parameters-and-return-types-curriculum-functions-parameters-and-return-types-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-to-java-and-cpp-bridge",
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-ptj2-collections-strings-and-indexing-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "python-to-java-and-cpp-bridge-ptj2-collections-strings-and-indexing-curriculum-collections-strings-and-indexing-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-to-java-and-cpp-bridge",
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-ptj3-classes-and-objects-across-languages-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "python-to-java-and-cpp-bridge-ptj3-classes-and-objects-across-languages-curriculum-classes-and-objects-across-languages-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "python-to-java-and-cpp-bridge",
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-ptj5-c-specific-adaptation-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "python-to-java-and-cpp-bridge-ptj5-c-specific-adaptation-curriculum-c-specific-adaptation-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "c-level-1",
+		"kind": "item",
+		"oldId": "c-level-1-cppf1-variables-types-strings-and-input-output-supplemental-cppf1-variables-types-strings-and-input-output-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "c-level-1",
+		"kind": "item",
+		"oldId": "c-level-1-cppf2-loops-and-conditionals-supplemental-cppf2-loops-and-conditionals-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "c-level-1",
+		"kind": "item",
+		"oldId": "c-level-1-cppf3-functions-supplemental-cppf3-functions-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "c-level-1",
+		"kind": "item",
+		"oldId": "c-level-1-cppf4-classes-and-objects-supplemental-cppf4-classes-and-objects-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "c-level-1",
+		"kind": "item",
+		"oldId": "c-level-1-cppf5-vectors-and-collection-patterns-supplemental-cppf5-vectors-and-collection-patterns-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "c-level-1",
+		"kind": "item",
+		"oldId": "c-level-1-cppf6-structs-and-parameter-passing-supplemental-cppf6-structs-and-parameter-passing-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "c-level-1",
+		"kind": "item",
+		"oldId": "c-level-1-cppf7-grids-and-2d-vectors-supplemental-cppf7-grids-and-2d-vectors-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "cpp-level-2",
+		"kind": "item",
+		"oldId": "cpp-level-2-cppm0-lifetime-references-and-ownership-framing-supplemental-cppm0-lifetime-references-and-ownership-framing-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "cpp-level-2",
+		"kind": "item",
+		"oldId": "cpp-level-2-cppm1-pointers-and-addresses-supplemental-cppm1-pointers-and-addresses-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "cpp-level-2",
+		"kind": "item",
+		"oldId": "cpp-level-2-cppm2-raw-arrays-and-pointer-arithmetic-supplemental-cppm2-raw-arrays-and-pointer-arithmetic-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "cpp-level-2",
+		"kind": "item",
+		"oldId": "cpp-level-2-cppm3-two-dimensional-arrays-and-layout-supplemental-cppm3-two-dimensional-arrays-and-layout-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "cpp-level-2",
+		"kind": "item",
+		"oldId": "cpp-level-2-cppm4-dynamic-memory-and-custom-dynamic-arrays-supplemental-cppm4-dynamic-memory-and-custom-dynamic-arrays-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "cpp-level-3",
+		"kind": "item",
+		"oldId": "cpp-level-3-cppi0-bridge-course-setup-and-positioning-supplemental-cppi0-bridge-course-setup-and-positioning-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "cpp-level-3",
+		"kind": "item",
+		"oldId": "cpp-level-3-cppi2-recursion-and-the-call-stack-supplemental-cppi2-recursion-and-the-call-stack-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "cpp-level-3",
+		"kind": "item",
+		"oldId": "cpp-level-3-cppi3-stl-containers-iterators-and-algorithms-supplemental-cppi3-stl-containers-iterators-and-algorithms-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "cpp-level-3",
+		"kind": "item",
+		"oldId": "cpp-level-3-cppi4-raii-smart-pointers-and-robust-error-handling-supplemental-cppi4-raii-smart-pointers-and-robust-error-handling-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "cpp-level-3",
+		"kind": "item",
+		"oldId": "cpp-level-3-cppi5-value-types-operator-overloading-and-templates-supplemental-cppi5-value-types-operator-overloading-and-templates-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "cpp-level-3",
+		"kind": "item",
+		"oldId": "cpp-level-3-cppi6-polymorphism-and-bridge-to-advanced-c-supplemental-cppi6-polymorphism-and-bridge-to-advanced-c-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "data-structures-and-algorithms-in-cpp",
+		"kind": "item",
+		"oldId": "data-structures-and-algorithms-in-cpp-dscpp0-setup-and-positioning-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "data-structures-and-algorithms-in-cpp-dscpp0-setup-and-positioning-curriculum-setup-and-positioning-core-concepts",
+		"basis": "same-module-exact-role"
+	},
+	{
+		"courseId": "data-structures-and-algorithms-in-cpp",
+		"kind": "item",
+		"oldId": "data-structures-and-algorithms-in-cpp-dscpp1-interfaces-records-and-a-task-manager-cli-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "data-structures-and-algorithms-in-cpp-dscpp1-interfaces-records-and-a-task-manager-cli-curriculum-interfaces-records-and-a-task-manager-cli-core-concepts",
+		"basis": "same-module-exact-role"
+	},
+	{
+		"courseId": "data-structures-and-algorithms-in-cpp",
+		"kind": "item",
+		"oldId": "data-structures-and-algorithms-in-cpp-dscpp3-stl-containers-and-state-based-text-generation-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "data-structures-and-algorithms-in-cpp",
+		"kind": "item",
+		"oldId": "data-structures-and-algorithms-in-cpp-dscpp4-recursion-and-backtracking-in-3d-mazes-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "data-structures-and-algorithms-in-cpp",
+		"kind": "item",
+		"oldId": "data-structures-and-algorithms-in-cpp-dscpp5-quicksort-and-partitioning-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "data-structures-and-algorithms-in-cpp-dscpp5-quicksort-and-partitioning-curriculum-quicksort-and-partitioning-core-concepts",
+		"basis": "same-module-exact-role"
+	},
+	{
+		"courseId": "data-structures-and-algorithms-in-cpp",
+		"kind": "item",
+		"oldId": "data-structures-and-algorithms-in-cpp-dscpp6-templates-and-linked-structures-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "data-structures-and-algorithms-in-cpp-dscpp6-templates-and-linked-structures-curriculum-templates-and-linked-structures-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "data-structures-and-algorithms-in-cpp",
+		"kind": "item",
+		"oldId": "data-structures-and-algorithms-in-cpp-dscpp7-binary-search-trees-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "data-structures-and-algorithms-in-cpp-dscpp7-binary-search-trees-curriculum-binary-search-trees-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "data-structures-and-algorithms-in-cpp",
+		"kind": "item",
+		"oldId": "data-structures-and-algorithms-in-cpp-dscpp8-avl-trees-and-rebalancing-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "data-structures-and-algorithms-in-cpp-dscpp8-avl-trees-and-rebalancing-curriculum-avl-trees-and-rebalancing-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "data-structures-and-algorithms-in-cpp",
+		"kind": "item",
+		"oldId": "data-structures-and-algorithms-in-cpp-dscpp2-graphs-and-shortest-paths-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "data-structures-and-algorithms-in-cpp-dscpp2-graphs-and-shortest-paths-curriculum-graphs-and-shortest-paths-core-concepts",
+		"basis": "same-module-exact-role"
+	},
+	{
+		"courseId": "data-structures-and-algorithms-in-cpp",
+		"kind": "item",
+		"oldId": "data-structures-and-algorithms-in-cpp-dscpp9-benchmarking-and-data-structure-tradeoffs-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "data-structures-and-algorithms-in-cpp-dscpp9-benchmarking-and-data-structure-tradeoffs-curriculum-benchmarking-and-data-structure-tradeoffs-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "c-systems-engineering",
+		"kind": "item",
+		"oldId": "c-systems-engineering-cse0-setup-and-tooling-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "c-systems-engineering-cse0-setup-and-tooling-curriculum-c-systems-engineering-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "c-systems-engineering",
+		"kind": "item",
+		"oldId": "c-systems-engineering-unit-1-why-c-for-systems-work-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "c-systems-engineering-unit-1-why-c-for-systems-work-curriculum-why-c-for-systems-work-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "c-systems-engineering",
+		"kind": "item",
+		"oldId": "c-systems-engineering-unit-2-binary-hex-and-number-representation-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "c-systems-engineering-unit-2-binary-hex-and-number-representation-curriculum-binary-hex-and-number-representation-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "c-systems-engineering",
+		"kind": "item",
+		"oldId": "c-systems-engineering-unit-3-bitwise-operations-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "c-systems-engineering-unit-3-bitwise-operations-curriculum-bitwise-operations-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "c-systems-engineering",
+		"kind": "item",
+		"oldId": "c-systems-engineering-unit-4-memory-and-layout-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "c-systems-engineering-unit-4-memory-and-layout-curriculum-memory-and-layout-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "c-systems-engineering",
+		"kind": "item",
+		"oldId": "c-systems-engineering-unit-5-strings-and-byte-buffers-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "c-systems-engineering-unit-5-strings-and-byte-buffers-curriculum-strings-and-byte-buffers-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "c-systems-engineering",
+		"kind": "item",
+		"oldId": "c-systems-engineering-unit-6-files-streams-and-parsing-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "c-systems-engineering-unit-6-files-streams-and-parsing-curriculum-files-streams-and-parsing-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "c-systems-engineering",
+		"kind": "item",
+		"oldId": "c-systems-engineering-unit-7-dynamic-memory-and-lifetime-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "c-systems-engineering-unit-7-dynamic-memory-and-lifetime-curriculum-dynamic-memory-and-lifetime-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "c-systems-engineering",
+		"kind": "item",
+		"oldId": "c-systems-engineering-unit-8-function-pointers-and-dispatch-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "c-systems-engineering-unit-8-function-pointers-and-dispatch-curriculum-function-pointers-and-dispatch-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "c-systems-engineering",
+		"kind": "item",
+		"oldId": "c-systems-engineering-unit-9-data-structures-in-c-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "c-systems-engineering-unit-9-data-structures-in-c-curriculum-data-structures-in-c-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "c-systems-engineering",
+		"kind": "item",
+		"oldId": "c-systems-engineering-unit-10-engineering-math-in-code-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "c-systems-engineering-unit-10-engineering-math-in-code-curriculum-engineering-math-in-code-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "c-systems-engineering",
+		"kind": "item",
+		"oldId": "c-systems-engineering-unit-11-systems-tooling-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "c-systems-engineering-unit-11-systems-tooling-curriculum-systems-tooling-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "c-systems-engineering",
+		"kind": "item",
+		"oldId": "c-systems-engineering-unit-12-capstone-engineering-utility-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "c-systems-engineering-unit-12-capstone-engineering-utility-curriculum-capstone-engineering-utility-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "assembly",
+		"kind": "item",
+		"oldId": "assembly-asm0-setup-and-tooling-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "assembly-asm0-setup-and-tooling-curriculum-assembly-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "assembly",
+		"kind": "item",
+		"oldId": "assembly-unit-1-machine-model-and-toolchain-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "assembly-unit-1-machine-model-and-toolchain-curriculum-machine-model-and-toolchain-core-concepts",
+		"basis": "same-module-exact-role"
+	},
+	{
+		"courseId": "assembly",
+		"kind": "item",
+		"oldId": "assembly-unit-2-registers-and-data-movement-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "assembly-unit-2-registers-and-data-movement-curriculum-registers-and-data-movement-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "assembly",
+		"kind": "item",
+		"oldId": "assembly-unit-3-arithmetic-and-logic-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "assembly-unit-3-arithmetic-and-logic-curriculum-arithmetic-and-logic-core-concepts",
+		"basis": "same-module-exact-role"
+	},
+	{
+		"courseId": "assembly",
+		"kind": "item",
+		"oldId": "assembly-unit-4-branching-and-loops-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "assembly-unit-4-branching-and-loops-curriculum-branching-and-loops-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "assembly",
+		"kind": "item",
+		"oldId": "assembly-unit-5-the-stack-and-function-calls-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "assembly-unit-5-the-stack-and-function-calls-curriculum-the-stack-and-function-calls-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "assembly",
+		"kind": "item",
+		"oldId": "assembly-unit-6-calling-conventions-and-abi-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "assembly-unit-6-calling-conventions-and-abi-curriculum-calling-conventions-and-abi-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "assembly",
+		"kind": "item",
+		"oldId": "assembly-unit-7-memory-addressing-and-data-structures-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "assembly-unit-7-memory-addressing-and-data-structures-curriculum-memory-addressing-and-data-structures-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "assembly",
+		"kind": "item",
+		"oldId": "assembly-unit-8-system-calls-and-runtime-interaction-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "assembly-unit-8-system-calls-and-runtime-interaction-curriculum-system-calls-and-runtime-interaction-core-concepts",
+		"basis": "same-module-exact-role"
+	},
+	{
+		"courseId": "assembly",
+		"kind": "item",
+		"oldId": "assembly-unit-9-reading-compiler-output-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "assembly-unit-9-reading-compiler-output-curriculum-reading-compiler-output-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "assembly",
+		"kind": "item",
+		"oldId": "assembly-unit-10-debugging-at-instruction-level-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "assembly-unit-10-debugging-at-instruction-level-curriculum-debugging-at-instruction-level-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "assembly",
+		"kind": "item",
+		"oldId": "assembly-unit-11-performance-and-code-shape-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "assembly-unit-11-performance-and-code-shape-curriculum-performance-and-code-shape-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "assembly",
+		"kind": "item",
+		"oldId": "assembly-unit-12-security-and-reliability-visibility-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "assembly-unit-12-security-and-reliability-visibility-curriculum-security-and-reliability-visibility-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "assembly",
+		"kind": "item",
+		"oldId": "assembly-asm13-expansion-ideas-and-next-steps-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "java-level-1",
+		"kind": "item",
+		"oldId": "java-level-1-js1-variable-types-input-output-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "java-level-1-j1c-text-bridge-variables-strings-and-input-curriculum-variables-strings-and-input-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "java-level-1",
+		"kind": "item",
+		"oldId": "java-level-1-check-in-1-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "java-level-1-j1h-check-in-visual-to-text-foundations-curriculum-visual-to-text-foundations-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "java-level-1",
+		"kind": "item",
+		"oldId": "java-level-1-check-in-2-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "java-level-1-j1l-check-in-methods-and-data-structures-curriculum-methods-and-data-structures-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "java-level-2",
+		"kind": "item",
+		"oldId": "java-level-2-jm1-instance-variables-constructors-and-methods-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "java-level-2-jm1-instance-variables-constructors-and-methods-curriculum-instance-variables-constructors-and-methods-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "java-level-2",
+		"kind": "item",
+		"oldId": "java-level-2-jm1-instance-variables-constructors-and-methods-supplemental-jm1-instance-variables-constructors-and-methods-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "java-level-2",
+		"kind": "item",
+		"oldId": "java-level-2-jm2-overloaded-constructors-comparison-methods-supplemental-jm2-overloaded-constructors-comparison-methods-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "java-level-2",
+		"kind": "item",
+		"oldId": "java-level-2-check-in-1-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "java-level-2-check-in-1-curriculum-java-level-2-check-in-1-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "java-level-2",
+		"kind": "item",
+		"oldId": "java-level-2-check-in-2-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "java-level-2",
+		"kind": "item",
+		"oldId": "java-level-2-jm11-repo-extension-and-reference-library-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-aj1-review-variables-strings-and-input-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-aj1-review-variables-strings-and-input-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-aj2-review-arrays-and-arraylists-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-aj2-review-arrays-and-arraylists-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-aj3-review-objects-and-classes-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-aj3-review-objects-and-classes-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-aj4-recursion-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "java-level-3-aj4-recursion-curriculum-recursion-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-check-in-1-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "java-level-3-check-in-1-curriculum-java-level-3-check-in-1-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-aj7-selection-and-insertion-sort-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "java-level-3-aj7-selection-and-insertion-sort-curriculum-selection-and-insertion-sort-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-check-in-2-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "java-level-3-check-in-2-curriculum-java-level-3-check-in-2-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-aj10-sustainable-programming-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "java-level-3-aj10-sustainable-programming-curriculum-sustainable-programming-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-aj11-linked-lists-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "java-level-3-aj11-linked-lists-curriculum-linked-lists-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-check-in-3-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "java-level-3-check-in-3-curriculum-java-level-3-check-in-3-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-check-in-3-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": "java-level-3-check-in-3-curriculum-check-in-3-application-check",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-aj14-binary-search-trees-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "java-level-3-aj14-binary-search-trees-curriculum-binary-search-trees-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-aj15-hash-tables-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "java-level-3-aj15-hash-tables-curriculum-hash-tables-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-aj16-graphs-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "java-level-3-aj16-graphs-curriculum-graphs-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-check-in-4-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "java-level-3-check-in-4-curriculum-java-level-3-check-in-4-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-aj19-post-c-java-tooling-testing-and-packages-supplemental-aj19-post-c-java-tooling-testing-and-packages-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-aj20-generics-interfaces-and-collection-api-design-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-aj20-generics-interfaces-and-collection-api-design-supplemental-aj20-generics-interfaces-and-collection-api-design-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-aj21-streams-files-and-data-pipelines-supplemental-aj21-streams-files-and-data-pipelines-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "java-level-3",
+		"kind": "item",
+		"oldId": "java-level-3-aj22-concurrency-services-and-capstone-architecture-supplemental-aj22-concurrency-services-and-capstone-architecture-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-1-js1-variable-types-input-output-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-1-js2-casting-and-operators-supplemental-java-level-1-js2-casting-and-operators-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-1-check-in-1-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-1-check-in-2-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-2-jm1-instance-variables-constructors-and-methods-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-2-jm1-instance-variables-constructors-and-methods-supplemental-java-level-2-jm1-instance-variables-constructors-and-methods-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-2-jm2-overloaded-constructors-comparison-methods-supplemental-java-level-2-jm2-overloaded-constructors-comparison-methods-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-2-check-in-1-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-2-check-in-2-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-2-jm11-repo-extension-and-reference-library-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-aj1-review-variables-strings-and-input-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-aj1-review-variables-strings-and-input-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-aj2-review-arrays-and-arraylists-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-aj2-review-arrays-and-arraylists-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-aj3-review-objects-and-classes-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-aj3-review-objects-and-classes-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-aj4-recursion-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-check-in-1-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-aj7-selection-and-insertion-sort-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-check-in-2-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-aj10-sustainable-programming-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-aj11-linked-lists-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-check-in-3-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-check-in-3-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-aj14-binary-search-trees-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-aj15-hash-tables-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-aj16-graphs-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-check-in-4-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-aj19-post-c-java-tooling-testing-and-packages-supplemental-java-level-3-aj19-post-c-java-tooling-testing-and-packages-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-aj20-generics-interfaces-and-collection-api-design-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-aj20-generics-interfaces-and-collection-api-design-supplemental-java-level-3-aj20-generics-interfaces-and-collection-api-design-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-aj21-streams-files-and-data-pipelines-supplemental-java-level-3-aj21-streams-files-and-data-pipelines-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-without-graphics",
+		"kind": "item",
+		"oldId": "java-without-graphics-java-level-3-aj22-concurrency-services-and-capstone-architecture-supplemental-java-level-3-aj22-concurrency-services-and-capstone-architecture-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-1-js1-variable-types-input-output-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-1-check-in-1-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-1-check-in-2-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-graphics-branch-1-coordinates-color-and-shapes-supplemental-java-graphics-branch-1-coordinates-color-and-shapes-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-graphics-branch-2-loops-methods-and-scene-composition-supplemental-java-graphics-branch-2-loops-methods-and-scene-composition-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-2-jm1-instance-variables-constructors-and-methods-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-2-jm1-instance-variables-constructors-and-methods-supplemental-java-level-2-jm1-instance-variables-constructors-and-methods-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-2-jm2-overloaded-constructors-comparison-methods-supplemental-java-level-2-jm2-overloaded-constructors-comparison-methods-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-2-check-in-1-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-2-check-in-2-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-2-jm11-repo-extension-and-reference-library-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-aj1-review-variables-strings-and-input-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-aj1-review-variables-strings-and-input-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-aj2-review-arrays-and-arraylists-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-aj2-review-arrays-and-arraylists-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-aj3-review-objects-and-classes-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-aj3-review-objects-and-classes-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-aj4-recursion-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-check-in-1-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-aj7-selection-and-insertion-sort-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-check-in-2-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-aj10-sustainable-programming-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-aj11-linked-lists-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-check-in-3-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-check-in-3-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-aj14-binary-search-trees-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-aj15-hash-tables-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-aj16-graphs-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-check-in-4-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-aj19-post-c-java-tooling-testing-and-packages-supplemental-java-level-3-aj19-post-c-java-tooling-testing-and-packages-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-aj20-generics-interfaces-and-collection-api-design-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-aj20-generics-interfaces-and-collection-api-design-supplemental-java-level-3-aj20-generics-interfaces-and-collection-api-design-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-aj21-streams-files-and-data-pipelines-supplemental-java-level-3-aj21-streams-files-and-data-pipelines-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "java-with-graphics",
+		"kind": "item",
+		"oldId": "java-with-graphics-java-level-3-aj22-concurrency-services-and-capstone-architecture-supplemental-java-level-3-aj22-concurrency-services-and-capstone-architecture-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "noncatalog-history"
+	},
+	{
+		"courseId": "ap-computer-science-a",
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs1-variables-and-input-output-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "ap-computer-science-a-apcs1-variables-and-input-output-curriculum-variables-and-input-output-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "ap-computer-science-a",
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs2-operators-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "ap-computer-science-a",
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-supplemental-apcs13-algorithmic-runtime-and-linear-search-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "ap-computer-science-a",
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs14-selection-and-insertion-sort-supplemental-apcs14-selection-and-insertion-sort-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "ap-computer-science-a",
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs16-binary-search-and-merge-sort-supplemental-apcs16-binary-search-and-merge-sort-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-usb0-setup-and-contest-workflow-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "usaco-bronze-usb0-setup-and-contest-workflow-curriculum-setup-and-contest-workflow-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-unit-1-simulation-and-careful-translation-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "usaco-bronze-unit-1-simulation-and-careful-translation-curriculum-simulation-and-careful-translation-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-unit-2-intervals-arrays-and-greedy-warmups-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "usaco-bronze-unit-2-intervals-arrays-and-greedy-warmups-curriculum-intervals-arrays-and-greedy-warmups-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-unit-3-counting-sorting-and-ranking-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "usaco-bronze-unit-3-frequency-maps-sets-sorting-and-prefix-counts-curriculum-frequency-maps-sets-sorting-and-prefix-counts-core-concepts",
+		"basis": "same-module-exact-role"
+	},
+	{
+		"courseId": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-unit-4-search-flavored-bronze-problems-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "usaco-bronze-unit-4-complete-search-structured-state-and-construction-curriculum-complete-search-structured-state-and-construction-core-concepts",
+		"basis": "same-module-exact-role"
+	},
+	{
+		"courseId": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-unit-5-contest-sets-and-tier-transition-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "usaco-bronze-unit-5-mock-contests-postmortems-and-silver-readiness-curriculum-mock-contests-postmortems-and-silver-readiness-core-concepts",
+		"basis": "same-module-exact-role"
+	},
+	{
+		"courseId": "usaco-bronze",
+		"kind": "item",
+		"oldId": "usaco-bronze-unit-6-optional-bronze-problem-bank-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-uss0-setup-and-silver-transition-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "usaco-silver-uss0-setup-and-silver-transition-curriculum-setup-and-silver-transition-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-unit-1-data-structures-and-problem-modeling-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-unit-2-dfs-bfs-and-graph-traversal-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-unit-3-sorting-searching-and-binary-search-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-unit-4-prefix-sums-ranges-and-counting-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-unit-5-greedy-and-structured-simulation-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-unit-6-silver-capstone-sets-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "usaco-silver",
+		"kind": "item",
+		"oldId": "usaco-silver-unit-7-optional-silver-problem-bank-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-usg0-setup-and-gold-mindset-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-unit-1-dynamic-programming-foundations-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-unit-2-shortest-paths-and-weighted-graphs-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-unit-3-msts-dsu-and-connectivity-optimization-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-unit-4-fenwick-trees-ordering-and-range-structure-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-unit-5-advanced-graph-modeling-and-geometry-flavored-problems-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-unit-6-advanced-dp-and-combinatorics-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-unit-7-gold-capstone-sets-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "usaco-gold",
+		"kind": "item",
+		"oldId": "usaco-gold-unit-8-optional-gold-problem-bank-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "design-patterns-in-java",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-dpj1-what-patterns-are-and-what-they-are-not-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-java-dpj1-what-patterns-are-and-what-they-are-not-curriculum-what-patterns-are-and-what-they-are-not-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-dpj2-java-design-foundations-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-java-dpj2-java-design-foundations-curriculum-java-design-foundations-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-dpj3-creational-patterns-i-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-java-dpj3-creational-patterns-i-curriculum-creational-patterns-i-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-dpj4-creational-patterns-ii-and-boundary-patterns-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-java-dpj4-creational-patterns-ii-and-boundary-patterns-curriculum-creational-patterns-ii-and-boundary-patterns-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-dpj4-creational-patterns-ii-and-boundary-patterns-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": "design-patterns-in-java-dpj4-creational-patterns-ii-and-boundary-patterns-curriculum-creational-patterns-ii-and-boundary-patterns-application-check",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-dpj5-structural-patterns-in-depth-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-java-dpj5-structural-patterns-in-depth-curriculum-structural-patterns-in-depth-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-dpj5-structural-patterns-in-depth-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": "design-patterns-in-java-dpj5-structural-patterns-in-depth-curriculum-structural-patterns-in-depth-application-check",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-dpj6-behavioral-patterns-i-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-java-dpj6-behavioral-patterns-i-curriculum-behavioral-patterns-i-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-dpj6-behavioral-patterns-i-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": "design-patterns-in-java-dpj6-behavioral-patterns-i-curriculum-behavioral-patterns-i-application-check",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-dpj7-behavioral-patterns-ii-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-java-dpj7-behavioral-patterns-ii-curriculum-behavioral-patterns-ii-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-dpj7-behavioral-patterns-ii-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": "design-patterns-in-java-dpj7-behavioral-patterns-ii-curriculum-behavioral-patterns-ii-application-check",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-modern-extensions-and-architecture-level-patterns-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-modern-extensions-and-architecture-level-patterns-application-check",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-curriculum-pattern-selection-and-refactoring-judgment-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-dpj10-capstone-refactor-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "design-patterns-in-java-part-2",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-curriculum-code-smells-and-safe-refactoring-workflow-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java-part-2",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr2-composing-methods-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-java-part-2-dpr2-composing-methods-curriculum-composing-methods-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java-part-2",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-curriculum-moving-features-between-objects-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java-part-2",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr4-organizing-data-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-java-part-2-dpr4-organizing-data-curriculum-organizing-data-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java-part-2",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-curriculum-simplifying-conditional-expressions-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java-part-2",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-simplifying-method-calls-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java-part-2",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-dealing-with-generalization-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java-part-2",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-curriculum-refactoring-toward-patterns-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java-part-2",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-testability-di-and-refactoring-with-confidence-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-java-part-2",
+		"kind": "item",
+		"oldId": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "design-patterns-in-cpp",
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc0-setup-and-tooling-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-cpp-dpc0-setup-and-tooling-curriculum-design-patterns-in-c-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-cpp",
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc1-why-patterns-look-different-in-modern-c-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-cpp-dpc1-why-patterns-look-different-in-modern-c-curriculum-why-patterns-look-different-in-modern-c-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-cpp",
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc2-design-foundations-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-cpp-dpc2-design-foundations-curriculum-design-foundations-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-cpp",
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc4-strategy-and-policy-based-design-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-cpp-dpc4-strategy-and-policy-based-design-curriculum-strategy-and-policy-based-design-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-cpp",
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc5-observer-and-event-flow-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-cpp-dpc5-observer-and-event-flow-curriculum-observer-and-event-flow-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-cpp",
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc6-decorator-adapter-and-facade-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-cpp-dpc6-decorator-adapter-and-facade-curriculum-decorator-adapter-and-facade-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-cpp",
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc7-command-and-state-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-cpp-dpc7-command-and-state-curriculum-command-and-state-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-cpp",
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc7-command-and-state-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": "design-patterns-in-cpp-dpc7-command-and-state-curriculum-command-and-state-application-check",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-cpp",
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc8-composite-and-iterator-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-cpp-dpc8-composite-and-iterator-curriculum-composite-and-iterator-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-cpp",
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc9-singleton-global-state-and-dependency-injection-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-cpp-dpc9-singleton-global-state-and-dependency-injection-curriculum-singleton-global-state-and-dependency-injection-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-cpp",
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc10-patterns-for-resource-management-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-cpp-dpc10-patterns-for-resource-management-curriculum-patterns-for-resource-management-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-cpp",
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc11-legacy-refactoring-lab-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-cpp-dpc11-legacy-refactoring-lab-curriculum-legacy-refactoring-lab-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "design-patterns-in-cpp",
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc12-capstone-studio-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "design-patterns-in-cpp-dpc12-capstone-studio-curriculum-capstone-studio-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "pythonic-design-patterns",
+		"kind": "item",
+		"oldId": "pythonic-design-patterns-pdp0-setup-and-tooling-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "pythonic-design-patterns-pdp0-setup-and-tooling-curriculum-pythonic-design-patterns-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "pythonic-design-patterns",
+		"kind": "item",
+		"oldId": "pythonic-design-patterns-pdp1-why-python-changes-the-design-patterns-conversation-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "pythonic-design-patterns-pdp1-why-python-changes-the-design-patterns-conversation-curriculum-why-python-changes-the-design-patterns-conversation-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "pythonic-design-patterns",
+		"kind": "item",
+		"oldId": "pythonic-design-patterns-pdp2-design-foundations-in-python-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "pythonic-design-patterns-pdp2-design-foundations-in-python-curriculum-design-foundations-in-python-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "pythonic-design-patterns",
+		"kind": "item",
+		"oldId": "pythonic-design-patterns-pdp3-strategy-without-ceremony-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "pythonic-design-patterns-pdp3-strategy-without-ceremony-curriculum-strategy-without-ceremony-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "pythonic-design-patterns",
+		"kind": "item",
+		"oldId": "pythonic-design-patterns-pdp4-factory-and-builder-in-python-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "pythonic-design-patterns-pdp4-factory-and-builder-in-python-curriculum-factory-and-builder-in-python-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "pythonic-design-patterns",
+		"kind": "item",
+		"oldId": "pythonic-design-patterns-pdp5-observer-events-and-callbacks-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "pythonic-design-patterns-pdp5-observer-events-and-callbacks-curriculum-observer-events-and-callbacks-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "pythonic-design-patterns",
+		"kind": "item",
+		"oldId": "pythonic-design-patterns-pdp6-decorator-proxy-and-facade-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "pythonic-design-patterns-pdp6-decorator-proxy-and-facade-curriculum-decorator-proxy-and-facade-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "pythonic-design-patterns",
+		"kind": "item",
+		"oldId": "pythonic-design-patterns-pdp7-state-and-command-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "pythonic-design-patterns-pdp7-state-and-command-curriculum-state-and-command-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "pythonic-design-patterns",
+		"kind": "item",
+		"oldId": "pythonic-design-patterns-pdp8-adapter-and-integration-boundaries-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "pythonic-design-patterns-pdp8-adapter-and-integration-boundaries-curriculum-adapter-and-integration-boundaries-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "pythonic-design-patterns",
+		"kind": "item",
+		"oldId": "pythonic-design-patterns-pdp9-template-method-versus-higher-order-functions-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "pythonic-design-patterns-pdp9-template-method-versus-higher-order-functions-curriculum-template-method-versus-higher-order-functions-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "pythonic-design-patterns",
+		"kind": "item",
+		"oldId": "pythonic-design-patterns-pdp10-singleton-global-state-and-module-patterns-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "pythonic-design-patterns-pdp10-singleton-global-state-and-module-patterns-curriculum-singleton-global-state-and-module-patterns-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "pythonic-design-patterns",
+		"kind": "item",
+		"oldId": "pythonic-design-patterns-pdp11-refactoring-python-code-smells-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "pythonic-design-patterns-pdp11-refactoring-python-code-smells-curriculum-refactoring-python-code-smells-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "pythonic-design-patterns",
+		"kind": "item",
+		"oldId": "pythonic-design-patterns-pdp12-capstone-pythonic-refactor-studio-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "pythonic-design-patterns-pdp12-capstone-pythonic-refactor-studio-curriculum-capstone-pythonic-refactor-studio-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "elementary-science",
+		"kind": "item",
+		"oldId": "elementary-science-es2-living-things-and-life-needs-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "elementary-science",
+		"kind": "item",
+		"oldId": "elementary-science-es3-habitats-food-chains-and-ecosystems-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "elementary-science",
+		"kind": "item",
+		"oldId": "elementary-science-es4-weather-water-and-earth-changes-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "elementary-science",
+		"kind": "item",
+		"oldId": "elementary-science-es5-matter-materials-and-changes-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "elementary-science",
+		"kind": "item",
+		"oldId": "elementary-science-es6-forces-motion-and-simple-machines-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "middle-school-integrated-science",
+		"kind": "item",
+		"oldId": "middle-school-integrated-science-ms1-scientific-reasoning-models-and-data-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "middle-school-integrated-science",
+		"kind": "item",
+		"oldId": "middle-school-integrated-science-ms2-cells-microscopes-and-body-systems-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "middle-school-integrated-science",
+		"kind": "item",
+		"oldId": "middle-school-integrated-science-ms3-genetics-traits-and-adaptation-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "middle-school-integrated-science",
+		"kind": "item",
+		"oldId": "middle-school-integrated-science-ms4-ecosystems-energy-flow-and-human-impact-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "middle-school-integrated-science",
+		"kind": "item",
+		"oldId": "middle-school-integrated-science-ms5-earth-systems-weather-and-climate-data-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "middle-school-integrated-science",
+		"kind": "item",
+		"oldId": "middle-school-integrated-science-ms6-matter-atoms-and-chemical-change-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "middle-school-integrated-science",
+		"kind": "item",
+		"oldId": "middle-school-integrated-science-ms7-energy-heat-and-engineering-tradeoffs-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "middle-school-integrated-science",
+		"kind": "item",
+		"oldId": "middle-school-integrated-science-ms8-forces-motion-and-graphs-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "middle-school-integrated-science",
+		"kind": "item",
+		"oldId": "middle-school-integrated-science-ms9-waves-light-sound-electricity-and-magnetism-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "middle-school-integrated-science",
+		"kind": "item",
+		"oldId": "middle-school-integrated-science-ms10-space-systems-and-integrated-science-capstone-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "intro-to-physics",
+		"kind": "item",
+		"oldId": "intro-to-physics-phy1-measurement-uncertainty-and-scientific-modeling-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "intro-to-physics",
+		"kind": "item",
+		"oldId": "intro-to-physics-phy7-capstone-lab-and-scientific-communication-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "intro-to-physics",
+		"kind": "item",
+		"oldId": "intro-to-physics-phy8-momentum-impulse-and-collisions-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "intro-to-physics",
+		"kind": "item",
+		"oldId": "intro-to-physics-phy9-rotational-motion-and-torque-basics-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "intro-to-physics",
+		"kind": "item",
+		"oldId": "intro-to-physics-phy10-fluids-pressure-and-buoyancy-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "intro-to-physics",
+		"kind": "item",
+		"oldId": "intro-to-physics-phy11-heat-temperature-and-thermal-energy-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "intro-to-physics",
+		"kind": "item",
+		"oldId": "intro-to-physics-phy12-optics-mirrors-lenses-and-images-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "intro-to-physics",
+		"kind": "item",
+		"oldId": "intro-to-physics-phy13-magnetism-and-electromagnetic-induction-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "intro-to-physics",
+		"kind": "item",
+		"oldId": "intro-to-physics-phy14-simple-harmonic-motion-and-resonance-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "intro-to-physics",
+		"kind": "item",
+		"oldId": "intro-to-physics-phy15-astronomy-gravity-and-orbits-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "intro-to-physics",
+		"kind": "item",
+		"oldId": "intro-to-physics-phy16-modern-physics-and-model-limits-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "intro-to-physics",
+		"kind": "item",
+		"oldId": "intro-to-physics-phy17-engineering-design-and-physics-portfolio-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "physics-level-2",
+		"kind": "item",
+		"oldId": "physics-level-2-phy17-numerical-modeling-and-simulation-checks-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "physics-level-2",
+		"kind": "item",
+		"oldId": "physics-level-2-phy18-experimental-uncertainty-and-curve-fitting-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "physics-level-2",
+		"kind": "item",
+		"oldId": "physics-level-2-phy19-coupled-systems-and-constraints-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "physics-level-2",
+		"kind": "item",
+		"oldId": "physics-level-2-phy20-fluids-and-continuum-models-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "physics-level-2",
+		"kind": "item",
+		"oldId": "physics-level-2-phy21-thermodynamics-and-engines-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "physics-level-2",
+		"kind": "item",
+		"oldId": "physics-level-2-phy22-electromagnetic-applications-and-signals-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "physics-level-2",
+		"kind": "item",
+		"oldId": "physics-level-2-phy23-relativity-and-reference-frames-preview-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "physics-level-2",
+		"kind": "item",
+		"oldId": "physics-level-2-phy24-independent-physics-research-portfolio-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "intro-to-swift-app-development",
+		"kind": "item",
+		"oldId": "intro-to-swift-app-development-sad2-mac-setup-and-project-tooling-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "intro-to-swift-app-development",
+		"kind": "item",
+		"oldId": "intro-to-swift-app-development-sad6-what-an-app-is-structurally-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "intro-to-swift-app-development",
+		"kind": "item",
+		"oldId": "intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "intro-to-swift-app-development-swx-shapes-and-legacy-reference-boundaries-curriculum-canonical-swift-repo-structure",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "unity-game-development",
+		"kind": "item",
+		"oldId": "unity-game-development-gd7-ui-text-and-start-flow-supplemental-gd7-ui-text-and-start-flow-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "unity-game-development",
+		"kind": "item",
+		"oldId": "unity-game-development-gd8-boundaries-win-states-and-hazards-supplemental-gd8-boundaries-win-states-and-hazards-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "unity-game-development",
+		"kind": "item",
+		"oldId": "unity-game-development-gd8-boundaries-win-states-and-hazards-supplemental-gd8-boundaries-win-states-and-hazards-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "unity-game-development",
+		"kind": "item",
+		"oldId": "unity-game-development-module-4-projects-supplemental-module-4-projects-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "unity-game-development",
+		"kind": "item",
+		"oldId": "unity-game-development-module-4-projects-supplemental-module-4-projects-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "unity-game-development",
+		"kind": "item",
+		"oldId": "unity-game-development-module-5-projects-supplemental-module-5-projects-targeted-practice-checkpoint",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "unity-game-development",
+		"kind": "item",
+		"oldId": "unity-game-development-module-5-projects-supplemental-module-5-projects-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "linux-systems",
+		"kind": "item",
+		"oldId": "linux-systems-ls0-setup-and-tooling-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "linux-systems-ls0-setup-and-tooling-curriculum-linux-systems-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "linux-systems",
+		"kind": "item",
+		"oldId": "linux-systems-unit-1-shell-foundations-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "linux-systems-unit-1-shell-foundations-curriculum-shell-foundations-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "linux-systems",
+		"kind": "item",
+		"oldId": "linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose-curriculum-filesystem-hierarchy-and-directory-purpose-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "linux-systems",
+		"kind": "item",
+		"oldId": "linux-systems-unit-3-users-groups-and-permissions-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "linux-systems-unit-3-users-groups-and-permissions-curriculum-users-groups-and-permissions-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "linux-systems",
+		"kind": "item",
+		"oldId": "linux-systems-unit-4-editing-and-configuration-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "linux-systems-unit-4-editing-and-configuration-curriculum-editing-and-configuration-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "linux-systems",
+		"kind": "item",
+		"oldId": "linux-systems-unit-5-processes-and-job-control-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "linux-systems-unit-5-processes-and-job-control-curriculum-processes-and-job-control-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "linux-systems",
+		"kind": "item",
+		"oldId": "linux-systems-unit-6-services-and-systemd-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "linux-systems-unit-6-services-and-systemd-curriculum-services-and-systemd-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "linux-systems",
+		"kind": "item",
+		"oldId": "linux-systems-unit-7-logging-and-observability-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "linux-systems-unit-7-logging-and-observability-curriculum-logging-and-observability-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "linux-systems",
+		"kind": "item",
+		"oldId": "linux-systems-unit-8-scheduling-and-automation-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "linux-systems-unit-8-scheduling-and-automation-curriculum-scheduling-and-automation-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "linux-systems",
+		"kind": "item",
+		"oldId": "linux-systems-unit-9-package-management-and-software-layout-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "linux-systems-unit-9-package-management-and-software-layout-curriculum-package-management-and-software-layout-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "linux-systems",
+		"kind": "item",
+		"oldId": "linux-systems-unit-10-networking-from-a-systems-view-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "linux-systems-unit-10-networking-from-a-systems-view-curriculum-networking-from-a-systems-view-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "linux-systems",
+		"kind": "item",
+		"oldId": "linux-systems-unit-11-web-servers-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "linux-systems-unit-11-web-servers-curriculum-web-servers-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "linux-systems",
+		"kind": "item",
+		"oldId": "linux-systems-unit-12-storage-backups-and-reliability-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "linux-systems-unit-12-storage-backups-and-reliability-curriculum-storage-backups-and-reliability-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-systems",
+		"kind": "item",
+		"oldId": "network-systems-ns0-setup-and-tooling-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-systems-ns0-setup-and-tooling-curriculum-network-systems-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-systems",
+		"kind": "item",
+		"oldId": "network-systems-unit-1-the-network-stack-in-plain-english-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-systems-unit-1-the-network-stack-in-plain-english-curriculum-the-network-stack-in-plain-english-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-systems",
+		"kind": "item",
+		"oldId": "network-systems-unit-2-addresses-and-naming-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-systems-unit-2-addresses-and-naming-curriculum-addresses-and-naming-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-systems",
+		"kind": "item",
+		"oldId": "network-systems-unit-3-switches-routers-nat-and-the-internet-edge-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-systems-unit-3-switches-routers-nat-and-the-internet-edge-curriculum-switches-routers-nat-and-the-internet-edge-core-concepts",
+		"basis": "same-module-exact-role"
+	},
+	{
+		"courseId": "network-systems",
+		"kind": "item",
+		"oldId": "network-systems-unit-4-ports-and-listening-services-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-systems-unit-4-ports-and-listening-services-curriculum-ports-and-listening-services-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-systems",
+		"kind": "item",
+		"oldId": "network-systems-unit-5-dns-and-name-resolution-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-systems-unit-5-dns-and-name-resolution-curriculum-dns-and-name-resolution-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-systems",
+		"kind": "item",
+		"oldId": "network-systems-unit-6-core-diagnostics-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-systems-unit-6-core-diagnostics-curriculum-core-diagnostics-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-systems",
+		"kind": "item",
+		"oldId": "network-systems-unit-7-linux-interface-and-route-management-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-systems-unit-7-linux-interface-and-route-management-curriculum-linux-interface-and-route-management-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-systems",
+		"kind": "item",
+		"oldId": "network-systems-unit-8-ipv6-in-practice-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-systems-unit-8-ipv6-in-practice-curriculum-in-practice-core-concepts",
+		"basis": "same-module-exact-role"
+	},
+	{
+		"courseId": "network-systems",
+		"kind": "item",
+		"oldId": "network-systems-unit-9-firewalls-and-host-policy-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-systems-unit-9-firewalls-and-host-policy-curriculum-firewalls-and-host-policy-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-systems",
+		"kind": "item",
+		"oldId": "network-systems-unit-10-packet-capture-and-deep-inspection-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-systems-unit-10-packet-capture-and-deep-inspection-curriculum-packet-capture-and-deep-inspection-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-systems",
+		"kind": "item",
+		"oldId": "network-systems-unit-11-common-application-protocols-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-systems-unit-11-common-application-protocols-curriculum-common-application-protocols-core-concepts",
+		"basis": "same-module-exact-role"
+	},
+	{
+		"courseId": "network-systems",
+		"kind": "item",
+		"oldId": "network-systems-unit-12-secure-exposure-of-services-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-systems-unit-12-secure-exposure-of-services-curriculum-secure-exposure-of-services-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-systems",
+		"kind": "item",
+		"oldId": "network-systems-ns13-expansion-ideas-and-next-steps-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "network-security",
+		"kind": "item",
+		"oldId": "network-security-unit-1-security-model-of-networked-systems-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-security-unit-1-security-model-of-networked-systems-curriculum-security-model-of-networked-systems-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-security",
+		"kind": "item",
+		"oldId": "network-security-unit-2-sockets-ports-and-services-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-security-unit-2-sockets-ports-and-services-curriculum-sockets-ports-and-services-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-security",
+		"kind": "item",
+		"oldId": "network-security-unit-3-http-and-api-security-basics-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-security-unit-3-http-and-api-security-basics-curriculum-http-and-api-security-basics-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-security",
+		"kind": "item",
+		"oldId": "network-security-unit-4-tls-and-secure-transport-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-security-unit-4-tls-and-secure-transport-curriculum-tls-and-secure-transport-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-security",
+		"kind": "item",
+		"oldId": "network-security-unit-5-input-validation-on-the-network-boundary-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-security-unit-5-input-validation-on-the-network-boundary-curriculum-input-validation-on-the-network-boundary-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-security",
+		"kind": "item",
+		"oldId": "network-security-unit-6-logging-monitoring-and-forensics-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-security-unit-6-logging-monitoring-and-forensics-curriculum-logging-monitoring-and-forensics-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-security",
+		"kind": "item",
+		"oldId": "network-security-unit-7-firewalls-proxies-and-exposure-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-security-unit-7-firewalls-proxies-and-exposure-curriculum-firewalls-proxies-and-exposure-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-security",
+		"kind": "item",
+		"oldId": "network-security-unit-8-secure-node-typescript-services-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-security-unit-8-secure-node-typescript-services-curriculum-secure-node-typescript-services-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-security",
+		"kind": "item",
+		"oldId": "network-security-unit-9-defensive-network-tooling-in-ts-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-security-unit-9-defensive-network-tooling-in-ts-curriculum-network-tooling-in-ts-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-security",
+		"kind": "item",
+		"oldId": "network-security-unit-10-websockets-and-real-time-security-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-security-unit-10-websockets-and-real-time-security-curriculum-websockets-and-real-time-security-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-security",
+		"kind": "item",
+		"oldId": "network-security-unit-11-deployment-security-basics-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "network-security-unit-11-deployment-security-basics-curriculum-deployment-security-basics-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "network-security",
+		"kind": "item",
+		"oldId": "network-security-unit-12-authorized-penetration-testing-ai-assisted-workflow-and-disclosure-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "network-security",
+		"kind": "item",
+		"oldId": "network-security-nsec14-expansion-ideas-and-next-steps-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "rust-systems-security",
+		"kind": "item",
+		"oldId": "rust-systems-security-rss0-tooling-cargo-and-why-rust-exists-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "rust-systems-security-rss0-tooling-cargo-and-why-rust-exists-curriculum-tooling-cargo-and-why-rust-exists-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "rust-systems-security",
+		"kind": "item",
+		"oldId": "rust-systems-security-rss1-ownership-moves-and-memory-responsibility-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "rust-systems-security-rss1-ownership-moves-and-memory-responsibility-curriculum-ownership-moves-and-memory-responsibility-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "rust-systems-security",
+		"kind": "item",
+		"oldId": "rust-systems-security-rss2-borrowing-aliasing-and-lifetimes-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "rust-systems-security-rss2-borrowing-aliasing-and-lifetimes-curriculum-borrowing-aliasing-and-lifetimes-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "rust-systems-security",
+		"kind": "item",
+		"oldId": "rust-systems-security-rss3-option-result-and-typed-error-paths-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "rust-systems-security-rss3-option-result-and-typed-error-paths-curriculum-option-result-and-typed-error-paths-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "rust-systems-security",
+		"kind": "item",
+		"oldId": "rust-systems-security-rss4-strings-slices-collections-and-bounds-safety-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "rust-systems-security-rss4-strings-slices-collections-and-bounds-safety-curriculum-strings-slices-collections-and-bounds-safety-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "rust-systems-security",
+		"kind": "item",
+		"oldId": "rust-systems-security-rss5-structs-enums-and-safer-state-models-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "rust-systems-security-rss5-structs-enums-and-safer-state-models-curriculum-structs-enums-and-safer-state-models-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "rust-systems-security",
+		"kind": "item",
+		"oldId": "rust-systems-security-rss6-traits-iterators-and-api-contracts-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "rust-systems-security-rss6-traits-iterators-and-api-contracts-curriculum-traits-iterators-and-api-contracts-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "rust-systems-security",
+		"kind": "item",
+		"oldId": "rust-systems-security-rss7-files-parsers-and-secure-cli-design-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "rust-systems-security-rss7-files-parsers-and-secure-cli-design-curriculum-files-parsers-and-secure-cli-design-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "rust-systems-security",
+		"kind": "item",
+		"oldId": "rust-systems-security-rss8-concurrency-and-race-reduction-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "rust-systems-security-rss8-concurrency-and-race-reduction-curriculum-concurrency-and-race-reduction-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "rust-systems-security",
+		"kind": "item",
+		"oldId": "rust-systems-security-rss10-capstone-harden-a-legacy-tool-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "rust-systems-security-rss10-capstone-harden-a-legacy-tool-curriculum-harden-a-legacy-tool-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "javascript-level-1-javascript-superstar",
+		"kind": "item",
+		"oldId": "javascript-level-1-javascript-superstar-jss1-variables-and-data-types-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "javascript-level-1-javascript-superstar-jss1-variables-and-data-types-curriculum-variables-and-data-types-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "javascript-level-1-javascript-superstar",
+		"kind": "item",
+		"oldId": "javascript-level-1-javascript-superstar-jss1-variables-and-data-types-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "javascript-level-1-javascript-superstar",
+		"kind": "item",
+		"oldId": "javascript-level-1-javascript-superstar-jss5-conditionals-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "javascript-level-1-javascript-superstar-jss5-conditionals-curriculum-conditionals-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "javascript-level-1-javascript-superstar",
+		"kind": "item",
+		"oldId": "javascript-level-1-javascript-superstar-jss6-advanced-conditionals-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "javascript-level-1-javascript-superstar-jss6-advanced-conditionals-curriculum-advanced-conditionals-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "javascript-level-1-javascript-superstar",
+		"kind": "item",
+		"oldId": "javascript-level-1-javascript-superstar-check-in-1-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "javascript-level-1-javascript-superstar-check-in-1-curriculum-javascript-level-1-javascript-superstar-check-in-1-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "javascript-level-1-javascript-superstar",
+		"kind": "item",
+		"oldId": "javascript-level-1-javascript-superstar-check-in-1-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": "javascript-level-1-javascript-superstar-check-in-1-curriculum-check-in-1-application-check",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "javascript-level-1-javascript-superstar",
+		"kind": "item",
+		"oldId": "javascript-level-1-javascript-superstar-javascript-project-and-assessment-practice-supplemental-project-option-todo-app-with-localstorage",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "javascript-level-2-javascript-master",
+		"kind": "item",
+		"oldId": "javascript-level-2-javascript-master-jsm1-fundamentals-review-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "javascript-level-2-javascript-master-jsm1-fundamentals-review-curriculum-fundamentals-review-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "javascript-level-2-javascript-master",
+		"kind": "item",
+		"oldId": "javascript-level-2-javascript-master-jsm1-fundamentals-review-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": "javascript-level-2-javascript-master-jsm1-fundamentals-review-curriculum-fundamentals-review-application-check",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "javascript-level-2-javascript-master",
+		"kind": "item",
+		"oldId": "javascript-level-2-javascript-master-jsm5-arrays-and-iterators-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "javascript-level-2-javascript-master-jsm5-arrays-and-iterators-curriculum-arrays-and-iterators-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "javascript-level-2-javascript-master",
+		"kind": "item",
+		"oldId": "javascript-level-2-javascript-master-check-in-1-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "javascript-level-2-javascript-master",
+		"kind": "item",
+		"oldId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners-curriculum-helper-functions-and-event-listeners-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "javascript-level-2-javascript-master",
+		"kind": "item",
+		"oldId": "javascript-level-2-javascript-master-jsm11-sql-and-schemas-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "javascript-level-2-javascript-master-jsm11-sql-and-schemas-curriculum-sql-and-schemas-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "javascript-level-2-javascript-master",
+		"kind": "item",
+		"oldId": "javascript-level-2-javascript-master-jsm12-nosql-and-crud-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "javascript-level-2-javascript-master-jsm12-nosql-and-crud-curriculum-nosql-and-crud-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "javascript-level-2-javascript-master",
+		"kind": "item",
+		"oldId": "javascript-level-2-javascript-master-jsm12-nosql-and-crud-curriculum-jsm12-project-1-todo-list",
+		"currentId": "javascript-level-2-javascript-master-jsm12-nosql-and-crud-curriculum-jsm12-project-1-to-do-list",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "javascript-level-2-javascript-master",
+		"kind": "item",
+		"oldId": "javascript-level-2-javascript-master-javascript-project-and-assessment-practice-supplemental-project-option-todo-app-with-localstorage",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "web-development-foundations",
+		"kind": "item",
+		"oldId": "web-development-foundations-wdf0-setup-and-tooling-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "web-development-foundations-wdf0-setup-and-tooling-curriculum-web-development-foundations-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "web-development-foundations",
+		"kind": "item",
+		"oldId": "web-development-foundations-wdf1-positioning-goals-and-suggested-course-family-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "web-development-foundations-wdf1-positioning-goals-and-suggested-course-family-curriculum-positioning-goals-and-suggested-course-family-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "web-development-foundations",
+		"kind": "item",
+		"oldId": "web-development-foundations-wdf1-positioning-goals-and-suggested-course-family-curriculum-application-misconceptions-and-readiness-check",
+		"currentId": "web-development-foundations-wdf1-positioning-goals-and-suggested-course-family-curriculum-positioning-goals-and-suggested-course-family-application-check",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "web-development-foundations",
+		"kind": "item",
+		"oldId": "web-development-foundations-wdf2-stage-1-strengthen-the-existing-javascript-courses-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "web-development-foundations-wdf2-stage-1-strengthen-the-existing-javascript-courses-curriculum-strengthen-the-existing-javascript-courses-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "web-development-foundations",
+		"kind": "item",
+		"oldId": "web-development-foundations-wdf3-stage-2-web-development-foundations-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "web-development-foundations-wdf3-stage-2-web-development-foundations-curriculum-web-development-foundations-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "web-development-foundations",
+		"kind": "item",
+		"oldId": "web-development-foundations-wdf4-stage-3-front-end-applications-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "web-development-foundations-wdf4-stage-3-front-end-applications-curriculum-front-end-applications-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "web-development-foundations",
+		"kind": "item",
+		"oldId": "web-development-foundations-wdf5-stage-4-back-end-basics-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "web-development-foundations-wdf5-stage-4-back-end-basics-curriculum-back-end-basics-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "web-development-foundations",
+		"kind": "item",
+		"oldId": "web-development-foundations-wdf6-stage-5-databases-and-data-models-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "web-development-foundations-wdf6-stage-5-databases-and-data-models-curriculum-databases-and-data-models-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "web-development-foundations",
+		"kind": "item",
+		"oldId": "web-development-foundations-wdf7-stage-6-hosting-and-deployment-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "web-development-foundations-wdf7-stage-6-hosting-and-deployment-curriculum-hosting-and-deployment-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "web-development-foundations",
+		"kind": "item",
+		"oldId": "web-development-foundations-wdf8-hosting-and-operations-topics-to-add-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "web-development-foundations-wdf8-hosting-and-operations-topics-to-add-curriculum-hosting-and-operations-topics-to-add-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "web-development-foundations",
+		"kind": "item",
+		"oldId": "web-development-foundations-wdf10-suggested-advanced-strand-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "web-development-foundations-wdf10-suggested-advanced-strand-curriculum-suggested-advanced-strand-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "web-development-foundations",
+		"kind": "item",
+		"oldId": "web-development-foundations-wdf11-integration-with-network-topics-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "web-development-foundations-wdf11-integration-with-network-topics-curriculum-integration-with-network-topics-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "web-development-foundations",
+		"kind": "item",
+		"oldId": "web-development-foundations-wdf12-expansion-ideas-and-next-steps-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "web-development-foundations-wdf12-expansion-ideas-and-next-steps-curriculum-expansion-ideas-and-next-steps-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "machine-learning",
+		"kind": "item",
+		"oldId": "machine-learning-ml0-setup-tooling-and-data-workflow-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "machine-learning-ml0-setup-tooling-and-data-workflow-curriculum-setup-tooling-and-data-workflow-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "machine-learning",
+		"kind": "item",
+		"oldId": "machine-learning-ml0-setup-tooling-and-data-workflow-supplemental-ml0-setup-tooling-and-data-workflow-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "machine-learning",
+		"kind": "item",
+		"oldId": "machine-learning-ml1-k-means-clustering-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "machine-learning-ml1-k-means-clustering-curriculum-k-means-clustering-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "machine-learning",
+		"kind": "item",
+		"oldId": "machine-learning-ml1-k-means-clustering-supplemental-ml1-k-means-clustering-transfer-or-extension-project",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "machine-learning",
+		"kind": "item",
+		"oldId": "machine-learning-ml2-k-nearest-neighbors-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "machine-learning-ml2-k-nearest-neighbors-curriculum-k-nearest-neighbors-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "machine-learning",
+		"kind": "item",
+		"oldId": "machine-learning-ml3-5-decision-trees-and-interpretable-models-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "machine-learning-ml3-5-decision-trees-and-interpretable-models-curriculum-5-decision-trees-and-interpretable-models-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "machine-learning",
+		"kind": "item",
+		"oldId": "machine-learning-ml4-neural-networks-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "machine-learning-ml4-neural-networks-curriculum-neural-networks-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "machine-learning",
+		"kind": "item",
+		"oldId": "machine-learning-ml5-introduction-to-regression-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "machine-learning-ml5-introduction-to-regression-curriculum-introduction-to-regression-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "machine-learning",
+		"kind": "item",
+		"oldId": "machine-learning-ml7-5-model-evaluation-comparison-and-dataset-strategy-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "machine-learning-ml7-5-model-evaluation-comparison-and-dataset-strategy-curriculum-5-model-evaluation-comparison-and-dataset-strategy-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "machine-learning",
+		"kind": "item",
+		"oldId": "machine-learning-machine-learning-project-and-assessment-practice-supplemental-project-option-model-card-for-a-learner-built-classifier",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "low-level-security",
+		"kind": "item",
+		"oldId": "low-level-security-lls1-memory-layout-and-security-tooling-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "low-level-security-lls1-memory-layout-and-security-tooling-curriculum-memory-layout-and-security-tooling-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "low-level-security",
+		"kind": "item",
+		"oldId": "low-level-security-lls2-bounds-arrays-and-safer-copy-patterns-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "low-level-security-lls2-bounds-arrays-and-safer-copy-patterns-curriculum-bounds-arrays-and-safer-copy-patterns-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "low-level-security",
+		"kind": "item",
+		"oldId": "low-level-security-lls3-defensive-parsers-and-binary-input-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "low-level-security-lls3-defensive-parsers-and-binary-input-curriculum-parsers-and-binary-input-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "low-level-security",
+		"kind": "item",
+		"oldId": "low-level-security-lls4-integer-safety-state-and-defensive-data-structures-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "low-level-security-lls4-integer-safety-state-and-defensive-data-structures-curriculum-integer-safety-state-and-defensive-data-structures-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "low-level-security",
+		"kind": "item",
+		"oldId": "low-level-security-lls5-bug-hunting-with-sanitizers-and-fuzzing-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "low-level-security-lls5-bug-hunting-with-sanitizers-and-fuzzing-curriculum-bug-hunting-with-sanitizers-and-fuzzing-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "low-level-security",
+		"kind": "item",
+		"oldId": "low-level-security-lls6-patching-review-and-responsible-research-curriculum-core-concepts-and-learning-sequence",
+		"currentId": "low-level-security-lls6-patching-review-and-responsible-research-curriculum-patching-review-and-responsible-research-core-concepts",
+		"basis": "renamed-id"
+	},
+	{
+		"courseId": "low-level-security-part-2",
+		"kind": "item",
+		"oldId": "low-level-security-part-2-lls-part-2-setup-and-tooling-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "low-level-security-part-2",
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-2-stack-corruption-in-toy-programs-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "low-level-security-part-2",
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-3-heap-lifetime-and-heap-metadata-concepts-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "low-level-security-part-2",
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-4-information-disclosure-and-memory-observation-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "low-level-security-part-2",
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-6-control-flow-thinking-for-defenders-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	},
+	{
+		"courseId": "low-level-security-part-2",
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-7-from-bug-report-to-patch-curriculum-core-concepts-and-learning-sequence",
+		"currentId": null,
+		"basis": "unmatched-history"
+	}
+]

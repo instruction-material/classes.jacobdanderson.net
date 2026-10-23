@@ -350,16 +350,58 @@ test("native provenance rejects rehashed payloads and pins the independent signe
 test("native release producer isolates signing from untrusted persistent builders", async () => {
 	const workflow = await source(".github/workflows/native-release.yml");
 	assert.match(workflow, /tags: \[v2\.\*\.\*\]/u);
+	assert.match(workflow, /workflow_dispatch: \{\}/u);
+	assert.match(
+		workflow,
+		/if: github\.repository == 'instruction-material\/classes\.jacobdanderson\.net' && startsWith\(github\.ref, 'refs\/tags\/v2\.'\)/u
+	);
 	assert.match(workflow, /runs-on: ubuntu-24\.04-arm/u);
 	assert.match(workflow, /persist-credentials: false/u);
+	assert.match(workflow, /npm run test:native-deployment/u);
 	assert.match(workflow, /prepare-native-release.sh --source "\$GITHUB_WORKSPACE"/u);
+	assert.match(workflow, /tar --hard-dereference -czf/u);
+	assert.match(workflow, /find "\$extracted" -type f -links \+1 -print -quit/u);
+	assert.match(workflow, /node scripts\/verify-native-release\.mjs "\$extracted"/u);
+	assert.match(workflow, /cmp "\$extracted\/\.classes-native-release\.json"/u);
+	assert.match(workflow, /python3 -B test\/verify-native-archive-snapshot\.py "\$extracted" "\$snapshot"/u);
+	assert.match(workflow, /node scripts\/verify-native-release\.mjs "\$snapshot"/u);
 	assert.match(workflow, /attest:\s*needs: build\s*runs-on: ubuntu-24\.04/u);
 	assert.match(workflow, /--tag "\$RELEASE_TAG"/u);
-	assert.doesNotMatch(workflow, /pull_request|workflow_dispatch|runs-on:.*self-hosted/u);
+	assert.doesNotMatch(workflow, /pull_request|runs-on:.*self-hosted/u);
 	assert.doesNotMatch(workflow.slice(0, workflow.indexOf("    attest:")), /id-token: write|attestations: write/u);
 	assert.doesNotMatch(workflow.slice(workflow.indexOf("    attest:")), /npm|tar -|node |bash /u);
 	for (const action of workflow.matchAll(/uses: ([^\n]+)/gu)) {
 		assert.match(action[1], /^actions\/[a-z-]+@[a-f0-9]{40}$/u);
+	}
+});
+
+test("native archive stores hardlinked inputs as independent executable files", async (t) => {
+	if (process.platform !== "linux") {
+		t.skip("The production archive uses GNU tar on Linux ARM64.");
+		return;
+	}
+	const temporaryRoot = await fs.mkdtemp(path.join(os.tmpdir(), "classes-native-archive-"));
+	t.after(async () => fs.rm(temporaryRoot, { force: true, recursive: true }));
+	const input = path.join(temporaryRoot, "input");
+	const output = path.join(temporaryRoot, "output");
+	const archive = path.join(temporaryRoot, "runtime.tar.gz");
+	await fs.mkdir(input);
+	await fs.mkdir(output);
+	await fs.writeFile(path.join(input, "native-binary"), "synthetic executable\n", { mode: 0o755 });
+	await fs.link(path.join(input, "native-binary"), path.join(input, "native-alias"));
+	assert.equal((await fs.stat(path.join(input, "native-binary"))).nlink, 2);
+	const packed = spawnSync("tar", ["--hard-dereference", "-czf", archive, "-C", input, "."], { encoding: "utf8" });
+	assert.equal(packed.status, 0, packed.stderr);
+	const listed = spawnSync("tar", ["-tvzf", archive], { encoding: "utf8" });
+	assert.equal(listed.status, 0, listed.stderr);
+	assert.doesNotMatch(listed.stdout, /^h/gmu);
+	const extracted = spawnSync("tar", ["-xzf", archive, "-C", output], { encoding: "utf8" });
+	assert.equal(extracted.status, 0, extracted.stderr);
+	for (const name of ["native-binary", "native-alias"]) {
+		const absolutePath = path.join(output, name);
+		assert.equal((await fs.stat(absolutePath)).nlink, 1);
+		assert.ok((await fs.stat(absolutePath)).mode & 0o111);
+		assert.equal(await fs.readFile(absolutePath, "utf8"), "synthetic executable\n");
 	}
 });
 

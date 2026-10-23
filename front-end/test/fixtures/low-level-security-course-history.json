@@ -1,0 +1,512 @@
+[
+	{
+		"kind": "item",
+		"oldId": "low-level-security-lls1-memory-layout-and-security-tooling-supplemental-transfer-practice-memory-layout-and-security-tooling",
+		"currentId": "low-level-security-lls1-memory-layout-and-security-tooling-supplemental-memory-layout-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-lls1-memory-layout-and-security-tooling-supplemental-extension-practice-memory-layout-and-security-tooling",
+		"currentId": "low-level-security-lls1-memory-layout-and-security-tooling-supplemental-memory-layout-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-lls2-bounds-arrays-and-safer-copy-patterns-supplemental-transfer-practice-bounds-arrays-and-safer-copy-patterns",
+		"currentId": "low-level-security-lls2-bounds-arrays-and-safer-copy-patterns-supplemental-bounds-copy-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-lls2-bounds-arrays-and-safer-copy-patterns-supplemental-extension-practice-bounds-arrays-and-safer-copy-patterns",
+		"currentId": "low-level-security-lls2-bounds-arrays-and-safer-copy-patterns-supplemental-bounds-copy-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-lls3-defensive-parsers-and-binary-input-supplemental-transfer-practice-defensive-parsers-and-binary-input",
+		"currentId": "low-level-security-lls3-defensive-parsers-and-binary-input-supplemental-parser-hardening-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-lls3-defensive-parsers-and-binary-input-supplemental-extension-practice-defensive-parsers-and-binary-input",
+		"currentId": "low-level-security-lls3-defensive-parsers-and-binary-input-supplemental-parser-hardening-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-lls4-integer-safety-state-and-defensive-data-structures-supplemental-transfer-practice-integer-safety-state-and-defensive-data-structures",
+		"currentId": "low-level-security-lls4-integer-safety-state-and-defensive-data-structures-supplemental-integer-state-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-lls4-integer-safety-state-and-defensive-data-structures-supplemental-extension-practice-integer-safety-state-and-defensive-data-structures",
+		"currentId": "low-level-security-lls4-integer-safety-state-and-defensive-data-structures-supplemental-ring-buffer-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-lls5-bug-hunting-with-sanitizers-and-fuzzing-supplemental-transfer-practice-bug-hunting-with-sanitizers-and-fuzzing",
+		"currentId": "low-level-security-lls5-bug-hunting-with-sanitizers-and-fuzzing-supplemental-sanitizer-fuzzing-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-lls5-bug-hunting-with-sanitizers-and-fuzzing-supplemental-extension-practice-bug-hunting-with-sanitizers-and-fuzzing",
+		"currentId": "low-level-security-lls5-bug-hunting-with-sanitizers-and-fuzzing-supplemental-fuzzing-regression-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-lls6-patching-review-and-responsible-research-supplemental-transfer-practice-patching-review-and-responsible-research",
+		"currentId": "low-level-security-lls6-patching-review-and-responsible-research-supplemental-patch-review-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-lls6-patching-review-and-responsible-research-supplemental-extension-practice-patching-review-and-responsible-research",
+		"currentId": "low-level-security-lls6-patching-review-and-responsible-research-supplemental-responsible-research-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "low-level-security-low-level-security-lab-7",
+		"currentId": "low-level-security-low-level-security-lab-7-sanitizer-triage-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-7-curriculum-low-level-security-lab-7-core-concepts",
+		"currentId": "low-level-security-low-level-security-lab-7-sanitizer-triage-studio-curriculum-low-level-security-lab-7-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-7-curriculum-low-level-security-lab-7-guided-example",
+		"currentId": "low-level-security-low-level-security-lab-7-sanitizer-triage-studio-curriculum-low-level-security-lab-7-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-7-curriculum-core-project-low-level-security-lab-7",
+		"currentId": "low-level-security-low-level-security-lab-7-sanitizer-triage-studio-curriculum-core-project-low-level-security-lab-7"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-7-curriculum-review-low-level-security-lab-7",
+		"currentId": "low-level-security-low-level-security-lab-7-sanitizer-triage-studio-curriculum-review-low-level-security-lab-7"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-7-supplemental-extension-challenge-low-level-security-lab-7",
+		"currentId": "low-level-security-low-level-security-lab-7-sanitizer-triage-studio-supplemental-extension-challenge-low-level-security-lab-7"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-7-supplemental-transfer-practice-low-level-security-lab-7",
+		"currentId": "low-level-security-low-level-security-lab-7-sanitizer-triage-studio-supplemental-sanitizer-triage-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-7-supplemental-extension-practice-low-level-security-lab-7",
+		"currentId": "low-level-security-low-level-security-lab-7-sanitizer-triage-studio-supplemental-sanitizer-triage-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "low-level-security-low-level-security-lab-8",
+		"currentId": "low-level-security-low-level-security-lab-8-bounds-regression-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-8-curriculum-low-level-security-lab-8-core-concepts",
+		"currentId": "low-level-security-low-level-security-lab-8-bounds-regression-studio-curriculum-low-level-security-lab-8-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-8-curriculum-low-level-security-lab-8-guided-example",
+		"currentId": "low-level-security-low-level-security-lab-8-bounds-regression-studio-curriculum-low-level-security-lab-8-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-8-curriculum-core-project-low-level-security-lab-8",
+		"currentId": "low-level-security-low-level-security-lab-8-bounds-regression-studio-curriculum-core-project-low-level-security-lab-8"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-8-curriculum-review-low-level-security-lab-8",
+		"currentId": "low-level-security-low-level-security-lab-8-bounds-regression-studio-curriculum-review-low-level-security-lab-8"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-8-supplemental-extension-challenge-low-level-security-lab-8",
+		"currentId": "low-level-security-low-level-security-lab-8-bounds-regression-studio-supplemental-extension-challenge-low-level-security-lab-8"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-8-supplemental-transfer-practice-low-level-security-lab-8",
+		"currentId": "low-level-security-low-level-security-lab-8-bounds-regression-studio-supplemental-bounds-regression-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-8-supplemental-extension-practice-low-level-security-lab-8",
+		"currentId": "low-level-security-low-level-security-lab-8-bounds-regression-studio-supplemental-bounds-regression-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "low-level-security-low-level-security-lab-9",
+		"currentId": "low-level-security-low-level-security-lab-9-binary-parser-hardening-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-9-curriculum-low-level-security-lab-9-core-concepts",
+		"currentId": "low-level-security-low-level-security-lab-9-binary-parser-hardening-studio-curriculum-low-level-security-lab-9-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-9-curriculum-low-level-security-lab-9-guided-example",
+		"currentId": "low-level-security-low-level-security-lab-9-binary-parser-hardening-studio-curriculum-low-level-security-lab-9-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-9-curriculum-core-project-low-level-security-lab-9",
+		"currentId": "low-level-security-low-level-security-lab-9-binary-parser-hardening-studio-curriculum-core-project-low-level-security-lab-9"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-9-curriculum-review-low-level-security-lab-9",
+		"currentId": "low-level-security-low-level-security-lab-9-binary-parser-hardening-studio-curriculum-review-low-level-security-lab-9"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-9-supplemental-extension-challenge-low-level-security-lab-9",
+		"currentId": "low-level-security-low-level-security-lab-9-binary-parser-hardening-studio-supplemental-extension-challenge-low-level-security-lab-9"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-9-supplemental-transfer-practice-low-level-security-lab-9",
+		"currentId": "low-level-security-low-level-security-lab-9-binary-parser-hardening-studio-supplemental-binary-parser-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-9-supplemental-extension-practice-low-level-security-lab-9",
+		"currentId": "low-level-security-low-level-security-lab-9-binary-parser-hardening-studio-supplemental-binary-parser-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "low-level-security-low-level-security-lab-10",
+		"currentId": "low-level-security-low-level-security-lab-10-integer-state-safety-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-10-curriculum-low-level-security-lab-10-core-concepts",
+		"currentId": "low-level-security-low-level-security-lab-10-integer-state-safety-studio-curriculum-low-level-security-lab-10-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-10-curriculum-low-level-security-lab-10-guided-example",
+		"currentId": "low-level-security-low-level-security-lab-10-integer-state-safety-studio-curriculum-low-level-security-lab-10-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-10-curriculum-core-project-low-level-security-lab-10",
+		"currentId": "low-level-security-low-level-security-lab-10-integer-state-safety-studio-curriculum-core-project-low-level-security-lab-10"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-10-curriculum-review-low-level-security-lab-10",
+		"currentId": "low-level-security-low-level-security-lab-10-integer-state-safety-studio-curriculum-review-low-level-security-lab-10"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-10-supplemental-extension-challenge-low-level-security-lab-10",
+		"currentId": "low-level-security-low-level-security-lab-10-integer-state-safety-studio-supplemental-extension-challenge-low-level-security-lab-10"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-10-supplemental-transfer-practice-low-level-security-lab-10",
+		"currentId": "low-level-security-low-level-security-lab-10-integer-state-safety-studio-supplemental-integer-state-safety-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-10-supplemental-extension-practice-low-level-security-lab-10",
+		"currentId": "low-level-security-low-level-security-lab-10-integer-state-safety-studio-supplemental-integer-state-safety-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "low-level-security-low-level-security-lab-11",
+		"currentId": "low-level-security-low-level-security-lab-11-fuzzing-regression-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-11-curriculum-low-level-security-lab-11-core-concepts",
+		"currentId": "low-level-security-low-level-security-lab-11-fuzzing-regression-studio-curriculum-low-level-security-lab-11-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-11-curriculum-low-level-security-lab-11-guided-example",
+		"currentId": "low-level-security-low-level-security-lab-11-fuzzing-regression-studio-curriculum-low-level-security-lab-11-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-11-curriculum-core-project-low-level-security-lab-11",
+		"currentId": "low-level-security-low-level-security-lab-11-fuzzing-regression-studio-curriculum-core-project-low-level-security-lab-11"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-11-curriculum-review-low-level-security-lab-11",
+		"currentId": "low-level-security-low-level-security-lab-11-fuzzing-regression-studio-curriculum-review-low-level-security-lab-11"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-11-supplemental-extension-challenge-low-level-security-lab-11",
+		"currentId": "low-level-security-low-level-security-lab-11-fuzzing-regression-studio-supplemental-extension-challenge-low-level-security-lab-11"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-11-supplemental-transfer-practice-low-level-security-lab-11",
+		"currentId": "low-level-security-low-level-security-lab-11-fuzzing-regression-studio-supplemental-fuzzing-regression-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-11-supplemental-extension-practice-low-level-security-lab-11",
+		"currentId": "low-level-security-low-level-security-lab-11-fuzzing-regression-studio-supplemental-fuzzing-regression-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "low-level-security-low-level-security-lab-12",
+		"currentId": "low-level-security-low-level-security-lab-12-patch-review-handoff-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-12-curriculum-low-level-security-lab-12-core-concepts",
+		"currentId": "low-level-security-low-level-security-lab-12-patch-review-handoff-studio-curriculum-low-level-security-lab-12-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-12-curriculum-low-level-security-lab-12-guided-example",
+		"currentId": "low-level-security-low-level-security-lab-12-patch-review-handoff-studio-curriculum-low-level-security-lab-12-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-12-curriculum-core-project-low-level-security-lab-12",
+		"currentId": "low-level-security-low-level-security-lab-12-patch-review-handoff-studio-curriculum-core-project-low-level-security-lab-12"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-12-curriculum-review-low-level-security-lab-12",
+		"currentId": "low-level-security-low-level-security-lab-12-patch-review-handoff-studio-curriculum-review-low-level-security-lab-12"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-12-supplemental-extension-challenge-low-level-security-lab-12",
+		"currentId": "low-level-security-low-level-security-lab-12-patch-review-handoff-studio-supplemental-extension-challenge-low-level-security-lab-12"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-12-supplemental-transfer-practice-low-level-security-lab-12",
+		"currentId": "low-level-security-low-level-security-lab-12-patch-review-handoff-studio-supplemental-patch-review-handoff-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-lab-12-supplemental-extension-practice-low-level-security-lab-12",
+		"currentId": "low-level-security-low-level-security-lab-12-patch-review-handoff-studio-supplemental-patch-review-handoff-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "low-level-security-standards-map",
+		"currentId": "low-level-security-standards-map"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-standards-map-curriculum-low-level-security-reference-guide",
+		"currentId": "low-level-security-standards-map-curriculum-low-level-security-reference-guide"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-standards-map-curriculum-low-level-security-core-skills",
+		"currentId": "low-level-security-standards-map-curriculum-low-level-security-core-skills"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-standards-map-curriculum-low-level-security-next-topics",
+		"currentId": "low-level-security-standards-map-curriculum-low-level-security-next-topics"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-standards-map-curriculum-low-level-security-boundaries",
+		"currentId": "low-level-security-standards-map-curriculum-low-level-security-boundaries"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-standards-map-supplemental-low-level-security-readiness-check",
+		"currentId": "low-level-security-standards-map-supplemental-low-level-security-prerequisite-check"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-standards-map-supplemental-low-level-security-learning-sequence",
+		"currentId": "low-level-security-standards-map-supplemental-low-level-security-pathway-map"
+	},
+	{
+		"kind": "module",
+		"oldId": "low-level-security-course-roadmap",
+		"currentId": "low-level-security-course-roadmap"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-course-roadmap-curriculum-low-level-security-next-module-ideas",
+		"currentId": "low-level-security-course-roadmap-curriculum-low-level-security-follow-up-path"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-course-roadmap-curriculum-low-level-security-resources",
+		"currentId": "low-level-security-course-roadmap-curriculum-low-level-security-resource-map"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-course-roadmap-curriculum-low-level-security-module-alignment-guide",
+		"currentId": "low-level-security-course-roadmap-curriculum-low-level-security-module-alignment-guide"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-course-roadmap-curriculum-low-level-security-current-references",
+		"currentId": "low-level-security-low-level-security-lab-12-patch-review-handoff-studio-curriculum-review-low-level-security-lab-12"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-course-roadmap-supplemental-low-level-security-prerequisite-map",
+		"currentId": "low-level-security-course-roadmap-supplemental-low-level-security-prerequisite-map"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-course-roadmap-supplemental-low-level-security-resource-inventory",
+		"currentId": "low-level-security-course-roadmap-supplemental-low-level-security-resource-inventory"
+	},
+	{
+		"kind": "module",
+		"oldId": "low-level-security-project-practice-guide",
+		"currentId": "low-level-security-project-practice-guide"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-project-practice-guide-curriculum-low-level-security-project-ladder",
+		"currentId": "low-level-security-project-practice-guide-curriculum-low-level-security-project-ladder"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-project-practice-guide-curriculum-low-level-security-checkpoints",
+		"currentId": "low-level-security-project-practice-guide-curriculum-low-level-security-checkpoints"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-project-practice-guide-curriculum-low-level-security-rubric",
+		"currentId": "low-level-security-project-practice-guide-curriculum-low-level-security-rubric"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-project-practice-guide-curriculum-low-level-security-capstone-gate",
+		"currentId": "low-level-security-project-practice-guide-curriculum-low-level-security-capstone-gate"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-project-practice-guide-supplemental-project-option-threat-model-for-a-toy-app",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-project-practice-guide-supplemental-project-option-harden-a-vulnerable-login-flow",
+		"currentId": null
+	},
+	{
+		"kind": "module",
+		"oldId": "low-level-security-low-level-security-systems-and-security-lab-safety-policy",
+		"currentId": "low-level-security-low-level-security-systems-and-security-lab-safety-policy"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-systems-and-security-lab-safety-policy-curriculum-low-level-security-allowed-lab-scope",
+		"currentId": "low-level-security-low-level-security-systems-and-security-lab-safety-policy-curriculum-low-level-security-allowed-lab-scope"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-systems-and-security-lab-safety-policy-curriculum-low-level-security-disallowed-work",
+		"currentId": "low-level-security-low-level-security-systems-and-security-lab-safety-policy-curriculum-low-level-security-disallowed-work"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-systems-and-security-lab-safety-policy-curriculum-low-level-security-evidence-and-remediation-format",
+		"currentId": "low-level-security-low-level-security-systems-and-security-lab-safety-policy-curriculum-low-level-security-evidence-and-remediation-format"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-systems-and-security-lab-safety-policy-curriculum-low-level-security-tooling-setup-and-recovery",
+		"currentId": "low-level-security-low-level-security-systems-and-security-lab-safety-policy-curriculum-low-level-security-tooling-setup-and-recovery"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-systems-and-security-lab-safety-policy-supplemental-low-level-security-safety-project-threat-model-and-scope-sheet",
+		"currentId": "low-level-security-low-level-security-systems-and-security-lab-safety-policy-supplemental-low-level-security-safety-project-threat-model-and-scope-sheet"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-systems-and-security-lab-safety-policy-supplemental-low-level-security-safety-project-patch-and-evidence-report",
+		"currentId": "low-level-security-low-level-security-systems-and-security-lab-safety-policy-supplemental-low-level-security-safety-project-patch-and-evidence-report"
+	},
+	{
+		"kind": "module",
+		"oldId": "low-level-security-low-level-security-defensive-lab-contract",
+		"currentId": "low-level-security-low-level-security-defensive-lab-contract"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-defensive-lab-contract-curriculum-low-level-security-environment-and-tooling-baseline",
+		"currentId": "low-level-security-low-level-security-defensive-lab-contract-curriculum-low-level-security-environment-and-tooling-baseline"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-defensive-lab-contract-curriculum-low-level-security-prohibited-activity",
+		"currentId": "low-level-security-low-level-security-defensive-lab-contract-curriculum-low-level-security-prohibited-activity"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-defensive-lab-contract-curriculum-low-level-security-signature-project",
+		"currentId": "low-level-security-low-level-security-defensive-lab-contract-curriculum-low-level-security-signature-project"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-defensive-lab-contract-curriculum-low-level-security-evidence-rubric",
+		"currentId": "low-level-security-low-level-security-defensive-lab-contract-curriculum-low-level-security-evidence-rubric"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-defensive-lab-contract-supplemental-low-level-security-defensive-lab-scope-and-reset-drill",
+		"currentId": "low-level-security-low-level-security-defensive-lab-contract-supplemental-low-level-security-defensive-lab-scope-and-reset-drill"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-defensive-lab-contract-supplemental-low-level-security-defensive-lab-evidence-to-remediation-report",
+		"currentId": "low-level-security-low-level-security-defensive-lab-contract-supplemental-low-level-security-defensive-lab-evidence-to-remediation-report"
+	},
+	{
+		"kind": "module",
+		"oldId": "low-level-security-low-level-security-toolchain-and-version-assumptions",
+		"currentId": "low-level-security-low-level-security-toolchain-and-version-assumptions"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-toolchain-and-version-assumptions-curriculum-low-level-security-setup-assumptions",
+		"currentId": "low-level-security-low-level-security-toolchain-and-version-assumptions-curriculum-low-level-security-setup-assumptions"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-toolchain-and-version-assumptions-curriculum-low-level-security-upgrade-rule",
+		"currentId": "low-level-security-low-level-security-toolchain-and-version-assumptions-curriculum-low-level-security-upgrade-rule"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-toolchain-and-version-assumptions-curriculum-low-level-security-platform-fallbacks",
+		"currentId": "low-level-security-low-level-security-toolchain-and-version-assumptions-curriculum-low-level-security-platform-fallbacks"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-toolchain-and-version-assumptions-curriculum-low-level-security-reproducibility-notes",
+		"currentId": "low-level-security-low-level-security-toolchain-and-version-assumptions-curriculum-low-level-security-reproducibility-notes"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-toolchain-and-version-assumptions-supplemental-low-level-security-first-run-smoke-test",
+		"currentId": "low-level-security-low-level-security-toolchain-and-version-assumptions-supplemental-low-level-security-first-run-smoke-test"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-low-level-security-toolchain-and-version-assumptions-supplemental-low-level-security-version-drift-review",
+		"currentId": "low-level-security-low-level-security-toolchain-and-version-assumptions-supplemental-low-level-security-version-drift-review"
+	}
+]

@@ -83,7 +83,9 @@ describe("restored USACO project workflows", () => {
 					javaNativeBuildInstructions(`java-level-1:${id}:starter`)
 				).toBeNull();
 			}
-		useAppStore().currentTutor = {} as never;
+		useAppStore().currentTutor = {
+			coursePermissions: ["usaco-gold"]
+		} as never;
 		const staff = (await store.loadCourseById("usaco-gold"))!;
 		for (const lab of goldImplementationLabs)
 			for (const id of lab.itemIds) {
@@ -163,7 +165,9 @@ describe("restored USACO project workflows", () => {
 			`java-level-1:${shortcutSavedItemId}:starter`
 		])
 			expect(javaNativeBuildInstructions(key)).toBeNull();
-		useAppStore().currentTutor = {} as never;
+		useAppStore().currentTutor = {
+			coursePermissions: ["usaco-gold"]
+		} as never;
 		const staff = (await useCoursesStore().loadCourseById("usaco-gold"))!;
 		const reference = staff.modules
 			.flatMap(module => [
@@ -235,7 +239,9 @@ describe("restored USACO project workflows", () => {
 			`java-level-1:${roadblockSavedItemId}:starter`
 		])
 			expect(javaNativeBuildInstructions(key)).toBeNull();
-		useAppStore().currentTutor = {} as never;
+		useAppStore().currentTutor = {
+			coursePermissions: ["usaco-gold"]
+		} as never;
 		const staff = (await useCoursesStore().loadCourseById("usaco-gold"))!;
 		const reference = staff.modules
 			.flatMap(module => [
@@ -313,7 +319,9 @@ describe("restored USACO project workflows", () => {
 			])
 				expect(javaNativeBuildInstructions(key)).toBeNull();
 		}
-		useAppStore().currentTutor = {} as never;
+		useAppStore().currentTutor = {
+			coursePermissions: ["usaco-gold"]
+		} as never;
 		const staff = (await useCoursesStore().loadCourseById("usaco-gold"))!;
 		for (const [folder, id] of [
 			["UG-Milk-Visits", milkVisitsSavedItemId],
@@ -395,7 +403,9 @@ describe("restored USACO project workflows", () => {
 			`java-level-1:${item.id}:starter`
 		])
 			expect(javaNativeBuildInstructions(key)).toBeNull();
-		useAppStore().currentTutor = {} as never;
+		useAppStore().currentTutor = {
+			coursePermissions: ["usaco-gold"]
+		} as never;
 		const staff = (await useCoursesStore().loadCourseById("usaco-gold"))!;
 		const reference = staff.modules
 			.flatMap(module => [

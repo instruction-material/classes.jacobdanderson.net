@@ -2,6 +2,8 @@ import { mount } from "@vue/test-utils";
 import { createHead } from "@unhead/vue/server";
 import { createPinia } from "pinia";
 import { describe, expect, it } from "vitest";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { hasOpenCourseCatalog } from "@/modules/catalogVisibility";
 import { coursePathwayMaps } from "@/modules/coursePathwayMaps";
 import HomePage from "@/pages/index.vue";
@@ -70,6 +72,22 @@ describe("public course discovery", () => {
 		await wrapper
 			.get('input[type="search"]')
 			.setValue("no matching course xyz");
+		expect(wrapper.text()).toContain("No matching pathways");
+		wrapper.unmount();
+	});
+
+	it("keeps planning backlog out of public pathway search", async () => {
+		const pageSource = readFileSync(
+			resolve(__dirname, "../src/pages/pathways.vue"),
+			"utf8"
+		);
+		expect(pageSource).not.toContain("stores/courses/public-pathways");
+		const wrapper = mount(PathwaysPage, {
+			global: { stubs: { RouterLink: link } }
+		});
+		await wrapper
+			.get('input[type="search"]')
+			.setValue("prohibited-activity");
 		expect(wrapper.text()).toContain("No matching pathways");
 		wrapper.unmount();
 	});

@@ -73,7 +73,7 @@ Implement the contract with an in-memory adapter first. Optionally repeat agains
 ## Deployment Preflight Case
 
 Use the maintained Separate Deployment Lab at source revision
-`781eba647bbdcb3f89aa0417011dabe2fca30d53`. Its shared README and course reading
+`962d1be3da0d954ad774390b78cb044395a12262`. Its shared README and course reading
 supply the complete startup, byte/inventory contracts and shell-specific settings.
 Complete `digestBytes` and `assertInventory` in the starter's `release-model.mjs`.
 Run the API and static front end independently on their owned loopback ports.
