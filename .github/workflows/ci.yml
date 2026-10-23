@@ -1385,7 +1385,7 @@ jobs:
                   proof = Path("output/swift-welcome-ios/runner-readiness.json")
                   proof.parent.mkdir(parents=True, exist_ok=True)
                   samples = []
-                  deadline = time.monotonic() + 300
+                  deadline = time.monotonic() + 600
                   while True:
                       load = os.getloadavg()[0]
                       samples.append({"at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "load": load})
@@ -1395,7 +1395,7 @@ jobs:
                       if ready:
                           break
                       if time.monotonic() >= deadline:
-                          raise SystemExit("Hosted Mac did not settle within five minutes; native checks have not run")
+                          raise SystemExit("Hosted Mac did not settle within ten minutes; native checks have not run")
                       time.sleep(10)
                   PY
 
@@ -1453,7 +1453,7 @@ jobs:
                   proof = Path(os.environ["RUNNER_TEMP"]) / "swift-networking-ios/runner-readiness.json"
                   proof.parent.mkdir(parents=True, exist_ok=True)
                   samples = []
-                  deadline = time.monotonic() + 300
+                  deadline = time.monotonic() + 600
                   while True:
                       load = os.getloadavg()[0]
                       samples.append({"at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "load": load})
@@ -1463,7 +1463,7 @@ jobs:
                       if ready:
                           break
                       if time.monotonic() >= deadline:
-                          raise SystemExit("Hosted Mac did not settle within five minutes; native checks have not run")
+                          raise SystemExit("Hosted Mac did not settle within ten minutes; native checks have not run")
                       time.sleep(10)
                   PY
 
