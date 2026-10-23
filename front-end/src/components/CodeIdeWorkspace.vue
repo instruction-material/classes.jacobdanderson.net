@@ -15,6 +15,7 @@ import type {
 	PythonIdeProjectTemplate
 } from "@/modules/pythonIde";
 import type { PythonIdeCourseAssetPack } from "@/modules/pythonIdeCourseAssets";
+import type { PythonIdeRecoveryDraft } from "@/modules/pythonIdeRecovery";
 import type {
 	GameBridge,
 	RuntimeArtifact,
@@ -57,7 +58,6 @@ import { createKarelWorldPlaybackController } from "@/modules/karelWorldPlayback
 import { linuxBuildInstructions } from "@/modules/linuxBuildInstructions";
 import {
 	addPythonIdeClassroomSections,
-	clearLocalPythonProjectsAsync,
 	createPythonIdeProject,
 	createRemotePythonIdeProject,
 	deleteRemotePythonIdeProject,
@@ -105,6 +105,11 @@ import {
 	pythonIdeGamePointerPosition,
 	waitForPythonIdeGameImage
 } from "@/modules/pythonIdeGameGraphics";
+import {
+	acknowledgePythonIdeRecoveryDraft,
+	loadPythonIdeRecoveryDrafts,
+	savePythonIdeRecoveryDraft
+} from "@/modules/pythonIdeRecovery";
 import { primePythonRuntimeConnection } from "@/modules/pythonIdeRuntimeHints";
 import {
 	sandboxRun,
@@ -732,6 +737,10 @@ let saveQueued = false;
 let suppressAutoSave = false;
 const pendingSaveProjectIDs = new Set<string>();
 const unsyncedProjectIDs = new Set<string>();
+const recoveryDraftsForLocalProjects = new Map<
+	string,
+	PythonIdeRecoveryDraft
+>();
 let resizeObserver: ResizeObserver | null = null;
 let gameAnimationFrame: number | null = null;
 let gameOnDemandTickFrame: number | null = null;
@@ -2129,7 +2138,6 @@ async function saveNewProject(
 		projects.value.unshift(remoteProject);
 		upsertProjectCatalog(remoteProject);
 		selectedProjectID.value = remoteProject._id;
-		await discardLocalProjectSnapshotIfSafe();
 		if (!projectLoadIsCurrent(loadRunID)) return;
 		saveMessage.value = syncedSaveMessage.value;
 		return;
@@ -2265,15 +2273,32 @@ function locallyPersistableProjects() {
 	return projects.value;
 }
 
+function pendingRecoveryProjects() {
+	return locallyPersistableProjects().filter(
+		project =>
+			project._id.startsWith("local-") ||
+			pendingSaveProjectIDs.has(project._id) ||
+			unsyncedProjectIDs.has(project._id)
+	);
+}
+
 async function persistLocalProjects(
 	options: { message?: string; quiet?: boolean } = {}
 ) {
 	if (accountScope.signal.aborted) return;
 	try {
-		await saveLocalPythonProjectsAsync(
-			locallyPersistableProjects(),
-			storageUserID.value
-		);
+		if (canSyncToAccount.value && storageUserID.value) {
+			await Promise.all(
+				pendingRecoveryProjects().map(project =>
+					savePythonIdeRecoveryDraft(project, storageUserID.value!)
+				)
+			);
+		} else {
+			await saveLocalPythonProjectsAsync(
+				locallyPersistableProjects(),
+				storageUserID.value
+			);
+		}
 		if (!options.quiet) {
 			saveMessage.value =
 				options.message ??
@@ -2291,12 +2316,26 @@ async function persistLocalProjects(
 }
 
 function saveLocalProjectSnapshot() {
-	if (!locallyPersistableProjects().length) return;
+	const snapshotProjects = canSyncToAccount.value
+		? pendingRecoveryProjects()
+		: locallyPersistableProjects();
+	if (!snapshotProjects.length) return;
 	try {
-		saveLocalPythonProjects(
-			locallyPersistableProjects(),
-			storageUserID.value
-		);
+		if (canSyncToAccount.value && storageUserID.value) {
+			for (const project of snapshotProjects) {
+				void savePythonIdeRecoveryDraft(
+					project,
+					storageUserID.value
+				).catch(error =>
+					console.warn(
+						"Could not write Code IDE local snapshot.",
+						error
+					)
+				);
+			}
+		} else {
+			saveLocalPythonProjects(snapshotProjects, storageUserID.value);
+		}
 	} catch (error) {
 		console.warn("Could not write Code IDE local snapshot.", error);
 	}
@@ -2304,7 +2343,15 @@ function saveLocalProjectSnapshot() {
 
 async function persistLocalProjectSnapshot() {
 	if (accountScope.signal.aborted) return;
-	if (!locallyPersistableProjects().length) return;
+	if (
+		!(
+			canSyncToAccount.value
+				? pendingRecoveryProjects()
+				: locallyPersistableProjects()
+		).length
+	) {
+		return;
+	}
 	if (localSnapshotInFlight) {
 		localSnapshotQueued = true;
 		return localSnapshotInFlight;
@@ -2313,10 +2360,21 @@ async function persistLocalProjectSnapshot() {
 	localSnapshotInFlight = (async () => {
 		do {
 			localSnapshotQueued = false;
-			await saveLocalPythonProjectsAsync(
-				locallyPersistableProjects(),
-				storageUserID.value
-			);
+			if (canSyncToAccount.value && storageUserID.value) {
+				await Promise.all(
+					pendingRecoveryProjects().map(project =>
+						savePythonIdeRecoveryDraft(
+							project,
+							storageUserID.value!
+						)
+					)
+				);
+			} else {
+				await saveLocalPythonProjectsAsync(
+					locallyPersistableProjects(),
+					storageUserID.value
+				);
+			}
 		} while (localSnapshotQueued && !accountScope.signal.aborted);
 	})();
 
@@ -2336,28 +2394,6 @@ function cancelLocalProjectSnapshot() {
 	}
 }
 
-async function discardLocalProjectSnapshot() {
-	cancelLocalProjectSnapshot();
-	if (localSnapshotInFlight) {
-		try {
-			await localSnapshotInFlight;
-		} catch {
-			// Snapshot failures are already logged by persistLocalProjectSnapshot.
-		}
-	}
-	localSnapshotQueued = false;
-	unsyncedProjectIDs.clear();
-	await clearLocalPythonProjectsAsync(
-		storageUserID.value,
-		accountScope.signal
-	);
-}
-
-async function discardLocalProjectSnapshotIfSafe() {
-	if (unsyncedProjectIDs.size) return;
-	await discardLocalProjectSnapshot();
-}
-
 function scheduleLocalProjectSnapshot() {
 	if (props.runtimeOnly) return;
 	cancelLocalProjectSnapshot();
@@ -2367,22 +2403,21 @@ function scheduleLocalProjectSnapshot() {
 	}, 250);
 }
 
-async function syncProjectsToAccount(projectList: PythonIdeProject[]) {
-	const syncedProjects: PythonIdeProject[] = [];
-	for (const project of projectList) {
-		const syncedProject = await (project._id.startsWith("local-")
-			? createRemotePythonIdeProject(
-					pythonIdeProjectToPayload(project),
-					accountScope
-				)
-			: updateRemotePythonIdeProject(
-					project._id,
-					pythonIdeProjectToPayload(project),
-					accountScope
-				));
-		syncedProjects.push(syncedProject);
-	}
-	return syncedProjects;
+function recoveredProjectCopies(drafts: PythonIdeRecoveryDraft[]) {
+	recoveryDraftsForLocalProjects.clear();
+	return drafts.map(draft => {
+		const localID = `local-recovery-${crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`}`;
+		recoveryDraftsForLocalProjects.set(localID, draft);
+		return {
+			...draft.project,
+			_id: localID,
+			title: `${draft.project.title || "Untitled Project"} (Recovered copy)`,
+			files: draft.project.files.map(file => ({ ...file })),
+			shared: false,
+			shareID: undefined,
+			shareCreatedAt: undefined
+		};
+	});
 }
 
 let remoteProjectDetailLoadRun = 0;
@@ -2545,51 +2580,29 @@ async function loadProjects() {
 						() => []
 					)
 				: [];
-			const localProjects = await loadLocalPythonProjectsAsync(
-				storageUserID.value
+			const recoveryDrafts = await loadPythonIdeRecoveryDrafts(
+				storageUserID.value!
 			);
 			if (!projectLoadIsCurrent(loadRunID)) return;
-			if (localProjects.length) {
-				try {
-					const syncedProjects =
-						await syncProjectsToAccount(localProjects);
-					if (!projectLoadIsCurrent(loadRunID)) return;
-					setProjects(syncedProjects);
-					await discardLocalProjectSnapshot();
-					if (!projectLoadIsCurrent(loadRunID)) return;
-					await openRouteProjectIfNeeded(false, loadRunID);
-					if (!projectLoadIsCurrent(loadRunID)) return;
-					if (selectedProjectID.value) {
-						await loadRemoteProjectDetail(
-							selectedProjectID.value,
-							loadRunID
-						);
-					}
-					saveMessage.value = "Synced recovered local edits";
-					return;
-				} catch (error) {
-					if (!projectLoadIsCurrent(loadRunID)) return;
-					setProjects(localProjects);
-					appendOutput(
-						"system",
-						error instanceof Error
-							? error.message
-							: "Recovered local edits; account sync can be retried with Save."
-					);
-				}
-
+			if (recoveryDrafts.length) {
+				const copies = recoveredProjectCopies(recoveryDrafts);
+				setProjects(copies);
 				await openRouteProjectIfNeeded(false, loadRunID);
 				if (!projectLoadIsCurrent(loadRunID)) return;
 				if (
-					selectedProjectID.value &&
-					!selectedProjectID.value.startsWith("local-")
+					!requestedCourseProject() &&
+					!requestedStandaloneProjectKey()
 				) {
+					selectedProjectID.value =
+						copies[0]?._id ?? selectedProjectID.value;
+				}
+				if (!selectedProjectID.value.startsWith("local-")) {
 					await loadRemoteProjectDetail(
 						selectedProjectID.value,
 						loadRunID
 					);
 				}
-				saveMessage.value = "Recovered local edits";
+				saveMessage.value = "Recovered local copies; Save to sync";
 				return;
 			}
 
@@ -2629,8 +2642,6 @@ async function loadProjects() {
 			);
 			if (!projectLoadIsCurrent(loadRunID)) return;
 			setProjects([remoteProject]);
-			await discardLocalProjectSnapshot();
-			if (!projectLoadIsCurrent(loadRunID)) return;
 			saveMessage.value = syncedSaveMessage.value;
 			return;
 		}
@@ -2663,9 +2674,12 @@ async function loadProjects() {
 		if (!projectLoadIsCurrent(loadRunID)) return;
 		await saveNewProject(initialProject, false, loadRunID);
 	} catch (error) {
-		const localProjects = await loadLocalPythonProjectsAsync(
-			storageUserID.value
-		);
+		const localProjects =
+			canSyncToAccount.value && storageUserID.value
+				? recoveredProjectCopies(
+						await loadPythonIdeRecoveryDrafts(storageUserID.value)
+					)
+				: await loadLocalPythonProjectsAsync(storageUserID.value);
 		if (!projectLoadIsCurrent(loadRunID)) return;
 		if (localProjects.length) {
 			setProjects(localProjects);
@@ -2714,8 +2728,12 @@ async function saveProjectOnce(
 	if (!project || (suppressAutoSave && !options.force)) return true;
 
 	const startedProjectID = project._id;
-	const startedUpdatedAt = project.updatedAt ?? "";
-	const payload = pythonIdeProjectToPayload(project);
+	const payload = {
+		...pythonIdeProjectToPayload(project),
+		files: project.files.map(file => ({ ...file }))
+	};
+	const owner = storageUserID.value;
+	const recoveredDraft = recoveryDraftsForLocalProjects.get(startedProjectID);
 
 	try {
 		if (!canSyncToAccount.value) {
@@ -2723,12 +2741,21 @@ async function saveProjectOnce(
 			return true;
 		}
 
-		await persistLocalProjects({ quiet: true });
+		if (!owner) return false;
+		const savedDraft = await savePythonIdeRecoveryDraft(project, owner);
+		if (
+			!startedProjectID.startsWith("local-") &&
+			project.revision === undefined
+		) {
+			throw new Error(
+				"Project revision is unavailable; keep the local copy and reload before saving."
+			);
+		}
 		const savedProject = startedProjectID.startsWith("local-")
 			? await createRemotePythonIdeProject(payload, accountScope)
 			: await updateRemotePythonIdeProject(
 					startedProjectID,
-					payload,
+					{ ...payload, expectedRevision: project.revision },
 					accountScope
 				);
 		if (accountScope.signal.aborted) return false;
@@ -2737,10 +2764,24 @@ async function saveProjectOnce(
 		);
 		const currentProject =
 			currentIndex >= 0 ? projects.value[currentIndex] : null;
-		if (!currentProject) return true;
+		if (!currentProject) {
+			const acknowledged = await acknowledgePythonIdeRecoveryDraft(
+				savedDraft,
+				owner
+			);
+			let originalAcknowledged = true;
+			if (recoveredDraft) {
+				originalAcknowledged = await acknowledgePythonIdeRecoveryDraft(
+					recoveredDraft,
+					owner
+				);
+			}
+			return acknowledged && originalAcknowledged;
+		}
 
 		const projectChangedDuringSave =
-			currentProject.updatedAt !== startedUpdatedAt;
+			JSON.stringify(pythonIdeProjectToPayload(currentProject)) !==
+			JSON.stringify(payload);
 
 		if (projectChangedDuringSave) {
 			if (startedProjectID.startsWith("local-")) {
@@ -2755,20 +2796,39 @@ async function saveProjectOnce(
 					};
 					selectedProjectID.value = savedProject._id;
 				}
+				projectCatalog.value = projectCatalog.value.filter(
+					candidate => candidate._id !== startedProjectID
+				);
 			}
+			currentProject.revision = savedProject.revision;
+			upsertProjectCatalog(currentProject);
 			unsyncedProjectIDs.delete(startedProjectID);
-			unsyncedProjectIDs.delete(savedProject._id);
+			unsyncedProjectIDs.add(currentProject._id);
 			pendingSaveProjectIDs.add(currentProject._id);
-			await saveLocalPythonProjectsAsync(
-				locallyPersistableProjects(),
-				storageUserID.value
+			await savePythonIdeRecoveryDraft(currentProject, owner);
+			const acknowledged = await acknowledgePythonIdeRecoveryDraft(
+				savedDraft,
+				owner
 			);
-			return true;
+			let originalAcknowledged = true;
+			if (recoveredDraft) {
+				originalAcknowledged = await acknowledgePythonIdeRecoveryDraft(
+					recoveredDraft,
+					owner
+				);
+				if (originalAcknowledged)
+					recoveryDraftsForLocalProjects.delete(startedProjectID);
+			}
+			return acknowledged && originalAcknowledged;
 		}
 
 		if (currentIndex >= 0) {
-			if (startedProjectID.startsWith("local-"))
+			if (startedProjectID.startsWith("local-")) {
 				migrateCodeEditorViewStates(startedProjectID, savedProject._id);
+				projectCatalog.value = projectCatalog.value.filter(
+					candidate => candidate._id !== startedProjectID
+				);
+			}
 			projects.value.splice(currentIndex, 1, savedProject);
 			upsertProjectCatalog(savedProject);
 			if (selectedProjectID.value === startedProjectID) {
@@ -2781,7 +2841,22 @@ async function saveProjectOnce(
 		}
 		unsyncedProjectIDs.delete(startedProjectID);
 		unsyncedProjectIDs.delete(savedProject._id);
-		return true;
+		const acknowledged = await acknowledgePythonIdeRecoveryDraft(
+			savedDraft,
+			owner
+		);
+		let originalAcknowledged = true;
+		if (recoveredDraft) {
+			originalAcknowledged = await acknowledgePythonIdeRecoveryDraft(
+				recoveredDraft,
+				owner
+			);
+			if (originalAcknowledged)
+				recoveryDraftsForLocalProjects.delete(startedProjectID);
+		}
+		if (!acknowledged || !originalAcknowledged)
+			saveMessage.value = "Synced; local recovery copy retained";
+		return acknowledged && originalAcknowledged;
 	} catch (error) {
 		unsyncedProjectIDs.add(startedProjectID);
 		await persistLocalProjects({
@@ -2828,7 +2903,6 @@ async function savePendingProjects(options: SaveProjectOptions = {}) {
 			!remoteSyncFailed &&
 			!unsyncedProjectIDs.size
 		) {
-			await discardLocalProjectSnapshot();
 			saveMessage.value = syncedSaveMessage.value;
 		}
 	})();
@@ -3038,7 +3112,11 @@ async function updateProjectSharePreference(event: Event) {
 	try {
 		await saveSelectedProject({ force: true });
 		const project = selectedProject.value;
-		if (!project || project._id.startsWith("local-")) {
+		if (
+			!project ||
+			project._id.startsWith("local-") ||
+			unsyncedProjectIDs.has(project._id)
+		) {
 			throw new Error(
 				`Save the project to your ${syncDestinationLabel.value} before sharing.`
 			);
@@ -3057,7 +3135,6 @@ async function updateProjectSharePreference(event: Event) {
 			upsertProjectCatalog(updatedProject);
 			selectedProjectID.value = updatedProject._id;
 		}
-		await discardLocalProjectSnapshotIfSafe();
 		shareMessage.value = shared
 			? "Share link ready"
 			: "Project sharing off";
@@ -3330,6 +3407,31 @@ async function deleteProject(project: PythonIdeProjectListItem) {
 		const deletingSelectedProject = selectedProjectID.value === project._id;
 		const isRemoteProject =
 			canSyncToAccount.value && !project._id.startsWith("local-");
+		if (canSyncToAccount.value && !isRemoteProject && storageUserID.value) {
+			const drafts = await loadPythonIdeRecoveryDrafts(
+				storageUserID.value
+			);
+			const localDrafts = drafts.filter(
+				draft => draft.project._id === project._id
+			);
+			const recoveredDraft = recoveryDraftsForLocalProjects.get(
+				project._id
+			);
+			if (recoveredDraft) localDrafts.push(recoveredDraft);
+			for (const draft of localDrafts) {
+				if (
+					!(await acknowledgePythonIdeRecoveryDraft(
+						draft,
+						storageUserID.value
+					))
+				) {
+					throw new Error(
+						"Could not remove the local recovery copy; browser storage is unavailable."
+					);
+				}
+			}
+			recoveryDraftsForLocalProjects.delete(project._id);
+		}
 		if (isRemoteProject) {
 			await deleteRemotePythonIdeProject(project._id, accountScope);
 		}
@@ -3347,7 +3449,6 @@ async function deleteProject(project: PythonIdeProjectListItem) {
 			}
 		}
 		if (isRemoteProject) {
-			await discardLocalProjectSnapshotIfSafe();
 			saveMessage.value = syncedSaveMessage.value;
 		} else {
 			await persistLocalProjects();

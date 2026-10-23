@@ -24,6 +24,10 @@ import {
 	updateRemotePythonIdeProject,
 	updateRemotePythonIdeProjectShare
 } from "@/modules/pythonIde";
+import {
+	loadPythonIdeRecoveryDrafts,
+	savePythonIdeRecoveryDraft
+} from "@/modules/pythonIdeRecovery";
 import { useAppStore } from "@/stores/app";
 
 const requests = vi.hoisted(() => ({
@@ -55,6 +59,8 @@ beforeEach(() => {
 	Object.defineProperty(window, "localStorage", {
 		configurable: true,
 		value: {
+			get length() { return values.size; },
+			key: (index: number) => [...values.keys()][index] ?? null,
 			getItem: (key: string) => values.get(key) ?? null,
 			setItem: (key: string, value: string) => values.set(key, value),
 			removeItem: (key: string) => values.delete(key)
@@ -97,7 +103,6 @@ interface WorkspaceState {
 	scheduleSave: () => void;
 	saveSelectedProject: (options: { force: boolean }) => Promise<void>;
 	persistLocalProjectSnapshot: () => Promise<void>;
-	syncProjectsToAccount: (projects: PythonIdeProject[]) => Promise<PythonIdeProject[]>;
 	runCurrentProject: () => Promise<void>;
 }
 function state(wrapper: VueWrapper) {
@@ -179,8 +184,8 @@ describe("account-bound workspace lifetime", () => {
 		expect(wrapper.findComponent(CodeIdeWorkspace).vm === original).toBe(false);
 		await vi.advanceTimersByTimeAsync(1000);
 		await previous.persistLocalProjectSnapshot();
-		expect(loadLocalPythonProjects("alice")[0]?.files[0].content).toBe("alice private work");
-		expect(JSON.stringify(loadLocalPythonProjects(owner))).not.toContain("alice private");
+		expect((await loadPythonIdeRecoveryDrafts("alice"))[0]?.project.files[0].content).toBe("alice private work");
+		if (owner) expect(JSON.stringify(await loadPythonIdeRecoveryDrafts(owner))).not.toContain("alice private");
 		expect(state(wrapper).projects.some(item => item.title.includes("alice"))).toBe(false);
 		expect(requests.post).not.toHaveBeenCalled();
 	});
@@ -195,24 +200,51 @@ describe("account-bound workspace lifetime", () => {
 		expect(wrapper.findComponent(CodeIdeWorkspace).vm === original).toBe(false);
 		expect(requests.get.mock.calls.at(-1)?.[1].signal.aborted).toBe(false);
 	});
-	it("does not send the remainder of recovered projects after an account switch", async () => {
+	it("does not continue a project save after an account switch", async () => {
 		const { wrapper, app } = await workspace();
+		const current = state(wrapper);
+		current.projects = [project("alice"), project("alice-second")];
+		current.selectedProjectID = "local-alice";
+		current.suppressAutoSave = false;
 		const first = deferred<{ data: { project: PythonIdeProject } }>();
 		requests.post.mockReturnValueOnce(first.promise);
-		const recovery = state(wrapper).syncProjectsToAccount([project("alice"), project("alice-second")]);
-		const rejected = expect(recovery).rejects.toBeDefined();
+		const saving = current.saveSelectedProject({ force: true });
+		await flushPromises();
 		expect(requests.post).toHaveBeenCalledTimes(1);
 		app.$patch({ currentUser: { _id: "bob" } });
 		await nextTick();
 		first.resolve({ data: { project: project("alice") } });
-		await rejected;
+		await saving;
 		expect(requests.post).toHaveBeenCalledTimes(1);
 		expect(requests.post.mock.calls[0][2].headers).toEqual({ "X-Code-IDE-Owner": "alice" });
+	});
+	it("opens unsynced account work as separate copies without overwriting remote projects", async () => {
+		await savePythonIdeRecoveryDraft({ ...project("first"), _id: "remote-first", revision: 0 }, "alice");
+		await savePythonIdeRecoveryDraft({ ...project("second"), _id: "remote-second", revision: 0 }, "alice");
+		requests.get.mockImplementation(async (path: string) => {
+			if (path === "/users/loggedin/python-projects") {
+				return { data: { projects: [
+					{ ...project("first"), _id: "remote-first", revision: 1 },
+					{ ...project("second"), _id: "remote-second", revision: 1 }
+				], nextOffset: null } };
+			}
+			if (path === "/users/loggedin/python-project-reviews") {
+				return { data: { reviews: [], nextOffset: null } };
+			}
+			throw new Error(`Unexpected request: ${path}`);
+		});
+		const { wrapper } = await workspace();
+		await flushPromises();
+		const current = state(wrapper);
+		expect(current.projects).toHaveLength(2);
+		expect(current.projects.every(candidate => candidate._id.startsWith("local-recovery-"))).toBe(true);
+		expect(requests.put).not.toHaveBeenCalled();
+		expect(requests.post).not.toHaveBeenCalled();
 	});
 });
 
 describe("owner-bound persistence and requests", () => {
-	it("preserves IndexedDB recovery through delayed writes and a full localStorage mirror", async () => {
+	it("preserves legacy IndexedDB snapshots through delayed writes", async () => {
 		const gate = deferred<void>();
 		const started = deferred<void>();
 		const records = new Map<string, { key: string; projects: PythonIdeProject[] }>();
@@ -265,22 +297,6 @@ describe("owner-bound persistence and requests", () => {
 		await storage.clearLocalPythonProjectsAsync("alice");
 		expect(records.size).toBe(0);
 		expect(storage.loadLocalPythonProjects("alice")).toEqual([]);
-		const { wrapper, app } = await workspace();
-		const current = state(wrapper);
-		current.projects = [project("quota")];
-		current.selectedProjectID = "local-quota";
-		current.suppressAutoSave = false;
-		current.autoSaveEnabled = true;
-		vi.spyOn(window.localStorage, "setItem").mockImplementation(() => {
-			throw new DOMException("Synthetic full mirror", "QuotaExceededError");
-		});
-		vi.spyOn(console, "warn").mockImplementation(() => {});
-		current.scheduleSave();
-		app.$patch({ currentUser: { _id: "bob" } });
-		await nextTick();
-		const recovered = await loadLocalPythonProjectsAsync("alice");
-		expect(recovered[0].title).toBe("quota private project");
-		expect(await loadLocalPythonProjectsAsync("bob")).toEqual([]);
 		database.onversionchange?.();
 	});
 	it("does not resurrect a synchronous clear after queued storage completes", async () => {

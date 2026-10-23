@@ -57,7 +57,7 @@ const pythonProjectSchema: Schema<IPythonProject> = new Schema(
 		shareCreatedAt: { type: Date },
 		sharedSourceID: { type: String, trim: true, maxlength: 80 }
 	},
-	{ timestamps: true }
+	{ timestamps: true, optimisticConcurrency: true }
 );
 
 pythonProjectSchema.index({ user: 1, ownerRole: 1, updatedAt: -1 });

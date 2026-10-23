@@ -12,7 +12,7 @@ import type {
 } from "../../types/entities/IPythonProjectReview.js";
 import { randomBytes } from "node:crypto";
 import { env } from "node:process";
-import { Types } from "mongoose";
+import mongoose, { Types } from "mongoose";
 import { z } from "zod";
 import { PythonProject } from "../../models/schemas/PythonProject.js";
 import { PythonProjectReview } from "../../models/schemas/PythonProjectReview.js";
@@ -155,6 +155,9 @@ const projectPayloadSchema = z.object({
 	starterUrl: z.string().trim().url().max(500).optional(),
 	sharedSourceID: z.string().trim().regex(SHARE_ID_RE).optional()
 });
+const updateProjectPayloadSchema = projectPayloadSchema.partial().extend({
+	expectedRevision: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER)
+});
 const projectSharePayloadSchema = z.object({
 	shared: z.boolean()
 });
@@ -184,7 +187,8 @@ function serializePythonProject(project: IPythonProject) {
 		shareCreatedAt: project.shared ? project.shareCreatedAt : undefined,
 		sharedSourceID: project.sharedSourceID,
 		createdAt: project.createdAt,
-		updatedAt: project.updatedAt
+		updatedAt: project.updatedAt,
+		revision: project.__v ?? 0
 	};
 }
 
@@ -204,7 +208,8 @@ function serializePythonProjectMetadata(project: IPythonProject) {
 		shareCreatedAt: project.shared ? project.shareCreatedAt : undefined,
 		sharedSourceID: project.sharedSourceID,
 		createdAt: project.createdAt,
-		updatedAt: project.updatedAt
+		updatedAt: project.updatedAt,
+		revision: project.__v ?? 0
 	};
 }
 
@@ -877,9 +882,12 @@ export const updatePythonProject: RequestHandler = async (req, res) => {
 	const project = await findOwnedProject(req, res);
 	if (!project) return;
 
-	const parsed = projectPayloadSchema.partial().safeParse(req.body ?? {});
+	const parsed = updateProjectPayloadSchema.safeParse(req.body ?? {});
 	if (!parsed.success) {
 		return res.status(400).json({ message: "Invalid project payload", issues: parsed.error.issues });
+	}
+	if (parsed.data.expectedRevision !== (project.__v ?? 0)) {
+		return res.status(409).json({ message: "Project changed in another session; keep your local copy and review before saving." });
 	}
 
 	const nextMode = parsed.data.mode ?? project.mode;
@@ -904,7 +912,15 @@ export const updatePythonProject: RequestHandler = async (req, res) => {
 	project.ownerRole ??= "user";
 	if (parsed.data.files || parsed.data.activeFileName) project.activeFileName = nextActiveFileName;
 
-	await project.save();
+	try {
+		await project.save();
+	}
+	catch (error) {
+		if (error instanceof mongoose.Error.VersionError) {
+			return res.status(409).json({ message: "Project changed in another session; keep your local copy and review before saving." });
+		}
+		throw error;
+	}
 	res.json({ project: serializePythonProject(project) });
 };
 
@@ -931,7 +947,15 @@ export const updatePythonProjectShare: RequestHandler = async (req, res) => {
 		project.shareCreatedAt = undefined;
 	}
 
-	await project.save();
+	try {
+		await project.save();
+	}
+	catch (error) {
+		if (error instanceof mongoose.Error.VersionError) {
+			return res.status(409).json({ message: "Project changed in another session; reload before changing sharing." });
+		}
+		throw error;
+	}
 	res.json({ project: serializePythonProject(project) });
 };
 

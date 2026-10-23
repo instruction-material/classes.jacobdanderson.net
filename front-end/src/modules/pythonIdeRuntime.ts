@@ -693,12 +693,13 @@ function escapePythonString(value: string) {
 
 export function createTrustedPythonImportPrelude(projectRoot = PROJECT_ROOT) {
 	return `
+import builtins as __classes_import_builtins
 import os
 import sys
 __classes_project_root_path = os.path.realpath(${escapePythonString(projectRoot)})
 sys.path[:] = [
     entry for entry in sys.path
-    if entry and not (
+    if __classes_import_builtins.isinstance(entry, __classes_import_builtins.str) and entry and not (
         os.path.realpath(entry) == __classes_project_root_path
         or os.path.realpath(entry).startswith(__classes_project_root_path + os.sep)
     )

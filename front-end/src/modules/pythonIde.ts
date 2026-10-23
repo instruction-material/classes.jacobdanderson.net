@@ -112,7 +112,7 @@ const PYTHON_IDE_INDEXED_DB_NAME = "classes-python-ide";
 const PYTHON_IDE_INDEXED_DB_VERSION = 1;
 const PYTHON_IDE_PROJECT_STORE = "projectStores";
 const JAVA_MAIN_METHOD_RE =
-	/\b(?:public\s+static|static\s+public)\s+void\s+main\s*\(\s*(?:String\s*\[\s*\]\s+\w+|String\s+\w+\s*\[\s*\]|String\s*\.\.\.\s+\w+)\s*\)\s*\{/;
+	/\b(?:public\s+static|static\s+public)\s+void\s+main\s*\(\s*(?:String\s*\[\s*\]\s+\w+|String\s+\w+\s*\[\s*\]|String\s*\.\.\.\s+\w+)\s*\)\s*(?:throws\s+[\w.$]+(?:\s*,\s*[\w.$]+)*\s*)?\{/;
 const KAREL_RUN_METHOD_RE = /\b(?:public\s+)?void\s+run\s*\(\s*\)\s*\{/;
 const KAREL_CLASS_RE = /\bclass\s+\w+\s+extends\s+(?:SuperKarel|Karel)\b/;
 const PYTHON_IDE_SHARE_ID_RE = /^[\w-]{20,80}$/;
@@ -161,6 +161,7 @@ export interface PythonIdeFile {
 
 export interface PythonIdeProject {
 	_id: string;
+	revision?: number;
 	title: string;
 	mode: PythonIdeMode;
 	files: PythonIdeFile[];
@@ -252,6 +253,7 @@ function nextPythonIdePageOffset(
 }
 
 export interface PythonIdeProjectPayload {
+	expectedRevision?: number;
 	title?: string;
 	mode?: PythonIdeMode;
 	files?: PythonIdeFile[];
@@ -3461,6 +3463,24 @@ function queueLocalProjectStorage<Result>(
 export async function loadLocalPythonProjectsAsync(userID?: string | null) {
 	return queueLocalProjectStorage(pythonIdeStorageKey(userID), () => {
 		return readLocalPythonProjects(userID);
+	});
+}
+
+export async function loadLegacyLocalPythonProjectCopiesAsync(userID: string) {
+	return queueLocalProjectStorage(pythonIdeStorageKey(userID), async () => {
+		const key = pythonIdeStorageKey(userID);
+		const indexed = await readIndexedDbPythonProjects(key);
+		const mirror = loadLocalPythonProjects(userID);
+		const copies = [indexed ?? [], mirror].filter(
+			projects => projects.length
+		);
+		return copies.filter(
+			(projects, index) =>
+				copies.findIndex(
+					candidate =>
+						JSON.stringify(candidate) === JSON.stringify(projects)
+				) === index
+		);
 	});
 }
 

@@ -1,5 +1,5 @@
 import type { VueWrapper } from "@vue/test-utils";
-import type { PythonIdeProject } from "@/modules/pythonIde";
+import type { PythonIdeProject, PythonIdeProjectPayload } from "@/modules/pythonIde";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { flushPromises, mount } from "@vue/test-utils";
@@ -33,6 +33,7 @@ vi.mock("@/modules/codePreview", async importOriginal => ({
 
 const existingProject: PythonIdeProject = {
 	_id: "existing-project",
+	revision: 0,
 	activeFileName: "main.py",
 	files: [{ name: "main.py", content: "print('existing')" }],
 	mode: "python",
@@ -123,7 +124,8 @@ beforeEach(() => {
 			data: {
 				project: {
 					...payload,
-					_id: `imported-project-${++createdProjects}`
+					_id: `imported-project-${++createdProjects}`,
+					revision: 0
 				}
 			}
 		})
@@ -207,6 +209,7 @@ describe("Code IDE route import consent", () => {
 					const project = {
 						...JSON.parse(JSON.stringify(payload)),
 						_id: "web-project",
+						revision: 0,
 						createdAt: "2026-10-20T12:00:00.000Z",
 						updatedAt: "2026-10-20T12:00:00.000Z"
 					};
@@ -215,10 +218,11 @@ describe("Code IDE route import consent", () => {
 				}
 			);
 			requests.put.mockImplementation(
-				async (path: string, payload: PythonIdeProject) => {
+				async (path: string, payload: PythonIdeProjectPayload) => {
 					const project = {
 						...JSON.parse(JSON.stringify(payload)),
 						_id: path.split("/").at(-1)!,
+						revision: (payload.expectedRevision ?? 0) + 1,
 						createdAt: "2026-10-20T12:00:00.000Z",
 						updatedAt: "2026-10-20T12:00:01.000Z"
 					};

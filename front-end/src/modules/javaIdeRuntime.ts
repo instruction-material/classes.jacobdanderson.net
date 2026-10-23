@@ -3366,7 +3366,7 @@ function parseJavaVoidMethods(source: string) {
 function parseJavaMethods(source: string) {
 	const methods = new Map<string, JavaMethodDefinition>();
 	const methodPattern =
-		/\b(?:public|private|protected|static|final|abstract|synchronized|\s)*([A-Z_]\w*(?:\s*<[^>(){};]*>)?(?:\s*\[\s*\])*)\s+([A-Z_]\w*)\s*\(([^)]*)\)\s*\{/gi;
+		/\b(?:public|private|protected|static|final|abstract|synchronized|\s)*([A-Z_]\w*(?:\s*<[^>(){};]*>)?(?:\s*\[\s*\])*)\s+([A-Z_]\w*)\s*\(([^)]*)\)\s*(?:throws\s+[\w.$]+(?:\s*,\s*[\w.$]+)*\s*)?\{/gi;
 	for (const match of source.matchAll(methodPattern)) {
 		const returnType = match[1]?.replace(/\s+/g, " ").trim() ?? "";
 		const name = match[2];

@@ -12,6 +12,7 @@ export interface PythonProjectFile {
 
 export interface IPythonProject {
 	_id: Types.ObjectId;
+	__v?: number;
 	user: Types.ObjectId;
 	ownerRole?: PythonProjectOwnerRole;
 	title: string;
