@@ -279,7 +279,7 @@ export function acknowledgePythonIdeRecoveryDraft(
 				);
 			});
 		} catch {
-			return false;
+			// The mirror can be the only available recovery store.
 		}
 		return clearMirrorsThrough(owner, draft, true);
 	});

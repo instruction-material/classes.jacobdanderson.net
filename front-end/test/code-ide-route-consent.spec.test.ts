@@ -627,6 +627,35 @@ describe("Code IDE route import consent", () => {
 		});
 	});
 
+	it("loads the remote detail selected after deleting a local recovery copy", async () => {
+		const { wrapper } = await openWorkspace("/ide");
+		const state = wrapper.findComponent(CodeIdeWorkspace).vm.$.setupState as {
+			projects: PythonIdeProject[];
+			projectCatalog: Array<Omit<PythonIdeProject, "files">>;
+			selectedProjectID: string;
+			deleteProject: (project: PythonIdeProject) => Promise<void>;
+			activeFile: { content: string } | null;
+		};
+		const recovery = { ...structuredClone(existingProject), _id: "local-recovery-copy", title: "Recovery copy" };
+		const { files: _files, ...remote } = existingProject;
+		state.projects = [recovery];
+		state.projectCatalog = [recovery, remote];
+		state.selectedProjectID = recovery._id;
+		await settle();
+		requests.get.mockClear();
+		expect(state.projects.some(project => project._id === remote._id)).toBe(false);
+		await state.deleteProject(recovery);
+		await settle();
+		expect(requests.get).toHaveBeenCalledWith(
+			"/users/loggedin/python-projects/existing-project",
+			expect.anything()
+		);
+		expect(state.selectedProjectID).toBe(remote._id);
+		expect(state.projects.map(project => project._id)).toEqual([remote._id]);
+		expect(state.activeFile?.content).toBe("print('existing')");
+		expect(requests.delete).not.toHaveBeenCalled();
+	});
+
 	it("does not fetch or save a URL-supplied starter before explicit approval", async () => {
 		const starterUrl =
 			"https://github.com/attacker/example/tree/main/starter";

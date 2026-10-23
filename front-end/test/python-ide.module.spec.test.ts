@@ -5,6 +5,7 @@ import { EditorState } from "@codemirror/state";
 import { spawnSync } from "node:child_process";
 import {
 	existsSync,
+	mkdirSync,
 	mkdtempSync,
 	readFileSync,
 	rmSync,
@@ -4397,6 +4398,60 @@ print("second run ready")
 		}
 	);
 
+	it.each(["turtle", "pgzero", "data"] as const)(
+		"restores mutated path helpers before the next %s bootstrap",
+		mode => {
+			const projectRoot = mkdtempSync(join(tmpdir(), "classes-path-helpers-"));
+			try {
+				const source = `
+import os
+os.makedirs(${JSON.stringify(projectRoot)}, exist_ok=True)
+for name in ("posixpath", "genericpath", "importlib"):
+    with open(${JSON.stringify(projectRoot)} + "/" + name + ".py", "w") as file:
+        file.write('raise AssertionError("Project path helpers were imported")\\n')
+${createTrustedPythonImportPrelude(projectRoot)}
+${createInputBootstrap("", mode, projectRoot)}
+import os
+import sys
+os.chdir(${JSON.stringify(projectRoot)})
+sys.path.insert(0, ${JSON.stringify(projectRoot)})
+sys.modules.pop("genericpath", None)
+os.path.realpath = None
+os.path.dirname = None
+str = "student variable"
+getattr = None
+${createTrustedPythonImportPrelude(projectRoot)}
+assert __classes_import_builtins.callable(os.path.realpath)
+assert not any(entry.startswith(${JSON.stringify(projectRoot)}) for entry in sys.path)
+${createInputBootstrap("", mode, projectRoot)}
+import os
+import sys
+import json
+assert json.loads('[1, 2]') == [1, 2]
+os.chdir(${JSON.stringify(projectRoot)})
+sys.path.insert(0, ${JSON.stringify(projectRoot + "/nested")})
+os.path.realpath = lambda value: ${JSON.stringify(projectRoot + "/wrong")}
+${createTrustedPythonImportPrelude(projectRoot)}
+assert not any(entry.startswith(${JSON.stringify(projectRoot)}) for entry in sys.path)
+${createInputBootstrap("", mode, projectRoot)}
+import os
+assert os.path.realpath("/") == "/"
+print("path helpers ready")
+`;
+				const proofDirectory = process.env.PYTHON_PATH_RECOVERY_PROOF_DIR;
+				if (proofDirectory) {
+					mkdirSync(proofDirectory, { recursive: true });
+					writeFileSync(join(proofDirectory, `${mode}-path-recovery.py`), source);
+				}
+				const result = spawnSync("python3", ["-I", "-c", source], { encoding: "utf8", timeout: 10000 });
+				expect(result.status, result.stderr).toBe(0);
+				expect(result.stdout.trim()).toBe("path helpers ready");
+			} finally {
+				rmSync(projectRoot, { recursive: true, force: true });
+			}
+		}
+	);
+
 	it.each(["ast", "pathlib"])(
 		"loads trusted %s before making project imports visible",
 		moduleName => {
@@ -6764,6 +6819,56 @@ else:
 			expect(result.stderr).toEqual([]);
 		}
 	});
+
+	it.each([
+		"public static final",
+		"public static synchronized",
+		"synchronized static public final",
+		"public strictfp static",
+		"static final public"
+	])("selects and runs Java main with %s modifiers", modifiers => {
+		const project = createPythonIdeProject("java");
+		project.files = [
+			{ name: "Main.java", content: "public class Main { void help() {} }" },
+			{ name: "Helper.java", content: "public class Helper {}" },
+			{ name: "App.java", content: `public class App {
+    ${modifiers} void main(String[] args) { System.out.println(total(2, 3)); }
+    static int total(int left, int right) { return left + right; }
+}` }
+		];
+		for (const activeFileName of ["Helper.java", "Main.java"]) {
+			project.activeFileName = activeFileName;
+			expect(getPythonIdeRunnableFile(project)?.name).toBe("App.java");
+			expect(runJavaIdeProject(project)).toMatchObject({ stdout: ["5"], stderr: [] });
+		}
+	});
+
+	it.each(["private static", "public", "static"])(
+		"does not select a non-launcher Java method with %s modifiers",
+		modifiers => {
+			const project = createPythonIdeProject("java");
+			project.files = [
+				{ name: "Helper.java", content: `class Helper { ${modifiers} void main(String[] args) {} }` },
+				{ name: "App.java", content: "class App { public static void main(String[] args) { System.out.println(5); } }" }
+			];
+			project.activeFileName = "Helper.java";
+			expect(getPythonIdeRunnableFile(project)?.name).toBe("App.java");
+		}
+	);
+
+	it.each(["// Example shape: {", "/* Example shape: } */"])(
+		"keeps Java field scope across comment braces: %s",
+		comment => {
+			const project = createPythonIdeProject("java");
+			project.files = [{ name: "Main.java", content: `public class Main {
+    ${comment}
+    static final int BASE = 7;
+    public static void main(String[] args) { System.out.println(total()); }
+    static int total() { return BASE + 5; }
+}` }];
+			expect(runJavaIdeProject(project)).toMatchObject({ stdout: ["12"], stderr: [] });
+		}
+	);
 
 	it("runs Karel driver files instead of active helper classes", () => {
 		const project = createPythonIdeProject("karel", {

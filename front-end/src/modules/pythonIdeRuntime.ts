@@ -696,6 +696,14 @@ export function createTrustedPythonImportPrelude(projectRoot = PROJECT_ROOT) {
 import builtins as __classes_import_builtins
 import os
 import sys
+sys.meta_path[:] = [
+    __classes_import_finder for __classes_import_finder in sys.meta_path
+    if not __classes_import_builtins.getattr(
+        __classes_import_finder, "__classes_python_ide_project_finder__", False
+    )
+]
+import _frozen_importlib as __classes_import_bootstrap
+__classes_import_bootstrap.FrozenImporter.exec_module(os.path)
 __classes_project_root_path = os.path.realpath(${escapePythonString(projectRoot)})
 sys.path[:] = [
     entry for entry in sys.path

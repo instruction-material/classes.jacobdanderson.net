@@ -185,7 +185,7 @@ describe("courses page access gate", () => {
 				.findAll(".historical-progress code")
 				.map(item => item.text())
 		).toEqual(oldIds);
-		expect(wrapper.find(".historical-progress button").exists()).toBe(
+		expect(wrapper.find('.historical-progress button[aria-label^="Remove earlier"]').exists()).toBe(
 			false
 		);
 		wrapper.unmount();

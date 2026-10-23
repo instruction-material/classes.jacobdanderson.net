@@ -3444,7 +3444,11 @@ async function deleteProject(project: PythonIdeProjectListItem) {
 		deleteCodeEditorStateForProject(project._id);
 		if (deletingSelectedProject) {
 			selectedProjectID.value = sortedProjects.value[0]?._id ?? "";
-			if (isRemoteProject && selectedProjectID.value) {
+			if (
+				canSyncToAccount.value &&
+				selectedProjectID.value &&
+				!selectedProjectID.value.startsWith("local-")
+			) {
 				await loadRemoteProjectDetail(selectedProjectID.value);
 			}
 		}

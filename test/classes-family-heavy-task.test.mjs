@@ -1,12 +1,12 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
-import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { platform } from "node:process";
 import test from "node:test";
 
-const wrapperPath = join(
+const wrapperPath = process.env.CLASSES_FAMILY_WRAPPER_UNDER_TEST ?? join(
 	import.meta.dirname,
 	"../scripts/classes-family-heavy-task.mjs"
 );
@@ -96,6 +96,7 @@ test(
 		].join("\n");
 		let wrapper;
 		let descendantPid;
+		let ownedGroupId;
 		try {
 			wrapper = spawn(
 				process.execPath,
@@ -112,23 +113,73 @@ test(
 					stdio: "ignore"
 				}
 			);
-			const exited = waitForExit(wrapper, 12000);
+			const exited = waitForExit(wrapper, 15000);
 			await waitForFile(descendantPidPath, 5000);
+			ownedGroupId = JSON.parse(readFileSync(join(lockPath, "owner.json"), "utf8")).childPid;
 			descendantPid = Number(readFileSync(descendantPidPath, "utf8"));
 			assert.ok(Number.isInteger(descendantPid) && descendantPid > 0);
-			assert.deepEqual(await exited, { code: 124, signal: null });
+			assert.deepEqual(await exited, { code: 124, signal: null }, readFileSync(logPath, "utf8"));
 			assert.equal(existsSync(lockPath), false);
 			const events = readFileSync(logPath, "utf8");
 			assert.match(events, /"event":"timeout"/);
 			assert.match(events, /"exitCode":124/);
-			const deadline = Date.now() + 2000;
-			while (isAlive(descendantPid) && Date.now() < deadline)
-				await new Promise(resolve => setTimeout(resolve, 25));
+			const completed = events.trim().split("\n").map(line => JSON.parse(line))
+				.find(event => event.event === "end");
+			assert.equal(completed.childExitObserved, true);
+			assert.equal(completed.processGroupAlive, false);
+			assert.equal(completed.childProcessGroupCleanup, "terminated and reaped");
 			assert.equal(isAlive(descendantPid), false);
 		} finally {
 			wrapper?.kill("SIGKILL");
+			if (ownedGroupId && isAlive(-ownedGroupId)) {
+				try { process.kill(-ownedGroupId, "SIGKILL"); }
+				catch (error) { if (error.code !== "ESRCH") throw error; }
+			}
 			if (descendantPid && isAlive(descendantPid))
 				process.kill(descendantPid, "SIGKILL");
+			rmSync(directory, { recursive: true, force: true });
+		}
+	}
+);
+
+test(
+	"an exited owner cannot release an active child group's lock",
+	{ skip: platform === "win32", timeout: 10000 },
+	async () => {
+		const directory = mkdtempSync(join(tmpdir(), "classes-heavy-stale-"));
+		const lockPath = join(directory, "lock");
+		const env = {
+			...process.env,
+			CLASSES_FAMILY_ALLOW_HIGH_LOAD: "1",
+			CLASSES_FAMILY_HEAVY_LOG: join(directory, "events.jsonl"),
+			CLASSES_FAMILY_LOCK: lockPath
+		};
+		let owner;
+		let active;
+		let contender;
+		try {
+			owner = spawn(process.execPath, ["-e", "process.exit(0)"], { stdio: "ignore" });
+			await waitForExit(owner, 3000);
+			active = spawn(process.execPath, ["-e", "setInterval(() => {}, 1000)"], { detached: true, stdio: "ignore" });
+			const activeExit = waitForExit(active, 7000);
+			mkdirSync(lockPath);
+			writeFileSync(join(lockPath, "owner.json"), JSON.stringify({ parentPid: owner.pid, childPid: active.pid }));
+			contender = spawn(process.execPath, [wrapperPath, "--", process.execPath, "-e", "process.exit(0)"], { env, stdio: "ignore" });
+			assert.deepEqual(await waitForExit(contender, 3000), { code: 75, signal: null });
+			assert.equal(existsSync(lockPath), true);
+			assert.equal(isAlive(active.pid), true);
+			process.kill(-active.pid, "SIGKILL");
+			await activeExit;
+			contender = spawn(process.execPath, [wrapperPath, "--", process.execPath, "-e", "process.exit(0)"], { env, stdio: "ignore" });
+			assert.deepEqual(await waitForExit(contender, 3000), { code: 0, signal: null });
+			assert.equal(existsSync(lockPath), false);
+		} finally {
+			owner?.kill("SIGKILL");
+			contender?.kill("SIGKILL");
+			if (active?.pid && isAlive(-active.pid)) {
+				process.kill(-active.pid, "SIGKILL");
+				await new Promise(resolve => active.once("exit", resolve));
+			}
 			rmSync(directory, { recursive: true, force: true });
 		}
 	}

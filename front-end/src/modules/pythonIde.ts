@@ -112,7 +112,7 @@ const PYTHON_IDE_INDEXED_DB_NAME = "classes-python-ide";
 const PYTHON_IDE_INDEXED_DB_VERSION = 1;
 const PYTHON_IDE_PROJECT_STORE = "projectStores";
 const JAVA_MAIN_METHOD_RE =
-	/\b(?:public\s+static|static\s+public)\s+void\s+main\s*\(\s*(?:String\s*\[\s*\]\s+\w+|String\s+\w+\s*\[\s*\]|String\s*\.\.\.\s+\w+)\s*\)\s*(?:throws\s+[\w.$]+(?:\s*,\s*[\w.$]+)*\s*)?\{/;
+	/\b((?:(?:public|static|final|synchronized|strictfp)\s+){1,5})void\s+main\s*\(\s*(?:String\s*\[\s*\]\s+\w+|String\s+\w+\s*\[\s*\]|String\s*\.\.\.\s+\w+)\s*\)\s*(?:throws\s+[\w.$]+(?:\s*,\s*[\w.$]+)*\s*)?\{/g;
 const KAREL_RUN_METHOD_RE = /\b(?:public\s+)?void\s+run\s*\(\s*\)\s*\{/;
 const KAREL_CLASS_RE = /\bclass\s+\w+\s+extends\s+(?:SuperKarel|Karel)\b/;
 const PYTHON_IDE_SHARE_ID_RE = /^[\w-]{20,80}$/;
@@ -3352,13 +3352,22 @@ function getKarelIdeRunnableFile(
 }
 
 function hasJavaMainMethod(file: Pick<PythonIdeFile, "content">) {
-	return JAVA_MAIN_METHOD_RE.test(javaEntryPointSearchText(file));
+	return hasJavaMainSignature(javaEntryPointSearchText(file));
+}
+
+function hasJavaMainSignature(source: string) {
+	for (const match of source.matchAll(JAVA_MAIN_METHOD_RE)) {
+		const modifiers = match[1]?.trim().split(/\s+/) ?? [];
+		if (modifiers.includes("public") && modifiers.includes("static"))
+			return true;
+	}
+	return false;
 }
 
 function isLikelyKarelEntryFile(file: Pick<PythonIdeFile, "content">) {
 	const searchText = javaEntryPointSearchText(file);
 	return (
-		JAVA_MAIN_METHOD_RE.test(searchText) ||
+		hasJavaMainSignature(searchText) ||
 		(KAREL_CLASS_RE.test(searchText) &&
 			KAREL_RUN_METHOD_RE.test(searchText))
 	);

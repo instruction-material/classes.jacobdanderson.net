@@ -112,6 +112,37 @@ afterEach(() => {
 });
 
 describe("Code IDE recovery drafts", () => {
+
+	it("acknowledges the mirror when IndexedDB is blocked without clearing newer or other-owner drafts", async () => {
+		vi.spyOn(window.indexedDB, "open").mockImplementation(() => {
+			throw new DOMException("Synthetic blocked database", "SecurityError");
+		});
+		const recovery = await recoveryModule();
+		const old = await recovery.savePythonIdeRecoveryDraft(project("one", "old"), "alice");
+		const current = await recovery.savePythonIdeRecoveryDraft(project("one", "new"), "alice");
+		await recovery.savePythonIdeRecoveryDraft(project("two", "sibling"), "alice");
+		await recovery.savePythonIdeRecoveryDraft(project("one", "other owner"), "bob");
+		expect(await recovery.acknowledgePythonIdeRecoveryDraft(old, "alice")).toBe(true);
+		expect((await recovery.loadPythonIdeRecoveryDrafts("alice")).map(draft => draft.project.files[0].content)).toEqual(["new", "sibling"]);
+		expect(await recovery.acknowledgePythonIdeRecoveryDraft(current, "alice")).toBe(true);
+		vi.resetModules();
+		const reopened = await recoveryModule();
+		expect((await reopened.loadPythonIdeRecoveryDrafts("alice")).map(draft => draft.project._id)).toEqual(["two"]);
+		expect((await reopened.loadPythonIdeRecoveryDrafts("bob"))[0]?.project.files[0].content).toBe("other owner");
+	});
+
+	it("retains the recovery mirror when neither store can acknowledge a draft", async () => {
+		vi.spyOn(window.indexedDB, "open").mockImplementation(() => {
+			throw new DOMException("Synthetic blocked database", "SecurityError");
+		});
+		const recovery = await recoveryModule();
+		const draft = await recovery.savePythonIdeRecoveryDraft(project("one", "unsaved"), "alice");
+		vi.spyOn(window.localStorage, "removeItem").mockImplementation(() => {
+			throw new DOMException("Synthetic blocked mirror", "SecurityError");
+		});
+		expect(await recovery.acknowledgePythonIdeRecoveryDraft(draft, "alice")).toBe(false);
+		expect((await recovery.loadPythonIdeRecoveryDrafts("alice"))[0]?.project.files[0].content).toBe("unsaved");
+	});
 	it("keeps another project's draft when one save is acknowledged", async () => {
 		const recovery = await recoveryModule();
 		const first = await recovery.savePythonIdeRecoveryDraft(project("one", "first"), "alice");

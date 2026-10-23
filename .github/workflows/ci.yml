@@ -474,6 +474,10 @@ jobs:
                   ulimit -n 4096 || true
                   npm run -w front-end test:unit
 
+            - name: Verify heavy-task descendant cleanup and lock release
+              if: ${{ !cancelled() && steps.unit_dependencies.outcome == 'success' }}
+              run: node --test test/classes-family-heavy-task.test.mjs
+
             - name: Scratch first-lesson event and archive regressions
               run: node --test test/scratch-name-events.test.mjs
 
