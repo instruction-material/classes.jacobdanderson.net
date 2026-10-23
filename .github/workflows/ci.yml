@@ -1,1471 +1,1550 @@
 name: CI
 
 on:
-    workflow_dispatch:
-    push:
-        branches: [main]
-    pull_request:
-        branches: [main]
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 permissions:
-    contents: read
+  contents: read
 
 jobs:
-    rust-workflows:
-        runs-on: ubuntu-24.04
-        timeout-minutes: 25
+  rust-workflows:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      RUSTUP_TOOLCHAIN: 1.97.1
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.18.0
+          cache: npm
+
+      - name: Pin npm version
+        run: |
+          npm i -g npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Install pinned native Rust tools
+        run: rustup toolchain install 1.97.1 --profile minimal --component rustfmt --component clippy
+
+      - name: Build front-end for Cargo course workflows
+        run: npm run -w front-end build
+
+      - name: Verify exact selected-role source and exported Cargo workspaces
         env:
-            RUSTUP_TOOLCHAIN: 1.97.1
-        steps:
-            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-              with:
-                  persist-credentials: false
+          RUST_CARGO_EXPORT_PROOF_DIR: output/rust-cargo-exports
+        run: npm exec -w front-end -- vitest run test/rust-cargo-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
 
-            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-              with:
-                  node-version: 24.18.0
-                  cache: npm
-
-            - name: Pin npm version
-              run: |
-                  npm i -g npm@12.0.1
-                  test "$(npm --version)" = "12.0.1"
-
-            - name: Install deps
-              run: npm ci
-
-            - name: Install pinned native Rust tools
-              run: rustup toolchain install 1.97.1 --profile minimal --component rustfmt --component clippy
-
-            - name: Build front-end for Cargo course workflows
-              run: npm run -w front-end build
-
-            - name: Verify exact selected-role source and exported Cargo workspaces
-              env:
-                  RUST_CARGO_EXPORT_PROOF_DIR: output/rust-cargo-exports
-              run: npm exec -w front-end -- vitest run test/rust-cargo-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
-
-            - name: Verify actual course consent, edits and saved continuations
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/rust-cargo-screenshots
-                  RUST_CARGO_BROWSER_PROOF_DIR: output/rust-cargo-browser
-              run: node --test test/rust-cargo-course-browser.test.mjs
-
-            - name: Compile and test original and actual browser-edited Cargo exports
-              run: python3 test/rust-cargo-exported-contracts.py --exports front-end/output/rust-cargo-exports --browser output/rust-cargo-browser --proof output/rust-cargo-native/proof.json
-
-            - name: Retain Cargo browser and native evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: rust-cargo-workflows
-                  path: |
-                      front-end/output/rust-cargo-exports/
-                      output/rust-cargo-browser/
-                      output/rust-cargo-native/
-                      output/rust-cargo-screenshots/
-                  include-hidden-files: true
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify complete ownership imports and source exports
-              env:
-                  RUST_OWNERSHIP_EXPORT_PROOF_DIR: output/rust-ownership-exports
-              run: npm exec -w front-end -- vitest run test/rust-ownership-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
-
-            - name: Verify actual ownership course actions and saved continuations
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/rust-ownership-screenshots
-                  RUST_OWNERSHIP_BROWSER_PROOF_DIR: output/rust-ownership-browser
-              run: node --test test/rust-ownership-course-browser.test.mjs
-
-            - name: Compile original and browser-edited ownership exports
-              run: python3 test/rust-cargo-exported-contracts.py --lesson ownership --exports front-end/output/rust-ownership-exports --browser output/rust-ownership-browser --proof output/rust-ownership-native/proof.json
-
-            - name: Retain ownership browser and native evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: rust-ownership-workflows
-                  path: |
-                      front-end/output/rust-ownership-exports/
-                      output/rust-ownership-browser/
-                      output/rust-ownership-native/
-                      output/rust-ownership-screenshots/
-                  include-hidden-files: true
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify complete borrowing imports and source exports
-              env:
-                  RUST_BORROWING_EXPORT_PROOF_DIR: output/rust-borrowing-exports
-              run: npm exec -w front-end -- vitest run test/rust-borrowing-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
-
-            - name: Verify actual borrowing course actions and saved continuations
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/rust-borrowing-screenshots
-                  RUST_BORROWING_BROWSER_PROOF_DIR: output/rust-borrowing-browser
-              run: node --test test/rust-borrowing-course-browser.test.mjs
-
-            - name: Compile original and browser-edited borrowing exports
-              run: python3 test/rust-cargo-exported-contracts.py --lesson borrowing --exports front-end/output/rust-borrowing-exports --browser output/rust-borrowing-browser --proof output/rust-borrowing-native/proof.json
-
-            - name: Retain borrowing browser and native evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: rust-borrowing-workflows
-                  path: |
-                      front-end/output/rust-borrowing-exports/
-                      output/rust-borrowing-browser/
-                      output/rust-borrowing-native/
-                      output/rust-borrowing-screenshots/
-                  include-hidden-files: true
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify complete typed-errors imports and source exports
-              env:
-                  RUST_TYPED_ERRORS_EXPORT_PROOF_DIR: output/rust-typed-errors-exports
-              run: npm exec -w front-end -- vitest run test/rust-typed-errors-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
-
-            - name: Verify actual typed-errors course actions and saved continuations
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/rust-typed-errors-screenshots
-                  RUST_TYPED_ERRORS_BROWSER_PROOF_DIR: output/rust-typed-errors-browser
-              run: node --test test/rust-typed-errors-course-browser.test.mjs
-
-            - name: Compile original and browser-edited typed-errors exports
-              run: python3 test/rust-cargo-exported-contracts.py --lesson typed-errors --exports front-end/output/rust-typed-errors-exports --browser output/rust-typed-errors-browser --proof output/rust-typed-errors-native/proof.json
-
-            - name: Retain typed-errors browser and native evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: rust-typed-errors-workflows
-                  path: |
-                      front-end/output/rust-typed-errors-exports/
-                      output/rust-typed-errors-browser/
-                      output/rust-typed-errors-native/
-                      output/rust-typed-errors-screenshots/
-                  include-hidden-files: true
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify complete label-slices imports and source exports
-              env:
-                  RUST_LABEL_SLICES_EXPORT_PROOF_DIR: output/rust-label-slices-exports
-              run: npm exec -w front-end -- vitest run test/rust-label-slices-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
-
-            - name: Verify actual label-slices course actions and saved continuations
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/rust-label-slices-screenshots
-                  RUST_LABEL_SLICES_BROWSER_PROOF_DIR: output/rust-label-slices-browser
-              run: node --test test/rust-label-slices-course-browser.test.mjs
-
-            - name: Compile original and browser-edited label-slices exports
-              run: python3 test/rust-cargo-exported-contracts.py --lesson label-slices --exports front-end/output/rust-label-slices-exports --browser output/rust-label-slices-browser --proof output/rust-label-slices-native/proof.json
-
-            - name: Retain label-slices browser and native evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: rust-label-slices-workflows
-                  path: |
-                      front-end/output/rust-label-slices-exports/
-                      output/rust-label-slices-browser/
-                      output/rust-label-slices-native/
-                      output/rust-label-slices-screenshots/
-                  include-hidden-files: true
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify complete state-models imports and source exports
-              env:
-                  RUST_STATE_MODELS_EXPORT_PROOF_DIR: output/rust-state-models-exports
-              run: npm exec -w front-end -- vitest run test/rust-state-models-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
-
-            - name: Verify actual state-models course actions and saved continuations
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/rust-state-models-screenshots
-                  RUST_STATE_MODELS_BROWSER_PROOF_DIR: output/rust-state-models-browser
-              run: node --test test/rust-state-models-course-browser.test.mjs
-
-            - name: Compile original and browser-edited state-models exports
-              run: python3 test/rust-cargo-exported-contracts.py --lesson state-models --exports front-end/output/rust-state-models-exports --browser output/rust-state-models-browser --proof output/rust-state-models-native/proof.json
-
-            - name: Retain state-models browser and native evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: rust-state-models-workflows
-                  path: |
-                      front-end/output/rust-state-models-exports/
-                      output/rust-state-models-browser/
-                      output/rust-state-models-native/
-                      output/rust-state-models-screenshots/
-                  include-hidden-files: true
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify complete trait-pipeline imports and source exports
-              env:
-                  RUST_TRAIT_PIPELINE_EXPORT_PROOF_DIR: output/rust-trait-pipeline-exports
-              run: npm exec -w front-end -- vitest run test/rust-trait-pipeline-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
-
-            - name: Verify actual trait-pipeline course actions and saved continuations
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/rust-trait-pipeline-screenshots
-                  RUST_TRAIT_PIPELINE_BROWSER_PROOF_DIR: output/rust-trait-pipeline-browser
-              run: node --test test/rust-trait-pipeline-course-browser.test.mjs
-
-            - name: Compile original and browser-edited trait-pipeline exports
-              run: python3 test/rust-cargo-exported-contracts.py --lesson trait-pipeline --exports front-end/output/rust-trait-pipeline-exports --browser output/rust-trait-pipeline-browser --proof output/rust-trait-pipeline-native/proof.json
-
-            - name: Retain trait-pipeline browser and native evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: rust-trait-pipeline-workflows
-                  path: |
-                      front-end/output/rust-trait-pipeline-exports/
-                      output/rust-trait-pipeline-browser/
-                      output/rust-trait-pipeline-native/
-                      output/rust-trait-pipeline-screenshots/
-                  include-hidden-files: true
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify complete bounded-cli imports and source exports
-              env:
-                  RUST_BOUNDED_CLI_EXPORT_PROOF_DIR: output/rust-bounded-cli-exports
-              run: npm exec -w front-end -- vitest run test/rust-bounded-cli-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
-
-            - name: Verify actual bounded-cli course actions and saved continuations
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/rust-bounded-cli-screenshots
-                  RUST_BOUNDED_CLI_BROWSER_PROOF_DIR: output/rust-bounded-cli-browser
-              run: node --test test/rust-bounded-cli-course-browser.test.mjs
-
-            - name: Compile original and browser-edited bounded-cli exports
-              run: python3 test/rust-cargo-exported-contracts.py --lesson bounded-cli --exports front-end/output/rust-bounded-cli-exports --browser output/rust-bounded-cli-browser --proof output/rust-bounded-cli-native/proof.json
-
-            - name: Retain bounded-cli browser and native evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: rust-bounded-cli-workflows
-                  path: |
-                      front-end/output/rust-bounded-cli-exports/
-                      output/rust-bounded-cli-browser/
-                      output/rust-bounded-cli-native/
-                      output/rust-bounded-cli-screenshots/
-                  include-hidden-files: true
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify complete concurrency, boundary and capstone imports and exports
-              env:
-                  RUST_FINAL_EXPORT_PROOF_DIR: output
-              run: npm exec -w front-end -- vitest run test/rust-final-workspaces.spec.test.ts --no-file-parallelism --maxWorkers=1
-
-            - name: Verify actual concurrency course actions and saved continuations
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/rust-concurrency-screenshots
-                  RUST_CONCURRENCY_BROWSER_PROOF_DIR: output/rust-concurrency-browser
-              run: node --test test/rust-concurrency-course-browser.test.mjs
-
-            - name: Compile original and browser-edited concurrency exports without Git
-              run: python3 test/rust-cargo-exported-contracts.py --lesson concurrency --exports front-end/output/rust-concurrency-exports --browser output/rust-concurrency-browser --proof output/rust-concurrency-native/proof.json
-
-            - name: Retain concurrency browser and native evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: rust-concurrency-workflows
-                  path: |
-                      front-end/output/rust-concurrency-exports/
-                      output/rust-concurrency-browser/
-                      output/rust-concurrency-native/
-                      output/rust-concurrency-screenshots/
-                  include-hidden-files: true
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify actual boundary-review course actions and saved continuations
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/rust-boundary-review-screenshots
-                  RUST_BOUNDARY_REVIEW_BROWSER_PROOF_DIR: output/rust-boundary-review-browser
-              run: node --test test/rust-boundary-review-course-browser.test.mjs
-
-            - name: Compile original and browser-edited boundary-review exports without Git
-              run: python3 test/rust-cargo-exported-contracts.py --lesson boundary-review --exports front-end/output/rust-boundary-review-exports --browser output/rust-boundary-review-browser --proof output/rust-boundary-review-native/proof.json
-
-            - name: Retain boundary-review browser and native evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: rust-boundary-review-workflows
-                  path: |
-                      front-end/output/rust-boundary-review-exports/
-                      output/rust-boundary-review-browser/
-                      output/rust-boundary-review-native/
-                      output/rust-boundary-review-screenshots/
-                  include-hidden-files: true
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify actual record-hardening course actions and saved continuations
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/rust-record-hardening-screenshots
-                  RUST_RECORD_HARDENING_BROWSER_PROOF_DIR: output/rust-record-hardening-browser
-              run: node --test test/rust-record-hardening-course-browser.test.mjs
-
-            - name: Compile original and browser-edited record-hardening exports without Git
-              run: python3 test/rust-cargo-exported-contracts.py --lesson record-hardening --exports front-end/output/rust-record-hardening-exports --browser output/rust-record-hardening-browser --proof output/rust-record-hardening-native/proof.json
-
-            - name: Retain record-hardening browser and native evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: rust-record-hardening-workflows
-                  path: |
-                      front-end/output/rust-record-hardening-exports/
-                      output/rust-record-hardening-browser/
-                      output/rust-record-hardening-native/
-                      output/rust-record-hardening-screenshots/
-                  include-hidden-files: true
-                  if-no-files-found: error
-                  retention-days: 7
-
-    backend-install:
-        runs-on: ubuntu-24.04
-        steps:
-            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-              with:
-                  persist-credentials: false
-
-            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-              with:
-                  node-version: 24.18.0
-                  cache: npm
-                  cache-dependency-path: back-end/package-lock.json
-
-            - name: Pin npm version
-              run: |
-                  npm -v
-                  npm i -g npm@12.0.1
-                  npm -v
-                  test "$(npm --version)" = "12.0.1"
-
-            - name: Verify standalone backend install policy
-              run: node --test test/standalone-backend-install-policy.test.mjs
-
-            - name: Install backend deps with backend lockfile
-              working-directory: back-end
-              run: npm ci --include=optional --strict-allow-scripts --workspaces=false
-
-            - name: Validate backend dependency tree
-              working-directory: back-end
-              run: npm ls --all --workspaces=false
-
-            - name: Audit backend dependency tree
-              working-directory: back-end
-              run: npm audit --include=optional --workspaces=false
-
-    lint:
-        runs-on: ubuntu-24.04
-        steps:
-            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-              with:
-                  persist-credentials: false
-
-            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-              with:
-                  node-version: 24.18.0
-                  cache: npm
-
-            # Make runner's npm match packageManager in package.json
-            - name: Pin npm version
-              run: |
-                  npm -v
-                  npm i -g npm@12.0.1
-                  npm -v
-                  test "$(npm --version)" = "12.0.1"
-
-            - name: Install deps
-              run: npm ci
-
-            - name: Validate dependency tree
-              run: npm run check:dependencies
-
-            - name: Verify root lock provenance
-              run: npm run test:lock-provenance
-
-            - name: Dependency security audit
-              run: npm audit --include=optional
-
-            - name: Brace parser security and compatibility regressions
-              run: npm run test:braces-security
-
-            - name: Dependency advisory compatibility regressions
-              run: node --test --test-timeout=10000 test/dependency-advisory-regressions.test.mjs
-
-            # Root "lint" runs front-end and back-end lint
-            - name: Lint
-              run: npm run lint
-
-    typecheck:
-        runs-on: ubuntu-24.04
-        steps:
-            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-              with:
-                  persist-credentials: false
-
-            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-              with:
-                  node-version: 24.18.0
-                  cache: npm
-
-            - name: Pin npm version
-              run: |
-                  npm i -g npm@12.0.1
-                  npm -v
-                  test "$(npm --version)" = "12.0.1"
-
-            - name: Install deps
-              run: npm ci
-
-            - name: Typecheck
-              run: npm run typecheck
-
-    test:
-        runs-on: ubuntu-24.04
-        strategy:
-            matrix:
-                node-version: [24.18.0]
-                os: [ubuntu-24.04]
-            fail-fast: false
-
-        steps:
-            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-              with:
-                  persist-credentials: false
-            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-              with:
-                  node-version: ${{ matrix['node-version'] }}
-                  cache: npm
-                  registry-url: https://registry.npmjs.org/
-
-            - name: Pin npm version
-              run: |
-                  npm i -g npm@12.0.1
-                  npm -v
-                  test "$(npm --version)" = "12.0.1"
-
-            - name: Install deps
-              id: unit_dependencies
-              run: npm ci
-
-            - name: Unit tests
-              env:
-                  VITEST_WATCH: "false"
-              run: |
-                  ulimit -n 4096 || true
-                  npm run -w front-end test:unit
-
-            - name: Verify heavy-task descendant cleanup and lock release
-              if: ${{ !cancelled() && steps.unit_dependencies.outcome == 'success' }}
-              run: node --test test/classes-family-heavy-task.test.mjs
-
-            - name: Scratch first-lesson event and archive regressions
-              run: node --test test/scratch-name-events.test.mjs
-
-            - name: Preserve authored course source checks
-              run: node --test test/course-source-readiness.test.mjs
-
-            - name: Backend tests
-              if: ${{ !cancelled() && steps.unit_dependencies.outcome == 'success' }}
-              env:
-                  VITEST_WATCH: "false"
-              run: npm run -w back-end test
-
-            - name: Native deployment contract tests
-              run: npm run test:native-deployment
-
-            - name: Turtle input compatibility
-              run: python3 -B test/turtle-input-box.test.py
-
-            - name: Verify root snapshot and separate runtime ownership
-              run: sudo python3 -B test/native-candidate-ownership.test.py
-
-    accessibility:
-        runs-on: ubuntu-24.04
-        timeout-minutes: 15
-        steps:
-            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-              with:
-                  persist-credentials: false
-
-            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-              with:
-                  node-version: 24.18.0
-                  cache: npm
-
-            - name: Pin npm version
-              run: |
-                  npm i -g npm@12.0.1
-                  npm -v
-                  test "$(npm --version)" = "12.0.1"
-
-            - name: Install deps
-              run: npm ci
-
-            - name: Build front-end for accessibility checks
-              run: npm run -w front-end build
-
-            - name: Axe accessibility smoke checks
-              run: npm run a11y
-
-    static-media:
-        runs-on: ubuntu-24.04
-        timeout-minutes: 10
-        steps:
-            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-              with:
-                  persist-credentials: false
-
-            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-              with:
-                  node-version: 24.18.0
-                  cache: npm
-
-            - name: Pin npm version
-              run: |
-                  npm i -g npm@12.0.1
-                  npm -v
-                  test "$(npm --version)" = "12.0.1"
-
-            - name: Install deps
-              run: npm ci
-
-            - name: Static media fetch policy tests
-              run: npm run test:static-media-fetch
-
-            - name: Audit static course media
-              run: npm run audit:static-media
-
-    native-nginx:
-        runs-on: ubuntu-24.04
-        timeout-minutes: 5
-        steps:
-            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-              with:
-                  persist-credentials: false
-
-            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-              with:
-                  node-version: 24.18.0
-
-            - name: Install native Nginx fixture dependency
-              run: |
-                  if ! command -v nginx >/dev/null 2>&1; then
-                    sudo apt-get update
-                    sudo apt-get install --no-install-recommends --yes nginx
-                  fi
-
-            - name: Exercise native Nginx routing
-              run: npm run test:native-nginx
-
-    test-e2e:
-        runs-on: ubuntu-24.04
-        timeout-minutes: 75
-        steps:
-            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-              with:
-                  persist-credentials: false
-
-            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-              with:
-                  node-version: 24.18.0
-                  cache: npm
-                  registry-url: https://registry.npmjs.org/
-
-            - name: Pin npm version
-              run: |
-                  npm i -g npm@12.0.1
-                  npm -v
-                  test "$(npm --version)" = "12.0.1"
-
-            - name: Verify preview readiness failure recovery
-              run: node --test test/preview-readiness.test.mjs
-
-            - name: Install deps
-              run: npm ci
-
-            - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-              with:
-                  path: ~/.cache/Cypress
-                  key: cypress-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-
-            - name: Build front-end
-              run: npm run -w front-end build
-
-            - name: Install native Assembly debugger
-              run: sudo apt-get update && sudo apt-get install -y gdb binutils strace
-
-            - name: Export Assembly default and pack workspaces
-              run: ASSEMBLY_EXPORT_PROOF_DIR="$GITHUB_WORKSPACE/output/assembly-exports" npm exec -w front-end -- vitest run test/assembly-compiler-optional-workspace.spec.test.ts test/assembly-memory-layout-optional-workspace.spec.test.ts test/assembly-abi-optional-workspace.spec.test.ts test/assembly-stack-optional-workspace.spec.test.ts test/assembly-control-workspace.spec.test.ts test/assembly-machine-workspace.spec.test.ts test/assembly-logic-workspace.spec.test.ts test/assembly-register-workspace.spec.test.ts test/assembly-syscall-workspace.spec.test.ts test/assembly-setup-workspace.spec.test.ts test/assembly-workspace.spec.test.ts test/assembly-calculator-workspace.spec.test.ts test/assembly-memory-workspace.spec.test.ts test/assembly-call-parser-workspace.spec.test.ts test/assembly-compiler-workspace.spec.test.ts test/assembly-debug-workspace.spec.test.ts test/assembly-performance-workspace.spec.test.ts test/assembly-hardening-workspace.spec.test.ts test/assembly-records-workspace.spec.test.ts test/assembly-arithmetic-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
-
-            - name: Verify Assembly imports, saved source and ZIP exports
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
-                  ASSEMBLY_BROWSER_EXPORT_PROOF_DIR: output/assembly-exports
-              run: node --test test/assembly-course-import-browser.test.mjs
-
-            - name: Verify Unit 1 actual course buttons and shared trace attempt
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
-                  ASSEMBLY_RECORD_BROWSER_EXPORT_PROOF_DIR: output/assembly-record-course
-              run: node --test test/assembly-record-course-browser.test.mjs
-
-            - name: Verify Unit 3 actual course buttons and shared arithmetic trace
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
-                  ASSEMBLY_ARITHMETIC_BROWSER_EXPORT_PROOF_DIR: output/assembly-arithmetic-course
-              run: node --test test/assembly-arithmetic-course-browser.test.mjs
-
-            - name: Verify Unit 8 actual syscall course actions and saved worksheet
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
-                  ASSEMBLY_SYSCALL_BROWSER_EXPORT_PROOF_DIR: output/assembly-syscall-course
-              run: node --test test/assembly-syscall-course-browser.test.mjs
-
-            - name: Verify Unit 10 and 11 actual follow-up actions reuse saved work
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
-              run: |
-                  node --test test/assembly-debug-followups-course-browser.test.mjs
-                  node --test test/assembly-performance-followups-course-browser.test.mjs
-
-            - name: Verify Linux confirmed imports, notebook reuse and exact exports
-              env:
-                  LINUX_BROWSER_EXPORT_PROOF_DIR: output/linux-exports
-              run: node --test test/linux-course-import-browser.test.mjs
-
-            - name: Prepare the disposable Linux user manager and journal
-              run: |
-                  sudo apt-get update
-                  sudo apt-get install --no-install-recommends --yes dbus-user-session logrotate iproute2 iputils-ping curl dnsutils coreutils util-linux tar
-                  native_lab_uid=$(id -u)
-                  native_lab_user=$(id -un)
-                  native_lab_runtime=/run/user/$native_lab_uid
-                  sudo loginctl enable-linger "$native_lab_user"
-                  sudo systemctl start "user@$native_lab_uid.service"
-                  sudo install -d -m 2755 -o root -g systemd-journal /var/log/journal
-                  sudo journalctl --flush
-                  printf 'XDG_RUNTIME_DIR=%s\nDBUS_SESSION_BUS_ADDRESS=unix:path=%s/bus\n' "$native_lab_runtime" "$native_lab_runtime" >>"$GITHUB_ENV"
-
-            - name: Verify exported Linux lab contracts
-              run: |
-                  if ! command -v nginx >/dev/null 2>&1 || ! command -v apache2 >/dev/null 2>&1; then
-                    sudo apt-get update
-                    sudo apt-get install --no-install-recommends --yes nginx apache2-bin
-                  fi
-                  python3 test/linux-exported-contracts.py --archives output/linux-exports --proof output/linux-exports/exported-contracts.json
-
-            - name: Retain Linux workflow and native validation
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: linux-workflow-validation
-                  path: output/linux-exports/
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify exported Assembly contracts and native debugger traces
-              run: |
-                  python3 test/assembly-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/playwright/assembly-native-clang.json
-                  python3 test/assembly-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-native-gcc.json
-                  python3 test/assembly-exported-contracts.py --project calculator --cc clang --archives output/assembly-exports --proof output/playwright/assembly-calculator-native-clang.json
-                  python3 test/assembly-exported-contracts.py --project calculator --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-calculator-native-gcc.json
-                  python3 test/assembly-exported-contracts.py --project array --cc clang --archives output/assembly-exports --proof output/playwright/assembly-array-native-clang.json
-                  python3 test/assembly-exported-contracts.py --project array --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-array-native-gcc.json
-                  python3 test/assembly-exported-contracts.py --project string --cc clang --archives output/assembly-exports --proof output/playwright/assembly-string-native-clang.json
-                  python3 test/assembly-exported-contracts.py --project string --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-string-native-gcc.json
-                  python3 test/assembly-exported-contracts.py --project helper --cc clang --archives output/assembly-exports --proof output/playwright/assembly-helper-native-clang.json
-                  python3 test/assembly-exported-contracts.py --project helper --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-helper-native-gcc.json
-                  python3 test/assembly-exported-contracts.py --project parser --cc clang --archives output/assembly-exports --proof output/playwright/assembly-parser-native-clang.json
-                  python3 test/assembly-exported-contracts.py --project parser --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-parser-native-gcc.json
-                  python3 test/assembly-exported-contracts.py --project reverse --cc clang --archives output/assembly-exports --proof output/playwright/assembly-reverse-native-clang.json
-                  python3 test/assembly-exported-contracts.py --project reverse --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-reverse-native-gcc.json
-                  python3 test/assembly-exported-contracts.py --project stack --cc clang --archives output/assembly-exports --proof output/playwright/assembly-stack-native-clang.json
-                  python3 test/assembly-exported-contracts.py --project stack --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-stack-native-gcc.json
-                  python3 test/assembly-exported-contracts.py --project compiler --cc clang --archives output/assembly-exports --proof output/playwright/assembly-compiler-native-clang.json
-                  python3 test/assembly-exported-contracts.py --project compiler --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-compiler-native-gcc.json
-                  python3 test/assembly-exported-contracts.py --project debug --cc clang --archives output/assembly-exports --proof output/playwright/assembly-debug-native-clang.json
-                  python3 test/assembly-exported-contracts.py --project debug --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-debug-native-gcc.json
-                  python3 test/assembly-exported-contracts.py --project performance --cc clang --archives output/assembly-exports --proof output/playwright/assembly-performance-native-clang.json
-                  python3 test/assembly-exported-contracts.py --project performance --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-performance-native-gcc.json
-                  python3 test/assembly-exported-contracts.py --project hardening --cc clang --archives output/assembly-exports --proof output/playwright/assembly-hardening-native-clang.json
-                  python3 test/assembly-exported-contracts.py --project hardening --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-hardening-native-gcc.json
-                  python3 test/assembly-exported-contracts.py --project records --cc clang --archives output/assembly-exports --proof output/playwright/assembly-records-native-clang.json
-                  python3 test/assembly-exported-contracts.py --project records --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-records-native-gcc.json
-                  python3 test/assembly-exported-contracts.py --project arithmetic --cc clang --archives output/assembly-exports --proof output/playwright/assembly-arithmetic-native-clang.json
-                  python3 test/assembly-exported-contracts.py --project arithmetic --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-arithmetic-native-gcc.json
-
-            - name: Verify actual exported optional Assembly setup builds
-              run: |
-                  python3 test/assembly-setup-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-setup-native/clang.json
-                  python3 test/assembly-setup-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-setup-native/gcc.json
-
-            - name: Verify actual exported syscall builds and kernel evidence
-              run: |
-                  python3 test/assembly-syscall-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-syscall-native/clang.json
-                  python3 test/assembly-syscall-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-syscall-native/gcc.json
-
-            - name: Verify actual exported register-width builds and observations
-              run: |
-                  python3 test/assembly-register-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-register-native/clang.json
-                  python3 test/assembly-register-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-register-native/gcc.json
-
-            - name: Verify actual exported comparison and shift builds and observations
-              run: |
-                  python3 test/assembly-logic-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-logic-native/clang.json
-                  python3 test/assembly-logic-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-logic-native/gcc.json
-
-            - name: Verify actual exported memory and address builds and observations
-              run: |
-                  python3 test/assembly-machine-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-machine-native/clang.json
-                  python3 test/assembly-machine-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-machine-native/gcc.json
-
-            - name: Verify actual exported dispatch and loop builds and observations
-              run: |
-                  python3 test/assembly-control-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-control-native/clang.json
-                  python3 test/assembly-control-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-control-native/gcc.json
-
-            - name: Verify actual exported LIFO and caller-frame builds and observations
-              run: |
-                  python3 test/assembly-stack-optional-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-stack-optional-native/clang.json
-                  python3 test/assembly-stack-optional-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-stack-optional-native/gcc.json
-
-            - name: Verify actual exported ABI argument builds and call observations
-              run: |
-                  python3 test/assembly-abi-optional-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-abi-optional-native/clang.json
-                  python3 test/assembly-abi-optional-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-abi-optional-native/gcc.json
-
-            - name: Verify actual exported pointer-table and overlap-copy builds and memory observations
-              run: |
-                  python3 test/assembly-memory-layout-optional-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-memory-layout-optional-native/clang.json
-                  python3 test/assembly-memory-layout-optional-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-memory-layout-optional-native/gcc.json
-
-            - name: Verify exported compiler investigations and saved observation worksheets
-              run: |
-                  python3 test/assembly-compiler-optional-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-compiler-optional-native/clang.json
-                  python3 test/assembly-compiler-optional-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-compiler-optional-native/gcc.json
-
-            - name: Run the debugging and performance follow-up activities
-              run: |
-                  python3 test/assembly-followup-activities.py --cc clang --archives output/assembly-exports --proof output/assembly-followup-activities-native/clang/proof.json
-                  python3 test/assembly-followup-activities.py --cc gcc --archives output/assembly-exports --proof output/assembly-followup-activities-native/gcc/proof.json
-
-            - name: Retain Assembly workflow and native validation
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: assembly-workflow-validation
-                  path: |
-                      output/playwright/course-import-assembly-*.png
-                      output/playwright/compiler-clang-generated/
-                      output/playwright/compiler-gcc-generated/
-                      output/playwright/debug-clang-traces/
-                      output/playwright/debug-gcc-traces/
-                      output/playwright/performance-clang-observations/
-                      output/playwright/performance-gcc-observations/
-                      output/playwright/hardening-observations-clang/
-                      output/playwright/hardening-observations-gcc/
-                      output/playwright/assembly-failure.png
-                      output/playwright/assembly-*.json
-                      output/playwright/assembly-*.jsonl
-                      output/assembly-exports/
-                      output/assembly-record-course/
-                      output/assembly-arithmetic-course/
-                      output/assembly-debug-followups-course/
-                      output/assembly-performance-followups-course/
-                      output/assembly-setup-native/
-                      output/assembly-syscall-native/
-                      output/assembly-register-native/
-                      output/assembly-logic-native/
-                      output/assembly-machine-native/
-                      output/assembly-control-native/
-                      output/assembly-stack-optional-native/
-                      output/assembly-abi-optional-native/
-                      output/assembly-memory-layout-optional-native/
-                      output/assembly-compiler-optional-native/
-                      output/assembly-followup-activities-native/
-                      output/assembly-syscall-course/
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify native C17 imports, source editing and ZIP exports
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
-                  C17_BROWSER_EXPORT_PROOF_DIR: output/c17-exports
-              run: node --test test/c17-course-import-browser.test.mjs
-
-            - name: Verify C17 studio readings and exported native contracts
-              run: |
-                  CSE_CC=clang python3 test/c17-studio-readings.py --archives output/c17-exports
-                  CSE_CC=gcc python3 test/c17-studio-readings.py --archives output/c17-exports
-
-            - name: Verify C17 unit readings and exported native contracts
-              run: |
-                  CSE_CC=clang python3 test/c17-unit-readings.py --archives output/c17-exports
-                  CSE_CC=gcc python3 test/c17-unit-readings.py --archives output/c17-exports
-
-            - name: Verify saved project role labels and deletion context
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
-              run: node --test test/ide-saved-project-labels-browser.test.mjs
-
-            - name: Verify Scratch classroom import, execution and downloads
-              env:
-                  SCRATCH_SCREENSHOT_DIR: output/playwright
-              run: node --test test/scratch-projects.test.mjs test/scratch-browser.test.mjs
-
-            - name: Retain Scratch conditional lesson screenshots
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: scratch-conditional-screenshots
-                  path: front-end/output/playwright/scratch-conditionals-*.png
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify bridge and C++ foundation import, export and native compilation
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
-              run: JAVAC="$JAVA_HOME_21_X64/bin/javac" node --test test/cpp-course-import-browser.test.mjs
-
-            - name: Retain C++ and Java workspace screenshots
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: cpp-workspace-screenshots
-                  path: |
-                      output/playwright/course-import-*.png
-                      output/playwright/c17-workflow-proof.json
-                      output/playwright/c17-studio-native-proof-*.json
-                      output/playwright/c17-unit-native-proof-*.json
-                  if-no-files-found: ignore
-                  retention-days: 7
-
-            - name: Verify Pygame surfaces in the browser IDE
-              run: node --test test/pygame-browser-runtime.test.mjs
-
-            - name: Verify private IDE diagnostics in the browser
-              run: node --test test/ide-diagnostics-browser.test.mjs
-
-            - name: Verify console scrolling and editor argument warnings
-              run: node --test test/ide-console-browser.test.mjs
-
-            - name: Verify Turtle manual updates and editor search contrast
-              run: node --test test/turtle-tracer-browser.test.mjs
-
-            - name: Verify inline booking and Classes navigation
-              env:
-                  BOOKING_SCREENSHOT_DIR: output/playwright
-              run: node --test test/signup-browser.test.mjs
-
-            - name: Retain booking screenshots
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: booking-screenshots
-                  path: output/playwright/signup-*.png
-                  if-no-files-found: ignore
-                  retention-days: 7
-
-            - name: Verify confirmed course imports and accessible errors
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
-              run: node --test test/course-import-browser.test.mjs
-
-            - name: Verify independent course reference imports and melody
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
-              run: node --test test/course-reference-browser.test.mjs
-
-            - name: Retain course import screenshots
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: course-import-screenshots
-                  path: output/playwright/course-import-*.png
-                  if-no-files-found: ignore
-                  retention-days: 7
-
-            - name: Cypress
-              uses: cypress-io/github-action@fa4a118725a8f001170d49631ea89e5d66fee626 # v7.4.1
-              env:
-                  CYPRESS_BASE_URL: http://127.0.0.1:3333
-              with:
-                  install: false
-                  working-directory: front-end
-                  config-file: cypress.config.ts
-                  start: npm run preview -- --host 127.0.0.1 --port 3333 --strictPort
-                  wait-on: "node ../scripts/wait-for-loopback-preview.mjs"
-
-    course-workflows:
-        runs-on: ubuntu-24.04
-        timeout-minutes: 45
-        steps:
-            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-              with:
-                  persist-credentials: false
-            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
-              with:
-                  node-version: 24.18.0
-                  cache: npm
-            - name: Pin npm version
-              run: |
-                  npm i -g npm@12.0.1
-                  npm -v
-                  test "$(npm --version)" = "12.0.1"
-            - name: Install deps
-              run: npm ci
-            - name: Build front-end
-              run: npm run -w front-end build
-            - name: Verify and record the complete normalized course catalog
-              env:
-                  COURSE_CATALOG_PROOF_DIR: ${{ github.workspace }}/output/course-catalog
-              run: npm exec -w front-end -- vitest run test/store.courses.catalog-identities.spec.test.ts --no-file-parallelism --maxWorkers=1
-
-            - name: Retain normalized course catalog evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: course-catalog-workflows
-                  path: output/course-catalog/
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify notification source imports and saved code exports
-              env:
-                  WEB_NOTIFICATION_EXPORT_DIR: output/web-notification-exports
-              run: npm exec -w front-end -- vitest run test/web-notification-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
-
-            - name: Run actual exported notification projects and contracts
-              run: node test/web-notification-exported-contracts.mjs --exports front-end/output/web-notification-exports --proof output/web-notification-native/proof.json
-
-            - name: Retain notification source and native export evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: web-notification-workflows
-                  path: |
-                      front-end/output/web-notification-exports/
-                      output/web-notification-native/
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify Web course consent, saved editions and source exports
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/web-source-screenshots
-              run: node --test test/web-source-course-browser.test.mjs
-
-            - name: Retain Web course browser evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: web-source-course-workflows
-                  path: |
-                      output/web-source-browser/
-                      output/web-source-screenshots/
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify contact source imports and saved nested-file exports
-              env:
-                  WEB_CONTACT_EXPORT_DIR: output/web-contact-exports
-              run: npm exec -w front-end -- vitest run test/web-contact-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
-
-            - name: Verify contact course consent, roles and saved continuations
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/web-contact-screenshots
-              run: node --test test/web-contact-course-browser.test.mjs
-
-            - name: Fetch the maintained contact dependency graph
-              uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-              with:
-                  repository: instruction-material/Web-Development-Foundations
-                  ref: aed8ef2fcd7488c25c0b977b2099640e7431c55a
-                  path: output/web-contact-native-source
-                  persist-credentials: false
-
-            - name: Install the maintained contact root lockfile
-              working-directory: output/web-contact-native-source
-              run: npm ci
-
-            - name: Run actual saved and browser-edited contact exports
-              run: node test/web-contact-exported-contracts.mjs --source output/web-contact-native-source --exports front-end/output/web-contact-exports --browser output/web-contact-browser --proof output/web-contact-native/proof.json
-
-            - name: Retain contact course, source and native export evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: web-contact-workflows
-                  path: |
-                      front-end/output/web-contact-exports/
-                      output/web-contact-browser/
-                      output/web-contact-native/
-                      output/web-contact-screenshots/
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify notes imports, complete readings and saved nested-file exports
-              env:
-                  WEB_NOTES_EXPORT_DIR: output/web-notes-exports
-              run: npm exec -w front-end -- vitest run test/web-notes-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
-
-            - name: Verify notes course consent, roles and saved continuations
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/web-notes-screenshots
-              run: node --test test/web-notes-course-browser.test.mjs
-
-            - name: Fetch the maintained notes dependency graph
-              uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-              with:
-                  repository: instruction-material/Web-Development-Foundations
-                  ref: 8d48a2672e987b5ab1c1b7b93ea395f6da5c37a2
-                  path: output/web-notes-native-source
-                  persist-credentials: false
-
-            - name: Install the maintained notes root lockfile
-              working-directory: output/web-notes-native-source
-              run: npm ci
-
-            - name: Run actual saved and browser-edited notes exports
-              run: node test/web-notes-exported-contracts.mjs --source output/web-notes-native-source --exports front-end/output/web-notes-exports --browser output/web-notes-browser --proof output/web-notes-native/proof.json
-
-            - name: Retain notes course, source and native export evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: web-notes-workflows
-                  path: |
-                      front-end/output/web-notes-exports/
-                      output/web-notes-browser/
-                      output/web-notes-native/
-                      output/web-notes-screenshots/
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify deployment readings and complete saved role exports
-              env:
-                  WEB_DEPLOYMENT_EXPORT_DIR: output/web-deployment-exports
-              run: npm exec -w front-end -- vitest run test/web-deployment-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
-
-            - name: Verify deployment consent, both roles and saved continuations
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/web-deployment-screenshots
-              run: node --test test/web-deployment-course-browser.test.mjs
-
-            - name: Fetch the maintained deployment source
-              uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-              with:
-                  repository: instruction-material/Web-Development-Foundations
-                  ref: 962d1be3da0d954ad774390b78cb044395a12262
-                  path: output/web-deployment-native-source
-                  persist-credentials: false
-
-            - name: Verify and reuse the identical maintained dependency graph
-              run: |
-                  for input in package.json package-lock.json WDF5-Separate-Deployment-Lab/starter/backend/package.json WDF5-Separate-Deployment-Lab/solution/backend/package.json; do
-                    cmp "output/web-notes-native-source/$input" "output/web-deployment-native-source/$input"
-                  done
-                  test -d output/web-notes-native-source/node_modules
-                  test ! -e output/web-deployment-native-source/node_modules
-                  ln -s ../web-notes-native-source/node_modules output/web-deployment-native-source/node_modules
-
-            - name: Verify actual exported deployment artifacts and browser rollback
-              run: node test/web-deployment-exported-contracts.mjs --source output/web-deployment-native-source --exports front-end/output/web-deployment-exports --browser output/web-deployment-browser --proof output/web-deployment-native/proof.json
-
-            - name: Retain deployment course and native recovery evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: web-deployment-workflows
-                  path: |
-                      front-end/output/web-deployment-exports/
-                      output/web-deployment-browser/
-                      output/web-deployment-native/
-                      output/web-deployment-screenshots/
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify live chat readings and saved role exports
-              env:
-                  WEB_CHAT_EXPORT_DIR: output/web-live-chat-exports
-              run: npm exec -w front-end -- vitest run test/web-live-chat-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
-
-            - name: Verify live chat consent, separate fixture work and saved source
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/web-live-chat-screenshots
-              run: node --test test/web-live-chat-course-browser.test.mjs
-
-            - name: Fetch the maintained live chat source
-              uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-              with:
-                  repository: instruction-material/Web-Development-Foundations
-                  ref: b179a9e0e523a95fc5c71de3434322a7f7840579
-                  path: output/web-live-chat-native-source
-                  persist-credentials: false
-
-            - name: Reuse the identical maintained chat dependencies
-              run: |
-                  for input in package.json package-lock.json WDF4-Realtime-Chat-App/starter/package.json WDF4-Realtime-Chat-App/solution/package.json; do
-                    cmp "output/web-notes-native-source/$input" "output/web-live-chat-native-source/$input"
-                  done
-                  test -d output/web-notes-native-source/node_modules
-                  test ! -e output/web-live-chat-native-source/node_modules
-                  ln -s ../web-notes-native-source/node_modules output/web-live-chat-native-source/node_modules
-
-            - name: Run saved and browser-edited chat exports with two actual clients
-              run: node test/web-live-chat-exported-contracts.mjs --source output/web-live-chat-native-source --exports front-end/output/web-live-chat-exports --browser output/web-live-chat-browser --proof output/web-live-chat-native/proof.json
-
-            - name: Retain live chat import and native recovery evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: web-live-chat-workflows
-                  path: |
-                      front-end/output/web-live-chat-exports/
-                      output/web-live-chat-browser/
-                      output/web-live-chat-native/
-                      output/web-live-chat-screenshots/
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify Network Systems foundation imports and notebook reuse
-              env:
-                  NETWORK_BROWSER_EXPORT_PROOF_DIR: output/network-exports
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
-              run: node --test test/network-course-import-browser.test.mjs
-
-            - name: Install disposable Network lab tools
-              run: |
-                  sudo apt-get update
-                  sudo apt-get install --no-install-recommends --yes iproute2 iptables util-linux curl dnsutils tcpdump dnsmasq-base bash strace
-
-            - name: Verify actual exported Network capstone contracts
-              run: sudo env PYTHONDONTWRITEBYTECODE=1 python3 test/network-capstone-exported-contracts.py output/network-exports
-
-            - name: Verify actual exported Network setup investigations
-              run: python3 test/network-setup-exported-contracts.py output/network-exports
-
-            - name: Verify actual exported Network transport investigations
-              run: python3 test/network-transport-exported-contracts.py output/network-exports
-
-            - name: Verify actual exported socket inventory investigations
-              env:
-                  NETWORK_BROWSER_EXPORT_PROOF_DIR: output/network-exports
-              run: python3 test/network-inventory-exported-contracts.py output/network-exports
-
-            - name: Retain Network Systems foundation workflow evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: network-foundations-workflows
-                  path: |
-                      output/network-exports/
-                      output/playwright/course-import-network-*.png
-                  if-no-files-found: ignore
-                  retention-days: 7
-
-            - name: Verify PyGames course workflows and pinned original game runtime
-              env:
-                  PYGAMES_BROWSER_EXPORT_PROOF_DIR: output/pygames-exports
-              run: node --test test/pygames-course-workflows-browser.test.mjs
-
-            - name: Retain PyGames source, media and browser evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: pygames-course-workflows
-                  path: output/pygames-exports/
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Verify class loops and execution limits
-              run: python3 test/python-runtime-loop-guards.test.py
-
-            - name: Verify self-contained PyGames core imports and saved continuations
-              env:
-                  PYGAMES_CORE_BROWSER_PROOF_DIR: output/pygames-core-exports
-              run: node --test --test-concurrency=1 test/browser-runtime-diagnostics.test.mjs test/pygames-core-browser.test.mjs
-
-            - name: Retain PyGames core browser workflow evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: pygames-core-browser-workflows
-                  path: output/pygames-core-exports/
-                  if-no-files-found: error
-                  retention-days: 14
-
-    swift-browser:
-        runs-on: ubuntu-24.04
-        timeout-minutes: 20
-        steps:
-            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-              with:
-                  persist-credentials: false
-
-            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
-              with:
-                  node-version: 24.18.0
-                  cache: npm
-
-            - name: Pin npm version
-              run: |
-                  npm i -g npm@12.0.1
-                  test "$(npm --version)" = "12.0.1"
-
-            - name: Install checked dependencies
-              run: npm ci
-
-            - name: Build the course browser
-              run: npm run -w front-end build
-
-            - name: Verify Swift profile consent, saved roles and source ZIP exports
-              env:
-                  SWIFT_WELCOME_BROWSER_DIR: output/swift-welcome-browser
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/swift-welcome-screenshots
-              run: node --test test/swift-welcome-course-browser.test.mjs
-
-            - name: Verify Swift networking consent, saved roles and seven-file exports
-              env:
-                  SWIFT_NETWORKING_BROWSER_DIR: output/swift-networking-browser
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/swift-networking-screenshots
-              run: node --test test/swift-networking-course-browser.test.mjs
-
-            - name: Retain Swift networking browser and exported source evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: swift-networking-workflows
-                  path: |
-                      output/swift-networking-browser/
-                      output/swift-networking-screenshots/
-                  if-no-files-found: error
-                  retention-days: 7
-
-            - name: Retain Swift profile browser and exported source evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: swift-welcome-workflows
-                  path: |
-                      output/swift-welcome-browser/
-                      output/swift-welcome-screenshots/
-                  if-no-files-found: error
-                  retention-days: 7
-
-    swift-ios:
-        needs: swift-browser
-        runs-on: macos-26
-        timeout-minutes: 60
-        permissions:
-            contents: read
-            actions: read
+      - name: Verify actual course consent, edits and saved continuations
         env:
-            CLASSES_FAMILY_TASK_ID: swift-welcome-ios
-            CLASSES_FAMILY_MIN_DISK_GB: 8
-            CLASSES_FAMILY_HEAVY_TIMEOUT_MS: 3300000
-        steps:
-            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-              with:
-                  persist-credentials: false
+          COURSE_IMPORT_SCREENSHOT_DIR: output/rust-cargo-screenshots
+          RUST_CARGO_BROWSER_PROOF_DIR: output/rust-cargo-browser
+        run: node --test test/rust-cargo-course-browser.test.mjs
 
-            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
-              with:
-                  node-version: 24.18.0
+      - name: Compile and test original and actual browser-edited Cargo exports
+        run: python3 test/rust-cargo-exported-contracts.py --exports front-end/output/rust-cargo-exports --browser output/rust-cargo-browser --proof output/rust-cargo-native/proof.json
 
-            - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
-              with:
-                  name: swift-welcome-workflows
-                  path: output/swift-welcome-workflows
+      - name: Retain Cargo browser and native evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: rust-cargo-workflows
+          path: |
+            front-end/output/rust-cargo-exports/
+            output/rust-cargo-browser/
+            output/rust-cargo-native/
+            output/rust-cargo-screenshots/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
 
-            - name: Wait for the hosted Mac to settle within the native load limit
-              run: |
-                  python3 - <<'PY'
-                  import datetime
-                  import json
-                  import os
-                  from pathlib import Path
-                  import time
-
-                  proof = Path("output/swift-welcome-ios/runner-readiness.json")
-                  proof.parent.mkdir(parents=True, exist_ok=True)
-                  samples = []
-                  deadline = time.monotonic() + 300
-                  while True:
-                      load = os.getloadavg()[0]
-                      samples.append({"at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "load": load})
-                      ready = load <= 8
-                      proof.write_text(json.dumps({"ready": ready, "maximumLoad": 8, "samples": samples}, indent=2) + "\n")
-                      print(f"Hosted Mac load: {load:.2f}; required maximum: 8", flush=True)
-                      if ready:
-                          break
-                      if time.monotonic() >= deadline:
-                          raise SystemExit("Hosted Mac did not settle within five minutes; native checks have not run")
-                      time.sleep(10)
-                  PY
-
-            - name: Compile downloaded Swift ZIPs and test both source roles on two iPhone sizes
-              run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-welcome-exported-ios.py --browser output/swift-welcome-workflows/swift-welcome-browser --proof output/swift-welcome-ios/proof.json
-
-            - name: Retain native Swift versions, process logs and UI results
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: swift-welcome-ios
-                  path: |
-                      output/swift-welcome-ios/runner-readiness.json
-                      output/swift-welcome-ios/proof.json
-                      output/swift-welcome-ios/processes.jsonl
-                      output/swift-welcome-ios/logs/
-                      output/swift-welcome-ios/results/
-                  if-no-files-found: error
-                  retention-days: 7
-
-    swift-networking-ios:
-        needs: swift-browser
-        runs-on: macos-26
-        timeout-minutes: 60
-        permissions:
-            contents: read
-            actions: read
+      - name: Verify complete ownership imports and source exports
         env:
-            CLASSES_FAMILY_TASK_ID: swift-networking-ios
-            CLASSES_FAMILY_MIN_DISK_GB: 8
-            CLASSES_FAMILY_HEAVY_TIMEOUT_MS: 3300000
-        steps:
-            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-              with:
-                  persist-credentials: false
+          RUST_OWNERSHIP_EXPORT_PROOF_DIR: output/rust-ownership-exports
+        run: npm exec -w front-end -- vitest run test/rust-ownership-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
 
-            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
-              with:
-                  node-version: 24.18.0
+      - name: Verify actual ownership course actions and saved continuations
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/rust-ownership-screenshots
+          RUST_OWNERSHIP_BROWSER_PROOF_DIR: output/rust-ownership-browser
+        run: node --test test/rust-ownership-course-browser.test.mjs
 
-            - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
-              with:
-                  name: swift-networking-workflows
-                  path: output/swift-networking-workflows
+      - name: Compile original and browser-edited ownership exports
+        run: python3 test/rust-cargo-exported-contracts.py --lesson ownership --exports front-end/output/rust-ownership-exports --browser output/rust-ownership-browser --proof output/rust-ownership-native/proof.json
 
-            - name: Wait for the hosted Mac to settle within the native load limit
-              run: |
-                  python3 - <<'PY'
-                  import datetime
-                  import json
-                  import os
-                  from pathlib import Path
-                  import time
+      - name: Retain ownership browser and native evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: rust-ownership-workflows
+          path: |
+            front-end/output/rust-ownership-exports/
+            output/rust-ownership-browser/
+            output/rust-ownership-native/
+            output/rust-ownership-screenshots/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
 
-                  proof = Path(os.environ["RUNNER_TEMP"]) / "swift-networking-ios/runner-readiness.json"
-                  proof.parent.mkdir(parents=True, exist_ok=True)
-                  samples = []
-                  deadline = time.monotonic() + 300
-                  while True:
-                      load = os.getloadavg()[0]
-                      samples.append({"at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "load": load})
-                      ready = load <= 8
-                      proof.write_text(json.dumps({"ready": ready, "maximumLoad": 8, "samples": samples}, indent=2) + "\n")
-                      print(f"Hosted Mac load: {load:.2f}; required maximum: 8", flush=True)
-                      if ready:
-                          break
-                      if time.monotonic() >= deadline:
-                          raise SystemExit("Hosted Mac did not settle within five minutes; native checks have not run")
-                      time.sleep(10)
-                  PY
+      - name: Verify complete borrowing imports and source exports
+        env:
+          RUST_BORROWING_EXPORT_PROOF_DIR: output/rust-borrowing-exports
+        run: npm exec -w front-end -- vitest run test/rust-borrowing-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
 
-            - name: Verify supplied networking contracts from all browser ZIPs
-              run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-networking-exported-contracts.py --browser output/swift-networking-workflows/swift-networking-browser --proof "$RUNNER_TEMP/swift-networking-ios/contracts/proof.json"
+      - name: Verify actual borrowing course actions and saved continuations
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/rust-borrowing-screenshots
+          RUST_BORROWING_BROWSER_PROOF_DIR: output/rust-borrowing-browser
+        run: node --test test/rust-borrowing-course-browser.test.mjs
 
-            - name: Test exported networking apps, long content and larger text on two iPhone sizes
-              run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-welcome-exported-ios.py --course networking --browser output/swift-networking-workflows/swift-networking-browser --proof "$RUNNER_TEMP/swift-networking-ios/proof.json"
+      - name: Compile original and browser-edited borrowing exports
+        run: python3 test/rust-cargo-exported-contracts.py --lesson borrowing --exports front-end/output/rust-borrowing-exports --browser output/rust-borrowing-browser --proof output/rust-borrowing-native/proof.json
 
-            - name: Retain native Swift versions, process logs and UI results
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: swift-networking-ios
-                  path: |
-                      ${{ runner.temp }}/swift-networking-ios/runner-readiness.json
-                      ${{ runner.temp }}/swift-networking-ios/proof.json
-                      ${{ runner.temp }}/swift-networking-ios/processes.jsonl
-                      ${{ runner.temp }}/swift-networking-ios/logs/
-                      ${{ runner.temp }}/swift-networking-ios/results/
-                      ${{ runner.temp }}/swift-networking-ios/contracts/proof.json
-                      ${{ runner.temp }}/swift-networking-ios/contracts/processes.jsonl
-                      ${{ runner.temp }}/swift-networking-ios/contracts/*.txt
-                      ${{ runner.temp }}/swift-networking-ios/contracts/**/contracts-proof.json
-                  if-no-files-found: error
-                  retention-days: 7
+      - name: Retain borrowing browser and native evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: rust-borrowing-workflows
+          path: |
+            front-end/output/rust-borrowing-exports/
+            output/rust-borrowing-browser/
+            output/rust-borrowing-native/
+            output/rust-borrowing-screenshots/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
 
-    usaco-workflows:
-        needs: test-e2e
-        runs-on: ubuntu-24.04
-        timeout-minutes: 55
-        steps:
-            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-              with:
-                  persist-credentials: false
-            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
-              with:
-                  node-version: 24.18.0
-                  cache: npm
-            - name: Pin npm version
-              run: |
-                  npm i -g npm@12.0.1
-                  npm -v
-                  test "$(npm --version)" = "12.0.1"
-            - name: Install deps
-              run: npm ci
-            - name: Build front-end
-              run: npm run -w front-end build
-            - name: Verify restored USACO imports and native file I/O
-              env:
-                  COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
-              run: JAVAC="$JAVA_HOME_21_X64/bin/javac" JAVA="$JAVA_HOME_21_X64/bin/java" node --test test/usaco-course-import-browser.test.mjs
+      - name: Verify complete typed-errors imports and source exports
+        env:
+          RUST_TYPED_ERRORS_EXPORT_PROOF_DIR: output/rust-typed-errors-exports
+        run: npm exec -w front-end -- vitest run test/rust-typed-errors-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
 
-            - name: Retain USACO project workflow screenshots
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: usaco-workspace-screenshots
-                  path: output/playwright/course-import-usaco-*.png
-                  if-no-files-found: error
-                  retention-days: 7
+      - name: Verify actual typed-errors course actions and saved continuations
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/rust-typed-errors-screenshots
+          RUST_TYPED_ERRORS_BROWSER_PROOF_DIR: output/rust-typed-errors-browser
+        run: node --test test/rust-typed-errors-course-browser.test.mjs
 
-    build:
-        runs-on: ubuntu-24.04
-        steps:
-            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-              with:
-                  persist-credentials: false
+      - name: Compile original and browser-edited typed-errors exports
+        run: python3 test/rust-cargo-exported-contracts.py --lesson typed-errors --exports front-end/output/rust-typed-errors-exports --browser output/rust-typed-errors-browser --proof output/rust-typed-errors-native/proof.json
 
-            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-              with:
-                  node-version: 24.18.0
-                  cache: npm
+      - name: Retain typed-errors browser and native evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: rust-typed-errors-workflows
+          path: |
+            front-end/output/rust-typed-errors-exports/
+            output/rust-typed-errors-browser/
+            output/rust-typed-errors-native/
+            output/rust-typed-errors-screenshots/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
 
-            - name: Pin npm version
-              run: |
-                  npm i -g npm@12.0.1
-                  npm -v
-                  test "$(npm --version)" = "12.0.1"
+      - name: Verify complete label-slices imports and source exports
+        env:
+          RUST_LABEL_SLICES_EXPORT_PROOF_DIR: output/rust-label-slices-exports
+        run: npm exec -w front-end -- vitest run test/rust-label-slices-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
 
-            - name: Install deps
-              run: npm ci
+      - name: Verify actual label-slices course actions and saved continuations
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/rust-label-slices-screenshots
+          RUST_LABEL_SLICES_BROWSER_PROOF_DIR: output/rust-label-slices-browser
+        run: node --test test/rust-label-slices-course-browser.test.mjs
 
-            - name: Build
-              run: npm run build
+      - name: Compile original and browser-edited label-slices exports
+        run: python3 test/rust-cargo-exported-contracts.py --lesson label-slices --exports front-end/output/rust-label-slices-exports --browser output/rust-label-slices-browser --proof output/rust-label-slices-native/proof.json
+
+      - name: Retain label-slices browser and native evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: rust-label-slices-workflows
+          path: |
+            front-end/output/rust-label-slices-exports/
+            output/rust-label-slices-browser/
+            output/rust-label-slices-native/
+            output/rust-label-slices-screenshots/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Verify complete state-models imports and source exports
+        env:
+          RUST_STATE_MODELS_EXPORT_PROOF_DIR: output/rust-state-models-exports
+        run: npm exec -w front-end -- vitest run test/rust-state-models-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+      - name: Verify actual state-models course actions and saved continuations
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/rust-state-models-screenshots
+          RUST_STATE_MODELS_BROWSER_PROOF_DIR: output/rust-state-models-browser
+        run: node --test test/rust-state-models-course-browser.test.mjs
+
+      - name: Compile original and browser-edited state-models exports
+        run: python3 test/rust-cargo-exported-contracts.py --lesson state-models --exports front-end/output/rust-state-models-exports --browser output/rust-state-models-browser --proof output/rust-state-models-native/proof.json
+
+      - name: Retain state-models browser and native evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: rust-state-models-workflows
+          path: |
+            front-end/output/rust-state-models-exports/
+            output/rust-state-models-browser/
+            output/rust-state-models-native/
+            output/rust-state-models-screenshots/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Verify complete trait-pipeline imports and source exports
+        env:
+          RUST_TRAIT_PIPELINE_EXPORT_PROOF_DIR: output/rust-trait-pipeline-exports
+        run: npm exec -w front-end -- vitest run test/rust-trait-pipeline-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+      - name: Verify actual trait-pipeline course actions and saved continuations
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/rust-trait-pipeline-screenshots
+          RUST_TRAIT_PIPELINE_BROWSER_PROOF_DIR: output/rust-trait-pipeline-browser
+        run: node --test test/rust-trait-pipeline-course-browser.test.mjs
+
+      - name: Compile original and browser-edited trait-pipeline exports
+        run: python3 test/rust-cargo-exported-contracts.py --lesson trait-pipeline --exports front-end/output/rust-trait-pipeline-exports --browser output/rust-trait-pipeline-browser --proof output/rust-trait-pipeline-native/proof.json
+
+      - name: Retain trait-pipeline browser and native evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: rust-trait-pipeline-workflows
+          path: |
+            front-end/output/rust-trait-pipeline-exports/
+            output/rust-trait-pipeline-browser/
+            output/rust-trait-pipeline-native/
+            output/rust-trait-pipeline-screenshots/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Verify complete bounded-cli imports and source exports
+        env:
+          RUST_BOUNDED_CLI_EXPORT_PROOF_DIR: output/rust-bounded-cli-exports
+        run: npm exec -w front-end -- vitest run test/rust-bounded-cli-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+      - name: Verify actual bounded-cli course actions and saved continuations
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/rust-bounded-cli-screenshots
+          RUST_BOUNDED_CLI_BROWSER_PROOF_DIR: output/rust-bounded-cli-browser
+        run: node --test test/rust-bounded-cli-course-browser.test.mjs
+
+      - name: Compile original and browser-edited bounded-cli exports
+        run: python3 test/rust-cargo-exported-contracts.py --lesson bounded-cli --exports front-end/output/rust-bounded-cli-exports --browser output/rust-bounded-cli-browser --proof output/rust-bounded-cli-native/proof.json
+
+      - name: Retain bounded-cli browser and native evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: rust-bounded-cli-workflows
+          path: |
+            front-end/output/rust-bounded-cli-exports/
+            output/rust-bounded-cli-browser/
+            output/rust-bounded-cli-native/
+            output/rust-bounded-cli-screenshots/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Verify complete concurrency, boundary and capstone imports and exports
+        env:
+          RUST_FINAL_EXPORT_PROOF_DIR: output
+        run: npm exec -w front-end -- vitest run test/rust-final-workspaces.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+      - name: Verify actual concurrency course actions and saved continuations
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/rust-concurrency-screenshots
+          RUST_CONCURRENCY_BROWSER_PROOF_DIR: output/rust-concurrency-browser
+        run: node --test test/rust-concurrency-course-browser.test.mjs
+
+      - name: Compile original and browser-edited concurrency exports without Git
+        run: python3 test/rust-cargo-exported-contracts.py --lesson concurrency --exports front-end/output/rust-concurrency-exports --browser output/rust-concurrency-browser --proof output/rust-concurrency-native/proof.json
+
+      - name: Retain concurrency browser and native evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: rust-concurrency-workflows
+          path: |
+            front-end/output/rust-concurrency-exports/
+            output/rust-concurrency-browser/
+            output/rust-concurrency-native/
+            output/rust-concurrency-screenshots/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Verify actual boundary-review course actions and saved continuations
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/rust-boundary-review-screenshots
+          RUST_BOUNDARY_REVIEW_BROWSER_PROOF_DIR: output/rust-boundary-review-browser
+        run: node --test test/rust-boundary-review-course-browser.test.mjs
+
+      - name: Compile original and browser-edited boundary-review exports without Git
+        run: python3 test/rust-cargo-exported-contracts.py --lesson boundary-review --exports front-end/output/rust-boundary-review-exports --browser output/rust-boundary-review-browser --proof output/rust-boundary-review-native/proof.json
+
+      - name: Retain boundary-review browser and native evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: rust-boundary-review-workflows
+          path: |
+            front-end/output/rust-boundary-review-exports/
+            output/rust-boundary-review-browser/
+            output/rust-boundary-review-native/
+            output/rust-boundary-review-screenshots/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Verify actual record-hardening course actions and saved continuations
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/rust-record-hardening-screenshots
+          RUST_RECORD_HARDENING_BROWSER_PROOF_DIR: output/rust-record-hardening-browser
+        run: node --test test/rust-record-hardening-course-browser.test.mjs
+
+      - name: Compile original and browser-edited record-hardening exports without Git
+        run: python3 test/rust-cargo-exported-contracts.py --lesson record-hardening --exports front-end/output/rust-record-hardening-exports --browser output/rust-record-hardening-browser --proof output/rust-record-hardening-native/proof.json
+
+      - name: Retain record-hardening browser and native evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: rust-record-hardening-workflows
+          path: |
+            front-end/output/rust-record-hardening-exports/
+            output/rust-record-hardening-browser/
+            output/rust-record-hardening-native/
+            output/rust-record-hardening-screenshots/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
+
+  backend-install:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.18.0
+          cache: npm
+          cache-dependency-path: back-end/package-lock.json
+
+      - name: Pin npm version
+        run: |
+          npm -v
+          npm i -g npm@12.0.1
+          npm -v
+          test "$(npm --version)" = "12.0.1"
+
+      - name: Verify standalone backend install policy
+        run: node --test test/standalone-backend-install-policy.test.mjs
+
+      - name: Install backend deps with backend lockfile
+        working-directory: back-end
+        run: npm ci --include=optional --strict-allow-scripts --workspaces=false
+
+      - name: Validate backend dependency tree
+        working-directory: back-end
+        run: npm ls --all --workspaces=false
+
+      - name: Audit backend dependency tree
+        working-directory: back-end
+        run: npm audit --include=optional --workspaces=false
+
+  lint:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.18.0
+          cache: npm
+
+          # Make runner's npm match packageManager in package.json
+      - name: Pin npm version
+        run: |
+          npm -v
+          npm i -g npm@12.0.1
+          npm -v
+          test "$(npm --version)" = "12.0.1"
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Validate dependency tree
+        run: npm run check:dependencies
+
+      - name: Verify root lock provenance
+        run: npm run test:lock-provenance
+
+      - name: Dependency security audit
+        run: npm audit --include=optional
+
+      - name: Brace parser security and compatibility regressions
+        run: npm run test:braces-security
+
+      - name: Dependency advisory compatibility regressions
+        run: node --test --test-timeout=10000 test/dependency-advisory-regressions.test.mjs
+
+        # Root "lint" runs front-end and back-end lint
+      - name: Lint
+        run: npm run lint
+
+  typecheck:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.18.0
+          cache: npm
+
+      - name: Pin npm version
+        run: |
+          npm i -g npm@12.0.1
+          npm -v
+          test "$(npm --version)" = "12.0.1"
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+  test:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        node-version: [24.18.0]
+        os: [ubuntu-24.04]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: ${{ matrix['node-version'] }}
+          cache: npm
+          registry-url: https://registry.npmjs.org/
+
+      - name: Pin npm version
+        run: |
+          npm i -g npm@12.0.1
+          npm -v
+          test "$(npm --version)" = "12.0.1"
+
+      - name: Install deps
+        id: unit_dependencies
+        run: npm ci
+
+      - name: Unit tests
+        env:
+          VITEST_WATCH: "false"
+        run: |
+          ulimit -n 4096 || true
+          npm run -w front-end test:unit
+
+      - name: Verify heavy-task descendant cleanup and lock release
+        if: ${{ !cancelled() && steps.unit_dependencies.outcome == 'success' }}
+        run: node --test test/classes-family-heavy-task.test.mjs
+
+      - name: Scratch first-lesson event and archive regressions
+        run: node --test test/scratch-name-events.test.mjs
+
+      - name: Preserve authored course source checks
+        run: node --test test/course-source-readiness.test.mjs
+
+      - name: Backend tests
+        if: ${{ !cancelled() && steps.unit_dependencies.outcome == 'success' }}
+        env:
+          VITEST_WATCH: "false"
+        run: npm run -w back-end test
+
+      - name: Native deployment contract tests
+        run: npm run test:native-deployment
+
+      - name: Turtle input compatibility
+        run: python3 -B test/turtle-input-box.test.py
+
+      - name: Verify root snapshot and separate runtime ownership
+        run: sudo python3 -B test/native-candidate-ownership.test.py
+
+  accessibility:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.18.0
+          cache: npm
+
+      - name: Pin npm version
+        run: |
+          npm i -g npm@12.0.1
+          npm -v
+          test "$(npm --version)" = "12.0.1"
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build front-end for accessibility checks
+        run: npm run -w front-end build
+
+      - name: Axe accessibility smoke checks
+        run: npm run a11y
+
+  static-media:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.18.0
+          cache: npm
+
+      - name: Pin npm version
+        run: |
+          npm i -g npm@12.0.1
+          npm -v
+          test "$(npm --version)" = "12.0.1"
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Static media fetch policy tests
+        run: npm run test:static-media-fetch
+
+      - name: Audit static course media
+        run: npm run audit:static-media
+
+  native-nginx:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.18.0
+
+      - name: Install native Nginx fixture dependency
+        run: |
+          if ! command -v nginx >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install --no-install-recommends --yes nginx
+          fi
+
+      - name: Exercise native Nginx routing
+        run: npm run test:native-nginx
+
+  native-course-workflows:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        course: [assembly, linux, c17, cpp]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.18.0
+          cache: npm
+          registry-url: https://registry.npmjs.org/
+
+      - name: Pin npm version
+        run: |
+          npm i -g npm@12.0.1
+          npm -v
+          test "$(npm --version)" = "12.0.1"
+
+      - name: Verify preview readiness failure recovery
+        run: node --test test/preview-readiness.test.mjs
+
+      - name: Install deps
+        run: npm ci
+
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Build front-end
+        run: npm run -w front-end build
+
+      - name: Install native Assembly debugger
+        if: ${{ matrix.course == 'assembly' }}
+        run: sudo apt-get update && sudo apt-get install -y gdb binutils strace
+
+      - name: Export Assembly default and pack workspaces
+        if: ${{ matrix.course == 'assembly' }}
+        run: ASSEMBLY_EXPORT_PROOF_DIR="$GITHUB_WORKSPACE/output/assembly-exports" npm exec -w front-end -- vitest run test/assembly-compiler-optional-workspace.spec.test.ts test/assembly-memory-layout-optional-workspace.spec.test.ts test/assembly-abi-optional-workspace.spec.test.ts test/assembly-stack-optional-workspace.spec.test.ts test/assembly-control-workspace.spec.test.ts test/assembly-machine-workspace.spec.test.ts test/assembly-logic-workspace.spec.test.ts test/assembly-register-workspace.spec.test.ts test/assembly-syscall-workspace.spec.test.ts test/assembly-setup-workspace.spec.test.ts test/assembly-workspace.spec.test.ts test/assembly-calculator-workspace.spec.test.ts test/assembly-memory-workspace.spec.test.ts test/assembly-call-parser-workspace.spec.test.ts test/assembly-compiler-workspace.spec.test.ts test/assembly-debug-workspace.spec.test.ts test/assembly-performance-workspace.spec.test.ts test/assembly-hardening-workspace.spec.test.ts test/assembly-records-workspace.spec.test.ts test/assembly-arithmetic-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+      - name: Verify Assembly imports, saved source and ZIP exports
+        if: ${{ matrix.course == 'assembly' }}
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
+          ASSEMBLY_BROWSER_EXPORT_PROOF_DIR: output/assembly-exports
+        run: node --test test/assembly-course-import-browser.test.mjs
+
+      - name: Verify Unit 1 actual course buttons and shared trace attempt
+        if: ${{ matrix.course == 'assembly' }}
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
+          ASSEMBLY_RECORD_BROWSER_EXPORT_PROOF_DIR: output/assembly-record-course
+        run: node --test test/assembly-record-course-browser.test.mjs
+
+      - name: Verify Unit 3 actual course buttons and shared arithmetic trace
+        if: ${{ matrix.course == 'assembly' }}
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
+          ASSEMBLY_ARITHMETIC_BROWSER_EXPORT_PROOF_DIR: output/assembly-arithmetic-course
+        run: node --test test/assembly-arithmetic-course-browser.test.mjs
+
+      - name: Verify Unit 8 actual syscall course actions and saved worksheet
+        if: ${{ matrix.course == 'assembly' }}
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
+          ASSEMBLY_SYSCALL_BROWSER_EXPORT_PROOF_DIR: output/assembly-syscall-course
+        run: node --test test/assembly-syscall-course-browser.test.mjs
+
+      - name: Verify Unit 10 and 11 actual follow-up actions reuse saved work
+        if: ${{ matrix.course == 'assembly' }}
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
+        run: |
+          node --test test/assembly-debug-followups-course-browser.test.mjs
+          node --test test/assembly-performance-followups-course-browser.test.mjs
+
+      - name: Verify exported Assembly contracts and native debugger traces
+        if: ${{ matrix.course == 'assembly' }}
+        run: |
+          python3 test/assembly-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/playwright/assembly-native-clang.json
+          python3 test/assembly-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-native-gcc.json
+          python3 test/assembly-exported-contracts.py --project calculator --cc clang --archives output/assembly-exports --proof output/playwright/assembly-calculator-native-clang.json
+          python3 test/assembly-exported-contracts.py --project calculator --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-calculator-native-gcc.json
+          python3 test/assembly-exported-contracts.py --project array --cc clang --archives output/assembly-exports --proof output/playwright/assembly-array-native-clang.json
+          python3 test/assembly-exported-contracts.py --project array --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-array-native-gcc.json
+          python3 test/assembly-exported-contracts.py --project string --cc clang --archives output/assembly-exports --proof output/playwright/assembly-string-native-clang.json
+          python3 test/assembly-exported-contracts.py --project string --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-string-native-gcc.json
+          python3 test/assembly-exported-contracts.py --project helper --cc clang --archives output/assembly-exports --proof output/playwright/assembly-helper-native-clang.json
+          python3 test/assembly-exported-contracts.py --project helper --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-helper-native-gcc.json
+          python3 test/assembly-exported-contracts.py --project parser --cc clang --archives output/assembly-exports --proof output/playwright/assembly-parser-native-clang.json
+          python3 test/assembly-exported-contracts.py --project parser --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-parser-native-gcc.json
+          python3 test/assembly-exported-contracts.py --project reverse --cc clang --archives output/assembly-exports --proof output/playwright/assembly-reverse-native-clang.json
+          python3 test/assembly-exported-contracts.py --project reverse --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-reverse-native-gcc.json
+          python3 test/assembly-exported-contracts.py --project stack --cc clang --archives output/assembly-exports --proof output/playwright/assembly-stack-native-clang.json
+          python3 test/assembly-exported-contracts.py --project stack --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-stack-native-gcc.json
+          python3 test/assembly-exported-contracts.py --project compiler --cc clang --archives output/assembly-exports --proof output/playwright/assembly-compiler-native-clang.json
+          python3 test/assembly-exported-contracts.py --project compiler --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-compiler-native-gcc.json
+          python3 test/assembly-exported-contracts.py --project debug --cc clang --archives output/assembly-exports --proof output/playwright/assembly-debug-native-clang.json
+          python3 test/assembly-exported-contracts.py --project debug --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-debug-native-gcc.json
+          python3 test/assembly-exported-contracts.py --project performance --cc clang --archives output/assembly-exports --proof output/playwright/assembly-performance-native-clang.json
+          python3 test/assembly-exported-contracts.py --project performance --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-performance-native-gcc.json
+          python3 test/assembly-exported-contracts.py --project hardening --cc clang --archives output/assembly-exports --proof output/playwright/assembly-hardening-native-clang.json
+          python3 test/assembly-exported-contracts.py --project hardening --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-hardening-native-gcc.json
+          python3 test/assembly-exported-contracts.py --project records --cc clang --archives output/assembly-exports --proof output/playwright/assembly-records-native-clang.json
+          python3 test/assembly-exported-contracts.py --project records --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-records-native-gcc.json
+          python3 test/assembly-exported-contracts.py --project arithmetic --cc clang --archives output/assembly-exports --proof output/playwright/assembly-arithmetic-native-clang.json
+          python3 test/assembly-exported-contracts.py --project arithmetic --cc gcc --archives output/assembly-exports --proof output/playwright/assembly-arithmetic-native-gcc.json
+
+      - name: Verify actual exported optional Assembly setup builds
+        if: ${{ matrix.course == 'assembly' }}
+        run: |
+          python3 test/assembly-setup-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-setup-native/clang.json
+          python3 test/assembly-setup-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-setup-native/gcc.json
+
+      - name: Verify actual exported syscall builds and kernel evidence
+        if: ${{ matrix.course == 'assembly' }}
+        run: |
+          python3 test/assembly-syscall-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-syscall-native/clang.json
+          python3 test/assembly-syscall-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-syscall-native/gcc.json
+
+      - name: Verify actual exported register-width builds and observations
+        if: ${{ matrix.course == 'assembly' }}
+        run: |
+          python3 test/assembly-register-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-register-native/clang.json
+          python3 test/assembly-register-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-register-native/gcc.json
+
+      - name: Verify actual exported comparison and shift builds and observations
+        if: ${{ matrix.course == 'assembly' }}
+        run: |
+          python3 test/assembly-logic-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-logic-native/clang.json
+          python3 test/assembly-logic-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-logic-native/gcc.json
+
+      - name: Verify actual exported memory and address builds and observations
+        if: ${{ matrix.course == 'assembly' }}
+        run: |
+          python3 test/assembly-machine-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-machine-native/clang.json
+          python3 test/assembly-machine-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-machine-native/gcc.json
+
+      - name: Verify actual exported dispatch and loop builds and observations
+        if: ${{ matrix.course == 'assembly' }}
+        run: |
+          python3 test/assembly-control-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-control-native/clang.json
+          python3 test/assembly-control-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-control-native/gcc.json
+
+      - name: Verify actual exported LIFO and caller-frame builds and observations
+        if: ${{ matrix.course == 'assembly' }}
+        run: |
+          python3 test/assembly-stack-optional-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-stack-optional-native/clang.json
+          python3 test/assembly-stack-optional-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-stack-optional-native/gcc.json
+
+      - name: Verify actual exported ABI argument builds and call observations
+        if: ${{ matrix.course == 'assembly' }}
+        run: |
+          python3 test/assembly-abi-optional-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-abi-optional-native/clang.json
+          python3 test/assembly-abi-optional-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-abi-optional-native/gcc.json
+
+      - name: Verify actual exported pointer-table and overlap-copy builds and memory observations
+        if: ${{ matrix.course == 'assembly' }}
+        run: |
+          python3 test/assembly-memory-layout-optional-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-memory-layout-optional-native/clang.json
+          python3 test/assembly-memory-layout-optional-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-memory-layout-optional-native/gcc.json
+
+      - name: Verify exported compiler investigations and saved observation worksheets
+        if: ${{ matrix.course == 'assembly' }}
+        run: |
+          python3 test/assembly-compiler-optional-exported-contracts.py --cc clang --archives output/assembly-exports --proof output/assembly-compiler-optional-native/clang.json
+          python3 test/assembly-compiler-optional-exported-contracts.py --cc gcc --archives output/assembly-exports --proof output/assembly-compiler-optional-native/gcc.json
+
+      - name: Run the debugging and performance follow-up activities
+        if: ${{ matrix.course == 'assembly' }}
+        run: |
+          python3 test/assembly-followup-activities.py --cc clang --archives output/assembly-exports --proof output/assembly-followup-activities-native/clang/proof.json
+          python3 test/assembly-followup-activities.py --cc gcc --archives output/assembly-exports --proof output/assembly-followup-activities-native/gcc/proof.json
+
+      - name: Retain Assembly workflow and native validation
+        if: ${{ always() && matrix.course == 'assembly' }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: assembly-workflow-validation
+          path: |
+            output/playwright/course-import-assembly-*.png
+            output/playwright/compiler-clang-generated/
+            output/playwright/compiler-gcc-generated/
+            output/playwright/debug-clang-traces/
+            output/playwright/debug-gcc-traces/
+            output/playwright/performance-clang-observations/
+            output/playwright/performance-gcc-observations/
+            output/playwright/hardening-observations-clang/
+            output/playwright/hardening-observations-gcc/
+            output/playwright/assembly-failure.png
+            output/playwright/assembly-*.json
+            output/playwright/assembly-*.jsonl
+            output/assembly-exports/
+            output/assembly-record-course/
+            output/assembly-arithmetic-course/
+            output/assembly-debug-followups-course/
+            output/assembly-performance-followups-course/
+            output/assembly-setup-native/
+            output/assembly-syscall-native/
+            output/assembly-register-native/
+            output/assembly-logic-native/
+            output/assembly-machine-native/
+            output/assembly-control-native/
+            output/assembly-stack-optional-native/
+            output/assembly-abi-optional-native/
+            output/assembly-memory-layout-optional-native/
+            output/assembly-compiler-optional-native/
+            output/assembly-followup-activities-native/
+            output/assembly-syscall-course/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Verify Linux confirmed imports, notebook reuse and exact exports
+        if: ${{ matrix.course == 'linux' }}
+        env:
+          LINUX_BROWSER_EXPORT_PROOF_DIR: output/linux-exports
+        run: node --test test/linux-course-import-browser.test.mjs
+
+      - name: Prepare the disposable Linux user manager and journal
+        if: ${{ matrix.course == 'linux' }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends --yes dbus-user-session logrotate iproute2 iputils-ping curl dnsutils coreutils util-linux tar
+          native_lab_uid=$(id -u)
+          native_lab_user=$(id -un)
+          native_lab_runtime=/run/user/$native_lab_uid
+          sudo loginctl enable-linger "$native_lab_user"
+          sudo systemctl start "user@$native_lab_uid.service"
+          sudo install -d -m 2755 -o root -g systemd-journal /var/log/journal
+          sudo journalctl --flush
+          printf 'XDG_RUNTIME_DIR=%s\nDBUS_SESSION_BUS_ADDRESS=unix:path=%s/bus\n' "$native_lab_runtime" "$native_lab_runtime" >>"$GITHUB_ENV"
+
+      - name: Verify exported Linux lab contracts
+        if: ${{ matrix.course == 'linux' }}
+        run: |
+          if ! command -v nginx >/dev/null 2>&1 || ! command -v apache2 >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install --no-install-recommends --yes nginx apache2-bin
+          fi
+          python3 test/linux-exported-contracts.py --archives output/linux-exports --proof output/linux-exports/exported-contracts.json
+
+      - name: Retain Linux workflow and native validation
+        if: ${{ always() && matrix.course == 'linux' }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: linux-workflow-validation
+          path: output/linux-exports/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Verify native C17 imports, source editing and ZIP exports
+        if: ${{ matrix.course == 'c17' }}
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
+          C17_BROWSER_EXPORT_PROOF_DIR: output/c17-exports
+        run: node --test test/c17-course-import-browser.test.mjs
+
+      - name: Verify C17 studio readings and exported native contracts
+        if: ${{ matrix.course == 'c17' }}
+        run: |
+          CSE_CC=clang python3 test/c17-studio-readings.py --archives output/c17-exports
+          CSE_CC=gcc python3 test/c17-studio-readings.py --archives output/c17-exports
+
+      - name: Verify C17 unit readings and exported native contracts
+        if: ${{ matrix.course == 'c17' }}
+        run: |
+          CSE_CC=clang python3 test/c17-unit-readings.py --archives output/c17-exports
+          CSE_CC=gcc python3 test/c17-unit-readings.py --archives output/c17-exports
+
+      - name: Retain C17 workspace screenshots
+        if: ${{ always() && matrix.course == 'c17' }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: c17-workspace-screenshots
+          path: |
+            output/playwright/course-import-*.png
+            output/playwright/c17-workflow-proof.json
+            output/playwright/c17-studio-native-proof-*.json
+            output/playwright/c17-unit-native-proof-*.json
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Verify bridge and C++ foundation import, export and native compilation
+        if: ${{ matrix.course == 'cpp' }}
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
+        run: JAVAC="$JAVA_HOME_21_X64/bin/javac" node --test test/cpp-course-import-browser.test.mjs
+
+      - name: Retain C++ and Java workspace screenshots
+        if: ${{ always() && matrix.course == 'cpp' }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: cpp-workspace-screenshots
+          path: |
+            output/playwright/course-import-*.png
+            output/playwright/c17-workflow-proof.json
+            output/playwright/c17-studio-native-proof-*.json
+            output/playwright/c17-unit-native-proof-*.json
+          if-no-files-found: ignore
+          retention-days: 7
+
+  test-e2e:
+    needs: native-course-workflows
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.18.0
+          cache: npm
+          registry-url: https://registry.npmjs.org/
+
+      - name: Pin npm version
+        run: |
+          npm i -g npm@12.0.1
+          npm -v
+          test "$(npm --version)" = "12.0.1"
+
+      - name: Verify preview readiness failure recovery
+        run: node --test test/preview-readiness.test.mjs
+
+      - name: Install deps
+        run: npm ci
+
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Build front-end
+        run: npm run -w front-end build
+
+      - name: Verify saved project role labels and deletion context
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
+        run: node --test test/ide-saved-project-labels-browser.test.mjs
+
+      - name: Verify Scratch classroom import, execution and downloads
+        env:
+          SCRATCH_SCREENSHOT_DIR: output/playwright
+        run: node --test test/scratch-projects.test.mjs test/scratch-browser.test.mjs
+
+      - name: Retain Scratch conditional lesson screenshots
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: scratch-conditional-screenshots
+          path: front-end/output/playwright/scratch-conditionals-*.png
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Verify Pygame surfaces in the browser IDE
+        run: node --test test/pygame-browser-runtime.test.mjs
+
+      - name: Verify private IDE diagnostics in the browser
+        run: node --test test/ide-diagnostics-browser.test.mjs
+
+      - name: Verify console scrolling and editor argument warnings
+        run: node --test test/ide-console-browser.test.mjs
+
+      - name: Verify Turtle manual updates and editor search contrast
+        run: node --test test/turtle-tracer-browser.test.mjs
+
+      - name: Verify inline booking and Classes navigation
+        env:
+          BOOKING_SCREENSHOT_DIR: output/playwright
+        run: node --test test/signup-browser.test.mjs
+
+      - name: Retain booking screenshots
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: booking-screenshots
+          path: output/playwright/signup-*.png
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Verify confirmed course imports and accessible errors
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
+        run: node --test test/course-import-browser.test.mjs
+
+      - name: Verify independent course reference imports and melody
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
+        run: node --test test/course-reference-browser.test.mjs
+
+      - name: Retain course import screenshots
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: course-import-screenshots
+          path: output/playwright/course-import-*.png
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Cypress
+        uses: cypress-io/github-action@fa4a118725a8f001170d49631ea89e5d66fee626 # v7.4.1
+        env:
+          CYPRESS_BASE_URL: http://127.0.0.1:3333
+        with:
+          install: false
+          working-directory: front-end
+          config-file: cypress.config.ts
+          start: npm run preview -- --host 127.0.0.1 --port 3333 --strictPort
+          wait-on: node ../scripts/wait-for-loopback-preview.mjs
+
+  course-workflows:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - name: Pin npm version
+        run: |
+          npm i -g npm@12.0.1
+          npm -v
+          test "$(npm --version)" = "12.0.1"
+      - name: Install deps
+        run: npm ci
+      - name: Build front-end
+        run: npm run -w front-end build
+      - name: Verify and record the complete normalized course catalog
+        env:
+          COURSE_CATALOG_PROOF_DIR: ${{ github.workspace }}/output/course-catalog
+        run: npm exec -w front-end -- vitest run test/store.courses.catalog-identities.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+      - name: Retain normalized course catalog evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: course-catalog-workflows
+          path: output/course-catalog/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Verify notification source imports and saved code exports
+        env:
+          WEB_NOTIFICATION_EXPORT_DIR: output/web-notification-exports
+        run: npm exec -w front-end -- vitest run test/web-notification-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+      - name: Run actual exported notification projects and contracts
+        run: node test/web-notification-exported-contracts.mjs --exports front-end/output/web-notification-exports --proof output/web-notification-native/proof.json
+
+      - name: Retain notification source and native export evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: web-notification-workflows
+          path: |
+            front-end/output/web-notification-exports/
+            output/web-notification-native/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Verify Web course consent, saved editions and source exports
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/web-source-screenshots
+        run: node --test test/web-source-course-browser.test.mjs
+
+      - name: Retain Web course browser evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: web-source-course-workflows
+          path: |
+            output/web-source-browser/
+            output/web-source-screenshots/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Verify contact source imports and saved nested-file exports
+        env:
+          WEB_CONTACT_EXPORT_DIR: output/web-contact-exports
+        run: npm exec -w front-end -- vitest run test/web-contact-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+      - name: Verify contact course consent, roles and saved continuations
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/web-contact-screenshots
+        run: node --test test/web-contact-course-browser.test.mjs
+
+      - name: Fetch the maintained contact dependency graph
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: instruction-material/Web-Development-Foundations
+          ref: aed8ef2fcd7488c25c0b977b2099640e7431c55a
+          path: output/web-contact-native-source
+          persist-credentials: false
+
+      - name: Install the maintained contact root lockfile
+        working-directory: output/web-contact-native-source
+        run: npm ci
+
+      - name: Run actual saved and browser-edited contact exports
+        run: node test/web-contact-exported-contracts.mjs --source output/web-contact-native-source --exports front-end/output/web-contact-exports --browser output/web-contact-browser --proof output/web-contact-native/proof.json
+
+      - name: Retain contact course, source and native export evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: web-contact-workflows
+          path: |
+            front-end/output/web-contact-exports/
+            output/web-contact-browser/
+            output/web-contact-native/
+            output/web-contact-screenshots/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Verify notes imports, complete readings and saved nested-file exports
+        env:
+          WEB_NOTES_EXPORT_DIR: output/web-notes-exports
+        run: npm exec -w front-end -- vitest run test/web-notes-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+      - name: Verify notes course consent, roles and saved continuations
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/web-notes-screenshots
+        run: node --test test/web-notes-course-browser.test.mjs
+
+      - name: Fetch the maintained notes dependency graph
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: instruction-material/Web-Development-Foundations
+          ref: 8d48a2672e987b5ab1c1b7b93ea395f6da5c37a2
+          path: output/web-notes-native-source
+          persist-credentials: false
+
+      - name: Install the maintained notes root lockfile
+        working-directory: output/web-notes-native-source
+        run: npm ci
+
+      - name: Run actual saved and browser-edited notes exports
+        run: node test/web-notes-exported-contracts.mjs --source output/web-notes-native-source --exports front-end/output/web-notes-exports --browser output/web-notes-browser --proof output/web-notes-native/proof.json
+
+      - name: Retain notes course, source and native export evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: web-notes-workflows
+          path: |
+            front-end/output/web-notes-exports/
+            output/web-notes-browser/
+            output/web-notes-native/
+            output/web-notes-screenshots/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Verify deployment readings and complete saved role exports
+        env:
+          WEB_DEPLOYMENT_EXPORT_DIR: output/web-deployment-exports
+        run: npm exec -w front-end -- vitest run test/web-deployment-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+      - name: Verify deployment consent, both roles and saved continuations
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/web-deployment-screenshots
+        run: node --test test/web-deployment-course-browser.test.mjs
+
+      - name: Fetch the maintained deployment source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: instruction-material/Web-Development-Foundations
+          ref: 962d1be3da0d954ad774390b78cb044395a12262
+          path: output/web-deployment-native-source
+          persist-credentials: false
+
+      - name: Verify and reuse the identical maintained dependency graph
+        run: |
+          for input in package.json package-lock.json WDF5-Separate-Deployment-Lab/starter/backend/package.json WDF5-Separate-Deployment-Lab/solution/backend/package.json; do
+            cmp "output/web-notes-native-source/$input" "output/web-deployment-native-source/$input"
+          done
+          test -d output/web-notes-native-source/node_modules
+          test ! -e output/web-deployment-native-source/node_modules
+          ln -s ../web-notes-native-source/node_modules output/web-deployment-native-source/node_modules
+
+      - name: Verify actual exported deployment artifacts and browser rollback
+        run: node test/web-deployment-exported-contracts.mjs --source output/web-deployment-native-source --exports front-end/output/web-deployment-exports --browser output/web-deployment-browser --proof output/web-deployment-native/proof.json
+
+      - name: Retain deployment course and native recovery evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: web-deployment-workflows
+          path: |
+            front-end/output/web-deployment-exports/
+            output/web-deployment-browser/
+            output/web-deployment-native/
+            output/web-deployment-screenshots/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Verify live chat readings and saved role exports
+        env:
+          WEB_CHAT_EXPORT_DIR: output/web-live-chat-exports
+        run: npm exec -w front-end -- vitest run test/web-live-chat-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+      - name: Verify live chat consent, separate fixture work and saved source
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/web-live-chat-screenshots
+        run: node --test test/web-live-chat-course-browser.test.mjs
+
+      - name: Fetch the maintained live chat source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: instruction-material/Web-Development-Foundations
+          ref: b179a9e0e523a95fc5c71de3434322a7f7840579
+          path: output/web-live-chat-native-source
+          persist-credentials: false
+
+      - name: Reuse the identical maintained chat dependencies
+        run: |
+          for input in package.json package-lock.json WDF4-Realtime-Chat-App/starter/package.json WDF4-Realtime-Chat-App/solution/package.json; do
+            cmp "output/web-notes-native-source/$input" "output/web-live-chat-native-source/$input"
+          done
+          test -d output/web-notes-native-source/node_modules
+          test ! -e output/web-live-chat-native-source/node_modules
+          ln -s ../web-notes-native-source/node_modules output/web-live-chat-native-source/node_modules
+
+      - name: Run saved and browser-edited chat exports with two actual clients
+        run: node test/web-live-chat-exported-contracts.mjs --source output/web-live-chat-native-source --exports front-end/output/web-live-chat-exports --browser output/web-live-chat-browser --proof output/web-live-chat-native/proof.json
+
+      - name: Retain live chat import and native recovery evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: web-live-chat-workflows
+          path: |
+            front-end/output/web-live-chat-exports/
+            output/web-live-chat-browser/
+            output/web-live-chat-native/
+            output/web-live-chat-screenshots/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Verify Network Systems foundation imports and notebook reuse
+        env:
+          NETWORK_BROWSER_EXPORT_PROOF_DIR: output/network-exports
+          COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
+        run: node --test test/network-course-import-browser.test.mjs
+
+      - name: Install disposable Network lab tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends --yes iproute2 iptables util-linux curl dnsutils tcpdump dnsmasq-base bash strace
+
+      - name: Verify actual exported Network capstone contracts
+        run: sudo env PYTHONDONTWRITEBYTECODE=1 python3 test/network-capstone-exported-contracts.py output/network-exports
+
+      - name: Verify actual exported Network setup investigations
+        run: python3 test/network-setup-exported-contracts.py output/network-exports
+
+      - name: Verify actual exported Network transport investigations
+        run: python3 test/network-transport-exported-contracts.py output/network-exports
+
+      - name: Verify actual exported socket inventory investigations
+        env:
+          NETWORK_BROWSER_EXPORT_PROOF_DIR: output/network-exports
+        run: python3 test/network-inventory-exported-contracts.py output/network-exports
+
+      - name: Retain Network Systems foundation workflow evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: network-foundations-workflows
+          path: |
+            output/network-exports/
+            output/playwright/course-import-network-*.png
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Verify PyGames course workflows and pinned original game runtime
+        env:
+          PYGAMES_BROWSER_EXPORT_PROOF_DIR: output/pygames-exports
+        run: node --test test/pygames-course-workflows-browser.test.mjs
+
+      - name: Retain PyGames source, media and browser evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: pygames-course-workflows
+          path: output/pygames-exports/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Verify class loops and execution limits
+        run: python3 test/python-runtime-loop-guards.test.py
+
+      - name: Verify self-contained PyGames core imports and saved continuations
+        env:
+          PYGAMES_CORE_BROWSER_PROOF_DIR: output/pygames-core-exports
+        run: node --test --test-concurrency=1 test/browser-runtime-diagnostics.test.mjs test/pygames-core-browser.test.mjs
+
+      - name: Retain PyGames core browser workflow evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: pygames-core-browser-workflows
+          path: output/pygames-core-exports/
+          if-no-files-found: error
+          retention-days: 14
+
+  swift-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+
+      - name: Pin npm version
+        run: |
+          npm i -g npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+
+      - name: Install checked dependencies
+        run: npm ci
+
+      - name: Build the course browser
+        run: npm run -w front-end build
+
+      - name: Verify Swift profile consent, saved roles and source ZIP exports
+        env:
+          SWIFT_WELCOME_BROWSER_DIR: output/swift-welcome-browser
+          COURSE_IMPORT_SCREENSHOT_DIR: output/swift-welcome-screenshots
+        run: node --test test/swift-welcome-course-browser.test.mjs
+
+      - name: Verify Swift networking consent, saved roles and seven-file exports
+        env:
+          SWIFT_NETWORKING_BROWSER_DIR: output/swift-networking-browser
+          COURSE_IMPORT_SCREENSHOT_DIR: output/swift-networking-screenshots
+        run: node --test test/swift-networking-course-browser.test.mjs
+
+      - name: Retain Swift networking browser and exported source evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: swift-networking-workflows
+          path: |
+            output/swift-networking-browser/
+            output/swift-networking-screenshots/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Retain Swift profile browser and exported source evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: swift-welcome-workflows
+          path: |
+            output/swift-welcome-browser/
+            output/swift-welcome-screenshots/
+          if-no-files-found: error
+          retention-days: 7
+
+  swift-ios:
+    needs: swift-browser
+    runs-on: macos-26
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      actions: read
+    env:
+      CLASSES_FAMILY_TASK_ID: swift-welcome-ios
+      CLASSES_FAMILY_MIN_DISK_GB: 8
+      CLASSES_FAMILY_HEAVY_TIMEOUT_MS: 3300000
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          name: swift-welcome-workflows
+          path: output/swift-welcome-workflows
+
+      - name: Wait for the hosted Mac to settle within the native load limit
+        run: |
+          python3 - <<'PY'
+          import datetime
+          import json
+          import os
+          from pathlib import Path
+          import time
+
+          proof = Path("output/swift-welcome-ios/runner-readiness.json")
+          proof.parent.mkdir(parents=True, exist_ok=True)
+          samples = []
+          deadline = time.monotonic() + 300
+          while True:
+              load = os.getloadavg()[0]
+              samples.append({"at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "load": load})
+              ready = load <= 8
+              proof.write_text(json.dumps({"ready": ready, "maximumLoad": 8, "samples": samples}, indent=2) + "\n")
+              print(f"Hosted Mac load: {load:.2f}; required maximum: 8", flush=True)
+              if ready:
+                  break
+              if time.monotonic() >= deadline:
+                  raise SystemExit("Hosted Mac did not settle within five minutes; native checks have not run")
+              time.sleep(10)
+          PY
+
+      - name: Compile downloaded Swift ZIPs and test both source roles on two iPhone sizes
+        run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-welcome-exported-ios.py --browser output/swift-welcome-workflows/swift-welcome-browser --proof output/swift-welcome-ios/proof.json
+
+      - name: Retain native Swift versions, process logs and UI results
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: swift-welcome-ios
+          path: |
+            output/swift-welcome-ios/runner-readiness.json
+            output/swift-welcome-ios/proof.json
+            output/swift-welcome-ios/processes.jsonl
+            output/swift-welcome-ios/logs/
+            output/swift-welcome-ios/results/
+          if-no-files-found: error
+          retention-days: 7
+
+  swift-networking-ios:
+    needs: swift-browser
+    runs-on: macos-26
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      actions: read
+    env:
+      CLASSES_FAMILY_TASK_ID: swift-networking-ios
+      CLASSES_FAMILY_MIN_DISK_GB: 8
+      CLASSES_FAMILY_HEAVY_TIMEOUT_MS: 3300000
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          name: swift-networking-workflows
+          path: output/swift-networking-workflows
+
+      - name: Wait for the hosted Mac to settle within the native load limit
+        run: |
+          python3 - <<'PY'
+          import datetime
+          import json
+          import os
+          from pathlib import Path
+          import time
+
+          proof = Path(os.environ["RUNNER_TEMP"]) / "swift-networking-ios/runner-readiness.json"
+          proof.parent.mkdir(parents=True, exist_ok=True)
+          samples = []
+          deadline = time.monotonic() + 300
+          while True:
+              load = os.getloadavg()[0]
+              samples.append({"at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "load": load})
+              ready = load <= 8
+              proof.write_text(json.dumps({"ready": ready, "maximumLoad": 8, "samples": samples}, indent=2) + "\n")
+              print(f"Hosted Mac load: {load:.2f}; required maximum: 8", flush=True)
+              if ready:
+                  break
+              if time.monotonic() >= deadline:
+                  raise SystemExit("Hosted Mac did not settle within five minutes; native checks have not run")
+              time.sleep(10)
+          PY
+
+      - name: Verify supplied networking contracts from all browser ZIPs
+        run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-networking-exported-contracts.py --browser output/swift-networking-workflows/swift-networking-browser --proof "$RUNNER_TEMP/swift-networking-ios/contracts/proof.json"
+
+      - name: Test exported networking apps, long content and larger text on two iPhone sizes
+        run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-welcome-exported-ios.py --course networking --browser output/swift-networking-workflows/swift-networking-browser --proof "$RUNNER_TEMP/swift-networking-ios/proof.json"
+
+      - name: Retain native Swift versions, process logs and UI results
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: swift-networking-ios
+          path: |
+            ${{ runner.temp }}/swift-networking-ios/runner-readiness.json
+            ${{ runner.temp }}/swift-networking-ios/proof.json
+            ${{ runner.temp }}/swift-networking-ios/processes.jsonl
+            ${{ runner.temp }}/swift-networking-ios/logs/
+            ${{ runner.temp }}/swift-networking-ios/results/
+            ${{ runner.temp }}/swift-networking-ios/contracts/proof.json
+            ${{ runner.temp }}/swift-networking-ios/contracts/processes.jsonl
+            ${{ runner.temp }}/swift-networking-ios/contracts/*.txt
+            ${{ runner.temp }}/swift-networking-ios/contracts/**/contracts-proof.json
+          if-no-files-found: error
+          retention-days: 7
+
+  usaco-workflows:
+    needs: test-e2e
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - name: Pin npm version
+        run: |
+          npm i -g npm@12.0.1
+          npm -v
+          test "$(npm --version)" = "12.0.1"
+      - name: Install deps
+        run: npm ci
+      - name: Build front-end
+        run: npm run -w front-end build
+      - name: Verify restored USACO imports and native file I/O
+        env:
+          COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
+        run: JAVAC="$JAVA_HOME_21_X64/bin/javac" JAVA="$JAVA_HOME_21_X64/bin/java" node --test test/usaco-course-import-browser.test.mjs
+
+      - name: Retain USACO project workflow screenshots
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: usaco-workspace-screenshots
+          path: output/playwright/course-import-usaco-*.png
+          if-no-files-found: error
+          retention-days: 7
+
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.18.0
+          cache: npm
+
+      - name: Pin npm version
+        run: |
+          npm i -g npm@12.0.1
+          npm -v
+          test "$(npm --version)" = "12.0.1"
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build
+        run: npm run build
