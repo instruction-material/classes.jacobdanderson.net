@@ -1,6 +1,8 @@
+import { createPinia, setActivePinia } from "pinia";
 import { describe, expect, it } from "vitest";
 import { dataScienceInPythonCourse } from "@/stores/courses/data-science-in-python";
 import { loadRawCourse } from "@/stores/courses/index";
+import { useCoursesStore } from "@/stores/courses";
 
 const EXPECTED_TEACHING_MODULES = [
 	"DSP0 Setup and Tooling",
@@ -22,6 +24,16 @@ const EXPECTED_TEACHING_MODULES = [
 	"Module 9: Data Science Capstone"
 ];
 
+const PUBLISHED_APPLIED_STUDIO_MODULE_IDS = [
+	"data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks",
+	"data-science-in-python-dsp11-applied-studio-cleaning-missing-and-invalid-rows",
+	"data-science-in-python-dsp12-applied-studio-grouped-summaries-by-category",
+	"data-science-in-python-dsp13-applied-studio-visualization-choice-and-chart-integrity",
+	"data-science-in-python-dsp14-applied-studio-reproducible-mini-reports",
+	"data-science-in-python-dsp15-applied-studio-lightweight-dashboards-and-filters",
+	"data-science-in-python-dsp16-applied-studio-capstone-data-story-readiness"
+];
+
 function requireSourceModule(title: string) {
 	const module = dataScienceInPythonCourse.modules.find(
 		candidate => candidate.title === title
@@ -31,6 +43,49 @@ function requireSourceModule(title: string) {
 }
 
 describe("Data Science in Python learner flow", () => {
+	it("recognizes the published applied-studio progress IDs before title changes", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById(
+			"data-science-in-python"
+		);
+		expect(course).not.toBeNull();
+		for (const publishedModuleId of PUBLISHED_APPLIED_STUDIO_MODULE_IDS) {
+			const module = course!.modules.find(candidate =>
+				[candidate.id, ...(candidate.aliases ?? [])].includes(
+					publishedModuleId
+				)
+			);
+			expect(module, publishedModuleId).toBeDefined();
+			const topicId = publishedModuleId.replace(
+				/^data-science-in-python-dsp\d+-applied-studio-/,
+				""
+			);
+			const historicalItems = [
+				[module!.curriculum[2], `curriculum-core-project-${topicId}`],
+				[module!.curriculum[3], `curriculum-review-${topicId}`],
+				[
+					module!.supplementalProjects[0],
+					`supplemental-extension-challenge-${topicId}`
+				],
+				[
+					module!.supplementalProjects[1],
+					`supplemental-transfer-practice-${topicId}`
+				],
+				[
+					module!.supplementalProjects[2],
+					`supplemental-extension-practice-${topicId}`
+				]
+			] as const;
+
+			for (const [item, historicalSuffix] of historicalItems) {
+				expect(
+					[item?.id, ...(item?.aliases ?? [])],
+					`${publishedModuleId}-${historicalSuffix}`
+				).toContain(`${publishedModuleId}-${historicalSuffix}`);
+			}
+		}
+	});
+
 	it("interleaves applied studios before the final capstone", () => {
 		expect(
 			dataScienceInPythonCourse.modules.map(module => module.title)

@@ -1068,7 +1068,7 @@ jobs:
               uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
               with:
                   repository: instruction-material/Web-Development-Foundations
-                  ref: 781eba647bbdcb3f89aa0417011dabe2fca30d53
+                  ref: 962d1be3da0d954ad774390b78cb044395a12262
                   path: output/web-deployment-native-source
                   persist-credentials: false
 
@@ -1206,6 +1206,115 @@ jobs:
                   path: output/pygames-core-exports/
                   if-no-files-found: error
                   retention-days: 14
+
+    swift-browser:
+        runs-on: ubuntu-24.04
+        timeout-minutes: 20
+        steps:
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+              with:
+                  persist-credentials: false
+
+            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+              with:
+                  node-version: 24.18.0
+                  cache: npm
+
+            - name: Pin npm version
+              run: |
+                  npm i -g npm@12.0.1
+                  test "$(npm --version)" = "12.0.1"
+
+            - name: Install checked dependencies
+              run: npm ci
+
+            - name: Build the course browser
+              run: npm run -w front-end build
+
+            - name: Verify Swift profile consent, saved roles and source ZIP exports
+              env:
+                  SWIFT_WELCOME_BROWSER_DIR: output/swift-welcome-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/swift-welcome-screenshots
+              run: node --test test/swift-welcome-course-browser.test.mjs
+
+            - name: Retain Swift profile browser and exported source evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: swift-welcome-workflows
+                  path: |
+                      output/swift-welcome-browser/
+                      output/swift-welcome-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+    swift-ios:
+        needs: swift-browser
+        runs-on: macos-26
+        timeout-minutes: 45
+        permissions:
+            contents: read
+            actions: read
+        env:
+            CLASSES_FAMILY_TASK_ID: swift-welcome-ios
+            CLASSES_FAMILY_MIN_DISK_GB: 8
+            CLASSES_FAMILY_HEAVY_TIMEOUT_MS: 2400000
+        steps:
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+              with:
+                  persist-credentials: false
+
+            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+              with:
+                  node-version: 24.18.0
+
+            - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+              with:
+                  name: swift-welcome-workflows
+                  path: output/swift-welcome-workflows
+
+            - name: Wait for the hosted Mac to settle within the native load limit
+              run: |
+                  python3 - <<'PY'
+                  import datetime
+                  import json
+                  import os
+                  from pathlib import Path
+                  import time
+
+                  proof = Path("output/swift-welcome-ios/runner-readiness.json")
+                  proof.parent.mkdir(parents=True, exist_ok=True)
+                  samples = []
+                  deadline = time.monotonic() + 300
+                  while True:
+                      load = os.getloadavg()[0]
+                      samples.append({"at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "load": load})
+                      ready = load <= 8
+                      proof.write_text(json.dumps({"ready": ready, "maximumLoad": 8, "samples": samples}, indent=2) + "\n")
+                      print(f"Hosted Mac load: {load:.2f}; required maximum: 8", flush=True)
+                      if ready:
+                          break
+                      if time.monotonic() >= deadline:
+                          raise SystemExit("Hosted Mac did not settle within five minutes; native checks have not run")
+                      time.sleep(10)
+                  PY
+
+            - name: Compile downloaded Swift ZIPs and test both source roles on two iPhone sizes
+              run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-welcome-exported-ios.py --browser output/swift-welcome-workflows/swift-welcome-browser --proof output/swift-welcome-ios/proof.json
+
+            - name: Retain native Swift versions, process logs and UI results
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: swift-welcome-ios
+                  path: |
+                      output/swift-welcome-ios/runner-readiness.json
+                      output/swift-welcome-ios/proof.json
+                      output/swift-welcome-ios/processes.jsonl
+                      output/swift-welcome-ios/logs/
+                      output/swift-welcome-ios/results/
+                  if-no-files-found: error
+                  retention-days: 7
 
     usaco-workflows:
         needs: test-e2e

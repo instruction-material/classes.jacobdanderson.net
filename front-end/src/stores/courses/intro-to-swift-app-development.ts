@@ -1,4 +1,5 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
+import swiftWelcomeReading from "@/assets/course-guides/swift-welcome-profile.md?raw";
 import { buildProjectGuidance } from "./projectGuidance";
 import { buildSupportSectionGuidance } from "./supportSectionGuidance";
 
@@ -1400,9 +1401,11 @@ const introToSwiftAppDevelopmentSourceCourse: RawCourse = {
 		},
 		{
 			title: "SADX Enrichment and Reference Boundaries",
+			aliases: ["SADX Enrichment and Legacy Archive Boundaries"],
 			curriculum: [
 				{
 					title: "Canonical Swift Repo Structure",
+					aliases: ["Core Concepts"],
 					content:
 						"Treat the `SAD1` through `SAD7` projects as the canonical active course path. The older `Mod1Pro*` through `Mod5Pro*` folders remain available as reference material rather than as a second competing sequence."
 				},
@@ -1418,6 +1421,9 @@ const introToSwiftAppDevelopmentSourceCourse: RawCourse = {
 				},
 				{
 					title: "SADX Enrichment and Reference Boundaries: Verification and Reflection",
+					aliases: [
+						"intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-curriculum-verification-review-sadx-enrichment-and-legacy-archive-boundaries"
+					],
 					content: buildSupportSectionGuidance({
 						courseFamily: "Swift",
 						moduleTitle: "SADX Enrichment and Reference Boundaries",
@@ -1426,6 +1432,9 @@ const introToSwiftAppDevelopmentSourceCourse: RawCourse = {
 				},
 				{
 					title: "SADX Enrichment and Reference Boundaries: Core Project",
+					aliases: [
+						"intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-curriculum-core-project-sadx-enrichment-and-legacy-archive-boundaries"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "Swift app",
 						moduleTitle: "SADX Enrichment and Reference Boundaries",
@@ -1450,6 +1459,9 @@ const introToSwiftAppDevelopmentSourceCourse: RawCourse = {
 				},
 				{
 					title: "SADX Enrichment and Reference Boundaries Transfer Practice",
+					aliases: [
+						"intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-supplemental-transfer-practice-sadx-enrichment-and-legacy-archive-boundaries"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "Swift app",
 						moduleTitle: "SADX Enrichment and Reference Boundaries",
@@ -1463,6 +1475,9 @@ const introToSwiftAppDevelopmentSourceCourse: RawCourse = {
 				},
 				{
 					title: "SADX Enrichment and Reference Boundaries Extension Practice",
+					aliases: [
+						"intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-supplemental-extension-practice-sadx-enrichment-and-legacy-archive-boundaries"
+					],
 					content: buildProjectGuidance({
 						courseFamily: "Swift app",
 						moduleTitle: "SADX Enrichment and Reference Boundaries",
@@ -2197,6 +2212,9 @@ function contextualizeSwiftItem(
 	flow: SwiftCourseModuleFlow,
 	isSupplemental: boolean
 ): RawCourseModuleItem {
+	const welcomeProject =
+		flow.title === "SW3 SwiftUI Views, Layout, and Modifiers" &&
+		item.title === "Project: Welcome Profile App";
 	const practiceLink = swiftPracticePack(flow.materialSection);
 	const verificationLink = swiftVerificationGuide(flow.answerSection);
 	const isExtension =
@@ -2212,7 +2230,10 @@ function contextualizeSwiftItem(
 		...item,
 		title: contextualSwiftTitle(item, flow),
 		aliases: [...new Set([...(item.aliases ?? []), item.title])],
-		content: `${item.content.trim()}
+		ideImport: welcomeProject ? true : item.ideImport,
+		content: welcomeProject
+			? swiftWelcomeReading.trim()
+			: `${item.content.trim()}
 
 **Course position:** ${flow.stage}. ${legacyNote}
 

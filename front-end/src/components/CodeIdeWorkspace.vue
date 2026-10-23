@@ -45,6 +45,7 @@ import {
 	getCodeIdeProjectSubtitle
 } from "@/modules/codeIdeProjectLabels";
 import { cppBuildInstructions } from "@/modules/cppBuildInstructions";
+import { createGameAudioBudget } from "@/modules/gameAudioBudget";
 import {
 	createIdeDiagnostics,
 	safeRuntimeVersion,
@@ -93,11 +94,11 @@ import {
 } from "@/modules/pythonIde";
 import {
 	findPythonIdeCourseAsset,
+	findPythonIdeProjectAssetFile,
 	getPythonIdeCourseAssetObjectUrl,
 	loadPythonIdeCourseAssetPack,
 	normalizePythonIdeAssetLookupPath,
-	pythonIdeAssetCandidateNames,
-	pythonIdeAssetLookupAliases
+	pythonIdeAssetCandidateNames
 } from "@/modules/pythonIdeCourseAssets";
 import {
 	preparePythonIdeGameCanvas,
@@ -111,6 +112,16 @@ import {
 	unchangedRunFiles
 } from "@/modules/pythonSandbox";
 import { rustBuildInstructions } from "@/modules/rustBuildInstructions";
+import { swiftBuildInstructions } from "@/modules/swiftBuildInstructions";
+import {
+	assertTurtleStepAvailable,
+	createTurtleAnimationBudget,
+	reserveTurtleAnimationStep
+} from "@/modules/turtleAnimationBudget";
+import {
+	createTurtleTimerRegistry,
+	releaseTurtleTimerCallback
+} from "@/modules/turtleTimerRegistry";
 import { bronzePythonFileIoForKey } from "@/modules/usacoBronzeRequiredPacks";
 import { webBuildInstructions } from "@/modules/webBuildInstructions";
 import { webCourseResource } from "@/modules/webProjectResources";
@@ -346,9 +357,9 @@ interface ResolvedGameAsset {
 }
 
 interface GameToneHandle {
+	cleanup: () => void;
 	gain: GainNode;
 	oscillator: OscillatorNode;
-	timeout: ReturnType<typeof window.setTimeout>;
 }
 
 type PythonIdeAssetFolder = "images" | "music" | "sounds";
@@ -683,12 +694,23 @@ const turtleObjectDragHandlers = new Map<
 	string,
 	(x: number, y: number) => void
 >();
-const turtleTimerHandles = new Set<ReturnType<typeof window.setTimeout>>();
+const turtleTimerRegistry = createTurtleTimerRegistry({
+	schedule: (callback, delayMs) => window.setTimeout(callback, delayMs),
+	cancel: handle => window.clearTimeout(handle),
+	onPendingChange: count => {
+		activeTurtleTimerCount.value = count;
+	},
+	onReleaseFailure: () => {
+		console.warn("Could not release a Turtle timer callback.");
+	}
+});
 const gameKeysDown = new Set<string>();
 const gameEvents: GameInputEvent[] = [];
 const gameImageCache = new Map<string, CachedGameImage>();
 const activeGameMouseButtons = new Set<number>();
 const gameSoundAudio = new Map<string, Set<HTMLAudioElement>>();
+const gameSoundCleanup = new WeakMap<HTMLAudioElement, () => void>();
+const gameAudioBudget = createGameAudioBudget();
 const intentionallyStoppedGameAudio = new WeakSet<HTMLAudioElement>();
 const gameToneAudio = new Map<number, GameToneHandle>();
 const codeEditorViewStates = new Map<string, CodeEditorViewState>();
@@ -739,6 +761,7 @@ let gameMusicVolume = 1;
 let gameToneAudioContext: AudioContext | null = null;
 let gameToneCounter = 0;
 let gameAudioPlaybackBlockedNoticeShown = false;
+let gameAudioLimitNoticeShown = false;
 let codeEditorView: CodeEditorView | null = null;
 let syncingCodeMirrorContent = false;
 let useFreshCodeEditorStateOnNextReset = false;
@@ -748,6 +771,7 @@ let gameCourseAssetPackSilentLoadFailed = false;
 let turtleStampCounter = 0;
 let turtleCompletedCommands: TurtleCompletedCommand[] = [];
 let turtleQueuedSteps: TurtleAnimationStep[] = [];
+let turtleAnimationBudget = createTurtleAnimationBudget();
 let turtleManualFrame: TurtleManualFrame | null = null;
 let turtleVisiblePoses = new Map<string, TurtlePose>();
 let turtleWorldCoordinates: [number, number, number, number] | null = null;
@@ -1141,6 +1165,7 @@ const usesNativeSourceWorkspace = computed(
 		selectedProject.value?.mode === "assembly" ||
 		selectedProject.value?.mode === "c" ||
 		selectedProject.value?.mode === "cpp" ||
+		selectedProject.value?.mode === "swift" ||
 		selectedProject.value?.mode === "rust"
 );
 const webProjectRequirement = computed(() => {
@@ -1151,20 +1176,23 @@ const webProjectRequirement = computed(() => {
 		: "Requires Node.js 24 and the complete source repository's lockfile.";
 });
 const nativeSourceLanguage = computed(() =>
-	selectedProject.value?.mode === "web"
-		? "Web"
-		: selectedProject.value?.mode === "rust"
-			? "Rust"
-			: selectedProject.value?.mode === "linux"
-				? "Linux"
-				: selectedProject.value?.mode === "assembly"
-					? "Assembly (Linux x86-64)"
-					: selectedProject.value?.mode === "c"
-						? "C17"
-						: "C++"
+	selectedProject.value?.mode === "swift"
+		? "SwiftUI"
+		: selectedProject.value?.mode === "web"
+			? "Web"
+			: selectedProject.value?.mode === "rust"
+				? "Rust"
+				: selectedProject.value?.mode === "linux"
+					? "Linux"
+					: selectedProject.value?.mode === "assembly"
+						? "Assembly (Linux x86-64)"
+						: selectedProject.value?.mode === "c"
+							? "C17"
+							: "C++"
 );
 const mobileWorkspaceViews = computed(() =>
 	selectedProject.value?.mode === "web" ||
+	selectedProject.value?.mode === "swift" ||
 	selectedProject.value?.mode === "rust" ||
 	selectedProject.value?.mode === "linux" ||
 	selectedProject.value?.mode === "c" ||
@@ -1177,6 +1205,7 @@ watch(
 	mode => {
 		if (
 			(mode === "web" ||
+				mode === "swift" ||
 				mode === "rust" ||
 				mode === "linux" ||
 				mode === "c" ||
@@ -1188,6 +1217,8 @@ watch(
 	}
 );
 const newFileNamePlaceholder = computed(() => {
+	if (selectedProject.value?.mode === "swift")
+		return "ContentView.swift, Views/ProfileView.swift or notes.md";
 	if (selectedProject.value?.mode === "web")
 		return "index.html, main.js or styles.css";
 	if (selectedProject.value?.mode === "rust")
@@ -3502,6 +3533,7 @@ async function resetCodeEditor() {
 	useFreshCodeEditorStateOnNextReset = false;
 	const extensions = createPythonCodeMirrorExtensions({
 		assetCompletions: loadPythonCodeMirrorAssetCompletions,
+		fileName: activeFile.value?.name ?? "",
 		lineWrappingEnabled: editorLineWrapEnabled.value,
 		mode: selectedProject.value?.mode ?? "python",
 		onChange(content) {
@@ -3569,21 +3601,23 @@ function addFile() {
 	if (!selectedProject.value) return;
 	const fileName = normalizePythonFileName(
 		newFileName.value,
-		selectedProject.value.mode === "web"
-			? ".html"
-			: selectedProject.value.mode === "rust"
-				? ".rs"
-				: selectedProject.value.mode === "linux"
-					? ".sh"
-					: selectedProject.value.mode === "assembly"
-						? ".S"
-						: selectedProject.value.mode === "c"
-							? ".c"
-							: selectedProject.value.mode === "cpp"
-								? ".cpp"
-								: isJavaIdeMode(selectedProject.value.mode)
-									? ".java"
-									: ".py",
+		selectedProject.value.mode === "swift"
+			? ".swift"
+			: selectedProject.value.mode === "web"
+				? ".html"
+				: selectedProject.value.mode === "rust"
+					? ".rs"
+					: selectedProject.value.mode === "linux"
+						? ".sh"
+						: selectedProject.value.mode === "assembly"
+							? ".S"
+							: selectedProject.value.mode === "c"
+								? ".c"
+								: selectedProject.value.mode === "cpp"
+									? ".cpp"
+									: isJavaIdeMode(selectedProject.value.mode)
+										? ".java"
+										: ".py",
 		selectedProject.value.mode
 	);
 	if (!isValidPythonFileName(fileName, selectedProject.value.mode)) {
@@ -3784,6 +3818,7 @@ function clearOutput() {
 	runtimeArtifacts.value = [];
 	karelWorld.value = null;
 	gameAudioPlaybackBlockedNoticeShown = false;
+	gameAudioLimitNoticeShown = false;
 	resetActiveCanvas();
 }
 
@@ -4603,8 +4638,14 @@ function scheduleTurtleAnimation() {
 function queueTurtleStep(
 	step: Omit<TurtleAnimationStep, "turtleID"> & { turtleID?: string }
 ) {
+	const admission = reserveTurtleAnimationStep(
+		turtleAnimationBudget,
+		turtleTracerEnabled ? step.durationMs : 0
+	);
+	turtleAnimationBudget = admission.budget;
 	const nextStep = {
 		...step,
+		durationMs: admission.durationMs,
 		turtleID: step.turtleID ?? activeTurtleID
 	};
 	if (!turtleTracerEnabled) {
@@ -4730,11 +4771,7 @@ function resetActiveTurtle() {
 
 function clearTurtleTimers() {
 	turtleTimerGeneration += 1;
-	for (const handle of turtleTimerHandles) {
-		window.clearTimeout(handle);
-	}
-	turtleTimerHandles.clear();
-	activeTurtleTimerCount.value = 0;
+	turtleTimerRegistry.clear();
 	activeTurtleTimerCallbackCount.value = 0;
 }
 
@@ -4767,6 +4804,7 @@ function trackTurtleFillPoint(x: number, y: number) {
 	if (!turtleFillState.active) return;
 	const previous = turtleFillState.points.at(-1);
 	if (previous && previous.x === x && previous.y === y) return;
+	assertTurtleStepAvailable(turtleAnimationBudget);
 	turtleFillState.points.push({ x, y });
 }
 
@@ -5387,13 +5425,7 @@ function findProjectAssetFile(
 	const project = selectedProject.value;
 	if (!project) return null;
 	const candidateNames = localAssetCandidateNames(folder, name, extensions);
-	return (
-		project.files.find(file =>
-			pythonIdeAssetLookupAliases(file.name).some(alias =>
-				candidateNames.has(alias)
-			)
-		) ?? null
-	);
+	return findPythonIdeProjectAssetFile(project.files, candidateNames);
 }
 
 function findCourseAsset(
@@ -5461,7 +5493,11 @@ function courseAssetSize(asset: ResolvedGameAsset | null) {
 		return { height: asset.height, width: asset.width };
 
 	const cached = gameImageCache.get(asset.key);
-	if (cached?.loaded && cached.element.naturalWidth > 0) {
+	if (
+		cached?.src === asset.src &&
+		cached.loaded &&
+		cached.element.naturalWidth > 0
+	) {
 		return {
 			height: cached.element.naturalHeight,
 			width: cached.element.naturalWidth
@@ -5502,28 +5538,34 @@ function gameImageSizeJson(name: string) {
 	);
 }
 
-function playProjectAudio(
-	folder: "music" | "sounds",
-	name: string,
-	loop = false,
-	onPlaybackBlocked?: (audio: HTMLAudioElement) => void
-) {
+function resolveProjectAudio(folder: "music" | "sounds", name: string) {
 	const asset = resolveGameAsset(folder, name, audioAssetExtensions);
 	if (!asset) {
 		appendOutput("system", `Missing ${folder} asset: ${name}`);
 		return null;
 	}
-
-	const src = asset.src;
-	if (!src) {
+	if (!asset.src) {
 		appendOutput(
 			"system",
 			`Cannot play ${name}; import an audio file or use the shared asset pack.`
 		);
 		return null;
 	}
+	return asset;
+}
 
-	const audio = new Audio(src);
+function playProjectAudio(
+	asset: ResolvedGameAsset,
+	loop = false,
+	onPlaybackBlocked?: (audio: HTMLAudioElement) => void
+) {
+	let audio: HTMLAudioElement;
+	try {
+		audio = new Audio(asset.src);
+	} catch {
+		reportGameAudioPlaybackBlocked();
+		return null;
+	}
 	audio.loop = loop;
 	void audio.play().catch(() => {
 		if (intentionallyStoppedGameAudio.has(audio)) return;
@@ -5542,9 +5584,16 @@ function reportGameAudioPlaybackBlocked() {
 	);
 }
 
+function reportGameAudioLimitReached() {
+	if (gameAudioLimitNoticeShown) return;
+	gameAudioLimitNoticeShown = true;
+	appendOutput("system", "Audio playback limit reached.");
+}
+
 function trackGameSoundAudio(
 	name: string,
 	audio: HTMLAudioElement,
+	release: () => void,
 	options: { cleanupOnEnded?: boolean } = {}
 ) {
 	const existing = gameSoundAudio.get(name) ?? new Set<HTMLAudioElement>();
@@ -5553,11 +5602,14 @@ function trackGameSoundAudio(
 	const cleanupOnEnded = options.cleanupOnEnded ?? true;
 
 	const cleanup = () => {
+		release();
+		gameSoundCleanup.delete(audio);
 		const activeSounds = gameSoundAudio.get(name);
 		if (!activeSounds) return;
 		activeSounds.delete(audio);
 		if (!activeSounds.size) gameSoundAudio.delete(name);
 	};
+	gameSoundCleanup.set(audio, cleanup);
 
 	if (cleanupOnEnded)
 		audio.addEventListener("ended", cleanup, { once: true });
@@ -5566,6 +5618,17 @@ function trackGameSoundAudio(
 }
 
 function playGameSound(name: string, loops = 0) {
+	const asset = resolveProjectAudio("sounds", name);
+	if (!asset) return;
+	if (Number.isFinite(loops) && loops > 32) {
+		reportGameAudioLimitReached();
+		return;
+	}
+	const release = gameAudioBudget.acquire(performance.now());
+	if (!release) {
+		reportGameAudioLimitReached();
+		return;
+	}
 	const repeatCount = Math.max(
 		-1,
 		Math.trunc(Number.isFinite(loops) ? loops : 0)
@@ -5574,25 +5637,30 @@ function playGameSound(name: string, loops = 0) {
 	const cleanupBlockedSound = () => {
 		cleanup?.();
 	};
-	const audio = playProjectAudio(
-		"sounds",
-		name,
-		repeatCount < 0,
-		cleanupBlockedSound
-	);
-	if (!audio) return;
-
-	if (repeatCount <= 0) {
-		cleanup = trackGameSoundAudio(name, audio);
+	const audio = playProjectAudio(asset, repeatCount < 0, cleanupBlockedSound);
+	if (!audio) {
+		release();
 		return;
 	}
 
-	cleanup = trackGameSoundAudio(name, audio, { cleanupOnEnded: false });
+	if (repeatCount <= 0) {
+		cleanup = trackGameSoundAudio(name, audio, release);
+		return;
+	}
+
+	cleanup = trackGameSoundAudio(name, audio, release, {
+		cleanupOnEnded: false
+	});
 	let remainingLoops = repeatCount;
 	audio.addEventListener("ended", () => {
 		if (intentionallyStoppedGameAudio.has(audio)) return;
 		if (remainingLoops <= 0) {
 			cleanup?.();
+			return;
+		}
+		if (!gameAudioBudget.allowRestart(performance.now())) {
+			cleanup?.();
+			reportGameAudioLimitReached();
 			return;
 		}
 
@@ -5620,6 +5688,7 @@ function stopGameSound(name: string) {
 		intentionallyStoppedGameAudio.add(audio);
 		audio.pause();
 		audio.currentTime = 0;
+		gameSoundCleanup.get(audio)?.();
 	}
 	gameSoundAudio.delete(name);
 }
@@ -5633,7 +5702,9 @@ function queueGameMusicEndedEvent(audio: HTMLAudioElement) {
 
 function playGameMusic(name: string, loop = true) {
 	stopGameMusic();
-	const audio = playProjectAudio("music", name, loop, blockedAudio => {
+	const asset = resolveProjectAudio("music", name);
+	if (!asset) return;
+	const audio = playProjectAudio(asset, loop, blockedAudio => {
 		if (gameMusicAudio === blockedAudio) gameMusicAudio = null;
 	});
 	gameMusicAudio = audio;
@@ -5695,7 +5766,6 @@ function suspendGameAudioContext() {
 function stopGameTone(toneID: number) {
 	const handle = gameToneAudio.get(toneID);
 	if (!handle) return;
-	window.clearTimeout(handle.timeout);
 	try {
 		handle.gain.gain.cancelScheduledValues(handle.gain.context.currentTime);
 		handle.gain.gain.setValueAtTime(0, handle.gain.context.currentTime);
@@ -5703,7 +5773,7 @@ function stopGameTone(toneID: number) {
 	} catch {
 		// Already stopped.
 	}
-	gameToneAudio.delete(toneID);
+	handle.cleanup();
 }
 
 function stopAllGameTones() {
@@ -5711,8 +5781,14 @@ function stopAllGameTones() {
 }
 
 function playGameTone(frequency: number, duration: number) {
+	const release = gameAudioBudget.acquire(performance.now());
+	if (!release) {
+		reportGameAudioLimitReached();
+		return 0;
+	}
 	const context = gameAudioContext();
 	if (!context) {
+		release();
 		appendOutput(
 			"system",
 			"Tone playback is not available in this browser."
@@ -5745,6 +5821,7 @@ function playGameTone(frequency: number, duration: number) {
 	gain.connect(context.destination);
 
 	const cleanup = () => {
+		release();
 		if (timeout !== null) {
 			window.clearTimeout(timeout);
 			timeout = null;
@@ -5764,7 +5841,7 @@ function playGameTone(frequency: number, duration: number) {
 		Math.ceil((safeDuration + 0.05) * 1000),
 		toneID
 	);
-	gameToneAudio.set(toneID, { gain, oscillator, timeout });
+	gameToneAudio.set(toneID, { cleanup, gain, oscillator });
 	void context.resume().catch(() => reportGameAudioPlaybackBlocked());
 	oscillator.start(startedAt);
 	oscillator.stop(stoppedAt);
@@ -6318,29 +6395,34 @@ const turtleBridge: TurtleBridge = {
 		turtleDragHandlers.set(button, callback);
 		refreshActiveTurtleEventHandlerCount();
 	},
-	scheduleTimer(delayMs: number, callback: (() => void) | null) {
-		if (!callback) return;
+	scheduleTimer(
+		delayMs: number,
+		callback: (() => void) | null,
+		ownedCallback?: (() => void) | null
+	) {
+		if (!callback) {
+			releaseTurtleTimerCallback(ownedCallback, () => {
+				console.warn("Could not release a Turtle timer callback.");
+			});
+			return;
+		}
 
 		const timerGeneration = turtleTimerGeneration;
-		const handle = window.setTimeout(
-			() => {
+		turtleTimerRegistry.schedule(
+			delayMs,
+			async () => {
 				activeTurtleTimerCallbackCount.value += 1;
-				turtleTimerHandles.delete(handle);
-				activeTurtleTimerCount.value = turtleTimerHandles.size;
-				void runTurtleTimerCallback(callback, timerGeneration).finally(
-					() => {
-						activeTurtleTimerCallbackCount.value = Math.max(
-							0,
-							activeTurtleTimerCallbackCount.value - 1
-						);
-					}
-				);
+				try {
+					await runTurtleTimerCallback(callback, timerGeneration);
+				} finally {
+					activeTurtleTimerCallbackCount.value = Math.max(
+						0,
+						activeTurtleTimerCallbackCount.value - 1
+					);
+				}
 			},
-			Math.max(0, delayMs)
+			ownedCallback
 		);
-
-		turtleTimerHandles.add(handle);
-		activeTurtleTimerCount.value = turtleTimerHandles.size;
 	},
 	listen() {
 		canvasRef.value?.focus({ preventScroll: true });
@@ -6566,12 +6648,25 @@ function createGuardedTurtleBridgeRun(): TurtleBridge {
 		) {
 			if (isActiveRun()) turtleBridge.registerDrag(button, callback);
 		},
-		scheduleTimer(delayMs: number, callback: (() => void) | null) {
-			if (!isActiveRun() || !callback) return;
+		scheduleTimer(
+			delayMs: number,
+			callback: (() => void) | null,
+			ownedCallback?: (() => void) | null
+		) {
+			if (!isActiveRun() || !callback) {
+				releaseTurtleTimerCallback(ownedCallback, () => {
+					console.warn("Could not release a Turtle timer callback.");
+				});
+				return;
+			}
 
-			turtleBridge.scheduleTimer(delayMs, () => {
-				if (isActiveRun()) callback();
-			});
+			turtleBridge.scheduleTimer(
+				delayMs,
+				() => {
+					if (isActiveRun()) callback();
+				},
+				ownedCallback
+			);
 		},
 		listen() {
 			if (isActiveRun()) turtleBridge.listen();
@@ -6679,6 +6774,7 @@ const gameBridge: GameBridge = {
 	setMusicVolume: setGameMusicVolume,
 	stopMusic: stopGameMusic,
 	playTone: playGameTone,
+	isToneActive: toneID => gameToneAudio.has(toneID),
 	stopTone: stopGameTone,
 	log(text: string) {
 		appendOutput("system", text);
@@ -6782,6 +6878,9 @@ function createGuardedGameBridgeRun(): GameBridge {
 		playTone(frequency: number, duration: number) {
 			return isActiveRun() ? gameBridge.playTone(frequency, duration) : 0;
 		},
+		isToneActive(toneID: number) {
+			return isActiveRun() && gameBridge.isToneActive(toneID);
+		},
 		stopTone(toneID: number) {
 			if (isActiveRun()) gameBridge.stopTone(toneID);
 		},
@@ -6840,8 +6939,17 @@ async function runCurrentProject() {
 	const project = selectedProject.value;
 	if (!project) return;
 	if (shouldStopPythonIdeRun(runID, project._id)) return;
+	if (project.mode === "turtle")
+		turtleAnimationBudget = createTurtleAnimationBudget();
 
 	clearOutput();
+	if (project.mode === "swift") {
+		for (const line of swiftBuildInstructions(project.files))
+			appendOutput("system", line);
+		runMessage.value = "Xcode build instructions";
+		diagnosticStage.value = "completed";
+		return;
+	}
 	if (project.mode === "web") {
 		for (const line of webBuildInstructions(project.starterUrl))
 			appendOutput("system", line);
@@ -7119,6 +7227,7 @@ async function runCurrentProject() {
 		}
 	} catch (error) {
 		if (shouldStopPythonIdeRun(runID, project._id)) return;
+		if (project.mode === "turtle") cancelTurtleAnimation();
 		if (!props.runtimeOnly) sandboxPresent.value = false;
 		const formattedError = formatPythonRuntimeError(error);
 		if (props.runtimeOnly) {
@@ -8522,6 +8631,10 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 					<p v-else-if="selectedProject?.mode === 'web'">
 						{{ webProjectRequirement }}
 					</p>
+					<p v-else-if="selectedProject?.mode === 'swift'">
+						Requires macOS and Xcode with an installed iOS simulator
+						runtime.
+					</p>
 					<p v-else-if="selectedProject?.mode === 'rust'">
 						Requires a native Rust toolchain.
 					</p>
@@ -8665,6 +8778,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 								: view === "canvas"
 									? "Canvas"
 									: selectedProject?.mode === "web" ||
+										  selectedProject?.mode === "swift" ||
 										  selectedProject?.mode === "rust" ||
 										  selectedProject?.mode === "c" ||
 										  selectedProject?.mode ===
@@ -8798,6 +8912,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 						<div class="panel-header">
 							<span>{{
 								selectedProject?.mode === "web" ||
+								selectedProject?.mode === "swift" ||
 								selectedProject?.mode === "rust" ||
 								selectedProject?.mode === "c" ||
 								selectedProject?.mode === "assembly" ||

@@ -1697,6 +1697,73 @@ describe("CourseExplorer.vue", () => {
 		).toContain(assignedCourse.name);
 	});
 
+	it("does not grant a tutor another tutor's learner course or its solutions", async () => {
+		const pinia = createPinia();
+		setActivePinia(pinia);
+
+		const appStore = useAppStore();
+		appStore.setCurrentTutor({
+			_id: "tutor-1",
+			name: "Tutor",
+			email: "tutor@example.com",
+			age: 30,
+			state: "GA",
+			usersOfTutorLength: 1,
+			coursePermissions: ["scratch-level-1"],
+			editTutors: false,
+			saveEdit: "Save"
+		});
+		vi.mocked(api.get).mockResolvedValue({
+			data: [
+				{
+					_id: "learner-1",
+					name: "Learner",
+					email: "learner@example.com",
+					age: 12,
+					state: "GA",
+					courseAccess: ["ap-computer-science-a"],
+					courseProgress: [],
+					editUsers: false,
+					saveEdit: "Save"
+				}
+			]
+		});
+
+		const assignedView = mount(CourseExplorer, {
+			global: { plugins: [pinia] }
+		});
+		try {
+			await flushPromises();
+			expect(
+				assignedView
+					.findAll("#course-select option")
+					.map(option => option.element.value)
+			).not.toContain("ap-computer-science-a");
+		} finally {
+			assignedView.unmount();
+		}
+
+		const catalogView = mount(CourseExplorer, {
+			props: { browseAll: true },
+			global: { plugins: [pinia] }
+		});
+		try {
+			await flushPromises();
+			await catalogView
+				.get("#course-select")
+				.setValue("ap-computer-science-a");
+			await vi.waitFor(() =>
+				expect(
+					catalogView.findAll(".lesson-item").length
+				).toBeGreaterThan(0)
+			);
+			expect(catalogView.html()).not.toContain("APCS1-Mad-Libs/solution");
+			expect(catalogView.findAll(".progress-toggle")).toHaveLength(0);
+		} finally {
+			catalogView.unmount();
+		}
+	});
+
 	it("keeps progress controls hidden while learner course context realigns", async () => {
 		const pinia = createPinia();
 		setActivePinia(pinia);

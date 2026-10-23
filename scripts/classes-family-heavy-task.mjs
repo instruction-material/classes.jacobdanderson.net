@@ -26,6 +26,7 @@ acquireLock();
 const startedAt = new Date();
 let child = null;
 let timeout = null;
+let stopping = false;
 
 logEvent({
 	event: "start",
@@ -51,11 +52,9 @@ try {
 			event: "timeout",
 			taskId: TASK_ID,
 			childPid: child?.pid,
-			timeoutMs: TIMEOUT_MS,
-			endedAt: new Date().toISOString()
+			timeoutMs: TIMEOUT_MS
 		});
-		terminateChild();
-		exit(124);
+		stopAfterCleanup(124);
 	}, TIMEOUT_MS);
 
 	for (const signal of ["SIGINT", "SIGTERM", "SIGHUP"]) {
@@ -67,13 +66,12 @@ try {
 				childPid: child?.pid,
 				endedAt: new Date().toISOString()
 			});
-			terminateChild();
-			releaseLock();
-			process.kill(pid, signal);
+			stopAfterCleanup(null, signal);
 		});
 	}
 
 	child.on("exit", (code, signal) => {
+		if (stopping) return;
 		if (timeout) clearTimeout(timeout);
 		markDependencyTreesNonIndexable();
 		logEvent({
@@ -90,6 +88,15 @@ try {
 		releaseLock();
 		exit(code ?? (signal ? 1 : 0));
 	});
+	child.on("error", error => {
+		if (stopping) return;
+		logEvent({
+			event: "error",
+			taskId: TASK_ID,
+			message: error.message
+		});
+		stopAfterCleanup(1);
+	});
 } catch (error) {
 	if (timeout) clearTimeout(timeout);
 	logEvent({
@@ -100,9 +107,32 @@ try {
 		message: error instanceof Error ? error.message : String(error),
 		endedAt: new Date().toISOString()
 	});
-	terminateChild();
+	await terminateChild();
 	releaseLock();
 	throw error;
+}
+
+function stopAfterCleanup(exitCode, signal = null) {
+	if (stopping) return;
+	stopping = true;
+	if (timeout) clearTimeout(timeout);
+	void terminateChild().then(() => {
+		markDependencyTreesNonIndexable();
+		logEvent({
+			event: "end",
+			taskId: TASK_ID,
+			cwd: cwd(),
+			command: command.join(" "),
+			childPid: child?.pid,
+			startedAt: startedAt.toISOString(),
+			endedAt: new Date().toISOString(),
+			exitCode,
+			signal
+		});
+		releaseLock();
+		if (signal) kill(pid, signal);
+		else exit(exitCode);
+	});
 }
 
 function numberFromEnv(name, fallback) {
@@ -211,23 +241,23 @@ function releaseLock() {
 	rmSync(LOCK_PATH, { force: true, recursive: true });
 }
 
-function terminateChild() {
+async function terminateChild() {
 	if (!child?.pid) return;
 	try {
 		if (platform === "win32") {
 			child.kill("SIGTERM");
-			return;
+		} else {
+			kill(-child.pid, "SIGTERM");
 		}
-		kill(-child.pid, "SIGTERM");
-		setTimeout(() => {
-			try {
-				kill(-child.pid, "SIGKILL");
-			} catch {
-				// The child process group already exited.
-			}
-		}, 3000).unref();
 	} catch {
-		// The child process group already exited.
+		return;
+	}
+	await new Promise(resolve => setTimeout(resolve, 3000));
+	try {
+		if (platform === "win32") child.kill("SIGKILL");
+		else kill(-child.pid, "SIGKILL");
+	} catch {
+		return;
 	}
 }
 

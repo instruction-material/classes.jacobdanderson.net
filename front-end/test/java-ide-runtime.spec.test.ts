@@ -698,6 +698,71 @@ public class Main {
 		]);
 	});
 
+	it("concatenates String and char values without re-evaluating input", () => {
+		const result = runJavaIdeProject({
+			activeFileName: "Main.java",
+			files: [
+				{
+					name: "Main.java",
+					content: `import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        String label = "A";
+        char letter = 'B';
+        int count = 2;
+        Scanner input = new Scanner(System.in);
+        System.out.println(label + letter);
+        System.out.println(letter + label);
+        System.out.println(count + letter);
+        System.out.println(label + count + letter);
+        System.out.println(letter + count + label);
+        System.out.println(input.nextInt() + label);
+        System.out.println(input.nextInt());
+    }
+}`
+				}
+			],
+			inputText: "7 9",
+			mode: "java"
+		});
+
+		expect(result.stderr).toEqual([]);
+		expect(result.stdout).toEqual([
+			"AB",
+			"BA",
+			"68",
+			"A2B",
+			"68A",
+			"7A",
+			"9"
+		]);
+	});
+
+	it("narrows large and negative Java char casts to 16 bits", () => {
+		const result = runJavaIdeProject({
+			activeFileName: "Main.java",
+			files: [
+				{
+					name: "Main.java",
+					content: `public class Main {
+    public static void main(String[] args) {
+        char wrapped = (char) 1114112;
+        char negative = (char) -1;
+        System.out.println((int) wrapped);
+        System.out.println((int) negative);
+        System.out.println((int) (char) 70000);
+    }
+}`
+				}
+			],
+			mode: "java"
+		});
+
+		expect(result.stderr).toEqual([]);
+		expect(result.stdout).toEqual(["0", "65535", "4464"]);
+	});
+
 	it("previews beginner java.util.Random expressions in the browser subset", () => {
 		const result = runJavaIdeProject({
 			activeFileName: "Main.java",
@@ -821,6 +886,37 @@ public class Main {
 
 		expect(result.stderr).toEqual([]);
 		expect(result.stdout).toEqual(["Score: 10", "Main: Local 99"]);
+	});
+
+	it("does not seed method-local finals as class constants", () => {
+		const result = runJavaIdeProject({
+			activeFileName: "Main.java",
+			files: [
+				{
+					name: "Main.java",
+					content: `public class Main {
+    private static final int LIMIT = 4;
+
+    public static void main(String[] args) {
+        String brace = "{";
+        final int LIMIT = 99;
+        showLimit();
+        System.out.println(LIMIT);
+    }
+
+    static void showLimit() {
+        final int LOCAL = 2;
+        System.out.println(LIMIT);
+        System.out.println(LOCAL);
+    }
+}`
+				}
+			],
+			mode: "java"
+		});
+
+		expect(result.stderr).toEqual([]);
+		expect(result.stdout).toEqual(["4", "2", "99"]);
 	});
 
 	it("previews recursive Java return methods with a browser call-depth cap", () => {
@@ -1032,6 +1128,71 @@ public class Main {
 		]);
 	});
 
+	it("evaluates ArrayList mutation arguments once in Java order", () => {
+		const result = runJavaIdeProject({
+			activeFileName: "Main.java",
+			files: [
+				{
+					name: "Main.java",
+					content: `import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        ArrayList<Integer> numbers = new ArrayList<>();
+        numbers.add(10);
+        numbers.add(30);
+        numbers.add(input.nextInt(), input.nextInt());
+        numbers.remove(input.nextInt());
+        System.out.println(numbers.get(0) + ":" + numbers.get(1));
+        System.out.println(input.nextInt());
+    }
+}`
+				}
+			],
+			inputText: "1 20 2 99",
+			mode: "java"
+		});
+
+		expect(result.stderr).toEqual([]);
+		expect(result.stdout).toEqual(["10:20", "99"]);
+	});
+
+	it("rejects invalid ArrayList insertion and removal indexes", () => {
+		for (const mutation of [
+			"numbers.add(-1, 20)",
+			"numbers.add(2, 20)",
+			"numbers.remove(-1)",
+			"numbers.remove(1)"
+		]) {
+			const result = runJavaIdeProject({
+				activeFileName: "Main.java",
+				files: [
+					{
+						name: "Main.java",
+						content: `import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<Integer> numbers = new ArrayList<>();
+        numbers.add(10);
+        ${mutation};
+        System.out.println(numbers.size());
+    }
+}`
+					}
+				],
+				mode: "java"
+			});
+
+			expect(result.stderr).toEqual([
+				"Java preview stopped at an invalid collection index."
+			]);
+			expect(result.stdout).toEqual([]);
+		}
+	});
+
 	it("previews beginner Java maps with core map methods and entry iteration", () => {
 		const result = runJavaIdeProject({
 			activeFileName: "Main.java",
@@ -1171,6 +1332,27 @@ public class Main {
 			street: 6
 		});
 		expect(result.stdout.at(-1)).toContain("(avenue: 4)");
+	});
+
+	it("ignores inherited object names as bare Karel commands", () => {
+		const result = runJavaIdeProject({
+			activeFileName: "Algo.java",
+			files: [
+				{
+					name: "Algo.java",
+					content: karelStarterCode.replace(
+						"// Turn Sam around before moving west",
+						"toString();\n        constructor();\n\n        // Turn Sam around before moving west"
+					)
+				},
+				{ name: "world.txt", content: karelStarterWorld }
+			],
+			mode: "karel"
+		});
+
+		expect(result.stderr).toEqual([]);
+		expect(result.karelWorld?.robot).toMatchObject({ avenue: 4 });
+		expect(result.karelWorldSteps).toHaveLength(6);
 	});
 
 	it("reports Karel boundary collisions without moving through them", () => {
@@ -1625,6 +1807,10 @@ public class Algo implements Directions {
     private static final int START_INDEX = 0;
     private static final int MOVE_COUNT = 4;
     private static final int STEP_AMOUNT = 2;
+
+    public void unusedHelper() {
+        final int MOVE_COUNT = 10;
+    }
 
     public void run() {
         for (int step = START_INDEX; step < MOVE_COUNT; step += STEP_AMOUNT) {

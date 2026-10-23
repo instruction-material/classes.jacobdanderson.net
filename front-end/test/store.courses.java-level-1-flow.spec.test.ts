@@ -1,4 +1,6 @@
+import { createPinia, setActivePinia } from "pinia";
 import { describe, expect, it } from "vitest";
+import { useCoursesStore } from "@/stores/courses";
 import { javaLevel1Course } from "@/stores/courses/java-level-1";
 
 const EXPECTED_PRIMARY_SEQUENCE = [
@@ -28,6 +30,20 @@ const JUNI_CORE_PROJECTS = [
 	"JS9 Master Project: Advanced Battleship"
 ];
 
+const ORIGINAL_MODULE_TITLES = [
+	"JS1 Variable Types & Input/Output",
+	"JS2 Casting and Operators",
+	"JS3 Conditionals",
+	"JS4 Loops",
+	"JS5 Practice with Loops & Conditionals",
+	"Check-In #1",
+	"JS6 Methods",
+	"JS7 Arrays and ArrayLists",
+	"JS8 Two-Dimensional Arrays",
+	"Check-In #2",
+	"JS9 Master Project: Battleship"
+];
+
 function requireModule(title: string) {
 	const module = javaLevel1Course.modules.find(
 		candidate => candidate.title === title
@@ -37,6 +53,37 @@ function requireModule(title: string) {
 }
 
 describe("Java Level 1 learner flow", () => {
+	it("recognizes saved IDs from the original Java modules and lessons", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById("java-level-1");
+		expect(course).not.toBeNull();
+		for (const [index, title] of ORIGINAL_MODULE_TITLES.entries()) {
+			const module = course!.modules[index + 2];
+			const originalId = `java-level-1-${title
+				.toLowerCase()
+				.replace(/[^a-z0-9]+/g, "-")
+				.replace(/^-|-$/g, "")}`;
+			expect(module.aliases, title).toContain(originalId);
+			const lesson = module.curriculum[0];
+			const originalLessonId = `${originalId}-curriculum-${lesson.title
+				.toLowerCase()
+				.replace(/[^a-z0-9]+/g, "-")
+				.replace(/^-|-$/g, "")}`;
+			expect(lesson.aliases, title).toContain(originalLessonId);
+		}
+		const karel = course!.modules[0];
+		expect(karel.aliases).toContain(
+			"java-level-1-j1a-visual-java-launch-carol-karel-robot-worlds"
+		);
+		expect(
+			karel.curriculum.some(item =>
+				item.aliases?.includes(
+					"java-level-1-j1a-visual-java-launch-carol-karel-robot-worlds-curriculum-carol-karel-robot-worlds-core-concepts"
+				)
+			)
+		).toBe(true);
+	});
+
 	it("keeps thirteen paced core modules followed by explicit optional appendices", () => {
 		expect(
 			javaLevel1Course.modules.slice(0, 13).map(module => module.title)

@@ -88,6 +88,9 @@ classes_npm "$classes_build_source" ci --include=optional --strict-allow-scripts
 classes_npm "$classes_build_source" run lint
 classes_npm "$classes_build_source" run typecheck
 classes_npm "$classes_build_source" run test:braces-security
+node --test \
+	"$classes_build_source/test/classes-family-heavy-task.test.mjs" \
+	"$classes_build_source/test/wait-for-child-exit.test.mjs"
 classes_npm "$classes_build_source" run -w front-end test:unit
 classes_npm "$classes_build_source" run -w back-end test
 classes_npm "$classes_build_source" run build

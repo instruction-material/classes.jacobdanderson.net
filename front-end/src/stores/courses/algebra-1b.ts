@@ -398,7 +398,11 @@ This project applies polynomial modeling to event-planning revenue, cost, and co
 - Competitor revenue: \`R_2(x) = -0.055x^2 + 60x\`
 - Competitor cost: \`C_2(x) = 9x + 600\`
 - Build the competitor profit model and a ratio function comparing Amy's profit to the competitor's
-				`.trim()
+				`.trim(),
+				undefined,
+				[
+					"algebra-1b-ab4-module-project-smart-and-elegant-with-amy-katz-curriculum-project-brief"
+				]
 			),
 			createLesson(
 				"Answer Key and Profit Models",
@@ -758,7 +762,11 @@ This project uses composition and inverse functions to model a fictional wormhol
 
 - invert the composed function to recover the required time for a given power level
 - write the return-trip explanation for the script
-				`.trim()
+				`.trim(),
+				undefined,
+				[
+					"algebra-1b-ab16-module-project-j-t-phone-home-curriculum-project-brief"
+				]
 			),
 			createLesson(
 				"Worked Solution",
@@ -959,7 +967,11 @@ This project connects interference patterns, data visualization, and inverse pro
 
 - connect wavelength to mass and speed
 - use the de Broglie relationship to compare atoms with very different masses
-				`.trim()
+				`.trim(),
+					undefined,
+					[
+						"algebra-1b-ab20-module-project-the-mysteries-of-light-with-blake-eaton-curriculum-project-brief"
+					]
 				),
 				createLesson(
 					"Photon Count Graph and Modeling Notes",
@@ -1037,7 +1049,10 @@ This project combines exponential growth with quadratic transformations.
 - medical or industrial radiation-shielding structures
 - mining or research environments with elevated exposure risk
 				`.trim(),
-				media.radiofungiCanopies
+				media.radiofungiCanopies,
+				[
+					"algebra-1b-ab21-module-project-radiofungi-with-sunanda-sharma-curriculum-project-brief-and-cleaned-answers"
+				]
 			)
 		]),
 		createModule("AB22 Master Project: Algebra 1B", [

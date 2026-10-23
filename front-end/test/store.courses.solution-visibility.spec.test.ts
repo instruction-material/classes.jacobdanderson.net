@@ -263,6 +263,46 @@ describe("course solution visibility", () => {
 		);
 	});
 
+	it("limits tutor solutions to their current course permissions", async () => {
+		const appStore = useAppStore();
+		const tutor = {
+			_id: "tutor-1",
+			name: "Tutor",
+			email: "tutor@example.com",
+			age: 30,
+			state: "GA",
+			usersOfTutorLength: 1,
+			coursePermissions: ["scratch-level-1"],
+			editTutors: false,
+			saveEdit: "Save"
+		};
+		appStore.setCurrentTutor(tutor);
+
+		const coursesStore = useCoursesStore();
+		const deniedCourse = await coursesStore.loadCourseById(
+			"ap-computer-science-a"
+		);
+		expect(courseSolutionLinks(deniedCourse!)).toEqual([]);
+
+		appStore.setCurrentTutor({
+			...tutor,
+			coursePermissions: ["ap-computer-science-a"]
+		});
+		const permittedCourse = await coursesStore.loadCourseById(
+			"ap-computer-science-a"
+		);
+		expect(courseSolutionLinks(permittedCourse!)).toContain(
+			"https://github.com/instruction-material/APCS/tree/main/APCS1-Mad-Libs/solution"
+		);
+
+		appStore.setCurrentTutor(tutor);
+		expect(
+			courseSolutionLinks(
+				coursesStore.getCourseById("ap-computer-science-a")!
+			)
+		).toEqual([]);
+	});
+
 	it("reloads the learner-safe course object after a staff course was cached", async () => {
 		const appStore = useAppStore();
 		const coursesStore = useCoursesStore();

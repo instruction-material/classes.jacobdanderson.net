@@ -89,6 +89,7 @@ const introToChemistrySourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Course Overview and Learning Workflow",
+					aliases: ["Course Map and Learning Workflow"],
 					content: [
 						"**Concept path:** Intro to Chemistry builds from observation and safety into particles, periodic-table evidence, bonding, phase change, reactions, solutions, quantitative reasoning, and a final real-world explanation. Each module contains concept material, practice tasks, projects, and checkpoints. Progress is tracked through explicit module outputs and evidence of understanding rather than by time spent.",
 						"**Learning path:** Read the course as a sequence of reusable habits: observe carefully, name the particles or substances involved, choose a model, connect evidence to the model, check units or ratios when numbers appear, and state what the explanation cannot prove. When reviewing a module, look for the output and checkpoint sections; those are the clearest signs of what is expected before moving on.",

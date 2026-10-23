@@ -64,8 +64,18 @@ const sourceStaticFilenames = [
 	"checkin3_graphing_1.png"
 ] as const;
 
-function createLesson(title: string, content: string, mediaLink?: string) {
-	return mediaLink ? { title, content, mediaLink } : { title, content };
+function createLesson(
+	title: string,
+	content: string,
+	mediaLink?: string,
+	aliases?: string[]
+) {
+	return {
+		title,
+		content,
+		...(mediaLink ? { mediaLink } : {}),
+		...(aliases?.length ? { aliases } : {})
+	};
 }
 
 function createModule(
@@ -313,7 +323,11 @@ Build a film-production budget from expressions, equations, and unit-rate calcul
 - Use hourly rates for actors, directors, food, cameras, lights, sound equipment, and location.
 - Write equations from fixed totals for actors and cameras.
 - Compute the total when the remaining spending equals the cost of food cubed.
-				`.trim()
+				`.trim(),
+					undefined,
+					[
+						"algebra-1a-aa3-module-project-movie-star-status-with-maddie-van-beek-curriculum-project-brief"
+					]
 				),
 				createLesson(
 					"Answer Key and Open-Ended Checks",
@@ -412,7 +426,11 @@ Model a marketing campaign with algebraic expressions, equations, and inequaliti
 - Decide the minimum number of promotional emails needed for the campaign to count as a success.
 - The booth hands out \`6\` swag items per hour.
 - Use an inequality to determine the minimum amount of time needed to hit the target based on the number of items produced.
-				`.trim()
+				`.trim(),
+				undefined,
+				[
+					"algebra-1a-aa5-module-project-free-swag-with-amisha-sisodiya-curriculum-project-brief"
+				]
 			),
 			createLesson(
 				"Open-Ended Guidance",
@@ -484,7 +502,10 @@ This project uses community data to reason about rate of change, graph trends, a
 
 The final explanation connects the slope calculation to what is happening in the community context.
 				`.trim(),
-					media.communityDataAnalysis
+					media.communityDataAnalysis,
+					[
+						"algebra-1a-aa7-module-project-community-data-analysis-with-davin-lee-curriculum-project-brief"
+					]
 				)
 			]
 		),
@@ -559,7 +580,11 @@ This project combines slope classification with avalanche-risk interpretation.
 - Compare avalanche risk after storms of different sizes.
 - Decide how long slopes stay closed if the resort reopens once avalanche probability drops below \`40%\`.
 - Explain why snow-slab risk can change over time.
-				`.trim()
+				`.trim(),
+					undefined,
+					[
+						"algebra-1a-aa11-module-project-predicting-avalanches-with-ruby-lee-curriculum-project-brief"
+					]
 				),
 				createLesson(
 					"Reference Visual",
@@ -852,7 +877,11 @@ This project applies systems of equations to genetics-themed scenarios.
   - tumorless = \`$5\`
 - First solve the case where tumorless participants are fixed at \`100\`.
 - Then design a different valid distribution and discuss possible bias.
-				`.trim()
+				`.trim(),
+					undefined,
+					[
+						"algebra-1a-aa15-module-project-cytogenetics-quest-with-dr-renu-bajaj-curriculum-project-brief"
+					]
 				),
 				createLesson(
 					"Answer Key",
@@ -897,7 +926,11 @@ This project connects linear models and systems of equations to research output.
 - Konstantin and Rick have \`17\` together.
 - Rick and Professor Jin have \`22\` together.
 - Determine whether each researcher meets the grant quota.
-				`.trim()
+				`.trim(),
+					undefined,
+					[
+						"algebra-1a-aa16-module-project-battle-of-the-publications-with-konstantin-kaganovsky-curriculum-project-brief"
+					]
 				),
 				createLesson(
 					"Answer Key",

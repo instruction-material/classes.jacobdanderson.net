@@ -32,7 +32,7 @@ const pythonProjectReviewSchema: Schema<IPythonProjectReview> = new Schema(
 		title: { type: String, required: true, trim: true, maxlength: 120 },
 		mode: {
 			type: String,
-			enum: ["assembly", "c", "cpp", "data", "java", "karel", "linux", "pgzero", "python", "rust", "turtle", "web"],
+			enum: ["assembly", "c", "cpp", "data", "java", "karel", "linux", "pgzero", "python", "rust", "swift", "turtle", "web"],
 			default: "python",
 			required: true
 		},

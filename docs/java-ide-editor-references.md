@@ -102,11 +102,14 @@ server-side compilation, `javac`, Docker, or long-running execution services.
   and staff review copies, but they remain storage-only APIs. They should
   validate safe file names and mode-appropriate code files without importing
   the Java preview runtime or executing Java.
-- In multi-file projects, keep Run pointed at the driver file instead of the
-  active helper class. Java projects should prefer active files with
-  `main(...)`, then `Main.java`, then another file with `main(...)`; Karel
-  projects should prefer active Karel entry files, then `MyProgram.java` /
-  `Algo.java`, then another file with `run()` or `main(...)`.
+- In multi-file projects, prefer a detected driver over a helper with a
+  conventional filename. Java projects use an active `main(...)` file, then a
+  `Main.java` with `main(...)`, then another `main(...)` file. Karel projects
+  similarly prefer detected `run()` or `main(...)` entry files, with
+  `MyProgram.java` and `Algo.java` as fallbacks when no entry is detected. A
+  Java entry is a public static `void main(String[] args)` declaration, and a
+  Karel `run()` entry belongs to a class extending Karel or SuperKarel; calls
+  and unrelated helper methods do not select a driver.
 
 ## Teaching and Runtime References
 

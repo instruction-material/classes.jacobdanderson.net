@@ -53,7 +53,7 @@ export const webNotesRoleFiles = [
 	"public/styles.css",
 	"package.json"
 ] as const;
-export const webDeploymentRevision = "781eba647bbdcb3f89aa0417011dabe2fca30d53";
+export const webDeploymentRevision = "962d1be3da0d954ad774390b78cb044395a12262";
 export const webDeploymentPack = "WDF5-Separate-Deployment-Lab";
 export const webDeploymentRoot = `https://github.com/instruction-material/Web-Development-Foundations/tree/${webDeploymentRevision}/${webDeploymentPack}`;
 export const webDeploymentRoleFiles = [

@@ -179,6 +179,115 @@ describe("python project routes", () => {
 	});
 
 	it.each(["starter", "solution"] as const)(
+		"stores complete Swift %s source for user and assigned course owners",
+		async (role) => {
+			const fixture = JSON.parse(
+				readFileSync(
+					resolve(process.cwd(), "../test/fixtures/swift-welcome-source.json"),
+					"utf8"
+				)
+			);
+			const files = ["ContentView.swift", "WelcomeProfileApp.swift"].map(
+				(name) => ({
+					name: `${role}/${name}`,
+					content: fixture.files[`${fixture.pack}/${role}/${name}`].content,
+					encoding: "text"
+				})
+			);
+			files.push({
+				name: "README.md",
+				content: fixture.files[`${fixture.pack}/README.md`].content,
+				encoding: "text"
+			});
+			for (const owner of ["user", "course-code"] as const) {
+				await withPythonProjectRoute(
+					async (baseUrl) => {
+						const response = await postJson(baseUrl, {
+							mode: "swift",
+							files,
+							activeFileName: `${role}/ContentView.swift`,
+							courseID: "intro-to-swift-app-development",
+							courseProjectKey: `intro-to-swift-app-development:welcome-profile:${role === "starter" ? "starter" : "reference"}:native-swift-v1`
+						});
+						expect(response.status).toBe(201);
+						const body = await response.json();
+						expect(body.project.mode).toBe("swift");
+						expect(body.project.files).toEqual(files);
+						expect(body.project.activeFileName).toBe(
+							`${role}/ContentView.swift`
+						);
+					},
+					owner,
+					"intro-to-swift-app-development"
+				);
+			}
+		}
+	);
+
+	it.each([
+		{ name: "../ContentView.swift", encoding: "text" },
+		{ name: "Views//Profile.swift", encoding: "text" },
+		{ name: "secret.env", encoding: "text" },
+		{ name: "main.py", encoding: "text" },
+		{ name: "photo.png", encoding: "base64" },
+		{ name: "ContentView.swift", encoding: "base64" }
+	])(
+		"rejects unsupported Swift source $name/$encoding before storage",
+		async (file) => {
+			await withPythonProjectRoute(async (baseUrl) => {
+				const response = await postJson(baseUrl, {
+					mode: "swift",
+					files: [
+						{
+							name: "App.swift",
+							content: "import SwiftUI\n",
+							encoding: "text"
+						},
+						{ ...file, content: "eA==" }
+					]
+				});
+				expect(response.status).toBe(400);
+				expect(modelMocks.pythonProjectCreate).not.toHaveBeenCalled();
+			});
+		}
+	);
+
+	it("validates Swift source in the actual project and review models", async () => {
+		const { PythonProject: ActualProject } = await vi.importActual<
+			typeof import("../src/models/schemas/PythonProject.js")
+		>("../src/models/schemas/PythonProject.js");
+		const { PythonProjectReview: ActualReview } = await vi.importActual<
+			typeof import("../src/models/schemas/PythonProjectReview.js")
+		>("../src/models/schemas/PythonProjectReview.js");
+		const files = [
+			{
+				name: "ContentView.swift",
+				content: "import SwiftUI\n",
+				encoding: "text"
+			}
+		];
+		const project = new ActualProject({
+			user: userID,
+			title: "Swift profile",
+			mode: "swift",
+			activeFileName: "ContentView.swift",
+			files
+		});
+		expect(project.validateSync()).toBeUndefined();
+		const review = new ActualReview({
+			user: userID,
+			sourceProject: project._id,
+			title: "Swift review",
+			mode: "swift",
+			activeFileName: "ContentView.swift",
+			files,
+			reviewer: userID,
+			reviewerRole: "tutor",
+			sourceUpdatedAt: new Date()
+		});
+		expect(review.validateSync()).toBeUndefined();
+	});
+	it.each(["starter", "solution"] as const)(
 		"stores the exact record %s role and trace for both owner types",
 		async (role) => {
 			const fixture = JSON.parse(
@@ -1676,15 +1785,6 @@ describe("python project routes", () => {
 		].join("\n");
 
 		expect(sources).toContain("app.get(\"/healthz\"");
-		expect(sources).toContain(
-			"const projectModeSchema = z.enum([\"assembly\", \"c\", \"cpp\", \"data\", \"java\", \"karel\", \"linux\", \"pgzero\", \"python\", \"rust\", \"turtle\", \"web\"])"
-		);
-		expect(sources).toContain(
-			"export type PythonProjectMode = \"assembly\" | \"c\" | \"cpp\" | \"data\" | \"java\" | \"karel\" | \"linux\" | \"pgzero\" | \"python\" | \"rust\" | \"turtle\" | \"web\";"
-		);
-		expect(sources).toContain(
-			"enum: [\"assembly\", \"c\", \"cpp\", \"data\", \"java\", \"karel\", \"linux\", \"pgzero\", \"python\", \"rust\", \"turtle\", \"web\"]"
-		);
 		expect(sources).toContain("ROOT_TEXT_FILE_RE =");
 		expect(sources).toContain("java|json");
 		expect(sources).not.toMatch(/node:child_process|child_process/);

@@ -223,7 +223,7 @@ const JAVA_PRINT_RE =
 const JAVA_SCANNER_METHOD_RE =
 	/^([A-Z_]\w*)\.(next(?:Line|Int|Double|Boolean)?|hasNext(?:Line|Int|Double|Boolean)?)\s*\(\s*\)$/i;
 const JAVA_VARIABLE_DECLARATION_START_RE =
-	/^((?:[A-Z_]\w*\.)*[A-Z_]\w*(?:\s*<[^>;]+>)?(?:\s*\[\s*\])*)\s+([A-Z_]\w*)\s*=/i;
+	/^(?:final\s+)?((?:[A-Z_]\w*\.)*[A-Z_]\w*(?:\s*<[^>;]+>)?(?:\s*\[\s*\])*)\s+([A-Z_]\w*)\s*=/i;
 const JAVA_VARIABLE_ASSIGNMENT_START_RE = /^([A-Z_]\w*)\s*=/i;
 const JAVA_COMPOUND_ASSIGNMENT_START_RE = /^([A-Z_]\w*)\s*(\+=|-=|\*=|\/=|%=)/i;
 const JAVA_INDEXED_ASSIGNMENT_START_RE =
@@ -453,9 +453,51 @@ function seedJavaLiteralConstants(
 ) {
 	const constantLeftSidePattern =
 		/^(?:(?:public|private|protected|static|final)\s+)*(?:String|int|long|double|float|boolean|char)\s+([A-Z_]\w*)$/i;
+	const typeDeclarationPattern =
+		/\b(?:class|enum|interface|record)\s+[A-Z_]\w*\b/i;
+	let braceDepth = 0;
+	let inTopLevelType = false;
+	let topLevelPrefix = "";
+	let quote: '"' | "'" | null = null;
+	let escaped = false;
 
 	for (const rawLine of source.split(/\r?\n/)) {
 		activeBudget.step();
+		const atFieldScope =
+			braceDepth === 0 || (braceDepth === 1 && inTopLevelType);
+		for (const character of rawLine) {
+			if (quote) {
+				if (escaped) escaped = false;
+				else if (character === "\\") escaped = true;
+				else if (character === quote) quote = null;
+				continue;
+			}
+			if (character === '"' || character === "'") {
+				quote = character;
+				continue;
+			}
+			if (character === "{") {
+				if (braceDepth === 0) {
+					inTopLevelType =
+						typeDeclarationPattern.test(topLevelPrefix);
+					topLevelPrefix = "";
+				}
+				braceDepth += 1;
+			} else if (character === "}") {
+				braceDepth = Math.max(0, braceDepth - 1);
+				if (braceDepth === 0) {
+					inTopLevelType = false;
+					topLevelPrefix = "";
+				}
+			} else if (braceDepth === 0) {
+				topLevelPrefix =
+					character === ";"
+						? ""
+						: `${topLevelPrefix}${character}`.slice(-256);
+			}
+		}
+		if (braceDepth === 0) topLevelPrefix = `${topLevelPrefix} `.slice(-256);
+		if (!atFieldScope) continue;
 		const line = rawLine.trim();
 		if (
 			!line.includes("final") ||
@@ -795,17 +837,14 @@ function executeJavaCollectionMutationStatement(
 	const args = splitJavaArguments(match[3] ?? "");
 	const method = match[2].toLowerCase();
 	if (method === "add") {
+		const index =
+			args.length >= 2
+				? javaExpressionToIndex(args[0] ?? "0", context, output)
+				: collection.value.length;
 		const item = evaluateJavaExpression(args.at(-1) ?? "", context, output);
+		checkJavaCollectionIndex(index, collection.value.length + 1);
 		activeBudget.allocateValues(1);
-		if (args.length >= 2) {
-			collection.value.splice(
-				javaExpressionToIndex(args[0] ?? "0", context, output),
-				0,
-				item
-			);
-		} else {
-			collection.value.push(item);
-		}
+		collection.value.splice(index, 0, item);
 		return true;
 	}
 	if (method === "set") {
@@ -822,10 +861,9 @@ function executeJavaCollectionMutationStatement(
 		const rawArgument = args[0] ?? "";
 		const argument = evaluateJavaExpression(rawArgument, context, output);
 		if (argument.type === "number") {
-			collection.value.splice(
-				javaExpressionToIndex(rawArgument, context, output),
-				1
-			);
+			const index = Math.trunc(javaValueToNumber(argument));
+			checkJavaCollectionIndex(index, collection.value.length);
+			collection.value.splice(index, 1);
 		} else {
 			const index = collection.value.findIndex(value =>
 				javaValuesAreEqual(value, argument)
@@ -1112,15 +1150,15 @@ function evaluateBoundedJavaExpression(
 	);
 	if (booleanValue) return booleanValue;
 
-	const numericValue = evaluateNumericExpression(trimmed, context, output);
-	if (numericValue !== null) return { type: "number", value: numericValue };
-
 	const mixedAdditionValue = evaluateJavaMixedAdditionExpression(
 		trimmed,
 		context,
 		output
 	);
 	if (mixedAdditionValue) return mixedAdditionValue;
+
+	const numericValue = evaluateNumericExpression(trimmed, context, output);
+	if (numericValue !== null) return { type: "number", value: numericValue };
 
 	if (/^"(?:\\.|[^"\\])*"$/.test(trimmed)) {
 		return {
@@ -1916,7 +1954,7 @@ function applyDeclaredJavaType(
 		if (value.type === "char") return value;
 		return {
 			type: "char",
-			value: String.fromCodePoint(Math.trunc(javaValueToNumber(value)))
+			value: String.fromCharCode(Math.trunc(javaValueToNumber(value)))
 		};
 	}
 	if (value.type !== "array" || !/\[\s*\]/.test(declaredType)) return value;
@@ -2120,7 +2158,7 @@ function evaluateJavaCastExpression(
 		)
 	);
 	if (castType === "char") {
-		return { type: "char", value: String.fromCodePoint(Math.trunc(value)) };
+		return { type: "char", value: String.fromCharCode(Math.trunc(value)) };
 	}
 	return {
 		type: "number",
@@ -4121,10 +4159,9 @@ function addKarelWarning(plan: KarelCommandPlan, warning: string) {
 }
 
 function karelCommandForName(name: string): KarelCommand | null {
-	return (
-		KAREL_COMMAND_ALIASES[name as (typeof KAREL_SIMPLE_COMMANDS)[number]] ??
-		null
-	);
+	return Object.hasOwn(KAREL_COMMAND_ALIASES, name)
+		? KAREL_COMMAND_ALIASES[name as (typeof KAREL_SIMPLE_COMMANDS)[number]]
+		: null;
 }
 
 function applyKarelCommand(

@@ -41,8 +41,13 @@ function children(node: Node): Node[] {
 // The parser supplies top-level commas, so commas in defaults, strings, nested
 // calls and type annotations cannot be mistaken for argument separators.
 function groups(node: Node, state: EditorState): Node[][] | null {
-	const text = state.sliceDoc(node.from, node.to);
-	if (!text.startsWith("(") || !text.endsWith(")")) return null;
+	if (
+		node.to - node.from < 2 ||
+		state.sliceDoc(node.from, node.from + 1) !== "(" ||
+		state.sliceDoc(node.to - 1, node.to) !== ")"
+	) {
+		return null;
+	}
 	const result: Node[][] = [];
 	let group: Node[] = [];
 	for (const child of children(node).slice(1, -1)) {
@@ -71,21 +76,28 @@ export function codeArgumentDiagnostics(
 	const tree = syntaxTree(state);
 	const nodes: Node[] = [];
 	const cursor = tree.cursor();
+	let visited = 0;
 	do {
 		// Incomplete syntax while typing is handled by the syntax diagnostics.
 		if (
 			cursor.type.isError ||
 			cursor.name === "ScopeStatement" ||
-			nodes.length >= 30_000
+			visited++ >= 30_000
 		) {
 			return [];
 		}
-		nodes.push(cursor.node);
+		let depth = 0;
+		for (let parent = cursor.node.parent; parent; parent = parent.parent) {
+			if (++depth > 128) break;
+		}
+		if (depth <= 128) nodes.push(cursor.node);
 	} while (cursor.next());
 	const scopes = language === "python" ? pythonScopes : javaScopes;
 	const tables = new Map<string, Map<string, Binding[]>>();
 	const changedMembers = new Set<string>();
 	const text = (node: Node) => state.sliceDoc(node.from, node.to);
+	const isUnpacked = (node: Node) =>
+		node.to - node.from <= 2 && ["*", "**"].includes(text(node));
 	const nameOf = (node: Node, name: string) => {
 		const child = node.getChild(name);
 		return child ? text(child) : "";
@@ -243,6 +255,7 @@ export function codeArgumentDiagnostics(
 		);
 		return definition?.kind === "class" ? definition.node : null;
 	};
+	const javaMethodsByClass = new Map<string, Map<string, Node[]>>();
 	const classMethods = (owner: Node, name: string): Node[] => {
 		if (language === "python") {
 			const bindings = tables
@@ -252,16 +265,28 @@ export function codeArgumentDiagnostics(
 				? [bindings[0].node]
 				: [];
 		}
-		const body = owner.getChild("ClassBody");
-		if (!body) return [];
-		return children(body).filter(
-			child =>
-				["MethodDeclaration", "ConstructorDeclaration"].includes(
-					child.name
-				) && nameOf(child, "Definition") === name
-		);
+		const key = `${owner.from}:${owner.to}`;
+		let methodsByName = javaMethodsByClass.get(key);
+		if (!methodsByName) {
+			methodsByName = new Map();
+			const body = owner.getChild("ClassBody");
+			for (const child of body ? children(body) : []) {
+				if (
+					child.name !== "MethodDeclaration" &&
+					child.name !== "ConstructorDeclaration"
+				) {
+					continue;
+				}
+				const methodName = nameOf(child, "Definition");
+				const methods = methodsByName.get(methodName) ?? [];
+				methods.push(child);
+				methodsByName.set(methodName, methods);
+			}
+			javaMethodsByClass.set(key, methodsByName);
+		}
+		return methodsByName.get(name) ?? [];
 	};
-	const pythonParameters = (definition: Node): Parameter[] | null => {
+	const parsePythonParameters = (definition: Node): Parameter[] | null => {
 		const list = definition.getChild("ParamList");
 		const parts = list ? groups(list, state) : null;
 		if (!parts || !list) return null;
@@ -277,7 +302,7 @@ export function codeArgumentDiagnostics(
 		}
 		for (const group of parts) {
 			if (!group.length) continue;
-			if (["*", "**"].includes(text(group[0]))) {
+			if (isUnpacked(group[0])) {
 				keywordOnly = true;
 				continue;
 			}
@@ -292,6 +317,14 @@ export function codeArgumentDiagnostics(
 		}
 		return parameters;
 	};
+	const pythonParametersCache = new Map<string, Parameter[] | null>();
+	const pythonParameters = (definition: Node): Parameter[] | null => {
+		const key = `${definition.from}:${definition.to}`;
+		if (!pythonParametersCache.has(key))
+			pythonParametersCache.set(key, parsePythonParameters(definition));
+		return pythonParametersCache.get(key) ?? null;
+	};
+	const javaMinimumCache = new Map<string, number>();
 	const diagnostics: Diagnostic[] = [];
 	for (const call of nodes) {
 		if (diagnostics.length >= 100) break;
@@ -314,8 +347,7 @@ export function codeArgumentDiagnostics(
 			if (!callee || !args || !argumentsList) continue;
 			if (
 				argumentsList.some(
-					group =>
-						!group.length || ["*", "**"].includes(text(group[0]))
+					group => !group.length || isUnpacked(group[0])
 				)
 			) {
 				continue;
@@ -454,11 +486,18 @@ export function codeArgumentDiagnostics(
 			}
 			const definitions = classMethods(owner, name);
 			if (!definitions.length) continue;
-			const counts = definitions.map(definition => {
-				const parameters = definition.getChild("FormalParameters");
-				return parameters?.getChildren("FormalParameter").length ?? 0;
-			});
-			const minimum = Math.min(...counts);
+			const key = `${owner.from}:${owner.to}:${name}`;
+			let minimum = javaMinimumCache.get(key);
+			if (minimum === undefined) {
+				minimum = Infinity;
+				for (const definition of definitions) {
+					const parameters = definition.getChild("FormalParameters");
+					const count =
+						parameters?.getChildren("FormalParameter").length ?? 0;
+					minimum = Math.min(minimum, count);
+				}
+				javaMinimumCache.set(key, minimum);
+			}
 			if (argumentsList.length < minimum) {
 				diagnostics.push({
 					from: call.from,

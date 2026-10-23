@@ -316,6 +316,11 @@ describe("student-facing course copy", () => {
 				'export const lesson = "We can demonstrate a const error.";'
 			)
 		).toMatch(/\bwe can\b/i);
+		const legacyMetadata = rawCourseProse(
+			'export const item = { title: "Visible lesson", aliases: ["Juni legacy ID"] };'
+		);
+		expect(legacyMetadata).toContain("Visible lesson");
+		expect(legacyMetadata).not.toContain("Juni legacy ID");
 	});
 
 	it("keeps custom Scratch copy neutral instead of instructor-scripted", async () => {

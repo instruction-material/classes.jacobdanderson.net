@@ -32,10 +32,21 @@ import json, sys, types
 sources = json.load(sys.stdin)
 calls = []
 class Bridge:
+    def __init__(self):
+        self.active_tones = set()
+        self.next_tone = 0
     def __getattr__(self, name):
         def call(*args):
             calls.append((name, args))
-            return 1 if name == "playTone" else None
+            if name == "playTone":
+                self.next_tone += 1
+                self.active_tones.add(self.next_tone)
+                return self.next_tone
+            if name == "isToneActive":
+                return args[0] in self.active_tones
+            if name == "stopTone":
+                self.active_tones.discard(args[0])
+            return None
         return call
 bridge = Bridge()
 js = types.ModuleType("js")
@@ -77,6 +88,15 @@ for play in (lambda: pgzero.sounds.fixture.play(), lambda: pgzero.music.play("th
     assert before == len([c for c in calls if c[0].startswith("play")])
 pygame.mixer.init(48000, -16, 1, 1000)
 assert pygame.mixer.get_init() == (48000, -16, 1)
+tone_sound = pgzero.tone.create("A4", 0.1)
+for _ in range(100):
+    tone_sound.play()
+    bridge.active_tones.discard(bridge.next_tone)
+assert len(tone_sound._active_ids) == 1
+tone_sound.play()
+assert tone_sound._active_ids == [bridge.next_tone]
+tone_sound.stop()
+assert not bridge.active_tones
 pgzero.sounds.fixture.play()
 assert calls[-1] == ("playSound", ("fixture", 0))
 pygame.quit()

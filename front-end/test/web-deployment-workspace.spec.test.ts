@@ -35,6 +35,19 @@ afterEach(async () => {
 });
 
 describe("separate deployment course workspace", () => {
+	it("uses the imported revision for the native CI source checkout", () => {
+		const workflow = readFileSync(
+			resolve("../.github/workflows/ci.yml"),
+			"utf8"
+		);
+		const checkout = workflow.match(
+			/- name: Fetch the maintained deployment source([\s\S]*?)- name:/
+		)?.[1];
+		expect(fixture.revision).toMatch(/^[a-f0-9]{40}$/);
+		expect(checkout).toContain(`ref: ${fixture.revision}\n`);
+		expect(checkout).toContain("path: output/web-deployment-native-source");
+	});
+
 	it("preserves published activities and restricts only the genuine core reference", async () => {
 		setActivePinia(createPinia());
 		const app = useAppStore();

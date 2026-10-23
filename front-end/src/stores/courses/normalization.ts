@@ -1404,25 +1404,44 @@ function groupConceptLessons(
 	module: RawCourseModule,
 	items: RawCourseModuleItem[]
 ) {
-	if (items.length <= 4) {
-		return [
-			{
-				title: conceptGroupTitle(course, module, "Core Concepts"),
-				content: lessonArcContent(items)
-			}
+	const groupedItem = (
+		label: "Core Concepts" | "Application Check",
+		lessons: RawCourseModuleItem[]
+	) => {
+		const title = conceptGroupTitle(course, module, label);
+		const aliases = [
+			...new Set(
+				[
+					...(module.aliases ?? [])
+						.filter(alias => /\s/.test(alias))
+						.map(alias =>
+							conceptGroupTitle(
+								course,
+								{ ...module, title: alias },
+								label
+							)
+						),
+					...lessons.flatMap(lesson => [
+						...(lesson.id ? [lesson.id] : []),
+						...(lesson.aliases ?? [])
+					])
+				].filter(alias => alias !== title)
+			)
 		];
+		return {
+			title,
+			...(aliases.length ? { aliases } : {}),
+			content: lessonArcContent(lessons)
+		};
+	};
+	if (items.length <= 4) {
+		return [groupedItem("Core Concepts", items)];
 	}
 
 	const midpoint = Math.ceil(items.length / 2);
 	return [
-		{
-			title: conceptGroupTitle(course, module, "Core Concepts"),
-			content: lessonArcContent(items.slice(0, midpoint))
-		},
-		{
-			title: conceptGroupTitle(course, module, "Application Check"),
-			content: lessonArcContent(items.slice(midpoint))
-		}
+		groupedItem("Core Concepts", items.slice(0, midpoint)),
+		groupedItem("Application Check", items.slice(midpoint))
 	];
 }
 
@@ -7240,7 +7259,7 @@ function studioArtifact(context: CourseTextContext) {
 	if (/algorithm|data structures|cpp/.test(source)) {
 		return "a tested data-structure or algorithm implementation with visible before/after behavior";
 	}
-	if (/data science|machine learning|ai/.test(source)) {
+	if (/data science|machine learning|\bai\b/.test(source)) {
 		return "a notebook or script that turns a defined dataset or state space into measured, interpreted output";
 	}
 	if (
@@ -8455,62 +8474,6 @@ function normalizeApComputerScienceA(course: RawCourse) {
 	]);
 }
 
-function normalizeAlgebra1A(course: RawCourse) {
-	course.modules = orderedModules(course, [
-		"Algebra 1A Kick-Off Projects",
-		"AA1 Algebraic Properties",
-		"AA2 Solving Single-Step Linear Equations",
-		"AA3 Module Project: Movie Star Status (with Maddie Van Beek)",
-		"AA4 Solving Multi-Step Linear Equations",
-		"AA5 Module Project: Free Swag! (with Amisha Sisodiya)",
-		"Check-in #1",
-		"AA6 Slope and Rate of Change",
-		"AA7 Module Project: Community Data Analysis (with Davin Lee)",
-		"AA8 Slope-Intercept Form",
-		"AA9 Point-Slope Form",
-		"AA10 Graphing Inequalities",
-		"AA11 Module Project: Predicting Avalanches (with Ruby Lee)",
-		"Check-in #2",
-		"AA12 Solving Linear Systems by Graphing",
-		"AA13 Solving Linear Systems by Substitution",
-		"AA14 Solving Linear Systems by Elimination",
-		"AA15 Module Project: Cytogenetics Quest (with Dr. Renu Bajaj)",
-		"AA16 Module Project: Battle of the Publications (with Konstantin Kaganovsky)",
-		"Check-in #3",
-		"AA17 Master Project: Algebra 1A"
-	]);
-}
-
-function normalizeAlgebra1B(course: RawCourse) {
-	course.modules = orderedModules(course, [
-		"Algebra 1B Kick-Off Project",
-		"AB1 Introduction to Polynomials",
-		"AB2 Multiplying Polynomials",
-		"AB3 Fractions with Polynomials",
-		"AB4 Module Project: Smart and Elegant (with Amy Katz)",
-		"AB5 Solving Quadratics by Factoring",
-		"AB6 Special Factorizations",
-		"AB7 Solving Quadratics by Completing the Square",
-		"AB8 Quadratic Formula",
-		"AB9 Module Project: The Half-Court Challenge (with Ian Kennedy)",
-		"Check-in #1",
-		"AB10 Graphing Vertex Form",
-		"AB11 Graphing Standard Form",
-		"AB12 Transformations",
-		"AB13 Module Project: Put Me in Coach! (with Tom Dethlefs)",
-		"AB14 Introduction to Functions",
-		"AB15 Function Composition and Inverse Functions",
-		"AB16 Module Project: J.T. Phone Home",
-		"AB17 Absolute Value and Exponential Functions",
-		"AB18 Direct and Inverse Variation",
-		"AB19 Data Modeling",
-		"AB20 Module Project: The Mysteries of Light (with Blake Eaton)",
-		"AB21 Module Project: Radiofungi (with Sunanda Sharma)",
-		"Check-in #2",
-		"AB22 Master Project: Algebra 1B"
-	]);
-}
-
 function normalizeJavaScriptLevel1(course: RawCourse) {
 	course.modules = orderedModules(course, [
 		"JSS1 Variables and Data Types",
@@ -9526,8 +9489,6 @@ function removeDuplicateSolutionLinks(course: RawCourse) {
 
 const normalizers: Record<string, (course: RawCourse) => void> = {
 	"ai-level-1": normalizeAiLevel1,
-	"algebra-1a": normalizeAlgebra1A,
-	"algebra-1b": normalizeAlgebra1B,
 	"ap-computer-science-a": normalizeApComputerScienceA,
 	"data-structures-and-algorithms-in-cpp": normalizeDataStructuresCpp,
 	"design-patterns-in-java": normalizeDesignPatternsJava,

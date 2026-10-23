@@ -219,7 +219,10 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 				] ??
 					definition.continuationIDs ?? [definition.traceID];
 				const selectedFileName = name =>
-					definition.flatFiles ? name : `${role}/${name}`;
+					definition.flatFiles ||
+					(definition.sharedFiles ?? ["README.md"]).includes(name)
+						? name
+						: `${role}/${name}`;
 				const sourceFileName = name =>
 					definition.flatFiles &&
 					!(definition.sharedFiles ?? ["README.md"]).includes(name)
@@ -488,7 +491,7 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 							visible: true
 						});
 						await page.focus(".cm-content");
-						const note = /\.(?:S|rs|m?js)$/.test(filename)
+						const note = /\.(?:S|rs|m?js|swift)$/.test(filename)
 							? `\n/* Independent ${definition.kind} observation ${width} */\n`
 							: `\n# Independent ${definition.kind} observation ${width}\n`;
 						const content =

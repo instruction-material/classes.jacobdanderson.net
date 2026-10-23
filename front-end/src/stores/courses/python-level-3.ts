@@ -194,6 +194,7 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 				},
 				{
 					title: "AM1 Project 2: Fictional Language Verifier",
+					aliases: ["AM1 Project 2: Junian Language Verifier"],
 					content: projectBrief({
 						goal: "Write a verifier for a fictional language rule set.",
 						build: [
@@ -216,6 +217,7 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 				},
 				{
 					title: "AM1 Project 3: Command Assistant",
+					aliases: ["AM1 Project 3: Juni Assistant"],
 					content: projectBrief({
 						goal: "Create a simple command assistant that keeps responding until an exit command is entered.",
 						build: [
@@ -1348,6 +1350,7 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 				},
 				{
 					title: "AM12 Project 3: Word Translator with File I/O",
+					aliases: ["AM12 Project 3: Juni Latin with File IO"],
 					content: projectBrief({
 						goal: "Combine a word-translation function implementing the original character rule with independently testable file-reading, translation and writing stages.",
 						build: [

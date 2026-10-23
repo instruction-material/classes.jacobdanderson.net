@@ -41,6 +41,7 @@ export const ideDiagnosticSchema = z
 			"assembly",
 			"c",
 			"linux",
+			"swift",
 			"rust",
 			"cpp",
 			"python",

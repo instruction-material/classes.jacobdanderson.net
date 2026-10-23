@@ -10,7 +10,7 @@ the public API base URL, and `frontend/main.js` fetches and renders the status.
 The starter supplies `env.template.js`; copy it to `env.js` before startup.
 
 Use Node.js 24 and the complete maintained Web-Development-Foundations checkout
-at `781eba647bbdcb3f89aa0417011dabe2fca30d53`. Install the existing dependencies
+at `962d1be3da0d954ad774390b78cb044395a12262`. Install the existing dependencies
 from its root with `npm ci` if they are missing. Run the two services in separate
 terminals, both initially at that root:
 

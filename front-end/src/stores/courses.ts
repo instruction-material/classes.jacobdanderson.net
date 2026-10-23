@@ -130,6 +130,22 @@ function courseEntityAliases(
 		.filter(alias => alias && alias !== normalizedExplicitId);
 }
 
+function legacyTitleIds(
+	courseId: string,
+	scopeId: string,
+	titles: string[] | undefined
+) {
+	return (titles ?? [])
+		.filter(title => !isCourseScopedAlias(courseId, title))
+		.map(title => slugify(title))
+		.filter(Boolean)
+		.map(title => `${scopeId}-${title}`);
+}
+
+function isCourseScopedAlias(courseId: string, alias: string) {
+	return alias === slugify(alias) && alias.startsWith(`${courseId}-`);
+}
+
 const HIDDEN_ITEM_TITLES = new Set([
 	"session recap & assignment",
 	"recap & assignment review"
@@ -431,11 +447,21 @@ function normalizeCourse(
 		modules: course.modules.map(module => {
 			const generatedModuleId = slugify(`${courseId}-${module.title}`);
 			const moduleId = courseEntityId(module.id, generatedModuleId);
-			const moduleAliases = courseEntityAliases(
-				module.id,
-				generatedModuleId,
+			const legacyModuleIds = legacyTitleIds(
+				courseId,
+				courseId,
 				module.aliases
 			);
+			const moduleAliases = [
+				...new Set([
+					...courseEntityAliases(
+						module.id,
+						generatedModuleId,
+						module.aliases
+					),
+					...legacyModuleIds
+				])
+			].filter(alias => alias !== moduleId);
 
 			const mapItems = (
 				items: typeof module.curriculum,
@@ -545,11 +571,38 @@ function normalizeCourse(
 						item.stableId,
 						generatedItemId
 					);
-					const itemAliases = courseEntityAliases(
-						item.stableId,
-						generatedItemId,
-						item.stableAliases
-					);
+					const legacyItemTitles = [
+						item.title,
+						...(item.stableAliases ?? []).filter(
+							alias => !isCourseScopedAlias(courseId, alias)
+						)
+					];
+					const itemAliases = [
+						...new Set([
+							...courseEntityAliases(
+								item.stableId,
+								generatedItemId,
+								item.stableAliases
+							),
+							...legacyTitleIds(
+								courseId,
+								`${generatedModuleId}-${prefix}`,
+								item.stableAliases
+							),
+							...legacyTitleIds(
+								courseId,
+								`${moduleId}-${prefix}`,
+								item.stableAliases
+							),
+							...legacyModuleIds.flatMap(moduleHistoryId =>
+								legacyItemTitles.map(title =>
+									slugify(
+										`${moduleHistoryId}-${prefix}-${title}`
+									)
+								)
+							)
+						])
+					].filter(alias => alias !== itemId);
 					const {
 						stableAliases: _stableAliases,
 						stableId: _stableId,
@@ -604,16 +657,17 @@ export const useCoursesStore = defineStore("courses", () => {
 	const courses = computed(() => courseSummaries);
 	const appStore = useAppStore();
 
-	const canViewSolutions = computed(
-		() => !!appStore.currentTutor || !!appStore.currentAdmin
-	);
+	function canViewCourseSolutions(id: string) {
+		if (appStore.currentAdmin) return true;
+		return appStore.currentTutor?.coursePermissions?.includes(id) ?? false;
+	}
 
 	function getCourseById(id: string) {
-		return courseCacheFor(canViewSolutions.value).get(id) ?? null;
+		return courseCacheFor(canViewCourseSolutions(id)).get(id) ?? null;
 	}
 
 	async function loadCourseById(id: string) {
-		const includeSolutions = canViewSolutions.value;
+		const includeSolutions = canViewCourseSolutions(id);
 		const courseCache = courseCacheFor(includeSolutions);
 		const cachedCourse = courseCache.get(id);
 
@@ -627,11 +681,16 @@ export const useCoursesStore = defineStore("courses", () => {
 			return null;
 		}
 
+		const permittedAfterLoad = canViewCourseSolutions(id);
+		const finalCache = courseCacheFor(permittedAfterLoad);
+		const updatedCachedCourse = finalCache.get(id);
+		if (updatedCachedCourse) return updatedCachedCourse;
+
 		const normalizedCourse = normalizeCourse(rawCourse, id, {
-			includeSolutions
+			includeSolutions: permittedAfterLoad
 		});
 
-		courseCache.set(id, normalizedCourse);
+		finalCache.set(id, normalizedCourse);
 
 		return normalizedCourse;
 	}

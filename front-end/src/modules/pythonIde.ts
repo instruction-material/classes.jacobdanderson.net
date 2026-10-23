@@ -42,6 +42,12 @@ import {
 	rustCourseResource,
 	rustImportFiles
 } from "@/modules/rustProjectResources";
+import { swiftStarterCode, swiftStarterFiles } from "@/modules/swiftIdeSource";
+import { isSwiftProjectTextPath } from "@/modules/swiftProjectFiles";
+import {
+	swiftCourseResource,
+	swiftImportFiles
+} from "@/modules/swiftProjectResources";
 import { restoredUsacoResource } from "@/modules/usacoProjectResources";
 import { webStarterCode, webStarterFiles } from "@/modules/webIdeSource";
 import {
@@ -106,8 +112,9 @@ const PYTHON_IDE_INDEXED_DB_NAME = "classes-python-ide";
 const PYTHON_IDE_INDEXED_DB_VERSION = 1;
 const PYTHON_IDE_PROJECT_STORE = "projectStores";
 const JAVA_MAIN_METHOD_RE =
-	/\bmain\s*\(\s*(?:\w+\s*\[\s*\]\s+\w+|\w+\s+\w+\s*\[\s*\]|\w+\s*\.\.\.\s+\w+)\s*\)/;
-const KAREL_RUN_METHOD_RE = /\brun\s*\(\s*\)/;
+	/\b(?:public\s+static|static\s+public)\s+void\s+main\s*\(\s*(?:String\s*\[\s*\]\s+\w+|String\s+\w+\s*\[\s*\]|String\s*\.\.\.\s+\w+)\s*\)\s*\{/;
+const KAREL_RUN_METHOD_RE = /\b(?:public\s+)?void\s+run\s*\(\s*\)\s*\{/;
+const KAREL_CLASS_RE = /\bclass\s+\w+\s+extends\s+(?:SuperKarel|Karel)\b/;
 const PYTHON_IDE_SHARE_ID_RE = /^[\w-]{20,80}$/;
 
 export type PythonIdeFileEncoding = "text" | "base64";
@@ -123,6 +130,7 @@ export type PythonIdeMode =
 	| "pgzero"
 	| "python"
 	| "rust"
+	| "swift"
 	| "turtle"
 	| "web";
 export type PythonIdeProjectTemplate =
@@ -300,6 +308,8 @@ export const pythonIdeAllowedFileExtensions = [
 	".cxx",
 	".h",
 	".hpp",
+	".swift",
+	".plist",
 	".csv",
 	".tsv",
 	".json",
@@ -324,6 +334,7 @@ export const pythonIdeFileUploadAccept =
 let pythonIdeStorageDbPromise: Promise<IDBDatabase> | null = null;
 
 const pythonIdeCourseModes: Record<string, PythonIdeMode> = {
+	"intro-to-swift-app-development": "swift",
 	"web-development-foundations": "web",
 	"rust-systems-security": "rust",
 	"linux-systems": "linux",
@@ -364,6 +375,7 @@ export function normalizePythonIdeMode(
 		value === "assembly" ||
 		value === "web" ||
 		value === "rust" ||
+		value === "swift" ||
 		value === "linux" ||
 		value === "c" ||
 		value === "cpp" ||
@@ -380,7 +392,9 @@ export function normalizePythonIdeMode(
 }
 
 export function pythonIdeModeForCourseId(courseId: string | null | undefined) {
-	return courseId ? (pythonIdeCourseModes[courseId] ?? null) : null;
+	return courseId && Object.hasOwn(pythonIdeCourseModes, courseId)
+		? pythonIdeCourseModes[courseId]
+		: null;
 }
 
 export function isKnownCourseWorksheetResource(url: string) {
@@ -416,6 +430,8 @@ export function isKnownCourseWorksheetResource(url: string) {
 export function pythonIdeModeForCourseResource(courseId: string, url: string) {
 	const resource = parseGitHubResource(url);
 	if (!resource || isKnownCourseWorksheetResource(url)) return null;
+	if (courseId === "intro-to-swift-app-development")
+		return swiftCourseResource(url) ? "swift" : null;
 	if (courseId === "web-development-foundations")
 		return webCourseResource(url) ? "web" : null;
 	if (resource.mode === "blob" && !CODE_EXTENSION_RE.test(resource.path))
@@ -557,6 +573,7 @@ import turtle
 #####################
 NUM_TURTLES = 0
 MOVE_DISTANCE = 1
+MAX_ANIMATION_STEPS = 120
 
 
 #####################
@@ -610,9 +627,11 @@ screen.listen()
 ###   MAIN CODE   ###
 #####################
 animation_running = True
+animation_steps = 0
 
 # Keep the main animation running while the project is active
-while animation_running:
+while animation_running and animation_steps < MAX_ANIMATION_STEPS:
+    animation_steps += 1
     main_turtle.forward(MOVE_DISTANCE)
 
     # Conditions and additional actions here
@@ -2263,6 +2282,7 @@ plt.tight_layout()
 `;
 
 export function getPythonIdeModeLabel(mode: PythonIdeMode) {
+	if (mode === "swift") return "SwiftUI";
 	if (mode === "web") return "Web";
 	if (mode === "rust") return "Rust";
 	if (mode === "linux") return "Linux";
@@ -2311,6 +2331,7 @@ export function getPythonIdeProjectKindLabel(
 }
 
 function getDemoStarterCode(mode: PythonIdeMode) {
+	if (mode === "swift") return swiftStarterCode;
 	if (mode === "rust") return rustStarterCode;
 	if (mode === "linux") return linuxStarterCode;
 	if (mode === "assembly") return assemblyStarterCode;
@@ -2333,6 +2354,7 @@ function clonePythonIdeFiles(files: PythonIdeFile[]) {
 }
 
 function getBlankStarterFiles(mode: PythonIdeMode): PythonIdeFile[] {
+	if (mode === "swift") return swiftStarterFiles();
 	if (mode === "rust") return rustStarterFiles();
 	if (mode === "linux") return linuxStarterFiles();
 	if (mode === "assembly") return assemblyStarterFiles();
@@ -2369,6 +2391,7 @@ function getBlankStarterFiles(mode: PythonIdeMode): PythonIdeFile[] {
 }
 
 function getCourseStarterFiles(mode: PythonIdeMode): PythonIdeFile[] {
+	if (mode === "swift") return swiftStarterFiles();
 	if (mode === "rust") return rustStarterFiles();
 	if (mode === "linux") return linuxStarterFiles();
 	if (mode === "assembly") return assemblyStarterFiles();
@@ -2456,6 +2479,7 @@ function getDemoStarterFiles(mode: PythonIdeMode): PythonIdeFile[] {
 }
 
 function getOutlineStarterFiles(mode: PythonIdeMode): PythonIdeFile[] {
+	if (mode === "swift") return swiftStarterFiles();
 	if (mode === "rust") return rustStarterFiles();
 	if (mode === "linux") return linuxStarterFiles();
 	if (mode === "assembly") return assemblyStarterFiles();
@@ -2647,6 +2671,7 @@ function getStarterFilesForTemplate(
 	template: PythonIdeProjectTemplate
 ) {
 	if (mode === "web") return webStarterFiles();
+	if (mode === "swift") return swiftStarterFiles();
 	if (mode === "rust") return rustStarterFiles();
 	if (mode === "linux") return linuxStarterFiles();
 	if (
@@ -2725,6 +2750,7 @@ function projectTitleForMode(
 	mode: PythonIdeMode,
 	template: PythonIdeProjectTemplate = "blank"
 ) {
+	if (mode === "swift") return "SwiftUI Project";
 	if (mode === "web") return "Web Project";
 	if (mode === "rust") return "Rust Project";
 	if (mode === "linux") return "Linux Project";
@@ -2799,22 +2825,28 @@ export function createPythonIdeProject(
 		files,
 		activeFileName: resolvePythonIdeActiveFileName(
 			files,
-			mode === "web"
-				? "index.html"
-				: mode === "rust"
-					? rustSource
-						? `${rustSource.role}/observations.md`
-						: "src/main.rs"
-					: mode === "linux"
-						? linuxSource
-							? `${linuxSource.role}/${linuxSource.definition.roleFiles[0]}`
-							: files.find(file => /\.sh$/i.test(file.name))?.name
-						: mode === "assembly"
-							? assemblySource
-								? `${assemblySource.role}/${assemblySource.definition.roleFiles[0]}`
-								: files.find(file => /\.s$/i.test(file.name))
+			mode === "swift"
+				? files.find(file =>
+						/(?:^|\/)ContentView\.swift$/.test(file.name)
+					)?.name
+				: mode === "web"
+					? "index.html"
+					: mode === "rust"
+						? rustSource
+							? `${rustSource.role}/observations.md`
+							: "src/main.rs"
+						: mode === "linux"
+							? linuxSource
+								? `${linuxSource.role}/${linuxSource.definition.roleFiles[0]}`
+								: files.find(file => /\.sh$/i.test(file.name))
 										?.name
-							: undefined
+							: mode === "assembly"
+								? assemblySource
+									? `${assemblySource.role}/${assemblySource.definition.roleFiles[0]}`
+									: files.find(file =>
+											/\.s$/i.test(file.name)
+										)?.name
+								: undefined
 		),
 		courseID: options.courseID,
 		courseProjectKey: options.courseProjectKey,
@@ -2929,6 +2961,7 @@ export function isValidPythonFileName(
 	}
 
 	if (isPythonIdeRuntimeReservedPath(value)) return false;
+	if (mode === "swift") return isSwiftProjectTextPath(value);
 	if (mode === "web") return isWebProjectTextPath(value);
 
 	if (
@@ -2959,6 +2992,7 @@ export function isPythonIdeRunnableFile(
 	value: string,
 	mode: PythonIdeMode = "python"
 ) {
+	if (mode === "swift") return /\.swift$/i.test(value);
 	if (mode === "web") return isWebProjectSourcePath(value);
 	if (mode === "linux") return false;
 	if (mode === "rust") return /\.rs$/i.test(value);
@@ -2972,6 +3006,7 @@ export function isPythonIdeRunnableFile(
 
 export function isPythonIdeTextFile(value: string) {
 	return (
+		isSwiftProjectTextPath(value) ||
 		isWebProjectTextPath(value) ||
 		isRustProjectTextPath(value) ||
 		isLinuxProjectTextPath(value) ||
@@ -2992,13 +3027,15 @@ export function normalizeImportedPythonIdeFileName(
 	const baseName = value.split(/[\\/]/).pop() ?? value;
 	const normalized = normalizePythonFileName(
 		baseName,
-		mode === "web"
-			? ".html"
-			: mode === "rust"
-				? ".rs"
-				: mode === "linux"
-					? ".sh"
-					: ".py",
+		mode === "swift"
+			? ".swift"
+			: mode === "web"
+				? ".html"
+				: mode === "rust"
+					? ".rs"
+					: mode === "linux"
+						? ".sh"
+						: ".py",
 		mode
 	);
 	if (IMAGE_EXTENSION_RE.test(normalized)) return `images/${normalized}`;
@@ -3032,6 +3069,7 @@ export function getPythonIdeAssetDataUrl(file: PythonIdeFile) {
 }
 
 export function getPythonIdeFileKindLabel(value: string) {
+	if (/\.swift$/i.test(value)) return "Swift";
 	if (/\.rs$/i.test(value)) return "Rust";
 	if (/(?:^|\/)Cargo\.(?:toml|lock)$/.test(value)) return "Cargo build file";
 	if (/^makefile$/i.test(value) || baseName(value) === "CMakeLists.txt")
@@ -3064,6 +3102,8 @@ export function getPythonIdeDefaultFileContent(
 	fileName: string,
 	mode?: PythonIdeMode
 ) {
+	if (mode === "swift")
+		return /\.swift$/i.test(fileName) ? "import SwiftUI\n\n" : "";
 	if (mode === "web") return fileName === "index.html" ? webStarterCode : "";
 	if (/^makefile$/i.test(fileName) || baseName(fileName) === "CMakeLists.txt")
 		return "";
@@ -3161,6 +3201,7 @@ export async function loadPythonIdeStarterFilesFromGitHub(
 	}
 
 	if (
+		mode === "swift" ||
 		mode === "web" ||
 		mode === "rust" ||
 		mode === "c" ||
@@ -3168,16 +3209,18 @@ export async function loadPythonIdeStarterFilesFromGitHub(
 		mode === "linux"
 	) {
 		const selected =
-			mode === "web"
-				? webImportFiles(starterUrl)
-				: mode === "rust"
-					? rustImportFiles(starterUrl)
-					: mode === "linux"
-						? (linuxImportFiles(starterUrl) ??
-							networkImportFiles(starterUrl))
-						: mode === "assembly"
-							? assemblyImportFiles(starterUrl)
-							: c17ImportFiles(starterUrl);
+			mode === "swift"
+				? swiftImportFiles(starterUrl)
+				: mode === "web"
+					? webImportFiles(starterUrl)
+					: mode === "rust"
+						? rustImportFiles(starterUrl)
+						: mode === "linux"
+							? (linuxImportFiles(starterUrl) ??
+								networkImportFiles(starterUrl))
+							: mode === "assembly"
+								? assemblyImportFiles(starterUrl)
+								: c17ImportFiles(starterUrl);
 		if (!selected) {
 			throw new Error(
 				`${getPythonIdeModeLabel(mode)} source has no verified site import. Use its documented native workflow.`
@@ -3267,12 +3310,11 @@ function getJavaIdeRunnableFile(
 	);
 	const mainFile = javaFiles.find(file => file.name === "Main.java");
 
+	if (activeFile && hasJavaMainMethod(activeFile)) return activeFile;
+	if (mainFile && hasJavaMainMethod(mainFile)) return mainFile;
 	return (
-		(activeFile && hasJavaMainMethod(activeFile)
-			? activeFile
-			: undefined) ||
-		mainFile ||
 		javaFiles.find(hasJavaMainMethod) ||
+		mainFile ||
 		activeFile ||
 		javaFiles[0] ||
 		null
@@ -3293,13 +3335,14 @@ function getKarelIdeRunnableFile(
 	);
 	const algoFile = javaFiles.find(file => file.name === "Algo.java");
 
+	if (activeFile && isLikelyKarelEntryFile(activeFile)) return activeFile;
+	if (myProgramFile && isLikelyKarelEntryFile(myProgramFile))
+		return myProgramFile;
+	if (algoFile && isLikelyKarelEntryFile(algoFile)) return algoFile;
 	return (
-		(activeFile && isLikelyKarelEntryFile(activeFile)
-			? activeFile
-			: undefined) ||
+		javaFiles.find(isLikelyKarelEntryFile) ||
 		myProgramFile ||
 		algoFile ||
-		javaFiles.find(isLikelyKarelEntryFile) ||
 		activeFile ||
 		javaFiles[0] ||
 		null
@@ -3314,7 +3357,8 @@ function isLikelyKarelEntryFile(file: Pick<PythonIdeFile, "content">) {
 	const searchText = javaEntryPointSearchText(file);
 	return (
 		JAVA_MAIN_METHOD_RE.test(searchText) ||
-		KAREL_RUN_METHOD_RE.test(searchText)
+		(KAREL_CLASS_RE.test(searchText) &&
+			KAREL_RUN_METHOD_RE.test(searchText))
 	);
 }
 

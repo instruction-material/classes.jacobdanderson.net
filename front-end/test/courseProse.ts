@@ -14,6 +14,18 @@ export function rawCourseProse(source: string) {
 	);
 	const literals: Array<[number, number, string]> = [];
 	function visit(node: ts.Node) {
+		if (
+			ts.isPropertyAssignment(node) &&
+			node.name.getText(tree) === "aliases" &&
+			ts.isArrayLiteralExpression(node.initializer)
+		) {
+			literals.push([
+				node.initializer.getStart(tree),
+				node.initializer.end,
+				"[]"
+			]);
+			return;
+		}
 		// Replacement search text is input syntax, not displayed course prose.
 		// Keep checking the replacement and the normalized course separately.
 		if (

@@ -2,7 +2,6 @@
 import { computed, ref } from "vue";
 import { coursePathwayMaps } from "@/modules/coursePathwayMaps";
 import { courseCatalog } from "@/stores/courses/index";
-import { coursePublicPathways } from "@/stores/courses/public-pathways";
 
 defineOptions({ name: "PathwaysPage" });
 const search = ref("");
@@ -18,20 +17,14 @@ const categories = [
 const courseNameById = new Map(
 	courseCatalog.map(course => [course.id, course.name])
 );
-const sourceById = new Map(
-	coursePublicPathways.map(pathway => [pathway.id, pathway])
-);
 const visiblePathways = computed(() =>
 	coursePathwayMaps.filter(pathway => {
 		if (category.value !== "all" && pathway.category !== category.value)
 			return false;
-		const source = sourceById.get(pathway.id);
 		return [
 			pathway.title,
 			pathway.summary,
 			pathway.readiness,
-			source?.audience,
-			source?.prerequisiteSummary,
 			...pathway.stages.flatMap(stage => stage.courseIds.map(courseName))
 		]
 			.join(" ")

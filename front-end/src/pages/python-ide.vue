@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import { defineAsyncComponent, onBeforeMount } from "vue";
+import { onBeforeMount } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-const CodeIdeWorkspace = defineAsyncComponent(
-	() => import("@/components/AccountCodeIdeWorkspace.vue")
-);
 const route = useRoute();
 const router = useRouter();
 
@@ -18,5 +15,5 @@ onBeforeMount(() => {
 </script>
 
 <template>
-	<CodeIdeWorkspace />
+	<div />
 </template>

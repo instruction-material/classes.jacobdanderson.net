@@ -66,7 +66,9 @@ describe("required Gold projects and changed-case retries", () => {
 	it("withholds references from learners and retains instructor access", async () => {
 		const app = useAppStore();
 		for (const instructor of [false, true]) {
-			app.currentTutor = instructor ? ({} as never) : null;
+			app.currentTutor = instructor
+				? ({ coursePermissions: ["usaco-gold"] } as never)
+				: null;
 			const course =
 				(await useCoursesStore().loadCourseById("usaco-gold"))!;
 			for (const pack of goldRequiredCorePacks)

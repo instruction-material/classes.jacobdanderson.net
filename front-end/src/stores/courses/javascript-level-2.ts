@@ -579,6 +579,7 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSM3 Project 2: Department Store Discounts",
+					aliases: ["JSM3 Project 2: Juni Department Store"],
 					content: `**Project target:** Build a discount calculator where multiple rules can affect the final price. The project requires careful rule ordering, function boundaries, and numeric formatting.
 
 **Build path:** Store the original price, shopper category, and any special-number rule inputs. Write helper functions for percent discounts, perfect-square detection, prime detection, and final-price formatting. Apply rules in a documented order so the same cart always produces the same answer.

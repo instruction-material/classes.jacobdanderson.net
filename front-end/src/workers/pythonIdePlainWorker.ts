@@ -72,6 +72,8 @@ type PlainPythonWorkerMessage =
 let pyodidePromise: Promise<PyodideAPI> | null = null;
 let activeRunID: number | null = null;
 let lastProjectFileNames = new Set<string>();
+let sendPrivateMessage: ((message: PlainPythonWorkerMessage) => void) | null =
+	null;
 const loadedPlainPythonImportModules = new Set<string>();
 
 function isActiveRun(id: number) {
@@ -79,7 +81,8 @@ function isActiveRun(id: number) {
 }
 
 function postWorkerMessage(message: PlainPythonWorkerMessage) {
-	globalThis.postMessage(message);
+	if (!sendPrivateMessage) throw new Error("Python worker is not connected.");
+	sendPrivateMessage(message);
 }
 
 function postOutput(
@@ -412,19 +415,32 @@ async function runPlainPythonProject(request: PlainPythonRunRequest) {
 }
 
 globalThis.addEventListener("message", event => {
-	const request = event.data as PlainPythonWorkerRequest;
-	if (request.type !== "run") return;
+	if (event.data?.type !== "connect" || sendPrivateMessage) return;
+	const port = event.ports[0];
+	if (!port) return;
+	sendPrivateMessage = port.postMessage.bind(port);
+	port.addEventListener(
+		"message",
+		(runEvent: MessageEvent<PlainPythonWorkerRequest>) => {
+			const request = runEvent.data;
+			if (request?.type !== "run") return;
 
-	void runPlainPythonProject(request)
-		.catch(error => {
-			if (!isActiveRun(request.id)) return;
-			postWorkerMessage({
-				type: "error",
-				id: request.id,
-				message: error instanceof Error ? error.message : String(error)
-			});
-		})
-		.finally(() => {
-			if (activeRunID === request.id) activeRunID = null;
-		});
+			void runPlainPythonProject(request)
+				.catch(error => {
+					if (!isActiveRun(request.id)) return;
+					postWorkerMessage({
+						type: "error",
+						id: request.id,
+						message:
+							error instanceof Error
+								? error.message
+								: String(error)
+					});
+				})
+				.finally(() => {
+					if (activeRunID === request.id) activeRunID = null;
+				});
+		}
+	);
+	port.start();
 });

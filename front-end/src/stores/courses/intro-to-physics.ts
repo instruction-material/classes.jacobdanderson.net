@@ -393,6 +393,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Momentum Graph and Data Exercise",
+					aliases: [
+						"intro-to-physics-phy8-momentum-impulse-and-collisions-curriculum-graph-diagram-or-data-exercise"
+					],
 					content:
 						"Create a representation for Momentum, Impulse, and Collisions with at least one graph, diagram sequence, or data table. Read a force-time graph and shade the impulse area, then compare it with a before-and-after momentum table. The useful representation shows whether momentum is conserved inside the chosen system or changed by an external impulse."
 				},
@@ -403,6 +406,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Momentum Transfer Reflection",
+					aliases: [
+						"intro-to-physics-phy8-momentum-impulse-and-collisions-curriculum-reflection-and-transfer-practice"
+					],
 					content:
 						"Transfer the model to a different collision or safety device and explain what changes when contact time increases. A strong transfer distinguishes reduced force from reduced momentum change."
 				}
@@ -445,6 +451,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Torque Diagram and Data Exercise",
+					aliases: [
+						"intro-to-physics-phy9-rotational-motion-and-torque-basics-curriculum-graph-diagram-or-data-exercise"
+					],
 					content:
 						"Build a torque table with force, lever arm, torque direction, and net torque. A balance-beam diagram shows how equal forces can fail to balance when their distances from the pivot differ."
 				},
@@ -455,6 +464,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Torque Transfer Reflection",
+					aliases: [
+						"intro-to-physics-phy9-rotational-motion-and-torque-basics-curriculum-reflection-and-transfer-practice"
+					],
 					content:
 						"Transfer the model to a new object such as a steering wheel, wrench, or crane arm. Explain why a longer handle helps and when extra length would stop being the only important design factor."
 				}
@@ -497,6 +509,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Fluids Data Representation",
+					aliases: [
+						"intro-to-physics-phy10-fluids-pressure-and-buoyancy-curriculum-graph-diagram-or-data-exercise"
+					],
 					content:
 						"Create a density table or pressure comparison chart, then use it to predict floating, sinking, or surface pressure. A strong representation labels the material, volume, mass, area, and force so the conclusion is tied to measurable quantities."
 				},
@@ -507,6 +522,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Fluids Transfer Reflection",
+					aliases: [
+						"intro-to-physics-phy10-fluids-pressure-and-buoyancy-curriculum-reflection-and-transfer-practice"
+					],
 					content:
 						"Transfer the model to a new object such as a ship, balloon, submarine, or snowshoe. Explain whether pressure, density, or buoyancy is the main idea and what extra measurement would make the prediction stronger."
 				}
@@ -549,6 +567,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Thermal Graph and Data Exercise",
+					aliases: [
+						"intro-to-physics-phy11-heat-temperature-and-thermal-energy-curriculum-graph-diagram-or-data-exercise"
+					],
 					content:
 						"Read a heating or cooling curve and label warming segments, phase-change plateaus, and transfer direction. A data table connects mass, material, temperature change, and energy so the graph is more than a line shape."
 				},
@@ -559,6 +580,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Thermal Design Transfer Reflection",
+					aliases: [
+						"intro-to-physics-phy11-heat-temperature-and-thermal-energy-curriculum-reflection-and-transfer-practice"
+					],
 					content:
 						"Transfer the model to a new thermal design such as a cooler, phone heat sink, winter coat, or cooking container. Explain which transfer path dominates and what data would test that claim."
 				}
@@ -601,6 +625,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Optics Ray-Diagram Exercise",
+					aliases: [
+						"intro-to-physics-phy12-optics-mirrors-lenses-and-images-curriculum-graph-diagram-or-data-exercise"
+					],
 					content:
 						"Draw ray diagrams for several object positions and record image orientation, relative size, and image type. The diagram shows reflection or refraction rules explicitly rather than only reporting an answer."
 				},
@@ -611,6 +638,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Optics Transfer Reflection",
+					aliases: [
+						"intro-to-physics-phy12-optics-mirrors-lenses-and-images-curriculum-reflection-and-transfer-practice"
+					],
 					content:
 						"Transfer the model to a new optical device and explain which ray behavior matters most. A strong response distinguishes what the ray diagram predicts from what a real device adds through materials, apertures, and alignment."
 				}
@@ -653,6 +683,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Electromagnetic Device Diagram",
+					aliases: [
+						"intro-to-physics-phy13-magnetism-and-electromagnetic-induction-curriculum-graph-diagram-or-data-exercise"
+					],
 					content:
 						"Create a field-line sketch or input-output table for a magnetic device. The useful representation shows direction, relative strength, and what changes when current, coil turns, magnet motion, or distance changes."
 				},
@@ -663,6 +696,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Electromagnetism Transfer Reflection",
+					aliases: [
+						"intro-to-physics-phy13-magnetism-and-electromagnetic-induction-curriculum-reflection-and-transfer-practice"
+					],
 					content:
 						"Transfer the model between a motor and a generator. Explain which direction the energy conversion runs, which parts stay analogous, and what evidence distinguishes mechanical-to-electrical from electrical-to-mechanical behavior."
 				}
@@ -705,6 +741,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Oscillation Graph Exercise",
+					aliases: [
+						"intro-to-physics-phy14-simple-harmonic-motion-and-resonance-curriculum-graph-diagram-or-data-exercise"
+					],
 					content:
 						"Read position-time or amplitude-frequency graphs and identify amplitude, period, frequency, damping, and resonance peaks. A strong graph explanation connects the shape to energy transfer and restoring motion."
 				},
@@ -715,6 +754,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Resonance Transfer Reflection",
+					aliases: [
+						"intro-to-physics-phy14-simple-harmonic-motion-and-resonance-curriculum-reflection-and-transfer-practice"
+					],
 					content:
 						"Transfer the model to a different oscillating system and decide whether simple harmonic motion is a good approximation. Explain what would break the approximation, such as large angles, friction, nonlinear springs, or irregular driving."
 				}
@@ -757,6 +799,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Orbit Data and Diagram Exercise",
+					aliases: [
+						"intro-to-physics-phy15-astronomy-gravity-and-orbits-curriculum-graph-diagram-or-data-exercise"
+					],
 					content:
 						"Compare orbital radius, period, speed, or surface gravity using a table or scaled diagram. The representation reveals that distance and mass both matter, and that visual scale can be misleading without units."
 				},
@@ -767,6 +812,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Orbit Transfer Reflection",
+					aliases: [
+						"intro-to-physics-phy15-astronomy-gravity-and-orbits-curriculum-reflection-and-transfer-practice"
+					],
 					content:
 						"Transfer the model from a satellite to a moon, planet, or spacecraft maneuver. Explain why orbiting is not escaping gravity and what data would be needed to compare two orbital paths."
 				}
@@ -809,6 +857,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Modern Physics Evidence Diagram",
+					aliases: [
+						"intro-to-physics-phy16-modern-physics-and-model-limits-curriculum-graph-diagram-or-data-exercise"
+					],
 					content:
 						"Read a spectrum, energy-level diagram, or device data table. The representation makes discrete energies, absorption/emission patterns, or model breakdown visible instead of only naming quantum vocabulary."
 				},
@@ -819,6 +870,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Model-Limit Transfer Reflection",
+					aliases: [
+						"intro-to-physics-phy16-modern-physics-and-model-limits-curriculum-reflection-and-transfer-practice"
+					],
 					content:
 						"Transfer the model-limit idea to a new technology or observation. Explain which classical idea still helps, which part fails, and what evidence would justify introducing the newer model."
 				}
@@ -861,6 +915,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Portfolio Evidence Representation",
+					aliases: [
+						"intro-to-physics-phy17-engineering-design-and-physics-portfolio-curriculum-graph-diagram-or-data-exercise"
+					],
 					content:
 						"Select the graph, diagram, data table, or storyboard that best supports the final claim. The chosen representation makes the relationship visible and includes units, labels, and enough context for someone else to evaluate the evidence."
 				},
@@ -871,6 +928,9 @@ const introToPhysicsSourceCourse: RawCourse = contextualizePhysicsCourse({
 				},
 				{
 					title: "Portfolio Transfer Reflection",
+					aliases: [
+						"intro-to-physics-phy17-engineering-design-and-physics-portfolio-curriculum-reflection-and-transfer-practice"
+					],
 					content:
 						"Close by transferring the portfolio model to a related design or investigation. Explain what would stay the same, what would need new evidence, and which assumption is most fragile."
 				}

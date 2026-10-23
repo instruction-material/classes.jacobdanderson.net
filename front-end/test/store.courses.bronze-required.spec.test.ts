@@ -220,7 +220,14 @@ describe("bronze required source roles and sequences", () => {
 	it.each([false, true])(
 		"preserves all eighteen progress identities and staff-only references for tutor=%s",
 		async tutor => {
-			useAppStore().currentTutor = tutor ? ({} as never) : null;
+			useAppStore().currentTutor = tutor
+				? ({
+						coursePermissions: [
+							"usaco-bronze",
+							"usaco-bronze-on-demand"
+						]
+					} as never)
+				: null;
 			const store = useCoursesStore();
 			for (const courseID of ["usaco-bronze", "usaco-bronze-on-demand"]) {
 				const course = (await store.loadCourseById(courseID))!;

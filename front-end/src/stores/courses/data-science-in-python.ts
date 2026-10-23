@@ -268,6 +268,7 @@ function applyDataScienceAppliedLabs(course: RawCourse) {
 		module.curriculum = [
 			{
 				title: `${dataScienceAppliedTopic(lab)} Concepts`,
+				aliases: ["Concept Path"],
 				content: dataScienceStudioContent(
 					lab,
 					"Concept Path",
@@ -280,6 +281,7 @@ function applyDataScienceAppliedLabs(course: RawCourse) {
 			},
 			{
 				title: `${dataScienceAppliedTopic(lab)} Worked Example`,
+				aliases: ["Worked Example"],
 				content: dataScienceStudioContent(
 					lab,
 					"Worked Example",
@@ -288,6 +290,7 @@ function applyDataScienceAppliedLabs(course: RawCourse) {
 			},
 			{
 				title: lab.coreProjectTitle,
+				aliases: [`Core Project: ${dataScienceAppliedTopic(lab)}`],
 				content: dataScienceStudioContent(
 					lab,
 					"Core Project",
@@ -298,6 +301,7 @@ function applyDataScienceAppliedLabs(course: RawCourse) {
 			},
 			{
 				title: lab.reviewTitle,
+				aliases: [`Review: ${dataScienceAppliedTopic(lab)}`],
 				content: dataScienceStudioContent(
 					lab,
 					"Review and Reflection",
@@ -308,6 +312,9 @@ function applyDataScienceAppliedLabs(course: RawCourse) {
 		module.supplementalProjects = [
 			{
 				title: lab.extensionTitle,
+				aliases: [
+					`Extension Challenge: ${dataScienceAppliedTopic(lab)}`
+				],
 				content: dataScienceStudioContent(
 					lab,
 					"Extension Challenge",
@@ -318,6 +325,7 @@ function applyDataScienceAppliedLabs(course: RawCourse) {
 			},
 			{
 				title: lab.supplemental2Title,
+				aliases: [`Transfer Practice: ${dataScienceAppliedTopic(lab)}`],
 				content: dataScienceStudioContent(
 					lab,
 					"Supplemental Project 2",
@@ -332,6 +340,9 @@ function applyDataScienceAppliedLabs(course: RawCourse) {
 			},
 			{
 				title: lab.supplemental3Title,
+				aliases: [
+					`Extension Practice: ${dataScienceAppliedTopic(lab)}`
+				],
 				content: dataScienceStudioContent(
 					lab,
 					"Supplemental Project 3",
@@ -387,6 +398,9 @@ export const dataScienceInPythonCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "Reference Archive: Data Science in Python Workspace",
+					aliases: [
+						"Legacy Archive: Data Science in Python Workspace"
+					],
 					content:
 						"The reference workspace is a course asset, not a replacement for the lesson sequence. It shows the expected folder layout, notebook and script organization, sample data locations, and completed variants that can be compared against current work. It is useful when a project needs a clean starter state, when a result needs to be checked against a known structure, or when an older classroom version explains a design choice that is still relevant. A useful comparison names the file being inspected, the input data it expects, the output it produces, and one limitation before copying any structure into current work.",
 					projectLink:

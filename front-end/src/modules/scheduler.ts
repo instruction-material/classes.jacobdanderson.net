@@ -61,7 +61,11 @@ export function buildSchedulerUrl(
 	path = "/",
 	searchParams: SchedulerUrlSearchParams = {}
 ) {
-	const url = new URL(normalizeSchedulerPath(path), schedulerUrl);
+	const resolvedUrl = new URL(normalizeSchedulerPath(path), schedulerUrl);
+	const url =
+		resolvedUrl.origin === SCHEDULER_ORIGIN
+			? resolvedUrl
+			: new URL(schedulerUrl);
 
 	for (const [key, value] of Object.entries(searchParams)) {
 		if (value === null || value === undefined || value === "") continue;

@@ -809,6 +809,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JSS8 Supplemental Project 1: Archery Simulator",
+					aliases: ["JSS8 Supplemental Project 1: Juni Archery"],
 					content:
 						"Simulate five rounds of archery with three arrows per round. Use nested loops so the outer loop represents rounds and the inner loop represents arrows. Each arrow has a random one-in-three chance to hit, and the program prints per-round results plus the total number of bullseyes.",
 					projectLink: "https://codepen.io/junilearning/pen/xxZPgdv",
@@ -1320,6 +1321,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JSS15 Supplemental Project 1: Restaurant Splash Page",
+					aliases: ["JSS15 Supplemental Project 1: Juni Eatz"],
 					content:
 						"Build a restaurant splash page with a menu preview, location or hours section, and at least one Materialize parallax or card layout. The page communicates a clear restaurant identity through typography, color, images, and navigation rather than only placing empty starter sections.",
 					projectLink:
@@ -1327,6 +1329,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS15 Supplemental Project 2: News Homepage",
+					aliases: ["JSS15 Supplemental Project 2: Juni News"],
 					content:
 						"Build a news-style homepage with a headline area, story cards, categories, and a Materialize slider for featured stories. Use layout choices that make article priority clear, and include enough text hierarchy that readers can distinguish headlines, summaries, and metadata.",
 					projectLink:

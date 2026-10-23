@@ -19,7 +19,9 @@ describe("Silver native Java lessons", () => {
 	beforeEach(() => setActivePinia(createPinia()));
 	it("preserves placements, progress IDs and distinct transition/capstone purposes", async () => {
 		for (const tutor of [false, true]) {
-			useAppStore().currentTutor = tutor ? ({} as never) : null;
+			useAppStore().currentTutor = tutor
+				? ({ coursePermissions: ["usaco-silver"] } as never)
+				: null;
 			const course =
 				(await useCoursesStore().loadCourseById("usaco-silver"))!;
 			expect(course.modules).toHaveLength(12);

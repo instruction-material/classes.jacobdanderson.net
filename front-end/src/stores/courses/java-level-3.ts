@@ -1271,6 +1271,7 @@ const javaLevel3SourceCourse: RawCourse = {
 				},
 				{
 					title: "AJ10 Project 1: Bakery Model",
+					aliases: ["AJ10 Project 1: Juni Bakery"],
 					content:
 						"Use nested classes to model a bakery, its workers, and its baked goods, then collect input and print the resulting bakery state.",
 					projectLink:
@@ -1795,6 +1796,7 @@ const javaLevel3SourceCourse: RawCourse = {
 				},
 				{
 					title: "AJ15 Project 2: Mini Search Engine",
+					aliases: ["AJ15 Project 2: Juni Search Engine"],
 					content:
 						"Use the custom `HashMap`, file reading, and string splitting to build a simple keyword search engine over a text corpus of URLs and tags.",
 					projectLink:

@@ -82,6 +82,7 @@ describe("private IDE diagnostics", () => {
 	});
 	it.each([
 		"cpp",
+		"swift",
 		"python",
 		"turtle",
 		"pgzero",
@@ -94,7 +95,7 @@ describe("private IDE diagnostics", () => {
 			mode,
 			"idle",
 			null,
-			"not-loaded"
+			"3.13.5"
 		);
 		expect(
 			ideReportSchema.safeParse({
@@ -105,7 +106,7 @@ describe("private IDE diagnostics", () => {
 		).toBe(true);
 		expect(diagnostics.site).not.toContain("?");
 		expect(diagnostics.runtime.blueJVersion).toBe("unknown");
-		if (mode === "cpp")
+		if (mode === "cpp" || mode === "swift")
 			expect(diagnostics.runtime).toMatchObject({
 				engine: "source-editor",
 				version: "unknown",

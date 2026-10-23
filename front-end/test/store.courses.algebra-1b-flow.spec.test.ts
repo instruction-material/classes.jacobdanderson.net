@@ -1,4 +1,6 @@
+import { createPinia, setActivePinia } from "pinia";
 import { describe, expect, it } from "vitest";
+import { useCoursesStore } from "@/stores/courses";
 import { algebra1BCourse } from "@/stores/courses/algebra-1b";
 
 const EXPECTED_MODULE_SEQUENCE = [
@@ -38,6 +40,22 @@ function requireModule(title: string) {
 }
 
 describe("Algebra 1B learner flow", () => {
+	it("preserves the published order after loading and normalization", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById("algebra-1b");
+
+		expect(
+			course?.modules
+				.filter(module => module.kind !== "appendix")
+				.map(module => module.title)
+		).toEqual(EXPECTED_MODULE_SEQUENCE);
+		expect(
+			course?.modules.find(
+				module => module.title === "Reference Archive: Algebra 1B"
+			)?.kind
+		).toBe("appendix");
+	});
+
 	it("places the comprehensive checkpoint before the capstone", () => {
 		expect(
 			algebra1BCourse.modules
@@ -56,9 +74,10 @@ describe("Algebra 1B learner flow", () => {
 			candidate => candidate.kind !== "appendix"
 		)) {
 			expect(module.estimatedTime, module.title).toMatch(/session/);
-			expect(module.keyBlocks?.length, module.title).toBeGreaterThanOrEqual(
-				5
-			);
+			expect(
+				module.keyBlocks?.length,
+				module.title
+			).toBeGreaterThanOrEqual(5);
 			expect(
 				module.curriculum.every(item => item.learningPath === "core"),
 				module.title

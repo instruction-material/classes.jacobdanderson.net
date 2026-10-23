@@ -1,6 +1,10 @@
 import type { Ref } from "vue";
 import type { CourseProgress, User } from "@/stores/app";
-import type { CourseDefinition, CourseModuleItem } from "@/stores/courses";
+import type {
+	CourseDefinition,
+	CourseModule,
+	CourseModuleItem
+} from "@/stores/courses";
 import { ref, watch } from "vue";
 import { api } from "@/api";
 import { groupCoursesByLearnerStatus } from "@/modules/courseAccess";
@@ -16,6 +20,18 @@ interface AssignedCourseGroup {
 
 function unique(values: string[]) {
 	return [...new Set(values.map(value => value.trim()).filter(Boolean))];
+}
+
+function progressIds(
+	entity: { aliases?: string[]; id: string },
+	courseId: string
+) {
+	return [
+		entity.id,
+		...(entity.aliases ?? []).filter(alias =>
+			alias.startsWith(`${courseId}-`)
+		)
+	];
 }
 
 function groupedAssignedCourses(user: User | undefined): AssignedCourseGroup[] {
@@ -190,10 +206,10 @@ export function useLearnerCourseProgress(
 	function isModuleComplete(
 		userID: string,
 		courseId: string,
-		moduleId: string
+		module: CourseModule
 	) {
-		return ensureDraft(userID, courseId).completedModuleIds.includes(
-			moduleId
+		return progressIds(module, courseId).some(id =>
+			ensureDraft(userID, courseId).completedModuleIds.includes(id)
 		);
 	}
 
@@ -202,20 +218,24 @@ export function useLearnerCourseProgress(
 		courseId: string,
 		item: CourseModuleItem
 	) {
-		return ensureDraft(userID, courseId).completedItemIds.includes(item.id);
+		return progressIds(item, courseId).some(id =>
+			ensureDraft(userID, courseId).completedItemIds.includes(id)
+		);
 	}
 
 	function toggleModule(
 		userID: string,
 		courseId: string,
-		moduleId: string,
+		module: CourseModule,
 		checked: boolean
 	) {
 		updateDraft(userID, courseId, draft => ({
 			...draft,
 			completedModuleIds: checked
-				? unique([...draft.completedModuleIds, moduleId])
-				: draft.completedModuleIds.filter(id => id !== moduleId)
+				? unique([...draft.completedModuleIds, module.id])
+				: draft.completedModuleIds.filter(
+						id => !progressIds(module, courseId).includes(id)
+					)
 		}));
 	}
 
@@ -229,7 +249,9 @@ export function useLearnerCourseProgress(
 			...draft,
 			completedItemIds: checked
 				? unique([...draft.completedItemIds, item.id])
-				: draft.completedItemIds.filter(id => id !== item.id)
+				: draft.completedItemIds.filter(
+						id => !progressIds(item, courseId).includes(id)
+					)
 		}));
 	}
 
