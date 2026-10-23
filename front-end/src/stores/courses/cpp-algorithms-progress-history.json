@@ -1,0 +1,280 @@
+{
+	"data-structures-and-algorithms-in-cpp": {
+		"data-structures-and-algorithms-in-cpp-dscpp0-setup-and-positioning-supplemental-setup-and-positioning-transfer-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp0-setup-and-positioning-supplemental-transfer-practice-setup-and-positioning",
+			"data-structures-and-algorithms-in-cpp-dscpp0-setup-and-positioning-supplemental-setup-and-positioning-transfer-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-dscpp0-setup-and-positioning-supplemental-setup-and-positioning-extension-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp0-setup-and-positioning-supplemental-extension-practice-setup-and-positioning",
+			"data-structures-and-algorithms-in-cpp-dscpp0-setup-and-positioning-supplemental-setup-and-positioning-extension-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-dscpp1-interfaces-records-and-a-task-manager-cli-supplemental-task-manager-cli-transfer-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp1-interfaces-records-and-a-task-manager-cli-supplemental-transfer-practice-interfaces-records-and-a-task-manager-cli",
+			"data-structures-and-algorithms-in-cpp-dscpp1-interfaces-records-and-a-task-manager-cli-supplemental-task-manager-cli-transfer-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-dscpp1-interfaces-records-and-a-task-manager-cli-supplemental-task-manager-cli-extension-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp1-interfaces-records-and-a-task-manager-cli-supplemental-extension-practice-interfaces-records-and-a-task-manager-cli",
+			"data-structures-and-algorithms-in-cpp-dscpp1-interfaces-records-and-a-task-manager-cli-supplemental-task-manager-cli-extension-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-dscpp3-stl-containers-and-state-based-text-generation-supplemental-container-text-generation-transfer-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp3-stl-containers-and-state-based-text-generation-supplemental-transfer-practice-stl-containers-and-state-based-text-generation",
+			"data-structures-and-algorithms-in-cpp-dscpp3-stl-containers-and-state-based-text-generation-supplemental-container-text-generation-transfer-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-dscpp3-stl-containers-and-state-based-text-generation-supplemental-container-text-generation-extension-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp3-stl-containers-and-state-based-text-generation-supplemental-extension-practice-stl-containers-and-state-based-text-generation",
+			"data-structures-and-algorithms-in-cpp-dscpp3-stl-containers-and-state-based-text-generation-supplemental-container-text-generation-extension-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-dscpp4-recursion-and-backtracking-in-3d-mazes-supplemental-recursive-maze-transfer-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp4-recursion-and-backtracking-in-3d-mazes-supplemental-transfer-practice-recursion-and-backtracking-in-3d-mazes",
+			"data-structures-and-algorithms-in-cpp-dscpp4-recursion-and-backtracking-in-3d-mazes-supplemental-recursive-maze-transfer-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-dscpp4-recursion-and-backtracking-in-3d-mazes-supplemental-recursive-maze-extension-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp4-recursion-and-backtracking-in-3d-mazes-supplemental-extension-practice-recursion-and-backtracking-in-3d-mazes",
+			"data-structures-and-algorithms-in-cpp-dscpp4-recursion-and-backtracking-in-3d-mazes-supplemental-recursive-maze-extension-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-dscpp5-quicksort-and-partitioning-supplemental-quicksort-partition-transfer-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp5-quicksort-and-partitioning-supplemental-transfer-practice-quicksort-and-partitioning",
+			"data-structures-and-algorithms-in-cpp-dscpp5-quicksort-and-partitioning-supplemental-quicksort-partition-transfer-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-dscpp5-quicksort-and-partitioning-supplemental-quicksort-partition-extension-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp5-quicksort-and-partitioning-supplemental-extension-practice-quicksort-and-partitioning",
+			"data-structures-and-algorithms-in-cpp-dscpp5-quicksort-and-partitioning-supplemental-quicksort-partition-extension-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-dscpp6-templates-and-linked-structures-supplemental-template-linked-list-transfer-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp6-templates-and-linked-structures-supplemental-transfer-practice-templates-and-linked-structures",
+			"data-structures-and-algorithms-in-cpp-dscpp6-templates-and-linked-structures-supplemental-template-linked-list-transfer-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-dscpp6-templates-and-linked-structures-supplemental-template-linked-list-extension-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp6-templates-and-linked-structures-supplemental-extension-practice-templates-and-linked-structures",
+			"data-structures-and-algorithms-in-cpp-dscpp6-templates-and-linked-structures-supplemental-template-linked-list-extension-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-dscpp7-binary-search-trees-supplemental-bst-invariant-transfer-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp7-binary-search-trees-supplemental-transfer-practice-binary-search-trees",
+			"data-structures-and-algorithms-in-cpp-dscpp7-binary-search-trees-supplemental-bst-invariant-transfer-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-dscpp7-binary-search-trees-supplemental-bst-invariant-extension-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp7-binary-search-trees-supplemental-extension-practice-binary-search-trees",
+			"data-structures-and-algorithms-in-cpp-dscpp7-binary-search-trees-supplemental-bst-invariant-extension-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-dscpp8-avl-trees-and-rebalancing-supplemental-avl-rotation-transfer-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp8-avl-trees-and-rebalancing-supplemental-transfer-practice-avl-trees-and-rebalancing",
+			"data-structures-and-algorithms-in-cpp-dscpp8-avl-trees-and-rebalancing-supplemental-avl-rotation-transfer-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-dscpp8-avl-trees-and-rebalancing-supplemental-avl-rotation-extension-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp8-avl-trees-and-rebalancing-supplemental-extension-practice-avl-trees-and-rebalancing",
+			"data-structures-and-algorithms-in-cpp-dscpp8-avl-trees-and-rebalancing-supplemental-avl-rotation-extension-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-dscpp2-graphs-and-shortest-paths-supplemental-graph-navigation-transfer-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp2-graphs-and-shortest-paths-supplemental-transfer-practice-graphs-and-shortest-paths",
+			"data-structures-and-algorithms-in-cpp-dscpp2-graphs-and-shortest-paths-supplemental-graph-navigation-transfer-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-dscpp2-graphs-and-shortest-paths-supplemental-graph-navigation-extension-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp2-graphs-and-shortest-paths-supplemental-extension-practice-graphs-and-shortest-paths",
+			"data-structures-and-algorithms-in-cpp-dscpp2-graphs-and-shortest-paths-supplemental-graph-navigation-extension-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-dscpp9-benchmarking-and-data-structure-tradeoffs-supplemental-benchmarking-transfer-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp9-benchmarking-and-data-structure-tradeoffs-supplemental-transfer-practice-benchmarking-and-data-structure-tradeoffs",
+			"data-structures-and-algorithms-in-cpp-dscpp9-benchmarking-and-data-structure-tradeoffs-supplemental-benchmarking-transfer-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-dscpp9-benchmarking-and-data-structure-tradeoffs-supplemental-benchmarking-extension-practice": [
+			"data-structures-and-algorithms-in-cpp-dscpp9-benchmarking-and-data-structure-tradeoffs-supplemental-extension-practice-benchmarking-and-data-structure-tradeoffs",
+			"data-structures-and-algorithms-in-cpp-dscpp9-benchmarking-and-data-structure-tradeoffs-supplemental-benchmarking-extension-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-c-algorithm-lab-11-core-concepts": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-11-curriculum-c-algorithm-lab-11-core-concepts",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-11-sequence-invariant-studio-curriculum-c-algorithm-lab-11-core-concepts"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-c-algorithm-lab-11-guided-example": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-11-curriculum-c-algorithm-lab-11-guided-example",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-11-sequence-invariant-studio-curriculum-c-algorithm-lab-11-guided-example"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-core-project-c-algorithm-lab-11": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-11-curriculum-core-project-c-algorithm-lab-11",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-11-sequence-invariant-studio-curriculum-core-project-c-algorithm-lab-11"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-review-c-algorithm-lab-11": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-11-curriculum-review-c-algorithm-lab-11",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-11-sequence-invariant-studio-curriculum-review-c-algorithm-lab-11"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-extension-challenge-c-algorithm-lab-11": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-11-supplemental-extension-challenge-c-algorithm-lab-11",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-11-sequence-invariant-studio-supplemental-extension-challenge-c-algorithm-lab-11"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-sequence-invariant-transfer-practice": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-11-supplemental-transfer-practice-c-algorithm-lab-11",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-11-sequence-invariant-studio-supplemental-sequence-invariant-transfer-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-sequence-invariant-extension-practice": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-11-supplemental-extension-practice-c-algorithm-lab-11",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-11-sequence-invariant-studio-supplemental-sequence-invariant-extension-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-c-algorithm-lab-12-core-concepts": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-12-curriculum-c-algorithm-lab-12-core-concepts",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-12-graph-route-analysis-studio-curriculum-c-algorithm-lab-12-core-concepts"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-c-algorithm-lab-12-guided-example": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-12-curriculum-c-algorithm-lab-12-guided-example",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-12-graph-route-analysis-studio-curriculum-c-algorithm-lab-12-guided-example"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-core-project-c-algorithm-lab-12": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-12-curriculum-core-project-c-algorithm-lab-12",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-12-graph-route-analysis-studio-curriculum-core-project-c-algorithm-lab-12"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-review-c-algorithm-lab-12": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-12-curriculum-review-c-algorithm-lab-12",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-12-graph-route-analysis-studio-curriculum-review-c-algorithm-lab-12"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-extension-challenge-c-algorithm-lab-12": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-12-supplemental-extension-challenge-c-algorithm-lab-12",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-12-graph-route-analysis-studio-supplemental-extension-challenge-c-algorithm-lab-12"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-graph-route-transfer-practice": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-12-supplemental-transfer-practice-c-algorithm-lab-12",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-12-graph-route-analysis-studio-supplemental-graph-route-transfer-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-graph-route-extension-practice": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-12-supplemental-extension-practice-c-algorithm-lab-12",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-12-graph-route-analysis-studio-supplemental-graph-route-extension-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-c-algorithm-lab-13-core-concepts": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-13-curriculum-c-algorithm-lab-13-core-concepts",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-13-recursive-search-studio-curriculum-c-algorithm-lab-13-core-concepts"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-c-algorithm-lab-13-guided-example": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-13-curriculum-c-algorithm-lab-13-guided-example",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-13-recursive-search-studio-curriculum-c-algorithm-lab-13-guided-example"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-core-project-c-algorithm-lab-13": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-13-curriculum-core-project-c-algorithm-lab-13",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-13-recursive-search-studio-curriculum-core-project-c-algorithm-lab-13"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-review-c-algorithm-lab-13": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-13-curriculum-review-c-algorithm-lab-13",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-13-recursive-search-studio-curriculum-review-c-algorithm-lab-13"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-extension-challenge-c-algorithm-lab-13": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-13-supplemental-extension-challenge-c-algorithm-lab-13",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-13-recursive-search-studio-supplemental-extension-challenge-c-algorithm-lab-13"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-recursive-search-transfer-practice": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-13-supplemental-transfer-practice-c-algorithm-lab-13",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-13-recursive-search-studio-supplemental-recursive-search-transfer-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-recursive-search-extension-practice": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-13-supplemental-extension-practice-c-algorithm-lab-13",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-13-recursive-search-studio-supplemental-recursive-search-extension-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-c-algorithm-lab-14-core-concepts": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-14-curriculum-c-algorithm-lab-14-core-concepts",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-14-partition-sorting-studio-curriculum-c-algorithm-lab-14-core-concepts"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-c-algorithm-lab-14-guided-example": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-14-curriculum-c-algorithm-lab-14-guided-example",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-14-partition-sorting-studio-curriculum-c-algorithm-lab-14-guided-example"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-core-project-c-algorithm-lab-14": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-14-curriculum-core-project-c-algorithm-lab-14",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-14-partition-sorting-studio-curriculum-core-project-c-algorithm-lab-14"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-review-c-algorithm-lab-14": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-14-curriculum-review-c-algorithm-lab-14",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-14-partition-sorting-studio-curriculum-review-c-algorithm-lab-14"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-extension-challenge-c-algorithm-lab-14": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-14-supplemental-extension-challenge-c-algorithm-lab-14",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-14-partition-sorting-studio-supplemental-extension-challenge-c-algorithm-lab-14"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-partition-sorting-transfer-practice": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-14-supplemental-transfer-practice-c-algorithm-lab-14",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-14-partition-sorting-studio-supplemental-partition-sorting-transfer-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-partition-sorting-extension-practice": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-14-supplemental-extension-practice-c-algorithm-lab-14",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-14-partition-sorting-studio-supplemental-partition-sorting-extension-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-c-algorithm-lab-15-core-concepts": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-15-curriculum-c-algorithm-lab-15-core-concepts",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-15-template-linked-structure-studio-curriculum-c-algorithm-lab-15-core-concepts"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-c-algorithm-lab-15-guided-example": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-15-curriculum-c-algorithm-lab-15-guided-example",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-15-template-linked-structure-studio-curriculum-c-algorithm-lab-15-guided-example"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-core-project-c-algorithm-lab-15": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-15-curriculum-core-project-c-algorithm-lab-15",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-15-template-linked-structure-studio-curriculum-core-project-c-algorithm-lab-15"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-review-c-algorithm-lab-15": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-15-curriculum-review-c-algorithm-lab-15",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-15-template-linked-structure-studio-curriculum-review-c-algorithm-lab-15"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-extension-challenge-c-algorithm-lab-15": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-15-supplemental-extension-challenge-c-algorithm-lab-15",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-15-template-linked-structure-studio-supplemental-extension-challenge-c-algorithm-lab-15"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-template-linked-structure-transfer-practice": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-15-supplemental-transfer-practice-c-algorithm-lab-15",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-15-template-linked-structure-studio-supplemental-template-linked-structure-transfer-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-template-linked-structure-extension-practice": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-15-supplemental-extension-practice-c-algorithm-lab-15",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-15-template-linked-structure-studio-supplemental-template-linked-structure-extension-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-c-algorithm-lab-16-core-concepts": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-16-curriculum-c-algorithm-lab-16-core-concepts",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-16-tree-invariant-studio-curriculum-c-algorithm-lab-16-core-concepts"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-c-algorithm-lab-16-guided-example": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-16-curriculum-c-algorithm-lab-16-guided-example",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-16-tree-invariant-studio-curriculum-c-algorithm-lab-16-guided-example"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-core-project-c-algorithm-lab-16": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-16-curriculum-core-project-c-algorithm-lab-16",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-16-tree-invariant-studio-curriculum-core-project-c-algorithm-lab-16"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-review-c-algorithm-lab-16": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-16-curriculum-review-c-algorithm-lab-16",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-16-tree-invariant-studio-curriculum-review-c-algorithm-lab-16"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-extension-challenge-c-algorithm-lab-16": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-16-supplemental-extension-challenge-c-algorithm-lab-16",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-16-tree-invariant-studio-supplemental-extension-challenge-c-algorithm-lab-16"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-tree-invariant-transfer-practice": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-16-supplemental-transfer-practice-c-algorithm-lab-16",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-16-tree-invariant-studio-supplemental-tree-invariant-transfer-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-tree-invariant-extension-practice": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-16-supplemental-extension-practice-c-algorithm-lab-16",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-16-tree-invariant-studio-supplemental-tree-invariant-extension-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-c-algorithm-lab-17-core-concepts": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-17-curriculum-c-algorithm-lab-17-core-concepts",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-17-benchmarking-capstone-studio-curriculum-c-algorithm-lab-17-core-concepts"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-c-algorithm-lab-17-guided-example": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-17-curriculum-c-algorithm-lab-17-guided-example",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-17-benchmarking-capstone-studio-curriculum-c-algorithm-lab-17-guided-example"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-core-project-c-algorithm-lab-17": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-17-curriculum-core-project-c-algorithm-lab-17",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-17-benchmarking-capstone-studio-curriculum-core-project-c-algorithm-lab-17"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-review-c-algorithm-lab-17": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-17-curriculum-review-c-algorithm-lab-17",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-17-benchmarking-capstone-studio-curriculum-review-c-algorithm-lab-17"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-extension-challenge-c-algorithm-lab-17": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-17-supplemental-extension-challenge-c-algorithm-lab-17",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-17-benchmarking-capstone-studio-supplemental-extension-challenge-c-algorithm-lab-17"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-benchmarking-capstone-transfer-practice": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-17-supplemental-transfer-practice-c-algorithm-lab-17",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-17-benchmarking-capstone-studio-supplemental-benchmarking-capstone-transfer-practice"
+		],
+		"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-benchmarking-capstone-extension-practice": [
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-17-supplemental-extension-practice-c-algorithm-lab-17",
+			"data-structures-and-algorithms-in-cpp-c-algorithm-lab-17-benchmarking-capstone-studio-supplemental-benchmarking-capstone-extension-practice"
+		]
+	}
+}

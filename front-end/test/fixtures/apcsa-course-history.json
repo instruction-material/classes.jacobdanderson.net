@@ -1,0 +1,772 @@
+[
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-general-course-introduction-and-setup-curriculum-track-guide",
+		"currentId": "ap-computer-science-a-general-course-introduction-and-setup-curriculum-track-guide"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-general-course-introduction-and-setup-curriculum-windows-vs-code-java-setup",
+		"currentId": "ap-computer-science-a-general-course-introduction-and-setup-curriculum-windows-vs-code-java-setup"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-general-course-introduction-and-setup-curriculum-required-textbook",
+		"currentId": "ap-computer-science-a-general-course-introduction-and-setup-supplemental-required-textbook"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-general-course-introduction-and-setup-curriculum-reference-pack",
+		"currentId": "ap-computer-science-a-general-course-introduction-and-setup-supplemental-reference-pack"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-general-course-introduction-and-setup-supplemental-strings-and-printing-reference",
+		"currentId": "ap-computer-science-a-general-course-introduction-and-setup-supplemental-strings-and-printing-reference"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-general-course-introduction-and-setup-supplemental-casting-reference",
+		"currentId": "ap-computer-science-a-general-course-introduction-and-setup-supplemental-casting-reference"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-general-course-introduction-and-setup-supplemental-2020-practice-exam",
+		"currentId": "ap-computer-science-a-general-course-introduction-and-setup-supplemental-2020-practice-exam"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs3-conditionals-and-packages-curriculum-reference-pack",
+		"currentId": "ap-computer-science-a-apcs3-conditionals-and-packages-supplemental-reference-pack"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs3-conditionals-and-packages-supplemental-project-too-chicken-take-two",
+		"currentId": "ap-computer-science-a-apcs3-conditionals-and-packages-supplemental-project-too-chicken-take-two"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs3-conditionals-and-packages-supplemental-reference-math-package",
+		"currentId": "ap-computer-science-a-apcs3-conditionals-and-packages-supplemental-reference-math-package"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs3-conditionals-and-packages-supplemental-reference-random-numbers",
+		"currentId": "ap-computer-science-a-apcs3-conditionals-and-packages-supplemental-reference-random-numbers"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs3-conditionals-and-packages-supplemental-project-math-demo",
+		"currentId": "ap-computer-science-a-apcs3-conditionals-and-packages-supplemental-project-math-demo"
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-apcs4-loops-and-exceptions",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs4-loops-and-exceptions-curriculum-for-loops-while-loops-and-infinite-loop-risk",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs4-loops-and-exceptions-curriculum-nested-loops-and-early-exception-reasoning",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs4-loops-and-exceptions-curriculum-core-project-translating-loops",
+		"currentId": "ap-computer-science-a-apcs4-selection-iteration-and-runtime-reasoning-curriculum-core-project-translating-loops"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs4-loops-and-exceptions-curriculum-loop-reference-pack",
+		"currentId": "ap-computer-science-a-apcs4-selection-iteration-and-runtime-reasoning-supplemental-loop-reference-pack"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs4-loops-and-exceptions-supplemental-project-for-loop-practice",
+		"currentId": "ap-computer-science-a-apcs4-selection-iteration-and-runtime-reasoning-supplemental-project-for-loop-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs4-loops-and-exceptions-supplemental-project-while-loop-and-nested-loop-practice",
+		"currentId": "ap-computer-science-a-apcs4-selection-iteration-and-runtime-reasoning-supplemental-project-while-loop-and-nested-loop-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-check-in-1",
+		"currentId": "ap-computer-science-a-check-in-1"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-1-curriculum-review-goal",
+		"currentId": "ap-computer-science-a-check-in-1-curriculum-review-goal"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-1-curriculum-learning-target-coverage",
+		"currentId": "ap-computer-science-a-check-in-1-curriculum-learning-target-coverage"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-1-curriculum-core-check-in-prompt-bank",
+		"currentId": "ap-computer-science-a-check-in-1-curriculum-core-check-in-prompt-bank"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-1-supplemental-additional-practice-fizzbuzz",
+		"currentId": "ap-computer-science-a-check-in-1-supplemental-additional-practice-fizzbuzz"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-1-supplemental-variables-reference",
+		"currentId": "ap-computer-science-a-check-in-1-supplemental-variables-reference"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-1-supplemental-loops-reference",
+		"currentId": "ap-computer-science-a-check-in-1-supplemental-loops-reference"
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-apcs5-classes-part-i",
+		"currentId": "ap-computer-science-a-apcs5-classes-part-i"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs5-classes-part-i-curriculum-classes-fields-and-constructors",
+		"currentId": "ap-computer-science-a-apcs5-classes-part-i-curriculum-classes-fields-and-constructors"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs5-classes-part-i-curriculum-accessors-mutators-and-method-practice",
+		"currentId": "ap-computer-science-a-apcs5-classes-part-i-curriculum-accessors-mutators-and-method-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs5-classes-part-i-curriculum-core-project-student-class",
+		"currentId": "ap-computer-science-a-apcs5-classes-part-i-curriculum-core-project-student-class"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs5-classes-part-i-curriculum-free-response-prep",
+		"currentId": "ap-computer-science-a-apcs5-classes-part-i-curriculum-free-response-prep"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs5-classes-part-i-supplemental-project-method-practice",
+		"currentId": "ap-computer-science-a-apcs5-classes-part-i-supplemental-project-method-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs5-classes-part-i-supplemental-project-store-class",
+		"currentId": "ap-computer-science-a-apcs5-classes-part-i-supplemental-project-store-class"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs5-classes-part-i-supplemental-supplemental-spreadsheet-width",
+		"currentId": "ap-computer-science-a-apcs5-classes-part-i-supplemental-supplemental-spreadsheet-width"
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-apcs6-classes-part-ii",
+		"currentId": "ap-computer-science-a-apcs6-classes-part-ii"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs6-classes-part-ii-curriculum-state-mutation-and-reference-semantics",
+		"currentId": "ap-computer-science-a-apcs6-classes-part-ii-curriculum-state-mutation-and-reference-semantics"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs6-classes-part-ii-curriculum-getters-setters-this-and-primitive-vs-reference",
+		"currentId": "ap-computer-science-a-apcs6-classes-part-ii-curriculum-getters-setters-this-and-primitive-vs-reference"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs6-classes-part-ii-curriculum-core-project-vending-machine-class",
+		"currentId": "ap-computer-science-a-apcs6-classes-part-ii-curriculum-core-project-vending-machine-class"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs6-classes-part-ii-curriculum-free-response-and-multiple-choice-support",
+		"currentId": "ap-computer-science-a-apcs6-classes-part-ii-curriculum-free-response-and-multiple-choice-support"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs6-classes-part-ii-supplemental-project-bank-account-class",
+		"currentId": "ap-computer-science-a-apcs6-classes-part-ii-supplemental-project-bank-account-class"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs6-classes-part-ii-supplemental-project-farm-class",
+		"currentId": "ap-computer-science-a-apcs6-classes-part-ii-supplemental-project-farm-class"
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-apcs7-inheritance",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs7-inheritance-curriculum-superclass-and-subclass-design",
+		"currentId": "ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-superclass-and-subclass-design"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs7-inheritance-curriculum-constructors-super-and-overriding",
+		"currentId": "ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-constructors-super-and-overriding"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs7-inheritance-curriculum-core-project-book-and-picturebook-class",
+		"currentId": "ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-core-project-book-and-picturebook-class"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs7-inheritance-supplemental-project-pet-class",
+		"currentId": "ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-project-pet-class"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs7-inheritance-supplemental-project-more-pets",
+		"currentId": "ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-project-more-pets"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs7-inheritance-supplemental-project-pet-special-methods",
+		"currentId": "ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-project-pet-special-methods"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs7-inheritance-supplemental-multiple-choice-reference",
+		"currentId": null
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-apcs8-polymorphism",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs8-polymorphism-curriculum-superclass-references-and-dynamic-dispatch",
+		"currentId": "ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-superclass-references-and-dynamic-dispatch"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs8-polymorphism-curriculum-type-reasoning-and-invalid-calls",
+		"currentId": "ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-type-reasoning-and-invalid-calls"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs8-polymorphism-curriculum-core-project-many-shapes",
+		"currentId": "ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-core-project-many-shapes"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs8-polymorphism-supplemental-polymorphism-reference",
+		"currentId": "ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-polymorphism-reference"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs8-polymorphism-supplemental-multiple-choice-reference",
+		"currentId": null
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-check-in-2",
+		"currentId": "ap-computer-science-a-check-in-2"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-2-curriculum-review-goal",
+		"currentId": "ap-computer-science-a-check-in-2-curriculum-review-goal"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-2-curriculum-prompt-bank-coverage",
+		"currentId": "ap-computer-science-a-check-in-2-curriculum-prompt-bank-coverage"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-2-curriculum-core-check-in-prompt-bank",
+		"currentId": "ap-computer-science-a-check-in-2-curriculum-core-check-in-prompt-bank"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-2-supplemental-additional-practice-animal-kingdom",
+		"currentId": "ap-computer-science-a-check-in-2-supplemental-additional-practice-animal-kingdom"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-2-supplemental-class-example",
+		"currentId": "ap-computer-science-a-check-in-2-supplemental-class-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-2-supplemental-this-reference",
+		"currentId": "ap-computer-science-a-check-in-2-supplemental-this-reference"
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-apcs9-software-development-lifecycle",
+		"currentId": "ap-computer-science-a-apcs9-software-development-lifecycle"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs9-software-development-lifecycle-curriculum-specifications-design-and-testability",
+		"currentId": "ap-computer-science-a-apcs9-software-development-lifecycle-curriculum-specifications-design-and-testability"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs9-software-development-lifecycle-curriculum-robust-input-and-failure-handling",
+		"currentId": "ap-computer-science-a-apcs9-software-development-lifecycle-curriculum-robust-input-and-failure-handling"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs9-software-development-lifecycle-curriculum-core-project-robust-input-practice",
+		"currentId": "ap-computer-science-a-apcs9-software-development-lifecycle-curriculum-core-project-robust-input-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs9-software-development-lifecycle-supplemental-deck-spec-specification",
+		"currentId": "ap-computer-science-a-apcs9-software-development-lifecycle-supplemental-deck-spec-specification"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs9-software-development-lifecycle-supplemental-robust-input-reference-review",
+		"currentId": "ap-computer-science-a-apcs9-software-development-lifecycle-supplemental-robust-input-reference-review"
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-apcs10-arrays",
+		"currentId": "ap-computer-science-a-apcs10-arrays"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs10-arrays-curriculum-arrays-indexing-and-fixed-size",
+		"currentId": "ap-computer-science-a-apcs10-arrays-curriculum-arrays-indexing-and-fixed-size"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs10-arrays-curriculum-pass-by-reference-effects-and-2d-arrays",
+		"currentId": "ap-computer-science-a-apcs10-arrays-curriculum-pass-by-reference-effects-and-2d-arrays"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs10-arrays-curriculum-core-project-practice-with-arrays",
+		"currentId": "ap-computer-science-a-apcs10-arrays-curriculum-core-project-practice-with-arrays"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs10-arrays-curriculum-array-reference-pack",
+		"currentId": "ap-computer-science-a-apcs10-arrays-supplemental-array-reference-pack"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs10-arrays-supplemental-project-random-mad-libs",
+		"currentId": "ap-computer-science-a-apcs10-arrays-supplemental-project-random-mad-libs"
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-apcs11-arraylists",
+		"currentId": "ap-computer-science-a-apcs11-arraylists"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs11-arraylists-curriculum-arraylists-wrapper-constraints-and-core-methods",
+		"currentId": "ap-computer-science-a-apcs11-arraylists-curriculum-arraylists-wrapper-constraints-and-core-methods"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs11-arraylists-curriculum-mutation-traversal-and-removal-rules",
+		"currentId": "ap-computer-science-a-apcs11-arraylists-curriculum-mutation-traversal-and-removal-rules"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs11-arraylists-curriculum-core-project-practice-with-arraylists",
+		"currentId": "ap-computer-science-a-apcs11-arraylists-curriculum-core-project-practice-with-arraylists"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs11-arraylists-curriculum-arraylist-reference-pack",
+		"currentId": "ap-computer-science-a-apcs11-arraylists-supplemental-arraylist-reference-pack"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs11-arraylists-supplemental-project-fortune-teller",
+		"currentId": "ap-computer-science-a-apcs11-arraylists-supplemental-project-fortune-teller"
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-check-in-3",
+		"currentId": "ap-computer-science-a-check-in-3"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-3-curriculum-review-goal",
+		"currentId": "ap-computer-science-a-check-in-3-curriculum-review-goal"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-3-curriculum-prompt-bank-coverage",
+		"currentId": "ap-computer-science-a-check-in-3-curriculum-prompt-bank-coverage"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-3-curriculum-core-check-in-prompt-bank",
+		"currentId": "ap-computer-science-a-check-in-3-curriculum-core-check-in-prompt-bank"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-3-supplemental-additional-practice-letter-shifter",
+		"currentId": "ap-computer-science-a-check-in-3-supplemental-additional-practice-letter-shifter"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-3-supplemental-arraylist-reference",
+		"currentId": "ap-computer-science-a-check-in-3-supplemental-arraylist-reference"
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-apcs12-wrapper-classes",
+		"currentId": "ap-computer-science-a-apcs12-wrapper-classes"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs12-wrapper-classes-curriculum-wrapper-types-autoboxing-and-unboxing",
+		"currentId": "ap-computer-science-a-apcs12-wrapper-classes-curriculum-wrapper-types-autoboxing-and-unboxing"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs12-wrapper-classes-curriculum-static-constants-and-search-initialization",
+		"currentId": "ap-computer-science-a-apcs12-wrapper-classes-curriculum-static-constants-and-search-initialization"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs12-wrapper-classes-curriculum-core-project-suits-decks-and-hands",
+		"currentId": "ap-computer-science-a-apcs12-wrapper-classes-curriculum-core-project-suits-decks-and-hands"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs12-wrapper-classes-supplemental-project-minimum-and-maximum-search",
+		"currentId": "ap-computer-science-a-apcs12-wrapper-classes-supplemental-project-minimum-and-maximum-search"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs12-wrapper-classes-supplemental-project-deck-class",
+		"currentId": "ap-computer-science-a-apcs12-wrapper-classes-supplemental-project-deck-class"
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search",
+		"currentId": "ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-curriculum-runtime-by-step-counting",
+		"currentId": "ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-curriculum-runtime-by-step-counting"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-curriculum-best-average-and-worst-case",
+		"currentId": "ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-curriculum-best-average-and-worst-case"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-curriculum-core-project-runtime-analysis",
+		"currentId": "ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-curriculum-core-project-runtime-analysis"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-supplemental-project-linear-search-implementation",
+		"currentId": "ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-supplemental-project-linear-search-implementation"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-supplemental-algorithmic-runtime-and-linear-search-trace-and-boundary-case",
+		"currentId": "ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-supplemental-algorithmic-runtime-and-linear-search-trace-and-boundary-case"
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-apcs14-selection-and-insertion-sort",
+		"currentId": "ap-computer-science-a-apcs14-selection-and-insertion-sort"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs14-selection-and-insertion-sort-curriculum-selection-sort",
+		"currentId": "ap-computer-science-a-apcs14-selection-and-insertion-sort-curriculum-selection-sort"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs14-selection-and-insertion-sort-curriculum-insertion-sort",
+		"currentId": "ap-computer-science-a-apcs14-selection-and-insertion-sort-curriculum-insertion-sort"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs14-selection-and-insertion-sort-curriculum-core-project-selection-sort",
+		"currentId": "ap-computer-science-a-apcs14-selection-and-insertion-sort-curriculum-core-project-selection-sort"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs14-selection-and-insertion-sort-supplemental-project-insertion-sort",
+		"currentId": "ap-computer-science-a-apcs14-selection-and-insertion-sort-supplemental-project-insertion-sort"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs14-selection-and-insertion-sort-supplemental-selection-and-insertion-sort-trace-and-boundary-case",
+		"currentId": "ap-computer-science-a-apcs14-selection-and-insertion-sort-supplemental-selection-and-insertion-sort-trace-and-boundary-case"
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-apcs15-recursion",
+		"currentId": "ap-computer-science-a-apcs15-recursion"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs15-recursion-curriculum-base-cases-recursive-steps-and-stack-frames",
+		"currentId": "ap-computer-science-a-apcs15-recursion-curriculum-base-cases-recursive-steps-and-stack-frames"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs15-recursion-curriculum-stack-overflow-and-tail-recursion",
+		"currentId": "ap-computer-science-a-apcs15-recursion-curriculum-stack-overflow-and-tail-recursion"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs15-recursion-curriculum-core-project-tracing-recursion",
+		"currentId": "ap-computer-science-a-apcs15-recursion-curriculum-core-project-tracing-recursion"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs15-recursion-curriculum-recursion-reference-pack",
+		"currentId": "ap-computer-science-a-apcs15-recursion-supplemental-recursion-reference-pack"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs15-recursion-supplemental-project-recursion-practice",
+		"currentId": "ap-computer-science-a-apcs15-recursion-supplemental-project-recursion-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs15-recursion-supplemental-project-blob-erase",
+		"currentId": "ap-computer-science-a-apcs15-recursion-supplemental-project-blob-erase"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs15-recursion-supplemental-reference-stack-overflow",
+		"currentId": "ap-computer-science-a-apcs15-recursion-supplemental-reference-stack-overflow"
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-apcs16-binary-search-and-merge-sort",
+		"currentId": "ap-computer-science-a-apcs16-binary-search-and-merge-sort"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs16-binary-search-and-merge-sort-curriculum-binary-search-preconditions",
+		"currentId": "ap-computer-science-a-apcs16-binary-search-and-merge-sort-curriculum-binary-search-preconditions"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs16-binary-search-and-merge-sort-curriculum-merge-sort-and-divide-and-conquer",
+		"currentId": "ap-computer-science-a-apcs16-binary-search-and-merge-sort-curriculum-merge-sort-and-divide-and-conquer"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs16-binary-search-and-merge-sort-curriculum-core-project-binary-search",
+		"currentId": "ap-computer-science-a-apcs16-binary-search-and-merge-sort-curriculum-core-project-binary-search"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs16-binary-search-and-merge-sort-curriculum-merge-step-visual",
+		"currentId": "ap-computer-science-a-apcs16-binary-search-and-merge-sort-curriculum-merge-step-visual"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs16-binary-search-and-merge-sort-supplemental-project-merge-sort",
+		"currentId": "ap-computer-science-a-apcs16-binary-search-and-merge-sort-supplemental-project-merge-sort"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs16-binary-search-and-merge-sort-supplemental-binary-search-and-merge-sort-trace-and-boundary-case",
+		"currentId": "ap-computer-science-a-apcs16-binary-search-and-merge-sort-supplemental-binary-search-and-merge-sort-trace-and-boundary-case"
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-check-in-4",
+		"currentId": "ap-computer-science-a-check-in-4"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-4-curriculum-review-goal",
+		"currentId": "ap-computer-science-a-check-in-4-curriculum-review-goal"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-4-curriculum-prompt-bank-coverage",
+		"currentId": "ap-computer-science-a-check-in-4-curriculum-prompt-bank-coverage"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-4-curriculum-core-check-in-prompt-bank",
+		"currentId": "ap-computer-science-a-check-in-4-curriculum-core-check-in-prompt-bank"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-4-supplemental-additional-practice-inversion-counting",
+		"currentId": "ap-computer-science-a-check-in-4-supplemental-additional-practice-inversion-counting"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-4-supplemental-project-minimum-and-maximum",
+		"currentId": "ap-computer-science-a-check-in-4-supplemental-project-minimum-and-maximum"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-check-in-4-supplemental-runtime-analysis-starter",
+		"currentId": "ap-computer-science-a-check-in-4-supplemental-runtime-analysis-starter"
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-apcs17-master-projects-and-test-prep",
+		"currentId": "ap-computer-science-a-apcs17-master-projects-and-test-prep"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs17-master-projects-and-test-prep-curriculum-practice-exam-and-frq-rhythm",
+		"currentId": "ap-computer-science-a-apcs17-master-projects-and-test-prep-curriculum-practice-exam-and-frq-rhythm"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs17-master-projects-and-test-prep-curriculum-next-course-positioning",
+		"currentId": "ap-computer-science-a-apcs17-master-projects-and-test-prep-supplemental-next-course-positioning"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs17-master-projects-and-test-prep-curriculum-core-project-spaceships",
+		"currentId": "ap-computer-science-a-apcs17-master-projects-and-test-prep-curriculum-core-project-spaceships"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs17-master-projects-and-test-prep-curriculum-past-frq-archive",
+		"currentId": "ap-computer-science-a-apcs17-master-projects-and-test-prep-curriculum-past-frq-archive"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs17-master-projects-and-test-prep-supplemental-master-project-elevens",
+		"currentId": "ap-computer-science-a-apcs17-master-projects-and-test-prep-supplemental-master-project-elevens"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-apcs17-master-projects-and-test-prep-supplemental-master-project-decode",
+		"currentId": "ap-computer-science-a-apcs17-master-projects-and-test-prep-supplemental-master-project-decode"
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-standards-map",
+		"currentId": "ap-computer-science-a-standards-map"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-standards-map-curriculum-ap-computer-science-a-reference-guide",
+		"currentId": "ap-computer-science-a-standards-map-curriculum-ap-computer-science-a-reference-guide"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-standards-map-curriculum-ap-computer-science-a-core-skills",
+		"currentId": "ap-computer-science-a-standards-map-curriculum-ap-computer-science-a-core-skills"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-standards-map-curriculum-ap-computer-science-a-next-topics",
+		"currentId": "ap-computer-science-a-standards-map-curriculum-ap-computer-science-a-next-topics"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-standards-map-curriculum-ap-computer-science-a-boundaries",
+		"currentId": "ap-computer-science-a-standards-map-curriculum-ap-computer-science-a-boundaries"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-standards-map-supplemental-ap-computer-science-a-prerequisite-check",
+		"currentId": "ap-computer-science-a-standards-map-supplemental-ap-computer-science-a-prerequisite-check"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-standards-map-supplemental-ap-computer-science-a-pathway-map",
+		"currentId": "ap-computer-science-a-standards-map-supplemental-ap-computer-science-a-pathway-map"
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-course-roadmap",
+		"currentId": "ap-computer-science-a-course-roadmap"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-course-roadmap-curriculum-ap-computer-science-a-follow-up-path",
+		"currentId": "ap-computer-science-a-course-roadmap-curriculum-ap-computer-science-a-follow-up-path"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-course-roadmap-curriculum-ap-computer-science-a-resource-map",
+		"currentId": "ap-computer-science-a-course-roadmap-curriculum-ap-computer-science-a-resource-map"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-course-roadmap-curriculum-ap-computer-science-a-module-alignment-guide",
+		"currentId": "ap-computer-science-a-course-roadmap-curriculum-ap-computer-science-a-module-alignment-guide"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-course-roadmap-curriculum-ap-computer-science-a-reference-map",
+		"currentId": "ap-computer-science-a-course-roadmap-curriculum-ap-computer-science-a-reference-map"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-course-roadmap-supplemental-ap-computer-science-a-prerequisite-map",
+		"currentId": "ap-computer-science-a-course-roadmap-supplemental-ap-computer-science-a-prerequisite-map"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-course-roadmap-supplemental-ap-computer-science-a-resource-inventory",
+		"currentId": "ap-computer-science-a-course-roadmap-supplemental-ap-computer-science-a-resource-inventory"
+	},
+	{
+		"kind": "module",
+		"oldId": "ap-computer-science-a-project-practice-guide",
+		"currentId": "ap-computer-science-a-project-practice-guide"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-project-practice-guide-curriculum-ap-computer-science-a-project-ladder",
+		"currentId": "ap-computer-science-a-project-practice-guide-curriculum-ap-computer-science-a-project-ladder"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-project-practice-guide-curriculum-ap-computer-science-a-checkpoints",
+		"currentId": "ap-computer-science-a-project-practice-guide-curriculum-ap-computer-science-a-checkpoints"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-project-practice-guide-curriculum-ap-computer-science-a-rubric",
+		"currentId": "ap-computer-science-a-project-practice-guide-curriculum-ap-computer-science-a-rubric"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-project-practice-guide-curriculum-ap-computer-science-a-capstone-gate",
+		"currentId": "ap-computer-science-a-project-practice-guide-curriculum-ap-computer-science-a-capstone-gate"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-project-practice-guide-supplemental-practice-project-ap-style-class-design-mini-frqs",
+		"currentId": "ap-computer-science-a-project-practice-guide-supplemental-practice-project-ap-style-class-design-mini-frqs"
+	},
+	{
+		"kind": "item",
+		"oldId": "ap-computer-science-a-project-practice-guide-supplemental-practice-project-array-and-arraylist-traversal-drills-with-written-explanations",
+		"currentId": "ap-computer-science-a-project-practice-guide-supplemental-practice-project-array-and-arraylist-traversal-drills-with-written-explanations"
+	}
+]

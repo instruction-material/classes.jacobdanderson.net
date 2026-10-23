@@ -1,0 +1,67 @@
+{
+	"ap-computer-science-a": {
+		"ap-computer-science-a-general-course-introduction-and-setup-supplemental-required-textbook": [
+			"ap-computer-science-a-general-course-introduction-and-setup-curriculum-required-textbook"
+		],
+		"ap-computer-science-a-general-course-introduction-and-setup-supplemental-reference-pack": [
+			"ap-computer-science-a-general-course-introduction-and-setup-curriculum-reference-pack"
+		],
+		"ap-computer-science-a-apcs3-conditionals-and-packages-supplemental-reference-pack": [
+			"ap-computer-science-a-apcs3-conditionals-and-packages-curriculum-reference-pack"
+		],
+		"ap-computer-science-a-apcs4-selection-iteration-and-runtime-reasoning-curriculum-core-project-translating-loops": [
+			"ap-computer-science-a-apcs4-loops-and-exceptions-curriculum-core-project-translating-loops"
+		],
+		"ap-computer-science-a-apcs4-selection-iteration-and-runtime-reasoning-supplemental-loop-reference-pack": [
+			"ap-computer-science-a-apcs4-loops-and-exceptions-curriculum-loop-reference-pack"
+		],
+		"ap-computer-science-a-apcs4-selection-iteration-and-runtime-reasoning-supplemental-project-for-loop-practice": [
+			"ap-computer-science-a-apcs4-loops-and-exceptions-supplemental-project-for-loop-practice"
+		],
+		"ap-computer-science-a-apcs4-selection-iteration-and-runtime-reasoning-supplemental-project-while-loop-and-nested-loop-practice": [
+			"ap-computer-science-a-apcs4-loops-and-exceptions-supplemental-project-while-loop-and-nested-loop-practice"
+		],
+		"ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-superclass-and-subclass-design": [
+			"ap-computer-science-a-apcs7-inheritance-curriculum-superclass-and-subclass-design"
+		],
+		"ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-constructors-super-and-overriding": [
+			"ap-computer-science-a-apcs7-inheritance-curriculum-constructors-super-and-overriding"
+		],
+		"ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-core-project-book-and-picturebook-class": [
+			"ap-computer-science-a-apcs7-inheritance-curriculum-core-project-book-and-picturebook-class"
+		],
+		"ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-project-pet-class": [
+			"ap-computer-science-a-apcs7-inheritance-supplemental-project-pet-class"
+		],
+		"ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-project-more-pets": [
+			"ap-computer-science-a-apcs7-inheritance-supplemental-project-more-pets"
+		],
+		"ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-project-pet-special-methods": [
+			"ap-computer-science-a-apcs7-inheritance-supplemental-project-pet-special-methods"
+		],
+		"ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-superclass-references-and-dynamic-dispatch": [
+			"ap-computer-science-a-apcs8-polymorphism-curriculum-superclass-references-and-dynamic-dispatch"
+		],
+		"ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-type-reasoning-and-invalid-calls": [
+			"ap-computer-science-a-apcs8-polymorphism-curriculum-type-reasoning-and-invalid-calls"
+		],
+		"ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-core-project-many-shapes": [
+			"ap-computer-science-a-apcs8-polymorphism-curriculum-core-project-many-shapes"
+		],
+		"ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-polymorphism-reference": [
+			"ap-computer-science-a-apcs8-polymorphism-supplemental-polymorphism-reference"
+		],
+		"ap-computer-science-a-apcs10-arrays-supplemental-array-reference-pack": [
+			"ap-computer-science-a-apcs10-arrays-curriculum-array-reference-pack"
+		],
+		"ap-computer-science-a-apcs11-arraylists-supplemental-arraylist-reference-pack": [
+			"ap-computer-science-a-apcs11-arraylists-curriculum-arraylist-reference-pack"
+		],
+		"ap-computer-science-a-apcs15-recursion-supplemental-recursion-reference-pack": [
+			"ap-computer-science-a-apcs15-recursion-curriculum-recursion-reference-pack"
+		],
+		"ap-computer-science-a-apcs17-master-projects-and-test-prep-supplemental-next-course-positioning": [
+			"ap-computer-science-a-apcs17-master-projects-and-test-prep-curriculum-next-course-positioning"
+		]
+	}
+}

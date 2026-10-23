@@ -28,7 +28,8 @@ import {
 import { recordSecurityAuditEvent } from "../../utils/securityAudit.js";
 import { normalizeNoteEmails, noteObjectId, NoteWorkflowError, resolveNoteIdentity, snapshotSession } from "../../utils/sessionNoteIdentity.js";
 
-const MAX_COURSE_PROGRESS_ID_LENGTH = 160;
+const MAX_COURSE_ID_LENGTH = 160;
+const MAX_COMPLETED_ID_LENGTH = 256;
 const MAX_COURSE_PROGRESS_IDS = 1000;
 const MAX_COURSE_IDS = 1000;
 const RESERVED_COURSE_CONTEXT_IDS = new Set(["__all__"]);
@@ -65,7 +66,7 @@ function normalizeCourseProgressIDs(value: unknown): string[] | null {
 	for (const item of value) {
 		if (typeof item !== "string") return null;
 		const id = item.trim();
-		if (!id || id.length > MAX_COURSE_PROGRESS_ID_LENGTH) return null;
+		if (!id || id.length > MAX_COMPLETED_ID_LENGTH) return null;
 		if (seen.has(id)) continue;
 		seen.add(id);
 		ids.push(id);
@@ -84,7 +85,7 @@ function normalizeCourseAccessIDs(value: unknown): string[] | null {
 		const id = item.trim();
 		if (
 			!id
-			|| id.length > MAX_COURSE_PROGRESS_ID_LENGTH
+			|| id.length > MAX_COURSE_ID_LENGTH
 			|| RESERVED_COURSE_CONTEXT_IDS.has(id)
 		) {
 			return null;
@@ -337,7 +338,7 @@ export const setUserCourseAccess: RequestHandler = async (req, res) => {
 	const uniqueCourses = normalizeCourseAccessIDs(courseIDs);
 	if (!uniqueCourses) {
 		return res.status(400).json({
-			message: `courseIDs must contain at most ${MAX_COURSE_IDS} non-empty string IDs of ${MAX_COURSE_PROGRESS_ID_LENGTH} characters or fewer`
+			message: `courseIDs must contain at most ${MAX_COURSE_IDS} non-empty string IDs of ${MAX_COURSE_ID_LENGTH} characters or fewer`
 		});
 	}
 
@@ -370,8 +371,6 @@ export const setUserCourseAccess: RequestHandler = async (req, res) => {
 		user.courseStatus,
 		!!req.body?.courseStatus
 	);
-	const allowedCourses = new Set(uniqueCourses);
-	user.courseProgress = (user.courseProgress ?? []).filter(progress => allowedCourses.has(progress.courseId));
 	await user.save();
 	await recordSecurityAuditEvent(req, {
 		action: "user.course-access.update",
@@ -392,17 +391,17 @@ export const setUserCourseProgress: RequestHandler = async (req, res) => {
 
 	if (
 		!courseId
-		|| courseId.length > MAX_COURSE_PROGRESS_ID_LENGTH
+		|| courseId.length > MAX_COURSE_ID_LENGTH
 		|| RESERVED_COURSE_CONTEXT_IDS.has(courseId)
 	) {
 		return res.status(400).json({
-			message: `courseId is required and must be ${MAX_COURSE_PROGRESS_ID_LENGTH} characters or fewer`
+			message: `courseId is required and must be ${MAX_COURSE_ID_LENGTH} characters or fewer`
 		});
 	}
 
 	if (!completedModuleIds || !completedItemIds) {
 		return res.status(400).json({
-			message: `Completed IDs must be arrays with at most ${MAX_COURSE_PROGRESS_IDS} non-empty string IDs of ${MAX_COURSE_PROGRESS_ID_LENGTH} characters or fewer`
+			message: `Completed IDs must be arrays with at most ${MAX_COURSE_PROGRESS_IDS} non-empty string IDs of ${MAX_COMPLETED_ID_LENGTH} characters or fewer`
 		});
 	}
 

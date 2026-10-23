@@ -454,9 +454,10 @@ describe("user schedule and note-only routes", () => {
 
 	it("stores course progress metadata for autosaved staff updates", async () => {
 		const save = vi.fn().mockResolvedValue(undefined);
+		const longHistoricalId = "algebra-1a-aa16-module-project-battle-of-the-publications-with-konstantin-kaganovsky-supplemental-standards-practice-set-module-project-battle-of-the-publications-with-konstantin-kaganovsky";
 		const student = {
 			...makeStudent(),
-			courseAccess: ["javascript-level-1"],
+			courseAccess: ["algebra-1a"],
 			courseProgress: [],
 			save
 		};
@@ -467,9 +468,9 @@ describe("user schedule and note-only routes", () => {
 				baseUrl,
 				`/users/${studentID}/course-progress`,
 				{
-					courseId: "javascript-level-1",
+					courseId: "algebra-1a",
 					completedModuleIds: ["module-1"],
-					completedItemIds: ["item-1"]
+					completedItemIds: [longHistoricalId]
 				},
 				{ "x-admin-id": adminID.toString() }
 			);
@@ -478,9 +479,9 @@ describe("user schedule and note-only routes", () => {
 			expect(save).toHaveBeenCalledOnce();
 			expect(student.courseProgress[0]).toEqual(
 				expect.objectContaining({
-					completedItemIds: ["item-1"],
+					completedItemIds: [longHistoricalId],
 					completedModuleIds: ["module-1"],
-					courseId: "javascript-level-1",
+					courseId: "algebra-1a",
 					updatedBy: adminID,
 					updatedByRole: "admin"
 				})
@@ -505,7 +506,7 @@ describe("user schedule and note-only routes", () => {
 				`/users/${studentID}/course-progress`,
 				{
 					courseId: "javascript-level-1",
-					completedModuleIds: ["m".repeat(161)],
+					completedModuleIds: ["m".repeat(257)],
 					completedItemIds: []
 				},
 				{ "x-admin-id": adminID.toString() }
@@ -626,6 +627,51 @@ describe("user schedule and note-only routes", () => {
 				"python-level-1": "past",
 				"ap-computer-science-a": "available"
 			});
+		});
+	});
+
+	it("retains old course progress without allowing updates after access removal", async () => {
+		const save = vi.fn().mockResolvedValue(undefined);
+		const savedProgress = [
+			{
+				courseId: "java-without-graphics",
+				completedModuleIds: ["java-without-graphics-old-module"],
+				completedItemIds: ["java-without-graphics-old-item"]
+			}
+		];
+		const student = {
+			...makeStudent(),
+			courseAccess: ["java-without-graphics", "python-level-1"],
+			courseProgress: savedProgress,
+			courseStatus: {},
+			save
+		};
+		modelMocks.userFindById.mockImplementation(() => queryWith(student));
+
+		await withUserRoutes(async baseUrl => {
+			const accessResponse = await putJson(
+				baseUrl,
+				`/users/${studentID}/courses`,
+				{ courseIDs: ["python-level-1"] },
+				{ "x-admin-id": adminID.toString() }
+			);
+			expect(accessResponse.status).toBe(200);
+			expect(student.courseProgress).toEqual(savedProgress);
+			expect(save).toHaveBeenCalledOnce();
+
+			const progressResponse = await putJson(
+				baseUrl,
+				`/users/${studentID}/course-progress`,
+				{
+					courseId: "java-without-graphics",
+					completedModuleIds: [],
+					completedItemIds: []
+				},
+				{ "x-admin-id": adminID.toString() }
+			);
+			expect(progressResponse.status).toBe(400);
+			expect(student.courseProgress).toEqual(savedProgress);
+			expect(save).toHaveBeenCalledOnce();
 		});
 	});
 

@@ -1,0 +1,171 @@
+{
+	"modules": {
+		"linux-systems-linux-systems-lab-17-operations-capstone-studio": [
+			"linux-systems-linux-systems-lab-17"
+		]
+	},
+	"items": {
+		"linux-systems-ls0-setup-and-tooling-supplemental-linux-systems-setup-transfer-practice": [
+			"linux-systems-ls0-setup-and-tooling-supplemental-transfer-practice-linux-systems"
+		],
+		"linux-systems-ls0-setup-and-tooling-supplemental-linux-systems-setup-extension-practice": [
+			"linux-systems-ls0-setup-and-tooling-supplemental-extension-practice-linux-systems"
+		],
+		"linux-systems-unit-1-shell-foundations-supplemental-shell-pipeline-transfer-practice": [
+			"linux-systems-unit-1-shell-foundations-supplemental-transfer-practice-shell-foundations"
+		],
+		"linux-systems-unit-1-shell-foundations-supplemental-shell-pipeline-extension-practice": [
+			"linux-systems-unit-1-shell-foundations-supplemental-extension-practice-shell-foundations"
+		],
+		"linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-filesystem-layout-transfer-practice": [
+			"linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-transfer-practice-filesystem-hierarchy-and-directory-purpose"
+		],
+		"linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-filesystem-layout-extension-practice": [
+			"linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose-supplemental-extension-practice-filesystem-hierarchy-and-directory-purpose"
+		],
+		"linux-systems-unit-3-users-groups-and-permissions-supplemental-permissions-transfer-practice": [
+			"linux-systems-unit-3-users-groups-and-permissions-supplemental-transfer-practice-users-groups-and-permissions"
+		],
+		"linux-systems-unit-3-users-groups-and-permissions-supplemental-permissions-extension-practice": [
+			"linux-systems-unit-3-users-groups-and-permissions-supplemental-extension-practice-users-groups-and-permissions"
+		],
+		"linux-systems-unit-4-editing-and-configuration-supplemental-configuration-editing-transfer-practice": [
+			"linux-systems-unit-4-editing-and-configuration-supplemental-transfer-practice-editing-and-configuration"
+		],
+		"linux-systems-unit-4-editing-and-configuration-supplemental-configuration-editing-extension-practice": [
+			"linux-systems-unit-4-editing-and-configuration-supplemental-extension-practice-editing-and-configuration"
+		],
+		"linux-systems-unit-5-processes-and-job-control-supplemental-process-control-transfer-practice": [
+			"linux-systems-unit-5-processes-and-job-control-supplemental-transfer-practice-processes-and-job-control"
+		],
+		"linux-systems-unit-5-processes-and-job-control-supplemental-process-control-extension-practice": [
+			"linux-systems-unit-5-processes-and-job-control-supplemental-extension-practice-processes-and-job-control"
+		],
+		"linux-systems-unit-6-services-and-systemd-supplemental-systemd-service-transfer-practice": [
+			"linux-systems-unit-6-services-and-systemd-supplemental-transfer-practice-services-and-systemd"
+		],
+		"linux-systems-unit-6-services-and-systemd-supplemental-systemd-service-extension-practice": [
+			"linux-systems-unit-6-services-and-systemd-supplemental-extension-practice-services-and-systemd"
+		],
+		"linux-systems-unit-7-logging-and-observability-supplemental-log-investigation-transfer-practice": [
+			"linux-systems-unit-7-logging-and-observability-supplemental-transfer-practice-logging-and-observability"
+		],
+		"linux-systems-unit-7-logging-and-observability-supplemental-log-investigation-extension-practice": [
+			"linux-systems-unit-7-logging-and-observability-supplemental-extension-practice-logging-and-observability"
+		],
+		"linux-systems-unit-8-scheduling-and-automation-supplemental-automation-transfer-practice": [
+			"linux-systems-unit-8-scheduling-and-automation-supplemental-transfer-practice-scheduling-and-automation"
+		],
+		"linux-systems-unit-8-scheduling-and-automation-supplemental-automation-extension-practice": [
+			"linux-systems-unit-8-scheduling-and-automation-supplemental-extension-practice-scheduling-and-automation"
+		],
+		"linux-systems-unit-9-package-management-and-software-layout-supplemental-package-layout-transfer-practice": [
+			"linux-systems-unit-9-package-management-and-software-layout-supplemental-transfer-practice-package-management-and-software-layout"
+		],
+		"linux-systems-unit-9-package-management-and-software-layout-supplemental-package-layout-extension-practice": [
+			"linux-systems-unit-9-package-management-and-software-layout-supplemental-extension-practice-package-management-and-software-layout"
+		],
+		"linux-systems-unit-10-networking-from-a-systems-view-supplemental-network-diagnostics-transfer-practice": [
+			"linux-systems-unit-10-networking-from-a-systems-view-supplemental-transfer-practice-networking-from-a-systems-view"
+		],
+		"linux-systems-unit-10-networking-from-a-systems-view-supplemental-network-diagnostics-extension-practice": [
+			"linux-systems-unit-10-networking-from-a-systems-view-supplemental-extension-practice-networking-from-a-systems-view"
+		],
+		"linux-systems-unit-11-web-servers-supplemental-web-server-deployment-transfer-practice": [
+			"linux-systems-unit-11-web-servers-supplemental-transfer-practice-web-servers"
+		],
+		"linux-systems-unit-11-web-servers-supplemental-web-server-deployment-extension-practice": [
+			"linux-systems-unit-11-web-servers-supplemental-extension-practice-web-servers"
+		],
+		"linux-systems-unit-12-storage-backups-and-reliability-supplemental-backup-reliability-transfer-practice": [
+			"linux-systems-unit-12-storage-backups-and-reliability-supplemental-transfer-practice-storage-backups-and-reliability"
+		],
+		"linux-systems-unit-12-storage-backups-and-reliability-supplemental-backup-reliability-extension-practice": [
+			"linux-systems-unit-12-storage-backups-and-reliability-supplemental-extension-practice-storage-backups-and-reliability"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-service-deployment-studio-core-concepts": [
+			"linux-systems-linux-systems-lab-14-curriculum-linux-systems-lab-14-core-concepts"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-service-deployment-studio-guided-example": [
+			"linux-systems-linux-systems-lab-14-curriculum-linux-systems-lab-14-guided-example"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-core-project-service-deployment-studio": [
+			"linux-systems-linux-systems-lab-14-curriculum-core-project-linux-systems-lab-14"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-service-deployment-studio-review": [
+			"linux-systems-linux-systems-lab-14-curriculum-review-linux-systems-lab-14"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-extension-challenge-service-deployment-studio": [
+			"linux-systems-linux-systems-lab-14-supplemental-extension-challenge-linux-systems-lab-14"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-service-deployment-transfer-practice": [
+			"linux-systems-linux-systems-lab-14-supplemental-transfer-practice-linux-systems-lab-14"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-service-deployment-extension-practice": [
+			"linux-systems-linux-systems-lab-14-supplemental-extension-practice-linux-systems-lab-14"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-automation-and-observability-studio-core-concepts": [
+			"linux-systems-linux-systems-lab-15-curriculum-linux-systems-lab-15-core-concepts"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-automation-and-observability-studio-guided-example": [
+			"linux-systems-linux-systems-lab-15-curriculum-linux-systems-lab-15-guided-example"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-core-project-automation-and-observability-studio": [
+			"linux-systems-linux-systems-lab-15-curriculum-core-project-linux-systems-lab-15"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-automation-and-observability-studio-review": [
+			"linux-systems-linux-systems-lab-15-curriculum-review-linux-systems-lab-15"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-extension-challenge-automation-and-observability-studio": [
+			"linux-systems-linux-systems-lab-15-supplemental-extension-challenge-linux-systems-lab-15"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-automation-observability-transfer-practice": [
+			"linux-systems-linux-systems-lab-15-supplemental-transfer-practice-linux-systems-lab-15"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-automation-observability-extension-practice": [
+			"linux-systems-linux-systems-lab-15-supplemental-extension-practice-linux-systems-lab-15"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-backup-recovery-studio-core-concepts": [
+			"linux-systems-linux-systems-lab-16-curriculum-linux-systems-lab-16-core-concepts"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-backup-recovery-studio-guided-example": [
+			"linux-systems-linux-systems-lab-16-curriculum-linux-systems-lab-16-guided-example"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-core-project-backup-recovery-studio": [
+			"linux-systems-linux-systems-lab-16-curriculum-core-project-linux-systems-lab-16"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-backup-recovery-studio-review": [
+			"linux-systems-linux-systems-lab-16-curriculum-review-linux-systems-lab-16"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-extension-challenge-backup-recovery-studio": [
+			"linux-systems-linux-systems-lab-16-supplemental-extension-challenge-linux-systems-lab-16"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-backup-recovery-transfer-practice": [
+			"linux-systems-linux-systems-lab-16-supplemental-transfer-practice-linux-systems-lab-16"
+		],
+		"linux-systems-optional-linux-integration-studio-archive-supplemental-backup-recovery-extension-practice": [
+			"linux-systems-linux-systems-lab-16-supplemental-extension-practice-linux-systems-lab-16"
+		],
+		"linux-systems-linux-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-core-concepts": [
+			"linux-systems-linux-systems-lab-17-curriculum-linux-systems-lab-17-core-concepts"
+		],
+		"linux-systems-linux-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-guided-example": [
+			"linux-systems-linux-systems-lab-17-curriculum-linux-systems-lab-17-guided-example"
+		],
+		"linux-systems-linux-systems-lab-17-operations-capstone-studio-curriculum-core-project-operations-capstone-studio": [
+			"linux-systems-linux-systems-lab-17-curriculum-core-project-linux-systems-lab-17"
+		],
+		"linux-systems-linux-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-review": [
+			"linux-systems-linux-systems-lab-17-curriculum-review-linux-systems-lab-17"
+		],
+		"linux-systems-linux-systems-lab-17-operations-capstone-studio-supplemental-extension-challenge-operations-capstone-studio": [
+			"linux-systems-linux-systems-lab-17-supplemental-extension-challenge-linux-systems-lab-17"
+		],
+		"linux-systems-linux-systems-lab-17-operations-capstone-studio-supplemental-operations-capstone-transfer-practice": [
+			"linux-systems-linux-systems-lab-17-supplemental-transfer-practice-linux-systems-lab-17"
+		],
+		"linux-systems-linux-systems-lab-17-operations-capstone-studio-supplemental-operations-capstone-extension-practice": [
+			"linux-systems-linux-systems-lab-17-supplemental-extension-practice-linux-systems-lab-17"
+		]
+	}
+}

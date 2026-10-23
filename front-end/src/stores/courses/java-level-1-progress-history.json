@@ -1,0 +1,212 @@
+{
+	"java-level-1": {
+		"java-level-1-j1c-text-bridge-variables-strings-and-input-supplemental-variable-types-input-output-extension-practice": [
+			"java-level-1-js1-variable-types-input-output-supplemental-extension-practice-variable-types-input-output",
+			"java-level-1-js1-variable-types-input-output-supplemental-variable-types-input-output-extension-practice"
+		],
+		"java-level-1-j1d-text-bridge-casting-operators-and-coordinate-reasoning-supplemental-casting-and-operators-extension-practice": [
+			"java-level-1-js2-casting-and-operators-supplemental-extension-practice-casting-and-operators",
+			"java-level-1-js2-casting-and-operators-supplemental-casting-and-operators-extension-practice"
+		],
+		"java-level-1-j1g-loops-conditionals-and-randomized-games-supplemental-practice-with-loops-conditionals-transfer-practice": [
+			"java-level-1-js5-practice-with-loops-conditionals-supplemental-transfer-practice-practice-with-loops-conditionals",
+			"java-level-1-js5-practice-with-loops-conditionals-supplemental-practice-with-loops-conditionals-transfer-practice"
+		],
+		"java-level-1-j1g-loops-conditionals-and-randomized-games-supplemental-practice-with-loops-conditionals-extension-practice": [
+			"java-level-1-js5-practice-with-loops-conditionals-supplemental-extension-practice-practice-with-loops-conditionals",
+			"java-level-1-js5-practice-with-loops-conditionals-supplemental-practice-with-loops-conditionals-extension-practice"
+		],
+		"java-level-1-j1h-check-in-visual-to-text-foundations-supplemental-check-in-1-transfer-practice": [
+			"java-level-1-check-in-1-supplemental-transfer-practice-check-in-1",
+			"java-level-1-check-in-1-supplemental-check-in-1-transfer-practice"
+		],
+		"java-level-1-j1h-check-in-visual-to-text-foundations-supplemental-check-in-1-extension-practice": [
+			"java-level-1-check-in-1-supplemental-extension-practice-check-in-1",
+			"java-level-1-check-in-1-supplemental-check-in-1-extension-practice"
+		],
+		"java-level-1-j1l-check-in-methods-and-data-structures-supplemental-check-in-2-transfer-practice": [
+			"java-level-1-check-in-2-supplemental-transfer-practice-check-in-2",
+			"java-level-1-check-in-2-supplemental-check-in-2-transfer-practice"
+		],
+		"java-level-1-j1l-check-in-methods-and-data-structures-supplemental-check-in-2-extension-practice": [
+			"java-level-1-check-in-2-supplemental-extension-practice-check-in-2",
+			"java-level-1-check-in-2-supplemental-check-in-2-extension-practice"
+		],
+		"java-level-1-j1m-master-project-battleship-grid-game-supplemental-master-project-battleship-transfer-practice": [
+			"java-level-1-js9-master-project-battleship-supplemental-transfer-practice-master-project-battleship",
+			"java-level-1-js9-master-project-battleship-supplemental-master-project-battleship-transfer-practice"
+		],
+		"java-level-1-j1m-master-project-battleship-grid-game-supplemental-master-project-battleship-extension-practice": [
+			"java-level-1-js9-master-project-battleship-supplemental-extension-practice-master-project-battleship",
+			"java-level-1-js9-master-project-battleship-supplemental-master-project-battleship-extension-practice"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-java-foundations-build-13-core-concepts": [
+			"java-level-1-java-foundations-build-13-curriculum-java-foundations-build-13-core-concepts",
+			"java-level-1-java-foundations-build-13-practice-studio-curriculum-java-foundations-build-13-core-concepts"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-java-foundations-build-13-guided-example": [
+			"java-level-1-java-foundations-build-13-curriculum-java-foundations-build-13-guided-example",
+			"java-level-1-java-foundations-build-13-practice-studio-curriculum-java-foundations-build-13-guided-example"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-core-project-java-foundations-build-13": [
+			"java-level-1-java-foundations-build-13-curriculum-core-project-java-foundations-build-13",
+			"java-level-1-java-foundations-build-13-practice-studio-curriculum-core-project-java-foundations-build-13"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-review-java-foundations-build-13": [
+			"java-level-1-java-foundations-build-13-curriculum-review-java-foundations-build-13",
+			"java-level-1-java-foundations-build-13-practice-studio-curriculum-review-java-foundations-build-13"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-extension-challenge-java-foundations-build-13": [
+			"java-level-1-java-foundations-build-13-supplemental-extension-challenge-java-foundations-build-13",
+			"java-level-1-java-foundations-build-13-practice-studio-supplemental-extension-challenge-java-foundations-build-13"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-j1x02-java-foundations-build-13-transfer-practice": [
+			"java-level-1-java-foundations-build-13-supplemental-j1x02-java-foundations-build-13-transfer-practice",
+			"java-level-1-java-foundations-build-13-practice-studio-supplemental-j1x02-java-foundations-build-13-transfer-practice"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-j1x02-java-foundations-build-13-extension-practice": [
+			"java-level-1-java-foundations-build-13-supplemental-j1x02-java-foundations-build-13-extension-practice",
+			"java-level-1-java-foundations-build-13-practice-studio-supplemental-j1x02-java-foundations-build-13-extension-practice"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-java-foundations-build-14-core-concepts": [
+			"java-level-1-java-foundations-build-14-curriculum-java-foundations-build-14-core-concepts",
+			"java-level-1-java-foundations-build-14-practice-studio-curriculum-java-foundations-build-14-core-concepts"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-java-foundations-build-14-guided-example": [
+			"java-level-1-java-foundations-build-14-curriculum-java-foundations-build-14-guided-example",
+			"java-level-1-java-foundations-build-14-practice-studio-curriculum-java-foundations-build-14-guided-example"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-core-project-java-foundations-build-14": [
+			"java-level-1-java-foundations-build-14-curriculum-core-project-java-foundations-build-14",
+			"java-level-1-java-foundations-build-14-practice-studio-curriculum-core-project-java-foundations-build-14"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-review-java-foundations-build-14": [
+			"java-level-1-java-foundations-build-14-curriculum-review-java-foundations-build-14",
+			"java-level-1-java-foundations-build-14-practice-studio-curriculum-review-java-foundations-build-14"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-extension-challenge-java-foundations-build-14": [
+			"java-level-1-java-foundations-build-14-supplemental-extension-challenge-java-foundations-build-14",
+			"java-level-1-java-foundations-build-14-practice-studio-supplemental-extension-challenge-java-foundations-build-14"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-j1x03-java-foundations-build-14-transfer-practice": [
+			"java-level-1-java-foundations-build-14-supplemental-j1x03-java-foundations-build-14-transfer-practice",
+			"java-level-1-java-foundations-build-14-practice-studio-supplemental-j1x03-java-foundations-build-14-transfer-practice"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-j1x03-java-foundations-build-14-extension-practice": [
+			"java-level-1-java-foundations-build-14-supplemental-j1x03-java-foundations-build-14-extension-practice",
+			"java-level-1-java-foundations-build-14-practice-studio-supplemental-j1x03-java-foundations-build-14-extension-practice"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-java-foundations-build-15-core-concepts": [
+			"java-level-1-java-foundations-build-15-curriculum-java-foundations-build-15-core-concepts",
+			"java-level-1-java-foundations-build-15-practice-studio-curriculum-java-foundations-build-15-core-concepts"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-java-foundations-build-15-guided-example": [
+			"java-level-1-java-foundations-build-15-curriculum-java-foundations-build-15-guided-example",
+			"java-level-1-java-foundations-build-15-practice-studio-curriculum-java-foundations-build-15-guided-example"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-core-project-java-foundations-build-15": [
+			"java-level-1-java-foundations-build-15-curriculum-core-project-java-foundations-build-15",
+			"java-level-1-java-foundations-build-15-practice-studio-curriculum-core-project-java-foundations-build-15"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-review-java-foundations-build-15": [
+			"java-level-1-java-foundations-build-15-curriculum-review-java-foundations-build-15",
+			"java-level-1-java-foundations-build-15-practice-studio-curriculum-review-java-foundations-build-15"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-extension-challenge-java-foundations-build-15": [
+			"java-level-1-java-foundations-build-15-supplemental-extension-challenge-java-foundations-build-15",
+			"java-level-1-java-foundations-build-15-practice-studio-supplemental-extension-challenge-java-foundations-build-15"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-j1x04-java-foundations-build-15-transfer-practice": [
+			"java-level-1-java-foundations-build-15-supplemental-j1x04-java-foundations-build-15-transfer-practice",
+			"java-level-1-java-foundations-build-15-practice-studio-supplemental-j1x04-java-foundations-build-15-transfer-practice"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-j1x04-java-foundations-build-15-extension-practice": [
+			"java-level-1-java-foundations-build-15-supplemental-j1x04-java-foundations-build-15-extension-practice",
+			"java-level-1-java-foundations-build-15-practice-studio-supplemental-j1x04-java-foundations-build-15-extension-practice"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-java-foundations-build-16-core-concepts": [
+			"java-level-1-java-foundations-build-16-curriculum-java-foundations-build-16-core-concepts",
+			"java-level-1-java-foundations-build-16-practice-studio-curriculum-java-foundations-build-16-core-concepts"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-java-foundations-build-16-guided-example": [
+			"java-level-1-java-foundations-build-16-curriculum-java-foundations-build-16-guided-example",
+			"java-level-1-java-foundations-build-16-practice-studio-curriculum-java-foundations-build-16-guided-example"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-core-project-java-foundations-build-16": [
+			"java-level-1-java-foundations-build-16-curriculum-core-project-java-foundations-build-16",
+			"java-level-1-java-foundations-build-16-practice-studio-curriculum-core-project-java-foundations-build-16"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-review-java-foundations-build-16": [
+			"java-level-1-java-foundations-build-16-curriculum-review-java-foundations-build-16",
+			"java-level-1-java-foundations-build-16-practice-studio-curriculum-review-java-foundations-build-16"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-extension-challenge-java-foundations-build-16": [
+			"java-level-1-java-foundations-build-16-supplemental-extension-challenge-java-foundations-build-16",
+			"java-level-1-java-foundations-build-16-practice-studio-supplemental-extension-challenge-java-foundations-build-16"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-j1x05-java-foundations-build-16-transfer-practice": [
+			"java-level-1-java-foundations-build-16-supplemental-j1x05-java-foundations-build-16-transfer-practice",
+			"java-level-1-java-foundations-build-16-practice-studio-supplemental-j1x05-java-foundations-build-16-transfer-practice"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-j1x05-java-foundations-build-16-extension-practice": [
+			"java-level-1-java-foundations-build-16-supplemental-j1x05-java-foundations-build-16-extension-practice",
+			"java-level-1-java-foundations-build-16-practice-studio-supplemental-j1x05-java-foundations-build-16-extension-practice"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-java-foundations-build-17-core-concepts": [
+			"java-level-1-java-foundations-build-17-curriculum-java-foundations-build-17-core-concepts",
+			"java-level-1-java-foundations-build-17-practice-studio-curriculum-java-foundations-build-17-core-concepts"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-java-foundations-build-17-guided-example": [
+			"java-level-1-java-foundations-build-17-curriculum-java-foundations-build-17-guided-example",
+			"java-level-1-java-foundations-build-17-practice-studio-curriculum-java-foundations-build-17-guided-example"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-core-project-java-foundations-build-17": [
+			"java-level-1-java-foundations-build-17-curriculum-core-project-java-foundations-build-17",
+			"java-level-1-java-foundations-build-17-practice-studio-curriculum-core-project-java-foundations-build-17"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-review-java-foundations-build-17": [
+			"java-level-1-java-foundations-build-17-curriculum-review-java-foundations-build-17",
+			"java-level-1-java-foundations-build-17-practice-studio-curriculum-review-java-foundations-build-17"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-extension-challenge-java-foundations-build-17": [
+			"java-level-1-java-foundations-build-17-supplemental-extension-challenge-java-foundations-build-17",
+			"java-level-1-java-foundations-build-17-practice-studio-supplemental-extension-challenge-java-foundations-build-17"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-j1x06-java-foundations-build-17-transfer-practice": [
+			"java-level-1-java-foundations-build-17-supplemental-j1x06-java-foundations-build-17-transfer-practice",
+			"java-level-1-java-foundations-build-17-practice-studio-supplemental-j1x06-java-foundations-build-17-transfer-practice"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-j1x06-java-foundations-build-17-extension-practice": [
+			"java-level-1-java-foundations-build-17-supplemental-j1x06-java-foundations-build-17-extension-practice",
+			"java-level-1-java-foundations-build-17-practice-studio-supplemental-j1x06-java-foundations-build-17-extension-practice"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-temperature-converter-core-concepts": [
+			"java-level-1-temperature-converter-curriculum-temperature-converter-core-concepts",
+			"java-level-1-temperature-converter-practice-studio-curriculum-temperature-converter-core-concepts"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-temperature-converter-guided-example": [
+			"java-level-1-temperature-converter-curriculum-temperature-converter-guided-example",
+			"java-level-1-temperature-converter-practice-studio-curriculum-temperature-converter-guided-example"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-core-project-temperature-converter": [
+			"java-level-1-temperature-converter-curriculum-core-project-temperature-converter",
+			"java-level-1-temperature-converter-practice-studio-curriculum-core-project-temperature-converter"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-review-temperature-converter": [
+			"java-level-1-temperature-converter-curriculum-review-temperature-converter",
+			"java-level-1-temperature-converter-practice-studio-curriculum-review-temperature-converter"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-extension-challenge-temperature-converter": [
+			"java-level-1-temperature-converter-supplemental-extension-challenge-temperature-converter",
+			"java-level-1-temperature-converter-practice-studio-supplemental-extension-challenge-temperature-converter"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-temperature-converter-transfer-practice": [
+			"java-level-1-temperature-converter-supplemental-transfer-practice-temperature-converter",
+			"java-level-1-temperature-converter-practice-studio-supplemental-temperature-converter-transfer-practice"
+		],
+		"java-level-1-optional-java-foundations-practice-archive-supplemental-temperature-converter-extension-practice": [
+			"java-level-1-temperature-converter-supplemental-extension-practice-temperature-converter",
+			"java-level-1-temperature-converter-practice-studio-supplemental-temperature-converter-extension-practice"
+		]
+	}
+}

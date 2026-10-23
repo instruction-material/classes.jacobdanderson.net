@@ -27,6 +27,7 @@ declare module 'vue' {
     CourseCodeAccessForm: typeof import('./components/CourseCodeAccessForm.vue')['default']
     CourseExplorer: typeof import('./components/CourseExplorer.vue')['default']
     GraphSketcherWorkspace: typeof import('./components/GraphSketcherWorkspace.vue')['default']
+    HistoricalCourseProgress: typeof import('./components/HistoricalCourseProgress.vue')['default']
     IdeDiagnosticsControls: typeof import('./components/IdeDiagnosticsControls.vue')['default']
     IdeEnvironmentSelect: typeof import('./components/IdeEnvironmentSelect.vue')['default']
     IdeStarterPicker: typeof import('./components/IdeStarterPicker.vue')['default']

@@ -1,0 +1,596 @@
+[
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-ptj0-positioning-and-workflow-translation-supplemental-extension-practice-positioning-and-workflow-translation",
+		"newId": "python-to-java-and-cpp-bridge-ptj0-positioning-and-workflow-translation-supplemental-workflow-translation-extension-practice",
+		"currentId": "python-to-java-and-cpp-bridge-ptj0-positioning-and-workflow-translation-supplemental-workflow-translation-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-ptj1-functions-parameters-and-return-types-supplemental-transfer-practice-functions-parameters-and-return-types",
+		"newId": "python-to-java-and-cpp-bridge-ptj1-functions-parameters-and-return-types-supplemental-function-signature-transfer-practice",
+		"currentId": "python-to-java-and-cpp-bridge-ptj1-functions-parameters-and-return-types-supplemental-function-signature-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-ptj1-functions-parameters-and-return-types-supplemental-extension-practice-functions-parameters-and-return-types",
+		"newId": "python-to-java-and-cpp-bridge-ptj1-functions-parameters-and-return-types-supplemental-return-type-extension-practice",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-ptj2-collections-strings-and-indexing-supplemental-transfer-practice-collections-strings-and-indexing",
+		"newId": "python-to-java-and-cpp-bridge-ptj2-collections-strings-and-indexing-supplemental-collection-indexing-transfer-practice",
+		"currentId": "python-to-java-and-cpp-bridge-ptj2-collections-strings-and-indexing-supplemental-collection-indexing-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-ptj2-collections-strings-and-indexing-supplemental-extension-practice-collections-strings-and-indexing",
+		"newId": "python-to-java-and-cpp-bridge-ptj2-collections-strings-and-indexing-supplemental-text-api-extension-practice",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-ptj3-classes-and-objects-across-languages-supplemental-transfer-practice-classes-and-objects-across-languages",
+		"newId": "python-to-java-and-cpp-bridge-ptj3-classes-and-objects-across-languages-supplemental-class-port-transfer-practice",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-ptj3-classes-and-objects-across-languages-supplemental-extension-practice-classes-and-objects-across-languages",
+		"newId": "python-to-java-and-cpp-bridge-ptj3-classes-and-objects-across-languages-supplemental-header-source-extension-practice",
+		"currentId": "python-to-java-and-cpp-bridge-ptj3-classes-and-objects-across-languages-supplemental-header-source-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-ptj4-java-specific-adaptation-supplemental-transfer-practice-java-specific-adaptation",
+		"newId": "python-to-java-and-cpp-bridge-ptj4-java-specific-adaptation-supplemental-java-scanner-transfer-practice",
+		"currentId": "python-to-java-and-cpp-bridge-ptj4-java-specific-adaptation-supplemental-java-scanner-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-ptj4-java-specific-adaptation-supplemental-extension-practice-java-specific-adaptation",
+		"newId": "python-to-java-and-cpp-bridge-ptj4-java-specific-adaptation-supplemental-java-quiz-extension-practice",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-ptj5-c-specific-adaptation-supplemental-transfer-practice-c-specific-adaptation",
+		"newId": "python-to-java-and-cpp-bridge-ptj5-c-specific-adaptation-supplemental-c-console-transfer-practice",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-ptj5-c-specific-adaptation-supplemental-extension-practice-c-specific-adaptation",
+		"newId": "python-to-java-and-cpp-bridge-ptj5-c-specific-adaptation-supplemental-c-vector-extension-practice",
+		"currentId": "python-to-java-and-cpp-bridge-ptj5-c-specific-adaptation-supplemental-c-vector-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-11",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-11-compile-run-comparison-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-11-curriculum-language-bridge-lab-11-core-concepts",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-11-compile-run-comparison-studio-curriculum-language-bridge-lab-11-core-concepts",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-11-curriculum-language-bridge-lab-11-guided-example",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-11-compile-run-comparison-studio-curriculum-language-bridge-lab-11-guided-example",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-11-curriculum-core-project-language-bridge-lab-11",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-11-compile-run-comparison-studio-curriculum-core-project-language-bridge-lab-11",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-11-curriculum-review-language-bridge-lab-11",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-11-compile-run-comparison-studio-curriculum-review-language-bridge-lab-11",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-11-supplemental-extension-challenge-language-bridge-lab-11",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-11-compile-run-comparison-studio-supplemental-extension-challenge-language-bridge-lab-11",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-11-supplemental-transfer-practice-language-bridge-lab-11",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-11-compile-run-comparison-studio-supplemental-compile-run-transfer-practice",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-11-supplemental-extension-practice-language-bridge-lab-11",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-11-compile-run-comparison-studio-supplemental-compile-run-extension-practice",
+		"currentId": null
+	},
+	{
+		"kind": "module",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-12",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-12-type-signature-translation-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-12-curriculum-language-bridge-lab-12-core-concepts",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-12-type-signature-translation-studio-curriculum-language-bridge-lab-12-core-concepts",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-12-curriculum-language-bridge-lab-12-guided-example",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-12-type-signature-translation-studio-curriculum-language-bridge-lab-12-guided-example",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-12-curriculum-core-project-language-bridge-lab-12",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-12-type-signature-translation-studio-curriculum-core-project-language-bridge-lab-12",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-12-curriculum-review-language-bridge-lab-12",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-12-type-signature-translation-studio-curriculum-review-language-bridge-lab-12",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-12-supplemental-extension-challenge-language-bridge-lab-12",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-12-type-signature-translation-studio-supplemental-extension-challenge-language-bridge-lab-12",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-12-supplemental-transfer-practice-language-bridge-lab-12",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-12-type-signature-translation-studio-supplemental-type-signature-transfer-practice",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-12-supplemental-extension-practice-language-bridge-lab-12",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-12-type-signature-translation-studio-supplemental-type-signature-extension-practice",
+		"currentId": null
+	},
+	{
+		"kind": "module",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-13",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-13-collection-porting-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-13-curriculum-language-bridge-lab-13-core-concepts",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-13-collection-porting-studio-curriculum-language-bridge-lab-13-core-concepts",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-13-curriculum-language-bridge-lab-13-guided-example",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-13-collection-porting-studio-curriculum-language-bridge-lab-13-guided-example",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-13-curriculum-core-project-language-bridge-lab-13",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-13-collection-porting-studio-curriculum-core-project-language-bridge-lab-13",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-13-curriculum-review-language-bridge-lab-13",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-13-collection-porting-studio-curriculum-review-language-bridge-lab-13",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-13-supplemental-extension-challenge-language-bridge-lab-13",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-13-collection-porting-studio-supplemental-extension-challenge-language-bridge-lab-13",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-13-supplemental-transfer-practice-language-bridge-lab-13",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-13-collection-porting-studio-supplemental-collection-porting-transfer-practice",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-13-supplemental-extension-practice-language-bridge-lab-13",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-13-collection-porting-studio-supplemental-collection-porting-extension-practice",
+		"currentId": null
+	},
+	{
+		"kind": "module",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-14",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-14-class-model-translation-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-14-curriculum-language-bridge-lab-14-core-concepts",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-14-class-model-translation-studio-curriculum-language-bridge-lab-14-core-concepts",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-14-curriculum-language-bridge-lab-14-guided-example",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-14-class-model-translation-studio-curriculum-language-bridge-lab-14-guided-example",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-14-curriculum-core-project-language-bridge-lab-14",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-14-class-model-translation-studio-curriculum-core-project-language-bridge-lab-14",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-14-curriculum-review-language-bridge-lab-14",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-14-class-model-translation-studio-curriculum-review-language-bridge-lab-14",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-14-supplemental-extension-challenge-language-bridge-lab-14",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-14-class-model-translation-studio-supplemental-extension-challenge-language-bridge-lab-14",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-14-supplemental-transfer-practice-language-bridge-lab-14",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-14-class-model-translation-studio-supplemental-class-model-transfer-practice",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-14-supplemental-extension-practice-language-bridge-lab-14",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-14-class-model-translation-studio-supplemental-class-model-extension-practice",
+		"currentId": null
+	},
+	{
+		"kind": "module",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-15",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-15-java-console-adaptation-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-15-curriculum-language-bridge-lab-15-core-concepts",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-15-java-console-adaptation-studio-curriculum-language-bridge-lab-15-core-concepts",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-15-curriculum-language-bridge-lab-15-guided-example",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-15-java-console-adaptation-studio-curriculum-language-bridge-lab-15-guided-example",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-15-curriculum-core-project-language-bridge-lab-15",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-15-java-console-adaptation-studio-curriculum-core-project-language-bridge-lab-15",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-15-curriculum-review-language-bridge-lab-15",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-15-java-console-adaptation-studio-curriculum-review-language-bridge-lab-15",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-15-supplemental-extension-challenge-language-bridge-lab-15",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-15-java-console-adaptation-studio-supplemental-extension-challenge-language-bridge-lab-15",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-15-supplemental-transfer-practice-language-bridge-lab-15",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-15-java-console-adaptation-studio-supplemental-java-console-transfer-practice",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-15-supplemental-extension-practice-language-bridge-lab-15",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-15-java-console-adaptation-studio-supplemental-java-console-extension-practice",
+		"currentId": null
+	},
+	{
+		"kind": "module",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-16",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-16-c-console-adaptation-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-16-curriculum-language-bridge-lab-16-core-concepts",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-16-c-console-adaptation-studio-curriculum-language-bridge-lab-16-core-concepts",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-16-curriculum-language-bridge-lab-16-guided-example",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-16-c-console-adaptation-studio-curriculum-language-bridge-lab-16-guided-example",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-16-curriculum-core-project-language-bridge-lab-16",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-16-c-console-adaptation-studio-curriculum-core-project-language-bridge-lab-16",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-16-curriculum-review-language-bridge-lab-16",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-16-c-console-adaptation-studio-curriculum-review-language-bridge-lab-16",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-16-supplemental-extension-challenge-language-bridge-lab-16",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-16-c-console-adaptation-studio-supplemental-extension-challenge-language-bridge-lab-16",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-16-supplemental-transfer-practice-language-bridge-lab-16",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-16-c-console-adaptation-studio-supplemental-c-console-adaptation-transfer-practice",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-16-supplemental-extension-practice-language-bridge-lab-16",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-16-c-console-adaptation-studio-supplemental-c-console-adaptation-extension-practice",
+		"currentId": null
+	},
+	{
+		"kind": "module",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-17",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-bridge-capstone-port-studio",
+		"currentId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-bridge-capstone-port-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-curriculum-language-bridge-lab-17-core-concepts",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-bridge-capstone-port-studio-curriculum-language-bridge-lab-17-core-concepts",
+		"currentId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-bridge-capstone-port-studio-curriculum-language-bridge-lab-17-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-curriculum-language-bridge-lab-17-guided-example",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-bridge-capstone-port-studio-curriculum-language-bridge-lab-17-guided-example",
+		"currentId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-bridge-capstone-port-studio-curriculum-language-bridge-lab-17-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-curriculum-core-project-language-bridge-lab-17",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-bridge-capstone-port-studio-curriculum-core-project-language-bridge-lab-17",
+		"currentId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-bridge-capstone-port-studio-curriculum-core-project-language-bridge-lab-17"
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-curriculum-review-language-bridge-lab-17",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-bridge-capstone-port-studio-curriculum-review-language-bridge-lab-17",
+		"currentId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-bridge-capstone-port-studio-curriculum-review-language-bridge-lab-17"
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-supplemental-extension-challenge-language-bridge-lab-17",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-bridge-capstone-port-studio-supplemental-extension-challenge-language-bridge-lab-17",
+		"currentId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-bridge-capstone-port-studio-supplemental-extension-challenge-language-bridge-lab-17"
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-supplemental-transfer-practice-language-bridge-lab-17",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-bridge-capstone-port-studio-supplemental-bridge-capstone-transfer-practice",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-supplemental-extension-practice-language-bridge-lab-17",
+		"newId": "python-to-java-and-cpp-bridge-language-bridge-lab-17-bridge-capstone-port-studio-supplemental-bridge-capstone-extension-practice",
+		"currentId": null
+	},
+	{
+		"kind": "module",
+		"oldId": "python-to-java-and-cpp-bridge-graphics",
+		"newId": "python-to-java-and-cpp-bridge-graphics-translation-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-graphics-curriculum-graphics-core-concepts",
+		"newId": "python-to-java-and-cpp-bridge-graphics-translation-studio-curriculum-graphics-translation-studio-core-concepts",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-graphics-curriculum-graphics-guided-example",
+		"newId": "python-to-java-and-cpp-bridge-graphics-translation-studio-curriculum-graphics-translation-studio-guided-example",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-graphics-curriculum-core-project-graphics",
+		"newId": "python-to-java-and-cpp-bridge-graphics-translation-studio-curriculum-core-project-graphics-translation-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-graphics-curriculum-review-graphics",
+		"newId": "python-to-java-and-cpp-bridge-graphics-translation-studio-curriculum-review-graphics-translation-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-graphics-supplemental-extension-challenge-graphics",
+		"newId": "python-to-java-and-cpp-bridge-graphics-translation-studio-supplemental-extension-challenge-graphics-translation-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-graphics-supplemental-transfer-practice-graphics",
+		"newId": "python-to-java-and-cpp-bridge-graphics-translation-studio-supplemental-graphics-transfer-practice",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-graphics-supplemental-extension-practice-graphics",
+		"newId": "python-to-java-and-cpp-bridge-graphics-translation-studio-supplemental-graphics-extension-practice",
+		"currentId": null
+	},
+	{
+		"kind": "module",
+		"oldId": "python-to-java-and-cpp-bridge-c-practice",
+		"newId": "python-to-java-and-cpp-bridge-c-console-practice-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-c-practice-curriculum-c-practice-core-concepts",
+		"newId": "python-to-java-and-cpp-bridge-c-console-practice-studio-curriculum-c-console-practice-studio-core-concepts",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-c-practice-curriculum-c-practice-guided-example",
+		"newId": "python-to-java-and-cpp-bridge-c-console-practice-studio-curriculum-c-console-practice-studio-guided-example",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-c-practice-curriculum-core-project-c-practice",
+		"newId": "python-to-java-and-cpp-bridge-c-console-practice-studio-curriculum-core-project-c-console-practice-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-c-practice-curriculum-review-c-practice",
+		"newId": "python-to-java-and-cpp-bridge-c-console-practice-studio-curriculum-review-c-console-practice-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-c-practice-supplemental-extension-challenge-c-practice",
+		"newId": "python-to-java-and-cpp-bridge-c-console-practice-studio-supplemental-extension-challenge-c-console-practice-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-c-practice-supplemental-cpp-practice-transfer-practice",
+		"newId": "python-to-java-and-cpp-bridge-c-console-practice-studio-supplemental-c-console-practice-transfer-practice",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-c-practice-supplemental-cpp-practice-extension-practice",
+		"newId": "python-to-java-and-cpp-bridge-c-console-practice-studio-supplemental-c-console-practice-extension-practice",
+		"currentId": null
+	},
+	{
+		"kind": "module",
+		"oldId": "python-to-java-and-cpp-bridge-java-foundations-build-12",
+		"newId": "python-to-java-and-cpp-bridge-java-foundations-transfer-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-java-foundations-build-12-curriculum-java-foundations-build-12-core-concepts",
+		"newId": "python-to-java-and-cpp-bridge-java-foundations-transfer-studio-curriculum-java-foundations-transfer-studio-core-concepts",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-java-foundations-build-12-curriculum-java-foundations-build-12-guided-example",
+		"newId": "python-to-java-and-cpp-bridge-java-foundations-transfer-studio-curriculum-java-foundations-transfer-studio-guided-example",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-java-foundations-build-12-curriculum-core-project-java-foundations-build-12",
+		"newId": "python-to-java-and-cpp-bridge-java-foundations-transfer-studio-curriculum-core-project-java-foundations-transfer-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-java-foundations-build-12-curriculum-review-java-foundations-build-12",
+		"newId": "python-to-java-and-cpp-bridge-java-foundations-transfer-studio-curriculum-review-java-foundations-transfer-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-java-foundations-build-12-supplemental-extension-challenge-java-foundations-build-12",
+		"newId": "python-to-java-and-cpp-bridge-java-foundations-transfer-studio-supplemental-extension-challenge-java-foundations-transfer-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-java-foundations-build-12-supplemental-j1x01-java-foundations-build-12-transfer-practice",
+		"newId": "python-to-java-and-cpp-bridge-java-foundations-transfer-studio-supplemental-java-foundations-transfer-practice",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-java-foundations-build-12-supplemental-j1x01-java-foundations-build-12-extension-practice",
+		"newId": "python-to-java-and-cpp-bridge-java-foundations-transfer-studio-supplemental-java-foundations-extension-practice",
+		"currentId": null
+	},
+	{
+		"kind": "module",
+		"oldId": "python-to-java-and-cpp-bridge-c-foundations-build-13",
+		"newId": "python-to-java-and-cpp-bridge-c-foundations-transfer-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-c-foundations-build-13-curriculum-c-foundations-build-13-core-concepts",
+		"newId": "python-to-java-and-cpp-bridge-c-foundations-transfer-studio-curriculum-c-foundations-transfer-studio-core-concepts",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-c-foundations-build-13-curriculum-c-foundations-build-13-guided-example",
+		"newId": "python-to-java-and-cpp-bridge-c-foundations-transfer-studio-curriculum-c-foundations-transfer-studio-guided-example",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-c-foundations-build-13-curriculum-core-project-c-foundations-build-13",
+		"newId": "python-to-java-and-cpp-bridge-c-foundations-transfer-studio-curriculum-core-project-c-foundations-transfer-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-c-foundations-build-13-curriculum-review-c-foundations-build-13",
+		"newId": "python-to-java-and-cpp-bridge-c-foundations-transfer-studio-curriculum-review-c-foundations-transfer-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-c-foundations-build-13-supplemental-extension-challenge-c-foundations-build-13",
+		"newId": "python-to-java-and-cpp-bridge-c-foundations-transfer-studio-supplemental-extension-challenge-c-foundations-transfer-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-c-foundations-build-13-supplemental-c-foundations-build-13-transfer-practice",
+		"newId": "python-to-java-and-cpp-bridge-c-foundations-transfer-studio-supplemental-c-foundations-transfer-practice",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "python-to-java-and-cpp-bridge-c-foundations-build-13-supplemental-c-foundations-build-13-extension-practice",
+		"newId": "python-to-java-and-cpp-bridge-c-foundations-transfer-studio-supplemental-c-foundations-extension-practice",
+		"currentId": null
+	}
+]

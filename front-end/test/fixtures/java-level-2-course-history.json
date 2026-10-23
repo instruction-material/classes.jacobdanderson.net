@@ -1,0 +1,206 @@
+[
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm3-static-variables-methods-supplemental-extension-practice-static-variables-methods",
+		"newId": "java-level-2-jm3-static-variables-methods-supplemental-static-variables-methods-extension-practice",
+		"currentId": "java-level-2-jm3-static-variables-methods-supplemental-static-variables-methods-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-check-in-1-supplemental-transfer-practice-check-in-1",
+		"newId": "java-level-2-check-in-1-supplemental-check-in-1-transfer-practice",
+		"currentId": "java-level-2-check-in-1-supplemental-java-level-2-check-in-1-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-check-in-1-supplemental-extension-practice-check-in-1",
+		"newId": "java-level-2-check-in-1-supplemental-check-in-1-extension-practice",
+		"currentId": "java-level-2-check-in-1-supplemental-java-level-2-check-in-1-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm4-subclasses-inheritance-supplemental-extension-practice-subclasses-inheritance",
+		"newId": "java-level-2-jm4-subclasses-inheritance-supplemental-subclasses-inheritance-extension-practice",
+		"currentId": "java-level-2-jm4-subclasses-inheritance-supplemental-subclasses-inheritance-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm5-maps-supplemental-transfer-practice-maps",
+		"newId": "java-level-2-jm5-maps-supplemental-maps-transfer-practice",
+		"currentId": "java-level-2-jm5-maps-supplemental-maps-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm5-maps-supplemental-extension-practice-maps",
+		"newId": "java-level-2-jm5-maps-supplemental-maps-extension-practice",
+		"currentId": "java-level-2-jm5-maps-supplemental-maps-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm6-threading-error-handling-supplemental-transfer-practice-threading-error-handling",
+		"newId": "java-level-2-jm6-threading-error-handling-supplemental-threading-error-handling-transfer-practice",
+		"currentId": "java-level-2-optional-java-concurrency-extension-supplemental-threading-error-handling-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm6-threading-error-handling-supplemental-extension-practice-threading-error-handling",
+		"newId": "java-level-2-jm6-threading-error-handling-supplemental-threading-error-handling-extension-practice",
+		"currentId": "java-level-2-optional-java-concurrency-extension-supplemental-threading-error-handling-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-check-in-2-supplemental-transfer-practice-check-in-2",
+		"newId": "java-level-2-check-in-2-supplemental-check-in-2-transfer-practice",
+		"currentId": "java-level-2-check-in-2-supplemental-java-level-2-check-in-2-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-check-in-2-supplemental-extension-practice-check-in-2",
+		"newId": "java-level-2-check-in-2-supplemental-check-in-2-extension-practice",
+		"currentId": "java-level-2-check-in-2-supplemental-java-level-2-check-in-2-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm7-bank-account-supplemental-transfer-practice-bank-account",
+		"newId": "java-level-2-jm7-bank-account-supplemental-bank-account-transfer-practice",
+		"currentId": "java-level-2-jm7-bank-account-supplemental-bank-account-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm7-bank-account-supplemental-extension-practice-bank-account",
+		"newId": "java-level-2-jm7-bank-account-supplemental-bank-account-extension-practice",
+		"currentId": "java-level-2-jm7-bank-account-supplemental-bank-account-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm8-file-i-o-supplemental-transfer-practice-file-i-o",
+		"newId": "java-level-2-jm8-file-i-o-supplemental-file-i-o-transfer-practice",
+		"currentId": "java-level-2-jm8-file-i-o-supplemental-file-i-o-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm8-file-i-o-supplemental-extension-practice-file-i-o",
+		"newId": "java-level-2-jm8-file-i-o-supplemental-file-i-o-extension-practice",
+		"currentId": "java-level-2-jm8-file-i-o-supplemental-file-i-o-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm9-maze-runner-supplemental-transfer-practice-maze-runner",
+		"newId": "java-level-2-jm9-maze-runner-supplemental-maze-runner-transfer-practice",
+		"currentId": "java-level-2-jm9-maze-runner-supplemental-maze-runner-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm9-maze-runner-supplemental-extension-practice-maze-runner",
+		"newId": "java-level-2-jm9-maze-runner-supplemental-maze-runner-extension-practice",
+		"currentId": "java-level-2-jm9-maze-runner-supplemental-maze-runner-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm10-master-project-supplemental-transfer-practice-java-level-2",
+		"newId": "java-level-2-jm10-master-project-supplemental-master-project-transfer-practice",
+		"currentId": "java-level-2-jm10-master-project-supplemental-java-level-2-master-project-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm10-master-project-supplemental-extension-practice-java-level-2",
+		"newId": "java-level-2-jm10-master-project-supplemental-master-project-extension-practice",
+		"currentId": "java-level-2-jm10-master-project-supplemental-java-level-2-master-project-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "java-level-2-jm-master-project-example-quiz-game",
+		"newId": "java-level-2-jm-master-project-example-quiz-game-practice-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm-master-project-example-quiz-game-curriculum-jm-master-project-example-quiz-game-core-concepts",
+		"newId": "java-level-2-jm-master-project-example-quiz-game-practice-studio-curriculum-jm-master-project-example-quiz-game-core-concepts",
+		"currentId": "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-jm-master-project-example-quiz-game-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm-master-project-example-quiz-game-curriculum-jm-master-project-example-quiz-game-guided-example",
+		"newId": "java-level-2-jm-master-project-example-quiz-game-practice-studio-curriculum-jm-master-project-example-quiz-game-guided-example",
+		"currentId": "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-jm-master-project-example-quiz-game-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm-master-project-example-quiz-game-curriculum-core-project-jm-master-project-example-quiz-game",
+		"newId": "java-level-2-jm-master-project-example-quiz-game-practice-studio-curriculum-core-project-jm-master-project-example-quiz-game",
+		"currentId": "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-core-project-jm-master-project-example-quiz-game"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm-master-project-example-quiz-game-curriculum-review-jm-master-project-example-quiz-game",
+		"newId": "java-level-2-jm-master-project-example-quiz-game-practice-studio-curriculum-review-jm-master-project-example-quiz-game",
+		"currentId": "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-review-jm-master-project-example-quiz-game"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm-master-project-example-quiz-game-supplemental-extension-challenge-jm-master-project-example-quiz-game",
+		"newId": "java-level-2-jm-master-project-example-quiz-game-practice-studio-supplemental-extension-challenge-jm-master-project-example-quiz-game",
+		"currentId": "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-extension-challenge-jm-master-project-example-quiz-game"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm-master-project-example-quiz-game-supplemental-transfer-practice-jm-master-project-example-quiz-game",
+		"newId": "java-level-2-jm-master-project-example-quiz-game-practice-studio-supplemental-jm-master-project-example-quiz-game-transfer-practice",
+		"currentId": "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-jm-master-project-example-quiz-game-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm-master-project-example-quiz-game-supplemental-extension-practice-jm-master-project-example-quiz-game",
+		"newId": "java-level-2-jm-master-project-example-quiz-game-practice-studio-supplemental-jm-master-project-example-quiz-game-extension-practice",
+		"currentId": "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-jm-master-project-example-quiz-game-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "java-level-2-jm-maze-runner-project",
+		"newId": "java-level-2-jm-maze-runner-project-practice-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm-maze-runner-project-curriculum-jm-maze-runner-project-core-concepts",
+		"newId": "java-level-2-jm-maze-runner-project-practice-studio-curriculum-jm-maze-runner-project-core-concepts",
+		"currentId": "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-jm-maze-runner-project-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm-maze-runner-project-curriculum-jm-maze-runner-project-guided-example",
+		"newId": "java-level-2-jm-maze-runner-project-practice-studio-curriculum-jm-maze-runner-project-guided-example",
+		"currentId": "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-jm-maze-runner-project-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm-maze-runner-project-curriculum-core-project-jm-maze-runner-project",
+		"newId": "java-level-2-jm-maze-runner-project-practice-studio-curriculum-core-project-jm-maze-runner-project",
+		"currentId": "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-core-project-jm-maze-runner-project"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm-maze-runner-project-curriculum-review-jm-maze-runner-project",
+		"newId": "java-level-2-jm-maze-runner-project-practice-studio-curriculum-review-jm-maze-runner-project",
+		"currentId": "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-review-jm-maze-runner-project"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm-maze-runner-project-supplemental-extension-challenge-jm-maze-runner-project",
+		"newId": "java-level-2-jm-maze-runner-project-practice-studio-supplemental-extension-challenge-jm-maze-runner-project",
+		"currentId": "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-extension-challenge-jm-maze-runner-project"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm-maze-runner-project-supplemental-transfer-practice-jm-maze-runner-project",
+		"newId": "java-level-2-jm-maze-runner-project-practice-studio-supplemental-jm-maze-runner-project-transfer-practice",
+		"currentId": "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-jm-maze-runner-project-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "java-level-2-jm-maze-runner-project-supplemental-extension-practice-jm-maze-runner-project",
+		"newId": "java-level-2-jm-maze-runner-project-practice-studio-supplemental-jm-maze-runner-project-extension-practice",
+		"currentId": "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-jm-maze-runner-project-extension-practice"
+	}
+]

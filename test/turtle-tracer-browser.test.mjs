@@ -54,6 +54,7 @@ test(
 	async () => {
 		let browser;
 		let server;
+		let page;
 		const previousDirectory = process.cwd();
 		try {
 			process.chdir(root);
@@ -99,7 +100,7 @@ test(
 				// Keep pixel comparisons deterministic across repeated readbacks.
 				args: ["--disable-accelerated-2d-canvas"]
 			});
-			const page = await browser.newPage();
+			page = await browser.newPage();
 			await page.setViewport({ width: 1440, height: 1000 });
 			page.on("pageerror", error =>
 				console.log("Browser error:", error.message)
@@ -347,6 +348,23 @@ test(
 				null
 			);
 			await page.close();
+		} catch (error) {
+			console.error(
+				"Turtle runtime at failure:",
+				await page
+					?.evaluate(() => ({
+						output: document.querySelector(".output-panel")
+							?.textContent,
+						frames: [...document.querySelectorAll("iframe")].map(
+							frame => ({
+								title: frame.title,
+								sandbox: frame.getAttribute("sandbox")
+							})
+						)
+					}))
+					.catch(() => null)
+			);
+			throw error;
 		} finally {
 			await browser?.close();
 			await server?.close();

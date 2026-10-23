@@ -4240,6 +4240,7 @@ function supplementalProjectFor(
 
 	return {
 		title: supplementalTransferTitle(topic),
+		aliases: ["Applied Challenge"],
 		content: supplementalTransferContent(topic, next, courseId)
 	};
 }

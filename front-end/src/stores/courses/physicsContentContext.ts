@@ -87,12 +87,18 @@ function applyPhysicsSupplementOverrides(course: RawCourse) {
 		const topic = physicsModuleTopic(module.title);
 		for (const item of module.supplementalProjects) {
 			if (item.title === "Diagnostic Checkpoint") {
+				item.aliases = [
+					...(item.aliases ?? []),
+					`Understanding Check: ${topic}`,
+					`Diagnostic Checkpoint: ${topic}`
+				];
 				item.title = `${topic} Readiness Check`;
 				item.content =
 					diagnosticCheckpointOverrides[module.title] ?? item.content;
 			}
 
 			if (item.title === "Failure Modes") {
+				item.aliases = [...(item.aliases ?? []), "Failure Modes"];
 				item.title = `${topic} Failure Modes`;
 				item.content =
 					misconceptionWatchlistOverrides[module.title] ??

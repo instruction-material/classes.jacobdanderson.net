@@ -1,9 +1,35 @@
 import { createPinia, setActivePinia } from "pinia";
 import { describe, expect, it } from "vitest";
 import { useCoursesStore } from "@/stores/courses";
+import {
+	nonCatalogCourseProgress,
+	unmatchedCourseProgress
+} from "@/modules/courseProgressHistory";
 import { courseCatalog } from "@/stores/courses/index";
 import { webDevelopmentFoundationsCourse } from "@/stores/courses/web-development-foundations";
 import { researchBackedExpansionCourseIds } from "@/stores/courses/research-expansions";
+import generatedProjectHistory from "./fixtures/generated-project-history.json";
+import generatedTitleCourseHistory from "./fixtures/generated-title-course-history.json";
+import broadTitle17b6History from "./fixtures/broad-title-17b6-history.json";
+import broadTitle509cHistory from "./fixtures/broad-title-509c-history.json";
+import broadTitleAfd19History from "./fixtures/broad-title-afd19-history.json";
+import broadTitleEebbHistory from "./fixtures/broad-title-eebb-history.json";
+import usacoStudioHistory from "./fixtures/usaco-studio-history.json";
+import apcsaCourseHistory from "./fixtures/apcsa-course-history.json";
+import machineLearningCourseHistory from "./fixtures/machine-learning-course-history.json";
+import designPatternsPart2History from "./fixtures/design-patterns-part-2-history.json";
+import linuxCourseHistory from "./fixtures/linux-course-history.json";
+import algebraCourseHistory from "./fixtures/algebra-course-history.json";
+import assemblyCourseHistory from "./fixtures/assembly-course-history.json";
+import cppAlgorithmsCourseHistory from "./fixtures/cpp-algorithms-course-history.json";
+import cppDesignPatternsCourseHistory from "./fixtures/cpp-design-patterns-progress-history.json";
+import lowLevelSecurityPart2CourseHistory from "./fixtures/low-level-security-part-2-progress-history.json";
+import networkSystemsCourseHistory from "./fixtures/network-systems-progress-history.json";
+import javaLevel1CourseHistory from "./fixtures/java-level-1-course-history.json";
+import javaLevel2CourseHistory from "./fixtures/java-level-2-course-history.json";
+import languageBridgeCourseHistory from "./fixtures/language-bridge-course-history.json";
+import lowLevelSecurityCourseHistory from "./fixtures/low-level-security-course-history.json";
+import usacoBronzeCourseHistory from "./fixtures/usaco-bronze-course-history.json";
 
 function historicalId(value: string) {
 	return value
@@ -15,6 +41,877 @@ function historicalId(value: string) {
 }
 
 describe("saved course progress identities", () => {
+	it("keeps retired Design Patterns studio modules distinct from the shared archive", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById(
+			"design-patterns-in-java"
+		);
+		const previousModuleIds = [11, 12, 13].map(
+			index => `design-patterns-in-java-pattern-lab-${index}`
+		);
+		const previousItemId = historicalId(
+			"design-patterns-in-java-pattern-lab-11-curriculum-Pattern Lab 15: Core Concepts"
+		);
+
+		expect(
+			unmatchedCourseProgress(course, {
+				courseId: "design-patterns-in-java",
+				completedModuleIds: previousModuleIds,
+				completedItemIds: [previousItemId]
+			})
+		).toEqual(previousModuleIds.map(id => ({ id, kind: "module" })));
+	});
+
+	it("keeps retired Pre-Algebra B archive completions visible without reassignment", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById("pre-algebra-b");
+		const previousArchiveId = "pre-algebra-b-source-activity-archive";
+		const retiredIds = [
+			"pre-algebra-b-source-activity-archive-supplemental-checkpoint-source-activity-archive",
+			"pre-algebra-b-source-activity-archive-supplemental-transfer-practice-source-activity-archive"
+		];
+
+		expect(
+			unmatchedCourseProgress(course, {
+				courseId: "pre-algebra-b",
+				completedModuleIds: [previousArchiveId],
+				completedItemIds: retiredIds
+			})
+		).toEqual(retiredIds.map(id => ({ id, kind: "item" })));
+	});
+
+	it("keeps original IDs through shared display-title transforms", async () => {
+		setActivePinia(createPinia());
+		for (const [courseId, previousId] of [
+			[
+				"scratch-level-1",
+				"scratch-level-1-gs14-mini-game-polish-studio-curriculum-core-concepts"
+			],
+			[
+				"scratch-level-1",
+				"scratch-level-1-gs13-master-project-supplemental-gs13-master-project-extension-challenge"
+			],
+			[
+				"ai-level-1",
+				"ai-level-1-ai-search-lab-13-curriculum-ai-search-lab-13-review-and-reflection"
+			]
+		] as const) {
+			const course = await useCoursesStore().loadCourseById(courseId);
+			const owners = course?.modules.flatMap(module =>
+				[...module.curriculum, ...module.supplementalProjects].filter(
+					item =>
+						item.id === previousId ||
+						item.aliases?.includes(previousId)
+				)
+			);
+			expect(owners, previousId).toHaveLength(1);
+		}
+	});
+
+	it("retains design-pattern practice and studio completions after relabeling", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById(
+			"design-patterns-in-java"
+		);
+		const subjects = [
+			"What Patterns Are and What They Are Not",
+			"Java Design Foundations",
+			"Creational Patterns I",
+			"Creational Patterns II and Boundary Patterns",
+			"Structural Patterns in Depth",
+			"Behavioral Patterns I",
+			"Behavioral Patterns II",
+			"Modern Extensions and Architecture Level Patterns",
+			"Pattern Selection and Refactoring Judgment",
+			"Capstone Refactor"
+		];
+		let checkedIds = 0;
+		for (const [index, subject] of subjects.entries()) {
+			const moduleId = historicalId(
+				`design-patterns-in-java-dpj${index + 1}-${subject}`
+			);
+			for (const [purpose, number] of [
+				["Transfer", 2],
+				["Extension", 3]
+			] as const) {
+				const previousId = historicalId(
+					`${moduleId}-supplemental-${purpose} Practice: ${subject}`
+				);
+				const owners = course?.modules.flatMap(module =>
+					module.supplementalProjects.filter(
+						item =>
+							item.id === previousId ||
+							item.aliases?.includes(previousId)
+					)
+				);
+				expect(owners, previousId).toHaveLength(1);
+				expect(owners?.[0].projectLink, previousId).toMatch(
+					new RegExp(
+						`-dpj${index + 1}-${historicalId(subject)}-supplemental-${number}/starter$`,
+						"u"
+					)
+				);
+				checkedIds++;
+			}
+		}
+		for (const [subject, moduleNumber, labNumber] of [
+			["Strategy Selection Refactor", 11, 15],
+			["Structural Wrapper Refactor", 12, 16],
+			["Architecture Judgment Capstone", 13, 17]
+		] as const) {
+			const previousModuleId = `design-patterns-in-java-pattern-lab-${moduleNumber}`;
+			const archive = course?.modules.find(
+				module =>
+					module.title === "Optional Applied Java Pattern Studios"
+			);
+			expect(archive).toBeDefined();
+			for (const [section, previousTitle, currentTitle] of [
+				[
+					"curriculum",
+					`Pattern Lab ${labNumber}: Core Concepts`,
+					`${subject}: Core Concepts`
+				],
+				[
+					"curriculum",
+					`Pattern Lab ${labNumber}: Guided Example`,
+					`${subject}: Guided Example`
+				],
+				[
+					"curriculum",
+					`Core Project: Pattern Lab ${labNumber}`,
+					`Core Project: ${subject}`
+				],
+				[
+					"curriculum",
+					`Review: Pattern Lab ${labNumber}`,
+					`Review: ${subject}`
+				],
+				[
+					"supplemental",
+					`Extension Challenge: Pattern Lab ${labNumber}`,
+					`Extension Challenge: ${subject}`
+				],
+				[
+					"supplemental",
+					`Pattern Lab ${labNumber} Transfer Practice`,
+					`${subject} Transfer Practice`
+				],
+				[
+					"supplemental",
+					`Pattern Lab ${labNumber} Extension Practice`,
+					`${subject} Extension Practice`
+				]
+			] as const) {
+				const previousId = historicalId(
+					`${previousModuleId}-${section}-${previousTitle}`
+				);
+				const owners = course?.modules.flatMap(entry =>
+					[...entry.curriculum, ...entry.supplementalProjects].filter(
+						item =>
+							item.id === previousId ||
+							item.aliases?.includes(previousId)
+					)
+				);
+				expect(owners, previousId).toHaveLength(1);
+				expect(archive?.supplementalProjects).toContain(owners?.[0]);
+				expect(owners?.[0].title, previousId).toBe(currentTitle);
+				checkedIds++;
+			}
+		}
+		expect(checkedIds).toBe(41);
+	});
+
+	it("retains math reference-archive progress from the source-activity labels", async () => {
+		setActivePinia(createPinia());
+		const archiveItemsByCourse: Record<string, string[]> = {
+			"algebra-1a": [
+				"curriculum-project-scenario-and-context-links",
+				"curriculum-pending-static-asset-placeholders",
+				"supplemental-standards-practice-set-source-activity-archive",
+				"supplemental-modeling-or-error-analysis-source-activity-archive"
+			],
+			"algebra-1b": [
+				"curriculum-project-scenario-and-context-links",
+				"curriculum-pending-static-asset-placeholders",
+				"supplemental-standards-practice-set-source-activity-archive",
+				"supplemental-modeling-or-error-analysis-source-activity-archive"
+			],
+			"algebra-2a": [
+				"curriculum-project-scenario-and-context-links",
+				"curriculum-pending-static-asset-placeholders",
+				"supplemental-standards-practice-set-source-activity-archive",
+				"supplemental-modeling-or-error-analysis-source-activity-archive"
+			],
+			"algebra-2b": [
+				"curriculum-source-activity-anchors-algebra-2b",
+				"curriculum-pending-static-asset-placeholders",
+				"supplemental-standards-practice-set-source-activity-archive",
+				"supplemental-modeling-or-error-analysis-source-activity-archive"
+			],
+			"geometry-a": ["curriculum-source-activity-anchors-geometry-a"],
+			"geometry-b": ["curriculum-source-activity-anchors-geometry-b"],
+			"pre-algebra-a": ["curriculum-pre-algebra-a-source-anchors"],
+			"pre-algebra-b": ["curriculum-pre-algebra-b-source-anchors"],
+			"pre-calculus-a": [
+				"curriculum-source-activity-anchors-pre-calculus-a"
+			],
+			"pre-calculus-b": [
+				"curriculum-source-activity-anchors-pre-calculus-b"
+			]
+		};
+		let checkedIds = 0;
+
+		for (const [courseId, itemSuffixes] of Object.entries(
+			archiveItemsByCourse
+		)) {
+			const course = await useCoursesStore().loadCourseById(courseId);
+			const previousModuleId = `${courseId}-source-activity-archive`;
+			const archiveOwners = course?.modules.filter(
+				module =>
+					module.id === previousModuleId ||
+					module.aliases?.includes(previousModuleId)
+			);
+			expect(archiveOwners, previousModuleId).toHaveLength(1);
+			const archive = archiveOwners?.[0];
+			expect(archive?.title).toContain("Reference Archive");
+			checkedIds++;
+
+			for (const suffix of itemSuffixes) {
+				const previousId = `${previousModuleId}-${suffix}`;
+				const owners = course?.modules.flatMap(module =>
+					[
+						...module.curriculum,
+						...module.supplementalProjects
+					].filter(
+						item =>
+							item.id === previousId ||
+							item.aliases?.includes(previousId)
+					)
+				);
+				expect(owners, previousId).toHaveLength(1);
+				expect(
+					archive?.curriculum.concat(archive.supplementalProjects)
+				).toContain(owners?.[0]);
+				checkedIds++;
+			}
+		}
+
+		const preAlgebra =
+			await useCoursesStore().loadCourseById("pre-algebra-a");
+		const capstoneId =
+			"pre-algebra-a-check-in-2-and-capstone-curriculum-source-activity-anchors-pre-algebra-a-capstone";
+		const capstoneOwners = preAlgebra?.modules.flatMap(module =>
+			module.curriculum.filter(
+				item =>
+					item.id === capstoneId || item.aliases?.includes(capstoneId)
+			)
+		);
+		expect(capstoneOwners, capstoneId).toHaveLength(1);
+		expect(capstoneOwners?.[0].title).toBe(
+			"Pre-Algebra A Capstone Reference Map"
+		);
+		expect(checkedIds + 1).toBe(33);
+	});
+
+	it("retains Java Level 3 practice completions across relabeling and archiving", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById("java-level-3");
+		const previousModules = [
+			[
+				"AJ1 Review: Variables, Strings, and Input",
+				"Variables, Strings, and Input"
+			],
+			["AJ3 Review: Objects and Classes", "Objects and Classes"],
+			["AJ4 Recursion", "Recursion"],
+			[
+				"AJ5 Linear Search and Big-O Notation",
+				"Linear Search and Big-O Notation"
+			],
+			["AJ6 Binary Search", "Binary Search"],
+			["Check-In #1", "Check-In #1"],
+			[
+				"AJ7 Selection and Insertion Sort",
+				"Selection and Insertion Sort"
+			],
+			["AJ8 Bubble Sort", "Bubble Sort"],
+			["AJ9 Merge Sort", "Merge Sort"],
+			["Check-In #2", "Check-In #2"],
+			["AJ10 Sustainable Programming", "Sustainable Programming"],
+			["AJ11 Linked Lists", "Linked Lists"],
+			["AJ13 Priority Queues and Maps", "Priority Queues and Maps"],
+			["Check-In #3", "Check-In #3"],
+			["AJ14 Binary Search Trees", "Binary Search Trees"],
+			["AJ15 Hash Tables", "Hash Tables"],
+			["AJ16 Graphs", "Graphs"],
+			["Check-In #4", "Check-In #4"],
+			["AJ17 Master Project: Google Maps", "Master Project: Google Maps"]
+		] as const;
+		let checkedIds = 0;
+
+		for (const [moduleTitle, previousTopic] of previousModules) {
+			const previousModuleId = historicalId(
+				`java-level-3-${moduleTitle}`
+			);
+			for (const [purpose, practiceNumber] of [
+				["Transfer", "2"],
+				["Extension", "3"]
+			] as const) {
+				const previousId = historicalId(
+					`${previousModuleId}-supplemental-${purpose} Practice: ${previousTopic}`
+				);
+				const owners = course?.modules.flatMap(module =>
+					module.supplementalProjects.filter(
+						item =>
+							item.id === previousId ||
+							item.aliases?.includes(previousId)
+					)
+				);
+				expect(owners, previousId).toHaveLength(1);
+				expect(owners?.[0].projectLink, previousId).toMatch(
+					new RegExp(
+						`-${previousModuleId.slice("java-level-3-".length)}-supplemental-${practiceNumber}/starter$`,
+						"u"
+					)
+				);
+				checkedIds++;
+			}
+		}
+		expect(checkedIds).toBe(38);
+	});
+
+	it("retains AI practice-studio completions after the module rename", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById("ai-level-1");
+		const previousTitles = [
+			"AI Search Lab 13",
+			"AI Search Lab 14",
+			"AI Search Lab 15",
+			"AI Search Lab 16",
+			"AI Search Lab 17",
+			"Unbeatable TicTacToe AI 1",
+			"The Marble Game AI"
+		];
+		let checkedIds = 0;
+
+		for (const previousTitle of previousTitles) {
+			const previousModuleId = historicalId(
+				`ai-level-1-${previousTitle}`
+			);
+			const module = course?.modules.find(
+				entry => entry.title === `${previousTitle}: Practice Studio`
+			);
+			const moduleOwners = course?.modules.filter(
+				entry =>
+					entry.id === previousModuleId ||
+					entry.aliases?.includes(previousModuleId)
+			);
+			expect(moduleOwners, previousModuleId).toEqual([module]);
+			checkedIds++;
+
+			for (const [section, previousItemTitle] of [
+				["curriculum", `${previousTitle}: Core Concepts`],
+				["curriculum", `${previousTitle}: Guided Example`],
+				["curriculum", `Core Project: ${previousTitle}`],
+				["curriculum", `Review: ${previousTitle}`],
+				["supplemental", `Extension Challenge: ${previousTitle}`],
+				["supplemental", `Transfer Practice: ${previousTitle}`],
+				["supplemental", `Extension Practice: ${previousTitle}`]
+			] as const) {
+				const previousId = historicalId(
+					`${previousModuleId}-${section}-${previousItemTitle}`
+				);
+				const owners = course?.modules.flatMap(entry =>
+					[...entry.curriculum, ...entry.supplementalProjects].filter(
+						item =>
+							item.id === previousId ||
+							item.aliases?.includes(previousId)
+					)
+				);
+				expect(owners, previousId).toHaveLength(1);
+				expect(
+					module?.curriculum.concat(module.supplementalProjects)
+				).toContain(owners?.[0]);
+				const currentItemTitle =
+					previousTitle === "Unbeatable TicTacToe AI 1" &&
+					/^(Transfer|Extension) Practice:/u.test(previousItemTitle)
+						? `${previousTitle} ${previousItemTitle.split(":")[0]}`
+						: previousItemTitle;
+				expect(owners?.[0].title, previousId).toBe(currentItemTitle);
+				checkedIds++;
+			}
+		}
+
+		const previousUnitSevenId =
+			"ai-level-1-unit-7-features-evaluation-and-responsible-ai-supplemental-extension-practice-features-evaluation-and-responsible-ai";
+		const unitSevenOwners = course?.modules.flatMap(module =>
+			module.supplementalProjects.filter(
+				item =>
+					item.id === previousUnitSevenId ||
+					item.aliases?.includes(previousUnitSevenId)
+			)
+		);
+		expect(unitSevenOwners, previousUnitSevenId).toHaveLength(1);
+		expect(unitSevenOwners?.[0].title).toBe(
+			"Extension Practice: Features, Evaluation, and Responsible AI"
+		);
+		expect(checkedIds + 1).toBe(57);
+	});
+
+	it("retains check-in practice completions after contextual title changes", async () => {
+		setActivePinia(createPinia());
+		const historicalModules: Record<string, string[]> = {
+			"scratch-level-2": ["check-in-1", "check-in-2"],
+			"python-level-1": ["check-in-1", "check-in-2", "check-in-3"],
+			pygames: [
+				"check-in-1-actors-events-zrects-collectibles",
+				"check-in-2-gravity-friction-platforms",
+				"check-in-3-system-control-projectiles-enemy-ai"
+			],
+			"python-level-2": ["check-in-1", "check-in-2"],
+			"python-level-3": ["check-in-1", "check-in-2", "check-in-3"],
+			"java-level-1": ["check-in-1", "check-in-2"],
+			"java-level-2": ["check-in-1", "check-in-2"],
+			"java-level-3": [
+				"check-in-1",
+				"check-in-2",
+				"check-in-3",
+				"check-in-4"
+			],
+			"javascript-level-1-javascript-superstar": [
+				"check-in-1",
+				"check-in-2"
+			],
+			"javascript-level-2-javascript-master": ["check-in-1", "check-in-2"]
+		};
+		let checkedIds = 0;
+
+		for (const [courseId, moduleSuffixes] of Object.entries(
+			historicalModules
+		)) {
+			const course = await useCoursesStore().loadCourseById(courseId);
+			for (const suffix of moduleSuffixes) {
+				const checkInNumber = suffix.match(/check-in-(\d+)/u)?.[1];
+				const previousId = `${courseId}-${suffix}-curriculum-check-in-${checkInNumber}-additional-practice-project`;
+				const owners = course?.modules.flatMap(module =>
+					module.curriculum
+						.filter(
+							item =>
+								item.id === previousId ||
+								item.aliases?.includes(previousId)
+						)
+						.map(item => ({ module, item }))
+				);
+				expect(owners, previousId).toHaveLength(1);
+				expect(owners?.[0].item.title, previousId).toContain(
+					"Practice Project"
+				);
+				checkedIds++;
+			}
+		}
+		expect(checkedIds).toBe(25);
+	});
+
+	it("retains physics check completions from before descriptive titles", async () => {
+		setActivePinia(createPinia());
+		const historicalModules = {
+			"intro-to-physics": [
+				"phy1-measurement-uncertainty-and-scientific-modeling",
+				"phy2-motion-graphs-and-kinematics",
+				"phy3-forces-free-body-diagrams-and-newton-s-laws",
+				"phy4-gravity-work-and-energy",
+				"phy5-electricity-and-basic-circuits",
+				"phy6-waves-sound-and-light",
+				"phy7-capstone-lab-and-scientific-communication",
+				"phy8-momentum-impulse-and-collisions",
+				"phy9-rotational-motion-and-torque-basics",
+				"phy10-fluids-pressure-and-buoyancy",
+				"phy11-heat-temperature-and-thermal-energy",
+				"phy12-optics-mirrors-lenses-and-images",
+				"phy13-magnetism-and-electromagnetic-induction",
+				"phy14-simple-harmonic-motion-and-resonance",
+				"phy15-astronomy-gravity-and-orbits",
+				"phy16-modern-physics-and-model-limits",
+				"phy17-engineering-design-and-physics-portfolio"
+			],
+			"physics-level-2": [
+				"phy8-quantitative-kinematics-and-vector-modeling",
+				"phy9-multi-force-systems-and-equilibrium",
+				"phy10-friction-inclines-and-connected-systems",
+				"phy11-momentum-impulse-and-collisions",
+				"phy12-rotational-motion-and-torque",
+				"phy13-gravitation-circular-motion-and-orbits",
+				"phy14-electricity-circuits-and-fields",
+				"phy15-thermal-physics-optics-and-modern-bridges",
+				"phy16-engineering-physics-capstone",
+				"phy17-numerical-modeling-and-simulation-checks",
+				"phy18-experimental-uncertainty-and-curve-fitting",
+				"phy19-coupled-systems-and-constraints",
+				"phy20-fluids-and-continuum-models",
+				"phy21-thermodynamics-and-engines",
+				"phy22-electromagnetic-applications-and-signals",
+				"phy23-relativity-and-reference-frames-preview",
+				"phy24-independent-physics-research-portfolio"
+			]
+		};
+		let checkedIds = 0;
+
+		for (const [courseId, suffixes] of Object.entries(historicalModules)) {
+			const course = await useCoursesStore().loadCourseById(courseId);
+			const allItems = course?.modules.flatMap(module => [
+				...module.curriculum,
+				...module.supplementalProjects
+			]);
+			for (const suffix of suffixes) {
+				const moduleId = `${courseId}-${suffix}`;
+				const module = course?.modules.find(
+					entry => entry.id === moduleId
+				);
+				expect(module, moduleId).toBeDefined();
+				const topic = module?.title.replace(/^PHY\d+\s+/u, "").trim();
+				for (const [previousTitle, currentSuffix] of [
+					[`Understanding Check: ${topic}`, "Readiness Check"],
+					["Failure Modes", "Failure Modes"]
+				]) {
+					const previousId = historicalId(
+						`${moduleId}-supplemental-${previousTitle}`
+					);
+					const owner = module?.supplementalProjects.find(item =>
+						item.title.endsWith(currentSuffix)
+					);
+					expect(owner?.aliases, previousId).toContain(previousId);
+					expect(owner?.id, previousId).not.toBe(previousId);
+					expect(
+						allItems?.filter(
+							item =>
+								item.id === previousId ||
+								item.aliases?.includes(previousId)
+						),
+						previousId
+					).toEqual([owner]);
+					checkedIds++;
+				}
+			}
+		}
+		expect(checkedIds).toBe(68);
+	});
+
+	it("retains diagnostic checkpoint progress after the label rename", async () => {
+		setActivePinia(createPinia());
+		const courseHistory = {
+			"design-patterns-in-java": { prefix: "dpj", count: 10 },
+			"design-patterns-in-java-part-2": { prefix: "dpr", count: 10 },
+			"intro-to-physics": { prefix: "phy", count: 17 },
+			"physics-level-2": { prefix: "phy", count: 17 },
+			"intro-to-swift-app-development": { prefix: "sad", count: 20 }
+		} as const;
+		let checkedIds = 0;
+
+		for (const [courseId, history] of Object.entries(courseHistory)) {
+			const course = await useCoursesStore().loadCourseById(courseId);
+			const allItems = course?.modules.flatMap(module => [
+				...module.curriculum,
+				...module.supplementalProjects
+			]);
+			let courseChecks = 0;
+			for (const module of course?.modules ?? []) {
+				const previousModuleId =
+					courseId === "intro-to-swift-app-development"
+						? module.aliases?.find(alias =>
+								/^intro-to-swift-app-development-sad\d+-/u.test(
+									alias
+								)
+							)
+						: module.id;
+				if (
+					!previousModuleId ||
+					!new RegExp(
+						`^${courseId}-${history.prefix}\\d+-`,
+						"u"
+					).test(previousModuleId)
+				)
+					continue;
+				const previousTopic = previousModuleId
+					.slice(courseId.length + 1)
+					.replace(/^[a-z]+\d+-/u, "");
+				const previousId = `${previousModuleId}-supplemental-diagnostic-checkpoint-${previousTopic}`;
+				const owners = allItems?.filter(
+					item =>
+						item.id === previousId ||
+						item.aliases?.includes(previousId)
+				);
+				expect(owners, previousId).toHaveLength(1);
+				expect(owners?.[0].id, previousId).not.toBe(previousId);
+				courseChecks++;
+			}
+			expect(courseChecks, courseId).toBe(history.count);
+			checkedIds += courseChecks;
+		}
+		expect(checkedIds).toBe(74);
+	});
+
+	it("retains Swift lesson progress from before the first label refinement", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById(
+			"intro-to-swift-app-development"
+		);
+		const historicalItems = [
+			[
+				"sad2-mac-setup-and-project-tooling-curriculum-mini-lab-first-blank-swiftui-app",
+				"First Blank SwiftUI App Studio"
+			],
+			[
+				"sad2-mac-setup-and-project-tooling-supplemental-understanding-check-mac-setup-and-project-tooling",
+				"SW1 Mac Setup and First Launch: Readiness Check"
+			],
+			[
+				"sad4-running-on-simulator-and-device-curriculum-mini-lab-first-launch-troubleshooting",
+				"First Launch Troubleshooting Studio"
+			],
+			[
+				"sad4-running-on-simulator-and-device-supplemental-understanding-check-running-on-simulator-and-device",
+				"SW15 Simulator and Device Validation: Readiness Check"
+			],
+			[
+				"sad6-what-an-app-is-structurally-curriculum-reflection-question-which-part-of-an-app-should-change-most-slowly",
+				"Reflection Question: Stable App Structure"
+			]
+		] as const;
+		const allItems = course?.modules.flatMap(module => [
+			...module.curriculum,
+			...module.supplementalProjects
+		]);
+		for (const [suffix, currentTitle] of historicalItems) {
+			const previousId = `intro-to-swift-app-development-${suffix}`;
+			const owners = allItems?.filter(item =>
+				item.aliases?.includes(previousId)
+			);
+			expect(owners, previousId).toHaveLength(1);
+			expect(owners?.[0].title, previousId).toBe(currentTitle);
+		}
+	});
+
+	it("retains Swift practice progress from before the label order changed", async () => {
+		setActivePinia(createPinia());
+		const courseId = "intro-to-swift-app-development";
+		const course = await useCoursesStore().loadCourseById(courseId);
+		let checkedIds = 0;
+
+		for (const module of course?.modules ?? []) {
+			const previousModuleId = module.aliases?.find(alias =>
+				/^intro-to-swift-app-development-sad(?:\d+|x)-/u.test(alias)
+			);
+			if (!previousModuleId) continue;
+			const moduleSuffix = previousModuleId.slice(courseId.length + 1);
+			const topicSuffix = moduleSuffix.replace(/^sad\d+-/u, "");
+			const labels = moduleSuffix.startsWith("sad1-")
+				? ["extension"]
+				: ["transfer", "extension"];
+			for (const label of labels) {
+				const previousId = `${previousModuleId}-supplemental-${label}-practice-${topicSuffix}`;
+				const owners = course?.modules.flatMap(entry =>
+					entry.supplementalProjects.filter(
+						item =>
+							item.id === previousId ||
+							item.aliases?.includes(previousId)
+					)
+				);
+				expect(owners, previousId).toHaveLength(1);
+				expect(module.supplementalProjects, previousId).toContain(
+					owners?.[0]
+				);
+				checkedIds++;
+			}
+		}
+		expect(checkedIds).toBe(41);
+	});
+
+	it("retains Java pattern lesson progress after studio labels and grouping", async () => {
+		setActivePinia(createPinia());
+		const historicalLessons = [
+			[
+				"design-patterns-in-java-part-2",
+				"dpr1",
+				"Mini Lab: Write the Refactor Plan Before Touching Code"
+			],
+			[
+				"design-patterns-in-java-part-2",
+				"dpr2",
+				"Mini Lab: Refactor a Calculation Pipeline Safely"
+			],
+			[
+				"design-patterns-in-java-part-2",
+				"dpr3",
+				"Mini Lab: Re-home Behavior Without Breaking Clients"
+			],
+			[
+				"design-patterns-in-java-part-2",
+				"dpr5",
+				"Mini Lab: Conditional Tangle Rescue"
+			],
+			[
+				"design-patterns-in-java-part-2",
+				"dpr6",
+				"Mini Lab: Reduce Call-Site Noise in a Service Layer"
+			],
+			[
+				"design-patterns-in-java-part-2",
+				"dpr7",
+				"Mini Lab: Repair a Parallel Hierarchy"
+			],
+			[
+				"design-patterns-in-java-part-2",
+				"dpr8",
+				"Mini Lab: Refactor Until the Pattern Is Obvious"
+			],
+			[
+				"design-patterns-in-java-part-2",
+				"dpr9",
+				"Mini Lab: Characterization Test then Structural Change"
+			],
+			["design-patterns-in-java", "dpj9", "Smell-to-Pattern Mapping"],
+			["design-patterns-in-java", "dpj9", "When Not to Use the Pattern"],
+			[
+				"design-patterns-in-java",
+				"dpj9",
+				"Mini Lab: Improve a Brittle Object Model with Restraint"
+			]
+		] as const;
+
+		for (const [courseId, moduleCode, oldTitle] of historicalLessons) {
+			const course = await useCoursesStore().loadCourseById(courseId);
+			const module = course?.modules.find(entry =>
+				entry.id.startsWith(`${courseId}-${moduleCode}-`)
+			);
+			expect(module, `${courseId}-${moduleCode}`).toBeDefined();
+			const previousId = historicalId(
+				`${module?.id}-curriculum-${oldTitle}`
+			);
+			const owners = course?.modules
+				.flatMap(entry => [
+					...entry.curriculum,
+					...entry.supplementalProjects
+				])
+				.filter(item => item.aliases?.includes(previousId));
+			expect(owners, previousId).toHaveLength(1);
+			expect(module?.curriculum, previousId).toContain(owners?.[0]);
+		}
+	});
+
+	it("retains extension progress after specific project titles", async () => {
+		setActivePinia(createPinia());
+		const courseHistory = {
+			"intro-to-physics": {
+				module: /^intro-to-physics-phy(?:[89]|1[0-7])-/u,
+				count: 10
+			},
+			"physics-level-2": {
+				module: /^physics-level-2-phy(?:1[7-9]|2[0-4])-/u,
+				count: 8
+			},
+			"scratch-level-1": {
+				module: /^scratch-level-1-gs1[4-7]-/u,
+				count: 4
+			},
+			"scratch-level-2": {
+				module: /^scratch-level-2-gm1[2-5]-/u,
+				count: 4
+			}
+		} as const;
+		let checkedIds = 0;
+
+		for (const [courseId, history] of Object.entries(courseHistory)) {
+			const course = await useCoursesStore().loadCourseById(courseId);
+			const allItems = course?.modules.flatMap(module => [
+				...module.curriculum,
+				...module.supplementalProjects
+			]);
+			const modules = course?.modules.filter(module =>
+				history.module.test(module.id)
+			);
+			expect(modules, courseId).toHaveLength(history.count);
+			for (const module of modules ?? []) {
+				const previousId = `${module.id}-supplemental-extension-project`;
+				const owners = allItems?.filter(item =>
+					item.aliases?.includes(previousId)
+				);
+				expect(owners, previousId).toHaveLength(1);
+				expect(module.supplementalProjects, previousId).toContain(
+					owners?.[0]
+				);
+				checkedIds++;
+			}
+		}
+		expect(checkedIds).toBe(26);
+	});
+
+	it("retains JavaScript Level 2 practice completions from before label changes", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById(
+			"javascript-level-2-javascript-master"
+		);
+		const previousTopics = [
+			["JSM1 Fundamentals Review", "Fundamentals Review"],
+			["JSM3 Complex Conditionals", "Complex Conditionals"],
+			["JSM4 Canvas", "Canvas"],
+			["JSM5 Arrays and Iterators", "Arrays and Iterators"],
+			["JSM6 Objects and Properties", "Objects and Properties"],
+			["Check-In #1", "Check-In 1"],
+			[
+				"JSM7 Helper Functions and Event Listeners",
+				"Helper Functions and Event Listeners"
+			],
+			["JSM8 Collisions and Controls", "Collisions and Controls"],
+			["JSM9 Games in the Canvas", "Games in the Canvas"],
+			["JSM10 APIs and Requests", "APIs and Requests"],
+			["JSM12 NoSQL and CRUD", "NoSQL and CRUD"],
+			["Check-In #2", "Check-In 2"],
+			["JSM13 Message Board", "Message Board"],
+			["JSM14 Quiz Game", "Quiz Game"],
+			["JSM15 Master Project", "JavaScript Level 2: JavaScript Master"]
+		] as const;
+		const extensionOnly = new Set([
+			"JSM4 Canvas",
+			"JSM5 Arrays and Iterators",
+			"JSM6 Objects and Properties",
+			"JSM7 Helper Functions and Event Listeners"
+		]);
+		const allItems = course?.modules.flatMap(module => [
+			...module.curriculum,
+			...module.supplementalProjects
+		]);
+		let checkedIds = 0;
+
+		for (const [moduleTitle, topic] of previousTopics) {
+			const module = course?.modules.find(
+				entry => entry.title === moduleTitle
+			);
+			expect(module, moduleTitle).toBeDefined();
+			const practices = extensionOnly.has(moduleTitle)
+				? ["Extension Practice"]
+				: ["Transfer Practice", "Extension Practice"];
+			for (const practice of practices) {
+				const previousId = historicalId(
+					`${module?.id}-supplemental-${practice}: ${topic}`
+				);
+				const owner = module?.supplementalProjects.find(item =>
+					item.title.endsWith(practice)
+				);
+				expect(owner?.aliases, previousId).toContain(previousId);
+				expect(owner?.id, previousId).not.toBe(previousId);
+				expect(
+					allItems?.filter(
+						item =>
+							item.id === previousId ||
+							item.aliases?.includes(previousId)
+					),
+					previousId
+				).toEqual([owner]);
+				checkedIds++;
+			}
+		}
+		expect(checkedIds).toBe(26);
+	});
+
 	it("retains Pythonic practice completions from before the label reorder", async () => {
 		setActivePinia(createPinia());
 		const course = await useCoursesStore().loadCourseById(
@@ -954,6 +1851,810 @@ describe("saved course progress identities", () => {
 				.find(item => item.title === currentTitle);
 			expect(item, currentTitle).toBeDefined();
 			expect(item?.aliases, oldId).toContain(oldId);
+		}
+	});
+
+	it("retains generated applied-challenge completions after transfer-project renaming", async () => {
+		setActivePinia(createPinia());
+		const store = useCoursesStore();
+		const historicalIds = [
+			[
+				"python-level-1",
+				"python-level-1-check-in-1-supplemental-applied-challenge"
+			],
+			[
+				"python-level-3",
+				"python-level-3-am7-binary-search-supplemental-applied-challenge"
+			]
+		] as const;
+
+		for (const [courseId, historicalId] of historicalIds) {
+			const course = await store.loadCourseById(courseId);
+			const owners = course?.modules.flatMap(module =>
+				module.supplementalProjects.filter(
+					item =>
+						item.id === historicalId ||
+						item.aliases?.includes(historicalId)
+				)
+			);
+			expect(owners, historicalId).toHaveLength(1);
+		}
+
+		const retiredCourse = await store.loadCourseById("cpp-level-2");
+		const retiredId =
+			"cpp-level-2-cppm1-pointers-and-addresses-supplemental-applied-challenge";
+		expect(
+			unmatchedCourseProgress(retiredCourse, {
+				courseId: "cpp-level-2",
+				completedModuleIds: [],
+				completedItemIds: [retiredId]
+			})
+		).toEqual([{ id: retiredId, kind: "item" }]);
+	});
+
+	it("retains all changed generated-project IDs as current aliases or exact archived history", async () => {
+		setActivePinia(createPinia());
+		const store = useCoursesStore();
+		expect(generatedProjectHistory).toHaveLength(72);
+
+		for (const {
+			course: courseId,
+			oldId,
+			newId
+		} of generatedProjectHistory) {
+			const course = await store.loadCourseById(courseId);
+			const items =
+				course?.modules.flatMap(
+					module => module.supplementalProjects
+				) ?? [];
+			const oldOwners = items.filter(
+				item => item.id === oldId || item.aliases?.includes(oldId)
+			);
+			const newOwners = items.filter(
+				item => item.id === newId || item.aliases?.includes(newId)
+			);
+			expect(oldOwners.length, oldId).toBeLessThanOrEqual(1);
+			expect(newOwners.length, newId).toBeLessThanOrEqual(1);
+			if (newOwners.length) {
+				expect(oldOwners, oldId).toEqual(newOwners);
+			} else if (!oldOwners.length) {
+				expect(
+					unmatchedCourseProgress(course, {
+						courseId,
+						completedModuleIds: [],
+						completedItemIds: [oldId]
+					})
+				).toEqual([{ id: oldId, kind: "item" }]);
+			}
+		}
+	});
+
+	it("keeps USACO studio completions on the same moved lessons", async () => {
+		setActivePinia(createPinia());
+		const store = useCoursesStore();
+		expect(usacoStudioHistory).toHaveLength(216);
+		expect(
+			usacoStudioHistory.filter(entry => entry.currentId)
+		).toHaveLength(188);
+
+		for (const {
+			course: courseId,
+			kind,
+			oldId,
+			newId,
+			currentId
+		} of usacoStudioHistory) {
+			const course = await store.loadCourseById(courseId);
+			const modules = course?.modules ?? [];
+			const items = modules.flatMap(module => [
+				...module.curriculum,
+				...module.supplementalProjects
+			]);
+			if (currentId) {
+				const currentItem = items.find(item => item.id === currentId);
+				expect(currentItem, currentId).toBeDefined();
+				expect(currentItem?.aliases, oldId).toContain(oldId);
+				expect(
+					currentId.split(/-(?:curriculum|supplemental)-/).at(-1),
+					currentId
+				).toBe(newId.split(/-(?:curriculum|supplemental)-/).at(-1));
+			} else {
+				expect(kind === "module" || oldId.endsWith("-stacks")).toBe(
+					true
+				);
+				expect(
+					unmatchedCourseProgress(course, {
+						courseId,
+						completedModuleIds: kind === "module" ? [oldId] : [],
+						completedItemIds: kind === "item" ? [oldId] : []
+					})
+				).toEqual([{ id: oldId, kind }]);
+			}
+		}
+	});
+
+	it("preserves AP CSA progress through the course reorganization", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById(
+			"ap-computer-science-a"
+		);
+		const modules = course?.modules ?? [];
+		const items = modules.flatMap(module => [
+			...module.curriculum,
+			...module.supplementalProjects
+		]);
+		expect(apcsaCourseHistory).toHaveLength(154);
+		expect(
+			apcsaCourseHistory.filter(entry => !entry.currentId)
+		).toHaveLength(7);
+
+		for (const { kind, oldId, currentId } of apcsaCourseHistory) {
+			const entities = kind === "module" ? modules : items;
+			const owners = entities.filter(
+				entity => entity.id === oldId || entity.aliases?.includes(oldId)
+			);
+			if (currentId) {
+				expect(
+					owners.map(entity => entity.id),
+					oldId
+				).toEqual([currentId]);
+			} else {
+				expect(owners, oldId).toEqual([]);
+				expect(
+					unmatchedCourseProgress(course, {
+						courseId: "ap-computer-science-a",
+						completedModuleIds: kind === "module" ? [oldId] : [],
+						completedItemIds: kind === "item" ? [oldId] : []
+					})
+				).toEqual([{ id: oldId, kind }]);
+			}
+		}
+	});
+
+	it("preserves machine-learning progress through studio title changes", async () => {
+		setActivePinia(createPinia());
+		const course =
+			await useCoursesStore().loadCourseById("machine-learning");
+		const modules = course?.modules ?? [];
+		const items = modules.flatMap(module => [
+			...module.curriculum,
+			...module.supplementalProjects
+		]);
+		expect(machineLearningCourseHistory).toHaveLength(66);
+		expect(
+			machineLearningCourseHistory.filter(entry => !entry.currentId)
+		).toHaveLength(2);
+
+		for (const { kind, oldId, currentId } of machineLearningCourseHistory) {
+			const entities = kind === "module" ? modules : items;
+			const owners = entities.filter(
+				entity => entity.id === oldId || entity.aliases?.includes(oldId)
+			);
+			if (currentId) {
+				expect(
+					owners.map(entity => entity.id),
+					oldId
+				).toEqual([currentId]);
+			} else {
+				expect(owners, oldId).toEqual([]);
+				expect(
+					unmatchedCourseProgress(course, {
+						courseId: "machine-learning",
+						completedModuleIds: kind === "module" ? [oldId] : [],
+						completedItemIds: kind === "item" ? [oldId] : []
+					})
+				).toEqual([{ id: oldId, kind }]);
+			}
+		}
+	});
+
+	it("preserves Design Patterns Part 2 progress through clinic relabeling and consolidation", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById(
+			"design-patterns-in-java-part-2"
+		);
+		const modules = course?.modules ?? [];
+		const items = modules.flatMap(module => [
+			...module.curriculum,
+			...module.supplementalProjects
+		]);
+		expect(designPatternsPart2History).toHaveLength(76);
+		expect(
+			designPatternsPart2History.filter(entry => !entry.currentId)
+		).toHaveLength(7);
+
+		for (const { kind, oldId, currentId } of designPatternsPart2History) {
+			const entities = kind === "module" ? modules : items;
+			const owners = entities.filter(
+				entity => entity.id === oldId || entity.aliases?.includes(oldId)
+			);
+			if (currentId) {
+				expect(
+					owners.map(entity => entity.id),
+					oldId
+				).toEqual([currentId]);
+			} else {
+				expect(kind).toBe("module");
+				expect(owners, oldId).toEqual([]);
+				expect(
+					unmatchedCourseProgress(course, {
+						courseId: "design-patterns-in-java-part-2",
+						completedModuleIds: [oldId],
+						completedItemIds: []
+					})
+				).toEqual([{ id: oldId, kind }]);
+			}
+		}
+	});
+
+	it("preserves Linux Systems progress through lesson relabeling and studio consolidation", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById("linux-systems");
+		const modules = course?.modules ?? [];
+		const items = modules.flatMap(module => [
+			...module.curriculum,
+			...module.supplementalProjects
+		]);
+		expect(linuxCourseHistory).toHaveLength(58);
+		expect(
+			linuxCourseHistory.filter(entry => !entry.currentId)
+		).toHaveLength(3);
+
+		for (const { kind, oldId, currentId } of linuxCourseHistory) {
+			const entities = kind === "module" ? modules : items;
+			const owners = entities.filter(
+				entity => entity.id === oldId || entity.aliases?.includes(oldId)
+			);
+			if (currentId) {
+				expect(
+					owners.map(entity => entity.id),
+					oldId
+				).toEqual([currentId]);
+			} else {
+				expect(kind).toBe("module");
+				expect(owners, oldId).toEqual([]);
+				expect(
+					unmatchedCourseProgress(course, {
+						courseId: "linux-systems",
+						completedModuleIds: [oldId],
+						completedItemIds: []
+					})
+				).toEqual([{ id: oldId, kind }]);
+			}
+		}
+	});
+
+	it("preserves Assembly progress through lesson relabeling and studio consolidation", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById("assembly");
+		const modules = course?.modules ?? [];
+		const items = modules.flatMap(module => [
+			...module.curriculum,
+			...module.supplementalProjects
+		]);
+		expect(assemblyCourseHistory).toHaveLength(52);
+		expect(
+			assemblyCourseHistory.filter(entry => !entry.currentId)
+		).toHaveLength(3);
+
+		for (const { kind, oldId, currentId } of assemblyCourseHistory) {
+			const entities = kind === "module" ? modules : items;
+			const owners = entities.filter(
+				entity => entity.id === oldId || entity.aliases?.includes(oldId)
+			);
+			if (currentId) {
+				expect(
+					owners.map(entity => entity.id),
+					oldId
+				).toEqual([currentId]);
+			} else {
+				expect(kind).toBe("module");
+				expect(owners, oldId).toEqual([]);
+				expect(
+					unmatchedCourseProgress(course, {
+						courseId: "assembly",
+						completedModuleIds: [oldId],
+						completedItemIds: []
+					})
+				).toEqual([{ id: oldId, kind }]);
+			}
+		}
+	});
+
+	it("preserves Algebra practice progress without reassigning retired exercises", async () => {
+		setActivePinia(createPinia());
+		const store = useCoursesStore();
+		const courses = new Map();
+		expect(algebraCourseHistory).toHaveLength(142);
+		expect(
+			algebraCourseHistory.filter(entry => !entry.currentId)
+		).toHaveLength(16);
+
+		for (const {
+			courseId,
+			oldId,
+			newId,
+			currentId
+		} of algebraCourseHistory) {
+			if (!courses.has(courseId))
+				courses.set(courseId, await store.loadCourseById(courseId));
+			const course = courses.get(courseId);
+			const items = course?.modules.flatMap(module => [
+				...module.curriculum,
+				...module.supplementalProjects
+			]);
+			for (const previousId of [oldId, newId]) {
+				const owners = items?.filter(
+					item =>
+						item.id === previousId ||
+						item.aliases?.includes(previousId)
+				);
+				if (currentId) {
+					expect(
+						owners?.map(item => item.id),
+						previousId
+					).toEqual([currentId]);
+				} else {
+					expect(owners, previousId).toEqual([]);
+					expect(
+						unmatchedCourseProgress(course, {
+							courseId,
+							completedModuleIds: [],
+							completedItemIds: [previousId]
+						})
+					).toEqual([{ id: previousId, kind: "item" }]);
+				}
+			}
+		}
+	});
+
+	it("preserves C++ algorithm progress without merging retired lab completions", async () => {
+		setActivePinia(createPinia());
+		const courseId = "data-structures-and-algorithms-in-cpp";
+		const course = await useCoursesStore().loadCourseById(courseId);
+		const modules = course?.modules ?? [];
+		const items = modules.flatMap(module => [
+			...module.curriculum,
+			...module.supplementalProjects
+		]);
+		expect(cppAlgorithmsCourseHistory).toHaveLength(76);
+		expect(
+			cppAlgorithmsCourseHistory.filter(entry => !entry.currentId)
+		).toHaveLength(7);
+
+		for (const {
+			kind,
+			oldId,
+			newId,
+			currentId
+		} of cppAlgorithmsCourseHistory) {
+			const entities = kind === "module" ? modules : items;
+			for (const previousId of [oldId, newId]) {
+				const owners = entities.filter(
+					entity =>
+						entity.id === previousId ||
+						entity.aliases?.includes(previousId)
+				);
+				if (currentId) {
+					expect(
+						owners.map(entity => entity.id),
+						previousId
+					).toEqual([currentId]);
+				} else {
+					expect(kind).toBe("module");
+					expect(owners, previousId).toEqual([]);
+					expect(
+						unmatchedCourseProgress(course, {
+							courseId,
+							completedModuleIds: [previousId],
+							completedItemIds: []
+						})
+					).toEqual([{ id: previousId, kind: "module" }]);
+				}
+			}
+		}
+	});
+
+	it("preserves systems and C++ pattern progress through studio regrouping", async () => {
+		setActivePinia(createPinia());
+		const store = useCoursesStore();
+		for (const { courseId, history, retired } of [
+			{
+				courseId: "network-systems",
+				history: networkSystemsCourseHistory,
+				retired: 2
+			},
+			{
+				courseId: "low-level-security-part-2",
+				history: lowLevelSecurityPart2CourseHistory,
+				retired: 0
+			},
+			{
+				courseId: "design-patterns-in-cpp",
+				history: cppDesignPatternsCourseHistory,
+				retired: 4
+			}
+		]) {
+			const course = await store.loadCourseById(courseId);
+			const modules = course?.modules ?? [];
+			const items = modules.flatMap(module => [
+				...module.curriculum,
+				...module.supplementalProjects
+			]);
+			expect(history.filter(entry => !entry.currentId)).toHaveLength(
+				retired
+			);
+			for (const { kind, oldId, newId, currentId } of history) {
+				const entities = kind === "module" ? modules : items;
+				for (const previousId of [oldId, newId]) {
+					const owners = entities.filter(
+						entity =>
+							entity.id === previousId ||
+							entity.aliases?.includes(previousId)
+					);
+					if (currentId) {
+						expect(
+							owners.map(entity => entity.id),
+							previousId
+						).toEqual([currentId]);
+					} else {
+						expect(kind).toBe("module");
+						expect(owners, previousId).toEqual([]);
+						expect(
+							unmatchedCourseProgress(course, {
+								courseId,
+								completedModuleIds: [previousId],
+								completedItemIds: []
+							})
+						).toEqual([{ id: previousId, kind: "module" }]);
+					}
+				}
+			}
+		}
+	});
+
+	it("preserves Java Level 2 practice progress without merging retired studios", async () => {
+		setActivePinia(createPinia());
+		const courseId = "java-level-2";
+		const course = await useCoursesStore().loadCourseById(courseId);
+		const modules = course?.modules ?? [];
+		const items = modules.flatMap(module => [
+			...module.curriculum,
+			...module.supplementalProjects
+		]);
+		expect(javaLevel2CourseHistory).toHaveLength(34);
+		expect(
+			javaLevel2CourseHistory.filter(entry => !entry.currentId)
+		).toHaveLength(2);
+
+		for (const {
+			kind,
+			oldId,
+			newId,
+			currentId
+		} of javaLevel2CourseHistory) {
+			const entities = kind === "module" ? modules : items;
+			for (const previousId of [oldId, newId]) {
+				const owners = entities.filter(
+					entity =>
+						entity.id === previousId ||
+						entity.aliases?.includes(previousId)
+				);
+				if (currentId) {
+					expect(
+						owners.map(entity => entity.id),
+						previousId
+					).toEqual([currentId]);
+				} else {
+					expect(kind).toBe("module");
+					expect(owners, previousId).toEqual([]);
+					expect(
+						unmatchedCourseProgress(course, {
+							courseId,
+							completedModuleIds: [previousId],
+							completedItemIds: []
+						})
+					).toEqual([{ id: previousId, kind: "module" }]);
+				}
+			}
+		}
+	});
+
+	it("preserves Java Level 1 practice progress without merging retired studios", async () => {
+		setActivePinia(createPinia());
+		const courseId = "java-level-1";
+		const course = await useCoursesStore().loadCourseById(courseId);
+		const modules = course?.modules ?? [];
+		const items = modules.flatMap(module => [
+			...module.curriculum,
+			...module.supplementalProjects
+		]);
+		expect(javaLevel1CourseHistory).toHaveLength(58);
+		expect(
+			javaLevel1CourseHistory.filter(entry => !entry.currentId)
+		).toHaveLength(6);
+
+		for (const {
+			kind,
+			oldId,
+			newId,
+			currentId
+		} of javaLevel1CourseHistory) {
+			const entities = kind === "module" ? modules : items;
+			for (const previousId of [oldId, newId]) {
+				const owners = entities.filter(
+					entity =>
+						entity.id === previousId ||
+						entity.aliases?.includes(previousId)
+				);
+				if (currentId) {
+					expect(
+						owners.map(entity => entity.id),
+						previousId
+					).toEqual([currentId]);
+				} else {
+					expect(kind).toBe("module");
+					expect(owners, previousId).toEqual([]);
+					expect(
+						unmatchedCourseProgress(course, {
+							courseId,
+							completedModuleIds: [previousId],
+							completedItemIds: []
+						})
+					).toEqual([{ id: previousId, kind: "module" }]);
+				}
+			}
+		}
+	});
+
+	it("preserves bridge-course progress without crediting removed studios", async () => {
+		setActivePinia(createPinia());
+		const courseId = "python-to-java-and-cpp-bridge";
+		const course = await useCoursesStore().loadCourseById(courseId);
+		const modules = course?.modules ?? [];
+		const items = modules.flatMap(module => [
+			...module.curriculum,
+			...module.supplementalProjects
+		]);
+		expect(languageBridgeCourseHistory).toHaveLength(99);
+		expect(
+			languageBridgeCourseHistory.filter(entry => !entry.currentId)
+		).toHaveLength(87);
+
+		for (const {
+			kind,
+			oldId,
+			newId,
+			currentId
+		} of languageBridgeCourseHistory) {
+			const entities = kind === "module" ? modules : items;
+			for (const previousId of [oldId, newId]) {
+				const owners = entities.filter(
+					entity =>
+						entity.id === previousId ||
+						entity.aliases?.includes(previousId)
+				);
+				if (currentId) {
+					expect(
+						owners.map(entity => entity.id),
+						previousId
+					).toEqual([currentId]);
+				} else {
+					expect(owners, previousId).toEqual([]);
+					expect(
+						unmatchedCourseProgress(course, {
+							courseId,
+							completedModuleIds:
+								kind === "module" ? [previousId] : [],
+							completedItemIds:
+								kind === "item" ? [previousId] : []
+						})
+					).toEqual([{ id: previousId, kind }]);
+				}
+			}
+		}
+	});
+
+	it("preserves low-level security lab progress by lab number, not insertion order", async () => {
+		setActivePinia(createPinia());
+		const courseId = "low-level-security";
+		const course = await useCoursesStore().loadCourseById(courseId);
+		const modules = course?.modules ?? [];
+		const items = modules.flatMap(module => [
+			...module.curriculum,
+			...module.supplementalProjects
+		]);
+		expect(lowLevelSecurityCourseHistory).toHaveLength(102);
+		expect(
+			lowLevelSecurityCourseHistory.filter(entry => !entry.currentId)
+		).toHaveLength(2);
+
+		for (const {
+			kind,
+			oldId,
+			currentId
+		} of lowLevelSecurityCourseHistory) {
+			const entities = kind === "module" ? modules : items;
+			const owners = entities.filter(
+				entity => entity.id === oldId || entity.aliases?.includes(oldId)
+			);
+			if (currentId) {
+				expect(
+					owners.map(entity => entity.id),
+					oldId
+				).toEqual([currentId]);
+			} else {
+				expect(owners, oldId).toEqual([]);
+				expect(
+					unmatchedCourseProgress(course, {
+						courseId,
+						completedModuleIds: kind === "module" ? [oldId] : [],
+						completedItemIds: kind === "item" ? [oldId] : []
+					})
+				).toEqual([{ id: oldId, kind }]);
+			}
+		}
+	});
+
+	it("preserves USACO Bronze items without crediting consolidated studios", async () => {
+		setActivePinia(createPinia());
+		const courseId = "usaco-bronze";
+		const course = await useCoursesStore().loadCourseById(courseId);
+		const modules = course?.modules ?? [];
+		const items = modules.flatMap(module => [
+			...module.curriculum,
+			...module.supplementalProjects
+		]);
+		expect(usacoBronzeCourseHistory).toHaveLength(72);
+		expect(
+			usacoBronzeCourseHistory.filter(entry => !entry.currentId)
+		).toHaveLength(6);
+
+		for (const { kind, oldId, currentId } of usacoBronzeCourseHistory) {
+			const entities = kind === "module" ? modules : items;
+			const owners = entities.filter(
+				entity => entity.id === oldId || entity.aliases?.includes(oldId)
+			);
+			if (currentId) {
+				expect(
+					owners.map(entity => entity.id),
+					oldId
+				).toEqual([currentId]);
+			} else {
+				expect(owners, oldId).toEqual([]);
+				expect(
+					unmatchedCourseProgress(course, {
+						courseId,
+						completedModuleIds: kind === "module" ? [oldId] : [],
+						completedItemIds: kind === "item" ? [oldId] : []
+					})
+				).toEqual([{ id: oldId, kind }]);
+			}
+		}
+	});
+
+	it("retains contextualized generated-title progress without assigning retired work", async () => {
+		setActivePinia(createPinia());
+		const store = useCoursesStore();
+		const catalogIds = new Set(courseCatalog.map(entry => entry.id));
+		expect(generatedTitleCourseHistory).toHaveLength(1966);
+		const byCourse = Map.groupBy(
+			generatedTitleCourseHistory,
+			entry => entry.courseId
+		);
+
+		for (const [courseId, history] of byCourse) {
+			const course = await store.loadCourseById(courseId);
+			const items = course?.modules.flatMap(module => [
+				...module.curriculum,
+				...module.supplementalProjects
+			]);
+			for (const { oldId, currentId } of history) {
+				const owners = items?.filter(
+					item => item.id === oldId || item.aliases?.includes(oldId)
+				);
+				if (currentId) {
+					expect(
+						owners?.map(item => item.id),
+						oldId
+					).toEqual([currentId]);
+				} else if (course) {
+					expect(owners, oldId).toEqual([]);
+					expect(
+						unmatchedCourseProgress(course, {
+							courseId,
+							completedModuleIds: [],
+							completedItemIds: [oldId]
+						})
+					).toEqual([{ id: oldId, kind: "item" }]);
+				} else {
+					expect(
+						nonCatalogCourseProgress(
+							[
+								{
+									courseId,
+									completedModuleIds: [],
+									completedItemIds: [oldId]
+								}
+							],
+							catalogIds
+						)
+					).toHaveLength(1);
+				}
+			}
+		}
+	});
+
+	it("keeps broad historical title and lab progress on verified lessons or in visible history", async () => {
+		setActivePinia(createPinia());
+		const store = useCoursesStore();
+		const catalogIds = new Set(courseCatalog.map(entry => entry.id));
+		for (const [history, expectedCount, expectedOwned] of [
+			[broadTitle17b6History, 534, 339],
+			[broadTitle509cHistory, 1468, 487],
+			[broadTitleAfd19History, 1024, 97],
+			[broadTitleEebbHistory, 489, 254]
+		] as const) {
+			expect(history).toHaveLength(expectedCount);
+			expect(history.filter(entry => entry.currentId)).toHaveLength(
+				expectedOwned
+			);
+			for (const [courseId, entries] of Map.groupBy(
+				history,
+				entry => entry.courseId
+			)) {
+				const course = await store.loadCourseById(courseId);
+				for (const { kind, oldId, currentId } of entries) {
+					const owners =
+						kind === "module"
+							? course?.modules.filter(
+									module =>
+										module.id === oldId ||
+										module.aliases?.includes(oldId)
+								)
+							: course?.modules.flatMap(module =>
+									[
+										...module.curriculum,
+										...module.supplementalProjects
+									].filter(
+										item =>
+											item.id === oldId ||
+											item.aliases?.includes(oldId)
+									)
+								);
+					if (currentId) {
+						expect(
+							owners?.map(owner => owner.id),
+							oldId
+						).toEqual([currentId]);
+					} else if (course) {
+						expect(owners, oldId).toEqual([]);
+						expect(
+							unmatchedCourseProgress(course, {
+								courseId,
+								completedModuleIds:
+									kind === "module" ? [oldId] : [],
+								completedItemIds: kind === "item" ? [oldId] : []
+							})
+						).toEqual([{ id: oldId, kind }]);
+					} else {
+						expect(
+							nonCatalogCourseProgress(
+								[
+									{
+										courseId,
+										completedModuleIds:
+											kind === "module" ? [oldId] : [],
+										completedItemIds:
+											kind === "item" ? [oldId] : []
+									}
+								],
+								catalogIds
+							)
+						).toHaveLength(1);
+					}
+				}
+			}
 		}
 	});
 

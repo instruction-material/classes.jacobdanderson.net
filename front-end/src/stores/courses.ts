@@ -12,8 +12,112 @@ import {
 	scratchProjectEmbedUrl
 } from "@/modules/resourceUrls";
 import { useAppStore } from "./app";
+import algebraProgressHistory from "./courses/algebra-progress-history.json";
+import apcsaProgressHistory from "./courses/apcsa-progress-history.json";
+import assemblyProgressHistory from "./courses/assembly-progress-history.json";
+import broadTitleProgressHistory from "./courses/broad-title-progress-history.json";
+import cppAlgorithmsProgressHistory from "./courses/cpp-algorithms-progress-history.json";
+import cppDesignPatternsProgressHistory from "./courses/cpp-design-patterns-progress-history.json";
+import designPatternsPart2ProgressHistory from "./courses/design-patterns-part-2-progress-history.json";
+import generatedTitleProgressHistory from "./courses/generated-title-progress-history.json";
 import { courseCatalog, loadRawCourse } from "./courses/index";
+import javaLevel1ProgressHistory from "./courses/java-level-1-progress-history.json";
+import javaLevel2ProgressHistory from "./courses/java-level-2-progress-history.json";
 import { isJuniScratchProjectTitle } from "./courses/juniScratchProjects";
+import languageBridgeProgressHistory from "./courses/language-bridge-progress-history.json";
+import linuxProgressHistory from "./courses/linux-progress-history.json";
+import lowLevelSecurityPart2ProgressHistory from "./courses/low-level-security-part-2-progress-history.json";
+import lowLevelSecurityProgressHistory from "./courses/low-level-security-progress-history.json";
+import machineLearningProgressHistory from "./courses/machine-learning-progress-history.json";
+import networkSystemsProgressHistory from "./courses/network-systems-progress-history.json";
+import usacoBronzeLegacyProgressHistory from "./courses/usaco-bronze-legacy-progress-history.json";
+import usacoProgressHistory from "./courses/usaco-progress-history.json";
+
+function mergeHistoricalAliasMaps(
+	...maps: Record<string, string[]>[]
+): Record<string, string[]> {
+	const merged: Record<string, string[]> = {};
+	for (const map of maps) {
+		for (const [currentId, previousIds] of Object.entries(map)) {
+			merged[currentId] = [...(merged[currentId] ?? []), ...previousIds];
+		}
+	}
+	return merged;
+}
+
+function mergeCourseHistoricalAliases(
+	base: Record<string, Record<string, string[]>>,
+	additional: Record<string, Record<string, string[]>>
+): Record<string, Record<string, string[]>> {
+	const merged = { ...base };
+	for (const [courseId, aliases] of Object.entries(additional)) {
+		merged[courseId] = mergeHistoricalAliasMaps(
+			base[courseId] ?? {},
+			aliases
+		);
+	}
+	return merged;
+}
+
+const historicalModuleAliasesBase: Record<string, Record<string, string[]>> = {
+	"linux-systems": linuxProgressHistory.modules,
+	"low-level-security": lowLevelSecurityProgressHistory.modules,
+	"usaco-bronze": usacoBronzeLegacyProgressHistory.modules,
+	"low-level-security-part-2": {
+		"low-level-security-part-2-low-level-security-lab-13-exploitability-triage-studio":
+			["low-level-security-part-2-low-level-security-lab-13"],
+		"low-level-security-part-2-low-level-security-lab-14-stack-corruption-hardening-studio":
+			["low-level-security-part-2-low-level-security-lab-14"],
+		"low-level-security-part-2-low-level-security-lab-15-heap-lifetime-audit-studio":
+			["low-level-security-part-2-low-level-security-lab-15"],
+		"low-level-security-part-2-low-level-security-lab-16-disclosure-boundary-hardening-studio":
+			["low-level-security-part-2-low-level-security-lab-16"],
+		"low-level-security-part-2-low-level-security-lab-17-defensive-audit-capstone-studio":
+			["low-level-security-part-2-low-level-security-lab-17"]
+	},
+	"machine-learning": machineLearningProgressHistory.modules,
+	"network-systems": {
+		"network-systems-network-systems-lab-17-operations-capstone-studio": [
+			"network-systems-network-systems-lab-17"
+		]
+	},
+	"python-to-java-and-cpp-bridge": {
+		"python-to-java-and-cpp-bridge-language-bridge-lab-17-bridge-capstone-port-studio":
+			["python-to-java-and-cpp-bridge-language-bridge-lab-17"]
+	}
+};
+const historicalModuleAliases = mergeCourseHistoricalAliases(
+	historicalModuleAliasesBase,
+	broadTitleProgressHistory.modules
+);
+const historicalItemAliasesBase: Record<string, Record<string, string[]>> = {
+	...algebraProgressHistory,
+	...assemblyProgressHistory,
+	...cppAlgorithmsProgressHistory,
+	...cppDesignPatternsProgressHistory,
+	...usacoProgressHistory,
+	"usaco-bronze": mergeHistoricalAliasMaps(
+		usacoProgressHistory["usaco-bronze"],
+		usacoBronzeLegacyProgressHistory.items
+	),
+	...apcsaProgressHistory,
+	...designPatternsPart2ProgressHistory,
+	...javaLevel1ProgressHistory,
+	...javaLevel2ProgressHistory,
+	...languageBridgeProgressHistory,
+	"linux-systems": linuxProgressHistory.items,
+	"low-level-security": lowLevelSecurityProgressHistory.items,
+	...lowLevelSecurityPart2ProgressHistory,
+	"machine-learning": machineLearningProgressHistory.items,
+	...networkSystemsProgressHistory
+};
+const historicalItemAliases = mergeCourseHistoricalAliases(
+	mergeCourseHistoricalAliases(
+		historicalItemAliasesBase,
+		generatedTitleProgressHistory
+	),
+	broadTitleProgressHistory.items
+);
 
 const COMBINING_MARKS_RE = /[\u0300-\u036F]/g;
 const NON_ALPHANUMERIC_RE = /[^a-z0-9]+/g;
@@ -459,7 +563,8 @@ function normalizeCourse(
 						generatedModuleId,
 						module.aliases
 					),
-					...legacyModuleIds
+					...legacyModuleIds,
+					...(historicalModuleAliases[courseId]?.[moduleId] ?? [])
 				])
 			].filter(alias => alias !== moduleId);
 
@@ -579,6 +684,8 @@ function normalizeCourse(
 					];
 					const itemAliases = [
 						...new Set([
+							...(historicalItemAliases[courseId]?.[itemId] ??
+								[]),
 							...courseEntityAliases(
 								item.stableId,
 								generatedItemId,

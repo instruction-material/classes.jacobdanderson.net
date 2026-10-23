@@ -2262,6 +2262,21 @@ function renderJavaScriptLevel2References(flow: JavaScriptLevel2ModuleFlow) {
 	].join(", ");
 }
 
+function priorJavaScriptPracticeTitle(moduleTitle: string, itemTitle: string) {
+	const practice = itemTitle.endsWith("Transfer Practice")
+		? "Transfer Practice"
+		: itemTitle.endsWith("Extension Practice")
+			? "Extension Practice"
+			: null;
+	if (!practice) return null;
+	if (moduleTitle === "JSM15 Master Project")
+		return `${practice}: ${javascriptLevel2SourceCourse.name}`;
+	const checkIn = /^Check-In #([12])$/.exec(moduleTitle);
+	if (checkIn) return `${practice}: Check-In ${checkIn[1]}`;
+	const moduleTopic = /^JSM\d{1,2} (.+)$/.exec(moduleTitle)?.[1];
+	return moduleTopic ? `${practice}: ${moduleTopic}` : null;
+}
+
 function decorateJavaScriptLevel2Module(
 	module: RawCourse["modules"][number]
 ): RawCourse["modules"][number] {
@@ -2307,16 +2322,26 @@ ${item.content}`
 					}
 				: {})
 		})),
-		supplementalProjects: module.supplementalProjects.map(item => ({
-			...item,
-			learningPath: javascriptLevel2SupplementalPath(item.title),
-			...(item.projectLink
-				? {
-						datasetLink: item.datasetLink ?? practiceLink,
-						mediaLink: item.mediaLink ?? flow.primaryReference.url
-					}
-				: {})
-		}))
+		supplementalProjects: module.supplementalProjects.map(item => {
+			const previousTitle = priorJavaScriptPracticeTitle(
+				module.title,
+				item.title
+			);
+			return {
+				...item,
+				...(previousTitle
+					? { aliases: [...(item.aliases ?? []), previousTitle] }
+					: {}),
+				learningPath: javascriptLevel2SupplementalPath(item.title),
+				...(item.projectLink
+					? {
+							datasetLink: item.datasetLink ?? practiceLink,
+							mediaLink:
+								item.mediaLink ?? flow.primaryReference.url
+						}
+					: {})
+			};
+		})
 	};
 }
 

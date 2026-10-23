@@ -442,17 +442,24 @@ describe("Intro to Swift App Development learner flow", () => {
 	});
 
 	it("avoids the old inverted-order and generic-output regressions", () => {
-		const source = fs.readFileSync(
-			path.resolve(
-				"src/stores/courses/intro-to-swift-app-development.ts"
-			),
-			"utf8"
-		);
+		const visibleText = introToSwiftAppDevelopmentCourse.modules
+			.flatMap(module => [
+				module.title,
+				...module.curriculum.flatMap(item => [
+					item.title,
+					item.content
+				]),
+				...module.supplementalProjects.flatMap(item => [
+					item.title,
+					item.content
+				])
+			])
+			.join("\n");
 		const titles = allItems().map(item => item.title);
 
-		expect(source).not.toMatch(/\bshould\b/iu);
-		expect(source).not.toMatch(/\bMini Lab\b/iu);
-		expect(source).not.toMatch(/\bsupplemental [23]\b/iu);
+		expect(visibleText).not.toMatch(/\bshould\b/iu);
+		expect(visibleText).not.toMatch(/\bMini Lab\b/iu);
+		expect(visibleText).not.toMatch(/\bsupplemental [23]\b/iu);
 		expect(titles).not.toContain("Diagnostic Checkpoint");
 		expect(
 			introToSwiftAppDevelopmentCourse.modules[0]?.title

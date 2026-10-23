@@ -1,0 +1,1884 @@
+{
+	"modules": {
+		"pygames": {
+			"pygames-images-and-sprites-practice-studio": [
+				"pygames-images-and-sprites-implementation-lab"
+			]
+		},
+		"ai-level-1": {
+			"ai-level-1-ai-search-lab-13-practice-studio": [
+				"ai-level-1-ai-search-lab-13-implementation-lab"
+			],
+			"ai-level-1-ai-search-lab-14-practice-studio": [
+				"ai-level-1-ai-search-lab-14-implementation-lab"
+			],
+			"ai-level-1-ai-search-lab-15-practice-studio": [
+				"ai-level-1-ai-search-lab-15-implementation-lab"
+			],
+			"ai-level-1-ai-search-lab-16-practice-studio": [
+				"ai-level-1-ai-search-lab-16-implementation-lab"
+			],
+			"ai-level-1-ai-search-lab-17-practice-studio": [
+				"ai-level-1-ai-search-lab-17-implementation-lab"
+			],
+			"ai-level-1-unbeatable-tictactoe-ai-1-practice-studio": [
+				"ai-level-1-unbeatable-tictactoe-ai-1-implementation-lab"
+			],
+			"ai-level-1-the-marble-game-ai-practice-studio": [
+				"ai-level-1-the-marble-game-ai-implementation-lab"
+			]
+		},
+		"machine-learning": {
+			"machine-learning-customer-segmentation-interview-practice-studio": [
+				"machine-learning-customer-segmentation-interview-implementation-lab"
+			],
+			"machine-learning-knn-car-classification-practice-studio": [
+				"machine-learning-knn-car-classification-implementation-lab"
+			]
+		},
+		"python-level-2": {
+			"python-level-2-ps10-to-do-list": ["python-level-2-ps10-todo-list"]
+		}
+	},
+	"items": {
+		"python-level-1": {
+			"python-level-1-check-in-1-supplemental-check-in-1-changed-case-review": [
+				"python-level-1-check-in-1-supplemental-changed-case-review",
+				"python-level-1-check-in-1-supplemental-check-in-1-applied-challenge"
+			],
+			"python-level-1-check-in-2-supplemental-check-in-2-changed-case-review": [
+				"python-level-1-check-in-2-supplemental-changed-case-review",
+				"python-level-1-check-in-2-supplemental-check-in-2-applied-challenge"
+			],
+			"python-level-1-check-in-3-supplemental-check-in-3-changed-case-review": [
+				"python-level-1-check-in-3-supplemental-changed-case-review",
+				"python-level-1-check-in-3-supplemental-check-in-3-applied-challenge"
+			],
+			"python-level-1-grs15-master-project-supplemental-transfer-practice-python-level-1": [
+				"python-level-1-grs15-master-project-supplemental-grs15-master-project-applied-challenge"
+			],
+			"python-level-1-check-in-1-curriculum-python-level-1-check-in-1-core-concepts": [
+				"python-level-1-check-in-1-curriculum-core-concepts-and-learning-sequence"
+			],
+			"python-level-1-check-in-2-curriculum-python-level-1-check-in-2-core-concepts": [
+				"python-level-1-check-in-2-curriculum-core-concepts-and-learning-sequence"
+			],
+			"python-level-1-check-in-3-curriculum-python-level-1-check-in-3-core-concepts": [
+				"python-level-1-check-in-3-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"python-level-2": {
+			"python-level-2-check-in-1-supplemental-check-in-1-changed-case-review": [
+				"python-level-2-check-in-1-supplemental-changed-case-review",
+				"python-level-2-check-in-1-supplemental-check-in-1-applied-challenge"
+			],
+			"python-level-2-ps8-ciphers-and-music-supplemental-ciphers-and-music-transfer-practice": [
+				"python-level-2-ps8-ciphers-and-music-supplemental-transfer-practice-ciphers-and-music",
+				"python-level-2-ps8-ciphers-and-music-supplemental-ps8-ciphers-and-music-applied-challenge"
+			],
+			"python-level-2-check-in-2-supplemental-check-in-2-changed-case-review": [
+				"python-level-2-check-in-2-supplemental-changed-case-review",
+				"python-level-2-check-in-2-supplemental-check-in-2-applied-challenge"
+			],
+			"python-level-2-ps15-master-project-supplemental-transfer-practice-python-level-2": [
+				"python-level-2-ps15-master-project-supplemental-ps15-master-project-applied-challenge"
+			],
+			"python-level-2-ps1-variables-strings-and-input-curriculum-variables-strings-and-input-core-concepts": [
+				"python-level-2-ps1-variables-strings-and-input-curriculum-core-concepts-and-learning-sequence"
+			],
+			"python-level-2-check-in-1-curriculum-python-level-2-check-in-1-core-concepts": [
+				"python-level-2-check-in-1-curriculum-core-concepts-and-learning-sequence"
+			],
+			"python-level-2-check-in-2-curriculum-python-level-2-check-in-2-core-concepts": [
+				"python-level-2-check-in-2-curriculum-core-concepts-and-learning-sequence"
+			],
+			"python-level-2-ps10-to-do-list-curriculum-ps10-project-1-to-do-list": [
+				"python-level-2-ps10-todo-list-curriculum-ps10-project-1-todo-list"
+			],
+			"python-level-2-ps10-to-do-list-supplemental-ps10-supplemental-project-1-us-capitals-quiz": [
+				"python-level-2-ps10-todo-list-supplemental-ps10-supplemental-project-1-us-capitals-quiz"
+			],
+			"python-level-2-ps10-to-do-list-supplemental-ps10-supplemental-project-2-field-day": [
+				"python-level-2-ps10-todo-list-supplemental-ps10-supplemental-project-2-field-day"
+			],
+			"python-level-2-ps10-to-do-list-supplemental-ps10-supplemental-project-3-field-day-ii": [
+				"python-level-2-ps10-todo-list-supplemental-ps10-supplemental-project-3-field-day-ii"
+			]
+		},
+		"python-level-3": {
+			"python-level-3-am4-recursion-part-1-supplemental-recursion-part-1-trace-and-boundary-case": [
+				"python-level-3-am4-recursion-part-1-supplemental-trace-and-boundary-case",
+				"python-level-3-am4-recursion-part-1-supplemental-am4-recursion-part-1-applied-challenge"
+			],
+			"python-level-3-check-in-1-supplemental-check-in-1-changed-case-review": [
+				"python-level-3-check-in-1-supplemental-changed-case-review",
+				"python-level-3-check-in-1-supplemental-check-in-1-applied-challenge"
+			],
+			"python-level-3-am6-introduction-to-algorithms-runtime-analysis-supplemental-introduction-to-algorithms-runtime-analysis-trace-and-boundary-case": [
+				"python-level-3-am6-introduction-to-algorithms-runtime-analysis-supplemental-trace-and-boundary-case",
+				"python-level-3-am6-introduction-to-algorithms-runtime-analysis-supplemental-am6-introduction-to-algorithms-runtime-analysis-applied-challenge"
+			],
+			"python-level-3-am7-binary-search-supplemental-binary-search-trace-and-boundary-case": [
+				"python-level-3-am7-binary-search-supplemental-trace-and-boundary-case",
+				"python-level-3-am7-binary-search-supplemental-am7-binary-search-applied-challenge"
+			],
+			"python-level-3-am8-selection-sort-insertion-sort-supplemental-selection-sort-insertion-sort-trace-and-boundary-case": [
+				"python-level-3-am8-selection-sort-insertion-sort-supplemental-trace-and-boundary-case",
+				"python-level-3-am8-selection-sort-insertion-sort-supplemental-am8-selection-sort-insertion-sort-applied-challenge"
+			],
+			"python-level-3-check-in-2-supplemental-check-in-2-changed-case-review": [
+				"python-level-3-check-in-2-supplemental-changed-case-review",
+				"python-level-3-check-in-2-supplemental-check-in-2-applied-challenge"
+			],
+			"python-level-3-am9-bubble-sort-supplemental-bubble-sort-trace-and-boundary-case": [
+				"python-level-3-am9-bubble-sort-supplemental-trace-and-boundary-case",
+				"python-level-3-am9-bubble-sort-supplemental-am9-bubble-sort-applied-challenge"
+			],
+			"python-level-3-am10-merge-sort-supplemental-merge-sort-trace-and-boundary-case": [
+				"python-level-3-am10-merge-sort-supplemental-trace-and-boundary-case",
+				"python-level-3-am10-merge-sort-supplemental-am10-merge-sort-applied-challenge"
+			],
+			"python-level-3-am11-quicksort-supplemental-quicksort-trace-and-boundary-case": [
+				"python-level-3-am11-quicksort-supplemental-trace-and-boundary-case",
+				"python-level-3-am11-quicksort-supplemental-am11-quicksort-applied-challenge"
+			],
+			"python-level-3-check-in-3-supplemental-check-in-3-changed-case-review": [
+				"python-level-3-check-in-3-supplemental-changed-case-review",
+				"python-level-3-check-in-3-supplemental-check-in-3-applied-challenge"
+			],
+			"python-level-3-am13-master-project-conway-s-game-of-life-supplemental-conway-s-game-of-life-interaction-variation": [
+				"python-level-3-am13-master-project-conway-s-game-of-life-supplemental-interaction-variation",
+				"python-level-3-am13-master-project-conway-s-game-of-life-supplemental-am13-master-project-conway-s-game-of-life-applied-challenge"
+			],
+			"python-level-3-am14-master-project-tic-tac-toe-ai-supplemental-tic-tac-toe-ai-transfer-practice": [
+				"python-level-3-am14-master-project-tic-tac-toe-ai-supplemental-transfer-practice-tic-tac-toe-ai",
+				"python-level-3-am14-master-project-tic-tac-toe-ai-supplemental-am14-master-project-tic-tac-toe-ai-applied-challenge"
+			],
+			"python-level-3-am1-review-variables-strings-input-loops-conditionals-supplemental-variables-strings-input-loops-conditionals-data-variation-practice": [
+				"python-level-3-am1-review-variables-strings-input-loops-conditionals-supplemental-am1-review-variables-strings-input-loops-conditionals-applied-challenge"
+			],
+			"python-level-3-am2-review-functions-lists-supplemental-functions-lists-data-variation-practice": [
+				"python-level-3-am2-review-functions-lists-supplemental-am2-review-functions-lists-applied-challenge"
+			],
+			"python-level-3-am3-review-dictionaries-recap-supplemental-dictionaries-recap-data-variation-practice": [
+				"python-level-3-am3-review-dictionaries-recap-supplemental-am3-review-dictionaries-recap-applied-challenge"
+			],
+			"python-level-3-am12-file-input-output-supplemental-file-input-output-data-variation-practice": [
+				"python-level-3-am12-file-input-output-supplemental-am12-file-input-output-applied-challenge"
+			],
+			"python-level-3-am1-review-variables-strings-input-loops-conditionals-curriculum-variables-strings-input-loops-conditionals-core-concepts": [
+				"python-level-3-am1-review-variables-strings-input-loops-conditionals-curriculum-core-concepts-and-learning-sequence"
+			],
+			"python-level-3-check-in-1-curriculum-python-level-3-check-in-1-core-concepts": [
+				"python-level-3-check-in-1-curriculum-core-concepts-and-learning-sequence"
+			],
+			"python-level-3-check-in-2-curriculum-python-level-3-check-in-2-core-concepts": [
+				"python-level-3-check-in-2-curriculum-core-concepts-and-learning-sequence"
+			],
+			"python-level-3-check-in-2-curriculum-check-in-2-application-check": [
+				"python-level-3-check-in-2-curriculum-application-misconceptions-and-readiness-check"
+			],
+			"python-level-3-check-in-3-curriculum-python-level-3-check-in-3-core-concepts": [
+				"python-level-3-check-in-3-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"algebra-1b": {
+			"algebra-1b-ab3-fractions-with-polynomials-curriculum-fractions-warm-up-and-least-common-denominators": [
+				"algebra-1b-ab3-fractions-with-polynomials-curriculum-core-concepts"
+			],
+			"algebra-1b-ab2-multiplying-polynomials-curriculum-multiplying-polynomials-core-concepts": [
+				"algebra-1b-ab2-multiplying-polynomials-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"cpp-level-3": {
+			"cpp-level-3-cppi0-bridge-course-setup-and-positioning-supplemental-bridge-course-setup-and-positioning-transfer-practice": [
+				"cpp-level-3-cppi0-bridge-course-setup-and-positioning-supplemental-transfer-practice-bridge-course-setup-and-positioning",
+				"cpp-level-3-cppi0-bridge-course-setup-and-positioning-supplemental-cppi0-bridge-course-setup-and-positioning-applied-challenge"
+			],
+			"cpp-level-3-cppi2-recursion-and-the-call-stack-supplemental-recursion-and-the-call-stack-trace-and-boundary-case": [
+				"cpp-level-3-cppi2-recursion-and-the-call-stack-supplemental-trace-and-boundary-case",
+				"cpp-level-3-cppi2-recursion-and-the-call-stack-supplemental-cppi2-recursion-and-the-call-stack-applied-challenge"
+			],
+			"cpp-level-3-cppi3-stl-containers-iterators-and-algorithms-supplemental-stl-containers-iterators-and-algorithms-trace-and-boundary-case": [
+				"cpp-level-3-cppi3-stl-containers-iterators-and-algorithms-supplemental-trace-and-boundary-case",
+				"cpp-level-3-cppi3-stl-containers-iterators-and-algorithms-supplemental-cppi3-stl-containers-iterators-and-algorithms-applied-challenge"
+			],
+			"cpp-level-3-cppi4-raii-smart-pointers-and-robust-error-handling-supplemental-raii-smart-pointers-and-robust-error-handling-transfer-practice": [
+				"cpp-level-3-cppi4-raii-smart-pointers-and-robust-error-handling-supplemental-transfer-practice-raii-smart-pointers-and-robust-error-handling",
+				"cpp-level-3-cppi4-raii-smart-pointers-and-robust-error-handling-supplemental-cppi4-raii-smart-pointers-and-robust-error-handling-applied-challenge"
+			],
+			"cpp-level-3-cppi5-value-types-operator-overloading-and-templates-supplemental-value-types-operator-overloading-and-templates-transfer-practice": [
+				"cpp-level-3-cppi5-value-types-operator-overloading-and-templates-supplemental-transfer-practice-value-types-operator-overloading-and-templates",
+				"cpp-level-3-cppi5-value-types-operator-overloading-and-templates-supplemental-cppi5-value-types-operator-overloading-and-templates-applied-challenge"
+			],
+			"cpp-level-3-cppi6-polymorphism-and-bridge-to-advanced-c-supplemental-polymorphism-and-bridge-to-advanced-c-transfer-practice": [
+				"cpp-level-3-cppi6-polymorphism-and-bridge-to-advanced-c-supplemental-transfer-practice-polymorphism-and-bridge-to-advanced-c",
+				"cpp-level-3-cppi6-polymorphism-and-bridge-to-advanced-c-supplemental-cppi6-polymorphism-and-bridge-to-advanced-c-applied-challenge"
+			]
+		},
+		"data-structures-and-algorithms-in-cpp": {
+			"data-structures-and-algorithms-in-cpp-dscpp0-setup-and-positioning-curriculum-setup-and-positioning-core-concepts": [
+				"data-structures-and-algorithms-in-cpp-dscpp0-setup-and-positioning-curriculum-core-concepts",
+				"data-structures-and-algorithms-in-cpp-dscpp0-setup-and-positioning-curriculum-core-concepts-and-learning-sequence"
+			],
+			"data-structures-and-algorithms-in-cpp-dscpp1-interfaces-records-and-a-task-manager-cli-curriculum-interfaces-records-and-a-task-manager-cli-core-concepts": [
+				"data-structures-and-algorithms-in-cpp-dscpp1-interfaces-records-and-a-task-manager-cli-curriculum-core-concepts",
+				"data-structures-and-algorithms-in-cpp-dscpp1-interfaces-records-and-a-task-manager-cli-curriculum-core-concepts-and-learning-sequence"
+			],
+			"data-structures-and-algorithms-in-cpp-dscpp5-quicksort-and-partitioning-curriculum-quicksort-and-partitioning-core-concepts": [
+				"data-structures-and-algorithms-in-cpp-dscpp5-quicksort-and-partitioning-curriculum-core-concepts",
+				"data-structures-and-algorithms-in-cpp-dscpp5-quicksort-and-partitioning-curriculum-core-concepts-and-learning-sequence"
+			],
+			"data-structures-and-algorithms-in-cpp-dscpp2-graphs-and-shortest-paths-curriculum-graphs-and-shortest-paths-core-concepts": [
+				"data-structures-and-algorithms-in-cpp-dscpp2-graphs-and-shortest-paths-curriculum-core-concepts",
+				"data-structures-and-algorithms-in-cpp-dscpp2-graphs-and-shortest-paths-curriculum-core-concepts-and-learning-sequence"
+			],
+			"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-core-project-c-algorithm-lab-11": [
+				"data-structures-and-algorithms-in-cpp-c-algorithm-lab-11-curriculum-c-algorithm-lab-11-core-project"
+			],
+			"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-extension-challenge-c-algorithm-lab-11": [
+				"data-structures-and-algorithms-in-cpp-c-algorithm-lab-11-supplemental-c-algorithm-lab-11-extension-challenge"
+			],
+			"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-core-project-c-algorithm-lab-12": [
+				"data-structures-and-algorithms-in-cpp-c-algorithm-lab-12-curriculum-c-algorithm-lab-12-core-project"
+			],
+			"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-extension-challenge-c-algorithm-lab-12": [
+				"data-structures-and-algorithms-in-cpp-c-algorithm-lab-12-supplemental-c-algorithm-lab-12-extension-challenge"
+			],
+			"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-core-project-c-algorithm-lab-13": [
+				"data-structures-and-algorithms-in-cpp-c-algorithm-lab-13-curriculum-c-algorithm-lab-13-core-project"
+			],
+			"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-extension-challenge-c-algorithm-lab-13": [
+				"data-structures-and-algorithms-in-cpp-c-algorithm-lab-13-supplemental-c-algorithm-lab-13-extension-challenge"
+			],
+			"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-core-project-c-algorithm-lab-14": [
+				"data-structures-and-algorithms-in-cpp-c-algorithm-lab-14-curriculum-c-algorithm-lab-14-core-project"
+			],
+			"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-extension-challenge-c-algorithm-lab-14": [
+				"data-structures-and-algorithms-in-cpp-c-algorithm-lab-14-supplemental-c-algorithm-lab-14-extension-challenge"
+			],
+			"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-core-project-c-algorithm-lab-15": [
+				"data-structures-and-algorithms-in-cpp-c-algorithm-lab-15-curriculum-c-algorithm-lab-15-core-project"
+			],
+			"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-extension-challenge-c-algorithm-lab-15": [
+				"data-structures-and-algorithms-in-cpp-c-algorithm-lab-15-supplemental-c-algorithm-lab-15-extension-challenge"
+			],
+			"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-core-project-c-algorithm-lab-16": [
+				"data-structures-and-algorithms-in-cpp-c-algorithm-lab-16-curriculum-c-algorithm-lab-16-core-project"
+			],
+			"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-extension-challenge-c-algorithm-lab-16": [
+				"data-structures-and-algorithms-in-cpp-c-algorithm-lab-16-supplemental-c-algorithm-lab-16-extension-challenge"
+			],
+			"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-core-project-c-algorithm-lab-17": [
+				"data-structures-and-algorithms-in-cpp-c-algorithm-lab-17-curriculum-c-algorithm-lab-17-core-project"
+			],
+			"data-structures-and-algorithms-in-cpp-optional-algorithm-studios-and-transfer-archive-supplemental-extension-challenge-c-algorithm-lab-17": [
+				"data-structures-and-algorithms-in-cpp-c-algorithm-lab-17-supplemental-c-algorithm-lab-17-extension-challenge"
+			],
+			"data-structures-and-algorithms-in-cpp-dscpp6-templates-and-linked-structures-curriculum-templates-and-linked-structures-core-concepts": [
+				"data-structures-and-algorithms-in-cpp-dscpp6-templates-and-linked-structures-curriculum-core-concepts-and-learning-sequence"
+			],
+			"data-structures-and-algorithms-in-cpp-dscpp7-binary-search-trees-curriculum-binary-search-trees-core-concepts": [
+				"data-structures-and-algorithms-in-cpp-dscpp7-binary-search-trees-curriculum-core-concepts-and-learning-sequence"
+			],
+			"data-structures-and-algorithms-in-cpp-dscpp8-avl-trees-and-rebalancing-curriculum-avl-trees-and-rebalancing-core-concepts": [
+				"data-structures-and-algorithms-in-cpp-dscpp8-avl-trees-and-rebalancing-curriculum-core-concepts-and-learning-sequence"
+			],
+			"data-structures-and-algorithms-in-cpp-dscpp9-benchmarking-and-data-structure-tradeoffs-curriculum-benchmarking-and-data-structure-tradeoffs-core-concepts": [
+				"data-structures-and-algorithms-in-cpp-dscpp9-benchmarking-and-data-structure-tradeoffs-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"assembly": {
+			"assembly-unit-1-machine-model-and-toolchain-curriculum-machine-model-and-toolchain-core-concepts": [
+				"assembly-unit-1-machine-model-and-toolchain-curriculum-core-concepts",
+				"assembly-unit-1-machine-model-and-toolchain-curriculum-core-concepts-and-learning-sequence"
+			],
+			"assembly-unit-3-arithmetic-and-logic-curriculum-arithmetic-and-logic-core-concepts": [
+				"assembly-unit-3-arithmetic-and-logic-curriculum-core-concepts",
+				"assembly-unit-3-arithmetic-and-logic-curriculum-core-concepts-and-learning-sequence"
+			],
+			"assembly-unit-8-system-calls-and-runtime-interaction-curriculum-system-calls-and-runtime-interaction-core-concepts": [
+				"assembly-unit-8-system-calls-and-runtime-interaction-curriculum-core-concepts",
+				"assembly-unit-8-system-calls-and-runtime-interaction-curriculum-core-concepts-and-learning-sequence"
+			],
+			"assembly-asm0-setup-and-tooling-curriculum-core-project-assembly": [
+				"assembly-asm0-setup-and-tooling-curriculum-asm0-setup-and-tooling-core-project"
+			],
+			"assembly-unit-1-machine-model-and-toolchain-curriculum-core-project-machine-model-and-toolchain": [
+				"assembly-unit-1-machine-model-and-toolchain-curriculum-unit-1-machine-model-and-toolchain-core-project"
+			],
+			"assembly-unit-3-arithmetic-and-logic-curriculum-core-project-arithmetic-and-logic": [
+				"assembly-unit-3-arithmetic-and-logic-curriculum-unit-3-arithmetic-and-logic-core-project"
+			],
+			"assembly-optional-assembly-pathways-and-studio-archive-supplemental-core-project-stack-trace-studio": [
+				"assembly-assembly-lab-15-curriculum-assembly-lab-15-core-project"
+			],
+			"assembly-optional-assembly-pathways-and-studio-archive-supplemental-extension-challenge-stack-trace-studio": [
+				"assembly-assembly-lab-15-supplemental-assembly-lab-15-extension-challenge"
+			],
+			"assembly-optional-assembly-pathways-and-studio-archive-supplemental-core-project-abi-integration-studio": [
+				"assembly-assembly-lab-16-curriculum-assembly-lab-16-core-project"
+			],
+			"assembly-optional-assembly-pathways-and-studio-archive-supplemental-extension-challenge-abi-integration-studio": [
+				"assembly-assembly-lab-16-supplemental-assembly-lab-16-extension-challenge"
+			],
+			"assembly-optional-assembly-pathways-and-studio-archive-supplemental-core-project-reverse-trace-studio": [
+				"assembly-assembly-lab-17-curriculum-assembly-lab-17-core-project"
+			],
+			"assembly-optional-assembly-pathways-and-studio-archive-supplemental-extension-challenge-reverse-trace-studio": [
+				"assembly-assembly-lab-17-supplemental-assembly-lab-17-extension-challenge"
+			],
+			"assembly-asm0-setup-and-tooling-curriculum-assembly-core-concepts": [
+				"assembly-asm0-setup-and-tooling-curriculum-core-concepts-and-learning-sequence"
+			],
+			"assembly-unit-2-registers-and-data-movement-curriculum-registers-and-data-movement-core-concepts": [
+				"assembly-unit-2-registers-and-data-movement-curriculum-core-concepts-and-learning-sequence"
+			],
+			"assembly-unit-4-branching-and-loops-curriculum-branching-and-loops-core-concepts": [
+				"assembly-unit-4-branching-and-loops-curriculum-core-concepts-and-learning-sequence"
+			],
+			"assembly-unit-5-the-stack-and-function-calls-curriculum-the-stack-and-function-calls-core-concepts": [
+				"assembly-unit-5-the-stack-and-function-calls-curriculum-core-concepts-and-learning-sequence"
+			],
+			"assembly-unit-6-calling-conventions-and-abi-curriculum-calling-conventions-and-abi-core-concepts": [
+				"assembly-unit-6-calling-conventions-and-abi-curriculum-core-concepts-and-learning-sequence"
+			],
+			"assembly-unit-7-memory-addressing-and-data-structures-curriculum-memory-addressing-and-data-structures-core-concepts": [
+				"assembly-unit-7-memory-addressing-and-data-structures-curriculum-core-concepts-and-learning-sequence"
+			],
+			"assembly-unit-9-reading-compiler-output-curriculum-reading-compiler-output-core-concepts": [
+				"assembly-unit-9-reading-compiler-output-curriculum-core-concepts-and-learning-sequence"
+			],
+			"assembly-unit-10-debugging-at-instruction-level-curriculum-debugging-at-instruction-level-core-concepts": [
+				"assembly-unit-10-debugging-at-instruction-level-curriculum-core-concepts-and-learning-sequence"
+			],
+			"assembly-unit-11-performance-and-code-shape-curriculum-performance-and-code-shape-core-concepts": [
+				"assembly-unit-11-performance-and-code-shape-curriculum-core-concepts-and-learning-sequence"
+			],
+			"assembly-unit-12-security-and-reliability-visibility-curriculum-security-and-reliability-visibility-core-concepts": [
+				"assembly-unit-12-security-and-reliability-visibility-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"java-level-2": {
+			"java-level-2-jm1-instance-variables-constructors-and-methods-supplemental-instance-variables-constructors-and-methods-state-and-contract-practice": [
+				"java-level-2-jm1-instance-variables-constructors-and-methods-supplemental-state-and-contract-practice",
+				"java-level-2-jm1-instance-variables-constructors-and-methods-supplemental-jm1-instance-variables-constructors-and-methods-applied-challenge"
+			],
+			"java-level-2-jm2-overloaded-constructors-comparison-methods-supplemental-overloaded-constructors-comparison-methods-state-and-contract-practice": [
+				"java-level-2-jm2-overloaded-constructors-comparison-methods-supplemental-state-and-contract-practice",
+				"java-level-2-jm2-overloaded-constructors-comparison-methods-supplemental-jm2-overloaded-constructors-comparison-methods-applied-challenge"
+			],
+			"java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-core-project-jm-master-project-example-quiz-game": [
+				"java-level-2-jm-master-project-example-quiz-game-curriculum-jm-master-project-example-quiz-game-core-project"
+			],
+			"java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-extension-challenge-jm-master-project-example-quiz-game": [
+				"java-level-2-jm-master-project-example-quiz-game-supplemental-jm-master-project-example-quiz-game-extension-challenge"
+			],
+			"java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-core-project-jm-maze-runner-project": [
+				"java-level-2-jm-maze-runner-project-curriculum-jm-maze-runner-project-core-project"
+			],
+			"java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-extension-challenge-jm-maze-runner-project": [
+				"java-level-2-jm-maze-runner-project-supplemental-jm-maze-runner-project-extension-challenge"
+			],
+			"java-level-2-jm1-instance-variables-constructors-and-methods-curriculum-instance-variables-constructors-and-methods-core-concepts": [
+				"java-level-2-jm1-instance-variables-constructors-and-methods-curriculum-core-concepts-and-learning-sequence"
+			],
+			"java-level-2-check-in-1-curriculum-java-level-2-check-in-1-core-concepts": [
+				"java-level-2-check-in-1-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"ap-computer-science-a": {
+			"ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-supplemental-algorithmic-runtime-and-linear-search-trace-and-boundary-case": [
+				"ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-supplemental-trace-and-boundary-case",
+				"ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-supplemental-apcs13-algorithmic-runtime-and-linear-search-applied-challenge"
+			],
+			"ap-computer-science-a-apcs14-selection-and-insertion-sort-supplemental-selection-and-insertion-sort-trace-and-boundary-case": [
+				"ap-computer-science-a-apcs14-selection-and-insertion-sort-supplemental-trace-and-boundary-case",
+				"ap-computer-science-a-apcs14-selection-and-insertion-sort-supplemental-apcs14-selection-and-insertion-sort-applied-challenge"
+			],
+			"ap-computer-science-a-apcs16-binary-search-and-merge-sort-supplemental-binary-search-and-merge-sort-trace-and-boundary-case": [
+				"ap-computer-science-a-apcs16-binary-search-and-merge-sort-supplemental-trace-and-boundary-case",
+				"ap-computer-science-a-apcs16-binary-search-and-merge-sort-supplemental-apcs16-binary-search-and-merge-sort-applied-challenge"
+			],
+			"ap-computer-science-a-apcs1-variables-and-input-output-curriculum-variables-and-input-output-core-concepts": [
+				"ap-computer-science-a-apcs1-variables-and-input-output-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"usaco-bronze": {
+			"usaco-bronze-unit-3-frequency-maps-sets-sorting-and-prefix-counts-curriculum-frequency-maps-sets-sorting-and-prefix-counts-core-concepts": [
+				"usaco-bronze-unit-3-counting-sorting-and-ranking-curriculum-core-concepts",
+				"usaco-bronze-unit-3-counting-sorting-and-ranking-curriculum-core-concepts-and-learning-sequence"
+			],
+			"usaco-bronze-unit-4-complete-search-structured-state-and-construction-curriculum-complete-search-structured-state-and-construction-core-concepts": [
+				"usaco-bronze-unit-4-search-flavored-bronze-problems-curriculum-core-concepts",
+				"usaco-bronze-unit-4-search-flavored-bronze-problems-curriculum-core-concepts-and-learning-sequence"
+			],
+			"usaco-bronze-unit-5-mock-contests-postmortems-and-silver-readiness-curriculum-mock-contests-postmortems-and-silver-readiness-core-concepts": [
+				"usaco-bronze-unit-5-contest-sets-and-tier-transition-curriculum-core-concepts",
+				"usaco-bronze-unit-5-contest-sets-and-tier-transition-curriculum-core-concepts-and-learning-sequence"
+			],
+			"usaco-bronze-usb0-setup-and-contest-workflow-curriculum-core-project-setup-and-contest-workflow": [
+				"usaco-bronze-usb0-setup-and-contest-workflow-curriculum-usb0-setup-and-contest-workflow-core-project"
+			],
+			"usaco-bronze-unit-2-intervals-arrays-and-greedy-warmups-curriculum-core-project-intervals-arrays-and-greedy-warmups": [
+				"usaco-bronze-unit-2-intervals-arrays-and-greedy-warmups-curriculum-unit-2-intervals-arrays-and-greedy-warmups-core-project"
+			],
+			"usaco-bronze-unit-3-frequency-maps-sets-sorting-and-prefix-counts-curriculum-core-project-counting-sorting-and-ranking": [
+				"usaco-bronze-unit-3-counting-sorting-and-ranking-curriculum-unit-3-counting-sorting-and-ranking-core-project"
+			],
+			"usaco-bronze-unit-4-complete-search-structured-state-and-construction-curriculum-core-project-search-flavored-bronze-problems": [
+				"usaco-bronze-unit-4-search-flavored-bronze-problems-curriculum-unit-4-search-flavored-bronze-problems-core-project"
+			],
+			"usaco-bronze-unit-5-mock-contests-postmortems-and-silver-readiness-curriculum-core-project-contest-sets-and-tier-transition": [
+				"usaco-bronze-unit-5-contest-sets-and-tier-transition-curriculum-unit-5-contest-sets-and-tier-transition-core-project"
+			],
+			"usaco-bronze-optional-bronze-problem-bank-and-language-mirrors-supplemental-core-project-optional-bronze-problem-bank": [
+				"usaco-bronze-unit-6-optional-bronze-problem-bank-curriculum-unit-6-optional-bronze-problem-bank-core-project"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-12-barn-repair-java": [
+				"usaco-bronze-ub-12-barn-repair-java-curriculum-ub-12-barn-repair-java-core-project"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-12-barn-repair-java": [
+				"usaco-bronze-ub-12-barn-repair-java-supplemental-ub-12-barn-repair-java-extension-challenge"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-13-combination-lock-java": [
+				"usaco-bronze-ub-13-combination-lock-java-curriculum-ub-13-combination-lock-java-core-project"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-13-combination-lock-java": [
+				"usaco-bronze-ub-13-combination-lock-java-supplemental-ub-13-combination-lock-java-extension-challenge"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-14-prime-cryptarithm-java": [
+				"usaco-bronze-ub-14-prime-cryptarithm-java-curriculum-ub-14-prime-cryptarithm-java-core-project"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-14-prime-cryptarithm-java": [
+				"usaco-bronze-ub-14-prime-cryptarithm-java-supplemental-ub-14-prime-cryptarithm-java-extension-challenge"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-15-ski-course-design-java": [
+				"usaco-bronze-ub-15-ski-course-design-java-curriculum-ub-15-ski-course-design-java-core-project"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-15-ski-course-design-java": [
+				"usaco-bronze-ub-15-ski-course-design-java-supplemental-ub-15-ski-course-design-java-extension-challenge"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-16-wormholes-java": [
+				"usaco-bronze-ub-16-wormholes-java-curriculum-ub-16-wormholes-java-core-project"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-16-wormholes-java": [
+				"usaco-bronze-ub-16-wormholes-java-supplemental-ub-16-wormholes-java-extension-challenge"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-17-block-game-java": [
+				"usaco-bronze-ub-17-block-game-java-curriculum-ub-17-block-game-java-core-project"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-17-block-game-java": [
+				"usaco-bronze-ub-17-block-game-java-supplemental-ub-17-block-game-java-extension-challenge"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-18-the-cow-signal-java": [
+				"usaco-bronze-ub-18-the-cow-signal-java-curriculum-ub-18-the-cow-signal-java-core-project"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-18-the-cow-signal-java": [
+				"usaco-bronze-ub-18-the-cow-signal-java-supplemental-ub-18-the-cow-signal-java-extension-challenge"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-19-don-t-be-last-java": [
+				"usaco-bronze-ub-19-don-t-be-last-java-curriculum-ub-19-don-t-be-last-java-core-project"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-19-don-t-be-last-java": [
+				"usaco-bronze-ub-19-don-t-be-last-java-supplemental-ub-19-don-t-be-last-java-extension-challenge"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-20-hoof-paper-scissors-java": [
+				"usaco-bronze-ub-20-hoof-paper-scissors-java-curriculum-ub-20-hoof-paper-scissors-java-core-project"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-20-hoof-paper-scissors-java": [
+				"usaco-bronze-ub-20-hoof-paper-scissors-java-supplemental-ub-20-hoof-paper-scissors-java-extension-challenge"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-core-project-ub-21-cow-tipping-java": [
+				"usaco-bronze-ub-21-cow-tipping-java-curriculum-ub-21-cow-tipping-java-core-project"
+			],
+			"usaco-bronze-optional-java-bronze-practice-studios-supplemental-extension-challenge-ub-21-cow-tipping-java": [
+				"usaco-bronze-ub-21-cow-tipping-java-supplemental-ub-21-cow-tipping-java-extension-challenge"
+			],
+			"usaco-bronze-usb0-setup-and-contest-workflow-curriculum-setup-and-contest-workflow-core-concepts": [
+				"usaco-bronze-usb0-setup-and-contest-workflow-curriculum-core-concepts-and-learning-sequence"
+			],
+			"usaco-bronze-unit-1-simulation-and-careful-translation-curriculum-simulation-and-careful-translation-core-concepts": [
+				"usaco-bronze-unit-1-simulation-and-careful-translation-curriculum-core-concepts-and-learning-sequence"
+			],
+			"usaco-bronze-unit-2-intervals-arrays-and-greedy-warmups-curriculum-intervals-arrays-and-greedy-warmups-core-concepts": [
+				"usaco-bronze-unit-2-intervals-arrays-and-greedy-warmups-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"network-systems": {
+			"network-systems-unit-3-switches-routers-nat-and-the-internet-edge-curriculum-switches-routers-nat-and-the-internet-edge-core-concepts": [
+				"network-systems-unit-3-switches-routers-nat-and-the-internet-edge-curriculum-core-concepts",
+				"network-systems-unit-3-switches-routers-nat-and-the-internet-edge-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-systems-unit-8-ipv6-in-practice-curriculum-in-practice-core-concepts": [
+				"network-systems-unit-8-ipv6-in-practice-curriculum-core-concepts",
+				"network-systems-unit-8-ipv6-in-practice-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-systems-unit-11-common-application-protocols-curriculum-common-application-protocols-core-concepts": [
+				"network-systems-unit-11-common-application-protocols-curriculum-core-concepts",
+				"network-systems-unit-11-common-application-protocols-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-systems-unit-8-ipv6-in-practice-curriculum-ipv6-diagnostics-core-project": [
+				"network-systems-unit-8-ipv6-in-practice-curriculum-unit-8-ipv6-in-practice-core-project"
+			],
+			"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-core-project-diagnostic-workflow-studio": [
+				"network-systems-network-systems-lab-15-curriculum-network-systems-lab-15-core-project"
+			],
+			"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-extension-challenge-diagnostic-workflow-studio": [
+				"network-systems-network-systems-lab-15-supplemental-network-systems-lab-15-extension-challenge"
+			],
+			"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-core-project-service-exposure-studio": [
+				"network-systems-network-systems-lab-16-curriculum-network-systems-lab-16-core-project"
+			],
+			"network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-extension-challenge-service-exposure-studio": [
+				"network-systems-network-systems-lab-16-supplemental-network-systems-lab-16-extension-challenge"
+			],
+			"network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-core-project-operations-capstone-studio": [
+				"network-systems-network-systems-lab-17-curriculum-network-systems-lab-17-core-project"
+			],
+			"network-systems-network-systems-lab-17-operations-capstone-studio-supplemental-extension-challenge-operations-capstone-studio": [
+				"network-systems-network-systems-lab-17-supplemental-network-systems-lab-17-extension-challenge"
+			],
+			"network-systems-ns0-setup-and-tooling-curriculum-network-systems-core-concepts": [
+				"network-systems-ns0-setup-and-tooling-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-systems-unit-1-the-network-stack-in-plain-english-curriculum-the-network-stack-in-plain-english-core-concepts": [
+				"network-systems-unit-1-the-network-stack-in-plain-english-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-systems-unit-2-addresses-and-naming-curriculum-addresses-and-naming-core-concepts": [
+				"network-systems-unit-2-addresses-and-naming-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-systems-unit-4-ports-and-listening-services-curriculum-ports-and-listening-services-core-concepts": [
+				"network-systems-unit-4-ports-and-listening-services-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-systems-unit-5-dns-and-name-resolution-curriculum-dns-and-name-resolution-core-concepts": [
+				"network-systems-unit-5-dns-and-name-resolution-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-systems-unit-6-core-diagnostics-curriculum-core-diagnostics-core-concepts": [
+				"network-systems-unit-6-core-diagnostics-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-systems-unit-7-linux-interface-and-route-management-curriculum-linux-interface-and-route-management-core-concepts": [
+				"network-systems-unit-7-linux-interface-and-route-management-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-systems-unit-9-firewalls-and-host-policy-curriculum-firewalls-and-host-policy-core-concepts": [
+				"network-systems-unit-9-firewalls-and-host-policy-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-systems-unit-10-packet-capture-and-deep-inspection-curriculum-packet-capture-and-deep-inspection-core-concepts": [
+				"network-systems-unit-10-packet-capture-and-deep-inspection-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-systems-unit-12-secure-exposure-of-services-curriculum-secure-exposure-of-services-core-concepts": [
+				"network-systems-unit-12-secure-exposure-of-services-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"javascript-level-1-javascript-superstar": {
+			"javascript-level-1-javascript-superstar-check-in-1-supplemental-javascript-level-1-javascript-superstar-check-in-1-transfer-practice": [
+				"javascript-level-1-javascript-superstar-check-in-1-supplemental-transfer-practice-check-in-1"
+			],
+			"javascript-level-1-javascript-superstar-check-in-1-supplemental-javascript-level-1-javascript-superstar-check-in-1-extension-practice": [
+				"javascript-level-1-javascript-superstar-check-in-1-supplemental-extension-practice-check-in-1"
+			],
+			"javascript-level-1-javascript-superstar-check-in-2-supplemental-javascript-level-1-javascript-superstar-check-in-2-transfer-practice": [
+				"javascript-level-1-javascript-superstar-check-in-2-supplemental-transfer-practice-check-in-2"
+			],
+			"javascript-level-1-javascript-superstar-check-in-2-supplemental-javascript-level-1-javascript-superstar-check-in-2-extension-practice": [
+				"javascript-level-1-javascript-superstar-check-in-2-supplemental-extension-practice-check-in-2"
+			],
+			"javascript-level-1-javascript-superstar-jss1-variables-and-data-types-curriculum-variables-and-data-types-core-concepts": [
+				"javascript-level-1-javascript-superstar-jss1-variables-and-data-types-curriculum-core-concepts-and-learning-sequence"
+			],
+			"javascript-level-1-javascript-superstar-jss5-conditionals-curriculum-conditionals-core-concepts": [
+				"javascript-level-1-javascript-superstar-jss5-conditionals-curriculum-core-concepts-and-learning-sequence"
+			],
+			"javascript-level-1-javascript-superstar-jss6-advanced-conditionals-curriculum-advanced-conditionals-core-concepts": [
+				"javascript-level-1-javascript-superstar-jss6-advanced-conditionals-curriculum-core-concepts-and-learning-sequence"
+			],
+			"javascript-level-1-javascript-superstar-check-in-1-curriculum-javascript-level-1-javascript-superstar-check-in-1-core-concepts": [
+				"javascript-level-1-javascript-superstar-check-in-1-curriculum-core-concepts-and-learning-sequence"
+			],
+			"javascript-level-1-javascript-superstar-check-in-1-curriculum-check-in-1-application-check": [
+				"javascript-level-1-javascript-superstar-check-in-1-curriculum-application-misconceptions-and-readiness-check"
+			]
+		},
+		"machine-learning": {
+			"machine-learning-ml1-k-means-clustering-supplemental-k-means-clustering-transfer-practice": [
+				"machine-learning-ml1-k-means-clustering-supplemental-transfer-practice-k-means-clustering",
+				"machine-learning-ml1-k-means-clustering-supplemental-ml1-k-means-clustering-applied-challenge"
+			],
+			"machine-learning-ml0-setup-tooling-and-data-workflow-supplemental-setup-tooling-and-data-workflow-data-variation-practice": [
+				"machine-learning-ml0-setup-tooling-and-data-workflow-supplemental-ml0-setup-tooling-and-data-workflow-applied-challenge"
+			],
+			"machine-learning-customer-segmentation-starter-build-practice-studio-curriculum-core-project-customer-segmentation-starter-build": [
+				"machine-learning-customer-segmentation-starter-build-curriculum-customer-segmentation-starter-build-core-project"
+			],
+			"machine-learning-customer-segmentation-starter-build-practice-studio-supplemental-extension-challenge-customer-segmentation-starter-build": [
+				"machine-learning-customer-segmentation-starter-build-supplemental-customer-segmentation-starter-build-extension-challenge"
+			],
+			"machine-learning-customer-segmentation-interview-practice-studio-curriculum-core-project-customer-segmentation-interview": [
+				"machine-learning-customer-segmentation-interview-curriculum-customer-segmentation-interview-core-project"
+			],
+			"machine-learning-customer-segmentation-interview-practice-studio-supplemental-extension-challenge-customer-segmentation-interview": [
+				"machine-learning-customer-segmentation-interview-supplemental-customer-segmentation-interview-extension-challenge"
+			],
+			"machine-learning-customer-segmentation-practice-studio-curriculum-core-project-customer-segmentation": [
+				"machine-learning-customer-segmentation-curriculum-customer-segmentation-core-project"
+			],
+			"machine-learning-customer-segmentation-practice-studio-supplemental-extension-challenge-customer-segmentation": [
+				"machine-learning-customer-segmentation-supplemental-customer-segmentation-extension-challenge"
+			],
+			"machine-learning-disney-movie-clustering-starter-build-practice-studio-curriculum-core-project-disney-movie-clustering-starter-build": [
+				"machine-learning-disney-movie-clustering-starter-build-curriculum-disney-movie-clustering-starter-build-core-project"
+			],
+			"machine-learning-disney-movie-clustering-starter-build-practice-studio-supplemental-extension-challenge-disney-movie-clustering-starter-build": [
+				"machine-learning-disney-movie-clustering-starter-build-supplemental-disney-movie-clustering-starter-build-extension-challenge"
+			],
+			"machine-learning-disney-movie-clustering-practice-studio-curriculum-core-project-disney-movie-clustering": [
+				"machine-learning-disney-movie-clustering-curriculum-disney-movie-clustering-core-project"
+			],
+			"machine-learning-disney-movie-clustering-practice-studio-supplemental-extension-challenge-disney-movie-clustering": [
+				"machine-learning-disney-movie-clustering-supplemental-disney-movie-clustering-extension-challenge"
+			],
+			"machine-learning-knn-car-classification-practice-studio-curriculum-core-project-knn-car-classification": [
+				"machine-learning-knn-car-classification-curriculum-knn-car-classification-core-project"
+			],
+			"machine-learning-knn-car-classification-practice-studio-supplemental-extension-challenge-knn-car-classification": [
+				"machine-learning-knn-car-classification-supplemental-knn-car-classification-extension-challenge"
+			],
+			"machine-learning-customer-segmentation-interview-practice-studio-curriculum-customer-segmentation-interview-core-concepts": [
+				"machine-learning-customer-segmentation-interview-implementation-lab-curriculum-customer-segmentation-interview-core-concepts"
+			],
+			"machine-learning-customer-segmentation-interview-practice-studio-curriculum-customer-segmentation-interview-guided-example": [
+				"machine-learning-customer-segmentation-interview-implementation-lab-curriculum-customer-segmentation-interview-guided-example"
+			],
+			"machine-learning-knn-car-classification-practice-studio-curriculum-knn-car-classification-core-concepts": [
+				"machine-learning-knn-car-classification-implementation-lab-curriculum-knn-car-classification-core-concepts"
+			],
+			"machine-learning-knn-car-classification-practice-studio-curriculum-knn-car-classification-guided-example": [
+				"machine-learning-knn-car-classification-implementation-lab-curriculum-knn-car-classification-guided-example"
+			],
+			"machine-learning-ml0-setup-tooling-and-data-workflow-curriculum-setup-tooling-and-data-workflow-core-concepts": [
+				"machine-learning-ml0-setup-tooling-and-data-workflow-curriculum-core-concepts-and-learning-sequence"
+			],
+			"machine-learning-ml1-k-means-clustering-curriculum-k-means-clustering-core-concepts": [
+				"machine-learning-ml1-k-means-clustering-curriculum-core-concepts-and-learning-sequence"
+			],
+			"machine-learning-ml2-k-nearest-neighbors-curriculum-k-nearest-neighbors-core-concepts": [
+				"machine-learning-ml2-k-nearest-neighbors-curriculum-core-concepts-and-learning-sequence"
+			],
+			"machine-learning-ml3-5-decision-trees-and-interpretable-models-curriculum-5-decision-trees-and-interpretable-models-core-concepts": [
+				"machine-learning-ml3-5-decision-trees-and-interpretable-models-curriculum-core-concepts-and-learning-sequence"
+			],
+			"machine-learning-ml4-neural-networks-curriculum-neural-networks-core-concepts": [
+				"machine-learning-ml4-neural-networks-curriculum-core-concepts-and-learning-sequence"
+			],
+			"machine-learning-ml5-introduction-to-regression-curriculum-introduction-to-regression-core-concepts": [
+				"machine-learning-ml5-introduction-to-regression-curriculum-core-concepts-and-learning-sequence"
+			],
+			"machine-learning-ml7-5-model-evaluation-comparison-and-dataset-strategy-curriculum-5-model-evaluation-comparison-and-dataset-strategy-core-concepts": [
+				"machine-learning-ml7-5-model-evaluation-comparison-and-dataset-strategy-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"python-to-java-and-cpp-bridge": {
+			"python-to-java-and-cpp-bridge-language-bridge-lab-17-bridge-capstone-port-studio-curriculum-core-project-language-bridge-lab-17": [
+				"python-to-java-and-cpp-bridge-language-bridge-lab-17-curriculum-language-bridge-lab-17-core-project"
+			],
+			"python-to-java-and-cpp-bridge-language-bridge-lab-17-bridge-capstone-port-studio-supplemental-extension-challenge-language-bridge-lab-17": [
+				"python-to-java-and-cpp-bridge-language-bridge-lab-17-supplemental-language-bridge-lab-17-extension-challenge"
+			],
+			"python-to-java-and-cpp-bridge-ptj0-positioning-and-workflow-translation-curriculum-positioning-and-workflow-translation-core-concepts": [
+				"python-to-java-and-cpp-bridge-ptj0-positioning-and-workflow-translation-curriculum-core-concepts-and-learning-sequence"
+			],
+			"python-to-java-and-cpp-bridge-ptj1-functions-parameters-and-return-types-curriculum-functions-parameters-and-return-types-core-concepts": [
+				"python-to-java-and-cpp-bridge-ptj1-functions-parameters-and-return-types-curriculum-core-concepts-and-learning-sequence"
+			],
+			"python-to-java-and-cpp-bridge-ptj2-collections-strings-and-indexing-curriculum-collections-strings-and-indexing-core-concepts": [
+				"python-to-java-and-cpp-bridge-ptj2-collections-strings-and-indexing-curriculum-core-concepts-and-learning-sequence"
+			],
+			"python-to-java-and-cpp-bridge-ptj3-classes-and-objects-across-languages-curriculum-classes-and-objects-across-languages-core-concepts": [
+				"python-to-java-and-cpp-bridge-ptj3-classes-and-objects-across-languages-curriculum-core-concepts-and-learning-sequence"
+			],
+			"python-to-java-and-cpp-bridge-ptj5-c-specific-adaptation-curriculum-c-specific-adaptation-core-concepts": [
+				"python-to-java-and-cpp-bridge-ptj5-c-specific-adaptation-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"java-level-1": {
+			"java-level-1-optional-java-foundations-practice-archive-supplemental-core-project-java-foundations-build-13": [
+				"java-level-1-java-foundations-build-13-curriculum-java-foundations-build-13-core-project"
+			],
+			"java-level-1-optional-java-foundations-practice-archive-supplemental-extension-challenge-java-foundations-build-13": [
+				"java-level-1-java-foundations-build-13-supplemental-java-foundations-build-13-extension-challenge"
+			],
+			"java-level-1-optional-java-foundations-practice-archive-supplemental-core-project-java-foundations-build-14": [
+				"java-level-1-java-foundations-build-14-curriculum-java-foundations-build-14-core-project"
+			],
+			"java-level-1-optional-java-foundations-practice-archive-supplemental-extension-challenge-java-foundations-build-14": [
+				"java-level-1-java-foundations-build-14-supplemental-java-foundations-build-14-extension-challenge"
+			],
+			"java-level-1-optional-java-foundations-practice-archive-supplemental-core-project-java-foundations-build-15": [
+				"java-level-1-java-foundations-build-15-curriculum-java-foundations-build-15-core-project"
+			],
+			"java-level-1-optional-java-foundations-practice-archive-supplemental-extension-challenge-java-foundations-build-15": [
+				"java-level-1-java-foundations-build-15-supplemental-java-foundations-build-15-extension-challenge"
+			],
+			"java-level-1-optional-java-foundations-practice-archive-supplemental-core-project-java-foundations-build-16": [
+				"java-level-1-java-foundations-build-16-curriculum-java-foundations-build-16-core-project"
+			],
+			"java-level-1-optional-java-foundations-practice-archive-supplemental-extension-challenge-java-foundations-build-16": [
+				"java-level-1-java-foundations-build-16-supplemental-java-foundations-build-16-extension-challenge"
+			],
+			"java-level-1-optional-java-foundations-practice-archive-supplemental-core-project-java-foundations-build-17": [
+				"java-level-1-java-foundations-build-17-curriculum-java-foundations-build-17-core-project"
+			],
+			"java-level-1-optional-java-foundations-practice-archive-supplemental-extension-challenge-java-foundations-build-17": [
+				"java-level-1-java-foundations-build-17-supplemental-java-foundations-build-17-extension-challenge"
+			],
+			"java-level-1-optional-java-foundations-practice-archive-supplemental-core-project-temperature-converter": [
+				"java-level-1-temperature-converter-curriculum-temperature-converter-core-project"
+			],
+			"java-level-1-optional-java-foundations-practice-archive-supplemental-extension-challenge-temperature-converter": [
+				"java-level-1-temperature-converter-supplemental-temperature-converter-extension-challenge"
+			],
+			"java-level-1-j1c-text-bridge-variables-strings-and-input-curriculum-variables-strings-and-input-core-concepts": [
+				"java-level-1-js1-variable-types-input-output-curriculum-core-concepts-and-learning-sequence"
+			],
+			"java-level-1-j1h-check-in-visual-to-text-foundations-curriculum-visual-to-text-foundations-core-concepts": [
+				"java-level-1-check-in-1-curriculum-core-concepts-and-learning-sequence"
+			],
+			"java-level-1-j1l-check-in-methods-and-data-structures-curriculum-methods-and-data-structures-core-concepts": [
+				"java-level-1-check-in-2-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"usaco-silver": {
+			"usaco-silver-uss0-setup-and-silver-transition-curriculum-core-project-setup-and-silver-transition": [
+				"usaco-silver-uss0-setup-and-silver-transition-curriculum-uss0-setup-and-silver-transition-core-project"
+			],
+			"usaco-silver-optional-historical-and-applied-silver-studios-supplemental-core-project-us-berry-picking": [
+				"usaco-silver-us-berry-picking-curriculum-us-berry-picking-core-project"
+			],
+			"usaco-silver-optional-historical-and-applied-silver-studios-supplemental-extension-challenge-us-berry-picking": [
+				"usaco-silver-us-berry-picking-supplemental-us-berry-picking-extension-challenge"
+			],
+			"usaco-silver-optional-historical-and-applied-silver-studios-supplemental-core-project-superprime-rib": [
+				"usaco-silver-superprime-rib-curriculum-superprime-rib-core-project"
+			],
+			"usaco-silver-optional-historical-and-applied-silver-studios-supplemental-extension-challenge-superprime-rib": [
+				"usaco-silver-superprime-rib-supplemental-superprime-rib-extension-challenge"
+			],
+			"usaco-silver-optional-historical-and-applied-silver-studios-supplemental-core-project-the-castle": [
+				"usaco-silver-the-castle-curriculum-the-castle-core-project"
+			],
+			"usaco-silver-optional-historical-and-applied-silver-studios-supplemental-extension-challenge-the-castle": [
+				"usaco-silver-the-castle-supplemental-the-castle-extension-challenge"
+			],
+			"usaco-silver-optional-historical-and-applied-silver-studios-supplemental-core-project-sorting-a-three-valued-sequence": [
+				"usaco-silver-sorting-a-three-valued-sequence-curriculum-sorting-a-three-valued-sequence-core-project"
+			],
+			"usaco-silver-optional-historical-and-applied-silver-studios-supplemental-extension-challenge-sorting-a-three-valued-sequence": [
+				"usaco-silver-sorting-a-three-valued-sequence-supplemental-sorting-a-three-valued-sequence-extension-challenge"
+			],
+			"usaco-silver-optional-historical-and-applied-silver-studios-supplemental-core-project-healthy-holsteins": [
+				"usaco-silver-healthy-holsteins-curriculum-healthy-holsteins-core-project"
+			],
+			"usaco-silver-optional-historical-and-applied-silver-studios-supplemental-extension-challenge-healthy-holsteins": [
+				"usaco-silver-healthy-holsteins-supplemental-healthy-holsteins-extension-challenge"
+			],
+			"usaco-silver-optional-historical-and-applied-silver-studios-supplemental-core-project-hamming-codes": [
+				"usaco-silver-hamming-codes-curriculum-hamming-codes-core-project"
+			],
+			"usaco-silver-optional-historical-and-applied-silver-studios-supplemental-extension-challenge-hamming-codes": [
+				"usaco-silver-hamming-codes-supplemental-hamming-codes-extension-challenge"
+			],
+			"usaco-silver-optional-historical-and-applied-silver-studios-supplemental-core-project-priority-queues": [
+				"usaco-silver-priority-queues-curriculum-priority-queues-core-project"
+			],
+			"usaco-silver-optional-historical-and-applied-silver-studios-supplemental-extension-challenge-priority-queues": [
+				"usaco-silver-priority-queues-supplemental-priority-queues-extension-challenge"
+			],
+			"usaco-silver-optional-historical-and-applied-silver-studios-supplemental-core-project-hoof-paper-scissors": [
+				"usaco-silver-hoof-paper-scissors-curriculum-hoof-paper-scissors-core-project"
+			],
+			"usaco-silver-optional-historical-and-applied-silver-studios-supplemental-extension-challenge-hoof-paper-scissors": [
+				"usaco-silver-hoof-paper-scissors-supplemental-hoof-paper-scissors-extension-challenge"
+			],
+			"usaco-silver-optional-historical-and-applied-silver-studios-supplemental-core-project-why-did-the-cow-cross-the-road": [
+				"usaco-silver-why-did-the-cow-cross-the-road-curriculum-why-did-the-cow-cross-the-road-core-project"
+			],
+			"usaco-silver-optional-historical-and-applied-silver-studios-supplemental-extension-challenge-why-did-the-cow-cross-the-road": [
+				"usaco-silver-why-did-the-cow-cross-the-road-supplemental-why-did-the-cow-cross-the-road-extension-challenge"
+			],
+			"usaco-silver-uss0-setup-and-silver-transition-curriculum-setup-and-silver-transition-core-concepts": [
+				"usaco-silver-uss0-setup-and-silver-transition-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"usaco-gold": {
+			"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-dynamic-programming-practice": [
+				"usaco-gold-dynamic-programming-practice-curriculum-dynamic-programming-practice-core-project"
+			],
+			"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-extension-challenge-dynamic-programming-practice": [
+				"usaco-gold-dynamic-programming-practice-supplemental-dynamic-programming-practice-extension-challenge"
+			],
+			"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-hoof-paper-scissors": [
+				"usaco-gold-hoof-paper-scissors-curriculum-hoof-paper-scissors-core-project"
+			],
+			"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-extension-challenge-hoof-paper-scissors": [
+				"usaco-gold-hoof-paper-scissors-supplemental-hoof-paper-scissors-extension-challenge"
+			],
+			"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-why-did-the-cow-cross-the-road": [
+				"usaco-gold-why-did-the-cow-cross-the-road-curriculum-why-did-the-cow-cross-the-road-core-project"
+			],
+			"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-extension-challenge-why-did-the-cow-cross-the-road": [
+				"usaco-gold-why-did-the-cow-cross-the-road-supplemental-why-did-the-cow-cross-the-road-extension-challenge"
+			],
+			"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-cow-routing": [
+				"usaco-gold-cow-routing-curriculum-cow-routing-core-project"
+			],
+			"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-extension-challenge-cow-routing": [
+				"usaco-gold-cow-routing-supplemental-cow-routing-extension-challenge"
+			],
+			"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-mst-ii": [
+				"usaco-gold-mst-ii-curriculum-mst-ii-core-project"
+			],
+			"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-extension-challenge-mst-ii": [
+				"usaco-gold-mst-ii-supplemental-mst-ii-extension-challenge"
+			],
+			"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-watering-the-fields": [
+				"usaco-gold-watering-the-fields-curriculum-watering-the-fields-core-project"
+			],
+			"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-extension-challenge-watering-the-fields": [
+				"usaco-gold-watering-the-fields-supplemental-watering-the-fields-extension-challenge"
+			],
+			"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-i-would-walk-500-miles": [
+				"usaco-gold-i-would-walk-500-miles-curriculum-i-would-walk-500-miles-core-project"
+			],
+			"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-extension-challenge-i-would-walk-500-miles": [
+				"usaco-gold-i-would-walk-500-miles-supplemental-i-would-walk-500-miles-extension-challenge"
+			],
+			"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-core-project-talent-show": [
+				"usaco-gold-talent-show-curriculum-talent-show-core-project"
+			],
+			"usaco-gold-optional-historical-and-applied-gold-studios-supplemental-extension-challenge-talent-show": [
+				"usaco-gold-talent-show-supplemental-talent-show-extension-challenge"
+			]
+		},
+		"design-patterns-in-java": {
+			"design-patterns-in-java-dpj1-what-patterns-are-and-what-they-are-not-supplemental-understanding-check-what-patterns-are-and-what-they-are-not": [
+				"design-patterns-in-java-dpj1-what-patterns-are-and-what-they-are-not-supplemental-dpj1-what-patterns-are-and-what-they-are-not-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-dpj2-java-design-foundations-supplemental-understanding-check-java-design-foundations": [
+				"design-patterns-in-java-dpj2-java-design-foundations-supplemental-dpj2-java-design-foundations-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-dpj3-creational-patterns-i-supplemental-understanding-check-creational-patterns-i": [
+				"design-patterns-in-java-dpj3-creational-patterns-i-supplemental-dpj3-creational-patterns-i-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-dpj4-creational-patterns-ii-and-boundary-patterns-supplemental-understanding-check-creational-patterns-ii-and-boundary-patterns": [
+				"design-patterns-in-java-dpj4-creational-patterns-ii-and-boundary-patterns-supplemental-dpj4-creational-patterns-ii-and-boundary-patterns-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-dpj5-structural-patterns-in-depth-supplemental-understanding-check-structural-patterns-in-depth": [
+				"design-patterns-in-java-dpj5-structural-patterns-in-depth-supplemental-dpj5-structural-patterns-in-depth-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-dpj6-behavioral-patterns-i-supplemental-understanding-check-behavioral-patterns-i": [
+				"design-patterns-in-java-dpj6-behavioral-patterns-i-supplemental-dpj6-behavioral-patterns-i-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-dpj7-behavioral-patterns-ii-supplemental-understanding-check-behavioral-patterns-ii": [
+				"design-patterns-in-java-dpj7-behavioral-patterns-ii-supplemental-dpj7-behavioral-patterns-ii-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-supplemental-understanding-check-modern-extensions-and-architecture-level-patterns": [
+				"design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-supplemental-dpj8-modern-extensions-and-architecture-level-patterns-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-supplemental-understanding-check-pattern-selection-and-refactoring-judgment": [
+				"design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-supplemental-dpj9-pattern-selection-and-refactoring-judgment-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-dpj10-capstone-refactor-supplemental-understanding-check-capstone-refactor": [
+				"design-patterns-in-java-dpj10-capstone-refactor-supplemental-dpj10-capstone-refactor-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-dpj1-what-patterns-are-and-what-they-are-not-curriculum-what-patterns-are-and-what-they-are-not-core-concepts": [
+				"design-patterns-in-java-dpj1-what-patterns-are-and-what-they-are-not-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-java-dpj2-java-design-foundations-curriculum-java-design-foundations-core-concepts": [
+				"design-patterns-in-java-dpj2-java-design-foundations-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-java-dpj3-creational-patterns-i-curriculum-creational-patterns-i-core-concepts": [
+				"design-patterns-in-java-dpj3-creational-patterns-i-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-java-dpj4-creational-patterns-ii-and-boundary-patterns-curriculum-creational-patterns-ii-and-boundary-patterns-core-concepts": [
+				"design-patterns-in-java-dpj4-creational-patterns-ii-and-boundary-patterns-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-java-dpj4-creational-patterns-ii-and-boundary-patterns-curriculum-creational-patterns-ii-and-boundary-patterns-application-check": [
+				"design-patterns-in-java-dpj4-creational-patterns-ii-and-boundary-patterns-curriculum-application-misconceptions-and-readiness-check"
+			],
+			"design-patterns-in-java-dpj5-structural-patterns-in-depth-curriculum-structural-patterns-in-depth-core-concepts": [
+				"design-patterns-in-java-dpj5-structural-patterns-in-depth-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-java-dpj5-structural-patterns-in-depth-curriculum-structural-patterns-in-depth-application-check": [
+				"design-patterns-in-java-dpj5-structural-patterns-in-depth-curriculum-application-misconceptions-and-readiness-check"
+			],
+			"design-patterns-in-java-dpj6-behavioral-patterns-i-curriculum-behavioral-patterns-i-core-concepts": [
+				"design-patterns-in-java-dpj6-behavioral-patterns-i-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-java-dpj6-behavioral-patterns-i-curriculum-behavioral-patterns-i-application-check": [
+				"design-patterns-in-java-dpj6-behavioral-patterns-i-curriculum-application-misconceptions-and-readiness-check"
+			],
+			"design-patterns-in-java-dpj7-behavioral-patterns-ii-curriculum-behavioral-patterns-ii-core-concepts": [
+				"design-patterns-in-java-dpj7-behavioral-patterns-ii-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-java-dpj7-behavioral-patterns-ii-curriculum-behavioral-patterns-ii-application-check": [
+				"design-patterns-in-java-dpj7-behavioral-patterns-ii-curriculum-application-misconceptions-and-readiness-check"
+			],
+			"design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-modern-extensions-and-architecture-level-patterns-core-concepts": [
+				"design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-modern-extensions-and-architecture-level-patterns-application-check": [
+				"design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-application-misconceptions-and-readiness-check"
+			],
+			"design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-curriculum-pattern-selection-and-refactoring-judgment-core-concepts": [
+				"design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"design-patterns-in-java-part-2": {
+			"design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-supplemental-understanding-check-code-smells-and-safe-refactoring-workflow": [
+				"design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-supplemental-dpr1-code-smells-and-safe-refactoring-workflow-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-part-2-dpr2-composing-methods-supplemental-understanding-check-composing-methods": [
+				"design-patterns-in-java-part-2-dpr2-composing-methods-supplemental-dpr2-composing-methods-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-part-2-dpr3-moving-features-between-objects-supplemental-understanding-check-moving-features-between-objects": [
+				"design-patterns-in-java-part-2-dpr3-moving-features-between-objects-supplemental-dpr3-moving-features-between-objects-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-part-2-dpr4-organizing-data-supplemental-understanding-check-organizing-data": [
+				"design-patterns-in-java-part-2-dpr4-organizing-data-supplemental-dpr4-organizing-data-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-supplemental-understanding-check-simplifying-conditional-expressions": [
+				"design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-supplemental-dpr5-simplifying-conditional-expressions-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-understanding-check-simplifying-method-calls": [
+				"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-dpr6-simplifying-method-calls-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-understanding-check-dealing-with-generalization": [
+				"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dpr7-dealing-with-generalization-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-understanding-check-refactoring-toward-patterns": [
+				"design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-dpr8-refactoring-toward-patterns-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-understanding-check-testability-di-and-refactoring-with-confidence": [
+				"design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-dpr9-testability-di-and-refactoring-with-confidence-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-understanding-check-capstone-refactoring-studio": [
+				"design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-dpr10-capstone-refactoring-studio-diagnostic-checkpoint"
+			],
+			"design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-11": [
+				"design-patterns-in-java-part-2-refactoring-clinic-11-curriculum-refactoring-clinic-11-core-project"
+			],
+			"design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-11": [
+				"design-patterns-in-java-part-2-refactoring-clinic-11-supplemental-refactoring-clinic-11-extension-challenge"
+			],
+			"design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-12": [
+				"design-patterns-in-java-part-2-refactoring-clinic-12-curriculum-refactoring-clinic-12-core-project"
+			],
+			"design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-12": [
+				"design-patterns-in-java-part-2-refactoring-clinic-12-supplemental-refactoring-clinic-12-extension-challenge"
+			],
+			"design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-13": [
+				"design-patterns-in-java-part-2-refactoring-clinic-13-curriculum-refactoring-clinic-13-core-project"
+			],
+			"design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-13": [
+				"design-patterns-in-java-part-2-refactoring-clinic-13-supplemental-refactoring-clinic-13-extension-challenge"
+			],
+			"design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-14": [
+				"design-patterns-in-java-part-2-refactoring-clinic-14-curriculum-refactoring-clinic-14-core-project"
+			],
+			"design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-14": [
+				"design-patterns-in-java-part-2-refactoring-clinic-14-supplemental-refactoring-clinic-14-extension-challenge"
+			],
+			"design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-15": [
+				"design-patterns-in-java-part-2-refactoring-clinic-15-curriculum-refactoring-clinic-15-core-project"
+			],
+			"design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-15": [
+				"design-patterns-in-java-part-2-refactoring-clinic-15-supplemental-refactoring-clinic-15-extension-challenge"
+			],
+			"design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-16": [
+				"design-patterns-in-java-part-2-refactoring-clinic-16-curriculum-refactoring-clinic-16-core-project"
+			],
+			"design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-16": [
+				"design-patterns-in-java-part-2-refactoring-clinic-16-supplemental-refactoring-clinic-16-extension-challenge"
+			],
+			"design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-17": [
+				"design-patterns-in-java-part-2-refactoring-clinic-17-curriculum-refactoring-clinic-17-core-project"
+			],
+			"design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-17": [
+				"design-patterns-in-java-part-2-refactoring-clinic-17-supplemental-refactoring-clinic-17-extension-challenge"
+			],
+			"design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-curriculum-code-smells-and-safe-refactoring-workflow-core-concepts": [
+				"design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-java-part-2-dpr2-composing-methods-curriculum-composing-methods-core-concepts": [
+				"design-patterns-in-java-part-2-dpr2-composing-methods-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-java-part-2-dpr3-moving-features-between-objects-curriculum-moving-features-between-objects-core-concepts": [
+				"design-patterns-in-java-part-2-dpr3-moving-features-between-objects-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-java-part-2-dpr4-organizing-data-curriculum-organizing-data-core-concepts": [
+				"design-patterns-in-java-part-2-dpr4-organizing-data-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-curriculum-simplifying-conditional-expressions-core-concepts": [
+				"design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-simplifying-method-calls-core-concepts": [
+				"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-dealing-with-generalization-core-concepts": [
+				"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-curriculum-refactoring-toward-patterns-core-concepts": [
+				"design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-testability-di-and-refactoring-with-confidence-core-concepts": [
+				"design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"design-patterns-in-cpp": {
+			"design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-ownership-aware-refactor-project": [
+				"design-patterns-in-cpp-pattern-lab-14-curriculum-pattern-lab-14-core-project"
+			],
+			"design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-ownership-refactor-extension-challenge": [
+				"design-patterns-in-cpp-pattern-lab-14-supplemental-pattern-lab-14-extension-challenge"
+			],
+			"design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-runtime-variation-project": [
+				"design-patterns-in-cpp-pattern-lab-15-curriculum-pattern-lab-15-core-project"
+			],
+			"design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-runtime-variation-extension-challenge": [
+				"design-patterns-in-cpp-pattern-lab-15-supplemental-pattern-lab-15-extension-challenge"
+			],
+			"design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-structural-boundary-project": [
+				"design-patterns-in-cpp-pattern-lab-16-curriculum-pattern-lab-16-core-project"
+			],
+			"design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-structural-boundary-extension-challenge": [
+				"design-patterns-in-cpp-pattern-lab-16-supplemental-pattern-lab-16-extension-challenge"
+			],
+			"design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-refactoring-capstone-project": [
+				"design-patterns-in-cpp-pattern-lab-17-curriculum-pattern-lab-17-core-project"
+			],
+			"design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-refactoring-capstone-extension-challenge": [
+				"design-patterns-in-cpp-pattern-lab-17-supplemental-pattern-lab-17-extension-challenge"
+			],
+			"design-patterns-in-cpp-dpc0-setup-and-tooling-curriculum-design-patterns-in-c-core-concepts": [
+				"design-patterns-in-cpp-dpc0-setup-and-tooling-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-cpp-dpc1-why-patterns-look-different-in-modern-c-curriculum-why-patterns-look-different-in-modern-c-core-concepts": [
+				"design-patterns-in-cpp-dpc1-why-patterns-look-different-in-modern-c-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-cpp-dpc2-design-foundations-curriculum-design-foundations-core-concepts": [
+				"design-patterns-in-cpp-dpc2-design-foundations-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-cpp-dpc4-strategy-and-policy-based-design-curriculum-strategy-and-policy-based-design-core-concepts": [
+				"design-patterns-in-cpp-dpc4-strategy-and-policy-based-design-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-cpp-dpc5-observer-and-event-flow-curriculum-observer-and-event-flow-core-concepts": [
+				"design-patterns-in-cpp-dpc5-observer-and-event-flow-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-cpp-dpc6-decorator-adapter-and-facade-curriculum-decorator-adapter-and-facade-core-concepts": [
+				"design-patterns-in-cpp-dpc6-decorator-adapter-and-facade-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-cpp-dpc7-command-and-state-curriculum-command-and-state-core-concepts": [
+				"design-patterns-in-cpp-dpc7-command-and-state-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-cpp-dpc7-command-and-state-curriculum-command-and-state-application-check": [
+				"design-patterns-in-cpp-dpc7-command-and-state-curriculum-application-misconceptions-and-readiness-check"
+			],
+			"design-patterns-in-cpp-dpc8-composite-and-iterator-curriculum-composite-and-iterator-core-concepts": [
+				"design-patterns-in-cpp-dpc8-composite-and-iterator-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-cpp-dpc9-singleton-global-state-and-dependency-injection-curriculum-singleton-global-state-and-dependency-injection-core-concepts": [
+				"design-patterns-in-cpp-dpc9-singleton-global-state-and-dependency-injection-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-cpp-dpc10-patterns-for-resource-management-curriculum-patterns-for-resource-management-core-concepts": [
+				"design-patterns-in-cpp-dpc10-patterns-for-resource-management-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-cpp-dpc11-legacy-refactoring-lab-curriculum-legacy-refactoring-lab-core-concepts": [
+				"design-patterns-in-cpp-dpc11-legacy-refactoring-lab-curriculum-core-concepts-and-learning-sequence"
+			],
+			"design-patterns-in-cpp-dpc12-capstone-studio-curriculum-capstone-studio-core-concepts": [
+				"design-patterns-in-cpp-dpc12-capstone-studio-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"intro-to-physics": {
+			"intro-to-physics-phy1-measurement-uncertainty-and-scientific-modeling-supplemental-measurement-uncertainty-and-scientific-modeling-readiness-check": [
+				"intro-to-physics-phy1-measurement-uncertainty-and-scientific-modeling-supplemental-phy1-measurement-uncertainty-and-scientific-modeling-diagnostic-checkpoint"
+			],
+			"intro-to-physics-phy2-motion-graphs-and-kinematics-supplemental-motion-graphs-and-kinematics-readiness-check": [
+				"intro-to-physics-phy2-motion-graphs-and-kinematics-supplemental-phy2-motion-graphs-and-kinematics-diagnostic-checkpoint"
+			],
+			"intro-to-physics-phy3-forces-free-body-diagrams-and-newton-s-laws-supplemental-forces-free-body-diagrams-and-newton-s-laws-readiness-check": [
+				"intro-to-physics-phy3-forces-free-body-diagrams-and-newton-s-laws-supplemental-phy3-forces-free-body-diagrams-and-newton-s-laws-diagnostic-checkpoint"
+			],
+			"intro-to-physics-phy4-gravity-work-and-energy-supplemental-gravity-work-and-energy-readiness-check": [
+				"intro-to-physics-phy4-gravity-work-and-energy-supplemental-phy4-gravity-work-and-energy-diagnostic-checkpoint"
+			],
+			"intro-to-physics-phy5-electricity-and-basic-circuits-supplemental-electricity-and-basic-circuits-readiness-check": [
+				"intro-to-physics-phy5-electricity-and-basic-circuits-supplemental-phy5-electricity-and-basic-circuits-diagnostic-checkpoint"
+			],
+			"intro-to-physics-phy6-waves-sound-and-light-supplemental-waves-sound-and-light-readiness-check": [
+				"intro-to-physics-phy6-waves-sound-and-light-supplemental-phy6-waves-sound-and-light-diagnostic-checkpoint"
+			],
+			"intro-to-physics-phy7-capstone-lab-and-scientific-communication-supplemental-capstone-lab-and-scientific-communication-readiness-check": [
+				"intro-to-physics-phy7-capstone-lab-and-scientific-communication-supplemental-phy7-capstone-lab-and-scientific-communication-diagnostic-checkpoint"
+			],
+			"intro-to-physics-phy8-momentum-impulse-and-collisions-supplemental-momentum-impulse-and-collisions-readiness-check": [
+				"intro-to-physics-phy8-momentum-impulse-and-collisions-supplemental-phy8-momentum-impulse-and-collisions-diagnostic-checkpoint"
+			],
+			"intro-to-physics-phy9-rotational-motion-and-torque-basics-supplemental-rotational-motion-and-torque-basics-readiness-check": [
+				"intro-to-physics-phy9-rotational-motion-and-torque-basics-supplemental-phy9-rotational-motion-and-torque-basics-diagnostic-checkpoint"
+			],
+			"intro-to-physics-phy10-fluids-pressure-and-buoyancy-supplemental-fluids-pressure-and-buoyancy-readiness-check": [
+				"intro-to-physics-phy10-fluids-pressure-and-buoyancy-supplemental-phy10-fluids-pressure-and-buoyancy-diagnostic-checkpoint"
+			],
+			"intro-to-physics-phy11-heat-temperature-and-thermal-energy-supplemental-heat-temperature-and-thermal-energy-readiness-check": [
+				"intro-to-physics-phy11-heat-temperature-and-thermal-energy-supplemental-phy11-heat-temperature-and-thermal-energy-diagnostic-checkpoint"
+			],
+			"intro-to-physics-phy12-optics-mirrors-lenses-and-images-supplemental-optics-mirrors-lenses-and-images-readiness-check": [
+				"intro-to-physics-phy12-optics-mirrors-lenses-and-images-supplemental-phy12-optics-mirrors-lenses-and-images-diagnostic-checkpoint"
+			],
+			"intro-to-physics-phy13-magnetism-and-electromagnetic-induction-supplemental-magnetism-and-electromagnetic-induction-readiness-check": [
+				"intro-to-physics-phy13-magnetism-and-electromagnetic-induction-supplemental-phy13-magnetism-and-electromagnetic-induction-diagnostic-checkpoint"
+			],
+			"intro-to-physics-phy14-simple-harmonic-motion-and-resonance-supplemental-simple-harmonic-motion-and-resonance-readiness-check": [
+				"intro-to-physics-phy14-simple-harmonic-motion-and-resonance-supplemental-phy14-simple-harmonic-motion-and-resonance-diagnostic-checkpoint"
+			],
+			"intro-to-physics-phy15-astronomy-gravity-and-orbits-supplemental-astronomy-gravity-and-orbits-readiness-check": [
+				"intro-to-physics-phy15-astronomy-gravity-and-orbits-supplemental-phy15-astronomy-gravity-and-orbits-diagnostic-checkpoint"
+			],
+			"intro-to-physics-phy16-modern-physics-and-model-limits-supplemental-modern-physics-and-model-limits-readiness-check": [
+				"intro-to-physics-phy16-modern-physics-and-model-limits-supplemental-phy16-modern-physics-and-model-limits-diagnostic-checkpoint"
+			],
+			"intro-to-physics-phy17-engineering-design-and-physics-portfolio-supplemental-engineering-design-and-physics-portfolio-readiness-check": [
+				"intro-to-physics-phy17-engineering-design-and-physics-portfolio-supplemental-phy17-engineering-design-and-physics-portfolio-diagnostic-checkpoint"
+			]
+		},
+		"physics-level-2": {
+			"physics-level-2-phy8-quantitative-kinematics-and-vector-modeling-supplemental-quantitative-kinematics-and-vector-modeling-readiness-check": [
+				"physics-level-2-phy8-quantitative-kinematics-and-vector-modeling-supplemental-phy8-quantitative-kinematics-and-vector-modeling-diagnostic-checkpoint"
+			],
+			"physics-level-2-phy9-multi-force-systems-and-equilibrium-supplemental-multi-force-systems-and-equilibrium-readiness-check": [
+				"physics-level-2-phy9-multi-force-systems-and-equilibrium-supplemental-phy9-multi-force-systems-and-equilibrium-diagnostic-checkpoint"
+			],
+			"physics-level-2-phy10-friction-inclines-and-connected-systems-supplemental-friction-inclines-and-connected-systems-readiness-check": [
+				"physics-level-2-phy10-friction-inclines-and-connected-systems-supplemental-phy10-friction-inclines-and-connected-systems-diagnostic-checkpoint"
+			],
+			"physics-level-2-phy11-momentum-impulse-and-collisions-supplemental-momentum-impulse-and-collisions-readiness-check": [
+				"physics-level-2-phy11-momentum-impulse-and-collisions-supplemental-phy11-momentum-impulse-and-collisions-diagnostic-checkpoint"
+			],
+			"physics-level-2-phy12-rotational-motion-and-torque-supplemental-rotational-motion-and-torque-readiness-check": [
+				"physics-level-2-phy12-rotational-motion-and-torque-supplemental-phy12-rotational-motion-and-torque-diagnostic-checkpoint"
+			],
+			"physics-level-2-phy13-gravitation-circular-motion-and-orbits-supplemental-gravitation-circular-motion-and-orbits-readiness-check": [
+				"physics-level-2-phy13-gravitation-circular-motion-and-orbits-supplemental-phy13-gravitation-circular-motion-and-orbits-diagnostic-checkpoint"
+			],
+			"physics-level-2-phy14-electricity-circuits-and-fields-supplemental-electricity-circuits-and-fields-readiness-check": [
+				"physics-level-2-phy14-electricity-circuits-and-fields-supplemental-phy14-electricity-circuits-and-fields-diagnostic-checkpoint"
+			],
+			"physics-level-2-phy15-thermal-physics-optics-and-modern-bridges-supplemental-thermal-physics-optics-and-modern-bridges-readiness-check": [
+				"physics-level-2-phy15-thermal-physics-optics-and-modern-bridges-supplemental-phy15-thermal-physics-optics-and-modern-bridges-diagnostic-checkpoint"
+			],
+			"physics-level-2-phy16-engineering-physics-capstone-supplemental-engineering-physics-capstone-readiness-check": [
+				"physics-level-2-phy16-engineering-physics-capstone-supplemental-phy16-engineering-physics-capstone-diagnostic-checkpoint"
+			],
+			"physics-level-2-phy17-numerical-modeling-and-simulation-checks-supplemental-numerical-modeling-and-simulation-checks-readiness-check": [
+				"physics-level-2-phy17-numerical-modeling-and-simulation-checks-supplemental-phy17-numerical-modeling-and-simulation-checks-diagnostic-checkpoint"
+			],
+			"physics-level-2-phy18-experimental-uncertainty-and-curve-fitting-supplemental-experimental-uncertainty-and-curve-fitting-readiness-check": [
+				"physics-level-2-phy18-experimental-uncertainty-and-curve-fitting-supplemental-phy18-experimental-uncertainty-and-curve-fitting-diagnostic-checkpoint"
+			],
+			"physics-level-2-phy19-coupled-systems-and-constraints-supplemental-coupled-systems-and-constraints-readiness-check": [
+				"physics-level-2-phy19-coupled-systems-and-constraints-supplemental-phy19-coupled-systems-and-constraints-diagnostic-checkpoint"
+			],
+			"physics-level-2-phy20-fluids-and-continuum-models-supplemental-fluids-and-continuum-models-readiness-check": [
+				"physics-level-2-phy20-fluids-and-continuum-models-supplemental-phy20-fluids-and-continuum-models-diagnostic-checkpoint"
+			],
+			"physics-level-2-phy21-thermodynamics-and-engines-supplemental-thermodynamics-and-engines-readiness-check": [
+				"physics-level-2-phy21-thermodynamics-and-engines-supplemental-phy21-thermodynamics-and-engines-diagnostic-checkpoint"
+			],
+			"physics-level-2-phy22-electromagnetic-applications-and-signals-supplemental-electromagnetic-applications-and-signals-readiness-check": [
+				"physics-level-2-phy22-electromagnetic-applications-and-signals-supplemental-phy22-electromagnetic-applications-and-signals-diagnostic-checkpoint"
+			],
+			"physics-level-2-phy23-relativity-and-reference-frames-preview-supplemental-relativity-and-reference-frames-preview-readiness-check": [
+				"physics-level-2-phy23-relativity-and-reference-frames-preview-supplemental-phy23-relativity-and-reference-frames-preview-diagnostic-checkpoint"
+			],
+			"physics-level-2-phy24-independent-physics-research-portfolio-supplemental-independent-physics-research-portfolio-readiness-check": [
+				"physics-level-2-phy24-independent-physics-research-portfolio-supplemental-phy24-independent-physics-research-portfolio-diagnostic-checkpoint"
+			]
+		},
+		"intro-to-swift-app-development": {
+			"intro-to-swift-app-development-sw16-apple-development-and-distribution-map-supplemental-readiness-check": [
+				"intro-to-swift-app-development-sad1-apple-developer-ecosystem-overview-supplemental-sad1-apple-developer-ecosystem-overview-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-sw1-mac-setup-and-first-launch-supplemental-sw1-mac-setup-and-first-launch-readiness-check": [
+				"intro-to-swift-app-development-sad2-mac-setup-and-project-tooling-supplemental-sad2-mac-setup-and-project-tooling-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-sw17-signing-teams-and-bundle-ids-supplemental-sw17-signing-teams-and-bundle-ids-readiness-check": [
+				"intro-to-swift-app-development-sad3-certificates-signing-and-bundle-ids-supplemental-sad3-certificates-signing-and-bundle-ids-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-sw15-simulator-and-device-validation-supplemental-sw15-simulator-and-device-validation-readiness-check": [
+				"intro-to-swift-app-development-sad4-running-on-simulator-and-device-supplemental-sad4-running-on-simulator-and-device-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-sw18-app-store-connect-and-testflight-supplemental-sw18-app-store-connect-and-testflight-readiness-check": [
+				"intro-to-swift-app-development-sad5-app-store-connect-and-testflight-workflow-supplemental-sad5-app-store-connect-and-testflight-workflow-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-sw6-app-structure-and-lifecycle-supplemental-sw6-app-structure-and-lifecycle-readiness-check": [
+				"intro-to-swift-app-development-sad6-what-an-app-is-structurally-supplemental-sad6-what-an-app-is-structurally-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-sw2-xcode-project-anatomy-supplemental-sw2-xcode-project-anatomy-readiness-check": [
+				"intro-to-swift-app-development-sad7-xcode-project-anatomy-supplemental-sad7-xcode-project-anatomy-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-sw3-swiftui-views-layout-and-modifiers-supplemental-readiness-check": [
+				"intro-to-swift-app-development-sad8-swiftui-mental-model-supplemental-sad8-swiftui-mental-model-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-sw4-swift-basics-in-app-context-supplemental-sw4-swift-basics-in-app-context-readiness-check": [
+				"intro-to-swift-app-development-sad9-swift-basics-in-app-context-supplemental-sad9-swift-basics-in-app-context-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-sw5-functions-structs-and-enums-supplemental-sw5-functions-structs-and-enums-readiness-check": [
+				"intro-to-swift-app-development-sad10-functions-structs-and-enums-supplemental-sad10-functions-structs-and-enums-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-sw7-state-and-data-flow-supplemental-sw7-state-and-data-flow-readiness-check": [
+				"intro-to-swift-app-development-sad11-state-and-data-flow-supplemental-sad11-state-and-data-flow-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-sw9-navigation-and-multi-screen-apps-supplemental-sw9-navigation-and-multi-screen-apps-readiness-check": [
+				"intro-to-swift-app-development-sad12-navigation-and-multi-screen-apps-supplemental-sad12-navigation-and-multi-screen-apps-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-sw10-lists-forms-and-crud-supplemental-sw10-lists-forms-and-crud-readiness-check": [
+				"intro-to-swift-app-development-sad13-lists-forms-and-crud-patterns-supplemental-sad13-lists-forms-and-crud-patterns-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-sw8-media-maps-and-permission-aware-features-supplemental-readiness-check": [
+				"intro-to-swift-app-development-sad14-media-maps-and-device-features-supplemental-sad14-media-maps-and-device-features-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-sw12-networking-and-data-loading-supplemental-sw12-networking-and-data-loading-readiness-check": [
+				"intro-to-swift-app-development-sad15-networking-and-data-loading-supplemental-sad15-networking-and-data-loading-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-sw11-persistence-with-swiftdata-supplemental-sw11-persistence-with-swiftdata-readiness-check": [
+				"intro-to-swift-app-development-sad16-persistence-supplemental-sad16-persistence-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-sw13-debugging-and-swift-testing-supplemental-sw13-debugging-and-swift-testing-readiness-check": [
+				"intro-to-swift-app-development-sad17-debugging-and-testing-supplemental-sad17-debugging-and-testing-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-sw14-app-design-and-accessibility-supplemental-sw14-app-design-and-accessibility-readiness-check": [
+				"intro-to-swift-app-development-sad18-app-design-and-accessibility-supplemental-sad18-app-design-and-accessibility-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-sw20-final-publishing-walkthrough-supplemental-sw20-final-publishing-walkthrough-readiness-check": [
+				"intro-to-swift-app-development-sad19-final-publishing-walkthrough-supplemental-sad19-final-publishing-walkthrough-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-sw19-capstone-build-and-user-testing-supplemental-sw19-capstone-build-and-user-testing-readiness-check": [
+				"intro-to-swift-app-development-sad20-capstone-app-supplemental-sad20-capstone-app-diagnostic-checkpoint"
+			],
+			"intro-to-swift-app-development-swx-shapes-and-legacy-reference-boundaries-curriculum-verification-review-enrichment-and-reference-boundaries": [
+				"intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-curriculum-sadx-enrichment-and-legacy-archive-boundaries-verification-and-reflection"
+			],
+			"intro-to-swift-app-development-swx-shapes-and-legacy-reference-boundaries-curriculum-core-project-enrichment-and-reference-boundaries": [
+				"intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-curriculum-sadx-enrichment-and-legacy-archive-boundaries-core-project"
+			],
+			"intro-to-swift-app-development-swx-shapes-and-legacy-reference-boundaries-curriculum-canonical-swift-repo-structure": [
+				"intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"linux-systems": {
+			"linux-systems-unit-4-editing-and-configuration-curriculum-core-project-editing-and-configuration": [
+				"linux-systems-unit-4-editing-and-configuration-curriculum-unit-4-editing-and-configuration-core-project"
+			],
+			"linux-systems-unit-5-processes-and-job-control-curriculum-core-project-processes-and-job-control": [
+				"linux-systems-unit-5-processes-and-job-control-curriculum-unit-5-processes-and-job-control-core-project"
+			],
+			"linux-systems-unit-9-package-management-and-software-layout-curriculum-core-project-package-management-and-software-layout": [
+				"linux-systems-unit-9-package-management-and-software-layout-curriculum-unit-9-package-management-and-software-layout-core-project"
+			],
+			"linux-systems-unit-10-networking-from-a-systems-view-curriculum-core-project-networking-from-a-systems-view": [
+				"linux-systems-unit-10-networking-from-a-systems-view-curriculum-unit-10-networking-from-a-systems-view-core-project"
+			],
+			"linux-systems-unit-12-storage-backups-and-reliability-curriculum-core-project-storage-backups-and-reliability": [
+				"linux-systems-unit-12-storage-backups-and-reliability-curriculum-unit-12-storage-backups-and-reliability-core-project"
+			],
+			"linux-systems-optional-linux-integration-studio-archive-supplemental-core-project-service-deployment-studio": [
+				"linux-systems-linux-systems-lab-14-curriculum-linux-systems-lab-14-core-project"
+			],
+			"linux-systems-optional-linux-integration-studio-archive-supplemental-extension-challenge-service-deployment-studio": [
+				"linux-systems-linux-systems-lab-14-supplemental-linux-systems-lab-14-extension-challenge"
+			],
+			"linux-systems-optional-linux-integration-studio-archive-supplemental-core-project-automation-and-observability-studio": [
+				"linux-systems-linux-systems-lab-15-curriculum-linux-systems-lab-15-core-project"
+			],
+			"linux-systems-optional-linux-integration-studio-archive-supplemental-extension-challenge-automation-and-observability-studio": [
+				"linux-systems-linux-systems-lab-15-supplemental-linux-systems-lab-15-extension-challenge"
+			],
+			"linux-systems-optional-linux-integration-studio-archive-supplemental-core-project-backup-recovery-studio": [
+				"linux-systems-linux-systems-lab-16-curriculum-linux-systems-lab-16-core-project"
+			],
+			"linux-systems-optional-linux-integration-studio-archive-supplemental-extension-challenge-backup-recovery-studio": [
+				"linux-systems-linux-systems-lab-16-supplemental-linux-systems-lab-16-extension-challenge"
+			],
+			"linux-systems-linux-systems-lab-17-operations-capstone-studio-curriculum-core-project-operations-capstone-studio": [
+				"linux-systems-linux-systems-lab-17-curriculum-linux-systems-lab-17-core-project"
+			],
+			"linux-systems-linux-systems-lab-17-operations-capstone-studio-supplemental-extension-challenge-operations-capstone-studio": [
+				"linux-systems-linux-systems-lab-17-supplemental-linux-systems-lab-17-extension-challenge"
+			],
+			"linux-systems-ls0-setup-and-tooling-curriculum-linux-systems-core-concepts": [
+				"linux-systems-ls0-setup-and-tooling-curriculum-core-concepts-and-learning-sequence"
+			],
+			"linux-systems-unit-1-shell-foundations-curriculum-shell-foundations-core-concepts": [
+				"linux-systems-unit-1-shell-foundations-curriculum-core-concepts-and-learning-sequence"
+			],
+			"linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose-curriculum-filesystem-hierarchy-and-directory-purpose-core-concepts": [
+				"linux-systems-unit-2-filesystem-hierarchy-and-directory-purpose-curriculum-core-concepts-and-learning-sequence"
+			],
+			"linux-systems-unit-3-users-groups-and-permissions-curriculum-users-groups-and-permissions-core-concepts": [
+				"linux-systems-unit-3-users-groups-and-permissions-curriculum-core-concepts-and-learning-sequence"
+			],
+			"linux-systems-unit-4-editing-and-configuration-curriculum-editing-and-configuration-core-concepts": [
+				"linux-systems-unit-4-editing-and-configuration-curriculum-core-concepts-and-learning-sequence"
+			],
+			"linux-systems-unit-5-processes-and-job-control-curriculum-processes-and-job-control-core-concepts": [
+				"linux-systems-unit-5-processes-and-job-control-curriculum-core-concepts-and-learning-sequence"
+			],
+			"linux-systems-unit-6-services-and-systemd-curriculum-services-and-systemd-core-concepts": [
+				"linux-systems-unit-6-services-and-systemd-curriculum-core-concepts-and-learning-sequence"
+			],
+			"linux-systems-unit-7-logging-and-observability-curriculum-logging-and-observability-core-concepts": [
+				"linux-systems-unit-7-logging-and-observability-curriculum-core-concepts-and-learning-sequence"
+			],
+			"linux-systems-unit-8-scheduling-and-automation-curriculum-scheduling-and-automation-core-concepts": [
+				"linux-systems-unit-8-scheduling-and-automation-curriculum-core-concepts-and-learning-sequence"
+			],
+			"linux-systems-unit-9-package-management-and-software-layout-curriculum-package-management-and-software-layout-core-concepts": [
+				"linux-systems-unit-9-package-management-and-software-layout-curriculum-core-concepts-and-learning-sequence"
+			],
+			"linux-systems-unit-10-networking-from-a-systems-view-curriculum-networking-from-a-systems-view-core-concepts": [
+				"linux-systems-unit-10-networking-from-a-systems-view-curriculum-core-concepts-and-learning-sequence"
+			],
+			"linux-systems-unit-11-web-servers-curriculum-web-servers-core-concepts": [
+				"linux-systems-unit-11-web-servers-curriculum-core-concepts-and-learning-sequence"
+			],
+			"linux-systems-unit-12-storage-backups-and-reliability-curriculum-storage-backups-and-reliability-core-concepts": [
+				"linux-systems-unit-12-storage-backups-and-reliability-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"low-level-security": {
+			"low-level-security-low-level-security-lab-7-sanitizer-triage-studio-curriculum-core-project-low-level-security-lab-7": [
+				"low-level-security-low-level-security-lab-7-curriculum-low-level-security-lab-7-core-project"
+			],
+			"low-level-security-low-level-security-lab-7-sanitizer-triage-studio-supplemental-extension-challenge-low-level-security-lab-7": [
+				"low-level-security-low-level-security-lab-7-supplemental-low-level-security-lab-7-extension-challenge"
+			],
+			"low-level-security-low-level-security-lab-8-bounds-regression-studio-curriculum-core-project-low-level-security-lab-8": [
+				"low-level-security-low-level-security-lab-8-curriculum-low-level-security-lab-8-core-project"
+			],
+			"low-level-security-low-level-security-lab-8-bounds-regression-studio-supplemental-extension-challenge-low-level-security-lab-8": [
+				"low-level-security-low-level-security-lab-8-supplemental-low-level-security-lab-8-extension-challenge"
+			],
+			"low-level-security-low-level-security-lab-9-binary-parser-hardening-studio-curriculum-core-project-low-level-security-lab-9": [
+				"low-level-security-low-level-security-lab-9-curriculum-low-level-security-lab-9-core-project"
+			],
+			"low-level-security-low-level-security-lab-9-binary-parser-hardening-studio-supplemental-extension-challenge-low-level-security-lab-9": [
+				"low-level-security-low-level-security-lab-9-supplemental-low-level-security-lab-9-extension-challenge"
+			],
+			"low-level-security-low-level-security-lab-10-integer-state-safety-studio-curriculum-core-project-low-level-security-lab-10": [
+				"low-level-security-low-level-security-lab-10-curriculum-low-level-security-lab-10-core-project"
+			],
+			"low-level-security-low-level-security-lab-10-integer-state-safety-studio-supplemental-extension-challenge-low-level-security-lab-10": [
+				"low-level-security-low-level-security-lab-10-supplemental-low-level-security-lab-10-extension-challenge"
+			],
+			"low-level-security-low-level-security-lab-11-fuzzing-regression-studio-curriculum-core-project-low-level-security-lab-11": [
+				"low-level-security-low-level-security-lab-11-curriculum-low-level-security-lab-11-core-project"
+			],
+			"low-level-security-low-level-security-lab-11-fuzzing-regression-studio-supplemental-extension-challenge-low-level-security-lab-11": [
+				"low-level-security-low-level-security-lab-11-supplemental-low-level-security-lab-11-extension-challenge"
+			],
+			"low-level-security-low-level-security-lab-12-patch-review-handoff-studio-curriculum-core-project-low-level-security-lab-12": [
+				"low-level-security-low-level-security-lab-12-curriculum-low-level-security-lab-12-core-project"
+			],
+			"low-level-security-low-level-security-lab-12-patch-review-handoff-studio-supplemental-extension-challenge-low-level-security-lab-12": [
+				"low-level-security-low-level-security-lab-12-supplemental-low-level-security-lab-12-extension-challenge"
+			],
+			"low-level-security-lls1-memory-layout-and-security-tooling-curriculum-memory-layout-and-security-tooling-core-concepts": [
+				"low-level-security-lls1-memory-layout-and-security-tooling-curriculum-core-concepts-and-learning-sequence"
+			],
+			"low-level-security-lls2-bounds-arrays-and-safer-copy-patterns-curriculum-bounds-arrays-and-safer-copy-patterns-core-concepts": [
+				"low-level-security-lls2-bounds-arrays-and-safer-copy-patterns-curriculum-core-concepts-and-learning-sequence"
+			],
+			"low-level-security-lls3-defensive-parsers-and-binary-input-curriculum-parsers-and-binary-input-core-concepts": [
+				"low-level-security-lls3-defensive-parsers-and-binary-input-curriculum-core-concepts-and-learning-sequence"
+			],
+			"low-level-security-lls4-integer-safety-state-and-defensive-data-structures-curriculum-integer-safety-state-and-defensive-data-structures-core-concepts": [
+				"low-level-security-lls4-integer-safety-state-and-defensive-data-structures-curriculum-core-concepts-and-learning-sequence"
+			],
+			"low-level-security-lls5-bug-hunting-with-sanitizers-and-fuzzing-curriculum-bug-hunting-with-sanitizers-and-fuzzing-core-concepts": [
+				"low-level-security-lls5-bug-hunting-with-sanitizers-and-fuzzing-curriculum-core-concepts-and-learning-sequence"
+			],
+			"low-level-security-lls6-patching-review-and-responsible-research-curriculum-patching-review-and-responsible-research-core-concepts": [
+				"low-level-security-lls6-patching-review-and-responsible-research-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"low-level-security-part-2": {
+			"low-level-security-part-2-low-level-security-lab-13-exploitability-triage-studio-curriculum-core-project-low-level-security-lab-13": [
+				"low-level-security-part-2-low-level-security-lab-13-curriculum-low-level-security-lab-13-core-project"
+			],
+			"low-level-security-part-2-low-level-security-lab-13-exploitability-triage-studio-supplemental-extension-challenge-low-level-security-lab-13": [
+				"low-level-security-part-2-low-level-security-lab-13-supplemental-low-level-security-lab-13-extension-challenge"
+			],
+			"low-level-security-part-2-low-level-security-lab-14-stack-corruption-hardening-studio-curriculum-core-project-low-level-security-lab-14": [
+				"low-level-security-part-2-low-level-security-lab-14-curriculum-low-level-security-lab-14-core-project"
+			],
+			"low-level-security-part-2-low-level-security-lab-14-stack-corruption-hardening-studio-supplemental-extension-challenge-low-level-security-lab-14": [
+				"low-level-security-part-2-low-level-security-lab-14-supplemental-low-level-security-lab-14-extension-challenge"
+			],
+			"low-level-security-part-2-low-level-security-lab-15-heap-lifetime-audit-studio-curriculum-core-project-low-level-security-lab-15": [
+				"low-level-security-part-2-low-level-security-lab-15-curriculum-low-level-security-lab-15-core-project"
+			],
+			"low-level-security-part-2-low-level-security-lab-15-heap-lifetime-audit-studio-supplemental-extension-challenge-low-level-security-lab-15": [
+				"low-level-security-part-2-low-level-security-lab-15-supplemental-low-level-security-lab-15-extension-challenge"
+			],
+			"low-level-security-part-2-low-level-security-lab-16-disclosure-boundary-hardening-studio-curriculum-core-project-low-level-security-lab-16": [
+				"low-level-security-part-2-low-level-security-lab-16-curriculum-low-level-security-lab-16-core-project"
+			],
+			"low-level-security-part-2-low-level-security-lab-16-disclosure-boundary-hardening-studio-supplemental-extension-challenge-low-level-security-lab-16": [
+				"low-level-security-part-2-low-level-security-lab-16-supplemental-low-level-security-lab-16-extension-challenge"
+			],
+			"low-level-security-part-2-low-level-security-lab-17-defensive-audit-capstone-studio-curriculum-core-project-low-level-security-lab-17": [
+				"low-level-security-part-2-low-level-security-lab-17-curriculum-low-level-security-lab-17-core-project"
+			],
+			"low-level-security-part-2-low-level-security-lab-17-defensive-audit-capstone-studio-supplemental-extension-challenge-low-level-security-lab-17": [
+				"low-level-security-part-2-low-level-security-lab-17-supplemental-low-level-security-lab-17-extension-challenge"
+			]
+		},
+		"pygames": {
+			"pygames-images-and-sprites-practice-studio-curriculum-images-and-sprites-core-concepts": [
+				"pygames-images-and-sprites-implementation-lab-curriculum-images-and-sprites-core-concepts"
+			],
+			"pygames-images-and-sprites-practice-studio-curriculum-images-and-sprites-guided-example": [
+				"pygames-images-and-sprites-implementation-lab-curriculum-images-and-sprites-guided-example"
+			],
+			"pygames-images-and-sprites-practice-studio-curriculum-images-and-sprites-core-project": [
+				"pygames-images-and-sprites-implementation-lab-curriculum-images-and-sprites-core-project"
+			],
+			"pygames-images-and-sprites-practice-studio-curriculum-images-and-sprites-review-and-reflection": [
+				"pygames-images-and-sprites-implementation-lab-curriculum-images-and-sprites-review-and-reflection"
+			],
+			"pygames-images-and-sprites-practice-studio-supplemental-images-and-sprites-extension-challenge": [
+				"pygames-images-and-sprites-implementation-lab-supplemental-images-and-sprites-extension-challenge"
+			],
+			"pygames-pyg0-setup-editors-and-asset-workflow-curriculum-setup-editors-and-asset-workflow-core-concepts": [
+				"pygames-pyg0-setup-editors-and-asset-workflow-curriculum-core-concepts-and-learning-sequence"
+			],
+			"pygames-pyg3-object-oriented-programming-advanced-actors-curriculum-advanced-actors-core-concepts": [
+				"pygames-pyg3-object-oriented-programming-advanced-actors-curriculum-core-concepts-and-learning-sequence"
+			],
+			"pygames-check-in-1-actors-events-zrects-collectibles-curriculum-actors-events-zrects-collectibles-core-concepts": [
+				"pygames-check-in-1-actors-events-zrects-collectibles-curriculum-core-concepts-and-learning-sequence"
+			],
+			"pygames-pyg6-managing-multiple-objects-obstacles-and-surfaces-curriculum-obstacles-and-surfaces-core-concepts": [
+				"pygames-pyg6-managing-multiple-objects-obstacles-and-surfaces-curriculum-core-concepts-and-learning-sequence"
+			],
+			"pygames-check-in-2-gravity-friction-platforms-curriculum-gravity-friction-platforms-core-concepts": [
+				"pygames-check-in-2-gravity-friction-platforms-curriculum-core-concepts-and-learning-sequence"
+			],
+			"pygames-pyg7-levels-and-system-control-curriculum-levels-and-system-control-core-concepts": [
+				"pygames-pyg7-levels-and-system-control-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"ai-level-1": {
+			"ai-level-1-ai-search-lab-13-practice-studio-curriculum-ai-search-lab-13-core-concepts": [
+				"ai-level-1-ai-search-lab-13-implementation-lab-curriculum-ai-search-lab-13-core-concepts"
+			],
+			"ai-level-1-ai-search-lab-13-practice-studio-curriculum-ai-search-lab-13-guided-example": [
+				"ai-level-1-ai-search-lab-13-implementation-lab-curriculum-ai-search-lab-13-guided-example"
+			],
+			"ai-level-1-ai-search-lab-14-practice-studio-curriculum-ai-search-lab-14-core-concepts": [
+				"ai-level-1-ai-search-lab-14-implementation-lab-curriculum-ai-search-lab-14-core-concepts"
+			],
+			"ai-level-1-ai-search-lab-14-practice-studio-curriculum-ai-search-lab-14-guided-example": [
+				"ai-level-1-ai-search-lab-14-implementation-lab-curriculum-ai-search-lab-14-guided-example"
+			],
+			"ai-level-1-ai-search-lab-15-practice-studio-curriculum-ai-search-lab-15-core-concepts": [
+				"ai-level-1-ai-search-lab-15-implementation-lab-curriculum-ai-search-lab-15-core-concepts"
+			],
+			"ai-level-1-ai-search-lab-15-practice-studio-curriculum-ai-search-lab-15-guided-example": [
+				"ai-level-1-ai-search-lab-15-implementation-lab-curriculum-ai-search-lab-15-guided-example"
+			],
+			"ai-level-1-ai-search-lab-16-practice-studio-curriculum-ai-search-lab-16-core-concepts": [
+				"ai-level-1-ai-search-lab-16-implementation-lab-curriculum-ai-search-lab-16-core-concepts"
+			],
+			"ai-level-1-ai-search-lab-16-practice-studio-curriculum-ai-search-lab-16-guided-example": [
+				"ai-level-1-ai-search-lab-16-implementation-lab-curriculum-ai-search-lab-16-guided-example"
+			],
+			"ai-level-1-ai-search-lab-17-practice-studio-curriculum-ai-search-lab-17-core-concepts": [
+				"ai-level-1-ai-search-lab-17-implementation-lab-curriculum-ai-search-lab-17-core-concepts"
+			],
+			"ai-level-1-ai-search-lab-17-practice-studio-curriculum-ai-search-lab-17-guided-example": [
+				"ai-level-1-ai-search-lab-17-implementation-lab-curriculum-ai-search-lab-17-guided-example"
+			],
+			"ai-level-1-unbeatable-tictactoe-ai-1-practice-studio-curriculum-unbeatable-tictactoe-ai-1-core-concepts": [
+				"ai-level-1-unbeatable-tictactoe-ai-1-implementation-lab-curriculum-unbeatable-tictactoe-ai-1-core-concepts"
+			],
+			"ai-level-1-unbeatable-tictactoe-ai-1-practice-studio-curriculum-unbeatable-tictactoe-ai-1-guided-example": [
+				"ai-level-1-unbeatable-tictactoe-ai-1-implementation-lab-curriculum-unbeatable-tictactoe-ai-1-guided-example"
+			],
+			"ai-level-1-the-marble-game-ai-practice-studio-curriculum-the-marble-game-ai-core-concepts": [
+				"ai-level-1-the-marble-game-ai-implementation-lab-curriculum-the-marble-game-ai-core-concepts"
+			],
+			"ai-level-1-the-marble-game-ai-practice-studio-curriculum-the-marble-game-ai-guided-example": [
+				"ai-level-1-the-marble-game-ai-implementation-lab-curriculum-the-marble-game-ai-guided-example"
+			],
+			"ai-level-1-unit-1-ai-landscape-and-state-representation-curriculum-ai-landscape-and-state-representation-core-concepts": [
+				"ai-level-1-unit-1-ai-landscape-and-state-representation-curriculum-core-concepts-and-learning-sequence"
+			],
+			"ai-level-1-unit-2-stacks-queues-and-traversal-intuition-curriculum-stacks-queues-and-traversal-intuition-core-concepts": [
+				"ai-level-1-unit-2-stacks-queues-and-traversal-intuition-curriculum-core-concepts-and-learning-sequence"
+			],
+			"ai-level-1-unit-3-dfs-bfs-and-reachability-curriculum-dfs-bfs-and-reachability-core-concepts": [
+				"ai-level-1-unit-3-dfs-bfs-and-reachability-curriculum-core-concepts-and-learning-sequence"
+			],
+			"ai-level-1-unit-4-informed-and-bounded-search-curriculum-informed-and-bounded-search-core-concepts": [
+				"ai-level-1-unit-4-informed-and-bounded-search-curriculum-core-concepts-and-learning-sequence"
+			],
+			"ai-level-1-unit-5-rule-based-systems-and-puzzle-framing-curriculum-rule-based-systems-and-puzzle-framing-core-concepts": [
+				"ai-level-1-unit-5-rule-based-systems-and-puzzle-framing-curriculum-core-concepts-and-learning-sequence"
+			],
+			"ai-level-1-unit-6-heuristics-and-game-ai-curriculum-heuristics-and-game-ai-core-concepts": [
+				"ai-level-1-unit-6-heuristics-and-game-ai-curriculum-core-concepts-and-learning-sequence"
+			],
+			"ai-level-1-unit-7-features-evaluation-and-responsible-ai-curriculum-features-evaluation-and-responsible-ai-core-concepts": [
+				"ai-level-1-unit-7-features-evaluation-and-responsible-ai-curriculum-core-concepts-and-learning-sequence"
+			],
+			"ai-level-1-unit-8-capstone-and-portfolio-build-curriculum-capstone-and-portfolio-build-core-concepts": [
+				"ai-level-1-unit-8-capstone-and-portfolio-build-curriculum-core-concepts-and-learning-sequence"
+			],
+			"ai-level-1-unit-9-repo-extension-bank-and-canonical-variants-curriculum-repo-extension-bank-and-canonical-variants-core-concepts": [
+				"ai-level-1-unit-9-repo-extension-bank-and-canonical-variants-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"scratch-level-1": {
+			"scratch-level-1-gs13-mini-game-polish-studio-curriculum-mini-game-polish-studio-core-concepts": [
+				"scratch-level-1-gs14-mini-game-polish-studio-curriculum-core-concepts-and-learning-sequence"
+			],
+			"scratch-level-1-gs14-interactive-story-studio-curriculum-interactive-story-studio-core-concepts": [
+				"scratch-level-1-gs15-interactive-story-studio-curriculum-core-concepts-and-learning-sequence"
+			],
+			"scratch-level-1-gs15-debugging-and-remix-studio-curriculum-debugging-and-remix-studio-core-concepts": [
+				"scratch-level-1-gs16-debugging-and-remix-studio-curriculum-core-concepts-and-learning-sequence"
+			],
+			"scratch-level-1-gs17-scratch-to-python-bridge-curriculum-scratch-to-python-bridge-core-concepts": [
+				"scratch-level-1-gs17-text-based-programming-bridge-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"scratch-level-2": {
+			"scratch-level-2-gm1-level-1-skills-review-curriculum-level-1-skills-review-core-concepts": [
+				"scratch-level-2-gm1-review-events-loops-conditionals-broadcasting-curriculum-core-concepts-and-learning-sequence"
+			],
+			"scratch-level-2-gm1-level-1-skills-review-curriculum-level-1-skills-review-application-check": [
+				"scratch-level-2-gm1-review-events-loops-conditionals-broadcasting-curriculum-application-misconceptions-and-readiness-check"
+			],
+			"scratch-level-2-gm11-arcade-systems-studio-curriculum-arcade-systems-studio-core-concepts": [
+				"scratch-level-2-gm12-arcade-systems-studio-curriculum-core-concepts-and-learning-sequence"
+			],
+			"scratch-level-2-gm12-simulation-and-data-studio-curriculum-simulation-and-data-studio-core-concepts": [
+				"scratch-level-2-gm13-simulation-and-data-studio-curriculum-core-concepts-and-learning-sequence"
+			],
+			"scratch-level-2-gm13-code-organization-and-debugging-studio-curriculum-code-organization-and-debugging-studio-core-concepts": [
+				"scratch-level-2-gm14-code-organization-and-debugging-studio-curriculum-core-concepts-and-learning-sequence"
+			],
+			"scratch-level-2-gm15-scratch-to-python-bridge-curriculum-scratch-to-python-bridge-core-concepts": [
+				"scratch-level-2-gm15-text-based-programming-bridge-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"data-science-in-python": {
+			"data-science-in-python-dsp0-setup-and-tooling-curriculum-data-science-in-python-core-concepts": [
+				"data-science-in-python-dsp0-setup-and-tooling-curriculum-core-concepts-and-learning-sequence"
+			],
+			"data-science-in-python-module-1-what-data-science-is-curriculum-what-data-science-is-core-concepts": [
+				"data-science-in-python-module-1-what-data-science-is-curriculum-core-concepts-and-learning-sequence"
+			],
+			"data-science-in-python-module-2-notebook-workflow-and-reproducibility-curriculum-notebook-workflow-and-reproducibility-core-concepts": [
+				"data-science-in-python-module-2-notebook-workflow-and-reproducibility-curriculum-core-concepts-and-learning-sequence"
+			],
+			"data-science-in-python-module-3-pandas-foundations-curriculum-pandas-foundations-core-concepts": [
+				"data-science-in-python-module-3-pandas-foundations-curriculum-core-concepts-and-learning-sequence"
+			],
+			"data-science-in-python-module-4-cleaning-and-validation-curriculum-cleaning-and-validation-core-concepts": [
+				"data-science-in-python-module-4-cleaning-and-validation-curriculum-core-concepts-and-learning-sequence"
+			],
+			"data-science-in-python-module-5-visualization-and-statistics-in-context-curriculum-visualization-and-statistics-in-context-core-concepts": [
+				"data-science-in-python-module-5-visualization-and-statistics-in-context-curriculum-core-concepts-and-learning-sequence"
+			],
+			"data-science-in-python-module-6-storytelling-with-data-curriculum-storytelling-with-data-core-concepts": [
+				"data-science-in-python-module-6-storytelling-with-data-curriculum-core-concepts-and-learning-sequence"
+			],
+			"data-science-in-python-module-7-dashboards-with-altair-and-streamlit-curriculum-dashboards-with-altair-and-streamlit-core-concepts": [
+				"data-science-in-python-module-7-dashboards-with-altair-and-streamlit-curriculum-core-concepts-and-learning-sequence"
+			],
+			"data-science-in-python-module-8-domain-projects-curriculum-domain-projects-core-concepts": [
+				"data-science-in-python-module-8-domain-projects-curriculum-core-concepts-and-learning-sequence"
+			],
+			"data-science-in-python-module-9-data-science-capstone-curriculum-data-science-capstone-core-concepts": [
+				"data-science-in-python-module-9-data-science-capstone-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"algebra-1a": {
+			"algebra-1a-aa2-solving-single-step-linear-equations-curriculum-solving-single-step-linear-equations-core-concepts": [
+				"algebra-1a-aa2-solving-single-step-linear-equations-curriculum-core-concepts-and-learning-sequence"
+			],
+			"algebra-1a-aa4-solving-multi-step-linear-equations-curriculum-solving-multi-step-linear-equations-core-concepts": [
+				"algebra-1a-aa4-solving-multi-step-linear-equations-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"algebra-2a": {
+			"algebra-2a-ala2-quadratic-functions-curriculum-quadratic-functions-core-concepts": [
+				"algebra-2a-ala2-quadratic-functions-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"c-systems-engineering": {
+			"c-systems-engineering-cse0-setup-and-tooling-curriculum-c-systems-engineering-core-concepts": [
+				"c-systems-engineering-cse0-setup-and-tooling-curriculum-core-concepts-and-learning-sequence"
+			],
+			"c-systems-engineering-unit-1-why-c-for-systems-work-curriculum-why-c-for-systems-work-core-concepts": [
+				"c-systems-engineering-unit-1-why-c-for-systems-work-curriculum-core-concepts-and-learning-sequence"
+			],
+			"c-systems-engineering-unit-2-binary-hex-and-number-representation-curriculum-binary-hex-and-number-representation-core-concepts": [
+				"c-systems-engineering-unit-2-binary-hex-and-number-representation-curriculum-core-concepts-and-learning-sequence"
+			],
+			"c-systems-engineering-unit-3-bitwise-operations-curriculum-bitwise-operations-core-concepts": [
+				"c-systems-engineering-unit-3-bitwise-operations-curriculum-core-concepts-and-learning-sequence"
+			],
+			"c-systems-engineering-unit-4-memory-and-layout-curriculum-memory-and-layout-core-concepts": [
+				"c-systems-engineering-unit-4-memory-and-layout-curriculum-core-concepts-and-learning-sequence"
+			],
+			"c-systems-engineering-unit-5-strings-and-byte-buffers-curriculum-strings-and-byte-buffers-core-concepts": [
+				"c-systems-engineering-unit-5-strings-and-byte-buffers-curriculum-core-concepts-and-learning-sequence"
+			],
+			"c-systems-engineering-unit-6-files-streams-and-parsing-curriculum-files-streams-and-parsing-core-concepts": [
+				"c-systems-engineering-unit-6-files-streams-and-parsing-curriculum-core-concepts-and-learning-sequence"
+			],
+			"c-systems-engineering-unit-7-dynamic-memory-and-lifetime-curriculum-dynamic-memory-and-lifetime-core-concepts": [
+				"c-systems-engineering-unit-7-dynamic-memory-and-lifetime-curriculum-core-concepts-and-learning-sequence"
+			],
+			"c-systems-engineering-unit-8-function-pointers-and-dispatch-curriculum-function-pointers-and-dispatch-core-concepts": [
+				"c-systems-engineering-unit-8-function-pointers-and-dispatch-curriculum-core-concepts-and-learning-sequence"
+			],
+			"c-systems-engineering-unit-9-data-structures-in-c-curriculum-data-structures-in-c-core-concepts": [
+				"c-systems-engineering-unit-9-data-structures-in-c-curriculum-core-concepts-and-learning-sequence"
+			],
+			"c-systems-engineering-unit-10-engineering-math-in-code-curriculum-engineering-math-in-code-core-concepts": [
+				"c-systems-engineering-unit-10-engineering-math-in-code-curriculum-core-concepts-and-learning-sequence"
+			],
+			"c-systems-engineering-unit-11-systems-tooling-curriculum-systems-tooling-core-concepts": [
+				"c-systems-engineering-unit-11-systems-tooling-curriculum-core-concepts-and-learning-sequence"
+			],
+			"c-systems-engineering-unit-12-capstone-engineering-utility-curriculum-capstone-engineering-utility-core-concepts": [
+				"c-systems-engineering-unit-12-capstone-engineering-utility-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"java-level-3": {
+			"java-level-3-aj4-recursion-curriculum-recursion-core-concepts": [
+				"java-level-3-aj4-recursion-curriculum-core-concepts-and-learning-sequence"
+			],
+			"java-level-3-check-in-1-curriculum-java-level-3-check-in-1-core-concepts": [
+				"java-level-3-check-in-1-curriculum-core-concepts-and-learning-sequence"
+			],
+			"java-level-3-aj7-selection-and-insertion-sort-curriculum-selection-and-insertion-sort-core-concepts": [
+				"java-level-3-aj7-selection-and-insertion-sort-curriculum-core-concepts-and-learning-sequence"
+			],
+			"java-level-3-check-in-2-curriculum-java-level-3-check-in-2-core-concepts": [
+				"java-level-3-check-in-2-curriculum-core-concepts-and-learning-sequence"
+			],
+			"java-level-3-aj10-sustainable-programming-curriculum-sustainable-programming-core-concepts": [
+				"java-level-3-aj10-sustainable-programming-curriculum-core-concepts-and-learning-sequence"
+			],
+			"java-level-3-aj11-linked-lists-curriculum-linked-lists-core-concepts": [
+				"java-level-3-aj11-linked-lists-curriculum-core-concepts-and-learning-sequence"
+			],
+			"java-level-3-check-in-3-curriculum-java-level-3-check-in-3-core-concepts": [
+				"java-level-3-check-in-3-curriculum-core-concepts-and-learning-sequence"
+			],
+			"java-level-3-check-in-3-curriculum-check-in-3-application-check": [
+				"java-level-3-check-in-3-curriculum-application-misconceptions-and-readiness-check"
+			],
+			"java-level-3-aj14-binary-search-trees-curriculum-binary-search-trees-core-concepts": [
+				"java-level-3-aj14-binary-search-trees-curriculum-core-concepts-and-learning-sequence"
+			],
+			"java-level-3-aj15-hash-tables-curriculum-hash-tables-core-concepts": [
+				"java-level-3-aj15-hash-tables-curriculum-core-concepts-and-learning-sequence"
+			],
+			"java-level-3-aj16-graphs-curriculum-graphs-core-concepts": [
+				"java-level-3-aj16-graphs-curriculum-core-concepts-and-learning-sequence"
+			],
+			"java-level-3-check-in-4-curriculum-java-level-3-check-in-4-core-concepts": [
+				"java-level-3-check-in-4-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"pythonic-design-patterns": {
+			"pythonic-design-patterns-pdp0-setup-and-tooling-curriculum-pythonic-design-patterns-core-concepts": [
+				"pythonic-design-patterns-pdp0-setup-and-tooling-curriculum-core-concepts-and-learning-sequence"
+			],
+			"pythonic-design-patterns-pdp1-why-python-changes-the-design-patterns-conversation-curriculum-why-python-changes-the-design-patterns-conversation-core-concepts": [
+				"pythonic-design-patterns-pdp1-why-python-changes-the-design-patterns-conversation-curriculum-core-concepts-and-learning-sequence"
+			],
+			"pythonic-design-patterns-pdp2-design-foundations-in-python-curriculum-design-foundations-in-python-core-concepts": [
+				"pythonic-design-patterns-pdp2-design-foundations-in-python-curriculum-core-concepts-and-learning-sequence"
+			],
+			"pythonic-design-patterns-pdp3-strategy-without-ceremony-curriculum-strategy-without-ceremony-core-concepts": [
+				"pythonic-design-patterns-pdp3-strategy-without-ceremony-curriculum-core-concepts-and-learning-sequence"
+			],
+			"pythonic-design-patterns-pdp4-factory-and-builder-in-python-curriculum-factory-and-builder-in-python-core-concepts": [
+				"pythonic-design-patterns-pdp4-factory-and-builder-in-python-curriculum-core-concepts-and-learning-sequence"
+			],
+			"pythonic-design-patterns-pdp5-observer-events-and-callbacks-curriculum-observer-events-and-callbacks-core-concepts": [
+				"pythonic-design-patterns-pdp5-observer-events-and-callbacks-curriculum-core-concepts-and-learning-sequence"
+			],
+			"pythonic-design-patterns-pdp6-decorator-proxy-and-facade-curriculum-decorator-proxy-and-facade-core-concepts": [
+				"pythonic-design-patterns-pdp6-decorator-proxy-and-facade-curriculum-core-concepts-and-learning-sequence"
+			],
+			"pythonic-design-patterns-pdp7-state-and-command-curriculum-state-and-command-core-concepts": [
+				"pythonic-design-patterns-pdp7-state-and-command-curriculum-core-concepts-and-learning-sequence"
+			],
+			"pythonic-design-patterns-pdp8-adapter-and-integration-boundaries-curriculum-adapter-and-integration-boundaries-core-concepts": [
+				"pythonic-design-patterns-pdp8-adapter-and-integration-boundaries-curriculum-core-concepts-and-learning-sequence"
+			],
+			"pythonic-design-patterns-pdp9-template-method-versus-higher-order-functions-curriculum-template-method-versus-higher-order-functions-core-concepts": [
+				"pythonic-design-patterns-pdp9-template-method-versus-higher-order-functions-curriculum-core-concepts-and-learning-sequence"
+			],
+			"pythonic-design-patterns-pdp10-singleton-global-state-and-module-patterns-curriculum-singleton-global-state-and-module-patterns-core-concepts": [
+				"pythonic-design-patterns-pdp10-singleton-global-state-and-module-patterns-curriculum-core-concepts-and-learning-sequence"
+			],
+			"pythonic-design-patterns-pdp11-refactoring-python-code-smells-curriculum-refactoring-python-code-smells-core-concepts": [
+				"pythonic-design-patterns-pdp11-refactoring-python-code-smells-curriculum-core-concepts-and-learning-sequence"
+			],
+			"pythonic-design-patterns-pdp12-capstone-pythonic-refactor-studio-curriculum-capstone-pythonic-refactor-studio-core-concepts": [
+				"pythonic-design-patterns-pdp12-capstone-pythonic-refactor-studio-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"network-security": {
+			"network-security-unit-1-security-model-of-networked-systems-curriculum-security-model-of-networked-systems-core-concepts": [
+				"network-security-unit-1-security-model-of-networked-systems-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-security-unit-2-sockets-ports-and-services-curriculum-sockets-ports-and-services-core-concepts": [
+				"network-security-unit-2-sockets-ports-and-services-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-security-unit-3-http-and-api-security-basics-curriculum-http-and-api-security-basics-core-concepts": [
+				"network-security-unit-3-http-and-api-security-basics-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-security-unit-4-tls-and-secure-transport-curriculum-tls-and-secure-transport-core-concepts": [
+				"network-security-unit-4-tls-and-secure-transport-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-security-unit-5-input-validation-on-the-network-boundary-curriculum-input-validation-on-the-network-boundary-core-concepts": [
+				"network-security-unit-5-input-validation-on-the-network-boundary-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-security-unit-6-logging-monitoring-and-forensics-curriculum-logging-monitoring-and-forensics-core-concepts": [
+				"network-security-unit-6-logging-monitoring-and-forensics-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-security-unit-7-firewalls-proxies-and-exposure-curriculum-firewalls-proxies-and-exposure-core-concepts": [
+				"network-security-unit-7-firewalls-proxies-and-exposure-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-security-unit-8-secure-node-typescript-services-curriculum-secure-node-typescript-services-core-concepts": [
+				"network-security-unit-8-secure-node-typescript-services-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-security-unit-9-defensive-network-tooling-in-ts-curriculum-network-tooling-in-ts-core-concepts": [
+				"network-security-unit-9-defensive-network-tooling-in-ts-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-security-unit-10-websockets-and-real-time-security-curriculum-websockets-and-real-time-security-core-concepts": [
+				"network-security-unit-10-websockets-and-real-time-security-curriculum-core-concepts-and-learning-sequence"
+			],
+			"network-security-unit-11-deployment-security-basics-curriculum-deployment-security-basics-core-concepts": [
+				"network-security-unit-11-deployment-security-basics-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"rust-systems-security": {
+			"rust-systems-security-rss0-tooling-cargo-and-why-rust-exists-curriculum-tooling-cargo-and-why-rust-exists-core-concepts": [
+				"rust-systems-security-rss0-tooling-cargo-and-why-rust-exists-curriculum-core-concepts-and-learning-sequence"
+			],
+			"rust-systems-security-rss1-ownership-moves-and-memory-responsibility-curriculum-ownership-moves-and-memory-responsibility-core-concepts": [
+				"rust-systems-security-rss1-ownership-moves-and-memory-responsibility-curriculum-core-concepts-and-learning-sequence"
+			],
+			"rust-systems-security-rss2-borrowing-aliasing-and-lifetimes-curriculum-borrowing-aliasing-and-lifetimes-core-concepts": [
+				"rust-systems-security-rss2-borrowing-aliasing-and-lifetimes-curriculum-core-concepts-and-learning-sequence"
+			],
+			"rust-systems-security-rss3-option-result-and-typed-error-paths-curriculum-option-result-and-typed-error-paths-core-concepts": [
+				"rust-systems-security-rss3-option-result-and-typed-error-paths-curriculum-core-concepts-and-learning-sequence"
+			],
+			"rust-systems-security-rss4-strings-slices-collections-and-bounds-safety-curriculum-strings-slices-collections-and-bounds-safety-core-concepts": [
+				"rust-systems-security-rss4-strings-slices-collections-and-bounds-safety-curriculum-core-concepts-and-learning-sequence"
+			],
+			"rust-systems-security-rss5-structs-enums-and-safer-state-models-curriculum-structs-enums-and-safer-state-models-core-concepts": [
+				"rust-systems-security-rss5-structs-enums-and-safer-state-models-curriculum-core-concepts-and-learning-sequence"
+			],
+			"rust-systems-security-rss6-traits-iterators-and-api-contracts-curriculum-traits-iterators-and-api-contracts-core-concepts": [
+				"rust-systems-security-rss6-traits-iterators-and-api-contracts-curriculum-core-concepts-and-learning-sequence"
+			],
+			"rust-systems-security-rss7-files-parsers-and-secure-cli-design-curriculum-files-parsers-and-secure-cli-design-core-concepts": [
+				"rust-systems-security-rss7-files-parsers-and-secure-cli-design-curriculum-core-concepts-and-learning-sequence"
+			],
+			"rust-systems-security-rss8-concurrency-and-race-reduction-curriculum-concurrency-and-race-reduction-core-concepts": [
+				"rust-systems-security-rss8-concurrency-and-race-reduction-curriculum-core-concepts-and-learning-sequence"
+			],
+			"rust-systems-security-rss10-capstone-harden-a-legacy-tool-curriculum-harden-a-legacy-tool-core-concepts": [
+				"rust-systems-security-rss10-capstone-harden-a-legacy-tool-curriculum-core-concepts-and-learning-sequence"
+			]
+		},
+		"javascript-level-2-javascript-master": {
+			"javascript-level-2-javascript-master-jsm1-fundamentals-review-curriculum-fundamentals-review-core-concepts": [
+				"javascript-level-2-javascript-master-jsm1-fundamentals-review-curriculum-core-concepts-and-learning-sequence"
+			],
+			"javascript-level-2-javascript-master-jsm1-fundamentals-review-curriculum-fundamentals-review-application-check": [
+				"javascript-level-2-javascript-master-jsm1-fundamentals-review-curriculum-application-misconceptions-and-readiness-check"
+			],
+			"javascript-level-2-javascript-master-jsm5-arrays-and-iterators-curriculum-arrays-and-iterators-core-concepts": [
+				"javascript-level-2-javascript-master-jsm5-arrays-and-iterators-curriculum-core-concepts-and-learning-sequence"
+			],
+			"javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners-curriculum-helper-functions-and-event-listeners-core-concepts": [
+				"javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners-curriculum-core-concepts-and-learning-sequence"
+			],
+			"javascript-level-2-javascript-master-jsm11-sql-and-schemas-curriculum-sql-and-schemas-core-concepts": [
+				"javascript-level-2-javascript-master-jsm11-sql-and-schemas-curriculum-core-concepts-and-learning-sequence"
+			],
+			"javascript-level-2-javascript-master-jsm12-nosql-and-crud-curriculum-nosql-and-crud-core-concepts": [
+				"javascript-level-2-javascript-master-jsm12-nosql-and-crud-curriculum-core-concepts-and-learning-sequence"
+			],
+			"javascript-level-2-javascript-master-jsm12-nosql-and-crud-curriculum-jsm12-project-1-to-do-list": [
+				"javascript-level-2-javascript-master-jsm12-nosql-and-crud-curriculum-jsm12-project-1-todo-list"
+			]
+		},
+		"web-development-foundations": {
+			"web-development-foundations-wdf0-setup-and-tooling-curriculum-web-development-foundations-core-concepts": [
+				"web-development-foundations-wdf0-setup-and-tooling-curriculum-core-concepts-and-learning-sequence"
+			],
+			"web-development-foundations-wdf1-positioning-goals-and-suggested-course-family-curriculum-positioning-goals-and-suggested-course-family-core-concepts": [
+				"web-development-foundations-wdf1-positioning-goals-and-suggested-course-family-curriculum-core-concepts-and-learning-sequence"
+			],
+			"web-development-foundations-wdf1-positioning-goals-and-suggested-course-family-curriculum-positioning-goals-and-suggested-course-family-application-check": [
+				"web-development-foundations-wdf1-positioning-goals-and-suggested-course-family-curriculum-application-misconceptions-and-readiness-check"
+			],
+			"web-development-foundations-wdf2-stage-1-strengthen-the-existing-javascript-courses-curriculum-strengthen-the-existing-javascript-courses-core-concepts": [
+				"web-development-foundations-wdf2-stage-1-strengthen-the-existing-javascript-courses-curriculum-core-concepts-and-learning-sequence"
+			],
+			"web-development-foundations-wdf3-stage-2-web-development-foundations-curriculum-web-development-foundations-core-concepts": [
+				"web-development-foundations-wdf3-stage-2-web-development-foundations-curriculum-core-concepts-and-learning-sequence"
+			],
+			"web-development-foundations-wdf4-stage-3-front-end-applications-curriculum-front-end-applications-core-concepts": [
+				"web-development-foundations-wdf4-stage-3-front-end-applications-curriculum-core-concepts-and-learning-sequence"
+			],
+			"web-development-foundations-wdf5-stage-4-back-end-basics-curriculum-back-end-basics-core-concepts": [
+				"web-development-foundations-wdf5-stage-4-back-end-basics-curriculum-core-concepts-and-learning-sequence"
+			],
+			"web-development-foundations-wdf6-stage-5-databases-and-data-models-curriculum-databases-and-data-models-core-concepts": [
+				"web-development-foundations-wdf6-stage-5-databases-and-data-models-curriculum-core-concepts-and-learning-sequence"
+			],
+			"web-development-foundations-wdf7-stage-6-hosting-and-deployment-curriculum-hosting-and-deployment-core-concepts": [
+				"web-development-foundations-wdf7-stage-6-hosting-and-deployment-curriculum-core-concepts-and-learning-sequence"
+			],
+			"web-development-foundations-wdf8-hosting-and-operations-topics-to-add-curriculum-hosting-and-operations-topics-to-add-core-concepts": [
+				"web-development-foundations-wdf8-hosting-and-operations-topics-to-add-curriculum-core-concepts-and-learning-sequence"
+			],
+			"web-development-foundations-wdf10-suggested-advanced-strand-curriculum-suggested-advanced-strand-core-concepts": [
+				"web-development-foundations-wdf10-suggested-advanced-strand-curriculum-core-concepts-and-learning-sequence"
+			],
+			"web-development-foundations-wdf11-integration-with-network-topics-curriculum-integration-with-network-topics-core-concepts": [
+				"web-development-foundations-wdf11-integration-with-network-topics-curriculum-core-concepts-and-learning-sequence"
+			],
+			"web-development-foundations-wdf12-expansion-ideas-and-next-steps-curriculum-expansion-ideas-and-next-steps-core-concepts": [
+				"web-development-foundations-wdf12-expansion-ideas-and-next-steps-curriculum-core-concepts-and-learning-sequence"
+			]
+		}
+	}
+}

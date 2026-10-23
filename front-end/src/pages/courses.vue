@@ -11,8 +11,11 @@ import {
 import { routeLocationKey } from "vue-router";
 import AccessModeToggle from "@/components/AccessModeToggle.vue";
 import CourseCodeAccessForm from "@/components/CourseCodeAccessForm.vue";
+import HistoricalCourseProgress from "@/components/HistoricalCourseProgress.vue";
 import { hasOpenCourseCatalog } from "@/modules/catalogVisibility";
+import { nonCatalogCourseProgress } from "@/modules/courseProgressHistory";
 import { useAppStore } from "@/stores/app";
+import { courseCatalog } from "@/stores/courses/index";
 
 defineOptions({ name: "CoursesPage" });
 
@@ -43,6 +46,11 @@ const {
 	currentUser,
 	isLoggedIn
 } = storeToRefs(app);
+
+const catalogIds = new Set(courseCatalog.map(course => course.id));
+const earlierCourseProgress = computed(() =>
+	nonCatalogCourseProgress(currentUser.value?.courseProgress, catalogIds)
+);
 
 const hasAssignedCourseAccess = computed(() => {
 	if (currentAdmin.value) return true;
@@ -199,6 +207,19 @@ function openSignup() {
 
 			<CourseExplorer v-else />
 		</template>
+		<section
+			v-if="siteReady && earlierCourseProgress.length"
+			class="site-surface site-surface--soft"
+		>
+			<h2>Earlier course progress</h2>
+			<div
+				v-for="progress in earlierCourseProgress"
+				:key="progress.courseId"
+			>
+				<h3>{{ progress.courseId }}</h3>
+				<HistoricalCourseProgress :course="null" :progress="progress" />
+			</div>
+		</section>
 	</section>
 </template>
 

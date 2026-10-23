@@ -1,0 +1,350 @@
+[
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-lls-part-2-setup-and-tooling-supplemental-transfer-practice-lls-part-2-setup-and-tooling",
+		"newId": "low-level-security-part-2-lls-part-2-setup-and-tooling-supplemental-setup-and-tooling-transfer-practice",
+		"currentId": "low-level-security-part-2-part-2-preflight-and-defensive-evidence-supplemental-low-level-security-part-2-setup-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-lls-part-2-setup-and-tooling-supplemental-extension-practice-lls-part-2-setup-and-tooling",
+		"newId": "low-level-security-part-2-lls-part-2-setup-and-tooling-supplemental-setup-and-tooling-extension-practice",
+		"currentId": "low-level-security-part-2-part-2-preflight-and-defensive-evidence-supplemental-low-level-security-part-2-setup-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-1-exploitability-triage-supplemental-transfer-practice-exploitability-triage",
+		"newId": "low-level-security-part-2-module-1-exploitability-triage-supplemental-exploitability-triage-transfer-practice",
+		"currentId": "low-level-security-part-2-lls13-exploitability-triage-supplemental-exploitability-triage-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-1-exploitability-triage-supplemental-extension-practice-exploitability-triage",
+		"newId": "low-level-security-part-2-module-1-exploitability-triage-supplemental-exploitability-triage-extension-practice",
+		"currentId": "low-level-security-part-2-lls13-exploitability-triage-supplemental-exploitability-triage-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-2-stack-corruption-in-toy-programs-supplemental-transfer-practice-stack-corruption-in-toy-programs",
+		"newId": "low-level-security-part-2-module-2-stack-corruption-in-toy-programs-supplemental-stack-corruption-transfer-practice",
+		"currentId": "low-level-security-part-2-lls14-stack-corruption-hardening-supplemental-stack-corruption-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-2-stack-corruption-in-toy-programs-supplemental-extension-practice-stack-corruption-in-toy-programs",
+		"newId": "low-level-security-part-2-module-2-stack-corruption-in-toy-programs-supplemental-stack-corruption-extension-practice",
+		"currentId": "low-level-security-part-2-lls14-stack-corruption-hardening-supplemental-stack-corruption-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-3-heap-lifetime-and-heap-metadata-concepts-supplemental-transfer-practice-heap-lifetime-and-heap-metadata-concepts",
+		"newId": "low-level-security-part-2-module-3-heap-lifetime-and-heap-metadata-concepts-supplemental-heap-lifetime-transfer-practice",
+		"currentId": "low-level-security-part-2-lls15-heap-lifetime-and-ownership-supplemental-heap-lifetime-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-3-heap-lifetime-and-heap-metadata-concepts-supplemental-extension-practice-heap-lifetime-and-heap-metadata-concepts",
+		"newId": "low-level-security-part-2-module-3-heap-lifetime-and-heap-metadata-concepts-supplemental-heap-lifetime-extension-practice",
+		"currentId": "low-level-security-part-2-lls15-heap-lifetime-and-ownership-supplemental-heap-lifetime-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-4-information-disclosure-and-memory-observation-supplemental-transfer-practice-information-disclosure-and-memory-observation",
+		"newId": "low-level-security-part-2-module-4-information-disclosure-and-memory-observation-supplemental-memory-disclosure-transfer-practice",
+		"currentId": "low-level-security-part-2-part-2-bridge-disclosure-boundaries-supplemental-memory-disclosure-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-4-information-disclosure-and-memory-observation-supplemental-extension-practice-information-disclosure-and-memory-observation",
+		"newId": "low-level-security-part-2-module-4-information-disclosure-and-memory-observation-supplemental-memory-disclosure-extension-practice",
+		"currentId": "low-level-security-part-2-part-2-bridge-disclosure-boundaries-supplemental-memory-disclosure-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-5-mitigation-aware-analysis-supplemental-transfer-practice-mitigation-aware-analysis",
+		"newId": "low-level-security-part-2-module-5-mitigation-aware-analysis-supplemental-mitigation-analysis-transfer-practice",
+		"currentId": "low-level-security-part-2-lls16-mitigation-aware-build-analysis-supplemental-mitigation-analysis-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-5-mitigation-aware-analysis-supplemental-extension-practice-mitigation-aware-analysis",
+		"newId": "low-level-security-part-2-module-5-mitigation-aware-analysis-supplemental-mitigation-analysis-extension-practice",
+		"currentId": "low-level-security-part-2-lls16-mitigation-aware-build-analysis-supplemental-mitigation-analysis-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-6-control-flow-thinking-for-defenders-supplemental-transfer-practice-control-flow-thinking-for-defenders",
+		"newId": "low-level-security-part-2-module-6-control-flow-thinking-for-defenders-supplemental-control-flow-defense-transfer-practice",
+		"currentId": "low-level-security-part-2-part-2-bridge-control-flow-integrity-supplemental-control-flow-defense-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-6-control-flow-thinking-for-defenders-supplemental-extension-practice-control-flow-thinking-for-defenders",
+		"newId": "low-level-security-part-2-module-6-control-flow-thinking-for-defenders-supplemental-control-flow-defense-extension-practice",
+		"currentId": "low-level-security-part-2-part-2-bridge-control-flow-integrity-supplemental-control-flow-defense-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-7-from-bug-report-to-patch-supplemental-transfer-practice-from-bug-report-to-patch",
+		"newId": "low-level-security-part-2-module-7-from-bug-report-to-patch-supplemental-patch-workflow-transfer-practice",
+		"currentId": "low-level-security-part-2-lls17-disclosure-triage-and-patch-handoff-supplemental-patch-workflow-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-7-from-bug-report-to-patch-supplemental-extension-practice-from-bug-report-to-patch",
+		"newId": "low-level-security-part-2-module-7-from-bug-report-to-patch-supplemental-patch-workflow-extension-practice",
+		"currentId": "low-level-security-part-2-lls17-disclosure-triage-and-patch-handoff-supplemental-patch-workflow-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-8-capstone-audit-supplemental-transfer-practice-capstone-audit",
+		"newId": "low-level-security-part-2-module-8-capstone-audit-supplemental-capstone-audit-transfer-practice",
+		"currentId": "low-level-security-part-2-lls18-defensive-hardening-capstone-supplemental-capstone-audit-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-module-8-capstone-audit-supplemental-extension-practice-capstone-audit",
+		"newId": "low-level-security-part-2-module-8-capstone-audit-supplemental-capstone-audit-extension-practice",
+		"currentId": "low-level-security-part-2-lls18-defensive-hardening-capstone-supplemental-capstone-audit-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "low-level-security-part-2-low-level-security-lab-13",
+		"newId": "low-level-security-part-2-low-level-security-lab-13-exploitability-triage-studio",
+		"currentId": "low-level-security-part-2-low-level-security-lab-13-exploitability-triage-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-13-curriculum-low-level-security-lab-13-core-concepts",
+		"newId": "low-level-security-part-2-low-level-security-lab-13-exploitability-triage-studio-curriculum-low-level-security-lab-13-core-concepts",
+		"currentId": "low-level-security-part-2-low-level-security-lab-13-exploitability-triage-studio-curriculum-low-level-security-lab-13-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-13-curriculum-low-level-security-lab-13-guided-example",
+		"newId": "low-level-security-part-2-low-level-security-lab-13-exploitability-triage-studio-curriculum-low-level-security-lab-13-guided-example",
+		"currentId": "low-level-security-part-2-low-level-security-lab-13-exploitability-triage-studio-curriculum-low-level-security-lab-13-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-13-curriculum-core-project-low-level-security-lab-13",
+		"newId": "low-level-security-part-2-low-level-security-lab-13-exploitability-triage-studio-curriculum-core-project-low-level-security-lab-13",
+		"currentId": "low-level-security-part-2-low-level-security-lab-13-exploitability-triage-studio-curriculum-core-project-low-level-security-lab-13"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-13-curriculum-review-low-level-security-lab-13",
+		"newId": "low-level-security-part-2-low-level-security-lab-13-exploitability-triage-studio-curriculum-review-low-level-security-lab-13",
+		"currentId": "low-level-security-part-2-low-level-security-lab-13-exploitability-triage-studio-curriculum-review-low-level-security-lab-13"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-13-supplemental-extension-challenge-low-level-security-lab-13",
+		"newId": "low-level-security-part-2-low-level-security-lab-13-exploitability-triage-studio-supplemental-extension-challenge-low-level-security-lab-13",
+		"currentId": "low-level-security-part-2-low-level-security-lab-13-exploitability-triage-studio-supplemental-extension-challenge-low-level-security-lab-13"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-13-supplemental-transfer-practice-low-level-security-lab-13",
+		"newId": "low-level-security-part-2-low-level-security-lab-13-exploitability-triage-studio-supplemental-exploitability-studio-transfer-practice",
+		"currentId": "low-level-security-part-2-low-level-security-lab-13-exploitability-triage-studio-supplemental-exploitability-studio-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-13-supplemental-extension-practice-low-level-security-lab-13",
+		"newId": "low-level-security-part-2-low-level-security-lab-13-exploitability-triage-studio-supplemental-exploitability-studio-extension-practice",
+		"currentId": "low-level-security-part-2-low-level-security-lab-13-exploitability-triage-studio-supplemental-exploitability-studio-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "low-level-security-part-2-low-level-security-lab-14",
+		"newId": "low-level-security-part-2-low-level-security-lab-14-stack-corruption-hardening-studio",
+		"currentId": "low-level-security-part-2-low-level-security-lab-14-stack-corruption-hardening-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-14-curriculum-low-level-security-lab-14-core-concepts",
+		"newId": "low-level-security-part-2-low-level-security-lab-14-stack-corruption-hardening-studio-curriculum-low-level-security-lab-14-core-concepts",
+		"currentId": "low-level-security-part-2-low-level-security-lab-14-stack-corruption-hardening-studio-curriculum-low-level-security-lab-14-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-14-curriculum-low-level-security-lab-14-guided-example",
+		"newId": "low-level-security-part-2-low-level-security-lab-14-stack-corruption-hardening-studio-curriculum-low-level-security-lab-14-guided-example",
+		"currentId": "low-level-security-part-2-low-level-security-lab-14-stack-corruption-hardening-studio-curriculum-low-level-security-lab-14-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-14-curriculum-core-project-low-level-security-lab-14",
+		"newId": "low-level-security-part-2-low-level-security-lab-14-stack-corruption-hardening-studio-curriculum-core-project-low-level-security-lab-14",
+		"currentId": "low-level-security-part-2-low-level-security-lab-14-stack-corruption-hardening-studio-curriculum-core-project-low-level-security-lab-14"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-14-curriculum-review-low-level-security-lab-14",
+		"newId": "low-level-security-part-2-low-level-security-lab-14-stack-corruption-hardening-studio-curriculum-review-low-level-security-lab-14",
+		"currentId": "low-level-security-part-2-low-level-security-lab-14-stack-corruption-hardening-studio-curriculum-review-low-level-security-lab-14"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-14-supplemental-extension-challenge-low-level-security-lab-14",
+		"newId": "low-level-security-part-2-low-level-security-lab-14-stack-corruption-hardening-studio-supplemental-extension-challenge-low-level-security-lab-14",
+		"currentId": "low-level-security-part-2-low-level-security-lab-14-stack-corruption-hardening-studio-supplemental-extension-challenge-low-level-security-lab-14"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-14-supplemental-transfer-practice-low-level-security-lab-14",
+		"newId": "low-level-security-part-2-low-level-security-lab-14-stack-corruption-hardening-studio-supplemental-stack-hardening-transfer-practice",
+		"currentId": "low-level-security-part-2-low-level-security-lab-14-stack-corruption-hardening-studio-supplemental-stack-hardening-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-14-supplemental-extension-practice-low-level-security-lab-14",
+		"newId": "low-level-security-part-2-low-level-security-lab-14-stack-corruption-hardening-studio-supplemental-stack-hardening-extension-practice",
+		"currentId": "low-level-security-part-2-low-level-security-lab-14-stack-corruption-hardening-studio-supplemental-stack-hardening-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "low-level-security-part-2-low-level-security-lab-15",
+		"newId": "low-level-security-part-2-low-level-security-lab-15-heap-lifetime-audit-studio",
+		"currentId": "low-level-security-part-2-low-level-security-lab-15-heap-lifetime-audit-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-15-curriculum-low-level-security-lab-15-core-concepts",
+		"newId": "low-level-security-part-2-low-level-security-lab-15-heap-lifetime-audit-studio-curriculum-low-level-security-lab-15-core-concepts",
+		"currentId": "low-level-security-part-2-low-level-security-lab-15-heap-lifetime-audit-studio-curriculum-low-level-security-lab-15-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-15-curriculum-low-level-security-lab-15-guided-example",
+		"newId": "low-level-security-part-2-low-level-security-lab-15-heap-lifetime-audit-studio-curriculum-low-level-security-lab-15-guided-example",
+		"currentId": "low-level-security-part-2-low-level-security-lab-15-heap-lifetime-audit-studio-curriculum-low-level-security-lab-15-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-15-curriculum-core-project-low-level-security-lab-15",
+		"newId": "low-level-security-part-2-low-level-security-lab-15-heap-lifetime-audit-studio-curriculum-core-project-low-level-security-lab-15",
+		"currentId": "low-level-security-part-2-low-level-security-lab-15-heap-lifetime-audit-studio-curriculum-core-project-low-level-security-lab-15"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-15-curriculum-review-low-level-security-lab-15",
+		"newId": "low-level-security-part-2-low-level-security-lab-15-heap-lifetime-audit-studio-curriculum-review-low-level-security-lab-15",
+		"currentId": "low-level-security-part-2-low-level-security-lab-15-heap-lifetime-audit-studio-curriculum-review-low-level-security-lab-15"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-15-supplemental-extension-challenge-low-level-security-lab-15",
+		"newId": "low-level-security-part-2-low-level-security-lab-15-heap-lifetime-audit-studio-supplemental-extension-challenge-low-level-security-lab-15",
+		"currentId": "low-level-security-part-2-low-level-security-lab-15-heap-lifetime-audit-studio-supplemental-extension-challenge-low-level-security-lab-15"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-15-supplemental-transfer-practice-low-level-security-lab-15",
+		"newId": "low-level-security-part-2-low-level-security-lab-15-heap-lifetime-audit-studio-supplemental-heap-lifetime-transfer-practice",
+		"currentId": "low-level-security-part-2-low-level-security-lab-15-heap-lifetime-audit-studio-supplemental-heap-lifetime-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-15-supplemental-extension-practice-low-level-security-lab-15",
+		"newId": "low-level-security-part-2-low-level-security-lab-15-heap-lifetime-audit-studio-supplemental-heap-lifetime-extension-practice",
+		"currentId": "low-level-security-part-2-low-level-security-lab-15-heap-lifetime-audit-studio-supplemental-heap-lifetime-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "low-level-security-part-2-low-level-security-lab-16",
+		"newId": "low-level-security-part-2-low-level-security-lab-16-disclosure-boundary-hardening-studio",
+		"currentId": "low-level-security-part-2-low-level-security-lab-16-disclosure-boundary-hardening-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-16-curriculum-low-level-security-lab-16-core-concepts",
+		"newId": "low-level-security-part-2-low-level-security-lab-16-disclosure-boundary-hardening-studio-curriculum-low-level-security-lab-16-core-concepts",
+		"currentId": "low-level-security-part-2-low-level-security-lab-16-disclosure-boundary-hardening-studio-curriculum-low-level-security-lab-16-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-16-curriculum-low-level-security-lab-16-guided-example",
+		"newId": "low-level-security-part-2-low-level-security-lab-16-disclosure-boundary-hardening-studio-curriculum-low-level-security-lab-16-guided-example",
+		"currentId": "low-level-security-part-2-low-level-security-lab-16-disclosure-boundary-hardening-studio-curriculum-low-level-security-lab-16-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-16-curriculum-core-project-low-level-security-lab-16",
+		"newId": "low-level-security-part-2-low-level-security-lab-16-disclosure-boundary-hardening-studio-curriculum-core-project-low-level-security-lab-16",
+		"currentId": "low-level-security-part-2-low-level-security-lab-16-disclosure-boundary-hardening-studio-curriculum-core-project-low-level-security-lab-16"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-16-curriculum-review-low-level-security-lab-16",
+		"newId": "low-level-security-part-2-low-level-security-lab-16-disclosure-boundary-hardening-studio-curriculum-review-low-level-security-lab-16",
+		"currentId": "low-level-security-part-2-low-level-security-lab-16-disclosure-boundary-hardening-studio-curriculum-review-low-level-security-lab-16"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-16-supplemental-extension-challenge-low-level-security-lab-16",
+		"newId": "low-level-security-part-2-low-level-security-lab-16-disclosure-boundary-hardening-studio-supplemental-extension-challenge-low-level-security-lab-16",
+		"currentId": "low-level-security-part-2-low-level-security-lab-16-disclosure-boundary-hardening-studio-supplemental-extension-challenge-low-level-security-lab-16"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-16-supplemental-transfer-practice-low-level-security-lab-16",
+		"newId": "low-level-security-part-2-low-level-security-lab-16-disclosure-boundary-hardening-studio-supplemental-disclosure-boundary-transfer-practice",
+		"currentId": "low-level-security-part-2-low-level-security-lab-16-disclosure-boundary-hardening-studio-supplemental-disclosure-boundary-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-16-supplemental-extension-practice-low-level-security-lab-16",
+		"newId": "low-level-security-part-2-low-level-security-lab-16-disclosure-boundary-hardening-studio-supplemental-disclosure-boundary-extension-practice",
+		"currentId": "low-level-security-part-2-low-level-security-lab-16-disclosure-boundary-hardening-studio-supplemental-disclosure-boundary-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "low-level-security-part-2-low-level-security-lab-17",
+		"newId": "low-level-security-part-2-low-level-security-lab-17-defensive-audit-capstone-studio",
+		"currentId": "low-level-security-part-2-low-level-security-lab-17-defensive-audit-capstone-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-17-curriculum-low-level-security-lab-17-core-concepts",
+		"newId": "low-level-security-part-2-low-level-security-lab-17-defensive-audit-capstone-studio-curriculum-low-level-security-lab-17-core-concepts",
+		"currentId": "low-level-security-part-2-low-level-security-lab-17-defensive-audit-capstone-studio-curriculum-low-level-security-lab-17-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-17-curriculum-low-level-security-lab-17-guided-example",
+		"newId": "low-level-security-part-2-low-level-security-lab-17-defensive-audit-capstone-studio-curriculum-low-level-security-lab-17-guided-example",
+		"currentId": "low-level-security-part-2-low-level-security-lab-17-defensive-audit-capstone-studio-curriculum-low-level-security-lab-17-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-17-curriculum-core-project-low-level-security-lab-17",
+		"newId": "low-level-security-part-2-low-level-security-lab-17-defensive-audit-capstone-studio-curriculum-core-project-low-level-security-lab-17",
+		"currentId": "low-level-security-part-2-low-level-security-lab-17-defensive-audit-capstone-studio-curriculum-core-project-low-level-security-lab-17"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-17-curriculum-review-low-level-security-lab-17",
+		"newId": "low-level-security-part-2-low-level-security-lab-17-defensive-audit-capstone-studio-curriculum-review-low-level-security-lab-17",
+		"currentId": "low-level-security-part-2-low-level-security-lab-17-defensive-audit-capstone-studio-curriculum-review-low-level-security-lab-17"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-17-supplemental-extension-challenge-low-level-security-lab-17",
+		"newId": "low-level-security-part-2-low-level-security-lab-17-defensive-audit-capstone-studio-supplemental-extension-challenge-low-level-security-lab-17",
+		"currentId": "low-level-security-part-2-low-level-security-lab-17-defensive-audit-capstone-studio-supplemental-extension-challenge-low-level-security-lab-17"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-17-supplemental-transfer-practice-low-level-security-lab-17",
+		"newId": "low-level-security-part-2-low-level-security-lab-17-defensive-audit-capstone-studio-supplemental-defensive-audit-transfer-practice",
+		"currentId": "low-level-security-part-2-low-level-security-lab-17-defensive-audit-capstone-studio-supplemental-defensive-audit-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "low-level-security-part-2-low-level-security-lab-17-supplemental-extension-practice-low-level-security-lab-17",
+		"newId": "low-level-security-part-2-low-level-security-lab-17-defensive-audit-capstone-studio-supplemental-defensive-audit-extension-practice",
+		"currentId": "low-level-security-part-2-low-level-security-lab-17-defensive-audit-capstone-studio-supplemental-defensive-audit-extension-practice"
+	}
+]

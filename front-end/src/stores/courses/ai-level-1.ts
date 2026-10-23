@@ -1200,6 +1200,7 @@ export const aiLevel1Course: RawCourse = {
 				},
 				{
 					title: "Unbeatable TicTacToe AI 1 Transfer Practice",
+					aliases: ["Transfer Practice: Unbeatable TicTacToe AI 1"],
 					content: buildProjectGuidance({
 						courseFamily: "AI/Python",
 						moduleTitle:
@@ -1214,6 +1215,7 @@ export const aiLevel1Course: RawCourse = {
 				},
 				{
 					title: "Unbeatable TicTacToe AI 1 Extension Practice",
+					aliases: ["Extension Practice: Unbeatable TicTacToe AI 1"],
 					content: buildProjectGuidance({
 						courseFamily: "AI/Python",
 						moduleTitle:
@@ -1597,3 +1599,23 @@ function configureAiLevel1Flow(course: RawCourse) {
 }
 
 configureAiLevel1Flow(aiLevel1Course);
+
+for (const previousTitle of [
+	"AI Search Lab 13",
+	"AI Search Lab 14",
+	"AI Search Lab 15",
+	"AI Search Lab 16",
+	"AI Search Lab 17",
+	"Unbeatable TicTacToe AI 1",
+	"The Marble Game AI"
+]) {
+	const module = aiLevel1Course.modules.find(
+		entry => entry.title === `${previousTitle}: Practice Studio`
+	);
+	if (!module) {
+		throw new Error(
+			`AI Level 1 is missing ${previousTitle}: Practice Studio.`
+		);
+	}
+	module.aliases = [...(module.aliases ?? []), previousTitle];
+}

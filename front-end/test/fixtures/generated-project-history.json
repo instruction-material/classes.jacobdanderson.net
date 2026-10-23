@@ -1,0 +1,362 @@
+[
+	{
+		"course": "python-level-1",
+		"oldId": "python-level-1-check-in-1-supplemental-applied-challenge",
+		"newId": "python-level-1-check-in-1-supplemental-changed-case-review"
+	},
+	{
+		"course": "python-level-1",
+		"oldId": "python-level-1-check-in-2-supplemental-applied-challenge",
+		"newId": "python-level-1-check-in-2-supplemental-changed-case-review"
+	},
+	{
+		"course": "python-level-1",
+		"oldId": "python-level-1-check-in-3-supplemental-applied-challenge",
+		"newId": "python-level-1-check-in-3-supplemental-changed-case-review"
+	},
+	{
+		"course": "python-level-1",
+		"oldId": "python-level-1-grs15-master-project-supplemental-applied-challenge",
+		"newId": "python-level-1-grs15-master-project-supplemental-transfer-practice"
+	},
+	{
+		"course": "python-level-2",
+		"oldId": "python-level-2-check-in-1-supplemental-applied-challenge",
+		"newId": "python-level-2-check-in-1-supplemental-changed-case-review"
+	},
+	{
+		"course": "python-level-2",
+		"oldId": "python-level-2-ps8-ciphers-and-music-supplemental-applied-challenge",
+		"newId": "python-level-2-ps8-ciphers-and-music-supplemental-transfer-practice"
+	},
+	{
+		"course": "python-level-2",
+		"oldId": "python-level-2-check-in-2-supplemental-applied-challenge",
+		"newId": "python-level-2-check-in-2-supplemental-changed-case-review"
+	},
+	{
+		"course": "python-level-2",
+		"oldId": "python-level-2-ps15-master-project-supplemental-applied-challenge",
+		"newId": "python-level-2-ps15-master-project-supplemental-transfer-practice"
+	},
+	{
+		"course": "python-level-3",
+		"oldId": "python-level-3-am1-review-variables-strings-input-loops-conditionals-supplemental-applied-challenge",
+		"newId": "python-level-3-am1-review-variables-strings-input-loops-conditionals-supplemental-input-variation-practice"
+	},
+	{
+		"course": "python-level-3",
+		"oldId": "python-level-3-am2-review-functions-lists-supplemental-applied-challenge",
+		"newId": "python-level-3-am2-review-functions-lists-supplemental-input-variation-practice"
+	},
+	{
+		"course": "python-level-3",
+		"oldId": "python-level-3-am3-review-dictionaries-recap-supplemental-applied-challenge",
+		"newId": "python-level-3-am3-review-dictionaries-recap-supplemental-input-variation-practice"
+	},
+	{
+		"course": "python-level-3",
+		"oldId": "python-level-3-am4-recursion-part-1-supplemental-applied-challenge",
+		"newId": "python-level-3-am4-recursion-part-1-supplemental-trace-and-boundary-case"
+	},
+	{
+		"course": "python-level-3",
+		"oldId": "python-level-3-check-in-1-supplemental-applied-challenge",
+		"newId": "python-level-3-check-in-1-supplemental-changed-case-review"
+	},
+	{
+		"course": "python-level-3",
+		"oldId": "python-level-3-am6-introduction-to-algorithms-runtime-analysis-supplemental-applied-challenge",
+		"newId": "python-level-3-am6-introduction-to-algorithms-runtime-analysis-supplemental-trace-and-boundary-case"
+	},
+	{
+		"course": "python-level-3",
+		"oldId": "python-level-3-am7-binary-search-supplemental-applied-challenge",
+		"newId": "python-level-3-am7-binary-search-supplemental-trace-and-boundary-case"
+	},
+	{
+		"course": "python-level-3",
+		"oldId": "python-level-3-am8-selection-sort-insertion-sort-supplemental-applied-challenge",
+		"newId": "python-level-3-am8-selection-sort-insertion-sort-supplemental-trace-and-boundary-case"
+	},
+	{
+		"course": "python-level-3",
+		"oldId": "python-level-3-check-in-2-supplemental-applied-challenge",
+		"newId": "python-level-3-check-in-2-supplemental-changed-case-review"
+	},
+	{
+		"course": "python-level-3",
+		"oldId": "python-level-3-am9-bubble-sort-supplemental-applied-challenge",
+		"newId": "python-level-3-am9-bubble-sort-supplemental-trace-and-boundary-case"
+	},
+	{
+		"course": "python-level-3",
+		"oldId": "python-level-3-am10-merge-sort-supplemental-applied-challenge",
+		"newId": "python-level-3-am10-merge-sort-supplemental-trace-and-boundary-case"
+	},
+	{
+		"course": "python-level-3",
+		"oldId": "python-level-3-am11-quicksort-supplemental-applied-challenge",
+		"newId": "python-level-3-am11-quicksort-supplemental-trace-and-boundary-case"
+	},
+	{
+		"course": "python-level-3",
+		"oldId": "python-level-3-am12-file-input-output-supplemental-applied-challenge",
+		"newId": "python-level-3-am12-file-input-output-supplemental-input-variation-practice"
+	},
+	{
+		"course": "python-level-3",
+		"oldId": "python-level-3-check-in-3-supplemental-applied-challenge",
+		"newId": "python-level-3-check-in-3-supplemental-changed-case-review"
+	},
+	{
+		"course": "python-level-3",
+		"oldId": "python-level-3-am13-master-project-conway-s-game-of-life-supplemental-applied-challenge",
+		"newId": "python-level-3-am13-master-project-conway-s-game-of-life-supplemental-interaction-variation"
+	},
+	{
+		"course": "python-level-3",
+		"oldId": "python-level-3-am14-master-project-tic-tac-toe-ai-supplemental-applied-challenge",
+		"newId": "python-level-3-am14-master-project-tic-tac-toe-ai-supplemental-transfer-practice"
+	},
+	{
+		"course": "c-level-1",
+		"oldId": "c-level-1-cppf1-variables-types-strings-and-input-output-supplemental-applied-challenge",
+		"newId": "c-level-1-cppf1-variables-types-strings-and-input-output-supplemental-input-variation-practice"
+	},
+	{
+		"course": "c-level-1",
+		"oldId": "c-level-1-cppf2-loops-and-conditionals-supplemental-applied-challenge",
+		"newId": "c-level-1-cppf2-loops-and-conditionals-supplemental-transfer-practice"
+	},
+	{
+		"course": "c-level-1",
+		"oldId": "c-level-1-cppf3-functions-supplemental-applied-challenge",
+		"newId": "c-level-1-cppf3-functions-supplemental-transfer-practice"
+	},
+	{
+		"course": "c-level-1",
+		"oldId": "c-level-1-cppf4-classes-and-objects-supplemental-applied-challenge",
+		"newId": "c-level-1-cppf4-classes-and-objects-supplemental-state-and-contract-practice"
+	},
+	{
+		"course": "c-level-1",
+		"oldId": "c-level-1-cppf5-vectors-and-collection-patterns-supplemental-applied-challenge",
+		"newId": "c-level-1-cppf5-vectors-and-collection-patterns-supplemental-transfer-practice"
+	},
+	{
+		"course": "c-level-1",
+		"oldId": "c-level-1-cppf6-structs-and-parameter-passing-supplemental-applied-challenge",
+		"newId": "c-level-1-cppf6-structs-and-parameter-passing-supplemental-transfer-practice"
+	},
+	{
+		"course": "c-level-1",
+		"oldId": "c-level-1-cppf7-grids-and-2d-vectors-supplemental-applied-challenge",
+		"newId": "c-level-1-cppf7-grids-and-2d-vectors-supplemental-transfer-practice"
+	},
+	{
+		"course": "cpp-level-2",
+		"oldId": "cpp-level-2-cppm0-lifetime-references-and-ownership-framing-supplemental-applied-challenge",
+		"newId": "cpp-level-2-cppm0-lifetime-references-and-ownership-framing-supplemental-transfer-practice"
+	},
+	{
+		"course": "cpp-level-2",
+		"oldId": "cpp-level-2-cppm1-pointers-and-addresses-supplemental-applied-challenge",
+		"newId": "cpp-level-2-cppm1-pointers-and-addresses-supplemental-transfer-practice"
+	},
+	{
+		"course": "cpp-level-2",
+		"oldId": "cpp-level-2-cppm2-raw-arrays-and-pointer-arithmetic-supplemental-applied-challenge",
+		"newId": "cpp-level-2-cppm2-raw-arrays-and-pointer-arithmetic-supplemental-input-variation-practice"
+	},
+	{
+		"course": "cpp-level-2",
+		"oldId": "cpp-level-2-cppm3-two-dimensional-arrays-and-layout-supplemental-applied-challenge",
+		"newId": "cpp-level-2-cppm3-two-dimensional-arrays-and-layout-supplemental-input-variation-practice"
+	},
+	{
+		"course": "cpp-level-2",
+		"oldId": "cpp-level-2-cppm4-dynamic-memory-and-custom-dynamic-arrays-supplemental-applied-challenge",
+		"newId": "cpp-level-2-cppm4-dynamic-memory-and-custom-dynamic-arrays-supplemental-input-variation-practice"
+	},
+	{
+		"course": "cpp-level-3",
+		"oldId": "cpp-level-3-cppi0-bridge-course-setup-and-positioning-supplemental-applied-challenge",
+		"newId": "cpp-level-3-cppi0-bridge-course-setup-and-positioning-supplemental-transfer-practice"
+	},
+	{
+		"course": "cpp-level-3",
+		"oldId": "cpp-level-3-cppi2-recursion-and-the-call-stack-supplemental-applied-challenge",
+		"newId": "cpp-level-3-cppi2-recursion-and-the-call-stack-supplemental-trace-and-boundary-case"
+	},
+	{
+		"course": "cpp-level-3",
+		"oldId": "cpp-level-3-cppi3-stl-containers-iterators-and-algorithms-supplemental-applied-challenge",
+		"newId": "cpp-level-3-cppi3-stl-containers-iterators-and-algorithms-supplemental-trace-and-boundary-case"
+	},
+	{
+		"course": "cpp-level-3",
+		"oldId": "cpp-level-3-cppi4-raii-smart-pointers-and-robust-error-handling-supplemental-applied-challenge",
+		"newId": "cpp-level-3-cppi4-raii-smart-pointers-and-robust-error-handling-supplemental-transfer-practice"
+	},
+	{
+		"course": "cpp-level-3",
+		"oldId": "cpp-level-3-cppi5-value-types-operator-overloading-and-templates-supplemental-applied-challenge",
+		"newId": "cpp-level-3-cppi5-value-types-operator-overloading-and-templates-supplemental-transfer-practice"
+	},
+	{
+		"course": "cpp-level-3",
+		"oldId": "cpp-level-3-cppi6-polymorphism-and-bridge-to-advanced-c-supplemental-applied-challenge",
+		"newId": "cpp-level-3-cppi6-polymorphism-and-bridge-to-advanced-c-supplemental-transfer-practice"
+	},
+	{
+		"course": "java-level-2",
+		"oldId": "java-level-2-jm1-instance-variables-constructors-and-methods-supplemental-applied-challenge",
+		"newId": "java-level-2-jm1-instance-variables-constructors-and-methods-supplemental-state-and-contract-practice"
+	},
+	{
+		"course": "java-level-2",
+		"oldId": "java-level-2-jm2-overloaded-constructors-comparison-methods-supplemental-applied-challenge",
+		"newId": "java-level-2-jm2-overloaded-constructors-comparison-methods-supplemental-state-and-contract-practice"
+	},
+	{
+		"course": "java-level-3",
+		"oldId": "java-level-3-aj19-post-c-java-tooling-testing-and-packages-supplemental-applied-challenge",
+		"newId": "java-level-3-aj19-post-c-java-tooling-testing-and-packages-supplemental-transfer-practice"
+	},
+	{
+		"course": "java-level-3",
+		"oldId": "java-level-3-aj20-generics-interfaces-and-collection-api-design-supplemental-applied-challenge",
+		"newId": "java-level-3-aj20-generics-interfaces-and-collection-api-design-supplemental-state-and-contract-practice"
+	},
+	{
+		"course": "java-level-3",
+		"oldId": "java-level-3-aj21-streams-files-and-data-pipelines-supplemental-applied-challenge",
+		"newId": "java-level-3-aj21-streams-files-and-data-pipelines-supplemental-input-variation-practice"
+	},
+	{
+		"course": "java-level-3",
+		"oldId": "java-level-3-aj22-concurrency-services-and-capstone-architecture-supplemental-applied-challenge",
+		"newId": "java-level-3-aj22-concurrency-services-and-capstone-architecture-supplemental-transfer-practice"
+	},
+	{
+		"course": "java-without-graphics",
+		"oldId": "java-without-graphics-java-level-1-js2-casting-and-operators-supplemental-applied-challenge",
+		"newId": "java-without-graphics-java-level-1-js2-casting-and-operators-supplemental-transfer-practice"
+	},
+	{
+		"course": "java-without-graphics",
+		"oldId": "java-without-graphics-java-level-2-jm1-instance-variables-constructors-and-methods-supplemental-applied-challenge",
+		"newId": "java-without-graphics-java-level-2-jm1-instance-variables-constructors-and-methods-supplemental-state-and-contract-practice"
+	},
+	{
+		"course": "java-without-graphics",
+		"oldId": "java-without-graphics-java-level-2-jm2-overloaded-constructors-comparison-methods-supplemental-applied-challenge",
+		"newId": "java-without-graphics-java-level-2-jm2-overloaded-constructors-comparison-methods-supplemental-state-and-contract-practice"
+	},
+	{
+		"course": "java-without-graphics",
+		"oldId": "java-without-graphics-java-level-3-aj19-post-c-java-tooling-testing-and-packages-supplemental-applied-challenge",
+		"newId": "java-without-graphics-java-level-3-aj19-post-c-java-tooling-testing-and-packages-supplemental-transfer-practice"
+	},
+	{
+		"course": "java-without-graphics",
+		"oldId": "java-without-graphics-java-level-3-aj20-generics-interfaces-and-collection-api-design-supplemental-applied-challenge",
+		"newId": "java-without-graphics-java-level-3-aj20-generics-interfaces-and-collection-api-design-supplemental-state-and-contract-practice"
+	},
+	{
+		"course": "java-without-graphics",
+		"oldId": "java-without-graphics-java-level-3-aj21-streams-files-and-data-pipelines-supplemental-applied-challenge",
+		"newId": "java-without-graphics-java-level-3-aj21-streams-files-and-data-pipelines-supplemental-input-variation-practice"
+	},
+	{
+		"course": "java-without-graphics",
+		"oldId": "java-without-graphics-java-level-3-aj22-concurrency-services-and-capstone-architecture-supplemental-applied-challenge",
+		"newId": "java-without-graphics-java-level-3-aj22-concurrency-services-and-capstone-architecture-supplemental-transfer-practice"
+	},
+	{
+		"course": "java-with-graphics",
+		"oldId": "java-with-graphics-java-graphics-branch-1-coordinates-color-and-shapes-supplemental-applied-challenge",
+		"newId": "java-with-graphics-java-graphics-branch-1-coordinates-color-and-shapes-supplemental-interaction-variation"
+	},
+	{
+		"course": "java-with-graphics",
+		"oldId": "java-with-graphics-java-graphics-branch-2-loops-methods-and-scene-composition-supplemental-applied-challenge",
+		"newId": "java-with-graphics-java-graphics-branch-2-loops-methods-and-scene-composition-supplemental-state-and-contract-practice"
+	},
+	{
+		"course": "java-with-graphics",
+		"oldId": "java-with-graphics-java-level-2-jm1-instance-variables-constructors-and-methods-supplemental-applied-challenge",
+		"newId": "java-with-graphics-java-level-2-jm1-instance-variables-constructors-and-methods-supplemental-state-and-contract-practice"
+	},
+	{
+		"course": "java-with-graphics",
+		"oldId": "java-with-graphics-java-level-2-jm2-overloaded-constructors-comparison-methods-supplemental-applied-challenge",
+		"newId": "java-with-graphics-java-level-2-jm2-overloaded-constructors-comparison-methods-supplemental-state-and-contract-practice"
+	},
+	{
+		"course": "java-with-graphics",
+		"oldId": "java-with-graphics-java-level-3-aj19-post-c-java-tooling-testing-and-packages-supplemental-applied-challenge",
+		"newId": "java-with-graphics-java-level-3-aj19-post-c-java-tooling-testing-and-packages-supplemental-transfer-practice"
+	},
+	{
+		"course": "java-with-graphics",
+		"oldId": "java-with-graphics-java-level-3-aj20-generics-interfaces-and-collection-api-design-supplemental-applied-challenge",
+		"newId": "java-with-graphics-java-level-3-aj20-generics-interfaces-and-collection-api-design-supplemental-state-and-contract-practice"
+	},
+	{
+		"course": "java-with-graphics",
+		"oldId": "java-with-graphics-java-level-3-aj21-streams-files-and-data-pipelines-supplemental-applied-challenge",
+		"newId": "java-with-graphics-java-level-3-aj21-streams-files-and-data-pipelines-supplemental-input-variation-practice"
+	},
+	{
+		"course": "java-with-graphics",
+		"oldId": "java-with-graphics-java-level-3-aj22-concurrency-services-and-capstone-architecture-supplemental-applied-challenge",
+		"newId": "java-with-graphics-java-level-3-aj22-concurrency-services-and-capstone-architecture-supplemental-transfer-practice"
+	},
+	{
+		"course": "ap-computer-science-a",
+		"oldId": "ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-supplemental-applied-challenge",
+		"newId": "ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-supplemental-trace-and-boundary-case"
+	},
+	{
+		"course": "ap-computer-science-a",
+		"oldId": "ap-computer-science-a-apcs14-selection-and-insertion-sort-supplemental-applied-challenge",
+		"newId": "ap-computer-science-a-apcs14-selection-and-insertion-sort-supplemental-trace-and-boundary-case"
+	},
+	{
+		"course": "ap-computer-science-a",
+		"oldId": "ap-computer-science-a-apcs16-binary-search-and-merge-sort-supplemental-applied-challenge",
+		"newId": "ap-computer-science-a-apcs16-binary-search-and-merge-sort-supplemental-trace-and-boundary-case"
+	},
+	{
+		"course": "unity-game-development",
+		"oldId": "unity-game-development-gd7-ui-text-and-start-flow-supplemental-applied-challenge",
+		"newId": "unity-game-development-gd7-ui-text-and-start-flow-supplemental-interaction-variation"
+	},
+	{
+		"course": "unity-game-development",
+		"oldId": "unity-game-development-gd8-boundaries-win-states-and-hazards-supplemental-applied-challenge",
+		"newId": "unity-game-development-gd8-boundaries-win-states-and-hazards-supplemental-state-and-contract-practice"
+	},
+	{
+		"course": "unity-game-development",
+		"oldId": "unity-game-development-module-4-projects-supplemental-applied-challenge",
+		"newId": "unity-game-development-module-4-projects-supplemental-transfer-practice"
+	},
+	{
+		"course": "unity-game-development",
+		"oldId": "unity-game-development-module-5-projects-supplemental-applied-challenge",
+		"newId": "unity-game-development-module-5-projects-supplemental-transfer-practice"
+	},
+	{
+		"course": "machine-learning",
+		"oldId": "machine-learning-ml0-setup-tooling-and-data-workflow-supplemental-applied-challenge",
+		"newId": "machine-learning-ml0-setup-tooling-and-data-workflow-supplemental-input-variation-practice"
+	},
+	{
+		"course": "machine-learning",
+		"oldId": "machine-learning-ml1-k-means-clustering-supplemental-applied-challenge",
+		"newId": "machine-learning-ml1-k-means-clustering-supplemental-transfer-practice"
+	}
+]

@@ -703,11 +703,13 @@ const designPatternsInJavaSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Smell-to-Pattern Mapping",
+					aliases: ["Smell-to-Pattern Mapping"],
 					content:
 						"Map common smells to likely pattern responses: switch statements toward Strategy or State, tangled construction toward Factory or Builder, subsystem chaos toward Facade, and cross-package mismatch toward Adapter. Stress that the mapping is a hypothesis, not a mechanical rule."
 				},
 				{
 					title: "When Not to Use the Pattern",
+					aliases: ["When Not to Use the Pattern"],
 					content:
 						"Every pattern now gets an explicit restraint pass. Delete abstractions, collapse hierarchies, or keep direct code when the collaboration pressure is low."
 				},
@@ -723,6 +725,9 @@ const designPatternsInJavaSourceCourse: RawCourse = {
 				},
 				{
 					title: "Brittle Object Model Refactor Studio",
+					aliases: [
+						"Mini Lab: Improve a Brittle Object Model with Restraint"
+					],
 					content:
 						"Start from a messy Java design, identify only the highest-value improvements, and refactor toward a smaller justified set of patterns. Include a note about what was intentionally left alone."
 				},

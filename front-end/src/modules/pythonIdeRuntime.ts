@@ -21,7 +21,7 @@ export { pythonIdeImportedTopLevelModules } from "@/modules/pythonImportScanner"
 
 const PROJECT_ROOT = "/home/pyodide/classes_project";
 const PYTHON_IDE_RUNTIME_BOOTSTRAP_VERSION =
-	"2026-10-22-turtle-timer-ownership";
+	"2026-10-23-conditional-turtle-loops";
 const PYTHON_EXTENSION_RE = /\.py$/i;
 const FOR_LOOP_ITERATION_LIMIT = 500000;
 const WHILE_LOOP_ITERATION_LIMIT = 25000;
@@ -1070,6 +1070,15 @@ class __ClassesLoopGuardTransformer(ast.NodeTransformer):
                         and isinstance(function.value, ast.Name)
                         and function.value.id not in blocked
                         and function.value.id in self.turtle_module_names | self.turtle_object_names
+                    ):
+                        return True
+            if not require_first and isinstance(statement, ast.If):
+                branches = [statement.body, statement.orelse]
+                if isinstance(statement.test, ast.Constant):
+                    branches = [statement.body if statement.test.value else statement.orelse]
+                for branch in branches:
+                    if self._node_uses_turtle_api(
+                        ast.Module(body=branch, type_ignores=[]), helper_names, blocked
                     ):
                         return True
             if require_first:

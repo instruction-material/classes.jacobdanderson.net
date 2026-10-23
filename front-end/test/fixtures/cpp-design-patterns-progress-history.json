@@ -1,0 +1,350 @@
+[
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc0-setup-and-tooling-supplemental-transfer-practice-design-patterns-in-c",
+		"newId": "design-patterns-in-cpp-dpc0-setup-and-tooling-supplemental-build-tooling-transfer-practice",
+		"currentId": "design-patterns-in-cpp-dpc0-setup-and-tooling-supplemental-build-tooling-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc0-setup-and-tooling-supplemental-extension-practice-design-patterns-in-c",
+		"newId": "design-patterns-in-cpp-dpc0-setup-and-tooling-supplemental-cmake-workflow-extension-practice",
+		"currentId": "design-patterns-in-cpp-dpc0-setup-and-tooling-supplemental-cmake-workflow-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc1-why-patterns-look-different-in-modern-c-supplemental-transfer-practice-why-patterns-look-different-in-modern-c",
+		"newId": "design-patterns-in-cpp-dpc1-why-patterns-look-different-in-modern-c-supplemental-modern-ownership-transfer-practice",
+		"currentId": "design-patterns-in-cpp-dpc1-why-patterns-look-different-in-modern-c-supplemental-modern-ownership-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc1-why-patterns-look-different-in-modern-c-supplemental-extension-practice-why-patterns-look-different-in-modern-c",
+		"newId": "design-patterns-in-cpp-dpc1-why-patterns-look-different-in-modern-c-supplemental-pattern-adaptation-extension-practice",
+		"currentId": "design-patterns-in-cpp-dpc1-why-patterns-look-different-in-modern-c-supplemental-pattern-adaptation-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc2-design-foundations-supplemental-transfer-practice-design-foundations",
+		"newId": "design-patterns-in-cpp-dpc2-design-foundations-supplemental-interface-contract-transfer-practice",
+		"currentId": "design-patterns-in-cpp-dpc2-design-foundations-supplemental-interface-contract-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc2-design-foundations-supplemental-extension-practice-design-foundations",
+		"newId": "design-patterns-in-cpp-dpc2-design-foundations-supplemental-move-semantics-extension-practice",
+		"currentId": "design-patterns-in-cpp-dpc2-design-foundations-supplemental-move-semantics-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc3-factory-method-abstract-factory-and-builder-supplemental-transfer-practice-factory-method-abstract-factory-and-builder",
+		"newId": "design-patterns-in-cpp-dpc3-factory-method-abstract-factory-and-builder-supplemental-creation-pattern-transfer-practice",
+		"currentId": "design-patterns-in-cpp-dpc3-factory-method-abstract-factory-and-builder-supplemental-creation-pattern-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc3-factory-method-abstract-factory-and-builder-supplemental-extension-practice-factory-method-abstract-factory-and-builder",
+		"newId": "design-patterns-in-cpp-dpc3-factory-method-abstract-factory-and-builder-supplemental-builder-family-extension-practice",
+		"currentId": "design-patterns-in-cpp-dpc3-factory-method-abstract-factory-and-builder-supplemental-builder-family-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc4-strategy-and-policy-based-design-supplemental-transfer-practice-strategy-and-policy-based-design",
+		"newId": "design-patterns-in-cpp-dpc4-strategy-and-policy-based-design-supplemental-strategy-policy-transfer-practice",
+		"currentId": "design-patterns-in-cpp-dpc4-strategy-and-policy-based-design-supplemental-strategy-policy-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc4-strategy-and-policy-based-design-supplemental-extension-practice-strategy-and-policy-based-design",
+		"newId": "design-patterns-in-cpp-dpc4-strategy-and-policy-based-design-supplemental-policy-design-extension-practice",
+		"currentId": "design-patterns-in-cpp-dpc4-strategy-and-policy-based-design-supplemental-policy-design-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc5-observer-and-event-flow-supplemental-transfer-practice-observer-and-event-flow",
+		"newId": "design-patterns-in-cpp-dpc5-observer-and-event-flow-supplemental-observer-event-transfer-practice",
+		"currentId": "design-patterns-in-cpp-dpc5-observer-and-event-flow-supplemental-observer-event-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc5-observer-and-event-flow-supplemental-extension-practice-observer-and-event-flow",
+		"newId": "design-patterns-in-cpp-dpc5-observer-and-event-flow-supplemental-listener-lifetime-extension-practice",
+		"currentId": "design-patterns-in-cpp-dpc5-observer-and-event-flow-supplemental-listener-lifetime-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc6-decorator-adapter-and-facade-supplemental-transfer-practice-decorator-adapter-and-facade",
+		"newId": "design-patterns-in-cpp-dpc6-decorator-adapter-and-facade-supplemental-structural-wrapper-transfer-practice",
+		"currentId": "design-patterns-in-cpp-dpc6-decorator-adapter-and-facade-supplemental-structural-wrapper-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc6-decorator-adapter-and-facade-supplemental-extension-practice-decorator-adapter-and-facade",
+		"newId": "design-patterns-in-cpp-dpc6-decorator-adapter-and-facade-supplemental-facade-boundary-extension-practice",
+		"currentId": "design-patterns-in-cpp-dpc6-decorator-adapter-and-facade-supplemental-facade-boundary-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc7-command-and-state-supplemental-transfer-practice-command-and-state",
+		"newId": "design-patterns-in-cpp-dpc7-command-and-state-supplemental-command-state-transfer-practice",
+		"currentId": "design-patterns-in-cpp-dpc7-command-and-state-supplemental-command-state-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc7-command-and-state-supplemental-extension-practice-command-and-state",
+		"newId": "design-patterns-in-cpp-dpc7-command-and-state-supplemental-undo-state-extension-practice",
+		"currentId": "design-patterns-in-cpp-dpc7-command-and-state-supplemental-undo-state-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc8-composite-and-iterator-supplemental-transfer-practice-composite-and-iterator",
+		"newId": "design-patterns-in-cpp-dpc8-composite-and-iterator-supplemental-composite-traversal-transfer-practice",
+		"currentId": "design-patterns-in-cpp-dpc8-composite-and-iterator-supplemental-composite-traversal-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc8-composite-and-iterator-supplemental-extension-practice-composite-and-iterator",
+		"newId": "design-patterns-in-cpp-dpc8-composite-and-iterator-supplemental-iterator-boundary-extension-practice",
+		"currentId": "design-patterns-in-cpp-dpc8-composite-and-iterator-supplemental-iterator-boundary-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc9-singleton-global-state-and-dependency-injection-supplemental-transfer-practice-singleton-global-state-and-dependency-injection",
+		"newId": "design-patterns-in-cpp-dpc9-singleton-global-state-and-dependency-injection-supplemental-dependency-injection-transfer-practice",
+		"currentId": "design-patterns-in-cpp-dpc9-singleton-global-state-and-dependency-injection-supplemental-dependency-injection-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc9-singleton-global-state-and-dependency-injection-supplemental-extension-practice-singleton-global-state-and-dependency-injection",
+		"newId": "design-patterns-in-cpp-dpc9-singleton-global-state-and-dependency-injection-supplemental-global-state-refactor-extension-practice",
+		"currentId": "design-patterns-in-cpp-dpc9-singleton-global-state-and-dependency-injection-supplemental-global-state-refactor-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc10-patterns-for-resource-management-supplemental-transfer-practice-patterns-for-resource-management",
+		"newId": "design-patterns-in-cpp-dpc10-patterns-for-resource-management-supplemental-raii-wrapper-transfer-practice",
+		"currentId": "design-patterns-in-cpp-dpc10-patterns-for-resource-management-supplemental-raii-wrapper-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc10-patterns-for-resource-management-supplemental-extension-practice-patterns-for-resource-management",
+		"newId": "design-patterns-in-cpp-dpc10-patterns-for-resource-management-supplemental-resource-boundary-extension-practice",
+		"currentId": "design-patterns-in-cpp-dpc10-patterns-for-resource-management-supplemental-resource-boundary-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc11-legacy-refactoring-lab-supplemental-transfer-practice-legacy-refactoring-lab",
+		"newId": "design-patterns-in-cpp-dpc11-legacy-refactoring-lab-supplemental-legacy-refactor-transfer-practice",
+		"currentId": "design-patterns-in-cpp-dpc11-legacy-refactoring-lab-supplemental-legacy-refactor-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc11-legacy-refactoring-lab-supplemental-extension-practice-legacy-refactoring-lab",
+		"newId": "design-patterns-in-cpp-dpc11-legacy-refactoring-lab-supplemental-raw-pointer-refactor-extension-practice",
+		"currentId": "design-patterns-in-cpp-dpc11-legacy-refactoring-lab-supplemental-raw-pointer-refactor-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc12-capstone-studio-supplemental-transfer-practice-capstone-studio",
+		"newId": "design-patterns-in-cpp-dpc12-capstone-studio-supplemental-capstone-architecture-transfer-practice",
+		"currentId": "design-patterns-in-cpp-dpc12-capstone-studio-supplemental-capstone-architecture-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-dpc12-capstone-studio-supplemental-extension-practice-capstone-studio",
+		"newId": "design-patterns-in-cpp-dpc12-capstone-studio-supplemental-capstone-extension-practice",
+		"currentId": "design-patterns-in-cpp-dpc12-capstone-studio-supplemental-capstone-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "design-patterns-in-cpp-pattern-lab-14",
+		"newId": "design-patterns-in-cpp-pattern-lab-14-ownership-aware-refactor-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-14-curriculum-pattern-lab-14-core-concepts",
+		"newId": "design-patterns-in-cpp-pattern-lab-14-ownership-aware-refactor-studio-curriculum-ownership-aware-refactor-concepts",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-ownership-aware-refactor-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-14-curriculum-pattern-lab-14-guided-example",
+		"newId": "design-patterns-in-cpp-pattern-lab-14-ownership-aware-refactor-studio-curriculum-ownership-boundary-example",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-ownership-boundary-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-14-curriculum-core-project-pattern-lab-14",
+		"newId": "design-patterns-in-cpp-pattern-lab-14-ownership-aware-refactor-studio-curriculum-ownership-aware-refactor-project",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-ownership-aware-refactor-project"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-14-curriculum-review-pattern-lab-14",
+		"newId": "design-patterns-in-cpp-pattern-lab-14-ownership-aware-refactor-studio-curriculum-ownership-refactor-review",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-ownership-refactor-review"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-14-supplemental-extension-challenge-pattern-lab-14",
+		"newId": "design-patterns-in-cpp-pattern-lab-14-ownership-aware-refactor-studio-supplemental-ownership-refactor-extension-challenge",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-ownership-refactor-extension-challenge"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-14-supplemental-transfer-practice-pattern-lab-14",
+		"newId": "design-patterns-in-cpp-pattern-lab-14-ownership-aware-refactor-studio-supplemental-ownership-refactor-transfer-practice",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-ownership-refactor-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-14-supplemental-extension-practice-pattern-lab-14",
+		"newId": "design-patterns-in-cpp-pattern-lab-14-ownership-aware-refactor-studio-supplemental-ownership-refactor-extension-practice",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-ownership-refactor-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "design-patterns-in-cpp-pattern-lab-15",
+		"newId": "design-patterns-in-cpp-pattern-lab-15-runtime-variation-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-15-curriculum-pattern-lab-15-core-concepts",
+		"newId": "design-patterns-in-cpp-pattern-lab-15-runtime-variation-studio-curriculum-runtime-variation-concepts",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-runtime-variation-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-15-curriculum-pattern-lab-15-guided-example",
+		"newId": "design-patterns-in-cpp-pattern-lab-15-runtime-variation-studio-curriculum-runtime-strategy-example",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-runtime-strategy-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-15-curriculum-core-project-pattern-lab-15",
+		"newId": "design-patterns-in-cpp-pattern-lab-15-runtime-variation-studio-curriculum-runtime-variation-project",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-runtime-variation-project"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-15-curriculum-review-pattern-lab-15",
+		"newId": "design-patterns-in-cpp-pattern-lab-15-runtime-variation-studio-curriculum-runtime-variation-review",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-runtime-variation-review"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-15-supplemental-extension-challenge-pattern-lab-15",
+		"newId": "design-patterns-in-cpp-pattern-lab-15-runtime-variation-studio-supplemental-runtime-variation-extension-challenge",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-runtime-variation-extension-challenge"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-15-supplemental-transfer-practice-pattern-lab-15",
+		"newId": "design-patterns-in-cpp-pattern-lab-15-runtime-variation-studio-supplemental-runtime-variation-transfer-practice",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-runtime-variation-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-15-supplemental-extension-practice-pattern-lab-15",
+		"newId": "design-patterns-in-cpp-pattern-lab-15-runtime-variation-studio-supplemental-runtime-variation-extension-practice",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-runtime-variation-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "design-patterns-in-cpp-pattern-lab-16",
+		"newId": "design-patterns-in-cpp-pattern-lab-16-structural-boundary-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-16-curriculum-pattern-lab-16-core-concepts",
+		"newId": "design-patterns-in-cpp-pattern-lab-16-structural-boundary-studio-curriculum-structural-boundary-concepts",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-structural-boundary-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-16-curriculum-pattern-lab-16-guided-example",
+		"newId": "design-patterns-in-cpp-pattern-lab-16-structural-boundary-studio-curriculum-adapter-and-facade-boundary-example",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-adapter-and-facade-boundary-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-16-curriculum-core-project-pattern-lab-16",
+		"newId": "design-patterns-in-cpp-pattern-lab-16-structural-boundary-studio-curriculum-structural-boundary-project",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-structural-boundary-project"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-16-curriculum-review-pattern-lab-16",
+		"newId": "design-patterns-in-cpp-pattern-lab-16-structural-boundary-studio-curriculum-structural-boundary-review",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-structural-boundary-review"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-16-supplemental-extension-challenge-pattern-lab-16",
+		"newId": "design-patterns-in-cpp-pattern-lab-16-structural-boundary-studio-supplemental-structural-boundary-extension-challenge",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-structural-boundary-extension-challenge"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-16-supplemental-transfer-practice-pattern-lab-16",
+		"newId": "design-patterns-in-cpp-pattern-lab-16-structural-boundary-studio-supplemental-structural-boundary-transfer-practice",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-structural-boundary-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-16-supplemental-extension-practice-pattern-lab-16",
+		"newId": "design-patterns-in-cpp-pattern-lab-16-structural-boundary-studio-supplemental-structural-boundary-extension-practice",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-structural-boundary-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "design-patterns-in-cpp-pattern-lab-17",
+		"newId": "design-patterns-in-cpp-pattern-lab-17-refactoring-capstone-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-17-curriculum-pattern-lab-17-core-concepts",
+		"newId": "design-patterns-in-cpp-pattern-lab-17-refactoring-capstone-studio-curriculum-refactoring-capstone-concepts",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-refactoring-capstone-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-17-curriculum-pattern-lab-17-guided-example",
+		"newId": "design-patterns-in-cpp-pattern-lab-17-refactoring-capstone-studio-curriculum-pattern-selection-example",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-pattern-selection-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-17-curriculum-core-project-pattern-lab-17",
+		"newId": "design-patterns-in-cpp-pattern-lab-17-refactoring-capstone-studio-curriculum-refactoring-capstone-project",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-refactoring-capstone-project"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-17-curriculum-review-pattern-lab-17",
+		"newId": "design-patterns-in-cpp-pattern-lab-17-refactoring-capstone-studio-curriculum-refactoring-capstone-review",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-refactoring-capstone-review"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-17-supplemental-extension-challenge-pattern-lab-17",
+		"newId": "design-patterns-in-cpp-pattern-lab-17-refactoring-capstone-studio-supplemental-refactoring-capstone-extension-challenge",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-refactoring-capstone-extension-challenge"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-17-supplemental-transfer-practice-pattern-lab-17",
+		"newId": "design-patterns-in-cpp-pattern-lab-17-refactoring-capstone-studio-supplemental-refactoring-capstone-transfer-practice",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-refactoring-capstone-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "design-patterns-in-cpp-pattern-lab-17-supplemental-extension-practice-pattern-lab-17",
+		"newId": "design-patterns-in-cpp-pattern-lab-17-refactoring-capstone-studio-supplemental-refactoring-capstone-extension-practice",
+		"currentId": "design-patterns-in-cpp-optional-applied-c-pattern-studios-supplemental-refactoring-capstone-extension-practice"
+	}
+]

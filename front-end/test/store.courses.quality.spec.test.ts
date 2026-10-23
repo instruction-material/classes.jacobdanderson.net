@@ -5698,9 +5698,11 @@ describe("course text quality normalization", () => {
 		const course = await loadRawCourse("design-patterns-in-java-part-2");
 		expect(course).not.toBeNull();
 
-		const source = fs.readFileSync(
-			"src/stores/courses/design-patterns-in-java-part-2.ts",
-			"utf8"
+		const source = rawCourseProse(
+			fs.readFileSync(
+				"src/stores/courses/design-patterns-in-java-part-2.ts",
+				"utf8"
+			)
 		);
 		const corpus = allCourseText(course);
 
@@ -5757,9 +5759,11 @@ describe("course text quality normalization", () => {
 		const course = await loadRawCourse("design-patterns-in-java");
 		expect(course).not.toBeNull();
 		const corpus = allCourseText(course);
-		const source = fs.readFileSync(
-			"src/stores/courses/design-patterns-in-java.ts",
-			"utf8"
+		const source = rawCourseProse(
+			fs.readFileSync(
+				"src/stores/courses/design-patterns-in-java.ts",
+				"utf8"
+			)
 		);
 
 		expect(source).not.toMatch(/Pattern Implementation Lab 1[5-7]/);
@@ -6609,9 +6613,11 @@ describe("course text quality normalization", () => {
 		const course = await loadRawCourse("intro-to-swift-app-development");
 		expect(course).not.toBeNull();
 
-		const source = fs.readFileSync(
-			"src/stores/courses/intro-to-swift-app-development.ts",
-			"utf8"
+		const source = rawCourseProse(
+			fs.readFileSync(
+				"src/stores/courses/intro-to-swift-app-development.ts",
+				"utf8"
+			)
 		);
 		const corpus = allCourseText(course);
 

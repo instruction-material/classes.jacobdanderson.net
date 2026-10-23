@@ -1,0 +1,302 @@
+[
+	{
+		"kind": "item",
+		"oldId": "network-systems-ns0-setup-and-tooling-supplemental-transfer-practice-network-systems",
+		"newId": "network-systems-ns0-setup-and-tooling-supplemental-setup-and-tooling-transfer-practice",
+		"currentId": "network-systems-ns0-setup-and-tooling-supplemental-network-systems-setup-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-ns0-setup-and-tooling-supplemental-extension-practice-network-systems",
+		"newId": "network-systems-ns0-setup-and-tooling-supplemental-setup-and-tooling-extension-practice",
+		"currentId": "network-systems-ns0-setup-and-tooling-supplemental-network-systems-setup-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-1-the-network-stack-in-plain-english-supplemental-transfer-practice-the-network-stack-in-plain-english",
+		"newId": "network-systems-unit-1-the-network-stack-in-plain-english-supplemental-network-stack-transfer-practice",
+		"currentId": "network-systems-unit-1-the-network-stack-in-plain-english-supplemental-network-stack-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-1-the-network-stack-in-plain-english-supplemental-extension-practice-the-network-stack-in-plain-english",
+		"newId": "network-systems-unit-1-the-network-stack-in-plain-english-supplemental-network-stack-extension-practice",
+		"currentId": "network-systems-unit-1-the-network-stack-in-plain-english-supplemental-network-stack-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-2-addresses-and-naming-supplemental-transfer-practice-addresses-and-naming",
+		"newId": "network-systems-unit-2-addresses-and-naming-supplemental-addressing-transfer-practice",
+		"currentId": "network-systems-unit-2-addresses-and-naming-supplemental-addressing-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-2-addresses-and-naming-supplemental-extension-practice-addresses-and-naming",
+		"newId": "network-systems-unit-2-addresses-and-naming-supplemental-addressing-extension-practice",
+		"currentId": "network-systems-unit-2-addresses-and-naming-supplemental-addressing-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-3-switches-routers-nat-and-the-internet-edge-supplemental-transfer-practice-switches-routers-nat-and-the-internet-edge",
+		"newId": "network-systems-unit-3-switches-routers-nat-and-the-internet-edge-supplemental-routing-edge-transfer-practice",
+		"currentId": "network-systems-unit-3-switches-routers-nat-and-the-internet-edge-supplemental-routing-edge-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-3-switches-routers-nat-and-the-internet-edge-supplemental-extension-practice-switches-routers-nat-and-the-internet-edge",
+		"newId": "network-systems-unit-3-switches-routers-nat-and-the-internet-edge-supplemental-routing-edge-extension-practice",
+		"currentId": "network-systems-unit-3-switches-routers-nat-and-the-internet-edge-supplemental-routing-edge-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-4-ports-and-listening-services-supplemental-transfer-practice-ports-and-listening-services",
+		"newId": "network-systems-unit-4-ports-and-listening-services-supplemental-port-inventory-transfer-practice",
+		"currentId": "network-systems-unit-4-ports-and-listening-services-supplemental-port-inventory-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-4-ports-and-listening-services-supplemental-extension-practice-ports-and-listening-services",
+		"newId": "network-systems-unit-4-ports-and-listening-services-supplemental-port-inventory-extension-practice",
+		"currentId": "network-systems-unit-4-ports-and-listening-services-supplemental-port-inventory-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-5-dns-and-name-resolution-supplemental-transfer-practice-dns-and-name-resolution",
+		"newId": "network-systems-unit-5-dns-and-name-resolution-supplemental-dns-resolution-transfer-practice",
+		"currentId": "network-systems-unit-5-dns-and-name-resolution-supplemental-dns-resolution-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-5-dns-and-name-resolution-supplemental-extension-practice-dns-and-name-resolution",
+		"newId": "network-systems-unit-5-dns-and-name-resolution-supplemental-dns-resolution-extension-practice",
+		"currentId": "network-systems-unit-5-dns-and-name-resolution-supplemental-dns-resolution-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-6-core-diagnostics-supplemental-transfer-practice-core-diagnostics",
+		"newId": "network-systems-unit-6-core-diagnostics-supplemental-diagnostic-trace-transfer-practice",
+		"currentId": "network-systems-unit-6-core-diagnostics-supplemental-diagnostic-trace-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-6-core-diagnostics-supplemental-extension-practice-core-diagnostics",
+		"newId": "network-systems-unit-6-core-diagnostics-supplemental-diagnostic-trace-extension-practice",
+		"currentId": "network-systems-unit-6-core-diagnostics-supplemental-diagnostic-trace-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-7-linux-interface-and-route-management-supplemental-transfer-practice-linux-interface-and-route-management",
+		"newId": "network-systems-unit-7-linux-interface-and-route-management-supplemental-linux-interface-transfer-practice",
+		"currentId": "network-systems-unit-7-linux-interface-and-route-management-supplemental-linux-interface-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-7-linux-interface-and-route-management-supplemental-extension-practice-linux-interface-and-route-management",
+		"newId": "network-systems-unit-7-linux-interface-and-route-management-supplemental-linux-interface-extension-practice",
+		"currentId": "network-systems-unit-7-linux-interface-and-route-management-supplemental-linux-interface-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-9-firewalls-and-host-policy-supplemental-transfer-practice-firewalls-and-host-policy",
+		"newId": "network-systems-unit-9-firewalls-and-host-policy-supplemental-firewall-policy-transfer-practice",
+		"currentId": "network-systems-unit-9-firewalls-and-host-policy-supplemental-firewall-policy-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-9-firewalls-and-host-policy-supplemental-extension-practice-firewalls-and-host-policy",
+		"newId": "network-systems-unit-9-firewalls-and-host-policy-supplemental-firewall-policy-extension-practice",
+		"currentId": "network-systems-unit-9-firewalls-and-host-policy-supplemental-firewall-policy-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-10-packet-capture-and-deep-inspection-supplemental-transfer-practice-packet-capture-and-deep-inspection",
+		"newId": "network-systems-unit-10-packet-capture-and-deep-inspection-supplemental-packet-capture-transfer-practice",
+		"currentId": "network-systems-unit-10-packet-capture-and-deep-inspection-supplemental-packet-capture-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-10-packet-capture-and-deep-inspection-supplemental-extension-practice-packet-capture-and-deep-inspection",
+		"newId": "network-systems-unit-10-packet-capture-and-deep-inspection-supplemental-packet-capture-extension-practice",
+		"currentId": "network-systems-unit-10-packet-capture-and-deep-inspection-supplemental-packet-capture-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-11-common-application-protocols-supplemental-transfer-practice-common-application-protocols",
+		"newId": "network-systems-unit-11-common-application-protocols-supplemental-application-protocol-transfer-practice",
+		"currentId": "network-systems-unit-11-common-application-protocols-supplemental-application-protocol-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-11-common-application-protocols-supplemental-extension-practice-common-application-protocols",
+		"newId": "network-systems-unit-11-common-application-protocols-supplemental-application-protocol-extension-practice",
+		"currentId": "network-systems-unit-11-common-application-protocols-supplemental-application-protocol-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-12-secure-exposure-of-services-supplemental-transfer-practice-secure-exposure-of-services",
+		"newId": "network-systems-unit-12-secure-exposure-of-services-supplemental-secure-exposure-transfer-practice",
+		"currentId": "network-systems-unit-12-secure-exposure-of-services-supplemental-secure-exposure-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-unit-12-secure-exposure-of-services-supplemental-extension-practice-secure-exposure-of-services",
+		"newId": "network-systems-unit-12-secure-exposure-of-services-supplemental-secure-exposure-extension-practice",
+		"currentId": "network-systems-unit-12-secure-exposure-of-services-supplemental-secure-exposure-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-ns13-expansion-ideas-and-next-steps-supplemental-transfer-practice-expansion-ideas-and-next-steps",
+		"newId": "network-systems-ns13-expansion-ideas-and-next-steps-supplemental-next-steps-transfer-practice",
+		"currentId": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-next-steps-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-ns13-expansion-ideas-and-next-steps-supplemental-extension-practice-expansion-ideas-and-next-steps",
+		"newId": "network-systems-ns13-expansion-ideas-and-next-steps-supplemental-next-steps-extension-practice",
+		"currentId": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-next-steps-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "network-systems-network-systems-lab-15",
+		"newId": "network-systems-network-systems-lab-15-diagnostic-workflow-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-15-curriculum-network-systems-lab-15-core-concepts",
+		"newId": "network-systems-network-systems-lab-15-diagnostic-workflow-studio-curriculum-diagnostic-workflow-studio-core-concepts",
+		"currentId": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-diagnostic-workflow-studio-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-15-curriculum-network-systems-lab-15-guided-example",
+		"newId": "network-systems-network-systems-lab-15-diagnostic-workflow-studio-curriculum-diagnostic-workflow-studio-guided-example",
+		"currentId": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-diagnostic-workflow-studio-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-15-curriculum-core-project-network-systems-lab-15",
+		"newId": "network-systems-network-systems-lab-15-diagnostic-workflow-studio-curriculum-core-project-diagnostic-workflow-studio",
+		"currentId": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-core-project-diagnostic-workflow-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-15-curriculum-review-network-systems-lab-15",
+		"newId": "network-systems-network-systems-lab-15-diagnostic-workflow-studio-curriculum-diagnostic-workflow-studio-review",
+		"currentId": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-diagnostic-workflow-studio-review"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-15-supplemental-extension-challenge-network-systems-lab-15",
+		"newId": "network-systems-network-systems-lab-15-diagnostic-workflow-studio-supplemental-extension-challenge-diagnostic-workflow-studio",
+		"currentId": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-extension-challenge-diagnostic-workflow-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-15-supplemental-transfer-practice-network-systems-lab-15",
+		"newId": "network-systems-network-systems-lab-15-diagnostic-workflow-studio-supplemental-diagnostic-workflow-transfer-practice",
+		"currentId": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-diagnostic-workflow-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-15-supplemental-extension-practice-network-systems-lab-15",
+		"newId": "network-systems-network-systems-lab-15-diagnostic-workflow-studio-supplemental-diagnostic-workflow-extension-practice",
+		"currentId": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-diagnostic-workflow-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "network-systems-network-systems-lab-16",
+		"newId": "network-systems-network-systems-lab-16-service-exposure-studio",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-16-curriculum-network-systems-lab-16-core-concepts",
+		"newId": "network-systems-network-systems-lab-16-service-exposure-studio-curriculum-service-exposure-studio-core-concepts",
+		"currentId": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-service-exposure-studio-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-16-curriculum-network-systems-lab-16-guided-example",
+		"newId": "network-systems-network-systems-lab-16-service-exposure-studio-curriculum-service-exposure-studio-guided-example",
+		"currentId": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-service-exposure-studio-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-16-curriculum-core-project-network-systems-lab-16",
+		"newId": "network-systems-network-systems-lab-16-service-exposure-studio-curriculum-core-project-service-exposure-studio",
+		"currentId": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-core-project-service-exposure-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-16-curriculum-review-network-systems-lab-16",
+		"newId": "network-systems-network-systems-lab-16-service-exposure-studio-curriculum-service-exposure-studio-review",
+		"currentId": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-service-exposure-studio-review"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-16-supplemental-extension-challenge-network-systems-lab-16",
+		"newId": "network-systems-network-systems-lab-16-service-exposure-studio-supplemental-extension-challenge-service-exposure-studio",
+		"currentId": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-extension-challenge-service-exposure-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-16-supplemental-transfer-practice-network-systems-lab-16",
+		"newId": "network-systems-network-systems-lab-16-service-exposure-studio-supplemental-service-exposure-transfer-practice",
+		"currentId": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-service-exposure-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-16-supplemental-extension-practice-network-systems-lab-16",
+		"newId": "network-systems-network-systems-lab-16-service-exposure-studio-supplemental-service-exposure-extension-practice",
+		"currentId": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-service-exposure-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "network-systems-network-systems-lab-17",
+		"newId": "network-systems-network-systems-lab-17-operations-capstone-studio",
+		"currentId": "network-systems-network-systems-lab-17-operations-capstone-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-17-curriculum-network-systems-lab-17-core-concepts",
+		"newId": "network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-core-concepts",
+		"currentId": "network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-17-curriculum-network-systems-lab-17-guided-example",
+		"newId": "network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-guided-example",
+		"currentId": "network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-17-curriculum-core-project-network-systems-lab-17",
+		"newId": "network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-core-project-operations-capstone-studio",
+		"currentId": "network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-core-project-operations-capstone-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-17-curriculum-review-network-systems-lab-17",
+		"newId": "network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-review",
+		"currentId": "network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-review"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-17-supplemental-extension-challenge-network-systems-lab-17",
+		"newId": "network-systems-network-systems-lab-17-operations-capstone-studio-supplemental-extension-challenge-operations-capstone-studio",
+		"currentId": "network-systems-network-systems-lab-17-operations-capstone-studio-supplemental-extension-challenge-operations-capstone-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-17-supplemental-transfer-practice-network-systems-lab-17",
+		"newId": "network-systems-network-systems-lab-17-operations-capstone-studio-supplemental-operations-capstone-transfer-practice",
+		"currentId": "network-systems-network-systems-lab-17-operations-capstone-studio-supplemental-operations-capstone-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "network-systems-network-systems-lab-17-supplemental-extension-practice-network-systems-lab-17",
+		"newId": "network-systems-network-systems-lab-17-operations-capstone-studio-supplemental-operations-capstone-extension-practice",
+		"currentId": "network-systems-network-systems-lab-17-operations-capstone-studio-supplemental-operations-capstone-extension-practice"
+	}
+]

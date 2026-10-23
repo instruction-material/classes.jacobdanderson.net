@@ -1,0 +1,398 @@
+[
+	{
+		"kind": "item",
+		"oldId": "machine-learning-ml2-k-nearest-neighbors-supplemental-transfer-practice-k-nearest-neighbors",
+		"newId": "machine-learning-ml2-k-nearest-neighbors-supplemental-k-nearest-neighbors-transfer-practice",
+		"currentId": "machine-learning-ml2-k-nearest-neighbors-supplemental-k-nearest-neighbors-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-ml2-k-nearest-neighbors-supplemental-extension-practice-k-nearest-neighbors",
+		"newId": "machine-learning-ml2-k-nearest-neighbors-supplemental-k-nearest-neighbors-extension-practice",
+		"currentId": "machine-learning-ml2-k-nearest-neighbors-supplemental-k-nearest-neighbors-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-ml3-naive-bayes-supplemental-transfer-practice-naive-bayes",
+		"newId": "machine-learning-ml3-naive-bayes-supplemental-naive-bayes-transfer-practice",
+		"currentId": "machine-learning-ml3-naive-bayes-supplemental-naive-bayes-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-ml3-naive-bayes-supplemental-extension-practice-naive-bayes",
+		"newId": "machine-learning-ml3-naive-bayes-supplemental-naive-bayes-extension-practice",
+		"currentId": "machine-learning-ml3-naive-bayes-supplemental-naive-bayes-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-ml3-5-decision-trees-and-interpretable-models-supplemental-transfer-practice-5-decision-trees-and-interpretable-models",
+		"newId": "machine-learning-ml3-5-decision-trees-and-interpretable-models-supplemental-ml3-5-decision-trees-and-interpretable-models-transfer-practice",
+		"currentId": "machine-learning-ml3-5-decision-trees-and-interpretable-models-supplemental-transfer-practice-5-decision-trees-and-interpretable-models"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-ml3-5-decision-trees-and-interpretable-models-supplemental-extension-practice-5-decision-trees-and-interpretable-models",
+		"newId": "machine-learning-ml3-5-decision-trees-and-interpretable-models-supplemental-ml3-5-decision-trees-and-interpretable-models-extension-practice",
+		"currentId": "machine-learning-ml3-5-decision-trees-and-interpretable-models-supplemental-extension-practice-5-decision-trees-and-interpretable-models"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-ml4-neural-networks-supplemental-transfer-practice-neural-networks",
+		"newId": "machine-learning-ml4-neural-networks-supplemental-neural-networks-transfer-practice",
+		"currentId": "machine-learning-ml4-neural-networks-supplemental-neural-networks-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-ml4-neural-networks-supplemental-extension-practice-neural-networks",
+		"newId": "machine-learning-ml4-neural-networks-supplemental-neural-networks-extension-practice",
+		"currentId": "machine-learning-ml4-neural-networks-supplemental-neural-networks-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-ml5-introduction-to-regression-supplemental-transfer-practice-introduction-to-regression",
+		"newId": "machine-learning-ml5-introduction-to-regression-supplemental-introduction-to-regression-transfer-practice",
+		"currentId": "machine-learning-ml5-introduction-to-regression-supplemental-introduction-to-regression-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-ml5-introduction-to-regression-supplemental-extension-practice-introduction-to-regression",
+		"newId": "machine-learning-ml5-introduction-to-regression-supplemental-introduction-to-regression-extension-practice",
+		"currentId": "machine-learning-ml5-introduction-to-regression-supplemental-introduction-to-regression-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-ml6-regression-with-neural-networks-supplemental-transfer-practice-regression-with-neural-networks",
+		"newId": "machine-learning-ml6-regression-with-neural-networks-supplemental-regression-with-neural-networks-transfer-practice",
+		"currentId": "machine-learning-ml6-regression-with-neural-networks-supplemental-regression-with-neural-networks-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-ml6-regression-with-neural-networks-supplemental-extension-practice-regression-with-neural-networks",
+		"newId": "machine-learning-ml6-regression-with-neural-networks-supplemental-regression-with-neural-networks-extension-practice",
+		"currentId": "machine-learning-ml6-regression-with-neural-networks-supplemental-regression-with-neural-networks-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-ml7-image-classifier-supplemental-transfer-practice-image-classifier",
+		"newId": "machine-learning-ml7-image-classifier-supplemental-image-classifier-transfer-practice",
+		"currentId": "machine-learning-ml7-image-classifier-supplemental-image-classifier-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-ml7-image-classifier-supplemental-extension-practice-image-classifier",
+		"newId": "machine-learning-ml7-image-classifier-supplemental-image-classifier-extension-practice",
+		"currentId": "machine-learning-ml7-image-classifier-supplemental-image-classifier-extension-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-ml7-5-model-evaluation-comparison-and-dataset-strategy-supplemental-transfer-practice-5-model-evaluation-comparison-and-dataset-strategy",
+		"newId": "machine-learning-ml7-5-model-evaluation-comparison-and-dataset-strategy-supplemental-ml7-5-model-evaluation-comparison-and-dataset-strategy-transfer-practice",
+		"currentId": "machine-learning-ml7-5-model-evaluation-comparison-and-dataset-strategy-supplemental-transfer-practice-5-model-evaluation-comparison-and-dataset-strategy"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-ml7-5-model-evaluation-comparison-and-dataset-strategy-supplemental-extension-practice-5-model-evaluation-comparison-and-dataset-strategy",
+		"newId": "machine-learning-ml7-5-model-evaluation-comparison-and-dataset-strategy-supplemental-ml7-5-model-evaluation-comparison-and-dataset-strategy-extension-practice",
+		"currentId": "machine-learning-ml7-5-model-evaluation-comparison-and-dataset-strategy-supplemental-extension-practice-5-model-evaluation-comparison-and-dataset-strategy"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-ml8-master-project-supplemental-transfer-practice-machine-learning",
+		"newId": "machine-learning-ml8-master-project-supplemental-master-project-transfer-practice",
+		"currentId": null
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-ml8-master-project-supplemental-extension-practice-machine-learning",
+		"newId": "machine-learning-ml8-master-project-supplemental-master-project-extension-practice",
+		"currentId": null
+	},
+	{
+		"kind": "module",
+		"oldId": "machine-learning-customer-segmentation-starter-build",
+		"newId": "machine-learning-customer-segmentation-starter-build-practice-studio",
+		"currentId": "machine-learning-customer-segmentation-starter-build-practice-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-starter-build-curriculum-customer-segmentation-starter-build-core-concepts",
+		"newId": "machine-learning-customer-segmentation-starter-build-practice-studio-curriculum-customer-segmentation-starter-build-core-concepts",
+		"currentId": "machine-learning-customer-segmentation-starter-build-practice-studio-curriculum-customer-segmentation-starter-build-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-starter-build-curriculum-customer-segmentation-starter-build-guided-example",
+		"newId": "machine-learning-customer-segmentation-starter-build-practice-studio-curriculum-customer-segmentation-starter-build-guided-example",
+		"currentId": "machine-learning-customer-segmentation-starter-build-practice-studio-curriculum-customer-segmentation-starter-build-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-starter-build-curriculum-core-project-customer-segmentation-starter-build",
+		"newId": "machine-learning-customer-segmentation-starter-build-practice-studio-curriculum-core-project-customer-segmentation-starter-build",
+		"currentId": "machine-learning-customer-segmentation-starter-build-practice-studio-curriculum-core-project-customer-segmentation-starter-build"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-starter-build-curriculum-review-customer-segmentation-starter-build",
+		"newId": "machine-learning-customer-segmentation-starter-build-practice-studio-curriculum-review-customer-segmentation-starter-build",
+		"currentId": "machine-learning-customer-segmentation-starter-build-practice-studio-curriculum-review-customer-segmentation-starter-build"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-starter-build-supplemental-extension-challenge-customer-segmentation-starter-build",
+		"newId": "machine-learning-customer-segmentation-starter-build-practice-studio-supplemental-extension-challenge-customer-segmentation-starter-build",
+		"currentId": "machine-learning-customer-segmentation-starter-build-practice-studio-supplemental-extension-challenge-customer-segmentation-starter-build"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-starter-build-supplemental-transfer-practice-customer-segmentation-starter-build",
+		"newId": "machine-learning-customer-segmentation-starter-build-practice-studio-supplemental-customer-segmentation-starter-build-transfer-practice",
+		"currentId": "machine-learning-customer-segmentation-starter-build-practice-studio-supplemental-customer-segmentation-starter-build-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-starter-build-supplemental-extension-practice-customer-segmentation-starter-build",
+		"newId": "machine-learning-customer-segmentation-starter-build-practice-studio-supplemental-customer-segmentation-starter-build-extension-practice",
+		"currentId": "machine-learning-customer-segmentation-starter-build-practice-studio-supplemental-customer-segmentation-starter-build-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "machine-learning-customer-segmentation-interview",
+		"newId": "machine-learning-customer-segmentation-interview-practice-studio",
+		"currentId": "machine-learning-customer-segmentation-interview-practice-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-interview-curriculum-customer-segmentation-interview-core-concepts",
+		"newId": "machine-learning-customer-segmentation-interview-practice-studio-curriculum-customer-segmentation-interview-core-concepts",
+		"currentId": "machine-learning-customer-segmentation-interview-practice-studio-curriculum-customer-segmentation-interview-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-interview-curriculum-customer-segmentation-interview-guided-example",
+		"newId": "machine-learning-customer-segmentation-interview-practice-studio-curriculum-customer-segmentation-interview-guided-example",
+		"currentId": "machine-learning-customer-segmentation-interview-practice-studio-curriculum-customer-segmentation-interview-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-interview-curriculum-core-project-customer-segmentation-interview",
+		"newId": "machine-learning-customer-segmentation-interview-practice-studio-curriculum-core-project-customer-segmentation-interview",
+		"currentId": "machine-learning-customer-segmentation-interview-practice-studio-curriculum-core-project-customer-segmentation-interview"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-interview-curriculum-review-customer-segmentation-interview",
+		"newId": "machine-learning-customer-segmentation-interview-practice-studio-curriculum-review-customer-segmentation-interview",
+		"currentId": "machine-learning-customer-segmentation-interview-practice-studio-curriculum-review-customer-segmentation-interview"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-interview-supplemental-extension-challenge-customer-segmentation-interview",
+		"newId": "machine-learning-customer-segmentation-interview-practice-studio-supplemental-extension-challenge-customer-segmentation-interview",
+		"currentId": "machine-learning-customer-segmentation-interview-practice-studio-supplemental-extension-challenge-customer-segmentation-interview"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-interview-supplemental-transfer-practice-customer-segmentation-interview",
+		"newId": "machine-learning-customer-segmentation-interview-practice-studio-supplemental-customer-segmentation-interview-transfer-practice",
+		"currentId": "machine-learning-customer-segmentation-interview-practice-studio-supplemental-customer-segmentation-interview-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-interview-supplemental-extension-practice-customer-segmentation-interview",
+		"newId": "machine-learning-customer-segmentation-interview-practice-studio-supplemental-customer-segmentation-interview-extension-practice",
+		"currentId": "machine-learning-customer-segmentation-interview-practice-studio-supplemental-customer-segmentation-interview-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "machine-learning-customer-segmentation",
+		"newId": "machine-learning-customer-segmentation-practice-studio",
+		"currentId": "machine-learning-customer-segmentation-practice-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-curriculum-customer-segmentation-core-concepts",
+		"newId": "machine-learning-customer-segmentation-practice-studio-curriculum-customer-segmentation-core-concepts",
+		"currentId": "machine-learning-customer-segmentation-practice-studio-curriculum-customer-segmentation-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-curriculum-customer-segmentation-guided-example",
+		"newId": "machine-learning-customer-segmentation-practice-studio-curriculum-customer-segmentation-guided-example",
+		"currentId": "machine-learning-customer-segmentation-practice-studio-curriculum-customer-segmentation-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-curriculum-core-project-customer-segmentation",
+		"newId": "machine-learning-customer-segmentation-practice-studio-curriculum-core-project-customer-segmentation",
+		"currentId": "machine-learning-customer-segmentation-practice-studio-curriculum-core-project-customer-segmentation"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-curriculum-review-customer-segmentation",
+		"newId": "machine-learning-customer-segmentation-practice-studio-curriculum-review-customer-segmentation",
+		"currentId": "machine-learning-customer-segmentation-practice-studio-curriculum-review-customer-segmentation"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-supplemental-extension-challenge-customer-segmentation",
+		"newId": "machine-learning-customer-segmentation-practice-studio-supplemental-extension-challenge-customer-segmentation",
+		"currentId": "machine-learning-customer-segmentation-practice-studio-supplemental-extension-challenge-customer-segmentation"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-supplemental-transfer-practice-customer-segmentation",
+		"newId": "machine-learning-customer-segmentation-practice-studio-supplemental-customer-segmentation-transfer-practice",
+		"currentId": "machine-learning-customer-segmentation-practice-studio-supplemental-customer-segmentation-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-customer-segmentation-supplemental-extension-practice-customer-segmentation",
+		"newId": "machine-learning-customer-segmentation-practice-studio-supplemental-customer-segmentation-extension-practice",
+		"currentId": "machine-learning-customer-segmentation-practice-studio-supplemental-customer-segmentation-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "machine-learning-disney-movie-clustering-starter-build",
+		"newId": "machine-learning-disney-movie-clustering-starter-build-practice-studio",
+		"currentId": "machine-learning-disney-movie-clustering-starter-build-practice-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-disney-movie-clustering-starter-build-curriculum-disney-movie-clustering-starter-build-core-concepts",
+		"newId": "machine-learning-disney-movie-clustering-starter-build-practice-studio-curriculum-disney-movie-clustering-starter-build-core-concepts",
+		"currentId": "machine-learning-disney-movie-clustering-starter-build-practice-studio-curriculum-disney-movie-clustering-starter-build-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-disney-movie-clustering-starter-build-curriculum-disney-movie-clustering-starter-build-guided-example",
+		"newId": "machine-learning-disney-movie-clustering-starter-build-practice-studio-curriculum-disney-movie-clustering-starter-build-guided-example",
+		"currentId": "machine-learning-disney-movie-clustering-starter-build-practice-studio-curriculum-disney-movie-clustering-starter-build-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-disney-movie-clustering-starter-build-curriculum-core-project-disney-movie-clustering-starter-build",
+		"newId": "machine-learning-disney-movie-clustering-starter-build-practice-studio-curriculum-core-project-disney-movie-clustering-starter-build",
+		"currentId": "machine-learning-disney-movie-clustering-starter-build-practice-studio-curriculum-core-project-disney-movie-clustering-starter-build"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-disney-movie-clustering-starter-build-curriculum-review-disney-movie-clustering-starter-build",
+		"newId": "machine-learning-disney-movie-clustering-starter-build-practice-studio-curriculum-review-disney-movie-clustering-starter-build",
+		"currentId": "machine-learning-disney-movie-clustering-starter-build-practice-studio-curriculum-review-disney-movie-clustering-starter-build"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-disney-movie-clustering-starter-build-supplemental-extension-challenge-disney-movie-clustering-starter-build",
+		"newId": "machine-learning-disney-movie-clustering-starter-build-practice-studio-supplemental-extension-challenge-disney-movie-clustering-starter-build",
+		"currentId": "machine-learning-disney-movie-clustering-starter-build-practice-studio-supplemental-extension-challenge-disney-movie-clustering-starter-build"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-disney-movie-clustering-starter-build-supplemental-transfer-practice-disney-movie-clustering-starter-build",
+		"newId": "machine-learning-disney-movie-clustering-starter-build-practice-studio-supplemental-disney-movie-clustering-starter-build-transfer-practice",
+		"currentId": "machine-learning-disney-movie-clustering-starter-build-practice-studio-supplemental-disney-movie-clustering-starter-build-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-disney-movie-clustering-starter-build-supplemental-extension-practice-disney-movie-clustering-starter-build",
+		"newId": "machine-learning-disney-movie-clustering-starter-build-practice-studio-supplemental-disney-movie-clustering-starter-build-extension-practice",
+		"currentId": "machine-learning-disney-movie-clustering-starter-build-practice-studio-supplemental-disney-movie-clustering-starter-build-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "machine-learning-disney-movie-clustering",
+		"newId": "machine-learning-disney-movie-clustering-practice-studio",
+		"currentId": "machine-learning-disney-movie-clustering-practice-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-disney-movie-clustering-curriculum-disney-movie-clustering-core-concepts",
+		"newId": "machine-learning-disney-movie-clustering-practice-studio-curriculum-disney-movie-clustering-core-concepts",
+		"currentId": "machine-learning-disney-movie-clustering-practice-studio-curriculum-disney-movie-clustering-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-disney-movie-clustering-curriculum-disney-movie-clustering-guided-example",
+		"newId": "machine-learning-disney-movie-clustering-practice-studio-curriculum-disney-movie-clustering-guided-example",
+		"currentId": "machine-learning-disney-movie-clustering-practice-studio-curriculum-disney-movie-clustering-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-disney-movie-clustering-curriculum-core-project-disney-movie-clustering",
+		"newId": "machine-learning-disney-movie-clustering-practice-studio-curriculum-core-project-disney-movie-clustering",
+		"currentId": "machine-learning-disney-movie-clustering-practice-studio-curriculum-core-project-disney-movie-clustering"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-disney-movie-clustering-curriculum-review-disney-movie-clustering",
+		"newId": "machine-learning-disney-movie-clustering-practice-studio-curriculum-review-disney-movie-clustering",
+		"currentId": "machine-learning-disney-movie-clustering-practice-studio-curriculum-review-disney-movie-clustering"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-disney-movie-clustering-supplemental-extension-challenge-disney-movie-clustering",
+		"newId": "machine-learning-disney-movie-clustering-practice-studio-supplemental-extension-challenge-disney-movie-clustering",
+		"currentId": "machine-learning-disney-movie-clustering-practice-studio-supplemental-extension-challenge-disney-movie-clustering"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-disney-movie-clustering-supplemental-transfer-practice-disney-movie-clustering",
+		"newId": "machine-learning-disney-movie-clustering-practice-studio-supplemental-disney-movie-clustering-transfer-practice",
+		"currentId": "machine-learning-disney-movie-clustering-practice-studio-supplemental-disney-movie-clustering-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-disney-movie-clustering-supplemental-extension-practice-disney-movie-clustering",
+		"newId": "machine-learning-disney-movie-clustering-practice-studio-supplemental-disney-movie-clustering-extension-practice",
+		"currentId": "machine-learning-disney-movie-clustering-practice-studio-supplemental-disney-movie-clustering-extension-practice"
+	},
+	{
+		"kind": "module",
+		"oldId": "machine-learning-knn-car-classification",
+		"newId": "machine-learning-knn-car-classification-practice-studio",
+		"currentId": "machine-learning-knn-car-classification-practice-studio"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-knn-car-classification-curriculum-knn-car-classification-core-concepts",
+		"newId": "machine-learning-knn-car-classification-practice-studio-curriculum-knn-car-classification-core-concepts",
+		"currentId": "machine-learning-knn-car-classification-practice-studio-curriculum-knn-car-classification-core-concepts"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-knn-car-classification-curriculum-knn-car-classification-guided-example",
+		"newId": "machine-learning-knn-car-classification-practice-studio-curriculum-knn-car-classification-guided-example",
+		"currentId": "machine-learning-knn-car-classification-practice-studio-curriculum-knn-car-classification-guided-example"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-knn-car-classification-curriculum-core-project-knn-car-classification",
+		"newId": "machine-learning-knn-car-classification-practice-studio-curriculum-core-project-knn-car-classification",
+		"currentId": "machine-learning-knn-car-classification-practice-studio-curriculum-core-project-knn-car-classification"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-knn-car-classification-curriculum-review-knn-car-classification",
+		"newId": "machine-learning-knn-car-classification-practice-studio-curriculum-review-knn-car-classification",
+		"currentId": "machine-learning-knn-car-classification-practice-studio-curriculum-review-knn-car-classification"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-knn-car-classification-supplemental-extension-challenge-knn-car-classification",
+		"newId": "machine-learning-knn-car-classification-practice-studio-supplemental-extension-challenge-knn-car-classification",
+		"currentId": "machine-learning-knn-car-classification-practice-studio-supplemental-extension-challenge-knn-car-classification"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-knn-car-classification-supplemental-transfer-practice-knn-car-classification",
+		"newId": "machine-learning-knn-car-classification-practice-studio-supplemental-knn-car-classification-transfer-practice",
+		"currentId": "machine-learning-knn-car-classification-practice-studio-supplemental-knn-car-classification-transfer-practice"
+	},
+	{
+		"kind": "item",
+		"oldId": "machine-learning-knn-car-classification-supplemental-extension-practice-knn-car-classification",
+		"newId": "machine-learning-knn-car-classification-practice-studio-supplemental-knn-car-classification-extension-practice",
+		"currentId": "machine-learning-knn-car-classification-practice-studio-supplemental-knn-car-classification-extension-practice"
+	}
+]

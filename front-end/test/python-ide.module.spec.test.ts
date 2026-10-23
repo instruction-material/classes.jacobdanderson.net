@@ -2622,7 +2622,7 @@ pgzrun.go()
 			"const PYTHON_IDE_RUNTIME_BOOTSTRAP_VERSION"
 		);
 		expect(runtimeSource).toContain("__classes_runtime_bootstrap_version");
-		expect(runtimeSource).toContain("2026-10-22-turtle-timer-ownership");
+		expect(runtimeSource).toContain("2026-10-23-conditional-turtle-loops");
 		expect(runtimeSource).toContain("const WHILE_LOOP_ITERATION_LIMIT");
 		expect(runtimeSource).toContain(
 			"const TURTLE_COOPERATIVE_WHILE_LOOP_ITERATION_LIMIT"
@@ -2715,6 +2715,17 @@ pgzrun.go()
 				"import turtle\ndef change():\n    global turtle\n    turtle = object()\nwhile True:\n    turtle.forward(1)\n",
 				"import turtle\ndef step():\n    turtle.forward(1)\ndef change():\n    global step\n    step = lambda: None\nwhile True:\n    step()\n"
 			];
+			sources.push(
+				"import turtle\nadvance = True\nwhile True:\n    if advance:\n        turtle.forward(1)\n",
+				"import turtle\nadvance = True\nwhile True:\n    if advance:\n        pass\n    else:\n        turtle.forward(1)\n",
+				"import turtle\nwhile True:\n    if True:\n        pass\n    else:\n        turtle.forward(1)\n",
+				"import turtle\nwhile True:\n    def unused():\n        turtle.forward(1)\n",
+				"class Cache:\n    def update(self):\n        pass\ncache = Cache()\nadvance = True\nwhile True:\n    if advance:\n        cache.update()\n",
+				readFileSync(
+					resolve(__dirname, "../../test/fixtures/turtle-orbit.py"),
+					"utf8"
+				)
+			);
 			const pythonSource = `
 ${createTrustedPythonImportPrelude(projectRoot)}
 ${createInputBootstrap("", "turtle", projectRoot)}
@@ -2758,7 +2769,7 @@ print("guarded")
 			});
 			expect(result.status, result.stderr).toBe(0);
 			expect(result.stdout.trim().split("\n")).toEqual([
-				"[false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, false, true, true, true, false, false, false, false]",
+				"[false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, false, true, true, true, false, false, false, false, true, true, false, false, false, true]",
 				"false",
 				"guarded"
 			]);

@@ -140,6 +140,9 @@ const designPatternsInJavaPart2SourceCourse: RawCourse = {
 				},
 				{
 					title: "Refactor Planning Studio",
+					aliases: [
+						"Mini Lab: Write the Refactor Plan Before Touching Code"
+					],
 					content:
 						"Write a small staged plan naming the smell, the next one or two refactorings, and the expected benefit before editing. This prevents flailing and makes code review discussion more precise."
 				},
@@ -223,6 +226,9 @@ const designPatternsInJavaPart2SourceCourse: RawCourse = {
 				},
 				{
 					title: "Calculation Pipeline Refactor Studio",
+					aliases: [
+						"Mini Lab: Refactor a Calculation Pipeline Safely"
+					],
 					content:
 						"Take a pricing, scoring, or report-generation method and refactor it into cleaner smaller steps without changing observable output. Document which composing-method moves were used."
 				},
@@ -313,6 +319,9 @@ const designPatternsInJavaPart2SourceCourse: RawCourse = {
 				},
 				{
 					title: "Behavior Ownership Refactor Studio",
+					aliases: [
+						"Mini Lab: Re-home Behavior Without Breaking Clients"
+					],
 					content:
 						"Take a collaboration tangle and move the logic to the objects that actually own the data and decision-making context. Track what client code becomes simpler after the move."
 				},
@@ -483,6 +492,7 @@ const designPatternsInJavaPart2SourceCourse: RawCourse = {
 				},
 				{
 					title: "Conditional Tangle Refactor Studio",
+					aliases: ["Mini Lab: Conditional Tangle Rescue"],
 					content:
 						"Take a Java policy engine or workflow method with nested flags and refactor it into clearer control flow, optionally ending in polymorphism where justified. Record which conditional refactors happened before any pattern was introduced."
 				},
@@ -568,6 +578,9 @@ const designPatternsInJavaPart2SourceCourse: RawCourse = {
 				},
 				{
 					title: "Call-Site Noise Refactor Studio",
+					aliases: [
+						"Mini Lab: Reduce Call-Site Noise in a Service Layer"
+					],
 					content:
 						"Take a Java service class with confusing calls and refactor it until the main use cases read clearly from the caller's perspective. Highlight which method-call simplifications improved the design most."
 				},
@@ -653,6 +666,7 @@ const designPatternsInJavaPart2SourceCourse: RawCourse = {
 				},
 				{
 					title: "Parallel Hierarchy Refactor Studio",
+					aliases: ["Mini Lab: Repair a Parallel Hierarchy"],
 					content:
 						"Take a Java design where hierarchy changes cascade across multiple class trees and simplify the abstraction story. Explain whether the final design is flatter, deeper, or simply cleaner."
 				},
@@ -733,6 +747,9 @@ const designPatternsInJavaPart2SourceCourse: RawCourse = {
 				},
 				{
 					title: "Smell-to-Pattern Refactor Studio",
+					aliases: [
+						"Mini Lab: Refactor Until the Pattern Is Obvious"
+					],
 					content:
 						"Stop after each small change and ask whether the named pattern is now justified or still premature. This builds restraint and sequence awareness."
 				},
@@ -818,6 +835,9 @@ const designPatternsInJavaPart2SourceCourse: RawCourse = {
 				},
 				{
 					title: "Characterization Test Refactor Studio",
+					aliases: [
+						"Mini Lab: Characterization Test then Structural Change"
+					],
 					content:
 						"Write or simulate a small set of characterization checks on brittle Java code, then perform a planned refactor while preserving the observable behavior. Visible pattern: The emotional difference between refactoring blind and refactoring with a safety net."
 				},
