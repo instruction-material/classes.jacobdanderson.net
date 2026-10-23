@@ -1241,6 +1241,23 @@ jobs:
                   COURSE_IMPORT_SCREENSHOT_DIR: output/swift-welcome-screenshots
               run: node --test test/swift-welcome-course-browser.test.mjs
 
+            - name: Verify Swift networking consent, saved roles and seven-file exports
+              env:
+                  SWIFT_NETWORKING_BROWSER_DIR: output/swift-networking-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/swift-networking-screenshots
+              run: node --test test/swift-networking-course-browser.test.mjs
+
+            - name: Retain Swift networking browser and exported source evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: swift-networking-workflows
+                  path: |
+                      output/swift-networking-browser/
+                      output/swift-networking-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
             - name: Retain Swift profile browser and exported source evidence
               if: always()
               uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
@@ -1255,14 +1272,14 @@ jobs:
     swift-ios:
         needs: swift-browser
         runs-on: macos-26
-        timeout-minutes: 45
+        timeout-minutes: 60
         permissions:
             contents: read
             actions: read
         env:
             CLASSES_FAMILY_TASK_ID: swift-welcome-ios
             CLASSES_FAMILY_MIN_DISK_GB: 8
-            CLASSES_FAMILY_HEAVY_TIMEOUT_MS: 2400000
+            CLASSES_FAMILY_HEAVY_TIMEOUT_MS: 3300000
         steps:
             - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
               with:
@@ -1317,6 +1334,81 @@ jobs:
                       output/swift-welcome-ios/processes.jsonl
                       output/swift-welcome-ios/logs/
                       output/swift-welcome-ios/results/
+                  if-no-files-found: error
+                  retention-days: 7
+
+    swift-networking-ios:
+        needs: swift-browser
+        runs-on: macos-26
+        timeout-minutes: 60
+        permissions:
+            contents: read
+            actions: read
+        env:
+            CLASSES_FAMILY_TASK_ID: swift-networking-ios
+            CLASSES_FAMILY_MIN_DISK_GB: 8
+            CLASSES_FAMILY_HEAVY_TIMEOUT_MS: 3300000
+        steps:
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+              with:
+                  persist-credentials: false
+
+            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+              with:
+                  node-version: 24.18.0
+
+            - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+              with:
+                  name: swift-networking-workflows
+                  path: output/swift-networking-workflows
+
+            - name: Wait for the hosted Mac to settle within the native load limit
+              run: |
+                  python3 - <<'PY'
+                  import datetime
+                  import json
+                  import os
+                  from pathlib import Path
+                  import time
+
+                  proof = Path(os.environ["RUNNER_TEMP"]) / "swift-networking-ios/runner-readiness.json"
+                  proof.parent.mkdir(parents=True, exist_ok=True)
+                  samples = []
+                  deadline = time.monotonic() + 300
+                  while True:
+                      load = os.getloadavg()[0]
+                      samples.append({"at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "load": load})
+                      ready = load <= 8
+                      proof.write_text(json.dumps({"ready": ready, "maximumLoad": 8, "samples": samples}, indent=2) + "\n")
+                      print(f"Hosted Mac load: {load:.2f}; required maximum: 8", flush=True)
+                      if ready:
+                          break
+                      if time.monotonic() >= deadline:
+                          raise SystemExit("Hosted Mac did not settle within five minutes; native checks have not run")
+                      time.sleep(10)
+                  PY
+
+            - name: Verify supplied networking contracts from all browser ZIPs
+              run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-networking-exported-contracts.py --browser output/swift-networking-workflows/swift-networking-browser --proof "$RUNNER_TEMP/swift-networking-ios/contracts/proof.json"
+
+            - name: Test exported networking apps, long content and larger text on two iPhone sizes
+              run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-welcome-exported-ios.py --course networking --browser output/swift-networking-workflows/swift-networking-browser --proof "$RUNNER_TEMP/swift-networking-ios/proof.json"
+
+            - name: Retain native Swift versions, process logs and UI results
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: swift-networking-ios
+                  path: |
+                      ${{ runner.temp }}/swift-networking-ios/runner-readiness.json
+                      ${{ runner.temp }}/swift-networking-ios/proof.json
+                      ${{ runner.temp }}/swift-networking-ios/processes.jsonl
+                      ${{ runner.temp }}/swift-networking-ios/logs/
+                      ${{ runner.temp }}/swift-networking-ios/results/
+                      ${{ runner.temp }}/swift-networking-ios/contracts/proof.json
+                      ${{ runner.temp }}/swift-networking-ios/contracts/processes.jsonl
+                      ${{ runner.temp }}/swift-networking-ios/contracts/*.txt
+                      ${{ runner.temp }}/swift-networking-ios/contracts/**/contracts-proof.json
                   if-no-files-found: error
                   retention-days: 7
 

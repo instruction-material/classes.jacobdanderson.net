@@ -224,11 +224,66 @@ describe("python project routes", () => {
 		}
 	);
 
+	it.each(["starter", "solution"] as const)(
+		"stores the complete networking %s pack for both owner types",
+		async (role) => {
+			const fixture = JSON.parse(
+				readFileSync(
+					resolve(
+						process.cwd(),
+						"../test/fixtures/swift-networking-source.json"
+					),
+					"utf8"
+				)
+			);
+			const files = Object.entries(
+				fixture.files as Record<string, { content: string }>
+			)
+				.filter(
+					([path]) =>
+						path.startsWith(`${fixture.pack}/${role}/`) ||
+						[
+							`${fixture.pack}/README.md`,
+							`${fixture.pack}/verify-networking.py`,
+							`${fixture.pack}/tests/ReferenceContracts.swift`
+						].includes(path)
+				)
+				.map(([path, file]) => ({
+					name: path.slice(fixture.pack.length + 1),
+					content: file.content,
+					encoding: "text"
+				}));
+			expect(files).toHaveLength(7);
+			for (const owner of ["user", "course-code"] as const) {
+				await withPythonProjectRoute(
+					async baseUrl => {
+						const response = await postJson(baseUrl, {
+							mode: "swift",
+							files,
+							activeFileName: `${role}/ContentView.swift`,
+							courseID: "intro-to-swift-app-development",
+							courseProjectKey: `intro-to-swift-app-development:api-reference:${role === "starter" ? "starter" : "reference"}:native-swift-v1`
+						});
+						expect(response.status).toBe(201);
+						expect((await response.json()).project.files).toEqual(
+							files
+						);
+					},
+					owner,
+					"intro-to-swift-app-development"
+				);
+			}
+		}
+	);
+
 	it.each([
 		{ name: "../ContentView.swift", encoding: "text" },
 		{ name: "Views//Profile.swift", encoding: "text" },
 		{ name: "secret.env", encoding: "text" },
 		{ name: "main.py", encoding: "text" },
+		{ name: "tools/verify-networking.py", encoding: "text" },
+		{ name: "Verify-networking.py", encoding: "text" },
+		{ name: "verify-networking.py", encoding: "base64" },
 		{ name: "photo.png", encoding: "base64" },
 		{ name: "ContentView.swift", encoding: "base64" }
 	])(
@@ -286,6 +341,14 @@ describe("python project routes", () => {
 			sourceUpdatedAt: new Date()
 		});
 		expect(review.validateSync()).toBeUndefined();
+		for (const model of [project, review]) {
+			model.files.push({
+				name: "verify-networking.py",
+				content: "print('contracts')",
+				encoding: "text"
+			});
+			expect(model.validateSync()).toBeUndefined();
+		}
 	});
 	it.each(["starter", "solution"] as const)(
 		"stores the exact record %s role and trace for both owner types",
@@ -382,7 +445,7 @@ describe("python project routes", () => {
 	);
 	it.each(["starter", "solution"] as const)(
 		"stores the exact arithmetic %s role and trace for both owner types",
-		async (role) => {
+		async role => {
 			const fixture = JSON.parse(
 				readFileSync(
 					resolve(

@@ -1,5 +1,7 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
+import swiftNetworkingReading from "@/assets/course-guides/swift-networking.md?raw";
 import swiftWelcomeReading from "@/assets/course-guides/swift-welcome-profile.md?raw";
+import { swiftNetworkingRoot } from "@/modules/swiftProjectResources";
 import { buildProjectGuidance } from "./projectGuidance";
 import { buildSupportSectionGuidance } from "./supportSectionGuidance";
 import swiftPriorTitles from "./swift-title-progress-history.json";
@@ -2216,6 +2218,13 @@ function contextualizeSwiftItem(
 	const welcomeProject =
 		flow.title === "SW3 SwiftUI Views, Layout, and Modifiers" &&
 		item.title === "Project: Welcome Profile App";
+	const networkingProject =
+		flow.title === "SW12 Networking and Data Loading" &&
+		item.title === "Project: API-Powered Reference App";
+	const networkingWorkspace =
+		networkingProject ||
+		(flow.title === "SW12 Networking and Data Loading" &&
+			item.title === "Diagnostic Checkpoint");
 	const sourceTopic = flow.sourceTitle.replace(/^SAD\d+\s+/u, "");
 	const diagnosticAliases =
 		item.title === "Diagnostic Checkpoint" &&
@@ -2256,10 +2265,16 @@ function contextualizeSwiftItem(
 				...(priorTitle ? [priorTitle] : [])
 			])
 		],
-		ideImport: welcomeProject ? true : item.ideImport,
+		ideImport:
+			welcomeProject || networkingWorkspace ? true : item.ideImport,
+		preserveInstructions: networkingProject
+			? true
+			: item.preserveInstructions,
 		content: welcomeProject
 			? swiftWelcomeReading.trim()
-			: `${item.content.trim()}
+			: networkingProject
+				? swiftNetworkingReading.trim()
+				: `${item.content.trim()}
 
 **Course position:** ${flow.stage}. ${legacyNote}
 
@@ -2281,8 +2296,12 @@ ${completionRoute}
 				: isExtension
 					? "choice"
 					: "core",
-		projectLink: item.projectLink ?? flow.referenceLink,
-		solutionLink: item.solutionLink ?? verificationLink,
+		projectLink: networkingWorkspace
+			? `${swiftNetworkingRoot}/starter`
+			: (item.projectLink ?? flow.referenceLink),
+		solutionLink: networkingWorkspace
+			? `${swiftNetworkingRoot}/solution`
+			: (item.solutionLink ?? verificationLink),
 		datasetLink: practiceLink,
 		mediaLink: item.mediaLink ?? flow.referenceLink
 	};

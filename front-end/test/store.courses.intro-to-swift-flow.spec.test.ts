@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { createPinia, setActivePinia } from "pinia";
 import { describe, expect, it } from "vitest";
+import { swiftNetworkingRoot } from "@/modules/swiftProjectResources";
 import { useCoursesStore } from "@/stores/courses";
 import { loadRawCourse } from "@/stores/courses/index";
 import { introToSwiftAppDevelopmentCourse } from "@/stores/courses/intro-to-swift-app-development";
@@ -185,7 +186,9 @@ describe("Intro to Swift App Development learner flow", () => {
 		]) {
 			expect(text, title).toContain(title);
 			expect(text, folder).toContain(
-				`https://github.com/instruction-material/Swift/tree/main/${folder}`
+				folder === "SAD6-API-Reference-App"
+					? swiftNetworkingRoot
+					: `https://github.com/instruction-material/Swift/tree/main/${folder}`
 			);
 		}
 	});
@@ -213,8 +216,23 @@ describe("Intro to Swift App Development learner flow", () => {
 					"## Distinct follow-up work"
 				])
 					expect(item.content).toContain(section);
+			} else if (item.title === "Project: API-Powered Reference App") {
+				for (const section of [
+					"## Source and first run",
+					"## Follow one request",
+					"## Loading, cancellation and request order",
+					"## Core project",
+					"## Check the contracts",
+					"## Choice and challenge work"
+				])
+					expect(item.content).toContain(section);
+				expect(item.content).toContain("HTTP 503");
+				expect(item.content).toContain("HTTP 200");
+				expect(item.content).toContain("B's result remains visible");
 			} else {
-				expect(item.content, item.title).toContain("**Course position:**");
+				expect(item.content, item.title).toContain(
+					"**Course position:**"
+				);
 				expect(item.content, item.title).toContain("**Build focus:**");
 				expect(item.content, item.title).toContain(
 					"**Verification gate:**"
@@ -222,7 +240,9 @@ describe("Intro to Swift App Development learner flow", () => {
 				expect(item.content, item.title).toContain(
 					"**Toolchain and access boundary:**"
 				);
-				expect(item.content, item.title).toContain("**Local continuity:**");
+				expect(item.content, item.title).toContain(
+					"**Local continuity:**"
+				);
 			}
 			expect(item.projectLink, item.title).toMatch(/^https:\/\//u);
 			expect(item.solutionLink, item.title).toBeTruthy();
@@ -317,8 +337,18 @@ describe("Intro to Swift App Development learner flow", () => {
 				item.datasetLink?.split("#")[1]
 			);
 			if (item.title === "Project: Welcome Profile App") {
-				expect(item.content).toContain("expected result, observed result");
+				expect(item.content).toContain(
+					"expected result, observed result"
+				);
 				expect(item.content).toContain("two simulator sizes");
+			} else if (item.title === "Project: API-Powered Reference App") {
+				expect(item.content).toContain("python3 verify-networking.py");
+				expect(item.content).toContain(
+					"tests/ReferenceContracts.swift"
+				);
+				expect(item.content).toContain(
+					"without needing the other role"
+				);
 			} else {
 				expect(item.content, item.title).toContain(
 					"/course-assets/swift/intro-swift-verification-guide.md#"
