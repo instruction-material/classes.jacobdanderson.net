@@ -6,9 +6,14 @@ from pathlib import Path, PurePosixPath
 import zipfile
 
 
-def generate(browser: Path, root: Path):
+def generate(browser: Path, root: Path, *, kind="welcome", source_files=None,
+             shared_files=("README.md",), ui_template=None):
+    assert kind in ("welcome", "networking")
+    assert kind == "welcome" or ui_template is not None
+    source_files = source_files or ("ContentView.swift", "WelcomeProfileApp.swift")
+    prefix = "Welcome" if kind == "welcome" else "Networking"
     B = browser.resolve()
-    proof = json.loads((B / "swift-swift-welcome-course-proof.json").read_text())
+    proof = json.loads((B / f"swift-swift-{kind}-course-proof.json").read_text())
     assert len(proof["profiles"]) == 4
     assert not root.exists()
     root.mkdir(parents=True)
@@ -49,7 +54,7 @@ def generate(browser: Path, root: Path):
         )
 
 
-    project = root / "WelcomeExport.xcodeproj"
+    project = root / (prefix + "Export.xcodeproj")
     (project / "xcshareddata/xcschemes").mkdir(parents=True)
     products, sources, targets, profiles = [], [], [], []
     attrs = {}
@@ -60,10 +65,10 @@ def generate(browser: Path, root: Path):
         role_dir = root / role
         role_dir.mkdir()
         assert archive.stat().st_size < 8 * 1024 * 1024
-        expected = {"README.md", f"{role}/ContentView.swift", f"{role}/WelcomeProfileApp.swift"}
+        expected = {f"{role}/{name}" for name in source_files} | set(shared_files)
         assert {file["name"] for file in profile["editedFiles"]} == expected
         with zipfile.ZipFile(archive) as z:
-            assert len(z.infolist()) == 3
+            assert len(z.infolist()) == len(expected)
             for entry in z.infolist():
                 path = PurePosixPath(entry.filename)
                 assert not path.is_absolute() and ".." not in path.parts and "\\" not in entry.filename
@@ -76,10 +81,10 @@ def generate(browser: Path, root: Path):
                 path = role_dir / file["name"]
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.write_bytes(raw)
-        app_name = "Welcome" + role.title()
+        app_name = prefix + role.title()
         test_name = app_name + "UITests"
         source_ids = []
-        for path in sorted(role_dir.rglob("*.swift")):
+        for path in sorted(role_dir / role / name for name in source_files):
             ref = obj(role + path.name, "PBXFileReference", lastKnownFileType="sourcecode.swift",
                       path=str(path.relative_to(root)), sourceTree="<group>")
             sources.append(ref)
@@ -90,7 +95,7 @@ def generate(browser: Path, root: Path):
         app_id, test_id = oid(role + "Target"), oid(role + "TestTarget")
         app_config = {
             "PRODUCT_NAME": app_name,
-            "PRODUCT_BUNDLE_IDENTIFIER": "org.example.classes.swiftwelcome." + role,
+            "PRODUCT_BUNDLE_IDENTIFIER": f"org.example.classes.swift{kind}." + role,
             "GENERATE_INFOPLIST_FILE": "YES",
             "INFOPLIST_KEY_UIApplicationSceneManifest_Generation": "YES",
             "INFOPLIST_KEY_UILaunchScreen_Generation": "YES",
@@ -173,7 +178,9 @@ def generate(browser: Path, root: Path):
         }
     }
     '''.replace("ROLE", "true" if role == "solution" else "false")
-        test_file = role_dir / "WelcomeProfileUITests.swift"
+        if ui_template is not None:
+            code = ui_template.replace("ROLE", "true" if role == "solution" else "false")
+        test_file = role_dir / ("WelcomeProfileUITests.swift" if kind == "welcome" else "NetworkingUITests.swift")
         test_file.write_text(code)
         test_ref = obj(role + "TestSource", "PBXFileReference", lastKnownFileType="sourcecode.swift",
                        path=str(test_file.relative_to(root)), sourceTree="<group>")
@@ -186,7 +193,7 @@ def generate(browser: Path, root: Path):
         dependency = obj(role + "Dependency", "PBXTargetDependency", target=app_id, targetProxy=proxy)
         test_config = {
             "PRODUCT_NAME": test_name,
-            "PRODUCT_BUNDLE_IDENTIFIER": "org.example.classes.swiftwelcome." + role + ".uitests",
+            "PRODUCT_BUNDLE_IDENTIFIER": f"org.example.classes.swift{kind}." + role + ".uitests",
             "GENERATE_INFOPLIST_FILE": "YES", "TEST_TARGET_NAME": app_name, "CODE_SIGNING_ALLOWED": "NO"
         }
         obj(role + "TestTarget", "PBXNativeTarget", name=test_name, productName=test_name,
@@ -198,8 +205,8 @@ def generate(browser: Path, root: Path):
             buildRules=[], dependencies=[dependency])
         targets.extend([app_id, test_id])
         attrs[test_id] = {"TestTargetID": app_id}
-        app_ref = f'<BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="{app_id}" BuildableName="{app_name}.app" BlueprintName="{app_name}" ReferencedContainer="container:WelcomeExport.xcodeproj"/>'
-        test_ref_xml = f'<BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="{test_id}" BuildableName="{test_name}.xctest" BlueprintName="{test_name}" ReferencedContainer="container:WelcomeExport.xcodeproj"/>'
+        app_ref = f'<BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="{app_id}" BuildableName="{app_name}.app" BlueprintName="{app_name}" ReferencedContainer="container:{project.name}"/>'
+        test_ref_xml = f'<BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="{test_id}" BuildableName="{test_name}.xctest" BlueprintName="{test_name}" ReferencedContainer="container:{project.name}"/>'
         scheme = f'''<?xml version="1.0" encoding="UTF-8"?>
     <Scheme LastUpgradeVersion="2600" version="1.3">
     <BuildAction parallelizeBuildables="NO" buildImplicitDependencies="YES"><BuildActionEntries>

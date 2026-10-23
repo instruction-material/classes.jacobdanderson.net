@@ -31,6 +31,25 @@ export async function downloadProjectZip(page) {
 		await page.waitForSelector("#code-ide-settings-panel", { visible: true });
 		await page.locator("button[aria-label='Download project ZIP']:not([disabled])").click();
 	}
+	catch (error) {
+		const state = await page.evaluate(() => {
+			const panel = document.querySelector("#code-ide-settings-panel");
+			const download = document.querySelector("button[aria-label='Download project ZIP']");
+			const bounds = element => element?.getBoundingClientRect().toJSON();
+			const rectangle = download?.getBoundingClientRect();
+			return {
+				viewport: { width: innerWidth, height: innerHeight },
+				settingsExpanded: document.querySelector("button[aria-label='IDE settings']")?.getAttribute("aria-expanded"),
+				panel: bounds(panel),
+				panelScrollTop: panel?.scrollTop,
+				download: bounds(download),
+				disabled: download?.disabled,
+				visibleText: download?.textContent,
+				centerElement: rectangle ? document.elementFromPoint(rectangle.x + rectangle.width / 2, rectangle.y + rectangle.height / 2)?.outerHTML.slice(0, 500) : null
+			};
+		});
+		throw new Error(`Project ZIP control failed: ${JSON.stringify(state)}`, { cause: error });
+	}
 	finally {
 		if (!alreadyOpen) {
 			await page.locator(trigger).click();

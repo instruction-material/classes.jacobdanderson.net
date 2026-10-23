@@ -133,7 +133,7 @@ describe("Swift source workspace", () => {
 		for (const path of [
 			"SAD-28-sad15-networking-and-data-loading-supplemental-2/solution",
 			"Mod1Pro1",
-			"SAD6-API-Reference-App/solution"
+			"SAD5-Persistent-Tracker-App/solution"
 		])
 			expect(
 				pythonIdeModeForCourseResource(
