@@ -1196,7 +1196,7 @@ jobs:
             - name: Verify self-contained PyGames core imports and saved continuations
               env:
                   PYGAMES_CORE_BROWSER_PROOF_DIR: output/pygames-core-exports
-              run: node --test test/pygames-core-browser.test.mjs
+              run: node --test --test-concurrency=1 test/browser-runtime-diagnostics.test.mjs test/pygames-core-browser.test.mjs
 
             - name: Retain PyGames core browser workflow evidence
               if: always()

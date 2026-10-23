@@ -15,6 +15,59 @@ function historicalId(value: string) {
 }
 
 describe("saved course progress identities", () => {
+	it("retains Pythonic practice completions from before the label reorder", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById(
+			"pythonic-design-patterns"
+		);
+		const previousTopics = [
+			"Why Python Changes the Design-Patterns Conversation",
+			"Design Foundations in Python",
+			"Strategy Without Ceremony",
+			"Factory and Builder in Python",
+			"Observer, Events, and Callbacks",
+			"Decorator, Proxy, and Facade",
+			"State and Command",
+			"Adapter and Integration Boundaries",
+			"Method versus Higher-Order Functions",
+			"Singleton, Global State, and Module Patterns",
+			"Refactoring Python Code Smells",
+			"Capstone Pythonic Refactor Studio"
+		];
+		const allItems = course?.modules.flatMap(module => [
+			...module.curriculum,
+			...module.supplementalProjects
+		]);
+
+		for (const [index, topic] of previousTopics.entries()) {
+			const module = course?.modules.find(entry =>
+				entry.title.startsWith(`PDP${index + 1} `)
+			);
+			expect(module, topic).toBeDefined();
+			for (const practice of [
+				"Transfer Practice",
+				"Extension Practice"
+			]) {
+				const previousId = historicalId(
+					`${module?.id}-supplemental-${practice}: ${topic}`
+				);
+				const owner = module?.supplementalProjects.find(item =>
+					item.title.endsWith(practice)
+				);
+				expect(owner?.aliases, previousId).toContain(previousId);
+				expect(owner?.id, previousId).not.toBe(previousId);
+				expect(
+					allItems?.filter(
+						item =>
+							item.id === previousId ||
+							item.aliases?.includes(previousId)
+					),
+					previousId
+				).toEqual([owner]);
+			}
+		}
+	});
+
 	it("retains Machine Learning completion owners from before the starter-build rename", async () => {
 		setActivePinia(createPinia());
 		const course =

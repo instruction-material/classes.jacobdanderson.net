@@ -12,6 +12,11 @@ import { fileURLToPath } from "node:url";
 import { unzipSync } from "fflate";
 import puppeteer from "puppeteer";
 import { preview } from "vite";
+import {
+	browserPageFailure,
+	captureBrowserDiagnostics,
+	recordBrowserPageFailure
+} from "./browser-runtime-diagnostics.mjs";
 import { confirmProjectImport } from "./ide-workspace-controls.mjs";
 import {
 	courseAction,
@@ -325,6 +330,7 @@ async function observeRun(
 	const pointerTargets = [];
 	let pointerEvents = [];
 	let runtimeSucceeded = false;
+	let runResult;
 	await page.locator("button.run-control").click();
 	if (width < 900) {
 		await page
@@ -600,7 +606,7 @@ async function observeRun(
 			};
 		}
 		runtimeSucceeded = true;
-		return {
+		runResult = {
 			label,
 			complete,
 			controls,
@@ -699,6 +705,7 @@ async function observeRun(
 	finally {
 		if (
 			runtimeSucceeded
+			&& !browserPageFailure(page)
 			&& (await page
 				.$eval("button.run-control", element =>
 					element.textContent.trim())
@@ -714,6 +721,9 @@ async function observeRun(
 			);
 		}
 	}
+	const failure = browserPageFailure(page);
+	if (failure) throw failure;
+	return runResult;
 }
 
 nodeTest(
@@ -731,17 +741,21 @@ nodeTest(
 		let outcome = 1;
 		const browserSessions = [];
 		let currentBrowserSession;
+		let stopBrowserDiagnostics;
 		let closingBrowser;
 		async function closeBrowser(reason) {
 			if (closingBrowser) return closingBrowser;
 			const owned = browser;
 			const session = currentBrowserSession;
+			const dispose = stopBrowserDiagnostics;
+			stopBrowserDiagnostics = null;
 			if (!owned) return;
 			browser = null;
 			currentBrowserSession = null;
 			closingBrowser = (async () => {
 				const child = owned.process();
 				const closed = await boundedRuntimeDiagnostic(async () => {
+					if (dispose) await dispose();
 					await owned.close();
 					return true;
 				});
@@ -816,6 +830,9 @@ nodeTest(
 				events: []
 			};
 			const session = currentBrowserSession;
+			stopBrowserDiagnostics = (
+				await captureBrowserDiagnostics(browser, session)
+			).dispose;
 			browserSessions.push(session);
 			browser.on("disconnected", () => {
 				session.events.push({
@@ -905,6 +922,8 @@ nodeTest(
 					const page = await context.newPage();
 					for (const event of ["error", "pageerror"]) {
 						page.on(event, (error) => {
+							if (event === "error")
+								recordBrowserPageFailure(page, error);
 							session.events.push({
 								event,
 								label,
@@ -1326,6 +1345,7 @@ nodeTest(
 						});
 					}
 					catch (error) {
+						const failure = browserPageFailure(page, error);
 						const diagnostic = await boundedRuntimeDiagnostic(
 							async () => ({
 								outputText: await page
@@ -1351,7 +1371,8 @@ nodeTest(
 								{
 									label,
 									state,
-									message: String(error),
+									message: String(failure),
+									observedError: String(error),
 									profilesCompleted: profiles.length,
 									...diagnostic,
 									browserSession: session.id,
@@ -1368,7 +1389,7 @@ nodeTest(
 								fullPage: true
 							})
 						);
-						throw error;
+						throw failure;
 					}
 					finally {
 						const ownedContext = context;
@@ -1407,6 +1428,13 @@ nodeTest(
 			}
 			await closeBrowser("all core profiles complete");
 			assert.equal(profiles.length, 36);
+			assert.ok(
+				browserSessions.every(session =>
+					session.rendererCrashes.length === 0
+					&& session.events.every(event => event.event !== "error")
+				),
+				"Every course browser profile must finish without a renderer crash"
+			);
 			assert.equal(
 				browserSessions.reduce(
 					(sum, session) => sum + session.completedProfiles,
