@@ -7,13 +7,13 @@ fixture exercise; this project connects actual browser clients to one server.
 ## Start one role
 
 The maintained source for this exercise is
-[b179a9e](https://github.com/instruction-material/Web-Development-Foundations/tree/b179a9e0e523a95fc5c71de3434322a7f7840579).
+[75c676e](https://github.com/instruction-material/Web-Development-Foundations/tree/75c676e07f06b82a1e4deb214fb83a69517b0e58).
 For a new local checkout:
 
 ```sh
 git clone https://github.com/instruction-material/Web-Development-Foundations.git
 cd Web-Development-Foundations
-git switch --detach b179a9e0e523a95fc5c71de3434322a7f7840579
+git switch --detach 75c676e07f06b82a1e4deb214fb83a69517b0e58
 ```
 
 Use Node.js 24 and the complete Web-Development-Foundations checkout. Install

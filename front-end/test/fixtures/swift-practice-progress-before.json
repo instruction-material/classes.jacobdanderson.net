@@ -1,0 +1,709 @@
+{
+	"sourceRevision": "92f19726f98bf62cdca30419b2891358cc0c7924",
+	"rows": [
+		{
+			"moduleId": "intro-to-swift-app-development-sw1-mac-setup-and-first-launch",
+			"title": "Mac Setup and Project Tooling Transfer Practice",
+			"id": "intro-to-swift-app-development-sw1-mac-setup-and-first-launch-supplemental-mac-setup-and-project-tooling-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad2-mac-setup-and-project-tooling-supplemental-transfer-practice",
+				"mac-setup-and-project-tooling-transfer-practice",
+				"transfer-practice-mac-setup-and-project-tooling",
+				"intro-to-swift-app-development-sw1-mac-setup-and-first-launch-supplemental-transfer-practice-mac-setup-and-project-tooling",
+				"intro-to-swift-app-development-sad2-mac-setup-and-project-tooling-supplemental-mac-setup-and-project-tooling-transfer-practice",
+				"intro-to-swift-app-development-sad2-mac-setup-and-project-tooling-supplemental-transfer-practice-mac-setup-and-project-tooling"
+			],
+			"learningPath": "choice",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#mac-setup-and-first-launch-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#mac-setup-and-first-launch-key",
+			"taskText": "Create, rename, run, and archive notes for a blank SwiftUI app without changing signing or distribution settings."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw1-mac-setup-and-first-launch",
+			"title": "Mac Setup and Project Tooling Extension Practice",
+			"id": "intro-to-swift-app-development-sw1-mac-setup-and-first-launch-supplemental-mac-setup-and-project-tooling-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad2-mac-setup-and-project-tooling-supplemental-extension-practice",
+				"mac-setup-and-project-tooling-extension-practice",
+				"extension-practice-mac-setup-and-project-tooling",
+				"intro-to-swift-app-development-sw1-mac-setup-and-first-launch-supplemental-extension-practice-mac-setup-and-project-tooling",
+				"intro-to-swift-app-development-sad2-mac-setup-and-project-tooling-supplemental-mac-setup-and-project-tooling-extension-practice",
+				"intro-to-swift-app-development-sad2-mac-setup-and-project-tooling-supplemental-extension-practice-mac-setup-and-project-tooling"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#mac-setup-and-first-launch-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#mac-setup-and-first-launch-key",
+			"taskText": "Compare two destinations and write a short troubleshooting decision tree for a preview success paired with a simulator failure."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw2-xcode-project-anatomy",
+			"title": "Xcode Project Anatomy Transfer Practice",
+			"id": "intro-to-swift-app-development-sw2-xcode-project-anatomy-supplemental-xcode-project-anatomy-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad7-xcode-project-anatomy-supplemental-transfer-practice",
+				"xcode-project-anatomy-transfer-practice",
+				"transfer-practice-xcode-project-anatomy",
+				"intro-to-swift-app-development-sw2-xcode-project-anatomy-supplemental-transfer-practice-xcode-project-anatomy",
+				"intro-to-swift-app-development-sad7-xcode-project-anatomy-supplemental-xcode-project-anatomy-transfer-practice",
+				"intro-to-swift-app-development-sad7-xcode-project-anatomy-supplemental-transfer-practice-xcode-project-anatomy"
+			],
+			"learningPath": "choice",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#xcode-project-anatomy-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#xcode-project-anatomy-key",
+			"taskText": "Annotate the supplied project diagram and make one asset-backed visual change in the first app."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw2-xcode-project-anatomy",
+			"title": "Xcode Project Anatomy Extension Practice",
+			"id": "intro-to-swift-app-development-sw2-xcode-project-anatomy-supplemental-xcode-project-anatomy-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad7-xcode-project-anatomy-supplemental-extension-practice",
+				"xcode-project-anatomy-extension-practice",
+				"extension-practice-xcode-project-anatomy",
+				"intro-to-swift-app-development-sw2-xcode-project-anatomy-supplemental-extension-practice-xcode-project-anatomy",
+				"intro-to-swift-app-development-sad7-xcode-project-anatomy-supplemental-xcode-project-anatomy-extension-practice",
+				"intro-to-swift-app-development-sad7-xcode-project-anatomy-supplemental-extension-practice-xcode-project-anatomy"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#xcode-project-anatomy-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#xcode-project-anatomy-key",
+			"taskText": "Repair a target-membership or asset-name mismatch and preserve a before-and-after explanation of the evidence used."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw3-swiftui-views-layout-and-modifiers",
+			"title": "SwiftUI Mental Model Transfer Practice",
+			"id": "intro-to-swift-app-development-sw3-swiftui-views-layout-and-modifiers-supplemental-swiftui-mental-model-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad8-swiftui-mental-model-supplemental-transfer-practice",
+				"swiftui-mental-model-transfer-practice",
+				"transfer-practice-swiftui-mental-model",
+				"intro-to-swift-app-development-sw3-swiftui-views-layout-and-modifiers-supplemental-transfer-practice-swiftui-mental-model",
+				"intro-to-swift-app-development-sad8-swiftui-mental-model-supplemental-swiftui-mental-model-transfer-practice",
+				"intro-to-swift-app-development-sad8-swiftui-mental-model-supplemental-transfer-practice-swiftui-mental-model"
+			],
+			"learningPath": "choice",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#swiftui-views-layout-and-modifiers-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#swiftui-views-layout-and-modifiers-key",
+			"taskText": "Complete the canonical SAD1 Welcome Profile App with a coherent visual hierarchy and one reusable profile component."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw3-swiftui-views-layout-and-modifiers",
+			"title": "SwiftUI Mental Model Extension Practice",
+			"id": "intro-to-swift-app-development-sw3-swiftui-views-layout-and-modifiers-supplemental-swiftui-mental-model-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad8-swiftui-mental-model-supplemental-extension-practice",
+				"swiftui-mental-model-extension-practice",
+				"extension-practice-swiftui-mental-model",
+				"intro-to-swift-app-development-sw3-swiftui-views-layout-and-modifiers-supplemental-extension-practice-swiftui-mental-model",
+				"intro-to-swift-app-development-sad8-swiftui-mental-model-supplemental-swiftui-mental-model-extension-practice",
+				"intro-to-swift-app-development-sad8-swiftui-mental-model-supplemental-extension-practice-swiftui-mental-model"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#swiftui-views-layout-and-modifiers-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#swiftui-views-layout-and-modifiers-key",
+			"taskText": "Add an alternate profile state, adaptive layout, and a documented modifier-order experiment without introducing navigation or shared data early."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw4-swift-basics-in-app-context",
+			"title": "Swift Basics in App Context Transfer Practice",
+			"id": "intro-to-swift-app-development-sw4-swift-basics-in-app-context-supplemental-swift-basics-in-app-context-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad9-swift-basics-in-app-context-supplemental-transfer-practice",
+				"swift-basics-in-app-context-transfer-practice",
+				"transfer-practice-swift-basics-in-app-context",
+				"intro-to-swift-app-development-sw4-swift-basics-in-app-context-supplemental-transfer-practice-swift-basics-in-app-context",
+				"intro-to-swift-app-development-sad9-swift-basics-in-app-context-supplemental-swift-basics-in-app-context-transfer-practice",
+				"intro-to-swift-app-development-sad9-swift-basics-in-app-context-supplemental-transfer-practice-swift-basics-in-app-context"
+			],
+			"learningPath": "choice",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#swift-basics-in-app-context-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#swift-basics-in-app-context-key",
+			"taskText": "Replace literal profile content with typed model values and render a supplied list with an explicit empty state."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw4-swift-basics-in-app-context",
+			"title": "Swift Basics in App Context Extension Practice",
+			"id": "intro-to-swift-app-development-sw4-swift-basics-in-app-context-supplemental-swift-basics-in-app-context-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad9-swift-basics-in-app-context-supplemental-extension-practice",
+				"swift-basics-in-app-context-extension-practice",
+				"extension-practice-swift-basics-in-app-context",
+				"intro-to-swift-app-development-sw4-swift-basics-in-app-context-supplemental-extension-practice-swift-basics-in-app-context",
+				"intro-to-swift-app-development-sad9-swift-basics-in-app-context-supplemental-swift-basics-in-app-context-extension-practice",
+				"intro-to-swift-app-development-sad9-swift-basics-in-app-context-supplemental-extension-practice-swift-basics-in-app-context"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#swift-basics-in-app-context-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#swift-basics-in-app-context-key",
+			"taskText": "Add filtering, sorting, and optional metadata while keeping model transformations outside deeply nested view markup."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw5-functions-structs-and-enums",
+			"title": "Functions, Structs, and Enums Transfer Practice",
+			"id": "intro-to-swift-app-development-sw5-functions-structs-and-enums-supplemental-functions-structs-and-enums-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad10-functions-structs-and-enums-supplemental-transfer-practice",
+				"functions-structs-and-enums-transfer-practice",
+				"transfer-practice-functions-structs-and-enums",
+				"intro-to-swift-app-development-sw5-functions-structs-and-enums-supplemental-transfer-practice-functions-structs-and-enums",
+				"intro-to-swift-app-development-sad10-functions-structs-and-enums-supplemental-functions-structs-and-enums-transfer-practice",
+				"intro-to-swift-app-development-sad10-functions-structs-and-enums-supplemental-transfer-practice-functions-structs-and-enums"
+			],
+			"learningPath": "choice",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#functions-structs-and-enums-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#functions-structs-and-enums-key",
+			"taskText": "Refactor profile data into a small model, function, and display-state enum while preserving the same visible behavior."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw5-functions-structs-and-enums",
+			"title": "Functions, Structs, and Enums Extension Practice",
+			"id": "intro-to-swift-app-development-sw5-functions-structs-and-enums-supplemental-functions-structs-and-enums-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad10-functions-structs-and-enums-supplemental-extension-practice",
+				"functions-structs-and-enums-extension-practice",
+				"extension-practice-functions-structs-and-enums",
+				"intro-to-swift-app-development-sw5-functions-structs-and-enums-supplemental-extension-practice-functions-structs-and-enums",
+				"intro-to-swift-app-development-sad10-functions-structs-and-enums-supplemental-functions-structs-and-enums-extension-practice",
+				"intro-to-swift-app-development-sad10-functions-structs-and-enums-supplemental-extension-practice-functions-structs-and-enums"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#functions-structs-and-enums-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#functions-structs-and-enums-key",
+			"taskText": "Add validation and model-only tests, then explain where value semantics reduce accidental shared mutation."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw6-app-structure-and-lifecycle",
+			"title": "What an App Is Structurally Transfer Practice",
+			"id": "intro-to-swift-app-development-sw6-app-structure-and-lifecycle-supplemental-what-an-app-is-structurally-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad6-what-an-app-is-structurally-supplemental-transfer-practice",
+				"what-an-app-is-structurally-transfer-practice",
+				"transfer-practice-what-an-app-is-structurally",
+				"intro-to-swift-app-development-sw6-app-structure-and-lifecycle-supplemental-transfer-practice-what-an-app-is-structurally",
+				"intro-to-swift-app-development-sad6-what-an-app-is-structurally-supplemental-what-an-app-is-structurally-transfer-practice",
+				"intro-to-swift-app-development-sad6-what-an-app-is-structurally-supplemental-transfer-practice-what-an-app-is-structurally"
+			],
+			"learningPath": "choice",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#app-structure-and-lifecycle-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#app-structure-and-lifecycle-key",
+			"taskText": "Turn the first app into a readable multi-file structure with a model, reusable view, and documented startup path."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw6-app-structure-and-lifecycle",
+			"title": "What an App Is Structurally Extension Practice",
+			"id": "intro-to-swift-app-development-sw6-app-structure-and-lifecycle-supplemental-what-an-app-is-structurally-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad6-what-an-app-is-structurally-supplemental-extension-practice",
+				"what-an-app-is-structurally-extension-practice",
+				"extension-practice-what-an-app-is-structurally",
+				"intro-to-swift-app-development-sw6-app-structure-and-lifecycle-supplemental-extension-practice-what-an-app-is-structurally",
+				"intro-to-swift-app-development-sad6-what-an-app-is-structurally-supplemental-what-an-app-is-structurally-extension-practice",
+				"intro-to-swift-app-development-sad6-what-an-app-is-structurally-supplemental-extension-practice-what-an-app-is-structurally"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#app-structure-and-lifecycle-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#app-structure-and-lifecycle-key",
+			"taskText": "Compare two feature-boundary options and defend the simpler one with change and testing scenarios."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw7-state-and-data-flow",
+			"title": "State and Data Flow Transfer Practice",
+			"id": "intro-to-swift-app-development-sw7-state-and-data-flow-supplemental-state-and-data-flow-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad11-state-and-data-flow-supplemental-transfer-practice",
+				"state-and-data-flow-transfer-practice",
+				"transfer-practice-state-and-data-flow",
+				"intro-to-swift-app-development-sw7-state-and-data-flow-supplemental-transfer-practice-state-and-data-flow",
+				"intro-to-swift-app-development-sad11-state-and-data-flow-supplemental-state-and-data-flow-transfer-practice",
+				"intro-to-swift-app-development-sad11-state-and-data-flow-supplemental-transfer-practice-state-and-data-flow"
+			],
+			"learningPath": "choice",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#state-and-data-flow-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#state-and-data-flow-key",
+			"taskText": "Add a favorite toggle and editable note with explicit ownership, binding, and a visible reset path."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw7-state-and-data-flow",
+			"title": "State and Data Flow Extension Practice",
+			"id": "intro-to-swift-app-development-sw7-state-and-data-flow-supplemental-state-and-data-flow-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad11-state-and-data-flow-supplemental-extension-practice",
+				"state-and-data-flow-extension-practice",
+				"extension-practice-state-and-data-flow",
+				"intro-to-swift-app-development-sw7-state-and-data-flow-supplemental-extension-practice-state-and-data-flow",
+				"intro-to-swift-app-development-sad11-state-and-data-flow-supplemental-state-and-data-flow-extension-practice",
+				"intro-to-swift-app-development-sad11-state-and-data-flow-supplemental-extension-practice-state-and-data-flow"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#state-and-data-flow-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#state-and-data-flow-key",
+			"taskText": "Move related shared state into an observable model, add a transition test, and document the compatibility route for an older deployment target."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw8-media-maps-and-permission-aware-features",
+			"title": "Media, Maps, and Device Features Transfer Practice",
+			"id": "intro-to-swift-app-development-sw8-media-maps-and-permission-aware-features-supplemental-media-maps-and-device-features-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad14-media-maps-and-device-features-supplemental-transfer-practice",
+				"media-maps-and-device-features-transfer-practice",
+				"transfer-practice-media-maps-and-device-features",
+				"intro-to-swift-app-development-sw8-media-maps-and-permission-aware-features-supplemental-transfer-practice-media-maps-and-device-features",
+				"intro-to-swift-app-development-sad14-media-maps-and-device-features-supplemental-media-maps-and-device-features-transfer-practice",
+				"intro-to-swift-app-development-sad14-media-maps-and-device-features-supplemental-transfer-practice-media-maps-and-device-features"
+			],
+			"learningPath": "choice",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#media-maps-and-permissions-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#media-maps-and-permissions-key",
+			"taskText": "Complete the canonical SAD2 Media Gallery and SAD4 Map Places apps using supplied nonpersonal assets and coordinates."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw8-media-maps-and-permission-aware-features",
+			"title": "Media, Maps, and Device Features Extension Practice",
+			"id": "intro-to-swift-app-development-sw8-media-maps-and-permission-aware-features-supplemental-media-maps-and-device-features-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad14-media-maps-and-device-features-supplemental-extension-practice",
+				"media-maps-and-device-features-extension-practice",
+				"extension-practice-media-maps-and-device-features",
+				"intro-to-swift-app-development-sw8-media-maps-and-permission-aware-features-supplemental-extension-practice-media-maps-and-device-features",
+				"intro-to-swift-app-development-sad14-media-maps-and-device-features-supplemental-media-maps-and-device-features-extension-practice",
+				"intro-to-swift-app-development-sad14-media-maps-and-device-features-supplemental-extension-practice-media-maps-and-device-features"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#media-maps-and-permissions-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#media-maps-and-permissions-key",
+			"taskText": "Design and test a permission-aware enhancement with denied, restricted, unavailable, and no-network states while preserving the static fallback."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw9-navigation-and-multi-screen-apps",
+			"title": "Navigation and Multi Screen Apps Transfer Practice",
+			"id": "intro-to-swift-app-development-sw9-navigation-and-multi-screen-apps-supplemental-navigation-and-multi-screen-apps-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad12-navigation-and-multi-screen-apps-supplemental-transfer-practice",
+				"navigation-and-multi-screen-apps-transfer-practice",
+				"transfer-practice-navigation-and-multi-screen-apps",
+				"intro-to-swift-app-development-sw9-navigation-and-multi-screen-apps-supplemental-transfer-practice-navigation-and-multi-screen-apps",
+				"intro-to-swift-app-development-sad12-navigation-and-multi-screen-apps-supplemental-navigation-and-multi-screen-apps-transfer-practice",
+				"intro-to-swift-app-development-sad12-navigation-and-multi-screen-apps-supplemental-transfer-practice-navigation-and-multi-screen-apps"
+			],
+			"learningPath": "choice",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#navigation-and-multi-screen-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#navigation-and-multi-screen-key",
+			"taskText": "Complete the canonical SAD3 Multi-Tab Hobby App with peer tabs, one drill-down detail, and one focused editor or information sheet."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw9-navigation-and-multi-screen-apps",
+			"title": "Navigation and Multi Screen Apps Extension Practice",
+			"id": "intro-to-swift-app-development-sw9-navigation-and-multi-screen-apps-supplemental-navigation-and-multi-screen-apps-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad12-navigation-and-multi-screen-apps-supplemental-extension-practice",
+				"navigation-and-multi-screen-apps-extension-practice",
+				"extension-practice-navigation-and-multi-screen-apps",
+				"intro-to-swift-app-development-sw9-navigation-and-multi-screen-apps-supplemental-extension-practice-navigation-and-multi-screen-apps",
+				"intro-to-swift-app-development-sad12-navigation-and-multi-screen-apps-supplemental-navigation-and-multi-screen-apps-extension-practice",
+				"intro-to-swift-app-development-sad12-navigation-and-multi-screen-apps-supplemental-extension-practice-navigation-and-multi-screen-apps"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#navigation-and-multi-screen-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#navigation-and-multi-screen-key",
+			"taskText": "Add route restoration or typed navigation data and verify each path from cold launch, tab switch, and cancellation."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw10-lists-forms-and-crud",
+			"title": "Lists, Forms, and CRUD Patterns Transfer Practice",
+			"id": "intro-to-swift-app-development-sw10-lists-forms-and-crud-supplemental-lists-forms-and-crud-patterns-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad13-lists-forms-and-crud-patterns-supplemental-transfer-practice",
+				"lists-forms-and-crud-patterns-transfer-practice",
+				"transfer-practice-lists-forms-and-crud-patterns",
+				"intro-to-swift-app-development-sw10-lists-forms-and-crud-supplemental-transfer-practice-lists-forms-and-crud-patterns",
+				"intro-to-swift-app-development-sad13-lists-forms-and-crud-patterns-supplemental-lists-forms-and-crud-patterns-transfer-practice",
+				"intro-to-swift-app-development-sad13-lists-forms-and-crud-patterns-supplemental-transfer-practice-lists-forms-and-crud-patterns"
+			],
+			"learningPath": "choice",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#lists-forms-and-crud-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#lists-forms-and-crud-key",
+			"taskText": "Complete the in-memory canonical SAD5 Simple Tracker with add, edit, toggle, delete, validation, and empty-state behavior."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw10-lists-forms-and-crud",
+			"title": "Lists, Forms, and CRUD Patterns Extension Practice",
+			"id": "intro-to-swift-app-development-sw10-lists-forms-and-crud-supplemental-lists-forms-and-crud-patterns-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad13-lists-forms-and-crud-patterns-supplemental-extension-practice",
+				"lists-forms-and-crud-patterns-extension-practice",
+				"extension-practice-lists-forms-and-crud-patterns",
+				"intro-to-swift-app-development-sw10-lists-forms-and-crud-supplemental-extension-practice-lists-forms-and-crud-patterns",
+				"intro-to-swift-app-development-sad13-lists-forms-and-crud-patterns-supplemental-lists-forms-and-crud-patterns-extension-practice",
+				"intro-to-swift-app-development-sad13-lists-forms-and-crud-patterns-supplemental-extension-practice-lists-forms-and-crud-patterns"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#lists-forms-and-crud-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#lists-forms-and-crud-key",
+			"taskText": "Add deterministic filtering, duplicate policy, and a reversible destructive-action path with focused model tests."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw11-persistence-with-swiftdata",
+			"title": "Persistence Transfer Practice",
+			"id": "intro-to-swift-app-development-sw11-persistence-with-swiftdata-supplemental-persistence-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad16-persistence-supplemental-transfer-practice",
+				"persistence-transfer-practice",
+				"transfer-practice-persistence",
+				"intro-to-swift-app-development-sw11-persistence-with-swiftdata-supplemental-transfer-practice-persistence",
+				"intro-to-swift-app-development-sad16-persistence-supplemental-persistence-transfer-practice",
+				"intro-to-swift-app-development-sad16-persistence-supplemental-transfer-practice-persistence"
+			],
+			"learningPath": "choice",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#swiftdata-persistence-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#swiftdata-persistence-key",
+			"taskText": "Persist the canonical SAD5 Simple Tracker locally and prove its core records survive a controlled relaunch."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw11-persistence-with-swiftdata",
+			"title": "Persistence Extension Practice",
+			"id": "intro-to-swift-app-development-sw11-persistence-with-swiftdata-supplemental-persistence-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad16-persistence-supplemental-extension-practice",
+				"persistence-extension-practice",
+				"extension-practice-persistence",
+				"intro-to-swift-app-development-sw11-persistence-with-swiftdata-supplemental-extension-practice-persistence",
+				"intro-to-swift-app-development-sad16-persistence-supplemental-persistence-extension-practice",
+				"intro-to-swift-app-development-sad16-persistence-supplemental-extension-practice-persistence"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#swiftdata-persistence-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#swiftdata-persistence-key",
+			"taskText": "Add an in-memory test container, one schema-evolution note, and a safe reset or export route for sample data."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw12-networking-and-data-loading",
+			"title": "Networking and Data Loading Transfer Practice",
+			"id": "intro-to-swift-app-development-sw12-networking-and-data-loading-supplemental-networking-and-data-loading-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad15-networking-and-data-loading-supplemental-transfer-practice",
+				"networking-and-data-loading-transfer-practice",
+				"transfer-practice-networking-and-data-loading",
+				"intro-to-swift-app-development-sw12-networking-and-data-loading-supplemental-transfer-practice-networking-and-data-loading",
+				"intro-to-swift-app-development-sad15-networking-and-data-loading-supplemental-networking-and-data-loading-transfer-practice",
+				"intro-to-swift-app-development-sad15-networking-and-data-loading-supplemental-transfer-practice-networking-and-data-loading"
+			],
+			"learningPath": "choice",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#networking-and-data-loading-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#networking-and-data-loading-key",
+			"taskText": "Complete the canonical SAD6 API Reference App with a local fixture, explicit state model, decode validation, and recoverable error view."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw12-networking-and-data-loading",
+			"title": "Networking and Data Loading Extension Practice",
+			"id": "intro-to-swift-app-development-sw12-networking-and-data-loading-supplemental-networking-and-data-loading-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad15-networking-and-data-loading-supplemental-extension-practice",
+				"networking-and-data-loading-extension-practice",
+				"extension-practice-networking-and-data-loading",
+				"intro-to-swift-app-development-sw12-networking-and-data-loading-supplemental-extension-practice-networking-and-data-loading",
+				"intro-to-swift-app-development-sad15-networking-and-data-loading-supplemental-networking-and-data-loading-extension-practice",
+				"intro-to-swift-app-development-sad15-networking-and-data-loading-supplemental-extension-practice-networking-and-data-loading"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#networking-and-data-loading-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#networking-and-data-loading-key",
+			"taskText": "Add a protocol-backed client, injected failure fixtures, cancellation, and a cache decision without storing sensitive data."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw13-debugging-and-swift-testing",
+			"title": "Debugging and Testing Transfer Practice",
+			"id": "intro-to-swift-app-development-sw13-debugging-and-swift-testing-supplemental-debugging-and-testing-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad17-debugging-and-testing-supplemental-transfer-practice",
+				"debugging-and-testing-transfer-practice",
+				"transfer-practice-debugging-and-testing",
+				"intro-to-swift-app-development-sw13-debugging-and-swift-testing-supplemental-transfer-practice-debugging-and-testing",
+				"intro-to-swift-app-development-sad17-debugging-and-testing-supplemental-debugging-and-testing-transfer-practice",
+				"intro-to-swift-app-development-sad17-debugging-and-testing-supplemental-transfer-practice-debugging-and-testing"
+			],
+			"learningPath": "choice",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#debugging-and-swift-testing-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#debugging-and-swift-testing-key",
+			"taskText": "Repair one supplied tracker or network-state defect and add a Swift Testing regression that fails before the correction and passes after it."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw13-debugging-and-swift-testing",
+			"title": "Debugging and Testing Extension Practice",
+			"id": "intro-to-swift-app-development-sw13-debugging-and-swift-testing-supplemental-debugging-and-testing-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad17-debugging-and-testing-supplemental-extension-practice",
+				"debugging-and-testing-extension-practice",
+				"extension-practice-debugging-and-testing",
+				"intro-to-swift-app-development-sw13-debugging-and-swift-testing-supplemental-extension-practice-debugging-and-testing",
+				"intro-to-swift-app-development-sad17-debugging-and-testing-supplemental-debugging-and-testing-extension-practice",
+				"intro-to-swift-app-development-sad17-debugging-and-testing-supplemental-extension-practice-debugging-and-testing"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#debugging-and-swift-testing-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#debugging-and-swift-testing-key",
+			"taskText": "Add parameterized and asynchronous cases, then explain what remains for simulator or UI-level validation."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw14-app-design-and-accessibility",
+			"title": "App Design and Accessibility Transfer Practice",
+			"id": "intro-to-swift-app-development-sw14-app-design-and-accessibility-supplemental-app-design-and-accessibility-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad18-app-design-and-accessibility-supplemental-transfer-practice",
+				"app-design-and-accessibility-transfer-practice",
+				"transfer-practice-app-design-and-accessibility",
+				"intro-to-swift-app-development-sw14-app-design-and-accessibility-supplemental-transfer-practice-app-design-and-accessibility",
+				"intro-to-swift-app-development-sad18-app-design-and-accessibility-supplemental-app-design-and-accessibility-transfer-practice",
+				"intro-to-swift-app-development-sad18-app-design-and-accessibility-supplemental-transfer-practice-app-design-and-accessibility"
+			],
+			"learningPath": "choice",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#design-and-accessibility-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#design-and-accessibility-key",
+			"taskText": "Audit and improve the Welcome Profile, Tracker, or API app with a recorded large-text and screen-reader pass."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw14-app-design-and-accessibility",
+			"title": "App Design and Accessibility Extension Practice",
+			"id": "intro-to-swift-app-development-sw14-app-design-and-accessibility-supplemental-app-design-and-accessibility-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad18-app-design-and-accessibility-supplemental-extension-practice",
+				"app-design-and-accessibility-extension-practice",
+				"extension-practice-app-design-and-accessibility",
+				"intro-to-swift-app-development-sw14-app-design-and-accessibility-supplemental-extension-practice-app-design-and-accessibility",
+				"intro-to-swift-app-development-sad18-app-design-and-accessibility-supplemental-app-design-and-accessibility-extension-practice",
+				"intro-to-swift-app-development-sad18-app-design-and-accessibility-supplemental-extension-practice-app-design-and-accessibility"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#design-and-accessibility-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#design-and-accessibility-key",
+			"taskText": "Test additional accessibility settings, prioritize unresolved barriers, and explain one design tradeoff without claiming universal compliance."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw15-simulator-and-device-validation",
+			"title": "Running on Simulator and Device Transfer Practice",
+			"id": "intro-to-swift-app-development-sw15-simulator-and-device-validation-supplemental-running-on-simulator-and-device-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad4-running-on-simulator-and-device-supplemental-transfer-practice",
+				"running-on-simulator-and-device-transfer-practice",
+				"transfer-practice-running-on-simulator-and-device",
+				"intro-to-swift-app-development-sw15-simulator-and-device-validation-supplemental-transfer-practice-running-on-simulator-and-device",
+				"intro-to-swift-app-development-sad4-running-on-simulator-and-device-supplemental-running-on-simulator-and-device-transfer-practice",
+				"intro-to-swift-app-development-sad4-running-on-simulator-and-device-supplemental-transfer-practice-running-on-simulator-and-device"
+			],
+			"learningPath": "choice",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#simulator-and-device-validation-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#simulator-and-device-validation-key",
+			"taskText": "Execute and record a repeatable simulator smoke test for the current strongest app."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw15-simulator-and-device-validation",
+			"title": "Running on Simulator and Device Extension Practice",
+			"id": "intro-to-swift-app-development-sw15-simulator-and-device-validation-supplemental-running-on-simulator-and-device-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad4-running-on-simulator-and-device-supplemental-extension-practice",
+				"running-on-simulator-and-device-extension-practice",
+				"extension-practice-running-on-simulator-and-device",
+				"intro-to-swift-app-development-sw15-simulator-and-device-validation-supplemental-extension-practice-running-on-simulator-and-device",
+				"intro-to-swift-app-development-sad4-running-on-simulator-and-device-supplemental-running-on-simulator-and-device-extension-practice",
+				"intro-to-swift-app-development-sad4-running-on-simulator-and-device-supplemental-extension-practice-running-on-simulator-and-device"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#simulator-and-device-validation-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#simulator-and-device-validation-key",
+			"taskText": "Compare a personally controlled device with the simulator and diagnose one evidence-backed difference without collecting device identifiers in the submission."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw16-apple-development-and-distribution-map",
+			"title": "Apple Developer Ecosystem Overview Extension Practice",
+			"id": "intro-to-swift-app-development-sw16-apple-development-and-distribution-map-supplemental-apple-developer-ecosystem-overview-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad1-apple-developer-ecosystem-overview-supplemental-extension-practice",
+				"apple-developer-ecosystem-overview-extension-practice",
+				"extension-practice-apple-developer-ecosystem-overview",
+				"intro-to-swift-app-development-sw16-apple-development-and-distribution-map-supplemental-extension-practice-apple-developer-ecosystem-overview",
+				"intro-to-swift-app-development-sad1-apple-developer-ecosystem-overview-supplemental-apple-developer-ecosystem-overview-extension-practice",
+				"intro-to-swift-app-development-sad1-apple-developer-ecosystem-overview-supplemental-extension-practice-apple-developer-ecosystem-overview"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#apple-development-and-distribution-map-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#apple-development-and-distribution-map-key",
+			"taskText": "Add individual and organization role branches and a classroom simulation that requires no shared credentials."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw17-signing-teams-and-bundle-ids",
+			"title": "Certificates, Signing, and Bundle IDs Transfer Practice",
+			"id": "intro-to-swift-app-development-sw17-signing-teams-and-bundle-ids-supplemental-certificates-signing-and-bundle-ids-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad3-certificates-signing-and-bundle-ids-supplemental-transfer-practice",
+				"certificates-signing-and-bundle-ids-transfer-practice",
+				"transfer-practice-certificates-signing-and-bundle-ids",
+				"intro-to-swift-app-development-sw17-signing-teams-and-bundle-ids-supplemental-transfer-practice-certificates-signing-and-bundle-ids",
+				"intro-to-swift-app-development-sad3-certificates-signing-and-bundle-ids-supplemental-certificates-signing-and-bundle-ids-transfer-practice",
+				"intro-to-swift-app-development-sad3-certificates-signing-and-bundle-ids-supplemental-transfer-practice-certificates-signing-and-bundle-ids"
+			],
+			"learningPath": "choice",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#signing-teams-and-bundle-ids-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#signing-teams-and-bundle-ids-key",
+			"taskText": "Annotate a signing relationship map and resolve three supplied configuration cases without touching a real distribution account."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw17-signing-teams-and-bundle-ids",
+			"title": "Certificates, Signing, and Bundle IDs Extension Practice",
+			"id": "intro-to-swift-app-development-sw17-signing-teams-and-bundle-ids-supplemental-certificates-signing-and-bundle-ids-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad3-certificates-signing-and-bundle-ids-supplemental-extension-practice",
+				"certificates-signing-and-bundle-ids-extension-practice",
+				"extension-practice-certificates-signing-and-bundle-ids",
+				"intro-to-swift-app-development-sw17-signing-teams-and-bundle-ids-supplemental-extension-practice-certificates-signing-and-bundle-ids",
+				"intro-to-swift-app-development-sad3-certificates-signing-and-bundle-ids-supplemental-certificates-signing-and-bundle-ids-extension-practice",
+				"intro-to-swift-app-development-sad3-certificates-signing-and-bundle-ids-supplemental-extension-practice-certificates-signing-and-bundle-ids"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#signing-teams-and-bundle-ids-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#signing-teams-and-bundle-ids-key",
+			"taskText": "Add entitlement and role constraints to the matrix and explain which account role is authorized to perform the action.",
+			"originalTaskText": "Add entitlement and role constraints to the matrix and explain when an instructor or account holder must perform the action."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw18-app-store-connect-and-testflight",
+			"title": "App Store Connect and TestFlight Workflow Transfer Practice",
+			"id": "intro-to-swift-app-development-sw18-app-store-connect-and-testflight-supplemental-app-store-connect-and-testflight-workflow-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad5-app-store-connect-and-testflight-workflow-supplemental-transfer-practice",
+				"app-store-connect-and-testflight-workflow-transfer-practice",
+				"transfer-practice-app-store-connect-and-testflight-workflow",
+				"intro-to-swift-app-development-sw18-app-store-connect-and-testflight-supplemental-transfer-practice-app-store-connect-and-testflight-workflow",
+				"intro-to-swift-app-development-sad5-app-store-connect-and-testflight-workflow-supplemental-app-store-connect-and-testflight-workflow-transfer-practice",
+				"intro-to-swift-app-development-sad5-app-store-connect-and-testflight-workflow-supplemental-transfer-practice-app-store-connect-and-testflight-workflow"
+			],
+			"learningPath": "choice",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#app-store-connect-and-testflight-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#app-store-connect-and-testflight-key",
+			"taskText": "Prepare a simulated TestFlight release packet with beta description, test focus, build record, group choice, and feedback triage."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw18-app-store-connect-and-testflight",
+			"title": "App Store Connect and TestFlight Workflow Extension Practice",
+			"id": "intro-to-swift-app-development-sw18-app-store-connect-and-testflight-supplemental-app-store-connect-and-testflight-workflow-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad5-app-store-connect-and-testflight-workflow-supplemental-extension-practice",
+				"app-store-connect-and-testflight-workflow-extension-practice",
+				"extension-practice-app-store-connect-and-testflight-workflow",
+				"intro-to-swift-app-development-sw18-app-store-connect-and-testflight-supplemental-extension-practice-app-store-connect-and-testflight-workflow",
+				"intro-to-swift-app-development-sad5-app-store-connect-and-testflight-workflow-supplemental-app-store-connect-and-testflight-workflow-extension-practice",
+				"intro-to-swift-app-development-sad5-app-store-connect-and-testflight-workflow-supplemental-extension-practice-app-store-connect-and-testflight-workflow"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#app-store-connect-and-testflight-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#app-store-connect-and-testflight-key",
+			"taskText": "Compare internal and external routes, add one review or export-compliance blocker, and revise the release packet after supplied feedback."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw19-capstone-build-and-user-testing",
+			"title": "Capstone App Transfer Practice",
+			"id": "intro-to-swift-app-development-sw19-capstone-build-and-user-testing-supplemental-capstone-app-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad20-capstone-app-supplemental-transfer-practice",
+				"capstone-app-transfer-practice",
+				"transfer-practice-capstone-app",
+				"intro-to-swift-app-development-sw19-capstone-build-and-user-testing-supplemental-transfer-practice-capstone-app",
+				"intro-to-swift-app-development-sad20-capstone-app-supplemental-capstone-app-transfer-practice",
+				"intro-to-swift-app-development-sad20-capstone-app-supplemental-transfer-practice-capstone-app"
+			],
+			"learningPath": "choice",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#capstone-build-and-user-testing-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#capstone-build-and-user-testing-key",
+			"taskText": "Complete the canonical SAD7 Publish-Ready Capstone as a tested release candidate with a scoped primary flow and evidence packet."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw19-capstone-build-and-user-testing",
+			"title": "Capstone App Extension Practice",
+			"id": "intro-to-swift-app-development-sw19-capstone-build-and-user-testing-supplemental-capstone-app-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad20-capstone-app-supplemental-extension-practice",
+				"capstone-app-extension-practice",
+				"extension-practice-capstone-app",
+				"intro-to-swift-app-development-sw19-capstone-build-and-user-testing-supplemental-extension-practice-capstone-app",
+				"intro-to-swift-app-development-sad20-capstone-app-supplemental-capstone-app-extension-practice",
+				"intro-to-swift-app-development-sad20-capstone-app-supplemental-extension-practice-capstone-app"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#capstone-build-and-user-testing-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#capstone-build-and-user-testing-key",
+			"taskText": "Add one architecturally justified feature, automated boundary test, and evidence-backed revision without expanding beyond the stated release scope."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw20-final-publishing-walkthrough",
+			"title": "Final Publishing Walkthrough Transfer Practice",
+			"id": "intro-to-swift-app-development-sw20-final-publishing-walkthrough-supplemental-final-publishing-walkthrough-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad19-final-publishing-walkthrough-supplemental-transfer-practice",
+				"final-publishing-walkthrough-transfer-practice",
+				"transfer-practice-final-publishing-walkthrough",
+				"intro-to-swift-app-development-sw20-final-publishing-walkthrough-supplemental-transfer-practice-final-publishing-walkthrough",
+				"intro-to-swift-app-development-sad19-final-publishing-walkthrough-supplemental-final-publishing-walkthrough-transfer-practice",
+				"intro-to-swift-app-development-sad19-final-publishing-walkthrough-supplemental-transfer-practice-final-publishing-walkthrough"
+			],
+			"learningPath": "choice",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#final-publishing-walkthrough-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#final-publishing-walkthrough-key",
+			"taskText": "Prepare and audit the capstone's simulated submission packet, then make a documented submit or hold decision."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-sw20-final-publishing-walkthrough",
+			"title": "Final Publishing Walkthrough Extension Practice",
+			"id": "intro-to-swift-app-development-sw20-final-publishing-walkthrough-supplemental-final-publishing-walkthrough-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sad19-final-publishing-walkthrough-supplemental-extension-practice",
+				"final-publishing-walkthrough-extension-practice",
+				"extension-practice-final-publishing-walkthrough",
+				"intro-to-swift-app-development-sw20-final-publishing-walkthrough-supplemental-extension-practice-final-publishing-walkthrough",
+				"intro-to-swift-app-development-sad19-final-publishing-walkthrough-supplemental-final-publishing-walkthrough-extension-practice",
+				"intro-to-swift-app-development-sad19-final-publishing-walkthrough-supplemental-extension-practice-final-publishing-walkthrough"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#final-publishing-walkthrough-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#final-publishing-walkthrough-key",
+			"taskText": "Respond to a supplied review rejection or privacy change and revise the packet, build plan, and release decision."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-swx-shapes-and-legacy-reference-boundaries",
+			"title": "SADX Enrichment and Reference Boundaries Transfer Practice",
+			"id": "intro-to-swift-app-development-swx-shapes-and-legacy-reference-boundaries-supplemental-sadx-enrichment-and-reference-boundaries-transfer-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-supplemental-transfer-practice",
+				"intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-supplemental-transfer-practice-sadx-enrichment-and-legacy-archive-boundaries",
+				"sadx-enrichment-and-reference-boundaries-transfer-practice",
+				"transfer-practice-sadx-enrichment-and-reference-boundaries",
+				"intro-to-swift-app-development-swx-shapes-and-legacy-reference-boundaries-supplemental-transfer-practice-sadx-enrichment-and-reference-boundaries",
+				"intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-supplemental-sadx-enrichment-and-reference-boundaries-transfer-practice",
+				"intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-supplemental-transfer-practice-sadx-enrichment-and-reference-boundaries",
+				"intro-to-swift-app-development-sadx-enrichment-and-reference-boundaries-supplemental-sadx-enrichment-and-reference-boundaries-transfer-practice",
+				"intro-to-swift-app-development-sadx-enrichment-and-reference-boundaries-supplemental-transfer-practice-sadx-enrichment-and-reference-boundaries"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#shapes-and-legacy-reference-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#shapes-and-legacy-reference-key",
+			"taskText": "Complete one adaptive custom Shape and a short modern-versus-legacy transfer note."
+		},
+		{
+			"moduleId": "intro-to-swift-app-development-swx-shapes-and-legacy-reference-boundaries",
+			"title": "SADX Enrichment and Reference Boundaries Extension Practice",
+			"id": "intro-to-swift-app-development-swx-shapes-and-legacy-reference-boundaries-supplemental-sadx-enrichment-and-reference-boundaries-extension-practice",
+			"aliases": [
+				"intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-supplemental-extension-practice",
+				"intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-supplemental-extension-practice-sadx-enrichment-and-legacy-archive-boundaries",
+				"sadx-enrichment-and-reference-boundaries-extension-practice",
+				"extension-practice-sadx-enrichment-and-reference-boundaries",
+				"intro-to-swift-app-development-swx-shapes-and-legacy-reference-boundaries-supplemental-extension-practice-sadx-enrichment-and-reference-boundaries",
+				"intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-supplemental-sadx-enrichment-and-reference-boundaries-extension-practice",
+				"intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-supplemental-extension-practice-sadx-enrichment-and-reference-boundaries",
+				"intro-to-swift-app-development-sadx-enrichment-and-reference-boundaries-supplemental-sadx-enrichment-and-reference-boundaries-extension-practice",
+				"intro-to-swift-app-development-sadx-enrichment-and-reference-boundaries-supplemental-extension-practice-sadx-enrichment-and-reference-boundaries"
+			],
+			"learningPath": "challenge",
+			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#shapes-and-legacy-reference-case",
+			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#shapes-and-legacy-reference-key",
+			"taskText": "Add animatable data and reduced-motion behavior, then verify geometry across three frame shapes."
+		}
+	]
+}

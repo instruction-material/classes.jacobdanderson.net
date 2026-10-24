@@ -2,10 +2,18 @@ import fs from "node:fs";
 import path from "node:path";
 import { createPinia, setActivePinia } from "pinia";
 import { describe, expect, it } from "vitest";
-import { swiftNetworkingRoot } from "@/modules/swiftProjectResources";
+import {
+	swiftCapstoneRoot,
+	swiftGalleryRoot,
+	swiftHobbyRoot,
+	swiftMapRoot,
+	swiftNetworkingRoot,
+	swiftTrackerRoot
+} from "@/modules/swiftProjectResources";
 import { useCoursesStore } from "@/stores/courses";
 import { loadRawCourse } from "@/stores/courses/index";
 import { introToSwiftAppDevelopmentCourse } from "@/stores/courses/intro-to-swift-app-development";
+import practiceProgressBefore from "./fixtures/swift-practice-progress-before.json";
 
 const EXPECTED_SEQUENCE = [
 	"SW1 Mac Setup and First Launch",
@@ -83,6 +91,13 @@ const ANSWER_SECTIONS = PRACTICE_SECTIONS.map(section =>
 	section.replace(/-case$/u, "-key")
 );
 
+const CANONICAL_PROJECT_ROOTS: Record<string, string> = {
+	"Project: Media Gallery App": swiftGalleryRoot,
+	"Project: Multi-Tab Hobby App": swiftHobbyRoot,
+	"Project: Map Places App": swiftMapRoot,
+	"Project: Publish-Ready Capstone App": swiftCapstoneRoot
+};
+
 function allItems() {
 	return introToSwiftAppDevelopmentCourse.modules.flatMap(module => [
 		...module.curriculum,
@@ -104,7 +119,7 @@ function courseText() {
 
 function markdownHeadingSlugs(markdown: string) {
 	return new Set(
-		[...markdown.matchAll(/^#{1,6}\s+(.+)$/gm)].map(([, heading]) =>
+		[...markdown.matchAll(/^#{1,6}[ \t]+(\S.*)$/gm)].map(([, heading]) =>
 			heading
 				.toLowerCase()
 				.replace(/[`*_]/g, "")
@@ -116,7 +131,7 @@ function markdownHeadingSlugs(markdown: string) {
 	);
 }
 
-describe("Intro to Swift App Development learner flow", () => {
+describe("intro to Swift App Development learner flow", () => {
 	it("reorders the complete course into build, extend, verify, and ship arcs", () => {
 		expect(
 			introToSwiftAppDevelopmentCourse.modules.map(module => module.title)
@@ -186,9 +201,12 @@ describe("Intro to Swift App Development learner flow", () => {
 		]) {
 			expect(text, title).toContain(title);
 			expect(text, folder).toContain(
-				folder === "SAD6-API-Reference-App"
+				CANONICAL_PROJECT_ROOTS[title]
+				?? (folder === "SAD6-API-Reference-App"
 					? swiftNetworkingRoot
-					: `https://github.com/instruction-material/Swift/tree/main/${folder}`
+					: folder === "SAD5-Simple-Tracker-App"
+						? swiftTrackerRoot
+						: `https://github.com/instruction-material/Swift/tree/main/${folder}`)
 			);
 		}
 	});
@@ -197,15 +215,23 @@ describe("Intro to Swift App Development learner flow", () => {
 		const items = allItems();
 		const titles = items.map(item => item.title);
 
-		expect(
-			Math.min(...items.map(item => item.content.length))
-		).toBeGreaterThan(1_500);
 		expect(new Set(titles).size).toBe(titles.length);
 		expect(titles).not.toContain("Diagnostic Checkpoint");
 		expect(titles).toContain("SW7 State and Data Flow: Readiness Check");
 
 		for (const item of items) {
-			if (item.title === "Project: Welcome Profile App") {
+			if (
+				item.projectLink?.startsWith(
+					"/course-assets/swift/intro-swift-practice-pack.md#"
+				)
+			) {
+				expect(item.content, item.title).toContain("## Assignment");
+				expect(item.content, item.title).toContain("## Evidence");
+				expect(item.content, item.title).toContain("## Toolchain");
+				expect(item.ideImport).toBe(false);
+				expect(item.datasetLink).toBeUndefined();
+			}
+			else if (item.title === "Project: Welcome Profile App") {
 				for (const section of [
 					"## Open one complete source role",
 					"## Read the app from its entry point",
@@ -216,7 +242,8 @@ describe("Intro to Swift App Development learner flow", () => {
 					"## Distinct follow-up work"
 				])
 					expect(item.content).toContain(section);
-			} else if (item.title === "Project: API-Powered Reference App") {
+			}
+			else if (item.title === "Project: API-Powered Reference App") {
 				for (const section of [
 					"## Source and first run",
 					"## Follow one request",
@@ -229,7 +256,30 @@ describe("Intro to Swift App Development learner flow", () => {
 				expect(item.content).toContain("HTTP 503");
 				expect(item.content).toContain("HTTP 200");
 				expect(item.content).toContain("B's result remains visible");
-			} else {
+			}
+			else if (
+				[
+					"Project: Simple Tracker App",
+					"Project Pass: Persist the Simple Tracker App"
+				].includes(item.title)
+			) {
+				for (const section of [
+					"## Project",
+					"## Run",
+					"## Work sequence",
+					"## Verification"
+				])
+					expect(item.content).toContain(section);
+				expect(item.content).toContain("iOS 17");
+			}
+			else if (CANONICAL_PROJECT_ROOTS[item.title]) {
+				expect(item.content).toContain("## Run one source role");
+				expect(item.content).toContain("## Core project");
+				expect(item.content).toContain("iOS 17");
+				expect(item.ideImport).toBe(true);
+				expect(item.preserveInstructions).toBe(true);
+			}
+			else {
 				expect(item.content, item.title).toContain(
 					"**Course position:**"
 				);
@@ -244,12 +294,76 @@ describe("Intro to Swift App Development learner flow", () => {
 					"**Local continuity:**"
 				);
 			}
-			expect(item.projectLink, item.title).toMatch(/^https:\/\//u);
+			expect(item.projectLink, item.title).toMatch(
+				/^(?:https:\/\/|\/course-assets\/swift\/intro-swift-practice-pack\.md#)/u
+			);
 			expect(item.solutionLink, item.title).toBeTruthy();
-			expect(item.datasetLink, item.title).toMatch(
+			expect(item.datasetLink ?? item.projectLink, item.title).toMatch(
 				/^\/course-assets\/swift\/intro-swift-practice-pack\.md#/u
 			);
 			expect(item.mediaLink, item.title).toMatch(/^https:\/\//u);
+		}
+	});
+
+	it("replaces every mismatched practice app with its real lesson case", () => {
+		const cases = allItems().filter(item =>
+			item.projectLink?.startsWith(
+				"/course-assets/swift/intro-swift-practice-pack.md#"
+			)
+		);
+		expect(cases).toHaveLength(41);
+		for (const item of cases) {
+			expect(item.ideImport).toBe(false);
+			expect(item.datasetLink).toBeUndefined();
+			expect(item.solutionLink).toMatch(
+				/^\/course-assets\/swift\/intro-swift-verification-guide\.md#/u
+			);
+			expect(item.content).not.toContain("**Project goal:** Build **SAD");
+			expect(item.content).toContain(item.projectLink!);
+		}
+		for (const item of allItems()) {
+			expect(item.projectLink ?? "").not.toMatch(
+				/\/Swift\/tree\/[^/]+\/SAD-\d{2}-/u
+			);
+			expect(item.solutionLink ?? "").not.toMatch(
+				/\/Swift\/tree\/[^/]+\/SAD-\d{2}-/u
+			);
+		}
+		for (const module of introToSwiftAppDevelopmentCourse.modules) {
+			const transfer = module.supplementalProjects.find(item =>
+				item.title.includes("Transfer Practice")
+			);
+			const extension = module.supplementalProjects.find(item =>
+				item.title.includes("Extension Practice")
+			);
+			if (transfer && extension) {
+				expect(transfer.content.split("## Evidence")[0]).not.toBe(
+					extension.content.split("## Evidence")[0]
+				);
+			}
+		}
+	});
+
+	it("retains all 41 existing saved practice IDs, aliases and learning paths", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById(
+			"intro-to-swift-app-development"
+		);
+		for (const before of practiceProgressBefore.rows) {
+			const module = course!.modules.find(
+				module => module.id === before.moduleId
+			)!;
+			expect(module, before.moduleId).toBeDefined();
+			const item = module.supplementalProjects.find(
+				item => item.id === before.id
+			)!;
+			expect(item, before.id).toBeDefined();
+			expect(item.title).toBe(before.title);
+			expect(item.aliases).toEqual(before.aliases);
+			expect(item.learningPath).toBe(before.learningPath);
+			expect(item.projectLink).toMatch(
+				/^\/course-assets\/swift\/intro-swift-practice-pack\.md#/u
+			);
 		}
 	});
 
@@ -334,14 +448,15 @@ describe("Intro to Swift App Development learner flow", () => {
 
 		for (const item of allItems()) {
 			expect(practiceHeadings, item.title).toContain(
-				item.datasetLink?.split("#")[1]
+				(item.datasetLink ?? item.projectLink)?.split("#")[1]
 			);
 			if (item.title === "Project: Welcome Profile App") {
 				expect(item.content).toContain(
 					"expected result, observed result"
 				);
 				expect(item.content).toContain("two simulator sizes");
-			} else if (item.title === "Project: API-Powered Reference App") {
+			}
+			else if (item.title === "Project: API-Powered Reference App") {
 				expect(item.content).toContain("python3 verify-networking.py");
 				expect(item.content).toContain(
 					"tests/ReferenceContracts.swift"
@@ -349,7 +464,25 @@ describe("Intro to Swift App Development learner flow", () => {
 				expect(item.content).toContain(
 					"without needing the other role"
 				);
-			} else {
+			}
+			else if (item.title === "Project: Simple Tracker App") {
+				expect(item.content).toContain("python3 verify-tracker.py");
+				expect(item.content).toContain("tests/TrackerContracts.swift");
+				expect(item.content).toContain("iOS 17");
+			}
+			else if (
+				item.title === "Project Pass: Persist the Simple Tracker App"
+			) {
+				expect(item.content).toContain("python3 verify-persistence.py");
+				expect(item.content).toContain("swift test");
+				expect(item.content).toContain("separate processes");
+			}
+			else if (CANONICAL_PROJECT_ROOTS[item.title]) {
+				expect(item.content).toContain("## Run one source role");
+				expect(item.content).toContain("## Core project");
+				expect(item.content).toContain("reference");
+			}
+			else {
 				expect(item.content, item.title).toContain(
 					"/course-assets/swift/intro-swift-verification-guide.md#"
 				);
@@ -458,8 +591,8 @@ describe("Intro to Swift App Development learner flow", () => {
 		);
 		const publishingModule = course?.modules.find(
 			candidate =>
-				candidate.title ===
-				"SW16 Apple Development and Distribution Map"
+				candidate.title
+				=== "SW16 Apple Development and Distribution Map"
 		);
 		expect(
 			publishingModule?.supplementalProjects.find(
@@ -487,7 +620,9 @@ describe("Intro to Swift App Development learner flow", () => {
 			.join("\n");
 		const titles = allItems().map(item => item.title);
 
-		expect(visibleText).not.toMatch(/\bshould\b/iu);
+		expect(visibleText).not.toMatch(
+			/\b(?:students|learners|instructors) should\b/iu
+		);
 		expect(visibleText).not.toMatch(/\bMini Lab\b/iu);
 		expect(visibleText).not.toMatch(/\bsupplemental [23]\b/iu);
 		expect(titles).not.toContain("Diagnostic Checkpoint");

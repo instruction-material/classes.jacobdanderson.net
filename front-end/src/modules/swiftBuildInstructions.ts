@@ -1,24 +1,45 @@
 import type { PythonIdeFile } from "@/modules/pythonIde";
 
 export function swiftBuildInstructions(files: PythonIdeFile[]) {
-	const hasNetworkingContracts = files.some(
-		file => file.name === "tests/ReferenceContracts.swift"
-	);
+	const contracts = [
+		{
+			file: "tests/ReferenceContracts.swift",
+			verifier: "verify-networking.py",
+			boundary: "client and store"
+		},
+		{
+			file: "tests/TrackerContracts.swift",
+			verifier: "verify-tracker.py",
+			boundary: "in-memory tracker store"
+		},
+		{
+			file: "tests/PersistenceContracts.swift",
+			verifier: "verify-persistence.py",
+			boundary:
+				"persistent model, Swift Testing cases and fresh-process storage"
+		}
+	].find(contract => files.some(file => file.name === contract.file));
 	const source = files.filter(
 		file =>
 			/\.swift$/i.test(file.name) &&
-			file.name !== "tests/ReferenceContracts.swift"
+			file.name !== "Package.swift" &&
+			!file.name.startsWith("tests/")
 	);
 	if (!source.length)
 		return ["Add Swift source before building the iOS app."];
 	return [
 		"Save and download the ZIP, extract it, then create an iOS App project in Xcode using SwiftUI.",
-		hasNetworkingContracts
+		contracts
 			? "Replace the generated app entry point and ContentView. Add only the four Swift files from the selected starter or solution folder to the app target and keep one @main app entry point."
 			: "Replace the generated app entry point and ContentView with the selected project's Swift files. Add every remaining Swift file to the same target and keep one @main app entry point.",
-		...(hasNetworkingContracts
+		...(contracts
 			? [
-					"Keep tests/ReferenceContracts.swift outside the app target; it has a separate command-line entry point. Run python3 verify-networking.py from the extracted folder to check the selected role's client and store."
+					`Keep ${contracts.file} outside the app target; it has a separate command-line entry point. Run python3 ${contracts.verifier} from the extracted folder to check the selected role's ${contracts.boundary}.`,
+					...(contracts.verifier === "verify-persistence.py"
+						? [
+								"Keep Package.swift and tests/PersistenceTests.swift outside the app target. Run swift test from the extracted folder for the supplied Swift Testing target. The reference persists locally; the starter uses memory until its assigned storage switch is completed."
+							]
+						: [])
 				]
 			: []),
 		"Select an installed iOS simulator. Record the Xcode version, Swift language mode and deployment target, then build and run.",

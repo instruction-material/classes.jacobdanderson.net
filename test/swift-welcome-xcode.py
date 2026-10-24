@@ -2,16 +2,18 @@
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path, PurePosixPath
 import zipfile
 
 
 def generate(browser: Path, root: Path, *, kind="welcome", source_files=None,
-             shared_files=("README.md",), ui_template=None):
-    assert kind in ("welcome", "networking")
+             shared_files=("README.md",), ui_template=None, bundle_suffix=None):
+    assert kind in ("welcome", "networking", "tracker", "swiftdata")
     assert kind == "welcome" or ui_template is not None
+    assert bundle_suffix is None or re.fullmatch(r"[a-z][a-z0-9-]*", bundle_suffix)
     source_files = source_files or ("ContentView.swift", "WelcomeProfileApp.swift")
-    prefix = "Welcome" if kind == "welcome" else "Networking"
+    prefix = {"welcome": "Welcome", "networking": "Networking", "tracker": "Tracker", "swiftdata": "SwiftDataTracker"}[kind]
     B = browser.resolve()
     proof = json.loads((B / f"swift-swift-{kind}-course-proof.json").read_text())
     assert len(proof["profiles"]) == 4
@@ -93,9 +95,12 @@ def generate(browser: Path, root: Path, *, kind="welcome", source_files=None,
                       path=app_name + ".app", sourceTree="BUILT_PRODUCTS_DIR")
         products.append(product)
         app_id, test_id = oid(role + "Target"), oid(role + "TestTarget")
+        bundle_id = f"org.example.classes.swift{kind}." + role
+        if bundle_suffix:
+            bundle_id += "." + bundle_suffix
         app_config = {
             "PRODUCT_NAME": app_name,
-            "PRODUCT_BUNDLE_IDENTIFIER": f"org.example.classes.swift{kind}." + role,
+            "PRODUCT_BUNDLE_IDENTIFIER": bundle_id,
             "GENERATE_INFOPLIST_FILE": "YES",
             "INFOPLIST_KEY_UIApplicationSceneManifest_Generation": "YES",
             "INFOPLIST_KEY_UILaunchScreen_Generation": "YES",
@@ -180,7 +185,7 @@ def generate(browser: Path, root: Path, *, kind="welcome", source_files=None,
     '''.replace("ROLE", "true" if role == "solution" else "false")
         if ui_template is not None:
             code = ui_template.replace("ROLE", "true" if role == "solution" else "false")
-        test_file = role_dir / ("WelcomeProfileUITests.swift" if kind == "welcome" else "NetworkingUITests.swift")
+        test_file = role_dir / ("WelcomeProfileUITests.swift" if kind == "welcome" else prefix + "UITests.swift")
         test_file.write_text(code)
         test_ref = obj(role + "TestSource", "PBXFileReference", lastKnownFileType="sourcecode.swift",
                        path=str(test_file.relative_to(root)), sourceTree="<group>")
@@ -193,7 +198,7 @@ def generate(browser: Path, root: Path, *, kind="welcome", source_files=None,
         dependency = obj(role + "Dependency", "PBXTargetDependency", target=app_id, targetProxy=proxy)
         test_config = {
             "PRODUCT_NAME": test_name,
-            "PRODUCT_BUNDLE_IDENTIFIER": f"org.example.classes.swift{kind}." + role + ".uitests",
+            "PRODUCT_BUNDLE_IDENTIFIER": bundle_id + ".uitests",
             "GENERATE_INFOPLIST_FILE": "YES", "TEST_TARGET_NAME": app_name, "CODE_SIGNING_ALLOWED": "NO"
         }
         obj(role + "TestTarget", "PBXNativeTarget", name=test_name, productName=test_name,
@@ -219,7 +224,8 @@ def generate(browser: Path, root: Path, *, kind="welcome", source_files=None,
     '''
         (project / "xcshareddata/xcschemes" / f"{app_name}.xcscheme").write_text(scheme)
         profiles.append({"role": role, "archive": str(archive), "archiveSha256": profile["editedArchiveSha256"],
-                         "files": profile["editedFiles"], "scheme": app_name})
+                         "files": profile["editedFiles"], "scheme": app_name,
+                         "bundleIdentifier": bundle_id})
     group = obj("MainGroup", "PBXGroup", children=sources + [
         obj("Products", "PBXGroup", children=products, name="Products", sourceTree="<group>")
     ], sourceTree="<group>")

@@ -1,10 +1,48 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
+import swiftCapstoneReading from "@/assets/course-guides/swift-capstone.md?raw";
+import swiftGalleryReading from "@/assets/course-guides/swift-gallery.md?raw";
+import swiftHobbyReading from "@/assets/course-guides/swift-hobby.md?raw";
+import swiftMapReading from "@/assets/course-guides/swift-map.md?raw";
 import swiftNetworkingReading from "@/assets/course-guides/swift-networking.md?raw";
+import swiftDataTrackerReading from "@/assets/course-guides/swift-swiftdata.md?raw";
+import swiftTrackerReading from "@/assets/course-guides/swift-tracker.md?raw";
 import swiftWelcomeReading from "@/assets/course-guides/swift-welcome-profile.md?raw";
-import { swiftNetworkingRoot } from "@/modules/swiftProjectResources";
+import {
+	swiftCapstoneRoot,
+	swiftCourseResource,
+	swiftDataTrackerRoot,
+	swiftGalleryRoot,
+	swiftHobbyRoot,
+	swiftMapRoot,
+	swiftNetworkingRoot,
+	swiftTrackerRoot
+} from "@/modules/swiftProjectResources";
 import { buildProjectGuidance } from "./projectGuidance";
 import { buildSupportSectionGuidance } from "./supportSectionGuidance";
 import swiftPriorTitles from "./swift-title-progress-history.json";
+
+const swiftCanonicalWorkspaces = [
+	{
+		pack: "SAD2-Media-Gallery-App",
+		root: swiftGalleryRoot,
+		reading: swiftGalleryReading
+	},
+	{
+		pack: "SAD3-Multi-Tab-Hobby-App",
+		root: swiftHobbyRoot,
+		reading: swiftHobbyReading
+	},
+	{
+		pack: "SAD4-Map-Places-App",
+		root: swiftMapRoot,
+		reading: swiftMapReading
+	},
+	{
+		pack: "SAD7-Publish-Ready-Capstone",
+		root: swiftCapstoneRoot,
+		reading: swiftCapstoneReading
+	}
+];
 
 const introToSwiftAppDevelopmentSourceCourse: RawCourse = {
 	name: "Intro to Swift App Development",
@@ -2215,6 +2253,11 @@ function contextualizeSwiftItem(
 	flow: SwiftCourseModuleFlow,
 	isSupplemental: boolean
 ): RawCourseModuleItem {
+	const canonicalWorkspace = swiftCanonicalWorkspaces.find(workspace =>
+		[item.projectLink, item.solutionLink].some(
+			link => link && swiftCourseResource(link)?.pack === workspace.pack
+		)
+	);
 	const welcomeProject =
 		flow.title === "SW3 SwiftUI Views, Layout, and Modifiers" &&
 		item.title === "Project: Welcome Profile App";
@@ -2225,6 +2268,36 @@ function contextualizeSwiftItem(
 		networkingProject ||
 		(flow.title === "SW12 Networking and Data Loading" &&
 			item.title === "Diagnostic Checkpoint");
+	const trackerProject =
+		flow.title === "SW10 Lists, Forms, and CRUD" &&
+		item.title === "Project: Simple Tracker App";
+	const persistenceProject =
+		flow.title === "SW11 Persistence with SwiftData" &&
+		item.title === "Project Pass: Persist the Simple Tracker App";
+	const trackerWorkspace =
+		trackerProject ||
+		(flow.title === "SW10 Lists, Forms, and CRUD" &&
+			item.title === "Diagnostic Checkpoint");
+	const persistenceWorkspace =
+		persistenceProject ||
+		(flow.title === "SW11 Persistence with SwiftData" &&
+			item.title === "Diagnostic Checkpoint");
+	const workspaceRoot = trackerWorkspace
+		? swiftTrackerRoot
+		: persistenceWorkspace
+			? swiftDataTrackerRoot
+			: networkingWorkspace
+				? swiftNetworkingRoot
+				: (canonicalWorkspace?.root ?? null);
+	const projectReading = trackerProject
+		? swiftTrackerReading
+		: persistenceProject
+			? swiftDataTrackerReading
+			: networkingProject
+				? swiftNetworkingReading
+				: item.title.startsWith("Project:")
+					? (canonicalWorkspace?.reading ?? null)
+					: null;
 	const sourceTopic = flow.sourceTitle.replace(/^SAD\d+\s+/u, "");
 	const diagnosticAliases =
 		item.title === "Diagnostic Checkpoint" &&
@@ -2239,6 +2312,11 @@ function contextualizeSwiftItem(
 	const practiceMatch = isSupplemental
 		? item.title.match(/^(.+?) (Transfer|Extension) Practice$/u)
 		: null;
+	const suppliedCasePractice =
+		Boolean(practiceMatch) &&
+		/\/Swift\/tree\/[^/]+\/SAD-\d{2}-[^/]+\/starter$/u.test(
+			item.projectLink ?? ""
+		);
 	const previousPracticeTitle = practiceMatch
 		? `${practiceMatch[2]} Practice: ${practiceMatch[1]}`
 		: null;
@@ -2251,6 +2329,47 @@ function contextualizeSwiftItem(
 	const completionRoute = isSupplemental
 		? `**Completion route:** Core: ${flow.projectCore} Stretch: ${flow.projectStretch}`
 		: `**Practice route:** Core: ${flow.coreRoute} Stretch: ${flow.stretchRoute}`;
+	const caseToolchain: Record<string, string> = {
+		"networking-and-data-loading-case":
+			"Use bundled nonpersonal JSON for the core case. Optional public HTTPS endpoints must support read-only requests without credentials.",
+		"signing-teams-and-bundle-ids-case":
+			"Use the supplied signing failures to identify the required team role. Live account changes require authorization from that account's owner.",
+		"shapes-and-legacy-reference-case":
+			"Shapes Studio is optional enrichment after the core projects. Legacy Mod* examples support code comparison."
+	};
+	const practiceTask = (
+		item.title.includes("Extension")
+			? flow.projectStretch
+			: flow.projectCore
+	).replace(
+		"when an instructor or account holder must perform the action",
+		"which account role is authorized to perform the action"
+	);
+	const practiceToolchain =
+		caseToolchain[flow.materialSection] ?? flow.boundary;
+	const suppliedCaseReading = `## Assignment
+
+${flow.focus}
+
+${practiceTask}
+
+Use the [supplied ${flow.title} case](${practiceLink}) for its initial data, project map or observed failure.
+
+## Evidence
+
+${flow.verification}
+
+Record the initial condition, expected result, observed result and the evidence supporting the conclusion. A written case analysis records predictions separately from an executed app check.
+
+## Reference
+
+After the attempt, compare the baseline reasoning with the [verification guide](${verificationLink}) and explain how the task changes the expected evidence.
+
+## Toolchain
+
+${practiceToolchain}
+
+[Primary reference](${flow.referenceLink})`;
 	const legacyNote = `The visible ${flow.title} sequence is the active learner order. The source-pack label ${flow.sourceTitle} remains as an alias so established starter, solution, and archive links stay traceable.`;
 
 	return {
@@ -2265,16 +2384,22 @@ function contextualizeSwiftItem(
 				...(priorTitle ? [priorTitle] : [])
 			])
 		],
-		ideImport:
-			welcomeProject || networkingWorkspace ? true : item.ideImport,
-		preserveInstructions: networkingProject
-			? true
-			: item.preserveInstructions,
-		content: welcomeProject
-			? swiftWelcomeReading.trim()
-			: networkingProject
-				? swiftNetworkingReading.trim()
-				: `${item.content.trim()}
+		ideImport: suppliedCasePractice
+			? false
+			: welcomeProject || workspaceRoot
+				? true
+				: item.ideImport,
+		preserveInstructions:
+			suppliedCasePractice || projectReading
+				? true
+				: item.preserveInstructions,
+		content: suppliedCasePractice
+			? suppliedCaseReading
+			: welcomeProject
+				? swiftWelcomeReading.trim()
+				: projectReading
+					? projectReading.trim()
+					: `${item.content.trim()}
 
 **Course position:** ${flow.stage}. ${legacyNote}
 
@@ -2296,13 +2421,17 @@ ${completionRoute}
 				: isExtension
 					? "choice"
 					: "core",
-		projectLink: networkingWorkspace
-			? `${swiftNetworkingRoot}/starter`
-			: (item.projectLink ?? flow.referenceLink),
-		solutionLink: networkingWorkspace
-			? `${swiftNetworkingRoot}/solution`
-			: (item.solutionLink ?? verificationLink),
-		datasetLink: practiceLink,
+		projectLink: suppliedCasePractice
+			? practiceLink
+			: workspaceRoot
+				? `${workspaceRoot}/starter`
+				: (item.projectLink ?? flow.referenceLink),
+		solutionLink: suppliedCasePractice
+			? verificationLink
+			: workspaceRoot
+				? `${workspaceRoot}/solution`
+				: (item.solutionLink ?? verificationLink),
+		datasetLink: suppliedCasePractice ? undefined : practiceLink,
 		mediaLink: item.mediaLink ?? flow.referenceLink
 	};
 }

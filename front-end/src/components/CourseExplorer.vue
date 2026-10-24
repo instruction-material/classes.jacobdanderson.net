@@ -1374,6 +1374,13 @@ function projectLabel(item: CourseModuleItem, url: string) {
 
 function solutionLabel(url: string) {
 	const normalizedUrl = url.toLowerCase();
+	if (
+		normalizedUrl.startsWith(
+			"/course-assets/swift/intro-swift-verification-guide.md#"
+		)
+	) {
+		return "Verification guide";
+	}
 	if (normalizedUrl.startsWith("/ide?")) return "Open reference in IDE";
 
 	if (
@@ -1396,6 +1403,13 @@ function solutionLabel(url: string) {
 
 function datasetLabel(url: string) {
 	const normalizedUrl = url.toLowerCase();
+	if (
+		normalizedUrl.startsWith(
+			"/course-assets/swift/intro-swift-practice-pack.md#"
+		)
+	) {
+		return "Practice case";
+	}
 
 	if (normalizedUrl.includes("/course-assets/apcs/apcs-pacing-tracks.md")) {
 		return "Track guide";
