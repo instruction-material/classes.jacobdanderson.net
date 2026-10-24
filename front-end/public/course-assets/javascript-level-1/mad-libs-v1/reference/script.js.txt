@@ -1,0 +1,26 @@
+// Create your own mad lib by asking the user for any number of nouns, adjectives, verbs, or other types of words. Ask for at least five words. Then, use string concatenation to create a story string containing your entire story. Finally, use the printToScreen function with the story string as input to show off your mad lib with these words filled in!
+
+// Solution
+
+let adjective = prompt("Enter an adjective: ")
+let adjectiveTwo = prompt("Enter another adjective: ")
+let noun = prompt("Enter a noun: ")
+let verb = prompt("Enter a verb: ")
+let verbTwo = prompt("Enter another verb, in past tense: ")
+
+if (adjective === null || adjectiveTwo === null || noun === null || verb === null || verbTwo === null) {
+  console.log("Story canceled.");
+} else if (adjective.trim() === "" || adjectiveTwo.trim() === "" || noun.trim() === "" || verb.trim() === "" || verbTwo.trim() === "") {
+  console.log("Enter a word for each prompt.");
+} else {
+  printToScreen('The cafeteria at our school is very ' + adjective + '. For example, they serve ' + adjectiveTwo + ' pizza. They also serve ' + noun + '. One time, I saw somebody ' + verb + ' across the cafeteria. Everybody ' + verbTwo + '!')
+}
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output")
+    .append("p")
+    .attr("class", "course-output")
+    .text(String(text));
+}

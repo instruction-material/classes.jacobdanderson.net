@@ -1,0 +1,34 @@
+// You and a few friends are baking cookies for a bake sale and need to measure out your ingredients. Each time you make cookies, it takes 3 cups of flour, 2 large eggs, and 4 cups of chocolate chips per batch of cookies. However, your friend Jim has already bought the flour. Use a prompt to ask Jim for how much flour he brought and printToScreen how many eggs and cups of chocolate chips you will need.
+
+// Solution
+
+let flour = prompt("How many cups of flour did Jim buy?");
+
+if (flour === null) {
+  console.log("Recipe canceled.");
+} else if (flour.trim() === "" || !Number.isFinite(+flour) || +flour < 0) {
+  console.log("Enter a nonnegative finite number of cups of flour.");
+} else {
+  let eggs = (+flour / 3) * 2;
+  let chocolate = (+flour / 3) * 4;
+
+
+  /* alternate solution utilizing Math.ceil() for advanced students
+
+  let eggs = Math.ceil((+flour / 3) * 2);
+  let chocolate = Math.ceil((+flour / 3) * 4);
+
+  */
+
+
+  printToScreen("You will need " + eggs + " eggs and " + chocolate + " cups of chocolate chips");
+}
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output")
+    .append("p")
+    .attr("class", "course-output")
+    .text(String(text));
+}

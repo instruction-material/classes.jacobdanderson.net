@@ -116,8 +116,24 @@ const javaLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "Overloaded and Default Constructors",
-					content:
-						"Use overloaded constructors to support different object initialization patterns, compare custom constructors with Java's default constructor, and optionally use `this()` to reduce repeated constructor code."
+					preserveInstructions: true,
+					content: [
+						"**Constructor rules:** For an ordinary class with no constructor declarations, Java supplies a default no-argument constructor. Declaring any constructor removes that automatic constructor. A no-argument constructor written explicitly is a separate overload; constructor overloads differ in their parameter lists.",
+						"",
+						"```java",
+						"class Badge {",
+						"    String name;",
+						'    Badge() { this("Guest"); }',
+						"    Badge(String name) { this.name = name; }",
+						"}",
+						"```",
+						"",
+						'**Trace:** `new Badge().name` is `"Guest"`; `new Badge("Maya").name` is `"Maya"`. In this example, `this("Guest")` delegates to the one-argument constructor. It is the first statement of the delegating constructor.',
+						"",
+						'**Check:** If `Badge()` is removed, `new Badge("Maya")` still compiles, but `new Badge()` does not. The compiler does not add another no-argument constructor while `Badge(String name)` exists.',
+						"",
+						"[Java constructor rules](https://docs.oracle.com/javase/specs/jls/se21/html/jls-8.html#jls-8.8.9)"
+					].join("\n")
 				},
 				{
 					title: "JM2 Project 2: Book Class",
@@ -178,8 +194,27 @@ const javaLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "compareTo Method",
-					content:
-						"Learn how `compareTo()` defines ordering for custom objects and why that ordering enables `Arrays.sort()` to work on arrays of those objects."
+					preserveInstructions: true,
+					content: [
+						"**Ordering rule:** `Comparable<T>` gives objects a natural ordering through `compareTo(T other)`. Return a negative number when this object belongs before `other`, zero when their ordering keys tie, and a positive number when it belongs after. The contract concerns the sign, not an exact return value of -1 or 1.",
+						"",
+						"```java",
+						"class Score implements Comparable<Score> {",
+						"    final int points;",
+						"    Score(int points) { this.points = points; }",
+						"    @Override",
+						"    public int compareTo(Score other) {",
+						"        return Integer.compare(points, other.points);",
+						"    }",
+						"}",
+						"```",
+						"",
+						"**Trace:** Comparing scores 5 and 9 returns a negative number; reversing them returns a positive number; comparing two scores of 5 returns zero. `Arrays.sort()` uses that ordering to place scores in ascending order. `Integer.compare` also handles `Integer.MIN_VALUE` and `Integer.MAX_VALUE` without the overflow that subtraction can cause.",
+						"",
+						"**House project:** Compare price first. Only when that comparison returns zero, compare square footage as the tiebreaker. Use a comparison operation that matches each field's numeric type, such as `Double.compare` for double prices and `Integer.compare` for integer areas. A zero ordering result does not automatically change the class's `equals()` method.",
+						"",
+						"[Comparable contract](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Comparable.html)"
+					].join("\n")
 				}
 			],
 			supplementalProjects: [

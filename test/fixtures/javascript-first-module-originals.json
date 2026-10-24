@@ -1,0 +1,194 @@
+{
+  "resources": [
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "itemId": "javascript-level-1-javascript-superstar-jss1-variables-and-data-types-curriculum-introductions-setup",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/JjGrYOG",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Try out the printToScreen() function by putting \"Hello World\" between the parenthesis\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  \n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 100);\n  \n  svg.append(\"text\")\n    .attr(\"x\", 100)\n    .attr(\"y\", 50)\n    .attr(\"width\", 450)\n    .attr(\"height\", 100);\n\n  svg.selectAll('text')\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"30px\")\n    .attr(\"fill\", \"red\")\n    .attr(\"font-family\", \"Comic Sans\")\n    .attr(\"font-style\", \"italic\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 100);\n  \n}\n"
+      },
+      "sourceSHA256": "1ef834403baeea1c01b60d2b088c6a977f6d61e61f465282c4afced369bbcb2e",
+      "originalDependencyURLs": [
+        "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+      ],
+      "captureFile": "codepen-jss1-JjGrYOG-starter-original-capture-20261024.json"
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "itemId": "javascript-level-1-javascript-superstar-jss1-variables-and-data-types-curriculum-variables-and-data-types",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/eYpBWWX",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// You have come across a piece of code that we will use to highlight the different types in javascript. See what happens when you call printToScreen with a string, a number, a boolean, null, and undefined\n\n// Walk through example below this line\n\n\n\n// Solution\n\n/*\nlet name = \"Ian\";\nlet number = 300;\nlet truth = true;\nlet nothing = null;\nlet confused = undefined;\n\nprintToScreen(name);\nprintToScreen(number);\nprintToScreen(truth);\nprintToScreen(nothing);\nprintToScreen(confused);\n*/\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  \n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 100);\n  \n  svg.append(\"text\")\n    .attr(\"x\", 100)\n    .attr(\"y\", 50)\n    .attr(\"width\", 450)\n    .attr(\"height\", 100);\n  \n  switch (typeof text) {\n    case (\"string\"):\n      svg.selectAll('text')\n        .attr(\"x\", -1000)\n        .attr(\"font-weight\", \"bold\")\n        .attr(\"font-size\", \"30px\")\n        .attr(\"fill\", \"red\")\n        .attr(\"font-family\", \"Comic Sans\")\n        .attr(\"font-style\", \"italic\")\n        .text(text + \" is a string!\")\n        .transition()\n        .duration(1000)\n        .attr(\"x\", 100);\n      break;\n    case (\"number\"):\n      svg.selectAll('text')\n        .attr(\"x\", 3000)\n        .attr(\"font-size\", \"30px\")\n        .attr(\"fill\", \"peru\")\n        .attr(\"font-family\", \"Lato\")\n        .text(text + \" is a number!\")\n        .transition()\n        .duration(1000)\n        .attr(\"x\", 100);\n      break;\n    case (\"boolean\"):\n      svg.selectAll('text')\n        .attr(\"opacity\", 0)\n        .attr(\"font-size\", \"30px\")\n        .attr(\"font-family\", \"Gotu\")\n        .text(text + \" is a boolean!\")\n        .attr(\"fill\", \"green\")\n        .transition()\n        .duration(1000)\n        .attr(\"opacity\", 1);\n      break;\n    case (\"object\"):\n      svg.selectAll('text')\n        .text(\"null is an object!\")\n        .attr(\"font-family\", \"Tangerine\")\n        .attr(\"font-size\", \"48px\")\n        .attr(\"fill\", \"purple\")\n        .attr(\"transform\", \"translate(300,300)\")\n        .transition()\n        .duration(1000)\n        .attr(\"transform\", \"translate(0,0)\")\n      break;\n    case (\"undefined\"):\n      svg.selectAll('text')\n        .text(\"undefined is not an object!\")\n        .attr(\"font-size\", \"72px\")\n        .attr(\"font-family\", \"Bigshot One\")\n        .attr(\"fill\", \"orange\")\n        .transition()\n        .duration(1000)\n        .attr(\"font-size\", \"30px\")\n      break;\n    default:\n      svg.selectAll('text')\n        .attr(\"fill\", \"red\")\n        .text(\"Something went wrong, error! Error!\");\n  }\n  \n}\n"
+      },
+      "sourceSHA256": "59b19cde09a00ca4cc5a63d4850d9d95c1fdb910734972a786ed54db29f72838",
+      "originalDependencyURLs": [
+        "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+      ],
+      "captureFile": "codepen-jss1-eYpBWWX-starter-original-capture-20261024.json"
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "itemId": "javascript-level-1-javascript-superstar-jss1-variables-and-data-types-curriculum-jss1-project-1-welcome-survey",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/OJMxyqw",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Use prompt() to ask the user for their first name in a prompt, and for their last name in another prompt. Print this to the screen. Next, ask your user for two numbers, and print the sum to the console. Finally, ask the user for their favorite food and display the LAST letter of their favorite food as an alert.\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW\n\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor((Math.random() * 255) + 1));\n  let g = Math.floor(Math.floor((Math.random() * 255) + 1));\n  let b = Math.floor(Math.floor((Math.random() * 255) + 1));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"30px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n\n"
+      },
+      "sourceSHA256": "d5e6543169cad57edc8970bf88f2771799c3cf1e08cdd90448a277a590b68ed0",
+      "originalDependencyURLs": [
+        "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+      ],
+      "captureFile": "codepen-welcome-survey-original-visible-source-20261024.json"
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "itemId": "javascript-level-1-javascript-superstar-jss1-variables-and-data-types-curriculum-jss1-project-1-welcome-survey",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/1efb04d2b3e13694f1bf614fef02c22c",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Use prompt() to ask the user for their first name in a prompt, and for their last name in another prompt. Print this to the screen. Next, ask your user for two numbers, and print the sum to the console. Finally, ask the user for their favorite food and display the LAST letter of their favorite food as an alert.\n\n// solution\n\nlet firstName = prompt(\"What's your first name?\");\nlet lastName = prompt(\"What's your last name?\");\nlet firstNum = prompt(\"Give me a number.\");\nlet secondNum = prompt(\"Give me another number.\");\nlet favoriteFood = prompt(\"What is your favorite food?\");\n\nlet sumOfNums = +firstNum + +secondNum;\nprintToScreen(firstName + \" \" + lastName);\nconsole.log(\"The sum of your two numbers is \" + sumOfNums + \".\");\nalert(\"The last letter of your favorite food is \" + favoriteFood[favoriteFood.length - 1] + \".\");\n\n//DO NOT ALTER CODE WRITTEN BELOW\n\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor((Math.random() * 255) + 1));\n  let g = Math.floor(Math.floor((Math.random() * 255) + 1));\n  let b = Math.floor(Math.floor((Math.random() * 255) + 1));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"30px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n\n"
+      },
+      "sourceSHA256": "ec7aee891cb2e005b1c59cbc2fbdcfa240616fe6b00ac7044bec6a243078dbc5",
+      "originalDependencyURLs": [
+        "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+      ],
+      "captureFile": "codepen-welcome-survey-original-visible-source-20261024.json"
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "itemId": "javascript-level-1-javascript-superstar-jss1-variables-and-data-types-curriculum-jss1-project-2-mad-libs",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/qBbPbPp",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Create your own mad lib by asking the user for any number of nouns, adjectives, verbs, or other types of words. Ask for at least five words. Then, use string concatenation to create a story string containing your entire story. Finally, use the printToScreen function with the story string as input to show off your mad lib with these words filled in!\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  \n  let stringLimit = 50;\n  let listOfStrings = [];\n  \n  while (text.length > stringLimit){\n    let builtString = \"\";\n    \n    for(var i = 0; i < stringLimit; i++){\n      builtString += text.slice(0,1);\n      text = text.slice(1, text.length)\n    }\n    \n    let currentChar = text[0];\n    while (currentChar != \" \" && text.length > 1){\n      builtString += text.slice(0,1);\n      text = text.slice(1, text.length)\n      currentChar = text[0];\n    }\n    builtString += text.slice(0,1);\n    text = text.slice(1, text.length)\n    listOfStrings.push(builtString);\n  }\n  if(text.length > 0){\n    listOfStrings.push(text);\n  }\n  \n  console.log(listOfStrings);\n  for (let i = 0; i < listOfStrings.length; i ++){\n    const svg = d3.select(\"body\")\n      .append(\"svg\")\n      .attr(\"width\", 1500)\n      .attr(\"height\", 50);\n\n    svg.append(\"text\")\n      .attr(\"y\", 37.5)\n      .attr(\"width\", 450)\n      .attr(\"height\", 50)\n      .attr(\"x\", -1000)\n      .attr(\"font-weight\", \"bold\")\n      .attr(\"font-size\", \"24px\")\n      .attr(\"fill\", 255,255,255)\n      .attr(\"font-family\", \"Times New Roman\")\n      .text(listOfStrings[i])\n      .transition()\n      .duration(1000)\n      .attr(\"x\", 37.5);\n  }\n  \n}"
+      },
+      "sourceSHA256": "17ed1f066cea2669bfb60fef074fd68bb7b97bcaca0d921111f2d91339ab6a95",
+      "originalDependencyURLs": [
+        "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+      ],
+      "captureFile": "codepen-mad-libs-full-visible-capture-20261024.json"
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "itemId": "javascript-level-1-javascript-superstar-jss1-variables-and-data-types-curriculum-jss1-project-2-mad-libs",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/ce06ca273ecc8c28529261846833d4c1",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Create your own mad lib by asking the user for any number of nouns, adjectives, verbs, or other types of words. Ask for at least five words. Then, use string concatenation to create a story string containing your entire story. Finally, use the printToScreen function with the story string as input to show off your mad lib with these words filled in!\n\n// Solution\n\nlet adjective = prompt(\"Enter an adjective: \")\nlet adjectiveTwo = prompt(\"Enter another adjective: \")\nlet noun = prompt(\"Enter a noun: \")\nlet verb = prompt(\"Enter a verb: \")\nlet verbTwo = prompt(\"Enter another verb, in past tense: \")\n\nprintToScreen('The cafeteria at our school is very ' + adjective + '. For example, they serve ' + adjectiveTwo + ' pizza. They also serve ' + noun + '. One time, I saw somebody ' + verb + ' across the cafeteria. Everybody ' + verbTwo + '!')\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  \n  let stringLimit = 50;\n  let listOfStrings = [];\n  \n  while (text.length > stringLimit){\n    let builtString = \"\";\n    \n    for(var i = 0; i < stringLimit; i++){\n      builtString += text.slice(0,1);\n      text = text.slice(1, text.length)\n    }\n    \n    let currentChar = text[0];\n    while (currentChar != \" \" && text.length > 1){\n      builtString += text.slice(0,1);\n      text = text.slice(1, text.length)\n      currentChar = text[0];\n    }\n    builtString += text.slice(0,1);\n    text = text.slice(1, text.length)\n    listOfStrings.push(builtString);\n  }\n  if(text.length > 0){\n    listOfStrings.push(text);\n  }\n\n  for (let i = 0; i < listOfStrings.length; i ++){\n    const svg = d3.select(\"body\")\n      .append(\"svg\")\n      .attr(\"width\", 1500)\n      .attr(\"height\", 50);\n\n    svg.append(\"text\")\n      .attr(\"y\", 37.5)\n      .attr(\"width\", 450)\n      .attr(\"height\", 50)\n      .attr(\"x\", -1000)\n      .attr(\"font-weight\", \"bold\")\n      .attr(\"font-size\", \"24px\")\n      .attr(\"fill\", 255,255,255)\n      .attr(\"font-family\", \"Times New Roman\")\n      .text(listOfStrings[i])\n      .transition()\n      .duration(1000)\n      .attr(\"x\", 37.5);\n  }\n  \n}"
+      },
+      "sourceSHA256": "e493efa1bafc4b5850b23aa58a44e1471057a654fc543dbdccc35569c432e463",
+      "originalDependencyURLs": [
+        "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+      ],
+      "captureFile": "codepen-mad-libs-full-visible-capture-20261024.json"
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "itemId": "javascript-level-1-javascript-superstar-jss1-variables-and-data-types-supplemental-jss1-supplemental-project-1-cookie-math",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/rNxGxKm",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// You and a few friends are baking cookies for a bake sale and need to measure out your ingredients. Each time you make cookies, it takes 3 cups of flour, 2 large eggs, and 4 cups of chocolate chips per batch of cookies. However, your friend Jim has already bought the flour. Use prompt() to ask Jim for how much flour he brought and printToScreen how many eggs and cups of chocolate chips you will need.\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor((Math.random() * 255) + 1));\n  let g = Math.floor(Math.floor((Math.random() * 255) + 1));\n  let b = Math.floor(Math.floor((Math.random() * 255) + 1));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n\n\n\n\n"
+      },
+      "sourceSHA256": "1d152bd9229ff0fc3ed9e31c94617d4da681210edd7cc64d1ab7995b32f4fc90",
+      "originalDependencyURLs": [
+        "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+      ],
+      "captureFile": "codepen-jss1-rNxGxKm-starter-original-capture-20261024.json"
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "itemId": "javascript-level-1-javascript-superstar-jss1-variables-and-data-types-supplemental-jss1-supplemental-project-1-cookie-math",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/27b890b0097969f24289d9abf77d1392",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// You and a few friends are baking cookies for a bake sale and need to measure out your ingredients. Each time you make cookies, it takes 3 cups of flour, 2 large eggs, and 4 cups of chocolate chips per batch of cookies. However, your friend Jim has already bought the flour. Use a prompt to ask Jim for how much flour he brought and printToScreen how many eggs and cups of chocolate chips you will need.\n\n// Solution\n\nlet flour = prompt(\"How many cups of flour did Jim buy?\");\nlet eggs = (+flour / 3) * 2;\nlet chocolate = (+flour / 3) * 4;\n\n\n/* alternate solution utilizing Math.ceil() for advanced students\n\nlet eggs = Math.ceil((+flour / 3) * 2);\nlet chocolate = Math.ceil((+flour / 3) * 4);\n\n*/\n\n\nprintToScreen(\"You will need \" + eggs + \" eggs and \" + chocolate + \" cups of chocolate chips\");\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor((Math.random() * 255) + 1));\n  let g = Math.floor(Math.floor((Math.random() * 255) + 1));\n  let b = Math.floor(Math.floor((Math.random() * 255) + 1));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n\n\n\n\n"
+      },
+      "sourceSHA256": "4608c1d814d2b770837c32189d3cd202f65149e4ce877b85757f8e73f1cb007d",
+      "originalDependencyURLs": [
+        "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+      ],
+      "captureFile": "codepen-jss1-27b890b0097969f24289d9abf77d1392-reference-original-capture-20261024.json"
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "itemId": "javascript-level-1-javascript-superstar-jss1-variables-and-data-types-supplemental-jss1-supplemental-project-2-hello-world",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/MWKEKPJ",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Using the strings below, use one letter from each string to print out \"Hello World!\". You must use string indexing! (Hint: How can we get a single character out of a string using indexing?)\n\nlet stringOne = \"Hamburger!\";\nlet stringTwo = \"Cheese!\";\nlet stringThree = \"Cauliflower!\";\nlet stringFour = \"Watermelon!\";\nlet stringFive = \"Lemon!\";\nlet stringSix = \"Chick Peas!\";\nlet stringSeven = \"Waffle!\";\nlet stringEight = \"Shallot!\";\nlet stringNine = \"Strawberry!\";\nlet stringTen = \"Blueberry!\";\nlet stringEleven = \"Fondant!\";\nlet stringTwelve = \"Chocolate!\";\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 255) + 1);\n  let g = Math.floor((Math.random() * 255) + 1);\n  let b = Math.floor((Math.random() * 255) + 1);\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"30px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "sourceSHA256": "0a582b1a7902516050d9df9d5526ae2d6078ca3e6856d38f7587ff7a70aa8c13",
+      "originalDependencyURLs": [
+        "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+      ],
+      "captureFile": "codepen-jss1-MWKEKPJ-starter-original-capture-20261024.json"
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "itemId": "javascript-level-1-javascript-superstar-jss1-variables-and-data-types-supplemental-jss1-supplemental-project-2-hello-world",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/36a808fbb70a55e25889b07c74debb6a",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Using the strings below, use one letter from each string to print out \"Hello World!\". Hint: How can we get a single character out of a string using indexing?\n\nlet stringOne = \"Hamburger!\";\nlet stringTwo = \"Cheese!\";\nlet stringThree = \"Cauliflower!\";\nlet stringFour = \"Watermelon!\";\nlet stringFive = \"Lemon!\";\nlet stringSix = \"Chick Peas!\";\nlet stringSeven = \"Waffle!\";\nlet stringEight = \"Shallot!\";\nlet stringNine = \"Strawberry!\";\nlet stringTen = \"Blueberry!\";\nlet stringEleven = \"Fondant!\";\nlet stringTwelve = \"Chocolate!\";\n\n// Solution\n\nprintToScreen(stringOne[0] + stringTwo[2] + stringThree[3] + stringFour[7] + stringFive[3] + stringSix[5] + stringSeven[0] + stringEight[5] + stringNine[2] + stringTen[1] + stringEleven[3] + stringTwelve[stringTwelve.length - 1])\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 255) + 1);\n  let g = Math.floor((Math.random() * 255) + 1);\n  let b = Math.floor((Math.random() * 255) + 1);\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"30px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "sourceSHA256": "6757ad84c339840d38da0fa9911deba67a9b31f59799748b94a3d6866a4101cc",
+      "originalDependencyURLs": [
+        "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+      ],
+      "captureFile": "codepen-jss1-36a808fbb70a55e25889b07c74debb6a-reference-original-capture-20261024.json"
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "itemId": "javascript-level-1-javascript-superstar-jss1-variables-and-data-types-supplemental-jss1-supplemental-project-3-debugging-a-friend-survey",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/VwexoXw",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Your friend, Kant D. Bugg is working on making a survey to collect some information about his friends, but his code isn't working. Can you help fix his code?\n\nname = prompt(\"Please enter your name for the survey\");\n\nprompt(\"Hello \" + name \", thank you for helping fill our my survey! What is your favorite animal?\");\n\ncolor = prompt(\"Wow! The  + animal +  is my favorite animal too. What's your favorite color?\");\n\nflavor = prompt(\"Thanks! My last question is, what is your favorite flavor of ice cream?\");\n\nconsole(name + \"'s favorite animal is \" + animal + \", their favorite color is \" + color + \", and their favorite flavor of ice cream is \" + flavor + \".\");"
+      },
+      "sourceSHA256": "98a956d7588113ddb57f3284d2d545af45953e85a1c8bddeb269b58f22eac207",
+      "originalDependencyURLs": [],
+      "captureFile": "codepen-jss1-VwexoXw-starter-original-capture-20261024.json"
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "itemId": "javascript-level-1-javascript-superstar-jss1-variables-and-data-types-supplemental-jss1-supplemental-project-3-debugging-a-friend-survey",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/a16730b9a6d5bba63389d9e3f5614ab9",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "//Your friend, Kant D. Bugg is working on making a survey to collect some information about his friends, but his code isn't working. Can you help fix his code?\n\nlet name = prompt(\"Please enter your name for the survey\");\n\nlet animal = prompt(\"Hello \" + name + \", thank you for helping fill our my survey! What is your favorite animal?\");\n\nlet color = prompt(\"Wow! The \" + animal + \" is my favorite animal too. What's your favorite color?\");\n\nlet flavor = prompt(\"Thanks! My last question is, what is your favorite flavor of ice cream?\");\n\nconsole.log(name + \"'s favorite animal is a(n) \" + animal + \", their favorite color is \" + color + \", and their favorite flavor of ice cream is \" + flavor + \".\");"
+      },
+      "sourceSHA256": "55d5bc2f3389484b639d5cd611a6456092337e4e4f9093c557790fe31d4169e8",
+      "originalDependencyURLs": [
+        "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+      ],
+      "captureFile": "codepen-jss1-a16730b9a6d5bba63389d9e3f5614ab9-reference-original-capture-20261024.json"
+    }
+  ]
+}

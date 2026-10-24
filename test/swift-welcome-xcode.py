@@ -9,11 +9,11 @@ import zipfile
 
 def generate(browser: Path, root: Path, *, kind="welcome", source_files=None,
              shared_files=("README.md",), ui_template=None, bundle_suffix=None):
-    assert kind in ("welcome", "networking", "tracker", "swiftdata")
+    assert kind in ("welcome", "networking", "tracker", "swiftdata", "gallery", "hobby", "map", "capstone")
     assert kind == "welcome" or ui_template is not None
     assert bundle_suffix is None or re.fullmatch(r"[a-z][a-z0-9-]*", bundle_suffix)
     source_files = source_files or ("ContentView.swift", "WelcomeProfileApp.swift")
-    prefix = {"welcome": "Welcome", "networking": "Networking", "tracker": "Tracker", "swiftdata": "SwiftDataTracker"}[kind]
+    prefix = {"welcome": "Welcome", "networking": "Networking", "tracker": "Tracker", "swiftdata": "SwiftDataTracker", "gallery": "MediaGallery", "hobby": "Hobby", "map": "MapPlaces", "capstone": "Capstone"}[kind]
     B = browser.resolve()
     proof = json.loads((B / f"swift-swift-{kind}-course-proof.json").read_text())
     assert len(proof["profiles"]) == 4

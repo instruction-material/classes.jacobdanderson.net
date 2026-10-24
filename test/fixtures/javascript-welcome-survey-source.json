@@ -1,0 +1,98 @@
+{
+  "version": 2,
+  "id": "welcome-survey",
+  "courseId": "javascript-level-1-javascript-superstar",
+  "sourceCapture": "codepen-welcome-survey-original-visible-source-20261024.json",
+  "sourcePanelHashes": {
+    "starter": "d5e6543169cad57edc8970bf88f2771799c3cf1e08cdd90448a277a590b68ed0",
+    "reference": "ec7aee891cb2e005b1c59cbc2fbdcfa240616fe6b00ac7044bec6a243078dbc5"
+  },
+  "libraryVersion": "5.16.0",
+  "librarySHA256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c",
+  "sourceURL": {
+    "starter": "https://codepen.io/junilearning/pen/OJMxyqw",
+    "reference": "https://codepen.io/junilearning/pen/1efb04d2b3e13694f1bf614fef02c22c"
+  },
+  "files": {
+    "starter": [
+      {
+        "name": "index.html",
+        "path": "welcome-survey-v2/starter/index.html.txt",
+        "byteLength": 350,
+        "sha256": "ce8cd7c4dfe095c88ad96c9b821961ae42e42865a70f031cd60536873ad488f1"
+      },
+      {
+        "name": "script.js",
+        "path": "welcome-survey-v2/starter/script.js.txt",
+        "byteLength": 525,
+        "sha256": "75b265a42179e8160f3dd9ef72c008c51cf51491a04126e046beaacbc157df8c"
+      },
+      {
+        "name": "styles.css",
+        "path": "welcome-survey-v2/starter/styles.css.txt",
+        "byteLength": 218,
+        "sha256": "02a4140873461fd5beb6f0f00da0c825a4e148c7b925b03152552d952d3f0680"
+      },
+      {
+        "name": "README.md",
+        "path": "welcome-survey-v2/starter/README.md.txt",
+        "byteLength": 707,
+        "sha256": "f2a557668c928777f8c201511badaddc0981a201b01596d110a0409303aa349b"
+      },
+      {
+        "name": "vendor/d3.min.js",
+        "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+        "byteLength": 248314,
+        "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+      },
+      {
+        "name": "LICENSE-d3.txt",
+        "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+        "byteLength": 1475,
+        "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+      }
+    ],
+    "reference": [
+      {
+        "name": "index.html",
+        "path": "welcome-survey-v2/reference/index.html.txt",
+        "byteLength": 350,
+        "sha256": "ce8cd7c4dfe095c88ad96c9b821961ae42e42865a70f031cd60536873ad488f1"
+      },
+      {
+        "name": "script.js",
+        "path": "welcome-survey-v2/reference/script.js.txt",
+        "byteLength": 1513,
+        "sha256": "999535c1892b079f452b970ce37b779c19ed883ff1e987f45ef39348fc089775"
+      },
+      {
+        "name": "styles.css",
+        "path": "welcome-survey-v2/reference/styles.css.txt",
+        "byteLength": 218,
+        "sha256": "02a4140873461fd5beb6f0f00da0c825a4e148c7b925b03152552d952d3f0680"
+      },
+      {
+        "name": "README.md",
+        "path": "welcome-survey-v2/reference/README.md.txt",
+        "byteLength": 969,
+        "sha256": "2e8089616812233c701a513c09b6ea167f984c65a599afd65a1c6de21f249edb"
+      },
+      {
+        "name": "vendor/d3.min.js",
+        "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+        "byteLength": 248314,
+        "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+      },
+      {
+        "name": "LICENSE-d3.txt",
+        "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+        "byteLength": 1475,
+        "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+      }
+    ]
+  },
+  "revision": "fcfeb125f5af1949a15211cf211a4089d7dfb80c2a689845189b32b5504de65c",
+  "revisionKind": "SHA-256 of the complete selected-role file manifests, not a Git commit",
+  "itemId": "javascript-level-1-javascript-superstar-jss1-variables-and-data-types-curriculum-jss1-project-1-welcome-survey",
+  "sourceChanges": "Supplied helper renders wrapping paragraphs; authored starter exercise section retained and v1 work remains separately keyed."
+}

@@ -16,7 +16,6 @@ import {
 } from "@/modules/pythonIde";
 import { swiftBuildInstructions } from "@/modules/swiftBuildInstructions";
 import {
-	swiftCanonicalProjectsRevision,
 	swiftCapstoneRoot,
 	swiftCourseProjectKey,
 	swiftCourseResource,
@@ -73,9 +72,29 @@ afterEach(async () => {
 });
 
 describe("canonical Swift app workspaces", () => {
+	it.each([
+		"18bb2a5055a144cf545fa416f6bde6f00e863f36",
+		"58d17abb7a09185558a74c44f0ba2e43a18f42c2"
+	])("retains the earlier Hobby source at %s", revision => {
+		const url = `https://github.com/instruction-material/Swift/tree/${revision}/SAD3-Multi-Tab-Hobby-App/solution`;
+		expect(swiftCourseResource(url)?.revision).toBe(revision);
+		expect(
+			swiftCourseResource(`${swiftHobbyRoot}/solution`)?.revision
+		).not.toBe(revision);
+	});
+	it.each([
+		"18bb2a5055a144cf545fa416f6bde6f00e863f36",
+		"58d17abb7a09185558a74c44f0ba2e43a18f42c2"
+	])("retains the earlier Capstone source at %s", revision => {
+		const url = `https://github.com/instruction-material/Swift/tree/${revision}/SAD7-Publish-Ready-Capstone/starter`;
+		expect(swiftCourseResource(url)?.revision).toBe(revision);
+		expect(
+			swiftCourseResource(`${swiftCapstoneRoot}/starter`)?.revision
+		).not.toBe(revision);
+	});
 	it.each(projects)(
 		"keeps the $name lesson's identity, source and complete instructions",
-		async (project) => {
+		async project => {
 			setActivePinia(createPinia());
 			const course = (await useCoursesStore().loadCourseById(
 				"intro-to-swift-app-development"
@@ -114,7 +133,9 @@ describe("canonical Swift app workspaces", () => {
 			expect(source.content).not.toMatch(
 				/your (?:student|instructor)|Julio/i
 			);
-			expect(fixture.revision).toBe(swiftCanonicalProjectsRevision);
+			expect(fixture.revision).toBe(
+				swiftCourseResource(`${project.root}/starter`)?.revision
+			);
 			for (const file of Object.values(fixture.files) as {
 				content: string;
 				sha256: string;
@@ -146,7 +167,7 @@ describe("canonical Swift app workspaces", () => {
 			`${
 				project.name
 			}: preserves a complete %s role through edit, reopen and ZIP export`,
-			async (role) => {
+			async role => {
 				const fixture = fixtureFor(project.name);
 				const requests: string[] = [];
 				vi.stubGlobal(
@@ -154,8 +175,8 @@ describe("canonical Swift app workspaces", () => {
 					vi.fn(async (input: string | URL) => {
 						const url = String(input);
 						requests.push(url);
-						const file
-							= fixture.files[
+						const file =
+							fixture.files[
 								url.split(`/${fixture.revision}/`)[1]
 							];
 						return new Response(file?.content ?? "missing", {
@@ -215,8 +236,8 @@ describe("canonical Swift app workspaces", () => {
 					courseID: "intro-to-swift-app-development"
 				});
 				const earlierBytes = JSON.stringify(earlier);
-				attempt.files[0].content
-					+= "\n// Retained canonical project observation\n";
+				attempt.files[0].content +=
+					"\n// Retained canonical project observation\n";
 				saveLocalPythonProjects([earlier, attempt]);
 				const reopened = loadLocalPythonProjects();
 				expect(

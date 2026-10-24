@@ -1,0 +1,36 @@
+// You have come across a piece of code that we will use to highlight the different types in javascript. See what happens when you call printToScreen with a string, a number, a boolean, null, and undefined
+
+// Walk through example below this line
+
+
+
+// Solution
+
+/*
+let name = "Ian";
+let number = 300;
+let truth = true;
+let nothing = null;
+let confused = undefined;
+
+printToScreen(name);
+printToScreen(number);
+printToScreen(truth);
+printToScreen(nothing);
+printToScreen(confused);
+*/
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  let description;
+  if (text === null) {
+    description = 'null is a primitive value; typeof null returns "object".';
+  } else {
+    description = String(text) + ' has type "' + typeof text + '".';
+  }
+  d3.select("#output")
+    .append("p")
+    .attr("class", "course-output")
+    .text(description);
+}

@@ -550,6 +550,8 @@ const imageSurfaceMemberCompletions = [
 const soundMemberCompletions = [
 	completion("play", "method", "play the sound effect"),
 	completion("stop", "method", "stop the sound effect"),
+	completion("set_volume", "method", "set sound volume from zero to one"),
+	completion("get_volume", "method", "current sound volume"),
 	completion("get_length", "method", "sound length in seconds")
 ];
 

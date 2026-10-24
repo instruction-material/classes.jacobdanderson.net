@@ -1,0 +1,15 @@
+//Your friend, Kant D. Bugg is working on making a survey to collect some information about his friends, but his code isn't working. Can you help fix his code?
+
+let name = prompt("Please enter your name for the survey");
+
+let animal = prompt("Hello " + name + ", thank you for helping fill our my survey! What is your favorite animal?");
+
+let color = prompt("Wow! The " + animal + " is my favorite animal too. What's your favorite color?");
+
+let flavor = prompt("Thanks! My last question is, what is your favorite flavor of ice cream?");
+
+if (name === null || animal === null || color === null || flavor === null) {
+  console.log("Survey canceled.");
+} else {
+  console.log(name + "'s favorite animal is a(n) " + animal + ", their favorite color is " + color + ", and their favorite flavor of ice cream is " + flavor + ".");
+}

@@ -27,6 +27,10 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 	const primaryFile = definition.primaryFile ?? "routine.S";
 	const taskFile = definition.taskFile ?? "trace.md";
 	const initialFile = definition.initialFile ?? primaryFile;
+	const roles = definition.roles ?? ["starter", "solution"];
+	assert.ok(roles.length >= 1 && roles.length <= 2);
+	assert.equal(new Set(roles).size, roles.length);
+	assert.ok(roles.every(role => ["starter", "solution"].includes(role)));
 	const digest = value => createHash("sha256").update(value).digest("hex");
 	async function savedProjects(page) {
 		return page.evaluate(
@@ -62,8 +66,8 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 						transaction.onerror = transaction.onabort = () => {
 							database.close();
 							reject(
-								transaction.error ??
-									new Error("Primary store read failed")
+								transaction.error
+								?? new Error("Primary store read failed")
 							);
 						};
 					};
@@ -85,15 +89,14 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 			if (!(await page.$(card))) continue;
 			const href = await page.$eval(
 				card,
-				(element, role) =>
+				(element, { role, sourceUrl }) =>
 					[...element.querySelectorAll("a.is-ide-starter")]
-						.find(link =>
-							new URL(link.href).searchParams
-								.get("starterUrl")
-								?.endsWith(`/${role}`)
-						)
+						.find((link) => {
+							const source = new URL(link.href).searchParams.get("starterUrl");
+							return sourceUrl ? source === sourceUrl : source?.endsWith(`/${role}`);
+						})
 						?.getAttribute("href"),
-				role
+				{ role, sourceUrl: definition.sourceUrl?.(role) }
 			);
 			if (href) {
 				return {
@@ -147,12 +150,15 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 
 	let server, browser, context;
 	let outcome = "failed";
-	const taskId =
-		process.env.CLASSES_FAMILY_TASK_ID ??
-		`${mode}-${definition.kind}-course-ci`;
+	const taskId
+		= process.env.CLASSES_FAMILY_TASK_ID
+			?? `${mode}-${definition.kind}-course-ci`;
 	const startedAt = new Date().toISOString();
-	const output =
-		process.env[definition.outputEnv] ?? definition.defaultOutput;
+	const outputBase
+		= process.env[definition.outputEnv] ?? definition.defaultOutput;
+	const output = definition.outputSubdirectory
+		? join(outputBase, definition.outputSubdirectory)
+		: outputBase;
 	const screenshots = process.env.COURSE_IMPORT_SCREENSHOT_DIR;
 	const profiles = [];
 	const cleanup = async () => {
@@ -213,24 +219,24 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 			args: ["--no-sandbox"]
 		});
 		for (const width of [390, 1280]) {
-			for (const role of ["starter", "solution"]) {
+			for (const role of roles) {
 				const continuationIDs = definition.continuationsByRole?.[
 					role
-				] ??
-					definition.continuationIDs ?? [definition.traceID];
+				]
+				?? definition.continuationIDs ?? [definition.traceID];
 				const selectedFileName = name =>
-					definition.flatFiles ||
-					(definition.sharedFiles ?? ["README.md"]).includes(name)
+					definition.flatFiles
+					|| (definition.sharedFiles ?? ["README.md"]).includes(name)
 						? name
 						: `${role}/${name}`;
 				const sourceFileName = name =>
-					definition.flatFiles &&
-					!(definition.sharedFiles ?? ["README.md"]).includes(name)
+					definition.flatFiles
+					&& !(definition.sharedFiles ?? ["README.md"]).includes(name)
 						? `${role}/${name}`
 						: name;
-				const key =
-					definition.projectKey?.(role) ??
-					`${courseID}:${coreID}:${role === "starter" ? "starter" : "reference"}:native-${mode}`;
+				const key
+					= definition.projectKey?.(role)
+						?? `${courseID}:${coreID}:${role === "starter" ? "starter" : "reference"}:native-${mode}`;
 				const earlier = definition.previousProject?.(role) ?? {
 					_id: "earlier-record-attempt",
 					title: "Earlier work",
@@ -282,7 +288,7 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 								);
 							}
 							const create = URL.createObjectURL;
-							URL.createObjectURL = blob => {
+							URL.createObjectURL = (blob) => {
 								if (blob.type === "application/zip")
 									window.__recordArchive = blob;
 								return create(blob);
@@ -290,8 +296,8 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 							const click = HTMLAnchorElement.prototype.click;
 							HTMLAnchorElement.prototype.click = function () {
 								if (
-									this.download.endsWith(".zip") &&
-									this.href.startsWith("blob:")
+									this.download.endsWith(".zip")
+									&& this.href.startsWith("blob:")
 								) {
 									return;
 								}
@@ -302,19 +308,30 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 						earlier
 					);
 					await page.setRequestInterception(true);
-					page.on("request", request => {
+					page.on("request", (request) => {
 						const url = new URL(request.url());
-						if (url.hostname === "raw.githubusercontent.com") {
+						if (definition.localSource && url.origin === origin && url.pathname.startsWith(definition.localSource.prefix)) {
+							const path = url.pathname.slice(definition.localSource.prefix.length);
+							const file = definition.localSource.files(role).find(file => file.path === path);
+							requests.push(file?.name ?? path);
+							if (!file || request.method() !== "GET") {
+								void request.respond({ status: 404, body: "Unknown source" });
+							}
+							else {
+								void request.continue();
+							}
+						}
+						else if (url.hostname === "raw.githubusercontent.com") {
 							const prefix = `/instruction-material/${sourceRepository}/${fixture.revision}/${fixture.pack}/`;
 							const name = decodeURIComponent(
 								url.pathname.slice(prefix.length)
 							);
-							const file =
-								url.pathname.startsWith(prefix) &&
-								((
-									definition.sharedFiles ?? ["README.md"]
-								).includes(name) ||
-									name.startsWith(`${role}/`))
+							const file
+								= url.pathname.startsWith(prefix)
+									&& ((
+										definition.sharedFiles ?? ["README.md"]
+									).includes(name)
+									|| name.startsWith(`${role}/`))
 									? fixture.files[`${fixture.pack}/${name}`]
 									: null;
 							requests.push(name);
@@ -326,9 +343,10 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 								},
 								body: file?.content ?? "Unknown source"
 							});
-						} else if (
-							url.origin !== origin ||
-							url.pathname.startsWith("/api/")
+						}
+						else if (
+							url.origin !== origin
+							|| url.pathname.startsWith("/api/")
 						) {
 							if (
 								!["GET", "OPTIONS"].includes(request.method())
@@ -337,30 +355,30 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 							}
 							let body = {};
 							if (
-								catalog &&
-								url.pathname === "/api/accounts/me"
+								catalog
+								&& url.pathname === "/api/accounts/me"
 							) {
-								body =
-									role === "starter"
+								body
+									= role === "starter"
 										? { userID: learner._id }
 										: { tutorID: tutor._id };
 							}
 							if (
-								catalog &&
-								url.pathname === "/api/users/loggedin"
+								catalog
+								&& url.pathname === "/api/users/loggedin"
 							) {
 								body = { currentUser: learner };
 							}
 							if (
-								catalog &&
-								url.pathname === "/api/tutors/loggedin"
+								catalog
+								&& url.pathname === "/api/tutors/loggedin"
 							) {
 								body = { currentTutor: tutor };
 							}
 							if (
-								catalog &&
-								url.pathname ===
-									`/api/users/oftutor/${tutor._id}`
+								catalog
+								&& url.pathname
+								=== `/api/users/oftutor/${tutor._id}`
 							) {
 								body = [learner];
 							}
@@ -369,7 +387,8 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 								contentType: "application/json",
 								body: JSON.stringify(body)
 							});
-						} else {
+						}
+						else {
 							void request.continue();
 						}
 					});
@@ -379,7 +398,7 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 					assert.equal(params.get("mode"), mode);
 					assert.equal(
 						params.get("starterUrl"),
-						`https://github.com/instruction-material/${sourceRepository}/tree/${fixture.revision}/${fixture.pack}/${role}`
+						definition.sourceUrl?.(role) ?? `https://github.com/instruction-material/${sourceRepository}/tree/${fixture.revision}/${fixture.pack}/${role}`
 					);
 					assert.equal(requests.length, 0);
 					catalog = false;
@@ -417,8 +436,8 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 					assert.deepEqual(
 						requests
 							.map(name =>
-								definition.flatFiles &&
-								name.startsWith(`${role}/`)
+								definition.flatFiles
+								&& name.startsWith(`${role}/`)
 									? name.slice(role.length + 1)
 									: name
 							)
@@ -428,11 +447,12 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 					for (const file of saved.files) {
 						assert.equal(
 							digest(file.content),
-							fixture.files[
+							(definition.expectedFile?.(role, file.name) ?? fixture.files[
 								`${fixture.pack}/${sourceFileName(file.name)}`
-							].sha256
+							]).sha256
 						);
 					}
+					const workflowEvidence = await definition.afterImport?.(page, { role, width, earlier, saved });
 					const exact = await archive(page);
 					checkArchive(exact, saved.files);
 					await writeFile(join(output, `${name}-exact.zip`), exact);
@@ -443,7 +463,8 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 						token =>
 							document
 								.querySelector(".output-panel")
-								?.textContent.includes(token),
+								?.textContent
+								.includes(token),
 						{},
 						definition.readyToken
 					);
@@ -481,7 +502,8 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 							text =>
 								document
 									.querySelector(".cm-content")
-									?.textContent.includes(text),
+									?.textContent
+									.includes(text),
 							{},
 							saved.files
 								.find(file => file.name === filename)
@@ -494,8 +516,8 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 						const note = /\.(?:S|rs|m?js|swift)$/.test(filename)
 							? `\n/* Independent ${definition.kind} observation ${width} */\n`
 							: `\n# Independent ${definition.kind} observation ${width}\n`;
-						const content =
-							saved.files.find(file => file.name === filename)
+						const content
+							= saved.files.find(file => file.name === filename)
 								.content + note;
 						edits[filename] = content;
 						await page.keyboard.down(modifier);
@@ -565,11 +587,10 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 							links
 								.find(
 									link =>
-										link.textContent.trim() ===
-										"Return to lesson"
+										link.textContent.trim()
+										=== "Return to lesson"
 								)
-								?.getAttribute("href")
-						);
+								?.getAttribute("href"));
 						assert.equal(
 							returnHref,
 							`/courses#${moduleID}-${itemID}`
@@ -596,14 +617,21 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 					);
 					const old = projects.find(p => p._id === earlier._id);
 					assert.ok(old);
-					for (const [name, value] of Object.entries(earlier))
-						assert.deepEqual(old[name], value);
+					for (const [name, value] of Object.entries(earlier)) {
+						if (name === "updatedAt" && workflowEvidence?.olderVersionOpenedWithoutImport) {
+							// Opening the saved version updates recency, while its content and identity stay unchanged.
+							assert.ok(Date.parse(old[name]) >= Date.parse(value));
+						}
+						else {
+							assert.deepEqual(old[name], value);
+						}
+					}
 					assert.equal(remoteWrites, 0);
 					assert.ok(
 						await page.evaluate(
 							() =>
-								document.documentElement.scrollWidth <=
-								innerWidth
+								document.documentElement.scrollWidth
+								<= innerWidth
 						)
 					);
 					if (screenshots) {
@@ -619,6 +647,8 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 						role,
 						width,
 						revision: fixture.revision,
+						...(workflowEvidence ? { workflowEvidence } : {}),
+						...(definition.localSource ? { sourceKind: "versioned-course-assets", revisionKind: fixture.revisionKind } : {}),
 						key,
 						coreAction: core.href,
 						worksheetAction: trace?.href ?? null,
@@ -644,7 +674,8 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 						nativeInstructions: true,
 						remoteWrites
 					});
-				} catch (error) {
+				}
+				catch (error) {
 					await page
 						.screenshot({
 							path: join(output, `${name}-failed.png`),
@@ -665,20 +696,22 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 						)
 					);
 					throw error;
-				} finally {
+				}
+				finally {
 					await page.close();
 					await context.close();
 					context = null;
 				}
 			}
 		}
-		assert.equal(profiles.length, 4);
+		assert.equal(profiles.length, roles.length * 2);
 		await writeFile(
 			join(output, `${mode}-${definition.kind}-course-proof.json`),
 			`${JSON.stringify({ profiles }, null, 2)}\n`
 		);
 		outcome = "passed";
-	} finally {
+	}
+	finally {
 		await cleanup();
 		console.log(
 			JSON.stringify({

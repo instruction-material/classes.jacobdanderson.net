@@ -957,8 +957,28 @@ const apComputerScienceASourceCourse: RawCourse = {
 				},
 				{
 					title: "Mutation, Traversal, and Removal Rules",
-					content:
-						"The core rule is when enhanced `for` loops are appropriate, when index-based loops are safer, and why removal during enhanced iteration breaks."
+					preserveInstructions: true,
+					content: [
+						"**Traversal rule:** An enhanced `for` loop is useful for reading each element when indexes are unnecessary. Assigning a new value to its loop variable does not replace the element in the list; use `set(index, value)` for replacement. Adding or removing elements directly through the list during enhanced traversal is unsafe: its iterator can report a `ConcurrentModificationException`. Correctness must not depend on that exception being thrown.",
+						"",
+						"**Removal example:** With `import java.util.ArrayList;` and `import java.util.Arrays;`, this code removes every even value, including adjacent matches:",
+						"",
+						"```java",
+						"ArrayList<Integer> values = new ArrayList<>(Arrays.asList(1, 2, 2, 3));",
+						"for (int i = values.size() - 1; i >= 0; i--) {",
+						"    if (values.get(i) % 2 == 0) {",
+						"        values.remove(i);",
+						"    }",
+						"}",
+						"System.out.println(values); // [1, 3]",
+						"```",
+						"",
+						"**Index trace:** Removing index 2 leaves `[1, 2, 3]`; removing index 1 then leaves `[1, 3]`. Traversing backward keeps the still-unvisited indexes valid. A forward loop that always increments after removal skips the element shifted into the removed position. For `ArrayList<Integer>`, `remove(i)` with an int argument removes an index; `remove(Integer.valueOf(2))` removes the first matching value.",
+						"",
+						"**Check:** Trace no matches, adjacent matches, all matches and an empty list before running the code.",
+						"",
+						"[ArrayList operations and iterator contract](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html)"
+					].join("\n")
 				},
 				{
 					title: "Core Project: Practice With ArrayLists",

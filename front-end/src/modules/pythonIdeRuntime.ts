@@ -170,6 +170,8 @@ export interface GameBridge {
 	stopLoop: () => void;
 	playSound: (name: string, loops?: number) => void;
 	stopSound: (name: string) => void;
+	setSoundVolume: (name: string, volume: number) => void;
+	getSoundVolume: (name: string) => number;
 	playMusic: (name: string, loop?: boolean) => void;
 	pauseMusic: () => void;
 	unpauseMusic: () => void;
@@ -4362,6 +4364,13 @@ class _Sound:
     def stop(self):
         _bridge.stopSound(self.name)
         return None
+
+    def set_volume(self, volume):
+        _bridge.setSoundVolume(self.name, float(volume))
+        return None
+
+    def get_volume(self):
+        return float(_bridge.getSoundVolume(self.name))
 
     def get_length(self):
         return 0.0

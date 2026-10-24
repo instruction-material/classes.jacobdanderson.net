@@ -278,7 +278,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				{
 					title: "Variables and Data Types",
 					content:
-						'Use let and const for numbers, strings, booleans, null and undefined. Assign values, use printToScreen(), explain comments, and show converting string numbers with a leading +. Compare "1" + "1" to 1 + 1.',
+						'Use `let` for a binding that can be reassigned and `const` for one that cannot. Store numbers, strings and booleans, then display them with `printToScreen()`. After `let value;`, `value` is `undefined`. `null` is a primitive value used to represent an intentional absence; `typeof null` returns "object", so test for it with `value === null`. Explain comments and convert a numeric string with a leading `+`. Compare "1" + "1" with 1 + 1.',
 					projectLink: "https://codepen.io/junilearning/pen/eYpBWWX"
 				},
 				{
@@ -372,7 +372,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				{
 					title: "JSS2 Project 3: What's the Password?",
 					content:
-						"Compute a numeric password from a sequence of math steps involving `Math.PI`, powers, addition, division with `Math.floor()`, and modulo. Keep each step in a named variable or clearly separated line so the password can be traced and checked. Print the final result with `printToScreen()` after verifying the intermediate values.",
+						"Start with `Math.PI`, multiply by 6 to the eighth power, then add 11. Divide by 3 and round down with `Math.floor()`, then find the remainder after division by `Math.PI`. Keep each step on a separate line, trace the intermediate values, and pass the final number to `printToScreen()`.",
 					projectLink: "https://codepen.io/junilearning/pen/PoZJNXb",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/c550ef1e284c55fa01964589bf19b21c"
@@ -382,7 +382,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				{
 					title: "JSS2 Supplemental Project 1: Pie Eating Contest",
 					content:
-						"Prompt for the starting number of pies, randomly choose how many pies one contestant eats from 1 through 5, and recalculate how many pies remain for the other contestants. Print the starting amount, amount eaten, remaining amount, and leftovers after division so the arithmetic story is easy to follow.",
+						"Distribute a non-negative whole number of donated pies equally among four contestants, giving only whole pies. Prompt for the starting total, calculate each contestant's share and the leftover count, then print all three values. Test zero pies, a total divisible by four, and a total with leftovers.",
 					projectLink: "https://codepen.io/junilearning/pen/jOWGqJZ",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/a9612fb435c5e334490c1eeb72e9c567"

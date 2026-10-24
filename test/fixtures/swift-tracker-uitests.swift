@@ -27,12 +27,21 @@ final class TrackerUITests: XCTestCase {
     @MainActor
     private func replace(_ field: XCUIElement, with value: String, in app: XCUIApplication) {
         field.tap()
-        // Tracker titles are a single paragraph; select it using the native gesture.
-        field.tap(withNumberOfTaps: 3, numberOfTouches: 1)
-        field.typeText(XCUIKeyboardKey.delete.rawValue)
         let isCleared = {
             let text = field.value as? String ?? ""
             return text.isEmpty || text == field.placeholderValue
+        }
+        // Native selection may cover one word rather than the whole title.
+        for _ in 0..<8 {
+            if isCleared() { break }
+            let before = field.value as? String ?? ""
+            field.tap(withNumberOfTaps: 3, numberOfTouches: 1)
+            field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue,
+                                  count: max(1, before.count)))
+            if !isCleared() {
+                XCTAssertLessThan((field.value as? String ?? "").count, before.count,
+                                  "Native deletion must make progress")
+            }
         }
         XCTAssertTrue(isCleared(), "The existing edit text must be cleared through the native editor")
         if !value.isEmpty {

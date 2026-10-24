@@ -1223,6 +1223,50 @@ jobs:
                   if-no-files-found: error
                   retention-days: 7
 
+            - name: Verify JavaScript survey consent, saved roles and exports
+              env:
+                  JAVASCRIPT_SURVEY_BROWSER_DIR: output/javascript-survey-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-survey-screenshots
+              run: node --test test/javascript-welcome-survey-course-browser.test.mjs
+
+            - name: Run actual exported JavaScript survey files offline
+              env:
+                  JAVASCRIPT_SURVEY_BROWSER_DIR: output/javascript-survey-browser
+              run: node --test test/javascript-survey-exported-browser.test.mjs
+
+            - name: Retain JavaScript survey source and native browser evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-survey-workflows
+                  path: |
+                      output/javascript-survey-browser/
+                      output/javascript-survey-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify the remaining first JavaScript module course imports
+              env:
+                  JAVASCRIPT_FIRST_MODULE_BROWSER_DIR: output/javascript-first-module-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-first-module-screenshots
+              run: node --test test/javascript-first-module-course-browser.test.mjs
+
+            - name: Run first-module JavaScript exports offline
+              env:
+                  JAVASCRIPT_FIRST_MODULE_BROWSER_DIR: output/javascript-first-module-browser
+              run: node --test test/javascript-first-module-exported-browser.test.mjs
+
+            - name: Retain first-module JavaScript source and browser evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-first-module-workflows
+                  path: |
+                      output/javascript-first-module-browser/
+                      output/javascript-first-module-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
             - name: Verify Network Systems foundation imports and notebook reuse
               env:
                   NETWORK_BROWSER_EXPORT_PROOF_DIR: output/network-exports
@@ -1322,6 +1366,9 @@ jobs:
 
             - name: Verify isolated native tracker variant identities
               run: python3 test/swift-tracker-project-identity.py
+
+            - name: Verify selected native course roles and variant identities
+              run: python3 test/swift-canonical-project-identity.py
 
             - name: Verify Swift networking consent, saved roles and seven-file exports
               env:
@@ -1459,7 +1506,7 @@ jobs:
                   PY
 
             - name: Compile downloaded Swift ZIPs and test both source roles on two iPhone sizes
-              run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-welcome-exported-ios.py --browser output/swift-welcome-workflows/swift-welcome-browser --proof output/swift-welcome-ios/proof.json
+              run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-welcome-exported-ios.py --extended-welcome --browser output/swift-welcome-workflows/swift-welcome-browser --proof output/swift-welcome-ios/proof.json
 
             - name: Retain native Swift versions, process logs and UI results
               if: always()
@@ -1472,6 +1519,7 @@ jobs:
                       output/swift-welcome-ios/processes.jsonl
                       output/swift-welcome-ios/logs/
                       output/swift-welcome-ios/results/
+                      output/swift-welcome-ios/**/inputs.json
                   if-no-files-found: error
                   retention-days: 7
 
@@ -1550,6 +1598,85 @@ jobs:
                   if-no-files-found: error
                   retention-days: 7
 
+    swift-canonical-ios:
+        needs: swift-browser
+        strategy:
+            fail-fast: false
+            max-parallel: 1
+            matrix:
+                course: [gallery, hobby, map, capstone]
+        runs-on: macos-26
+        timeout-minutes: 60
+        permissions:
+            contents: read
+            actions: read
+        env:
+            SWIFT_COURSE: ${{ matrix.course }}
+            CLASSES_FAMILY_TASK_ID: swift-canonical-ios-${{ matrix.course }}
+            CLASSES_FAMILY_MIN_DISK_GB: 8
+            CLASSES_FAMILY_HEAVY_TIMEOUT_MS: 3300000
+        steps:
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+              with:
+                  persist-credentials: false
+
+            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+              with:
+                  node-version: 24.18.0
+
+            - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+              with:
+                  name: swift-canonical-workflows
+                  path: output/swift-canonical-workflows
+
+            - name: Wait for the hosted Mac to settle within the native load limit
+              run: |
+                  python3 - <<'PY'
+                  import datetime
+                  import json
+                  import os
+                  from pathlib import Path
+                  import time
+
+                  proof = Path(os.environ["RUNNER_TEMP"]) / "swift-canonical-ios/runner-readiness.json"
+                  proof.parent.mkdir(parents=True, exist_ok=True)
+                  samples = []
+                  deadline = time.monotonic() + 600
+                  while True:
+                      load = os.getloadavg()[0]
+                      samples.append({"at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "load": load})
+                      ready = load <= 8
+                      proof.write_text(json.dumps({"ready": ready, "maximumLoad": 8, "samples": samples}, indent=2) + "\n")
+                      print(f"Hosted Mac load: {load:.2f}; required maximum: 8", flush=True)
+                      if ready:
+                          break
+                      if time.monotonic() >= deadline:
+                          raise SystemExit("Hosted Mac did not settle within ten minutes; native checks have not run")
+                      time.sleep(10)
+                  PY
+
+            - name: Verify course scroll gesture geometry
+              if: matrix.course == 'map'
+              run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-course-scroll-geometry.py
+
+            - name: Test selected course roles and largest text on two iPhone sizes
+              run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-welcome-exported-ios.py --course "$SWIFT_COURSE" --browser "output/swift-canonical-workflows/swift-${SWIFT_COURSE}-browser" --proof "$RUNNER_TEMP/swift-canonical-ios/$SWIFT_COURSE/proof.json"
+
+            - name: Retain native Swift versions, process logs and UI results
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: swift-canonical-${{ matrix.course }}-ios
+                  path: |
+                      ${{ runner.temp }}/swift-canonical-ios/runner-readiness.json
+                      ${{ runner.temp }}/swift-canonical-ios/**/proof.json
+                      ${{ runner.temp }}/swift-canonical-ios/**/processes.jsonl
+                      ${{ runner.temp }}/swift-canonical-ios/**/logs/
+                      ${{ runner.temp }}/swift-canonical-ios/**/results/
+                      ${{ runner.temp }}/swift-canonical-ios/**/inputs.json
+                  if-no-files-found: error
+                  retention-days: 7
+
     swift-tracker-models-ios:
         needs: swift-browser
         runs-on: macos-26
@@ -1604,6 +1731,32 @@ jobs:
             - name: Verify all in-memory tracker browser exports against model contracts and the iOS SDK
               run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-tracker-exported-contracts.py --course tracker --browser output/swift-tracker-workflows/swift-tracker-browser --proof "$RUNNER_TEMP/swift-tracker-models-ios/tracker/proof.json"
 
+            - name: Wait for model-runner load to settle before SwiftData
+              run: |
+                  python3 - <<'PY'
+                  import datetime
+                  import json
+                  import os
+                  from pathlib import Path
+                  import time
+
+                  proof = Path(os.environ["RUNNER_TEMP"]) / "swift-tracker-models-ios/swiftdata-stage-readiness.json"
+                  proof.parent.mkdir(parents=True, exist_ok=True)
+                  samples = []
+                  deadline = time.monotonic() + 600
+                  while True:
+                      load = os.getloadavg()[0]
+                      samples.append({"at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "load": load})
+                      ready = load <= 8
+                      proof.write_text(json.dumps({"ready": ready, "maximumLoad": 8, "samples": samples}, indent=2) + "\n")
+                      print(f"Hosted Mac load: {load:.2f}; required maximum: 8", flush=True)
+                      if ready:
+                          break
+                      if time.monotonic() >= deadline:
+                          raise SystemExit("Model runner did not settle within ten minutes; SwiftData checks have not run")
+                      time.sleep(10)
+                  PY
+
             - name: Verify SwiftData browser exports with Swift Testing and fresh-process storage contracts
               run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-tracker-exported-contracts.py --course swiftdata --browser output/swift-tracker-workflows/swift-swiftdata-browser --proof "$RUNNER_TEMP/swift-tracker-models-ios/swiftdata/proof.json"
 
@@ -1614,6 +1767,7 @@ jobs:
                   name: swift-tracker-models-ios
                   path: |
                       ${{ runner.temp }}/swift-tracker-models-ios/runner-readiness.json
+                      ${{ runner.temp }}/swift-tracker-models-ios/swiftdata-stage-readiness.json
                       ${{ runner.temp }}/swift-tracker-models-ios/**/proof.json
                       ${{ runner.temp }}/swift-tracker-models-ios/**/contracts-proof.json
                       ${{ runner.temp }}/swift-tracker-models-ios/**/processes.jsonl
@@ -1720,7 +1874,10 @@ jobs:
             - name: Verify restored USACO imports and native file I/O
               env:
                   COURSE_IMPORT_SCREENSHOT_DIR: output/playwright
-              run: JAVAC="$JAVA_HOME_21_X64/bin/javac" JAVA="$JAVA_HOME_21_X64/bin/java" node --test test/usaco-course-import-browser.test.mjs
+              run: |
+                  set -o pipefail
+                  mkdir -p output/usaco-workflow
+                  JAVAC="$JAVA_HOME_21_X64/bin/javac" JAVA="$JAVA_HOME_21_X64/bin/java" node --test test/usaco-course-import-browser.test.mjs | tee output/usaco-workflow/full.log
 
             - name: Retain USACO project workflow screenshots
               uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
@@ -1728,6 +1885,15 @@ jobs:
                   name: usaco-workspace-screenshots
                   path: output/playwright/course-import-usaco-*.png
                   if-no-files-found: error
+                  retention-days: 7
+
+            - name: Retain complete USACO workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: usaco-workflow-logs
+                  path: output/usaco-workflow/full.log
+                  if-no-files-found: ignore
                   retention-days: 7
 
     build:

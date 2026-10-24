@@ -1,0 +1,4 @@
+html { color: #202020; background: #fff; font: 1rem/1.5 system-ui, sans-serif; }
+body { margin: 1rem; }
+#output { max-width: 70ch; }
+.course-output { margin: 0.5rem 0; white-space: pre-wrap; overflow-wrap: anywhere; }
