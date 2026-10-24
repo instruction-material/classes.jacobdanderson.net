@@ -34,7 +34,8 @@ final class TrackerUITests: XCTestCase {
             return text.isEmpty || text == field.placeholderValue
         }
         if !isCleared() {
-            field.press(forDuration: 1)
+            // Select a word so the native edit menu appears before Select All.
+            field.doubleTap()
             var selectedAll = false
             for _ in 0..<6 {
                 let menuItem = app.menuItems["Select All"].firstMatch
