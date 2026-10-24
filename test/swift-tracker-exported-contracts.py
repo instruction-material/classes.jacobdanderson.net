@@ -1,0 +1,161 @@
+"""Verify complete tracker browser exports with their supplied model contracts, tests and iOS SDK."""
+import argparse
+import datetime
+import hashlib
+import json
+import os
+from pathlib import Path, PurePosixPath
+import signal
+import subprocess
+import sys
+import zipfile
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def now():
+    return datetime.datetime.now(datetime.timezone.utc).isoformat()
+
+
+def verify(browser, proof, course):
+    browser, proof = browser.resolve(), proof.resolve()
+    assert not proof.exists(), "Use a fresh proof path"
+    proof.parent.mkdir(parents=True, exist_ok=True)
+    work = proof.parent / "exported-contract-work"
+    assert not work.exists()
+    work.mkdir()
+    (work / ".metadata_never_index").touch()
+    owner = json.loads((Path(os.environ.get("CLASSES_FAMILY_LOCK", "/tmp/classes-family-heavy-task.lock")) / "owner.json").read_text())
+    assert owner["parentPid"] == os.getppid() and owner["childPid"] == os.getpid(), "Use the shared heavy-task wrapper"
+    assert os.environ.get("CLASSES_FAMILY_ALLOW_HIGH_LOAD") != "1"
+    fixture = json.loads((ROOT / f"test/fixtures/swift-{course}-source.json").read_text())
+    workflow = json.loads((browser / f"swift-swift-{course}-course-proof.json").read_text())
+    profiles = workflow["profiles"]
+    assert len(profiles) == 4 and {(p["role"], p["width"]) for p in profiles} == {
+        (role, width) for role in ("starter", "solution") for width in (390, 1280)
+    }
+    result = dict(startedAt=now(), accepted=False, sourceRevision=fixture["revision"], exports=[],
+                  iosSimulatorExecutionVerified=False, nativeUIAcceptancePending=True)
+    log = proof.parent / "processes.jsonl"
+
+    def stop(signum, _frame):
+        raise SystemExit(128 + signum)
+
+    signal.signal(signal.SIGTERM, stop)
+    signal.signal(signal.SIGINT, stop)
+
+    def run(label, command, cwd, timeout=300):
+        event = dict(parentTaskId="swift-tracker-exported-contracts", parentPid=os.getpid(),
+                     cwd=str(cwd), command=command, startTime=now(), timeoutSeconds=timeout)
+        child = subprocess.Popen(command, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, start_new_session=True)
+        event["pid"] = child.pid
+        with log.open("a") as stream:
+            stream.write(json.dumps(dict(event, event="start")) + "\n")
+        cleanup = "owned child exited and reaped"
+        stdout, stderr = b"", b""
+        try:
+            stdout, stderr = child.communicate(timeout=timeout)
+        except BaseException:
+            if child.poll() is None:
+                os.killpg(child.pid, signal.SIGTERM)
+                try:
+                    stdout, stderr = child.communicate(timeout=5)
+                except subprocess.TimeoutExpired:
+                    os.killpg(child.pid, signal.SIGKILL)
+                    stdout, stderr = child.communicate()
+            cleanup = "owned child process group terminated and reaped"
+            raise
+        finally:
+            with log.open("a") as stream:
+                stream.write(json.dumps(dict(event, event="end", endTime=now(), exitCode=child.returncode,
+                                             childProcessGroupCleanup=cleanup)) + "\n")
+            (proof.parent / (label + ".stdout.txt")).write_bytes(stdout)
+            (proof.parent / (label + ".stderr.txt")).write_bytes(stderr)
+        assert child.returncode == 0, (label, stderr.decode(errors="replace")[-5000:])
+        return stdout
+
+    try:
+        for profile in profiles:
+            role = profile["role"]
+            assert profile["revision"] == fixture["revision"]
+            assert profile["key"] == "intro-to-swift-app-development:" + ("simple-tracker:" if course == "tracker" else "swiftdata-tracker:") + (
+                "starter" if role == "starter" else "reference") + ":native-swift-v1"
+            assert all(profile[key] for key in ["consentBeforeFetch", "primaryStoreRead", "codeAndTraceSaved",
+                                                "sameAttemptReused", "previousWorkPreserved"])
+            assert profile["remoteWrites"] == 0 and profile["additionalSourceRequests"] == 0
+            model = "TrackerItem.swift" if course == "tracker" else "TrackerRecord.swift"
+            app = "SimpleTrackerApp.swift" if course == "tracker" else "PersistentTrackerApp.swift"
+            store = "TrackerStore.swift" if course == "tracker" else "TrackerPersistence.swift"
+            verifier = "verify-tracker.py" if course == "tracker" else "verify-persistence.py"
+            shared = {"README.md", verifier, "tests/TrackerContracts.swift" if course == "tracker" else "tests/PersistenceContracts.swift"}
+            if course == "swiftdata":
+                shared |= {"Package.swift", "tests/PersistenceTests.swift"}
+            names = {role + "/" + name for name in ["ContentView.swift", app, model, store]} | shared
+            for kind in ("exact", "edited"):
+                filename = profile[kind + "Archive"]
+                assert PurePosixPath(filename).name == filename
+                archive = browser / filename
+                assert archive.stat().st_size < 8 * 1024 * 1024
+                digest = hashlib.sha256(archive.read_bytes()).hexdigest()
+                assert digest == profile[kind + "ArchiveSha256"]
+                files = profile["sourceFiles" if kind == "exact" else "editedFiles"]
+                assert len(files) == len(names) and {file["name"] for file in files} == names
+                destination = work / archive.stem
+                destination.mkdir()
+                with zipfile.ZipFile(archive) as zipped:
+                    assert len(zipped.infolist()) == len(names)
+                    for item in zipped.infolist():
+                        path = PurePosixPath(item.filename)
+                        assert not path.is_absolute() and ".." not in path.parts and "\\" not in item.filename
+                        assert not item.is_dir() and item.file_size < 2 * 1024 * 1024
+                    for file in files:
+                        matches = [name for name in zipped.namelist() if name.endswith("/" + file["name"])]
+                        assert len(matches) == 1
+                        raw = zipped.read(matches[0])
+                        assert hashlib.sha256(raw).hexdigest() == file["sha256"]
+                        if kind == "exact":
+                            expected = fixture["files"][fixture["pack"] + "/" + file["name"]]
+                            assert raw == expected["content"].encode() and file["sha256"] == expected["sha256"]
+                        target = destination / file["name"]
+                        target.parent.mkdir(parents=True, exist_ok=True)
+                        target.write_bytes(raw)
+                contract_proof = destination / "contracts-proof.json"
+                run(archive.stem, [sys.executable, str(destination / verifier),
+                                  "--ios", "--proof", str(contract_proof)], destination, timeout=600)
+                contracts = json.loads(contract_proof.read_text())
+                assert contracts["accepted"] and contracts["externalRequests"] == 0
+                assert contracts["sourceRoles"] == contracts["iosRolesTypechecked"] == [role]
+                assert contracts["iosSimulatorExecutionVerified"] is False
+                assert len(contracts["roleContracts"]) == 1
+                checked = contracts["roleContracts"][0]
+                expected = 29 if course == "tracker" else 28
+                assert checked["role"] == role and checked["accepted"]
+                assert checked["passed"] == len(checked["checks"]) == expected
+                if course == "swiftdata":
+                    phases = checked["processRelaunchPhases"]
+                    assert len(phases) == 8
+                    testing = contracts["swiftTesting"]
+                    assert testing["role"] == role and testing["passed"] == 5
+                    assert testing["failed"] == testing["skipped"] == 0
+                    assert hashlib.sha256(testing["xunitXML"].encode()).hexdigest() == testing["xunitSha256"]
+                result["exports"].append(dict(archive=filename, sha256=digest, role=role,
+                    width=profile["width"], kind=kind, contractsPassed=checked["passed"],
+                    swiftTestingCases=5 if course == "swiftdata" else 0,
+                    freshProcessPhases=8 if course == "swiftdata" else 0,
+                    iosSDK=contracts["iosSDK"], sdkTypecheckPassed=True, contractProof=str(contract_proof)))
+                proof.write_text(json.dumps(result, indent=2) + "\n")
+        result["accepted"] = len(result["exports"]) == 8
+        assert result["accepted"]
+    finally:
+        result["endedAt"] = now()
+        proof.write_text(json.dumps(result, indent=2) + "\n")
+    print(json.dumps(result, indent=2))
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--course", choices=("tracker", "swiftdata"), required=True)
+    parser.add_argument("--browser", type=Path, required=True)
+    parser.add_argument("--proof", type=Path, required=True)
+    args = parser.parse_args()
+    verify(args.browser, args.proof, args.course)

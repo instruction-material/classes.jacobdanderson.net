@@ -276,12 +276,121 @@ describe("python project routes", () => {
 		}
 	);
 
+	it.each(["starter", "solution"] as const)(
+		"stores the complete tracker %s pack for both owner types",
+		async role => {
+			const fixture = JSON.parse(
+				readFileSync(
+					resolve(
+						process.cwd(),
+						"../test/fixtures/swift-tracker-source.json"
+					),
+					"utf8"
+				)
+			);
+			const files = Object.entries(
+				fixture.files as Record<string, { content: string }>
+			)
+				.filter(
+					([path]) =>
+						path.startsWith(`${fixture.pack}/${role}/`) ||
+						[
+							`${fixture.pack}/README.md`,
+							`${fixture.pack}/verify-tracker.py`,
+							`${fixture.pack}/tests/TrackerContracts.swift`
+						].includes(path)
+				)
+				.map(([path, file]) => ({
+					name: path.slice(fixture.pack.length + 1),
+					content: file.content,
+					encoding: "text"
+				}));
+			expect(files).toHaveLength(7);
+			for (const owner of ["user", "course-code"] as const) {
+				await withPythonProjectRoute(
+					async baseUrl => {
+						const response = await postJson(baseUrl, {
+							mode: "swift",
+							files,
+							activeFileName: `${role}/ContentView.swift`,
+							courseID: "intro-to-swift-app-development",
+							courseProjectKey: `intro-to-swift-app-development:simple-tracker:${role === "starter" ? "starter" : "reference"}:native-swift-v1`
+						});
+						expect(response.status).toBe(201);
+						expect((await response.json()).project.files).toEqual(
+							files
+						);
+					},
+					owner,
+					"intro-to-swift-app-development"
+				);
+			}
+		}
+	);
+
+	it.each(["starter", "solution"] as const)(
+		"stores the complete swiftdata %s pack for both owner types",
+		async role => {
+			const fixture = JSON.parse(
+				readFileSync(
+					resolve(
+						process.cwd(),
+						"../test/fixtures/swift-swiftdata-source.json"
+					),
+					"utf8"
+				)
+			);
+			const files = Object.entries(
+				fixture.files as Record<string, { content: string }>
+			)
+				.filter(
+					([path]) =>
+						path.startsWith(`${fixture.pack}/${role}/`) ||
+						[
+							`${fixture.pack}/README.md`,
+							`${fixture.pack}/verify-persistence.py`,
+							`${fixture.pack}/tests/PersistenceContracts.swift`,
+							`${fixture.pack}/Package.swift`,
+							`${fixture.pack}/tests/PersistenceTests.swift`
+						].includes(path)
+				)
+				.map(([path, file]) => ({
+					name: path.slice(fixture.pack.length + 1),
+					content: file.content,
+					encoding: "text"
+				}));
+			expect(files).toHaveLength(9);
+			for (const owner of ["user", "course-code"] as const) {
+				await withPythonProjectRoute(
+					async baseUrl => {
+						const response = await postJson(baseUrl, {
+							mode: "swift",
+							files,
+							activeFileName: `${role}/ContentView.swift`,
+							courseID: "intro-to-swift-app-development",
+							courseProjectKey: `intro-to-swift-app-development:swiftdata-tracker:${role === "starter" ? "starter" : "reference"}:native-swift-v1`
+						});
+						expect(response.status).toBe(201);
+						expect((await response.json()).project.files).toEqual(
+							files
+						);
+					},
+					owner,
+					"intro-to-swift-app-development"
+				);
+			}
+		}
+	);
+
 	it.each([
 		{ name: "../ContentView.swift", encoding: "text" },
 		{ name: "Views//Profile.swift", encoding: "text" },
 		{ name: "secret.env", encoding: "text" },
 		{ name: "main.py", encoding: "text" },
 		{ name: "tools/verify-networking.py", encoding: "text" },
+        { name: "tools/verify-tracker.py", encoding: "text" },
+        { name: "tools/verify-persistence.py", encoding: "text" },
+        { name: "Verify-persistence.py", encoding: "text" },
 		{ name: "Verify-networking.py", encoding: "text" },
 		{ name: "verify-networking.py", encoding: "base64" },
 		{ name: "photo.png", encoding: "base64" },

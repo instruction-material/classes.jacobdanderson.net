@@ -13,13 +13,93 @@ export const swiftNetworkingRevision =
 export const swiftNetworkingPack = "SAD6-API-Reference-App";
 export const swiftNetworkingRoot = `https://github.com/instruction-material/Swift/tree/${swiftNetworkingRevision}/${swiftNetworkingPack}`;
 
+export const swiftTrackerRevision = "a731a853e8f972314d060e9e291f43974949ffe7";
+const swiftTrackerEarlierRevisions = [
+	"23e1cae59dd989b6f97d8d13ebb5f4718223424d",
+	"73fdbeaf3f3358d4a3ce6bb8086612d52689e41a",
+	"ff14c210700f7297d69ddfcab570a0315e9ac234"
+];
+export const swiftTrackerPack = "SAD5-Simple-Tracker-App";
+export const swiftTrackerRoot = `https://github.com/instruction-material/Swift/tree/${swiftTrackerRevision}/${swiftTrackerPack}`;
+export const swiftDataTrackerPack = "SAD5-SwiftData-Tracker-App";
+export const swiftDataTrackerRoot = `https://github.com/instruction-material/Swift/tree/${swiftTrackerRevision}/${swiftDataTrackerPack}`;
+
+export const swiftCanonicalProjectsRevision =
+	"58d17abb7a09185558a74c44f0ba2e43a18f42c2";
+export const swiftGalleryRoot = `https://github.com/instruction-material/Swift/tree/${swiftCanonicalProjectsRevision}/SAD2-Media-Gallery-App`;
+export const swiftHobbyRoot = `https://github.com/instruction-material/Swift/tree/${swiftCanonicalProjectsRevision}/SAD3-Multi-Tab-Hobby-App`;
+export const swiftMapRoot = `https://github.com/instruction-material/Swift/tree/${swiftCanonicalProjectsRevision}/SAD4-Map-Places-App`;
+export const swiftCapstoneRoot = `https://github.com/instruction-material/Swift/tree/${swiftCanonicalProjectsRevision}/SAD7-Publish-Ready-Capstone`;
+
 const swiftPacks = [
+	{
+		pack: "SAD2-Media-Gallery-App",
+		revision: swiftCanonicalProjectsRevision,
+		projectKey: "media-gallery",
+		roleFiles: ["ContentView.swift", "MediaGalleryApp.swift"],
+		sharedFiles: ["README.md"]
+	},
+	{
+		pack: "SAD3-Multi-Tab-Hobby-App",
+		revision: swiftCanonicalProjectsRevision,
+		projectKey: "multi-tab-hobby",
+		roleFiles: ["ContentView.swift", "MultiTabHobbyApp.swift"],
+		sharedFiles: ["README.md"]
+	},
+	{
+		pack: "SAD4-Map-Places-App",
+		revision: swiftCanonicalProjectsRevision,
+		projectKey: "map-places",
+		roleFiles: ["ContentView.swift", "MapPlacesApp.swift"],
+		sharedFiles: ["README.md"]
+	},
+	{
+		pack: "SAD7-Publish-Ready-Capstone",
+		revision: swiftCanonicalProjectsRevision,
+		projectKey: "publish-ready-capstone",
+		roleFiles: ["ContentView.swift", "PublishReadyCapstoneApp.swift"],
+		sharedFiles: ["README.md"]
+	},
 	{
 		pack: swiftWelcomePack,
 		revision: swiftSourceRevision,
 		projectKey: "welcome-profile",
 		roleFiles: swiftWelcomeRoleFiles,
 		sharedFiles: ["README.md"]
+	},
+	{
+		pack: swiftTrackerPack,
+		revision: swiftTrackerRevision,
+		projectKey: "simple-tracker",
+		roleFiles: [
+			"ContentView.swift",
+			"SimpleTrackerApp.swift",
+			"TrackerItem.swift",
+			"TrackerStore.swift"
+		],
+		sharedFiles: [
+			"README.md",
+			"verify-tracker.py",
+			"tests/TrackerContracts.swift"
+		]
+	},
+	{
+		pack: swiftDataTrackerPack,
+		revision: swiftTrackerRevision,
+		projectKey: "swiftdata-tracker",
+		roleFiles: [
+			"ContentView.swift",
+			"PersistentTrackerApp.swift",
+			"TrackerRecord.swift",
+			"TrackerPersistence.swift"
+		],
+		sharedFiles: [
+			"README.md",
+			"verify-persistence.py",
+			"tests/PersistenceContracts.swift",
+			"Package.swift",
+			"tests/PersistenceTests.swift"
+		]
 	},
 	{
 		pack: swiftNetworkingPack,
@@ -51,15 +131,24 @@ export function swiftCourseResource(url: string) {
 	}
 	const selected = swiftPacks.find(
 		pack =>
-			["main", pack.revision].includes(resource.ref) &&
+			[
+				"main",
+				pack.revision,
+				...(pack.pack === swiftTrackerPack ||
+				pack.pack === swiftDataTrackerPack
+					? swiftTrackerEarlierRevisions
+					: [])
+			].includes(resource.ref) &&
 			[`${pack.pack}/starter`, `${pack.pack}/solution`].includes(
 				resource.path
 			)
 	);
 	if (!selected) return null;
+	const revision = resource.ref === "main" ? selected.revision : resource.ref;
 	return {
 		...selected,
-		resource: { ...resource, ref: selected.revision },
+		revision,
+		resource: { ...resource, ref: revision },
 		role: resource.path.endsWith("/starter")
 			? ("starter" as const)
 			: ("solution" as const)
