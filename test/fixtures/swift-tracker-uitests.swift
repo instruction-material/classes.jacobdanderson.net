@@ -27,35 +27,12 @@ final class TrackerUITests: XCTestCase {
     @MainActor
     private func replace(_ field: XCUIElement, with value: String, in app: XCUIApplication) {
         field.tap()
-        field.typeKey("a", modifierFlags: .command)
+        // Tracker titles are a single paragraph; select it using the native gesture.
+        field.tap(withNumberOfTaps: 3, numberOfTouches: 1)
         field.typeText(XCUIKeyboardKey.delete.rawValue)
         let isCleared = {
             let text = field.value as? String ?? ""
             return text.isEmpty || text == field.placeholderValue
-        }
-        if !isCleared() {
-            // Select a word so the native edit menu appears before Select All.
-            field.doubleTap()
-            var selectedAll = false
-            for _ in 0..<6 {
-                let menuItem = app.menuItems["Select All"].firstMatch
-                let menuButton = app.buttons["Select All"].firstMatch
-                if menuItem.waitForExistence(timeout: 1) && menuItem.isHittable {
-                    menuItem.tap()
-                    selectedAll = true
-                    break
-                }
-                if menuButton.exists && menuButton.isHittable {
-                    menuButton.tap()
-                    selectedAll = true
-                    break
-                }
-                let nextPage = app.buttons["Forward"].firstMatch
-                if !nextPage.exists || !nextPage.isHittable { break }
-                nextPage.tap()
-            }
-            XCTAssertTrue(selectedAll, app.debugDescription)
-            field.typeText(XCUIKeyboardKey.delete.rawValue)
         }
         XCTAssertTrue(isCleared(), "The existing edit text must be cleared through the native editor")
         if !value.isEmpty {
