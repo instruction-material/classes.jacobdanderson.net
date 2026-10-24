@@ -1,0 +1,40 @@
+//Kant D. Bugg is trying to practice his looping skills by making a simulated race but he can't get his races to properly show! Help him out by fixing his code. 
+
+//continues doing new races until 5 races have been done
+let races = 0;
+while(races < 5){
+  
+  //Prints out the race countdown
+  printToScreen("Race " + (races + 1) + " begins in: ");
+  for(let i = 10; i > 0; i--){
+    printToScreen(i + "...");
+  }
+  printToScreen("GO!!!!!!!!!");
+
+  //each of the 3 racers gains a random amount of distance 50 times
+  let racer1 = 0;
+  let racer2 = 0;
+  let racer3 = 0;
+  for(let i = 0; i < 50; i++){
+    racer1 += Math.floor(Math.random() * 10) + 1;
+    racer2 += Math.floor(Math.random() * 10) + 1;
+    racer3 += Math.floor(Math.random() * 10) + 1;
+  }
+
+  //Print out how far each racer made it for this race
+  printToScreen("Racer 1 made it a total of " + racer1 + " feet!");
+  printToScreen("Racer 2 made it a total of " + racer2 + " feet!");
+  printToScreen("Racer 3 made it a total of " + racer3 + " feet!");
+  
+  //Increase how many races have been done
+  races += 1;
+}
+
+
+
+// Do not alter code below
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

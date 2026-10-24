@@ -1,5 +1,7 @@
 import type { PythonIdeFile } from "@/modules/pythonIde";
 import { javascriptFirstModuleResources } from "@/modules/javascriptFirstModuleResources";
+import { javascriptLoopsResources } from "@/modules/javascriptLoopsResources";
+import { javascriptOperatorsResources } from "@/modules/javascriptOperatorsResources";
 
 const courseId = "javascript-level-1-javascript-superstar";
 const base = "/course-assets/javascript-level-1/";
@@ -17,7 +19,11 @@ interface CourseRole {
 	}[];
 }
 
-const roles: readonly CourseRole[] = javascriptFirstModuleResources;
+const roles: readonly CourseRole[] = [
+	...javascriptFirstModuleResources,
+	...javascriptOperatorsResources,
+	...javascriptLoopsResources
+];
 
 export function javascriptCourseResource(value: string) {
 	let url: URL;

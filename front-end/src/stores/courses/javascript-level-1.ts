@@ -424,7 +424,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				{
 					title: "JSS3 Project 1: For Loops Practice",
 					content:
-						"Use `printToScreen()` and `for` loops to print several numeric sequences: 1 through 50, 50 down to 1, even numbers through 100, odd numbers down from 100, powers of 3, and the sequence 500, 100, 20, 4. Each sequence has its own loop rule so the start value, condition, and update step are visible.",
+						"Use separate `for` loops with `printToScreen()` to print 1 through 50, 50 down to 1, even numbers 2 through 100, and odd numbers 99 down to 1. Optional challenges: print powers of 3 from 1 through 100, then the sequence 500, 100, 20, 4. Trace each loop's start value, condition, and update.",
 					projectLink: "https://codepen.io/junilearning/pen/PoZJGKV",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/8c4bf4ddfb48b6a93a41d0347d6f78ef"
@@ -463,7 +463,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				{
 					title: "JSS3 Supplemental Project 2: Forgotten Math",
 					content:
-						"Compute the product of two user inputs without using `*` or `*=`. Use repeated addition in a loop, track the running total, and print the final result. Test multiplying by 0, multiplying by 1, and multiplying two larger positive numbers so the loop logic is not only tested on one easy case.",
+						"Multiply two finite numbers by repeated addition without using `*` or `*=`. Use a whole-number input as the repeat count; either input can supply that count, while the other may be decimal. Track the running total and its sign. Test multiplying by 0 and 1, negative inputs, a decimal amount, and canceled or unsupported input.",
 					projectLink: "https://codepen.io/junilearning/pen/gOPGwBy",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/53206f1e4800c28a4549aea7be49b7e0"
@@ -471,7 +471,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				{
 					title: "JSS3 Supplemental Project 3: Debugging Loops",
 					content:
-						"Repair the race simulation by tracing how each loop changes racer position over time. Verify that the loop starts at the right value, updates on every iteration, stops at the correct finish condition, and prints a final result that matches the simulated race state.",
+						"Repair the simulation so it runs five races. For each race, count down from 10 to 1, advance each of three racers 50 times by a random whole distance from 1 through 10, and print their final distances. Trace initialization, conditions, updates, and the race counter.",
 					projectLink: "https://codepen.io/junilearning/pen/KKVGBWx",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/d56a9a00a8022b7f85434f295cc0dbec"

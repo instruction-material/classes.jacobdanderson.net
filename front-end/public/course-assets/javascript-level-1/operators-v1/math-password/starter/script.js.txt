@@ -1,0 +1,17 @@
+// A mathematician has come up with a mathematical password for his computer. You need to calculate his password in order to log in. First, take pi, and multiply it by 6 to the eighth power. Next, add 11 to the number. After that, divide by 3, rounding down. Finally, find the remainder by using modulo to divide the number by pi. Use printToScreen() to print the number and see if you are right!
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(value) {
+  const message = value === 0.09625672175876687
+    ? "You have been successfully logged in. Congratulations!"
+    : "Incorrect password!";
+  d3.select("#output")
+    .append("p")
+    .attr("class", "course-output")
+    .text(message);
+}

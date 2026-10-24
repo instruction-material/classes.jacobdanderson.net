@@ -1,0 +1,35 @@
+// Calculate tax and tip from the original entree cost.
+let entreeInput = prompt("Please enter in the cost of your entree.");
+let taxesInput = prompt("Please enter in the sales tax percentage for your area.");
+let tipInput = prompt("Please enter in how much you plan to tip in percent for your meal.");
+
+if (entreeInput === null || taxesInput === null || tipInput === null) {
+  printToScreen("Meal calculation canceled.");
+} else if (entreeInput.trim() === "" || taxesInput.trim() === "" || tipInput.trim() === ""
+    || !Number.isFinite(+entreeInput) || !Number.isFinite(+taxesInput) || !Number.isFinite(+tipInput)
+    || +entreeInput < 0 || +taxesInput < 0 || +tipInput < 0) {
+  printToScreen("Enter nonnegative finite numbers for the cost and percentages.");
+} else {
+  let entree = +entreeInput;
+  let taxes = +taxesInput;
+  let tip = +tipInput;
+  let total = 0;
+  let taxCost = entree * (taxes / 100);
+  total += taxCost + entree;
+  let tipCost = entree * (tip / 100);
+  total += tipCost;
+  if (Number.isFinite(total)) {
+    printToScreen("The total cost of the meal is $" + total.toFixed(2));
+  } else {
+    printToScreen("The meal total must be a finite number.");
+  }
+}
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output")
+    .append("p")
+    .attr("class", "course-output")
+    .text(String(text));
+}

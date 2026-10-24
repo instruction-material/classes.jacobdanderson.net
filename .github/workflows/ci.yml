@@ -1267,6 +1267,50 @@ jobs:
                   if-no-files-found: error
                   retention-days: 7
 
+            - name: Verify JavaScript operators and math course imports
+              env:
+                  JAVASCRIPT_OPERATORS_BROWSER_DIR: output/javascript-operators-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-operators-screenshots
+              run: node --test test/javascript-operators-course-browser.test.mjs
+
+            - name: Run JavaScript operators and math exports offline
+              env:
+                  JAVASCRIPT_OPERATORS_BROWSER_DIR: output/javascript-operators-browser
+              run: node --test test/javascript-operators-exported-browser.test.mjs
+
+            - name: Retain JavaScript operators source and browser evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-operators-workflows
+                  path: |
+                      output/javascript-operators-browser/
+                      output/javascript-operators-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify JavaScript loop project imports
+              env:
+                  JAVASCRIPT_LOOPS_BROWSER_DIR: output/javascript-loops-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-loops-screenshots
+              run: node --test test/javascript-loops-course-browser.test.mjs
+
+            - name: Run JavaScript loop exports offline
+              env:
+                  JAVASCRIPT_LOOPS_BROWSER_DIR: output/javascript-loops-browser
+              run: node --test test/javascript-loops-exported-browser.test.mjs
+
+            - name: Retain JavaScript loop source and browser evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-loops-workflows
+                  path: |
+                      output/javascript-loops-browser/
+                      output/javascript-loops-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
             - name: Verify Network Systems foundation imports and notebook reuse
               env:
                   NETWORK_BROWSER_EXPORT_PROOF_DIR: output/network-exports

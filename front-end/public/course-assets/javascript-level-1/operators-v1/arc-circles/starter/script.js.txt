@@ -1,0 +1,25 @@
+// Our printToScreen function has been modified to let us draw arcs. However, it needs to know the starting angle and ending angle for any arc that it draws. To feed two inputs into printToScreen, you must separate the inputs with a comma like so:  printToScreen(start, end). Also, printToScreen only takes degrees in radians. In order to calculate radians from degrees. you take the number of degrees, divide it by 180 and then multiply it by pi. Have our new function draw a rainbow shape, a circle, and a 3/4 circle.
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(startAngle, endAngle) {
+  if (!Number.isFinite(startAngle) || !Number.isFinite(endAngle)) {
+    d3.select("#output").append("p").attr("class", "course-output")
+      .text("Enter finite start and end angles in radians.");
+    return;
+  }
+  const name = "Arc from " + startAngle + " to " + endAngle + " radians";
+  const svg = d3.select("#output").append("svg")
+    .attr("viewBox", "0 0 800 400")
+    .attr("width", 800).attr("height", 400)
+    .attr("role", "img").attr("aria-label", name);
+  svg.append("title").text(name);
+  const arc = d3.arc().innerRadius(100).outerRadius(150)
+    .startAngle(startAngle).endAngle(endAngle);
+  svg.append("g").attr("transform", "translate(400,200)")
+    .append("path").attr("fill", "blue").attr("d", arc);
+}

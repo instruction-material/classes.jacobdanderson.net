@@ -1,0 +1,14 @@
+// Use Math.random() to pick a random number between 0 and 5 and then print it out using printToScreen(). Then, print a random number between 1 and 10. Then, print a random number between 20 and 50. Then, print an even number between 0 and 50. Last, print an odd number between 51 and 101
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output")
+    .append("p")
+    .attr("class", "course-output")
+    .text(String(text));
+}

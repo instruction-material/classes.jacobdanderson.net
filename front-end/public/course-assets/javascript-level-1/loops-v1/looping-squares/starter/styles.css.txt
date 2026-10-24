@@ -1,0 +1,13 @@
+body {
+  margin: 16px;
+  color: #161616;
+  background: #fff;
+  font: 17px/1.45 system-ui, sans-serif;
+}
+.course-output {
+  margin: 0 0 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+#output { display: flex; flex-wrap: wrap; gap: 12px; }
+svg { display: block; flex: 0 0 100px; max-width: 100%; height: auto; }

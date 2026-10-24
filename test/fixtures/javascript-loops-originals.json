@@ -1,0 +1,244 @@
+{
+  "resources": [
+    {
+      "url": "https://codepen.io/junilearning/pen/1c1201771499a38d4f15588580d7bfa1",
+      "role": "reference",
+      "project": "powers-of-three",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops",
+        "itemId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops-supplemental-jss3-supplemental-project-1-powers-of-3",
+        "title": "JSS3 Supplemental Project 1: Powers of 3",
+        "section": "optional",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/1c1201771499a38d4f15588580d7bfa1"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Using the printToScreen() function, print all of the powers of 3 that are less than 5000\n\n// Solution\n\nfor (let i = 1; i < 5000; i *= 3) {\n  printToScreen(i);\n}\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"30px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "38b5f3888c38a374ce8032c5d98aec54f0cc688ba27ae32c7e9be44ac6f5de73"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/3f802bef974fcccd10caafaac8c3eb04",
+      "role": "reference",
+      "project": "string-reversal",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops",
+        "itemId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops-curriculum-jss3-project-2-string-reversal",
+        "title": "JSS3 Project 2: String Reversal",
+        "section": "core",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/3f802bef974fcccd10caafaac8c3eb04"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Get a word from the user and then use printToScreen() and for loops to print every letter of that word. Next, print every letter of the same word backwards using while loops.\n\n// Solution\n\nlet word = prompt(\"Please enter a word.\");\n\nfor (let i = 0; i < word.length; i++) {\n  printToScreen(word[i]);\n}\n\nlet counter = word.length - 1;\nwhile (counter > -1){\n  printToScreen(word[counter]);\n  counter--;\n}\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 255) + 1);\n  let g = Math.floor((Math.random() * 255) + 1);\n  let b = Math.floor((Math.random() * 255) + 1);\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1000)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"30px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "9a9a448c45c9707f55f6992e0c7455a51f401b18713599833d5cccbf2a57dc62"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/53206f1e4800c28a4549aea7be49b7e0",
+      "role": "reference",
+      "project": "repeated-addition",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops",
+        "itemId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops-supplemental-jss3-supplemental-project-2-forgotten-math",
+        "title": "JSS3 Supplemental Project 2: Forgotten Math",
+        "section": "optional",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/53206f1e4800c28a4549aea7be49b7e0"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Oh no! Your computer has forgotten how to multiply and you need to be able to figure out larger multiplications. Come up with a code that can take in two numbers and figure out the product of the two without using * or *=. Print that result using printToScreen().\n\n// Solution\n\nlet numOne = +prompt(\"Enter in a number.\");\nlet numTwo = +prompt(\"Enter in another number.\");\n\nlet result = 0;\nfor (let i = 0; i < numTwo; i++){\n  result += numOne;\n}\n\nprintToScreen(result);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 255) + 1);\n  let g = Math.floor((Math.random() * 255) + 1);\n  let b = Math.floor((Math.random() * 255) + 1);\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"30px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "14c0d7b58a14e0143f5e2505353cc754c8d55b4dab0c8080feda7384a40afb96"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/56baa6b060aab0e3511c7c3608d53eaa",
+      "role": "reference",
+      "project": "looping-squares",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops",
+        "itemId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops-curriculum-jss3-project-3-looping-squares",
+        "title": "JSS3 Project 3: Looping Squares",
+        "section": "core",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/56baa6b060aab0e3511c7c3608d53eaa"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// The printToScreen() function in this project takes in a string with the name of a color as an input and outputs a square of the given color. Using this code and for loops, make 2 red squares, and 3 yellow squares. Once you have done that, use while loops to make 4 blue squares, and 3 purple squares.\n\n// Solution\n\nfor (let i = 0; i < 2; i++) {\n  printToScreen(\"red\");\n}\n\nfor (let i = 0; i < 3; i++) {\n printToScreen(\"yellow\");\n}\n\nlet counter = 0;\nwhile(counter < 4) {\n  printToScreen(\"blue\");\n  counter++;\n}\n\ncounter = 0;\nwhile(counter < 3){\n  printToScreen(\"purple\");\n  counter++;\n}\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen (color) {\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 100)\n    .attr(\"height\", 100);\n\n  svg.append(\"rect\")\n    .attr(\"fill\", color)\n    .attr(\"x\", 50)\n    .attr(\"y\", 50)\n    .attr(\"width\", 100)\n    .attr(\"height\", 100);\n}"
+      },
+      "javascriptSha256": "50825c0edadfab37785aa61fe0bd41e8564301325dd8c12be2a9022c236f9c3e"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/8c4bf4ddfb48b6a93a41d0347d6f78ef",
+      "role": "reference",
+      "project": "for-loops",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops",
+        "itemId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops-curriculum-jss3-project-1-for-loops-practice",
+        "title": "JSS3 Project 1: For Loops Practice",
+        "section": "core",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/8c4bf4ddfb48b6a93a41d0347d6f78ef"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "/*\n1. Print the numbers 1-50 using printToScreen() \n2. Print the numbers 50-1 using printToScreen()\n3. Print the numbers 1-100 evens only using printToScreen()\n4. Print the numbers 100-1 odds only using printToScreen()\n5. Challenge: Print the numbers 1-100 that are powers of 3 using printToScreen()\n6. Challenge: Print the numbers from 500, 100, 20, 4 using printToScreen()\n*/\n\n// Solution\n\nfor (let i = 1; i < 51; i++) {\n  printToScreen(i);\n}\n\nfor (let i = 50; i > 0; i--) {\n  printToScreen(i);\n}\n\nfor (let i = 2; i < 101; i+=2) {\n  printToScreen(i);\n}\n\nfor (let i = 99; i > 0; i-=2) {\n  printToScreen(i);\n}\n\nfor (let i = 1; i < 101; i*=3) {\n  printToScreen(i);\n}\n\nfor (let i = 500; i > 1; i/=5) {\n  printToScreen(i);\n}\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 255) + 1);\n  let g = Math.floor((Math.random() * 255) + 1);\n  let b = Math.floor((Math.random() * 255) + 1);\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 60)\n    .attr(\"height\", 50);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 25)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", 25)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n}"
+      },
+      "javascriptSha256": "0b2583c07deb66455a6d9bfe49ec61b74d48907eca6e8588c25e8293542de3d3"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/KKVGBWx",
+      "role": "starter",
+      "project": "debugging-loops",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops",
+        "itemId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops-supplemental-jss3-supplemental-project-3-debugging-loops",
+        "title": "JSS3 Supplemental Project 3: Debugging Loops",
+        "section": "optional",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/KKVGBWx"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Kant D. Bugg is trying to practice his looping skills by making a simulated race but he can't get his races to properly show! Help him out by fixing his code. \n\n//continues doing new races until 5 races have been done\nlet races = 1;\nwhile(races < 5){\n  \n  //Prints out the race countdown\n  printToScreen(\"Race \" + (races + 1) + \" begins in: \");\n  for(let i = 1; i < 10; i++){\n    printToScreen(\"10...\");\n  }\n  printToScreen(\"GO!!!!!!!!!\");\n\n  //each of the 3 racers gains a random amount of distance 50 times\n  let racer1 = 0;\n  let racer2 = 0;\n  let racer3 = 0;\n  for(let i = 50; i ++){\n    racer1 += Math.floor(Math.random() * 10) + 1;\n    racer2 += Math.floor(Math.random() * 10) + 1;\n    racer3 += Math.floor(Math.random() * 10) + 1;\n  }\n\n  printToScreen(\"Racer 1 made it a total of \" + racer1 + \" feet!\");\n  printToScreen(\"Racer 2 made it a total of \" + racer2 + \" feet!\");\n  printToScreen(\"Racer 3 made it a total of \" + racer3 + \" feet!\");\n  \n  //Increase how many races have been done\n  races + 1;\n}\n\n\n\n// Do not alter code below\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 5000)\n    .attr(\"height\", 50);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 30)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "25d594087d846bad71416b4b64bdb515963744c50125aed37433f0e2a35339a9"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/OJMxRvY",
+      "role": "starter",
+      "project": "string-reversal",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops",
+        "itemId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops-curriculum-jss3-project-2-string-reversal",
+        "title": "JSS3 Project 2: String Reversal",
+        "section": "core",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/OJMxRvY"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Get a word from the user and then use printToScreen() and for loops to print every letter of that word. Next, print every letter of the same word backwards using while loops.\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 255) + 1);\n  let g = Math.floor((Math.random() * 255) + 1);\n  let b = Math.floor((Math.random() * 255) + 1);\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1000)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"30px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "cb1b18b171c1afba873402cbe4c1687e313075ae005d510e183365d9856b85e5"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/PoZJGKV",
+      "role": "starter",
+      "project": "for-loops",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops",
+        "itemId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops-curriculum-jss3-project-1-for-loops-practice",
+        "title": "JSS3 Project 1: For Loops Practice",
+        "section": "core",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/PoZJGKV"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "/*\n1. Print the numbers 1-50 using printToScreen() \n2. Print the numbers 50-1 using printToScreen()\n3. Print the numbers 1-100 evens only using printToScreen()\n4. Print the numbers 100-1 odds only using printToScreen()\n5. Challenge: Print the numbers 1-100 that are powers of 3 using printToScreen()\n6. Challenge: Print the numbers from 500, 100, 20, 4 using printToScreen()\n*/\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 255) + 1);\n  let g = Math.floor((Math.random() * 255) + 1);\n  let b = Math.floor((Math.random() * 255) + 1);\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 60)\n    .attr(\"height\", 50);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 25)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", 25)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n}"
+      },
+      "javascriptSha256": "b8ce423b8acc903811c68aa96b3c2ea22d4511a2d47fc35044e55a94888cbd8c"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/d56a9a00a8022b7f85434f295cc0dbec",
+      "role": "reference",
+      "project": "debugging-loops",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops",
+        "itemId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops-supplemental-jss3-supplemental-project-3-debugging-loops",
+        "title": "JSS3 Supplemental Project 3: Debugging Loops",
+        "section": "optional",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/d56a9a00a8022b7f85434f295cc0dbec"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "//Kant D. Bugg is trying to practice his looping skills by making a simulated race but he can't get his races to properly show! Help him out by fixing his code. \n\n//continues doing new races until 5 races have been done\nlet races = 0;\nwhile(races < 5){\n  \n  //Prints out the race countdown\n  printToScreen(\"Race \" + (races + 1) + \" begins in: \");\n  for(let i = 10; i > 0; i--){\n    printToScreen(i + \"...\");\n  }\n  printToScreen(\"GO!!!!!!!!!\");\n\n  //each of the 3 racers gains a random amount of distance 50 times\n  let racer1 = 0;\n  let racer2 = 0;\n  let racer3 = 0;\n  for(let i = 0; i < 50; i++){\n    racer1 += Math.floor(Math.random() * 10) + 1;\n    racer2 += Math.floor(Math.random() * 10) + 1;\n    racer3 += Math.floor(Math.random() * 10) + 1;\n  }\n\n  //Print out how far each racer made it for this race\n  printToScreen(\"Racer 1 made it a total of \" + racer1 + \" feet!\");\n  printToScreen(\"Racer 2 made it a total of \" + racer2 + \" feet!\");\n  printToScreen(\"Racer 3 made it a total of \" + racer3 + \" feet!\");\n  \n  //Increase how many races have been done\n  races += 1;\n}\n\n\n\n// Do not alter code below\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 5000)\n    .attr(\"height\", 50);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 30)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "7e8fd77118416dd332a075aa6be57d5f77ede387724f43344a985064af5ebfaa"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/gOPGwBy",
+      "role": "starter",
+      "project": "repeated-addition",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops",
+        "itemId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops-supplemental-jss3-supplemental-project-2-forgotten-math",
+        "title": "JSS3 Supplemental Project 2: Forgotten Math",
+        "section": "optional",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/gOPGwBy"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Oh no! Your computer has forgotten how to multiply and you need to be able to figure out larger multiplications. Come up with a code that can take in two numbers and figure out the product of the two without using * or *=. Print that result using printToScreen().\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 255) + 1);\n  let g = Math.floor((Math.random() * 255) + 1);\n  let b = Math.floor((Math.random() * 255) + 1);\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"30px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "cb1c9aa7121305676e28d046d216cc56484ace07802404858a4faf96efeeb8e9"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/wvMrzEw",
+      "role": "starter",
+      "project": "powers-of-three",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops",
+        "itemId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops-supplemental-jss3-supplemental-project-1-powers-of-3",
+        "title": "JSS3 Supplemental Project 1: Powers of 3",
+        "section": "optional",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/wvMrzEw"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Using the printToScreen() function, print all of the powers of 3 that are less than 5000\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"30px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "61ad709f526710e356f7987280aa3d920e80c310cee3cc51afd38646f68a0803"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/xxZXEzP",
+      "role": "starter",
+      "project": "looping-squares",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops",
+        "itemId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops-curriculum-jss3-project-3-looping-squares",
+        "title": "JSS3 Project 3: Looping Squares",
+        "section": "core",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/xxZXEzP"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// The printToScreen() function in this project takes in a string with the name of a color as an input and outputs a square of the given color. Using this code and for loops, make 2 red squares, and 3 yellow squares. Once you have done that, use while loops to make 4 blue squares, and 3 purple squares.\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen (color) {\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 100)\n    .attr(\"height\", 100);\n\n  svg.append(\"rect\")\n    .attr(\"fill\", color)\n    .attr(\"x\", 50)\n    .attr(\"y\", 50)\n    .attr(\"width\", 100)\n    .attr(\"height\", 100);\n}"
+      },
+      "javascriptSha256": "05453c5683efea7c6cb275695281e8081de305121473e5a668c211a3235f0272"
+    }
+  ]
+}

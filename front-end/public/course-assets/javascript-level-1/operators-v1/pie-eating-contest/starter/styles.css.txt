@@ -1,0 +1,17 @@
+body {
+  margin: 16px;
+  color: #161616;
+  background: #fff;
+  font: 17px/1.45 system-ui, sans-serif;
+}
+.course-output {
+  margin: 0 0 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 16px;
+}

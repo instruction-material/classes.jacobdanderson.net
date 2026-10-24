@@ -1,0 +1,23 @@
+// The printToScreen() function in this project takes in a string with the name of a color as an input and outputs a square of the given color. Using this code and for loops, make 2 red squares, and 3 yellow squares. Once you have done that, use while loops to make 4 blue squares, and 3 purple squares.
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(color) {
+  if (typeof color !== "string" || !CSS.supports("color", color)) {
+    d3.select("#output").append("p").attr("class", "course-output")
+      .text("Enter a valid CSS color.");
+    return;
+  }
+  const label = color + " square";
+  const svg = d3.select("#output").append("svg")
+    .attr("viewBox", "0 0 100 100")
+    .attr("width", 100).attr("height", 100)
+    .attr("role", "img").attr("aria-label", label);
+  svg.append("title").text(label);
+  svg.append("rect").attr("x", 0).attr("y", 0)
+    .attr("width", 100).attr("height", 100).attr("fill", color);
+}

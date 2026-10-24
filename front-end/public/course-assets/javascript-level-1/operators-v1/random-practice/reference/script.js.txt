@@ -1,0 +1,25 @@
+// Use Math.random() to pick a random number between 0 and 5 and then print it out using printToScreen(). Then, print a random number between 1 and 10. Then, print a random number between 20 and 50. Then, print an even number between 0 and 50. Last, print an odd number between 51 and 101
+
+let num = Math.floor(Math.random() * 6);
+printToScreen(num);
+
+num = Math.floor(Math.random() * 10) + 1;
+printToScreen(num);
+
+num = Math.floor(Math.random() * 31) + 20;
+printToScreen(num);
+
+num = Math.floor(Math.random() * 26) * 2;
+printToScreen(num);
+
+num = (Math.floor(Math.random() * 26) * 2) + 51;
+printToScreen(num);
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output")
+    .append("p")
+    .attr("class", "course-output")
+    .text(String(text));
+}

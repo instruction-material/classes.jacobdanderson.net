@@ -1,0 +1,40 @@
+// Multiply by adding an amount a whole number of times.
+let first = prompt("Enter a number.");
+let second = prompt("Enter another number.");
+if (first === null || second === null) {
+  printToScreen("Multiplication canceled.");
+} else if (first.trim() === "" || second.trim() === ""
+    || !Number.isFinite(+first) || !Number.isFinite(+second)) {
+  printToScreen("Enter two finite numbers.");
+} else {
+  const left = +first;
+  const right = +second;
+  let amount = left;
+  let repetitions = right;
+  if (!Number.isSafeInteger(repetitions)
+      || (Number.isSafeInteger(left) && Math.abs(left) < Math.abs(right))) {
+    amount = right;
+    repetitions = left;
+  }
+  if (!Number.isSafeInteger(repetitions) || Math.abs(repetitions) > 10000) {
+    printToScreen("At least one input must be a whole repeat count from -10000 through 10000.");
+  } else {
+    let result = 0;
+    for (let i = 0; i < Math.abs(repetitions); i++) {
+      result += amount;
+    }
+    if (repetitions < 0) result = -result;
+    if (Number.isFinite(result)) {
+      printToScreen(result);
+    } else {
+      printToScreen("The product must be a finite number.");
+    }
+  }
+}
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}
