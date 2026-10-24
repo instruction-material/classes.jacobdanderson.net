@@ -16,8 +16,8 @@ import { swiftBuildInstructions } from "@/modules/swiftBuildInstructions";
 import {
 	swiftCourseProjectKey,
 	swiftCourseResource,
-	swiftImportFiles,
 	swiftDataTrackerRoot,
+	swiftImportFiles,
 	swiftTrackerRoot,
 	swiftWelcomeRoot
 } from "@/modules/swiftProjectResources";
@@ -83,7 +83,7 @@ for (const definition of definitions) {
 				row => row.title === definition.title
 			)!;
 			expect(project.content).toBe(
-				fixture.files[fixture.pack + "/README.md"].content
+				fixture.files[`${fixture.pack}/README.md`].content
 					.trim()
 					.replace(
 						"../SAD5-SwiftData-Tracker-App/README.md",
@@ -91,8 +91,8 @@ for (const definition of definitions) {
 					)
 			);
 			expect(project.ideImport).toBe(true);
-			expect(project.projectLink).toBe(definition.root + "/starter");
-			expect(project.solutionLink).toBe(definition.root + "/solution");
+			expect(project.projectLink).toBe(`${definition.root}/starter`);
+			expect(project.solutionLink).toBe(`${definition.root}/solution`);
 			const visible = (await useCoursesStore().loadCourseById(
 				"intro-to-swift-app-development"
 			))!;
@@ -102,16 +102,16 @@ for (const definition of definitions) {
 			const core = active.curriculum.find(
 				row => row.title === definition.title
 			)!;
-			const suffix =
-				definition.label === "tracker"
+			const suffix
+				= definition.label === "tracker"
 					? "project-simple-tracker-app"
 					: "project-pass-persist-the-simple-tracker-app";
-			expect(core.id).toBe(active.id + "-curriculum-" + suffix);
+			expect(core.id).toBe(`${active.id}-curriculum-${suffix}`);
 			const ready = active.supplementalProjects.find(row =>
 				row.title.endsWith(": Readiness Check")
 			)!;
 			expect(ready.ideImport).toBe(true);
-			expect(ready.projectLink).toBe(definition.root + "/starter");
+			expect(ready.projectLink).toBe(`${definition.root}/starter`);
 			expect(core.solutionLink).toBeUndefined();
 			for (const role of ["starter", "reference"] as const) {
 				const key = swiftCourseProjectKey(
@@ -136,29 +136,30 @@ for (const definition of definitions) {
 					...definitions
 						.filter(row => row.label !== definition.label)
 						.map(row => row.root)
-				])
+				]) {
 					expect(
 						swiftCourseProjectKey(
 							visible.id,
 							core.id,
 							role,
-							other + "/starter"
+							`${other}/starter`
 						)
 					).not.toBe(key);
+				}
 			}
 		});
 		it.each(["starter", "solution"] as const)(
 			"imports, edits, reopens and exports only the complete %s role",
-			async role => {
+			async (role) => {
 				const requests: string[] = [];
 				vi.stubGlobal(
 					"fetch",
 					vi.fn(async (input: string | URL) => {
 						const url = String(input);
 						requests.push(url);
-						const file =
-							fixture.files[
-								url.split("/" + fixture.revision + "/")[1]
+						const file
+							= fixture.files[
+								url.split(`/${fixture.revision}/`)[1]
 							];
 						return new Response(file?.content ?? "missing", {
 							status: file ? 200 : 404
@@ -166,7 +167,7 @@ for (const definition of definitions) {
 					})
 				);
 				const files = await loadPythonIdeStarterFilesFromGitHub(
-					definition.root + "/" + role,
+					`${definition.root}/${role}`,
 					"swift"
 				);
 				const names = [
@@ -175,7 +176,7 @@ for (const definition of definitions) {
 					definition.model,
 					definition.store
 				]
-					.map(name => role + "/" + name)
+					.map(name => `${role}/${name}`)
 					.concat(definition.shared);
 				expect(files.map(file => file.name)).toEqual(names);
 				expect(requests).toHaveLength(names.length);
@@ -186,11 +187,11 @@ for (const definition of definitions) {
 					"intro-to-swift-app-development",
 					"core",
 					role === "starter" ? "starter" : "reference",
-					definition.root + "/" + role
+					`${definition.root}/${role}`
 				);
 				const project = createPythonIdeProject("swift", {
 					files,
-					starterUrl: definition.root + "/" + role,
+					starterUrl: `${definition.root}/${role}`,
 					courseProjectKey: key,
 					courseID: "intro-to-swift-app-development"
 				});
@@ -203,7 +204,7 @@ for (const definition of definitions) {
 				expect(Object.keys(archive)).toHaveLength(names.length);
 				for (const file of reopened.files) {
 					const path = Object.keys(archive).find(path =>
-						path.endsWith("/" + file.name)
+						path.endsWith(`/${file.name}`)
 					)!;
 					expect(strFromU8(archive[path])).toBe(file.content);
 				}
@@ -211,10 +212,10 @@ for (const definition of definitions) {
 				expect(instructions).toContain("only the four Swift files");
 				expect(instructions).toContain("one @main");
 				expect(instructions).toContain(
-					"python3 " + definition.shared[1]
+					`python3 ${definition.shared[1]}`
 				);
 				expect(instructions).toContain(
-					"Keep " + definition.shared[2] + " outside the app target"
+					`Keep ${definition.shared[2]} outside the app target`
 				);
 				if (definition.label === "swiftdata") {
 					expect(instructions).toContain(
@@ -228,16 +229,17 @@ for (const definition of definitions) {
 		it.each([
 			"23e1cae59dd989b6f97d8d13ebb5f4718223424d",
 			"73fdbeaf3f3358d4a3ce6bb8086612d52689e41a",
-			"ff14c210700f7297d69ddfcab570a0315e9ac234"
+			"ff14c210700f7297d69ddfcab570a0315e9ac234",
+			"a731a853e8f972314d060e9e291f43974949ffe7"
 		])(
 			"keeps earlier %s links complete and resumes the same saved role",
-			earlier => {
+			(earlier) => {
 				const oldRoot = definition.root.replace(
 					fixture.revision,
 					earlier
 				);
 				for (const role of ["starter", "solution"] as const) {
-					const url = oldRoot + "/" + role;
+					const url = `${oldRoot}/${role}`;
 					expect(swiftCourseResource(url)?.resource.ref).toBe(
 						earlier
 					);
@@ -246,11 +248,11 @@ for (const definition of definitions) {
 					expect(files).toHaveLength(definition.shared.length + 4);
 					expect(
 						files.every(file =>
-							file.file.rawUrl.includes("/" + earlier + "/")
+							file.file.rawUrl.includes(`/${earlier}/`)
 						)
 					).toBe(true);
-					const keyRole =
-						role === "starter" ? "starter" : "reference";
+					const keyRole
+						= role === "starter" ? "starter" : "reference";
 					expect(
 						swiftCourseProjectKey(
 							"intro-to-swift-app-development",
@@ -263,7 +265,7 @@ for (const definition of definitions) {
 							"intro-to-swift-app-development",
 							"core",
 							keyRole,
-							definition.root + "/" + role
+							`${definition.root}/${role}`
 						)
 					);
 				}
@@ -272,24 +274,24 @@ for (const definition of definitions) {
 		it("pins only its own source and accepts no arbitrary Python helper", () => {
 			expect(
 				swiftCourseResource(
-					definition.root.replace(fixture.revision, "main") +
-						"/starter"
+					`${definition.root.replace(fixture.revision, "main")
+					}/starter`
 				)?.resource.ref
 			).toBe(fixture.revision);
 			expect(
 				swiftCourseResource(
-					definition.root.replace(
+					`${definition.root.replace(
 						fixture.revision,
 						"d8110b0b359a7499a9de9fc3c31dfac26b411b3e"
-					) + "/starter"
+					)}/starter`
 				)
 			).toBeNull();
 			for (const name of definition.shared)
 				expect(isValidPythonFileName(name, "swift")).toBe(true);
 			for (const name of [
 				"main.py",
-				"tools/" + definition.shared[1],
-				"../" + definition.shared[1],
+				`tools/${definition.shared[1]}`,
+				`../${definition.shared[1]}`,
 				definition.shared[1].toUpperCase()
 			])
 				expect(isValidPythonFileName(name, "swift")).toBe(false);
