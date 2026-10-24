@@ -1,5 +1,6 @@
 import type { PythonIdeProject } from "./pythonIde";
 import { courseCatalog } from "@/stores/courses/index";
+import { javascriptFirstModuleResources } from "./javascriptFirstModuleResources";
 import { getPythonIdeProjectKindLabel } from "./pythonIde";
 import { bronzePythonFileIoForKey } from "./usacoBronzeRequiredPacks";
 
@@ -14,7 +15,20 @@ const courseIDs = new Set(courseCatalog.map(course => course.id));
 export function getCodeIdeProjectSubtitle(project: ProjectLabelMetadata) {
 	const parts = (project.courseProjectKey ?? "").split(":");
 	const [courseID = "", itemID = "", role, variant] = parts;
+	const javascriptVersion = parts[4] ?? "";
+	const javascriptSource =
+		parts.length === 5 &&
+		project.mode === "web" &&
+		courseID === "javascript-level-1-javascript-superstar" &&
+		/^v[1-9]\d*$/.test(javascriptVersion ?? "") &&
+		javascriptFirstModuleResources.some(
+			source =>
+				source.project === variant &&
+				source.role === role &&
+				Number(javascriptVersion.slice(1)) <= source.version
+		);
 	const supportedShape =
+		javascriptSource ||
 		parts.length === 3 ||
 		(parts.length === 4 &&
 			((variant === "native-swift-v1" &&
@@ -55,7 +69,7 @@ export function getCodeIdeProjectSubtitle(project: ProjectLabelMetadata) {
 	const language = getPythonIdeProjectKindLabel(project);
 
 	if (!knownRole) return language;
-	return `${role === "starter" ? "Learner" : "Reference"} · ${language}`;
+	return `${role === "starter" ? "Learner" : "Reference"} · ${language}${javascriptSource ? ` · ${javascriptVersion}` : ""}`;
 }
 
 export function getCodeIdeProjectAccessibleLabel(

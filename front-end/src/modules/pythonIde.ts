@@ -22,6 +22,10 @@ import {
 } from "@/modules/codePreview";
 import { courseReferenceExamples } from "@/modules/courseReferenceExamples";
 import { cppStarterCode, cppWorkspaceReadme } from "@/modules/cppIdeSource";
+import {
+	javascriptCourseResource,
+	loadJavaScriptCourseFiles
+} from "@/modules/javascriptCourseResources";
 import { linuxStarterCode, linuxStarterFiles } from "@/modules/linuxIdeSource";
 import {
 	isLinuxProjectTextPath,
@@ -430,6 +434,7 @@ export function isKnownCourseWorksheetResource(url: string) {
 }
 
 export function pythonIdeModeForCourseResource(courseId: string, url: string) {
+	if (javascriptCourseResource(url)?.courseId === courseId) return "web";
 	const resource = parseGitHubResource(url);
 	if (!resource || isKnownCourseWorksheetResource(url)) return null;
 	if (courseId === "intro-to-swift-app-development")
@@ -3190,10 +3195,16 @@ export async function loadPythonIdeStarterFilesFromGitHub(
 	starterUrl: string,
 	mode: PythonIdeMode = "python"
 ): Promise<PythonIdeFile[]> {
+	if (mode === "web") {
+		const files = await loadJavaScriptCourseFiles(starterUrl);
+		if (files) return files;
+	}
 	const resource = parseGitHubResource(starterUrl);
 	if (!resource) {
 		throw new Error(
-			"Only public GitHub starter links can open in the IDE."
+			mode === "web"
+				? "This source has no verified site import."
+				: "Only public GitHub starter links can open in the IDE."
 		);
 	}
 

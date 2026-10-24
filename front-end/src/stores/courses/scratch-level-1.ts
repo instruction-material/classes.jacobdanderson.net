@@ -15,7 +15,8 @@ import {
 } from "./scratchConditionalLessons";
 import {
 	buildScratchFluencyDrill,
-	buildScratchOpenEndedVariant
+	buildScratchOpenEndedVariant,
+	scratchCostumeEditingGuide
 } from "./scratchProjectGuidance";
 import { buildSupportSectionGuidance } from "./supportSectionGuidance";
 
@@ -27,8 +28,10 @@ export const scratchLevel1Course: RawCourse = {
 			curriculum: [
 				{
 					title: "Scratch basics",
-					content:
-						"Create a Scratch account and explore the code blocks. Learn how the stage and sprites work, and experiment with the green flag to start scripts."
+					preserveInstructions: true,
+					content: `Create a Scratch account and explore the code blocks. Learn how the stage and sprites work, and experiment with the green flag to start scripts.
+
+${scratchCostumeEditingGuide}`
 				},
 				{
 					title: "Project 1 – Hungry Hippo",

@@ -190,7 +190,7 @@ const BOILERPLATE_SENTENCE_REWRITES: Array<{
 	}
 ];
 const STRUCTURED_COURSE_SUPPORT_RE =
-	/\*\*(?:Normal|Hard|Concept focus|Project goal|Fluency goal|Variant goal|Teaching flow|Learning sequence|Diagnostic guidance|Readiness check|Misconception check|Common pitfalls|Exit check|Mastery check|Remote investigation|Science explanation|Studio focus|AP connection):?\*\*/i;
+	/\*\*(?:Normal|Hard|Course flow|Concept focus|Project goal|Fluency goal|Variant goal|Teaching flow|Learning sequence|Diagnostic guidance|Readiness check|Misconception check|Common pitfalls|Exit check|Mastery check|Remote investigation|Science explanation|Studio focus|AP connection):?\*\*/i;
 const MARKDOWN_LIST_BLOCK_RE = /(?:^|\n)\s*(?:[-*]|\d+\.)\s+\S/;
 const FENCED_CODE_BLOCK_RE = /(?:^|\n)[\t ]*(?:`{3,}|~{3,})/;
 const MARKDOWN_HEADING_RE = /(?:^|\n)[\t ]{0,3}#{1,6}[\t ]+\S/;

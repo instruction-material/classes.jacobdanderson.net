@@ -1,0 +1,54 @@
+// Use prompt() to ask the user for their first name in a prompt, and for their last name in another prompt. Print this to the screen. Next, ask your user for two numbers, and print the sum to the console. Finally, ask the user for their favorite food and display the LAST letter of their favorite food as an alert.
+
+// solution
+
+let firstName = prompt("What's your first name?");
+let lastName = prompt("What's your last name?");
+let firstNum = prompt("Give me a number.");
+let secondNum = prompt("Give me another number.");
+let favoriteFood = prompt("What is your favorite food?");
+
+// A canceled browser dialog returns null instead of a string.
+if (firstName === null || lastName === null || firstNum === null ||
+    secondNum === null || favoriteFood === null) {
+  console.log("Survey canceled.");
+} else if (firstNum.trim() === "" || secondNum.trim() === "" ||
+           !Number.isFinite(+firstNum) || !Number.isFinite(+secondNum)) {
+  console.log("Enter two finite numbers.");
+} else {
+  let sumOfNums = +firstNum + +secondNum;
+  printToScreen(firstName + " " + lastName);
+  console.log("The sum of your two numbers is " + sumOfNums + ".");
+  if (favoriteFood.length > 0) {
+    alert("The last letter of your favorite food is " + favoriteFood[favoriteFood.length - 1] + ".");
+  } else {
+    alert("No favorite food was entered.");
+  }
+}
+
+//DO NOT ALTER CODE WRITTEN BELOW
+
+function printToScreen(text) {
+  let r = Math.floor(Math.floor((Math.random() * 255) + 1));
+  let g = Math.floor(Math.floor((Math.random() * 255) + 1));
+  let b = Math.floor(Math.floor((Math.random() * 255) + 1));
+  const svg = d3.select("body")
+    .append("svg")
+    .attr("width", 1500)
+    .attr("height", 75);
+  
+  svg.append("text")
+    .attr("y", 37.5)
+    .attr("width", 450)
+    .attr("height", 75)
+    .attr("x", -1000)
+    .attr("font-weight", "bold")
+    .attr("font-size", "30px")
+    .attr("fill", `rgb(${r},${g},${b}`)
+    .attr("font-family", "Times New Roman")
+    .text(text)
+    .transition()
+    .duration(1000)
+    .attr("x", 37.5);
+}
+

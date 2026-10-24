@@ -33,7 +33,8 @@ placeholder/development instructions with the chosen app's actual content.
 ## Turn read-only task values into state
 
 The starter's ReleaseTask.done is `let` and its checklist is a plain constant,
-so the supplied labels are read-only. The reference uses `var done: Bool`
+so the supplied labels are read-only. The introduction and checklist share one
+List so both remain readable and reachable at larger text sizes. The reference uses `var done: Bool`
 and `@State private var checklist`, then binds its toggles:
 
 ```swift
@@ -65,8 +66,8 @@ termination.
 4. Give Settings accurate information and working controls rather than
    claiming the reference's fixture distribution state.
 5. Verify small-display layout, larger text, useful action labels and the
-   empty/error states relevant to the chosen flow. Check scrolling when a
-   fixed-height List is nested inside a ScrollView.
+   empty/error states relevant to the chosen flow. Keep the checklist in the same scrolling
+   content as the introduction so every control remains reachable.
 
 The reference demonstrates bound toggles and populated informational tabs.
 Its Explore list describes features; it does not implement every learner's

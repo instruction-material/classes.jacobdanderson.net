@@ -91,6 +91,42 @@ full playback level. Test at a comfortable output volume. First prove the logic
 with a visible counter or a printed entry event so a missing sound cannot hide a
 state bug, then connect the audio. [Sound volume](https://www.pygame.org/docs/ref/mixer.html#pygame.mixer.Sound.set_volume).
 
+## Gradual volume changes
+
+For a fading sound, retain its volume between updates. Initialize
+`sand_volume = 1.0` beside `was_in_sand`. Merge this helper call into the
+existing `update()`, after the play-state guard and contact test:
+
+```python
+def update_sand_volume(touching_sand):
+    global sand_volume
+    if touching_sand:
+        sand_volume = max(0.2, sand_volume - 0.005)
+    else:
+        sand_volume = 1.0
+    sounds.sand.set_volume(sand_volume)
+```
+
+Call `update_sand_volume(touching_sand)` once each frame. Keep the earlier
+entry-only playback check; changing volume does not start or extend a sound.
+Use a clip long enough to hear the change. The example decreases by 0.005 per
+frame and stops at 0.2, so its timing depends on the frame rate. A time-based
+version should decrease by a rate multiplied by `dt`. A nested `while` or
+`time.sleep` would prevent the game from processing movement and input.
+
+For contact states `False, True, True, False, True`, the volume becomes
+`1.0, 0.995, 0.990, 1.0, 0.995`. Leaving sand resets it immediately, even while
+the ball is moving. At a new round, lava reset or accepted new shot, reset both
+`was_in_sand = False` and `sand_volume = 1.0`, stop the previous sand sound, and
+set its volume to one before the next update. A new visit then starts a fresh
+fade rather than inheriting the old one.
+
+`on_mouse_down` runs when the button is pressed; `on_mouse_up` runs when it is
+released. Put the accepted shot's one-time reset in the chosen handler, after
+its button, play-state and stopped-ball checks. Keep the contact test and
+continuous volume changes in `update()`, so they continue between clicks.
+Retain `draw()` for display.
+
 ## Verify and explain
 
 Trace entering, staying, leaving and reentering sand; remaining still inside;

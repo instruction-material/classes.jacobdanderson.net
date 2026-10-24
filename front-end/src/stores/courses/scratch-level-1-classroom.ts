@@ -1,6 +1,7 @@
 import type { RawCourse } from "./types";
 import projects from "../../../scripts/scratch/projects.json";
 import { scratchClassroomGameGuides } from "./scratchClassroomGameGuides";
+import { scratchCostumeEditingGuide } from "./scratchProjectGuidance";
 
 const units = [...new Set(projects.map(project => project.unit))];
 const introductions: Record<string, string> = {
@@ -19,6 +20,8 @@ const introductions: Record<string, string> = {
 };
 
 const mazeEndingGuide = [
+	"**Turning remix:** This starter's arrows change x and y without turning Player. To experiment with turning, select **Player**, then use Motion's set rotation style block: all around displays turns, left-right only flips horizontally, and don't rotate keeps the costume's original orientation. Direction still affects move steps. Try turn 15 degrees on Player and verify that Wall stays still; undo the experiment to return to the supplied movement. Check the selected thumbnail before moving a script between sprites.",
+	"",
 	"## Optional ending screen",
 	"",
 	"After Normal works, use this Hard extension to end the game at the gold Goal. Keep the purple wall as a retry. A text costume is a sprite; a say block makes a speech bubble.",
@@ -46,8 +49,9 @@ export const scratchLevel1ClassroomCourse: RawCourse = {
 		curriculum: [
 			{
 				id: `scratch-classroom-${index + 1}-intro`,
+				preserveInstructions: unit === "Events and movement",
 				title: `${unit}: Start Here`,
-				content: `**Concept focus:** ${introductions[unit]}\n\n**Optional planning warmup:** Play a familiar small game, name its input -> action -> feedback rule, then sketch or paper-test one variation before coding. Predict a check a partner could perform. Keep this brief; Normal and Hard still use the saved working starter.\n\n**Class routine:** Run the supplied example together, predict one change, complete **Normal**, and demonstrate the check. **Hard** extends the same project after a working checkpoint. You can also contribute original costumes or backgrounds: show the difference between bitmap and vector art, and use actual transparency rather than a checkerboard drawn into the image.\n\nDownload a starter below or open it in the website IDE. At the end of class, download your own .sb3 file with a recognizable name. Reopen it to verify the saved copy. Use your school's approved Scratch-compatible tool when required.`
+				content: `**Concept focus:** ${introductions[unit]}\n\n**Optional planning warmup:** Play a familiar small game, name its input -> action -> feedback rule, then sketch or paper-test one variation before coding. Predict a check a partner could perform. Keep this brief; Normal and Hard still use the saved working starter.\n\n**Class routine:** Run the supplied example together, predict one change, complete **Normal**, and demonstrate the check. **Hard** extends the same project after a working checkpoint. ${unit === "Events and movement" ? `\n\n${scratchCostumeEditingGuide}` : ""}\n\nDownload a starter below or open it in the website IDE. At the end of class, download your own .sb3 file with a recognizable name. Reopen it to verify the saved copy. Use your school's approved Scratch-compatible tool when required.`
 			},
 			...projects
 				.filter(project => project.unit === unit && !project.optional)

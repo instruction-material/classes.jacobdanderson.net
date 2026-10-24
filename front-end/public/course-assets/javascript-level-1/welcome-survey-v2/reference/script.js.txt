@@ -1,0 +1,36 @@
+// Use prompt() to ask the user for their first name in a prompt, and for their last name in another prompt. Print this to the screen. Next, ask your user for two numbers, and print the sum to the console. Finally, ask the user for their favorite food and display the LAST letter of their favorite food as an alert.
+
+// solution
+
+let firstName = prompt("What's your first name?");
+let lastName = prompt("What's your last name?");
+let firstNum = prompt("Give me a number.");
+let secondNum = prompt("Give me another number.");
+let favoriteFood = prompt("What is your favorite food?");
+
+// A canceled browser dialog returns null instead of a string.
+if (firstName === null || lastName === null || firstNum === null ||
+    secondNum === null || favoriteFood === null) {
+  console.log("Survey canceled.");
+} else if (firstNum.trim() === "" || secondNum.trim() === "" ||
+           !Number.isFinite(+firstNum) || !Number.isFinite(+secondNum)) {
+  console.log("Enter two finite numbers.");
+} else {
+  let sumOfNums = +firstNum + +secondNum;
+  printToScreen(firstName + " " + lastName);
+  console.log("The sum of your two numbers is " + sumOfNums + ".");
+  if (favoriteFood.length > 0) {
+    alert("The last letter of your favorite food is " + favoriteFood[favoriteFood.length - 1] + ".");
+  } else {
+    alert("No favorite food was entered.");
+  }
+}
+
+//DO NOT ALTER CODE WRITTEN BELOW
+
+function printToScreen(text) {
+  d3.select("#output")
+    .append("p")
+    .attr("class", "course-output")
+    .text(String(text));
+}

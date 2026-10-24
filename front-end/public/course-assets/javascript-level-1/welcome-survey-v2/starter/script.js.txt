@@ -1,0 +1,14 @@
+// Use prompt() to ask the user for their first name in a prompt, and for their last name in another prompt. Print this to the screen. Next, ask your user for two numbers, and print the sum to the console. Finally, ask the user for their favorite food and display the LAST letter of their favorite food as an alert.
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW
+
+function printToScreen(text) {
+  d3.select("#output")
+    .append("p")
+    .attr("class", "course-output")
+    .text(String(text));
+}

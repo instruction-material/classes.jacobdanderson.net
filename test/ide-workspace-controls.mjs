@@ -29,7 +29,32 @@ export async function downloadProjectZip(page) {
 	if (!alreadyOpen) await page.locator(trigger).click();
 	try {
 		await page.waitForSelector("#code-ide-settings-panel", { visible: true });
-		await page.locator("button[aria-label='Download project ZIP']:not([disabled])").click();
+		const download = "button[aria-label='Download project ZIP']:not([disabled])";
+		await page.waitForSelector(download);
+		await page.$eval(download, button => button.scrollIntoView({
+			block: "end",
+			inline: "nearest",
+			behavior: "instant"
+		}));
+		await page.$eval("#code-ide-settings-panel", (panel) => {
+			panel.scrollTop = panel.scrollHeight;
+		});
+		await page.waitForFunction(() => {
+			const panel = document.querySelector("#code-ide-settings-panel");
+			const button = document.querySelector("button[aria-label='Download project ZIP']");
+			if (!panel || !button || button.disabled) return false;
+			const bounds = button.getBoundingClientRect();
+			const clip = panel.getBoundingClientRect();
+			const center = document.elementFromPoint(
+				bounds.x + bounds.width / 2,
+				bounds.y + bounds.height / 2
+			);
+			return bounds.width > 0 && bounds.height > 0
+				&& bounds.top >= Math.max(0, clip.top)
+				&& bounds.bottom <= Math.min(innerHeight, clip.bottom)
+				&& button.contains(center);
+		});
+		await page.locator(download).click();
 	}
 	catch (error) {
 		const state = await page.evaluate(() => {
@@ -42,6 +67,8 @@ export async function downloadProjectZip(page) {
 				settingsExpanded: document.querySelector("button[aria-label='IDE settings']")?.getAttribute("aria-expanded"),
 				panel: bounds(panel),
 				panelScrollTop: panel?.scrollTop,
+				panelScrollHeight: panel?.scrollHeight,
+				panelClientHeight: panel?.clientHeight,
 				download: bounds(download),
 				disabled: download?.disabled,
 				visibleText: download?.textContent,

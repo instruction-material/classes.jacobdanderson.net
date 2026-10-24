@@ -1,0 +1,11 @@
+// Your friend, Kant D. Bugg is working on making a survey to collect some information about his friends, but his code isn't working. Can you help fix his code?
+
+name = prompt("Please enter your name for the survey");
+
+prompt("Hello " + name ", thank you for helping fill our my survey! What is your favorite animal?");
+
+color = prompt("Wow! The  + animal +  is my favorite animal too. What's your favorite color?");
+
+flavor = prompt("Thanks! My last question is, what is your favorite flavor of ice cream?");
+
+console(name + "'s favorite animal is " + animal + ", their favorite color is " + color + ", and their favorite flavor of ice cream is " + flavor + ".");

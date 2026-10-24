@@ -1,0 +1,14 @@
+// Try out the printToScreen() function by putting "Hello World" between the parenthesis
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output")
+    .append("p")
+    .attr("class", "course-output")
+    .text(String(text));
+}

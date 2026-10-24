@@ -54,6 +54,7 @@ import {
 } from "@/modules/ideDiagnostics";
 import { startJavaPreview } from "@/modules/javaIdeWorker";
 import { javaNativeBuildInstructions } from "@/modules/javaNativeBuildInstructions";
+import { javascriptCourseResource } from "@/modules/javascriptCourseResources";
 import { createKarelWorldPlaybackController } from "@/modules/karelWorldPlayback";
 import { linuxBuildInstructions } from "@/modules/linuxBuildInstructions";
 import {
@@ -714,6 +715,7 @@ const gameEvents: GameInputEvent[] = [];
 const gameImageCache = new Map<string, CachedGameImage>();
 const activeGameMouseButtons = new Set<number>();
 const gameSoundAudio = new Map<string, Set<HTMLAudioElement>>();
+const gameSoundVolumes = new Map<string, number>();
 const gameSoundCleanup = new WeakMap<HTMLAudioElement, () => void>();
 const gameAudioBudget = createGameAudioBudget();
 const intentionallyStoppedGameAudio = new WeakSet<HTMLAudioElement>();
@@ -1178,6 +1180,8 @@ const usesNativeSourceWorkspace = computed(
 		selectedProject.value?.mode === "rust"
 );
 const webProjectRequirement = computed(() => {
+	if (javascriptCourseResource(selectedProject.value?.starterUrl ?? ""))
+		return "Runs from the exported index.html.";
 	const selected = webCourseResource(selectedProject.value?.starterUrl ?? "");
 	if (!selected) return "Requires a local web server.";
 	return selected.definition.workflow === "standalone"
@@ -5421,6 +5425,7 @@ function stopAllGameAudio() {
 	for (const soundName of [...gameSoundAudio.keys()])
 		stopGameSound(soundName);
 	gameSoundAudio.clear();
+	gameSoundVolumes.clear();
 	stopGameMusic();
 	stopAllGameTones();
 	suspendGameAudioContext();
@@ -5662,7 +5667,8 @@ function resolveProjectAudio(folder: "music" | "sounds", name: string) {
 function playProjectAudio(
 	asset: ResolvedGameAsset,
 	loop = false,
-	onPlaybackBlocked?: (audio: HTMLAudioElement) => void
+	onPlaybackBlocked?: (audio: HTMLAudioElement) => void,
+	volume = 1
 ) {
 	let audio: HTMLAudioElement;
 	try {
@@ -5672,6 +5678,7 @@ function playProjectAudio(
 		return null;
 	}
 	audio.loop = loop;
+	audio.volume = volume;
 	void audio.play().catch(() => {
 		if (intentionallyStoppedGameAudio.has(audio)) return;
 		onPlaybackBlocked?.(audio);
@@ -5742,7 +5749,12 @@ function playGameSound(name: string, loops = 0) {
 	const cleanupBlockedSound = () => {
 		cleanup?.();
 	};
-	const audio = playProjectAudio(asset, repeatCount < 0, cleanupBlockedSound);
+	const audio = playProjectAudio(
+		asset,
+		repeatCount < 0,
+		cleanupBlockedSound,
+		getGameSoundVolume(name)
+	);
 	if (!audio) {
 		release();
 		return;
@@ -5777,6 +5789,18 @@ function playGameSound(name: string, loops = 0) {
 			reportGameAudioPlaybackBlocked();
 		});
 	});
+}
+
+function getGameSoundVolume(name: string) {
+	return gameSoundVolumes.get(name) ?? 1;
+}
+
+function setGameSoundVolume(name: string, volume: number) {
+	if (!Number.isFinite(volume) || volume < 0) return;
+	const normalizedVolume = Math.min(1, volume);
+	gameSoundVolumes.set(name, normalizedVolume);
+	for (const audio of gameSoundAudio.get(name) ?? [])
+		audio.volume = normalizedVolume;
 }
 
 function stopGameSound(name: string) {
@@ -6873,6 +6897,8 @@ const gameBridge: GameBridge = {
 	stopLoop: stopGameLoop,
 	playSound: playGameSound,
 	stopSound: stopGameSound,
+	setSoundVolume: setGameSoundVolume,
+	getSoundVolume: getGameSoundVolume,
 	playMusic: playGameMusic,
 	pauseMusic: pauseGameMusic,
 	unpauseMusic: unpauseGameMusic,
@@ -6964,6 +6990,12 @@ function createGuardedGameBridgeRun(): GameBridge {
 		},
 		stopSound(name: string) {
 			if (isActiveRun()) gameBridge.stopSound(name);
+		},
+		setSoundVolume(name: string, volume: number) {
+			if (isActiveRun()) gameBridge.setSoundVolume(name, volume);
+		},
+		getSoundVolume(name: string) {
+			return isActiveRun() ? gameBridge.getSoundVolume(name) : 1;
 		},
 		playMusic(name: string, loop?: boolean) {
 			if (isActiveRun()) gameBridge.playMusic(name, loop);
@@ -8166,6 +8198,15 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 			</p>
 			<p v-else-if="pendingRouteProject.kind === 'share'">
 				Source: shared project link
+			</p>
+			<p
+				v-if="javascriptCourseResource(requestedStarterUrl)"
+				data-testid="ide-course-source-version"
+			>
+				Course copy:
+				{{ javascriptCourseResource(requestedStarterUrl)?.title }} v{{
+					javascriptCourseResource(requestedStarterUrl)?.version
+				}}.
 			</p>
 			<p
 				v-if="routeProjectImportError"

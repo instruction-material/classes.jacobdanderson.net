@@ -1,0 +1,27 @@
+// Using the strings below, use one letter from each string to print out "Hello World!". You must use string indexing! (Hint: How can we get a single character out of a string using indexing?)
+
+let stringOne = "Hamburger!";
+let stringTwo = "Cheese!";
+let stringThree = "Cauliflower!";
+let stringFour = "Watermelon!";
+let stringFive = "Lemon!";
+let stringSix = "Chick Peas!";
+let stringSeven = "Waffle!";
+let stringEight = "Shallot!";
+let stringNine = "Strawberry!";
+let stringTen = "Blueberry!";
+let stringEleven = "Fondant!";
+let stringTwelve = "Chocolate!";
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output")
+    .append("p")
+    .attr("class", "course-output")
+    .text(String(text));
+}

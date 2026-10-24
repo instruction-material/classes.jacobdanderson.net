@@ -11,6 +11,10 @@ interface ScratchOpenEndedVariantOptions {
 	evidence: string;
 }
 
+export const scratchCostumeEditingGuide = `**Costume edits:** Select the sprite's thumbnail before opening Code or Costumes. To replace its art while keeping its scripts, add a costume to that sprite: in Costumes, hover over the costume chooser and select **Upload Costume**, or paint a new costume. The stage owns backdrops; each sprite owns its costumes and scripts.
+
+For a bitmap costume, choose a visibly different fill color and click inside a closed outline. If the color spreads outside, undo, zoom in and close the gap before filling again. Filling with the existing color can appear to do nothing. Bitmap art uses pixels; vector art uses shapes. Use an actual transparent background for imported art, rather than a checkerboard drawn into the image.`;
+
 export function buildScratchFluencyDrill({
 	project,
 	focus,

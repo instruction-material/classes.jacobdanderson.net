@@ -1,0 +1,14 @@
+// You and a few friends are baking cookies for a bake sale and need to measure out your ingredients. Each time you make cookies, it takes 3 cups of flour, 2 large eggs, and 4 cups of chocolate chips per batch of cookies. However, your friend Jim has already bought the flour. Use prompt() to ask Jim for how much flour he brought and printToScreen how many eggs and cups of chocolate chips you will need.
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output")
+    .append("p")
+    .attr("class", "course-output")
+    .text(String(text));
+}

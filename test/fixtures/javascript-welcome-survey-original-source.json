@@ -1,0 +1,40 @@
+{
+  "configuration": {
+    "htmlPreprocessor": "None",
+    "cssPreprocessor": "None",
+    "jsPreprocessor": "None",
+    "htmlClasses": "",
+    "headContent": "",
+    "cssBase": "Neither",
+    "vendorPrefixing": "Neither",
+    "externalCSS": [],
+    "externalJS": [
+      "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+    ]
+  },
+  "roles": [
+    {
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/OJMxyqw",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Use prompt() to ask the user for their first name in a prompt, and for their last name in another prompt. Print this to the screen. Next, ask your user for two numbers, and print the sum to the console. Finally, ask the user for their favorite food and display the LAST letter of their favorite food as an alert.\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW\n\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor((Math.random() * 255) + 1));\n  let g = Math.floor(Math.floor((Math.random() * 255) + 1));\n  let b = Math.floor(Math.floor((Math.random() * 255) + 1));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"30px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n\n"
+      },
+      "clipboardSourceSHA256": "d5e6543169cad57edc8970bf88f2771799c3cf1e08cdd90448a277a590b68ed0",
+      "bytes": 1048
+    },
+    {
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/1efb04d2b3e13694f1bf614fef02c22c",
+      "observedCanonicalURL": "https://codepen.io/junilearning/pen/pojNPeO/1efb04d2b3e13694f1bf614fef02c22c",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Use prompt() to ask the user for their first name in a prompt, and for their last name in another prompt. Print this to the screen. Next, ask your user for two numbers, and print the sum to the console. Finally, ask the user for their favorite food and display the LAST letter of their favorite food as an alert.\n\n// solution\n\nlet firstName = prompt(\"What's your first name?\");\nlet lastName = prompt(\"What's your last name?\");\nlet firstNum = prompt(\"Give me a number.\");\nlet secondNum = prompt(\"Give me another number.\");\nlet favoriteFood = prompt(\"What is your favorite food?\");\n\nlet sumOfNums = +firstNum + +secondNum;\nprintToScreen(firstName + \" \" + lastName);\nconsole.log(\"The sum of your two numbers is \" + sumOfNums + \".\");\nalert(\"The last letter of your favorite food is \" + favoriteFood[favoriteFood.length - 1] + \".\");\n\n//DO NOT ALTER CODE WRITTEN BELOW\n\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor((Math.random() * 255) + 1));\n  let g = Math.floor(Math.floor((Math.random() * 255) + 1));\n  let b = Math.floor(Math.floor((Math.random() * 255) + 1));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"30px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n\n"
+      },
+      "clipboardSourceSHA256": "ec7aee891cb2e005b1c59cbc2fbdcfa240616fe6b00ac7044bec6a243078dbc5",
+      "bytes": 1524
+    }
+  ]
+}

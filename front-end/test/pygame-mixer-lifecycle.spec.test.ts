@@ -15,13 +15,15 @@ function gameShim() {
 	);
 	for (const statement of source.statements) {
 		if (!ts.isVariableStatement(statement)) continue;
-		for (const declaration of statement.declarationList.declarations)
+		for (const declaration of statement.declarationList.declarations) {
 			if (
-				declaration.name.getText(source) === "pgzeroShim" &&
-				declaration.initializer &&
-				ts.isNoSubstitutionTemplateLiteral(declaration.initializer)
-			)
+				declaration.name.getText(source) === "pgzeroShim"
+				&& declaration.initializer
+				&& ts.isNoSubstitutionTemplateLiteral(declaration.initializer)
+			) {
 				return declaration.initializer.text;
+			}
+		}
 	}
 	throw new Error("The actual Pygame Zero runtime source was not found");
 }
@@ -35,9 +37,14 @@ class Bridge:
     def __init__(self):
         self.active_tones = set()
         self.next_tone = 0
+        self.sound_volumes = {}
     def __getattr__(self, name):
         def call(*args):
             calls.append((name, args))
+            if name == "setSoundVolume":
+                self.sound_volumes[args[0]] = args[1]
+            if name == "getSoundVolume":
+                return self.sound_volumes.get(args[0], 1.0)
             if name == "playTone":
                 self.next_tone += 1
                 self.active_tones.add(self.next_tone)
@@ -69,6 +76,11 @@ assert pygame.mixer.get_init() == (22050, -16, 2)
 pygame.mixer.init(48000, -16, 1)
 assert pygame.mixer.get_init() == (22050, -16, 2)
 pgzero.sounds.fixture.play(loops=2)
+assert pgzero.sounds.fixture.get_volume() == 1.0
+pgzero.sounds.fixture.set_volume(0.4)
+assert pgzero.sounds["fixture"].get_volume() == 0.4
+assert pgzero.sounds.other.get_volume() == 1.0
+assert ("setSoundVolume", ("fixture", 0.4)) in calls
 pgzero.music.play("theme")
 assert ("playSound", ("fixture", 2)) in calls
 assert ("playMusic", ("theme", True)) in calls

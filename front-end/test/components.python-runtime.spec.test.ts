@@ -22,6 +22,7 @@ describe("runtime-only Python surface", () => {
 			loop = false;
 			volume = 1;
 			playCount = 0;
+			volumesAtPlay: number[] = [];
 
 			constructor(_source: string) {
 				super();
@@ -30,6 +31,7 @@ describe("runtime-only Python surface", () => {
 
 			play() {
 				this.playCount += 1;
+				this.volumesAtPlay.push(this.volume);
 				if (TestAudio.rejectNext) {
 					TestAudio.rejectNext = false;
 					return Promise.reject(new Error("blocked"));
@@ -113,6 +115,12 @@ describe("runtime-only Python surface", () => {
 				playGameSound: (name: string, loops?: number) => void;
 				playGameTone: (frequency: number, duration: number) => number;
 				stopGameSound: (name: string) => void;
+				setGameSoundVolume: (name: string, volume: number) => void;
+				getGameSoundVolume: (name: string) => number;
+				createGuardedGameBridgeRun: () => {
+					setSoundVolume: (name: string, volume: number) => void;
+					getSoundVolume: (name: string) => number;
+				};
 				stopAllGameAudio: () => void;
 			};
 			const project = createPythonIdeProject("pgzero");
@@ -124,8 +132,24 @@ describe("runtime-only Python surface", () => {
 			runtime.projects.push(project);
 			for (let count = 0; count < 64; count += 1)
 				runtime.playGameSound("missing");
+			expect(runtime.getGameSoundVolume("beep")).toBe(1);
+			runtime.setGameSoundVolume("beep", 0.4);
 			runtime.playGameSound("beep");
 			expect(TestAudio.instances).toHaveLength(1);
+			expect(TestAudio.instances[0].volumesAtPlay).toEqual([0.4]);
+			runtime.setGameSoundVolume("beep", 0.2);
+			expect(TestAudio.instances[0].volume).toBe(0.2);
+			runtime.setGameSoundVolume("other", 0.7);
+			expect(TestAudio.instances[0].volume).toBe(0.2);
+			runtime.setGameSoundVolume("beep", -1);
+			runtime.setGameSoundVolume("beep", Number.NaN);
+			expect(runtime.getGameSoundVolume("beep")).toBe(0.2);
+			const previousRun = runtime.createGuardedGameBridgeRun();
+			const currentRun = runtime.createGuardedGameBridgeRun();
+			previousRun.setSoundVolume("beep", 0.9);
+			expect(previousRun.getSoundVolume("beep")).toBe(1);
+			expect(currentRun.getSoundVolume("beep")).toBe(0.2);
+			expect(TestAudio.instances[0].volume).toBe(0.2);
 			runtime.stopGameSound("beep");
 			TestAudio.instances.length = 0;
 
@@ -135,6 +159,11 @@ describe("runtime-only Python surface", () => {
 				expect(runtime.playGameTone(440, 10)).toBeGreaterThan(0);
 			expect(TestAudio.instances).toHaveLength(16);
 			expect(TestAudio.instances.every(audio => audio.loop)).toBe(true);
+			expect(TestAudio.instances.every(audio => audio.volume === 0.2)).toBe(true);
+			runtime.setGameSoundVolume("beep", 0);
+			expect(TestAudio.instances.every(audio => audio.volume === 0)).toBe(true);
+			runtime.setGameSoundVolume("beep", 2);
+			expect(TestAudio.instances.every(audio => audio.volume === 1)).toBe(true);
 			expect(TestAudioContext.oscillators).toBe(16);
 			runtime.playGameSound("beep");
 			expect(runtime.playGameTone(440, 10)).toBe(0);
@@ -152,6 +181,7 @@ describe("runtime-only Python surface", () => {
 			expect(runtime.playGameTone(440, 10)).toBe(0);
 			runtime.stopAllGameAudio();
 			expect(TestAudioContext.disconnectedOscillators).toBe(32);
+			expect(runtime.getGameSoundVolume("other")).toBe(1);
 
 			runtime.playGameSound("beep", 2);
 			const repeated = TestAudio.instances.at(-1)!;
@@ -185,7 +215,8 @@ describe("runtime-only Python surface", () => {
 			expect(burst.every(audio => audio.playCount === 2)).toBe(true);
 			burst.forEach(audio => audio.dispatchEvent(new Event("ended")));
 			expect(burst.every(audio => audio.playCount === 2)).toBe(true);
-		} finally {
+		}
+		finally {
 			wrapper?.unmount();
 			vi.useRealTimers();
 			vi.restoreAllMocks();
@@ -236,7 +267,8 @@ describe("runtime-only Python surface", () => {
 			expect(errors![0].message).toContain("late tick failure");
 			expect(runtime.runMessage).toBe("Run failed");
 			expect(runtime.isGameLoopActive).toBe(false);
-		} finally {
+		}
+		finally {
 			wrapper?.unmount();
 			vi.unstubAllGlobals();
 		}
@@ -320,7 +352,8 @@ describe("runtime-only Python surface", () => {
 			expect(denyStorage).not.toHaveBeenCalled();
 			for (const call of Object.values(calls))
 				expect(call).not.toHaveBeenCalled();
-		} finally {
+		}
+		finally {
 			wrapper?.unmount();
 			Object.defineProperty(window, "localStorage", storage);
 			if (database) Object.defineProperty(window, "indexedDB", database);
