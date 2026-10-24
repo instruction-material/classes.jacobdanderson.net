@@ -8,8 +8,8 @@ export const swiftWelcomeRoleFiles = [
 	"WelcomeProfileApp.swift"
 ] as const;
 
-export const swiftNetworkingRevision
-	= "d8110b0b359a7499a9de9fc3c31dfac26b411b3e";
+export const swiftNetworkingRevision =
+	"d8110b0b359a7499a9de9fc3c31dfac26b411b3e";
 export const swiftNetworkingPack = "SAD6-API-Reference-App";
 export const swiftNetworkingRoot = `https://github.com/instruction-material/Swift/tree/${swiftNetworkingRevision}/${swiftNetworkingPack}`;
 
@@ -25,8 +25,8 @@ export const swiftTrackerRoot = `https://github.com/instruction-material/Swift/t
 export const swiftDataTrackerPack = "SAD5-SwiftData-Tracker-App";
 export const swiftDataTrackerRoot = `https://github.com/instruction-material/Swift/tree/${swiftTrackerRevision}/${swiftDataTrackerPack}`;
 
-export const swiftCanonicalProjectsRevision
-	= "58d17abb7a09185558a74c44f0ba2e43a18f42c2";
+export const swiftCanonicalProjectsRevision =
+	"58d17abb7a09185558a74c44f0ba2e43a18f42c2";
 export const swiftGalleryRoot = `https://github.com/instruction-material/Swift/tree/${swiftCanonicalProjectsRevision}/SAD2-Media-Gallery-App`;
 export const swiftHobbyRoot = `https://github.com/instruction-material/Swift/tree/${swiftCanonicalProjectsRevision}/SAD3-Multi-Tab-Hobby-App`;
 export const swiftMapRoot = `https://github.com/instruction-material/Swift/tree/${swiftCanonicalProjectsRevision}/SAD4-Map-Places-App`;
@@ -123,10 +123,10 @@ const swiftPacks = [
 export function swiftCourseResource(url: string) {
 	const resource = parseGitHubResource(url);
 	if (
-		!resource
-		|| resource.owner.toLowerCase() !== "instruction-material"
-		|| resource.repo.toLowerCase() !== "swift"
-		|| resource.mode !== "tree"
+		!resource ||
+		resource.owner.toLowerCase() !== "instruction-material" ||
+		resource.repo.toLowerCase() !== "swift" ||
+		resource.mode !== "tree"
 	) {
 		return null;
 	}
@@ -135,12 +135,12 @@ export function swiftCourseResource(url: string) {
 			[
 				"main",
 				pack.revision,
-				...(pack.pack === swiftTrackerPack
-					|| pack.pack === swiftDataTrackerPack
+				...(pack.pack === swiftTrackerPack ||
+				pack.pack === swiftDataTrackerPack
 					? swiftTrackerEarlierRevisions
 					: [])
-			].includes(resource.ref)
-			&& [`${pack.pack}/starter`, `${pack.pack}/solution`].includes(
+			].includes(resource.ref) &&
+			[`${pack.pack}/starter`, `${pack.pack}/solution`].includes(
 				resource.path
 			)
 	);
