@@ -1,0 +1,290 @@
+export const javascriptDynamicEventsResources = [
+	{
+		project: "calculator",
+		title: "Calculator",
+		version: 1,
+		role: "starter",
+		urls: [
+			"https://codepen.io/junilearning/pen/8cb69f2696d31b929107d3798ef095aa",
+			"https://codepen.io/junilearning/pen/abdRQOr"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "dynamic-events-v1/calculator/starter/index.html.txt",
+				byteLength: 1040,
+				sha256: "da3575df3855dfb7027926a833f8d5acf7a25b26abcb86f708e0a24c675fa6f3"
+			},
+			{
+				name: "styles.css",
+				path: "dynamic-events-v1/calculator/starter/styles.css.txt",
+				byteLength: 1319,
+				sha256: "c0b394f3003da508eb907e3bab69b2da71cbf6e5363daa5ea8708d026bf1a9d7"
+			},
+			{
+				name: "script.js",
+				path: "dynamic-events-v1/calculator/starter/script.js.txt",
+				byteLength: 1182,
+				sha256: "50637be998ddf9d07e7d28a49341d8f2cee47bcecba61a003bfdd9377f0e4426"
+			},
+			{
+				name: "README.md",
+				path: "dynamic-events-v1/calculator/starter/README.md.txt",
+				byteLength: 2444,
+				sha256: "edf0a05670262062d99b88d303239eea41d63e1e662a4b1ac21d0ad8a13e98a8"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "dynamic-events-v1/calculator/starter/vendor/d3.min.js.txt",
+				byteLength: 248314,
+				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "dynamic-events-v1/calculator/starter/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			}
+		]
+	},
+	{
+		project: "calculator",
+		title: "Calculator",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/d394480277af12f893819f3d64c5ea81",
+			"https://codepen.io/junilearning/pen/VwvOVgp/d394480277af12f893819f3d64c5ea81"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "dynamic-events-v1/calculator/reference/index.html.txt",
+				byteLength: 1040,
+				sha256: "da3575df3855dfb7027926a833f8d5acf7a25b26abcb86f708e0a24c675fa6f3"
+			},
+			{
+				name: "styles.css",
+				path: "dynamic-events-v1/calculator/reference/styles.css.txt",
+				byteLength: 1319,
+				sha256: "c0b394f3003da508eb907e3bab69b2da71cbf6e5363daa5ea8708d026bf1a9d7"
+			},
+			{
+				name: "script.js",
+				path: "dynamic-events-v1/calculator/reference/script.js.txt",
+				byteLength: 2016,
+				sha256: "20f3adbe11613ea621198d8baaefae504f627a761941bf9c518f0ab0498a23f4"
+			},
+			{
+				name: "README.md",
+				path: "dynamic-events-v1/calculator/reference/README.md.txt",
+				byteLength: 2446,
+				sha256: "49dccfb373add43a22ecd16e0769a856e0dd7deade1e258a088ac2c7226864ae"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "dynamic-events-v1/calculator/reference/vendor/d3.min.js.txt",
+				byteLength: 248314,
+				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "dynamic-events-v1/calculator/reference/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			}
+		]
+	},
+	{
+		project: "strength-tester",
+		title: "Strength Tester",
+		version: 1,
+		role: "starter",
+		urls: [
+			"https://codepen.io/junilearning/pen/afcffeca5355cf07d9882f08c90ab84c",
+			"https://codepen.io/junilearning/pen/QWyZJgx"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "dynamic-events-v1/strength-tester/starter/index.html.txt",
+				byteLength: 506,
+				sha256: "c713b4c241bab76ade7b05c2a1f8ee4625c36fb1036e3acd6ea3bd8515d52965"
+			},
+			{
+				name: "styles.css",
+				path: "dynamic-events-v1/strength-tester/starter/styles.css.txt",
+				byteLength: 1319,
+				sha256: "c0b394f3003da508eb907e3bab69b2da71cbf6e5363daa5ea8708d026bf1a9d7"
+			},
+			{
+				name: "script.js",
+				path: "dynamic-events-v1/strength-tester/starter/script.js.txt",
+				byteLength: 359,
+				sha256: "9c3061d30f71a43c6aae441d622a65c0620876f9dbcaff0f90b327e22ad723f8"
+			},
+			{
+				name: "README.md",
+				path: "dynamic-events-v1/strength-tester/starter/README.md.txt",
+				byteLength: 2528,
+				sha256: "b2fa59223aaa543524f086659d03d8c80a6e54e2749f6da889bbdaa7b249f8af"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "dynamic-events-v1/strength-tester/starter/vendor/d3.min.js.txt",
+				byteLength: 248314,
+				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "dynamic-events-v1/strength-tester/starter/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			},
+			{
+				name: "vendor/materialize.min.css",
+				path: "dynamic-events-v1/strength-tester/starter/vendor/materialize.min.css.txt",
+				byteLength: 141829,
+				sha256: "e7bb7114352aba1e81b2d8d930ef1ecdd06ffc0ad927a8b86fffe75447ef70cc"
+			},
+			{
+				name: "LICENSE-Materialize.txt",
+				path: "dynamic-events-v1/strength-tester/starter/LICENSE-Materialize.txt.txt",
+				byteLength: 1083,
+				sha256: "e503e53d929397f69cb80fa1ef050a3d84fbee7c09e6b622c72c4c2c9216d8c7"
+			},
+			{
+				name: "images/yo-yo.svg",
+				path: "dynamic-events-v1/strength-tester/starter/images/yo-yo.svg.txt",
+				byteLength: 278,
+				sha256: "e5d3f4dbc22e562bd9ca4a91458ea8e197f524392a0f6a15a1f6f51480124207"
+			},
+			{
+				name: "images/frisbee.svg",
+				path: "dynamic-events-v1/strength-tester/starter/images/frisbee.svg.txt",
+				byteLength: 250,
+				sha256: "75641b26a94a8f202fa50b1e5d40fcc47e852c1d8b27556c08da31a34c0c86e0"
+			},
+			{
+				name: "images/football.svg",
+				path: "dynamic-events-v1/strength-tester/starter/images/football.svg.txt",
+				byteLength: 263,
+				sha256: "0b5a45e1c4b1d2285abd853b770e1d6d896656b0ce43b6d18febe0fa8877808c"
+			},
+			{
+				name: "images/basketball.svg",
+				path: "dynamic-events-v1/strength-tester/starter/images/basketball.svg.txt",
+				byteLength: 317,
+				sha256: "b1b71bd3df98bc4a986bdb33628670bf44625ab453535ccb1f4cf2ef94b0c1de"
+			},
+			{
+				name: "images/teddy-bear.svg",
+				path: "dynamic-events-v1/strength-tester/starter/images/teddy-bear.svg.txt",
+				byteLength: 637,
+				sha256: "bf755618fb43e62a7eb257a8159faa9c61844edd2b5a22c0cafec81f42c1a913"
+			},
+			{
+				name: "SOURCES.md",
+				path: "dynamic-events-v1/strength-tester/starter/SOURCES.md.txt",
+				byteLength: 303,
+				sha256: "8f4ca82fad6b68f6b6a43a0158fc6db217a0bf6c77d2693fe5146664f47861ae"
+			}
+		]
+	},
+	{
+		project: "strength-tester",
+		title: "Strength Tester",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/20af41540e7b43929ccf60cc88c8e8bd",
+			"https://codepen.io/junilearning/pen/XWmvbrN/20af41540e7b43929ccf60cc88c8e8bd"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "dynamic-events-v1/strength-tester/reference/index.html.txt",
+				byteLength: 656,
+				sha256: "33bad71ebc3f4237796862b6aa07e116af9d76df023002399286713f5efb9f07"
+			},
+			{
+				name: "styles.css",
+				path: "dynamic-events-v1/strength-tester/reference/styles.css.txt",
+				byteLength: 1319,
+				sha256: "c0b394f3003da508eb907e3bab69b2da71cbf6e5363daa5ea8708d026bf1a9d7"
+			},
+			{
+				name: "script.js",
+				path: "dynamic-events-v1/strength-tester/reference/script.js.txt",
+				byteLength: 984,
+				sha256: "6688b325cd9db1e398c7eb6ee72744524ce940c50ee379261f9954c4ff266cfb"
+			},
+			{
+				name: "README.md",
+				path: "dynamic-events-v1/strength-tester/reference/README.md.txt",
+				byteLength: 2530,
+				sha256: "f664bb213d777775fb4dce2ac4ccfbf83a7191e92657ca51e19bb638f2907b86"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "dynamic-events-v1/strength-tester/reference/vendor/d3.min.js.txt",
+				byteLength: 248314,
+				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "dynamic-events-v1/strength-tester/reference/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			},
+			{
+				name: "vendor/materialize.min.css",
+				path: "dynamic-events-v1/strength-tester/reference/vendor/materialize.min.css.txt",
+				byteLength: 141829,
+				sha256: "e7bb7114352aba1e81b2d8d930ef1ecdd06ffc0ad927a8b86fffe75447ef70cc"
+			},
+			{
+				name: "LICENSE-Materialize.txt",
+				path: "dynamic-events-v1/strength-tester/reference/LICENSE-Materialize.txt.txt",
+				byteLength: 1083,
+				sha256: "e503e53d929397f69cb80fa1ef050a3d84fbee7c09e6b622c72c4c2c9216d8c7"
+			},
+			{
+				name: "images/yo-yo.svg",
+				path: "dynamic-events-v1/strength-tester/reference/images/yo-yo.svg.txt",
+				byteLength: 278,
+				sha256: "e5d3f4dbc22e562bd9ca4a91458ea8e197f524392a0f6a15a1f6f51480124207"
+			},
+			{
+				name: "images/frisbee.svg",
+				path: "dynamic-events-v1/strength-tester/reference/images/frisbee.svg.txt",
+				byteLength: 250,
+				sha256: "75641b26a94a8f202fa50b1e5d40fcc47e852c1d8b27556c08da31a34c0c86e0"
+			},
+			{
+				name: "images/football.svg",
+				path: "dynamic-events-v1/strength-tester/reference/images/football.svg.txt",
+				byteLength: 263,
+				sha256: "0b5a45e1c4b1d2285abd853b770e1d6d896656b0ce43b6d18febe0fa8877808c"
+			},
+			{
+				name: "images/basketball.svg",
+				path: "dynamic-events-v1/strength-tester/reference/images/basketball.svg.txt",
+				byteLength: 317,
+				sha256: "b1b71bd3df98bc4a986bdb33628670bf44625ab453535ccb1f4cf2ef94b0c1de"
+			},
+			{
+				name: "images/teddy-bear.svg",
+				path: "dynamic-events-v1/strength-tester/reference/images/teddy-bear.svg.txt",
+				byteLength: 637,
+				sha256: "bf755618fb43e62a7eb257a8159faa9c61844edd2b5a22c0cafec81f42c1a913"
+			},
+			{
+				name: "SOURCES.md",
+				path: "dynamic-events-v1/strength-tester/reference/SOURCES.md.txt",
+				byteLength: 303,
+				sha256: "8f4ca82fad6b68f6b6a43a0158fc6db217a0bf6c77d2693fe5146664f47861ae"
+			}
+		]
+	}
+] as const;

@@ -1,0 +1,63 @@
+# Photograph sources
+
+National Park Service Yellowstone Slide File. Public domain; credit lines retained. https://www.nps.gov/features/yell/slidefile/
+
+{
+  "key": "lower-falls",
+  "title": "Lower Falls from Artist Point",
+  "credit": "National Park Service / William S Keller",
+  "year": "1969",
+  "page": "https://www.nps.gov/features/yell/slidefile/water/falls/yellrdbelowlake/Page.htm",
+  "url": "https://www.nps.gov/features/yell/slidefile/water/falls/yellrdbelowlake/Images/03761.jpg",
+  "sha256": "4867697b30373ae026b4c366c1c22e164cae32221569697e349e796f485cc60f",
+  "bytes": 1003208,
+  "license": "Public domain; retain the supplied credit line"
+}
+
+{
+  "key": "grand-prismatic",
+  "title": "Grand Prismatic Spring",
+  "credit": "National Park Service / Al Mebane",
+  "year": "1973",
+  "page": "https://www.nps.gov/features/yell/slidefile/thermalfeatures/hotspringsterraces/midwaylower/Page.htm",
+  "url": "https://www.nps.gov/features/yell/slidefile/thermalfeatures/hotspringsterraces/midwaylower/Images/06120.jpg",
+  "sha256": "7d65c17b845a50532531fb04cebfc0d93b6d689b590e879eea1181d787ff698c",
+  "bytes": 473838,
+  "license": "Public domain; retain the supplied credit line"
+}
+
+{
+  "key": "riverside-geyser",
+  "title": "Riverside Geyser",
+  "credit": "National Park Service / Rosalie LaRue",
+  "year": "1976",
+  "page": "https://www.nps.gov/features/yell/slidefile/thermalfeatures/geysers/upper/Page.htm",
+  "url": "https://www.nps.gov/features/yell/slidefile/thermalfeatures/geysers/upper/Images/04828.jpg",
+  "sha256": "ed4f2285966c218d970b2d304e8865765d4eaed3536a9aec39cec346b0e5de06",
+  "bytes": 299982,
+  "license": "Public domain; retain the supplied credit line"
+}
+
+{
+  "key": "grotto-geyser",
+  "title": "Grotto Geyser",
+  "credit": "National Park Service / William W Dunmire",
+  "year": "1968",
+  "page": "https://www.nps.gov/features/yell/slidefile/thermalfeatures/geysers/upper/Page.htm",
+  "url": "https://www.nps.gov/features/yell/slidefile/thermalfeatures/geysers/upper/Images/04806.jpg",
+  "sha256": "25478b02fb43067bf181d3de835d61f0a4037e163919e02eb40d2766e31dd20e",
+  "bytes": 382476,
+  "license": "Public domain; retain the supplied credit line"
+}
+
+{
+  "key": "undine-falls",
+  "title": "Undine Falls",
+  "credit": "National Park Service, Yellowstone Slide File; photographer unknown",
+  "year": "1963",
+  "page": "https://www.nps.gov/features/yell/slidefile/water/falls/yellrdbelowlake/Page.htm",
+  "url": "https://www.nps.gov/features/yell/slidefile/water/falls/yellrdbelowlake/Images/03737.jpg",
+  "sha256": "6813c093589c177a100e2e752b0a44f91a97c7efde98e0381aae10926ee68d00",
+  "bytes": 700471,
+  "license": "Public domain; retain the supplied credit line"
+}

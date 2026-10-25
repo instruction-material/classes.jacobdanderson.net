@@ -1,0 +1,211 @@
+{
+  "images": [
+    {
+      "project": "pokemon-team",
+      "name": "images/pokemon-1.svg",
+      "index": 0,
+      "rasterSHA256": "3f2e9ab07855d0f80c9a5fd4636270daa0e962c34634480ea35eb768d3e85b56",
+      "rasterBytes": 42714,
+      "source": "https://www.serebii.net/swordshield/pokemon/012.png",
+      "viewBox": null
+    },
+    {
+      "project": "pokemon-team",
+      "name": "images/pokemon-2.svg",
+      "index": 1,
+      "rasterSHA256": "1229554663a670e40c4072cff9f581728021877ed867e7789ac3913a96678e5d",
+      "rasterBytes": 49402,
+      "source": "https://www.serebii.net/swordshield/pokemon/248.png",
+      "viewBox": null
+    },
+    {
+      "project": "pokemon-team",
+      "name": "images/pokemon-3.svg",
+      "index": 2,
+      "rasterSHA256": "08556bae8a637f4746a3fd4f5bc07358df9d258071b70d95dd17369563c07466",
+      "rasterBytes": 41737,
+      "source": "https://www.serebii.net/Shiny/SWSH/330.png",
+      "viewBox": null
+    },
+    {
+      "project": "pokemon-team",
+      "name": "images/pokemon-4.svg",
+      "index": 3,
+      "rasterSHA256": "e5bcac9a8edd279480301f3c228832dcafa152307430a65dd0a62e51a2da09e5",
+      "rasterBytes": 36767,
+      "source": "https://www.serebii.net/swordshield/pokemon/171.png",
+      "viewBox": null
+    },
+    {
+      "project": "pokemon-team",
+      "name": "images/pokemon-5.svg",
+      "index": 4,
+      "rasterSHA256": "4ced3bd653ab92e380fcb726b3d3c6134973a19157ae1a4f93e64121ea5c1c0f",
+      "rasterBytes": 35839,
+      "source": "https://www.serebii.net/swordshield/pokemon/407.png",
+      "viewBox": null
+    },
+    {
+      "project": "pokemon-team",
+      "name": "images/pokemon-6.svg",
+      "index": 5,
+      "rasterSHA256": "0ba8d092e909f238855e45517625c79de9f6d0911e1fd16769695bf112e2f72e",
+      "rasterBytes": 48907,
+      "source": "https://www.serebii.net/swordshield/pokemon/068.png",
+      "viewBox": null
+    },
+    {
+      "project": "fake-tech",
+      "name": "images/employee-1.svg",
+      "index": 0,
+      "rasterSHA256": "9bc6394081d52e56daeed500042b6be4cc8d817354ec78d54fced6c3b42f75eb",
+      "rasterBytes": 18542,
+      "source": "https://www.shareicon.net/data/256x256/2016/05/24/770107_man_512x512.png",
+      "viewBox": null
+    },
+    {
+      "project": "fake-tech",
+      "name": "images/employee-2.svg",
+      "index": 1,
+      "rasterSHA256": "00057145015866522f2a3131e490384be988b6afbf517133aa452d4054529349",
+      "rasterBytes": 17664,
+      "source": "https://www.shareicon.net/data/256x256/2016/05/24/770088_people_512x512.png",
+      "viewBox": null
+    },
+    {
+      "project": "fake-tech",
+      "name": "images/employee-3.svg",
+      "index": 2,
+      "rasterSHA256": "107f7d82a64ae8d0bc74b93c71da2de3d85ee87f43cc325cd84d43e58ef18228",
+      "rasterBytes": 14879,
+      "source": "https://www.shareicon.net/data/256x256/2016/05/24/770105_man_512x512.png",
+      "viewBox": null
+    },
+    {
+      "project": "fake-tech",
+      "name": "images/employee-4.svg",
+      "index": 3,
+      "rasterSHA256": "674be51f2b6279c96583948bc6c4ae2f37ab7627847f6aea71e209511a0949b7",
+      "rasterBytes": 19718,
+      "source": "https://www.shareicon.net/data/256x256/2016/05/24/770098_people_512x512.png",
+      "viewBox": null
+    },
+    {
+      "project": "fake-tech",
+      "name": "images/employee-5.svg",
+      "index": 4,
+      "rasterSHA256": "eb162a40a02313dfac83203dbef121cc1dbe648576a64d7ad9f822c4df1cc77e",
+      "rasterBytes": 16733,
+      "source": "https://www.shareicon.net/data/256x256/2016/05/24/770100_people_512x512.png",
+      "viewBox": null
+    },
+    {
+      "project": "art-gallery",
+      "name": "images/art-2.svg",
+      "index": 1,
+      "rasterSHA256": "122733e89c85fe7e6e94851e46086ec9fb88f7f368014b42602d43af015fa8cd",
+      "rasterBytes": 434357,
+      "source": "https://www.vangoghgallery.com/img/starry_night_full.jpg",
+      "viewBox": null
+    },
+    {
+      "project": "art-gallery",
+      "name": "images/art-4.svg",
+      "index": 3,
+      "rasterSHA256": "e0b5f2f69374dfbdef51721a9ae8487254eb32ebc45466127da258d81994454c",
+      "rasterBytes": 36722,
+      "source": "https://upload.wikimedia.org/wikipedia/en/d/dd/The_Persistence_of_Memory.jpg",
+      "viewBox": null
+    },
+    {
+      "project": "art-gallery",
+      "name": "images/art-5.svg",
+      "index": 4,
+      "rasterSHA256": "f45e3718e669982cf65ee7cd6101541b2032cec65bc068b4ce690f40087ba831",
+      "rasterBytes": 67787,
+      "source": "https://i.pinimg.com/originals/13/af/13/13af1302d1e79d2308e9d46375417da4.jpg",
+      "viewBox": null
+    },
+    {
+      "project": "art-gallery",
+      "name": "images/art-9.svg",
+      "index": 8,
+      "rasterSHA256": "ef59cd715bbb54ad7f7aca0e553872949c76b38458309540d27dfc8b90ff2e20",
+      "rasterBytes": 18993,
+      "source": "https://ipaintingsforsale.com/painting-imgs/Mark%20Rothko/big/Untitled%20(I).jpg",
+      "viewBox": null
+    },
+    {
+      "project": "art-gallery",
+      "name": "images/art-1.svg",
+      "index": 0,
+      "rasterSHA256": "6cdf101762e6c1ad5168ee64707e926a7d16796f5abc2131dbc70ff292b874b6",
+      "rasterBytes": 435991,
+      "source": "https://en.wikipedia.org/wiki/Mona_Lisa",
+      "viewBox": null
+    },
+    {
+      "project": "art-gallery",
+      "name": "images/art-6.svg",
+      "index": 5,
+      "rasterSHA256": "2fcbcc4554496812fe37c4bc9c6da2ee45da98ce9d5c21de271f7ef3b3431a34",
+      "rasterBytes": 622974,
+      "source": "https://en.wikipedia.org/wiki/The_Scream",
+      "viewBox": null
+    },
+    {
+      "project": "art-gallery",
+      "name": "images/art-7.svg",
+      "index": 6,
+      "rasterSHA256": "fc7aa0b6dcae15e41f1b9b64ba8e89db6fd5e6cbbd9ca74d61eefe8d135fa6f7",
+      "rasterBytes": 594446,
+      "source": "https://en.wikipedia.org/wiki/Girl_with_a_Pearl_Earring",
+      "viewBox": null
+    },
+    {
+      "project": "art-gallery",
+      "name": "images/art-12.svg",
+      "index": 11,
+      "rasterSHA256": "5446e442c4734ee15cc58833c9c57f5f9fca01521a9ebeb59ead7e6851c177da",
+      "rasterBytes": 491763,
+      "source": "https://en.wikipedia.org/wiki/American_Gothic",
+      "viewBox": null
+    },
+    {
+      "project": "art-gallery",
+      "name": "images/art-3.svg",
+      "index": 2,
+      "rasterSHA256": "4ca2be7ff76475bc0619e1c03c2ad1433efca36a86464018ddd66b28cbcae593",
+      "rasterBytes": 148872,
+      "source": "https://www.nationalgallery.org.uk/paintings/claude-monet-the-water-lily-pond",
+      "viewBox": null
+    },
+    {
+      "project": "art-gallery",
+      "name": "images/art-8.svg",
+      "index": 7,
+      "rasterSHA256": "88cef0fcf38665dc8fb2e7df4d7f235bf6715e24a12de9a544eb90abd8a1bfae",
+      "rasterBytes": 337866,
+      "source": "https://en.wikipedia.org/wiki/Campbell's_Soup_Cans",
+      "viewBox": null
+    },
+    {
+      "project": "art-gallery",
+      "name": "images/art-11.svg",
+      "index": 10,
+      "rasterSHA256": "b66e56d7b97b396581ef88e16447e540f92a5ca239cdd31be46fb88685d98f0d",
+      "rasterBytes": 215405,
+      "source": "https://commons.wikimedia.org/wiki/File:%D0%9F%D0%BE%D0%BF%D0%B5%D1%80%D0%B5%D1%87%D0%BD%D0%B0%D1%8F_%D0%BB%D0%B8%D0%BD%D0%B8%D1%8F.jpg",
+      "viewBox": null
+    },
+    {
+      "project": "art-gallery",
+      "name": "images/art-10.svg",
+      "index": 9,
+      "rasterSHA256": "81a65e7f068267d8dbe02dd13970aab0dfde214d9368a765e88340ca51830285",
+      "rasterBytes": 434054,
+      "source": "https://www.shafe.co.uk/wp-content/uploads/p15-Tate-Modern-Media-Networks.pdf",
+      "viewBox": "264 0 432 540"
+    }
+  ]
+}

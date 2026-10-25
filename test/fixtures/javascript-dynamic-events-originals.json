@@ -1,0 +1,222 @@
+{
+  "resources": [
+    {
+      "project": "calculator",
+      "role": "reference",
+      "title": "JSS14 Project 1: Calculator Solution",
+      "url": "https://codepen.io/junilearning/pen/d394480277af12f893819f3d64c5ea81",
+      "observedURL": "https://codepen.io/junilearning/pen/VwvOVgp/d394480277af12f893819f3d64c5ea81",
+      "panels": {
+        "HTML": "<div id=\"calculator\" class=\"wrapper\">\n</div>\n<div class=\"wrapper\">\n  <input type=\"text\" id=\"number\">\n  <input type=\"text\" id=\"number-two\">\n  <div>\n    <input type=\"button\" id=\"add\" value=\"+\">\n    <input type=\"button\" id=\"sub\" value=\"-\">\n    <input type=\"button\" id=\"mult\" value=\"*\">\n    <input type=\"button\" id=\"div\" value=\"/\">\n  </div>\n</div>",
+        "CSS": ".wrapper {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n\ninput {\n  height: 20px;\n  margin: 2px;\n}",
+        "JavaScript": "// You have come across a half-finished calculator put together by Kant D. Bugg. Kant has managed to figure out how to select one of the input tags on the page and output it to the text field within the calculator, but he hasn\u2019t figured out how to make all of the buttons operational. See if you can help him finish this project!\n\n// Solution\n\nlet width = 300;\nlet height = 400;\n\nconst svg = d3.select(\"#calculator\")\n  .append(\"svg\")\n  .attr(\"width\", width)\n  .attr(\"height\", height)\n  .attr(\"margin\", \"0 auto\")\n\nsvg.append(\"rect\")\n  .attr(\"fill\", \"black\")\n  .attr(\"id\", \"calculator\")\n  .attr(\"x\", 50)\n  .attr(\"y\", 75)\n  .attr(\"width\", 200)\n  .attr(\"height\", 300);\n\nsvg.append(\"rect\")\n  .attr(\"fill\", \"white\")\n  .attr(\"x\", 75)\n  .attr(\"y\", 100)\n  .attr(\"width\", 150)\n  .attr(\"height\", 30);\n\nsvg.append(\"text\")\n  .attr(\"id\", \"output\")\n  .attr(\"fill\", \"black\")\n  .attr(\"text-anchor\", \"middle\")\n  .attr(\"x\", 150)\n  .attr(\"y\", 120)\n\nsvg.append(\"input\")\n  .attr(\"type\", \"text\")\n  .attr(\"id\", \"number-one\")\n\nd3.select(\"#add\")\n  .on(\"click\", () => {\n    let valueOne = +d3.select('#number').property(\"value\");\n    let valueTwo = +d3.select('#number-two').property(\"value\");\n    d3.select('#output').text(valueOne + valueTwo);\n  })\n\nd3.select(\"#sub\")\n  .on(\"click\", () => {\n    let valueOne = +d3.select('#number').property(\"value\");\n    let valueTwo = +d3.select('#number-two').property(\"value\");\n    d3.select('#output').text(valueOne - valueTwo);\n  })\n\nd3.select(\"#mult\")\n  .on(\"click\", () => {\n    let valueOne = +d3.select('#number').property(\"value\");\n    let valueTwo = +d3.select('#number-two').property(\"value\");\n    d3.select('#output').text(valueOne * valueTwo);\n  })\n\nd3.select(\"#div\")\n  .on(\"click\", () => {\n    let valueOne = +d3.select('#number').property(\"value\");\n    let valueTwo = +d3.select('#number-two').property(\"value\");\n    d3.select('#output').text(valueOne / valueTwo);\n  })\n\n"
+      },
+      "settings": {
+        "HTML": {
+          "preprocessor": "None",
+          "head": "",
+          "classes": ""
+        },
+        "CSS": {
+          "preprocessor": "None",
+          "base": "Neither",
+          "prefix": "Neither",
+          "resources": []
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+          ]
+        }
+      },
+      "visibleEditorCopy": true,
+      "dependencySettingsViewed": true,
+      "clipboardChecks": {
+        "HTML": {
+          "utf16Length": 343,
+          "fnv1a32": "f92aa3fc"
+        },
+        "CSS": {
+          "utf16Length": 147,
+          "fnv1a32": "e6d183eb"
+        },
+        "JavaScript": {
+          "utf16Length": 1895,
+          "fnv1a32": "7e388c9e"
+        }
+      },
+      "retainedAt": "2026-10-25T16:00:27.283279+00:00",
+      "panelSHA256": {
+        "HTML": "efeb497f58e2775e5b3c834e6731ddb429356082a31b27ccbeb836b5ba9bb391",
+        "CSS": "08d006dae2011e71b6ba0001134f0ab9337a2cde3d311e94b2dc60ee26c2fe69",
+        "JavaScript": "79f9e751e555ed64307c23e04a52d3938a39f2c1a2e657f2b78e9fd7df0f95d5"
+      }
+    },
+    {
+      "project": "calculator",
+      "role": "starter",
+      "title": "JSS14 Project 1: Calculator",
+      "url": "https://codepen.io/junilearning/pen/8cb69f2696d31b929107d3798ef095aa",
+      "observedURL": "https://codepen.io/junilearning/pen/abdRQOr",
+      "panels": {
+        "HTML": "<div id=\"calculator\" class=\"wrapper\">\n</div>\n<div class=\"wrapper\">\n  <input type=\"text\" id=\"number\">\n  <input type=\"text\" id=\"number-two\">\n  <div>\n    <input type=\"button\" id=\"add\" value=\"+\">\n    <input type=\"button\" id=\"sub\" value=\"-\">\n    <input type=\"button\" id=\"mult\" value=\"*\">\n    <input type=\"button\" id=\"div\" value=\"/\">\n  </div>\n</div>",
+        "CSS": ".wrapper {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n\ninput {\n  height: 20px;\n  margin: 2px;\n}",
+        "JavaScript": "// You have come across a half-finished calculator put together by Kant D. Bugg. Kant has managed to figure out how to select one of the input tags on the page and output it to the text field within the calculator, but he hasn\u2019t figured out how to make all of the buttons operational. See if you can help him finish this project!\n\nlet width = 300;\nlet height = 400;\n\nconst svg = d3.select(\"#calculator\")\n  .append(\"svg\")\n  .attr(\"width\", width)\n  .attr(\"height\", height)\n  .attr(\"margin\", \"0 auto\")\n\nsvg.append(\"rect\")\n  .attr(\"fill\", \"black\")\n  .attr(\"id\", \"calculator\")\n  .attr(\"x\", 50)\n  .attr(\"y\", 75)\n  .attr(\"width\", 200)\n  .attr(\"height\", 300);\n\nsvg.append(\"rect\")\n  .attr(\"fill\", \"white\")\n  .attr(\"x\", 75)\n  .attr(\"y\", 100)\n  .attr(\"width\", 150)\n  .attr(\"height\", 30);\n\nsvg.append(\"text\")\n  .attr(\"id\", \"output\")\n  .attr(\"fill\", \"black\")\n  .attr(\"text-anchor\", \"middle\")\n  .attr(\"x\", 150)\n  .attr(\"y\", 120)\n\nsvg.append(\"input\")\n  .attr(\"type\", \"text\")\n  .attr(\"id\", \"number-one\")\n\nd3.select(\"#add\")\n  .on(\"click\", () => {\n    let valueOne = d3.select('#number').property(\"value\");\n    d3.select('#output').text(valueOne);\n  })\n\n"
+      },
+      "settings": {
+        "HTML": {
+          "preprocessor": "None",
+          "head": "",
+          "classes": ""
+        },
+        "CSS": {
+          "preprocessor": "None",
+          "base": "Neither",
+          "prefix": "Neither",
+          "resources": []
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+          ]
+        }
+      },
+      "visibleEditorCopy": true,
+      "dependencySettingsViewed": true,
+      "clipboardChecks": {
+        "HTML": {
+          "utf16Length": 343,
+          "fnv1a32": "f92aa3fc"
+        },
+        "CSS": {
+          "utf16Length": 147,
+          "fnv1a32": "e6d183eb"
+        },
+        "JavaScript": {
+          "utf16Length": 1136,
+          "fnv1a32": "acf42311"
+        }
+      },
+      "retainedAt": "2026-10-25T15:59:14.250877+00:00",
+      "panelSHA256": {
+        "HTML": "efeb497f58e2775e5b3c834e6731ddb429356082a31b27ccbeb836b5ba9bb391",
+        "CSS": "08d006dae2011e71b6ba0001134f0ab9337a2cde3d311e94b2dc60ee26c2fe69",
+        "JavaScript": "870d86d096e4914f3e664a8809801654c2f217a30b3ca1303884e3b7e40e9b55"
+      }
+    },
+    {
+      "project": "strength-tester",
+      "role": "reference",
+      "title": "JSS14 Project 2: Strength Tester Solution",
+      "url": "https://codepen.io/junilearning/pen/20af41540e7b43929ccf60cc88c8e8bd",
+      "observedURL": "https://codepen.io/junilearning/pen/XWmvbrN/20af41540e7b43929ccf60cc88c8e8bd",
+      "panels": {
+        "HTML": "<br>\n<div class=\"container center\">\n  <button id=\"button\" class=\"btn waves-effect purple\" type=\"submit\" name=\"action\">Test your strength</button>\n  <br>\n  <br>\n  <br>\n  <br>\n  <div>\n    <img id=\"prize-image\" src=\"\" alt=\"\">\n  </div>\n  <br>\n  <br>\n  <h4 id=\"strength-level\"></h4>\n  <h6 id=\"prize-message\"></h6>\n</div>\n",
+        "CSS": "",
+        "JavaScript": "// Make a carnival-style application which selects a random number between 0 and 500 on the click of a button. Find 5 different images which represent 5 different levels of prizes that the person can win based on what the number is. Also, display a message which tells the person what they won.\n\n// Solution\n\nlet strength;\n\nlet strengthMessage = d3.select(\"#strength-level\");\nlet prizeImage = d3.select(\"#prize-image\")\n  .attr(\"width\", \"200px\");\nlet prizeMessage = d3.select(\"#prize-message\");\n\nconst prizePicker = num => {\n  if (num <= 100) {\n    prizeImage.attr(\"src\", \"https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Yo-Yo-Plastic-Toy-Green.jpg/1024px-Yo-Yo-Plastic-Toy-Green.jpg\");\n    prizeMessage.text(\"You won a yo-yo!\")\n  } else if (num <= 200) {\n    prizeImage.attr(\"src\", \"https://cdn2.bigcommerce.com/server100/yt68tfv9/products/4101/images/18396/bw-speedyhorseshoe-2__61580.1502572729.500.659.jpg?c=2\");\n    prizeMessage.text(\"You won a frisbee!\")\n  } else if (num <= 300) {\n    prizeImage.attr(\"src\", \"https://shop.wilson.com/media/catalog/product/cache/38/image/9df78eab33525d08d6e5fb8d27136e95/f/1/f1cc270c8ed3d2dd9ec7323cd969ba5f050ac2ab_WTF1100IDBRS_0_NFL_101_Game_Ball_Official.jpeg\");\n    prizeMessage.text(\"You won a football!\")\n  } else if (num <= 400) {\n    prizeImage.attr(\"src\", \"https://shop.wilson.com/media/catalog/product/cache/38/image/9df78eab33525d08d6e5fb8d27136e95/f/f/ff53b5da37dd22488a0e219068509de52c6a8b6c_WTB0516V_Evolution_JIMMY_WALKER_Custom_Laser_Top_Detail_01_v3.jpg\");\n    prizeMessage.text(\"You won a basketball!\")\n  } else {\n    prizeImage.attr(\"src\", \"https://www.melissaanddoug.com/dw/image/v2/BBDH_PRD/on/demandware.static/-/Sites-master-catalog/default/dw095d66be/large/002138_1.jpg?sw=562&sh=570&sm=fit\");\n    prizeMessage.text(\"You won a teddy bear!\")\n  }\n}\n\nd3.select(\"#button\")\n  .on(\"click\", () => {\n    strength = Math.floor(Math.random() * 500);\n    strengthMessage.text(\"You hit \" + strength);\n    prizePicker(strength);\n  })"
+      },
+      "settings": {
+        "HTML": {
+          "preprocessor": "None",
+          "head": "",
+          "classes": ""
+        },
+        "CSS": {
+          "preprocessor": "None",
+          "base": "Neither",
+          "prefix": "Neither",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          ]
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+          ]
+        }
+      },
+      "visibleEditorCopy": true,
+      "dependencySettingsViewed": true,
+      "emptyEditorsVerifiedWithClearedClipboard": true,
+      "clipboardChecks": {
+        "HTML": {
+          "utf16Length": 316,
+          "fnv1a32": "3db16f0d"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 1992,
+          "fnv1a32": "812599bb"
+        }
+      },
+      "retainedAt": "2026-10-25T16:05:53.396069+00:00",
+      "panelSHA256": {
+        "HTML": "d9d222767474af64d0ec1aedd649b5f953a6d74ead72526cd4d0f8045f281c5b",
+        "CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "JavaScript": "cca19314a8de2ac871f3cad76f2ed6efd13ae230f6062b3a30c37d54ac2c7b33"
+      }
+    },
+    {
+      "project": "strength-tester",
+      "role": "starter",
+      "title": "JSS14 Project 2: Strength Tester",
+      "url": "https://codepen.io/junilearning/pen/afcffeca5355cf07d9882f08c90ab84c",
+      "observedURL": "https://codepen.io/junilearning/pen/QWyZJgx",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Make a carnival-style application which selects a random number between 0 and 500 on the click of a button. Find 5 different images which represent 5 different levels of prizes that the person can win based on what the number is. Also, display a message which tells the person what they won.\n"
+      },
+      "settings": {
+        "HTML": {
+          "preprocessor": "None",
+          "head": "",
+          "classes": ""
+        },
+        "CSS": {
+          "preprocessor": "None",
+          "base": "Neither",
+          "prefix": "Neither",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          ]
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+          ]
+        }
+      },
+      "visibleEditorCopy": true,
+      "dependencySettingsViewed": true,
+      "emptyEditorsVerifiedWithClearedClipboard": true,
+      "clipboardChecks": {
+        "HTML": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 295,
+          "fnv1a32": "9ab0cafb"
+        }
+      },
+      "retainedAt": "2026-10-25T16:05:53.394754+00:00",
+      "panelSHA256": {
+        "HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "JavaScript": "fde7d1c05fda482a586d705984d9a87c12d182ec98b3ce092b05be50ed57c2ac"
+      }
+    }
+  ]
+}

@@ -102,6 +102,7 @@ import {
 	pythonIdeAssetCandidateNames
 } from "@/modules/pythonIdeCourseAssets";
 import {
+	drawPythonIdeGameText,
 	preparePythonIdeGameCanvas,
 	pythonIdeGamePointerPosition,
 	waitForPythonIdeGameImage
@@ -5642,6 +5643,29 @@ async function prepareProjectGameImages() {
 	);
 }
 
+async function prepareCourseGameImages() {
+	// Actors can choose images dynamically. Trail games retain every first-frame
+	// pixel, so decode the shared image pack before running student callbacks.
+	await Promise.all(
+		[...(gameCourseAssetPack?.assets.values() ?? [])]
+			.filter(asset => asset.name.startsWith("images/"))
+			.map(async asset => {
+				const entry = getGameImageEntry({
+					key: `course:${asset.name}`,
+					src: getPythonIdeCourseAssetObjectUrl(asset)
+				});
+				if (!entry) return;
+				entry.loaded = await waitForPythonIdeGameImage(entry.element);
+				entry.failed = !entry.loaded;
+				if (entry.failed) {
+					throw new Error(
+						`Unable to decode course image: ${asset.name}`
+					);
+				}
+			})
+	);
+}
+
 function gameImageSizeJson(name: string) {
 	return JSON.stringify(
 		courseAssetSize(resolveGameAsset("images", name, imageAssetExtensions))
@@ -6167,15 +6191,33 @@ function drawGameText(
 	x: number,
 	y: number,
 	color: string,
-	fontSize: number
+	fontSize: number,
+	anchorX = 0,
+	anchorY = 0,
+	align = anchorX,
+	lineHeight = 1,
+	shadowX = 0,
+	shadowY = 0,
+	shadowColor = "black"
 ) {
 	const context = setGameCanvasTransform();
 	if (!context) return;
 
-	context.fillStyle = color;
-	context.font = `${Math.max(8, fontSize)}px Avenir Next, Segoe UI, sans-serif`;
-	context.textBaseline = "top";
-	context.fillText(text, x, y);
+	drawPythonIdeGameText(
+		context,
+		text,
+		x,
+		y,
+		color,
+		fontSize,
+		anchorX,
+		anchorY,
+		align,
+		lineHeight,
+		shadowX,
+		shadowY,
+		shadowColor
+	);
 }
 
 function drawGameRect(
@@ -7307,6 +7349,8 @@ async function runCurrentProject() {
 			await prepareProjectGameImages();
 			if (shouldStopPythonIdeRun(runID, project._id)) return;
 			await ensureGameCourseAssetsLoaded();
+			if (shouldStopPythonIdeRun(runID, project._id)) return;
+			await prepareCourseGameImages();
 			if (shouldStopPythonIdeRun(runID, project._id)) return;
 		}
 
@@ -11027,6 +11071,7 @@ html.dark .editor-shortcuts ul {
 .turtle-canvas--game {
 	width: 100%;
 	height: 100%;
+	border-radius: 0;
 }
 
 .isolated-runtime .turtle-canvas--game {

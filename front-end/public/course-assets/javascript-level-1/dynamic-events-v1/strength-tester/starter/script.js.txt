@@ -1,0 +1,2 @@
+// Make a carnival-style application which selects a random number between 0 and 500 on the click of a button. Find 5 different images which represent 5 different levels of prizes that the person can win based on what the number is. Also, display a message which tells the person what they won.
+// TODO: create the click handler and score-to-prize selection.

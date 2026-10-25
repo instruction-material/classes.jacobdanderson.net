@@ -1,0 +1,18 @@
+const prizes = [
+  { limit: 100, name: "yo-yo", article: "a", image: "yo-yo" },
+  { limit: 200, name: "frisbee", article: "a", image: "frisbee" },
+  { limit: 300, name: "football", article: "a", image: "football" },
+  { limit: 400, name: "basketball", article: "a", image: "basketball" },
+  { limit: 500, name: "teddy bear", article: "a", image: "teddy-bear" }
+];
+function prizeForScore(score) {
+  if (!Number.isInteger(score) || score < 0 || score > 500) throw new RangeError("Score must be an integer from 0 through 500.");
+  return prizes.find(prize => score <= prize.limit);
+}
+d3.select("#button").on("click", () => {
+  const score = Math.floor(Math.random() * 501);
+  const prize = prizeForScore(score);
+  d3.select("#strength-level").text("You hit " + score);
+  d3.select("#prize-message").text("You won " + prize.article + " " + prize.name + "!");
+  d3.select("#prize-image").attr("src", "images/" + prize.image + ".svg").attr("alt", prize.name).property("hidden", false);
+});

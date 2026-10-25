@@ -1,0 +1,16 @@
+const svg = d3.select("#calculator").append("svg")
+  .attr("viewBox", "0 0 300 400").attr("role", "img")
+  .attr("aria-labelledby", "calculator-title calculator-description");
+svg.append("title").attr("id", "calculator-title").text("Calculator display");
+svg.append("desc").attr("id", "calculator-description").text("A black calculator case with a white result display. The complete result appears below the controls.");
+svg.append("rect").attr("fill", "black").attr("x", 50).attr("y", 75).attr("width", 200).attr("height", 300);
+svg.append("rect").attr("fill", "white").attr("x", 75).attr("y", 100).attr("width", 150).attr("height", 30);
+svg.append("text").attr("id", "output").attr("fill", "black").attr("text-anchor", "middle").attr("x", 150).attr("y", 120).attr("font-size", 16).text("0");
+
+// The original starter copies the first input. Finish numeric validation and all four operations.
+d3.select("#add").on("click", () => {
+  const value = d3.select("#number").property("value");
+  d3.select("#output").text(value.slice(0, 15));
+  d3.select("#result-message").text(value);
+});
+// TODO: convert both values to finite numbers and add subtraction, multiplication and division.

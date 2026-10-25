@@ -1,0 +1,117 @@
+{
+  "resources": [
+    {
+      "project": "dynamic-components",
+      "role": "reference",
+      "title": "JSS14 Project 3: Dynamic Components Solution",
+      "url": "https://codepen.io/junilearning/pen/e55b7c0d570df2c9943e06395a42c974",
+      "observedURL": "https://codepen.io/junilearning/pen/rNOXOro/e55b7c0d570df2c9943e06395a42c974",
+      "panels": {
+        "HTML": "<nav>\n  <div class=\"nav-wrapper\">\n    <div class=\"brand-logo center\">\n      JS Component Practice\n    </div>\n    <a href=\"#\" data-target=\"slide-out\" class=\"sidenav-trigger show-on-large right\">    <i class=\"material-icons\">menu</i> \n    </a>\n  </div>\n</nav>\n<div class=\"carousel\">\n  <a class=\"carousel-item\" href=\"#one!\"><img src=\"https://lorempixel.com/250/250/nature/1\"></a>\n  <a class=\"carousel-item\" href=\"#two!\"><img src=\"https://lorempixel.com/250/250/nature/2\"></a>\n  <a class=\"carousel-item\" href=\"#three!\"><img src=\"https://lorempixel.com/250/250/nature/3\"></a>\n  <a class=\"carousel-item\" href=\"#four!\"><img src=\"https://lorempixel.com/250/250/nature/4\"></a>\n  <a class=\"carousel-item\" href=\"#five!\"><img src=\"https://lorempixel.com/250/250/nature/5\"></a>\n</div>\n<div class=\"center\">\n  <a class=\"waves-effect waves-light btn modal-trigger\" href=\"#modal1\">Click Me</a>\n</div>\n  \n<div id=\"modal1\" class=\"modal center\">\n  <div class=\"modal-content\">\n    <h4>This is a modal!</h4>\n    <p>Sometimes you might want to have content in a popup instead of having it displayed on your webpage all of the time</p>\n  </div>\n  <div class=\"modal-footer\">\n    <a href=\"#!\" class=\"modal-close waves-effect waves-green btn-flat\">close</a>\n  </div>\n</div>\n<ul id=\"slide-out\" class=\"sidenav\">\n  <li><a href=\"#!\">About</a></li>\n  <li><a href=\"#!\">Contact Us</a></li>\n</ul>\n    ",
+        "CSS": "",
+        "JavaScript": "M.Sidenav.init(document.querySelectorAll('.sidenav'), {edge: 'right'});  \nM.Modal.init(document.querySelectorAll('.modal'));\nM.Carousel.init(document.querySelectorAll('.carousel'));  "
+      },
+      "settings": {
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+          ]
+        },
+        "CSS": {
+          "preprocessor": "None",
+          "base": "Neither",
+          "prefix": "Neither",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          ]
+        },
+        "HTML": {
+          "preprocessor": "None",
+          "head": "",
+          "classes": ""
+        }
+      },
+      "visibleEditorCopy": true,
+      "dependencySettingsViewed": true,
+      "emptyEditorsVerifiedWithClearedClipboard": true,
+      "clipboardChecks": {
+        "HTML": {
+          "utf16Length": 1366,
+          "fnv1a32": "c00a9e8e"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 183,
+          "fnv1a32": "93eb6c0b"
+        }
+      },
+      "retainedAt": "2026-10-25T16:43:08.730758+00:00",
+      "panelSHA256": {
+        "HTML": "0ea6acb565214bc449c0c85b5d5b393b3d1c7a219e0bf50fdf86504f7928350b",
+        "CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "JavaScript": "4f869e10e01e751772c5a5418d127c52ae0f160f95081df8592b6fd3e1bf129b"
+      }
+    },
+    {
+      "project": "my-javascript-art-part-4",
+      "role": "reference",
+      "title": "JSS14 Project 4: My JavaScript Art pt IV Solution",
+      "url": "https://codepen.io/junilearning/pen/68807d2000d19574d4c80d354eea197f",
+      "observedURL": "https://codepen.io/junilearning/pen/OJMNdZM/68807d2000d19574d4c80d354eea197f",
+      "panels": {
+        "HTML": "<nav>\n  <div class=\"nav-wrapper pink fixed\">\n    <div class=\"brand-logo center\">\n      My JavaScript Art\n    </div>\n    <a href=\"#\" data-target=\"slide-out\" class=\"sidenav-trigger show-on-large right\">    <i class=\"material-icons\">menu</i> \n    </a>\n  </div>\n</nav>\n<br>\n<br>\n<div class=\"section grey lighten-2\">\n  <h3 class=\"center\">Project One</h3>\n  <br>\n  <div class=\"row\">\n    <div id=\"rainbow\" class=\"col m12 l7 center scrollspy\"></div>\n    <div class=\"col l1\"></div>\n    <div class=\"col m12 l3\">\n      <div class=\"card blue-grey darken-1\">\n        <div class=\"card-content white-text\">\n          <span class=\"card-title\">Rainbow</span>\n          <p>This is a project I did in d3 that looks like a rainbow. It fills in with the red arc first, and then continues with all the other colors</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"section\">\n  <h3 class=\"center black-text\">Project Two</h3>\n  <br>\n  <div class=\"row\">\n    <div class=\"col l2\"></div>\n    <div class=\"col s4 l3\">\n      <div class=\"card blue-grey darken-1\">\n        <div class=\"card-content white-text\">\n          <span class=\"card-title\">Captain America Shield</span>\n          <p>This is a project I did in d3 that resembles the shield from the hero in the marvel movie</p>\n        </div>\n      </div>\n    </div>\n    <div id=\"shield\" class=\"center col s7 l7 scrollspy\"></div>\n  </div>\n</div>\n<div class=\"section blue\">\n  <h3 class=\"center white-text\">Project Three</h3>\n  <br>\n  <div class=\"row\">\n    <div id=\"pacman\" class=\"col m12 l7 center scrollspy\"></div>\n    <div class=\"col l1\"></div>\n    <div class=\"col l3\">\n      <div class=\"card blue-grey darken-1\">\n        <div class=\"card-content white-text\">\n          <span class=\"card-title\">Pacman</span>\n          <p>This is a project I did in d3 that looks like two pacmen from the classic arcade game facing each other</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"section black\">\n  <h3 class=\"center white-text\">Project Four</h3>\n  <br>\n  <div class=\"row\">\n    <div class=\"col l2\"></div>\n    <div class=\"col s4 l3\">\n      <div class=\"card blue-grey darken-1\">\n        <div class=\"card-content white-text\">\n          <span class=\"card-title\">Snowman</span>\n          <p>This is a project I did in d3 that is of a snowman. I might add buttons in the future</p>\n        </div>\n      </div>\n    </div>\n    <div id=\"snowman\" class=\"center col s7 scrollspy\"></div>\n  </div>\n</div>\n<ul id=\"slide-out\" class=\"sidenav\">\n  <li>\n    <a href=\"#rainbow\">Project One</a>\n  </li>\n  <li>\n    <a href=\"#shield\">Project Two</a>\n  </li>\n  <li>\n    <a href=\"#pacman\">Project Three</a>\n  </li>\n  <li>\n    <a href=\"#snowman\">Project Four</a>\n  </li>\n</ul>",
+        "CSS": "nav {\n  position: fixed;\n  z-index: 1;\n}",
+        "JavaScript": "M.Sidenav.init(document.querySelectorAll('.sidenav'), {edge: 'right'}); \nM.ScrollSpy.init(document.querySelectorAll('.scrollspy'));\n\nlet colors = [\"Red\", \"Orange\", \"Yellow\", \"Green\", \"Blue\", \"Indigo\", \"Violet\"];\n\nlet margin = { top: 30, right: 200, bottom: 50, left: 30, pad: 10 };\nvar width = 800 - margin.left - margin.right;\nvar height = 350 - margin.top - margin.bottom;\n\nlet svg = d3\n  .select(\"#rainbow\")\n  .append(\"svg\")\n  .attr(\"width\", width)\n  .attr(\"height\", height)\n  .append(\"g\")\n  .attr(\"transform\", \"translate(300,300)\");\n\n//Define Arc for rainbow\nlet arc = d3\n  .arc()\n  .innerRadius(function (d, i) {\n    return 300 - 20 * i;\n  })\n  .outerRadius(function (d, i) {\n    return 300 - 20 * i - 20;\n  })\n  .startAngle(function (d, i) {\n    return (-Math.PI / 2) * 0.7;\n  })\n  .endAngle(function (d, i) {\n    return (Math.PI / 2) * 0.7;\n  });\n\n//Adding all colors arc\nlet path = svg\n  .selectAll(\"g.arc\")\n  .data(colors)\n  .enter()\n  .append(\"g\")\n  .attr(\"class\", \"arc\");\n//Adding with animation\npath\n  .append(\"path\")\n  .transition()\n  .delay(function (d, i) {\n    return i * 200;\n  })\n  .duration(150)\n  .attr(\"fill\", function (d, i) {\n    return d;\n  })\n  .attr(\"d\", arc);\n\nlet widthShield = 400;\nlet heightShield = 300;\n\nlet positionX = 200;\nlet positionY = 110;\n\n// Create SVG element to append to\nlet svg2 = d3.select(\"#shield\")\n  .append(\"svg\")\n  .attr(\"width\", widthShield)\n  .attr(\"height\", heightShield);\n\n// Add a large circle at the top\nsvg2.append(\"circle\")\n  .attr(\"fill\", \"red\")\n  .attr(\"cx\", positionX)\n  .attr(\"cy\", positionY)\n  .attr(\"r\", 110);\n\n// Add a medium circle in the middle\nsvg2.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", positionX)\n  .attr(\"cy\", positionY)\n  .attr(\"r\", 90);\n\n// Add a medium circle in the middle\nsvg2.append(\"circle\")\n  .attr(\"fill\", \"red\")\n  .attr(\"cx\", positionX)\n  .attr(\"cy\", positionY)\n  .attr(\"r\", 70);\n\n// Add a small circle to the top\nsvg2.append(\"circle\")\n  .attr(\"fill\", \"blue\")\n  .attr(\"cx\", positionX)\n  .attr(\"cy\", positionY)\n  .attr(\"r\", 50);\n\nlet star = d3.symbol().type(d3.symbolStar).size(2000);\n\nsvg2.append(\"path\")\n  .attr(\"d\", star)\n  .attr(\"fill\", \"white\")\n  .attr(\"transform\", `translate(${positionX},${positionY})`);\n\nlet width2 = 500;\nlet height2 = 300;\n\n// Conversion function that should be given to the student at the instructor's discretion\nconst degreesToRadians = (degrees) => (\n  degrees * Math.PI / 180\n);\n\n// Create a new svg to append to\nconst svg3 = d3.select(\"#pacman\")\n  .append(\"svg\")\n  .attr(\"width\", width2)\n  .attr(\"height\", height2);\n\n// Create the object that will generate our curves\nconst arcGenerator = d3.arc();\n\n// Create the arc that will be the left Pac-Man\u2013note the start and end angles, and their difference vs. the right Pac-Man below\nlet leftPacMan = arcGenerator({\n  startAngle: degreesToRadians(120),\n  endAngle: degreesToRadians(430),\n  innerRadius: 0,\n  outerRadius: 100\n});\n\n// Create the arc that will be the right Pac-Man\nlet rightPacMan = arcGenerator({\n  startAngle: -degreesToRadians(120),\n  endAngle: -degreesToRadians(430),\n  innerRadius: 0,\n  outerRadius: 100\n});\n\n// Append the left Pac-Man to the svg\nsvg3.append('path')\n  .attr(\"fill\", \"yellow\")\n  .attr(\"transform\", \"translate(150,110)\")\n\t.attr('d', leftPacMan);\n\n// Append the right Pac-Man to the svg\nsvg3.append('path')\n  .attr(\"fill\", \"yellow\")\n  .attr(\"transform\", \"translate(400,110)\")\n\t.attr('d', rightPacMan);\n\nlet widthSnowman = 300;\nlet heightSnowman = 500;\n\n// Create SVG element to append to\nlet svg4 = d3.select(\"#snowman\")\n  .append(\"svg\")\n  .attr(\"width\", widthSnowman)\n  .attr(\"height\", heightSnowman);\n\n// Add a small circle to the top\nsvg4.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 50)\n  .attr(\"r\", 50);\n\n// Left eye\nsvg4.append(\"circle\")\n  .attr(\"fill\", \"black\")\n  .attr(\"cx\", 125)\n  .attr(\"cy\", 35)\n  .attr(\"r\", 5);\n\n// Right eye\nsvg4.append(\"circle\")\n  .attr(\"fill\", \"black\")\n  .attr(\"cx\", 175)\n  .attr(\"cy\", 35)\n  .attr(\"r\", 5);\n\nsvg4.append(\"circle\")\n  .attr(\"fill\", \"orange\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 50)\n  .attr(\"r\", 5);\n\n// Nose\n\n/*\nCode handling the mouth\n*/\n\n// Generate a path that will be the smile\nlet pathData = arcGenerator({\n  startAngle: degreesToRadians(90),\n  endAngle: degreesToRadians(270),\n  innerRadius: 10,\n  outerRadius: 15\n});\n\n// Append the smile path, moved over 250px in the x and 200px in the y\nsvg4.append('path')\n  .attr(\"fill\", \"black\")\n  .attr(\"transform\", \"translate(150,70)\")\n\t.attr('d', pathData);\n\n// Add a medium circle in the middle\nsvg4.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 160)\n  .attr(\"r\", 70);\n\n// Draw the left arm\nlet leftArm = svg4.append(\"line\")               \n              .attr(\"x1\", 200)\n              .attr(\"x2\", 300)\n              .attr(\"y1\", 160)\n              .attr(\"y2\", 145)\n              .attr(\"stroke-width\", 2)\n              .attr(\"stroke\", \"brown\");\n\n// Draw the right arm\nlet rightArm = svg4.append(\"line\")               \n              .attr(\"x1\", 100)\n              .attr(\"x2\", 0)\n              .attr(\"y1\", 160)\n              .attr(\"y2\", 145)\n              .attr(\"stroke-width\", 2)\n              .attr(\"stroke\", \"brown\");\n\n// Add a large circle at the top\nsvg4.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 300)\n  .attr(\"r\", 100);\n"
+      },
+      "settings": {
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js",
+            "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+          ]
+        },
+        "CSS": {
+          "preprocessor": "None",
+          "base": "Neither",
+          "prefix": "Neither",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          ]
+        },
+        "HTML": {
+          "preprocessor": "None",
+          "head": "",
+          "classes": ""
+        }
+      },
+      "visibleEditorCopy": true,
+      "dependencySettingsViewed": true,
+      "emptyEditorsVerifiedWithClearedClipboard": true,
+      "clipboardChecks": {
+        "HTML": {
+          "utf16Length": 2710,
+          "fnv1a32": "97affc4d"
+        },
+        "CSS": {
+          "utf16Length": 40,
+          "fnv1a32": "709eae8b"
+        },
+        "JavaScript": {
+          "utf16Length": 5311,
+          "fnv1a32": "320b3c8a"
+        }
+      },
+      "retainedAt": "2026-10-25T16:43:08.731676+00:00",
+      "panelSHA256": {
+        "HTML": "a1ce2fd9d97745af1f0aa0b8faa9e9a0264aea7148a67975817a830f04bd877d",
+        "CSS": "e7108eefb4025b7b6c5669f5e8b774ef3134cb9e6cddaed5ff5715db5baf8dd8",
+        "JavaScript": "3d46d051b8c5abfdffb3cfe8c3b9b534548d99d6e8eadcd8a875b059167b02d2"
+      }
+    }
+  ]
+}

@@ -1,0 +1,502 @@
+{
+  "resources": [
+    {
+      "project": "art-gallery",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/45dabf41b44570f312ef9334db333f97",
+      "observedURL": "https://codepen.io/junilearning/pen/ExVpjLR/45dabf41b44570f312ef9334db333f97",
+      "title": "JSS13 Supplemental Project 2: Art Gallery Solution",
+      "panels": {
+        "HTML": "<!--\nCreate an online art gallery of 12 of your favorite pieces of art with descriptions and links to the art on wikipedia using the horizontal card feature. Style the art gallery with a pleasing background aesthetic, and add custom CSS to “frame” your choices with a border. Your art should be displayed as 3x4 for desktop, 4x3 for tablet, and 6x1 for mobile.\n-->\n\n<nav class=\"brown darken-4\">\n  <div class=\"nav-wrapper\">\n    <div class=\"brand-logo center\">My Art Gallery</div>\n  </div>\n</nav>\n<br>\n<div class=\"row\">\n  <div class=\"col l3 m4 s6 center\">\n    <div class=\"valign-wrapper\">\n      <img class=\"responsive-img\" src=\"https://dynaimage.cdn.cnn.com/cnn/q_auto,w_412,c_fill,g_auto,h_412,ar_1:1/http%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F190430171751-mona-lisa.jpg\" alt=\"\">\n    </div>\n    <div class=\"card brown darken-4\">\n      <br>\n      <a class=\"center white-text\" href=\"https://en.wikipedia.org/wiki/Mona_Lisa\">Mona Lisa</a>\n      <div class=\"white-text\">Leonardo Da Vinci</div>\n      <br>\n    </div>\n    <br>\n  </div>\n  <div class=\"col l3 m4 s6 center\">\n    <div class=\"valign-wrapper\">\n      <img class=\"responsive-img\" src=\"https://www.vangoghgallery.com/img/starry_night_full.jpg\" alt=\"\">\n    </div>\n    <div class=\"card brown darken-4\">\n        <br>\n        <a class=\"center white-text\" href=\"https://en.wikipedia.org/wiki/Mona_Lisa\">The Starry Night</a>\n        <div class=\"white-text\">Vincent van Gogh</div>\n        <br>\n    </div>\n    <br>\n  </div>\n  <div class=\"col l3 m4 s6 center\">\n    <div class=\"valign-wrapper\">\n      <img class=\"responsive-img\" src=\"https://www.claude-monet.com/images/paintings/water-lily-pond-with-japanese-bridge.jpg\" alt=\"\">\n    </div>\n    <div class=\"card brown darken-4\">\n      <br>\n      <a class=\"center white-text\" href=\"https://en.wikipedia.org/wiki/Water_Lilies_(Monet_series)\">The Water Lily Pond</a>\n      <div class=\"white-text\">Claude Monet</div>\n      <br>\n    </div>\n    <br>\n  </div>\n  <div class=\"col l3 m4 s6 center\">\n    <div class=\"valign-wrapper\">\n      <img class=\"responsive-img\" src=\"https://upload.wikimedia.org/wikipedia/en/d/dd/The_Persistence_of_Memory.jpg\" alt=\"\">\n    </div>\n    <div class=\"card brown darken-4\">\n      <br>\n      <a class=\"center white-text\" href=\"https://en.wikipedia.org/wiki/The_Persistence_of_Memory\">The Persistence of Memory</a>\n      <div class=\"white-text\">Salvador Dalí</div>\n      <br>\n    </div>\n    <br>\n  </div>\n  <div class=\"col l3 m4 s6 center\">\n    <div class=\"valign-wrapper\">\n      <img class=\"responsive-img\" src=\"https://i.pinimg.com/originals/13/af/13/13af1302d1e79d2308e9d46375417da4.jpg\" alt=\"\">\n    </div>\n    <div class=\"card brown darken-4\">\n      <br>\n      <a class=\"center white-text\" href=\"https://en.wikipedia.org/wiki/Diego_Rivera\">The Flower Picker</a>\n      <div class=\"white-text\">Diego Rivera</div>\n      <br>\n    </div>\n    <br>\n  </div>\n  <div class=\"col l3 m4 s6 center\">\n    <div class=\"valign-wrapper\">\n      <img class=\"responsive-img\" src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg/800px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg\" alt=\"\">\n    </div>\n    <div class=\"card brown darken-4\">\n        <br>\n        <a class=\"center white-text\" href=\"https://en.wikipedia.org/wiki/The_Scream\">The Scream</a>\n        <div class=\"white-text\">Edvard Munch</div>\n        <br>\n    </div>\n    <br>\n  </div>\n  <div class=\"col l3 m4 s6 center\">\n    <div class=\"valign-wrapper\">\n      <img class=\"responsive-img\" src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Meisje_met_de_parel.jpg/800px-Meisje_met_de_parel.jpg\" alt=\"\">\n    </div>\n    <div class=\"card brown darken-4\">\n      <br>\n      <a class=\"center white-text\" href=\"https://en.wikipedia.org/wiki/Water_Lilies_(Monet_series)\">Girl with a Pearl Earring</a>\n      <div class=\"white-text\">Johannes Vermeer</div>\n      <br>\n    </div>\n    <br>\n  </div>\n  <div class=\"col l3 m4 s6 center\">\n    <div class=\"valign-wrapper\">\n      <img class=\"responsive-img\" src=\"https://www.christies.com/img/LotImages/2010/NYR/2010_NYR_02355_0012_000(andy_warhol_campbells_soup_can).jpg\" alt=\"\">\n    </div>\n    <div class=\"card brown darken-4\">\n      <br>\n      <a class=\"center white-text\" href=\"https://en.wikipedia.org/wiki/Campbell%27s_Soup_Cans\">Campbell's Soup Can</a>\n      <div class=\"white-text\">Andy Warhol</div>\n      <br>\n    </div>\n    <br>\n  </div>\n  <div class=\"col l3 m4 s6 center\">\n    <div class=\"valign-wrapper\">\n      <img class=\"responsive-img\" src=\"https://ipaintingsforsale.com/painting-imgs/Mark%20Rothko/big/Untitled%20(I).jpg\" alt=\"\">\n    </div>\n    <div class=\"card brown darken-4\">\n      <br>\n      <a class=\"center white-text\" href=\"https://en.wikipedia.org/wiki/Mona_Lisa\">Untitled</a>\n      <div class=\"white-text\">Mark Rothko</div>\n      <br>\n    </div>\n    <br>\n  </div>\n  <div class=\"col l3 m4 s6 center\">\n    <div class=\"valign-wrapper\">\n      <img class=\"responsive-img\" src=\"https://www.tate.org.uk/art/images/work/L/L03/L03007_10.jpg\" alt=\"\">\n    </div>\n    <div class=\"card brown darken-4\">\n        <br>\n        <a class=\"center white-text\" href=\"https://en.wikipedia.org/wiki/Pablo_Picasso\">Bust of a Woman</a>\n        <div class=\"white-text\">Pablo Picasso</div>\n        <br>\n    </div>\n    <br>\n  </div>\n  <div class=\"col l3 m4 s6 center\">\n    <div class=\"valign-wrapper\">\n      <img class=\"responsive-img\" src=\"https://stackpath.jasminedirectory.com/blog/wp-content/uploads/2018/11/transverse-line.jpg\" alt=\"\">\n    </div>\n    <div class=\"card brown darken-4\">\n      <br>\n      <a class=\"center white-text\" href=\"https://en.wikipedia.org/wiki/Wassily_Kandinsky\">Transverse Line</a>\n      <div class=\"white-text\">Wassily Kandinsky</div>\n      <br>\n    </div>\n    <br>\n  </div>\n  <div class=\"col l3 m4 s6 center\">\n    <div class=\"valign-wrapper\">\n      <img class=\"responsive-img\" src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg/800px-Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg\" alt=\"\">\n    </div>\n    <div class=\"card brown darken-4\">\n      <br>\n      <a class=\"center white-text\" href=\"https://en.wikipedia.org/wiki/American_Gothic\">American Gothic</a>\n      <div class=\"white-text\">Grant Wood</div>\n      <br>\n    </div>\n  </div>\n</div>",
+        "CSS": "img {\n  border: 5px solid #3e2723;\n}\nbody {\n  background-color: #c99868;\n}\n.valign-wrapper {\n  height: 400px;\n}\n@media only screen and (max-width: 992px) {\n  .valign-wrapper {\n    height: 380px;\n  }\n}\n@media only screen and (max-width: 600px) {\n  .valign-wrapper {\n    height: 300px;\n  }\n}",
+        "JavaScript": ""
+      },
+      "settings": {
+        "HTML": {
+          "classes": "",
+          "head": "",
+          "preprocessor": "None"
+        },
+        "CSS": {
+          "base": "Neither",
+          "prefix": "neither",
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          ]
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": []
+        }
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 6461,
+          "fnv1a32": "aa8295e2"
+        },
+        "CSS": {
+          "utf16Length": 289,
+          "fnv1a32": "b9d6d8ba"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      }
+    },
+    {
+      "project": "art-gallery",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/8a2437122b9c7eb4159c9cacccdedae8",
+      "observedURL": "https://codepen.io/junilearning/pen/OJMEPpN",
+      "title": "JSS13 Supplemental Project 2: Art Gallery",
+      "panels": {
+        "HTML": "<!--\nCreate an online art gallery of 12 of your favorite pieces of art with descriptions and links to the art on wikipedia using the horizontal card feature. Style the art gallery with a pleasing background aesthetic, and add custom CSS to “frame” your choices with a border. Your art should be displayed as 3x4 for desktop, 4x3 for tablet, and 6x1 for mobile.\n-->\n",
+        "CSS": "",
+        "JavaScript": ""
+      },
+      "settings": {
+        "HTML": {
+          "classes": "",
+          "head": "",
+          "preprocessor": "None"
+        },
+        "CSS": {
+          "base": "Neither",
+          "prefix": "neither",
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          ]
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": []
+        }
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 365,
+          "fnv1a32": "974f545f"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      }
+    },
+    {
+      "project": "chessboard",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/6d8b7a81d39a66ce9536c1e700f287c0",
+      "observedURL": "https://codepen.io/junilearning/pen/ExVzKEd/6d8b7a81d39a66ce9536c1e700f287c0",
+      "title": "JSS13 Project 1: Chessboard Solution",
+      "panels": {
+        "HTML": "<!--\nMake a chessboard grid with alternating colors in CSS and HTML. Each square should be 1fr tall and 1fr wide, and the board should resize with the size of the container (hint: a trick is to make the width and height of the grid in terms of vh https://www.w3schools.com/cssref/css_units.asp in order to size the grid so that it can resize properly)\n-->\n\n<!-- Solution -->\n\n<div class=\"container\">\n  <div></div>\n  <div class=\"board\">\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile dark\"></div>\n    <div class=\"tile\"></div>\n  </div>\n  <div></div>\n</div>\n",
+        "CSS": ".container {\n  display: grid;\n  grid-template-columns: 1fr 90vh 1fr;\n  width: 100%;\n  height: 100%;\n}\n\n.board {\n  width: 90vh;\n  height: 90vh;\n  border: 10px solid #8b6914;\n  display: grid;\n  grid-template: repeat(8, 1fr) / repeat(8, 1fr);\n}\n\n.tile {\n  background-color: #deb887;\n}\n\n.dark {\n  background-color: #8B4513;\n}\n",
+        "JavaScript": ""
+      },
+      "settings": {
+        "HTML": {
+          "classes": "",
+          "head": "",
+          "preprocessor": "None"
+        },
+        "CSS": {
+          "base": "Neither",
+          "prefix": "neither",
+          "preprocessor": "None",
+          "resources": []
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": []
+        }
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 2482,
+          "fnv1a32": "ed888bd1"
+        },
+        "CSS": {
+          "utf16Length": 322,
+          "fnv1a32": "7e945593"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      }
+    },
+    {
+      "project": "chessboard",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/2573f4cfc9cb525b5940f500fd22dc79",
+      "observedURL": "https://codepen.io/junilearning/pen/qBbKEMz",
+      "title": "JSS13 Project 1: Chessboard",
+      "panels": {
+        "HTML": "<!--\nMake a chessboard grid with alternating colors in CSS and HTML. Each square should be 1fr tall and 1fr wide, and the board should resize with the size of the container (hint: a trick is to make the width and height of the grid in terms of vh https://www.w3schools.com/cssref/css_units.asp in order to size the grid so that it can resize properly)\n-->\n",
+        "CSS": "",
+        "JavaScript": ""
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 356,
+          "fnv1a32": "b93f88a0"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      },
+      "settings": {
+        "HTML": {
+          "classes": "",
+          "head": "",
+          "preprocessor": "None"
+        },
+        "CSS": {
+          "base": "Neither",
+          "prefix": "neither",
+          "preprocessor": "None",
+          "resources": []
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": []
+        }
+      }
+    },
+    {
+      "project": "component-library-grids",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/9efdb71bcb845f3d9c01b14f0fd1e32e",
+      "observedURL": "https://codepen.io/junilearning/pen/dyYqvdW",
+      "title": "JSS13 Project 2: The Responsive Grid Solution",
+      "panels": {
+        "HTML": "<!--\nMake 12 equally sized cards that stretch into a line on fullscreen, go to 2x6 on tablet, and 4x3 on mobile using the pre-built grid feature in materialize. Then, make a set of 6 2x3 wide information panel cards and icons with matching text which also display as 3x2 on tablet and 6x1 on mobile\n-->\n\n<!-- Solution -->\n\n<div class=\"row center\">\n  <div class=\"card col s4 m2 l1 red\">1</div>\n  <div class=\"card col s4 m2 l1 orange\">2</div>\n  <div class=\"card col s4 m2 l1 teal\">3</div>\n  <div class=\"card col s4 m2 l1 pink\">4</div>\n  <div class=\"card col s4 m2 l1 yellow\">5</div>\n  <div class=\"card col s4 m2 l1 green\">6</div>\n  <div class=\"card col s4 m2 l1 blue\">7</div>\n  <div class=\"card col s4 m2 l1 grey\">8</div>\n  <div class=\"card col s4 m2 l1 brown\">9</div>\n  <div class=\"card col s4 m2 l1 indigo\">10</div>\n  <div class=\"card col s4 m2 l1 cyan\">11</div>\n  <div class=\"card col s4 m2 l1 lime\">12</div>\n</div>\n<div class=\"container row center\">\n  <div class=\"card col s12 m6 l4\">\n    <br>\n    <i class=\"material-icons medium\">favorite_border</i>\n    <p>I love Juni Learning!</p>\n  </div>\n  <div class=\"card col s12 m6 l4\">\n    <br>\n    <i class=\"material-icons medium\">code</i>\n    <p>Coding is fun and rewarding</p>\n  </div>\n  <div class=\"card col s12 m6 l4\">\n    <br>\n    <i class=\"material-icons medium\">language</i>\n    <p>Learn remotely</p>\n  </div>\n  <div class=\"card col s12 m6 l4\">\n    <br>\n    <i class=\"material-icons medium\">functions</i>\n    <p>Improve at mathematics</p>\n  </div>\n  <div class=\"card col s12 m6 l4\">\n    <br>\n    <i class=\"material-icons medium\">http</i>\n    <p>Make beautiful websites</p>\n  </div>\n  <div class=\"card col s12 m6 l4\">\n    <br>\n    <i class=\"material-icons medium\">share</i>\n    <p>Share with others</p>\n  </div>\n</div>",
+        "CSS": "",
+        "JavaScript": ""
+      },
+      "settings": {
+        "HTML": {
+          "classes": "",
+          "head": "",
+          "preprocessor": "None"
+        },
+        "CSS": {
+          "base": "Neither",
+          "prefix": "neither",
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css",
+            "<redacted>",
+            "https://fonts.googleapis.com/icon?family=Material+Icons"
+          ]
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": []
+        }
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 1769,
+          "fnv1a32": "12cd812a"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      }
+    },
+    {
+      "project": "component-library-grids",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/a3eaa0595c2a0f55991e946605e38e60",
+      "observedURL": "https://codepen.io/junilearning/pen/ExPRaOM",
+      "title": "JSS13 Project 2: The Responsive Grid",
+      "panels": {
+        "HTML": "<!--\nMake 12 equally sized cards that stretch into a line on fullscreen, go to 2x6 on tablet, and 4x3 on mobile using the pre-built grid feature in materialize. Then, make a set of 6 2x3 wide information panel cards and icons with matching text which also display as 3x2 on tablet and 6x1 on mobile\n-->\n",
+        "CSS": "",
+        "JavaScript": ""
+      },
+      "settings": {
+        "HTML": {
+          "classes": "",
+          "head": "",
+          "preprocessor": "None"
+        },
+        "CSS": {
+          "base": "Neither",
+          "prefix": "neither",
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css",
+            "<redacted>",
+            "https://fonts.googleapis.com/icon?family=Material+Icons"
+          ]
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": []
+        }
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 303,
+          "fnv1a32": "482b23c1"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      }
+    },
+    {
+      "project": "fake-tech",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/cdf88ee56f7d30ee0b1eba24ae89353e",
+      "observedURL": "https://codepen.io/junilearning/pen/jOboVaw/cdf88ee56f7d30ee0b1eba24ae89353e",
+      "title": "JSS13 Supplemental Project 1: FakeTech.io Solution",
+      "panels": {
+        "HTML": "<!-- Your task is to make a company page which lists the company's employees. Make a circular image picture on a card as well as some text about the person at the company including their occupation. Make sure to make the cards pop by using a valign wrapper as well as a box-shadow with the hoverable class. Search the materialize docs in order to determine how to implement a valign wrapper, circular image, and a box-shadow. -->\n\n<!-- Solution -->\n\n<nav class=\"blue lighten-3\">\n  <div class=\"nav-wrapper\">\n    <div class=\"brand-logo center\">Our Employees at FakeTech.io</div>\n  </div>\n</nav>\n<br>\n<div class=\"container\">\n  <div class=\"card-panel grey lighten-5 z-depth-2 hoverable\">\n    <div class=\"row valign-wrapper\">\n      <div class=\"col s2\">\n        <img src=\"https://www.shareicon.net/data/256x256/2016/05/24/770107_man_512x512.png\" alt=\"\" class=\"circle responsive-img\"> <!-- notice the \"circle\" class -->\n      </div>\n      <div class=\"col s10\">\n        <div class=\"center black-text\">\n          Mark is the CEO of FakeTech.io, he is originally from the East Coast and moved to San Francisco for college. He loves to fish and golf!\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"card-panel grey lighten-5 z-depth-2 hoverable\">\n    <div class=\"row valign-wrapper\">\n      <div class=\"col s10\">\n        <div class=\"center black-text\">\n          Molly is the CTO of FakeTech.io, and she loves to code in Python and JavaScript! In her free time, she loves to play hockey and play video games!\n        </div>\n      </div>\n      <div class=\"col s2\">\n        <img src=\"https://www.shareicon.net/data/256x256/2016/05/24/770088_people_512x512.png\" alt=\"\" class=\"circle responsive-img\"> <!-- notice the \"circle\" class -->\n      </div>\n    </div>\n  </div>\n  <div class=\"card-panel grey lighten-5 z-depth-2 hoverable\">\n    <div class=\"row valign-wrapper\">\n      <div class=\"col s2\">\n        <img src=\"https://www.shareicon.net/data/256x256/2016/05/24/770105_man_512x512.png\" alt=\"\" class=\"circle responsive-img\"> <!-- notice the \"circle\" class -->\n      </div>\n      <div class=\"col s10\">\n        <div class=\"center black-text\">\n          Stefan is the CFO of FakeTech.io, and he has known Molly since High School. He loves to dine at nice restaurants and going skiing!\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"card-panel grey lighten-5 z-depth-2 hoverable\">\n    <div class=\"row valign-wrapper\">\n      <div class=\"col s10\">\n        <div class=\"center black-text\">\n          Sara is the VP of Sales of our FakeTech.io, and she is always looking for a big sale! She loves to go to concerts and run marathons!\n        </div>\n      </div>\n      <div class=\"col s2\">\n        <img src=\"https://www.shareicon.net/data/256x256/2016/05/24/770098_people_512x512.png\" alt=\"\" class=\"circle responsive-img\"> <!-- notice the \"circle\" class -->\n      </div>\n    </div>\n  </div>\n  <div class=\"card-panel grey lighten-5 z-depth-2 hoverable\">\n    <div class=\"row valign-wrapper\">\n      <div class=\"col s2\">\n        <img src=\"https://www.shareicon.net/data/256x256/2016/05/24/770100_people_512x512.png\" alt=\"\" class=\"circle responsive-img\"> <!-- notice the \"circle\" class -->\n      </div>\n      <div class=\"col s10\">\n        <div class=\"center black-text\">\n          Janet is the VP of Marketing of FakeTech.io, and she has a pet dog named Sparky. She loves her dog and picnics!\n        </div>\n      </div>\n    </div>\n  </div>\n</div>",
+        "CSS": "body {\n  background-color: #ACACAC;\n}",
+        "JavaScript": ""
+      },
+      "settings": {
+        "HTML": {
+          "classes": "",
+          "head": "",
+          "preprocessor": "None"
+        },
+        "CSS": {
+          "base": "Neither",
+          "prefix": "neither",
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          ]
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": []
+        }
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 3445,
+          "fnv1a32": "6a84c96c"
+        },
+        "CSS": {
+          "utf16Length": 37,
+          "fnv1a32": "c7a98c4d"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      }
+    },
+    {
+      "project": "fake-tech",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/ca71737eccb1712a4a653a8f883c57cf",
+      "observedURL": "https://codepen.io/junilearning/pen/OJMEPgN",
+      "title": "JSS13 Supplemental Project 1: FakeTech.io",
+      "panels": {
+        "HTML": "<!-- Your task is to make a company page which lists the company's employees. Make a circular image picture on a card as well as some text about the person at the company including their occupation. Make sure to make the cards pop by using a valign wrapper as well as a box-shadow with the hoverable class. Search the materialize docs in order to determine how to implement a valign wrapper, circular image, and a box-shadow. -->\n",
+        "CSS": "",
+        "JavaScript": ""
+      },
+      "settings": {
+        "HTML": {
+          "classes": "",
+          "head": "",
+          "preprocessor": "None"
+        },
+        "CSS": {
+          "base": "Neither",
+          "prefix": "neither",
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          ]
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": []
+        }
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 430,
+          "fnv1a32": "68745503"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      }
+    },
+    {
+      "project": "my-javascript-art-part-3",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/4735eaf3e168cfb944a3daad063e287c",
+      "observedURL": "https://codepen.io/junilearning/pen/yLeOgMQ",
+      "title": "JSS13 Project 4: My JavaScript Art pt III",
+      "panels": {
+        "HTML": "<div class=\"section pink\">\n  <h1 class=\"center\">My JavaScript Art</h1>\n</div>\n<div class=\"section grey lighten-2\">\n  <h3 class=\"center\">Project One</h3>\n  <br>\n  <div class=\"row\">\n    <div id=\"rainbow\" class=\"col m12 l7 center\"></div>\n    <div class=\"col l1\"></div>\n    <div class=\"col m12 l3\">\n      <div class=\"card blue-grey darken-1\">\n        <div class=\"card-content white-text\">\n          <span class=\"card-title\">Rainbow</span>\n          <p>This is a project I did in d3 that looks like a rainbow. It fills in with the red arc first, and then continues with all the other colors</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"section\">\n  <h3 class=\"center black-text\">Project 2</h3>\n  <br>\n  <div class=\"row\">\n    <div class=\"col l2\"></div>\n    <div class=\"col s4 l3\">\n      <div class=\"card blue-grey darken-1\">\n        <div class=\"card-content white-text\">\n          <span class=\"card-title\">Captain America Shield</span>\n          <p>This is a project I did in d3 that resembles the shield from the hero in the marvel movie</p>\n        </div>\n      </div>\n    </div>\n    <div id=\"shield\" class=\"center col s7 l7\"></div>\n  </div>\n</div>\n<div class=\"section blue\">\n  <h3 class=\"center white-text\">Project 3</h3>\n  <br>\n  <div class=\"row\">\n    <div id=\"pacman\" class=\"col m12 l7 center\"></div>\n    <div class=\"col l1\"></div>\n    <div class=\"col l3\">\n      <div class=\"card blue-grey darken-1\">\n        <div class=\"card-content white-text\">\n          <span class=\"card-title\">Pacman</span>\n          <p>This is a project I did in d3 that looks like two pacmen from the classic arcade game facing each other</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"section black\">\n  <h3 class=\"center white-text\">Project 4</h3>\n  <br>\n  <div class=\"row\">\n    <div class=\"col l2\"></div>\n    <div class=\"col s4 l3\">\n      <div class=\"card blue-grey darken-1\">\n        <div class=\"card-content white-text\">\n          <span class=\"card-title\">Snowman</span>\n          <p>This is a project I did in d3 that is of a snowman. I might add buttons in the future</p>\n        </div>\n      </div>\n    </div>\n    <div id=\"snowman\" class=\"center col s7\"></div>\n  </div>\n</div>",
+        "CSS": "",
+        "JavaScript": "let colors = [\"Red\", \"Orange\", \"Yellow\", \"Green\", \"Blue\", \"Indigo\", \"Violet\"];\n\nlet margin = { top: 30, right: 200, bottom: 50, left: 30, pad: 10 };\nvar width = 800 - margin.left - margin.right;\nvar height = 350 - margin.top - margin.bottom;\n\nlet svg = d3\n  .select(\"#rainbow\")\n  .append(\"svg\")\n  .attr(\"width\", width)\n  .attr(\"height\", height)\n  .append(\"g\")\n  .attr(\"transform\", \"translate(300,300)\");\n\n//Define Arc for rainbow\nlet arc = d3\n  .arc()\n  .innerRadius(function (d, i) {\n    return 300 - 20 * i;\n  })\n  .outerRadius(function (d, i) {\n    return 300 - 20 * i - 20;\n  })\n  .startAngle(function (d, i) {\n    return (-Math.PI / 2) * 0.7;\n  })\n  .endAngle(function (d, i) {\n    return (Math.PI / 2) * 0.7;\n  });\n\n//Adding all colors arc\nlet path = svg\n  .selectAll(\"g.arc\")\n  .data(colors)\n  .enter()\n  .append(\"g\")\n  .attr(\"class\", \"arc\");\n//Adding with animation\npath\n  .append(\"path\")\n  .transition()\n  .delay(function (d, i) {\n    return i * 200;\n  })\n  .duration(150)\n  .attr(\"fill\", function (d, i) {\n    return d;\n  })\n  .attr(\"d\", arc);\n\nlet widthShield = 400;\nlet heightShield = 300;\n\nlet positionX = 200;\nlet positionY = 110;\n\n// Create SVG element to append to\nlet svg2 = d3.select(\"#shield\")\n  .append(\"svg\")\n  .attr(\"width\", widthShield)\n  .attr(\"height\", heightShield);\n\n// Add a large circle at the top\nsvg2.append(\"circle\")\n  .attr(\"fill\", \"red\")\n  .attr(\"cx\", positionX)\n  .attr(\"cy\", positionY)\n  .attr(\"r\", 110);\n\n// Add a medium circle in the middle\nsvg2.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", positionX)\n  .attr(\"cy\", positionY)\n  .attr(\"r\", 90);\n\n// Add a medium circle in the middle\nsvg2.append(\"circle\")\n  .attr(\"fill\", \"red\")\n  .attr(\"cx\", positionX)\n  .attr(\"cy\", positionY)\n  .attr(\"r\", 70);\n\n// Add a small circle to the top\nsvg2.append(\"circle\")\n  .attr(\"fill\", \"blue\")\n  .attr(\"cx\", positionX)\n  .attr(\"cy\", positionY)\n  .attr(\"r\", 50);\n\nlet star = d3.symbol().type(d3.symbolStar).size(2000);\n\nsvg2.append(\"path\")\n  .attr(\"d\", star)\n  .attr(\"fill\", \"white\")\n  .attr(\"transform\", `translate(${positionX},${positionY})`);\n\nlet width2 = 500;\nlet height2 = 300;\n\n// Conversion function that should be given to the student at the instructor's discretion\nconst degreesToRadians = (degrees) => (\n  degrees * Math.PI / 180\n);\n\n// Create a new svg to append to\nconst svg3 = d3.select(\"#pacman\")\n  .append(\"svg\")\n  .attr(\"width\", width2)\n  .attr(\"height\", height2);\n\n// Create the object that will generate our curves\nconst arcGenerator = d3.arc();\n\n// Create the arc that will be the left Pac-Man–note the start and end angles, and their difference vs. the right Pac-Man below\nlet leftPacMan = arcGenerator({\n  startAngle: degreesToRadians(120),\n  endAngle: degreesToRadians(430),\n  innerRadius: 0,\n  outerRadius: 100\n});\n\n// Create the arc that will be the right Pac-Man\nlet rightPacMan = arcGenerator({\n  startAngle: -degreesToRadians(120),\n  endAngle: -degreesToRadians(430),\n  innerRadius: 0,\n  outerRadius: 100\n});\n\n// Append the left Pac-Man to the svg\nsvg3.append('path')\n  .attr(\"fill\", \"yellow\")\n  .attr(\"transform\", \"translate(150,110)\")\n\t.attr('d', leftPacMan);\n\n// Append the right Pac-Man to the svg\nsvg3.append('path')\n  .attr(\"fill\", \"yellow\")\n  .attr(\"transform\", \"translate(400,110)\")\n\t.attr('d', rightPacMan);\n\nlet widthSnowman = 300;\nlet heightSnowman = 500;\n\n// Create SVG element to append to\nlet svg4 = d3.select(\"#snowman\")\n  .append(\"svg\")\n  .attr(\"width\", widthSnowman)\n  .attr(\"height\", heightSnowman);\n\n// Add a small circle to the top\nsvg4.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 50)\n  .attr(\"r\", 50);\n\n// Left eye\nsvg4.append(\"circle\")\n  .attr(\"fill\", \"black\")\n  .attr(\"cx\", 125)\n  .attr(\"cy\", 35)\n  .attr(\"r\", 5);\n\n// Right eye\nsvg4.append(\"circle\")\n  .attr(\"fill\", \"black\")\n  .attr(\"cx\", 175)\n  .attr(\"cy\", 35)\n  .attr(\"r\", 5);\n\nsvg4.append(\"circle\")\n  .attr(\"fill\", \"orange\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 50)\n  .attr(\"r\", 5);\n\n// Nose\n\n/*\nCode handling the mouth\n*/\n\n// Generate a path that will be the smile\nlet pathData = arcGenerator({\n  startAngle: degreesToRadians(90),\n  endAngle: degreesToRadians(270),\n  innerRadius: 10,\n  outerRadius: 15\n});\n\n// Append the smile path, moved over 250px in the x and 200px in the y\nsvg4.append('path')\n  .attr(\"fill\", \"black\")\n  .attr(\"transform\", \"translate(150,70)\")\n\t.attr('d', pathData);\n\n// Add a medium circle in the middle\nsvg4.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 160)\n  .attr(\"r\", 70);\n\n// Draw the left arm\nlet leftArm = svg4.append(\"line\")               \n              .attr(\"x1\", 200)\n              .attr(\"x2\", 300)\n              .attr(\"y1\", 160)\n              .attr(\"y2\", 145)\n              .attr(\"stroke-width\", 2)\n              .attr(\"stroke\", \"brown\");\n\n// Draw the right arm\nlet rightArm = svg4.append(\"line\")               \n              .attr(\"x1\", 100)\n              .attr(\"x2\", 0)\n              .attr(\"y1\", 160)\n              .attr(\"y2\", 145)\n              .attr(\"stroke-width\", 2)\n              .attr(\"stroke\", \"brown\");\n\n// Add a large circle at the top\nsvg4.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 300)\n  .attr(\"r\", 100);\n"
+      },
+      "settings": {
+        "HTML": {
+          "classes": "",
+          "head": "",
+          "preprocessor": "None"
+        },
+        "CSS": {
+          "base": "Neither",
+          "prefix": "neither",
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css",
+            "<redacted>"
+          ]
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+          ]
+        }
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 2205,
+          "fnv1a32": "529b227b"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 5178,
+          "fnv1a32": "e61096a5"
+        }
+      }
+    },
+    {
+      "project": "pokemon-team",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/e96eae8cd85c1fe2bbaf3b5cdd046522",
+      "observedURL": "https://codepen.io/junilearning/pen/Yzyddow/e96eae8cd85c1fe2bbaf3b5cdd046522",
+      "title": "JSS13 Project 3: Pokemon Team Solution",
+      "panels": {
+        "HTML": "<!-- \nCreate a Pokemon team with images of your favorite pokemon, nicknames of your pokemon, movesets in the form of tables, and pokemon stats with icons representing HP, ATK, DEF, SPA, SPD, and SPE. Your team should display as 2x3 on desktop, 3x2 on tablet, and 6x1 on mobile. Also, add a navigation bar at the top.\n-->\n\n<!-- Solution -->\n\n<nav class=\"grey darken-3\">\n  <div class=\"nav-wrapper\">\n    <div class=\"brand-logo center\">My Pokemon Team</div>\n  </div>\n</nav>\n<br>\n<div class=\"row\">\n  <div class=\"col s12 m6 l4\">\n    <div class=\"card\">\n      <div class=\"card-title center\">\n        Butterfree\n      </div>\n      <hr>\n      <div class=\"card-image\">\n        <img src=\"https://www.serebii.net/swordshield/pokemon/012.png\" alt=\"#\">\n      </div>\n      <div class=\"card-content\">\n        <table class=\"centered\">\n          <thead>\n            <th>HP</th>\n            <th>ATK</th>\n            <th>DEF</th>\n            <th>SPA</th>\n            <th>SPD</th>\n            <th>SPE</th>\n          </thead>\n          <tbody>\n            <tr>\n              <td>324</td>\n              <td>170</td>\n              <td>179</td>\n              <td>251</td>\n              <td>233</td>\n              <td>215</td>\n            </tr>\n          </tbody>\n        </table>\n        <br>\n        <h6 class=\"center\">\n          <strong>\n            Moves\n          </strong>\n        </h6>\n        <table class=\"centered\">\n          <tbody>\n            <tr>\n              <td>Sleep Powder</td>\n              <td>Giga Drain</td>\n            </tr>\n            <tr>\n              <td>Psychic</td>\n              <td>Bug Buzz</td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n  </div>\n  <div class=\"col s12 m6 l4\">\n    <div class=\"card\">\n      <div class=\"card-title center\">\n        Tyranitar\n      </div>\n      <hr>\n      <div class=\"card-image\">\n        <img src=\"https://www.serebii.net/swordshield/pokemon/248.png\" alt=\"#\">\n      </div>\n      <div class=\"card-content\">\n        <table class=\"centered\">\n          <thead>\n            <th>HP</th>\n            <th>ATK</th>\n            <th>DEF</th>\n            <th>SPA</th>\n            <th>SPD</th>\n            <th>SPE</th>\n          </thead>\n          <tbody>\n            <tr>\n              <td>404</td>\n              <td>403</td>\n              <td>350</td>\n              <td>317</td>\n              <td>328</td>\n              <td>243</td>\n            </tr>\n          </tbody>\n        </table>\n        <br>\n        <h6 class=\"center\">\n          <strong>\n            Moves\n          </strong>\n        </h6>\n        <table class=\"centered\">\n          <tbody>\n            <tr>\n              <td>Stone Edge</td>\n              <td>Dragon Dance</td>\n            </tr>\n            <tr>\n              <td>Crunch</td>\n              <td>Earthquake</td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n  </div>\n  <div class=\"col s12 m6 l4\">\n    <div class=\"card\">\n      <div class=\"card-title center\">\n        Flygon\n      </div>\n      <hr>\n      <div class=\"card-image\">\n        <img src=\"https://www.serebii.net/Shiny/SWSH/330.png\" alt=\"#\">\n      </div>\n      <div class=\"card-content\">\n        <table class=\"centered\">\n          <thead>\n            <th>HP</th>\n            <th>ATK</th>\n            <th>DEF</th>\n            <th>SPA</th>\n            <th>SPD</th>\n            <th>SPE</th>\n          </thead>\n          <tbody>\n            <tr>\n              <td>364</td>\n              <td>328</td>\n              <td>284</td>\n              <td>284</td>\n              <td>284</td>\n              <td>328</td>\n            </tr>\n          </tbody>\n        </table>\n        <br>\n        <h6 class=\"center\">\n          <strong>\n            Moves\n          </strong>\n        </h6>\n        <table class=\"centered\">\n          <tbody>\n            <tr>\n              <td>Outrage</td>\n              <td>U-Turn</td>\n            </tr>\n            <tr>\n              <td>Earthquake</td>\n              <td>Fire Punch</td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n  </div>\n  <div class=\"col s12 m6 l4\">\n    <div class=\"card\">\n      <div class=\"card-title center\">\n        Lanturn\n      </div>\n      <hr>\n      <div class=\"card-image\">\n        <img src=\"https://www.serebii.net/swordshield/pokemon/171.png\" alt=\"#\">\n      </div>\n      <div class=\"card-content\">\n        <table class=\"centered\">\n          <thead>\n            <th>HP</th>\n            <th>ATK</th>\n            <th>DEF</th>\n            <th>SPA</th>\n            <th>SPD</th>\n            <th>SPE</th>\n          </thead>\n          <tbody>\n            <tr>\n              <td>454</td>\n              <td>236</td>\n              <td>236</td>\n              <td>276</td>\n              <td>276</td>\n              <td>256</td>\n            </tr>\n          </tbody>\n        </table>\n        <br>\n        <h6 class=\"center\">\n          <strong>\n            Moves\n          </strong>\n        </h6>\n        <table class=\"centered\">\n          <tbody>\n            <tr>\n              <td>Scald</td>\n              <td>Volt Switch</td>\n            </tr>\n            <tr>\n              <td>Toxic</td>\n              <td>Protect</td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n  </div>\n  <div class=\"col s12 m6 l4\">\n    <div class=\"card\">\n      <div class=\"card-title center\">\n        Roserade\n      </div>\n      <hr>\n      <div class=\"card-image\">\n        <img src=\"https://www.serebii.net/swordshield/pokemon/407.png\" alt=\"#\">\n      </div>\n      <div class=\"card-content\">\n        <table class=\"centered\">\n          <thead>\n            <th>HP</th>\n            <th>ATK</th>\n            <th>DEF</th>\n            <th>SPA</th>\n            <th>SPD</th>\n            <th>SPE</th>\n          </thead>\n          <tbody>\n            <tr>\n              <td>324</td>\n              <td>262</td>\n              <td>251</td>\n              <td>383</td>\n              <td>339</td>\n              <td>306</td>\n            </tr>\n          </tbody>\n        </table>\n        <br>\n        <h6 class=\"center\">\n          <strong>\n            Moves\n          </strong>\n        </h6>\n        <table class=\"centered\">\n          <tbody>\n            <tr>\n              <td>Spikes</td>\n              <td>Sludge Bomb</td>\n            </tr>\n            <tr>\n              <td>Leaf Storm</td>\n              <td>Aromatherapy</td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n  </div>\n  <div class=\"col s12 m6 l4\">\n    <div class=\"card\">\n      <div class=\"card-title center\">\n        Machamp\n      </div>\n      <hr>\n      <div class=\"card-image\">\n        <img src=\"https://www.serebii.net/swordshield/pokemon/068.png\" alt=\"#\">\n      </div>\n      <div class=\"card-content\">\n        <table class=\"centered\">\n          <thead>\n            <th>HP</th>\n            <th>ATK</th>\n            <th>DEF</th>\n            <th>SPA</th>\n            <th>SPD</th>\n            <th>SPE</th>\n          </thead>\n          <tbody>\n            <tr>\n              <td>384</td>\n              <td>394</td>\n              <td>284</td>\n              <td>251</td>\n              <td>295</td>\n              <td>229</td>\n            </tr>\n          </tbody>\n        </table>\n        <br>\n        <h6 class=\"center\">\n          <strong>\n            Moves\n          </strong>\n        </h6>\n        <table class=\"centered\">\n          <tbody>\n            <tr>\n              <td>Dynamicpunch</td>\n              <td>Stone Edge</td>\n            </tr>\n            <tr>\n              <td>Knock Off</td>\n              <td>Earthquake</td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n  </div>\n</div>",
+        "CSS": "body {\n  background-color: #BDBDBD;\n}",
+        "JavaScript": ""
+      },
+      "settings": {
+        "HTML": {
+          "classes": "",
+          "head": "",
+          "preprocessor": "None"
+        },
+        "CSS": {
+          "base": "Neither",
+          "prefix": "neither",
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          ]
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": []
+        }
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 7647,
+          "fnv1a32": "2687ae66"
+        },
+        "CSS": {
+          "utf16Length": 37,
+          "fnv1a32": "1edeaadf"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      }
+    },
+    {
+      "project": "pokemon-team",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/ae3059e723f4f66779b4cd4e2a1fc520",
+      "observedURL": "https://codepen.io/junilearning/pen/ExPRadr",
+      "title": "JSS13 Project 3: Pokemon Team",
+      "panels": {
+        "HTML": "<!-- \nCreate a Pokemon team with images of your favorite pokemon, nicknames of your pokemon, movesets in the form of tables, and pokemon stats with icons representing HP, ATK, DEF, SPA, SPD, and SPE. Your team should display as 2x3 on desktop, 3x2 on tablet, and 6x1 on mobile. Also, add a navigation bar at the top.\n-->\n",
+        "CSS": "",
+        "JavaScript": ""
+      },
+      "settings": {
+        "HTML": {
+          "classes": "",
+          "head": "",
+          "preprocessor": "None"
+        },
+        "CSS": {
+          "base": "Neither",
+          "prefix": "neither",
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          ]
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": []
+        }
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 321,
+          "fnv1a32": "ecf4ed03"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      }
+    }
+  ]
+}

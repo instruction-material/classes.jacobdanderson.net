@@ -1,0 +1,4 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Strength Tester</title><link rel="stylesheet" href="vendor/materialize.min.css"><link rel="stylesheet" href="styles.css"></head><body><main class="strength-app"><h1>Strength Tester</h1>
+<!-- TODO: add the test button, score, prize message and image described in README.md. -->
+</main><script src="vendor/d3.min.js"></script><script src="script.js"></script></body></html>

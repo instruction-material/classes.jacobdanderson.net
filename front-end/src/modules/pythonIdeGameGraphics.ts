@@ -1,3 +1,52 @@
+export function drawPythonIdeGameText(
+	context: CanvasRenderingContext2D,
+	text: string,
+	x: number,
+	y: number,
+	color: string,
+	fontSize: number,
+	anchorX = 0,
+	anchorY = 0,
+	align = anchorX,
+	lineHeight = 1,
+	shadowX = 0,
+	shadowY = 0,
+	shadowColor = "black"
+) {
+	const size = Math.max(8, fontSize);
+	context.save();
+	try {
+		context.font = `${size}px Avenir Next, Segoe UI, sans-serif`;
+		context.textAlign = "left";
+		context.textBaseline = "top";
+		const lines = text.split("\n");
+		const widths = lines.map(line => context.measureText(line).width);
+		const width = widths.reduce(
+			(maximum, value) => Math.max(maximum, value),
+			0
+		);
+		const spacing = size * lineHeight;
+		const height = size + (lines.length - 1) * spacing;
+		const left = x - width * anchorX;
+		const top = y - height * anchorY;
+		const paint = (paintColor: string, dx: number, dy: number) => {
+			context.fillStyle = paintColor;
+			for (const [index, line] of lines.entries()) {
+				context.fillText(
+					line,
+					left + (width - widths[index]) * align + dx,
+					top + index * spacing + dy
+				);
+			}
+		};
+		if (shadowX || shadowY)
+			paint(shadowColor, (shadowX * size) / 18, (shadowY * size) / 18);
+		paint(color, 0, 0);
+	} finally {
+		context.restore();
+	}
+}
+
 export function pythonIdeGamePointerPosition(
 	clientX: number,
 	clientY: number,

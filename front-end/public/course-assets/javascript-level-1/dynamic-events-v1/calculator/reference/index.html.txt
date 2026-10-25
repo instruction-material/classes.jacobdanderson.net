@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Calculator</title><link rel="stylesheet" href="styles.css"></head><body><main class="calculator-app"><h1>Calculator</h1>
+<div class="calculator-layout"><div id="calculator"></div><div class="controls">
+<label for="number">First number</label><input type="text" inputmode="decimal" id="number" autocomplete="off">
+<label for="number-two">Second number</label><input type="text" inputmode="decimal" id="number-two" autocomplete="off">
+<div class="operations" aria-label="Operations"><button id="add" type="button" aria-label="Add">+</button><button id="sub" type="button" aria-label="Subtract">−</button><button id="mult" type="button" aria-label="Multiply">×</button><button id="div" type="button" aria-label="Divide">÷</button></div>
+<p id="result-message" role="status" aria-atomic="true"></p></div></div>
+</main><script src="vendor/d3.min.js"></script><script src="script.js"></script></body></html>

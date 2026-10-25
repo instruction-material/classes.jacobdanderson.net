@@ -131,7 +131,14 @@ export interface GameBridge {
 		x: number,
 		y: number,
 		color: string,
-		fontSize: number
+		fontSize: number,
+		anchorX?: number,
+		anchorY?: number,
+		align?: number,
+		lineHeight?: number,
+		shadowX?: number,
+		shadowY?: number,
+		shadowColor?: string
 	) => void;
 	drawRect: (
 		x: number,
@@ -4121,14 +4128,49 @@ keymods = _KeyMods()
 
 class _ScreenDraw:
     def text(self, text, pos=(0, 0), color="white", fontsize=24, center=None, **_kwargs):
+        anchor = _kwargs.get("anchor", (0, 0))
+        anchor_x, anchor_y = anchor
+        positions = (
+            ("topleft", 0, 0), ("midtop", .5, 0), ("topright", 1, 0),
+            ("midleft", 0, .5), ("midright", 1, .5),
+            ("bottomleft", 0, 1), ("midbottom", .5, 1), ("bottomright", 1, 1),
+        )
+        for name, horizontal, vertical in positions:
+            if name in _kwargs:
+                pos = _kwargs[name]
+                anchor_x, anchor_y = horizontal, vertical
+                break
         if center is not None:
             pos = center
+            anchor_x, anchor_y = .5, .5
+        x, y = pos
+        for name, horizontal in (("left", 0), ("centerx", .5), ("right", 1)):
+            if name in _kwargs:
+                x, anchor_x = _kwargs[name], horizontal
+                break
+        for name, vertical in (("top", 0), ("centery", .5), ("bottom", 1)):
+            if name in _kwargs:
+                y, anchor_y = _kwargs[name], vertical
+                break
+        align = _kwargs.get("align")
+        if align is None:
+            align = anchor_x
+        elif isinstance(align, str):
+            align = {"left": 0, "center": .5, "right": 1}[align]
+        shadow = _kwargs.get("shadow") or (0, 0)
         _bridge.drawText(
             str(text),
-            float(_number(pos[0])),
-            float(_number(pos[1])),
+            float(_number(x)),
+            float(_number(y)),
             _normalize_color(color),
             float(_number(fontsize, 24)),
+            float(_number(anchor_x)),
+            float(_number(anchor_y)),
+            float(_number(align)),
+            float(_number(_kwargs.get("lineheight", 1), 1)),
+            float(_number(shadow[0])),
+            float(_number(shadow[1])),
+            _normalize_color(_kwargs.get("scolor", "black")),
         )
 
     def textbox(self, text, rect, color="white", fontsize=24, **_kwargs):
@@ -4139,6 +4181,8 @@ class _ScreenDraw:
             float(y + height / 2),
             _normalize_color(color),
             float(_number(fontsize, 24)),
+            .5,
+            .5,
         )
 
     def rect(self, rect, color, width=1):

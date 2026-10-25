@@ -1483,6 +1483,66 @@ jobs:
                   if-no-files-found: error
                   retention-days: 7
 
+            - name: Verify Grid Layout project imports and saved edits
+              env:
+                  JAVASCRIPT_GRID_LAYOUT_BROWSER_DIR: output/javascript-grid-layout-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-grid-layout-screenshots
+              run: node --test test/javascript-grid-layout-course-browser.test.mjs
+            - name: Execute Grid Layout exports offline
+              env:
+                  JAVASCRIPT_GRID_LAYOUT_BROWSER_DIR: output/javascript-grid-layout-browser
+              run: node --test test/javascript-grid-layout-exported-browser.test.mjs
+            - name: Retain Grid Layout original workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-grid-layout-workflows
+                  path: |
+                      output/javascript-grid-layout-browser/
+                      output/javascript-grid-layout-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify Dynamic Events project imports and saved edits
+              env:
+                  JAVASCRIPT_DYNAMIC_EVENTS_BROWSER_DIR: output/javascript-dynamic-events-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-dynamic-events-screenshots
+              run: node --test test/javascript-dynamic-events-course-browser.test.mjs
+            - name: Execute Dynamic Events exports offline
+              env:
+                  JAVASCRIPT_DYNAMIC_EVENTS_BROWSER_DIR: output/javascript-dynamic-events-browser
+              run: node --test test/javascript-dynamic-events-exported-browser.test.mjs
+            - name: Retain Dynamic Events original workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-dynamic-events-workflows
+                  path: |
+                      output/javascript-dynamic-events-browser/
+                      output/javascript-dynamic-events-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify Dynamic Components project imports and saved edits
+              env:
+                  JAVASCRIPT_DYNAMIC_COMPONENTS_BROWSER_DIR: output/javascript-dynamic-components-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-dynamic-components-screenshots
+              run: node --test test/javascript-dynamic-components-course-browser.test.mjs
+            - name: Execute Dynamic Components exports offline
+              env:
+                  JAVASCRIPT_DYNAMIC_COMPONENTS_BROWSER_DIR: output/javascript-dynamic-components-browser
+              run: node --test test/javascript-dynamic-components-exported-browser.test.mjs
+            - name: Retain Dynamic Components original workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-dynamic-components-workflows
+                  path: |
+                      output/javascript-dynamic-components-browser/
+                      output/javascript-dynamic-components-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
             - name: Verify animation project imports, consent and saved source
               env:
                   JAVASCRIPT_ANIMATION_BROWSER_DIR: output/javascript-animation-browser

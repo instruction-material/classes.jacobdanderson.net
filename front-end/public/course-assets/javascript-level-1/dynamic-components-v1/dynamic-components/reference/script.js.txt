@@ -1,0 +1,61 @@
+const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const menuTrigger = document.querySelector("#menu-trigger");
+// Materialize 1.0 Sidenav supplies pointer gestures; add keyboard dismissal and a focus loop.
+document.addEventListener("keydown", event => {
+  const panel = document.querySelector("#slide-out");
+  const instance = M.Sidenav.getInstance(panel);
+  if (!instance?.isOpen) return;
+  if (event.key === "Escape") { event.preventDefault(); instance.close(); return; }
+  if (event.key !== "Tab") return;
+  const controls = [...panel.querySelectorAll('a[href], button:not([disabled])')];
+  const first = controls[0], last = controls[controls.length - 1];
+  if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+  else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+});
+
+M.Sidenav.init(document.querySelectorAll(".sidenav"), {
+  edge: "right", inDuration: reducedMotion ? 0 : 200, outDuration: reducedMotion ? 0 : 200,
+  onOpenEnd() { menuTrigger.setAttribute("aria-expanded", "true"); document.querySelector(".sidenav a").focus(); },
+  onCloseEnd() { menuTrigger.setAttribute("aria-expanded", "false"); menuTrigger.focus(); }
+});
+const slides = [...document.querySelectorAll(".carousel-item")];
+let currentSlide = slides[0];
+const detailsTrigger = document.querySelector("#details-trigger");
+const modal = document.querySelector("#photo-details");
+modal.addEventListener("keydown", event => {
+  if (event.key !== "Tab") return;
+  const controls = [...modal.querySelectorAll('button, a[href], input, select, textarea, [tabindex="0"]')].filter(node => !node.disabled && node.getClientRects().length);
+  const first = controls[0], last = controls[controls.length - 1];
+  if (!first) return;
+  if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+  else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+});
+
+M.Modal.init(modal, {
+  inDuration: reducedMotion ? 0 : 150, outDuration: reducedMotion ? 0 : 150,
+  onOpenStart() {
+    const image = currentSlide.querySelector("img");
+    document.querySelector("#modal-image").src = image.src;
+    document.querySelector("#modal-image").alt = image.alt;
+    document.querySelector("#modal-title").textContent = currentSlide.dataset.title;
+    document.querySelector("#modal-credit").textContent = currentSlide.dataset.credit;
+  },
+  onOpenEnd() { document.querySelector("#close-details").focus(); },
+  onCloseEnd() { detailsTrigger.focus(); }
+});
+const carousel = M.Carousel.init(document.querySelector(".carousel"), {
+  duration: reducedMotion ? 0 : 180, numVisible: 3,
+  onCycleTo(slide) {
+    currentSlide = slide;
+    for (const other of slides) other.setAttribute("aria-hidden", String(other !== slide));
+    document.querySelector("#photo-status").textContent = slide.dataset.title;
+  }
+});
+document.querySelector("#previous-photo").addEventListener("click", () => carousel.prev());
+document.querySelector("#next-photo").addEventListener("click", () => carousel.next());
+document.querySelector(".carousel").addEventListener("keydown", event => {
+  if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+    event.preventDefault();
+    if (event.key === "ArrowLeft") carousel.prev(); else carousel.next();
+  }
+});

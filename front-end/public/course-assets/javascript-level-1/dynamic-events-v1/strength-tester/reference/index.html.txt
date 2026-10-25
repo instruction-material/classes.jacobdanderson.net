@@ -1,0 +1,6 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Strength Tester</title><link rel="stylesheet" href="vendor/materialize.min.css"><link rel="stylesheet" href="styles.css"></head><body><main class="strength-app"><h1>Strength Tester</h1>
+<button id="button" type="button">Test your strength</button>
+<div role="status" aria-live="polite" aria-atomic="true"><p id="strength-level"></p><p id="prize-message"></p></div>
+<img id="prize-image" width="200" height="200" alt="" hidden>
+</main><script src="vendor/d3.min.js"></script><script src="script.js"></script></body></html>

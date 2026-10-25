@@ -1,0 +1,360 @@
+export const javascriptDynamicComponentsResources = [
+	{
+		project: "dynamic-components",
+		title: "Dynamic Components",
+		version: 1,
+		role: "starter",
+		urls: [
+			"/course-assets/javascript-level-1/dynamic-components-v1/dynamic-components/starter/index.html.txt"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "dynamic-components-v1/dynamic-components/starter/index.html.txt",
+				byteLength: 550,
+				sha256: "033412397d2f7a9737d7179a59db421cdfd47bfde1dbc1c30ef69c0592923d1d"
+			},
+			{
+				name: "styles.css",
+				path: "dynamic-components-v1/dynamic-components/starter/styles.css.txt",
+				byteLength: 2687,
+				sha256: "a821044c397fecd1bda5251bb85b5adc1bbc4fc7bdcdc87f5b103bdc369d6638"
+			},
+			{
+				name: "script.js",
+				path: "dynamic-components-v1/dynamic-components/starter/script.js.txt",
+				byteLength: 76,
+				sha256: "372a47ff8fd2789b91dc48d0e7e2c548e2787e5f2203c78f49cd3c78938f0f17"
+			},
+			{
+				name: "README.md",
+				path: "dynamic-components-v1/dynamic-components/starter/README.md.txt",
+				byteLength: 3758,
+				sha256: "2e5e84f260f1ddc427a7265463891160cb8bb4592ff0e36c490cc91b2cf09b94"
+			},
+			{
+				name: "vendor/materialize.min.css",
+				path: "dynamic-components-v1/dynamic-components/starter/vendor/materialize.min.css.txt",
+				byteLength: 141829,
+				sha256: "e7bb7114352aba1e81b2d8d930ef1ecdd06ffc0ad927a8b86fffe75447ef70cc"
+			},
+			{
+				name: "vendor/material-icons.css",
+				path: "dynamic-components-v1/dynamic-components/starter/vendor/material-icons.css.txt",
+				byteLength: 59818,
+				sha256: "7f9737b8892702af0e3a01810f54d0bacb3be443c53c2e19baecfda9c11d957c"
+			},
+			{
+				name: "LICENSE-Materialize.txt",
+				path: "dynamic-components-v1/dynamic-components/starter/LICENSE-Materialize.txt.txt",
+				byteLength: 1083,
+				sha256: "e503e53d929397f69cb80fa1ef050a3d84fbee7c09e6b622c72c4c2c9216d8c7"
+			},
+			{
+				name: "LICENSE-Material-Icons.txt",
+				path: "dynamic-components-v1/dynamic-components/starter/LICENSE-Material-Icons.txt.txt",
+				byteLength: 11358,
+				sha256: "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+			},
+			{
+				name: "vendor/materialize.min.js",
+				path: "dynamic-components-v1/dynamic-components/starter/vendor/materialize.min.js.txt",
+				byteLength: 181109,
+				sha256: "53f7070cc4c81c278c72f7a106fd71434e766cf49b26d6ee8b0e1003d7132b3d"
+			},
+			{
+				name: "images/lower-falls.svg",
+				path: "dynamic-components-v1/dynamic-components/starter/images/lower-falls.svg.txt",
+				byteLength: 1337803,
+				sha256: "63be29640a634798d27c3cbcee427e69fb8f0f280b09f01de7477576923d349c"
+			},
+			{
+				name: "images/grand-prismatic.svg",
+				path: "dynamic-components-v1/dynamic-components/starter/images/grand-prismatic.svg.txt",
+				byteLength: 631968,
+				sha256: "46fcd3cf2bfd8152f8dea6be15a750cab3d1cd2875053a8a61cc4e18d81cc54d"
+			},
+			{
+				name: "images/riverside-geyser.svg",
+				path: "dynamic-components-v1/dynamic-components/starter/images/riverside-geyser.svg.txt",
+				byteLength: 400154,
+				sha256: "ddfa5c9795deae01726e4abe39223488be7a046361d7805c7daef6dfd3c7362c"
+			},
+			{
+				name: "images/grotto-geyser.svg",
+				path: "dynamic-components-v1/dynamic-components/starter/images/grotto-geyser.svg.txt",
+				byteLength: 510143,
+				sha256: "ebe732f37af04011b7873fdba6b5b117832bdd774f28234e74a8158c2b3f9541"
+			},
+			{
+				name: "images/undine-falls.svg",
+				path: "dynamic-components-v1/dynamic-components/starter/images/undine-falls.svg.txt",
+				byteLength: 934138,
+				sha256: "121f8d9c7a932e47982d9d8658e9b496ad0c079e7d62d2a2095e6b0bdd52fc1c"
+			},
+			{
+				name: "SOURCES.md",
+				path: "dynamic-components-v1/dynamic-components/starter/SOURCES.md.txt",
+				byteLength: 2690,
+				sha256: "426f19fea679dca032ac212068976927d48972599ea92b1b90d41b3925bc3741"
+			}
+		]
+	},
+	{
+		project: "dynamic-components",
+		title: "Dynamic Components",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/e55b7c0d570df2c9943e06395a42c974",
+			"https://codepen.io/junilearning/pen/rNOXOro/e55b7c0d570df2c9943e06395a42c974"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "dynamic-components-v1/dynamic-components/reference/index.html.txt",
+				byteLength: 3786,
+				sha256: "d975279e14e21bb9de11790f738614c1fc4218a96304649172dd4550b37c8b95"
+			},
+			{
+				name: "styles.css",
+				path: "dynamic-components-v1/dynamic-components/reference/styles.css.txt",
+				byteLength: 2687,
+				sha256: "a821044c397fecd1bda5251bb85b5adc1bbc4fc7bdcdc87f5b103bdc369d6638"
+			},
+			{
+				name: "script.js",
+				path: "dynamic-components-v1/dynamic-components/reference/script.js.txt",
+				byteLength: 3390,
+				sha256: "9fbdaba0cfef61e7f0376508cd941e473dfbf8f9deba5e0c7159ba8c72485430"
+			},
+			{
+				name: "README.md",
+				path: "dynamic-components-v1/dynamic-components/reference/README.md.txt",
+				byteLength: 3727,
+				sha256: "87280e263df41ed893380a57e34427b38e1617620a8d4a6d89fba968ffc75cf3"
+			},
+			{
+				name: "vendor/materialize.min.css",
+				path: "dynamic-components-v1/dynamic-components/reference/vendor/materialize.min.css.txt",
+				byteLength: 141829,
+				sha256: "e7bb7114352aba1e81b2d8d930ef1ecdd06ffc0ad927a8b86fffe75447ef70cc"
+			},
+			{
+				name: "vendor/material-icons.css",
+				path: "dynamic-components-v1/dynamic-components/reference/vendor/material-icons.css.txt",
+				byteLength: 59818,
+				sha256: "7f9737b8892702af0e3a01810f54d0bacb3be443c53c2e19baecfda9c11d957c"
+			},
+			{
+				name: "LICENSE-Materialize.txt",
+				path: "dynamic-components-v1/dynamic-components/reference/LICENSE-Materialize.txt.txt",
+				byteLength: 1083,
+				sha256: "e503e53d929397f69cb80fa1ef050a3d84fbee7c09e6b622c72c4c2c9216d8c7"
+			},
+			{
+				name: "LICENSE-Material-Icons.txt",
+				path: "dynamic-components-v1/dynamic-components/reference/LICENSE-Material-Icons.txt.txt",
+				byteLength: 11358,
+				sha256: "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+			},
+			{
+				name: "vendor/materialize.min.js",
+				path: "dynamic-components-v1/dynamic-components/reference/vendor/materialize.min.js.txt",
+				byteLength: 181109,
+				sha256: "53f7070cc4c81c278c72f7a106fd71434e766cf49b26d6ee8b0e1003d7132b3d"
+			},
+			{
+				name: "images/lower-falls.svg",
+				path: "dynamic-components-v1/dynamic-components/reference/images/lower-falls.svg.txt",
+				byteLength: 1337803,
+				sha256: "63be29640a634798d27c3cbcee427e69fb8f0f280b09f01de7477576923d349c"
+			},
+			{
+				name: "images/grand-prismatic.svg",
+				path: "dynamic-components-v1/dynamic-components/reference/images/grand-prismatic.svg.txt",
+				byteLength: 631968,
+				sha256: "46fcd3cf2bfd8152f8dea6be15a750cab3d1cd2875053a8a61cc4e18d81cc54d"
+			},
+			{
+				name: "images/riverside-geyser.svg",
+				path: "dynamic-components-v1/dynamic-components/reference/images/riverside-geyser.svg.txt",
+				byteLength: 400154,
+				sha256: "ddfa5c9795deae01726e4abe39223488be7a046361d7805c7daef6dfd3c7362c"
+			},
+			{
+				name: "images/grotto-geyser.svg",
+				path: "dynamic-components-v1/dynamic-components/reference/images/grotto-geyser.svg.txt",
+				byteLength: 510143,
+				sha256: "ebe732f37af04011b7873fdba6b5b117832bdd774f28234e74a8158c2b3f9541"
+			},
+			{
+				name: "images/undine-falls.svg",
+				path: "dynamic-components-v1/dynamic-components/reference/images/undine-falls.svg.txt",
+				byteLength: 934138,
+				sha256: "121f8d9c7a932e47982d9d8658e9b496ad0c079e7d62d2a2095e6b0bdd52fc1c"
+			},
+			{
+				name: "SOURCES.md",
+				path: "dynamic-components-v1/dynamic-components/reference/SOURCES.md.txt",
+				byteLength: 2690,
+				sha256: "426f19fea679dca032ac212068976927d48972599ea92b1b90d41b3925bc3741"
+			}
+		]
+	},
+	{
+		project: "my-javascript-art-part-4",
+		title: "My JavaScript Art Part IV",
+		version: 1,
+		role: "starter",
+		urls: [
+			"/course-assets/javascript-level-1/dynamic-components-v1/my-javascript-art-part-4/starter/index.html.txt"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "dynamic-components-v1/my-javascript-art-part-4/starter/index.html.txt",
+				byteLength: 2935,
+				sha256: "5a359c72d6c5603b90e4a5d972470c1a75c322b19959c5a96427e74b38a06b04"
+			},
+			{
+				name: "styles.css",
+				path: "dynamic-components-v1/my-javascript-art-part-4/starter/styles.css.txt",
+				byteLength: 2339,
+				sha256: "cf0582d621835f109ce83c0ae54987cf13b764a15611e3273da018bfbc96b80f"
+			},
+			{
+				name: "script.js",
+				path: "dynamic-components-v1/my-javascript-art-part-4/starter/script.js.txt",
+				byteLength: 7436,
+				sha256: "0839dfffd3716cd9ac4ab659575487bdae2ab9350edb2dec315047537d7df692"
+			},
+			{
+				name: "README.md",
+				path: "dynamic-components-v1/my-javascript-art-part-4/starter/README.md.txt",
+				byteLength: 4066,
+				sha256: "71d5902610aa13488c753fc8c107232c9980585167195bfbfaf056c01455020d"
+			},
+			{
+				name: "vendor/materialize.min.css",
+				path: "dynamic-components-v1/my-javascript-art-part-4/starter/vendor/materialize.min.css.txt",
+				byteLength: 141829,
+				sha256: "e7bb7114352aba1e81b2d8d930ef1ecdd06ffc0ad927a8b86fffe75447ef70cc"
+			},
+			{
+				name: "vendor/material-icons.css",
+				path: "dynamic-components-v1/my-javascript-art-part-4/starter/vendor/material-icons.css.txt",
+				byteLength: 59818,
+				sha256: "7f9737b8892702af0e3a01810f54d0bacb3be443c53c2e19baecfda9c11d957c"
+			},
+			{
+				name: "LICENSE-Materialize.txt",
+				path: "dynamic-components-v1/my-javascript-art-part-4/starter/LICENSE-Materialize.txt.txt",
+				byteLength: 1083,
+				sha256: "e503e53d929397f69cb80fa1ef050a3d84fbee7c09e6b622c72c4c2c9216d8c7"
+			},
+			{
+				name: "LICENSE-Material-Icons.txt",
+				path: "dynamic-components-v1/my-javascript-art-part-4/starter/LICENSE-Material-Icons.txt.txt",
+				byteLength: 11358,
+				sha256: "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+			},
+			{
+				name: "vendor/materialize.min.js",
+				path: "dynamic-components-v1/my-javascript-art-part-4/starter/vendor/materialize.min.js.txt",
+				byteLength: 181109,
+				sha256: "53f7070cc4c81c278c72f7a106fd71434e766cf49b26d6ee8b0e1003d7132b3d"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "dynamic-components-v1/my-javascript-art-part-4/starter/vendor/d3.min.js.txt",
+				byteLength: 248314,
+				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "dynamic-components-v1/my-javascript-art-part-4/starter/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			}
+		]
+	},
+	{
+		project: "my-javascript-art-part-4",
+		title: "My JavaScript Art Part IV",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/68807d2000d19574d4c80d354eea197f",
+			"https://codepen.io/junilearning/pen/OJMNdZM/68807d2000d19574d4c80d354eea197f"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "dynamic-components-v1/my-javascript-art-part-4/reference/index.html.txt",
+				byteLength: 3480,
+				sha256: "a5c88bd060ecefd8609889eb7417ec986048d47345f1e4065383d7556f349c9b"
+			},
+			{
+				name: "styles.css",
+				path: "dynamic-components-v1/my-javascript-art-part-4/reference/styles.css.txt",
+				byteLength: 2339,
+				sha256: "cf0582d621835f109ce83c0ae54987cf13b764a15611e3273da018bfbc96b80f"
+			},
+			{
+				name: "script.js",
+				path: "dynamic-components-v1/my-javascript-art-part-4/reference/script.js.txt",
+				byteLength: 10016,
+				sha256: "4976de69e4ce2dd44a761043eda265dd49ebe035068b9e04b31504913b12e747"
+			},
+			{
+				name: "README.md",
+				path: "dynamic-components-v1/my-javascript-art-part-4/reference/README.md.txt",
+				byteLength: 4035,
+				sha256: "a8e055d2a333991a4f34aec67c241725d429397aa9239a134a8bcdf15f5cf30a"
+			},
+			{
+				name: "vendor/materialize.min.css",
+				path: "dynamic-components-v1/my-javascript-art-part-4/reference/vendor/materialize.min.css.txt",
+				byteLength: 141829,
+				sha256: "e7bb7114352aba1e81b2d8d930ef1ecdd06ffc0ad927a8b86fffe75447ef70cc"
+			},
+			{
+				name: "vendor/material-icons.css",
+				path: "dynamic-components-v1/my-javascript-art-part-4/reference/vendor/material-icons.css.txt",
+				byteLength: 59818,
+				sha256: "7f9737b8892702af0e3a01810f54d0bacb3be443c53c2e19baecfda9c11d957c"
+			},
+			{
+				name: "LICENSE-Materialize.txt",
+				path: "dynamic-components-v1/my-javascript-art-part-4/reference/LICENSE-Materialize.txt.txt",
+				byteLength: 1083,
+				sha256: "e503e53d929397f69cb80fa1ef050a3d84fbee7c09e6b622c72c4c2c9216d8c7"
+			},
+			{
+				name: "LICENSE-Material-Icons.txt",
+				path: "dynamic-components-v1/my-javascript-art-part-4/reference/LICENSE-Material-Icons.txt.txt",
+				byteLength: 11358,
+				sha256: "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+			},
+			{
+				name: "vendor/materialize.min.js",
+				path: "dynamic-components-v1/my-javascript-art-part-4/reference/vendor/materialize.min.js.txt",
+				byteLength: 181109,
+				sha256: "53f7070cc4c81c278c72f7a106fd71434e766cf49b26d6ee8b0e1003d7132b3d"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "dynamic-components-v1/my-javascript-art-part-4/reference/vendor/d3.min.js.txt",
+				byteLength: 248314,
+				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "dynamic-components-v1/my-javascript-art-part-4/reference/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			}
+		]
+	}
+] as const;

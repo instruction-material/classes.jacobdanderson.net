@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The Responsive Grid</title><link rel="stylesheet" href="vendor/materialize.min.css"><link rel="stylesheet" href="vendor/material-icons.css">
+<link rel="stylesheet" href="styles.css"></head><body>
+<main><h1>The Responsive Grid</h1><section aria-label="Twelve numbered cards">
+
+
+
+<div class="row center">
+  <div class="card col s4 m2 l1 red">1</div>
+  <div class="card col s4 m2 l1 orange">2</div>
+  <div class="card col s4 m2 l1 teal">3</div>
+  <div class="card col s4 m2 l1 pink">4</div>
+  <div class="card col s4 m2 l1 yellow">5</div>
+  <div class="card col s4 m2 l1 green">6</div>
+  <div class="card col s4 m2 l1 blue">7</div>
+  <div class="card col s4 m2 l1 grey">8</div>
+  <div class="card col s4 m2 l1 brown">9</div>
+  <div class="card col s4 m2 l1 indigo">10</div>
+  <div class="card col s4 m2 l1 cyan">11</div>
+  <div class="card col s4 m2 l1 lime">12</div>
+</div></section><section aria-label="Six learning cards"><div class="container row center">
+  <div class="card col s12 m6 l4">
+    <br>
+    <i class="material-icons medium" aria-hidden="true">favorite_border</i>
+    <p>Learning together</p>
+  </div>
+  <div class="card col s12 m6 l4">
+    <br>
+    <i class="material-icons medium" aria-hidden="true">code</i>
+    <p>Coding is fun and rewarding</p>
+  </div>
+  <div class="card col s12 m6 l4">
+    <br>
+    <i class="material-icons medium" aria-hidden="true">language</i>
+    <p>Learn remotely</p>
+  </div>
+  <div class="card col s12 m6 l4">
+    <br>
+    <i class="material-icons medium" aria-hidden="true">functions</i>
+    <p>Improve at mathematics</p>
+  </div>
+  <div class="card col s12 m6 l4">
+    <br>
+    <i class="material-icons medium" aria-hidden="true">http</i>
+    <p>Make beautiful websites</p>
+  </div>
+  <div class="card col s12 m6 l4">
+    <br>
+    <i class="material-icons medium" aria-hidden="true">share</i>
+    <p>Share with others</p>
+  </div>
+</div></section></main>
+</body></html>
