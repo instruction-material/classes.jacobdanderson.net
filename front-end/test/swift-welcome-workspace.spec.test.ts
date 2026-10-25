@@ -32,6 +32,31 @@ afterEach(async () => {
 });
 
 describe("Swift source workspace", () => {
+	it("retains the earlier Welcome source identity and shared continuation key", () => {
+		const earlier = swiftWelcomeRoot.replace(
+			fixture.revision,
+			"d632ceb25abfac35ec4604babc9ea385a6afbcc2"
+		);
+		expect(swiftCourseResource(`${earlier}/starter`)?.revision).toBe(
+			"d632ceb25abfac35ec4604babc9ea385a6afbcc2"
+		);
+		expect(
+			swiftCourseProjectKey(
+				"intro-to-swift-app-development",
+				"prior",
+				"starter",
+				`${earlier}/starter`
+			)
+		).toBe(
+			swiftCourseProjectKey(
+				"intro-to-swift-app-development",
+				"current",
+				"starter",
+				`${swiftWelcomeRoot}/starter`
+			)
+		);
+	});
+
 	it("teaches the first app with the maintained reading without changing published activity identity", async () => {
 		setActivePinia(createPinia());
 		const course = (await useCoursesStore().loadCourseById(

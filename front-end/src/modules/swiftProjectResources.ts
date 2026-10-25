@@ -1,6 +1,6 @@
 import { githubRawUrl, parseGitHubResource } from "@/modules/codePreview";
 
-export const swiftSourceRevision = "d632ceb25abfac35ec4604babc9ea385a6afbcc2";
+export const swiftSourceRevision = "8e3b4fde509a52762711f901a0c1be7a69979016";
 export const swiftWelcomePack = "SAD1-Welcome-Profile-App";
 export const swiftWelcomeRoot = `https://github.com/instruction-material/Swift/tree/${swiftSourceRevision}/${swiftWelcomePack}`;
 export const swiftWelcomeRoleFiles = [
@@ -137,6 +137,9 @@ export function swiftCourseResource(url: string) {
 			[
 				"main",
 				pack.revision,
+				...(pack.pack === swiftWelcomePack
+					? ["d632ceb25abfac35ec4604babc9ea385a6afbcc2"]
+					: []),
 				...(pack.pack === swiftTrackerPack ||
 				pack.pack === swiftDataTrackerPack
 					? swiftTrackerEarlierRevisions

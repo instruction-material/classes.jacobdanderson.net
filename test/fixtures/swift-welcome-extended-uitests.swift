@@ -35,6 +35,10 @@ final class WelcomeProfileUITests: XCTestCase {
         let reference = ROLE
         let longNote = LONG_NOTE_VARIANT
         XCTAssertTrue(app.navigationBars["Welcome"].waitForExistence(timeout: 15))
+        let heading = app.staticTexts["Welcome to Swift App Development"].firstMatch
+        XCTAssertTrue(heading.waitForExistence(timeout: 5))
+        XCTAssertTrue(heading.isHittable, "The Welcome heading must be visible at launch")
+        retain("Welcome header at launch", in: app)
         if reference { reveal(app.staticTexts["Design"].firstMatch, in: app) }
         retain("Welcome readable content", in: app)
         var editedNote = ""
