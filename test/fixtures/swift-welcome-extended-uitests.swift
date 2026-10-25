@@ -5,11 +5,13 @@ final class WelcomeProfileUITests: XCTestCase {
     @MainActor
     private func reveal(_ element: XCUIElement, in app: XCUIApplication) {
         for attempt in 0..<20 {
-            if element.exists && element.isHittable { return }
             let list = app.collectionViews.firstMatch
             let scroll = list.exists ? list : app.scrollViews.firstMatch
             XCTAssertTrue(scroll.exists)
             let target = element.exists ? element.frame : .zero
+            let viewport = scroll.frame.intersection(app.frame).insetBy(dx: 16, dy: 96)
+            if element.exists && element.isHittable && viewport.contains(
+                CGPoint(x: target.midX, y: target.midY)) { return }
             let down = !target.isEmpty ? target.midY < scroll.frame.midY : attempt >= 10
             let start = scroll.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
             let distance = max(12, min(200, scroll.frame.height * 0.35))
@@ -46,6 +48,8 @@ final class WelcomeProfileUITests: XCTestCase {
             let note = app.textFields.firstMatch
             reveal(note, in: app)
             note.tap()
+            XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 5),
+                          "The note field must have keyboard focus before entering text")
             let addition = longNote
                 ? " LONG_NOTE_BEGIN " + String(repeating: "A saved observation stays readable after navigation. ", count: 4) + "LONG_NOTE_END"
                 : " UI verification"

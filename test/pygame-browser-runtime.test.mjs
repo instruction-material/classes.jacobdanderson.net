@@ -6,6 +6,7 @@ import { test as nodeTest } from "node:test";
 import { fileURLToPath } from "node:url";
 import puppeteer from "puppeteer";
 import { createServer } from "vite";
+import { serializeContentSecurityPolicy } from "../scripts/production-security-headers.mjs";
 import { publicRuntimeHeaders, pythonFrame } from "./python-frame-fixture.mjs";
 
 // Uses the real IDE and Pyodide runtime. No account or backend is required.
@@ -199,7 +200,12 @@ nodeTest(
 						"@fortawesome/vue-fontawesome"
 					]
 				},
-				server: { host: "127.0.0.1", port: 0, strictPort: true }
+				server: {
+					host: "127.0.0.1",
+					port: 0,
+					strictPort: true,
+					headers: { "Content-Security-Policy": serializeContentSecurityPolicy("code-ide") }
+				}
 			});
 			await server.listen();
 			const address = server.httpServer.address();
@@ -349,13 +355,17 @@ nodeTest(
 				const runtime = await pythonFrame(page);
 				try {
 					await page.waitForFunction(
-						() =>
-							document
-								.querySelector(".output-panel")
-								?.textContent
-								?.includes("SURFACE_TEST_PASS"),
+						() => {
+							const output = document.querySelector(".output-panel")?.textContent ?? "";
+							if (document.querySelector(".code-ide")?.textContent?.includes("Run failed")) {
+								throw new Error(output);
+							}
+							return output.includes("SURFACE_TEST_PASS");
+						},
 						{ timeout: 90000 }
 					);
+					assert.equal(await runtime.evaluate(() => [...document.fonts].some(font =>
+						(font.family === "Classes Pygame Default" || font.family === "\"Classes Pygame Default\"") && font.status === "loaded")), true);
 					const audioEvents = await runtime.evaluate(
 						() => window.__mixerAudioLog ?? []
 					);
@@ -489,7 +499,10 @@ nodeTest(
 				assert.ok(text.center.count > 20);
 				assert.ok(Math.abs((text.center.left + text.center.right) / 2 - 80) < 4, JSON.stringify(text));
 				assert.ok(Math.abs((text.multiline.left + text.multiline.right) / 2 - 80) < 4, JSON.stringify(text));
-				assert.ok(text.multiline.rows.some(y => y < 90) && text.multiline.rows.some(y => y >= 94));
+				// Native fontsize 12 uses an 8px font and 9px line skip.
+				assert.ok(text.multiline.rows.some(y => y >= 79 && y <= 85), JSON.stringify(text));
+				assert.ok(text.multiline.rows.some(y => y >= 88 && y <= 94), JSON.stringify(text));
+				assert.ok(text.multiline.rows.every(y => y >= 79 && y <= 94), JSON.stringify(text));
 				assert.ok(text.left.count > 0 && text.left.left < 4);
 				assert.ok(text.right.count > 0 && text.right.right >= 155 && text.right.right < 160);
 				assert.ok(text.shadow.count > 0);

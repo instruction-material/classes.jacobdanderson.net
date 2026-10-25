@@ -1,3 +1,48 @@
+import defaultGameFontUrl from "@/assets/fonts/pygame/freesansbold.ttf?url&no-inline";
+
+const defaultGameFontFamily = "Classes Pygame Default";
+let defaultGameFontPromise: Promise<void> | null = null;
+
+function roundPythonPixel(value: number) {
+	const lower = Math.floor(value);
+	if (value - lower !== 0.5) return Math.round(value);
+	return lower % 2 === 0 ? lower : lower + 1;
+}
+
+export function preparePythonIdeGameFont(): Promise<void> {
+	if (defaultGameFontPromise) return defaultGameFontPromise;
+	defaultGameFontPromise = (async () => {
+		const font = new FontFace(
+			defaultGameFontFamily,
+			`url(${JSON.stringify(defaultGameFontUrl)})`
+		);
+		let timer: ReturnType<typeof setTimeout> | undefined;
+		try {
+			const loaded = await Promise.race([
+				font.load(),
+				new Promise<never>((_resolve, reject) => {
+					timer = setTimeout(
+						() => reject(new Error("Game font loading timed out.")),
+						10000
+					);
+				})
+			]);
+			document.fonts.add(loaded);
+		} catch (error) {
+			throw new Error(
+				"The game text font is unavailable. Run the project to retry.",
+				{ cause: error }
+			);
+		} finally {
+			clearTimeout(timer);
+		}
+	})().catch(error => {
+		defaultGameFontPromise = null;
+		throw error;
+	});
+	return defaultGameFontPromise;
+}
+
 export function drawPythonIdeGameText(
 	context: CanvasRenderingContext2D,
 	text: string,
@@ -13,34 +58,43 @@ export function drawPythonIdeGameText(
 	shadowY = 0,
 	shadowColor = "black"
 ) {
-	const size = Math.max(8, fontSize);
+	// pygame.font.Font(None, size) scales the bundled default font by 11/16.
+	const nominalSize = roundPythonPixel(fontSize);
+	const size = Math.max(1, Math.trunc(nominalSize * 0.6875));
 	context.save();
 	try {
-		context.font = `${size}px Avenir Next, Segoe UI, sans-serif`;
+		context.font = `${size}px "${defaultGameFontFamily}"`;
 		context.textAlign = "left";
-		context.textBaseline = "top";
-		const lines = text.split("\n");
+		context.textBaseline = "alphabetic";
+		const lines = text.split("\n").map(line => line.trimEnd());
 		const widths = lines.map(line => context.measureText(line).width);
 		const width = widths.reduce(
 			(maximum, value) => Math.max(maximum, value),
 			0
 		);
-		const spacing = size * lineHeight;
-		const height = size + (lines.length - 1) * spacing;
-		const left = x - width * anchorX;
-		const top = y - height * anchorY;
+		// FreeSans: 800 ascent, -200 descent and 90 line gap per 1000 units.
+		const spacing = Math.ceil(size * 1.09) * lineHeight;
+		const height = size + roundPythonPixel((lines.length - 1) * spacing);
+		const shadowDx = Math.ceil((shadowX * nominalSize) / 18);
+		const shadowDy = Math.ceil((shadowY * nominalSize) / 18);
+		const left =
+			x - (width + Math.abs(shadowDx)) * anchorX - Math.min(0, shadowDx);
+		const top =
+			y - (height + Math.abs(shadowDy)) * anchorY - Math.min(0, shadowDy);
 		const paint = (paintColor: string, dx: number, dy: number) => {
 			context.fillStyle = paintColor;
 			for (const [index, line] of lines.entries()) {
 				context.fillText(
 					line,
 					left + (width - widths[index]) * align + dx,
-					top + index * spacing + dy
+					top +
+						roundPythonPixel(index * spacing) +
+						Math.ceil(size * 0.8) +
+						dy
 				);
 			}
 		};
-		if (shadowX || shadowY)
-			paint(shadowColor, (shadowX * size) / 18, (shadowY * size) / 18);
+		if (shadowX || shadowY) paint(shadowColor, shadowDx, shadowDy);
 		paint(color, 0, 0);
 	} finally {
 		context.restore();

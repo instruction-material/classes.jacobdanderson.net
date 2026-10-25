@@ -328,6 +328,9 @@ describe("isolated Python contract", () => {
 		expect(frame.srcdoc).not.toContain("print('hello')");
 		expect(frame.srcdoc).toContain("form-action 'none'");
 		expect(frame.srcdoc).toContain("worker-src blob:");
+		expect(frame.srcdoc).toContain(
+			`font-src ${window.location.origin}/python-runtime/freesansbold.ttf;`
+		);
 		expect(frame.srcdoc).not.toContain("/api");
 		expect(() =>
 			sandboxFrameDocument("file:///tmp", "a".repeat(30))

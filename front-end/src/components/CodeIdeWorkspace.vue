@@ -104,6 +104,7 @@ import {
 import {
 	drawPythonIdeGameText,
 	preparePythonIdeGameCanvas,
+	preparePythonIdeGameFont,
 	pythonIdeGamePointerPosition,
 	waitForPythonIdeGameImage
 } from "@/modules/pythonIdeGameGraphics";
@@ -7346,6 +7347,8 @@ async function runCurrentProject() {
 			runMessage.value = "Loading assets";
 			diagnosticStage.value = "loading-assets";
 			prepareGameAssetsForExplicitRun();
+			await preparePythonIdeGameFont();
+			if (shouldStopPythonIdeRun(runID, project._id)) return;
 			await prepareProjectGameImages();
 			if (shouldStopPythonIdeRun(runID, project._id)) return;
 			await ensureGameCourseAssetsLoaded();
