@@ -11,6 +11,7 @@ import { javascriptFirstModuleResources } from "@/modules/javascriptFirstModuleR
 import { javascriptGridLayoutResources } from "@/modules/javascriptGridLayoutResources";
 import { javascriptHtmlCssResources } from "@/modules/javascriptHtmlCssResources";
 import { javascriptLoopsResources } from "@/modules/javascriptLoopsResources";
+import { javascriptMediaParallaxResources } from "@/modules/javascriptMediaParallaxResources";
 import { javascriptMoreHtmlCssResources } from "@/modules/javascriptMoreHtmlCssResources";
 import { javascriptNestedLoopsResources } from "@/modules/javascriptNestedLoopsResources";
 import { javascriptOperatorsResources } from "@/modules/javascriptOperatorsResources";
@@ -46,7 +47,8 @@ const roles: readonly CourseRole[] = [
 	...javascriptBasicLayoutResources,
 	...javascriptGridLayoutResources,
 	...javascriptDynamicEventsResources,
-	...javascriptDynamicComponentsResources
+	...javascriptDynamicComponentsResources,
+	...javascriptMediaParallaxResources
 ];
 
 export function javascriptCourseResource(value: string) {

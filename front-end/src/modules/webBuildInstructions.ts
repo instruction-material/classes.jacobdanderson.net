@@ -8,6 +8,16 @@ import {
 
 export function webBuildInstructions(starterUrl?: string) {
 	const javascript = javascriptCourseResource(starterUrl ?? "");
+	if (javascript?.project === "video-collection") {
+		return [
+			"Save and download the ZIP, then extract every file.",
+			"With Python 3 installed, run this in the extracted folder containing index.html:",
+			"python3 -m http.server 8000 --bind 127.0.0.1",
+			"Open http://127.0.0.1:8000. Stop this exercise's server with Ctrl+C when finished.",
+			"Embedded videos need an HTTP origin and an internet connection. A file:// page can cause YouTube error 153; watch links provide an alternative.",
+			"README.md contains the HTML/CSS tasks and video-source notes."
+		];
+	}
 	if (javascript) {
 		return [
 			javascript.files.some(file => file.name === "vendor/d3.min.js")

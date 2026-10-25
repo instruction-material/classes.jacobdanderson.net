@@ -1,0 +1,13 @@
+# Sources
+
+Photographs are public-domain National Park Service Yellowstone Slide File images. Their original JPEG bytes are embedded unchanged in the local SVG companions. Retain the supplied credit lines. Public-domain statement: https://www.nps.gov/features/yell/slidefile/
+
+- Lower Falls from Artist Point: National Park Service / William S Keller, 1969. https://www.nps.gov/features/yell/slidefile/water/falls/yellrdbelowlake/Page.htm JPEG SHA-256: 4867697b30373ae026b4c366c1c22e164cae32221569697e349e796f485cc60f.
+- Grand Prismatic Spring: National Park Service / Al Mebane, 1973. https://www.nps.gov/features/yell/slidefile/thermalfeatures/hotspringsterraces/midwaylower/Page.htm JPEG SHA-256: 7d65c17b845a50532531fb04cebfc0d93b6d689b590e879eea1181d787ff698c.
+
+Park facts: https://www.nps.gov/yell/planyourvisit/parkfacts.htm
+Activities: https://www.nps.gov/yell/planyourvisit/things2do.htm
+Safety: https://www.nps.gov/yell/planyourvisit/safety.htm
+Current conditions: https://www.nps.gov/yell/planyourvisit/conditions.htm
+
+The original two third-party background URLs and fictional booking contact remain in the original source capture, not as live visitor information. The adapted page supplies two credited backgrounds and official visitor links.

@@ -1,0 +1,13 @@
+const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
+function configureParallax() {
+  const backgrounds = document.querySelectorAll(".parallax");
+  for (const background of backgrounds) {
+    M.Parallax.getInstance(background)?.destroy();
+    const image = background.querySelector("img");
+    image.style.removeProperty("transform");
+    image.style.opacity = "1";
+  }
+  if (!motionPreference.matches) M.Parallax.init(backgrounds, { responsiveThreshold: 0 });
+}
+configureParallax();
+motionPreference.addEventListener("change", configureParallax);

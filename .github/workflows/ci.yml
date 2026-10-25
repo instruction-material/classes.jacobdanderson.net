@@ -941,6 +941,25 @@ jobs:
             - name: Verify Pygame surfaces in the browser IDE
               run: node --test test/pygame-browser-runtime.test.mjs
 
+            - name: Verify media and parallax course imports and saved exports
+              env:
+                  JAVASCRIPT_MEDIA_PARALLAX_BROWSER_DIR: output/javascript-media-parallax-browser
+              run: node --test test/javascript-media-parallax-course-browser.test.mjs
+
+            - name: Verify actual media and parallax exports offline
+              env:
+                  JAVASCRIPT_MEDIA_PARALLAX_BROWSER_DIR: output/javascript-media-parallax-browser
+              run: node --test test/javascript-media-parallax-exported-browser.test.mjs
+
+            - name: Retain media and parallax source workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-media-parallax-source-workflows
+                  path: output/javascript-media-parallax-browser
+                  if-no-files-found: warn
+                  retention-days: 7
+
             - name: Verify private IDE diagnostics in the browser
               run: node --test test/ide-diagnostics-browser.test.mjs
 

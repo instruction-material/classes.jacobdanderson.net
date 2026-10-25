@@ -1,0 +1,15 @@
+# Video sources
+
+The original reference contains nine selections, all retained in the immutable original capture. Eight original IDs remain in this adapted page. The original fourth selection, `0scGMnbC0po`, reports “This video is private” in the live YouTube player (2026-10-25). Its title is not inferred. The replacement fourth selection is explicitly authored: Nintendo of America’s The Last Campfire launch trailer (`wF5v49ETDv8`). All nine adapted selections reached the official player’s playing state with advancing playback time on that date. Availability can change.
+
+- Animal Crossing: New Horizons - Nintendo Switch Trailer - Nintendo E3 2019 — https://www.youtube.com/watch?v=_3YNL0OWio0
+- Windbound - Story Trailer - Nintendo Switch — https://www.youtube.com/watch?v=zbVpOyy0Pq0
+- Paper Mario: The Origami King - Now You're Playing With SUPER STAR Power! — https://www.youtube.com/watch?v=qDELXywZFxQ
+- The Last Campfire - Launch Trailer - Nintendo Switch — https://www.youtube.com/watch?v=wF5v49ETDv8
+- Spinch - Announcement Trailer - Nintendo Switch — https://www.youtube.com/watch?v=rksphjrR2Pk
+- Garden Story - Announcement Trailer - Nintendo Switch — https://www.youtube.com/watch?v=uh2_SdmW8SQ
+- Manifold Garden - Launch Trailer - Nintendo Switch — https://www.youtube.com/watch?v=nplo-OHUzKQ
+- Volta-X - Release Date Trailer - Nintendo Switch — https://www.youtube.com/watch?v=Q37uSTMwuXU
+- Pikmin 3 Deluxe - Announcement Trailer - Nintendo Switch — https://www.youtube.com/watch?v=aSSQ0Z6eDhU
+
+Videos are embedded from their publisher; no video or thumbnail media is redistributed in this pack.

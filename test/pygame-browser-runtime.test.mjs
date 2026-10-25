@@ -130,6 +130,12 @@ held_surfaces.clear()
 from js import document
 fixture_actor = Actor("fixture", center=(140, 65))
 first_draw = True
+dynamic_actor = None
+
+def update():
+    global dynamic_actor
+    if dynamic_actor is None:
+        dynamic_actor = Actor("next_" + "fixture", center=(120, 65))
 
 def draw():
     global first_draw
@@ -138,10 +144,13 @@ def draw():
     screen.blit(alpha, (60, 10))
     screen.blit(keyed, (100, 10))
     fixture_actor.draw()
+    dynamic_actor.draw()
     if first_draw:
         canvas = document.querySelector("canvas.turtle-canvas--game")
         pixel = canvas.getContext("2d").getImageData(140, 65, 1, 1).data
         assert tuple(pixel) == (255, 0, 255, 255), "Course image was not ready for the first draw"
+        dynamic_pixel = canvas.getContext("2d").getImageData(120, 65, 1, 1).data
+        assert tuple(dynamic_pixel) == (0, 255, 0, 255), "Image requested during update was not ready for draw"
         first_draw = False
         print("FIRST_IMAGE_READY")
     screen.draw.text("Centered", center=(80, 60), fontsize=18, color="red")
@@ -162,6 +171,7 @@ nodeTest(
 		let browser;
 		let outcome = "failed";
 		const startedAt = new Date().toISOString();
+		const imageRequests = [];
 		const taskId = process.env.CLASSES_FAMILY_TASK_ID ?? "pygame-browser-runtime-ci";
 		const processEvidence = { taskId, pid: process.pid, parentPid: process.ppid, cwd: root, command: process.argv, startedAt, timeoutMs: 180000 };
 		console.log(JSON.stringify({ event: "start", ...processEvidence }));
@@ -216,7 +226,11 @@ nodeTest(
 			// This isolated Surface/mixer fixture uses generated images and a real WAV.
 			await page.setRequestInterception(true);
 			page.on("request", async (request) => {
-				if (new URL(request.url()).pathname.startsWith("/api/")) {
+				if (new URL(request.url()).pathname.includes("/assets/images/")) imageRequests.push(request.url());
+				if (request.url().endsWith("/stars.jpg")) {
+					void request.respond({ status: 404 });
+				}
+				else if (new URL(request.url()).pathname.startsWith("/api/")) {
 					void request.respond({
 						status: 200,
 						contentType: "application/json",
@@ -241,6 +255,20 @@ nodeTest(
 									url: "/ide/assets/images/fixture.svg"
 								},
 								{
+									name: "images/next_fixture.svg",
+									mimeType: "image/svg+xml",
+									width: 2,
+									height: 2,
+									url: "/ide/assets/images/next_fixture.svg"
+								},
+								{
+									name: "images/stars.jpg",
+									mimeType: "image/jpeg",
+									width: 2048,
+									height: 2048,
+									url: "/ide/assets/images/stars.jpg"
+								},
+								{
 									name: "sounds/mixer_fixture.wav",
 									mimeType: "audio/wav",
 									url: "/ide/assets/sounds/mixer_fixture.wav"
@@ -263,13 +291,13 @@ nodeTest(
 						body: audioFixture
 					});
 				}
-				else if (request.url().endsWith("/fixture.svg")) {
+				else if (/\/(?:next_)?fixture\.svg$/.test(request.url())) {
 					await new Promise(resolve => setTimeout(resolve, 250));
 					void request.respond({
 						status: 200,
 						contentType: "image/svg+xml",
 						headers: publicRuntimeHeaders,
-						body: "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"2\" height=\"2\"><rect width=\"2\" height=\"2\" fill=\"magenta\"/></svg>"
+						body: `<svg xmlns="http://www.w3.org/2000/svg" width="2" height="2"><rect width="2" height="2" fill="${request.url().endsWith("/next_fixture.svg") ? "lime" : "magenta"}"/></svg>`
 					});
 				}
 				else {
@@ -479,6 +507,9 @@ nodeTest(
 							?.trim() === "Run"
 				);
 			}
+			assert.ok(imageRequests.some(url => url.endsWith("/fixture.svg")));
+			assert.ok(imageRequests.some(url => url.endsWith("/next_fixture.svg")));
+			assert.ok(!imageRequests.some(url => url.endsWith("/stars.jpg")), "Unused unavailable image remains lazy");
 			outcome = "passed";
 		}
 		finally {

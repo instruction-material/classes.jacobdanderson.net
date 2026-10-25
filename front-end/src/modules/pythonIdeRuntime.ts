@@ -166,6 +166,7 @@ export interface GameBridge {
 		lineWidth?: number
 	) => void;
 	imageSizeJson: (name: string) => string;
+	prepareImages?: () => Promise<void>;
 	isKeyDown: (key: string) => boolean;
 	popEventsJson: () => string;
 	requestLoop: () => void;
@@ -4665,7 +4666,7 @@ def go():
 def __classes_pgzero_start(module_globals):
     start(module_globals)
 
-def __classes_pgzero_tick():
+def __classes_pgzero_update():
     global _last_tick
     now = time.monotonic()
     dt = 0 if _last_tick is None else min(now - _last_tick, 0.25)
@@ -4674,7 +4675,13 @@ def __classes_pgzero_tick():
     _run_scheduled()
     _call_optional("update", dt)
     _run_animations(now)
+
+def __classes_pgzero_draw():
     _call_optional("draw")
+
+def __classes_pgzero_tick():
+    __classes_pgzero_update()
+    __classes_pgzero_draw()
 
 install_builtins()
 `;
@@ -5849,12 +5856,20 @@ except Exception as error:
 	_classes_pgzero.__classes_pgzero_start(__main__.__dict__)
 	`);
 		throwIfRunStopped(options);
+		await options.gameBridge.prepareImages?.();
+		throwIfRunStopped(options);
 		const runContinuously = options.gameBridge.consumeLoopRequest();
 		options.gameBridge.startLoop(
 			async () => {
 				await pyodide.runPythonAsync(`
 	import _classes_pgzero
-	_classes_pgzero.__classes_pgzero_tick()
+	_classes_pgzero.__classes_pgzero_update()
+	`);
+				await options.gameBridge.prepareImages?.();
+				throwIfRunStopped(options);
+				await pyodide.runPythonAsync(`
+	import _classes_pgzero
+	_classes_pgzero.__classes_pgzero_draw()
 	`);
 			},
 			{ continuous: runContinuously }

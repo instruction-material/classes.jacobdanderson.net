@@ -714,6 +714,7 @@ const turtleTimerRegistry = createTurtleTimerRegistry({
 const gameKeysDown = new Set<string>();
 const gameEvents: GameInputEvent[] = [];
 const gameImageCache = new Map<string, CachedGameImage>();
+const requestedGameImageKeys = new Set<string>();
 const activeGameMouseButtons = new Set<number>();
 const gameSoundAudio = new Map<string, Set<HTMLAudioElement>>();
 const gameSoundVolumes = new Map<string, number>();
@@ -5475,6 +5476,7 @@ async function ensureGameCourseAssetsLoaded(
 function prepareGameAssetsForExplicitRun() {
 	gameCourseAssetPackLoadFailed = false;
 	gameCourseAssetPackSilentLoadFailed = false;
+	requestedGameImageKeys.clear();
 	for (const [key, entry] of gameImageCache) {
 		if (entry.failed) gameImageCache.delete(key);
 	}
@@ -5574,6 +5576,7 @@ function resolveGameAsset(
 function getGameImageEntry(asset: ResolvedGameAsset) {
 	const src = asset.src;
 	if (!src) return null;
+	requestedGameImageKeys.add(asset.key);
 
 	const cached = gameImageCache.get(asset.key);
 	if (cached?.src === src) return cached;
@@ -5643,33 +5646,26 @@ async function prepareProjectGameImages() {
 	);
 }
 
-async function prepareCourseGameImages() {
-	// Actors can choose images dynamically. Trail games retain every first-frame
-	// pixel, so decode the shared image pack before running student callbacks.
+async function prepareRequestedGameImages() {
+	// Actor construction and image changes request their actual images. Keep
+	// unused course media lazy while making those images ready before drawing.
 	await Promise.all(
-		[...(gameCourseAssetPack?.assets.values() ?? [])]
-			.filter(asset => asset.name.startsWith("images/"))
-			.map(async asset => {
-				const entry = getGameImageEntry({
-					key: `course:${asset.name}`,
-					src: getPythonIdeCourseAssetObjectUrl(asset)
-				});
-				if (!entry) return;
-				entry.loaded = await waitForPythonIdeGameImage(entry.element);
-				entry.failed = !entry.loaded;
-				if (entry.failed) {
-					throw new Error(
-						`Unable to decode course image: ${asset.name}`
-					);
-				}
-			})
+		[...requestedGameImageKeys].map(async key => {
+			const entry = gameImageCache.get(key);
+			if (!entry || entry.loaded) return;
+			entry.loaded = await waitForPythonIdeGameImage(entry.element);
+			entry.failed = !entry.loaded;
+			if (entry.failed) {
+				throw new Error(`Unable to decode game image: ${key}`);
+			}
+		})
 	);
 }
 
 function gameImageSizeJson(name: string) {
-	return JSON.stringify(
-		courseAssetSize(resolveGameAsset("images", name, imageAssetExtensions))
-	);
+	const asset = resolveGameAsset("images", name, imageAssetExtensions);
+	if (asset) getGameImageEntry(asset);
+	return JSON.stringify(courseAssetSize(asset));
 }
 
 function resolveProjectAudio(folder: "music" | "sounds", name: string) {
@@ -6920,6 +6916,7 @@ const gameBridge: GameBridge = {
 	drawLine: drawGameLine,
 	drawCircle: drawGameCircle,
 	imageSizeJson: gameImageSizeJson,
+	prepareImages: prepareRequestedGameImages,
 	isKeyDown(key: string) {
 		return gameKeysDown.has(normalizeKey(key));
 	},
@@ -7004,6 +7001,9 @@ function createGuardedGameBridgeRun(): GameBridge {
 			return isActiveRun()
 				? gameBridge.imageSizeJson(name)
 				: JSON.stringify({ height: 64, width: 64 });
+		},
+		async prepareImages() {
+			if (isActiveRun()) await gameBridge.prepareImages?.();
 		},
 		isKeyDown(key: string) {
 			return isActiveRun() && gameBridge.isKeyDown(key);
@@ -7349,8 +7349,6 @@ async function runCurrentProject() {
 			await prepareProjectGameImages();
 			if (shouldStopPythonIdeRun(runID, project._id)) return;
 			await ensureGameCourseAssetsLoaded();
-			if (shouldStopPythonIdeRun(runID, project._id)) return;
-			await prepareCourseGameImages();
 			if (shouldStopPythonIdeRun(runID, project._id)) return;
 		}
 
