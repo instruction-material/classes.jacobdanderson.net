@@ -1,0 +1,12 @@
+// Ask the user for two numbers. Find the greatest common factor (also called the greatest common divisor or GCD) between the two numbers, and print it out using printToScreen(). The GCF is the largest number which can divide 2 other numbers with no remainder. For example, the GCF of the numbers 36 and 24 is 12.
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

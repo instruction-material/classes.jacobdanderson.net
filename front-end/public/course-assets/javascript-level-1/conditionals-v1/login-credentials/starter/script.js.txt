@@ -1,0 +1,4 @@
+// Let's build a simple version of an authentication system. First, ask the user to set up a username and a password and store those two values in variables. Next, ask the user repeatedly for the username they set up previously and then the password which goes with it until they enter both values which match the stored values. Once they have inputted the correct information, alert them that they are logged in!
+
+// Enter your code below this line
+

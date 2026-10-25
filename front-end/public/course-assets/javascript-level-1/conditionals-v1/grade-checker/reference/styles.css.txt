@@ -1,0 +1,12 @@
+body {
+  margin: 16px;
+  color: #161616;
+  background: #fff;
+  font: 17px/1.45 system-ui, sans-serif;
+}
+.course-output {
+  margin: 0 0 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+button { font: inherit; padding: 0.4em 0.8em; }

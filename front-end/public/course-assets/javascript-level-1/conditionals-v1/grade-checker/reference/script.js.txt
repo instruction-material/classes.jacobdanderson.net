@@ -1,0 +1,31 @@
+// Build a program that allows us to determine what grade we got on a test. Use prompt() to ask the user for a number grade, and then use conditionals in order to determine what letter grade you received. Print out the result.
+
+// Reference with explicit input handling
+
+let response = prompt("What number grade did you receive?");
+if (response === null) {
+  printToScreen("Grade entry canceled.");
+} else {
+  let gradePercentage = Number(response);
+  if (response.trim() === "" || !Number.isFinite(gradePercentage)
+      || gradePercentage < 0 || gradePercentage > 100) {
+    printToScreen("Enter a finite percentage from 0 through 100.");
+  } else if (gradePercentage >= 90) {
+    printToScreen("The grade is an A");
+  } else if (gradePercentage >= 80) {
+    printToScreen("The grade is a B");
+  } else if (gradePercentage >= 70) {
+    printToScreen("The grade is a C");
+  } else if (gradePercentage >= 60) {
+    printToScreen("The grade is a D");
+  } else {
+    printToScreen("The grade is an F");
+  }
+}
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

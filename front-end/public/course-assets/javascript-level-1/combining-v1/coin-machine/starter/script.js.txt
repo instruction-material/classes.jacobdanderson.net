@@ -1,0 +1,12 @@
+// We have a bunch of pennies and want to change them out for bigger bills and coins in order to better sort our money. Have the user enter in how many pennies they have and then calculate how many dollars, quarters, dimes, nickels, and leftover pennies they can make from the original pennies.
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

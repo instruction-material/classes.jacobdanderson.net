@@ -1,0 +1,52 @@
+function checkMessageRate() {
+  const acquaintance = 10;
+  const friend = 25;
+  const goodFriend = 50;
+  const bestFriend = 200;
+  const level = prompt("Enter acquaintance, friend, good friend, or best friend:");
+  if (level === null) {
+    printToScreen("Message entry canceled.");
+    return;
+  }
+  if (level !== "acquaintance" && level !== "friend"
+      && level !== "good friend" && level !== "best friend") {
+    printToScreen("Choose acquaintance, friend, good friend, or best friend.");
+    return;
+  }
+  const messageAnswer = prompt("How many messages have been sent?");
+  if (messageAnswer === null) {
+    printToScreen("Message entry canceled.");
+    return;
+  }
+  const hourAnswer = prompt("How much time has it been, in hours?");
+  if (hourAnswer === null) {
+    printToScreen("Message entry canceled.");
+    return;
+  }
+  const messages = Number(messageAnswer);
+  const hours = Number(hourAnswer);
+  if (messageAnswer.trim() === "" || hourAnswer.trim() === ""
+      || !Number.isSafeInteger(messages) || messages < 0
+      || !Number.isFinite(hours) || hours <= 0) {
+    printToScreen("Enter a nonnegative safe whole message count and finite hours greater than zero.");
+    return;
+  }
+  const ratio = messages / hours;
+  if (ratio > acquaintance && level === "acquaintance") {
+    printToScreen(`Uh oh! ${messages} messages in ${hours} hours might be bugging an acquaintance.`);
+  } else if (ratio > friend && level === "friend") {
+    printToScreen(`Uh oh! ${messages} messages in ${hours} hours might be bugging a friend.`);
+  } else if (ratio > goodFriend && level === "good friend") {
+    printToScreen(`Uh oh! ${messages} messages in ${hours} hours might be bugging a good friend.`);
+  } else if (ratio > bestFriend && level === "best friend") {
+    printToScreen(`Uh oh! ${messages} messages in ${hours} hours might be bugging a best friend.`);
+  } else {
+    printToScreen("You should be good!");
+  }
+}
+checkMessageRate();
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

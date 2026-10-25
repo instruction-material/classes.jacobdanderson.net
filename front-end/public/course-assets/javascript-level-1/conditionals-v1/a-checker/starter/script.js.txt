@@ -1,0 +1,12 @@
+// We’re going to make a program which determines if a word inputted by the user contains the letter ‘a’ or not. First, get a word from the user. Next, determine whether or that that word contains an ‘a’ or not, and if it does, use printToScreen() to print it that it has an 'a'. If it does not have an 'a', use print out that it does not.
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

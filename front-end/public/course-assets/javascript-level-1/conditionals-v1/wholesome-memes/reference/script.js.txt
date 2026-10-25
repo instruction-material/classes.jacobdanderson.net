@@ -1,0 +1,27 @@
+// Build a program that gets a word or sentance from the user and then converts it to the format "tHaT lOoKs LiKe ThIs" using conditionals. Then, print out your result using the printToScreen() function
+
+// Reference with explicit input handling
+
+let meme = prompt("What word or sentence would you like to convert?");
+if (meme === null) {
+  printToScreen("Conversion canceled.");
+} else if (meme.trim() === "") {
+  printToScreen("Enter a nonempty word or sentence.");
+} else {
+  let result = "";
+  for (let i = 0; i < meme.length; i++) {
+    if (i % 2 === 0) {
+      result += meme[i].toLowerCase();
+    } else {
+      result += meme[i].toUpperCase();
+    }
+  }
+  printToScreen(result);
+}
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

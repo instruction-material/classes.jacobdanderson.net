@@ -244,6 +244,13 @@ describe("implemented course development artifacts", () => {
 						!(
 							id === "c-level-1" &&
 							/^CPPF[12345678] /.test(module.title)
+						) &&
+						!(
+							id === "javascript-level-1-javascript-superstar" &&
+							module.title === "JSS4 Combining Loops and Variables" &&
+							module.supplementalProjects.length === 1 &&
+							module.supplementalProjects[0]?.title ===
+								"JSS4 Supplemental Project 1: Debugging Football"
 						)
 				);
 				if (id === "c-level-1") {

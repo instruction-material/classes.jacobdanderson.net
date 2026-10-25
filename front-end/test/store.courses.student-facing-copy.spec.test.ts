@@ -129,7 +129,6 @@ const forbiddenStudentFacingPatterns = [
 	/\boriginal static asset\b/i,
 	/\boriginal .*source library\b/i,
 	/\boriginal .*source export\b/i,
-	/\bStart with\b/i,
 	/\bStart with vocabulary\b/i,
 	/\b(?:Use|Show|Walk|Stress|Teach|Demonstrate|Introduce|Cover|Review)\b[^.]{0,140}\b(?:students?|learners?)\b/i,
 	/\bUse\b[^.]{0,140}\bto teach\b/i,
@@ -393,6 +392,22 @@ describe("student-facing course copy", () => {
 		}
 
 		expect(failures).toEqual([]);
+	});
+
+	it("allows concrete starting values in student instructions", () => {
+		for (const content of [
+			"Start with Math.PI and multiply by 6 to the eighth power.",
+			"Start with a value of 1 and multiply by 3 until the next value reaches 5000."
+		]) {
+			expect(
+				forbiddenStudentFacingPatterns.some(pattern => pattern.test(content))
+			).toBe(false);
+		}
+		expect(
+			forbiddenStudentFacingPatterns.some(pattern =>
+				pattern.test("Start with vocabulary")
+			)
+		).toBe(true);
 	});
 
 	it(

@@ -1,0 +1,12 @@
+// Ask the user to input an animal, and have the program output the sound that animal makes. Use https://en.wikipedia.org/wiki/List_of_animal_sounds and a switch statement to have the program print out different animal onomatopoeia. If the user inputs an animal that's not in the switch statement, have the program respond with "huh?".
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

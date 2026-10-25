@@ -30,13 +30,15 @@ private func courseScrollStart(viewport: CGRect, target: CGRect, movement: CGFlo
 
 final class CanonicalCourseUITests: XCTestCase {
     @MainActor
-    private func selectTab(_ title: String, in app: XCUIApplication) {
+    private func selectTab(_ title: String, in app: XCUIApplication,
+                           displaying content: XCUIElement? = nil) {
         let tab = app.tabBars.buttons[title]
         XCTAssertTrue(tab.waitForExistence(timeout: 5))
         XCTAssertTrue(tab.isHittable)
         // Keep contact longer than the 50 ms tap in the captured failure.
         tab.press(forDuration: 0.15)
-        XCTAssertTrue(app.navigationBars[title].waitForExistence(timeout: 5))
+        let destination = content ?? app.navigationBars[title]
+        XCTAssertTrue(destination.waitForExistence(timeout: 5))
         XCTAssertTrue(tab.isSelected)
     }
 
@@ -127,8 +129,8 @@ final class CanonicalCourseUITests: XCTestCase {
         selectTab("Schedule", in: app)
         XCTAssertTrue(app.navigationBars["Schedule"].waitForExistence(timeout: 5))
         reveal(app.staticTexts["Tuesday"], in: app)
-        selectTab("Favorites", in: app)
         let empty = reference ? "No Favorites Yet" : "Favorites Coming Soon"
+        selectTab("Favorites", in: app, displaying: app.staticTexts[empty])
         XCTAssertTrue(app.staticTexts[empty].waitForExistence(timeout: 5))
         retain("Hobby empty favorites", in: app)
         selectTab("Home", in: app)
@@ -151,13 +153,13 @@ final class CanonicalCourseUITests: XCTestCase {
         retain("Complete Hobby remove action", in: app)
         retain("Hobby saved detail", in: app)
         app.navigationBars.buttons.firstMatch.tap()
-        selectTab("Favorites", in: app)
+        selectTab("Favorites", in: app, displaying: app.staticTexts["Photo Walk"])
         XCTAssertTrue(app.staticTexts["Photo Walk"].waitForExistence(timeout: 5))
         retain("Hobby shared favorite state", in: app)
         app.terminate()
         app.launch()
         XCTAssertTrue(app.navigationBars["Home"].waitForExistence(timeout: 15))
-        selectTab("Favorites", in: app)
+        selectTab("Favorites", in: app, displaying: app.staticTexts[empty])
         XCTAssertTrue(app.staticTexts[empty].waitForExistence(timeout: 5))
     }
 

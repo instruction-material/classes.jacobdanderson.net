@@ -1,0 +1,12 @@
+// Build a program that gets a word or sentence from the user and then converts it to the format "tHaT lOoKs LiKe ThIs" using conditionals. Then, print out your result using the printToScreen() function
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

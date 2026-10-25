@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Debugging the Favorite Fruit Guesser</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main id="output"></main>
+  <script src="vendor/d3.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

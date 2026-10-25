@@ -1,5 +1,8 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import fs from "node:fs";
+import { createHash } from "node:crypto";
+import type { RawCourseModuleItem } from "@/stores/courses/types";
+import { javascriptCourseResource } from "@/modules/javascriptCourseResources";
 import { rawCourseProse } from "./courseProse";
 import { createPinia, setActivePinia } from "pinia";
 import { useCoursesStore } from "@/stores/courses";
@@ -43,6 +46,32 @@ const normalizedCoursePromises = new Map<
 	string,
 	ReturnType<typeof loadRawCourseWithoutCache>
 >();
+
+// Reviewed local projects keep the brief on the card and their full checks in
+// the imported README. Verify those bytes before counting that guidance.
+function reviewedJavaScriptProjectReadme(
+	courseId: string,
+	item: RawCourseModuleItem
+) {
+	if (!item.preserveInstructions) return "";
+	const source = javascriptCourseResource(item.projectLink ?? "");
+	if (!source || source.courseId !== courseId || source.role !== "starter")
+		return "";
+	const file = source.files.find(file => file.name === "README.md");
+	expect(file, item.title).toBeDefined();
+	const content = fs.readFileSync(
+		`public/course-assets/javascript-level-1/${file!.path}`,
+		"utf8"
+	);
+	expect(
+		createHash("sha256").update(content).digest("hex"),
+		item.title
+	).toBe(file!.sha256);
+	expect(content.split("\n")[0], item.title).toBe(`# ${source.title}`);
+	expect(content, item.title).toContain("index.html");
+	expect(wordCount(content), item.title).toBeGreaterThanOrEqual(40);
+	return content;
+}
 
 function loadRawCourse(id: string) {
 	const cachedCourse = normalizedCoursePromises.get(id);
@@ -3499,7 +3528,11 @@ describe("course text quality normalization", () => {
 			},
 			{
 				title: /^JSS6 Project 2: FizzBuzz$/,
-				required: ["combined 3-and-5 condition", "too early"]
+				required: [
+					"1 through 50",
+					"combined 3-and-5 condition first",
+					"15, 30 and 45"
+				]
 			},
 			{
 				title: /^JSS7 Project 3: Pac-Man$/,
@@ -4069,7 +4102,7 @@ describe("course text quality normalization", () => {
 			expect(courseText).not.toMatch(/\bsupplemental [23]\b/i);
 			if (courseId === "javascript-level-1-javascript-superstar") {
 				expect(courseText).toContain(
-					"Combining Loops and Variables Transfer Practice"
+					"JSS4 Supplemental Project 1: Debugging Football"
 				);
 				expect(courseText).toContain(
 					"Dynamic Websites with JavaScript Extension Practice"
@@ -5335,7 +5368,7 @@ describe("course text quality normalization", () => {
 	});
 
 	it(
-		"keeps visible course cards above the thin-content floor",
+		"keeps course cards backed by substantive assignment guidance",
 		async () => {
 			const thinItems = (await loadedCatalogCourses()).flatMap(
 				({ course, entry }) =>
@@ -5353,7 +5386,12 @@ describe("course text quality normalization", () => {
 											item.title
 										)
 								)
-								.filter(item => wordCount(item.content) < 80)
+								.filter(
+									item =>
+										wordCount(
+											`${item.content}\n${reviewedJavaScriptProjectReadme(entry.id, item)}`
+										) < 80
+								)
 								.map(
 									item =>
 										`${entry.id} / ${module.title} / ${item.title} / ${wordCount(item.content)} words`
@@ -5403,7 +5441,8 @@ describe("course text quality normalization", () => {
 							projectLike &&
 							wordCount(item.content) < 95 &&
 							!reviewStructurePattern.test(item.content) &&
-							!scratchSupportStructurePattern.test(item.content);
+							!scratchSupportStructurePattern.test(item.content) &&
+							!reviewedJavaScriptProjectReadme(id, item);
 
 						return shortWithoutReview
 							? [

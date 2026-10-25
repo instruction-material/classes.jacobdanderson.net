@@ -1,0 +1,42 @@
+// Let's build a simple version of an authentication system. First, ask the user to set up a username and a password and store those two values in variables. Next, ask the user repeatedly for the username they set up previously and then the password which goes with it until they enter both values which match the stored values. Once they have inputted the correct information, alert them that they are logged in!
+
+// Reference with explicit input handling
+
+function demoLogin() {
+  let username = prompt("Set a fictional username for this local exercise:");
+  if (username === null) {
+    alert("Demo login canceled.");
+    return;
+  }
+  if (username.trim() === "") {
+    alert("Choose a nonblank fictional username.");
+    return;
+  }
+  let password = prompt("Set a fictional password for this local exercise:");
+  if (password === null) {
+    alert("Demo login canceled.");
+    return;
+  }
+  if (password.trim() === "") {
+    alert("Choose a nonblank fictional password.");
+    return;
+  }
+  let response = prompt("What is your username?");
+  while (response !== username) {
+    if (response === null) {
+      alert("Demo login canceled.");
+      return;
+    }
+    response = prompt("Incorrect. Enter the exact fictional username:");
+  }
+  response = prompt("What is your password?");
+  while (response !== password) {
+    if (response === null) {
+      alert("Demo login canceled.");
+      return;
+    }
+    response = prompt("Incorrect. Enter the exact fictional password:");
+  }
+  alert("Demo login accepted.");
+}
+demoLogin();

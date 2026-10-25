@@ -994,7 +994,7 @@ jobs:
 
     course-workflows:
         runs-on: ubuntu-24.04
-        timeout-minutes: 45
+        timeout-minutes: 60
         steps:
             - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
               with:
@@ -1308,6 +1308,72 @@ jobs:
                   path: |
                       output/javascript-loops-browser/
                       output/javascript-loops-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify JavaScript accumulator project imports
+              env:
+                  JAVASCRIPT_COMBINING_BROWSER_DIR: output/javascript-combining-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-combining-screenshots
+              run: node --test test/javascript-combining-course-browser.test.mjs
+
+            - name: Run JavaScript accumulator exports offline
+              env:
+                  JAVASCRIPT_COMBINING_BROWSER_DIR: output/javascript-combining-browser
+              run: node --test test/javascript-combining-exported-browser.test.mjs
+
+            - name: Retain JavaScript accumulator source and browser evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-combining-workflows
+                  path: |
+                      output/javascript-combining-browser/
+                      output/javascript-combining-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify JavaScript conditional project imports
+              env:
+                  JAVASCRIPT_CONDITIONALS_BROWSER_DIR: output/javascript-conditionals-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-conditionals-screenshots
+              run: node --test test/javascript-conditionals-course-browser.test.mjs
+
+            - name: Run JavaScript conditional exports offline
+              env:
+                  JAVASCRIPT_CONDITIONALS_BROWSER_DIR: output/javascript-conditionals-browser
+              run: node --test test/javascript-conditionals-exported-browser.test.mjs
+
+            - name: Retain JavaScript conditional source and browser evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-conditionals-workflows
+                  path: |
+                      output/javascript-conditionals-browser/
+                      output/javascript-conditionals-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify JavaScript advanced conditional project imports
+              env:
+                  JAVASCRIPT_ADVANCED_CONDITIONALS_BROWSER_DIR: output/javascript-advanced-conditionals-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-advanced-conditionals-screenshots
+              run: node --test test/javascript-advanced-conditionals-course-browser.test.mjs
+
+            - name: Run JavaScript advanced conditional exports offline
+              env:
+                  JAVASCRIPT_ADVANCED_CONDITIONALS_BROWSER_DIR: output/javascript-advanced-conditionals-browser
+              run: node --test test/javascript-advanced-conditionals-exported-browser.test.mjs
+
+            - name: Retain JavaScript advanced conditional source and browser evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-advanced-conditionals-workflows
+                  path: |
+                      output/javascript-advanced-conditionals-browser/
+                      output/javascript-advanced-conditionals-screenshots/
                   if-no-files-found: error
                   retention-days: 7
 

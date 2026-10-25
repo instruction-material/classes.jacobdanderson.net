@@ -1,0 +1,45 @@
+// Kant D. Bugg is back! This time, Kant would like to know if he is bugging his friend. This means that in a given time period, if he is sending more than a certain number of messages to his friends, he is bugging them. However, Kant’s program has some bugs in it. Help him out by finding and fixing them!
+
+// Define how many messages may be sent to each level of friend per hour before they get annoyed
+
+let acquaintence = 10;
+let friend = 25;
+let goodFriend = 50;
+let bestFriend = 200;
+
+let level = prompt(
+	"What level is the other person? Enter acquaintance, friend, good friend, or best friend."
+);
+let messages = prompt("How many messages have been sent?");
+let hours = prompt("How much time has it been, in hours?");
+
+let ratio = messages / hours;
+
+if (ratio > acquaintence || level === "acquaintance") {
+	printToScreen(
+		`Uh oh! ${messages} messages in ${hours} hours might be bugging an acquaintance.`
+	);
+}
+
+if (ratio > friend && level !== "friend") {
+	printToScreen(
+		`Uh oh! ${messages} messages in ${hours} hours might be bugging a friend.`
+	);
+} else if (!(ratio < goodFriend) && level === "good friend") {
+	printToScreen(
+		`Uh oh! ${messages} messages in ${hours} hours might be bugging a good friend.`
+	);
+} else if (ratio > bestFriend || level !== "best friend") {
+	printToScreen(
+		`Uh oh! ${messages} messages in ${hours} hours might be bugging a best friend.`
+	);
+} else {
+	printToScreen("You should be good!");
+}
+
+// DO NOT ALTER: Starter code that will print text to the screen!
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

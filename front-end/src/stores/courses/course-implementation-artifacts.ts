@@ -4258,6 +4258,15 @@ function ensureSupplementalProjectFloor(courseId: string, course: RawCourse) {
 			continue;
 		}
 
+		// The original JSS4 sequence has three core projects and one
+		// debugging supplement.
+		if (
+			courseId === "javascript-level-1-javascript-superstar" &&
+			module.title === "JSS4 Combining Loops and Variables"
+		) {
+			continue;
+		}
+
 		while (module.supplementalProjects.length < 2) {
 			module.supplementalProjects.push(
 				supplementalProjectFor(

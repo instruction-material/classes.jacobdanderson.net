@@ -1,0 +1,43 @@
+// Using a for loop, add the numbers 1 to 100 and print the result. Then, add the squares of all of the numbers from 1 to 100 and print the result. Finally, find the factorial of any positive number that the user inputs and print the result.
+
+// Solution
+
+let total = 0;
+
+for (let i = 1; i <= 100; i++){
+  total += i;
+}
+
+printToScreen(total);
+
+total = 0;
+
+for (let i = 0; i <= 100; i++){
+  total += i * i;
+}
+
+printToScreen(total);
+
+let answer = prompt("Please enter a number to calculate the factorial of.");
+if (answer === null) {
+  printToScreen("Factorial entry canceled.");
+} else {
+  const number = Number(answer);
+  if (answer.trim() === "" || !Number.isInteger(number)
+      || number < 0 || number > 170) {
+    printToScreen("Enter a whole number from 0 through 170.");
+  } else {
+    total = 1;
+    for (let i = number; i > 1; i--) {
+      total *= i;
+    }
+    printToScreen(total);
+  }
+}
+
+// Do not alter code below
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

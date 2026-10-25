@@ -1,0 +1,12 @@
+// Let's see if you are cut out for the house that you want at Hogwarts! Prompt the user to give you the house they want to be sorted into. Next, come up with 4 different qualities which correspond to each house, and then ask the user to give you their chosen quality. Using nested conditionals, print out that the user deserves to be sorted into their house, or that they are not quite cut out for the house they wished for.
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}
