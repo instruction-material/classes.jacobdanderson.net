@@ -3536,7 +3536,12 @@ describe("course text quality normalization", () => {
 			},
 			{
 				title: /^JSS7 Project 3: Pac-Man$/,
-				required: ["missing slice", "wider and narrower mouth"]
+				required: [
+					"two Pac-Men facing each other",
+					"missing slice",
+					"opposite signs",
+					"wider and narrower mouth"
+				]
 			},
 			{
 				title: /^JSS12 Project 2: My Hobby Table$/,

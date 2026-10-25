@@ -1,0 +1,11 @@
+// Draw a smiley face using d3. The degreesToRadians(degrees) function has been provided for you to help you draw an arc.
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function degreesToRadians(degrees) {
+  return degrees * Math.PI / 180;
+};

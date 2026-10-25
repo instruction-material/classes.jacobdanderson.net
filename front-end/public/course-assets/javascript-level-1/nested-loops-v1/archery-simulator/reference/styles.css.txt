@@ -1,0 +1,17 @@
+body {
+	margin: 16px;
+	color: #171717;
+	background: white;
+	font: 16px/1.5 ui-monospace, monospace;
+}
+.output-line {
+	margin: 0 0 8px;
+	font: inherit;
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+}
+svg {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}

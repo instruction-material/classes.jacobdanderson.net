@@ -1,0 +1,51 @@
+// Find all 3 digit Armstrong numbers and print them to the screen. Armstrong numbers are integers that are equal to the sum of their individual digits raised to the power of the number of digits.
+
+// Search each candidate's three digits.
+function findByNumber() {
+	for (let i = 100; i < 1000; i++) {
+		// Store information in other variables
+		let sum = 0;
+		let curVal = i;
+
+		// Iterate through each of the digits
+		for (let j = 0; j < 3; j++) {
+			// Get the digit
+			let digit = curVal % 10;
+
+			// Add the cubed digit
+			sum += Math.pow(digit, 3);
+
+			// Divide i for finding the next digit
+			curVal = Math.floor(curVal / 10);
+		}
+		if (sum === i) {
+			printToScreen(i);
+		}
+	}
+}
+
+// Alternative: build candidates from hundreds, tens and ones.
+function findByDigits() {
+	for (let i = 1; i < 10; i++) {
+		for (let j = 0; j < 10; j++) {
+			for (let k = 0; k < 10; k++) {
+				let cubedDigits = Math.pow(i, 3) + Math.pow(j, 3) + Math.pow(k, 3);
+				let threeDigitNumber = i * 100 + j * 10 + k;
+				if (cubedDigits === threeDigitNumber) {
+					printToScreen(threeDigitNumber);
+				}
+			}
+		}
+	}
+}
+
+// Run one method. Replace this call with findByDigits() to compare.
+findByNumber();
+
+// Provided output helper.
+function printToScreen(text) {
+	d3.select("body")
+		.append("pre")
+		.attr("class", "output-line")
+		.text(text);
+}

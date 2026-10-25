@@ -1,0 +1,124 @@
+{
+  "resources": [
+    {
+      "project": "basic-shapes",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/zYrPBYM",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Make an svg using d3, and then append a green rectangle, a blue circle, and a red ellipse.\n\n// Enter your code below this line\n\n\n"
+      }
+    },
+    {
+      "project": "basic-shapes",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/7ba2616cfb21c6a3fbf71ee0cfb78332",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Make an svg using d3, and then append a green rectangle, a blue circle, and a red ellipse.\n\n// Solution\n\nlet width = \"100%\";\nlet height = \"100%\";\n\nlet svg = d3.select(\"body\")\n  .append(\"svg\")\n  .attr(\"width\", width)\n  .attr(\"height\", height);\n\nsvg.append(\"rect\")\n  .attr(\"fill\", \"green\")\n  .attr(\"x\", 50)\n  .attr(\"y\", 75)\n  .attr(\"width\", 50)\n  .attr(\"height\", 50);\n\nsvg.append(\"circle\")\n  .attr(\"fill\", \"blue\")\n  .attr(\"cx\", 200)\n  .attr(\"cy\", 100)\n  .attr(\"r\", 50);\n\nsvg.append(\"ellipse\")\n  .attr(\"fill\", \"red\")\n  .attr(\"cx\", 350)\n  .attr(\"cy\", 100)\n  .attr(\"ry\", 50)\n  .attr(\"rx\", 30);\n"
+      }
+    },
+    {
+      "project": "smiley-face",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/MWKOeRd",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Draw a smiley face using d3. The degreesToRadians(degrees) function has been provided for you to help you draw an arc.\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction degreesToRadians(degrees) {\n  return degrees * Math.PI / 180;\n};"
+      }
+    },
+    {
+      "project": "smiley-face",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/593993382174caa7d510ddbd5b0009d8",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Solution\n\nlet width = 500;\nlet height = 500;\n\nconst svg = d3.select(\"body\")\n  .append(\"svg\")\n  .attr(\"width\", width)\n  .attr(\"height\", height);\n\nsvg.append(\"rect\")\n  .attr(\"fill\", \"green\")\n  .attr(\"x\", 200)\n  .attr(\"y\", 25)\n  .attr(\"width\", 10)\n  .attr(\"height\", 100);\n\nsvg.append(\"rect\")\n  .attr(\"fill\", \"green\")\n  .attr(\"x\", 290)\n  .attr(\"y\", 25)\n  .attr(\"width\", 10)\n  .attr(\"height\", 100);\n\nconst arcGenerator = d3.arc();\n\nlet pathData = arcGenerator({\n  startAngle: degreesToRadians(90),\n  endAngle: degreesToRadians(270),\n  innerRadius: 90,\n  outerRadius: 100\n});\n\nsvg.append('path')\n  .attr(\"fill\", \"green\")\n  .attr(\"transform\", \"translate(250,200)\")\n\t.attr('d', pathData);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction degreesToRadians(degrees) {\n  return degrees * Math.PI / 180;\n};"
+      }
+    },
+    {
+      "project": "pac-man",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/JjGORoK",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Draw two Pac-Men facing each other using d3’s arc. The degreesToRadians(degrees) function has been provided for you once again.\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction degreesToRadians(degrees) {\n  return degrees * Math.PI / 180\n}"
+      }
+    },
+    {
+      "project": "pac-man",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/6df064875eb631bc08eab5c342ef98f7",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Draw two Pac-Men facing each other using d3’s arc. The degreesToRadians(degrees) function has been provided for you once again.\n\n// Solution \n\nlet width = 500;\nlet height = 500;\n\nconst svg = d3.select(\"body\")\n  .append(\"svg\")\n  .attr(\"width\", width)\n  .attr(\"height\", height);\n\nconst arcGenerator = d3.arc();\n\nlet leftPacMan = arcGenerator({\n  startAngle: degreesToRadians(120),\n  endAngle: degreesToRadians(430),\n  innerRadius: 0,\n  outerRadius: 100\n});\n\nlet rightPacMan = arcGenerator({\n  startAngle: -degreesToRadians(120),\n  endAngle: -degreesToRadians(430),\n  innerRadius: 0,\n  outerRadius: 100\n});\n\nsvg.append('path')\n  .attr(\"fill\", \"yellow\")\n  .attr(\"transform\", \"translate(150,110)\")\n\t.attr('d', leftPacMan);\n\nsvg.append('path')\n  .attr(\"fill\", \"yellow\")\n  .attr(\"transform\", \"translate(400,110)\")\n\t.attr('d', rightPacMan);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction degreesToRadians(degrees) {\n  return degrees * Math.PI / 180\n}"
+      }
+    },
+    {
+      "project": "snowman",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/GRoOjjx",
+      "panels": {
+        "HTML": "",
+        "CSS": "body {\n  background-color: black;\n}",
+        "JavaScript": "/* Draw a snowman using D3! You already know how to draw shapes and arcs, here's an example of how to draw a straight line:\n\nsvg.append(\"line\") // attach a line\n  .style(\"stroke\", \"black\") // color the line\n  .attr(\"x1\", 100)  // x position of the first end of the line\n  .attr(\"y1\", 50)  // y position of the first end of the line\n  .attr(\"x2\", 300)  // x position of the second end of the line\n  .attr(\"y2\", 150);  // y position of the second end of the line\n\nThe degreesToRadians() function has once again been provided.\n*/\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction degreesToRadians(degrees) {\n  return degrees * Math.PI / 180;\n};\n"
+      }
+    },
+    {
+      "project": "snowman",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/bb6f6bcdf7ff47fef8a5f2dc3a2138f0",
+      "panels": {
+        "HTML": "",
+        "CSS": "body {\n  background-color: black;\n}",
+        "JavaScript": "/* Draw a snowman using D3! You already know how to draw shapes and arcs, here's an example of how to draw a straight line:\n\nsvg.append(\"line\") // attach a line\n  .style(\"stroke\", \"black\") // color the line\n  .attr(\"x1\", 100)  // x position of the first end of the line\n  .attr(\"y1\", 50)  // y position of the first end of the line\n  .attr(\"x2\", 300)  // x position of the second end of the line\n  .attr(\"y2\", 150);  // y position of the second end of the line\n\nThe degreesToRadians() function has once again been provided.\n*/\n\n// Solution\n\nlet width = 750;\nlet height = 750;\n\nlet svg = d3.select(\"body\")\n  .append(\"svg\")\n  .attr(\"width\", width)\n  .attr(\"height\", height);\n\n// Add a small circle to the top\nsvg.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 50)\n  .attr(\"r\", 50);\n\n// Left eye\nsvg.append(\"circle\")\n  .attr(\"fill\", \"black\")\n  .attr(\"cx\", 125)\n  .attr(\"cy\", 35)\n  .attr(\"r\", 5);\n\n// Right eye\nsvg.append(\"circle\")\n  .attr(\"fill\", \"black\")\n  .attr(\"cx\", 175)\n  .attr(\"cy\", 35)\n  .attr(\"r\", 5);\n\nsvg.append(\"circle\")\n  .attr(\"fill\", \"orange\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 50)\n  .attr(\"r\", 5);\n\n// Nose\n\n/*\nCode handling the mouth\n*/\n// Prepare a generator that will create arcs\nconst arcGenerator = d3.arc();\n\n// Generate a path that will be the smile\nlet pathData = arcGenerator({\n  startAngle: degreesToRadians(90),\n  endAngle: degreesToRadians(270),\n  innerRadius: 10,\n  outerRadius: 15\n});\n\n// Append the smile path, moved over 250px in the x and 200px in the y\nsvg.append('path')\n  .attr(\"fill\", \"black\")\n  .attr(\"transform\", \"translate(150,70)\")\n\t.attr('d', pathData);\n\n// Add a medium circle in the middle\nsvg.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 160)\n  .attr(\"r\", 70);\n\n// Draw the left arm\nlet leftArm = svg.append(\"line\")               \n              .attr(\"x1\", 200)\n              .attr(\"x2\", 300)\n              .attr(\"y1\", 160)\n              .attr(\"y2\", 145)\n              .attr(\"stroke-width\", 2)\n              .attr(\"stroke\", \"brown\");\n\n// Draw the right arm\nlet rightArm = svg.append(\"line\")               \n              .attr(\"x1\", 100)\n              .attr(\"x2\", 0)\n              .attr(\"y1\", 160)\n              .attr(\"y2\", 145)\n              .attr(\"stroke-width\", 2)\n              .attr(\"stroke\", \"brown\");\n\n// Add a large circle at the top\nsvg.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 300)\n  .attr(\"r\", 100);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction degreesToRadians(degrees) {\n  return degrees * Math.PI / 180;\n};\n"
+      }
+    },
+    {
+      "project": "captain-america-shield",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/VweRVWq",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// In this project, we’ll draw Captain America’s Shield with D3! Read the symbol documentation in the D3 docs to learn how to draw a star https://github.com/d3/d3-shape#symbols.\n"
+      }
+    },
+    {
+      "project": "captain-america-shield",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/0736d5c2045c3ecd6969c5284b93b067",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// In this project, we’ll draw Captain America’s Shield with D3! Read the symbol documentation in the D3 docs to learn how to draw a star https://github.com/d3/d3-shape#symbols.\n\n// Solution\n\nlet width = 750;\nlet height = 750;\n\n// Create SVG element to append to\nlet svg = d3.select(\"body\")\n  .append(\"svg\")\n  .attr(\"width\", width)\n  .attr(\"height\", height);\n\n// Add a large circle at the top\nsvg.append(\"circle\")\n  .attr(\"fill\", \"red\")\n  .attr(\"cx\", 200)\n  .attr(\"cy\", 200)\n  .attr(\"r\", 110);\n\n// Add a medium circle in the middle\nsvg.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", 200)\n  .attr(\"cy\", 200)\n  .attr(\"r\", 90);\n\n// Add a medium circle in the middle\nsvg.append(\"circle\")\n  .attr(\"fill\", \"red\")\n  .attr(\"cx\", 200)\n  .attr(\"cy\", 200)\n  .attr(\"r\", 70);\n\n// Add a small circle to the top\nsvg.append(\"circle\")\n  .attr(\"fill\", \"blue\")\n  .attr(\"cx\", 200)\n  .attr(\"cy\", 200)\n  .attr(\"r\", 50);\n\nlet star = d3.symbol().type(d3.symbolStar).size(2000);\n\nsvg.append(\"path\")\n  .attr(\"d\", star)\n  .attr(\"fill\", \"white\")\n  .attr(\"transform\", \"translate(200,200)\");"
+      }
+    },
+    {
+      "project": "debugging-olaf-star",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/rNxZJdQ",
+      "panels": {
+        "HTML": "",
+        "CSS": "body {\n  background-color: black;\n}",
+        "JavaScript": "// Kant D. Bugg is trying to put a star on Olaf’s torso (his middle snowball) but for some reason it isn’t showing up! Debug his code and figure out why the star is not showing up.\n\nlet width = 750;\nlet height = 750;\n\nlet svg = d3.select(\"body\")\n  .append(\"svg\")\n  .attr(\"width\", width)\n  .attr(\"height\", height);\n\n// Add a small circle to the top\nsvg.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 100)\n  .attr(\"r\", 50);\n\n// Left eye\nsvg.append(\"circle\")\n  .attr(\"fill\", \"black\")\n  .attr(\"cx\", 125)\n  .attr(\"cy\", 85)\n  .attr(\"r\", 5);\n\n// Right eye\nsvg.append(\"circle\")\n  .attr(\"fill\", \"black\")\n  .attr(\"cx\", 175)\n  .attr(\"cy\", 85)\n  .attr(\"r\", 5);\n\nsvg.append(\"circle\")\n  .attr(\"fill\", \"orange\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 100)\n  .attr(\"r\", 5);\n\n// Nose\n\n/*\nCode handling the mouth\n*/\n// Prepare a generator that will create arcs\nconst arcGenerator = d3.arc();\n\n// Generate a path that will be the smile\nlet pathData = arcGenerator({\n  startAngle: degreesToRadians(90),\n  endAngle: degreesToRadians(270),\n  innerRadius: 10,\n  outerRadius: 15\n});\n\n// Append the smile path, moved over 250px in the x and 200px in the y\nsvg.append('path')\n  .attr(\"fill\", \"black\")\n  .attr(\"transform\", \"translate(150,120)\")\n\t.attr('d', pathData);\n\n// Add a medium circle in the middle\nsvg.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 210)\n  .attr(\"r\", 70);\n\n// Draw the left arm\nlet leftArm = svg.append(\"line\")               \n              .attr(\"x1\", 200)\n              .attr(\"x2\", 280)\n              .attr(\"y1\", 210)\n              .attr(\"y2\", 155)\n              .attr(\"stroke-width\", 2)\n              .attr(\"stroke\", \"brown\");\n\n// Draw the right arm\nlet rightArm = svg.append(\"line\")               \n              .attr(\"x1\", 100)\n              .attr(\"x2\", 20)\n              .attr(\"y1\", 210)\n              .attr(\"y2\", 255)\n              .attr(\"stroke-width\", 2)\n              .attr(\"stroke\", \"brown\");\n\n// Add a large circle at the top\nsvg.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 350)\n  .attr(\"r\", 100);\n\n// olaf's hair\nsvg.append(\"line\")               \n  .attr(\"x1\", 150)\n  .attr(\"x2\", 150)\n  .attr(\"y1\", 60)\n  .attr(\"y2\", 20)\n  .attr(\"stroke-width\", 2)\n  .attr(\"stroke\", \"brown\");\n\nsvg.append(\"line\")               \n  .attr(\"x1\", 145)\n  .attr(\"x2\", 150)\n  .attr(\"y1\", 0)\n  .attr(\"y2\", 20)\n  .attr(\"stroke-width\", 2)\n  .attr(\"stroke\", \"brown\");\n\nsvg.append(\"line\")               \n  .attr(\"x1\", 150)\n  .attr(\"x2\", 140)\n  .attr(\"y1\", 60)\n  .attr(\"y2\", 30)\n  .attr(\"stroke-width\", 2)\n  .attr(\"stroke\", \"brown\");\n\nsvg.append(\"line\")               \n  .attr(\"x1\", 140)\n  .attr(\"x2\", 130)\n  .attr(\"y1\", 30)\n  .attr(\"y2\", 20)\n  .attr(\"stroke-width\", 2)\n  .attr(\"stroke\", \"brown\");\n\nsvg.append(\"line\")               \n  .attr(\"x1\", 150)\n  .attr(\"x2\", 160)\n  .attr(\"y1\", 60)\n  .attr(\"y2\", 30)\n  .attr(\"stroke-width\", 2)\n  .attr(\"stroke\", \"brown\");\n\nsvg.append(\"line\")               \n  .attr(\"x1\", 160)\n  .attr(\"x2\", 175)\n  .attr(\"y1\", 30)\n  .attr(\"y2\", 20)\n  .attr(\"stroke-width\", 2)\n  .attr(\"stroke\", \"brown\");\n\n// olaf's eyebrows\n\nsvg.append(\"line\")               \n  .attr(\"x1\", 110)\n  .attr(\"x2\", 130)\n  .attr(\"y1\", 80)\n  .attr(\"y2\", 70)\n  .attr(\"stroke-width\", 2)\n  .attr(\"stroke\", \"brown\");\n\nsvg.append(\"line\")               \n  .attr(\"x1\", 170)\n  .attr(\"x2\", 190)\n  .attr(\"y1\", 70)\n  .attr(\"y2\", 80)\n  .attr(\"stroke-width\", 2)\n  .attr(\"stroke\", \"brown\");\n\n// Olaf is trying to put a star on his torso (his middle snowball) but for some reason it isn’t show up! Debug his star. \n\nlet star = d3.symbol().type(d3.symbolStar).size(2000);\n\nsvg.append(\"path\")\n  .attr(\"fill\", \"white\")\n  .attr(\"transform\", `translate(${positionX},${positionY})`);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\nfunction degreesToRadians(degrees) {\n  return degrees * Math.PI / 180;\n};\n"
+      }
+    },
+    {
+      "project": "debugging-olaf-star",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/20aeca54176134a3397922a9e98f3564",
+      "panels": {
+        "HTML": "",
+        "CSS": "body {\n  background-color: black;\n}",
+        "JavaScript": "// Kant D. Bugg is trying to put a star on Olaf’s torso (his middle snowball) but for some reason it isn’t showing up! Debug his code and figure out why the star is not showing up. \n\nlet width = 750;\nlet height = 750;\n\nlet svg = d3.select(\"body\")\n  .append(\"svg\")\n  .attr(\"width\", width)\n  .attr(\"height\", height);\n\n// Add a small circle to the top\nsvg.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 100)\n  .attr(\"r\", 50);\n\n// Left eye\nsvg.append(\"circle\")\n  .attr(\"fill\", \"black\")\n  .attr(\"cx\", 125)\n  .attr(\"cy\", 85)\n  .attr(\"r\", 5);\n\n// Right eye\nsvg.append(\"circle\")\n  .attr(\"fill\", \"black\")\n  .attr(\"cx\", 175)\n  .attr(\"cy\", 85)\n  .attr(\"r\", 5);\n\nsvg.append(\"circle\")\n  .attr(\"fill\", \"orange\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 100)\n  .attr(\"r\", 5);\n\n// Nose\n\n/*\nCode handling the mouth\n*/\n// Prepare a generator that will create arcs\nconst arcGenerator = d3.arc();\n\n// Generate a path that will be the smile\nlet pathData = arcGenerator({\n  startAngle: degreesToRadians(90),\n  endAngle: degreesToRadians(270),\n  innerRadius: 10,\n  outerRadius: 15\n});\n\n// Append the smile path, moved over 250px in the x and 200px in the y\nsvg.append('path')\n  .attr(\"fill\", \"black\")\n  .attr(\"transform\", \"translate(150,120)\")\n\t.attr('d', pathData);\n\n// Add a medium circle in the middle\nsvg.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 210)\n  .attr(\"r\", 70);\n\n// Draw the left arm\nlet leftArm = svg.append(\"line\")               \n              .attr(\"x1\", 200)\n              .attr(\"x2\", 280)\n              .attr(\"y1\", 210)\n              .attr(\"y2\", 155)\n              .attr(\"stroke-width\", 2)\n              .attr(\"stroke\", \"brown\");\n\n// Draw the right arm\nlet rightArm = svg.append(\"line\")               \n              .attr(\"x1\", 100)\n              .attr(\"x2\", 20)\n              .attr(\"y1\", 210)\n              .attr(\"y2\", 255)\n              .attr(\"stroke-width\", 2)\n              .attr(\"stroke\", \"brown\");\n\n// Add a large circle at the top\nsvg.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 350)\n  .attr(\"r\", 100);\n\n// olaf's hair\nsvg.append(\"line\")               \n  .attr(\"x1\", 150)\n  .attr(\"x2\", 150)\n  .attr(\"y1\", 60)\n  .attr(\"y2\", 20)\n  .attr(\"stroke-width\", 2)\n  .attr(\"stroke\", \"brown\");\n\nsvg.append(\"line\")               \n  .attr(\"x1\", 145)\n  .attr(\"x2\", 150)\n  .attr(\"y1\", 0)\n  .attr(\"y2\", 20)\n  .attr(\"stroke-width\", 2)\n  .attr(\"stroke\", \"brown\");\n\nsvg.append(\"line\")               \n  .attr(\"x1\", 150)\n  .attr(\"x2\", 140)\n  .attr(\"y1\", 60)\n  .attr(\"y2\", 30)\n  .attr(\"stroke-width\", 2)\n  .attr(\"stroke\", \"brown\");\n\nsvg.append(\"line\")               \n  .attr(\"x1\", 140)\n  .attr(\"x2\", 130)\n  .attr(\"y1\", 30)\n  .attr(\"y2\", 20)\n  .attr(\"stroke-width\", 2)\n  .attr(\"stroke\", \"brown\");\n\nsvg.append(\"line\")               \n  .attr(\"x1\", 150)\n  .attr(\"x2\", 160)\n  .attr(\"y1\", 60)\n  .attr(\"y2\", 30)\n  .attr(\"stroke-width\", 2)\n  .attr(\"stroke\", \"brown\");\n\nsvg.append(\"line\")               \n  .attr(\"x1\", 160)\n  .attr(\"x2\", 175)\n  .attr(\"y1\", 30)\n  .attr(\"y2\", 20)\n  .attr(\"stroke-width\", 2)\n  .attr(\"stroke\", \"brown\");\n\n// olaf's eyebrows\n\nsvg.append(\"line\")               \n  .attr(\"x1\", 110)\n  .attr(\"x2\", 130)\n  .attr(\"y1\", 80)\n  .attr(\"y2\", 70)\n  .attr(\"stroke-width\", 2)\n  .attr(\"stroke\", \"brown\");\n\nsvg.append(\"line\")               \n  .attr(\"x1\", 170)\n  .attr(\"x2\", 190)\n  .attr(\"y1\", 70)\n  .attr(\"y2\", 80)\n  .attr(\"stroke-width\", 2)\n  .attr(\"stroke\", \"brown\");\n\n// Solution\nlet star = d3.symbol().type(d3.symbolStar).size(2000);\nlet positionX = 150\nlet positionY = 210\n\nsvg.append(\"path\")\n  .attr(\"d\", star)\n  .attr(\"fill\", \"yellow\")\n  .attr(\"transform\", `translate(${positionX},${positionY})`);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\nfunction degreesToRadians(degrees) {\n  return degrees * Math.PI / 180;\n};\n"
+      }
+    }
+  ]
+}

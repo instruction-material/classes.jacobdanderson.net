@@ -1,0 +1,11 @@
+// Using nested loops, Print out a multiplication table for all of the numbers from 1 - 10.
+
+// Enter your code below this line
+
+// Provided output helper.
+function printToScreen(text) {
+	d3.select("body")
+		.append("pre")
+		.attr("class", "output-line")
+		.text(text);
+}

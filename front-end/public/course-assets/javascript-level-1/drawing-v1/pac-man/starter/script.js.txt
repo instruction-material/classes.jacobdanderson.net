@@ -1,0 +1,11 @@
+// Draw two Pac-Men facing each other using d3’s arc. The degreesToRadians(degrees) function has been provided for you once again.
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function degreesToRadians(degrees) {
+  return degrees * Math.PI / 180
+}

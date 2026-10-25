@@ -1,0 +1,19 @@
+// Using nested loops, Print out a multiplication table for all of the numbers from 1 - 10.
+
+// Solution
+
+for (let i = 1; i <= 10; i++) {
+	let output = "";
+	for (let j = 1; j <= 10; j++) {
+		output += i * j + " ";
+	}
+	printToScreen(output.trim());
+}
+
+// Provided output helper.
+function printToScreen(text) {
+	d3.select("body")
+		.append("pre")
+		.attr("class", "output-line")
+		.text(text);
+}

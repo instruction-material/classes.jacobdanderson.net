@@ -707,11 +707,13 @@ const javascriptLevel1SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Introduction to D3",
+					preserveInstructions: true,
 					content:
-						"D3 can create and modify SVG elements with JavaScript. Start by adding D3 to CodePen, appending an SVG, and setting width and height attributes. Treat pixels as coordinates on the drawing surface, and keep chained calls readable by formatting each major step on its own line when the code becomes hard to scan."
+						'D3 selects elements with `d3.select(...)`, creates children with `.append(...)`, and sets SVG attributes with `.attr(...)`. The imported projects include D3 locally.\n\n```javascript\nconst svg = d3.select("body").append("svg")\n  .attr("width", 400).attr("height", 200)\n  .attr("viewBox", "0 0 400 200");\n\nsvg.append("rect")\n  .attr("x", 20).attr("y", 30)\n  .attr("width", 80).attr("height", 40)\n  .attr("fill", "purple");\n```\n\nSVG coordinates begin at the top-left: x increases to the right and y increases downward. The example rectangle starts at (20,30). Width and height set the drawing dimensions; `viewBox` defines its coordinate area. The projects scale that area to fit the screen while keeping the shape coordinates unchanged.'
 				},
 				{
 					title: "Drawing Shapes in D3",
+					preserveInstructions: true,
 					content:
 						"Draw rectangles, circles, and ellipses by appending SVG elements and setting their attributes. Use `x`, `y`, `width`, `height`, and `fill` for rectangles; `cx`, `cy`, and `r` for circles; and `rx` and `ry` for ellipses. Verify each shape by changing one coordinate or size attribute and predicting how the drawing will move.",
 					projectLink: "https://codepen.io/junilearning/pen/zYrPBYM",
@@ -720,21 +722,24 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "Drawing Arcs",
+					preserveInstructions: true,
 					content:
-						"Use `d3.arc()` to create curved shapes from `startAngle`, `endAngle`, `innerRadius`, and `outerRadius`. Angles must be in radians, so keep any degree-to-radian conversion visible. Attach the arc to a `path` through the `d` attribute and use `transform: translate(...)` to position it on the SVG canvas."
+						'`d3.arc()` generates the path data for a curved shape. Angles use radians: multiply degrees by `Math.PI / 180`. Zero points upward and positive angles turn clockwise. `innerRadius: 0` makes a filled sector; a larger inner radius leaves a hole.\n\nThis example adds a quarter-ring to the SVG created above:\n\n```javascript\nfunction degreesToRadians(degrees) {\n  return degrees * Math.PI / 180;\n}\n\nconst arcGenerator = d3.arc();\nconst pathData = arcGenerator({\n  startAngle: degreesToRadians(0),\n  endAngle: degreesToRadians(90),\n  innerRadius: 20,\n  outerRadius: 40\n});\n\nsvg.append("path")\n  .attr("d", pathData)\n  .attr("fill", "orange")\n  .attr("transform", "translate(80,80)");\n```\n\nThe `d` attribute receives the generated path. Arcs start around (0,0); `translate(80,80)` moves this arc’s center to (80,80). Change one angle or radius and predict the result before running it.'
 				},
 				{
 					title: "JSS7 Project 2: Smiley Face",
+					preserveInstructions: true,
 					content:
-						"Draw a smiley face with D3 by combining circles, ellipses, and an arc-based mouth. Use `degreesToRadians()` or a similar helper so the mouth angles are understandable. The final drawing places both eyes symmetrically and positions the mouth relative to the face center instead of relying on unexplained coordinates.",
+						"Draw a smiley face with D3 using two eye shapes and an arc-based mouth. Use `degreesToRadians()` or a similar helper so the mouth angles are understandable. The final drawing places both eyes symmetrically and positions the mouth relative to the face center instead of relying on unexplained coordinates.",
 					projectLink: "https://codepen.io/junilearning/pen/MWKOeRd",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/593993382174caa7d510ddbd5b0009d8"
 				},
 				{
 					title: "JSS7 Project 3: Pac-Man",
+					preserveInstructions: true,
 					content:
-						"Draw Pac-Man as an arc with a missing slice. Choose start and end angles that leave a visible mouth opening, set the inner radius to create a filled wedge, and translate the shape to the correct position. Test a wider and narrower mouth by changing only the angle values.",
+						"Draw two Pac-Men facing each other with D3 arcs, each with a missing slice for its mouth. Set `innerRadius` to `0`, give the second character the same start and end angles with opposite signs, and translate the paths to separate centers. Test a wider and narrower mouth by changing the angle values.",
 					projectLink: "https://codepen.io/junilearning/pen/JjGORoK",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/6df064875eb631bc08eab5c342ef98f7"
@@ -743,6 +748,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JSS7 Supplemental Project 1: Snowman",
+					preserveInstructions: true,
 					content:
 						"Draw a snowman from multiple D3 shapes: stacked circles for the body, smaller shapes for eyes/buttons, arcs or lines for facial details, and optional lines for arms. Build the drawing from named sections so the body, face, and accessories can be adjusted independently.",
 					projectLink: "https://codepen.io/junilearning/pen/GRoOjjx",
@@ -751,6 +757,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS7 Supplemental Project 2: Captain America's Shield",
+					preserveInstructions: true,
 					content:
 						"Draw Captain America's shield with concentric circular or arc shapes and a centered star. Use the D3 symbol documentation for the star, keep the center coordinates consistent across layers, and verify that later shapes do not accidentally cover the star or important ring boundaries.",
 					projectLink: "https://codepen.io/junilearning/pen/VweRVWq",
@@ -759,6 +766,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS7 Supplemental Project 3: Debugging Olaf's Star",
+					preserveInstructions: true,
 					content:
 						"Repair the D3 drawing so the star appears in the intended position on the snowman. Trace the shape creation, fill/stroke settings, and transform coordinates, then confirm the final drawing still preserves the rest of the snowman while adding the missing star.",
 					projectLink: "https://codepen.io/junilearning/pen/rNxZJdQ",
@@ -773,12 +781,12 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				{
 					title: "Nested Loops",
 					content:
-						"Nested loops place one loop inside another so a program can repeat groups of repeated actions. The outer loop usually controls rows, rounds, or groups; the inner loop controls the repeated work inside each group. Use `i` and `j` examples, but focus on what each counter represents rather than memorizing the variable names."
+						'A nested loop runs its inner loop completely for each outer-loop iteration. The outer counter represents a group, such as a row or round; the inner counter represents work within that group. Use a separate variable for each counter. Declare a row\'s output inside the outer loop so it starts empty for each new row.\n\n```javascript\nfor (let row = 1; row <= 2; row++) {\n  let output = "";\n  for (let column = 1; column <= 3; column++) {\n    output += "(" + row + "," + column + ") ";\n  }\n  printToScreen(output.trim());\n}\n```\n\nThis prints `(1,1) (1,2) (1,3)` and then `(2,1) (2,2) (2,3)`: two rows, three entries per row, and six inner-loop iterations. In the project starters, `printToScreen(text)` displays one line on the page. To make triangular patterns, let the inner loop\'s limit depend on the current row. For a grid, reset the horizontal position at the start of each row, advance it inside the inner loop, and advance the vertical position after the inner loop ends.'
 				},
 				{
 					title: "JSS8 Project 1: Multiplication Tables",
 					content:
-						"Use nested loops to print multiplication tables from 1 through 10. The outer loop chooses the row number and the inner loop chooses the column number. Print each product in a readable format and count how many multiplication operations occur so the connection between nested loops and total work is visible.",
+						"Use nested loops to print ten rows of products for the numbers 1 through 10. The outer loop chooses a row and the inner loop multiplies it by each column from 1 through 10. Separate products with spaces; the first row is `1 2 3 4 5 6 7 8 9 10` and the final value is `100`. Explain why ten iterations of each loop produce 100 multiplication operations.",
 					projectLink: "https://codepen.io/junilearning/pen/WNrXoBj",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/431a3c1e61b0fe9d0e6fa2e16e6d37f6"
@@ -786,7 +794,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				{
 					title: "JSS8 Project 2: Pattern Production",
 					content:
-						"Create a repeated pattern in two forms. First print a star pattern with nested loops, then recreate the same row-and-column structure with D3 Pac-Man shapes using `transform: translate(...)` for placement. The D3 version preserves the same pattern logic rather than placing each Pac-Man manually.",
+						"Print five lines containing one, two, three, four, and five stars. Use an outer loop for rows and an inner loop to build each line, then pass the line to `printToScreen()`. Recreate the same five rows as 15 yellow D3 Pac-Man shapes. Use a filled arc with radii 0 and 50, angles 120 and 430 degrees, and `transform: translate(...)` to place each shape. Start each row at x = 100, space columns by 150, and place rows at y = 150 through 750.",
 					projectLink: "https://codepen.io/junilearning/pen/pogdRva",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/9b713f294e21887a1a2c9b528764bd4b"
@@ -794,7 +802,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				{
 					title: "JSS8 Project 3: Armstrong Numbers",
 					content:
-						"Find all three-digit Armstrong numbers. For each number, separate the hundreds, tens, and ones digits, cube each digit, and compare the digit-cube sum to the original number. Use loops to check the full three-digit range and print only the values that satisfy the rule.",
+						"Find every three-digit Armstrong number from 100 through 999: its three digits cubed must add up to the number itself. For example, `153 = 1³ + 5³ + 3³`. Use `% 10` to extract the last digit and `Math.floor(value / 10)` to remove it; `Math.pow(digit, 3)` cubes it. Check each candidate with a loop over its three digits and print each match once. Alternatively, use three nested loops over the hundreds, tens, and ones digits, allowing hundreds from 1 through 9 and other digits from 0 through 9.",
 					projectLink: "https://codepen.io/junilearning/pen/eYJegdP",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/e12716e0c3e1cbfc0405c9da2e245b8a"
@@ -805,7 +813,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 					title: "JSS8 Supplemental Project 1: Archery Simulator",
 					aliases: ["JSS8 Supplemental Project 1: Juni Archery"],
 					content:
-						"Simulate five rounds of archery with three arrows per round. Use nested loops so the outer loop represents rounds and the inner loop represents arrows. Each arrow has a random one-in-three chance to hit, and the program prints per-round results plus the total number of bullseyes.",
+						"Simulate five rounds of archery with three arrows per round. Use nested loops for rounds and arrows. `Math.floor(Math.random() * 3)` produces 0, 1, or 2; count exactly one of those outcomes as a hit so each arrow has a one-in-three chance. Print all 15 shots as `Round 1, arrow 1: X` for a hit or `O` for a miss, using the actual round and arrow numbers. Count the X results and print the total bullseyes after the final shot.",
 					projectLink: "https://codepen.io/junilearning/pen/xxZPgdv",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/2882e6ebc5b146358627d5c4f5afd90c"
@@ -813,7 +821,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				{
 					title: "JSS8 Supplemental Project 2: Tower of Boxes",
 					content:
-						"Print the stacked box pattern with nested loops. Decide which loop controls the height of the tower and which loop controls the symbols within each row. The finished output matches the target pattern exactly, including row lengths, spacing, and line breaks.",
+						"Print four hollow square boxes with side lengths 3, 4, 5, and 6. The top and bottom rows contain only `#`; every interior row starts and ends with `#` and contains underscores between them. For example, the size-3 box is three lines: `###`, `#_#`, `###`. Use nested loops to build the borders and repeat interior rows, with a blank line between boxes. The larger boxes need 2, 3, and 4 interior rows respectively.",
 					projectLink: "https://codepen.io/junilearning/pen/PoZOWWp",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/6973a709e1c0d6932da2ed1e7650d30f"
@@ -821,7 +829,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				{
 					title: "JSS8 Supplemental Project 3: Shield Debugging",
 					content:
-						"Debug the stacked shield pattern by checking the order of nested-loop output. The final result prints or draws each layer in the correct sequence, with loop counters controlling rows and columns clearly enough to explain why the shield stacks correctly.",
+						"Debug the D3 assembly line so it draws nine rows of Captain America's shields, containing one through nine shields for 45 shields total. Each shield has red, white, red, and blue circles of radii 110, 90, 70, and 50, plus a centered white star. Use distinct counters for the outer row loop and inner column loop. Reset each row's horizontal position, advance it by 210 after each shield, and advance the vertical position by 210 after each row. The starter intentionally contains loop and position errors; use the browser console to locate the first failure, then check the complete pattern.",
 					projectLink: "https://codepen.io/junilearning/pen/pogyeaj",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/1ac928d6d9d777928c4439b4262310a3"

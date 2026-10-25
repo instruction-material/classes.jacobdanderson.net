@@ -127,7 +127,12 @@ final class TrackerUITests: XCTestCase {
             reveal(row, in: app)
             row.swipeLeft()
             let delete = button("Delete", in: app)
-            if delete.waitForExistence(timeout: 2) { delete.tap() }
+            XCTAssertTrue(delete.waitForExistence(timeout: 5))
+            delete.tap()
+            let removed = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == false"), object: row)
+            XCTAssertEqual(XCTWaiter.wait(for: [removed], timeout: 5), .completed,
+                           "The deleted item must leave the visible list")
             XCTAssertFalse(button("Edit " + savedTitle, in: app).exists)
             if persistence { XCTAssertTrue(app.staticTexts["No items"].waitForExistence(timeout: 5)) }
         }

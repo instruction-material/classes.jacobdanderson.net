@@ -516,9 +516,16 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 						const note = /\.(?:S|rs|m?js|swift)$/.test(filename)
 							? `\n/* Independent ${definition.kind} observation ${width} */\n`
 							: `\n# Independent ${definition.kind} observation ${width}\n`;
+						const original = saved.files.find(
+							file => file.name === filename
+						).content;
 						const content
-							= saved.files.find(file => file.name === filename)
-								.content + note;
+							= definition.editContent?.({
+								role,
+								width,
+								filename,
+								original
+							}) ?? original + note;
 						edits[filename] = content;
 						await page.keyboard.down(modifier);
 						await page.keyboard.press("a");

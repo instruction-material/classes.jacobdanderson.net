@@ -2,8 +2,10 @@ import type { PythonIdeFile } from "@/modules/pythonIde";
 import { javascriptAdvancedConditionalsResources } from "@/modules/javascriptAdvancedConditionalsResources";
 import { javascriptCombiningResources } from "@/modules/javascriptCombiningResources";
 import { javascriptConditionalsResources } from "@/modules/javascriptConditionalsResources";
+import { javascriptDrawingResources } from "@/modules/javascriptDrawingResources";
 import { javascriptFirstModuleResources } from "@/modules/javascriptFirstModuleResources";
 import { javascriptLoopsResources } from "@/modules/javascriptLoopsResources";
+import { javascriptNestedLoopsResources } from "@/modules/javascriptNestedLoopsResources";
 import { javascriptOperatorsResources } from "@/modules/javascriptOperatorsResources";
 
 const courseId = "javascript-level-1-javascript-superstar";
@@ -28,7 +30,9 @@ const roles: readonly CourseRole[] = [
 	...javascriptLoopsResources,
 	...javascriptCombiningResources,
 	...javascriptConditionalsResources,
-	...javascriptAdvancedConditionalsResources
+	...javascriptAdvancedConditionalsResources,
+	...javascriptDrawingResources,
+	...javascriptNestedLoopsResources
 ];
 
 export function javascriptCourseResource(value: string) {

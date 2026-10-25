@@ -1,0 +1,755 @@
+{
+  "revision": "jss8-originals-adapted-v1",
+  "courseId": "javascript-level-1-javascript-superstar",
+  "moduleId": "javascript-level-1-javascript-superstar-jss8-nested-loops",
+  "resources": [
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss8-nested-loops",
+      "itemId": "javascript-level-1-javascript-superstar-jss8-nested-loops-curriculum-jss8-project-1-multiplication-tables",
+      "assignmentTitle": "JSS8 Project 1: Multiplication Tables",
+      "section": "core",
+      "project": "multiplication-tables",
+      "title": "Multiplication Tables",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/WNrXoBj"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "nested-loops-v1/multiplication-tables/starter/index.html.txt",
+          "byteLength": 323,
+          "sha256": "c0ef407abe80382ede2e29204bda389938f7662ca8a921cbf1a378fe5e3dd4be"
+        },
+        {
+          "name": "script.js",
+          "path": "nested-loops-v1/multiplication-tables/starter/script.js.txt",
+          "byteLength": 272,
+          "sha256": "627b46b2f9031abc99fd976d54e0b226d5ac4b4b90df5d0547d3ec323a922cbb"
+        },
+        {
+          "name": "styles.css",
+          "path": "nested-loops-v1/multiplication-tables/starter/styles.css.txt",
+          "byteLength": 261,
+          "sha256": "db722ddac0f25590eca9e2413d2e5ffc2a9afa2c5b45849daae3b44d012e68c5"
+        },
+        {
+          "name": "README.md",
+          "path": "nested-loops-v1/multiplication-tables/starter/README.md.txt",
+          "byteLength": 715,
+          "sha256": "eb6828d417c635ff4d09259dfbc85bea33d5e6d8ebaf4fc6b904dd699b1ed6dd"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "aae44f36b82f2edb98760f1201102c8e0c1e05489de14df1042002929155d365",
+      "originalCapture": "multiplication-tables-starter.json",
+      "sourceCorrections": [
+        "Replace the animated random-color SVG text helper with stable, wrapping, monospace D3 text output; keep exercise output values and order",
+        "Bundle the original D3 5.16.0 dependency for offline use",
+        "Label the empty exercise as a starter"
+      ],
+      "expectedScriptSHA256": "627b46b2f9031abc99fd976d54e0b226d5ac4b4b90df5d0547d3ec323a922cbb",
+      "intentionalRuntimeError": false,
+      "viewBox": null
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss8-nested-loops",
+      "itemId": "javascript-level-1-javascript-superstar-jss8-nested-loops-curriculum-jss8-project-1-multiplication-tables",
+      "assignmentTitle": "JSS8 Project 1: Multiplication Tables",
+      "section": "core",
+      "project": "multiplication-tables",
+      "title": "Multiplication Tables",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/431a3c1e61b0fe9d0e6fa2e16e6d37f6",
+        "https://codepen.io/junilearning/pen/KKVwyGg/431a3c1e61b0fe9d0e6fa2e16e6d37f6"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "nested-loops-v1/multiplication-tables/reference/index.html.txt",
+          "byteLength": 323,
+          "sha256": "c0ef407abe80382ede2e29204bda389938f7662ca8a921cbf1a378fe5e3dd4be"
+        },
+        {
+          "name": "script.js",
+          "path": "nested-loops-v1/multiplication-tables/reference/script.js.txt",
+          "byteLength": 394,
+          "sha256": "f9847a4848c3e6802424f18f61e707e12e9c515c2ccd7f8be9cdf8f78897cfc5"
+        },
+        {
+          "name": "styles.css",
+          "path": "nested-loops-v1/multiplication-tables/reference/styles.css.txt",
+          "byteLength": 261,
+          "sha256": "db722ddac0f25590eca9e2413d2e5ffc2a9afa2c5b45849daae3b44d012e68c5"
+        },
+        {
+          "name": "README.md",
+          "path": "nested-loops-v1/multiplication-tables/reference/README.md.txt",
+          "byteLength": 749,
+          "sha256": "ca6de27ef66a1bfcd687ca8cd6179f5d90dd382d36f41e985101cc4ed266e93d"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "b3964916ac89e8868b0c38675c040526affa2c6727437ef1c1ba85dbfc016ccd",
+      "originalCapture": "multiplication-tables-reference.json",
+      "sourceCorrections": [
+        "Replace the animated random-color SVG text helper with stable, wrapping, monospace D3 text output; keep exercise output values and order",
+        "Bundle the original D3 5.16.0 dependency for offline use",
+        "Use one space between products and trim the row so all ten products remain on one phone-sized line"
+      ],
+      "expectedScriptSHA256": "f9847a4848c3e6802424f18f61e707e12e9c515c2ccd7f8be9cdf8f78897cfc5",
+      "intentionalRuntimeError": false,
+      "viewBox": null
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss8-nested-loops",
+      "itemId": "javascript-level-1-javascript-superstar-jss8-nested-loops-curriculum-jss8-project-2-pattern-production",
+      "assignmentTitle": "JSS8 Project 2: Pattern Production",
+      "section": "core",
+      "project": "pattern-production",
+      "title": "Pattern Production",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/pogdRva"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "nested-loops-v1/pattern-production/starter/index.html.txt",
+          "byteLength": 320,
+          "sha256": "3de1916dfc9ac012408bf0212c7e4181cc96b0b9e42e07a2a7aa43aa56e27261"
+        },
+        {
+          "name": "script.js",
+          "path": "nested-loops-v1/pattern-production/starter/script.js.txt",
+          "byteLength": 521,
+          "sha256": "0da5f0aa7cc28bb8e897569edf96bc5163a4833ce3602a1d3e4dd8c3de335c9e"
+        },
+        {
+          "name": "styles.css",
+          "path": "nested-loops-v1/pattern-production/starter/styles.css.txt",
+          "byteLength": 261,
+          "sha256": "db722ddac0f25590eca9e2413d2e5ffc2a9afa2c5b45849daae3b44d012e68c5"
+        },
+        {
+          "name": "README.md",
+          "path": "nested-loops-v1/pattern-production/starter/README.md.txt",
+          "byteLength": 1017,
+          "sha256": "d906a880a226123296fa6585a5f2cf430958e1109cba8cd044739f1f8ea90821"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "afb6bde7fd75297423a3012f2f5168bb37fafef535c3f821f337d71aaea400bd",
+      "originalCapture": "pattern-production-starter.json",
+      "sourceCorrections": [
+        "Replace the animated random-color SVG text helper with stable, wrapping, monospace D3 text output; keep exercise output values and order",
+        "Bundle the original D3 5.16.0 dependency for offline use"
+      ],
+      "expectedScriptSHA256": "0da5f0aa7cc28bb8e897569edf96bc5163a4833ce3602a1d3e4dd8c3de335c9e",
+      "intentionalRuntimeError": false,
+      "viewBox": null
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss8-nested-loops",
+      "itemId": "javascript-level-1-javascript-superstar-jss8-nested-loops-curriculum-jss8-project-2-pattern-production",
+      "assignmentTitle": "JSS8 Project 2: Pattern Production",
+      "section": "core",
+      "project": "pattern-production",
+      "title": "Pattern Production",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/9b713f294e21887a1a2c9b528764bd4b",
+        "https://codepen.io/junilearning/pen/YzwPENj/9b713f294e21887a1a2c9b528764bd4b"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "nested-loops-v1/pattern-production/reference/index.html.txt",
+          "byteLength": 320,
+          "sha256": "3de1916dfc9ac012408bf0212c7e4181cc96b0b9e42e07a2a7aa43aa56e27261"
+        },
+        {
+          "name": "script.js",
+          "path": "nested-loops-v1/pattern-production/reference/script.js.txt",
+          "byteLength": 1294,
+          "sha256": "743c0eb55d2711badadd064e9a9a129d94cb8c793d4eba747a447a93f8f3a950"
+        },
+        {
+          "name": "styles.css",
+          "path": "nested-loops-v1/pattern-production/reference/styles.css.txt",
+          "byteLength": 261,
+          "sha256": "db722ddac0f25590eca9e2413d2e5ffc2a9afa2c5b45849daae3b44d012e68c5"
+        },
+        {
+          "name": "README.md",
+          "path": "nested-loops-v1/pattern-production/reference/README.md.txt",
+          "byteLength": 1051,
+          "sha256": "db9912c2a908abc7016d71257d30d791ab2417721c9e50c76a047c8810156560"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "5ec76fd75c26efb58dff9dd49c87cae195be5ca27ded5c0a081b45c5557ef5a4",
+      "originalCapture": "pattern-production-reference.json",
+      "sourceCorrections": [
+        "Replace the animated random-color SVG text helper with stable, wrapping, monospace D3 text output; keep exercise output values and order",
+        "Bundle the original D3 5.16.0 dependency for offline use",
+        "Start the text pattern at row one to remove the unintended empty first line",
+        "Fit the original 15 Pac-Men and unchanged arc/placement geometry in a named responsive canvas"
+      ],
+      "expectedScriptSHA256": "743c0eb55d2711badadd064e9a9a129d94cb8c793d4eba747a447a93f8f3a950",
+      "intentionalRuntimeError": false,
+      "viewBox": "0 0 800 850"
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss8-nested-loops",
+      "itemId": "javascript-level-1-javascript-superstar-jss8-nested-loops-curriculum-jss8-project-3-armstrong-numbers",
+      "assignmentTitle": "JSS8 Project 3: Armstrong Numbers",
+      "section": "core",
+      "project": "armstrong-numbers",
+      "title": "Armstrong Numbers",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/eYJegdP"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "nested-loops-v1/armstrong-numbers/starter/index.html.txt",
+          "byteLength": 319,
+          "sha256": "5018be0d7dddbdc2162ba97aa07caad2df333fe69d07d7094dc3e1c0d9e6a1de"
+        },
+        {
+          "name": "script.js",
+          "path": "nested-loops-v1/armstrong-numbers/starter/script.js.txt",
+          "byteLength": 377,
+          "sha256": "3bcd0bcaf7aba20ccd4df815bf1419bfdecf9553867858e6ba1862e7724eb846"
+        },
+        {
+          "name": "styles.css",
+          "path": "nested-loops-v1/armstrong-numbers/starter/styles.css.txt",
+          "byteLength": 261,
+          "sha256": "db722ddac0f25590eca9e2413d2e5ffc2a9afa2c5b45849daae3b44d012e68c5"
+        },
+        {
+          "name": "README.md",
+          "path": "nested-loops-v1/armstrong-numbers/starter/README.md.txt",
+          "byteLength": 854,
+          "sha256": "906d3d197f61eea2bb71687f8d2a94e9d592cb6aa44e0be0717f54ddcab51a0e"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "54cf3fe610311047670593825c5b3511b73316ba138034c72e22092fa7e2a5bf",
+      "originalCapture": "armstrong-numbers-starter.json",
+      "sourceCorrections": [
+        "Replace the animated random-color SVG text helper with stable, wrapping, monospace D3 text output; keep exercise output values and order",
+        "Bundle the original D3 5.16.0 dependency for offline use"
+      ],
+      "expectedScriptSHA256": "3bcd0bcaf7aba20ccd4df815bf1419bfdecf9553867858e6ba1862e7724eb846",
+      "intentionalRuntimeError": false,
+      "viewBox": null
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss8-nested-loops",
+      "itemId": "javascript-level-1-javascript-superstar-jss8-nested-loops-curriculum-jss8-project-3-armstrong-numbers",
+      "assignmentTitle": "JSS8 Project 3: Armstrong Numbers",
+      "section": "core",
+      "project": "armstrong-numbers",
+      "title": "Armstrong Numbers",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/e12716e0c3e1cbfc0405c9da2e245b8a",
+        "https://codepen.io/junilearning/pen/xxZbPNJ/e12716e0c3e1cbfc0405c9da2e245b8a"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "nested-loops-v1/armstrong-numbers/reference/index.html.txt",
+          "byteLength": 319,
+          "sha256": "5018be0d7dddbdc2162ba97aa07caad2df333fe69d07d7094dc3e1c0d9e6a1de"
+        },
+        {
+          "name": "script.js",
+          "path": "nested-loops-v1/armstrong-numbers/reference/script.js.txt",
+          "byteLength": 1329,
+          "sha256": "f2f0f395ecc4813e318e9941a49006a59574b3e3c11ebfee035200f9ce564c2d"
+        },
+        {
+          "name": "styles.css",
+          "path": "nested-loops-v1/armstrong-numbers/reference/styles.css.txt",
+          "byteLength": 261,
+          "sha256": "db722ddac0f25590eca9e2413d2e5ffc2a9afa2c5b45849daae3b44d012e68c5"
+        },
+        {
+          "name": "README.md",
+          "path": "nested-loops-v1/armstrong-numbers/reference/README.md.txt",
+          "byteLength": 1079,
+          "sha256": "a0b22829554440ff1b266f60bece85291ee9ee788585221a78f4d4186bbb9b1c"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "d9d0f66b0bbe011748c4b4244358858e618299b5b8bc8f59af80c1eabe5408dd",
+      "originalCapture": "armstrong-numbers-reference.json",
+      "sourceCorrections": [
+        "Replace the animated random-color SVG text helper with stable, wrapping, monospace D3 text output; keep exercise output values and order",
+        "Bundle the original D3 5.16.0 dependency for offline use",
+        "Keep both original search algorithms as separately callable alternatives and run one so each match prints once"
+      ],
+      "expectedScriptSHA256": "f2f0f395ecc4813e318e9941a49006a59574b3e3c11ebfee035200f9ce564c2d",
+      "intentionalRuntimeError": false,
+      "viewBox": null
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss8-nested-loops",
+      "itemId": "javascript-level-1-javascript-superstar-jss8-nested-loops-supplemental-jss8-supplemental-project-1-archery-simulator",
+      "assignmentTitle": "JSS8 Supplemental Project 1: Archery Simulator",
+      "section": "supplemental",
+      "project": "archery-simulator",
+      "title": "Archery Simulator",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/xxZPgdv"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "nested-loops-v1/archery-simulator/starter/index.html.txt",
+          "byteLength": 319,
+          "sha256": "10d9bd766155e0a76d31c8e759b94257657e2df08cff7982b72c9016660b8eae"
+        },
+        {
+          "name": "script.js",
+          "path": "nested-loops-v1/archery-simulator/starter/script.js.txt",
+          "byteLength": 797,
+          "sha256": "550e28b1ff26cdbd24480cf072a10ea07d55a83b24ab9eb0e2961a82a731e781"
+        },
+        {
+          "name": "styles.css",
+          "path": "nested-loops-v1/archery-simulator/starter/styles.css.txt",
+          "byteLength": 261,
+          "sha256": "db722ddac0f25590eca9e2413d2e5ffc2a9afa2c5b45849daae3b44d012e68c5"
+        },
+        {
+          "name": "README.md",
+          "path": "nested-loops-v1/archery-simulator/starter/README.md.txt",
+          "byteLength": 789,
+          "sha256": "9863df284db7ad2036d8cd140fc2cd095fda86fc70027dbab23e32e39d832bcc"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "6dba35205c897816ab40f1dc7dd080f4489dd0c13ea69a08a0664bbe29c56a55",
+      "originalCapture": "archery-simulator-starter.json",
+      "sourceCorrections": [
+        "Replace the animated random-color SVG text helper with stable, wrapping, monospace D3 text output; keep exercise output values and order",
+        "Bundle the original D3 5.16.0 dependency for offline use"
+      ],
+      "expectedScriptSHA256": "550e28b1ff26cdbd24480cf072a10ea07d55a83b24ab9eb0e2961a82a731e781",
+      "intentionalRuntimeError": false,
+      "viewBox": null
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss8-nested-loops",
+      "itemId": "javascript-level-1-javascript-superstar-jss8-nested-loops-supplemental-jss8-supplemental-project-1-archery-simulator",
+      "assignmentTitle": "JSS8 Supplemental Project 1: Archery Simulator",
+      "section": "supplemental",
+      "project": "archery-simulator",
+      "title": "Archery Simulator",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/2882e6ebc5b146358627d5c4f5afd90c",
+        "https://codepen.io/junilearning/pen/yLeOYpw/2882e6ebc5b146358627d5c4f5afd90c"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "nested-loops-v1/archery-simulator/reference/index.html.txt",
+          "byteLength": 319,
+          "sha256": "10d9bd766155e0a76d31c8e759b94257657e2df08cff7982b72c9016660b8eae"
+        },
+        {
+          "name": "script.js",
+          "path": "nested-loops-v1/archery-simulator/reference/script.js.txt",
+          "byteLength": 1336,
+          "sha256": "b02247feb3df8f7fb355f6380dcf06eec98fb7e73b1cada33318fe6d7f5f9575"
+        },
+        {
+          "name": "styles.css",
+          "path": "nested-loops-v1/archery-simulator/reference/styles.css.txt",
+          "byteLength": 261,
+          "sha256": "db722ddac0f25590eca9e2413d2e5ffc2a9afa2c5b45849daae3b44d012e68c5"
+        },
+        {
+          "name": "README.md",
+          "path": "nested-loops-v1/archery-simulator/reference/README.md.txt",
+          "byteLength": 823,
+          "sha256": "bbc9cae40b9d85e3effda10a163367f87d4f1d261c1b664c2db37ba135b5654d"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "a323de6d79e0c69e4b706a59109b338928895c88eccba3e05a6cc5eb0c87faac",
+      "originalCapture": "archery-simulator-reference.json",
+      "sourceCorrections": [
+        "Replace the animated random-color SVG text helper with stable, wrapping, monospace D3 text output; keep exercise output values and order",
+        "Bundle the original D3 5.16.0 dependency for offline use",
+        "Correct the shot-label spelling while retaining five rounds, three arrows and the original one-in-three hit calculation"
+      ],
+      "expectedScriptSHA256": "b02247feb3df8f7fb355f6380dcf06eec98fb7e73b1cada33318fe6d7f5f9575",
+      "intentionalRuntimeError": false,
+      "viewBox": null
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss8-nested-loops",
+      "itemId": "javascript-level-1-javascript-superstar-jss8-nested-loops-supplemental-jss8-supplemental-project-2-tower-of-boxes",
+      "assignmentTitle": "JSS8 Supplemental Project 2: Tower of Boxes",
+      "section": "supplemental",
+      "project": "tower-of-boxes",
+      "title": "Tower of Boxes",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/PoZOWWp"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "nested-loops-v1/tower-of-boxes/starter/index.html.txt",
+          "byteLength": 316,
+          "sha256": "896077bc870c843404ca6f9dbe63d517e83d6e9c5f7a1dbef2d4319f1224859c"
+        },
+        {
+          "name": "script.js",
+          "path": "nested-loops-v1/tower-of-boxes/starter/script.js.txt",
+          "byteLength": 407,
+          "sha256": "35fd20fcba39a77c342c50dde94bbf97e29071dcf6f4b084d3324f7ac494eeef"
+        },
+        {
+          "name": "styles.css",
+          "path": "nested-loops-v1/tower-of-boxes/starter/styles.css.txt",
+          "byteLength": 261,
+          "sha256": "db722ddac0f25590eca9e2413d2e5ffc2a9afa2c5b45849daae3b44d012e68c5"
+        },
+        {
+          "name": "README.md",
+          "path": "nested-loops-v1/tower-of-boxes/starter/README.md.txt",
+          "byteLength": 775,
+          "sha256": "cfb9805b71a46d40d72471fe385570b09d4d252f694f120af4bffdbd6acacff9"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "4b2769692ee8d7e6240176af809d79af84256469b529a1f585777841f4203ff2",
+      "originalCapture": "tower-of-boxes-starter.json",
+      "sourceCorrections": [
+        "Replace the animated random-color SVG text helper with stable, wrapping, monospace D3 text output; keep exercise output values and order",
+        "Bundle the original D3 5.16.0 dependency for offline use",
+        "Remove trailing whitespace from copied comment text"
+      ],
+      "expectedScriptSHA256": "35fd20fcba39a77c342c50dde94bbf97e29071dcf6f4b084d3324f7ac494eeef",
+      "intentionalRuntimeError": false,
+      "viewBox": null
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss8-nested-loops",
+      "itemId": "javascript-level-1-javascript-superstar-jss8-nested-loops-supplemental-jss8-supplemental-project-2-tower-of-boxes",
+      "assignmentTitle": "JSS8 Supplemental Project 2: Tower of Boxes",
+      "section": "supplemental",
+      "project": "tower-of-boxes",
+      "title": "Tower of Boxes",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/6973a709e1c0d6932da2ed1e7650d30f",
+        "https://codepen.io/junilearning/pen/wvMGdMK/6973a709e1c0d6932da2ed1e7650d30f"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "nested-loops-v1/tower-of-boxes/reference/index.html.txt",
+          "byteLength": 316,
+          "sha256": "896077bc870c843404ca6f9dbe63d517e83d6e9c5f7a1dbef2d4319f1224859c"
+        },
+        {
+          "name": "script.js",
+          "path": "nested-loops-v1/tower-of-boxes/reference/script.js.txt",
+          "byteLength": 731,
+          "sha256": "35889fd42fddf779b606dc61168f6dcbb011755304f2a59b998d5d7ec9002d8a"
+        },
+        {
+          "name": "styles.css",
+          "path": "nested-loops-v1/tower-of-boxes/reference/styles.css.txt",
+          "byteLength": 261,
+          "sha256": "db722ddac0f25590eca9e2413d2e5ffc2a9afa2c5b45849daae3b44d012e68c5"
+        },
+        {
+          "name": "README.md",
+          "path": "nested-loops-v1/tower-of-boxes/reference/README.md.txt",
+          "byteLength": 809,
+          "sha256": "44e00999b5d7671d24222392f6fd999dd3cffa3564cedd3e44101a47ff3e91aa"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "75136c952b879cacbe54ceae9d47ff4f29835fcc85f911d1d0be4a15686012c0",
+      "originalCapture": "tower-of-boxes-reference.json",
+      "sourceCorrections": [
+        "Replace the animated random-color SVG text helper with stable, wrapping, monospace D3 text output; keep exercise output values and order",
+        "Bundle the original D3 5.16.0 dependency for offline use",
+        "Remove trailing whitespace from copied comment text"
+      ],
+      "expectedScriptSHA256": "35889fd42fddf779b606dc61168f6dcbb011755304f2a59b998d5d7ec9002d8a",
+      "intentionalRuntimeError": false,
+      "viewBox": null
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss8-nested-loops",
+      "itemId": "javascript-level-1-javascript-superstar-jss8-nested-loops-supplemental-jss8-supplemental-project-3-shield-debugging",
+      "assignmentTitle": "JSS8 Supplemental Project 3: Shield Debugging",
+      "section": "supplemental",
+      "project": "shield-debugging",
+      "title": "Shield Debugging",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/pogyeaj"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "nested-loops-v1/shield-debugging/starter/index.html.txt",
+          "byteLength": 318,
+          "sha256": "d43b45f42347e31f71a38805dbabb548e95cba507e82b9abcad16c4555b87752"
+        },
+        {
+          "name": "script.js",
+          "path": "nested-loops-v1/shield-debugging/starter/script.js.txt",
+          "byteLength": 1607,
+          "sha256": "e980a4988d007457f15448a836f8eccd9fd4e5126c53390e4845b22e632b53ef"
+        },
+        {
+          "name": "styles.css",
+          "path": "nested-loops-v1/shield-debugging/starter/styles.css.txt",
+          "byteLength": 261,
+          "sha256": "db722ddac0f25590eca9e2413d2e5ffc2a9afa2c5b45849daae3b44d012e68c5"
+        },
+        {
+          "name": "README.md",
+          "path": "nested-loops-v1/shield-debugging/starter/README.md.txt",
+          "byteLength": 975,
+          "sha256": "17039938fe34b5ce50b8361b34922339cf0a7f2519c2fc6539732768418f572d"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "c91121cbd507d22add133790eda2b326970d4f203d712883f37cd202457f05c8",
+      "originalCapture": "shield-debugging-starter.json",
+      "sourceCorrections": [
+        "Replace the animated random-color SVG text helper with stable, wrapping, monospace D3 text output; keep exercise output values and order",
+        "Bundle the original D3 5.16.0 dependency for offline use",
+        "Add responsive canvas scaling and an accessible name; preserve original drawing geometry and intentional starter faults"
+      ],
+      "expectedScriptSHA256": "e980a4988d007457f15448a836f8eccd9fd4e5126c53390e4845b22e632b53ef",
+      "intentionalRuntimeError": true,
+      "viewBox": "0 0 2000 2000"
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss8-nested-loops",
+      "itemId": "javascript-level-1-javascript-superstar-jss8-nested-loops-supplemental-jss8-supplemental-project-3-shield-debugging",
+      "assignmentTitle": "JSS8 Supplemental Project 3: Shield Debugging",
+      "section": "supplemental",
+      "project": "shield-debugging",
+      "title": "Shield Debugging",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/1ac928d6d9d777928c4439b4262310a3",
+        "https://codepen.io/junilearning/pen/JjXbvyr/1ac928d6d9d777928c4439b4262310a3"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "nested-loops-v1/shield-debugging/reference/index.html.txt",
+          "byteLength": 318,
+          "sha256": "d43b45f42347e31f71a38805dbabb548e95cba507e82b9abcad16c4555b87752"
+        },
+        {
+          "name": "script.js",
+          "path": "nested-loops-v1/shield-debugging/reference/script.js.txt",
+          "byteLength": 1469,
+          "sha256": "c9d3f3ecc0bf286a47dfeb8e6b7ff53fd6f76331e04d59f2bcbf271bd59f3dca"
+        },
+        {
+          "name": "styles.css",
+          "path": "nested-loops-v1/shield-debugging/reference/styles.css.txt",
+          "byteLength": 261,
+          "sha256": "db722ddac0f25590eca9e2413d2e5ffc2a9afa2c5b45849daae3b44d012e68c5"
+        },
+        {
+          "name": "README.md",
+          "path": "nested-loops-v1/shield-debugging/reference/README.md.txt",
+          "byteLength": 1009,
+          "sha256": "fdb380b00719b93a8c338bbbf39029d63975c0e24fe2cc8f0ad5c54d26e447f8"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "24db5bb7a9d8d514511f483d2fb127afae9fc56c925d99ce2f15b6598d1e01e4",
+      "originalCapture": "shield-debugging-reference.json",
+      "sourceCorrections": [
+        "Replace the animated random-color SVG text helper with stable, wrapping, monospace D3 text output; keep exercise output values and order",
+        "Bundle the original D3 5.16.0 dependency for offline use",
+        "Add responsive canvas scaling and an accessible name; preserve original drawing geometry and intentional starter faults"
+      ],
+      "expectedScriptSHA256": "c9d3f3ecc0bf286a47dfeb8e6b7ff53fd6f76331e04d59f2bcbf271bd59f3dca",
+      "intentionalRuntimeError": false,
+      "viewBox": "0 0 2000 2000"
+    }
+  ]
+}

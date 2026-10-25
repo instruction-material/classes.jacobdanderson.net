@@ -1,0 +1,73 @@
+// SHIELD is making more of Captain America’s shield! However, the assembly line is broken, making it print out erratically, and not in a stacked order. Find the bugs!
+
+let width = 2000;
+let height = 2000;
+let positionX = 200;
+let positionY = 200;
+
+// Create SVG element to append to
+let svg = d3
+	.select("body")
+	.append("svg")
+	.attr("width", width)
+	.attr("height", height)
+	.attr("viewBox", "0 0 2000 2000")
+	.attr("role", "img")
+	.attr("aria-label", "Stacked Captain America shields");
+
+let y = 0;
+for (let i = 0; i < 10; i++) {
+	let x = 100;
+	for (let i = 0; j < i; j++) {
+		// Add a large circle at the top
+		svg
+			.append("circle")
+			.attr("fill", "red")
+			.attr("cx", positionX)
+			.attr("cy", positionY)
+			.attr("r", 110);
+
+		// Add a medium circle in the middle
+		svg
+			.append("circle")
+			.attr("fill", "white")
+			.attr("cx", positionX)
+			.attr("cy", positionY)
+			.attr("r", 90);
+
+		// Add a medium circle in the middle
+		svg
+			.append("circle")
+			.attr("fill", "red")
+			.attr("cx", positionX)
+			.attr("cy", positionY)
+			.attr("r", 70);
+
+		// Add a small circle to the top
+		svg
+			.append("circle")
+			.attr("fill", "blue")
+			.attr("cx", positionX)
+			.attr("cy", positionY)
+			.attr("r", 50);
+
+		let star = d3.symbol().type(d3.symbolStar).size(2000);
+
+		svg
+			.append("path")
+			.attr("d", star)
+			.attr("fill", "white")
+			.attr("transform", `translate(${positionX},${positionY})`);
+
+		positionX += 210;
+	}
+	positionY += 210;
+}
+
+// Provided output helper.
+function printToScreen(text) {
+	d3.select("body")
+		.append("pre")
+		.attr("class", "output-line")
+		.text(text);
+}

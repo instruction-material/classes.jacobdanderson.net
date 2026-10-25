@@ -1,0 +1,25 @@
+/*
+Print out a pattern of stars using a nested loop that looks like the following using printToScreen():
+	*
+	**
+	***
+	****
+	*****
+Next, do the same pattern with Pac-Men that you create using d3. The degreesToRadians(degrees) function has been provided for you.
+*/
+
+// Enter your code below this line
+
+
+
+function degreesToRadians(degrees) {
+	return (degrees * Math.PI) / 180;
+}
+
+// Provided output helper.
+function printToScreen(text) {
+	d3.select("body")
+		.append("pre")
+		.attr("class", "output-line")
+		.text(text);
+}
