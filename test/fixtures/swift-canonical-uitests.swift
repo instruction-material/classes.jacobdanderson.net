@@ -3,6 +3,11 @@ import XCTest
 
 private func courseScrollMovement(viewport: CGRect, target: CGRect, attempt: Int) -> CGFloat {
     if target.isEmpty { return attempt < 12 ? -150 : 150 }
+    let spareHeight = viewport.height - target.height
+    if spareHeight >= 0 && spareHeight < 120 && !viewport.contains(target) {
+        // Center tall content instead of jumping past its narrow readable interval.
+        return max(-180, min(180, viewport.midY - target.midY))
+    }
     if target.maxY > viewport.maxY {
         return -min(180, max(120, target.maxY - viewport.maxY + 8))
     }
@@ -24,6 +29,17 @@ private func courseScrollStart(viewport: CGRect, target: CGRect, movement: CGFlo
 }
 
 final class CanonicalCourseUITests: XCTestCase {
+    @MainActor
+    private func selectTab(_ title: String, in app: XCUIApplication) {
+        let tab = app.tabBars.buttons[title]
+        XCTAssertTrue(tab.waitForExistence(timeout: 5))
+        XCTAssertTrue(tab.isHittable)
+        // Keep contact longer than the 50 ms tap in the captured failure.
+        tab.press(forDuration: 0.15)
+        XCTAssertTrue(app.navigationBars[title].waitForExistence(timeout: 5))
+        XCTAssertTrue(tab.isSelected)
+    }
+
     @MainActor
     private func button(_ title: String, in app: XCUIApplication) -> XCUIElement {
         app.buttons.matching(NSPredicate(format: "label CONTAINS %@", title)).firstMatch
@@ -108,14 +124,14 @@ final class CanonicalCourseUITests: XCTestCase {
     @MainActor
     private func hobby(in app: XCUIApplication, reference: Bool) {
         XCTAssertTrue(app.navigationBars["Home"].waitForExistence(timeout: 15))
-        app.tabBars.buttons["Schedule"].tap()
+        selectTab("Schedule", in: app)
         XCTAssertTrue(app.navigationBars["Schedule"].waitForExistence(timeout: 5))
         reveal(app.staticTexts["Tuesday"], in: app)
-        app.tabBars.buttons["Favorites"].tap()
+        selectTab("Favorites", in: app)
         let empty = reference ? "No Favorites Yet" : "Favorites Coming Soon"
         XCTAssertTrue(app.staticTexts[empty].waitForExistence(timeout: 5))
         retain("Hobby empty favorites", in: app)
-        app.tabBars.buttons["Home"].tap()
+        selectTab("Home", in: app)
         if !reference { return }
         let activity = button("Photo Walk", in: app)
         reveal(activity, in: app)
@@ -135,13 +151,13 @@ final class CanonicalCourseUITests: XCTestCase {
         retain("Complete Hobby remove action", in: app)
         retain("Hobby saved detail", in: app)
         app.navigationBars.buttons.firstMatch.tap()
-        app.tabBars.buttons["Favorites"].tap()
+        selectTab("Favorites", in: app)
         XCTAssertTrue(app.staticTexts["Photo Walk"].waitForExistence(timeout: 5))
         retain("Hobby shared favorite state", in: app)
         app.terminate()
         app.launch()
         XCTAssertTrue(app.navigationBars["Home"].waitForExistence(timeout: 15))
-        app.tabBars.buttons["Favorites"].tap()
+        selectTab("Favorites", in: app)
         XCTAssertTrue(app.staticTexts[empty].waitForExistence(timeout: 5))
     }
 
@@ -184,18 +200,18 @@ final class CanonicalCourseUITests: XCTestCase {
             revealFully(app.staticTexts["Prepare TestFlight build"], in: app)
         }
         retain("Capstone checklist", in: app)
-        app.tabBars.buttons["Explore"].tap()
+        selectTab("Explore", in: app)
         XCTAssertTrue(app.navigationBars["Explore"].waitForExistence(timeout: 5))
         let explore = reference ? "Dashboard summary" : "Explore Screen Placeholder"
         reveal(app.staticTexts[explore], in: app)
-        app.tabBars.buttons["Settings"].tap()
+        selectTab("Settings", in: app)
         XCTAssertTrue(app.navigationBars["Settings"].waitForExistence(timeout: 5))
         let metadata = reference
             ? app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "Internal TestFlight")).firstMatch
             : app.staticTexts["Settings Placeholder"]
         revealFully(metadata, in: app)
         retain("Capstone informational metadata", in: app)
-        app.tabBars.buttons["Home"].tap()
+        selectTab("Home", in: app)
         if reference {
             let task = app.switches["Prepare TestFlight build"]
             reveal(task, in: app)
