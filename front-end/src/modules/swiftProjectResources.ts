@@ -29,7 +29,7 @@ export const swiftCanonicalProjectsRevision =
 	"18bb2a5055a144cf545fa416f6bde6f00e863f36";
 export const swiftGalleryRevision = "507812397086107078b67dc193507e7c220f57a3";
 export const swiftGalleryRoot = `https://github.com/instruction-material/Swift/tree/${swiftGalleryRevision}/SAD2-Media-Gallery-App`;
-export const swiftHobbyRevision = "97028a411bf4752f06ce7bab228211958b3fca9b";
+export const swiftHobbyRevision = "9c4599f12037847388a7760e82409c4481e0faf7";
 export const swiftHobbyRoot = `https://github.com/instruction-material/Swift/tree/${swiftHobbyRevision}/SAD3-Multi-Tab-Hobby-App`;
 export const swiftMapRoot = `https://github.com/instruction-material/Swift/tree/${swiftCanonicalProjectsRevision}/SAD4-Map-Places-App`;
 export const swiftCapstoneRevision = "f562fa060de745466cfda5cb55e84c1811496ec5";
@@ -140,6 +140,9 @@ export function swiftCourseResource(url: string) {
 				pack.revision,
 				...(pack.pack === swiftWelcomePack
 					? ["d632ceb25abfac35ec4604babc9ea385a6afbcc2"]
+					: []),
+				...(pack.projectKey === "multi-tab-hobby"
+					? ["97028a411bf4752f06ce7bab228211958b3fca9b"]
 					: []),
 				...(pack.pack === swiftTrackerPack ||
 				pack.pack === swiftDataTrackerPack
