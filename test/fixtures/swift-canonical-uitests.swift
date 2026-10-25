@@ -176,8 +176,8 @@ final class CanonicalCourseUITests: XCTestCase {
         revealFully(cafe, in: app)
         cafe.tap()
         let detail = reference
-            ? "Useful for practicing map annotations, category tags, and place metadata."
-            : "TODO: Add a stronger detail card with visit notes and a callout style."
+            ? "Sketchbook break: draw one detail from the surroundings."
+            : "No visit notes yet."
         revealFully(app.staticTexts[detail], in: app)
         retain("Selected local place", in: app)
         if reference {
@@ -185,7 +185,7 @@ final class CanonicalCourseUITests: XCTestCase {
                 NSPredicate(format: "label CONTAINS %@", "Harbor Overlook")).firstMatch
             revealFully(harbor, in: app)
             harbor.tap()
-            revealFully(app.staticTexts["This stop works well for combining a scenic map card with a compact planning note."], in: app)
+            revealFully(app.staticTexts["Photo plan: compare the light before and after sunset."], in: app)
             XCTAssertFalse(app.staticTexts[detail].exists)
             retain("Changed selected place", in: app)
         }
