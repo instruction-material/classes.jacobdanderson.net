@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My JavaScript Art Part II</title>
+<link rel="stylesheet" href="vendor/materialize.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main><div class="section pink">
+  <h1 class="center">My JavaScript Art Part II</h1>
+</div>
+<div class="section grey lighten-2">
+  <h2 class="center">Rainbow</h2>
+<p id="rainbow-description">Seven colored arcs reveal in sequence.</p>
+
+  <div id="rainbow" class="center"></div>
+</div>
+<div class="section">
+  <h2 class="center black-text">Captain America Shield</h2>
+<p id="shield-description">Four concentric circles and a star form a shield.</p>
+  <div id="shield" class="center"></div>
+</div>
+<div class="section blue">
+  <h2 class="center white-text">Pacman</h2>
+<p id="pacman-description">Two arcs use opposite angle directions.</p>
+
+  <div id="pacman" class="center"></div>
+</div>
+<div class="section black">
+  <h2 class="center white-text">Snowman</h2>
+<p id="snowman-description">Circles, a smile arc and line arms form a snowman.</p>
+
+  <div id="snowman" class="center"></div>
+</div></main>
+<script src="vendor/d3.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

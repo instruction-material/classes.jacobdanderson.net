@@ -1421,6 +1421,88 @@ jobs:
                   if-no-files-found: error
                   retention-days: 7
 
+            - name: Verify JavaScript HTML/CSS project imports
+              env:
+                  JAVASCRIPT_HTML_CSS_BROWSER_DIR: output/javascript-html-css-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-html-css-screenshots
+              run: node --test test/javascript-html-css-course-browser.test.mjs
+
+            - name: Run JavaScript HTML/CSS exports offline
+              env:
+                  JAVASCRIPT_HTML_CSS_BROWSER_DIR: output/javascript-html-css-browser
+              run: node --test test/javascript-html-css-exported-browser.test.mjs
+
+            - name: Retain JavaScript HTML/CSS source and browser evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-html-css-workflows
+                  path: |
+                      output/javascript-html-css-browser/
+                      output/javascript-html-css-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify More HTML/CSS project imports and saved edits
+              env:
+                  JAVASCRIPT_MORE_HTML_CSS_BROWSER_DIR: output/javascript-more-html-css-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-more-html-css-screenshots
+              run: node --test test/javascript-more-html-css-course-browser.test.mjs
+            - name: Execute More HTML/CSS exports offline
+              env:
+                  JAVASCRIPT_MORE_HTML_CSS_BROWSER_DIR: output/javascript-more-html-css-browser
+              run: node --test test/javascript-more-html-css-exported-browser.test.mjs
+            - name: Retain More HTML/CSS original workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-more-html-css-workflows
+                  path: |
+                      output/javascript-more-html-css-browser/
+                      output/javascript-more-html-css-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify Basic Layout project imports and saved edits
+              env:
+                  JAVASCRIPT_BASIC_LAYOUT_BROWSER_DIR: output/javascript-basic-layout-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-basic-layout-screenshots
+              run: node --test test/javascript-basic-layout-course-browser.test.mjs
+            - name: Execute Basic Layout exports offline
+              env:
+                  JAVASCRIPT_BASIC_LAYOUT_BROWSER_DIR: output/javascript-basic-layout-browser
+              run: node --test test/javascript-basic-layout-exported-browser.test.mjs
+            - name: Retain Basic Layout original workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-basic-layout-workflows
+                  path: |
+                      output/javascript-basic-layout-browser/
+                      output/javascript-basic-layout-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify animation project imports, consent and saved source
+              env:
+                  JAVASCRIPT_ANIMATION_BROWSER_DIR: output/javascript-animation-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-animation-screenshots
+              run: node --test test/javascript-animation-course-browser.test.mjs
+            - name: Execute animation exports offline with both motion preferences
+              env:
+                  JAVASCRIPT_ANIMATION_BROWSER_DIR: output/javascript-animation-browser
+              run: node --test test/javascript-animation-exported-browser.test.mjs
+            - name: Retain original animation workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-animation-workflows
+                  if-no-files-found: error
+                  path: |
+                      output/javascript-animation-browser/
+                      output/javascript-animation-screenshots/
+                  retention-days: 7
+
             - name: Verify Network Systems foundation imports and notebook reuse
               env:
                   NETWORK_BROWSER_EXPORT_PROOF_DIR: output/network-exports

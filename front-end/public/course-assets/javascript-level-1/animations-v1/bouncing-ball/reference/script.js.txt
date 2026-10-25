@@ -1,0 +1,31 @@
+const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Make a ball that moves across the screen and then comes back to its starting position.
+
+// Solution
+
+let svg = d3
+	.select("body")
+	.append("svg")
+	.attr("width", 960)
+	.attr("height", 500)
+	.attr("viewBox", "0 0 960 500")
+	.attr("role", "img")
+	.attr("aria-label", "Ball traveling horizontally and returning to its start");
+
+let ball = svg.append("circle")
+	.attr("fill", "steelblue")
+	.attr("r", 20);
+
+ball
+	.attr("cx", 40)
+	.attr("cy", 250);
+
+if (!reducedMotion) {
+	ball.transition()
+	.duration(2000)
+	.attr("cx", 920)
+	.transition()
+	.duration(2000)
+	.attr("cx", 40);
+}

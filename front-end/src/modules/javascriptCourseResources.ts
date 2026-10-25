@@ -1,10 +1,14 @@
 import type { PythonIdeFile } from "@/modules/pythonIde";
 import { javascriptAdvancedConditionalsResources } from "@/modules/javascriptAdvancedConditionalsResources";
+import { javascriptAnimationResources } from "@/modules/javascriptAnimationResources";
+import { javascriptBasicLayoutResources } from "@/modules/javascriptBasicLayoutResources";
 import { javascriptCombiningResources } from "@/modules/javascriptCombiningResources";
 import { javascriptConditionalsResources } from "@/modules/javascriptConditionalsResources";
 import { javascriptDrawingResources } from "@/modules/javascriptDrawingResources";
 import { javascriptFirstModuleResources } from "@/modules/javascriptFirstModuleResources";
+import { javascriptHtmlCssResources } from "@/modules/javascriptHtmlCssResources";
 import { javascriptLoopsResources } from "@/modules/javascriptLoopsResources";
+import { javascriptMoreHtmlCssResources } from "@/modules/javascriptMoreHtmlCssResources";
 import { javascriptNestedLoopsResources } from "@/modules/javascriptNestedLoopsResources";
 import { javascriptOperatorsResources } from "@/modules/javascriptOperatorsResources";
 
@@ -32,10 +36,18 @@ const roles: readonly CourseRole[] = [
 	...javascriptConditionalsResources,
 	...javascriptAdvancedConditionalsResources,
 	...javascriptDrawingResources,
-	...javascriptNestedLoopsResources
+	...javascriptNestedLoopsResources,
+	...javascriptHtmlCssResources,
+	...javascriptAnimationResources,
+	...javascriptMoreHtmlCssResources,
+	...javascriptBasicLayoutResources
 ];
 
 export function javascriptCourseResource(value: string) {
+	if (value.startsWith("/course-assets/javascript-level-1/")) {
+		const selected = roles.find(role => role.urls.includes(value));
+		return selected ? { ...selected, courseId } : null;
+	}
 	let url: URL;
 	try {
 		url = new URL(value);

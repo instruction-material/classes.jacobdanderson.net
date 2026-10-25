@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Table Documentation Dive</title>
+<link rel="stylesheet" href="vendor/materialize.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="container"><h1>Table Documentation Dive</h1>
+<table class="highlight centered">
+  <caption>2019 NFL First Team All-Pro Offense</caption>
+  <thead>
+    <tr>
+      <th scope="col">Player's Name</th>
+      <th scope="col">Team</th>
+      <th scope="col">Position</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">
+        <a href="https://en.wikipedia.org/wiki/Lamar_Jackson">
+          Lamar Jackson
+        </a>
+      </th>
+      <td>Baltimore Ravens</td>
+      <td>Quarterback</td>
+    </tr>
+    <tr>
+      <th scope="row">
+        <a href="https://en.wikipedia.org/wiki/Christian_McCaffrey">
+          Christian McCaffrey
+        </a>
+      </th>
+      <td>Carolina Panthers</td>
+      <td>Running Back/Flex</td>
+    </tr>
+    <tr>
+      <th scope="row">
+        <a href="https://en.wikipedia.org/wiki/George_Kittle">
+          George Kittle
+        </a>
+      </th>
+      <td>San Francisco 49ers</td>
+      <td>Tight End</td>
+    </tr>
+    <tr>
+      <th scope="row">
+        <a href="https://en.wikipedia.org/wiki/Michael_Thomas_(wide_receiver,_born_1993)">
+          Michael Thomas
+        </a>
+      </th>
+      <td>New Orleans Saints</td>
+      <td>Wide Receiver</td>
+    </tr>
+    <tr>
+      <th scope="row">
+        <a href="https://en.wikipedia.org/wiki/DeAndre_Hopkins">
+          DeAndre Hopkins
+        </a>
+      </th>
+      <td>Houston Texans</td>
+      <td>Wide Receiver</td>
+    </tr>
+    <tr>
+      <th scope="row">
+        <a href="https://en.wikipedia.org/wiki/Ronnie_Stanley">
+          Ronnie Stanley
+        </a>
+      </th>
+      <td>Baltimore Ravens</td>
+      <td>Left Tackle</td>
+    </tr>
+    <tr>
+      <th scope="row">
+        <a href="https://en.wikipedia.org/wiki/Ryan_Ramczyk">
+          Ryan Ramczyk
+        </a>
+      </th>
+      <td>New Orleans Saints</td>
+      <td>Right Tackle</td>
+    </tr>
+    <tr>
+      <th scope="row">
+        <a href="https://en.wikipedia.org/wiki/Quenton_Nelson">
+          Quenton Nelson
+        </a>
+      </th>
+      <td>Indianapolis Colts</td>
+      <td>Left Guard</td>
+    </tr>
+    <tr>
+      <th scope="row">
+        <a href="https://en.wikipedia.org/wiki/Zack_Martin">
+          Zack Martin
+        </a>
+      </th>
+      <td>Dallas Cowboys</td>
+      <td>Right Guard</td>
+    </tr>
+    <tr>
+      <th scope="row">
+        <a href="https://en.wikipedia.org/wiki/Jason_Kelce">
+          Jason Kelce
+        </a>
+      </th>
+      <td>Philadelphia Eagles</td>
+      <td>Center</td>
+    </tr>
+  </tbody>
+</table>
+<p><a href="https://www.nfl.com/news/2019-all-pro-team-jackson-mccaffrey-highlight-roster-0ap3000001094130">2019 NFL/AP selections</a></p></main>
+</body>
+</html>

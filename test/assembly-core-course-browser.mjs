@@ -490,10 +490,9 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 						/Mac/.test(navigator.platform) ? "Meta" : "Control"
 					);
 					const edits = {};
-					for (const filename of [
-						selectedFileName(primaryFile),
-						selectedFileName(taskFile)
-					]) {
+					for (const filename of (
+						definition.editFiles ?? [primaryFile, taskFile]
+					).map(selectedFileName)) {
 						await page.select(
 							"select[aria-label='Active project file']",
 							filename

@@ -101,16 +101,21 @@ final class CanonicalCourseUITests: XCTestCase {
         let desk = button("Studio Desk", in: app)
         reveal(desk, in: app)
         XCTAssertFalse(button("Sunset Poster", in: app).exists)
+        let cardTitle = app.staticTexts["Studio Desk"].firstMatch
+        revealFully(cardTitle, in: app)
+        retain("Complete Gallery card title", in: app)
         retain("Filtered gallery", in: app)
         desk.tap()
         XCTAssertTrue(app.navigationBars["Studio Desk"].waitForExistence(timeout: 5))
         let detail = reference
             ? "This entry works well for discussing composition and app branding."
             : "A clean desk setup for editing and sketching."
-        reveal(app.staticTexts[detail], in: app)
+        revealFully(app.staticTexts[detail], in: app)
+        retain("Complete Gallery description", in: app)
         if reference {
             let favorite = button("Add Favorite", in: app)
-            reveal(favorite, in: app)
+            revealFully(favorite, in: app)
+            retain("Complete Gallery favorite action", in: app)
             favorite.tap()
             XCTAssertTrue(button("Remove Favorite", in: app).waitForExistence(timeout: 5))
         }

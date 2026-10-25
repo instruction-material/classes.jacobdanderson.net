@@ -1,0 +1,419 @@
+{
+  "resources": [
+    {
+      "project": "mobile-wrappers",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/7da430381845aeb20d85bd435e7d8d03",
+      "title": "Browser tab: 23, Title: \"JSS12 Project 3: Reverse The Rainbow Solution\", URL: \"https://codepen.io/junilearning/pen/xxwJVom/7da430381845aeb20d85bd435e7d8d03\".",
+      "panels": {
+        "HTML": "<!-- Make a row full of 7 different large icons that you pick from the material icons library https://material.io/resources/icons/, and fill them with colors of the rainbow. Then, make a mobile wrapper so that when the screen size is reduced to medium and down, the material icons change their order and become small. -->\n\n<!-- Solution -->\n\n<div class=\"row center hide-on-med-and-down\">\n  <i class=\"material-icons large red-text\">face</i>\n  <i class=\"material-icons large orange-text\">bug_report</i>\n  <i class=\"material-icons large yellow-text\">fingerprint</i>\n  <i class=\"material-icons large green-text\">autorenew</i>\n  <i class=\"material-icons large blue-text\">build</i>\n  <i class=\"material-icons large indigo-text\">card_travel</i>\n  <i class=\"material-icons large purple-text\">event_seat</i>\n</div>\n<div class=\"row center hide-on-large-only\">\n  <i class=\"material-icons small purple-text\">event_seat</i>\n  <i class=\"material-icons small indigo-text\">card_travel</i>\n  <i class=\"material-icons small blue-text\">build</i>\n  <i class=\"material-icons small green-text\">autorenew</i>\n  <i class=\"material-icons small yellow-text\">fingerprint</i>\n  <i class=\"material-icons small orange-text\">bug_report</i>\n  <i class=\"material-icons small red-text\">face</i> \n</div>\n\n",
+        "CSS": "",
+        "JavaScript": ""
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 1270,
+          "fnv1a32": "3fb90f9b"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      },
+      "settings": {
+        "HTML": {
+          "preprocessor": "None",
+          "head": ""
+        },
+        "CSS": {
+          "preprocessor": "None",
+          "externalResources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css",
+            "https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
+          ],
+          "base": "Neither",
+          "resourceCaptureMethod": "visible configured-resource links"
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "externalResources": [],
+          "resourceCaptureMethod": "visible configured-resource links"
+        }
+      }
+    },
+    {
+      "project": "mobile-wrappers",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/ab476697ba2b3957601555751bda65fb",
+      "title": "Browser tab: 22, Title: \"JSS12 Project 3: Reverse The Rainbow\", URL: \"https://codepen.io/junilearning/pen/dyGKPYr\".",
+      "panels": {
+        "HTML": "<!-- Make a row full of 7 different large icons that you pick from the material icons library https://material.io/resources/icons/, and fill them with colors of the rainbow. Then, make a mobile wrapper so that when the screen size is reduced to medium and down, the material icons change their order and become small. -->\n",
+        "CSS": "",
+        "JavaScript": ""
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 322,
+          "fnv1a32": "1ca17c5a"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      },
+      "settings": {
+        "HTML": {
+          "preprocessor": "None",
+          "head": ""
+        },
+        "CSS": {
+          "preprocessor": "None",
+          "externalResources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css",
+            "https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css",
+            "https://fonts.googleapis.com/icon?family=Material+Icons"
+          ],
+          "base": "Neither",
+          "resourceCaptureMethod": "visible configured-resource links"
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "externalResources": [],
+          "resourceCaptureMethod": "visible configured-resource links"
+        }
+      }
+    },
+    {
+      "project": "my-hobby-table",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/134bda10f6f852089b21d49498c47ad7",
+      "title": "Browser tab: 21, Title: \"JSS12 Project 2: My Hobby Table Solution\", URL: \"https://codepen.io/junilearning/pen/KKdBwML/134bda10f6f852089b21d49498c47ad7\".",
+      "panels": {
+        "HTML": "<!--\nCreate a table in HTML using the skills you have already learned, and then figure out how to style it further using materialize. Students should be prompted to look at the striped table and center table examples in the docs\n-->\n<h3 class=\"center\">2019 NFL First Team All-Pro Offense</h3>\n<table class=\"striped centered\">\n  <thead>\n    <tr>\n      <th>Player's Name</th>\n      <th>Team</th>\n      <th>Position</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Lamar Jackson</td>\n      <td>Baltimore Ravens</td>\n      <td>Quarterback</td>\n    </tr>\n    <tr>\n      <td>Christian McCaffrey</td>\n      <td>Carolina Panthers</td>\n      <td>Running Back/Flex</td>\n    </tr>\n    <tr>\n      <td>George Kittle</td>\n      <td>San Francisco 49ers</td>\n      <td>Tight End</td>\n    </tr>\n    <tr>\n      <td>Michael Thomas</td>\n      <td>New Orleans Saints</td>\n      <td>Wide Receiver</td>\n    </tr>\n    <tr>\n      <td>DeAndre Hopkins</td>\n      <td>Houston Texans</td>\n      <td>Wide Receiver</td>\n    </tr>\n    <tr>\n      <td>Ronnie Stanley</td>\n      <td>Baltimore Ravens</td>\n      <td>Left Tackle</td>\n    </tr>\n    <tr>\n      <td>Ryan Ramczyk</td>\n      <td>New Orleans Saints</td>\n      <td>Right Tackle</td>\n    </tr>\n    <tr>\n      <td>Quenton Nelson</td>\n      <td>Indianapolis Colts</td>\n      <td>Left Guard</td>\n    </tr>\n    <tr>\n      <td>Zach Martin</td>\n      <td>Dallas Cowboys</td>\n      <td>Right Guard</td>\n    </tr>\n    <tr>\n      <td>Jason Kelce</td>\n      <td>Philadelphia Eagles</td>\n      <td>Center</td>\n    </tr>\n  </tbody>\n</table>\n\n",
+        "CSS": "",
+        "JavaScript": ""
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 1558,
+          "fnv1a32": "430bbc72"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      },
+      "settings": {
+        "HTML": {
+          "preprocessor": "None",
+          "head": ""
+        },
+        "CSS": {
+          "preprocessor": "None",
+          "externalResources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css",
+            "https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
+          ],
+          "base": "Neither",
+          "resourceCaptureMethod": "visible configured-resource links"
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "externalResources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+          ],
+          "resourceCaptureMethod": "visible configured-resource links"
+        }
+      }
+    },
+    {
+      "project": "my-hobby-table",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/0214806859946640ce1654c9c3ec08f0",
+      "title": "Browser tab: 20, Title: \"JSS12 Project 2: My Hobby Table\", URL: \"https://codepen.io/junilearning/pen/qBbKBzM\".",
+      "panels": {
+        "HTML": "<!--\nCreate a table in HTML using the skills you have already learned, and then figure out how to style it further using materialize. Students should be prompted to look at the striped table and center table examples in the docs\n-->\n",
+        "CSS": "",
+        "JavaScript": ""
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 233,
+          "fnv1a32": "ba29c84c"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      },
+      "settings": {
+        "HTML": {
+          "preprocessor": "None",
+          "head": ""
+        },
+        "CSS": {
+          "preprocessor": "None",
+          "externalResources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css",
+            "https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
+          ],
+          "base": "Neither",
+          "resourceCaptureMethod": "visible configured-resource links"
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "externalResources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+          ],
+          "resourceCaptureMethod": "visible configured-resource links"
+        }
+      }
+    },
+    {
+      "project": "my-javascript-art-part-2",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/68f7db60fabe38f5ff48cf4cfa631a4c",
+      "title": "Browser tab: 24, Title: \"JSS12 Project 4: My JavaScript Art pt. II Solution\", URL: \"https://codepen.io/junilearning/pen/QWyNKxb/68f7db60fabe38f5ff48cf4cfa631a4c\".",
+      "panels": {
+        "HTML": "<div class=\"section pink\">\n  <h1 class=\"center\">My JavaScript Art</h1>\n</div>\n<div class=\"section grey lighten-2\">\n  <h3 class=\"center\">Rainbow</h3>\n  <br>\n  <div id=\"rainbow\" class=\"center\"></div>\n</div>\n<div class=\"section\">\n  <h3 class=\"center black-text\">Captain America Shield</h3>\n  <div id=\"shield\" class=\"center\"></div>\n</div>\n<div class=\"section blue\">\n  <h3 class=\"center white-text\">Pacman</h3>\n  <br>\n  <div id=\"pacman\" class=\"center\"></div>\n</div>\n<div class=\"section black\">\n  <h3 class=\"center white-text\">Snowman</h3>\n  <br>\n  <div id=\"snowman\" class=\"center\"></div>\n</div>",
+        "CSS": "",
+        "JavaScript": "let colors = [\"Red\", \"Orange\", \"Yellow\", \"Green\", \"Blue\", \"Indigo\", \"Violet\"];\n\nlet margin = { top: 30, right: 200, bottom: 50, left: 30, pad: 10 };\nvar width = 800 - margin.left - margin.right;\nvar height = 450 - margin.top - margin.bottom;\n\nlet svg = d3\n  .select(\"#rainbow\")\n  .append(\"svg\")\n  .attr(\"width\", width)\n  .attr(\"height\", height)\n  .append(\"g\")\n  .attr(\"transform\", \"translate(300,300)\");\n\n//Define Arc for rainbow\nlet arc = d3\n  .arc()\n  .innerRadius(function (d, i) {\n    return 300 - 20 * i;\n  })\n  .outerRadius(function (d, i) {\n    return 300 - 20 * i - 20;\n  })\n  .startAngle(function (d, i) {\n    return (-Math.PI / 2) * 0.7;\n  })\n  .endAngle(function (d, i) {\n    return (Math.PI / 2) * 0.7;\n  });\n\n//Adding all colors arc\nlet path = svg\n  .selectAll(\"g.arc\")\n  .data(colors)\n  .enter()\n  .append(\"g\")\n  .attr(\"class\", \"arc\");\n//Adding with animation\npath\n  .append(\"path\")\n  .transition()\n  .delay(function (d, i) {\n    return i * 200;\n  })\n  .duration(150)\n  .attr(\"fill\", function (d, i) {\n    return d;\n  })\n  .attr(\"d\", arc);\n\nlet widthShield = 750;\nlet heightShield = 500;\n\nlet positionX = 375;\nlet positionY = 200;\n\n// Create SVG element to append to\nlet svg2 = d3.select(\"#shield\")\n  .append(\"svg\")\n  .attr(\"width\", widthShield)\n  .attr(\"height\", heightShield);\n\n// Add a large circle at the top\nsvg2.append(\"circle\")\n  .attr(\"fill\", \"red\")\n  .attr(\"cx\", positionX)\n  .attr(\"cy\", positionY)\n  .attr(\"r\", 110);\n\n// Add a medium circle in the middle\nsvg2.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", positionX)\n  .attr(\"cy\", positionY)\n  .attr(\"r\", 90);\n\n// Add a medium circle in the middle\nsvg2.append(\"circle\")\n  .attr(\"fill\", \"red\")\n  .attr(\"cx\", positionX)\n  .attr(\"cy\", positionY)\n  .attr(\"r\", 70);\n\n// Add a small circle to the top\nsvg2.append(\"circle\")\n  .attr(\"fill\", \"blue\")\n  .attr(\"cx\", positionX)\n  .attr(\"cy\", positionY)\n  .attr(\"r\", 50);\n\nlet star = d3.symbol().type(d3.symbolStar).size(2000);\n\nsvg2.append(\"path\")\n  .attr(\"d\", star)\n  .attr(\"fill\", \"white\")\n  .attr(\"transform\", `translate(${positionX},${positionY})`);\n\nlet width2 = 500;\nlet height2 = 500;\n\n// Conversion function that should be given to the student at the instructor's discretion\nconst degreesToRadians = (degrees) => (\n  degrees * Math.PI / 180\n);\n\n// Create a new svg to append to\nconst svg3 = d3.select(\"#pacman\")\n  .append(\"svg\")\n  .attr(\"width\", width2)\n  .attr(\"height\", height2);\n\n// Create the object that will generate our curves\nconst arcGenerator = d3.arc();\n\n// Create the arc that will be the left Pac-Man–note the start and end angles, and their difference vs. the right Pac-Man below\nlet leftPacMan = arcGenerator({\n  startAngle: degreesToRadians(120),\n  endAngle: degreesToRadians(430),\n  innerRadius: 0,\n  outerRadius: 100\n});\n\n// Create the arc that will be the right Pac-Man\nlet rightPacMan = arcGenerator({\n  startAngle: -degreesToRadians(120),\n  endAngle: -degreesToRadians(430),\n  innerRadius: 0,\n  outerRadius: 100\n});\n\n// Append the left Pac-Man to the svg\nsvg3.append('path')\n  .attr(\"fill\", \"yellow\")\n  .attr(\"transform\", \"translate(150,110)\")\n\t.attr('d', leftPacMan);\n\n// Append the right Pac-Man to the svg\nsvg3.append('path')\n  .attr(\"fill\", \"yellow\")\n  .attr(\"transform\", \"translate(400,110)\")\n\t.attr('d', rightPacMan);\n\nlet widthSnowman = 300;\nlet heightSnowman = 500;\n\n// Create SVG element to append to\nlet svg4 = d3.select(\"#snowman\")\n  .append(\"svg\")\n  .attr(\"width\", widthSnowman)\n  .attr(\"height\", heightSnowman);\n\n// Add a small circle to the top\nsvg4.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 50)\n  .attr(\"r\", 50);\n\n// Left eye\nsvg4.append(\"circle\")\n  .attr(\"fill\", \"black\")\n  .attr(\"cx\", 125)\n  .attr(\"cy\", 35)\n  .attr(\"r\", 5);\n\n// Right eye\nsvg4.append(\"circle\")\n  .attr(\"fill\", \"black\")\n  .attr(\"cx\", 175)\n  .attr(\"cy\", 35)\n  .attr(\"r\", 5);\n\nsvg4.append(\"circle\")\n  .attr(\"fill\", \"orange\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 50)\n  .attr(\"r\", 5);\n\n// Nose\n\n/*\nCode handling the mouth\n*/\n\n// Generate a path that will be the smile\nlet pathData = arcGenerator({\n  startAngle: degreesToRadians(90),\n  endAngle: degreesToRadians(270),\n  innerRadius: 10,\n  outerRadius: 15\n});\n\n// Append the smile path, moved over 250px in the x and 200px in the y\nsvg4.append('path')\n  .attr(\"fill\", \"black\")\n  .attr(\"transform\", \"translate(150,70)\")\n\t.attr('d', pathData);\n\n// Add a medium circle in the middle\nsvg4.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 160)\n  .attr(\"r\", 70);\n\n// Draw the left arm\nlet leftArm = svg4.append(\"line\")               \n              .attr(\"x1\", 200)\n              .attr(\"x2\", 300)\n              .attr(\"y1\", 160)\n              .attr(\"y2\", 145)\n              .attr(\"stroke-width\", 2)\n              .attr(\"stroke\", \"brown\");\n\n// Draw the right arm\nlet rightArm = svg4.append(\"line\")               \n              .attr(\"x1\", 100)\n              .attr(\"x2\", 0)\n              .attr(\"y1\", 160)\n              .attr(\"y2\", 145)\n              .attr(\"stroke-width\", 2)\n              .attr(\"stroke\", \"brown\");\n\n// Add a large circle at the top\nsvg4.append(\"circle\")\n  .attr(\"fill\", \"white\")\n  .attr(\"cx\", 150)\n  .attr(\"cy\", 300)\n  .attr(\"r\", 100);\n"
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 589,
+          "fnv1a32": "ba0163c8"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 5178,
+          "fnv1a32": "13116609"
+        }
+      },
+      "settings": {
+        "HTML": {
+          "preprocessor": "None",
+          "head": ""
+        },
+        "CSS": {
+          "preprocessor": "None",
+          "externalResources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          ],
+          "base": "Neither",
+          "resourceCaptureMethod": "visible configured-resource links"
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "externalResources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+          ],
+          "resourceCaptureMethod": "visible configured-resource links"
+        }
+      }
+    },
+    {
+      "project": "rainbow-sections",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/3d22e6b16852d5226f7944331d44b315",
+      "title": "Browser tab: 19, Title: \"JSS12 Project 1: Rainbow Sections Solution\", URL: \"https://codepen.io/junilearning/pen/Yzyjzpy/3d22e6b16852d5226f7944331d44b315\".",
+      "panels": {
+        "HTML": "<!-- \nLet's get started by making a rainbow pattern! Create 7 divs with the section class, then style each of the divs with the color of a rainbow (note: for the color violet, you should use purple). Next, let's see what happens when you wrap these divs in a div with the class container. Finally, make a container div, but this time instead of sections make the class of your rainbow divs have the class card-panel.\n-->\n\n<!-- Solution -->\n\n<div class=\"container\">\n  <div class=\"card-panel red\"></div>\n  <div class=\"card-panel orange\"></div>\n  <div class=\"card-panel yellow\"></div>\n  <div class=\"card-panel green\"></div>\n  <div class=\"card-panel blue\"></div>\n  <div class=\"card-panel indigo\"></div>\n  <div class=\"card-panel purple\"></div>\n</div>\n\n<div class=\"container\">\n  <div class=\"section red\"></div>\n  <div class=\"section orange\"></div>\n  <div class=\"section yellow\"></div>\n  <div class=\"section green\"></div>\n  <div class=\"section blue\"></div>\n  <div class=\"section indigo\"></div>\n  <div class=\"section purple\"></div>\n</div>\n\n\n  <div class=\"section red\"></div>\n  <div class=\"section orange\"></div>\n  <div class=\"section yellow\"></div>\n  <div class=\"section green\"></div>\n  <div class=\"section blue\"></div>\n  <div class=\"section indigo\"></div>\n  <div class=\"section purple\"></div>\n\n",
+        "CSS": "",
+        "JavaScript": ""
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 1287,
+          "fnv1a32": "7d64a39e"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      },
+      "settings": {
+        "HTML": {
+          "preprocessor": "None",
+          "head": ""
+        },
+        "CSS": {
+          "preprocessor": "None",
+          "externalResources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css",
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          ],
+          "base": "Neither",
+          "resourceCaptureMethod": "visible configured-resource links"
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "externalResources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js",
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+          ],
+          "resourceCaptureMethod": "visible configured-resource links"
+        }
+      }
+    },
+    {
+      "project": "rainbow-sections",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/ed06d5371daf7472425bea1c7e65e4bf",
+      "title": "Browser tab: 18, Title: \"JSS12 Project 1: Rainbow Sections\", URL: \"https://codepen.io/junilearning/pen/abdKbrY\".",
+      "panels": {
+        "HTML": "<!-- \nLet's get started by making a rainbow pattern! Create 7 divs with the section class, then style each of the divs with the color of a rainbow (note: for the color violet, you should use purple). Next, let's see what happens when you wrap these divs in a div with the container class. Finally, make a container div, but this time instead of sections make the class of your rainbow divs have the class card-panel.\n-->\n\n",
+        "CSS": "",
+        "JavaScript": ""
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 422,
+          "fnv1a32": "ff0d5f8b"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      },
+      "settings": {
+        "HTML": {
+          "preprocessor": "None",
+          "head": ""
+        },
+        "CSS": {
+          "preprocessor": "None",
+          "externalResources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css",
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          ],
+          "base": "Neither",
+          "resourceCaptureMethod": "visible configured-resource links"
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "externalResources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js",
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+          ],
+          "resourceCaptureMethod": "visible configured-resource links"
+        }
+      }
+    },
+    {
+      "project": "table-documentation-dive",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/0bbd6c8223876a9fa514f42411e3f37d",
+      "title": "Browser tab: 26, Title: \"JSS12 Supplemental Project 1: Table Documentation Dive Solution\", URL: \"https://codepen.io/junilearning/pen/yLYqJNK/0bbd6c8223876a9fa514f42411e3f37d\".",
+      "panels": {
+        "HTML": "<!--\nMake your table highlight when you mouse over it. Also, make it so that when you click on one of the names of the entries on the table, it takes you to a corresponding wikipedia page or other type of source about that entry.\n-->\n\n<h3 class=\"center\">2019 NFL First Team All-Pro Offense</h3>\n<table class=\"highlight centered\">\n  <thead>\n    <tr>\n      <th>Player's Name</th>\n      <th>Team</th>\n      <th>Position</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>\n        <a href=\"https://en.wikipedia.org/wiki/Lamar_Jackson\">\n          Lamar Jackson\n        </a>\n      </td>\n      <td>Baltimore Ravens</td>\n      <td>Quarterback</td>\n    </tr>\n    <tr>\n      <td>\n        <a href=\"https://en.wikipedia.org/wiki/Christian_McCaffrey\">\n          Christian McCaffrey\n        </a>\n      </td>\n      <td>Carolina Panthers</td>\n      <td>Running Back/Flex</td>\n    </tr>\n    <tr>\n      <td>\n        <a href=\"https://en.wikipedia.org/wiki/George_Kittle\">\n          George Kittle\n        </a>\n      </td>\n      <td>San Francisco 49ers</td>\n      <td>Tight End</td>\n    </tr>\n    <tr>\n      <td>\n        <a href=\"https://en.wikipedia.org/wiki/Michael_Thomas_(wide_receiver,_born_1993)\">\n          Michael Thomas\n        </a>\n      </td>\n      <td>New Orleans Saints</td>\n      <td>Wide Receiver</td>\n    </tr>\n    <tr>\n      <td>\n        <a href=\"https://en.wikipedia.org/wiki/DeAndre_Hopkins\">\n          DeAndre Hopkins\n        </a>\n      </td>\n      <td>Houston Texans</td>\n      <td>Wide Receiver</td>\n    </tr>\n    <tr>\n      <td>\n        <a href=\"https://en.wikipedia.org/wiki/Ronnie_Stanley\">\n          Ronnie Stanley\n        </a>\n      </td>\n      <td>Baltimore Ravens</td>\n      <td>Left Tackle</td>\n    </tr>\n    <tr>\n      <td>\n        <a href=\"https://en.wikipedia.org/wiki/Ryan_Ramczyk\">\n          Ryan Ramczyk\n        </a>\n      </td>\n      <td>New Orleans Saints</td>\n      <td>Right Tackle</td>\n    </tr>\n    <tr>\n      <td>\n        <a href=\"https://en.wikipedia.org/wiki/Quenton_Nelson\">\n          Quenton Nelson\n        </a>  \n      </td>\n      <td>Indianapolis Colts</td>\n      <td>Left Guard</td>\n    </tr>\n    <tr>\n      <td>\n        <a href=\"https://en.wikipedia.org/wiki/Zack_Martin\">\n          Zach Martin\n        </a>\n      </td>\n      <td>Dallas Cowboys</td>\n      <td>Right Guard</td>\n    </tr>\n    <tr>\n      <td>\n        <a href=\"https://en.wikipedia.org/wiki/Jason_Kelce\">\n          Jason Kelce\n        </a>\n      </td>\n      <td>Philadelphia Eagles</td>\n      <td>Center</td>\n    </tr>\n  </tbody>\n</table>\n\n",
+        "CSS": "",
+        "JavaScript": ""
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 2537,
+          "fnv1a32": "80f2347b"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      },
+      "settings": {
+        "HTML": {
+          "preprocessor": "None",
+          "head": ""
+        },
+        "CSS": {
+          "preprocessor": "None",
+          "externalResources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          ],
+          "base": "Neither",
+          "resourceCaptureMethod": "visible configured-resource links"
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "externalResources": [],
+          "resourceCaptureMethod": "visible configured-resource links"
+        }
+      }
+    },
+    {
+      "project": "table-documentation-dive",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/a08f05f994009cffe397dd6dd86dbddd",
+      "title": "Browser tab: 25, Title: \"JSS12 Supplemental Project 1: Table Documentation Dive\", URL: \"https://codepen.io/junilearning/pen/VwedYLR\".",
+      "panels": {
+        "HTML": "<!--\nMake your table highlight when you mouse over it. Also, make it so that when you click on one of the names of the entries on the table, it takes you to a corresponding wikipedia page or other type of source about that entry.\n-->\n",
+        "CSS": "",
+        "JavaScript": ""
+      },
+      "uiChecks": {
+        "HTML": {
+          "utf16Length": 234,
+          "fnv1a32": "3e60791f"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      },
+      "settings": {
+        "HTML": {
+          "preprocessor": "None",
+          "head": ""
+        },
+        "CSS": {
+          "preprocessor": "None",
+          "externalResources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          ],
+          "base": "Neither",
+          "resourceCaptureMethod": "visible configured-resource links"
+        },
+        "JavaScript": {
+          "preprocessor": "None",
+          "externalResources": [],
+          "resourceCaptureMethod": "visible configured-resource links"
+        }
+      }
+    }
+  ]
+}

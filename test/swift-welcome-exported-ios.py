@@ -136,13 +136,13 @@ if variant_native:
                 "test/swift-canonical-xcode.py", "test/fixtures/swift-canonical-uitests.swift"])
     record["harnessSourceHashes"] = {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in harness}
     record["installedApps"] = []
-    if args.course == "hobby":
+    if args.course in ("hobby", "gallery"):
         recognizer_source = "test/swift-hobby-text-recognition.swift"
         record["harnessSourceHashes"][recognizer_source] = hashlib.sha256((ROOT / recognizer_source).read_bytes()).hexdigest()
         record["renderedTextChecks"] = []
 args.proof.write_text(json.dumps(record, indent=2) + "\n")
 recognizer = None
-if args.course == "hobby":
+if args.course in ("hobby", "gallery"):
     recognizer = WORK / "recognize-course-text"
     run("build-text-recognizer", ["/usr/bin/xcrun", "swiftc", "-module-cache-path", str(WORK / "text-module-cache"),
                                    str(ROOT / "test/swift-hobby-text-recognition.swift"), "-o", str(recognizer)])
@@ -299,7 +299,7 @@ for size, model in devices:
                                                 processExitCode=status, testSummary=summary))
             args.proof.write_text(json.dumps(record, indent=2) + "\n")
             assert passed, (label, status, summary)
-            if args.course == "hobby" and profile["role"] == "solution":
+            if args.course == "gallery" or (args.course == "hobby" and profile["role"] == "solution"):
                 visual = WORK / "rendered-text" / label
                 run("text-attachments-" + label, ["/usr/bin/xcrun", "xcresulttool", "export", "attachments",
                                                    "--path", str(result), "--output-path", str(visual)])
@@ -311,6 +311,14 @@ for size, model in devices:
                     "Complete Hobby schedule": "Scheduled for Tuesday",
                     "Complete Hobby save action": "Save Favorite",
                     "Complete Hobby remove action": "Remove Favorite",
+                } if args.course == "hobby" else {
+                    "Complete Gallery card title": "Studio Desk",
+                    "Complete Gallery description": (
+                        "This entry works well for discussing composition and app branding."
+                        if profile["role"] == "solution" else
+                        "A clean desk setup for editing and sketching."),
+                    **({"Complete Gallery favorite action": "Add Favorite"}
+                       if profile["role"] == "solution" else {}),
                 }
                 for name, expected in expected_text.items():
                     chosen = [a for a in attachments if a["suggestedHumanReadableName"].startswith(name + "_")]
@@ -339,8 +347,9 @@ record.update(at=now(), accepted=len(record["exports"]) == 8 and len(record["sim
               and len(record["ownedSimulatorsDeleted"]) == 2)
 if variant_native:
     record["accepted"] &= len(record["installedApps"]) == 8
-if args.course == "hobby":
-    record["accepted"] &= len(record["renderedTextChecks"]) == 16 and all(x["matched"] for x in record["renderedTextChecks"])
+if args.course in ("hobby", "gallery"):
+    expected_text_checks = 16 if args.course == "hobby" else 20
+    record["accepted"] &= len(record["renderedTextChecks"]) == expected_text_checks and all(x["matched"] for x in record["renderedTextChecks"])
 args.proof.write_text(json.dumps(record, indent=2) + "\n")
 if args.diagnostic_map_case:
     record["diagnosticPassed"] = not record["accepted"] and len(record["exports"]) == 8 \

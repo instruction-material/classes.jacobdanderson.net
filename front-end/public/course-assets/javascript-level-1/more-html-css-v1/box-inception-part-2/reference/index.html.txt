@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Box Inception Part II</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Block Display</h1>
+<div class="box-block box-red"></div>
+<div class="box-block box-orange"></div>
+<div class="box-block box-yellow"></div>
+<div class="box-block box-green"></div>
+<div class="box-block box-blue"></div>
+<div class="box-block box-purple"></div>
+
+<h1>Inline Block Display</h1>
+<div class="box-inline-block box-red"></div>
+<div class="box-inline-block box-orange"></div>
+<div class="box-inline-block box-yellow"></div>
+<div class="box-inline-block box-green"></div>
+<div class="box-inline-block box-blue"></div>
+<div class="box-inline-block box-purple"></div>
+
+<h1>Grid</h1>
+
+<div>
+  <div class="box-inline-block box-red"></div>
+  <div class="box-inline-block box-orange"></div>
+</div>
+<div>
+  <div class="box-inline-block box-yellow"></div>
+  <div class="box-inline-block box-green"></div>
+</div>
+<div>
+  <div class="box-inline-block box-blue"></div>
+  <div class="box-inline-block box-purple"></div>
+</div>
+
+<h1>Table</h1>
+<table>
+  <tr>
+    <td>
+      <div class="box-inline-block box-red"></div>
+    </td>
+    <td>
+      <div class="box-inline-block box-orange"></div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div class="box-inline-block box-yellow"></div>
+    </td>
+    <td>
+      <div class="box-inline-block box-green"></div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div class="box-inline-block box-blue"></div>
+    </td>
+    <td>
+      <div class="box-inline-block box-purple"></div>
+    </td>
+  </tr>
+</table>
+
+<h1>Absolute Positioning</h1>
+<div class="relative-box">
+  <div class="absolute box-block box-red">
+    <div class="absolute box-block box-orange">
+      <div class="absolute box-block box-yellow">
+        <div class="absolute box-block box-green">
+          <div class="absolute box-block box-blue">
+            <div class=" absolute box-block box-purple"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

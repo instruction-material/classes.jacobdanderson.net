@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Hero Page</title>
+<link rel="stylesheet" href="noto-sans.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- Build the assigned HTML here. -->
+</body>
+</html>

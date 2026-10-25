@@ -1,0 +1,5 @@
+body { margin: 0; font: 1rem system-ui, sans-serif; }
+svg { display: block; max-width: 100%; height: auto; }
+button { margin: 0.5rem; padding: 0.6rem 1rem; font: inherit; }
+[role="button"] { cursor: pointer; }
+[role="button"]:focus-visible { stroke: black; stroke-width: 4; outline: none; }

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Hero Page</title>
+<link rel="stylesheet" href="noto-sans.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="container">
+  <h1>LeBron James</h1>
+  <p class="sub-text">LeBron James is an American basketball player. His career includes championship seasons with Miami, Cleveland, and Los Angeles.</p>
+  <figure><img class="photo" src="basketball.svg" alt="A brown basketball with dark seams on a cream background"><figcaption>Basketball illustration</figcaption></figure>
+  <section aria-labelledby="accomplishments"><h2 id="accomplishments">Selected accomplishments</h2>
+    <ul class="accomplishments"><li>NBA championships with three teams</li><li>Championship seasons in consecutive years with Miami</li><li>Cleveland's first NBA championship in 2016</li></ul>
+  </section>
+  <section aria-labelledby="milestones"><h2 id="milestones">Championship milestones</h2>
+    <ol><li>2012: Miami Heat</li><li>2013: Miami Heat</li><li>2016: Cleveland Cavaliers</li><li>2020: Los Angeles Lakers</li></ol>
+  </section>
+  <p><a href="https://api-hub.nba.com/news/lebron-james-career-highlights">Source: NBA career retrospective</a></p>
+</main>
+</body>
+</html>
