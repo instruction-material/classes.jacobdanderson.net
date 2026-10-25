@@ -1,0 +1,12 @@
+// Get a word from the user and then use printToScreen() and for loops to print every letter of that word. Next, print every letter of the same word backwards using while loops.
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

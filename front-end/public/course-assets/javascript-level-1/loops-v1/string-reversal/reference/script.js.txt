@@ -1,0 +1,23 @@
+// Print a word forward with for, then backward with while.
+let word = prompt("Please enter a word.");
+if (word === null) {
+  printToScreen("Word entry canceled.");
+} else if (word.trim() === "") {
+  printToScreen("Enter a nonempty word.");
+} else {
+  for (let i = 0; i < word.length; i++) {
+    printToScreen(word[i]);
+  }
+  let counter = word.length - 1;
+  while (counter > -1) {
+    printToScreen(word[counter]);
+    counter--;
+  }
+}
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

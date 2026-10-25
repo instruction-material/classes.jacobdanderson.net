@@ -1,0 +1,284 @@
+{
+  "resources": [
+    {
+      "url": "https://codepen.io/junilearning/pen/06257a44b94db1486fac683ccaace7be",
+      "role": "reference",
+      "project": "tips-and-taxes",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+        "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-curriculum-jss2-project-1-tips-and-taxes",
+        "title": "JSS2 Project 1: Tips and Taxes",
+        "section": "core",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/06257a44b94db1486fac683ccaace7be"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// We want to be able to easily figure out how much our dinner bill is going to be after we order our lunch. Make a program which allows a user to enter in a cost for an entree, the percentage of sales tax, and the percentage we plan to tip (note: tip is applied only on the cost of the entree, not on top of the tax). Then, print out the total cost of the meal using printToScreen()\n\n// Solution\n\nlet entree = +prompt(\"Please enter in the cost of your entree.\")\n\nlet taxes = +prompt(\"Please enter in the sales tax percentage for your area.\")\n\nlet tip = +prompt(\"Please enter in how much you plan to tip in percent for your meal.\")\n\nlet total = 0;\n\nlet taxCost = entree * (taxes/100)\n\ntotal += taxCost + entree;\n\nlet tipCost = entree * (tip/100)\n\ntotal += tipCost;\n\nprintToScreen(\"The total cost of the meal is $\" + total)\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "6ec8b2de147d29954bd606e5308f7db365f3843f2b23197be9a55853ddd3eb79"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/29d1e4fde67a75fc4b5cdcacd458cb8d",
+      "role": "reference",
+      "project": "random-party",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+        "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-curriculum-jss2-project-2-randomly-random-party",
+        "title": "JSS2 Project 2: Randomly Random Party",
+        "section": "core",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/29d1e4fde67a75fc4b5cdcacd458cb8d"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Our friend wants to plan a surprise party for his dad's birthday in June but wants it to truly be a surprise. He wants it to be in a random month around his dad's birthday and on a random day at a random time. Write a program that will pick a random month between May and July, a random day (assuming 30 days in a month), an random hour (between 10 AM and 8 PM in military time), and a random minute to start this super surprise party and then print it out. \n\n// Challenge: Convert this project so that it will work for any birth month that our player puts in. In order to accomplish this, have your instructor teach you how to use basic conditionals\n\n// Solution\n\nlet month = Math.floor(Math.random() * 3) + 5;\n\nlet day = Math.floor(Math.random() * 30) + 1;\n\nlet hour = Math.floor(Math.random() * 11) + 10;\n\nlet minute = Math.floor(Math.random() * 60);\n\nprintToScreen(\"The party will take place on \" + month + \"/\" + day + \" at \" + hour + \":\" + minute + \".\")\n\n// Challenge Solution\n\n/*\nlet userMonth = prompt(\"Enter in the month of the birthday\");\n\nmonth = Math.floor(Math.random() * 3) + (userMonth - 1);\n\nday = Math.floor(Math.random() * 30) + 1;\n\nhour = Math.floor(Math.random() * 24) + 1;\n\nminute = Math.floor(Math.random() * 60) + 1;\n\nif (month == 13){\n  month = 1;\n}\nif (month == 0){\n  month = 12;\n}\n\nprintToScreen(\"The party will take place in month number \" + month + \" day \" + day + \" hour \" + hour + \" starting at minute \" + minute + \".\")\n\n*/\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "873026c0d1cb609bd15979b13b23a5eb3f89d5e2f8dc42686150256cabb7c3ca"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/5bbc99927a71e48ec59e93b8dfbb585c",
+      "role": "reference",
+      "project": "random-practice",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+        "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-supplemental-jss2-supplemental-project-2-random-practice",
+        "title": "JSS2 Supplemental Project 2: Random Practice",
+        "section": "optional",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/5bbc99927a71e48ec59e93b8dfbb585c"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Use Math.random() to pick a random number between 0 and 5 and then print it out using printToScreen(). Then, print a random number between 1 and 10. Then, print a random number between 20 and 50. Then, print an even number between 0 and 50. Last, print an odd number between 51 and 101\n\nlet num = Math.floor(Math.random() * 6);\nprintToScreen(num);\n\nnum = Math.ceil(Math.random() * 10);\nprintToScreen(num);\n\nnum = Math.floor(Math.random() * 31) + 20;\nprintToScreen(num);\n\nnum = Math.floor(Math.random() * 26) * 2;\nprintToScreen(num);\n\nnum = (Math.floor(Math.random() * 26) * 2) + 51;\nprintToScreen(num);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "ec23275ea2d860f9a637507f8915ce2ca5612fbdd262beaeae43104217449b08"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/JjGrXgg",
+      "role": "starter",
+      "project": "random-practice",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+        "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-supplemental-jss2-supplemental-project-2-random-practice",
+        "title": "JSS2 Supplemental Project 2: Random Practice",
+        "section": "optional",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/JjGrXgg"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Use Math.random() to pick a random number between 0 and 5 and then print it out using printToScreen(). Then, print a random number between 1 and 10. Then, print a random number between 20 and 50. Then, print an even number between 0 and 50. Last, print an odd number between 51 and 101\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "23ddf10a3dc31b04e830a76dd4fcaee8854f0660db3ab867c7c317405ea0ec3e"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/PoZJNXb",
+      "role": "starter",
+      "project": "math-password",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+        "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-curriculum-jss2-project-3-what-s-the-password",
+        "title": "JSS2 Project 3: What's the Password?",
+        "section": "core",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/PoZJNXb"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// A mathematician has come up with a mathematical password for his computer. You need to calculate his password in order to log in. First, take pi, and multiply it by 6 to the eighth power. Next, add 11 to the number. After that, divide by 3, rounding down. Finally, find the remainder by using modulo to divide the number by pi. Use printToScreen() to print the number and see if you are right!\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155) + 100);\n  let g = Math.floor((Math.random() * 155) + 100);\n  let b = Math.floor((Math.random() * 155) + 100);\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  \n  if(text === 0.09625672175876687){\n     svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(\"You have been successfully logged in. Congratulations!\")\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n  }\n  else{\n    svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(\"Incorrect password!\")\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n  }\n \n}"
+      },
+      "javascriptSha256": "4636c166df64f0f59dac8c172ab5a7829e03279ccceb921579cfa4e716360801"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/RwrLayP",
+      "role": "starter",
+      "project": "tips-and-taxes",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+        "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-curriculum-jss2-project-1-tips-and-taxes",
+        "title": "JSS2 Project 1: Tips and Taxes",
+        "section": "core",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/RwrLayP"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// We want to be able to easily figure out how much our dinner bill is going to be after we order our lunch. Make a program which allows a user to enter in a cost for an entree, the percentage of sales tax, and the percentage we plan to tip (note: tip is applied only on the cost of the entree, not on top of the tax). Then, print out the total cost of the meal using printToScreen()\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "2e743b609f99ac79a947b1fc270a48565836d7fae96f4c84300b9564ea7486bd"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/VwexoVL",
+      "role": "starter",
+      "project": "debugging-math",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+        "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-supplemental-jss2-supplemental-project-4-debugging-math-practice",
+        "title": "JSS2 Supplemental Project 4: Debugging Math Practice",
+        "section": "optional",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/VwexoVL"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "//Kant D. Bugg is trying to come up with the answer to one of his complicated math problems for his homework but his code never seems to work. Help him fix his code!\n\n//First, he has to pick a random number between -10 and 50\n\nlet num = Math.random() * 60;\n\nprintToScreen(\"The random number is \" + num);\n\n//Second, find the remainder of that number after being divided by 7, and add it to the original number\n\n\nlet remainder = num / 7;\nnum =+ remainder;\n\nprintToScreen(\"The new number is \" + num);\n\n\n//Finally, he has to get a new number from a friend, and raise the original number to that power and then divide by 11, rounding up.\n\nlet exp = prompt(\"Please enter in your number.\");\nnum = Math.pow(exp, num);\n\nprintToScreen(\"The number to the power of your number is \" + num);\n\nnum =/ 11;\nnum = Math.roundUp(num);\n\nprintToScreen(\"After being divided by 11, rounding up, your number is \" + num);\n\n\n\n\n\n\n\n// Do not alter code below\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "134a1f561c888a6493b08f2add54b6273e3bfb5d8d9488ad4740a440795ba106"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/a9612fb435c5e334490c1eeb72e9c567",
+      "role": "reference",
+      "project": "pie-eating-contest",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+        "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-supplemental-jss2-supplemental-project-1-pie-eating-contest",
+        "title": "JSS2 Supplemental Project 1: Pie Eating Contest",
+        "section": "optional",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/a9612fb435c5e334490c1eeb72e9c567"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Today is a pie-eating contest at the local school! The school has been given some pies by families, and we need to figure out how many pies we can split amongst 4 contestants. We can only give whole pies to the contestants. Ask the user how many pies the families brought, then printToScreen() how many pies each contestant will have to eat, and how many pies will be left over.\n\n// Solution\n\nconst numContestants = 4;\n\nlet pies = +prompt(\"How many pies was the school given?\");\n\nlet piesPer = Math.floor(pies/numContestants);\n\nlet leftovers = pies % numContestants;\n\nprintToScreen(\"There were \" + pies + \" pie(s) received, so each contestant received \" + piesPer + \" pies each and we had \" + leftovers + \" leftover pies.\");\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  \n  let stringLimit = 50;\n  let listOfStrings = [];\n  \n  while (text.length > stringLimit){\n    let builtString = \"\";\n    \n    for(var i = 0; i < stringLimit; i++){\n      builtString += text.slice(0,1);\n      text = text.slice(1, text.length)\n    }\n    \n    let currentChar = text[0];\n    while (currentChar != \" \" && text.length > 1){\n      builtString += text.slice(0,1);\n      text = text.slice(1, text.length)\n      currentChar = text[0];\n    }\n    builtString += text.slice(0,1);\n    text = text.slice(1, text.length)\n    listOfStrings.push(builtString);\n  }\n  if(text.length > 0){\n    listOfStrings.push(text);\n  }\n  \n  console.log(listOfStrings);\n  for (let i = 0; i < listOfStrings.length; i ++){\n    const svg = d3.select(\"body\")\n      .append(\"svg\")\n      .attr(\"width\", 1500)\n      .attr(\"height\", 50);\n\n    svg.append(\"text\")\n      .attr(\"y\", 37.5)\n      .attr(\"width\", 450)\n      .attr(\"height\", 50)\n      .attr(\"x\", -1000)\n      .attr(\"font-weight\", \"bold\")\n      .attr(\"font-size\", \"24px\")\n      .attr(\"fill\", 255,255,255)\n      .attr(\"font-family\", \"Times New Roman\")\n      .text(listOfStrings[i])\n      .transition()\n      .duration(1000)\n      .attr(\"x\", 37.5);\n  }\n  \n}"
+      },
+      "javascriptSha256": "62e357d32b10ecfa10178f6ccf8e5988ad2e849d79eda82958e36238c53fc8ac"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/c550ef1e284c55fa01964589bf19b21c",
+      "role": "reference",
+      "project": "math-password",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+        "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-curriculum-jss2-project-3-what-s-the-password",
+        "title": "JSS2 Project 3: What's the Password?",
+        "section": "core",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/c550ef1e284c55fa01964589bf19b21c"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// A mathematician has come up with a mathematical password for his computer. You need to calculate his password in order to log in. First, take pi, and multiply it by 6 to the eighth power. Next, add 11 to the number. After that, divide by 3, rounding down. Finally, find the remainder of the number being divided by pi. Use printToScreen() to see if you are right.\n\n// Solution\n\nlet num = Math.PI;\n\nnum *= Math.pow(6,8);\n\nnum += 11;\n\nnum = Math.floor(num/3);\n\nnum = num % Math.PI;\n\nprintToScreen(num);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155) + 100);\n  let g = Math.floor((Math.random() * 155) + 100);\n  let b = Math.floor((Math.random() * 155) + 100);\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  \n  if(text === 0.09625672175876687){\n     svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(\"You have been successfully logged in. Congratulations!\")\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n  }\n  else{\n    svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(\"Incorrect password!\")\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n  }\n \n}"
+      },
+      "javascriptSha256": "70125e28ccbbec903c64b15ebd7dc0e0a5dba1510fee67d343ff3bf408f36f42"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/d004723cc01403a3db897db1206f449b",
+      "role": "reference",
+      "project": "arc-circles",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+        "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-supplemental-jss2-supplemental-project-3-circles",
+        "title": "JSS2 Supplemental Project 3: Circles",
+        "section": "optional",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/d004723cc01403a3db897db1206f449b"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Our printToScreen function has been modified to let us draw arcs. However, it needs to know the starting angle and ending angle for any arc that it draws. To feed two inputs into printToScreen, you must separate the inputs with a comma like so:  printToScreen(start, end). Also, printToScreen only takes degrees in radians. In order to calculate radians from degrees. you take the number of degrees, divide it by 180 and then multiply it by pi. Have our new function draw a rainbow shape, a circle, and a 3/4 circle\n\n// Solution\n\nlet start = (Math.PI/180) * -90;\nlet end = (Math.PI / 180) * 90;\n\nprintToScreen(start, end);\n\nstart = (Math.PI/180) * 0;\nend = (Math.PI / 180) * 360;\n\nprintToScreen(start, end);\n\nstart = (Math.PI/180) * 0;\nend = (Math.PI / 180) * 270;\n\nprintToScreen(start, end);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(startAngle, endAngle){\n  let svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 800)\n    .attr(\"height\", 400)\n    .append(\"g\")\n    .attr(\"transform\", \"translate(400,200)\");\n  let arc = d3\n    .arc()\n    .innerRadius(100)\n    .outerRadius(150)\n    .startAngle(startAngle)\n    .endAngle(endAngle);\n\n  let path = svg\n    .attr(\"class\", \"arc\");\n  path\n    .append(\"path\")\n    .attr(\"fill\", \"blue\")\n    .attr(\"d\", arc);\n}\n"
+      },
+      "javascriptSha256": "7e08b4b29ac0cdce4f8826f82d84a3c2a3c943d98bd8f4716052d2c98e1ca206"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/f90710cc7e05de72ea7ff2b8b05a32bd",
+      "role": "reference",
+      "project": "debugging-math",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+        "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-supplemental-jss2-supplemental-project-4-debugging-math-practice",
+        "title": "JSS2 Supplemental Project 4: Debugging Math Practice",
+        "section": "optional",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/f90710cc7e05de72ea7ff2b8b05a32bd"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "//Kant D. Bugg is trying to come up with the answer to one of his complicated math problems for his homework but his code never seems to work. Help him fix his code!\n\n//First, he has to pick a random number between -10 and 50\n\nlet num = Math.floor(Math.random() * 61) - 10;\n\nprintToScreen(\"The random number is \" + num);\n\n//Second, he has to take his number and add in its remainder after being divided by 7\n\nlet remainder = num % 7;\nnum += remainder;\n\nprintToScreen(\"The new number is \" + num);\n\n\n//Finally, he has to get a new number from a friend, and raise the original number to that power and then divide by 11, rounding up.\n\nlet exp = prompt(\"Please enter in your number.\");\nnum = Math.pow(num, exp);\n\nprintToScreen(\"The number to the power of your number is \" + num);\n\nnum /= 11;\nnum = Math.ceil(num);\n\nprintToScreen(\"After being divided by 11, rounding up, your number is \" + num);\n\n\n\n\n\n\n\n// Do not alter code below\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "3400353cded1b23299a8f904b073dd28abadee40eb94823ae70a925be6906fa5"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/jOWGqJZ",
+      "role": "starter",
+      "project": "pie-eating-contest",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+        "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-supplemental-jss2-supplemental-project-1-pie-eating-contest",
+        "title": "JSS2 Supplemental Project 1: Pie Eating Contest",
+        "section": "optional",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/jOWGqJZ"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Today is a pie-eating contest at the local school! The school has been given some pies by families, and we need to figure out how many pies we can split amongst 4 contestants. We can only give whole pies to the contestants. Ask the user how many pies the families brought, then printToScreen() how many pies each contestant will have to eat, and how many pies will be left over.\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  \n  let stringLimit = 50;\n  let listOfStrings = [];\n  \n  while (text.length > stringLimit){\n    let builtString = \"\";\n    \n    for(var i = 0; i < stringLimit; i++){\n      builtString += text.slice(0,1);\n      text = text.slice(1, text.length)\n    }\n    \n    let currentChar = text[0];\n    while (currentChar != \" \" && text.length > 1){\n      builtString += text.slice(0,1);\n      text = text.slice(1, text.length)\n      currentChar = text[0];\n    }\n    builtString += text.slice(0,1);\n    text = text.slice(1, text.length)\n    listOfStrings.push(builtString);\n  }\n  if(text.length > 0){\n    listOfStrings.push(text);\n  }\n  \n  console.log(listOfStrings);\n  for (let i = 0; i < listOfStrings.length; i ++){\n    const svg = d3.select(\"body\")\n      .append(\"svg\")\n      .attr(\"width\", 1500)\n      .attr(\"height\", 50);\n\n    svg.append(\"text\")\n      .attr(\"y\", 37.5)\n      .attr(\"width\", 450)\n      .attr(\"height\", 50)\n      .attr(\"x\", -1000)\n      .attr(\"font-weight\", \"bold\")\n      .attr(\"font-size\", \"24px\")\n      .attr(\"fill\", 255,255,255)\n      .attr(\"font-family\", \"Times New Roman\")\n      .text(listOfStrings[i])\n      .transition()\n      .duration(1000)\n      .attr(\"x\", 37.5);\n  }\n  \n}"
+      },
+      "javascriptSha256": "34ccd026ac95746fd2f2a74325113768cee45dc99ca42b9240f5c98eecb6fe3b"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/xxZXVye",
+      "role": "starter",
+      "project": "random-party",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+        "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-curriculum-jss2-project-2-randomly-random-party",
+        "title": "JSS2 Project 2: Randomly Random Party",
+        "section": "core",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/xxZXVye"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Our friend wants to plan a surprise party for his dad's birthday in June but wants it to truly be a surprise. He wants it to be in a random month around his dad's birthday and on a random day at a random time. Write a program that will pick a random month between May and July, a random day (assuming 30 days in a month), an random hour (between 10 AM and 8 PM in military time), and a random minute to start this super surprise party and then print it out. \n\n// Challenge: Convert this project so that it will work for any birth month that our player puts in. In order to accomplish this, have your instructor teach you how to use basic conditionals\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "40e9710c07da4850d3ffad7bf475571d4f2596ced4c56341d2461acf3c1cdd8d"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/yLezJLx",
+      "role": "starter",
+      "project": "arc-circles",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+        "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-supplemental-jss2-supplemental-project-3-circles",
+        "title": "JSS2 Supplemental Project 3: Circles",
+        "section": "optional",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/yLezJLx"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Our printToScreen function has been modified to let us draw arcs. However, it needs to know the starting angle and ending angle for any arc that it draws. To feed two inputs into printToScreen, you must separate the inputs with a comma like so:  printToScreen(start, end). Also, printToScreen only takes degrees in radians. In order to calculate radians from degrees. you take the number of degrees, divide it by 180 and then multiply it by pi. Have our new function draw a rainbow shape, a circle, and a 3/4 circle.\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(startAngle, endAngle){\n  let svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 800)\n    .attr(\"height\", 400)\n    .append(\"g\")\n    .attr(\"transform\", \"translate(400,200)\");\n  let arc = d3\n    .arc()\n    .innerRadius(100)\n    .outerRadius(150)\n    .startAngle(startAngle)\n    .endAngle(endAngle);\n\n  let path = svg\n    .attr(\"class\", \"arc\");\n  path\n    .append(\"path\")\n    .attr(\"fill\", \"blue\")\n    .attr(\"d\", arc);\n}\n"
+      },
+      "javascriptSha256": "dc81e5a0c3bbdca2dbc3336a2072ca598ea0d61b2003a10e92407973b3bc70e6"
+    }
+  ]
+}

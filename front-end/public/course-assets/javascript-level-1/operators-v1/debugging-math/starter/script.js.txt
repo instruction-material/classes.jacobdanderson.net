@@ -1,0 +1,43 @@
+//Kant D. Bugg is trying to come up with the answer to one of his complicated math problems for his homework but his code never seems to work. Help him fix his code!
+
+//First, he has to pick a random number between -10 and 50
+
+let num = Math.random() * 60;
+
+printToScreen("The random number is " + num);
+
+//Second, find the remainder of that number after being divided by 7, and add it to the original number
+
+
+let remainder = num / 7;
+num =+ remainder;
+
+printToScreen("The new number is " + num);
+
+
+//Finally, he has to get a new number from a friend, and raise the original number to that power and then divide by 11, rounding up.
+
+let exp = prompt("Please enter in your number.");
+num = Math.pow(exp, num);
+
+printToScreen("The number to the power of your number is " + num);
+
+num =/ 11;
+num = Math.roundUp(num);
+
+printToScreen("After being divided by 11, rounding up, your number is " + num);
+
+
+
+
+
+
+
+// Do not alter code below
+
+function printToScreen(text) {
+  d3.select("#output")
+    .append("p")
+    .attr("class", "course-output")
+    .text(String(text));
+}

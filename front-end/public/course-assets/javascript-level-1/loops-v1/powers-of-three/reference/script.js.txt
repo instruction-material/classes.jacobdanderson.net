@@ -1,0 +1,14 @@
+// Using the printToScreen() function, print all of the powers of 3 that are less than 5000
+
+// Solution
+
+for (let i = 1; i < 5000; i *= 3) {
+  printToScreen(i);
+}
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

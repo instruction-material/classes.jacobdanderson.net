@@ -1,0 +1,16 @@
+// Our friend wants to plan a surprise party for his dad's birthday in June but wants it to truly be a surprise. He wants it to be in a random month around his dad's birthday and on a random day at a random time. Write a program that will pick a random month between May and July, a random day (assuming 30 days in a month), an random hour (between 10 AM and 8 PM in military time), and a random minute to start this super surprise party and then print it out. 
+
+// Challenge: Convert this project so that it will work for any birth month that our player puts in. In order to accomplish this, have your instructor teach you how to use basic conditionals
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output")
+    .append("p")
+    .attr("class", "course-output")
+    .text(String(text));
+}

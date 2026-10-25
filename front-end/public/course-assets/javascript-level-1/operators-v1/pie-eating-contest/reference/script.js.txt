@@ -1,0 +1,22 @@
+const numContestants = 4;
+let input = prompt("How many pies was the school given?");
+if (input === null) {
+  printToScreen("Pie allocation canceled.");
+} else if (input.trim() === "" || !Number.isSafeInteger(+input) || +input < 0) {
+  printToScreen("Enter a nonnegative safe whole number of pies.");
+} else {
+  let pies = +input;
+  let piesPer = Math.floor(pies / numContestants);
+  let leftovers = pies % numContestants;
+  printToScreen("There were " + pies + " pie(s) received, so each contestant received "
+    + piesPer + " pies each and we had " + leftovers + " leftover pies.");
+}
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output")
+    .append("p")
+    .attr("class", "course-output")
+    .text(String(text));
+}

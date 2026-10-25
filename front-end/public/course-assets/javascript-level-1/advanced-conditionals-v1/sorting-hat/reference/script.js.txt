@@ -1,0 +1,51 @@
+function sortHouse() {
+  const housePreference = prompt("What house do you prefer?");
+  if (housePreference === null) {
+    printToScreen("Sorting canceled.");
+    return;
+  }
+  const quality = prompt("What is your quality?");
+  if (quality === null) {
+    printToScreen("Sorting canceled.");
+    return;
+  }
+  let house = "";
+  
+  if (housePreference === "Gryffindor") {
+  	if (quality === "bravery") {
+  		house = "Gryffindor";
+  	} else {
+  		printToScreen("Aw... Looks like Gryffindor is not for you. Try again!");
+  	}
+  } else if (housePreference === "Slytherin") {
+  	if (quality === "cunning") {
+  		house = "Slytherin";
+  	} else {
+  		printToScreen("Aw... Looks like Slytherin is not for you. Try again!");
+  	}
+  } else if (housePreference === "Ravenclaw") {
+  	if (quality === "wisdom") {
+  		house = "Ravenclaw";
+  	} else {
+  		printToScreen("Aw... Looks like Ravenclaw is not for you. Try again!");
+  	}
+  } else if (housePreference === "Hufflepuff") {
+  	if (quality === "hard work") {
+  		house = "Hufflepuff";
+  	} else {
+  		printToScreen("Aw... Looks like Hufflepuff is not for you. Try again!");
+  	}
+  } else {
+  	printToScreen("Strange... That might be a new house...");
+  }
+  
+  if (house !== "") {
+  	printToScreen(`You get ${house}! Congratulations!`);
+  }
+}
+sortHouse();
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

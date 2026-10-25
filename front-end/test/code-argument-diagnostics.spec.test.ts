@@ -6,13 +6,18 @@ import { describe, expect, it, vi } from "vitest";
 import { codeArgumentDiagnostics } from "../src/modules/codeArgumentDiagnostics";
 
 function diagnostics(code: string, language: "python" | "java" = "python") {
-	return codeArgumentDiagnostics(
-		EditorState.create({
-			doc: code,
-			extensions: [language === "python" ? python() : java()]
-		}),
-		language
-	);
+	const state = EditorState.create({
+		doc: code,
+		extensions: [language === "python" ? python() : java()]
+	});
+	// Semantic assertions need a complete tree, independent of the editor's
+	// initial parsing time budget under concurrent test load.
+	if (code.length <= 200_000) {
+		expect(ensureSyntaxTree(state, code.length, 5000)?.length).toBe(
+			code.length
+		);
+	}
+	return codeArgumentDiagnostics(state, language);
 }
 
 describe("required arguments before execution", () => {

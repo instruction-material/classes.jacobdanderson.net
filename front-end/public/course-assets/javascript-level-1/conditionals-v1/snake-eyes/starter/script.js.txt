@@ -1,0 +1,12 @@
+// Let's play a dice rolling game with two dice. First, ask the user how many sides their die have. We are going to see how long it takes to roll snake eyes (meaning two ones!). Simulate rolling the die by generating random numbers until snake eyes is rolled. Then, print out how many rolls it took.
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

@@ -65,7 +65,23 @@ precondition(courseScrollMovement(viewport: small,
              target: CGRect(x: 16, y: 300, width: 343, height: 100), attempt: 0) == -120)
 precondition(courseScrollMovement(viewport: small,
              target: CGRect(x: 16, y: 300, width: 343, height: 100), attempt: 12) == 120)
-print("Eighteen course scroll geometry checks passed")
+func verifyTallParagraph(_ viewport: CGRect, _ target: CGRect) {
+    let movement = courseScrollMovement(viewport: viewport, target: target, attempt: 0)
+    let centered = target.offsetBy(dx: 0, dy: movement)
+    precondition(viewport.contains(centered),
+                 "A fitting paragraph must land fully within the readable viewport")
+    precondition(abs(centered.midY - viewport.midY) < 0.001)
+    verify("tall paragraph precision", viewport, target, movement,
+           insideVisibleTarget: true)
+}
+// The failed paragraph was 497.5 points high and began above the navigation bar’s lower edge.
+// Alternating full gestures can also leave it just below the viewport.
+for top in [CGFloat(74), CGFloat(96)] {
+    let viewport = CGRect(x: 0, y: top, width: 375, height: 667 - top)
+    verifyTallParagraph(viewport, CGRect(x: 32, y: 61.5, width: 284, height: 497.5))
+    verifyTallParagraph(viewport, CGRect(x: 32, y: 171.5, width: 284, height: 497.5))
+}
+print("Twenty-two course scroll geometry checks passed")
 """
 
 
@@ -104,8 +120,8 @@ with tempfile.TemporaryDirectory(prefix="classes-scroll-geometry-") as directory
     main.write_text(source + checks)
     run(["/usr/bin/xcrun", "swiftc", str(main), "-o", str(executable)])
     result = run([str(executable)])
-    assert result.strip() == "Eighteen course scroll geometry checks passed"
-    print(json.dumps(dict(accepted=True, checks=18,
+    assert result.strip() == "Twenty-two course scroll geometry checks passed"
+    print(json.dumps(dict(accepted=True, checks=22,
                           fixtureSha256=hashlib.sha256(fixture.read_bytes()).hexdigest(),
                           scope="Actual scroll-origin function and observed failure geometry; native UI remains separately required")),
           flush=True)

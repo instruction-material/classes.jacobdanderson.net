@@ -1,0 +1,12 @@
+// Using a for loop, add the numbers 1 to 100 and print the result. Then, add the squares of all of the numbers from 1 to 100 and print the result. Finally, find the factorial of any positive number that the user inputs and print the result.
+
+// Enter your code below this line
+
+
+
+// Do not alter code below
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

@@ -1,0 +1,34 @@
+// Pick an inclusive integer from -10 through 50.
+let num = Math.floor(Math.random() * 61) - 10;
+printToScreen("The random number is " + num);
+
+// Add the signed remainder after division by 7.
+let remainder = num % 7;
+num += remainder;
+printToScreen("The new number is " + num);
+
+let exp = prompt("Please enter in your number.");
+if (exp === null) {
+  printToScreen("Math practice canceled.");
+} else if (exp.trim() === "" || !Number.isFinite(+exp)) {
+  printToScreen("Enter a finite exponent.");
+} else {
+  num = Math.pow(num, +exp);
+  if (!Number.isFinite(num)) {
+    printToScreen("The power must be a finite real number.");
+  } else {
+    printToScreen("The number to the power of your number is " + num);
+    num /= 11;
+    num = Math.ceil(num);
+    printToScreen("After being divided by 11, rounding up, your number is " + num);
+  }
+}
+
+// Do not alter code below
+
+function printToScreen(text) {
+  d3.select("#output")
+    .append("p")
+    .attr("class", "course-output")
+    .text(String(text));
+}

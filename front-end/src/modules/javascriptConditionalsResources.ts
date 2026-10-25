@@ -1,0 +1,536 @@
+export const javascriptConditionalsResources = [
+	{
+		project: "a-checker",
+		title: "A-Checker",
+		version: 1,
+		role: "starter",
+		urls: ["https://codepen.io/junilearning/pen/QWyqrLo"],
+		files: [
+			{
+				name: "index.html",
+				path: "conditionals-v1/a-checker/starter/index.html.txt",
+				byteLength: 345,
+				sha256: "7c03f08f8c8310b5c162c7019211836b48c39386fa5ca8fbcefdc9ee730f6beb"
+			},
+			{
+				name: "script.js",
+				path: "conditionals-v1/a-checker/starter/script.js.txt",
+				byteLength: 559,
+				sha256: "796309256cb074611e8e0218f5aefe49b58d04ba7c8f8c0c8bc3652efca58e5b"
+			},
+			{
+				name: "styles.css",
+				path: "conditionals-v1/a-checker/starter/styles.css.txt",
+				byteLength: 243,
+				sha256: "55adc28255a63eaf1927fc8a1f26a553a5eb202cb99cb27e1aa43f573d1b01c9"
+			},
+			{
+				name: "README.md",
+				path: "conditionals-v1/a-checker/starter/README.md.txt",
+				byteLength: 764,
+				sha256: "61b489a9d0b3712a38b724da991962f0f62e5b9192e0e95c13c015ae4bea7095"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "first-module-shared-v1/vendor/d3.min.js.txt",
+				byteLength: 248314,
+				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "first-module-shared-v1/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			}
+		]
+	},
+	{
+		project: "a-checker",
+		title: "A-Checker",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/3ef023d001ee721f608cac6b87a41bd2",
+			"https://codepen.io/junilearning/pen/KKVXoXG/3ef023d001ee721f608cac6b87a41bd2"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "conditionals-v1/a-checker/reference/index.html.txt",
+				byteLength: 345,
+				sha256: "7c03f08f8c8310b5c162c7019211836b48c39386fa5ca8fbcefdc9ee730f6beb"
+			},
+			{
+				name: "script.js",
+				path: "conditionals-v1/a-checker/reference/script.js.txt",
+				byteLength: 1031,
+				sha256: "6b7a78a23153845908349fba1a077a0625c97ab50bc5f89d109bba77e573de6b"
+			},
+			{
+				name: "styles.css",
+				path: "conditionals-v1/a-checker/reference/styles.css.txt",
+				byteLength: 243,
+				sha256: "55adc28255a63eaf1927fc8a1f26a553a5eb202cb99cb27e1aa43f573d1b01c9"
+			},
+			{
+				name: "README.md",
+				path: "conditionals-v1/a-checker/reference/README.md.txt",
+				byteLength: 693,
+				sha256: "c259a576f754ab4b9f7aa2c4790091fdec470defa66ec9329b4a76ab70c83739"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "first-module-shared-v1/vendor/d3.min.js.txt",
+				byteLength: 248314,
+				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "first-module-shared-v1/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			}
+		]
+	},
+	{
+		project: "grade-checker",
+		title: "What Grade Is This?",
+		version: 1,
+		role: "starter",
+		urls: ["https://codepen.io/junilearning/pen/yLezjje"],
+		files: [
+			{
+				name: "index.html",
+				path: "conditionals-v1/grade-checker/starter/index.html.txt",
+				byteLength: 355,
+				sha256: "c65a6524f7fa7b7773b132e90109fd2da27505d44a060fa27f9057fbcdb46e17"
+			},
+			{
+				name: "script.js",
+				path: "conditionals-v1/grade-checker/starter/script.js.txt",
+				byteLength: 429,
+				sha256: "90a3e6e41aae3a4888785c6d961e73df7f48f580f3256260625df86f03559b28"
+			},
+			{
+				name: "styles.css",
+				path: "conditionals-v1/grade-checker/starter/styles.css.txt",
+				byteLength: 243,
+				sha256: "55adc28255a63eaf1927fc8a1f26a553a5eb202cb99cb27e1aa43f573d1b01c9"
+			},
+			{
+				name: "README.md",
+				path: "conditionals-v1/grade-checker/starter/README.md.txt",
+				byteLength: 801,
+				sha256: "7de9b57dbbfd8a7a71b66cc62c4d9e6c601a548e92ca53130835d2bd97bdc6a3"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "first-module-shared-v1/vendor/d3.min.js.txt",
+				byteLength: 248314,
+				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "first-module-shared-v1/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			}
+		]
+	},
+	{
+		project: "grade-checker",
+		title: "What Grade Is This?",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/2d86a137a1c362df390051e86a298e9d",
+			"https://codepen.io/junilearning/pen/dyGVedm/2d86a137a1c362df390051e86a298e9d"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "conditionals-v1/grade-checker/reference/index.html.txt",
+				byteLength: 355,
+				sha256: "c65a6524f7fa7b7773b132e90109fd2da27505d44a060fa27f9057fbcdb46e17"
+			},
+			{
+				name: "script.js",
+				path: "conditionals-v1/grade-checker/reference/script.js.txt",
+				byteLength: 1178,
+				sha256: "861a93f5d8b50bd1aa8b0f3e6ef1153e52fa63ab097008b9783ce023804257f1"
+			},
+			{
+				name: "styles.css",
+				path: "conditionals-v1/grade-checker/reference/styles.css.txt",
+				byteLength: 243,
+				sha256: "55adc28255a63eaf1927fc8a1f26a553a5eb202cb99cb27e1aa43f573d1b01c9"
+			},
+			{
+				name: "README.md",
+				path: "conditionals-v1/grade-checker/reference/README.md.txt",
+				byteLength: 730,
+				sha256: "4d5038b28558d9ff7371a3819012b53a869b6a4a57e0f23abc3fb255b73ae588"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "first-module-shared-v1/vendor/d3.min.js.txt",
+				byteLength: 248314,
+				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "first-module-shared-v1/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			}
+		]
+	},
+	{
+		project: "wholesome-memes",
+		title: "Wholesome Memes",
+		version: 1,
+		role: "starter",
+		urls: ["https://codepen.io/junilearning/pen/wvMrXdG"],
+		files: [
+			{
+				name: "index.html",
+				path: "conditionals-v1/wholesome-memes/starter/index.html.txt",
+				byteLength: 351,
+				sha256: "e6f045ed797b2f0474225fc59b111cf99a485ab90fea2fbe1854d1846709d79c"
+			},
+			{
+				name: "script.js",
+				path: "conditionals-v1/wholesome-memes/starter/script.js.txt",
+				byteLength: 412,
+				sha256: "693c6a5c118aa34a9dad8cbc05e49280bcb2ff4c42438bf6e8c87a9b15fca25b"
+			},
+			{
+				name: "styles.css",
+				path: "conditionals-v1/wholesome-memes/starter/styles.css.txt",
+				byteLength: 243,
+				sha256: "55adc28255a63eaf1927fc8a1f26a553a5eb202cb99cb27e1aa43f573d1b01c9"
+			},
+			{
+				name: "README.md",
+				path: "conditionals-v1/wholesome-memes/starter/README.md.txt",
+				byteLength: 864,
+				sha256: "d920b9b3c0abfcc4bb92bf6b902577a55157b8ddccdf4ba9803ca81b4f298c6e"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "first-module-shared-v1/vendor/d3.min.js.txt",
+				byteLength: 248314,
+				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "first-module-shared-v1/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			}
+		]
+	},
+	{
+		project: "wholesome-memes",
+		title: "Wholesome Memes",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/bf0a3506f98d1b247c3f259986a941bd",
+			"https://codepen.io/junilearning/pen/dyGVKNa/bf0a3506f98d1b247c3f259986a941bd"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "conditionals-v1/wholesome-memes/reference/index.html.txt",
+				byteLength: 351,
+				sha256: "e6f045ed797b2f0474225fc59b111cf99a485ab90fea2fbe1854d1846709d79c"
+			},
+			{
+				name: "script.js",
+				path: "conditionals-v1/wholesome-memes/reference/script.js.txt",
+				byteLength: 860,
+				sha256: "b95a79428f16566b669f09c884061e71febd5c14abf7949a5b41bc20b9643b0d"
+			},
+			{
+				name: "styles.css",
+				path: "conditionals-v1/wholesome-memes/reference/styles.css.txt",
+				byteLength: 243,
+				sha256: "55adc28255a63eaf1927fc8a1f26a553a5eb202cb99cb27e1aa43f573d1b01c9"
+			},
+			{
+				name: "README.md",
+				path: "conditionals-v1/wholesome-memes/reference/README.md.txt",
+				byteLength: 793,
+				sha256: "7abc5a4d09498c5a97b81695adc32f86d938b336306b6b073b1635267e5ebfc9"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "first-module-shared-v1/vendor/d3.min.js.txt",
+				byteLength: 248314,
+				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "first-module-shared-v1/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			}
+		]
+	},
+	{
+		project: "login-credentials",
+		title: "Login Credentials",
+		version: 1,
+		role: "starter",
+		urls: ["https://codepen.io/junilearning/pen/QWyqxqp"],
+		files: [
+			{
+				name: "index.html",
+				path: "conditionals-v1/login-credentials/starter/index.html.txt",
+				byteLength: 310,
+				sha256: "baa502231f9ac17b6f995a5c9b5a6b93b0da4ac4d3a8c5d14d943cd532d64e39"
+			},
+			{
+				name: "script.js",
+				path: "conditionals-v1/login-credentials/starter/script.js.txt",
+				byteLength: 451,
+				sha256: "2b9cc89306717773081821a263a1203dfbcb8f66daa54fa16429c693b6d19d0a"
+			},
+			{
+				name: "styles.css",
+				path: "conditionals-v1/login-credentials/starter/styles.css.txt",
+				byteLength: 243,
+				sha256: "55adc28255a63eaf1927fc8a1f26a553a5eb202cb99cb27e1aa43f573d1b01c9"
+			},
+			{
+				name: "README.md",
+				path: "conditionals-v1/login-credentials/starter/README.md.txt",
+				byteLength: 822,
+				sha256: "dfca077b18911ba6ff5d72c0b2d62227a915b0eb30073c782d77c18ee867532e"
+			}
+		]
+	},
+	{
+		project: "login-credentials",
+		title: "Login Credentials",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/d0f771c4f6fd24c86077e6b3fee4fa72",
+			"https://codepen.io/junilearning/pen/LYpqQGY/d0f771c4f6fd24c86077e6b3fee4fa72"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "conditionals-v1/login-credentials/reference/index.html.txt",
+				byteLength: 310,
+				sha256: "baa502231f9ac17b6f995a5c9b5a6b93b0da4ac4d3a8c5d14d943cd532d64e39"
+			},
+			{
+				name: "script.js",
+				path: "conditionals-v1/login-credentials/reference/script.js.txt",
+				byteLength: 1533,
+				sha256: "25a14aa1b3653e0db1ca751cf4390e8cbe3a0a94bf534b1e4b96cadd54e3a29e"
+			},
+			{
+				name: "styles.css",
+				path: "conditionals-v1/login-credentials/reference/styles.css.txt",
+				byteLength: 243,
+				sha256: "55adc28255a63eaf1927fc8a1f26a553a5eb202cb99cb27e1aa43f573d1b01c9"
+			},
+			{
+				name: "README.md",
+				path: "conditionals-v1/login-credentials/reference/README.md.txt",
+				byteLength: 849,
+				sha256: "9767e5069e0ca56358526df9a1f8f39b3612ffde8b5e2a3eea7a9e4879a073e7"
+			}
+		]
+	},
+	{
+		project: "snake-eyes",
+		title: "Snake Eyes",
+		version: 1,
+		role: "starter",
+		urls: ["https://codepen.io/junilearning/pen/jOWGKZw"],
+		files: [
+			{
+				name: "index.html",
+				path: "conditionals-v1/snake-eyes/starter/index.html.txt",
+				byteLength: 346,
+				sha256: "e6095692566ad301bce19111b81a7117d5812566a585e07c0d79c42f2ba86551"
+			},
+			{
+				name: "script.js",
+				path: "conditionals-v1/snake-eyes/starter/script.js.txt",
+				byteLength: 509,
+				sha256: "0914d35484e8ddcc5f9f6e196d2a628ddc5598d3a332a04fe1d844142b881b0c"
+			},
+			{
+				name: "styles.css",
+				path: "conditionals-v1/snake-eyes/starter/styles.css.txt",
+				byteLength: 243,
+				sha256: "55adc28255a63eaf1927fc8a1f26a553a5eb202cb99cb27e1aa43f573d1b01c9"
+			},
+			{
+				name: "README.md",
+				path: "conditionals-v1/snake-eyes/starter/README.md.txt",
+				byteLength: 1056,
+				sha256: "ef7c6187a4fb09b4ab6166bcb34b310ed10157ad14d3836ec7704e127640a92d"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "first-module-shared-v1/vendor/d3.min.js.txt",
+				byteLength: 248314,
+				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "first-module-shared-v1/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			}
+		]
+	},
+	{
+		project: "snake-eyes",
+		title: "Snake Eyes",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/6580937e9dfd9ce926651a6fe915e078",
+			"https://codepen.io/junilearning/pen/gOPrRqv/6580937e9dfd9ce926651a6fe915e078"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "conditionals-v1/snake-eyes/reference/index.html.txt",
+				byteLength: 463,
+				sha256: "771edce78272f2d4f568fdc918cc4956c3beafc738ec778b47b22aac86784ec2"
+			},
+			{
+				name: "script.js",
+				path: "conditionals-v1/snake-eyes/reference/script.js.txt",
+				byteLength: 2203,
+				sha256: "3c5db37e270350f7fd63e46ddaac60daef6060b4f7aa3d164a52ad58c34b7aa9"
+			},
+			{
+				name: "styles.css",
+				path: "conditionals-v1/snake-eyes/reference/styles.css.txt",
+				byteLength: 243,
+				sha256: "55adc28255a63eaf1927fc8a1f26a553a5eb202cb99cb27e1aa43f573d1b01c9"
+			},
+			{
+				name: "README.md",
+				path: "conditionals-v1/snake-eyes/reference/README.md.txt",
+				byteLength: 985,
+				sha256: "140e18ce572a2417d0000f41c198d11da3d1b221216f86767b79067472038add"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "first-module-shared-v1/vendor/d3.min.js.txt",
+				byteLength: 248314,
+				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "first-module-shared-v1/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			}
+		]
+	},
+	{
+		project: "debugging-favorite-fruit",
+		title: "Debugging the Favorite Fruit Guesser",
+		version: 1,
+		role: "starter",
+		urls: ["https://codepen.io/junilearning/pen/PoZdQeW"],
+		files: [
+			{
+				name: "index.html",
+				path: "conditionals-v1/debugging-favorite-fruit/starter/index.html.txt",
+				byteLength: 372,
+				sha256: "37f77f7daac4ce7c9a07baf959d1a27e0d77c50a9e1776a4dad593eef8843b55"
+			},
+			{
+				name: "script.js",
+				path: "conditionals-v1/debugging-favorite-fruit/starter/script.js.txt",
+				byteLength: 1040,
+				sha256: "d96c2b080f8db07d7fdf454f8ab3a73d1c6f66829927674649a3d7da61829eac"
+			},
+			{
+				name: "styles.css",
+				path: "conditionals-v1/debugging-favorite-fruit/starter/styles.css.txt",
+				byteLength: 243,
+				sha256: "55adc28255a63eaf1927fc8a1f26a553a5eb202cb99cb27e1aa43f573d1b01c9"
+			},
+			{
+				name: "README.md",
+				path: "conditionals-v1/debugging-favorite-fruit/starter/README.md.txt",
+				byteLength: 1035,
+				sha256: "e3f08f3cef038d55c0b47ba39a96a960e83e324373f64505d113b8b89973755e"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "first-module-shared-v1/vendor/d3.min.js.txt",
+				byteLength: 248314,
+				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "first-module-shared-v1/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			}
+		]
+	},
+	{
+		project: "debugging-favorite-fruit",
+		title: "Debugging the Favorite Fruit Guesser",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/949d30ec6dbcc0dfdda259392403b0b7",
+			"https://codepen.io/junilearning/pen/QWyVQra/949d30ec6dbcc0dfdda259392403b0b7"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "conditionals-v1/debugging-favorite-fruit/reference/index.html.txt",
+				byteLength: 372,
+				sha256: "37f77f7daac4ce7c9a07baf959d1a27e0d77c50a9e1776a4dad593eef8843b55"
+			},
+			{
+				name: "script.js",
+				path: "conditionals-v1/debugging-favorite-fruit/reference/script.js.txt",
+				byteLength: 1482,
+				sha256: "d8ba9db27c5df501cad4667c0a94223a9c6d39c384eb660970cacfe604c6af3d"
+			},
+			{
+				name: "styles.css",
+				path: "conditionals-v1/debugging-favorite-fruit/reference/styles.css.txt",
+				byteLength: 243,
+				sha256: "55adc28255a63eaf1927fc8a1f26a553a5eb202cb99cb27e1aa43f573d1b01c9"
+			},
+			{
+				name: "README.md",
+				path: "conditionals-v1/debugging-favorite-fruit/reference/README.md.txt",
+				byteLength: 964,
+				sha256: "b4affd7cd55746f4abd24efb7fa85b66bbfc51f00ecee9ed6d8a76aadd5232fa"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "first-module-shared-v1/vendor/d3.min.js.txt",
+				byteLength: 248314,
+				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "first-module-shared-v1/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			}
+		]
+	}
+] as const;

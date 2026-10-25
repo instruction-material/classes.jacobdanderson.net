@@ -1,0 +1,814 @@
+{
+  "revision": "jss2-originals-adapted-v1",
+  "courseId": "javascript-level-1-javascript-superstar",
+  "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+  "resources": [
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+      "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-curriculum-jss2-project-1-tips-and-taxes",
+      "assignmentTitle": "JSS2 Project 1: Tips and Taxes",
+      "section": "core",
+      "project": "tips-and-taxes",
+      "title": "Tips and Taxes",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/06257a44b94db1486fac683ccaace7be",
+        "https://codepen.io/junilearning/pen/JjGoJGr/06257a44b94db1486fac683ccaace7be"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "operators-v1/tips-and-taxes/reference/index.html.txt",
+          "byteLength": 350,
+          "sha256": "32a26cb3b6a2259ebc592e9604ec916b6ef8e0004ad4658e7c0052bef2b8b757"
+        },
+        {
+          "name": "script.js",
+          "path": "operators-v1/tips-and-taxes/reference/script.js.txt",
+          "byteLength": 1359,
+          "sha256": "3573f6df4bf242d1752c3ba8120cfdef84f0849bf282d2c2b77aeb91a71900b4"
+        },
+        {
+          "name": "styles.css",
+          "path": "operators-v1/tips-and-taxes/reference/styles.css.txt",
+          "byteLength": 279,
+          "sha256": "6bcca0969b0052d842772dfae1bc5f2cbbd5d79213a9da280b893384cff141ee"
+        },
+        {
+          "name": "README.md",
+          "path": "operators-v1/tips-and-taxes/reference/README.md.txt",
+          "byteLength": 844,
+          "sha256": "2b5c0da13e61aa7f72773bb675adc54f6827ded338faf9a59ba6886eeb3295a3"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "6ec8b2de147d29954bd606e5308f7db365f3843f2b23197be9a55853ddd3eb79",
+      "originalCapture": "codepen-jss2-06257a44b94db1486fac683ccaace7be-reference-original-capture-20261024.json",
+      "starterExerciseSectionPreserved": false,
+      "intentionalSyntaxError": false,
+      "providedHelperAdapted": true
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+      "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-curriculum-jss2-project-2-randomly-random-party",
+      "assignmentTitle": "JSS2 Project 2: Randomly Random Party",
+      "section": "core",
+      "project": "random-party",
+      "title": "Randomly Random Party",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/29d1e4fde67a75fc4b5cdcacd458cb8d",
+        "https://codepen.io/junilearning/pen/rNxambe/29d1e4fde67a75fc4b5cdcacd458cb8d"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "operators-v1/random-party/reference/index.html.txt",
+          "byteLength": 357,
+          "sha256": "90d69d03e610d48aa69ed14ed096cac8f81777703826a10921862e89dd13b744"
+        },
+        {
+          "name": "script.js",
+          "path": "operators-v1/random-party/reference/script.js.txt",
+          "byteLength": 1387,
+          "sha256": "111b32a66511b147e2b3fbf7802a6eee0102d2ea4210b20ef3f53c1803c3f223"
+        },
+        {
+          "name": "styles.css",
+          "path": "operators-v1/random-party/reference/styles.css.txt",
+          "byteLength": 279,
+          "sha256": "6bcca0969b0052d842772dfae1bc5f2cbbd5d79213a9da280b893384cff141ee"
+        },
+        {
+          "name": "README.md",
+          "path": "operators-v1/random-party/reference/README.md.txt",
+          "byteLength": 1030,
+          "sha256": "701d1ecd4c19a9b8329a7be52ebee7a939cfba76015f6711746765e83ff6901a"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "873026c0d1cb609bd15979b13b23a5eb3f89d5e2f8dc42686150256cabb7c3ca",
+      "originalCapture": "codepen-jss2-29d1e4fde67a75fc4b5cdcacd458cb8d-reference-original-capture-20261024.json",
+      "starterExerciseSectionPreserved": false,
+      "intentionalSyntaxError": false,
+      "providedHelperAdapted": true
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+      "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-supplemental-jss2-supplemental-project-2-random-practice",
+      "assignmentTitle": "JSS2 Supplemental Project 2: Random Practice",
+      "section": "optional",
+      "project": "random-practice",
+      "title": "Random Practice",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/5bbc99927a71e48ec59e93b8dfbb585c",
+        "https://codepen.io/junilearning/pen/oNbxWRv/5bbc99927a71e48ec59e93b8dfbb585c"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "operators-v1/random-practice/reference/index.html.txt",
+          "byteLength": 351,
+          "sha256": "5a1e7a3f0a0997316c6ab8807cbd85c5d953c700663cd0ea2a4c6cea155ffb96"
+        },
+        {
+          "name": "script.js",
+          "path": "operators-v1/random-practice/reference/script.js.txt",
+          "byteLength": 792,
+          "sha256": "34cb87fbd88014c5edc16c461a44a99b6f90931cd7a8b82088b24063a8128729"
+        },
+        {
+          "name": "styles.css",
+          "path": "operators-v1/random-practice/reference/styles.css.txt",
+          "byteLength": 279,
+          "sha256": "6bcca0969b0052d842772dfae1bc5f2cbbd5d79213a9da280b893384cff141ee"
+        },
+        {
+          "name": "README.md",
+          "path": "operators-v1/random-practice/reference/README.md.txt",
+          "byteLength": 925,
+          "sha256": "c68c2ecb1c19af94b4869717fae36eb5cae460700a38cc07f0228ff801710c45"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "ec23275ea2d860f9a637507f8915ce2ca5612fbdd262beaeae43104217449b08",
+      "originalCapture": "codepen-jss2-5bbc99927a71e48ec59e93b8dfbb585c-reference-original-capture-20261024.json",
+      "starterExerciseSectionPreserved": false,
+      "intentionalSyntaxError": false,
+      "providedHelperAdapted": true
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+      "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-supplemental-jss2-supplemental-project-2-random-practice",
+      "assignmentTitle": "JSS2 Supplemental Project 2: Random Practice",
+      "section": "optional",
+      "project": "random-practice",
+      "title": "Random Practice",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/JjGrXgg"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "operators-v1/random-practice/starter/index.html.txt",
+          "byteLength": 351,
+          "sha256": "5a1e7a3f0a0997316c6ab8807cbd85c5d953c700663cd0ea2a4c6cea155ffb96"
+        },
+        {
+          "name": "script.js",
+          "path": "operators-v1/random-practice/starter/script.js.txt",
+          "byteLength": 508,
+          "sha256": "fa70936cc994f627c6d80ed01d1c511eff7aa8a4e49aed86f3d28f830749b8e2"
+        },
+        {
+          "name": "styles.css",
+          "path": "operators-v1/random-practice/starter/styles.css.txt",
+          "byteLength": 279,
+          "sha256": "6bcca0969b0052d842772dfae1bc5f2cbbd5d79213a9da280b893384cff141ee"
+        },
+        {
+          "name": "README.md",
+          "path": "operators-v1/random-practice/starter/README.md.txt",
+          "byteLength": 977,
+          "sha256": "81d9b0a172a7c1e0d735b41c28e84f4057d2aca7a4ad0d8d25b7cdcf8f993a9b"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "23ddf10a3dc31b04e830a76dd4fcaee8854f0660db3ab867c7c317405ea0ec3e",
+      "originalCapture": "codepen-jss2-JjGrXgg-starter-original-capture-20261024.json",
+      "starterExerciseSectionPreserved": true,
+      "intentionalSyntaxError": false,
+      "providedHelperAdapted": true
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+      "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-curriculum-jss2-project-3-what-s-the-password",
+      "assignmentTitle": "JSS2 Project 3: What's the Password?",
+      "section": "core",
+      "project": "math-password",
+      "title": "What's the Password?",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/PoZJNXb"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "operators-v1/math-password/starter/index.html.txt",
+          "byteLength": 361,
+          "sha256": "2c0e9bba2e544c664e808da40e620d9ce662a7f6afb5b8d94ae51c105425138e"
+        },
+        {
+          "name": "script.js",
+          "path": "operators-v1/math-password/starter/script.js.txt",
+          "byteLength": 752,
+          "sha256": "ba78b2edd6656ab6bd08fbdefa5dab5532772af4f142502a8ddea67e2caf9818"
+        },
+        {
+          "name": "styles.css",
+          "path": "operators-v1/math-password/starter/styles.css.txt",
+          "byteLength": 279,
+          "sha256": "6bcca0969b0052d842772dfae1bc5f2cbbd5d79213a9da280b893384cff141ee"
+        },
+        {
+          "name": "README.md",
+          "path": "operators-v1/math-password/starter/README.md.txt",
+          "byteLength": 976,
+          "sha256": "184844381612e3b4b626ebe25cf765771212cdad226c6c192bbe2b71b519fe89"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "4636c166df64f0f59dac8c172ab5a7829e03279ccceb921579cfa4e716360801",
+      "originalCapture": "codepen-jss2-PoZJNXb-starter-original-capture-20261024.json",
+      "starterExerciseSectionPreserved": true,
+      "intentionalSyntaxError": false,
+      "providedHelperAdapted": true
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+      "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-curriculum-jss2-project-1-tips-and-taxes",
+      "assignmentTitle": "JSS2 Project 1: Tips and Taxes",
+      "section": "core",
+      "project": "tips-and-taxes",
+      "title": "Tips and Taxes",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/RwrLayP"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "operators-v1/tips-and-taxes/starter/index.html.txt",
+          "byteLength": 350,
+          "sha256": "32a26cb3b6a2259ebc592e9604ec916b6ef8e0004ad4658e7c0052bef2b8b757"
+        },
+        {
+          "name": "script.js",
+          "path": "operators-v1/tips-and-taxes/starter/script.js.txt",
+          "byteLength": 603,
+          "sha256": "f68a3dafa89bb396a1a61ffaca554aa9eee3d0bf692847babd6569c2a9898fa4"
+        },
+        {
+          "name": "styles.css",
+          "path": "operators-v1/tips-and-taxes/starter/styles.css.txt",
+          "byteLength": 279,
+          "sha256": "6bcca0969b0052d842772dfae1bc5f2cbbd5d79213a9da280b893384cff141ee"
+        },
+        {
+          "name": "README.md",
+          "path": "operators-v1/tips-and-taxes/starter/README.md.txt",
+          "byteLength": 896,
+          "sha256": "6e7ec8b6235f82b92bdc033e30034af2e613892d324e2e862a3a006e23400860"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "2e743b609f99ac79a947b1fc270a48565836d7fae96f4c84300b9564ea7486bd",
+      "originalCapture": "codepen-jss2-RwrLayP-starter-original-capture-20261024.json",
+      "starterExerciseSectionPreserved": true,
+      "intentionalSyntaxError": false,
+      "providedHelperAdapted": true
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+      "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-supplemental-jss2-supplemental-project-4-debugging-math-practice",
+      "assignmentTitle": "JSS2 Supplemental Project 4: Debugging Math Practice",
+      "section": "optional",
+      "project": "debugging-math",
+      "title": "Debugging Math Practice",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/VwexoVL"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "operators-v1/debugging-math/starter/index.html.txt",
+          "byteLength": 359,
+          "sha256": "2193324e0965d288984bb34925b55eccd480599295572b159edaf99f6a93bc9e"
+        },
+        {
+          "name": "script.js",
+          "path": "operators-v1/debugging-math/starter/script.js.txt",
+          "byteLength": 1065,
+          "sha256": "c0fb7470328882a59d301dd15e165a0a3076819af5ad3122f89b51256d5475bf"
+        },
+        {
+          "name": "styles.css",
+          "path": "operators-v1/debugging-math/starter/styles.css.txt",
+          "byteLength": 279,
+          "sha256": "6bcca0969b0052d842772dfae1bc5f2cbbd5d79213a9da280b893384cff141ee"
+        },
+        {
+          "name": "README.md",
+          "path": "operators-v1/debugging-math/starter/README.md.txt",
+          "byteLength": 1147,
+          "sha256": "bc1c36ed8a37d6f85d178d3fcf23cf149ec54b8f6d8e6aae64b065c513c24a3f"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "134a1f561c888a6493b08f2add54b6273e3bfb5d8d9488ad4740a440795ba106",
+      "originalCapture": "codepen-jss2-VwexoVL-starter-original-capture-20261024.json",
+      "starterExerciseSectionPreserved": true,
+      "intentionalSyntaxError": true,
+      "providedHelperAdapted": true
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+      "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-supplemental-jss2-supplemental-project-1-pie-eating-contest",
+      "assignmentTitle": "JSS2 Supplemental Project 1: Pie Eating Contest",
+      "section": "optional",
+      "project": "pie-eating-contest",
+      "title": "Pie Eating Contest",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/a9612fb435c5e334490c1eeb72e9c567",
+        "https://codepen.io/junilearning/pen/pogyNEP/a9612fb435c5e334490c1eeb72e9c567"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "operators-v1/pie-eating-contest/reference/index.html.txt",
+          "byteLength": 354,
+          "sha256": "df0f3ae554ec03e74cb321844f0d789c4e1ec2b440d4fb9c7a1fdd95246a010f"
+        },
+        {
+          "name": "script.js",
+          "path": "operators-v1/pie-eating-contest/reference/script.js.txt",
+          "byteLength": 768,
+          "sha256": "c2e5085f1c406c4de3063bcb2702f24fcd1d89f98fb65b026ae97b358c69403f"
+        },
+        {
+          "name": "styles.css",
+          "path": "operators-v1/pie-eating-contest/reference/styles.css.txt",
+          "byteLength": 279,
+          "sha256": "6bcca0969b0052d842772dfae1bc5f2cbbd5d79213a9da280b893384cff141ee"
+        },
+        {
+          "name": "README.md",
+          "path": "operators-v1/pie-eating-contest/reference/README.md.txt",
+          "byteLength": 924,
+          "sha256": "47093a10e49ade18bff1485e84ae03f17366c5a9a5dd4f2dbf79e26eeefec6c7"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "62e357d32b10ecfa10178f6ccf8e5988ad2e849d79eda82958e36238c53fc8ac",
+      "originalCapture": "codepen-jss2-a9612fb435c5e334490c1eeb72e9c567-reference-original-capture-20261024.json",
+      "starterExerciseSectionPreserved": false,
+      "intentionalSyntaxError": false,
+      "providedHelperAdapted": true
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+      "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-curriculum-jss2-project-3-what-s-the-password",
+      "assignmentTitle": "JSS2 Project 3: What's the Password?",
+      "section": "core",
+      "project": "math-password",
+      "title": "What's the Password?",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/c550ef1e284c55fa01964589bf19b21c",
+        "https://codepen.io/junilearning/pen/yLeygWX/c550ef1e284c55fa01964589bf19b21c"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "operators-v1/math-password/reference/index.html.txt",
+          "byteLength": 361,
+          "sha256": "2c0e9bba2e544c664e808da40e620d9ce662a7f6afb5b8d94ae51c105425138e"
+        },
+        {
+          "name": "script.js",
+          "path": "operators-v1/math-password/reference/script.js.txt",
+          "byteLength": 821,
+          "sha256": "5a034434f6573fd7ea24c453c918f83fa50c7579db97a4253f891f144fa43dd8"
+        },
+        {
+          "name": "styles.css",
+          "path": "operators-v1/math-password/reference/styles.css.txt",
+          "byteLength": 279,
+          "sha256": "6bcca0969b0052d842772dfae1bc5f2cbbd5d79213a9da280b893384cff141ee"
+        },
+        {
+          "name": "README.md",
+          "path": "operators-v1/math-password/reference/README.md.txt",
+          "byteLength": 924,
+          "sha256": "af4350d447232bfed4a76abe073a10061096427130d7cf824e84933a2a86ecca"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "70125e28ccbbec903c64b15ebd7dc0e0a5dba1510fee67d343ff3bf408f36f42",
+      "originalCapture": "codepen-jss2-c550ef1e284c55fa01964589bf19b21c-reference-original-capture-20261024.json",
+      "starterExerciseSectionPreserved": false,
+      "intentionalSyntaxError": false,
+      "providedHelperAdapted": true
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+      "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-supplemental-jss2-supplemental-project-3-circles",
+      "assignmentTitle": "JSS2 Supplemental Project 3: Circles",
+      "section": "optional",
+      "project": "arc-circles",
+      "title": "Circles",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/d004723cc01403a3db897db1206f449b",
+        "https://codepen.io/junilearning/pen/JjGXbxq/d004723cc01403a3db897db1206f449b"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "operators-v1/arc-circles/reference/index.html.txt",
+          "byteLength": 343,
+          "sha256": "6e115ffcdd60701b097024a0ed6a9074d5b655a6087128c075ed95bdd370fa9c"
+        },
+        {
+          "name": "script.js",
+          "path": "operators-v1/arc-circles/reference/script.js.txt",
+          "byteLength": 1614,
+          "sha256": "c4f12eed4564e7c7eec2f21ce5877c6dc7b98e73ae7e8468fe7048779dcff0ba"
+        },
+        {
+          "name": "styles.css",
+          "path": "operators-v1/arc-circles/reference/styles.css.txt",
+          "byteLength": 279,
+          "sha256": "6bcca0969b0052d842772dfae1bc5f2cbbd5d79213a9da280b893384cff141ee"
+        },
+        {
+          "name": "README.md",
+          "path": "operators-v1/arc-circles/reference/README.md.txt",
+          "byteLength": 912,
+          "sha256": "e278379e8516691657652ac3f9dfb4922c9ced30c309804e0b2b171ac6846181"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "7e08b4b29ac0cdce4f8826f82d84a3c2a3c943d98bd8f4716052d2c98e1ca206",
+      "originalCapture": "codepen-jss2-d004723cc01403a3db897db1206f449b-reference-original-capture-20261024.json",
+      "starterExerciseSectionPreserved": false,
+      "intentionalSyntaxError": false,
+      "providedHelperAdapted": true
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+      "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-supplemental-jss2-supplemental-project-4-debugging-math-practice",
+      "assignmentTitle": "JSS2 Supplemental Project 4: Debugging Math Practice",
+      "section": "optional",
+      "project": "debugging-math",
+      "title": "Debugging Math Practice",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/f90710cc7e05de72ea7ff2b8b05a32bd",
+        "https://codepen.io/junilearning/pen/eYJrwVv/f90710cc7e05de72ea7ff2b8b05a32bd"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "operators-v1/debugging-math/reference/index.html.txt",
+          "byteLength": 359,
+          "sha256": "2193324e0965d288984bb34925b55eccd480599295572b159edaf99f6a93bc9e"
+        },
+        {
+          "name": "script.js",
+          "path": "operators-v1/debugging-math/reference/script.js.txt",
+          "byteLength": 1004,
+          "sha256": "02bbee0aad5afce65578028a0e4a1d6f40571960103e433638d6314d6849935a"
+        },
+        {
+          "name": "styles.css",
+          "path": "operators-v1/debugging-math/reference/styles.css.txt",
+          "byteLength": 279,
+          "sha256": "6bcca0969b0052d842772dfae1bc5f2cbbd5d79213a9da280b893384cff141ee"
+        },
+        {
+          "name": "README.md",
+          "path": "operators-v1/debugging-math/reference/README.md.txt",
+          "byteLength": 1017,
+          "sha256": "30a191f868f242dd021193eb61496836ce998dd91db7a3545b036ea0145f764d"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "3400353cded1b23299a8f904b073dd28abadee40eb94823ae70a925be6906fa5",
+      "originalCapture": "codepen-jss2-f90710cc7e05de72ea7ff2b8b05a32bd-reference-original-capture-20261024.json",
+      "starterExerciseSectionPreserved": false,
+      "intentionalSyntaxError": false,
+      "providedHelperAdapted": true
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+      "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-supplemental-jss2-supplemental-project-1-pie-eating-contest",
+      "assignmentTitle": "JSS2 Supplemental Project 1: Pie Eating Contest",
+      "section": "optional",
+      "project": "pie-eating-contest",
+      "title": "Pie Eating Contest",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/jOWGqJZ"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "operators-v1/pie-eating-contest/starter/index.html.txt",
+          "byteLength": 354,
+          "sha256": "df0f3ae554ec03e74cb321844f0d789c4e1ec2b440d4fb9c7a1fdd95246a010f"
+        },
+        {
+          "name": "script.js",
+          "path": "operators-v1/pie-eating-contest/starter/script.js.txt",
+          "byteLength": 601,
+          "sha256": "0d3d06fd350c892152ce5a2a8fc1903e8c1ea9a24f6775b0d066aa29679080f7"
+        },
+        {
+          "name": "styles.css",
+          "path": "operators-v1/pie-eating-contest/starter/styles.css.txt",
+          "byteLength": 279,
+          "sha256": "6bcca0969b0052d842772dfae1bc5f2cbbd5d79213a9da280b893384cff141ee"
+        },
+        {
+          "name": "README.md",
+          "path": "operators-v1/pie-eating-contest/starter/README.md.txt",
+          "byteLength": 976,
+          "sha256": "7ea71a2883c0e14ebdb1535bd8155fd10ad22201852df83bdf7045d282e872de"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "34ccd026ac95746fd2f2a74325113768cee45dc99ca42b9240f5c98eecb6fe3b",
+      "originalCapture": "codepen-jss2-jOWGqJZ-starter-original-capture-20261024.json",
+      "starterExerciseSectionPreserved": true,
+      "intentionalSyntaxError": false,
+      "providedHelperAdapted": true
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+      "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-curriculum-jss2-project-2-randomly-random-party",
+      "assignmentTitle": "JSS2 Project 2: Randomly Random Party",
+      "section": "core",
+      "project": "random-party",
+      "title": "Randomly Random Party",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/xxZXVye"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "operators-v1/random-party/starter/index.html.txt",
+          "byteLength": 357,
+          "sha256": "90d69d03e610d48aa69ed14ed096cac8f81777703826a10921862e89dd13b744"
+        },
+        {
+          "name": "script.js",
+          "path": "operators-v1/random-party/starter/script.js.txt",
+          "byteLength": 873,
+          "sha256": "0d6fbbe196a4c93cee369da16eab7bb496afc146d8c47d280bd4f5e1f1d446ed"
+        },
+        {
+          "name": "styles.css",
+          "path": "operators-v1/random-party/starter/styles.css.txt",
+          "byteLength": 279,
+          "sha256": "6bcca0969b0052d842772dfae1bc5f2cbbd5d79213a9da280b893384cff141ee"
+        },
+        {
+          "name": "README.md",
+          "path": "operators-v1/random-party/starter/README.md.txt",
+          "byteLength": 1082,
+          "sha256": "6dc4ef8bd1efdbad90a63ff15ad70ecca47844d48f170afbd1d6607d0b31fce7"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "40e9710c07da4850d3ffad7bf475571d4f2596ced4c56341d2461acf3c1cdd8d",
+      "originalCapture": "codepen-jss2-xxZXVye-starter-original-capture-20261024.json",
+      "starterExerciseSectionPreserved": true,
+      "intentionalSyntaxError": false,
+      "providedHelperAdapted": true
+    },
+    {
+      "courseId": "javascript-level-1-javascript-superstar",
+      "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+      "itemId": "javascript-level-1-javascript-superstar-jss2-operators-and-math-supplemental-jss2-supplemental-project-3-circles",
+      "assignmentTitle": "JSS2 Supplemental Project 3: Circles",
+      "section": "optional",
+      "project": "arc-circles",
+      "title": "Circles",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/yLezJLx"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "operators-v1/arc-circles/starter/index.html.txt",
+          "byteLength": 343,
+          "sha256": "6e115ffcdd60701b097024a0ed6a9074d5b655a6087128c075ed95bdd370fa9c"
+        },
+        {
+          "name": "script.js",
+          "path": "operators-v1/arc-circles/starter/script.js.txt",
+          "byteLength": 1376,
+          "sha256": "9867a433b78763d01291dba61fca6ce0495194e635cb4d03540849a60d06184a"
+        },
+        {
+          "name": "styles.css",
+          "path": "operators-v1/arc-circles/starter/styles.css.txt",
+          "byteLength": 279,
+          "sha256": "6bcca0969b0052d842772dfae1bc5f2cbbd5d79213a9da280b893384cff141ee"
+        },
+        {
+          "name": "README.md",
+          "path": "operators-v1/arc-circles/starter/README.md.txt",
+          "byteLength": 964,
+          "sha256": "0218ad689e313eb402dfdbdb4909515ab8cf7c961a6274c2d04d739accb17708"
+        },
+        {
+          "name": "vendor/d3.min.js",
+          "path": "first-module-shared-v1/vendor/d3.min.js.txt",
+          "byteLength": 248314,
+          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        },
+        {
+          "name": "LICENSE-d3.txt",
+          "path": "first-module-shared-v1/LICENSE-d3.txt.txt",
+          "byteLength": 1475,
+          "sha256": "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+        }
+      ],
+      "originalSourceSHA256": "dc81e5a0c3bbdca2dbc3336a2072ca598ea0d61b2003a10e92407973b3bc70e6",
+      "originalCapture": "codepen-jss2-yLezJLx-starter-original-capture-20261024.json",
+      "starterExerciseSectionPreserved": true,
+      "intentionalSyntaxError": false,
+      "providedHelperAdapted": true
+    }
+  ],
+  "sharedLibraryVersion": "5.16.0",
+  "originalRoles": 14
+}

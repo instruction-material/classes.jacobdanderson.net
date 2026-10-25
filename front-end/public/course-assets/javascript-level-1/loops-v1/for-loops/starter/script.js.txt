@@ -1,0 +1,19 @@
+/*
+1. Print the numbers 1-50 using printToScreen() 
+2. Print the numbers 50-1 using printToScreen()
+3. Print the numbers 1-100 evens only using printToScreen()
+4. Print the numbers 100-1 odds only using printToScreen()
+5. Challenge: Print the numbers 1-100 that are powers of 3 using printToScreen()
+6. Challenge: Print the numbers from 500, 100, 20, 4 using printToScreen()
+*/
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

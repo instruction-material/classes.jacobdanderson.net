@@ -1,0 +1,12 @@
+// Build a program that allows us to determine what grade we got on a test. Use prompt() to ask the user for a number grade, and then use conditionals in order to determine what grade you received. Print out the result.
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

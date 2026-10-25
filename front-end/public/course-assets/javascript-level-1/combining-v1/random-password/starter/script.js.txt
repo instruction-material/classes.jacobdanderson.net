@@ -1,0 +1,12 @@
+// You are trying to make up a sample password, but you want to do it completely randomly. Use ASCII number values and loops to create a random string of 10 lowercase letters. Then, create a string with 10 random numbers between 0-9. Then, iterate through both strings, and alternate between adding the letters of the two strings into a new string which will be the password. Use the printToScreen() function to print the new password.
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

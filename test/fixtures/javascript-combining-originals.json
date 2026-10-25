@@ -1,0 +1,164 @@
+{
+  "resources": [
+    {
+      "url": "https://codepen.io/junilearning/pen/1520f836e15f3d4e7f554b913a805b02",
+      "role": "reference",
+      "project": "random-password",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss4-combining-loops-and-variables",
+        "itemId": "javascript-level-1-javascript-superstar-jss4-combining-loops-and-variables-curriculum-jss4-project-3-random-password",
+        "title": "JSS4 Project 3: Random Password",
+        "section": "core",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/1520f836e15f3d4e7f554b913a805b02"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// You are trying to make up a safe password, but you want to do it completely randomly. Use ASCII number values and loops to create a random string of 10 lowercase letters. Then, create a string with 10 random numbers between 0-9. Then, iterate through both strings, and alternate between adding the letters of the two strings into a new string which will be the password. Use the printToScreen() function to print the new password.\n\n// Solution\n\nlet word = \"\";\nfor (let i = 0; i < 10; i ++) {\n  let num = (Math.floor(Math.random() * 26)) + 'a'.charCodeAt();\n  let letter = String.fromCharCode(num);\n  word += letter;\n}\n\nlet numbers = \"\";\n\nfor (let i = 0; i < 10; i++){\n  let ranNum = Math.floor(Math.random() * 10);\n  numbers += ranNum;\n}\n\nlet final = \"\";\nfor (let i = 0; i < 10; i++){\n  final += word[i];\n  final += numbers[i];\n}\n\nprintToScreen(final);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "6447a97b0b501726118d08e02452e6371c9b873ac894b9c03aae0494be8eee5d"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/17494fdc78b6e93db4e8206101f45ea7",
+      "role": "reference",
+      "project": "coin-machine",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss4-combining-loops-and-variables",
+        "itemId": "javascript-level-1-javascript-superstar-jss4-combining-loops-and-variables-curriculum-jss4-project-2-coin-machine",
+        "title": "JSS4 Project 2: Coin Machine",
+        "section": "core",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/17494fdc78b6e93db4e8206101f45ea7"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// We have a bunch of pennies and want to change them out for bigger bills and coins in order to better sort our money. Have the user enter in how many pennies they have and then calculate how many dollars, quarters, dimes, nickels, and leftover pennies they can make from the original pennies.\n\n// Solution\n\nlet pennies = +prompt(\"Enter in an amount of pennies. \");\nlet dollars = 0;\nlet quarters = 0;\nlet dimes = 0;\nlet nickels = 0;\n\nwhile (pennies >= 100){\n  pennies -= 100;\n  dollars += 1;\n}\n\nwhile (pennies >= 25){\n  pennies -= 25;\n  quarters += 1;\n}\n\nwhile (pennies >= 10){\n  pennies -= 10;\n  dimes += 1;\n}\n\nwhile (pennies >= 5){\n  pennies -= 5;\n  nickels += 1;\n}\n\nprintToScreen(\"You have \" + dollars + \" dollars, \" + quarters + \" quarters, \" + dimes + \" dimes, \" + nickels + \" nickels, and \" + pennies + \" pennies.\");\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "23219bf3a5c3324a8f784709199da45ee044be932a87fbbf0c65099c8e38484a"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/71ad8b99ac4c707e75b4f0e136f82665",
+      "role": "reference",
+      "project": "totaling-up",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss4-combining-loops-and-variables",
+        "itemId": "javascript-level-1-javascript-superstar-jss4-combining-loops-and-variables-curriculum-jss4-project-1-totaling-up",
+        "title": "JSS4 Project 1: Totaling Up",
+        "section": "core",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/71ad8b99ac4c707e75b4f0e136f82665"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Using a for loop, add the numbers 1 to 100 and print the result. Then, add the squares of all of the numbers from 1 to 100 and print the result. Finally, find the factorial of any positive number that the user inputs and print the result.\n\n// Solution\n\nlet total = 0;\n\nfor (let i = 1; i <= 100; i++){\n  total += i;\n}\n\nprintToScreen(total);\n\ntotal = 0;\n\nfor (let i = 0; i <= 100; i++){\n  total += i * i;\n}\n\nprintToScreen(total);\n\nlet num = +prompt(\"Please enter a number to calculate the factorial of.\")\n\ntotal = 1;\nfor (let i = num; i > 1; i--){\n  total *= i;\n}\n\nprintToScreen(total);\n\n// Do not alter code below\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "dd420343ccadf93cb7ca544739d51ee67d99f38644a5ac238b6f5cf566a26f79"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/VweMmZq",
+      "role": "starter",
+      "project": "coin-machine",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss4-combining-loops-and-variables",
+        "itemId": "javascript-level-1-javascript-superstar-jss4-combining-loops-and-variables-curriculum-jss4-project-2-coin-machine",
+        "title": "JSS4 Project 2: Coin Machine",
+        "section": "core",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/VweMmZq"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// We have a bunch of pennies and want to change them out for bigger bills and coins in order to better sort our money. Have the user enter in how many pennies they have and then calculate how many dollars, quarters, dimes, nickels, and leftover pennies they can make from the original pennies.\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "17a77e5b03710cbd4e0a56fdf2e24f42804b7b77e0153fc2bacfa3b4ad3f53bf"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/eb1d816cbecce4d20944284fc085ae36",
+      "role": "reference",
+      "project": "debugging-football",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss4-combining-loops-and-variables",
+        "itemId": "javascript-level-1-javascript-superstar-jss4-combining-loops-and-variables-supplemental-jss4-supplemental-project-1-debugging-football",
+        "title": "JSS4 Supplemental Project 1: Debugging Football",
+        "section": "optional",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/eb1d816cbecce4d20944284fc085ae36"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Your good friend, Kant D. Bugg, has been working on a new project that is going to simulate a drive in a game of football. However, his code is not working and he needs your help to fix it!\n\n// Solution\n\n// Picking a random starting yard for the team between 1 and 25.\nlet startingYard = Math.floor(Math.random() * 25) + 1; \nlet currentYard = startingYard;\nprintToScreen(\"Our team is starting at yard number \" + startingYard + \".\");\n\n// Continue playing until the proceed variable is not \"Y\"\nlet proceed = \"Y\";\nwhile (proceed == \"Y\"){\n       \n// Have the team gain a random amount of yards between -4 and 10 each play for 4 plays\n  let yardsIn4 = 0;\n  for (let i = 0; i < 4; i++){\n    let gained = Math.floor(Math.random() * 15) - 4;\n    \n    // Increase the current yard we are on and how many yards we have made in the last 4 plays.\n    currentYard += gained;\n    yardsIn4 += gained;\n   \n    \n    printToScreen(\"Our team on play number \" + (i + 1) + \" gained \" + gained + \" yards! Wow!\");\n  }\n  \n  alert(\"The amount of yards your team gained from those 4 plays was \" + yardsIn4 + \".\");\n\n  // Ask the user if the team made it 10 yards to tell if they need to continue.\n  proceed = prompt(\"Did our team make it ten yards? (Y/N)\");\n\n}\n\n// Print how many yards they gained and their new yard mark.\nprintToScreen(\"The team advanced a total of \" + (currentYard - startingYard) + \" yards, ending at yard \" + currentYard);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 50);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    //.attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"18px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    //.transition()\n    //.duration(1000)\n    .attr(\"x\", 37.5);\n}\n\n\n"
+      },
+      "javascriptSha256": "b115fd91e28c023c8cf55609f4390f589159b4e5af0df635b88298c8533ed1ce"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/gOPGwNV",
+      "role": "starter",
+      "project": "totaling-up",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss4-combining-loops-and-variables",
+        "itemId": "javascript-level-1-javascript-superstar-jss4-combining-loops-and-variables-curriculum-jss4-project-1-totaling-up",
+        "title": "JSS4 Project 1: Totaling Up",
+        "section": "core",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/gOPGwNV"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Using a for loop, add the numbers 1 to 100 and print the result. Then, add the squares of all of the numbers from 1 to 100 and print the result. Finally, find the factorial of any positive number that the user inputs and print the result.\n\n// Enter your code below this line\n\n\n\n// Do not alter code below\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "63c319cac1677bb71bb28f475346ba0dce873d84c2b2439fed660c6e8534305b"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/gOPRqPr",
+      "role": "starter",
+      "project": "debugging-football",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss4-combining-loops-and-variables",
+        "itemId": "javascript-level-1-javascript-superstar-jss4-combining-loops-and-variables-supplemental-jss4-supplemental-project-1-debugging-football",
+        "title": "JSS4 Supplemental Project 1: Debugging Football",
+        "section": "optional",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/gOPRqPr"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Your good friend, Kant D. Bugg, has been working on a new project that is going to simulate a drive in a game of football. However, his code is not working and he needs your help to fix it!\n\n// Pick a random starting yard for the team between 1 and 25.\n\nlet startingYard = Math.random() * 25; \nlet currentYard = startingYard;\nprintToScreen(\"Our team is starting at yard number \" + startingYard + \".\");\n\n// Continue playing until the proceed variable is not \"Y\"\n\nwhile (proceed == \"Y\"){\n\n  // Have the team gain a random amount of yards between -4 and 10 each play for 4 plays\n  \n  let yardsIn4 = 0;\n  for (let i = 1; i < 4; i++){\n    let gained = Math.floor(Math.random() * 15) - 4;\n    \n    // Increase the current yard line we are on and how many yards we have made in the last 4 plays.\n    \n    yardsIn4 += gained;\n   \n    printToScreen(\"Our team on play number \" + (i + 1) + \" gained \" + gained + \" yards! Wow!\");\n    \n  }\n  \n  alert(\"The amount of yards your team gained from those 4 plays was \" + yardsIn4 + \".\");\n\n  // Ask the user if the team made it 10 yards to tell if they need to continue.\n  \n  prompt(\"Did our team make it ten yards? (Y/N)\");\n\n}\n\n// Print how many yards they gained and their new yard mark.\n\nprintToScreen(\"The team advanced a total of \" + (currentYard) + \" yards, ending at yard \" + currentYard);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 50);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    //.attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"18px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    //.transition()\n    //.duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "37d08bab24e05808bfb2da5e8b2f20a0eadebbcee74922c321452bbadcf79624"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/jOWGVVB",
+      "role": "starter",
+      "project": "random-password",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss4-combining-loops-and-variables",
+        "itemId": "javascript-level-1-javascript-superstar-jss4-combining-loops-and-variables-curriculum-jss4-project-3-random-password",
+        "title": "JSS4 Project 3: Random Password",
+        "section": "core",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/jOWGVVB"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// You are trying to make up a safe password, but you want to do it completely randomly. Use ASCII number values and loops to create a random string of 10 lowercase letters. Then, create a string with 10 random numbers between 0-9. Then, iterate through both strings, and alternate between adding the letters of the two strings into a new string which will be the password. Use the printToScreen() function to print the new password.\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "eb43dd092f5d75343bec99eaf9190d167a87ca84441163b22112a68904a9d714"
+    }
+  ]
+}

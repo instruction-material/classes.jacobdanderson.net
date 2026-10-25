@@ -1,0 +1,42 @@
+// Your good friend, Kant D. Bugg, has been working on a new project that is going to simulate a drive in a game of football. However, his code is not working and he needs your help to fix it!
+
+// Solution
+
+// Picking a random starting yard for the team between 1 and 25.
+let startingYard = Math.floor(Math.random() * 25) + 1; 
+let currentYard = startingYard;
+printToScreen("Our team is starting at yard number " + startingYard + ".");
+
+// Continue playing until the proceed variable is not "Y"
+let proceed = "Y";
+while (proceed == "Y"){
+       
+// Have the team gain a random amount of yards between -4 and 10 each play for 4 plays
+  let yardsIn4 = 0;
+  for (let i = 0; i < 4; i++){
+    let gained = Math.floor(Math.random() * 15) - 4;
+    
+    // Increase the current yard we are on and how many yards we have made in the last 4 plays.
+    currentYard += gained;
+    yardsIn4 += gained;
+   
+    
+    printToScreen("Our team on play number " + (i + 1) + " gained " + gained + " yards! Wow!");
+  }
+  
+  alert("The amount of yards your team gained from those 4 plays was " + yardsIn4 + ".");
+
+  // Ask the user if the team made it 10 yards to tell if they need to continue.
+  proceed = prompt("Did our team make it ten yards? (Y/N)");
+
+}
+
+// Print how many yards they gained and their new yard mark.
+printToScreen("The team advanced a total of " + (currentYard - startingYard) + " yards, ending at yard " + currentYard);
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

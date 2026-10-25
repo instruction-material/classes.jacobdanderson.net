@@ -1,0 +1,17 @@
+for (let i = 1; i < 51; ++i) {
+	if (i % 3 == 0 && i % 5 == 0) {
+		printToScreen("FizzBuzz");
+	} else if (i % 3 == 0) {
+		printToScreen("Fizz");
+	} else if (i % 5 == 0) {
+		printToScreen("Buzz");
+	} else {
+		printToScreen(i);
+	}
+}
+
+// DO NOT ALTER: Starter code that will print text to the screen!
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

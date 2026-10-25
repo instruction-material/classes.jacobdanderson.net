@@ -1,0 +1,174 @@
+{
+  "resources": [
+    {
+      "url": "https://codepen.io/junilearning/pen/JjGrxRB",
+      "role": "starter",
+      "project": "sorting-hat",
+      "sourceMetadata": {
+        "project": "sorting-hat",
+        "title": "JSS6 Project 1: The Sorting Hat",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/JjGrxRB"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Let's see if you are cut out for the house that you want at Hogwarts! Prompt the user to give you the house they want to be sorted into. Next, come up with 4 different qualities which correspond to each house, and then ask the user to give you their chosen quality. Using nested conditionals, print out that the user deserves to be sorted into their house, or that they are not quite cut out for the house they wished for.\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "javascriptSha256": "1dfb0c48716f9f214c4585787cf5e5a074c5ea7ec99d4af98bbb2fb5bfed43c4"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/e7c85cf84c953eb5bc630e214fe476d8",
+      "role": "reference",
+      "project": "sorting-hat",
+      "sourceMetadata": {
+        "project": "sorting-hat",
+        "title": "JSS6 Project 1: The Sorting Hat",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/e7c85cf84c953eb5bc630e214fe476d8"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Let's see if you are cut out for the house that you want at Hogwarts! Prompt the user to give you the house they want to be sorted into. Next, come up with 4 different qualities which correspond to each house, and then ask the user to give you their chosen quality. Using nested conditionals, print out that the user deserves to be sorted into their house, or that they are not quite cut out for the house they wished for.\n\n// Solution\n\nlet housePreference = prompt(\"What house do you prefer?\");\nlet quality = prompt(\"What is your quality?\");\nlet house = \"\";\n\nif (housePreference === \"Gryffindor\") {\n\tif (quality === \"bravery\") {\n\t\thouse = \"Gryffindor\";\n\t} else {\n\t\tprintToScreen(\"Aw... Looks like Gryffindor is not for you. Try again!\");\n\t}\n} else if (housePreference === \"Slytherin\") {\n\tif (quality === \"cunning\") {\n\t\thouse = \"Slytherin\";\n\t} else {\n\t\tprintToScreen(\"Aw... Looks like Slytherin is not for you. Try again!\");\n\t}\n} else if (housePreference === \"Ravenclaw\") {\n\tif (quality === \"wisdom\") {\n\t\thouse = \"Ravenclaw\";\n\t} else {\n\t\tprintToScreen(\"Aw... Looks like Ravenclaw is not for you. Try again!\");\n\t}\n} else if (housePreference === \"Hufflepuff\") {\n\tif (quality === \"hard work\") {\n\t\thouse = \"Hufflepuff\";\n\t} else {\n\t\tprintToScreen(\"Aw... Looks like Hufflepuff is not for you. Try again!\");\n\t}\n} else {\n\tprintToScreen(\"Strange... That might be a new house...\");\n}\n\nif (house !== \"\") {\n\tprintToScreen(`You get ${house}! Congratulations!`);\n}\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "javascriptSha256": "fe5c1f879bc9fbe98e952e07b3171c5300eee09ffed8b0cde98b72f5af0f92e5"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/gOPGqKa",
+      "role": "starter",
+      "project": "fizzbuzz",
+      "sourceMetadata": {
+        "project": "fizzbuzz",
+        "title": "JSS6 Project 2: FizzBuzz",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/gOPGqKa"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Print the numbers 1 to 50. If a number is divisible by 3, then print out Fizz. If the number is divisible by 5, print out Buzz. If the number is divisible by both 3 and 5, then print out FizzBuzz. If none of these conditions are true, then print out the number.\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "javascriptSha256": "288eb34df61e28c54e47ec01d45f4dc5b6de162d59e518d73aab624957ef4439"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/0b39a6e7b85b790e7cd9a276e9ee2c4f",
+      "role": "reference",
+      "project": "fizzbuzz",
+      "sourceMetadata": {
+        "project": "fizzbuzz",
+        "title": "JSS6 Project 2: FizzBuzz",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/0b39a6e7b85b790e7cd9a276e9ee2c4f"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "for (let i = 1; i < 51; ++i) {\n\tif (i % 3 == 0 && i % 5 == 0) {\n\t\tprintToScreen(\"FizzBuzz\");\n\t} else if (i % 3 == 0) {\n\t\tprintToScreen(\"Fizz\");\n\t} else if (i % 5 == 0) {\n\t\tprintToScreen(\"Buzz\");\n\t} else {\n\t\tprintToScreen(i);\n\t}\n}\n\n// DO NOT ALTER: Starter code that will print text to the screen!\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "javascriptSha256": "10aecdb9203cfec1d490042ed30e9731a45caf1c981cf1f10a24b093ee754a92"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/NWxaJdX",
+      "role": "starter",
+      "project": "gcf-two-numbers",
+      "sourceMetadata": {
+        "project": "gcf-two-numbers",
+        "title": "JSS6 Project 3: GCF of Two Numbers",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/NWxaJdX"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Ask the user for two numbers. Find the greatest common factor (also called the greatest common divisor or GCD) between the two numbers, and print it out using printToScreen(). The GCF is the largest number which can divide 2 other numbers with no remainder. For example, the GCF of the numbers 36 and 24 is 12.\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "javascriptSha256": "a5420857ba11dbf949a03e914461bce400e97d71903493df77a6357f7ea3b9b2"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/b418881c3e60c8c7ac8fcbc3b7d74aa0",
+      "role": "reference",
+      "project": "gcf-two-numbers",
+      "sourceMetadata": {
+        "project": "gcf-two-numbers",
+        "title": "JSS6 Project 3: GCF of Two Numbers",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/b418881c3e60c8c7ac8fcbc3b7d74aa0"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Ask the user for two numbers. Find the greatest common factor (also called the greatest common divisor or GCD) between the two numbers, and print it out using printToScreen(). The GCF is the largest number which can divide 2 other numbers with no remainder. For example, the GCF of the numbers 36 and 24 is 12.\n\n// Solution\n\nlet numOne = +prompt(\"Enter a number: \");\nlet numTwo = +prompt(\"Enter another number: \");\n\nlet larger = numOne;\nif (numOne < numTwo) {\n\tlarger = numTwo;\n}\n\nlet gCD = 1;\n\nfor (let i = 0; i <= larger; i++) {\n\tif (numOne % i === 0 && numTwo % i === 0) {\n\t\tgCD = i;\n\t}\n}\n\nprintToScreen(gCD);\n\n// DO NOT ALTER: Starter code that will print text to the screen!\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "javascriptSha256": "5b8db3711e526f48212a353902378525671178d17ea3f4d69568df53a1eefca1"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/NWxaJgy",
+      "role": "starter",
+      "project": "animal-sounds",
+      "sourceMetadata": {
+        "project": "animal-sounds",
+        "title": "JSS6 Supplemental Project 1: What Does the _ Say?",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/NWxaJgy"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Ask the user to input an animal, and have the program output the sound that animal makes. Use https://en.wikipedia.org/wiki/List_of_animal_sounds and a switch statement to have the program print out different animal onomatopoeia. If the user inputs an animal that's not in the switch statement, have the program respond with \"huh?\".\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "javascriptSha256": "7aa0075a5afaf3d755cf6ace491870e2e1ca85a27bbd975947f4220be22a84b6"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/5b0bdb527344a081c9abf91138ce5f4a",
+      "role": "reference",
+      "project": "animal-sounds",
+      "sourceMetadata": {
+        "project": "animal-sounds",
+        "title": "JSS6 Supplemental Project 1: What Does the _ Say?",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/5b0bdb527344a081c9abf91138ce5f4a"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Ask the user to input an animal, and have the program output the sound that animal makes. Use https://en.wikipedia.org/wiki/List_of_animal_sounds and a switch statement to have the program print out different animal onomatopoeia. If the user inputs an animal that's not in the switch statement, have the program respond with \"huh?\".\n\n// Solution\n\nlet animal = prompt(\"Enter an animal\");\n\nswitch (animal) {\n\tcase \"dog\": {\n\t\tprintToScreen(\"woof\");\n\t\tbreak;\n\t}\n\tcase \"cat\": {\n\t\tprintToScreen(\"meow\");\n\t\tbreak;\n\t}\n\tcase \"cow\": {\n\t\tprintToScreen(\"moo\");\n\t\tbreak;\n\t}\n\tcase \"bee\": {\n\t\tprintToScreen(\"buzz\");\n\t\tbreak;\n\t}\n\tcase \"frog\": {\n\t\tprintToScreen(\"ribbit\");\n\t\tbreak;\n\t}\n\tcase \"fox\": {\n\t\tprintToScreen(\"ring ding ding ding ding\");\n\t\tbreak;\n\t}\n\tdefault: {\n\t\tprintToScreen(\"huh?\");\n\t}\n}\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "javascriptSha256": "693bfbbfad7a62f60c4d7e06c11990101bfe23f44638ca6e98bc64a7e215fb63"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/mdVGXLE",
+      "role": "starter",
+      "project": "debugging-bugging-friends",
+      "sourceMetadata": {
+        "project": "debugging-bugging-friends",
+        "title": "JSS6 Supplemental Project 2: Debugging Bugging Friends",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/mdVGXLE"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Kant D. Bugg is back! This time, Kant would like to know if he is bugging his friend. This means that in a given time period, if he is sending more than a certain number of messages to his friends, he is bugging them. However, Kant\u2019s program has some bugs in it. Help him out by finding and fixing them!\n\n// Define how many messages may be sent to each level of friend per hour before they get annoyed\n\nlet acquaintence = 10;\nlet friend = 25;\nlet goodFriend = 50;\nlet bestFriend = 200;\n\nlet level = prompt(\n\t\"What level is the other person? Enter acquaintance, friend, good friend, or best friend.\"\n);\nlet messages = prompt(\"How many messages have been sent?\");\nlet hours = prompt(\"How much time has it been, in hours?\");\n\nlet ratio = messages / hours;\n\nif (ratio > acquaintence || level === \"acquaintance\") {\n\tprintToScreen(\n\t\t`Uh oh! ${messages} messages in ${hours} hours might be bugging an acquaintance.`\n\t);\n}\n\nif (ratio > friend && level !== \"friend\") {\n\tprintToScreen(\n\t\t`Uh oh! ${messages} messages in ${hours} hours might be bugging a friend.`\n\t);\n} else if (!(ratio < goodFriend) && level === \"good friend\") {\n\tprintToScreen(\n\t\t`Uh oh! ${messages} messages in ${hours} hours might be bugging a good friend.`\n\t);\n} else if (ratio > bestFriend || level !== \"best friend\") {\n\tprintToScreen(\n\t\t`Uh oh! ${messages} messages in ${hours} hours might be bugging a best friend.`\n\t);\n} else {\n\tprintToScreen(\"You should be good!\");\n}\n\n// DO NOT ALTER: Starter code that will print text to the screen!\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "javascriptSha256": "7f4d167d93c7c73c77fb6599a722303615c5284a91716bc50bccf90b7438a25d"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/67b0c29a104afde9cce553de6cacf882",
+      "role": "reference",
+      "project": "debugging-bugging-friends",
+      "sourceMetadata": {
+        "project": "debugging-bugging-friends",
+        "title": "JSS6 Supplemental Project 2: Debugging Bugging Friends",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/67b0c29a104afde9cce553de6cacf882"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Kant D. Bugg is back! This time, Kant would like to know if he is bugging his friend. This means that in a given time period, if he is sending more than a certain number of messages to his friends, he is bugging them. However, Kant\u2019s program has some bugs in it. Help him out by finding and fixing them!\n\n// Define how many messages may be sent to each level of friend per hour before they get annoyed\nlet acquaintence = 10;\nlet friend = 25;\nlet goodFriend = 50;\nlet bestFriend = 200;\n\nlet level = prompt(\n\t\"What level is the other person? Enter acquaintance, friend, good friend, or best friend.\"\n);\nlet messages = prompt(\"How many messages have been sent?\");\nlet hours = prompt(\"How much time has it been, in hours?\");\n\nlet ratio = messages / hours;\n\nif (ratio > acquaintence && level === \"acquaintance\") {\n\tprintToScreen(\n\t\t`Uh oh! ${messages} messages in ${hours} hours might be bugging an acquaintance.`\n\t);\n} else if (ratio > friend && level === \"friend\") {\n\tprintToScreen(\n\t\t`Uh oh! ${messages} messages in ${hours} hours might be bugging a friend.`\n\t);\n} else if (ratio > goodFriend && level === \"good friend\") {\n\tprintToScreen(\n\t\t`Uh oh! ${messages} messages in ${hours} hours might be bugging a good friend.`\n\t);\n} else if (ratio > bestFriend && level === \"best friend\") {\n\tprintToScreen(\n\t\t`Uh oh! ${messages} messages in ${hours} hours might be bugging a best friend.`\n\t);\n} else {\n\tprintToScreen(\"You should be good!\");\n}\n\n// DO NOT ALTER: Starter code that will print text to the screen!\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "javascriptSha256": "10c0ca7aff8bd16be9429b87202c3b621bd79fe10ca1dc028081c9cf2b916455"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+// Oh no! Your computer has forgotten how to multiply and you need to be able to figure out larger multiplications. Come up with a code that can take in two numbers and figure out the product of the two without using * or *=. Print that result using printToScreen().
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

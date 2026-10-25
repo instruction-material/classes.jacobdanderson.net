@@ -1,0 +1,14 @@
+// Today is a pie-eating contest at the local school! The school has been given some pies by families, and we need to figure out how many pies we can split amongst 4 contestants. We can only give whole pies to the contestants. Ask the user how many pies the families brought, then printToScreen() how many pies each contestant will have to eat, and how many pies will be left over.
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output")
+    .append("p")
+    .attr("class", "course-output")
+    .text(String(text));
+}

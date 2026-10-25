@@ -1,0 +1,44 @@
+let answer = prompt("Enter in an amount of pennies. ");
+if (answer === null) {
+  printToScreen("Penny entry canceled.");
+} else {
+  let pennies = Number(answer);
+  if (answer.trim() === "" || !Number.isInteger(pennies)
+      || pennies < 0 || pennies > 1000000) {
+    printToScreen("Enter a whole number of pennies from 0 through 1000000.");
+  } else {
+    let dollars = 0;
+    let quarters = 0;
+    let dimes = 0;
+    let nickels = 0;
+
+    while (pennies >= 100){
+      pennies -= 100;
+      dollars += 1;
+    }
+
+    while (pennies >= 25){
+      pennies -= 25;
+      quarters += 1;
+    }
+
+    while (pennies >= 10){
+      pennies -= 10;
+      dimes += 1;
+    }
+
+    while (pennies >= 5){
+      pennies -= 5;
+      nickels += 1;
+    }
+
+    printToScreen("You have " + dollars + " dollars, " + quarters + " quarters, " + dimes + " dimes, " + nickels + " nickels, and " + pennies + " pennies.");
+  }
+}
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

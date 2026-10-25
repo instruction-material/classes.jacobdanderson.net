@@ -1,0 +1,33 @@
+function findGCF() {
+  const first = prompt("Enter a positive whole number from 1 through 1000000:");
+  if (first === null) {
+    printToScreen("GCF entry canceled.");
+    return;
+  }
+  const second = prompt("Enter another positive whole number from 1 through 1000000:");
+  if (second === null) {
+    printToScreen("GCF entry canceled.");
+    return;
+  }
+  const numOne = Number(first);
+  const numTwo = Number(second);
+  if (first.trim() === "" || second.trim() === ""
+      || !Number.isInteger(numOne) || !Number.isInteger(numTwo)
+      || numOne < 1 || numTwo < 1 || numOne > 1000000 || numTwo > 1000000) {
+    printToScreen("Enter two positive whole numbers from 1 through 1000000.");
+    return;
+  }
+  let smaller = numOne;
+  if (numTwo < numOne) smaller = numTwo;
+  let gCF = 1;
+  for (let i = 1; i <= smaller; i++) {
+    if (numOne % i === 0 && numTwo % i === 0) gCF = i;
+  }
+  printToScreen(gCF);
+}
+findGCF();
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

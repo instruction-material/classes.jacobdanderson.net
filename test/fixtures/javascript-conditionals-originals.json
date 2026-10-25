@@ -1,0 +1,256 @@
+{
+  "resources": [
+    {
+      "url": "https://codepen.io/junilearning/pen/QWyqrLo",
+      "role": "starter",
+      "project": "a-checker",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss5-conditionals",
+        "itemId": "javascript-level-1-javascript-superstar-jss5-conditionals-curriculum-jss5-project-1-a-checker",
+        "title": "JSS5 Project 1: A-Checker",
+        "section": "core",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/QWyqrLo",
+        "project": "a-checker"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// We\u2019re going to make a program which determines if a word inputted by the user contains the letter \u2018a\u2019 or not. First, get a word from the user. Next, determine whether or that that word contains an \u2018a\u2019 or not, and if it does, use printToScreen() to print it that it has an 'a'. If it does not have an 'a', use print out that it does not.\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "javascriptSha256": "55be83bbcca26df43c24d70325f7ae96cc21df993a80efa908acc71a6271c78e"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/3ef023d001ee721f608cac6b87a41bd2",
+      "role": "reference",
+      "project": "a-checker",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss5-conditionals",
+        "itemId": "javascript-level-1-javascript-superstar-jss5-conditionals-curriculum-jss5-project-1-a-checker",
+        "title": "JSS5 Project 1: A-Checker",
+        "section": "core",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/3ef023d001ee721f608cac6b87a41bd2",
+        "project": "a-checker"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// We\u2019re going to make a program which determines if a word inputted by the user contains the letter \u2018a\u2019 or not. First, get a word from the user. Next, determine whether or that that word contains an \u2018a\u2019 or not, and if it does, use printToScreen() to print it that it has an 'a'. If it does not have an 'a', use print out that it does not.\n\n// Solution\n\nlet word = prompt(\"Please enter a word:\");\nlet containsAnA = false;\n\nfor (let i = 0; i < word.length; i++) {\n\tif (word[i] === 'a') {\n\t\tcontainsAnA = true;\n\t}\n}\nif (containsAnA) {\n\tprintToScreen(word + \" has an 'a' in it!\");\n}\nif (!containsAnA) {\n\tprintToScreen(word + \" does not have an 'a' in it!\");\n}\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "javascriptSha256": "c184832fc6ed9e57e28377a18099a51a9a3ed39374752ef05a8375ab0b15bd67"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/yLezjje",
+      "role": "starter",
+      "project": "grade-checker",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss5-conditionals",
+        "itemId": "javascript-level-1-javascript-superstar-jss5-conditionals-curriculum-jss5-project-2-what-grade-is-this",
+        "title": "JSS5 Project 2: What Grade Is This?",
+        "section": "core",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/yLezjje",
+        "project": "grade-checker"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Build a program that allows us to determine what grade we got on a test. Use prompt() to ask the user for a number grade, and then use conditionals in order to determine what grade you received. Print out the result.\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "javascriptSha256": "fb3159f1286412d61e55a65075cd4dff3eb94895286b3588a7367543fee43d1b"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/2d86a137a1c362df390051e86a298e9d",
+      "role": "reference",
+      "project": "grade-checker",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss5-conditionals",
+        "itemId": "javascript-level-1-javascript-superstar-jss5-conditionals-curriculum-jss5-project-2-what-grade-is-this",
+        "title": "JSS5 Project 2: What Grade Is This?",
+        "section": "core",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/2d86a137a1c362df390051e86a298e9d",
+        "project": "grade-checker"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Build a program that allows us to determine what grade we got on a test. Use prompt() to ask the user for a number grade, and then use conditionals in order to determine what letter grade you received. Print out the result.\n\n// Solution\n\nlet gradePercentage = +prompt(\"What number grade did you receive?\");\n\nif (gradePercentage >= 90) {\n\tprintToScreen(\"The grade is an A\");\n} else if (gradePercentage >= 80) {\n\tprintToScreen(\"The grade is a B\");\n} else if (gradePercentage >= 70) {\n\tprintToScreen(\"The grade is a C\");\n} else if (gradePercentage >= 60) {\n\tprintToScreen(\"The grade is a D\");\n} else {\n\tprintToScreen(\"The grade is a F\");\n}\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "javascriptSha256": "65492551d4fb58f0fc45262d3765cf0ef763fdd27117a43a5dc0e3ef3b5dcee2"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/wvMrXdG",
+      "role": "starter",
+      "project": "wholesome-memes",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss5-conditionals",
+        "itemId": "javascript-level-1-javascript-superstar-jss5-conditionals-curriculum-jss5-project-3-wholesome-memes",
+        "title": "JSS5 Project 3: Wholesome Memes",
+        "section": "core",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/wvMrXdG",
+        "project": "wholesome-memes"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Build a program that gets a word or sentence from the user and then converts it to the format \"tHaT lOoKs LiKe ThIs\" using conditionals. Then, print out your result using the printToScreen() function\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "javascriptSha256": "fa56be8a94015be37b56679ea328aa16626661558ca45ccdf2edca684951cf6f"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/bf0a3506f98d1b247c3f259986a941bd",
+      "role": "reference",
+      "project": "wholesome-memes",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss5-conditionals",
+        "itemId": "javascript-level-1-javascript-superstar-jss5-conditionals-curriculum-jss5-project-3-wholesome-memes",
+        "title": "JSS5 Project 3: Wholesome Memes",
+        "section": "core",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/bf0a3506f98d1b247c3f259986a941bd",
+        "project": "wholesome-memes"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Build a program that gets a word or sentance from the user and then converts it to the format \"tHaT lOoKs LiKe ThIs\" using conditionals. Then, print out your result using the printToScreen() function\n\n// Solution\n\nlet meme = prompt(\"What meme would you like to convert?\");\n\nlet result = \"\";\n\nfor (let i = 0; i < meme.length; i++) {\n\tif (i % 2 === 0) {\n\t\tresult += meme[i].toLowerCase();\n\t} else {\n\t\tresult += meme[i].toUpperCase();\n\t}\n}\n\nprintToScreen(result);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "javascriptSha256": "1a50d1e0d20d83f0ca8ae5e2b933999431c0f32bdf8db1a9e17cfc2ec01679eb"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/QWyqxqp",
+      "role": "starter",
+      "project": "login-credentials",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss5-conditionals",
+        "itemId": "javascript-level-1-javascript-superstar-jss5-conditionals-supplemental-jss5-supplemental-project-1-login-credentials",
+        "title": "JSS5 Supplemental Project 1: Login Credentials",
+        "section": "supplemental",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/QWyqxqp",
+        "project": "login-credentials"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Let's build a simple version of an authentication system. First, ask the user to set up a username and a password and store those two values in variables. Next, ask the user repeatedly for the username they set up previously and then the password which goes with it until they enter both values which match the stored values. Once they have inputted the correct information, alert them that they are logged in!\n\n// Enter your code below this line\n\n"
+      },
+      "javascriptSha256": "2b9cc89306717773081821a263a1203dfbcb8f66daa54fa16429c693b6d19d0a"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/d0f771c4f6fd24c86077e6b3fee4fa72",
+      "role": "reference",
+      "project": "login-credentials",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss5-conditionals",
+        "itemId": "javascript-level-1-javascript-superstar-jss5-conditionals-supplemental-jss5-supplemental-project-1-login-credentials",
+        "title": "JSS5 Supplemental Project 1: Login Credentials",
+        "section": "supplemental",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/d0f771c4f6fd24c86077e6b3fee4fa72",
+        "project": "login-credentials"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Let's build a simple version of an authentication system. First, ask the user to set up a username and a password and store those two values in variables. Next, ask the user repeatedly for the username they set up previously and then the password which goes with it until they enter both values which match the stored values. Once they have inputted the correct information, alert them that they are logged in!\n\n// Solution\n\nlet username = prompt(\"Please enter a username: \");\nlet password = prompt(\"Please enter a password: \");\n\nlet response = prompt(\"What is your username?\");\nwhile(response != username){\n  response = prompt(\"Incorrect! Please enter your correct username\")\n}\n\nresponse = prompt(\"What is your password?\");\nwhile (response != password){\n  response = prompt(\"Incorrect! Please enter your correct password!\");\n}\n\nalert(\"Correct, you are now logged in.\");"
+      },
+      "javascriptSha256": "278a17cf5b3f0e26fdf177c43ea697d8f86858446697477e4ad50ef71d6578fb"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/jOWGKZw",
+      "role": "starter",
+      "project": "snake-eyes",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss5-conditionals",
+        "itemId": "javascript-level-1-javascript-superstar-jss5-conditionals-supplemental-jss5-supplemental-project-2-snake-eyes",
+        "title": "JSS5 Supplemental Project 2: Snake Eyes",
+        "section": "supplemental",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/jOWGKZw",
+        "project": "snake-eyes"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Let's play a dice rolling game with two dice. First, ask the user how many sides their die have. We are going to see how long it takes to roll snake eyes (meaning two ones!). Simulate rolling the die by generating random numbers until snake eyes is rolled. Then, print out how many rolls it took.\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "b7ca479203491ce30cc16a9c73e2e453753a53fe914c07d3faf96a4a5ce5fffe"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/6580937e9dfd9ce926651a6fe915e078",
+      "role": "reference",
+      "project": "snake-eyes",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss5-conditionals",
+        "itemId": "javascript-level-1-javascript-superstar-jss5-conditionals-supplemental-jss5-supplemental-project-2-snake-eyes",
+        "title": "JSS5 Supplemental Project 2: Snake Eyes",
+        "section": "supplemental",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/6580937e9dfd9ce926651a6fe915e078",
+        "project": "snake-eyes"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Let's play a dice rolling game with two dice. First, ask the user how many sides their die have. We are going to see how long it takes to roll a snake eyes (meaning two ones!). Roll the dice until a snake eyes is rolled. Then, print out how many rolls it took.\n\n// Solution \n\nlet diceSides = +prompt(\"How many sides does your dice have?\");\n\nlet rolls = 0;\nlet sumOfRolls = 0;\n\nwhile (sumOfRolls != 2) {\n  rolls++;\n  let roll = Math.floor(Math.random() * diceSides) + 1;\n  let rollTwo = Math.floor(Math.random() * diceSides) + 1;\n  sumOfRolls = roll + rollTwo;\n}\n  \nprintToScreen(\"It took \" + rolls + \" rolls to get two 1's\");\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor((Math.random() * 155));\n  let g = Math.floor((Math.random() * 155));\n  let b = Math.floor((Math.random() * 155));\n  const svg = d3.select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n  \n  svg.append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"24px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+      },
+      "javascriptSha256": "cee66da7581469a797b163f498040f50e6fc90f9dff7360d49d0461e0b209608"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/PoZdQeW",
+      "role": "starter",
+      "project": "debugging-favorite-fruit",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss5-conditionals",
+        "itemId": "javascript-level-1-javascript-superstar-jss5-conditionals-supplemental-jss5-supplemental-project-3-debugging-the-favorite-fruit-guesser",
+        "title": "JSS5 Supplemental Project 3: Debugging the Favorite Fruit Guesser",
+        "section": "supplemental",
+        "role": "starter",
+        "url": "https://codepen.io/junilearning/pen/PoZdQeW",
+        "project": "debugging-favorite-fruit"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Kant D. Bugg has attempted to make a favorite fruit guesser game which uses both the color and taste properties in order to guess your favorite fruit. He seems to have run into some bugs along the way though. Help him debug this project!\n\nalert(\n\t\"Tell me what your favorite color and taste is and I'll tell you what your favorite fruit is!\"\n);\n\nlet color = prompt(\"What's your favorite color?\");\nlet taste = prompt(\"Do you like sweet or sour?\");\n\nlet fruit = \"\";\n\nif (taste === \"sour\") {\n} else if (color === \"red\") {\n\tfruit = \"cherries\";\n} else if (color === \"yellow\") {\n\tfruit = \"pineapples\";\n} else if (color === \"green\") {\n\tfruit = \"lime\";\n}\n\nif (taste === \"sweet\") {\n} else if (color === \"blue\") {\n\tfruit = \"blueberries\";\n} else if (color === \"yellow\") {\n\tfruit = \"mango\";\n}\n\nprintToScreen(`Nice! So your favorite fruit(s) are ${fruit}.`);\n\n// DO NOT ALTER: Starter code that will print text to the screen!\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "javascriptSha256": "5f7e102a4016cc068e8817fd36185ee89468a5ec7d79a9d9cd72e2b66e7c6511"
+    },
+    {
+      "url": "https://codepen.io/junilearning/pen/949d30ec6dbcc0dfdda259392403b0b7",
+      "role": "reference",
+      "project": "debugging-favorite-fruit",
+      "sourceMetadata": {
+        "courseId": "javascript-level-1-javascript-superstar",
+        "moduleId": "javascript-level-1-javascript-superstar-jss5-conditionals",
+        "itemId": "javascript-level-1-javascript-superstar-jss5-conditionals-supplemental-jss5-supplemental-project-3-debugging-the-favorite-fruit-guesser",
+        "title": "JSS5 Supplemental Project 3: Debugging the Favorite Fruit Guesser",
+        "section": "supplemental",
+        "role": "reference",
+        "url": "https://codepen.io/junilearning/pen/949d30ec6dbcc0dfdda259392403b0b7",
+        "project": "debugging-favorite-fruit"
+      },
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Kant D. Bugg has attempted to make a favorite fruit guesser game which uses both the color and taste properties in order to guess your favorite fruit. He seems to have run into some bugs along the way though. Help him debug this project!\n\nalert(\n\t\"Tell me what your favorite color and taste is and I'll tell you what your favorite fruit is!\"\n);\n\nlet color = prompt(\"What's your favorite color?\");\nlet taste = prompt(\"Do you like sweet or sour?\");\n\nlet fruit = \"\";\n\nif (taste === \"sour\") {\n\tif (color === \"red\") {\n\t\tfruit = \"cherries\";\n\t} else if (color === \"yellow\") {\n\t\tfruit = \"pineapples\";\n\t} else if (color === \"green\") {\n\t\tfruit = \"lime\";\n\t}\n} else if (taste === \"sweet\") {\n\tif (color === \"blue\") {\n\t\tfruit = \"blueberries\";\n\t} else if (color === \"yellow\") {\n\t\tfruit = \"mango\";\n\t}\n}\n\nprintToScreen(`Nice! So your favorite fruit(s) are ${fruit}.`);\n\n// DO NOT ALTER: Starter code that will print text to the screen!\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "javascriptSha256": "f0cbb7c6a9b18cc313c35fe3344826ce34f23cd168178a5fd38b29d560185feb"
+    }
+  ]
+}

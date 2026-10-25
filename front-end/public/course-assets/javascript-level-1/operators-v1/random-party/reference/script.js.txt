@@ -1,0 +1,36 @@
+// Base project: June birthday, a 30-day month, and a daytime party.
+let month = Math.floor(Math.random() * 3) + 5;
+let day = Math.floor(Math.random() * 30) + 1;
+let hour = Math.floor(Math.random() * 11) + 10;
+let minute = Math.floor(Math.random() * 60);
+printToScreen("The party will take place on " + month + "/" + day + " at "
+  + hour + ":" + String(minute).padStart(2, "0") + ".");
+
+// Optional challenge reference: remove only the enclosing block-comment markers.
+/*
+let userMonth = prompt("Enter the birth month as a number from 1 through 12.");
+if (userMonth === null) {
+  printToScreen("Party planning canceled.");
+} else if (userMonth.trim() === "" || !Number.isInteger(+userMonth)
+    || +userMonth < 1 || +userMonth > 12) {
+  printToScreen("Enter a whole birth month from 1 through 12.");
+} else {
+  month = Math.floor(Math.random() * 3) + (+userMonth - 1);
+  day = Math.floor(Math.random() * 30) + 1;
+  hour = Math.floor(Math.random() * 11) + 10;
+  minute = Math.floor(Math.random() * 60);
+  if (month === 13) month = 1;
+  if (month === 0) month = 12;
+  printToScreen("The party will take place on " + month + "/" + day + " at "
+    + hour + ":" + String(minute).padStart(2, "0") + ".");
+}
+*/
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output")
+    .append("p")
+    .attr("class", "course-output")
+    .text(String(text));
+}

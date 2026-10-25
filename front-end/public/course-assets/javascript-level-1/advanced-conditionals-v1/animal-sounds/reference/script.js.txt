@@ -1,0 +1,39 @@
+let animal = prompt("Enter an animal");
+if (animal === null) {
+  printToScreen("Animal entry canceled.");
+} else {
+  switch (animal) {
+  	case "dog": {
+  		printToScreen("woof");
+  		break;
+  	}
+  	case "cat": {
+  		printToScreen("meow");
+  		break;
+  	}
+  	case "cow": {
+  		printToScreen("moo");
+  		break;
+  	}
+  	case "bee": {
+  		printToScreen("buzz");
+  		break;
+  	}
+  	case "frog": {
+  		printToScreen("ribbit");
+  		break;
+  	}
+  	case "fox": {
+  		printToScreen("ring ding ding ding ding");
+  		break;
+  	}
+  	default: {
+  		printToScreen("huh?");
+  	}
+  }
+}
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

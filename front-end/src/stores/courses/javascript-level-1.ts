@@ -293,6 +293,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS1 Project 1: Welcome Survey",
+					preserveInstructions: true,
 					content:
 						"Build a short welcome survey that collects a first name, last name, two numeric inputs, and a favorite food. Print the full name as one sentence, convert the numeric inputs before adding them, log the sum to the console, and alert the last letter of the favorite food. Test a one-letter food and a multi-word name so indexing and concatenation are not only tested on easy input.",
 					projectLink: "https://codepen.io/junilearning/pen/OJMxyqw",
@@ -306,6 +307,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS1 Project 2: Mad Libs",
+					preserveInstructions: true,
 					content:
 						"Create a Mad Libs story that uses `prompt()` to collect at least five words, stores each response in a clearly named variable, and prints a complete story with `printToScreen()`. The story includes punctuation and spaces intentionally so the final sentence reads naturally instead of looking like raw concatenated fragments.",
 					projectLink: "https://codepen.io/junilearning/pen/qBbPbPp",
@@ -316,6 +318,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JSS1 Supplemental Project 1: Cookie Math",
+					preserveInstructions: true,
 					content:
 						"Use `prompt()` to ask how much flour is available, convert the input to a number, and calculate how many eggs and chocolate chips are needed for the matching recipe amount. Decide where rounding is necessary, such as with `Math.ceil()`, and print the recipe recommendation clearly enough that the units and rounded values are not ambiguous.",
 					projectLink: "https://codepen.io/junilearning/pen/rNxGxKm",
@@ -324,6 +327,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS1 Supplemental Project 2: Hello World!",
+					preserveInstructions: true,
 					content:
 						"Use string indexing to construct `Hello World!` from provided strings. Identify the index of each needed character, store or print the characters in order, and verify that spaces and punctuation are included intentionally. This makes zero-based indexing concrete rather than relying on a prewritten full phrase.",
 					projectLink: "https://codepen.io/junilearning/pen/MWKEKPJ",
@@ -332,6 +336,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS1 Supplemental Project 3: Debugging a Friend Survey",
+					preserveInstructions: true,
 					content:
 						"Debug a friend's survey code by checking prompts, variable names, string concatenation, numeric conversion, and output statements. Run the broken version first, list the intended prompts and printed output, then fix one issue at a time until every answer appears in the intended place.",
 					projectLink: "https://codepen.io/junilearning/pen/VwexoXw",
@@ -355,6 +360,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS2 Project 1: Tips and Taxes",
+					preserveInstructions: true,
 					content:
 						"Prompt for meal cost, tax percent, and tip percent, then calculate the final total. Convert all numeric inputs before arithmetic, show the intermediate tax and tip values, and print the final cost with a readable label. Test a whole-dollar meal and a decimal meal cost so rounding and formatting choices are visible.",
 					projectLink: "https://codepen.io/junilearning/pen/RwrLayP",
@@ -363,6 +369,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS2 Project 2: Randomly Random Party",
+					preserveInstructions: true,
 					content:
 						"Generate a random party date and start time. Choose a month from 5 through 7, a day from 1 through 30, an hour from 10 through 20, and a minute from 0 through 59. Print the result in a readable sentence, and verify that the random formulas cannot produce an impossible value outside the intended ranges.",
 					projectLink: "https://codepen.io/junilearning/pen/xxZXVye",
@@ -371,6 +378,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS2 Project 3: What's the Password?",
+					preserveInstructions: true,
 					content:
 						"Start with `Math.PI`, multiply by 6 to the eighth power, then add 11. Divide by 3 and round down with `Math.floor()`, then find the remainder after division by `Math.PI`. Keep each step on a separate line, trace the intermediate values, and pass the final number to `printToScreen()`.",
 					projectLink: "https://codepen.io/junilearning/pen/PoZJNXb",
@@ -381,6 +389,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JSS2 Supplemental Project 1: Pie Eating Contest",
+					preserveInstructions: true,
 					content:
 						"Distribute a non-negative whole number of donated pies equally among four contestants, giving only whole pies. Prompt for the starting total, calculate each contestant's share and the leftover count, then print all three values. Test zero pies, a total divisible by four, and a total with leftovers.",
 					projectLink: "https://codepen.io/junilearning/pen/jOWGqJZ",
@@ -389,6 +398,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS2 Supplemental Project 2: Random Practice",
+					preserveInstructions: true,
 					content:
 						"Print random numbers from several target ranges: 0 through 5, 1 through 10, 20 through 50, even numbers from 0 through 50, and odd numbers from 51 through 101. For each range, write the formula first, then run several samples to check that the endpoints and parity rules are possible.",
 					projectLink: "https://codepen.io/junilearning/pen/JjGrXgg",
@@ -397,6 +407,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS2 Supplemental Project 3: Circles",
+					preserveInstructions: true,
 					content:
 						"Use a modified `printToScreen(start, end)` helper to draw arcs. Convert degrees to radians before drawing, then create a rainbow arc, a full circle, and a three-quarter circle. Keep the angle values visible in the code so it is clear why each arc opens or closes where it does.",
 					projectLink: "https://codepen.io/junilearning/pen/yLezJLx",
@@ -405,6 +416,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS2 Supplemental Project 4: Debugging Math Practice",
+					preserveInstructions: true,
 					content:
 						"Debug the math-practice program by first identifying the expected numeric result, then tracing each arithmetic step in the existing code. Fix one error at a time, rerun after each change, and leave the final version readable enough that the order of operations, rounding behavior, and printed answer are easy to verify.",
 					projectLink: "https://codepen.io/junilearning/pen/VwexoVL",
@@ -423,8 +435,9 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS3 Project 1: For Loops Practice",
+					preserveInstructions: true,
 					content:
-						"Use `printToScreen()` and `for` loops to print several numeric sequences: 1 through 50, 50 down to 1, even numbers through 100, odd numbers down from 100, powers of 3, and the sequence 500, 100, 20, 4. Each sequence has its own loop rule so the start value, condition, and update step are visible.",
+						"Use separate `for` loops with `printToScreen()` to print 1 through 50, 50 down to 1, even numbers 2 through 100, and odd numbers 99 down to 1. Optional challenges: print powers of 3 from 1 through 100, then the sequence 500, 100, 20, 4. Trace each loop's start value, condition, and update.",
 					projectLink: "https://codepen.io/junilearning/pen/PoZJGKV",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/8c4bf4ddfb48b6a93a41d0347d6f78ef"
@@ -436,6 +449,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS3 Project 2: String Reversal",
+					preserveInstructions: true,
 					content:
 						"Prompt for a word, then print its letters forward with a `for` loop and backward with a `while` loop. Use string indices deliberately: the forward loop starts at 0, while the backward loop starts at the last valid index. Test a one-letter word and a longer word to confirm the boundary logic.",
 					projectLink: "https://codepen.io/junilearning/pen/OJMxRvY",
@@ -444,6 +458,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS3 Project 3: Looping Squares",
+					preserveInstructions: true,
 					content:
 						"Use loops to print repeated colored squares with `printToScreen()`: two red squares, three yellow squares, four blue squares, and three purple squares. Use `for` loops for some groups and `while` loops for others, then compare which version makes the repeat count easiest to read.",
 					projectLink: "https://codepen.io/junilearning/pen/xxZXEzP",
@@ -454,6 +469,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JSS3 Supplemental Project 1: Powers of 3",
+					preserveInstructions: true,
 					content:
 						"Print every power of 3 that is less than 5000. Start with a value of 1, repeatedly multiply by 3, and stop before the value reaches the limit. The output makes the growth pattern clear, and the loop avoids printing the first value that is too large.",
 					projectLink: "https://codepen.io/junilearning/pen/wvMrzEw",
@@ -462,16 +478,18 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS3 Supplemental Project 2: Forgotten Math",
+					preserveInstructions: true,
 					content:
-						"Compute the product of two user inputs without using `*` or `*=`. Use repeated addition in a loop, track the running total, and print the final result. Test multiplying by 0, multiplying by 1, and multiplying two larger positive numbers so the loop logic is not only tested on one easy case.",
+						"Multiply two finite numbers by repeated addition without using `*` or `*=`. Use a whole-number input as the repeat count; either input can supply that count, while the other may be decimal. Track the running total and its sign. Test multiplying by 0 and 1, negative inputs, a decimal amount, and canceled or unsupported input.",
 					projectLink: "https://codepen.io/junilearning/pen/gOPGwBy",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/53206f1e4800c28a4549aea7be49b7e0"
 				},
 				{
 					title: "JSS3 Supplemental Project 3: Debugging Loops",
+					preserveInstructions: true,
 					content:
-						"Repair the race simulation by tracing how each loop changes racer position over time. Verify that the loop starts at the right value, updates on every iteration, stops at the correct finish condition, and prints a final result that matches the simulated race state.",
+						"Repair the simulation so it runs five races. For each race, count down from 10 to 1, advance each of three racers 50 times by a random whole distance from 1 through 10, and print their final distances. Trace initialization, conditions, updates, and the race counter.",
 					projectLink: "https://codepen.io/junilearning/pen/KKVGBWx",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/d56a9a00a8022b7f85434f295cc0dbec"
@@ -488,16 +506,18 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS4 Project 1: Totaling Up",
+					preserveInstructions: true,
 					content:
-						"Write loops that build totals over time: sum the numbers from 1 through 100, sum the squares from 1 through 100, and compute the factorial of a user input. Use separate accumulator variables for each task, initialize them correctly, and print intermediate or final values with labels so the calculation can be checked.",
+						"Use loops to sum the numbers from 1 through 100, sum their squares, and compute a prompted whole-number factorial. Initialize or reset the accumulator for each task. Check 5050, 338350 and 5! = 120, then test the 0 and 1 boundaries, canceled input and values that cannot produce a finite factorial.",
 					projectLink: "https://codepen.io/junilearning/pen/gOPGwNV",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/71ad8b99ac4c707e75b4f0e136f82665"
 				},
 				{
 					title: "JSS4 Project 2: Coin Machine",
+					preserveInstructions: true,
 					content:
-						"Ask for an amount of cents and break it into coins. Use division, modulo, or `while` loops to determine quarters, dimes, nickels, and pennies. Print each coin count with a label, and test values such as 0, 4, 25, 41, and 99 cents to confirm that leftover amounts are handled correctly.",
+						"Ask for a whole number of pennies. Use while loops to subtract dollars first, then quarters, dimes and nickels, leaving the remaining pennies. Track each count and the changing remainder. Test 0, 4, 25, 41, 99 and 187 pennies, including a case with both a dollar and leftover coins.",
 					projectLink: "https://codepen.io/junilearning/pen/VweMmZq",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/17494fdc78b6e93db4e8206101f45ea7"
@@ -509,8 +529,9 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS4 Project 3: Random Password",
+					preserveInstructions: true,
 					content:
-						"Create a random password by generating letters and numbers, then combining them in an alternating pattern. Use ASCII or random index choices for characters, store the growing password in a variable, and verify that the requested length and character pattern match the output every time the program runs.",
+						"Generate ten random lowercase letters using ASCII codes and ten random digits. Interleave them into a twenty-character sample that alternates a letter and a digit. Check the length, positions and inclusive a-z and 0-9 ranges. Math.random is suitable for this exercise but does not produce secure account passwords.",
 					projectLink: "https://codepen.io/junilearning/pen/jOWGVVB",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/1520f836e15f3d4e7f554b913a805b02"
@@ -519,37 +540,12 @@ const javascriptLevel1SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JSS4 Supplemental Project 1: Debugging Football",
+					preserveInstructions: true,
 					content:
-						"Debug the football-drive simulation by tracking yards, downs, and stopping conditions. The final program updates the drive state consistently, avoids off-by-one loop mistakes, and prints enough information to tell whether the drive ends by scoring, failing, or reaching the intended limit.",
+						"Repair the simulation so the starting yard is a random whole number from 1 through 25. Run four plays per round, each gaining a random whole amount from -4 through 10 yards. Update the current yard and round total, report the round gain, and use the Y/N answer to continue or stop. Distinguish total gain from the final yard position.",
 					projectLink: "https://codepen.io/junilearning/pen/gOPRqPr",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/eb1d816cbecce4d20944284fc085ae36"
-				},
-				{
-					title: "Combining Loops and Variables Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "web development",
-						moduleTitle: "JSS4 Combining Loops and Variables",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSS-05-jss4-combining-loops-and-variables-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSS-05-jss4-combining-loops-and-variables-supplemental-2/solution"
-				},
-				{
-					title: "Combining Loops and Variables Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "web development",
-						moduleTitle: "JSS4 Combining Loops and Variables",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSS-06-jss4-combining-loops-and-variables-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSS-06-jss4-combining-loops-and-variables-supplemental-3/solution"
 				}
 			]
 		},
@@ -568,6 +564,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS5 Project 1: A-Checker",
+					preserveInstructions: true,
 					content:
 						"Prompt for a word and check whether it contains the letter `a`. Use a loop to inspect characters one at a time and a conditional to detect a match. Print a clear result for words that contain `a` and words that do not, then test uppercase, lowercase, and empty input if the project allows it.",
 					projectLink: "https://codepen.io/junilearning/pen/QWyqrLo",
@@ -581,6 +578,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS5 Project 2: What Grade Is This?",
+					preserveInstructions: true,
 					content:
 						"Given a number from 0 through 100, print the matching letter grade with an `if`/`else if`/`else` chain. Decide how boundary values such as 90, 80, 70, and invalid scores are handled before coding. Test the exact boundary values as well as one score in the middle of each grade range.",
 					projectLink: "https://codepen.io/junilearning/pen/yLezjje",
@@ -594,6 +592,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS5 Project 3: Wholesome Memes",
+					preserveInstructions: true,
 					content:
 						"Convert a sentence to alternating case, such as `tHaT lOoKs LiKe ThIs`. Loop through the characters, use conditionals or index parity to decide uppercase versus lowercase, and preserve spaces or punctuation intentionally. An extension can use ASCII checks so only alphabetic characters affect the alternating pattern.",
 					projectLink: "https://codepen.io/junilearning/pen/wvMrXdG",
@@ -604,6 +603,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JSS5 Supplemental Project 1: Login Credentials",
+					preserveInstructions: true,
 					content:
 						"Build a simple login loop that keeps prompting until the username and password match the expected credentials. Track attempts if useful, give clear failure feedback, and alert success only when both values match. Make sure the loop has a reliable stopping condition so it does not continue after a correct login.",
 					projectLink: "https://codepen.io/junilearning/pen/QWyqxqp",
@@ -612,6 +612,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS5 Supplemental Project 2: Snake Eyes",
+					preserveInstructions: true,
 					content:
 						"Simulate rolling two dice until both dice show 1. Each iteration rolls both dice, counts the attempt, and decides whether the stopping condition has been met. Print the total number of rolls and enough sample roll information to verify that the loop is actually waiting for snake eyes.",
 					projectLink: "https://codepen.io/junilearning/pen/jOWGKZw",
@@ -620,6 +621,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS5 Supplemental Project 3: Debugging the Favorite Fruit Guesser",
+					preserveInstructions: true,
 					content:
 						"Debug a fruit guesser that uses color and taste conditionals. First identify the intended decision tree, then check whether each condition is testing the correct variable and whether the branches are ordered correctly. Test at least one input that matches, one that almost matches, and one that falls through to the default result.",
 					projectLink: "https://codepen.io/junilearning/pen/PoZdQeW",
@@ -638,8 +640,9 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS6 Project 1: The Sorting Hat",
+					preserveInstructions: true,
 					content:
-						"Prompt for a preferred house and a personal quality, then use conditionals to decide whether the answers match the house rules. Print a sorting result when the combination is valid and a retry or mismatch message when it is not. Keep each house rule readable enough that the decision can be tested with several input combinations.",
+						"Prompt for a house and a quality. Use nested conditionals with these exercise rules: Gryffindor/bravery, Slytherin/cunning, Ravenclaw/wisdom, and Hufflepuff/hard work. Print the selected house for a matching pair, a mismatch message for a known house with another quality, and an unknown-house message otherwise.\n\nTest all four matching pairs, a mismatch for each house, and an unknown house. Comparisons are case-sensitive. The reference handles Cancel at either prompt before choosing a house.",
 					projectLink: "https://codepen.io/junilearning/pen/JjGrxRB",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/e7c85cf84c953eb5bc630e214fe476d8"
@@ -651,8 +654,9 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS6 Project 2: FizzBuzz",
+					preserveInstructions: true,
 					content:
-						"Print the numbers from 1 through 100, but replace multiples of 3 with `Fizz`, multiples of 5 with `Buzz`, and multiples of both with `FizzBuzz`. Check the combined 3-and-5 condition first so 15, 30, and similar values do not get caught by a simpler branch too early.",
+						"Print the numbers from 1 through 50. Replace multiples of 3 with `Fizz`, multiples of 5 with `Buzz`, and multiples of both with `FizzBuzz`. Check the combined 3-and-5 condition first.\n\nProduce exactly 50 lines. Check 1 and 2, 3 (`Fizz`), 5 (`Buzz`), 15, 30 and 45 (`FizzBuzz`), and the final value 50 (`Buzz`).",
 					projectLink: "https://codepen.io/junilearning/pen/gOPGqKa",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/0b39a6e7b85b790e7cd9a276e9ee2c4f"
@@ -669,8 +673,9 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSS6 Project 3: GCF of Two Numbers",
+					preserveInstructions: true,
 					content:
-						"Find the greatest common factor of two input numbers. Iterate through possible factors, check which values divide both numbers evenly, and keep track of the largest valid factor found so far. Test pairs with a factor greater than 1, pairs whose GCF is 1, and pairs where the two inputs are equal.",
+						"Find the greatest common factor of two positive whole numbers. Test candidate factors from 1 through the smaller input, use `&&` to check that both remainders are zero, and retain the largest matching factor.\n\nCheck 36/24 → 12, 8/15 → 1, 18/18 → 18, and reversed inputs. The reference accepts positive whole inputs from 1 through 1,000,000, bounding the factor search. It handles Cancel separately and rejects blank, fractional, nonnumeric, infinite, zero, negative and larger inputs before entering the loop.",
 					projectLink: "https://codepen.io/junilearning/pen/NWxaJdX",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/b418881c3e60c8c7ac8fcbc3b7d74aa0"
@@ -679,32 +684,21 @@ const javascriptLevel1SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JSS6 Supplemental Project 1: What Does the _ Say?",
+					preserveInstructions: true,
 					content:
-						"Use a `switch` statement to map several animal names to the sounds they make. Include a `default` case for unknown animals, check that every case ends correctly with `break`, and test at least one recognized animal plus one unrecognized input.",
+						"Use a `switch` statement with `break` to map lowercase animal names to sounds: dog/woof, cat/meow, cow/moo, bee/buzz, and frog/ribbit. The original reference also gives fox a playful response. Print `huh?` for an unknown animal.\n\nCheck each listed animal, fox, an unknown animal and a differently capitalized name. Comparisons remain case-sensitive. The reference handles Cancel separately. Every recognized switch case ends with `break`.",
 					projectLink: "https://codepen.io/junilearning/pen/NWxaJgy",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/5b0bdb527344a081c9abf91138ce5f4a"
 				},
 				{
 					title: "JSS6 Supplemental Project 2: Debugging Bugging Friends",
+					preserveInstructions: true,
 					content:
-						"Debug a program that decides whether messaging frequency is too high. Identify the intended thresholds, check whether `&&` or `||` is appropriate in each condition, and verify that edge values exactly on the threshold behave as expected. The fixed version explains why each branch fires.",
+						"Debug the starter’s compound conditions using this fictional exercise’s message-rate rules: acquaintance 10, friend 25, good friend 50, and best friend 200 messages per hour. A warning requires both the matching level and a rate strictly above its threshold.\n\nThe starter intentionally uses incorrect compound conditions. Trace each level at its exact threshold and one message above it, then fix the `&&`/`||` choice. Equal rates do not warn. The reference accepts a recognized level, a nonnegative safe whole message count, and finite elapsed hours greater than zero. It handles Cancel at each prompt and reports invalid input before computing the rate.",
 					projectLink: "https://codepen.io/junilearning/pen/mdVGXLE",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/67b0c29a104afde9cce553de6cacf882"
-				},
-				{
-					title: "Advanced Conditionals Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "web development",
-						moduleTitle: "JSS6 Advanced Conditionals",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSS-07-jss6-advanced-conditionals-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSS-07-jss6-advanced-conditionals-supplemental-3/solution"
 				}
 			]
 		},

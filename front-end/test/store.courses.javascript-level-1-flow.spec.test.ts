@@ -163,11 +163,11 @@ describe("JavaScript Level 1 learner flow", () => {
 			)
 		);
 
-		expect(githubItems).toHaveLength(15);
+		expect(githubItems).toHaveLength(12);
 		const githubUrls = new Set(
 			githubItems.flatMap(item => [item.projectLink, item.solutionLink])
 		);
-		expect(githubUrls.size).toBe(30);
+		expect(githubUrls.size).toBe(24);
 		for (const item of githubItems) {
 			expect(item.projectLink, item.title).toContain("/starter");
 			expect(item.solutionLink, item.title).toContain("/solution");
@@ -269,7 +269,7 @@ describe("JavaScript Level 1 learner flow", () => {
 		expect(text).toContain("combined 3-and-5 condition");
 		expect(text).toContain("readable without relying only on color");
 		expect(text).toContain(
-			"Combining Loops and Variables Transfer Practice"
+			"JSS4 Supplemental Project 1: Debugging Football"
 		);
 		expect(text).toContain(
 			"Dynamic Websites with JavaScript Extension Practice"

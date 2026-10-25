@@ -1,0 +1,34 @@
+// Kant D. Bugg has attempted to make a favorite fruit guesser game which uses both the color and taste properties in order to guess your favorite fruit. He seems to have run into some bugs along the way though. Help him debug this project!
+
+alert(
+	"Tell me what your favorite color and taste is and I'll tell you what your favorite fruit is!"
+);
+
+let color = prompt("What's your favorite color?");
+let taste = prompt("Do you like sweet or sour?");
+
+let fruit = "";
+
+if (taste === "sour") {
+} else if (color === "red") {
+	fruit = "cherries";
+} else if (color === "yellow") {
+	fruit = "pineapples";
+} else if (color === "green") {
+	fruit = "lime";
+}
+
+if (taste === "sweet") {
+} else if (color === "blue") {
+	fruit = "blueberries";
+} else if (color === "yellow") {
+	fruit = "mango";
+}
+
+printToScreen(`Nice! So your favorite fruit(s) are ${fruit}.`);
+
+// DO NOT ALTER: Starter code that will print text to the screen!
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

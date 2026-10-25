@@ -1,0 +1,62 @@
+// Let's play a dice rolling game with two dice. First, ask the user how many sides their die have. We are going to see how long it takes to roll a snake eyes (meaning two ones!). Roll the dice until a snake eyes is rolled. Then, print out how many rolls it took.
+
+// Reference with explicit input handling
+
+let response = prompt("How many sides does each die have? Enter 1 through 100.");
+if (response === null) {
+  printToScreen("Dice entry canceled.");
+} else {
+  let diceSides = Number(response);
+  if (response.trim() === "" || !Number.isInteger(diceSides)
+      || diceSides < 1 || diceSides > 100) {
+    printToScreen("Enter a whole number of sides from 1 through 100.");
+  } else {
+    rollUntilSnakeEyes(diceSides);
+  }
+}
+
+async function rollUntilSnakeEyes(diceSides) {
+  let rolls = 0;
+  let roll = 0;
+  let rollTwo = 0;
+  let stopped = false;
+  const stop = document.getElementById("stop-rolls");
+  const status = document.getElementById("roll-status");
+  stop.hidden = false;
+  status.hidden = false;
+  status.textContent = "Rolling two " + diceSides + "-sided dice...";
+  stop.addEventListener("click", () => { stopped = true; }, { once: true });
+  while (roll !== 1 || rollTwo !== 1) {
+    if (stopped) {
+      printToScreen("Rolling stopped after " + rolls + " rolls.");
+      stop.hidden = true;
+      status.hidden = true;
+      return;
+    }
+    rolls++;
+    roll = Math.floor(Math.random() * diceSides) + 1;
+    rollTwo = Math.floor(Math.random() * diceSides) + 1;
+    if (rolls <= 3) {
+      printToScreen("Roll " + rolls + ": " + roll + " and " + rollTwo);
+    }
+    if (rolls % 1000 === 0 && (roll !== 1 || rollTwo !== 1)) {
+      status.textContent = rolls + " rolls; still looking for two ones...";
+      await nextBrowserTurn();
+    }
+  }
+  printToScreen("It took " + rolls + " rolls to get two 1's");
+  stop.hidden = true;
+  status.hidden = true;
+}
+
+// Supplied helper: let browser input run between batches of rolls.
+function nextBrowserTurn() {
+  return new Promise(resolve => setTimeout(resolve, 0));
+}
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output").append("p")
+    .attr("class", "course-output").text(String(text));
+}

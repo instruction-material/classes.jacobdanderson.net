@@ -1,0 +1,14 @@
+// We want to be able to easily figure out how much our dinner bill is going to be after we order our lunch. Make a program which allows a user to enter in a cost for an entree, the percentage of sales tax, and the percentage we plan to tip (note: tip is applied only on the cost of the entree, not on top of the tax). Then, print out the total cost of the meal using printToScreen()
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  d3.select("#output")
+    .append("p")
+    .attr("class", "course-output")
+    .text(String(text));
+}
