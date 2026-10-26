@@ -1,0 +1,57 @@
+{
+	"project": "restaurant-splash-page",
+	"role": "reference",
+	"url": "https://codepen.io/junilearning/pen/eb5dc79c245ab907ddd8f56853cb817a",
+	"observedURL": "https://codepen.io/junilearning/pen/abdzwKq/eb5dc79c245ab907ddd8f56853cb817a",
+	"title": "JSS15 Supplemental Project 1: Juni Eatz Solution",
+	"panels": {
+		"HTML": "<nav class=\"blue lighten-1\" role=\"navigation\">\n  <div class=\"nav-wrapper container\">\n    <div class=\"brand-logo center\">\n      Juni Eatz\n    </div>\n  </div>\n</nav>\n<div class=\"parallax-container\">\n  <div class=\"parallax\"><img src=\"https://infatuation.imgix.net/media/images/reviews/broken-spanish/banners/1454597897.69.jpg?auto=format&h=840&w=1336\"></div>\n</div>\n<div class=\"section black\">\n  <div class=\"row container\">\n    <h4 class=\"header white-text\">Great Food, Greater Prices</h4>\n    <p class=\"white-text\">Located at Juni HQ, we keep all of the engineers and employees fed with delicious, nutricious food!</p>\n    <h4 class=\"header white-text\">Dine-in or Take-out</h4>\n    <p class=\"white-text right\">Our meals are made fresh and are ready to go at your convenience. Feel free to take your time and explore our menu, or if you already know what you want, call us ahead of time and we'll have your food waiting for you. The choice is yours!</p>\n  </div>\n</div>\n<div class=\"parallax-container\">\n  <div class=\"parallax\"><img src=\"https://www.washingtonian.com/wp-content/uploads/2019/03/3D5A1508-scaled-994x663.jpg\"></div>\n</div>\n<div class=\"section blue lighten-1\">\n  <div class=\"row container\">\n    <h4 class=\"header left white-text\">Menu</h4>\n  </div>\n  <br>\n  <br>\n  <div class=\"row container\">\n    <div class=\"col s12 m8\">\n      <div class=\"card horizontal\">\n        <div class=\"card-image\">\n          <img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Festival_de_la_Enchilada_59.jpg/1024px-Festival_de_la_Enchilada_59.jpg\">\n        </div>\n        <div class=\"card-stacked\">\n          <div class=\"card-content\">\n            <h6>Enchiladas</h6>\n            <p>Chicken or Pork</p>\n            <p>$12.50</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"row container\">\n    <div class=\"col s12 m8 right\">\n      <div class=\"card horizontal\">\n        <div class=\"card-stacked\">\n          <div class=\"card-content\">\n            <h6>Burrito</h6>\n            <p>Chicken or Steak</p>\n            <p>$9.50</p>\n          </div>\n        </div>\n        <div class=\"card-image\">\n          <img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Hippie_Kitchen%2C_Jefferson_Highway%2C_Old_Jefferson_Louisiana_Burrito_Unwrapped.jpg/1024px-Hippie_Kitchen%2C_Jefferson_Highway%2C_Old_Jefferson_Louisiana_Burrito_Unwrapped.jpg\">\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"row container\">\n    <div class=\"col s12 m8\">\n      <div class=\"card horizontal\">\n        <div class=\"card-image\">\n          <img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/001_Tacos_de_carnitas%2C_carne_asada_y_al_pastor.jpg/1024px-001_Tacos_de_carnitas%2C_carne_asada_y_al_pastor.jpg\">\n        </div>\n        <div class=\"card-stacked\">\n          <div class=\"card-content\">\n            <h6>Tacos</h6>\n            <p>Three kinds of meat</p>\n            <p>$10.50</p>\n          </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"row container\">\n      <div class=\"col s12 m8 right\">\n        <div class=\"card horizontal\">\n          <div class=\"card-stacked\">\n            <div class=\"card-content\">\n              <h6>Torta</h6>\n              <p>Chicken or Steak</p>\n              <p>$11.50</p>\n            </div>\n          </div>\n          <div class=\"card-image\">\n            <img src=\"https://upload.wikimedia.org/wikipedia/commons/f/fc/Tortamex.jpg\">\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"row container\">\n      <div class=\"col s12 m8\">\n        <div class=\"card horizontal\">\n          <div class=\"card-image\">\n            <img src=\"https://www.mexicanplease.com/wp-content/uploads/2018/10/sopa-de-fideo-beauty-shot.jpg\">\n          </div>\n          <div class=\"card-stacked\">\n            <div class=\"card-content\">\n              <h6>Sopa</h6>\n              <p>Soup of the day</p>\n              <p>$7.50</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"page-footer black darken-4\">\n  <div class=\"container\">\n    <h5>Contact Us</h5>\n    <p>(650) 333-3333</p>\n    <p>info@junieatz.com</p>\n    <br>\n  </div>\n</div>",
+		"CSS": "body {\n  margin: 0px;\n}",
+		"JavaScript": "M.Parallax.init(document.querySelectorAll('.parallax'), {edge: 'right'});  \n"
+	},
+	"settings": {
+		"HTML": {
+			"preprocessor": "None",
+			"head": "",
+			"classes": ""
+		},
+		"CSS": {
+			"preprocessor": "None",
+			"base": "Neither",
+			"prefixing": "Neither",
+			"resources": [
+				"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+			]
+		},
+		"JavaScript": {
+			"preprocessor": "None",
+			"resources": [
+				"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js",
+				"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+			]
+		}
+	},
+	"visibleEditorCopy": true,
+	"emptyEditorsVerifiedInUI": [],
+	"dependencySettingsViewed": true,
+	"clipboardChecks": {
+		"HTML": {
+			"utf16Length": 4190,
+			"fnv1a32": "6872093b"
+		},
+		"CSS": {
+			"utf16Length": 23,
+			"fnv1a32": "9b2e6bca"
+		},
+		"JavaScript": {
+			"utf16Length": 76,
+			"fnv1a32": "daae5a37"
+		}
+	},
+	"retainedAt": "2026-10-25T21:21:31.957802+00:00",
+	"panelSHA256": {
+		"HTML": "bb36c80386b59cad5739b858d42668c6d5e896d442697b7ab37928332941fd19",
+		"CSS": "89ceb2adf39c4134738e8b269c8ff66160325bd0cf6564c6c68851faf5da688b",
+		"JavaScript": "ef962dfb7ecd5f7a52994f0c4fe3ff7b6744e888657c271142832085892a8fc6"
+	}
+}

@@ -1,0 +1,13 @@
+# Sources and adaptations
+
+Original Juni Learning CodePen: https://codepen.io/junilearning/pen/181b8577413d710bc8e669f2740d4c5b
+Observed editor URL: https://codepen.io/junilearning/pen/JjGObyB
+HTML SHA-256: 8c7d578cf74bbec23ecadacaa3dbc7e5be0193f8b55c4222852d52c72d4367b4
+CSS SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+JavaScript SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+
+The original visible editors and dependency settings were captured before adaptation. The starter was an HTML comment with empty CSS and JavaScript; its D3 dependency was 6.1.1. The reference used Materialize 1.0.0, Material Icons 3.0.1, and unused jQuery 3.4.1. The local reference keeps the three-feature responsive layout, Sidenav, Collapsible, and Modal; its Learning Workshop business and copy are authored fictional replacements for historical company claims and contacts. Generated overlays are created by Materialize rather than copied into the document. Accessibility, keyboard, focus, and reduced-motion corrections are authored additions. The blank starter remains unfinished. These changes are distinguished from the retained original source, not presented as original Juni code.
+
+Materialize 1.0.0: https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/ (MIT; LICENSE-Materialize.txt).
+Material Icons 3.0.1: https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/ (Apache 2.0; LICENSE-Material-Icons.txt). The font is embedded in vendor/material-icons.css for offline use.
+D3 6.1.1: https://cdnjs.cloudflare.com/ajax/libs/d3/6.1.1/d3.min.js (BSD 3-Clause; LICENSE-d3.txt); exact version declared by the original starter, with no npm dependency change. The source and license are retained even when the selected role does not use SVG drawing.

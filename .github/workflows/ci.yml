@@ -963,11 +963,101 @@ jobs:
                   if-no-files-found: warn
                   retention-days: 7
 
+            - name: Verify master project imports and saved exports
+              env:
+                  JAVASCRIPT_MASTER_PROJECT_BROWSER_DIR: output/javascript-master-project-browser
+              run: node --test test/javascript-master-project-course-browser.test.mjs
+
+            - name: Verify actual master project exports offline
+              env:
+                  JAVASCRIPT_MASTER_PROJECT_BROWSER_DIR: output/javascript-master-project-browser
+              run: node --test test/javascript-master-project-exported-browser.test.mjs
+
+            - name: Retain master project source workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-master-project-source-workflows
+                  path: output/javascript-master-project-browser
+                  if-no-files-found: warn
+                  retention-days: 7
+
+            - name: Verify shop supplemental imports and saved exports
+              env:
+                  JAVASCRIPT_SHOP_BROWSER_DIR: output/javascript-shop-browser
+              run: node --test test/javascript-shop-course-browser.test.mjs
+
+            - name: Verify actual shop exports offline
+              env:
+                  JAVASCRIPT_SHOP_BROWSER_DIR: output/javascript-shop-browser
+              run: node --test test/javascript-shop-exported-browser.test.mjs
+
+            - name: Retain shop supplemental source workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-shop-source-workflows
+                  path: output/javascript-shop-browser
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify news supplemental imports and saved exports
+              env:
+                  JAVASCRIPT_NEWS_BROWSER_DIR: output/javascript-news-browser
+              run: node --test test/javascript-news-course-browser.test.mjs
+
+            - name: Verify actual news exports offline
+              env:
+                  JAVASCRIPT_NEWS_BROWSER_DIR: output/javascript-news-browser
+              run: node --test test/javascript-news-exported-browser.test.mjs
+
+            - name: Retain news supplemental source workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-news-source-workflows
+                  path: output/javascript-news-browser
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify restaurant supplemental imports and saved exports
+              env:
+                  JAVASCRIPT_RESTAURANT_BROWSER_DIR: output/javascript-restaurant-browser
+              run: node --test test/javascript-restaurant-course-browser.test.mjs
+
+            - name: Verify actual restaurant exports offline
+              env:
+                  JAVASCRIPT_RESTAURANT_BROWSER_DIR: output/javascript-restaurant-browser
+              run: node --test test/javascript-restaurant-exported-browser.test.mjs
+
+            - name: Retain restaurant supplemental source workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-restaurant-source-workflows
+                  path: output/javascript-restaurant-browser
+                  if-no-files-found: error
+                  retention-days: 7
+
             - name: Verify private IDE diagnostics in the browser
               run: node --test test/ide-diagnostics-browser.test.mjs
 
             - name: Verify console scrolling and editor argument warnings
               run: node --test test/ide-console-browser.test.mjs
+
+            - name: Verify long filenames keep editor shortcuts reachable
+              env:
+                  IDE_FILE_HEADER_BROWSER_DIR: output/ide-file-header
+              run: node --test test/ide-file-header-browser.test.mjs
+
+            - name: Retain editor filename layout evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: ide-file-header-layout
+                  path: output/ide-file-header
+                  if-no-files-found: error
+                  retention-days: 7
 
             - name: Verify Turtle manual updates and editor search contrast
               run: node --test test/turtle-tracer-browser.test.mjs
@@ -1016,7 +1106,7 @@ jobs:
 
     course-workflows:
         runs-on: ubuntu-24.04
-        timeout-minutes: 60
+        timeout-minutes: 90
         steps:
             - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
               with:

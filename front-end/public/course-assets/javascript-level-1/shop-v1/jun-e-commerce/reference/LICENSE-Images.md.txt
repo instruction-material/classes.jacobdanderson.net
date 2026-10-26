@@ -1,0 +1,5 @@
+# Image license and sources
+
+The ten photographs are retained from the original Unsplash CDN URLs. Unsplash permits free use and redistribution under its license, with the stated resale and competing-service restrictions. License reference: https://unsplash.com/license
+
+SOURCES.md lists every original URL and downloaded JPEG SHA-256. The JPEG bytes are embedded unchanged in SVG companions; layout cropping is performed by CSS. The source files contain no photographer credit metadata, so no individual author is invented here.

@@ -8992,7 +8992,11 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 				>
 					<section class="code-panel" aria-label="Code editor">
 						<div class="panel-header">
-							<span>{{ activeFile?.name ?? "main.py" }}</span>
+							<span
+								class="editor-file-name"
+								:title="activeFile?.name ?? 'main.py'"
+								>{{ activeFile?.name ?? "main.py" }}</span
+							>
 							<div class="editor-assist">
 								<small v-if="editorCursorCount > 1">
 									{{ editorCursorCount }} cursors
@@ -9659,6 +9663,7 @@ html.dark .karel-empty {
 
 .code-ide-loading,
 .code-ide-workspace {
+	min-width: 0;
 	min-height: 42rem;
 }
 
@@ -10255,6 +10260,7 @@ html.dark .file-delete:disabled::after {
 .code-ide-main {
 	min-width: 0;
 	display: grid;
+	grid-template-columns: minmax(0, 1fr);
 	align-content: start;
 	gap: 1rem;
 	padding: 1rem;
@@ -10738,6 +10744,7 @@ html.dark .file-delete:disabled::after {
 
 .ide-grid {
 	--code-ide-splitter-width: 0.55rem;
+	min-width: 0;
 	min-height: 38rem;
 	height: clamp(38rem, 76vh, 54rem);
 	display: grid;
@@ -10817,8 +10824,20 @@ html.dark .ide-splitter::before {
 	border-bottom: 1px solid var(--color-border);
 }
 
+.code-panel > .panel-header {
+	min-width: 0;
+}
+
+.editor-file-name {
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 .editor-assist {
 	display: flex;
+	flex-shrink: 0;
 	flex-wrap: wrap;
 	justify-content: flex-end;
 	gap: 0.55rem;
@@ -11348,7 +11367,7 @@ html.dark .editor-shortcuts ul {
 @media (max-width: 1180px) {
 	.code-ide-workspace,
 	.ide-grid {
-		grid-template-columns: 1fr;
+		grid-template-columns: minmax(0, 1fr);
 	}
 
 	.ide-grid,

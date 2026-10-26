@@ -1,0 +1,34 @@
+[
+	{
+		"name": "tacos",
+		"source": "https://commons.wikimedia.org/wiki/File:001_Tacos_de_carnitas,_carne_asada_y_al_pastor.jpg",
+		"author": "Larry Miller",
+		"license": "CC BY-SA 2.0",
+		"licenseURL": "https://creativecommons.org/licenses/by-sa/2.0",
+		"sha256": "a39a9babf6f1f7f259d7afeb080ce65556186d4a7307a68c97d2f12869eb2698"
+	},
+	{
+		"name": "enchiladas",
+		"source": "https://commons.wikimedia.org/wiki/File:Festival_de_la_Enchilada_59.jpg",
+		"author": "Lameirasb",
+		"license": "CC BY-SA 4.0",
+		"licenseURL": "https://creativecommons.org/licenses/by-sa/4.0",
+		"sha256": "685fcb8d2224afaa59313cecdd0d81cccdd1903541bb39f860825890ac52c92d"
+	},
+	{
+		"name": "torta",
+		"source": "https://commons.wikimedia.org/wiki/File:Tortamex.jpg",
+		"author": "Kiwidough at English Wikipedia",
+		"license": "Public domain",
+		"licenseURL": null,
+		"sha256": "426d4559101eaeb85472209c4f9be3485dabcf7fadfecee84d5b18efcce2331b"
+	},
+	{
+		"name": "burrito",
+		"source": "https://commons.wikimedia.org/wiki/File:Hippie_Kitchen,_Jefferson_Highway,_Old_Jefferson_Louisiana_Burrito_Unwrapped.jpg",
+		"author": "Infrogmation of New Orleans",
+		"license": "CC BY-SA 4.0",
+		"licenseURL": "https://creativecommons.org/licenses/by-sa/4.0",
+		"sha256": "e8d19035080b453d7b6a0de109735d4d1dd48502680b6c37e66ae9e5ce85a18b"
+	}
+]

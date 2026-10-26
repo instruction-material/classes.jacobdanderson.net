@@ -1,0 +1,1 @@
+// TODO: Initialize Carousel with manual keyboard controls, then implement in-memory cart quantities and totals.

@@ -1,0 +1,253 @@
+export const javascriptShopResources = [
+	{
+		project: "jun-e-commerce",
+		title: "Jun-E-Commerce",
+		version: 1,
+		role: "starter",
+		urls: [
+			"/course-assets/javascript-level-1/shop-v1/jun-e-commerce/starter/index.html.txt"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "shop-v1/jun-e-commerce/starter/index.html.txt",
+				byteLength: 480,
+				sha256: "283ffaac76779a4b61fe3fc6f97bd5f33ebf94dc9ff38f738e62bcb8809a82f5"
+			},
+			{
+				name: "styles.css",
+				path: "shop-v1/jun-e-commerce/starter/styles.css.txt",
+				byteLength: 89,
+				sha256: "72d1a7e0d4650d88848110d25fb7c9a003f9636861cf7e016accd2b28c7d5c83"
+			},
+			{
+				name: "script.js",
+				path: "shop-v1/jun-e-commerce/starter/script.js.txt",
+				byteLength: 113,
+				sha256: "b0239f447c1e14f3739458888a029e2f1880dcafdb3135d48363b48b147d5524"
+			},
+			{
+				name: "README.md",
+				path: "shop-v1/jun-e-commerce/starter/README.md.txt",
+				byteLength: 5766,
+				sha256: "79da616c14d8aa54398a618a68b9f2fb73f0f3a26be0f9bcfb5afe4c3414a470"
+			},
+			{
+				name: "SOURCES.md",
+				path: "shop-v1/jun-e-commerce/starter/SOURCES.md.txt",
+				byteLength: 4344,
+				sha256: "036852bf3a32c877e9503f7269645a2fdc030bab25fffa4a9d0c89e2cc01ba18"
+			},
+			{
+				name: "LICENSE-Images.md",
+				path: "shop-v1/jun-e-commerce/starter/LICENSE-Images.md.txt",
+				byteLength: 530,
+				sha256: "9fd6178657aa61ac6e3af9c3e0bd2ea5d7c63c51b3fa5e5e43ca1ba58dd90429"
+			},
+			{
+				name: "images/featured-1.svg",
+				path: "shop-v1/jun-e-commerce/starter/images/featured-1.svg.txt",
+				byteLength: 657022,
+				sha256: "e52dc39dd658654130989bd010aba7f95d9ef9885dcef0c0b25245fcc494227f"
+			},
+			{
+				name: "images/featured-2.svg",
+				path: "shop-v1/jun-e-commerce/starter/images/featured-2.svg.txt",
+				byteLength: 123708,
+				sha256: "5c14ebc44dae8b66dc7c8ff0f86f6dda60d49407d91af2493220ba32996dd5a5"
+			},
+			{
+				name: "images/featured-3.svg",
+				path: "shop-v1/jun-e-commerce/starter/images/featured-3.svg.txt",
+				byteLength: 77362,
+				sha256: "97796e4f99468b89a5ddfe04fb6de8f00a0b489c2e81820463a99ecb99e87c34"
+			},
+			{
+				name: "images/featured-4.svg",
+				path: "shop-v1/jun-e-commerce/starter/images/featured-4.svg.txt",
+				byteLength: 163009,
+				sha256: "7edb713bad4aca07ad59adadbf8bf0ef2b6af63c7cb8f535f9acd415e4a9bd97"
+			},
+			{
+				name: "images/product-1.svg",
+				path: "shop-v1/jun-e-commerce/starter/images/product-1.svg.txt",
+				byteLength: 125878,
+				sha256: "6a263675815e64e4460c84de3fde1461225532f2143b34a6ec7222d67e7d9fb4"
+			},
+			{
+				name: "images/product-2.svg",
+				path: "shop-v1/jun-e-commerce/starter/images/product-2.svg.txt",
+				byteLength: 82789,
+				sha256: "ec408f30033802d53a5a8647834c2b9eeadbcbabc78945a374bbd6eb8406484d"
+			},
+			{
+				name: "images/product-3.svg",
+				path: "shop-v1/jun-e-commerce/starter/images/product-3.svg.txt",
+				byteLength: 165649,
+				sha256: "5f87989603adbaa13f17ff37933e5b408c0741109eb5ff8a52ccb0313b3edda5"
+			},
+			{
+				name: "images/product-4.svg",
+				path: "shop-v1/jun-e-commerce/starter/images/product-4.svg.txt",
+				byteLength: 160044,
+				sha256: "b9cae91213e2360fec207927ef878d554fd0db3daa089fc51d5c313bbcfc15b1"
+			},
+			{
+				name: "images/product-5.svg",
+				path: "shop-v1/jun-e-commerce/starter/images/product-5.svg.txt",
+				byteLength: 159197,
+				sha256: "e1a5c7285556a1965c01caed870892728449e916fcc46b3358b80cbfa913aad5"
+			},
+			{
+				name: "images/product-6.svg",
+				path: "shop-v1/jun-e-commerce/starter/images/product-6.svg.txt",
+				byteLength: 141153,
+				sha256: "a6e583793e38cb820d563a1dc0e898eaebeae32282eeaa20db81ac8179550bfb"
+			},
+			{
+				name: "vendor/materialize.min.css",
+				path: "shop-v1/jun-e-commerce/starter/vendor/materialize.min.css.txt",
+				byteLength: 141829,
+				sha256: "e7bb7114352aba1e81b2d8d930ef1ecdd06ffc0ad927a8b86fffe75447ef70cc"
+			},
+			{
+				name: "vendor/materialize.min.js",
+				path: "shop-v1/jun-e-commerce/starter/vendor/materialize.min.js.txt",
+				byteLength: 181109,
+				sha256: "53f7070cc4c81c278c72f7a106fd71434e766cf49b26d6ee8b0e1003d7132b3d"
+			},
+			{
+				name: "LICENSE-Materialize.txt",
+				path: "shop-v1/jun-e-commerce/starter/LICENSE-Materialize.txt.txt",
+				byteLength: 1083,
+				sha256: "e503e53d929397f69cb80fa1ef050a3d84fbee7c09e6b622c72c4c2c9216d8c7"
+			}
+		]
+	},
+	{
+		project: "jun-e-commerce",
+		title: "Jun-E-Commerce",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/c8048a26149f2dc5c4340a2d6cdb0ce2",
+			"https://codepen.io/junilearning/pen/pogyXPZ/c8048a26149f2dc5c4340a2d6cdb0ce2"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "shop-v1/jun-e-commerce/reference/index.html.txt",
+				byteLength: 6965,
+				sha256: "c9f06034c4a4214da444475bb28c7bc074e11b0107de3603388bf5f8b3359503"
+			},
+			{
+				name: "styles.css",
+				path: "shop-v1/jun-e-commerce/reference/styles.css.txt",
+				byteLength: 3273,
+				sha256: "83f493a23466fbab01a62bff0481bb9ce87e8efe5b96ec6c784625fc016ce9e7"
+			},
+			{
+				name: "script.js",
+				path: "shop-v1/jun-e-commerce/reference/script.js.txt",
+				byteLength: 4345,
+				sha256: "12ed65f259252e7e7d3ffbd81b652f9edcdd8a2e0e7f6e49eadcc254f00facec"
+			},
+			{
+				name: "README.md",
+				path: "shop-v1/jun-e-commerce/reference/README.md.txt",
+				byteLength: 5766,
+				sha256: "79da616c14d8aa54398a618a68b9f2fb73f0f3a26be0f9bcfb5afe4c3414a470"
+			},
+			{
+				name: "SOURCES.md",
+				path: "shop-v1/jun-e-commerce/reference/SOURCES.md.txt",
+				byteLength: 4344,
+				sha256: "036852bf3a32c877e9503f7269645a2fdc030bab25fffa4a9d0c89e2cc01ba18"
+			},
+			{
+				name: "LICENSE-Images.md",
+				path: "shop-v1/jun-e-commerce/reference/LICENSE-Images.md.txt",
+				byteLength: 530,
+				sha256: "9fd6178657aa61ac6e3af9c3e0bd2ea5d7c63c51b3fa5e5e43ca1ba58dd90429"
+			},
+			{
+				name: "images/featured-1.svg",
+				path: "shop-v1/jun-e-commerce/reference/images/featured-1.svg.txt",
+				byteLength: 657022,
+				sha256: "e52dc39dd658654130989bd010aba7f95d9ef9885dcef0c0b25245fcc494227f"
+			},
+			{
+				name: "images/featured-2.svg",
+				path: "shop-v1/jun-e-commerce/reference/images/featured-2.svg.txt",
+				byteLength: 123708,
+				sha256: "5c14ebc44dae8b66dc7c8ff0f86f6dda60d49407d91af2493220ba32996dd5a5"
+			},
+			{
+				name: "images/featured-3.svg",
+				path: "shop-v1/jun-e-commerce/reference/images/featured-3.svg.txt",
+				byteLength: 77362,
+				sha256: "97796e4f99468b89a5ddfe04fb6de8f00a0b489c2e81820463a99ecb99e87c34"
+			},
+			{
+				name: "images/featured-4.svg",
+				path: "shop-v1/jun-e-commerce/reference/images/featured-4.svg.txt",
+				byteLength: 163009,
+				sha256: "7edb713bad4aca07ad59adadbf8bf0ef2b6af63c7cb8f535f9acd415e4a9bd97"
+			},
+			{
+				name: "images/product-1.svg",
+				path: "shop-v1/jun-e-commerce/reference/images/product-1.svg.txt",
+				byteLength: 125878,
+				sha256: "6a263675815e64e4460c84de3fde1461225532f2143b34a6ec7222d67e7d9fb4"
+			},
+			{
+				name: "images/product-2.svg",
+				path: "shop-v1/jun-e-commerce/reference/images/product-2.svg.txt",
+				byteLength: 82789,
+				sha256: "ec408f30033802d53a5a8647834c2b9eeadbcbabc78945a374bbd6eb8406484d"
+			},
+			{
+				name: "images/product-3.svg",
+				path: "shop-v1/jun-e-commerce/reference/images/product-3.svg.txt",
+				byteLength: 165649,
+				sha256: "5f87989603adbaa13f17ff37933e5b408c0741109eb5ff8a52ccb0313b3edda5"
+			},
+			{
+				name: "images/product-4.svg",
+				path: "shop-v1/jun-e-commerce/reference/images/product-4.svg.txt",
+				byteLength: 160044,
+				sha256: "b9cae91213e2360fec207927ef878d554fd0db3daa089fc51d5c313bbcfc15b1"
+			},
+			{
+				name: "images/product-5.svg",
+				path: "shop-v1/jun-e-commerce/reference/images/product-5.svg.txt",
+				byteLength: 159197,
+				sha256: "e1a5c7285556a1965c01caed870892728449e916fcc46b3358b80cbfa913aad5"
+			},
+			{
+				name: "images/product-6.svg",
+				path: "shop-v1/jun-e-commerce/reference/images/product-6.svg.txt",
+				byteLength: 141153,
+				sha256: "a6e583793e38cb820d563a1dc0e898eaebeae32282eeaa20db81ac8179550bfb"
+			},
+			{
+				name: "vendor/materialize.min.css",
+				path: "shop-v1/jun-e-commerce/reference/vendor/materialize.min.css.txt",
+				byteLength: 141829,
+				sha256: "e7bb7114352aba1e81b2d8d930ef1ecdd06ffc0ad927a8b86fffe75447ef70cc"
+			},
+			{
+				name: "vendor/materialize.min.js",
+				path: "shop-v1/jun-e-commerce/reference/vendor/materialize.min.js.txt",
+				byteLength: 181109,
+				sha256: "53f7070cc4c81c278c72f7a106fd71434e766cf49b26d6ee8b0e1003d7132b3d"
+			},
+			{
+				name: "LICENSE-Materialize.txt",
+				path: "shop-v1/jun-e-commerce/reference/LICENSE-Materialize.txt.txt",
+				byteLength: 1083,
+				sha256: "e503e53d929397f69cb80fa1ef050a3d84fbee7c09e6b622c72c4c2c9216d8c7"
+			}
+		]
+	}
+] as const;

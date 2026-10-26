@@ -1,0 +1,24 @@
+# Sources and adaptations
+
+Original Juni Learning supplemental reference: https://codepen.io/junilearning/pen/eb5dc79c245ab907ddd8f56853cb817a
+Observed editor: https://codepen.io/junilearning/pen/abdzwKq/eb5dc79c245ab907ddd8f56853cb817a
+HTML SHA-256: bb36c80386b59cad5739b858d42668c6d5e896d442697b7ab37928332941fd19
+CSS SHA-256: 89ceb2adf39c4134738e8b269c8ff66160325bd0cf6564c6c68851faf5da688b
+JavaScript SHA-256: ef962dfb7ecd5f7a52994f0c4fe3ff7b6744e888657c271142832085892a8fc6
+
+Only a completed reference was captured for this supplemental project. The unfinished starter is an independently authored companion and is not presented as an original Juni starter. The reference retains the original two parallax sections, five alternating horizontal cards, dish names, descriptions, sample prices, and restaurant identity. Semantic headings, phone reflow, keyboard navigation, static no-JavaScript images, reduced motion and resize handling are authored corrections.
+
+Historical contact details are replaced with a reserved example phone number and .example address. The menu prices and restaurant copy are fictional teaching data. The two unverified background photographs and the original unverified soup photograph are preserved as URLs in the exact original-source fixture rather than redistributed here. Backgrounds reuse two licensed original menu photographs; the soup uses a supplied SVG illustration. The remaining four photographs are original menu images. The Commons provider thumbnails are embedded byte-for-byte in local SVG companions and displayed with CSS cropping.
+
+Materialize 1.0.0: https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/ (MIT, LICENSE-Materialize.txt). The captured original also declared unused jQuery 3.4.1. Unused jQuery and D3 are not required or bundled. The original edge option does not configure Parallax; the reference uses responsiveThreshold.
+
+- Tacos: Larry Miller; CC BY-SA 2.0. https://commons.wikimedia.org/wiki/File:001_Tacos_de_carnitas,_carne_asada_y_al_pastor.jpg
+  License: https://creativecommons.org/licenses/by-sa/2.0. Provider image SHA-256: a39a9babf6f1f7f259d7afeb080ce65556186d4a7307a68c97d2f12869eb2698. Local SVG: images/tacos.svg.
+- Enchiladas: Lameirasb; CC BY-SA 4.0. https://commons.wikimedia.org/wiki/File:Festival_de_la_Enchilada_59.jpg
+  License: https://creativecommons.org/licenses/by-sa/4.0. Provider image SHA-256: 685fcb8d2224afaa59313cecdd0d81cccdd1903541bb39f860825890ac52c92d. Local SVG: images/enchiladas.svg.
+- Torta: Kiwidough at English Wikipedia; Public domain. https://commons.wikimedia.org/wiki/File:Tortamex.jpg
+  License: Public-domain declaration on the source page. Provider image SHA-256: 426d4559101eaeb85472209c4f9be3485dabcf7fadfecee84d5b18efcce2331b. Local SVG: images/torta.svg.
+- Burrito: Infrogmation of New Orleans; CC BY-SA 4.0. https://commons.wikimedia.org/wiki/File:Hippie_Kitchen,_Jefferson_Highway,_Old_Jefferson_Louisiana_Burrito_Unwrapped.jpg
+  License: https://creativecommons.org/licenses/by-sa/4.0. Provider image SHA-256: e8d19035080b453d7b6a0de109735d4d1dd48502680b6c37e66ae9e5ce85a18b. Local SVG: images/burrito.svg.
+
+Retain these credit and license links when adapting or redistributing the corresponding images. ShareAlike applies to the images carrying that license; the bundled Materialize code retains its separate MIT license.

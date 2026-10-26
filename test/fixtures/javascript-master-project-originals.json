@@ -1,0 +1,120 @@
+{
+	"resources": [
+		{
+			"project": "master-project",
+			"role": "starter",
+			"url": "https://codepen.io/junilearning/pen/181b8577413d710bc8e669f2740d4c5b",
+			"observedURL": "https://codepen.io/junilearning/pen/JjGObyB",
+			"title": "JSS15 Project 1: Master Project",
+			"panels": {
+				"HTML": "<!-- Time to make your own website with all that you have learned so far in the course. This starter file has all of the dependencies included that you have learned about, so feel free to use d3 and materialize! -->\n\n",
+				"CSS": "",
+				"JavaScript": ""
+			},
+			"settings": {
+				"HTML": {
+					"preprocessor": "None",
+					"head": "",
+					"classes": ""
+				},
+				"CSS": {
+					"preprocessor": "None",
+					"base": "Neither",
+					"prefixing": "Neither",
+					"resources": [
+						"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css",
+						"https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
+					]
+				},
+				"JavaScript": {
+					"preprocessor": "None",
+					"resources": [
+						"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js",
+						"https://cdnjs.cloudflare.com/ajax/libs/d3/6.1.1/d3.min.js"
+					]
+				}
+			},
+			"visibleEditorCopy": true,
+			"emptyEditorsVerifiedInUI": ["CSS", "JavaScript"],
+			"dependencySettingsViewed": true,
+			"clipboardChecks": {
+				"HTML": {
+					"utf16Length": 217,
+					"fnv1a32": "38d78fe9"
+				},
+				"CSS": {
+					"utf16Length": 0,
+					"fnv1a32": "811c9dc5"
+				},
+				"JavaScript": {
+					"utf16Length": 0,
+					"fnv1a32": "811c9dc5"
+				}
+			},
+			"retainedAt": "2026-10-25T21:18:19.823614+00:00",
+			"panelSHA256": {
+				"HTML": "8c7d578cf74bbec23ecadacaa3dbc7e5be0193f8b55c4222852d52c72d4367b4",
+				"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+				"JavaScript": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+			}
+		},
+		{
+			"project": "master-project",
+			"role": "reference",
+			"url": "https://codepen.io/junilearning/pen/c8520963128a302c0e6aa6738965ae43",
+			"observedURL": "https://codepen.io/junilearning/pen/PoPbmxQ/c8520963128a302c0e6aa6738965ae43",
+			"title": "JSS15 Project 1: Master Project Solution",
+			"panels": {
+				"HTML": "<nav class=\"black\" role=\"navigation\">\n  <div class=\"nav-wrapper container\">\n    <a href=\"\" id=\"logo-container\" class=\"navbar-brand\">\n      <img height=\"18px\" class=\"navbar-logo\" src=\"data:image/png;base64,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\" alt=\"#\">\n    </a>\n    <ul class=\"right hide-on-med-and-down\">\n      <li>\n        <a class=\"modal-trigger\" href=\"#modal1\">About</a>\n      </li>\n    </ul>\n    <ul id=\"nav-mobile\" class=\"right sidenav\">\n      <li>\n        <a class=\"modal-trigger\" href=\"#modal1\">About</a>\n      </li>\n    </ul>\n    <a href=\"#\" data-target=\"nav-mobile\" class=\"right sidenav-trigger\">\n      <i class=\"material-icons\">menu</i>\n    </a>\n  </div>\n</nav>\n<div class=\"valign-wrapper grey lighten-5\">\n  <div class=\"container\">\n    <h1 class=\"header center black-text\">Juni Learning</h1>\n    <div class=\"row center\">\n      <h5 class=\"header col s12 light\">Private online classes for kids</h5>\n    </div>\n    <div class=\"row center\">\n        <a href=\"https://junilearning.com/\" id=\"download-button\" class=\"btn-large waves-effect waves-light light-blue\">Get Started</a>\n      </div>\n    <br>\n    <br>\n  </div>\n</div>\n<div class=\"container\">\n  <div class=\"section\">\n    <div class=\"row\">\n      <div class=\"col s12 m4\">\n        <div class=\"icon-block\">\n          <h2 class=\"black-text center\">\n            <i class=\"material-icons\">code</i>\n          </h2>\n          <h5 class=\"center\">Making Coding Fun</h5>\n          <p class=\"center light\">Juni offers a full computer science curriculum for kids ages 8-18. Our youngest students start with our Juni Jr and Scratch courses. These coding courses use block-based programming to develop their fundamental programming concepts and problem solving skills while learning to code.</p>\n        </div>\n      </div>\n      <div class=\"col s12 m4\">\n        <div class=\"icon-block\">\n          <h2 class=\"black-text center\">\n            <i class=\"material-icons\">exposure</i>\n          </h2>\n          <h5 class=\"center\">Math Made Simple</h5>\n          <p class=\"center light\">Juni Mathematics is built for middle and high schoolers who want to reinforce and get ahead in mathematics. Working with a private instructor, our math students work through drills in fundamentals and complex word problems to practice each concept in our structured curriculum.</p>\n        </div>\n      </div>\n      <div class=\"col s12 m4\">\n        <div class=\"icon-block\">\n          <h2 class=\"black-text center\">\n            <i class=\"material-icons\">home</i>\n          </h2>\n          <h5 class=\"center\">Learn from Home</h5>\n          <p class=\"center light\">Our team of over 200 instructors are all vetted for their teaching experience and computer programming or mathematics expertise. Our instructors are selected from top-tier American universities like Harvard, MIT, and UC Berkeley.</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"center container\">\n  <ul class=\"collapsible\">\n    <li>\n      <div class=\"collapsible-header\"><i class=\"material-icons\">code</i>Making Coding Fun</div>\n      <div class=\"collapsible-body\"><span>Juni offers a full computer science curriculum for kids ages 8-18. Our youngest students start with our Juni Jr and Scratch courses. These coding courses use block-based programming to develop their fundamental programming concepts and problem solving skills while learning to code.</span></div>\n    </li>\n    <li>\n      <div class=\"collapsible-header\"><i class=\"material-icons\">exposure</i>Math Made Simple</div>\n      <div class=\"collapsible-body\"><span>Juni Mathematics is built for middle and high schoolers who want to reinforce and get ahead in mathematics. Working with a private instructor, our math students work through drills in fundamentals and complex word problems to practice each concept in our structured curriculum.</span></div>\n    </li>\n    <li>\n      <div class=\"collapsible-header\"><i class=\"material-icons\">home</i>Learn from Home</div>\n      <div class=\"collapsible-body\"><span>Our team of over 200 instructors are all vetted for their teaching experience and computer programming or mathematics expertise. Our instructors are selected from top-tier American universities like Harvard, MIT, and UC Berkeley.</span></div>\n    </li>\n  </ul>\n</div>\n<br>\n<footer class=\"page-footer black\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col l6 s12\">\n        <h5>Contact</h5>\n        <p class=\"white-text\">\n          Get in touch with us today at <a href=\"mailto:hello@learnwithjuni.com\">hello@learnwithjuni.com</a> to get started!</p>\n      </div>\n      <div class=\"col l6 s12\">\n        <ul class=\"right\">\n          <li>Python</li>\n          <li>Java</li>\n          <li>JavaScript</li>\n          <li>Pre-Algebra</li>\n          <li>Algebra</li>\n        </ul>\n      </div>\n    </div>\n  </div>\n  <div class=\"footer-copyright black\"></div>\n</footer>\n<div class=\"sidenav-overlay\"></div>\n<div class=\"drag-target\"></div>\n<div id=\"modal1\" class=\"modal\">\n  <div class=\"modal-content\">\n    <h4>About Our Company</h4>\n    <p>In 2017, both graduates of Stanford’s Computer Science Program founded a mission-driven technology company called Juni Learning. Juni was built to prep kids for real life, showing them a path to success by teaching them to start early and learn by doing. Connected to credible instructors, Juni’s students develop the creativity, confidence, and grit required to become future Juni instructors and tomorrow’s leaders.</p>\n  </div>\n  <div class=\"modal-footer\">\n    <a href=\"#!\" class=\"modal-close waves-effect waves-green btn-flat\">Close</a>\n  </div>\n</div>\n",
+				"CSS": "",
+				"JavaScript": "M.Sidenav.init(document.querySelectorAll('.sidenav'), {edge: 'right'});  \nM.Collapsible.init(document.querySelectorAll('.collapsible'), {});  \nM.Modal.init(document.querySelectorAll('.modal'), {});"
+			},
+			"settings": {
+				"HTML": {
+					"preprocessor": "None",
+					"head": "",
+					"classes": ""
+				},
+				"CSS": {
+					"preprocessor": "None",
+					"base": "Neither",
+					"prefixing": "Neither",
+					"resources": [
+						"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css",
+						"https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
+					]
+				},
+				"JavaScript": {
+					"preprocessor": "None",
+					"resources": [
+						"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js",
+						"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+					]
+				}
+			},
+			"visibleEditorCopy": true,
+			"emptyEditorsVerifiedInUI": ["CSS"],
+			"dependencySettingsViewed": true,
+			"clipboardChecks": {
+				"HTML": {
+					"utf16Length": 11467,
+					"fnv1a32": "9427b539"
+				},
+				"CSS": {
+					"utf16Length": 0,
+					"fnv1a32": "811c9dc5"
+				},
+				"JavaScript": {
+					"utf16Length": 197,
+					"fnv1a32": "0dcac3bf"
+				}
+			},
+			"retainedAt": "2026-10-25T21:18:19.823877+00:00",
+			"panelSHA256": {
+				"HTML": "8c541af13755e46f18ddd6882559b566629f6b3170414e84cffa871abaabb900",
+				"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+				"JavaScript": "a93e11fb2db476ed9da4150bd94079763d1568b76855570821e482f9f40ac881"
+			}
+		}
+	]
+}

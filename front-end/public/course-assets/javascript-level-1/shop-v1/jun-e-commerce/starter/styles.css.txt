@@ -1,0 +1,1 @@
+/* TODO: Add responsive catalog cards, visible focus, and a static carousel fallback. */

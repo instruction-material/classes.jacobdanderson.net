@@ -1,0 +1,16 @@
+# Sources and adaptations
+
+Original completed reference: https://codepen.io/junilearning/pen/910d8fa54b43a581c779c8dfab792c60
+Observed editor: https://codepen.io/junilearning/pen/KKVzYKY/910d8fa54b43a581c779c8dfab792c60
+
+HTML SHA-256: bcd1fb25f064b3a29f4910a85dfc99abb38c24df5e7d1c2d1478443dd53681c6
+CSS SHA-256: cf542adec333ec8c181f51a595dff6c96b8b3fb76bfbb0292c074a0ee3825ac5
+JavaScript SHA-256: a63428e97edd3a940592bd1051e822ea6b746a536791f3c4f1c8157621aa05bf
+
+The starter is an independently authored companion. The reference retains three original headlines, captions, modal story titles, and placeholder article bodies. Semantic headings, keyboard controls, explicit paused playback, focus restoration, reduced motion, and a readable no-JavaScript layout are authored corrections. Three newly authored SVG illustrations replace the remote photographs. No original photograph is redistributed. The original image URLs are retained below.
+
+https://cache.marriott.com/marriottassets/destinations/hero/jakarta-destination.jpg?interpolation=progressive-bilinear
+https://cnet4.cbsistatic.com/img/Zi-Jw4_5zJ_QvSDq1GeVxsH2aWg=/1092x614/2019/06/26/aacb986d-8cf9-463a-a396-7484b6f583c8/20180405-ibm-q-quantum-computer-04.jpg
+https://pixfeeds.com/uploads/images/1/44/5296471-1280_696935130-complex-formulas-on-whiteboard.jpg
+
+Materialize 1.0.0: https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/ (MIT; LICENSE-Materialize.txt). The original unused jQuery dependency is omitted.

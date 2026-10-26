@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Master Project</title>
+  <link rel="stylesheet" href="vendor/materialize.min.css">
+  <link rel="stylesheet" href="vendor/material-icons.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav aria-label="Main navigation">
+  <div class="nav-wrapper container">
+    <a class="brand" href="#home">Learning Workshop</a>
+    <ul class="right hide-on-med-and-down"><li><a class="modal-trigger" href="#about">About</a></li></ul>
+    <button id="menu-trigger" type="button" class="sidenav-trigger hide-on-large-only" data-target="nav-mobile" aria-label="Open menu" aria-controls="nav-mobile" aria-expanded="false"><i class="material-icons" aria-hidden="true">menu</i></button>
+  </div>
+</nav>
+<ul id="nav-mobile" class="sidenav" aria-label="Mobile navigation" aria-hidden="true">
+  <li><button type="button" class="btn-flat sidenav-close close-menu">Close menu</button></li>
+  <li><a class="modal-trigger sidenav-close" href="#about">About</a></li>
+  <li><a class="sidenav-close" href="#programs">Workshops</a></li>
+</ul>
+<main id="home">
+  <header class="hero container">
+    <h1>Learning Workshop</h1>
+    <p>Creative projects in coding, mathematics, and the web.</p>
+    <a class="btn" href="#programs">View workshops</a>
+  </header>
+  <section id="programs" class="container" aria-label="Workshops">
+    <div class="row">
+      <article class="col s12 m4 program"><i class="material-icons" aria-hidden="true">code</i><h2>Coding</h2><p>Turn an idea into an interactive drawing, story, or small game.</p></article>
+      <article class="col s12 m4 program"><i class="material-icons" aria-hidden="true">exposure</i><h2>Mathematics</h2><p>Explore patterns and explain the reasoning behind a solution.</p></article>
+      <article class="col s12 m4 program"><i class="material-icons" aria-hidden="true">home</i><h2>Web design</h2><p>Combine structure, style, and interaction in a responsive page.</p></article>
+    </div>
+  </section>
+  <section class="container" aria-label="Project details">
+    <ul class="collapsible">
+      <li><div id="coding-header" class="collapsible-header" role="button" tabindex="0" aria-controls="coding-detail" aria-expanded="false">Coding projects</div><div id="coding-detail" class="collapsible-body" role="region" aria-labelledby="coding-header"><p>Begin with a small drawing or scene. Use variables, conditions, and loops to add a behavior that can be tested.</p></div></li>
+      <li><div id="math-header" class="collapsible-header" role="button" tabindex="0" aria-controls="math-detail" aria-expanded="false">Mathematics projects</div><div id="math-detail" class="collapsible-body" role="region" aria-labelledby="math-header"><p>Compare examples, describe a pattern, and check the explanation against a new case.</p></div></li>
+      <li><div id="web-header" class="collapsible-header" role="button" tabindex="0" aria-controls="web-detail" aria-expanded="false">Web projects</div><div id="web-detail" class="collapsible-body" role="region" aria-labelledby="web-header"><p>Plan the content first, then test its layout and controls at both narrow and wide screen sizes.</p></div></li>
+    </ul>
+  </section>
+</main>
+<footer><div class="container">Learning Workshop · Fictional learning studio</div></footer>
+<div id="about" class="modal" role="dialog" aria-modal="true" aria-labelledby="about-title" aria-hidden="true" tabindex="-1">
+  <div class="modal-content"><h2 id="about-title">About Learning Workshop</h2><p>Curiosity, creative projects, and careful explanations connect coding, mathematics, and web design.</p></div>
+  <div class="modal-footer"><button id="close-about" type="button" class="modal-close btn-flat">Close</button></div>
+</div>
+
+<script src="vendor/materialize.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

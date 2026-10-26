@@ -16,6 +16,7 @@ import {
 	confirmProjectImport,
 	downloadProjectZip
 } from "./ide-workspace-controls.mjs";
+import { readPygamesFirstPaint, verifyPygamesFirstPaintControls } from "./pygames-first-paint.mjs";
 import { pythonFrame } from "./python-frame-fixture.mjs";
 
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
@@ -555,6 +556,7 @@ nodeTest(
 			// Course save/reopen continuity stays within each existing context.
 			context = null;
 			await launchBrowser();
+			const firstPaintControls = await verifyPygamesFirstPaintControls(browser);
 			async function openPage(course, staff, width) {
 				context = await browser.createBrowserContext();
 				const page = await context.newPage();
@@ -924,36 +926,21 @@ nodeTest(
 						const frame = await pythonFrame(page);
 						try {
 							checkpoint("await-rendered-canvas");
-							await frame.waitForFunction(
-								() => {
-									const c = document.querySelector(
-										"canvas.turtle-canvas--game"
-									);
-									if (!c || !c.width || !c.height)
-										return false;
-									const pixels = c
-										.getContext("2d")
-										.getImageData(
-											0,
-											0,
-											c.width,
-											c.height
-										)
-										.data;
-									for (let i = 0; i < pixels.length; i += 4) {
-										if (
-											pixels[i + 3] > 0
-											&& (pixels[i]
-												|| pixels[i + 1]
-												|| pixels[i + 2])
-										) {
-											return true;
-										}
-									}
-									return false;
-								},
+							const paintHandle = await frame.waitForFunction(
+								readPygamesFirstPaint,
 								{ timeout: 90000 }
 							);
+							const firstPaint = await paintHandle.jsonValue();
+							await paintHandle.dispose();
+							checkpoint("retain-rendered-canvas");
+							await (
+								await frame.$("canvas.turtle-canvas--game")
+							).screenshot({
+								path: join(
+									output,
+									`runtime-${classroom ? "classroom" : "original"}-${name}.png`
+								)
+							});
 							checkpoint("dispatch-game-input");
 							const canvas = await frame.$(
 								"canvas.turtle-canvas--game"
@@ -988,15 +975,6 @@ nodeTest(
 									e.textContent.trim()),
 								"Stop"
 							);
-							checkpoint("retain-rendered-canvas");
-							await (
-								await frame.$("canvas.turtle-canvas--game")
-							).screenshot({
-								path: join(
-									output,
-									`runtime-${classroom ? "classroom" : "original"}-${name}.png`
-								)
-							});
 							checkpoint("request-stop");
 							await page.locator("button.run-control").click();
 							checkpoint("await-run-control");
@@ -1015,6 +993,8 @@ nodeTest(
 								savedSourceSha256: digest(source.content),
 								archive,
 								canvasRendered: true,
+								firstPaint,
+								capturePhase: "first-painted-frame-before-input",
 								keyboardAndMouseDispatched: true,
 								stopped: true,
 								sourceFiles: saved.files
@@ -1062,6 +1042,7 @@ nodeTest(
 					{
 						profiles,
 						runtimeProfiles,
+						firstPaintControls,
 						assetEvidence,
 						browserSessions,
 						mediaRequests: [...mediaRequests],

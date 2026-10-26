@@ -1,0 +1,15 @@
+const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
+let active = false;
+function updateParallax() {
+  const enabled = !motionPreference.matches && innerWidth > 600;
+  if (enabled === active && document.documentElement.dataset.parallaxMotion) return;
+  document.querySelectorAll(".parallax").forEach(element => {
+    M.Parallax.getInstance(element)?.destroy();
+  });
+  document.documentElement.dataset.parallaxMotion = enabled ? "enabled" : "static";
+  active = enabled;
+  if (enabled) M.Parallax.init(document.querySelectorAll(".parallax"), { responsiveThreshold: 600 });
+}
+motionPreference.addEventListener("change", updateParallax);
+addEventListener("resize", updateParallax);
+updateParallax();
