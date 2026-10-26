@@ -1,0 +1,48 @@
+const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
+const menuTrigger = document.querySelector("#menu-trigger");
+const menu = document.querySelector("#nav-mobile");
+const dialog = document.querySelector("#about");
+let dialogTrigger;
+const timings = () => ({ inDuration: motionPreference.matches ? 0 : 200, outDuration: motionPreference.matches ? 0 : 150 });
+const sidenav = M.Sidenav.init(menu, {
+  edge: "right", ...timings(),
+  onOpenStart() { menu.setAttribute("aria-hidden", "false"); menuTrigger.setAttribute("aria-expanded", "true"); },
+  onOpenEnd() { menu.querySelector("button").focus(); },
+  onCloseStart() { menuTrigger.setAttribute("aria-expanded", "false"); },
+  onCloseEnd() { menu.setAttribute("aria-hidden", "true"); if (!dialog.classList.contains("open")) menuTrigger.focus(); }
+});
+const accordion = M.Collapsible.init(document.querySelector(".collapsible"), {
+  ...timings(),
+  onOpenStart(item) { item.querySelector(".collapsible-header").setAttribute("aria-expanded", "true"); },
+  onCloseStart(item) { item.querySelector(".collapsible-header").setAttribute("aria-expanded", "false"); }
+});
+const modal = M.Modal.init(dialog, {
+  ...timings(),
+  onOpenStart() { dialogTrigger = document.activeElement; dialog.setAttribute("aria-hidden", "false"); },
+  onOpenEnd() { document.querySelector("#close-about").focus(); },
+  onCloseEnd() {
+    dialog.setAttribute("aria-hidden", "true");
+    const target = dialogTrigger?.closest(".sidenav") ? menuTrigger : dialogTrigger;
+    if (target?.isConnected) target.focus();
+  }
+});
+document.querySelectorAll(".collapsible-header").forEach(header => {
+  header.addEventListener("keydown", event => {
+    if (event.key === " ") { event.preventDefault(); header.click(); }
+  });
+});
+dialog.addEventListener("keydown", event => {
+  if (event.key !== "Tab" || !modal.isOpen) return;
+  const controls = [...dialog.querySelectorAll("a[href], button, input, select, textarea, [tabindex]:not([tabindex='-1'])")].filter(node => !node.disabled && node.getClientRects().length > 0);
+  const first = controls[0];
+  const last = controls.at(-1);
+  if (!first) { event.preventDefault(); dialog.focus(); }
+  else if (event.shiftKey && (document.activeElement === first || document.activeElement === dialog)) { event.preventDefault(); last.focus(); }
+  else if (!event.shiftKey && (document.activeElement === last || document.activeElement === dialog)) { event.preventDefault(); first.focus(); }
+});
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && sidenav.isOpen && !modal.isOpen) { event.preventDefault(); sidenav.close(); }
+});
+motionPreference.addEventListener("change", () => {
+  [sidenav, accordion, modal].forEach(instance => Object.assign(instance.options, timings()));
+});

@@ -1,0 +1,157 @@
+export const javascriptNewsResources = [
+	{
+		project: "news-homepage",
+		title: "News Homepage",
+		version: 1,
+		role: "starter",
+		urls: [
+			"/course-assets/javascript-level-1/news-v1/news-homepage/starter/index.html.txt"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "news-v1/news-homepage/starter/index.html.txt",
+				byteLength: 469,
+				sha256: "b6e03488cb7b3f95c614954895e2cc099b87b6e90d7f89ffce14a8f0ff64dd5e"
+			},
+			{
+				name: "styles.css",
+				path: "news-v1/news-homepage/starter/styles.css.txt",
+				byteLength: 91,
+				sha256: "f80ce08e2704960161da0f5db362ea14b83e58968a924b22479d046c9a9b471c"
+			},
+			{
+				name: "script.js",
+				path: "news-v1/news-homepage/starter/script.js.txt",
+				byteLength: 100,
+				sha256: "00908b27af6db1f93d197c11745f81d918ba8a18dbbc80317791e02891de606d"
+			},
+			{
+				name: "README.md",
+				path: "news-v1/news-homepage/starter/README.md.txt",
+				byteLength: 4076,
+				sha256: "264e93a25a328b3ba8f80ae51fa3bd0f1191a91118d0701fb3c5233103fb1327"
+			},
+			{
+				name: "SOURCES.md",
+				path: "news-v1/news-homepage/starter/SOURCES.md.txt",
+				byteLength: 1480,
+				sha256: "76a79a5e275a627792aa1c5545a0a03426f99f7915516fa53f58d862da036726"
+			},
+			{
+				name: "images/story-1.svg",
+				path: "news-v1/news-homepage/starter/images/story-1.svg.txt",
+				byteLength: 527,
+				sha256: "5bfc8693253acf94606a2a65aecf88194e657c4a118fce1ee90c7d3ef60cf8cf"
+			},
+			{
+				name: "images/story-2.svg",
+				path: "news-v1/news-homepage/starter/images/story-2.svg.txt",
+				byteLength: 837,
+				sha256: "5758b7258f884aeb9a29c034f5f1d095e61b68cdfaa81fe1cc9a662c0f461ed3"
+			},
+			{
+				name: "images/story-3.svg",
+				path: "news-v1/news-homepage/starter/images/story-3.svg.txt",
+				byteLength: 486,
+				sha256: "9fe23cbd43037718cf7e151444881f31a88ad092ae737f12488b14256f23ba77"
+			},
+			{
+				name: "vendor/materialize.min.css",
+				path: "news-v1/news-homepage/starter/vendor/materialize.min.css.txt",
+				byteLength: 141829,
+				sha256: "e7bb7114352aba1e81b2d8d930ef1ecdd06ffc0ad927a8b86fffe75447ef70cc"
+			},
+			{
+				name: "vendor/materialize.min.js",
+				path: "news-v1/news-homepage/starter/vendor/materialize.min.js.txt",
+				byteLength: 181109,
+				sha256: "53f7070cc4c81c278c72f7a106fd71434e766cf49b26d6ee8b0e1003d7132b3d"
+			},
+			{
+				name: "LICENSE-Materialize.txt",
+				path: "news-v1/news-homepage/starter/LICENSE-Materialize.txt.txt",
+				byteLength: 1083,
+				sha256: "e503e53d929397f69cb80fa1ef050a3d84fbee7c09e6b622c72c4c2c9216d8c7"
+			}
+		]
+	},
+	{
+		project: "news-homepage",
+		title: "News Homepage",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/910d8fa54b43a581c779c8dfab792c60",
+			"https://codepen.io/junilearning/pen/KKVzYKY/910d8fa54b43a581c779c8dfab792c60"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "news-v1/news-homepage/reference/index.html.txt",
+				byteLength: 22660,
+				sha256: "236592f3d111e79240bf1c85ec809a58c3cdbd0169f5f384243f7cc471be84fd"
+			},
+			{
+				name: "styles.css",
+				path: "news-v1/news-homepage/reference/styles.css.txt",
+				byteLength: 2794,
+				sha256: "09420355380c149cbdcef3b7a3a88e883292816184749f639c22451d2c5069b0"
+			},
+			{
+				name: "script.js",
+				path: "news-v1/news-homepage/reference/script.js.txt",
+				byteLength: 4322,
+				sha256: "25a4b88cb8f481c30c1b613ae3abc81b2bf477c89e9d71653acfffd91388bb8b"
+			},
+			{
+				name: "README.md",
+				path: "news-v1/news-homepage/reference/README.md.txt",
+				byteLength: 4076,
+				sha256: "264e93a25a328b3ba8f80ae51fa3bd0f1191a91118d0701fb3c5233103fb1327"
+			},
+			{
+				name: "SOURCES.md",
+				path: "news-v1/news-homepage/reference/SOURCES.md.txt",
+				byteLength: 1480,
+				sha256: "76a79a5e275a627792aa1c5545a0a03426f99f7915516fa53f58d862da036726"
+			},
+			{
+				name: "images/story-1.svg",
+				path: "news-v1/news-homepage/reference/images/story-1.svg.txt",
+				byteLength: 527,
+				sha256: "5bfc8693253acf94606a2a65aecf88194e657c4a118fce1ee90c7d3ef60cf8cf"
+			},
+			{
+				name: "images/story-2.svg",
+				path: "news-v1/news-homepage/reference/images/story-2.svg.txt",
+				byteLength: 837,
+				sha256: "5758b7258f884aeb9a29c034f5f1d095e61b68cdfaa81fe1cc9a662c0f461ed3"
+			},
+			{
+				name: "images/story-3.svg",
+				path: "news-v1/news-homepage/reference/images/story-3.svg.txt",
+				byteLength: 486,
+				sha256: "9fe23cbd43037718cf7e151444881f31a88ad092ae737f12488b14256f23ba77"
+			},
+			{
+				name: "vendor/materialize.min.css",
+				path: "news-v1/news-homepage/reference/vendor/materialize.min.css.txt",
+				byteLength: 141829,
+				sha256: "e7bb7114352aba1e81b2d8d930ef1ecdd06ffc0ad927a8b86fffe75447ef70cc"
+			},
+			{
+				name: "vendor/materialize.min.js",
+				path: "news-v1/news-homepage/reference/vendor/materialize.min.js.txt",
+				byteLength: 181109,
+				sha256: "53f7070cc4c81c278c72f7a106fd71434e766cf49b26d6ee8b0e1003d7132b3d"
+			},
+			{
+				name: "LICENSE-Materialize.txt",
+				path: "news-v1/news-homepage/reference/LICENSE-Materialize.txt.txt",
+				byteLength: 1083,
+				sha256: "e503e53d929397f69cb80fa1ef050a3d84fbee7c09e6b622c72c4c2c9216d8c7"
+			}
+		]
+	}
+] as const;

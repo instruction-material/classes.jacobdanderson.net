@@ -1,4 +1,8 @@
 import type { RawCourse } from "./types";
+import javascriptMasterProjectReading from "@/assets/course-guides/javascript-master-project.md?raw";
+import javascriptNewsReading from "@/assets/course-guides/javascript-news.md?raw";
+import javascriptRestaurantReading from "@/assets/course-guides/javascript-restaurant.md?raw";
+import javascriptShopReading from "@/assets/course-guides/javascript-shop.md?raw";
 import { buildProjectGuidance } from "./projectGuidance";
 import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
 import { buildSupportSectionGuidance } from "./supportSectionGuidance";
@@ -1337,8 +1341,8 @@ const javascriptLevel1SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "JSS15 Project 1: Master Project",
-					content:
-						"Build a splash page (business, restaurant, news, e-commerce, or other idea) showcasing course concepts with Materialize components. Plan to complete over about two weeks while moving on to the next course once the core is done.",
+					preserveInstructions: true,
+					content: javascriptMasterProjectReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/181b8577413d710bc8e669f2740d4c5b",
 					solutionLink:
@@ -1367,24 +1371,30 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				{
 					title: "JSS15 Supplemental Project 1: Restaurant Splash Page",
 					aliases: ["JSS15 Supplemental Project 1: Juni Eatz"],
-					content:
-						"Build a restaurant splash page with a menu preview, location or hours section, and at least one Materialize parallax or card layout. The page communicates a clear restaurant identity through typography, color, images, and navigation rather than only placing empty starter sections.",
+					preserveInstructions: true,
+					content: javascriptRestaurantReading,
 					projectLink:
+						"/course-assets/javascript-level-1/restaurant-v1/restaurant-splash-page/starter/index.html.txt",
+					solutionLink:
 						"https://codepen.io/junilearning/pen/eb5dc79c245ab907ddd8f56853cb817a"
 				},
 				{
 					title: "JSS15 Supplemental Project 2: News Homepage",
 					aliases: ["JSS15 Supplemental Project 2: Juni News"],
-					content:
-						"Build a news-style homepage with a headline area, story cards, categories, and a Materialize slider for featured stories. Use layout choices that make article priority clear, and include enough text hierarchy that readers can distinguish headlines, summaries, and metadata.",
+					preserveInstructions: true,
+					content: javascriptNewsReading,
 					projectLink:
+						"/course-assets/javascript-level-1/news-v1/news-homepage/starter/index.html.txt",
+					solutionLink:
 						"https://codepen.io/junilearning/pen/910d8fa54b43a581c779c8dfab792c60"
 				},
 				{
 					title: "JSS15 Supplemental Project 3: Jun-E-Commerce",
-					content:
-						"Build a small e-commerce landing page with featured products, prices or descriptions, and a Materialize carousel or card grid. The page makes product browsing clear, includes at least one call-to-action, and remains readable on a narrow screen.",
+					preserveInstructions: true,
+					content: javascriptShopReading,
 					projectLink:
+						"/course-assets/javascript-level-1/shop-v1/jun-e-commerce/starter/index.html.txt",
+					solutionLink:
 						"https://codepen.io/junilearning/pen/c8048a26149f2dc5c4340a2d6cdb0ce2"
 				}
 			]

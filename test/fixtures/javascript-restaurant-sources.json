@@ -1,0 +1,210 @@
+{
+	"revision": "jss15-restaurant-reference-and-authored-starter-v1",
+	"courseId": "javascript-level-1-javascript-superstar",
+	"moduleId": "javascript-level-1-javascript-superstar-jss15-master-project",
+	"resources": [
+		{
+			"courseId": "javascript-level-1-javascript-superstar",
+			"moduleId": "javascript-level-1-javascript-superstar-jss15-master-project",
+			"itemId": "javascript-level-1-javascript-superstar-jss15-master-project-supplemental-jss15-supplemental-project-1-restaurant-splash-page",
+			"assignmentTitle": "JSS15 Supplemental Project 1: Restaurant Splash Page",
+			"section": "supplemental",
+			"project": "restaurant-splash-page",
+			"title": "Restaurant Splash Page",
+			"version": 1,
+			"role": "starter",
+			"urls": [
+				"/course-assets/javascript-level-1/restaurant-v1/restaurant-splash-page/starter/index.html.txt"
+			],
+			"independentlyAuthoredStarter": true,
+			"originalCapturedRole": "reference",
+			"originalSourceHashes": {
+				"html": "bb36c80386b59cad5739b858d42668c6d5e896d442697b7ab37928332941fd19",
+				"css": "89ceb2adf39c4134738e8b269c8ff66160325bd0cf6564c6c68851faf5da688b",
+				"javascript": "ef962dfb7ecd5f7a52994f0c4fe3ff7b6744e888657c271142832085892a8fc6"
+			},
+			"files": [
+				{
+					"name": "index.html",
+					"path": "restaurant-v1/restaurant-splash-page/starter/index.html.txt",
+					"byteLength": 543,
+					"sha256": "43fa45de5f6a3fb79a01bb1f6d77330319e9288468fe0ee4003afcd4c0ba4567"
+				},
+				{
+					"name": "styles.css",
+					"path": "restaurant-v1/restaurant-splash-page/starter/styles.css.txt",
+					"byteLength": 66,
+					"sha256": "6f8698a2f1499e6828dc91d674222503797a462c82db3f895021390a79979770"
+				},
+				{
+					"name": "script.js",
+					"path": "restaurant-v1/restaurant-splash-page/starter/script.js.txt",
+					"byteLength": 102,
+					"sha256": "6ac58fffd469db5f4dcd59fb7ba0771961c4e66ab33bd9d298b2ae6091e1ab65"
+				},
+				{
+					"name": "README.md",
+					"path": "restaurant-v1/restaurant-splash-page/starter/README.md.txt",
+					"byteLength": 5415,
+					"sha256": "285b3acbde8b7b0d7f8e25c0bad46cc7357c468a7a006700963498a71c601e28"
+				},
+				{
+					"name": "SOURCES.md",
+					"path": "restaurant-v1/restaurant-splash-page/starter/SOURCES.md.txt",
+					"byteLength": 3350,
+					"sha256": "e1f68a6a4dd32fbcb48d74e2099743927a3ae1b30342ee8b69c2743093cebd8b"
+				},
+				{
+					"name": "vendor/materialize.min.css",
+					"path": "restaurant-v1/restaurant-splash-page/starter/vendor/materialize.min.css.txt",
+					"byteLength": 141829,
+					"sha256": "e7bb7114352aba1e81b2d8d930ef1ecdd06ffc0ad927a8b86fffe75447ef70cc"
+				},
+				{
+					"name": "vendor/materialize.min.js",
+					"path": "restaurant-v1/restaurant-splash-page/starter/vendor/materialize.min.js.txt",
+					"byteLength": 181109,
+					"sha256": "53f7070cc4c81c278c72f7a106fd71434e766cf49b26d6ee8b0e1003d7132b3d"
+				},
+				{
+					"name": "LICENSE-Materialize.txt",
+					"path": "restaurant-v1/restaurant-splash-page/starter/LICENSE-Materialize.txt.txt",
+					"byteLength": 1083,
+					"sha256": "e503e53d929397f69cb80fa1ef050a3d84fbee7c09e6b622c72c4c2c9216d8c7"
+				},
+				{
+					"name": "images/tacos.svg",
+					"path": "restaurant-v1/restaurant-splash-page/starter/images/tacos.svg.txt",
+					"byteLength": 430686,
+					"sha256": "eb8f5a0c78f536ed7abdb3c81dfa86f1596e275370b2d6f9eceae68abccb3ab6"
+				},
+				{
+					"name": "images/enchiladas.svg",
+					"path": "restaurant-v1/restaurant-splash-page/starter/images/enchiladas.svg.txt",
+					"byteLength": 343381,
+					"sha256": "e08095fde17e29dffe71de18fd4c27be0bc41a6f8d3ae65550f6405e5101fce1"
+				},
+				{
+					"name": "images/torta.svg",
+					"path": "restaurant-v1/restaurant-splash-page/starter/images/torta.svg.txt",
+					"byteLength": 76073,
+					"sha256": "de519ab4b64d5668fe4aa6be5c2a3b55b7ec9dca9e971abab6eed50d026a1946"
+				},
+				{
+					"name": "images/burrito.svg",
+					"path": "restaurant-v1/restaurant-splash-page/starter/images/burrito.svg.txt",
+					"byteLength": 383533,
+					"sha256": "ba737f38546a85f301e9957523c030f9c41f36b8708c2e4ebffe91bfe46111f0"
+				},
+				{
+					"name": "images/sopa.svg",
+					"path": "restaurant-v1/restaurant-splash-page/starter/images/sopa.svg.txt",
+					"byteLength": 729,
+					"sha256": "59559d3a35bde20029f885fefb6a6d5847cdb0def58b394312e1e550a25f15df"
+				}
+			]
+		},
+		{
+			"courseId": "javascript-level-1-javascript-superstar",
+			"moduleId": "javascript-level-1-javascript-superstar-jss15-master-project",
+			"itemId": "javascript-level-1-javascript-superstar-jss15-master-project-supplemental-jss15-supplemental-project-1-restaurant-splash-page",
+			"assignmentTitle": "JSS15 Supplemental Project 1: Restaurant Splash Page",
+			"section": "supplemental",
+			"project": "restaurant-splash-page",
+			"title": "Restaurant Splash Page",
+			"version": 1,
+			"role": "reference",
+			"urls": [
+				"https://codepen.io/junilearning/pen/eb5dc79c245ab907ddd8f56853cb817a",
+				"https://codepen.io/junilearning/pen/abdzwKq/eb5dc79c245ab907ddd8f56853cb817a"
+			],
+			"independentlyAuthoredStarter": false,
+			"originalCapturedRole": "reference",
+			"originalSourceHashes": {
+				"html": "bb36c80386b59cad5739b858d42668c6d5e896d442697b7ab37928332941fd19",
+				"css": "89ceb2adf39c4134738e8b269c8ff66160325bd0cf6564c6c68851faf5da688b",
+				"javascript": "ef962dfb7ecd5f7a52994f0c4fe3ff7b6744e888657c271142832085892a8fc6"
+			},
+			"files": [
+				{
+					"name": "index.html",
+					"path": "restaurant-v1/restaurant-splash-page/reference/index.html.txt",
+					"byteLength": 3994,
+					"sha256": "6416f48f1fa7a6347a9a5450e44f1db1efc328c3ebcbba0807b7d8d5d0c126ff"
+				},
+				{
+					"name": "styles.css",
+					"path": "restaurant-v1/restaurant-splash-page/reference/styles.css.txt",
+					"byteLength": 2216,
+					"sha256": "b1a8a69eca0f70b1b0ba95cdb1f60f5c2abd000f4b29a361be8a0aca532cdeaa"
+				},
+				{
+					"name": "script.js",
+					"path": "restaurant-v1/restaurant-splash-page/reference/script.js.txt",
+					"byteLength": 718,
+					"sha256": "0cb181de41fc234eb33702d3a9c4ef318ce6293bad727401f4641ce0aa9b2442"
+				},
+				{
+					"name": "README.md",
+					"path": "restaurant-v1/restaurant-splash-page/reference/README.md.txt",
+					"byteLength": 5415,
+					"sha256": "285b3acbde8b7b0d7f8e25c0bad46cc7357c468a7a006700963498a71c601e28"
+				},
+				{
+					"name": "SOURCES.md",
+					"path": "restaurant-v1/restaurant-splash-page/reference/SOURCES.md.txt",
+					"byteLength": 3350,
+					"sha256": "e1f68a6a4dd32fbcb48d74e2099743927a3ae1b30342ee8b69c2743093cebd8b"
+				},
+				{
+					"name": "vendor/materialize.min.css",
+					"path": "restaurant-v1/restaurant-splash-page/reference/vendor/materialize.min.css.txt",
+					"byteLength": 141829,
+					"sha256": "e7bb7114352aba1e81b2d8d930ef1ecdd06ffc0ad927a8b86fffe75447ef70cc"
+				},
+				{
+					"name": "vendor/materialize.min.js",
+					"path": "restaurant-v1/restaurant-splash-page/reference/vendor/materialize.min.js.txt",
+					"byteLength": 181109,
+					"sha256": "53f7070cc4c81c278c72f7a106fd71434e766cf49b26d6ee8b0e1003d7132b3d"
+				},
+				{
+					"name": "LICENSE-Materialize.txt",
+					"path": "restaurant-v1/restaurant-splash-page/reference/LICENSE-Materialize.txt.txt",
+					"byteLength": 1083,
+					"sha256": "e503e53d929397f69cb80fa1ef050a3d84fbee7c09e6b622c72c4c2c9216d8c7"
+				},
+				{
+					"name": "images/tacos.svg",
+					"path": "restaurant-v1/restaurant-splash-page/reference/images/tacos.svg.txt",
+					"byteLength": 430686,
+					"sha256": "eb8f5a0c78f536ed7abdb3c81dfa86f1596e275370b2d6f9eceae68abccb3ab6"
+				},
+				{
+					"name": "images/enchiladas.svg",
+					"path": "restaurant-v1/restaurant-splash-page/reference/images/enchiladas.svg.txt",
+					"byteLength": 343381,
+					"sha256": "e08095fde17e29dffe71de18fd4c27be0bc41a6f8d3ae65550f6405e5101fce1"
+				},
+				{
+					"name": "images/torta.svg",
+					"path": "restaurant-v1/restaurant-splash-page/reference/images/torta.svg.txt",
+					"byteLength": 76073,
+					"sha256": "de519ab4b64d5668fe4aa6be5c2a3b55b7ec9dca9e971abab6eed50d026a1946"
+				},
+				{
+					"name": "images/burrito.svg",
+					"path": "restaurant-v1/restaurant-splash-page/reference/images/burrito.svg.txt",
+					"byteLength": 383533,
+					"sha256": "ba737f38546a85f301e9957523c030f9c41f36b8708c2e4ebffe91bfe46111f0"
+				},
+				{
+					"name": "images/sopa.svg",
+					"path": "restaurant-v1/restaurant-splash-page/reference/images/sopa.svg.txt",
+					"byteLength": 729,
+					"sha256": "59559d3a35bde20029f885fefb6a6d5847cdb0def58b394312e1e550a25f15df"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,77 @@
+const sliderElement = document.querySelector(".news-slider");
+if (sliderElement) {
+  const preference = matchMedia("(prefers-reduced-motion: reduce)");
+  const playback = document.querySelector("#playback");
+  const status = document.querySelector("#playback-status");
+  let slider;
+  let playing = false;
+  let modalOpen = false;
+  let returnTarget = null;
+  function updatePlayback() {
+    const active = playing && !preference.matches && !modalOpen && !document.hidden;
+    if (active) slider.start(); else slider.pause();
+    playback.disabled = preference.matches;
+    playback.setAttribute("aria-pressed", String(active));
+    playback.textContent = active ? "Pause slideshow" : "Play slideshow";
+    status.textContent = preference.matches ? "Reduced motion: manual navigation" : active ? "Slideshow playing" : "Slideshow paused";
+  }
+  function settleCurrentSlide() {
+    const slides = [...sliderElement.querySelectorAll(".slides > li")];
+    M.anime.remove([...slides, ...sliderElement.querySelectorAll(".caption")]);
+    slides.forEach(slide => {
+      const visible = slide.classList.contains("active");
+      slide.style.opacity = visible ? "1" : "0";
+      const caption = slide.querySelector(".caption");
+      caption.style.opacity = visible ? "1" : "0";
+      caption.style.transform = "none";
+    });
+  }
+  function initializeSlider() {
+    slider?.destroy();
+    slider = M.Slider.init(sliderElement, { indicators: false, height: 540, duration: preference.matches ? 0 : 300, interval: 6000 });
+    updateVisibleSlides();
+    updatePlayback();
+  }
+  function updateVisibleSlides() {
+    sliderElement.querySelectorAll(".slides > li").forEach(slide => {
+      const visible = slide.classList.contains("active");
+      slide.inert = !visible;
+      slide.setAttribute("aria-hidden", String(!visible));
+    });
+  }
+  document.documentElement.classList.add("enhanced");
+  initializeSlider();
+  const slideObserver = new MutationObserver(updateVisibleSlides);
+  slideObserver.observe(sliderElement.querySelector(".slides"), { subtree: true, attributes: true, attributeFilter: ["class"] });
+  document.querySelector(".story-controls").hidden = false;
+  document.addEventListener("click", event => {
+    const trigger = event.target.closest?.(".modal-trigger");
+    if (trigger) returnTarget = trigger;
+  }, true);
+  document.querySelectorAll(".modal").forEach(element => {
+    element.setAttribute("role", "dialog");
+    element.setAttribute("aria-modal", "true");
+    element.addEventListener("keydown", event => {
+      if (event.key !== "Tab") return;
+      const controls = [...element.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')].filter(node => node.offsetParent !== null);
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (!first) { event.preventDefault(); element.focus(); return; }
+      if (event.shiftKey && (document.activeElement === first || document.activeElement === element)) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && (document.activeElement === last || document.activeElement === element)) { event.preventDefault(); first.focus(); }
+    });
+  });
+  M.Modal.init(document.querySelectorAll(".modal"), {
+    inDuration: preference.matches ? 0 : 200,
+    outDuration: preference.matches ? 0 : 200,
+    onOpenStart: () => { modalOpen = true; updatePlayback(); },
+    onOpenEnd: element => element.focus(),
+    onCloseEnd: () => { modalOpen = false; updatePlayback(); returnTarget?.focus(); }
+  });
+  document.querySelector("#previous-story").addEventListener("click", () => { playing = false; settleCurrentSlide(); slider.prev(); updatePlayback(); });
+  document.querySelector("#next-story").addEventListener("click", () => { playing = false; settleCurrentSlide(); slider.next(); updatePlayback(); });
+  playback.addEventListener("click", () => { playing = !playing; updatePlayback(); });
+  sliderElement.addEventListener("focusin", () => { playing = false; updatePlayback(); });
+  document.addEventListener("visibilitychange", updatePlayback);
+  preference.addEventListener("change", () => { playing = false; settleCurrentSlide(); slider.options.duration = preference.matches ? 0 : 300; updatePlayback(); });
+}

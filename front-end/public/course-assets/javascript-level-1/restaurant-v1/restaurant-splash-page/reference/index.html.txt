@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Restaurant Splash Page - reference</title>
+  <link rel="stylesheet" href="vendor/materialize.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav aria-label="Main navigation"><div class="nav-wrapper container"><h1><a href="#home">Juni Eatz</a></h1><a class="menu-link" href="#menu">Menu</a></div></nav>
+<main id="home">
+  <div class="parallax-container"><div class="parallax"><img src="images/tacos.svg" alt="" width="1280" height="960"></div></div>
+  <section class="intro"><div class="container"><h2>Great food, fair prices</h2><p>Made-to-order meals from the Juni Eatz kitchen.</p><h2>Dine-in or take-out</h2><p>Browse the menu, choose a favorite, and enjoy it here or take it with you.</p></div></section>
+  <div class="parallax-container"><div class="parallax"><img src="images/burrito.svg" alt="" width="1024" height="768"></div></div>
+  <section id="menu" class="menu" aria-labelledby="menu-title"><div class="container"><h2 id="menu-title" tabindex="-1">Menu</h2></div>
+<div class="row container"><div class="col s12 m8"><article class="card horizontal"><div class="card-image"><img src="images/enchiladas.svg" alt="Enchiladas" width="960" height="640"></div><div class="card-stacked"><div class="card-content"><h3>Enchiladas</h3><p>Chicken or Pork</p><p class="price">$12.50</p></div></div></article></div></div>
+<div class="row container"><div class="col s12 m8 right"><article class="card horizontal"><div class="card-stacked"><div class="card-content"><h3>Burrito</h3><p>Chicken or Steak</p><p class="price">$9.50</p></div></div><div class="card-image"><img src="images/burrito.svg" alt="Burrito" width="960" height="640"></div></article></div></div>
+<div class="row container"><div class="col s12 m8"><article class="card horizontal"><div class="card-image"><img src="images/tacos.svg" alt="Tacos" width="960" height="640"></div><div class="card-stacked"><div class="card-content"><h3>Tacos</h3><p>Three kinds of meat</p><p class="price">$10.50</p></div></div></article></div></div>
+<div class="row container"><div class="col s12 m8 right"><article class="card horizontal"><div class="card-stacked"><div class="card-content"><h3>Torta</h3><p>Chicken or Steak</p><p class="price">$11.50</p></div></div><div class="card-image"><img src="images/torta.svg" alt="Torta" width="960" height="640"></div></article></div></div>
+<div class="row container"><div class="col s12 m8"><article class="card horizontal"><div class="card-image"><img src="images/sopa.svg" alt="Sopa" width="960" height="640"></div><div class="card-stacked"><div class="card-content"><h3>Sopa</h3><p>Soup of the day</p><p class="price">$7.50</p></div></div></article></div></div>
+  </section>
+</main>
+<footer><div class="container"><h2>Contact</h2><p>(202) 555-0142<br>hello@junieatz.example</p><details><summary>Image credits</summary><ul>
+<li><a href="https://commons.wikimedia.org/wiki/File:001_Tacos_de_carnitas,_carne_asada_y_al_pastor.jpg">Tacos</a>: Larry Miller · <a href="https://creativecommons.org/licenses/by-sa/2.0">CC BY-SA 2.0</a>.</li>
+<li><a href="https://commons.wikimedia.org/wiki/File:Festival_de_la_Enchilada_59.jpg">Enchiladas</a>: Lameirasb · <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>.</li>
+<li><a href="https://commons.wikimedia.org/wiki/File:Tortamex.jpg">Torta</a>: Kiwidough at English Wikipedia · Public domain.</li>
+<li><a href="https://commons.wikimedia.org/wiki/File:Hippie_Kitchen,_Jefferson_Highway,_Old_Jefferson_Louisiana_Burrito_Unwrapped.jpg">Burrito</a>: Infrogmation of New Orleans · <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>.</li>
+</ul><p>Sopa: supplied SVG illustration. Photographs are displayed with cropping.</p></details></div></footer>
+
+<script src="vendor/materialize.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
