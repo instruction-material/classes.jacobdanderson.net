@@ -1,0 +1,7 @@
+/* Simulate a simple game of War! In this two-player card game, each player has a hand of shuffled cards. Each player plays the top card off of their hand, and the player with the higher card wins. For our simulation, have each player draw a card by picking a random number between 1 and 13 (Ace = 1, Jack = 11, Queen = 12, King = 13); the player with the higher number wins that round. If it is a tie, then neither player wins.
+
+Create a function that takes in the player's name and draws a card for the player. The function should use printToScreen() to print out the card and its suit (ie: "John drew a Jack of Diamonds!"). The function should also return a card number which will be used to compare the cards. (Note: Ace is the highest.)
+
+Play 10 rounds, printing out the results of each round, and then print out final scores (i.e. the total number of rounds won by each player). */
+
+// Enter your code below this line

@@ -982,6 +982,55 @@ jobs:
                   if-no-files-found: warn
                   retention-days: 7
 
+            - name: Verify JSM2 original functions imports and saved exports
+              env:
+                  JAVASCRIPT_MASTER_FUNCTIONS_BROWSER_DIR: output/javascript-master-functions-browser
+              run: node --test test/javascript-master-functions-course-browser.test.mjs
+
+            - name: Verify actual JSM2 functions exports offline
+              env:
+                  JAVASCRIPT_MASTER_FUNCTIONS_BROWSER_DIR: output/javascript-master-functions-browser
+              run: node --test test/javascript-master-functions-exported-browser.test.mjs
+
+            - name: Retain JSM2 original functions workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-master-functions-source-workflows
+                  path: output/javascript-master-functions-browser
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify JSM3 complex conditional course imports and saved exports
+              run: node --test test/javascript-master-conditionals-course-browser.test.mjs
+
+            - name: Verify actual JSM3 complex conditional exports offline
+              run: node --test test/javascript-master-conditionals-exported-browser.test.mjs
+
+            - name: Retain JSM3 complex conditional source workflows
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-master-conditionals-source-workflows
+                  path: output/javascript-master-conditionals-browser/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify JSM4 canvas course imports and saved exports
+              run: node --test test/javascript-master-canvas-course-browser.test.mjs
+
+            - name: Verify actual JSM4 canvas exports offline
+              run: node --test test/javascript-master-canvas-exported-browser.test.mjs
+
+            - name: Retain JSM4 canvas source workflows
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-master-canvas-source-workflows
+                  path: output/javascript-master-canvas-browser/
+                  if-no-files-found: error
+                  retention-days: 7
+
             - name: Verify shop supplemental imports and saved exports
               env:
                   JAVASCRIPT_SHOP_BROWSER_DIR: output/javascript-shop-browser

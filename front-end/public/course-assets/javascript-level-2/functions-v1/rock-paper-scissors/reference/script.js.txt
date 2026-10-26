@@ -1,0 +1,88 @@
+/* Program a single-player Rock, Paper, Scissors game! You will need to code the following three functions:
+
+1. Write a function, yourTurn(), which reads the selected Rock, Paper, Scissors value and returns their choice in lowercase. If the round is cancelled, return "nothing". This function will take in no input variables.
+
+2. Write a function, computerTurn(), which randomly returns "rock", "paper", or "scissors". This function will take in no input variables.
+
+3. Write a function, findResult(), which takes in the player choice and computer choice and returns "win", "lose", or "tie" based on the user's results.
+
+The game will continue until either the player or the computer gets 3 wins. Return each round record from playRound() so the page can display it without blocking dialogs.
+*/
+
+// Solution
+
+const yourTurn = () => {
+	const choice = document.querySelector("#choice").value.trim().toLowerCase();
+	return choice || "nothing";
+};
+
+const computerTurn = () => {
+	let choice = Math.floor(Math.random() * 3);
+	if (choice === 0) {
+		return "rock";
+	} else if (choice === 1) {
+		return "paper";
+	} else {
+		return "scissors";
+	}
+};
+
+const findResult = (playerChoice, computerChoice) => {
+	const choices = ["rock", "paper", "scissors"];
+	if (!choices.includes(playerChoice) || !choices.includes(computerChoice))
+		return "invalid";
+	if (playerChoice === computerChoice) {
+		return "tie";
+	} else if (playerChoice === "rock") {
+		if (computerChoice === "scissors") {
+			return "win";
+		} else {
+			return "lose";
+		}
+	} else if (playerChoice === "paper") {
+		if (computerChoice === "rock") {
+			return "win";
+		} else {
+			return "lose";
+		}
+	} else if (playerChoice === "scissors") {
+		if (computerChoice === "paper") {
+			return "win";
+		} else {
+			return "lose";
+		}
+	} else {
+		return "lose";
+	}
+};
+
+let playerWins = 0;
+let computerWins = 0;
+let roundNum = 1;
+const resetMatch = () => {
+	playerWins = 0;
+	computerWins = 0;
+	roundNum = 1;
+};
+const playRound = () => {
+	const snapshot = result => ({
+		result,
+		round: roundNum,
+		playerWins,
+		computerWins,
+		finished: playerWins === 3 || computerWins === 3
+	});
+	if (playerWins === 3 || computerWins === 3) return snapshot("finished");
+	const playerChoice = yourTurn();
+	if (playerChoice === "nothing") return snapshot("cancelled");
+	if (!["rock", "paper", "scissors"].includes(playerChoice))
+		return snapshot("invalid");
+	const computerChoice = computerTurn();
+	const result = findResult(playerChoice, computerChoice);
+	if (result === "invalid") return snapshot(result);
+	if (result === "win") playerWins++;
+	if (result === "lose") computerWins++;
+	const played = { ...snapshot(result), playerChoice, computerChoice };
+	roundNum++;
+	return played;
+};

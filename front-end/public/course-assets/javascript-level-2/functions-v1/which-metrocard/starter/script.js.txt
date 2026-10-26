@@ -1,0 +1,12 @@
+/* Compare the original sample fares: buy a monthly MetroCard for $127 or a pay-per-ride MetroCard that costs $2.75 per swipe?
+
+1. Write a function that takes in a number of rides and returns the savings you'd receive from buying a monthly card. If the savings are negative, that means you'd save more from buying a pay-per-ride card!
+
+2. Write another function that takes in the savings returned from the previous function. This function should return a message that either suggests to buy a monthly MetroCard or a pay-per-ride. This message should also include how much you'd be saving if you buy this card.
+
+Use printToScreen() to print the messages returned from function 2 for 30 rides, 45 rides, 60 rides, and a user-inputted custom number of rides!
+
+Note: use toFixed(2) to round to the nearest 2 decimal points
+*/
+
+// Enter your code below this line

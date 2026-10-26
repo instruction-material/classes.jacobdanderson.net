@@ -1,0 +1,81 @@
+// Each predicate classifies positive integers; zero, fractions and negatives are false.
+const positiveInteger = num =>
+	Number.isSafeInteger(num) && num > 0 && num <= 100000;
+const isSelfDividing = num => {
+	if (!positiveInteger(num)) return false;
+	let cur = num;
+	while (cur > 0) {
+		const divisor = cur % 10;
+		if (divisor === 0 || num % divisor !== 0) return false;
+		cur = Math.floor(cur / 10);
+	}
+	return true;
+};
+// Direct divisor enumeration is useful for tracing a small input.
+const isPerfect = num => {
+	if (!positiveInteger(num)) return false;
+	let sum = 0;
+	for (let i = 1; i < num; i++) if (num % i === 0) sum += i;
+	return sum === num;
+};
+// Pair divisors for range scans; a square root contributes once.
+const isPerfect2 = num => {
+	if (!positiveInteger(num) || num === 1) return false;
+	let sum = 1;
+	for (let i = 2; i * i <= num; i++)
+		if (num % i === 0) {
+			sum += i;
+			const partner = num / i;
+			if (partner !== i) sum += partner;
+		}
+	return sum === num;
+};
+const isPalindrome = num => {
+	if (!positiveInteger(num)) return false;
+	if (num < 10) return true;
+	if (num % 10 === 0) return false;
+	let rev = 0;
+	while (num >= 10) {
+		const cur = num % 10;
+		rev = rev * 10 + cur;
+		if (num === rev) return true;
+		num = Math.floor(num / 10);
+		if (num === rev) return true;
+		if (num < rev) return false;
+	}
+	return false;
+};
+const matchingNumbers = (kind, start, end) => {
+	const predicates = {
+		"self-dividing": isSelfDividing,
+		perfect: isPerfect2,
+		palindrome: isPalindrome
+	};
+	if (
+		!Object.hasOwn(predicates, kind) ||
+		!Number.isSafeInteger(start) ||
+		!Number.isSafeInteger(end) ||
+		start < 1 ||
+		end < start ||
+		end > 100000 ||
+		end - start >= 10000
+	)
+		throw new RangeError(
+			"Use a listed predicate and a positive ordered range of at most 10000 numbers, ending at or below 100000."
+		);
+	const matches = [];
+	for (let n = start; n <= end; n++) if (predicates[kind](n)) matches.push(n);
+	return matches;
+};
+printToScreen(
+	"Self-dividing numbers, 300 through 700: " +
+		matchingNumbers("self-dividing", 300, 700).join(", ")
+);
+printToScreen(
+	"Perfect numbers, 1 through 9000: " +
+		matchingNumbers("perfect", 1, 9000).join(", ")
+);
+printToScreen(
+	"Palindrome numbers, 700 through 2000: " +
+		matchingNumbers("palindrome", 700, 2000).join(", ")
+);

@@ -1,0 +1,531 @@
+[
+	{
+		"project": "basic-shapes",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/6d083a06497b47a62825f3d2c205813e",
+		"title": "JSM4 Project 1: Basic Shapes Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/oNLbKvb/6d083a06497b47a62825f3d2c205813e",
+		"panels": {
+			"HTML": "<canvas id=\"my-canvas\"></canvas>",
+			"CSS": "",
+			"JavaScript": "// Use Canvas to draw a red square, a blue circle, and a green triangle! The degreesToRadians(degrees) function has been provided for you to help you draw an arc.\n\n// Solution\n\n// Resize Canvas\nconst canvas = document.getElementById(\"my-canvas\");\n\ncanvas.width = 1000;\ncanvas.height = 500;\n\nconst ctx = canvas.getContext(\"2d\");\n\n// square\nctx.fillStyle = \"rgba(255,0,0,0.5)\";\n// arguments: x, y, width, height\nctx.fillRect(100, 100, 100, 100);\n\n// circle\n// arguments: x, y, radius, startAngle (in radians), endAngle (in radians)\nctx.arc(300, 150, 50, 0, degreesToRadians(360));\nctx.fillStyle = \"rgba(0,0,255,0.5)\";\nctx.fill();\n\n// triangle\nctx.beginPath();\nctx.moveTo(500, 200);\nctx.lineTo(400, 200);\nctx.lineTo(500, 100);\nctx.fillStyle = \"rgba(0,255,0,0.5)\";\nctx.fill();\nctx.closePath();\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction degreesToRadians(degrees) {\n  return degrees * Math.PI / 180;\n};"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 32,
+				"fnv1a32": "048086e5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 910,
+				"fnv1a32": "e24a32d2"
+			}
+		},
+		"settings": {
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": []
+			},
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": []
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": true,
+		"emptyEditors": ["CSS"],
+		"retainedAt": "2026-10-26T06:15:02.292405+00:00",
+		"panelSHA256": {
+			"HTML": "bcdadb2f807fd06658a17466a9dd29fc39b8468f68770f5926dd817bdb6eb29a",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "7ae8e93f07820a633fb60227ef0ebf20ecfa71f3f1686ae37e361ae0b6a12af3"
+		}
+	},
+	{
+		"project": "basic-shapes",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/7bdedd0b00112751b87d288e4b8120b5",
+		"observedURL": "https://codepen.io/junilearning/pen/JjKvjON",
+		"title": "JSM4 Project 1: Basic Shapes",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "// Use Canvas to draw a red square, a blue circle, and a green triangle! The degreesToRadians(degrees) function has been provided for you to help you draw an arc.\n\n\n// Please enter your code below this line.\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction degreesToRadians(degrees) {\n  return degrees * Math.PI / 180;\n};"
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": []
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "neither",
+				"prefixing": "neither"
+			},
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			}
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 330,
+				"fnv1a32": "abaccba7"
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": true,
+		"retainedAt": "2026-10-26T06:15:02.291620+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "19d38da3b82aa22898e5cc5be7e17a18da0e3ad26584553fd2caebd15c5fd09b"
+		}
+	},
+	{
+		"project": "canvas-text",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/1c3ffebb91e5c060c6b0ba4ae4df8275",
+		"title": "JSM4 Project 3: Holiday Card Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/rNLemZz/1c3ffebb91e5c060c6b0ba4ae4df8275",
+		"panels": {
+			"HTML": "<canvas id=\"my-canvas\"></canvas>",
+			"CSS": "",
+			"JavaScript": "// Use canvas to make a holiday card. Pick your favorite holiday and make a themed card. Make sure to use both shapes and text in your card.\n\nconst canvas = document.getElementById(\"my-canvas\");\n\ncanvas.width = 800;\ncanvas.height = 800;\n\nconst ctx = canvas.getContext(\"2d\");\n\nctx.fillStyle = \"#FFC0CB\";\nctx.fillRect(50, 0, 600, 400);\n\nctx.arc(305, 100, 55, 0, Math.PI * 2);\nctx.fillStyle = \"red\";\nctx.fill();\nctx.arc(395, 100, 55, 0, Math.PI * 2);\nctx.fill();\nctx.beginPath();\nctx.moveTo(260, 90);\nctx.lineTo(256, 125);\nctx.lineTo(350, 270);\nctx.lineTo(444, 125);\nctx.lineTo(440, 90);\nctx.fill();\n\nctx.font = \"40px Georgia\";\nctx.fillStyle = \"white\";\nctx.textAlign = \"center\";\nctx.fillText(\"Happy Valentine's Day!\", 350, 350);"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 32,
+				"fnv1a32": "048086e5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 725,
+				"fnv1a32": "2e7fbb9a"
+			}
+		},
+		"settings": {
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": []
+			},
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": []
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": true,
+		"emptyEditors": ["CSS"],
+		"retainedAt": "2026-10-26T06:15:02.292851+00:00",
+		"panelSHA256": {
+			"HTML": "bcdadb2f807fd06658a17466a9dd29fc39b8468f68770f5926dd817bdb6eb29a",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "51863d78a23bd2db84035798c07466f0b9e3ed882932b2d79285b5cb5e8e9580"
+		}
+	},
+	{
+		"project": "canvas-text",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/9355a832c485b33c747b6c600f2d13ae",
+		"title": "JSM4 Project 3: Holiday Card",
+		"observedURL": "https://codepen.io/junilearning/pen/vYKGerv",
+		"panels": {
+			"HTML": "<canvas id=\"my-canvas\"></canvas>",
+			"CSS": "",
+			"JavaScript": "// Use canvas to make a holiday card. Pick your favorite holiday and make a themed card. Make sure to use both shapes and text in your card.\n\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 32,
+				"fnv1a32": "048086e5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 142,
+				"fnv1a32": "113b3e71"
+			}
+		},
+		"settings": {
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": []
+			},
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": []
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": true,
+		"emptyEditors": ["CSS"],
+		"retainedAt": "2026-10-26T06:15:02.292752+00:00",
+		"panelSHA256": {
+			"HTML": "bcdadb2f807fd06658a17466a9dd29fc39b8468f68770f5926dd817bdb6eb29a",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "0f97a4bb2cce07ef3414de1cb4dce805cc5ee5215fd917df52d6902fd3bad2f0"
+		}
+	},
+	{
+		"project": "jni-stock-price",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/1d48af84b840e8d7a72fd02e82de9f28",
+		"title": "JSM4 Supplemental Project 2: JNI Stock Price Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/eYzgYQv/1d48af84b840e8d7a72fd02e82de9f28",
+		"panels": {
+			"HTML": "<canvas id=\"my-canvas\"></canvas>",
+			"CSS": "",
+			"JavaScript": "// Prompt: Draw a graph showing the performance of the JNI stock. Make an x-axis with dates and a y-axis with stock price labeled, and then draw JNI's performance over the period as a line.\n\nconst canvas = document.getElementById(\"my-canvas\");\n\ncanvas.width = 800;\ncanvas.height = 800;\n\nconst ctx = canvas.getContext(\"2d\");\n\nctx.beginPath()\nctx.strokeStyle = \"black\";\nctx.lineWidth = 5;\nctx.moveTo(200, 500);\nctx.lineTo(300, 300);\nctx.stroke()\nctx.lineTo(400, 450);\nctx.stroke()\nctx.lineTo(500, 350);\nctx.stroke()\nctx.lineTo(600, 250);\nctx.stroke()\n\nctx.beginPath()\nctx.lineWidth = 10;\nctx.moveTo(600, 600);\nctx.lineTo(200, 600);\nctx.lineTo(200, 200);\nctx.strokeStyle = \"grey\";\nctx.stroke()\n\nctx.font = \"40px Georgia\";\nctx.fillStyle = \"blue\";\nctx.textAlign = \"center\";\nctx.fillText(\"JNI\", 400, 150);\n\nctx.font = \"12px Georgia\";\nctx.fillStyle = \"black\";\nctx.textAlign = \"center\";\nfor (let i = 0; i <= 6; i += 1) {\n  ctx.fillText(`${i*100}`, 150, 600 - i*60);\n}\n\nctx.font = \"12px Georgia\";\nctx.fillStyle = \"black\";\nctx.textAlign = \"center\";\nfor (let i = 0; i <= 6; i += 1) {\n  ctx.fillText(`1/${i*3 + 1}`, 200 + i*60, 650);\n}"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 32,
+				"fnv1a32": "048086e5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 1123,
+				"fnv1a32": "c45ad751"
+			}
+		},
+		"settings": {
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": []
+			},
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": []
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": true,
+		"emptyEditors": ["CSS"],
+		"retainedAt": "2026-10-26T06:15:02.293205+00:00",
+		"panelSHA256": {
+			"HTML": "bcdadb2f807fd06658a17466a9dd29fc39b8468f68770f5926dd817bdb6eb29a",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "76ffe0dc126d5f6b0c3f236e38e07f11dcfec5f66571da3f61932e5587a3c6c8"
+		}
+	},
+	{
+		"project": "jni-stock-price",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/aa96160a1e7c1d1bdac74cfe5e6a9333",
+		"title": "JSM4 Supplemental Project 2: JNI Stock Price",
+		"observedURL": "https://codepen.io/junilearning/pen/JjKEodB",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "// Prompt: Draw a graph showing the performance of the JNI stock. Make an x-axis with dates and a y-axis with stock price labeled, and then draw JNI's performance over the period as a line.\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 190,
+				"fnv1a32": "1283a568"
+			}
+		},
+		"settings": {
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": []
+			},
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": []
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": true,
+		"emptyEditors": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T06:15:02.293116+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "d71eda1308896ef12133d4bf6697cdf2b3f84d219edc26ced4d491f529f52832"
+		}
+	},
+	{
+		"project": "loopy-landscape",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/d704fa037c5f913792b1df06c8fddd6d",
+		"title": "JSM4 Supplemental Project 1: Loopy Landscape Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/eYzgYGd/d704fa037c5f913792b1df06c8fddd6d",
+		"panels": {
+			"HTML": "<canvas id=\"my-canvas\"></canvas>",
+			"CSS": "",
+			"JavaScript": "// Prompt: Draw a landscape on your canvas with trees, the sun, a river, etc. Make this project your own and construct a work of art.\n\nconst canvas = document.getElementById(\"my-canvas\");\n\ncanvas.width = 800;\ncanvas.height = 800;\n\nconst ctx = canvas.getContext(\"2d\");\n\nctx.fillStyle = \"blue\";\nctx.fillRect(0, 0, 800, 500);\nctx.fillStyle = \"green\";\nctx.fillRect(0, 500, 800, 300);\n\nconst drawTree = (x, y) => {\n  ctx.beginPath();\n  ctx.moveTo(x, y);\n  ctx.lineTo(x+50, y-400);\n  ctx.lineTo(x+100, y);\n  ctx.lineTo(x, y);\n  ctx.closePath()\n  ctx.fillStyle = \"rgba(0,255,0)\";\n  ctx.fill();\n  ctx.fillStyle = \"brown\";\n  ctx.fillRect(x+40, y-50, 20, 250);\n}\n\ndrawTree(10, 600);\ndrawTree(110, 550);\ndrawTree(210, 600);\n\nctx.beginPath();\nctx.arc(600, 200, 100, 0, Math.PI * 2);\nctx.fillStyle = \"yellow\";\nctx.fill();"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 32,
+				"fnv1a32": "048086e5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 808,
+				"fnv1a32": "63e7d605"
+			}
+		},
+		"settings": {
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": []
+			},
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": []
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": true,
+		"emptyEditors": ["CSS"],
+		"retainedAt": "2026-10-26T06:15:02.293028+00:00",
+		"panelSHA256": {
+			"HTML": "bcdadb2f807fd06658a17466a9dd29fc39b8468f68770f5926dd817bdb6eb29a",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "41a3cbe183c6af582aa6b7dca23ff78ba3a0ad7fb3bdc0d9f43fde39830cef13"
+		}
+	},
+	{
+		"project": "loopy-landscape",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/7911fd2b7b0ff50be9320b0c069f0613",
+		"title": "JSM4 Supplemental Project 1: Loopy Landscape",
+		"observedURL": "https://codepen.io/junilearning/pen/yLJgLxJ",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "// Prompt: Draw a landscape on your canvas with trees, the sun, a river, etc. Make this project your own and construct a work of art.\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 134,
+				"fnv1a32": "658b4eb8"
+			}
+		},
+		"settings": {
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": []
+			},
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": []
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": true,
+		"emptyEditors": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T06:15:02.292942+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "55397628f889c787fc5d2d3dfb9c6ea20a7f6a364c6f1f726485d5c095f36589"
+		}
+	},
+	{
+		"project": "shining-stars",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/425a78d7d054dfda21d4242e818f64ba",
+		"title": "JSM4 Project 2: Shining Stars Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/XWKdRgM/425a78d7d054dfda21d4242e818f64ba",
+		"panels": {
+			"HTML": "<canvas id=\"my-canvas\"></canvas>",
+			"CSS": "",
+			"JavaScript": "// Use canvas to draw a gold star. Then, refactor your code to use a function to draw a star called drawStar(x, y) at the inputted x and y coordinates. Then, draw 5 stars using the drawStar(x, y) function.\n\nconst canvas = document.getElementById(\"my-canvas\");\n\ncanvas.width = window.innerWidth;\ncanvas.height = window.innerHeight;\n\nconst ctx = canvas.getContext(\"2d\");\n\nconst drawStar = (x, y) => {\n  ctx.beginPath();\n  ctx.moveTo(x, y);\n  ctx.lineTo(x + 50, y + 150);\n  ctx.lineTo(x - 75, y + 50);\n  ctx.lineTo(x + 75, y + 50);\n  ctx.lineTo(x - 50, y + 150);\n  ctx.lineTo(x, y);\n  ctx.fillStyle = \"gold\";\n  ctx.fill();\n}\n\nfor (let i = 1; i <= 5; i++) {\n  drawStar(200*i, 100);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 32,
+				"fnv1a32": "048086e5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 680,
+				"fnv1a32": "00200e95"
+			}
+		},
+		"settings": {
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": []
+			},
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": []
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": true,
+		"emptyEditors": ["CSS"],
+		"retainedAt": "2026-10-26T06:15:02.292651+00:00",
+		"panelSHA256": {
+			"HTML": "bcdadb2f807fd06658a17466a9dd29fc39b8468f68770f5926dd817bdb6eb29a",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "b262f38f56ebaf65d40f0ab91900ba85f266ef156a7fb82e48aef09f9016ef82"
+		}
+	},
+	{
+		"project": "shining-stars",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/fa66f3594a65a54d562d3932d97e2cb7",
+		"title": "JSM4 Project 2: Shining Stars",
+		"observedURL": "https://codepen.io/junilearning/pen/JjKXNBL",
+		"panels": {
+			"HTML": "<canvas id=\"my-canvas\"></canvas>",
+			"CSS": "",
+			"JavaScript": "// Use canvas to draw a gold star. Then, refactor your code to use a function to draw a star called drawStar(x, y) at the inputted x and y coordinates. Then, draw 5 stars using the drawStar(x, y) function."
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 32,
+				"fnv1a32": "048086e5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 205,
+				"fnv1a32": "1f7ced11"
+			}
+		},
+		"settings": {
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": []
+			},
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": []
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": true,
+		"emptyEditors": ["CSS"],
+		"retainedAt": "2026-10-26T06:15:02.292538+00:00",
+		"panelSHA256": {
+			"HTML": "bcdadb2f807fd06658a17466a9dd29fc39b8468f68770f5926dd817bdb6eb29a",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "dafb038ba600825c75478c2be3f55482a34d90883946e07e415d7d8b6819fe0f"
+		}
+	}
+]

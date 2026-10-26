@@ -1,0 +1,41 @@
+// Use Canvas to draw a red square, a blue circle, and a green triangle! The degreesToRadians(degrees) function has been provided for you to help you draw an arc.
+
+// Solution
+
+// Resize Canvas
+const canvas = document.getElementById("my-canvas");
+
+canvas.width = 1000;
+canvas.height = 500;
+
+const ctx = canvas.getContext("2d");
+
+// square
+ctx.fillStyle = "rgba(255,0,0,0.5)";
+// arguments: x, y, width, height
+ctx.fillRect(100, 100, 100, 100);
+
+// circle
+// arguments: x, y, radius, startAngle (in radians), endAngle (in radians)
+ctx.beginPath();
+ctx.arc(300, 150, 50, 0, degreesToRadians(360));
+ctx.fillStyle = "rgba(0,0,255,0.5)";
+ctx.fill();
+
+// triangle
+ctx.beginPath();
+ctx.moveTo(500, 200);
+ctx.lineTo(400, 200);
+ctx.lineTo(500, 100);
+ctx.fillStyle = "rgba(0,255,0,0.5)";
+ctx.fill();
+ctx.closePath();
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function degreesToRadians(degrees) {
+	return (degrees * Math.PI) / 180;
+}
+const drawingDescription =
+	"A red square, a blue circle and a green triangle, from left to right.";
+document.getElementById("drawing-description").textContent = drawingDescription;

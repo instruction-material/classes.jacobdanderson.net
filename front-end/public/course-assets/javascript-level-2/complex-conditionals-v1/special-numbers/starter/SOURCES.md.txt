@@ -1,0 +1,24 @@
+# Sources
+
+Juni Learning: [JSM3 Project 3: Special Numbers](https://codepen.io/junilearning/pen/1be13919321ab5708564a8a7ca928226).
+
+Observed public editor: https://codepen.io/junilearning/pen/xxOjxXg
+
+Role: starter. The local pack adapts that captured role; both original roles are preserved in test/fixtures/javascript-master-conditionals-originals.json.
+
+Original panel SHA-256:
+
+- HTML: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- CSS: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- JavaScript: 6329b8723ee809ae538e8d6bf97d6b6e6a453512c2337ab6fedf45d47137add4
+
+Original dependency: https://cdnjs.cloudflare.com/ajax/libs/d3/6.2.0/d3.min.js; version 6.2.0 and its license are bundled locally.
+
+Adaptations:
+
+- Readable, wrapping D3 text output replaces fixed-width SVGs, randomized colors, and automatic animation.
+- Labeled forms replace blocking prompts; decisions stay in script.js.
+- Strict null handling preserves the Ternary starter behavior; original conditional bodies are retained for comparison.
+- Prime and whole-price search domains, positive-integer predicates, and factor-pair counting are corrected.
+- Age examples retain their five numerical conditions with practice wording and validation.
+- Full readings, predictable checks, and source attribution accompany each role.

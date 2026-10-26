@@ -1,0 +1,13 @@
+// Original conditional bodies are preserved below each equivalent expression.
+const greeting = (draw = Math.random()) =>
+	draw * 2 > 1 ? "Hello!" : "Goodbye!";
+// if (draw*2>1) { return "Hello!"; } else { return "Goodbye!"; }
+const chooseName = (draw = Math.random()) => (draw * 2 > 1 ? "Kevin" : "Katy");
+// let name; if(draw*2>1){name="Kevin";}else{name="Katy";}return name;
+const colorMessage = color =>
+	color === null
+		? "Didn't quite get that!"
+		: `Wow, ${color} is my favorite color too!`;
+// if(color===null){return "Didn't quite get that!";}else{return `Wow, ${color} is my favorite color too!`;}
+const greaterThan50 = number => (number > 50 ? true : false);
+// if(number>50){return true;}else{return false;}

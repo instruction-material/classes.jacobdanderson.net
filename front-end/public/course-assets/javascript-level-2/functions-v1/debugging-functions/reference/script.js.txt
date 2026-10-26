@@ -1,0 +1,59 @@
+// Debug this fictional coffee-shop model using the prices and whole-pack requirements in README.md.
+
+const gallonOfMilkCost = 2.49;
+const bagOfBeansCost = 18.89;
+const sackOfSugarCost = 9.99;
+const costPerCup = 0.01;
+const dailyMaintenanceCost = 30;
+const dailyRentCost = 100;
+
+const cupOfCoffeeCost = 1.99;
+
+// takes in the number of cups sold calculates the daily cost of selling that many cups of coffee
+// Note: all ingredients go bad at the end of the day!
+const dailyCost = cupsSold => {
+	if (!Number.isSafeInteger(cupsSold) || cupsSold < 0 || cupsSold > 100000)
+		throw new RangeError(
+			"Cups must be a whole number from 0 through 100000."
+		);
+	const cents =
+		Math.ceil(cupsSold / 100) * Math.round(gallonOfMilkCost * 100) +
+		Math.ceil(cupsSold / 150) * Math.round(bagOfBeansCost * 100) +
+		Math.ceil(cupsSold / 200) * Math.round(sackOfSugarCost * 100) +
+		cupsSold * Math.round(costPerCup * 100) +
+		Math.round(dailyMaintenanceCost * 100) +
+		Math.round(dailyRentCost * 100);
+	return cents / 100;
+};
+
+// takes in the number of cups sold and returns a day's profit
+const calculateProfit = cupsSold => {
+	const cost = Math.round(dailyCost(cupsSold) * 100);
+	const revenue = Math.round(cupOfCoffeeCost * 100) * cupsSold;
+	return (revenue - cost) / 100;
+};
+
+// return the minimum number of cups to sell in order to reach a profit goal
+const reachProfitGoal = goal => {
+	if (!Number.isFinite(goal) || goal < 0 || goal > 10000)
+		throw new RangeError("Profit goal must be from $0 through $10000.");
+	let cups = 0;
+	while (calculateProfit(cups) < goal) {
+		if (cups === 100000)
+			throw new RangeError("The goal exceeds the search limit.");
+		cups++;
+	}
+	return cups;
+};
+
+printToScreen(
+	`Break-even: ${reachProfitGoal(0)} cups of coffee.`
+);
+
+printToScreen(
+	`$200 profit goal: ${reachProfitGoal(200)} cups of coffee.`
+);
+
+printToScreen(
+	`$1000 profit goal: ${reachProfitGoal(1000)} cups of coffee.`
+);

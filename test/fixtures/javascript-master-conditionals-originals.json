@@ -1,0 +1,434 @@
+[
+	{
+		"project": "age-milestones",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/a85d4be8f2f94812a0357dae2a1d1e00",
+		"title": "JSM3 Supplemental Project 1: Age Milestones Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/rNLvNYe/a85d4be8f2f94812a0357dae2a1d1e00",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "// Ask the user for their age. Then, come up with 5 life milestones that occur at certain ages (ex: you can run for president at 35). Use ternary operators to print whether or not they qualify for these milestones based on their age!\n\n// Solution\n\nlet age = +prompt(\"How old are you?\");\n\nlet isBaby = age <= 2 ? \"You are a baby.\" : \"You are not a baby.\";\n\nlet isToddler =\n  age > 2 && age < 5 ? \"You are a toddler.\" : \"You are not a toddler.\";\n\nlet canDrive =\n  age >= 16 ? \"You can legally drive.\" : \"You cannot legally drive.\";\n\nlet canRunForPresident =\n  age >= 35 ? \"You can run for president.\" : \"You cannot run for president.\";\n\nlet qualifyForMedicare =\n  age >= 65 ? \"You qualify for Medicare.\" : \"You do not qualify for Medicare.\";\n\nprintToScreen(\"According to your age:\");\n\nprintToScreen(isBaby);\nprintToScreen(isToddler);\nprintToScreen(canDrive);\nprintToScreen(canRunForPresident);\nprintToScreen(qualifyForMedicare);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 155 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 50);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 50)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 1622,
+				"fnv1a32": "aff44eae"
+			}
+		},
+		"settings": {
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+				]
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T05:36:51.881791+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "b3b1da1fd55f65c1123566ff94f526df251de94d483b1c080cd74a1a855d2c8f"
+		}
+	},
+	{
+		"project": "age-milestones",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/8b95795088fd04a2a6b77fba56416332",
+		"title": "JSM3 Supplemental Project 1: Age Milestones",
+		"observedURL": "https://codepen.io/junilearning/pen/YzWLzrY",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "// Ask the user for their age. Then, come up with 5 life milestones that occur at certain ages (ex: you can run for president at 35). Use ternary operators to print whether or not they qualify for these milestones based on their age!\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 155 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 50);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 50)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 967,
+				"fnv1a32": "e4a3eb47"
+			}
+		},
+		"settings": {
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+				]
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T05:36:51.881692+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "2310be9a7166a8a5f9a74fb1b6d1642168e4b3b6e44978325aa5970bf9f716f4"
+		}
+	},
+	{
+		"project": "department-store-discounts",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/d37942e57460093f20ee6217402d4ba7",
+		"title": "JSM3 Project 2: Juni Department Store Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/mdELdwL/d37942e57460093f20ee6217402d4ba7",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "/*\nWelcome to the Juni department store! Everything in the store is discounted for students!\n\nThe student discount is:\n0% for non-students,\n10% for elementary school students,\n12% for middle school students,\n14% for high school students,\n16% for college students, and\n20% for Juni students!\n\nHowever, in true Juni fashion, there is a mathematical twist:\n\nIf the price after the discount, rounded down to the nearest integer, is a perfect square or a prime number, we apply the discount one more time. Otherwise, we increase the price until it is a perfect square or a prime number (whichever comes first).\n\nWrite a program that will ask the user for the cost of their items and the type of student they are. Use a combination of functions, ternary operators, and if-statements to help you calculate their discount. Finally, use printToScreen() to display their final price.\n*/\n\n// Solution\n\nconst isPerfectSquare = (num) => {\n  let root = Math.sqrt(num);\n  let rootFloor = Math.floor(root);\n  return root === rootFloor ? true : false;\n};\n\nconst isPrime = (num) => {\n  if (num == 1) {\n    return true;\n  }\n  for (let i = 2; i < num; i++) {\n    if (num % i === 0) {\n      return false;\n    }\n  }\n  return true;\n};\n\nconst increasePrice = (num) => {\n  while (!isPerfectSquare(num) && !isPrime(num)) {\n    num++;\n  }\n  return num;\n};\n\nconst applyDiscount = (price, percentDiscount) => {\n  return price * ((100 - percentDiscount) / 100);\n};\n\n\nlet price = +prompt(\"How much did your items cost?\");\nlet studentType = prompt(\"What type of student are you? Type elementary/middle/high/college/juni/none.\");\n\n// null check\nstudentType = studentType ? studentType.toLowerCase() : \"none\";\n\nlet discount = 0;\nif (studentType === \"elementary\") {\n  discount = 10;\n} else if (studentType === \"middle\") {\n  discount = 12;\n} else if (studentType === \"high\") {\n  discount = 14;\n} else if (studentType === \"college\") {\n  discount = 16;\n} else if (studentType === \"juni\") {\n  discount = 20;\n}\n\nprice = applyDiscount(price, discount);\n\nif (isPerfectSquare(Math.floor(price)) || isPrime(Math.floor(price))) {\n  price = applyDiscount(price, discount);\n} else {\n  price = increasePrice(price);\n}\n\nprintToScreen(`Your final price is: $${price.toFixed(2)}`);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 155 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 2926,
+				"fnv1a32": "ce102ddc"
+			}
+		},
+		"settings": {
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/6.1.1/d3.min.js"
+				]
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T05:36:51.881315+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "5b069d391d54751589fd1156444cdb5d19ef3e937d640472f6c46dde6162d581"
+		}
+	},
+	{
+		"project": "department-store-discounts",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/b3de9678fa8b77aae5cc988f74bd086e",
+		"title": "JSM3 Project 2: Juni Department Store",
+		"observedURL": "https://codepen.io/junilearning/pen/BazxBbr",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "/*\nWelcome to the Juni department store! Everything in the store is discounted for students!\n\nThe student discount is:\n0% for non-students,\n10% for elementary school students,\n12% for middle school students,\n14% for high school students,\n16% for college students, and\n20% for Juni students!\n\nHowever, in true Juni fashion, there is a mathematical twist:\n\nIf the price after the discount, rounded down to the nearest integer, is a perfect square or a prime number, we apply the discount one more time! Otherwise, we increase the price until it is a perfect square or a prime number (whichever comes first).\n\nWrite a program that will ask the user for the cost of their items and the type of student they are. Use a combination of functions, ternary operators, and if-statements to help you calculate their discount. Finally, use printToScreen() to display their final price.\n*/\n\n// Enter your code here.\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 155 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 1600,
+				"fnv1a32": "c2fc93e5"
+			}
+		},
+		"settings": {
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/6.1.1/d3.min.js"
+				]
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T05:36:51.881191+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "6a7ab1eaf68145ed59a4af2165aae679f68fb45d75f500ab82c662e5781bf855"
+		}
+	},
+	{
+		"project": "special-numbers",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/2ccb91adaa2536ecc746e938b9411171",
+		"title": "JSM3 Project 3: Special Numbers Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/LYZmYzL/2ccb91adaa2536ecc746e938b9411171",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "/*\nThere are many interesting numbers out there! For each of these examples, write a function that takes in a number input and returns true if the number meets the stated property, false otherwise.\n\n1. Self-Dividing Number: a positive integer that is divisible by every digit it contains. \nExample: 128 is a self-dividing number because it is divisible by 1, 2, and 8.\nUse printToScreen() to print all the self-dividing numbers from 300 to 700.\n\n2. Perfect Number: a positive integer that is equal to the sum of all its positive divisors except itself.\nExample: 28 is a perfect number because its divisors less than 28 are 1, 2, 4, 7, and 14 and 1 + 2 + 4 + 7 + 14 = 28.\nUse printToScreen() to print all the perfect numbers from 1 to 9000.\n\n3. Palindrome Number: a positive integer that reads the same backward as forward.\nExample: 121 and 22 are palindrome numbers.\nUse printToScreen() to print all the palindrome numbers from 700 to 2000.\n*/\n\n// Solution\n\nconst isSelfDividing = (num) => {\n  let cur = num;\n  while (cur > 0) {\n    let divisor = cur % 10;\n    cur = Math.floor(cur / 10);\n    if (num % divisor !== 0) {\n      return false;\n    }\n  }\n  return true;\n};\n\nprintToScreen(\"Self Dividing Numbers:\");\nfor (let i = 300; i < 701; i++) {\n  if (isSelfDividing(i)) {\n    printToScreen(i);\n  }\n}\n\n\n// Less Efficient Perfect Number Solution\nconst isPerfect = (num) => {\n  let sum = 0;\n  for (let i = 1; i < num; i++) {\n    if (num % i === 0) {\n      sum += i;\n    }\n  }\n  return sum === num;\n};\n\n// Efficient Perfect Number Solution (for more advanced students)\nconst isPerfect2 = (num) => {\n  if (num === 1) {\n    return false;\n  }\n  let sum = 0;\n  for (let i = 2; i <= Math.sqrt(num); i++) {\n    if (num % i === 0) {\n      sum += i + num / i;\n    }\n  }\n  sum++;\n  return sum === num;\n};\n\nprintToScreen(\"Perfect Numbers: \");\nfor (let i = 1; i < 9001; i++) {\n  if (isPerfect2(i)) {\n    printToScreen(i);\n  }\n}\n\n\nconst isPalindrome = (num) => {\n  if (num < 0) {\n    return false;\n  }\n  if (num < 10) {\n    return true;\n  }\n  if (num % 10 === 0) {\n    return false;\n  }\n  let rev = 0;\n  while (num >= 10) {\n    let cur = num % 10;\n    rev = rev * 10 + cur;\n    if (num === rev) {\n      return true; // check before changing x (for nums with odd number of digits)\n    }\n    num = Math.floor(num/10);\n    if (num === rev) {\n      return true; // check after changing x (for nums with even number of digits)\n    }\n    if (num < rev) {\n      return false;\n    }\n  }\n  return false;\n}\n\nprintToScreen(\"Palindrome Numbers: \");\nfor (let i = 700; i < 2001; i++) {\n  if (isPalindrome(i)) {\n    printToScreen(i);\n  }\n}\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor(Math.random() * 155 + 1);\n  let g = Math.floor(Math.random() * 155 + 1);\n  let b = Math.floor(Math.random() * 155 + 1);\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 40);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 25)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", 25)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 3215,
+				"fnv1a32": "03a121c6"
+			}
+		},
+		"settings": {
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/6.2.0/d3.min.js"
+				]
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T05:36:51.881570+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "5605dc0918c77bcfade870fd5fe056ab597d381c37675b1ea5fed715a273c02b"
+		}
+	},
+	{
+		"project": "special-numbers",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/1be13919321ab5708564a8a7ca928226",
+		"title": "JSM3 Project 3: Special Numbers",
+		"observedURL": "https://codepen.io/junilearning/pen/xxOjxXg",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "/*\nThere are many interesting numbers out there! For each of these examples, write a function that takes in a number input and returns true if the number meets the stated property, false otherwise.\n\n1. Self-Dividing Number: a positive integer that is divisible by every digit it contains. \nExample: 128 is a self-dividing number because it is divisible by 1, 2, and 8.\nUse printToScreen() to print all the self-dividing numbers from 300 to 700.\n\n2. Perfect Number: a positive integer that is equal to the sum of all its positive divisors except itself.\nExample: 28 is a perfect number because its divisors less than 28 are 1, 2, 4, 7, and 14 and 1 + 2 + 4 + 7 + 14 = 28.\nUse printToScreen() to print all the perfect numbers from 1 to 9000.\n\n3. Palindrome Number: a positive integer that reads the same backward as forward.\nExample: 121 and 22 are palindrome numbers.\nUse printToScreen() to print all the palindrome numbers from 700 to 2000.\n*/\n\n// Enter your code here.\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor(Math.random() * 155 + 1);\n  let g = Math.floor(Math.random() * 155 + 1);\n  let b = Math.floor(Math.random() * 155 + 1);\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 40);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 25)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", 25)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Times New Roman\")\n    .text(text);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 1577,
+				"fnv1a32": "99fbbb07"
+			}
+		},
+		"settings": {
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/6.2.0/d3.min.js"
+				]
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T05:36:51.881457+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "6329b8723ee809ae538e8d6bf97d6b6e6a453512c2337ab6fedf45d47137add4"
+		}
+	},
+	{
+		"project": "ternary-operators-practice",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/b1db3868ed9880b007754b9003337700",
+		"title": "JSM3 Project 1: Ternary Operators Practice Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/vYKjBPm/b1db3868ed9880b007754b9003337700",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "// Rewrite these if-else statements using ternary operators! Comment out the old code instead of deleting it! \n\n// Solution\n\n// Problem 1: Regular if-else conditional\nMath.random() * 2 > 1 ? printToScreen(\"Hello!\") : printToScreen(\"Goodbye!\");\n\n\n// Problem 2: Variable assignment\nconst name = Math.random() * 2 > 1 ? \"Kevin\" : \"Katy\";\nprintToScreen(name);\n\n\n// Problem 3: Null check\nconst color = prompt(\"What's your favorite color?\");\ncolor ? printToScreen(`Wow, ${color} is my favorite color too!`) : printToScreen(\"Didn't quite get that!\");\n\n\n// Problem 4: returning values in functions\nconst greaterThan50 = (number) => {\n  return number > 50 ? true : false;\n}\n\nlet num = Math.random() * 100;\nprintToScreen(`num is greater than 50: ${greaterThan50(num)}`);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 155 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 1455,
+				"fnv1a32": "7324c488"
+			}
+		},
+		"settings": {
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/6.1.1/d3.min.js"
+				]
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T05:36:51.881081+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "ce859ef93ab38ba9a547100e0201de5bcccb1be15bd07175a44910078206a6ea"
+		}
+	},
+	{
+		"project": "ternary-operators-practice",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/a7c2ad78bc62de68676af56657849a9b",
+		"title": "JSM3 Project 1: Ternary Operators Practice",
+		"observedURL": "https://codepen.io/junilearning/pen/oNLdvVz",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "// Rewrite these if-else statements using ternary operators! Comment out the old code instead of deleting it! \n\n\n// Problem 1\nif (Math.random() * 2 > 1) {\n  printToScreen(\"Hello!\");\n} else {\n  printToScreen(\"Goodbye!\");\n}\n\n\n// Problem 2\nlet name;\nif (Math.random() * 2 > 1) {\n  name = \"Kevin\";\n} else {\n  name = \"Katy\";\n}\nprintToScreen(name);\n\n// Problem 3\nconst color = prompt(\"What's your favorite color?\");\nif (color === null) {\n  printToScreen(\"Didn't quite get that!\");\n} else {\n  printToScreen(`Wow, ${color} is my favorite color too!`);\n}\n\n\n// Problem 4\nconst greaterThan50 = (number) => {\n  if (number > 50) {\n    return true;\n  } else {\n    return false;\n  }\n}\nlet num = Math.random() * 100;\nprintToScreen(`num is greater than 50: ${greaterThan50(num)}`);\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 155 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 1460,
+				"fnv1a32": "d8452a18"
+			}
+		},
+		"settings": {
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/6.1.1/d3.min.js"
+				]
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T05:36:51.880805+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "45e90be71c6f5490d6cb88e91400e629491665c0c1f51eb787a302d1384b271b"
+		}
+	}
+]

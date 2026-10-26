@@ -1,0 +1,24 @@
+# Sources
+
+Juni Learning: [JSM3 Project 1: Ternary Operators Practice Solution](https://codepen.io/junilearning/pen/b1db3868ed9880b007754b9003337700).
+
+Observed public editor: https://codepen.io/junilearning/pen/vYKjBPm/b1db3868ed9880b007754b9003337700
+
+Role: reference. The local pack adapts that captured role; both original roles are preserved in test/fixtures/javascript-master-conditionals-originals.json.
+
+Original panel SHA-256:
+
+- HTML: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- CSS: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- JavaScript: ce859ef93ab38ba9a547100e0201de5bcccb1be15bd07175a44910078206a6ea
+
+Original dependency: https://cdnjs.cloudflare.com/ajax/libs/d3/6.1.1/d3.min.js; version 6.1.1 and its license are bundled locally.
+
+Adaptations:
+
+- Readable, wrapping D3 text output replaces fixed-width SVGs, randomized colors, and automatic animation.
+- Labeled forms replace blocking prompts; decisions stay in script.js.
+- Strict null handling preserves the Ternary starter behavior; original conditional bodies are retained for comparison.
+- Prime and whole-price search domains, positive-integer predicates, and factor-pair counting are corrected.
+- Age examples retain their five numerical conditions with practice wording and validation.
+- Full readings, predictable checks, and source attribution accompany each role.

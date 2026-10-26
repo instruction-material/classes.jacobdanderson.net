@@ -1,0 +1,24 @@
+# Sources
+
+Juni Learning: [JSM2 Project 2: Which MetroCard Solution](https://codepen.io/junilearning/pen/0ee1b7431e9ee2bf0befa562068702d7).
+
+Observed public editor: https://codepen.io/junilearning/pen/jOrywpE/0ee1b7431e9ee2bf0befa562068702d7
+
+Role: reference. Both original roles were captured; this is an adaptation of that role.
+
+Original panel SHA-256:
+
+- HTML: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- CSS: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- JavaScript: d15689917b2dd6ee6b3c863e822fe347665a6cfd222f5f79997011fedf86e21b
+
+The captured original source is retained in test/fixtures/javascript-master-functions-originals.json.
+
+Adaptations:
+
+- Original D3 5.16.0 and license bundled locally
+- Original fixed-width animated output helper replaced with readable D3 text output
+- Original exercise roles retained within a valid local HTML shell
+- Labeled forms replace blocking prompts and preserve the previous valid output
+
+The README describes the project-specific arithmetic, validation and game-state corrections. Source exercise names, function names, sample inputs, pricing and purchasing model remain traceable to the captured original.

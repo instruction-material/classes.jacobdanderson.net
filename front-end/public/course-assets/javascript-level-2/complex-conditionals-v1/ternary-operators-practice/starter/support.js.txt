@@ -1,0 +1,127 @@
+function printToScreen(text) {
+	d3.select("#output").append("p").text(String(text));
+}
+(() => {
+	const root = document.querySelector("main"),
+		form = document.querySelector("#exercise-form"),
+		output = document.querySelector("#output"),
+		status = document.querySelector("#status"),
+		sourceError = document.querySelector("#source-error");
+	const project = document.body.dataset.project;
+	let failed = false;
+	window.addEventListener("error", event => {
+		failed = true;
+		root.dataset.state = "error";
+		sourceError.hidden = false;
+		sourceError.textContent =
+			"The example could not run. Check script.js, then reload.";
+		event.preventDefault();
+	});
+	function ready() {
+		if (project === "ternary-operators-practice")
+			return (
+				typeof greeting === "function" &&
+				typeof chooseName === "function" &&
+				typeof colorMessage === "function" &&
+				typeof greaterThan50 === "function"
+			);
+		if (project === "department-store-discounts")
+			return (
+				typeof calculatePrice === "function" &&
+				typeof isPrime === "function" &&
+				typeof isPerfectSquare === "function"
+			);
+		if (project === "special-numbers")
+			return (
+				typeof isSelfDividing === "function" &&
+				typeof isPerfect === "function" &&
+				typeof isPerfect2 === "function" &&
+				typeof isPalindrome === "function" &&
+				typeof matchingNumbers === "function"
+			);
+		return typeof milestoneMessages === "function";
+	}
+	function number(id) {
+		const field = document.getElementById(id),
+			raw = field.value.trim(),
+			value = Number(raw);
+		if (!raw || !Number.isFinite(value)) {
+			field.focus();
+			throw new Error(
+				"Enter a number for " + field.labels[0].textContent.trim() + "."
+			);
+		}
+		return value;
+	}
+	const money = value =>
+		new Intl.NumberFormat("en-US", {
+			style: "currency",
+			currency: "USD"
+		}).format(value);
+	form.addEventListener("submit", event => {
+		event.preventDefault();
+		if (failed || !ready()) return;
+		try {
+			let lines;
+			if (project === "ternary-operators-practice") {
+				const draw = number("draw"),
+					value = number("number");
+				if (draw < 0 || draw >= 1)
+					throw new Error("Draw must be at least 0 and below 1.");
+				const color = document.querySelector("#cancel-color").checked
+					? null
+					: document.querySelector("#color").value;
+				lines = [
+					greeting(draw),
+					"Name: " + chooseName(draw),
+					colorMessage(color),
+					"Number greater than 50: " + greaterThan50(value)
+				];
+			} else if (project === "department-store-discounts") {
+				const result = calculatePrice(
+					number("price"),
+					document.querySelector("#student-type").value
+				);
+				lines = [
+					"Original price: " + money(result.originalPrice),
+					"Discount: " + result.discount + "%",
+					"After first discount: " + money(result.firstPrice),
+					"Rounded-down check: " + result.roundedPrice,
+					"Adjustment: " + result.adjustment,
+					"Final price: " + money(result.finalPrice)
+				];
+			} else if (project === "special-numbers") {
+				const n = number("number"),
+					start = number("start"),
+					end = number("end"),
+					kind = document.querySelector("#predicate").value;
+				const matches = matchingNumbers(kind, start, end);
+				lines = [
+					"Number: " + n,
+					"Self-dividing: " + isSelfDividing(n),
+					"Perfect: " + isPerfect2(n),
+					"Palindrome: " + isPalindrome(n),
+					"Range: " + start + " through " + end,
+					"Matches (" + kind + "): " + (matches.join(", ") || "none")
+				];
+			} else {
+				lines = milestoneMessages(number("age"));
+			}
+			output.replaceChildren();
+			lines.forEach(printToScreen);
+			status.textContent = "Examples complete.";
+		} catch (error) {
+			status.textContent = error.message;
+		}
+	});
+	window.addEventListener("DOMContentLoaded", () => {
+		if (failed) return;
+		const complete = ready();
+		root.dataset.state = complete ? "ready" : "starter";
+		document.querySelector("#run").disabled = !complete;
+		status.textContent = complete
+			? ""
+			: "Complete the functions in script.js, then reload.";
+		if (complete && project !== "special-numbers") form.requestSubmit();
+	});
+})();

@@ -59,8 +59,12 @@ function reviewedJavaScriptProjectReadme(
 		return "";
 	const file = source.files.find(file => file.name === "README.md");
 	expect(file, item.title).toBeDefined();
+	const assetRoot =
+		source.courseId === "javascript-level-2-javascript-master"
+			? "javascript-level-2"
+			: "javascript-level-1";
 	const content = fs.readFileSync(
-		`public/course-assets/javascript-level-1/${file!.path}`,
+		`public/course-assets/${assetRoot}/${file!.path}`,
 		"utf8"
 	);
 	expect(
@@ -3473,7 +3477,7 @@ describe("course text quality normalization", () => {
 			"Functions turn a repeated process into a named operation"
 		);
 		expect(corpus).toContain(
-			"Create a landscape scene with repeated canvas shapes"
+			"Create a landscape containing repeated trees, a sun and distinct sky and ground areas"
 		);
 		expect(corpus).toContain(
 			"Helper functions keep a program understandable by giving a name to repeated or low-level work"

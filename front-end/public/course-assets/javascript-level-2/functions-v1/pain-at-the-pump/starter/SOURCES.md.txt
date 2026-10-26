@@ -1,0 +1,24 @@
+# Sources
+
+Juni Learning: [JSM2 Supplemental Project 2: Pain at the Pump](https://codepen.io/junilearning/pen/87b49903a68f15f9132d49b704444083).
+
+Observed public editor: https://codepen.io/junilearning/pen/rNLdxVY
+
+Role: starter. Both original roles were captured; this is an adaptation of that role.
+
+Original panel SHA-256:
+
+- HTML: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- CSS: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- JavaScript: 6692c7d4ec0653b5a894fab96e57971d71dfabb050734964455fe3253e2c07d6
+
+The captured original source is retained in test/fixtures/javascript-master-functions-originals.json.
+
+Adaptations:
+
+- Original D3 5.16.0 and license bundled locally
+- Original fixed-width animated output helper replaced with readable D3 text output
+- Original exercise roles retained within a valid local HTML shell
+- Labeled forms replace blocking prompts and preserve the previous valid output
+
+The README describes the project-specific arithmetic, validation and game-state corrections. Source exercise names, function names, sample inputs, pricing and purchasing model remain traceable to the captured original.

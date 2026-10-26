@@ -1,0 +1,76 @@
+/*
+Simulate a simple game of War! In this two-player card game, each player has a hand of shuffled cards. Each player plays the top card off of their hand, and the player with the higher card wins. For our simulation, have each player draw a card by picking a random number between 1 and 13 (Ace = 1, Jack = 11, Queen = 12, King = 13); the player with the higher number wins that round. If it is a tie, then neither player wins.
+
+Create a function that takes in the player's name and draws a card for the player. The function should use printToScreen() to print out the card and its suit (ie: "John drew a Jack of Diamonds!"). The function should also return a card number which will be used to compare the cards. (Note: Ace is the highest.)
+
+Play 10 rounds, printing out the results of each round, and then print out final scores (i.e. the total number of rounds won by each player).
+
+*/
+
+// Solution
+
+const drawCard = playerName => {
+	let cardNum = Math.floor(Math.random() * 13) + 1;
+	let card;
+
+	if (cardNum === 1) {
+		card = "Ace";
+		// Ace is the highest
+		cardNum = 14;
+	} else if (cardNum === 11) {
+		card = "Jack";
+	} else if (cardNum === 12) {
+		card = "Queen";
+	} else if (cardNum === 13) {
+		card = "King";
+	} else {
+		card = cardNum.toString();
+	}
+
+	let suitNum = Math.floor(Math.random() * 4) + 1;
+	let suit;
+
+	if (suitNum === 1) {
+		suit = "Spades";
+	} else if (suitNum === 2) {
+		suit = "Clubs";
+	} else if (suitNum === 3) {
+		suit = "Hearts";
+	} else {
+		suit = "Diamonds";
+	}
+
+	printToScreen(`${playerName} drew a ${card} of ${suit}!`);
+	return cardNum;
+};
+
+let p1Name = "Player 1";
+let p2Name = "Player 2";
+let p1Score = 0;
+let p2Score = 0;
+for (let i = 0; i < 10; i++) {
+	let p1Card = drawCard(p1Name);
+	let p2Card = drawCard(p2Name);
+
+	if (p1Card > p2Card) {
+		printToScreen(`${p1Name} wins this round!`);
+		p1Score++;
+	} else if (p2Card > p1Card) {
+		printToScreen(`${p2Name} wins this round!`);
+		p2Score++;
+	} else {
+		printToScreen("It's a tie!");
+	}
+	printToScreen("");
+}
+
+printToScreen(`${p1Name}'s final score: ${p1Score}`);
+printToScreen(`${p2Name}'s final score: ${p2Score}`);
+
+printToScreen(
+	p1Score === p2Score
+		? "The ten-round simulation is tied."
+		: p1Score > p2Score
+			? "Player 1 wins the simulation."
+			: "Player 2 wins the simulation."
+);

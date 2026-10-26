@@ -1,0 +1,5 @@
+// Ask the user for their age. Then, come up with 5 life milestones that occur at certain ages (ex: you can run for president at 35). Use ternary operators to print whether or not they qualify for these milestones based on their age!
+
+// Enter your code below this line
+
+// Implement milestoneMessages(age). Return the practice age followed by five age-condition messages as described in README.md. Use ternary expressions for the five messages.

@@ -1,0 +1,502 @@
+export const javascriptMasterCanvasResources = [
+	{
+		courseId: "javascript-level-2-javascript-master",
+		project: "basic-shapes",
+		title: "Basic Shapes",
+		version: 1,
+		role: "starter",
+		urls: [
+			"https://codepen.io/junilearning/pen/7bdedd0b00112751b87d288e4b8120b5",
+			"https://codepen.io/junilearning/pen/JjKvjON",
+			"/course-assets/javascript-level-2/canvas-v1/basic-shapes/starter/index.html.txt"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "canvas-v1/basic-shapes/starter/index.html.txt",
+				byteLength: 863,
+				sha256: "1cb21d2cc02d82e2732781e8bafa073e3ec13ea886e9a0f1d82d4c09150965dc"
+			},
+			{
+				name: "styles.css",
+				path: "canvas-v1/basic-shapes/starter/styles.css.txt",
+				byteLength: 814,
+				sha256: "805bfe9f5151c27e6ae0000cd65e0617e518e9ae2e8189b9af1cb0ce72d4fd8b"
+			},
+			{
+				name: "support.js",
+				path: "canvas-v1/basic-shapes/starter/support.js.txt",
+				byteLength: 216,
+				sha256: "07249ec924a4aa4832a1c0c1d30d1eec1acb3cd5a3afa73bd4e50a72a656dd46"
+			},
+			{
+				name: "script.js",
+				path: "canvas-v1/basic-shapes/starter/script.js.txt",
+				byteLength: 627,
+				sha256: "7e02a38e2d115d17b29bdc707cb16f851f19fd9fe47a5c0e29502e7503abacda"
+			},
+			{
+				name: "README.md",
+				path: "canvas-v1/basic-shapes/starter/README.md.txt",
+				byteLength: 2704,
+				sha256: "9ed87020c0474f4f0f9baeda53196668e02705120dbd546c77d7fb0e8537a1c0"
+			},
+			{
+				name: "SOURCES.md",
+				path: "canvas-v1/basic-shapes/starter/SOURCES.md.txt",
+				byteLength: 1523,
+				sha256: "eb190cc2faea2efc8cacf9432066482da19fe9a68c58d0326852406681eeb260"
+			}
+		]
+	},
+	{
+		courseId: "javascript-level-2-javascript-master",
+		project: "basic-shapes",
+		title: "Basic Shapes",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/6d083a06497b47a62825f3d2c205813e",
+			"https://codepen.io/junilearning/pen/oNLbKvb/6d083a06497b47a62825f3d2c205813e",
+			"/course-assets/javascript-level-2/canvas-v1/basic-shapes/reference/index.html.txt"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "canvas-v1/basic-shapes/reference/index.html.txt",
+				byteLength: 897,
+				sha256: "818ce660d324ca39b245a7ea692af9bff3a0aeb634ac2f9f7a50558e6a0d2994"
+			},
+			{
+				name: "styles.css",
+				path: "canvas-v1/basic-shapes/reference/styles.css.txt",
+				byteLength: 814,
+				sha256: "805bfe9f5151c27e6ae0000cd65e0617e518e9ae2e8189b9af1cb0ce72d4fd8b"
+			},
+			{
+				name: "support.js",
+				path: "canvas-v1/basic-shapes/reference/support.js.txt",
+				byteLength: 216,
+				sha256: "07249ec924a4aa4832a1c0c1d30d1eec1acb3cd5a3afa73bd4e50a72a656dd46"
+			},
+			{
+				name: "script.js",
+				path: "canvas-v1/basic-shapes/reference/script.js.txt",
+				byteLength: 1110,
+				sha256: "f7a099012b5160bd7456afc1be2f3aa6d15e42bcfe9585a658666dd8737db778"
+			},
+			{
+				name: "README.md",
+				path: "canvas-v1/basic-shapes/reference/README.md.txt",
+				byteLength: 2704,
+				sha256: "9ed87020c0474f4f0f9baeda53196668e02705120dbd546c77d7fb0e8537a1c0"
+			},
+			{
+				name: "SOURCES.md",
+				path: "canvas-v1/basic-shapes/reference/SOURCES.md.txt",
+				byteLength: 1567,
+				sha256: "f9f3145a352f1384ba4e4691ec88684bf955dceb62c145e60e95be794b59e35e"
+			}
+		]
+	},
+	{
+		courseId: "javascript-level-2-javascript-master",
+		project: "shining-stars",
+		title: "Shining Stars",
+		version: 1,
+		role: "starter",
+		urls: [
+			"https://codepen.io/junilearning/pen/fa66f3594a65a54d562d3932d97e2cb7",
+			"https://codepen.io/junilearning/pen/JjKXNBL",
+			"/course-assets/javascript-level-2/canvas-v1/shining-stars/starter/index.html.txt"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "canvas-v1/shining-stars/starter/index.html.txt",
+				byteLength: 867,
+				sha256: "8b97137c52fa9ec409d277346dab5175840db3c9228f126d1cf01a9e8fcfe9d9"
+			},
+			{
+				name: "styles.css",
+				path: "canvas-v1/shining-stars/starter/styles.css.txt",
+				byteLength: 814,
+				sha256: "805bfe9f5151c27e6ae0000cd65e0617e518e9ae2e8189b9af1cb0ce72d4fd8b"
+			},
+			{
+				name: "support.js",
+				path: "canvas-v1/shining-stars/starter/support.js.txt",
+				byteLength: 216,
+				sha256: "07249ec924a4aa4832a1c0c1d30d1eec1acb3cd5a3afa73bd4e50a72a656dd46"
+			},
+			{
+				name: "script.js",
+				path: "canvas-v1/shining-stars/starter/script.js.txt",
+				byteLength: 505,
+				sha256: "4e78f2b2fac43988a10b2a0b7410b82558a80febaa78a57b1a9cf5efd0635afa"
+			},
+			{
+				name: "README.md",
+				path: "canvas-v1/shining-stars/starter/README.md.txt",
+				byteLength: 2817,
+				sha256: "ef8048b2ef0903f24296b99b9b39bceb27a3c1dd5e41f2155599fc773d7fd36e"
+			},
+			{
+				name: "SOURCES.md",
+				path: "canvas-v1/shining-stars/starter/SOURCES.md.txt",
+				byteLength: 1524,
+				sha256: "67e76d6544e1bd418ff012095c8a7ee38592f242f8716d1e4e6d22e30f73680e"
+			}
+		]
+	},
+	{
+		courseId: "javascript-level-2-javascript-master",
+		project: "shining-stars",
+		title: "Shining Stars",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/425a78d7d054dfda21d4242e818f64ba",
+			"https://codepen.io/junilearning/pen/XWKdRgM/425a78d7d054dfda21d4242e818f64ba",
+			"/course-assets/javascript-level-2/canvas-v1/shining-stars/reference/index.html.txt"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "canvas-v1/shining-stars/reference/index.html.txt",
+				byteLength: 817,
+				sha256: "934f2b903e833dfe8a84523ce7700faf78e63dc8069e8fe8a0bcd163ad796e29"
+			},
+			{
+				name: "styles.css",
+				path: "canvas-v1/shining-stars/reference/styles.css.txt",
+				byteLength: 814,
+				sha256: "805bfe9f5151c27e6ae0000cd65e0617e518e9ae2e8189b9af1cb0ce72d4fd8b"
+			},
+			{
+				name: "support.js",
+				path: "canvas-v1/shining-stars/reference/support.js.txt",
+				byteLength: 216,
+				sha256: "07249ec924a4aa4832a1c0c1d30d1eec1acb3cd5a3afa73bd4e50a72a656dd46"
+			},
+			{
+				name: "script.js",
+				path: "canvas-v1/shining-stars/reference/script.js.txt",
+				byteLength: 850,
+				sha256: "995dff9d52ed45913ee7057a710bddaa702b79296b313421d04339c4038bea3e"
+			},
+			{
+				name: "README.md",
+				path: "canvas-v1/shining-stars/reference/README.md.txt",
+				byteLength: 2817,
+				sha256: "ef8048b2ef0903f24296b99b9b39bceb27a3c1dd5e41f2155599fc773d7fd36e"
+			},
+			{
+				name: "SOURCES.md",
+				path: "canvas-v1/shining-stars/reference/SOURCES.md.txt",
+				byteLength: 1568,
+				sha256: "95cfd723b873e37164a2310f416628b0960185edfc7a711dc2002608f477870f"
+			}
+		]
+	},
+	{
+		courseId: "javascript-level-2-javascript-master",
+		project: "canvas-text",
+		title: "Writing Text on the Canvas",
+		version: 1,
+		role: "starter",
+		urls: [
+			"https://codepen.io/junilearning/pen/9355a832c485b33c747b6c600f2d13ae",
+			"https://codepen.io/junilearning/pen/vYKGerv",
+			"/course-assets/javascript-level-2/canvas-v1/canvas-text/starter/index.html.txt"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "canvas-v1/canvas-text/starter/index.html.txt",
+				byteLength: 903,
+				sha256: "f62a8b74b1327c1cc405e5c9beae4917cd7adde46af8d7a7fd8f99391c10fb2a"
+			},
+			{
+				name: "styles.css",
+				path: "canvas-v1/canvas-text/starter/styles.css.txt",
+				byteLength: 814,
+				sha256: "805bfe9f5151c27e6ae0000cd65e0617e518e9ae2e8189b9af1cb0ce72d4fd8b"
+			},
+			{
+				name: "support.js",
+				path: "canvas-v1/canvas-text/starter/support.js.txt",
+				byteLength: 216,
+				sha256: "07249ec924a4aa4832a1c0c1d30d1eec1acb3cd5a3afa73bd4e50a72a656dd46"
+			},
+			{
+				name: "script.js",
+				path: "canvas-v1/canvas-text/starter/script.js.txt",
+				byteLength: 440,
+				sha256: "17f07e9bbdfad2727c3de6dea2f1625f1ad2f3e6babb7b1e12542c52ea050b26"
+			},
+			{
+				name: "README.md",
+				path: "canvas-v1/canvas-text/starter/README.md.txt",
+				byteLength: 2901,
+				sha256: "1b94705f989f658a688b848a52a892ab65a72e96a6313c177638aafcae45fc0c"
+			},
+			{
+				name: "SOURCES.md",
+				path: "canvas-v1/canvas-text/starter/SOURCES.md.txt",
+				byteLength: 1523,
+				sha256: "5fb54284fdc996af03ef6a7ee2bad7b63872b372833294212d9a55e6bef841ca"
+			}
+		]
+	},
+	{
+		courseId: "javascript-level-2-javascript-master",
+		project: "canvas-text",
+		title: "Writing Text on the Canvas",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/1c3ffebb91e5c060c6b0ba4ae4df8275",
+			"https://codepen.io/junilearning/pen/rNLemZz/1c3ffebb91e5c060c6b0ba4ae4df8275",
+			"/course-assets/javascript-level-2/canvas-v1/canvas-text/reference/index.html.txt"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "canvas-v1/canvas-text/reference/index.html.txt",
+				byteLength: 899,
+				sha256: "5591bdd878f480388ba55790c88e4125f27fd648b4e48861aa3c4c8ac63d8998"
+			},
+			{
+				name: "styles.css",
+				path: "canvas-v1/canvas-text/reference/styles.css.txt",
+				byteLength: 814,
+				sha256: "805bfe9f5151c27e6ae0000cd65e0617e518e9ae2e8189b9af1cb0ce72d4fd8b"
+			},
+			{
+				name: "support.js",
+				path: "canvas-v1/canvas-text/reference/support.js.txt",
+				byteLength: 216,
+				sha256: "07249ec924a4aa4832a1c0c1d30d1eec1acb3cd5a3afa73bd4e50a72a656dd46"
+			},
+			{
+				name: "script.js",
+				path: "canvas-v1/canvas-text/reference/script.js.txt",
+				byteLength: 924,
+				sha256: "eaade439adb8f7c5c42ae4164983aadc890f5f499b7fb9461f4298c6749e4bbd"
+			},
+			{
+				name: "README.md",
+				path: "canvas-v1/canvas-text/reference/README.md.txt",
+				byteLength: 2901,
+				sha256: "1b94705f989f658a688b848a52a892ab65a72e96a6313c177638aafcae45fc0c"
+			},
+			{
+				name: "SOURCES.md",
+				path: "canvas-v1/canvas-text/reference/SOURCES.md.txt",
+				byteLength: 1567,
+				sha256: "a66bf2da8fb20cdb8bad9eabbfd692a690a5d4998f7433a2efc55c438b643716"
+			}
+		]
+	},
+	{
+		courseId: "javascript-level-2-javascript-master",
+		project: "loopy-landscape",
+		title: "Loopy Landscape",
+		version: 1,
+		role: "starter",
+		urls: [
+			"https://codepen.io/junilearning/pen/7911fd2b7b0ff50be9320b0c069f0613",
+			"https://codepen.io/junilearning/pen/yLJgLxJ",
+			"/course-assets/javascript-level-2/canvas-v1/loopy-landscape/starter/index.html.txt"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "canvas-v1/loopy-landscape/starter/index.html.txt",
+				byteLength: 874,
+				sha256: "8f3a3cfa2aabdfb767d1c2c79120a81cd5c9bccbec617fc35862b6da402aa456"
+			},
+			{
+				name: "styles.css",
+				path: "canvas-v1/loopy-landscape/starter/styles.css.txt",
+				byteLength: 814,
+				sha256: "805bfe9f5151c27e6ae0000cd65e0617e518e9ae2e8189b9af1cb0ce72d4fd8b"
+			},
+			{
+				name: "support.js",
+				path: "canvas-v1/loopy-landscape/starter/support.js.txt",
+				byteLength: 216,
+				sha256: "07249ec924a4aa4832a1c0c1d30d1eec1acb3cd5a3afa73bd4e50a72a656dd46"
+			},
+			{
+				name: "script.js",
+				path: "canvas-v1/loopy-landscape/starter/script.js.txt",
+				byteLength: 433,
+				sha256: "69e2cf2d716eb1f392ab9e5ff8aa060c0e9d16af4dc8022bed7eddc60ca610ca"
+			},
+			{
+				name: "README.md",
+				path: "canvas-v1/loopy-landscape/starter/README.md.txt",
+				byteLength: 2933,
+				sha256: "331d9e2f2efd528f172bd83702996289e206b2c0b23adad6f8b7f9f4fcc88f90"
+			},
+			{
+				name: "SOURCES.md",
+				path: "canvas-v1/loopy-landscape/starter/SOURCES.md.txt",
+				byteLength: 1539,
+				sha256: "b4ac5765d918d1d58b06b7a74aff53db3cbb0e9ba394843b8f338cdfeaf49de8"
+			}
+		]
+	},
+	{
+		courseId: "javascript-level-2-javascript-master",
+		project: "loopy-landscape",
+		title: "Loopy Landscape",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/d704fa037c5f913792b1df06c8fddd6d",
+			"https://codepen.io/junilearning/pen/eYzgYGd/d704fa037c5f913792b1df06c8fddd6d",
+			"/course-assets/javascript-level-2/canvas-v1/loopy-landscape/reference/index.html.txt"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "canvas-v1/loopy-landscape/reference/index.html.txt",
+				byteLength: 900,
+				sha256: "3647aeb02316ff34be7c5f6f45ad52d7f1bc99dfdb39c1a31c41df924c204767"
+			},
+			{
+				name: "styles.css",
+				path: "canvas-v1/loopy-landscape/reference/styles.css.txt",
+				byteLength: 814,
+				sha256: "805bfe9f5151c27e6ae0000cd65e0617e518e9ae2e8189b9af1cb0ce72d4fd8b"
+			},
+			{
+				name: "support.js",
+				path: "canvas-v1/loopy-landscape/reference/support.js.txt",
+				byteLength: 216,
+				sha256: "07249ec924a4aa4832a1c0c1d30d1eec1acb3cd5a3afa73bd4e50a72a656dd46"
+			},
+			{
+				name: "script.js",
+				path: "canvas-v1/loopy-landscape/reference/script.js.txt",
+				byteLength: 1008,
+				sha256: "22db3472d02a255ca40507a060f208c91371da62c0df2b8e80437faeb78358c1"
+			},
+			{
+				name: "README.md",
+				path: "canvas-v1/loopy-landscape/reference/README.md.txt",
+				byteLength: 2933,
+				sha256: "331d9e2f2efd528f172bd83702996289e206b2c0b23adad6f8b7f9f4fcc88f90"
+			},
+			{
+				name: "SOURCES.md",
+				path: "canvas-v1/loopy-landscape/reference/SOURCES.md.txt",
+				byteLength: 1583,
+				sha256: "ebceb6c52220d111db3e8a302c44864c73f7f682aa570dc728c1b7a073e3472f"
+			}
+		]
+	},
+	{
+		courseId: "javascript-level-2-javascript-master",
+		project: "jni-stock-price",
+		title: "JNI Stock Price",
+		version: 1,
+		role: "starter",
+		urls: [
+			"https://codepen.io/junilearning/pen/aa96160a1e7c1d1bdac74cfe5e6a9333",
+			"https://codepen.io/junilearning/pen/JjKEodB",
+			"/course-assets/javascript-level-2/canvas-v1/jni-stock-price/starter/index.html.txt"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "canvas-v1/jni-stock-price/starter/index.html.txt",
+				byteLength: 1242,
+				sha256: "29f823e46ad590ded1e876ebc6dad3ce684bcd1cbd83083f35b41d9065b025ed"
+			},
+			{
+				name: "styles.css",
+				path: "canvas-v1/jni-stock-price/starter/styles.css.txt",
+				byteLength: 814,
+				sha256: "805bfe9f5151c27e6ae0000cd65e0617e518e9ae2e8189b9af1cb0ce72d4fd8b"
+			},
+			{
+				name: "support.js",
+				path: "canvas-v1/jni-stock-price/starter/support.js.txt",
+				byteLength: 216,
+				sha256: "07249ec924a4aa4832a1c0c1d30d1eec1acb3cd5a3afa73bd4e50a72a656dd46"
+			},
+			{
+				name: "script.js",
+				path: "canvas-v1/jni-stock-price/starter/script.js.txt",
+				byteLength: 489,
+				sha256: "8382f0fc9b57bf843a8bebe687579bd6fa71ea0b9f3a37fd9f31d3dfc6dfc1e1"
+			},
+			{
+				name: "README.md",
+				path: "canvas-v1/jni-stock-price/starter/README.md.txt",
+				byteLength: 3043,
+				sha256: "62169b128d2241f26447fbbeb8ff4fc6b939f14c2dad623b0f27bf247320d086"
+			},
+			{
+				name: "SOURCES.md",
+				path: "canvas-v1/jni-stock-price/starter/SOURCES.md.txt",
+				byteLength: 1539,
+				sha256: "86aa82f9a166ae893bea677c6776781b914fbf0dc18f3847242381dfd90c2ea1"
+			}
+		]
+	},
+	{
+		courseId: "javascript-level-2-javascript-master",
+		project: "jni-stock-price",
+		title: "JNI Stock Price",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/1d48af84b840e8d7a72fd02e82de9f28",
+			"https://codepen.io/junilearning/pen/eYzgYQv/1d48af84b840e8d7a72fd02e82de9f28",
+			"/course-assets/javascript-level-2/canvas-v1/jni-stock-price/reference/index.html.txt"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "canvas-v1/jni-stock-price/reference/index.html.txt",
+				byteLength: 1294,
+				sha256: "d4dc780e523d114df4481cb4fb0c4ab128ecf2edde0c22eb5cbb9e8799390e23"
+			},
+			{
+				name: "styles.css",
+				path: "canvas-v1/jni-stock-price/reference/styles.css.txt",
+				byteLength: 814,
+				sha256: "805bfe9f5151c27e6ae0000cd65e0617e518e9ae2e8189b9af1cb0ce72d4fd8b"
+			},
+			{
+				name: "support.js",
+				path: "canvas-v1/jni-stock-price/reference/support.js.txt",
+				byteLength: 216,
+				sha256: "07249ec924a4aa4832a1c0c1d30d1eec1acb3cd5a3afa73bd4e50a72a656dd46"
+			},
+			{
+				name: "script.js",
+				path: "canvas-v1/jni-stock-price/reference/script.js.txt",
+				byteLength: 1454,
+				sha256: "d099a68cee4564b024dc5ba2131e58c18df3c7b492a309863073f0f73269a076"
+			},
+			{
+				name: "README.md",
+				path: "canvas-v1/jni-stock-price/reference/README.md.txt",
+				byteLength: 3043,
+				sha256: "62169b128d2241f26447fbbeb8ff4fc6b939f14c2dad623b0f27bf247320d086"
+			},
+			{
+				name: "SOURCES.md",
+				path: "canvas-v1/jni-stock-price/reference/SOURCES.md.txt",
+				byteLength: 1583,
+				sha256: "d203fe7d8ec6a3ef916bc0d62aa2b95d9c8b6b783a011c11dc961f3c8546ef06"
+			}
+		]
+	}
+] as const;

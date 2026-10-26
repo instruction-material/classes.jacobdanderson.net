@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Geometry Functions</title><link rel="stylesheet" href="styles.css"></head>
+<body data-project="geometry-functions" data-role="reference"><main><h1>Geometry Functions</h1>
+<form id="exercise-form" novalidate><label for="radius">Radius<input id="radius" type="number" value="1" step="any" disabled></label><label for="side-a">Side A<input id="side-a" type="number" value="3" step="any" disabled></label><label for="side-b">Side B<input id="side-b" type="number" value="4" step="any" disabled></label><label for="side-c">Side C<input id="side-c" type="number" value="5" step="any" disabled></label><button id="run" type="submit" disabled>Run examples</button></form>
+<p id="source-error" role="alert" hidden></p><p id="status" role="status" aria-live="polite"></p>
+<section aria-labelledby="output-title"><h2 id="output-title">Results</h2><div id="output"></div></section>
+<noscript>Enable JavaScript to run the function examples.</noscript></main>
+<script src="vendor/d3.min.js"></script><script src="support.js"></script><script src="script.js"></script></body></html>

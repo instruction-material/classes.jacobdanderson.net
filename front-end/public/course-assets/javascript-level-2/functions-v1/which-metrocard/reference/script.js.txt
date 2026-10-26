@@ -1,0 +1,39 @@
+/* Compare the original sample fares: buy a monthly MetroCard for $127 or a pay-per-ride MetroCard that costs $2.75 per swipe?
+
+1. Write a function that takes in a number of rides and returns the savings you'd receive from buying a monthly card. If the savings are negative, that means you'd save more from buying a pay-per-ride card!
+
+2. Write another function that takes in the savings returned from the previous function. This function should return a message that either suggests to buy a monthly MetroCard or a pay-per-ride. This message should also include how much you'd be saving if you buy this card.
+
+Use printToScreen() to print the messages returned from function 2 for 30 rides, 45 rides, 60 rides, and a user-inputted custom number of rides!
+
+Note: use toFixed(2) to round to the nearest 2 decimal points
+*/
+
+// Solution
+
+const monthlyFare = 127;
+const singleFare = 2.75;
+
+// positive = savings with monthly; negative = savings with payPerRide
+const calculateSavings = numRides => {
+	if (!Number.isSafeInteger(numRides) || numRides < 0)
+		throw new RangeError("Rides must be a nonnegative whole number.");
+	let payPerRide = numRides * singleFare;
+	return payPerRide - monthlyFare;
+};
+
+const suggestCard = savings => {
+	if (!Number.isFinite(savings))
+		throw new RangeError("Savings must be finite.");
+	if (savings > 0) return `Monthly pass saves $${savings.toFixed(2)}.`;
+	if (savings < 0) return `Pay per ride saves $${(-savings).toFixed(2)}.`;
+	return "Both plans cost the same.";
+};
+
+printToScreen("With 30 rides:");
+printToScreen(suggestCard(calculateSavings(30)));
+printToScreen("With 45 rides:");
+printToScreen(suggestCard(calculateSavings(45)));
+printToScreen("With 60 rides:");
+printToScreen(suggestCard(calculateSavings(60)));
+// The labeled page form supplies the custom ride count.

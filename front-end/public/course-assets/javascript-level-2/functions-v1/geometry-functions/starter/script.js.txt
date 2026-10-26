@@ -1,0 +1,13 @@
+/* Program the following geometry-related functions. Google the formulas if you need help remembering them!
+
+1. Write a function that takes in the radius of a circle and returns its circumference.
+2. Write a function that takes in the radius of a circle and returns its area.
+3. Write a function that takes in the radius of a circle and returns true if its circumference is larger than its area and false otherwise.
+4. Write a function that takes in 3 side lengths of a triangle and returns scalene, isosceles, or equilateral.
+5. Write a function that takes in 1 side length of an equilateral triangle and returns its area.
+6. Write a function that takes in 3 sides of a triangle and returns true if the triangle is a right triangle, false otherwise!
+
+Use the printToScreen() function and random numbers to print sentences for each of these functions!
+*/
+
+// Enter your code below this line

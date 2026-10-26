@@ -1,0 +1,22 @@
+# Sources
+
+Juni Learning: [JSM4 Supplemental Project 1: Loopy Landscape Solution](https://codepen.io/junilearning/pen/d704fa037c5f913792b1df06c8fddd6d).
+
+Observed public editor: https://codepen.io/junilearning/pen/eYzgYGd/d704fa037c5f913792b1df06c8fddd6d
+
+Role: reference. This pack adapts the captured role. Original HTML, CSS, JavaScript and settings are retained in test/fixtures/javascript-master-canvas-originals.json. No external dependencies are declared by any of these originals.
+
+Original panel SHA-256:
+
+- HTML: bcdadb2f807fd06658a17466a9dd29fc39b8468f68770f5926dd817bdb6eb29a
+- CSS: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- JavaScript: 41a3cbe183c6af582aa6b7dca23ff78ba3a0ad7fb3bdc0d9f43fde39830cef13
+
+Adaptations:
+
+- A complete HTML document supplies the canvas, responsive presentation, visible drawing description and source-error message. Starter drawing work remains unfinished.
+- Stars use a 1200 by 320 logical canvas to retain all five at narrow display widths; a dark outline identifies their boundaries.
+- Independent shape paths are isolated. The holiday card retains its message and heart with readable dark text on pink.
+- The landscape uses a loop for the original three tree positions.
+- The stock graph retains the original five pixel points. Newly explicit practice prices100,300,150,250,350 correspond to y600 minus price, with matching price ticks, dates and an HTML data table; these are not historical market observations.
+- Each README supplies the full assignment, drawing methods, coordinates, build sequence and checks.

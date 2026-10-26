@@ -1,0 +1,21 @@
+/*
+Welcome to the Juni department store! Everything in the store is discounted for students!
+
+The student discount is:
+0% for non-students,
+10% for elementary school students,
+12% for middle school students,
+14% for high school students,
+16% for college students, and
+20% for Juni students!
+
+However, in true Juni fashion, there is a mathematical twist:
+
+If the price after the discount, rounded down to the nearest integer, is a perfect square or a prime number, we apply the discount one more time! Otherwise, we increase the price until it is a perfect square or a prime number (whichever comes first).
+
+Write a program that will ask the user for the cost of their items and the type of student they are. Use a combination of functions, ternary operators, and if-statements to help you calculate their discount. Finally, use printToScreen() to display their final price.
+*/
+
+// Enter your code here.
+
+// Implement isPerfectSquare(num), isPrime(num), increasePrice(num), applyDiscount(price,percentDiscount), and calculatePrice(price,studentType). Return the full calculation record described in README.md.

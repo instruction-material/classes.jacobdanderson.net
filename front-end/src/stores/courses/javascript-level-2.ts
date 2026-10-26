@@ -1,4 +1,20 @@
 import type { RawCourse } from "./types";
+import javascriptBasicShapesReading from "@/assets/course-guides/javascript-master-canvas/basic-shapes.md?raw";
+import javascriptCanvasTextReading from "@/assets/course-guides/javascript-master-canvas/canvas-text.md?raw";
+import javascriptJniStockPriceReading from "@/assets/course-guides/javascript-master-canvas/jni-stock-price.md?raw";
+import javascriptLoopyLandscapeReading from "@/assets/course-guides/javascript-master-canvas/loopy-landscape.md?raw";
+import javascriptShiningStarsReading from "@/assets/course-guides/javascript-master-canvas/shining-stars.md?raw";
+import javascriptAgeMilestonesReading from "@/assets/course-guides/javascript-master-conditionals/age-milestones.md?raw";
+import javascriptDepartmentStoreDiscountsReading from "@/assets/course-guides/javascript-master-conditionals/department-store-discounts.md?raw";
+import javascriptSpecialNumbersReading from "@/assets/course-guides/javascript-master-conditionals/special-numbers.md?raw";
+import javascriptTernaryOperatorsPracticeReading from "@/assets/course-guides/javascript-master-conditionals/ternary-operators-practice.md?raw";
+import javascriptDebuggingFunctionsReading from "@/assets/course-guides/javascript-master-functions/debugging-functions.md?raw";
+import javascriptFunctionsPracticeReading from "@/assets/course-guides/javascript-master-functions/functions-practice.md?raw";
+import javascriptGameOfWarReading from "@/assets/course-guides/javascript-master-functions/game-of-war.md?raw";
+import javascriptGeometryFunctionsReading from "@/assets/course-guides/javascript-master-functions/geometry-functions.md?raw";
+import javascriptPainAtThePumpReading from "@/assets/course-guides/javascript-master-functions/pain-at-the-pump.md?raw";
+import javascriptRockPaperScissorsReading from "@/assets/course-guides/javascript-master-functions/rock-paper-scissors.md?raw";
+import javascriptWhichMetrocardReading from "@/assets/course-guides/javascript-master-functions/which-metrocard.md?raw";
 import { buildProjectGuidance } from "./projectGuidance";
 import {
 	pendingStaticMediaNotice,
@@ -458,11 +474,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSM2 Project 1: Functions Practice",
-					content: `**Project target:** Build a small function library for arithmetic practice. Each function needs a clear contract: input values, returned value, and any assumptions about valid input.
-
-**Build path:** Implement functions for sum, difference, product of three values, average, factorial, and exponentiation. Keep printing outside the functions where possible so the same function can be reused by different callers. Include simple tests with known answers before trying random inputs.
-
-**Evidence target:** Each function returns the expected value for at least two fixed cases, factorial handles the base case correctly, and exponentiation works for powers of 0, 1, and a larger positive integer.`,
+					preserveInstructions: true,
+					content: javascriptFunctionsPracticeReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/22b54271a2ed49675c512f1034c0e749",
 					solutionLink:
@@ -470,11 +483,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSM2 Project 2: Which MetroCard",
-					content: `**Project target:** Compare two transit pricing plans and recommend the cheaper option for a given ride count. The project turns a real decision into a function-driven cost model.
-
-**Build path:** Store the monthly-pass cost and pay-per-ride cost as named constants. Write functions that compute each total, compare the results, and return a recommendation message. Print results for several sample ride counts, then add a prompted ride count for an interactive case.
-
-**Evidence target:** The recommendation changes at the correct break-even point, the output includes both prices rather than only the winner, and invalid ride counts are rejected or repaired before calculation.`,
+					preserveInstructions: true,
+					content: javascriptWhichMetrocardReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/7295dc0298b2f2da6af9e1287d32456a",
 					solutionLink:
@@ -482,11 +492,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSM2 Project 3: Rock Paper Scissors",
-					content: `**Project target:** Build a Rock Paper Scissors match that separates input, random computer choice, round comparison, and match scoring. This separation keeps the game easier to debug than one long conditional block.
-
-**Build path:** Implement \`yourTurn()\`, \`computerTurn()\`, and \`findResult()\`. Normalize player input before comparison, generate the computer choice from a fixed list, and update win counters after each round. Continue rounds until one side reaches three wins.
-
-**Evidence target:** Every pair of choices produces the correct round result, ties do not change the score, invalid input does not count as a round, and the match stops immediately when a player reaches three wins.`,
+					preserveInstructions: true,
+					content: javascriptRockPaperScissorsReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/30e42b5cf6775bbf059a3d313c96f7c5",
 					solutionLink:
@@ -498,11 +505,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JSM2 Supplemental Project 1: Geometry Functions",
-					content: `**Project target:** Build geometry helper functions that convert formulas and classification rules into reusable JavaScript code.
-
-**Build path:** Implement circle circumference and area helpers, triangle classification helpers, and a right-triangle check. Use named parameters for side lengths and radius, then print sample results from both fixed inputs and random inputs.
-
-**Evidence target:** Formula outputs match hand-checkable cases, triangle classification handles equal sides and invalid side lengths, and the right-triangle check accounts for side order before applying the Pythagorean relationship.`,
+					preserveInstructions: true,
+					content: javascriptGeometryFunctionsReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/1f563eb4624314cf5b3673480ec18472",
 					solutionLink:
@@ -510,11 +514,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSM2 Supplemental Project 2: Pain at the Pump",
-					content: `**Project target:** Model fuel cost from miles driven, miles per gallon, and price per gallon. The main challenge is keeping units clear so the arithmetic matches the real-world meaning.
-
-**Build path:** Write helpers for gallons needed and total cost. Test with fixed values first, then generate random values to produce several scenarios. Format currency with \`toFixed(2)\` only at the display boundary so calculations keep full numeric precision.
-
-**Evidence target:** The output labels miles, MPG, gallons, price, and total cost; zero or negative inputs are handled deliberately; and the rounded display does not change the underlying calculation logic.`,
+					preserveInstructions: true,
+					content: javascriptPainAtThePumpReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/87b49903a68f15f9132d49b704444083",
 					solutionLink:
@@ -522,11 +523,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSM2 Supplemental Project 3: Game of War",
-					content: `**Project target:** Simulate a simplified Game of War where random card draws determine each round winner. The project focuses on functions, randomness, scoring state, and repeatable round output.
-
-**Build path:** Represent card ranks with numbers or named values, with Ace treated as high. Write helpers to draw a card, compare two cards, update score, and print the round summary. Run exactly 10 rounds before printing the final winner.
-
-**Evidence target:** Ties are handled consistently, scores add up to the number of non-tied rounds, Ace beats every other rank, and each printed round includes both card values plus the updated score.`,
+					preserveInstructions: true,
+					content: javascriptGameOfWarReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/06315e2ce4772499678cc4959f8e2360",
 					solutionLink:
@@ -534,11 +532,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSM2 Supplemental Project 4: Debugging Functions",
-					content: `**Project target:** Debug a coffee-shop profit calculator by tracing how ingredient cost, drink price, quantity, and total profit move through the functions.
-
-**Build path:** Identify the expected formula before changing code. Add temporary console logs around each function call to inspect inputs and returned values. Repair one bug at a time, then remove noisy diagnostic logs once the output is reliable.
-
-**Evidence target:** The final profit calculation matches a hand-worked example, function names match their business meaning, and the corrected code avoids duplicating the same price or ingredient formula in multiple places.`,
+					preserveInstructions: true,
+					content: javascriptDebuggingFunctionsReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/789be1560455a424d23eacd04d4ac69b",
 					solutionLink:
@@ -567,11 +562,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSM3 Project 1: Ternary Operators Practice",
-					content: `**Project target:** Convert small \`if/else\` decisions into ternary expressions while preserving behavior. The purpose is not to make every conditional shorter; the purpose is to recognize when a two-way value choice is simple enough for a ternary.
-
-**Build path:** Work one conversion at a time. Identify the condition, the true value, and the false value before writing the expression. Include examples with assignments, null checks, and default messages.
-
-**Evidence target:** Each rewritten expression produces the same output as the original version for true and false cases, and any conditional that becomes harder to read remains in standard \`if/else\` form.`,
+					preserveInstructions: true,
+					content: javascriptTernaryOperatorsPracticeReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/a7c2ad78bc62de68676af56657849a9b",
 					solutionLink:
@@ -580,11 +572,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				{
 					title: "JSM3 Project 2: Department Store Discounts",
 					aliases: ["JSM3 Project 2: Juni Department Store"],
-					content: `**Project target:** Build a discount calculator where multiple rules can affect the final price. The project requires careful rule ordering, function boundaries, and numeric formatting.
-
-**Build path:** Store the original price, shopper category, and any special-number rule inputs. Write helper functions for percent discounts, perfect-square detection, prime detection, and final-price formatting. Apply rules in a documented order so the same cart always produces the same answer.
-
-**Evidence target:** The final output shows the original price, every applied discount, and the final price. Perfect-square and prime checks include edge cases such as 1, 2, and a larger composite number.`,
+					preserveInstructions: true,
+					content: javascriptDepartmentStoreDiscountsReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/b3de9678fa8b77aae5cc988f74bd086e",
 					solutionLink:
@@ -592,11 +581,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSM3 Project 3: Special Numbers",
-					content: `**Project target:** Classify numbers by writing predicate functions that return true or false. This project strengthens digit processing, loops, modular arithmetic, and range scanning.
-
-**Build path:** Implement separate functions for self-dividing numbers, perfect numbers, and palindrome numbers. Use small helper functions for digit extraction or divisor sums when that keeps the code clearer. Print the matching numbers from a chosen range for each category.
-
-**Evidence target:** Each predicate has known true and false test cases, zero and repeated digits are handled deliberately, and the range output can be checked by calling the predicate directly on a few printed values.`,
+					preserveInstructions: true,
+					content: javascriptSpecialNumbersReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/1be13919321ab5708564a8a7ca928226",
 					solutionLink:
@@ -606,11 +592,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JSM3 Supplemental Project 1: Age Milestones",
-					content: `**Project target:** Build an age-milestone checker that reports which milestones apply to a prompted age. The project practices ternary expressions, validation, and readable output.
-
-**Build path:** Convert the prompted value to a number before comparison. Define milestone checks such as driving, voting, or other chosen age thresholds. Use ternary expressions for short eligibility messages and standard conditionals for validation or multi-step output.
-
-**Evidence target:** The program handles nonnumeric input, ages below zero, exact threshold ages, and ages above every threshold. The output distinguishes eligible, not yet eligible, and invalid cases.`,
+					preserveInstructions: true,
+					content: javascriptAgeMilestonesReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/8b95795088fd04a2a6b77fba56416332",
 					solutionLink:
@@ -657,11 +640,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSM4 Project 1: Basic Shapes",
-					content: `**Project target:** Draw basic canvas shapes using explicit position, size, color, and angle values. This project establishes the drawing vocabulary needed for later animation and games.
-
-**Build path:** Draw rectangles with \`fillStyle\` and \`fillRect\`. Draw circles or arcs with \`ctx.arc\` and \`fill\`, using the provided degrees-to-radians helper when angles are easier to think about in degrees. Group repeated drawing into small helper functions once the first shape works.
-
-**Evidence target:** The canvas contains at least one rectangle and one circular shape, color changes are controlled by code, and each shape's position can be predicted from its x/y coordinates.`,
+					preserveInstructions: true,
+					content: javascriptBasicShapesReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/7bdedd0b00112751b87d288e4b8120b5",
 					solutionLink:
@@ -669,11 +649,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSM4 Project 2: Shining Stars",
-					content: `**Project target:** Draw stars with canvas paths, then refactor the drawing into a reusable function. The key idea is that a complex shape can be described as a sequence of line segments relative to an anchor point.
-
-**Build path:** Use \`beginPath\`, \`moveTo\`, and \`lineTo\` to draw one star. Refactor the code into \`drawStar(x, y)\`, then call the function five times with different positions. Add color or size parameters as an extension if the base function is stable.
-
-**Evidence target:** The five stars appear in predictable locations, the function call controls position without duplicating path code, and one coordinate change moves only the intended star.`,
+					preserveInstructions: true,
+					content: javascriptShiningStarsReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/fa66f3594a65a54d562d3932d97e2cb7",
 					solutionLink:
@@ -681,11 +658,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "Writing Text on the Canvas",
-					content: `**Concept path:** Canvas text is drawn into pixels just like shapes, so text placement depends on the current font, fill color, alignment, and coordinates. Redrawing text requires clearing or covering the old pixels first.
-
-**Practice targets:** Set \`font\`, \`fillStyle\`, and \`textAlign\`, then place text with \`fillText\`. Draw labels near shapes so the connection between coordinate position and text baseline is visible.
-
-**Evidence target:** Text appears at the intended coordinates, alignment changes affect placement predictably, and labels remain readable against the background color.`,
+					preserveInstructions: true,
+					content: javascriptCanvasTextReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/9355a832c485b33c747b6c600f2d13ae",
 					solutionLink:
@@ -695,11 +669,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JSM4 Supplemental Project 1: Loopy Landscape",
-					content: `**Project target:** Create a landscape scene with repeated canvas shapes. The main challenge is using loops and helper functions so the scene is structured rather than hand-coded one shape at a time.
-
-**Build path:** Choose a background, horizon, and at least three repeated elements such as stars, trees, buildings, clouds, or mountains. Store repeated element settings in arrays or generate them with loops. Use helper functions for each repeated shape family.
-
-**Evidence target:** The scene contains repeated elements created by loops, the drawing order places background shapes behind foreground shapes, and changing one helper or data value updates a visible group of shapes.`,
+					preserveInstructions: true,
+					content: javascriptLoopyLandscapeReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/7911fd2b7b0ff50be9320b0c069f0613",
 					solutionLink:
@@ -707,11 +678,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSM4 Supplemental Project 2: JNI Stock Price",
-					content: `**Project target:** Draw a stock-price line graph on canvas with labels and scaled data. The project connects numeric arrays to visual coordinates.
-
-**Build path:** Store stock prices in an array, calculate the minimum and maximum values, and map each price to a y-coordinate inside the graph area. Draw axes, labels, plotted points, and line segments connecting the points.
-
-**Evidence target:** The graph includes labeled axes, the highest price appears near the top of the plot area, the lowest price appears near the bottom, and changing one data value updates the plotted line correctly.`,
+					preserveInstructions: true,
+					content: javascriptJniStockPriceReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/aa96160a1e7c1d1bdac74cfe5e6a9333",
 					solutionLink:

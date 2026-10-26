@@ -1,0 +1,18 @@
+/* Write the 6 following functions in arrow notation. 
+
+Then, use printToScreen() to print sentences onto the screen using the functions. For example, "The sum of 4 and 6 is 10".
+
+1. Write a function that takes in two numbers and returns their sum.
+
+2. Write a function that takes in two numbers and returns their difference.
+
+3. Write a function that takes in three numbers and returns the product of the numbers.
+
+4. Write a function that takes in two numbers and returns their average.
+
+5. Write a function that takes in a number and returns its factorial.
+
+6. Write an exponent function that takes in a base and a power and returns the value of the base raised to that power.
+*/
+
+// Enter your code below this line
