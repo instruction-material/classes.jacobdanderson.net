@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Hobby Table</title>
+<link rel="stylesheet" href="vendor/materialize.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="container"><h1>My Hobby Table</h1>
+<table class="striped centered">
+  <caption>2019 NFL First Team All-Pro Offense</caption>
+  <thead>
+    <tr>
+      <th scope="col">Player's Name</th>
+      <th scope="col">Team</th>
+      <th scope="col">Position</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Lamar Jackson</th>
+      <td>Baltimore Ravens</td>
+      <td>Quarterback</td>
+    </tr>
+    <tr>
+      <th scope="row">Christian McCaffrey</th>
+      <td>Carolina Panthers</td>
+      <td>Running Back/Flex</td>
+    </tr>
+    <tr>
+      <th scope="row">George Kittle</th>
+      <td>San Francisco 49ers</td>
+      <td>Tight End</td>
+    </tr>
+    <tr>
+      <th scope="row">Michael Thomas</th>
+      <td>New Orleans Saints</td>
+      <td>Wide Receiver</td>
+    </tr>
+    <tr>
+      <th scope="row">DeAndre Hopkins</th>
+      <td>Houston Texans</td>
+      <td>Wide Receiver</td>
+    </tr>
+    <tr>
+      <th scope="row">Ronnie Stanley</th>
+      <td>Baltimore Ravens</td>
+      <td>Left Tackle</td>
+    </tr>
+    <tr>
+      <th scope="row">Ryan Ramczyk</th>
+      <td>New Orleans Saints</td>
+      <td>Right Tackle</td>
+    </tr>
+    <tr>
+      <th scope="row">Quenton Nelson</th>
+      <td>Indianapolis Colts</td>
+      <td>Left Guard</td>
+    </tr>
+    <tr>
+      <th scope="row">Zack Martin</th>
+      <td>Dallas Cowboys</td>
+      <td>Right Guard</td>
+    </tr>
+    <tr>
+      <th scope="row">Jason Kelce</th>
+      <td>Philadelphia Eagles</td>
+      <td>Center</td>
+    </tr>
+  </tbody>
+</table>
+<p><a href="https://www.nfl.com/news/2019-all-pro-team-jackson-mccaffrey-highlight-roster-0ap3000001094130">2019 NFL/AP selections</a></p></main>
+</body>
+</html>

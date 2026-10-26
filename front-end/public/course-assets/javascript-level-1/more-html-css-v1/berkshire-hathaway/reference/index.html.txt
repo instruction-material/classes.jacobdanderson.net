@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Berkshire Hathaway</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="content">
+  <h1 class="title">
+    <span class="big-letter">B</span>ERKSHIRE
+    <span class="big-letter">H</span>ATHAWAY
+    <span class="inc">INC.</span>
+  </h1>
+  <div class="address">
+    3555 Farnam Street
+  </div>
+  <div class="address">
+    Omaha, NE 68131
+  </div>
+  <div class="homepage">
+    2020 page layout study
+  </div>
+</div>
+<div class="content">
+  <table role="presentation">
+    <tbody>
+      <tr>
+        <td>
+          <ul>
+            <li>
+              <a href="https://www.berkshirehathaway.com/message.html">A Message From Warren E. Buffett</a>
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>
+              <a href="https://www.berkshirehathaway.com/news/2020news.html">News Releases</a>
+              <div class="tiny-text">Updated March 13, 2020</div>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ul>
+            <li>
+              <a href="https://www.berkshirehathaway.com/reports.html">Annual &amp; Interim Reports</a>
+              <div class="tiny-text">Updated February 22, 2020</div>
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>
+              <a href="https://www.berkshirehathaway.com/letters/letters.html">Warren Buffett's Letters to Berkshire
+            Shareholders</a>
+              <div class="tiny-text">Updated March 13, 2020</div>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ul>
+            <li>
+              <a href="https://www.berkshirehathaway.com/SpecialLetters/WEBCTMLtr.html">Special Letters From Warren & Charlie RE:Past, Present and Future</a>
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+             <li><a href="https://www.berkshirehathaway.com/wesco/WescoHome.html">Charlie Munger's Letters to Wesco Shareholders</a>
+             </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ul>
+            <li>
+              <a
+              href="https://www.sec.gov/cgi-bin/browse-edgar?company=berkshire+hathaway&amp;match=&amp;CIK=&amp;filenum=&amp;State=&amp;Country=&amp;SIC=&amp;owner=exclude&amp;Find=Find+Companies&amp;action=getcompany">Link
+              to SEC Filings</a>
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>
+              <a href="https://www.berkshirehathaway.com/sharehold.html">Annual Meeting Information</a>
+              <div class="tiny-text">Updated April 15, 2020</div>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ul>
+            <li>
+              <a href="https://www.berkshirehathaway.com/subs/sublinks.html">Links to Berkshire Subsidiary
+            Companies</a>
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>
+              <a href="https://www.ebay.com/itm/173723452844">Celebrating 50 Years of a Profitable Partnership</a>
+              <div class="tiny-text">(A commemorative book first sold at the 2015 Annual Meeting and now for sale on eBay.)</div>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ul>
+            <li>
+              <a href="https://www.berkshirehathaway.com/govern/govern.html">Corporate Governance</a>
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>
+              <a href="https://www.berkshirehathaway.com/compab.pdf">Comparative Rights and Relative Prices of
+            Class A and B Stock</a>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ul>
+            <li>
+              <a href="https://www.berkshirehathaway.com/sustainability/sustainability.html">Sustainability</a>
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>
+              <a href="https://www.berkshirewear.com">Berkshire Activewear</a>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ul>
+            <li>
+              <a href="https://www.berkshirehathaway.com/ownman.pdf">Owner's Manual</a>
+            </li>
+          </ul>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <ul>
+            <li>
+              <a href="https://www.berkshirehathaway.com/donate/webdonat.html">Letters from Warren E. Buffett
+          Regarding Pledges to Make Gifts of Berkshire Stock</a>
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="comments">
+  If you have any comments about our WEB page, you can
+write us at the address shown above.  However, due to
+the limited number of personnel in our corporate office, we are unable to
+provide a direct response.
+</div>
+<a class="disclaimer" href="https://www.berkshirehathaway.com/disclaimer.html">Legal Disclaimer</a>
+</body>
+</html>

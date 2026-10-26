@@ -1,0 +1,12 @@
+* { box-sizing: border-box; }
+body { margin: 0; padding: 1rem; background: #6f263d; color: #ffb81c; font-family: "Noto Sans", sans-serif; line-height: 1.6; }
+.container { width: 100%; max-width: 50rem; margin: 0 auto; }
+h1 { font-size: 2.25rem; font-weight: 600; text-align: center; }
+h2 { font-size: 1.5rem; font-weight: 600; text-align: center; }
+.sub-text { font-style: italic; }
+figure { margin: 1rem auto; text-align: center; }
+.photo { display: block; width: 20rem; max-width: 100%; height: auto; margin: 0 auto; border: 5px solid #222; }
+ul, ol { max-width: 35rem; margin: 1rem auto; padding-left: 1.75rem; }
+a { color: inherit; text-underline-offset: .2em; }
+a:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
+h1, h2 { overflow-wrap: anywhere; }

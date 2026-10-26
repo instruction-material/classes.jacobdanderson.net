@@ -4354,7 +4354,9 @@ print("guarded")
 	it.each(["turtle", "pgzero", "data"] as const)(
 		"tolerates non-string search entries before the next %s bootstrap",
 		mode => {
-			const projectRoot = mkdtempSync(join(tmpdir(), "classes-path-reset-"));
+			const projectRoot = mkdtempSync(
+				join(tmpdir(), "classes-path-reset-")
+			);
 			try {
 				const source = `
 import os
@@ -4401,7 +4403,9 @@ print("second run ready")
 	it.each(["turtle", "pgzero", "data"] as const)(
 		"restores mutated path helpers before the next %s bootstrap",
 		mode => {
-			const projectRoot = mkdtempSync(join(tmpdir(), "classes-path-helpers-"));
+			const projectRoot = mkdtempSync(
+				join(tmpdir(), "classes-path-helpers-")
+			);
 			try {
 				const source = `
 import os
@@ -4438,12 +4442,19 @@ import os
 assert os.path.realpath("/") == "/"
 print("path helpers ready")
 `;
-				const proofDirectory = process.env.PYTHON_PATH_RECOVERY_PROOF_DIR;
+				const proofDirectory =
+					process.env.PYTHON_PATH_RECOVERY_PROOF_DIR;
 				if (proofDirectory) {
 					mkdirSync(proofDirectory, { recursive: true });
-					writeFileSync(join(proofDirectory, `${mode}-path-recovery.py`), source);
+					writeFileSync(
+						join(proofDirectory, `${mode}-path-recovery.py`),
+						source
+					);
 				}
-				const result = spawnSync("python3", ["-I", "-c", source], { encoding: "utf8", timeout: 10000 });
+				const result = spawnSync("python3", ["-I", "-c", source], {
+					encoding: "utf8",
+					timeout: 10000
+				});
 				expect(result.status, result.stderr).toBe(0);
 				expect(result.stdout.trim()).toBe("path helpers ready");
 			} finally {
@@ -4737,8 +4748,12 @@ else:
 			"utf8"
 		);
 
-		expect(pageSource).not.toContain("await clearLocalPythonProjectsAsync(");
-		expect(pageSource).not.toContain("async function syncProjectsToAccount");
+		expect(pageSource).not.toContain(
+			"await clearLocalPythonProjectsAsync("
+		);
+		expect(pageSource).not.toContain(
+			"async function syncProjectsToAccount"
+		);
 		expect(pageSource).toContain("loadPythonIdeRecoveryDrafts(");
 		expect(pageSource).toContain("acknowledgePythonIdeRecoveryDraft(");
 		expect(pageSource).toContain(
@@ -4885,7 +4900,9 @@ else:
 		);
 		expect(pageSource).toContain("savePythonIdeRecoveryDraft(");
 		expect(pageSource).toContain("acknowledgePythonIdeRecoveryDraft(");
-		expect(pageSource).not.toContain("async function discardLocalProjectSnapshot");
+		expect(pageSource).not.toContain(
+			"async function discardLocalProjectSnapshot"
+		);
 		expect(pageSource).not.toContain("unsyncedProjectIDs.clear();");
 		expect(pageSource).toContain("function scheduleLocalProjectSnapshot");
 		expect(pageSource).toContain("scheduleLocalProjectSnapshot();");
@@ -5483,12 +5500,16 @@ else:
 		expect(pageSource).toContain("async function saveProjectOnce");
 		expect(pageSource).toContain("async function savePendingProjects");
 		expect(pageSource).toContain("const pendingSaveProjectIDs");
-		expect(pageSource).toContain("const savedDraft = await savePythonIdeRecoveryDraft(project, owner);");
+		expect(pageSource).toContain(
+			"const savedDraft = await savePythonIdeRecoveryDraft(project, owner);"
+		);
 		expect(pageSource).toContain(
 			"? await createRemotePythonIdeProject(payload, accountScope)"
 		);
 		expect(pageSource).toContain("const projectChangedDuringSave");
-		expect(pageSource).toContain("JSON.stringify(pythonIdeProjectToPayload(currentProject))");
+		expect(pageSource).toContain(
+			"JSON.stringify(pythonIdeProjectToPayload(currentProject))"
+		);
 		expect(pageSource).toContain("saveQueued = true");
 		expect(pageSource).toContain(
 			"} while (saveQueued || pendingSaveProjectIDs.size);"
@@ -6620,8 +6641,11 @@ else:
 		expect(runtimeSource).toContain("_run_animations(now)");
 		expect(pageSource).toContain("await ensureGameCourseAssetsLoaded()");
 		expect(pageSource).toContain(
-			"prepareGameAssetsForExplicitRun();\n\t\t\tawait prepareProjectGameImages();"
+			"prepareGameAssetsForExplicitRun();\n\t\t\tawait preparePythonIdeGameFont();"
 		);
+		expect(
+			pageSource.indexOf("await preparePythonIdeGameFont();")
+		).toBeLessThan(pageSource.indexOf("await prepareProjectGameImages();"));
 		expect(
 			pageSource.indexOf("await prepareProjectGameImages();")
 		).toBeLessThan(
@@ -6794,14 +6818,19 @@ else:
 		["String[] args", "Exception"],
 		["String args[]", "java.io.IOException, RuntimeException"],
 		["String... args", "Exception"]
-	])("selects Java main with throws clauses for %s", (parameters, exceptions) => {
-		const project = createPythonIdeProject("java");
-		project.files = [
-			{ name: "Main.java", content: "public class Main { void help() {} }" },
-			{ name: "Helper.java", content: "public class Helper {}" },
-			{
-				name: "App.java",
-				content: `public class App {
+	])(
+		"selects Java main with throws clauses for %s",
+		(parameters, exceptions) => {
+			const project = createPythonIdeProject("java");
+			project.files = [
+				{
+					name: "Main.java",
+					content: "public class Main { void help() {} }"
+				},
+				{ name: "Helper.java", content: "public class Helper {}" },
+				{
+					name: "App.java",
+					content: `public class App {
     public static void main(${parameters}) throws ${exceptions} {
         System.out.println(total(2, 3));
     }
@@ -6809,16 +6838,23 @@ else:
         return left + right;
     }
 }`
+				}
+			];
+			for (const activeFileName of [
+				"Helper.java",
+				"Main.java",
+				"App.java"
+			]) {
+				project.activeFileName = activeFileName;
+				expect(getPythonIdeRunnableFile(project)?.name).toBe(
+					"App.java"
+				);
+				const result = runJavaIdeProject(project);
+				expect(result.stdout).toEqual(["5"]);
+				expect(result.stderr).toEqual([]);
 			}
-		];
-		for (const activeFileName of ["Helper.java", "Main.java", "App.java"]) {
-			project.activeFileName = activeFileName;
-			expect(getPythonIdeRunnableFile(project)?.name).toBe("App.java");
-			const result = runJavaIdeProject(project);
-			expect(result.stdout).toEqual(["5"]);
-			expect(result.stderr).toEqual([]);
 		}
-	});
+	);
 
 	it.each([
 		"public static final",
@@ -6829,17 +6865,26 @@ else:
 	])("selects and runs Java main with %s modifiers", modifiers => {
 		const project = createPythonIdeProject("java");
 		project.files = [
-			{ name: "Main.java", content: "public class Main { void help() {} }" },
+			{
+				name: "Main.java",
+				content: "public class Main { void help() {} }"
+			},
 			{ name: "Helper.java", content: "public class Helper {}" },
-			{ name: "App.java", content: `public class App {
+			{
+				name: "App.java",
+				content: `public class App {
     ${modifiers} void main(String[] args) { System.out.println(total(2, 3)); }
     static int total(int left, int right) { return left + right; }
-}` }
+}`
+			}
 		];
 		for (const activeFileName of ["Helper.java", "Main.java"]) {
 			project.activeFileName = activeFileName;
 			expect(getPythonIdeRunnableFile(project)?.name).toBe("App.java");
-			expect(runJavaIdeProject(project)).toMatchObject({ stdout: ["5"], stderr: [] });
+			expect(runJavaIdeProject(project)).toMatchObject({
+				stdout: ["5"],
+				stderr: []
+			});
 		}
 	});
 
@@ -6848,8 +6893,15 @@ else:
 		modifiers => {
 			const project = createPythonIdeProject("java");
 			project.files = [
-				{ name: "Helper.java", content: `class Helper { ${modifiers} void main(String[] args) {} }` },
-				{ name: "App.java", content: "class App { public static void main(String[] args) { System.out.println(5); } }" }
+				{
+					name: "Helper.java",
+					content: `class Helper { ${modifiers} void main(String[] args) {} }`
+				},
+				{
+					name: "App.java",
+					content:
+						"class App { public static void main(String[] args) { System.out.println(5); } }"
+				}
 			];
 			project.activeFileName = "Helper.java";
 			expect(getPythonIdeRunnableFile(project)?.name).toBe("App.java");
@@ -6860,13 +6912,21 @@ else:
 		"keeps Java field scope across comment braces: %s",
 		comment => {
 			const project = createPythonIdeProject("java");
-			project.files = [{ name: "Main.java", content: `public class Main {
+			project.files = [
+				{
+					name: "Main.java",
+					content: `public class Main {
     ${comment}
     static final int BASE = 7;
     public static void main(String[] args) { System.out.println(total()); }
     static int total() { return BASE + 5; }
-}` }];
-			expect(runJavaIdeProject(project)).toMatchObject({ stdout: ["12"], stderr: [] });
+}`
+				}
+			];
+			expect(runJavaIdeProject(project)).toMatchObject({
+				stdout: ["12"],
+				stderr: []
+			});
 		}
 	);
 

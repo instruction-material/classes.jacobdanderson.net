@@ -1,0 +1,11 @@
+* { box-sizing: border-box; }
+body { overflow-wrap: anywhere; }
+body { color: #111; }
+h1 { font-size: 2.25rem; }
+table { width: 100%; table-layout: fixed; }
+caption { font-size: 1.25rem; font-weight: bold; padding-block: 1rem; }
+th, td { overflow-wrap: anywhere; padding: .75rem .4rem; }
+tbody th { font-weight: normal; }
+a { color: #0d47a1; text-decoration: underline; text-underline-offset: .2em; }
+a:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+tbody tr:focus-within { background: #d5e7f5; }

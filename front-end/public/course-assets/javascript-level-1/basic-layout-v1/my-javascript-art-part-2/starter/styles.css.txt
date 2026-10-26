@@ -1,0 +1,10 @@
+* { box-sizing: border-box; }
+body { overflow-wrap: anywhere; }
+body { margin: 0; color: #111; }
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.75rem; }
+h1, h2, section > p, .section > p { padding-inline: 1rem; text-align: center; }
+section, .section { margin-block: 1rem; padding-block: 1rem; }
+.black p, .black h2 { color: white; }
+.blue p, .blue h2 { color: #111 !important; }
+svg { display: block; max-width: 100%; height: auto; margin: 0 auto; }

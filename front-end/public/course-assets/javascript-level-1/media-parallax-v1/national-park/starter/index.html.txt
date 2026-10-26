@@ -1,0 +1,4 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>National Park</title><link rel="stylesheet" href="vendor/materialize.min.css"><link rel="stylesheet" href="styles.css"></head><body>
+<header class="park-header"><h1>National park</h1></header><main><!-- TODO: Add two or three parallax backgrounds and location, notable features, activities and visitor tips. --></main>
+<script src="vendor/materialize.min.js"></script><script src="script.js"></script></body></html>

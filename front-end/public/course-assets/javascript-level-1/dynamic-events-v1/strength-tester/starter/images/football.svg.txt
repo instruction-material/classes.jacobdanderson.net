@@ -1,0 +1,1 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="football"><path d="M15 100 Q100 -10 185 100 Q100 210 15 100" fill="#96491f"/><path d="M65 100 H135 M78 85 V115 M100 85 V115 M122 85 V115" stroke="white" stroke-width="6"/></svg>

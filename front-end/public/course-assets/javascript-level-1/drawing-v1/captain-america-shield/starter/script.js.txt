@@ -1,0 +1,1 @@
+// In this project, we’ll draw Captain America’s Shield with D3! Read the symbol documentation in the D3 docs to learn how to draw a star https://github.com/d3/d3-shape#symbols.

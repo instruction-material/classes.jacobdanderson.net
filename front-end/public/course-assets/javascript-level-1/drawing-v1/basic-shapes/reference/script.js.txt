@@ -1,0 +1,34 @@
+// Make an svg using d3, and then append a green rectangle, a blue circle, and a red ellipse.
+
+// Solution
+
+let width = "100%";
+let height = "100%";
+
+let svg = d3.select("body")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height)
+  .attr("viewBox", "0 0 400 200")
+  .attr("role", "img")
+  .attr("aria-label", "Drawing Shapes");
+
+svg.append("rect")
+  .attr("fill", "green")
+  .attr("x", 50)
+  .attr("y", 75)
+  .attr("width", 50)
+  .attr("height", 50);
+
+svg.append("circle")
+  .attr("fill", "blue")
+  .attr("cx", 200)
+  .attr("cy", 100)
+  .attr("r", 50);
+
+svg.append("ellipse")
+  .attr("fill", "red")
+  .attr("cx", 350)
+  .attr("cy", 100)
+  .attr("ry", 50)
+  .attr("rx", 30);

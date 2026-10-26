@@ -1,0 +1,39 @@
+const svg = d3.select("#calculator").append("svg")
+  .attr("viewBox", "0 0 300 400").attr("role", "img")
+  .attr("aria-labelledby", "calculator-title calculator-description");
+svg.append("title").attr("id", "calculator-title").text("Calculator display");
+svg.append("desc").attr("id", "calculator-description").text("A black calculator case with a white result display. The complete result appears below the controls.");
+svg.append("rect").attr("fill", "black").attr("x", 50).attr("y", 75).attr("width", 200).attr("height", 300);
+svg.append("rect").attr("fill", "white").attr("x", 75).attr("y", 100).attr("width", 150).attr("height", 30);
+svg.append("text").attr("id", "output").attr("fill", "black").attr("text-anchor", "middle").attr("x", 150).attr("y", 120).attr("font-size", 16).text("0");
+
+function calculate(operation) {
+  const values = ["#number", "#number-two"].map(selector => d3.select(selector).property("value").trim());
+  let message, display;
+  if (values.some(value => value === "" || !Number.isFinite(Number(value)))) {
+    message = "Enter two finite numbers.";
+    display = "Input error";
+  } else {
+    const [first, second] = values.map(Number);
+    if (operation === "div" && second === 0) {
+      message = "Cannot divide by zero.";
+      display = "Division by 0";
+    } else {
+      const result = operation === "add" ? first + second
+        : operation === "sub" ? first - second
+          : operation === "mult" ? first * second : first / second;
+      if (!Number.isFinite(result)) {
+        message = "The result is too large to represent as a finite number.";
+        display = "Overflow";
+      } else {
+        message = "Result: " + result;
+        display = String(Number(result.toPrecision(10)));
+      }
+    }
+  }
+  d3.select("#output").text(display).attr("font-size", display.length > 15 ? 12 : 16);
+  d3.select("#result-message").text(message);
+}
+for (const operation of ["add", "sub", "mult", "div"]) {
+  d3.select("#" + operation).on("click", () => calculate(operation));
+}

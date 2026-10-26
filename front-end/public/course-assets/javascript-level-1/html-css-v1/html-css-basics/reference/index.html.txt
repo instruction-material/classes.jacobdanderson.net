@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Basics of HTML &amp; CSS</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div>Alan</div>
+<div>Turing</div>
+
+<div>
+  <span>Alan</span>
+  <span>Turing</span>
+</div>
+
+
+<div>Alan</div>
+<br>
+<div>Turing</div>
+<div>
+  <img src="landscape.svg" alt="Blue mountains and a gold sun">
+</div>
+<br>
+<div>
+  <a href="https://www.wikipedia.org/">Go To Wikipedia</a>
+</div>
+</body>
+</html>

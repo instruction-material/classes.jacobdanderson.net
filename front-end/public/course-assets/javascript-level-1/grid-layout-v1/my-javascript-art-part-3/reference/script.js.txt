@@ -1,0 +1,232 @@
+let colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"];
+
+let margin = { top: 30, right: 200, bottom: 50, left: 30, pad: 10 };
+var width = 800 - margin.left - margin.right;
+var height = 350 - margin.top - margin.bottom;
+
+let svg = d3
+  .select("#rainbow")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height)
+  .attr("viewBox", `0 0 ${width} ${height}`)
+  .append("g")
+  .attr("transform", "translate(300,300)");
+
+//Define Arc for rainbow
+let arc = d3
+  .arc()
+  .innerRadius(function (d, i) {
+    return 300 - 20 * i;
+  })
+  .outerRadius(function (d, i) {
+    return 300 - 20 * i - 20;
+  })
+  .startAngle(function (d, i) {
+    return (-Math.PI / 2) * 0.7;
+  })
+  .endAngle(function (d, i) {
+    return (Math.PI / 2) * 0.7;
+  });
+
+//Adding all colors arc
+let path = svg
+  .selectAll("g.arc")
+  .data(colors)
+  .enter()
+  .append("g")
+  .attr("class", "arc");
+//Adding with animation
+const rainbowArcs = path.append("path").attr("fill", d => d).attr("d", arc);
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) { rainbowArcs.attr("opacity",0).transition().delay((d,i)=>i*200).duration(150).attr("opacity",1); }
+
+let widthShield = 400;
+let heightShield = 300;
+
+let positionX = 200;
+let positionY = 110;
+
+// Create SVG element to append to
+let svg2 = d3.select("#shield")
+  .append("svg")
+  .attr("width", widthShield)
+  .attr("height", heightShield)
+  .attr("viewBox", `0 0 ${widthShield} ${heightShield}`);
+
+// Add a large circle at the top
+svg2.append("circle")
+  .attr("fill", "red")
+  .attr("cx", positionX)
+  .attr("cy", positionY)
+  .attr("r", 110);
+
+// Add a medium circle in the middle
+svg2.append("circle")
+  .attr("fill", "white")
+  .attr("cx", positionX)
+  .attr("cy", positionY)
+  .attr("r", 90);
+
+// Add a medium circle in the middle
+svg2.append("circle")
+  .attr("fill", "red")
+  .attr("cx", positionX)
+  .attr("cy", positionY)
+  .attr("r", 70);
+
+// Add a small circle to the top
+svg2.append("circle")
+  .attr("fill", "blue")
+  .attr("cx", positionX)
+  .attr("cy", positionY)
+  .attr("r", 50);
+
+let star = d3.symbol().type(d3.symbolStar).size(2000);
+
+svg2.append("path")
+  .attr("d", star)
+  .attr("fill", "white")
+  .attr("transform", `translate(${positionX},${positionY})`);
+
+let width2 = 500;
+let height2 = 300;
+
+// Convert degrees to radians for D3 arc angles.
+const degreesToRadians = (degrees) => (
+  degrees * Math.PI / 180
+);
+
+// Create a new svg to append to
+const svg3 = d3.select("#pacman")
+  .append("svg")
+  .attr("width", width2)
+  .attr("height", height2)
+  .attr("viewBox", `0 0 ${width2} ${height2}`);
+
+// Create the object that will generate our curves
+const arcGenerator = d3.arc();
+
+// Create the arc that will be the left Pac-Man–note the start and end angles, and their difference vs. the right Pac-Man below
+let leftPacMan = arcGenerator({
+  startAngle: degreesToRadians(120),
+  endAngle: degreesToRadians(430),
+  innerRadius: 0,
+  outerRadius: 100
+});
+
+// Create the arc that will be the right Pac-Man
+let rightPacMan = arcGenerator({
+  startAngle: -degreesToRadians(120),
+  endAngle: -degreesToRadians(430),
+  innerRadius: 0,
+  outerRadius: 100
+});
+
+// Append the left Pac-Man to the svg
+svg3.append('path')
+  .attr("fill", "yellow")
+  .attr("transform", "translate(150,110)")
+	.attr('d', leftPacMan);
+
+// Append the right Pac-Man to the svg
+svg3.append('path')
+  .attr("fill", "yellow")
+  .attr("transform", "translate(400,110)")
+	.attr('d', rightPacMan);
+
+let widthSnowman = 300;
+let heightSnowman = 500;
+
+// Create SVG element to append to
+let svg4 = d3.select("#snowman")
+  .append("svg")
+  .attr("width", widthSnowman)
+  .attr("height", heightSnowman)
+  .attr("viewBox", `0 0 ${widthSnowman} ${heightSnowman}`);
+
+// Add a small circle to the top
+svg4.append("circle")
+  .attr("fill", "white")
+  .attr("cx", 150)
+  .attr("cy", 50)
+  .attr("r", 50);
+
+// Left eye
+svg4.append("circle")
+  .attr("fill", "black")
+  .attr("cx", 125)
+  .attr("cy", 35)
+  .attr("r", 5);
+
+// Right eye
+svg4.append("circle")
+  .attr("fill", "black")
+  .attr("cx", 175)
+  .attr("cy", 35)
+  .attr("r", 5);
+
+svg4.append("circle")
+  .attr("fill", "orange")
+  .attr("cx", 150)
+  .attr("cy", 50)
+  .attr("r", 5);
+
+// Nose
+
+/*
+Code handling the mouth
+*/
+
+// Generate a path that will be the smile
+let pathData = arcGenerator({
+  startAngle: degreesToRadians(90),
+  endAngle: degreesToRadians(270),
+  innerRadius: 10,
+  outerRadius: 15
+});
+
+// Append the smile path, moved over 250px in the x and 200px in the y
+svg4.append('path')
+  .attr("fill", "black")
+  .attr("transform", "translate(150,70)")
+	.attr('d', pathData);
+
+// Add a medium circle in the middle
+svg4.append("circle")
+  .attr("fill", "white")
+  .attr("cx", 150)
+  .attr("cy", 160)
+  .attr("r", 70);
+
+// Draw the left arm
+let leftArm = svg4.append("line")
+              .attr("x1", 200)
+              .attr("x2", 300)
+              .attr("y1", 160)
+              .attr("y2", 145)
+              .attr("stroke-width", 2)
+              .attr("stroke", "brown");
+
+// Draw the right arm
+let rightArm = svg4.append("line")
+              .attr("x1", 100)
+              .attr("x2", 0)
+              .attr("y1", 160)
+              .attr("y2", 145)
+              .attr("stroke-width", 2)
+              .attr("stroke", "brown");
+
+// Add a large circle at the top
+svg4.append("circle")
+  .attr("fill", "white")
+  .attr("cx", 150)
+  .attr("cy", 300)
+  .attr("r", 100);
+
+// Authored fifth example, completing the original Part III assignment.
+const points = [[45,190],[105,70],[180,130],[245,45],[300,150],[355,85]];
+const constellation=d3.select("#constellation").append("svg").attr("viewBox","0 0 400 260");
+constellation.append("polyline").attr("points",points.map(p=>p.join(",")).join(" ")).attr("fill","none").attr("stroke","#ffc957").attr("stroke-width",3);
+constellation.selectAll("circle").data(points).enter().append("circle").attr("cx",p=>p[0]).attr("cy",p=>p[1]).attr("r",7).attr("fill","#fff4bf");
+
+for (const name of ["rainbow","shield","pacman","snowman","constellation"]) { d3.select(`#${name} svg`).attr("role","img").attr("aria-labelledby",`${name}-description`); }

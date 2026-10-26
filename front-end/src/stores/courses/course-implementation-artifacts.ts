@@ -137,7 +137,7 @@ export const courseToolchainAssumptions: Record<string, string[]> = {
 		"Evergreen browser baseline using ECMAScript 2026, the HTML Living Standard, modern CSS, and built-in browser developer tools; no package install or build step is required.",
 		"Course-authored projects run as local index.html, styles.css, and script.js files, while original CodePen links remain reference artifacts rather than the only place a learner can work.",
 		"printToScreen(), prompt(), and alert() are labeled introductory sandbox helpers or blocking browser scaffolds; standards-based output uses semantic HTML, forms, events, and textContent.",
-		"D3 7.9.0 and Materialize 2.2.2 are pinned only for original projects that depend on them; every core concept also has a native HTML, CSS, DOM, or SVG route.",
+		"Drawing and gallery packs bundle D3 5.16.0; animation packs bundle D3 7.9.0. Basic-layout packs bundle the original Materialize 1.0.0 CSS and Material Icons 3.0.1 font. The local practice guide uses D3 7.9.0 and Materialize 2.2.2 where needed; core concepts also have a native HTML, CSS, DOM, or SVG route.",
 		"Supplied practice and verification cases provide an offline, privacy-safe route when CodePen, a CDN, or pending demonstration media is unavailable."
 	],
 	"javascript-level-2-javascript-master": [
@@ -667,7 +667,7 @@ const standardsOverrides: Record<string, string[]> = {
 		"WHATWG HTML Living Standard and DOM specifications for semantic structure, forms, document state, and events.",
 		"Modern CSS references for the box model, positioning, responsive layout, Grid, and source-order preservation.",
 		"WCAG 2.2 and MDN accessibility guidance for names, labels, keyboard access, focus, contrast, motion, status changes, and responsive reflow.",
-		"D3 7.9.0 and Materialize 2.2.2 documentation only where preserved course projects explicitly use those libraries."
+		"D3 documentation matching the supplied project version, and Materialize 2.2.2 documentation only where preserved course projects explicitly use those libraries."
 	],
 	"javascript-level-2-javascript-master": [
 		"ECMA-262 2026 and the MDN JavaScript Guide for function, array, object, iterator, promise, and error behavior.",

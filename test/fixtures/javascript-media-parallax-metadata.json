@@ -1,0 +1,150 @@
+{
+  "photos": [
+    {
+      "key": "lower-falls",
+      "url": "https://www.nps.gov/features/yell/slidefile/water/falls/yellrdbelowlake/Images/03761.jpg",
+      "page": "https://www.nps.gov/features/yell/slidefile/water/falls/yellrdbelowlake/Page.htm",
+      "title": "Lower Falls from Artist Point",
+      "credit": "National Park Service / William S Keller",
+      "year": "1969",
+      "sha256": "4867697b30373ae026b4c366c1c22e164cae32221569697e349e796f485cc60f",
+      "width": 2999,
+      "height": 1915,
+      "license": "Public domain; retain the supplied credit line",
+      "publicDomainStatement": "https://www.nps.gov/features/yell/slidefile/"
+    },
+    {
+      "key": "grand-prismatic",
+      "url": "https://www.nps.gov/features/yell/slidefile/thermalfeatures/hotspringsterraces/midwaylower/Images/06120.jpg",
+      "page": "https://www.nps.gov/features/yell/slidefile/thermalfeatures/hotspringsterraces/midwaylower/Page.htm",
+      "title": "Grand Prismatic Spring",
+      "credit": "National Park Service / Al Mebane",
+      "year": "1973",
+      "sha256": "7d65c17b845a50532531fb04cebfc0d93b6d689b590e879eea1181d787ff698c",
+      "width": 1999,
+      "height": 1277,
+      "license": "Public domain; retain the supplied credit line",
+      "publicDomainStatement": "https://www.nps.gov/features/yell/slidefile/"
+    }
+  ],
+  "videos": [
+    {
+      "id": "_3YNL0OWio0",
+      "title": "Animal Crossing: New Horizons",
+      "description": "Trailer shown at Nintendo E3 2019.",
+      "watchURL": "https://www.youtube.com/watch?v=_3YNL0OWio0",
+      "officialTitle": "Animal Crossing: New Horizons - Nintendo Switch Trailer - Nintendo E3 2019",
+      "author": "Nintendo of America",
+      "actualPlayerPlayingObserved": true,
+      "observedCurrentTime": 0.4485638664855957,
+      "sourceSelection": "original Juni selection"
+    },
+    {
+      "id": "zbVpOyy0Pq0",
+      "title": "Windbound",
+      "description": "Story trailer for Nintendo Switch.",
+      "watchURL": "https://www.youtube.com/watch?v=zbVpOyy0Pq0",
+      "officialTitle": "Windbound - Story Trailer - Nintendo Switch",
+      "author": "Nintendo of America",
+      "actualPlayerPlayingObserved": true,
+      "observedCurrentTime": 0.388314036239624,
+      "sourceSelection": "original Juni selection"
+    },
+    {
+      "id": "qDELXywZFxQ",
+      "title": "Paper Mario: The Origami King",
+      "description": "SUPER STAR Power promotional trailer.",
+      "watchURL": "https://www.youtube.com/watch?v=qDELXywZFxQ",
+      "officialTitle": "Paper Mario: The Origami King - Now You're Playing With SUPER STAR Power!",
+      "author": "Nintendo of America",
+      "actualPlayerPlayingObserved": true,
+      "observedCurrentTime": 0.41471918310546874,
+      "sourceSelection": "original Juni selection"
+    },
+    {
+      "id": "wF5v49ETDv8",
+      "title": "The Last Campfire",
+      "description": "Launch trailer for Nintendo Switch.",
+      "watchURL": "https://www.youtube.com/watch?v=wF5v49ETDv8",
+      "officialTitle": "The Last Campfire - Launch Trailer - Nintendo Switch",
+      "author": "Nintendo of America",
+      "actualPlayerPlayingObserved": true,
+      "observedCurrentTime": 0.37713096376037597,
+      "sourceSelection": "authored replacement for private original"
+    },
+    {
+      "id": "rksphjrR2Pk",
+      "title": "Spinch",
+      "description": "Announcement trailer for Nintendo Switch.",
+      "watchURL": "https://www.youtube.com/watch?v=rksphjrR2Pk",
+      "officialTitle": "Spinch - Announcement Trailer - Nintendo Switch",
+      "author": "Nintendo of America",
+      "actualPlayerPlayingObserved": true,
+      "observedCurrentTime": 0.47564613542175294,
+      "sourceSelection": "original Juni selection"
+    },
+    {
+      "id": "uh2_SdmW8SQ",
+      "title": "Garden Story",
+      "description": "Announcement trailer for Nintendo Switch.",
+      "watchURL": "https://www.youtube.com/watch?v=uh2_SdmW8SQ",
+      "officialTitle": "Garden Story - Announcement Trailer - Nintendo Switch",
+      "author": "Nintendo of America",
+      "actualPlayerPlayingObserved": true,
+      "observedCurrentTime": 0.44710093896484376,
+      "sourceSelection": "original Juni selection"
+    },
+    {
+      "id": "nplo-OHUzKQ",
+      "title": "Manifold Garden",
+      "description": "Launch trailer for Nintendo Switch.",
+      "watchURL": "https://www.youtube.com/watch?v=nplo-OHUzKQ",
+      "officialTitle": "Manifold Garden - Launch Trailer - Nintendo Switch",
+      "author": "Nintendo of America",
+      "actualPlayerPlayingObserved": true,
+      "observedCurrentTime": 0.30817417356872556,
+      "sourceSelection": "original Juni selection"
+    },
+    {
+      "id": "Q37uSTMwuXU",
+      "title": "Volta-X",
+      "description": "Release-date trailer for Nintendo Switch.",
+      "watchURL": "https://www.youtube.com/watch?v=Q37uSTMwuXU",
+      "officialTitle": "Volta-X - Release Date Trailer - Nintendo Switch",
+      "author": "Nintendo of America",
+      "actualPlayerPlayingObserved": true,
+      "observedCurrentTime": 0.37163013732910155,
+      "sourceSelection": "original Juni selection"
+    },
+    {
+      "id": "aSSQ0Z6eDhU",
+      "title": "Pikmin 3 Deluxe",
+      "description": "Announcement trailer for Nintendo Switch.",
+      "watchURL": "https://www.youtube.com/watch?v=aSSQ0Z6eDhU",
+      "officialTitle": "Pikmin 3 Deluxe - Announcement Trailer - Nintendo Switch",
+      "author": "Nintendo of America",
+      "actualPlayerPlayingObserved": true,
+      "observedCurrentTime": 0.3641138779296875,
+      "sourceSelection": "original Juni selection"
+    }
+  ],
+  "privateOriginal": {
+    "id": "0scGMnbC0po",
+    "visibleReason": "This video is private",
+    "playerError": 150,
+    "observedAt": "2026-10-25T19:02:39.161Z"
+  },
+  "originalVideoIds": [
+    "_3YNL0OWio0",
+    "zbVpOyy0Pq0",
+    "qDELXywZFxQ",
+    "0scGMnbC0po",
+    "rksphjrR2Pk",
+    "uh2_SdmW8SQ",
+    "nplo-OHUzKQ",
+    "Q37uSTMwuXU",
+    "aSSQ0Z6eDhU"
+  ],
+  "observedAt": "2026-10-25T19:02:39.161Z",
+  "replacementObservedAt": "2026-10-25T19:04:19.528Z"
+}

@@ -1,9 +1,19 @@
 import type { PythonIdeFile } from "@/modules/pythonIde";
 import { javascriptAdvancedConditionalsResources } from "@/modules/javascriptAdvancedConditionalsResources";
+import { javascriptAnimationResources } from "@/modules/javascriptAnimationResources";
+import { javascriptBasicLayoutResources } from "@/modules/javascriptBasicLayoutResources";
 import { javascriptCombiningResources } from "@/modules/javascriptCombiningResources";
 import { javascriptConditionalsResources } from "@/modules/javascriptConditionalsResources";
+import { javascriptDrawingResources } from "@/modules/javascriptDrawingResources";
+import { javascriptDynamicComponentsResources } from "@/modules/javascriptDynamicComponentsResources";
+import { javascriptDynamicEventsResources } from "@/modules/javascriptDynamicEventsResources";
 import { javascriptFirstModuleResources } from "@/modules/javascriptFirstModuleResources";
+import { javascriptGridLayoutResources } from "@/modules/javascriptGridLayoutResources";
+import { javascriptHtmlCssResources } from "@/modules/javascriptHtmlCssResources";
 import { javascriptLoopsResources } from "@/modules/javascriptLoopsResources";
+import { javascriptMediaParallaxResources } from "@/modules/javascriptMediaParallaxResources";
+import { javascriptMoreHtmlCssResources } from "@/modules/javascriptMoreHtmlCssResources";
+import { javascriptNestedLoopsResources } from "@/modules/javascriptNestedLoopsResources";
 import { javascriptOperatorsResources } from "@/modules/javascriptOperatorsResources";
 
 const courseId = "javascript-level-1-javascript-superstar";
@@ -28,10 +38,24 @@ const roles: readonly CourseRole[] = [
 	...javascriptLoopsResources,
 	...javascriptCombiningResources,
 	...javascriptConditionalsResources,
-	...javascriptAdvancedConditionalsResources
+	...javascriptAdvancedConditionalsResources,
+	...javascriptDrawingResources,
+	...javascriptNestedLoopsResources,
+	...javascriptHtmlCssResources,
+	...javascriptAnimationResources,
+	...javascriptMoreHtmlCssResources,
+	...javascriptBasicLayoutResources,
+	...javascriptGridLayoutResources,
+	...javascriptDynamicEventsResources,
+	...javascriptDynamicComponentsResources,
+	...javascriptMediaParallaxResources
 ];
 
 export function javascriptCourseResource(value: string) {
+	if (value.startsWith("/course-assets/javascript-level-1/")) {
+		const selected = roles.find(role => role.urls.includes(value));
+		return selected ? { ...selected, courseId } : null;
+	}
 	let url: URL;
 	try {
 		url = new URL(value);

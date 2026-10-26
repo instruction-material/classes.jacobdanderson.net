@@ -1578,9 +1578,11 @@ function resourceLinks(item: CourseModuleItem): ResourceLink[] {
 		}
 	} else if (projectUrl) {
 		links.push({
-			kind: projectUrl.startsWith("/course-assets/")
-				? "asset"
-				: "project",
+			kind:
+				projectUrl.startsWith("/course-assets/") &&
+				!javascriptCourseResource(projectUrl)
+					? "asset"
+					: "project",
 			label: isKnownCourseWorksheetResource(projectUrl)
 				? "Worksheet"
 				: projectLabel(item, projectUrl),

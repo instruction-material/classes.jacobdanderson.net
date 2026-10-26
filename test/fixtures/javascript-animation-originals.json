@@ -1,0 +1,532 @@
+{
+  "resources": [
+    {
+      "project": "car",
+      "role": "starter",
+      "kind": "project",
+      "url": "https://codepen.io/junilearning/pen/38ef977913b6ce7e1a913883f984a4e5",
+      "resolvedURL": "https://codepen.io/junilearning/pen/rNxKNzj",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Use your knowledge of D3 to draw a car!\n"
+      },
+      "settings": {
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "cssBase": "neither",
+        "vendorPrefixing": "neither",
+        "externalCSS": [],
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ]
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 43,
+          "fnv1a64Utf16": "ca17b9e26245e04a"
+        }
+      },
+      "panelSHA256": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "e450ed5f5ef483b524269e843fc25ff81e6a0e877c8ebc394f385b7a4dcb33d6"
+      }
+    },
+    {
+      "project": "car",
+      "role": "reference",
+      "kind": "project",
+      "url": "https://codepen.io/junilearning/pen/2723c8a04416bf8402171eb247a02bb5",
+      "resolvedURL": "https://codepen.io/junilearning/pen/jOWyrGV/2723c8a04416bf8402171eb247a02bb5",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Use your knowledge of D3 to draw a car!\n\nlet canvasWidth = 800;\nlet canvasHeight = 500;\n\nlet width = 500;\nlet height = 500;\n\nlet centerX = width / 2;\nlet centerY = height / 2;\n\nlet svg = d3\n\t.select(\"body\")\n\t.append(\"svg\")\n\t.attr(\"width\", canvasWidth)\n\t.attr(\"height\", canvasHeight);\n\nlet leftWheelX = centerX - width / 4;\nlet leftWheelY = centerY + height / 4;\n\nlet leftWheel = svg\n\t.append(\"circle\")\n\t.attr(\"fill\", \"black\")\n\t.attr(\"cx\", leftWheelX)\n\t.attr(\"cy\", leftWheelY)\n\t.attr(\"r\", 50);\n\nlet leftWheelCap = svg\n\t.append(\"circle\")\n\t.attr(\"fill\", \"grey\")\n\t.attr(\"cx\", leftWheelX)\n\t.attr(\"cy\", leftWheelY)\n\t.attr(\"r\", 40);\n\nlet rightWheelX = centerX + width / 4;\nlet rightWheelY = centerY + height / 4;\n\nlet rightWheel = svg\n\t.append(\"circle\")\n\t.attr(\"fill\", \"black\")\n\t.attr(\"cx\", rightWheelX)\n\t.attr(\"cy\", rightWheelY)\n\t.attr(\"r\", 50);\n\nlet rightWheelCap = svg\n\t.append(\"circle\")\n\t.attr(\"fill\", \"grey\")\n\t.attr(\"cx\", rightWheelX)\n\t.attr(\"cy\", rightWheelY)\n\t.attr(\"r\", 40);\n\nlet body = svg\n\t.append(\"rect\")\n\t.attr(\"rx\", 10)\n\t.attr(\"ry\", 10)\n\t.attr(\"x\", 50)\n\t.attr(\"y\", 200)\n\t.attr(\"width\", width - 50)\n\t.attr(\"height\", 150)\n\t.attr(\"fill\", \"#ff2800\");\n\nlet roof = svg\n\t.append(\"line\")\n\t.attr(\"x1\", width / 2 - 6)\n\t.attr(\"x2\", (2 * width) / 3)\n\t.attr(\"y1\", 105)\n\t.attr(\"y2\", 105)\n\t.attr(\"stroke-width\", 10)\n\t.attr(\"stroke\", \"black\");\n\nlet windshield = svg\n\t.append(\"line\")\n\t.attr(\"x1\", (2 * width) / 3 - 6)\n\t.attr(\"x2\", (2 * width) / 3 + 75)\n\t.attr(\"y1\", 100)\n\t.attr(\"y2\", 200)\n\t.attr(\"stroke-width\", 10)\n\t.attr(\"stroke\", \"black\");\n\nlet bodyTop = svg\n\t.append(\"rect\")\n\t.attr(\"rx\", 6)\n\t.attr(\"ry\", 6)\n\t.attr(\"x\", 50)\n\t.attr(\"y\", 100)\n\t.attr(\"width\", width / 2 - 50)\n\t.attr(\"height\", 120)\n\t.attr(\"fill\", \"#ff2800\");\n\nlet headlight = svg\n\t.append(\"rect\")\n\t.attr(\"rx\", 6)\n\t.attr(\"ry\", 6)\n\t.attr(\"x\", width - 25)\n\t.attr(\"y\", 225)\n\t.attr(\"width\", 20)\n\t.attr(\"height\", 20)\n\t.attr(\"fill\", \"yellow\");\n"
+      },
+      "settings": {
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "cssBase": "neither",
+        "vendorPrefixing": "neither",
+        "externalCSS": [],
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ]
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 1895,
+          "fnv1a64Utf16": "4e357d3f8dec52fd"
+        }
+      },
+      "panelSHA256": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "fea5773433e4b82745f50476ec5c8ab17a1727ebdb0c3a931c252320a10d44b1"
+      }
+    },
+    {
+      "project": "moving-car-example",
+      "role": "starter",
+      "kind": "example",
+      "url": "https://codepen.io/junilearning/pen/46c3f402eb4100c983f22bbbb3f4cede",
+      "resolvedURL": "https://codepen.io/junilearning/pen/yLegaLK/46c3f402eb4100c983f22bbbb3f4cede",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "let canvasWidth = 1400;\nlet canvasHeight = 2000;\n\nlet width = 500;\nlet height = 500;\n\nlet centerX = width / 2;\nlet centerY = height / 2;\n\nlet svg = d3\n\t.select(\"body\")\n\t.append(\"svg\")\n\t.attr(\"width\", canvasWidth)\n\t.attr(\"height\", canvasHeight);\n\nlet leftWheelX = centerX - width / 4;\nlet leftWheelY = centerY + height / 4;\n\nlet leftWheel = svg\n\t.append(\"circle\")\n\t.attr(\"fill\", \"black\")\n\t.attr(\"cx\", leftWheelX)\n\t.attr(\"cy\", leftWheelY)\n\t.attr(\"r\", 50);\n\nlet leftWheelCap = svg\n\t.append(\"circle\")\n\t.attr(\"fill\", \"grey\")\n\t.attr(\"cx\", leftWheelX)\n\t.attr(\"cy\", leftWheelY)\n\t.attr(\"r\", 40);\n\nlet rightWheelX = centerX + width / 4;\nlet rightWheelY = centerY + height / 4;\n\nlet rightWheel = svg\n\t.append(\"circle\")\n\t.attr(\"fill\", \"black\")\n\t.attr(\"cx\", rightWheelX)\n\t.attr(\"cy\", rightWheelY)\n\t.attr(\"r\", 50);\n\nlet rightWheelCap = svg\n\t.append(\"circle\")\n\t.attr(\"fill\", \"grey\")\n\t.attr(\"cx\", rightWheelX)\n\t.attr(\"cy\", rightWheelY)\n\t.attr(\"r\", 40);\n\nlet body = svg\n\t.append(\"rect\")\n\t.attr(\"rx\", 10)\n\t.attr(\"ry\", 10)\n\t.attr(\"x\", 50)\n\t.attr(\"y\", 200)\n\t.attr(\"width\", width - 50)\n\t.attr(\"height\", 150)\n\t.attr(\"fill\", \"#ff2800\");\n\nlet roof = svg\n\t.append(\"line\")\n\t.attr(\"x1\", width / 2 - 6)\n\t.attr(\"x2\", (2 * width) / 3)\n\t.attr(\"y1\", 105)\n\t.attr(\"y2\", 105)\n\t.attr(\"stroke-width\", 10)\n\t.attr(\"stroke\", \"black\");\n\nlet windshield = svg\n\t.append(\"line\")\n\t.attr(\"x1\", (2 * width) / 3 - 6)\n\t.attr(\"x2\", (2 * width) / 3 + 75)\n\t.attr(\"y1\", 100)\n\t.attr(\"y2\", 200)\n\t.attr(\"stroke-width\", 10)\n\t.attr(\"stroke\", \"black\");\n\nlet bodyTop = svg\n\t.append(\"rect\")\n\t.attr(\"rx\", 6)\n\t.attr(\"ry\", 6)\n\t.attr(\"x\", 50)\n\t.attr(\"y\", 100)\n\t.attr(\"width\", width / 2 - 50)\n\t.attr(\"height\", 120)\n\t.attr(\"fill\", \"#ff2800\");\n\nlet headlight = svg\n\t.append(\"rect\")\n\t.attr(\"rx\", 6)\n\t.attr(\"ry\", 6)\n\t.attr(\"x\", width - 25)\n\t.attr(\"y\", 225)\n\t.attr(\"width\", 20)\n\t.attr(\"height\", 20)\n\t.attr(\"fill\", \"yellow\");\n\nsvg\n\t.selectAll(\"*\")\n\t.transition()\n\t.duration(1500)\n\t.attr(\"transform\", \"translate(700)\");\n"
+      },
+      "settings": {
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "cssBase": "neither",
+        "vendorPrefixing": "neither",
+        "externalCSS": [],
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ]
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 1946,
+          "fnv1a64Utf16": "e403bb9d846a8d00"
+        }
+      },
+      "panelSHA256": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "8dcb4e601559562830a1d2b5bc3ad5eaa61b68043b27735b2ff08d66c5be70d5"
+      }
+    },
+    {
+      "project": "bouncing-ball",
+      "role": "starter",
+      "kind": "project",
+      "url": "https://codepen.io/junilearning/pen/6a90681824ce331a3533469f911e2497",
+      "resolvedURL": "https://codepen.io/junilearning/pen/ExPRXNZ",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Make a ball that moves across the screen and then comes back to its starting position.\n"
+      },
+      "settings": {
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "cssBase": "neither",
+        "vendorPrefixing": "neither",
+        "externalCSS": [],
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ]
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 90,
+          "fnv1a64Utf16": "ec77c40d8a383fb2"
+        }
+      },
+      "panelSHA256": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "2da805e5a99386e385fefadcc247a1e48f8631613b36b73263872d1ec19c08a4"
+      }
+    },
+    {
+      "project": "bouncing-ball",
+      "role": "reference",
+      "kind": "project",
+      "url": "https://codepen.io/junilearning/pen/a449284a2d08eecf0a0f61b644044f84",
+      "resolvedURL": "https://codepen.io/junilearning/pen/GRoELxV/a449284a2d08eecf0a0f61b644044f84",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Make a ball that moves across the screen and then comes back to its starting position.\n\n// Solution\n\nlet svg = d3\n\t.select(\"body\")\n\t.append(\"svg\")\n\t.attr(\"width\", 960)\n\t.attr(\"height\", 500);\n\nlet ball = svg.append(\"circle\")\n\t.attr(\"fill\", \"steelblue\")\n\t.attr(\"r\", 20);\n\nball\n\t.attr(\"cx\", 40)\n\t.attr(\"cy\", 250)\n\t.transition()\n\t.duration(2000)\n\t.attr(\"cx\", 920)\n\t.transition()\n\t.duration(2000)\n\t.attr(\"cx\", 40);"
+      },
+      "settings": {
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "cssBase": "neither",
+        "vendorPrefixing": "neither",
+        "externalCSS": [],
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ]
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 412,
+          "fnv1a64Utf16": "7a6ec5796813467e"
+        }
+      },
+      "panelSHA256": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "8b1ddb029a372bc33ffbd185a7c6fd6d5a378d06ee9c355fbc87bd8a61d564d2"
+      }
+    },
+    {
+      "project": "dom-events-example",
+      "role": "starter",
+      "kind": "example",
+      "url": "https://codepen.io/junilearning/pen/BajVdPQ",
+      "resolvedURL": "https://codepen.io/junilearning/pen/BajVdPQ",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "let svg = d3\n\t.select(\"body\")\n\t.append(\"svg\")\n\t.attr(\"width\", 750)\n\t.attr(\"height\", 750);\n\nlet rect = svg\n\t.append(\"rect\")\n\t.attr(\"fill\", \"red\")\n\t.attr(\"x\", 100)\n\t.attr(\"y\", 100)\n\t.attr(\"width\", 100)\n\t.attr(\"height\", 100);\n\nrect.on(\"click\", () => {\n\trect.transition().attr(\"fill\", \"pink\");\n});"
+      },
+      "settings": {
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "cssBase": "neither",
+        "vendorPrefixing": "neither",
+        "externalCSS": [],
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ]
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 293,
+          "fnv1a64Utf16": "0f4c1de873fbbf4e"
+        }
+      },
+      "panelSHA256": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "e4f5f8f57c74e07edcbd699873178fe3ba99550712217cead79313fa4a743098"
+      }
+    },
+    {
+      "project": "growing-ball",
+      "role": "starter",
+      "kind": "project",
+      "url": "https://codepen.io/junilearning/pen/ff4f98a080f26536a286835de4b1b9a2",
+      "resolvedURL": "https://codepen.io/junilearning/pen/vYLrJVO",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Make a ball that grows in size when we put our mouse over it, and then shrinks when we move our mouse away.\n"
+      },
+      "settings": {
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "cssBase": "neither",
+        "vendorPrefixing": "neither",
+        "externalCSS": [],
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ]
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 111,
+          "fnv1a64Utf16": "12160dac0d331751"
+        }
+      },
+      "panelSHA256": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "070965763e9862bd42fbc2ab3531e7ee377a71f6e0759f350503c91e25429b64"
+      }
+    },
+    {
+      "project": "growing-ball",
+      "role": "reference",
+      "kind": "project",
+      "url": "https://codepen.io/junilearning/pen/9d8630fbb5a9554618f11c649a95ab55",
+      "resolvedURL": "https://codepen.io/junilearning/pen/KKVaMmN/9d8630fbb5a9554618f11c649a95ab55",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Make a ball that grows in size when we put our mouse over it, and then shrinks when we move our mouse away.\n\n// Solution\n\nlet width = 750;\nlet height = 750;\n\nlet positionX = 200;\nlet positionY = 200;\n\nlet originalR = 110;\nlet biggerR = 200;\n\nlet svg = d3\n\t.select(\"body\")\n\t.append(\"svg\")\n\t.attr(\"width\", width)\n\t.attr(\"height\", height);\n\nlet circle = svg\n\t.append(\"circle\")\n\t.attr(\"fill\", \"red\")\n\t.attr(\"cx\", positionX)\n\t.attr(\"cy\", positionY)\n\t.attr(\"r\", originalR);\n\ncircle.on(\"mouseover\", () => {\n\tcircle.transition().attr(\"r\", biggerR);\n});\n\ncircle.on(\"mouseout\", () => {\n\tcircle.transition().attr(\"r\", originalR);\n});\n"
+      },
+      "settings": {
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "cssBase": "neither",
+        "vendorPrefixing": "neither",
+        "externalCSS": [],
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ]
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 626,
+          "fnv1a64Utf16": "87ab83010acfce14"
+        }
+      },
+      "panelSHA256": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "ab77d3716e192fa8f2a13c9363ff44610e45acade19e7c263c7bca47c631c74e"
+      }
+    },
+    {
+      "project": "bouncing-and-growing",
+      "role": "starter",
+      "kind": "project",
+      "url": "https://codepen.io/junilearning/pen/5e44ed4c619e2a3e960ba5cdf6ab067f",
+      "resolvedURL": "https://codepen.io/junilearning/pen/ZEQRGEV",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Make a ball that moves across the screen, grows to double its size, and then comes back and shrinks to its original size\n"
+      },
+      "settings": {
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "cssBase": "neither",
+        "vendorPrefixing": "neither",
+        "externalCSS": [],
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ]
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 124,
+          "fnv1a64Utf16": "e5f1b23bd0889221"
+        }
+      },
+      "panelSHA256": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "829aa8e9dc6ec882ab1fbb7db5f1d6641e254c2147337860d488d3e07fc1fb40"
+      }
+    },
+    {
+      "project": "bouncing-and-growing",
+      "role": "reference",
+      "kind": "project",
+      "url": "https://codepen.io/junilearning/pen/be50c8f1430016572f95794d69800440",
+      "resolvedURL": "https://codepen.io/junilearning/pen/QWygPBK/be50c8f1430016572f95794d69800440",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Make a ball that moves across the screen, grows to double its size, and then comes back and shrinks to its original size\n\n// Solution\n\nconst originalR = 20;\nconst biggerR = 50;\n\nlet svg = d3\n\t.select(\"body\")\n\t.append(\"svg\")\n\t.attr(\"width\", 1000)\n\t.attr(\"height\", 500);\n\nlet ball = svg.append(\"circle\").attr(\"fill\", \"steelblue\").attr(\"r\", originalR);\n\nball\n\t.attr(\"cx\", 40)\n\t.attr(\"cy\", 100)\n\t.transition()\n\t.duration(2000)\n\t.attr(\"r\", biggerR)\n\t.attr(\"cx\", 500)\n\t.transition()\n\t.duration(2000)\n\t.attr(\"r\", originalR)\n\t.attr(\"cx\", 40);\n"
+      },
+      "settings": {
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "cssBase": "neither",
+        "vendorPrefixing": "neither",
+        "externalCSS": [],
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ]
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 538,
+          "fnv1a64Utf16": "c5472d833748d645"
+        }
+      },
+      "panelSHA256": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "e07ebf0dc003f739b09ede966f2c5b0b5a3e4e463c9f127d521e3085f716a607"
+      }
+    },
+    {
+      "project": "rainbow",
+      "role": "starter",
+      "kind": "project",
+      "url": "https://codepen.io/junilearning/pen/36846ad022b36b072833ace22a9edbef",
+      "resolvedURL": "https://codepen.io/junilearning/pen/XWXYJvG",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Draw a rainbow with a D3 arcs that fill in from outside-in with a staggered animation!\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction degreesToRadians(degrees) {\n  return (degrees * Math.PI) / 180;\n}\n"
+      },
+      "settings": {
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "cssBase": "neither",
+        "vendorPrefixing": "neither",
+        "externalCSS": [],
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ]
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 250,
+          "fnv1a64Utf16": "06065766f8efa54b"
+        }
+      },
+      "panelSHA256": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "0564957e9f805b44a30cdac07ed7ec864f95fb8d6a5a000d0d71554d0f451d46"
+      }
+    },
+    {
+      "project": "rainbow",
+      "role": "reference",
+      "kind": "project",
+      "url": "https://codepen.io/junilearning/pen/b858a6f5c9b50333229dd36700cc4ac0",
+      "resolvedURL": "https://codepen.io/junilearning/pen/vYLZMMo/b858a6f5c9b50333229dd36700cc4ac0",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Draw a rainbow with a D3 arcs that fill in from outside-in with a staggered animation!\n\n// Solution\n\nlet width = 800;\nlet height = 450;\n\nlet svg = d3\n  .select(\"body\")\n  .append(\"svg\")\n  .attr(\"width\", width)\n  .attr(\"height\", height)\n  .append(\"g\")\n  .attr(\"transform\", \"translate(300,300)\");\n\nlet innerRadius = 300;\nlet outerRadius = 280;\n\nconst arcGenerator = d3.arc();\n\nlet red = arcGenerator({\n  innerRadius: innerRadius,\n  outerRadius: outerRadius,\n  startAngle: degreesToRadians(-60),\n  endAngle: degreesToRadians(60)\n});\n\ninnerRadius -= 20;\nouterRadius -= 20;\n\nlet orange = arcGenerator({\n  innerRadius: innerRadius,\n  outerRadius: outerRadius,\n  startAngle: degreesToRadians(-60),\n  endAngle: degreesToRadians(60)\n});\n\ninnerRadius -= 20;\nouterRadius -= 20;\n\nlet yellow = arcGenerator({\n  innerRadius: innerRadius,\n  outerRadius: outerRadius,\n  startAngle: degreesToRadians(-60),\n  endAngle: degreesToRadians(60)\n});\n\ninnerRadius -= 20;\nouterRadius -= 20;\n\nlet green = arcGenerator({\n  innerRadius: innerRadius,\n  outerRadius: outerRadius,\n  startAngle: degreesToRadians(-60),\n  endAngle: degreesToRadians(60)\n});\n\ninnerRadius -= 20;\nouterRadius -= 20;\n\nlet blue = arcGenerator({\n  innerRadius: innerRadius,\n  outerRadius: outerRadius,\n  startAngle: degreesToRadians(-60),\n  endAngle: degreesToRadians(60)\n});\n\ninnerRadius -= 20;\nouterRadius -= 20;\n\nlet violet = arcGenerator({\n  innerRadius: innerRadius,\n  outerRadius: outerRadius,\n  startAngle: degreesToRadians(-60),\n  endAngle: degreesToRadians(60)\n});\n\nlet delay = 200;\nsvg\n  .append(\"path\")\n  .transition()\n  .delay(delay)\n  .attr(\"d\", red)\n  .attr(\"fill\", \"red\")\n  .duration(150);\ndelay += 200;\n\nsvg\n  .append(\"path\")\n  .transition()\n  .delay(delay)\n  .attr(\"d\", orange)\n  .attr(\"fill\", \"orange\")\n  .duration(150);\ndelay += 200;\n\nsvg\n  .append(\"path\")\n  .transition()\n  .delay(delay)\n  .attr(\"d\", yellow)\n  .attr(\"fill\", \"yellow\")\n  .duration(150);\ndelay += 200;\n\nsvg\n  .append(\"path\")\n  .transition()\n  .delay(delay)\n  .attr(\"d\", green)\n  .attr(\"fill\", \"green\")\n  .duration(150);\ndelay += 200;\n\nsvg\n  .append(\"path\")\n  .transition()\n  .delay(delay)\n  .attr(\"d\", blue)\n  .attr(\"fill\", \"blue\")\n  .duration(150);\ndelay += 200;\n\nsvg\n  .append(\"path\")\n  .transition()\n  .delay(delay)\n  .attr(\"d\", violet)\n  .attr(\"fill\", \"violet\")\n  .duration(150);\ndelay += 200;\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction degreesToRadians(degrees) {\n  return (degrees * Math.PI) / 180;\n}\n"
+      },
+      "settings": {
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "cssBase": "neither",
+        "vendorPrefixing": "neither",
+        "externalCSS": [],
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ]
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 2450,
+          "fnv1a64Utf16": "db4d6d577921c51a"
+        }
+      },
+      "panelSHA256": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "8ac41041bc4694ea9cff1b210235e4252f6bb31da6c4b4f0fe95abc399fcd8d7"
+      }
+    }
+  ]
+}

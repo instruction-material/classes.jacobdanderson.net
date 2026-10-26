@@ -31,6 +31,7 @@ export function pythonRuntimePlugin(): Plugin {
 			if (process.env.VITEST) return;
 			await build({
 				configFile: false,
+				base: "/python-runtime/",
 				root,
 				publicDir: false,
 				plugins: [Vue()],

@@ -1,0 +1,532 @@
+{
+  "resources": [
+    {
+      "project": "multiplication-tables",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/WNrXoBj",
+      "resolvedURL": "https://codepen.io/junilearning/pen/WNrXoBj",
+      "title": "JSS8 Project 1: Multiplication Tables",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Using nested loops, Print out a multiplication table for all of the numbers from 1 - 10.\n\n// Solution\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "settings": {
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ],
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "externalCSS": [],
+        "cssBase": "neither",
+        "vendorPrefixing": "neither"
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 762,
+          "fnv1a64Utf16": "fd41662cb128e3cb"
+        }
+      },
+      "sourceHashes": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "aae44f36b82f2edb98760f1201102c8e0c1e05489de14df1042002929155d365"
+      }
+    },
+    {
+      "project": "multiplication-tables",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/431a3c1e61b0fe9d0e6fa2e16e6d37f6",
+      "resolvedURL": "https://codepen.io/junilearning/pen/KKVwyGg/431a3c1e61b0fe9d0e6fa2e16e6d37f6",
+      "title": "JSS8 Project 1: Multiplication Tables Solution",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Using nested loops, Print out a multiplication table for all of the numbers from 1 - 10.\n\n// Solution\n\nfor (let i = 1; i <= 10; i++) {\n\tlet output = \"\";\n\tfor (let j = 1; j <= 10; j++) {\n\t\toutput += i * j + \"   \";\n\t}\n\tprintToScreen(output);\n}\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "settings": {
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ],
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "externalCSS": [],
+        "cssBase": "neither",
+        "vendorPrefixing": "neither"
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 902,
+          "fnv1a64Utf16": "47342af2041f007d"
+        }
+      },
+      "sourceHashes": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "b3964916ac89e8868b0c38675c040526affa2c6727437ef1c1ba85dbfc016ccd"
+      }
+    },
+    {
+      "project": "pattern-production",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/pogdRva",
+      "resolvedURL": "https://codepen.io/junilearning/pen/pogdRva",
+      "title": "JSS8 Project 2: Pattern Printing",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "/*\nPrint out a pattern of stars using a nested loop that looks like the following using printToScreen():\n\t*\n\t**\n\t***\n\t****\n\t*****\nNext, do the same pattern with Pac-Men that you create using d3. The degreesToRadians(degrees) function has been provided for you.\n*/\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction degreesToRadians(degrees) {\n\treturn (degrees * Math.PI) / 180;\n}\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", \"100%\")\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "settings": {
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ],
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "externalCSS": [],
+        "cssBase": "neither",
+        "vendorPrefixing": "neither"
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 1036,
+          "fnv1a64Utf16": "12882687890e4d76"
+        }
+      },
+      "sourceHashes": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "afb6bde7fd75297423a3012f2f5168bb37fafef535c3f821f337d71aaea400bd"
+      }
+    },
+    {
+      "project": "pattern-production",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/9b713f294e21887a1a2c9b528764bd4b",
+      "resolvedURL": "https://codepen.io/junilearning/pen/YzwPENj/9b713f294e21887a1a2c9b528764bd4b",
+      "title": "JSS8 Project 2: Pattern Printing Solution",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "/*\nPrint out a pattern of stars using a nested loop that looks like the following using printToScreen():\n\t*\n\t**\n\t***\n\t****\n\t*****\nNext, do the same pattern with Pac-Men that you create using d3. The degreesToRadians(degrees) function has been provided for you.\n*/\n\n// Solution\n\nfor (let i = 0; i < 6; i++) {\n\tlet output = \"\";\n\tfor (let j = 0; j < i; j++) {\n\t\toutput += \"*\";\n\t}\n\tprintToScreen(output);\n}\n\nlet width = \"100%\";\nlet height = 2000;\n\nconst svg = d3\n\t.select(\"body\")\n\t.append(\"svg\")\n\t.attr(\"width\", width)\n\t.attr(\"height\", height);\n\nconst arcGenerator = d3.arc();\n\nlet pacMan = arcGenerator({\n\tstartAngle: degreesToRadians(120),\n\tendAngle: degreesToRadians(430),\n\tinnerRadius: 0,\n\touterRadius: 50\n});\n\nlet y = 0;\nfor (let i = 0; i < 6; i++) {\n\tlet x = 100;\n\tfor (let j = 0; j < i; j++) {\n\t\tsvg\n\t\t\t.append(\"path\")\n\t\t\t.attr(\"fill\", \"yellow\")\n\t\t\t.attr(\"transform\", `translate(${x},${y})`)\n\t\t\t.attr(\"d\", pacMan);\n\t\tx += 150;\n\t}\n\ty += 150;\n}\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction degreesToRadians(degrees) {\n\treturn (degrees * Math.PI) / 180;\n}\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", \"100%\")\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "settings": {
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ],
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "externalCSS": [],
+        "cssBase": "neither",
+        "vendorPrefixing": "neither"
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 1680,
+          "fnv1a64Utf16": "707ec1022835d37b"
+        }
+      },
+      "sourceHashes": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "5ec76fd75c26efb58dff9dd49c87cae195be5ca27ded5c0a081b45c5557ef5a4"
+      }
+    },
+    {
+      "project": "armstrong-numbers",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/eYJegdP",
+      "resolvedURL": "https://codepen.io/junilearning/pen/eYJegdP",
+      "title": "JSS8 Project 3: Armstrong Numbers",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Find all 3 digit Armstrong numbers and print them to the screen. Armstrong numbers are integers that are equal to the sum of their individual digits raised to the power of the number of digits.\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "settings": {
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ],
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "externalCSS": [],
+        "cssBase": "neither",
+        "vendorPrefixing": "neither"
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 892,
+          "fnv1a64Utf16": "50000a750b20c4e2"
+        }
+      },
+      "sourceHashes": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "54cf3fe610311047670593825c5b3511b73316ba138034c72e22092fa7e2a5bf"
+      }
+    },
+    {
+      "project": "armstrong-numbers",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/e12716e0c3e1cbfc0405c9da2e245b8a",
+      "resolvedURL": "https://codepen.io/junilearning/pen/xxZbPNJ/e12716e0c3e1cbfc0405c9da2e245b8a",
+      "title": "JSS8 Project 3: Armstrong Numbers Solution",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Find all 3 digit Armstrong numbers and print them to the screen. Armstrong numbers are integers that are equal to the sum of their individual digits raised to the power of the number of digits.\n\n// Solution\n\nfor (let i = 100; i < 1000; i++) {\n\t// Store information in other variables\n\tlet sum = 0;\n\tlet curVal = i;\n\n\t// Iterate through each of the digits\n\tfor (let j = 0; j < 3; j++) {\n\t\t// Get the digit\n\t\tlet digit = curVal % 10;\n\n\t\t// Add the cubed digit\n\t\tsum += Math.pow(digit, 3);\n\n\t\t// Divide i for finding the next digit\n\t\tcurVal = Math.floor(curVal / 10);\n\t}\n\tif (sum === i) {\n\t\tprintToScreen(i);\n\t}\n}\n\n// Alternatively, iterate through each of the digits\nfor (let i = 1; i < 10; i++) {\n\tfor (let j = 0; j < 10; j++) {\n\t\tfor (let k = 0; k < 10; k++) {\n\t\t\tlet cubedDigits = Math.pow(i, 3) + Math.pow(j, 3) + Math.pow(k, 3);\n\t\t\tlet threeDigitNumber = i * 100 + j * 10 + k;\n\t\t\tif (cubedDigits === threeDigitNumber) {\n\t\t\t\tprintToScreen(threeDigitNumber);\n\t\t\t}\n\t\t}\n\t}\n}\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "settings": {
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ],
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "externalCSS": [],
+        "cssBase": "neither",
+        "vendorPrefixing": "neither"
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 1634,
+          "fnv1a64Utf16": "76a0c16abab8181b"
+        }
+      },
+      "sourceHashes": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "d9d0f66b0bbe011748c4b4244358858e618299b5b8bc8f59af80c1eabe5408dd"
+      }
+    },
+    {
+      "project": "archery-simulator",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/xxZPgdv",
+      "resolvedURL": "https://codepen.io/junilearning/pen/xxZPgdv",
+      "title": "JSS8 Supplemental Project 1: Juni Archery",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "/*\nWelcome to Juni’s premier archery competition! You will be competing to see how many bullseyes you can hit, across 5 rounds of bowmanship. In each of these 5 rounds, you will fire 3 arrows. With every shot, you have a 1 in 3 chance to hit the bullseye.\n\nFor each shot, print out the round number and the shot within that round, followed by an “X” if you made the shot or an “O” if you missed. For example, if you missed your first two shots, the program should print out:\nRound 1, arrow 1: O\nRound 1, arrow 2: O\n\nLastly, count the total number of bullseyes you hit and display this number at the end.\n*/\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "settings": {
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ],
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "externalCSS": [],
+        "cssBase": "neither",
+        "vendorPrefixing": "neither"
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 1302,
+          "fnv1a64Utf16": "d1078c4a2a3829ad"
+        }
+      },
+      "sourceHashes": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "6dba35205c897816ab40f1dc7dd080f4489dd0c13ea69a08a0664bbe29c56a55"
+      }
+    },
+    {
+      "project": "archery-simulator",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/2882e6ebc5b146358627d5c4f5afd90c",
+      "resolvedURL": "https://codepen.io/junilearning/pen/yLeOYpw/2882e6ebc5b146358627d5c4f5afd90c",
+      "title": "JSS8 Supplemental Project 1: Juni Archery Solution",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "/*\nWelcome to Juni’s premier archery competition! You will be competing to see how many bullseyes you can hit, across 5 rounds of bowmanship. In each of these 5 rounds, you will fire 3 arrows. With every shot, you have a 1 in 3 chance to hit the bullseye.\n\nFor each shot, print out the round number and the shot within that round, followed by an “X” if you made the shot or an “O” if you missed. For example, if you missed your first two shots, the program should print out:\nRound 1, arrow 1: O\nRound 1, arrow 2: O\n\nLastly, count the total number of bullseyes you hit and display this number at the end.\n*/\n\n// Solution\n\nlet numRounds = 5;\nlet arrowsPerRound = 3;\nlet numHit = 0;\n\nprintToScreen(\n\t`Welcome to Juni archery! Prepare your bow for ${numRounds} rounds, with ${arrowsPerRound} arrows per round.`\n);\n\nfor (let curRound = 1; curRound < numRounds + 1; ++curRound) {\n\tfor (let curArrow = 1; curArrow < arrowsPerRound + 1; ++curArrow) {\n\t\tlet randomNum = Math.floor(Math.random() * 3);\n\t\tlet hit = \"O\";\n\t\tif (randomNum === 1) {\n\t\t\thit = \"X\";\n\t\t\tnumHit++;\n\t\t}\n\t\tprintToScreen(`Round ${curRound}, Arrrow ${curArrow}: ${hit}`);\n\t}\n}\n\nprintToScreen(`Total arrows hit: ${numHit}`);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "settings": {
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ],
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "externalCSS": [],
+        "cssBase": "neither",
+        "vendorPrefixing": "neither"
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 1840,
+          "fnv1a64Utf16": "355b10048c1ff71c"
+        }
+      },
+      "sourceHashes": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "a323de6d79e0c69e4b706a59109b338928895c88eccba3e05a6cc5eb0c87faac"
+      }
+    },
+    {
+      "project": "tower-of-boxes",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/PoZOWWp",
+      "resolvedURL": "https://codepen.io/junilearning/pen/PoZOWWp",
+      "title": "JSS8 Supplemental Project 2: Tower of Boxes",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "/*\nWrite a program that prints out the following pattern, using as few lines of code as you can:\n\n\t###\n\t#_#\n\t###\n\n\t####\n\t#__#\n\t#__#\n\t####\n\n\t#####\n\t#___#\n\t#___#\n\t#___#\n\t#####\n\n\t######\n\t#____#\n\t#____#\n\t#____#\n\t#____#\n\t######\n\t\n*/\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", \"100%\")\n\t\t.attr(\"height\", 40);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 40)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "settings": {
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ],
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "externalCSS": [],
+        "cssBase": "neither",
+        "vendorPrefixing": "neither"
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 713,
+          "fnv1a64Utf16": "5fda1905f0ff08f2"
+        }
+      },
+      "sourceHashes": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "4b2769692ee8d7e6240176af809d79af84256469b529a1f585777841f4203ff2"
+      }
+    },
+    {
+      "project": "tower-of-boxes",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/6973a709e1c0d6932da2ed1e7650d30f",
+      "resolvedURL": "https://codepen.io/junilearning/pen/wvMGdMK/6973a709e1c0d6932da2ed1e7650d30f",
+      "title": "JSS8 Supplemental Project 2: Tower of Boxes Solution",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "/*\nWrite a program that prints out the following pattern, using as few lines of code as you can:\n\n\t###\n\t#_#\n\t###\n\n\t####\n\t#__#\n\t#__#\n\t####\n\n\t#####\n\t#___#\n\t#___#\n\t#___#\n\t#####\n\n\t######\n\t#____#\n\t#____#\n\t#____#\n\t#____#\n\t######\n\t\n*/\n\n// Solution\n\nfor (let i = 0; i < 4; i++) {\n\tlet boxLid = \"\";\n\tlet boxInterior = \"#\";\n\tfor (let j = 0; j < 3 + i; j++) {\n\t\tboxLid += \"#\";\n\t}\n\tfor (let j = 0; j < 1 + i; j++) {\n\t\tboxInterior += \"_\";\n\t}\n\tboxInterior += \"#\";\n\tprintToScreen(boxLid);\n\tfor (let j = 0; j < 1 + i; j++) {\n\t\tprintToScreen(boxInterior);\n\t}\n\tprintToScreen(boxLid);\n\tprintToScreen(\"\");\n}\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", \"100%\")\n\t\t.attr(\"height\", 40);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 40)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "settings": {
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ],
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "externalCSS": [],
+        "cssBase": "neither",
+        "vendorPrefixing": "neither"
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 1035,
+          "fnv1a64Utf16": "e3b2dfd43dc9f9ef"
+        }
+      },
+      "sourceHashes": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "75136c952b879cacbe54ceae9d47ff4f29835fcc85f911d1d0be4a15686012c0"
+      }
+    },
+    {
+      "project": "shield-debugging",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/pogyeaj",
+      "resolvedURL": "https://codepen.io/junilearning/pen/pogyeaj",
+      "title": "JSS8 Supplemental Project 3: Debugging Captain America's Shield",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// SHIELD is making more of Captain America’s shield! However, the assembly line is broken, making it print out erratically, and not in a stacked order. Find the bugs!\n\nlet width = 2000;\nlet height = 2000;\nlet positionX = 200;\nlet positionY = 200;\n\n// Create SVG element to append to\nlet svg = d3\n\t.select(\"body\")\n\t.append(\"svg\")\n\t.attr(\"width\", width)\n\t.attr(\"height\", height);\n\nlet y = 0;\nfor (let i = 0; i < 10; i++) {\n\tlet x = 100;\n\tfor (let i = 0; j < i; j++) {\n\t\t// Add a large circle at the top\n\t\tsvg\n\t\t\t.append(\"circle\")\n\t\t\t.attr(\"fill\", \"red\")\n\t\t\t.attr(\"cx\", positionX)\n\t\t\t.attr(\"cy\", positionY)\n\t\t\t.attr(\"r\", 110);\n\n\t\t// Add a medium circle in the middle\n\t\tsvg\n\t\t\t.append(\"circle\")\n\t\t\t.attr(\"fill\", \"white\")\n\t\t\t.attr(\"cx\", positionX)\n\t\t\t.attr(\"cy\", positionY)\n\t\t\t.attr(\"r\", 90);\n\n\t\t// Add a medium circle in the middle\n\t\tsvg\n\t\t\t.append(\"circle\")\n\t\t\t.attr(\"fill\", \"red\")\n\t\t\t.attr(\"cx\", positionX)\n\t\t\t.attr(\"cy\", positionY)\n\t\t\t.attr(\"r\", 70);\n\n\t\t// Add a small circle to the top\n\t\tsvg\n\t\t\t.append(\"circle\")\n\t\t\t.attr(\"fill\", \"blue\")\n\t\t\t.attr(\"cx\", positionX)\n\t\t\t.attr(\"cy\", positionY)\n\t\t\t.attr(\"r\", 50);\n\n\t\tlet star = d3.symbol().type(d3.symbolStar).size(2000);\n\n\t\tsvg\n\t\t\t.append(\"path\")\n\t\t\t.attr(\"d\", star)\n\t\t\t.attr(\"fill\", \"white\")\n\t\t\t.attr(\"transform\", `translate(${positionX},${positionY})`);\n\n\t\tpositionX += 210;\n\t}\n\tpositionY += 210;\n}\n\n// DO NOT ALTER: Starter code that will print text to the screen!\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "settings": {
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ],
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "externalCSS": [],
+        "cssBase": "neither",
+        "vendorPrefixing": "neither"
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 2025,
+          "fnv1a64Utf16": "1a68375552a782bf"
+        }
+      },
+      "sourceHashes": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "c91121cbd507d22add133790eda2b326970d4f203d712883f37cd202457f05c8"
+      }
+    },
+    {
+      "project": "shield-debugging",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/1ac928d6d9d777928c4439b4262310a3",
+      "resolvedURL": "https://codepen.io/junilearning/pen/JjXbvyr/1ac928d6d9d777928c4439b4262310a3",
+      "title": "JSS8 Supplemental Project 3: Debugging Captain America's Shield Solution",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// SHIELD is making more of Captain America’s shield! However, the assembly line is broken, making it print out erratically, and not in a stacked order. Find the bugs!\n\nlet width = 2000;\nlet height = 2000;\n\n// Create SVG element to append to\nlet svg = d3\n\t.select(\"body\")\n\t.append(\"svg\")\n\t.attr(\"width\", width)\n\t.attr(\"height\", height);\n\nlet y = 0;\nfor (let i = 0; i < 10; i++) {\n\tlet x = 200;\n\tfor (let j = 0; j < i; j++) {\n\t\t// Add a large circle at the top\n\t\tsvg\n\t\t\t.append(\"circle\")\n\t\t\t.attr(\"fill\", \"red\")\n\t\t\t.attr(\"cx\", x)\n\t\t\t.attr(\"cy\", y)\n\t\t\t.attr(\"r\", 110);\n\n\t\t// Add a medium circle in the middle\n\t\tsvg\n\t\t\t.append(\"circle\")\n\t\t\t.attr(\"fill\", \"white\")\n\t\t\t.attr(\"cx\", x)\n\t\t\t.attr(\"cy\", y)\n\t\t\t.attr(\"r\", 90);\n\n\t\t// Add a medium circle in the middle\n\t\tsvg\n\t\t\t.append(\"circle\")\n\t\t\t.attr(\"fill\", \"red\")\n\t\t\t.attr(\"cx\", x)\n\t\t\t.attr(\"cy\", y)\n\t\t\t.attr(\"r\", 70);\n\n\t\t// Add a small circle to the top\n\t\tsvg\n\t\t\t.append(\"circle\")\n\t\t\t.attr(\"fill\", \"blue\")\n\t\t\t.attr(\"cx\", x)\n\t\t\t.attr(\"cy\", y)\n\t\t\t.attr(\"r\", 50);\n\n\t\tlet star = d3.symbol().type(d3.symbolStar).size(2000);\n\n\t\tsvg\n\t\t\t.append(\"path\")\n\t\t\t.attr(\"d\", star)\n\t\t\t.attr(\"fill\", \"white\")\n\t\t\t.attr(\"transform\", `translate(${x},${y})`);\n\n\t\tx += 210;\n\t}\n\ty += 210;\n}\n\n// DO NOT ALTER: Starter code that will print text to the screen!\nfunction printToScreen(text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+      },
+      "settings": {
+        "jsPreprocessor": "None",
+        "externalJavaScript": [
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ],
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "head": "",
+        "cssPreprocessor": "None",
+        "externalCSS": [],
+        "cssBase": "neither",
+        "vendorPrefixing": "neither"
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 1887,
+          "fnv1a64Utf16": "4ec5cfe619e802be"
+        }
+      },
+      "sourceHashes": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "24db5bb7a9d8d514511f483d2fb127afae9fc56c925d99ce2f15b6598d1e01e4"
+      }
+    }
+  ]
+}

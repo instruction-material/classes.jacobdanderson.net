@@ -1,0 +1,46 @@
+// Solution
+
+let width = 500;
+let height = 500;
+
+const svg = d3.select("body")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height)
+  .attr("viewBox", "0 0 500 500")
+  .attr("role", "img")
+  .attr("aria-label", "Smiley Face");
+
+svg.append("rect")
+  .attr("fill", "green")
+  .attr("x", 200)
+  .attr("y", 25)
+  .attr("width", 10)
+  .attr("height", 100);
+
+svg.append("rect")
+  .attr("fill", "green")
+  .attr("x", 290)
+  .attr("y", 25)
+  .attr("width", 10)
+  .attr("height", 100);
+
+const arcGenerator = d3.arc();
+
+let pathData = arcGenerator({
+  startAngle: degreesToRadians(90),
+  endAngle: degreesToRadians(270),
+  innerRadius: 90,
+  outerRadius: 100
+});
+
+svg.append('path')
+  .attr("fill", "green")
+  .attr("transform", "translate(250,200)")
+	.attr('d', pathData);
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function degreesToRadians(degrees) {
+  return degrees * Math.PI / 180;
+};

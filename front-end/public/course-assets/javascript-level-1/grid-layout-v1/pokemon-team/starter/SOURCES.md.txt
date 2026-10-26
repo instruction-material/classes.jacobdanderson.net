@@ -1,0 +1,66 @@
+# Image sources
+
+## Image 1
+
+{
+  "index": 0,
+  "url": "https://www.serebii.net/swordshield/pokemon/012.png",
+  "mimeType": "image/png",
+  "bytes": 42714,
+  "sha256": "3f2e9ab07855d0f80c9a5fd4636270daa0e962c34634480ea35eb768d3e85b56"
+}
+
+
+## Image 2
+
+{
+  "index": 1,
+  "url": "https://www.serebii.net/swordshield/pokemon/248.png",
+  "mimeType": "image/png",
+  "bytes": 49402,
+  "sha256": "1229554663a670e40c4072cff9f581728021877ed867e7789ac3913a96678e5d"
+}
+
+
+## Image 3
+
+{
+  "index": 2,
+  "url": "https://www.serebii.net/Shiny/SWSH/330.png",
+  "mimeType": "image/png",
+  "bytes": 41737,
+  "sha256": "08556bae8a637f4746a3fd4f5bc07358df9d258071b70d95dd17369563c07466"
+}
+
+
+## Image 4
+
+{
+  "index": 3,
+  "url": "https://www.serebii.net/swordshield/pokemon/171.png",
+  "mimeType": "image/png",
+  "bytes": 36767,
+  "sha256": "e5bcac9a8edd279480301f3c228832dcafa152307430a65dd0a62e51a2da09e5"
+}
+
+
+## Image 5
+
+{
+  "index": 4,
+  "url": "https://www.serebii.net/swordshield/pokemon/407.png",
+  "mimeType": "image/png",
+  "bytes": 35839,
+  "sha256": "4ced3bd653ab92e380fcb726b3d3c6134973a19157ae1a4f93e64121ea5c1c0f"
+}
+
+
+## Image 6
+
+{
+  "index": 5,
+  "url": "https://www.serebii.net/swordshield/pokemon/068.png",
+  "mimeType": "image/png",
+  "bytes": 48907,
+  "sha256": "0ba8d092e909f238855e45517625c79de9f6d0911e1fd16769695bf112e2f72e"
+}

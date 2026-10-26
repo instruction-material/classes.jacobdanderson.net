@@ -1,0 +1,4 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>Video Collection</title><link rel="stylesheet" href="vendor/materialize.min.css"><link rel="stylesheet" href="styles.css"></head><body>
+<header class="collection-header"><h1>Video collection</h1></header><main><div class="row video-grid"><!-- TODO: Build nine cards with responsive iframes, titles, short descriptions, and matching watch links. --></div></main>
+<script src="script.js"></script></body></html>

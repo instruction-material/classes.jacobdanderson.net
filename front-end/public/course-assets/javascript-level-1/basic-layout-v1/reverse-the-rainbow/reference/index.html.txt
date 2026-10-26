@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reverse The Rainbow</title>
+<link rel="stylesheet" href="vendor/materialize.min.css">
+<link rel="stylesheet" href="vendor/material-icons.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Reverse The Rainbow</h1>
+<div role="list" class="rainbow-row row center hide-on-med-and-down">
+  <span role="listitem"><i class="material-icons large red-text" aria-hidden="true">face</i><span class="visually-hidden">face</span></span>
+  <span role="listitem"><i class="material-icons large orange-text" aria-hidden="true">bug_report</i><span class="visually-hidden">bug report</span></span>
+  <span role="listitem"><i class="material-icons large yellow-text" aria-hidden="true">fingerprint</i><span class="visually-hidden">fingerprint</span></span>
+  <span role="listitem"><i class="material-icons large green-text" aria-hidden="true">autorenew</i><span class="visually-hidden">autorenew</span></span>
+  <span role="listitem"><i class="material-icons large blue-text" aria-hidden="true">build</i><span class="visually-hidden">build</span></span>
+  <span role="listitem"><i class="material-icons large indigo-text" aria-hidden="true">card_travel</i><span class="visually-hidden">card travel</span></span>
+  <span role="listitem"><i class="material-icons large purple-text" aria-hidden="true">event_seat</i><span class="visually-hidden">event seat</span></span>
+</div>
+<div role="list" class="rainbow-row row center hide-on-large-only">
+  <span role="listitem"><i class="material-icons small purple-text" aria-hidden="true">event_seat</i><span class="visually-hidden">event seat</span></span>
+  <span role="listitem"><i class="material-icons small indigo-text" aria-hidden="true">card_travel</i><span class="visually-hidden">card travel</span></span>
+  <span role="listitem"><i class="material-icons small blue-text" aria-hidden="true">build</i><span class="visually-hidden">build</span></span>
+  <span role="listitem"><i class="material-icons small green-text" aria-hidden="true">autorenew</i><span class="visually-hidden">autorenew</span></span>
+  <span role="listitem"><i class="material-icons small yellow-text" aria-hidden="true">fingerprint</i><span class="visually-hidden">fingerprint</span></span>
+  <span role="listitem"><i class="material-icons small orange-text" aria-hidden="true">bug_report</i><span class="visually-hidden">bug report</span></span>
+  <span role="listitem"><i class="material-icons small red-text" aria-hidden="true">face</i><span class="visually-hidden">face</span></span>
+</div>
+</body>
+</html>

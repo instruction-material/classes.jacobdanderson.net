@@ -219,13 +219,15 @@ describe("JavaScript Level 1 learner flow", () => {
 
 		expect(text).toContain("ECMAScript 2026");
 		expect(text).toContain("HTML Living Standard");
+		expect(text).toContain("Drawing and gallery packs bundle D3 5.16.0");
+		expect(text).toContain("animation packs bundle D3 7.9.0");
 		expect(text).toContain("D3 7.9.0");
 		expect(text).toContain("Materialize 2.2.2");
 		expect(text).toContain(
 			"printToScreen(), prompt(), and alert() are labeled introductory"
 		);
 		expect(text).toContain(
-			"every core concept also has a native HTML, CSS, DOM, or SVG route"
+			"core concepts also have a native HTML, CSS, DOM, or SVG route"
 		);
 	});
 

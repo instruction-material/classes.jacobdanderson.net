@@ -1,0 +1,111 @@
+/* Draw a snowman using D3! You already know how to draw shapes and arcs, here's an example of how to draw a straight line:
+
+svg.append("line") // attach a line
+  .style("stroke", "brown") // color the line
+  .attr("x1", 100)  // x position of the first end of the line
+  .attr("y1", 50)  // y position of the first end of the line
+  .attr("x2", 300)  // x position of the second end of the line
+  .attr("y2", 150);  // y position of the second end of the line
+
+The degreesToRadians() function has once again been provided.
+*/
+
+// Solution
+
+let width = 750;
+let height = 750;
+
+let svg = d3.select("body")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height)
+  .attr("viewBox", "0 0 750 750")
+  .attr("role", "img")
+  .attr("aria-label", "Snowman");
+
+// Add a small circle to the top
+svg.append("circle")
+  .attr("fill", "white")
+  .attr("cx", 150)
+  .attr("cy", 50)
+  .attr("r", 50);
+
+// Left eye
+svg.append("circle")
+  .attr("fill", "black")
+  .attr("cx", 125)
+  .attr("cy", 35)
+  .attr("r", 5);
+
+// Right eye
+svg.append("circle")
+  .attr("fill", "black")
+  .attr("cx", 175)
+  .attr("cy", 35)
+  .attr("r", 5);
+
+svg.append("circle")
+  .attr("fill", "orange")
+  .attr("cx", 150)
+  .attr("cy", 50)
+  .attr("r", 5);
+
+// Nose
+
+/*
+Code handling the mouth
+*/
+// Prepare a generator that will create arcs
+const arcGenerator = d3.arc();
+
+// Generate a path that will be the smile
+let pathData = arcGenerator({
+  startAngle: degreesToRadians(90),
+  endAngle: degreesToRadians(270),
+  innerRadius: 10,
+  outerRadius: 15
+});
+
+// Append the smile path, translated to (150,70)
+svg.append('path')
+  .attr("fill", "black")
+  .attr("transform", "translate(150,70)")
+	.attr('d', pathData);
+
+// Add a medium circle in the middle
+svg.append("circle")
+  .attr("fill", "white")
+  .attr("cx", 150)
+  .attr("cy", 160)
+  .attr("r", 70);
+
+// Draw the left arm
+let leftArm = svg.append("line")               
+              .attr("x1", 200)
+              .attr("x2", 300)
+              .attr("y1", 160)
+              .attr("y2", 145)
+              .attr("stroke-width", 2)
+              .attr("stroke", "brown");
+
+// Draw the right arm
+let rightArm = svg.append("line")               
+              .attr("x1", 100)
+              .attr("x2", 0)
+              .attr("y1", 160)
+              .attr("y2", 145)
+              .attr("stroke-width", 2)
+              .attr("stroke", "brown");
+
+// Add the large bottom body circle
+svg.append("circle")
+  .attr("fill", "white")
+  .attr("cx", 150)
+  .attr("cy", 300)
+  .attr("r", 100);
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function degreesToRadians(degrees) {
+  return degrees * Math.PI / 180;
+};

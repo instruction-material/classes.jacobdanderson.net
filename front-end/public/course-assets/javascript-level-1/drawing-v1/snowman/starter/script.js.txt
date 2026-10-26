@@ -1,0 +1,21 @@
+/* Draw a snowman using D3! You already know how to draw shapes and arcs, here's an example of how to draw a straight line:
+
+svg.append("line") // attach a line
+  .style("stroke", "brown") // color the line
+  .attr("x1", 100)  // x position of the first end of the line
+  .attr("y1", 50)  // y position of the first end of the line
+  .attr("x2", 300)  // x position of the second end of the line
+  .attr("y2", 150);  // y position of the second end of the line
+
+The degreesToRadians() function has once again been provided.
+*/
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function degreesToRadians(degrees) {
+  return degrees * Math.PI / 180;
+};

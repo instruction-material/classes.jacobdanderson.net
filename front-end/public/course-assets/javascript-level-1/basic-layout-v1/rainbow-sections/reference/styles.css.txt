@@ -1,0 +1,6 @@
+* { box-sizing: border-box; }
+body { overflow-wrap: anywhere; }
+body { color: #111; }
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.5rem; }
+main > .section { padding-inline: 1rem; }

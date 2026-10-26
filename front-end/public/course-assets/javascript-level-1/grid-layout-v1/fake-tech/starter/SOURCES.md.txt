@@ -1,0 +1,55 @@
+# Image sources
+
+## Image 1
+
+{
+  "index": 0,
+  "url": "https://www.shareicon.net/data/256x256/2016/05/24/770107_man_512x512.png",
+  "mimeType": "image/png",
+  "bytes": 18542,
+  "sha256": "9bc6394081d52e56daeed500042b6be4cc8d817354ec78d54fced6c3b42f75eb"
+}
+
+
+## Image 2
+
+{
+  "index": 1,
+  "url": "https://www.shareicon.net/data/256x256/2016/05/24/770088_people_512x512.png",
+  "mimeType": "image/png",
+  "bytes": 17664,
+  "sha256": "00057145015866522f2a3131e490384be988b6afbf517133aa452d4054529349"
+}
+
+
+## Image 3
+
+{
+  "index": 2,
+  "url": "https://www.shareicon.net/data/256x256/2016/05/24/770105_man_512x512.png",
+  "mimeType": "image/png",
+  "bytes": 14879,
+  "sha256": "107f7d82a64ae8d0bc74b93c71da2de3d85ee87f43cc325cd84d43e58ef18228"
+}
+
+
+## Image 4
+
+{
+  "index": 3,
+  "url": "https://www.shareicon.net/data/256x256/2016/05/24/770098_people_512x512.png",
+  "mimeType": "image/png",
+  "bytes": 19718,
+  "sha256": "674be51f2b6279c96583948bc6c4ae2f37ab7627847f6aea71e209511a0949b7"
+}
+
+
+## Image 5
+
+{
+  "index": 4,
+  "url": "https://www.shareicon.net/data/256x256/2016/05/24/770100_people_512x512.png",
+  "mimeType": "image/png",
+  "bytes": 16733,
+  "sha256": "eb162a40a02313dfac83203dbef121cc1dbe648576a64d7ad9f822c4df1cc77e"
+}

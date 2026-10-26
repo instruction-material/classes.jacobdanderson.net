@@ -1,0 +1,3 @@
+// Make a parallax page of a national park using the Materialize JavaScript component. Make sure to use 2-3 background images of significant size.
+
+// TODO: Add the matching HTML backgrounds, then initialize the Parallax component.

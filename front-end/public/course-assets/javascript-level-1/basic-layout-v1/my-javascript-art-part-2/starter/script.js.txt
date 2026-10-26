@@ -1,0 +1,142 @@
+let colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"];
+
+let margin = { top: 30, right: 200, bottom: 50, left: 30, pad: 10 };
+var width = 800 - margin.left - margin.right;
+var height = 450 - margin.top - margin.bottom;
+
+let svg = d3
+  .select("#rainbow")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height)
+  .attr("viewBox", `0 0 ${width} ${height}`)
+  .append("g")
+  .attr("transform", "translate(300,300)");
+
+//Define Arc for rainbow
+let arc = d3
+  .arc()
+  .innerRadius(function (d, i) {
+    return 300 - 20 * i;
+  })
+  .outerRadius(function (d, i) {
+    return 300 - 20 * i - 20;
+  })
+  .startAngle(function (d, i) {
+    return (-Math.PI / 2) * 0.7;
+  })
+  .endAngle(function (d, i) {
+    return (Math.PI / 2) * 0.7;
+  });
+
+//Adding all colors arc
+let path = svg
+  .selectAll("g.arc")
+  .data(colors)
+  .enter()
+  .append("g")
+  .attr("class", "arc");
+//Adding with animation
+const arcs = path.append("path").attr("fill", d => d).attr("d", arc);
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  arcs.attr("opacity", 0).transition().delay((d, i) => i * 200).duration(150).attr("opacity", 1);
+}
+
+let widthShield = 750;
+let heightShield = 500;
+
+let positionX = 375;
+let positionY = 200;
+
+// Create SVG element to append to
+let svg2 = d3.select("#shield")
+  .append("svg")
+  .attr("width", widthShield)
+  .attr("height", heightShield)
+  .attr("viewBox", `0 0 ${widthShield} ${heightShield}`);
+
+// Add a large circle at the top
+svg2.append("circle")
+  .attr("fill", "red")
+  .attr("cx", positionX)
+  .attr("cy", positionY)
+  .attr("r", 110);
+
+// Add a medium circle in the middle
+svg2.append("circle")
+  .attr("fill", "white")
+  .attr("cx", positionX)
+  .attr("cy", positionY)
+  .attr("r", 90);
+
+// Add a medium circle in the middle
+svg2.append("circle")
+  .attr("fill", "red")
+  .attr("cx", positionX)
+  .attr("cy", positionY)
+  .attr("r", 70);
+
+// Add a small circle to the top
+svg2.append("circle")
+  .attr("fill", "blue")
+  .attr("cx", positionX)
+  .attr("cy", positionY)
+  .attr("r", 50);
+
+let star = d3.symbol().type(d3.symbolStar).size(2000);
+
+svg2.append("path")
+  .attr("d", star)
+  .attr("fill", "white")
+  .attr("transform", `translate(${positionX},${positionY})`);
+
+let width2 = 500;
+let height2 = 500;
+
+// Convert degrees to radians before passing angles to the arc generator.
+const degreesToRadians = (degrees) => (
+  degrees * Math.PI / 180
+);
+
+// Create a new svg to append to
+const svg3 = d3.select("#pacman")
+  .append("svg")
+  .attr("width", width2)
+  .attr("height", height2)
+  .attr("viewBox", `0 0 ${width2} ${height2}`);
+
+// Create the object that will generate our curves
+const arcGenerator = d3.arc();
+
+// Create the arc that will be the left Pac-Man–note the start and end angles, and their difference vs. the right Pac-Man below
+let leftPacMan = arcGenerator({
+  startAngle: degreesToRadians(120),
+  endAngle: degreesToRadians(430),
+  innerRadius: 0,
+  outerRadius: 100
+});
+
+// Create the arc that will be the right Pac-Man
+let rightPacMan = arcGenerator({
+  startAngle: -degreesToRadians(120),
+  endAngle: -degreesToRadians(430),
+  innerRadius: 0,
+  outerRadius: 100
+});
+
+// Append the left Pac-Man to the svg
+svg3.append('path')
+  .attr("fill", "yellow")
+  .attr("transform", "translate(150,110)")
+	.attr('d', leftPacMan);
+
+// Append the right Pac-Man to the svg
+svg3.append('path')
+  .attr("fill", "yellow")
+  .attr("transform", "translate(400,110)")
+	.attr('d', rightPacMan);
+for (const name of ["rainbow", "shield", "pacman"]) {
+  d3.select(`#${name} svg`).attr("role", "img").attr("aria-labelledby", `${name}-description`);
+}
+
+// Add the snowman SVG and shapes inside #snowman.

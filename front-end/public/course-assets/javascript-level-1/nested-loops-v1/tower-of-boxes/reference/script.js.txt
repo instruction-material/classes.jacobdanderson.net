@@ -1,0 +1,54 @@
+/*
+Write a program that prints out the following pattern, using as few lines of code as you can:
+
+	###
+	#_#
+	###
+
+	####
+	#__#
+	#__#
+	####
+
+	#####
+	#___#
+	#___#
+	#___#
+	#####
+
+	######
+	#____#
+	#____#
+	#____#
+	#____#
+	######
+
+*/
+
+// Solution
+
+for (let i = 0; i < 4; i++) {
+	let boxLid = "";
+	let boxInterior = "#";
+	for (let j = 0; j < 3 + i; j++) {
+		boxLid += "#";
+	}
+	for (let j = 0; j < 1 + i; j++) {
+		boxInterior += "_";
+	}
+	boxInterior += "#";
+	printToScreen(boxLid);
+	for (let j = 0; j < 1 + i; j++) {
+		printToScreen(boxInterior);
+	}
+	printToScreen(boxLid);
+	printToScreen("");
+}
+
+// Provided output helper.
+function printToScreen(text) {
+	d3.select("body")
+		.append("pre")
+		.attr("class", "output-line")
+		.text(text);
+}

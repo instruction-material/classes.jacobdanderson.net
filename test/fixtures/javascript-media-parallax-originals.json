@@ -1,0 +1,228 @@
+{
+  "resources": [
+    {
+      "project": "video-collection",
+      "role": "starter",
+      "title": "JSS14 Supplemental Project 1: Video Collection",
+      "url": "https://codepen.io/junilearning/pen/71ea495430eac148ba6c02e837de1727",
+      "observedURL": "https://codepen.io/junilearning/pen/JjGmeaG",
+      "panels": {
+        "HTML": "<!-- \nUsing the Materialize docs, figure out how to embed a video in the website. Then, make a collection of 9 of your favorite videos to save for later viewing.\n-->\n",
+        "CSS": "",
+        "JavaScript": ""
+      },
+      "settings": {
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+          ]
+        },
+        "CSS": {
+          "preprocessor": "None",
+          "base": "Neither",
+          "prefix": "Neither",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          ]
+        },
+        "HTML": {
+          "preprocessor": "None",
+          "head": "",
+          "classes": ""
+        }
+      },
+      "visibleEditorCopy": true,
+      "dependencySettingsViewed": true,
+      "emptyEditorsVerifiedWithClearedClipboard": true,
+      "clipboardChecks": {
+        "HTML": {
+          "utf16Length": 166,
+          "fnv1a32": "5a64773c"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      },
+      "retainedAt": "2026-10-25T16:43:08.732729+00:00",
+      "panelSHA256": {
+        "HTML": "6dbf1b3ab62f64d41e924112550d9b80ce209e8290b4779bba237929919c2bf0",
+        "CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "JavaScript": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "project": "video-collection",
+      "role": "reference",
+      "title": "JSS14 Supplemental Project 1: Video Collection Solution",
+      "url": "https://codepen.io/junilearning/pen/449ef8b56fdf70dca74400b0401655e1",
+      "observedURL": "https://codepen.io/junilearning/pen/YzwvNNL/449ef8b56fdf70dca74400b0401655e1",
+      "panels": {
+        "HTML": "<!-- \nUsing the Materialize docs, figure out how to embed a video in the website. Then, make a collection of 9 of your favorite videos to save for later viewing.\n-->\n\n<nav class=\"red\" role=\"navigation\">\n  <div class=\"nav-wrapper container\">\n    <div class=\"brand-logo center\">\n      My Favorite Music Videos\n    </div>\n  </div>\n</nav>\n<br>\n<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col s12 m6 l4\">\n      <div class=\"video-container\">\n        <iframe src=\"//www.youtube.com/embed/_3YNL0OWio0\" frameborder=\"0\" allowfullscreen></iframe>\n      </div>\n    </div>\n    <div class=\"col s12 m6 l4\">\n      <div class=\"video-container\">\n        <iframe src=\"//www.youtube.com/embed/zbVpOyy0Pq0\" frameborder=\"0\" allowfullscreen></iframe>\n      </div>\n    </div>\n    <div class=\"col s12 m6 l4\">\n      <div class=\"video-container\">\n        <iframe src=\"//www.youtube.com/embed/qDELXywZFxQ\" frameborder=\"0\" allowfullscreen></iframe>\n      </div>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col s12 m6 l4\">\n      <div class=\"video-container\">\n        <iframe src=\"//www.youtube.com/embed/0scGMnbC0po\" frameborder=\"0\" allowfullscreen></iframe>\n      </div>\n    </div>\n    <div class=\"col s12 m6 l4\">\n      <div class=\"video-container\">\n        <iframe src=\"//www.youtube.com/embed/rksphjrR2Pk\" frameborder=\"0\" allowfullscreen></iframe>\n      </div>\n    </div>\n    <div class=\"col s12 m6 l4\">\n      <div class=\"video-container\">\n        <iframe src=\"//www.youtube.com/embed/uh2_SdmW8SQ\" frameborder=\"0\" allowfullscreen></iframe>\n      </div>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col s12 m6 l4\">\n      <div class=\"video-container\">\n        <iframe src=\"//www.youtube.com/embed/nplo-OHUzKQ\" frameborder=\"0\" allowfullscreen></iframe>\n      </div>\n    </div>\n    <div class=\"col s12 m6 l4\">\n      <div class=\"video-container\">\n        <iframe src=\"//www.youtube.com/embed/Q37uSTMwuXU\" frameborder=\"0\" allowfullscreen></iframe>\n      </div>\n    </div>\n    <div class=\"col s12 m6 l4\">\n      <div class=\"video-container\">\n        <iframe src=\"//www.youtube.com/embed/aSSQ0Z6eDhU\" frameborder=\"0\" allowfullscreen></iframe>\n      </div>\n    </div>\n  </div>\n</div>\n<br>\n<br>\n<br>\n<br>\n",
+        "CSS": "",
+        "JavaScript": ""
+      },
+      "settings": {
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+          ]
+        },
+        "CSS": {
+          "preprocessor": "None",
+          "base": "Neither",
+          "prefix": "Neither",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          ]
+        },
+        "HTML": {
+          "preprocessor": "None",
+          "head": "",
+          "classes": ""
+        }
+      },
+      "visibleEditorCopy": true,
+      "dependencySettingsViewed": true,
+      "emptyEditorsVerifiedWithClearedClipboard": true,
+      "clipboardChecks": {
+        "HTML": {
+          "utf16Length": 2206,
+          "fnv1a32": "d45bf913"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        }
+      },
+      "retainedAt": "2026-10-25T16:43:08.732868+00:00",
+      "panelSHA256": {
+        "HTML": "e11dff3fb559b12631721189686bac05fe320a4645de686610e73857abe3f9b3",
+        "CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "JavaScript": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "project": "national-park",
+      "role": "starter",
+      "title": "JSS14 Supplemental Project 2: National Park",
+      "url": "https://codepen.io/junilearning/pen/bba3ef0f2520577fb92d3fc6cc546335",
+      "observedURL": "https://codepen.io/junilearning/pen/RwreqBg",
+      "panels": {
+        "HTML": "",
+        "CSS": "",
+        "JavaScript": "// Make a parallax page of a national park using the Materialize JavaScript component. Make sure to use 2-3 background images of significant size.\n"
+      },
+      "settings": {
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+          ]
+        },
+        "CSS": {
+          "preprocessor": "None",
+          "base": "Neither",
+          "prefix": "Neither",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          ]
+        },
+        "HTML": {
+          "preprocessor": "None",
+          "head": "",
+          "classes": ""
+        }
+      },
+      "visibleEditorCopy": true,
+      "dependencySettingsViewed": true,
+      "emptyEditorsVerifiedWithClearedClipboard": true,
+      "clipboardChecks": {
+        "HTML": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "CSS": {
+          "utf16Length": 0,
+          "fnv1a32": "811c9dc5"
+        },
+        "JavaScript": {
+          "utf16Length": 147,
+          "fnv1a32": "064834ae"
+        }
+      },
+      "retainedAt": "2026-10-25T16:43:31.465405+00:00",
+      "panelSHA256": {
+        "HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "JavaScript": "4f8bcc58eab321e468e12c10b5364bcd73bc9f8404c0c3cde6a621a6d2d2e66c"
+      }
+    },
+    {
+      "project": "national-park",
+      "role": "reference",
+      "title": "JS14 Supplemental Project 2: National Park Solution",
+      "url": "https://codepen.io/junilearning/pen/1d2df4b333d28c9a00f17d0fa4f37978",
+      "observedURL": "https://codepen.io/junilearning/pen/mdVKJJR/1d2df4b333d28c9a00f17d0fa4f37978",
+      "panels": {
+        "HTML": "<nav class=\"yellow darken-1\" role=\"navigation\">\n  <div class=\"nav-wrapper container\">\n    <div class=\"brand-logo center\">\n      Yellowstone National Park\n    </div>\n  </div>\n</nav>\n<div class=\"parallax-container\">\n  <div class=\"parallax\"><img src=\"https://jacksonholewildlifesafaris.com/wp-content/uploads/2019/09/yellowstone-waterfall-hero-720x405@2x.jpg\"></div>\n</div>\n<div class=\"section yellow darken-1\">\n  <div class=\"row container\">\n    <h4 class=\"header white-text\">General Information</h4>\n    <p class=\"white-text\">Yellowstone National Park is a nearly 3,500-sq.-mile wilderness recreation area atop a volcanic hot spot. Mostly in Wyoming, the park spreads into parts of Montana and Idaho too.</p>\n    <h4 class=\"header white-text\">Flora and Fauna</h4>\n    <p class=\"white-text right\">Yellowstone features dramatic canyons, alpine rivers, lush forests, hot springs and gushing geysers, including its most famous, Old Faithful. It's also home to hundreds of animal species, including bears, wolves, bison, elk and antelope.</p>\n  </div>\n</div>\n<div class=\"parallax-container\">\n  <div class=\"parallax\"><img src=\"https://gypsyguide.com/wp-content/uploads/2017/09/Yellowstone-and-Grand-Teton-National-Park-Tours-1.jpg\"></div>\n</div>\n<div class=\"page-footer yellow darken-1\">\n  <div class=\"container\">\n    <h5>Book a Trip today!</h5>\n    <p>(807) 979-9797</p>\n    <p>info@yellowstone.com</p>\n    <br>\n  </div>\n</div>",
+        "CSS": "body {\n  margin: 0px;\n}",
+        "JavaScript": "// Make a parallax page of a national park using the Materialize JavaScript component. Make sure to use 2-3 background images of significant size.\n\n// Solution\n\nM.Parallax.init(document.querySelectorAll('.parallax'), {edge: 'right'});  \n"
+      },
+      "settings": {
+        "JavaScript": {
+          "preprocessor": "None",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+          ]
+        },
+        "CSS": {
+          "preprocessor": "None",
+          "base": "Neither",
+          "prefix": "Neither",
+          "resources": [
+            "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          ]
+        },
+        "HTML": {
+          "preprocessor": "None",
+          "head": "",
+          "classes": ""
+        }
+      },
+      "visibleEditorCopy": true,
+      "dependencySettingsViewed": true,
+      "emptyEditorsVerifiedWithClearedClipboard": true,
+      "clipboardChecks": {
+        "HTML": {
+          "utf16Length": 1420,
+          "fnv1a32": "fb19f900"
+        },
+        "CSS": {
+          "utf16Length": 23,
+          "fnv1a32": "9b2e6bca"
+        },
+        "JavaScript": {
+          "utf16Length": 237,
+          "fnv1a32": "366ee6bf"
+        }
+      },
+      "retainedAt": "2026-10-25T16:43:31.466046+00:00",
+      "panelSHA256": {
+        "HTML": "6533c88b13ea83de5243dcf6d067d03fbb5df9aa3d0c7e71a7ce80cae2214b2d",
+        "CSS": "89ceb2adf39c4134738e8b269c8ff66160325bd0cf6564c6c68851faf5da688b",
+        "JavaScript": "2c14daa33a796b3d737dfbaea787a510962c837464dab86c02b56171ddbc5340"
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Make a ball that grows in size when we put our mouse over it, and then shrinks when we move our mouse away.
+
+// Solution
+
+let width = 750;
+let height = 750;
+
+let positionX = 200;
+let positionY = 200;
+
+let originalR = 110;
+let biggerR = 200;
+
+let svg = d3
+	.select("body")
+	.append("svg")
+	.attr("width", width)
+	.attr("height", height)
+	.attr("viewBox", `0 0 ${width} ${height}`)
+	.attr("role", "img")
+	.attr("aria-label", "Red circle that changes radius without moving its center");
+
+let circle = svg
+	.append("circle")
+	.attr("fill", "red")
+	.attr("cx", positionX)
+	.attr("cy", positionY)
+	.attr("r", originalR);
+
+let expanded = false;
+const control = d3.select("body").append("button").attr("type", "button").text("Grow ball");
+function resize(grow) {
+  expanded = grow;
+  control.text(grow ? "Shrink ball" : "Grow ball");
+  circle.interrupt().transition().duration(reducedMotion ? 0 : 250)
+    .attr("r", grow ? biggerR : originalR);
+}
+circle.on("mouseover", () => resize(true));
+circle.on("mouseout", () => resize(false));
+control.on("click", () => resize(!expanded));

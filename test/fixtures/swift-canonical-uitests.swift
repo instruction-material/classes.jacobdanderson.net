@@ -101,16 +101,21 @@ final class CanonicalCourseUITests: XCTestCase {
         let desk = button("Studio Desk", in: app)
         reveal(desk, in: app)
         XCTAssertFalse(button("Sunset Poster", in: app).exists)
+        let cardTitle = app.staticTexts["Studio Desk"].firstMatch
+        revealFully(cardTitle, in: app)
+        retain("Complete Gallery card title", in: app)
         retain("Filtered gallery", in: app)
         desk.tap()
         XCTAssertTrue(app.navigationBars["Studio Desk"].waitForExistence(timeout: 5))
         let detail = reference
             ? "This entry works well for discussing composition and app branding."
             : "A clean desk setup for editing and sketching."
-        reveal(app.staticTexts[detail], in: app)
+        revealFully(app.staticTexts[detail], in: app)
+        retain("Complete Gallery description", in: app)
         if reference {
             let favorite = button("Add Favorite", in: app)
-            reveal(favorite, in: app)
+            revealFully(favorite, in: app)
+            retain("Complete Gallery favorite action", in: app)
             favorite.tap()
             XCTAssertTrue(button("Remove Favorite", in: app).waitForExistence(timeout: 5))
         }
@@ -171,8 +176,8 @@ final class CanonicalCourseUITests: XCTestCase {
         revealFully(cafe, in: app)
         cafe.tap()
         let detail = reference
-            ? "Useful for practicing map annotations, category tags, and place metadata."
-            : "TODO: Add a stronger detail card with visit notes and a callout style."
+            ? "Sketchbook break: draw one detail from the surroundings."
+            : "No visit notes yet."
         revealFully(app.staticTexts[detail], in: app)
         retain("Selected local place", in: app)
         if reference {
@@ -180,7 +185,7 @@ final class CanonicalCourseUITests: XCTestCase {
                 NSPredicate(format: "label CONTAINS %@", "Harbor Overlook")).firstMatch
             revealFully(harbor, in: app)
             harbor.tap()
-            revealFully(app.staticTexts["This stop works well for combining a scenic map card with a compact planning note."], in: app)
+            revealFully(app.staticTexts["Photo plan: compare the light before and after sunset."], in: app)
             XCTAssertFalse(app.staticTexts[detail].exists)
             retain("Changed selected place", in: app)
         }

@@ -1,0 +1,1 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="yo yo"><circle cx="100" cy="110" r="65" fill="#19834c"/><circle cx="100" cy="110" r="18" fill="#f8df76"/><path d="M100 110 Q160 55 120 20" fill="none" stroke="#30303d" stroke-width="5"/></svg>

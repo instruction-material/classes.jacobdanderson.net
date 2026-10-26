@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My JavaScript Art Part II</title>
+<link rel="stylesheet" href="vendor/materialize.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main><h1>My JavaScript Art Part II</h1>
+<section><h2>Rainbow</h2><p id="rainbow-description">Seven colored SVG arcs appear in sequence, using an index to choose radius and delay.</p><div id="rainbow"></div></section>
+<section><h2>Captain America Shield</h2><p id="shield-description">Four concentric circles and a translated star form a shield.</p><div id="shield"></div></section>
+<section><h2>Pac-Man</h2><p id="pacman-description">Two arcs use opposite angle directions after converting degrees to radians.</p><div id="pacman"></div></section><section class="section black"><h2>Snowman</h2><p id="snowman-description">Circles, a smile arc and line arms form a snowman.</p><div id="snowman"><!-- Add the assigned snowman drawing here. --></div></section></main>
+<script src="vendor/d3.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

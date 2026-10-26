@@ -72,6 +72,24 @@ afterEach(async () => {
 });
 
 describe("canonical Swift app workspaces", () => {
+	it("retains the earlier Hobby source without replacing saved work", () => {
+		const revision = "97028a411bf4752f06ce7bab228211958b3fca9b";
+		const url = `https://github.com/instruction-material/Swift/tree/${revision}/SAD3-Multi-Tab-Hobby-App/solution`;
+		expect(swiftCourseResource(url)?.revision).toBe(revision);
+		expect(
+			swiftCourseResource(`${swiftHobbyRoot}/solution`)?.revision
+		).toBe("9c4599f12037847388a7760e82409c4481e0faf7");
+	});
+	it.each([
+		"18bb2a5055a144cf545fa416f6bde6f00e863f36",
+		"58d17abb7a09185558a74c44f0ba2e43a18f42c2"
+	])("retains the earlier Gallery source at %s", revision => {
+		const url = `https://github.com/instruction-material/Swift/tree/${revision}/SAD2-Media-Gallery-App/solution`;
+		expect(swiftCourseResource(url)?.revision).toBe(revision);
+		expect(
+			swiftCourseResource(`${swiftGalleryRoot}/solution`)?.revision
+		).not.toBe(revision);
+	});
 	it.each([
 		"18bb2a5055a144cf545fa416f6bde6f00e863f36",
 		"58d17abb7a09185558a74c44f0ba2e43a18f42c2"
@@ -91,6 +109,16 @@ describe("canonical Swift app workspaces", () => {
 		expect(
 			swiftCourseResource(`${swiftCapstoneRoot}/starter`)?.revision
 		).not.toBe(revision);
+	});
+	it.each([
+		"18bb2a5055a144cf545fa416f6bde6f00e863f36",
+		"58d17abb7a09185558a74c44f0ba2e43a18f42c2"
+	])("retains the earlier Map source at %s", revision => {
+		const url = `https://github.com/instruction-material/Swift/tree/${revision}/SAD4-Map-Places-App/solution`;
+		expect(swiftCourseResource(url)?.revision).toBe(revision);
+		expect(swiftCourseResource(`${swiftMapRoot}/solution`)?.revision).toBe(
+			"a373ffaf1d3b34fe3476137ea357c787f433f21a"
+		);
 	});
 	it.each(projects)(
 		"keeps the $name lesson's identity, source and complete instructions",

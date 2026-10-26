@@ -1,0 +1,35 @@
+const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Make a ball that moves across the screen, grows to double its size, and then comes back and shrinks to its original size
+
+// Solution
+
+const originalR = 20;
+const biggerR = 40;
+
+let svg = d3
+	.select("body")
+	.append("svg")
+	.attr("width", 1000)
+	.attr("height", 500)
+	.attr("viewBox", "0 0 1000 500")
+	.attr("role", "img")
+	.attr("aria-label", "Ball traveling horizontally and returning to its start");
+
+let ball = svg.append("circle").attr("fill", "steelblue").attr("r", originalR);
+
+ball
+	.attr("cx", 40)
+	.attr("cy", 100);
+
+if (!reducedMotion) {
+	ball.transition()
+	.duration(2000)
+	.attr("r", biggerR)
+	.attr("cx", 500)
+	.transition()
+	.duration(2000)
+	.attr("r", originalR)
+	.attr("cx", 40);
+
+}

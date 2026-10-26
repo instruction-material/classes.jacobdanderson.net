@@ -1,0 +1,23 @@
+const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const svg = d3.select("body").append("svg")
+  .attr("width", 800).attr("height", 450).attr("viewBox", "0 0 800 450")
+  .attr("role", "img").attr("aria-label", "Six rainbow bands revealed from red outside to violet inside")
+  .append("g").attr("transform", "translate(300,300)");
+const colors = ["red", "orange", "yellow", "green", "blue", "violet"];
+const arcGenerator = d3.arc();
+for (let i = 0; i < colors.length; i++) {
+  const outerRadius = 300 - i * 20;
+  const path = svg.append("path").attr("fill", colors[i]).attr("d", arcGenerator({
+    innerRadius: outerRadius - 20,
+    outerRadius,
+    startAngle: degreesToRadians(-60),
+    endAngle: degreesToRadians(60)
+  }));
+  if (!reducedMotion) {
+    path.attr("opacity", 0).transition().delay((i + 1) * 200).duration(150).attr("opacity", 1);
+  }
+}
+function degreesToRadians(degrees) {
+  return (degrees * Math.PI) / 180;
+}

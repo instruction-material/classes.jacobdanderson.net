@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rainbow Sections</title>
+<link rel="stylesheet" href="vendor/materialize.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="container"><h1>Rainbow Sections</h1></header>
+<main><div class="container"><h2>Cards inside a container</h2>
+<div class="card-panel red">Red</div>
+<div class="card-panel orange">Orange</div>
+<div class="card-panel yellow">Yellow</div>
+<div class="card-panel green">Green</div>
+<div class="card-panel blue">Blue</div>
+<div class="card-panel indigo" style="color:white">Indigo</div>
+<div class="card-panel purple" style="color:white">Purple</div></div>
+<div class="container"><h2>Sections inside a container</h2>
+<div class="section red">Red</div>
+<div class="section orange">Orange</div>
+<div class="section yellow">Yellow</div>
+<div class="section green">Green</div>
+<div class="section blue">Blue</div>
+<div class="section indigo" style="color:white">Indigo</div>
+<div class="section purple" style="color:white">Purple</div></div>
+<h2 class="container">Full-width sections</h2>
+<div class="section red">Red</div>
+<div class="section orange">Orange</div>
+<div class="section yellow">Yellow</div>
+<div class="section green">Green</div>
+<div class="section blue">Blue</div>
+<div class="section indigo" style="color:white">Indigo</div>
+<div class="section purple" style="color:white">Purple</div></main>
+</body>
+</html>

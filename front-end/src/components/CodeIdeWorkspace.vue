@@ -102,7 +102,9 @@ import {
 	pythonIdeAssetCandidateNames
 } from "@/modules/pythonIdeCourseAssets";
 import {
+	drawPythonIdeGameText,
 	preparePythonIdeGameCanvas,
+	preparePythonIdeGameFont,
 	pythonIdeGamePointerPosition,
 	waitForPythonIdeGameImage
 } from "@/modules/pythonIdeGameGraphics";
@@ -713,6 +715,7 @@ const turtleTimerRegistry = createTurtleTimerRegistry({
 const gameKeysDown = new Set<string>();
 const gameEvents: GameInputEvent[] = [];
 const gameImageCache = new Map<string, CachedGameImage>();
+const requestedGameImageKeys = new Set<string>();
 const activeGameMouseButtons = new Set<number>();
 const gameSoundAudio = new Map<string, Set<HTMLAudioElement>>();
 const gameSoundVolumes = new Map<string, number>();
@@ -5474,6 +5477,7 @@ async function ensureGameCourseAssetsLoaded(
 function prepareGameAssetsForExplicitRun() {
 	gameCourseAssetPackLoadFailed = false;
 	gameCourseAssetPackSilentLoadFailed = false;
+	requestedGameImageKeys.clear();
 	for (const [key, entry] of gameImageCache) {
 		if (entry.failed) gameImageCache.delete(key);
 	}
@@ -5573,6 +5577,7 @@ function resolveGameAsset(
 function getGameImageEntry(asset: ResolvedGameAsset) {
 	const src = asset.src;
 	if (!src) return null;
+	requestedGameImageKeys.add(asset.key);
 
 	const cached = gameImageCache.get(asset.key);
 	if (cached?.src === src) return cached;
@@ -5642,10 +5647,26 @@ async function prepareProjectGameImages() {
 	);
 }
 
-function gameImageSizeJson(name: string) {
-	return JSON.stringify(
-		courseAssetSize(resolveGameAsset("images", name, imageAssetExtensions))
+async function prepareRequestedGameImages() {
+	// Actor construction and image changes request their actual images. Keep
+	// unused course media lazy while making those images ready before drawing.
+	await Promise.all(
+		[...requestedGameImageKeys].map(async key => {
+			const entry = gameImageCache.get(key);
+			if (!entry || entry.loaded) return;
+			entry.loaded = await waitForPythonIdeGameImage(entry.element);
+			entry.failed = !entry.loaded;
+			if (entry.failed) {
+				throw new Error(`Unable to decode game image: ${key}`);
+			}
+		})
 	);
+}
+
+function gameImageSizeJson(name: string) {
+	const asset = resolveGameAsset("images", name, imageAssetExtensions);
+	if (asset) getGameImageEntry(asset);
+	return JSON.stringify(courseAssetSize(asset));
 }
 
 function resolveProjectAudio(folder: "music" | "sounds", name: string) {
@@ -6167,15 +6188,33 @@ function drawGameText(
 	x: number,
 	y: number,
 	color: string,
-	fontSize: number
+	fontSize: number,
+	anchorX = 0,
+	anchorY = 0,
+	align = anchorX,
+	lineHeight = 1,
+	shadowX = 0,
+	shadowY = 0,
+	shadowColor = "black"
 ) {
 	const context = setGameCanvasTransform();
 	if (!context) return;
 
-	context.fillStyle = color;
-	context.font = `${Math.max(8, fontSize)}px Avenir Next, Segoe UI, sans-serif`;
-	context.textBaseline = "top";
-	context.fillText(text, x, y);
+	drawPythonIdeGameText(
+		context,
+		text,
+		x,
+		y,
+		color,
+		fontSize,
+		anchorX,
+		anchorY,
+		align,
+		lineHeight,
+		shadowX,
+		shadowY,
+		shadowColor
+	);
 }
 
 function drawGameRect(
@@ -6878,6 +6917,7 @@ const gameBridge: GameBridge = {
 	drawLine: drawGameLine,
 	drawCircle: drawGameCircle,
 	imageSizeJson: gameImageSizeJson,
+	prepareImages: prepareRequestedGameImages,
 	isKeyDown(key: string) {
 		return gameKeysDown.has(normalizeKey(key));
 	},
@@ -6962,6 +7002,9 @@ function createGuardedGameBridgeRun(): GameBridge {
 			return isActiveRun()
 				? gameBridge.imageSizeJson(name)
 				: JSON.stringify({ height: 64, width: 64 });
+		},
+		async prepareImages() {
+			if (isActiveRun()) await gameBridge.prepareImages?.();
 		},
 		isKeyDown(key: string) {
 			return isActiveRun() && gameBridge.isKeyDown(key);
@@ -7304,6 +7347,8 @@ async function runCurrentProject() {
 			runMessage.value = "Loading assets";
 			diagnosticStage.value = "loading-assets";
 			prepareGameAssetsForExplicitRun();
+			await preparePythonIdeGameFont();
+			if (shouldStopPythonIdeRun(runID, project._id)) return;
 			await prepareProjectGameImages();
 			if (shouldStopPythonIdeRun(runID, project._id)) return;
 			await ensureGameCourseAssetsLoaded();
@@ -11027,6 +11072,7 @@ html.dark .editor-shortcuts ul {
 .turtle-canvas--game {
 	width: 100%;
 	height: 100%;
+	border-radius: 0;
 }
 
 .isolated-runtime .turtle-canvas--game {

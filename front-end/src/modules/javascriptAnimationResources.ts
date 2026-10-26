@@ -1,0 +1,575 @@
+export const javascriptAnimationResources = [
+	{
+		project: "car",
+		title: "Car",
+		version: 1,
+		role: "starter",
+		urls: [
+			"https://codepen.io/junilearning/pen/38ef977913b6ce7e1a913883f984a4e5",
+			"https://codepen.io/junilearning/pen/rNxKNzj"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "animations-v1/car/starter/index.html.txt",
+				byteLength: 311,
+				sha256: "99f87d55ba6d6b67c74e6c5287b093d8b342e662f5728b2a4a2a31a18b7274d3"
+			},
+			{
+				name: "styles.css",
+				path: "animations-v1/car/starter/styles.css.txt",
+				byteLength: 291,
+				sha256: "d6082f14d95b20f85a3f6bc73fd79fd9723c20e8bbbeab43cd8caa803e28d9d2"
+			},
+			{
+				name: "script.js",
+				path: "animations-v1/car/starter/script.js.txt",
+				byteLength: 43,
+				sha256: "e450ed5f5ef483b524269e843fc25ff81e6a0e877c8ebc394f385b7a4dcb33d6"
+			},
+			{
+				name: "README.md",
+				path: "animations-v1/car/starter/README.md.txt",
+				byteLength: 2245,
+				sha256: "5940d7fb2fec7b7e005f2a9aa252796e821b20a0e981db3a6c787ad2b7d60aa5"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "animations-v1/vendor/d3-7.9.0.min.js.txt",
+				byteLength: 279706,
+				sha256: "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "animations-v1/vendor/LICENSE-d3-7.9.0.txt",
+				byteLength: 731,
+				sha256: "3e6849627f74ff73c257a3ae1efb574015d94fc1035c05ec3c15805165efcbc4"
+			}
+		]
+	},
+	{
+		project: "car",
+		title: "Car",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/2723c8a04416bf8402171eb247a02bb5",
+			"https://codepen.io/junilearning/pen/jOWyrGV/2723c8a04416bf8402171eb247a02bb5"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "animations-v1/car/reference/index.html.txt",
+				byteLength: 311,
+				sha256: "99f87d55ba6d6b67c74e6c5287b093d8b342e662f5728b2a4a2a31a18b7274d3"
+			},
+			{
+				name: "styles.css",
+				path: "animations-v1/car/reference/styles.css.txt",
+				byteLength: 291,
+				sha256: "d6082f14d95b20f85a3f6bc73fd79fd9723c20e8bbbeab43cd8caa803e28d9d2"
+			},
+			{
+				name: "script.js",
+				path: "animations-v1/car/reference/script.js.txt",
+				byteLength: 2051,
+				sha256: "e74c4a77eb272334be8013e24b86ffab8095e5d0b30c850f518846e4400fd771"
+			},
+			{
+				name: "README.md",
+				path: "animations-v1/car/reference/README.md.txt",
+				byteLength: 2247,
+				sha256: "31ed74eddc2ee19d858e827c1525c47fb5db1587ae7afa03b46a77bc71fbacf8"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "animations-v1/vendor/d3-7.9.0.min.js.txt",
+				byteLength: 279706,
+				sha256: "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "animations-v1/vendor/LICENSE-d3-7.9.0.txt",
+				byteLength: 731,
+				sha256: "3e6849627f74ff73c257a3ae1efb574015d94fc1035c05ec3c15805165efcbc4"
+			}
+		]
+	},
+	{
+		project: "moving-car-example",
+		title: "Moving Your Car",
+		version: 1,
+		role: "starter",
+		urls: [
+			"https://codepen.io/junilearning/pen/46c3f402eb4100c983f22bbbb3f4cede",
+			"https://codepen.io/junilearning/pen/yLegaLK/46c3f402eb4100c983f22bbbb3f4cede"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "animations-v1/moving-car-example/starter/index.html.txt",
+				byteLength: 323,
+				sha256: "5ea9fda67558943199b71e0672ed1a2495d06ff76944cfe18144adc4b0fb65e7"
+			},
+			{
+				name: "styles.css",
+				path: "animations-v1/moving-car-example/starter/styles.css.txt",
+				byteLength: 291,
+				sha256: "d6082f14d95b20f85a3f6bc73fd79fd9723c20e8bbbeab43cd8caa803e28d9d2"
+			},
+			{
+				name: "script.js",
+				path: "animations-v1/moving-car-example/starter/script.js.txt",
+				byteLength: 2200,
+				sha256: "5c08b15386628641b3a9ba7af0accb20454f7875041edc00fb1bd9b8ef65f259"
+			},
+			{
+				name: "README.md",
+				path: "animations-v1/moving-car-example/starter/README.md.txt",
+				byteLength: 2190,
+				sha256: "7d96761dc1be0f231c4bc2da1c1019444ac78f28a2e23e509f870ca5853d281a"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "animations-v1/vendor/d3-7.9.0.min.js.txt",
+				byteLength: 279706,
+				sha256: "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "animations-v1/vendor/LICENSE-d3-7.9.0.txt",
+				byteLength: 731,
+				sha256: "3e6849627f74ff73c257a3ae1efb574015d94fc1035c05ec3c15805165efcbc4"
+			}
+		]
+	},
+	{
+		project: "bouncing-ball",
+		title: "Bouncing Ball",
+		version: 1,
+		role: "starter",
+		urls: [
+			"https://codepen.io/junilearning/pen/6a90681824ce331a3533469f911e2497",
+			"https://codepen.io/junilearning/pen/ExPRXNZ"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "animations-v1/bouncing-ball/starter/index.html.txt",
+				byteLength: 321,
+				sha256: "a909f97a0f33167f7300e7619dd365ed545a43b94b591c23def06b81f8d80ca8"
+			},
+			{
+				name: "styles.css",
+				path: "animations-v1/bouncing-ball/starter/styles.css.txt",
+				byteLength: 291,
+				sha256: "d6082f14d95b20f85a3f6bc73fd79fd9723c20e8bbbeab43cd8caa803e28d9d2"
+			},
+			{
+				name: "script.js",
+				path: "animations-v1/bouncing-ball/starter/script.js.txt",
+				byteLength: 90,
+				sha256: "2da805e5a99386e385fefadcc247a1e48f8631613b36b73263872d1ec19c08a4"
+			},
+			{
+				name: "README.md",
+				path: "animations-v1/bouncing-ball/starter/README.md.txt",
+				byteLength: 2135,
+				sha256: "38f8fc11b2c2ee3dc5858eeb5250d6ce1e11305153887cdcc7fd3e0a86942e61"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "animations-v1/vendor/d3-7.9.0.min.js.txt",
+				byteLength: 279706,
+				sha256: "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "animations-v1/vendor/LICENSE-d3-7.9.0.txt",
+				byteLength: 731,
+				sha256: "3e6849627f74ff73c257a3ae1efb574015d94fc1035c05ec3c15805165efcbc4"
+			}
+		]
+	},
+	{
+		project: "bouncing-ball",
+		title: "Bouncing Ball",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/a449284a2d08eecf0a0f61b644044f84",
+			"https://codepen.io/junilearning/pen/GRoELxV/a449284a2d08eecf0a0f61b644044f84"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "animations-v1/bouncing-ball/reference/index.html.txt",
+				byteLength: 321,
+				sha256: "a909f97a0f33167f7300e7619dd365ed545a43b94b591c23def06b81f8d80ca8"
+			},
+			{
+				name: "styles.css",
+				path: "animations-v1/bouncing-ball/reference/styles.css.txt",
+				byteLength: 291,
+				sha256: "d6082f14d95b20f85a3f6bc73fd79fd9723c20e8bbbeab43cd8caa803e28d9d2"
+			},
+			{
+				name: "script.js",
+				path: "animations-v1/bouncing-ball/reference/script.js.txt",
+				byteLength: 656,
+				sha256: "422a68449be41cd701e75dd08b7c326df811d1020a197ad1c1a7643cd4f283ba"
+			},
+			{
+				name: "README.md",
+				path: "animations-v1/bouncing-ball/reference/README.md.txt",
+				byteLength: 2137,
+				sha256: "ad1ed7fc687b758667e991fc87c51e50663e80f88fea87ebd81a2c901328c020"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "animations-v1/vendor/d3-7.9.0.min.js.txt",
+				byteLength: 279706,
+				sha256: "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "animations-v1/vendor/LICENSE-d3-7.9.0.txt",
+				byteLength: 731,
+				sha256: "3e6849627f74ff73c257a3ae1efb574015d94fc1035c05ec3c15805165efcbc4"
+			}
+		]
+	},
+	{
+		project: "dom-events-example",
+		title: "DOM Events",
+		version: 1,
+		role: "starter",
+		urls: ["https://codepen.io/junilearning/pen/BajVdPQ"],
+		files: [
+			{
+				name: "index.html",
+				path: "animations-v1/dom-events-example/starter/index.html.txt",
+				byteLength: 318,
+				sha256: "97c2900619fd7e9cd361dca5bfc24bc6082fc862f7c49c7720cebdcc3c6ec84c"
+			},
+			{
+				name: "styles.css",
+				path: "animations-v1/dom-events-example/starter/styles.css.txt",
+				byteLength: 291,
+				sha256: "d6082f14d95b20f85a3f6bc73fd79fd9723c20e8bbbeab43cd8caa803e28d9d2"
+			},
+			{
+				name: "script.js",
+				path: "animations-v1/dom-events-example/starter/script.js.txt",
+				byteLength: 700,
+				sha256: "f43ec2d24b1d69fa504ea867f62291c1b4fa69ca2509d1ae08bbd2864aca7f57"
+			},
+			{
+				name: "README.md",
+				path: "animations-v1/dom-events-example/starter/README.md.txt",
+				byteLength: 2178,
+				sha256: "32f8784d1ab3402f54398f7429404d78b3e13fa28c0186553e2685e1c43e8936"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "animations-v1/vendor/d3-7.9.0.min.js.txt",
+				byteLength: 279706,
+				sha256: "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "animations-v1/vendor/LICENSE-d3-7.9.0.txt",
+				byteLength: 731,
+				sha256: "3e6849627f74ff73c257a3ae1efb574015d94fc1035c05ec3c15805165efcbc4"
+			}
+		]
+	},
+	{
+		project: "growing-ball",
+		title: "Growing Ball",
+		version: 1,
+		role: "starter",
+		urls: [
+			"https://codepen.io/junilearning/pen/ff4f98a080f26536a286835de4b1b9a2",
+			"https://codepen.io/junilearning/pen/vYLrJVO"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "animations-v1/growing-ball/starter/index.html.txt",
+				byteLength: 320,
+				sha256: "7da8af16f14d1e5264dac0e19b6d19a89f4dcd6d500f3e38e3104dc1dbd56f62"
+			},
+			{
+				name: "styles.css",
+				path: "animations-v1/growing-ball/starter/styles.css.txt",
+				byteLength: 291,
+				sha256: "d6082f14d95b20f85a3f6bc73fd79fd9723c20e8bbbeab43cd8caa803e28d9d2"
+			},
+			{
+				name: "script.js",
+				path: "animations-v1/growing-ball/starter/script.js.txt",
+				byteLength: 111,
+				sha256: "070965763e9862bd42fbc2ab3531e7ee377a71f6e0759f350503c91e25429b64"
+			},
+			{
+				name: "README.md",
+				path: "animations-v1/growing-ball/starter/README.md.txt",
+				byteLength: 2126,
+				sha256: "e8c2edc531edd85080dd56d376c9a8f0bac5951ecbe55770c37a5c9d961f4329"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "animations-v1/vendor/d3-7.9.0.min.js.txt",
+				byteLength: 279706,
+				sha256: "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "animations-v1/vendor/LICENSE-d3-7.9.0.txt",
+				byteLength: 731,
+				sha256: "3e6849627f74ff73c257a3ae1efb574015d94fc1035c05ec3c15805165efcbc4"
+			}
+		]
+	},
+	{
+		project: "growing-ball",
+		title: "Growing Ball",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/9d8630fbb5a9554618f11c649a95ab55",
+			"https://codepen.io/junilearning/pen/KKVaMmN/9d8630fbb5a9554618f11c649a95ab55"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "animations-v1/growing-ball/reference/index.html.txt",
+				byteLength: 320,
+				sha256: "7da8af16f14d1e5264dac0e19b6d19a89f4dcd6d500f3e38e3104dc1dbd56f62"
+			},
+			{
+				name: "styles.css",
+				path: "animations-v1/growing-ball/reference/styles.css.txt",
+				byteLength: 291,
+				sha256: "d6082f14d95b20f85a3f6bc73fd79fd9723c20e8bbbeab43cd8caa803e28d9d2"
+			},
+			{
+				name: "script.js",
+				path: "animations-v1/growing-ball/reference/script.js.txt",
+				byteLength: 1156,
+				sha256: "198b6a89012b3efeff0b787989f2798f204438a23c6a7a4362d081647bd34e3f"
+			},
+			{
+				name: "README.md",
+				path: "animations-v1/growing-ball/reference/README.md.txt",
+				byteLength: 2128,
+				sha256: "e60e8e0134dd4908e31c61957611a2429688d374df0c63092f841806e1f01f77"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "animations-v1/vendor/d3-7.9.0.min.js.txt",
+				byteLength: 279706,
+				sha256: "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "animations-v1/vendor/LICENSE-d3-7.9.0.txt",
+				byteLength: 731,
+				sha256: "3e6849627f74ff73c257a3ae1efb574015d94fc1035c05ec3c15805165efcbc4"
+			}
+		]
+	},
+	{
+		project: "bouncing-and-growing",
+		title: "Bouncing and Growing",
+		version: 1,
+		role: "starter",
+		urls: [
+			"https://codepen.io/junilearning/pen/5e44ed4c619e2a3e960ba5cdf6ab067f",
+			"https://codepen.io/junilearning/pen/ZEQRGEV"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "animations-v1/bouncing-and-growing/starter/index.html.txt",
+				byteLength: 328,
+				sha256: "98e703d4d6f67b5c8ec61bbb0de8a787eca396f265b113299d9394b314115dca"
+			},
+			{
+				name: "styles.css",
+				path: "animations-v1/bouncing-and-growing/starter/styles.css.txt",
+				byteLength: 291,
+				sha256: "d6082f14d95b20f85a3f6bc73fd79fd9723c20e8bbbeab43cd8caa803e28d9d2"
+			},
+			{
+				name: "script.js",
+				path: "animations-v1/bouncing-and-growing/starter/script.js.txt",
+				byteLength: 124,
+				sha256: "829aa8e9dc6ec882ab1fbb7db5f1d6641e254c2147337860d488d3e07fc1fb40"
+			},
+			{
+				name: "README.md",
+				path: "animations-v1/bouncing-and-growing/starter/README.md.txt",
+				byteLength: 2072,
+				sha256: "171ab40d1506493f4086beed3f94f78e64e34d0130c2649a84a838ad83df93b9"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "animations-v1/vendor/d3-7.9.0.min.js.txt",
+				byteLength: 279706,
+				sha256: "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "animations-v1/vendor/LICENSE-d3-7.9.0.txt",
+				byteLength: 731,
+				sha256: "3e6849627f74ff73c257a3ae1efb574015d94fc1035c05ec3c15805165efcbc4"
+			}
+		]
+	},
+	{
+		project: "bouncing-and-growing",
+		title: "Bouncing and Growing",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/be50c8f1430016572f95794d69800440",
+			"https://codepen.io/junilearning/pen/QWygPBK/be50c8f1430016572f95794d69800440"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "animations-v1/bouncing-and-growing/reference/index.html.txt",
+				byteLength: 328,
+				sha256: "98e703d4d6f67b5c8ec61bbb0de8a787eca396f265b113299d9394b314115dca"
+			},
+			{
+				name: "styles.css",
+				path: "animations-v1/bouncing-and-growing/reference/styles.css.txt",
+				byteLength: 291,
+				sha256: "d6082f14d95b20f85a3f6bc73fd79fd9723c20e8bbbeab43cd8caa803e28d9d2"
+			},
+			{
+				name: "script.js",
+				path: "animations-v1/bouncing-and-growing/reference/script.js.txt",
+				byteLength: 783,
+				sha256: "f7bda34c3c5785975c6e75253534986875e4083da7f946f7af5336df882bb418"
+			},
+			{
+				name: "README.md",
+				path: "animations-v1/bouncing-and-growing/reference/README.md.txt",
+				byteLength: 2074,
+				sha256: "2b793d114c689bb07e98cee1eb848c699f9fdc5f3dd204e27a36f34ec37123e0"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "animations-v1/vendor/d3-7.9.0.min.js.txt",
+				byteLength: 279706,
+				sha256: "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "animations-v1/vendor/LICENSE-d3-7.9.0.txt",
+				byteLength: 731,
+				sha256: "3e6849627f74ff73c257a3ae1efb574015d94fc1035c05ec3c15805165efcbc4"
+			}
+		]
+	},
+	{
+		project: "rainbow",
+		title: "Rainbow",
+		version: 1,
+		role: "starter",
+		urls: [
+			"https://codepen.io/junilearning/pen/36846ad022b36b072833ace22a9edbef",
+			"https://codepen.io/junilearning/pen/XWXYJvG"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "animations-v1/rainbow/starter/index.html.txt",
+				byteLength: 315,
+				sha256: "661f6eb8599d899a242910597e8c991abdb8ff5dd6358269a89f8f3345ab6dc0"
+			},
+			{
+				name: "styles.css",
+				path: "animations-v1/rainbow/starter/styles.css.txt",
+				byteLength: 291,
+				sha256: "d6082f14d95b20f85a3f6bc73fd79fd9723c20e8bbbeab43cd8caa803e28d9d2"
+			},
+			{
+				name: "script.js",
+				path: "animations-v1/rainbow/starter/script.js.txt",
+				byteLength: 250,
+				sha256: "0564957e9f805b44a30cdac07ed7ec864f95fb8d6a5a000d0d71554d0f451d46"
+			},
+			{
+				name: "README.md",
+				path: "animations-v1/rainbow/starter/README.md.txt",
+				byteLength: 2228,
+				sha256: "25bad3aca259e83f00bec5fc93156d031f4955ef2ae20de277ea00c6f8b90835"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "animations-v1/vendor/d3-7.9.0.min.js.txt",
+				byteLength: 279706,
+				sha256: "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "animations-v1/vendor/LICENSE-d3-7.9.0.txt",
+				byteLength: 731,
+				sha256: "3e6849627f74ff73c257a3ae1efb574015d94fc1035c05ec3c15805165efcbc4"
+			}
+		]
+	},
+	{
+		project: "rainbow",
+		title: "Rainbow",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/b858a6f5c9b50333229dd36700cc4ac0",
+			"https://codepen.io/junilearning/pen/vYLZMMo/b858a6f5c9b50333229dd36700cc4ac0"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "animations-v1/rainbow/reference/index.html.txt",
+				byteLength: 315,
+				sha256: "661f6eb8599d899a242910597e8c991abdb8ff5dd6358269a89f8f3345ab6dc0"
+			},
+			{
+				name: "styles.css",
+				path: "animations-v1/rainbow/reference/styles.css.txt",
+				byteLength: 291,
+				sha256: "d6082f14d95b20f85a3f6bc73fd79fd9723c20e8bbbeab43cd8caa803e28d9d2"
+			},
+			{
+				name: "script.js",
+				path: "animations-v1/rainbow/reference/script.js.txt",
+				byteLength: 955,
+				sha256: "d2368fc821f5a320a3313b4845fb72624811a4baccdd8c9f088f6764ecba801c"
+			},
+			{
+				name: "README.md",
+				path: "animations-v1/rainbow/reference/README.md.txt",
+				byteLength: 2230,
+				sha256: "84e2d191345dc251cbbce7b06f6ba06977f827c9110eb8ac4d75552e9f339a8e"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "animations-v1/vendor/d3-7.9.0.min.js.txt",
+				byteLength: 279706,
+				sha256: "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "animations-v1/vendor/LICENSE-d3-7.9.0.txt",
+				byteLength: 731,
+				sha256: "3e6849627f74ff73c257a3ae1efb574015d94fc1035c05ec3c15805165efcbc4"
+			}
+		]
+	}
+] as const;

@@ -138,7 +138,7 @@ export function sandboxFrameDocument(origin: string, channel: string) {
 			.replaceAll("&", "&amp;")
 			.replaceAll('"', "&quot;")
 			.replaceAll("<", "&lt;");
-	const policy = `default-src 'none'; base-uri ${origin}; script-src ${assets} https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval'; style-src ${assets} 'unsafe-inline'; connect-src ${media} ${legacyMedia} https://cdn.jsdelivr.net https://pypi.org https://files.pythonhosted.org; img-src ${media} ${legacyMedia} data: blob:; media-src ${media} ${legacyMedia} data: blob:; font-src 'none'; worker-src blob:; frame-src 'self' blob:; form-action 'none'; object-src 'none'`;
+	const policy = `default-src 'none'; base-uri ${origin}; script-src ${assets} https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval'; style-src ${assets} 'unsafe-inline'; connect-src ${media} ${legacyMedia} https://cdn.jsdelivr.net https://pypi.org https://files.pythonhosted.org; img-src ${media} ${legacyMedia} data: blob:; media-src ${media} ${legacyMedia} data: blob:; font-src ${assets}freesansbold.ttf; worker-src blob:; frame-src 'self' blob:; form-action 'none'; object-src 'none'`;
 	return `<!doctype html><html><head><meta charset="utf-8"><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="${escape(policy)}"><base href="${escape(origin)}/"><link rel="stylesheet" crossorigin="anonymous" href="${assets}runtime.css"><title>Isolated Python output</title></head><body data-channel="${escape(channel)}" data-parent-origin="${escape(origin)}"><div id="python-runtime-root"></div><script crossorigin="anonymous" src="${assets}runtime.js"></script></body></html>`;
 }
 

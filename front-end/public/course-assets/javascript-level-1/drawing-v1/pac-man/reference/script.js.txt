@@ -1,0 +1,46 @@
+// Draw two Pac-Men facing each other using d3’s arc. The degreesToRadians(degrees) function has been provided for you once again.
+
+// Solution 
+
+let width = 500;
+let height = 500;
+
+const svg = d3.select("body")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height)
+  .attr("viewBox", "0 0 500 500")
+  .attr("role", "img")
+  .attr("aria-label", "Pac-Man");
+
+const arcGenerator = d3.arc();
+
+let leftPacMan = arcGenerator({
+  startAngle: degreesToRadians(120),
+  endAngle: degreesToRadians(430),
+  innerRadius: 0,
+  outerRadius: 100
+});
+
+let rightPacMan = arcGenerator({
+  startAngle: -degreesToRadians(120),
+  endAngle: -degreesToRadians(430),
+  innerRadius: 0,
+  outerRadius: 100
+});
+
+svg.append('path')
+  .attr("fill", "yellow")
+  .attr("transform", "translate(150,110)")
+	.attr('d', leftPacMan);
+
+svg.append('path')
+  .attr("fill", "yellow")
+  .attr("transform", "translate(400,110)")
+	.attr('d', rightPacMan);
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function degreesToRadians(degrees) {
+  return degrees * Math.PI / 180
+}

@@ -1,0 +1,19 @@
+/*
+Welcome to Juni’s premier archery competition! You will be competing to see how many bullseyes you can hit, across 5 rounds of bowmanship. In each of these 5 rounds, you will fire 3 arrows. With every shot, you have a 1 in 3 chance to hit the bullseye.
+
+For each shot, print out the round number and the shot within that round, followed by an “X” if you made the shot or an “O” if you missed. For example, if you missed your first two shots, the program should print out:
+Round 1, arrow 1: O
+Round 1, arrow 2: O
+
+Lastly, count the total number of bullseyes you hit and display this number at the end.
+*/
+
+// Enter your code below this line
+
+// Provided output helper.
+function printToScreen(text) {
+	d3.select("body")
+		.append("pre")
+		.attr("class", "output-line")
+		.text(text);
+}

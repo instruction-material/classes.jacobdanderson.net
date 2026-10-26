@@ -1,0 +1,143 @@
+# Image sources
+
+## Image 1
+
+{
+  "index": 0,
+  "page": "https://en.wikipedia.org/wiki/Mona_Lisa",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Mona_Lisa.jpg/960px-Mona_Lisa.jpg",
+  "mimeType": "image/jpeg",
+  "bytes": 435991,
+  "sha256": "6cdf101762e6c1ad5168ee64707e926a7d16796f5abc2131dbc70ff292b874b6"
+}
+
+
+## Image 2
+
+{
+  "index": 1,
+  "url": "https://www.vangoghgallery.com/img/starry_night_full.jpg",
+  "mimeType": "image/jpeg",
+  "bytes": 434357,
+  "sha256": "122733e89c85fe7e6e94851e46086ec9fb88f7f368014b42602d43af015fa8cd"
+}
+
+
+## Image 3
+
+{
+  "index": 2,
+  "page": "https://www.nationalgallery.org.uk/paintings/claude-monet-the-water-lily-pond",
+  "url": "https://www.nationalgallery.org.uk/media/lqobdtst/n-4240-00-000069-xl-hd.jpg?rxy=0.49032258064516127,0.39467849223946783&width=800&height=800&v=1dbcc977106f150",
+  "mimeType": "image/jpeg",
+  "bytes": 148872,
+  "sha256": "4ca2be7ff76475bc0619e1c03c2ad1433efca36a86464018ddd66b28cbcae593"
+}
+
+
+## Image 4
+
+{
+  "index": 3,
+  "url": "https://upload.wikimedia.org/wikipedia/en/d/dd/The_Persistence_of_Memory.jpg",
+  "mimeType": "image/jpeg",
+  "bytes": 36722,
+  "sha256": "e0b5f2f69374dfbdef51721a9ae8487254eb32ebc45466127da258d81994454c"
+}
+
+
+## Image 5
+
+{
+  "index": 4,
+  "url": "https://i.pinimg.com/originals/13/af/13/13af1302d1e79d2308e9d46375417da4.jpg",
+  "mimeType": "image/jpeg",
+  "bytes": 67787,
+  "sha256": "f45e3718e669982cf65ee7cd6101541b2032cec65bc068b4ce690f40087ba831"
+}
+
+
+## Image 6
+
+{
+  "index": 5,
+  "page": "https://en.wikipedia.org/wiki/The_Scream",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg/1280px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg",
+  "mimeType": "image/jpeg",
+  "bytes": 622974,
+  "sha256": "2fcbcc4554496812fe37c4bc9c6da2ee45da98ce9d5c21de271f7ef3b3431a34"
+}
+
+
+## Image 7
+
+{
+  "index": 6,
+  "page": "https://en.wikipedia.org/wiki/Girl_with_a_Pearl_Earring",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/1280px-1665_Girl_with_a_Pearl_Earring.jpg",
+  "mimeType": "image/jpeg",
+  "bytes": 594446,
+  "sha256": "fc7aa0b6dcae15e41f1b9b64ba8e89db6fd5e6cbbd9ca74d61eefe8d135fa6f7"
+}
+
+
+## Image 8
+
+{
+  "index": 7,
+  "page": "https://en.wikipedia.org/wiki/Campbell's_Soup_Cans",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Campbell%27s_Soup_Cans_by_Andy_Warhol.jpg/1280px-Campbell%27s_Soup_Cans_by_Andy_Warhol.jpg",
+  "mimeType": "image/jpeg",
+  "bytes": 337866,
+  "sha256": "88cef0fcf38665dc8fb2e7df4d7f235bf6715e24a12de9a544eb90abd8a1bfae"
+}
+
+
+## Image 9
+
+{
+  "index": 8,
+  "url": "https://ipaintingsforsale.com/painting-imgs/Mark%20Rothko/big/Untitled%20(I).jpg",
+  "mimeType": "image/jpeg",
+  "bytes": 18993,
+  "sha256": "ef59cd715bbb54ad7f7aca0e553872949c76b38458309540d27dfc8b90ff2e20"
+}
+
+
+## Image 10
+
+{
+  "index": 9,
+  "page": "https://www.shafe.co.uk/wp-content/uploads/p15-Tate-Modern-Media-Networks.pdf",
+  "mimeType": "image/png",
+  "bytes": 434054,
+  "sha256": "81a65e7f068267d8dbe02dd13970aab0dfde214d9368a765e88340ca51830285",
+  "title": "Bust of a Woman",
+  "artist": "Pablo Picasso",
+  "year": 1944,
+  "sourceRepresentation": "Teaching-reference image with its original caption and borders; crop only by an SVG viewBox in the future pack"
+}
+
+
+## Image 11
+
+{
+  "index": 10,
+  "page": "https://commons.wikimedia.org/wiki/File:%D0%9F%D0%BE%D0%BF%D0%B5%D1%80%D0%B5%D1%87%D0%BD%D0%B0%D1%8F_%D0%BB%D0%B8%D0%BD%D0%B8%D1%8F.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/%D0%9F%D0%BE%D0%BF%D0%B5%D1%80%D0%B5%D1%87%D0%BD%D0%B0%D1%8F_%D0%BB%D0%B8%D0%BD%D0%B8%D1%8F.jpg",
+  "mimeType": "image/jpeg",
+  "bytes": 215405,
+  "sha256": "b66e56d7b97b396581ef88e16447e540f92a5ca239cdd31be46fb88685d98f0d"
+}
+
+
+## Image 12
+
+{
+  "index": 11,
+  "page": "https://en.wikipedia.org/wiki/American_Gothic",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/Grant_Wood_-_American_Gothic_%281930%29.jpg/1280px-Grant_Wood_-_American_Gothic_%281930%29.jpg",
+  "mimeType": "image/jpeg",
+  "bytes": 491763,
+  "sha256": "5446e442c4734ee15cc58833c9c57f5f9fca01521a9ebeb59ead7e6851c177da"
+}

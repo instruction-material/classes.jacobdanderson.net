@@ -1,0 +1,313 @@
+export const javascriptMoreHtmlCssResources = [
+	{
+		project: "box-inception-part-2",
+		title: "Box Inception Part II",
+		version: 1,
+		role: "starter",
+		urls: [
+			"/course-assets/javascript-level-1/more-html-css-v1/box-inception-part-2/starter/index.html.txt"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "more-html-css-v1/box-inception-part-2/starter/index.html.txt",
+				byteLength: 281,
+				sha256: "5ab0a41624b4bcf05460f8a54bb6a245a097a2244c6cca4feede996f85e42c9c"
+			},
+			{
+				name: "styles.css",
+				path: "more-html-css-v1/box-inception-part-2/starter/styles.css.txt",
+				byteLength: 33,
+				sha256: "aa7a2491f11c9e6a4cc65a40b2b3d2bbab23874b779b895ac3fc07547985ab6e"
+			},
+			{
+				name: "README.md",
+				path: "more-html-css-v1/box-inception-part-2/starter/README.md.txt",
+				byteLength: 2182,
+				sha256: "8f2f98ccfec8c4ea1cbf76f7a0067471f5adbb2cb6f4061e38265ff83c11bd09"
+			}
+		]
+	},
+	{
+		project: "box-inception-part-2",
+		title: "Box Inception Part II",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/261c1809ad0309dd584526c73c586289",
+			"https://codepen.io/junilearning/pen/WNrypqX"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "more-html-css-v1/box-inception-part-2/reference/index.html.txt",
+				byteLength: 2114,
+				sha256: "cc7d133b5a490fcf034811ec085b031d4ae37cf00adfb83c784b7f03a0723ff9"
+			},
+			{
+				name: "styles.css",
+				path: "more-html-css-v1/box-inception-part-2/reference/styles.css.txt",
+				byteLength: 543,
+				sha256: "b3b722ee8234ba739ead689279c597ff25656a2e0db4afe6cd4ce541afb8dbeb"
+			},
+			{
+				name: "README.md",
+				path: "more-html-css-v1/box-inception-part-2/reference/README.md.txt",
+				byteLength: 2125,
+				sha256: "fae29ca618f97b8be12fb3b4447ab89caa80d89b1adf5b84a66fca0030aa4e08"
+			}
+		]
+	},
+	{
+		project: "my-hero-page",
+		title: "My Hero Page",
+		version: 1,
+		role: "starter",
+		urls: [
+			"https://codepen.io/junilearning/pen/d959f67d5f753f31d3fea61cd4e6e8e3",
+			"https://codepen.io/junilearning/pen/pogKedW"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "more-html-css-v1/my-hero-page/starter/index.html.txt",
+				byteLength: 317,
+				sha256: "571c574384c0f1fc3407fcedf6a4cc7cd0ab0f694511514ad16d76e2ab988dc8"
+			},
+			{
+				name: "styles.css",
+				path: "more-html-css-v1/my-hero-page/starter/styles.css.txt",
+				byteLength: 33,
+				sha256: "aa7a2491f11c9e6a4cc65a40b2b3d2bbab23874b779b895ac3fc07547985ab6e"
+			},
+			{
+				name: "README.md",
+				path: "more-html-css-v1/my-hero-page/starter/README.md.txt",
+				byteLength: 1938,
+				sha256: "b7743c2e51c7220e2532b65caa7a78e5899b1b7b446e8583ef0ad35927fcdd84"
+			},
+			{
+				name: "basketball.svg",
+				path: "more-html-css-v1/my-hero-page/starter/basketball.svg.txt",
+				byteLength: 363,
+				sha256: "9a8acbb6dab11d3bb971f7225441b13456cb20d97c76f38dd1a72c4ddd8c1b89"
+			},
+			{
+				name: "noto-sans.css",
+				path: "more-html-css-v1/my-hero-page/starter/noto-sans.css.txt",
+				byteLength: 48070,
+				sha256: "90555b561d4153a57556972b926d58c8a3ca339ecfd1f0fd2602b0a956726807"
+			},
+			{
+				name: "LICENSE-Noto-Sans.txt",
+				path: "more-html-css-v1/my-hero-page/starter/LICENSE-Noto-Sans.txt.txt",
+				byteLength: 4395,
+				sha256: "e2e177a32561584d4fc13aaa3cd8e53758a12910f013fe9ca125419111722029"
+			}
+		]
+	},
+	{
+		project: "my-hero-page",
+		title: "My Hero Page",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/f148f71f0ba2807f695133ab280a5b67",
+			"https://codepen.io/junilearning/pen/MWaJYGE/f148f71f0ba2807f695133ab280a5b67"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "more-html-css-v1/my-hero-page/reference/index.html.txt",
+				byteLength: 1315,
+				sha256: "72e8b8d7767a584542bebaa6b2fac6a30f3f21d036867a57b330de68f8d4f778"
+			},
+			{
+				name: "styles.css",
+				path: "more-html-css-v1/my-hero-page/reference/styles.css.txt",
+				byteLength: 777,
+				sha256: "07a23ad7d6bd9e0bcc1114266828bf09490244428c7ea876f5422c61b912ce56"
+			},
+			{
+				name: "README.md",
+				path: "more-html-css-v1/my-hero-page/reference/README.md.txt",
+				byteLength: 1947,
+				sha256: "103ce92d40a5326e66feb3010ec437c051c4451e38a5c8008ee1919da5f0de3a"
+			},
+			{
+				name: "basketball.svg",
+				path: "more-html-css-v1/my-hero-page/reference/basketball.svg.txt",
+				byteLength: 363,
+				sha256: "9a8acbb6dab11d3bb971f7225441b13456cb20d97c76f38dd1a72c4ddd8c1b89"
+			},
+			{
+				name: "noto-sans.css",
+				path: "more-html-css-v1/my-hero-page/reference/noto-sans.css.txt",
+				byteLength: 48070,
+				sha256: "90555b561d4153a57556972b926d58c8a3ca339ecfd1f0fd2602b0a956726807"
+			},
+			{
+				name: "LICENSE-Noto-Sans.txt",
+				path: "more-html-css-v1/my-hero-page/reference/LICENSE-Noto-Sans.txt.txt",
+				byteLength: 4395,
+				sha256: "e2e177a32561584d4fc13aaa3cd8e53758a12910f013fe9ca125419111722029"
+			}
+		]
+	},
+	{
+		project: "my-javascript-art",
+		title: "My JavaScript Art",
+		version: 1,
+		role: "starter",
+		urls: [
+			"https://codepen.io/junilearning/pen/b252c1398d97eda534482419d9103b87",
+			"https://codepen.io/junilearning/pen/MWKXYxB"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "more-html-css-v1/my-javascript-art/starter/index.html.txt",
+				byteLength: 352,
+				sha256: "9f86c37dbeed2fb7e5678f6424302923e4cf9ba8b7f19fc1e5b2ca8e89860ee0"
+			},
+			{
+				name: "styles.css",
+				path: "more-html-css-v1/my-javascript-art/starter/styles.css.txt",
+				byteLength: 33,
+				sha256: "aa7a2491f11c9e6a4cc65a40b2b3d2bbab23874b779b895ac3fc07547985ab6e"
+			},
+			{
+				name: "README.md",
+				path: "more-html-css-v1/my-javascript-art/starter/README.md.txt",
+				byteLength: 1994,
+				sha256: "fc8a8def4739c843e099796456496ca0b7cb08695685bb6e6c4859b057d66e5f"
+			},
+			{
+				name: "script.js",
+				path: "more-html-css-v1/my-javascript-art/starter/script.js.txt",
+				byteLength: 44,
+				sha256: "8aa1016b0fffd684918564701dfb65afe696d29790526a3916fdaa1d8949fc41"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "more-html-css-v1/my-javascript-art/starter/vendor/d3.min.js.txt",
+				byteLength: 248314,
+				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "more-html-css-v1/my-javascript-art/starter/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			}
+		]
+	},
+	{
+		project: "my-javascript-art",
+		title: "My JavaScript Art",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/65a70df75b1168154b07ed73a09e9aa3",
+			"https://codepen.io/junilearning/pen/eYJJLwG/65a70df75b1168154b07ed73a09e9aa3"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "more-html-css-v1/my-javascript-art/reference/index.html.txt",
+				byteLength: 860,
+				sha256: "e6344d0bad720662fb11309a28c58d91d5b5d306f5f60c4a94d27141293bd43a"
+			},
+			{
+				name: "styles.css",
+				path: "more-html-css-v1/my-javascript-art/reference/styles.css.txt",
+				byteLength: 270,
+				sha256: "b043783dce96c622bf83ab79c890e4ece04de5c6fc483b4c4464c0a7ca7e83f9"
+			},
+			{
+				name: "README.md",
+				path: "more-html-css-v1/my-javascript-art/reference/README.md.txt",
+				byteLength: 2003,
+				sha256: "b5474841bf46a924293471383dfc024b626b320fadf7717c6d8b22673105b75a"
+			},
+			{
+				name: "script.js",
+				path: "more-html-css-v1/my-javascript-art/reference/script.js.txt",
+				byteLength: 3615,
+				sha256: "d41369d73645b2e6461226d6801705bf672545e6dc2ab3ae05c87536d130b5f7"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "more-html-css-v1/my-javascript-art/reference/vendor/d3.min.js.txt",
+				byteLength: 248314,
+				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "more-html-css-v1/my-javascript-art/reference/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			}
+		]
+	},
+	{
+		project: "berkshire-hathaway",
+		title: "Berkshire Hathaway",
+		version: 1,
+		role: "starter",
+		urls: [
+			"https://codepen.io/junilearning/pen/b24ef5d48d5f8e0fbcafee18631d0336",
+			"https://codepen.io/junilearning/pen/jOWKEdZ"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "more-html-css-v1/berkshire-hathaway/starter/index.html.txt",
+				byteLength: 278,
+				sha256: "7baa5fbf3aab34553355ab6c8d724264fb7951de3e6bbf5e6d219ff9640f2148"
+			},
+			{
+				name: "styles.css",
+				path: "more-html-css-v1/berkshire-hathaway/starter/styles.css.txt",
+				byteLength: 33,
+				sha256: "aa7a2491f11c9e6a4cc65a40b2b3d2bbab23874b779b895ac3fc07547985ab6e"
+			},
+			{
+				name: "README.md",
+				path: "more-html-css-v1/berkshire-hathaway/starter/README.md.txt",
+				byteLength: 2054,
+				sha256: "95b3bcd31363cfa3c4a4c5f5adbe44a26f0aeafab3f6efe1ba39bd320055394d"
+			}
+		]
+	},
+	{
+		project: "berkshire-hathaway",
+		title: "Berkshire Hathaway",
+		version: 1,
+		role: "reference",
+		urls: [
+			"https://codepen.io/junilearning/pen/3efe23650b01fd4f978f3f827cc1691e",
+			"https://codepen.io/junilearning/pen/PoPWoJd/3efe23650b01fd4f978f3f827cc1691e"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "more-html-css-v1/berkshire-hathaway/reference/index.html.txt",
+				byteLength: 5194,
+				sha256: "a488ba33da0fd86f807b6f5f928e0b2398db3693bbec935122873bdfdd7a36ef"
+			},
+			{
+				name: "styles.css",
+				path: "more-html-css-v1/berkshire-hathaway/reference/styles.css.txt",
+				byteLength: 1035,
+				sha256: "a714e5b2c756e8eff052280d92764a0c87585b6e1c42905f7e7ae2c47cc89034"
+			},
+			{
+				name: "README.md",
+				path: "more-html-css-v1/berkshire-hathaway/reference/README.md.txt",
+				byteLength: 2063,
+				sha256: "bdd9f36b6d9ab9e3eae45014729cde4e483bf81a68b8981334fd0d3098a4211b"
+			}
+		]
+	}
+] as const;

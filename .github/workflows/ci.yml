@@ -938,8 +938,30 @@ jobs:
                   if-no-files-found: error
                   retention-days: 7
 
+            - name: Compare game text with native Pygame font metrics
+              run: node --test test/pgzero-default-font-browser.test.mjs
+
             - name: Verify Pygame surfaces in the browser IDE
               run: node --test test/pygame-browser-runtime.test.mjs
+
+            - name: Verify media and parallax course imports and saved exports
+              env:
+                  JAVASCRIPT_MEDIA_PARALLAX_BROWSER_DIR: output/javascript-media-parallax-browser
+              run: node --test test/javascript-media-parallax-course-browser.test.mjs
+
+            - name: Verify actual media and parallax exports offline
+              env:
+                  JAVASCRIPT_MEDIA_PARALLAX_BROWSER_DIR: output/javascript-media-parallax-browser
+              run: node --test test/javascript-media-parallax-exported-browser.test.mjs
+
+            - name: Retain media and parallax source workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-media-parallax-source-workflows
+                  path: output/javascript-media-parallax-browser
+                  if-no-files-found: warn
+                  retention-days: 7
 
             - name: Verify private IDE diagnostics in the browser
               run: node --test test/ide-diagnostics-browser.test.mjs
@@ -1375,6 +1397,192 @@ jobs:
                       output/javascript-advanced-conditionals-browser/
                       output/javascript-advanced-conditionals-screenshots/
                   if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify JavaScript drawing project imports
+              env:
+                  JAVASCRIPT_DRAWING_BROWSER_DIR: output/javascript-drawing-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-drawing-screenshots
+              run: node --test test/javascript-drawing-course-browser.test.mjs
+
+            - name: Run JavaScript drawing exports offline
+              env:
+                  JAVASCRIPT_DRAWING_BROWSER_DIR: output/javascript-drawing-browser
+              run: node --test test/javascript-drawing-exported-browser.test.mjs
+
+            - name: Retain JavaScript drawing source and browser evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-drawing-workflows
+                  path: |
+                      output/javascript-drawing-browser/
+                      output/javascript-drawing-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify JavaScript nested-loop project imports
+              env:
+                  JAVASCRIPT_NESTED_LOOPS_BROWSER_DIR: output/javascript-nested-loops-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-nested-loops-screenshots
+              run: node --test test/javascript-nested-loops-course-browser.test.mjs
+
+            - name: Run JavaScript nested-loop exports offline
+              env:
+                  JAVASCRIPT_NESTED_LOOPS_BROWSER_DIR: output/javascript-nested-loops-browser
+              run: node --test test/javascript-nested-loops-exported-browser.test.mjs
+
+            - name: Retain JavaScript nested-loop source and browser evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-nested-loops-workflows
+                  path: |
+                      output/javascript-nested-loops-browser/
+                      output/javascript-nested-loops-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify JavaScript HTML/CSS project imports
+              env:
+                  JAVASCRIPT_HTML_CSS_BROWSER_DIR: output/javascript-html-css-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-html-css-screenshots
+              run: node --test test/javascript-html-css-course-browser.test.mjs
+
+            - name: Run JavaScript HTML/CSS exports offline
+              env:
+                  JAVASCRIPT_HTML_CSS_BROWSER_DIR: output/javascript-html-css-browser
+              run: node --test test/javascript-html-css-exported-browser.test.mjs
+
+            - name: Retain JavaScript HTML/CSS source and browser evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-html-css-workflows
+                  path: |
+                      output/javascript-html-css-browser/
+                      output/javascript-html-css-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify More HTML/CSS project imports and saved edits
+              env:
+                  JAVASCRIPT_MORE_HTML_CSS_BROWSER_DIR: output/javascript-more-html-css-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-more-html-css-screenshots
+              run: node --test test/javascript-more-html-css-course-browser.test.mjs
+            - name: Execute More HTML/CSS exports offline
+              env:
+                  JAVASCRIPT_MORE_HTML_CSS_BROWSER_DIR: output/javascript-more-html-css-browser
+              run: node --test test/javascript-more-html-css-exported-browser.test.mjs
+            - name: Retain More HTML/CSS original workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-more-html-css-workflows
+                  path: |
+                      output/javascript-more-html-css-browser/
+                      output/javascript-more-html-css-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify Basic Layout project imports and saved edits
+              env:
+                  JAVASCRIPT_BASIC_LAYOUT_BROWSER_DIR: output/javascript-basic-layout-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-basic-layout-screenshots
+              run: node --test test/javascript-basic-layout-course-browser.test.mjs
+            - name: Execute Basic Layout exports offline
+              env:
+                  JAVASCRIPT_BASIC_LAYOUT_BROWSER_DIR: output/javascript-basic-layout-browser
+              run: node --test test/javascript-basic-layout-exported-browser.test.mjs
+            - name: Retain Basic Layout original workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-basic-layout-workflows
+                  path: |
+                      output/javascript-basic-layout-browser/
+                      output/javascript-basic-layout-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify Grid Layout project imports and saved edits
+              env:
+                  JAVASCRIPT_GRID_LAYOUT_BROWSER_DIR: output/javascript-grid-layout-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-grid-layout-screenshots
+              run: node --test test/javascript-grid-layout-course-browser.test.mjs
+            - name: Execute Grid Layout exports offline
+              env:
+                  JAVASCRIPT_GRID_LAYOUT_BROWSER_DIR: output/javascript-grid-layout-browser
+              run: node --test test/javascript-grid-layout-exported-browser.test.mjs
+            - name: Retain Grid Layout original workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-grid-layout-workflows
+                  path: |
+                      output/javascript-grid-layout-browser/
+                      output/javascript-grid-layout-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify Dynamic Events project imports and saved edits
+              env:
+                  JAVASCRIPT_DYNAMIC_EVENTS_BROWSER_DIR: output/javascript-dynamic-events-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-dynamic-events-screenshots
+              run: node --test test/javascript-dynamic-events-course-browser.test.mjs
+            - name: Execute Dynamic Events exports offline
+              env:
+                  JAVASCRIPT_DYNAMIC_EVENTS_BROWSER_DIR: output/javascript-dynamic-events-browser
+              run: node --test test/javascript-dynamic-events-exported-browser.test.mjs
+            - name: Retain Dynamic Events original workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-dynamic-events-workflows
+                  path: |
+                      output/javascript-dynamic-events-browser/
+                      output/javascript-dynamic-events-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify Dynamic Components project imports and saved edits
+              env:
+                  JAVASCRIPT_DYNAMIC_COMPONENTS_BROWSER_DIR: output/javascript-dynamic-components-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-dynamic-components-screenshots
+              run: node --test test/javascript-dynamic-components-course-browser.test.mjs
+            - name: Execute Dynamic Components exports offline
+              env:
+                  JAVASCRIPT_DYNAMIC_COMPONENTS_BROWSER_DIR: output/javascript-dynamic-components-browser
+              run: node --test test/javascript-dynamic-components-exported-browser.test.mjs
+            - name: Retain Dynamic Components original workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-dynamic-components-workflows
+                  path: |
+                      output/javascript-dynamic-components-browser/
+                      output/javascript-dynamic-components-screenshots/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Verify animation project imports, consent and saved source
+              env:
+                  JAVASCRIPT_ANIMATION_BROWSER_DIR: output/javascript-animation-browser
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/javascript-animation-screenshots
+              run: node --test test/javascript-animation-course-browser.test.mjs
+            - name: Execute animation exports offline with both motion preferences
+              env:
+                  JAVASCRIPT_ANIMATION_BROWSER_DIR: output/javascript-animation-browser
+              run: node --test test/javascript-animation-exported-browser.test.mjs
+            - name: Retain original animation workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-animation-workflows
+                  if-no-files-found: error
+                  path: |
+                      output/javascript-animation-browser/
+                      output/javascript-animation-screenshots/
                   retention-days: 7
 
             - name: Verify Network Systems foundation imports and notebook reuse

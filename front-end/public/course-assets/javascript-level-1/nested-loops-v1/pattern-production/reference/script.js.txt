@@ -1,0 +1,66 @@
+/*
+Print out a pattern of stars using a nested loop that looks like the following using printToScreen():
+	*
+	**
+	***
+	****
+	*****
+Next, do the same pattern with Pac-Men that you create using d3. The degreesToRadians(degrees) function has been provided for you.
+*/
+
+// Solution
+
+for (let i = 1; i < 6; i++) {
+	let output = "";
+	for (let j = 0; j < i; j++) {
+		output += "*";
+	}
+	printToScreen(output);
+}
+
+let width = 800;
+let height = 850;
+
+const svg = d3
+	.select("body")
+	.append("svg")
+	.attr("width", width)
+	.attr("height", height)
+	.attr("viewBox", "0 0 800 850")
+	.attr("role", "img")
+	.attr("aria-label", "Five rows of Pac-Man shapes, one through five per row");
+
+const arcGenerator = d3.arc();
+
+let pacMan = arcGenerator({
+	startAngle: degreesToRadians(120),
+	endAngle: degreesToRadians(430),
+	innerRadius: 0,
+	outerRadius: 50
+});
+
+let y = 0;
+for (let i = 0; i < 6; i++) {
+	let x = 100;
+	for (let j = 0; j < i; j++) {
+		svg
+			.append("path")
+			.attr("fill", "yellow")
+			.attr("transform", `translate(${x},${y})`)
+			.attr("d", pacMan);
+		x += 150;
+	}
+	y += 150;
+}
+
+function degreesToRadians(degrees) {
+	return (degrees * Math.PI) / 180;
+}
+
+// Provided output helper.
+function printToScreen(text) {
+	d3.select("body")
+		.append("pre")
+		.attr("class", "output-line")
+		.text(text);
+}

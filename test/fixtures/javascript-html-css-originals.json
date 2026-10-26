@@ -1,0 +1,168 @@
+{
+  "resources": [
+    {
+      "project": "html-css-basics",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/a4555b19dc5183859c0a6956be1f6c0a",
+      "resolvedURL": "https://codepen.io/junilearning/pen/gOPGEJv",
+      "panels": {
+        "HTML": "<!-- \nPrompt\n\n1. Make a div tag with your first name and a div tag with your last name \n\n2. Make a div tag, then a span tag as a child with your first name and then a span tag with your last name\n\n3. Make a div tag with your first name, a br tag, and then a div tag with your last name\n\n4. Make an img tag and find an image online that you want to add to your page\n\n5. Make an anchor tag and link it to wikipedia.org\n\n6. Use a CSS selector to target body and change the background-color to your favorite color\n\n7. Use a CSS selector to target div and set text-align to center\n\n8. Use a CSS selector to target span and set font-size to 20px\n\n9. Use a CSS selector to target img and set height to 200px and width to 200px\n\n10. Use a CSS selector to target div and set font-weight to bold. What happens when you target span and set font-weight to normal?\n-->\n\n",
+        "CSS": "",
+        "JavaScript": ""
+      },
+      "sourceHashes": {
+        "html": "84186bd6e631b97703ddf3f002cc61b01916e49282784e489ecb2f268c323454",
+        "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "javascript": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 857,
+          "fnv1a64Utf16": "601f606f7760b67a"
+        },
+        "css": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "javascript": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        }
+      },
+      "settings": {
+        "htmlPreprocessor": "None",
+        "cssPreprocessor": "None",
+        "jsPreprocessor": "None",
+        "cssBase": "neither",
+        "vendorPrefixing": "neither",
+        "externalCSS": [],
+        "externalJavaScript": [],
+        "htmlClasses": "",
+        "head": ""
+      }
+    },
+    {
+      "project": "html-css-basics",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/d14dd0596bbb8720c359688f460c9419",
+      "resolvedURL": "https://codepen.io/junilearning/pen/rNOWGoB/d14dd0596bbb8720c359688f460c9419",
+      "panels": {
+        "HTML": "<!-- \nPrompt\n\n1. Make a div tag with your first name and a div tag with your last name \n\n2. Make a div tag, then a span tag as a child with your first name and then a span tag with your last name\n\n3. Make a div tag with your first name, a br tag, and then a div tag with your last name\n\n4. Make an img tag and find an image online that you want to add to your page\n\n5. Make an anchor tag and link it to wikipedia.org\n\n6. Use a CSS selector to target body and change the background-color to your favorite color\n\n7. Use a CSS selector to target div and set text-align to center\n\n8. Use a CSS selector to target span and set font-size to 20px\n\n9. Use a CSS selector to target img and set height to 200px and width to 200px\n\n10. Use a CSS selector to target div and set font-weight to bold. What happens when you target span and set font-weight to normal?\n-->\n\n<!-- Solution -->\n\n<div>Alan</div>\n<div>Turing</div>\n\n<div>\n  <span>Alan</span>\n  <span>Turing</span>\n</div>\n\n\n<div>Alan</div>\n<br>\n<div>Turing</div>\n<div>\n  <img src=\"https://gravatar.com/avatar/e1b5510028a6a3003f300538bd504f0d?d=https%3A%2F%2Fassets.codepen.io%2Finternal%2Favatars%2Fusers%2Fdefault.png&format=auto&height=80&version=0&width=80\" alt=\"#\">\n</div>\n<br>\n<div>\n  <a href=\"wikipedia.org\">Go To Wikipedia</a>\n</div>\n\n\n",
+        "CSS": "/* Solution */\n\ndiv {\n  text-align: center;\n  font-weight: bold;\n}\nspan {\n  font-size: 20px;\n  font-weight: normal;\n}\nimg {\n  width: 200px;\n  height: 200px;\n}\nbody {\n  background-color: peru;\n}",
+        "JavaScript": ""
+      },
+      "sourceHashes": {
+        "html": "8c369e4aac9396a4fe502fd3eb6ab1ff453b134985322568cb22196957b08ded",
+        "css": "670b30692ac31a1b4c38c945eedc962c4fc8d58d1b582c64c8c342ea9b1304d4",
+        "javascript": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 1287,
+          "fnv1a64Utf16": "238a934533daab74"
+        },
+        "css": {
+          "utf16Units": 193,
+          "fnv1a64Utf16": "d30029771e952c91"
+        },
+        "javascript": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        }
+      },
+      "settings": {
+        "htmlPreprocessor": "None",
+        "cssPreprocessor": "None",
+        "jsPreprocessor": "None",
+        "cssBase": "neither",
+        "vendorPrefixing": "neither",
+        "externalCSS": [],
+        "externalJavaScript": [],
+        "htmlClasses": "",
+        "head": ""
+      }
+    },
+    {
+      "project": "box-inception",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/eca1fa811c12940c388c331a07cb0dbb",
+      "resolvedURL": "https://codepen.io/junilearning/pen/NWxaJQE",
+      "panels": {
+        "HTML": "",
+        "CSS": "/* \nUsing the display property, recreate the design here:\n\nhttps://codepen.io/junilearning/full/4ae1264dcfd25856b2d4d893eb3b2ffa\n*/",
+        "JavaScript": ""
+      },
+      "sourceHashes": {
+        "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "css": "3379905073fbebc6531f58f5967c935e3f15f0d41f8622abf324044bc20f0413",
+        "javascript": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        },
+        "css": {
+          "utf16Units": 131,
+          "fnv1a64Utf16": "b15eae8e549bcb3f"
+        },
+        "javascript": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        }
+      },
+      "settings": {
+        "htmlPreprocessor": "None",
+        "cssPreprocessor": "None",
+        "jsPreprocessor": "None",
+        "cssBase": "neither",
+        "vendorPrefixing": "neither",
+        "externalCSS": [],
+        "externalJavaScript": [],
+        "htmlClasses": "",
+        "head": ""
+      }
+    },
+    {
+      "project": "box-inception",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/4ae1264dcfd25856b2d4d893eb3b2ffa",
+      "resolvedURL": "https://codepen.io/junilearning/pen/mdeRdEp",
+      "panels": {
+        "HTML": "<h1>Block Display</h1>\n<div class=\"box-block box-red\"></div>\n<div class=\"box-block box-orange\"></div>\n<div class=\"box-block box-yellow\"></div>\n<div class=\"box-block box-green\"></div>\n<div class=\"box-block box-blue\"></div>\n<div class=\"box-block box-purple\"></div>\n\n<h1>Inline Block Display</h1>\n<div class=\"box-inline-block box-red\"></div>\n<div class=\"box-inline-block box-orange\"></div>\n<div class=\"box-inline-block box-yellow\"></div>\n<div class=\"box-inline-block box-green\"></div>\n<div class=\"box-inline-block box-blue\"></div>\n<div class=\"box-inline-block box-purple\"></div>\n\n<h1>Grid</h1>\n<!-- Works because the wrapping divs are display: block by default -->\n<div>\n  <div class=\"box-inline-block box-red\"></div>\n  <div class=\"box-inline-block box-orange\"></div>\n</div>\n<div>\n  <div class=\"box-inline-block box-yellow\"></div>\n  <div class=\"box-inline-block box-green\"></div>\n</div>\n<div>\n  <div class=\"box-inline-block box-blue\"></div>\n  <div class=\"box-inline-block box-purple\"></div>\n</div>\n\n<h1>Table</h1>\n<table>\n  <tr>\n    <td>\n      <div class=\"box-inline-block box-red\"></div>\n    </td>\n    <td>\n      <div class=\"box-inline-block box-orange\"></div>\n    </td>\n  </tr>\n  <tr>\n    <td>\n      <div class=\"box-inline-block box-yellow\"></div>\n    </td>\n    <td>\n      <div class=\"box-inline-block box-green\"></div>\n    </td>\n  </tr>\n  <tr>\n    <td>\n      <div class=\"box-inline-block box-blue\"></div>\n    </td>\n    <td>\n      <div class=\"box-inline-block box-purple\"></div>\n    </td>\n  </tr>\n</table>",
+        "CSS": ".box-block {\n  width: 50px;\n  height: 50px;\n  display: block;\n}\n\n.box-inline-block {\n  width: 50px;\n  height: 50px;\n  display: inline-block;\n}\n\n.box-red {\n  background-color: red;\n}\n\n.box-orange {\n  background-color: orange;\n}\n\n.box-yellow {\n  background-color: yellow;\n}\n\n.box-green {\n  background-color: green;\n}\n\n.box-blue {\n  background-color: blue;\n}\n\n.box-purple {\n  background-color: purple;\n}\n",
+        "JavaScript": ""
+      },
+      "sourceHashes": {
+        "html": "1a8119ac4f81b2a36c37a6d31f018c87bb4f310dced02d70b83b4fa57193224d",
+        "css": "e2b734b0ccf37cd81fcdc2a32501809b9efdbb3a0022a1e21642f3838c73074e",
+        "javascript": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "originalUITransferChecks": {
+        "html": {
+          "utf16Units": 1504,
+          "fnv1a64Utf16": "4c0c291043678c6a"
+        },
+        "css": {
+          "utf16Units": 401,
+          "fnv1a64Utf16": "e58d0cbbbd70bbc1"
+        },
+        "javascript": {
+          "utf16Units": 0,
+          "fnv1a64Utf16": "cbf29ce484222325"
+        }
+      },
+      "settings": {
+        "htmlPreprocessor": "None",
+        "cssPreprocessor": "None",
+        "jsPreprocessor": "None",
+        "cssBase": "neither",
+        "vendorPrefixing": "neither",
+        "externalCSS": [],
+        "externalJavaScript": [],
+        "htmlClasses": "",
+        "head": ""
+      }
+    }
+  ]
+}

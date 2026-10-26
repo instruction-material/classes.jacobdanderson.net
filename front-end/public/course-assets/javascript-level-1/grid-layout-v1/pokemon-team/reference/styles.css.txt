@@ -1,0 +1,21 @@
+* { box-sizing: border-box; }
+body { margin: 0; color: #171717; background: #f3f1ed; }
+main { max-width: 90rem; margin: auto; padding: 1rem; }
+h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.2; margin: 1rem; }
+h2 { font-size: 1.5rem; line-height: 1.3; }
+p, a, dd, td, th { overflow-wrap: anywhere; }
+img, svg { display: block; max-width: 100%; height: auto; }
+a { color: #193e64; text-decoration: underline; }
+a:focus-visible { outline: 3px solid #b54500; outline-offset: 3px; }
+nav { height: auto; line-height: 1.5; padding: 1rem; background: #333; }
+nav a { color: white; }
+.team-grid { display: grid; gap: 1rem; }
+.team-card { margin: 0; padding: 1rem; min-width: 0; }
+.team-card h2, .nickname { text-align: center; }
+.team-card img { width: 100%; max-width: 15rem; margin: auto; }
+.team-card h3 { font-size: 1.1rem; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: .5rem; }
+.stats dd { margin: 0; }
+caption { font-weight: bold; text-align: left; }
+@media(min-width:601px){.team-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(min-width:993px){.team-grid{grid-template-columns:repeat(3,minmax(0,1fr));}}
