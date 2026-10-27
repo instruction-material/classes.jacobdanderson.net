@@ -682,7 +682,7 @@ This check-in focuses on moving comfortably between slope-intercept, point-slope
 **Selected answers**
 
 - \`-x/3 - 1 >= 5\` -> \`x <= -18\`
-- \`(2/3)x < (4/3)y + 6\` -> \`y > 2x - 8\`
+- \`(2/3)x < (4/3)y + 6\` -> \`y > (1/2)x - 9/2\`. Multiply by \`3\` to get \`2x < 4y + 18\`, then isolate \`y\` by subtracting \`18\` and dividing by \`4\`.
 - Selected graphed inequality: \`y <= -x + 7\`
 - Convenience-store word problem:
   - \`2 + 5 + 1.5b >= 10\`
@@ -943,7 +943,8 @@ This project connects linear models and systems of equations to research output.
 - The lab has \`30\` total papers.
 - Konstantin and Rick have \`17\` together.
 - Rick and Professor Jin have \`22\` together.
-- Determine whether each researcher meets the grant quota.
+- Let \`q\` be a nonnegative whole-number quota of papers per researcher. For this model, the lab qualifies exactly when all three researchers meet that quota.
+- Find each researcher's paper count, then determine the values of \`q\` for which each researcher and the whole lab qualify.
 				`.trim(),
 					undefined,
 					[
@@ -965,9 +966,9 @@ This project connects linear models and systems of equations to research output.
 - \`K + R = 17\`
 - \`R + D = 22\`
 - Solution: \`K = 8\`, \`R = 9\`, \`D = 13\`
-- The lab qualifies because the quota check is satisfied.
+- Konstantin meets the quota when \`q <= 8\`, Rick when \`q <= 9\`, and Professor Jin when \`q <= 13\`. All three meet it, so the lab qualifies under the stated rule, exactly when \`0 <= q <= 8\`.
 
-Check the result by substituting the three values into every relationship, not only the total equation. The competing-lab model in Mission 1 is open ended, but it must stay below \`12t + 7\` over the intended time interval. A strong explanation distinguishes exact systems of equations from modeling choices: the quota calculation has one fixed answer, while the comparison model needs a defended inequality and a clear domain.
+Check the result by substituting the three values into every relationship, not only the total equation. The competing-lab model in Mission 1 is open ended, but it must stay below \`12t + 7\` over the intended time interval. The paper counts are fixed by the system; grant eligibility depends on the quota and the stated qualification rule. The comparison model also needs a defended inequality and a clear domain.
 				`.trim()
 				)
 			]
