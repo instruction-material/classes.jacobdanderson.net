@@ -1,0 +1,84 @@
+/* Program the following geometry-related functions. Google the formulas if you need help remembering them!
+
+1. Write a function that takes in the radius of a circle and returns its circumference.
+2. Write a function that takes in the radius of a circle and returns its area.
+3. Write a function that takes in the radius of a circle and returns true if its circumference is larger than its area and false otherwise.
+4. Write a function that takes in 3 side lengths of a triangle and returns scalene, isosceles, or equilateral.
+5. Write a function that takes in 1 side length of a equilateral triangle and returns its area.
+6. Write a function that takes in 3 sides of a triangle and returns true if the triangle is a right triangle, false otherwise!
+
+Use the printToScreen() function and random numbers to print sentences for each of these functions!
+*/
+
+// Reference implementation
+const radiusValue = r => {
+	if (!Number.isFinite(r) || r < 0)
+		throw new RangeError("Radius must be finite and nonnegative.");
+	return r;
+};
+const circumference = r => 2 * Math.PI * radiusValue(r);
+const circleArea = r => Math.PI * radiusValue(r) ** 2;
+const isCircumferenceLarger = r => circumference(r) > circleArea(r);
+const validTriangle = (a, b, c) => {
+	if (![a, b, c].every(n => Number.isFinite(n) && n > 0)) return false;
+	const [x, y, z] = [a, b, c].sort((left, right) => left - right);
+	return x + y > z;
+};
+const triangleType = (a, b, c) => {
+	if (!validTriangle(a, b, c)) return "invalid triangle";
+	if (a === b && b === c) return "equilateral";
+	if (a === b || b === c || a === c) return "isosceles";
+	return "scalene";
+};
+const equilateralTriangleArea = s => {
+	if (!Number.isFinite(s) || s <= 0)
+		throw new RangeError(
+			"An equilateral side must be finite and positive."
+		);
+	return (s * s * Math.sqrt(3)) / 4;
+};
+const isRightTriangle = (a, b, c) => {
+	if (!validTriangle(a, b, c)) return false;
+	const [x, y, z] = [a, b, c].sort((left, right) => left - right);
+	return Math.abs((x / z) ** 2 + (y / z) ** 2 - 1) <= 1e-10;
+};
+
+let radius = Math.floor(Math.random() * 10);
+
+printToScreen(
+	`A circle with a radius ${radius} has a circumference of ${circumference(
+		radius
+	)} and an area of ${circleArea(radius)}.`
+);
+
+printToScreen(
+	`A circle with a radius ${1} has a larger circumference than its area: ${isCircumferenceLarger(
+		1
+	)}`
+);
+
+printToScreen(
+	`A circle with a radius ${radius} has a larger circumference than its area: ${isCircumferenceLarger(
+		radius
+	)}`
+);
+
+let side1 = 3;
+let side2 = 4;
+let side3 = 5;
+
+printToScreen(
+	`A triangle with sides ${side1}, ${side2}, ${side3} is a ${triangleType(side1, side2, side3)} triangle.`
+);
+
+printToScreen(
+	`An equilateral triangle with side length ${side3} has an area of ${equilateralTriangleArea(side3)}.`
+);
+
+printToScreen(
+	`A triangle with sides 3,4,5 is a right triangle: ${isRightTriangle(3, 4, 5)}`
+);
+
+printToScreen(
+	`A triangle with sides ${side1}, ${side2}, ${side3} is a right triangle: ${isRightTriangle(side1, side2, side3)}`
+);

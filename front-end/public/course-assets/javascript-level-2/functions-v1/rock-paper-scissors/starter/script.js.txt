@@ -1,0 +1,15 @@
+/* Program a single-player game of Rock, Paper, Scissors! You will need to code the following three functions:
+
+1. Write a function, yourTurn(), which prompts the user to choose Rock, Paper, Scissors and returns their choice in lowercase. If they click cancel, return "nothing". This function will take in no input variables.
+
+2. Write a function, computerTurn(), which randomly returns "rock", "paper", or "scissors". This function will take in no input variables.
+
+3. Write a function, findResult(), which takes in the player choice and computer choice and returns "win", "lose", or "tie" based on the user's results.
+
+The game will continue until either the player or the computer gets 3 wins. Use the alert() function to show the results of each round and printToScreen() to show who won the game.
+*/
+
+// Enter your code below this line
+
+// Also implement playRound() and resetMatch() as described in README.md.
+// Keep match scores and round state in this file; support.js only displays returned records.

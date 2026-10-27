@@ -1,0 +1,258 @@
+function printToScreen(text) {
+	d3.select("#output").append("p").text(String(text));
+}
+(() => {
+	const root = document.querySelector("main");
+	const project = document.body.dataset.project;
+	const form = document.querySelector("#exercise-form");
+	const output = document.querySelector("#output");
+	const status = document.querySelector("#status");
+	const sourceError = document.querySelector("#source-error");
+	let failed = false;
+	window.addEventListener("error", event => {
+		failed = true;
+		root.dataset.state = "error";
+		sourceError.hidden = false;
+		sourceError.dataset.errorName = event.error?.name ?? "Error";
+		sourceError.textContent =
+			sourceError.dataset.errorName === "SyntaxError"
+				? "Syntax error in script.js. Repair the starter functions, then reload."
+				: "The function example could not run. Check script.js, then reload.";
+		event.preventDefault();
+	});
+	function ready() {
+		switch (project) {
+			case "functions-practice":
+				return (
+					typeof add === "function" &&
+					typeof subtract === "function" &&
+					typeof multiply === "function" &&
+					typeof average === "function" &&
+					typeof factorial === "function" &&
+					typeof exponent === "function"
+				);
+			case "which-metrocard":
+				return (
+					typeof calculateSavings === "function" &&
+					typeof suggestCard === "function"
+				);
+			case "rock-paper-scissors":
+				return (
+					typeof yourTurn === "function" &&
+					typeof computerTurn === "function" &&
+					typeof findResult === "function" &&
+					typeof playRound === "function" &&
+					typeof resetMatch === "function"
+				);
+			case "geometry-functions":
+				return (
+					typeof circumference === "function" &&
+					typeof circleArea === "function" &&
+					typeof isCircumferenceLarger === "function" &&
+					typeof triangleType === "function" &&
+					typeof equilateralTriangleArea === "function" &&
+					typeof isRightTriangle === "function"
+				);
+			case "pain-at-the-pump":
+				return typeof totalCost === "function";
+			case "game-of-war":
+				return typeof drawCard === "function";
+			case "debugging-functions":
+				return (
+					typeof dailyCost === "function" &&
+					typeof calculateProfit === "function" &&
+					typeof reachProfitGoal === "function"
+				);
+			default:
+				return false;
+		}
+	}
+	function number(id, integer = false) {
+		const input = document.getElementById(id);
+		const raw = input.value.trim();
+		const value = Number(raw);
+		if (
+			!raw ||
+			!Number.isFinite(value) ||
+			(integer && !Number.isSafeInteger(value))
+		) {
+			input.focus();
+			throw new Error(
+				"Enter a valid " +
+					(integer ? "whole number" : "number") +
+					" for " +
+					input.labels[0].textContent.trim() +
+					"."
+			);
+		}
+		return value;
+	}
+	const money = value =>
+		new Intl.NumberFormat("en-US", {
+			style: "currency",
+			currency: "USD"
+		}).format(value);
+	function show(lines) {
+		output.replaceChildren();
+		lines.forEach(printToScreen);
+		status.textContent = "Examples complete.";
+	}
+	function round() {
+		const result = playRound();
+		if (result.result === "cancelled" || result.result === "invalid") {
+			status.textContent =
+				"Round cancelled. Score: player " +
+				result.playerWins +
+				", computer " +
+				result.computerWins +
+				".";
+			return;
+		}
+		if (result.result !== "finished") {
+			printToScreen(
+				"Round " +
+					result.round +
+					": player " +
+					result.playerChoice +
+					", computer " +
+					result.computerChoice +
+					". Result: " +
+					result.result +
+					". Score: " +
+					result.playerWins +
+					"–" +
+					result.computerWins +
+					"."
+			);
+		}
+		status.textContent = result.finished
+			? result.playerWins === 3
+				? "Player wins the match."
+				: "Computer wins the match."
+			: "Score: player " +
+				result.playerWins +
+				", computer " +
+				result.computerWins +
+				".";
+		if (result.finished) {
+			document.querySelector("#run").disabled = true;
+			document.querySelector("#choice").disabled = true;
+			document.querySelector("#cancel").disabled = true;
+			document.querySelector("#reset").hidden = false;
+			document.querySelector("#reset").focus();
+		}
+	}
+	form.addEventListener("submit", event => {
+		event.preventDefault();
+		if (failed || !ready()) return;
+		try {
+			if (project === "rock-paper-scissors") {
+				round();
+				return;
+			}
+			if (project === "game-of-war") {
+				location.reload();
+				return;
+			}
+			let lines;
+			if (project === "functions-practice") {
+				const x = number("first"),
+					y = number("second"),
+					z = number("third");
+				const n = number("factorial-input", true),
+					b = number("base"),
+					p = number("power", true);
+				lines = [
+					"Sum: " + add(x, y),
+					"Difference: " + subtract(x, y),
+					"Product: " + multiply(x, y, z),
+					"Average: " + average(x, y),
+					"Factorial: " + factorial(n),
+					"Exponent: " + exponent(b, p)
+				];
+			} else if (project === "which-metrocard") {
+				const rides = number("rides", true);
+				const savings = calculateSavings(rides);
+				lines = [
+					"Rides: " + rides,
+					"Monthly: " + money(monthlyFare),
+					"Pay per ride: " + money(rides * singleFare),
+					suggestCard(savings)
+				];
+			} else if (project === "geometry-functions") {
+				const r = number("radius"),
+					a = number("side-a"),
+					b = number("side-b"),
+					c = number("side-c");
+				lines = [
+					"Circumference: " + circumference(r),
+					"Circle area: " + circleArea(r),
+					"Circumference number larger: " + isCircumferenceLarger(r),
+					"Triangle type: " + triangleType(a, b, c),
+					"Equilateral area using side A: " +
+						equilateralTriangleArea(a),
+					"Right triangle: " + isRightTriangle(a, b, c)
+				];
+			} else if (project === "pain-at-the-pump") {
+				const mpg = number("mpg"),
+					miles = number("miles"),
+					gas = number("gas");
+				const cost = totalCost(mpg, miles, gas);
+				lines = [
+					"Distance: " + miles + " miles",
+					"Efficiency: " + mpg + " MPG",
+					"Fuel needed: " + miles / mpg + " gallons",
+					"Fuel price: " + money(gas) + " per gallon",
+					"Total fuel cost: " + money(cost)
+				];
+			} else if (project === "debugging-functions") {
+				const goal = number("goal");
+				const cups = reachProfitGoal(goal);
+				lines = [
+					"Profit goal: " + money(goal),
+					"Minimum cups: " + cups,
+					"Daily cost: " + money(dailyCost(cups)),
+					"Revenue: " + money(cups * cupOfCoffeeCost),
+					"Profit: " + money(calculateProfit(cups))
+				];
+			}
+			show(lines);
+		} catch (error) {
+			status.textContent = error.message;
+		}
+	});
+	document.querySelector("#cancel")?.addEventListener("click", () => {
+		document.querySelector("#choice").value = "";
+		round();
+	});
+	document.querySelector("#reset")?.addEventListener("click", () => {
+		resetMatch();
+		output.replaceChildren();
+		document.querySelector("#choice").value = "";
+		for (const id of ["choice", "run", "cancel"])
+			document.getElementById(id).disabled = false;
+		document.querySelector("#reset").hidden = true;
+		status.textContent = "Score: player 0, computer 0.";
+		document.querySelector("#choice").focus();
+	});
+	document.addEventListener("DOMContentLoaded", () => {
+		if (failed) return;
+		const available = ready();
+		root.dataset.state = available ? "ready" : "starter";
+		if (available)
+			for (const control of form.querySelectorAll(
+				"button, input, select"
+			))
+				control.disabled = false;
+		else
+			status.textContent =
+				"Complete the functions in script.js, then reload.";
+        if (available && project === "geometry-functions") document.getElementById("radius").value = String(radius);
+        if (available && project === "pain-at-the-pump") {
+            document.getElementById("miles").value = String(miles);
+            document.getElementById("gas").value = String(costOfGas);
+        }
+		if (available && project === "rock-paper-scissors")
+			status.textContent = "Score: player 0, computer 0.";
+	});
+})();

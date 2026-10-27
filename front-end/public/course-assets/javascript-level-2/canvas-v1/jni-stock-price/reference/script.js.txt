@@ -1,0 +1,39 @@
+// Prompt: Draw a graph showing the performance of the JNI stock. Make an x-axis with dates and a y-axis with stock price labeled, and then draw JNI's performance over the period as a line.
+// Practice prices make the original plotted coordinates explicit; axis ticks use the same scale.
+const canvas = document.getElementById("my-canvas");
+canvas.width = 800;
+canvas.height = 800;
+const ctx = canvas.getContext("2d");
+const priceToY = price => 600 - price;
+ctx.beginPath();
+ctx.strokeStyle = "#263e4b";
+ctx.lineWidth = 5;
+ctx.moveTo(200, priceToY(100));
+ctx.lineTo(300, priceToY(300));
+ctx.lineTo(400, priceToY(150));
+ctx.lineTo(500, priceToY(250));
+ctx.lineTo(600, priceToY(350));
+ctx.stroke();
+ctx.beginPath();
+ctx.lineWidth = 10;
+ctx.moveTo(600, 600);
+ctx.lineTo(200, 600);
+ctx.lineTo(200, 200);
+ctx.strokeStyle = "#627b87";
+ctx.stroke();
+ctx.fillStyle = "#173b64";
+ctx.textAlign = "center";
+ctx.font = "40px Georgia";
+ctx.fillText("JNI", 400, 130);
+ctx.fillStyle = "#172f3b";
+ctx.font = "32px Georgia";
+for (let i = 0; i <= 4; i++)
+	ctx.fillText(String(i * 100), 140, priceToY(i * 100));
+for (let i = 0; i <= 4; i++) ctx.fillText(`1/${1 + i * 3}`, 200 + i * 100, 650);
+ctx.fillText("Date", 400, 720);
+ctx.textAlign = "left";
+ctx.fillText("Price", 80, 170);
+
+const drawingDescription =
+	"JNI practice prices: 100, 300, 150, 250 and 350 on January 1, 4, 7, 10 and 13.";
+document.getElementById("drawing-description").textContent = drawingDescription;

@@ -1,0 +1,70 @@
+/* Write the 6 following functions in arrow notation. 
+
+Then, use printToScreen() to print sentences onto the screen using the functions.
+i.e. "The sum of 4 and 6 is 10"
+
+1. Write a function that takes in two numbers and returns their sum.
+
+2. Write a function that takes in two numbers and returns their difference.
+
+3. Write a function that takes in three numbers and returns the product of the numbers.
+
+4. Write a function that takes in two numbers and returns their average.
+
+5. Write a function that takes in a number and returns its factorial.
+
+6. Write an exponent function that takes in a base and a power and returns the value of the base raised to that power.
+*/
+
+// Solution
+const add = (x, y) => {
+	return x + y;
+};
+
+const subtract = (x, y) => {
+	return x - y;
+};
+
+const multiply = (x, y, z) => {
+	return x * y * z;
+};
+
+const average = (x, y) => {
+	return (x + y) / 2;
+};
+
+const factorial = num => {
+	if (!Number.isInteger(num) || num < 0 || num > 170)
+		throw new RangeError("Factorial needs an integer from 0 through 170.");
+	let answer = 1;
+	for (let i = 1; i <= num; i++) {
+		answer *= i;
+	}
+	return answer;
+};
+
+const exponent = (b, p) => {
+	if (!Number.isFinite(b) || !Number.isInteger(p) || p < 0 || p > 1000)
+		throw new RangeError(
+			"Use a finite base and an integer power from 0 through 1000."
+		);
+	let answer = 1;
+	for (let i = 0; i < p; i++) {
+		answer *= b;
+	}
+	if (!Number.isFinite(answer))
+		throw new RangeError("The power exceeds the numeric range.");
+	return answer;
+};
+
+printToScreen(`The sum of 13 and 18 is ${add(13, 18)}.`);
+
+printToScreen(`The difference of 13 and 18 is ${subtract(13, 18)}.`);
+
+printToScreen(`The product of 13, 18, and 10 is ${multiply(13, 18, 10)}.`);
+
+printToScreen(`The average of 13 and 18 is ${average(13, 18)}.`);
+
+printToScreen(`The factorial of 4 is: ${factorial(4)}.`);
+
+printToScreen(`2 raised to the 5th power is: ${exponent(2, 5)}.`);

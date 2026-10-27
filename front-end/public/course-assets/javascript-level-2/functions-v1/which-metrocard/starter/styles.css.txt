@@ -1,0 +1,18 @@
+body { margin: 0; color: #172c38; background: #f2f5f7; font: 1rem/1.6 system-ui, sans-serif; }
+main { max-width: 65rem; margin: auto; padding: clamp(1rem, 4vw, 2.5rem); }
+h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.2; overflow-wrap: anywhere; }
+h2 { font-size: 1.35rem; }
+form { display: flex; flex-wrap: wrap; gap: 1rem; align-items: end; padding: 1rem; background: white; border-radius: .5rem; }
+label { display: grid; gap: .3rem; flex: 1 1 10rem; min-width: 0; }
+input, select, button { min-height: 44px; max-width: 100%; box-sizing: border-box; border: 2px solid #33586b; border-radius: .3rem; padding: .55rem .7rem; font: inherit; }
+input, select { width: 100%; color: inherit; background: white; }
+button { color: white; background: #234e64; cursor: pointer; }
+button:disabled { opacity: .55; cursor: default; }
+:focus-visible { outline: 3px solid #9b4f00; outline-offset: 3px; }
+#output { background: white; padding: 0 1rem; border-radius: .5rem; }
+#output p { margin: 0; padding: .65rem 0; border-bottom: 1px solid #d5dfe5; overflow-wrap: anywhere; }
+#output p:last-child { border: 0; }
+#status, #source-error { overflow-wrap: anywhere; }
+#source-error { color: #8a2020; }
+[hidden] { display: none !important; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }

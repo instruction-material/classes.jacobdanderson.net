@@ -1,0 +1,24 @@
+# Sources
+
+Juni Learning: [JSM3 Supplemental Project 1: Age Milestones](https://codepen.io/junilearning/pen/8b95795088fd04a2a6b77fba56416332).
+
+Observed public editor: https://codepen.io/junilearning/pen/YzWLzrY
+
+Role: starter. The local pack adapts that captured role; both original roles are preserved in test/fixtures/javascript-master-conditionals-originals.json.
+
+Original panel SHA-256:
+
+- HTML: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- CSS: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- JavaScript: 2310be9a7166a8a5f9a74fb1b6d1642168e4b3b6e44978325aa5970bf9f716f4
+
+Original dependency: https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js; version 5.16.0 and its license are bundled locally.
+
+Adaptations:
+
+- Readable, wrapping D3 text output replaces fixed-width SVGs, randomized colors, and automatic animation.
+- Labeled forms replace blocking prompts; decisions stay in script.js.
+- Strict null handling preserves the Ternary starter behavior; original conditional bodies are retained for comparison.
+- Prime and whole-price search domains, positive-integer predicates, and factor-pair counting are corrected.
+- Age examples retain their five numerical conditions with practice wording and validation.
+- Full readings, predictable checks, and source attribution accompany each role.

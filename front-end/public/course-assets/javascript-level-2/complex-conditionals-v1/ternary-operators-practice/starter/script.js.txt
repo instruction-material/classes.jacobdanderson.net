@@ -1,0 +1,31 @@
+// Convert each if/else body to a ternary expression. Keep the original body in a comment.
+const greeting = (draw = Math.random()) => {
+	if (draw * 2 > 1) {
+		return "Hello!";
+	} else {
+		return "Goodbye!";
+	}
+};
+const chooseName = (draw = Math.random()) => {
+	let name;
+	if (draw * 2 > 1) {
+		name = "Kevin";
+	} else {
+		name = "Katy";
+	}
+	return name;
+};
+const colorMessage = color => {
+	if (color === null) {
+		return "Didn't quite get that!";
+	} else {
+		return `Wow, ${color} is my favorite color too!`;
+	}
+};
+const greaterThan50 = number => {
+	if (number > 50) {
+		return true;
+	} else {
+		return false;
+	}
+};

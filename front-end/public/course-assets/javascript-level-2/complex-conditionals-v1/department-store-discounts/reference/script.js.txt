@@ -1,0 +1,73 @@
+// The original discount rules, with integer predicates and a whole-number price search.
+const isPerfectSquare = num =>
+	Number.isSafeInteger(num) && num >= 0 && Number.isInteger(Math.sqrt(num));
+const isPrime = num => {
+	if (!Number.isSafeInteger(num) || num < 2) return false;
+	for (let i = 2; i * i <= num; i++) if (num % i === 0) return false;
+	return true;
+};
+const increasePrice = num => {
+	if (
+		typeof num !== "number" ||
+		!Number.isFinite(num) ||
+		num < 0 ||
+		num > 1000000
+	)
+		throw new RangeError("Price must be between 0 and 1000000.");
+	let candidate = Math.ceil(num);
+	while (!isPerfectSquare(candidate) && !isPrime(candidate)) candidate++;
+	return candidate;
+};
+const applyDiscount = (price, percentDiscount) => {
+	if (
+		typeof price !== "number" ||
+		!Number.isFinite(price) ||
+		price < 0 ||
+		typeof percentDiscount !== "number" ||
+		!Number.isFinite(percentDiscount) ||
+		percentDiscount < 0 ||
+		percentDiscount > 100
+	)
+		throw new RangeError(
+			"Use a nonnegative price and a percentage from 0 to 100."
+		);
+	return price * ((100 - percentDiscount) / 100);
+};
+const calculatePrice = (price, studentType) => {
+	if (
+		typeof price !== "number" ||
+		!Number.isFinite(price) ||
+		price < 0 ||
+		price > 1000000
+	)
+		throw new RangeError("Price must be between 0 and 1000000.");
+	const category =
+		typeof studentType === "string" ? studentType.trim().toLowerCase() : "";
+	const discounts = {
+		none: 0,
+		elementary: 10,
+		middle: 12,
+		high: 14,
+		college: 16,
+		program: 20
+	};
+	if (!Object.hasOwn(discounts, category))
+		throw new RangeError("Choose a listed student category.");
+	const discount = discounts[category],
+		firstPrice = applyDiscount(price, discount),
+		roundedPrice = Math.floor(firstPrice);
+	const qualifies = isPerfectSquare(roundedPrice) || isPrime(roundedPrice);
+	const finalPrice = qualifies
+		? applyDiscount(firstPrice, discount)
+		: increasePrice(firstPrice);
+	return {
+		originalPrice: price,
+		discount,
+		firstPrice,
+		roundedPrice,
+		finalPrice,
+		adjustment: qualifies
+			? "Apply the same discount one more time"
+			: "Increase to the next whole prime or square"
+	};
+};

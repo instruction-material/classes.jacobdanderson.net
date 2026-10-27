@@ -1,0 +1,10 @@
+const canvas = document.getElementById("my-canvas");
+canvas.width = 800;
+canvas.height = 800;
+const ctx = canvas.getContext("2d");
+
+// Prompt: Draw a graph showing the performance of the JNI stock. Make an x-axis with dates and a y-axis with stock price labeled, and then draw JNI's performance over the period as a line.
+
+const drawingDescription =
+	"Blank canvas. Add the drawing described in README.md.";
+document.getElementById("drawing-description").textContent = drawingDescription;

@@ -1,0 +1,19 @@
+/*
+There are many interesting numbers out there! For each of these examples, write a function that takes in a number input and returns true if the number meets the stated property, false otherwise.
+
+1. Self-Dividing Number: a positive integer that is divisible by every digit it contains. 
+Example: 128 is a self-dividing number because it is divisible by 1, 2, and 8.
+Use printToScreen() to print all the self-dividing numbers from 300 to 700.
+
+2. Perfect Number: a positive integer that is equal to the sum of all its positive divisors except itself.
+Example: 28 is a perfect number because its divisors less than 28 are 1, 2, 4, 7, and 14 and 1 + 2 + 4 + 7 + 14 = 28.
+Use printToScreen() to print all the perfect numbers from 1 to 9000.
+
+3. Palindrome Number: a positive integer that reads the same backward as forward.
+Example: 121 and 22 are palindrome numbers.
+Use printToScreen() to print all the palindrome numbers from 700 to 2000.
+*/
+
+// Enter your code here.
+
+// Implement isSelfDividing(num), isPerfect(num), isPerfect2(num), isPalindrome(num), and matchingNumbers(kind,start,end). Preserve positive-integer and inclusive-range contracts from README.md.

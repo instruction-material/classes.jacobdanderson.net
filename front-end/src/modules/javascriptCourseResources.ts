@@ -11,6 +11,9 @@ import { javascriptFirstModuleResources } from "@/modules/javascriptFirstModuleR
 import { javascriptGridLayoutResources } from "@/modules/javascriptGridLayoutResources";
 import { javascriptHtmlCssResources } from "@/modules/javascriptHtmlCssResources";
 import { javascriptLoopsResources } from "@/modules/javascriptLoopsResources";
+import { javascriptMasterCanvasResources } from "@/modules/javascriptMasterCanvasResources";
+import { javascriptMasterConditionalsResources } from "@/modules/javascriptMasterConditionalsResources";
+import { javascriptMasterFunctionsResources } from "@/modules/javascriptMasterFunctionsResources";
 import { javascriptMasterProjectResources } from "@/modules/javascriptMasterProjectResources";
 import { javascriptMediaParallaxResources } from "@/modules/javascriptMediaParallaxResources";
 import { javascriptMoreHtmlCssResources } from "@/modules/javascriptMoreHtmlCssResources";
@@ -22,7 +25,9 @@ import { javascriptShopResources } from "@/modules/javascriptShopResources";
 
 const courseId = "javascript-level-1-javascript-superstar";
 const base = "/course-assets/javascript-level-1/";
+const masterBase = "/course-assets/javascript-level-2/";
 interface CourseRole {
+	courseId?: "javascript-level-2-javascript-master";
 	project: string;
 	title: string;
 	version: number;
@@ -56,13 +61,18 @@ const roles: readonly CourseRole[] = [
 	...javascriptMasterProjectResources,
 	...javascriptRestaurantResources,
 	...javascriptNewsResources,
-	...javascriptShopResources
+	...javascriptShopResources,
+	...javascriptMasterFunctionsResources,
+	...javascriptMasterConditionalsResources,
+	...javascriptMasterCanvasResources
 ];
 
 export function javascriptCourseResource(value: string) {
-	if (value.startsWith("/course-assets/javascript-level-1/")) {
+	if (value.startsWith(base) || value.startsWith(masterBase)) {
 		const selected = roles.find(role => role.urls.includes(value));
-		return selected ? { ...selected, courseId } : null;
+		return selected
+			? { ...selected, courseId: selected.courseId ?? courseId }
+			: null;
 	}
 	let url: URL;
 	try {
@@ -76,7 +86,7 @@ export function javascriptCourseResource(value: string) {
 	return selected
 		? {
 				...selected,
-				courseId
+				courseId: selected.courseId ?? courseId
 			}
 		: null;
 }
@@ -134,11 +144,16 @@ export async function loadJavaScriptCourseFiles(
 		const controller = new AbortController();
 		const timeout = setTimeout(() => controller.abort(), 15000);
 		try {
-			const response = await fetch(base + file.path, {
-				credentials: "omit",
-				redirect: "error",
-				signal: controller.signal
-			});
+			const response = await fetch(
+				(selected.courseId === "javascript-level-2-javascript-master"
+					? masterBase
+					: base) + file.path,
+				{
+					credentials: "omit",
+					redirect: "error",
+					signal: controller.signal
+				}
+			);
 			const bytes = await readBytes(response, file.byteLength);
 			const digest = new Uint8Array(
 				await crypto.subtle.digest("SHA-256", bytes)

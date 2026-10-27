@@ -1,0 +1,24 @@
+# Sources
+
+Juni Learning: [JSM2 Supplemental Project 1: Geometry Functions](https://codepen.io/junilearning/pen/1f563eb4624314cf5b3673480ec18472).
+
+Observed public editor: https://codepen.io/junilearning/pen/bGegRZb
+
+Role: starter. Both original roles were captured; this is an adaptation of that role.
+
+Original panel SHA-256:
+
+- HTML: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- CSS: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- JavaScript: 1ee45e6e64e49ccf67786e40dce670d388df268132fde4a36f5142ac11278def
+
+The captured original source is retained in test/fixtures/javascript-master-functions-originals.json.
+
+Adaptations:
+
+- Original D3 5.16.0 and license bundled locally
+- Original fixed-width animated output helper replaced with readable D3 text output
+- Original exercise roles retained within a valid local HTML shell
+- Labeled forms replace blocking prompts and preserve the previous valid output
+
+The README describes the project-specific arithmetic, validation and game-state corrections. Source exercise names, function names, sample inputs, pricing and purchasing model remain traceable to the captured original.

@@ -1,0 +1,10 @@
+const canvas = document.getElementById("my-canvas");
+canvas.width = 800;
+canvas.height = 800;
+const ctx = canvas.getContext("2d");
+
+// Use canvas to make a holiday card. Pick your favorite holiday and make a themed card. Make sure to use both shapes and text in your card.
+
+const drawingDescription =
+	"Blank canvas. Add the drawing described in README.md.";
+document.getElementById("drawing-description").textContent = drawingDescription;

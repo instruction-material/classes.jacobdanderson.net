@@ -1,0 +1,30 @@
+// Use canvas to draw a gold star. Then, refactor your code to use a function to draw a star called drawStar(x, y) at the inputted x and y coordinates. Then, draw 5 stars using the drawStar(x, y) function.
+
+const canvas = document.getElementById("my-canvas");
+
+canvas.width = 1200;
+canvas.height = 320;
+
+const ctx = canvas.getContext("2d");
+
+const drawStar = (x, y) => {
+	ctx.beginPath();
+	ctx.moveTo(x, y);
+	ctx.lineTo(x + 50, y + 150);
+	ctx.lineTo(x - 75, y + 50);
+	ctx.lineTo(x + 75, y + 50);
+	ctx.lineTo(x - 50, y + 150);
+	ctx.lineTo(x, y);
+	ctx.fillStyle = "gold";
+	ctx.fill();
+	ctx.strokeStyle = "#725100";
+	ctx.lineWidth = 2;
+	ctx.stroke();
+};
+
+for (let i = 1; i <= 5; i++) {
+	drawStar(200 * i, 100);
+}
+
+const drawingDescription = "Five gold stars in one row.";
+document.getElementById("drawing-description").textContent = drawingDescription;

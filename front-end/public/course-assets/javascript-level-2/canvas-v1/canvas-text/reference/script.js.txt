@@ -1,0 +1,33 @@
+// Use canvas to make a holiday card. Pick your favorite holiday and make a themed card. Make sure to use both shapes and text in your card.
+
+const canvas = document.getElementById("my-canvas");
+
+canvas.width = 800;
+canvas.height = 800;
+
+const ctx = canvas.getContext("2d");
+
+ctx.fillStyle = "#FFC0CB";
+ctx.fillRect(50, 0, 600, 400);
+
+ctx.beginPath();
+ctx.arc(305, 100, 55, 0, Math.PI * 2);
+ctx.fillStyle = "red";
+ctx.fill();
+ctx.beginPath();
+ctx.arc(395, 100, 55, 0, Math.PI * 2);
+ctx.fill();
+ctx.beginPath();
+ctx.moveTo(260, 90);
+ctx.lineTo(256, 125);
+ctx.lineTo(350, 270);
+ctx.lineTo(444, 125);
+ctx.lineTo(440, 90);
+ctx.fill();
+
+ctx.font = "40px Georgia";
+ctx.fillStyle = "#6b1731";
+ctx.textAlign = "center";
+ctx.fillText("Happy Valentine's Day!", 350, 350);
+const drawingDescription = "Happy Valentine's Day! A red heart on a pink card.";
+document.getElementById("drawing-description").textContent = drawingDescription;

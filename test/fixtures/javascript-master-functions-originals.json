@@ -1,0 +1,758 @@
+[
+	{
+		"project": "debugging-functions",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/7afcb6feb94f958d3975a028b537b9cc",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "// Kant D. Bugg is operating a coffee shop on his own! He wants to find how many cups of coffee he needs to sell in order to turn a profit. Every cup of coffee uses 1/100 gallon of milk, 1/150 bag of beans, and 1/200 sack of sugar. At the end of the day, all the ingredients go bad! He will also need to pay for cups, maintenance, and rent. Luckily he is his only employee, so he won't need to pay wages! Kant charges $1.99 per cup of coffee (tax included). Help Kant out by fixing the bugs in his code!\n\nconst gallonOfMilkCost = 2.49;\nconst bagOfBeansCost = 18.89;\nconst sackOfSugarCost = 9.99;\nconst costPerCup = 0.01;\nconst dailyMaintenanceCost = 30;\nconst dailyRentCost = 100;\n\nconst cupOfCoffeeCost = 1.99;\n\n// takes in the number of cups sold calculates the daily cost of selling that many cups of coffee\n// Note: all ingredients go bad at the end of the day!\nconst dailyCost = (cupsSold) => {\n  let gallonsOfMilkUsed = Math.ceil(cupsSold / 100);\n  let bagsOfBeansUsed = Math.ceil(cupsSold / 150);\n  let sacksOfSugarUsed = Math.ceil(cupsSold / 200);\n  return (\n    gallonsOfMilkUsed * gallonOfMilkCost +\n    bagsOfBeansUsed * bagOfBeansCost +\n    sacksOfSugarUsed * sackOfSugarCost +\n    cupsSold * costPerCup +\n    dailyMaintenanceCost +\n    dailyRentCost\n  );\n};\n\n// takes in the number of cups sold and returns a day's profit\nconst calculateProfit = (cupsSold) => {\n  let cost = dailyCost(cupsSold);\n  let revenue = cupOfCoffeeCost * cupsSold;\n  return revenue - cost;\n};\n\n// return the minimum number of cups to sell in order to reach a profit goal\nconst reachProfitGoal = (goal) => {\n  let cups = 0;\n  while (calculateProfit(cups) < goal) {\n    cups++;\n  }\n  return cups;\n};\n\nprintToScreen(`In order to break even in a day (make $0 in profit), I will need to sell ${reachProfitGoal(0)} cups of coffee.`);\n\nprintToScreen(`In order to make a $200 profit in a day, I will need to sell ${reachProfitGoal(200)} cups of coffee.`);\n\nprintToScreen(`In order to make a $1000 profit in a day, I will need to sell ${reachProfitGoal(1000)} cups of coffee.`);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 255 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 50);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 50)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 2753,
+				"fnv1a32": "85d1b7fa"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+				]
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			}
+		},
+		"title": "JSM2 Supplemental Project 4: Debugging Functions Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/OJXvMWy/7afcb6feb94f958d3975a028b537b9cc",
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T04:28:42.660960+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "544e9c2b5d780734aaff87c7ad2998cdcec25df6125f1b53c0eb4e4fdf5882dd"
+		}
+	},
+	{
+		"project": "debugging-functions",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/789be1560455a424d23eacd04d4ac69b",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "// Kant D. Bugg is operating a coffee shop on his own! He wants to find how many cups of coffee he needs to sell in order to turn a profit. Every cup of coffee uses 1/100 gallon of milk, 1/150 bag of beans, and 1/200 sack of sugar. At the end of the day, all the ingredients go bad! He will also need to pay for cups, maintenance, and rent. Luckily he is his only employee, so he won't need to pay wages! Kant charges $1.99 per cup of coffee (tax included). Help Kant out by fixing the bugs in his code!\n\nconst gallonOfMilkCost = 2.49;\nconst bagOfBeansCost = 18.89;\nconst sackOfSugarCost = 9.99;\nconst costPerCup = 0.01;\nconst dailyMaintenanceCost = 30;\nconst dailyRentCost = 100;\n\nconst cupOfCoffeeCost = 1.99;\n\nprintToScreen(`In order to break even in a day (make $0 in profit), I will need to sell {reachProfitGoal(0)} cups of coffee.`);\n\nprintToScreen(`In order to make a $200 profit in a day, I will need to sell $reachProfitGoal(200) cups of coffee.`);\n\nprintToScreen(`In order to make a $1000 profit in a day, I will need to sell ${reachProfitGoal(1000)} cups of coffee.`);\n\n// takes in the number of cups sold calculates the daily cost of selling that many cups of coffee\n// Note: all ingredients go bad at the end of the day!\nconst dailyCost = (cupsSold) =>\n  let gallonsOfMilkUsed = Math.ceiling(cups / 100);\n  let bagsOfBeansUsed = Math.ceiling(cups / 150);\n  let sacksOfSugarUsed = Math.ceiling(cups / 200);\n  return (\n    gallonsOfMilkUsed * gallonOfMilkCost +\n    bagsOfBeansUsed * bagOfBeansCost +\n    sacksOfSugarUsed * sackOfSugarCost +\n    cupsSold * costPerCup +\n    dailyMaintenanceCost +\n    dailyRentCost\n  );\n\n// takes in the number of cups sold and returns a day's profit\nconst calculateProfit => {\n  let cost = dailyCost(cupsSold);\n  let revenue = cupOfCoffeeCost * cupsSold;\n  printToScreen(revenue - cost);\n};\n\n// return the minimum number of cups to sell in order to reach a profit goal\nconst reachProfitGoal (goal) {\n  let cups = 0;\n  while (calculateProfit(cups) < goal) {\n    cups++;\n  }\n  return cups;\n};\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 255 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 50);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 50)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 2732,
+				"fnv1a32": "2064f219"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+				]
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			}
+		},
+		"title": "JSM2 Supplemental Project 4: Debugging Functions",
+		"observedURL": "https://codepen.io/junilearning/pen/KKMoVam",
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T04:28:42.660864+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "b309ac256072a84dc1063ec2798680c62d2d37497121032643b225f6580cca3f"
+		}
+	},
+	{
+		"project": "functions-practice",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/5cd805c9464780ddb07004ec7feedd7b",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "/* Write the 6 following functions in arrow notation. \n\nThen, use printToScreen() to print sentences onto the screen using the functions.\ni.e. \"The sum of 4 and 6 is 10\"\n\n1. Write a function that takes in two numbers and returns their sum.\n\n2. Write a function that takes in two numbers and returns their difference.\n\n3. Write a function that takes in three numbers and returns the product of the numbers.\n\n4. Write a function that takes in two numbers and returns their average.\n\n5. Write a function that takes in a number and returns its factorial.\n\n6. Write an exponent function that takes in a base and a power and returns the value of the base raised to that power.\n*/\n\n// Solution\nconst add = (x, y) => {\n  return x + y;\n};\n\nconst subtract = (x, y) => {\n  return x - y;\n};\n\nconst multiply = (x, y, z) => {\n  return x * y * z;\n};\n\nconst average = (x, y) => {\n  return (x + y) / 2;\n};\n\nconst factorial = (num) => {\n  answer = 1;\n  for (let i = 1; i <= num; i++) {\n    answer *= i;\n  }\n  return answer;\n};\n\nconst exponent = (b, p) => {\n  answer = 1;\n  for (let i = 0; i < p; i++) {\n    answer *= b;\n  }\n  return answer;\n};\n\n\nprintToScreen(`The sum of 13 and 18 is ${add(13, 18)}.`);\n\nprintToScreen(`The difference of 13 and 18 is ${subtract(13, 18)}.`);\n\nprintToScreen(`The product of 13, 18, and 10 is ${multiply(13, 18, 10)}.`);\n\nprintToScreen(`The average of 13 and 18 is ${average(13, 18)}.`);\n\nprintToScreen(`The factorial of 4 is: ${factorial(4)}.`);\n\nprintToScreen(`2 raised to the 5th power is: ${exponent(2, 5)}.`);\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\nfunction printToScreen (text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 2186,
+				"fnv1a32": "a2e1cca0"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+				]
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			}
+		},
+		"title": "JSM2 Project 1: Functions Practice Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/pobRwaJ/5cd805c9464780ddb07004ec7feedd7b",
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T04:28:42.658896+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "6b52e40fcb2c76e769ae32548889075a8cae1f3d17fbb8f7494ff1772472bca7"
+		}
+	},
+	{
+		"project": "functions-practice",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/22b54271a2ed49675c512f1034c0e749",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "/* Write the 6 following functions in arrow notation. \n\nThen, use printToScreen() to print sentences onto the screen using the functions. For example, \"The sum of 4 and 6 is 10\".\n\n1. Write a function that takes in two numbers and returns their sum.\n\n2. Write a function that takes in two numbers and returns their difference.\n\n3. Write a function that takes in three numbers and returns the product of the numbers.\n\n4. Write a function that takes in two numbers and returns their average.\n\n5. Write a function that takes in a number and returns its factorial.\n\n6. Write an exponent function that takes in a base and a power and returns the value of the base raised to that power.\n*/\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen (text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 1379,
+				"fnv1a32": "c57213d9"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+				]
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			}
+		},
+		"title": "JSM2 Project 1: Functions Practice",
+		"observedURL": "https://codepen.io/junilearning/pen/qBNRjxP",
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T04:28:42.659103+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "27844fd759b6f646f54e7a1043e47a62fc3bc7804d5de2a7a81eb076332f3278"
+		}
+	},
+	{
+		"project": "game-of-war",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/96fa9d7b8f7255c42c313b2d914abc48",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "/*\nSimulate a simple game of War! In this two-player card game, each player has a hand of shuffled cards. Each player plays the top card off of their hand, and the player with the higher card wins. For our simulation, have each player draw a card by picking a random number between 1 and 13 (Ace = 1, Jack = 11, Queen = 12, King = 13); the player with the higher number wins that round. If it is a tie, then neither player wins.\n\nCreate a function that takes in the player's name and draws a card for the player. The function should use printToScreen() to print out the card and its suit (ie: \"John drew a Jack of Diamonds!\"). The function should also return a card number which will be used to compare the cards. (Note: Ace is the highest.)\n\nPlay 10 rounds, printing out the results of each round, and then print out final scores (i.e. the total number of rounds won by each player).\n\n*/\n\n\n// Solution\n\nconst drawCard = (playerName) => {\n  let cardNum = Math.ceil(Math.random() * 13);\n  let card;\n\n  if (cardNum === 1) {\n    card = \"Ace\";\n    // Ace is the highest\n    cardNum = 14;\n  } else if (cardNum === 11) {\n    card = \"Jack\";\n  } else if (cardNum === 12) {\n    card = \"Queen\";\n  } else if (cardNum === 13) {\n    card = \"King\";\n  } else {\n    card = cardNum.toString();\n  }\n\n  let suitNum = Math.ceil(Math.random() * 4);\n  let suit;\n\n  if (suitNum === 1) {\n    suit = \"Spades\";\n  } else if (suitNum === 2) {\n    suit = \"Clubs\";\n  } else if (suitNum === 3) {\n    suit = \"Hearts\";\n  } else {\n    suit = \"Diamonds\";\n  }\n\n  printToScreen(`${playerName} drew a ${card} of ${suit}!`);\n  return cardNum;\n};\n\nlet p1Name = prompt(\"Please enter player 1's name: \");\nlet p2Name = prompt(\"Please enter player 2's name: \");\nlet p1Score = 0;\nlet p2Score = 0;\nfor (let i = 0; i < 10; i++) {\n  let p1Card = drawCard(p1Name);\n  let p2Card = drawCard(p2Name);\n\n  if (p1Card > p2Card) {\n    printToScreen(`${p1Name} wins this round!`);\n    p1Score++;\n  } else if (p2Card > p1Card) {\n    printToScreen(`${p2Name} wins this round!`);\n    p2Score++;\n  } else {\n    printToScreen(\"It's a tie!\");\n  }\n  printToScreen(\"\");\n}\n\nprintToScreen(`${p1Name}'s final score: ${p1Score}`);\nprintToScreen(`${p2Name}'s final score: ${p2Score}`);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 255 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 50);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 50)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 2911,
+				"fnv1a32": "f27980f1"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+				]
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			}
+		},
+		"title": "JSM2 Supplemental Project 3: Game of War Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/yLJKeaX/96fa9d7b8f7255c42c313b2d914abc48",
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T04:28:42.660772+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "5edd20d9472a647659cf0c4292eb836afd740e2be764fa2bd58a2f62a74c1c1f"
+		}
+	},
+	{
+		"project": "game-of-war",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/06315e2ce4772499678cc4959f8e2360",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "/* Simulate a simple game of War! In this two-player card game, each player has a hand of shuffled cards. Each player plays the top card off of their hand, and the player with the higher card wins. For our simulation, have each player draw a card by picking a random number between 1 and 13 (Ace = 1, Jack = 11, Queen = 12, King = 13); the player with the higher number wins that round. If it is a tie, then neither player wins.\n\nCreate a function that takes in the player's name and draws a card for the player. The function should use printToScreen() to print out the card and its suit (ie: \"John drew a Jack of Diamonds!\"). The function should also return a card number which will be used to compare the cards. (Note: Ace is the highest.)\n\nPlay 10 rounds, printing out the results of each round, and then print out final scores (i.e. the total number of rounds won by each player). */\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 255 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 50);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 50)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 1621,
+				"fnv1a32": "f32b883a"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+				]
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			}
+		},
+		"title": "JSM2 Supplemental Project 3: Game of War",
+		"observedURL": "https://codepen.io/junilearning/pen/WNxzrGG",
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T04:28:42.660480+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "b581a7a415c0a32afd74f6fe333b193806f084899613313d42bdccdcbc28e5e5"
+		}
+	},
+	{
+		"project": "geometry-functions",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/b8bf00b13b1d7085a129e155c9c428eb",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "/* Program the following geometry-related functions. Google the formulas if you need help remembering them!\n\n1. Write a function that takes in the radius of a circle and returns its circumference.\n2. Write a function that takes in the radius of a circle and returns its area.\n3. Write a function that takes in the radius of a circle and returns true if its circumference is larger than its area and false otherwise.\n4. Write a function that takes in 3 side lengths of a triangle and returns scalene, isosceles, or equilateral.\n5. Write a function that takes in 1 side length of a equilateral triangle and returns its area.\n6. Write a function that takes in 3 sides of a triangle and returns true if the triangle is a right triangle, false otherwise!\n\nUse the printToScreen() function and random numbers to print sentences for each of these functions!\n*/\n\n// Solution\n\nconst circumference = (r) => {\n  return 2 * Math.PI * r;\n};\n\nconst circleArea = (r) => {\n  return Math.PI * Math.pow(r, 2);\n};\n\nconst isCircumferenceLarger = (r) => {\n  if (circumference(r) > circleArea(r)) {\n    return true;\n  } else {\n    return false;\n  }\n};\n\nconst triangleType = (side1, side2, side3) => {\n  if (side1 === side2 && side2 === side3) {\n    return \"equilateral\";\n  } else if (side1 === side2 || side2 === side3 || side1 === side3) {\n    return \"isosceles\";\n  } else {\n    return \"scalene\";\n  }\n};\n\nconst equilateralTriangleArea = (s) => {\n  return Math.pow(s,2) * (Math.sqrt(3) / 4);\n}\n\n// Challenge:\nconst isRightTriangle = (a,b,c) => {\n  if (Math.pow(a, 2) + Math.pow(b, 2) == Math.pow(c, 2)) {\n    return true;\n  } else {\n    return false;\n  }\n};\n\nlet radius = Math.floor(Math.random() * 10);\n\nprintToScreen(\n  `A circle with a radius ${radius} has a circumference of ${circumference(\n    radius\n  )} and an area of ${circleArea(radius)}.`\n);\n\nprintToScreen(\n  `A circle with a radius ${1} has a larger circumference than its area: ${isCircumferenceLarger(\n    1\n  )}`\n);\n\nprintToScreen(\n  `A circle with a radius ${radius} has a larger circumference than its area: ${isCircumferenceLarger(\n    radius\n  )}`\n);\n\nlet side1 = Math.floor(Math.random() * 10);\nlet side2 = Math.floor(Math.random() * 10);\nlet side3 = Math.floor(Math.random() * 20);\n\nprintToScreen(\n  `A triangle with sides ${side1}, ${side2}, ${side3} is a ${triangleType(side1,side2,side3)} triangle.`\n);\n\nprintToScreen(\n  `An equilateral triangle with side length ${side3} has an area of ${equilateralTriangleArea(side3)}.`\n);\n\nprintToScreen(\n  `A triangle with sides 3,4,5 is a right triangle: ${isRightTriangle(3, 4, 5)}`);\n\nprintToScreen(\n  `A triangle with sides ${side1}, ${side2}, ${side3} is a right triangle: ${isRightTriangle(side1, side2, side3)}`\n);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 255 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 3410,
+				"fnv1a32": "7d7340d3"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+				]
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			}
+		},
+		"title": "JSM2 Supplemental Project 1: Geometry Functions Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/gOMgRqE/b8bf00b13b1d7085a129e155c9c428eb",
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T04:28:42.660172+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "0e20e4ae59a07310bddd8d3f162f23ab7b3201b1ff6133981f42425de9030b39"
+		}
+	},
+	{
+		"project": "geometry-functions",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/1f563eb4624314cf5b3673480ec18472",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "/* Program the following geometry-related functions. Google the formulas if you need help remembering them!\n\n1. Write a function that takes in the radius of a circle and returns its circumference.\n2. Write a function that takes in the radius of a circle and returns its area.\n3. Write a function that takes in the radius of a circle and returns true if its circumference is larger than its area and false otherwise.\n4. Write a function that takes in 3 side lengths of a triangle and returns scalene, isosceles, or equilateral.\n5. Write a function that takes in 1 side length of an equilateral triangle and returns its area.\n6. Write a function that takes in 3 sides of a triangle and returns true if the triangle is a right triangle, false otherwise!\n\nUse the printToScreen() function and random numbers to print sentences for each of these functions!\n*/\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\n\nfunction printToScreen (text) {\n\tlet r = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet g = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tlet b = Math.floor(Math.floor(Math.random() * 255 + 1));\n\tconst svg = d3\n\t\t.select(\"body\")\n\t\t.append(\"svg\")\n\t\t.attr(\"width\", 1500)\n\t\t.attr(\"height\", 75);\n\n\tsvg\n\t\t.append(\"text\")\n\t\t.attr(\"y\", 37.5)\n\t\t.attr(\"width\", 450)\n\t\t.attr(\"height\", 75)\n\t\t.attr(\"x\", -1000)\n\t\t.attr(\"font-weight\", \"bold\")\n\t\t.attr(\"font-size\", \"20px\")\n\t\t.attr(\"fill\", `rgb(${r},${g},${b}`)\n\t\t.attr(\"font-family\", \"Roboto\")\n\t\t.text(text)\n\t\t.transition()\n\t\t.duration(1000)\n\t\t.attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 1551,
+				"fnv1a32": "b2a2340d"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+				]
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			}
+		},
+		"title": "JSM2 Supplemental Project 1: Geometry Functions",
+		"observedURL": "https://codepen.io/junilearning/pen/bGegRZb",
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T04:28:42.659879+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "1ee45e6e64e49ccf67786e40dce670d388df268132fde4a36f5142ac11278def"
+		}
+	},
+	{
+		"project": "pain-at-the-pump",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/0ec6f1fb939a959f455f1fb70519c29e",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "/* When buying a car, it is very important to consider its fuel efficiency. Write a function that takes in a car's MPG (miles per gallon), its miles driven, and the cost of gas per gallon, and returns the total cost of gas! \n\nWrite a program that will pick a random number of miles between 10,000 and 100,000 and a random cost of gas between $1 and $5. Use these values, printToScreen(), and your function to print the total cost of driving a car with 10 MPG, a car with 25 MPG, and a car with 50 MPG.\n\nNote: use the .toFixed(2) method to round money values to 2 decimal points\n*/\n\n// Solution\n\nconst totalCost = (mpg, miles, gasCost) => {\n  return (miles / mpg * gasCost).toFixed(2);\n};\n\nlet miles = Math.floor(Math.random() * 90000 + 10000);\n\nlet costOfGas = (Math.random() * 4 + 1).toFixed(2);\n\nprintToScreen(\n  `The cost of driving a car with 10 mpg at ${miles} miles and gas at $${costOfGas}/gallon is $${totalCost(10, miles, costOfGas)}.`\n);\n\nprintToScreen(\n  `The cost of driving a car with 25 mpg at ${miles} miles and gas at $${costOfGas}/gallon is $${totalCost(25, miles, costOfGas)}.`\n);\n\nprintToScreen(\n  `The cost of driving a car with 50 mpg at ${miles} miles and gas at $${costOfGas}/gallon is $${totalCost(50, miles, costOfGas)}.`\n);\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 255 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 50);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 50)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 1945,
+				"fnv1a32": "7df094cd"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+				]
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			}
+		},
+		"title": "JSM2 Supplemental Project 2: Pain at the Pump Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/abZYdOG/0ec6f1fb939a959f455f1fb70519c29e",
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T04:28:42.660382+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "641fef03b0b1850a0cdd04556c173309104756483eb6b41697b9996c7fe69650"
+		}
+	},
+	{
+		"project": "pain-at-the-pump",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/87b49903a68f15f9132d49b704444083",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "/* When buying a car, it is very important to consider its fuel efficiency. Write a function that takes in a car's MPG (miles per gallon), its miles driven, and the cost of gas per gallon, and returns the total cost of gas! \n\nThen, write a program that will pick a random number of miles between 10,000 and 100,000 and a random cost of gas between $1 and $5. Use these values, printToScreen(), and your function to print the total cost of driving a car with 10 MPG, a car with 25 MPG, and a car with 50 MPG.\n\nNote: use the .toFixed(2) method to round money values to 2 decimal points.\n*/\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 255 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 50);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 50)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 1321,
+				"fnv1a32": "fe777dea"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+				]
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			}
+		},
+		"title": "JSM2 Supplemental Project 2: Pain at the Pump",
+		"observedURL": "https://codepen.io/junilearning/pen/rNLdxVY",
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T04:28:42.660277+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "6692c7d4ec0653b5a894fab96e57971d71dfabb050734964455fe3253e2c07d6"
+		}
+	},
+	{
+		"project": "rock-paper-scissors",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/2813f8a526379aefbabc47ad2f65fcd3",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "/* Program a single-player Rock, Paper, Scissors game! You will need to code the following three functions:\n\n1. Write a function, yourTurn(), which prompts the user to choose Rock, Paper, Scissors and returns their choice in lowercase. If they click cancel, return \"nothing\". This function will take in no input variables.\n\n2. Write a function, computerTurn(), which randomly returns \"rock\", \"paper\", or \"scissors\". This function will take in no input variables.\n\n3. Write a function, findResult(), which takes in the player choice and computer choice and returns \"win\", \"lose\", or \"tie\" based on the user's results.\n\nThe game will continue until either the player or the computer gets 3 wins. Use the alert() function to show the results of each round and printToScreen() to show who won the game.\n*/\n\n// Solution\n\nconst yourTurn = () => {\n  let choice = prompt(\"Rock, Paper, Scissors?\");\n  if (choice === null) {\n    return \"nothing\";\n  } else {\n    return choice.toLowerCase();\n  }\n};\n\nconst computerTurn = () => {\n  let choice = Math.floor(Math.random() * 3);\n  if (choice === 0) {\n    return \"rock\";\n  } else if (choice === 1) {\n    return \"paper\";\n  } else {\n    return \"scissors\";\n  }\n};\n\nconst findResult = (playerChoice, computerChoice) => {\n  if (playerChoice === computerChoice) {\n    return \"tie\";\n  } else if (playerChoice === \"rock\") {\n    if (computerChoice === \"scissors\") {\n      return \"win\";\n    } else {\n      return \"lose\";\n    }\n  } else if (playerChoice === \"paper\") {\n    if (computerChoice === \"rock\") {\n      return \"win\";\n    } else {\n      return \"lose\";\n    }\n  } else if (playerChoice === \"scissors\") {\n    if (computerChoice === \"paper\") {\n      return \"win\";\n    } else {\n      return \"lose\";\n    }\n  } else {\n    return \"lose\";\n  }\n};\n\nlet playerWins = 0;\nlet computerWins = 0;\nlet roundNum = 1;\n\nwhile (playerWins < 3 && computerWins < 3) {\n  let pTurn = yourTurn();\n  let cTurn = computerTurn();\n  let result = findResult(pTurn, cTurn);    \n  let message = `Round ${roundNum}: You chose ${pTurn} and the computer chose ${cTurn}!\\n`\n\n  if (result === \"win\") {\n    playerWins++;\n    message += `You win this round!\\nYou now have ${playerWins} points and the computer has ${computerWins} points.`;\n  } else if (result === \"lose\") {\n    computerWins++;\n    message += `The computer wins this round!\\nYou now have ${playerWins} points and the computer has ${computerWins} points.`;\n  } else {\n    message += `It's a tie!\\nYou now have ${playerWins} points and the computer has ${computerWins} points.`;\n  }\n  alert(message);\n  roundNum++;\n}\n\nif (playerWins > computerWins) {\n  printToScreen(\"Congratulations! You win!\");\n} else {\n  printToScreen(\"The computer won. Try again next time!\");\n}\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 255 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 3416,
+				"fnv1a32": "e58350a3"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+				]
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			}
+		},
+		"title": "JSM2 Project 3: Rock Paper Scissors Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/MWeJoPe/2813f8a526379aefbabc47ad2f65fcd3",
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T04:28:42.659774+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "43f55579320569648b74ae1b14f1e5ca340bc977108ae81843ed9a4884e03747"
+		}
+	},
+	{
+		"project": "rock-paper-scissors",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/30e42b5cf6775bbf059a3d313c96f7c5",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "/* Program a single-player game of Rock, Paper, Scissors! You will need to code the following three functions:\n\n1. Write a function, yourTurn(), which prompts the user to choose Rock, Paper, Scissors and returns their choice in lowercase. If they click cancel, return \"nothing\". This function will take in no input variables.\n\n2. Write a function, computerTurn(), which randomly returns \"rock\", \"paper\", or \"scissors\". This function will take in no input variables.\n\n3. Write a function, findResult(), which takes in the player choice and computer choice and returns \"win\", \"lose\", or \"tie\" based on the user's results.\n\nThe game will continue until either the player or the computer gets 3 wins. Use the alert() function to show the results of each round and printToScreen() to show who won the game.\n*/\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 255 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 1538,
+				"fnv1a32": "6695139b"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+				]
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			}
+		},
+		"title": "JSM2 Project 3: Rock Paper Scissors",
+		"observedURL": "https://codepen.io/junilearning/pen/VwjPWEd",
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T04:28:42.659446+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "617abf986090e0267e7ac4b2aef3abe877063bc3b0d7a9c3552459f683232620"
+		}
+	},
+	{
+		"project": "which-metrocard",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/0ee1b7431e9ee2bf0befa562068702d7",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "/* You're staying in NYC for a month. There's so much to do and see but you're presented with 1 tough decision: buy a monthly MetroCard for $127 or a pay-per-ride MetroCard that costs $2.75 per swipe?\n\n1. Write a function that takes in a number of rides and returns the savings you'd receive from buying a monthly card. If the savings are negative, that means you'd save more from buying a pay-per-ride card!\n\n2. Write another function that takes in the savings returned from the previous function. This function should return a message that either suggests to buy a monthly MetroCard or a pay-per-ride. This message should also include how much you'd be saving if you buy this card.\n\nUse printToScreen() to print the messages returned from function 2 for 30 rides, 45 rides, 60 rides, and a user-inputted custom number of rides!\n\nNote: use toFixed(2) to round to the nearest 2 decimal points\n*/\n\n// Solution\n\nconst monthlyFare = 127;\nconst singleFare = 2.75;\n\n// positive = savings with monthly; negative = savings with payPerRide\nconst calculateSavings = (numRides) => {\n  let payPerRide = numRides * singleFare;\n  return payPerRide - monthlyFare;\n};\n\nconst suggestCard = (savings) => {\n  if (savings > 0) {\n    return (\n      `You should purchase a monthly MetroCard! Your savings will be: $${savings.toFixed(2)}.`);\n  } else if (savings < 0) {\n    return (\n      `You should purchase a pay-per-ride MetroCard! Your savings will be: $${(0 - savings).toFixed(2)}.`);\n  } else {\n    return \"Your cost will be the same either way!\";\n  }\n};\n\nprintToScreen(\"With 30 rides:\");\nprintToScreen(suggestCard(calculateSavings(30)));\nprintToScreen(\"With 45 rides:\");\nprintToScreen(suggestCard(calculateSavings(45)));\nprintToScreen(\"With 60 rides:\");\nprintToScreen(suggestCard(calculateSavings(60)));\n\nlet custom = +prompt(\"How many rides will you need this month?\");\nprintToScreen(`With ${custom} rides:`);\nprintToScreen(suggestCard(calculateSavings(custom)));\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 255 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 50);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 50)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 2646,
+				"fnv1a32": "49e799b9"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+				]
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			}
+		},
+		"title": "JSM2 Project 2: Which MetroCard Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/jOrywpE/0ee1b7431e9ee2bf0befa562068702d7",
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T04:28:42.659318+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "d15689917b2dd6ee6b3c863e822fe347665a6cfd222f5f79997011fedf86e21b"
+		}
+	},
+	{
+		"project": "which-metrocard",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/7295dc0298b2f2da6af9e1287d32456a",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "/* You're staying in NYC for a month. There's so much to do and see but you're presented with 1 tough decision: buy a monthly MetroCard for $127 or a pay-per-ride MetroCard that costs $2.75 per swipe?\n\n1. Write a function that takes in a number of rides and returns the savings you'd receive from buying a monthly card. If the savings are negative, that means you'd save more from buying a pay-per-ride card!\n\n2. Write another function that takes in the savings returned from the previous function. This function should return a message that either suggests to buy a monthly MetroCard or a pay-per-ride. This message should also include how much you'd be saving if you buy this card.\n\nUse printToScreen() to print the messages returned from function 2 for 30 rides, 45 rides, 60 rides, and a user-inputted custom number of rides!\n\nNote: use toFixed(2) to round to the nearest 2 decimal points\n*/\n\n// Enter your code below this line\n\n\n\n// DO NOT ALTER CODE WRITTEN BELOW THIS LINE\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 255 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 255 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 50);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 50)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 1629,
+				"fnv1a32": "81551be9"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+				]
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "Neither",
+				"prefixing": "Neither"
+			},
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			}
+		},
+		"title": "JSM2 Project 2: Which MetroCard",
+		"observedURL": "https://codepen.io/junilearning/pen/rNLjwrj",
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditorsVerifiedInUI": ["HTML", "CSS"],
+		"retainedAt": "2026-10-26T04:28:42.659225+00:00",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "01b576a979f28eca78b9585f44e361a5a4a183f6aa0673ee5ee1174771991b46"
+		}
+	}
+]
