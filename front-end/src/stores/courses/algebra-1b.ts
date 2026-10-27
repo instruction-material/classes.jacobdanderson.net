@@ -203,8 +203,8 @@ Use the kick-off project as placement rather than as a formal test.
 - Temperature conversion inverse: \`C = (5/9)(F - 32)\`
 - Sundae weight tolerance: \`|w - 2.6| <= 0.1\`, so \`2.5 <= w <= 2.7\`
 - Summer pay model: \`s(w) = 7.65(1.015)^w\`, and \`s(12) ≈ 9.15\`
-- Food-item cost: \`13 * (45/7) ≈ 83.57\`
-- To finish the same order in \`15\` minutes, at least \`3\` employees are needed
+- Seven identical food items cost \`$45\`. At the same unit price, what do \`13\` items cost? \`13 * (45/7) ≈ $83.57\`, rounded to the nearest cent.
+- One employee can prepare an order in \`45\` minutes. Assume equal constant work rates and that employees can split the work without delays. How many employees are needed to finish in at most \`15\` minutes? For a positive whole-number employee count \`n\`, \`T(n) = 45/n\`, so \`45/n <= 15\` gives \`n >= 3\`. At least \`3\` employees are needed; \`2\` take \`22.5\` minutes and \`3\` take \`15\`.
 - Using the estimated line of best fit \`y ≈ 2x\`, predicted sales at \`123\` visitors are \`246\`, so the residual for an actual value of \`221\` is \`221 - 246 = -25\`
 				`.trim(),
 				media.ridePathParabolas

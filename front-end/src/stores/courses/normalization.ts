@@ -4774,9 +4774,37 @@ function diagnosticExtensionPrompt(context: CourseTextContext) {
 	]);
 }
 
+function mathProjectExpectations(context: CourseTextContext) {
+	return variantLines(context, [
+		() => [
+			"- State the givens, target quantity, representation, and rule or theorem before solving.",
+			"- Work a typical example, then check a boundary, sign, unit, graph, or table case that could change the interpretation.",
+			"- Keep each algebraic or representational step justified so the final answer can be checked for reasonableness."
+		],
+		() => [
+			"- Identify the known values, unknown value, and representation before choosing a method.",
+			"- Test one standard case and one case involving sign, intercept, domain, unit, or graph behavior.",
+			"- Explain how the answer can be checked without simply repeating the same calculation."
+		],
+		() => [
+			"- Translate the situation into an equation, graph, table, diagram, or verbal model before solving.",
+			"- Check the result with a substitution, estimate, graph feature, boundary value, or unit/context test.",
+			"- Record why each transformation is valid so the result is auditable."
+		]
+	]);
+}
+
 function projectExpectations(context: CourseTextContext) {
 	const source = contextText(context);
 	const subject = extensionSubject(context);
+
+	if (
+		/^(?:(?:early|late)-elementary-[ab]-math|(?:pre-)?algebra-(?:[12][ab]|[ab])|geometry-[ab]|pre-calculus-[ab]|ap-calculus)$/.test(
+			context.courseId
+		)
+	) {
+		return mathProjectExpectations(context);
+	}
 
 	if (isPygameSource(source)) {
 		return [
@@ -5413,25 +5441,7 @@ function projectExpectations(context: CourseTextContext) {
 			]
 		]);
 	}
-	if (isMathContext(context)) {
-		return variantLines(context, [
-			() => [
-				"- State the givens, target quantity, representation, and rule or theorem before solving.",
-				"- Work a typical example, then check a boundary, sign, unit, graph, or table case that could change the interpretation.",
-				"- Keep each algebraic or representational step justified so the final answer can be checked for reasonableness."
-			],
-			() => [
-				"- Identify the known values, unknown value, and representation before choosing a method.",
-				"- Test one standard case and one case involving sign, intercept, domain, unit, or graph behavior.",
-				"- Explain how the answer can be checked without simply repeating the same calculation."
-			],
-			() => [
-				"- Translate the situation into an equation, graph, table, diagram, or verbal model before solving.",
-				"- Check the result with a substitution, estimate, graph feature, boundary value, or unit/context test.",
-				"- Record why each transformation is valid so the result is auditable."
-			]
-		]);
-	}
+	if (isMathContext(context)) return mathProjectExpectations(context);
 	if (isScienceContext(context)) {
 		return [
 			"- Use a provided image, graph, data table, short video, or simulation rather than required physical supplies.",
