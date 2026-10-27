@@ -65,7 +65,7 @@ const cases = [
 		code: "PCTA8",
 		title: "The Binomial Theorem",
 		example:
-			"In `(a + b)^n`, term k is `C(n,k) a^(n-k) b^k`, for `k = 0, ..., n`, where `C(n,k) = n!/[k!(n-k)!]` and `0! = 1`.\n\nFor `(x + 2)^4`, the coefficients from Pascal's triangle are `1, 4, 6, 4, 1`. Substitution gives `x^4 + 4x^3(2) + 6x^2(2^2) + 4x(2^3) + 2^4`, or `x^4 + 8x^3 + 24x^2 + 32x + 16`. Exponents in each term add to 4; the powers of 2 must be included as well as the binomial coefficients.",
+			"In `(a + b)^n`, term k is `C(n,k) a^(n-k) b^k`, for `k = 0, ..., n`, where `C(n,k) = n!/[k!(n-k)!]`. For a positive integer n, `n!` is the product of the integers from 1 through n; `0! = 1`.\n\nFor `(x + 2)^4`, the coefficients from Pascal's triangle are `1, 4, 6, 4, 1`. Substitution gives `x^4 + 4x^3(2) + 6x^2(2^2) + 4x(2^3) + 2^4`, or `x^4 + 8x^3 + 24x^2 + 32x + 16`. Exponents in each term add to 4; the powers of 2 must be included as well as the binomial coefficients.",
 		problems:
 			"1. Expand `(2x - 1)^4` and check the result at `x = 0` and `x = 1`.\n2. Find just the coefficient of `x^3` in `(2x - 1)^5`, identifying the needed value of k.\n3. Find the coefficient of `x^2` in `(x + 3)^6` without expanding the whole expression."
 	},
