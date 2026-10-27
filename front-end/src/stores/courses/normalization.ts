@@ -4774,6 +4774,12 @@ function diagnosticExtensionPrompt(context: CourseTextContext) {
 	]);
 }
 
+function isMathematicsCourse(context: CourseTextContext) {
+	return /^(?:(?:early|late)-elementary-[ab]-math|(?:pre-)?algebra-(?:[12][ab]|[ab])|geometry-[ab]|pre-calculus-[ab]|ap-calculus)$/.test(
+		context.courseId
+	);
+}
+
 function mathProjectExpectations(context: CourseTextContext) {
 	return variantLines(context, [
 		() => [
@@ -4798,11 +4804,7 @@ function projectExpectations(context: CourseTextContext) {
 	const source = contextText(context);
 	const subject = extensionSubject(context);
 
-	if (
-		/^(?:(?:early|late)-elementary-[ab]-math|(?:pre-)?algebra-(?:[12][ab]|[ab])|geometry-[ab]|pre-calculus-[ab]|ap-calculus)$/.test(
-			context.courseId
-		)
-	) {
+	if (isMathematicsCourse(context)) {
 		return mathProjectExpectations(context);
 	}
 
@@ -6437,9 +6439,13 @@ function capitalizeSentence(value: string) {
 	return `${value.slice(0, 1).toUpperCase()}${value.slice(1)}`;
 }
 
-function markdownSafeGeneratedReference(value: string) {
-	return value
-		.replace(/\s+-\s+/g, ": ")
+function markdownSafeGeneratedReference(
+	context: CourseTextContext,
+	value: string
+) {
+	return (
+		isMathematicsCourse(context) ? value : value.replace(/\s+-\s+/g, ": ")
+	)
 		.replace(/\s{2,}/g, " ")
 		.trim();
 }
@@ -6457,6 +6463,7 @@ function compactGeneratedProjectSupport(
 
 	const escapedSubject = escapeStringForRegExp(subject);
 	const reference = markdownSafeGeneratedReference(
+		context,
 		projectSupportScopedReference(context, projectSupportReference(context))
 	);
 	const capitalizedReference = capitalizeSentence(reference);

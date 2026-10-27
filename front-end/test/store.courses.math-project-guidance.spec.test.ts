@@ -34,5 +34,13 @@ it.each(["learner", "instructor"])(
 			?.split("**Checkpoints:**")[0];
 		expect(outcome).toMatch(/givens|known values|Translate the situation/);
 		expect(outcome).not.toMatch(/insertion|lookup|membership|priority/);
+		const checkpoint = course?.modules
+			.flatMap(module => module.curriculum)
+			.find(
+				item => item.title === "Graphing Linear Equations: y = 3x - 2"
+			);
+		const quickCheck = checkpoint?.content.split("**Quick check:**")[1];
+		expect(quickCheck).toContain("y = 3x - 2");
+		expect(checkpoint?.content).not.toContain("y = 3x: 2");
 	}
 );
