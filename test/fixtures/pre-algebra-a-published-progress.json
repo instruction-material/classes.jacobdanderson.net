@@ -1,0 +1,346 @@
+{
+  "courseId": "pre-algebra-a",
+  "sourceTag": "v2.8.177",
+  "source": "37f907f8be67448882c8c746ebbe475c7074ef46",
+  "roleEvidenceSHA256": "26161ba87125528d3a080396f832a0d3296d67624eacf27e687ce848c4158249",
+  "currentHostedIdentityContractMatched": true,
+  "identities": [
+    {
+      "moduleId": "pre-algebra-a-pre-algebra-a-kick-off",
+      "id": "pre-algebra-a-pre-algebra-a-kick-off-curriculum-course-map-and-readiness-check",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-a-pre-algebra-a-kick-off",
+      "id": "pre-algebra-a-pre-algebra-a-kick-off-curriculum-project-starting-a-gardening-business",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-a-pre-algebra-a-kick-off",
+      "id": "pre-algebra-a-pre-algebra-a-kick-off-curriculum-project-growing-the-gardening-business",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-a-pre-algebra-a-kick-off",
+      "id": "pre-algebra-a-pre-algebra-a-kick-off-supplemental-checkpoint-pre-algebra-a-kick-off",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-a-pre-algebra-a-kick-off",
+      "id": "pre-algebra-a-pre-algebra-a-kick-off-supplemental-transfer-practice-pre-algebra-a-kick-off",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-a-paa1-paa2-arithmetic-foundations",
+      "id": "pre-algebra-a-paa1-paa2-arithmetic-foundations-curriculum-negative-numbers-order-of-operations-and-absolute-value",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-a-paa1-paa2-arithmetic-foundations",
+      "id": "pre-algebra-a-paa1-paa2-arithmetic-foundations-supplemental-project-high-and-low-species",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-a-paa1-paa2-arithmetic-foundations",
+      "id": "pre-algebra-a-paa1-paa2-arithmetic-foundations-supplemental-transfer-practice-arithmetic-foundations",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-a-paa3-paa7-fractions-and-arithmetic",
+      "id": "pre-algebra-a-paa3-paa7-fractions-and-arithmetic-curriculum-long-multiplication-long-division-and-fraction-structure",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-a-paa3-paa7-fractions-and-arithmetic",
+      "id": "pre-algebra-a-paa3-paa7-fractions-and-arithmetic-curriculum-multiplying-dividing-adding-and-subtracting-fractions",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-a-paa3-paa7-fractions-and-arithmetic",
+      "id": "pre-algebra-a-paa3-paa7-fractions-and-arithmetic-supplemental-project-mochi-s-product-adventure",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-a-paa3-paa7-fractions-and-arithmetic",
+      "id": "pre-algebra-a-paa3-paa7-fractions-and-arithmetic-supplemental-transfer-practice-fractions-and-arithmetic",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-a-paa8-paa12-decimals-percents-ratios-and-rates",
+      "id": "pre-algebra-a-paa8-paa12-decimals-percents-ratios-and-rates-curriculum-decimals-and-percents",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-a-paa8-paa12-decimals-percents-ratios-and-rates",
+      "id": "pre-algebra-a-paa8-paa12-decimals-percents-ratios-and-rates-curriculum-ratios-proportions-unit-conversions-and-distance-rate-time",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-a-paa8-paa12-decimals-percents-ratios-and-rates",
+      "id": "pre-algebra-a-paa8-paa12-decimals-percents-ratios-and-rates-supplemental-project-cookie-catering",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-a-paa8-paa12-decimals-percents-ratios-and-rates",
+      "id": "pre-algebra-a-paa8-paa12-decimals-percents-ratios-and-rates-supplemental-challenge-rate-time-distance-route-plan",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-a-check-in-1",
+      "id": "pre-algebra-a-check-in-1-curriculum-arithmetic-and-ratio-readiness-check",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-a-check-in-1",
+      "id": "pre-algebra-a-check-in-1-supplemental-checkpoint-check-in-1",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-a-check-in-1",
+      "id": "pre-algebra-a-check-in-1-supplemental-check-in-1-changed-case-review",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-a-paa13-paa17-expressions-and-sequences",
+      "id": "pre-algebra-a-paa13-paa17-expressions-and-sequences-curriculum-variables-expressions-grouping-distribution-and-factoring",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-a-paa13-paa17-expressions-and-sequences",
+      "id": "pre-algebra-a-paa13-paa17-expressions-and-sequences-curriculum-arithmetic-sequences-and-sums",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-a-paa13-paa17-expressions-and-sequences",
+      "id": "pre-algebra-a-paa13-paa17-expressions-and-sequences-supplemental-project-designing-the-perfect-scanning-device",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-a-paa13-paa17-expressions-and-sequences",
+      "id": "pre-algebra-a-paa13-paa17-expressions-and-sequences-supplemental-transfer-practice-expressions-and-sequences",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-a-paa18-paa23-exponents-roots-and-scientific-notation",
+      "id": "pre-algebra-a-paa18-paa23-exponents-roots-and-scientific-notation-curriculum-exponent-rules-nonpositive-exponents-roots-and-fractional-exponents",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-a-paa18-paa23-exponents-roots-and-scientific-notation",
+      "id": "pre-algebra-a-paa18-paa23-exponents-roots-and-scientific-notation-curriculum-scientific-notation-and-scale",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-a-paa18-paa23-exponents-roots-and-scientific-notation",
+      "id": "pre-algebra-a-paa18-paa23-exponents-roots-and-scientific-notation-supplemental-project-symptom-spree",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-a-paa18-paa23-exponents-roots-and-scientific-notation",
+      "id": "pre-algebra-a-paa18-paa23-exponents-roots-and-scientific-notation-supplemental-project-red-hot-chilli-chicken",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-a-check-in-2-and-capstone",
+      "id": "pre-algebra-a-check-in-2-and-capstone-curriculum-expressions-and-exponents-readiness-check",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-a-check-in-2-and-capstone",
+      "id": "pre-algebra-a-check-in-2-and-capstone-curriculum-master-project-pre-algebra-a",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-a-check-in-2-and-capstone",
+      "id": "pre-algebra-a-check-in-2-and-capstone-curriculum-pre-algebra-a-capstone-reference-map",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-a-check-in-2-and-capstone",
+      "id": "pre-algebra-a-check-in-2-and-capstone-supplemental-checkpoint-check-in-2-and-capstone",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-a-check-in-2-and-capstone",
+      "id": "pre-algebra-a-check-in-2-and-capstone-supplemental-check-in-2-and-capstone-changed-case-review",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-a-pre-algebra-a-reference-archive",
+      "id": "pre-algebra-a-pre-algebra-a-reference-archive-curriculum-pre-algebra-a-reference-map",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-a-pending-static-assets",
+      "id": "pre-algebra-a-pending-static-assets-curriculum-pre-algebra-a-asset-status",
+      "section": "core"
+    }
+  ],
+  "sha256": "8cfbb0ff5b6f522e8210c41ed3994c9dca1c59b4d1f66267643a4db1b4051743",
+  "modules": [
+    {
+      "id": "pre-algebra-a-pre-algebra-a-kick-off",
+      "title": "Pre-Algebra A Kick-Off",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "pre-algebra-a-pre-algebra-a-kick-off-curriculum-course-map-and-readiness-check",
+          "title": "Course Map and Readiness Check",
+          "aliases": []
+        },
+        {
+          "id": "pre-algebra-a-pre-algebra-a-kick-off-curriculum-project-starting-a-gardening-business",
+          "title": "Project: Starting a Gardening Business",
+          "aliases": []
+        },
+        {
+          "id": "pre-algebra-a-pre-algebra-a-kick-off-curriculum-project-growing-the-gardening-business",
+          "title": "Project: Growing the Gardening Business",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "pre-algebra-a-paa1-paa2-arithmetic-foundations",
+      "title": "PAA1-PAA2 Arithmetic Foundations",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "pre-algebra-a-paa1-paa2-arithmetic-foundations-curriculum-negative-numbers-order-of-operations-and-absolute-value",
+          "title": "Negative Numbers, Order of Operations, and Absolute Value",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "pre-algebra-a-paa3-paa7-fractions-and-arithmetic",
+      "title": "PAA3-PAA7 Fractions and Arithmetic",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "pre-algebra-a-paa3-paa7-fractions-and-arithmetic-curriculum-long-multiplication-long-division-and-fraction-structure",
+          "title": "Long Multiplication, Long Division, and Fraction Structure",
+          "aliases": []
+        },
+        {
+          "id": "pre-algebra-a-paa3-paa7-fractions-and-arithmetic-curriculum-multiplying-dividing-adding-and-subtracting-fractions",
+          "title": "Multiplying, Dividing, Adding, and Subtracting Fractions",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "pre-algebra-a-paa8-paa12-decimals-percents-ratios-and-rates",
+      "title": "PAA8-PAA12 Decimals, Percents, Ratios, and Rates",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "pre-algebra-a-paa8-paa12-decimals-percents-ratios-and-rates-curriculum-decimals-and-percents",
+          "title": "Decimals and Percents",
+          "aliases": []
+        },
+        {
+          "id": "pre-algebra-a-paa8-paa12-decimals-percents-ratios-and-rates-curriculum-ratios-proportions-unit-conversions-and-distance-rate-time",
+          "title": "Ratios, Proportions, Unit Conversions, and Distance-Rate-Time",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "pre-algebra-a-check-in-1",
+      "title": "Check-In #1",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "pre-algebra-a-check-in-1-curriculum-arithmetic-and-ratio-readiness-check",
+          "title": "Arithmetic and Ratio Readiness Check",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "pre-algebra-a-paa13-paa17-expressions-and-sequences",
+      "title": "PAA13-PAA17 Expressions and Sequences",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "pre-algebra-a-paa13-paa17-expressions-and-sequences-curriculum-variables-expressions-grouping-distribution-and-factoring",
+          "title": "Variables, Expressions, Grouping, Distribution, and Factoring",
+          "aliases": []
+        },
+        {
+          "id": "pre-algebra-a-paa13-paa17-expressions-and-sequences-curriculum-arithmetic-sequences-and-sums",
+          "title": "Arithmetic Sequences and Sums",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "pre-algebra-a-paa18-paa23-exponents-roots-and-scientific-notation",
+      "title": "PAA18-PAA23 Exponents, Roots, and Scientific Notation",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "pre-algebra-a-paa18-paa23-exponents-roots-and-scientific-notation-curriculum-exponent-rules-nonpositive-exponents-roots-and-fractional-exponents",
+          "title": "Exponent Rules, Nonpositive Exponents, Roots, and Fractional Exponents",
+          "aliases": []
+        },
+        {
+          "id": "pre-algebra-a-paa18-paa23-exponents-roots-and-scientific-notation-curriculum-scientific-notation-and-scale",
+          "title": "Scientific Notation and Scale",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "pre-algebra-a-check-in-2-and-capstone",
+      "title": "Check-In #2 and Capstone",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "pre-algebra-a-check-in-2-and-capstone-curriculum-expressions-and-exponents-readiness-check",
+          "title": "Expressions and Exponents Readiness Check",
+          "aliases": []
+        },
+        {
+          "id": "pre-algebra-a-check-in-2-and-capstone-curriculum-master-project-pre-algebra-a",
+          "title": "Master Project: Pre-Algebra A",
+          "aliases": []
+        },
+        {
+          "id": "pre-algebra-a-check-in-2-and-capstone-curriculum-pre-algebra-a-capstone-reference-map",
+          "title": "Pre-Algebra A Capstone Reference Map",
+          "aliases": [
+            "pre-algebra-a-check-in-2-and-capstone-curriculum-source-activity-anchors-pre-algebra-a-capstone"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pre-algebra-a-pre-algebra-a-reference-archive",
+      "title": "Pre-Algebra A Reference Archive",
+      "kind": "appendix",
+      "curriculum": [
+        {
+          "id": "pre-algebra-a-pre-algebra-a-reference-archive-curriculum-pre-algebra-a-reference-map",
+          "title": "Pre-Algebra A Reference Map",
+          "aliases": [
+            "pre-algebra-a-source-activity-archive-curriculum-pre-algebra-a-source-anchors"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pre-algebra-a-pending-static-assets",
+      "title": "Pending Static Assets",
+      "kind": "appendix",
+      "curriculum": [
+        {
+          "id": "pre-algebra-a-pending-static-assets-curriculum-pre-algebra-a-asset-status",
+          "title": "Pre-Algebra A Asset Status",
+          "aliases": []
+        }
+      ]
+    }
+  ]
+}

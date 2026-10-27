@@ -1,5 +1,6 @@
 import type { RawCourse } from "./types";
 import { configureMathCourseFlow } from "./mathCourseFlow";
+import { addPreAlgebraACases } from "./preAlgebraACases";
 import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
 
 const KICKOFF_INVENTORY = "paa_kickoff_0.png";
@@ -160,6 +161,7 @@ export const preAlgebraACourse: RawCourse = {
 							"Exponent and scientific-notation corrections explain whether the receipt value is reasonable."
 						]
 					}),
+					"**Pricing exercise:**\n\nUse these prices per item: succulent $8; flower bundle $18; wheelbarrow $120; gardening gloves $6; basic plant pot $12; multi-pot plant stand $45; decorative garden lights $20 per pair; small garden tool shed $240. The quantities in the reference details give first-week revenue.\n\nThe wheelbarrow costs $80 and the gloves cost $4 per pair. For this exercise, the 30% profit target means markup on cost: (selling price-cost)/cost >= 0.30. Profit margin instead divides by selling price and is a different percentage. Startup expenses are $1500+3×$400+$700; the $3000 investment is the starting budget, so a negative remaining balance represents a shortfall.\n\nFor the flower-bundle exponent calculation, each box contains 5^2 bundles and an order contains 3^2 boxes. For the receipt calculation, the amount is 0.000000000265×10^9 dollars and the missing term satisfies 2^(-4)×4^2+q=33.52.",
 					pendingStaticMediaNotice(KICKOFF_PRICING)
 				].join("\n\n"),
 				staticMediaUrl(KICKOFF_PRICING)
@@ -414,7 +416,7 @@ export const preAlgebraACourse: RawCourse = {
 				lesson(
 					"Scientific Notation and Scale",
 					overview({
-						title: "Scientific notation writes very large or very small values as a number between 1 and 10 times a power of 10.",
+						title: "For nonzero values, scientific notation uses a coefficient whose absolute value is at least 1 and below 10, multiplied by an integer power of 10.",
 						concepts: [
 							"Positive powers of 10 move the decimal point to create large values.",
 							"Negative powers of 10 move the decimal point to create small values.",
@@ -423,7 +425,7 @@ export const preAlgebraACourse: RawCourse = {
 						],
 						practice:
 							"Convert ordinary notation to scientific notation and back, then compare two values by coefficient and exponent.",
-						check: "A correct conversion keeps the coefficient between 1 and 10 and keeps the same value."
+						check: "A correct conversion retains the original sign and value, with 1 <= abs(coefficient) < 10 for a nonzero quantity."
 					})
 				)
 			],
@@ -575,17 +577,17 @@ export const preAlgebraACourse: RawCourse = {
 						sourceAnchor({
 							title: "Symptom Spree",
 							references: [
-								"Michelle Lee's radiology-resident context compares side effects from x-rays, MRIs, PET scans, CT scans, and CAT scans.",
-								"The x-ray symptom-score table uses 10, 20, 30, 40, and 50 minutes with scores 4, 16, 64, 256, and 1024.",
-								"The x-ray baseline is modeled as t^4.",
-								"PET scans raise the baseline to the 1/5 power and multiply by t.",
-								"MRIs take the square root and divide by t^(3/2), CT scans multiply by t^-1 and take the 7th root, and CAT scans raise to the 3rd power then divide by t^(2/3).",
+								"The scores are fictional, dimensionless mathematical quantities. Interpret their growth only within the stated formulas and positive-input domain.",
+								"A fictional table pairs elapsed values 10, 20, 30, 40 and 50 with scores 4, 16, 64, 256 and 1024. With step n equal to elapsed value divided by 10, the table follows 4^n.",
+								"For a separate algebra comparison, t is a positive dimensionless input and the baseline is t^4. This is a different rule from the table above.",
+								"Model A raises the baseline to the 1/5 power and multiplies by t.",
+								"Model B takes the baseline square root and divides by t^(3/2). Model C multiplies the baseline by t^(-1), then takes the seventh root. Model D cubes the baseline, then divides by t^(2/3).",
 								"Desmos is used as an optional graphing tool for comparing the trends."
 							],
 							evidence: [
-								"Research notes list 3 to 5 possible side effects from x-rays and PET scans.",
+								"The comparison states t>0 and simplifies each model using exponent rules.",
 								"Growth-pattern explanation connects the table to exponential notation.",
-								"Final growth-rate expressions and graph comparisons identify the most concerning trend."
+								"Final expressions and graph comparisons distinguish the mathematical growth rates for the stated positive inputs."
 							]
 						}),
 						sourceAnchor({
@@ -783,3 +785,5 @@ configureMathCourseFlow(preAlgebraACourse, {
 	],
 	appendixTitles: ["Pre-Algebra A Reference Archive", "Pending Static Assets"]
 });
+
+addPreAlgebraACases(preAlgebraACourse);
