@@ -95,6 +95,50 @@ describe("LazyMarkdownContent.vue", () => {
 		expect(wrapper.findAll("ol li")[1].text()).toContain("index 3.");
 	});
 
+	it.each([
+		"The critical numbers are -1 and 1. The minimum occurs at -2 and 1. Both require checking.",
+		"The slope is 3/2 at 1. The second derivative is 3/4 at 1. These are different quantities.",
+		"Model A has value 1. Model B has value 2. Both are positive."
+	])("keeps numerical sentence endings visible: %s", async content => {
+		const wrapper = mount(LazyMarkdownContent, { props: { content } });
+		await vi.waitFor(() => {
+			expect(wrapper.text()).toBe(content);
+		});
+		expect(wrapper.find("ol").exists()).toBe(false);
+		wrapper.unmount();
+	});
+
+	it("preserves values and inline code within compact steps", async () => {
+		const literal = "1. first 2. second 3. third";
+		const wrapper = mount(LazyMarkdownContent, {
+			props: {
+				content: `**Steps:** 1. Record the value 1. Keep \`${literal}\` unchanged. 2. Restart.`
+			}
+		});
+		await vi.waitFor(() => {
+			expect(wrapper.findAll("ol li")).toHaveLength(2);
+		});
+		expect(wrapper.findAll("ol li").map(item => item.text())).toEqual([
+			`Record the value 1. Keep ${literal} unchanged.`,
+			"Restart."
+		]);
+		expect(wrapper.get("code").text()).toBe(literal);
+		wrapper.unmount();
+	});
+
+	it("keeps multiple-backtick code spans unchanged", async () => {
+		const literal = "prefix `1. first 2. second 3. third`";
+		const wrapper = mount(LazyMarkdownContent, {
+			props: { content: `Keep \`\`${literal}\`\` unchanged.` }
+		});
+		await vi.waitFor(() => {
+			expect(wrapper.find("code").exists()).toBe(true);
+		});
+		expect(wrapper.get("code").text()).toBe(literal);
+		expect(wrapper.find("ol").exists()).toBe(false);
+		wrapper.unmount();
+	});
+
 	it("formats compact inline course steps as readable markdown lists", async () => {
 		const wrapper = mount(LazyMarkdownContent, {
 			props: {
