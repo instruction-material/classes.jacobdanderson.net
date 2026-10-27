@@ -1651,7 +1651,10 @@ function codePreviewResources(item: CourseModuleItem): CodePreviewResource[] {
 }
 
 function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
-	const javascript = javascriptCourseResource(resource.url);
+	const javascript = javascriptCourseResource(
+		resource.url,
+		selectedCourse.value?.id
+	);
 	const verifiedJavaScript =
 		javascript?.courseId === selectedCourse.value?.id &&
 		javascript?.role ===

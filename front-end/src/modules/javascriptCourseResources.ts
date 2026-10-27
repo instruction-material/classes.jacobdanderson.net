@@ -29,6 +29,7 @@ const base = "/course-assets/javascript-level-1/";
 const masterBase = "/course-assets/javascript-level-2/";
 interface CourseRole {
 	courseId?: "javascript-level-2-javascript-master";
+	sharedWith?: readonly "javascript-level-2-javascript-master"[];
 	project: string;
 	title: string;
 	version: number;
@@ -69,26 +70,32 @@ const roles: readonly CourseRole[] = [
 	...javascriptMasterArraysResources
 ];
 
-export function javascriptCourseResource(value: string) {
+export function javascriptCourseResource(
+	value: string,
+	selectedCourse?: string
+) {
+	let selected: CourseRole | undefined;
 	if (value.startsWith(base) || value.startsWith(masterBase)) {
-		const selected = roles.find(role => role.urls.includes(value));
-		return selected
-			? { ...selected, courseId: selected.courseId ?? courseId }
-			: null;
+		selected = roles.find(role => role.urls.includes(value));
+	} else {
+		let url: URL;
+		try {
+			url = new URL(value);
+		} catch {
+			return null;
+		}
+		if (!url.href.startsWith("https://codepen.io/")) return null;
+		const canonical = url.origin + url.pathname.replace(/\/$/, "");
+		selected = roles.find(role => role.urls.includes(canonical));
 	}
-	let url: URL;
-	try {
-		url = new URL(value);
-	} catch {
-		return null;
-	}
-	if (!url.href.startsWith("https://codepen.io/")) return null;
-	const canonical = url.origin + url.pathname.replace(/\/$/, "");
-	const selected = roles.find(role => role.urls.includes(canonical));
 	return selected
 		? {
 				...selected,
-				courseId: selected.courseId ?? courseId
+				courseId:
+					selectedCourse === "javascript-level-2-javascript-master" &&
+					selected.sharedWith?.includes(selectedCourse)
+						? selectedCourse
+						: (selected.courseId ?? courseId)
 			}
 		: null;
 }
@@ -99,7 +106,7 @@ export function javascriptCourseProjectKey(
 	role: "starter" | "reference",
 	url: string
 ) {
-	const selected = javascriptCourseResource(url);
+	const selected = javascriptCourseResource(url, selectedCourse);
 	if (
 		!selected ||
 		selected.courseId !== selectedCourse ||

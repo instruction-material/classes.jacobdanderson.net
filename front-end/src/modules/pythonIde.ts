@@ -434,7 +434,8 @@ export function isKnownCourseWorksheetResource(url: string) {
 }
 
 export function pythonIdeModeForCourseResource(courseId: string, url: string) {
-	if (javascriptCourseResource(url)?.courseId === courseId) return "web";
+	if (javascriptCourseResource(url, courseId)?.courseId === courseId)
+		return "web";
 	const resource = parseGitHubResource(url);
 	if (!resource || isKnownCourseWorksheetResource(url)) return null;
 	if (courseId === "intro-to-swift-app-development")

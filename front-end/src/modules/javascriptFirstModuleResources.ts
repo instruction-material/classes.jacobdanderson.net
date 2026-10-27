@@ -4,6 +4,7 @@ export const javascriptFirstModuleResources = [
 		title: "Introductions & Setup",
 		version: 1,
 		role: "starter",
+		sharedWith: ["javascript-level-2-javascript-master"],
 		urls: ["https://codepen.io/junilearning/pen/JjGrYOG"],
 		files: [
 			{
