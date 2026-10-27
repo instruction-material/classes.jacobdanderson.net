@@ -28,32 +28,16 @@ useHead(() => ({
 	<section class="page-shell about-page">
 		<section aria-labelledby="intro-title" class="about-intro">
 			<div class="copy">
-				<h1 id="intro-title" class="page-title">About Jacob</h1>
+				<h1 id="intro-title" class="page-title">
+					Courses and Teaching Tools
+				</h1>
 				<p class="page-copy">
-					I taught hundreds of students through Juni Learning before
-					moving into private instruction. We work one-on-one on
-					coursework, coding, math and science, or follow a course
-					path built around your goals.
+					Explore structured courses, practice with linked projects
+					and use programming or graphing tools. Materials support
+					independent study, classroom teaching and instructor-led
+					sessions.
 				</p>
-				<a
-					class="text-link"
-					href="https://www.linkedin.com/in/jacoba1100254352/"
-					target="_blank"
-					rel="noopener noreferrer"
-					>LinkedIn<span class="sr-only">
-						(opens in a new tab)</span
-					></a
-				>
 			</div>
-			<figure class="image-wrapper">
-				<img
-					alt="Jacob Anderson"
-					height="1200"
-					loading="lazy"
-					src="https://jacobdanderson.s3.us-east-1.amazonaws.com/images/Jacob_Anderson.jpg"
-					width="960"
-				/>
-			</figure>
 		</section>
 
 		<section aria-labelledby="approach-title" class="about-section">
@@ -74,7 +58,7 @@ useHead(() => ({
 				</article>
 				<article>
 					<h3>Know what’s next</h3>
-					<p>Leave with a clear next step and short session notes.</p>
+					<p>Record what was learned and choose a clear next step.</p>
 				</article>
 			</div>
 		</section>
@@ -105,18 +89,9 @@ useHead(() => ({
 }
 .about-intro {
 	display: grid;
-	grid-template-columns: minmax(0, 1fr) 8rem;
+	grid-template-columns: minmax(0, 1fr);
 	align-items: start;
 	gap: 2rem;
-}
-.image-wrapper {
-	margin: 0;
-	overflow: hidden;
-	border-radius: 8px;
-}
-.image-wrapper img {
-	width: 100%;
-	height: auto;
 }
 .copy,
 .about-section {
@@ -171,9 +146,6 @@ useHead(() => ({
 @media (max-width: 700px) {
 	.about-intro {
 		grid-template-columns: 1fr;
-	}
-	.image-wrapper {
-		display: none;
 	}
 	.fit-grid {
 		grid-template-columns: 1fr;
