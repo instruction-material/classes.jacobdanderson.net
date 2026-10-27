@@ -86,7 +86,7 @@ const tracks = {
 				code: "GEOA7",
 				title: "Triangle Congruence and Correspondence",
 				reading:
-					"Congruent triangles have equal corresponding lengths and angles. SSS uses three side pairs; SAS uses two sides and the included angle; ASA uses two angles and their included side; AAS uses two angles and a corresponding nonincluded side. HL applies to right triangles with congruent hypotenuse and one corresponding leg. A congruence statement fixes correspondence by letter order. AAA establishes shape but not size. General SSA data need not establish congruence because the specified angle is not between the two sides.",
+					"Congruent triangles have equal corresponding lengths and angles. SSS uses three side pairs.\n\nSAS uses two sides and the included angle.\n\nASA uses two angles and their included side.\n\nAAS uses two angles and a corresponding nonincluded side. HL applies to right triangles with congruent hypotenuse and one corresponding leg. A congruence statement fixes correspondence by letter order. AAA establishes shape but not size. General SSA data need not establish congruence because the specified angle is not between the two sides.",
 				worked: "Given AB=DE=4, BC=EF=6 and angles ABC=DEF=50 degrees, triangles ABC and DEF are congruent by SAS: each given angle lies between the two stated sides. The correspondence is A to D, B to E, C to F. Consequently AC=DF and angle BAC equals angle EDF.",
 				problems: [
 					"Triangles ABC and PQR have AB=PQ=3, BC=QR=4 and AC=PR=5. State the congruence rule and the correspondence, then name the angle corresponding to ACB.",
@@ -317,7 +317,7 @@ const tracks = {
 				title: "Quadrilaterals and Trapezoids",
 				reading:
 					"A simple quadrilateral has interior angles totaling 360 degrees. A kite has two pairs of congruent adjacent sides. This course uses the exclusive trapezoid definition: exactly one pair of parallel sides, called bases. Other books may use an inclusive definition; keep the stated convention fixed within a classification. A trapezoid's midsegment is parallel to its bases and has length (b1+b2)/2. Its area is (b1+b2)h/2, where h is the perpendicular height. An isosceles trapezoid has congruent legs, congruent angles along each base, and congruent diagonals.",
-				worked: "An isosceles trapezoid has horizontal bases of lengths 6 and 10, centered above each other with perpendicular height 3. Its midsegment is 8 and its area is 8*3=24 square units. Each leg spans horizontal distance 2 and vertical distance 3, so its length is sqrt(13); using that slanted length as the area height would give the wrong quantity.",
+				worked: "An isosceles trapezoid has horizontal bases of lengths 6 and 10, centered above each other with perpendicular height 3. Its midsegment is 8 and its area is 8×3=24 square units. Each leg spans horizontal distance 2 and vertical distance 3, so its length is sqrt(13); using that slanted length as the area height would give the wrong quantity.",
 				problems: [
 					"A quadrilateral has interior angles 80,95,110 and x degrees. Find x.",
 					"A trapezoid has bases 7 and 13 and perpendicular height 5. Find its midsegment and area.",
@@ -341,7 +341,7 @@ const tracks = {
 				title: "Polygon Angles and Composite Areas",
 				reading:
 					"For a simple n-sided polygon, the interior-angle sum is 180(n-2) degrees. Only a regular polygon has every interior angle equal to that sum divided by n. A convex polygon's exterior turning angles sum to 360 degrees; each regular exterior angle is 360/n. A rectangle has area base times height, a triangle has half base times perpendicular height, and a parallelogram has base times perpendicular height. For a regular polygon, area is half its perimeter times its apothem, the perpendicular distance from center to a side. Composite areas add disjoint pieces or subtract removed regions.",
-				worked: "A regular octagon has interior-angle sum 180(8-2)=1080 degrees. Each interior angle is 135 degrees, each exterior angle is 45 degrees, and 8*45=360 confirms one turn. Regularity justifies dividing the angle sum equally; it is not implied by having eight sides alone.",
+				worked: "A regular octagon has interior-angle sum 180(8-2)=1080 degrees. Each interior angle is 135 degrees, each exterior angle is 45 degrees, and 8×45=360 confirms one turn. Regularity justifies dividing the angle sum equally; it is not implied by having eight sides alone.",
 				problems: [
 					"A regular polygon has each interior angle 150 degrees. Find its exterior angle and number of sides.",
 					"A hexagon has five angles of 100,110,120,130,140 degrees. Find the sixth. Is it regular?",
@@ -352,7 +352,7 @@ const tracks = {
 				code: "GEOB4",
 				title: "Circle Lengths, Sectors and Chords",
 				reading:
-					"A circle of radius r has diameter 2r, circumference 2pi*r and area pi*r^2. For a central angle theta in degrees, arc length is (theta/360)*2pi*r and sector area is (theta/360)*pi*r^2. Length and area have different units. A perpendicular from the center to a chord bisects the chord; radius, perpendicular distance and half-chord length then form a right triangle. For an annulus, subtract the smaller disc area from the larger one.",
+					"A circle of radius r has diameter 2r, circumference 2pi×r and area pi×r^2. For a central angle theta in degrees, arc length is (theta/360)×2pi×r and sector area is (theta/360)×pi×r^2. Length and area have different units. A perpendicular from the center to a chord bisects the chord; radius, perpendicular distance and half-chord length then form a right triangle. For an annulus, subtract the smaller disc area from the larger one.",
 				worked: "For radius 6 and a 120-degree central angle, the arc is one-third of the circumference, giving 4pi units. The sector is one-third of the disc, giving 12pi square units. If a chord is distance 3 from the center, its half-length is sqrt(36-9)=3sqrt(3), so its full length is 6sqrt(3).",
 				problems: [
 					"A circle has diameter 10. Find radius, circumference and area.",
@@ -413,8 +413,8 @@ const tracks = {
 				code: "GEOB9",
 				title: "Prisms, Pyramids and Surface Area",
 				reading:
-					"For a convex polyhedron without holes, vertices minus edges plus faces equals 2. A prism has volume Bh, where B is base area and h is perpendicular separation of its bases. A right prism has total surface area 2B+Ph, where P is base perimeter. A pyramid has volume Bh/3 using vertical height. A regular pyramid's total surface area is B+P*l/2, where l is a face's slant height. A net identifies the actual faces counted; vertical height and slant height serve different formulas.",
-				worked: "A regular square pyramid has base side 6 and vertical height 4. From the base center to a side midpoint is 3, so slant height is sqrt(4^2+3^2)=5. Volume is 36*4/3=48 cubic units. The four triangular faces total (24*5)/2=60 square units; adding the base gives total surface area 96 square units.",
+					"For a convex polyhedron without holes, vertices minus edges plus faces equals 2. A prism has volume Bh, where B is base area and h is perpendicular separation of its bases. A right prism has total surface area 2B+Ph, where P is base perimeter. A pyramid has volume Bh/3 using vertical height. A regular pyramid's total surface area is B+P×l/2, where l is a face's slant height. A net identifies the actual faces counted; vertical height and slant height serve different formulas.",
+				worked: "A regular square pyramid has base side 6 and vertical height 4. From the base center to a side midpoint is 3, so slant height is sqrt(4^2+3^2)=5. Volume is 36×4/3=48 cubic units. The four triangular faces total (24×5)/2=60 square units; adding the base gives total surface area 96 square units.",
 				problems: [
 					"A rectangular prism has dimensions 2,3,4. Find its volume and total surface area.",
 					"A right triangular prism has a 3-4-5 right-triangle base and prism height 10. Find base area, volume and total surface area.",
@@ -425,7 +425,7 @@ const tracks = {
 				code: "GEOB10",
 				title: "Cylinders, Cones, Spheres and Composites",
 				reading:
-					"A right circular cylinder has volume pi*r^2*h, lateral area 2pi*r*h and total closed area 2pi*r^2+2pi*r*h. A right circular cone has volume pi*r^2*h/3 and total area pi*r^2+pi*r*l, where l=sqrt(r^2+h^2). A sphere has volume 4pi*r^3/3 and area 4pi*r^2. A hemisphere has half the sphere's volume and half its curved area, plus a disc only when its flat face is exposed. Composite surfaces count exposed faces; internal joining faces are not exposed.",
+					"A right circular cylinder has volume pi×r^2×h, lateral area 2pi×r×h and total closed area 2pi×r^2+2pi×r×h. A right circular cone has volume pi×r^2×h/3 and total area pi×r^2+pi×r×l, where l=sqrt(r^2+h^2). A sphere has volume 4pi×r^3/3 and area 4pi×r^2. A hemisphere has half the sphere's volume and half its curved area, plus a disc only when its flat face is exposed. Composite surfaces count exposed faces; internal joining faces are not exposed.",
 				worked: "Join a hemisphere of radius 3 atop a cylinder of radius 3 and height 4. The hemisphere contributes volume 18pi and the cylinder 36pi, totaling 54pi cubic units. Exposed area includes the cylinder's bottom 9pi, its lateral area 24pi and the hemisphere's curved area 18pi, totaling 51pi square units. The joining disc is internal.",
 				problems: [
 					"For a closed cylinder with radius 3 and height 4, find volume and total surface area.",
@@ -589,6 +589,32 @@ const tracks = {
 	}
 };
 
+const completionChecks: Record<string, string> = {
+	GEOA1: "Notation identifies a geometric set or a length without mixing them. Angle relationships follow from endpoints, collinearity and right-angle information rather than a diagram's apparent shape.",
+	GEOA2: "A false converse includes one explicit side-length counterexample. Each deduction identifies the conditional's hypothesis and conclusion; neither a true converse nor a visual pattern is assumed.",
+	GEOA3: "Each proof step cites a given, definition or valid equality property. The first unsupported step is identified, and the replacement argument preserves every original hypothesis.",
+	GEOA4: "Each angle calculation names its angle relationship and states where parallelism is given or proved. A converse argument supplies a valid condition before concluding that lines are parallel.",
+	GEOA5: "Distance retains exact radicals and length units; a midpoint has both coordinates. Slope calculations separate vertical lines from ordinary numeric slopes and justify each parallel or perpendicular conclusion.",
+	GEOA6: "Side and angle classifications remain separate, with inclusive isosceles terminology. Every interior-angle calculation totals 180 degrees, and an exterior-angle equation uses the two remote interior angles.",
+	GEOA7: "Triangle names keep corresponding vertices in order. The congruence argument identifies the included angle when needed and separates valid criteria from AAA and unrestricted SSA.",
+	GEOA8: "Each proportion compares corresponding lengths in a consistent order. The model states its common-angle or parallel-line assumptions, and a length scale factor is squared when comparing areas.",
+	GEOA9: "The hypotenuse is identified before substitution. Exact radicals are retained, side ratios follow their opposite angles, and the longest side is checked when applying the converse.",
+	GEOA10: "The explanation distinguishes equal distances to vertices from equal perpendicular distances to sides. Each center is tied to its defining bisectors, with uniqueness limited to the stated geometric conditions.",
+	GEOA11: "Median and altitude constructions use the correct opposite side relationship. A centroid calculation records the 2:1 vertex-to-midpoint direction, while an orthocenter location follows the triangle's angle classification.",
+	GEOA12: "Triangle existence is established before classifying its angles. The third-side interval has strict endpoints, and angle ordering is justified by the lengths of opposite sides.",
+	GEOA13: "The reference angle fixes opposite and adjacent sides before selecting a ratio. Length units and degree mode remain consistent, with rounding applied only after the final calculation.",
+	GEOB1: "The classification uses the stated exclusive trapezoid convention. Area uses perpendicular height rather than leg length, and each pair of base angles agrees with the stated isosceles condition.",
+	GEOB2: "Every property is justified by the most specific given quadrilateral class. Reverse implications are checked separately; a rhombus or rectangle is not silently assumed to be a square.",
+	GEOB3: "Angle totals distinguish arbitrary polygons from regular ones. Composite areas account for overlaps or removed regions once, and all area calculations use perpendicular dimensions with squared units.",
+	GEOB4: "Central-angle fractions are applied to the matching full circumference or disc area. Chord calculations use a perpendicular bisector, and every result distinguishes length units from area units.",
+	GEOB5: "The angle formula matches the vertex's position relative to the circle. Tangent-length arguments identify perpendicular radii or equal external tangents, and intercepted arcs are the intended arcs.",
+	GEOB6: "Each secant product uses an external length and the complete secant length. The written diagram labels distinguish interior chord segments, tangent lengths and exterior distances before substitution.",
+	GEOB7: "The rule specifies the rotation center and direction. Coordinate substitutions follow the stated order, and distance and orientation checks distinguish a rotation or translation from a reflection.",
+	GEOB8: "The transformation sequence is recorded in order, with the dilation center explicit. Coordinate results are checked against orientation and the separate length and area scale factors.",
+	GEOB9: "Base area, base perimeter and perpendicular height are identified separately. Pyramid surface area uses face slant height, and an exposed-face count prevents missing or double-counting surfaces.",
+	GEOB10: "Volume and exposed surface area use different formulas and units. Any joined face is removed from the outer area, and scaling distinguishes squared areas from cubed volumes."
+};
+
 function numbered(items: string[]) {
 	return items
 		.map((item, index) => `${String(index + 1)}. ${item}`)
@@ -717,7 +743,7 @@ export function addGeometryCases(course: RawCourse, track: "a" | "b") {
 			const heading = `${unit.code} ${unit.title}`;
 			const content = `**Problems:**\n\n${numbered(
 				unit.problems
-			)}\n\n${selfCheck(track, heading)}`;
+			)}\n\n**Completion checks:**\n\n${completionChecks[unit.code]}\n\n${selfCheck(track, heading)}`;
 			if (unit.code === "GEOB6") {
 				const original = module.curriculum.find(
 					item => item.title === "GEOB6 Challenge Circle Problems"

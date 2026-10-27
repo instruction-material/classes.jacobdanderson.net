@@ -1,15 +1,19 @@
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { mount } from "@vue/test-utils";
 import { createPinia, setActivePinia } from "pinia";
-import { expect, it } from "vitest";
+import { expect, it, vi } from "vitest";
+import LazyMarkdownContent from "@/components/LazyMarkdownContent.vue";
 import {
 	loadCourseAssetSection,
-	resetCourseAssetPreviewCache
+	resetCourseAssetPreviewCache,
+	slugMarkdownHeading
 } from "@/modules/courseAssetPreview";
 import { isLessonLearningItem } from "@/modules/courseLessonPresentation";
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
+import { geometryBCourse } from "@/stores/courses/geometry-b";
 
 interface PublishedGeometry {
 	sha256: string;
@@ -174,3 +178,59 @@ it.each([
 		expect(isLessonLearningItem(capstones[0])).toBe(false);
 	}
 );
+
+it("renders the pyramid calculation with its multiplication signs", async () => {
+	const reading = geometryBCourse.modules
+		.flatMap(module => module.curriculum)
+		.find(item => item.title === "GEOB9 Polyhedra, Prisms, and Pyramids")!;
+	const wrapper = mount(LazyMarkdownContent, {
+		props: { content: reading.content }
+	});
+	await vi.waitFor(() => {
+		expect(wrapper.text()).toContain("Volume is 36×4/3=48 cubic units.");
+	});
+	expect(wrapper.text()).toContain("(24×5)/2=60 square units");
+	wrapper.unmount();
+});
+
+it("renders the solid self-check calculations without collapsing multiplication", async () => {
+	resetCourseAssetPreviewCache();
+	for (const [heading, calculations] of [
+		[
+			"GEOB9 Prisms, Pyramids and Surface Area",
+			["Surface area is 2(2×3+2×4+3×4)=52 square units."]
+		],
+		[
+			"Transformations and Solids Review",
+			[
+				"Volume is 24×5=120; surface area is 2×24+24×5=168.",
+				"Volume is 64×3/3=64; surface area is 64+(32×5)/2=144.",
+				"Volume is pi×25×12/3=100pi"
+			]
+		]
+	] as const) {
+		const section = await loadCourseAssetSection(
+			"/course-assets/geometry-b/practice-checks-v1.md#" +
+				slugMarkdownHeading(heading),
+			"Self-check",
+			async url =>
+				({
+					ok: true,
+					text: async () =>
+						readFileSync(
+							resolve(process.cwd(), "public" + url),
+							"utf8"
+						)
+				}) as Response
+		);
+		const wrapper = mount(LazyMarkdownContent, {
+			props: { content: section.content }
+		});
+		await vi.waitFor(() => {
+			expect(wrapper.text()).toContain(calculations[0]);
+		});
+		for (const calculation of calculations)
+			expect(wrapper.text()).toContain(calculation);
+		wrapper.unmount();
+	}
+});

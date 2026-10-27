@@ -47,8 +47,8 @@
 
 ## GEOA8 Similarity and Indirect Measurement
 
-1. The length factor is 10/4=5/2, so YZ=7*(5/2)=35/2.
-2. The height-to-shadow ratio is 1.5/2. The tree's height is (1.5/2)*12=9 meters, using equal sun angles, vertical objects and level-ground right angles.
+1. The length factor is 10/4=5/2, so YZ=7×(5/2)=35/2.
+2. The height-to-shadow ratio is 1.5/2. The tree's height is (1.5/2)×12=9 meters, using equal sun angles, vertical objects and level-ground right angles.
 3. The remaining angle is 80 degrees. AA establishes similarity, but no side-length pair is given to determine its numerical scale factor.
 
 ## GEOA9 Right Triangles and Exact Ratios
@@ -65,7 +65,7 @@
 
 ## GEOA11 Medians, Altitudes and Centers
 
-1. The lengths are (2/3)*18=12 and (1/3)*18=6, respectively.
+1. The lengths are (2/3)×18=12 and (1/3)×18=6, respectively.
 2. The centroid is ((1+7+4)/3,(2+2+8)/3)=(4,4).
 3. The altitude is the vertical segment from C=(0,9) to A=(0,0), with length 9. The foot A is not the midpoint (3,0) of AB; perpendicularity does not imply bisection.
 

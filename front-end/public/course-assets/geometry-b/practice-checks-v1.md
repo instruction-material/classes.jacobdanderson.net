@@ -3,7 +3,7 @@
 ## GEOB1 Quadrilaterals and Trapezoids
 
 1. The total gives x=360-80-95-110=75 degrees.
-2. The midsegment is (7+13)/2=10 units and area is 10*5=50 square units.
+2. The midsegment is (7+13)/2=10 units and area is 10×5=50 square units.
 3. The other lower-base angle is 72 degrees. Each upper angle is 108 degrees by same-side interior-angle supplementation. A parallelogram has two parallel side pairs, so it is excluded from this course's trapezoid category.
 
 ## GEOB2 The Parallelogram Family
@@ -33,13 +33,13 @@
 
 ## GEOB6 Combined Circle Relationships
 
-1. The chord product gives 3x=4*9=36, so x=12.
-2. Whole secant length is 2+7=9, so the tangent has length sqrt(2*9)=3sqrt(2).
-3. The tangent length is sqrt(169-25)=12. The center-line secant has external length 13-5=8 and whole length 13+5=18. Its product 8*18=144 equals 12^2.
+1. The chord product gives 3x=4×9=36, so x=12.
+2. Whole secant length is 2+7=9, so the tangent has length sqrt(2×9)=3sqrt(2).
+3. The tangent length is sqrt(169-25)=12. The center-line secant has external length 13-5=8 and whole length 13+5=18. Its product 8×18=144 equals 12^2.
 
 ## GEOB7 Translations and Coordinate Rotations
 
-1. The images are (2,-1),(6,-1),(2,2). Both original and image have area 4*3/2=6 square units.
+1. The images are (2,-1),(6,-1),(2,2). Both original and image have area 4×3/2=6 square units.
 2. The 180-degree image is (-2,3) and the 270-degree image is (-3,-2).
 3. Relative to C, the point is (2,1); rotating gives (-1,2); adding C gives (0,3).
 
@@ -51,8 +51,8 @@
 
 ## GEOB9 Prisms, Pyramids and Surface Area
 
-1. Volume is 24 cubic units. Surface area is 2(2*3+2*4+3*4)=52 square units.
-2. The base area is 6, volume is 60, and surface area is 2*6+(3+4+5)*10=132 square units.
+1. Volume is 24 cubic units. Surface area is 2(2×3+2×4+3×4)=52 square units.
+2. The base area is 6, volume is 60, and surface area is 2×6+(3+4+5)×10=132 square units.
 3. The relation is 6-9+5=2. A polyhedron has flat polygonal faces; the curved sphere does not have such a face-edge-vertex structure.
 
 ## GEOB10 Cylinders, Cones, Spheres and Composites
@@ -64,16 +64,16 @@
 
 ## Quadrilaterals, Polygons and Circles Review
 
-1. The half-diagonals 5 and 12 give side length 13, perimeter 52 and area (10*24)/2=120. For example, congruent diagonals in a rhombus would establish a square.
+1. The half-diagonals 5 and 12 give side length 13, perimeter 52 and area (10×24)/2=120. For example, congruent diagonals in a rhombus would establish a square.
 2. Midsegment is (8+14)/2=11, and area is 44 square units. Height is the perpendicular separation of the bases.
 3. There are 360/24=15 sides. Each interior angle is 156 degrees and the interior sum is 180(15-2)=2340 degrees.
 4. The sector fraction is 2/9, so arc length is 4pi and area is 18pi. The inscribed angle is 40 degrees.
-5. The common power is 8^2=64. Whole secant length is 64/4=16, and its inside part is 12. The product 4*16 matches 64.
+5. The common power is 8^2=64. Whole secant length is 64/4=16, and its inside part is 12. The product 4×16 matches 64.
 
 ## Transformations and Solids Review
 
 1. The clockwise rotation gives (4,1); translation then gives (6,-2). Both operations preserve orientation.
 2. Reflection gives (-2,3); dilation then gives (-4,6). The total transformation scales lengths by 2 and areas by 4 and reverses orientation because of its single reflection.
-3. Base area is 24 and base perimeter is 24. Volume is 24*5=120; surface area is 2*24+24*5=168.
-4. Slant height is sqrt(3^2+4^2)=5. Volume is 64*3/3=64; surface area is 64+(32*5)/2=144.
-5. Slant height is 13. Volume is pi*25*12/3=100pi, and surface area is 25pi+65pi=90pi. Doubling dimensions multiplies surface area by 4 and volume by 8.
+3. Base area is 24 and base perimeter is 24. Volume is 24×5=120; surface area is 2×24+24×5=168.
+4. Slant height is sqrt(3^2+4^2)=5. Volume is 64×3/3=64; surface area is 64+(32×5)/2=144.
+5. Slant height is 13. Volume is pi×25×12/3=100pi, and surface area is 25pi+65pi=90pi. Doubling dimensions multiplies surface area by 4 and volume by 8.
