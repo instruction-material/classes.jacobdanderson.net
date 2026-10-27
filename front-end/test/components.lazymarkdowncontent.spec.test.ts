@@ -129,7 +129,7 @@ describe("LazyMarkdownContent.vue", () => {
 	it("keeps multiple-backtick code spans unchanged", async () => {
 		const literal = "prefix `1. first 2. second 3. third`";
 		const wrapper = mount(LazyMarkdownContent, {
-			props: { content: `Keep \`\`${literal}\`\` unchanged.` }
+			props: { content: `Keep \`\` ${literal} \`\` unchanged.` }
 		});
 		await vi.waitFor(() => {
 			expect(wrapper.find("code").exists()).toBe(true);
