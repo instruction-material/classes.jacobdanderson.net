@@ -1,0 +1,266 @@
+{
+  "courseId": "geometry-a",
+  "sourceTag": "v2.8.175",
+  "source": "698604a343862fa6ef403e7b9a3366ffb10f3a1a",
+  "sha256": "d7138d0f2eef355384c9244751b778ded6f5f8dadd37223f2504e396b37fae19",
+  "identities": [
+    {
+      "moduleId": "geometry-a-geometry-a-foundations-definitions-logic-and-proofs",
+      "id": "geometry-a-geometry-a-foundations-definitions-logic-and-proofs-curriculum-definitions-logic-and-proofs-core-concepts",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-a-geometry-a-foundations-definitions-logic-and-proofs",
+      "id": "geometry-a-geometry-a-foundations-definitions-logic-and-proofs-supplemental-project-geometry-notation-reference-map",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-a-geometry-a-foundations-definitions-logic-and-proofs",
+      "id": "geometry-a-geometry-a-foundations-definitions-logic-and-proofs-supplemental-project-proof-repair-lab",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-a-geoa4-geoa5-lines-angles-and-coordinate-geometry",
+      "id": "geometry-a-geoa4-geoa5-lines-angles-and-coordinate-geometry-curriculum-geoa4-parallel-and-perpendicular-lines",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-a-geoa4-geoa5-lines-angles-and-coordinate-geometry",
+      "id": "geometry-a-geoa4-geoa5-lines-angles-and-coordinate-geometry-curriculum-geoa5-coordinate-geometry",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-a-geoa4-geoa5-lines-angles-and-coordinate-geometry",
+      "id": "geometry-a-geoa4-geoa5-lines-angles-and-coordinate-geometry-supplemental-project-coordinate-line-design",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-a-geoa4-geoa5-lines-angles-and-coordinate-geometry",
+      "id": "geometry-a-geoa4-geoa5-lines-angles-and-coordinate-geometry-supplemental-project-parallel-line-proof-case-file",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-a-check-in-1-foundations-and-lines",
+      "id": "geometry-a-check-in-1-foundations-and-lines-curriculum-foundations-readiness-check",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-a-check-in-1-foundations-and-lines",
+      "id": "geometry-a-check-in-1-foundations-and-lines-supplemental-project-foundations-mixed-review",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-a-check-in-1-foundations-and-lines",
+      "id": "geometry-a-check-in-1-foundations-and-lines-supplemental-project-conditional-statement-sort",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-a-geoa6-geoa9-triangles-congruence-similarity-and-right-triangles",
+      "id": "geometry-a-geoa6-geoa9-triangles-congruence-similarity-and-right-triangles-curriculum-triangles-congruence-similarity-and-right-triangles-core-concepts",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-a-geoa6-geoa9-triangles-congruence-similarity-and-right-triangles",
+      "id": "geometry-a-geoa6-geoa9-triangles-congruence-similarity-and-right-triangles-supplemental-project-triangle-case-file",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-a-geoa6-geoa9-triangles-congruence-similarity-and-right-triangles",
+      "id": "geometry-a-geoa6-geoa9-triangles-congruence-similarity-and-right-triangles-supplemental-project-similarity-scale-plan",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-a-check-in-2-triangle-relationships",
+      "id": "geometry-a-check-in-2-triangle-relationships-curriculum-triangle-readiness-check",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-a-check-in-2-triangle-relationships",
+      "id": "geometry-a-check-in-2-triangle-relationships-supplemental-project-triangle-theorem-decision-tree",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-a-check-in-2-triangle-relationships",
+      "id": "geometry-a-check-in-2-triangle-relationships-supplemental-project-pythagorean-error-repair",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-a-geoa10-geoa13-triangle-centers-inequalities-and-trigonometry",
+      "id": "geometry-a-geoa10-geoa13-triangle-centers-inequalities-and-trigonometry-curriculum-triangle-centers-inequalities-and-trigonometry-core-concepts",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-a-geoa10-geoa13-triangle-centers-inequalities-and-trigonometry",
+      "id": "geometry-a-geoa10-geoa13-triangle-centers-inequalities-and-trigonometry-supplemental-project-triangle-center-blueprint",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-a-geoa10-geoa13-triangle-centers-inequalities-and-trigonometry",
+      "id": "geometry-a-geoa10-geoa13-triangle-centers-inequalities-and-trigonometry-supplemental-project-trigonometry-measurement-plan",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-a-check-in-3-and-geometry-a-capstone",
+      "id": "geometry-a-check-in-3-and-geometry-a-capstone-curriculum-final-readiness-check",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-a-check-in-3-and-geometry-a-capstone",
+      "id": "geometry-a-check-in-3-and-geometry-a-capstone-supplemental-capstone-geometry-a-design-defense",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-a-check-in-3-and-geometry-a-capstone",
+      "id": "geometry-a-check-in-3-and-geometry-a-capstone-supplemental-project-geometry-a-portfolio-audit",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-a-check-in-3-and-geometry-a-capstone",
+      "id": "geometry-a-check-in-3-and-geometry-a-capstone-supplemental-check-in-3-and-geometry-a-capstone-changed-case-review",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-a-geometry-a-reference-archive",
+      "id": "geometry-a-geometry-a-reference-archive-curriculum-geometry-a-reference-map",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-a-pending-static-assets",
+      "id": "geometry-a-pending-static-assets-curriculum-geometry-a-pending-static-assets",
+      "section": "core"
+    }
+  ],
+  "modules": [
+    {
+      "id": "geometry-a-geometry-a-foundations-definitions-logic-and-proofs",
+      "title": "Geometry A Foundations: Definitions, Logic, and Proofs",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "geometry-a-geometry-a-foundations-definitions-logic-and-proofs-curriculum-definitions-logic-and-proofs-core-concepts",
+          "title": "Definitions, Logic, and Proofs Core Concepts",
+          "aliases": [
+            "core-concepts",
+            "geometry-a-geometry-a-foundations-definitions-logic-and-proofs-curriculum-core-concepts"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geometry-a-geoa4-geoa5-lines-angles-and-coordinate-geometry",
+      "title": "GEOA4-GEOA5 Lines, Angles, and Coordinate Geometry",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "geometry-a-geoa4-geoa5-lines-angles-and-coordinate-geometry-curriculum-geoa4-parallel-and-perpendicular-lines",
+          "title": "GEOA4 Parallel and Perpendicular Lines",
+          "aliases": []
+        },
+        {
+          "id": "geometry-a-geoa4-geoa5-lines-angles-and-coordinate-geometry-curriculum-geoa5-coordinate-geometry",
+          "title": "GEOA5 Coordinate Geometry",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "geometry-a-check-in-1-foundations-and-lines",
+      "title": "Check-In #1: Foundations and Lines",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "geometry-a-check-in-1-foundations-and-lines-curriculum-foundations-readiness-check",
+          "title": "Foundations Readiness Check",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "geometry-a-geoa6-geoa9-triangles-congruence-similarity-and-right-triangles",
+      "title": "GEOA6-GEOA9 Triangles, Congruence, Similarity, and Right Triangles",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "geometry-a-geoa6-geoa9-triangles-congruence-similarity-and-right-triangles-curriculum-triangles-congruence-similarity-and-right-triangles-core-concepts",
+          "title": "Triangles, Congruence, Similarity, and Right Triangles Core Concepts",
+          "aliases": [
+            "core-concepts",
+            "geometry-a-geoa6-geoa9-triangles-congruence-similarity-and-right-triangles-curriculum-core-concepts"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geometry-a-check-in-2-triangle-relationships",
+      "title": "Check-In #2: Triangle Relationships",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "geometry-a-check-in-2-triangle-relationships-curriculum-triangle-readiness-check",
+          "title": "Triangle Readiness Check",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "geometry-a-geoa10-geoa13-triangle-centers-inequalities-and-trigonometry",
+      "title": "GEOA10-GEOA13 Triangle Centers, Inequalities, and Trigonometry",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "geometry-a-geoa10-geoa13-triangle-centers-inequalities-and-trigonometry-curriculum-triangle-centers-inequalities-and-trigonometry-core-concepts",
+          "title": "Triangle Centers, Inequalities, and Trigonometry Core Concepts",
+          "aliases": [
+            "core-concepts",
+            "geometry-a-geoa10-geoa13-triangle-centers-inequalities-and-trigonometry-curriculum-core-concepts"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geometry-a-check-in-3-and-geometry-a-capstone",
+      "title": "Check-In #3 and Geometry A Capstone",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "geometry-a-check-in-3-and-geometry-a-capstone-curriculum-final-readiness-check",
+          "title": "Final Readiness Check",
+          "aliases": []
+        },
+        {
+          "id": "geometry-a-check-in-3-and-geometry-a-capstone-supplemental-capstone-geometry-a-design-defense",
+          "title": "Capstone: Geometry A Design Defense",
+          "aliases": [
+            "geometry-a-check-in-3-and-geometry-a-capstone-curriculum-capstone-geometry-a-design-defense"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geometry-a-geometry-a-reference-archive",
+      "title": "Geometry A Reference Archive",
+      "kind": "appendix",
+      "curriculum": [
+        {
+          "id": "geometry-a-geometry-a-reference-archive-curriculum-geometry-a-reference-map",
+          "title": "Geometry A Reference Map",
+          "aliases": [
+            "geometry-a-source-activity-archive-curriculum-source-activity-anchors-geometry-a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geometry-a-pending-static-assets",
+      "title": "Pending Static Assets",
+      "kind": "appendix",
+      "curriculum": [
+        {
+          "id": "geometry-a-pending-static-assets-curriculum-geometry-a-pending-static-assets",
+          "title": "Geometry A Pending Static Assets",
+          "aliases": []
+        }
+      ]
+    }
+  ]
+}

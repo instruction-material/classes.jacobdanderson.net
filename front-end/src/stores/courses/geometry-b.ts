@@ -1,4 +1,5 @@
 import type { RawCourse } from "./types";
+import { addGeometryCases } from "./geometryCases";
 import { configureMathCourseFlow } from "./mathCourseFlow";
 import {
 	geometryBStaticFilenames,
@@ -827,3 +828,5 @@ configureMathCourseFlow(geometryBCourse, {
 	],
 	appendixTitles: ["Geometry B Reference Archive", "Pending Static Assets"]
 });
+
+addGeometryCases(geometryBCourse, "b");

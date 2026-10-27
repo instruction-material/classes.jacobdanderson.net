@@ -1,0 +1,310 @@
+{
+  "courseId": "geometry-b",
+  "sourceTag": "v2.8.175",
+  "source": "698604a343862fa6ef403e7b9a3366ffb10f3a1a",
+  "sha256": "3ef6d4a34cdeb01aa25b97f0f350e0385aa1730732a4da1545e843b2652ff91f",
+  "identities": [
+    {
+      "moduleId": "geometry-b-geob1-geob2-quadrilaterals-and-parallelograms",
+      "id": "geometry-b-geob1-geob2-quadrilaterals-and-parallelograms-curriculum-quadrilaterals-and-parallelograms-core-concepts",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-b-geob1-geob2-quadrilaterals-and-parallelograms",
+      "id": "geometry-b-geob1-geob2-quadrilaterals-and-parallelograms-supplemental-project-quadrilateral-classification-case-file",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-b-geob1-geob2-quadrilaterals-and-parallelograms",
+      "id": "geometry-b-geob1-geob2-quadrilaterals-and-parallelograms-supplemental-project-parallelogram-property-decision-tree",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-b-geob3-geob4-polygons-and-circle-measurement",
+      "id": "geometry-b-geob3-geob4-polygons-and-circle-measurement-curriculum-geob3-properties-and-area-of-polygons",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-b-geob3-geob4-polygons-and-circle-measurement",
+      "id": "geometry-b-geob3-geob4-polygons-and-circle-measurement-curriculum-geob4-circumference-arcs-chords-areas-and-sectors",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-b-geob3-geob4-polygons-and-circle-measurement",
+      "id": "geometry-b-geob3-geob4-polygons-and-circle-measurement-supplemental-project-polygon-formula-field-guide",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-b-geob3-geob4-polygons-and-circle-measurement",
+      "id": "geometry-b-geob3-geob4-polygons-and-circle-measurement-supplemental-project-circle-measurement-design-brief",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-b-geob5-geob6-circle-theorems-and-challenge-problems",
+      "id": "geometry-b-geob5-geob6-circle-theorems-and-challenge-problems-curriculum-geob5-inscribed-central-internal-and-external-angles",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-b-geob5-geob6-circle-theorems-and-challenge-problems",
+      "id": "geometry-b-geob5-geob6-circle-theorems-and-challenge-problems-curriculum-geob5-tangents",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-b-geob5-geob6-circle-theorems-and-challenge-problems",
+      "id": "geometry-b-geob5-geob6-circle-theorems-and-challenge-problems-curriculum-geob6-challenge-circle-problems",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-b-geob5-geob6-circle-theorems-and-challenge-problems",
+      "id": "geometry-b-geob5-geob6-circle-theorems-and-challenge-problems-supplemental-project-circle-theorem-sort",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-b-geob5-geob6-circle-theorems-and-challenge-problems",
+      "id": "geometry-b-geob5-geob6-circle-theorems-and-challenge-problems-supplemental-project-circle-challenge-walkthrough",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-b-check-in-1-quadrilaterals-polygons-and-circles",
+      "id": "geometry-b-check-in-1-quadrilaterals-polygons-and-circles-curriculum-quadrilateral-polygon-and-circle-readiness-check",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-b-check-in-1-quadrilaterals-polygons-and-circles",
+      "id": "geometry-b-check-in-1-quadrilaterals-polygons-and-circles-supplemental-project-first-half-geometry-review-set",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-b-check-in-1-quadrilaterals-polygons-and-circles",
+      "id": "geometry-b-check-in-1-quadrilaterals-polygons-and-circles-supplemental-project-formula-and-theorem-error-clinic",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-b-geob7-geob8-transformations",
+      "id": "geometry-b-geob7-geob8-transformations-curriculum-geob7-translations-and-rotations",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-b-geob7-geob8-transformations",
+      "id": "geometry-b-geob7-geob8-transformations-curriculum-geob8-reflections-and-dilations",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-b-geob7-geob8-transformations",
+      "id": "geometry-b-geob7-geob8-transformations-supplemental-project-transformation-rule-gallery",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-b-geob7-geob8-transformations",
+      "id": "geometry-b-geob7-geob8-transformations-supplemental-project-logo-transformation-redesign",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-b-geob9-geob10-polyhedra-and-round-solids",
+      "id": "geometry-b-geob9-geob10-polyhedra-and-round-solids-curriculum-geob9-polyhedra-prisms-and-pyramids",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-b-geob9-geob10-polyhedra-and-round-solids",
+      "id": "geometry-b-geob9-geob10-polyhedra-and-round-solids-curriculum-geob10-cylinders-cones-and-spheres",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-b-geob9-geob10-polyhedra-and-round-solids",
+      "id": "geometry-b-geob9-geob10-polyhedra-and-round-solids-supplemental-project-solid-geometry-formula-lab",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-b-geob9-geob10-polyhedra-and-round-solids",
+      "id": "geometry-b-geob9-geob10-polyhedra-and-round-solids-supplemental-project-packaging-design-optimization",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-b-check-in-2-and-geometry-b-capstone",
+      "id": "geometry-b-check-in-2-and-geometry-b-capstone-curriculum-transformations-and-solids-readiness-check",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-b-check-in-2-and-geometry-b-capstone",
+      "id": "geometry-b-check-in-2-and-geometry-b-capstone-curriculum-geometry-b-capstone-synthesis",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-b-check-in-2-and-geometry-b-capstone",
+      "id": "geometry-b-check-in-2-and-geometry-b-capstone-supplemental-capstone-geometry-b-design-defense",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-b-check-in-2-and-geometry-b-capstone",
+      "id": "geometry-b-check-in-2-and-geometry-b-capstone-supplemental-project-geometry-b-portfolio-audit",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-b-check-in-2-and-geometry-b-capstone",
+      "id": "geometry-b-check-in-2-and-geometry-b-capstone-supplemental-check-in-2-and-geometry-b-capstone-changed-case-review",
+      "section": "optional"
+    },
+    {
+      "moduleId": "geometry-b-geometry-b-reference-archive",
+      "id": "geometry-b-geometry-b-reference-archive-curriculum-geometry-b-reference-map",
+      "section": "core"
+    },
+    {
+      "moduleId": "geometry-b-pending-static-assets",
+      "id": "geometry-b-pending-static-assets-curriculum-geometry-b-pending-static-assets",
+      "section": "core"
+    }
+  ],
+  "modules": [
+    {
+      "id": "geometry-b-geob1-geob2-quadrilaterals-and-parallelograms",
+      "title": "GEOB1-GEOB2 Quadrilaterals and Parallelograms",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "geometry-b-geob1-geob2-quadrilaterals-and-parallelograms-curriculum-quadrilaterals-and-parallelograms-core-concepts",
+          "title": "Quadrilaterals and Parallelograms Core Concepts",
+          "aliases": [
+            "core-concepts",
+            "geometry-b-geob1-geob2-quadrilaterals-and-parallelograms-curriculum-core-concepts"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geometry-b-geob3-geob4-polygons-and-circle-measurement",
+      "title": "GEOB3-GEOB4 Polygons and Circle Measurement",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "geometry-b-geob3-geob4-polygons-and-circle-measurement-curriculum-geob3-properties-and-area-of-polygons",
+          "title": "GEOB3 Properties and Area of Polygons",
+          "aliases": []
+        },
+        {
+          "id": "geometry-b-geob3-geob4-polygons-and-circle-measurement-curriculum-geob4-circumference-arcs-chords-areas-and-sectors",
+          "title": "GEOB4 Circumference, Arcs, Chords, Areas, and Sectors",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "geometry-b-geob5-geob6-circle-theorems-and-challenge-problems",
+      "title": "GEOB5-GEOB6 Circle Theorems and Challenge Problems",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "geometry-b-geob5-geob6-circle-theorems-and-challenge-problems-curriculum-geob5-inscribed-central-internal-and-external-angles",
+          "title": "GEOB5 Inscribed, Central, Internal, and External Angles",
+          "aliases": []
+        },
+        {
+          "id": "geometry-b-geob5-geob6-circle-theorems-and-challenge-problems-curriculum-geob5-tangents",
+          "title": "GEOB5 Tangents",
+          "aliases": []
+        },
+        {
+          "id": "geometry-b-geob5-geob6-circle-theorems-and-challenge-problems-curriculum-geob6-challenge-circle-problems",
+          "title": "GEOB6 Challenge Circle Problems",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "geometry-b-check-in-1-quadrilaterals-polygons-and-circles",
+      "title": "Check-In #1: Quadrilaterals, Polygons, and Circles",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "geometry-b-check-in-1-quadrilaterals-polygons-and-circles-curriculum-quadrilateral-polygon-and-circle-readiness-check",
+          "title": "Quadrilateral, Polygon, and Circle Readiness Check",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "geometry-b-geob7-geob8-transformations",
+      "title": "GEOB7-GEOB8 Transformations",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "geometry-b-geob7-geob8-transformations-curriculum-geob7-translations-and-rotations",
+          "title": "GEOB7 Translations and Rotations",
+          "aliases": []
+        },
+        {
+          "id": "geometry-b-geob7-geob8-transformations-curriculum-geob8-reflections-and-dilations",
+          "title": "GEOB8 Reflections and Dilations",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "geometry-b-geob9-geob10-polyhedra-and-round-solids",
+      "title": "GEOB9-GEOB10 Polyhedra and Round Solids",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "geometry-b-geob9-geob10-polyhedra-and-round-solids-curriculum-geob9-polyhedra-prisms-and-pyramids",
+          "title": "GEOB9 Polyhedra, Prisms, and Pyramids",
+          "aliases": []
+        },
+        {
+          "id": "geometry-b-geob9-geob10-polyhedra-and-round-solids-curriculum-geob10-cylinders-cones-and-spheres",
+          "title": "GEOB10 Cylinders, Cones, and Spheres",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "geometry-b-check-in-2-and-geometry-b-capstone",
+      "title": "Check-In #2 and Geometry B Capstone",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "geometry-b-check-in-2-and-geometry-b-capstone-curriculum-transformations-and-solids-readiness-check",
+          "title": "Transformations and Solids Readiness Check",
+          "aliases": []
+        },
+        {
+          "id": "geometry-b-check-in-2-and-geometry-b-capstone-curriculum-geometry-b-capstone-synthesis",
+          "title": "Geometry B Capstone Synthesis",
+          "aliases": []
+        },
+        {
+          "id": "geometry-b-check-in-2-and-geometry-b-capstone-supplemental-capstone-geometry-b-design-defense",
+          "title": "Capstone: Geometry B Design Defense",
+          "aliases": [
+            "geometry-b-check-in-2-and-geometry-b-capstone-curriculum-capstone-geometry-b-design-defense"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geometry-b-geometry-b-reference-archive",
+      "title": "Geometry B Reference Archive",
+      "kind": "appendix",
+      "curriculum": [
+        {
+          "id": "geometry-b-geometry-b-reference-archive-curriculum-geometry-b-reference-map",
+          "title": "Geometry B Reference Map",
+          "aliases": [
+            "geometry-b-source-activity-archive-curriculum-source-activity-anchors-geometry-b"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geometry-b-pending-static-assets",
+      "title": "Pending Static Assets",
+      "kind": "appendix",
+      "curriculum": [
+        {
+          "id": "geometry-b-pending-static-assets-curriculum-geometry-b-pending-static-assets",
+          "title": "Geometry B Pending Static Assets",
+          "aliases": []
+        }
+      ]
+    }
+  ]
+}

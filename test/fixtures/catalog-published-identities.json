@@ -92,12 +92,12 @@
     "sha256": "a29a8ee9c32f1d9b705df1b38728323108197ef39609669db9b2ddb6a2a98f84"
   },
   "geometry-a": {
-    "items": 25,
-    "sha256": "d7138d0f2eef355384c9244751b778ded6f5f8dadd37223f2504e396b37fae19"
+    "items": 38,
+    "sha256": "e68b9b0f4040cd63e740885ffe2056c7b536adb181c0455a48df84618e72dce3"
   },
   "geometry-b": {
-    "items": 30,
-    "sha256": "3ef6d4a34cdeb01aa25b97f0f350e0385aa1730732a4da1545e843b2652ff91f"
+    "items": 39,
+    "sha256": "dba50ba47e5a5d447a78588e5c27ff7debf3745a9b2dc80e1974b30f252e95e4"
   },
   "intro-to-biology": {
     "items": 68,
