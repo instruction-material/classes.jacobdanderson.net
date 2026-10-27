@@ -71,7 +71,7 @@ const cases = [
 		worked: "2.4×0.06=144/1000=0.144. For 8.4/0.35, multiply both numbers by 100 to obtain 840/35=24. A 15% discount on $80 removes 0.15×80=$12 and leaves $68. The signed percent change is (68-80)/80×100%=-15%; the dollar change and the percent change use different units.",
 		problems: [
 			"Convert 3/8 into a decimal and a percent. Then find 37.5% of 64 using an exact fraction or decimal, explaining why the two forms give the same answer.",
-			"Calculate 0.72×0.5 and 6.3/0.09. Show how place value or an equivalent division makes each calculation valid, and give a short estimate to reject an answer off by a power of 10.",
+			"Calculate 0.72×0.5 and 6.3/0.09. Use place value or an equivalent division to justify each calculation, and give a short estimate to reject an answer off by a power of 10.",
 			"A $50 item has a 20% discount, followed by 5% sales tax on the discounted price. Find the final price. Explain why directly subtracting 20 and adding 5 as if they were dollar amounts is incorrect."
 		],
 		checks: "Each percentage is converted to a fraction or decimal before multiplication. The original amount is explicit in a percent-change calculation, and successive changes use the correct current base. Money is labeled in dollars and decimal placement is checked by a numerical estimate.",
