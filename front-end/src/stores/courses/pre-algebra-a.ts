@@ -577,8 +577,8 @@ export const preAlgebraACourse: RawCourse = {
 						sourceAnchor({
 							title: "Symptom Spree",
 							references: [
-								"The scores are fictional, dimensionless mathematical quantities. Interpret their growth only within the stated formulas and positive-input domain.",
-								"A fictional table pairs elapsed values 10, 20, 30, 40 and 50 with scores 4, 16, 64, 256 and 1024. With step n equal to elapsed value divided by 10, the table follows 4^n.",
+								"Michelle Lee's radiology work provides the career context for this exercise. The scores are fictional, dimensionless mathematical quantities; interpret their growth within the stated formulas and positive-input domain.",
+								"A fictional table pairs elapsed values 10, 20, 30, 40 and 50 with scores 4, 16, 64, 256, and 1024. With step n equal to elapsed value divided by 10, the table follows 4^n.",
 								"For a separate algebra comparison, t is a positive dimensionless input and the baseline is t^4. This is a different rule from the table above.",
 								"Model A raises the baseline to the 1/5 power and multiplies by t.",
 								"Model B takes the baseline square root and divides by t^(3/2). Model C multiplies the baseline by t^(-1), then takes the seventh root. Model D cubes the baseline, then divides by t^(2/3).",

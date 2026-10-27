@@ -164,7 +164,7 @@ const cases = [
 		target: "Scientific Notation and Scale",
 		methods:
 			"For a nonzero real quantity, normalized scientific notation is c×10^k with integer k and 1<=abs(c)<10. Negative quantities use a negative coefficient; zero can be written as 0 but has no normalized nonzero coefficient. Moving a decimal to the left to form c gives a positive exponent; moving it to the right gives a negative exponent. To multiply, multiply coefficients and add powers of 10, then normalize again if needed. To compare positive quantities, first compare exponents, then coefficients when exponents match.",
-		worked: "0.00052=5.2×10^(-4), since multiplying 5.2 by 1/10000 restores the original value. Also -730000=-7.3×10^5. The product (3×10^4)(2×10^(-7))=6×10^(-3)=0.006. One million is 10^6 and one billion is 10^9; the latter is 10^3=1000 times the former.",
+		worked: "0.00052=5.2×10^(-4), since multiplying 5.2 by 1/10000 gives 0.00052. Also -730000=-7.3×10^5. The product (3×10^4)(2×10^(-7))=6×10^(-3)=0.006. One million is 10^6 and one billion is 10^9; the latter is 10^3=1000 times the former.",
 		problems: [
 			"Write 0.0000024 and -91000000 in normalized scientific notation. Expand each result back into ordinary notation to check that the sign and magnitude are unchanged.",
 			"Calculate (4×10^5)(3×10^(-2)). Normalize the coefficient and explain how the adjustment changes the power of 10 while preserving the product.",
