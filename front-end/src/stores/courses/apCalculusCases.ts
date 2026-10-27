@@ -98,7 +98,7 @@ const cases = [
 		code: "APC4",
 		title: "Limits and Continuity Review",
 		reading:
-			"A limit calculation and a continuity claim answer different questions. Evaluate one-sided behavior at a piecewise boundary, retain excluded inputs when simplifying, and check a theorem's interval hypotheses before using it. A finite table supplies estimates; an exact formula or another justified argument establishes the limiting conclusion. Infinite behavior should be labeled as unbounded rather than reported as a finite value.",
+			"A limit calculation and a continuity claim answer different questions. Evaluate one-sided behavior at a piecewise boundary, retain excluded inputs when simplifying, and check a theorem's interval hypotheses before using it. A finite table supplies estimates; an exact formula or another justified argument establishes the limiting conclusion. An infinite limit describes unbounded behavior and has no finite real value.",
 		worked: "Define f(x)=x^2 for x<1, f(x)=2x-1 for x>1, and f(1)=c. The left expression approaches 1 and the right expression also approaches 1. The two-sided limit is 1, so f is continuous at 1 exactly when c=1.",
 		problems: [
 			"Evaluate the limit of (sqrt(1+x)-1)/x as x approaches 0. Identify the indeterminate form and show the rationalized expression.",
@@ -521,7 +521,7 @@ const cases = [
 		code: "APC22",
 		title: "Integration Applications Review",
 		reading:
-			"For a rate model, identify the initial amount and separate total change from the final state. For motion, split at velocity sign changes before summing distance. For an enclosed area, solve intersections and identify which curve is above; for a solid of revolution, state radius distances to the axis. A table estimate should retain its nonuniform interval widths and its estimate label. A route-end portfolio combines corrected work from all six AB strands rather than using one strong topic as a substitute for another.",
+			"For a rate model, identify the initial amount and separate total change from the final state. For motion, split at velocity sign changes before summing distance. For an enclosed area, solve intersections and identify which curve is above; for a solid of revolution, state radius distances to the axis. A table estimate retains its nonuniform interval widths and its estimate label. A route-end portfolio combines corrected work from all six AB strands rather than using one strong topic as a substitute for another.",
 		worked: "A quantity starts at Q(0)=5 L and changes at `Q'(t)=4-t` L/min on [0,3]. Its change is `12-9/2=15/2 L`; the final amount is `25/2 L`. The average rate is `(15/2)/3=5/2 L/min`. The initial amount affects the final state but not the accumulated change.",
 		problems: [
 			"Find the area enclosed by y=2x and y=x^2, with intersections and curve ordering justified.",

@@ -274,10 +274,10 @@ function calculusModuleFlow(data: CalculusModuleData) {
 		return "Choose the AB or BC route from diagnostic evidence. The AB route continues through APC22 and its readiness portfolio; the BC route completes that same core before APC23–APC27 and the BC portfolio.";
 	}
 	if (code === "APC22") {
-		return "Treat this as the AB endpoint: complete mixed integration review and the required AB readiness portfolio. Finish here for AB, or use the portfolio targets before continuing into APC23–APC27 for BC.";
+		return "At the AB endpoint, complete mixed integration review and the required AB readiness portfolio. Finish here for AB, or use the portfolio targets before continuing into APC23–APC27 for BC.";
 	}
 	if (code === "APC27") {
-		return "Treat this as the BC endpoint: complete mixed series review and the required BC readiness portfolio, then use timed evidence to choose final exam review priorities.";
+		return "At the BC endpoint, complete mixed series review and the required BC readiness portfolio, then use timed evidence to choose final exam review priorities.";
 	}
 	if (data.bcOnly) {
 		return "This module is required on the BC route after the full AB core. Connect each new representation or series method to its AB prerequisite and verify every representation-specific condition.";
