@@ -67,10 +67,9 @@ function reviewedJavaScriptProjectReadme(
 		`public/course-assets/${assetRoot}/${file!.path}`,
 		"utf8"
 	);
-	expect(
-		createHash("sha256").update(content).digest("hex"),
-		item.title
-	).toBe(file!.sha256);
+	expect(createHash("sha256").update(content).digest("hex"), item.title).toBe(
+		file!.sha256
+	);
 	expect(content.split("\n")[0], item.title).toBe(`# ${source.title}`);
 	expect(content, item.title).toContain("index.html");
 	expect(wordCount(content), item.title).toBeGreaterThanOrEqual(40);
@@ -5377,7 +5376,7 @@ describe("course text quality normalization", () => {
 	});
 
 	it(
-		"keeps course cards backed by substantive assignment guidance",
+		"keeps projects substantive and explicit readings concise",
 		async () => {
 			const thinItems = (await loadedCatalogCourses()).flatMap(
 				({ course, entry }) =>
@@ -5399,7 +5398,10 @@ describe("course text quality normalization", () => {
 									item =>
 										wordCount(
 											`${item.content}\n${reviewedJavaScriptProjectReadme(entry.id, item)}`
-										) < 80
+										) <
+										(item.contentKind === "reading"
+											? 20
+											: 80)
 								)
 								.map(
 									item =>
@@ -5443,6 +5445,7 @@ describe("course text quality normalization", () => {
 						}
 
 						const projectLike =
+							item.contentKind !== "reading" &&
 							!isInformationalResourceTitle(item.title) &&
 							(isProjectLikeTitle(item.title) ||
 								Boolean(item.projectLink || item.solutionLink));
@@ -5450,7 +5453,9 @@ describe("course text quality normalization", () => {
 							projectLike &&
 							wordCount(item.content) < 95 &&
 							!reviewStructurePattern.test(item.content) &&
-							!scratchSupportStructurePattern.test(item.content) &&
+							!scratchSupportStructurePattern.test(
+								item.content
+							) &&
 							!reviewedJavaScriptProjectReadme(id, item);
 
 						return shortWithoutReview

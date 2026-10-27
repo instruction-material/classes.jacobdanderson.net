@@ -633,6 +633,9 @@ function normalizeCourse(
 									? normalizedContent
 									: displayCourseContent(normalizedContent),
 								learningPath: item.learningPath,
+								...(item.contentKind
+									? { contentKind: item.contentKind }
+									: {}),
 								ideImport: item.ideImport,
 								projectLink: (() => {
 									if (
