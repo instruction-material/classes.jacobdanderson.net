@@ -151,14 +151,6 @@ beforeEach(async () => {
 			]
 		})
 	);
-	app.get("/api/session-notes/drafting/settings", (_req, res) =>
-		res.json({
-			siteAvailable: false,
-			allowed: false,
-			ready: false,
-			tutorsEnabled: false
-		})
-	);
 	app.use("/api/users", userRoutes);
 	app.use((_req, res) =>
 		res.status(404).json({ message: "Unknown API route" })
