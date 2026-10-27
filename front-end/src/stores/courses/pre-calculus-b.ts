@@ -1,5 +1,6 @@
 import type { RawCourse } from "./types";
 import { configureMathCourseFlow } from "./mathCourseFlow";
+import { addPreCalculusBCases } from "./preCalculusBCases";
 import {
 	pendingStaticMediaNotice,
 	preCalculusBStaticFilenames,
@@ -1457,3 +1458,5 @@ configureMathCourseFlow(preCalculusBCourse, {
 		"Pending Static Assets"
 	]
 });
+
+addPreCalculusBCases(preCalculusBCourse);

@@ -83,11 +83,12 @@ it.each(["learner", "instructor"])(
 			);
 			anchors.add(section.hash);
 			expect(section.content, practice.title).toMatch(/\n1\. /);
-			if (section.hash !== "check-in-2")
-				expect(section.content, practice.title).not.toContain(
-					"## check-in-2\n"
-				);
-			if (section.hash === "check-in-2")
+			expect(
+				section.content.match(/^## /gm),
+				practice.title
+			).toHaveLength(1);
+			expect(section.title, practice.title).toMatch(/PCTA|Check-In/);
+			if (section.hash.startsWith("check-in-2"))
 				expect(section.content).toContain("8. ");
 		}
 		expect(anchors.size).toBe(16);

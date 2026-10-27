@@ -1,5 +1,8 @@
 import type { RawCourse } from "./types";
-import { courseAssetViewerUrl } from "@/modules/courseAssetPreview";
+import {
+	courseAssetViewerUrl,
+	slugMarkdownHeading
+} from "@/modules/courseAssetPreview";
 
 const cases = [
 	{
@@ -119,22 +122,22 @@ const cases = [
 const checkIns = [
 	{
 		code: "check-in-1",
-		title: "Check-In 1",
+		title: "Check-In 1: Polynomial and Sequence Foundations",
 		problems:
 			"1. For `h(x) = x^2` when `x <= 1` and `h(x) = 2x - 1` when `x > 1`, find `h(-2), h(1), h(2)` and decide whether the graph is continuous at 1.\n2. Factor `x^3 - 9x` and find its zeros.\n3. Divide `x^3 + 1` by `x + 1`, giving quotient and remainder with a reconstruction check.\n4. Find all real and complex zeros of `x^4 - 1`.\n5. For `-(x + 2)^2(x - 1)`, state both ends, intercepts, and which zeros cross or touch.\n6. For the arithmetic sequence `1, 5, 9, ...`, find `a_15, S_15`. For the geometric sequence `3, 6, 12, ...`, find `b_6, S_6`.\n7. For `f(x) = 2x` on `[0, 1]` with 2 equal subintervals, find left and right rectangle sums. Compare with the exact triangle area.\n8. Find the coefficient of `x^2` in `(x - 2)^4` and show the relevant binomial term."
 	},
 	{
 		code: "check-in-2",
-		title: "Check-In 2",
+		title: "Check-In 2: Rational Functions through Conics",
 		problems:
 			"1. Analyze `r(x) = (x^2 - 4)/[(x - 2)(x + 3)]`: domain, holes, vertical and horizontal asymptotes, and intercepts.\n2. Simplify `[(x + 2)/(x - 1)]` divided by `[(x + 2)/(x + 1)]`, preserving every restriction. Explain what happens at `x = -2`.\n3. Solve `log_2(x) + log_2(x - 2) = 3`, checking original arguments.\n4. Solve `5^t = 12` exactly and approximately. State why a logarithm is useful here.\n5. Find the inverse and domain/range of `f(x) = 4x + 7`. Then find the domain of `sqrt(f(x) - 3)`.\n6. Convert `x^2 + y^2 - 2x + 4y - 4 = 0` to circle standard form. For `x^2/4 + y^2/9 = 1`, find vertices and foci.\n7. Identify vertex, focus, and directrix of `x^2 = -8y`. Find the vertices and asymptotes of `y^2/9 - x^2/4 = 1`.\n8. Find the intersections of `x^2 + y^2 = 25` with `y = 3`. Verify each point in both equations."
 	}
 ];
 
-function selfCheck(code: string) {
+function selfCheck(heading: string) {
 	const url = courseAssetViewerUrl(
-		`/course-assets/pre-calculus-a/practice-checks-v1.md#${code.toLowerCase()}`,
-		`${code} self-check`
+		`/course-assets/pre-calculus-a/practice-checks-v2.md#${slugMarkdownHeading(heading)}`,
+		`${heading} self-check`
 	);
 	return `[Check answers and reasoning](${url})`;
 }
@@ -156,13 +159,13 @@ export function addPreCalculusACases(course: RawCourse) {
 		);
 		practice.content = practice.content.replace(
 			"**Work path:**",
-			`**Problems:**\n\n${unit.problems}\n\n${selfCheck(unit.code)}\n\n**Work path:**`
+			`**Problems:**\n\n${unit.problems}\n\n${selfCheck(`${unit.code} ${unit.title}`)}\n\n**Work path:**`
 		);
 	}
 	for (const [index, check] of checkIns.entries()) {
 		const item = course.modules
 			.flatMap(module => module.curriculum)
 			.find(candidate => candidate.title === `Check-In #${index + 1}`)!;
-		item.content += `\n\n**Problems:**\n\n${check.problems}\n\n${selfCheck(check.code)}`;
+		item.content += `\n\n**Problems:**\n\n${check.problems}\n\n${selfCheck(check.title)}`;
 	}
 }

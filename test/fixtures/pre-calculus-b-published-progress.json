@@ -1,0 +1,324 @@
+{
+  "sourceTag": "v2.8.173",
+  "sourceCommit": "68b60522c2c781a0e6a363f7d501d16ae0559c57",
+  "sha256": "52059d3253c25de0698914eabdb09dda17994730086a6086be7fa4cd36be0249",
+  "reading": {
+    "id": "pre-calculus-b-pctb1-trigonometry-basics-curriculum-trigonometry-basics-core-concepts",
+    "aliases": [
+      "core-concepts",
+      "pre-calculus-b-pctb1-trigonometry-basics-curriculum-core-concepts"
+    ]
+  },
+  "identities": [
+    {
+      "moduleId": "pre-calculus-b-pctb1-trigonometry-basics",
+      "id": "pre-calculus-b-pctb1-trigonometry-basics-curriculum-trigonometry-basics-core-concepts",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb1-trigonometry-basics",
+      "id": "pre-calculus-b-pctb1-trigonometry-basics-supplemental-project-unit-circle-field-guide",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb1-trigonometry-basics",
+      "id": "pre-calculus-b-pctb1-trigonometry-basics-supplemental-transfer-practice-trigonometry-basics",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb2-graphs-of-sine-and-cosine",
+      "id": "pre-calculus-b-pctb2-graphs-of-sine-and-cosine-curriculum-concept-graphing-sine-and-cosine",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb2-graphs-of-sine-and-cosine",
+      "id": "pre-calculus-b-pctb2-graphs-of-sine-and-cosine-curriculum-problem-set-sine-and-cosine-features",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb2-graphs-of-sine-and-cosine",
+      "id": "pre-calculus-b-pctb2-graphs-of-sine-and-cosine-supplemental-project-periodic-phenomenon-model",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb2-graphs-of-sine-and-cosine",
+      "id": "pre-calculus-b-pctb2-graphs-of-sine-and-cosine-supplemental-transfer-practice-graphs-of-sine-and-cosine",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb3-other-trigonometric-graphs",
+      "id": "pre-calculus-b-pctb3-other-trigonometric-graphs-curriculum-concept-tangent-reciprocal-and-inverse-trigonometric-graphs",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb3-other-trigonometric-graphs",
+      "id": "pre-calculus-b-pctb3-other-trigonometric-graphs-curriculum-problem-set-tangent-reciprocal-and-inverse-graphs",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb3-other-trigonometric-graphs",
+      "id": "pre-calculus-b-pctb3-other-trigonometric-graphs-supplemental-project-trigonometric-graph-gallery",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb3-other-trigonometric-graphs",
+      "id": "pre-calculus-b-pctb3-other-trigonometric-graphs-supplemental-transfer-practice-other-trigonometric-graphs",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb4-trigonometric-equations-and-identities",
+      "id": "pre-calculus-b-pctb4-trigonometric-equations-and-identities-curriculum-concept-trigonometric-identities-and-equations",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb4-trigonometric-equations-and-identities",
+      "id": "pre-calculus-b-pctb4-trigonometric-equations-and-identities-curriculum-problem-set-identities-angle-formulas-and-equations",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb4-trigonometric-equations-and-identities",
+      "id": "pre-calculus-b-pctb4-trigonometric-equations-and-identities-supplemental-project-identity-proof-notebook",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb4-trigonometric-equations-and-identities",
+      "id": "pre-calculus-b-pctb4-trigonometric-equations-and-identities-supplemental-transfer-practice-trigonometric-equations-and-identities",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb5-polar-coordinates",
+      "id": "pre-calculus-b-pctb5-polar-coordinates-curriculum-concept-polar-coordinates-and-complex-numbers",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb5-polar-coordinates",
+      "id": "pre-calculus-b-pctb5-polar-coordinates-curriculum-problem-set-polar-graphs-and-complex-polar-form",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb5-polar-coordinates",
+      "id": "pre-calculus-b-pctb5-polar-coordinates-supplemental-project-polar-design-studio",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb5-polar-coordinates",
+      "id": "pre-calculus-b-pctb5-polar-coordinates-supplemental-transfer-practice-polar-coordinates",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb6-parametric-equations",
+      "id": "pre-calculus-b-pctb6-parametric-equations-curriculum-concept-parametric-equations",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb6-parametric-equations",
+      "id": "pre-calculus-b-pctb6-parametric-equations-curriculum-problem-set-parametric-paths",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb6-parametric-equations",
+      "id": "pre-calculus-b-pctb6-parametric-equations-supplemental-project-motion-path-model",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb6-parametric-equations",
+      "id": "pre-calculus-b-pctb6-parametric-equations-supplemental-transfer-practice-parametric-equations",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-check-in-1-trigonometry-and-coordinate-models",
+      "id": "pre-calculus-b-check-in-1-trigonometry-and-coordinate-models-curriculum-trigonometry-fundamentals-review",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-check-in-1-trigonometry-and-coordinate-models",
+      "id": "pre-calculus-b-check-in-1-trigonometry-and-coordinate-models-curriculum-polar-and-parametric-review",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-check-in-1-trigonometry-and-coordinate-models",
+      "id": "pre-calculus-b-check-in-1-trigonometry-and-coordinate-models-supplemental-project-trigonometry-error-audit",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-check-in-1-trigonometry-and-coordinate-models",
+      "id": "pre-calculus-b-check-in-1-trigonometry-and-coordinate-models-supplemental-project-coordinate-model-comparison",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb7-vectors",
+      "id": "pre-calculus-b-pctb7-vectors-curriculum-concept-introduction-to-vectors",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb7-vectors",
+      "id": "pre-calculus-b-pctb7-vectors-curriculum-problem-set-vector-operations-and-graphing",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb7-vectors",
+      "id": "pre-calculus-b-pctb7-vectors-supplemental-project-vector-navigation-map",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb7-vectors",
+      "id": "pre-calculus-b-pctb7-vectors-supplemental-transfer-practice-vectors",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb8-matrices-review",
+      "id": "pre-calculus-b-pctb8-matrices-review-curriculum-concept-matrix-operations",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb8-matrices-review",
+      "id": "pre-calculus-b-pctb8-matrices-review-curriculum-problem-set-adding-subtracting-multiplying-and-inverting-matrices",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb8-matrices-review",
+      "id": "pre-calculus-b-pctb8-matrices-review-supplemental-project-matrix-operation-explainer",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb8-matrices-review",
+      "id": "pre-calculus-b-pctb8-matrices-review-supplemental-pctb8-matrices-review-changed-case-review",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb9-applications-of-matrices",
+      "id": "pre-calculus-b-pctb9-applications-of-matrices-curriculum-concept-linear-systems-with-matrices",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb9-applications-of-matrices",
+      "id": "pre-calculus-b-pctb9-applications-of-matrices-curriculum-problem-set-matrix-systems",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb9-applications-of-matrices",
+      "id": "pre-calculus-b-pctb9-applications-of-matrices-supplemental-project-linear-system-case-file",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb9-applications-of-matrices",
+      "id": "pre-calculus-b-pctb9-applications-of-matrices-supplemental-pctb9-applications-of-matrices-interaction-variation",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb10-partial-fraction-decomposition",
+      "id": "pre-calculus-b-pctb10-partial-fraction-decomposition-curriculum-concept-partial-fraction-decomposition",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb10-partial-fraction-decomposition",
+      "id": "pre-calculus-b-pctb10-partial-fraction-decomposition-curriculum-problem-set-partial-fractions",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb10-partial-fraction-decomposition",
+      "id": "pre-calculus-b-pctb10-partial-fraction-decomposition-supplemental-project-rational-expression-decomposition-lab",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb10-partial-fraction-decomposition",
+      "id": "pre-calculus-b-pctb10-partial-fraction-decomposition-supplemental-transfer-practice-partial-fraction-decomposition",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb11-probability",
+      "id": "pre-calculus-b-pctb11-probability-curriculum-concept-probability-permutations-and-combinations",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb11-probability",
+      "id": "pre-calculus-b-pctb11-probability-curriculum-problem-set-counting-and-probability",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb11-probability",
+      "id": "pre-calculus-b-pctb11-probability-supplemental-project-probability-game-audit",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb11-probability",
+      "id": "pre-calculus-b-pctb11-probability-supplemental-transfer-practice-probability",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb12-limits",
+      "id": "pre-calculus-b-pctb12-limits-curriculum-concept-introduction-to-limits-and-continuity",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb12-limits",
+      "id": "pre-calculus-b-pctb12-limits-curriculum-problem-set-limits-and-continuity",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb12-limits",
+      "id": "pre-calculus-b-pctb12-limits-supplemental-project-limit-evidence-portfolio",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb12-limits",
+      "id": "pre-calculus-b-pctb12-limits-supplemental-transfer-practice-limits",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb13-rates-of-change",
+      "id": "pre-calculus-b-pctb13-rates-of-change-curriculum-concept-average-rate-of-change-and-derivative-preview",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb13-rates-of-change",
+      "id": "pre-calculus-b-pctb13-rates-of-change-curriculum-problem-set-rates-of-change-and-derivatives",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb13-rates-of-change",
+      "id": "pre-calculus-b-pctb13-rates-of-change-supplemental-project-rate-of-change-case-study",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pctb13-rates-of-change",
+      "id": "pre-calculus-b-pctb13-rates-of-change-supplemental-transfer-practice-rates-of-change",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-check-in-2-and-pre-calculus-b-capstone",
+      "id": "pre-calculus-b-check-in-2-and-pre-calculus-b-capstone-curriculum-vectors-matrices-and-partial-fractions-review",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-check-in-2-and-pre-calculus-b-capstone",
+      "id": "pre-calculus-b-check-in-2-and-pre-calculus-b-capstone-curriculum-probability-limits-and-rates-review",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-check-in-2-and-pre-calculus-b-capstone",
+      "id": "pre-calculus-b-check-in-2-and-pre-calculus-b-capstone-supplemental-capstone-pre-calculus-b-modeling-portfolio",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-check-in-2-and-pre-calculus-b-capstone",
+      "id": "pre-calculus-b-check-in-2-and-pre-calculus-b-capstone-supplemental-project-ap-calculus-readiness-map",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-check-in-2-and-pre-calculus-b-capstone",
+      "id": "pre-calculus-b-check-in-2-and-pre-calculus-b-capstone-supplemental-challenge-timed-readiness-defense",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-calculus-b-pre-calculus-b-reference-archive",
+      "id": "pre-calculus-b-pre-calculus-b-reference-archive-curriculum-pre-calculus-b-reference-map",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-calculus-b-pending-static-assets",
+      "id": "pre-calculus-b-pending-static-assets-curriculum-pre-calculus-b-pending-static-assets",
+      "section": "core"
+    }
+  ]
+}

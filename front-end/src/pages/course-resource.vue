@@ -78,15 +78,10 @@ watch(
 </script>
 
 <template>
-	<main class="page-shell page-shell--wide course-resource-page">
+	<section class="page-shell page-shell--wide course-resource-page">
 		<section class="page-hero course-resource-hero">
 			<div>
-				<p class="page-eyebrow">Course asset</p>
 				<h1 class="page-title">{{ title }}</h1>
-				<p class="page-copy">
-					This page renders the course asset as formatted Markdown so
-					it can be read without opening the raw source file.
-				</p>
 			</div>
 			<RouterLink
 				class="site-button site-button--secondary"
@@ -105,7 +100,7 @@ watch(
 			</p>
 			<LazyMarkdownContent v-else :content="previewContent" />
 		</section>
-	</main>
+	</section>
 </template>
 
 <style scoped>
