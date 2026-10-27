@@ -175,7 +175,7 @@ export function addPreCalculusBCases(course: RawCourse) {
 				"pre-calculus-b-pctb1-trigonometry-basics-curriculum-core-concepts"
 			],
 			title: "Trigonometry Basics Core Concepts",
-			content: `${circle.content}\n\n${triangles.content}`,
+			content: `**${circle.title}**\n\n${circle.content}\n\n**${triangles.title}**\n\n${triangles.content}`,
 			contentKind: "reading",
 			learningPath: "core"
 		},
