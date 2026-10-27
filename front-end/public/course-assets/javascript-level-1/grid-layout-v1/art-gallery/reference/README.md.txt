@@ -1,6 +1,6 @@
 # Art Gallery
 
-Build a gallery containing all 12 supplied artworks, artists, local images, visual descriptions, and links from README.md. Put each artwork in a horizontal card with an image frame and a text area. Use a heading for the work, name its artist, and describe something visible in the image rather than repeating the title. Preserve each image's aspect ratio and use a meaningful alternative.
+Build a gallery containing all 12 supplied artworks, artists, local images, visual descriptions, and links from `README.md`. Put each artwork in a horizontal card with an image frame and a text area. Use a heading for the work, name its artist, and describe something visible in the image rather than repeating the title. Preserve each image's aspect ratio and use a meaningful alternative.
 
 Use CSS Grid to arrange four cards per row on desktop, three on tablets, and one on phones. Apply `grid-template-columns: repeat(4, minmax(0, 1fr))` at large widths, three tracks from 601px, and one below that. Within a card, use two flexible tracks for image and text; stack them when the available width is too small. `minmax(0, 1fr)` lets long content shrink and wrap instead of forcing page overflow.
 

@@ -38,8 +38,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "README.md",
 				path: "functions-v1/functions-practice/starter/README.md.txt",
-				byteLength: 3040,
-				sha256: "aad71c8b027565420edd742ad615f9a12352ca0bd161aff78ecc3b6607659d2e"
+				byteLength: 3044,
+				sha256: "0766c103b7cdd117f34d756d60cc4d72810e112346ba574c4da53ca6c2ee0798"
 			},
 			{
 				name: "SOURCES.md",
@@ -100,8 +100,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "README.md",
 				path: "functions-v1/functions-practice/reference/README.md.txt",
-				byteLength: 3040,
-				sha256: "aad71c8b027565420edd742ad615f9a12352ca0bd161aff78ecc3b6607659d2e"
+				byteLength: 3044,
+				sha256: "0766c103b7cdd117f34d756d60cc4d72810e112346ba574c4da53ca6c2ee0798"
 			},
 			{
 				name: "SOURCES.md",
@@ -162,8 +162,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "README.md",
 				path: "functions-v1/which-metrocard/starter/README.md.txt",
-				byteLength: 3095,
-				sha256: "7b44dd08729af922ac995122a54306a97c74c4e07b899ef500330596379330ae"
+				byteLength: 3099,
+				sha256: "80493836b4850a6f998a80d1e46eb9872cb2efcb31de5ed29b0427342bbfb4a0"
 			},
 			{
 				name: "SOURCES.md",
@@ -224,8 +224,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "README.md",
 				path: "functions-v1/which-metrocard/reference/README.md.txt",
-				byteLength: 3095,
-				sha256: "7b44dd08729af922ac995122a54306a97c74c4e07b899ef500330596379330ae"
+				byteLength: 3099,
+				sha256: "80493836b4850a6f998a80d1e46eb9872cb2efcb31de5ed29b0427342bbfb4a0"
 			},
 			{
 				name: "SOURCES.md",
@@ -286,8 +286,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "README.md",
 				path: "functions-v1/rock-paper-scissors/starter/README.md.txt",
-				byteLength: 3535,
-				sha256: "158d6c64927b8c144ad48f030ff3a766bdb22f2d4a98afd09564c965ad46126f"
+				byteLength: 3539,
+				sha256: "7068a66a0fb5b947d7c9db4eafb8f9be3d4a5bba2dd8a221132456eaa0f7dc5b"
 			},
 			{
 				name: "SOURCES.md",
@@ -348,8 +348,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "README.md",
 				path: "functions-v1/rock-paper-scissors/reference/README.md.txt",
-				byteLength: 3535,
-				sha256: "158d6c64927b8c144ad48f030ff3a766bdb22f2d4a98afd09564c965ad46126f"
+				byteLength: 3539,
+				sha256: "7068a66a0fb5b947d7c9db4eafb8f9be3d4a5bba2dd8a221132456eaa0f7dc5b"
 			},
 			{
 				name: "SOURCES.md",
@@ -410,8 +410,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "README.md",
 				path: "functions-v1/geometry-functions/starter/README.md.txt",
-				byteLength: 3314,
-				sha256: "c1b00a1d19015753f2f11f898f343598d165ff49709b1995675a1ef57f827ddb"
+				byteLength: 3318,
+				sha256: "9dd69903d2ee18c2d4b858caf9ec5435f3aa08019e96e00a814b7ec9024b9781"
 			},
 			{
 				name: "SOURCES.md",
@@ -472,8 +472,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "README.md",
 				path: "functions-v1/geometry-functions/reference/README.md.txt",
-				byteLength: 3314,
-				sha256: "c1b00a1d19015753f2f11f898f343598d165ff49709b1995675a1ef57f827ddb"
+				byteLength: 3318,
+				sha256: "9dd69903d2ee18c2d4b858caf9ec5435f3aa08019e96e00a814b7ec9024b9781"
 			},
 			{
 				name: "SOURCES.md",
@@ -534,8 +534,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "README.md",
 				path: "functions-v1/pain-at-the-pump/starter/README.md.txt",
-				byteLength: 3115,
-				sha256: "4b07e0578ee4841b119fa0eeee653f5c34ca9a8c0cd5352f99f4553fa8b857ee"
+				byteLength: 3119,
+				sha256: "e2f96be17a2c162201302ba885f20613672097bfae29cc2b2c6efcd37956d4d3"
 			},
 			{
 				name: "SOURCES.md",
@@ -596,8 +596,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "README.md",
 				path: "functions-v1/pain-at-the-pump/reference/README.md.txt",
-				byteLength: 3115,
-				sha256: "4b07e0578ee4841b119fa0eeee653f5c34ca9a8c0cd5352f99f4553fa8b857ee"
+				byteLength: 3119,
+				sha256: "e2f96be17a2c162201302ba885f20613672097bfae29cc2b2c6efcd37956d4d3"
 			},
 			{
 				name: "SOURCES.md",
@@ -658,8 +658,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "README.md",
 				path: "functions-v1/game-of-war/starter/README.md.txt",
-				byteLength: 3135,
-				sha256: "0fd03ebeb1de9bcee357aa2150c4c142f13e0d0cbcc599a295b4eeed84ede2be"
+				byteLength: 3139,
+				sha256: "51d2836bfb3355b3a7e3baa7298d798810b658b95ecdf88576a703b068ade377"
 			},
 			{
 				name: "SOURCES.md",
@@ -720,8 +720,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "README.md",
 				path: "functions-v1/game-of-war/reference/README.md.txt",
-				byteLength: 3135,
-				sha256: "0fd03ebeb1de9bcee357aa2150c4c142f13e0d0cbcc599a295b4eeed84ede2be"
+				byteLength: 3139,
+				sha256: "51d2836bfb3355b3a7e3baa7298d798810b658b95ecdf88576a703b068ade377"
 			},
 			{
 				name: "SOURCES.md",
@@ -782,8 +782,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "README.md",
 				path: "functions-v1/debugging-functions/starter/README.md.txt",
-				byteLength: 3835,
-				sha256: "375f9b1d076002f4c4f4cf726bd03db86a0814162776bff3d19f3bdd1b0e60b3"
+				byteLength: 3839,
+				sha256: "956f7632682218b228887b05cb616fdd46888e8cfe4edda9ff5db1e556203246"
 			},
 			{
 				name: "SOURCES.md",
@@ -844,8 +844,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "README.md",
 				path: "functions-v1/debugging-functions/reference/README.md.txt",
-				byteLength: 3835,
-				sha256: "375f9b1d076002f4c4f4cf726bd03db86a0814162776bff3d19f3bdd1b0e60b3"
+				byteLength: 3839,
+				sha256: "956f7632682218b228887b05cb616fdd46888e8cfe4edda9ff5db1e556203246"
 			},
 			{
 				name: "SOURCES.md",

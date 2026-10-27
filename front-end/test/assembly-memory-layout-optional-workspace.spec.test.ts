@@ -1,3 +1,4 @@
+import { readingWithoutFilenameFormatting } from "./course-reading-format";
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
@@ -95,8 +96,10 @@ it("keeps distinct pointer-table and overlap-copy investigations optional with a
 			fixture.mode === "overlap" ? "challenge" : "choice"
 		);
 		expect(item.ideImport).toBe(true);
-		expect(item.content).toContain(
-			fixture.files[fixture.pack + "/README.md"].content.trim()
+		expect(readingWithoutFilenameFormatting(item.content)).toContain(
+			readingWithoutFilenameFormatting(
+				fixture.files[fixture.pack + "/README.md"].content.trim()
+			)
 		);
 		expect(item.projectLink).toBe(
 			`https://github.com/instruction-material/Assembly/tree/${fixture.revision}/${fixture.pack}/starter`

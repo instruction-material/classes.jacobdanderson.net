@@ -1,0 +1,8 @@
+const canvas = document.getElementById("my-canvas");
+canvas.width = 1200;
+canvas.height = 800;
+const ctx = canvas.getContext("2d");
+
+// Make an array called cards filled with strings which are 5 different names of colors. Set up a canvas, and then, use an iterator to iterate through cards to draw 5 cards in a row.
+document.getElementById("drawing-description").textContent =
+	"Blank canvas. Complete the array and drawing task in script.js.";

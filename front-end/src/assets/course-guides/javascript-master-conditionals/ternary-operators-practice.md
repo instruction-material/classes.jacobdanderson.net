@@ -16,9 +16,9 @@ For draws 0.25 and 0.75, predict Goodbye!/Katy and Hello!/Kevin. For 0.5 predict
 
 ## Open and work with the source
 
-Confirm the selected starter or reference import in the site IDE. The original starter and reference remain separate roles. The Ternary Operators starter already runs; convert its conditional bodies. The other starters retain their unfinished exercise and the function contracts needed by the local controls. Edit script.js, save the same attempt, and reopen it before continuing. README.md contains the full brief. Export the complete ZIP, extract every file, and open index.html. It works without a server, installation, or network connection.
+Confirm the selected starter or reference import in the site IDE. The original starter and reference remain separate roles. The Ternary Operators starter already runs; convert its conditional bodies. The other starters retain their unfinished exercise and the function contracts needed by the local controls. Edit script.js, save the same attempt, and reopen it before continuing. `README.md` contains the full brief. Export the complete ZIP, extract every file, and open index.html. It works without a server, installation, or network connection.
 
-support.js connects labeled controls to the exercise functions and prints results with the bundled D3 version. Keep calculations and decisions in script.js. SOURCES.md records the original editor panels, declared dependencies, and deliberate corrections. Read the reference after an independent attempt; retain explanations and trace notes alongside the saved code.
+support.js connects labeled controls to the exercise functions and prints results with the bundled D3 version. Keep calculations and decisions in script.js. `SOURCES.md` records the original editor panels, declared dependencies, and deliberate corrections. Read the reference after an independent attempt; retain explanations and trace notes alongside the saved code.
 
 ## Verify the result
 

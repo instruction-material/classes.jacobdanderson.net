@@ -13,7 +13,7 @@ Use Rust 1.97.1 with Cargo, rustfmt and Clippy, edition 2024, on the native Linu
 x86-64 validation environment. The source is safe Rust and uses only the standard
 library. Cargo.lock is supplied; no crate download is needed during these checks.
 Keep the root README and one complete role together. Each role has Cargo.toml,
-Cargo.lock, src/main.rs, observations.md and six diagnostic source files.
+Cargo.lock, src/main.rs, `observations.md` and six diagnostic source files.
 
 After extracting a selected-role archive, enter starter or solution as applicable:
 

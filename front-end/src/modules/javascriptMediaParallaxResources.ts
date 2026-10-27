@@ -30,8 +30,8 @@ export const javascriptMediaParallaxResources = [
 			{
 				name: "README.md",
 				path: "media-parallax-v1/video-collection/starter/README.md.txt",
-				byteLength: 3714,
-				sha256: "032379b33dcb0ab60a9da47c9358c45b7bc5eda0ba9ffdbd8c96e07a02435409"
+				byteLength: 3718,
+				sha256: "547affec6efb90469a84ea8b012c7f93d9c7b5dd5ea6a70104e3cec6e9617880"
 			},
 			{
 				name: "vendor/materialize.min.css",
@@ -84,8 +84,8 @@ export const javascriptMediaParallaxResources = [
 			{
 				name: "README.md",
 				path: "media-parallax-v1/video-collection/reference/README.md.txt",
-				byteLength: 3716,
-				sha256: "f459054b6ee72c2295cdcbeb40c9f7254dcef8886b1e28fe6c0273f90c7467a3"
+				byteLength: 3720,
+				sha256: "f61b38837a55959ca00235aa5c23a9b619ba5c26b63bc76865c1aa11abf6148e"
 			},
 			{
 				name: "vendor/materialize.min.css",
@@ -138,8 +138,8 @@ export const javascriptMediaParallaxResources = [
 			{
 				name: "README.md",
 				path: "media-parallax-v1/national-park/starter/README.md.txt",
-				byteLength: 3515,
-				sha256: "6843e4c9bce174d095ef4be4fa31f34c2fe649a1870473ca31b58686325319ac"
+				byteLength: 3517,
+				sha256: "49eb026a53c1f1db54068a9c85b8ada00be7999ac037209c3826e1e85ccb4d8c"
 			},
 			{
 				name: "vendor/materialize.min.css",
@@ -210,8 +210,8 @@ export const javascriptMediaParallaxResources = [
 			{
 				name: "README.md",
 				path: "media-parallax-v1/national-park/reference/README.md.txt",
-				byteLength: 3517,
-				sha256: "d0b5f636b84a3ec63ce2cb48b868ac010b07b1c3ec1d5f1f782acea7e4ea10db"
+				byteLength: 3519,
+				sha256: "1feaa957e70e47240548e8d2308ab964c6ce948b96bfd162cb3fd166696c7d50"
 			},
 			{
 				name: "vendor/materialize.min.css",

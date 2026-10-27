@@ -11,6 +11,7 @@ import { javascriptFirstModuleResources } from "@/modules/javascriptFirstModuleR
 import { javascriptGridLayoutResources } from "@/modules/javascriptGridLayoutResources";
 import { javascriptHtmlCssResources } from "@/modules/javascriptHtmlCssResources";
 import { javascriptLoopsResources } from "@/modules/javascriptLoopsResources";
+import { javascriptMasterArraysResources } from "@/modules/javascriptMasterArraysResources";
 import { javascriptMasterCanvasResources } from "@/modules/javascriptMasterCanvasResources";
 import { javascriptMasterConditionalsResources } from "@/modules/javascriptMasterConditionalsResources";
 import { javascriptMasterFunctionsResources } from "@/modules/javascriptMasterFunctionsResources";
@@ -64,7 +65,8 @@ const roles: readonly CourseRole[] = [
 	...javascriptShopResources,
 	...javascriptMasterFunctionsResources,
 	...javascriptMasterConditionalsResources,
-	...javascriptMasterCanvasResources
+	...javascriptMasterCanvasResources,
+	...javascriptMasterArraysResources
 ];
 
 export function javascriptCourseResource(value: string) {

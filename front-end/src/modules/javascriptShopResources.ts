@@ -29,8 +29,8 @@ export const javascriptShopResources = [
 			{
 				name: "README.md",
 				path: "shop-v1/jun-e-commerce/starter/README.md.txt",
-				byteLength: 5766,
-				sha256: "79da616c14d8aa54398a618a68b9f2fb73f0f3a26be0f9bcfb5afe4c3414a470"
+				byteLength: 5772,
+				sha256: "2e3b0c1d0c1651f5544e37cd6a69d1f43fc677e923de03aa11c1a9a3550e3ffa"
 			},
 			{
 				name: "SOURCES.md",
@@ -155,8 +155,8 @@ export const javascriptShopResources = [
 			{
 				name: "README.md",
 				path: "shop-v1/jun-e-commerce/reference/README.md.txt",
-				byteLength: 5766,
-				sha256: "79da616c14d8aa54398a618a68b9f2fb73f0f3a26be0f9bcfb5afe4c3414a470"
+				byteLength: 5772,
+				sha256: "2e3b0c1d0c1651f5544e37cd6a69d1f43fc677e923de03aa11c1a9a3550e3ffa"
 			},
 			{
 				name: "SOURCES.md",

@@ -680,7 +680,7 @@ const assemblySourceCourse: RawCourse = {
 				{
 					title: "Register-Trace Worksheet: Reading Compiler Output",
 					content:
-						"Optional follow-up after the required analysis.md evidence: compare another compiler or a separately changed C expression. Record the target, flags, input and observed entry/return values. For each traced instruction, record the instruction address, the value before the instruction, the value after the instruction, and the evidence that explains the next branch, call, or return. Include the relevant flags and distinguish an observed change from an assumed compiler pattern. Keep the required baseline comparison and saved learner worksheet intact.",
+						"Optional follow-up after the required `analysis.md` evidence: compare another compiler or a separately changed C expression. Record the target, flags, input and observed entry/return values. For each traced instruction, record the instruction address, the value before the instruction, the value after the instruction, and the evidence that explains the next branch, call, or return. Include the relevant flags and distinguish an observed change from an assumed compiler pattern. Keep the required baseline comparison and saved learner worksheet intact.",
 					projectLink:
 						"https://github.com/instruction-material/Assembly/blob/4fabbbe92deb893d14e2572121fc2393ae426c7b/ASM-08-unit-9-reading-compiler-output/README.md"
 				},

@@ -4,9 +4,9 @@ Build a responsive catalog with four featured photographs, six product cards, pr
 
 ## Select a role
 
-The starter is an authored companion with an unfinished main region, local libraries, photographs, and source comments. Only a completed reference was captured for this supplemental example. The separate reference adapts that source; SOURCES.md records its exact panel hashes, original image URLs, and corrections.
+The starter is an authored companion with an unfinished main region, local libraries, photographs, and source comments. Only a completed reference was captured for this supplemental example. The separate reference adapts that source; `SOURCES.md` records its exact panel hashes, original image URLs, and corrections.
 
-Confirm the selected import in the site IDE. Edit index.html, styles.css, and script.js, with README.md as the project brief. Export the ZIP, extract every file, and open index.html in a browser. Both roles work without a server, package installation, or network connection. Documentation and original-source links need a connection.
+Confirm the selected import in the site IDE. Edit index.html, styles.css, and script.js, with `README.md` as the project brief. Export the ZIP, extract every file, and open index.html in a browser. Both roles work without a server, package installation, or network connection. Documentation and original-source links need a connection.
 
 ## Structure the catalog
 
@@ -16,7 +16,7 @@ Use one h1 for the catalog name, an h2 for Shop, and an h3 for each product. Kee
 
 The Materialize grid uses col s12 m6 l4: one card per row on small screens, two on medium screens, and three on large screens. Keep the same information in the same order on every card. Place the price in readable card content rather than over a photograph. Preserve meaningful image alternative text and visible keyboard focus.
 
-The SVG companions embed the unchanged JPEG bytes from the original Unsplash URLs. Keep the images directory and LICENSE-Images.md with the export. The original unused D3 and icon-font declarations are omitted; this project uses neither.
+The SVG companions embed the unchanged JPEG bytes from the original Unsplash URLs. Keep the images directory and `LICENSE-Images.md` with the export. The original unused D3 and icon-font declarations are omitted; this project uses neither.
 
 ## Connect the carousel
 

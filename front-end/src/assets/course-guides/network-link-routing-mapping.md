@@ -27,8 +27,8 @@ sudo apt-get install -y python3 iproute2 iptables util-linux procps curl
 The lab itself needs no Internet connection. Run it with sudo after checking the files and purpose.
 
 Save and export the selected role in the site IDE, extract its files and enter
-starter/ for the attempt or solution/ for the separate reference. Keep main.py,
-link_routing_lab.py, network-notes.md and edge-cases.md together. README.md is
+starter/ for the attempt or solution/ for the separate reference. Keep `main.py`,
+link_routing_lab.py, `network-notes.md` and `edge-cases.md` together. `README.md` is
 the complete guide. Both roles already collect the observations; only the
 starter's optional analyze(evidence) summary is incomplete. The website edits,
 saves and exports this project. The disposable Linux terminal runs the actual
@@ -106,9 +106,9 @@ filtering policy is installed in this exercise. The Unit 12 continuation of
 the later NS6 configuration project measures a separate restrictive policy.
 Keep that purpose distinct from this early mechanism observation.
 
-Complete network-notes.md with the five-stage table, both endpoint views,
+Complete `network-notes.md` with the five-stage table, both endpoint views,
 translation matches, the fresh failed mapped request, the successful direct
-retest and cleanup. Label edge-cases.md as constructed Internet-edge reasoning.
+retest and cleanup. Label `edge-cases.md` as constructed Internet-edge reasoning.
 For independent review, predict each translation before opening its result.
 For paced review, pause at source translation, destination translation and
 mapping removal before drawing the next conclusion.

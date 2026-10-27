@@ -1,0 +1,32 @@
+// Make a 5x5 2D array which contains arrays filled with strings which are 5 different names of colors. Set up canvas, and then use iterators to loop through the 2D array and draw each of the colors as rectangular cards in a 5x5 display on the canvas.
+
+const canvas = document.getElementById("my-canvas");
+const ctx = canvas.getContext("2d");
+canvas.height = 1000;
+canvas.width = 1000;
+
+const twoDCards = [
+	["green", "red", "blue", "yellow", "cyan"],
+	["red", "blue", "yellow", "cyan", "green"],
+	["blue", "yellow", "cyan", "green", "red"],
+	["yellow", "cyan", "green", "red", "blue"],
+	["cyan", "green", "red", "blue", "yellow"]
+];
+
+twoDCards.forEach((cards, index) => {
+	cards.forEach((color, _index) => {
+		let cardX = _index * 200;
+		let cardY = 150 + 150 * index;
+		ctx.beginPath();
+		ctx.rect(cardX, cardY, 150, 100);
+		ctx.fillStyle = color;
+		ctx.fill();
+		ctx.closePath();
+	});
+});
+
+twoDCards.forEach((row, index) => {
+	const line = document.createElement("p");
+	line.textContent = "Row " + (index + 1) + ": " + row.join(", ") + ".";
+	document.getElementById("drawing-description").append(line);
+});

@@ -77,7 +77,7 @@ x86-64 Linux VM or lab; on Windows use an x86-64 WSL distribution. The browser
 workspace edits and saves source. Compile and debug the export in that lab.
 
 Each role contains routine.S, main.c, lab.h, model.c, tests.c, abi_checks.S,
-CMakeLists.txt and trace.md, with shared README.md beside the role folders.
+CMakeLists.txt and `trace.md`, with shared `README.md` beside the role folders.
 Keep all nine selected files together. From the extracted root:
 
 ```sh
@@ -120,7 +120,7 @@ readelf -Ws build-Debug/CMakeFiles/app.dir/routine.S.o
 gdb ./build-Debug/app
 ```
 
-In trace.md retain target/compiler versions, commands, actual addresses,
+In `trace.md` retain target/compiler versions, commands, actual addresses,
 operands, predictions, registers before and after each instruction, stored
 words and explanations. Use the lab_stage labels, repeat --changed and a
 boundary pair from tests.c, and retain the rejected copied regression described
@@ -131,7 +131,7 @@ walkthrough pauses at the same producer, operation and store before discussing
 the next state. Both retain the initial failure, minimal repair, GCC/Clang
 Debug/Release checks, demonstrations, changed condition and explained trace.
 Preserve learner and reference attempts separately and export the saved
-routine.S and trace.md together.
+routine.S and `trace.md` together.
 
 ## Instruction references
 

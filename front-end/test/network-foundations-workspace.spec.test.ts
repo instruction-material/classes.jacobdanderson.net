@@ -1,3 +1,4 @@
+import { readingWithoutFilenameFormatting } from "./course-reading-format";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
@@ -391,7 +392,9 @@ it("preserves every published lesson while preserving core notebooks and distinc
 				"For a guided walkthrough"
 			)
 			.trim();
-		expect(core.content).toContain(reading);
+		expect(readingWithoutFilenameFormatting(core.content)).toContain(
+			readingWithoutFilenameFormatting(reading)
+		);
 		expect(core.learningPath).toBe(source.learningPath ?? "core");
 		if (!definition.notebookItemId) {
 			expect(core.ideImport).toBe(true);

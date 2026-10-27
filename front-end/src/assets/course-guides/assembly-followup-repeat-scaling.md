@@ -4,7 +4,7 @@ Use the working Unit 11 performance program. This challenge asks what changes
 when the repeat count changes while the data size, code and fixture stay fixed.
 It does not require a speed ratio or a universal winning variant. Keep supplied
 source and contract tests unchanged and retain raw CSV plus the interpretation
-in analysis.md. The baseline's complete setup and measurement definitions follow.
+in `analysis.md`. The baseline's complete setup and measurement definitions follow.
 
 ## Controlled runs
 

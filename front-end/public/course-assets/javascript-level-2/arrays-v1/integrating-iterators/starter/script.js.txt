@@ -1,0 +1,68 @@
+/**
+ * Prompt: Solve the problems throughout the file with different kinds of iterators! Fill in the YOUR CODE HERE sections
+ *
+ */
+
+// 1. Using array 1, return a new array that adds 6 to all the values in array1 and then multiplies them by 3. Use three different iterators: for ... of, forEach, and then map
+
+const array1 = [-1, 0, 8, 2, 6];
+const problem1 = arr => {
+	// Empty array. Remove after you implement.
+	return [];
+
+	/** YOUR CODE GOES HERE */
+	// Solution using forEach
+
+	// Solution using forEach and a separate array
+
+	// Solution using map
+};
+
+// Simple test driver
+console.log(problem1(array1));
+
+// 2. Using array2, MODIFY THE ORIGINAL array that gets the ones digit from each value. Use forEach.
+const array2 = [9, 1, 3, -10, 1092];
+const problem2 = arr => {
+	/** YOUR CODE GOES HERE */
+};
+
+// Simple test driver
+problem2(array2);
+
+// 3. Iterate through the properties in object1, checking to see if they are a function, and invoking them if they are.
+const object1 = {
+	hi: () => {
+		console.log("olleh dlrow");
+	},
+	function: 3,
+	actualFunction: () => {
+		console.log("I am an actual function!");
+	}
+};
+
+const problem3 = obj => {
+	/** YOUR CODE GOES HERE */
+};
+
+problem3(object1);
+
+// 4. Use reduce to add all the even numbers of array4 together.
+const problem4 = arr => {
+	/** YOUR CODE GOES HERE */
+};
+
+const array4 = [1, 9, 2, 3, 4, 10, 6, 29, -19, -28, 0, 1024];
+
+let problem4Result = problem4(array4);
+console.log(problem4Result);
+
+// 5. Use filter to get an array of all the values in an array divisible by a divisor passed in.
+const problem5 = (arr, divisor) => {
+	/** YOUR CODE GOES HERE */
+};
+
+const array5 = [1, 9, 2, 3, 4, 10, 6, 29, -19, -28, 0, 1024];
+
+let problem5Result = problem5(array5, 3);
+console.log(problem5Result);

@@ -12,8 +12,8 @@ Use Python 3.10 or newer, curl and ss in an external Linux terminal under an
 ordinary account. No root account is needed. The program binds only 127.0.0.1
 on a newly allocated port. It does not query a public host or change interfaces,
 routes, firewall rules, resolver files, credentials or existing services. Keep
-main.py, application_lab.py, network-notes.md and application-cases.md together.
-The root README.md is this complete guide; the role README.md identifies the
+`main.py`, application_lab.py, `network-notes.md` and `application-cases.md` together.
+The root `README.md` is this complete guide; the role `README.md` identifies the
 selected role. Run from starter/ for an attempt or solution/ for a separate
 reference. Both roles collect the same real observations. Python programming is
 optional; only analyze(evidence) is incomplete in the starter.
@@ -69,12 +69,12 @@ Use the earlier name-resolution exercise for actual DNS/NSS observations.
 HTTPS adds TLS: a certificate trust or name failure may prevent HTTP from being
 reached. SSH involves server host identity and account authentication; a
 successful TCP connection alone establishes neither. Read the three explicitly
-constructed cases in application-cases.md and name the earliest unsupported
+constructed cases in `application-cases.md` and name the earliest unsupported
 boundary. They are reasoning exercises, not packets captured by this program.
 
 ## Deliverable and review
 
-Complete network-notes.md with predictions, the two actual runs, response bytes,
+Complete `network-notes.md` with predictions, the two actual runs, response bytes,
 transport comparison, issuing host/namespace, method, target, token, endpoint,
 owner, observed status and cleanup. Preserve unexpected results with their raw
 errors and identify the next authorized observation that would distinguish two

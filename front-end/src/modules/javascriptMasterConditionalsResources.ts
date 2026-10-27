@@ -38,8 +38,8 @@ export const javascriptMasterConditionalsResources = [
 			{
 				name: "README.md",
 				path: "complex-conditionals-v1/ternary-operators-practice/starter/README.md.txt",
-				byteLength: 3041,
-				sha256: "4478a3dba712d807b13e7a3de07c7eec2e15604ae63541b0cf05022e85a28ab9"
+				byteLength: 3045,
+				sha256: "b2ee281939a92f1aa158943a219e36651c4d3c492bb461cbd7eb8e620c5d2b7f"
 			},
 			{
 				name: "SOURCES.md",
@@ -100,8 +100,8 @@ export const javascriptMasterConditionalsResources = [
 			{
 				name: "README.md",
 				path: "complex-conditionals-v1/ternary-operators-practice/reference/README.md.txt",
-				byteLength: 3041,
-				sha256: "4478a3dba712d807b13e7a3de07c7eec2e15604ae63541b0cf05022e85a28ab9"
+				byteLength: 3045,
+				sha256: "b2ee281939a92f1aa158943a219e36651c4d3c492bb461cbd7eb8e620c5d2b7f"
 			},
 			{
 				name: "SOURCES.md",
@@ -162,8 +162,8 @@ export const javascriptMasterConditionalsResources = [
 			{
 				name: "README.md",
 				path: "complex-conditionals-v1/department-store-discounts/starter/README.md.txt",
-				byteLength: 3609,
-				sha256: "d39eb7f654d613ad87e48e48e613da7859cb5b0ab20882a50d7afee8f3826bf1"
+				byteLength: 3613,
+				sha256: "786d4b5abfbe5ca723e916dc09e7dc781609e0752f3dd5830aad0277ba33f373"
 			},
 			{
 				name: "SOURCES.md",
@@ -224,8 +224,8 @@ export const javascriptMasterConditionalsResources = [
 			{
 				name: "README.md",
 				path: "complex-conditionals-v1/department-store-discounts/reference/README.md.txt",
-				byteLength: 3609,
-				sha256: "d39eb7f654d613ad87e48e48e613da7859cb5b0ab20882a50d7afee8f3826bf1"
+				byteLength: 3613,
+				sha256: "786d4b5abfbe5ca723e916dc09e7dc781609e0752f3dd5830aad0277ba33f373"
 			},
 			{
 				name: "SOURCES.md",
@@ -286,8 +286,8 @@ export const javascriptMasterConditionalsResources = [
 			{
 				name: "README.md",
 				path: "complex-conditionals-v1/special-numbers/starter/README.md.txt",
-				byteLength: 3606,
-				sha256: "b473091b9f72bcd23f5f22211ceb7325ce35c80731b82126eab68858628ab35a"
+				byteLength: 3610,
+				sha256: "80a6a3a8e81b811feeb4b2a319e81ec3585afdf8d6cbde8cbca95cc62cd1723f"
 			},
 			{
 				name: "SOURCES.md",
@@ -348,8 +348,8 @@ export const javascriptMasterConditionalsResources = [
 			{
 				name: "README.md",
 				path: "complex-conditionals-v1/special-numbers/reference/README.md.txt",
-				byteLength: 3606,
-				sha256: "b473091b9f72bcd23f5f22211ceb7325ce35c80731b82126eab68858628ab35a"
+				byteLength: 3610,
+				sha256: "80a6a3a8e81b811feeb4b2a319e81ec3585afdf8d6cbde8cbca95cc62cd1723f"
 			},
 			{
 				name: "SOURCES.md",
@@ -410,8 +410,8 @@ export const javascriptMasterConditionalsResources = [
 			{
 				name: "README.md",
 				path: "complex-conditionals-v1/age-milestones/starter/README.md.txt",
-				byteLength: 2864,
-				sha256: "1de07605b65b1632e8fa063ede9b8b2b769fdff455a1423258412827f7aeb0f8"
+				byteLength: 2868,
+				sha256: "3f23f578f3cc8e697b58a84016734befc06e441bcfb0f2da6415313122bf92e5"
 			},
 			{
 				name: "SOURCES.md",
@@ -472,8 +472,8 @@ export const javascriptMasterConditionalsResources = [
 			{
 				name: "README.md",
 				path: "complex-conditionals-v1/age-milestones/reference/README.md.txt",
-				byteLength: 2864,
-				sha256: "1de07605b65b1632e8fa063ede9b8b2b769fdff455a1423258412827f7aeb0f8"
+				byteLength: 2868,
+				sha256: "3f23f578f3cc8e697b58a84016734befc06e441bcfb0f2da6415313122bf92e5"
 			},
 			{
 				name: "SOURCES.md",

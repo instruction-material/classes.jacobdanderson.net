@@ -27,8 +27,8 @@ sudo apt-get install -y python3 iproute2 iptables util-linux procps curl
 The lab itself needs no Internet connection. Run it with sudo after checking the files and purpose.
 
 Save and export the selected role in the site IDE, extract its files and enter
-starter/ for the attempt or solution/ for the separate reference. Keep main.py,
-link_routing_lab.py, network-notes.md and edge-cases.md together. README.md is
+starter/ for the attempt or solution/ for the separate reference. Keep `main.py`,
+link_routing_lab.py, `network-notes.md` and `edge-cases.md` together. `README.md` is
 the complete guide. Both roles already collect the observations; only the
 starter's optional analyze(evidence) summary is incomplete. The website edits,
 saves and exports this project. The disposable Linux terminal runs the actual
@@ -102,11 +102,11 @@ writing predictions. The mapped-port option remains unused by this task; there
 is no destination mapping merely because a port value appears in the run
 configuration. Retain each run's actual token, worker and socket identities.
 
-Complete network-notes.md with a five-stage prediction/result table. Name which
+Complete `network-notes.md` with a five-stage prediction/result table. Name which
 endpoint's route changed, the other state that remained recorded, the failed
 route lookup, raw connection result and successful retest. Include one
 alternative explanation that the connection result alone would not exclude.
-Use edge-cases.md only as constructed reasoning about an outside path. Verify
+Use `edge-cases.md` only as constructed reasoning about an outside path. Verify
 worker reaping, namespace/link cleanup and the outer host comparison.
 
 For independent practice, write the missing evidence before comparing results.

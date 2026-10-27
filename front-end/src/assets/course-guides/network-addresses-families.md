@@ -38,10 +38,10 @@ files. All actual connections target loopback in the selected Linux network
 namespace. A container's loopback and the desktop host's loopback are distinct.
 No production server or remote service is required.
 
-Start in starter/ and run python3 main.py. The supplied instrumentation already
+Start in starter/ and run python3 `main.py`. The supplied instrumentation already
 works; analysis: null is the untouched optional Python extension, not a failed
 network experiment. Required work is prediction, reading actual command output,
-an address table and network-notes.md. No Python editing is needed for the core
+an address table and `network-notes.md`. No Python editing is needed for the core
 networking deliverable. Save the complete JSON output to a newly named file:
 
     python3 main.py > first-run.json
@@ -110,7 +110,7 @@ making an operational claim. No address classification requires a port list.
 3. Complete the address table by hand, with a reason for each membership result.
 4. Run the changed case named in this project's brief. Keep both outputs.
 5. Explain one expected result, one boundary and one limit of the evidence.
-6. Save and reopen the notebook and source; export all role files and README.md.
+6. Save and reopen the notebook and source; export all role files and `README.md`.
 
 An independent session follows this sequence. A paced walkthrough pauses after
 the prediction and first raw output before consulting solution/. The operations
@@ -125,7 +125,7 @@ network settings to force the example to pass.
 
 ## Optional Python analysis
 
-Complete only analyze(evidence) in main.py after the networking explanation
+Complete only analyze(evidence) in `main.py` after the networking explanation
 works. The supplied naming_lab.network_rows function parses literal addresses and performs
 bounded membership calculations without enumerating a subnet. A /0 example
 therefore does not allocate billions of host records. A network entered with

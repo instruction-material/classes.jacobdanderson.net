@@ -30,7 +30,7 @@ still agrees. Keep the unsigned helper and model unchanged.
 
 ## Working baseline and observation task
 
-Both role programs already work. Complete analysis.md with predictions and real
+Both role programs already work. Complete `analysis.md` with predictions and real
 compiler/debugger evidence. The separate reference supplies portable reasoning;
 its addresses and machine instruction choices must be recorded from the current
 build. The required Unit 9 score project follows one arithmetic function through
@@ -40,8 +40,8 @@ contract across optimization levels.
 Use ordinary-user Linux x86-64, the System V AMD64 ABI, C17, Clang or GCC,
 CMake 3.20+, GDB and binutils. On macOS use an x86-64 Linux lab/VM; on Windows use
 an x86-64 WSL distribution. Each role contains baseline.c, operation.c, main.c,
-lab.h, model.c, tests.c, abi_checks.S, CMakeLists.txt and analysis.md. The roles
-differ only in analysis.md. Keep README.md one level above the selected role.
+lab.h, model.c, tests.c, abi_checks.S, CMakeLists.txt and `analysis.md`. The roles
+differ only in `analysis.md`. Keep `README.md` one level above the selected role.
 
 baseline.c contains the inspected functions. operation.c calls them from a
 separate translation unit, without link-time optimization, so actual function
@@ -97,7 +97,7 @@ addresses and the pointed-to words before/after stores. Repeat on the optimized
 binary; do not copy addresses or assume source-line stepping has the same shape.
 
 Retain TARGET, PREDICT, TYPES, MAP, OPTIMIZE, TRACE and REGRESSION evidence in
-analysis.md. Keep the provided C and ABI code unchanged outside the separate
+`analysis.md`. Keep the provided C and ABI code unchanged outside the separate
 controlled-regression copy. Test success does not complete the observation task.
 
 References: [WG14 C draft N1570](https://open-std.org/jtc1/sc22/wg14/www/docs/n1570.pdf),

@@ -1,0 +1,6 @@
+window.addEventListener("error", () => {
+	document.getElementById("source-error").hidden = false;
+});
+window.addEventListener("DOMContentLoaded", () => {
+	document.querySelector("main").dataset.state = "loaded";
+});

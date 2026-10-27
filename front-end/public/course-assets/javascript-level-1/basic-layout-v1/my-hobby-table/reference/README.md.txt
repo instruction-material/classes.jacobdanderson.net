@@ -1,6 +1,6 @@
 # My Hobby Table
 
-Create a table about a hobby with consistent columns and rows, or use the supplied historical 2019 NFL dataset in README.md. State the table's subject and time period in a `caption`. The reference preserves all ten players from the original 2019 AP first-team offense example; its team names describe that season, not current rosters. The spelling is Zack Martin.
+Create a table about a hobby with consistent columns and rows, or use the supplied historical 2019 NFL dataset in `README.md`. State the table's subject and time period in a `caption`. The reference preserves all ten players from the original 2019 AP first-team offense example; its team names describe that season, not current rosters. The spelling is Zack Martin.
 
 Use `table` for the data, `thead` for the header group, `tbody` for the data rows, and `tr` for each row. Column headings use `<th scope="col">`; each player's name can use `<th scope="row">`. Other cells use `td`. Put the same fields in the same order in every row. For example, a row can contain Lamar Jackson, Baltimore Ravens, and Quarterback.
 

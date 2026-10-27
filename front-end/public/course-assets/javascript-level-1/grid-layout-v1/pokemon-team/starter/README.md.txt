@@ -1,6 +1,6 @@
 # Pokemon Team
 
-Build a six-member Pokémon team page with a navigation landmark, a page heading, portraits, fictional nicknames, statistics, and moveset tables. Use the supplied six species, values, moves, and local image filenames from README.md, or make a complete consistent team of your own. The supplied values are sample team data from the original exercise, not species base-stat claims or a competitive-game guide.
+Build a six-member Pokémon team page with a navigation landmark, a page heading, portraits, fictional nicknames, statistics, and moveset tables. Use the supplied six species, values, moves, and local image filenames from `README.md`, or make a complete consistent team of your own. The supplied values are sample team data from the original exercise, not species base-stat claims or a competitive-game guide.
 
 Use a repeated card structure with a heading for the species and text for its nickname. Show HP, ATK, DEF, SPA, SPD, and SPE with a readable label and a matching decorative icon. Their expanded labels are hit points, attack, defense, special attack, special defense, and speed. A `dl` associates each statistic's `dt` label with its `dd` value. Keep the text labels even when an icon is present.
 

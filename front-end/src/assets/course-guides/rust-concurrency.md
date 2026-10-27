@@ -91,7 +91,7 @@ empty stderr and status 0. Failure cases write only stderr and status 65:
 the library run has joined its workers and returned its result.
 
 Run `cargo clean`, then repeat tests and build. Save the whole project, including
-README.md, Cargo.lock, src, diagnostics and observations.md. Record streams,
+`README.md`, Cargo.lock, src, diagnostics and `observations.md`. Record streams,
 status, lifecycle and compiler version separately. A successful process exit is
 not a substitute for exactly-once item accounting or started/joined equality.
 

@@ -3,7 +3,7 @@
 Use the working Unit 11 performance program. Both roles already pass their
 contracts. This investigation counts actual decisions for one call rather than
 using elapsed time as evidence of which branch ran. Save the count experiment
-in analysis.md; keep the supplied routines and contract tests unchanged.
+in `analysis.md`; keep the supplied routines and contract tests unchanged.
 The exact baseline interfaces, fixtures and build commands follow this activity.
 
 ## Predict one call

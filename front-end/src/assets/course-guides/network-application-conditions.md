@@ -12,8 +12,8 @@ Use Python 3.10 or newer, curl and ss in an external Linux terminal under an
 ordinary account. No root account is needed. The program binds only 127.0.0.1
 on a newly allocated port. It does not query a public host or change interfaces,
 routes, firewall rules, resolver files, credentials or existing services. Keep
-main.py, application_lab.py, network-notes.md and application-cases.md together.
-The root README.md is this complete guide; the role README.md identifies the
+`main.py`, application_lab.py, `network-notes.md` and `application-cases.md` together.
+The root `README.md` is this complete guide; the role `README.md` identifies the
 selected role. Run from starter/ for an attempt or solution/ for a separate
 reference. Both roles collect the same real observations. Python programming is
 optional; only analyze(evidence) is incomplete in the starter.
@@ -71,7 +71,7 @@ started, and no cache lifetime or freshness clock is measured here.
 
 ## Evidence and a bounded interpretation
 
-Fill network-notes.md with a six-row exchange table. Add the retained initial
+Fill `network-notes.md` with a six-row exchange table. Add the retained initial
 body's SHA-256, the actual 304 byte count, the validator sent on each request,
 the stale result, the redirect target and the explicitly requested destination.
 Keep actual timing as observation timestamps, not a claim of benchmark speed.
