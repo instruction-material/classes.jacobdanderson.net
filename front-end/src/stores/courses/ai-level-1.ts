@@ -75,11 +75,13 @@ export const aiLevel1Course: RawCourse = {
 				},
 				{
 					title: "Bridge Positioning between Core Python and ML",
+					preserveInstructions: true,
 					content:
 						"Frame the course as a bridge from programming fundamentals into AI thinking. The emphasis is on state, goals, search, rules, heuristics, and evaluation before heavier statistics or model-training pipelines."
 				},
 				{
 					title: "How to Read an AI Problem Statement",
+					preserveInstructions: true,
 					content:
 						"Practice identifying the state, the valid actions, the goal condition, and the cost or score function before code is written. This is the key shift from basic programming tasks into AI-style problem solving."
 				},

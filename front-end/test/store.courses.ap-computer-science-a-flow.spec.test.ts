@@ -71,6 +71,19 @@ function courseText() {
 }
 
 describe("AP Computer Science A learner flow", () => {
+	it("keeps the exam-framework reading separate from generated coding tasks", async () => {
+		const title = "Current Four-Unit Framework and Digital Exam";
+		const authored = apComputerScienceACourse.modules[0].curriculum.find(
+			item => item.title === title
+		)!;
+		const course = (await loadRawCourse("ap-computer-science-a"))!;
+		const displayed = course.modules[0].curriculum.find(
+			item => item.title === title
+		)!;
+		expect(displayed.content).toBe(authored.content);
+		expect(displayed.content).not.toContain("Java checkpoint");
+	});
+
 	it("keeps the authored prerequisites and diagnostics in the displayed course", async () => {
 		const course = await loadRawCourse("ap-computer-science-a");
 		expect(course).not.toBeNull();

@@ -2120,6 +2120,7 @@ function decorateApCsaModule(
 		);
 		curriculum = insertApCsaItem(curriculum, "Track Guide", {
 			title: "Current Four-Unit Framework and Digital Exam",
+			preserveInstructions: true,
 			content: [
 				"**Official baseline:** The effective Fall 2025 CED organizes AP CSA into Unit 1 Using Objects and Methods, Unit 2 Selection and Iteration, Unit 3 Class Creation, and Unit 4 Data Collections.",
 				"",

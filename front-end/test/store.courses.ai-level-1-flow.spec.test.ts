@@ -34,6 +34,25 @@ function requireSourceModule(title: string) {
 }
 
 describe("AI Level 1 learner flow", () => {
+	it("keeps introductory search readings free of model-analysis boilerplate", async () => {
+		const course = (await loadRawCourse("ai-level-1"))!;
+		for (const title of [
+			"Bridge Positioning between Core Python and ML",
+			"How to Read an AI Problem Statement"
+		]) {
+			const authored = aiLevel1Course.modules[0].curriculum.find(
+				item => item.title === title
+			)!;
+			const displayed = course.modules[0].curriculum.find(
+				item => item.title === title
+			)!;
+			expect(displayed.content, title).toBe(authored.content);
+			expect(displayed.content, title).not.toContain(
+				"dataset assumptions"
+			);
+		}
+	});
+
 	it("provides a reproducible local setup with an observable result", async () => {
 		const course = await loadRawCourse("ai-level-1");
 		const reading = course!.modules
