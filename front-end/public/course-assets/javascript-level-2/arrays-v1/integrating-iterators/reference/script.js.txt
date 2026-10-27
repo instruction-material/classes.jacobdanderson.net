@@ -1,0 +1,80 @@
+// Solve the problems throughout the file with different kinds of iterators!
+
+// 1. Using arrayOne, return a new array that adds 6 to all the values in array1 and then multiplies them by 3. Use three different iterators: for ... of, forEach, and then map
+
+const arrayOne = [-1, 0, 8, 2, 6];
+const problem1 = arr => {
+	// Solution using for-of
+
+	const output = [];
+	for (const val of arr) {
+		output.push(3 * (val + 6));
+	}
+	return output;
+
+	// Solution using for-each and a separate array
+
+	// const output = [];
+	// arr.forEach((val) => output.push(3 * (val + 6)));
+	// return output;
+
+	// Solution using map
+
+	// return arr.map((val) => (val + 6) * 3);
+};
+
+console.log(`problem one:  [${arrayOne}] => [${problem1(arrayOne)}]`);
+
+// 2. Using arrayTwo, MODIFY THE ORIGINAL arrayTwo such that the array contains the ones digit from each original value. Use for-each.
+
+const arrayTwo = [9, 1, 3, -10, 1092];
+const problem2 = arr => {
+	arr.forEach((val, index, _arr) => {
+		_arr[index] = Math.abs(val) % 10;
+	});
+};
+
+problem2(arrayTwo);
+console.log(`problem two:  [9, 1, 3, -10, 1092] => [${arrayTwo}]`);
+
+// 3. Iterate through the properties in object1, checking to see if they are a function, and invoking them if they are.
+const object1 = {
+	hi: () => {
+		console.log("olleh dlrow");
+	},
+	function: 3,
+	actualFunction: () => {
+		console.log("I am an actual function!");
+	}
+};
+
+const problem3 = obj => {
+	for (const value of Object.values(obj)) {
+		if (typeof value === "function") value();
+	}
+};
+
+problem3(object1);
+
+// 4. Use reduce to add all the even numbers of arrayThree together.
+
+const arrayThree = [1, 9, 2, 3, 4, 10, 6, 29, -19, -28, 0, 1024];
+const problem4 = arr => {
+	return arr.reduce(
+		(accumulator, val) => (val % 2 == 0 ? accumulator + val : accumulator),
+		0
+	);
+};
+
+console.log(`problem four:  [${arrayThree}] => [${problem4(arrayThree)}]`);
+
+// 5. Use filter to get an make a function which returns an array of all the values in an arrayFour which are divisible.
+
+const arrayFour = [1, 9, 2, 3, 4, 10, 6, 29, -19, -28, 0, 1024];
+const problem5 = (arr, divisor) => {
+	if (!Number.isInteger(divisor) || divisor === 0)
+		throw new RangeError("Divisor must be a nonzero integer.");
+	return arr.filter(val => val % divisor === 0);
+};
+
+console.log(`problem five:  [${arrayFour}] => [${problem5(arrayFour, 3)}]`);

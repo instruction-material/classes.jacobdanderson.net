@@ -10,9 +10,9 @@ List the content and assets needed before building. Use original or clearly lice
 
 ## Open the selected role
 
-The starter keeps the original blank-page exercise. Its valid HTML shell, local libraries, and empty styles/script files are supplied; the page itself is deliberately unfinished. Read the source comments and add the planned content. The reference demonstrates a fictional Learning Workshop page with a grid, Sidenav, Collapsible, and Modal. It is a design reference, not a required business. SOURCES.md records its original source and adaptations.
+The starter keeps the original blank-page exercise. Its valid HTML shell, local libraries, and empty styles/script files are supplied; the page itself is deliberately unfinished. Read the source comments and add the planned content. The reference demonstrates a fictional Learning Workshop page with a grid, Sidenav, Collapsible, and Modal. It is a design reference, not a required business. `SOURCES.md` records its original source and adaptations.
 
-Open index.html in the site IDE after confirming the import, or export the selected role and open index.html directly in a browser. Each ZIP contains README.md, SOURCES.md, styles.css, script.js, and every local library and license used by that role. The page and components run without a server or network. External documentation links need a connection.
+Open index.html in the site IDE after confirming the import, or export the selected role and open index.html directly in a browser. Each ZIP contains `README.md`, `SOURCES.md`, styles.css, script.js, and every local library and license used by that role. The page and components run without a server or network. External documentation links need a connection.
 
 ## Connect HTML, CSS, and JavaScript
 
@@ -30,7 +30,7 @@ If the browser reports `M is not defined`, check the local script path and load 
 
 ## Build and review
 
-Build the static content and responsive layout, then add one interaction at a time. Predict which element or component state a click will change before testing it. Keep teaching TODOs in source comments or the project plan rather than visitor-facing paragraphs. Retain SOURCES.md and the library licenses when adapting the reference.
+Build the static content and responsive layout, then add one interaction at a time. Predict which element or component state a click will change before testing it. Keep teaching TODOs in source comments or the project plan rather than visitor-facing paragraphs. Retain `SOURCES.md` and the library licenses when adapting the reference.
 
 Check phone and desktop widths, 200% zoom, long headings, image loading, readable contrast, and absence of horizontal scrolling. Use the keyboard to open the mobile menu, expand each accordion item, and open/close the dialog. Confirm focus stays in the dialog and returns correctly, and check reduced motion. Every navigation target and primary action should reach the intended content. Review business/news claims and credits separately from the code.
 

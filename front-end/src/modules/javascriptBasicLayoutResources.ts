@@ -108,8 +108,8 @@ export const javascriptBasicLayoutResources = [
 			{
 				name: "README.md",
 				path: "basic-layout-v1/my-hobby-table/starter/README.md.txt",
-				byteLength: 2396,
-				sha256: "77b1161c25caec46ff7e5365cc48e5f2e6921bf5651f562ecd76b2350cc24b08"
+				byteLength: 2398,
+				sha256: "34282493095a3603956f5a135543448e3edc4400272732b1e962aa0a4e0805c2"
 			},
 			{
 				name: "vendor/materialize.min.css",
@@ -150,8 +150,8 @@ export const javascriptBasicLayoutResources = [
 			{
 				name: "README.md",
 				path: "basic-layout-v1/my-hobby-table/reference/README.md.txt",
-				byteLength: 2396,
-				sha256: "8ff14dcdf4896e70ad9e2512be54bb512793755ce1a382dda7bd37d1f056c665"
+				byteLength: 2398,
+				sha256: "a2a0144f2d091415daadd3e430bf6689f68a0472afb706a6ee56501089355642"
 			},
 			{
 				name: "vendor/materialize.min.css",
@@ -419,8 +419,8 @@ export const javascriptBasicLayoutResources = [
 			{
 				name: "README.md",
 				path: "basic-layout-v1/table-documentation-dive/starter/README.md.txt",
-				byteLength: 2344,
-				sha256: "6fba790f401833c58343dbf40fa93242ac76d033407cb145e408868dc0aa457c"
+				byteLength: 2346,
+				sha256: "c53658cb11ffac88016023173bf82396191ff98368577e13a6d2b0b5f8c03c2e"
 			},
 			{
 				name: "vendor/materialize.min.css",
@@ -461,8 +461,8 @@ export const javascriptBasicLayoutResources = [
 			{
 				name: "README.md",
 				path: "basic-layout-v1/table-documentation-dive/reference/README.md.txt",
-				byteLength: 2344,
-				sha256: "8a6e66bed2704eda5c6e4f48a84d44e6025e5743f458c90bafbc5c2001d5825d"
+				byteLength: 2346,
+				sha256: "616ebf34c249cac4f853ecde122f59571d697d2d3f6fa51aac112b9eb8889610"
 			},
 			{
 				name: "vendor/materialize.min.css",

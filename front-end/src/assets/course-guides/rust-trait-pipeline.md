@@ -123,7 +123,7 @@ rustc --edition=2024 diagnostics/mutation-after-last-use.rs --extern trait_pipel
 
 Run an executable only if its compilation succeeded. The alternate source prints
 `count=2 total=12`; the owned-report diagnostic prints `alpha`; the last-use repair
-prints `rows=2`. Keep Cargo.toml, Cargo.lock, lib.rs, main.rs, diagnostics, this
+prints `rows=2`. Keep Cargo.toml, Cargo.lock, `lib.rs`, `main.rs`, diagnostics, this
 README and observations together. After `cargo clean`, repeat tests and builds
 and check source/lockfile bytes. Passing baseline tests does not complete the
 generic, borrowing and laziness refactors or the written API review.

@@ -27,8 +27,8 @@ sudo apt-get install -y python3 iproute2 iptables util-linux procps curl
 The lab itself needs no Internet connection. Run it with sudo after checking the files and purpose.
 
 Save and export the selected role in the site IDE, extract its files and enter
-starter/ for the attempt or solution/ for the separate reference. Keep main.py,
-link_routing_lab.py, network-notes.md and edge-cases.md together. README.md is
+starter/ for the attempt or solution/ for the separate reference. Keep `main.py`,
+link_routing_lab.py, `network-notes.md` and `edge-cases.md` together. `README.md` is
 the complete guide. Both roles already collect the observations; only the
 starter's optional analyze(evidence) summary is incomplete. The website edits,
 saves and exports this project. The disposable Linux terminal runs the actual
@@ -102,10 +102,10 @@ The private prefixes become 10.41.0.0/24 and 10.42.0.0/24, and the server's
 port changes. Predict the corresponding gateway, on-link and translated-peer
 values. Use that run's token and process identities, and retain contrary results.
 
-Complete network-notes.md with all six predicted and actual stages, the two
+Complete `network-notes.md` with all six predicted and actual stages, the two
 topologies, learned MAC/port matches, local-versus-gateway route decisions,
 untranslated and translated endpoint views, restoration evidence and cleanup.
-Read edge-cases.md as explicitly constructed Internet-edge reasoning. For
+Read `edge-cases.md` as explicitly constructed Internet-edge reasoning. For
 independent review, explain each boundary before reading its outcome. In a paced
 walkthrough, pause between the bridge, routing and translation mechanisms.
 

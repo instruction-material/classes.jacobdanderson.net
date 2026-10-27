@@ -1,0 +1,656 @@
+[
+	{
+		"project": "colorful-cards-2d",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/54cadf32718bc4b635e9b82ea67a7a7f",
+		"title": "JSM5 Project 4: Colorful Cards in 2D Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/BazxaYv/54cadf32718bc4b635e9b82ea67a7a7f",
+		"panels": {
+			"HTML": "<canvas id=\"my-canvas\"></canvas>",
+			"CSS": "",
+			"JavaScript": "// Make a 5x5 2D array which contains arrays filled with strings which are 5 different names of colors. Set up canvas, and then use iterators to loop through the 2D array and draw each of the colors as rectangular cards in a 5x5 display on the canvas.\n\nconst canvas = document.getElementById(\"my-canvas\");\nconst ctx = canvas.getContext(\"2d\");\ncanvas.height = 1000;\ncanvas.width = 1000;\n\nconst twoDCards = [\n\t[\"green\", \"red\", \"blue\", \"yellow\", \"cyan\"],\n\t[\"red\", \"blue\", \"yellow\", \"cyan\", \"green\"],\n\t[\"blue\", \"yellow\", \"cyan\", \"green\", \"red\"],\n\t[\"yellow\", \"cyan\", \"green\", \"red\", \"blue\"],\n\t[\"cyan\", \"green\", \"red\", \"blue\", \"yellow\"]\n];\n\ntwoDCards.forEach((cards, index) => {\n\tcards.forEach((color, _index) => {\n\t\tlet cardX = _index * 200;\n\t\tlet cardY = 150 + 150 * index;\n\t\tctx.beginPath();\n\t\tctx.rect(cardX, cardY, 150, 100);\n\t\tctx.fillStyle = color;\n\t\tctx.fill();\n\t\tctx.closePath();\n\t});\n});\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 32,
+				"fnv1a32": "048086e5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 892,
+				"fnv1a32": "f50a7bdc"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "Babel",
+				"resources": []
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": []
+			},
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditors": ["CSS"],
+		"emptyEditorsVerifiedInUI": true,
+		"retainedAt": "2026-10-26T07:36:09.608Z",
+		"panelSHA256": {
+			"HTML": "bcdadb2f807fd06658a17466a9dd29fc39b8468f68770f5926dd817bdb6eb29a",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "79c683b89d5fb6d8e21ebf05a8087d55d9561e51e016f0eac2626988dfafa788"
+		}
+	},
+	{
+		"project": "colorful-cards-2d",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/1dce247c86d866c1f33a6dce86511c71",
+		"title": "JSM5 Project 4: Colorful Cards in 2D",
+		"observedURL": "https://codepen.io/junilearning/pen/xxOjPNL",
+		"panels": {
+			"HTML": "<canvas id=\"my-canvas\"></canvas>",
+			"CSS": "",
+			"JavaScript": "// Make a 5x5 2D array which contains arrays filled with strings which are 5 different names of colors. Set up canvas, and then use iterators to loop through the 2D array and draw each of the colors as rectangular cards in a 5x5 display on the canvas.\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 32,
+				"fnv1a32": "048086e5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 252,
+				"fnv1a32": "f0b443d7"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "Babel",
+				"resources": []
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": []
+			},
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditors": ["CSS"],
+		"emptyEditorsVerifiedInUI": true,
+		"retainedAt": "2026-10-26T07:36:09.608Z",
+		"panelSHA256": {
+			"HTML": "bcdadb2f807fd06658a17466a9dd29fc39b8468f68770f5926dd817bdb6eb29a",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "2d28a1663e019edf3eed71960bcb2b936d43a55ab85420c849f28dcb7de66f14"
+		}
+	},
+	{
+		"project": "colorful-cards",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/03f3b4a97545b4fcec50aa6b11ab4188",
+		"title": "JSM5 Project 3: Colorful Cards Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/LYZmYQj/03f3b4a97545b4fcec50aa6b11ab4188",
+		"panels": {
+			"HTML": "<canvas id=\"my-canvas\"></canvas>",
+			"CSS": "",
+			"JavaScript": "// Make an array called cards filled with strings which are 5 different names of colors. Set up a canvas, and then, use an iterator to iterate through cards to draw 5 cards in a row.\n\nconst canvas = document.getElementById(\"my-canvas\");\nconst ctx = canvas.getContext(\"2d\");\ncanvas.width = 1200;\ncanvas.height = 800;\n\nconst cards = [\"green\", \"red\", \"blue\", \"yellow\", \"cyan\"];\n\ncards.forEach((color, index) => {\n\tlet cardX = index * 200;\n\tlet cardY = 150;\n\tctx.beginPath();\n\tctx.rect(cardX, cardY, 150, 100);\n\tctx.fillStyle = color;\n\tctx.fill();\n\tctx.closePath();\n});\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 32,
+				"fnv1a32": "048086e5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 566,
+				"fnv1a32": "5ba22cd6"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "Babel",
+				"resources": []
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": []
+			},
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditors": ["CSS"],
+		"emptyEditorsVerifiedInUI": true,
+		"retainedAt": "2026-10-26T07:36:09.607Z",
+		"panelSHA256": {
+			"HTML": "bcdadb2f807fd06658a17466a9dd29fc39b8468f68770f5926dd817bdb6eb29a",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "30796e870a881c78dd576d799e634474e8cd9661908c56f74f81d2ea0499722b"
+		}
+	},
+	{
+		"project": "colorful-cards",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/b167fc3da0e85d5ff65158f799658566",
+		"title": "JSM5 Project 3: Colorful Cards",
+		"observedURL": "https://codepen.io/junilearning/pen/rNLvYQL",
+		"panels": {
+			"HTML": "<canvas id=\"my-canvas\"></canvas>",
+			"CSS": "",
+			"JavaScript": "// Make an array called cards filled with strings which are 5 different names of colors. Set up a canvas, and then, use an iterator to iterate through cards to draw 5 cards in a row."
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 32,
+				"fnv1a32": "048086e5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 182,
+				"fnv1a32": "4a5e56f3"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "Babel",
+				"resources": []
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": []
+			},
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditors": ["CSS"],
+		"emptyEditorsVerifiedInUI": true,
+		"retainedAt": "2026-10-26T07:36:09.607Z",
+		"panelSHA256": {
+			"HTML": "bcdadb2f807fd06658a17466a9dd29fc39b8468f68770f5926dd817bdb6eb29a",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "cafc09b6dc2487caa817fd830ad4ce216ff8ac1339fd0c4d6227eb6d79a330cc"
+		}
+	},
+	{
+		"project": "foray-into-arrays",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/6925d98f7583227a4c1c65996a10cf40",
+		"title": "JSM5 Project 1: Foray into Arrays Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/wvWjvPN/6925d98f7583227a4c1c65996a10cf40",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "// Complete these array exercises!\n\n// Solution\n\n// 1. Create an array of 3 common household pets\n\nlet pets = [\"dog\", \"cat\", \"bunny\"];\n\n// 2. Remove the last pet in the array using .pop()\n\npets.pop();\n\n// 3. Add 2 more pets into the array using .push()\n\npets.push(\"parrot\");\npets.push(\"guinea pig\");\n\n// 4. Replace the third pet in the array with a komodo dragon. Then, print the array using printToScreen()!\n\npets[2] = \"komodo dragon\";\nprintToScreen(pets);\n\n// 5. Create an array with the perfect squares from 1 to 20. Then, print the array using printToScreen()!\n\nlet squares = [];\nfor (let i = 1; i < 21; i++) {\n  squares.push(i * i);\n}\nprintToScreen(squares);\n\n// 6. Slice your squares array from #5 to create another array with the perfect squares from 5 to 15. Then, print the array using printToScreen()!\n\nlet squares2 = squares.slice(4, 15);\nprintToScreen(squares2);\n\n// 7. Write a function that takes in an array of integers and returns the sum of all integers in the array. Then, print the sum of the squares arrays you made in #5 and #6!\n\nconst sumOfArray = (arr) => {\n  let sum = 0;\n  for (let i = 0; i < arr.length; i++) {\n    sum += arr[i];\n  }\n  return sum;\n};\n\nprintToScreen(sumOfArray(squares));\nprintToScreen(sumOfArray(squares2));\n\n// 8. Create an array of 10 random integers between 11 and 15. Then, print the array.\n\nlet randomNumbers = [];\nfor (let i = 0; i < 10; i++) {\n  randomNumbers.push(Math.floor(Math.random() * 5) + 11);\n}\nprintToScreen(randomNumbers);\n\n// 9. Write a function that takes in an array of integers and returns true if the first and last elements in the array are the same, otherwise return false. Call this function on your array from #8 and print the result!\n\nconst hasSameFirstAndLast = (arr) => {\n  return arr[0] === arr[arr.length - 1];\n};\n\nprintToScreen(hasSameFirstAndLast(randomNumbers));\n\n\n\n// Please don't alter the code below this line!\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 155 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 2540,
+				"fnv1a32": "80682906"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/6.1.1/d3.min.js"
+				]
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": []
+			},
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditors": ["HTML", "CSS"],
+		"emptyEditorsVerifiedInUI": true,
+		"retainedAt": "2026-10-26T07:36:09.604Z",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "37b1ec03503d01664df72b66aa35809a654737904a461fc08b13e2939e666a1b"
+		}
+	},
+	{
+		"project": "foray-into-arrays",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/96047a35895a6620240bd2ce171a71ec",
+		"observedURL": "https://codepen.io/junilearning/pen/GRqdROB",
+		"title": "JSM5 Project 1: Foray into Arrays",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "// Complete the following array exercises!\n\n// Please enter your code below this line.\n\n// 1. Create an array of 3 common household pets\n\n\n\n// 2. Remove the last pet in the array using .pop()\n\n\n\n// 3. Add 2 more pets into the array using .push()\n\n\n\n// 4. Replace the third pet in the array with a komodo dragon. Then, print the array using printToScreen()!\n\n\n\n// 5. Create an array with the perfect squares from 1 to 20. Then, print the array using printToScreen()!\n\n\n\n// 6. Slice your squares array from #5 to create another array with the perfect squares from 5 to 15. Then, print the array using printToScreen()!\n\n\n\n// 7. Write a function that takes in an array of integers and returns the sum of all integers in the array. Then, print the sum of the squares arrays you made in #5 and #6!\n\n\n\n// 8. Create an array of 10 random integers between 11 and 15. Then, print the array.\n\n\n\n// 9. Write a function that takes in an array of integers and returns true if the first and last elements in the array are the same, otherwise return false. Call this function on your array from #8 and print the result!\n\n\n\n// Please don't alter the code below this line!\n\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 155 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 1805,
+				"fnv1a32": "d0c88b3d"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/6.1.1/d3.min.js"
+				]
+			},
+			"CSS": {
+				"preprocessor": "None",
+				"resources": [],
+				"base": "neither",
+				"prefixing": "neither"
+			},
+			"HTML": {
+				"preprocessor": "None",
+				"classes": "",
+				"head": ""
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditors": ["HTML", "CSS"],
+		"emptyEditorsVerifiedInUI": true,
+		"retainedAt": "2026-10-26T07:36:09.596Z",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "92b8f7c2f069894549036806c0c4e6c75c8e63efd870445f3ac7af7078006fbe"
+		}
+	},
+	{
+		"project": "integrating-iterators",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/2d9117dd9b2d44b478d8155655c7bb9b",
+		"title": "JSM5 Project 2: Integrating Iterators Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/KKMRKQP",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "// Solve the problems throughout the file with different kinds of iterators!\n\n// 1. Using arrayOne, return a new array that adds 6 to all the values in array1 and then multiplies them by 3. Use three different iterators: for ... of, forEach, and then map\n\n\n\n\n\n\n\n\nconst arrayOne = [-1, 0, 8, 2, 6];\nconst problem1 = (arr) => {\n\t// Solution using for-of\n\t\n\tconst output = [];\n\tfor (const val of arr) {\n\t\toutput.push(3 * (val + 6));\n\t}\n\treturn output;\n\n\t// Solution using for-each and a separate array\n\t\n\t// const output = [];\n\t// arr.forEach((val) => output.push(3 * (val + 6)));\n\t// return output;\n\n\t// Solution using map\n\t\n\t// return arr.map((val) => (val + 6) * 3);\n};\n\nconsole.log(`problem one:  [${arrayOne}] => [${problem1(arrayOne)}]`);\n\n// 2. Using arrayTwo, MODIFY THE ORIGINAL arrayTwo such that the array contains the ones digit from each original value. Use for-each.\n\nconst arrayTwo = [9, 1, 3, -10, 1092];\nconst problem2 = (arr) => {\n\tarr.forEach((val, index, _arr) => {\n\t\t_arr[index] = val % 10;\n\t});\n};\n\nproblem2(arrayTwo)\nconsole.log(`problem two:  [9, 1, 3, -10, 1092] => [${arrayTwo}]`);\n\n// 3. Iterate through the properties in object1, checking to see if they are a function, and invoking them if they are.\nconst object1 = {\n\thi: () => {\n\t\tconsole.log(\"olleh dlrow\");\n\t},\n\tfunction: 3,\n\tactualFunction: () => {\n\t\tconsole.log(\"I am an actual function!\");\n\t}\n};\n\nconst problem3 = (obj) => {\n    for (const key in obj) {\n        if (typeof obj[key] === \"function\") {\n            obj[key](); // Invoke the function\n        }\n    }\n};\n\nproblem3(object1);\n\n// 4. Use reduce to add all the even numbers of arrayThree together.\n\nconst arrayThree = [1, 9, 2, 3, 4, 10, 6, 29, -19, -28, 0, 1024];\nconst problem4 = (arr) => {\n\treturn arr.reduce(\n\t\t(accumulator, val) => (val % 2 == 0 ? accumulator + val : accumulator),\n\t\t0\n\t);\n};\n\nconsole.log(`problem four:  [${arrayThree}] => [${problem4(arrayThree)}]`);\n\n\n// 5. Use filter to get an make a function which returns an array of all the values in an arrayFour which are divisible.\n\nconst arrayFour = [1, 9, 2, 3, 4, 10, 6, 29, -19, -28, 0, 1024];\nconst problem5 = (arr, divisor) => {\n\treturn arr.filter((val) => val % divisor === 0);\n};\n\nconsole.log(`problem five:  [${arrayFour}] => [${problem5(arrayFour, 3)}]`);\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 2273,
+				"fnv1a32": "7589969b"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "Babel",
+				"resources": []
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": []
+			},
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditors": ["HTML", "CSS"],
+		"emptyEditorsVerifiedInUI": true,
+		"retainedAt": "2026-10-26T07:36:09.606Z",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "9a55a28e560ab93fe2316ee80cef6fdc16548bc00c2cf43ebb083714cc86fa5f"
+		}
+	},
+	{
+		"project": "integrating-iterators",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/2e76b16dbd71552eeb1179b45b57ae2d",
+		"title": "JSM5 Project 2: Integrating Iterators",
+		"observedURL": "https://codepen.io/junilearning/pen/PozeoEy",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "/**\n * Prompt: Solve the problems throughout the file with different kinds of iterators! Fill in the YOUR CODE HERE sections\n *\n */\n\n// 1. Using array 1, return a new array that adds 6 to all the values in array1 and then multiplies them by 3. Use three different iterators: for ... of, forEach, and then map\n\nconst array1 = [-1, 0, 8, 2, 6];\nconst problem1 = (arr) => {\n\t// Empty array. Remove after you implement.\n\treturn [];\n\n\t/** YOUR CODE GOES HERE */\n\t// Solution using forEach\n\n\t// Solution using forEach and a separate array\n\n\t// Solution using map\n};\n\n// Simple test driver\nconsole.log(problem1(array1));\n\n// 2. Using array2, MODIFY THE ORIGINAL array that gets the ones digit from each value. Use forEach.\nconst array2 = [9, 1, 3, -10, 1092];\nconst problem2 = (arr) => {\n\t/** YOUR CODE GOES HERE */\n};\n\n// Simple test driver\nproblem2(array2);\n\n// 3. Iterate through the properties in object1, checking to see if they are a function, and invoking them if they are.\nconst object1 = {\n\thi: () => {\n\t\tconsole.log(\"olleh dlrow\");\n\t},\n\tfunction: 3,\n\tactualFunction: () => {\n\t\tconsole.log(\"I am an actual function!\");\n\t}\n};\n\nconst problem3 = (obj) => {\n\t/** YOUR CODE GOES HERE */\n};\n\nproblem3(object1);\n\n// 4. Use reduce to add all the even numbers of array4 together.\nconst problem4 = (arr) => {\n\t/** YOUR CODE GOES HERE */\n};\n\nconst array4 = [1, 9, 2, 3, 4, 10, 6, 29, -19, -28, 0, 1024];\n\nlet problem4Result = problem4(array4);\nconsole.log(problem4Result);\n\n// 5. Use filter to get an array of all the values in an array divisible by a divisor passed in.\nconst problem5 = (arr, divisor) => {\n\t/** YOUR CODE GOES HERE */\n};\n\nconst array5 = [1, 9, 2, 3, 4, 10, 6, 29, -19, -28, 0, 1024];\n\nlet problem5Result = problem5(array5, 3);\nconsole.log(problem5Result);\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 1765,
+				"fnv1a32": "137acda7"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "Babel",
+				"resources": []
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": []
+			},
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditors": ["HTML", "CSS"],
+		"emptyEditorsVerifiedInUI": true,
+		"retainedAt": "2026-10-26T07:36:09.605Z",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "89b43b0c90716866375d81a745efeead4c5d4e8840f23da492239fde48bbb1fd"
+		}
+	},
+	{
+		"project": "pokemon-master",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/03693f4763858d7d7c10a34186e030f3",
+		"title": "JSM5 Supplemental Project 1: Pokemon Master Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/zYBjYWo/03693f4763858d7d7c10a34186e030f3",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "// You are now a Pokemon master! Using the given 2D array, follow the instructions below.\n\n// Note: Each Pokemon is stored in the format [id, name, type].\nconst pokemon = [\n  [4, \"Charmander\", \"fire\"],\n  [16, \"Pidgey\", \"normal\"],\n  [25, \"Pikachu\", \"electric\"],\n  [54, \"Psyduck\", \"psychic\"],\n  [175, \"Togepi\", \"fairy\"]\n];\n\n\n// Solution\n\n// 1. You just caught a Skitty! Skitty's id is 300 and type is normal. Add Skitty into the pokemon array.\n\npokemon.push([300, \"Skitty\", \"normal\"]);\n\n// 2. With indexing, use printToScreen() to print the name of the Pokemon with id 54.\n\nprintToScreen(pokemon[3][1]);\n\n// 3. With indexing, print Togepi's id number.\n\nprintToScreen(pokemon[4][0]);\n\n// 4. With indexing, print Charmander's type.\n\nprintToScreen(pokemon[0][2]);\n\n// 5. Oh no! Your Pidgey escaped! Remove Pidgey from your array.\n\npokemon.splice(1, 1);\n\n// 6. Iterate through the Pokemon array to print a sentence of each pokemon's name, id, and type.\n\npokemon.forEach((p) => {\n  printToScreen(`${p[1]} is a ${p[2]}-type Pokemon with an id of ${p[0]}.`);\n});\n\n// Please don't alter the code below this line!\n\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 155 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 1753,
+				"fnv1a32": "d3d67e84"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/6.2.0/d3.min.js"
+				]
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": []
+			},
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditors": ["HTML", "CSS"],
+		"emptyEditorsVerifiedInUI": true,
+		"retainedAt": "2026-10-26T07:36:09.610Z",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "25b2c6d7f76413a891e97b4a62f9700c29f70da85e12e963d9538f68e3a8489f"
+		}
+	},
+	{
+		"project": "pokemon-master",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/61d80971229e4f85126de1fcfb54b1d8",
+		"title": "JSM5 Supplemental Project 1: Pokemon Master",
+		"observedURL": "https://codepen.io/junilearning/pen/wvWjvyN",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "// You are the new Pokemon master in town! Using the given 2D array, follow the instructions below.\n\n// Note: Each Pokemon is stored in the format [id, name, type].\nconst pokemon = [\n  [4, \"Charmander\", \"fire\"],\n  [16, \"Pidgey\", \"normal\"],\n  [25, \"Pikachu\", \"electric\"],\n  [54, \"Psyduck\", \"psychic\"],\n  [175, \"Togepi\", \"fairy\"]\n];\n\n\n// Enter your code below this line.\n\n// 1. You just caught a Skitty! Skitty's id is 300 and type is normal. Add Skitty into the pokemon array.\n\n\n\n// 2. With indexing, use printToScreen() to print the name of the Pokemon with id 54.\n\n\n\n// 3. With indexing, print Togepi's id number.\n\n\n\n// 4. With indexing, print Charmander's type.\n\n\n\n// 5. Oh no! Your Pidgey escaped! Remove Pidgey from your array.\n\n\n\n// 6. Iterate through the Pokemon array to print a sentence of each pokemon's name, id, and type.\n\n\n\n// Please don't alter the code below this line!\nfunction printToScreen(text) {\n  let r = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let g = Math.floor(Math.floor(Math.random() * 155 + 1));\n  let b = Math.floor(Math.floor(Math.random() * 155 + 1));\n  const svg = d3\n    .select(\"body\")\n    .append(\"svg\")\n    .attr(\"width\", 1500)\n    .attr(\"height\", 75);\n\n  svg\n    .append(\"text\")\n    .attr(\"y\", 37.5)\n    .attr(\"width\", 450)\n    .attr(\"height\", 75)\n    .attr(\"x\", -1000)\n    .attr(\"font-weight\", \"bold\")\n    .attr(\"font-size\", \"20px\")\n    .attr(\"fill\", `rgb(${r},${g},${b}`)\n    .attr(\"font-family\", \"Roboto\")\n    .text(text)\n    .transition()\n    .duration(1000)\n    .attr(\"x\", 37.5);\n}\n"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 1533,
+				"fnv1a32": "955bb904"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/6.2.0/d3.min.js"
+				]
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": []
+			},
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditors": ["HTML", "CSS"],
+		"emptyEditorsVerifiedInUI": true,
+		"retainedAt": "2026-10-26T07:36:09.609Z",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "8b091ec683c71b4580171c38e7cf58958c6a81c39602c0859e3165585bad2a32"
+		}
+	},
+	{
+		"project": "random-icons",
+		"role": "reference",
+		"url": "https://codepen.io/junilearning/pen/f163e56c8fa75a482877d789d08fc784",
+		"title": "JSM5 Project 2: Random Icons Solution",
+		"observedURL": "https://codepen.io/junilearning/pen/JjKvjMN/f163e56c8fa75a482877d789d08fc784",
+		"panels": {
+			"HTML": "\n\n\n\n\n\n<div class=\"row center\">\n</div>",
+			"CSS": "",
+			"JavaScript": "// Given an array of icons and an array of colors, generate a row of 6 randomly-colored and randomly-picked large icons! Use d3.select() in order to target elements along with Materialize to add them to the page.\n\nconst icons = [\"3d_rotation\", \"access_time\", \"backspace\", \"cached\", \"dashboard\", \"equalizer\", \"filter_hdr\", \"g_translate\", \"headset\", \"image\", \"keyboard\", \"local_airport\", \"monetization_on\", \"notifications_none\", \"opacity\", \"panorama\", \"question_answer\", \"radio\", \"sentiment_dissatisfied\", \"time_to_leave\", \"usb\", \"videogame_asset\", \"wifi\"];\n\nconst colors = [\"red\", \"orange\", \"teal\", \"pink\", \"yellow\", \"green\", \"blue\", \"grey\", \"brown\", \"indigo\", \"cyan\", \"lime\"];\n\n// Solution\n\nfor (let i = 0; i < 6; i++) {\n  let iconIndex = Math.floor(Math.random() * icons.length);\n  let colorIndex = Math.floor(Math.random() * colors.length);\n  let icon = icons[iconIndex];\n  let color = colors[colorIndex];\n  d3.select(\".row\").append(\"i\").attr(\"class\",`material-icons large ${color}-text`).text(icon);\n}"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 37,
+				"fnv1a32": "e65dda28"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 1004,
+				"fnv1a32": "68cf3457"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/6.2.0/d3.min.js"
+				]
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.2/iconfont/material-icons.min.css",
+					"<redacted>"
+				]
+			},
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditors": ["CSS"],
+		"emptyEditorsVerifiedInUI": true,
+		"retainedAt": "2026-10-26T07:36:09.610Z",
+		"panelSHA256": {
+			"HTML": "89d222b1f0d438557a8ffe018ab026cbca687126fd921007741c2c286f114717",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "db71ce7c826091d9492a809f6cee83ed979c7572a8f62456f08f12fc1e00e6d1"
+		}
+	},
+	{
+		"project": "random-icons",
+		"role": "starter",
+		"url": "https://codepen.io/junilearning/pen/e3ae971ad6fd35c3c0829208cb049099",
+		"title": "JSM5 Supplemental Project 2: Random Icons",
+		"observedURL": "https://codepen.io/junilearning/pen/QWErWOX",
+		"panels": {
+			"HTML": "",
+			"CSS": "",
+			"JavaScript": "// Given an array of icons and an array of colors, generate a row of 6 randomly-colored and randomly-picked large icons! Use d3.select() in order to target elements along with Materialize to add them to the page.\n\nconst icons = [\"3d_rotation\", \"access_time\", \"backspace\", \"cached\", \"dashboard\", \"equalizer\", \"filter_hdr\", \"g_translate\", \"headset\", \"image\", \"keyboard\", \"local_airport\", \"monetization_on\", \"notifications_none\", \"opacity\", \"panorama\", \"question_answer\", \"radio\", \"sentiment_dissatisfied\", \"time_to_leave\", \"usb\", \"videogame_asset\", \"wifi\"];\n\nconst colors = [\"red\", \"orange\", \"teal\", \"pink\", \"yellow\", \"green\", \"blue\", \"grey\", \"brown\", \"indigo\", \"cyan\", \"lime\"];\n\n// Please enter your code below this line!"
+		},
+		"clipboardChecks": {
+			"HTML": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"CSS": {
+				"utf16Length": 0,
+				"fnv1a32": "811c9dc5"
+			},
+			"JavaScript": {
+				"utf16Length": 720,
+				"fnv1a32": "c9e4f3fd"
+			}
+		},
+		"settings": {
+			"JavaScript": {
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/d3/6.2.0/d3.min.js"
+				]
+			},
+			"CSS": {
+				"base": "neither",
+				"prefixing": "neither",
+				"preprocessor": "None",
+				"resources": [
+					"https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.2/iconfont/material-icons.min.css",
+					"<redacted>"
+				]
+			},
+			"HTML": {
+				"classes": "",
+				"head": "",
+				"preprocessor": "None"
+			}
+		},
+		"visibleEditorCopy": true,
+		"dependencySettingsViewed": true,
+		"emptyEditors": ["HTML", "CSS"],
+		"emptyEditorsVerifiedInUI": true,
+		"retainedAt": "2026-10-26T07:36:09.610Z",
+		"panelSHA256": {
+			"HTML": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"CSS": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"JavaScript": "b22eccf9ae0fa58cfd896e4ef5ff258d2e700dbdcffeae717b49afe356472866"
+		}
+	}
+]

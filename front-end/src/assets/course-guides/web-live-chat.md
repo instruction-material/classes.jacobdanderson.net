@@ -178,7 +178,7 @@ First-party references: [serving the client](https://socket.io/docs/v4/server-op
 
 After WDF5, open the starter and read `src/server.js`, `public/index.html` and
 `public/chat.js` together. The supplied anonymous chat already runs. Annotate
-its message path in README.md, identifying which callback runs in the browser
+its message path in `README.md`, identifying which callback runs in the browser
 and which runs in Node.js. Trace a valid message and a rejected blank message;
 compare the rendered event and acknowledgement rather than treating them as
 the same operation. Save the annotation, reopen that same attempt and export

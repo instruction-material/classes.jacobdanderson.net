@@ -38,8 +38,8 @@
         {
           "name": "README.md",
           "path": "dynamic-components-v1/dynamic-components/starter/README.md.txt",
-          "byteLength": 3758,
-          "sha256": "2e5e84f260f1ddc427a7265463891160cb8bb4592ff0e36c490cc91b2cf09b94"
+          "byteLength": 3762,
+          "sha256": "2b5b2c7d5a197f23a77bbdbafa568834ac2d23aec674a6789452360588fb8e19"
         },
         {
           "name": "vendor/materialize.min.css",
@@ -154,8 +154,8 @@
         {
           "name": "README.md",
           "path": "dynamic-components-v1/dynamic-components/reference/README.md.txt",
-          "byteLength": 3727,
-          "sha256": "87280e263df41ed893380a57e34427b38e1617620a8d4a6d89fba968ffc75cf3"
+          "byteLength": 3731,
+          "sha256": "40c5be131a45d5bdafb9b292b87595681ab141f538dc9fd1ce15aa1becd50784"
         },
         {
           "name": "vendor/materialize.min.css",

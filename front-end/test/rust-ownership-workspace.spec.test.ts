@@ -1,3 +1,4 @@
+import { readingWithoutFilenameFormatting } from "./course-reading-format";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { strFromU8, unzipSync } from "fflate";
@@ -80,13 +81,15 @@ it("gives the ownership module four distinct, complete activities without exposi
 					? "challenge"
 					: "core"
 		);
-		expect(item.content).toContain(
-			fixture.files[fixture.pack + "/README.md"].content
-				.trim()
-				.replace(
-					"Step through\neach helper with an instructor or annotate it independently.",
-					"Step through\neach helper and annotate the ownership transfers."
-				)
+		expect(readingWithoutFilenameFormatting(item.content)).toContain(
+			readingWithoutFilenameFormatting(
+				fixture.files[fixture.pack + "/README.md"].content
+					.trim()
+					.replace(
+						"Step through\neach helper with an instructor or annotate it independently.",
+						"Step through\neach helper and annotate the ownership transfers."
+					)
+			)
 		);
 		expect(item.projectLink).toBe(root + "/starter");
 		expect(item.solutionLink).toBe(root + "/solution");

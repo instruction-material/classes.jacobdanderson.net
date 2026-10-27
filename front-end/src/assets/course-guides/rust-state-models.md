@@ -63,6 +63,6 @@ rustc --edition=2024 diagnostics/exhaustive.rs --extern state_model_lab=target/d
 rustc --edition=2024 diagnostics/raw-flags.rs --extern state_model_lab=target/debug/libstate_model_lab.rlib -L dependency=target/debug/deps -o raw-flags
 ```
 
-Run the last executable only when compilation succeeds. Export the complete selected role, not just main.rs. The lib.rs, manifest, lockfile, diagnostics, README and observations belong to the project. Save edits, reopen the same attempt, and continue the activities there. After `cargo clean`, rerun tests/builds and verify the lockfile and source stay unchanged by those commands. Build outputs and a green baseline suite do not complete the observation worksheet or the two intentional starter tasks.
+Run the last executable only when compilation succeeds. Export the complete selected role, not just `main.rs`. The `lib.rs`, manifest, lockfile, diagnostics, README and observations belong to the project. Save edits, reopen the same attempt, and continue the activities there. After `cargo clean`, rerun tests/builds and verify the lockfile and source stay unchanged by those commands. Build outputs and a green baseline suite do not complete the observation worksheet or the two intentional starter tasks.
 
 Further reading: [Rust enums](https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html) and [exhaustive matching](https://doc.rust-lang.org/book/ch06-02-match.html).

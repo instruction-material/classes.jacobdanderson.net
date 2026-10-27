@@ -1016,6 +1016,21 @@ jobs:
                   if-no-files-found: error
                   retention-days: 7
 
+            - name: Verify JSM5 arrays course imports and saved exports
+              run: node --test test/javascript-master-arrays-course-browser.test.mjs
+
+            - name: Verify actual JSM5 arrays exports offline
+              run: node --test test/javascript-master-arrays-exported-browser.test.mjs
+
+            - name: Retain JSM5 arrays source workflows
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-master-arrays-source-workflows
+                  path: output/javascript-master-arrays-browser/
+                  if-no-files-found: error
+                  retention-days: 7
+
             - name: Verify JSM4 canvas course imports and saved exports
               run: node --test test/javascript-master-canvas-course-browser.test.mjs
 

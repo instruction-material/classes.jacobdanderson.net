@@ -1,3 +1,4 @@
+import { readingWithoutFilenameFormatting } from "./course-reading-format";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { strFromU8, unzipSync } from "fflate";
@@ -89,8 +90,10 @@ it("gives the bounded-cli module four distinct, complete activities without expo
 					? "challenge"
 					: "core"
 		);
-		expect(item.content).toContain(
-			fixture.files[fixture.pack + "/README.md"].content.trim()
+		expect(readingWithoutFilenameFormatting(item.content)).toContain(
+			readingWithoutFilenameFormatting(
+				fixture.files[fixture.pack + "/README.md"].content.trim()
+			)
 		);
 		expect(item.projectLink).toBe(root + "/starter");
 		expect(item.solutionLink).toBe(root + "/solution");

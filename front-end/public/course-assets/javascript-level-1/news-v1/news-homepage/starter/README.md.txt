@@ -6,13 +6,13 @@ Create a featured-story slider whose three headlines open three corresponding ar
 
 The starter is an authored companion with an unfinished main region, local libraries, images, and source comments. The separate reference adapts the captured completed example. Only that reference was available in the original source; the starter is not an original course starter.
 
-Confirm the selected import in the site IDE. Read README.md and SOURCES.md, then edit index.html, styles.css, and script.js. Export the ZIP, extract every file, and open index.html in a browser. Both roles work without a server, package installation, or network connection. Documentation and original-source links need a connection.
+Confirm the selected import in the site IDE. Read `README.md` and `SOURCES.md`, then edit index.html, styles.css, and script.js. Export the ZIP, extract every file, and open index.html in a browser. Both roles work without a server, package installation, or network connection. Documentation and original-source links need a connection.
 
 ## Build the page
 
 Use one h1 for the page title, a slider containing ul.slides, and three li children. Each slide combines an image, a headline, a short caption, and a Read story link. Match each link's fragment to one unique article ID. Keep the article title, body, and Close story action together inside that article. The reference retains the original three headlines, captions, modal story titles, and placeholder article text. Replace the placeholder bodies with original sample stories when adapting the design.
 
-The three local SVG illustrations are authored companions for the computing, city, and mathematics topics. They replace remote photographs. SOURCES.md retains the original image URLs and exact source hashes. Decorative slide images use empty alternative text because the adjacent headline identifies the story.
+The three local SVG illustrations are authored companions for the computing, city, and mathematics topics. They replace remote photographs. `SOURCES.md` retains the original image URLs and exact source hashes. Decorative slide images use empty alternative text because the adjacent headline identifies the story.
 
 Load vendor/materialize.min.css before styles.css. Load vendor/materialize.min.js before script.js at the end of the document. Initialize the slider with M.Slider.init and the three dialogs with M.Modal.init. Read the reference callbacks in order: pause the slider as a dialog opens, keep focus inside the open dialog, then restore focus to the story link after closing.
 

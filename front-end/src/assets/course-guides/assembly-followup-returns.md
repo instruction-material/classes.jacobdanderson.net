@@ -3,7 +3,7 @@
 Continue the completed Unit 10 search program and keep the signed-branch repair.
 This challenge follows an actual RET into its caller on the found and empty
 paths. Matching the returned index alone is insufficient. Save the live stack
-word, executed return, caller PC and restored stack position in analysis.md.
+word, executed return, caller PC and restored stack position in `analysis.md`.
 The baseline contract and setup follow this activity.
 
 ## Found path

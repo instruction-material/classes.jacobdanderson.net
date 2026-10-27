@@ -1,0 +1,31 @@
+// Complete the following array exercises!
+
+// Please enter your code below this line.
+
+// 1. Create an array of 3 common household pets
+
+// 2. Remove the last pet in the array using .pop()
+
+// 3. Add 2 more pets into the array using .push()
+
+// 4. Replace the third pet in the array with a komodo dragon. Then, print the array using printToScreen()!
+
+// 5. Create an array with the perfect squares from 1 to 20. Then, print the array using printToScreen()!
+
+// 6. Slice your squares array from #5 to create another array with the perfect squares from 5 to 15. Then, print the array using printToScreen()!
+
+// 7. Write a function that takes in an array of integers and returns the sum of all integers in the array. Then, print the sum of the squares arrays you made in #5 and #6!
+
+// 8. Create an array of 10 random integers between 11 and 15. Then, print the array.
+
+// 9. Write a function that takes in an array of integers and returns true if the first and last elements in the array are the same, otherwise return false. Call this function on your array from #8 and print the result!
+
+function printToScreen(value) {
+	d3.select("#output")
+		.append("p")
+		.text(
+			Array.isArray(value)
+				? `[${value.map(item => JSON.stringify(item)).join(", ")}]`
+				: String(value)
+		);
+}

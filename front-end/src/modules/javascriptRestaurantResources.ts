@@ -29,8 +29,8 @@ export const javascriptRestaurantResources = [
 			{
 				name: "README.md",
 				path: "restaurant-v1/restaurant-splash-page/starter/README.md.txt",
-				byteLength: 5415,
-				sha256: "285b3acbde8b7b0d7f8e25c0bad46cc7357c468a7a006700963498a71c601e28"
+				byteLength: 5421,
+				sha256: "045cf839048b630b76bd4981368fee0d94dbab39c3ddb15a15acbcf7f6a93a03"
 			},
 			{
 				name: "SOURCES.md",
@@ -119,8 +119,8 @@ export const javascriptRestaurantResources = [
 			{
 				name: "README.md",
 				path: "restaurant-v1/restaurant-splash-page/reference/README.md.txt",
-				byteLength: 5415,
-				sha256: "285b3acbde8b7b0d7f8e25c0bad46cc7357c468a7a006700963498a71c601e28"
+				byteLength: 5421,
+				sha256: "045cf839048b630b76bd4981368fee0d94dbab39c3ddb15a15acbcf7f6a93a03"
 			},
 			{
 				name: "SOURCES.md",

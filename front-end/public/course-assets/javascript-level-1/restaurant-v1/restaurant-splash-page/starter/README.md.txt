@@ -6,7 +6,7 @@ Create a responsive restaurant page with two Materialize parallax sections, an i
 
 The starter is an authored companion for this course. It supplies a valid HTML document, an unfinished main region, local libraries, images, and source comments. No original starter was available for this supplemental example. The separate reference adapts the captured restaurant solution and retains its two parallax sections, five menu items, alternating card layouts, and sample prices. Its restaurant and contact details are fictional examples.
 
-Confirm the selected import in the site IDE, or export its ZIP and extract every file. Open index.html directly in a browser. Both roles include all images, Materialize 1.0.0, its license, README.md, and SOURCES.md. They work without a server, package installation, or network connection; source and documentation links need a connection.
+Confirm the selected import in the site IDE, or export its ZIP and extract every file. Open index.html directly in a browser. Both roles include all images, Materialize 1.0.0, its license, `README.md`, and `SOURCES.md`. They work without a server, package installation, or network connection; source and documentation links need a connection.
 
 ## Structure the content
 
@@ -14,7 +14,7 @@ Plan the phone reading order before adding effects. Use one h1 for the restauran
 
 A Materialize row contains columns. The class combination col s12 m8 uses all twelve grid units on a small screen and eight on a medium or larger screen. Alternate the wider-screen card rows with a right-aligned column, and alternate which side holds the card image. A horizontal card contains card-image and card-stacked; the latter holds card-content. At narrow widths the reference stacks each card's image above its text so long names do not squeeze the description or price.
 
-Add two parallax-container elements at different points in the page. Each contains a parallax element with an image. Use meaningful alternative text for menu photographs and empty alternative text for repeated decorative backgrounds. The supplied SVG files embed the actual licensed photo bytes; they do not request remote images. SOURCES.md records the original images, credits, licenses, and adaptations.
+Add two parallax-container elements at different points in the page. Each contains a parallax element with an image. Use meaningful alternative text for menu photographs and empty alternative text for repeated decorative backgrounds. The supplied SVG files embed the actual licensed photo bytes; they do not request remote images. `SOURCES.md` records the original images, credits, licenses, and adaptations.
 
 ## Connect the library
 

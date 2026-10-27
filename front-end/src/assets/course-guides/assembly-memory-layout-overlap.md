@@ -53,7 +53,7 @@ Use ordinary-user Linux x86-64, GNU Intel assembly syntax, CMake 3.20+, GCC or
 Clang, GDB and binutils. On macOS use an x86-64 Linux lab or VM; on Windows use
 an x86-64 WSL distribution. The site IDE edits, saves and exports these sources.
 Each role includes routine.S, main.c, lab.h, model.c, tests.c, abi_checks.S,
-CMakeLists.txt and trace.md. Roles differ only in routine.S. Keep this README
+CMakeLists.txt and `trace.md`. Roles differ only in routine.S. Keep this README
 one level above the selected role. From that role directory:
 
 ```sh
@@ -88,7 +88,7 @@ caller PC and `$rsp == $entry_sp + 8`. Use current addresses for each run.
 
 Retain the untouched failure, named repair, actual memory trace, both compiler
 and build modes, a boundary prediction and the rejected copied regression in
-trace.md. Code tests do not complete that explanation.
+`trace.md`. Code tests do not complete that explanation.
 
 References: [System V AMD64 ABI](https://gitlab.com/x86-psABIs/x86-64-ABI/-/blob/master/x86-64-ABI/low-level-sys-info.tex),
 [memmove contract](https://man7.org/linux/man-pages/man3/memmove.3.html).

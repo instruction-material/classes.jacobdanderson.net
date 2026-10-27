@@ -12,8 +12,8 @@ Use Python 3.10 or newer, curl and ss in an external Linux terminal under an
 ordinary account. No root account is needed. The program binds only 127.0.0.1
 on a newly allocated port. It does not query a public host or change interfaces,
 routes, firewall rules, resolver files, credentials or existing services. Keep
-main.py, application_lab.py, network-notes.md and application-cases.md together.
-The root README.md is this complete guide; the role README.md identifies the
+`main.py`, application_lab.py, `network-notes.md` and `application-cases.md` together.
+The root `README.md` is this complete guide; the role `README.md` identifies the
 selected role. Run from starter/ for an attempt or solution/ for a separate
 reference. Both roles collect the same real observations. Python programming is
 optional; only analyze(evidence) is incomplete in the starter.
@@ -78,14 +78,14 @@ separate. Construct a decision table that names what is observed, what the
 client can safely infer, the next authorized check and a stopping condition.
 Include the held-port curl refusal, where there is no HTTP message to classify.
 
-Read application-cases.md as supplied reasoning material. Its DNS negative
+Read `application-cases.md` as supplied reasoning material. Its DNS negative
 answer, TLS trust failure and SSH host-key/authentication cases concern distinct
 protocol boundaries. Name the missing evidence before proposing a correction.
 The local script does not query DNS, establish TLS, authenticate SSH or measure
 an Internet service. A protocol name or conventional port does not establish
 which peer answered or whether an authenticated operation succeeded.
 
-Complete network-notes.md with the prediction/result table, exact binary
+Complete `network-notes.md` with the prediction/result table, exact binary
 representation, response fields, actual connection identities, the changed run,
 constructed-case reasoning and cleanup. Retain contrary evidence and explain
 which conclusion it limits. Check serverReaped and the owned PID's absence

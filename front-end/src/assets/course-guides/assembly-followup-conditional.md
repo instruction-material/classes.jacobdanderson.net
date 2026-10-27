@@ -3,7 +3,7 @@
 Continue the completed Unit 10 search program. Keep its signed-branch repair and
 unchanged passing contracts. This investigation uses a conditional instruction
 breakpoint to distinguish an unwanted stop from a decision that is never reached.
-Save predictions and actual observations in analysis.md. The baseline contract,
+Save predictions and actual observations in `analysis.md`. The baseline contract,
 files and build commands follow this activity.
 
 ## Predict and stop at the second element

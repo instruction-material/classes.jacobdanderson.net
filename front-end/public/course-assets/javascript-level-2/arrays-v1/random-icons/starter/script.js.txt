@@ -1,0 +1,44 @@
+// Given an array of icons and an array of colors, generate a row of 6 randomly-colored and randomly-picked large icons! Use d3.select() in order to target elements along with Materialize to add them to the page.
+
+const icons = [
+	"3d_rotation",
+	"access_time",
+	"backspace",
+	"cached",
+	"dashboard",
+	"equalizer",
+	"filter_hdr",
+	"g_translate",
+	"headset",
+	"image",
+	"keyboard",
+	"local_airport",
+	"monetization_on",
+	"notifications_none",
+	"opacity",
+	"panorama",
+	"question_answer",
+	"radio",
+	"sentiment_dissatisfied",
+	"time_to_leave",
+	"usb",
+	"videogame_asset",
+	"wifi"
+];
+
+const colors = [
+	"red",
+	"orange",
+	"teal",
+	"pink",
+	"yellow",
+	"green",
+	"blue",
+	"grey",
+	"brown",
+	"indigo",
+	"cyan",
+	"lime"
+];
+
+// Please enter your code below this line!

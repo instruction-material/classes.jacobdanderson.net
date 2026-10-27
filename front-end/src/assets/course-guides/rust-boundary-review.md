@@ -68,7 +68,7 @@ comment; a SAFETY comment alone is not evidence.
 | from_raw_parts in raw_sum | Non-null, initialized, live, single-allocation immutable bytes with a valid length | The wrapper borrows a Rust byte slice and caps length at 8; null empty input takes a separate branch | A different native caller must establish validity; null checks are insufficient |
 | output.write in raw_sum | Aligned, live, disjoint writable u32 | The wrapper passes a distinct stack local; guarded failures preserve a sentinel | The callee must respect output bounds and not retain it |
 | Calling the unsafe C-ABI function | Compatible signature, all memory preconditions, no retention/free/unwind | Fixed private function pointer, live borrows and checked status/output protocol | A foreign replacement needs a separate audit and link/build evidence |
-| Reading the saved pointer in miri-dangling.rs | The allocation would need to remain live | The provided experiment frees it first and must be rejected under Miri | Never infer a native execution is safe because it happens to print 7 |
+| Reading the saved pointer in `miri-dangling.rs` | The allocation would need to remain live | The provided experiment frees it first and must be rejected under Miri | Never infer a native execution is safe because it happens to print 7 |
 
 ## Build and predict
 
@@ -102,7 +102,7 @@ versions and one independently predicted case, not just a passing summary.
 ## Core, continuation, choice and challenge
 
 CORE: retain the safe baseline and define its observable contract. Audit the
-supplied raw_sum before calling it. Complete CORE and LIMITS in observations.md,
+supplied raw_sum before calling it. Complete CORE and LIMITS in `observations.md`,
 including every ledger row, the need for the boundary and a safe alternative.
 Add a distinct edge case that is not a copy of the supplied tests.
 
@@ -118,12 +118,12 @@ write, an impossible output and an in-range incorrect sum. State which are
 detected by the wrapper and which need the independent baseline comparison.
 Do not use an arbitrary caller-selected function pointer or real library.
 
-CHALLENGE: compile unsafe-call.rs and unsafe-body.rs separately with
+CHALLENGE: compile `unsafe-call.rs` and `unsafe-body.rs` separately with
 `rustc --edition=2024 diagnostics/NAME.rs -o NAME`; both must be refused with
-E0133. explicit-call.rs and explicit-body.rs compile and print 7. Explain the
+E0133. `explicit-call.rs` and `explicit-body.rs` compile and print 7. Explain the
 separate obligations of an unsafe function and its inner operations. Review
 the supplied Miri experiment and recorded evidence below. Running Miri is
-optional; never run miri-dangling.rs natively. A clean finite Miri run is not a
+optional; never run `miri-dangling.rs` natively. A clean finite Miri run is not a
 proof of every input, target, schedule, foreign implementation or ABI.
 
 ## Miri experiment

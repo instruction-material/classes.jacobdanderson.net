@@ -1,0 +1,73 @@
+// Complete these array exercises!
+
+// Solution
+
+// 1. Create an array of 3 common household pets
+
+let pets = ["dog", "cat", "bunny"];
+
+// 2. Remove the last pet in the array using .pop()
+
+pets.pop();
+
+// 3. Add 2 more pets into the array using .push()
+
+pets.push("parrot");
+pets.push("guinea pig");
+
+// 4. Replace the third pet in the array with a komodo dragon. Then, print the array using printToScreen()!
+
+pets[2] = "komodo dragon";
+printToScreen(pets);
+
+// 5. Create an array with the perfect squares from 1 to 20. Then, print the array using printToScreen()!
+
+let squares = [];
+for (let i = 1; i < 21; i++) {
+	squares.push(i * i);
+}
+printToScreen(squares);
+
+// 6. Slice your squares array from #5 to create another array with the perfect squares from 5 to 15. Then, print the array using printToScreen()!
+
+let squares2 = squares.slice(4, 15);
+printToScreen(squares2);
+
+// 7. Write a function that takes in an array of integers and returns the sum of all integers in the array. Then, print the sum of the squares arrays you made in #5 and #6!
+
+const sumOfArray = arr => {
+	let sum = 0;
+	for (let i = 0; i < arr.length; i++) {
+		sum += arr[i];
+	}
+	return sum;
+};
+
+printToScreen(sumOfArray(squares));
+printToScreen(sumOfArray(squares2));
+
+// 8. Create an array of 10 random integers between 11 and 15. Then, print the array.
+
+let randomNumbers = [];
+for (let i = 0; i < 10; i++) {
+	randomNumbers.push(Math.floor(Math.random() * 5) + 11);
+}
+printToScreen(randomNumbers);
+
+// 9. Write a function that takes in an array of integers and returns true if the first and last elements in the array are the same, otherwise return false. Call this function on your array from #8 and print the result!
+
+const hasSameFirstAndLast = arr => {
+	return arr.length > 0 && arr[0] === arr[arr.length - 1];
+};
+
+printToScreen(hasSameFirstAndLast(randomNumbers));
+
+function printToScreen(value) {
+	d3.select("#output")
+		.append("p")
+		.text(
+			Array.isArray(value)
+				? `[${value.map(item => JSON.stringify(item)).join(", ")}]`
+				: String(value)
+		);
+}

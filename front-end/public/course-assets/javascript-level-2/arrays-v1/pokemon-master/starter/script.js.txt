@@ -1,0 +1,34 @@
+// You are the new Pokemon master in town! Using the given 2D array, follow the instructions below.
+
+// Note: Each Pokemon is stored in the format [id, name, type].
+const pokemon = [
+	[4, "Charmander", "fire"],
+	[16, "Pidgey", "normal"],
+	[25, "Pikachu", "electric"],
+	[54, "Psyduck", "water"],
+	[175, "Togepi", "fairy"]
+];
+
+// Enter your code below this line.
+
+// 1. You just caught a Skitty! Skitty's id is 300 and type is normal. Add Skitty into the pokemon array.
+
+// 2. With indexing, use printToScreen() to print the name of the Pokemon with id 54.
+
+// 3. With indexing, print Togepi's id number.
+
+// 4. With indexing, print Charmander's type.
+
+// 5. Oh no! Your Pidgey escaped! Remove Pidgey from your array.
+
+// 6. Iterate through the Pokemon array to print a sentence of each pokemon's name, id, and type.
+
+function printToScreen(value) {
+	d3.select("#output")
+		.append("p")
+		.text(
+			Array.isArray(value)
+				? `[${value.map(item => JSON.stringify(item)).join(", ")}]`
+				: String(value)
+		);
+}

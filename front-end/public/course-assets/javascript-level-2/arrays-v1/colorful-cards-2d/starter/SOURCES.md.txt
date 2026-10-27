@@ -1,0 +1,29 @@
+# Sources
+
+Juni Learning: [JSM5 Project 4: Colorful Cards in 2D](https://codepen.io/junilearning/pen/1dce247c86d866c1f33a6dce86511c71).
+
+Observed editor: https://codepen.io/junilearning/pen/xxOjPNL
+
+Role: starter. Adapted from this captured original role; the starter remains unfinished. Full original panels/settings are retained in test/fixtures/javascript-master-arrays-originals.json.
+
+Original panel SHA-256:
+
+- HTML: bcdadb2f807fd06658a17466a9dd29fc39b8468f68770f5926dd817bdb6eb29a
+- CSS: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- JavaScript: 2d28a1663e019edf3eed71960bcb2b936d43a55ab85420c849f28dcb7de66f14
+
+
+Adaptations:
+
+- Complete responsive HTML, local source-error reporting, source licenses and full neutral readings. CodePen Babel is unnecessary for this standard JavaScript, so no transpiler is required.
+- Foray/Pokemon use a wrapping D3 text helper instead of the original fixed-width animated SVG, preserving printToScreen and task code. The Foray empty-endpoint comparison returns false.
+- Iterator console output is mirrored on the page. Ones digits use absolute value; function iteration includes own values only; zero/non-integer divisors raise a RangeError.
+- Cards keep original coordinate systems, shapes and color order with text descriptions generated from the same data.
+- Pokemon retains the original six tuple tasks and corrects Psyduck to water. Official reference: https://ph.portal-pokemon.com/pokedex/0054/.
+- Random Icons preserves six independent icon/color selections and D3/Materialize classes, adds a matching text list, wraps the gallery, and darkens light text colors.
+
+Dependencies:
+
+- Foray uses D3 6.1.1; Pokemon and Random Icons use D3 6.2.0, matching their observed external script settings. Vendored bytes are reused from the preceding validated course packs with the D3 license.
+- Random Icons uses the existing validated local Material Icons font and Materialize 1.0.0 CSS with their licenses. The first observed original CSS URL names Material Icons 3.0.2. The second CSS setting is literally returned as <redacted> by the browser reader: its exact original URL/version is unknown. This pack explicitly pins the local CSS/font adaptation rather than claiming original-byte equivalence.
+- Other projects have no external runtime dependencies. No remote requests are required by any exported page.

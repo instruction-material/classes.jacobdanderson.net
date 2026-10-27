@@ -1,0 +1,17 @@
+window.addEventListener("error", () => {
+	document.getElementById("source-error").hidden = false;
+});
+window.addEventListener("DOMContentLoaded", () => {
+	document.querySelector("main").dataset.state = "loaded";
+});
+const originalLog = console.log.bind(console);
+console.log = (...values) => {
+	originalLog(...values);
+	const line = document.createElement("p");
+	line.textContent = values
+		.map(value =>
+			Array.isArray(value) ? JSON.stringify(value) : String(value)
+		)
+		.join(" ");
+	document.getElementById("output").append(line);
+};

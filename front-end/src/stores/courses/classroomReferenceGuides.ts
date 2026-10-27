@@ -23,7 +23,7 @@ export function classroomReferenceItem(
 			mode: "python",
 			asset: "pysynth-song.md",
 			content:
-				"**Concept path:** This optional example supplies a complete list of note/duration pairs with octaves, a rest and a final high note. At 120 bpm with pause=0 it generates a two-second WAV. The browser supplies the demonstrated API.\n\n**Practice path:** Confirm a separate reference import and run main.py in Python mode. Play and download the generated PySynth: course_melody.wav result. Predict one duration change, make it, and compare the whole sequence. Read the linked guide for note spellings, denominators and downloads.\n\n**Verification:** Hear the initial C, rest, G and final high C in order. Keep the learner Song Generator separate and validate its input rather than relying on fallback values."
+				"**Concept path:** This optional example supplies a complete list of note/duration pairs with octaves, a rest and a final high note. At 120 bpm with pause=0 it generates a two-second WAV. The browser supplies the demonstrated API.\n\n**Practice path:** Confirm a separate reference import and run `main.py` in Python mode. Play and download the generated PySynth: course_melody.wav result. Predict one duration change, make it, and compare the whole sequence. Read the linked guide for note spellings, denominators and downloads.\n\n**Verification:** Hear the initial C, rest, G and final high C in order. Keep the learner Song Generator separate and validate its input rather than relying on fallback values."
 		},
 		records: {
 			id: "java-record-reference",

@@ -1,4 +1,10 @@
 import type { RawCourse } from "./types";
+import javascriptColorfulCards2DReading from "@/assets/course-guides/javascript-master-arrays/colorful-cards-2d.md?raw";
+import javascriptColorfulCardsReading from "@/assets/course-guides/javascript-master-arrays/colorful-cards.md?raw";
+import javascriptForayIntoArraysReading from "@/assets/course-guides/javascript-master-arrays/foray-into-arrays.md?raw";
+import javascriptIntegratingIteratorsReading from "@/assets/course-guides/javascript-master-arrays/integrating-iterators.md?raw";
+import javascriptPokemonMasterReading from "@/assets/course-guides/javascript-master-arrays/pokemon-master.md?raw";
+import javascriptRandomIconsReading from "@/assets/course-guides/javascript-master-arrays/random-icons.md?raw";
 import javascriptBasicShapesReading from "@/assets/course-guides/javascript-master-canvas/basic-shapes.md?raw";
 import javascriptCanvasTextReading from "@/assets/course-guides/javascript-master-canvas/canvas-text.md?raw";
 import javascriptJniStockPriceReading from "@/assets/course-guides/javascript-master-canvas/jni-stock-price.md?raw";
@@ -713,11 +719,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSM5 Project 1: Foray into Arrays",
-					content: `**Project target:** Practice common array operations through small data tasks. The project emphasizes reading, updating, generating, and analyzing array values without losing track of index boundaries.
-
-**Build path:** Manipulate pet arrays, identify perfect squares, compute sums, generate random arrays, and compare first and last elements. Use \`printToScreen()\` after each task so the result is visible without relying only on the console.
-
-**Evidence target:** Each array task prints the starting data and final result, random arrays stay within the requested range, and first/last comparisons handle arrays of different lengths including a one-element array.`,
+					preserveInstructions: true,
+					content: javascriptForayIntoArraysReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/96047a35895a6620240bd2ce171a71ec",
 					solutionLink:
@@ -741,11 +744,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSM5 Project 2: Integrating Iterators",
-					content: `**Project target:** Use iterator methods to transform and analyze arrays without writing every task as a manual index loop. The project highlights method choice: transformation, selection, or accumulation.
-
-**Build path:** Adjust arrays with \`map\`, invoke functions stored in objects, sum even values with \`reduce\`, and filter values divisible by a selected number. Keep each task in a named function so the iterator method and callback are easy to inspect.
-
-**Evidence target:** The output identifies which iterator method was used for each task, original arrays remain available for comparison, and edge cases such as empty arrays or no matching values are handled clearly.`,
+					preserveInstructions: true,
+					content: javascriptIntegratingIteratorsReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/2e76b16dbd71552eeb1179b45b57ae2d",
 					solutionLink:
@@ -753,11 +753,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSM5 Project 3: Colorful Cards",
-					content: `**Project target:** Render a row of canvas cards from an array of colors. The project connects array order, iterator callbacks, and x-coordinate spacing.
-
-**Build path:** Store the colors in an array, write a card drawing helper, and use an iterator to draw each card at the correct x position. Derive card position from the index rather than hard-coding every coordinate.
-
-**Evidence target:** The number of drawn cards matches the array length, changing the color array changes the rendered row, and card spacing remains consistent when another color is added.`,
+					preserveInstructions: true,
+					content: javascriptColorfulCardsReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/b167fc3da0e85d5ff65158f799658566",
 					solutionLink:
@@ -773,11 +770,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSM5 Project 4: Colorful Cards in 2D",
-					content: `**Project target:** Render a 5 by 5 grid of colored cards from a two-dimensional array. The project combines grid data, nested iteration, and canvas coordinate mapping.
-
-**Build path:** Create the color grid as a 2D array, then use nested iteration to draw one card for each row and column. Calculate x from the column index and y from the row index. Keep card size and gap values as named constants.
-
-**Evidence target:** The rendered grid has 25 cards, row and column changes map to the correct direction on the canvas, and changing one color in the data changes one matching card.`,
+					preserveInstructions: true,
+					content: javascriptColorfulCards2DReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/1dce247c86d866c1f33a6dce86511c71",
 					solutionLink:
@@ -787,11 +781,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JSM5 Supplemental Project 1: Pokemon Master",
-					content: `**Project target:** Use two-dimensional arrays to represent a Pokemon-style grid of locations or encounters. The core skill is translating row/column data into meaningful game state.
-
-**Build path:** Inspect the starter grid, identify what each row and column represents, and write functions that read or update specific cells. Add at least one search or count operation across the full grid.
-
-**Evidence target:** The program can access a specific cell, scan the full grid, and update a value without disturbing neighboring cells. Boundary cases for the first and last row or column are checked explicitly.`,
+					preserveInstructions: true,
+					content: javascriptPokemonMasterReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/61d80971229e4f85126de1fcfb54b1d8",
 					solutionLink:
@@ -799,11 +790,8 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSM5 Supplemental Project 2: Random Icons",
-					content: `**Project target:** Generate a small icon gallery by combining arrays, randomness, D3 selection, and Materialize styling.
-
-**Build path:** Store icon names and color choices in arrays. Randomly choose six icon/color pairs, then render them into styled page elements. Keep random selection separate from rendering so the chosen data can be logged and checked.
-
-**Evidence target:** Six icons appear on the page, icon and color choices come from the configured arrays, repeated runs can produce different combinations, and the layout remains readable when duplicate icons appear.`,
+					preserveInstructions: true,
+					content: javascriptRandomIconsReading,
 					projectLink:
 						"https://codepen.io/junilearning/pen/e3ae971ad6fd35c3c0829208cb049099",
 					solutionLink:

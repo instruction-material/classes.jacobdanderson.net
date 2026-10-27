@@ -30,12 +30,12 @@ Prerequisites are the addressing, separate DNS/NSS and route-reading units.
 Use the same owned Linux lab and an ordinary account. Python 3.10 or newer,
 iproute2 (ip and ss) and curl are required. On an Ubuntu lab that the account
 administers, package preparation is `sudo apt-get install python3 iproute2 curl`.
-Only package preparation uses elevation. Run main.py without sudo.
+Only package preparation uses elevation. Run `main.py` without sudo.
 
 Save and export the selected role in the site IDE. Extract its ZIP and enter
 `starter/` for the attempt or `solution/` for the separate reference. The browser
 edits and saves the files; the Linux terminal runs the actual observations.
-Keep main.py, ipv6_lab.py, network-notes.md, ipv6-practice-case.md and README.md
+Keep `main.py`, ipv6_lab.py, `network-notes.md`, `ipv6-practice-case.md` and `README.md`
 together. The untouched attempt already runs. Its analysis: null field marks
 the optional Python extension; it does not indicate a failed networking lab.
 
@@ -106,11 +106,11 @@ on-link Neighbor Discovery, Router Advertisements or DHCPv6.
 ## Complete the whole diagnostic explanation
 
 Keep the issuing host, account, namespace, tool versions, predictions, commands,
-raw outputs and cleanup in network-notes.md. Reuse the earlier DNS/NSS unit's
+raw outputs and cleanup in `network-notes.md`. Reuse the earlier DNS/NSS unit's
 actual A, AAAA and system-lookup evidence. A returned AAAA value does not prove
 the address is configured, reachable or selected by a later client.
 
-Read all three cases in ipv6-practice-case.md. They supply the on-link neighbor,
+Read all three cases in `ipv6-practice-case.md`. They supply the on-link neighbor,
 family-policy and configuration reasoning that the loopback run cannot measure.
 Label those constructed records separately from actual results. Trace each
 family through address scope, selected route, neighbor where relevant, lookup,

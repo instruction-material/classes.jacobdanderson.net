@@ -93,7 +93,7 @@ cargo build --locked --offline
 Record stdout, stderr and status separately. Running the built executable from
 another working directory must select the same package fixtures. `cargo clean`
 removes build outputs; repeat the tests and build afterward. Preserve Cargo.toml,
-Cargo.lock, src, fixtures, observations.md and this README together.
+Cargo.lock, src, fixtures, `observations.md` and this README together.
 
 ## Core, continuation, choice and challenge
 

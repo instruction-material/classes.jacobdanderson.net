@@ -1,6 +1,6 @@
 # Table Documentation Dive
 
-Extend the My Hobby Table project, or build the supplied ten-row 2019 table from README.md. Keep the caption, column headings, row headings, and historical team labels. This is supplemental practice in reading documentation and applying a focused change; it does not replace the core table project.
+Extend the My Hobby Table project, or build the supplied ten-row 2019 table from `README.md`. Keep the caption, column headings, row headings, and historical team labels. This is supplemental practice in reading documentation and applying a focused change; it does not replace the core table project.
 
 In the included Materialize 1.0.0 CSS, `class="highlight centered"` highlights the row under the pointer and centers the cells. Add links to the player names with an `a` element and an appropriate absolute HTTPS `href`. The reference preserves the original ten Wikipedia destinations, including the correctly spelled Zack Martin page. Use meaningful link text so a list of links still identifies each destination.
 

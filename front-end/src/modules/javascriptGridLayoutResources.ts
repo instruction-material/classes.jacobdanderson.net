@@ -216,8 +216,8 @@ export const javascriptGridLayoutResources = [
 			{
 				name: "README.md",
 				path: "grid-layout-v1/pokemon-team/starter/README.md.txt",
-				byteLength: 3070,
-				sha256: "eeff5ccb7b54e08e58c483575b98ef29a3038767dd8dbccbeb08dd1bfdcca67c"
+				byteLength: 3072,
+				sha256: "7ac3620dc567f831d8f9641aae87b97b03091eb5298a9de23b9890967a9f41e7"
 			},
 			{
 				name: "vendor/materialize.min.css",
@@ -312,8 +312,8 @@ export const javascriptGridLayoutResources = [
 			{
 				name: "README.md",
 				path: "grid-layout-v1/pokemon-team/reference/README.md.txt",
-				byteLength: 3070,
-				sha256: "eb92e2df66a31b677c2f5e70cb0a4f4ea4e84d8480b1ab0cd344c3ae536020cd"
+				byteLength: 3072,
+				sha256: "87bb0a523d31103c3c6184f9d8f04e20eacd719849b25a94737991ab6b1f7e52"
 			},
 			{
 				name: "vendor/materialize.min.css",
@@ -527,8 +527,8 @@ export const javascriptGridLayoutResources = [
 			{
 				name: "README.md",
 				path: "grid-layout-v1/fake-tech/starter/README.md.txt",
-				byteLength: 2596,
-				sha256: "278ed98bd391032aa9d495fec1dcab9dc34b83e7f193402973e08fe3143b3573"
+				byteLength: 2598,
+				sha256: "fa91c3515c16a989c8e418c4bd179f262e6758e5d5647030661593a7fc8c34e4"
 			},
 			{
 				name: "vendor/materialize.min.css",
@@ -605,8 +605,8 @@ export const javascriptGridLayoutResources = [
 			{
 				name: "README.md",
 				path: "grid-layout-v1/fake-tech/reference/README.md.txt",
-				byteLength: 2596,
-				sha256: "942e4460af1c2685dd854902d9da36851f9c5b9a785cc95a8934bf02a128f47c"
+				byteLength: 2598,
+				sha256: "14a62b2474cfff58f9d76a1041751ab358f6b74700185155e0acd4aac4868818"
 			},
 			{
 				name: "vendor/materialize.min.css",
@@ -683,8 +683,8 @@ export const javascriptGridLayoutResources = [
 			{
 				name: "README.md",
 				path: "grid-layout-v1/art-gallery/starter/README.md.txt",
-				byteLength: 3764,
-				sha256: "fc944cbcf885a6f9b5d2158cc52da1d83991ffbfc237d3e53637b5c0f9ca20b9"
+				byteLength: 3766,
+				sha256: "00c4d50d7514bd3cd4e4dae3952366c94b7e928af1eebeeea4db6a4ea332a544"
 			},
 			{
 				name: "vendor/materialize.min.css",
@@ -803,8 +803,8 @@ export const javascriptGridLayoutResources = [
 			{
 				name: "README.md",
 				path: "grid-layout-v1/art-gallery/reference/README.md.txt",
-				byteLength: 3764,
-				sha256: "fd762c28f1057f16b27c03e8ca19384b7573a7f7c6710f8c38347a5d4e272262"
+				byteLength: 3766,
+				sha256: "45c3980bfbddc382ec25c6a6399829440ecc5c9809328cf2f22cb86bbde05d5a"
 			},
 			{
 				name: "vendor/materialize.min.css",

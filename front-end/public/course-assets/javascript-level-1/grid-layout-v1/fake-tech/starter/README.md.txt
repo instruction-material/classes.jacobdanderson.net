@@ -1,6 +1,6 @@
 # FakeTech.io
 
-Create a fictional company employee page using the five supplied biographies and local illustrated portraits in README.md. Each employee needs an identity heading, role and complete biography. Keep the same content fields in the same order so readers can compare the cards. The people and company belong to this exercise.
+Create a fictional company employee page using the five supplied biographies and local illustrated portraits in `README.md`. Each employee needs an identity heading, role and complete biography. Keep the same content fields in the same order so readers can compare the cards. The people and company belong to this exercise.
 
 Load Materialize 1.0.0 CSS. A `card-panel` adds padding and elevation; `z-depth-2` sets a shadow and `hoverable` changes it on pointer hover. A `valign-wrapper` uses flex alignment to center children vertically, and `circle` rounds a square portrait. These appearance helpers do not turn a card into a button. Leave these informational cards as ordinary articles.
 
