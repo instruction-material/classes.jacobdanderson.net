@@ -34,6 +34,27 @@ function requireSourceModule(title: string) {
 }
 
 describe("AI Level 1 learner flow", () => {
+	it("provides a reproducible local setup with an observable result", async () => {
+		const course = await loadRawCourse("ai-level-1");
+		const reading = course!.modules
+			.flatMap(module => module.curriculum)
+			.find(
+				item =>
+					item.title ===
+					"Python Environment for Search and Graph Labs"
+			);
+		expect(reading?.content).toContain("python3 -m venv .venv");
+		expect(reading?.content).toContain("py -3 -m venv .venv");
+		expect(reading?.content).toContain(
+			"python -m pip install networkx matplotlib jupyterlab"
+		);
+		expect(reading?.content).toContain("nx.shortest_path(graph, 0, 2)");
+		expect(reading?.content).toContain("[0, 1, 2]");
+		expect(reading?.content).toContain("`graph-check.png`");
+		expect(reading?.content).toContain("sys.executable");
+		expect(reading?.content).not.toContain("analysis uses clear structure");
+	});
+
 	it("places search and game studios beside their prerequisite units", () => {
 		expect(teachingModules().map(module => module.title)).toEqual(
 			EXPECTED_TEACHING_MODULES
@@ -91,8 +112,7 @@ describe("AI Level 1 learner flow", () => {
 		).toBe(73);
 		expect(
 			modules.reduce(
-				(total, module) =>
-					total + module.supplementalProjects.length,
+				(total, module) => total + module.supplementalProjects.length,
 				0
 			)
 		).toBe(56);

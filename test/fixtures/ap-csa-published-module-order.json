@@ -1,0 +1,32 @@
+{
+	"sourceRevision": "dbad4fcfc332d2b0d2ad9c98939ecbd96e600a66",
+	"sourceArtifact": 12659199565,
+	"sourceSnapshotSHA256": "ff03c3436a70ed49cf96aa37b542e6c56fe3d28b82b2399ad59cc5c58d5a8a98",
+	"moduleIds": [
+		"ap-computer-science-a-general-course-introduction-and-setup",
+		"ap-computer-science-a-apcs1-variables-and-input-output",
+		"ap-computer-science-a-apcs2-operators",
+		"ap-computer-science-a-apcs3-conditionals-and-packages",
+		"ap-computer-science-a-check-in-1",
+		"ap-computer-science-a-apcs5-classes-part-i",
+		"ap-computer-science-a-apcs6-classes-part-ii",
+		"ap-computer-science-a-check-in-2",
+		"ap-computer-science-a-apcs9-software-development-lifecycle",
+		"ap-computer-science-a-apcs10-arrays",
+		"ap-computer-science-a-apcs11-arraylists",
+		"ap-computer-science-a-check-in-3",
+		"ap-computer-science-a-apcs12-wrapper-classes",
+		"ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search",
+		"ap-computer-science-a-apcs14-selection-and-insertion-sort",
+		"ap-computer-science-a-apcs15-recursion",
+		"ap-computer-science-a-apcs16-binary-search-and-merge-sort",
+		"ap-computer-science-a-check-in-4",
+		"ap-computer-science-a-apcs17-master-projects-and-test-prep",
+		"ap-computer-science-a-apcs4-selection-iteration-and-runtime-reasoning",
+		"ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment",
+		"ap-computer-science-a-standards-map",
+		"ap-computer-science-a-course-roadmap",
+		"ap-computer-science-a-project-practice-guide",
+		"ap-computer-science-a-ap-csa-exam-alignment-and-frq-practice-map"
+	]
+}

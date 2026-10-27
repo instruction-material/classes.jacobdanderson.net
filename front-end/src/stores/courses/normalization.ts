@@ -8525,33 +8525,6 @@ function normalizeImplementationLabLanguage(course: RawCourse) {
 	}
 }
 
-function normalizeApComputerScienceA(course: RawCourse) {
-	course.modules = orderedModules(course, [
-		"General: Course Introduction and Setup",
-		"APCS1 Variables and Input/Output",
-		"APCS2 Operators",
-		"APCS3 Conditionals and Packages",
-		"APCS4 Loops and Exceptions",
-		"Check-In #1",
-		"APCS5 Classes Part I",
-		"APCS6 Classes Part II",
-		"APCS7 Inheritance",
-		"APCS8 Polymorphism",
-		"Check-In #2",
-		"APCS9 Software Development Lifecycle",
-		"APCS10 Arrays",
-		"APCS11 ArrayLists",
-		"Check-In #3",
-		"APCS12 Wrapper Classes",
-		"APCS13 Algorithmic Runtime and Linear Search",
-		"APCS14 Selection and Insertion Sort",
-		"APCS15 Recursion",
-		"APCS16 Binary Search and Merge Sort",
-		"Check-In #4",
-		"APCS17 Master Projects and Test Prep"
-	]);
-}
-
 function normalizeJavaScriptLevel1(course: RawCourse) {
 	course.modules = orderedModules(course, [
 		"JSS1 Variables and Data Types",
@@ -9567,7 +9540,6 @@ function removeDuplicateSolutionLinks(course: RawCourse) {
 
 const normalizers: Record<string, (course: RawCourse) => void> = {
 	"ai-level-1": normalizeAiLevel1,
-	"ap-computer-science-a": normalizeApComputerScienceA,
 	"data-structures-and-algorithms-in-cpp": normalizeDataStructuresCpp,
 	"design-patterns-in-java": normalizeDesignPatternsJava,
 	"java-level-2": normalizeJavaLevel2,

@@ -17,6 +17,16 @@ const baseline = JSON.parse(
 	)
 ) as Record<string, { items: number; sha256: string }>;
 
+const publishedAPModuleOrder = JSON.parse(
+	readFileSync(
+		resolve(
+			process.cwd(),
+			"../test/fixtures/ap-csa-published-module-order.json"
+		),
+		"utf8"
+	)
+) as { moduleIds: string[] };
+
 it("preserves published assignment identities across the complete catalog", async () => {
 	const output = process.env.COURSE_CATALOG_PROOF_DIR;
 	if (output) mkdirSync(output, { recursive: true });
@@ -56,8 +66,20 @@ it("preserves published assignment identities across the complete catalog", asyn
 			)
 		);
 		expect(actual.length, id).toBe(identities.items);
+		// AP's authored progression replaces the stale display order. Reconstruct
+		// only its published module order to verify every original identity and
+		// section; the AP flow regression separately checks the corrected order.
+		const publishedIdentities =
+			id === "ap-computer-science-a"
+				? publishedAPModuleOrder.moduleIds.flatMap(moduleId =>
+						actual.filter(item => item.moduleId === moduleId)
+					)
+				: actual;
+		expect(publishedIdentities.length, id).toBe(actual.length);
 		expect(
-			createHash("sha256").update(JSON.stringify(actual)).digest("hex"),
+			createHash("sha256")
+				.update(JSON.stringify(publishedIdentities))
+				.digest("hex"),
 			id
 		).toBe(identities.sha256);
 		app.setCurrentTutor(null);

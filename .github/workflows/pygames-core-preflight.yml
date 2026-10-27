@@ -1,7 +1,21 @@
-name: PyGames core preflight
+name: Course preflight
+
+run-name: ${{ inputs.course == 'networking' && 'Swift Networking source evidence' || inputs.course == 'ai-setup' && 'AI setup reading' || 'PyGames core preflight' }}
 
 on:
   workflow_dispatch:
+    inputs:
+      course:
+        description: Course verification to run
+        type: choice
+        options: [pygames, networking, ai-setup]
+        default: pygames
+      browser_run_id:
+        description: Networking browser export workflow run
+        type: string
+      browser_artifact_id:
+        description: Networking browser export artifact
+        type: string
 
 permissions:
   contents: read
@@ -12,6 +26,7 @@ concurrency:
 
 jobs:
   preflight:
+    if: inputs.course == 'pygames'
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     env:
@@ -63,11 +78,182 @@ jobs:
           path: output/pygames-core-exports
           if-no-files-found: error
           retention-days: 14
+
       - name: Retain complete catalog evidence
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: pygames-core-preflight
           path: output/pygames-core-preflight
+          if-no-files-found: error
+          retention-days: 14
+
+  networking:
+    if: inputs.course == 'networking'
+    runs-on: macos-26
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      actions: read
+    env:
+      CLASSES_FAMILY_TASK_ID: swift-networking-evidence-${{ github.run_id }}
+      CLASSES_FAMILY_MIN_DISK_GB: 8
+      CLASSES_FAMILY_HEAVY_TIMEOUT_MS: 3300000
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+      - name: Bind retained browser exports to the unchanged application source
+        env:
+          BROWSER_RUN_ID: ${{ inputs.browser_run_id }}
+          BROWSER_ARTIFACT_ID: ${{ inputs.browser_artifact_id }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import datetime
+          import json
+          import os
+          from pathlib import Path
+          import urllib.request
+
+          repository = os.environ["GITHUB_REPOSITORY"]
+          assert repository in {"anderson-webops/classes.jacobdanderson.net", "instruction-material/classes.jacobdanderson.net"}
+          run_id = os.environ["BROWSER_RUN_ID"]
+          artifact_id = os.environ["BROWSER_ARTIFACT_ID"]
+          assert all(value.isascii() and value.isdecimal() and 0 < int(value) and len(value) < 21 for value in [run_id, artifact_id])
+
+          def api(path):
+              request = urllib.request.Request(
+                  "https://api.github.com/repos/" + repository + "/" + path,
+                  headers={"Authorization": "Bearer " + os.environ["GH_TOKEN"], "Accept": "application/vnd.github+json"}
+              )
+              with urllib.request.urlopen(request, timeout=60) as response:
+                  return json.load(response)
+
+          artifact = api("actions/artifacts/" + artifact_id)
+          origin = artifact["workflow_run"]
+          run = api("actions/runs/" + run_id)
+          jobs = api("actions/runs/" + run_id + "/jobs?per_page=100")["jobs"]
+          assert artifact["name"] == "swift-networking-workflows" and not artifact["expired"]
+          assert 0 < artifact["size_in_bytes"] < 8 * 1024 * 1024
+          assert origin["id"] == run["id"] == int(run_id) and origin["head_sha"] == run["head_sha"]
+          assert run["repository"]["full_name"] == repository and run["path"] == ".github/workflows/ci.yml"
+          assert run["status"] == "completed" and run["conclusion"] in {"success", "cancelled"}
+          assert any(job["name"] == "swift-browser" and job["head_sha"] == run["head_sha"]
+                     and job["status"] == "completed" and job["conclusion"] == "success" for job in jobs)
+
+          def root_tree(revision):
+              commit = api("git/commits/" + revision)
+              return {entry["path"]: entry["sha"] for entry in api("git/trees/" + commit["tree"]["sha"])["tree"]}
+
+          previous = root_tree(origin["head_sha"])
+          current = root_tree(os.environ["GITHUB_SHA"])
+          unchanged = {name: current[name] for name in ["front-end", "back-end", "package.json", "package-lock.json"]}
+          assert all(previous[name] == digest for name, digest in unchanged.items())
+          proof = Path(os.environ["RUNNER_TEMP"]) / "swift-networking-ios/browser-origin.json"
+          proof.parent.mkdir(parents=True, exist_ok=True)
+          proof.write_text(json.dumps({
+              "at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              "repository": repository, "verificationHead": os.environ["GITHUB_SHA"],
+              "artifact": artifact, "browserProducerJobPassed": True,
+              "unchangedApplicationInputs": unchanged,
+              "scope": "Retained actual browser exports from identical application/dependency inputs; fresh native verification uses this checkout's harness."
+          }, indent=2) + "\n")
+          PY
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          artifact-ids: ${{ inputs.browser_artifact_id }}
+          run-id: ${{ inputs.browser_run_id }}
+          github-token: ${{ github.token }}
+          path: output/swift-networking-workflows
+          merge-multiple: true
+      - name: Wait for the hosted Mac to settle within the native load limit
+        run: |
+          python3 - <<'PY'
+          import datetime
+          import json
+          import os
+          from pathlib import Path
+          import time
+          proof = Path(os.environ["RUNNER_TEMP"]) / "swift-networking-ios/runner-readiness.json"
+          samples = []
+          deadline = time.monotonic() + 600
+          while True:
+              load = os.getloadavg()[0]
+              samples.append({"at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "load": load})
+              ready = load <= 8
+              proof.write_text(json.dumps({"ready": ready, "maximumLoad": 8, "samples": samples}, indent=2) + "\n")
+              if ready:
+                  break
+              if time.monotonic() >= deadline:
+                  raise SystemExit("Hosted Mac did not settle; native checks have not run")
+              time.sleep(10)
+          PY
+      - name: Verify all supplied Networking contracts from actual browser ZIPs
+        run: >-
+          node scripts/classes-family-heavy-task.mjs --
+          python3 test/swift-networking-exported-contracts.py
+          --browser output/swift-networking-workflows/swift-networking-browser
+          --proof "$RUNNER_TEMP/swift-networking-ios/contracts/proof.json"
+      - name: Bind built and installed apps and run both roles on two iPhone sizes
+        run: >-
+          node scripts/classes-family-heavy-task.mjs --
+          python3 test/swift-welcome-exported-ios.py --course networking
+          --browser output/swift-networking-workflows/swift-networking-browser
+          --proof "$RUNNER_TEMP/swift-networking-ios/proof.json"
+      - name: Retain complete Networking source and native evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: swift-networking-source-evidence
+          path: |
+            output/swift-networking-workflows/
+            ${{ runner.temp }}/swift-networking-ios/browser-origin.json
+            ${{ runner.temp }}/swift-networking-ios/runner-readiness.json
+            ${{ runner.temp }}/swift-networking-ios/proof.json
+            ${{ runner.temp }}/swift-networking-ios/processes.jsonl
+            ${{ runner.temp }}/swift-networking-ios/logs/
+            ${{ runner.temp }}/swift-networking-ios/results/
+            ${{ runner.temp }}/swift-networking-ios/contracts/proof.json
+            ${{ runner.temp }}/swift-networking-ios/contracts/processes.jsonl
+            ${{ runner.temp }}/swift-networking-ios/contracts/*.txt
+            ${{ runner.temp }}/swift-networking-ios/contracts/**/contracts-proof.json
+          if-no-files-found: error
+          retention-days: 14
+
+  ai-setup:
+    if: inputs.course == 'ai-setup'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      CLASSES_FAMILY_TASK_ID: ai-setup-reading-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+      - name: Create an isolated lesson environment
+        run: node scripts/classes-family-heavy-task.mjs -- python3 -m venv "$RUNNER_TEMP/ai-setup-environment"
+      - name: Install the reading's graph and notebook dependencies
+        run: >-
+          node scripts/classes-family-heavy-task.mjs --
+          "$RUNNER_TEMP/ai-setup-environment/bin/python" -m pip install
+          networkx matplotlib jupyterlab
+      - name: Execute the exact reading example and verify the result
+        run: >-
+          node scripts/classes-family-heavy-task.mjs --
+          "$RUNNER_TEMP/ai-setup-environment/bin/python" test/ai-search-setup-reading.py
+          --proof output/ai-setup-reading/proof.json
+      - name: Retain the complete reading execution evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: ai-setup-reading
+          path: output/ai-setup-reading/
           if-no-files-found: error
           retention-days: 14
