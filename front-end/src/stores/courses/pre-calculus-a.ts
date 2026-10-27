@@ -1,5 +1,6 @@
 import type { RawCourse } from "./types";
 import { configureMathCourseFlow } from "./mathCourseFlow";
+import { addPreCalculusACases } from "./preCalculusACases";
 import {
 	pendingStaticMediaNotice,
 	preCalculusAStaticFilenames,
@@ -694,9 +695,9 @@ export const preCalculusACourse: RawCourse = {
 						title: "Rational functions are ratios of polynomials, so domain restrictions and asymptotes guide the graph.",
 						concepts: [
 							"Zeros of the denominator create excluded x-values before any cancellation is considered.",
-							"Vertical asymptotes occur at non-canceled denominator zeros; holes occur when a common factor cancels.",
+							"After full cancellation, remaining denominator zeros give vertical asymptotes. An originally excluded input is a hole only if the simplified denominator is nonzero there.",
 							"Horizontal or slant asymptotes depend on polynomial degree comparison or division.",
-							"Roots of rational functions come from numerator zeros that remain in the simplified expression."
+							"Roots are numerator zeros that belong to the original domain, even when a simplified numerator vanishes at an excluded input."
 						],
 						practice:
 							"Factor numerator and denominator, identify restrictions, simplify carefully, then map zeros, holes, and asymptotes before graphing.",
@@ -759,7 +760,7 @@ export const preCalculusACourse: RawCourse = {
 					overview({
 						title: "Operations with rational expressions combine fraction arithmetic with polynomial factoring and domain restrictions.",
 						concepts: [
-							"Multiplying and dividing rational expressions require factoring, canceling common factors, and carrying original restrictions.",
+							"Record original denominator restrictions before factoring and canceling. For division, also exclude zeros of the entire divisor, then multiply by its reciprocal.",
 							"Adding and subtracting rational expressions require a common denominator before combining numerators.",
 							"Solving rational equations often uses a common denominator to clear fractions, but excluded values still matter.",
 							"Extraneous solutions can appear when a proposed answer makes an original denominator zero."
@@ -775,7 +776,7 @@ export const preCalculusACourse: RawCourse = {
 						goal: "Simplify rational expressions and solve rational equations with restrictions.",
 						steps: [
 							"Factor all polynomial numerators and denominators.",
-							"Record excluded values before simplifying.",
+							"Record original denominator zeros and, for division, values that make the entire divisor zero before simplifying.",
 							"Multiply, divide, add, or subtract using fraction rules.",
 							"Solve rational equations after clearing denominators.",
 							"Reject any solution that violates an original restriction."
@@ -1484,3 +1485,5 @@ configureMathCourseFlow(preCalculusACourse, {
 		"Pending Static Assets"
 	]
 });
+
+addPreCalculusACases(preCalculusACourse);

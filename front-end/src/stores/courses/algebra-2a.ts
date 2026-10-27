@@ -623,8 +623,10 @@ Use the provided graph pack anywhere a check-in item needs a sketch or color-cod
 				`
 Rational functions can have two kinds of breaks:
 
-- vertical asymptotes, caused by denominator zeros that do not cancel
-- removable discontinuities, caused by common factors that do cancel
+- vertical asymptotes at zeros of the denominator after full cancellation
+- removable discontinuities (holes) at excluded inputs where the fully simplified denominator is nonzero
+
+Keep the original domain restrictions. Partial cancellation alone does not establish a hole: \`(x - 1)/(x - 1)^2 = 1/(x - 1)\` for \`x != 1\`, so \`x = 1\` remains a vertical asymptote.
 
 **Representative examples**
 
@@ -687,21 +689,29 @@ Use the provided rational-function gallery when a clean reference is enough, and
 			createLesson(
 				"Multiplying, Dividing, and Simplifying Rational Expressions",
 				`
-Factor first, then cancel common factors, then multiply or divide.
+Factor first and record every zero of an original denominator. For division, also exclude values that make the entire divisor zero, then multiply by its reciprocal. Cancel common factors and keep all original restrictions in the final answer.
 
 **Representative simplifications**
 
 - \`(6x^3 - 12x)/(3x^2) = 2(x^2 - 2)/x\`
+  - retain \`x != 0\`
 - \`(x^2 + 4x + 3)/(x^2 - 3x - 18) = (x + 1)/(x - 6)\`
+  - retain \`x != -3, 6\`
 - \`(x^3 + 5x^2 - 14x)/(x^2 - 3x + 2) = x(x + 7)/(x - 1)\`
+  - retain \`x != 1, 2\`
 - \`(a^2 - 4)/(4a^2 - 1)\` divided by \`(a - 2)/(2a - 1)\` simplifies to \`(a + 2)/(2a + 1)\`
+  - retain \`a != -1/2, 1/2, 2\`; at 2 the original divisor is zero
 
 **Representative products and quotients**
 
 - \`z/(z^2 - 16) * (z^2 - z - 12)/(z^2 - 4z) = (z + 3)/(z^2 - 16)\`
+  - retain \`z != -4, 0, 4\`
 - \`(2x + 6)/(x^2 - 16) * (x - 4)/(x + 3) = 2/(x + 4)\`
+  - retain \`x != -4, -3, 4\`
 - \`(y^2 + 2y - 8)/15\` divided by \`(y - 2)/(5y)\` simplifies to \`y(y + 4)/3\`
+  - retain \`y != 0, 2\`
 - \`(x^2 - 10x + 25)/(x^2 - 16)\` divided by \`(x^2 - 3x - 10)/(3x - 12)\` simplifies to \`3(x - 5)/[(x + 4)(x + 2)]\`
+  - retain \`x != -4, -2, 4, 5\`; the divisor is zero at 5 and -2
 
 **Application**
 
@@ -713,6 +723,8 @@ Triangle area with
 becomes
 \`[(x - 4)(x + 3)] / [2(x + 12)]\`
 after factoring and canceling.
+
+Retain the original algebraic restrictions \`x != -12, -1, 3\`; a triangle model also requires positive base and height.
 				`.trim()
 			),
 			createLesson(

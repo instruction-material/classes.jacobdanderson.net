@@ -5,7 +5,7 @@ import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
 const MEDIA_BASE = "https://static.classes.jacobdanderson.net/algebra-2b";
 
 const media = {
-	logReference: `${MEDIA_BASE}/alb1-logarithms-reference.svg`,
+	logReference: "/course-assets/algebra-2b/logarithms-reference-v1.svg",
 	expLogFamilies: `${MEDIA_BASE}/alb2-exp-log-families.svg`,
 	arithmeticReference: `${MEDIA_BASE}/alb3-arithmetic-sequences.svg`,
 	geometricReference: `${MEDIA_BASE}/alb4-geometric-sequences.svg`,
@@ -105,6 +105,8 @@ export const algebra2BCourse: RawCourse = {
 				`
 Logarithms undo exponentials. If \`b^x = a\`, then \`log_b(a) = x\`. The base stays the same; the answer to the exponent becomes the logarithm value.
 
+For real logarithms, the base satisfies \`b > 0\`, \`b != 1\`, and the argument satisfies \`a > 0\`.
+
 **Conversion examples**
 
 - \`3^x = 47\` -> \`x = log_3(47)\`
@@ -135,11 +137,15 @@ Common logarithms use base \`10\`, and natural logarithms use base \`e\`. The gr
 				`
 Three identities do most of the work in this module:
 
+Use a real base \`b > 0\`, \`b != 1\`. In the product and quotient rules, \`m > 0\` and \`n > 0\`. In the power rule, \`m > 0\` and the exponent \`r\` may be any real number.
+
 - product rule: \`log_b(mn) = log_b(m) + log_b(n)\`
 - quotient rule: \`log_b(m/n) = log_b(m) - log_b(n)\`
-- power rule: \`log_b(m^n) = n log_b(m)\`
+- power rule: \`log_b(m^r) = r log_b(m)\`
 
 **Expansion and condensation examples**
+
+Assume \`x > 0\` and \`y > 0\` wherever they occur below. Keep the original restrictions when condensing; a combined expression may otherwise appear to allow additional inputs.
 
 - \`log_5(2x) = log_5(2) + log_5(x)\`
 - \`ln(2x^3) = ln(2) + 3ln(x)\`
@@ -149,11 +155,15 @@ Three identities do most of the work in this module:
 - \`5ln(x) + 4ln(y) - 3ln(x) = ln(x^2y^4)\`
 - \`log_3(4) + 2log_3(1/2) - log_3(x) = log_3(1/x)\`
 
+For example, \`ln(x^2) = 2ln|x|\` for \`x != 0\`. The expression \`2ln(x)\` requires \`x > 0\`, even after condensing it to \`ln(x^2)\`.
+
 **Change of base**
 
 Use
 \`log_a(x) = log_b(x) / log_b(a)\`
 when your calculator only gives \`log\` or \`ln\`.
+
+Here \`a > 0\`, \`b > 0\`, neither base is 1, and \`x > 0\`, so the logarithms exist and the denominator is nonzero.
 
 Representative calculator values:
 

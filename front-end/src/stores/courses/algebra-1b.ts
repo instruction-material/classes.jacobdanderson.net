@@ -359,7 +359,7 @@ To combine rational expressions, use a shared denominator exactly as you would w
 			createLesson(
 				"Rationalizing Denominators",
 				`
-Rationalizing removes radicals from the denominator.
+Rationalizing removes radicals from the denominator. Work with real radicals and a nonzero original denominator; simplify perfect-square radicals first.
 
 **Representative results**
 
@@ -371,8 +371,9 @@ Rationalizing removes radicals from the denominator.
 
 **Conjugate rule**
 
-- For a denominator like \`a + sqrt(b)\`, multiply numerator and denominator by \`a - sqrt(b)\`
+- For a denominator like \`a + sqrt(b)\`, multiply numerator and denominator by \`a - sqrt(b)\` only when that conjugate is nonzero.
 - This works because \`(a + sqrt(b))(a - sqrt(b)) = a^2 - b\`
+- If the conjugate is zero, simplify first: \`1/(2 + sqrt(4)) = 1/4\`. Multiplying by \`(2 - sqrt(4))/(2 - sqrt(4))\` would introduce division by zero.
 				`.trim()
 			)
 		]),
