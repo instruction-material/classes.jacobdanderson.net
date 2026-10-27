@@ -1,0 +1,748 @@
+{
+	"sourceTag": "v2.8.174",
+	"source": "fddea941207aced281beba52fc214406fe397a1d",
+	"courseId": "ap-calculus",
+	"sha256": "86d77fcca5b92006cf17cb0240de4c09f38ee2ffa1e94720ee56a111f6c5af45",
+	"identities": [
+		{
+			"moduleId": "ap-calculus-apca0-preparing-for-ap-calculus",
+			"id": "ap-calculus-apca0-preparing-for-ap-calculus-curriculum-preparing-for-ap-calculus-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apca0-preparing-for-ap-calculus",
+			"id": "ap-calculus-apca0-preparing-for-ap-calculus-supplemental-apca0-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apca0-preparing-for-ap-calculus",
+			"id": "ap-calculus-apca0-preparing-for-ap-calculus-supplemental-apca0-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc1-introduction-to-limits",
+			"id": "ap-calculus-apc1-introduction-to-limits-curriculum-introduction-to-limits-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc1-introduction-to-limits",
+			"id": "ap-calculus-apc1-introduction-to-limits-supplemental-apc1-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc1-introduction-to-limits",
+			"id": "ap-calculus-apc1-introduction-to-limits-supplemental-apc1-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc2-calculating-limits",
+			"id": "ap-calculus-apc2-calculating-limits-curriculum-calculating-limits-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc2-calculating-limits",
+			"id": "ap-calculus-apc2-calculating-limits-supplemental-apc2-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc2-calculating-limits",
+			"id": "ap-calculus-apc2-calculating-limits-supplemental-apc2-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc3-continuity",
+			"id": "ap-calculus-apc3-continuity-curriculum-continuity-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc3-continuity",
+			"id": "ap-calculus-apc3-continuity-supplemental-apc3-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc3-continuity",
+			"id": "ap-calculus-apc3-continuity-supplemental-apc3-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc4-limits-and-continuity-topic-review",
+			"id": "ap-calculus-apc4-limits-and-continuity-topic-review-curriculum-limits-and-continuity-topic-review-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc4-limits-and-continuity-topic-review",
+			"id": "ap-calculus-apc4-limits-and-continuity-topic-review-supplemental-apc4-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc4-limits-and-continuity-topic-review",
+			"id": "ap-calculus-apc4-limits-and-continuity-topic-review-supplemental-apc4-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc5-introduction-to-derivatives",
+			"id": "ap-calculus-apc5-introduction-to-derivatives-curriculum-introduction-to-derivatives-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc5-introduction-to-derivatives",
+			"id": "ap-calculus-apc5-introduction-to-derivatives-supplemental-apc5-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc5-introduction-to-derivatives",
+			"id": "ap-calculus-apc5-introduction-to-derivatives-supplemental-apc5-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc6-derivative-rules",
+			"id": "ap-calculus-apc6-derivative-rules-curriculum-derivative-rules-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc6-derivative-rules",
+			"id": "ap-calculus-apc6-derivative-rules-supplemental-apc6-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc6-derivative-rules",
+			"id": "ap-calculus-apc6-derivative-rules-supplemental-apc6-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc7-derivatives-of-trigonometric-and-other-functions",
+			"id": "ap-calculus-apc7-derivatives-of-trigonometric-and-other-functions-curriculum-derivatives-of-trigonometric-and-other-functions-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc7-derivatives-of-trigonometric-and-other-functions",
+			"id": "ap-calculus-apc7-derivatives-of-trigonometric-and-other-functions-supplemental-apc7-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc7-derivatives-of-trigonometric-and-other-functions",
+			"id": "ap-calculus-apc7-derivatives-of-trigonometric-and-other-functions-supplemental-apc7-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc8-derivatives-of-composite-implicit-and-inverse-functions",
+			"id": "ap-calculus-apc8-derivatives-of-composite-implicit-and-inverse-functions-curriculum-derivatives-of-composite-implicit-and-inverse-functions-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc8-derivatives-of-composite-implicit-and-inverse-functions",
+			"id": "ap-calculus-apc8-derivatives-of-composite-implicit-and-inverse-functions-supplemental-apc8-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc8-derivatives-of-composite-implicit-and-inverse-functions",
+			"id": "ap-calculus-apc8-derivatives-of-composite-implicit-and-inverse-functions-supplemental-apc8-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc9-differentiation-topic-review",
+			"id": "ap-calculus-apc9-differentiation-topic-review-curriculum-differentiation-topic-review-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc9-differentiation-topic-review",
+			"id": "ap-calculus-apc9-differentiation-topic-review-supplemental-apc9-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc9-differentiation-topic-review",
+			"id": "ap-calculus-apc9-differentiation-topic-review-supplemental-apc9-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc10-contextual-applications-of-differentiation",
+			"id": "ap-calculus-apc10-contextual-applications-of-differentiation-curriculum-contextual-applications-of-differentiation-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc10-contextual-applications-of-differentiation",
+			"id": "ap-calculus-apc10-contextual-applications-of-differentiation-supplemental-apc10-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc10-contextual-applications-of-differentiation",
+			"id": "ap-calculus-apc10-contextual-applications-of-differentiation-supplemental-apc10-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc11-analytical-applications-of-differentiation",
+			"id": "ap-calculus-apc11-analytical-applications-of-differentiation-curriculum-analytical-applications-of-differentiation-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc11-analytical-applications-of-differentiation",
+			"id": "ap-calculus-apc11-analytical-applications-of-differentiation-supplemental-apc11-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc11-analytical-applications-of-differentiation",
+			"id": "ap-calculus-apc11-analytical-applications-of-differentiation-supplemental-apc11-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc12-a-function-and-its-derivatives",
+			"id": "ap-calculus-apc12-a-function-and-its-derivatives-curriculum-a-function-and-its-derivatives-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc12-a-function-and-its-derivatives",
+			"id": "ap-calculus-apc12-a-function-and-its-derivatives-supplemental-apc12-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc12-a-function-and-its-derivatives",
+			"id": "ap-calculus-apc12-a-function-and-its-derivatives-supplemental-apc12-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc13-applications-of-derivatives-topic-review",
+			"id": "ap-calculus-apc13-applications-of-derivatives-topic-review-curriculum-applications-of-derivatives-topic-review-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc13-applications-of-derivatives-topic-review",
+			"id": "ap-calculus-apc13-applications-of-derivatives-topic-review-supplemental-apc13-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc13-applications-of-derivatives-topic-review",
+			"id": "ap-calculus-apc13-applications-of-derivatives-topic-review-supplemental-apc13-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc14-accumulation-of-change",
+			"id": "ap-calculus-apc14-accumulation-of-change-curriculum-accumulation-of-change-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc14-accumulation-of-change",
+			"id": "ap-calculus-apc14-accumulation-of-change-supplemental-apc14-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc14-accumulation-of-change",
+			"id": "ap-calculus-apc14-accumulation-of-change-supplemental-apc14-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc15-integrals",
+			"id": "ap-calculus-apc15-integrals-curriculum-integrals-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc15-integrals",
+			"id": "ap-calculus-apc15-integrals-supplemental-apc15-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc15-integrals",
+			"id": "ap-calculus-apc15-integrals-supplemental-apc15-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc16-integration-and-accumulation-of-change-topic-review",
+			"id": "ap-calculus-apc16-integration-and-accumulation-of-change-topic-review-curriculum-integration-and-accumulation-of-change-topic-review-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc16-integration-and-accumulation-of-change-topic-review",
+			"id": "ap-calculus-apc16-integration-and-accumulation-of-change-topic-review-supplemental-apc16-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc16-integration-and-accumulation-of-change-topic-review",
+			"id": "ap-calculus-apc16-integration-and-accumulation-of-change-topic-review-supplemental-apc16-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc17-introduction-to-differential-equations",
+			"id": "ap-calculus-apc17-introduction-to-differential-equations-curriculum-introduction-to-differential-equations-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc17-introduction-to-differential-equations",
+			"id": "ap-calculus-apc17-introduction-to-differential-equations-supplemental-apc17-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc17-introduction-to-differential-equations",
+			"id": "ap-calculus-apc17-introduction-to-differential-equations-supplemental-apc17-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc18-solutions-to-differential-equations",
+			"id": "ap-calculus-apc18-solutions-to-differential-equations-curriculum-solutions-to-differential-equations-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc18-solutions-to-differential-equations",
+			"id": "ap-calculus-apc18-solutions-to-differential-equations-supplemental-apc18-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc18-solutions-to-differential-equations",
+			"id": "ap-calculus-apc18-solutions-to-differential-equations-supplemental-apc18-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc19-differential-equations-topic-review",
+			"id": "ap-calculus-apc19-differential-equations-topic-review-curriculum-differential-equations-topic-review-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc19-differential-equations-topic-review",
+			"id": "ap-calculus-apc19-differential-equations-topic-review-supplemental-apc19-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc19-differential-equations-topic-review",
+			"id": "ap-calculus-apc19-differential-equations-topic-review-supplemental-apc19-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc20-interpreting-context-for-definite-integrals",
+			"id": "ap-calculus-apc20-interpreting-context-for-definite-integrals-curriculum-interpreting-context-for-definite-integrals-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc20-interpreting-context-for-definite-integrals",
+			"id": "ap-calculus-apc20-interpreting-context-for-definite-integrals-supplemental-apc20-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc20-interpreting-context-for-definite-integrals",
+			"id": "ap-calculus-apc20-interpreting-context-for-definite-integrals-supplemental-apc20-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc21-volumes-of-solids-using-integrals",
+			"id": "ap-calculus-apc21-volumes-of-solids-using-integrals-curriculum-volumes-of-solids-using-integrals-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc21-volumes-of-solids-using-integrals",
+			"id": "ap-calculus-apc21-volumes-of-solids-using-integrals-supplemental-apc21-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc21-volumes-of-solids-using-integrals",
+			"id": "ap-calculus-apc21-volumes-of-solids-using-integrals-supplemental-apc21-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc22-applications-of-integration-topic-review",
+			"id": "ap-calculus-apc22-applications-of-integration-topic-review-curriculum-applications-of-integration-topic-review-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc22-applications-of-integration-topic-review",
+			"id": "ap-calculus-apc22-applications-of-integration-topic-review-supplemental-apc22-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc22-applications-of-integration-topic-review",
+			"id": "ap-calculus-apc22-applications-of-integration-topic-review-supplemental-apc22-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc23-parametric-equations-polar-coordinates-and-vector-valued-functions",
+			"id": "ap-calculus-apc23-parametric-equations-polar-coordinates-and-vector-valued-functions-curriculum-parametric-equations-polar-coordinates-and-vector-valued-functions-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc23-parametric-equations-polar-coordinates-and-vector-valued-functions",
+			"id": "ap-calculus-apc23-parametric-equations-polar-coordinates-and-vector-valued-functions-supplemental-apc23-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc23-parametric-equations-polar-coordinates-and-vector-valued-functions",
+			"id": "ap-calculus-apc23-parametric-equations-polar-coordinates-and-vector-valued-functions-supplemental-apc23-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc24-parametric-equations-polar-coordinates-and-vector-valued-functions-topic-review",
+			"id": "ap-calculus-apc24-parametric-equations-polar-coordinates-and-vector-valued-functions-topic-review-curriculum-parametric-equations-polar-coordinates-and-vector-valued-functions-topic-review-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc24-parametric-equations-polar-coordinates-and-vector-valued-functions-topic-review",
+			"id": "ap-calculus-apc24-parametric-equations-polar-coordinates-and-vector-valued-functions-topic-review-supplemental-apc24-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc24-parametric-equations-polar-coordinates-and-vector-valued-functions-topic-review",
+			"id": "ap-calculus-apc24-parametric-equations-polar-coordinates-and-vector-valued-functions-topic-review-supplemental-apc24-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc25-infinite-series",
+			"id": "ap-calculus-apc25-infinite-series-curriculum-infinite-series-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc25-infinite-series",
+			"id": "ap-calculus-apc25-infinite-series-supplemental-apc25-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc25-infinite-series",
+			"id": "ap-calculus-apc25-infinite-series-supplemental-apc25-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc26-infinite-sums-and-representing-infinite-series",
+			"id": "ap-calculus-apc26-infinite-sums-and-representing-infinite-series-curriculum-infinite-sums-and-representing-infinite-series-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc26-infinite-sums-and-representing-infinite-series",
+			"id": "ap-calculus-apc26-infinite-sums-and-representing-infinite-series-supplemental-apc26-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc26-infinite-sums-and-representing-infinite-series",
+			"id": "ap-calculus-apc26-infinite-sums-and-representing-infinite-series-supplemental-apc26-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc27-infinite-sequences-and-series-topic-review",
+			"id": "ap-calculus-apc27-infinite-sequences-and-series-topic-review-curriculum-infinite-sequences-and-series-topic-review-core-concepts",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-apc27-infinite-sequences-and-series-topic-review",
+			"id": "ap-calculus-apc27-infinite-sequences-and-series-topic-review-supplemental-apc27-error-audit",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-apc27-infinite-sequences-and-series-topic-review",
+			"id": "ap-calculus-apc27-infinite-sequences-and-series-topic-review-supplemental-apc27-ap-practice-plan",
+			"section": "optional"
+		},
+		{
+			"moduleId": "ap-calculus-ap-calculus-reference-archive",
+			"id": "ap-calculus-ap-calculus-reference-archive-curriculum-ap-calculus-reference-map",
+			"section": "core"
+		},
+		{
+			"moduleId": "ap-calculus-pending-static-assets",
+			"id": "ap-calculus-pending-static-assets-curriculum-ap-calculus-pending-static-assets",
+			"section": "core"
+		}
+	],
+	"readings": [
+		{
+			"code": "APCA0",
+			"moduleId": "ap-calculus-apca0-preparing-for-ap-calculus",
+			"moduleTitle": "APCA0 Preparing for AP Calculus",
+			"id": "ap-calculus-apca0-preparing-for-ap-calculus-curriculum-preparing-for-ap-calculus-core-concepts",
+			"title": "Preparing for AP Calculus Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apca0-preparing-for-ap-calculus-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC1",
+			"moduleId": "ap-calculus-apc1-introduction-to-limits",
+			"moduleTitle": "APC1 Introduction to Limits",
+			"id": "ap-calculus-apc1-introduction-to-limits-curriculum-introduction-to-limits-core-concepts",
+			"title": "Introduction to Limits Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc1-introduction-to-limits-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC2",
+			"moduleId": "ap-calculus-apc2-calculating-limits",
+			"moduleTitle": "APC2 Calculating Limits",
+			"id": "ap-calculus-apc2-calculating-limits-curriculum-calculating-limits-core-concepts",
+			"title": "Calculating Limits Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc2-calculating-limits-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC3",
+			"moduleId": "ap-calculus-apc3-continuity",
+			"moduleTitle": "APC3 Continuity",
+			"id": "ap-calculus-apc3-continuity-curriculum-continuity-core-concepts",
+			"title": "Continuity Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc3-continuity-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC4",
+			"moduleId": "ap-calculus-apc4-limits-and-continuity-topic-review",
+			"moduleTitle": "APC4 Limits and Continuity Topic Review",
+			"id": "ap-calculus-apc4-limits-and-continuity-topic-review-curriculum-limits-and-continuity-topic-review-core-concepts",
+			"title": "Limits and Continuity Topic Review Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc4-limits-and-continuity-topic-review-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC5",
+			"moduleId": "ap-calculus-apc5-introduction-to-derivatives",
+			"moduleTitle": "APC5 Introduction to Derivatives",
+			"id": "ap-calculus-apc5-introduction-to-derivatives-curriculum-introduction-to-derivatives-core-concepts",
+			"title": "Introduction to Derivatives Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc5-introduction-to-derivatives-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC6",
+			"moduleId": "ap-calculus-apc6-derivative-rules",
+			"moduleTitle": "APC6 Derivative Rules",
+			"id": "ap-calculus-apc6-derivative-rules-curriculum-derivative-rules-core-concepts",
+			"title": "Derivative Rules Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc6-derivative-rules-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC7",
+			"moduleId": "ap-calculus-apc7-derivatives-of-trigonometric-and-other-functions",
+			"moduleTitle": "APC7 Derivatives of Trigonometric and Other Functions",
+			"id": "ap-calculus-apc7-derivatives-of-trigonometric-and-other-functions-curriculum-derivatives-of-trigonometric-and-other-functions-core-concepts",
+			"title": "Derivatives of Trigonometric and Other Functions Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc7-derivatives-of-trigonometric-and-other-functions-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC8",
+			"moduleId": "ap-calculus-apc8-derivatives-of-composite-implicit-and-inverse-functions",
+			"moduleTitle": "APC8 Derivatives of Composite, Implicit, and Inverse Functions",
+			"id": "ap-calculus-apc8-derivatives-of-composite-implicit-and-inverse-functions-curriculum-derivatives-of-composite-implicit-and-inverse-functions-core-concepts",
+			"title": "Derivatives of Composite, Implicit, and Inverse Functions Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc8-derivatives-of-composite-implicit-and-inverse-functions-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC9",
+			"moduleId": "ap-calculus-apc9-differentiation-topic-review",
+			"moduleTitle": "APC9 Differentiation Topic Review",
+			"id": "ap-calculus-apc9-differentiation-topic-review-curriculum-differentiation-topic-review-core-concepts",
+			"title": "Differentiation Topic Review Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc9-differentiation-topic-review-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC10",
+			"moduleId": "ap-calculus-apc10-contextual-applications-of-differentiation",
+			"moduleTitle": "APC10 Contextual Applications of Differentiation",
+			"id": "ap-calculus-apc10-contextual-applications-of-differentiation-curriculum-contextual-applications-of-differentiation-core-concepts",
+			"title": "Contextual Applications of Differentiation Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc10-contextual-applications-of-differentiation-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC11",
+			"moduleId": "ap-calculus-apc11-analytical-applications-of-differentiation",
+			"moduleTitle": "APC11 Analytical Applications of Differentiation",
+			"id": "ap-calculus-apc11-analytical-applications-of-differentiation-curriculum-analytical-applications-of-differentiation-core-concepts",
+			"title": "Analytical Applications of Differentiation Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc11-analytical-applications-of-differentiation-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC12",
+			"moduleId": "ap-calculus-apc12-a-function-and-its-derivatives",
+			"moduleTitle": "APC12 A Function and Its Derivatives",
+			"id": "ap-calculus-apc12-a-function-and-its-derivatives-curriculum-a-function-and-its-derivatives-core-concepts",
+			"title": "A Function and Its Derivatives Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc12-a-function-and-its-derivatives-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC13",
+			"moduleId": "ap-calculus-apc13-applications-of-derivatives-topic-review",
+			"moduleTitle": "APC13 Applications of Derivatives Topic Review",
+			"id": "ap-calculus-apc13-applications-of-derivatives-topic-review-curriculum-applications-of-derivatives-topic-review-core-concepts",
+			"title": "Applications of Derivatives Topic Review Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc13-applications-of-derivatives-topic-review-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC14",
+			"moduleId": "ap-calculus-apc14-accumulation-of-change",
+			"moduleTitle": "APC14 Accumulation of Change",
+			"id": "ap-calculus-apc14-accumulation-of-change-curriculum-accumulation-of-change-core-concepts",
+			"title": "Accumulation of Change Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc14-accumulation-of-change-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC15",
+			"moduleId": "ap-calculus-apc15-integrals",
+			"moduleTitle": "APC15 Integrals",
+			"id": "ap-calculus-apc15-integrals-curriculum-integrals-core-concepts",
+			"title": "Integrals Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc15-integrals-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC16",
+			"moduleId": "ap-calculus-apc16-integration-and-accumulation-of-change-topic-review",
+			"moduleTitle": "APC16 Integration and Accumulation of Change Topic Review",
+			"id": "ap-calculus-apc16-integration-and-accumulation-of-change-topic-review-curriculum-integration-and-accumulation-of-change-topic-review-core-concepts",
+			"title": "Integration and Accumulation of Change Topic Review Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc16-integration-and-accumulation-of-change-topic-review-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC17",
+			"moduleId": "ap-calculus-apc17-introduction-to-differential-equations",
+			"moduleTitle": "APC17 Introduction to Differential Equations",
+			"id": "ap-calculus-apc17-introduction-to-differential-equations-curriculum-introduction-to-differential-equations-core-concepts",
+			"title": "Introduction to Differential Equations Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc17-introduction-to-differential-equations-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC18",
+			"moduleId": "ap-calculus-apc18-solutions-to-differential-equations",
+			"moduleTitle": "APC18 Solutions to Differential Equations",
+			"id": "ap-calculus-apc18-solutions-to-differential-equations-curriculum-solutions-to-differential-equations-core-concepts",
+			"title": "Solutions to Differential Equations Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc18-solutions-to-differential-equations-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC19",
+			"moduleId": "ap-calculus-apc19-differential-equations-topic-review",
+			"moduleTitle": "APC19 Differential Equations Topic Review",
+			"id": "ap-calculus-apc19-differential-equations-topic-review-curriculum-differential-equations-topic-review-core-concepts",
+			"title": "Differential Equations Topic Review Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc19-differential-equations-topic-review-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC20",
+			"moduleId": "ap-calculus-apc20-interpreting-context-for-definite-integrals",
+			"moduleTitle": "APC20 Interpreting Context for Definite Integrals",
+			"id": "ap-calculus-apc20-interpreting-context-for-definite-integrals-curriculum-interpreting-context-for-definite-integrals-core-concepts",
+			"title": "Interpreting Context for Definite Integrals Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc20-interpreting-context-for-definite-integrals-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC21",
+			"moduleId": "ap-calculus-apc21-volumes-of-solids-using-integrals",
+			"moduleTitle": "APC21 Volumes of Solids Using Integrals",
+			"id": "ap-calculus-apc21-volumes-of-solids-using-integrals-curriculum-volumes-of-solids-using-integrals-core-concepts",
+			"title": "Volumes of Solids Using Integrals Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc21-volumes-of-solids-using-integrals-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC22",
+			"moduleId": "ap-calculus-apc22-applications-of-integration-topic-review",
+			"moduleTitle": "APC22 Applications of Integration Topic Review",
+			"id": "ap-calculus-apc22-applications-of-integration-topic-review-curriculum-applications-of-integration-topic-review-core-concepts",
+			"title": "Applications of Integration Topic Review Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc22-applications-of-integration-topic-review-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC23",
+			"moduleId": "ap-calculus-apc23-parametric-equations-polar-coordinates-and-vector-valued-functions",
+			"moduleTitle": "APC23 Parametric Equations, Polar Coordinates, and Vector-Valued Functions",
+			"id": "ap-calculus-apc23-parametric-equations-polar-coordinates-and-vector-valued-functions-curriculum-parametric-equations-polar-coordinates-and-vector-valued-functions-core-concepts",
+			"title": "Parametric Equations, Polar Coordinates, and Vector-Valued Functions Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc23-parametric-equations-polar-coordinates-and-vector-valued-functions-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC24",
+			"moduleId": "ap-calculus-apc24-parametric-equations-polar-coordinates-and-vector-valued-functions-topic-review",
+			"moduleTitle": "APC24 Parametric Equations, Polar Coordinates, and Vector-Valued Functions Topic Review",
+			"id": "ap-calculus-apc24-parametric-equations-polar-coordinates-and-vector-valued-functions-topic-review-curriculum-parametric-equations-polar-coordinates-and-vector-valued-functions-topic-review-core-concepts",
+			"title": "Parametric Equations, Polar Coordinates, and Vector-Valued Functions Topic Review Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc24-parametric-equations-polar-coordinates-and-vector-valued-functions-topic-review-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC25",
+			"moduleId": "ap-calculus-apc25-infinite-series",
+			"moduleTitle": "APC25 Infinite Series",
+			"id": "ap-calculus-apc25-infinite-series-curriculum-infinite-series-core-concepts",
+			"title": "Infinite Series Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc25-infinite-series-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC26",
+			"moduleId": "ap-calculus-apc26-infinite-sums-and-representing-infinite-series",
+			"moduleTitle": "APC26 Infinite Sums and Representing Infinite Series",
+			"id": "ap-calculus-apc26-infinite-sums-and-representing-infinite-series-curriculum-infinite-sums-and-representing-infinite-series-core-concepts",
+			"title": "Infinite Sums and Representing Infinite Series Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc26-infinite-sums-and-representing-infinite-series-curriculum-core-concepts"
+			]
+		},
+		{
+			"code": "APC27",
+			"moduleId": "ap-calculus-apc27-infinite-sequences-and-series-topic-review",
+			"moduleTitle": "APC27 Infinite Sequences and Series Topic Review",
+			"id": "ap-calculus-apc27-infinite-sequences-and-series-topic-review-curriculum-infinite-sequences-and-series-topic-review-core-concepts",
+			"title": "Infinite Sequences and Series Topic Review Core Concepts",
+			"aliases": [
+				"core-concepts",
+				"ap-calculus-apc27-infinite-sequences-and-series-topic-review-curriculum-core-concepts"
+			]
+		}
+	]
+}

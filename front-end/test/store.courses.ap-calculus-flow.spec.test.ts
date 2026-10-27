@@ -60,9 +60,9 @@ describe("AP Calculus learner flow", () => {
 	});
 
 	it("states the AB and BC routes in the diagnostic module", () => {
-		const setupText = requireModule(
-			"APCA0 Preparing for AP Calculus"
-		).curriculum.map(item => item.content).join("\n");
+		const setupText = requireModule("APCA0 Preparing for AP Calculus")
+			.curriculum.map(item => item.content)
+			.join("\n");
 		expect(setupText).toContain(
 			"The AB route runs from APCA0 through APC22"
 		);
@@ -82,9 +82,9 @@ describe("AP Calculus learner flow", () => {
 				module.curriculum.every(item => item.learningPath === "core"),
 				module.title
 			).toBe(true);
-			expect(module.supplementalProjects.map(item => item.learningPath)).toEqual(
-				["choice", "challenge"]
-			);
+			expect(
+				module.supplementalProjects.map(item => item.learningPath)
+			).toEqual(["choice", "challenge"]);
 			expect(module.curriculum[0]?.content, module.title).toContain(
 				"**Course flow:**"
 			);
@@ -102,13 +102,13 @@ describe("AP Calculus learner flow", () => {
 		expect(abEndpoint.curriculum.at(-1)).toEqual(
 			expect.objectContaining({
 				learningPath: "core",
-				title: "AP Calculus AB Exam Readiness Portfolio"
+				title: "Project: AP Calculus AB Exam Readiness Portfolio"
 			})
 		);
 		expect(bcEndpoint.curriculum.at(-1)).toEqual(
 			expect.objectContaining({
 				learningPath: "core",
-				title: "AP Calculus BC Exam Readiness Portfolio"
+				title: "Project: AP Calculus BC Exam Readiness Portfolio"
 			})
 		);
 		expect(abEndpoint.curriculum.at(-1)?.content).toContain(

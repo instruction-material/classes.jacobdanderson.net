@@ -1,4 +1,5 @@
 import type { RawCourse } from "./types";
+import { addAPCalculusCases } from "./apCalculusCases";
 import { configureMathCourseFlow } from "./mathCourseFlow";
 import {
 	apCalculusStaticFilenames,
@@ -845,7 +846,7 @@ const moduleData: CalculusModuleData[] = [
 		topic: "Infinite Series and Convergence Tests",
 		concepts: [
 			"Infinite series add infinitely many terms and require convergence reasoning before treating the sum as meaningful.",
-			"Geometric, p-series, comparison, limit comparison, integral, ratio, root, alternating, and divergence tests each have specific conditions.",
+			"Geometric, p-series, comparison, limit comparison, integral, ratio, alternating, and divergence tests each have specific conditions.",
 			"Absolute and conditional convergence describe different strengths of convergence.",
 			"Remainder bounds estimate error after a partial sum."
 		],
@@ -996,3 +997,5 @@ configureMathCourseFlow(apCalculusCourse, {
 	}),
 	appendixTitles: ["AP Calculus Reference Archive", "Pending Static Assets"]
 });
+
+addAPCalculusCases(apCalculusCourse);
