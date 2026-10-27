@@ -81,6 +81,7 @@ describe("AP Computer Science A learner flow", () => {
 			item => item.title === title
 		)!;
 		expect(displayed.content).toBe(authored.content);
+		expect(displayed.contentKind).toBe("reading");
 		expect(displayed.content).not.toContain("Java checkpoint");
 	});
 

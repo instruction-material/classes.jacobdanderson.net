@@ -47,6 +47,7 @@ describe("AI Level 1 learner flow", () => {
 				item => item.title === title
 			)!;
 			expect(displayed.content, title).toBe(authored.content);
+			expect(displayed.contentKind, title).toBe("reading");
 			expect(displayed.content, title).not.toContain(
 				"dataset assumptions"
 			);

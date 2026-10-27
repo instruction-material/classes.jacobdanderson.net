@@ -63,6 +63,7 @@ const learningTitle =
 	/\b(?:introduction|overview|concepts?|basics|reference|vocabulary|reflection|planning and architecture|design and planning map|verification review|verification and reflection|debugging habit|debugging pitfalls|bug patterns)\b|^basic event listeners$/i;
 
 export function isLessonLearningItem(item: CourseModuleItem) {
+	if (item.contentKind === "reading") return true;
 	return (
 		!item.projectLink &&
 		!item.ideImport &&

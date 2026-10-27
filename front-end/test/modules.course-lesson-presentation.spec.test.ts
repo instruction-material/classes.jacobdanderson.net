@@ -151,4 +151,17 @@ describe("lesson content presentation", () => {
 			false
 		);
 	});
+
+	it("keeps an explicitly marked linked reading in Learn", () => {
+		const item = {
+			id: "exam-framework",
+			title: "Current Four-Unit Framework and Digital Exam",
+			content: "Review the course framework and exam format.",
+			projectLink: "https://example.edu/framework.pdf"
+		};
+		expect(isLessonLearningItem(item)).toBe(false);
+		expect(isLessonLearningItem({ ...item, contentKind: "reading" })).toBe(
+			true
+		);
+	});
 });

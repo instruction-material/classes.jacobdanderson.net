@@ -5,6 +5,8 @@ export interface RawCourseModuleItem {
 	aliases?: string[];
 	title: string;
 	content: string;
+	/** Explicit informational material belongs in the Learn view. */
+	contentKind?: "reading";
 	/** Preserve structured reading and executable command blocks verbatim. */
 	preserveInstructions?: boolean;
 	learningPath?: CourseItemLearningPath;
