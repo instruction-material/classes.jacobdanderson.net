@@ -94,7 +94,7 @@ describe("transactional email encryption", () => {
 		expect(mail.createTransport).toHaveBeenCalledExactlyOnceWith(expect.objectContaining({
 			host: "127.0.0.1", port: 25, secure: false, requireTLS: true,
 			connectionTimeout: 15_000, socketTimeout: 15_000,
-			tls: { servername: "mail.stridewithus.co", minVersion: "TLSv1.2" }
+			tls: { servername: "mail.example.com", minVersion: "TLSv1.2" }
 		}));
 		expect(mail.sendMail).toHaveBeenCalledExactlyOnceWith(expect.objectContaining(message));
 	});
