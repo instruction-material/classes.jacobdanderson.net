@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import { describe, expect, it } from "vitest";
 import { apComputerScienceACourse } from "@/stores/courses/ap-computer-science-a";
+import { loadRawCourse } from "@/stores/courses/index";
 
 const EXPECTED_PRIMARY_SEQUENCE = [
 	"General: Course Introduction and Setup",
@@ -70,6 +71,16 @@ function courseText() {
 }
 
 describe("AP Computer Science A learner flow", () => {
+	it("keeps the authored prerequisites and diagnostics in the displayed course", async () => {
+		const course = await loadRawCourse("ap-computer-science-a");
+		expect(course).not.toBeNull();
+		expect(
+			course!.modules
+				.filter(module => module.kind !== "appendix")
+				.map(module => module.title)
+		).toEqual(EXPECTED_PRIMARY_SEQUENCE);
+	});
+
 	it("uses one twenty-module current-AP spine and one explicit enrichment appendix", () => {
 		expect(
 			apComputerScienceACourse.modules

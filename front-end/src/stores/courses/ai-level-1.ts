@@ -4,6 +4,7 @@ import type {
 	RawCourseModule,
 	RawCourseModuleItem
 } from "./types";
+import aiSearchSetup from "@/assets/course-guides/ai-search-setup.md?raw";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { buildProjectGuidance } from "./projectGuidance";
 import { buildSupportSectionGuidance } from "./supportSectionGuidance";
@@ -69,8 +70,8 @@ export const aiLevel1Course: RawCourse = {
 			curriculum: [
 				{
 					title: "Python Environment for Search and Graph Labs",
-					content:
-						"Set up `Python 3`, a virtual environment, and a lightweight editor workflow in either `PyCharm` or `VS Code`. Install `networkx`, `matplotlib`, and notebook support early to inspect graphs, visualize search spaces, and keep small experiment logs without changing tools halfway through the course."
+					content: aiSearchSetup,
+					preserveInstructions: true
 				},
 				{
 					title: "Bridge Positioning between Core Python and ML",

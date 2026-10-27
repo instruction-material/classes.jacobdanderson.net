@@ -127,11 +127,14 @@ canonical_courses = {"gallery": "MediaGalleryApp.swift", "hobby": "MultiTabHobby
 record["course"] = args.course
 if args.diagnostic_map_case:
     record.update(diagnosticOnly=True, diagnosticSize=args.diagnostic_map_case, fullCoverageRequired=8)
-variant_native = args.course in canonical_courses or args.extended_welcome
+variant_native = args.course in canonical_courses or args.extended_welcome or args.course == "networking"
 if variant_native:
     harness = (["test/swift-welcome-exported-ios.py", "test/swift-welcome-xcode.py",
                 "test/swift-welcome-extended-xcode.py", "test/fixtures/swift-welcome-extended-uitests.swift"]
                if args.extended_welcome else
+               ["test/swift-welcome-exported-ios.py", "test/swift-welcome-xcode.py",
+                "test/swift-networking-xcode.py", "test/fixtures/swift-networking-uitests.swift"]
+               if args.course == "networking" else
                ["test/swift-welcome-exported-ios.py", "test/swift-welcome-xcode.py",
                 "test/swift-canonical-xcode.py", "test/fixtures/swift-canonical-uitests.swift"])
     record["harnessSourceHashes"] = {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in harness}
