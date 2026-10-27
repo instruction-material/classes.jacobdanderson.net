@@ -743,7 +743,7 @@ export function addGeometryCases(course: RawCourse, track: "a" | "b") {
 			const heading = `${unit.code} ${unit.title}`;
 			const content = `**Problems:**\n\n${numbered(
 				unit.problems
-			)}\n\n**Completion checks:**\n\n${completionChecks[unit.code]}\n\n${selfCheck(track, heading)}`;
+			)}\n\n**Checkpoints:**\n\n${completionChecks[unit.code]}\n\n${selfCheck(track, heading)}`;
 			if (unit.code === "GEOB6") {
 				const original = module.curriculum.find(
 					item => item.title === "GEOB6 Challenge Circle Problems"
