@@ -2234,7 +2234,10 @@ function writeStoredValue(key: string, value: string) {
 						:aria-label="lessonViewLabel"
 					>
 						<div
-							v-if="lessonView === 'learn'"
+							v-if="
+								lessonView === 'learn' &&
+								activeModule.keyBlocks?.length
+							"
 							class="learning-overview"
 						>
 							<section
@@ -2250,22 +2253,6 @@ function writeStoredValue(key: string, value: string) {
 									>
 								</div>
 							</section>
-							<article
-								v-for="topic in learningTopics"
-								:key="topic.item.id"
-								class="learning-card"
-							>
-								<h5>{{ topic.item.title }}</h5>
-								<section
-									v-for="(section, index) in topic.sections"
-									:key="index"
-								>
-									<h6>{{ section.label }}</h6>
-									<LazyMarkdownContent
-										:content="section.content"
-									/>
-								</section>
-							</article>
 						</div>
 
 						<ol v-if="activeLessonItems.length" class="lesson-list">
@@ -2514,6 +2501,29 @@ function writeStoredValue(key: string, value: string) {
 								</article>
 							</li>
 						</ol>
+						<div
+							v-if="
+								lessonView === 'learn' && learningTopics.length
+							"
+							class="learning-overview"
+						>
+							<article
+								v-for="topic in learningTopics"
+								:key="topic.item.id"
+								class="learning-card"
+							>
+								<h5>{{ topic.item.title }}</h5>
+								<section
+									v-for="(section, index) in topic.sections"
+									:key="index"
+								>
+									<h6>{{ section.label }}</h6>
+									<LazyMarkdownContent
+										:content="section.content"
+									/>
+								</section>
+							</article>
+						</div>
 						<p
 							v-if="
 								!activeLessonItems.length &&

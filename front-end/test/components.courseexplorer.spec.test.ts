@@ -595,6 +595,12 @@ describe("CourseExplorer.vue", () => {
 						)!
 						.text();
 				expect(activeView()).toBe("Learn");
+				const readingList = wrapper.get(".lesson-list").element;
+				const goalPreview = wrapper.get(".learning-card").element;
+				expect(
+					readingList.compareDocumentPosition(goalPreview) &
+						Node.DOCUMENT_POSITION_FOLLOWING
+				).toBeTruthy();
 				await wrapper.get(".outline-toggle").trigger("click");
 				await wrapper
 					.findAll(".outline-button")
