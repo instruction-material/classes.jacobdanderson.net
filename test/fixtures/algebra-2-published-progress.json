@@ -1,0 +1,2621 @@
+{
+	"version": "v2.8.179",
+	"courses": [
+		{
+			"courseId": "algebra-2a",
+			"source": "d63aa49415329c0f78ca89089b8d7412c1c406ac",
+			"version": "v2.8.179",
+			"identities": [
+				{
+					"moduleId": "algebra-2a-ala1-complex-numbers",
+					"id": "algebra-2a-ala1-complex-numbers-curriculum-imaginary-numbers-and-powers-of-i",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala1-complex-numbers",
+					"id": "algebra-2a-ala1-complex-numbers-curriculum-the-complex-plane",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala1-complex-numbers",
+					"id": "algebra-2a-ala1-complex-numbers-curriculum-operations-with-complex-numbers",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala1-complex-numbers",
+					"id": "algebra-2a-ala1-complex-numbers-supplemental-standards-practice-set-complex-numbers",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala1-complex-numbers",
+					"id": "algebra-2a-ala1-complex-numbers-supplemental-modeling-or-error-analysis-complex-numbers",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala2-quadratic-functions",
+					"id": "algebra-2a-ala2-quadratic-functions-curriculum-quadratic-functions-core-concepts",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala2-quadratic-functions",
+					"id": "algebra-2a-ala2-quadratic-functions-supplemental-standards-practice-set-quadratic-functions",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala2-quadratic-functions",
+					"id": "algebra-2a-ala2-quadratic-functions-supplemental-modeling-or-error-analysis-quadratic-functions",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala3-graphing-quadratic-functions",
+					"id": "algebra-2a-ala3-graphing-quadratic-functions-curriculum-vertex-form-standard-form-and-intercept-form",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala3-graphing-quadratic-functions",
+					"id": "algebra-2a-ala3-graphing-quadratic-functions-curriculum-transformations-of-parabolas",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala3-graphing-quadratic-functions",
+					"id": "algebra-2a-ala3-graphing-quadratic-functions-curriculum-applications-and-parabola-geometry",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala3-graphing-quadratic-functions",
+					"id": "algebra-2a-ala3-graphing-quadratic-functions-curriculum-graph-prompt-reference",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala3-graphing-quadratic-functions",
+					"id": "algebra-2a-ala3-graphing-quadratic-functions-supplemental-modeling-or-error-analysis-graphing-quadratic-functions",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-check-in-1",
+					"id": "algebra-2a-check-in-1-curriculum-algebra-2a-check-in-1-review-targets",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-check-in-1",
+					"id": "algebra-2a-check-in-1-curriculum-algebra-2a-check-in-1-representative-review-problems",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-check-in-1",
+					"id": "algebra-2a-check-in-1-supplemental-algebra-2a-check-in-1-standards-practice-set",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-check-in-1",
+					"id": "algebra-2a-check-in-1-supplemental-algebra-2a-check-in-1-modeling-or-error-analysis",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala4-higher-degree-polynomials",
+					"id": "algebra-2a-ala4-higher-degree-polynomials-curriculum-polynomial-operations-and-factoring",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala4-higher-degree-polynomials",
+					"id": "algebra-2a-ala4-higher-degree-polynomials-curriculum-transformations-and-the-location-principle",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala4-higher-degree-polynomials",
+					"id": "algebra-2a-ala4-higher-degree-polynomials-supplemental-standards-practice-set-higher-degree-polynomials",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala4-higher-degree-polynomials",
+					"id": "algebra-2a-ala4-higher-degree-polynomials-supplemental-modeling-or-error-analysis-higher-degree-polynomials",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala5-polynomial-division",
+					"id": "algebra-2a-ala5-polynomial-division-curriculum-long-division-and-synthetic-division",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala5-polynomial-division",
+					"id": "algebra-2a-ala5-polynomial-division-supplemental-standards-practice-set-polynomial-division",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala5-polynomial-division",
+					"id": "algebra-2a-ala5-polynomial-division-supplemental-modeling-or-error-analysis-polynomial-division",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala6-zeros-of-polynomials",
+					"id": "algebra-2a-ala6-zeros-of-polynomials-curriculum-rational-root-theorem-descartes-and-bounds",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala6-zeros-of-polynomials",
+					"id": "algebra-2a-ala6-zeros-of-polynomials-supplemental-standards-practice-set-zeros-of-polynomials",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala6-zeros-of-polynomials",
+					"id": "algebra-2a-ala6-zeros-of-polynomials-supplemental-modeling-or-error-analysis-zeros-of-polynomials",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala7-graphing-polynomials",
+					"id": "algebra-2a-ala7-graphing-polynomials-curriculum-end-behavior-turning-points-and-multiplicity",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala7-graphing-polynomials",
+					"id": "algebra-2a-ala7-graphing-polynomials-curriculum-feature-based-graphing",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala7-graphing-polynomials",
+					"id": "algebra-2a-ala7-graphing-polynomials-supplemental-standards-practice-set-graphing-polynomials",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala7-graphing-polynomials",
+					"id": "algebra-2a-ala7-graphing-polynomials-supplemental-modeling-or-error-analysis-graphing-polynomials",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-check-in-2",
+					"id": "algebra-2a-check-in-2-curriculum-algebra-2a-check-in-2-review-targets",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-check-in-2",
+					"id": "algebra-2a-check-in-2-curriculum-algebra-2a-check-in-2-representative-review-problems",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-check-in-2",
+					"id": "algebra-2a-check-in-2-supplemental-algebra-2a-check-in-2-standards-practice-set",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-check-in-2",
+					"id": "algebra-2a-check-in-2-supplemental-algebra-2a-check-in-2-modeling-or-error-analysis",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala8-rational-functions",
+					"id": "algebra-2a-ala8-rational-functions-curriculum-asymptotes-and-removable-discontinuities",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala8-rational-functions",
+					"id": "algebra-2a-ala8-rational-functions-curriculum-graphing-and-roots-of-rational-functions",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala8-rational-functions",
+					"id": "algebra-2a-ala8-rational-functions-curriculum-rational-graph-references",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala8-rational-functions",
+					"id": "algebra-2a-ala8-rational-functions-supplemental-modeling-or-error-analysis-rational-functions",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala9-rational-function-operations",
+					"id": "algebra-2a-ala9-rational-function-operations-curriculum-multiplying-dividing-and-simplifying-rational-expressions",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala9-rational-function-operations",
+					"id": "algebra-2a-ala9-rational-function-operations-curriculum-adding-subtracting-and-solving-rational-equations",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala9-rational-function-operations",
+					"id": "algebra-2a-ala9-rational-function-operations-supplemental-standards-practice-set-rational-function-operations",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala9-rational-function-operations",
+					"id": "algebra-2a-ala9-rational-function-operations-supplemental-modeling-or-error-analysis-rational-function-operations",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala10-radical-functions",
+					"id": "algebra-2a-ala10-radical-functions-curriculum-graphing-radical-functions",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala10-radical-functions",
+					"id": "algebra-2a-ala10-radical-functions-curriculum-solving-radical-equations",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala10-radical-functions",
+					"id": "algebra-2a-ala10-radical-functions-supplemental-standards-practice-set-radical-functions",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala10-radical-functions",
+					"id": "algebra-2a-ala10-radical-functions-supplemental-modeling-or-error-analysis-radical-functions",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala11-piecewise-functions",
+					"id": "algebra-2a-ala11-piecewise-functions-curriculum-evaluating-and-graphing-piecewise-functions",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala11-piecewise-functions",
+					"id": "algebra-2a-ala11-piecewise-functions-curriculum-piecewise-models-and-continuity",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala11-piecewise-functions",
+					"id": "algebra-2a-ala11-piecewise-functions-supplemental-standards-practice-set-piecewise-functions",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala11-piecewise-functions",
+					"id": "algebra-2a-ala11-piecewise-functions-supplemental-modeling-or-error-analysis-piecewise-functions",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-check-in-3",
+					"id": "algebra-2a-check-in-3-curriculum-algebra-2a-check-in-3-review-targets",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-check-in-3",
+					"id": "algebra-2a-check-in-3-curriculum-algebra-2a-check-in-3-representative-review-problems",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-check-in-3",
+					"id": "algebra-2a-check-in-3-curriculum-check-in-visual-references",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-check-in-3",
+					"id": "algebra-2a-check-in-3-supplemental-algebra-2a-check-in-3-modeling-or-error-analysis",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala12-algebra-2a-function-family-capstone",
+					"id": "algebra-2a-ala12-algebra-2a-function-family-capstone-curriculum-capstone-function-family-model-portfolio",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-ala12-algebra-2a-function-family-capstone",
+					"id": "algebra-2a-ala12-algebra-2a-function-family-capstone-supplemental-choice-portfolio-evidence-audit",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-ala12-algebra-2a-function-family-capstone",
+					"id": "algebra-2a-ala12-algebra-2a-function-family-capstone-supplemental-challenge-cross-family-model-stress-test",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-reference-archive-algebra-2a",
+					"id": "algebra-2a-reference-archive-algebra-2a-curriculum-project-scenario-and-context-links",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-reference-archive-algebra-2a",
+					"id": "algebra-2a-reference-archive-algebra-2a-curriculum-pending-static-assets",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-reference-archive-algebra-2a",
+					"id": "algebra-2a-reference-archive-algebra-2a-supplemental-standards-practice-set-algebra-2a",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-reference-archive-algebra-2a",
+					"id": "algebra-2a-reference-archive-algebra-2a-supplemental-modeling-or-error-analysis-algebra-2a",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-standards-map",
+					"id": "algebra-2a-standards-map-curriculum-algebra-2a-reference-guide",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-standards-map",
+					"id": "algebra-2a-standards-map-curriculum-algebra-2a-core-skills",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-standards-map",
+					"id": "algebra-2a-standards-map-curriculum-algebra-2a-next-topics",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-standards-map",
+					"id": "algebra-2a-standards-map-curriculum-algebra-2a-boundaries",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-standards-map",
+					"id": "algebra-2a-standards-map-supplemental-algebra-2a-prerequisite-check",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-standards-map",
+					"id": "algebra-2a-standards-map-supplemental-algebra-2a-pathway-map",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-course-roadmap",
+					"id": "algebra-2a-course-roadmap-curriculum-algebra-2a-follow-up-path",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-course-roadmap",
+					"id": "algebra-2a-course-roadmap-curriculum-algebra-2a-resource-map",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-course-roadmap",
+					"id": "algebra-2a-course-roadmap-curriculum-algebra-2a-module-alignment-guide",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-course-roadmap",
+					"id": "algebra-2a-course-roadmap-curriculum-algebra-2a-reference-map",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-course-roadmap",
+					"id": "algebra-2a-course-roadmap-supplemental-algebra-2a-prerequisite-map",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-course-roadmap",
+					"id": "algebra-2a-course-roadmap-supplemental-algebra-2a-resource-inventory",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-project-practice-guide",
+					"id": "algebra-2a-project-practice-guide-curriculum-algebra-2a-project-ladder",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-project-practice-guide",
+					"id": "algebra-2a-project-practice-guide-curriculum-algebra-2a-checkpoints",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-project-practice-guide",
+					"id": "algebra-2a-project-practice-guide-curriculum-algebra-2a-rubric",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-project-practice-guide",
+					"id": "algebra-2a-project-practice-guide-curriculum-algebra-2a-capstone-gate",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-project-practice-guide",
+					"id": "algebra-2a-project-practice-guide-supplemental-practice-project-model-a-real-or-provided-dataset",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-project-practice-guide",
+					"id": "algebra-2a-project-practice-guide-supplemental-practice-project-create-a-graph-and-equation-story",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-project-practice-guide",
+					"id": "algebra-2a-project-practice-guide-supplemental-practice-project-repair-a-worked-solution-with-hidden-errors",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-project-practice-guide",
+					"id": "algebra-2a-project-practice-guide-supplemental-practice-project-build-a-standards-aligned-mixed-review-set",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-project-practice-guide",
+					"id": "algebra-2a-project-practice-guide-supplemental-practice-project-write-a-short-justification-for-each-transformation-step",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-algebra-2a-project-taxonomy-and-assessment-implementation",
+					"id": "algebra-2a-algebra-2a-project-taxonomy-and-assessment-implementation-curriculum-algebra-2a-structure-decision",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-algebra-2a-project-taxonomy-and-assessment-implementation",
+					"id": "algebra-2a-algebra-2a-project-taxonomy-and-assessment-implementation-curriculum-algebra-2a-assessment-cadence",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-algebra-2a-project-taxonomy-and-assessment-implementation",
+					"id": "algebra-2a-algebra-2a-project-taxonomy-and-assessment-implementation-curriculum-algebra-2a-representation-balance",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-algebra-2a-project-taxonomy-and-assessment-implementation",
+					"id": "algebra-2a-algebra-2a-project-taxonomy-and-assessment-implementation-curriculum-algebra-2a-worked-example-density",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-algebra-2a-project-taxonomy-and-assessment-implementation",
+					"id": "algebra-2a-algebra-2a-project-taxonomy-and-assessment-implementation-supplemental-algebra-2a-practice-set-conversion",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-algebra-2a-project-taxonomy-and-assessment-implementation",
+					"id": "algebra-2a-algebra-2a-project-taxonomy-and-assessment-implementation-supplemental-algebra-2a-modeling-or-error-analysis-task",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-standards-mapped-algebra-architecture",
+					"id": "algebra-2a-standards-mapped-algebra-architecture-curriculum-course-scope-map",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-standards-mapped-algebra-architecture",
+					"id": "algebra-2a-standards-mapped-algebra-architecture-curriculum-course-item-labels",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-standards-mapped-algebra-architecture",
+					"id": "algebra-2a-standards-mapped-algebra-architecture-curriculum-required-anchor-and-extension-projects",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-standards-mapped-algebra-architecture",
+					"id": "algebra-2a-standards-mapped-algebra-architecture-curriculum-practice-set-types",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2a-standards-mapped-algebra-architecture",
+					"id": "algebra-2a-standards-mapped-algebra-architecture-supplemental-anchor-project-modeling-task-blueprint",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2a-standards-mapped-algebra-architecture",
+					"id": "algebra-2a-standards-mapped-algebra-architecture-supplemental-extension-project-changed-constraint",
+					"section": "optional"
+				}
+			],
+			"modules": [
+				{
+					"id": "algebra-2a-ala1-complex-numbers",
+					"title": "ALA1 Complex Numbers",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2a-ala1-complex-numbers-curriculum-imaginary-numbers-and-powers-of-i",
+							"title": "Imaginary Numbers and Powers of i",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-ala1-complex-numbers-curriculum-the-complex-plane",
+							"title": "The Complex Plane",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-ala1-complex-numbers-curriculum-operations-with-complex-numbers",
+							"title": "Operations with Complex Numbers",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-ala1-complex-numbers-supplemental-standards-practice-set-complex-numbers",
+							"title": "Standards Practice Set: Complex Numbers",
+							"aliases": [
+								"algebra-2a-ala1-complex-numbers-supplemental-ala1-complex-numbers-standards-practice-set",
+								"algebra-2a-ala1-complex-numbers-supplemental-standards-practice-set",
+								"standards-practice-set"
+							]
+						},
+						{
+							"id": "algebra-2a-ala1-complex-numbers-supplemental-modeling-or-error-analysis-complex-numbers",
+							"title": "Modeling or Error Analysis: Complex Numbers",
+							"aliases": [
+								"algebra-2a-ala1-complex-numbers-supplemental-ala1-complex-numbers-modeling-or-error-analysis-project",
+								"algebra-2a-ala1-complex-numbers-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2a-ala2-quadratic-functions",
+					"title": "ALA2 Quadratic Functions",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2a-ala2-quadratic-functions-curriculum-quadratic-functions-core-concepts",
+							"title": "Quadratic Functions Core Concepts",
+							"aliases": [
+								"algebra-2a-ala2-quadratic-functions-curriculum-core-concepts-and-learning-sequence",
+								"core-concepts",
+								"algebra-2a-ala2-quadratic-functions-curriculum-core-concepts"
+							]
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-ala2-quadratic-functions-supplemental-standards-practice-set-quadratic-functions",
+							"title": "Standards Practice Set: Quadratic Functions",
+							"aliases": [
+								"algebra-2a-ala2-quadratic-functions-supplemental-ala2-quadratic-functions-standards-practice-set",
+								"algebra-2a-ala2-quadratic-functions-supplemental-standards-practice-set",
+								"standards-practice-set"
+							]
+						},
+						{
+							"id": "algebra-2a-ala2-quadratic-functions-supplemental-modeling-or-error-analysis-quadratic-functions",
+							"title": "Modeling or Error Analysis: Quadratic Functions",
+							"aliases": [
+								"algebra-2a-ala2-quadratic-functions-supplemental-ala2-quadratic-functions-modeling-or-error-analysis-project",
+								"algebra-2a-ala2-quadratic-functions-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2a-ala3-graphing-quadratic-functions",
+					"title": "ALA3 Graphing Quadratic Functions",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2a-ala3-graphing-quadratic-functions-curriculum-vertex-form-standard-form-and-intercept-form",
+							"title": "Vertex Form, Standard Form, and Intercept Form",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-ala3-graphing-quadratic-functions-curriculum-transformations-of-parabolas",
+							"title": "Transformations of Parabolas",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-ala3-graphing-quadratic-functions-curriculum-applications-and-parabola-geometry",
+							"title": "Applications and Parabola Geometry",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-ala3-graphing-quadratic-functions-curriculum-graph-prompt-reference",
+							"title": "Graph Prompt Reference",
+							"aliases": [
+								"algebra-2a-ala3-graphing-quadratic-functions-supplemental-graph-prompt-reference"
+							]
+						},
+						{
+							"id": "algebra-2a-ala3-graphing-quadratic-functions-supplemental-modeling-or-error-analysis-graphing-quadratic-functions",
+							"title": "Modeling or Error Analysis: Graphing Quadratic Functions",
+							"aliases": [
+								"algebra-2a-ala3-graphing-quadratic-functions-supplemental-ala3-graphing-quadratic-functions-modeling-or-error-analysis-project",
+								"algebra-2a-ala3-graphing-quadratic-functions-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2a-check-in-1",
+					"title": "Check-In #1",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2a-check-in-1-curriculum-algebra-2a-check-in-1-review-targets",
+							"title": "Algebra 2A Check-In 1 Review Targets",
+							"aliases": [
+								"review-targets",
+								"algebra-2a-check-in-1-curriculum-review-targets"
+							]
+						},
+						{
+							"id": "algebra-2a-check-in-1-curriculum-algebra-2a-check-in-1-representative-review-problems",
+							"title": "Algebra 2A Check-In 1 Representative Review Problems",
+							"aliases": [
+								"representative-review-problems",
+								"algebra-2a-check-in-1-curriculum-representative-review-problems"
+							]
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-check-in-1-supplemental-algebra-2a-check-in-1-standards-practice-set",
+							"title": "Algebra 2A Check-In 1 Standards Practice Set",
+							"aliases": [
+								"algebra-2a-check-in-1-supplemental-check-in-1-standards-practice-set",
+								"algebra-2a-check-in-1-supplemental-standards-practice-set",
+								"standards-practice-set",
+								"standards-practice-set-check-in-1",
+								"algebra-2a-check-in-1-supplemental-standards-practice-set-check-in-1"
+							]
+						},
+						{
+							"id": "algebra-2a-check-in-1-supplemental-algebra-2a-check-in-1-modeling-or-error-analysis",
+							"title": "Algebra 2A Check-In 1 Modeling or Error Analysis",
+							"aliases": [
+								"algebra-2a-check-in-1-supplemental-check-in-1-modeling-or-error-analysis-project",
+								"algebra-2a-check-in-1-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis",
+								"modeling-or-error-analysis-check-in-1",
+								"algebra-2a-check-in-1-supplemental-modeling-or-error-analysis-check-in-1"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2a-ala4-higher-degree-polynomials",
+					"title": "ALA4 Higher Degree Polynomials",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2a-ala4-higher-degree-polynomials-curriculum-polynomial-operations-and-factoring",
+							"title": "Polynomial Operations and Factoring",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-ala4-higher-degree-polynomials-curriculum-transformations-and-the-location-principle",
+							"title": "Transformations and the Location Principle",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-ala4-higher-degree-polynomials-supplemental-standards-practice-set-higher-degree-polynomials",
+							"title": "Standards Practice Set: Higher Degree Polynomials",
+							"aliases": [
+								"algebra-2a-ala4-higher-degree-polynomials-supplemental-ala4-higher-degree-polynomials-standards-practice-set",
+								"algebra-2a-ala4-higher-degree-polynomials-supplemental-standards-practice-set",
+								"standards-practice-set"
+							]
+						},
+						{
+							"id": "algebra-2a-ala4-higher-degree-polynomials-supplemental-modeling-or-error-analysis-higher-degree-polynomials",
+							"title": "Modeling or Error Analysis: Higher Degree Polynomials",
+							"aliases": [
+								"algebra-2a-ala4-higher-degree-polynomials-supplemental-ala4-higher-degree-polynomials-modeling-or-error-analysis-project",
+								"algebra-2a-ala4-higher-degree-polynomials-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2a-ala5-polynomial-division",
+					"title": "ALA5 Polynomial Division",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2a-ala5-polynomial-division-curriculum-long-division-and-synthetic-division",
+							"title": "Long Division and Synthetic Division",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-ala5-polynomial-division-supplemental-standards-practice-set-polynomial-division",
+							"title": "Standards Practice Set: Polynomial Division",
+							"aliases": [
+								"algebra-2a-ala5-polynomial-division-supplemental-ala5-polynomial-division-standards-practice-set",
+								"algebra-2a-ala5-polynomial-division-supplemental-standards-practice-set",
+								"standards-practice-set"
+							]
+						},
+						{
+							"id": "algebra-2a-ala5-polynomial-division-supplemental-modeling-or-error-analysis-polynomial-division",
+							"title": "Modeling or Error Analysis: Polynomial Division",
+							"aliases": [
+								"algebra-2a-ala5-polynomial-division-supplemental-ala5-polynomial-division-modeling-or-error-analysis-project",
+								"algebra-2a-ala5-polynomial-division-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2a-ala6-zeros-of-polynomials",
+					"title": "ALA6 Zeros of Polynomials",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2a-ala6-zeros-of-polynomials-curriculum-rational-root-theorem-descartes-and-bounds",
+							"title": "Rational Root Theorem, Descartes, and Bounds",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-ala6-zeros-of-polynomials-supplemental-standards-practice-set-zeros-of-polynomials",
+							"title": "Standards Practice Set: Zeros of Polynomials",
+							"aliases": [
+								"algebra-2a-ala6-zeros-of-polynomials-supplemental-ala6-zeros-of-polynomials-standards-practice-set",
+								"algebra-2a-ala6-zeros-of-polynomials-supplemental-standards-practice-set",
+								"standards-practice-set"
+							]
+						},
+						{
+							"id": "algebra-2a-ala6-zeros-of-polynomials-supplemental-modeling-or-error-analysis-zeros-of-polynomials",
+							"title": "Modeling or Error Analysis: Zeros of Polynomials",
+							"aliases": [
+								"algebra-2a-ala6-zeros-of-polynomials-supplemental-ala6-zeros-of-polynomials-modeling-or-error-analysis-project",
+								"algebra-2a-ala6-zeros-of-polynomials-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2a-ala7-graphing-polynomials",
+					"title": "ALA7 Graphing Polynomials",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2a-ala7-graphing-polynomials-curriculum-end-behavior-turning-points-and-multiplicity",
+							"title": "End Behavior, Turning Points, and Multiplicity",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-ala7-graphing-polynomials-curriculum-feature-based-graphing",
+							"title": "Feature-Based Graphing",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-ala7-graphing-polynomials-supplemental-standards-practice-set-graphing-polynomials",
+							"title": "Standards Practice Set: Graphing Polynomials",
+							"aliases": [
+								"algebra-2a-ala7-graphing-polynomials-supplemental-ala7-graphing-polynomials-standards-practice-set",
+								"algebra-2a-ala7-graphing-polynomials-supplemental-standards-practice-set",
+								"standards-practice-set"
+							]
+						},
+						{
+							"id": "algebra-2a-ala7-graphing-polynomials-supplemental-modeling-or-error-analysis-graphing-polynomials",
+							"title": "Modeling or Error Analysis: Graphing Polynomials",
+							"aliases": [
+								"algebra-2a-ala7-graphing-polynomials-supplemental-ala7-graphing-polynomials-modeling-or-error-analysis-project",
+								"algebra-2a-ala7-graphing-polynomials-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2a-check-in-2",
+					"title": "Check-In #2",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2a-check-in-2-curriculum-algebra-2a-check-in-2-review-targets",
+							"title": "Algebra 2A Check-In 2 Review Targets",
+							"aliases": [
+								"review-targets",
+								"algebra-2a-check-in-2-curriculum-review-targets"
+							]
+						},
+						{
+							"id": "algebra-2a-check-in-2-curriculum-algebra-2a-check-in-2-representative-review-problems",
+							"title": "Algebra 2A Check-In 2 Representative Review Problems",
+							"aliases": [
+								"representative-review-problems",
+								"algebra-2a-check-in-2-curriculum-representative-review-problems"
+							]
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-check-in-2-supplemental-algebra-2a-check-in-2-standards-practice-set",
+							"title": "Algebra 2A Check-In 2 Standards Practice Set",
+							"aliases": [
+								"algebra-2a-check-in-2-supplemental-check-in-2-standards-practice-set",
+								"algebra-2a-check-in-2-supplemental-standards-practice-set",
+								"standards-practice-set",
+								"standards-practice-set-check-in-2",
+								"algebra-2a-check-in-2-supplemental-standards-practice-set-check-in-2"
+							]
+						},
+						{
+							"id": "algebra-2a-check-in-2-supplemental-algebra-2a-check-in-2-modeling-or-error-analysis",
+							"title": "Algebra 2A Check-In 2 Modeling or Error Analysis",
+							"aliases": [
+								"algebra-2a-check-in-2-supplemental-check-in-2-modeling-or-error-analysis-project",
+								"algebra-2a-check-in-2-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis",
+								"modeling-or-error-analysis-check-in-2",
+								"algebra-2a-check-in-2-supplemental-modeling-or-error-analysis-check-in-2"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2a-ala8-rational-functions",
+					"title": "ALA8 Rational Functions",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2a-ala8-rational-functions-curriculum-asymptotes-and-removable-discontinuities",
+							"title": "Asymptotes and Removable Discontinuities",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-ala8-rational-functions-curriculum-graphing-and-roots-of-rational-functions",
+							"title": "Graphing and Roots of Rational Functions",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-ala8-rational-functions-curriculum-rational-graph-references",
+							"title": "Rational Graph References",
+							"aliases": [
+								"algebra-2a-ala8-rational-functions-supplemental-rational-graph-references"
+							]
+						},
+						{
+							"id": "algebra-2a-ala8-rational-functions-supplemental-modeling-or-error-analysis-rational-functions",
+							"title": "Modeling or Error Analysis: Rational Functions",
+							"aliases": [
+								"algebra-2a-ala8-rational-functions-supplemental-ala8-rational-functions-modeling-or-error-analysis-project",
+								"algebra-2a-ala8-rational-functions-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2a-ala9-rational-function-operations",
+					"title": "ALA9 Rational Function Operations",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2a-ala9-rational-function-operations-curriculum-multiplying-dividing-and-simplifying-rational-expressions",
+							"title": "Multiplying, Dividing, and Simplifying Rational Expressions",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-ala9-rational-function-operations-curriculum-adding-subtracting-and-solving-rational-equations",
+							"title": "Adding, Subtracting, and Solving Rational Equations",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-ala9-rational-function-operations-supplemental-standards-practice-set-rational-function-operations",
+							"title": "Standards Practice Set: Rational Function Operations",
+							"aliases": [
+								"algebra-2a-ala9-rational-function-operations-supplemental-ala9-rational-function-operations-standards-practice-set",
+								"algebra-2a-ala9-rational-function-operations-supplemental-standards-practice-set",
+								"standards-practice-set"
+							]
+						},
+						{
+							"id": "algebra-2a-ala9-rational-function-operations-supplemental-modeling-or-error-analysis-rational-function-operations",
+							"title": "Modeling or Error Analysis: Rational Function Operations",
+							"aliases": [
+								"algebra-2a-ala9-rational-function-operations-supplemental-ala9-rational-function-operations-modeling-or-error-analysis-project",
+								"algebra-2a-ala9-rational-function-operations-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2a-ala10-radical-functions",
+					"title": "ALA10 Radical Functions",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2a-ala10-radical-functions-curriculum-graphing-radical-functions",
+							"title": "Graphing Radical Functions",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-ala10-radical-functions-curriculum-solving-radical-equations",
+							"title": "Solving Radical Equations",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-ala10-radical-functions-supplemental-standards-practice-set-radical-functions",
+							"title": "Standards Practice Set: Radical Functions",
+							"aliases": [
+								"algebra-2a-ala10-radical-functions-supplemental-ala10-radical-functions-standards-practice-set",
+								"algebra-2a-ala10-radical-functions-supplemental-standards-practice-set",
+								"standards-practice-set"
+							]
+						},
+						{
+							"id": "algebra-2a-ala10-radical-functions-supplemental-modeling-or-error-analysis-radical-functions",
+							"title": "Modeling or Error Analysis: Radical Functions",
+							"aliases": [
+								"algebra-2a-ala10-radical-functions-supplemental-ala10-radical-functions-modeling-or-error-analysis-project",
+								"algebra-2a-ala10-radical-functions-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2a-ala11-piecewise-functions",
+					"title": "ALA11 Piecewise Functions",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2a-ala11-piecewise-functions-curriculum-evaluating-and-graphing-piecewise-functions",
+							"title": "Evaluating and Graphing Piecewise Functions",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-ala11-piecewise-functions-curriculum-piecewise-models-and-continuity",
+							"title": "Piecewise Models and Continuity",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-ala11-piecewise-functions-supplemental-standards-practice-set-piecewise-functions",
+							"title": "Standards Practice Set: Piecewise Functions",
+							"aliases": [
+								"algebra-2a-ala11-piecewise-functions-supplemental-ala11-piecewise-functions-standards-practice-set",
+								"algebra-2a-ala11-piecewise-functions-supplemental-standards-practice-set",
+								"standards-practice-set"
+							]
+						},
+						{
+							"id": "algebra-2a-ala11-piecewise-functions-supplemental-modeling-or-error-analysis-piecewise-functions",
+							"title": "Modeling or Error Analysis: Piecewise Functions",
+							"aliases": [
+								"algebra-2a-ala11-piecewise-functions-supplemental-ala11-piecewise-functions-modeling-or-error-analysis-project",
+								"algebra-2a-ala11-piecewise-functions-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2a-check-in-3",
+					"title": "Check-In #3",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2a-check-in-3-curriculum-algebra-2a-check-in-3-review-targets",
+							"title": "Algebra 2A Check-In 3 Review Targets",
+							"aliases": [
+								"review-targets",
+								"algebra-2a-check-in-3-curriculum-review-targets"
+							]
+						},
+						{
+							"id": "algebra-2a-check-in-3-curriculum-algebra-2a-check-in-3-representative-review-problems",
+							"title": "Algebra 2A Check-In 3 Representative Review Problems",
+							"aliases": [
+								"representative-review-problems",
+								"algebra-2a-check-in-3-curriculum-representative-review-problems"
+							]
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-check-in-3-curriculum-check-in-visual-references",
+							"title": "Check-In Visual References",
+							"aliases": [
+								"algebra-2a-check-in-3-supplemental-check-in-visual-references"
+							]
+						},
+						{
+							"id": "algebra-2a-check-in-3-supplemental-algebra-2a-check-in-3-modeling-or-error-analysis",
+							"title": "Algebra 2A Check-In 3 Modeling or Error Analysis",
+							"aliases": [
+								"algebra-2a-check-in-3-supplemental-check-in-3-modeling-or-error-analysis-project",
+								"algebra-2a-check-in-3-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis",
+								"modeling-or-error-analysis-check-in-3",
+								"algebra-2a-check-in-3-supplemental-modeling-or-error-analysis-check-in-3"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2a-ala12-algebra-2a-function-family-capstone",
+					"title": "ALA12 Algebra 2A Function Family Capstone",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2a-ala12-algebra-2a-function-family-capstone-curriculum-capstone-function-family-model-portfolio",
+							"title": "Capstone: Function Family Model Portfolio",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-ala12-algebra-2a-function-family-capstone-supplemental-choice-portfolio-evidence-audit",
+							"title": "Choice: Portfolio Evidence Audit",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-ala12-algebra-2a-function-family-capstone-supplemental-challenge-cross-family-model-stress-test",
+							"title": "Challenge: Cross-Family Model Stress Test",
+							"aliases": []
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2a-reference-archive-algebra-2a",
+					"title": "Reference Archive: Algebra 2A",
+					"kind": "appendix",
+					"curriculum": [
+						{
+							"id": "algebra-2a-reference-archive-algebra-2a-curriculum-project-scenario-and-context-links",
+							"title": "Project Scenario and Context Links",
+							"aliases": [
+								"algebra-2a-source-activity-archive-curriculum-project-scenario-and-context-links"
+							]
+						},
+						{
+							"id": "algebra-2a-reference-archive-algebra-2a-curriculum-pending-static-assets",
+							"title": "Pending Static Assets",
+							"aliases": [
+								"algebra-2a-source-activity-archive-curriculum-pending-static-asset-placeholders"
+							]
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-reference-archive-algebra-2a-supplemental-standards-practice-set-algebra-2a",
+							"title": "Standards Practice Set: Algebra 2A",
+							"aliases": [
+								"standards-practice-set",
+								"standards-practice-set-reference-archive-algebra-2a",
+								"algebra-2a-source-activity-archive-supplemental-standards-practice-set-source-activity-archive",
+								"algebra-2a-reference-archive-algebra-2a-supplemental-standards-practice-set",
+								"algebra-2a-reference-archive-algebra-2a-supplemental-standards-practice-set-reference-archive-algebra-2a"
+							]
+						},
+						{
+							"id": "algebra-2a-reference-archive-algebra-2a-supplemental-modeling-or-error-analysis-algebra-2a",
+							"title": "Modeling or Error Analysis: Algebra 2A",
+							"aliases": [
+								"modeling-or-error-analysis",
+								"modeling-or-error-analysis-reference-archive-algebra-2a",
+								"algebra-2a-source-activity-archive-supplemental-modeling-or-error-analysis-source-activity-archive",
+								"algebra-2a-reference-archive-algebra-2a-supplemental-modeling-or-error-analysis",
+								"algebra-2a-reference-archive-algebra-2a-supplemental-modeling-or-error-analysis-reference-archive-algebra-2a"
+							]
+						}
+					],
+					"aliases": ["algebra-2a-source-activity-archive"]
+				},
+				{
+					"id": "algebra-2a-standards-map",
+					"title": "Standards Map",
+					"kind": "appendix",
+					"curriculum": [
+						{
+							"id": "algebra-2a-standards-map-curriculum-algebra-2a-reference-guide",
+							"title": "Algebra 2A Reference Guide",
+							"aliases": [
+								"algebra-2a-source-map",
+								"algebra-2a-standards-map-curriculum-algebra-2a-source-map",
+								"algebra-2a-course-foundations-curriculum-algebra-2a-reference-guide",
+								"algebra-2a-course-foundations-curriculum-algebra-2a-source-map"
+							]
+						},
+						{
+							"id": "algebra-2a-standards-map-curriculum-algebra-2a-core-skills",
+							"title": "Algebra 2A Core Skills",
+							"aliases": [
+								"algebra-2a-course-foundations-curriculum-algebra-2a-core-skills"
+							]
+						},
+						{
+							"id": "algebra-2a-standards-map-curriculum-algebra-2a-next-topics",
+							"title": "Algebra 2A Next Topics",
+							"aliases": [
+								"algebra-2a-course-foundations-curriculum-algebra-2a-next-topics"
+							]
+						},
+						{
+							"id": "algebra-2a-standards-map-curriculum-algebra-2a-boundaries",
+							"title": "Algebra 2A Boundaries",
+							"aliases": [
+								"algebra-2a-course-foundations-curriculum-algebra-2a-boundaries"
+							]
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-standards-map-supplemental-algebra-2a-prerequisite-check",
+							"title": "Algebra 2A Prerequisite Check",
+							"aliases": [
+								"algebra-2a-standards-checkpoint",
+								"algebra-2a-readiness-check",
+								"algebra-2a-standards-map-supplemental-algebra-2a-standards-checkpoint",
+								"algebra-2a-standards-map-supplemental-algebra-2a-readiness-check",
+								"algebra-2a-course-foundations-supplemental-algebra-2a-prerequisite-check",
+								"algebra-2a-course-foundations-supplemental-algebra-2a-standards-checkpoint",
+								"algebra-2a-course-foundations-supplemental-algebra-2a-readiness-check"
+							]
+						},
+						{
+							"id": "algebra-2a-standards-map-supplemental-algebra-2a-pathway-map",
+							"title": "Algebra 2A Pathway Map",
+							"aliases": [
+								"algebra-2a-sequence-map",
+								"algebra-2a-learning-sequence",
+								"algebra-2a-standards-map-supplemental-algebra-2a-sequence-map",
+								"algebra-2a-standards-map-supplemental-algebra-2a-learning-sequence",
+								"algebra-2a-course-foundations-supplemental-algebra-2a-pathway-map",
+								"algebra-2a-course-foundations-supplemental-algebra-2a-sequence-map",
+								"algebra-2a-course-foundations-supplemental-algebra-2a-learning-sequence"
+							]
+						}
+					],
+					"aliases": [
+						"course-foundations",
+						"algebra-2a-course-foundations"
+					]
+				},
+				{
+					"id": "algebra-2a-course-roadmap",
+					"title": "Course Roadmap",
+					"kind": "appendix",
+					"curriculum": [
+						{
+							"id": "algebra-2a-course-roadmap-curriculum-algebra-2a-follow-up-path",
+							"title": "Algebra 2A Follow-Up Path",
+							"aliases": [
+								"algebra-2a-module-options",
+								"algebra-2a-next-module-ideas",
+								"algebra-2a-course-roadmap-curriculum-algebra-2a-module-options",
+								"algebra-2a-course-roadmap-curriculum-algebra-2a-next-module-ideas",
+								"algebra-2a-course-next-steps-curriculum-algebra-2a-follow-up-path",
+								"algebra-2a-course-next-steps-curriculum-algebra-2a-module-options",
+								"algebra-2a-course-next-steps-curriculum-algebra-2a-next-module-ideas"
+							]
+						},
+						{
+							"id": "algebra-2a-course-roadmap-curriculum-algebra-2a-resource-map",
+							"title": "Algebra 2A Resource Map",
+							"aliases": [
+								"algebra-2a-resources",
+								"algebra-2a-course-roadmap-curriculum-algebra-2a-resources",
+								"algebra-2a-course-next-steps-curriculum-algebra-2a-resource-map",
+								"algebra-2a-course-next-steps-curriculum-algebra-2a-resources"
+							]
+						},
+						{
+							"id": "algebra-2a-course-roadmap-curriculum-algebra-2a-module-alignment-guide",
+							"title": "Algebra 2A Module Alignment Guide",
+							"aliases": [
+								"algebra-2a-readiness-checklist",
+								"algebra-2a-course-roadmap-curriculum-algebra-2a-readiness-checklist",
+								"algebra-2a-course-next-steps-curriculum-algebra-2a-module-alignment-guide",
+								"algebra-2a-course-next-steps-curriculum-algebra-2a-readiness-checklist"
+							]
+						},
+						{
+							"id": "algebra-2a-course-roadmap-curriculum-algebra-2a-reference-map",
+							"title": "Algebra 2A Reference Map",
+							"aliases": [
+								"algebra-2a-reference-refresh",
+								"algebra-2a-resource-updates",
+								"algebra-2a-course-roadmap-curriculum-algebra-2a-reference-refresh",
+								"algebra-2a-course-roadmap-curriculum-algebra-2a-resource-updates",
+								"algebra-2a-course-next-steps-curriculum-algebra-2a-reference-map",
+								"algebra-2a-course-next-steps-curriculum-algebra-2a-reference-refresh",
+								"algebra-2a-course-next-steps-curriculum-algebra-2a-resource-updates"
+							]
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-course-roadmap-supplemental-algebra-2a-prerequisite-map",
+							"title": "Algebra 2A Prerequisite Map",
+							"aliases": [
+								"algebra-2a-dependency-graph",
+								"algebra-2a-course-roadmap-supplemental-algebra-2a-dependency-graph",
+								"algebra-2a-course-next-steps-supplemental-algebra-2a-prerequisite-map",
+								"algebra-2a-course-next-steps-supplemental-algebra-2a-dependency-graph"
+							]
+						},
+						{
+							"id": "algebra-2a-course-roadmap-supplemental-algebra-2a-resource-inventory",
+							"title": "Algebra 2A Resource Inventory",
+							"aliases": [
+								"algebra-2a-materials-readiness",
+								"algebra-2a-resource-checklist",
+								"algebra-2a-course-roadmap-supplemental-algebra-2a-materials-readiness",
+								"algebra-2a-course-roadmap-supplemental-algebra-2a-resource-checklist",
+								"algebra-2a-course-next-steps-supplemental-algebra-2a-resource-inventory",
+								"algebra-2a-course-next-steps-supplemental-algebra-2a-materials-readiness",
+								"algebra-2a-course-next-steps-supplemental-algebra-2a-resource-checklist"
+							]
+						}
+					],
+					"aliases": [
+						"course-next-steps",
+						"algebra-2a-course-next-steps"
+					]
+				},
+				{
+					"id": "algebra-2a-project-practice-guide",
+					"title": "Project Practice Guide",
+					"kind": "appendix",
+					"curriculum": [
+						{
+							"id": "algebra-2a-project-practice-guide-curriculum-algebra-2a-project-ladder",
+							"title": "Algebra 2A Project Ladder",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-project-practice-guide-curriculum-algebra-2a-checkpoints",
+							"title": "Algebra 2A Checkpoints",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-project-practice-guide-curriculum-algebra-2a-rubric",
+							"title": "Algebra 2A Rubric",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-project-practice-guide-curriculum-algebra-2a-capstone-gate",
+							"title": "Algebra 2A Capstone Gate",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-project-practice-guide-supplemental-practice-project-model-a-real-or-provided-dataset",
+							"title": "Practice Project: Model a Real or Provided Dataset",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-project-practice-guide-supplemental-practice-project-create-a-graph-and-equation-story",
+							"title": "Practice Project: Create a Graph-And-Equation Story",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-project-practice-guide-supplemental-practice-project-repair-a-worked-solution-with-hidden-errors",
+							"title": "Practice Project: Repair a Worked Solution with Hidden Errors",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-project-practice-guide-supplemental-practice-project-build-a-standards-aligned-mixed-review-set",
+							"title": "Practice Project: Build a Standards-Aligned Mixed Review Set",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-project-practice-guide-supplemental-practice-project-write-a-short-justification-for-each-transformation-step",
+							"title": "Practice Project: Write a Short Justification for Each Transformation Step",
+							"aliases": []
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2a-algebra-2a-project-taxonomy-and-assessment-implementation",
+					"title": "Algebra 2A: Project Taxonomy and Assessment Implementation",
+					"kind": "appendix",
+					"curriculum": [
+						{
+							"id": "algebra-2a-algebra-2a-project-taxonomy-and-assessment-implementation-curriculum-algebra-2a-structure-decision",
+							"title": "Algebra 2A Structure Decision",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-algebra-2a-project-taxonomy-and-assessment-implementation-curriculum-algebra-2a-assessment-cadence",
+							"title": "Algebra 2A Assessment Cadence",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-algebra-2a-project-taxonomy-and-assessment-implementation-curriculum-algebra-2a-representation-balance",
+							"title": "Algebra 2A Representation Balance",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-algebra-2a-project-taxonomy-and-assessment-implementation-curriculum-algebra-2a-worked-example-density",
+							"title": "Algebra 2A Worked Example Density",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-algebra-2a-project-taxonomy-and-assessment-implementation-supplemental-algebra-2a-practice-set-conversion",
+							"title": "Algebra 2A Practice Set Conversion",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-algebra-2a-project-taxonomy-and-assessment-implementation-supplemental-algebra-2a-modeling-or-error-analysis-task",
+							"title": "Algebra 2A Modeling or Error-Analysis Task",
+							"aliases": []
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2a-standards-mapped-algebra-architecture",
+					"title": "Standards-Mapped Algebra Architecture",
+					"kind": "appendix",
+					"curriculum": [
+						{
+							"id": "algebra-2a-standards-mapped-algebra-architecture-curriculum-course-scope-map",
+							"title": "Course Scope Map",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-standards-mapped-algebra-architecture-curriculum-course-item-labels",
+							"title": "Course Item Labels",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-standards-mapped-algebra-architecture-curriculum-required-anchor-and-extension-projects",
+							"title": "Required Anchor and Extension Projects",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-standards-mapped-algebra-architecture-curriculum-practice-set-types",
+							"title": "Practice Set Types",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2a-standards-mapped-algebra-architecture-supplemental-anchor-project-modeling-task-blueprint",
+							"title": "Anchor Project: Modeling Task Blueprint",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2a-standards-mapped-algebra-architecture-supplemental-extension-project-changed-constraint",
+							"title": "Extension Project: Changed Constraint",
+							"aliases": []
+						}
+					],
+					"aliases": []
+				}
+			]
+		},
+		{
+			"courseId": "algebra-2b",
+			"source": "d63aa49415329c0f78ca89089b8d7412c1c406ac",
+			"version": "v2.8.179",
+			"identities": [
+				{
+					"moduleId": "algebra-2b-alb1-introduction-to-logarithms",
+					"id": "algebra-2b-alb1-introduction-to-logarithms-curriculum-logarithms-bases-and-rewriting-forms",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-alb1-introduction-to-logarithms",
+					"id": "algebra-2b-alb1-introduction-to-logarithms-curriculum-logarithm-properties-and-change-of-base",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-alb1-introduction-to-logarithms",
+					"id": "algebra-2b-alb1-introduction-to-logarithms-supplemental-standards-practice-set-introduction-to-logarithms",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-alb1-introduction-to-logarithms",
+					"id": "algebra-2b-alb1-introduction-to-logarithms-supplemental-modeling-or-error-analysis-introduction-to-logarithms",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-alb2-exponential-and-logarithmic-functions",
+					"id": "algebra-2b-alb2-exponential-and-logarithmic-functions-curriculum-exponential-graphs-and-transformations",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-alb2-exponential-and-logarithmic-functions",
+					"id": "algebra-2b-alb2-exponential-and-logarithmic-functions-curriculum-logarithmic-graphs-and-growth-models",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-alb2-exponential-and-logarithmic-functions",
+					"id": "algebra-2b-alb2-exponential-and-logarithmic-functions-supplemental-standards-practice-set-exponential-and-logarithmic-functions",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-alb2-exponential-and-logarithmic-functions",
+					"id": "algebra-2b-alb2-exponential-and-logarithmic-functions-supplemental-modeling-or-error-analysis-exponential-and-logarithmic-functions",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-alb3-arithmetic-sequences",
+					"id": "algebra-2b-alb3-arithmetic-sequences-curriculum-arithmetic-sequences-and-nth-terms",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-alb3-arithmetic-sequences",
+					"id": "algebra-2b-alb3-arithmetic-sequences-curriculum-arithmetic-series-and-application-problems",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-alb3-arithmetic-sequences",
+					"id": "algebra-2b-alb3-arithmetic-sequences-supplemental-standards-practice-set-arithmetic-sequences",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-alb3-arithmetic-sequences",
+					"id": "algebra-2b-alb3-arithmetic-sequences-supplemental-modeling-or-error-analysis-arithmetic-sequences",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-alb4-geometric-sequences",
+					"id": "algebra-2b-alb4-geometric-sequences-curriculum-geometric-sequences-and-exponential-patterns",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-alb4-geometric-sequences",
+					"id": "algebra-2b-alb4-geometric-sequences-curriculum-geometric-sums-and-infinite-series",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-alb4-geometric-sequences",
+					"id": "algebra-2b-alb4-geometric-sequences-supplemental-standards-practice-set-geometric-sequences",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-alb4-geometric-sequences",
+					"id": "algebra-2b-alb4-geometric-sequences-supplemental-modeling-or-error-analysis-geometric-sequences",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-alb5-matrix-operations",
+					"id": "algebra-2b-alb5-matrix-operations-curriculum-matrix-basics-addition-and-multiplication",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-alb5-matrix-operations",
+					"id": "algebra-2b-alb5-matrix-operations-curriculum-inverses-and-matrix-division",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-alb5-matrix-operations",
+					"id": "algebra-2b-alb5-matrix-operations-supplemental-standards-practice-set-matrix-operations",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-alb5-matrix-operations",
+					"id": "algebra-2b-alb5-matrix-operations-supplemental-modeling-or-error-analysis-matrix-operations",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-check-in-1",
+					"id": "algebra-2b-check-in-1-curriculum-algebra-2b-check-in-1-review-targets",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-check-in-1",
+					"id": "algebra-2b-check-in-1-curriculum-algebra-2b-check-in-1-representative-review-problems",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-check-in-1",
+					"id": "algebra-2b-check-in-1-supplemental-algebra-2b-check-in-1-standards-practice-set",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-check-in-1",
+					"id": "algebra-2b-check-in-1-supplemental-algebra-2b-check-in-1-modeling-or-error-analysis",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-alb6-probability",
+					"id": "algebra-2b-alb6-probability-curriculum-probability-rules-and-sample-spaces",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-alb6-probability",
+					"id": "algebra-2b-alb6-probability-curriculum-two-way-tables-permutations-and-combinations",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-alb6-probability",
+					"id": "algebra-2b-alb6-probability-supplemental-standards-practice-set-probability",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-alb6-probability",
+					"id": "algebra-2b-alb6-probability-supplemental-modeling-or-error-analysis-probability",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-alb7-data-and-statistics",
+					"id": "algebra-2b-alb7-data-and-statistics-curriculum-correlation-and-interpreting-scatter-plots",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-alb7-data-and-statistics",
+					"id": "algebra-2b-alb7-data-and-statistics-curriculum-least-squares-regression-and-r-2",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-alb7-data-and-statistics",
+					"id": "algebra-2b-alb7-data-and-statistics-curriculum-data-visual-references",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-alb7-data-and-statistics",
+					"id": "algebra-2b-alb7-data-and-statistics-supplemental-modeling-or-error-analysis-data-and-statistics",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-alb8-trigonometry-basics",
+					"id": "algebra-2b-alb8-trigonometry-basics-curriculum-right-triangle-ratios-radians-and-the-unit-circle",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-alb8-trigonometry-basics",
+					"id": "algebra-2b-alb8-trigonometry-basics-curriculum-trig-identities-and-function-values",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-alb8-trigonometry-basics",
+					"id": "algebra-2b-alb8-trigonometry-basics-curriculum-triangle-diagram-references",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-alb8-trigonometry-basics",
+					"id": "algebra-2b-alb8-trigonometry-basics-supplemental-modeling-or-error-analysis-trigonometry-basics",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-alb9-graphing-trigonometric-functions",
+					"id": "algebra-2b-alb9-graphing-trigonometric-functions-curriculum-sine-cosine-and-tangent-graph-features",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-alb9-graphing-trigonometric-functions",
+					"id": "algebra-2b-alb9-graphing-trigonometric-functions-curriculum-transformations-of-trig-graphs",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-alb9-graphing-trigonometric-functions",
+					"id": "algebra-2b-alb9-graphing-trigonometric-functions-supplemental-standards-practice-set-graphing-trigonometric-functions",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-alb9-graphing-trigonometric-functions",
+					"id": "algebra-2b-alb9-graphing-trigonometric-functions-supplemental-modeling-or-error-analysis-graphing-trigonometric-functions",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-check-in-2",
+					"id": "algebra-2b-check-in-2-curriculum-algebra-2b-check-in-2-review-targets",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-check-in-2",
+					"id": "algebra-2b-check-in-2-curriculum-algebra-2b-check-in-2-representative-review-problems",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-check-in-2",
+					"id": "algebra-2b-check-in-2-supplemental-algebra-2b-check-in-2-standards-practice-set",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-check-in-2",
+					"id": "algebra-2b-check-in-2-supplemental-algebra-2b-check-in-2-modeling-or-error-analysis",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-alb10-algebra-2b-modeling-capstone",
+					"id": "algebra-2b-alb10-algebra-2b-modeling-capstone-curriculum-capstone-compare-model-and-defend",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-alb10-algebra-2b-modeling-capstone",
+					"id": "algebra-2b-alb10-algebra-2b-modeling-capstone-supplemental-choice-course-evidence-audit",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-alb10-algebra-2b-modeling-capstone",
+					"id": "algebra-2b-alb10-algebra-2b-modeling-capstone-supplemental-challenge-model-stress-test",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-reference-archive-algebra-2b",
+					"id": "algebra-2b-reference-archive-algebra-2b-curriculum-algebra-2b-reference-map",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-reference-archive-algebra-2b",
+					"id": "algebra-2b-reference-archive-algebra-2b-curriculum-pending-static-assets",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-reference-archive-algebra-2b",
+					"id": "algebra-2b-reference-archive-algebra-2b-supplemental-standards-practice-set-algebra-2b",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-reference-archive-algebra-2b",
+					"id": "algebra-2b-reference-archive-algebra-2b-supplemental-modeling-or-error-analysis-algebra-2b",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-standards-map",
+					"id": "algebra-2b-standards-map-curriculum-algebra-2b-reference-guide",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-standards-map",
+					"id": "algebra-2b-standards-map-curriculum-algebra-2b-core-skills",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-standards-map",
+					"id": "algebra-2b-standards-map-curriculum-algebra-2b-next-topics",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-standards-map",
+					"id": "algebra-2b-standards-map-curriculum-algebra-2b-boundaries",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-standards-map",
+					"id": "algebra-2b-standards-map-supplemental-algebra-2b-prerequisite-check",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-standards-map",
+					"id": "algebra-2b-standards-map-supplemental-algebra-2b-pathway-map",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-course-roadmap",
+					"id": "algebra-2b-course-roadmap-curriculum-algebra-2b-follow-up-path",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-course-roadmap",
+					"id": "algebra-2b-course-roadmap-curriculum-algebra-2b-resource-map",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-course-roadmap",
+					"id": "algebra-2b-course-roadmap-curriculum-algebra-2b-module-alignment-guide",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-course-roadmap",
+					"id": "algebra-2b-course-roadmap-curriculum-algebra-2b-reference-map",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-course-roadmap",
+					"id": "algebra-2b-course-roadmap-supplemental-algebra-2b-prerequisite-map",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-course-roadmap",
+					"id": "algebra-2b-course-roadmap-supplemental-algebra-2b-resource-inventory",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-project-practice-guide",
+					"id": "algebra-2b-project-practice-guide-curriculum-algebra-2b-project-ladder",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-project-practice-guide",
+					"id": "algebra-2b-project-practice-guide-curriculum-algebra-2b-checkpoints",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-project-practice-guide",
+					"id": "algebra-2b-project-practice-guide-curriculum-algebra-2b-rubric",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-project-practice-guide",
+					"id": "algebra-2b-project-practice-guide-curriculum-algebra-2b-capstone-gate",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-project-practice-guide",
+					"id": "algebra-2b-project-practice-guide-supplemental-practice-project-model-a-real-or-provided-dataset",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-project-practice-guide",
+					"id": "algebra-2b-project-practice-guide-supplemental-practice-project-create-a-graph-and-equation-story",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-project-practice-guide",
+					"id": "algebra-2b-project-practice-guide-supplemental-practice-project-repair-a-worked-solution-with-hidden-errors",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-project-practice-guide",
+					"id": "algebra-2b-project-practice-guide-supplemental-practice-project-build-a-standards-aligned-mixed-review-set",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-project-practice-guide",
+					"id": "algebra-2b-project-practice-guide-supplemental-practice-project-write-a-short-justification-for-each-transformation-step",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-algebra-2b-project-taxonomy-and-assessment-implementation",
+					"id": "algebra-2b-algebra-2b-project-taxonomy-and-assessment-implementation-curriculum-algebra-2b-structure-decision",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-algebra-2b-project-taxonomy-and-assessment-implementation",
+					"id": "algebra-2b-algebra-2b-project-taxonomy-and-assessment-implementation-curriculum-algebra-2b-assessment-cadence",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-algebra-2b-project-taxonomy-and-assessment-implementation",
+					"id": "algebra-2b-algebra-2b-project-taxonomy-and-assessment-implementation-curriculum-algebra-2b-representation-balance",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-algebra-2b-project-taxonomy-and-assessment-implementation",
+					"id": "algebra-2b-algebra-2b-project-taxonomy-and-assessment-implementation-curriculum-algebra-2b-worked-example-density",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-algebra-2b-project-taxonomy-and-assessment-implementation",
+					"id": "algebra-2b-algebra-2b-project-taxonomy-and-assessment-implementation-supplemental-algebra-2b-practice-set-conversion",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-algebra-2b-project-taxonomy-and-assessment-implementation",
+					"id": "algebra-2b-algebra-2b-project-taxonomy-and-assessment-implementation-supplemental-algebra-2b-modeling-or-error-analysis-task",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-standards-mapped-algebra-architecture",
+					"id": "algebra-2b-standards-mapped-algebra-architecture-curriculum-course-scope-map",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-standards-mapped-algebra-architecture",
+					"id": "algebra-2b-standards-mapped-algebra-architecture-curriculum-course-item-labels",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-standards-mapped-algebra-architecture",
+					"id": "algebra-2b-standards-mapped-algebra-architecture-curriculum-required-anchor-and-extension-projects",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-standards-mapped-algebra-architecture",
+					"id": "algebra-2b-standards-mapped-algebra-architecture-curriculum-practice-set-types",
+					"section": "core"
+				},
+				{
+					"moduleId": "algebra-2b-standards-mapped-algebra-architecture",
+					"id": "algebra-2b-standards-mapped-algebra-architecture-supplemental-anchor-project-modeling-task-blueprint",
+					"section": "optional"
+				},
+				{
+					"moduleId": "algebra-2b-standards-mapped-algebra-architecture",
+					"id": "algebra-2b-standards-mapped-algebra-architecture-supplemental-extension-project-changed-constraint",
+					"section": "optional"
+				}
+			],
+			"modules": [
+				{
+					"id": "algebra-2b-alb1-introduction-to-logarithms",
+					"title": "ALB1 Introduction to Logarithms",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2b-alb1-introduction-to-logarithms-curriculum-logarithms-bases-and-rewriting-forms",
+							"title": "Logarithms, Bases, and Rewriting Forms",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-alb1-introduction-to-logarithms-curriculum-logarithm-properties-and-change-of-base",
+							"title": "Logarithm Properties and Change of Base",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2b-alb1-introduction-to-logarithms-supplemental-standards-practice-set-introduction-to-logarithms",
+							"title": "Standards Practice Set: Introduction to Logarithms",
+							"aliases": [
+								"algebra-2b-alb1-introduction-to-logarithms-supplemental-alb1-introduction-to-logarithms-standards-practice-set",
+								"algebra-2b-alb1-introduction-to-logarithms-supplemental-standards-practice-set",
+								"standards-practice-set"
+							]
+						},
+						{
+							"id": "algebra-2b-alb1-introduction-to-logarithms-supplemental-modeling-or-error-analysis-introduction-to-logarithms",
+							"title": "Modeling or Error Analysis: Introduction to Logarithms",
+							"aliases": [
+								"algebra-2b-alb1-introduction-to-logarithms-supplemental-alb1-introduction-to-logarithms-modeling-or-error-analysis-project",
+								"algebra-2b-alb1-introduction-to-logarithms-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2b-alb2-exponential-and-logarithmic-functions",
+					"title": "ALB2 Exponential and Logarithmic Functions",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2b-alb2-exponential-and-logarithmic-functions-curriculum-exponential-graphs-and-transformations",
+							"title": "Exponential Graphs and Transformations",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-alb2-exponential-and-logarithmic-functions-curriculum-logarithmic-graphs-and-growth-models",
+							"title": "Logarithmic Graphs and Growth Models",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2b-alb2-exponential-and-logarithmic-functions-supplemental-standards-practice-set-exponential-and-logarithmic-functions",
+							"title": "Standards Practice Set: Exponential and Logarithmic Functions",
+							"aliases": [
+								"algebra-2b-alb2-exponential-and-logarithmic-functions-supplemental-alb2-exponential-and-logarithmic-functions-standards-practice-set",
+								"algebra-2b-alb2-exponential-and-logarithmic-functions-supplemental-standards-practice-set",
+								"standards-practice-set"
+							]
+						},
+						{
+							"id": "algebra-2b-alb2-exponential-and-logarithmic-functions-supplemental-modeling-or-error-analysis-exponential-and-logarithmic-functions",
+							"title": "Modeling or Error Analysis: Exponential and Logarithmic Functions",
+							"aliases": [
+								"algebra-2b-alb2-exponential-and-logarithmic-functions-supplemental-alb2-exponential-and-logarithmic-functions-modeling-or-error-analysis-project",
+								"algebra-2b-alb2-exponential-and-logarithmic-functions-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2b-alb3-arithmetic-sequences",
+					"title": "ALB3 Arithmetic Sequences",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2b-alb3-arithmetic-sequences-curriculum-arithmetic-sequences-and-nth-terms",
+							"title": "Arithmetic Sequences and nth Terms",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-alb3-arithmetic-sequences-curriculum-arithmetic-series-and-application-problems",
+							"title": "Arithmetic Series and Application Problems",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2b-alb3-arithmetic-sequences-supplemental-standards-practice-set-arithmetic-sequences",
+							"title": "Standards Practice Set: Arithmetic Sequences",
+							"aliases": [
+								"algebra-2b-alb3-arithmetic-sequences-supplemental-alb3-arithmetic-sequences-standards-practice-set",
+								"algebra-2b-alb3-arithmetic-sequences-supplemental-standards-practice-set",
+								"standards-practice-set"
+							]
+						},
+						{
+							"id": "algebra-2b-alb3-arithmetic-sequences-supplemental-modeling-or-error-analysis-arithmetic-sequences",
+							"title": "Modeling or Error Analysis: Arithmetic Sequences",
+							"aliases": [
+								"algebra-2b-alb3-arithmetic-sequences-supplemental-alb3-arithmetic-sequences-modeling-or-error-analysis-project",
+								"algebra-2b-alb3-arithmetic-sequences-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2b-alb4-geometric-sequences",
+					"title": "ALB4 Geometric Sequences",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2b-alb4-geometric-sequences-curriculum-geometric-sequences-and-exponential-patterns",
+							"title": "Geometric Sequences and Exponential Patterns",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-alb4-geometric-sequences-curriculum-geometric-sums-and-infinite-series",
+							"title": "Geometric Sums and Infinite Series",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2b-alb4-geometric-sequences-supplemental-standards-practice-set-geometric-sequences",
+							"title": "Standards Practice Set: Geometric Sequences",
+							"aliases": [
+								"algebra-2b-alb4-geometric-sequences-supplemental-alb4-geometric-sequences-standards-practice-set",
+								"algebra-2b-alb4-geometric-sequences-supplemental-standards-practice-set",
+								"standards-practice-set"
+							]
+						},
+						{
+							"id": "algebra-2b-alb4-geometric-sequences-supplemental-modeling-or-error-analysis-geometric-sequences",
+							"title": "Modeling or Error Analysis: Geometric Sequences",
+							"aliases": [
+								"algebra-2b-alb4-geometric-sequences-supplemental-alb4-geometric-sequences-modeling-or-error-analysis-project",
+								"algebra-2b-alb4-geometric-sequences-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2b-alb5-matrix-operations",
+					"title": "ALB5 Matrix Operations",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2b-alb5-matrix-operations-curriculum-matrix-basics-addition-and-multiplication",
+							"title": "Matrix Basics, Addition, and Multiplication",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-alb5-matrix-operations-curriculum-inverses-and-matrix-division",
+							"title": "Inverses and Matrix Division",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2b-alb5-matrix-operations-supplemental-standards-practice-set-matrix-operations",
+							"title": "Standards Practice Set: Matrix Operations",
+							"aliases": [
+								"algebra-2b-alb5-matrix-operations-supplemental-alb5-matrix-operations-standards-practice-set",
+								"algebra-2b-alb5-matrix-operations-supplemental-standards-practice-set",
+								"standards-practice-set"
+							]
+						},
+						{
+							"id": "algebra-2b-alb5-matrix-operations-supplemental-modeling-or-error-analysis-matrix-operations",
+							"title": "Modeling or Error Analysis: Matrix Operations",
+							"aliases": [
+								"algebra-2b-alb5-matrix-operations-supplemental-alb5-matrix-operations-modeling-or-error-analysis-project",
+								"algebra-2b-alb5-matrix-operations-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2b-check-in-1",
+					"title": "Check-In #1",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2b-check-in-1-curriculum-algebra-2b-check-in-1-review-targets",
+							"title": "Algebra 2B Check-In 1 Review Targets",
+							"aliases": [
+								"review-targets",
+								"algebra-2b-check-in-1-curriculum-review-targets"
+							]
+						},
+						{
+							"id": "algebra-2b-check-in-1-curriculum-algebra-2b-check-in-1-representative-review-problems",
+							"title": "Algebra 2B Check-In 1 Representative Review Problems",
+							"aliases": [
+								"representative-review-problems",
+								"algebra-2b-check-in-1-curriculum-representative-review-problems"
+							]
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2b-check-in-1-supplemental-algebra-2b-check-in-1-standards-practice-set",
+							"title": "Algebra 2B Check-In 1 Standards Practice Set",
+							"aliases": [
+								"algebra-2b-check-in-1-supplemental-check-in-1-standards-practice-set",
+								"algebra-2b-check-in-1-supplemental-standards-practice-set",
+								"standards-practice-set",
+								"standards-practice-set-check-in-1",
+								"algebra-2b-check-in-1-supplemental-standards-practice-set-check-in-1"
+							]
+						},
+						{
+							"id": "algebra-2b-check-in-1-supplemental-algebra-2b-check-in-1-modeling-or-error-analysis",
+							"title": "Algebra 2B Check-In 1 Modeling or Error Analysis",
+							"aliases": [
+								"algebra-2b-check-in-1-supplemental-check-in-1-modeling-or-error-analysis-project",
+								"algebra-2b-check-in-1-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis",
+								"modeling-or-error-analysis-check-in-1",
+								"algebra-2b-check-in-1-supplemental-modeling-or-error-analysis-check-in-1"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2b-alb6-probability",
+					"title": "ALB6 Probability",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2b-alb6-probability-curriculum-probability-rules-and-sample-spaces",
+							"title": "Probability Rules and Sample Spaces",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-alb6-probability-curriculum-two-way-tables-permutations-and-combinations",
+							"title": "Two-Way Tables, Permutations, and Combinations",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2b-alb6-probability-supplemental-standards-practice-set-probability",
+							"title": "Standards Practice Set: Probability",
+							"aliases": [
+								"algebra-2b-alb6-probability-supplemental-alb6-probability-standards-practice-set",
+								"algebra-2b-alb6-probability-supplemental-standards-practice-set",
+								"standards-practice-set"
+							]
+						},
+						{
+							"id": "algebra-2b-alb6-probability-supplemental-modeling-or-error-analysis-probability",
+							"title": "Modeling or Error Analysis: Probability",
+							"aliases": [
+								"algebra-2b-alb6-probability-supplemental-alb6-probability-modeling-or-error-analysis-project",
+								"algebra-2b-alb6-probability-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2b-alb7-data-and-statistics",
+					"title": "ALB7 Data and Statistics",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2b-alb7-data-and-statistics-curriculum-correlation-and-interpreting-scatter-plots",
+							"title": "Correlation and Interpreting Scatter Plots",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-alb7-data-and-statistics-curriculum-least-squares-regression-and-r-2",
+							"title": "Least-Squares Regression and r^2",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2b-alb7-data-and-statistics-curriculum-data-visual-references",
+							"title": "Data Visual References",
+							"aliases": [
+								"algebra-2b-alb7-data-and-statistics-supplemental-data-visual-references"
+							]
+						},
+						{
+							"id": "algebra-2b-alb7-data-and-statistics-supplemental-modeling-or-error-analysis-data-and-statistics",
+							"title": "Modeling or Error Analysis: Data and Statistics",
+							"aliases": [
+								"algebra-2b-alb7-data-and-statistics-supplemental-alb7-data-and-statistics-modeling-or-error-analysis-project",
+								"algebra-2b-alb7-data-and-statistics-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2b-alb8-trigonometry-basics",
+					"title": "ALB8 Trigonometry Basics",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2b-alb8-trigonometry-basics-curriculum-right-triangle-ratios-radians-and-the-unit-circle",
+							"title": "Right-Triangle Ratios, Radians, and the Unit Circle",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-alb8-trigonometry-basics-curriculum-trig-identities-and-function-values",
+							"title": "Trig Identities and Function Values",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2b-alb8-trigonometry-basics-curriculum-triangle-diagram-references",
+							"title": "Triangle Diagram References",
+							"aliases": [
+								"algebra-2b-alb8-trigonometry-basics-supplemental-triangle-diagram-references"
+							]
+						},
+						{
+							"id": "algebra-2b-alb8-trigonometry-basics-supplemental-modeling-or-error-analysis-trigonometry-basics",
+							"title": "Modeling or Error Analysis: Trigonometry Basics",
+							"aliases": [
+								"algebra-2b-alb8-trigonometry-basics-supplemental-alb8-trigonometry-basics-modeling-or-error-analysis-project",
+								"algebra-2b-alb8-trigonometry-basics-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2b-alb9-graphing-trigonometric-functions",
+					"title": "ALB9 Graphing Trigonometric Functions",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2b-alb9-graphing-trigonometric-functions-curriculum-sine-cosine-and-tangent-graph-features",
+							"title": "Sine, Cosine, and Tangent Graph Features",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-alb9-graphing-trigonometric-functions-curriculum-transformations-of-trig-graphs",
+							"title": "Transformations of Trig Graphs",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2b-alb9-graphing-trigonometric-functions-supplemental-standards-practice-set-graphing-trigonometric-functions",
+							"title": "Standards Practice Set: Graphing Trigonometric Functions",
+							"aliases": [
+								"algebra-2b-alb9-graphing-trigonometric-functions-supplemental-alb9-graphing-trigonometric-functions-standards-practice-set",
+								"algebra-2b-alb9-graphing-trigonometric-functions-supplemental-standards-practice-set",
+								"standards-practice-set"
+							]
+						},
+						{
+							"id": "algebra-2b-alb9-graphing-trigonometric-functions-supplemental-modeling-or-error-analysis-graphing-trigonometric-functions",
+							"title": "Modeling or Error Analysis: Graphing Trigonometric Functions",
+							"aliases": [
+								"algebra-2b-alb9-graphing-trigonometric-functions-supplemental-alb9-graphing-trigonometric-functions-modeling-or-error-analysis-project",
+								"algebra-2b-alb9-graphing-trigonometric-functions-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2b-check-in-2",
+					"title": "Check-In #2",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2b-check-in-2-curriculum-algebra-2b-check-in-2-review-targets",
+							"title": "Algebra 2B Check-In 2 Review Targets",
+							"aliases": [
+								"review-targets",
+								"algebra-2b-check-in-2-curriculum-review-targets"
+							]
+						},
+						{
+							"id": "algebra-2b-check-in-2-curriculum-algebra-2b-check-in-2-representative-review-problems",
+							"title": "Algebra 2B Check-In 2 Representative Review Problems",
+							"aliases": [
+								"representative-review-problems",
+								"algebra-2b-check-in-2-curriculum-representative-review-problems"
+							]
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2b-check-in-2-supplemental-algebra-2b-check-in-2-standards-practice-set",
+							"title": "Algebra 2B Check-In 2 Standards Practice Set",
+							"aliases": [
+								"algebra-2b-check-in-2-supplemental-check-in-2-standards-practice-set",
+								"algebra-2b-check-in-2-supplemental-standards-practice-set",
+								"standards-practice-set",
+								"standards-practice-set-check-in-2",
+								"algebra-2b-check-in-2-supplemental-standards-practice-set-check-in-2"
+							]
+						},
+						{
+							"id": "algebra-2b-check-in-2-supplemental-algebra-2b-check-in-2-modeling-or-error-analysis",
+							"title": "Algebra 2B Check-In 2 Modeling or Error Analysis",
+							"aliases": [
+								"algebra-2b-check-in-2-supplemental-check-in-2-modeling-or-error-analysis-project",
+								"algebra-2b-check-in-2-supplemental-modeling-or-error-analysis",
+								"modeling-or-error-analysis",
+								"modeling-or-error-analysis-check-in-2",
+								"algebra-2b-check-in-2-supplemental-modeling-or-error-analysis-check-in-2"
+							]
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2b-alb10-algebra-2b-modeling-capstone",
+					"title": "ALB10 Algebra 2B Modeling Capstone",
+					"kind": "module",
+					"curriculum": [
+						{
+							"id": "algebra-2b-alb10-algebra-2b-modeling-capstone-curriculum-capstone-compare-model-and-defend",
+							"title": "Capstone: Compare, Model, and Defend",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2b-alb10-algebra-2b-modeling-capstone-supplemental-choice-course-evidence-audit",
+							"title": "Choice: Course Evidence Audit",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-alb10-algebra-2b-modeling-capstone-supplemental-challenge-model-stress-test",
+							"title": "Challenge: Model Stress Test",
+							"aliases": []
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2b-reference-archive-algebra-2b",
+					"title": "Reference Archive: Algebra 2B",
+					"kind": "appendix",
+					"curriculum": [
+						{
+							"id": "algebra-2b-reference-archive-algebra-2b-curriculum-algebra-2b-reference-map",
+							"title": "Algebra 2B Reference Map",
+							"aliases": [
+								"algebra-2b-source-activity-archive-curriculum-source-activity-anchors-algebra-2b"
+							]
+						},
+						{
+							"id": "algebra-2b-reference-archive-algebra-2b-curriculum-pending-static-assets",
+							"title": "Pending Static Assets",
+							"aliases": [
+								"algebra-2b-source-activity-archive-curriculum-pending-static-asset-placeholders"
+							]
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2b-reference-archive-algebra-2b-supplemental-standards-practice-set-algebra-2b",
+							"title": "Standards Practice Set: Algebra 2B",
+							"aliases": [
+								"standards-practice-set",
+								"standards-practice-set-reference-archive-algebra-2b",
+								"algebra-2b-source-activity-archive-supplemental-standards-practice-set-source-activity-archive",
+								"algebra-2b-reference-archive-algebra-2b-supplemental-standards-practice-set",
+								"algebra-2b-reference-archive-algebra-2b-supplemental-standards-practice-set-reference-archive-algebra-2b"
+							]
+						},
+						{
+							"id": "algebra-2b-reference-archive-algebra-2b-supplemental-modeling-or-error-analysis-algebra-2b",
+							"title": "Modeling or Error Analysis: Algebra 2B",
+							"aliases": [
+								"modeling-or-error-analysis",
+								"modeling-or-error-analysis-reference-archive-algebra-2b",
+								"algebra-2b-source-activity-archive-supplemental-modeling-or-error-analysis-source-activity-archive",
+								"algebra-2b-reference-archive-algebra-2b-supplemental-modeling-or-error-analysis",
+								"algebra-2b-reference-archive-algebra-2b-supplemental-modeling-or-error-analysis-reference-archive-algebra-2b"
+							]
+						}
+					],
+					"aliases": ["algebra-2b-source-activity-archive"]
+				},
+				{
+					"id": "algebra-2b-standards-map",
+					"title": "Standards Map",
+					"kind": "appendix",
+					"curriculum": [
+						{
+							"id": "algebra-2b-standards-map-curriculum-algebra-2b-reference-guide",
+							"title": "Algebra 2B Reference Guide",
+							"aliases": [
+								"algebra-2b-source-map",
+								"algebra-2b-standards-map-curriculum-algebra-2b-source-map",
+								"algebra-2b-course-foundations-curriculum-algebra-2b-reference-guide",
+								"algebra-2b-course-foundations-curriculum-algebra-2b-source-map"
+							]
+						},
+						{
+							"id": "algebra-2b-standards-map-curriculum-algebra-2b-core-skills",
+							"title": "Algebra 2B Core Skills",
+							"aliases": [
+								"algebra-2b-course-foundations-curriculum-algebra-2b-core-skills"
+							]
+						},
+						{
+							"id": "algebra-2b-standards-map-curriculum-algebra-2b-next-topics",
+							"title": "Algebra 2B Next Topics",
+							"aliases": [
+								"algebra-2b-course-foundations-curriculum-algebra-2b-next-topics"
+							]
+						},
+						{
+							"id": "algebra-2b-standards-map-curriculum-algebra-2b-boundaries",
+							"title": "Algebra 2B Boundaries",
+							"aliases": [
+								"algebra-2b-course-foundations-curriculum-algebra-2b-boundaries"
+							]
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2b-standards-map-supplemental-algebra-2b-prerequisite-check",
+							"title": "Algebra 2B Prerequisite Check",
+							"aliases": [
+								"algebra-2b-standards-checkpoint",
+								"algebra-2b-readiness-check",
+								"algebra-2b-standards-map-supplemental-algebra-2b-standards-checkpoint",
+								"algebra-2b-standards-map-supplemental-algebra-2b-readiness-check",
+								"algebra-2b-course-foundations-supplemental-algebra-2b-prerequisite-check",
+								"algebra-2b-course-foundations-supplemental-algebra-2b-standards-checkpoint",
+								"algebra-2b-course-foundations-supplemental-algebra-2b-readiness-check"
+							]
+						},
+						{
+							"id": "algebra-2b-standards-map-supplemental-algebra-2b-pathway-map",
+							"title": "Algebra 2B Pathway Map",
+							"aliases": [
+								"algebra-2b-sequence-map",
+								"algebra-2b-learning-sequence",
+								"algebra-2b-standards-map-supplemental-algebra-2b-sequence-map",
+								"algebra-2b-standards-map-supplemental-algebra-2b-learning-sequence",
+								"algebra-2b-course-foundations-supplemental-algebra-2b-pathway-map",
+								"algebra-2b-course-foundations-supplemental-algebra-2b-sequence-map",
+								"algebra-2b-course-foundations-supplemental-algebra-2b-learning-sequence"
+							]
+						}
+					],
+					"aliases": [
+						"course-foundations",
+						"algebra-2b-course-foundations"
+					]
+				},
+				{
+					"id": "algebra-2b-course-roadmap",
+					"title": "Course Roadmap",
+					"kind": "appendix",
+					"curriculum": [
+						{
+							"id": "algebra-2b-course-roadmap-curriculum-algebra-2b-follow-up-path",
+							"title": "Algebra 2B Follow-Up Path",
+							"aliases": [
+								"algebra-2b-module-options",
+								"algebra-2b-next-module-ideas",
+								"algebra-2b-course-roadmap-curriculum-algebra-2b-module-options",
+								"algebra-2b-course-roadmap-curriculum-algebra-2b-next-module-ideas",
+								"algebra-2b-course-next-steps-curriculum-algebra-2b-follow-up-path",
+								"algebra-2b-course-next-steps-curriculum-algebra-2b-module-options",
+								"algebra-2b-course-next-steps-curriculum-algebra-2b-next-module-ideas"
+							]
+						},
+						{
+							"id": "algebra-2b-course-roadmap-curriculum-algebra-2b-resource-map",
+							"title": "Algebra 2B Resource Map",
+							"aliases": [
+								"algebra-2b-resources",
+								"algebra-2b-course-roadmap-curriculum-algebra-2b-resources",
+								"algebra-2b-course-next-steps-curriculum-algebra-2b-resource-map",
+								"algebra-2b-course-next-steps-curriculum-algebra-2b-resources"
+							]
+						},
+						{
+							"id": "algebra-2b-course-roadmap-curriculum-algebra-2b-module-alignment-guide",
+							"title": "Algebra 2B Module Alignment Guide",
+							"aliases": [
+								"algebra-2b-readiness-checklist",
+								"algebra-2b-course-roadmap-curriculum-algebra-2b-readiness-checklist",
+								"algebra-2b-course-next-steps-curriculum-algebra-2b-module-alignment-guide",
+								"algebra-2b-course-next-steps-curriculum-algebra-2b-readiness-checklist"
+							]
+						},
+						{
+							"id": "algebra-2b-course-roadmap-curriculum-algebra-2b-reference-map",
+							"title": "Algebra 2B Reference Map",
+							"aliases": [
+								"algebra-2b-reference-refresh",
+								"algebra-2b-resource-updates",
+								"algebra-2b-course-roadmap-curriculum-algebra-2b-reference-refresh",
+								"algebra-2b-course-roadmap-curriculum-algebra-2b-resource-updates",
+								"algebra-2b-course-next-steps-curriculum-algebra-2b-reference-map",
+								"algebra-2b-course-next-steps-curriculum-algebra-2b-reference-refresh",
+								"algebra-2b-course-next-steps-curriculum-algebra-2b-resource-updates"
+							]
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2b-course-roadmap-supplemental-algebra-2b-prerequisite-map",
+							"title": "Algebra 2B Prerequisite Map",
+							"aliases": [
+								"algebra-2b-dependency-graph",
+								"algebra-2b-course-roadmap-supplemental-algebra-2b-dependency-graph",
+								"algebra-2b-course-next-steps-supplemental-algebra-2b-prerequisite-map",
+								"algebra-2b-course-next-steps-supplemental-algebra-2b-dependency-graph"
+							]
+						},
+						{
+							"id": "algebra-2b-course-roadmap-supplemental-algebra-2b-resource-inventory",
+							"title": "Algebra 2B Resource Inventory",
+							"aliases": [
+								"algebra-2b-materials-readiness",
+								"algebra-2b-resource-checklist",
+								"algebra-2b-course-roadmap-supplemental-algebra-2b-materials-readiness",
+								"algebra-2b-course-roadmap-supplemental-algebra-2b-resource-checklist",
+								"algebra-2b-course-next-steps-supplemental-algebra-2b-resource-inventory",
+								"algebra-2b-course-next-steps-supplemental-algebra-2b-materials-readiness",
+								"algebra-2b-course-next-steps-supplemental-algebra-2b-resource-checklist"
+							]
+						}
+					],
+					"aliases": [
+						"course-next-steps",
+						"algebra-2b-course-next-steps"
+					]
+				},
+				{
+					"id": "algebra-2b-project-practice-guide",
+					"title": "Project Practice Guide",
+					"kind": "appendix",
+					"curriculum": [
+						{
+							"id": "algebra-2b-project-practice-guide-curriculum-algebra-2b-project-ladder",
+							"title": "Algebra 2B Project Ladder",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-project-practice-guide-curriculum-algebra-2b-checkpoints",
+							"title": "Algebra 2B Checkpoints",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-project-practice-guide-curriculum-algebra-2b-rubric",
+							"title": "Algebra 2B Rubric",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-project-practice-guide-curriculum-algebra-2b-capstone-gate",
+							"title": "Algebra 2B Capstone Gate",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2b-project-practice-guide-supplemental-practice-project-model-a-real-or-provided-dataset",
+							"title": "Practice Project: Model a Real or Provided Dataset",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-project-practice-guide-supplemental-practice-project-create-a-graph-and-equation-story",
+							"title": "Practice Project: Create a Graph-And-Equation Story",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-project-practice-guide-supplemental-practice-project-repair-a-worked-solution-with-hidden-errors",
+							"title": "Practice Project: Repair a Worked Solution with Hidden Errors",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-project-practice-guide-supplemental-practice-project-build-a-standards-aligned-mixed-review-set",
+							"title": "Practice Project: Build a Standards-Aligned Mixed Review Set",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-project-practice-guide-supplemental-practice-project-write-a-short-justification-for-each-transformation-step",
+							"title": "Practice Project: Write a Short Justification for Each Transformation Step",
+							"aliases": []
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2b-algebra-2b-project-taxonomy-and-assessment-implementation",
+					"title": "Algebra 2B: Project Taxonomy and Assessment Implementation",
+					"kind": "appendix",
+					"curriculum": [
+						{
+							"id": "algebra-2b-algebra-2b-project-taxonomy-and-assessment-implementation-curriculum-algebra-2b-structure-decision",
+							"title": "Algebra 2B Structure Decision",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-algebra-2b-project-taxonomy-and-assessment-implementation-curriculum-algebra-2b-assessment-cadence",
+							"title": "Algebra 2B Assessment Cadence",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-algebra-2b-project-taxonomy-and-assessment-implementation-curriculum-algebra-2b-representation-balance",
+							"title": "Algebra 2B Representation Balance",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-algebra-2b-project-taxonomy-and-assessment-implementation-curriculum-algebra-2b-worked-example-density",
+							"title": "Algebra 2B Worked Example Density",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2b-algebra-2b-project-taxonomy-and-assessment-implementation-supplemental-algebra-2b-practice-set-conversion",
+							"title": "Algebra 2B Practice Set Conversion",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-algebra-2b-project-taxonomy-and-assessment-implementation-supplemental-algebra-2b-modeling-or-error-analysis-task",
+							"title": "Algebra 2B Modeling or Error-Analysis Task",
+							"aliases": []
+						}
+					],
+					"aliases": []
+				},
+				{
+					"id": "algebra-2b-standards-mapped-algebra-architecture",
+					"title": "Standards-Mapped Algebra Architecture",
+					"kind": "appendix",
+					"curriculum": [
+						{
+							"id": "algebra-2b-standards-mapped-algebra-architecture-curriculum-course-scope-map",
+							"title": "Course Scope Map",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-standards-mapped-algebra-architecture-curriculum-course-item-labels",
+							"title": "Course Item Labels",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-standards-mapped-algebra-architecture-curriculum-required-anchor-and-extension-projects",
+							"title": "Required Anchor and Extension Projects",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-standards-mapped-algebra-architecture-curriculum-practice-set-types",
+							"title": "Practice Set Types",
+							"aliases": []
+						}
+					],
+					"supplementalProjects": [
+						{
+							"id": "algebra-2b-standards-mapped-algebra-architecture-supplemental-anchor-project-modeling-task-blueprint",
+							"title": "Anchor Project: Modeling Task Blueprint",
+							"aliases": []
+						},
+						{
+							"id": "algebra-2b-standards-mapped-algebra-architecture-supplemental-extension-project-changed-constraint",
+							"title": "Extension Project: Changed Constraint",
+							"aliases": []
+						}
+					],
+					"aliases": []
+				}
+			]
+		}
+	]
+}

@@ -1,4 +1,6 @@
 import type { RawCourse } from "./types";
+import { algebra2Checkpoint } from "./algebra2Checkpoints";
+import { applyAlgebra2Readings } from "./algebra2Readings";
 import { configureMathCourseFlow } from "./mathCourseFlow";
 import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
 
@@ -303,11 +305,11 @@ The sum of the first \`n\` terms of an arithmetic sequence is
 
 - A theater starts with \`30\` seats and gains \`2\` per row, so the fifth row has \`38\` seats.
 - Jogging starts at \`12\` minutes per day and increases by \`6\` each week, so \`60\` minutes happens in week \`9\`.
-- Quiz scores \`54, 58, 62, ...\` reach \`90\` on the tenth quiz; starting on a Monday means that quiz lands on a Friday.
+- Quiz scores \`54, 58, 62, ...\` reach \`90\` on the tenth quiz; with the first quiz on Monday and one quiz each weekday, with no holidays, the tenth quiz lands on Friday.
 - Summing \`-9 + 7 + 23 + 39 + ... + 279\` gives \`2565\`.
 
 Keep the nth-term and sum formulas separate: one locates a single term, while the other totals an entire run of terms.
-				`.trim()
+`.trim()
 			)
 		]),
 		createModule("ALB4 Geometric Sequences", [
@@ -336,10 +338,10 @@ A geometric sequence changes by a constant ratio \`r\`. The nth-term formula is
 - Salary growth: \`45600(1.06)^7 approx 68566\`
 - Car depreciation after six years: \`32000(0.75)^6 approx 5695\`
 - Savings after ten years: \`500(1.05)^10 approx 814\`
-- Bouncy-ball rebound heights follow \`20(0.83)^(n - 1)\`
+- Let \`h_n=20(0.83)^(n-1)\` feet with \`n=1\` the initial drop height. The first rebound is \`h_2=16.6\` feet; each later rebound retains \`83%\` of the preceding height
 
 The provided graphic combines geometric-sequence plots with the rebound table used for application practice.
-				`.trim(),
+`.trim(),
 				media.geometricReference
 			),
 			createLesson(
@@ -411,7 +413,7 @@ the inverse exists when \`ad - bc != 0\`, and
 - \`[[3, 0], [1, 2]]^(-1) = (1/6)[[2, 0], [-1, 3]]\`
 - \`[[2, 1], [5, 3]]^(-1) = [[3, -1], [-5, 2]]\`
 
-Matrix division is shorthand for multiplying by an inverse:
+In this course, the quotient notation specifies right multiplication by an invertible matrix, rather than an ordinary division operation:
 
 - \`A / B = A * B^(-1)\`
 
@@ -421,7 +423,7 @@ Example:
   \`A / B = A * B^(-1) = [[1/6, 3.5], [-1/3, 3]]\`
 
 This covers the matrix-inverse and quotient work needed for Check-in #1.
-				`.trim()
+`.trim()
 			)
 		]),
 		createModule("Check-In #1", [
@@ -443,22 +445,7 @@ If work stalls, stop and revisit the specific skill instead of pressing through 
 			),
 			createLesson(
 				"Representative Review Problems",
-				`
-**Answer-key highlights**
-
-- \`7^x = 378\` -> \`x = log_7(378)\`
-- \`log_3.7(x) = 28\` -> \`3.7^28 = x\`
-- \`4200 = 500e^(0.23t)\` -> \`t = ln(8.4) / 0.23\`
-- If \`log_7(2) = 0.356\` and \`log_7(6) = 0.921\`, then
-  - \`log_7(24) = 1.633\`
-  - \`log_7(3) = 0.565\`
-- \`log_2.89(8.3) = log(8.3) / log(2.89) approx 1.99\`
-- Arithmetic review: \`3, 7, 11, 15, ...\` has \`d = 4\` and next terms \`19, 23, 27\`
-- Geometric review: \`3, 21, 147, ...\` has \`r = 7\`
-- Infinite-series review: \`0.777777... = 7/9\`
-
-Use the exponential/logarithmic and matrix references while explaining how each step follows from the relevant rule.
-				`.trim(),
+				algebra2Checkpoint("algebra-2b", "Check-In #1"),
 				media.expLogFamilies
 			)
 		]),
@@ -483,11 +470,13 @@ Probability measures how likely an event is, on a scale from \`0\` to \`1\`.
 
 **Core rules**
 
-- and: multiply probabilities
+- and: \`P(A and B)=P(A)P(B given A)\` for \`P(A)>0\`; use \`P(A)P(B)\` when the events are independent
 - or: add probabilities when the events are disjoint
 - not: subtract from \`1\`
 
 **Worked examples**
+
+Dice and coins here are fair, repeated rolls and flips are independent, and a counter is selected uniformly from the bag.
 
 - Even number on a die: \`3/6 = 1/2\`
 - Blue marble from a bag with \`4\` red, \`7\` blue, \`8\` green, \`2\` purple:
@@ -497,7 +486,7 @@ Probability measures how likely an event is, on a scale from \`0\` to \`1\`.
 - Multiple of three and then a \`4\`: \`(2/6)(1/6) = 1/18\`
 
 The provided reference supports sample-space sketches, Venn-style overlap prompts, and table-based probability review.
-				`.trim(),
+`.trim(),
 				media.probabilityTables
 			),
 			createLesson(
@@ -525,11 +514,11 @@ Formulas:
 - \`P(11, 11) = 11! = 39,916,800\`
 - Choosing \`2\` friends from \`7\`: \`C(7, 2) = 21\`
 - Reordering the letters of PHONE: \`P(5, 5) = 5!\`
-- Picking \`4\` marbles from \`16\`: \`C(16, 4)\`
-- Probability of a phone number starting with \`615\`: \`10^7 / 10^10 = 1/1000\`
+- Picking \`4\` distinct marbles from \`16\` without replacement or ordering: \`C(16, 4)\`
+- In a hypothetical ten-digit string with independent uniform digits and leading zeros allowed, the probability of starting with \`615\` is \`10^7 / 10^10 = 1/1000\`. Actual assigned phone numbers do not follow this model
 
 This module focuses on probability notation, sample spaces, permutations, combinations, and interpreting results in context.
-				`.trim()
+`.trim()
 			)
 		]),
 		createModule("ALB7 Data and Statistics", [
@@ -540,8 +529,8 @@ Statistics helps you summarize data, notice trends, and decide how trustworthy a
 
 **Core ideas**
 
-- positive correlation: \`x\` increases as \`y\` increases
-- negative correlation: \`x\` increases as \`y\` decreases
+- positive correlation: larger \`x\` values tend to accompany larger \`y\` values; individual pairs can depart from the trend
+- negative correlation: larger \`x\` values tend to accompany smaller \`y\` values
 - stronger correlations have \`r\` values closer to \`1\` or \`-1\`
 - no linear correlation means \`r\` is close to \`0\`
 - correlation is not the same thing as causation
@@ -550,7 +539,7 @@ Statistics helps you summarize data, notice trends, and decide how trustworthy a
 
 - A nearly upward-sloping line can be described as strong positive correlation, such as \`r approx 0.9\`
 - A scattered downward trend might be low negative correlation, such as \`r approx -0.49\`
-- A perfect line gives \`r = 1\` or \`r = -1\`
+- Points on a nonhorizontal line with varying \`x\` give \`r = 1\` or \`r = -1\`; a constant \`x\` or constant \`y\` makes Pearson correlation undefined
 - A curved data set can still have \`r approx 0\` even though a non-linear pattern is visible
 
 **Hand-calculation examples**
@@ -560,37 +549,39 @@ Statistics helps you summarize data, notice trends, and decide how trustworthy a
 - For \`(3, 10), (5, 9), (8, 8), (9, 5), (10, 3)\`, \`r approx -0.91\`
 
 The scatter-plot reference includes positive, negative, and weak examples so correlation strength and direction can be compared visually.
-				`.trim(),
+`.trim(),
 				media.statisticsRegression
 			),
 			createLesson(
 				"Least-Squares Regression and r^2",
 				`
-The regression line \`y = mx + b\` is the line of best fit. The slope \`m\` estimates average change in \`y\` for each increase of \`1\` in \`x\`.
+Ordinary least squares with an intercept fits predictions \`yhat = mx + b\` by minimizing the sum of squared vertical residuals. The slope \`m\` estimates average change in \`y\` for each increase of \`1\` in \`x\`.
 
 **Key interpretation**
 
 - \`r\` tells you direction and strength
-- \`r^2\` tells you how much of the variation in the data is explained by the regression line
+- For this fitted line with an intercept and nonconstant \`y\`, \`r^2\` is the proportion of observed \`y\` variation accounted for by the linear fit
 
 **Representative results**
 
-- Estimated line close to \`y = 0.62x + 1.4\` for a positive-trend scatter plot
-- Estimated line close to \`y = -2x + 11\` for a negative-trend scatter plot
-- For \`(2, 3), (6, 5), (9, 6)\`, the hand-computed line is \`y = 0.4x + 2.2\` with \`r approx 0.99\`
+- An illustrative positive-slope model \`yhat = 0.62x + 1.4\` predicts a rise of \`0.62\` in \`y\` for a one-unit increase in \`x\`
+- An illustrative negative-slope model \`yhat = -2x + 11\` predicts a fall of \`2\` in \`y\` for a one-unit increase in \`x\`
+- For \`(2, 3), (6, 5), (9, 6)\`, the least-squares line is \`yhat = (16/37)x + 82/37\`, approximately \`yhat = 0.432432x + 2.216216\`, with \`r=16/sqrt(259) approx 0.99419\`
 - For \`(3, 5), (8, 2)\`, the line is \`y = -0.6x + 6.8\` with \`r = -1\`
-- For the Check-in #2 data set, a regression near \`y = 0.28x + 3.61\` gives \`r approx 0.78\` and \`r^2 approx 0.61\`
+- For interpretation practice, take the reported regression output \`yhat = 0.28x + 3.61\` and \`r=0.78\` as given. Then \`r^2=0.6084\`, approximately \`0.61\`; this reported output supplies no original data table to refit
 
 **Tooling note**
 
 Desmos is an appropriate calculator for the larger tables in this module. Use a table, then enter \`y_1 ~ mx_1 + b\` to recover the regression line and the \`r\` values quickly.
-				`.trim()
+`.trim()
 			),
 			createLesson(
 				"Data Visual References",
 				`
-Use the regression data or visual reference whenever a prompt needs a scatter plot, slope graph, or line-of-best-fit sketch.
-				`.trim(),
+Plot the complete paired dataset \`(1,2),(2,4),(3,3),(4,5)\`. Label the axes \`x\` and \`y\`, retain all four observations and draw the fitted line \`yhat=0.8x+1.5\`. Its centered sums are \`Sxx=5,Syy=5,Sxy=4\`, giving \`r=0.8\` and \`R^2=0.64\`.
+
+Compare the nonlinear dataset \`(-2,4),(-1,1),(0,0),(1,1),(2,4)\`. These five points satisfy \`y=x^2\`, while the centered cross-product sum is zero and Pearson \`r=0\`. The equations and listed points are sufficient to reconstruct both displays.
+`.trim(),
 				media.statisticsRegression
 			)
 		]),
@@ -606,7 +597,7 @@ The three basic trig ratios are:
 
 **Representative triangle values**
 
-- If the sides are \`10, 24, 26\`, then
+- For a right triangle with sides \`10, 24, 26\`, choose the acute angle \`theta\` opposite the side of length \`10\`. Then
   - \`sin(theta) = 10/26 = 5/13\`
   - \`cos(theta) = 24/26 = 12/13\`
   - \`tan(theta) = 10/24 = 5/12\`
@@ -628,7 +619,7 @@ The three basic trig ratios are:
 - \`0.875pi\` radians -> \`157.5\` degrees
 
 The unit-circle reference connects angle position, coordinates, special triangles, and common sine/cosine values.
-				`.trim(),
+`.trim(),
 				media.unitCircleTrig
 			),
 			createLesson(
@@ -650,27 +641,29 @@ Useful identities:
 - If \`x = tan(y)\`, then \`tan(-y) = -x\`
 - \`sin(-42 degrees) approx -0.669\`
 - \`cos(238 degrees) approx -0.530\`
-- \`tan(-37 degrees) approx -0.753\`
+- \`tan(-37 degrees) approx -0.754\`
 
 **Representative reciprocal values**
 
-- If \`sin(60 degrees) = 0.866\`, then
+- Using the exact value \`sin(60 degrees)=sqrt(3)/2\`, approximately \`0.866\`, gives
   - \`cos(60 degrees) = 0.5\`
   - \`tan(60 degrees) approx 1.732\`
-  - \`csc(60 degrees) approx 1.154\`
+  - \`csc(60 degrees)=2/sqrt(3) approx 1.155\`
   - \`sec(60 degrees) = 2\`
   - \`cot(60 degrees) approx 0.577\`
 
 **Triangle-solving reminder**
 
 In a right triangle, the two acute angles are complementary. That is why \`sin(A) = cos(B)\` whenever \`A + B = 90\` degrees.
-				`.trim()
+`.trim()
 			),
 			createLesson(
 				"Triangle Diagram References",
 				`
-Use the written values or the unit-circle and special-triangle reference whenever a right-triangle or angle-finding exercise needs a diagram.
-				`.trim(),
+Draw a triangle with vertices \`O=(0,0),A=(24,0),B=(24,10)\`. The right angle is at \`A\`; \`OB=26\`. Choose \`theta\` at \`O\`, so its opposite leg is \`AB=10\` and adjacent leg is \`OA=24\`. Then \`sin(theta)=5/13\`, \`cos(theta)=12/13\` and \`tan(theta)=5/12\`.
+
+On a unit circle centered at the origin, measure positive angles counterclockwise from the positive x-axis. At \`pi/6\` the point is \`(sqrt(3)/2,1/2)\`; at \`pi/3\`, \`(1/2,sqrt(3)/2)\`; at \`5pi/6\`, \`(-sqrt(3)/2,1/2)\`. The x-coordinate is cosine and the y-coordinate is sine.
+`.trim(),
 				media.unitCircleTrig
 			)
 		]),
@@ -712,7 +705,7 @@ The provided graph pack gives clean sine, cosine, tangent, and tangent-table ref
 			createLesson(
 				"Transformations of Trig Graphs",
 				`
-For \`y = a sin(bx) + d\` or \`y = a cos(bx) + d\`:
+For real nonzero \`a,b\` in \`y = a sin(bx) + d\` or \`y = a cos(bx) + d\`, with angles in radians:
 
 - amplitude = \`|a|\`
 - period = \`2pi / |b|\`
@@ -737,7 +730,7 @@ For \`y = a tan(bx) + d\`:
 - \`-3cos(2x) + 1.5\` -> amplitude \`3\`, period \`pi\`, midline \`y = 1.5\`
 
 The provided trig-graph reference covers the standard parent graphs. For any transformation prompt, rebuild the graph from the equation by identifying amplitude, period, midline, phase shift, and reflection first.
-				`.trim(),
+`.trim(),
 				media.trigGraphs
 			)
 		]),
@@ -760,24 +753,7 @@ This check-in revisits the second half of the course.
 			),
 			createLesson(
 				"Representative Review Problems",
-				`
-**Answer-key highlights**
-
-- Coin sample space: \`{Heads, Tails}\`
-- Standard deck sample-space size: \`52\`
-- \`P(HHT and an even black card) = (1/8)(10/52) = 5/208\`
-- From a bag with \`3\` blue, \`9\` red, and \`6\` green marbles:
-  \`P(green then blue without replacement) = (6/18)(3/17) = 1/17\`
-- \`P(11, 11) = 39,916,800\`
-- \`C(7, 2) = 21\`
-- Regression check-in line close to \`y = 0.28x + 3.61\`
-- \`r^2 approx 0.61\` means about \`61%\` of the variation is explained by the line
-- \`pi/6 = 30\` degrees and gives the unit-circle point \`(sqrt(3)/2, 1/2)\`
-- If \`x = sin(y)\`, then \`sin(-y) = -x\`
-- \`y = 2cos(pi x) + 7\` has amplitude \`2\`, period \`2\`, and midline \`y = 7\`
-
-Reuse the probability, statistics, unit-circle, and trig-graph references while talking through each answer.
-				`.trim(),
+				algebra2Checkpoint("algebra-2b", "Check-In #2"),
 				media.trigGraphs
 			)
 		]),
@@ -1020,3 +996,5 @@ configureMathCourseFlow(algebra2BCourse, {
 	],
 	appendixTitles: ["Reference Archive: Algebra 2B"]
 });
+
+applyAlgebra2Readings(algebra2BCourse, "algebra-2b");
