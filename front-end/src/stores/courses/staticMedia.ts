@@ -1802,7 +1802,7 @@ export function normalizeStaticMediaUrlsInText(text: string) {
 }
 
 export function pendingStaticMediaNotice(filename: string) {
-	return `**Pending media:** The file \`${filename}\` is not currently available. Space is reserved for it at ${staticMediaUrl(filename)} so the asset can be added later without changing this course link.`;
+	return `**Pending media:** [${filename}](${staticMediaUrl(filename)}) is not currently available.`;
 }
 
 export function hasPendingStaticMediaNotice(content: string, filename: string) {

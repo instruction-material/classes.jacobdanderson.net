@@ -2486,36 +2486,23 @@ function writeStoredValue(key: string, value: string) {
 										v-else-if="
 											item.mediaLink &&
 											isEmbeddedMedia(item.mediaLink) &&
-											isItemStaticMediaUnavailable(item)
+											isItemStaticMediaUnavailable(
+												item
+											) &&
+											!hasPendingStaticMediaNotice(
+												item.content,
+												staticAssetName(item.mediaLink)
+											)
 										"
 										class="item-media item-media-placeholder"
 										role="note"
 									>
-										<p class="item-media-placeholder-label">
-											Static asset pending
-										</p>
 										<p>
-											Pending static asset:
-											<strong>
-												{{
-													staticAssetName(
-														item.mediaLink
-													)
-												}}</strong
+											Media unavailable:
+											<strong>{{
+												staticAssetName(item.mediaLink)
+											}}</strong
 											>.
-										</p>
-										<p>Static media URL:</p>
-										<a
-											:href="item.mediaLink"
-											rel="noopener noreferrer"
-											target="_blank"
-										>
-											{{ item.mediaLink }}
-										</a>
-										<p>
-											This preview will show the image or
-											video here once the static media
-											file is added.
 										</p>
 									</div>
 								</article>

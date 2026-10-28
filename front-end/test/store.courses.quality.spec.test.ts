@@ -9579,7 +9579,7 @@ describe("course text quality normalization", () => {
 		COURSE_SWEEP_TIMEOUT
 	);
 
-	it("documents pending static media with the filename and future static URL", () => {
+	it("identifies unavailable media with one filename link and no implementation commentary", () => {
 		const notice = pendingStaticMediaNotice("pending-static-demo.mp4");
 
 		expect(notice).toContain("pending-static-demo.mp4");
@@ -9587,7 +9587,12 @@ describe("course text quality normalization", () => {
 			"https://static.classes.jacobdanderson.net/pending-static-demo.mp4"
 		);
 		expect(notice).toMatch(/not currently available/i);
-		expect(notice).toMatch(/added later/i);
+		expect(notice).toBe(
+			"**Pending media:** [pending-static-demo.mp4](https://static.classes.jacobdanderson.net/pending-static-demo.mp4) is not currently available."
+		);
+		expect(notice).not.toMatch(
+			/space is reserved|added later|changing this course link/i
+		);
 	});
 
 	it("canonicalizes legacy static media URLs to class-host placeholders", () => {

@@ -67,12 +67,12 @@ describe("CourseExplorer.vue", () => {
 			const source = notes
 				? webNotesSource
 				: contact
-				? webContactSource
-				: notification
-					? webNotificationSource
-					: edition === 2
-						? webModuleSource
-						: webPortfolioSource;
+					? webContactSource
+					: notification
+						? webNotificationSource
+						: edition === 2
+							? webModuleSource
+							: webPortfolioSource;
 			const { pack, revision } = source;
 			const pinia = createPinia();
 			setActivePinia(pinia);
@@ -151,7 +151,7 @@ describe("CourseExplorer.vue", () => {
 	);
 
 	it.each(
-		["learner", "instructor"].flatMap((role) => [
+		["learner", "instructor"].flatMap(role => [
 			{
 				role,
 				pack: "ASM-04-asm0-setup-and-tooling",
@@ -270,12 +270,12 @@ describe("CourseExplorer.vue", () => {
 				);
 				await wrapper
 					.findAll(".lesson-view-toggle button")
-					.find((b) => b.text() === "Projects")!
+					.find(b => b.text() === "Projects")!
 					.trigger("click");
 				await flushPromises();
 				const card = wrapper
 					.findAll(".lesson-item")
-					.find((item) =>
+					.find(item =>
 						item
 							.find(`a.is-project[href*="/${pack}/starter"]`)
 							.exists()
@@ -321,7 +321,7 @@ describe("CourseExplorer.vue", () => {
 
 	it.each([
 		...c17VerifiedPacks.flatMap(({ pack, revision }, index) =>
-			["learner", "instructor"].map((role) => ({
+			["learner", "instructor"].map(role => ({
 				pack,
 				revision,
 				role,
@@ -378,11 +378,11 @@ describe("CourseExplorer.vue", () => {
 			}))
 		),
 		...[...c17StudioContinuations, ...c17UnitContinuations].flatMap(
-			(lesson) =>
-				["learner", "instructor"].map((role) => ({
+			lesson =>
+				["learner", "instructor"].map(role => ({
 					pack: lesson.pack,
 					revision: c17VerifiedPacks.find(
-						(definition) => definition.pack === lesson.pack
+						definition => definition.pack === lesson.pack
 					)!.revision,
 					role,
 					module: lesson.id
@@ -456,7 +456,7 @@ describe("CourseExplorer.vue", () => {
 				await wrapper
 					.findAll(".lesson-view-toggle button")
 					.find(
-						(button) =>
+						button =>
 							button.text() ===
 							(lessonID ||
 							pack === "CSE1-Hex-and-Binary-Inspector" ||
@@ -471,7 +471,7 @@ describe("CourseExplorer.vue", () => {
 				await flushPromises();
 				const card = wrapper
 					.findAll(".lesson-item")
-					.find((item) =>
+					.find(item =>
 						lessonID
 							? item.attributes("id") ===
 								`c-systems-engineering-${module}-${lessonID}`
@@ -539,9 +539,7 @@ describe("CourseExplorer.vue", () => {
 			await flushPromises();
 			const card = wrapper
 				.findAll(".lesson-item")
-				.find((item) =>
-					item.text().includes("Changed-Preference Retry")
-				);
+				.find(item => item.text().includes("Changed-Preference Retry"));
 			expect(card).toBeDefined();
 			expect(card!.get("a.resource-link.is-project").text()).toMatch(
 				/^Starter project\s/
@@ -667,10 +665,10 @@ describe("CourseExplorer.vue", () => {
 		const appStore = useAppStore();
 		const coursesStore = useCoursesStore();
 		const assignedCourse = coursesStore.courses.find(
-			(course) => course.id === "python-level-1"
+			course => course.id === "python-level-1"
 		);
 		const otherCourse = coursesStore.courses.find(
-			(course) => course.id !== assignedCourse?.id
+			course => course.id !== assignedCourse?.id
 		);
 		if (!assignedCourse || !otherCourse) {
 			throw new Error("Expected at least two course catalog entries.");
@@ -737,7 +735,7 @@ describe("CourseExplorer.vue", () => {
 		const app = useAppStore();
 		const courses = useCoursesStore();
 		const [assigned, other] = courses.courses;
-		vi.spyOn(courses, "loadCourseById").mockImplementation(async (id) => ({
+		vi.spyOn(courses, "loadCourseById").mockImplementation(async id => ({
 			id,
 			name: id,
 			modules: [
@@ -818,7 +816,7 @@ describe("CourseExplorer.vue", () => {
 		const appStore = useAppStore();
 		const coursesStore = useCoursesStore();
 		const pythonCourse = coursesStore.courses.find(
-			(course) => course.id === "python-level-1"
+			course => course.id === "python-level-1"
 		);
 
 		if (!pythonCourse) throw new Error("Expected Python Level 1 course.");
@@ -867,7 +865,7 @@ describe("CourseExplorer.vue", () => {
 
 		const link = wrapper
 			.findAll("a")
-			.find((candidate) => candidate.text() === "Open Turtle IDE");
+			.find(candidate => candidate.text() === "Open Turtle IDE");
 		expect(link?.exists()).toBe(true);
 		const href = link?.attributes("href") ?? "";
 		const query = new URLSearchParams(href.split("?")[1] ?? "");
@@ -916,7 +914,7 @@ describe("CourseExplorer.vue", () => {
 			const appStore = useAppStore();
 			const coursesStore = useCoursesStore();
 			const pythonCourse = coursesStore.courses.find(
-				(course) => course.id === courseId
+				course => course.id === courseId
 			);
 
 			if (!pythonCourse)
@@ -985,7 +983,7 @@ describe("CourseExplorer.vue", () => {
 
 			const link = wrapper
 				.findAll("a")
-				.find((candidate) => candidate.text().includes("Start in IDE"));
+				.find(candidate => candidate.text().includes("Start in IDE"));
 			expect(link?.exists()).toBe(true);
 			const href = link?.attributes("href") ?? "";
 			const query = new URLSearchParams(href.split("?")[1] ?? "");
@@ -1011,7 +1009,7 @@ describe("CourseExplorer.vue", () => {
 		const appStore = useAppStore();
 		const coursesStore = useCoursesStore();
 		const pygamesCourse = coursesStore.courses.find(
-			(course) => course.id === "pygames"
+			course => course.id === "pygames"
 		);
 
 		if (!pygamesCourse) throw new Error("Expected PyGames course.");
@@ -1060,7 +1058,7 @@ describe("CourseExplorer.vue", () => {
 
 		const link = wrapper
 			.findAll("a")
-			.find((candidate) => candidate.text() === "Open PyGame Zero IDE");
+			.find(candidate => candidate.text() === "Open PyGame Zero IDE");
 		expect(link?.exists()).toBe(true);
 		const href = link?.attributes("href") ?? "";
 		const query = new URLSearchParams(href.split("?")[1] ?? "");
@@ -1505,13 +1503,13 @@ describe("CourseExplorer.vue", () => {
 		const appStore = useAppStore();
 		const coursesStore = useCoursesStore();
 		const currentCourse = coursesStore.courses.find(
-			(course) => course.id === "python-level-1"
+			course => course.id === "python-level-1"
 		);
 		const pastCourse = coursesStore.courses.find(
-			(course) => course.id === "python-level-2"
+			course => course.id === "python-level-2"
 		);
 		const availableCourse = coursesStore.courses.find(
-			(course) => course.id === "python-level-3"
+			course => course.id === "python-level-3"
 		);
 
 		if (!currentCourse || !pastCourse || !availableCourse) {
@@ -1547,7 +1545,7 @@ describe("CourseExplorer.vue", () => {
 		});
 
 		const groups = wrapper.findAll("optgroup");
-		expect(groups.map((group) => group.attributes("label"))).toEqual([
+		expect(groups.map(group => group.attributes("label"))).toEqual([
 			"Current courses",
 			"Past courses",
 			"Other available courses"
@@ -1555,7 +1553,7 @@ describe("CourseExplorer.vue", () => {
 		expect(
 			wrapper
 				.findAll("#course-select option")
-				.map((option) => option.text())
+				.map(option => option.text())
 		).toEqual([currentCourse.name, pastCourse.name, availableCourse.name]);
 		expect(
 			wrapper.find<HTMLSelectElement>("#course-select").element.value
@@ -1574,7 +1572,7 @@ describe("CourseExplorer.vue", () => {
 		const assignedCourse = coursesStore.courses[0];
 		const unassignedCourse =
 			coursesStore.courses.find(
-				(course) => course.id !== assignedCourse.id
+				course => course.id !== assignedCourse.id
 			) ?? coursesStore.courses[1];
 
 		if (!assignedCourse || !unassignedCourse) {
@@ -1616,13 +1614,13 @@ describe("CourseExplorer.vue", () => {
 			expect(
 				wrapper
 					.findAll("#learner-select option")
-					.map((option) => option.text())
+					.map(option => option.text())
 			).toContain("All");
 		});
 
 		const allOption = wrapper
 			.findAll("#learner-select option")
-			.find((option) => option.text() === "All");
+			.find(option => option.text() === "All");
 		expect(allOption?.exists()).toBe(true);
 		expect(
 			wrapper.find<HTMLSelectElement>("#learner-select").element.value
@@ -1640,7 +1638,7 @@ describe("CourseExplorer.vue", () => {
 			expect(
 				wrapper
 					.findAll("#course-select option")
-					.map((option) => option.text())
+					.map(option => option.text())
 			).toContain(unassignedCourse.name);
 		});
 		expect(
@@ -1703,7 +1701,7 @@ describe("CourseExplorer.vue", () => {
 		expect(
 			wrapper
 				.findAll("#learner-select option")
-				.map((option) => option.text())
+				.map(option => option.text())
 		).not.toContain("All");
 		expect(
 			wrapper.find<HTMLSelectElement>("#learner-select").element.value
@@ -1711,7 +1709,7 @@ describe("CourseExplorer.vue", () => {
 		expect(
 			wrapper
 				.findAll("#course-select option")
-				.map((option) => option.text())
+				.map(option => option.text())
 		).toContain(assignedCourse.name);
 	});
 
@@ -1794,7 +1792,7 @@ describe("CourseExplorer.vue", () => {
 
 		const unassignedCourse =
 			coursesStore.courses.find(
-				(course) => course.id !== assignedCourse.id
+				course => course.id !== assignedCourse.id
 			) ?? coursesStore.courses[1];
 
 		if (!unassignedCourse) throw new Error("Expected course fixtures.");
@@ -1834,7 +1832,7 @@ describe("CourseExplorer.vue", () => {
 			]
 		});
 		vi.spyOn(coursesStore, "loadCourseById").mockImplementation(
-			async (courseId) => {
+			async courseId => {
 				if (courseId === unassignedCourse.id) {
 					return unassignedCourseDefinition;
 				}
@@ -2064,7 +2062,7 @@ describe("CourseExplorer.vue", () => {
 		(api.put as any)
 			.mockImplementationOnce(
 				() =>
-					new Promise((resolve) => {
+					new Promise(resolve => {
 						resolveFirstSave = resolve;
 					})
 			)
@@ -2129,7 +2127,7 @@ describe("CourseExplorer.vue", () => {
 		const coursesStore = useCoursesStore();
 		const fallbackCourse = coursesStore.courses[0];
 		const chemistryCourse = coursesStore.courses.find(
-			(course) => course.id === "intro-to-chemistry"
+			course => course.id === "intro-to-chemistry"
 		);
 
 		if (!chemistryCourse)
@@ -2155,7 +2153,7 @@ describe("CourseExplorer.vue", () => {
 		window.history.replaceState({}, "", `/courses#${hashAnchor}`);
 
 		vi.spyOn(coursesStore, "loadCourseById").mockImplementation(
-			async (courseId) => {
+			async courseId => {
 				if (courseId === chemistryCourse.id) {
 					return {
 						id: chemistryCourse.id,
@@ -2273,7 +2271,7 @@ describe("CourseExplorer.vue", () => {
 		const coursesStore = useCoursesStore();
 		const fallbackCourse = coursesStore.courses[0];
 		const chemistryCourse = coursesStore.courses.find(
-			(course) => course.id === "intro-to-chemistry"
+			course => course.id === "intro-to-chemistry"
 		);
 
 		if (!chemistryCourse)
@@ -2665,18 +2663,20 @@ describe("CourseExplorer.vue", () => {
 		await nextTick();
 
 		expect(wrapper.find("video.item-media-video").exists()).toBe(false);
-		expect(wrapper.text()).toContain("Static asset pending");
-		expect(wrapper.text()).toContain("Pending static asset");
+		expect(wrapper.text()).not.toContain("Static asset pending");
+		expect(wrapper.text()).not.toContain("Pending static asset");
 		expect(wrapper.text()).not.toContain("Original static asset");
 		expect(wrapper.text()).toContain("original-demo-video.mp4");
-		expect(wrapper.text()).toContain("Static media URL");
-		expect(wrapper.text()).toContain(
-			"This preview will show the image or video here once the static media file is added."
-		);
-		expect(wrapper.text()).toContain(missingStaticVideo);
+		expect(wrapper.text()).not.toContain("Static media URL");
+		expect(wrapper.text()).not.toContain("This preview will show");
+		expect(wrapper.text()).not.toContain(missingStaticVideo);
 		expect(wrapper.find(`a[href="${missingStaticVideo}"]`).exists()).toBe(
-			true
+			false
 		);
+		expect(wrapper.findAll(".item-media-placeholder")).toHaveLength(1);
+		expect(
+			wrapper.get(".item-media-placeholder").text().replace(/\s+/g, " ")
+		).toBe("Media unavailable: original-demo-video.mp4.");
 	});
 
 	it("reserves known pending static media without first rendering a broken embed", async () => {
@@ -2730,18 +2730,20 @@ describe("CourseExplorer.vue", () => {
 
 		expect(wrapper.find("img.item-media-image").exists()).toBe(false);
 		expect(wrapper.find("video.item-media-video").exists()).toBe(false);
-		expect(wrapper.text()).toContain("Static asset pending");
-		expect(wrapper.text()).toContain("Pending static asset");
+		expect(wrapper.text()).not.toContain("Static asset pending");
+		expect(wrapper.text()).not.toContain("Pending static asset");
 		expect(wrapper.text()).not.toContain("Original static asset");
 		expect(wrapper.text()).toContain("biomod1pro1im1.jpg");
-		expect(wrapper.text()).toContain("Static media URL");
-		expect(wrapper.text()).toContain(
-			"This preview will show the image or video here once the static media file is added."
-		);
-		expect(wrapper.text()).toContain(pendingStaticImage);
+		expect(wrapper.text()).not.toContain("Static media URL");
+		expect(wrapper.text()).not.toContain("This preview will show");
+		expect(wrapper.text()).not.toContain(pendingStaticImage);
 		expect(wrapper.find(`a[href="${pendingStaticImage}"]`).exists()).toBe(
-			true
+			false
 		);
+		expect(wrapper.findAll(".item-media-placeholder")).toHaveLength(1);
+		expect(
+			wrapper.get(".item-media-placeholder").text().replace(/\s+/g, " ")
+		).toBe("Media unavailable: biomod1pro1im1.jpg.");
 	});
 
 	it("reserves source-noted pending static media before manifest updates", async () => {
@@ -2801,11 +2803,16 @@ describe("CourseExplorer.vue", () => {
 
 		expect(wrapper.find("img.item-media-image").exists()).toBe(false);
 		expect(wrapper.find("video.item-media-video").exists()).toBe(false);
-		expect(wrapper.text()).toContain("Static asset pending");
-		expect(wrapper.text()).toContain("Pending static asset");
+		expect(wrapper.text()).not.toContain("Static asset pending");
+		expect(wrapper.text()).not.toContain("Pending static asset");
 		expect(wrapper.text()).not.toContain("Original static asset");
 		expect(wrapper.text()).toContain("future-original-demo-image.png");
-		expect(wrapper.text()).toContain(futureStaticImage);
+		expect(wrapper.text()).not.toContain(futureStaticImage);
+		expect(wrapper.find(".item-media-placeholder").exists()).toBe(false);
+		expect(wrapper.text()).toContain(
+			"Pending media: future-original-demo-image.png is not currently available."
+		);
+		expect(wrapper.text()).not.toContain("Space is reserved");
 		expect(wrapper.find(`a[href="${futureStaticImage}"]`).exists()).toBe(
 			true
 		);
@@ -3040,18 +3047,20 @@ describe("CourseExplorer.vue", () => {
 		await nextTick();
 
 		expect(wrapper.find("video.item-media-video").exists()).toBe(false);
-		expect(wrapper.text()).toContain("Static asset pending");
-		expect(wrapper.text()).toContain("Pending static asset");
+		expect(wrapper.text()).not.toContain("Static asset pending");
+		expect(wrapper.text()).not.toContain("Pending static asset");
 		expect(wrapper.text()).not.toContain("Original static asset");
 		expect(wrapper.text()).toContain("supplemental-demo.mp4");
-		expect(wrapper.text()).toContain("Static media URL");
-		expect(wrapper.text()).toContain(
-			"This preview will show the image or video here once the static media file is added."
-		);
-		expect(wrapper.text()).toContain(pendingStaticVideo);
+		expect(wrapper.text()).not.toContain("Static media URL");
+		expect(wrapper.text()).not.toContain("This preview will show");
+		expect(wrapper.text()).not.toContain(pendingStaticVideo);
 		expect(wrapper.find(`a[href="${pendingStaticVideo}"]`).exists()).toBe(
-			true
+			false
 		);
+		expect(wrapper.findAll(".item-media-placeholder")).toHaveLength(1);
+		expect(
+			wrapper.get(".item-media-placeholder").text().replace(/\s+/g, " ")
+		).toBe("Media unavailable: supplemental-demo.mp4.");
 	});
 
 	it("labels science reference links by purpose instead of calling every link a dataset", async () => {
@@ -3546,7 +3555,7 @@ describe("CourseExplorer.vue", () => {
 		const appStore = useAppStore();
 		const coursesStore = useCoursesStore();
 		const assignedCourse =
-			coursesStore.courses.find((course) => course.id === "pygames") ??
+			coursesStore.courses.find(course => course.id === "pygames") ??
 			coursesStore.courses[0];
 		const rootUrl =
 			"https://github.com/instruction-material/PyGames/tree/main";
@@ -3705,7 +3714,7 @@ describe("CourseExplorer.vue", () => {
 			saveEdit: "Save"
 		});
 		vi.mocked(api.get).mockResolvedValue({
-			data: ["a", "b"].map((id) => ({
+			data: ["a", "b"].map(id => ({
 				_id: id,
 				name: "Same name",
 				email: "shared@example.invalid",

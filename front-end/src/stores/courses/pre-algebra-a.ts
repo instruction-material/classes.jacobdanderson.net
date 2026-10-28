@@ -496,7 +496,7 @@ export const preAlgebraACourse: RawCourse = {
 					references: [
 						"The capstone asks for one course module or concept that was especially challenging or exciting.",
 						"The final explanation covers purpose, real-world application, and at least 2 student-created problems using course content.",
-						"The current version keeps the same reflection and created-problem requirements without requiring platform-specific recording tools."
+						"The explanation may use text, diagrams, speech or a recording."
 					],
 					evidence: [
 						"Selected concept is named and connected to a real-world use.",
@@ -787,3 +787,11 @@ configureMathCourseFlow(preAlgebraACourse, {
 });
 
 addPreAlgebraACases(preAlgebraACourse);
+
+const capstoneReference = preAlgebraACourse.modules
+	.flatMap(module => module.curriculum)
+	.find(item => item.title === "Pre-Algebra A Capstone Reference Map");
+if (!capstoneReference)
+	throw new Error("Missing Pre-Algebra A capstone reference");
+capstoneReference.contentKind = "reading";
+capstoneReference.preserveInstructions = true;

@@ -112,9 +112,21 @@ it.each(["learner", "instructor"])(
 		const readings = coreModules
 			.flatMap(module => module.curriculum)
 			.filter(isLessonLearningItem);
-		expect(readings).toHaveLength(9);
+		expect(readings).toHaveLength(10);
+		const reference = readings.find(
+			item => item.title === "Pre-Algebra A Capstone Reference Map"
+		);
+		expect(reference?.contentKind).toBe("reading");
+		expect(reference?.id).toBe(
+			published.modules
+				.flatMap(module => module.curriculum)
+				.find(
+					item =>
+						item.title === "Pre-Algebra A Capstone Reference Map"
+				)?.id
+		);
 		for (const reading of readings.filter(
-			item => !item.title.endsWith("Capstone Synthesis")
+			item => item.title !== "Pre-Algebra A Capstone Reference Map"
 		)) {
 			expect(reading.content).toContain("**Methods and definitions:**");
 			expect(reading.content).toContain("**Worked example:**");
