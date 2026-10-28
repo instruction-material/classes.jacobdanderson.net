@@ -1,0 +1,344 @@
+{
+  "courseId": "pre-algebra-b",
+  "sourceTag": "v2.8.178",
+  "source": "4dc9b70d572366b1d06d06dab1b3ccecd32be4df",
+  "roleEvidenceSHA256": "43664f7d0ea58c1b72631f84e1cee9f609674e4025709403c71bf7761d3d08c6",
+  "currentHostedIdentityContractMatched": true,
+  "identities": [
+    {
+      "moduleId": "pre-algebra-b-pre-algebra-b-kick-off",
+      "id": "pre-algebra-b-pre-algebra-b-kick-off-curriculum-course-map-and-readiness-check",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-b-pre-algebra-b-kick-off",
+      "id": "pre-algebra-b-pre-algebra-b-kick-off-curriculum-project-pre-algebra-b-readiness-map",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-b-pre-algebra-b-kick-off",
+      "id": "pre-algebra-b-pre-algebra-b-kick-off-supplemental-checkpoint-pre-algebra-b-kick-off",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-b-pre-algebra-b-kick-off",
+      "id": "pre-algebra-b-pre-algebra-b-kick-off-supplemental-transfer-practice-pre-algebra-b-kick-off",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab1-pab5-data-averages-and-graphs",
+      "id": "pre-algebra-b-pab1-pab5-data-averages-and-graphs-curriculum-range-median-mode-and-mean",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab1-pab5-data-averages-and-graphs",
+      "id": "pre-algebra-b-pab1-pab5-data-averages-and-graphs-curriculum-single-variable-and-multivariable-graphs",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab1-pab5-data-averages-and-graphs",
+      "id": "pre-algebra-b-pab1-pab5-data-averages-and-graphs-supplemental-project-exploring-the-world-with-marco",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab1-pab5-data-averages-and-graphs",
+      "id": "pre-algebra-b-pab1-pab5-data-averages-and-graphs-supplemental-supplemental-project-1-data-summary-error-repair",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-b-check-in-1-pre-algebra-b-data-and-graphing",
+      "id": "pre-algebra-b-check-in-1-pre-algebra-b-data-and-graphing-curriculum-data-and-graphing-readiness-check",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-b-check-in-1-pre-algebra-b-data-and-graphing",
+      "id": "pre-algebra-b-check-in-1-pre-algebra-b-data-and-graphing-supplemental-supplemental-project-1-graph-choice-defense",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-b-check-in-1-pre-algebra-b-data-and-graphing",
+      "id": "pre-algebra-b-check-in-1-pre-algebra-b-data-and-graphing-supplemental-supplemental-project-2-statistic-selection-check",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab6-pab9-lines-angles-triangles-and-similarity",
+      "id": "pre-algebra-b-pab6-pab9-lines-angles-triangles-and-similarity-curriculum-points-lines-angles-and-triangle-relationships",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab6-pab9-lines-angles-triangles-and-similarity",
+      "id": "pre-algebra-b-pab6-pab9-lines-angles-triangles-and-similarity-curriculum-congruence-similarity-and-scale",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab6-pab9-lines-angles-triangles-and-similarity",
+      "id": "pre-algebra-b-pab6-pab9-lines-angles-triangles-and-similarity-supplemental-project-gymnastics-geometry-challenge",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab6-pab9-lines-angles-triangles-and-similarity",
+      "id": "pre-algebra-b-pab6-pab9-lines-angles-triangles-and-similarity-supplemental-transfer-practice-lines-angles-triangles-and-similarity",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab10-pab14-polygons-area-circles-and-solids",
+      "id": "pre-algebra-b-pab10-pab14-polygons-area-circles-and-solids-curriculum-quadrilaterals-polygons-perimeter-and-area",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab10-pab14-polygons-area-circles-and-solids",
+      "id": "pre-algebra-b-pab10-pab14-polygons-area-circles-and-solids-curriculum-circles-and-three-dimensional-shapes",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab10-pab14-polygons-area-circles-and-solids",
+      "id": "pre-algebra-b-pab10-pab14-polygons-area-circles-and-solids-supplemental-project-uber-internship-challenge",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab10-pab14-polygons-area-circles-and-solids",
+      "id": "pre-algebra-b-pab10-pab14-polygons-area-circles-and-solids-supplemental-transfer-practice-polygons-area-circles-and-solids",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-b-check-in-2-pre-algebra-b-geometry",
+      "id": "pre-algebra-b-check-in-2-pre-algebra-b-geometry-curriculum-geometry-readiness-check",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-b-check-in-2-pre-algebra-b-geometry",
+      "id": "pre-algebra-b-check-in-2-pre-algebra-b-geometry-supplemental-supplemental-project-1-geometry-formula-audit",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-b-check-in-2-pre-algebra-b-geometry",
+      "id": "pre-algebra-b-check-in-2-pre-algebra-b-geometry-supplemental-supplemental-project-2-similarity-transfer",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab15-pab19-factors-multiples-and-number-structure",
+      "id": "pre-algebra-b-pab15-pab19-factors-multiples-and-number-structure-curriculum-multiples-factors-divisibility-and-primes",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab15-pab19-factors-multiples-and-number-structure",
+      "id": "pre-algebra-b-pab15-pab19-factors-multiples-and-number-structure-curriculum-gcf-and-lcm",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab15-pab19-factors-multiples-and-number-structure",
+      "id": "pre-algebra-b-pab15-pab19-factors-multiples-and-number-structure-supplemental-project-the-marvelous-theme-park",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab15-pab19-factors-multiples-and-number-structure",
+      "id": "pre-algebra-b-pab15-pab19-factors-multiples-and-number-structure-supplemental-transfer-practice-factors-multiples-and-number-structure",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab20-pab23-counting-probability-and-applied-modeling",
+      "id": "pre-algebra-b-pab20-pab23-counting-probability-and-applied-modeling-curriculum-counting-strategies-and-probability",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab20-pab23-counting-probability-and-applied-modeling",
+      "id": "pre-algebra-b-pab20-pab23-counting-probability-and-applied-modeling-curriculum-applied-data-models-and-dashboards",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab20-pab23-counting-probability-and-applied-modeling",
+      "id": "pre-algebra-b-pab20-pab23-counting-probability-and-applied-modeling-supplemental-project-esmash",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-b-pab20-pab23-counting-probability-and-applied-modeling",
+      "id": "pre-algebra-b-pab20-pab23-counting-probability-and-applied-modeling-supplemental-project-airtable-revamped",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-b-check-in-3-and-capstone-pre-algebra-b",
+      "id": "pre-algebra-b-check-in-3-and-capstone-pre-algebra-b-curriculum-number-structure-probability-and-modeling-readiness-check",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-b-check-in-3-and-capstone-pre-algebra-b",
+      "id": "pre-algebra-b-check-in-3-and-capstone-pre-algebra-b-curriculum-master-project-pre-algebra-b",
+      "section": "core"
+    },
+    {
+      "moduleId": "pre-algebra-b-check-in-3-and-capstone-pre-algebra-b",
+      "id": "pre-algebra-b-check-in-3-and-capstone-pre-algebra-b-supplemental-supplemental-project-1-probability-fairness-audit",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-b-check-in-3-and-capstone-pre-algebra-b",
+      "id": "pre-algebra-b-check-in-3-and-capstone-pre-algebra-b-supplemental-supplemental-project-2-capstone-evidence-plan",
+      "section": "optional"
+    },
+    {
+      "moduleId": "pre-algebra-b-pre-algebra-b-reference-archive",
+      "id": "pre-algebra-b-pre-algebra-b-reference-archive-curriculum-pre-algebra-b-reference-map",
+      "section": "core"
+    }
+  ],
+  "sha256": "4aaca8c5fd5056a18535457c8d298fb798726e201f640422521fc4f020b16ffc",
+  "modules": [
+    {
+      "id": "pre-algebra-b-pre-algebra-b-kick-off",
+      "title": "Pre-Algebra B Kick-Off",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "pre-algebra-b-pre-algebra-b-kick-off-curriculum-course-map-and-readiness-check",
+          "title": "Course Map and Readiness Check",
+          "aliases": []
+        },
+        {
+          "id": "pre-algebra-b-pre-algebra-b-kick-off-curriculum-project-pre-algebra-b-readiness-map",
+          "title": "Project: Pre-Algebra B Readiness Map",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "pre-algebra-b-pab1-pab5-data-averages-and-graphs",
+      "title": "PAB1-PAB5 Data, Averages, and Graphs",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "pre-algebra-b-pab1-pab5-data-averages-and-graphs-curriculum-range-median-mode-and-mean",
+          "title": "Range, Median, Mode, and Mean",
+          "aliases": []
+        },
+        {
+          "id": "pre-algebra-b-pab1-pab5-data-averages-and-graphs-curriculum-single-variable-and-multivariable-graphs",
+          "title": "Single-Variable and Multivariable Graphs",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "pre-algebra-b-check-in-1-pre-algebra-b-data-and-graphing",
+      "title": "Check-In #1: Pre-Algebra B Data and Graphing",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "pre-algebra-b-check-in-1-pre-algebra-b-data-and-graphing-curriculum-data-and-graphing-readiness-check",
+          "title": "Data and Graphing Readiness Check",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "pre-algebra-b-pab6-pab9-lines-angles-triangles-and-similarity",
+      "title": "PAB6-PAB9 Lines, Angles, Triangles, and Similarity",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "pre-algebra-b-pab6-pab9-lines-angles-triangles-and-similarity-curriculum-points-lines-angles-and-triangle-relationships",
+          "title": "Points, Lines, Angles, and Triangle Relationships",
+          "aliases": []
+        },
+        {
+          "id": "pre-algebra-b-pab6-pab9-lines-angles-triangles-and-similarity-curriculum-congruence-similarity-and-scale",
+          "title": "Congruence, Similarity, and Scale",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "pre-algebra-b-pab10-pab14-polygons-area-circles-and-solids",
+      "title": "PAB10-PAB14 Polygons, Area, Circles, and Solids",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "pre-algebra-b-pab10-pab14-polygons-area-circles-and-solids-curriculum-quadrilaterals-polygons-perimeter-and-area",
+          "title": "Quadrilaterals, Polygons, Perimeter, and Area",
+          "aliases": []
+        },
+        {
+          "id": "pre-algebra-b-pab10-pab14-polygons-area-circles-and-solids-curriculum-circles-and-three-dimensional-shapes",
+          "title": "Circles and Three-Dimensional Shapes",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "pre-algebra-b-check-in-2-pre-algebra-b-geometry",
+      "title": "Check-In #2: Pre-Algebra B Geometry",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "pre-algebra-b-check-in-2-pre-algebra-b-geometry-curriculum-geometry-readiness-check",
+          "title": "Geometry Readiness Check",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "pre-algebra-b-pab15-pab19-factors-multiples-and-number-structure",
+      "title": "PAB15-PAB19 Factors, Multiples, and Number Structure",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "pre-algebra-b-pab15-pab19-factors-multiples-and-number-structure-curriculum-multiples-factors-divisibility-and-primes",
+          "title": "Multiples, Factors, Divisibility, and Primes",
+          "aliases": []
+        },
+        {
+          "id": "pre-algebra-b-pab15-pab19-factors-multiples-and-number-structure-curriculum-gcf-and-lcm",
+          "title": "GCF and LCM",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "pre-algebra-b-pab20-pab23-counting-probability-and-applied-modeling",
+      "title": "PAB20-PAB23 Counting, Probability, and Applied Modeling",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "pre-algebra-b-pab20-pab23-counting-probability-and-applied-modeling-curriculum-counting-strategies-and-probability",
+          "title": "Counting Strategies and Probability",
+          "aliases": []
+        },
+        {
+          "id": "pre-algebra-b-pab20-pab23-counting-probability-and-applied-modeling-curriculum-applied-data-models-and-dashboards",
+          "title": "Applied Data Models and Dashboards",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "pre-algebra-b-check-in-3-and-capstone-pre-algebra-b",
+      "title": "Check-In #3 and Capstone: Pre-Algebra B",
+      "kind": "module",
+      "curriculum": [
+        {
+          "id": "pre-algebra-b-check-in-3-and-capstone-pre-algebra-b-curriculum-number-structure-probability-and-modeling-readiness-check",
+          "title": "Number Structure, Probability, and Modeling Readiness Check",
+          "aliases": []
+        },
+        {
+          "id": "pre-algebra-b-check-in-3-and-capstone-pre-algebra-b-curriculum-master-project-pre-algebra-b",
+          "title": "Master Project: Pre-Algebra B",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "pre-algebra-b-pre-algebra-b-reference-archive",
+      "title": "Pre-Algebra B Reference Archive",
+      "kind": "appendix",
+      "curriculum": [
+        {
+          "id": "pre-algebra-b-pre-algebra-b-reference-archive-curriculum-pre-algebra-b-reference-map",
+          "title": "Pre-Algebra B Reference Map",
+          "aliases": [
+            "pre-algebra-b-source-activity-archive-curriculum-pre-algebra-b-source-anchors"
+          ]
+        }
+      ]
+    }
+  ]
+}
