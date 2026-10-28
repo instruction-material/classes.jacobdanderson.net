@@ -54,7 +54,7 @@ function project({
 	title: string;
 }) {
 	return [
-		`**Project goal:** ${goal}`,
+		`**Goal:** ${goal}`,
 		`**Work path:**\n${steps.map((step, index) => `${index + 1}. ${step}`).join("\n")}`,
 		`**Evidence of completion:** ${evidence}`,
 		`**Project reference:** ${title}`
