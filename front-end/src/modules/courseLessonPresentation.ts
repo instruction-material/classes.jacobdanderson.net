@@ -58,7 +58,7 @@ const sectionKinds: Record<string, LessonContentSection["kind"]> = {
 	deliverable: "assignment"
 };
 const assignmentTitle =
-	/\b(?:project|capstone|exercise|worksheet|quiz|problem|lab|drill|challenge|assignment|practice|activity)\b/i;
+	/\b(?:project|capstone|exercise|worksheet|quiz|problem|lab|drill|challenge|assignment|practice|activity)\b|^modeling or error analysis(?::|$)/i;
 const learningTitle =
 	/\b(?:introduction|overview|concepts?|basics|reference|vocabulary|reflection|planning and architecture|design and planning map|verification review|verification and reflection|debugging habit|debugging pitfalls|bug patterns)\b|^basic event listeners$/i;
 

@@ -164,4 +164,17 @@ describe("lesson content presentation", () => {
 			true
 		);
 	});
+
+	it.each(["Introduction to Logarithms", "Trigonometry Basics"])(
+		"keeps Modeling or Error Analysis: %s in supplemental projects",
+		topic => {
+			expect(
+				isLessonLearningItem({
+					id: "modeling-choice",
+					title: `Modeling or Error Analysis: ${topic}`,
+					content: "Choose a model and justify its domain."
+				})
+			).toBe(false);
+		}
+	);
 });

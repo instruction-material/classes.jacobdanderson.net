@@ -799,7 +799,13 @@ watch(
 	([module, courseId, anchor, query], previous) => {
 		const moduleChanged =
 			module?.id !== previous?.[0]?.id || courseId !== previous?.[1];
-		if (moduleChanged) lessonView.value = "projects";
+		if (moduleChanged) {
+			lessonView.value =
+				!lessonItemsByView.value.projects.length &&
+				lessonItemsByView.value.learn.length
+					? "learn"
+					: "projects";
+		}
 		if (module && (moduleChanged || anchor !== previous?.[2])) {
 			const matchingView = lessonViews.find(view =>
 				lessonItemsByView.value[view.id].some(item =>

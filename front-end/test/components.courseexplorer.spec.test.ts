@@ -553,6 +553,66 @@ describe("CourseExplorer.vue", () => {
 		}
 	});
 
+	it.each([
+		{
+			courseId: "algebra-2a",
+			moduleId: "algebra-2a-ala1-complex-numbers",
+			text: "principal complex square root"
+		},
+		{
+			courseId: "algebra-2b",
+			moduleId: "algebra-2b-alb7-data-and-statistics",
+			text: "Pearson correlation is r="
+		}
+	])(
+		"opens $courseId explanations in Learn and retains review assignments in Projects",
+		async ({ courseId, moduleId, text }) => {
+			const pinia = createPinia();
+			setActivePinia(pinia);
+			useAppStore().setCurrentUser({
+				_id: "algebra-reader",
+				name: "Learner",
+				email: "learner@example.invalid",
+				age: 16,
+				state: "GA",
+				courseAccess: [courseId],
+				editUsers: false,
+				saveEdit: "Save"
+			});
+			window.history.replaceState({}, "", `/courses#${moduleId}`);
+			const wrapper = mount(CourseExplorer, {
+				global: { plugins: [pinia] }
+			});
+			try {
+				await flushPromises();
+				await vi.waitFor(() => expect(wrapper.text()).toContain(text));
+				const activeView = () =>
+					wrapper
+						.findAll(".lesson-view-toggle button")
+						.find(
+							button =>
+								button.attributes("aria-pressed") === "true"
+						)!
+						.text();
+				expect(activeView()).toBe("Learn");
+				await wrapper.get(".outline-toggle").trigger("click");
+				await wrapper
+					.findAll(".outline-button")
+					.find(button => button.text().includes("Check-In #1"))!
+					.trigger("click");
+				await flushPromises();
+				expect(activeView()).toBe("Projects");
+				await vi.waitFor(() =>
+					expect(wrapper.text()).toContain(
+						"Check answers and reasoning"
+					)
+				);
+				expect(wrapper.text()).not.toContain("Answer-key highlights");
+			} finally {
+				wrapper.unmount();
+			}
+		}
+	);
 	it("shows completed lessons without aggregate statistics or project shortcuts", async () => {
 		const pinia = createPinia();
 		setActivePinia(pinia);
