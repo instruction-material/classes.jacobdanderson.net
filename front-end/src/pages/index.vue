@@ -6,17 +6,17 @@ import { useContentStore } from "@/stores/content";
 defineOptions({ name: "HomePage" });
 
 const content = useContentStore();
-const siteUrl = "https://classes.jacobdanderson.net";
+const siteUrl = import.meta.env.VITE_SITE_URL || "https://example.com";
 const { subjectGroups } = storeToRefs(content);
 const courseStructuredData = computed(() =>
 	subjectGroups.value.map(group => ({
 		"@context": "https://schema.org",
 		"@type": "Course",
-		description: `Private instruction covering ${group.subjects.join(", ")}.`,
-		name: `${group.title} tutoring with Jacob Anderson`,
+		description: `Course materials covering ${group.subjects.join(", ")}.`,
+		name: `${group.title} courses`,
 		provider: {
-			"@type": "Person",
-			name: "Jacob Anderson",
+			"@type": "Organization",
+			name: "Classes",
 			url: siteUrl
 		}
 	}))
@@ -46,10 +46,10 @@ useHead(
 	<section class="page-shell page-shell--wide home-page">
 		<section aria-labelledby="hero-title" class="page-hero home-hero">
 			<div class="hero-text">
-				<h1 id="hero-title" class="page-title">Private Tutoring</h1>
+				<h1 id="hero-title" class="page-title">Course Platform</h1>
 				<p class="page-copy">
-					Learn with Jacob Anderson, one-on-one. Bring your coursework
-					or project, or find a course to explore.
+					Explore courses and projects independently or with an
+					instructor. Open programming and graphing tools to practice.
 				</p>
 			</div>
 			<figure class="media-frame home-hero__media">
@@ -69,7 +69,7 @@ useHead(
 			<div class="home-section__heading">
 				<div class="section-heading">
 					<h2 id="subjects-title" class="section-title">
-						What I Teach
+						Subjects and Course Paths
 					</h2>
 					<p class="section-intro">
 						Start something new or get help with the work already in
@@ -106,33 +106,35 @@ useHead(
 		>
 			<div class="section-heading">
 				<h2 id="session-title" class="section-title">
-					What a session looks like
+					How to use the platform
 				</h2>
 				<p class="section-intro">
-					We work through the problem together, with time to try
-					ideas, ask questions and understand the reasoning.
+					Choose a course, work through its projects and use the tools
+					to put new concepts into practice.
 				</p>
 			</div>
 			<ol class="home-session__steps">
 				<li>
-					<h3>Bring a starting point</h3>
+					<h3>Choose a starting point</h3>
 					<p>
-						Share the assignment, code, problem or goal. Not sure
-						where to start? We can choose a course path together.
+						Bring an assignment or explore a course path. Follow the
+						lessons that fit what you want to learn.
 					</p>
 				</li>
 				<li>
-					<h3>Work it through</h3>
+					<h3>Build and experiment</h3>
 					<p>
-						Break the task into manageable steps, test your ideas
-						and explain why the solution works.
+						Work through projects in the IDE or try mathematical
+						ideas in Graphing. Test changes and explain your
+						reasoning.
 					</p>
 				</li>
 				<li>
-					<h3>Know what comes next</h3>
+					<h3>Choose your next steps</h3>
 					<p>
-						Review what you learned and what still needs work, with
-						clear next steps to guide your practice.
+						Use supplemental projects for more practice or extension
+						challenges. Keep a copy of your work to build on next
+						time.
 					</p>
 				</li>
 			</ol>

@@ -12,7 +12,7 @@ if (process.argv.length !== 3 || !candidate || candidate.startsWith("-")) {
 
 try {
 	const manifest = await runNativeReleaseVerification([candidate]);
-	const repository = "anderson-webops/classes.jacobdanderson.net";
+	const repository = "instruction-material/classes.jacobdanderson.net";
 	const verification = spawnSync("gh", [
 		"attestation",
 		"verify",
