@@ -7,12 +7,12 @@ Wants=network-online.target
 Type=simple
 User=classes
 Group=classes
-WorkingDirectory=/srv/classes.jacobdanderson.net/current
+WorkingDirectory=/srv/classes.example.com/current
 Environment=NODE_ENV=production
 Environment=HOST=127.0.0.1
 Environment=PORT=3008
 Environment=TRUST_PROXY=loopback
-EnvironmentFile=/etc/classes.jacobdanderson.net/api.env
+EnvironmentFile=/etc/classes.example.com/api.env
 ExecStart=/usr/bin/node back-end/dist/server.js
 Restart=on-failure
 RestartSec=5s
