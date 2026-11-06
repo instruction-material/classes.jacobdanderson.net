@@ -1,6 +1,11 @@
-# classes.jacobdanderson.net
+# instruction-material/classes.jacobdanderson.net
 
-Website and supporting API for `classes.jacobdanderson.net`.
+Forkable course catalog, Python IDE, and supporting API for private instruction workflows.
+
+This source fork intentionally ships with neutral public branding and no
+personal payment destinations, QR codes, phone numbers, or instructor profile
+data. Configure and verify deployment-specific identity, contact, scheduling,
+meeting, roster, and payment information before publishing a derived site.
 
 ## Repo Layout
 
@@ -113,7 +118,7 @@ npm run clean
 - Use the [native production runbook](./docs/native-production-deployment.md)
   for the canonical custom-host deployment. It uses Nginx and one loopback
   systemd API; it does not use Docker or expose release metadata publicly.
-- The booking page embeds the sibling scheduler app from `VITE_SCHEDULER_ORIGIN`, defaulting to `https://scheduler.classes.jacobdanderson.net`. For local end-to-end testing against `../scheduler.classes.jacobdanderson.net`, run that app on port `5173` and set `VITE_SCHEDULER_ORIGIN=http://localhost:5173` in `front-end/.env`.
+- The booking page embeds a scheduler app from `VITE_SCHEDULER_ORIGIN`, defaulting to `https://scheduler.example.com`. For local end-to-end testing against a sibling scheduler checkout, run that app on port `5173` and set `VITE_SCHEDULER_ORIGIN=http://localhost:5173` in `front-end/.env`.
 
 ## Production security-header gate
 
@@ -139,3 +144,5 @@ Set `CLASSES_SITE_ORIGIN` only when checking an equivalent preview. A production
 build that changes the scheduler origin or adds a browser-loaded remote origin
 must update the matching exact policy, its config-derived regression test, and
 the live probe together.
+
+The canonical site's Zoom session-note AI drafting feature is excluded from this fork, as required by its upstream scope. Existing session-note editing and delivery workflows remain available.

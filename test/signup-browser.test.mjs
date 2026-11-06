@@ -10,7 +10,7 @@ import { createServer } from "vite";
 import { runAxeInPage } from "../scripts/a11y-axe-runtime.mjs";
 
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
-const schedulerUrl = "https://scheduler.classes.jacobdanderson.net/";
+const schedulerUrl = "https://scheduler.example.com/";
 const axeSource = createRequire(import.meta.url).resolve("axe-core/axe.min.js");
 
 nodeTest(
@@ -86,7 +86,7 @@ nodeTest(
 <style>body{margin:0;padding:16px;font:16px Arial;color:#102235;background:#f3f7fb}html.dark body{color:#f4f8ff;background:#0a1525}main{min-height:1280px}button{padding:12px}</style></head>
 <body><main><h1>${title}</h1><button id="grow">Show booking details</button></main>
 <script>
-function resize(){ parent.postMessage({source:"scheduler.classes.jacobdanderson.net",type:"scheduler:resize",height:document.documentElement.scrollHeight}, "${origin}"); }
+function resize(){ parent.postMessage({source:"scheduler.example.com",type:"scheduler:resize",height:document.documentElement.scrollHeight}, "${origin}"); }
 window.addEventListener("message",event=>{ if(event.source!==parent || event.origin!=="${origin}") return; if(event.data.type==="scheduler:theme"){ document.documentElement.classList.toggle("dark",event.data.theme==="dark"); resize(); }});
 document.getElementById("grow").onclick=()=>{document.querySelector("main").style.minHeight="1640px";resize();};
 new ResizeObserver(resize).observe(document.querySelector("main"));
@@ -211,7 +211,7 @@ resize();</script></body></html>`
 							fullPage: false
 						});
 					}
-					await page.click(".scheduler-toolbar button");
+					await page.locator(".scheduler-toolbar button").click();
 					await page.waitForFunction(
 						() =>
 							new URL(
@@ -219,7 +219,7 @@ resize();</script></body></html>`
 							).pathname === "/portal"
 					);
 					assert.equal(new URL(page.url()).pathname, "/signup");
-					await page.click(".scheduler-toolbar button");
+					await page.locator(".scheduler-toolbar button").click();
 					await page.waitForFunction(
 						() =>
 							new URL(
