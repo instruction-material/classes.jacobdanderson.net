@@ -1278,7 +1278,7 @@ const investingCourses = {
 					"tradeoffs"
 				],
 				flowNote:
-					"Convert gross income to estimated take-home pay, classify expenses without treating wants as moral failures, and revise the profile into a balanced monthly plan. A text table or instructor-supplied calculator can replace any external tool."
+					"Convert gross income to estimated take-home pay, classify expenses without treating wants as moral failures, and revise the profile into a balanced monthly plan. A text table and the supplied calculations can replace an external calculator."
 			},
 			"PF4 How to Build Credit: Making Your Small Purchases Count": {
 				estimatedTime: "3 sessions · 40–50 minutes each",
@@ -1350,7 +1350,7 @@ const investingCourses = {
 					"next-year recommendation"
 				],
 				flowNote:
-					"Reconcile the fictional profile across income, spending, banking, credit, purchases, future planning, and values. Finish with a one-year stress test and evidence-based next move. A private portfolio or instructor submission is complete; no public sharing or real financial action is required."
+					"Reconcile the fictional profile across income, spending, banking, credit, purchases, future planning, and values. Finish with a one-year stress test and evidence-based next move. A private portfolio is complete; no public sharing or real financial action is required."
 			}
 		},
 		sourceActivityAnchors: {
@@ -1376,7 +1376,7 @@ const investingCourses = {
 				},
 				{
 					title: "Wealth-Building Research and Financial Perspectives",
-					prompt: "Use a public profile, an instructor-supplied fictional case, or an optional interview with a trusted adult to compare financial habits. Do not request or record private account balances, credentials, debt details, or other sensitive financial information. Compare income sources, assets, lifestyle choices, weekly or monthly money routines, and long-term goals only at the level the source voluntarily makes available.",
+					prompt: "Use a public profile, the supplied fictional profile, or an optional interview with a trusted adult to compare financial habits. Do not request or record private account balances, credentials, debt details, or other sensitive financial information. Compare income sources, assets, lifestyle choices, weekly or monthly money routines, and long-term goals only at the level the source voluntarily makes available.",
 					evidence: [
 						"Research or interview notes with source names, dates, and the specific financial behaviors observed.",
 						"Comparison table separating income, assets, spending habits, saving habits, and risk tolerance.",
