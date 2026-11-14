@@ -34,6 +34,7 @@ import { applyRustTraitPipelineCourseWorkflows } from "./rustTraitPipelineCourse
 import { applyRustTypedErrorsCourseWorkflows } from "./rustTypedErrorsCourseWorkflows";
 import { applyScratchBootcampReadings } from "./scratchBootcampReadings";
 import { applyScratchConceptReadings } from "./scratchConceptReadings";
+import { applySmartMoneyReadings } from "./smartMoneyReadings";
 import {
 	canonicalStaticMediaUrl,
 	hasPendingStaticMediaNotice,
@@ -9874,6 +9875,8 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 	applyWebDeploymentWorkflow(course, id);
 	preserveMathArchiveProgress(course, id);
 	preserveDesignPatternsJavaProgress(course, id);
+	if (id === "smart-money-personal-finance")
+		applySmartMoneyReadings(course, rawCourse);
 	if (id === "entrepreneurship-101")
 		applyEntrepreneurshipReadings(course, rawCourse);
 	if (id === "middle-school-a-literature")

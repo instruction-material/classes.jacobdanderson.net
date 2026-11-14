@@ -20,6 +20,8 @@ import restoredSpeakingProjects from "../../test/fixtures/public-speaking-restor
 import restoredJavaScriptLocalReadings from "../../test/fixtures/javascript-local-persistence-reading-identities.json";
 import restoredPythonRecaps from "../../test/fixtures/python-level-1-restored-recap-identities.json";
 
+import restoredSmartMoneyProjects from "../../test/fixtures/smart-money-restored-identities.json";
+
 const baseline = JSON.parse(
 	readFileSync(
 		resolve(
@@ -52,6 +54,7 @@ const addedIdentities: Record<
 	"late-elementary-b-math": lateElementaryBAdditions,
 	"early-elementary-a-reading": joyOfReadingAdditions,
 	"early-elementary-b-picture-book": pictureBookAdditions,
+	"smart-money-personal-finance": restoredSmartMoneyProjects,
 	"entrepreneurship-101": restoredEntrepreneurshipProjects,
 	"middle-school-c-grammar": restoredGrammarProjects,
 	"javascript-level-2-javascript-master": restoredJavaScriptLocalReadings,

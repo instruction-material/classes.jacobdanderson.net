@@ -1496,6 +1496,7 @@ jobs:
           test/java-patterns-workspace.spec.test.ts test/store.courses.design-patterns-java-flow.spec.test.ts
           test/java-recursion-workspace.spec.test.ts test/store.courses.java-level-3-flow.spec.test.ts
           test/store.courses.self-study-browser-manifest.spec.test.ts
+          test/store.courses.smart-money-content.spec.test.ts
           test/store.courses.middle-school-integrated-science-flow.spec.test.ts
           test/store.courses.elementary-science-flow.spec.test.ts test/store.courses.intro-biology-flow.spec.test.ts
           test/store.courses.intro-chemistry-flow.spec.test.ts

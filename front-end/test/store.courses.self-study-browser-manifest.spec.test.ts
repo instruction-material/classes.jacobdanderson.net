@@ -6,6 +6,7 @@ import { join } from "node:path";
 import { createPinia, setActivePinia } from "pinia";
 import MarkdownIt from "markdown-it";
 import { expect, it } from "vitest";
+import smartMoneyAdditions from "../../test/fixtures/smart-money-restored-identities.json";
 import published from "../../test/fixtures/catalog-published-identities.json";
 import elementaryAdditions from "../../test/fixtures/early-elementary-a-restored-identities.json";
 import elementaryBAdditions from "../../test/fixtures/early-elementary-b-restored-identities.json";
@@ -47,6 +48,7 @@ import {
 	lateElementaryMathBCourse,
 	earlyElementaryJoyOfReadingCourse,
 	earlyElementaryPictureBookCourse,
+	smartMoneyPersonalFinanceCourse,
 	entrepreneurship101Course,
 	grammarMechanicsCourse,
 	introductionToPublicSpeakingCourse,
@@ -182,6 +184,12 @@ const cases = [
 		source: geometryACourse,
 		readings: 6,
 		additions: []
+	},
+	{
+		id: "smart-money-personal-finance",
+		source: smartMoneyPersonalFinanceCourse,
+		readings: 9,
+		additions: smartMoneyAdditions
 	},
 	{
 		id: "entrepreneurship-101",

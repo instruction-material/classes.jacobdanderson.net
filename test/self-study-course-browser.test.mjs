@@ -42,6 +42,7 @@ const readingCounts = [22, 19, 19, 20, 8, 13, 15, 31, 10, 13, 14, 16, 20, 14, 9,
 assert.equal(readingCounts.length, courseIds.length);
 // Reading counts for explicitly selected teaching scopes.
 const focusedReadingCounts = {
+	"smart-money-personal-finance": 9,
 	"design-patterns-in-java": 32,
 	"design-patterns-in-java-part-2": 6,
 	"java-level-3": 1,
