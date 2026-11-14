@@ -14,6 +14,10 @@ fixture = ROOT / "test/fixtures/swift-canonical-uitests.swift"
 source = fixture.read_text().split("final class CanonicalCourseUITests", 1)[0]
 assert "private func courseScrollStart(" in source
 source = source.replace("import XCTest\n", "")
+welcome = ROOT / "test/fixtures/swift-welcome-extended-uitests.swift"
+welcome_source = welcome.read_text().split("final class WelcomeProfileUITests", 1)[0]
+assert "private func welcomeContentViewport(" in welcome_source
+source += welcome_source.replace("import CoreGraphics\n", "").replace("import XCTest\n", "")
 checks = r"""
 func verify(_ name: String, _ viewport: CGRect, _ target: CGRect, _ movement: CGFloat,
             insideVisibleTarget: Bool) {
@@ -81,7 +85,41 @@ for top in [CGFloat(74), CGFloat(96)] {
     verifyTallParagraph(viewport, CGRect(x: 32, y: 61.5, width: 284, height: 497.5))
     verifyTallParagraph(viewport, CGRect(x: 32, y: 171.5, width: 284, height: 497.5))
 }
-print("Twenty-two course scroll geometry checks passed")
+
+let welcomeScreen = CGRect(x: 0, y: 0, width: 440, height: 956)
+let welcomeNavigation = CGRect(x: 0, y: 62, width: 440, height: 34)
+let welcomeViewport = welcomeContentViewport(
+    scroll: welcomeScreen, bounds: welcomeScreen, navigation: welcomeNavigation)
+let observedButton = CGRect(x: 20, y: 868, width: 400, height: 34)
+let observedCenter = CGPoint(x: observedButton.midX, y: observedButton.midY)
+precondition(!welcomeScreen.insetBy(dx: 16, dy: 96).contains(observedCenter),
+             "The original fixed inset excluded the visible bottom button")
+precondition(welcomeViewport.contains(observedButton),
+             "The original visible Welcome button must remain reachable")
+precondition(!welcomeViewport.contains(CGPoint(x: 220, y: 80)),
+             "Content hidden under the actual navigation bar must remain excluded")
+let welcomeSmall = CGRect(x: 0, y: 0, width: 375, height: 667)
+precondition(welcomeContentViewport(scroll: welcomeSmall, bounds: welcomeSmall,
+             navigation: CGRect(x: 0, y: 20, width: 375, height: 76))
+             == CGRect(x: 0, y: 96, width: 375, height: 571))
+let clippedScroll = CGRect(x: 0, y: 90, width: 440, height: 832)
+let clippedWelcome = welcomeContentViewport(
+    scroll: clippedScroll, bounds: welcomeScreen, navigation: welcomeNavigation)
+precondition(clippedWelcome == CGRect(x: 0, y: 96, width: 440, height: 826))
+precondition(!clippedWelcome.contains(CGPoint(x: 220, y: 940)),
+             "Content outside the actual scroll viewport stays excluded")
+let offsetWelcome = CGRect(x: 20, y: 40, width: 320, height: 500)
+precondition(welcomeContentViewport(scroll: offsetWelcome, bounds: offsetWelcome,
+             navigation: CGRect(x: 20, y: 40, width: 320, height: 80))
+             == CGRect(x: 20, y: 120, width: 320, height: 420))
+precondition(welcomeContentViewport(scroll: welcomeSmall, bounds: welcomeSmall,
+             navigation: .zero) == welcomeSmall)
+precondition(welcomeContentViewport(scroll: CGRect(x: -20, y: 0, width: 420, height: 700),
+             bounds: welcomeSmall, navigation: .zero) == welcomeSmall)
+precondition(welcomeContentViewport(scroll: welcomeSmall, bounds: welcomeSmall,
+             navigation: welcomeSmall).height == 0)
+
+print("Thirty-two course scroll geometry checks passed")
 """
 
 
@@ -120,8 +158,9 @@ with tempfile.TemporaryDirectory(prefix="classes-scroll-geometry-") as directory
     main.write_text(source + checks)
     run(["/usr/bin/xcrun", "swiftc", str(main), "-o", str(executable)])
     result = run([str(executable)])
-    assert result.strip() == "Twenty-two course scroll geometry checks passed"
-    print(json.dumps(dict(accepted=True, checks=22,
+    assert result.strip() == "Thirty-two course scroll geometry checks passed"
+    print(json.dumps(dict(accepted=True, checks=32,
+                          welcomeFixtureSha256=hashlib.sha256(welcome.read_bytes()).hexdigest(),
                           fixtureSha256=hashlib.sha256(fixture.read_bytes()).hexdigest(),
                           scope="Actual scroll-origin function and observed failure geometry; native UI remains separately required")),
           flush=True)

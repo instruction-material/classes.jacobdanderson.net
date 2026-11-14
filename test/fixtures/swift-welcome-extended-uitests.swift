@@ -1,15 +1,26 @@
 import CoreGraphics
 import XCTest
 
+private func welcomeContentViewport(scroll: CGRect, bounds: CGRect, navigation: CGRect) -> CGRect {
+    let visible = scroll.intersection(bounds)
+    guard !visible.isNull else { return .zero }
+    let top = navigation.isEmpty ? visible.minY : max(visible.minY, navigation.maxY)
+    return CGRect(x: visible.minX, y: top, width: visible.width,
+                  height: max(0, visible.maxY - top))
+}
+
 final class WelcomeProfileUITests: XCTestCase {
     @MainActor
     private func reveal(_ element: XCUIElement, in app: XCUIApplication) {
+        let list = app.collectionViews.firstMatch
+        let scroll = list.exists ? list : app.scrollViews.firstMatch
+        XCTAssertTrue(scroll.exists)
         for attempt in 0..<20 {
-            let list = app.collectionViews.firstMatch
-            let scroll = list.exists ? list : app.scrollViews.firstMatch
-            XCTAssertTrue(scroll.exists)
+            let navigation = app.navigationBars.firstMatch
+            let viewport = welcomeContentViewport(
+                scroll: scroll.frame, bounds: app.frame,
+                navigation: navigation.exists ? navigation.frame : .zero)
             let target = element.exists ? element.frame : .zero
-            let viewport = scroll.frame.intersection(app.frame).insetBy(dx: 16, dy: 96)
             if element.exists && element.isHittable && viewport.contains(
                 CGPoint(x: target.midX, y: target.midY)) { return }
             let down = !target.isEmpty ? target.midY < scroll.frame.midY : attempt >= 10
@@ -18,7 +29,8 @@ final class WelcomeProfileUITests: XCTestCase {
             start.press(forDuration: 0.05, thenDragTo: start.withOffset(
                 CGVector(dx: 0, dy: down ? distance : -distance)))
         }
-        XCTAssertTrue(element.isHittable, app.debugDescription)
+        retain("Unreachable Welcome content", in: app)
+        XCTFail("The requested content is not reachable: \(element.debugDescription)")
     }
 
     @MainActor
@@ -65,6 +77,7 @@ final class WelcomeProfileUITests: XCTestCase {
         }
         let destination = app.buttons[reference ? "Open Detailed Profile" : "Open Profile Detail"]
         reveal(destination, in: app)
+        retain("Welcome destination ready", in: app)
         destination.tap()
         XCTAssertTrue(app.navigationBars["Kai Rivera"].waitForExistence(timeout: 5))
         for interest in ["Photography", "Running", "Design"] {

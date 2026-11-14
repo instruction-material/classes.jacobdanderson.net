@@ -2145,6 +2145,9 @@ jobs:
                       time.sleep(10)
                   PY
 
+            - name: Verify Welcome visible-content geometry
+              run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-course-scroll-geometry.py
+
             - name: Compile downloaded Swift ZIPs and test both source roles on two iPhone sizes
               run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-welcome-exported-ios.py --extended-welcome --browser output/swift-welcome-workflows/swift-welcome-browser --proof output/swift-welcome-ios/proof.json
 
