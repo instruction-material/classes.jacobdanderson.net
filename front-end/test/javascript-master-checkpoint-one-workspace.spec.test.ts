@@ -1,3 +1,4 @@
+import MarkdownIt from "markdown-it";
 import { createHash, webcrypto } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
@@ -465,3 +466,30 @@ it.each(["learner", "instructor"])(
 		expect(overview.content).toContain("tenth array");
 	}
 );
+
+it("shows all five board formulas as literal code in the complete task and exported guide", () => {
+	const board = fixture.projects.find(
+		(p: any) => p.project === "master-checkpoint-one-board"
+	);
+	for (const source of [
+		fixture.assignmentTexts[board.itemId],
+		fixture.files[board.project].reference["README.md"]
+	]) {
+		const dom = new JSDOM(new MarkdownIt().render(source));
+		try {
+			expect(
+				[...dom.window.document.querySelectorAll("code")].map(
+					e => e.textContent
+				)
+			).toEqual([
+				"x=i*50+20",
+				"y=j*50+20",
+				"x=i*50",
+				"y=j*50",
+				"Math.floor(random()*2)"
+			]);
+		} finally {
+			dom.window.close();
+		}
+	}
+});

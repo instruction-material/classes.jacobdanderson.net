@@ -180,8 +180,8 @@ export const javascriptMasterCheckpointOneResources = [
 			{
 				name: "README.md",
 				path: "master-checkpoint-one-board-v1/starter/README.md.txt",
-				byteLength: 2877,
-				sha256: "c0da5d7ed5431b57f7856867378f10688665deb390f59328000584ca7ddb30c3"
+				byteLength: 2887,
+				sha256: "227ee755a2c505cc817dd8474e74d0142ca678046fcfde4ae77f3aba20f63188"
 			},
 			{
 				name: "SOURCES.md",
@@ -244,8 +244,8 @@ export const javascriptMasterCheckpointOneResources = [
 			{
 				name: "README.md",
 				path: "master-checkpoint-one-board-v1/reference/README.md.txt",
-				byteLength: 2865,
-				sha256: "402db1787e53c34dc6c302c8c17af78c2e6ef9e8da145e42f94a3c3ecf592cb0"
+				byteLength: 2875,
+				sha256: "cd6c209f3c62590558d3eee8716e762ad326954c368ece409a0205943c515966"
 			},
 			{
 				name: "SOURCES.md",

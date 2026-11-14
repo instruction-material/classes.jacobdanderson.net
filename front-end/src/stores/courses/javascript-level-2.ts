@@ -271,9 +271,9 @@ drawing and the completion condition.
 
 createBoard returns an array of nine shape objects in column-major order.
 Use two loops from 0 through 2. For a circle in column i and row j, set
-type "circle", x=i*50+20, y=j*50+20, radius 20 and color "green".
-For a square, set type "square", x=i*50, y=j*50, length 40 and color "red".
-Choose each type independently with Math.floor(random()*2). A supplied
+type "circle", \`x=i*50+20\`, \`y=j*50+20\`, radius 20 and color "green".
+For a square, set type "square", \`x=i*50\`, \`y=j*50\`, length 40 and color "red".
+Choose each type independently with \`Math.floor(random()*2)\`. A supplied
 random function returning 0 should make nine circles; 0.75 should make nine
 squares. Alternating 0 and 0.75 should make a mixed board.
 
