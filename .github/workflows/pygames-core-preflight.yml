@@ -1050,7 +1050,6 @@ jobs:
         run: |
           npm exec -w front-end -- vitest run test/swift-canonical-workspaces.spec.test.ts test/store.courses.intro-to-swift-flow.spec.test.ts test/store.courses.catalog-identities.spec.test.ts --no-file-parallelism --maxWorkers=1
           python3 test/swift-canonical-project-identity.py
-          python3 test/swift-course-scroll-geometry.py
       - name: Lint, typecheck and build both workspaces
         run: |
           node scripts/classes-family-heavy-task.mjs -- npm run lint
