@@ -15,7 +15,6 @@
 
 context("Navigation & page smoke-tests", () => {
 	beforeEach(() => {
-		cy.intercept("GET", "**/api/**", { statusCode: 200, body: [] });
 		cy.intercept("GET", "**/api/accounts/me", {
 			statusCode: 200,
 			body: {}
@@ -42,12 +41,19 @@ context("Navigation & page smoke-tests", () => {
 		// ---- About ---------------------------------------------------
 		cy.get(".site-nav").contains("a:visible", "About").click();
 		cy.url().should("eq", `${Cypress.config().baseUrl}/about`);
-		cy.get(".about-page h1").should("have.text", "About Jacob");
+		cy.get(".about-page h1").should(heading => {
+			expect(heading.text().trim()).to.equal(
+				"Courses and Teaching Tools"
+			);
+		});
 
 		// ---- Tuition & Payment ---------------------------------------------
 		cy.get(".site-nav").contains("a:visible", "Payment").click();
 		cy.url().should("eq", `${Cypress.config().baseUrl}/payment`);
-		cy.get("h1").contains("Payment").should("exist");
+		cy.get("h1").should(
+			"have.text",
+			"No payment destination is configured"
+		);
 
 		// ---- back to Home -------------------------------------------
 		cy.get(".site-brand").click();
@@ -55,7 +61,7 @@ context("Navigation & page smoke-tests", () => {
 	});
 
 	it("keeps Schedule Class and its scheduler within Classes navigation", () => {
-		const schedulerOrigin = "https://scheduler.classes.jacobdanderson.net";
+		const schedulerOrigin = "https://scheduler.example.com";
 		cy.intercept("GET", `${schedulerOrigin}/?*`, {
 			statusCode: 200,
 			headers: { "content-type": "text/html" },
@@ -112,17 +118,20 @@ context("Navigation & page smoke-tests", () => {
 		}
 	});
 
-	it("marks Zoom and other new-tab links with a visible icon", () => {
-		cy.visit("/zoom");
-		cy.contains('a[target="_blank"]', "Join on Zoom").should(link => {
-			const style = link[0].ownerDocument.defaultView!.getComputedStyle(
-				link[0],
-				"::after"
-			);
-			expect(style.content).to.equal('""');
-			expect(style.maskImage).not.to.equal("none");
-			expect(parseFloat(style.width)).to.be.greaterThan(0);
-		});
+	it("marks new-tab resources with a visible icon", () => {
+		cy.visit("/README");
+		cy.contains('a[target="_blank"]', "Vue Router typed routes").should(
+			link => {
+				const style =
+					link[0].ownerDocument.defaultView!.getComputedStyle(
+						link[0],
+						"::after"
+					);
+				expect(style.content).to.equal('""');
+				expect(style.maskImage).not.to.equal("none");
+				expect(parseFloat(style.width)).to.be.greaterThan(0);
+			}
+		);
 		cy.get(".site-brand").should(link => {
 			const style = link[0].ownerDocument.defaultView!.getComputedStyle(
 				link[0],

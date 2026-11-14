@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import PaymentPage from "@/pages/payment.vue";
 
 describe("PaymentPage", () => {
-	it("keeps pricing and payment methods without duplicate FAQs or scheduling", () => {
+	it("keeps payment destinations unconfigured until supplied by the instructor", () => {
 		const wrapper = mount(PaymentPage, {
 			global: {
 				plugins: [createHead()],
@@ -16,21 +16,15 @@ describe("PaymentPage", () => {
 				}
 			}
 		});
-		expect(wrapper.get("h1").text()).toBe("Payment");
-		expect(wrapper.get(".amount").text()).toBe("$40");
-		expect(wrapper.get(".details").text()).toContain("50 Minutes");
-		expect(wrapper.get(".payment-policy").text()).toBe(
-			"Pay only for classes taught"
+		expect(wrapper.get("h1").text()).toBe(
+			"No payment destination is configured"
 		);
-		expect(wrapper.text()).toContain("Need another option?");
-		expect(wrapper.get('a[href="/zelle"]').text()).toBe("Pay with Zelle");
-		expect(wrapper.get('a[target="_blank"]').attributes("href")).toContain(
-			"venmo.com/"
-		);
-		expect(wrapper.text()).not.toMatch(
-			/Private one-on-one sessions are|Tuition|Common Questions|One learner at a time|Use Venmo|Book one-time/
-		);
-		expect(wrapper.find("details").exists()).toBe(false);
+		expect(wrapper.text()).toContain("Contact your instructor");
+		expect(wrapper.text()).not.toMatch(/\$40|50 Minutes|Venmo|Zelle/);
+		expect(wrapper.find('a[href^="https:"]').exists()).toBe(false);
+		expect(wrapper.find('a[href^="mailto:"]').exists()).toBe(false);
+		expect(wrapper.find("img").exists()).toBe(false);
+		expect(wrapper.find('a[href="/courses"]').exists()).toBe(true);
 		expect(wrapper.find('a[href="/signup"]').exists()).toBe(false);
 		wrapper.unmount();
 	});

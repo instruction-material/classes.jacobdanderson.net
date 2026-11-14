@@ -30,7 +30,7 @@ async function emailConflict(email: string, id: unknown) {
 }
 
 function verificationUrl(token: string) {
-	const configured = env.PASSWORD_RESET_ORIGIN?.trim() || "https://classes.jacobdanderson.net";
+	const configured = env.PASSWORD_RESET_ORIGIN?.trim() || "https://example.com";
 	const origin = new URL(configured);
 	if (origin.protocol !== "https:" && !(origin.protocol === "http:" && ["localhost", "127.0.0.1"].includes(origin.hostname)))
 		throw new Error("Invalid account verification origin");

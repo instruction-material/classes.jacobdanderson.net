@@ -1,4 +1,4 @@
-const SITE_TITLE = "Classes with Jacob";
+const SITE_TITLE = "Classes";
 
 const ROUTE_TITLES: Array<[RegExp, string]> = [
 	[/^\/$/, SITE_TITLE],
