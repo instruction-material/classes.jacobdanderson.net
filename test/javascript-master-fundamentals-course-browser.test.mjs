@@ -21,8 +21,8 @@ const fixture = JSON.parse(
 
 const resources = fixture.resources;
 const projects = [...new Set(resources.map(row => row.project))];
-assert.equal(resources.length, 2);
-assert.equal(projects.length, 1);
+assert.equal(resources.length, 4);
+assert.equal(projects.length, 2);
 for (const resource of resources) {
 	for (const file of resource.files) {
 		const bytes = readFileSync(
