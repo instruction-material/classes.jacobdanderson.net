@@ -1,6 +1,6 @@
 name: Course preflight
 
-run-name: ${{ inputs.course == 'welcome' && 'Welcome native UI verification' || inputs.course == 'native-release-evidence' && 'Native release file verification' || inputs.course == 'tracker-evidence' && 'Retained Tracker failure evidence' || inputs.course == 'scratch-tasks' && 'Published Scratch project tasks' || inputs.course == 'course-audit' && 'Course audit follow-ups' || inputs.course == 'scratch-readings' && 'Scratch and self-study readings' || inputs.course == 'scratch-originals' && 'Original Scratch imports' || inputs.course == 'bootcamp' && 'Scratch Bootcamp pages' || inputs.course == 'self-study' && 'Self-study course pages' || inputs.course == 'physics-models' && 'Physics model workflows' || inputs.course == 'networking' && 'Swift Networking source evidence' || inputs.course == 'ai-setup' && 'AI setup reading' || 'PyGames core preflight' }}
+run-name: ${{ inputs.course == 'tracker-evidence' && inputs.browser_artifact_id != '' && 'Welcome native UI verification' || inputs.course == 'native-release-evidence' && 'Native release file verification' || inputs.course == 'tracker-evidence' && 'Retained Tracker failure evidence' || inputs.course == 'scratch-tasks' && 'Published Scratch project tasks' || inputs.course == 'course-audit' && 'Course audit follow-ups' || inputs.course == 'scratch-readings' && 'Scratch and self-study readings' || inputs.course == 'scratch-originals' && 'Original Scratch imports' || inputs.course == 'bootcamp' && 'Scratch Bootcamp pages' || inputs.course == 'self-study' && 'Self-study course pages' || inputs.course == 'physics-models' && 'Physics model workflows' || inputs.course == 'networking' && 'Swift Networking source evidence' || inputs.course == 'ai-setup' && 'AI setup reading' || 'PyGames core preflight' }}
 
 on:
   workflow_dispatch:
@@ -676,7 +676,7 @@ jobs:
           retention-days: 14
 
   tracker-evidence:
-    if: inputs.course == 'tracker-evidence'
+    if: inputs.course == 'tracker-evidence' && inputs.browser_artifact_id == ''
     runs-on: macos-26
     timeout-minutes: 12
     permissions:
@@ -924,7 +924,7 @@ jobs:
           retention-days: 14
 
   welcome:
-    if: inputs.course == 'welcome'
+    if: inputs.course == 'tracker-evidence' && inputs.browser_artifact_id != ''
     runs-on: macos-26
     timeout-minutes: 60
     permissions:
