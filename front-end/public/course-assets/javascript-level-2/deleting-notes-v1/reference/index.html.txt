@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Deleting Notes</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<main>
+			<h1>Deleting Notes</h1>
+			<form id="note-form">
+				<div class="field">
+					<label for="note-input">Note</label
+					><input id="note-input" maxlength="200" required autocomplete="off" />
+				</div>
+				<button type="submit">Add note</button>
+			</form>
+			<p id="status" role="status" aria-live="polite"></p>
+			<ol id="notes" aria-label="Notes"></ol>
+			<section id="recovery-region" hidden>
+				<label for="recovery">Saved JSON</label
+				><textarea id="recovery" readonly spellcheck="false"></textarea>
+			</section>
+		</main>
+		<script src="fixtures.js"></script>
+		<script src="storage.js"></script>
+		<script src="script.js"></script>
+	</body>
+</html>

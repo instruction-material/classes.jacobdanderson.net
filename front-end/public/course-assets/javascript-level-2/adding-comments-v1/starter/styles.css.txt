@@ -1,0 +1,127 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	margin: 0;
+	font:
+		1rem system-ui,
+		sans-serif;
+	color: #17212b;
+	background: #fff;
+}
+main {
+	width: min(100% - 2rem, 60rem);
+	margin: 1rem auto;
+}
+h1 {
+	font-size: 1.5rem;
+}
+h2 {
+	font-size: 1.2rem;
+}
+p,
+h1,
+h2,
+li,
+label,
+a {
+	overflow-wrap: anywhere;
+}
+form {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: end;
+	gap: 0.6rem;
+	min-width: 0;
+	max-width: 100%;
+}
+.field {
+	flex: 1 1 14rem;
+	min-width: 0;
+	max-width: 100%;
+}
+.field label {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 0.35rem;
+}
+button,
+input,
+textarea {
+	font: inherit;
+	padding: 0.55rem;
+	min-width: 0;
+	max-width: 100%;
+}
+.field input,
+textarea {
+	width: 100%;
+}
+button {
+	cursor: pointer;
+}
+:disabled {
+	cursor: default;
+}
+:focus-visible {
+	outline: 3px solid #0f766e;
+	outline-offset: 3px;
+}
+#notes {
+	padding-left: 1.4rem;
+}
+#notes li {
+	margin: 1rem 0;
+}
+#notes li > button {
+	margin-left: 0.6rem;
+}
+#notes label {
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.6rem;
+}
+.completion-state {
+	color: #374151;
+	font-size: 0.9rem;
+}
+#topics article {
+	margin: 1.5rem 0;
+	padding: 1rem 0;
+	border-top: 1px solid #cbd5e1;
+}
+#topics img {
+	display: block;
+	width: 240px;
+	max-width: 100%;
+	height: auto;
+}
+.comments {
+	padding-left: 1.4rem;
+}
+.comments li {
+	margin: 0.6rem 0;
+}
+.comment-form {
+	margin-top: 1rem;
+}
+.comment-form label {
+	flex-basis: 100%;
+}
+.comment-form input {
+	flex: 1 1 12rem;
+	width: 100%;
+}
+#reset {
+	margin-top: 1rem;
+}
+#recovery-region {
+	margin: 1rem 0;
+}
+#recovery {
+	min-height: 8rem;
+}
+[hidden] {
+	display: none !important;
+}

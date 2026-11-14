@@ -1,0 +1,131 @@
+const PROJECT_NAME = "checking-notes";
+function upgradeLegacyNotes(value) {
+	// TODO: Implement the complete contract in README.md and check CASES.md.
+	throw new StoreProblem("Complete upgradeLegacyNotes in script.js.");
+}
+function normalizeDocument(value) {
+	const migrated = Array.isArray(value) || value?.schemaVersion === 1;
+	const document = validateNotesV2(
+		migrated ? upgradeLegacyNotes(value) : value,
+	);
+	return { document, migrated };
+}
+function seedDocument() {
+	return structuredClone(suppliedDocument);
+}
+function addNote(state, value, id) {
+	const note = { id: recordId(id), text: textField(value, 200) };
+	if (state.notes.length >= 100 || state.notes.some((row) => row.id === id))
+		throw new StoreProblem("Note limit or repeated ID.");
+	note.done = false;
+	state.notes.push(note);
+	return true;
+}
+function deleteNote(state, id) {
+	const index = state.notes.findIndex((note) => note.id === id);
+	if (index < 0) return false;
+	state.notes.splice(index, 1);
+	return true;
+}
+function setCompletion(state, id, checked) {
+	// TODO: Implement the complete contract in README.md and check CASES.md.
+	throw new StoreProblem("Complete setCompletion in script.js.");
+}
+function renderNotes(state) {
+	const output = document.querySelector("#notes");
+	output.replaceChildren();
+	for (const note of state.notes) {
+		const item = document.createElement("li"),
+			content = document.createElement("span");
+		item.dataset.noteId = note.id;
+		content.textContent = note.text;
+		const label = document.createElement("label"),
+			checkbox = document.createElement("input"),
+			status = document.createElement("span");
+		checkbox.type = "checkbox";
+		checkbox.checked = note.done;
+		checkbox.dataset.noteId = note.id;
+		status.className = "completion-state";
+		status.textContent = note.done ? "Completed" : "Incomplete";
+		checkbox.addEventListener("change", () => {
+			perform(
+				(state) => setCompletion(state, note.id, checkbox.checked),
+				"Completion saved.",
+			);
+			document.querySelector('input[data-note-id="' + note.id + '"]')?.focus();
+		});
+		label.append(checkbox, content, status);
+		item.append(label);
+		const button = document.createElement("button");
+		button.type = "button";
+		button.textContent = "Delete";
+		button.setAttribute("aria-label", "Delete note: " + note.text);
+		button.addEventListener("click", () => {
+			if (perform((state) => deleteNote(state, note.id), "Note deleted."))
+				document.querySelector("#note-input").focus();
+		});
+		item.append(button);
+		output.append(item);
+	}
+	if (!state.notes.length) {
+		const empty = document.createElement("li");
+		empty.textContent = "No notes.";
+		empty.className = "empty";
+		output.append(empty);
+	}
+}
+const store = openDocument(
+	() => localStorage,
+	"classes-course:" + PROJECT_NAME + ":document",
+	normalizeDocument,
+	seedDocument,
+);
+function redraw() {
+	try {
+		renderNotes(store.state);
+		return null;
+	} catch (error) {
+		return error;
+	}
+}
+function perform(mutate, message) {
+	try {
+		const changed = commitDocument(store, mutate, normalizeDocument),
+			renderError = redraw();
+		setStatus(
+			renderError
+				? (changed ? "Saved locally. " : "") + renderError.message
+				: changed
+					? message
+					: "The selected note is not present.",
+			renderError ? "error" : "success",
+		);
+		return changed;
+	} catch (error) {
+		redraw();
+		setStatus(error.message, "error");
+		return false;
+	}
+}
+document.querySelector("#note-form").addEventListener("submit", (event) => {
+	event.preventDefault();
+	const input = document.querySelector("#note-input");
+	if (
+		perform(
+			(state) => addNote(state, input.value, newRecordId()),
+			"Note saved.",
+		)
+	) {
+		input.value = "";
+		input.focus();
+	}
+});
+showRecovery(store);
+const initialError = redraw();
+setStatus(
+	initialError ? initialError.message : store.message,
+	initialError || store.readOnly ? "error" : "success",
+);
+if (store.readOnly)
+	for (const control of document.querySelectorAll("button,input"))
+		control.disabled = true;

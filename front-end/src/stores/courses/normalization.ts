@@ -1307,7 +1307,11 @@ function isProjectLikeItem(item: RawCourseModuleItem) {
 }
 
 function isConceptLessonItem(item: RawCourseModuleItem) {
-	return !isProjectLikeItem(item) && !isInformationalResourceItem(item);
+	return (
+		!(item.contentKind === "reading" && item.preserveAssignment) &&
+		!isProjectLikeItem(item) &&
+		!isInformationalResourceItem(item)
+	);
 }
 
 const genericSupportItemTitlePattern =

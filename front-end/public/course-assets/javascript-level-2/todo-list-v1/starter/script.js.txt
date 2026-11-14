@@ -1,0 +1,72 @@
+const PROJECT_NAME = "todo-list";
+
+function normalizeDocument(value) {
+	return { document: validateNotesV1(value), migrated: false };
+}
+function seedDocument() {
+	return structuredClone(suppliedDocument);
+}
+function addNote(state, value, id) {
+	// TODO: Implement the complete contract in README.md and check CASES.md.
+	throw new StoreProblem("Complete addNote in script.js.");
+}
+
+function renderNotes(state) {
+	// TODO: Implement the complete contract in README.md and check CASES.md.
+	throw new StoreProblem("Complete renderNotes in script.js.");
+}
+const store = openDocument(
+	() => localStorage,
+	"classes-course:" + PROJECT_NAME + ":document",
+	normalizeDocument,
+	seedDocument,
+);
+function redraw() {
+	try {
+		renderNotes(store.state);
+		return null;
+	} catch (error) {
+		return error;
+	}
+}
+function perform(mutate, message) {
+	try {
+		const changed = commitDocument(store, mutate, normalizeDocument),
+			renderError = redraw();
+		setStatus(
+			renderError
+				? (changed ? "Saved locally. " : "") + renderError.message
+				: changed
+					? message
+					: "The selected note is not present.",
+			renderError ? "error" : "success",
+		);
+		return changed;
+	} catch (error) {
+		redraw();
+		setStatus(error.message, "error");
+		return false;
+	}
+}
+document.querySelector("#note-form").addEventListener("submit", (event) => {
+	event.preventDefault();
+	const input = document.querySelector("#note-input");
+	if (
+		perform(
+			(state) => addNote(state, input.value, newRecordId()),
+			"Note saved.",
+		)
+	) {
+		input.value = "";
+		input.focus();
+	}
+});
+showRecovery(store);
+const initialError = redraw();
+setStatus(
+	initialError ? initialError.message : store.message,
+	initialError || store.readOnly ? "error" : "success",
+);
+if (store.readOnly)
+	for (const control of document.querySelectorAll("button,input"))
+		control.disabled = true;

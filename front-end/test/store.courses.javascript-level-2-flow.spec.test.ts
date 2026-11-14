@@ -303,7 +303,7 @@ describe("JavaScript Level 2 learner flow", () => {
 			"The key skill is separating local page state from persisted remote state"
 		);
 		expect(text).toContain(
-			"comments do not accidentally attach to the wrong item"
+			"Find the parent topic by stable ID"
 		);
 		expect(text).toContain(
 			"A relational database represents entities as tables"

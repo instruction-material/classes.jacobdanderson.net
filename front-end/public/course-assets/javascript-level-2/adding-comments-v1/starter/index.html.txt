@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Adding Comments</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<main>
+			<h1>Adding Comments</h1>
+			<form id="topic-form">
+				<div class="field">
+					<label for="title">Title</label
+					><input id="title" maxlength="100" required />
+				</div>
+				<div class="field">
+					<label for="url">Site URL</label
+					><input id="url" type="url" maxlength="1024" required />
+				</div>
+				<div class="field">
+					<label for="image">Image address (optional)</label
+					><input id="image" type="url" maxlength="1024" />
+				</div>
+				<button type="submit">Add topic</button>
+			</form>
+			<p id="status" role="status" aria-live="polite"></p>
+			<section id="topics" aria-label="Topics"></section>
+			<button id="reset" type="button">Reset example</button>
+			<section id="recovery-region" hidden>
+				<label for="recovery">Saved JSON</label
+				><textarea id="recovery" readonly spellcheck="false"></textarea>
+			</section>
+		</main>
+		<script src="fixtures.js"></script>
+		<script src="storage.js"></script>
+		<script src="script.js"></script>
+	</body>
+</html>

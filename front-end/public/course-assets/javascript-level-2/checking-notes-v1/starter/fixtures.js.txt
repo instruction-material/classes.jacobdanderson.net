@@ -1,0 +1,15 @@
+const suppliedDocument = {
+	schemaVersion: 2,
+	notes: [
+		{ id: "note-a", text: "Sketch the page layout.", done: false },
+		{ id: "note-b", text: "Check the last boundary case.", done: false },
+	],
+};
+const suppliedLegacyStrings = ["Keep this note.", "", "Keep this note."];
+const suppliedVersionOne = {
+	schemaVersion: 1,
+	notes: [
+		{ id: "note-a", text: "Sketch the page layout." },
+		{ id: "note-b", text: "Check the last boundary case." },
+	],
+};

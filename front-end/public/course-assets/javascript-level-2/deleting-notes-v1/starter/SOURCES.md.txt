@@ -1,0 +1,11 @@
+# Original assignment sources
+
+reference: https://codepen.io/junilearning/pen/BavGpyN
+Observed alias: https://codepen.io/junilearning/pen/BavGpyN
+Original export SHA256: 79f37c04137e7883fbda0c4e2730364994166ba9fb825efbcc4500b1bc20efd3
+
+starter: https://codepen.io/junilearning/pen/f8f84204c272d2a6449cda485cbe7736
+Observed alias: https://codepen.io/junilearning/pen/ExyqLRN
+Original export SHA256: f267c7440b3629b9b0a436486adf03079c17477fd33074409307276f79a1f44f
+
+These independently authored role packs implement the original task with bounded local documents. The original panels,settings and official exports remain retained in the audit. The supplied decorative board illustration is authored for this pack.

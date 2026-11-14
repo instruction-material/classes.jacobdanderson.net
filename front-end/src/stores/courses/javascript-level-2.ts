@@ -1,5 +1,7 @@
 import type { RawCourse } from "./types";
 import javascriptApiResponsesReading from "@/assets/course-guides/javascript-api-projects/apis.md?raw";
+import javascriptLocalDocumentsReading from "@/assets/course-guides/javascript-local-persistence/local-documents.md?raw";
+import javascriptLocalMessageBoardReading from "@/assets/course-guides/javascript-local-persistence/local-message-board.md?raw";
 import javascriptColorfulCards2DReading from "@/assets/course-guides/javascript-master-arrays/colorful-cards-2d.md?raw";
 import javascriptColorfulCardsReading from "@/assets/course-guides/javascript-master-arrays/colorful-cards.md?raw";
 import javascriptForayIntoArraysReading from "@/assets/course-guides/javascript-master-arrays/foray-into-arrays.md?raw";
@@ -1535,12 +1537,25 @@ Accept the selected role in the site IDE. README.md contains the full assignment
 				{
 					title: "JSONBin Setup",
 					content:
-						'Review JSONBin v3 only as a preserved example of a hosted JSON API. Its write routes require an `X-Master-Key` or scoped `X-Access-Key`, so do not create, paste, or ship either key in CodePen or browser source. Build the required exercise with a versioned `{"notes": [{"id": "n1", "text": "fictional note", "complete": false}]}` fixture and `localStorage`. The key skill is separating local page state from persisted remote state; model that boundary with a storage adapter locally instead of exposing a remote credential. An optional demonstration may show request shapes with redacted placeholders or an isolated server-side proxy, but learner completion never depends on a hosted bin or remote write.'
+						'Review JSONBin v3 only as a preserved example of a hosted JSON API. Its write routes require an `X-Master-Key` or scoped `X-Access-Key`, so do not create, paste, or ship either key in CodePen or browser source. Build the required exercise with a versioned `{"schemaVersion": 1, "notes": [{"id": "n1", "text": "fictional note"}]}` fixture and `localStorage`. The key skill is separating local page state from persisted remote state; model that boundary with a storage adapter locally instead of exposing a remote credential. An optional demonstration may show request shapes with redacted placeholders or an isolated server-side proxy, but learner completion never depends on a hosted bin or remote write.'
+				},
+				{
+					title: "Local Documents and Stable IDs",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: javascriptLocalDocumentsReading
 				},
 				{
 					title: "JSM12 Project 1: To-Do List",
-					content:
-						"Build a persistent fictional to-do list by loading a versioned fixture or `localStorage`, validating the record shape, rendering notes with `textContent`, adding a normalized note from a labeled form, and saving the bounded array locally. Keep loading, parsing, state mutation, rendering, and persistence in separate named functions. Use stable IDs, cap note length and count, expose storage failures, and verify persistence by adding a note, refreshing, and confirming that it returns. The original hosted project remains a reference, but the required solution contains no JSONBin key or remote write.",
+					preserveInstructions: true,
+					content: `Build a note list from a version-one document with stable IDs. The two supplied notes make the initial state concrete. Complete addNote(state, value, id) and renderNotes(state) in script.js. addNote trims and validates a 1–200-character note, rejects a repeated ID or more than 100 records, pushes one {id, text} object and returns true. Use the supplied recordId and textField helpers. renderNotes creates a list item for each record and assigns its text with textContent. An empty array displays No notes.
+
+The supplied form generates an ID once per accepted submission. Its transaction helper clones state, applies the mutation, validates the complete document and saves JSON before replacing working state. Trace this route in storage.js and the perform function. A failed save keeps the previous document. Invalid or unsupported stored JSON stays available for recovery and produces a read-only example.
+
+Add two notes, including duplicate text, and refresh at the same origin. Each note must retain its own ID. Verify literal markup-shaped text, blank/overlength input, the record limit, failed saving and corrupted storage using CASES.md. This project supplies creation and rendering; deletion belongs to the next core project.
+
+Accept the selected role in the site IDE. README.md contains the complete assignment;CASES.md supplies the checks. Save,export and reopen the same files.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/1f218d8aafbcc33fd6409a8ab1616e29",
 					solutionLink: "https://codepen.io/junilearning/pen/MWZzbmK",
@@ -1549,8 +1564,14 @@ Accept the selected role in the site IDE. README.md contains the full assignment
 				},
 				{
 					title: "JSM12 Project 2: Deleting Notes",
-					content:
-						"Extend the local to-do list with a `deleteNote(id)` function that removes only the record with the selected stable ID, re-renders from state, and persists the changed document to `localStorage`. Include a clearly named delete button beside each note, move focus to a predictable location after deletion, and verify the first, last, only, unknown-ID, repeated-delete, refresh, and storage-failure cases. Do not use array position as a persistent identity or send a browser-held write secret.",
+					preserveInstructions: true,
+					content: `Extend the completed local note list with deletion. Adding, validation, rendering and persistence are supplied from the earlier project. Complete deleteNote(state, id) in script.js. Find the note with the selected stable ID, remove exactly that record and return true. Return false for an unknown ID so no stored document is rewritten. Array positions describe display order; the stored ID identifies the record across changes.
+
+Each Delete button captures its note's ID. After a successful transaction the renderer rebuilds the list and focus returns to the note input. The storage helper validates and saves a cloned document first, so a quota or policy failure leaves the previous state intact.
+
+Delete the first, last and only note. Repeat a deletion with the removed ID, and try an ID that never existed. Add duplicate text to confirm the selected ID determines the deletion. Refresh after success and after a failed save. The list uses version one and has no completion checkbox; checking notes remains a separate optional project.
+
+Accept the selected role in the site IDE. README.md contains the complete assignment;CASES.md supplies the checks. Save,export and reopen the same files.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/f8f84204c272d2a6449cda485cbe7736",
 					solutionLink: "https://codepen.io/junilearning/pen/BavGpyN"
@@ -1559,8 +1580,16 @@ Accept the selected role in the site IDE. README.md contains the full assignment
 			supplementalProjects: [
 				{
 					title: "JSM12 Supplemental Project 1: Checking Notes",
-					content:
-						"Extend the local to-do list so each item can be marked complete without deletion. Store completion state in versioned objects with stable IDs, use a native checkbox with an accessible name, and communicate completion with text or state as well as visual styling. Verify that completed and incomplete status survives refresh, toggling one note does not change another, corrupted storage falls back safely, and a schema migration converts the original string array without losing valid fictional notes.",
+					preserveInstructions: true,
+					content: `Add persistent completion state to the local note list. Adding, deleting, safe rendering and the storage transaction are supplied. Complete upgradeLegacyNotes(value) and setCompletion(state, id, checked) in script.js.
+
+Version two retains each note's ID and text and adds the Boolean done field. Upgrade a valid version-one document by preserving its records and assigning done: false. For the older string-array fixture, keep each valid nonblank note, including duplicate text, and assign a distinct legacy-position ID. Validate text and record limits and reject other shapes. Return the version-two document. The supplied normalizer validates the result and marks it as migrated; the next successful change saves that schema.
+
+setCompletion finds one note by ID, accepts only a Boolean checked value, assigns its done field and returns true. Unknown IDs or non-Boolean values return false. The native checkbox and Completed/Incomplete text show the same state. Focus returns to the corresponding checkbox after rendering.
+
+Use the two legacy fixtures in fixtures.js and CASES.md to verify migration, toggling one of two notes, repeated toggles, deletion after checking, refresh, corrupted data and failed saving. A failed migration preserves the original JSON for recovery. This is the optional extension of the two core note projects.
+
+Accept the selected role in the site IDE. README.md contains the complete assignment;CASES.md supplies the checks. Save,export and reopen the same files.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/ab6bf77b9d85e1b9a7452d5a307b6b7f",
 					solutionLink:
@@ -1599,11 +1628,26 @@ Accept the selected role in the site IDE. README.md contains the full assignment
 			curriculum: [
 				{
 					title: "JSM13 Project 1: Message Board",
-					content:
-						"Build a single-browser fictional message board that stores versioned post objects in `localStorage` with a stable ID, title, reviewed HTTPS URL, optional reviewed image URL, and locally generated ordering value. The labeled form validates and caps every field, creates a post, persists local state, resets inputs, moves focus predictably, and renders newest posts with `textContent`. Parse URLs with the `URL` API, permit only reviewed protocols and origins, and provide text when an image fails. Verify multiple posts, refresh, malformed and corrupted storage, markup-shaped text, invalid URLs, record limits, and reset. The original remote-store CodePen remains reference material; no real identity, public posting, browser secret, or remote write is required.",
+					preserveInstructions: true,
+					content: `Build a single-browser topic board with separate title, site URL and optional image-address fields. Complete addTopic(state, title, url, imageUrl, id) and renderTopics(state) in script.js. The supplied version-one fixture contains two topics with stable IDs and ordering values.
+
+addTopic validates the ID, a 1–100-character title and the two addresses, then creates one post with a locally increasing order value. Reject repeated IDs and more than 30 topics. Use reviewedUrl for the explicit site/image origins in storage.js. An empty image address is valid and uses the supplied decorative illustration. A failed image load exposes a text fallback.
+
+renderTopics sorts a copy by descending order, builds each article with DOM methods, assigns the title with textContent and links to its reviewed site URL. Assign image addresses through the img src property and handle load failure. The supplied transaction saves a validated clone before changing working state. Reset requires confirmation; read-only recovery preserves original saved bytes.
+
+Create at least two new topics and check ordering, the three distinct fields, refresh, markup-shaped titles, disallowed URLs, image failure, record/document limits, corrupted storage and failed saving. Adding comments is a separate optional extension; this core board displays topics.
+
+Accept the selected role in the site IDE. README.md contains the complete assignment;CASES.md supplies the checks. Save,export and reopen the same files.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/6c0b3c5a207fc24b58c44a5f481922e3",
 					solutionLink: "https://codepen.io/junilearning/pen/GRPwwOg"
+				},
+				{
+					title: "Local Topics and Comments",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: javascriptLocalMessageBoardReading
 				},
 				{
 					title: "Message Board: Debugging and Failure Modes",
@@ -1633,8 +1677,16 @@ Accept the selected role in the site IDE. README.md contains the full assignment
 			supplementalProjects: [
 				{
 					title: "JSM13 Supplemental Project 1: Adding Comments",
-					content:
-						"Add bounded fictional comments as nested objects under each locally stored message-board post. Each post exposes a labeled comment form tied to the post’s stable ID, renders comment text safely, updates only the intended record, announces the result, and persists the versioned board to `localStorage`. Test at least two posts, duplicate text, empty and overlength input, markup-shaped text, refresh, deletion or reset, and storage failure so comments do not accidentally attach to the wrong item or become executable markup.",
+					preserveInstructions: true,
+					content: `Extend the completed topic board with nested comments. Topic creation, URL validation, ordering, rendering, local transactions and a version-one upgrade are supplied. Complete addComment(state, postId, value, id) in script.js.
+
+Find the parent topic by stable ID. An unknown parent returns false without changing or saving the document. Validate a unique comment ID and trimmed text of 1–400 characters. Append one {id, text} object to that topic's comments array, with at most 20 comments per topic and 200 across the board. The full document must remain within 128 KiB.
+
+The renderer creates a labeled form for each topic and captures its ID. Adding a newer topic changes display positions while the captured ID still selects the intended parent. Duplicate comment text is allowed as distinct records. The supplied renderer uses textContent and restores focus to the appropriate new comment input.
+
+Comment on two topics, add a newer topic, comment again on an older one and refresh. Verify stable associations, duplicate and markup-shaped text, blank/overlength input, missing parents, limits, reset and storage failures using CASES.md. A failed save preserves the previous document. Reset restores the supplied example and clears its comments. This project remains optional.
+
+Accept the selected role in the site IDE. README.md contains the complete assignment;CASES.md supplies the checks. Save,export and reopen the same files.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/f40d31ed70aef27cee691e91d947ef14",
 					solutionLink:

@@ -1,0 +1,21 @@
+const suppliedDocument = {
+	schemaVersion: 1,
+	posts: [
+		{
+			id: "post-a",
+			title: "Drawing reference",
+			url: "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API",
+			imageUrl: "",
+			order: 1,
+		},
+		{
+			id: "post-b",
+			title: "Field guide",
+			url: "https://www.fws.gov/",
+			imageUrl: "",
+			order: 2,
+		},
+	],
+};
+const suppliedIllustration =
+	"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNDAiIGhlaWdodD0iMTUwIiB2aWV3Qm94PSIwIDAgMjQwIDE1MCI+PHJlY3Qgd2lkdGg9IjI0MCIgaGVpZ2h0PSIxNTAiIGZpbGw9IiNlNWU3ZWIiLz48cGF0aCBkPSJNMjggMTE2IDg3IDU1bDQxIDQzIDI3LTI3IDU3IDQ1eiIgZmlsbD0iIzZiNzI4MCIvPjxjaXJjbGUgY3g9IjE3NCIgY3k9IjQwIiByPSIxNSIgZmlsbD0iIzljYTNhZiIvPjwvc3ZnPg==";

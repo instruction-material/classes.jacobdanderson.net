@@ -1,0 +1,8 @@
+# Deleting Notes cases
+
+1. Delete first,last and only note;reload after each successful case.
+2. Repeat the removed ID and an unknown ID;the stored value stays unchanged.
+3. Delete one of two identical texts by its ID.
+4. After a valid deletion,focus returns to the note input.
+5. Quota/policy failure leaves the note and prior JSON intact.
+6. The core delete list has no completion checkbox;keyboard and enlarged-text controls remain usable.

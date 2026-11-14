@@ -1,0 +1,8 @@
+# To-Do List cases
+
+1. Add two notes;reload and compare text and IDs.
+2. Duplicate note text retains distinct IDs.
+3. Markup-shaped text stays text;blank,overlength and 101st note are rejected.
+4. A failed setItem keeps both working state and stored JSON.
+5. Invalid JSON,unsupported schema and denied storage retain recoverable data and show read-only state.
+6. The base list has no Delete or completion controls;mobile and enlarged text reflow.
