@@ -105,7 +105,7 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 								: source?.endsWith(`/${role}`);
 						})
 						?.getAttribute("href"),
-				{ role, sourceUrl: definition.sourceUrl?.(role) }
+				{ role, sourceUrl: definition.sourceUrl?.(role, itemID) }
 			);
 			if (href) {
 				return {

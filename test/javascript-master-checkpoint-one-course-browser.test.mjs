@@ -66,13 +66,13 @@ for (const project of projects) {
 				mode: "web",
 				fixturePath:
 					"./fixtures/javascript-master-checkpoint-one-sources.json",
-				sourceUrl: role =>
-					select(role).urls[
-						project === "master-checkpoint-one"
-						&& role === "solution"
-							? 1
-							: 0
-					],
+				sourceUrl: (role, itemID) => select(role).urls[
+					project === "master-checkpoint-one" && (
+						role === "solution" || (itemID && itemID !== projectContract.itemId)
+					)
+						? 1
+						: 0
+				],
 				localSource: {
 					prefix: "/course-assets/javascript-level-2/",
 					files: role => select(role).files
