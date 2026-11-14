@@ -1,6 +1,6 @@
 name: Course preflight
 
-run-name: ${{ inputs.course == 'native-release-evidence' && 'Native release file verification' || inputs.course == 'tracker-evidence' && 'Retained Tracker failure evidence' || inputs.course == 'scratch-tasks' && 'Published Scratch project tasks' || inputs.course == 'course-audit' && 'Course audit follow-ups' || inputs.course == 'scratch-readings' && 'Scratch and self-study readings' || inputs.course == 'scratch-originals' && 'Original Scratch imports' || inputs.course == 'bootcamp' && 'Scratch Bootcamp pages' || inputs.course == 'self-study' && 'Self-study course pages' || inputs.course == 'physics-models' && 'Physics model workflows' || inputs.course == 'networking' && 'Swift Networking source evidence' || inputs.course == 'ai-setup' && 'AI setup reading' || 'PyGames core preflight' }}
+run-name: ${{ inputs.course == 'swift-map' && 'Swift Map course and native checks' || inputs.course == 'native-release-evidence' && 'Native release file verification' || inputs.course == 'tracker-evidence' && 'Retained Tracker failure evidence' || inputs.course == 'scratch-tasks' && 'Published Scratch project tasks' || inputs.course == 'course-audit' && 'Course audit follow-ups' || inputs.course == 'scratch-readings' && 'Scratch and self-study readings' || inputs.course == 'scratch-originals' && 'Original Scratch imports' || inputs.course == 'bootcamp' && 'Scratch Bootcamp pages' || inputs.course == 'self-study' && 'Self-study course pages' || inputs.course == 'physics-models' && 'Physics model workflows' || inputs.course == 'networking' && 'Swift Networking source evidence' || inputs.course == 'ai-setup' && 'AI setup reading' || 'PyGames core preflight' }}
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ on:
       course:
         description: Course verification to run
         type: choice
-        options: [javascript-business-directory, java-method-calls, javascript-hundred-squares, javascript-businesses, javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
+        options: [swift-map, javascript-business-directory, java-method-calls, javascript-hundred-squares, javascript-businesses, javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
         default: pygames
       full_source_runtime:
         description: Also verify every pinned original PyGames runtime profile
@@ -1012,6 +1012,136 @@ jobs:
           path: output/vendored-d3-security/
           if-no-files-found: error
           retention-days: 14
+
+  swift-map-browser:
+    if: inputs.course == 'swift-map'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      CLASSES_FAMILY_TASK_ID: swift-map-browser-${{ github.run_id }}
+      SWIFT_MAP_BROWSER_DIR: output/swift-map-candidate/swift-map-browser
+      COURSE_IMPORT_SCREENSHOT_DIR: output/swift-map-candidate/screenshots
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - name: Pin npm and verify root clean install
+        run: |
+          npm i -g npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+          node scripts/classes-family-heavy-task.mjs -- npm ci
+      - name: Require root full and production audits
+        run: |
+          mkdir -p output/swift-map-candidate/audits
+          npm audit --include=optional --json > output/swift-map-candidate/audits/root-full.json
+          npm audit --include=optional --omit=dev --json > output/swift-map-candidate/audits/root-production.json
+      - name: Verify standalone backend clean install and both audits
+        working-directory: back-end
+        run: |
+          node ../scripts/classes-family-heavy-task.mjs -- npm ci --include=optional --strict-allow-scripts --workspaces=false
+          npm ls --all --workspaces=false
+          npm audit --include=optional --workspaces=false --json > ../output/swift-map-candidate/audits/backend-full.json
+          npm audit --include=optional --omit=dev --workspaces=false --json > ../output/swift-map-candidate/audits/backend-production.json
+      - name: Verify exact Swift source roles and preserved course identities
+        run: |
+          npm exec -w front-end -- vitest run test/swift-canonical-workspaces.spec.test.ts test/store.courses.intro-to-swift-flow.spec.test.ts test/store.courses.catalog-identities.spec.test.ts --no-file-parallelism --maxWorkers=1
+          python3 test/swift-canonical-project-identity.py
+          python3 test/swift-course-scroll-geometry.py
+      - name: Lint, typecheck and build both workspaces
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run lint
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+          node scripts/classes-family-heavy-task.mjs -- npm run build
+      - name: Verify actual Map course imports, saved roles and exports
+        run: node scripts/classes-family-heavy-task.mjs -- node --test --test-name-pattern="Swift map:" test/swift-canonical-course-browser.test.mjs
+      - name: Retain Map browser, source and original export evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: swift-map-candidate-workflows
+          path: output/swift-map-candidate/
+          if-no-files-found: error
+          retention-days: 14
+
+  swift-map-native:
+      needs: swift-map-browser
+      if: ${{ !cancelled() && inputs.course == 'swift-map' && needs.swift-map-browser.result == 'success' }}
+      runs-on: macos-26
+      timeout-minutes: 60
+      permissions:
+          contents: read
+          actions: read
+      env:
+          SWIFT_COURSE: map
+          CLASSES_FAMILY_TASK_ID: swift-canonical-ios-map
+          CLASSES_FAMILY_MIN_DISK_GB: 8
+          CLASSES_FAMILY_HEAVY_TIMEOUT_MS: 3300000
+      steps:
+          - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+            with:
+                persist-credentials: false
+
+          - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+            with:
+                node-version: 24.18.0
+
+          - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+            with:
+                name: swift-map-candidate-workflows
+                path: output/swift-map-candidate
+
+          - name: Wait for the hosted Mac to settle within the native load limit
+            run: |
+                python3 - <<'PY'
+                import datetime
+                import json
+                import os
+                from pathlib import Path
+                import time
+
+                proof = Path(os.environ["RUNNER_TEMP"]) / "swift-canonical-ios/runner-readiness.json"
+                proof.parent.mkdir(parents=True, exist_ok=True)
+                samples = []
+                deadline = time.monotonic() + 600
+                while True:
+                    load = os.getloadavg()[0]
+                    samples.append({"at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "load": load})
+                    ready = load <= 8
+                    proof.write_text(json.dumps({"ready": ready, "maximumLoad": 8, "samples": samples}, indent=2) + "\n")
+                    print(f"Hosted Mac load: {load:.2f}; required maximum: 8", flush=True)
+                    if ready:
+                        break
+                    if time.monotonic() >= deadline:
+                        raise SystemExit("Hosted Mac did not settle within ten minutes; native checks have not run")
+                    time.sleep(10)
+                PY
+
+          - name: Verify course scroll gesture geometry
+            if: inputs.course == 'swift-map'
+            run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-course-scroll-geometry.py
+
+          - name: Test selected course roles and largest text on two iPhone sizes
+            run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-welcome-exported-ios.py --course "$SWIFT_COURSE" --browser "output/swift-map-candidate/swift-map-browser" --proof "$RUNNER_TEMP/swift-canonical-ios/$SWIFT_COURSE/proof.json"
+
+          - name: Retain native Swift versions, process logs and UI results
+            if: always()
+            uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+            with:
+                name: swift-map-candidate-native-ios
+                path: |
+                    ${{ runner.temp }}/swift-canonical-ios/runner-readiness.json
+                    ${{ runner.temp }}/swift-canonical-ios/**/proof.json
+                    ${{ runner.temp }}/swift-canonical-ios/**/processes.jsonl
+                    ${{ runner.temp }}/swift-canonical-ios/**/logs/
+                    ${{ runner.temp }}/swift-canonical-ios/**/results/
+                    ${{ runner.temp }}/swift-canonical-ios/**/inputs.json
+                if-no-files-found: error
+                retention-days: 7
+
 
   tracker-evidence:
     if: inputs.course == 'tracker-evidence'
