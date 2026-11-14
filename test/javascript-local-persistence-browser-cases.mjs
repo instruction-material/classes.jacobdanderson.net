@@ -22,10 +22,9 @@ export function editedLocalProjectSource(resource, filename) {
 	if (filename === "styles.css")
 		return `${source}\nmain { outline: 3px solid #334155; }\n`;
 	if (filename === "script.js") {
-		return (
-			`${fixture.files[resource.project].reference[filename]
-			}\n// Saved completed local document project.\n`
-		);
+		return `${
+			fixture.files[resource.project].reference[filename]
+		}\n// Saved completed local document project.\n`;
 	}
 }
 const status = page => page.$eval("#status", e => e.textContent);
@@ -59,6 +58,15 @@ export async function inspectLocalProject(page, resource, kind, url) {
 	await page.goto(url, { waitUntil: "load" });
 	await page.waitForSelector("#status");
 	if (!complete) {
+		if (project === "deleting-notes")
+			await page.click("li[data-note-id=\"note-a\"] button");
+		if (project === "checking-notes")
+			await page.click("input[data-note-id=\"note-a\"]");
+		if (project === "adding-comments") {
+			await submit(page, "form[data-post-id=\"post-a\"]", {
+				"#comment-post-a": "Starter attempt"
+			});
+		}
 		assert.match(await status(page), /Complete /);
 		assert.equal(
 			await page.evaluate(key => localStorage.getItem(key), key),

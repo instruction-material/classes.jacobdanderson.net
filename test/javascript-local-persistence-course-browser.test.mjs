@@ -185,7 +185,7 @@ for (const project of projects) {
 					createdAt: "2026-10-01T12:00:00.000Z",
 					updatedAt: "2026-10-01T12:00:00.000Z"
 				}),
-				instructionTokens: ["index.html", "README.md", "localStorage"],
+				instructionTokens: ["index.html", "README.md", "CASES.md"],
 				starterToken: "index.html",
 				referenceToken: "index.html",
 				readyToken: "Open index.html",

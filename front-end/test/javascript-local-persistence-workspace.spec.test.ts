@@ -614,3 +614,35 @@ it("rejects an oversized encoded document before writing or changing working sta
 	expect(app.read("largeStore.state.text")).toBe("prior");
 	expect(JSON.stringify(app.read("store.state"))).toBe(original);
 });
+
+for (const project of fixture.projects) {
+	it(
+		"exposes the specific unfinished task when attempting " +
+			project.project +
+			" starter",
+		() => {
+			const app = runtime(project.project, "starter");
+			if (project.project === "deleting-notes")
+				(
+					document.querySelector(
+						'li[data-note-id="note-a"] button'
+					) as HTMLButtonElement
+				).click();
+			if (project.project === "checking-notes")
+				(
+					document.querySelector(
+						'input[data-note-id="note-a"]'
+					) as HTMLInputElement
+				).click();
+			if (project.project === "adding-comments")
+				submit('form[data-post-id="post-a"]', {
+					"#comment-post-a": "Starter attempt"
+				});
+			expect(document.querySelector("#status")!.textContent).toContain(
+				"Complete "
+			);
+			expect(app.memory.get(app.key)).toBeUndefined();
+			expect(app.writes()).toBe(0);
+		}
+	);
+}
