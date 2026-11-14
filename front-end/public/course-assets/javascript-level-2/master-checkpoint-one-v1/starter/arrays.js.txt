@@ -1,0 +1,5 @@
+Object.assign(window.CheckInOne,{
+ createDiceResults(count,random=Math.random) { /* TODO: collect count calls to rollDie. */ return []; },
+ countEvenRolls(values) { /* TODO: count even values. */ return undefined; },
+ doubleResults(values) { /* TODO: return doubled values without changing input. */ return []; }
+});

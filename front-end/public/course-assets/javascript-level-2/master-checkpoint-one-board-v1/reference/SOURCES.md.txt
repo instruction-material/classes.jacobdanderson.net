@@ -1,0 +1,6 @@
+# Sources
+
+Original starter: https://codepen.io/junilearning/pen/c9af625a0a84cbffef3dc7891aa804f9
+Original reference: https://codepen.io/junilearning/pen/702bf96c0927e96b0089cdc58df366d0
+
+The original starter supplies the matching-board task. The local role packs retain all nine shapes,original geometry and same-type stopping rule,with declared state,an explicit2000-attempt limit,Stop/restart controls and readable canvas alternatives. All changes are adaptations;the exported original sources remain separately retained.

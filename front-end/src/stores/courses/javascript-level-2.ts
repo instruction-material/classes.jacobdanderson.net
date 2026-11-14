@@ -121,51 +121,198 @@ const javascriptLevel2SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Check-In #1 Overview",
-					content: `**Review scope:** This checkpoint brings together JavaScript functions, conditionals, random values, arrays, objects, and canvas rendering. The goal is clear reasoning about where values are stored, when code runs, and how the visible output proves the program state.
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
+					content: `# Check-In 1: Functions, Arrays, Objects and Canvas
 
-**Working pattern:** Attempt each small task as an isolated program first. When the output is wrong, name the expected value, the actual value, and the line where the state first diverges. Console output, printed page output, and canvas drawings all count as evidence when they make the program behavior visible.
+Continue the same local project through the three checkpoint tasks. Open
+index.html in a browser without a server. The page controls and result areas
+are supplied; complete the functions in functions.js, arrays.js and objects.js.
+The starter reports unfinished tasks until those functions return useful values.
+Keep your completed files when continuing to the next task.
 
-**Evidence target:** A complete check-in has working code for every topic area, at least one custom test case beyond the provided prompt, and a short explanation of the bug or design choice that required the most careful reasoning.`,
+## Functions and complex conditionals
+
+Implement rollDie() to return one integer from 1 through 6 on every call.
+Math.random() includes 0 and excludes 1: multiplying by 6, taking Math.floor,
+then adding 1 gives the required range. The optional random parameter lets a
+fixed input be checked without waiting for a rare random event. Check inputs
+0 and 0.999999: the results must be 1 and 6. Math.ceil(random * 6) would give
+0 at the first boundary.
+
+Implement playJackpot(a,b) with a ternary expression: return "Jackpot!" when
+a+b is at least 10; otherwise return "Better luck next time!". For (4,5),
+(4,6) and (6,6), check the messages for sums 9, 10 and 12. Implement sum(a,b)
+to return the sum, and isOdd(number) to return a boolean. Check sum(2,3)=5,
+isOdd(3)=true, isOdd(2)=false, isOdd(0)=false and isOdd(-3)=true.
+
+Run Functions. The supplied runner calls rollDie 100 times and displays all
+100 values plus the number of sixes. A random count is not a fixed expected
+answer: every displayed roll must be an integer from 1 through 6 and the
+count must equal a manual count of sixes in that same list. The page also
+shows a jackpot result from two new rolls, the sum result and oddness checks.
+
+## Arrays
+
+Implement createDiceResults(count,random) using rollDie to generate count
+rolls. Use count=20 in the page. Implement countEvenRolls(values) to return
+the number divisible by two, and doubleResults(values) to return a new array
+with twice each corresponding value. Preserve the original array.
+
+Run Arrays. Display the original twenty values, the tenth element at index 9,
+the even count and the doubled array. Compare the tenth displayed value with
+the reported value. For fixed [1,2,3,4,5,6], the even count is 3 and the doubled
+array is [2,4,6,8,10,12]; the input still contains [1,2,3,4,5,6].
+Empty input produces zero even values and a new empty doubled array.
+An even count may range from 0 through 20 for twenty die rolls.
+
+## Objects and canvas
+
+Implement createCar() with make "Toyota", model "Corolla", year 1999,
+color "red" and damaged true. Read its year through the object property.
+
+Implement createCards(random) to return four card objects. Each stores text
+as an integer from 1 through 100, x=50, width=200, height=100, a color and a y
+value of 0, 150, 300 or 450. The canvas has a 1200 by 1200 drawing buffer;
+CSS scales its display while retaining those coordinates. Using height as
+the property name makes the rectangle's vertical dimension explicit.
+
+Implement drawCards(context,cards) to clear the old drawing, loop over the
+objects and draw their rectangles and centered number labels. Run Cards.
+All four labels must match the adjacent text list. Change one card's position
+or color in its object data and rerun; the rendering loop should stay the
+same. Repeated runs replace the prior drawing. The supplied text list keeps
+card data available when canvas drawing is unavailable.
+
+## Completion
+
+Keep the three task files, a result from every Run control, the fixed boundary
+checks, and one changed input with its predicted and observed result. Explain
+the difference between returning a value and printing it, why the tenth array
+element uses index 9, and how an object's coordinates control its rectangle.
+Use the reference after an attempt to compare the relevant functions.
+`,
 					solutionLink:
 						"https://codepen.io/junilearning/pen/bbb5cce14f0a1bc5c5c4b5582da67750"
 				},
 				{
 					title: "Check-In #1: Functions & Complex Conditionals",
-					content: `**Concept path:** Functions package repeatable logic, while conditionals decide which path runs for each value. This section checks whether a program can isolate one job per function and then combine those functions into a larger result.
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "assignment",
+					content: `Complete functions.js in the shared Check-In 1 project. README.md contains the complete checkpoint instructions and CASES.md supplies fixed traces. Work locally without a server and keep this project when continuing to Arrays and Objects.
 
-**Practice targets:** Create \`rollDie()\` so each call returns a random integer from 1 through 6. Run it 100 times, count how often the result is 6, and print both the raw count and a short interpretation. Build \`playJackpot()\` with a ternary expression for the win/loss message, then add a sum function and an \`isOdd\` function that return values instead of only printing.
+Implement rollDie(random) to return one integer from 1 through 6; test fixed inputs 0 and 0.999999 for results 1 and 6. Run Functions to generate exactly 100 rolls and count the sixes in that same list. A random count varies between runs; the range and count must agree with the displayed data.
 
-**Evidence target:** The output changes across runs because randomness is involved, but every die roll remains within range. The function calls are reusable, and the conditional logic can be checked with fixed test values before the random loop is trusted.`,
+Use a ternary expression in playJackpot(a,b): a sum at least 10 returns "Jackpot!", otherwise "Better luck next time!". Check (4,5), (4,6) and (6,6). Implement sum(a,b) and boolean isOdd(number); check sum(2,3)=5 and oddness for -3, 0, 2 and 3. Return values so the supplied page runner can display them.
+
+Retain the four functions, one complete 100-roll result, the fixed boundary cases and one changed input with its predicted and observed result. Explain why adding 1 after Math.floor gives the correct die range and why the function returns a value instead of only printing.`,
 					projectLink:
-						"https://codepen.io/junilearning/pen/f1b05b8f30ae178563d6ecd20e816e3f"
+						"https://codepen.io/junilearning/pen/f1b05b8f30ae178563d6ecd20e816e3f",
+					solutionLink:
+						"/course-assets/javascript-level-2/master-checkpoint-one-v1/reference/index.html.txt",
+					ideImport: true
 				},
 				{
 					title: "Check-In #1: Arrays",
-					content: `**Concept path:** Arrays preserve ordered data, so the index, length, and loop boundaries matter as much as the values themselves. This section connects random generation to later analysis.
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "assignment",
+					content: `Continue the same Check-In 1 project and complete arrays.js. Keep the finished functions.js; README.md and CASES.md contain the full assignment and fixed examples.
 
-**Practice targets:** Fill an array with 20 \`rollDie()\` results. Log the 10th element by using index 9, count how many rolls are even, and create doubled output without losing the original roll data. Use the array length rather than hard-coded loop limits when possible.
+Implement createDiceResults(count,random) by collecting calls to rollDie. Run Arrays with count=20 and display those twenty original values. Report the tenth element using index 9. Implement countEvenRolls(values) and doubleResults(values), returning a new doubled array without changing the original.
 
-**Evidence target:** The array contains exactly 20 values, every value is in the die range, the even count matches a manual scan of one printed sample, and the doubled values are derived from the original array rather than generated separately.`
+For [1,2,3,4,5,6], the even count is 3 and the doubled result is [2,4,6,8,10,12]. Check that the original still contains [1,2,3,4,5,6]. Empty input gives count 0 and a new empty doubled array. For the actual twenty rolls, compare the reported tenth value with the tenth displayed value and verify the even count manually.
+
+Keep the original list, tenth value, count, doubled list, fixed cases and one changed array with its expected result. Explain how array order and length determine the valid indices. Continue to Objects using these saved files.`,
+					projectLink:
+						"/course-assets/javascript-level-2/master-checkpoint-one-v1/starter/index.html.txt",
+					solutionLink:
+						"/course-assets/javascript-level-2/master-checkpoint-one-v1/reference/index.html.txt",
+					ideImport: true
 				},
 				{
 					title: "Check-In #1: Objects and the Canvas",
-					content: `**Concept path:** Objects group related properties under one name. Canvas drawing turns object state into visible geometry, which makes the connection between data and rendering concrete.
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "assignment",
+					content: `Continue the same Check-In 1 project and complete objects.js. README.md supplies the complete local task, and CASES.md lists its geometry checks.
 
-**Practice targets:** Create a car object with descriptive properties such as make, model, color, and year. Set up a 1200 by 1200 canvas, then build a cards array where each object stores at least x position, y position, width, height, and color. Render one card first, then render the full array with a loop.
+Create a car with make Toyota, model Corolla, year 1999, color red and damaged true. Read the year through its property. Create four card objects with integer text from 1 through 100, x=50, width=200, height=100, a color and y=0, 150, 300 or 450. Fixed random inputs 0 and 0.999999 must produce labels 1 and 100.
 
-**Evidence target:** Changing a card object's coordinates or color changes the drawing without rewriting the drawing logic. The card data and the rendering function stay separate enough that new cards can be added by changing the array.`
+The canvas buffer is 1200 by 1200. Implement drawCards(context,cards) to clear it before looping over card data, drawing each rectangle and centering its number. Run Cards and compare all four visible labels with the adjacent text list. Change a card's coordinates or color in the object data and rerun while keeping the drawing loop unchanged. Repeated drawing must replace the old image.
+
+Keep the car, four card objects, drawing function, a result for the original data and a changed-data result. The text list remains available when canvas is unavailable. Explain how object properties determine the visible rectangle and why CSS display size does not change the buffer coordinates.`,
+					projectLink:
+						"/course-assets/javascript-level-2/master-checkpoint-one-v1/starter/index.html.txt",
+					solutionLink:
+						"/course-assets/javascript-level-2/master-checkpoint-one-v1/reference/index.html.txt",
+					ideImport: true
 				},
 				{
 					title: "Check-In #1: Additional Practice Project",
-					content: `**Project target:** Build a 3 by 3 board where each cell randomly becomes either a square or a circle. The board represents both a data problem and a drawing problem: the program needs a way to generate the board state, render it, and decide whether every cell matches.
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "assignment",
+					content: `# Same-Shape Board
 
-**Build path:** Store the board in an array or two-dimensional array before drawing. Write a rendering function that clears the canvas and redraws the full board from the current data. Write a matching check that returns true only when every cell has the same shape.
+Build the original checkpoint's 3 by 3 board: each of its nine cells randomly
+contains a green circle or a red square. Keep generating and drawing boards
+until all nine shapes have the same type. The page supplies Start, Stop,
+one-board controls and a readable record of the current board.
 
-**Evidence target:** The board can redraw multiple times without leaving old shapes behind. The matching check works for a manually created all-square board, a manually created mixed board, and the random board produced by the program.`,
+Open index.html without a server. Complete createBoard(random),
+boardComplete(board) and drawBoard(context,board) in board.js. The interface
+code in script.js is supplied so this task focuses on arrays, objects,
+drawing and the completion condition.
+
+## Generate and draw
+
+createBoard returns an array of nine shape objects in column-major order.
+Use two loops from 0 through 2. For a circle in column i and row j, set
+type "circle", x=i*50+20, y=j*50+20, radius 20 and color "green".
+For a square, set type "square", x=i*50, y=j*50, length 40 and color "red".
+Choose each type independently with Math.floor(random()*2). A supplied
+random function returning 0 should make nine circles; 0.75 should make nine
+squares. Alternating 0 and 0.75 should make a mixed board.
+
+drawBoard clears the 500 by 500 canvas before looping through the array.
+Use fillRect for squares and beginPath, arc and fill for circles. Drawing
+must read each object's stored properties rather than generating new random
+values: the text list and the canvas then describe the same board.
+The visible canvas scales to a narrow screen while its buffer remains 500
+by 500. Compare two successive one-board drawings for leftover shapes.
+
+## Decide when to stop
+
+boardComplete returns true only for exactly nine valid shapes of one type.
+Nine circles and nine squares are complete; a mixed array, an empty array,
+a partial board and an unknown type are incomplete. Compare every shape's
+type with the first after checking the length and valid types.
+
+Start draws one board per animation frame and stops as soon as the current
+board is complete. The supplied controller also stops after 2,000 attempts;
+it reports the limit instead of claiming a match. Randomness has no finite
+guarantee of a matching board. Stop cancels the pending frame. Starting again
+creates a fresh bounded attempt, and showing one board cancels any animation.
+Leaving or hiding the page also stops it. Keep the board state locally declared.
+
+## Completion
+
+Retain the three fixed generated boards, expected and observed completion
+values, a screenshot or text record of a match, and a stopped mixed run.
+Confirm that no extra frame runs after Stop or a match, that a second Start
+resets the attempt counter, and that reaching the limit reports the limit.
+Keep the array and text results available even when canvas is unavailable.
+Explain why a redraw clears the old image, why an empty array is not a full
+board, and why a bounded random run may finish without a match.
+`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/c9af625a0a84cbffef3dc7891aa804f9",
 					solutionLink:
-						"https://codepen.io/junilearning/pen/702bf96c0927e96b0089cdc58df366d0"
+						"https://codepen.io/junilearning/pen/702bf96c0927e96b0089cdc58df366d0",
+					ideImport: true
 				}
 			],
 			supplementalProjects: [

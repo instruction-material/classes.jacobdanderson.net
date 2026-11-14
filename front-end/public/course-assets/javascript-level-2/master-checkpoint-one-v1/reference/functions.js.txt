@@ -1,0 +1,6 @@
+window.CheckInOne = {
+ rollDie(random = Math.random) { return Math.floor(random()*6)+1; },
+ playJackpot(a,b) { return a+b>=10 ? "Jackpot!" : "Better luck next time!"; },
+ sum(a,b) { return a+b; },
+ isOdd(number) { return number%2!==0; }
+};

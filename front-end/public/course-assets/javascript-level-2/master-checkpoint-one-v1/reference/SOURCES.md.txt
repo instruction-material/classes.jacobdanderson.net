@@ -1,0 +1,6 @@
+# Sources
+
+Original starter: https://codepen.io/junilearning/pen/f1b05b8f30ae178563d6ecd20e816e3f
+Original reference: https://codepen.io/junilearning/pen/bbb5cce14f0a1bc5c5c4b5582da67750
+
+The original starter supplied only an instructor placeholder. The local task exposes its actual functions,twenty-roll array,car and four-card reference contracts. Inclusive integer bounds correct the zero endpoint in the original ceil expression. The original unused remote D3 dependency is omitted;these tasks use native canvas. The car and all four original card coordinates/sizes are retained,with height replacing the original length property. No external script is required.

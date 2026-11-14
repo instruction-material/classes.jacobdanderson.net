@@ -502,62 +502,62 @@ jobs:
           node scripts/classes-family-heavy-task.mjs -- npm run typecheck
           node scripts/classes-family-heavy-task.mjs -- npm run build
       - name: Verify original course buttons, consent, edits and actual ZIP exports
-        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals'
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one'
         run: |
           node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-hundred-squares-course-browser.test.mjs
           node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-hundred-squares-exported-browser.test.mjs
       - name: Verify Refactory source roles, both catalog roles and saved workspace exports
-        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals'
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one'
         run: npm exec -w front-end -- vitest run test/javascript-refactory-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
       - name: Verify Refactory consent, saved edits and actual offline report exports
-        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals'
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one'
         env:
           JAVASCRIPT_REFACTORY_BROWSER_DIR: output/javascript-refactory-browser
         run: |
           node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-refactory-course-browser.test.mjs
           node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-refactory-exported-browser.test.mjs
       - name: Verify Which Card roles, saved work and coordinate boundaries
-        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals'
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one'
         run: npm exec -w front-end -- vitest run test/javascript-which-card-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
       - name: Verify actual Which Card imports and offline pointer behavior
-        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals'
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one'
         env:
           JAVASCRIPT_WHICH_CARD_BROWSER_DIR: output/javascript-which-card-browser
         run: |
           node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-which-card-course-browser.test.mjs
           node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-which-card-exported-browser.test.mjs
       - name: Verify Paddle source roles and keyboard state boundaries
-        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals'
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one'
         run: npm exec -w front-end -- vitest run test/javascript-paddle-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
       - name: Verify actual Paddle imports and offline keyboard behavior
-        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals'
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one'
         env:
           JAVASCRIPT_PADDLE_BROWSER_DIR: output/javascript-paddle-browser
         run: |
           node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-paddle-course-browser.test.mjs
           node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-paddle-exported-browser.test.mjs
       - name: Verify Coastal Cruise helpers and safe registration traces
-        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals'
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one'
         run: npm exec -w front-end -- vitest run test/javascript-coastal-cruise-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
       - name: Verify Coastal Cruise imports and actual offline registration dialogs
-        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals'
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one'
         env:
           JAVASCRIPT_COASTAL_CRUISE_BROWSER_DIR: output/javascript-coastal-cruise-browser
         run: |
           node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-coastal-cruise-course-browser.test.mjs
           node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-coastal-cruise-exported-browser.test.mjs
       - name: Verify Juggling Paddle roles and radius-aware bounce cases
-        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals'
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one'
         run: npm exec -w front-end -- vitest run test/javascript-juggling-paddle-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
       - name: Verify actual Juggling Paddle imports and offline game flow
-        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals'
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one'
         env:
           JAVASCRIPT_JUGGLING_PADDLE_BROWSER_DIR: output/javascript-juggling-paddle-browser
         run: |
           node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-juggling-paddle-course-browser.test.mjs
           node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-juggling-paddle-exported-browser.test.mjs
       - name: Verify complete Wordsmith imports and pinned classroom framework
-        if: inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals'
+        if: inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one'
         run: >-
           npm exec -w front-end -- vitest run
           test/python-wordsmith-import.spec.test.ts
@@ -568,15 +568,15 @@ jobs:
           test/store.courses.python-pygames-classroom.spec.test.ts
           --no-file-parallelism --maxWorkers=1
       - name: Verify actual Wordsmith role imports, saved scoring edits and complete dictionary exports
-        if: inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals'
+        if: inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one'
         env:
           PYTHON_WORDSMITH_BROWSER_DIR: output/python-wordsmith-browser
         run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/python-wordsmith-course-browser.test.mjs
       - name: Verify collision role packs and exact geometry and rest boundaries
-        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals'
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one'
         run: npm exec -w front-end -- vitest run test/javascript-collision-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
       - name: Verify actual collision imports and all saved offline workspaces
-        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals'
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one'
         env:
           JAVASCRIPT_COLLISION_BROWSER_DIR: output/javascript-collision-browser
         run: |
@@ -621,6 +621,14 @@ jobs:
           npm exec -w front-end -- vitest run test/javascript-master-fundamentals-workspace.spec.test.ts test/store.courses.javascript-level-2-flow.spec.test.ts test/store.courses.catalog-identities.spec.test.ts --no-file-parallelism --maxWorkers=1
           node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-master-fundamentals-course-browser.test.mjs
           node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-master-fundamentals-exported-browser.test.mjs
+      - name: Verify complete checkpoint tasks, saved continuations and actual dice and board exports
+        if: inputs.self_study_courses == 'javascript-master-checkpoint-one'
+        env:
+          JAVASCRIPT_MASTER_CHECKPOINT_ONE_BROWSER_DIR: output/javascript-master-checkpoint-one-browser
+        run: |
+          npm exec -w front-end -- vitest run test/javascript-master-checkpoint-one-workspace.spec.test.ts test/store.courses.javascript-level-2-flow.spec.test.ts test/store.courses.catalog-identities.spec.test.ts --no-file-parallelism --maxWorkers=1
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-master-checkpoint-one-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-master-checkpoint-one-exported-browser.test.mjs
       - name: Retain source, actual exports and rendered evidence
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
@@ -640,6 +648,7 @@ jobs:
             output/javascript-local-persistence-browser/
             output/javascript-us-capitals-browser/
             output/javascript-master-fundamentals-browser/
+            output/javascript-master-checkpoint-one-browser/
           if-no-files-found: error
           retention-days: 14
 

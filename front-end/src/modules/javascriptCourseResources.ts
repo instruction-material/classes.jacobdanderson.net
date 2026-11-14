@@ -24,6 +24,7 @@ import { javascriptLoopsResources } from "@/modules/javascriptLoopsResources";
 import { javascriptLyricsResources } from "@/modules/javascriptLyricsResources";
 import { javascriptMasterArraysResources } from "@/modules/javascriptMasterArraysResources";
 import { javascriptMasterCanvasResources } from "@/modules/javascriptMasterCanvasResources";
+import { javascriptMasterCheckpointOneResources } from "@/modules/javascriptMasterCheckpointOneResources";
 import { javascriptMasterConditionalsResources } from "@/modules/javascriptMasterConditionalsResources";
 import { javascriptMasterFunctionsResources } from "@/modules/javascriptMasterFunctionsResources";
 import { javascriptMasterFundamentalsResources } from "@/modules/javascriptMasterFundamentalsResources";
@@ -48,6 +49,7 @@ const courseId = "javascript-level-1-javascript-superstar";
 const base = "/course-assets/javascript-level-1/";
 const masterBase = "/course-assets/javascript-level-2/";
 interface CourseRole {
+	workspaceItemId?: string;
 	courseId?: "javascript-level-2-javascript-master";
 	sharedWith?: readonly "javascript-level-2-javascript-master"[];
 	project: string;
@@ -87,6 +89,7 @@ const roles: readonly CourseRole[] = [
 	...javascriptNewsResources,
 	...javascriptShopResources,
 	...javascriptMasterFundamentalsResources,
+	...javascriptMasterCheckpointOneResources,
 	...javascriptMasterFunctionsResources,
 	...javascriptMasterConditionalsResources,
 	...javascriptMasterCanvasResources,
@@ -153,7 +156,7 @@ export function javascriptCourseProjectKey(
 	) {
 		throw new Error("This source does not match the selected course role.");
 	}
-	return `${selectedCourse}:${itemId}:${role}:${selected.project}:v${selected.version}`;
+	return `${selectedCourse}:${selected.workspaceItemId ?? itemId}:${role}:${selected.project}:v${selected.version}`;
 }
 
 async function readBytes(response: Response, byteLength: number) {

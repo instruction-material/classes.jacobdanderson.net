@@ -1,0 +1,5 @@
+window.ShapeBoard = {
+ createBoard(random=Math.random) { /* TODO: return nine randomly chosen shape objects. */ return []; },
+ boardComplete(board) { /* TODO: require nine valid shapes with the same type. */ return false; },
+ drawBoard(context,board) { /* TODO: clear and draw the stored shapes. */ }
+};

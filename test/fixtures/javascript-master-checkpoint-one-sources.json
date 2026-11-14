@@ -1,0 +1,370 @@
+{
+  "courseId": "javascript-level-2-javascript-master",
+  "moduleId": "javascript-level-2-javascript-master-check-in-1",
+  "revision": 1,
+  "projects": [
+    {
+      "project": "master-checkpoint-one",
+      "title": "Check-In 1: Functions, Arrays, Objects and Canvas",
+      "folder": "Core",
+      "itemId": "javascript-level-2-javascript-master-check-in-1-curriculum-check-in-1-functions-complex-conditionals",
+      "workspaceItemId": "javascript-level-2-javascript-master-check-in-1-curriculum-check-in-1-functions-complex-conditionals",
+      "urls": [
+        "f1b05b8f30ae178563d6ecd20e816e3f",
+        "bbb5cce14f0a1bc5c5c4b5582da67750"
+      ],
+      "continuationIds": [
+        "javascript-level-2-javascript-master-check-in-1-curriculum-check-in-1-arrays",
+        "javascript-level-2-javascript-master-check-in-1-curriculum-check-in-1-objects-and-the-canvas"
+      ],
+      "moduleId": "javascript-level-2-javascript-master-check-in-1"
+    },
+    {
+      "project": "master-checkpoint-one-board",
+      "title": "Same-Shape Board",
+      "folder": "Same-Shape Board",
+      "itemId": "javascript-level-2-javascript-master-check-in-1-curriculum-javascript-level-2-javascript-master-check-in-1-practice-project",
+      "workspaceItemId": "javascript-level-2-javascript-master-check-in-1-curriculum-javascript-level-2-javascript-master-check-in-1-practice-project",
+      "urls": [
+        "c9af625a0a84cbffef3dc7891aa804f9",
+        "702bf96c0927e96b0089cdc58df366d0"
+      ],
+      "continuationIds": [],
+      "moduleId": "javascript-level-2-javascript-master-check-in-1"
+    }
+  ],
+  "resources": [
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "master-checkpoint-one",
+      "title": "Check-In 1: Functions, Arrays, Objects and Canvas",
+      "itemId": "javascript-level-2-javascript-master-check-in-1-curriculum-check-in-1-functions-complex-conditionals",
+      "workspaceItemId": "javascript-level-2-javascript-master-check-in-1-curriculum-check-in-1-functions-complex-conditionals",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/f1b05b8f30ae178563d6ecd20e816e3f",
+        "/course-assets/javascript-level-2/master-checkpoint-one-v1/starter/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "master-checkpoint-one-v1/starter/CASES.md.txt",
+          "byteLength": 518,
+          "sha256": "b52c7829b1e7bd7985d1b8f24c58a1e03ba27500fced3fa30846c866fa2187c6"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "master-checkpoint-one-v1/starter/LICENSE-original.txt.txt",
+          "byteLength": 1219,
+          "sha256": "efedb44b475add3506bec495083fd4252738ee13933ecd00f0abc4b8d99364e5"
+        },
+        {
+          "name": "README.md",
+          "path": "master-checkpoint-one-v1/starter/README.md.txt",
+          "byteLength": 3794,
+          "sha256": "26f33856ae1fe441bbf4ee88388eaa01f4163411be6b60844f19e4b688880baa"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "master-checkpoint-one-v1/starter/SOURCES.md.txt",
+          "byteLength": 668,
+          "sha256": "437df0e993e107c46e8ffee5a35880b35a9aa7c236a20f9ba633ead7bed88e07"
+        },
+        {
+          "name": "arrays.js",
+          "path": "master-checkpoint-one-v1/starter/arrays.js.txt",
+          "byteLength": 317,
+          "sha256": "c327c3248877ee3bb9087381c31d51967fec2314312f39be5bd8bb6bc9a9e832"
+        },
+        {
+          "name": "functions.js",
+          "path": "master-checkpoint-one-v1/starter/functions.js.txt",
+          "byteLength": 334,
+          "sha256": "fc7d3c408c60949abdf88daeefd285e76b2b1a0a1d0f508eb24ab009452a8bc9"
+        },
+        {
+          "name": "index.html",
+          "path": "master-checkpoint-one-v1/starter/index.html.txt",
+          "byteLength": 1041,
+          "sha256": "ad14ac0c0a0cbb0f25f25a3c0e65d4676d8b18cf438211c3d7ad17f51c0ee714"
+        },
+        {
+          "name": "objects.js",
+          "path": "master-checkpoint-one-v1/starter/objects.js.txt",
+          "byteLength": 307,
+          "sha256": "9419b4eb31893823cd56924003ce586f77ec066e93db78526d14b0355272ab79"
+        },
+        {
+          "name": "script.js",
+          "path": "master-checkpoint-one-v1/starter/script.js.txt",
+          "byteLength": 2258,
+          "sha256": "344d7f3f7bdaefc7ba174ce10ef71cf3f138a5c7bf3d44eca55b87249b8c4342"
+        },
+        {
+          "name": "styles.css",
+          "path": "master-checkpoint-one-v1/starter/styles.css.txt",
+          "byteLength": 594,
+          "sha256": "9002d6d81c301960a0ae955eb9a960b7f8080c18d502180784bda20dba93c4e2"
+        }
+      ]
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "master-checkpoint-one",
+      "title": "Check-In 1: Functions, Arrays, Objects and Canvas",
+      "itemId": "javascript-level-2-javascript-master-check-in-1-curriculum-check-in-1-functions-complex-conditionals",
+      "workspaceItemId": "javascript-level-2-javascript-master-check-in-1-curriculum-check-in-1-functions-complex-conditionals",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/bbb5cce14f0a1bc5c5c4b5582da67750",
+        "/course-assets/javascript-level-2/master-checkpoint-one-v1/reference/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "master-checkpoint-one-v1/reference/CASES.md.txt",
+          "byteLength": 518,
+          "sha256": "b52c7829b1e7bd7985d1b8f24c58a1e03ba27500fced3fa30846c866fa2187c6"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "master-checkpoint-one-v1/reference/LICENSE-original.txt.txt",
+          "byteLength": 214,
+          "sha256": "e53de4574955e52a414163b04d110a6336bbbafbc2a32de2da46a2f6f81a2a30"
+        },
+        {
+          "name": "README.md",
+          "path": "master-checkpoint-one-v1/reference/README.md.txt",
+          "byteLength": 3782,
+          "sha256": "a73719ab8b4378a0322e419cb4f7f35979255fe5e403ea5747bba0660a893b9f"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "master-checkpoint-one-v1/reference/SOURCES.md.txt",
+          "byteLength": 668,
+          "sha256": "437df0e993e107c46e8ffee5a35880b35a9aa7c236a20f9ba633ead7bed88e07"
+        },
+        {
+          "name": "arrays.js",
+          "path": "master-checkpoint-one-v1/reference/arrays.js.txt",
+          "byteLength": 343,
+          "sha256": "4b4fd22a125c8544523c596459e4cf1a2d12e40a0742d605388d75f87aa48ef4"
+        },
+        {
+          "name": "functions.js",
+          "path": "master-checkpoint-one-v1/reference/functions.js.txt",
+          "byteLength": 240,
+          "sha256": "a412426175f4ec0e4fff609162754bb35045b9986454db9bd83e94124f12c671"
+        },
+        {
+          "name": "index.html",
+          "path": "master-checkpoint-one-v1/reference/index.html.txt",
+          "byteLength": 1041,
+          "sha256": "ad14ac0c0a0cbb0f25f25a3c0e65d4676d8b18cf438211c3d7ad17f51c0ee714"
+        },
+        {
+          "name": "objects.js",
+          "path": "master-checkpoint-one-v1/reference/objects.js.txt",
+          "byteLength": 678,
+          "sha256": "4d0f39f431466fc56c2eca7aa3a0916c48e5bfca44a31ee0938473e21900e127"
+        },
+        {
+          "name": "script.js",
+          "path": "master-checkpoint-one-v1/reference/script.js.txt",
+          "byteLength": 2258,
+          "sha256": "344d7f3f7bdaefc7ba174ce10ef71cf3f138a5c7bf3d44eca55b87249b8c4342"
+        },
+        {
+          "name": "styles.css",
+          "path": "master-checkpoint-one-v1/reference/styles.css.txt",
+          "byteLength": 594,
+          "sha256": "9002d6d81c301960a0ae955eb9a960b7f8080c18d502180784bda20dba93c4e2"
+        }
+      ]
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "master-checkpoint-one-board",
+      "title": "Same-Shape Board",
+      "itemId": "javascript-level-2-javascript-master-check-in-1-curriculum-javascript-level-2-javascript-master-check-in-1-practice-project",
+      "workspaceItemId": "javascript-level-2-javascript-master-check-in-1-curriculum-javascript-level-2-javascript-master-check-in-1-practice-project",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/c9af625a0a84cbffef3dc7891aa804f9",
+        "/course-assets/javascript-level-2/master-checkpoint-one-board-v1/starter/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "master-checkpoint-one-board-v1/starter/CASES.md.txt",
+          "byteLength": 503,
+          "sha256": "a4048064051fbdcf358e6b2e2ddedf3f2b33914241c6c77034a778898b076d1c"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "master-checkpoint-one-board-v1/starter/LICENSE-original.txt.txt",
+          "byteLength": 1248,
+          "sha256": "e36c0effa7e0834d0ddb4e3a7bb04d02333387bd636ad525292559218145e1be"
+        },
+        {
+          "name": "README.md",
+          "path": "master-checkpoint-one-board-v1/starter/README.md.txt",
+          "byteLength": 2877,
+          "sha256": "c0da5d7ed5431b57f7856867378f10688665deb390f59328000584ca7ddb30c3"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "master-checkpoint-one-board-v1/starter/SOURCES.md.txt",
+          "byteLength": 525,
+          "sha256": "dcff6986abc86d509e65fa0c072e5fe9e4e402debdd94d23c75d15b057d593e2"
+        },
+        {
+          "name": "board.js",
+          "path": "master-checkpoint-one-board-v1/starter/board.js.txt",
+          "byteLength": 304,
+          "sha256": "f11bed0055b270097efbcee5bc1b32faefbcedb3d86b26ce9160f10b5c21b167"
+        },
+        {
+          "name": "index.html",
+          "path": "master-checkpoint-one-board-v1/starter/index.html.txt",
+          "byteLength": 658,
+          "sha256": "ce13466eb60fa6ebcc97232ff8c7178a5b7ee860420fcfa4e8e9cfb5a4c7cce6"
+        },
+        {
+          "name": "script.js",
+          "path": "master-checkpoint-one-board-v1/starter/script.js.txt",
+          "byteLength": 1778,
+          "sha256": "7f593ebf9d76ed0142b654683634c5d8d5ecd023eb9e8be3be940ec8c205b65e"
+        },
+        {
+          "name": "styles.css",
+          "path": "master-checkpoint-one-board-v1/starter/styles.css.txt",
+          "byteLength": 594,
+          "sha256": "9002d6d81c301960a0ae955eb9a960b7f8080c18d502180784bda20dba93c4e2"
+        }
+      ]
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "master-checkpoint-one-board",
+      "title": "Same-Shape Board",
+      "itemId": "javascript-level-2-javascript-master-check-in-1-curriculum-javascript-level-2-javascript-master-check-in-1-practice-project",
+      "workspaceItemId": "javascript-level-2-javascript-master-check-in-1-curriculum-javascript-level-2-javascript-master-check-in-1-practice-project",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/702bf96c0927e96b0089cdc58df366d0",
+        "/course-assets/javascript-level-2/master-checkpoint-one-board-v1/reference/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "master-checkpoint-one-board-v1/reference/CASES.md.txt",
+          "byteLength": 503,
+          "sha256": "a4048064051fbdcf358e6b2e2ddedf3f2b33914241c6c77034a778898b076d1c"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "master-checkpoint-one-board-v1/reference/LICENSE-original.txt.txt",
+          "byteLength": 214,
+          "sha256": "e53de4574955e52a414163b04d110a6336bbbafbc2a32de2da46a2f6f81a2a30"
+        },
+        {
+          "name": "README.md",
+          "path": "master-checkpoint-one-board-v1/reference/README.md.txt",
+          "byteLength": 2865,
+          "sha256": "402db1787e53c34dc6c302c8c17af78c2e6ef9e8da145e42f94a3c3ecf592cb0"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "master-checkpoint-one-board-v1/reference/SOURCES.md.txt",
+          "byteLength": 525,
+          "sha256": "dcff6986abc86d509e65fa0c072e5fe9e4e402debdd94d23c75d15b057d593e2"
+        },
+        {
+          "name": "board.js",
+          "path": "master-checkpoint-one-board-v1/reference/board.js.txt",
+          "byteLength": 791,
+          "sha256": "058d4a66ec6bd2c4ec45a7bb9a4cc0d4fd0aa84bdca16f543dcd95916b8bb1c1"
+        },
+        {
+          "name": "index.html",
+          "path": "master-checkpoint-one-board-v1/reference/index.html.txt",
+          "byteLength": 658,
+          "sha256": "ce13466eb60fa6ebcc97232ff8c7178a5b7ee860420fcfa4e8e9cfb5a4c7cce6"
+        },
+        {
+          "name": "script.js",
+          "path": "master-checkpoint-one-board-v1/reference/script.js.txt",
+          "byteLength": 1778,
+          "sha256": "7f593ebf9d76ed0142b654683634c5d8d5ecd023eb9e8be3be940ec8c205b65e"
+        },
+        {
+          "name": "styles.css",
+          "path": "master-checkpoint-one-board-v1/reference/styles.css.txt",
+          "byteLength": 594,
+          "sha256": "9002d6d81c301960a0ae955eb9a960b7f8080c18d502180784bda20dba93c4e2"
+        }
+      ]
+    }
+  ],
+  "files": {
+    "master-checkpoint-one": {
+      "starter": {
+        "styles.css": "body { margin:0; color:#1b2833; background:#f4f6f8; font:1rem/1.5 system-ui,sans-serif; }\nmain { max-width:56rem; margin:auto; padding:1rem; }\nh1 { font-size:1.8rem; line-height:1.2; }\nbutton { font:inherit; padding:.6rem .9rem; margin:.2rem; border:1px solid #334155; border-radius:.3rem; background:white; color:inherit; }\nbutton:focus-visible { outline:3px solid #6846b0; outline-offset:3px; }\npre { white-space:pre-wrap; overflow-wrap:anywhere; }\ncanvas { display:block; width:100%; max-width:38rem; height:auto; background:white; border:1px solid #667085; }\nli { overflow-wrap:anywhere; }\n",
+        "README.md": "# Check-In 1: Functions, Arrays, Objects and Canvas\n\nContinue the same local project through the three checkpoint tasks. Open\nindex.html in a browser without a server. The page controls and result areas\nare supplied; complete the functions in functions.js, arrays.js and objects.js.\nThe starter reports unfinished tasks until those functions return useful values.\nKeep your completed files when continuing to the next task.\n\n## Functions and complex conditionals\n\nImplement rollDie() to return one integer from 1 through 6 on every call.\nMath.random() includes 0 and excludes 1: multiplying by 6, taking Math.floor,\nthen adding 1 gives the required range. The optional random parameter lets a\nfixed input be checked without waiting for a rare random event. Check inputs\n0 and 0.999999: the results must be 1 and 6. Math.ceil(random * 6) would give\n0 at the first boundary.\n\nImplement playJackpot(a,b) with a ternary expression: return \"Jackpot!\" when\na+b is at least 10; otherwise return \"Better luck next time!\". For (4,5),\n(4,6) and (6,6), check the messages for sums 9, 10 and 12. Implement sum(a,b)\nto return the sum, and isOdd(number) to return a boolean. Check sum(2,3)=5,\nisOdd(3)=true, isOdd(2)=false, isOdd(0)=false and isOdd(-3)=true.\n\nRun Functions. The supplied runner calls rollDie 100 times and displays all\n100 values plus the number of sixes. A random count is not a fixed expected\nanswer: every displayed roll must be an integer from 1 through 6 and the\ncount must equal a manual count of sixes in that same list. The page also\nshows a jackpot result from two new rolls, the sum result and oddness checks.\n\n## Arrays\n\nImplement createDiceResults(count,random) using rollDie to generate count\nrolls. Use count=20 in the page. Implement countEvenRolls(values) to return\nthe number divisible by two, and doubleResults(values) to return a new array\nwith twice each corresponding value. Preserve the original array.\n\nRun Arrays. Display the original twenty values, the tenth element at index 9,\nthe even count and the doubled array. Compare the tenth displayed value with\nthe reported value. For fixed [1,2,3,4,5,6], the even count is 3 and the doubled\narray is [2,4,6,8,10,12]; the input still contains [1,2,3,4,5,6].\nEmpty input produces zero even values and a new empty doubled array.\nAn even count may range from 0 through 20 for twenty die rolls.\n\n## Objects and canvas\n\nImplement createCar() with make \"Toyota\", model \"Corolla\", year 1999,\ncolor \"red\" and damaged true. Read its year through the object property.\n\nImplement createCards(random) to return four card objects. Each stores text\nas an integer from 1 through 100, x=50, width=200, height=100, a color and a y\nvalue of 0, 150, 300 or 450. The canvas has a 1200 by 1200 drawing buffer;\nCSS scales its display while retaining those coordinates. Using height as\nthe property name makes the rectangle's vertical dimension explicit.\n\nImplement drawCards(context,cards) to clear the old drawing, loop over the\nobjects and draw their rectangles and centered number labels. Run Cards.\nAll four labels must match the adjacent text list. Change one card's position\nor color in its object data and rerun; the rendering loop should stay the\nsame. Repeated runs replace the prior drawing. The supplied text list keeps\ncard data available when canvas drawing is unavailable.\n\n## Completion\n\nKeep the three task files, a result from every Run control, the fixed boundary\nchecks, and one changed input with its predicted and observed result. Explain\nthe difference between returning a value and printing it, why the tenth array\nelement uses index 9, and how an object's coordinates control its rectangle.\nUse the reference after an attempt to compare the relevant functions.\n\nStarter: complete the marked functions before comparing.\n",
+        "CASES.md": "# Fixed checks\n\nrollDie(random=0)=1; rollDie(random=0.999999)=6.\nJackpot inputs (4,5),(4,6),(6,6): loss,win,win.\nsum(2,3)=5; odd: -3 true,0 false,2 false,3 true.\nSix dice [1,2,3,4,5,6]: even count 3,doubled [2,4,6,8,10,12],original unchanged.\nEmpty arrays: count 0,doubled [],different array.\n100 rolls all integers 1..6;20 rolls,tenth at index9.\nCar Toyota/Corolla/1999/red/damaged true.\nFour cards x50,y0/150/300/450,width200,height100,text1..100.\nEvery draw clears first;card text remains available without canvas.\n",
+        "SOURCES.md": "# Sources\n\nOriginal starter: https://codepen.io/junilearning/pen/f1b05b8f30ae178563d6ecd20e816e3f\nOriginal reference: https://codepen.io/junilearning/pen/bbb5cce14f0a1bc5c5c4b5582da67750\n\nThe original starter supplied only an instructor placeholder. The local task exposes its actual functions,twenty-roll array,car and four-card reference contracts. Inclusive integer bounds correct the zero endpoint in the original ceil expression. The original unused remote D3 dependency is omitted;these tasks use native canvas. The car and all four original card coordinates/sizes are retained,with height replacing the original length property. No external script is required.\n",
+        "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/YzWvdaO)\nFork of an original work JSM Check-In #1 Solution (https://codepen.io/Gaster623/pen/YzWpMOP)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Checkpoint 1</title><link rel=\"stylesheet\" href=\"styles.css\"></head>\n<body><main><h1>Check-In 1: Functions, Arrays, Objects and Canvas</h1>\n<section><h2>Functions</h2><button id=\"functions\" type=\"button\">Run Functions</button><pre id=\"function-results\" aria-live=\"polite\"></pre></section>\n<section><h2>Arrays</h2><button id=\"arrays\" type=\"button\">Run Arrays</button><pre id=\"array-results\" aria-live=\"polite\"></pre></section>\n<section><h2>Objects and canvas</h2><button id=\"cards\" type=\"button\">Run Cards</button><pre id=\"car-results\"></pre><ol id=\"card-results\" aria-live=\"polite\"></ol><canvas id=\"canvas\" width=\"1200\" height=\"1200\" aria-label=\"Four numbered cards; their data is listed above\"></canvas></section>\n<p id=\"status\" role=\"status\"></p>\n</main><script src=\"functions.js\"></script><script src=\"arrays.js\"></script><script src=\"objects.js\"></script><script src=\"script.js\"></script></body></html>\n",
+        "script.js": "(() => {\n\"use strict\";\nconst api=window.CheckInOne;\nconst status=document.querySelector(\"#status\");\nconst run=(callback) => { try {callback();status.textContent=\"\";} catch(error){status.textContent=error.message;} };\ndocument.querySelector(\"#functions\").addEventListener(\"click\",() => run(() => {\n const rolls=Array.from({length:100},() => api.rollDie());\n if (!rolls.every(value => Number.isInteger(value)&&value>=1&&value<=6)) throw new Error(\"Complete rollDie: every roll must be an integer from 1 through 6.\");\n const sixes=rolls.filter(value => value===6).length;\n document.querySelector(\"#function-results\").textContent=\"100 rolls: \"+rolls.join(\", \")+\"\\nSixes: \"+sixes+\"\\n\"+api.playJackpot(api.rollDie(),api.rollDie())+\"\\nsum(2,3): \"+api.sum(2,3)+\"\\nisOdd(3): \"+api.isOdd(3)+\"; isOdd(2): \"+api.isOdd(2);\n}));\ndocument.querySelector(\"#arrays\").addEventListener(\"click\",() => run(() => {\n const values=api.createDiceResults(20);\n if (values.length!==20||!values.every(value => Number.isInteger(value)&&value>=1&&value<=6)) throw new Error(\"Complete createDiceResults: return twenty die rolls.\");\n const doubled=api.doubleResults(values);\n document.querySelector(\"#array-results\").textContent=\"Original: \"+values.join(\", \")+\"\\nTenth (index 9): \"+values[9]+\"\\nEven rolls: \"+api.countEvenRolls(values)+\"\\nDoubled: \"+doubled.join(\", \")+\"\\nOriginal after doubling: \"+values.join(\", \");\n}));\ndocument.querySelector(\"#cards\").addEventListener(\"click\",() => run(() => {\n const car=api.createCar();const cards=api.createCards();\n if (!car||!Number.isInteger(car.year)||cards.length!==4) throw new Error(\"Complete createCar and createCards before drawing.\");\n document.querySelector(\"#car-results\").textContent=car.make+\" \"+car.model+\"; year: \"+car.year+\"; color: \"+car.color+\"; damaged: \"+car.damaged;\n const list=document.querySelector(\"#card-results\");list.replaceChildren();\n for (const card of cards) {const row=document.createElement(\"li\");row.textContent=\"Card \"+card.text+\": x=\"+card.x+\", y=\"+card.y+\", width=\"+card.width+\", height=\"+card.height+\", color=\"+card.color;list.append(row);}\n const canvas=document.querySelector(\"#canvas\");let context=null;\n try {context=canvas.getContext(\"2d\");} catch {}\n if(context) api.drawCards(context,cards);\n}));\n})();\n",
+        "functions.js": "window.CheckInOne = {\n rollDie(random = Math.random) { /* TODO: return an integer from 1 through 6. */ return undefined; },\n playJackpot(a,b) { /* TODO: return the ternary win/loss message. */ return \"\"; },\n sum(a,b) { /* TODO: return a+b. */ return undefined; },\n isOdd(number) { /* TODO: return a boolean. */ return undefined; }\n};\n",
+        "arrays.js": "Object.assign(window.CheckInOne,{\n createDiceResults(count,random=Math.random) { /* TODO: collect count calls to rollDie. */ return []; },\n countEvenRolls(values) { /* TODO: count even values. */ return undefined; },\n doubleResults(values) { /* TODO: return doubled values without changing input. */ return []; }\n});\n",
+        "objects.js": "Object.assign(window.CheckInOne,{\n createCar() { /* TODO: return the supplied five-property car. */ return null; },\n createCards(random=Math.random) { /* TODO: return four numbered card objects. */ return []; },\n drawCards(context,cards) { /* TODO: clear and draw rectangles/text from each object. */ }\n});\n"
+      },
+      "reference": {
+        "styles.css": "body { margin:0; color:#1b2833; background:#f4f6f8; font:1rem/1.5 system-ui,sans-serif; }\nmain { max-width:56rem; margin:auto; padding:1rem; }\nh1 { font-size:1.8rem; line-height:1.2; }\nbutton { font:inherit; padding:.6rem .9rem; margin:.2rem; border:1px solid #334155; border-radius:.3rem; background:white; color:inherit; }\nbutton:focus-visible { outline:3px solid #6846b0; outline-offset:3px; }\npre { white-space:pre-wrap; overflow-wrap:anywhere; }\ncanvas { display:block; width:100%; max-width:38rem; height:auto; background:white; border:1px solid #667085; }\nli { overflow-wrap:anywhere; }\n",
+        "README.md": "# Check-In 1: Functions, Arrays, Objects and Canvas\n\nContinue the same local project through the three checkpoint tasks. Open\nindex.html in a browser without a server. The page controls and result areas\nare supplied; complete the functions in functions.js, arrays.js and objects.js.\nThe starter reports unfinished tasks until those functions return useful values.\nKeep your completed files when continuing to the next task.\n\n## Functions and complex conditionals\n\nImplement rollDie() to return one integer from 1 through 6 on every call.\nMath.random() includes 0 and excludes 1: multiplying by 6, taking Math.floor,\nthen adding 1 gives the required range. The optional random parameter lets a\nfixed input be checked without waiting for a rare random event. Check inputs\n0 and 0.999999: the results must be 1 and 6. Math.ceil(random * 6) would give\n0 at the first boundary.\n\nImplement playJackpot(a,b) with a ternary expression: return \"Jackpot!\" when\na+b is at least 10; otherwise return \"Better luck next time!\". For (4,5),\n(4,6) and (6,6), check the messages for sums 9, 10 and 12. Implement sum(a,b)\nto return the sum, and isOdd(number) to return a boolean. Check sum(2,3)=5,\nisOdd(3)=true, isOdd(2)=false, isOdd(0)=false and isOdd(-3)=true.\n\nRun Functions. The supplied runner calls rollDie 100 times and displays all\n100 values plus the number of sixes. A random count is not a fixed expected\nanswer: every displayed roll must be an integer from 1 through 6 and the\ncount must equal a manual count of sixes in that same list. The page also\nshows a jackpot result from two new rolls, the sum result and oddness checks.\n\n## Arrays\n\nImplement createDiceResults(count,random) using rollDie to generate count\nrolls. Use count=20 in the page. Implement countEvenRolls(values) to return\nthe number divisible by two, and doubleResults(values) to return a new array\nwith twice each corresponding value. Preserve the original array.\n\nRun Arrays. Display the original twenty values, the tenth element at index 9,\nthe even count and the doubled array. Compare the tenth displayed value with\nthe reported value. For fixed [1,2,3,4,5,6], the even count is 3 and the doubled\narray is [2,4,6,8,10,12]; the input still contains [1,2,3,4,5,6].\nEmpty input produces zero even values and a new empty doubled array.\nAn even count may range from 0 through 20 for twenty die rolls.\n\n## Objects and canvas\n\nImplement createCar() with make \"Toyota\", model \"Corolla\", year 1999,\ncolor \"red\" and damaged true. Read its year through the object property.\n\nImplement createCards(random) to return four card objects. Each stores text\nas an integer from 1 through 100, x=50, width=200, height=100, a color and a y\nvalue of 0, 150, 300 or 450. The canvas has a 1200 by 1200 drawing buffer;\nCSS scales its display while retaining those coordinates. Using height as\nthe property name makes the rectangle's vertical dimension explicit.\n\nImplement drawCards(context,cards) to clear the old drawing, loop over the\nobjects and draw their rectangles and centered number labels. Run Cards.\nAll four labels must match the adjacent text list. Change one card's position\nor color in its object data and rerun; the rendering loop should stay the\nsame. Repeated runs replace the prior drawing. The supplied text list keeps\ncard data available when canvas drawing is unavailable.\n\n## Completion\n\nKeep the three task files, a result from every Run control, the fixed boundary\nchecks, and one changed input with its predicted and observed result. Explain\nthe difference between returning a value and printing it, why the tenth array\nelement uses index 9, and how an object's coordinates control its rectangle.\nUse the reference after an attempt to compare the relevant functions.\n\nReference: compare after a recorded attempt.\n",
+        "CASES.md": "# Fixed checks\n\nrollDie(random=0)=1; rollDie(random=0.999999)=6.\nJackpot inputs (4,5),(4,6),(6,6): loss,win,win.\nsum(2,3)=5; odd: -3 true,0 false,2 false,3 true.\nSix dice [1,2,3,4,5,6]: even count 3,doubled [2,4,6,8,10,12],original unchanged.\nEmpty arrays: count 0,doubled [],different array.\n100 rolls all integers 1..6;20 rolls,tenth at index9.\nCar Toyota/Corolla/1999/red/damaged true.\nFour cards x50,y0/150/300/450,width200,height100,text1..100.\nEvery draw clears first;card text remains available without canvas.\n",
+        "SOURCES.md": "# Sources\n\nOriginal starter: https://codepen.io/junilearning/pen/f1b05b8f30ae178563d6ecd20e816e3f\nOriginal reference: https://codepen.io/junilearning/pen/bbb5cce14f0a1bc5c5c4b5582da67750\n\nThe original starter supplied only an instructor placeholder. The local task exposes its actual functions,twenty-roll array,car and four-card reference contracts. Inclusive integer bounds correct the zero endpoint in the original ceil expression. The original unused remote D3 dependency is omitted;these tasks use native canvas. The car and all four original card coordinates/sizes are retained,with height replacing the original length property. No external script is required.\n",
+        "LICENSE-original.txt": "Original export notice\n\nThe retained original CodePen ZIP did not include a license file. No license text is inferred for that original. See SOURCES.md for attribution and the distinct locally authored adaptation.\n",
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Checkpoint 1</title><link rel=\"stylesheet\" href=\"styles.css\"></head>\n<body><main><h1>Check-In 1: Functions, Arrays, Objects and Canvas</h1>\n<section><h2>Functions</h2><button id=\"functions\" type=\"button\">Run Functions</button><pre id=\"function-results\" aria-live=\"polite\"></pre></section>\n<section><h2>Arrays</h2><button id=\"arrays\" type=\"button\">Run Arrays</button><pre id=\"array-results\" aria-live=\"polite\"></pre></section>\n<section><h2>Objects and canvas</h2><button id=\"cards\" type=\"button\">Run Cards</button><pre id=\"car-results\"></pre><ol id=\"card-results\" aria-live=\"polite\"></ol><canvas id=\"canvas\" width=\"1200\" height=\"1200\" aria-label=\"Four numbered cards; their data is listed above\"></canvas></section>\n<p id=\"status\" role=\"status\"></p>\n</main><script src=\"functions.js\"></script><script src=\"arrays.js\"></script><script src=\"objects.js\"></script><script src=\"script.js\"></script></body></html>\n",
+        "script.js": "(() => {\n\"use strict\";\nconst api=window.CheckInOne;\nconst status=document.querySelector(\"#status\");\nconst run=(callback) => { try {callback();status.textContent=\"\";} catch(error){status.textContent=error.message;} };\ndocument.querySelector(\"#functions\").addEventListener(\"click\",() => run(() => {\n const rolls=Array.from({length:100},() => api.rollDie());\n if (!rolls.every(value => Number.isInteger(value)&&value>=1&&value<=6)) throw new Error(\"Complete rollDie: every roll must be an integer from 1 through 6.\");\n const sixes=rolls.filter(value => value===6).length;\n document.querySelector(\"#function-results\").textContent=\"100 rolls: \"+rolls.join(\", \")+\"\\nSixes: \"+sixes+\"\\n\"+api.playJackpot(api.rollDie(),api.rollDie())+\"\\nsum(2,3): \"+api.sum(2,3)+\"\\nisOdd(3): \"+api.isOdd(3)+\"; isOdd(2): \"+api.isOdd(2);\n}));\ndocument.querySelector(\"#arrays\").addEventListener(\"click\",() => run(() => {\n const values=api.createDiceResults(20);\n if (values.length!==20||!values.every(value => Number.isInteger(value)&&value>=1&&value<=6)) throw new Error(\"Complete createDiceResults: return twenty die rolls.\");\n const doubled=api.doubleResults(values);\n document.querySelector(\"#array-results\").textContent=\"Original: \"+values.join(\", \")+\"\\nTenth (index 9): \"+values[9]+\"\\nEven rolls: \"+api.countEvenRolls(values)+\"\\nDoubled: \"+doubled.join(\", \")+\"\\nOriginal after doubling: \"+values.join(\", \");\n}));\ndocument.querySelector(\"#cards\").addEventListener(\"click\",() => run(() => {\n const car=api.createCar();const cards=api.createCards();\n if (!car||!Number.isInteger(car.year)||cards.length!==4) throw new Error(\"Complete createCar and createCards before drawing.\");\n document.querySelector(\"#car-results\").textContent=car.make+\" \"+car.model+\"; year: \"+car.year+\"; color: \"+car.color+\"; damaged: \"+car.damaged;\n const list=document.querySelector(\"#card-results\");list.replaceChildren();\n for (const card of cards) {const row=document.createElement(\"li\");row.textContent=\"Card \"+card.text+\": x=\"+card.x+\", y=\"+card.y+\", width=\"+card.width+\", height=\"+card.height+\", color=\"+card.color;list.append(row);}\n const canvas=document.querySelector(\"#canvas\");let context=null;\n try {context=canvas.getContext(\"2d\");} catch {}\n if(context) api.drawCards(context,cards);\n}));\n})();\n",
+        "functions.js": "window.CheckInOne = {\n rollDie(random = Math.random) { return Math.floor(random()*6)+1; },\n playJackpot(a,b) { return a+b>=10 ? \"Jackpot!\" : \"Better luck next time!\"; },\n sum(a,b) { return a+b; },\n isOdd(number) { return number%2!==0; }\n};\n",
+        "arrays.js": "Object.assign(window.CheckInOne,{\n createDiceResults(count,random=Math.random) {\n  const results=[];\n  for(let i=0;i<count;i++) results.push(window.CheckInOne.rollDie(random));\n  return results;\n },\n countEvenRolls(values) { return values.filter(value=>value%2===0).length; },\n doubleResults(values) { return values.map(value=>value*2); }\n});\n",
+        "objects.js": "Object.assign(window.CheckInOne,{\n createCar() { return {make:\"Toyota\",model:\"Corolla\",year:1999,color:\"red\",damaged:true}; },\n createCards(random=Math.random) {\n  const cards=[];\n  for(let i=0;i<4;i++) cards.push({text:Math.floor(random()*100)+1,x:50,y:i*150,width:200,height:100,color:\"rgba(0,0,255,0.5)\"});\n  return cards;\n },\n drawCards(context,cards) {\n  context.clearRect(0,0,1200,1200);\n  cards.forEach(card=>{\n   context.fillStyle=card.color;context.fillRect(card.x,card.y,card.width,card.height);\n   context.font=\"36px Arial\";context.fillStyle=\"white\";context.textAlign=\"center\";\n   context.fillText(card.text,card.x+card.width/2,card.y+card.height/2+10);\n  });\n }\n});\n"
+      }
+    },
+    "master-checkpoint-one-board": {
+      "starter": {
+        "styles.css": "body { margin:0; color:#1b2833; background:#f4f6f8; font:1rem/1.5 system-ui,sans-serif; }\nmain { max-width:56rem; margin:auto; padding:1rem; }\nh1 { font-size:1.8rem; line-height:1.2; }\nbutton { font:inherit; padding:.6rem .9rem; margin:.2rem; border:1px solid #334155; border-radius:.3rem; background:white; color:inherit; }\nbutton:focus-visible { outline:3px solid #6846b0; outline-offset:3px; }\npre { white-space:pre-wrap; overflow-wrap:anywhere; }\ncanvas { display:block; width:100%; max-width:38rem; height:auto; background:white; border:1px solid #667085; }\nli { overflow-wrap:anywhere; }\n",
+        "README.md": "# Same-Shape Board\n\nBuild the original checkpoint's 3 by 3 board: each of its nine cells randomly\ncontains a green circle or a red square. Keep generating and drawing boards\nuntil all nine shapes have the same type. The page supplies Start, Stop,\none-board controls and a readable record of the current board.\n\nOpen index.html without a server. Complete createBoard(random),\nboardComplete(board) and drawBoard(context,board) in board.js. The interface\ncode in script.js is supplied so this task focuses on arrays, objects,\ndrawing and the completion condition.\n\n## Generate and draw\n\ncreateBoard returns an array of nine shape objects in column-major order.\nUse two loops from 0 through 2. For a circle in column i and row j, set\ntype \"circle\", x=i*50+20, y=j*50+20, radius 20 and color \"green\".\nFor a square, set type \"square\", x=i*50, y=j*50, length 40 and color \"red\".\nChoose each type independently with Math.floor(random()*2). A supplied\nrandom function returning 0 should make nine circles; 0.75 should make nine\nsquares. Alternating 0 and 0.75 should make a mixed board.\n\ndrawBoard clears the 500 by 500 canvas before looping through the array.\nUse fillRect for squares and beginPath, arc and fill for circles. Drawing\nmust read each object's stored properties rather than generating new random\nvalues: the text list and the canvas then describe the same board.\nThe visible canvas scales to a narrow screen while its buffer remains 500\nby 500. Compare two successive one-board drawings for leftover shapes.\n\n## Decide when to stop\n\nboardComplete returns true only for exactly nine valid shapes of one type.\nNine circles and nine squares are complete; a mixed array, an empty array,\na partial board and an unknown type are incomplete. Compare every shape's\ntype with the first after checking the length and valid types.\n\nStart draws one board per animation frame and stops as soon as the current\nboard is complete. The supplied controller also stops after 2,000 attempts;\nit reports the limit instead of claiming a match. Randomness has no finite\nguarantee of a matching board. Stop cancels the pending frame. Starting again\ncreates a fresh bounded attempt, and showing one board cancels any animation.\nLeaving or hiding the page also stops it. Keep the board state locally declared.\n\n## Completion\n\nRetain the three fixed generated boards, expected and observed completion\nvalues, a screenshot or text record of a match, and a stopped mixed run.\nConfirm that no extra frame runs after Stop or a match, that a second Start\nresets the attempt counter, and that reaching the limit reports the limit.\nKeep the array and text results available even when canvas is unavailable.\nExplain why a redraw clears the old image, why an empty array is not a full\nboard, and why a bounded random run may finish without a match.\n\nStarter: complete the marked functions before comparing.\n",
+        "CASES.md": "# Fixed checks\n\nNine circles=true,nine squares=true,mixed=false,empty=false,partial=false,unknown types=false.\nRandom0 generates all circles;random0.75 generates all squares.\nAlternating0/0.75 makes nine cells and does not match.\nOne frame scheduled at a time;match stops immediately.\nStop cancels a pending frame;Start resets attempts;one-board cancels animation.\n2000 mixed boards stop with an explicit limit result.\nHidden/pagehide stops the pending callback. Missing canvas retains nine text cells.\n",
+        "SOURCES.md": "# Sources\n\nOriginal starter: https://codepen.io/junilearning/pen/c9af625a0a84cbffef3dc7891aa804f9\nOriginal reference: https://codepen.io/junilearning/pen/702bf96c0927e96b0089cdc58df366d0\n\nThe original starter supplies the matching-board task. The local role packs retain all nine shapes,original geometry and same-type stopping rule,with declared state,an explicit2000-attempt limit,Stop/restart controls and readable canvas alternatives. All changes are adaptations;the exported original sources remain separately retained.\n",
+        "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/JjKvjVO)\nFork of an original work JSM Check-In #1: Additional Practice Project Solution (https://codepen.io/Gaster623/pen/ZEOrdBQ)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Same-Shape Board</title><link rel=\"stylesheet\" href=\"styles.css\"></head>\n<body><main><h1>Same-Shape Board</h1><button id=\"once\" type=\"button\">Show One Board</button><button id=\"start\" type=\"button\">Start</button><button id=\"stop\" type=\"button\">Stop</button><p id=\"status\" role=\"status\">Ready</p><canvas id=\"canvas\" width=\"500\" height=\"500\" aria-label=\"Random shape board; its cells are listed below\"></canvas><ol id=\"board-results\"></ol></main><script src=\"board.js\"></script><script src=\"script.js\"></script></body></html>\n",
+        "script.js": "(() => {\n\"use strict\";\nconst api=window.ShapeBoard;const status=document.querySelector(\"#status\");\nlet frame=null;let attempts=0;let running=false;\nfunction stop(message) {running=false;if(frame!==null)cancelAnimationFrame(frame);frame=null;if(message)status.textContent=message;}\nfunction show() {\n const board=api.createBoard();\n if(board.length!==9)throw new Error(\"Complete createBoard: return nine shape objects.\");\n const list=document.querySelector(\"#board-results\");list.replaceChildren();\n board.forEach((shape,index)=>{const row=document.createElement(\"li\");row.textContent=\"Cell \"+(index+1)+\": \"+shape.type;list.append(row);});\n let context=null;try {context=document.querySelector(\"#canvas\").getContext(\"2d\");} catch {}\n if(context)api.drawBoard(context,board);\n return board;\n}\nfunction step() {\n frame=null;if(!running)return;\n try {\n  const board=show();attempts++;\n  if(api.boardComplete(board))return stop(\"Match after \"+attempts+\" attempt(s).\");\n  if(attempts>=2000)return stop(\"Stopped at 2000 attempts without a match.\");\n  status.textContent=\"Attempt \"+attempts+\": mixed board.\";\n  frame=requestAnimationFrame(step);\n } catch(error){stop(error.message);}\n}\ndocument.querySelector(\"#start\").addEventListener(\"click\",()=>{stop();attempts=0;running=true;step();});\ndocument.querySelector(\"#stop\").addEventListener(\"click\",()=>stop(\"Stopped after \"+attempts+\" attempt(s).\"));\ndocument.querySelector(\"#once\").addEventListener(\"click\",()=>{\n stop();try {const board=show();status.textContent=api.boardComplete(board)?\"One board: match.\":\"One board: mixed.\";} catch(error){stop(error.message);}\n});\ndocument.addEventListener(\"visibilitychange\",()=>{if(document.hidden)stop(\"Stopped while page is hidden.\");});\nwindow.addEventListener(\"pagehide\",()=>stop());\n})();\n",
+        "board.js": "window.ShapeBoard = {\n createBoard(random=Math.random) { /* TODO: return nine randomly chosen shape objects. */ return []; },\n boardComplete(board) { /* TODO: require nine valid shapes with the same type. */ return false; },\n drawBoard(context,board) { /* TODO: clear and draw the stored shapes. */ }\n};\n"
+      },
+      "reference": {
+        "styles.css": "body { margin:0; color:#1b2833; background:#f4f6f8; font:1rem/1.5 system-ui,sans-serif; }\nmain { max-width:56rem; margin:auto; padding:1rem; }\nh1 { font-size:1.8rem; line-height:1.2; }\nbutton { font:inherit; padding:.6rem .9rem; margin:.2rem; border:1px solid #334155; border-radius:.3rem; background:white; color:inherit; }\nbutton:focus-visible { outline:3px solid #6846b0; outline-offset:3px; }\npre { white-space:pre-wrap; overflow-wrap:anywhere; }\ncanvas { display:block; width:100%; max-width:38rem; height:auto; background:white; border:1px solid #667085; }\nli { overflow-wrap:anywhere; }\n",
+        "README.md": "# Same-Shape Board\n\nBuild the original checkpoint's 3 by 3 board: each of its nine cells randomly\ncontains a green circle or a red square. Keep generating and drawing boards\nuntil all nine shapes have the same type. The page supplies Start, Stop,\none-board controls and a readable record of the current board.\n\nOpen index.html without a server. Complete createBoard(random),\nboardComplete(board) and drawBoard(context,board) in board.js. The interface\ncode in script.js is supplied so this task focuses on arrays, objects,\ndrawing and the completion condition.\n\n## Generate and draw\n\ncreateBoard returns an array of nine shape objects in column-major order.\nUse two loops from 0 through 2. For a circle in column i and row j, set\ntype \"circle\", x=i*50+20, y=j*50+20, radius 20 and color \"green\".\nFor a square, set type \"square\", x=i*50, y=j*50, length 40 and color \"red\".\nChoose each type independently with Math.floor(random()*2). A supplied\nrandom function returning 0 should make nine circles; 0.75 should make nine\nsquares. Alternating 0 and 0.75 should make a mixed board.\n\ndrawBoard clears the 500 by 500 canvas before looping through the array.\nUse fillRect for squares and beginPath, arc and fill for circles. Drawing\nmust read each object's stored properties rather than generating new random\nvalues: the text list and the canvas then describe the same board.\nThe visible canvas scales to a narrow screen while its buffer remains 500\nby 500. Compare two successive one-board drawings for leftover shapes.\n\n## Decide when to stop\n\nboardComplete returns true only for exactly nine valid shapes of one type.\nNine circles and nine squares are complete; a mixed array, an empty array,\na partial board and an unknown type are incomplete. Compare every shape's\ntype with the first after checking the length and valid types.\n\nStart draws one board per animation frame and stops as soon as the current\nboard is complete. The supplied controller also stops after 2,000 attempts;\nit reports the limit instead of claiming a match. Randomness has no finite\nguarantee of a matching board. Stop cancels the pending frame. Starting again\ncreates a fresh bounded attempt, and showing one board cancels any animation.\nLeaving or hiding the page also stops it. Keep the board state locally declared.\n\n## Completion\n\nRetain the three fixed generated boards, expected and observed completion\nvalues, a screenshot or text record of a match, and a stopped mixed run.\nConfirm that no extra frame runs after Stop or a match, that a second Start\nresets the attempt counter, and that reaching the limit reports the limit.\nKeep the array and text results available even when canvas is unavailable.\nExplain why a redraw clears the old image, why an empty array is not a full\nboard, and why a bounded random run may finish without a match.\n\nReference: compare after a recorded attempt.\n",
+        "CASES.md": "# Fixed checks\n\nNine circles=true,nine squares=true,mixed=false,empty=false,partial=false,unknown types=false.\nRandom0 generates all circles;random0.75 generates all squares.\nAlternating0/0.75 makes nine cells and does not match.\nOne frame scheduled at a time;match stops immediately.\nStop cancels a pending frame;Start resets attempts;one-board cancels animation.\n2000 mixed boards stop with an explicit limit result.\nHidden/pagehide stops the pending callback. Missing canvas retains nine text cells.\n",
+        "SOURCES.md": "# Sources\n\nOriginal starter: https://codepen.io/junilearning/pen/c9af625a0a84cbffef3dc7891aa804f9\nOriginal reference: https://codepen.io/junilearning/pen/702bf96c0927e96b0089cdc58df366d0\n\nThe original starter supplies the matching-board task. The local role packs retain all nine shapes,original geometry and same-type stopping rule,with declared state,an explicit2000-attempt limit,Stop/restart controls and readable canvas alternatives. All changes are adaptations;the exported original sources remain separately retained.\n",
+        "LICENSE-original.txt": "Original export notice\n\nThe retained original CodePen ZIP did not include a license file. No license text is inferred for that original. See SOURCES.md for attribution and the distinct locally authored adaptation.\n",
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Same-Shape Board</title><link rel=\"stylesheet\" href=\"styles.css\"></head>\n<body><main><h1>Same-Shape Board</h1><button id=\"once\" type=\"button\">Show One Board</button><button id=\"start\" type=\"button\">Start</button><button id=\"stop\" type=\"button\">Stop</button><p id=\"status\" role=\"status\">Ready</p><canvas id=\"canvas\" width=\"500\" height=\"500\" aria-label=\"Random shape board; its cells are listed below\"></canvas><ol id=\"board-results\"></ol></main><script src=\"board.js\"></script><script src=\"script.js\"></script></body></html>\n",
+        "script.js": "(() => {\n\"use strict\";\nconst api=window.ShapeBoard;const status=document.querySelector(\"#status\");\nlet frame=null;let attempts=0;let running=false;\nfunction stop(message) {running=false;if(frame!==null)cancelAnimationFrame(frame);frame=null;if(message)status.textContent=message;}\nfunction show() {\n const board=api.createBoard();\n if(board.length!==9)throw new Error(\"Complete createBoard: return nine shape objects.\");\n const list=document.querySelector(\"#board-results\");list.replaceChildren();\n board.forEach((shape,index)=>{const row=document.createElement(\"li\");row.textContent=\"Cell \"+(index+1)+\": \"+shape.type;list.append(row);});\n let context=null;try {context=document.querySelector(\"#canvas\").getContext(\"2d\");} catch {}\n if(context)api.drawBoard(context,board);\n return board;\n}\nfunction step() {\n frame=null;if(!running)return;\n try {\n  const board=show();attempts++;\n  if(api.boardComplete(board))return stop(\"Match after \"+attempts+\" attempt(s).\");\n  if(attempts>=2000)return stop(\"Stopped at 2000 attempts without a match.\");\n  status.textContent=\"Attempt \"+attempts+\": mixed board.\";\n  frame=requestAnimationFrame(step);\n } catch(error){stop(error.message);}\n}\ndocument.querySelector(\"#start\").addEventListener(\"click\",()=>{stop();attempts=0;running=true;step();});\ndocument.querySelector(\"#stop\").addEventListener(\"click\",()=>stop(\"Stopped after \"+attempts+\" attempt(s).\"));\ndocument.querySelector(\"#once\").addEventListener(\"click\",()=>{\n stop();try {const board=show();status.textContent=api.boardComplete(board)?\"One board: match.\":\"One board: mixed.\";} catch(error){stop(error.message);}\n});\ndocument.addEventListener(\"visibilitychange\",()=>{if(document.hidden)stop(\"Stopped while page is hidden.\");});\nwindow.addEventListener(\"pagehide\",()=>stop());\n})();\n",
+        "board.js": "window.ShapeBoard = {\n createBoard(random=Math.random) {\n  const board=[];\n  for(let i=0;i<3;i++) for(let j=0;j<3;j++) {\n   board.push(Math.floor(random()*2)===0\n    ? {type:\"circle\",x:i*50+20,y:j*50+20,radius:20,color:\"green\"}\n    : {type:\"square\",x:i*50,y:j*50,length:40,color:\"red\"});\n  }\n  return board;\n },\n boardComplete(board) {\n  return board.length===9 && [\"circle\",\"square\"].includes(board[0]?.type)\n   && board.every(shape=>shape.type===board[0].type);\n },\n drawBoard(context,board) {\n  context.clearRect(0,0,500,500);\n  board.forEach(shape=>{\n   context.fillStyle=shape.color;\n   if(shape.type===\"square\") context.fillRect(shape.x,shape.y,shape.length,shape.length);\n   else {context.beginPath();context.arc(shape.x,shape.y,shape.radius,0,Math.PI*2);context.fill();}\n  });\n }\n};\n"
+      }
+    }
+  },
+  "assignmentTexts": {
+    "javascript-level-2-javascript-master-check-in-1-curriculum-check-in-1-functions-complex-conditionals": "Complete functions.js in the shared Check-In 1 project. README.md contains the complete checkpoint instructions and CASES.md supplies fixed traces. Work locally without a server and keep this project when continuing to Arrays and Objects.\n\nImplement rollDie(random) to return one integer from 1 through 6; test fixed inputs 0 and 0.999999 for results 1 and 6. Run Functions to generate exactly 100 rolls and count the sixes in that same list. A random count varies between runs; the range and count must agree with the displayed data.\n\nUse a ternary expression in playJackpot(a,b): a sum at least 10 returns \"Jackpot!\", otherwise \"Better luck next time!\". Check (4,5), (4,6) and (6,6). Implement sum(a,b) and boolean isOdd(number); check sum(2,3)=5 and oddness for -3, 0, 2 and 3. Return values so the supplied page runner can display them.\n\nRetain the four functions, one complete 100-roll result, the fixed boundary cases and one changed input with its predicted and observed result. Explain why adding 1 after Math.floor gives the correct die range and why the function returns a value instead of only printing.",
+    "javascript-level-2-javascript-master-check-in-1-curriculum-check-in-1-arrays": "Continue the same Check-In 1 project and complete arrays.js. Keep the finished functions.js; README.md and CASES.md contain the full assignment and fixed examples.\n\nImplement createDiceResults(count,random) by collecting calls to rollDie. Run Arrays with count=20 and display those twenty original values. Report the tenth element using index 9. Implement countEvenRolls(values) and doubleResults(values), returning a new doubled array without changing the original.\n\nFor [1,2,3,4,5,6], the even count is 3 and the doubled result is [2,4,6,8,10,12]. Check that the original still contains [1,2,3,4,5,6]. Empty input gives count 0 and a new empty doubled array. For the actual twenty rolls, compare the reported tenth value with the tenth displayed value and verify the even count manually.\n\nKeep the original list, tenth value, count, doubled list, fixed cases and one changed array with its expected result. Explain how array order and length determine the valid indices. Continue to Objects using these saved files.",
+    "javascript-level-2-javascript-master-check-in-1-curriculum-check-in-1-objects-and-the-canvas": "Continue the same Check-In 1 project and complete objects.js. README.md supplies the complete local task, and CASES.md lists its geometry checks.\n\nCreate a car with make Toyota, model Corolla, year 1999, color red and damaged true. Read the year through its property. Create four card objects with integer text from 1 through 100, x=50, width=200, height=100, a color and y=0, 150, 300 or 450. Fixed random inputs 0 and 0.999999 must produce labels 1 and 100.\n\nThe canvas buffer is 1200 by 1200. Implement drawCards(context,cards) to clear it before looping over card data, drawing each rectangle and centering its number. Run Cards and compare all four visible labels with the adjacent text list. Change a card's coordinates or color in the object data and rerun while keeping the drawing loop unchanged. Repeated drawing must replace the old image.\n\nKeep the car, four card objects, drawing function, a result for the original data and a changed-data result. The text list remains available when canvas is unavailable. Explain how object properties determine the visible rectangle and why CSS display size does not change the buffer coordinates.",
+    "javascript-level-2-javascript-master-check-in-1-curriculum-javascript-level-2-javascript-master-check-in-1-practice-project": "# Same-Shape Board\n\nBuild the original checkpoint's 3 by 3 board: each of its nine cells randomly\ncontains a green circle or a red square. Keep generating and drawing boards\nuntil all nine shapes have the same type. The page supplies Start, Stop,\none-board controls and a readable record of the current board.\n\nOpen index.html without a server. Complete createBoard(random),\nboardComplete(board) and drawBoard(context,board) in board.js. The interface\ncode in script.js is supplied so this task focuses on arrays, objects,\ndrawing and the completion condition.\n\n## Generate and draw\n\ncreateBoard returns an array of nine shape objects in column-major order.\nUse two loops from 0 through 2. For a circle in column i and row j, set\ntype \"circle\", x=i*50+20, y=j*50+20, radius 20 and color \"green\".\nFor a square, set type \"square\", x=i*50, y=j*50, length 40 and color \"red\".\nChoose each type independently with Math.floor(random()*2). A supplied\nrandom function returning 0 should make nine circles; 0.75 should make nine\nsquares. Alternating 0 and 0.75 should make a mixed board.\n\ndrawBoard clears the 500 by 500 canvas before looping through the array.\nUse fillRect for squares and beginPath, arc and fill for circles. Drawing\nmust read each object's stored properties rather than generating new random\nvalues: the text list and the canvas then describe the same board.\nThe visible canvas scales to a narrow screen while its buffer remains 500\nby 500. Compare two successive one-board drawings for leftover shapes.\n\n## Decide when to stop\n\nboardComplete returns true only for exactly nine valid shapes of one type.\nNine circles and nine squares are complete; a mixed array, an empty array,\na partial board and an unknown type are incomplete. Compare every shape's\ntype with the first after checking the length and valid types.\n\nStart draws one board per animation frame and stops as soon as the current\nboard is complete. The supplied controller also stops after 2,000 attempts;\nit reports the limit instead of claiming a match. Randomness has no finite\nguarantee of a matching board. Stop cancels the pending frame. Starting again\ncreates a fresh bounded attempt, and showing one board cancels any animation.\nLeaving or hiding the page also stops it. Keep the board state locally declared.\n\n## Completion\n\nRetain the three fixed generated boards, expected and observed completion\nvalues, a screenshot or text record of a match, and a stopped mixed run.\nConfirm that no extra frame runs after Stop or a match, that a second Start\nresets the attempt counter, and that reaching the limit reports the limit.\nKeep the array and text results available even when canvas is unavailable.\nExplain why a redraw clears the old image, why an empty array is not a full\nboard, and why a bounded random run may finish without a match.\n"
+  }
+}

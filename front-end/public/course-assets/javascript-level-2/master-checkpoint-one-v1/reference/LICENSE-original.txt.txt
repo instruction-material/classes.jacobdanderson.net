@@ -1,0 +1,3 @@
+Original export notice
+
+The retained original CodePen ZIP did not include a license file. No license text is inferred for that original. See SOURCES.md for attribution and the distinct locally authored adaptation.

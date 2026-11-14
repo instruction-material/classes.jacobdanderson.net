@@ -1,0 +1,23 @@
+window.ShapeBoard = {
+ createBoard(random=Math.random) {
+  const board=[];
+  for(let i=0;i<3;i++) for(let j=0;j<3;j++) {
+   board.push(Math.floor(random()*2)===0
+    ? {type:"circle",x:i*50+20,y:j*50+20,radius:20,color:"green"}
+    : {type:"square",x:i*50,y:j*50,length:40,color:"red"});
+  }
+  return board;
+ },
+ boardComplete(board) {
+  return board.length===9 && ["circle","square"].includes(board[0]?.type)
+   && board.every(shape=>shape.type===board[0].type);
+ },
+ drawBoard(context,board) {
+  context.clearRect(0,0,500,500);
+  board.forEach(shape=>{
+   context.fillStyle=shape.color;
+   if(shape.type==="square") context.fillRect(shape.x,shape.y,shape.length,shape.length);
+   else {context.beginPath();context.arc(shape.x,shape.y,shape.radius,0,Math.PI*2);context.fill();}
+  });
+ }
+};

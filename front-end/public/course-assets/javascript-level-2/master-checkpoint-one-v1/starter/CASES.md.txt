@@ -1,0 +1,11 @@
+# Fixed checks
+
+rollDie(random=0)=1; rollDie(random=0.999999)=6.
+Jackpot inputs (4,5),(4,6),(6,6): loss,win,win.
+sum(2,3)=5; odd: -3 true,0 false,2 false,3 true.
+Six dice [1,2,3,4,5,6]: even count 3,doubled [2,4,6,8,10,12],original unchanged.
+Empty arrays: count 0,doubled [],different array.
+100 rolls all integers 1..6;20 rolls,tenth at index9.
+Car Toyota/Corolla/1999/red/damaged true.
+Four cards x50,y0/150/300/450,width200,height100,text1..100.
+Every draw clears first;card text remains available without canvas.
