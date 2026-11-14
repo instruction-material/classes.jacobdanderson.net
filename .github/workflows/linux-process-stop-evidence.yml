@@ -1,0 +1,35 @@
+name: Linux stopped-job evidence
+on:
+  push:
+    paths:
+      - ".github/workflows/linux-process-stop-evidence.yml"
+      - "test/linux-process-stop-diagnostic.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: linux-process-stop-evidence-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  evidence:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      CLASSES_FAMILY_TASK_ID: linux-process-stop-evidence-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+      - name: Compare exact source with stopped-job wait synchronization
+        run: node scripts/classes-family-heavy-task.mjs -- python3 -I -B test/linux-process-stop-diagnostic.py --output output/linux-process-stop-evidence
+      - name: Retain original logs, candidate checks and terminal recordings
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: linux-process-stop-evidence
+          path: output/linux-process-stop-evidence/
+          if-no-files-found: error
+          retention-days: 14

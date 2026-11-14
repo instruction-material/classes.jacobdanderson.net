@@ -2,6 +2,7 @@ import type { PythonIdeFile } from "@/modules/pythonIde";
 import { javascriptAdvancedConditionalsResources } from "@/modules/javascriptAdvancedConditionalsResources";
 import { javascriptAnimationResources } from "@/modules/javascriptAnimationResources";
 import { javascriptBasicLayoutResources } from "@/modules/javascriptBasicLayoutResources";
+import { javascriptCheckpointResources } from "@/modules/javascriptCheckpointResources";
 import { javascriptCombiningResources } from "@/modules/javascriptCombiningResources";
 import { javascriptConditionalsResources } from "@/modules/javascriptConditionalsResources";
 import { javascriptDrawingResources } from "@/modules/javascriptDrawingResources";
@@ -11,6 +12,7 @@ import { javascriptFirstModuleResources } from "@/modules/javascriptFirstModuleR
 import { javascriptGridLayoutResources } from "@/modules/javascriptGridLayoutResources";
 import { javascriptHtmlCssResources } from "@/modules/javascriptHtmlCssResources";
 import { javascriptLoopsResources } from "@/modules/javascriptLoopsResources";
+import { javascriptLyricsResources } from "@/modules/javascriptLyricsResources";
 import { javascriptMasterArraysResources } from "@/modules/javascriptMasterArraysResources";
 import { javascriptMasterCanvasResources } from "@/modules/javascriptMasterCanvasResources";
 import { javascriptMasterConditionalsResources } from "@/modules/javascriptMasterConditionalsResources";
@@ -23,6 +25,9 @@ import { javascriptNewsResources } from "@/modules/javascriptNewsResources";
 import { javascriptOperatorsResources } from "@/modules/javascriptOperatorsResources";
 import { javascriptRestaurantResources } from "@/modules/javascriptRestaurantResources";
 import { javascriptShopResources } from "@/modules/javascriptShopResources";
+import { javascriptSmallTalkResources } from "@/modules/javascriptSmallTalkResources";
+import { javascriptSnowflakeResources } from "@/modules/javascriptSnowflakeResources";
+import { javascriptWeatherResources } from "@/modules/javascriptWeatherResources";
 
 const courseId = "javascript-level-1-javascript-superstar";
 const base = "/course-assets/javascript-level-1/";
@@ -44,6 +49,7 @@ interface CourseRole {
 }
 
 const roles: readonly CourseRole[] = [
+	...javascriptCheckpointResources,
 	...javascriptFirstModuleResources,
 	...javascriptOperatorsResources,
 	...javascriptLoopsResources,
@@ -57,6 +63,7 @@ const roles: readonly CourseRole[] = [
 	...javascriptMoreHtmlCssResources,
 	...javascriptBasicLayoutResources,
 	...javascriptGridLayoutResources,
+	...javascriptSnowflakeResources,
 	...javascriptDynamicEventsResources,
 	...javascriptDynamicComponentsResources,
 	...javascriptMediaParallaxResources,
@@ -67,7 +74,10 @@ const roles: readonly CourseRole[] = [
 	...javascriptMasterFunctionsResources,
 	...javascriptMasterConditionalsResources,
 	...javascriptMasterCanvasResources,
-	...javascriptMasterArraysResources
+	...javascriptMasterArraysResources,
+	...javascriptLyricsResources,
+	...javascriptWeatherResources,
+	...javascriptSmallTalkResources
 ];
 
 export function javascriptCourseResource(

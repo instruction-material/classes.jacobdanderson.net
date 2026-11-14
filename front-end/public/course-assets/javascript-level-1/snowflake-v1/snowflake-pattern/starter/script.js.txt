@@ -1,0 +1,1 @@
+// Replicate the snowflake pattern shown in the example and here: https://codepen.io/junilearning/full/084c3032877fa7f9c828bba2c5798551

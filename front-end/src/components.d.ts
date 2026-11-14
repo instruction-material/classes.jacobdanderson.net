@@ -37,6 +37,7 @@ declare module 'vue' {
     LearnerCourseProgressEditor: typeof import('./components/LearnerCourseProgressEditor.vue')['default']
     LearnerSessionTools: typeof import('./components/LearnerSessionTools.vue')['default']
     LearnerWorkspace: typeof import('./components/LearnerWorkspace.vue')['default']
+    OrbitExperiment: typeof import('./components/OrbitExperiment.vue')['default']
     ProfileDetailsCard: typeof import('./components/ProfileDetailsCard.vue')['default']
     ProfileFields: typeof import('./components/ProfileFields.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

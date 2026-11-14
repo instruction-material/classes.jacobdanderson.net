@@ -278,7 +278,7 @@ export const javascriptBasicLayoutResources = [
 	{
 		project: "my-javascript-art-part-2",
 		title: "My JavaScript Art Part II",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: [
 			"/course-assets/javascript-level-1/basic-layout-v1/my-javascript-art-part-2/starter/index.html.txt"
@@ -323,8 +323,8 @@ export const javascriptBasicLayoutResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "basic-layout-v1/my-javascript-art-part-2/starter/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -337,7 +337,7 @@ export const javascriptBasicLayoutResources = [
 	{
 		project: "my-javascript-art-part-2",
 		title: "My JavaScript Art Part II",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/68f7db60fabe38f5ff48cf4cfa631a4c",
@@ -383,8 +383,8 @@ export const javascriptBasicLayoutResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "basic-layout-v1/my-javascript-art-part-2/reference/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",

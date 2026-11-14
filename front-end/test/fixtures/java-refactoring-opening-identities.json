@@ -1,0 +1,75 @@
+{
+	"curriculum": [
+		{
+			"id": "design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-curriculum-code-smells-and-safe-refactoring-workflow-core-concepts",
+			"title": "Code Smells and Safe Refactoring Workflow Core Concepts",
+			"aliases": [
+				"design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-curriculum-core-concepts-and-learning-sequence",
+				"core-concepts",
+				"design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-curriculum-core-concepts"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-curriculum-code-smells-and-safe-refactoring-workflow-application-check",
+			"title": "Code Smells and Safe Refactoring Workflow Application Check",
+			"aliases": [
+				"application-check",
+				"mini-lab-write-the-refactor-plan-before-touching-code",
+				"design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-curriculum-application-check",
+				"design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-curriculum-mini-lab-write-the-refactor-plan-before-touching-code"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-curriculum-reflection-question-what-makes-a-refactor-reckless",
+			"title": "Reflection Question: What Makes a Refactor Reckless?"
+		},
+		{
+			"id": "design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-curriculum-refactor-bug-fix-feature-or-performance-change",
+			"title": "Refactor, Bug Fix, Feature, or Performance Change?"
+		},
+		{
+			"id": "design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-curriculum-behavior-inventory-and-reversible-commit-contract",
+			"title": "Behavior Inventory and Reversible Commit Contract"
+		},
+		{
+			"id": "design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-curriculum-core-project-code-smells-and-safe-refactoring-workflow",
+			"title": "Core Project: Code Smells and Safe Refactoring Workflow",
+			"aliases": [
+				"design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-curriculum-core-project",
+				"dpr1-code-smells-and-safe-refactoring-workflow-core-project",
+				"design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-curriculum-dpr1-code-smells-and-safe-refactoring-workflow-core-project"
+			]
+		}
+	],
+	"supplementalProjects": [
+		{
+			"id": "design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-supplemental-understanding-check-code-smells-and-safe-refactoring-workflow",
+			"title": "Understanding Check: Code Smells and Safe Refactoring Workflow",
+			"aliases": [
+				"design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-supplemental-dpr1-code-smells-and-safe-refactoring-workflow-diagnostic-checkpoint",
+				"diagnostic-checkpoint-code-smells-and-safe-refactoring-workflow",
+				"diagnostic-checkpoint",
+				"understanding-check",
+				"design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-supplemental-diagnostic-checkpoint-code-smells-and-safe-refactoring-workflow",
+				"design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-supplemental-diagnostic-checkpoint",
+				"design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-supplemental-understanding-check"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-supplemental-code-smells-and-safe-refactoring-workflow-transfer-practice",
+			"title": "Code Smells and Safe Refactoring Workflow Transfer Practice",
+			"aliases": [
+				"design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-supplemental-transfer-practice-code-smells-and-safe-refactoring-workflow",
+				"design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-supplemental-transfer-practice"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-supplemental-code-smells-and-safe-refactoring-workflow-extension-practice",
+			"title": "Code Smells and Safe Refactoring Workflow Extension Practice",
+			"aliases": [
+				"design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-supplemental-extension-practice-code-smells-and-safe-refactoring-workflow",
+				"design-patterns-in-java-part-2-dpr1-code-smells-and-safe-refactoring-workflow-supplemental-extension-practice"
+			]
+		}
+	]
+}

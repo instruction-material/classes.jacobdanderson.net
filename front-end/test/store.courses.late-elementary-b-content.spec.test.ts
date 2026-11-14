@@ -77,7 +77,7 @@ describe("Late Elementary B complete math materials", () => {
 			).toBe(true);
 		}
 	});
-	it("supplies discrete growth and orbit assumptions instead of relying on absent images or simulators", async () => {
+	it("supplies discrete growth assumptions and the interactive orbit experiment", async () => {
 		const course = await loadRawCourse("late-elementary-b-math");
 		const growth = course!.modules.find(module =>
 			module.title.startsWith("LEB17 ")
@@ -87,8 +87,12 @@ describe("Late Elementary B complete math materials", () => {
 		const orbit = course!.modules.find(module =>
 			module.title.startsWith("LEB18 ")
 		)!;
-		expect(orbit.curriculum[2].content).toContain("paper simulation");
-		expect(orbit.curriculum[2].content).toContain("60150 - 60000");
+		expect(orbit.curriculum[2].content).toContain(
+			"[Tesla-Retriever experiment](/tesla-retriever)"
+		);
+		expect(orbit.curriculum[2].content).toContain("60150 mph");
+		expect(orbit.curriculum[2].content).toContain("150-mph increments");
+		expect(orbit.curriculum[2].content).toContain("observed result");
 		expect(orbit.curriculum[0].content).toContain(
 			"fictional course constant"
 		);

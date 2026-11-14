@@ -1,0 +1,14 @@
+# Input and score checks
+
+| Answers in order | Expected score |
+| --- | --- |
+| program; easier; clear | 3 out of 3 |
+| wrong; wrong; wrong | 0 out of 3 |
+| program; wrong; clear | 2 out of 3 |
+| cancel; easier; clear | 2 out of 3 |
+| program; cancel; clear | 2 out of 3 |
+| program; easier; cancel | 2 out of 3 |
+| cancel; cancel; cancel | 0 out of 3 |
+| space-padded uppercase accepted words | 3 out of 3 |
+
+A cancelled prompt returns null. It is not the text "null". Blank or unmatched answers count as incorrect. Repeat an attempt after refresh to check that the counter resets. Replace this table when choosing different snippets; keep predicted and observed scores together.

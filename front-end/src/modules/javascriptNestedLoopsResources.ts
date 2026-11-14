@@ -2,7 +2,7 @@ export const javascriptNestedLoopsResources = [
 	{
 		project: "multiplication-tables",
 		title: "Multiplication Tables",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/WNrXoBj"],
 		files: [
@@ -33,8 +33,8 @@ export const javascriptNestedLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -47,7 +47,7 @@ export const javascriptNestedLoopsResources = [
 	{
 		project: "multiplication-tables",
 		title: "Multiplication Tables",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/431a3c1e61b0fe9d0e6fa2e16e6d37f6",
@@ -81,8 +81,8 @@ export const javascriptNestedLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -95,7 +95,7 @@ export const javascriptNestedLoopsResources = [
 	{
 		project: "pattern-production",
 		title: "Pattern Production",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/pogdRva"],
 		files: [
@@ -126,8 +126,8 @@ export const javascriptNestedLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -140,7 +140,7 @@ export const javascriptNestedLoopsResources = [
 	{
 		project: "pattern-production",
 		title: "Pattern Production",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/9b713f294e21887a1a2c9b528764bd4b",
@@ -174,8 +174,8 @@ export const javascriptNestedLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -188,7 +188,7 @@ export const javascriptNestedLoopsResources = [
 	{
 		project: "armstrong-numbers",
 		title: "Armstrong Numbers",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/eYJegdP"],
 		files: [
@@ -219,8 +219,8 @@ export const javascriptNestedLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -233,7 +233,7 @@ export const javascriptNestedLoopsResources = [
 	{
 		project: "armstrong-numbers",
 		title: "Armstrong Numbers",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/e12716e0c3e1cbfc0405c9da2e245b8a",
@@ -267,8 +267,8 @@ export const javascriptNestedLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -281,7 +281,7 @@ export const javascriptNestedLoopsResources = [
 	{
 		project: "archery-simulator",
 		title: "Archery Simulator",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/xxZPgdv"],
 		files: [
@@ -312,8 +312,8 @@ export const javascriptNestedLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -326,7 +326,7 @@ export const javascriptNestedLoopsResources = [
 	{
 		project: "archery-simulator",
 		title: "Archery Simulator",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/2882e6ebc5b146358627d5c4f5afd90c",
@@ -360,8 +360,8 @@ export const javascriptNestedLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -374,7 +374,7 @@ export const javascriptNestedLoopsResources = [
 	{
 		project: "tower-of-boxes",
 		title: "Tower of Boxes",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/PoZOWWp"],
 		files: [
@@ -405,8 +405,8 @@ export const javascriptNestedLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -419,7 +419,7 @@ export const javascriptNestedLoopsResources = [
 	{
 		project: "tower-of-boxes",
 		title: "Tower of Boxes",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/6973a709e1c0d6932da2ed1e7650d30f",
@@ -453,8 +453,8 @@ export const javascriptNestedLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -467,7 +467,7 @@ export const javascriptNestedLoopsResources = [
 	{
 		project: "shield-debugging",
 		title: "Shield Debugging",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/pogyeaj"],
 		files: [
@@ -498,8 +498,8 @@ export const javascriptNestedLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -512,7 +512,7 @@ export const javascriptNestedLoopsResources = [
 	{
 		project: "shield-debugging",
 		title: "Shield Debugging",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/1ac928d6d9d777928c4439b4262310a3",
@@ -546,8 +546,8 @@ export const javascriptNestedLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",

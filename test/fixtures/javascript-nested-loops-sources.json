@@ -11,7 +11,7 @@
       "section": "core",
       "project": "multiplication-tables",
       "title": "Multiplication Tables",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "https://codepen.io/junilearning/pen/WNrXoBj"
@@ -44,8 +44,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -73,7 +73,7 @@
       "section": "core",
       "project": "multiplication-tables",
       "title": "Multiplication Tables",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/431a3c1e61b0fe9d0e6fa2e16e6d37f6",
@@ -107,8 +107,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -136,7 +136,7 @@
       "section": "core",
       "project": "pattern-production",
       "title": "Pattern Production",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "https://codepen.io/junilearning/pen/pogdRva"
@@ -169,8 +169,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -197,7 +197,7 @@
       "section": "core",
       "project": "pattern-production",
       "title": "Pattern Production",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/9b713f294e21887a1a2c9b528764bd4b",
@@ -231,8 +231,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -261,7 +261,7 @@
       "section": "core",
       "project": "armstrong-numbers",
       "title": "Armstrong Numbers",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "https://codepen.io/junilearning/pen/eYJegdP"
@@ -294,8 +294,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -322,7 +322,7 @@
       "section": "core",
       "project": "armstrong-numbers",
       "title": "Armstrong Numbers",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/e12716e0c3e1cbfc0405c9da2e245b8a",
@@ -356,8 +356,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -385,7 +385,7 @@
       "section": "supplemental",
       "project": "archery-simulator",
       "title": "Archery Simulator",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "https://codepen.io/junilearning/pen/xxZPgdv"
@@ -418,8 +418,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -446,7 +446,7 @@
       "section": "supplemental",
       "project": "archery-simulator",
       "title": "Archery Simulator",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/2882e6ebc5b146358627d5c4f5afd90c",
@@ -480,8 +480,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -509,7 +509,7 @@
       "section": "supplemental",
       "project": "tower-of-boxes",
       "title": "Tower of Boxes",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "https://codepen.io/junilearning/pen/PoZOWWp"
@@ -542,8 +542,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -571,7 +571,7 @@
       "section": "supplemental",
       "project": "tower-of-boxes",
       "title": "Tower of Boxes",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/6973a709e1c0d6932da2ed1e7650d30f",
@@ -605,8 +605,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -634,7 +634,7 @@
       "section": "supplemental",
       "project": "shield-debugging",
       "title": "Shield Debugging",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "https://codepen.io/junilearning/pen/pogyeaj"
@@ -667,8 +667,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -696,7 +696,7 @@
       "section": "supplemental",
       "project": "shield-debugging",
       "title": "Shield Debugging",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/1ac928d6d9d777928c4439b4262310a3",
@@ -730,8 +730,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -751,5 +751,10 @@
       "intentionalRuntimeError": false,
       "viewBox": "0 0 2000 2000"
     }
-  ]
+  ],
+  "vendorSecurityPatch": {
+    "advisory": "GHSA-36jr-mh4h-2g58",
+    "upstreamFix": "https://github.com/d3/d3-color/commit/61a184bd3748db5142c316238c03547865787a94",
+    "manifest": "scripts/vendored-d3-security.json"
+  }
 }

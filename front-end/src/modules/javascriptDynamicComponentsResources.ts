@@ -206,7 +206,7 @@ export const javascriptDynamicComponentsResources = [
 	{
 		project: "my-javascript-art-part-4",
 		title: "My JavaScript Art Part IV",
-		version: 2,
+		version: 3,
 		role: "starter",
 		urls: [
 			"/course-assets/javascript-level-1/dynamic-components-v2/my-javascript-art-part-4/starter/index.html.txt",
@@ -270,8 +270,8 @@ export const javascriptDynamicComponentsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "dynamic-components-v1/my-javascript-art-part-4/starter/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -284,7 +284,7 @@ export const javascriptDynamicComponentsResources = [
 	{
 		project: "my-javascript-art-part-4",
 		title: "My JavaScript Art Part IV",
-		version: 2,
+		version: 3,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/68807d2000d19574d4c80d354eea197f",
@@ -348,8 +348,8 @@ export const javascriptDynamicComponentsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "dynamic-components-v1/my-javascript-art-part-4/reference/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",

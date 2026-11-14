@@ -1,0 +1,70 @@
+{
+  "curriculum": [
+    {
+      "id": "design-patterns-in-java-dpj7-behavioral-patterns-ii-curriculum-behavioral-patterns-ii-core-concepts",
+      "aliases": [
+        "design-patterns-in-java-dpj7-behavioral-patterns-ii-curriculum-core-concepts-and-learning-sequence",
+        "core-concepts",
+        "design-patterns-in-java-dpj7-behavioral-patterns-ii-curriculum-core-concepts"
+      ],
+      "title": "Behavioral Patterns II Core Concepts"
+    },
+    {
+      "id": "design-patterns-in-java-dpj7-behavioral-patterns-ii-curriculum-behavioral-patterns-ii-application-check",
+      "aliases": [
+        "design-patterns-in-java-dpj7-behavioral-patterns-ii-curriculum-application-misconceptions-and-readiness-check",
+        "application-check",
+        "design-patterns-in-java-dpj7-behavioral-patterns-ii-curriculum-application-check"
+      ],
+      "title": "Behavioral Patterns II Application Check"
+    },
+    {
+      "id": "design-patterns-in-java-dpj7-behavioral-patterns-ii-curriculum-reflection-question-which-pattern-owns-the-conversation",
+      "title": "Reflection Question: Which Pattern Owns the Conversation?"
+    },
+    {
+      "id": "design-patterns-in-java-dpj7-behavioral-patterns-ii-curriculum-event-command-and-undo-lifecycle-contract",
+      "title": "Event, Command, and Undo Lifecycle Contract"
+    },
+    {
+      "id": "design-patterns-in-java-dpj7-behavioral-patterns-ii-curriculum-core-project-behavioral-patterns-ii",
+      "aliases": [
+        "design-patterns-in-java-dpj7-behavioral-patterns-ii-curriculum-core-project",
+        "dpj7-behavioral-patterns-ii-core-project",
+        "design-patterns-in-java-dpj7-behavioral-patterns-ii-curriculum-dpj7-behavioral-patterns-ii-core-project"
+      ],
+      "title": "Core Project: Behavioral Patterns II"
+    }
+  ],
+  "supplementalProjects": [
+    {
+      "id": "design-patterns-in-java-dpj7-behavioral-patterns-ii-supplemental-understanding-check-behavioral-patterns-ii",
+      "aliases": [
+        "design-patterns-in-java-dpj7-behavioral-patterns-ii-supplemental-dpj7-behavioral-patterns-ii-diagnostic-checkpoint",
+        "diagnostic-checkpoint-behavioral-patterns-ii",
+        "diagnostic-checkpoint",
+        "understanding-check",
+        "design-patterns-in-java-dpj7-behavioral-patterns-ii-supplemental-diagnostic-checkpoint-behavioral-patterns-ii",
+        "design-patterns-in-java-dpj7-behavioral-patterns-ii-supplemental-diagnostic-checkpoint",
+        "design-patterns-in-java-dpj7-behavioral-patterns-ii-supplemental-understanding-check"
+      ],
+      "title": "Understanding Check: Behavioral Patterns II"
+    },
+    {
+      "id": "design-patterns-in-java-dpj7-behavioral-patterns-ii-supplemental-behavioral-patterns-ii-transfer-practice",
+      "aliases": [
+        "design-patterns-in-java-dpj7-behavioral-patterns-ii-supplemental-transfer-practice",
+        "design-patterns-in-java-dpj7-behavioral-patterns-ii-supplemental-transfer-practice-behavioral-patterns-ii"
+      ],
+      "title": "Behavioral Patterns II Transfer Practice"
+    },
+    {
+      "id": "design-patterns-in-java-dpj7-behavioral-patterns-ii-supplemental-behavioral-patterns-ii-extension-practice",
+      "aliases": [
+        "design-patterns-in-java-dpj7-behavioral-patterns-ii-supplemental-extension-practice",
+        "design-patterns-in-java-dpj7-behavioral-patterns-ii-supplemental-extension-practice-behavioral-patterns-ii"
+      ],
+      "title": "Behavioral Patterns II Extension Practice"
+    }
+  ]
+}

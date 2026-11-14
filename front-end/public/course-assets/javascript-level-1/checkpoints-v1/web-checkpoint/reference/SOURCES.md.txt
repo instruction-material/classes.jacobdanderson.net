@@ -1,0 +1,9 @@
+# Sources and adaptation
+
+Juni Learning, JSS Check-In #2.
+Starter: https://codepen.io/junilearning/pen/f52dbec392b0c8ec4d21abcf8aecad43
+Reference: https://codepen.io/junilearning/pen/ce3da888e3e72bcaff1251f225b2f6fa
+
+Complete original source/settings and ZIP exports were reviewed on 2026-11-13. The original starter panels are empty. The reference contains the three boxes, responsive face/bug icons, nine grid tiles, numbered Materialize cards, a modal and a D3 square with size/hover transitions. It uses a modal rather than a collapsible.
+
+This independently authored local version preserves those structures and behaviors. It adds semantic labels, native buttons, a scalable SVG viewBox, narrow-screen grid sizing and smaller inline yellow-box margins below400px, reduced-motion support and local assets. Materialize remains 1.0.0; its JS needs no jQuery. D3 is the site's already-retained 7.9.0 build rather than original 5.16.0. The already-retained local icon font replaces external font URLs; the original starter's duplicate Google Fonts link and unused jQuery are omitted. Required libraries and licenses travel with the ZIP.

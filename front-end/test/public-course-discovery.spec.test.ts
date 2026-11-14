@@ -9,7 +9,7 @@ import { coursePathwayMaps } from "@/modules/coursePathwayMaps";
 import HomePage from "@/pages/index.vue";
 import PathwaysPage from "@/pages/pathways.vue";
 import TheFooter from "@/components/TheFooter.vue";
-import { courseCatalog } from "@/stores/courses/index";
+import { listedCourseCatalog } from "@/stores/courses/index";
 import { coursePublicPathways } from "@/stores/courses/public-pathways";
 import { useContentStore } from "@/stores/content";
 
@@ -27,12 +27,12 @@ describe("public course discovery", () => {
 		expect(hasOpenCourseCatalog(origin)).toBe(expected);
 	});
 
-	it("covers each catalog course once without turning variants into prerequisites", () => {
+	it("covers each publicly listed course once without turning variants into prerequisites", () => {
 		const courseIds = coursePathwayMaps.flatMap(pathway =>
 			pathway.stages.flatMap(stage => stage.courseIds)
 		);
 		expect(courseIds.slice().sort()).toEqual(
-			courseCatalog.map(course => course.id).sort()
+			listedCourseCatalog.map(course => course.id).sort()
 		);
 		expect(new Set(courseIds).size).toBe(courseIds.length);
 		expect(coursePathwayMaps.map(pathway => pathway.id).sort()).toEqual(
@@ -53,7 +53,7 @@ describe("public course discovery", () => {
 		).toBe("choices");
 	});
 
-	it("filters visual maps and links every course to its stable catalog anchor", async () => {
+	it("filters visual maps and links every listed course to its stable catalog anchor", async () => {
 		const wrapper = mount(PathwaysPage, {
 			global: { stubs: { RouterLink: link } }
 		});
@@ -64,7 +64,7 @@ describe("public course discovery", () => {
 					anchor.attributes("href").slice("/courses#".length)
 				)
 				.sort()
-		).toEqual(courseCatalog.map(course => course.id).sort());
+		).toEqual(listedCourseCatalog.map(course => course.id).sort());
 		await wrapper.get("button:nth-child(3)").trigger("click");
 		expect(wrapper.findAll(".pathway-card")).toHaveLength(1);
 		expect(wrapper.get(".pathway-card h2").text()).toBe("Math");

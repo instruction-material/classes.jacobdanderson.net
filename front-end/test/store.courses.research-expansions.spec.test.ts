@@ -221,6 +221,23 @@ describe("research-backed course family expansions", () => {
 						"Each required activity links a local case-input section and an answer section"
 					])
 						expect(roadmapText, courseId).toContain(phrase);
+				} else if (courseId === "design-patterns-in-java") {
+					const items = [
+						...roadmapModule!.curriculum,
+						...roadmapModule!.supplementalProjects
+					];
+					expect(items).toHaveLength(6);
+					expect(
+						items.every(item => item.contentKind === "reading")
+					).toBe(true);
+					for (const detail of [
+						"Ordered collections and captured snapshots support Observer dispatch",
+						"Exceptions and operation ordering support mediator history and audit failures",
+						"sources.txt and src/",
+						"immutable Git revisions",
+						"JDK 21"
+					])
+						expect(roadmapText, courseId).toContain(detail);
 				} else {
 					for (const label of [
 						"Map purpose",

@@ -17,6 +17,7 @@ import { c17VerifiedPacks } from "@/modules/c17ProjectResources";
 import CourseExplorer from "@/components/CourseExplorer.vue";
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
+import { listedCourseCatalog } from "@/stores/courses/index";
 import {
 	pendingStaticMediaNotice,
 	staticMediaUrl
@@ -436,6 +437,8 @@ describe("CourseExplorer.vue", () => {
 	beforeEach(() => {
 		setActivePinia(createPinia());
 		vi.clearAllMocks();
+		vi.mocked(api.get).mockReset();
+		vi.mocked(api.put).mockReset();
 		resetCourseAssetPreviewCache();
 		vi.useRealTimers();
 		installLocalStorageStub();
@@ -999,15 +1002,14 @@ describe("CourseExplorer.vue", () => {
 		expect(wrapper.text()).not.toContain("Mark module complete");
 	});
 
-	it("shows all catalog courses publicly without learner data, tracking or solutions", async () => {
-		const courses = useCoursesStore();
+	it("shows listed catalog courses publicly without learner data, tracking or solutions", async () => {
 		const wrapper = mount(CourseExplorer, {
 			props: { publicCatalog: true, browseAll: true }
 		});
 		try {
 			await flushPromises();
 			expect(wrapper.findAll("#course-select option")).toHaveLength(
-				courses.courses.length
+				listedCourseCatalog.length
 			);
 			expect(wrapper.find("#learner-select").exists()).toBe(false);
 			expect(wrapper.find(".progress-toggle").exists()).toBe(false);
@@ -1075,7 +1077,7 @@ describe("CourseExplorer.vue", () => {
 		try {
 			await flushPromises();
 			expect(wrapper.findAll("#course-select option")).toHaveLength(
-				courses.courses.length
+				listedCourseCatalog.length
 			);
 			expect(wrapper.get("#learner-select").element).toBeTruthy();
 			await wrapper

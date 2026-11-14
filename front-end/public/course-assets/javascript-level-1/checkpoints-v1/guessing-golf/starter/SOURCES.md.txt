@@ -1,0 +1,9 @@
+# Sources and adaptation
+
+Task: Juni Learning, JSS Check-In #1 Practice Project: Guessing Golf.
+Starter: https://codepen.io/junilearning/pen/b04e9208251c84d123c97daf37972988
+Reference: https://codepen.io/junilearning/pen/e0a4c125fb9fa7f0324934dc2fe9317f
+
+Both original panels/settings and original exports were reviewed on 2026-11-13. The original reference selects integers 0–19, keeps one secret per round and sums all nine absolute distances.
+
+This independently authored local implementation preserves those rules. It starts on a button, validates entries, numbers rounds 1–3 and ends on Cancel. Its printToScreen helper uses local DOM text instead of the original decorative D3 helper, whose fixed 1500px SVG and malformed RGB value are unnecessary for the exercise. No external libraries are required.

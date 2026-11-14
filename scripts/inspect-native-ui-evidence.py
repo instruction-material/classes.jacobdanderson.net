@@ -45,6 +45,59 @@ def select_failed_result(bundle):
     }
 
 
+
+def select_failed_producer(repository, run, artifact, jobs):
+    """Bind one immutable upload to its completed failed job, including earlier attempts."""
+    names = {
+        "swift-tracker-ui-tracker": ("tracker", "swift-tracker-ui (tracker)"),
+        "swift-tracker-ui-swiftdata": ("swiftdata", "swift-tracker-ui (swiftdata)"),
+        **{"swift-canonical-" + course + "-ios":
+           (course, "swift-canonical-ios (" + course + ")")
+           for course in ["gallery", "hobby", "map", "capstone"]},
+    }
+    assert repository in {
+        "anderson-webops/classes.jacobdanderson.net",
+        "instruction-material/classes.jacobdanderson.net",
+    }
+    assert run["repository"]["full_name"] == repository
+    assert run["path"] == ".github/workflows/ci.yml"
+    assert run["status"] in {"queued", "in_progress", "completed"}
+    if run["status"] == "completed":
+        assert run["conclusion"] in {"failure", "cancelled", "timed_out", "action_required"}
+    assert re.fullmatch(r"[0-9a-f]{40}", run["head_sha"])
+    origin = artifact["workflow_run"]
+    assert origin["id"] == run["id"] and origin["head_sha"] == run["head_sha"]
+    assert origin["repository_id"] == origin["head_repository_id"] == run["repository"]["id"]
+    assert not artifact["expired"] and artifact["name"] in names
+    assert re.fullmatch(r"sha256:[0-9a-f]{64}", artifact["digest"])
+    course, expected_name = names[artifact["name"]]
+    uploaded = datetime.fromisoformat(artifact["created_at"].replace("Z", "+00:00"))
+    candidates = []
+    for job in jobs:
+        if job["name"] != expected_name or job["status"] != "completed":
+            continue
+        if job["conclusion"] not in {"failure", "timed_out"}:
+            continue
+        if job["run_id"] != run["id"]:
+            continue
+        if job["head_sha"] != run["head_sha"]:
+            continue
+        started = datetime.fromisoformat(job["started_at"].replace("Z", "+00:00"))
+        ended = datetime.fromisoformat(job["completed_at"].replace("Z", "+00:00"))
+        if started <= uploaded <= ended:
+            candidates.append(job)
+    assert len(candidates) == 1, "One completed failed uploader job is required"
+    assert isinstance(candidates[0]["id"], int) and candidates[0]["id"] > 0
+    return {"course": course, "job": candidates[0]}
+
+
+def verify_failed_upload(log, artifact):
+    """Check the original uploader's immutable artifact ID and provider digest."""
+    assert re.search(r"\bArtifact ID(?::\s*|\s+(?:is\s+)?)" + str(artifact["id"]) + r"\b", log)
+    digest = artifact["digest"].removeprefix("sha256:")
+    assert "SHA256 digest of uploaded artifact is " + digest in log
+
+
 def main():
     parser = ArgumentParser(description=__doc__)
     parser.add_argument("--run-id", required=True)
@@ -138,18 +191,39 @@ def main():
         retain()
         artifact = api("actions/artifacts/" + args.artifact_id, "artifact-metadata")
         run = api("actions/runs/" + args.run_id, "producer-run")
+        assert artifact["id"] == int(args.artifact_id)
         assert artifact["workflow_run"]["id"] == run["id"] == int(args.run_id)
         assert artifact["workflow_run"]["head_sha"] == run["head_sha"]
         assert run["repository"]["full_name"] == repository
         assert run["path"] == ".github/workflows/ci.yml"
-        assert run["status"] == "completed" and not artifact["expired"]
+        jobs = []
+        page = 1
+        while True:
+            batch = api("actions/runs/" + args.run_id
+                        + "/jobs?filter=all&per_page=100&page=" + str(page),
+                        "producer-jobs-" + str(page))
+            assert 0 < batch["total_count"] <= 1000, "Bounded original job inventory required"
+            jobs.extend(batch["jobs"])
+            if len(jobs) >= batch["total_count"]:
+                break
+            page += 1
+            assert page <= 10
+        producer = select_failed_producer(repository, run, artifact, jobs)
+        upload_log = execute(["gh", "api", "--allow-escape-sequences", "repos/" + repository
+                              + "/actions/jobs/" + str(producer["job"]["id"]) + "/logs"],
+                             "producer-upload-log").stdout.decode()
+        verify_failed_upload(upload_log, artifact)
+        record["producerJob"] = producer["job"]["id"]
+        record["producerJobConclusion"] = producer["job"]["conclusion"]
+        record["producerJobCompleted"] = True
+        record["producerRunStillActive"] = run["status"] != "completed"
         assert artifact["digest"] == "sha256:" + args.sha256
         assert 0 < artifact["size_in_bytes"] < 300 * 1024 * 1024
         record["producerHead"] = run["head_sha"]
         record["producerConclusion"] = run["conclusion"]
         record["artifactName"] = artifact["name"]
         execute(
-            ["gh", "api", "repos/" + repository + "/actions/artifacts/"
+            ["gh", "api", "--allow-escape-sequences", "repos/" + repository + "/actions/artifacts/"
              + args.artifact_id + "/zip"],
             "original-artifact",
         )
@@ -166,6 +240,7 @@ def main():
                 assert dest.is_relative_to(extracted), info.filename
                 assert (info.external_attr >> 16) & 0o170000 != 0o120000
             selection = select_failed_result(bundle)
+            assert selection["course"] == producer["course"]
             bundle.extractall(extracted, selection["selected"])
         archive.rename(output / "original-artifact.zip")
         # The original archive stays in its producer run; retain its verified identity.

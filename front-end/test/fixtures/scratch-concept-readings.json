@@ -38,7 +38,12 @@
 			"scratch-level-1-gs10-message-broadcasting-curriculum-message-broadcasting"
 		],
 		"requiredText": [
-			"Broadcasting lets sprites send messages to each other"
+			"Broadcasting lets sprites send messages to each other",
+			"Those receivers run together",
+			"Each receiving script must finish",
+			"outside the costume-change loop",
+			"one collection per contact",
+			"reset to 0 for the next game"
 		]
 	},
 	{
@@ -68,7 +73,11 @@
 		],
 		"requiredText": [
 			"A variable stores information",
-			"A broadcast lets sprites send messages"
+			"A broadcast lets sprites send messages",
+			"Those receivers run together",
+			"Each receiving script must finish",
+			"outside the costume-change loop",
+			"Start the show twice."
 		]
 	},
 	{

@@ -13,7 +13,7 @@
       "url": "https://codepen.io/junilearning/pen/QWyqrLo",
       "project": "a-checker",
       "assignmentTitle": "JSS5 Project 1: A-Checker",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/QWyqrLo"
       ],
@@ -45,8 +45,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -74,7 +74,7 @@
       "url": "https://codepen.io/junilearning/pen/3ef023d001ee721f608cac6b87a41bd2",
       "project": "a-checker",
       "assignmentTitle": "JSS5 Project 1: A-Checker",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/3ef023d001ee721f608cac6b87a41bd2",
         "https://codepen.io/junilearning/pen/KKVXoXG/3ef023d001ee721f608cac6b87a41bd2"
@@ -107,8 +107,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -136,7 +136,7 @@
       "url": "https://codepen.io/junilearning/pen/yLezjje",
       "project": "grade-checker",
       "assignmentTitle": "JSS5 Project 2: What Grade Is This?",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/yLezjje"
       ],
@@ -168,8 +168,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -197,7 +197,7 @@
       "url": "https://codepen.io/junilearning/pen/2d86a137a1c362df390051e86a298e9d",
       "project": "grade-checker",
       "assignmentTitle": "JSS5 Project 2: What Grade Is This?",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/2d86a137a1c362df390051e86a298e9d",
         "https://codepen.io/junilearning/pen/dyGVedm/2d86a137a1c362df390051e86a298e9d"
@@ -230,8 +230,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -259,7 +259,7 @@
       "url": "https://codepen.io/junilearning/pen/wvMrXdG",
       "project": "wholesome-memes",
       "assignmentTitle": "JSS5 Project 3: Wholesome Memes",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/wvMrXdG"
       ],
@@ -291,8 +291,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -320,7 +320,7 @@
       "url": "https://codepen.io/junilearning/pen/bf0a3506f98d1b247c3f259986a941bd",
       "project": "wholesome-memes",
       "assignmentTitle": "JSS5 Project 3: Wholesome Memes",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/bf0a3506f98d1b247c3f259986a941bd",
         "https://codepen.io/junilearning/pen/dyGVKNa/bf0a3506f98d1b247c3f259986a941bd"
@@ -353,8 +353,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -481,7 +481,7 @@
       "url": "https://codepen.io/junilearning/pen/jOWGKZw",
       "project": "snake-eyes",
       "assignmentTitle": "JSS5 Supplemental Project 2: Snake Eyes",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/jOWGKZw"
       ],
@@ -513,8 +513,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -542,7 +542,7 @@
       "url": "https://codepen.io/junilearning/pen/6580937e9dfd9ce926651a6fe915e078",
       "project": "snake-eyes",
       "assignmentTitle": "JSS5 Supplemental Project 2: Snake Eyes",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/6580937e9dfd9ce926651a6fe915e078",
         "https://codepen.io/junilearning/pen/gOPrRqv/6580937e9dfd9ce926651a6fe915e078"
@@ -575,8 +575,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -604,7 +604,7 @@
       "url": "https://codepen.io/junilearning/pen/PoZdQeW",
       "project": "debugging-favorite-fruit",
       "assignmentTitle": "JSS5 Supplemental Project 3: Debugging the Favorite Fruit Guesser",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/PoZdQeW"
       ],
@@ -636,8 +636,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -665,7 +665,7 @@
       "url": "https://codepen.io/junilearning/pen/949d30ec6dbcc0dfdda259392403b0b7",
       "project": "debugging-favorite-fruit",
       "assignmentTitle": "JSS5 Supplemental Project 3: Debugging the Favorite Fruit Guesser",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/949d30ec6dbcc0dfdda259392403b0b7",
         "https://codepen.io/junilearning/pen/QWyVQra/949d30ec6dbcc0dfdda259392403b0b7"
@@ -698,8 +698,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -723,5 +723,10 @@
   "revision": "68c243cc811e0524df220f0cc7f5cb5e6abdf185ccd570ac5d3b8dd2528811f7",
   "revisionKind": "SHA-256 of complete source-role metadata; not a Git revision",
   "originalSourceCaptureComplete": true,
-  "actualIDEWorkflowsVerified": true
+  "actualIDEWorkflowsVerified": true,
+  "vendorSecurityPatch": {
+    "advisory": "GHSA-36jr-mh4h-2g58",
+    "upstreamFix": "https://github.com/d3/d3-color/commit/61a184bd3748db5142c316238c03547865787a94",
+    "manifest": "scripts/vendored-d3-security.json"
+  }
 }

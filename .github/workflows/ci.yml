@@ -471,6 +471,22 @@ jobs:
               id: unit_dependencies
               run: npm ci
 
+            - name: Verify maintained course library security patches
+              env:
+                  VENDORED_D3_PROOF_FILE: ${{ github.workspace }}/output/vendored-d3-security/proof.json
+              run: |
+                  node scripts/verify-vendored-d3.mjs
+                  node --test --test-concurrency=1 scripts/check-vendored-d3-regressions.mjs
+
+            - name: Retain course library security proof
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: vendored-d3-security
+                  path: output/vendored-d3-security/
+                  if-no-files-found: warn
+                  retention-days: 14
+
             - name: Unit tests
               env:
                   VITEST_WATCH: "false"
@@ -889,6 +905,57 @@ jobs:
                   if-no-files-found: ignore
                   retention-days: 7
 
+    self-study-pages:
+        runs-on: ubuntu-24.04
+        timeout-minutes: 60
+        steps:
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+              with:
+                  persist-credentials: false
+
+            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+              with:
+                  node-version: 24.18.0
+                  cache: npm
+                  registry-url: https://registry.npmjs.org/
+
+            - name: Pin npm version
+              run: |
+                  npm i -g npm@12.0.1
+                  npm -v
+                  test "$(npm --version)" = "12.0.1"
+
+            - name: Verify preview readiness failure recovery
+              run: node --test test/preview-readiness.test.mjs
+
+            - name: Install deps
+              run: npm ci
+
+            - name: Build front-end
+              run: npm run -w front-end build
+
+            - name: Export self-study course page expectations
+              env:
+                  SELF_STUDY_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser
+              run: npm exec -w front-end -- vitest run test/store.courses.self-study-browser-manifest.spec.test.ts --no-file-parallelism --maxWorkers=1
+
+            - name: Verify self-study readings and assignment pages
+              env:
+                  SELF_STUDY_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser
+              run: |
+                  node --test test/self-study-browser-batches.test.mjs
+                  node scripts/verify-self-study-browser-batches.mjs
+
+            - name: Retain self-study course page evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: self-study-course-pages
+                  path: output/self-study-browser/
+                  if-no-files-found: error
+                  retention-days: 14
+
+
     test-e2e:
         runs-on: ubuntu-24.04
         timeout-minutes: 75
@@ -1107,6 +1174,101 @@ jobs:
                   if-no-files-found: error
                   retention-days: 7
 
+            - name: Verify the recovered snowflake original-source IDE workflows
+              env:
+                  JAVASCRIPT_SNOWFLAKE_BROWSER_DIR: output/javascript-snowflake-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-snowflake-course-browser.test.mjs
+
+            - name: Verify actual snowflake exports offline and at narrow widths
+              env:
+                  JAVASCRIPT_SNOWFLAKE_BROWSER_DIR: output/javascript-snowflake-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-snowflake-exported-browser.test.mjs
+
+            - name: Verify weather project consent, saved edits and actual downloads
+              env:
+                  JAVASCRIPT_WEATHER_BROWSER_DIR: output/javascript-weather-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-weather-course-browser.test.mjs
+
+            - name: Run actual weather downloads offline through all five cases
+              env:
+                  JAVASCRIPT_WEATHER_BROWSER_DIR: output/javascript-weather-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-weather-exported-browser.test.mjs
+
+            - name: Verify Small Talk project consent, saved edits and actual downloads
+              env:
+                  JAVASCRIPT_SMALL_TALK_BROWSER_DIR: output/javascript-small-talk-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-small-talk-course-browser.test.mjs
+
+            - name: Run actual Small Talk downloads offline through all21input cases
+              env:
+                  JAVASCRIPT_SMALL_TALK_BROWSER_DIR: output/javascript-small-talk-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-small-talk-exported-browser.test.mjs
+
+            - name: Verify lyrics project consent, saved edits and actual downloads
+              env:
+                  JAVASCRIPT_LYRICS_BROWSER_DIR: output/javascript-lyrics-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-lyrics-course-browser.test.mjs
+
+            - name: Run actual lyrics downloads through score and cancellation cases
+              env:
+                  JAVASCRIPT_LYRICS_BROWSER_DIR: output/javascript-lyrics-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-lyrics-exported-browser.test.mjs
+
+            - name: Retain lyrics source, saved downloads and offline evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-lyrics-workflows
+                  path: output/javascript-lyrics-browser/
+                  if-no-files-found: warn
+                  retention-days: 14
+
+            - name: Retain Small Talk source, saved downloads and offline evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-small-talk-workflows
+                  path: output/javascript-small-talk-browser/
+                  if-no-files-found: warn
+                  retention-days: 14
+
+            - name: Retain weather source, saved downloads and offline evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-weather-workflows
+                  path: output/javascript-weather-browser/
+                  if-no-files-found: warn
+                  retention-days: 14
+
+            - name: Retain original snowflake project workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-snowflake-source-workflows
+                  path: output/javascript-snowflake-browser
+                  if-no-files-found: error
+                  retention-days: 14
+
+            - name: Verify the recovered checkpoint original-source IDE workflows
+              env:
+                  JAVASCRIPT_CHECKPOINT_BROWSER_DIR: output/javascript-checkpoint-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-checkpoint-course-browser.test.mjs
+
+            - name: Verify actual checkpoint exports offline and at narrow widths
+              env:
+                  JAVASCRIPT_CHECKPOINT_BROWSER_DIR: output/javascript-checkpoint-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-checkpoint-exported-browser.test.mjs
+
+            - name: Retain original checkpoint project workflow evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-checkpoint-source-workflows
+                  path: output/javascript-checkpoint-browser
+                  if-no-files-found: error
+                  retention-days: 14
+
             - name: Verify private IDE diagnostics in the browser
               run: node --test test/ide-diagnostics-browser.test.mjs
 
@@ -1142,27 +1304,6 @@ jobs:
                   path: output/playwright/signup-*.png
                   if-no-files-found: ignore
                   retention-days: 7
-
-            - name: Export self-study course page expectations
-              env:
-                  SELF_STUDY_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser
-              run: npm exec -w front-end -- vitest run test/store.courses.self-study-browser-manifest.spec.test.ts --no-file-parallelism --maxWorkers=1
-
-            - name: Verify self-study readings and assignment pages
-              env:
-                  SELF_STUDY_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser
-              run: |
-                  node --test test/self-study-browser-batches.test.mjs
-                  node scripts/verify-self-study-browser-batches.mjs
-
-            - name: Retain self-study course page evidence
-              if: always()
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-              with:
-                  name: self-study-course-pages
-                  path: output/self-study-browser/
-                  if-no-files-found: error
-                  retention-days: 14
 
             - name: Verify confirmed course imports and accessible errors
               env:
@@ -2425,3 +2566,51 @@ jobs:
 
             - name: Build
               run: npm run build
+
+
+    java-value-data-workflows:
+        runs-on: ubuntu-24.04
+        timeout-minutes: 25
+        env:
+            CLASSES_FAMILY_TASK_ID: java-value-data-${{ github.run_id }}
+            JAVA_VALUE_DATA_BROWSER_PROOF_DIR: output/java-value-data
+            COURSE_IMPORT_SCREENSHOT_DIR: output/java-value-data/screenshots
+        steps:
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+              with:
+                  persist-credentials: false
+            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+              with:
+                  node-version: 24.18.0
+                  cache: npm
+            - name: Pin npm and install the exact locked graph
+              run: |
+                  npm install --global npm@12.0.1
+                  node scripts/classes-family-heavy-task.mjs -- npm ci
+            - name: Verify exact data source and historical refactoring identities
+              run: node scripts/classes-family-heavy-task.mjs -- npm exec -w front-end -- vitest run test/java-value-data-workspace.spec.test.ts test/java-ownership-move-workspace.spec.test.ts test/java-conditional-flow-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+            - name: Build the course and IDE
+              run: node scripts/classes-family-heavy-task.mjs -- npm run -w front-end build
+            - name: Exercise actual role imports, saved edits and continuations
+              run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/java-value-data-course-browser.test.mjs
+            - name: Compile every original and actual edited Java export
+              run: python3 -I -B test/java-value-data-exported-native.py
+            - name: Exercise conditional imports, separate optional attempts and saved continuations
+              env:
+                  JAVA_CONDITIONAL_FLOW_BROWSER_PROOF_DIR: output/java-conditional-flow
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/java-conditional-flow/screenshots
+              run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/java-conditional-flow-course-browser.test.mjs
+            - name: Compile every original and edited conditional export
+              env:
+                  JAVA_CONDITIONAL_FLOW_BROWSER_PROOF_DIR: output/java-conditional-flow
+              run: node scripts/classes-family-heavy-task.mjs -- python3 -I -B test/java-conditional-flow-exported-native.py
+            - name: Retain exact data source, browser and native evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: java-value-data-workflows
+                  path: |
+                      output/java-value-data/
+                      output/java-conditional-flow/
+                  if-no-files-found: error
+                  retention-days: 14

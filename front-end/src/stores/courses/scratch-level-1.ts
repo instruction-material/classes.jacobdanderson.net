@@ -7,6 +7,7 @@ import type {
 import { talentShowControllerGuide } from "./classroomReferenceGuides";
 import { correctedJuniScratchInstructions } from "./juniScratchInstructionCorrections";
 import { isCoreProjectTitle } from "./projectGrouping";
+import { scratchBroadcastingLesson } from "./scratchBroadcastingLesson";
 import {
 	dinoColorsLesson,
 	dinoCombinedColorGuide,
@@ -784,8 +785,8 @@ For example, start at (30, -20). Changing x by 10 gives **(40, -20)**. Changing 
 				{
 					title: "Message broadcasting",
 					contentKind: "reading",
-					content:
-						"Broadcasting lets sprites send messages to each other. This is useful when one sprite needs to wait for another sprite to finish speaking, moving, or changing state before its own script begins.\n\nOpen the Events blocks and compare `broadcast __` with `when I receive __`. Practice by making one sprite finish a short action, broadcast a message, and trigger a second sprite to start moving only after that message is received."
+					preserveInstructions: true,
+					content: scratchBroadcastingLesson
 				},
 				{
 					title: "GS10 Project 1 – Dance Off",

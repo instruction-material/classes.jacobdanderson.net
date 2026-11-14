@@ -637,6 +637,25 @@ const courseCatalogById = new Map(
 	courseCatalog.map(entry => [entry.id, entry])
 );
 
+// Course definitions remain addressable for saved work and historical records.
+const unlistedCourseIds = new Set([
+	"early-elementary-a-reading",
+	"early-elementary-b-picture-book",
+	"middle-school-a-literature",
+	"middle-school-b-writing",
+	"middle-school-b-writing-retake",
+	"novel-writing",
+	"intro-to-biology"
+]);
+
+export function isListedCourse(id: string) {
+	return courseCatalogById.has(id) && !unlistedCourseIds.has(id);
+}
+
+export const listedCourseCatalog = courseCatalog.filter(course =>
+	isListedCourse(course.id)
+);
+
 export function getCourseCatalogEntry(id: string) {
 	return courseCatalogById.get(id) ?? null;
 }

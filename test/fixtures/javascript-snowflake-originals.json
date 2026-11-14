@@ -1,0 +1,66 @@
+{
+  "resources": [
+    {
+      "project": "snowflake-pattern",
+      "role": "starter",
+      "url": "https://codepen.io/junilearning/pen/vYGWvaq",
+      "observedURL": "https://codepen.io/junilearning/pen/vYGWvaq",
+      "title": "JSS Check-in #2: Additional Practice Project",
+      "panels": {
+        "HTML": "<!--\nHint: a trick is to make the width and height of the grid in terms of vh https://www.w3schools.com/cssref/css_units.asp in order to size the grid so that it can resize properly\n-->",
+        "CSS": "",
+        "JavaScript": "// Replicate the snowflake pattern shown in the example and here: https://codepen.io/junilearning/full/084c3032877fa7f9c828bba2c5798551"
+      },
+      "settings": {
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "headContent": "",
+        "cssPreprocessor": "None",
+        "cssBase": "Neither",
+        "vendorPrefixing": "Neither",
+        "externalStylesheets": [
+          "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css",
+          "https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
+        ],
+        "jsPreprocessor": "None",
+        "externalScripts": [
+          "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ],
+        "packages": []
+      }
+    },
+    {
+      "project": "snowflake-pattern",
+      "role": "reference",
+      "url": "https://codepen.io/junilearning/pen/084c3032877fa7f9c828bba2c5798551",
+      "observedURL": "https://codepen.io/junilearning/pen/zYqdOQZ/084c3032877fa7f9c828bba2c5798551",
+      "title": "JSS Check-in #2: Additional Practice Project Solution",
+      "panels": {
+        "HTML": "<!-- Solution -->\n\n<div class=\"container\">\n  <div></div>\n  <div class=\"board\">\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\"></div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n    <div class=\"tile\">\n      <i class=\"small material-icons\">ac_unit</i>\n    </div>\n  </div>\n  <div></div>\n</div>\n",
+        "CSS": ".container {\n  display: grid;\n  grid-template-columns: 1fr 90vh 1fr;\n  width: 100%;\n  height: 100%;\n}\n\n.board {\n  width: 90vh;\n  height: 90vh;\n  display: grid;\n  grid-template: repeat(8, 1fr) / repeat(8, 1fr);\n}\n\ni {\n  color: #78B1BF;\n}\n\n.tile {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n",
+        "JavaScript": ""
+      },
+      "settings": {
+        "htmlPreprocessor": "None",
+        "htmlClasses": "",
+        "headContent": "",
+        "cssPreprocessor": "None",
+        "cssBase": "Neither",
+        "vendorPrefixing": "Neither",
+        "externalStylesheets": [
+          "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css",
+          "https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
+        ],
+        "jsPreprocessor": "None",
+        "externalScripts": [
+          "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        ],
+        "packages": []
+      }
+    }
+  ]
+}

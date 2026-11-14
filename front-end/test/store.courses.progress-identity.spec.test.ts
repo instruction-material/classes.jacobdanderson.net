@@ -1,3 +1,7 @@
+import { javaCapstoneURL } from "@/modules/javaCapstoneResources";
+import { javaJudgmentURL } from "@/modules/javaJudgmentResources";
+import { javaArchitectureURL } from "@/modules/javaArchitectureResources";
+import { javaCollaborationURL } from "@/modules/javaCollaborationResources";
 import { javaBehavioralURL } from "@/modules/javaBehavioralResources";
 import { javaStructuralURL } from "@/modules/javaStructuralResources";
 import { javaBoundaryURL } from "@/modules/javaBoundaryResources";
@@ -152,7 +156,7 @@ describe("saved course progress identities", () => {
 					)
 				);
 				expect(owners, previousId).toHaveLength(1);
-				if (index <= 5) {
+				if (index <= 9) {
 					const current = owners![0];
 					expect(current.contentKind, previousId).toBe("assignment");
 					if (purpose === "Transfer") {
@@ -173,7 +177,25 @@ describe("saved course progress identities", () => {
 											? javaBoundaryURL("starter")
 											: index === 4
 												? javaStructuralURL("starter")
-												: javaBehavioralURL("starter");
+												: index === 5
+													? javaBehavioralURL(
+															"starter"
+														)
+													: index === 6
+														? javaCollaborationURL(
+																"starter"
+															)
+														: index === 7
+															? javaArchitectureURL(
+																	"starter"
+																)
+															: index === 8
+																? javaJudgmentURL(
+																		"starter"
+																	)
+																: javaCapstoneURL(
+																		"starter"
+																	);
 						expect(current.projectLink, previousId).toBe(starter);
 					}
 				} else {

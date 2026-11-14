@@ -3,7 +3,7 @@ import { createPinia, setActivePinia } from "pinia";
 import { beforeEach, describe, expect, it } from "vitest";
 import PathwaysPage from "@/pages/pathways.vue";
 import { useAppStore } from "@/stores/app";
-import { courseCatalog } from "@/stores/courses/index";
+import { listedCourseCatalog } from "@/stores/courses/index";
 import { coursePathwayMaps } from "@/modules/coursePathwayMaps";
 import {
 	coursePublicPathwayByCourseId,
@@ -24,7 +24,7 @@ describe("public course pathways", () => {
 	});
 
 	it("covers every visible catalog course exactly once", () => {
-		const catalogIds = courseCatalog.map(course => course.id).sort();
+		const catalogIds = listedCourseCatalog.map(course => course.id).sort();
 		const pathwayIds = coursePublicPathways
 			.flatMap(pathway => pathway.courseIds)
 			.sort();

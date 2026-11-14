@@ -1,0 +1,1 @@
+/* Create the eight-by-eight grid and center its icons. */

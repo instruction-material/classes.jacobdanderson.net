@@ -15,6 +15,7 @@ import { fetchAdminRecipients } from "@/modules/adminRecipients";
 import { cleanCourseStatusMap } from "@/modules/courseAccess";
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
+import { isListedCourse } from "@/stores/courses/index";
 
 const props = defineProps<{
 	mode?: "account" | "people" | "profile" | "manage";
@@ -69,10 +70,12 @@ const viewMode = computed(() => props.mode ?? "profile");
 
 const coursesStore = useCoursesStore();
 const { courses } = storeToRefs(coursesStore);
-const courseOptions = computed(() => courses.value ?? []);
+const courseOptions = computed(() =>
+	(courses.value ?? []).filter(course => isListedCourse(course.id))
+);
 const courseNameMap = computed<Record<string, string>>(
 	() =>
-		courseOptions.value?.reduce(
+		courses.value?.reduce(
 			(map, course) => {
 				map[course.id] = course.name;
 				return map;

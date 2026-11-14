@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Snowflake pattern</title>
+  <link rel="stylesheet" href="vendor/materialize.min.css">
+  <link rel="stylesheet" href="vendor/material-icons.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- Solution -->
+
+<div class="container">
+  <div></div>
+  <div class="board" role="img" aria-label="Eight by eight snowflake pattern">
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+    <div class="tile">
+      <i class="small material-icons" aria-hidden="true">ac_unit</i>
+    </div>
+  </div>
+  <div></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

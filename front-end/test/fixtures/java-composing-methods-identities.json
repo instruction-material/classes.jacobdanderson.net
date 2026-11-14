@@ -1,0 +1,71 @@
+{
+  "curriculum": [
+    {
+      "id": "design-patterns-in-java-part-2-dpr2-composing-methods-curriculum-composing-methods-core-concepts",
+      "title": "Composing Methods Core Concepts",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr2-composing-methods-curriculum-core-concepts-and-learning-sequence",
+        "core-concepts",
+        "design-patterns-in-java-part-2-dpr2-composing-methods-curriculum-core-concepts"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr2-composing-methods-curriculum-composing-methods-application-check",
+      "title": "Composing Methods Application Check",
+      "aliases": [
+        "application-check",
+        "mini-lab-refactor-a-calculation-pipeline-safely",
+        "design-patterns-in-java-part-2-dpr2-composing-methods-curriculum-application-check",
+        "design-patterns-in-java-part-2-dpr2-composing-methods-curriculum-mini-lab-refactor-a-calculation-pipeline-safely"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr2-composing-methods-curriculum-reflection-question-when-is-extraction-enough",
+      "title": "Reflection Question: When Is Extraction Enough?"
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr2-composing-methods-curriculum-extraction-semantic-preservation-contract",
+      "title": "Extraction Semantic-Preservation Contract"
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr2-composing-methods-curriculum-core-project-composing-methods",
+      "title": "Core Project: Composing Methods",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr2-composing-methods-curriculum-core-project",
+        "dpr2-composing-methods-core-project",
+        "design-patterns-in-java-part-2-dpr2-composing-methods-curriculum-dpr2-composing-methods-core-project"
+      ]
+    }
+  ],
+  "supplementalProjects": [
+    {
+      "id": "design-patterns-in-java-part-2-dpr2-composing-methods-supplemental-understanding-check-composing-methods",
+      "title": "Understanding Check: Composing Methods",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr2-composing-methods-supplemental-dpr2-composing-methods-diagnostic-checkpoint",
+        "diagnostic-checkpoint-composing-methods",
+        "diagnostic-checkpoint",
+        "understanding-check",
+        "design-patterns-in-java-part-2-dpr2-composing-methods-supplemental-diagnostic-checkpoint-composing-methods",
+        "design-patterns-in-java-part-2-dpr2-composing-methods-supplemental-diagnostic-checkpoint",
+        "design-patterns-in-java-part-2-dpr2-composing-methods-supplemental-understanding-check"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr2-composing-methods-supplemental-composing-methods-transfer-practice",
+      "title": "Composing Methods Transfer Practice",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr2-composing-methods-supplemental-transfer-practice-composing-methods",
+        "design-patterns-in-java-part-2-dpr2-composing-methods-supplemental-transfer-practice"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr2-composing-methods-supplemental-composing-methods-extension-practice",
+      "title": "Composing Methods Extension Practice",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr2-composing-methods-supplemental-extension-practice-composing-methods",
+        "design-patterns-in-java-part-2-dpr2-composing-methods-supplemental-extension-practice"
+      ]
+    }
+  ]
+}

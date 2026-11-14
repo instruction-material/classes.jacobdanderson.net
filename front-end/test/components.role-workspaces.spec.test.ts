@@ -10,6 +10,7 @@ import LearnerWorkspace from "@/components/LearnerWorkspace.vue";
 import TutorProfile from "@/components/TutorProfile.vue";
 import { useCourseAccessDrafts } from "@/composables/useCourseAccessDrafts";
 import { useAppStore } from "@/stores/app";
+import { getCourseCatalogEntry } from "@/stores/courses/index";
 
 vi.mock("@/api", () => ({
 	api: { get: vi.fn(), put: vi.fn(), post: vi.fn(), delete: vi.fn() }
@@ -100,7 +101,11 @@ describe("shared learner workspace", () => {
 		expect(wrapper.find(".tools-summary").exists()).toBe(false);
 		expect(wrapper.findAll(".tool-editor")).toHaveLength(2);
 		for (const editor of wrapper.findAll(".tool-editor")) {
-			expect(editor.get(".workspace-disclosure__trigger").attributes("aria-expanded")).toBe("false");
+			expect(
+				editor
+					.get(".workspace-disclosure__trigger")
+					.attributes("aria-expanded")
+			).toBe("false");
 		}
 		await wrapper.get("select").setValue(students[1]._id);
 		await flushPromises();
@@ -304,6 +309,58 @@ describe("role-specific parents", () => {
 		);
 		wrapper.unmount();
 	});
+	it("keeps saved permission names while offering only the listed courses", async () => {
+		const legacyPermissions = [
+			"intro-to-biology",
+			"middle-school-c-grammar"
+		];
+		const defaultGet = vi.mocked(api.get).getMockImplementation()!;
+		vi.mocked(api.get).mockImplementation(async (path, ...args) =>
+			path === "/tutors"
+				? { data: [{ ...tutor, coursePermissions: legacyPermissions }] }
+				: defaultGet(path, ...args)
+		);
+		useAppStore().setCurrentAdmin({ _id: "admin" } as any);
+		const wrapper = mount(AdminProfile, {
+			props: { mode: "people" },
+			global: { stubs }
+		});
+		try {
+			await flushPromises();
+			const biologyName = getCourseCatalogEntry("intro-to-biology")!.name;
+			expect(
+				wrapper
+					.findAll(".summary-list")
+					.map(list => list.text())
+					.join(" ")
+			).toContain(biologyName);
+			await wrapper
+				.get('button[aria-label="Edit courses for Instructor"]')
+				.trigger("click");
+			const labels = wrapper
+				.findAll(".course-editor .checkbox-grid label")
+				.map(label => label.text());
+			expect(labels).toHaveLength(70);
+			expect(labels).not.toContain(biologyName);
+			for (const id of [
+				"middle-school-c-grammar",
+				"introduction-to-public-speaking"
+			])
+				expect(labels).toContain(getCourseCatalogEntry(id)!.name);
+			await wrapper
+				.get('button[aria-label="Save course access for Instructor"]')
+				.trigger("click");
+			await flushPromises();
+			expect(api.put).toHaveBeenCalledWith(
+				`/tutors/${tutor._id}/courses`,
+				{
+					courseIDs: legacyPermissions
+				}
+			);
+		} finally {
+			wrapper.unmount();
+		}
+	});
 	it("interlocks instructor permission changes while their save is pending", async () => {
 		useAppStore().setCurrentAdmin({ _id: "admin" } as any);
 		const wrapper = mount(AdminProfile, {
@@ -311,7 +368,9 @@ describe("role-specific parents", () => {
 			global: { stubs }
 		});
 		await flushPromises();
-		await wrapper.get('button[aria-label="Edit courses for Instructor"]').trigger("click");
+		await wrapper
+			.get('button[aria-label="Edit courses for Instructor"]')
+			.trigger("click");
 		let resolve!: (value: any) => void;
 		vi.mocked(api.put).mockImplementationOnce(
 			() =>

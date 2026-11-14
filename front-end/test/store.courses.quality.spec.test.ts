@@ -2304,8 +2304,10 @@ describe("course text quality normalization", () => {
 		expect(corpus).toContain("sprite responsibilities");
 		expect(corpus).toContain("green-flag state");
 		expect(corpus).toContain(
-			"trigger a second sprite to start moving only after that message is received"
+			"Broadcast the next dancer's message after that final glide."
 		);
+		expect(corpus).toContain("Those receivers run together");
+		expect(corpus).toContain("one collection per contact");
 		expect(legacyScratchFocusCount).toBeLessThan(25);
 		expect(corpus).not.toMatch(
 			/module's core concept, a concrete worked example, and a testable artifact/i
@@ -6303,7 +6305,25 @@ describe("course text quality normalization", () => {
 		expect(corpus).not.toMatch(/\bMini Lab\b/);
 		expect(corpus).toContain("Refactoring Clinic 11: Practice Studio");
 		expect(corpus).toContain("Refactoring Clinic 17 Extension Practice");
-		expect(corpus).toContain("Calculation Pipeline Refactor Studio");
+		const composing = course!.modules.find(
+			module => module.title === "DPR2 Composing Methods"
+		)!;
+		expect(composing.curriculum.map(item => item.title)).toContain(
+			"Composing Methods Application Check"
+		);
+		const composingText = allCourseText({
+			...course!,
+			modules: [composing]
+		});
+		for (const contract of [
+			"ComposedReport",
+			"MethodObjectReport",
+			"13218",
+			"supplier",
+			"exception",
+			"long"
+		])
+			expect(composingText).toContain(contract);
 		expect(corpus).toContain("Characterization Test Refactor Studio");
 		expect(corpus).toContain("Composing Methods Transfer Practice");
 		expect(corpus).toContain(
@@ -6334,11 +6354,19 @@ describe("course text quality normalization", () => {
 
 		expect(projectItems).toHaveLength(3);
 		expect(new Set(projectItems.map(item => item.content)).size).toBe(3);
-		expect(projectItems[0].content).toContain("Java project");
+		expect(projectItems[0].projectLink).toMatch(
+			/DPJ8-Notebook-Architecture-Packs\/starter$/
+		);
+		expect(projectItems[0].content).toContain("ContractTests core");
 		expect(projectItems[1].title).toContain("Transfer Practice");
-		expect(projectItems[1].content).toContain("Transfer Practice");
+		expect(projectItems[1].projectLink).toBeUndefined();
+		expect(projectItems[1].content).toContain(
+			"complete explicit-injection worked example"
+		);
 		expect(projectItems[2].title).toContain("Extension Practice");
-		expect(projectItems[2].content).toContain("Extension Practice");
+		expect(projectItems[2].projectLink).toBe(projectItems[0].projectLink);
+		expect(projectItems[2].content).toContain("NoteService.copy");
+		expect(projectItems[2].content).toContain("Complete core first");
 	});
 
 	it("keeps Design Patterns in Java labels pattern-specific", async () => {
@@ -6359,10 +6387,15 @@ describe("course text quality normalization", () => {
 		expect(source).not.toMatch(/\bMini Lab\b/);
 		expect(source).not.toMatch(/\bshould\b/);
 		expect(corpus).not.toMatch(/\bMini Lab\b/);
-		expect(corpus).toContain("Strategy Selection Refactor Studio");
-		expect(corpus).toContain("Structural Wrapper Refactor Studio");
-		expect(corpus).toContain("Architecture Judgment Capstone Studio");
-		expect(corpus).toContain("Brittle Object Model Refactor Studio");
+		expect(corpus).toContain("Strategy Selection Refactor");
+		expect(corpus).toContain("Structural Wrapper Refactor");
+		expect(corpus).toContain("Architecture Judgment Capstone");
+		for (const boundary of ["PricingRule", "Counting", "NoteRepository"])
+			expect(corpus).toContain(boundary);
+		expect(corpus).toContain(
+			"Pattern Selection and Refactoring Judgment Core Concepts"
+		);
+		expect(corpus).toContain("Checkout.quote and receipt");
 		expect(corpus).toContain(
 			"Strategy Selection Refactor Transfer Practice"
 		);

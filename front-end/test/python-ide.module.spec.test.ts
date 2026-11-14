@@ -1360,7 +1360,7 @@ pgzrun.go()
 		warmPythonRuntime();
 
 		const preloadSelector =
-			'link[rel="preload"][as="script"][href="https://cdn.jsdelivr.net/pyodide/v314.0.0/full/pyodide.js"]';
+			'link[rel="preload"][as="script"][href="https://cdn.jsdelivr.net/pyodide/v314.0.7/full/pyodide.js"]';
 		const preload = document.head.querySelector(preloadSelector);
 
 		expect(preload).not.toBeNull();
@@ -1380,7 +1380,7 @@ pgzrun.go()
 		const preconnectSelector =
 			'link[rel="preconnect"][href="https://cdn.jsdelivr.net"]';
 		const preloadSelector =
-			'link[rel="preload"][as="script"][href="https://cdn.jsdelivr.net/pyodide/v314.0.0/full/pyodide.js"]';
+			'link[rel="preload"][as="script"][href="https://cdn.jsdelivr.net/pyodide/v314.0.7/full/pyodide.js"]';
 
 		expect(document.head.querySelector(preconnectSelector)).not.toBeNull();
 		expect(document.head.querySelectorAll(preconnectSelector)).toHaveLength(

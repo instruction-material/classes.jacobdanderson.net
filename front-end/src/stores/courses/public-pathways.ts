@@ -295,57 +295,50 @@ export const coursePublicPathways: CoursePublicPathway[] = [
 	},
 	{
 		id: "english-literacy",
-		title: "Reading, Writing, Speaking, and Novel Writing",
+		title: "Grammar and Public Speaking",
 		adminPriority: "soon",
 		courseIds: [
-			"early-elementary-a-reading",
-			"early-elementary-b-picture-book",
-			"introduction-to-public-speaking",
-			"middle-school-a-literature",
-			"middle-school-b-writing",
-			"middle-school-b-writing-retake",
 			"middle-school-c-grammar",
-			"novel-writing"
+			"introduction-to-public-speaking"
 		],
 		audience:
-			"Literacy path for early readers, picture-book writers, middle-school readers and writers, public speakers, and long-form fiction projects that benefit from structured revision and evidence-based discussion.",
+			"Learners developing sentence-level accuracy, clear explanations and confident delivery through grammar exercises, revision and short presentations.",
 		prerequisiteSummary:
-			"Early courses can begin with basic reading, sentence, and story readiness. Middle-school courses expect paragraph-level reading and writing stamina. Public speaking and novel writing work best when short outlines, drafts, and revision notes are manageable.",
+			"Comfort reading short paragraphs supports grammar practice; public speaking begins with a manageable topic, a short outline and practice explaining an idea.",
 		outcomes: [
-			"Read fiction and informational text with attention to characters, plot, main ideas, evidence, inference, theme, point of view, figurative language, rhyme, alliteration, and word choice.",
-			"Write opinion, narrative, analytical, and creative pieces with grammar, mechanics, transitions, evidence, character, conflict, setting, dialogue, and revision records.",
-			"Plan and deliver short speeches or presentations with audience, structure, evidence, pacing, clarity, and reflection on delivery choices."
+			"Identify sentence structures, parts of speech, punctuation and mechanics in context.",
+			"Revise agreement, tense, sentence boundaries and word choice while preserving meaning.",
+			"Plan and deliver a presentation with an opening, supporting points, a conclusion and deliberate pacing."
 		],
 		sequencingNotes: [
-			"Early reading and picture-book work can run before or alongside early writing mechanics because story structure and sentence clarity reinforce each other.",
-			"Middle School A focuses on reading and literary analysis before Middle School B asks for heavier analytical and creative writing; the retake variant preserves that spine for targeted reinforcement.",
-			"Middle School C can run in parallel as a grammar and mechanics support course when written drafts need sentence-level polish.",
-			"Novel Writing belongs after basic narrative writing and character work are comfortable enough to sustain a multi-session draft."
+			"Grammar and mechanics can be studied independently or alongside other coursework.",
+			"Use sentence revision to improve the clarity of a presentation outline.",
+			"Repeat short presentations with a specific delivery goal before increasing their length."
 		],
 		projectExpectations: [
-			"Reading response with claim, quoted or paraphrased evidence, explanation, and one revised sentence.",
-			"Picture-book or short-story draft with characters, setting, conflict, sequence, and a revision note tied to a specific page or paragraph.",
-			"Speech or presentation outline with opening, support points, conclusion, delivery notes, and a short post-delivery reflection."
+			"Annotated corrections that explain the relevant grammar or punctuation rule.",
+			"A revised paragraph with a record of the changes and their reasons.",
+			"A speech outline, a short presentation and a reflection on delivery."
 		],
 		assessmentStyle: [
-			"Rubrics separate idea development, organization, evidence, word choice, conventions, and revision rather than only scoring a final draft.",
-			"Reading checks ask for evidence from the text and an explanation of how that evidence supports the claim.",
-			"Speaking checks include structure, clarity, pacing, audience fit, and one delivery improvement."
+			"Evaluate conventions separately from the ideas being expressed.",
+			"Ask for an explanation of corrections and a new example using the same rule.",
+			"Speaking checks cover organization, clarity, pacing and audience fit."
 		],
 		sourceAndTooling: [
-			"Course-native passages, draft templates, revision checklists, and short presentation outlines anchor the workflow.",
-			"Static story-planning templates from the original library are listed as pending static media when the original asset is unavailable.",
-			"External videos, release forms, or presentation examples remain optional references rather than required platform steps."
+			"Course-native passages and editing exercises provide practice inputs.",
+			"Revision checklists and presentation outlines support independent work.",
+			"External presentation examples are optional references."
 		],
 		safetyAndAccess: [
-			"Writing topics stay age-appropriate and avoid requiring personal disclosure.",
-			"Public sharing, recordings, competitions, and external submission forms are optional and require explicit approval.",
-			"Reading and writing materials need accessible alternatives when a visual organizer or template is unavailable."
+			"Topics are age-appropriate and allow fictional examples.",
+			"Public sharing and recordings require explicit approval.",
+			"Written outlines and accessible text accompany presentation work."
 		],
 		adminExpansionBacklog: [
-			"Replace reserved static story-planning assets with owned or source-safe templates.",
-			"Add grade-band reading passages and writing exemplars with permissions documented.",
-			"Build clearer rubrics for short responses, analytical paragraphs, creative drafts, and presentations."
+			"Extend sentence-level examples with clear explanations of corrections.",
+			"Refine grammar and mechanics rubrics around recurring errors.",
+			"Add short presentation exemplars with documented permissions."
 		]
 	},
 	{
@@ -705,7 +698,6 @@ export const coursePublicPathways: CoursePublicPathway[] = [
 		courseIds: [
 			"elementary-science",
 			"middle-school-integrated-science",
-			"intro-to-biology",
 			"intro-to-chemistry",
 			"intro-to-environmental-science",
 			"intro-to-physics",
@@ -714,7 +706,7 @@ export const coursePublicPathways: CoursePublicPathway[] = [
 		audience:
 			"Zoom-based science path built around explanations, diagrams, data, simulations, and claim-evidence-reasoning without physical lab requirements.",
 		prerequisiteSummary:
-			"Elementary Science splits K-2 and grades 3-5 expectations. Middle school science assumes basic reading, graphing, and explanation readiness. Biology, Environmental Science, Chemistry, and Physics assume stronger model reading and evidence writing.",
+			"Elementary Science splits K-2 and grades 3-5 expectations. Middle school science assumes basic reading, graphing, and explanation readiness. Environmental Science, Chemistry, and Physics assume stronger model reading and evidence writing.",
 		outcomes: [
 			"Observations, provided images, graphs, data tables, simulations, and models explain phenomena.",
 			"Write claim-evidence-reasoning responses that distinguish observation from inference.",
@@ -723,7 +715,7 @@ export const coursePublicPathways: CoursePublicPathway[] = [
 		sequencingNotes: [
 			"Elementary Science stays one course with a K-2 path and a grades 3-5 path for each investigation.",
 			"Middle School Integrated Science aligns with NGSS-style practices across earth, life, physical, and engineering ideas.",
-			"Biology uses body-system and life-science evidence models; environmental science uses recurring biome case studies and evidence reports; chemistry uses ACS and NGSS guidance; physics strengthens graphing, units, and model limits."
+			"Environmental science uses recurring biome case studies and evidence reports; chemistry uses ACS and NGSS guidance; physics strengthens graphing, units, and model limits."
 		],
 		projectExpectations: [
 			"Remote-safe investigation using a provided image, simulation, data table, or graph.",

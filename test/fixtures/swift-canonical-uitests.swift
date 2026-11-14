@@ -35,9 +35,26 @@ final class CanonicalCourseUITests: XCTestCase {
         let tab = app.tabBars.buttons[title]
         XCTAssertTrue(tab.waitForExistence(timeout: 5))
         XCTAssertTrue(tab.isHittable)
-        // Keep contact longer than the 50 ms tap in the captured failure.
-        tab.press(forDuration: 0.15)
         let destination = content ?? app.navigationBars[title]
+        if tab.isSelected {
+            XCTAssertTrue(destination.waitForExistence(timeout: 5))
+            return
+        }
+        tab.tap()
+        if destination.waitForExistence(timeout: 5) && tab.isSelected { return }
+
+        retain("Unchanged tab after activation: " + title, in: app)
+        let hierarchy = XCTAttachment(string: app.debugDescription)
+        hierarchy.name = "Tab activation hierarchy: " + title
+        hierarchy.lifetime = .keepAlways
+        add(hierarchy)
+        // Reselect only an unchanged tab; retain and fail a missing selected destination.
+        guard !tab.isSelected else {
+            XCTFail("Selected tab has no expected destination: " + title)
+            return
+        }
+        tab.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+            .press(forDuration: 0.25)
         XCTAssertTrue(destination.waitForExistence(timeout: 5))
         XCTAssertTrue(tab.isSelected)
     }
@@ -198,7 +215,10 @@ final class CanonicalCourseUITests: XCTestCase {
             let task = app.switches["Prepare TestFlight build"]
             reveal(task, in: app)
             XCTAssertEqual(task.value as? String, "0")
-            task.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5)).tap()
+            retain("Capstone switch before press", in: app)
+            // The captured 50 ms contact landed inside this switch without changing its value.
+            task.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5))
+                .press(forDuration: 0.15)
             let checked = NSPredicate(format: "value == %@", "1")
             expectation(for: checked, evaluatedWith: task)
             waitForExpectations(timeout: 5)

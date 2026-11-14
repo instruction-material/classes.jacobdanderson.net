@@ -1,0 +1,36 @@
+function playGolf() {
+  let totalPoints = 0;
+  for (let round = 1; round <= 3; round++) {
+    const secret = Math.floor(Math.random() * 20);
+    let roundPoints = 0;
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      let guess;
+      while (true) {
+        const entered = prompt(`Round ${round}, guess ${attempt}: enter an integer from 0 through 19.`);
+        if (entered === null) {
+          printToScreen(`Game ended. Completed-round total: ${totalPoints}.`);
+          return;
+        }
+        guess = Number(entered);
+        if (entered.trim() !== "" && Number.isInteger(guess) && guess >= 0 && guess <= 19) break;
+        alert("Enter an integer from 0 through 19, or choose Cancel.");
+      }
+      const distance = Math.abs(guess - secret);
+      roundPoints += distance;
+      printToScreen(`Round ${round}, guess ${attempt}: ${distance} points.`);
+    }
+    totalPoints += roundPoints;
+    printToScreen(`Round ${round}: ${roundPoints} points. Total: ${totalPoints}.`);
+  }
+  printToScreen(`Final total: ${totalPoints}. Lower scores are better.`);
+}
+
+function printToScreen(text) {
+  const line = document.createElement("li");
+  line.textContent = String(text);
+  document.querySelector("#output").append(line);
+}
+document.querySelector("#start").addEventListener("click", () => {
+  document.querySelector("#output").replaceChildren();
+  playGolf();
+});

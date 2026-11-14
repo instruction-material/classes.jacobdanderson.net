@@ -1,0 +1,46 @@
+# Source record
+
+Original starter: https://codepen.io/junilearning/pen/81d62c84dfa32d88f17d0e012229bf0c
+Observed starter: https://codepen.io/junilearning/pen/rNLjwje
+
+Original reference: https://codepen.io/junilearning/pen/6014e92e4707defd82249fb10b43d70d
+Observed reference: https://codepen.io/junilearning/pen/dyXNRNZ/6014e92e4707defd82249fb10b43d70d
+
+The original starter's HTML and CSS are empty and its script is an assignment comment. The original reference has four recognized cases (hot, rain, snow and cold), text/image/color updates and an unknown-input fallback. These source states and all CodePen settings were captured from official ZIP exports on 2026-11-13.
+
+The local reference retains the original conditional structure, four weather messages and panel-class changes. It adds wind to meet the five-case assignment, replaces remote product pictures with newly drawn local SVG illustrations, supplies image alternatives, clears/hides the picture for unknown input, and repairs label, input width and heading contrast. The starter's assignment script remains verbatim.
+
+The original Pens load Materialize 1.0.0 and D3 5.16.0; the reference additionally loads Material Design Icons 3.0.1. This pack retains Materialize CSS and uses the already verified D3 7.9.0 distribution. The original click handler does not use the event argument that changed between D3 versions. A text Submit button removes the icon-font dependency. Library licenses accompany both roles.
+
+Original script SHA256:
+starter: 6e6b33e35fa8a3be82aef87df4eefbd0e8a89e2521502756c7ff9be2abe4d880
+reference: ebaf6146e6b444c48a9b9ed7de5f090a4f84c8856c7359e01e4bcf0f15ad7c01
+
+Local illustrations and operational notes were authored for this pack. Saved/exported files include all runtime dependencies.
+
+## Original starter notice
+
+The following notice is reproduced unchanged from the official starter ZIP. The private reference export supplied no separate license file.
+
+The MIT License (MIT)
+
+Copyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/rNLjwje)
+Fork of an original work JAM1 Project 5: What Should I Bring? (https://codepen.io/Gaster623/pen/abNBZBb)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

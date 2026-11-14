@@ -1298,7 +1298,7 @@ nodeTest(
 				else if (
 					request.method() === "GET"
 					&& url.href.startsWith(
-						"https://cdn.jsdelivr.net/pyodide/v314.0.0/full/"
+						"https://cdn.jsdelivr.net/pyodide/v314.0.7/full/"
 					)
 				) {
 					void request.continue();

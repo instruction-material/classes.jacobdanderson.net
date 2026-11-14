@@ -1,0 +1,55 @@
+// Original assignment: two objects, at least five properties, string/integer/boolean data,
+// prompted property assignment and ternary comparisons. Original MIT notice is retained.
+// Local adaptation: six fictional fields; Cancel or blank skips one answer.
+// Age must be an integer from 0 through 120. Pizza answers normalize yes/no to boolean.
+
+const aboutMe = {
+  name: "Riley",
+  city: "Oakville",
+  age: 20,
+  school: "Example School",
+  favoriteSubject: "coding",
+  pineappleOnPizza: true
+};
+const aboutYou = {};
+
+aboutYou.name = prompt("My profile is " + aboutMe.name + ". What is your fictional profile's name? Cancel skips a question.");
+aboutYou.name = aboutYou.name === null || aboutYou.name.trim() === "" ? null : aboutYou.name.trim();
+
+aboutYou.city = prompt((aboutYou.name === null ? "Next question." : "Hello, " + aboutYou.name + "!") + " What city is the profile from?");
+aboutYou.city = aboutYou.city === null || aboutYou.city.trim() === "" ? null : aboutYou.city.trim();
+
+aboutYou.age = prompt((aboutYou.city === null ? "City skipped." : aboutYou.city.toLowerCase() === aboutMe.city.toLowerCase() ? "We have the same city!" : "My profile lives in " + aboutMe.city + ".") + " What is the profile's age? Use a whole number from 0 to 120.");
+aboutYou.age = aboutYou.age === null || aboutYou.age.trim() === "" ? null : Number(aboutYou.age);
+if (aboutYou.age !== null && (!Number.isInteger(aboutYou.age) || aboutYou.age < 0 || aboutYou.age > 120)) {
+  alert("Age must be a whole number from 0 to 120. This answer was skipped.");
+  aboutYou.age = null;
+}
+
+aboutYou.school = prompt((aboutYou.age === null ? "Age skipped." : aboutYou.age === aboutMe.age ? "Our profiles have the same age!" : "My profile is " + aboutMe.age + ".") + " What school does the profile attend?");
+aboutYou.school = aboutYou.school === null || aboutYou.school.trim() === "" ? null : aboutYou.school.trim();
+
+aboutYou.favoriteSubject = prompt((aboutYou.school === null ? "School skipped." : aboutYou.school.toLowerCase() === aboutMe.school.toLowerCase() ? "We have the same school!" : "My profile attends " + aboutMe.school + ".") + " What is the profile's favorite subject?");
+aboutYou.favoriteSubject = aboutYou.favoriteSubject === null || aboutYou.favoriteSubject.trim() === "" ? null : aboutYou.favoriteSubject.trim();
+
+aboutYou.pineappleOnPizza = prompt((aboutYou.favoriteSubject === null ? "Subject skipped." : aboutYou.favoriteSubject.toLowerCase() === aboutMe.favoriteSubject.toLowerCase() ? "We share a favorite subject!" : "My profile prefers " + aboutMe.favoriteSubject + ".") + " Does the profile like pineapple on pizza? Answer yes or no.");
+if (aboutYou.pineappleOnPizza !== null) {
+  aboutYou.pineappleOnPizza = aboutYou.pineappleOnPizza.trim().toLowerCase();
+  if (aboutYou.pineappleOnPizza === "") {
+    aboutYou.pineappleOnPizza = null;
+  } else if (aboutYou.pineappleOnPizza !== "yes" && aboutYou.pineappleOnPizza !== "no") {
+    alert("Pizza preference must be yes or no. This answer was skipped.");
+    aboutYou.pineappleOnPizza = null;
+  } else {
+    aboutYou.pineappleOnPizza = aboutYou.pineappleOnPizza === "yes";
+  }
+}
+alert(aboutYou.pineappleOnPizza === null ? "Pizza preference skipped. Thanks for the conversation!" : aboutYou.pineappleOnPizza === aboutMe.pineappleOnPizza ? "Our profiles agree about pizza. Thanks for the conversation!" : "Our profiles differ about pizza. Thanks for the conversation!");
+
+document.getElementById("summary").textContent =
+  "Name: " + (aboutYou.name === null ? "skipped" : aboutYou.name) +
+  "\nCity: " + (aboutYou.city === null ? "skipped" : aboutYou.city) +
+  "\nAge: " + (aboutYou.age === null ? "skipped" : aboutYou.age) +
+  "\nSchool: " + (aboutYou.school === null ? "skipped" : aboutYou.school) +
+  "\nFavorite subject: " + (aboutYou.favoriteSubject === null ? "skipped" : aboutYou.favoriteSubject) +
+  "\nPineapple on pizza: " + (aboutYou.pineappleOnPizza === null ? "skipped" : aboutYou.pineappleOnPizza ? "yes" : "no");

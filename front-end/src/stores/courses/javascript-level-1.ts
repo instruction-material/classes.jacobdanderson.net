@@ -138,8 +138,9 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "Check-In #1: Additional Practice Project",
+					preserveInstructions: true,
 					content:
-						"Build a three-round random number guessing game with golf-style scoring. Each round chooses a target number, allows three guesses, compares each guess to the target, and awards fewer points for closer guesses. Track total score across rounds and print enough feedback for a player to understand whether a guess was close, far away, or exact.",
+						"Build a three-round guessing game. At the start of each round, choose one secret integer from 0 through 19 with `Math.floor(Math.random() * 20)`. Keep that secret for all three guesses. Each guess earns `Math.abs(guess - secret)` points; add all three distances to the round score and all three round scores to the total. Lower scores are better. For secret 10 and guesses 7, 10, and 15, the round score is 3 + 0 + 5 = 8. Show each round score and the final total. Retry an invalid entry and end the game on Cancel. Those input-handling rules are local usability additions to the original exercise.",
 					projectLink:
 						"https://codepen.io/junilearning/pen/b04e9208251c84d123c97daf37972988",
 					solutionLink:
@@ -201,6 +202,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "Check-In #2: HTML & CSS",
+					preserveInstructions: true,
 					content:
 						"Review HTML tags, nesting, and the difference between `div` and `span`. Create a red class-based `div` with a fixed height, compare `block`, `inline-block`, and `inline`, then build a yellow box with margin, padding, and a border so the box model is visible. Finish by placing a blue square at the top-left of the page, scrolling the page, and explaining how position and `z-index` affect layering.",
 					projectLink:
@@ -210,8 +212,10 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "Check-In #2: Animations and JavaScript Components",
+					contentKind: "assignment",
+					preserveInstructions: true,
 					content:
-						"Draw a red square with D3, animate it so the square doubles in size, and add a `mouseover` interaction that transitions the square to green. Then use the Materialize documentation to add a collapsible component. Confirm which code creates the SVG shape, which code handles animation, and which code initializes the external component."
+						"Draw a red 50-by-50 square at (100, 100) on a 500-by-500 SVG with D3. Animate its width and height to 100 over two seconds. On `mouseover`, transition its fill to green; on `mouseout`, restore red. Add a Materialize modal with a trigger and a close control, then initialize it with `M.Modal.init(document.querySelectorAll('.modal'))`. Check that the modal opens and closes and the trigger can be reached with the keyboard. Verify that Escape closes the dialog. Continue in the HTML & CSS checkpoint project."
 				},
 				{
 					title: "Check-In #2: Website Layout",
@@ -221,7 +225,9 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				{
 					title: "Check-In #2: Additional Practice Project",
 					content:
-						"Replicate the snowflake pattern with D3 shapes and animation. Break the snowflake into repeated arms or segments, use a loop or helper to avoid manually duplicating every piece, and animate at least one property such as rotation, opacity, size, or position so the final result shows both structure and motion.",
+						"Reproduce the supplied eight-by-eight snowflake-icon pattern using HTML and CSS. Match these rows from top to bottom; # marks an icon and . marks an empty cell:\n\n```text\n###.....\n####....\n#####...\n.#####..\n..#####.\n...#####\n....####\n.....###\n```\n\n1. Create 64 tiles in row order and place the 34 snowflake icons at the marked positions.\n2. Use eight equal CSS Grid rows and columns and center each icon within its tile. The supplied Material Icons font uses ac_unit for the snowflake.\n3. Keep the grid square and inside the viewport at both narrow and wide widths. Compare the occupied cells row by row, save the project and reopen the same attempt.\n\nThe starter README contains the target and run instructions; compare the reference after completing the grid.\n\n[Project self-check](/course-resource?asset=%2Fcourse-assets%2Fjavascript-level-1%2Fsnowflake-pattern-checks.md%23pattern-answers)",
+					datasetLink:
+						"/course-assets/javascript-level-1/snowflake-pattern-checks.md#pattern-inputs",
 					projectLink: "https://codepen.io/junilearning/pen/vYGWvaq",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/084c3032877fa7f9c828bba2c5798551"

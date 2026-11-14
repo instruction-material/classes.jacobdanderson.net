@@ -1,0 +1,74 @@
+{
+  "curriculum": [
+    {
+      "id": "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-modern-extensions-and-architecture-level-patterns-core-concepts",
+      "aliases": [
+        "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-core-concepts-and-learning-sequence",
+        "core-concepts",
+        "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-core-concepts"
+      ],
+      "title": "Modern Extensions and Architecture-Level Patterns Core Concepts"
+    },
+    {
+      "id": "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-modern-extensions-and-architecture-level-patterns-application-check",
+      "aliases": [
+        "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-application-misconceptions-and-readiness-check",
+        "application-check",
+        "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-application-check"
+      ],
+      "title": "Modern Extensions and Architecture-Level Patterns Application Check"
+    },
+    {
+      "id": "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-reflection-question-when-does-a-pattern-become-architecture",
+      "title": "Reflection Question: When Does a Pattern Become Architecture?"
+    },
+    {
+      "id": "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-serviceloader-plugin-boundary",
+      "title": "ServiceLoader Plugin Boundary"
+    },
+    {
+      "id": "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-architecture-pattern-scope-and-fitness-contract",
+      "title": "Architecture Pattern Scope and Fitness Contract"
+    },
+    {
+      "id": "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-core-project-modern-extensions-and-architecture-level-patterns",
+      "aliases": [
+        "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-core-project",
+        "dpj8-modern-extensions-and-architecture-level-patterns-core-project",
+        "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-curriculum-dpj8-modern-extensions-and-architecture-level-patterns-core-project"
+      ],
+      "title": "Core Project: Modern Extensions and Architecture-Level Patterns"
+    }
+  ],
+  "supplementalProjects": [
+    {
+      "id": "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-supplemental-understanding-check-modern-extensions-and-architecture-level-patterns",
+      "aliases": [
+        "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-supplemental-dpj8-modern-extensions-and-architecture-level-patterns-diagnostic-checkpoint",
+        "diagnostic-checkpoint-modern-extensions-and-architecture-level-patterns",
+        "diagnostic-checkpoint",
+        "understanding-check",
+        "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-supplemental-diagnostic-checkpoint-modern-extensions-and-architecture-level-patterns",
+        "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-supplemental-diagnostic-checkpoint",
+        "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-supplemental-understanding-check"
+      ],
+      "title": "Understanding Check: Modern Extensions and Architecture-Level Patterns"
+    },
+    {
+      "id": "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-supplemental-modern-extensions-and-architecture-level-patterns-transfer-practice",
+      "aliases": [
+        "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-supplemental-transfer-practice",
+        "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-supplemental-transfer-practice-modern-extensions-and-architecture-level-patterns"
+      ],
+      "title": "Modern Extensions and Architecture Level Patterns Transfer Practice"
+    },
+    {
+      "id": "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-supplemental-modern-extensions-and-architecture-level-patterns-extension-practice",
+      "aliases": [
+        "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-supplemental-extension-practice",
+        "design-patterns-in-java-dpj8-modern-extensions-and-architecture-level-patterns-supplemental-extension-practice-modern-extensions-and-architecture-level-patterns"
+      ],
+      "title": "Modern Extensions and Architecture Level Patterns Extension Practice"
+    }
+  ]
+}

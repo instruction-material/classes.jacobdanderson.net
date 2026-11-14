@@ -11,7 +11,7 @@
       "section": "core",
       "project": "tips-and-taxes",
       "title": "Tips and Taxes",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/06257a44b94db1486fac683ccaace7be",
@@ -45,8 +45,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -69,7 +69,7 @@
       "section": "core",
       "project": "random-party",
       "title": "Randomly Random Party",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/29d1e4fde67a75fc4b5cdcacd458cb8d",
@@ -103,8 +103,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -127,7 +127,7 @@
       "section": "optional",
       "project": "random-practice",
       "title": "Random Practice",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/5bbc99927a71e48ec59e93b8dfbb585c",
@@ -161,8 +161,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -185,7 +185,7 @@
       "section": "optional",
       "project": "random-practice",
       "title": "Random Practice",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "https://codepen.io/junilearning/pen/JjGrXgg"
@@ -218,8 +218,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -242,7 +242,7 @@
       "section": "core",
       "project": "math-password",
       "title": "What's the Password?",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "https://codepen.io/junilearning/pen/PoZJNXb"
@@ -275,8 +275,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -299,7 +299,7 @@
       "section": "core",
       "project": "tips-and-taxes",
       "title": "Tips and Taxes",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "https://codepen.io/junilearning/pen/RwrLayP"
@@ -332,8 +332,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -356,7 +356,7 @@
       "section": "optional",
       "project": "debugging-math",
       "title": "Debugging Math Practice",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "https://codepen.io/junilearning/pen/VwexoVL"
@@ -389,8 +389,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -413,7 +413,7 @@
       "section": "optional",
       "project": "pie-eating-contest",
       "title": "Pie Eating Contest",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/a9612fb435c5e334490c1eeb72e9c567",
@@ -447,8 +447,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -471,7 +471,7 @@
       "section": "core",
       "project": "math-password",
       "title": "What's the Password?",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/c550ef1e284c55fa01964589bf19b21c",
@@ -505,8 +505,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -529,7 +529,7 @@
       "section": "optional",
       "project": "arc-circles",
       "title": "Circles",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/d004723cc01403a3db897db1206f449b",
@@ -563,8 +563,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -587,7 +587,7 @@
       "section": "optional",
       "project": "debugging-math",
       "title": "Debugging Math Practice",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/f90710cc7e05de72ea7ff2b8b05a32bd",
@@ -621,8 +621,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -645,7 +645,7 @@
       "section": "optional",
       "project": "pie-eating-contest",
       "title": "Pie Eating Contest",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "https://codepen.io/junilearning/pen/jOWGqJZ"
@@ -678,8 +678,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -702,7 +702,7 @@
       "section": "core",
       "project": "random-party",
       "title": "Randomly Random Party",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "https://codepen.io/junilearning/pen/xxZXVye"
@@ -735,8 +735,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -759,7 +759,7 @@
       "section": "optional",
       "project": "arc-circles",
       "title": "Circles",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "https://codepen.io/junilearning/pen/yLezJLx"
@@ -792,8 +792,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -810,5 +810,10 @@
     }
   ],
   "sharedLibraryVersion": "5.16.0",
-  "originalRoles": 14
+  "originalRoles": 14,
+  "vendorSecurityPatch": {
+    "advisory": "GHSA-36jr-mh4h-2g58",
+    "upstreamFix": "https://github.com/d3/d3-color/commit/61a184bd3748db5142c316238c03547865787a94",
+    "manifest": "scripts/vendored-d3-security.json"
+  }
 }

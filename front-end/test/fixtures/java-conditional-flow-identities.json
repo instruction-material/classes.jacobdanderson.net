@@ -1,0 +1,71 @@
+{
+  "curriculum": [
+    {
+      "id": "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-curriculum-simplifying-conditional-expressions-core-concepts",
+      "title": "Simplifying Conditional Expressions Core Concepts",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-curriculum-core-concepts-and-learning-sequence",
+        "core-concepts",
+        "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-curriculum-core-concepts"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-curriculum-simplifying-conditional-expressions-application-check",
+      "title": "Simplifying Conditional Expressions Application Check",
+      "aliases": [
+        "application-check",
+        "mini-lab-conditional-tangle-rescue",
+        "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-curriculum-application-check",
+        "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-curriculum-mini-lab-conditional-tangle-rescue"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-curriculum-reflection-question-when-does-a-conditional-signal-a-missing-type",
+      "title": "Reflection Question: When Does a Conditional Signal a Missing Type?"
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-curriculum-decision-table-and-branch-equivalence-contract",
+      "title": "Decision Table and Branch-Equivalence Contract"
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-curriculum-core-project-simplifying-conditional-expressions",
+      "title": "Core Project: Simplifying Conditional Expressions",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-curriculum-core-project",
+        "dpr5-simplifying-conditional-expressions-core-project",
+        "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-curriculum-dpr5-simplifying-conditional-expressions-core-project"
+      ]
+    }
+  ],
+  "supplementalProjects": [
+    {
+      "id": "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-supplemental-understanding-check-simplifying-conditional-expressions",
+      "title": "Understanding Check: Simplifying Conditional Expressions",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-supplemental-dpr5-simplifying-conditional-expressions-diagnostic-checkpoint",
+        "diagnostic-checkpoint-simplifying-conditional-expressions",
+        "diagnostic-checkpoint",
+        "understanding-check",
+        "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-supplemental-diagnostic-checkpoint-simplifying-conditional-expressions",
+        "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-supplemental-diagnostic-checkpoint",
+        "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-supplemental-understanding-check"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-supplemental-simplifying-conditional-expressions-transfer-practice",
+      "title": "Simplifying Conditional Expressions Transfer Practice",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-supplemental-transfer-practice-simplifying-conditional-expressions",
+        "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-supplemental-transfer-practice"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-supplemental-simplifying-conditional-expressions-extension-practice",
+      "title": "Simplifying Conditional Expressions Extension Practice",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-supplemental-extension-practice-simplifying-conditional-expressions",
+        "design-patterns-in-java-part-2-dpr5-simplifying-conditional-expressions-supplemental-extension-practice"
+      ]
+    }
+  ]
+}

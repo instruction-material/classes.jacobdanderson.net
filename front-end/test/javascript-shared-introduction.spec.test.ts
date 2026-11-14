@@ -130,7 +130,7 @@ it("limits sharing to the assigned introduction and preserves role boundaries", 
 			"starter",
 			sourceUrl
 		)
-	).toBe(`${firstCourse}:setup-item:starter:introduction:v1`);
+	).toBe(`${firstCourse}:setup-item:starter:introduction:v2`);
 	expect(() =>
 		javascriptCourseProjectKey(
 			secondCourse,
@@ -153,12 +153,27 @@ it("limits sharing to the assigned introduction and preserves role boundaries", 
 			"https://codepen.io/junilearning/pen/eYpBWWX"
 		)
 	).toBeNull();
+	const smallTalkUrl =
+		"https://codepen.io/junilearning/pen/c8c02ee2db01eeb4c5f408d9a1f58815";
+	expect(pythonIdeModeForCourseResource(secondCourse, smallTalkUrl)).toBe(
+		"web"
+	);
+	expect(javascriptCourseResource(smallTalkUrl, secondCourse)).toMatchObject({
+		courseId: secondCourse,
+		project: "small-talk",
+		role: "starter"
+	});
 	expect(
-		pythonIdeModeForCourseResource(
-			secondCourse,
-			"https://codepen.io/junilearning/pen/c8c02ee2db01eeb4c5f408d9a1f58815"
-		)
+		pythonIdeModeForCourseResource(firstCourse, smallTalkUrl)
 	).toBeNull();
+	expect(() =>
+		javascriptCourseProjectKey(
+			firstCourse,
+			"setup-item",
+			"starter",
+			smallTalkUrl
+		)
+	).toThrow(/course role/);
 });
 
 function collectCapturedUrls(value: unknown, urls: Set<string>) {
@@ -322,7 +337,7 @@ it.each(["learner", "instructor"] as const)(
 			expect(params.get("mode")).toBe("web");
 			expect(params.get("starterUrl")).toBe(sourceUrl);
 			expect(params.get("projectKey")).toBe(
-				`${secondCourse}:${item.id}:starter:introduction:v1`
+				`${secondCourse}:${item.id}:starter:introduction:v2`
 			);
 		} finally {
 			wrapper.unmount();

@@ -3,7 +3,7 @@ export const javascriptMasterConditionalsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "ternary-operators-practice",
 		title: "Ternary Operators Practice",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: [
 			"https://codepen.io/junilearning/pen/a7c2ad78bc62de68676af56657849a9b",
@@ -50,8 +50,8 @@ export const javascriptMasterConditionalsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "complex-conditionals-v1/ternary-operators-practice/starter/vendor/d3.min.js.txt",
-				byteLength: 265491,
-				sha256: "b50429b67916438842aa00921546d7a9eda8f3e12ba7049f92f04b71b6413822"
+				byteLength: 265612,
+				sha256: "e2ea453f8825a9e37cfceccb491aeb44aed18c3cdabbfcc584a9af8eb9d1524f"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -65,7 +65,7 @@ export const javascriptMasterConditionalsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "ternary-operators-practice",
 		title: "Ternary Operators Practice",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/b1db3868ed9880b007754b9003337700",
@@ -112,8 +112,8 @@ export const javascriptMasterConditionalsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "complex-conditionals-v1/ternary-operators-practice/reference/vendor/d3.min.js.txt",
-				byteLength: 265491,
-				sha256: "b50429b67916438842aa00921546d7a9eda8f3e12ba7049f92f04b71b6413822"
+				byteLength: 265612,
+				sha256: "e2ea453f8825a9e37cfceccb491aeb44aed18c3cdabbfcc584a9af8eb9d1524f"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -127,7 +127,7 @@ export const javascriptMasterConditionalsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "department-store-discounts",
 		title: "Department Store Discounts",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: [
 			"https://codepen.io/junilearning/pen/b3de9678fa8b77aae5cc988f74bd086e",
@@ -174,8 +174,8 @@ export const javascriptMasterConditionalsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "complex-conditionals-v1/department-store-discounts/starter/vendor/d3.min.js.txt",
-				byteLength: 265491,
-				sha256: "b50429b67916438842aa00921546d7a9eda8f3e12ba7049f92f04b71b6413822"
+				byteLength: 265612,
+				sha256: "e2ea453f8825a9e37cfceccb491aeb44aed18c3cdabbfcc584a9af8eb9d1524f"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -189,7 +189,7 @@ export const javascriptMasterConditionalsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "department-store-discounts",
 		title: "Department Store Discounts",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/d37942e57460093f20ee6217402d4ba7",
@@ -236,8 +236,8 @@ export const javascriptMasterConditionalsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "complex-conditionals-v1/department-store-discounts/reference/vendor/d3.min.js.txt",
-				byteLength: 265491,
-				sha256: "b50429b67916438842aa00921546d7a9eda8f3e12ba7049f92f04b71b6413822"
+				byteLength: 265612,
+				sha256: "e2ea453f8825a9e37cfceccb491aeb44aed18c3cdabbfcc584a9af8eb9d1524f"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -251,7 +251,7 @@ export const javascriptMasterConditionalsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "special-numbers",
 		title: "Special Numbers",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: [
 			"https://codepen.io/junilearning/pen/1be13919321ab5708564a8a7ca928226",
@@ -298,8 +298,8 @@ export const javascriptMasterConditionalsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "complex-conditionals-v1/special-numbers/starter/vendor/d3.min.js.txt",
-				byteLength: 267786,
-				sha256: "0055b23913f83975330bcac74e9116edfc97b7183de3e6738af9d98936f53438"
+				byteLength: 267907,
+				sha256: "503009428672ae3cb3867cd551a8ecda0a2259ea1baf976d223a48d9fd52c88d"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -313,7 +313,7 @@ export const javascriptMasterConditionalsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "special-numbers",
 		title: "Special Numbers",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/2ccb91adaa2536ecc746e938b9411171",
@@ -360,8 +360,8 @@ export const javascriptMasterConditionalsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "complex-conditionals-v1/special-numbers/reference/vendor/d3.min.js.txt",
-				byteLength: 267786,
-				sha256: "0055b23913f83975330bcac74e9116edfc97b7183de3e6738af9d98936f53438"
+				byteLength: 267907,
+				sha256: "503009428672ae3cb3867cd551a8ecda0a2259ea1baf976d223a48d9fd52c88d"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -375,7 +375,7 @@ export const javascriptMasterConditionalsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "age-milestones",
 		title: "Age Milestones",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: [
 			"https://codepen.io/junilearning/pen/8b95795088fd04a2a6b77fba56416332",
@@ -422,8 +422,8 @@ export const javascriptMasterConditionalsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "complex-conditionals-v1/age-milestones/starter/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -437,7 +437,7 @@ export const javascriptMasterConditionalsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "age-milestones",
 		title: "Age Milestones",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/a85d4be8f2f94812a0357dae2a1d1e00",
@@ -484,8 +484,8 @@ export const javascriptMasterConditionalsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "complex-conditionals-v1/age-milestones/reference/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",

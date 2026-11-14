@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "id": "welcome-survey",
   "courseId": "javascript-level-1-javascript-superstar",
   "sourceCapture": "codepen-welcome-survey-original-visible-source-20261024.json",
@@ -42,8 +42,8 @@
       {
         "name": "vendor/d3.min.js",
         "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-        "byteLength": 248314,
-        "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        "byteLength": 248435,
+        "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
       },
       {
         "name": "LICENSE-d3.txt",
@@ -80,8 +80,8 @@
       {
         "name": "vendor/d3.min.js",
         "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-        "byteLength": 248314,
-        "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+        "byteLength": 248435,
+        "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
       },
       {
         "name": "LICENSE-d3.txt",
@@ -94,5 +94,10 @@
   "revision": "fcfeb125f5af1949a15211cf211a4089d7dfb80c2a689845189b32b5504de65c",
   "revisionKind": "SHA-256 of the complete selected-role file manifests, not a Git commit",
   "itemId": "javascript-level-1-javascript-superstar-jss1-variables-and-data-types-curriculum-jss1-project-1-welcome-survey",
-  "sourceChanges": "Supplied helper renders wrapping paragraphs; authored starter exercise section retained and v1 work remains separately keyed."
+  "sourceChanges": "Supplied helper renders wrapping paragraphs; authored starter exercise section retained and v1 work remains separately keyed.",
+  "vendorSecurityPatch": {
+    "advisory": "GHSA-36jr-mh4h-2g58",
+    "upstreamFix": "https://github.com/d3/d3-color/commit/61a184bd3748db5142c316238c03547865787a94",
+    "manifest": "scripts/vendored-d3-security.json"
+  }
 }

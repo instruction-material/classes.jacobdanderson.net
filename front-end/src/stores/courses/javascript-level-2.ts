@@ -341,11 +341,12 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSM1 Project 1: Finish the Lyrics",
-					content: `**Project target:** Build a lyric guessing game that asks three prompts, checks each answer, tracks score, and prints a final result. The project combines strings, prompt input, conditionals, and simple state updates.
+					preserveInstructions: true,
+					content: `Build a three-question guessing game using short lyric snippets, quotations, original sayings or jokes. Ask each question with prompt(), compare its answer, count correct answers and call the supplied printToScreen(text) helper to show the final score. The local pack includes index.html, styles.css, script.js, the helper and D3.
 
-**Build path:** Store the lyric snippets and accepted answers in variables or arrays. Normalize guesses with trimming and a consistent case before comparing. Update a correct-answer count after each guess, then print both the number correct and a short result message.
+Choose one accepted word for each blank. Check that an answer is not null before trimming it and converting case: cancelling a prompt returns null. Count a cancelled, blank or unmatched answer as incorrect and continue to the next question. Increment the score only for a match; refresh to begin a new attempt.
 
-**Evidence target:** Three different prompts appear, exact or normalized matching is consistent, the score changes only when an answer is accepted, and the final output reports both the score and total number of questions.`,
+Record the prompts, accepted words and expected scores in CASES.md. Check all-correct, all-wrong and mixed answers, case/whitespace variants, and cancellation at each question. Every attempt must ask three questions and display one final score with the correct total. Reopen the saved project to verify its files and narrow-screen result.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/2d400625754c49aedbb72402eed3ba8f",
 					solutionLink:
@@ -371,7 +372,7 @@ const javascriptLevel2SourceCourse: RawCourse = {
 					title: "JSM1 Project 2: Double or Nothing",
 					content: `**Project target:** Build a risk-and-reward coin-flip game. Each successful flip doubles the current dollars, and a losing flip ends the round with zero.
 
-**Build path:** Represent the current dollars with a variable, use \`Math.random()\` to simulate heads or tails, and prompt after each successful round to continue or stop. Keep the random flip, user choice, and score update as separate pieces of logic so each part can be tested.
+**Build path:** Start with 1000 virtual dollars. Before each flip, prompt for Y to play or N to stop; Cancel also stops and preserves the balance. Retry other entries without flipping. Use \`Math.floor(Math.random() * 2)\`: 0 means heads and doubles the balance, while 1 means tails, sets the balance to zero, and ends the game. Keep the choice, flip, and balance update separate.
 
 **Evidence target:** A win doubles the displayed value, a loss resets the round correctly, stopping preserves the current total, and the game prints a final message for every ending path.`,
 					projectLink:
@@ -385,9 +386,9 @@ const javascriptLevel2SourceCourse: RawCourse = {
 					title: "Drawing in JavaScript",
 					content: `**Concept path:** SVG describes shapes as elements in the page, and D3 helps create or update those elements from JavaScript data. Unlike canvas, SVG shapes remain as individual DOM nodes that can be selected and styled.
 
-**Practice targets:** Create an SVG area, append at least one rectangle and one circle, and assign random colors from a small palette. Store shape settings in data objects before rendering so the drawing logic depends on data rather than repeated hard-coded calls.
+**Practice targets:** Recreate the original 100 Squares project with D3: begin with one 50-by-50 square, make a row of 10, then use nested loops for 10 rows and 10 columns. Use a 1000-by-1000 SVG. Set each square's x and y positions to \`50 + column * 75\` and \`50 + row * 75\`. Choose red, green, and blue channel values from 1 through 255 and form a complete \`rgb(r, g, b)\` color string. Scale the SVG to fit narrower screens while retaining its coordinates.
 
-**Evidence target:** The page contains visible SVG shapes, refreshing or rerunning can change color, and changing one data object changes the matching shape without rewriting the render code.`,
+**Evidence target:** The SVG contains exactly 100 rectangles with 10 distinct x positions and 10 distinct y positions. The first square begins at (50, 50), the last at (725, 725), and every square is 50-by-50. Rerunning changes colors while preserving the grid; narrow screens retain the full drawing.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/90973aa93a04ccb12c61f3a85280daed",
 					solutionLink:
@@ -397,7 +398,7 @@ const javascriptLevel2SourceCourse: RawCourse = {
 					title: "HTML & CSS",
 					content: `**Concept path:** HTML gives page content structure, while CSS controls presentation. JavaScript can generate or modify page content, but the result remains easier to maintain when markup, style, and behavior each have a clear job.
 
-**Practice targets:** Build a small table with headings, rows, and cells. Style borders, spacing, font size, and alternating rows with CSS. Add at least one class that communicates meaning, such as a highlighted row or a warning value.
+**Practice targets:** Build the Favorite Restaurants table with columns Name, Favorite Menu Item, and Photo or Illustration. Include three real or fictional restaurant rows, give each column a header, and add descriptive alternative text to each image. Use a photo or a self-made illustration for each row. Style spacing, font size, image width, and alternating rows with CSS; keep the full table readable on a narrow screen.
 
 **Evidence target:** The table is readable without JavaScript console output, CSS selectors are specific enough to avoid accidental global changes, and the alternating-row styling still works after adding another row.`,
 					projectLink:
@@ -407,11 +408,12 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "Materialize and D3 Interaction",
-					content: `**Concept path:** Materialize provides prebuilt interface styling, while D3 can attach behavior to selected page elements. Together they make it possible to create a styled control that changes visible state.
+					preserveInstructions: true,
+					content: `Create a webpage that recommends an item for the weather. The starter supplies the assignment comment and an empty page body. Materialize styles the controls, while D3 selects elements and handles events; the local pack includes the libraries and pictures needed to run the project.
 
-**Practice targets:** Add a Materialize button or card, select it with D3, and attach a click handler using \`d3.select().on("click", handler)\`. The handler can update text, color, count, or another visible property.
+Brainstorm at least five weather situations and choose an item to bring for each. Examples include rain, snow, strong wind, hot sunshine, and cool weather. Build a labeled weather control and a visible recommendation area. Use Materialize to style the control or result, then use a D3 selection and an event handler to read the chosen weather and update the recommendation text. Keep the weather-to-item choices in one mapping or conditional sequence so each situation has a deliberate result.
 
-**Evidence target:** The interaction works after a page refresh, the selected element is specific enough to avoid affecting unrelated elements, and the visible state changes every time the event fires.`,
+Record the five weather inputs and their expected recommendations. Select every situation, then switch back to one already tried; each selection must replace the previous recommendation with the matching item. Refresh the page and verify that the control and result still work. The weather choices and recommendation remain readable on a narrow screen.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/81d62c84dfa32d88f17d0e012229bf0c",
 					solutionLink:
@@ -421,11 +423,10 @@ const javascriptLevel2SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "Fundamentals Review: Extension Challenge",
-					content: buildSupportSectionGuidance({
-						courseFamily: "JavaScript",
-						moduleTitle: "Fundamentals Review",
-						section: "extension"
-					}),
+					preserveInstructions: true,
+					content: `Compare exact answer matching with trimmed, case-insensitive matching in a separate copy of the completed three-question game. For the first question, keep the accepted word program; answer the other two with easier and clear. Try program, PROGRAM, a space-padded program, an empty answer, a cancelled prompt and wrong.
+
+Record predicted and observed scores for both policies in CASES.md. Keep the null check before either comparison. The reference uses trimmed, case-insensitive matching; README.md supplies the exact-policy expression and the worked comparison table. Explain which inputs each policy accepts and choose a policy for the intended game.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/2d400625754c49aedbb72402eed3ba8f",
 					solutionLink:
@@ -825,11 +826,17 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JSM6 Project 1: Small Talk",
-					content: `**Project target:** Build a small comparison program that stores profile data in objects and responds based on shared properties. The project practices prompts, object construction, property access, and ternary expressions.
+					contentKind: "assignment",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					ideImport: true,
+					content: `Create exactly two declared variables, \`aboutMe\` and \`aboutYou\`, both objects. Give both at least five corresponding properties, including string, integer and boolean values. Assign prompted input directly to the second object's properties. Keep working values in those properties; use ternary expressions for simple comparison messages.
 
-**Build path:** Create one object with fixed profile data and another object from prompted input. Compare at least three properties such as favorite color, hobby, or preferred food. Use short ternary expressions for simple match messages, then print a friendly summary.
+The supplied path compares six fictional profile fields: name, city, age, school, favoriteSubject and pineappleOnPizza. Use Riley, Oakville, 20, Example School, coding and true for the fixed profile. Request the other profile's fields in that order, then display a summary with \`textContent\`. A custom profile may retain the original five-property minimum and document corresponding examples.
 
-**Evidence target:** The prompted object contains the expected keys, comparisons are case-normalized when appropriate, and the output changes when one shared property matches versus when none match.`,
+Trim text and compare city, school and subject without case differences. Cancel or blank input skips that field and continues. A completed age is a whole number from 0 through 120. Normalize pizza answers yes/no to boolean values. Report other age or pizza answers and mark the field skipped. The imported \`README.md\` supplies the complete input rules and worked cases; \`script.js\` retains the original blank assignment area.
+
+**Complete when:** The two objects have corresponding keys and correctly typed completed values; each comparison changes for matching versus differing input. Show a matching run, a differing run, whitespace/case input, invalid input, and cancellation at each question without stopping later questions or displaying \`null\`/\`NaN\`. Explain why a skipped field differs from age zero or a false pizza preference.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/c8c02ee2db01eeb4c5f408d9a1f58815",
 					solutionLink:

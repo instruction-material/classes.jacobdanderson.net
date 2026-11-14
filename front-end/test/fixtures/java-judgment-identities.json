@@ -1,0 +1,79 @@
+{
+	"curriculum": [
+		{
+			"id": "design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-curriculum-pattern-selection-and-refactoring-judgment-core-concepts",
+			"title": "Pattern Selection and Refactoring Judgment Core Concepts",
+			"aliases": [
+				"design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-curriculum-core-concepts-and-learning-sequence",
+				"core-concepts",
+				"smell-to-pattern-mapping",
+				"when-not-to-use-the-pattern",
+				"mini-lab-improve-a-brittle-object-model-with-restraint",
+				"design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-curriculum-core-concepts",
+				"design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-curriculum-smell-to-pattern-mapping",
+				"design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-curriculum-when-not-to-use-the-pattern",
+				"design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-curriculum-mini-lab-improve-a-brittle-object-model-with-restraint"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-curriculum-design-review-exercise-name-the-tradeoff-not-just-the-pattern",
+			"title": "Design Review Exercise: Name the Tradeoff, Not Just the Pattern"
+		},
+		{
+			"id": "design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-curriculum-refactoring-preview-pattern-selection-requires-safe-change",
+			"title": "Refactoring Preview: Pattern Selection Requires Safe Change"
+		},
+		{
+			"id": "design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-curriculum-reflection-question-what-improvement-was-actually-measured",
+			"title": "Reflection Question: What Improvement Was Actually Measured?"
+		},
+		{
+			"id": "design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-curriculum-pattern-decision-record-and-simpler-counterfactual",
+			"title": "Pattern Decision Record and Simpler Counterfactual"
+		},
+		{
+			"id": "design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-curriculum-safe-refactor-and-measurement-contract",
+			"title": "Safe Refactor and Measurement Contract"
+		},
+		{
+			"id": "design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-curriculum-core-project-pattern-selection-and-refactoring-judgment",
+			"title": "Core Project: Pattern Selection and Refactoring Judgment",
+			"aliases": [
+				"design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-curriculum-core-project",
+				"dpj9-pattern-selection-and-refactoring-judgment-core-project",
+				"design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-curriculum-dpj9-pattern-selection-and-refactoring-judgment-core-project"
+			]
+		}
+	],
+	"supplementalProjects": [
+		{
+			"id": "design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-supplemental-understanding-check-pattern-selection-and-refactoring-judgment",
+			"title": "Understanding Check: Pattern Selection and Refactoring Judgment",
+			"aliases": [
+				"design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-supplemental-dpj9-pattern-selection-and-refactoring-judgment-diagnostic-checkpoint",
+				"diagnostic-checkpoint-pattern-selection-and-refactoring-judgment",
+				"diagnostic-checkpoint",
+				"understanding-check",
+				"design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-supplemental-diagnostic-checkpoint-pattern-selection-and-refactoring-judgment",
+				"design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-supplemental-diagnostic-checkpoint",
+				"design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-supplemental-understanding-check"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-supplemental-pattern-selection-and-refactoring-judgment-transfer-practice",
+			"title": "Pattern Selection and Refactoring Judgment Transfer Practice",
+			"aliases": [
+				"design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-supplemental-transfer-practice",
+				"design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-supplemental-transfer-practice-pattern-selection-and-refactoring-judgment"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-supplemental-pattern-selection-and-refactoring-judgment-extension-practice",
+			"title": "Pattern Selection and Refactoring Judgment Extension Practice",
+			"aliases": [
+				"design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-supplemental-extension-practice",
+				"design-patterns-in-java-dpj9-pattern-selection-and-refactoring-judgment-supplemental-extension-practice-pattern-selection-and-refactoring-judgment"
+			]
+		}
+	]
+}

@@ -388,12 +388,12 @@ export const lateElementaryBMaterials: ElementaryMaterial[] = [
 		tasks: [
 			{
 				title: "Chanh Tesla Orbit Measurement",
-				prompt: "Use the fictional circular-track model with center (0,0). Tesla starts at (2,0) classroom AU and moves counterclockwise at 60000 mph on radius 2 AU. Sketch the circle, label its four axis crossings, and calculate circumference in AU and miles, lap time in hours and days. Use π = 3.14 and 98000000 miles per classroom AU.",
+				prompt: "Open the [Tesla-Retriever experiment](/tesla-retriever) and use its fictional circular-track model with center (0,0). Tesla starts at (2,0) classroom AU and moves counterclockwise at 60000 mph on radius 2 AU. Sketch the circle, label its four axis crossings, and calculate circumference in AU and miles, lap time in hours and days. Use π = 3.14 and 98000000 miles per classroom AU.",
 				anchor: "chanh-tesla-orbit-measurement"
 			},
 			{
 				title: "Tesla-Retriever Intercept Simulation",
-				prompt: "Use a paper simulation of two fixed circular tracks centered at (0,0), with π = 3.14 and 98000000 miles per classroom AU. Tesla starts at (2,0), radius 2 AU, at 60000 mph. TR9000 may choose radius 0.5–3 AU and begins on its negative x-axis at 60000 mph; adjust speed in 150-mph increments. Explain why an intercept requires radius 2. Choose 2 and add one increment. The initial gap is half a circumference. Calculate catch time = gap/(60150 - 60000). At one quarter, one half, three quarters and all of that time, tabulate the fraction of the original gap closed. Find both positions at catch time from completed lap counts.",
+				prompt: "Open the [Tesla-Retriever experiment](/tesla-retriever). Use the supplied circular-track model with π = 3.14 and 98000000 miles per classroom AU. Tesla starts at (2,0), radius 2 AU, at 60000 mph. Choose a TR9000 starting radius from 0.5–3 AU; it starts on the negative x-axis at 60000 mph. Predict whether the tracks can meet. Advance time, record both coordinates, and change TR9000 speed in 150-mph increments. Compare an equal-speed trial, a different-radius trial, and a radius-2 trial at 60150 mph. Estimate the first intercept point and time, then compare the observed result with your calculation from the initial half-circumference gap and speed difference. Show positions before and at the intercept. Explain the model limits.",
 				anchor: "tesla-retriever-intercept-simulation"
 			},
 			{

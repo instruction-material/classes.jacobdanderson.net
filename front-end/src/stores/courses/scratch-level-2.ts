@@ -10,6 +10,7 @@ import {
 	scratchFishFoodPlan,
 	scratchTreasureCavePlan
 } from "./scratchAdvancedGameLessons";
+import { scratchBroadcastingReview } from "./scratchBroadcastingLesson";
 import { scratchFunctionLesson } from "./scratchFunctionLesson";
 import { scratchListLesson } from "./scratchListLesson";
 import { scratchNestedLoopLesson } from "./scratchNestedLoopLesson";
@@ -100,8 +101,8 @@ View CS Training's Code`,
 				{
 					title: "Message Broadcasting",
 					contentKind: "reading",
-					content:
-						"A broadcast lets sprites send messages to each other. This is useful when one sprite waits for another sprite to finish speaking, moving, or changing state before its own script begins.\nOpen the Events blocks and compare `broadcast __` with `when I receive __`. Practice by making one sprite finish a short action, broadcast a message, and trigger a second sprite to start moving only after that message is received."
+					preserveInstructions: true,
+					content: scratchBroadcastingReview
 				},
 				{
 					title: "GM1 Project 5: Dance Off",

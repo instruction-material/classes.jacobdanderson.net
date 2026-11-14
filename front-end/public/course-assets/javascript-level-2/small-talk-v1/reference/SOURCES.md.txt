@@ -1,0 +1,18 @@
+# Original sources
+
+- Starter: https://codepen.io/junilearning/pen/c8c02ee2db01eeb4c5f408d9a1f58815
+- Observed public starter: https://codepen.io/junilearning/pen/eYzrYrZ
+- Reference: https://codepen.io/junilearning/pen/0ed9be7b36e44c36de057a37265095a3
+- Observed reference: https://codepen.io/junilearning/pen/JjKvjvJ/0ed9be7b36e44c36de057a37265095a3
+
+Official exports and visible HTML/CSS/JS settings were captured on 2026-11-13.
+Both original HTML/CSS panels are empty, all preprocessors are None, and neither base styles,
+prefix processors nor external dependencies are configured. The original starter is deliberately
+comment-only. Its original MIT notice is retained in both local roles.
+
+The new reference is a declared teaching adaptation with explicit per-question skipping,
+integer/boolean policies and safe local summary output. The original reference's cancellation
+behavior and unnormalized inputs remain retained in the audit evidence.
+
+Original starter JavaScript SHA256: fb317cb7c4cc94b231567ce625d6effb6ba5188a05b6c0754ea9225384175c11
+Original reference JavaScript SHA256: 337e6adc3185a031b46db378a1acd1b6d92c63435e430b9a183bf96dbaa4c66f

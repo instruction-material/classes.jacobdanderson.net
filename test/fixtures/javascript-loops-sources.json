@@ -11,7 +11,7 @@
       "section": "optional",
       "project": "powers-of-three",
       "title": "Powers of 3",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/1c1201771499a38d4f15588580d7bfa1",
@@ -45,8 +45,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -69,7 +69,7 @@
       "section": "core",
       "project": "string-reversal",
       "title": "String Reversal",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/3f802bef974fcccd10caafaac8c3eb04",
@@ -103,8 +103,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -127,7 +127,7 @@
       "section": "optional",
       "project": "repeated-addition",
       "title": "Forgotten Math",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/53206f1e4800c28a4549aea7be49b7e0",
@@ -161,8 +161,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -185,7 +185,7 @@
       "section": "core",
       "project": "looping-squares",
       "title": "Looping Squares",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/56baa6b060aab0e3511c7c3608d53eaa",
@@ -219,8 +219,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -243,7 +243,7 @@
       "section": "core",
       "project": "for-loops",
       "title": "For Loops Practice",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/8c4bf4ddfb48b6a93a41d0347d6f78ef",
@@ -277,8 +277,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -301,7 +301,7 @@
       "section": "optional",
       "project": "debugging-loops",
       "title": "Debugging Loops",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "https://codepen.io/junilearning/pen/KKVGBWx"
@@ -334,8 +334,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -358,7 +358,7 @@
       "section": "core",
       "project": "string-reversal",
       "title": "String Reversal",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "https://codepen.io/junilearning/pen/OJMxRvY"
@@ -391,8 +391,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -415,7 +415,7 @@
       "section": "core",
       "project": "for-loops",
       "title": "For Loops Practice",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "https://codepen.io/junilearning/pen/PoZJGKV"
@@ -448,8 +448,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -472,7 +472,7 @@
       "section": "optional",
       "project": "debugging-loops",
       "title": "Debugging Loops",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/d56a9a00a8022b7f85434f295cc0dbec",
@@ -506,8 +506,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -530,7 +530,7 @@
       "section": "optional",
       "project": "repeated-addition",
       "title": "Forgotten Math",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "https://codepen.io/junilearning/pen/gOPGwBy"
@@ -563,8 +563,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -587,7 +587,7 @@
       "section": "optional",
       "project": "powers-of-three",
       "title": "Powers of 3",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "https://codepen.io/junilearning/pen/wvMrzEw"
@@ -620,8 +620,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -644,7 +644,7 @@
       "section": "core",
       "project": "looping-squares",
       "title": "Looping Squares",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "https://codepen.io/junilearning/pen/xxZXEzP"
@@ -677,8 +677,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -695,5 +695,10 @@
     }
   ],
   "sharedLibraryVersion": "5.16.0",
-  "originalRoles": 12
+  "originalRoles": 12,
+  "vendorSecurityPatch": {
+    "advisory": "GHSA-36jr-mh4h-2g58",
+    "upstreamFix": "https://github.com/d3/d3-color/commit/61a184bd3748db5142c316238c03547865787a94",
+    "manifest": "scripts/vendored-d3-security.json"
+  }
 }

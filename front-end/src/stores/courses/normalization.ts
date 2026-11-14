@@ -7,6 +7,7 @@ import { applyElementaryScienceReferences } from "./elementaryScienceReferences"
 import { applyEntrepreneurshipReadings } from "./entrepreneurshipReadings";
 import { applyGrammarMechanicsReadings } from "./grammarMechanicsReadings";
 import { applyIntroPhysicsReferences } from "./introPhysicsReferences";
+import { applyJavaPatternReferences } from "./javaPatternReferences";
 import { applyJoyOfReadingGuidance } from "./joyOfReadingProjects";
 import { isJuniScratchProjectTitle } from "./juniScratchProjects";
 import { applyLateElementaryAProjects } from "./lateElementaryAProjects";
@@ -9883,6 +9884,7 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 	if (id === "middle-school-integrated-science")
 		applyMiddleSchoolScienceReferences(course);
 	if (id === "elementary-science") applyElementaryScienceReferences(course);
+	if (id === "design-patterns-in-java") applyJavaPatternReferences(course);
 	if (id === "intro-to-physics") applyIntroPhysicsReferences(course);
 	if (id === "physics-level-2") applyPhysicsLevel2References(course);
 	if (

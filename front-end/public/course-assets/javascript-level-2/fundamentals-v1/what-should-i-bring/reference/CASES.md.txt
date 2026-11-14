@@ -1,0 +1,17 @@
+# Weather cases
+
+| Input | Reference text | Reference picture |
+| --- | --- | --- |
+| hot | Sunglasses! | sunglasses.svg |
+| rain | Umbrella! | umbrella.svg |
+| snow | Timbs! | boots.svg |
+| cold | Jacket! | jacket.svg |
+| wind | Windbreaker! | windbreaker.svg |
+| fog, an empty string, or HOT | I'm not sure! | No picture |
+| hot after fog | Sunglasses! | sunglasses.svg |
+
+Timbs is the original reference's word for the boots example. The local reference adds wind as its fifth weather case; the original linked solution implements only the first four.
+
+| Input or sequence | Predicted recommendation/picture | Observed result | Explanation |
+| --- | --- | --- | --- |
+| | | | |

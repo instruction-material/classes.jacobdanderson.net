@@ -1,0 +1,541 @@
+{
+	"courseId": "javascript-level-2-javascript-master",
+	"moduleId": "javascript-level-2-javascript-master-jsm6-objects-and-properties",
+	"itemId": "javascript-level-2-javascript-master-jsm6-objects-and-properties-curriculum-jsm6-project-1-small-talk",
+	"originalCaptures": [
+		"https://codepen.io/junilearning/pen/c8c02ee2db01eeb4c5f408d9a1f58815",
+		"https://codepen.io/junilearning/pen/0ed9be7b36e44c36de057a37265095a3"
+	],
+	"resources": [
+		{
+			"courseId": "javascript-level-2-javascript-master",
+			"project": "small-talk",
+			"title": "Small Talk",
+			"version": 1,
+			"role": "starter",
+			"urls": [
+				"https://codepen.io/junilearning/pen/c8c02ee2db01eeb4c5f408d9a1f58815",
+				"https://codepen.io/junilearning/pen/eYzrYrZ",
+				"/course-assets/javascript-level-2/small-talk-v1/starter/index.html.txt"
+			],
+			"files": [
+				{
+					"name": "LICENSE-original.txt",
+					"path": "small-talk-v1/starter/LICENSE-original.txt.txt",
+					"byteLength": 1230,
+					"sha256": "da7aadbf9dd2cf52c9ae9994c108760f620522fd1cc885efe7a60b6a2c924f3c"
+				},
+				{
+					"name": "README.md",
+					"path": "small-talk-v1/starter/README.md.txt",
+					"byteLength": 3550,
+					"sha256": "eeabd90334e0cc9d933abc78984e2f13c6aaed889ac7afb10a38ac5893594698"
+				},
+				{
+					"name": "SOURCES.md",
+					"path": "small-talk-v1/starter/SOURCES.md.txt",
+					"byteLength": 1155,
+					"sha256": "4e86f1bd5d73fa11229bdf439222228803e0b24e4d8b5f46a96fe8946afd83d4"
+				},
+				{
+					"name": "index.html",
+					"path": "small-talk-v1/starter/index.html.txt",
+					"byteLength": 408,
+					"sha256": "0111075c80dcd5816fa42b03f8f7799f0eb0deabb16cecbbf2634a48fba47542"
+				},
+				{
+					"name": "script.js",
+					"path": "small-talk-v1/starter/script.js.txt",
+					"byteLength": 560,
+					"sha256": "fb317cb7c4cc94b231567ce625d6effb6ba5188a05b6c0754ea9225384175c11"
+				},
+				{
+					"name": "styles.css",
+					"path": "small-talk-v1/starter/styles.css.txt",
+					"byteLength": 327,
+					"sha256": "490307fff9b85e4706df001eb0e6a3521104dbbf33b34093f123692a37160647"
+				}
+			],
+			"itemId": "javascript-level-2-javascript-master-jsm6-objects-and-properties-curriculum-jsm6-project-1-small-talk"
+		},
+		{
+			"courseId": "javascript-level-2-javascript-master",
+			"project": "small-talk",
+			"title": "Small Talk",
+			"version": 1,
+			"role": "reference",
+			"urls": [
+				"https://codepen.io/junilearning/pen/0ed9be7b36e44c36de057a37265095a3",
+				"https://codepen.io/junilearning/pen/JjKvjvJ/0ed9be7b36e44c36de057a37265095a3",
+				"/course-assets/javascript-level-2/small-talk-v1/reference/index.html.txt"
+			],
+			"files": [
+				{
+					"name": "LICENSE-original.txt",
+					"path": "small-talk-v1/reference/LICENSE-original.txt.txt",
+					"byteLength": 1230,
+					"sha256": "da7aadbf9dd2cf52c9ae9994c108760f620522fd1cc885efe7a60b6a2c924f3c"
+				},
+				{
+					"name": "README.md",
+					"path": "small-talk-v1/reference/README.md.txt",
+					"byteLength": 3550,
+					"sha256": "eeabd90334e0cc9d933abc78984e2f13c6aaed889ac7afb10a38ac5893594698"
+				},
+				{
+					"name": "SOURCES.md",
+					"path": "small-talk-v1/reference/SOURCES.md.txt",
+					"byteLength": 1155,
+					"sha256": "4e86f1bd5d73fa11229bdf439222228803e0b24e4d8b5f46a96fe8946afd83d4"
+				},
+				{
+					"name": "index.html",
+					"path": "small-talk-v1/reference/index.html.txt",
+					"byteLength": 408,
+					"sha256": "0111075c80dcd5816fa42b03f8f7799f0eb0deabb16cecbbf2634a48fba47542"
+				},
+				{
+					"name": "script.js",
+					"path": "small-talk-v1/reference/script.js.txt",
+					"byteLength": 3978,
+					"sha256": "85ef86337c373baccadbfeacce4e4b6014d1cc934724476bb0760986a859a458"
+				},
+				{
+					"name": "styles.css",
+					"path": "small-talk-v1/reference/styles.css.txt",
+					"byteLength": 327,
+					"sha256": "490307fff9b85e4706df001eb0e6a3521104dbbf33b34093f123692a37160647"
+				}
+			],
+			"itemId": "javascript-level-2-javascript-master-jsm6-objects-and-properties-curriculum-jsm6-project-1-small-talk"
+		}
+	],
+	"files": {
+		"starter": {
+			"LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/eYzrYrZ)\nFork of an original work JSM6 Project 1: Small Talk Solution (https://codepen.io/Gaster623/pen/eYZLbjQ)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+			"README.md": "# Small Talk\n\nBuild a fictional conversation using exactly two declared variables: aboutMe and aboutYou.\nBoth are objects. Use at least five corresponding profile properties, including a string, an integer\nand a boolean. Assign prompted input to properties and use ternary expressions for match messages.\nThe supplied reference uses name, city, age, school, favoriteSubject and pineappleOnPizza.\nKeep all other working values in those properties; do not add extra variable declarations.\n\n## Supplied files and execution\n\nOpen index.html in a browser. All scripts and styles are local; no server or library is required.\nThe original starter's assignment and blank entry area are preserved in script.js.\nImplement the conversation there. The reference completes it with two objects and six prompts.\n\nCancel or a blank response skips only that question and becomes null in the corresponding field.\nThe six questions continue and the final page labels absent fields as skipped.\nText is trimmed while preserving display spelling; city, school and subject comparisons ignore case.\nFor this exercise, age is a whole number from 0 through 120. Invalid numeric input is reported and\nskipped. A pizza response normalizes yes/no, including outer whitespace and case, to true/false.\nAn invalid nonblank pizza answer is reported and skipped. These null values represent unanswered\nproperties; a completed numeric or boolean answer retains its intended type.\n\nUse textContent when printing the summary, so input is displayed as text.\n\n## Required implementation\n\nCreate the fixed fictional profile, then an empty aboutYou object. The supplied path requests six fields in order. A custom profile can retain the original minimum of five corresponding properties and document its own examples.\nNormalize each field before the next comparison uses it. Include match/difference messages for\ncity, age, school, subject and pizza; unanswered fields receive a separate skipped message.\nPrint the six final fields in the supplied summary element.\n\n## Worked checks\n\nFixed profile: Riley, Oakville,20, Example School, coding, true.\n\n- Avery / Oakville / 20 / Example School / coding / yes: city, age, school, subject and pizza match.\n- Avery / cedar / 0 / Other School / drawing / no: age 0 remains 0, pizza becomes false and comparisons differ.\n- Cancel all six: all user properties are null; displayed values are skipped, rather than null or 0.\n- Age abc,-1,20.5 or 121: report invalid age and retain null.\n- Pizza \" YES \" becomes true; \" no \" becomes false; maybe is reported and becomes null.\n- Name \"<b>Avery</b>\" is shown literally, preserving the characters as plain text.\n\n## Completion evidence\n\nSave the two-object source, one matching trace, one differing trace, all-cancel behavior,\nage boundaries 0/120 and invalid-age/boolean examples. Inspect typeof for completed age and pizza\nproperties. The only declared variables are aboutMe and aboutYou, and both objects contain the same\nproperty names. The optional next exercise may compare additional profile fields after the core\nworks; this pack itself supplies the complete required inputs and behavior.\n\n## Source and declared adaptation\n\nThe original blank starter and reference were reviewed from Juni Learning's official CodePen\nexports. LICENSE-original.txt retains the original MIT notice, including its upstream attribution.\nThe local adaptation adds explicit skip/validation policies, typed user preferences and a local\nplaintext summary. SOURCES.md records the original links and retained source hashes.\n",
+			"SOURCES.md": "# Original sources\n\n- Starter: https://codepen.io/junilearning/pen/c8c02ee2db01eeb4c5f408d9a1f58815\n- Observed public starter: https://codepen.io/junilearning/pen/eYzrYrZ\n- Reference: https://codepen.io/junilearning/pen/0ed9be7b36e44c36de057a37265095a3\n- Observed reference: https://codepen.io/junilearning/pen/JjKvjvJ/0ed9be7b36e44c36de057a37265095a3\n\nOfficial exports and visible HTML/CSS/JS settings were captured on 2026-11-13.\nBoth original HTML/CSS panels are empty, all preprocessors are None, and neither base styles,\nprefix processors nor external dependencies are configured. The original starter is deliberately\ncomment-only. Its original MIT notice is retained in both local roles.\n\nThe new reference is a declared teaching adaptation with explicit per-question skipping,\ninteger/boolean policies and safe local summary output. The original reference's cancellation\nbehavior and unnormalized inputs remain retained in the audit evidence.\n\nOriginal starter JavaScript SHA256: fb317cb7c4cc94b231567ce625d6effb6ba5188a05b6c0754ea9225384175c11\nOriginal reference JavaScript SHA256: 337e6adc3185a031b46db378a1acd1b6d92c63435e430b9a183bf96dbaa4c66f\n",
+			"index.html": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Small Talk</title>\n  <link rel=\"stylesheet\" href=\"styles.css\">\n  <script src=\"script.js\" defer></script>\n</head>\n<body>\n  <main>\n    <h1>Small Talk</h1>\n    <p>Cancel skips a question.</p>\n    <pre id=\"summary\" aria-live=\"polite\"></pre>\n  </main>\n</body>\n</html>\n",
+			"script.js": "// Let's make some small talk with the user! Create an object that contains at least 5 properties about yourself (ie name, age, school). Make sure to include at least 1 string property, 1 integer property, and 1 boolean property. Then, create an empty object that will contain the same properties about the user. Use prompts to fill in this second object and use ternary operators to customize the responses if you share any properties in common. In this project, don't make any variables outside of these 2 objects!\n\n// Please enter your code below this line.",
+			"styles.css": "* { box-sizing: border-box; }\nbody { margin: 0; color: #1c2530; background: #f5f6f8; font: 1rem/1.6 system-ui, sans-serif; }\nmain { max-width: 42rem; margin: 2rem auto; padding: 1.25rem; }\nh1 { margin: 0 0 1rem; font-size: 2rem; overflow-wrap: anywhere; }\npre { font: inherit; white-space: pre-wrap; overflow-wrap: anywhere; }\n"
+		},
+		"reference": {
+			"LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/eYzrYrZ)\nFork of an original work JSM6 Project 1: Small Talk Solution (https://codepen.io/Gaster623/pen/eYZLbjQ)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+			"README.md": "# Small Talk\n\nBuild a fictional conversation using exactly two declared variables: aboutMe and aboutYou.\nBoth are objects. Use at least five corresponding profile properties, including a string, an integer\nand a boolean. Assign prompted input to properties and use ternary expressions for match messages.\nThe supplied reference uses name, city, age, school, favoriteSubject and pineappleOnPizza.\nKeep all other working values in those properties; do not add extra variable declarations.\n\n## Supplied files and execution\n\nOpen index.html in a browser. All scripts and styles are local; no server or library is required.\nThe original starter's assignment and blank entry area are preserved in script.js.\nImplement the conversation there. The reference completes it with two objects and six prompts.\n\nCancel or a blank response skips only that question and becomes null in the corresponding field.\nThe six questions continue and the final page labels absent fields as skipped.\nText is trimmed while preserving display spelling; city, school and subject comparisons ignore case.\nFor this exercise, age is a whole number from 0 through 120. Invalid numeric input is reported and\nskipped. A pizza response normalizes yes/no, including outer whitespace and case, to true/false.\nAn invalid nonblank pizza answer is reported and skipped. These null values represent unanswered\nproperties; a completed numeric or boolean answer retains its intended type.\n\nUse textContent when printing the summary, so input is displayed as text.\n\n## Required implementation\n\nCreate the fixed fictional profile, then an empty aboutYou object. The supplied path requests six fields in order. A custom profile can retain the original minimum of five corresponding properties and document its own examples.\nNormalize each field before the next comparison uses it. Include match/difference messages for\ncity, age, school, subject and pizza; unanswered fields receive a separate skipped message.\nPrint the six final fields in the supplied summary element.\n\n## Worked checks\n\nFixed profile: Riley, Oakville,20, Example School, coding, true.\n\n- Avery / Oakville / 20 / Example School / coding / yes: city, age, school, subject and pizza match.\n- Avery / cedar / 0 / Other School / drawing / no: age 0 remains 0, pizza becomes false and comparisons differ.\n- Cancel all six: all user properties are null; displayed values are skipped, rather than null or 0.\n- Age abc,-1,20.5 or 121: report invalid age and retain null.\n- Pizza \" YES \" becomes true; \" no \" becomes false; maybe is reported and becomes null.\n- Name \"<b>Avery</b>\" is shown literally, preserving the characters as plain text.\n\n## Completion evidence\n\nSave the two-object source, one matching trace, one differing trace, all-cancel behavior,\nage boundaries 0/120 and invalid-age/boolean examples. Inspect typeof for completed age and pizza\nproperties. The only declared variables are aboutMe and aboutYou, and both objects contain the same\nproperty names. The optional next exercise may compare additional profile fields after the core\nworks; this pack itself supplies the complete required inputs and behavior.\n\n## Source and declared adaptation\n\nThe original blank starter and reference were reviewed from Juni Learning's official CodePen\nexports. LICENSE-original.txt retains the original MIT notice, including its upstream attribution.\nThe local adaptation adds explicit skip/validation policies, typed user preferences and a local\nplaintext summary. SOURCES.md records the original links and retained source hashes.\n",
+			"SOURCES.md": "# Original sources\n\n- Starter: https://codepen.io/junilearning/pen/c8c02ee2db01eeb4c5f408d9a1f58815\n- Observed public starter: https://codepen.io/junilearning/pen/eYzrYrZ\n- Reference: https://codepen.io/junilearning/pen/0ed9be7b36e44c36de057a37265095a3\n- Observed reference: https://codepen.io/junilearning/pen/JjKvjvJ/0ed9be7b36e44c36de057a37265095a3\n\nOfficial exports and visible HTML/CSS/JS settings were captured on 2026-11-13.\nBoth original HTML/CSS panels are empty, all preprocessors are None, and neither base styles,\nprefix processors nor external dependencies are configured. The original starter is deliberately\ncomment-only. Its original MIT notice is retained in both local roles.\n\nThe new reference is a declared teaching adaptation with explicit per-question skipping,\ninteger/boolean policies and safe local summary output. The original reference's cancellation\nbehavior and unnormalized inputs remain retained in the audit evidence.\n\nOriginal starter JavaScript SHA256: fb317cb7c4cc94b231567ce625d6effb6ba5188a05b6c0754ea9225384175c11\nOriginal reference JavaScript SHA256: 337e6adc3185a031b46db378a1acd1b6d92c63435e430b9a183bf96dbaa4c66f\n",
+			"index.html": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Small Talk</title>\n  <link rel=\"stylesheet\" href=\"styles.css\">\n  <script src=\"script.js\" defer></script>\n</head>\n<body>\n  <main>\n    <h1>Small Talk</h1>\n    <p>Cancel skips a question.</p>\n    <pre id=\"summary\" aria-live=\"polite\"></pre>\n  </main>\n</body>\n</html>\n",
+			"script.js": "// Original assignment: two objects, at least five properties, string/integer/boolean data,\n// prompted property assignment and ternary comparisons. Original MIT notice is retained.\n// Local adaptation: six fictional fields; Cancel or blank skips one answer.\n// Age must be an integer from 0 through 120. Pizza answers normalize yes/no to boolean.\n\nconst aboutMe = {\n  name: \"Riley\",\n  city: \"Oakville\",\n  age: 20,\n  school: \"Example School\",\n  favoriteSubject: \"coding\",\n  pineappleOnPizza: true\n};\nconst aboutYou = {};\n\naboutYou.name = prompt(\"My profile is \" + aboutMe.name + \". What is your fictional profile's name? Cancel skips a question.\");\naboutYou.name = aboutYou.name === null || aboutYou.name.trim() === \"\" ? null : aboutYou.name.trim();\n\naboutYou.city = prompt((aboutYou.name === null ? \"Next question.\" : \"Hello, \" + aboutYou.name + \"!\") + \" What city is the profile from?\");\naboutYou.city = aboutYou.city === null || aboutYou.city.trim() === \"\" ? null : aboutYou.city.trim();\n\naboutYou.age = prompt((aboutYou.city === null ? \"City skipped.\" : aboutYou.city.toLowerCase() === aboutMe.city.toLowerCase() ? \"We have the same city!\" : \"My profile lives in \" + aboutMe.city + \".\") + \" What is the profile's age? Use a whole number from 0 to 120.\");\naboutYou.age = aboutYou.age === null || aboutYou.age.trim() === \"\" ? null : Number(aboutYou.age);\nif (aboutYou.age !== null && (!Number.isInteger(aboutYou.age) || aboutYou.age < 0 || aboutYou.age > 120)) {\n  alert(\"Age must be a whole number from 0 to 120. This answer was skipped.\");\n  aboutYou.age = null;\n}\n\naboutYou.school = prompt((aboutYou.age === null ? \"Age skipped.\" : aboutYou.age === aboutMe.age ? \"Our profiles have the same age!\" : \"My profile is \" + aboutMe.age + \".\") + \" What school does the profile attend?\");\naboutYou.school = aboutYou.school === null || aboutYou.school.trim() === \"\" ? null : aboutYou.school.trim();\n\naboutYou.favoriteSubject = prompt((aboutYou.school === null ? \"School skipped.\" : aboutYou.school.toLowerCase() === aboutMe.school.toLowerCase() ? \"We have the same school!\" : \"My profile attends \" + aboutMe.school + \".\") + \" What is the profile's favorite subject?\");\naboutYou.favoriteSubject = aboutYou.favoriteSubject === null || aboutYou.favoriteSubject.trim() === \"\" ? null : aboutYou.favoriteSubject.trim();\n\naboutYou.pineappleOnPizza = prompt((aboutYou.favoriteSubject === null ? \"Subject skipped.\" : aboutYou.favoriteSubject.toLowerCase() === aboutMe.favoriteSubject.toLowerCase() ? \"We share a favorite subject!\" : \"My profile prefers \" + aboutMe.favoriteSubject + \".\") + \" Does the profile like pineapple on pizza? Answer yes or no.\");\nif (aboutYou.pineappleOnPizza !== null) {\n  aboutYou.pineappleOnPizza = aboutYou.pineappleOnPizza.trim().toLowerCase();\n  if (aboutYou.pineappleOnPizza === \"\") {\n    aboutYou.pineappleOnPizza = null;\n  } else if (aboutYou.pineappleOnPizza !== \"yes\" && aboutYou.pineappleOnPizza !== \"no\") {\n    alert(\"Pizza preference must be yes or no. This answer was skipped.\");\n    aboutYou.pineappleOnPizza = null;\n  } else {\n    aboutYou.pineappleOnPizza = aboutYou.pineappleOnPizza === \"yes\";\n  }\n}\nalert(aboutYou.pineappleOnPizza === null ? \"Pizza preference skipped. Thanks for the conversation!\" : aboutYou.pineappleOnPizza === aboutMe.pineappleOnPizza ? \"Our profiles agree about pizza. Thanks for the conversation!\" : \"Our profiles differ about pizza. Thanks for the conversation!\");\n\ndocument.getElementById(\"summary\").textContent =\n  \"Name: \" + (aboutYou.name === null ? \"skipped\" : aboutYou.name) +\n  \"\\nCity: \" + (aboutYou.city === null ? \"skipped\" : aboutYou.city) +\n  \"\\nAge: \" + (aboutYou.age === null ? \"skipped\" : aboutYou.age) +\n  \"\\nSchool: \" + (aboutYou.school === null ? \"skipped\" : aboutYou.school) +\n  \"\\nFavorite subject: \" + (aboutYou.favoriteSubject === null ? \"skipped\" : aboutYou.favoriteSubject) +\n  \"\\nPineapple on pizza: \" + (aboutYou.pineappleOnPizza === null ? \"skipped\" : aboutYou.pineappleOnPizza ? \"yes\" : \"no\");\n",
+			"styles.css": "* { box-sizing: border-box; }\nbody { margin: 0; color: #1c2530; background: #f5f6f8; font: 1rem/1.6 system-ui, sans-serif; }\nmain { max-width: 42rem; margin: 2rem auto; padding: 1.25rem; }\nh1 { margin: 0 0 1rem; font-size: 2rem; overflow-wrap: anywhere; }\npre { font: inherit; white-space: pre-wrap; overflow-wrap: anywhere; }\n"
+		}
+	},
+	"scenarios": [
+		{
+			"name": "matches",
+			"answers": [
+				"Avery",
+				"Oakville",
+				"20",
+				"Example School",
+				"coding",
+				"yes"
+			],
+			"values": {
+				"name": "Avery",
+				"city": "Oakville",
+				"age": 20,
+				"school": "Example School",
+				"favoriteSubject": "coding",
+				"pineappleOnPizza": true
+			},
+			"alerts": 1,
+			"summary": "Name: Avery\nCity: Oakville\nAge: 20\nSchool: Example School\nFavorite subject: coding\nPineapple on pizza: yes"
+		},
+		{
+			"name": "differs",
+			"answers": ["Avery", "Cedar", "0", "Other School", "drawing", "no"],
+			"values": {
+				"name": "Avery",
+				"city": "Cedar",
+				"age": 0,
+				"school": "Other School",
+				"favoriteSubject": "drawing",
+				"pineappleOnPizza": false
+			},
+			"alerts": 1,
+			"summary": "Name: Avery\nCity: Cedar\nAge: 0\nSchool: Other School\nFavorite subject: drawing\nPineapple on pizza: no"
+		},
+		{
+			"name": "cancel-all",
+			"answers": [null, null, null, null, null, null],
+			"values": {
+				"name": null,
+				"city": null,
+				"age": null,
+				"school": null,
+				"favoriteSubject": null,
+				"pineappleOnPizza": null
+			},
+			"alerts": 1,
+			"summary": "Name: skipped\nCity: skipped\nAge: skipped\nSchool: skipped\nFavorite subject: skipped\nPineapple on pizza: skipped"
+		},
+		{
+			"name": "blank-all",
+			"answers": ["  ", "  ", "  ", "  ", "  ", "  "],
+			"values": {
+				"name": null,
+				"city": null,
+				"age": null,
+				"school": null,
+				"favoriteSubject": null,
+				"pineappleOnPizza": null
+			},
+			"alerts": 1,
+			"summary": "Name: skipped\nCity: skipped\nAge: skipped\nSchool: skipped\nFavorite subject: skipped\nPineapple on pizza: skipped"
+		},
+		{
+			"name": "trim-and-case",
+			"answers": [
+				" Avery ",
+				" OAKVILLE ",
+				"20",
+				" EXAMPLE SCHOOL ",
+				" CODING ",
+				" YES "
+			],
+			"values": {
+				"name": "Avery",
+				"city": "OAKVILLE",
+				"age": 20,
+				"school": "EXAMPLE SCHOOL",
+				"favoriteSubject": "CODING",
+				"pineappleOnPizza": true
+			},
+			"alerts": 1,
+			"summary": "Name: Avery\nCity: OAKVILLE\nAge: 20\nSchool: EXAMPLE SCHOOL\nFavorite subject: CODING\nPineapple on pizza: yes"
+		},
+		{
+			"name": "age-abc",
+			"answers": [
+				"Avery",
+				"Oakville",
+				"abc",
+				"Example School",
+				"coding",
+				"yes"
+			],
+			"values": {
+				"name": "Avery",
+				"city": "Oakville",
+				"age": null,
+				"school": "Example School",
+				"favoriteSubject": "coding",
+				"pineappleOnPizza": true
+			},
+			"alerts": 2,
+			"summary": "Name: Avery\nCity: Oakville\nAge: skipped\nSchool: Example School\nFavorite subject: coding\nPineapple on pizza: yes"
+		},
+		{
+			"name": "age--1",
+			"answers": [
+				"Avery",
+				"Oakville",
+				"-1",
+				"Example School",
+				"coding",
+				"yes"
+			],
+			"values": {
+				"name": "Avery",
+				"city": "Oakville",
+				"age": null,
+				"school": "Example School",
+				"favoriteSubject": "coding",
+				"pineappleOnPizza": true
+			},
+			"alerts": 2,
+			"summary": "Name: Avery\nCity: Oakville\nAge: skipped\nSchool: Example School\nFavorite subject: coding\nPineapple on pizza: yes"
+		},
+		{
+			"name": "age-121",
+			"answers": [
+				"Avery",
+				"Oakville",
+				"121",
+				"Example School",
+				"coding",
+				"yes"
+			],
+			"values": {
+				"name": "Avery",
+				"city": "Oakville",
+				"age": null,
+				"school": "Example School",
+				"favoriteSubject": "coding",
+				"pineappleOnPizza": true
+			},
+			"alerts": 2,
+			"summary": "Name: Avery\nCity: Oakville\nAge: skipped\nSchool: Example School\nFavorite subject: coding\nPineapple on pizza: yes"
+		},
+		{
+			"name": "age-20.5",
+			"answers": [
+				"Avery",
+				"Oakville",
+				"20.5",
+				"Example School",
+				"coding",
+				"yes"
+			],
+			"values": {
+				"name": "Avery",
+				"city": "Oakville",
+				"age": null,
+				"school": "Example School",
+				"favoriteSubject": "coding",
+				"pineappleOnPizza": true
+			},
+			"alerts": 2,
+			"summary": "Name: Avery\nCity: Oakville\nAge: skipped\nSchool: Example School\nFavorite subject: coding\nPineapple on pizza: yes"
+		},
+		{
+			"name": "age-Infinity",
+			"answers": [
+				"Avery",
+				"Oakville",
+				"Infinity",
+				"Example School",
+				"coding",
+				"yes"
+			],
+			"values": {
+				"name": "Avery",
+				"city": "Oakville",
+				"age": null,
+				"school": "Example School",
+				"favoriteSubject": "coding",
+				"pineappleOnPizza": true
+			},
+			"alerts": 2,
+			"summary": "Name: Avery\nCity: Oakville\nAge: skipped\nSchool: Example School\nFavorite subject: coding\nPineapple on pizza: yes"
+		},
+		{
+			"name": "age-0",
+			"answers": [
+				"Avery",
+				"Oakville",
+				"0",
+				"Example School",
+				"coding",
+				"yes"
+			],
+			"values": {
+				"name": "Avery",
+				"city": "Oakville",
+				"age": 0,
+				"school": "Example School",
+				"favoriteSubject": "coding",
+				"pineappleOnPizza": true
+			},
+			"alerts": 1,
+			"summary": "Name: Avery\nCity: Oakville\nAge: 0\nSchool: Example School\nFavorite subject: coding\nPineapple on pizza: yes"
+		},
+		{
+			"name": "age-120",
+			"answers": [
+				"Avery",
+				"Oakville",
+				"120",
+				"Example School",
+				"coding",
+				"yes"
+			],
+			"values": {
+				"name": "Avery",
+				"city": "Oakville",
+				"age": 120,
+				"school": "Example School",
+				"favoriteSubject": "coding",
+				"pineappleOnPizza": true
+			},
+			"alerts": 1,
+			"summary": "Name: Avery\nCity: Oakville\nAge: 120\nSchool: Example School\nFavorite subject: coding\nPineapple on pizza: yes"
+		},
+		{
+			"name": "invalid-pizza",
+			"answers": [
+				"Avery",
+				"Oakville",
+				"20",
+				"Example School",
+				"coding",
+				"maybe"
+			],
+			"values": {
+				"name": "Avery",
+				"city": "Oakville",
+				"age": 20,
+				"school": "Example School",
+				"favoriteSubject": "coding",
+				"pineappleOnPizza": null
+			},
+			"alerts": 2,
+			"summary": "Name: Avery\nCity: Oakville\nAge: 20\nSchool: Example School\nFavorite subject: coding\nPineapple on pizza: skipped"
+		},
+		{
+			"name": "pizza-no",
+			"answers": [
+				"Avery",
+				"Oakville",
+				"20",
+				"Example School",
+				"coding",
+				" NO "
+			],
+			"values": {
+				"name": "Avery",
+				"city": "Oakville",
+				"age": 20,
+				"school": "Example School",
+				"favoriteSubject": "coding",
+				"pineappleOnPizza": false
+			},
+			"alerts": 1,
+			"summary": "Name: Avery\nCity: Oakville\nAge: 20\nSchool: Example School\nFavorite subject: coding\nPineapple on pizza: no"
+		},
+		{
+			"name": "literal-markup",
+			"answers": [
+				"<b>Avery</b>",
+				"Oakville",
+				"20",
+				"Example School",
+				"coding",
+				"yes"
+			],
+			"values": {
+				"name": "<b>Avery</b>",
+				"city": "Oakville",
+				"age": 20,
+				"school": "Example School",
+				"favoriteSubject": "coding",
+				"pineappleOnPizza": true
+			},
+			"alerts": 1,
+			"summary": "Name: <b>Avery</b>\nCity: Oakville\nAge: 20\nSchool: Example School\nFavorite subject: coding\nPineapple on pizza: yes"
+		},
+		{
+			"name": "cancel-0",
+			"answers": [
+				null,
+				"Oakville",
+				"20",
+				"Example School",
+				"coding",
+				"yes"
+			],
+			"values": {
+				"name": null,
+				"city": "Oakville",
+				"age": 20,
+				"school": "Example School",
+				"favoriteSubject": "coding",
+				"pineappleOnPizza": true
+			},
+			"alerts": 1,
+			"summary": "Name: skipped\nCity: Oakville\nAge: 20\nSchool: Example School\nFavorite subject: coding\nPineapple on pizza: yes"
+		},
+		{
+			"name": "cancel-1",
+			"answers": ["Avery", null, "20", "Example School", "coding", "yes"],
+			"values": {
+				"name": "Avery",
+				"city": null,
+				"age": 20,
+				"school": "Example School",
+				"favoriteSubject": "coding",
+				"pineappleOnPizza": true
+			},
+			"alerts": 1,
+			"summary": "Name: Avery\nCity: skipped\nAge: 20\nSchool: Example School\nFavorite subject: coding\nPineapple on pizza: yes"
+		},
+		{
+			"name": "cancel-2",
+			"answers": [
+				"Avery",
+				"Oakville",
+				null,
+				"Example School",
+				"coding",
+				"yes"
+			],
+			"values": {
+				"name": "Avery",
+				"city": "Oakville",
+				"age": null,
+				"school": "Example School",
+				"favoriteSubject": "coding",
+				"pineappleOnPizza": true
+			},
+			"alerts": 1,
+			"summary": "Name: Avery\nCity: Oakville\nAge: skipped\nSchool: Example School\nFavorite subject: coding\nPineapple on pizza: yes"
+		},
+		{
+			"name": "cancel-3",
+			"answers": ["Avery", "Oakville", "20", null, "coding", "yes"],
+			"values": {
+				"name": "Avery",
+				"city": "Oakville",
+				"age": 20,
+				"school": null,
+				"favoriteSubject": "coding",
+				"pineappleOnPizza": true
+			},
+			"alerts": 1,
+			"summary": "Name: Avery\nCity: Oakville\nAge: 20\nSchool: skipped\nFavorite subject: coding\nPineapple on pizza: yes"
+		},
+		{
+			"name": "cancel-4",
+			"answers": [
+				"Avery",
+				"Oakville",
+				"20",
+				"Example School",
+				null,
+				"yes"
+			],
+			"values": {
+				"name": "Avery",
+				"city": "Oakville",
+				"age": 20,
+				"school": "Example School",
+				"favoriteSubject": null,
+				"pineappleOnPizza": true
+			},
+			"alerts": 1,
+			"summary": "Name: Avery\nCity: Oakville\nAge: 20\nSchool: Example School\nFavorite subject: skipped\nPineapple on pizza: yes"
+		},
+		{
+			"name": "cancel-5",
+			"answers": [
+				"Avery",
+				"Oakville",
+				"20",
+				"Example School",
+				"coding",
+				null
+			],
+			"values": {
+				"name": "Avery",
+				"city": "Oakville",
+				"age": 20,
+				"school": "Example School",
+				"favoriteSubject": "coding",
+				"pineappleOnPizza": null
+			},
+			"alerts": 1,
+			"summary": "Name: Avery\nCity: Oakville\nAge: 20\nSchool: Example School\nFavorite subject: coding\nPineapple on pizza: skipped"
+		}
+	],
+	"revision": "7d2f169d1647ae6c5c60d8021935c3950f359d3afe0eff5e125472f0326b6e21",
+	"revisionKind": "sha256-of-complete-local-role-manifests"
+}

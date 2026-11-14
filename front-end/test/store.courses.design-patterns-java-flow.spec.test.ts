@@ -98,12 +98,12 @@ describe("Design Patterns in Java learner flow", () => {
 			module => module.supplementalProjects.map(item => item.title)
 		);
 
-		expect(curriculumTitles).toHaveLength(70);
+		expect(curriculumTitles).toHaveLength(62);
 		expect(optionTitles).toHaveLength(51);
 		for (const title of [
 			"Core Project: What Patterns Are and What They Are Not",
 			"Core Project: Structural Patterns in Depth",
-			"DPJ10 Capstone Refactor: Core Project",
+			"Core Project: Capstone Refactor",
 			"Strategy Selection Refactor: Core Project",
 			"Structural Wrapper Refactor: Core Project",
 			"Architecture Judgment Capstone: Core Project",
@@ -117,8 +117,16 @@ describe("Design Patterns in Java learner flow", () => {
 					: optionTitles;
 			expect(collection, title).toContain(title);
 		}
+		const studios = designPatternsInJavaCourse.modules.find(
+			module => module.title === "Optional Applied Java Pattern Studios"
+		)!;
+		expect(studios.supplementalProjects).toHaveLength(21);
+		expect(
+			new Set(studios.supplementalProjects.map(item => item.projectLink))
+				.size
+		).toBe(3);
 		expect(moduleText("Optional Applied Java Pattern Studios")).toContain(
-			"complete applied practice collection"
+			"helper-only"
 		);
 	});
 
@@ -170,7 +178,6 @@ describe("Design Patterns in Java learner flow", () => {
 		const architecture = moduleText(
 			"DPJ8 Modern Extensions and Architecture-Level Patterns"
 		);
-		const resources = resourceText();
 
 		expect(foundations).toContain("record");
 		expect(foundations).toContain("sealed interface");
@@ -185,7 +192,7 @@ describe("Design Patterns in Java learner flow", () => {
 		expect(architecture).toContain("not safe for concurrent use");
 		expect(foundations).toContain("java/lang/Record.html");
 		expect(foundations).toContain("jls-8.html#jls-8.1.1.2");
-		expect(resources).toContain("java/util/ServiceLoader.html");
+		expect(architecture).toContain("java/util/ServiceLoader.html");
 	});
 
 	it("makes every refactor test-backed, measurable, and reversible", () => {

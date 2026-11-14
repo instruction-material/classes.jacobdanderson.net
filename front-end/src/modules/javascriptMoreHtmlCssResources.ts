@@ -157,7 +157,7 @@ export const javascriptMoreHtmlCssResources = [
 	{
 		project: "my-javascript-art",
 		title: "My JavaScript Art",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: [
 			"https://codepen.io/junilearning/pen/b252c1398d97eda534482419d9103b87",
@@ -191,8 +191,8 @@ export const javascriptMoreHtmlCssResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "more-html-css-v1/my-javascript-art/starter/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -205,7 +205,7 @@ export const javascriptMoreHtmlCssResources = [
 	{
 		project: "my-javascript-art",
 		title: "My JavaScript Art",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/65a70df75b1168154b07ed73a09e9aa3",
@@ -239,8 +239,8 @@ export const javascriptMoreHtmlCssResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "more-html-css-v1/my-javascript-art/reference/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",

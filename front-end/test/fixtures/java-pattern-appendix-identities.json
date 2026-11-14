@@ -1,0 +1,182 @@
+{
+	"Standards Map": {
+		"curriculum": [
+			{
+				"id": "design-patterns-in-java-standards-map-curriculum-design-patterns-in-java-reference-guide",
+				"title": "Design Patterns in Java Reference Guide",
+				"aliases": [
+					"design-patterns-in-java-source-map",
+					"design-patterns-in-java-standards-map-curriculum-design-patterns-in-java-source-map",
+					"design-patterns-in-java-course-foundations-curriculum-design-patterns-in-java-reference-guide",
+					"design-patterns-in-java-course-foundations-curriculum-design-patterns-in-java-source-map"
+				]
+			},
+			{
+				"id": "design-patterns-in-java-standards-map-curriculum-design-patterns-in-java-core-skills",
+				"title": "Design Patterns in Java Core Skills",
+				"aliases": [
+					"design-patterns-in-java-course-foundations-curriculum-design-patterns-in-java-core-skills"
+				]
+			},
+			{
+				"id": "design-patterns-in-java-standards-map-curriculum-design-patterns-in-java-next-topics",
+				"title": "Design Patterns in Java Next Topics",
+				"aliases": [
+					"design-patterns-in-java-course-foundations-curriculum-design-patterns-in-java-next-topics"
+				]
+			},
+			{
+				"id": "design-patterns-in-java-standards-map-curriculum-design-patterns-in-java-boundaries",
+				"title": "Design Patterns in Java Boundaries",
+				"aliases": [
+					"design-patterns-in-java-course-foundations-curriculum-design-patterns-in-java-boundaries"
+				]
+			}
+		],
+		"supplementalProjects": [
+			{
+				"id": "design-patterns-in-java-standards-map-supplemental-design-patterns-in-java-prerequisite-check",
+				"title": "Design Patterns in Java Prerequisite Check",
+				"aliases": [
+					"design-patterns-in-java-standards-checkpoint",
+					"design-patterns-in-java-readiness-check",
+					"design-patterns-in-java-standards-map-supplemental-design-patterns-in-java-standards-checkpoint",
+					"design-patterns-in-java-standards-map-supplemental-design-patterns-in-java-readiness-check",
+					"design-patterns-in-java-course-foundations-supplemental-design-patterns-in-java-prerequisite-check",
+					"design-patterns-in-java-course-foundations-supplemental-design-patterns-in-java-standards-checkpoint",
+					"design-patterns-in-java-course-foundations-supplemental-design-patterns-in-java-readiness-check"
+				]
+			},
+			{
+				"id": "design-patterns-in-java-standards-map-supplemental-design-patterns-in-java-pathway-map",
+				"title": "Design Patterns in Java Pathway Map",
+				"aliases": [
+					"design-patterns-in-java-sequence-map",
+					"design-patterns-in-java-learning-sequence",
+					"design-patterns-in-java-standards-map-supplemental-design-patterns-in-java-sequence-map",
+					"design-patterns-in-java-standards-map-supplemental-design-patterns-in-java-learning-sequence",
+					"design-patterns-in-java-course-foundations-supplemental-design-patterns-in-java-pathway-map",
+					"design-patterns-in-java-course-foundations-supplemental-design-patterns-in-java-sequence-map",
+					"design-patterns-in-java-course-foundations-supplemental-design-patterns-in-java-learning-sequence"
+				]
+			}
+		]
+	},
+	"Course Roadmap": {
+		"curriculum": [
+			{
+				"id": "design-patterns-in-java-course-roadmap-curriculum-design-patterns-in-java-follow-up-path",
+				"title": "Design Patterns in Java Follow-Up Path",
+				"aliases": [
+					"design-patterns-in-java-module-options",
+					"design-patterns-in-java-next-module-ideas",
+					"design-patterns-in-java-course-roadmap-curriculum-design-patterns-in-java-module-options",
+					"design-patterns-in-java-course-roadmap-curriculum-design-patterns-in-java-next-module-ideas",
+					"design-patterns-in-java-course-next-steps-curriculum-design-patterns-in-java-follow-up-path",
+					"design-patterns-in-java-course-next-steps-curriculum-design-patterns-in-java-module-options",
+					"design-patterns-in-java-course-next-steps-curriculum-design-patterns-in-java-next-module-ideas"
+				]
+			},
+			{
+				"id": "design-patterns-in-java-course-roadmap-curriculum-design-patterns-in-java-resource-map",
+				"title": "Design Patterns in Java Resource Map",
+				"aliases": [
+					"design-patterns-in-java-resources",
+					"design-patterns-in-java-course-roadmap-curriculum-design-patterns-in-java-resources",
+					"design-patterns-in-java-course-next-steps-curriculum-design-patterns-in-java-resource-map",
+					"design-patterns-in-java-course-next-steps-curriculum-design-patterns-in-java-resources"
+				]
+			},
+			{
+				"id": "design-patterns-in-java-course-roadmap-curriculum-design-patterns-in-java-module-alignment-guide",
+				"title": "Design Patterns in Java Module Alignment Guide",
+				"aliases": [
+					"design-patterns-in-java-readiness-checklist",
+					"design-patterns-in-java-course-roadmap-curriculum-design-patterns-in-java-readiness-checklist",
+					"design-patterns-in-java-course-next-steps-curriculum-design-patterns-in-java-module-alignment-guide",
+					"design-patterns-in-java-course-next-steps-curriculum-design-patterns-in-java-readiness-checklist"
+				]
+			},
+			{
+				"id": "design-patterns-in-java-course-roadmap-curriculum-design-patterns-in-java-reference-map",
+				"title": "Design Patterns in Java Reference Map",
+				"aliases": [
+					"design-patterns-in-java-reference-refresh",
+					"design-patterns-in-java-resource-updates",
+					"design-patterns-in-java-course-roadmap-curriculum-design-patterns-in-java-reference-refresh",
+					"design-patterns-in-java-course-roadmap-curriculum-design-patterns-in-java-resource-updates",
+					"design-patterns-in-java-course-next-steps-curriculum-design-patterns-in-java-reference-map",
+					"design-patterns-in-java-course-next-steps-curriculum-design-patterns-in-java-reference-refresh",
+					"design-patterns-in-java-course-next-steps-curriculum-design-patterns-in-java-resource-updates"
+				]
+			}
+		],
+		"supplementalProjects": [
+			{
+				"id": "design-patterns-in-java-course-roadmap-supplemental-design-patterns-in-java-prerequisite-map",
+				"title": "Design Patterns in Java Prerequisite Map",
+				"aliases": [
+					"design-patterns-in-java-dependency-graph",
+					"design-patterns-in-java-course-roadmap-supplemental-design-patterns-in-java-dependency-graph",
+					"design-patterns-in-java-course-next-steps-supplemental-design-patterns-in-java-prerequisite-map",
+					"design-patterns-in-java-course-next-steps-supplemental-design-patterns-in-java-dependency-graph"
+				]
+			},
+			{
+				"id": "design-patterns-in-java-course-roadmap-supplemental-design-patterns-in-java-resource-inventory",
+				"title": "Design Patterns in Java Resource Inventory",
+				"aliases": [
+					"design-patterns-in-java-materials-readiness",
+					"design-patterns-in-java-resource-checklist",
+					"design-patterns-in-java-course-roadmap-supplemental-design-patterns-in-java-materials-readiness",
+					"design-patterns-in-java-course-roadmap-supplemental-design-patterns-in-java-resource-checklist",
+					"design-patterns-in-java-course-next-steps-supplemental-design-patterns-in-java-resource-inventory",
+					"design-patterns-in-java-course-next-steps-supplemental-design-patterns-in-java-materials-readiness",
+					"design-patterns-in-java-course-next-steps-supplemental-design-patterns-in-java-resource-checklist"
+				]
+			}
+		]
+	},
+	"Project Practice Guide": {
+		"curriculum": [
+			{
+				"id": "design-patterns-in-java-project-practice-guide-curriculum-design-patterns-in-java-project-ladder",
+				"title": "Design Patterns in Java Project Ladder"
+			},
+			{
+				"id": "design-patterns-in-java-project-practice-guide-curriculum-design-patterns-in-java-checkpoints",
+				"title": "Design Patterns in Java Checkpoints"
+			},
+			{
+				"id": "design-patterns-in-java-project-practice-guide-curriculum-design-patterns-in-java-rubric",
+				"title": "Design Patterns in Java Rubric"
+			},
+			{
+				"id": "design-patterns-in-java-project-practice-guide-curriculum-design-patterns-in-java-capstone-gate",
+				"title": "Design Patterns in Java Capstone Gate"
+			}
+		],
+		"supplementalProjects": [
+			{
+				"id": "design-patterns-in-java-project-practice-guide-supplemental-practice-project-refactor-if-else-behavior-into-strategy",
+				"title": "Practice Project: Refactor If/else Behavior Into Strategy"
+			},
+			{
+				"id": "design-patterns-in-java-project-practice-guide-supplemental-practice-project-add-observer-events-to-a-small-model",
+				"title": "Practice Project: Add Observer Events to a Small Model"
+			},
+			{
+				"id": "design-patterns-in-java-project-practice-guide-supplemental-practice-project-convert-duplicate-constructors-to-factory",
+				"title": "Practice Project: Convert Duplicate Constructors to Factory"
+			},
+			{
+				"id": "design-patterns-in-java-project-practice-guide-supplemental-practice-project-implement-command-based-undo",
+				"title": "Practice Project: Implement Command-based Undo"
+			},
+			{
+				"id": "design-patterns-in-java-project-practice-guide-supplemental-practice-project-refactor-a-mini-app-with-tests-before-and-after",
+				"title": "Practice Project: Refactor a Mini-App with Tests Before and After"
+			}
+		]
+	}
+}

@@ -1,0 +1,68 @@
+[
+	{
+		"key": "strategy",
+		"title": "Strategy Selection Refactor",
+		"pack": "DPJ-Studio-Strategy-Selection-Packs",
+		"target": "src/pricing/CartPricer.java",
+		"core": 12056,
+		"full": 12067,
+		"missing": "Implement optional rule injection.",
+		"demo": "1800\n2400\n1620\nBULK|6|1800\n",
+		"coreID": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-core-project-strategy-selection-refactor",
+		"continuationIDs": [
+			"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-strategy-selection-refactor-core-concepts",
+			"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-strategy-selection-refactor-guided-example",
+			"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-review-strategy-selection-refactor",
+			"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-extension-challenge-strategy-selection-refactor",
+			"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-strategy-selection-refactor-transfer-practice",
+			"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-strategy-selection-refactor-extension-practice",
+			"design-patterns-in-java-project-practice-guide-supplemental-practice-project-refactor-if-else-behavior-into-strategy"
+		],
+		"itemModules": {
+			"design-patterns-in-java-project-practice-guide-supplemental-practice-project-refactor-if-else-behavior-into-strategy": "design-patterns-in-java-project-practice-guide"
+		}
+	},
+	{
+		"key": "wrapper",
+		"title": "Structural Wrapper Refactor",
+		"pack": "DPJ-Studio-Structural-Wrapper-Packs",
+		"target": "src/wrapping/ReadDesk.java",
+		"core": 820,
+		"full": 839,
+		"missing": "Implement optional selective invalidation.",
+		"demo": "tag:HI\ntag:HI\n2\n1\ntag:HI\n2\n",
+		"coreID": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-core-project-structural-wrapper-refactor",
+		"continuationIDs": [
+			"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-structural-wrapper-refactor-core-concepts",
+			"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-structural-wrapper-refactor-guided-example",
+			"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-review-structural-wrapper-refactor",
+			"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-extension-challenge-structural-wrapper-refactor",
+			"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-structural-wrapper-refactor-transfer-practice",
+			"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-structural-wrapper-refactor-extension-practice"
+		],
+		"itemModules": {}
+	},
+	{
+		"key": "architecture",
+		"title": "Architecture Judgment Capstone",
+		"pack": "DPJ-Studio-Architecture-Judgment-Packs",
+		"target": "src/notebook/application/NotebookService.java",
+		"core": 124,
+		"full": 141,
+		"missing": "Implement optional versioned removal.",
+		"demo": "CREATED|plan|1\nEDITED|plan|2\ntrue\nfalse\nSketch\n1\n",
+		"coreID": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-core-project-architecture-judgment-capstone",
+		"continuationIDs": [
+			"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-architecture-judgment-capstone-core-concepts",
+			"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-architecture-judgment-capstone-guided-example",
+			"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-review-architecture-judgment-capstone",
+			"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-extension-challenge-architecture-judgment-capstone",
+			"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-architecture-judgment-capstone-transfer-practice",
+			"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-architecture-judgment-capstone-extension-practice",
+			"design-patterns-in-java-project-practice-guide-supplemental-practice-project-refactor-a-mini-app-with-tests-before-and-after"
+		],
+		"itemModules": {
+			"design-patterns-in-java-project-practice-guide-supplemental-practice-project-refactor-a-mini-app-with-tests-before-and-after": "design-patterns-in-java-project-practice-guide"
+		}
+	}
+]

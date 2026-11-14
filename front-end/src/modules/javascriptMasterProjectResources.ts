@@ -2,7 +2,7 @@ export const javascriptMasterProjectResources = [
 	{
 		project: "master-project",
 		title: "Master Project",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: [
 			"https://codepen.io/junilearning/pen/181b8577413d710bc8e669f2740d4c5b",
@@ -72,8 +72,8 @@ export const javascriptMasterProjectResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "master-project-v1/master-project/starter/vendor/d3.min.js.txt",
-				byteLength: 265491,
-				sha256: "b50429b67916438842aa00921546d7a9eda8f3e12ba7049f92f04b71b6413822"
+				byteLength: 265612,
+				sha256: "e2ea453f8825a9e37cfceccb491aeb44aed18c3cdabbfcc584a9af8eb9d1524f"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -86,7 +86,7 @@ export const javascriptMasterProjectResources = [
 	{
 		project: "master-project",
 		title: "Master Project",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/c8520963128a302c0e6aa6738965ae43",
@@ -156,8 +156,8 @@ export const javascriptMasterProjectResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "master-project-v1/master-project/reference/vendor/d3.min.js.txt",
-				byteLength: 265491,
-				sha256: "b50429b67916438842aa00921546d7a9eda8f3e12ba7049f92f04b71b6413822"
+				byteLength: 265612,
+				sha256: "e2ea453f8825a9e37cfceccb491aeb44aed18c3cdabbfcc584a9af8eb9d1524f"
 			},
 			{
 				name: "LICENSE-d3.txt",

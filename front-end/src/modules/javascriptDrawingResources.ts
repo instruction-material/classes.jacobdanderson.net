@@ -2,7 +2,7 @@ export const javascriptDrawingResources = [
 	{
 		project: "basic-shapes",
 		title: "Drawing Shapes",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/zYrPBYM"],
 		files: [
@@ -33,8 +33,8 @@ export const javascriptDrawingResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -47,7 +47,7 @@ export const javascriptDrawingResources = [
 	{
 		project: "basic-shapes",
 		title: "Drawing Shapes",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/7ba2616cfb21c6a3fbf71ee0cfb78332",
@@ -81,8 +81,8 @@ export const javascriptDrawingResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -95,7 +95,7 @@ export const javascriptDrawingResources = [
 	{
 		project: "smiley-face",
 		title: "Smiley Face",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/MWKOeRd"],
 		files: [
@@ -126,8 +126,8 @@ export const javascriptDrawingResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -140,7 +140,7 @@ export const javascriptDrawingResources = [
 	{
 		project: "smiley-face",
 		title: "Smiley Face",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/593993382174caa7d510ddbd5b0009d8",
@@ -174,8 +174,8 @@ export const javascriptDrawingResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -188,7 +188,7 @@ export const javascriptDrawingResources = [
 	{
 		project: "pac-man",
 		title: "Pac-Man",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/JjGORoK"],
 		files: [
@@ -219,8 +219,8 @@ export const javascriptDrawingResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -233,7 +233,7 @@ export const javascriptDrawingResources = [
 	{
 		project: "pac-man",
 		title: "Pac-Man",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/6df064875eb631bc08eab5c342ef98f7",
@@ -267,8 +267,8 @@ export const javascriptDrawingResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -281,7 +281,7 @@ export const javascriptDrawingResources = [
 	{
 		project: "snowman",
 		title: "Snowman",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/GRoOjjx"],
 		files: [
@@ -312,8 +312,8 @@ export const javascriptDrawingResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -326,7 +326,7 @@ export const javascriptDrawingResources = [
 	{
 		project: "snowman",
 		title: "Snowman",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/bb6f6bcdf7ff47fef8a5f2dc3a2138f0",
@@ -360,8 +360,8 @@ export const javascriptDrawingResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -374,7 +374,7 @@ export const javascriptDrawingResources = [
 	{
 		project: "captain-america-shield",
 		title: "Captain America's Shield",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/VweRVWq"],
 		files: [
@@ -405,8 +405,8 @@ export const javascriptDrawingResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -419,7 +419,7 @@ export const javascriptDrawingResources = [
 	{
 		project: "captain-america-shield",
 		title: "Captain America's Shield",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/0736d5c2045c3ecd6969c5284b93b067",
@@ -453,8 +453,8 @@ export const javascriptDrawingResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -467,7 +467,7 @@ export const javascriptDrawingResources = [
 	{
 		project: "debugging-olaf-star",
 		title: "Debugging Olaf's Star",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/rNxZJdQ"],
 		files: [
@@ -498,8 +498,8 @@ export const javascriptDrawingResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -512,7 +512,7 @@ export const javascriptDrawingResources = [
 	{
 		project: "debugging-olaf-star",
 		title: "Debugging Olaf's Star",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/20aeca54176134a3397922a9e98f3564",
@@ -546,8 +546,8 @@ export const javascriptDrawingResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",

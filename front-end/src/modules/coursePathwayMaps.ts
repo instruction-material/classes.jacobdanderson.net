@@ -309,11 +309,8 @@ export const coursePathwayMaps: CoursePathwayMap[] = [
 				]
 			},
 			{
-				title: "Life and environment",
-				courseIds: [
-					"intro-to-biology",
-					"intro-to-environmental-science"
-				]
+				title: "Environment",
+				courseIds: ["intro-to-environmental-science"]
 			},
 			{
 				title: "Chemistry and physics",
@@ -327,32 +324,20 @@ export const coursePathwayMaps: CoursePathwayMap[] = [
 	},
 	{
 		id: "english-literacy",
-		title: "Reading, writing and speaking",
+		title: "Grammar and public speaking",
 		category: "language",
 		kind: "choices",
-		summary: "Read closely, write with purpose and share your ideas.",
+		summary: "Build clear sentences and effective presentations.",
 		readiness:
-			"Choose work suited to your reading, writing and revision skills.",
+			"Choose sentence-level work or practice speaking to an audience.",
 		stages: [
 			{
-				title: "Early reading and stories",
-				courseIds: [
-					"early-elementary-a-reading",
-					"early-elementary-b-picture-book"
-				]
+				title: "Grammar and mechanics",
+				courseIds: ["middle-school-c-grammar"]
 			},
 			{
-				title: "Middle-school literacy",
-				courseIds: [
-					"middle-school-a-literature",
-					"middle-school-b-writing",
-					"middle-school-b-writing-retake",
-					"middle-school-c-grammar"
-				]
-			},
-			{
-				title: "Speaking and fiction",
-				courseIds: ["introduction-to-public-speaking", "novel-writing"]
+				title: "Public speaking",
+				courseIds: ["introduction-to-public-speaking"]
 			}
 		]
 	},

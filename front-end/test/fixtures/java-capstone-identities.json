@@ -1,0 +1,76 @@
+{
+	"curriculum": [
+		{
+			"id": "design-patterns-in-java-dpj10-capstone-refactor-curriculum-capstone-launch-start-from-a-cluttered-java-application",
+			"title": "Capstone Launch: Start from a Cluttered Java Application"
+		},
+		{
+			"id": "design-patterns-in-java-dpj10-capstone-refactor-curriculum-problem-framing-identify-three-to-five-real-design-pressures",
+			"title": "Problem Framing: Identify Three to Five Real Design Pressures"
+		},
+		{
+			"id": "design-patterns-in-java-dpj10-capstone-refactor-curriculum-refactor-plan-choose-a-small-justified-pattern-set",
+			"title": "Refactor Plan: Choose a Small Justified Pattern Set"
+		},
+		{
+			"id": "design-patterns-in-java-dpj10-capstone-refactor-curriculum-implementation-pass-preserve-behavior-while-improving-structure",
+			"title": "Implementation Pass: Preserve Behavior While Improving Structure"
+		},
+		{
+			"id": "design-patterns-in-java-dpj10-capstone-refactor-curriculum-architecture-review-package-layout-seams-and-testability",
+			"title": "Architecture Review: Package Layout, Seams, and Testability"
+		},
+		{
+			"id": "design-patterns-in-java-dpj10-capstone-refactor-curriculum-capstone-reflection-what-changed-and-what-stayed-simple",
+			"title": "Capstone Reflection: What Changed and What Stayed Simple?"
+		},
+		{
+			"id": "design-patterns-in-java-dpj10-capstone-refactor-curriculum-capstone-gate-characterize-before-change",
+			"title": "Capstone Gate: Characterize Before Change"
+		},
+		{
+			"id": "design-patterns-in-java-dpj10-capstone-refactor-curriculum-capstone-evidence-and-rollback-packet",
+			"title": "Capstone Evidence and Rollback Packet"
+		},
+		{
+			"id": "design-patterns-in-java-dpj10-capstone-refactor-curriculum-core-project-capstone-refactor",
+			"title": "Core Project: Capstone Refactor",
+			"aliases": [
+				"design-patterns-in-java-dpj10-capstone-refactor-curriculum-core-project",
+				"dpj10-capstone-refactor-core-project",
+				"design-patterns-in-java-dpj10-capstone-refactor-curriculum-dpj10-capstone-refactor-core-project"
+			]
+		}
+	],
+	"supplementalProjects": [
+		{
+			"id": "design-patterns-in-java-dpj10-capstone-refactor-supplemental-understanding-check-capstone-refactor",
+			"title": "Understanding Check: Capstone Refactor",
+			"aliases": [
+				"design-patterns-in-java-dpj10-capstone-refactor-supplemental-dpj10-capstone-refactor-diagnostic-checkpoint",
+				"diagnostic-checkpoint-capstone-refactor",
+				"diagnostic-checkpoint",
+				"understanding-check",
+				"design-patterns-in-java-dpj10-capstone-refactor-supplemental-diagnostic-checkpoint-capstone-refactor",
+				"design-patterns-in-java-dpj10-capstone-refactor-supplemental-diagnostic-checkpoint",
+				"design-patterns-in-java-dpj10-capstone-refactor-supplemental-understanding-check"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-dpj10-capstone-refactor-supplemental-capstone-refactor-transfer-practice",
+			"title": "Capstone Refactor Transfer Practice",
+			"aliases": [
+				"design-patterns-in-java-dpj10-capstone-refactor-supplemental-transfer-practice",
+				"design-patterns-in-java-dpj10-capstone-refactor-supplemental-transfer-practice-capstone-refactor"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-dpj10-capstone-refactor-supplemental-capstone-refactor-extension-practice",
+			"title": "Capstone Refactor Extension Practice",
+			"aliases": [
+				"design-patterns-in-java-dpj10-capstone-refactor-supplemental-extension-practice",
+				"design-patterns-in-java-dpj10-capstone-refactor-supplemental-extension-practice-capstone-refactor"
+			]
+		}
+	]
+}

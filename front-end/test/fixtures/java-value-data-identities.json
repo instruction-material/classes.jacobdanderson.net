@@ -1,0 +1,69 @@
+{
+  "curriculum": [
+    {
+      "id": "design-patterns-in-java-part-2-dpr4-organizing-data-curriculum-organizing-data-core-concepts",
+      "title": "Organizing Data Core Concepts",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr4-organizing-data-curriculum-core-concepts-and-learning-sequence",
+        "core-concepts",
+        "design-patterns-in-java-part-2-dpr4-organizing-data-curriculum-core-concepts"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr4-organizing-data-curriculum-data-modeling-lab-upgrade-a-weak-domain-model",
+      "title": "Data Modeling Lab: Upgrade a Weak Domain Model"
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr4-organizing-data-curriculum-reflection-question-when-is-a-primitive-no-longer-good-enough",
+      "title": "Reflection Question: When Is a Primitive No Longer Good Enough?"
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr4-organizing-data-curriculum-value-semantics-and-collection-ownership",
+      "title": "Value Semantics and Collection Ownership"
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr4-organizing-data-curriculum-data-migration-and-compatibility-check",
+      "title": "Data Migration and Compatibility Check"
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr4-organizing-data-curriculum-core-project-organizing-data",
+      "title": "Core Project: Organizing Data",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr4-organizing-data-curriculum-core-project",
+        "dpr4-organizing-data-core-project",
+        "design-patterns-in-java-part-2-dpr4-organizing-data-curriculum-dpr4-organizing-data-core-project"
+      ]
+    }
+  ],
+  "supplementalProjects": [
+    {
+      "id": "design-patterns-in-java-part-2-dpr4-organizing-data-supplemental-understanding-check-organizing-data",
+      "title": "Understanding Check: Organizing Data",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr4-organizing-data-supplemental-dpr4-organizing-data-diagnostic-checkpoint",
+        "diagnostic-checkpoint-organizing-data",
+        "diagnostic-checkpoint",
+        "understanding-check",
+        "design-patterns-in-java-part-2-dpr4-organizing-data-supplemental-diagnostic-checkpoint-organizing-data",
+        "design-patterns-in-java-part-2-dpr4-organizing-data-supplemental-diagnostic-checkpoint",
+        "design-patterns-in-java-part-2-dpr4-organizing-data-supplemental-understanding-check"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr4-organizing-data-supplemental-organizing-data-transfer-practice",
+      "title": "Organizing Data Transfer Practice",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr4-organizing-data-supplemental-transfer-practice-organizing-data",
+        "design-patterns-in-java-part-2-dpr4-organizing-data-supplemental-transfer-practice"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr4-organizing-data-supplemental-organizing-data-extension-practice",
+      "title": "Organizing Data Extension Practice",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr4-organizing-data-supplemental-extension-practice-organizing-data",
+        "design-patterns-in-java-part-2-dpr4-organizing-data-supplemental-extension-practice"
+      ]
+    }
+  ]
+}

@@ -81,7 +81,7 @@ process_optional_verifier = (fixture_dir / "linux-process-optional-source-verifi
 assert hashlib.sha256(process_core_verifier).hexdigest() == process_core_identity["sha256"]
 assert hashlib.sha256(process_optional_verifier).hexdigest() == process_optional_identity["sha256"]
 assert process_core_packs[0]["revision"] == process_core_identity["revision"]
-assert all(pack["revision"] == process_optional_identity["revision"] for pack in process_optional_packs)
+assert all(pack["revision"] == process_optional_identity["sourceRevision"] for pack in process_optional_packs)
 package_core_packs = [pack for pack in packs if pack["pack"] == "LS-10-unit-9-package-management-and-software-layout"]
 package_optional_packs = [pack for pack in packs if pack["pack"] in ("LS-19-unit-9-package-management-and-software-layout-supplemental-2", "LS-20-unit-9-package-management-and-software-layout-supplemental-3")]
 assert len(package_core_packs) == 1 and len(package_optional_packs) == 2

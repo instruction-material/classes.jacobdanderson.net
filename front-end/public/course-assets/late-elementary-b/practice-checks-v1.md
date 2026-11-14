@@ -238,7 +238,7 @@ Axis crossings: (2,0),(0,2),(-2,0),(0,-2). Circumference 12.56 classroom AU = 12
 
 ## Tesla-Retriever Intercept Simulation
 
-Choose radius 2 because different concentric circles have no common point. C = 1230880000 miles, gap 615440000. At 60150 mph the closing speed is 150 mph; catch time 4102933⅓ hours. The four checkpoints close 1/4,1/2,3/4 and all the initial gap. Tesla completes 200 laps; TR completes 200½ laps starting half a lap behind, so both end at (2,0). At equal speeds the gap stays fixed. This is a specified paper simulation, not spacecraft navigation.
+Choose radius 2 because different concentric circles have no common point. C = 1230880000 miles, gap 615440000. At 60150 mph the closing speed is 150 mph; catch time 4102933⅓ hours. The four checkpoints close 1/4,1/2,3/4 and all the initial gap. Tesla completes 200 laps; TR completes 200½ laps starting half a lap behind, so both end at (2,0). At equal speeds the gap stays fixed. The experiment stops at the first meeting even when a time step crosses it. This classroom circular-track model omits gravity.
 
 ## Orbit Speed Comparison
 

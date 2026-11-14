@@ -3,7 +3,7 @@ export const javascriptMasterFunctionsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "functions-practice",
 		title: "Functions Practice",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: [
 			"https://codepen.io/junilearning/pen/22b54271a2ed49675c512f1034c0e749",
@@ -50,8 +50,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "functions-v1/functions-practice/starter/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -65,7 +65,7 @@ export const javascriptMasterFunctionsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "functions-practice",
 		title: "Functions Practice",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/5cd805c9464780ddb07004ec7feedd7b",
@@ -112,8 +112,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "functions-v1/functions-practice/reference/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -127,7 +127,7 @@ export const javascriptMasterFunctionsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "which-metrocard",
 		title: "Which MetroCard",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: [
 			"https://codepen.io/junilearning/pen/7295dc0298b2f2da6af9e1287d32456a",
@@ -174,8 +174,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "functions-v1/which-metrocard/starter/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -189,7 +189,7 @@ export const javascriptMasterFunctionsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "which-metrocard",
 		title: "Which MetroCard",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/0ee1b7431e9ee2bf0befa562068702d7",
@@ -236,8 +236,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "functions-v1/which-metrocard/reference/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -251,7 +251,7 @@ export const javascriptMasterFunctionsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "rock-paper-scissors",
 		title: "Rock Paper Scissors",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: [
 			"https://codepen.io/junilearning/pen/30e42b5cf6775bbf059a3d313c96f7c5",
@@ -298,8 +298,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "functions-v1/rock-paper-scissors/starter/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -313,7 +313,7 @@ export const javascriptMasterFunctionsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "rock-paper-scissors",
 		title: "Rock Paper Scissors",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/2813f8a526379aefbabc47ad2f65fcd3",
@@ -360,8 +360,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "functions-v1/rock-paper-scissors/reference/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -375,7 +375,7 @@ export const javascriptMasterFunctionsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "geometry-functions",
 		title: "Geometry Functions",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: [
 			"https://codepen.io/junilearning/pen/1f563eb4624314cf5b3673480ec18472",
@@ -422,8 +422,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "functions-v1/geometry-functions/starter/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -437,7 +437,7 @@ export const javascriptMasterFunctionsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "geometry-functions",
 		title: "Geometry Functions",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/b8bf00b13b1d7085a129e155c9c428eb",
@@ -484,8 +484,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "functions-v1/geometry-functions/reference/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -499,7 +499,7 @@ export const javascriptMasterFunctionsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "pain-at-the-pump",
 		title: "Pain at the Pump",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: [
 			"https://codepen.io/junilearning/pen/87b49903a68f15f9132d49b704444083",
@@ -546,8 +546,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "functions-v1/pain-at-the-pump/starter/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -561,7 +561,7 @@ export const javascriptMasterFunctionsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "pain-at-the-pump",
 		title: "Pain at the Pump",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/0ec6f1fb939a959f455f1fb70519c29e",
@@ -608,8 +608,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "functions-v1/pain-at-the-pump/reference/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -623,7 +623,7 @@ export const javascriptMasterFunctionsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "game-of-war",
 		title: "Game of War",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: [
 			"https://codepen.io/junilearning/pen/06315e2ce4772499678cc4959f8e2360",
@@ -670,8 +670,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "functions-v1/game-of-war/starter/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -685,7 +685,7 @@ export const javascriptMasterFunctionsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "game-of-war",
 		title: "Game of War",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/96fa9d7b8f7255c42c313b2d914abc48",
@@ -732,8 +732,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "functions-v1/game-of-war/reference/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -747,7 +747,7 @@ export const javascriptMasterFunctionsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "debugging-functions",
 		title: "Debugging Functions",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: [
 			"https://codepen.io/junilearning/pen/789be1560455a424d23eacd04d4ac69b",
@@ -794,8 +794,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "functions-v1/debugging-functions/starter/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -809,7 +809,7 @@ export const javascriptMasterFunctionsResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "debugging-functions",
 		title: "Debugging Functions",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/7afcb6feb94f958d3975a028b537b9cc",
@@ -856,8 +856,8 @@ export const javascriptMasterFunctionsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "functions-v1/debugging-functions/reference/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",

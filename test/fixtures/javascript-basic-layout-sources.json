@@ -385,7 +385,7 @@
       "section": "core",
       "project": "my-javascript-art-part-2",
       "title": "My JavaScript Art Part II",
-      "version": 1,
+      "version": 2,
       "role": "starter",
       "urls": [
         "/course-assets/javascript-level-1/basic-layout-v1/my-javascript-art-part-2/starter/index.html.txt"
@@ -430,8 +430,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "basic-layout-v1/my-javascript-art-part-2/starter/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -457,7 +457,7 @@
       "section": "core",
       "project": "my-javascript-art-part-2",
       "title": "My JavaScript Art Part II",
-      "version": 1,
+      "version": 2,
       "role": "reference",
       "urls": [
         "https://codepen.io/junilearning/pen/68f7db60fabe38f5ff48cf4cfa631a4c",
@@ -503,8 +503,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "basic-layout-v1/my-javascript-art-part-2/reference/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -643,5 +643,10 @@
         "javascript": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       }
     }
-  ]
+  ],
+  "vendorSecurityPatch": {
+    "advisory": "GHSA-36jr-mh4h-2g58",
+    "upstreamFix": "https://github.com/d3/d3-color/commit/61a184bd3748db5142c316238c03547865787a94",
+    "manifest": "scripts/vendored-d3-security.json"
+  }
 }

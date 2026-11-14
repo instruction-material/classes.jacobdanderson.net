@@ -35,12 +35,13 @@ import {
 	lessonContentSections
 } from "@/modules/courseLessonPresentation";
 import { unmatchedCourseProgress } from "@/modules/courseProgressHistory";
-import { javaBehavioralProjectKey } from "@/modules/javaBehavioralResources";
 import { javaRecursionProjectKey } from "@/modules/javaRecursionResources";
+import { javaRefactoringProjectKey } from "@/modules/javaRefactoringResources";
 import {
 	javascriptCourseProjectKey,
 	javascriptCourseResource
 } from "@/modules/javascriptCourseResources";
+import { javaStudioProjectKey } from "@/modules/javaStudioResources";
 import { linuxCourseProjectKey } from "@/modules/linuxProjectResources";
 import { fetchManagedLearners } from "@/modules/managedLearners";
 import { networkCourseProjectKey } from "@/modules/networkProjectResources";
@@ -73,6 +74,7 @@ import {
 } from "@/modules/webProjectResources";
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
+import { isListedCourse } from "@/stores/courses/index";
 import {
 	hasPendingStaticMediaNotice,
 	isKnownPendingStaticMediaUrl,
@@ -280,12 +282,18 @@ const courseGroupingOwner = computed<
 });
 
 const courseList = computed(() => {
-	if (props.publicCatalog) return allCourses.value;
-	if (isAllLearnersContext.value) return allCourses.value;
+	const listedCourses = allCourses.value.filter(course =>
+		isListedCourse(course.id)
+	);
+	if (props.publicCatalog) return listedCourses;
+	if (isAllLearnersContext.value) return listedCourses;
 	const allowed = new Set(permittedCourseIds.value);
 	return orderedCoursesByLearnerStatus(
 		props.browseAll
-			? allCourses.value
+			? allCourses.value.filter(
+					course =>
+						isListedCourse(course.id) || allowed.has(course.id)
+				)
 			: allCourses.value.filter(course => allowed.has(course.id)),
 		courseGroupingOwner.value,
 		{ includeOther: props.browseAll }
@@ -1770,19 +1778,25 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 												? javaRecursionProjectKey
 												: selectedCourse.value.id ===
 													  "design-patterns-in-java"
-													? javaBehavioralProjectKey
+													? javaStudioProjectKey
 													: selectedCourse.value
 																.id ===
-																"usaco-bronze" ||
-														  selectedCourse.value
-																.id ===
-																"usaco-bronze-on-demand"
-														? bronzeRequiredProjectKey
+														  "design-patterns-in-java-part-2"
+														? javaRefactoringProjectKey
 														: selectedCourse.value
 																	.id ===
-															  "usaco-silver"
-															? silverJavaProjectKey
-															: goldHistoricalProjectKey)(
+																	"usaco-bronze" ||
+															  selectedCourse
+																	.value
+																	.id ===
+																	"usaco-bronze-on-demand"
+															? bronzeRequiredProjectKey
+															: selectedCourse
+																		.value
+																		.id ===
+																  "usaco-silver"
+																? silverJavaProjectKey
+																: goldHistoricalProjectKey)(
 			selectedCourse.value.id,
 			item.id,
 			resource.kind === "solution" ? "reference" : "starter",

@@ -2,7 +2,7 @@ export const javascriptLoopsResources = [
 	{
 		project: "powers-of-three",
 		title: "Powers of 3",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/1c1201771499a38d4f15588580d7bfa1",
@@ -36,8 +36,8 @@ export const javascriptLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -50,7 +50,7 @@ export const javascriptLoopsResources = [
 	{
 		project: "string-reversal",
 		title: "String Reversal",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/3f802bef974fcccd10caafaac8c3eb04",
@@ -84,8 +84,8 @@ export const javascriptLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -98,7 +98,7 @@ export const javascriptLoopsResources = [
 	{
 		project: "repeated-addition",
 		title: "Forgotten Math",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/53206f1e4800c28a4549aea7be49b7e0",
@@ -132,8 +132,8 @@ export const javascriptLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -146,7 +146,7 @@ export const javascriptLoopsResources = [
 	{
 		project: "looping-squares",
 		title: "Looping Squares",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/56baa6b060aab0e3511c7c3608d53eaa",
@@ -180,8 +180,8 @@ export const javascriptLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -194,7 +194,7 @@ export const javascriptLoopsResources = [
 	{
 		project: "for-loops",
 		title: "For Loops Practice",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/8c4bf4ddfb48b6a93a41d0347d6f78ef",
@@ -228,8 +228,8 @@ export const javascriptLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -242,7 +242,7 @@ export const javascriptLoopsResources = [
 	{
 		project: "debugging-loops",
 		title: "Debugging Loops",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/KKVGBWx"],
 		files: [
@@ -273,8 +273,8 @@ export const javascriptLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -287,7 +287,7 @@ export const javascriptLoopsResources = [
 	{
 		project: "string-reversal",
 		title: "String Reversal",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/OJMxRvY"],
 		files: [
@@ -318,8 +318,8 @@ export const javascriptLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -332,7 +332,7 @@ export const javascriptLoopsResources = [
 	{
 		project: "for-loops",
 		title: "For Loops Practice",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/PoZJGKV"],
 		files: [
@@ -363,8 +363,8 @@ export const javascriptLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -377,7 +377,7 @@ export const javascriptLoopsResources = [
 	{
 		project: "debugging-loops",
 		title: "Debugging Loops",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/d56a9a00a8022b7f85434f295cc0dbec",
@@ -411,8 +411,8 @@ export const javascriptLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -425,7 +425,7 @@ export const javascriptLoopsResources = [
 	{
 		project: "repeated-addition",
 		title: "Forgotten Math",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/gOPGwBy"],
 		files: [
@@ -456,8 +456,8 @@ export const javascriptLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -470,7 +470,7 @@ export const javascriptLoopsResources = [
 	{
 		project: "powers-of-three",
 		title: "Powers of 3",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/wvMrzEw"],
 		files: [
@@ -501,8 +501,8 @@ export const javascriptLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -515,7 +515,7 @@ export const javascriptLoopsResources = [
 	{
 		project: "looping-squares",
 		title: "Looping Squares",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/xxZXEzP"],
 		files: [
@@ -546,8 +546,8 @@ export const javascriptLoopsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",

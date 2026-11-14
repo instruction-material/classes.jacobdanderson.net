@@ -1,0 +1,23 @@
+//  Let’s play Finish the Lyrics! Choose any three song snippets, famous quotes, sayings, or jokes and challenge the user to fill in the blanks! Use prompt() to fetch user inputs and conditionals to check their answers. Finally, use the printToScreen() function to print how many answers the user got correct.
+
+// Enter your code below this line
+
+
+
+// DO NOT ALTER CODE WRITTEN BELOW THIS LINE
+
+function printToScreen(text) {
+  const colors = ["#0b2022", "#1235a8", "#4e175e", "#24551c"];
+  const color = colors[Math.floor(Math.random() * colors.length)];
+  const output = d3.select("body").append("p")
+    .attr("id", "quiz-score")
+    .attr("role", "status")
+    .style("color", color)
+    .style("transform", "translateX(-16px)")
+    .style("opacity", 0)
+    .text(text);
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  output.transition().duration(reducedMotion ? 0 : 1000)
+    .style("transform", "translateX(0px)")
+    .style("opacity", 1);
+}

@@ -13,6 +13,7 @@ describe("page head helpers", () => {
 			"Course Resource | Classes"
 		],
 		["/graph-sketcher", "Graph Sketcher | Classes"],
+		["/tesla-retriever", "Tesla-Retriever Experiment | Classes"],
 		["/ide", "IDE | Classes"],
 		["/python-ide", "IDE | Classes"],
 		["/signup", "Schedule Class | Classes"],

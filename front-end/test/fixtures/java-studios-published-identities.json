@@ -1,0 +1,184 @@
+{
+	"curriculum": [
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-curriculum-applied-studio-scope-guide",
+			"title": "Applied Studio Scope Guide"
+		}
+	],
+	"supplementalProjects": [
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-strategy-selection-refactor-core-concepts",
+			"title": "Strategy Selection Refactor: Core Concepts",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-11-curriculum-pattern-lab-15-core-concepts"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-strategy-selection-refactor-guided-example",
+			"title": "Strategy Selection Refactor: Guided Example",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-11-curriculum-pattern-lab-15-guided-example"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-core-project-strategy-selection-refactor",
+			"title": "Core Project: Strategy Selection Refactor",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-11-curriculum-core-project",
+				"strategy-selection-refactor-core-project",
+				"design-patterns-in-java-pattern-lab-11-curriculum-core-project-pattern-lab-15",
+				"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-strategy-selection-refactor-core-project"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-review-strategy-selection-refactor",
+			"title": "Review: Strategy Selection Refactor",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-11-curriculum-pattern-lab-15-review-and-reflection",
+				"strategy-selection-refactor-review-and-reflection",
+				"design-patterns-in-java-pattern-lab-11-curriculum-review-pattern-lab-15",
+				"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-strategy-selection-refactor-review-and-reflection"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-extension-challenge-strategy-selection-refactor",
+			"title": "Extension Challenge: Strategy Selection Refactor",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-11-supplemental-extension-challenge",
+				"strategy-selection-refactor-extension-challenge",
+				"design-patterns-in-java-pattern-lab-11-supplemental-extension-challenge-pattern-lab-15",
+				"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-strategy-selection-refactor-extension-challenge"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-strategy-selection-refactor-transfer-practice",
+			"title": "Strategy Selection Refactor Transfer Practice",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-11-supplemental-pattern-lab-15-transfer-practice"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-strategy-selection-refactor-extension-practice",
+			"title": "Strategy Selection Refactor Extension Practice",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-11-supplemental-pattern-lab-15-extension-practice"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-structural-wrapper-refactor-core-concepts",
+			"title": "Structural Wrapper Refactor: Core Concepts",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-12-curriculum-pattern-lab-16-core-concepts"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-structural-wrapper-refactor-guided-example",
+			"title": "Structural Wrapper Refactor: Guided Example",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-12-curriculum-pattern-lab-16-guided-example"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-core-project-structural-wrapper-refactor",
+			"title": "Core Project: Structural Wrapper Refactor",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-12-curriculum-core-project",
+				"structural-wrapper-refactor-core-project",
+				"design-patterns-in-java-pattern-lab-12-curriculum-core-project-pattern-lab-16",
+				"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-structural-wrapper-refactor-core-project"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-review-structural-wrapper-refactor",
+			"title": "Review: Structural Wrapper Refactor",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-12-curriculum-pattern-lab-16-review-and-reflection",
+				"structural-wrapper-refactor-review-and-reflection",
+				"design-patterns-in-java-pattern-lab-12-curriculum-review-pattern-lab-16",
+				"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-structural-wrapper-refactor-review-and-reflection"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-extension-challenge-structural-wrapper-refactor",
+			"title": "Extension Challenge: Structural Wrapper Refactor",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-12-supplemental-extension-challenge",
+				"structural-wrapper-refactor-extension-challenge",
+				"design-patterns-in-java-pattern-lab-12-supplemental-extension-challenge-pattern-lab-16",
+				"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-structural-wrapper-refactor-extension-challenge"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-structural-wrapper-refactor-transfer-practice",
+			"title": "Structural Wrapper Refactor Transfer Practice",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-12-supplemental-pattern-lab-16-transfer-practice"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-structural-wrapper-refactor-extension-practice",
+			"title": "Structural Wrapper Refactor Extension Practice",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-12-supplemental-pattern-lab-16-extension-practice"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-architecture-judgment-capstone-core-concepts",
+			"title": "Architecture Judgment Capstone: Core Concepts",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-13-curriculum-pattern-lab-17-core-concepts"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-architecture-judgment-capstone-guided-example",
+			"title": "Architecture Judgment Capstone: Guided Example",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-13-curriculum-pattern-lab-17-guided-example"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-core-project-architecture-judgment-capstone",
+			"title": "Core Project: Architecture Judgment Capstone",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-13-curriculum-core-project",
+				"architecture-judgment-capstone-core-project",
+				"design-patterns-in-java-pattern-lab-13-curriculum-core-project-pattern-lab-17",
+				"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-architecture-judgment-capstone-core-project"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-review-architecture-judgment-capstone",
+			"title": "Review: Architecture Judgment Capstone",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-13-curriculum-pattern-lab-17-review-and-reflection",
+				"architecture-judgment-capstone-review-and-reflection",
+				"design-patterns-in-java-pattern-lab-13-curriculum-review-pattern-lab-17",
+				"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-architecture-judgment-capstone-review-and-reflection"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-extension-challenge-architecture-judgment-capstone",
+			"title": "Extension Challenge: Architecture Judgment Capstone",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-13-supplemental-extension-challenge",
+				"architecture-judgment-capstone-extension-challenge",
+				"design-patterns-in-java-pattern-lab-13-supplemental-extension-challenge-pattern-lab-17",
+				"design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-architecture-judgment-capstone-extension-challenge"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-architecture-judgment-capstone-transfer-practice",
+			"title": "Architecture Judgment Capstone Transfer Practice",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-13-supplemental-pattern-lab-17-transfer-practice"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-optional-applied-java-pattern-studios-supplemental-architecture-judgment-capstone-extension-practice",
+			"title": "Architecture Judgment Capstone Extension Practice",
+			"aliases": [
+				"design-patterns-in-java-pattern-lab-13-supplemental-pattern-lab-17-extension-practice"
+			]
+		}
+	]
+}

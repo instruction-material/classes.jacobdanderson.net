@@ -174,9 +174,16 @@ describe("JavaScript Level 1 learner flow", () => {
 			expect(item.solutionLink, item.title).not.toBe(item.projectLink);
 		}
 		for (const item of projectItems) {
-			expect(item.datasetLink, item.title).toMatch(
-				/^\/course-assets\/javascript-level-1\/javascript-level-1-practice-pack\.md#/u
-			);
+			if (item.projectLink === "https://codepen.io/junilearning/pen/vYGWvaq") {
+				expect(item.datasetLink).toBe("/course-assets/javascript-level-1/snowflake-pattern-checks.md#pattern-inputs");
+				const slugs = markdownHeadingSlugs(assetText("snowflake-pattern-checks.md"));
+				expect(slugs).toContain("pattern-inputs");
+				expect(slugs).toContain("pattern-answers");
+			} else {
+				expect(item.datasetLink, item.title).toMatch(
+					/^\/course-assets\/javascript-level-1\/javascript-level-1-practice-pack\.md#/u
+				);
+			}
 			expect(item.mediaLink, item.title).toMatch(/^https:\/\//u);
 		}
 	});

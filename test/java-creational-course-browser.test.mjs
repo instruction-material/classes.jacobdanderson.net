@@ -9,6 +9,13 @@ const fixture = JSON.parse(
 		"utf8"
 	)
 );
+const appendixIDs = [
+	"design-patterns-in-java-project-practice-guide-supplemental-practice-project-convert-duplicate-constructors-to-factory"
+];
+const itemModules = {
+	"design-patterns-in-java-project-practice-guide-supplemental-practice-project-convert-duplicate-constructors-to-factory":
+		"design-patterns-in-java-project-practice-guide"
+};
 const moduleID = "design-patterns-in-java-dpj3-creational-patterns-i";
 const coreID = moduleID + "-curriculum-core-project-creational-patterns-i";
 const readingID = moduleID + "-curriculum-creational-patterns-i-core-concepts";
@@ -27,9 +34,10 @@ test(
 			mode: "java",
 			sourceRepository: "Java-Level-3",
 			fixturePath: "./fixtures/java-creational-sources.json",
+			itemModules,
 			continuationsByRole: {
-				starter: [blobID, extensionID],
-				solution: [readingID, blobID, extensionID]
+				starter: [blobID, extensionID, ...appendixIDs],
+				solution: [readingID, blobID, extensionID, ...appendixIDs]
 			},
 			sourceUrl: role =>
 				"https://github.com/" +

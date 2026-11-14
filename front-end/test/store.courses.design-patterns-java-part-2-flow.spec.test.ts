@@ -104,11 +104,20 @@ describe("Design Patterns in Java Part 2 learner flow", () => {
 			module => module.supplementalProjects.map(item => item.title)
 		);
 
-		expect(curriculumTitles).toHaveLength(86);
+		expect(
+			designPatternsInJavaPart2Course.modules
+				.filter(module => /^DPR\d+ /.test(module.title))
+				.every(
+					module =>
+						module.curriculum.filter(item =>
+							item.title.includes("Core Project")
+						).length === 1
+				)
+		).toBe(true);
 		expect(optionTitles).toHaveLength(79);
 		for (const title of [
-			"DPR1 Code Smells and Safe Refactoring Workflow: Core Project",
-			"DPR5 Simplifying Conditional Expressions: Core Project",
+			"Core Project: Code Smells and Safe Refactoring Workflow",
+			"Core Project: Simplifying Conditional Expressions",
 			"DPR10 Capstone Refactoring Studio: Core Project",
 			"Refactoring Clinic 11: Core Project",
 			"Refactoring Clinic 12: Core Project",
@@ -119,9 +128,10 @@ describe("Design Patterns in Java Part 2 learner flow", () => {
 			"Refactoring Clinic 17: Core Project",
 			"Refactoring Clinic 17 Extension Practice"
 		]) {
-			const collection = title.startsWith("DPR")
-				? curriculumTitles
-				: optionTitles;
+			const collection =
+				title.startsWith("DPR") || title.startsWith("Core Project:")
+					? curriculumTitles
+					: optionTitles;
 			expect(collection, title).toContain(title);
 		}
 		expect(moduleText("Optional Refactoring Clinics 11–17")).toContain(
@@ -134,16 +144,20 @@ describe("Design Patterns in Java Part 2 learner flow", () => {
 			"DPR1 Code Smells and Safe Refactoring Workflow"
 		);
 
-		expect(setup).toContain(
-			"A refactor preserves externally observable behavior"
-		);
-		expect(setup).toContain("bug fix intentionally changes");
-		expect(setup).toContain("feature adds behavior");
-		expect(setup).toContain("performance change preserves results");
-		expect(setup).toContain("return values, output text, exceptions");
-		expect(setup).toContain("Commit the green baseline");
-		expect(setup).toContain("one named transformation per commit");
-		expect(setup).toContain("cannot be rolled back independently");
+		for (const detail of [
+			"A refactor preserves the selected observable contract",
+			"A feature intentionally changes a rule",
+			"A bug fix corrects behavior",
+			"A performance change targets measured",
+			"return values, output text, exceptions",
+			"commit the green baseline separately",
+			"one transformation per commit",
+			"cannot be rolled back independently",
+			"LegacyLoanDesk",
+			"48380",
+			"Changing the free period from 3 to 7 days"
+		])
+			expect(setup, detail).toContain(detail);
 		expect(resourceText()).toContain("docs.junit.org/current/user-guide");
 	});
 
@@ -154,9 +168,9 @@ describe("Design Patterns in Java Part 2 learner flow", () => {
 			"evaluation order",
 			"numeric conversion",
 			"temporary delegating bridge",
-			"equals` and `hashCode",
-			"collection-ownership policy",
-			"round-trip data",
+			"equals() and hashCode()",
+			"creates an ordered snapshot",
+			"old byte format",
 			"decision table",
 			"source compatibility",
 			"documented deprecation path",
@@ -166,7 +180,7 @@ describe("Design Patterns in Java Part 2 learner flow", () => {
 		]) {
 			expect(text, contract).toContain(contract);
 		}
-		expect(text).toContain("record for a shallowly immutable");
+		expect(text).toContain("A final field alone does not protect array contents");
 		expect(text).toContain("`Optional` return");
 		expect(text).toContain("sealed hierarchy");
 		expect(resourceText()).toContain("java/util/Optional.html");

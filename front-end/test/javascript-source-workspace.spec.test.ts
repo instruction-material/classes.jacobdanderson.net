@@ -49,7 +49,11 @@ it.each(roleCases)("imports, edits, reopens and exports complete %s source", asy
 	const fetcher = stubFiles();
 	const url = fixture.sourceURL[role];
 	expect(pythonIdeModeForCourseResource(courseId, url)).toBe("web");
-	expect(javascriptCourseResource(url)?.role).toBe(role);
+	expect(javascriptCourseResource(url)).toMatchObject({
+		project: fixture.id,
+		role,
+		version: fixture.version
+	});
 	expect(fetcher).not.toHaveBeenCalled();
 	const files = await loadPythonIdeStarterFilesFromGitHub(url, "web");
 	expect(files).toHaveLength(6);
@@ -77,6 +81,7 @@ it.each(roleCases)("imports, edits, reopens and exports complete %s source", asy
 		courseProjectKey: javascriptCourseProjectKey(courseId, fixture.itemId, role, url),
 		starterUrl: url
 	});
+	expect(project.courseProjectKey).toBe(`${courseId}:${fixture.itemId}:${role}:${fixture.id}:v${fixture.version}`);
 	expect(project.courseProjectKey).not.toBe(prior.courseProjectKey);
 	project.files.find(file => file.name === "script.js")!.content += "\n// Saved observation\n";
 	project.files.push({ name: "notes.md", content: "Saved trace", encoding: "text" });

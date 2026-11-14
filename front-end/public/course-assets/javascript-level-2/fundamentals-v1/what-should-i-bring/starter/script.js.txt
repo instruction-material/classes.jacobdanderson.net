@@ -1,0 +1,1 @@
+// Create a webpage that tells you what to bring based on the weather outside! Brainstorm at least 5 different weather situations and display something to bring based on each situation. 

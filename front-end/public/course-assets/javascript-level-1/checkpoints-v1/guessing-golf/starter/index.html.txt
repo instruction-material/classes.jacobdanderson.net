@@ -1,0 +1,4 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guessing golf</title><link rel="stylesheet" href="styles.css"></head>
+<body><main><h1>Guessing golf</h1><p>Three rounds, three guesses each. Guess an integer from 0 through 19. Each guess scores its distance from the secret. Lower totals are better.</p><button id="start" type="button">Start game</button><ol id="output" aria-live="polite"></ol></main><script src="script.js"></script></body></html>

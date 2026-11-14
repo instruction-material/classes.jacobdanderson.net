@@ -199,6 +199,13 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    '/tesla-retriever': RouteRecordInfo<
+      '/tesla-retriever',
+      '/tesla-retriever',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     '/verify-email': RouteRecordInfo<
       '/verify-email',
       '/verify-email',
@@ -427,6 +434,14 @@ declare module 'vue-router/auto-routes' {
     'src/pages/teaching.vue': {
       routes:
         | '/teaching'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
+    'src/pages/tesla-retriever.vue': {
+      routes:
+        | '/tesla-retriever'
       views:
         | never
       pathParamNames:

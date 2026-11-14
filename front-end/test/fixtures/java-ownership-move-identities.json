@@ -1,0 +1,71 @@
+{
+  "curriculum": [
+    {
+      "id": "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-curriculum-moving-features-between-objects-core-concepts",
+      "title": "Moving Features Between Objects Core Concepts",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-curriculum-core-concepts-and-learning-sequence",
+        "core-concepts",
+        "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-curriculum-core-concepts"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-curriculum-moving-features-between-objects-application-check",
+      "title": "Moving Features Between Objects Application Check",
+      "aliases": [
+        "application-check",
+        "mini-lab-re-home-behavior-without-breaking-clients",
+        "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-curriculum-application-check",
+        "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-curriculum-mini-lab-re-home-behavior-without-breaking-clients"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-curriculum-reflection-question-behavior-ownership",
+      "title": "Reflection Question: Behavior Ownership"
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-curriculum-ownership-move-and-client-compatibility-contract",
+      "title": "Ownership Move and Client-Compatibility Contract"
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-curriculum-core-project-moving-features-between-objects",
+      "title": "Core Project: Moving Features Between Objects",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-curriculum-core-project",
+        "dpr3-moving-features-between-objects-core-project",
+        "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-curriculum-dpr3-moving-features-between-objects-core-project"
+      ]
+    }
+  ],
+  "supplementalProjects": [
+    {
+      "id": "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-supplemental-understanding-check-moving-features-between-objects",
+      "title": "Understanding Check: Moving Features Between Objects",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-supplemental-dpr3-moving-features-between-objects-diagnostic-checkpoint",
+        "diagnostic-checkpoint-moving-features-between-objects",
+        "diagnostic-checkpoint",
+        "understanding-check",
+        "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-supplemental-diagnostic-checkpoint-moving-features-between-objects",
+        "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-supplemental-diagnostic-checkpoint",
+        "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-supplemental-understanding-check"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-supplemental-moving-features-between-objects-transfer-practice",
+      "title": "Moving Features Between Objects Transfer Practice",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-supplemental-transfer-practice-moving-features-between-objects",
+        "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-supplemental-transfer-practice"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-supplemental-moving-features-between-objects-extension-practice",
+      "title": "Moving Features Between Objects Extension Practice",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-supplemental-extension-practice-moving-features-between-objects",
+        "design-patterns-in-java-part-2-dpr3-moving-features-between-objects-supplemental-extension-practice"
+      ]
+    }
+  ]
+}

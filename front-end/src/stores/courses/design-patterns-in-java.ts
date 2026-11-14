@@ -1,11 +1,16 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
+import { completeJavaArchitecture } from "./javaArchitectureTeaching";
 import { completeJavaBehavioral } from "./javaBehavioralTeaching";
 import { completeJavaBoundary } from "./javaBoundaryTeaching";
+import { completeJavaCapstone } from "./javaCapstoneTeaching";
+import { completeJavaCollaboration } from "./javaCollaborationTeaching";
 import { completeJavaCreational } from "./javaCreationalTeaching";
 import { completeJavaFoundations } from "./javaFoundationsTeaching";
+import { completeJavaJudgment } from "./javaJudgmentTeaching";
 import { completeJavaPatternsOpening } from "./javaPatternsOpeningTeaching";
 import { completeJavaStructural } from "./javaStructuralTeaching";
+import { completeJavaStudios } from "./javaStudioTeaching";
 import { buildProjectGuidance } from "./projectGuidance";
 
 const designPatternsInJavaSourceCourse: RawCourse = {
@@ -1627,7 +1632,11 @@ const designPatternsJavaPrimaryModules =
 		.map(completeJavaCreational)
 		.map(completeJavaBoundary)
 		.map(completeJavaStructural)
-		.map(completeJavaBehavioral);
+		.map(completeJavaBehavioral)
+		.map(completeJavaCollaboration)
+		.map(completeJavaArchitecture)
+		.map(completeJavaJudgment)
+		.map(completeJavaCapstone);
 const designPatternsJavaStudios =
 	designPatternsInJavaSourceCourse.modules.filter(
 		module => !DESIGN_PATTERNS_JAVA_PRIMARY_TITLES.has(module.title)
@@ -1637,6 +1646,8 @@ export const designPatternsInJavaCourse: RawCourse = {
 	...designPatternsInJavaSourceCourse,
 	modules: [
 		...designPatternsJavaPrimaryModules,
-		buildDesignPatternsJavaStudioAppendix(designPatternsJavaStudios)
+		completeJavaStudios(
+			buildDesignPatternsJavaStudioAppendix(designPatternsJavaStudios)
+		)
 	]
 };

@@ -1,0 +1,16 @@
+const svg = d3.select("#drawing").append("svg")
+  .attr("viewBox", "0 0 500 500").attr("width", 500).attr("height", 500)
+  .attr("role", "img").attr("aria-label", "Square animation");
+const square = svg.append("rect")
+  .attr("fill", "red").attr("x", 100).attr("y", 100)
+  .attr("width", 50).attr("height", 50);
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+square.transition().duration(reduceMotion ? 0 : 2000)
+  .attr("width", 100).attr("height", 100);
+square.on("mouseover", () => {
+  square.transition().duration(reduceMotion ? 0 : 250).attr("fill", "green");
+});
+square.on("mouseout", () => {
+  square.transition().duration(reduceMotion ? 0 : 250).attr("fill", "red");
+});
+M.Modal.init(document.querySelectorAll(".modal"));

@@ -2,7 +2,7 @@ export const javascriptAdvancedConditionalsResources = [
 	{
 		project: "sorting-hat",
 		title: "The Sorting Hat",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/JjGrxRB"],
 		files: [
@@ -33,8 +33,8 @@ export const javascriptAdvancedConditionalsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -47,7 +47,7 @@ export const javascriptAdvancedConditionalsResources = [
 	{
 		project: "sorting-hat",
 		title: "The Sorting Hat",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/e7c85cf84c953eb5bc630e214fe476d8",
@@ -81,8 +81,8 @@ export const javascriptAdvancedConditionalsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -95,7 +95,7 @@ export const javascriptAdvancedConditionalsResources = [
 	{
 		project: "fizzbuzz",
 		title: "FizzBuzz",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/gOPGqKa"],
 		files: [
@@ -126,8 +126,8 @@ export const javascriptAdvancedConditionalsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -140,7 +140,7 @@ export const javascriptAdvancedConditionalsResources = [
 	{
 		project: "fizzbuzz",
 		title: "FizzBuzz",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/0b39a6e7b85b790e7cd9a276e9ee2c4f",
@@ -174,8 +174,8 @@ export const javascriptAdvancedConditionalsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -188,7 +188,7 @@ export const javascriptAdvancedConditionalsResources = [
 	{
 		project: "gcf-two-numbers",
 		title: "GCF of Two Numbers",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/NWxaJdX"],
 		files: [
@@ -219,8 +219,8 @@ export const javascriptAdvancedConditionalsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -233,7 +233,7 @@ export const javascriptAdvancedConditionalsResources = [
 	{
 		project: "gcf-two-numbers",
 		title: "GCF of Two Numbers",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/b418881c3e60c8c7ac8fcbc3b7d74aa0",
@@ -267,8 +267,8 @@ export const javascriptAdvancedConditionalsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -281,7 +281,7 @@ export const javascriptAdvancedConditionalsResources = [
 	{
 		project: "animal-sounds",
 		title: "What Does the _ Say?",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/NWxaJgy"],
 		files: [
@@ -312,8 +312,8 @@ export const javascriptAdvancedConditionalsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -326,7 +326,7 @@ export const javascriptAdvancedConditionalsResources = [
 	{
 		project: "animal-sounds",
 		title: "What Does the _ Say?",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/5b0bdb527344a081c9abf91138ce5f4a",
@@ -360,8 +360,8 @@ export const javascriptAdvancedConditionalsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -374,7 +374,7 @@ export const javascriptAdvancedConditionalsResources = [
 	{
 		project: "debugging-bugging-friends",
 		title: "Debugging Bugging Friends",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/mdVGXLE"],
 		files: [
@@ -405,8 +405,8 @@ export const javascriptAdvancedConditionalsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -419,7 +419,7 @@ export const javascriptAdvancedConditionalsResources = [
 	{
 		project: "debugging-bugging-friends",
 		title: "Debugging Bugging Friends",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/67b0c29a104afde9cce553de6cacf882",
@@ -453,8 +453,8 @@ export const javascriptAdvancedConditionalsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",

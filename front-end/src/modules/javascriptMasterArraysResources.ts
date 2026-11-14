@@ -3,7 +3,7 @@ export const javascriptMasterArraysResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "foray-into-arrays",
 		title: "Foray into Arrays",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: [
 			"https://codepen.io/junilearning/pen/96047a35895a6620240bd2ce171a71ec",
@@ -50,8 +50,8 @@ export const javascriptMasterArraysResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "arrays-v1/foray-into-arrays/starter/vendor/d3.min.js.txt",
-				byteLength: 265491,
-				sha256: "b50429b67916438842aa00921546d7a9eda8f3e12ba7049f92f04b71b6413822"
+				byteLength: 265612,
+				sha256: "e2ea453f8825a9e37cfceccb491aeb44aed18c3cdabbfcc584a9af8eb9d1524f"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -65,7 +65,7 @@ export const javascriptMasterArraysResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "foray-into-arrays",
 		title: "Foray into Arrays",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/6925d98f7583227a4c1c65996a10cf40",
@@ -112,8 +112,8 @@ export const javascriptMasterArraysResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "arrays-v1/foray-into-arrays/reference/vendor/d3.min.js.txt",
-				byteLength: 265491,
-				sha256: "b50429b67916438842aa00921546d7a9eda8f3e12ba7049f92f04b71b6413822"
+				byteLength: 265612,
+				sha256: "e2ea453f8825a9e37cfceccb491aeb44aed18c3cdabbfcc584a9af8eb9d1524f"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -427,7 +427,7 @@ export const javascriptMasterArraysResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "pokemon-master",
 		title: "Pokemon Master",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: [
 			"https://codepen.io/junilearning/pen/61d80971229e4f85126de1fcfb54b1d8",
@@ -474,8 +474,8 @@ export const javascriptMasterArraysResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "arrays-v1/pokemon-master/starter/vendor/d3.min.js.txt",
-				byteLength: 267786,
-				sha256: "0055b23913f83975330bcac74e9116edfc97b7183de3e6738af9d98936f53438"
+				byteLength: 267907,
+				sha256: "503009428672ae3cb3867cd551a8ecda0a2259ea1baf976d223a48d9fd52c88d"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -489,7 +489,7 @@ export const javascriptMasterArraysResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "pokemon-master",
 		title: "Pokemon Master",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/03693f4763858d7d7c10a34186e030f3",
@@ -536,8 +536,8 @@ export const javascriptMasterArraysResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "arrays-v1/pokemon-master/reference/vendor/d3.min.js.txt",
-				byteLength: 267786,
-				sha256: "0055b23913f83975330bcac74e9116edfc97b7183de3e6738af9d98936f53438"
+				byteLength: 267907,
+				sha256: "503009428672ae3cb3867cd551a8ecda0a2259ea1baf976d223a48d9fd52c88d"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -551,7 +551,7 @@ export const javascriptMasterArraysResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "random-icons",
 		title: "Random Icons",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: [
 			"https://codepen.io/junilearning/pen/e3ae971ad6fd35c3c0829208cb049099",
@@ -598,8 +598,8 @@ export const javascriptMasterArraysResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "arrays-v1/random-icons/starter/vendor/d3.min.js.txt",
-				byteLength: 267786,
-				sha256: "0055b23913f83975330bcac74e9116edfc97b7183de3e6738af9d98936f53438"
+				byteLength: 267907,
+				sha256: "503009428672ae3cb3867cd551a8ecda0a2259ea1baf976d223a48d9fd52c88d"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -637,7 +637,7 @@ export const javascriptMasterArraysResources = [
 		courseId: "javascript-level-2-javascript-master",
 		project: "random-icons",
 		title: "Random Icons",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/f163e56c8fa75a482877d789d08fc784",
@@ -684,8 +684,8 @@ export const javascriptMasterArraysResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "arrays-v1/random-icons/reference/vendor/d3.min.js.txt",
-				byteLength: 267786,
-				sha256: "0055b23913f83975330bcac74e9116edfc97b7183de3e6738af9d98936f53438"
+				byteLength: 267907,
+				sha256: "503009428672ae3cb3867cd551a8ecda0a2259ea1baf976d223a48d9fd52c88d"
 			},
 			{
 				name: "LICENSE-d3.txt",

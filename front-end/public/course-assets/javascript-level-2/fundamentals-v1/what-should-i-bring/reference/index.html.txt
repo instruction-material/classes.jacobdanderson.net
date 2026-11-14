@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Should I Bring?</title>
+<link rel="stylesheet" href="vendor/materialize.min.css">
+<link rel="stylesheet" href="styles.css">
+<script defer src="vendor/d3.min.js"></script>
+<script defer src="script.js"></script>
+</head>
+<body>
+<div class="card-panel" id="panel"><h1>What do I need to bring today?</h1></div>
+<label for="input">Type in the weather</label>
+<p id="weather-cases">hot, rain, snow, cold, or wind</p>
+<input placeholder="hot" id="input" aria-describedby="weather-cases" autocomplete="off">
+<button class="btn waves-effect waves-light blue darken-3" type="button" id="submit">Submit</button>
+<h2>This is what you need to bring</h2>
+<div id="output" aria-live="polite"><div id="output-text"></div><img id="output-image" hidden alt=""></div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+{
+	"schemaVersion": 1,
+	"advisory": "GHSA-36jr-mh4h-2g58",
+	"advisoryURL": "https://github.com/advisories/GHSA-36jr-mh4h-2g58",
+	"upstreamFix": "https://github.com/d3/d3-color/commit/61a184bd3748db5142c316238c03547865787a94",
+	"scope": "Official two-expression color-parser security backport;allotherlegacyD3bytesandAPIs preserved.",
+	"patchNotice": "// Local color-parser security backport: GHSA-36jr-mh4h-2g58; upstream 61a184bd3748db5142c316238c03547865787a94.\n",
+	"oldFragment": "\\\\d*\\\\.?\\\\d+",
+	"fixedFragment": "(?:\\\\d*\\\\.)?\\\\d+",
+	"expectedReplacements": 2,
+	"legacyBundles": [
+		{
+			"version": "5.16.0",
+			"originalSHA256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c",
+			"originalBytes": 248314,
+			"patchedSHA256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832",
+			"patchedBytes": 248435,
+			"paths": [
+				"front-end/public/course-assets/javascript-level-1/welcome-survey-v1/shared/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/complex-conditionals-v1/age-milestones/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/complex-conditionals-v1/age-milestones/starter/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-1/first-module-shared-v1/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-1/dynamic-components-v1/my-javascript-art-part-4/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-1/dynamic-components-v1/my-javascript-art-part-4/starter/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-1/grid-layout-v1/my-javascript-art-part-3/starter/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-1/grid-layout-v1/my-javascript-art-part-3/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/functions-v1/geometry-functions/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-1/more-html-css-v1/my-javascript-art/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-1/more-html-css-v1/my-javascript-art/starter/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-1/dynamic-events-v1/strength-tester/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/functions-v1/debugging-functions/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/functions-v1/geometry-functions/starter/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-1/dynamic-events-v1/strength-tester/starter/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-1/dynamic-events-v1/calculator/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-1/dynamic-events-v1/calculator/starter/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/functions-v1/rock-paper-scissors/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/functions-v1/rock-paper-scissors/starter/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/functions-v1/which-metrocard/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/functions-v1/pain-at-the-pump/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/functions-v1/pain-at-the-pump/starter/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/functions-v1/debugging-functions/starter/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/functions-v1/which-metrocard/starter/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/functions-v1/functions-practice/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/functions-v1/functions-practice/starter/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/functions-v1/game-of-war/starter/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/functions-v1/game-of-war/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-1/basic-layout-v1/my-javascript-art-part-2/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-1/basic-layout-v1/my-javascript-art-part-2/starter/vendor/d3.min.js.txt"
+			]
+		},
+		{
+			"version": "6.1.1",
+			"originalSHA256": "b50429b67916438842aa00921546d7a9eda8f3e12ba7049f92f04b71b6413822",
+			"originalBytes": 265491,
+			"patchedSHA256": "e2ea453f8825a9e37cfceccb491aeb44aed18c3cdabbfcc584a9af8eb9d1524f",
+			"patchedBytes": 265612,
+			"paths": [
+				"front-end/public/course-assets/javascript-level-1/master-project-v1/master-project/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-1/master-project-v1/master-project/starter/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/complex-conditionals-v1/ternary-operators-practice/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/complex-conditionals-v1/ternary-operators-practice/starter/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/arrays-v1/foray-into-arrays/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/arrays-v1/foray-into-arrays/starter/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/complex-conditionals-v1/department-store-discounts/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/complex-conditionals-v1/department-store-discounts/starter/vendor/d3.min.js.txt"
+			]
+		},
+		{
+			"version": "6.2.0",
+			"originalSHA256": "0055b23913f83975330bcac74e9116edfc97b7183de3e6738af9d98936f53438",
+			"originalBytes": 267786,
+			"patchedSHA256": "503009428672ae3cb3867cd551a8ecda0a2259ea1baf976d223a48d9fd52c88d",
+			"patchedBytes": 267907,
+			"paths": [
+				"front-end/public/course-assets/javascript-level-2/complex-conditionals-v1/special-numbers/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/complex-conditionals-v1/special-numbers/starter/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/arrays-v1/random-icons/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/arrays-v1/random-icons/starter/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/arrays-v1/pokemon-master/reference/vendor/d3.min.js.txt",
+				"front-end/public/course-assets/javascript-level-2/arrays-v1/pokemon-master/starter/vendor/d3.min.js.txt"
+			]
+		}
+	],
+	"maintainedBundles": [
+		{
+			"version": "7.9.0",
+			"sha256": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539"
+		}
+	],
+	"noticePlacement": "Immediately after the original upstream version header"
+}

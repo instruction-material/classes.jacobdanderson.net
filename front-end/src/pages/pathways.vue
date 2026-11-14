@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 import { coursePathwayMaps } from "@/modules/coursePathwayMaps";
-import { courseCatalog } from "@/stores/courses/index";
+import { listedCourseCatalog } from "@/stores/courses/index";
 
 defineOptions({ name: "PathwaysPage" });
 const search = ref("");
@@ -11,11 +11,11 @@ const categories = [
 	{ id: "coding", label: "Coding" },
 	{ id: "math", label: "Math" },
 	{ id: "science", label: "Science" },
-	{ id: "language", label: "Reading and writing" },
+	{ id: "language", label: "Language skills" },
 	{ id: "life", label: "Life skills" }
 ];
 const courseNameById = new Map(
-	courseCatalog.map(course => [course.id, course.name])
+	listedCourseCatalog.map(course => [course.id, course.name])
 );
 const visiblePathways = computed(() =>
 	coursePathwayMaps.filter(pathway => {

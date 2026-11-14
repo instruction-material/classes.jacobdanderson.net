@@ -1,0 +1,35 @@
+// Create a webpage that tells you what to bring based on the weather outside! Brainstorm at least 5 different weather situations and display something to bring based on each situation. 
+
+d3.select("#submit").on("click", () => {
+  let input = d3.select("#input").property("value");
+  let outputText = d3.select("#output-text");
+  let outputImage = d3.select("#output-image").attr("width", "200px").property("hidden", false);
+
+  let panel = d3.select("#panel");
+
+  if (input == "hot") {
+    outputText.text("Sunglasses!");
+    outputImage.attr("src", "assets/sunglasses.svg").attr("alt", "Sunglasses");
+    panel.attr("class", "card-panel orange white-text");
+  } else if (input == "rain") {
+    outputText.text("Umbrella!");
+    outputImage.attr("src", "assets/umbrella.svg").attr("alt", "Umbrella");
+    panel.attr("class", "card-panel blue white-text");
+  } else if (input == "snow") {
+    outputText.text("Timbs!");
+    outputImage.attr("src", "assets/boots.svg").attr("alt", "Boots");
+    panel.attr("class", "card-panel grey white-text");
+  } else if (input == "cold") {
+    outputText.text("Jacket!");
+    outputImage.attr("src", "assets/jacket.svg").attr("alt", "Jacket");
+    panel.attr("class", "card-panel cyan lighten-3 white-text");
+  } else if (input == "wind") {
+    outputText.text("Windbreaker!");
+    outputImage.attr("src", "assets/windbreaker.svg").attr("alt", "Windbreaker");
+    panel.attr("class", "card-panel purple white-text");
+  } else {
+    outputText.text("I'm not sure!");
+    outputImage.attr("src", null).attr("alt", "").property("hidden", true);
+    panel.attr("class", "card-panel black white-text");
+  }
+});

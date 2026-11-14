@@ -1,0 +1,5 @@
+* { box-sizing: border-box; }
+body { margin: 0; padding: 1rem; font: 1rem/1.5 system-ui, sans-serif; overflow-wrap: anywhere; }
+main { max-width: 60rem; margin: auto; }
+button { font: inherit; padding: .5rem 1rem; cursor: pointer; }
+button:focus-visible, a:focus-visible { outline: 3px solid #173b80; outline-offset: 3px; }

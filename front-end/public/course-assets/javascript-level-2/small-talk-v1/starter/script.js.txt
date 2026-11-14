@@ -1,0 +1,3 @@
+// Let's make some small talk with the user! Create an object that contains at least 5 properties about yourself (ie name, age, school). Make sure to include at least 1 string property, 1 integer property, and 1 boolean property. Then, create an empty object that will contain the same properties about the user. Use prompts to fill in this second object and use ternary operators to customize the responses if you share any properties in common. In this project, don't make any variables outside of these 2 objects!
+
+// Please enter your code below this line.

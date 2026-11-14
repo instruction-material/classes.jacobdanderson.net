@@ -2,7 +2,7 @@ export const javascriptDynamicEventsResources = [
 	{
 		project: "calculator",
 		title: "Calculator",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: [
 			"https://codepen.io/junilearning/pen/8cb69f2696d31b929107d3798ef095aa",
@@ -36,8 +36,8 @@ export const javascriptDynamicEventsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "dynamic-events-v1/calculator/starter/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -50,7 +50,7 @@ export const javascriptDynamicEventsResources = [
 	{
 		project: "calculator",
 		title: "Calculator",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/d394480277af12f893819f3d64c5ea81",
@@ -84,8 +84,8 @@ export const javascriptDynamicEventsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "dynamic-events-v1/calculator/reference/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -98,7 +98,7 @@ export const javascriptDynamicEventsResources = [
 	{
 		project: "strength-tester",
 		title: "Strength Tester",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: [
 			"https://codepen.io/junilearning/pen/afcffeca5355cf07d9882f08c90ab84c",
@@ -132,8 +132,8 @@ export const javascriptDynamicEventsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "dynamic-events-v1/strength-tester/starter/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -194,7 +194,7 @@ export const javascriptDynamicEventsResources = [
 	{
 		project: "strength-tester",
 		title: "Strength Tester",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/20af41540e7b43929ccf60cc88c8e8bd",
@@ -228,8 +228,8 @@ export const javascriptDynamicEventsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "dynamic-events-v1/strength-tester/reference/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",

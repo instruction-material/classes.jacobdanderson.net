@@ -224,7 +224,7 @@ async function retainArchive(page, project, output, name) {
 // more than once; these observations diagnose CI pressure, not a memory limit.
 async function browserResources(browser) {
 	const rootPid = browser?.process()?.pid;
-	const result = { recordedAt: new Date().toISOString(), browserPid: rootPid, harnessRssBytes: process.memoryUsage().rss, hostFreeBytes: freemem(), hostTotalBytes: totalmem(), observedProcessCount: 0, observedRssKiB: null, processSampleTruncated: false };
+	const result = { recordedAt: new Date().toISOString(), browserPid: rootPid, harnessRssBytes: process.memoryUsage().rss, hostFreeBytes: freemem(), hostTotalBytes: totalmem(), observedProcessCount: 0, observedRssKiB: null, processSampleTruncated: false, processes: [] };
 	if (process.platform !== "linux" || !rootPid) return result;
 	const pending = [rootPid];
 	const seen = new Set();
@@ -233,10 +233,22 @@ async function browserResources(browser) {
 		const pid = pending.shift();
 		if (seen.has(pid)) continue;
 		seen.add(pid);
-		const [status, children] = await Promise.all([
+		const [status, children, stat, waitChannel] = await Promise.all([
 			readFile(`/proc/${pid}/status`, "utf8").catch(() => ""),
-			readFile(`/proc/${pid}/task/${pid}/children`, "utf8").catch(() => "")
+			readFile(`/proc/${pid}/task/${pid}/children`, "utf8").catch(() => ""),
+			readFile(`/proc/${pid}/stat`, "utf8").catch(() => ""),
+			readFile(`/proc/${pid}/wchan`, "utf8").catch(() => "")
 		]);
+		const fields = stat.slice(stat.lastIndexOf(")") + 1).trim().split(/\s+/);
+		result.processes.push({
+			pid,
+			name: status.split("\n").find(line => line.startsWith("Name:"))?.slice(5).trim() ?? null,
+			state: fields[0] || null,
+			userCpuTicks: Number(fields[11]) || 0,
+			systemCpuTicks: Number(fields[12]) || 0,
+			threads: Number(fields[17]) || 0,
+			waitChannel: waitChannel.trim() || null
+		});
 		const resident = status.match(/^VmRSS:\s+(\d+) kB$/m);
 		if (resident) {
 			rss += Number(resident[1]);
@@ -444,6 +456,8 @@ nodeTest(
 		const mediaRequests = new Set();
 		const browserSessions = [];
 		let currentBrowserSession;
+		let browserStderrListener;
+		let crashSession;
 		async function closeBrowser(reason) {
 			const closing = browser;
 			const session = currentBrowserSession;
@@ -451,7 +465,15 @@ nodeTest(
 			browser = null;
 			currentBrowserSession = null;
 			const child = closing.process();
+			if (crashSession) {
+				await crashSession.detach().catch(() => {});
+				crashSession = null;
+			}
 			await closing.close();
+			if (browserStderrListener) {
+				child?.stderr?.off("data", browserStderrListener);
+				browserStderrListener = null;
+			}
 			Object.assign(session, { endedAt: new Date().toISOString(), completedRuntimeProfiles: runtimeProfiles.length - session.firstRuntimeProfile, exitCode: child?.exitCode ?? null, signalCode: child?.signalCode ?? null, childProcessGroupCleanup: "owned browser closed after its contexts", reason });
 			console.log(JSON.stringify({ event: "browser-end", taskId, ...session }));
 		}
@@ -549,7 +571,28 @@ nodeTest(
 				const launchStartedAt = new Date().toISOString();
 				browser = await puppeteer.launch({ executablePath, headless: ["chrome-headless-shell", "headless_shell", "chrome-headless-shell.exe"].includes(basename(executablePath)) ? "shell" : true, args: ["--no-sandbox"] });
 				const child = browser.process();
-				currentBrowserSession = { id: browserSessions.length, pid: child?.pid, parentPid: process.pid, cwd: root, command: child?.spawnargs, startedAt: launchStartedAt, timeoutMs: 2100000, firstRuntimeProfile: runtimeProfiles.length, resources: [] };
+				currentBrowserSession = { id: browserSessions.length, pid: child?.pid, parentPid: process.pid, cwd: root, command: child?.spawnargs, startedAt: launchStartedAt, timeoutMs: 2100000, firstRuntimeProfile: runtimeProfiles.length, resources: [], browserVersion: await browser.version() };
+				const session = currentBrowserSession;
+				session.stderrTail = "";
+				session.lifecycle = [];
+				session.targetCrashes = [];
+				crashSession = await browser.target().createCDPSession();
+				crashSession.on("Target.targetCrashed", (crash) => {
+					const detail = { ...crash, at: new Date().toISOString() };
+					session.targetCrashes.push(detail);
+					console.log(JSON.stringify({ event: "target-crashed", taskId, ...detail }));
+				});
+				await crashSession.send("Target.setDiscoverTargets", { discover: true });
+				browserStderrListener = (chunk) => {
+					session.stderrTail = (session.stderrTail + String(chunk)).slice(-16_384);
+				};
+				child?.stderr?.on("data", browserStderrListener);
+				child?.once("exit", (code, signal) => {
+					session.lifecycle.push({ event: "process-exit", at: new Date().toISOString(), code, signal });
+				});
+				browser.once("disconnected", () => {
+					session.lifecycle.push({ event: "browser-disconnected", at: new Date().toISOString() });
+				});
 				browserSessions.push(currentBrowserSession);
 				console.log(JSON.stringify({ event: "browser-start", taskId, ...currentBrowserSession }));
 			}
@@ -561,7 +604,22 @@ nodeTest(
 				context = await browser.createBrowserContext();
 				const page = await context.newPage();
 				await page.setViewport({ width, height: 950 });
-				const state = { catalog: true, requests: [], remoteWrites: 0 };
+				const state = { catalog: true, requests: [], remoteWrites: 0, diagnostics: [] };
+				const recordDiagnostic = (type, detail) => {
+					const event = { type, detail: String(detail).slice(-2000), at: new Date().toISOString() };
+					state.diagnostics.push(event);
+					if (state.diagnostics.length > 64) state.diagnostics.shift();
+					console.log(JSON.stringify({ event: "page-diagnostic", taskId, course, width, ...event }));
+				};
+				page.on("error", error => recordDiagnostic("renderer-error", error.message));
+				page.on("pageerror", error => recordDiagnostic("page-error", error.message));
+				page.on("console", (message) => {
+					if (["error", "warning", "warn"].includes(message.type()))
+						recordDiagnostic(`console-${message.type()}`, message.text());
+				});
+				page.on("requestfailed", (request) => {
+					recordDiagnostic("request-failed", `${request.url().split("?")[0]}: ${request.failure()?.errorText}`);
+				});
 				const learner = {
 					_id: "pygames-learner",
 					name: "Learner fixture",
@@ -922,14 +980,18 @@ nodeTest(
 							`runtime-${classroom ? "classroom" : "original"}-${name}`
 						);
 						checkpoint("request-run");
+						currentBrowserSession.resources.push({ profile: runtimeProfiles.length, phase: "before-run", ...await browserResources(browser) });
 						await page.locator("button.run-control").click();
 						const frame = await pythonFrame(page);
 						try {
 							checkpoint("await-rendered-canvas");
-							const paintHandle = await frame.waitForFunction(
-								readPygamesFirstPaint,
-								{ timeout: 90000 }
-							);
+							const rendererCrashed = new Promise((resolve, reject) => {
+								page.once("error", reject);
+							});
+							const paintHandle = await Promise.race([
+								frame.waitForFunction(readPygamesFirstPaint, { timeout: 90000 }),
+								rendererCrashed
+							]);
 							const firstPaint = await paintHandle.jsonValue();
 							await paintHandle.dispose();
 							checkpoint("retain-rendered-canvas");
@@ -1015,7 +1077,7 @@ nodeTest(
 								error,
 								profiles,
 								runtimeProfiles,
-								{ sessions: browserSessions, current: await browserResources(browser) }
+								{ sessions: browserSessions, current: await browserResources(browser), pageEvents: state.diagnostics }
 							);
 							throw new Error(
 								`${name} classroom=${classroom} phase=${runtimePhase}: ${error.message}; retained ${evidence}`,

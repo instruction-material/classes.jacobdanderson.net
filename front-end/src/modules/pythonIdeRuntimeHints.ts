@@ -1,4 +1,4 @@
-export const PYODIDE_VERSION = "314.0.0";
+export const PYODIDE_VERSION = "314.0.7";
 export const PYODIDE_INDEX_URL = `https://cdn.jsdelivr.net/pyodide/v${PYODIDE_VERSION}/full/`;
 export const PYODIDE_SCRIPT_SRC = `${PYODIDE_INDEX_URL}pyodide.js`;
 export const PYODIDE_MODULE_SRC = `${PYODIDE_INDEX_URL}pyodide.mjs`;

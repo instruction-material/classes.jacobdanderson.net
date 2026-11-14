@@ -22,14 +22,25 @@ import {
 import { courseReferenceExamples } from "@/modules/courseReferenceExamples";
 import { cppStarterCode, cppWorkspaceReadme } from "@/modules/cppIdeSource";
 import {
+	javaArchitectureImportFiles,
+	javaArchitectureResource
+} from "@/modules/javaArchitectureResources";
+import {
 	javaBehavioralImportFiles,
 	javaBehavioralResource
 } from "@/modules/javaBehavioralResources";
-
 import {
 	javaBoundaryImportFiles,
 	javaBoundaryResource
 } from "@/modules/javaBoundaryResources";
+import {
+	javaCapstoneImportFiles,
+	javaCapstoneResource
+} from "@/modules/javaCapstoneResources";
+import {
+	javaCollaborationImportFiles,
+	javaCollaborationResource
+} from "@/modules/javaCollaborationResources";
 import {
 	javaCreationalImportFiles,
 	javaCreationalResource
@@ -39,6 +50,11 @@ import {
 	javaFoundationsResource
 } from "@/modules/javaFoundationsResources";
 import {
+	javaJudgmentImportFiles,
+	javaJudgmentResource
+} from "@/modules/javaJudgmentResources";
+
+import {
 	javaPatternsImportFiles,
 	javaPatternsResource
 } from "@/modules/javaPatternsResources";
@@ -47,6 +63,10 @@ import {
 	javaRecursionResource
 } from "@/modules/javaRecursionResources";
 import {
+	javaRefactoringImportFiles,
+	javaRefactoringResource
+} from "@/modules/javaRefactoringResources";
+import {
 	javascriptCourseResource,
 	loadJavaScriptCourseFiles
 } from "@/modules/javascriptCourseResources";
@@ -54,6 +74,10 @@ import {
 	javaStructuralImportFiles,
 	javaStructuralResource
 } from "@/modules/javaStructuralResources";
+import {
+	javaStudioImportFiles,
+	javaStudioResource
+} from "@/modules/javaStudioResources";
 import { linuxStarterCode, linuxStarterFiles } from "@/modules/linuxIdeSource";
 import {
 	isLinuxProjectTextPath,
@@ -91,6 +115,14 @@ import {
 	webCourseResource,
 	webImportFiles
 } from "@/modules/webProjectResources";
+import {
+	javaComposingImportFiles,
+	javaComposingResource
+} from "./javaComposingResources";
+import {
+	javaRefactoringUnitImportFiles,
+	javaRefactoringUnitResource
+} from "./javaRefactoringUnits";
 
 const WHITESPACE_RE = /\s+/g;
 const FILE_EXTENSION_RE = /\.[\dA-Z]+$/i;
@@ -100,6 +132,8 @@ const C_EXTENSION_RE = /\.c$/i;
 const CPP_EXTENSION_RE = /\.(?:cc|cpp|cxx)$/i;
 const CODE_EXTENSION_RE = /\.(?:[sch]|cc|cpp|cxx|hpp|java|py)$/i;
 const SAFE_FILE_SEGMENT_RE = /^\w[\w.-]*$/;
+const JAVA_SERVICE_PROVIDER_PATH_RE =
+	/^META-INF\/services\/[A-Z_a-z]\w*(?:\.[A-Z_a-z]\w*)+$/;
 const NATIVE_WORKSHEET_FILE_RE =
 	/^(?:starter|solution)\/(?:analysis|trace)\.md$/i;
 const ROOT_TEXT_FILE_RE =
@@ -2944,6 +2978,7 @@ export function normalizePythonFileName(
 		.replace(/^\.\/+/, "")
 		.replace(/\/+/g, "/");
 	if (!cleaned) return "";
+	if (JAVA_SERVICE_PROVIDER_PATH_RE.test(cleaned)) return cleaned;
 	const segments = cleaned
 		.split("/")
 		.map(segment => segment.trim().replaceAll(WHITESPACE_RE, "_"))
@@ -3003,6 +3038,8 @@ export function isValidPythonFileName(
 	if (isPythonIdeRuntimeReservedPath(value)) return false;
 	if (mode === "swift") return isSwiftProjectTextPath(value);
 	if (mode === "web") return isWebProjectTextPath(value);
+	if (mode === "java" && JAVA_SERVICE_PROVIDER_PATH_RE.test(value))
+		return true;
 
 	if (
 		CODE_EXTENSION_RE.test(value) ||
@@ -3046,6 +3083,7 @@ export function isPythonIdeRunnableFile(
 
 export function isPythonIdeTextFile(value: string) {
 	return (
+		JAVA_SERVICE_PROVIDER_PATH_RE.test(value) ||
 		isSwiftProjectTextPath(value) ||
 		isWebProjectTextPath(value) ||
 		isRustProjectTextPath(value) ||
@@ -3260,7 +3298,15 @@ export async function loadPythonIdeStarterFilesFromGitHub(
 				javaCreationalResource(starterUrl) !== null ||
 				javaBoundaryResource(starterUrl) !== null ||
 				javaStructuralResource(starterUrl) !== null ||
-				javaBehavioralResource(starterUrl) !== null))
+				javaBehavioralResource(starterUrl) !== null ||
+				javaCollaborationResource(starterUrl) !== null ||
+				javaArchitectureResource(starterUrl) !== null ||
+				javaJudgmentResource(starterUrl) !== null ||
+				javaCapstoneResource(starterUrl) !== null ||
+				javaStudioResource(starterUrl) !== null ||
+				javaRefactoringResource(starterUrl) !== null ||
+				javaComposingResource(starterUrl) !== null ||
+				javaRefactoringUnitResource(starterUrl) !== null))
 	) {
 		const selected =
 			mode === "java"
@@ -3270,7 +3316,15 @@ export async function loadPythonIdeStarterFilesFromGitHub(
 					javaCreationalImportFiles(starterUrl) ??
 					javaBoundaryImportFiles(starterUrl) ??
 					javaStructuralImportFiles(starterUrl) ??
-					javaBehavioralImportFiles(starterUrl))
+					javaBehavioralImportFiles(starterUrl) ??
+					javaCollaborationImportFiles(starterUrl) ??
+					javaArchitectureImportFiles(starterUrl) ??
+					javaJudgmentImportFiles(starterUrl) ??
+					javaCapstoneImportFiles(starterUrl) ??
+					javaStudioImportFiles(starterUrl) ??
+					javaRefactoringImportFiles(starterUrl) ??
+					javaComposingImportFiles(starterUrl) ??
+					javaRefactoringUnitImportFiles(starterUrl))
 				: mode === "swift"
 					? swiftImportFiles(starterUrl)
 					: mode === "web"

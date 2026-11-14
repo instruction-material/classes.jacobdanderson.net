@@ -2,7 +2,7 @@ export const javascriptOperatorsResources = [
 	{
 		project: "tips-and-taxes",
 		title: "Tips and Taxes",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/06257a44b94db1486fac683ccaace7be",
@@ -36,8 +36,8 @@ export const javascriptOperatorsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -50,7 +50,7 @@ export const javascriptOperatorsResources = [
 	{
 		project: "random-party",
 		title: "Randomly Random Party",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/29d1e4fde67a75fc4b5cdcacd458cb8d",
@@ -84,8 +84,8 @@ export const javascriptOperatorsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -98,7 +98,7 @@ export const javascriptOperatorsResources = [
 	{
 		project: "random-practice",
 		title: "Random Practice",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/5bbc99927a71e48ec59e93b8dfbb585c",
@@ -132,8 +132,8 @@ export const javascriptOperatorsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -146,7 +146,7 @@ export const javascriptOperatorsResources = [
 	{
 		project: "random-practice",
 		title: "Random Practice",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/JjGrXgg"],
 		files: [
@@ -177,8 +177,8 @@ export const javascriptOperatorsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -191,7 +191,7 @@ export const javascriptOperatorsResources = [
 	{
 		project: "math-password",
 		title: "What's the Password?",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/PoZJNXb"],
 		files: [
@@ -222,8 +222,8 @@ export const javascriptOperatorsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -236,7 +236,7 @@ export const javascriptOperatorsResources = [
 	{
 		project: "tips-and-taxes",
 		title: "Tips and Taxes",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/RwrLayP"],
 		files: [
@@ -267,8 +267,8 @@ export const javascriptOperatorsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -281,7 +281,7 @@ export const javascriptOperatorsResources = [
 	{
 		project: "debugging-math",
 		title: "Debugging Math Practice",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/VwexoVL"],
 		files: [
@@ -312,8 +312,8 @@ export const javascriptOperatorsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -326,7 +326,7 @@ export const javascriptOperatorsResources = [
 	{
 		project: "pie-eating-contest",
 		title: "Pie Eating Contest",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/a9612fb435c5e334490c1eeb72e9c567",
@@ -360,8 +360,8 @@ export const javascriptOperatorsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -374,7 +374,7 @@ export const javascriptOperatorsResources = [
 	{
 		project: "math-password",
 		title: "What's the Password?",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/c550ef1e284c55fa01964589bf19b21c",
@@ -408,8 +408,8 @@ export const javascriptOperatorsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -422,7 +422,7 @@ export const javascriptOperatorsResources = [
 	{
 		project: "arc-circles",
 		title: "Circles",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/d004723cc01403a3db897db1206f449b",
@@ -456,8 +456,8 @@ export const javascriptOperatorsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -470,7 +470,7 @@ export const javascriptOperatorsResources = [
 	{
 		project: "debugging-math",
 		title: "Debugging Math Practice",
-		version: 1,
+		version: 2,
 		role: "reference",
 		urls: [
 			"https://codepen.io/junilearning/pen/f90710cc7e05de72ea7ff2b8b05a32bd",
@@ -504,8 +504,8 @@ export const javascriptOperatorsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -518,7 +518,7 @@ export const javascriptOperatorsResources = [
 	{
 		project: "pie-eating-contest",
 		title: "Pie Eating Contest",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/jOWGqJZ"],
 		files: [
@@ -549,8 +549,8 @@ export const javascriptOperatorsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -563,7 +563,7 @@ export const javascriptOperatorsResources = [
 	{
 		project: "random-party",
 		title: "Randomly Random Party",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/xxZXVye"],
 		files: [
@@ -594,8 +594,8 @@ export const javascriptOperatorsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",
@@ -608,7 +608,7 @@ export const javascriptOperatorsResources = [
 	{
 		project: "arc-circles",
 		title: "Circles",
-		version: 1,
+		version: 2,
 		role: "starter",
 		urls: ["https://codepen.io/junilearning/pen/yLezJLx"],
 		files: [
@@ -639,8 +639,8 @@ export const javascriptOperatorsResources = [
 			{
 				name: "vendor/d3.min.js",
 				path: "first-module-shared-v1/vendor/d3.min.js.txt",
-				byteLength: 248314,
-				sha256: "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
 			},
 			{
 				name: "LICENSE-d3.txt",

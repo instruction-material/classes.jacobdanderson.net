@@ -1,0 +1,23 @@
+# Source record
+
+Original starter: https://codepen.io/junilearning/pen/2d400625754c49aedbb72402eed3ba8f
+Observed starter: https://codepen.io/junilearning/pen/zYBNNJw
+
+Original reference: https://codepen.io/junilearning/pen/5e36bb6a04a440e18fb502b1cd635628
+Observed reference: https://codepen.io/junilearning/pen/jOryyeP/5e36bb6a04a440e18fb502b1cd635628
+
+Official ZIP exports, source panels and HTML/CSS/JS settings were captured on 2026-11-13. Both originals have empty HTML/CSS and D3 5.16.0. The starter supplies the assignment and printToScreen helper. The reference uses three prompts, separate conditional comparisons, a correct-answer counter, feedback alerts and a final helper call.
+
+Cancelling the original reference's first prompt was actually tested: null.toLowerCase throws before a score appears. The local reference checks null before trimming/case conversion, treats cancellation as an unanswered question and continues through all three prompts.
+
+The local reference uses three newly authored sayings allowed by the original assignment. Its control-flow structure remains three prompts, conditional checks, counter updates, feedback and one final score. The local starter preserves the original assignment and empty project area.
+
+The display helper keeps its printToScreen API, D3 selection/appending and one-second colored entrance. A wrapping HTML result and readable dark palette replace the original fixed-width SVG and unrestricted random colors; reduced motion is honored. The pack supplies a complete local HTML/CSS shell and the already verified D3 7.9.0 distribution with its license. These calls do not use the event argument that changed between D3 versions.
+
+Original script SHA256:
+starter: 2b0098b95d08b07aa74ea97b033e3bd5b584988aa6d5ec6950995888936ac2e5
+reference: 0de185a5b5cad49785bd4c3d22fccfb6a65a3e1de692c8cf4fcfc49abf30680f
+
+LICENSE-original.txt reproduces the original starter export's MIT notice unchanged. The private reference export contained no separate license file; its provenance is recorded above. The three local sayings and revised implementation were authored for this pack.
+
+Version 2 uses absolute pixel transform offsets. Actual downloaded v1 runs showed that D3's CSS-transform interpolator cannot resolve rem units through DOMMatrix; the score existed but remained at opacity zero. The one-second entrance and reduced-motion route are retained.

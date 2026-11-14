@@ -1,4 +1,8 @@
 import {
+	javaArchitectureCoreID,
+	javaArchitectureReadingID
+} from "./javaArchitectureResources";
+import {
 	javaBehavioralCoreID,
 	javaBehavioralReadingID
 } from "./javaBehavioralResources";
@@ -6,6 +10,15 @@ import {
 	javaBoundaryCoreID,
 	javaBoundaryReadingID
 } from "./javaBoundaryResources";
+import {
+	javaCapstoneCoreID,
+	javaCapstoneReadingID
+} from "./javaCapstoneResources";
+import {
+	javaCollaborationCoreID,
+	javaCollaborationReadingID
+} from "./javaCollaborationResources";
+import { javaComposingNativeInstructions } from "./javaComposingResources";
 import {
 	javaCreationalCoreID,
 	javaCreationalReadingID
@@ -15,15 +28,22 @@ import {
 	javaFoundationsReadingID
 } from "./javaFoundationsResources";
 import {
+	javaJudgmentCoreID,
+	javaJudgmentReadingID
+} from "./javaJudgmentResources";
+import {
 	javaPatternsExtensionID,
 	javaPatternsPricingID,
 	javaPatternsReadingID
 } from "./javaPatternsResources";
 import { javaRecursionProjects } from "./javaRecursionResources";
+import { javaRefactoringNativeInstructions } from "./javaRefactoringResources";
+import { javaRefactoringUnitNativeInstructions } from "./javaRefactoringUnits";
 import {
 	javaStructuralCoreID,
 	javaStructuralReadingID
 } from "./javaStructuralResources";
+import { javaStudioNativeInstructions } from "./javaStudioResources";
 import {
 	bronzeRequiredAssignment,
 	bronzeRequiredNativeInstructions
@@ -145,8 +165,174 @@ const fruitFeastItem =
 export function javaNativeBuildInstructions(
 	courseProjectKey?: string
 ): string[] | null {
+	const unitInstructions =
+		javaRefactoringUnitNativeInstructions(courseProjectKey);
+	if (unitInstructions) return unitInstructions;
+	const composingInstructions =
+		javaComposingNativeInstructions(courseProjectKey);
+	if (composingInstructions) return composingInstructions;
+	const refactoringInstructions =
+		javaRefactoringNativeInstructions(courseProjectKey);
+	if (refactoringInstructions) return refactoringInstructions;
+	const studioInstructions = javaStudioNativeInstructions(courseProjectKey);
+	if (studioInstructions) return studioInstructions;
 	const parts = (courseProjectKey ?? "").split(":");
 	const [course, item, role, extra] = parts;
+	if (
+		course === "design-patterns-in-java" &&
+		[javaCapstoneCoreID, javaCapstoneReadingID].includes(item ?? "") &&
+		["starter", "reference"].includes(role ?? "") &&
+		parts.length === 4 &&
+		extra === "native-java-capstone"
+	) {
+		return [
+			"Java 21 runnable dispatch capstone",
+			"Export the complete role folder:13 starter files or 18 reference files,including DECISIONS.md and CHECKPOINTS.md.",
+			"javac --release 21 -Xlint:all -Werror -d classes @sources.txt",
+			"java -cp classes ContractTests base",
+			"java -cp classes ContractTests core",
+			"java -cp classes Main base",
+			"java -cp classes Main",
+			"Baseline reports 2433 passed; core reports 4854 passed. Both Main modes print EMAIL: Hi, sent:a, 200, sent:b and [a, b] on separate lines.",
+			"The starter already runs and passes core. Structural improvement needs source review and the decision record.",
+			...(role === "reference"
+				? [
+						"java -cp classes ArchitectureTests",
+						"The reference's injected-boundary harness reports 30 passed."
+					]
+				: []),
+			"After optional batching:java -cp classes ContractTests",
+			"The complete reference reports 4869 passed; core stays independent of the optional method.",
+			"These programs read no standard input or network messages. Run displays native Java 21 commands."
+		];
+	}
+
+	if (
+		course === "design-patterns-in-java" &&
+		item === javaJudgmentReadingID &&
+		role === "starter" &&
+		parts.length === 4 &&
+		extra === "native-java-judgment"
+	) {
+		return [
+			"Java 21 complete refactoring-judgment example",
+			"Export its three files and compile in the worked example folder.",
+			"javac --release 21 -Xlint:all -Werror Main.java ContractTests.java",
+			"java ContractTests",
+			"java Main",
+			"The example reports Judgment worked contracts: 49 passed. Main prints NOTICE: HELLO three times, once per implementation.",
+			"These programs read no standard input. Run displays native Java 21 commands."
+		];
+	}
+	if (
+		course === "design-patterns-in-java" &&
+		[javaJudgmentReadingID, javaJudgmentCoreID].includes(item ?? "") &&
+		["starter", "reference"].includes(role ?? "") &&
+		parts.length === 4 &&
+		extra === "native-java-judgment"
+	) {
+		return [
+			"Java 21 behavior-preserving checkout workflow",
+			"Export all nine files, including DECISIONS.md and the src/checkout package tree.",
+			"javac --release 21 -Xlint:all -Werror -d classes @sources.txt",
+			"java -cp classes ContractTests base",
+			"java -cp classes Main base",
+			"java -cp classes ContractTests core",
+			"java -cp classes Main",
+			"java -cp classes ContractTests",
+			"Baseline reports 1221 passed before target work. Complete Checkout.quote/receipt; core reports 2435 passed. Main prints the two matching REGULAR|STANDARD|10|2000|0|2000 receipts and 2700.",
+			"The final harness additionally checks optional Checkout.quoteWith and reports 2445 passed. Keep the decision record and structural comparison alongside passing behavior tests.",
+			role === "starter"
+				? "The untouched starter compiles and names the unfinished quote; baseline mode already runs."
+				: "The reference completes core and optional behavior. Keep the learner attempt separate.",
+			"These programs read no standard input. Run displays native Java 21 commands."
+		];
+	}
+
+	if (
+		course === "design-patterns-in-java" &&
+		item === javaArchitectureReadingID &&
+		role === "starter" &&
+		parts.length === 4 &&
+		extra === "native-java-architecture"
+	) {
+		return [
+			"Java 21 complete architecture example",
+			"Export its three files and compile in the worked example folder.",
+			"javac --release 21 -Xlint:all -Werror Main.java ContractTests.java",
+			"java ContractTests",
+			"java Main",
+			"The complete example reports Architecture worked contracts: 39 passed. Main prints 1:HI, [1=HI], 2:READY, [1=HI] and [1=HI, 2=READY] on separate lines.",
+			"These programs read no standard input. Run displays native Java 21 commands."
+		];
+	}
+	if (
+		course === "design-patterns-in-java" &&
+		[javaArchitectureReadingID, javaArchitectureCoreID].includes(
+			item ?? ""
+		) &&
+		["starter", "reference"].includes(role ?? "") &&
+		parts.length === 4 &&
+		extra === "native-java-architecture"
+	) {
+		return [
+			"Java 21 injected notebook architecture workflow",
+			"Export all fifteen files, preserving sources.txt, src/notes and META-INF/services/notes.plugins.TextPlugin exactly.",
+			"javac --release 21 -Xlint:all -Werror -d classes @sources.txt",
+			"jar --create --file notebook.jar -C classes . -C . META-INF",
+			"java -cp notebook.jar ContractTests core",
+			"java -cp notebook.jar Main",
+			"java -cp notebook.jar ContractTests",
+			"Complete repository lookup/view/save, ServiceLoader discovery and pipeline application, service create/replace and presentation refresh. Core reports 102 passed; Main prints available plugin ids, committed notes and explicit view snapshots.",
+			"The final harness additionally checks optional NoteService.copy and reports 112 passed. Core and Main remain usable before the optional extension.",
+			role === "starter"
+				? "The untouched starter compiles and names an unfinished method."
+				: "The reference completes core and optional behavior. Keep the learner attempt and design evidence separate.",
+			"These programs read no standard input. Run displays native Java 21 commands."
+		];
+	}
+
+	if (
+		course === "design-patterns-in-java" &&
+		item === javaCollaborationReadingID &&
+		role === "starter" &&
+		parts.length === 4 &&
+		extra === "native-java-collaboration"
+	) {
+		return [
+			"Java 21 complete collaboration-pattern example",
+			"Export its three files and compile in this worked example's own folder.",
+			"javac --release 21 -Xlint:all -Werror Main.java ContractTests.java",
+			"java ContractTests",
+			"java Main",
+			"The complete example reports Collaboration worked contracts: 50 passed. Main prints 0->2, true, false, 2->0, true, (2+3) and 5 on separate lines.",
+			"These programs read no standard input. Run displays native Java 21 commands."
+		];
+	}
+	if (
+		course === "design-patterns-in-java" &&
+		[javaCollaborationReadingID, javaCollaborationCoreID].includes(
+			item ?? ""
+		) &&
+		["starter", "reference"].includes(role ?? "") &&
+		parts.length === 4 &&
+		extra === "native-java-collaboration"
+	) {
+		return [
+			"Java 21 event, undo and visitor collaboration workflow",
+			"Export all thirteen files. Keep sources.txt and the src/editor package tree together.",
+			"javac --release 21 -Xlint:all -Werror -d classes @sources.txt",
+			"java -cp classes ContractTests core",
+			"java -cp classes Main",
+			"java -cp classes ContractTests",
+			"Complete snapshot restore, captured event dispatch, command execute/undo, validation, mediator replace/undo and group visiting. Core reports 130 passed. Main prints replacement/undo events, request results, Ready:0, the tree and 3.",
+			"The final harness additionally checks optional EventBus.subscribeOnce and reports 142 passed. A completed core remains usable before the optional extension.",
+			role === "starter"
+				? "The untouched starter compiles and names an unfinished method."
+				: "The reference completes core and optional behavior. Keep the learner attempt and design evidence separate.",
+			"These programs read no standard input. Run displays native Java 21 commands."
+		];
+	}
 	if (
 		course === "design-patterns-in-java" &&
 		item === javaBehavioralReadingID &&

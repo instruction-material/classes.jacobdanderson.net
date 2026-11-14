@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web checkpoint</title><link rel="stylesheet" href="vendor/materialize.min.css"><link rel="stylesheet" href="vendor/material-icons.css"><link rel="stylesheet" href="styles.css"></head>
+<body><main>
+<div class="red" aria-label="Red bar"></div><div class="yellow" aria-label="Yellow box"></div><div class="blue" aria-label="Fixed blue square"></div>
+<div class="row center hide-on-med-and-down"><i class="material-icons large black-text" aria-label="Face">face</i></div>
+<div class="row center hide-on-large-only"><i class="material-icons large black-text" aria-label="Bug">bug_report</i></div>
+<div class="board" aria-label="Three by three grid">
+<div class="tile"></div><div class="tile dark"></div><div class="tile"></div>
+<div class="tile dark"></div><div class="tile"></div><div class="tile dark"></div>
+<div class="tile"></div><div class="tile dark"></div><div class="tile"></div>
+</div>
+<div class="row center numbered-grid">
+<div class="card col s4 purple">1</div><div class="card col s4 pink">2</div><div class="card col s4 purple">3</div>
+<div class="card col s4 pink">4</div><div class="card col s4 purple">5</div><div class="card col s4 pink">6</div>
+<div class="card col s4 purple">7</div><div class="card col s4 pink">8</div><div class="card col s4 purple">9</div>
+</div>
+<div class="center"><button type="button" class="waves-effect waves-light btn modal-trigger" data-target="modal1">Open modal</button></div>
+<div id="modal1" class="modal center" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+<div class="modal-content"><h2 id="modal-title">This is a modal!</h2><p>A modal displays content in a popup.</p></div>
+<div class="modal-footer"><button type="button" class="modal-close waves-effect waves-green btn-flat">Close</button></div>
+</div>
+<div id="drawing"></div></main>
+<script src="vendor/d3.min.js"></script><script src="vendor/materialize.min.js"></script><script src="script.js"></script></body></html>

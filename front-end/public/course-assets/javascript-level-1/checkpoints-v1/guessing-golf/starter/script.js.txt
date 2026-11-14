@@ -1,0 +1,17 @@
+function playGolf() {
+  // Choose a new secret integer from 0 through 19 for each of three rounds.
+  // Collect three valid guesses for each secret.
+  // Add Math.abs(guess - secret) for every guess, then show the scores.
+  // Retry invalid input; return from this function if prompt() returns null.
+  printToScreen("Implement the three rounds in playGolf().");
+}
+
+function printToScreen(text) {
+  const line = document.createElement("li");
+  line.textContent = String(text);
+  document.querySelector("#output").append(line);
+}
+document.querySelector("#start").addEventListener("click", () => {
+  document.querySelector("#output").replaceChildren();
+  playGolf();
+});

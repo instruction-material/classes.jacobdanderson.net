@@ -15,7 +15,7 @@
       "role": "starter",
       "url": "https://codepen.io/junilearning/pen/JjGrxRB",
       "assignmentTitle": "JSS6 Project 1: The Sorting Hat",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/JjGrxRB"
       ],
@@ -47,8 +47,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -75,7 +75,7 @@
       "role": "reference",
       "url": "https://codepen.io/junilearning/pen/e7c85cf84c953eb5bc630e214fe476d8",
       "assignmentTitle": "JSS6 Project 1: The Sorting Hat",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/e7c85cf84c953eb5bc630e214fe476d8",
         "https://codepen.io/junilearning/pen/dyGVaGQ/e7c85cf84c953eb5bc630e214fe476d8"
@@ -108,8 +108,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -136,7 +136,7 @@
       "role": "starter",
       "url": "https://codepen.io/junilearning/pen/gOPGqKa",
       "assignmentTitle": "JSS6 Project 2: FizzBuzz",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/gOPGqKa"
       ],
@@ -168,8 +168,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -196,7 +196,7 @@
       "role": "reference",
       "url": "https://codepen.io/junilearning/pen/0b39a6e7b85b790e7cd9a276e9ee2c4f",
       "assignmentTitle": "JSS6 Project 2: FizzBuzz",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/0b39a6e7b85b790e7cd9a276e9ee2c4f",
         "https://codepen.io/junilearning/pen/GRoXQdj/0b39a6e7b85b790e7cd9a276e9ee2c4f"
@@ -229,8 +229,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -257,7 +257,7 @@
       "role": "starter",
       "url": "https://codepen.io/junilearning/pen/NWxaJdX",
       "assignmentTitle": "JSS6 Project 3: GCF of Two Numbers",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/NWxaJdX"
       ],
@@ -289,8 +289,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -317,7 +317,7 @@
       "role": "reference",
       "url": "https://codepen.io/junilearning/pen/b418881c3e60c8c7ac8fcbc3b7d74aa0",
       "assignmentTitle": "JSS6 Project 3: GCF of Two Numbers",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/b418881c3e60c8c7ac8fcbc3b7d74aa0",
         "https://codepen.io/junilearning/pen/oNbGVLg/b418881c3e60c8c7ac8fcbc3b7d74aa0"
@@ -350,8 +350,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -378,7 +378,7 @@
       "role": "starter",
       "url": "https://codepen.io/junilearning/pen/NWxaJgy",
       "assignmentTitle": "JSS6 Supplemental Project 1: What Does the _ Say?",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/NWxaJgy"
       ],
@@ -410,8 +410,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -438,7 +438,7 @@
       "role": "reference",
       "url": "https://codepen.io/junilearning/pen/5b0bdb527344a081c9abf91138ce5f4a",
       "assignmentTitle": "JSS6 Supplemental Project 1: What Does the _ Say?",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/5b0bdb527344a081c9abf91138ce5f4a",
         "https://codepen.io/junilearning/pen/WNrZmjz/5b0bdb527344a081c9abf91138ce5f4a"
@@ -471,8 +471,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -499,7 +499,7 @@
       "role": "starter",
       "url": "https://codepen.io/junilearning/pen/mdVGXLE",
       "assignmentTitle": "JSS6 Supplemental Project 2: Debugging Bugging Friends",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/mdVGXLE"
       ],
@@ -531,8 +531,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -559,7 +559,7 @@
       "role": "reference",
       "url": "https://codepen.io/junilearning/pen/67b0c29a104afde9cce553de6cacf882",
       "assignmentTitle": "JSS6 Supplemental Project 2: Debugging Bugging Friends",
-      "version": 1,
+      "version": 2,
       "urls": [
         "https://codepen.io/junilearning/pen/67b0c29a104afde9cce553de6cacf882",
         "https://codepen.io/junilearning/pen/vYLzdjL/67b0c29a104afde9cce553de6cacf882"
@@ -592,8 +592,8 @@
         {
           "name": "vendor/d3.min.js",
           "path": "first-module-shared-v1/vendor/d3.min.js.txt",
-          "byteLength": 248314,
-          "sha256": "5dbe924b3847df010f0b8572dd6ef42ea87d6370eeff72b13ea236247412a53c"
+          "byteLength": 248435,
+          "sha256": "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
         },
         {
           "name": "LICENSE-d3.txt",
@@ -614,5 +614,10 @@
   "revision": "d031baeb94975f77285b21af11693899f1df5cd09011475be839711f2e8aca0b",
   "revisionKind": "SHA-256 of complete source-role metadata; not a Git revision",
   "originalSourceCaptureComplete": true,
-  "actualIDEWorkflowsVerified": true
+  "actualIDEWorkflowsVerified": true,
+  "vendorSecurityPatch": {
+    "advisory": "GHSA-36jr-mh4h-2g58",
+    "upstreamFix": "https://github.com/d3/d3-color/commit/61a184bd3748db5142c316238c03547865787a94",
+    "manifest": "scripts/vendored-d3-security.json"
+  }
 }

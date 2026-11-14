@@ -1,6 +1,11 @@
 import type { ImplementationLabSection } from "./implementationLabGuidance";
 import type { RawCourse, RawCourseModuleItem } from "./types";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
+import { completeJavaComposingMethods } from "./javaComposingMethodsTeaching";
+import { completeJavaConditionalFlow } from "./javaConditionalFlowTeaching";
+import { completeJavaOwnershipMove } from "./javaOwnershipMoveTeaching";
+import { completeJavaRefactoringOpening } from "./javaRefactoringOpeningTeaching";
+import { completeJavaValueData } from "./javaValueDataTeaching";
 import { buildProjectGuidance } from "./projectGuidance";
 
 const refactoringClinicContexts = {
@@ -1913,7 +1918,12 @@ const designPatternsJavaPart2PrimaryModules =
 		.filter(module =>
 			DESIGN_PATTERNS_JAVA_PART_2_PRIMARY_TITLES.has(module.title)
 		)
-		.map(decorateDesignPatternsJavaPart2Module);
+		.map(decorateDesignPatternsJavaPart2Module)
+		.map(completeJavaRefactoringOpening)
+		.map(completeJavaComposingMethods)
+		.map(completeJavaOwnershipMove)
+		.map(completeJavaValueData)
+		.map(completeJavaConditionalFlow);
 const designPatternsJavaPart2Clinics =
 	designPatternsInJavaPart2SourceCourse.modules.filter(
 		module => !DESIGN_PATTERNS_JAVA_PART_2_PRIMARY_TITLES.has(module.title)

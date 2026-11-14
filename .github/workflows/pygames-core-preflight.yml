@@ -8,8 +8,12 @@ on:
       course:
         description: Course verification to run
         type: choice
-        options: [java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
+        options: [javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
         default: pygames
+      full_source_runtime:
+        description: Also verify every pinned original PyGames runtime profile
+        type: boolean
+        default: false
       browser_run_id:
         description: Networking browser export workflow run
         type: string
@@ -34,10 +38,519 @@ permissions:
   contents: read
 
 concurrency:
-  group: pygames-core-preflight-${{ github.ref }}-${{ (inputs.course == 'tracker-evidence' || inputs.course == 'native-release-evidence') && 'evidence' || 'validation' }}
+  group: pygames-core-preflight-${{ github.ref }}-${{ inputs.course == 'course-choices' && 'course-choices' || (inputs.course == 'tracker-evidence' || inputs.course == 'native-release-evidence') && 'evidence' || 'validation' }}
   cancel-in-progress: false
 
 jobs:
+
+
+  course-choices:
+    if: inputs.course == 'course-choices'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      CLASSES_FAMILY_TASK_ID: course-choices-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - name: Pin npm and verify the root clean install
+        run: |
+          npm i -g npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+          node scripts/classes-family-heavy-task.mjs -- npm ci
+      - name: Require root and production dependency audits
+        run: |
+          mkdir -p output/course-choices-validation/audits
+          npm audit --include=optional --json > output/course-choices-validation/audits/root-full.json
+          npm audit --include=optional --omit=dev --json > output/course-choices-validation/audits/root-production.json
+      - name: Verify the standalone backend graph and both audits
+        working-directory: back-end
+        run: |
+          node ../scripts/classes-family-heavy-task.mjs -- npm ci --include=optional --strict-allow-scripts --workspaces=false
+          npm ls --all --workspaces=false
+          npm audit --include=optional --workspaces=false --json > ../output/course-choices-validation/audits/backend-full.json
+          npm audit --include=optional --omit=dev --workspaces=false --json > ../output/course-choices-validation/audits/backend-production.json
+      - name: Verify public choices, retained subjects, paths and historical identities
+        run: >-
+          node scripts/classes-family-heavy-task.mjs --
+          npm exec -w front-end -- vitest run
+          test/course-choice-visibility.spec.test.ts
+          test/components.role-workspaces.spec.test.ts
+          test/store.courses.public-pathways.spec.test.ts
+          test/public-course-discovery.spec.test.ts
+          test/components.courseexplorer-inventory.spec.test.ts
+          test/components.courseexplorer.spec.test.ts
+          test/store.courses.catalog-identities.spec.test.ts
+          test/store.courses.progress-identity.spec.test.ts
+          --no-file-parallelism --maxWorkers=1
+          --reporter=default --reporter=json
+          --outputFile=../output/course-choices-validation/tests.json
+      - name: Lint, typecheck and build both workspaces
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run lint
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+          node scripts/classes-family-heavy-task.mjs -- npm run build
+      - name: Retain course choice and dependency validation
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: course-choices-validation
+          path: output/course-choices-validation/
+          if-no-files-found: error
+          retention-days: 14
+
+  javascript-checkpoints:
+    if: inputs.course == 'javascript-checkpoints'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      CLASSES_FAMILY_TASK_ID: javascript-checkpoint-${{ github.run_id }}
+      JAVASCRIPT_CHECKPOINT_BROWSER_DIR: output/javascript-checkpoint-browser
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - name: Pin npm and verify the root clean install
+        run: |
+          npm i -g npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+          node scripts/classes-family-heavy-task.mjs -- npm ci
+      - name: Require root and production dependency audits
+        run: |
+          mkdir -p output/javascript-checkpoint-browser/audits
+          npm audit --include=optional --json > output/javascript-checkpoint-browser/audits/root-full.json
+          npm audit --include=optional --omit=dev --json > output/javascript-checkpoint-browser/audits/root-production.json
+      - name: Verify the standalone backend graph and both audits
+        working-directory: back-end
+        run: |
+          node ../scripts/classes-family-heavy-task.mjs -- npm ci --include=optional --strict-allow-scripts --workspaces=false
+          npm ls --all --workspaces=false
+          npm audit --include=optional --workspaces=false --json > ../output/javascript-checkpoint-browser/audits/backend-full.json
+          npm audit --include=optional --omit=dev --workspaces=false --json > ../output/javascript-checkpoint-browser/audits/backend-production.json
+      - name: Verify source roles, originals, saved projects and published identities
+        run: >-
+          node scripts/classes-family-heavy-task.mjs --
+          npm exec -w front-end -- vitest run
+          test/javascript-checkpoint-workspace.spec.test.ts
+          test/store.courses.catalog-identities.spec.test.ts
+          test/store.courses.progress-identity.spec.test.ts
+          test/store.courses.javascript-level-1-flow.spec.test.ts
+          test/store.courses.quality.spec.test.ts
+          test/store.courses.implementation-artifacts.spec.test.ts
+          --no-file-parallelism --maxWorkers=1
+      - name: Lint, typecheck and build both workspaces
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run lint
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+          node scripts/classes-family-heavy-task.mjs -- npm run build
+      - name: Verify original course buttons, consent, edits and actual ZIP exports
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-checkpoint-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-checkpoint-exported-browser.test.mjs
+      - name: Retain source, actual exports and rendered evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: javascript-checkpoint-source-workflows
+          path: output/javascript-checkpoint-browser/
+          if-no-files-found: error
+          retention-days: 14
+
+  javascript-lyrics:
+    if: inputs.course == 'javascript-lyrics'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      CLASSES_FAMILY_TASK_ID: javascript-lyrics-${{ github.run_id }}
+      JAVASCRIPT_LYRICS_BROWSER_DIR: output/javascript-lyrics-browser
+      JAVASCRIPT_WEATHER_BROWSER_DIR: output/javascript-weather-browser
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - name: Pin npm and verify the root clean install
+        run: |
+          npm i -g npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+          node scripts/classes-family-heavy-task.mjs -- npm ci
+      - name: Require root and production dependency audits
+        run: |
+          mkdir -p output/javascript-lyrics-browser/audits
+          npm audit --include=optional --json > output/javascript-lyrics-browser/audits/root-full.json
+          npm audit --include=optional --omit=dev --json > output/javascript-lyrics-browser/audits/root-production.json
+      - name: Verify the standalone backend graph and both audits
+        working-directory: back-end
+        run: |
+          node ../scripts/classes-family-heavy-task.mjs -- npm ci --include=optional --strict-allow-scripts --workspaces=false
+          npm ls --all --workspaces=false
+          npm audit --include=optional --workspaces=false --json > ../output/javascript-lyrics-browser/audits/backend-full.json
+          npm audit --include=optional --omit=dev --workspaces=false --json > ../output/javascript-lyrics-browser/audits/backend-production.json
+      - name: Verify JavaScript source roles, originals, saved projects and published identities
+        working-directory: front-end
+        run: >-
+          node ../scripts/classes-family-heavy-task.mjs --
+          npm exec -- vitest run
+          test/javascript-*.spec.test.ts
+          test/store.courses.catalog-identities.spec.test.ts
+          test/store.courses.progress-identity.spec.test.ts
+          test/store.courses.javascript-level-2-flow.spec.test.ts
+          test/store.courses.quality.spec.test.ts
+          test/store.courses.implementation-artifacts.spec.test.ts
+          --no-file-parallelism --maxWorkers=1
+      - name: Verify exact bundled D3 security fixes and bounded parser controls
+        env:
+          VENDORED_D3_PROOF_FILE: ${{ github.workspace }}/output/javascript-lyrics-browser/vendored-d3-proof.json
+        run: |
+          node scripts/verify-vendored-d3.mjs
+          node scripts/check-vendored-d3-regressions.mjs
+      - name: Lint, typecheck and build both workspaces
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run lint
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+          node scripts/classes-family-heavy-task.mjs -- npm run build
+      - name: Verify original course buttons, consent, edits and actual ZIP exports
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-lyrics-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-lyrics-exported-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-weather-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-weather-exported-browser.test.mjs
+      - name: Retain source, actual exports and rendered evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: javascript-lyrics-source-workflows
+          path: |
+            output/javascript-lyrics-browser/
+            output/javascript-weather-browser/
+          if-no-files-found: error
+          retention-days: 14
+
+
+  javascript-small-talk:
+    if: inputs.course == 'javascript-small-talk'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      CLASSES_FAMILY_TASK_ID: javascript-small-talk-${{ github.run_id }}
+      JAVASCRIPT_SMALL_TALK_BROWSER_DIR: output/javascript-small-talk-browser
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - name: Pin npm and verify the root clean install
+        run: |
+          npm i -g npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+          node scripts/classes-family-heavy-task.mjs -- npm ci
+      - name: Require root and production dependency audits
+        run: |
+          mkdir -p output/javascript-small-talk-browser/audits
+          npm audit --include=optional --json > output/javascript-small-talk-browser/audits/root-full.json
+          npm audit --include=optional --omit=dev --json > output/javascript-small-talk-browser/audits/root-production.json
+      - name: Verify the standalone backend graph and both audits
+        working-directory: back-end
+        run: |
+          node ../scripts/classes-family-heavy-task.mjs -- npm ci --include=optional --strict-allow-scripts --workspaces=false
+          npm ls --all --workspaces=false
+          npm audit --include=optional --workspaces=false --json > ../output/javascript-small-talk-browser/audits/backend-full.json
+          npm audit --include=optional --omit=dev --workspaces=false --json > ../output/javascript-small-talk-browser/audits/backend-production.json
+      - name: Verify JavaScript source roles, originals, saved projects and published identities
+        working-directory: front-end
+        run: >-
+          node ../scripts/classes-family-heavy-task.mjs --
+          npm exec -- vitest run
+          test/javascript-*.spec.test.ts
+          test/store.courses.catalog-identities.spec.test.ts
+          test/store.courses.progress-identity.spec.test.ts
+          test/store.courses.javascript-level-2-flow.spec.test.ts
+          test/store.courses.quality.spec.test.ts
+          test/store.courses.implementation-artifacts.spec.test.ts
+          --no-file-parallelism --maxWorkers=1
+      - name: Verify exact bundled D3 security fixes and bounded parser controls
+        env:
+          VENDORED_D3_PROOF_FILE: ${{ github.workspace }}/output/javascript-small-talk-browser/vendored-d3-proof.json
+        run: |
+          node scripts/verify-vendored-d3.mjs
+          node scripts/check-vendored-d3-regressions.mjs
+      - name: Lint, typecheck and build both workspaces
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run lint
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+          node scripts/classes-family-heavy-task.mjs -- npm run build
+      - name: Verify original course buttons, consent, edits and actual ZIP exports
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-small-talk-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-small-talk-exported-browser.test.mjs
+      - name: Retain source, actual exports and rendered evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: javascript-small-talk-source-workflows
+          path: output/javascript-small-talk-browser/
+          if-no-files-found: error
+          retention-days: 14
+
+
+  javascript-weather:
+    if: inputs.course == 'javascript-weather'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      CLASSES_FAMILY_TASK_ID: javascript-weather-${{ github.run_id }}
+      JAVASCRIPT_WEATHER_BROWSER_DIR: output/javascript-weather-browser
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - name: Pin npm and verify the root clean install
+        run: |
+          npm i -g npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+          node scripts/classes-family-heavy-task.mjs -- npm ci
+      - name: Require root and production dependency audits
+        run: |
+          mkdir -p output/javascript-weather-browser/audits
+          npm audit --include=optional --json > output/javascript-weather-browser/audits/root-full.json
+          npm audit --include=optional --omit=dev --json > output/javascript-weather-browser/audits/root-production.json
+      - name: Verify the standalone backend graph and both audits
+        working-directory: back-end
+        run: |
+          node ../scripts/classes-family-heavy-task.mjs -- npm ci --include=optional --strict-allow-scripts --workspaces=false
+          npm ls --all --workspaces=false
+          npm audit --include=optional --workspaces=false --json > ../output/javascript-weather-browser/audits/backend-full.json
+          npm audit --include=optional --omit=dev --workspaces=false --json > ../output/javascript-weather-browser/audits/backend-production.json
+      - name: Verify JavaScript source roles, originals, saved projects and published identities
+        working-directory: front-end
+        run: >-
+          node ../scripts/classes-family-heavy-task.mjs --
+          npm exec -- vitest run
+          test/javascript-*.spec.test.ts
+          test/store.courses.catalog-identities.spec.test.ts
+          test/store.courses.progress-identity.spec.test.ts
+          test/store.courses.javascript-level-2-flow.spec.test.ts
+          test/store.courses.quality.spec.test.ts
+          test/store.courses.implementation-artifacts.spec.test.ts
+          --no-file-parallelism --maxWorkers=1
+      - name: Verify exact bundled D3 security fixes and bounded parser controls
+        env:
+          VENDORED_D3_PROOF_FILE: ${{ github.workspace }}/output/javascript-weather-browser/vendored-d3-proof.json
+        run: |
+          node scripts/verify-vendored-d3.mjs
+          node scripts/check-vendored-d3-regressions.mjs
+      - name: Lint, typecheck and build both workspaces
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run lint
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+          node scripts/classes-family-heavy-task.mjs -- npm run build
+      - name: Verify original course buttons, consent, edits and actual ZIP exports
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-weather-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-weather-exported-browser.test.mjs
+      - name: Retain source, actual exports and rendered evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: javascript-weather-source-workflows
+          path: output/javascript-weather-browser/
+          if-no-files-found: error
+          retention-days: 14
+
+
+  javascript-snowflake:
+    if: inputs.course == 'javascript-snowflake'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      CLASSES_FAMILY_TASK_ID: javascript-snowflake-${{ github.run_id }}
+      JAVASCRIPT_SNOWFLAKE_BROWSER_DIR: output/javascript-snowflake-browser
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - name: Pin npm and verify the root clean install
+        run: |
+          npm i -g npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+          node scripts/classes-family-heavy-task.mjs -- npm ci
+      - name: Require root and production dependency audits
+        run: |
+          mkdir -p output/javascript-snowflake-browser/audits
+          npm audit --include=optional --json > output/javascript-snowflake-browser/audits/root-full.json
+          npm audit --include=optional --omit=dev --json > output/javascript-snowflake-browser/audits/root-production.json
+      - name: Verify the standalone backend graph and both audits
+        working-directory: back-end
+        run: |
+          node ../scripts/classes-family-heavy-task.mjs -- npm ci --include=optional --strict-allow-scripts --workspaces=false
+          npm ls --all --workspaces=false
+          npm audit --include=optional --workspaces=false --json > ../output/javascript-snowflake-browser/audits/backend-full.json
+          npm audit --include=optional --omit=dev --workspaces=false --json > ../output/javascript-snowflake-browser/audits/backend-production.json
+      - name: Verify source roles, originals, saved projects and published identities
+        run: >-
+          node scripts/classes-family-heavy-task.mjs --
+          npm exec -w front-end -- vitest run
+          test/javascript-snowflake-workspace.spec.test.ts
+          test/store.courses.catalog-identities.spec.test.ts
+          test/store.courses.progress-identity.spec.test.ts
+          test/store.courses.javascript-level-1-flow.spec.test.ts
+          test/store.courses.quality.spec.test.ts
+          test/store.courses.implementation-artifacts.spec.test.ts
+          --no-file-parallelism --maxWorkers=1
+      - name: Lint, typecheck and build both workspaces
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run lint
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+          node scripts/classes-family-heavy-task.mjs -- npm run build
+      - name: Verify original course buttons, consent, edits and actual ZIP exports
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-snowflake-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-snowflake-exported-browser.test.mjs
+      - name: Retain source, actual exports and rendered evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: javascript-snowflake-source-workflows
+          path: output/javascript-snowflake-browser/
+          if-no-files-found: error
+          retention-days: 14
+
+  dependency-repair:
+    if: inputs.course == 'dependency-repair'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      CLASSES_FAMILY_TASK_ID: course-audit-dependency-repair
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+          registry-url: https://registry.npmjs.org/
+      - name: Pin npm version
+        run: |
+          npm i -g npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+      - name: Record original graphs and dependency freshness
+        run: |
+          mkdir -p output/security-dependency-repair/before
+          python3 - <<'PY'
+          import hashlib,json,pathlib,shutil,subprocess
+          out=pathlib.Path("output/security-dependency-repair")
+          files=["package.json","front-end/package.json","back-end/package.json","package-lock.json","back-end/package-lock.json"]
+          inventory={}
+          for name in files:
+              src=pathlib.Path(name)
+              dest=out/"before"/name
+              dest.parent.mkdir(parents=True,exist_ok=True)
+              shutil.copyfile(src,dest)
+              value=json.loads(src.read_text())
+              inventory[name]={"sha256":hashlib.sha256(src.read_bytes()).hexdigest(),"dependencies":value.get("dependencies",{}),"devDependencies":value.get("devDependencies",{})}
+          (out/"before.json").write_text(json.dumps({"source":subprocess.check_output(["git","rev-parse","HEAD"],text=True).strip(),"graphs":inventory},indent=2)+"\n")
+          PY
+          set +e
+          npm outdated --workspaces --long --json > output/security-dependency-repair/freshness-before.json
+          status=$?
+          set -e
+          test "$status" -eq 0 -o "$status" -eq 1
+      - name: Prepare the supported Mongoose update and both lockfiles
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm install -w back-end mongoose@9.12.1 --package-lock-only --ignore-scripts --no-fund --no-audit
+          cd back-end
+          node ../scripts/classes-family-heavy-task.mjs -- npm install --package-lock-only --ignore-scripts --no-fund --no-audit --workspaces=false
+      - name: Verify the clean root install and complete dependency tree
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm ci
+          npm run check:dependencies
+          npm run test:lock-provenance
+      - name: Require clean full and production root audits
+        run: |
+          npm audit --include=optional --json > output/security-dependency-repair/root-full.json
+          npm audit --include=optional --omit=dev --json > output/security-dependency-repair/root-production.json
+      - name: Verify lint, types, build and application tests
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run lint
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+          node scripts/classes-family-heavy-task.mjs -- npm run build
+          node scripts/classes-family-heavy-task.mjs -- npm run -w back-end test
+          node scripts/classes-family-heavy-task.mjs -- npm run -w front-end test:unit
+          npm run test:braces-security
+          node --test --test-timeout=10000 test/dependency-advisory-regressions.test.mjs
+      - name: Verify the standalone backend locked install and audits
+        working-directory: back-end
+        run: |
+          node ../scripts/classes-family-heavy-task.mjs -- npm ci --include=optional --strict-allow-scripts --workspaces=false
+          npm ls --all --workspaces=false
+          npm audit --include=optional --workspaces=false --json > ../output/security-dependency-repair/backend-full.json
+          npm audit --include=optional --omit=dev --workspaces=false --json > ../output/security-dependency-repair/backend-production.json
+      - name: Recheck types after build-generated declarations
+        run: node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+      - name: Retain the exact validated candidate bytes
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib,shutil,subprocess
+          out=pathlib.Path("output/security-dependency-repair")
+          files=["back-end/package.json","package-lock.json","back-end/package-lock.json"]
+          changed=subprocess.check_output(["git","diff","--name-only"],text=True).splitlines()
+          (out/"candidate.diff").write_bytes(subprocess.check_output(["git","diff","--binary"]))
+          generated="front-end/src/components.d.ts"
+          declaration_changes=[name for name in changed if name==generated]
+          if declaration_changes:
+              dest=out/"generated"/generated
+              dest.parent.mkdir(parents=True,exist_ok=True)
+              shutil.copyfile(generated,dest)
+              (out/"generated-declaration-before.txt").write_bytes(subprocess.check_output(["git","show","HEAD:"+generated]))
+          hashes={}
+          for name in files:
+              src=pathlib.Path(name)
+              dest=out/"candidate"/name
+              dest.parent.mkdir(parents=True,exist_ok=True)
+              shutil.copyfile(src,dest)
+              hashes[name]=hashlib.sha256(src.read_bytes()).hexdigest()
+          assert set(files)<=set(changed) and set(changed)-set(files)<=set(declaration_changes),changed
+          for name in ["root-full","root-production","backend-full","backend-production"]:
+              assert json.loads((out/(name+".json")).read_text())["metadata"]["vulnerabilities"]["total"]==0
+          for name in ["package-lock.json","back-end/package-lock.json"]:
+              lock=json.loads(pathlib.Path(name).read_text())
+              assert lock["packages"]["node_modules/mongoose"]["version"]=="9.12.1"
+          before=json.loads((out/"before.json").read_text())
+          (out/"accepted.json").write_text(json.dumps({"accepted":True,"source":before["source"],"candidateHashes":hashes,"cleanRootInstall":True,"cleanStandaloneBackendInstall":True,"lint":True,"typecheck":True,"build":True,"backendTests":True,"frontendUnitTests":True,"fourZeroVulnerabilityAudits":True,"generatedDeclarationReviewPending":declaration_changes,"publishedOrDeployed":False},indent=2)+"\n")
+          PY
+          cp /tmp/classes-family-heavy-tasks.log output/security-dependency-repair/processes.jsonl
+      - name: Retain candidate files and validation evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: security-dependency-repair
+          path: output/security-dependency-repair/
+          if-no-files-found: error
+          retention-days: 14
 
   native-release-evidence:
     if: inputs.course == 'native-release-evidence'
@@ -101,6 +614,64 @@ jobs:
         with:
           name: native-release-independent-evidence
           path: output/native-release-evidence/
+          if-no-files-found: error
+          retention-days: 14
+
+  vendored-d3:
+    if: inputs.course == 'vendored-d3'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - name: Pin the supported npm toolchain
+        run: |
+          npm install --global npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+      - name: Verify root clean install
+        run: node scripts/classes-family-heavy-task.mjs -- npm ci
+      - name: Audit both root dependency scopes
+        run: |
+          mkdir -p output/vendored-d3-security/audits
+          npm audit --json --audit-level=info > output/vendored-d3-security/audits/root-full.json
+          npm audit --omit=dev --json --audit-level=info > output/vendored-d3-security/audits/root-production.json
+      - name: Verify standalone backend installation policy
+        run: node --test test/standalone-backend-install-policy.test.mjs
+      - name: Verify standalone backend locked installation
+        working-directory: back-end
+        run: node ../scripts/classes-family-heavy-task.mjs -- npm ci --include=optional --strict-allow-scripts --workspaces=false
+      - name: Audit both standalone backend dependency scopes
+        working-directory: back-end
+        run: |
+          npm ls --all --workspaces=false
+          npm audit --include=optional --workspaces=false --json --audit-level=info > "$GITHUB_WORKSPACE/output/vendored-d3-security/audits/backend-full.json"
+          npm audit --include=optional --omit=dev --workspaces=false --json --audit-level=info > "$GITHUB_WORKSPACE/output/vendored-d3-security/audits/backend-production.json"
+      - name: Lint and typecheck both workspaces
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run lint
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+      - name: Verify all JavaScript source roles and saved project versions
+        working-directory: front-end
+        run: node ../scripts/classes-family-heavy-task.mjs -- npm exec -- vitest run test/javascript-*.spec.test.ts --no-file-parallelism --maxWorkers=1
+      - name: Verify exact maintainer patch in every published D3 copy
+        env:
+          VENDORED_D3_PROOF_FILE: ${{ github.workspace }}/output/vendored-d3-security/proof.json
+        run: |
+          node scripts/verify-vendored-d3.mjs
+          node --test --test-concurrency=1 scripts/check-vendored-d3-regressions.mjs
+      - name: Build both workspaces
+        run: node scripts/classes-family-heavy-task.mjs -- npm run build
+      - name: Retain library security proof and dependency audits
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: vendored-d3-security
+          path: output/vendored-d3-security/
           if-no-files-found: error
           retention-days: 14
 
@@ -183,6 +754,21 @@ jobs:
         env:
           PYGAMES_CORE_BROWSER_PROOF_DIR: output/pygames-core-exports
         run: node scripts/classes-family-heavy-task.mjs -- node --test test/pygames-core-browser.test.mjs
+      - name: Verify all pinned original PyGames course and runtime profiles
+        if: inputs.full_source_runtime
+        env:
+          PYGAMES_BROWSER_EXPORT_PROOF_DIR: output/pygames-exports
+          CLASSES_FAMILY_HEAVY_TIMEOUT_MS: 2100000
+        run: node scripts/classes-family-heavy-task.mjs -- node --test test/pygames-course-workflows-browser.test.mjs
+      - name: Retain original PyGames course and runtime evidence
+        if: always() && inputs.full_source_runtime
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: pygames-original-runtime-workflows
+          path: output/pygames-exports/
+          if-no-files-found: error
+          retention-days: 14
+
       - name: Retain PyGames core browser evidence
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
@@ -372,13 +958,13 @@ jobs:
           retention-days: 14
 
   self-study:
-    if: inputs.course == 'java-behavioral' || inputs.course == 'java-structural' || inputs.course == 'java-boundary' || inputs.course == 'java-creational' || inputs.course == 'java-foundations' || inputs.course == 'java-patterns' || inputs.course == 'java-recursion' || inputs.course == 'self-study' || inputs.course == 'physics-models' || inputs.course == 'bootcamp' || inputs.course == 'scratch-originals' || inputs.course == 'scratch-readings' || inputs.course == 'course-audit' || inputs.course == 'scratch-tasks'
+    if: inputs.course == 'java-conditional-flow' || inputs.course == 'java-value-data' || inputs.course == 'java-ownership-move' || inputs.course == 'java-composing' || inputs.course == 'java-refactoring' || inputs.course == 'java-studios' || inputs.course == 'java-capstone' || inputs.course == 'java-judgment' || inputs.course == 'java-architecture' || inputs.course == 'java-collaboration' || inputs.course == 'java-behavioral' || inputs.course == 'java-structural' || inputs.course == 'java-boundary' || inputs.course == 'java-creational' || inputs.course == 'java-foundations' || inputs.course == 'java-patterns' || inputs.course == 'java-recursion' || inputs.course == 'self-study' || inputs.course == 'physics-models' || inputs.course == 'bootcamp' || inputs.course == 'scratch-originals' || inputs.course == 'scratch-readings' || inputs.course == 'course-audit' || inputs.course == 'scratch-tasks'
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     env:
       CLASSES_FAMILY_TASK_ID: self-study-courses-${{ github.run_id }}
       SELF_STUDY_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser
-      SELF_STUDY_BROWSER_COURSES: ${{ inputs.course == 'java-behavioral' && 'design-patterns-in-java' || inputs.course == 'java-structural' && 'design-patterns-in-java' || inputs.course == 'java-boundary' && 'design-patterns-in-java' || inputs.course == 'java-creational' && 'design-patterns-in-java' || inputs.course == 'java-foundations' && 'design-patterns-in-java' || inputs.course == 'java-patterns' && 'design-patterns-in-java' || inputs.course == 'java-recursion' && 'java-level-3' || inputs.course == 'bootcamp' && 'scratch-level-1-bootcamp' || inputs.course == 'physics-models' && 'pre-algebra-a,intro-to-physics,physics-level-2' || inputs.course == 'self-study' && inputs.self_study_courses || '' }}
+      SELF_STUDY_BROWSER_COURSES: ${{ inputs.course == 'java-conditional-flow' && 'design-patterns-in-java-part-2' || inputs.course == 'java-value-data' && 'design-patterns-in-java-part-2' || inputs.course == 'java-ownership-move' && 'design-patterns-in-java-part-2' || inputs.course == 'java-composing' && 'design-patterns-in-java-part-2' || inputs.course == 'java-refactoring' && 'design-patterns-in-java,design-patterns-in-java-part-2' || inputs.course == 'java-studios' && 'design-patterns-in-java' || inputs.course == 'java-capstone' && 'design-patterns-in-java' || inputs.course == 'java-judgment' && 'design-patterns-in-java' || inputs.course == 'java-architecture' && 'design-patterns-in-java' || inputs.course == 'java-collaboration' && 'design-patterns-in-java' || inputs.course == 'java-behavioral' && 'design-patterns-in-java' || inputs.course == 'java-structural' && 'design-patterns-in-java' || inputs.course == 'java-boundary' && 'design-patterns-in-java' || inputs.course == 'java-creational' && 'design-patterns-in-java' || inputs.course == 'java-foundations' && 'design-patterns-in-java' || inputs.course == 'java-patterns' && 'design-patterns-in-java' || inputs.course == 'java-recursion' && 'java-level-3' || inputs.course == 'bootcamp' && 'scratch-level-1-bootcamp' || inputs.course == 'physics-models' && 'pre-algebra-a,intro-to-physics,physics-level-2' || inputs.course == 'self-study' && inputs.self_study_courses || '' }}
       PHYSICS2_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/physics-models
       SCRATCH_ORIGINAL_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/scratch-originals
       COURSE_CATALOG_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/catalog
@@ -422,6 +1008,18 @@ jobs:
           npm exec -w front-end -- vitest run
           test/store.courses.catalog-identities.spec.test.ts
           test/store.courses.progress-identity.spec.test.ts
+          test/java-pattern-references.spec.test.ts
+          test/java-ownership-move-workspace.spec.test.ts
+          test/java-value-data-workspace.spec.test.ts
+          test/java-conditional-flow-workspace.spec.test.ts
+          test/java-composing-methods-workspace.spec.test.ts
+          test/java-refactoring-opening-workspace.spec.test.ts
+          test/store.courses.design-patterns-java-part-2-flow.spec.test.ts
+          test/java-studios-workspace.spec.test.ts
+          test/java-capstone-workspace.spec.test.ts
+          test/java-judgment-workspace.spec.test.ts
+          test/java-architecture-workspace.spec.test.ts
+          test/java-collaboration-workspace.spec.test.ts
           test/java-behavioral-workspace.spec.test.ts
           test/java-structural-workspace.spec.test.ts
           test/java-boundary-workspace.spec.test.ts
@@ -441,6 +1039,7 @@ jobs:
           test/store.courses.early-elementary-b-content.spec.test.ts
           test/store.courses.late-elementary-a-content.spec.test.ts
           test/store.courses.late-elementary-b-content.spec.test.ts
+          test/orbit-experiment.spec.test.ts
           test/store.courses.joy-of-reading-flow.spec.test.ts
           test/store.courses.joy-of-reading-content.spec.test.ts
           test/store.courses.picture-book-content.spec.test.ts
@@ -473,6 +1072,9 @@ jobs:
           test/store.courses.scratch-bootcamp-content.spec.test.ts
           test/store.courses.algebra2-self-study.spec.test.ts
           test/store.courses.scratch-level-1-flow.spec.test.ts
+          test/store.courses.scratch-level-2-flow.spec.test.ts
+          test/store.courses.scratch-support-display.spec.test.ts
+          test/course-choice-visibility.spec.test.ts
           test/store.courses.scratch-juni-instructions.spec.test.ts
           test/modules.scratch-originals.spec.test.ts
           test/components.scratch-original-import.spec.test.ts
@@ -495,7 +1097,7 @@ jobs:
         id: course_build
         run: node scripts/classes-family-heavy-task.mjs -- npm run build
       - name: Verify all self-study course pages in both roles and sizes
-        if: inputs.course != 'scratch-originals' && inputs.course != 'scratch-tasks'
+        if: inputs.course != 'scratch-originals' && inputs.course != 'scratch-readings' && inputs.course != 'scratch-tasks'
         run: |
           node --test test/self-study-browser-batches.test.mjs
           node scripts/classes-family-heavy-task.mjs -- node scripts/verify-self-study-browser-batches.mjs
@@ -517,6 +1119,126 @@ jobs:
         env:
           SCRATCH_BROWSER_READING_ONLY: '1'
         run: node scripts/classes-family-heavy-task.mjs -- node --test test/scratch-browser.test.mjs
+      - name: Verify conditional refactoring consent, separate optional projects and saved source
+        id: java_conditional_flow_browser
+        if: always() && !cancelled() && inputs.course == 'java-conditional-flow' && steps.course_build.outcome == 'success'
+        env:
+          JAVA_CONDITIONAL_FLOW_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-conditional-flow
+          COURSE_IMPORT_SCREENSHOT_DIR: ${{ github.workspace }}/output/self-study-browser/java-conditional-flow/screenshots
+        run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/java-conditional-flow-course-browser.test.mjs
+      - name: Compile every actual conditional source export with Java 21
+        if: always() && !cancelled() && inputs.course == 'java-conditional-flow' && steps.java_conditional_flow_browser.outcome == 'success'
+        env:
+          JAVA_CONDITIONAL_FLOW_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-conditional-flow
+        run: node scripts/classes-family-heavy-task.mjs -- python3 -I -B test/java-conditional-flow-exported-native.py
+      - name: Verify data refactoring consent, exact imports and saved continuations
+        id: java_value_data_browser
+        if: always() && !cancelled() && inputs.course == 'java-value-data' && steps.course_build.outcome == 'success'
+        env:
+          JAVA_VALUE_DATA_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-value-data
+          COURSE_IMPORT_SCREENSHOT_DIR: ${{ github.workspace }}/output/self-study-browser/java-value-data/screenshots
+        run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/java-value-data-course-browser.test.mjs
+      - name: Compile actual original and edited data exports with Java 21
+        if: always() && !cancelled() && inputs.course == 'java-value-data' && steps.java_value_data_browser.outcome == 'success'
+        env:
+          JAVA_VALUE_DATA_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-value-data
+        run: python3 -I -B test/java-value-data-exported-native.py
+      - name: Verify actual owner creation, unchanged clients and saved continuations
+        id: java_ownership_browser
+        if: always() && !cancelled() && inputs.course == 'java-ownership-move' && steps.course_build.outcome == 'success'
+        env:
+          JAVA_OWNERSHIP_MOVE_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-ownership-move
+          COURSE_IMPORT_SCREENSHOT_DIR: ${{ github.workspace }}/output/self-study-browser/java-ownership-move/screenshots
+        run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/java-ownership-move-course-browser.test.mjs
+      - name: Compile every actual ownership export and exercise its preserved API
+        if: always() && !cancelled() && inputs.course == 'java-ownership-move' && steps.java_ownership_browser.outcome == 'success'
+        env:
+          JAVA_OWNERSHIP_MOVE_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-ownership-move
+        run: python3 -I -B test/java-ownership-move-exported-native.py
+      - name: Verify composing methods consent, saved continuations and exports
+        id: java_composing_browser
+        if: always() && !cancelled() && inputs.course == 'java-composing' && steps.course_build.outcome == 'success'
+        env:
+          JAVA_COMPOSING_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-composing
+          COURSE_IMPORT_SCREENSHOT_DIR: ${{ github.workspace }}/output/self-study-browser/java-composing/screenshots
+        run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/java-composing-methods-course-browser.test.mjs
+      - name: Compile and execute every actual composing methods export
+        if: always() && !cancelled() && inputs.course == 'java-composing' && steps.java_composing_browser.outcome == 'success'
+        env:
+          JAVA_COMPOSING_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-composing
+        run: python3 -I -B test/java-composing-methods-exported-native.py
+      - name: Verify safe refactoring consent, saved continuations and exports
+        id: java_refactoring_browser
+        if: always() && !cancelled() && inputs.course == 'java-refactoring' && steps.course_build.outcome == 'success'
+        env:
+          JAVA_REFACTORING_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-refactoring
+          COURSE_IMPORT_SCREENSHOT_DIR: ${{ github.workspace }}/output/self-study-browser/java-refactoring/screenshots
+        run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/java-refactoring-opening-course-browser.test.mjs
+      - name: Compile and execute every actual safe refactoring export
+        if: always() && !cancelled() && inputs.course == 'java-refactoring' && steps.java_refactoring_browser.outcome == 'success'
+        env:
+          JAVA_REFACTORING_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-refactoring
+        run: python3 -I -B test/java-refactoring-opening-exported-native.py
+      - name: Verify actual studio imports, saved continuations and source file creation
+        id: java_studios_browser
+        if: always() && !cancelled() && inputs.course == 'java-studios' && steps.course_build.outcome == 'success'
+        env:
+          JAVA_STUDIOS_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-studios
+          COURSE_IMPORT_SCREENSHOT_DIR: ${{ github.workspace }}/output/self-study-browser/java-studios/screenshots
+        run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/java-studios-course-browser.test.mjs
+      - name: Compile all actual studio ZIPs and verify their complete native contracts
+        if: always() && !cancelled() && inputs.course == 'java-studios' && steps.java_studios_browser.outcome == 'success'
+        env:
+          JAVA_STUDIOS_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-studios
+        run: python3 -I -B test/java-studios-exported-native.py
+      - name: Verify Java capstone refactoring course actions and packaged downloads
+        id: java_capstone_browser
+        if: always() && !cancelled() && inputs.course == 'java-capstone' && steps.course_build.outcome == 'success'
+        env:
+          JAVA_CAPSTONE_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-capstone
+          COURSE_IMPORT_SCREENSHOT_DIR: ${{ github.workspace }}/output/self-study-browser/java-capstone/screenshots
+        run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/java-capstone-course-browser.test.mjs
+      - name: Compile actual Java capstone refactoring ZIPs and verify optional scope
+        if: always() && !cancelled() && inputs.course == 'java-capstone' && steps.java_capstone_browser.outcome == 'success'
+        env:
+          JAVA_CAPSTONE_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-capstone
+        run: python3 -I -B test/java-capstone-exported-native.py
+      - name: Verify Java refactoring judgment course actions and packaged downloads
+        id: java_judgment_browser
+        if: always() && !cancelled() && (inputs.course == 'java-judgment' || inputs.course == 'java-capstone') && steps.course_build.outcome == 'success'
+        env:
+          JAVA_JUDGMENT_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-judgment
+          COURSE_IMPORT_SCREENSHOT_DIR: ${{ github.workspace }}/output/self-study-browser/java-judgment/screenshots
+        run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/java-judgment-course-browser.test.mjs
+      - name: Compile actual Java refactoring judgment ZIPs and verify optional scope
+        if: always() && !cancelled() && (inputs.course == 'java-judgment' || inputs.course == 'java-capstone') && steps.java_judgment_browser.outcome == 'success'
+        env:
+          JAVA_JUDGMENT_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-judgment
+        run: python3 -I -B test/java-judgment-exported-native.py
+      - name: Verify Java architecture patterns course actions and packaged downloads
+        id: java_architecture_browser
+        if: always() && !cancelled() && inputs.course == 'java-architecture' && steps.course_build.outcome == 'success'
+        env:
+          JAVA_ARCHITECTURE_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-architecture
+          COURSE_IMPORT_SCREENSHOT_DIR: ${{ github.workspace }}/output/self-study-browser/java-architecture/screenshots
+        run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/java-architecture-course-browser.test.mjs
+      - name: Compile actual Java architecture patterns ZIPs and verify optional scope
+        if: always() && !cancelled() && inputs.course == 'java-architecture' && steps.java_architecture_browser.outcome == 'success'
+        env:
+          JAVA_ARCHITECTURE_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-architecture
+        run: python3 -I -B test/java-architecture-exported-native.py
+      - name: Verify Java collaboration patterns course actions and packaged downloads
+        id: java_collaboration_browser
+        if: always() && !cancelled() && (inputs.course == 'java-collaboration' || inputs.course == 'java-studios') && steps.course_build.outcome == 'success'
+        env:
+          JAVA_COLLABORATION_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-collaboration
+          COURSE_IMPORT_SCREENSHOT_DIR: ${{ github.workspace }}/output/self-study-browser/java-collaboration/screenshots
+        run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/java-collaboration-course-browser.test.mjs
+      - name: Compile actual Java collaboration patterns ZIPs and verify optional scope
+        if: always() && !cancelled() && (inputs.course == 'java-collaboration' || inputs.course == 'java-studios') && steps.java_collaboration_browser.outcome == 'success'
+        env:
+          JAVA_COLLABORATION_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-collaboration
+        run: python3 -I -B test/java-collaboration-exported-native.py
       - name: Verify Java behavioral patterns course actions and packaged downloads
         id: java_behavioral_browser
         if: always() && !cancelled() && inputs.course == 'java-behavioral' && steps.course_build.outcome == 'success'
@@ -555,13 +1277,13 @@ jobs:
         run: python3 -I -B test/java-boundary-exported-native.py
       - name: Verify Java creational patterns course actions and packaged downloads
         id: java_creational_browser
-        if: always() && !cancelled() && inputs.course == 'java-creational' && steps.course_build.outcome == 'success'
+        if: always() && !cancelled() && (inputs.course == 'java-creational' || inputs.course == 'java-studios') && steps.course_build.outcome == 'success'
         env:
           JAVA_CREATIONAL_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-creational
           COURSE_IMPORT_SCREENSHOT_DIR: ${{ github.workspace }}/output/self-study-browser/java-creational/screenshots
         run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/java-creational-course-browser.test.mjs
       - name: Compile actual Java creational patterns ZIPs and verify optional scope
-        if: always() && !cancelled() && inputs.course == 'java-creational' && steps.java_creational_browser.outcome == 'success'
+        if: always() && !cancelled() && (inputs.course == 'java-creational' || inputs.course == 'java-studios') && steps.java_creational_browser.outcome == 'success'
         env:
           JAVA_CREATIONAL_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-creational
         run: python3 -I -B test/java-creational-exported-native.py
