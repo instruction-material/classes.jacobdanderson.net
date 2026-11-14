@@ -1,0 +1,5 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Double or Nothing</title><link rel="stylesheet" href="styles.css"></head>
+<body><main><h1>Double or Nothing</h1><p>Start with 1000 virtual dollars. Heads doubles the balance; tails ends it at zero.</p>
+<button id="start" type="button">Start round</button><p id="status" role="alert"></p><section id="results" aria-label="Round results" aria-live="polite"></section>
+</main><script src="vendor/d3.min.js"></script><script src="script.js"></script></body></html>

@@ -1,0 +1,6 @@
+# Sources
+
+Original Juni starter: https://codepen.io/junilearning/pen/90c67c576d9b57cccffe8a34b4b42525
+Reference: https://codepen.io/junilearning/pen/69f1a078e1066a1d71f0fa1b7cb92850
+
+The three original restaurants and menu choices are retained. Original local SVG food illustrations replace remote photos. Caption,scoped headers,descriptive alternatives and responsive cells are added. Links use the same tab. The new illustrations may be edited with this exercise. No restaurant website was fetched to run the table;current destination content is outside this source pack.

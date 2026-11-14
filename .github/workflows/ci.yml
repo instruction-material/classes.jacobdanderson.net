@@ -1223,6 +1223,16 @@ jobs:
                   JAVASCRIPT_US_CAPITALS_BROWSER_DIR: output/javascript-us-capitals-browser
               run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-us-capitals-exported-browser.test.mjs
 
+            - name: Verify original fundamentals assignment imports and saved work
+              env:
+                  JAVASCRIPT_MASTER_FUNDAMENTALS_BROWSER_DIR: output/javascript-master-fundamentals-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-master-fundamentals-course-browser.test.mjs
+
+            - name: Verify original fundamentals exported game and tables
+              env:
+                  JAVASCRIPT_MASTER_FUNDAMENTALS_BROWSER_DIR: output/javascript-master-fundamentals-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-master-fundamentals-exported-browser.test.mjs
+
             - name: Verify local document imports, saved edits and actual downloads
               env:
                   JAVASCRIPT_LOCAL_PERSISTENCE_BROWSER_DIR: output/javascript-local-persistence-browser
@@ -1333,6 +1343,15 @@ jobs:
               with:
                   name: javascript-us-capitals-workflows
                   path: output/javascript-us-capitals-browser/
+                  if-no-files-found: warn
+                  retention-days: 14
+
+            - name: Retain original fundamentals source, downloads and native evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-master-fundamentals-workflows
+                  path: output/javascript-master-fundamentals-browser/
                   if-no-files-found: warn
                   retention-days: 14
 

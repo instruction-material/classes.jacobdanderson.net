@@ -1,0 +1,6 @@
+# Sources
+
+Original Juni starter: https://codepen.io/junilearning/pen/546a7d889ffe394b3efeca62a005209c
+Reference: https://codepen.io/junilearning/pen/2b0624ece93522ec526afca3700ede22
+
+The original uses Y/N/Cancel prompts,1000virtual dollars and an animated D3 SVG result. This adaptation preserves the game choices,replaces fixed1500px decorative output with readable D3 text,corrects malformed RGB,and adds deterministic inputs and exact-integer boundaries. The included pinned D3 bundle and license match100Squares. No network is required.

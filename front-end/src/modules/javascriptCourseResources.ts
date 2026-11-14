@@ -26,6 +26,7 @@ import { javascriptMasterArraysResources } from "@/modules/javascriptMasterArray
 import { javascriptMasterCanvasResources } from "@/modules/javascriptMasterCanvasResources";
 import { javascriptMasterConditionalsResources } from "@/modules/javascriptMasterConditionalsResources";
 import { javascriptMasterFunctionsResources } from "@/modules/javascriptMasterFunctionsResources";
+import { javascriptMasterFundamentalsResources } from "@/modules/javascriptMasterFundamentalsResources";
 import { javascriptMasterProjectResources } from "@/modules/javascriptMasterProjectResources";
 import { javascriptMediaParallaxResources } from "@/modules/javascriptMediaParallaxResources";
 import { javascriptMoreHtmlCssResources } from "@/modules/javascriptMoreHtmlCssResources";
@@ -85,6 +86,7 @@ const roles: readonly CourseRole[] = [
 	...javascriptRestaurantResources,
 	...javascriptNewsResources,
 	...javascriptShopResources,
+	...javascriptMasterFundamentalsResources,
 	...javascriptMasterFunctionsResources,
 	...javascriptMasterConditionalsResources,
 	...javascriptMasterCanvasResources,

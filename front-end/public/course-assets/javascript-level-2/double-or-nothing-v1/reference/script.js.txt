@@ -1,0 +1,30 @@
+function playDoubleOrNothing(ask = prompt, random = Math.random) {
+  let money = 1000;
+  while (true) {
+    const answer = ask("You have $" + money + ". Type Y to play, N to leave, or Cancel.");
+    if (answer === null) return money;
+    const choice = answer.trim().toUpperCase();
+    if (choice === "N") return money;
+    if (choice !== "Y") { alert("Please type Y or N."); continue; }
+    const value = random();
+    if (!Number.isFinite(value) || value < 0 || value >= 1)
+      throw new Error("Random value must be in [0, 1).");
+    const coin = Math.floor(value * 2);
+    if (coin === 1) return 0;
+    if (money > Number.MAX_SAFE_INTEGER / 2) return money;
+    money *= 2;
+  }
+}
+
+function printToScreen(text) {
+  d3.select("#results").append("p")
+    .attr("class", "round-result")
+    .style("color", "rgb(28, 87, 51)")
+    .text(text);
+}
+document.querySelector("#start").addEventListener("click", () => {
+  const status = document.querySelector("#status");
+  status.textContent = "";
+  try { printToScreen("You ended Double or Nothing with: $" + playDoubleOrNothing() + "."); }
+  catch (error) { status.textContent = error.message; }
+});
