@@ -312,7 +312,7 @@ action produces them. Distinguish a measured result, an assumption and a future
 promise. A financial decision can support a cause while still requiring an
 affordable budget and a check of its actual effects.
 
-## Work an evidence comparison
+## Worked claim comparison
 
 Use two fictional bottle proposals. Proposal A costs $18 and says it is
 plastic-free, but its supplied parts list includes a 20-gram plastic cap.

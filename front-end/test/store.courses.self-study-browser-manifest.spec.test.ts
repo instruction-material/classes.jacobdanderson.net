@@ -488,6 +488,7 @@ it.each(
 			const completeAssignment =
 				focusedJavaTask ||
 				[
+					"smart-money-personal-finance",
 					"intro-to-environmental-science",
 					"elementary-science",
 					"intro-to-biology",
@@ -499,6 +500,7 @@ it.each(
 			const fullBlocks =
 				focusedJavaTask ||
 				[
+					"smart-money-personal-finance",
 					"intro-to-environmental-science",
 					"elementary-science",
 					"intro-to-biology",

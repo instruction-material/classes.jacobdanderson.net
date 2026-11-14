@@ -720,7 +720,7 @@ test(
 									name,
 									assignmentViews
 								);
-								if ((Object.hasOwn(focusedReadingCounts, id) && module.title === "GrS2 Loops") || (index === 0 && ["early-elementary-a-reading", "early-elementary-b-picture-book"].includes(id)) || module.projects.some(item => /^(?:Punctuation Treasure Hunt|Picture Book Assembly Portfolio)$/.test(item.title))) {
+								if ((id === "smart-money-personal-finance" && (index === 0 || index === 8)) || (Object.hasOwn(focusedReadingCounts, id) && module.title === "GrS2 Loops") || (index === 0 && ["early-elementary-a-reading", "early-elementary-b-picture-book"].includes(id)) || module.projects.some(item => /^(?:Punctuation Treasure Hunt|Picture Book Assembly Portfolio)$/.test(item.title))) {
 									await page.screenshot({ path: join(output, `${name}-${index + 1}-complete-projects.png`), fullPage: true });
 								}
 								await chooseView(page, 2);
@@ -733,6 +733,9 @@ test(
 									name,
 									assignmentViews
 								);
+								if (id === "smart-money-personal-finance" && (index === 0 || index === 8)) {
+									await page.screenshot({ path: join(output, `${name}-${index + 1}-complete-optional.png`), fullPage: true });
+								}
 								assignments.push({
 									module: module.id,
 									core,
