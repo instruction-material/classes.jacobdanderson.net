@@ -3934,9 +3934,7 @@ describe("course text quality normalization", () => {
 		expect(corpus).toContain(
 			"The key skill is separating local page state from persisted remote state"
 		);
-		expect(corpus).toContain(
-			"comments do not accidentally attach to the wrong item"
-		);
+		expect(corpus).toContain("Find the parent topic by stable ID");
 	});
 
 	it("keeps JavaScript Level 1 prompts student-readable and concrete", async () => {
