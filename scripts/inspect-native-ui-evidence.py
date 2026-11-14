@@ -18,19 +18,25 @@ def select_failed_result(bundle):
     courses = {"tracker", "swiftdata", "gallery", "hobby", "map", "capstone"}
     proofs = [course + "/proof.json" for course in courses
               if course + "/proof.json" in names]
+    if "proof.json" in names:
+        proofs.append("proof.json")
     assert len(proofs) == 1, "One known course proof is required"
     proof_path = proofs[0]
-    course = proof_path.split("/")[0]
+    course = "welcome" if proof_path == "proof.json" else proof_path.split("/")[0]
     proof = json.loads(bundle.read(proof_path))
+    if course == "welcome":
+        assert proof.get("course") == "welcome", "Known Welcome proof required"
     failures = [profile for profile in proof["simulatorTests"]
                 if not profile["passed"]]
     assert len(failures) == 1, "One original failed profile is required"
     failure = failures[0]
     assert failure["role"] in {"starter", "solution"}
     assert failure["size"] in {"small", "large"}
-    assert failure["variant"] in {"standard", "largest-text"}
+    variants = {"standard", "long-note"} if course == "welcome" else {"standard", "largest-text"}
+    assert failure["variant"] in variants
     profile = "-".join(failure[key] for key in ("role", "size", "variant"))
-    result = course + "/results/" + profile + ".xcresult"
+    prefix = "" if course == "welcome" else course + "/"
+    result = prefix + "results/" + profile + ".xcresult"
     selected = [name for name in names
                 if name == proof_path or name.startswith(result + "/")]
     assert any(name.startswith(result + "/") for name in selected)
@@ -41,6 +47,7 @@ def select_failed_result(bundle):
         "selected": selected,
         "failure": failure,
         "testId": ("TrackerUITests/testTrackerWorkflow()" if course in {"tracker", "swiftdata"}
+                   else "WelcomeProfileUITests/testProfileNavigationAndState()" if course == "welcome"
                    else "CanonicalCourseUITests/testCourseWorkflow()"),
     }
 
@@ -49,6 +56,7 @@ def select_failed_result(bundle):
 def select_failed_producer(repository, run, artifact, jobs):
     """Bind one immutable upload to its completed failed job, including earlier attempts."""
     names = {
+        "swift-welcome-ios": ("welcome", "swift-ios"),
         "swift-tracker-ui-tracker": ("tracker", "swift-tracker-ui (tracker)"),
         "swift-tracker-ui-swiftdata": ("swiftdata", "swift-tracker-ui (swiftdata)"),
         **{"swift-canonical-" + course + "-ios":
