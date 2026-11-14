@@ -1,0 +1,21 @@
+# Verification cases
+
+| Case | Expected result |
+| --- | --- |
+| Supplied data | Fifty unique state IDs, capitals and valid state paths |
+| Start | One unanswered state, focused answer input, zero results |
+| Correct / wrong | One result and matching green / red state; explicit text feedback |
+| Blank / 101 characters | Error, unchanged question and answer count |
+| Case and whitespace | Outer/repeated spaces and case are normalized |
+| Minnesota aliases | St. Paul, St Paul and Saint Paul are explicitly accepted |
+| Duplicate submit | One recorded answer, unchanged score during feedback |
+| First / last random value | Values 0 and 0.999999 select a remaining record |
+| Invalid random value | Values -1, 1, NaN and Infinity are rejected |
+| Final answer | Actual data count reached; no 51st question or undefined state |
+| One-state dataset | One question, completion and a total of one |
+| Reset | Ready phase, empty results, neutral map, focus on Start |
+| Invalid / empty / oversized file | Visible error and prior valid quiz retained |
+| Late file response | Restoring supplied data wins over an older pending file read |
+| Narrow / enlarged text | Controls and results remain reachable without horizontal overflow |
+
+Read data.js, model.js and SOURCES.md for the data contract. Keep keyboard focus visible. The map's colored outcomes must have matching text results.

@@ -38,6 +38,7 @@ import { javascriptRestaurantResources } from "@/modules/javascriptRestaurantRes
 import { javascriptShopResources } from "@/modules/javascriptShopResources";
 import { javascriptSmallTalkResources } from "@/modules/javascriptSmallTalkResources";
 import { javascriptSnowflakeResources } from "@/modules/javascriptSnowflakeResources";
+import { javascriptUsCapitalsResources } from "@/modules/javascriptUsCapitalsResources";
 import { javascriptWeatherResources } from "@/modules/javascriptWeatherResources";
 
 import { javascriptWhichCardResources } from "@/modules/javascriptWhichCardResources";
@@ -102,7 +103,8 @@ const roles: readonly CourseRole[] = [
 	...javascriptCollisionResources,
 	...javascriptCanvasGamesResources,
 	...javascriptApiProjectResources,
-	...javascriptLocalPersistenceResources
+	...javascriptLocalPersistenceResources,
+	...javascriptUsCapitalsResources
 ];
 
 export function javascriptCourseResource(
