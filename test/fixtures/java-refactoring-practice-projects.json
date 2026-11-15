@@ -125,7 +125,11 @@
     "coreUnfinished": null,
     "fullUnfinished": "Implement optional versioned removal.",
     "primary": "src/notebook/application/NotebookService.java",
-    "demo": "CREATED|plan|1\nEDITED|plan|2\ntrue\nfalse\nSketch\n1\n"
+    "demo": "CREATED|plan|1\nEDITED|plan|2\ntrue\nfalse\nSketch\n1\n",
+    "primaryByRole": {
+      "starter": "src/notebook/NotebookDesk.java",
+      "solution": "src/notebook/application/NotebookService.java"
+    }
   },
   {
     "unit": {

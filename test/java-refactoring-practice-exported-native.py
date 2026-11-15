@@ -63,6 +63,7 @@ with tempfile.TemporaryDirectory(prefix="refactoring-practice-export-") as tempo
         assert fixture["revision"]==unit["revision"]
         for index,item in enumerate(unit["sourceItems"]):
             for role in ["starter","solution"]:
+                primary=plan.get("primaryByRole",{}).get(role,plan["primary"])
                 for width in [390,1280]:
                     for variant in ["exact","edited"]:
                         archive=SOURCE/unit["id"]/str(index)/f"{role}-{width}-{variant}.zip"
@@ -73,7 +74,7 @@ with tempfile.TemporaryDirectory(prefix="refactoring-practice-export-") as tempo
                             for name in names:
                                 original=fixture["files"][unit["pack"]+"/"+role+"/"+name]
                                 expected=original["content"]
-                                if variant=="edited" and name in [plan["primary"],"README.md"]:
+                                if variant=="edited" and name in [primary,"README.md"]:
                                     expected+=("\n// Saved practice trace " if name.endswith(".java") else "\nSaved practice trace ")+str(width)+"\n"
                                 matches=[n for n in listed if n.endswith("/"+name)];assert len(matches)==1,(name,matches)
                                 data=zipped.read(matches[0]);assert data.decode()==expected,name

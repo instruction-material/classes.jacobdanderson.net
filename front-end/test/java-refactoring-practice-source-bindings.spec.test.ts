@@ -5,6 +5,7 @@ import { useCoursesStore } from "@/stores/courses";
 import { strFromU8, unzipSync } from "fflate";
 import { afterEach, expect, it, vi } from "vitest";
 import studios from "../../test/fixtures/java-studios-sources.json";
+import browserPlans from "../../test/fixtures/java-refactoring-practice-projects.json";
 import collaboration from "../../test/fixtures/java-collaboration-sources.json";
 import creational from "../../test/fixtures/java-creational-sources.json";
 import { javaRefactoringPracticeUnits } from "@/modules/javaRefactoringPracticeUnits";
@@ -64,6 +65,21 @@ for (const unit of javaRefactoringPracticeUnits) {
 				url,
 				"java"
 			);
+			const browserPlan = browserPlans.find(
+				plan => plan.unit.id === unit.id
+			)!;
+			const primaryByRole = (
+				browserPlan as {
+					primaryByRole?: Partial<Record<typeof role, string>>;
+				}
+			).primaryByRole;
+			expect(
+				files.some(
+					file =>
+						file.name ===
+						(primaryByRole?.[role] ?? browserPlan.primary)
+				)
+			).toBe(true);
 			expect(files.map(file => file.name).sort()).toEqual(
 				[...unit.files[role]].sort()
 			);

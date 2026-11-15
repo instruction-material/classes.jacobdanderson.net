@@ -9,6 +9,7 @@ for (const plan of plans) {
     const fixture = JSON.parse(await readFile(new URL(plan.fixture, import.meta.url), "utf8"));
     for (const [index, item] of unit.sourceItems.entries()) {
         for (const role of ["starter", "solution"]) {
+            const primary = plan.primaryByRole?.[role] ?? plan.primary;
             const projectKey = selected => [unit.courseID, item, selected === "starter" ? "starter" : "reference", "native-java-" + unit.id].join(":");
             test("Optional refactoring " + unit.id + " " + index + " " + role + " saved source and native exports", { timeout: 240000 }, async t => {
                 await runAssemblyCoreCourseWorkflow(t, {
@@ -23,7 +24,7 @@ for (const plan of plans) {
                         createdAt: "2026-10-01T12:00:00.000Z", updatedAt: "2026-10-01T12:00:00.000Z"
                     }),
                     nativeInstructions: true, flatFiles: true, sharedFiles: [],
-                    editFiles: [plan.primary, "README.md"], primaryFile: plan.primary, taskFile: "README.md", initialFile: "Main.java",
+                    editFiles: [primary, "README.md"], primaryFile: primary, taskFile: "README.md", initialFile: "Main.java",
                     fileCount: unit.files[role].length,
                     expectedFile: (selected, name) => fixture.files[unit.pack + "/" + selected + "/" + name],
                     editContent: ({original, filename, width}) => original + (filename.endsWith(".java") ? "\n// Saved practice trace " : "\nSaved practice trace ") + width + "\n",
