@@ -1435,7 +1435,7 @@ jobs:
 
 
   ai-studios:
-    if: inputs.course == 'ai-studios'
+    if: inputs.course == 'ai-studios' && inputs.browser_artifact_id == ''
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
@@ -1485,13 +1485,19 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: instruction-material/AI-Level-1
-          ref: 7478de662f8bf26e54448ae9a332ea65e43d2070
+          ref: b18be61c865ae45d4ab15dc1b633c1c83d50da12
           path: .ai-work/ai-studio-source
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: instruction-material/AI-Level-1
+          ref: 7478de662f8bf26e54448ae9a332ea65e43d2070
+          path: .ai-work/ai-legacy-source
           persist-credentials: false
       - name: Execute all 32 independent studio and legacy source suites
         run: >-
           node scripts/classes-family-heavy-task.mjs --
-          bash .ai-work/ai-studio-source/verify-course-source.sh
+          bash .ai-work/ai-legacy-source/verify-course-source.sh
       - name: Verify representative core and multi-file optional workflows first
         env:
           AI_STUDIO_PROJECTS: search-13,optional-05
@@ -1519,6 +1525,122 @@ jobs:
           path: output/ai-studio-browser/
           if-no-files-found: error
           retention-days: 14
+
+  ai-studio-native:
+    if: inputs.course == 'ai-studios' && inputs.browser_artifact_id != ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      actions: read
+    env:
+      CLASSES_FAMILY_TASK_ID: ai-studio-native-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+      - name: Bind retained browser exports to unchanged source and successful gates
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BROWSER_RUN_ID: ${{ inputs.browser_run_id }}
+          BROWSER_ARTIFACT_ID: ${{ inputs.browser_artifact_id }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import urllib.request
+
+          repo = os.environ["GITHUB_REPOSITORY"]
+          assert repo in {"anderson-webops/classes.jacobdanderson.net",
+                          "instruction-material/classes.jacobdanderson.net"}
+          run_id = os.environ["BROWSER_RUN_ID"]
+          artifact_id = os.environ["BROWSER_ARTIFACT_ID"]
+          for value in (run_id, artifact_id):
+              assert value.isascii() and value.isdecimal() and 0 < int(value) and len(value) < 21
+
+          def api(path):
+              request = urllib.request.Request(
+                  "https://api.github.com/repos/" + repo + "/" + path,
+                  headers={"Authorization": "Bearer " + os.environ["GH_TOKEN"],
+                           "Accept": "application/vnd.github+json"})
+              with urllib.request.urlopen(request, timeout=60) as response:
+                  return json.load(response)
+
+          producer = api("actions/runs/" + run_id)
+          artifact = api("actions/artifacts/" + artifact_id)
+          jobs = api("actions/runs/" + run_id + "/jobs?per_page=100")["jobs"]
+          assert producer["repository"]["full_name"] == repo
+          assert producer["path"] == ".github/workflows/pygames-core-preflight.yml"
+          assert artifact["name"] == "ai-studio-source-workflows" and not artifact["expired"]
+          assert 0 < artifact["size_in_bytes"] < 64 * 1024 * 1024
+          assert artifact["workflow_run"]["id"] == producer["id"] == int(run_id)
+          assert artifact["workflow_run"]["head_sha"] == producer["head_sha"]
+          required = {
+              "Verify the pinned root and standalone backend installs and audits",
+              "Verify complete role imports, published identities and course flow",
+              "Lint, typecheck and build both workspaces",
+              "Execute all 32 independent studio and legacy source suites",
+              "Verify representative core and multi-file optional workflows first",
+              "Verify the remaining 23 complete project workflows"}
+          job = next(job for job in jobs if job["name"] == "ai-studios")
+          assert job["head_sha"] == producer["head_sha"]
+          passed = {step["name"] for step in job["steps"] if step["conclusion"] == "success"}
+          assert required <= passed, sorted(required - passed)
+
+          def tree(revision):
+              commit = api("git/commits/" + revision)
+              return {entry["path"]: (entry["mode"], entry["sha"])
+                      for entry in api("git/trees/" + commit["tree"]["sha"])["tree"]}
+
+          before = tree(producer["head_sha"])
+          after = tree(os.environ["GITHUB_SHA"])
+          roots = (set(before) | set(after)) - {".github"}
+          assert all(before.get(name) == after.get(name) for name in roots)
+          proof = {
+              "browserRun": int(run_id), "browserArtifact": int(artifact_id),
+              "browserSource": producer["head_sha"],
+              "consumerSource": os.environ["GITHUB_SHA"],
+              "identicalSourceRoots": sorted(roots),
+              "successfulProducerGates": sorted(required)}
+          path = Path("output/ai-studio-native-binding.json")
+          path.parent.mkdir(parents=True, exist_ok=True)
+          path.write_text(json.dumps(proof, indent=2) + "\n")
+          PY
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          artifact-ids: ${{ inputs.browser_artifact_id }}
+          github-token: ${{ github.token }}
+          run-id: ${{ inputs.browser_run_id }}
+          merge-multiple: true
+          path: output/ai-studio-browser
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: instruction-material/AI-Level-1
+          ref: b18be61c865ae45d4ab15dc1b633c1c83d50da12
+          path: .ai-work/ai-studio-source
+          persist-credentials: false
+      - name: Verify and execute every exact and edited original browser ZIP
+        run: >-
+          node scripts/classes-family-heavy-task.mjs --
+          python3 test/ai-studio-exported-native.py
+          --browser output/ai-studio-browser
+          --source .ai-work/ai-studio-source
+          --proof output/ai-studio-browser/native/proof.json
+      - name: Retain native execution results and source binding
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: ai-studio-native-verification
+          path: |
+            output/ai-studio-native-binding.json
+            output/ai-studio-browser/native/
+          if-no-files-found: error
+          retention-days: 14
+
 
   ai-setup:
     if: inputs.course == 'ai-setup'
