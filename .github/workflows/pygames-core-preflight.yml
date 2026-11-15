@@ -1468,6 +1468,7 @@ jobs:
           node scripts/classes-family-heavy-task.mjs --
           npm exec -w front-end -- vitest run
           test/ai-studio-import.spec.test.ts
+          test/ai-legacy-depth-import.spec.test.ts
           test/store.courses.ai-level-1-flow.spec.test.ts
           test/store.courses.catalog-identities.spec.test.ts
           test/store.courses.progress-identity.spec.test.ts
@@ -1484,10 +1485,10 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: instruction-material/AI-Level-1
-          ref: b18be61c865ae45d4ab15dc1b633c1c83d50da12
+          ref: 7478de662f8bf26e54448ae9a332ea65e43d2070
           path: .ai-work/ai-studio-source
           persist-credentials: false
-      - name: Execute all 25 independent source regression suites
+      - name: Execute all 32 independent studio and legacy source suites
         run: >-
           node scripts/classes-family-heavy-task.mjs --
           bash .ai-work/ai-studio-source/verify-course-source.sh

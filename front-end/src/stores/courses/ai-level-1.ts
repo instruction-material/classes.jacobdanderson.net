@@ -131,7 +131,7 @@ export const aiLevel1Course: RawCourse = {
 					content:
 						"Review lists of objects, controlled randomness, and data modeling with a deck implementation. The deck gives state transitions a concrete form before search trees and game logic enter the course.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI1-Deck-of-Cards"
+						"https://github.com/instruction-material/AI-Level-1/tree/7478de662f8bf26e54448ae9a332ea65e43d2070/FAI1-Deck-of-Cards"
 				},
 				{
 					title: "The Marble Game AI",
@@ -206,7 +206,7 @@ export const aiLevel1Course: RawCourse = {
 					content:
 						"Model routes, hubs, and reachability in a graph-based setting. This keeps the early graph work grounded in a recognizable real-world system rather than a purely abstract diagram.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI3-Airports-Problem"
+						"https://github.com/instruction-material/AI-Level-1/tree/7478de662f8bf26e54448ae9a332ea65e43d2070/FAI3-Airports-Problem"
 				},
 				{
 					title: "Unit 1: AI Landscape and State Representation supplemental 4",
@@ -362,7 +362,7 @@ export const aiLevel1Course: RawCourse = {
 					projectLink:
 						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI9-Maze-Solver-Starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI9-Maze-Solver"
+						"https://github.com/instruction-material/AI-Level-1/tree/7478de662f8bf26e54448ae9a332ea65e43d2070/FAI9-Maze-Solver"
 				}
 			]
 		},
@@ -428,14 +428,14 @@ export const aiLevel1Course: RawCourse = {
 					content:
 						"Run the same state space through greedy best-first search and A* to compare fast-looking decisions with cost-aware planning.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI10-Implement-A-Search"
+						"https://github.com/instruction-material/AI-Level-1/tree/7478de662f8bf26e54448ae9a332ea65e43d2070/FAI10-Implement-A-Search"
 				},
 				{
 					title: "Project: Greedy Search Lab",
 					content:
 						"Use a dedicated greedy search implementation to show how a heuristic can reduce work while still getting trapped by shortsighted choices.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI10-Implement-Greedy-Search"
+						"https://github.com/instruction-material/AI-Level-1/tree/7478de662f8bf26e54448ae9a332ea65e43d2070/FAI10-Implement-Greedy-Search"
 				}
 			]
 		},
@@ -472,7 +472,7 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: false
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI2-Adventure-Game"
+						"https://github.com/instruction-material/AI-Level-1/tree/7478de662f8bf26e54448ae9a332ea65e43d2070/FAI2-Adventure-Game"
 				}
 			],
 			supplementalProjects: [
@@ -481,14 +481,14 @@ export const aiLevel1Course: RawCourse = {
 					content:
 						"Use a branching text-style environment to manage inventory, location, and permitted actions. This is a good exercise in representing knowledge and gating decisions through explicit rules.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI2-Adventure-Game"
+						"https://github.com/instruction-material/AI-Level-1/tree/7478de662f8bf26e54448ae9a332ea65e43d2070/FAI2-Adventure-Game"
 				},
 				{
 					title: "Project: Puzzle Solver Warmup",
 					content:
 						"Frame a small puzzle in terms of state transitions and allowable moves before the capstone solver arrives. The lesson is to model the problem cleanly before choosing the search algorithm.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI-Puzzle"
+						"https://github.com/instruction-material/AI-Level-1/tree/7478de662f8bf26e54448ae9a332ea65e43d2070/FAI-Puzzle"
 				},
 				{
 					title: "Project: Book Rule System",
@@ -613,7 +613,7 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: false
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI10-Implement-Greedy-Search"
+						"https://github.com/instruction-material/AI-Level-1/tree/7478de662f8bf26e54448ae9a332ea65e43d2070/FAI10-Implement-Greedy-Search"
 				}
 			],
 			supplementalProjects: [
@@ -622,14 +622,14 @@ export const aiLevel1Course: RawCourse = {
 					content:
 						"Run multiple algorithms on related problems and compare memory use, runtime, and path quality. The real deliverable is the written comparison, not just the code output.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI10-Implement-Greedy-Search"
+						"https://github.com/instruction-material/AI-Level-1/tree/7478de662f8bf26e54448ae9a332ea65e43d2070/FAI10-Implement-Greedy-Search"
 				},
 				{
 					title: "Project: Water Jug Riddle",
 					content:
 						"Treat a classic reasoning puzzle as an exercise in formal state definition, action generation, and evaluation. This makes it easy to discuss how small changes in representation can completely change the search behavior.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI10-Water-Jug-Riddle"
+						"https://github.com/instruction-material/AI-Level-1/tree/7478de662f8bf26e54448ae9a332ea65e43d2070/FAI10-Water-Jug-Riddle"
 				},
 				{
 					title: "Unit 7: Features, Evaluation, and Responsible AI Extension Practice",
@@ -679,7 +679,7 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: false
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI11-8-Puzzle-Solver"
+						"https://github.com/instruction-material/AI-Level-1/tree/7478de662f8bf26e54448ae9a332ea65e43d2070/FAI11-8-Puzzle-Solver"
 				}
 			],
 			supplementalProjects: [
@@ -688,7 +688,7 @@ export const aiLevel1Course: RawCourse = {
 					content:
 						"Build a full puzzle solver that makes representation, heuristic choice, and evaluation visible. This is the natural capstone because it rewards careful modeling as much as algorithm selection.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI11-8-Puzzle-Solver"
+						"https://github.com/instruction-material/AI-Level-1/tree/7478de662f8bf26e54448ae9a332ea65e43d2070/FAI11-8-Puzzle-Solver"
 				},
 				{
 					title: "Capstone Option: Maze Solver Showcase",
@@ -697,7 +697,7 @@ export const aiLevel1Course: RawCourse = {
 					projectLink:
 						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI9-Maze-Solver-Starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI9-Maze-Solver"
+						"https://github.com/instruction-material/AI-Level-1/tree/7478de662f8bf26e54448ae9a332ea65e43d2070/FAI9-Maze-Solver"
 				},
 				{
 					title: "Capstone Option: Marble Game Strategy Lab",
@@ -768,7 +768,7 @@ export const aiLevel1Course: RawCourse = {
 					content:
 						"Keep a second lightweight class-design warmup available when object state needs more reinforcement before graph and game objects.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI1-Bank-Account-Class"
+						"https://github.com/instruction-material/AI-Level-1/tree/7478de662f8bf26e54448ae9a332ea65e43d2070/FAI1-Bank-Account-Class"
 				},
 				{
 					title: "Extension: DFS with a Stack Class",
@@ -789,14 +789,14 @@ export const aiLevel1Course: RawCourse = {
 					content:
 						"Use the updated Tic-Tac-Toe branch as the canonical optional game-tree extension beyond the main course spine.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI7-Updated-Tic-Tac-Toe-AI"
+						"https://github.com/instruction-material/AI-Level-1/tree/7478de662f8bf26e54448ae9a332ea65e43d2070/FAI7-Updated-Tic-Tac-Toe-AI"
 				},
 				{
 					title: "Extension: Two-Player Marble Game",
 					content:
 						"Use the two-player marble variant as a lighter strategy and evaluation warmup before the stronger AI version.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI8-2-Player-Marble-Game"
+						"https://github.com/instruction-material/AI-Level-1/tree/7478de662f8bf26e54448ae9a332ea65e43d2070/FAI8-2-Player-Marble-Game"
 				}
 			]
 		},
