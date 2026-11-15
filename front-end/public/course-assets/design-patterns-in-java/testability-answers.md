@@ -26,7 +26,7 @@ Default characterization protects output shape, return agreement, bounds and val
 
 ## transfer
 
-The two valid captures normalize to <time>|<id>|lamp|2 followed by newline. Count 1 instead produces <time>|<id>|lamp|1, so the approval changes. All four malformed examples throw IllegalArgumentException with message line; null throws NullPointerException with message line. Mask only time and ID, validate canonical fields and retain label/count. This optional task can pass while the journal and retry remain at starter.
+The two valid captures normalize to `<time>|<id>|lamp|2` followed by newline. Count 1 instead produces `<time>|<id>|lamp|1`, so the approval changes. All four malformed examples throw IllegalArgumentException with message line; null throws NullPointerException with message line. Mask only time and ID, validate canonical fields and retain label/count. This optional task can pass while the journal and retry remain at starter.
 
 ## extension
 
