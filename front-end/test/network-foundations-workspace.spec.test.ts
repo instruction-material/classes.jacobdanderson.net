@@ -65,7 +65,11 @@ type Fixture = {
 	instructionCommand?: string;
 	optionalProgrammingNote?: string;
 	requiresRoot?: boolean;
-	continuationItems?: { moduleId: string; itemId: string }[];
+	continuationItems?: {
+		moduleId: string;
+		itemId: string;
+		requiredText?: string[];
+	}[];
 	revision: string;
 	files: Record<string, { content: string; sha256: string }>;
 };
@@ -436,6 +440,16 @@ it("preserves every published lesson while preserving core notebooks and distinc
 		expect(readingWithoutFilenameFormatting(core.content)).toContain(
 			readingWithoutFilenameFormatting(reading)
 		);
+		for (const continuation of source.continuationItems ?? []) {
+			if (!continuation.requiredText?.length) continue;
+			const followup = items.find(
+				item => item.id === continuation.itemId
+			)!;
+			expect(followup.content).not.toBe(core.content);
+			for (const fragment of continuation.requiredText)
+				expect(followup.content).toContain(fragment);
+			expect(followup.projectLink).toBe(core.projectLink);
+		}
 		expect(core.learningPath).toBe(source.learningPath ?? "core");
 		if (!definition.notebookItemId) {
 			expect(core.ideImport).toBe(true);

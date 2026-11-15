@@ -193,7 +193,13 @@
     "continuationItems": [
       {
         "moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
-        "itemId": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-extension-challenge-diagnostic-workflow-studio"
+        "itemId": "network-systems-optional-network-expansion-and-integration-studio-archive-supplemental-extension-challenge-diagnostic-workflow-studio",
+        "requiredText": [
+          "two-fault continuation",
+          "compound-fault.json",
+          "address-only-correction.json",
+          "full-recovery.json"
+        ]
       }
     ]
   },

@@ -145,7 +145,7 @@ export function withNetworkProjectReadings(
 		const exposure = topology && module.title.startsWith("Unit 12:");
 		const reading = (
 			selected.pack === "NS-01-network-systems-lab-15" &&
-			item.title.startsWith("Extension Challenge:")
+			/^Extension Challenge:|: Extension Challenge$/.test(item.title)
 				? diagnosticsContinuation
 				: readings[selected.pack]
 		)

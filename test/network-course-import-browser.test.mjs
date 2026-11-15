@@ -168,7 +168,50 @@ async function courseAction(
 					?.getAttribute("href"),
 			role
 		);
-		if (href) return { href, card };
+		if (href) {
+			const required =
+				fixture.continuationItems?.find(row => row.itemId === itemID)
+					?.requiredText ?? [];
+			if (required.length) {
+				const blocks = await page.$$(
+					`${card} .assignment-content .item-content-markdown`
+				);
+				for (const block of blocks) {
+					await page.evaluate(
+						element => element.scrollIntoView({ block: "center" }),
+						block
+					);
+					await page.waitForFunction(
+						element => Boolean(element.textContent.trim()),
+						{},
+						block
+					);
+				}
+				await page.waitForFunction(
+					(selector, fragments) => {
+						const text =
+							document.querySelector(selector)?.textContent ?? "";
+						return fragments.every(fragment =>
+							text.includes(fragment)
+						);
+					},
+					{},
+					card,
+					required
+				);
+				const directory = process.env.COURSE_IMPORT_SCREENSHOT_DIR;
+				if (directory) {
+					const element = await page.$(card);
+					await element.screenshot({
+						path: join(
+							directory,
+							`course-continuation-${fixture.pack}-${role}-${page.viewport().width}.png`
+						)
+					});
+				}
+			}
+			return { href, card };
+		}
 	}
 	assert.fail(`Missing actual ${role} action for ${itemID}`);
 }
@@ -245,8 +288,8 @@ nodeTest(
 				headless: true,
 				args: ["--no-sandbox"]
 			});
-			for (const fixture of fixtures)
-				for (const width of [390, 1280])
+			for (const fixture of fixtures) {
+				for (const width of [390, 1280]) {
 					for (const role of ["starter", "solution"]) {
 						const earlier = {
 							...earlierTemplate,
@@ -298,11 +341,12 @@ nodeTest(
 							await page.setViewport({ width, height: 900 });
 							await page.evaluateOnNewDocument(
 								(key, legacy) => {
-									if (localStorage.getItem(key) === null)
+									if (localStorage.getItem(key) === null) {
 										localStorage.setItem(
 											key,
 											JSON.stringify(legacy)
 										);
+									}
 									const create = URL.createObjectURL;
 									URL.createObjectURL = blob => {
 										if (blob.type === "application/zip")
@@ -318,8 +362,9 @@ nodeTest(
 													".zip"
 												) &&
 												this.href.startsWith("blob:")
-											)
+											) {
 												return;
+											}
 											return click.call(this);
 										};
 								},
@@ -359,39 +404,46 @@ nodeTest(
 										!["GET", "OPTIONS"].includes(
 											request.method()
 										)
-									)
+									) {
 										remoteWrites++;
+									}
 									let body = {};
 									if (
 										catalog &&
 										url.pathname === "/api/accounts/me"
-									)
+									) {
 										body =
 											role === "starter"
 												? { userID: learner._id }
 												: { tutorID: tutor._id };
+									}
 									if (
 										catalog &&
 										url.pathname === "/api/users/loggedin"
-									)
+									) {
 										body = { currentUser: learner };
+									}
 									if (
 										catalog &&
 										url.pathname === "/api/tutors/loggedin"
-									)
+									) {
 										body = { currentTutor: tutor };
+									}
 									if (
 										catalog &&
 										url.pathname ===
 											`/api/users/oftutor/${tutor._id}`
-									)
+									) {
 										body = [learner];
+									}
 									void request.respond({
 										status: 200,
 										contentType: "application/json",
 										body: JSON.stringify(body)
 									});
-								} else void request.continue();
+								} else {
+									void request.continue();
+								}
 							});
 							const action = await courseAction(
 								page,
@@ -518,8 +570,8 @@ nodeTest(
 								!/bash main\.sh|Hello, Linux/.test(instructions)
 							);
 							if (
-								fixture.requiresRoot ||
-								fixture.continuationItems
+								fixture.requiresRoot ??
+								Boolean(fixture.continuationItems)
 							) {
 								assert.ok(instructions.includes("root access"));
 								assert.ok(
@@ -538,12 +590,13 @@ nodeTest(
 									!instructions.includes("ordinary account")
 								);
 							}
-							if (width < 900)
+							if (width < 900) {
 								await page
 									.locator(
 										".mobile-view-picker button[data-view='code']"
 									)
 									.click();
+							}
 							await page.waitForSelector(".cm-content", {
 								visible: true
 							});
@@ -593,8 +646,9 @@ nodeTest(
 											file.name === editedFileName &&
 											file.content === changed
 									)
-								)
+								) {
 									break;
+								}
 								await new Promise(resolve =>
 									setTimeout(resolve, 50)
 								);
@@ -624,7 +678,7 @@ nodeTest(
 							);
 							const editedBytes = await exportedBytes(page);
 							const editedEntries = unzipSync(editedBytes);
-							for (const file of edited.files)
+							for (const file of edited.files) {
 								assert.equal(
 									strFromU8(
 										editedEntries[
@@ -638,6 +692,7 @@ nodeTest(
 									),
 									file.content
 								);
+							}
 							await writeFile(
 								join(output, `${name}-edited.zip`),
 								editedBytes
@@ -775,7 +830,7 @@ nodeTest(
 								true
 							);
 							assert.equal(remoteWrites, 0);
-							if (screenshots)
+							if (screenshots) {
 								await page.screenshot({
 									path: join(
 										screenshots,
@@ -783,6 +838,7 @@ nodeTest(
 									),
 									fullPage: true
 								});
+							}
 							profiles.push({
 								pack: fixture.pack,
 								revision: fixture.revision,
@@ -835,10 +891,12 @@ nodeTest(
 							context = null;
 						}
 					}
+				}
+			}
 			assert.equal(profiles.length, fixtures.length * 4);
 			await writeFile(
 				join(output, "network-browser-proof.json"),
-				JSON.stringify({ profiles }, null, 2) + "\n"
+				`${JSON.stringify({ profiles }, null, 2)}\n`
 			);
 			outcome = "passed";
 		} finally {
