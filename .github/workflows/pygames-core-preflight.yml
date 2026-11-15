@@ -1,6 +1,6 @@
 name: Course preflight
 
-run-name: ${{ inputs.course == 'tracker-evidence' && inputs.browser_artifact_id != '' && 'Welcome native UI verification' || inputs.course == 'ai-studios' && 'AI search and game studios' || inputs.course == 'swift-map' && 'Swift Map course and native checks' || inputs.course == 'native-release-evidence' && 'Native release file verification' || inputs.course == 'tracker-evidence' && 'Retained Tracker failure evidence' || inputs.course == 'scratch-tasks' && 'Published Scratch project tasks' || inputs.course == 'course-audit' && 'Course audit follow-ups' || inputs.course == 'scratch-readings' && 'Scratch and self-study readings' || inputs.course == 'scratch-originals' && 'Original Scratch imports' || inputs.course == 'bootcamp' && 'Scratch Bootcamp pages' || inputs.course == 'self-study' && 'Self-study course pages' || inputs.course == 'physics-models' && 'Physics model workflows' || inputs.course == 'networking' && 'Swift Networking source evidence' || inputs.course == 'ai-setup' && 'AI setup reading' || 'PyGames core preflight' }}
+run-name: ${{ inputs.course == 'tracker-evidence' && inputs.browser_artifact_id != '' && 'Welcome native UI verification' || inputs.course == 'network-firewall-optional' && 'Network optional firewall workflows' || inputs.course == 'network-dns-optional' && 'Network optional DNS workflows' || inputs.course == 'ai-studios' && 'AI search and game studios' || inputs.course == 'swift-map' && 'Swift Map course and native checks' || inputs.course == 'native-release-evidence' && 'Native release file verification' || inputs.course == 'tracker-evidence' && 'Retained Tracker failure evidence' || inputs.course == 'scratch-tasks' && 'Published Scratch project tasks' || inputs.course == 'course-audit' && 'Course audit follow-ups' || inputs.course == 'scratch-readings' && 'Scratch and self-study readings' || inputs.course == 'scratch-originals' && 'Original Scratch imports' || inputs.course == 'bootcamp' && 'Scratch Bootcamp pages' || inputs.course == 'self-study' && 'Self-study course pages' || inputs.course == 'physics-models' && 'Physics model workflows' || inputs.course == 'networking' && 'Swift Networking source evidence' || inputs.course == 'ai-setup' && 'AI setup reading' || 'PyGames core preflight' }}
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ on:
       course:
         description: Course verification to run
         type: choice
-        options: [java-refactoring-followup, java-refactoring-final, release-checks, ai-studios, swift-map, javascript-business-directory, java-testability, java-pattern-journeys, java-generalization, java-method-calls, javascript-hundred-squares, javascript-businesses, javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
+        options: [network-firewall-optional, network-dns-optional, java-refactoring-followup, java-refactoring-final, release-checks, ai-studios, swift-map, javascript-business-directory, java-testability, java-pattern-journeys, java-generalization, java-method-calls, javascript-hundred-squares, javascript-businesses, javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
         default: pygames
       full_source_runtime:
         description: Also verify every pinned original PyGames runtime profile
@@ -42,6 +42,145 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+
+  network-firewall-optional:
+    if: inputs.course == 'network-firewall-optional'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      CLASSES_FAMILY_TASK_ID: network-firewall-optional-${{ github.run_id }}
+      NETWORK_FIREWALL_OPTIONAL_ONLY: '1'
+      NETWORK_BROWSER_EXPORT_PROOF_DIR: output/network-firewall-optional
+      COURSE_IMPORT_SCREENSHOT_DIR: output/network-firewall-optional/screenshots
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - name: Verify the locked root installation and complete dependency graph
+        run: |
+          npm install --global npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+          mkdir -p output/network-firewall-optional/audits
+          node scripts/classes-family-heavy-task.mjs -- npm ci
+          npm run check:dependencies
+          npm run lock:provenance:check
+          npm audit --include=optional --json > output/network-firewall-optional/audits/root-full.json
+          npm audit --include=optional --omit=dev --json > output/network-firewall-optional/audits/root-production.json
+      - name: Verify firewall imports, existing network projects and preserved course identities
+        run: >-
+          node scripts/classes-family-heavy-task.mjs --
+          npm exec -w front-end -- vitest run
+          test/network-firewall-optional-workspace.spec.test.ts
+          test/network-foundations-workspace.spec.test.ts
+          test/store.courses.network-systems-flow.spec.test.ts
+          test/store.courses.catalog-identities.spec.test.ts
+          test/store.courses.progress-identity.spec.test.ts
+          --no-file-parallelism --maxWorkers=1
+          --reporter=default --reporter=json
+          --outputFile=../output/network-firewall-optional/unit-tests.json
+      - name: Lint, check types and build the actual application
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run lint
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+          node scripts/classes-family-heavy-task.mjs -- npm run build
+      - name: Verify the owned Linux firewall tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends python3 ufw iproute2 iptables util-linux curl
+      - name: Verify real course buttons, consent, independent attempts, edits and exports
+        run: node scripts/classes-family-heavy-task.mjs -- node --test test/network-course-import-browser.test.mjs
+      - name: Run the exact exported programs and verify actual policy, failures and rollback
+        run: node scripts/classes-family-heavy-task.mjs -- sudo python3 -B test/network-firewall-optional-exported-contracts.py output/network-firewall-optional
+      - name: Make owned native evidence readable for publication
+        if: always()
+        run: |
+          if [ -d output/network-firewall-optional ]; then sudo chmod -R a+rX output/network-firewall-optional; fi
+      - name: Preserve exact candidate identity and process records
+        if: always()
+        run: |
+          git rev-parse HEAD > output/network-firewall-optional/site-source.txt
+          git diff --name-only > output/network-firewall-optional/tracked-changes.txt
+          cp /tmp/classes-family-heavy-tasks.log output/network-firewall-optional/processes.jsonl
+      - name: Retain original browser exports and native observations
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: network-firewall-optional-workflows
+          path: output/network-firewall-optional/
+          if-no-files-found: error
+          retention-days: 30
+
+  network-dns-optional:
+    if: inputs.course == 'network-dns-optional'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      CLASSES_FAMILY_TASK_ID: network-dns-optional-${{ github.run_id }}
+      NETWORK_DNS_OPTIONAL_ONLY: '1'
+      NETWORK_BROWSER_EXPORT_PROOF_DIR: output/network-dns-optional
+      COURSE_IMPORT_SCREENSHOT_DIR: output/network-dns-optional/screenshots
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - name: Verify the locked root installation and complete dependency graph
+        run: |
+          npm install --global npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+          mkdir -p output/network-dns-optional/audits
+          node scripts/classes-family-heavy-task.mjs -- npm ci
+          npm run check:dependencies
+          npm run lock:provenance:check
+          npm audit --include=optional --json > output/network-dns-optional/audits/root-full.json
+          npm audit --include=optional --omit=dev --json > output/network-dns-optional/audits/root-production.json
+      - name: Verify DNS imports, existing network projects and preserved course identities
+        run: >-
+          node scripts/classes-family-heavy-task.mjs --
+          npm exec -w front-end -- vitest run
+          test/network-dns-optional-workspace.spec.test.ts
+          test/network-foundations-workspace.spec.test.ts
+          test/store.courses.network-systems-flow.spec.test.ts
+          test/store.courses.catalog-identities.spec.test.ts
+          test/store.courses.progress-identity.spec.test.ts
+          --no-file-parallelism --maxWorkers=1
+          --reporter=default --reporter=json
+          --outputFile=../output/network-dns-optional/unit-tests.json
+      - name: Lint, check types and build the actual application
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run lint
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+          node scripts/classes-family-heavy-task.mjs -- npm run build
+      - name: Verify ordinary Linux DNS tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends python3 dnsutils dnsmasq-base strace
+          test "$(id -u)" -ne 0
+      - name: Verify real course buttons, consent, independent attempts, edits and exports
+        run: node scripts/classes-family-heavy-task.mjs -- node --test test/network-course-import-browser.test.mjs
+      - name: Run the exact exported programs and compare independent DNS wire observations
+        run: node scripts/classes-family-heavy-task.mjs -- python3 -I -B test/network-dns-optional-exported-contracts.py output/network-dns-optional
+      - name: Preserve exact candidate identity and process records
+        if: always()
+        run: |
+          git rev-parse HEAD > output/network-dns-optional/site-source.txt
+          git diff --name-only > output/network-dns-optional/tracked-changes.txt
+          cp /tmp/classes-family-heavy-tasks.log output/network-dns-optional/processes.jsonl
+      - name: Retain original browser exports and native observations
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: network-dns-optional-workflows
+          path: output/network-dns-optional/
+          if-no-files-found: error
+          retention-days: 30
 
 
   release-checks:

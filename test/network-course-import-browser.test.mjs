@@ -24,6 +24,7 @@ const fixtures = (
 			"./fixtures/network-topology-contracts.json",
 			"./fixtures/network-capture-contracts.json",
 			"./fixtures/network-firewall-contracts.json",
+			"./fixtures/network-firewall-optional-contracts.json",
 			"./fixtures/network-reachability-contracts.json",
 			"./fixtures/network-listener-contracts.json",
 			"./fixtures/network-resolution-contracts.json",
@@ -33,12 +34,25 @@ const fixtures = (
 			"./fixtures/network-capstone-contracts.json",
 			"./fixtures/network-setup-contracts.json",
 			"./fixtures/network-transport-contracts.json",
-			"./fixtures/network-inventory-contracts.json"
+			"./fixtures/network-inventory-contracts.json",
+			"./fixtures/network-dns-optional-contracts.json"
 		].map(async path =>
 			JSON.parse(await readFile(new URL(path, import.meta.url), "utf8"))
 		)
 	)
-).flat();
+)
+	.flat()
+	.filter(
+		fixture =>
+			process.env.NETWORK_DNS_OPTIONAL_ONLY !== "1" ||
+			fixture.mode?.startsWith("dns-")
+	)
+	.filter(
+		fixture =>
+			process.env.NETWORK_FIREWALL_OPTIONAL_ONLY !== "1" ||
+			fixture.mode?.startsWith("ufw-") ||
+			fixture.pack === "NS3-UFW-Web-Server-Policy"
+	);
 const storageKey = "classes-python-ide-projects:anonymous";
 const earlierTemplate = {
 	_id: "earlier-network-work",

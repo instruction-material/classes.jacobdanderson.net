@@ -5,8 +5,12 @@ import namingReading0 from "../../assets/course-guides/network-addresses.md?raw"
 import applicationReading2 from "../../assets/course-guides/network-application-boundaries.md?raw";
 import applicationReading1 from "../../assets/course-guides/network-application-conditions.md?raw";
 import applicationReading0 from "../../assets/course-guides/network-application-responses.md?raw";
-
+import dnsAliasReading from "../../assets/course-guides/network-dns-alias-transfer.md?raw";
+import dnsTransportReading from "../../assets/course-guides/network-dns-transport-extension.md?raw";
 import firewallReading from "../../assets/course-guides/network-firewall-policy.md?raw";
+import firewallPortReading from "../../assets/course-guides/network-firewall-port-transfer.md?raw";
+
+import firewallProfileReading from "../../assets/course-guides/network-firewall-profile-extension.md?raw";
 import captureReading from "../../assets/course-guides/network-http-capture.md?raw";
 import inventoryTcpReading from "../../assets/course-guides/network-inventory-tcp.md?raw";
 
@@ -37,6 +41,12 @@ import {
 } from "../../modules/networkProjectResources";
 
 const readings: Record<string, string> = {
+	"NS-19-unit-9-firewalls-and-host-policy-supplemental-2":
+		firewallPortReading,
+	"NS-20-unit-9-firewalls-and-host-policy-supplemental-3":
+		firewallProfileReading,
+	"NS-11-unit-5-dns-and-name-resolution-supplemental-2": dnsAliasReading,
+	"NS-12-unit-5-dns-and-name-resolution-supplemental-3": dnsTransportReading,
 	"NS-09-unit-4-ports-and-listening-services-supplemental-2":
 		inventoryUdpReading,
 	"NS-10-unit-4-ports-and-listening-services-supplemental-3":

@@ -1,4 +1,6 @@
 import type { PythonIdeFile } from "@/modules/pythonIde";
+import { networkDnsOptionalInstructions } from "./networkDnsOptionalResources";
+import { networkFirewallOptionalInstructions } from "./networkFirewallOptionalResources";
 import { networkCourseResource } from "./networkProjectResources";
 
 export function networkBuildInstructions(files: PythonIdeFile[], url: string) {
@@ -27,7 +29,13 @@ export function networkBuildInstructions(files: PythonIdeFile[], url: string) {
 	const capstone = definition.pack === "NS-03-network-systems-lab-17";
 	const topology = definition.pack === "NS6-Router-NAT-Topology-Lab";
 	const capture = definition.pack === "NS5-Tcpdump-HTTP-Capture";
-	const firewall = definition.pack === "NS3-UFW-Web-Server-Policy";
+	const firewallOptional = networkFirewallOptionalInstructions(
+		definition.pack,
+		role
+	);
+	const firewall =
+		definition.pack === "NS3-UFW-Web-Server-Policy" ||
+		Boolean(firewallOptional);
 	const reachability =
 		definition.pack === "NS2-Local-vs-Remote-Reachability-Diagnosis";
 	const listeners = definition.pack === "NS1-Listening-Services-Map";
@@ -86,6 +94,10 @@ export function networkBuildInstructions(files: PythonIdeFile[], url: string) {
 			"The selected lab is incomplete. Restore all required role files and README.md before following the guide."
 		];
 	}
+
+	const dnsOptional = networkDnsOptionalInstructions(definition.pack, role);
+	if (dnsOptional) return [...lines, ...dnsOptional];
+	if (firewallOptional) return [...lines, ...firewallOptional];
 
 	if (socketInventory) {
 		return [

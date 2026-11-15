@@ -28,7 +28,7 @@ const networkSystemsSourceCourse: RawCourse = {
 				{
 					title: "Positioning, Prerequisites, and Core Outcomes",
 					content:
-						"Position the course after `Linux Systems` and frame it as the layer that explains how services on one host become reachable, unreachable, slow, or misrouted from somewhere else. Already be comfortable editing config files and running Linux diagnostics before the course asks them to reason about ports, sockets, routing, DNS, firewalls, and IPv6 behavior."
+						"Network Systems follows `Linux Systems`. Editing configuration files and running Linux diagnostics are prerequisites. Investigate how services on one host become reachable, unreachable, slow, or misrouted from another host through ports, sockets, routing, DNS, firewalls, and IPv6."
 				},
 				{
 					title: "NS0 Setup and Tooling: Core Project",

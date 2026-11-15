@@ -1,4 +1,6 @@
 import { githubRawUrl, parseGitHubResource } from "./codePreview";
+import { networkDnsOptionalPacks } from "./networkDnsOptionalResources";
+import { networkFirewallOptionalPacks } from "./networkFirewallOptionalResources";
 
 export const networkSourceRevision = "1fdd3faef06af8782a0d029ba880422b0a9775eb";
 export const networkFoundationPacks = [
@@ -110,7 +112,7 @@ export const networkCapturePacks = [
 ] as const;
 
 export const networkFirewallSourceRevision =
-	"2d46f8b581906d3ada0275c481a85282115a2d7a";
+	"4880f07adac15dbbebcad6146fbeaff2f554347f";
 export const networkFirewallPacks = [
 	{
 		pack: "NS3-UFW-Web-Server-Policy",
@@ -431,9 +433,11 @@ export const networkVerifiedPacks = [
 	...networkTopologyPacks,
 	...networkCapturePacks,
 	...networkFirewallPacks,
+	...networkFirewallOptionalPacks,
 	...networkReachabilityPacks,
 	...networkListenerPacks,
 	...networkResolutionPacks,
+	...networkDnsOptionalPacks,
 	...networkIPv6Packs,
 	...networkApplicationPacks,
 	...networkLinkRoutingPacks,
