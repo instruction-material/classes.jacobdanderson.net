@@ -573,7 +573,7 @@ describe("implemented course development artifacts", () => {
 			aiLevel1,
 			"Capstone Option: Maze Solver Showcase",
 			"AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI9-Maze-Solver-Starter",
-			"AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI9-Maze-Solver"
+			"AI-Level-1/tree/7478de662f8bf26e54448ae9a332ea65e43d2070/FAI9-Maze-Solver"
 		);
 		expectAuthoredSourcePair(
 			javaLevel3,
