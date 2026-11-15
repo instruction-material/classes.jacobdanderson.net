@@ -45,7 +45,7 @@ const entries: Array<
 		preserveInstructions: true,
 		learningPath: "core",
 		content:
-			"Perform the first row-method extraction in NoticeService before creating new types. Record which responsibility became easier to read or change. Compare that result with moving formatting into a product and centralizing the common traversal.\n\n**Completion evidence:** Preserve the last passing intermediate version, its baseline command/result and one example explaining which step delivered the largest improvement.",
+			"Perform the first row-method extraction in NoticeService before creating new types. Record which responsibility became easier to read or change. For lamp(2),kit(3), compare reversing row order with changing only the row delimiters. Record which edit changes ordering and which changes presentation. Compare that result with moving formatting into a product and centralizing the common traversal.\n\n**Completion evidence:** Preserve the last passing intermediate version, its baseline command/result and one example explaining which step delivered the largest improvement.",
 		caseSection: "steps",
 		sourceProject: false,
 		preserveAssignment: true
