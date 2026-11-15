@@ -311,7 +311,7 @@ export const networkLinkRoutingPacks = [
 ] as const;
 
 export const networkCapstoneSourceRevision =
-	"efde30862ec77ba94f9c2ad3857a819fd902c23c";
+	"f37b558cfe75c7e6348a4689e1c06284da1f2812";
 export const networkCapstonePacks = [
 	{
 		pack: "NS-03-network-systems-lab-17",
