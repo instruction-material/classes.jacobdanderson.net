@@ -74,6 +74,15 @@ const fixtures: Fixture[] = [
 		readFileSync(
 			resolve(
 				process.cwd(),
+				"../test/fixtures/network-diagnostics-five-contracts.json"
+			),
+			"utf8"
+		)
+	),
+	...JSON.parse(
+		readFileSync(
+			resolve(
+				process.cwd(),
 				"../test/fixtures/network-kernel-optional-contracts.json"
 			),
 			"utf8"
@@ -304,7 +313,7 @@ it.each(
 			await flushPromises();
 			await vi.waitFor(() =>
 				expect(
-					wrapper.findAll("a.is-ide-starter").length
+					wrapper.findAll(".lesson-view-toggle button").length
 				).toBeGreaterThan(0)
 			);
 			const fixture = fixtures.find(row => row.pack === definition.pack)!;
@@ -319,6 +328,11 @@ it.each(
 					.trigger("click");
 				await flushPromises();
 			}
+			await vi.waitFor(() =>
+				expect(
+					wrapper.findAll("a.is-ide-starter").length
+				).toBeGreaterThan(0)
+			);
 			const core = wrapper
 				.findAll(".lesson-item")
 				.find(card => card.attributes("id")?.endsWith(itemId))!;
@@ -526,11 +540,14 @@ it.each(
 		expect(instructions).toContain(
 			fixture.instructionCommand ?? "python3 main.py"
 		);
-		if (fixture.requiresRoot || fixture.continuationItems) {
+		if (
+			fixture.requiresRoot ||
+			(fixture.continuationItems && fixture.requiresRoot !== false)
+		) {
 			expect(instructions).toContain("root access");
 			expect(instructions).not.toContain("ordinary account");
 		}
-		if (fixture.continuationItems) {
+		if (fixture.continuationItems && fixture.requiresRoot !== false) {
 			expect(instructions).toContain("--exposure-policy");
 			expect(instructions).toContain("root access");
 			expect(instructions).not.toContain("ordinary account");

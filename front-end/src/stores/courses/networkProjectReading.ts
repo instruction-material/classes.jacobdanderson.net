@@ -7,6 +7,12 @@ import applicationReading1 from "../../assets/course-guides/network-application-
 import applicationReading0 from "../../assets/course-guides/network-application-responses.md?raw";
 import kernelOptionalReading4 from "../../assets/course-guides/network-capture-evidence-transfer.md?raw";
 import kernelOptionalReading5 from "../../assets/course-guides/network-capture-selection-extension.md?raw";
+import diagnosticsReading2 from "../../assets/course-guides/network-diagnostics-address.md?raw";
+import diagnosticsReading1 from "../../assets/course-guides/network-diagnostics-deadline.md?raw";
+import diagnosticsReading3 from "../../assets/course-guides/network-diagnostics-port.md?raw";
+import diagnosticsReading0 from "../../assets/course-guides/network-diagnostics-protocol.md?raw";
+import diagnosticsReading4 from "../../assets/course-guides/network-diagnostics-status.md?raw";
+import diagnosticsContinuation from "../../assets/course-guides/network-diagnostics-studio-continuation.md?raw";
 import dnsAliasReading from "../../assets/course-guides/network-dns-alias-transfer.md?raw";
 import dnsTransportReading from "../../assets/course-guides/network-dns-transport-extension.md?raw";
 import kernelOptionalReading2 from "../../assets/course-guides/network-exposure-bypass-transfer.md?raw";
@@ -47,6 +53,14 @@ import {
 } from "../../modules/networkProjectResources";
 
 const readings: Record<string, string> = {
+	"NS-13-unit-6-core-diagnostics-supplemental-2": diagnosticsReading0,
+	"NS-14-unit-6-core-diagnostics-supplemental-3": diagnosticsReading1,
+	"NS-01-network-systems-lab-15": diagnosticsReading2,
+	"NS-29-applied-studio-15-network-systems-lab-15-supplemental-2":
+		diagnosticsReading3,
+	"NS-30-applied-studio-15-network-systems-lab-15-supplemental-3":
+		diagnosticsReading4,
+
 	"NS-15-unit-7-linux-interface-and-route-management-supplemental-2":
 		kernelOptionalReading0,
 	"NS-16-unit-7-linux-interface-and-route-management-supplemental-3":
@@ -129,7 +143,12 @@ export function withNetworkProjectReadings(
 			selected.pack ===
 			"NS-07-unit-3-switches-routers-nat-and-the-internet-edge";
 		const exposure = topology && module.title.startsWith("Unit 12:");
-		const reading = readings[selected.pack]
+		const reading = (
+			selected.pack === "NS-01-network-systems-lab-15" &&
+			item.title.startsWith("Extension Challenge:")
+				? diagnosticsContinuation
+				: readings[selected.pack]
+		)
 			.replace(
 				/This replaces the unrelated port-list exercise previously (?:present )?in this folder\./,
 				""

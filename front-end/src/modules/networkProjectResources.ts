@@ -1,4 +1,5 @@
 import { githubRawUrl, parseGitHubResource } from "./codePreview";
+import { networkDiagnosticsFivePacks } from "./networkDiagnosticsFiveResources";
 import { networkDnsOptionalPacks } from "./networkDnsOptionalResources";
 import { networkFirewallOptionalPacks } from "./networkFirewallOptionalResources";
 import { networkKernelOptionalPacks } from "./networkKernelOptionalResources";
@@ -429,6 +430,7 @@ export const networkSocketInventoryPacks = [
 ] as const;
 
 export const networkVerifiedPacks = [
+	...networkDiagnosticsFivePacks,
 	...networkFoundationPacks,
 	...networkNamingPacks,
 	...networkTopologyPacks,

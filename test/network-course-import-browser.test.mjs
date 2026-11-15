@@ -36,7 +36,8 @@ const fixtures = (
 			"./fixtures/network-transport-contracts.json",
 			"./fixtures/network-inventory-contracts.json",
 			"./fixtures/network-dns-optional-contracts.json",
-			"./fixtures/network-kernel-optional-contracts.json"
+			"./fixtures/network-kernel-optional-contracts.json",
+			"./fixtures/network-diagnostics-five-contracts.json"
 		].map(async path =>
 			JSON.parse(await readFile(new URL(path, import.meta.url), "utf8"))
 		)
@@ -58,6 +59,11 @@ const fixtures = (
 		fixture =>
 			process.env.NETWORK_KERNEL_OPTIONAL_ONLY !== "1" ||
 			fixture.mode?.startsWith("kernel-")
+	)
+	.filter(
+		fixture =>
+			process.env.NETWORK_DIAGNOSTICS_FIVE_ONLY !== "1" ||
+			fixture.mode?.startsWith("diagnostics-")
 	);
 
 const storageKey = "classes-python-ide-projects:anonymous";
@@ -520,7 +526,10 @@ nodeTest(
 									!instructions.includes("ordinary account")
 								);
 							}
-							if (fixture.continuationItems) {
+							if (
+								fixture.continuationItems &&
+								fixture.requiresRoot !== false
+							) {
 								assert.ok(
 									instructions.includes("--exposure-policy")
 								);
@@ -547,10 +556,13 @@ nodeTest(
 									editedFileName
 								);
 								await page.waitForFunction(
-									() =>
+									expected =>
 										document.querySelector(
 											".cm-content .cm-line"
-										)?.textContent === "#!/usr/bin/env bash"
+										)?.textContent === expected,
+									{},
+									fixture.editTaskFirstLine ??
+										"#!/usr/bin/env bash"
 								);
 							}
 							await page.focus(".cm-content");

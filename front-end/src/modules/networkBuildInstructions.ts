@@ -1,4 +1,5 @@
 import type { PythonIdeFile } from "@/modules/pythonIde";
+import { networkDiagnosticsFiveInstructions } from "./networkDiagnosticsFiveResources";
 import { networkDnsOptionalInstructions } from "./networkDnsOptionalResources";
 import { networkFirewallOptionalInstructions } from "./networkFirewallOptionalResources";
 import {
@@ -30,6 +31,10 @@ export function networkBuildInstructions(files: PythonIdeFile[], url: string) {
 		definition.pack ===
 		"NS-10-unit-4-ports-and-listening-services-supplemental-3";
 	const socketInventory = inventoryUdp || inventoryTcp;
+	const diagnosticsFive = networkDiagnosticsFiveInstructions(
+		definition.pack,
+		role
+	);
 	const kernelOptional = networkKernelOptionalInstructions(
 		definition.pack,
 		role
@@ -88,7 +93,10 @@ export function networkBuildInstructions(files: PythonIdeFile[], url: string) {
 					`Save and download the ZIP. Extract it in an owned disposable Linux VM with root access and the tools listed in README.md. This kernel lab requires ${capture ? "an owned network namespace" : "network and mount namespaces"}.`,
 					"The browser edits and saves the source and notebook. Run the selected real network experiment in that external VM; the browser cannot perform these Linux kernel operations."
 				]
-			: reachability || listeners || resolution
+			: reachability ||
+				  listeners ||
+				  resolution ||
+				  Boolean(diagnosticsFive)
 				? [
 						"Save and download the ZIP. Extract it in an owned Linux lab or WSL environment with an ordinary account and the tools listed in README.md.",
 						"The browser edits and saves the source and notebook. Run the bounded Linux observations in that external environment; the browser does not execute the system commands."
@@ -112,6 +120,7 @@ export function networkBuildInstructions(files: PythonIdeFile[], url: string) {
 	const dnsOptional = networkDnsOptionalInstructions(definition.pack, role);
 	if (dnsOptional) return [...lines, ...dnsOptional];
 	if (kernelOptional) return [...lines, ...kernelOptional];
+	if (diagnosticsFive) return [...lines, ...diagnosticsFive];
 	if (firewallOptional) return [...lines, ...firewallOptional];
 
 	if (socketInventory) {
