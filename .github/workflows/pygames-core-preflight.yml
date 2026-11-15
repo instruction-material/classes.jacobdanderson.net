@@ -8,7 +8,7 @@ on:
       course:
         description: Course verification to run
         type: choice
-        options: [ai-studios, swift-map, javascript-business-directory, java-method-calls, javascript-hundred-squares, javascript-businesses, javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
+        options: [release-checks, ai-studios, swift-map, javascript-business-directory, java-method-calls, javascript-hundred-squares, javascript-businesses, javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
         default: pygames
       full_source_runtime:
         description: Also verify every pinned original PyGames runtime profile
@@ -42,6 +42,84 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+
+
+  release-checks:
+    if: inputs.course == 'release-checks'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      CLASSES_FAMILY_TASK_ID: release-checks-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - name: Verify the locked root install and complete dependency tree
+        run: |
+          npm i -g npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+          mkdir -p output/release-checks
+          node scripts/classes-family-heavy-task.mjs -- npm ci
+          npm run check:dependencies
+          npm run lock:provenance:check
+      - name: Require full and production root audits
+        run: |
+          npm audit --include=optional --json > output/release-checks/root-full.json
+          npm audit --include=optional --omit=dev --json > output/release-checks/root-production.json
+      - name: Run lint, types and every front-end and backend unit test
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run lint
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+          node scripts/classes-family-heavy-task.mjs -- npm run -w front-end test:unit
+          node scripts/classes-family-heavy-task.mjs -- npm run -w back-end test
+          npm run test:braces-security
+      - name: Build both workspaces and recheck generated types
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run build
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+      - name: Verify the standalone backend locked graph and both audits
+        working-directory: back-end
+        run: |
+          node ../scripts/classes-family-heavy-task.mjs -- npm ci --include=optional --strict-allow-scripts --workspaces=false
+          npm ls --all --workspaces=false
+          npm audit --include=optional --workspaces=false --json > ../output/release-checks/backend-full.json
+          npm audit --include=optional --omit=dev --workspaces=false --json > ../output/release-checks/backend-production.json
+      - name: Bind the successful gates to the unchanged candidate
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          import subprocess
+
+          out = Path("output/release-checks")
+          for name in ("root-full", "root-production", "backend-full", "backend-production"):
+              assert json.loads((out / (name + ".json")).read_text())["metadata"]["vulnerabilities"]["total"] == 0
+          changed = subprocess.check_output(["git", "diff", "--name-only"], text=True).splitlines()
+          assert not changed, changed
+          names = ("package.json", "front-end/package.json", "back-end/package.json",
+                   "package-lock.json", "back-end/package-lock.json")
+          proof = {
+              "source": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
+              "manifestsAndLocks": {name: hashlib.sha256(Path(name).read_bytes()).hexdigest() for name in names},
+              "cleanLockedRootInstall": True, "cleanStandaloneBackendInstall": True,
+              "fullFrontendAndBackendUnits": True, "lint": True, "types": True,
+              "bothBuilds": True, "fourAuditsZero": True, "trackedTreeUnchanged": True}
+          (out / "accepted.json").write_text(json.dumps(proof, indent=2) + "\n")
+          PY
+          cp /tmp/classes-family-heavy-tasks.log output/release-checks/processes.jsonl
+      - name: Retain exact application verification evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: release-application-checks
+          path: output/release-checks/
+          if-no-files-found: error
+          retention-days: 14
 
 
   course-choices:
