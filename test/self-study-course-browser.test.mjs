@@ -44,7 +44,7 @@ assert.equal(readingCounts.length, courseIds.length);
 const focusedReadingCounts = {
 	"smart-money-personal-finance": 9,
 	"design-patterns-in-java": 32,
-	"design-patterns-in-java-part-2": 8,
+	"design-patterns-in-java-part-2": 9,
 	"java-level-3": 1,
 	"intro-to-environmental-science": 27,
 	"elementary-science": 36,

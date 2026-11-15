@@ -536,13 +536,118 @@ export const javaPatternJourneysUnit = {
 	},
 	changesFiles: true
 } as const;
+export const javaTestabilityUnit = {
+	id: "testability",
+	courseID: "design-patterns-in-java-part-2",
+	revision: "aa80994ca32be755f09b68efbd583a689eecdcce",
+	pack: "DPR9-Testability-Packs",
+	layout: "src/journal and sources.txt",
+	moduleID:
+		"design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence",
+	readingID:
+		"design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-testability-di-and-refactoring-with-confidence-core-concepts",
+	coreID: "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-core-project-testability-di-and-refactoring-with-confidence",
+	sourceItems: [
+		"design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-legacy-side-effect-seam-catalog",
+		"design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-characterization-test-quality-contract",
+		"design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-core-project-testability-di-and-refactoring-with-confidence",
+		"design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-testability-di-and-refactoring-with-confidence-transfer-practice",
+		"design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-testability-di-and-refactoring-with-confidence-extension-practice"
+	],
+	independentItems: [
+		"design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-testability-di-and-refactoring-with-confidence-transfer-practice",
+		"design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-testability-di-and-refactoring-with-confidence-extension-practice"
+	],
+	files: {
+		starter: [
+			"Main.java",
+			"CompatibilityClient.java",
+			"ContractChecks.java",
+			"README.md",
+			"REFACTORING.md",
+			"SOURCES.md",
+			"sources.txt",
+			"src/journal/CaptureNormalizer.java",
+			"src/journal/DispatchJournal.java",
+			"src/journal/Entry.java",
+			"src/journal/EntrySink.java",
+			"src/journal/JournalAPI.java",
+			"src/journal/LegacyJournal.java",
+			"src/journal/RetryingSink.java"
+		],
+		solution: [
+			"Main.java",
+			"CompatibilityClient.java",
+			"ContractChecks.java",
+			"README.md",
+			"REFACTORING.md",
+			"SOURCES.md",
+			"sources.txt",
+			"src/journal/CaptureNormalizer.java",
+			"src/journal/DispatchJournal.java",
+			"src/journal/Entry.java",
+			"src/journal/EntrySink.java",
+			"src/journal/JournalAPI.java",
+			"src/journal/LegacyJournal.java",
+			"src/journal/RetryingSink.java"
+		]
+	},
+	instructions: [
+		"Java 21 dependency seams and exact journal checks",
+		"Preserve the package folders and include learner-written Java checks in sources.txt.",
+		"javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+		"java -ea -cp out ContractChecks baseline",
+		"java -da -cp out ContractChecks baseline",
+		"java -cp out Main baseline",
+		"java -cp out Main core",
+		"java -ea -cp out ContractChecks core",
+		"java -da -cp out ContractChecks core",
+		"Default output uses the current instant and a random ID. Injected checks supply exact values.",
+		"The three projects can be completed independently. Keep frozen APIs, LegacyJournal and ContractChecks unchanged.",
+		"Run displays native Java commands. These programs read no standard input."
+	],
+	instructionsByItem: {
+		"design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-testability-di-and-refactoring-with-confidence-transfer-practice":
+			[
+				"Java 21 optional volatile-output normalization",
+				"Preserve the package folders and include learner-written Java checks in sources.txt.",
+				"javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+				"java -ea -cp out ContractChecks baseline",
+				"java -da -cp out ContractChecks baseline",
+				"java -cp out Main baseline",
+				"java -cp out Main core",
+				"java -ea -cp out ContractChecks transfer",
+				"java -da -cp out ContractChecks transfer",
+				"Default output uses the current instant and a random ID. Injected checks supply exact values.",
+				"The three projects can be completed independently. Keep frozen APIs, LegacyJournal and ContractChecks unchanged.",
+				"Run displays native Java commands. These programs read no standard input."
+			],
+		"design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-testability-di-and-refactoring-with-confidence-extension-practice":
+			[
+				"Java 21 optional bounded output retry",
+				"Preserve the package folders and include learner-written Java checks in sources.txt.",
+				"javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+				"java -ea -cp out ContractChecks baseline",
+				"java -da -cp out ContractChecks baseline",
+				"java -cp out Main baseline",
+				"java -cp out Main core",
+				"java -ea -cp out ContractChecks extension",
+				"java -da -cp out ContractChecks extension",
+				"Default output uses the current instant and a random ID. Injected checks supply exact values.",
+				"The three projects can be completed independently. Keep frozen APIs, LegacyJournal and ContractChecks unchanged.",
+				"Run displays native Java commands. These programs read no standard input."
+			]
+	},
+	changesFiles: true
+} as const;
 export const javaRefactoringUnits = [
 	javaOwnershipUnit,
 	javaValueDataUnit,
 	javaConditionalFlowUnit,
 	javaMethodCallsUnit,
 	javaGeneralizationUnit,
-	javaPatternJourneysUnit
+	javaPatternJourneysUnit,
+	javaTestabilityUnit
 ] as const;
 type Role = "starter" | "solution";
 export function javaRefactoringUnitURL(id: string, role: Role) {

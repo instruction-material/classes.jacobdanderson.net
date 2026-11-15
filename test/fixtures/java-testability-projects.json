@@ -1,0 +1,65 @@
+{
+  "pack": "DPR9-Testability-Packs",
+  "moduleID": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence",
+  "courseID": "design-patterns-in-java-part-2",
+  "coreID": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-core-project-testability-di-and-refactoring-with-confidence",
+  "readingID": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-testability-di-and-refactoring-with-confidence-core-concepts",
+  "sourceItems": [
+    "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-legacy-side-effect-seam-catalog",
+    "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-characterization-test-quality-contract",
+    "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-core-project-testability-di-and-refactoring-with-confidence",
+    "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-testability-di-and-refactoring-with-confidence-transfer-practice",
+    "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-testability-di-and-refactoring-with-confidence-extension-practice"
+  ],
+  "independentItems": [
+    "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-testability-di-and-refactoring-with-confidence-transfer-practice",
+    "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-testability-di-and-refactoring-with-confidence-extension-practice"
+  ],
+  "groups": {
+    "core": {
+      "itemID": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-core-project-testability-di-and-refactoring-with-confidence",
+      "primary": "src/journal/DispatchJournal.java",
+      "replace": [
+        "src/journal/DispatchJournal.java"
+      ],
+      "add": [],
+      "remove": [],
+      "checks": 2834
+    },
+    "transfer": {
+      "itemID": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-testability-di-and-refactoring-with-confidence-transfer-practice",
+      "primary": "src/journal/CaptureNormalizer.java",
+      "replace": [
+        "src/journal/CaptureNormalizer.java"
+      ],
+      "add": [],
+      "remove": [],
+      "checks": 163
+    },
+    "extension": {
+      "itemID": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-testability-di-and-refactoring-with-confidence-extension-practice",
+      "primary": "src/journal/RetryingSink.java",
+      "replace": [
+        "src/journal/RetryingSink.java"
+      ],
+      "add": [],
+      "remove": [],
+      "checks": 805
+    }
+  },
+  "baselineChecks": 202,
+  "roleFileCounts": {
+    "starter": 14,
+    "solution": 14
+  },
+  "demos": {
+    "core": "volatile-default-line",
+    "transfer": "volatile-default-line",
+    "extension": "volatile-default-line"
+  },
+  "unfinished": {
+    "core": "Missing injection constructor",
+    "transfer": "java.lang.AssertionError",
+    "extension": "java.io.IOException: first"
+  }
+}

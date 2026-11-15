@@ -1,0 +1,71 @@
+{
+  "curriculum": [
+    {
+      "id": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-testability-di-and-refactoring-with-confidence-core-concepts",
+      "title": "Testability, DI, and Refactoring with Confidence Core Concepts",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-core-concepts-and-learning-sequence",
+        "core-concepts",
+        "mini-lab-characterization-test-then-structural-change",
+        "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-core-concepts",
+        "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-mini-lab-characterization-test-then-structural-change"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-design-review-refactoring-pace-and-reviewability",
+      "title": "Design Review: Refactoring Pace and Reviewability"
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-reflection-question-what-let-you-move-faster-safely",
+      "title": "Reflection Question: What Let You Move Faster Safely?"
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-legacy-side-effect-seam-catalog",
+      "title": "Legacy Side-Effect Seam Catalog"
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-characterization-test-quality-contract",
+      "title": "Characterization Test Quality Contract"
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-core-project-testability-di-and-refactoring-with-confidence",
+      "title": "Core Project: Testability, DI, and Refactoring with Confidence",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-core-project",
+        "dpr9-testability-di-and-refactoring-with-confidence-core-project",
+        "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-curriculum-dpr9-testability-di-and-refactoring-with-confidence-core-project"
+      ]
+    }
+  ],
+  "supplementalProjects": [
+    {
+      "id": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-understanding-check-testability-di-and-refactoring-with-confidence",
+      "title": "Understanding Check: Testability, DI, and Refactoring with Confidence",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-dpr9-testability-di-and-refactoring-with-confidence-diagnostic-checkpoint",
+        "diagnostic-checkpoint-testability-di-and-refactoring-with-confidence",
+        "diagnostic-checkpoint",
+        "understanding-check",
+        "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-diagnostic-checkpoint-testability-di-and-refactoring-with-confidence",
+        "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-diagnostic-checkpoint",
+        "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-understanding-check"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-testability-di-and-refactoring-with-confidence-transfer-practice",
+      "title": "Testability, DI, and Refactoring with Confidence Transfer Practice",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-transfer-practice-testability-di-and-refactoring-with-confidence",
+        "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-transfer-practice"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-testability-di-and-refactoring-with-confidence-extension-practice",
+      "title": "Testability, DI, and Refactoring with Confidence Extension Practice",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-extension-practice-testability-di-and-refactoring-with-confidence",
+        "design-patterns-in-java-part-2-dpr9-testability-di-and-refactoring-with-confidence-supplemental-extension-practice"
+      ]
+    }
+  ]
+}

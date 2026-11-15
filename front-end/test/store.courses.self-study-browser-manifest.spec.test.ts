@@ -74,7 +74,8 @@ function isReviewedModule(id: string, title: string) {
 			"DPR5 Simplifying Conditional Expressions",
 			"DPR6 Simplifying Method Calls",
 			"DPR7 Dealing with Generalization",
-			"DPR8 Refactoring Toward Patterns"
+			"DPR8 Refactoring Toward Patterns",
+			"DPR9 Testability, DI, and Refactoring with Confidence"
 		].includes(title);
 	return true;
 }
@@ -82,7 +83,7 @@ const cases = [
 	{
 		id: "design-patterns-in-java-part-2",
 		source: designPatternsInJavaPart2Course,
-		readings: 8,
+		readings: 9,
 		additions: []
 	},
 	{
@@ -754,20 +755,20 @@ it.each(
 			const reviewed = modules.filter(module =>
 				isReviewedModule(id, module.title)
 			);
-			expect(reviewed).toHaveLength(8);
-			expect(reviewed.flatMap(module => module.readings)).toHaveLength(8);
+			expect(reviewed).toHaveLength(9);
+			expect(reviewed.flatMap(module => module.readings)).toHaveLength(9);
 			const activities = reviewed.flatMap(module => [
 				...module.projects,
 				...module.optional
 			]);
-			expect(activities).toHaveLength(59);
+			expect(activities).toHaveLength(67);
 			expect(
 				activities.every(
 					item => item.assignmentTextScope === "complete"
 				)
 			).toBe(true);
 			expect(activities.flatMap(item => item.selfChecks)).toHaveLength(
-				118
+				134
 			);
 		} else if (id === "java-level-3") expect(modules).toHaveLength(25);
 		else if (algebra1)
@@ -932,7 +933,7 @@ it.each(
 							id === "design-patterns-in-java"
 								? "Complete primary course: ten teaching units, applied studios and three reference appendices. All 134 published identities covered by 32 complete readings, 102 activities and 204 input/answer case views per role/width profile."
 								: id === "design-patterns-in-java-part-2"
-									? "DPR1 through DPR8: eight complete readings, fifty-nine activities and one hundred eighteen input/answer case views per role/width profile. All 159 published course identities checked; the other refactoring units and clinics remain outside this teaching/runtime acceptance."
+									? "DPR1 through DPR9: nine complete readings, sixty-seven activities and one hundred thirty-four input/answer case views per role/width profile. All 159 published course identities checked; the other refactoring units and clinics remain outside this teaching/runtime acceptance."
 									: id === "java-level-3"
 										? "AJ4 only: one reading, two core projects, three optional tasks and ten input/response views per profile. All 217 course identities checked; other Java units are outside this teaching and runtime acceptance."
 										: id ===
