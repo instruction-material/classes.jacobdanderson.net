@@ -1,0 +1,20 @@
+# Sources
+
+Assignment:https://codepen.io/junilearning/pen/9c003b58d7ca7770e49f9243dbecb00f
+Observed alias:https://codepen.io/junilearning/pen/JjKZemR
+Reference:https://codepen.io/junilearning/pen/8f44f06f31939f0a56050f4718f0b608
+Observed alias:https://codepen.io/junilearning/pen/jOrKQGQ/8f44f06f31939f0a56050f4718f0b608
+
+Complete panels/settings and official exports reviewed on 2026-11-14.
+Both use no preprocessors,external resources or packages;HTML/CSS settings are
+None/Neither. The starter has blank HTML/CSS and one task comment.
+The reference actually assigns a500-by 500canvas;screenWidth 800 is unused.
+
+These newly authored local teaching files preserve the original geometry,colors,
+fixed vertical speed,upward endpoint and miss-offscreen behavior. The preceding
+working paddle setup is supplied. Collision uses actual geometry,crossing checks
+and the circle radius. The input handling retains the corrected bounded/focus-safe
+paddle from JSM7 Project 3.
+The starter MIT notice is retained in LICENSE-original.txt. The reference export
+has no separate license file;its source remains in the private audit capture
+and was not copied into these local role files.

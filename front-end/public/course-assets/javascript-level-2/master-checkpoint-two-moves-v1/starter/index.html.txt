@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Move Analyzer</title><link rel="stylesheet" href="styles.css">
+<script src="fixture.js" defer></script><script src="remote.js" defer></script>
+<script src="data.js" defer></script><script src="moves.js" defer></script><script src="script.js" defer></script></head>
+<body><main><h1>Move Analyzer</h1>
+<button id="fixture" type="button">Use six-move practice fixture</button>
+<button id="live" type="button">Request moves 1 through 6</button>
+<p id="status" role="status"></p><p id="source"></p>
+<form id="query"><label for="type">Move type</label><input id="type" name="type" autocomplete="off">
+<button type="submit">Count type</button></form>
+<p id="result" aria-live="polite"></p><pre id="counts"></pre>
+<p><a href="https://pokeapi.co/docs/v2/" target="_blank" rel="noopener noreferrer">PokéAPI documentation</a></p>
+</main></body></html>

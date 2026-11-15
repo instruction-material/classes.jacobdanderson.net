@@ -3,6 +3,7 @@ import {
 	formatAuthoredAssignment,
 	formatAuthoredReading
 } from "./authoredReading";
+import { grammarMechanicsActivities } from "./grammarMechanicsActivities";
 
 const readings: Record<string, string> = {
 	"MSC1 Nouns, Pronouns & Adjectives": `
@@ -629,9 +630,31 @@ export function applyGrammarMechanicsReadings(
 				preserveInstructions: true,
 				preserveAssignment: true
 			})),
-			...module.supplementalProjects.filter(
-				project => !sourceTitles.has(project.title)
-			)
+			...module.supplementalProjects
+				.filter(project => !sourceTitles.has(project.title))
+				.map(project => {
+					const activities =
+						grammarMechanicsActivities[original.title];
+					if (!activities) {
+						throw new Error(
+							`Missing grammar practice: ${original.title}`
+						);
+					}
+					const content = project.title.startsWith("Practice Map:")
+						? activities.practice
+						: project.title.startsWith("Extension Review:")
+							? activities.extension
+							: undefined;
+					return content
+						? {
+								...project,
+								content: formatAuthoredAssignment(content),
+								contentKind: "assignment" as const,
+								preserveInstructions: true,
+								preserveAssignment: true
+							}
+						: project;
+				})
 		];
 	}
 }

@@ -49,7 +49,12 @@ function resourceText() {
 			item.projectLink,
 			item.solutionLink,
 			item.datasetLink,
-			item.mediaLink
+			item.mediaLink,
+			...[
+				...String(item.content ?? "").matchAll(
+					/\[[^\]]+\]\((https:\/\/[^)]+)\)/g
+				)
+			].map(match => match[1])
 		])
 		.filter(Boolean)
 		.join("\n");
@@ -180,7 +185,9 @@ describe("Design Patterns in Java Part 2 learner flow", () => {
 		]) {
 			expect(text, contract).toContain(contract);
 		}
-		expect(text).toContain("A final field alone does not protect array contents");
+		expect(text).toContain(
+			"A final field alone does not protect array contents"
+		);
 		expect(text).toContain("`Optional` return");
 		expect(text).toContain("sealed hierarchy");
 		expect(resourceText()).toContain("java/util/Optional.html");

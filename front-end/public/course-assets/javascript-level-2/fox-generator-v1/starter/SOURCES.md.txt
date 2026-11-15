@@ -1,0 +1,28 @@
+# Original assignment and supplied data
+
+starter: https://codepen.io/junilearning/pen/93750fc08b5b2268a1d78b296295e2e8
+Observed alias: https://codepen.io/junilearning/pen/dyXapXB
+Original export SHA256: 677d41f4e4df38daf5c35c0ff4f2806d5dc4a7bf14fb6f1f9175062f71d86ea1
+
+reference: https://codepen.io/junilearning/pen/686374da7355c247854acf33c3904b25
+Observed alias: https://codepen.io/junilearning/pen/qBNZWqp/686374da7355c247854acf33c3904b25
+Original export SHA256: f1858ffd55871e1e2c82bcc59f321458e382df3e669510e3dbaca89025e1c096
+
+The original HTML/CSS/JavaScript and external resource settings are retained in the audit. These independently written role packs preserve the project purpose,with bounded local responses and optional public GET requests.
+
+The supplied photographs are public-domain USFWS/NPS images. They replace the original provider images for the saved-response path;the original RandomFox API remains optional. The provider repository images are not redistributed.
+
+https://www.fws.gov/media/red-fox-9
+Credit: Urban, Val/USFWS
+License: Public Domain
+SHA256: 44caad774bc6a3ba324dee03c9c4f7a4373271ea455a2b83937a708a23cf7455
+
+https://www.fws.gov/media/red-fox-rock
+Credit: Kristine Sowl/USFWS
+License: Public Domain
+SHA256: 2040dad144636d6705d52b05a91e0d6508395af6c05542ccef29cfe0a61e7c1e
+
+https://www.fws.gov/media/red-fox-snow
+Credit: Jim Peaco/NPS
+License: Public Domain
+SHA256: 2cca749593dc43e98b6ee8af4f3c6b91d4fff8594a5886e6f6413ed17d371863

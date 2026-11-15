@@ -1,0 +1,3 @@
+body { margin: 1rem; font: 1rem/1.5 system-ui,sans-serif; color: #111827; }
+canvas { display: block; max-width: 100%; height: auto; background: #eee; }
+h1 { overflow-wrap: anywhere; }

@@ -1,0 +1,46 @@
+(function () {
+"use strict";
+const byId = id => document.getElementById(id);
+const status = byId("status");
+let current = null;
+function display(data, source) {
+  const name = checkpoint.firstMove(data);
+  current = { data, source, name };
+  byId("move").textContent = "First move: " + name + " (" + source + ")";
+}
+byId("sum").addEventListener("click", () => {
+  try {
+    const cases = [[2,1,6,91,-1],[0,3,2,91,-1],[],[1,2],[-3,2],[-4,2]];
+    byId("sums").textContent = cases.map(values => JSON.stringify(values) + " => " + checkpoint.sumEvens(values)).join("\n");
+  } catch (error) { byId("sums").textContent = error.message; }
+});
+const canvas = byId("board");
+const context = canvas.getContext("2d");
+if (context) {
+  context.strokeStyle = "#324b62";
+  context.beginPath(); context.moveTo(250,0); context.lineTo(250,500);
+  context.moveTo(0,250); context.lineTo(500,250); context.stroke();
+}
+canvas.addEventListener("click", event => {
+  try {
+    const point = checkpoint.canvasPoint(event, canvas);
+    byId("position").textContent = "Buffer coordinates: " + point.x.toFixed(1) + ", " + point.y.toFixed(1);
+  } catch (error) { byId("position").textContent = error.message; }
+});
+byId("fixture").addEventListener("click", () => {
+  try { display(checkpointFixture, "practice fixture"); status.textContent = ""; }
+  catch (error) { status.textContent = error.message; }
+});
+byId("live").addEventListener("click", async () => {
+  byId("live").disabled = true;
+  byId("fixture").disabled = true;
+  status.textContent = "Loading move names...";
+  try {
+    const data = await checkpointRemote.requestJson("https://pokeapi.co/api/v2/move/?limit=20", checkpointRemote.validateList);
+    display(data, "live list, cached for this page");
+    status.textContent = "Ready.";
+  } catch (error) {
+    status.textContent = error.message + (current ? " Showing the last valid data." : " Use the practice fixture.");
+  } finally { byId("live").disabled = false; byId("fixture").disabled = false; }
+});
+})();

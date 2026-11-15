@@ -1,0 +1,13 @@
+# Original assignment and supplied data
+
+starter: https://codepen.io/junilearning/pen/35923b1d6dee01a5f3004d67836eca46
+Observed alias: https://codepen.io/junilearning/pen/NWrobRB
+Original export SHA256: 5e906b9045150f504898ba213e9b24c1b771523cc00205b3f6910f7c0fc4a0a5
+
+reference: https://codepen.io/junilearning/pen/e72824bf10e7457a18774db2554f860e
+Observed alias: https://codepen.io/junilearning/pen/XWKdrNM/e72824bf10e7457a18774db2554f860e
+Original export SHA256: 4f6cf8bda7131b9000ed80ab3e7de5589c01604432c194ee5d624a4c03a5e63a
+
+The original HTML/CSS/JavaScript and external resource settings are retained in the audit. These independently written role packs preserve the project purpose,with bounded local responses and optional public GET requests.
+
+Pokemon IDs1–893,names,types and six base statistics: https://github.com/PokeAPI/pokeapi/tree/8a92bfa7dab2f12b84b5d151562f9857c133ff30/data/v2/csv . Sprites: https://github.com/PokeAPI/sprites/tree/c0542f7c51215d9672439012838c99f520596cbd/sprites/pokemon . All893 sprites and source hashes were retained;source license and sprite credits are included.

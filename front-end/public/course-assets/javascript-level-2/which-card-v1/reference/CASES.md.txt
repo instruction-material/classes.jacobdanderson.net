@@ -1,0 +1,26 @@
+# Which Card cases
+
+The drawing is 1200 by 800. Each rectangle has x = index * 200, y = 150,
+width = 150 and height = 100. The palette is green, red, blue, yellow and cyan.
+Left/top edges are included; right/bottom edges are excluded.
+
+| Logical point | Expected new console line |
+| --- | --- |
+| (75,200) | green |
+| (275,200) | red |
+| (475,200) | blue |
+| (675,200) | yellow |
+| (875,200) | cyan |
+| (1,151) | green |
+| (149,249) | green |
+| (150,200) | none |
+| (175,200) | none |
+| (75,149) | none |
+| (75,250) | none |
+| (75,260) | none |
+
+Repeat centers and gaps after resizing and scrolling. For viewport left 24, top 80
+and display size 600 by 400, logical red center (275,200) is at client (161.5,180).
+The coordinate conversion returns (275,200).
+
+The unchanged starter draws the row and logs nothing until its handler is implemented.

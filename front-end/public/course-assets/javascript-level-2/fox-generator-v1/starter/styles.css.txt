@@ -1,0 +1,17 @@
+* { box-sizing:border-box; }
+body { margin:0; font:1rem system-ui,sans-serif; color:#17212b; background:#fff; }
+main { width:min(100% - 2rem,60rem); margin:1rem auto; }
+h1 { font-size:1.5rem; }
+p,h1,h2,li,figcaption,dd,dt { overflow-wrap:anywhere; }
+.controls,form,.ratings { display:flex; align-items:center; flex-wrap:wrap; gap:.6rem; }
+button,input,select { font:inherit; max-width:100%; padding:.55rem; }
+label { font-weight:600; }
+:focus-visible { outline:3px solid #0f766e; outline-offset:3px; }
+#output { margin:1rem 0; }
+figure { margin:1rem 0; }
+figure img { max-width:100%; width:650px; height:auto; display:block; }
+figcaption { margin:.4rem 0; }
+dl { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); max-width:28rem; gap:.5rem; }
+dd { margin:0; }
+[hidden] { display:none !important; }
+#load { background:#ff9800; color:#111; }\n

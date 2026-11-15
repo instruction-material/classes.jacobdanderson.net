@@ -1,0 +1,16 @@
+Object.assign(window.CheckInOne,{
+ createCar() { return {make:"Toyota",model:"Corolla",year:1999,color:"red",damaged:true}; },
+ createCards(random=Math.random) {
+  const cards=[];
+  for(let i=0;i<4;i++) cards.push({text:Math.floor(random()*100)+1,x:50,y:i*150,width:200,height:100,color:"rgba(0,0,255,0.5)"});
+  return cards;
+ },
+ drawCards(context,cards) {
+  context.clearRect(0,0,1200,1200);
+  cards.forEach(card=>{
+   context.fillStyle=card.color;context.fillRect(card.x,card.y,card.width,card.height);
+   context.font="36px Arial";context.fillStyle="white";context.textAlign="center";
+   context.fillText(card.text,card.x+card.width/2,card.y+card.height/2+10);
+  });
+ }
+});

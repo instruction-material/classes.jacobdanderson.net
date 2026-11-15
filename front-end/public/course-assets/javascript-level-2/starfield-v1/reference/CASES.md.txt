@@ -1,0 +1,8 @@
+# Animated Starfield cases
+
+1. Velocity30,y10: after one tick,y11.
+2. A star crossing below height respawns at y0 with a valid x,size and velocity.
+3. All updates preserve exactly100 stars.
+4. Resize from550x500 to275x250 halves every position and retains100 entries.
+5. White star squares remain visible on black at mobile and desktop widths.
+6. Restart keeps one animation loop and one hundred stars.

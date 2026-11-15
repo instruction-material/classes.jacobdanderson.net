@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Check-In 2</title><link rel="stylesheet" href="styles.css">
+<script src="fixture.js" defer></script><script src="remote.js" defer></script>
+<script src="helpers.js" defer></script><script src="script.js" defer></script></head>
+<body><main><h1>Check-In 2</h1>
+<section><h2>Even sums</h2><button id="sum" type="button">Run fixed sums</button><pre id="sums" aria-live="polite"></pre></section>
+<section><h2>Canvas coordinates</h2><canvas id="board" width="500" height="500" aria-label="500 by 500 coordinate practice"></canvas>
+<p id="position" role="status">Click the canvas.</p></section>
+<section><h2>Move names</h2><button id="fixture" type="button">Use practice fixture</button>
+<button id="live" type="button">Request 20 move names</button>
+<p id="status" role="status"></p><p id="move"></p></section>
+</main></body></html>

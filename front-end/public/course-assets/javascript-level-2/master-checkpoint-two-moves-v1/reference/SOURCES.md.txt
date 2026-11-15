@@ -1,0 +1,6 @@
+Original starter: https://codepen.io/junilearning/pen/a320051c74a1a5baa1358818c5bca5bc
+Original reference: https://codepen.io/junilearning/pen/ba366d22ab4a98e653a5b2bcb4affba8
+
+Locally authored adaptation of the original helper/event/API and move-counting tasks. The original ZIPs remain unchanged in Source Exports. Core corrects empty/odd-first reduce inputs and CSS-to-buffer coordinates, and supplies the complete fictional SQL worksheet. Move Analyzer replaces784unbounded simultaneous requests with a six-record authored practice fixture and six sequential optional cached GETs. Original D3 and unpinned jquery-latest dependencies are replaced by native DOM controls. Practice records are authored examples, not captured live responses. No current whole-API move count is asserted.
+
+API shapes, pagination and caching: https://pokeapi.co/docs/v2/

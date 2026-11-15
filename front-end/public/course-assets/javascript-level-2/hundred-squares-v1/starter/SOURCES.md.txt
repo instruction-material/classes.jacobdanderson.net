@@ -1,0 +1,26 @@
+# Source record
+
+Original starter: https://codepen.io/junilearning/pen/90973aa93a04ccb12c61f3a85280daed
+Observed starter: https://codepen.io/junilearning/pen/ExyZmBP
+Original JavaScript SHA256: b6e24c1cf9ef27cb5c978773da358b1ee808f4e39a6958c8e3d240d833b9d928
+
+Original reference: https://codepen.io/junilearning/pen/a057491eec4fc8ccc9e38a5fa9f727ac
+Observed reference: https://codepen.io/junilearning/pen/KKMamLE/a057491eec4fc8ccc9e38a5fa9f727ac
+Original JavaScript SHA256: 7ff3fe14dbfd7d895170750d99f1b6af76a5214dd55d9882c391963e104636ff
+
+Both original source exports and visible HTML/CSS/JS settings were retained on 2026-11-13.
+Both have empty HTML/CSS, no preprocessors or external CSS, and D3 5.16.0.
+The original starter supplies only the 100-square assignment and blank entry comment.
+The original reference draws 100 rectangles on 1000-pixel SVG, using dimensions of 50,
+steps of 75 and offsets of 50, with each random color channel from 1 through 255.
+
+The local starter preserves its blank entry and corrects the closing parenthesis in the
+original RGB hint. The local reference is an authored implementation of the same nested-loop
+and geometry contract with complete RGB strings, a named drawing container, viewBox and accessible
+SVG name. Responsive CSS changes display size while preserving logical coordinates.
+Complete HTML/CSS, D3 7.9.0 and its license, worked one-square setup and fixed checks are local.
+These selection/appending/attribute calls do not use changed event arguments between D3 versions.
+
+LICENSE-original.txt retains the original starter MIT notice and fork credit unchanged.
+The original reference export contains no separate license file; its provenance is retained here.
+The original source archives remain separately retained; they have not been overwritten.

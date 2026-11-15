@@ -1,0 +1,114 @@
+async function loadTenJokesResponse(local) {
+	// TODO: Complete the rule described in README.md and verify CASES.md.
+	throw new Error("Complete loadTenJokesResponse in script.js.");
+}
+
+function normalizeJoke(value) {
+	if (Array.isArray(value)) {
+		if (!value.length) throw new EmptyResponse("No jokes returned.");
+		value = value[0];
+	}
+	if (!value || typeof value !== "object")
+		throw new Error("Invalid joke response.");
+	return {
+		id: String(value.id ?? 1),
+		setup: textField(value.setup),
+		punchline: textField(value.punchline),
+	};
+}
+
+let session = null;
+function normalizeTenJokes(value) {
+	// TODO: Complete the rule described in README.md and verify CASES.md.
+	throw new Error("Complete normalizeTenJokes in script.js.");
+}
+function recordRating(state, rating, jokeId) {
+	// TODO: Complete the rule described in README.md and verify CASES.md.
+	throw new Error("Complete recordRating in script.js.");
+}
+function renderSession() {
+	const output = document.querySelector("#output");
+	output.replaceChildren();
+	const yes = document.querySelector("#yes"),
+		no = document.querySelector("#no");
+	yes.disabled = no.disabled = !session || session.ratings.length === 10;
+	if (!session) return;
+	const progress = document.createElement("p");
+	progress.id = "progress";
+	if (session.ratings.length === 10) {
+		const liked = session.ratings.filter((r) => r.rating === "yes").length;
+		progress.textContent = liked + " liked; " + (10 - liked) + " disliked.";
+		const result = document.createElement("p");
+		result.id = "result";
+		result.textContent =
+			liked > 5
+				? "You liked more jokes."
+				: liked < 5
+					? "You disliked more jokes."
+					: "An even split.";
+		const history = document.createElement("ol");
+		for (const rating of session.ratings) {
+			const item = document.createElement("li");
+			item.textContent =
+				session.jokes.find((j) => j.id === rating.id).setup +
+				" " +
+				(rating.rating === "yes" ? "Liked" : "Disliked");
+			history.append(item);
+		}
+		output.append(progress, result, history);
+		setStatus("All ten jokes rated.");
+		return;
+	}
+	const joke = session.jokes[session.ratings.length];
+	yes.dataset.jokeId = no.dataset.jokeId = joke.id;
+	const setup = document.createElement("p"),
+		punchline = document.createElement("p");
+	setup.id = "setup";
+	punchline.id = "punchline";
+	setup.textContent = joke.setup;
+	punchline.textContent = joke.punchline;
+	progress.textContent = "Joke " + (session.ratings.length + 1) + " of 10";
+	output.append(progress, setup, punchline);
+}
+async function loadSession() {
+	if (activeRequest || document.querySelector("#load").disabled) return;
+	if (session && session.ratings.length > 0 && session.ratings.length < 10) {
+		setStatus("Finish this set or restart before loading another.", "error");
+		return;
+	}
+	setBusy(true);
+	setStatus("Loading ten jokes.", "loading");
+	try {
+		const local = document.querySelector("#source").value === "saved";
+		const jokes = await loadTenJokesResponse(local);
+		session = { jokes, ratings: [] };
+		renderSession();
+		setStatus("Ten jokes loaded.");
+	} catch (error) {
+		showProblem(error, !!session);
+	} finally {
+		setBusy(false);
+	}
+}
+for (const rating of ["yes", "no"])
+	document.querySelector("#" + rating).addEventListener("click", (event) => {
+		if (event.detail > 1) return;
+		if (recordRating(session, rating, event.currentTarget.dataset.jokeId)) {
+			renderSession();
+			if (session.ratings.length < 10)
+				setStatus(session.ratings.length + " ratings saved.");
+		}
+	});
+for (const button of document.querySelectorAll(".ratings button"))
+	button.addEventListener("keydown", (event) => {
+		if (event.repeat) event.preventDefault();
+	});
+document.querySelector("#restart").addEventListener("click", () => {
+	if (session) {
+		session.ratings = [];
+		renderSession();
+		setStatus("Ratings restarted.");
+	}
+});
+document.querySelector("#load").addEventListener("click", loadSession);
+loadSession();

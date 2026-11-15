@@ -1,0 +1,13 @@
+# Original sources
+
+starter: https://codepen.io/junilearning/pen/4d14f6e432dd3b2dcee15a9d95eac750
+Observed alias: https://codepen.io/junilearning/pen/BazPzpm
+Original official ZIP SHA256: c1f8805b626ab904146ea4c78f4dc6e991820952c471d9581e75803f99ab1994
+
+reference: https://codepen.io/junilearning/pen/8a5307a6643fbf762925b08229b5a847
+Observed alias: https://codepen.io/junilearning/pen/WNrqPQO/8a5307a6643fbf762925b08229b5a847
+Original official ZIP SHA256: be23564d7a73916066e62c71d9b919a2a14a6da7b43ee31fb3e6d12013ee160e
+
+Original HTML/CSS preprocessors: None. CSS base and prefixing: Neither. JavaScript preprocessor: None. External resources: none.
+
+This independently written local implementation preserves the assignment,initial geometry,palette and stated mechanics. It adds bounded input,one managed animation loop,explicit terminal states and the checks described in CASES.md.

@@ -1,0 +1,21 @@
+# Original source record
+
+starter: https://codepen.io/junilearning/pen/88140a4225b8cfb5468e91fbccfaa100
+Observed: https://codepen.io/junilearning/pen/YzWLLYB
+JavaScript SHA256: 805bc6ffa0a05ff397cb01c4e98250b79aa42fac1d5749d96a8822985e677027
+
+reference: https://codepen.io/junilearning/pen/1e1ad471f376b1364cd157bd9c96f9ab
+Observed: https://codepen.io/junilearning/pen/NWrMMbP/1e1ad471f376b1364cd157bd9c96f9ab
+JavaScript SHA256: 4db0569014395691c5af170d27c38b0892000bfe18efc0fe92a26103f38ee476
+
+Complete panels,official exports and all settings inspected2026-11-14. HTML/CSS preprocessors
+None,CSS base/prefixing Neither,JS Babel,no external resources/packages. The local scripts use
+ordinary modern JavaScript and need no Babel transform.
+
+The original starter has only the task prompt. The local starter supplies the drawing prerequisite.
+The original reference draws x=index*200,y150,size150by100 but tests client x10+index*200through
+160+index*200 and y160through260. Its observed canvas viewport offset is(8,8).
+The newly authored local reference corrects coordinate conversion and matches the actual rectangles.
+Responsive HTML/CSS and the literal console viewer are declared additions.
+The private reference archive contains no separate license file;its complete capture is audit evidence.
+LICENSE-original.txt retains the complete starter notice.

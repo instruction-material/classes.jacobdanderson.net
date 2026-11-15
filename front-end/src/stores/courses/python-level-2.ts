@@ -2249,23 +2249,23 @@ export const pythonLevel2Course: RawCourse = {
 					content: projectBrief({
 						goal: "Build a timed word game from seven random letters and a valid-word list.",
 						build: [
-							"Choose or generate seven letters.",
-							"Load the valid-word list.",
-							"Accept guesses until the timer expires or the round ends.",
-							"Reject repeated, impossible, or invalid words and score accepted words."
+							"Choose seven distinct lowercase letters; a letter may repeat within a guess.",
+							"Load the supplied valid_words.txt as stripped lowercase words.",
+							"Set a 60-second deadline with time.monotonic(). Check before and after input(); discard an answer received at or after the deadline.",
+							"Accept :quit for a clean exit. Reject empty, repeated, unavailable-letter or non-dictionary guesses. Add len(word) once per accepted word and print the final score."
 						],
 						checkpoints: [
 							"Guesses use only available letters.",
 							"Repeated guesses do not score twice.",
-							"The score rule is visible and testable."
+							"A late answer never scores; EOF and :quit end the round cleanly."
 						],
 						extension:
-							"Add guaranteed vowels, round replay, high scores, or difficulty levels based on word length."
+							"For letters a,c,e,i,n,r,t, cat then cat then crate scores 8 before :quit. The console checks its deadline when input returns. Add guaranteed vowels, replay, high scores or word-length difficulty as extensions."
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-2/tree/main/PS13-Wordsmith/starter",
+						"https://github.com/instruction-material/Python-Level-2/tree/a840f54eb6a55718f6305544adc937c32fa516ee/PS13-Wordsmith/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-2/tree/main/PS13-Wordsmith/solution",
+						"https://github.com/instruction-material/Python-Level-2/tree/a840f54eb6a55718f6305544adc937c32fa516ee/PS13-Wordsmith/solution",
 					mediaLink:
 						"https://static.classes.jacobdanderson.net/ps13_wordsmith.gif"
 				}
@@ -2662,14 +2662,14 @@ const PYTHON_LEVEL_2_FLOW: PythonLevel2FlowConfig[] = [
 		title: "PS13 Wordsmith",
 		estimatedTime: "3 sessions · 45–60 minutes each",
 		keyBlocks: [
-			"word collection",
-			"random choice",
-			"template",
-			"replay loop",
-			"grammar cleanup"
+			"seven-letter set",
+			"valid-word lookup",
+			"duplicate guesses",
+			"monotonic deadline",
+			"word-length score"
 		],
 		projectThread:
-			"Build generated text from named word collections and a readable template. The minimum version produces a coherent result and replay path before advanced generation is attempted."
+			"Build a timed seven-letter word game from the supplied dictionary. Check letter membership and duplicate guesses, score each accepted word once, and reject answers received at or after the deadline. Replay and richer scoring are extensions."
 	},
 	{
 		title: "PS14 Blackjack",

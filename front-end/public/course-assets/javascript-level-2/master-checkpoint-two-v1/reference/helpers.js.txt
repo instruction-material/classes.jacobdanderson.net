@@ -1,0 +1,17 @@
+(function () {
+"use strict";
+function sumEvens(values) {
+  return values.reduce((total, value) => value % 2 === 0 ? total + value : total, 0);
+}
+function canvasPoint(event, canvas) {
+  const rect = canvas.getBoundingClientRect();
+  if (rect.width <= 0 || rect.height <= 0) throw new Error("Canvas has no visible size.");
+  return { x: (event.clientX - rect.left) * canvas.width / rect.width,
+           y: (event.clientY - rect.top) * canvas.height / rect.height };
+}
+function firstMove(data) {
+  checkpointRemote.validateList(data);
+  return data.results[0].name;
+}
+globalThis.checkpoint = { sumEvens, canvasPoint, firstMove };
+})();

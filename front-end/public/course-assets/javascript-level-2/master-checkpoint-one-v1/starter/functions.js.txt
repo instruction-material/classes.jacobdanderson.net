@@ -1,0 +1,6 @@
+window.CheckInOne = {
+ rollDie(random = Math.random) { /* TODO: return an integer from 1 through 6. */ return undefined; },
+ playJackpot(a,b) { /* TODO: return the ternary win/loss message. */ return ""; },
+ sum(a,b) { /* TODO: return a+b. */ return undefined; },
+ isOdd(number) { /* TODO: return a boolean. */ return undefined; }
+};

@@ -1,0 +1,19 @@
+(function () {
+"use strict";
+function countTypes(moves) {
+  moveData.validateMoves(moves);
+  const counts = Object.create(null);
+  for (const move of moves) {
+    const name = move.type.name;
+    counts[name] = (counts[name] || 0) + 1;
+  }
+  return counts;
+}
+function countForType(counts, input) {
+  const key = String(input ?? "").trim().toLowerCase();
+  if (!key) throw new Error("Enter a move type.");
+  if (!moveData.types.has(key)) throw new Error("Unknown move type: " + key);
+  return { type: key, count: counts[key] || 0 };
+}
+globalThis.moveLesson = { countTypes, countForType };
+})();

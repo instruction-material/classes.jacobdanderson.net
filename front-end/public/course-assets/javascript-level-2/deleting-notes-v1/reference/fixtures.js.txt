@@ -1,0 +1,7 @@
+const suppliedDocument = {
+	schemaVersion: 1,
+	notes: [
+		{ id: "note-a", text: "Sketch the page layout." },
+		{ id: "note-b", text: "Check the last boundary case." },
+	],
+};

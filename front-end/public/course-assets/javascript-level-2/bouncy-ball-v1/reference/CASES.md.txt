@@ -1,0 +1,11 @@
+# Ball cases
+
+Initial first tick:dy=-4.92,x242,y285.08.
+At x464,dx2,y100,dy0: clampx465 and reverse dx to-1.6.
+At x16,dx-2,y100,dy0: clampx15 and reverse dx to1.6.
+At y15.1,dy-2,x100,dx0: gravity yields-1.92;clampto15,newdy1.536.
+At y304.9,dy2,dx2:gravityyields2.08;clampto305,newdy-1.664 anddx1.6.
+Large changed velocities still clamp to radius-aware walls.
+At floor y305,dy0,dx0,grounded=false:gravity 0.08 gives rebound-0.064;grounded=true,dx=dy0,resting=true. Another1000 ticks change nothing.
+With grounded=true,y305,dy0,dx1:the first tickmovesx by1 and setsdx0.8;within20ticks it reaches stable rest.
+The uncompleted starter keeps its initial green ball still.

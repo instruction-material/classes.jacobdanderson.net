@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coastal Cruise</title>
+<link rel="stylesheet" href="styles.css">
+<script src="console-viewer.js" defer></script>
+<script src="script.js" defer></script>
+</head>
+<body>
+<h1>Coastal Cruise</h1>
+<pre id="log" aria-label="Passenger manifest" role="log"></pre>
+</body>
+</html>

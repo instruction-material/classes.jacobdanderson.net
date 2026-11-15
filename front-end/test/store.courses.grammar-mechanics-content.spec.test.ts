@@ -10,6 +10,7 @@ import LazyMarkdownContent from "@/components/LazyMarkdownContent.vue";
 import { isLessonLearningItem } from "@/modules/courseLessonPresentation";
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
+import { grammarMechanicsActivities } from "@/stores/courses/grammarMechanicsActivities";
 import { grammarMechanicsCourse } from "@/stores/courses/source-library-courses";
 
 it.each(["learner", "instructor"])(
@@ -143,4 +144,36 @@ it.each(["learner", "instructor"])(
 			punctuation.unmount();
 		}
 	}
+);
+
+it.each(["learner", "instructor"])(
+    "keeps all40supplemental grammar tasks complete and in their own subject for %s",
+    async role => {
+        setActivePinia(createPinia());
+        if (role === "instructor") useAppStore().setCurrentTutor({
+            _id: "grammar-final-tutor", name: "Tutor", email: "tutor@example.invalid",
+            age: 30, state: "GA", usersOfTutorLength: 0,
+            coursePermissions: ["middle-school-c-grammar"], editTutors: false, saveEdit: "Save"
+        });
+        const course = (await useCoursesStore().loadCourseById("middle-school-c-grammar"))!;
+        const tasks = course.modules.flatMap(module => module.supplementalProjects.filter(
+            item => item.title.startsWith("Practice Map:") || item.title.startsWith("Extension Review:")
+        ));
+        expect(tasks).toHaveLength(40);
+        for (const module of course.modules) {
+            const authored = grammarMechanicsActivities[module.title];
+            for (const item of module.supplementalProjects) {
+                if (item.title.startsWith("Practice Map:")) expect(item.content, item.title).toBe(authored.practice);
+                if (item.title.startsWith("Extension Review:")) expect(item.content, item.title).toBe(authored.extension);
+            }
+        }
+        const bodies = new Set(tasks.map(item => item.content));
+        expect(bodies.size).toBe(40);
+        for (const item of tasks) {
+            expect(item.content, item.title).not.toMatch(/speech outline|givens, constraints|first solution or draft/);
+            expect(item.contentKind, item.title).toBe("assignment");
+            expect(isLessonLearningItem(item), item.title).toBe(false);
+            expect(item.content.length, item.title).toBeGreaterThan(170);
+        }
+    }
 );

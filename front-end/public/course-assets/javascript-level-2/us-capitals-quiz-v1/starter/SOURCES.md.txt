@@ -1,0 +1,10 @@
+# Sources
+
+- Original Juni starter: https://codepen.io/junilearning/pen/f8ec7312634d2011e58c44d691d1da13
+- Original Juni reference: https://codepen.io/junilearning/pen/540c4d060641bb749cefde340d69acd6
+- State-capital pairs: the Minnesota Legislative Reference Library's archived State Capitals table, printed page 432/PDF page 434: https://www.lrl.mn.gov/docs/2013/other/130551.pdf#page=434 . All fifty pairs were compared with the retained page image. ZIP codes are omitted.
+- Map shapes: us-atlas 3.0.1, states-albers-10m.json, built from the U.S. Census Bureau's 2017 cartographic state boundaries: https://github.com/topojson/us-atlas/tree/v3.0.1 . Its ISC notice is retained in LICENSE-MAP.txt.
+- Topology source SHA256: 6e7bb086a3c791490361968a3094f377f7726c5d0c4900fec03cc42db2305a3d.
+- The data derives SVG-compatible paths by decoding delta arcs, reversing negative references, joining polygon rings and rounding projected coordinates to 0.001 units. All fifty states, including Alaska/Hawaii insets, remain. District of Columbia is excluded from this state quiz. The view box encloses all retained coordinates.
+- The original task's remote quiz_game_states.json was unavailable during review. This pack uses the separately documented replacement data above; it preserves the U.S.-capitals quiz purpose and color-coded state map.
+- Models, native form controls, validation, transaction boundaries for file selection and text results were written for this local adaptation. No external script, CORS proxy or hosted service is needed.

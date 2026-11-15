@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Refactory</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="report-viewer.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main><h1>Refactory</h1><div id="reports" aria-label="Widget reports"></div></main>
+</body>
+</html>

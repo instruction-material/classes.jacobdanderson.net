@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Which Card</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="console-viewer.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Which Card</h1>
+    <canvas id="my-canvas" role="img" aria-label="Five cards: green, red, blue, yellow and cyan"></canvas>
+    <h2>Click log</h2>
+    <pre id="log" aria-live="polite"></pre>
+  </main>
+</body>
+</html>

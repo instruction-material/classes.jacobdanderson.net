@@ -1,0 +1,60 @@
+
+const canvas=document.querySelector('canvas');
+const ctx=canvas.getContext('2d');
+const status=document.querySelector('[role="status"]');
+const setStatus=text=>{if(status.textContent!==text)status.textContent=text;};
+const keys={left:false,right:false,up:false,fire:false};
+
+const newGame = () => ({player:{x:100,y:100,angle:0},circles:[],bullets:[],ticks:0,cooldown:0,score:0,status:'playing'});
+const radians = degrees => degrees*Math.PI/180;
+function trianglePoints(p) {
+ const a=radians(p.angle),cos=Math.cos(a),sin=Math.sin(a);
+ return [[10,10],[0,-15],[-10,10]].map(([x,y])=>({x:p.x+x*cos-y*sin,y:p.y+x*sin+y*cos}));
+}
+function segmentDistanceSquared(c,a,b) {
+ const dx=b.x-a.x,dy=b.y-a.y;
+ const t=Math.max(0,Math.min(1,((c.x-a.x)*dx+(c.y-a.y)*dy)/(dx*dx+dy*dy)));
+ return (c.x-a.x-t*dx)**2+(c.y-a.y-t*dy)**2;
+}
+function shipTouchesCircle(p,c) {
+ // TODO: Test triangle containment and distance from each edge.
+ return false;
+}
+function spawnAsteroid(random=Math.random) {
+ const side=Math.floor(random()*4),along=random();
+ return {x:side===0||side===1?along*550:side===2?-50:600,y:side===2||side===3?along*500:side===0?-50:550,heading:[90,-90,0,180][side]+random()*180-90,radius:50};
+}
+function stepGame(s,keys,random=Math.random) {
+ // TODO: Apply the rules and boundary cases in README.md and CASES.md.
+}
+function paint(s) {
+ ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='black';ctx.strokeStyle='black';
+ for(const c of s.circles){ctx.beginPath();ctx.arc(c.x,c.y,c.radius,0,Math.PI*2);ctx.stroke();}
+ for(const b of s.bullets){ctx.beginPath();ctx.arc(b.x,b.y,b.radius,0,Math.PI*2);ctx.fill();}
+ const points=trianglePoints(s.player);ctx.beginPath();ctx.moveTo(points[0].x,points[0].y);for(const p of points.slice(1))ctx.lineTo(p.x,p.y);ctx.closePath();ctx.fill();
+ ctx.font='20px Arial';ctx.textAlign='right';ctx.fillText('Score: '+s.score,530,480);
+ if(s.status==='lost'){ctx.font='30px Arial';ctx.textAlign='center';ctx.fillText('You Lose',275,100);}
+ setStatus(s.status==='lost'?'You Lose. Score: '+s.score:'Score: '+s.score);
+}
+
+let game=newGame();
+const clearKeys=()=>{for(const key of Object.keys(keys))keys[key]=false;};
+const keyNames={ArrowLeft:'left',ArrowRight:'right',a:'left',d:'right',w:'up',' ':'fire',f:'fire'};
+window.addEventListener('keydown',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=true;}});
+window.addEventListener('keyup',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=false;}});
+window.addEventListener('blur',clearKeys);
+document.addEventListener('visibilitychange',()=>{if(document.hidden)clearKeys();});
+for(const button of document.querySelectorAll('[data-key]')){
+ button.addEventListener('pointerdown',e=>{e.preventDefault();button.setPointerCapture(e.pointerId);keys[button.dataset.key]=true;});
+ for(const name of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(name,()=>keys[button.dataset.key]=false);
+}
+document.querySelector('#restart').addEventListener('click',()=>{clearKeys();game=newGame();paint(game);canvas.focus();});
+
+let previous;
+let elapsed=0;
+function frame(time){
+ if(previous!==undefined)elapsed+=Math.min(100,Math.max(0,time-previous));previous=time;
+ while(elapsed>=1000/60){stepGame(game,keys);elapsed-=1000/60;}
+ paint(game);requestAnimationFrame(frame);
+}
+paint(game);requestAnimationFrame(frame);

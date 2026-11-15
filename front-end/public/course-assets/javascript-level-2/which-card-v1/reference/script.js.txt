@@ -1,0 +1,31 @@
+// Match clicks against the same card geometry used for drawing.
+const canvas = document.getElementById("my-canvas");
+const ctx = canvas.getContext("2d");
+canvas.width = 1200;
+canvas.height = 800;
+const colors = ["green", "red", "blue", "yellow", "cyan"];
+const cards = colors.map((color, index) => ({
+  color, x: index * 200, y: 150, width: 150, height: 100
+}));
+for (const card of cards) {
+  ctx.fillStyle = card.color;
+  ctx.fillRect(card.x, card.y, card.width, card.height);
+}
+
+function canvasPoint(event) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: (event.clientX - rect.left) * canvas.width / rect.width,
+    y: (event.clientY - rect.top) * canvas.height / rect.height
+  };
+}
+function cardAt(point) {
+  return cards.find(card =>
+    point.x >= card.x && point.x < card.x + card.width &&
+    point.y >= card.y && point.y < card.y + card.height
+  );
+}
+canvas.addEventListener("click", event => {
+  const selected = cardAt(canvasPoint(event));
+  if (selected) console.log(selected.color);
+});

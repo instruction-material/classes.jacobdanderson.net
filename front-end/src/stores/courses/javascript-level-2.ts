@@ -1,4 +1,7 @@
 import type { RawCourse } from "./types";
+import javascriptApiResponsesReading from "@/assets/course-guides/javascript-api-projects/apis.md?raw";
+import javascriptLocalDocumentsReading from "@/assets/course-guides/javascript-local-persistence/local-documents.md?raw";
+import javascriptLocalMessageBoardReading from "@/assets/course-guides/javascript-local-persistence/local-message-board.md?raw";
 import javascriptColorfulCards2DReading from "@/assets/course-guides/javascript-master-arrays/colorful-cards-2d.md?raw";
 import javascriptColorfulCardsReading from "@/assets/course-guides/javascript-master-arrays/colorful-cards.md?raw";
 import javascriptForayIntoArraysReading from "@/assets/course-guides/javascript-master-arrays/foray-into-arrays.md?raw";
@@ -118,51 +121,198 @@ const javascriptLevel2SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Check-In #1 Overview",
-					content: `**Review scope:** This checkpoint brings together JavaScript functions, conditionals, random values, arrays, objects, and canvas rendering. The goal is clear reasoning about where values are stored, when code runs, and how the visible output proves the program state.
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
+					content: `# Check-In 1: Functions, Arrays, Objects and Canvas
 
-**Working pattern:** Attempt each small task as an isolated program first. When the output is wrong, name the expected value, the actual value, and the line where the state first diverges. Console output, printed page output, and canvas drawings all count as evidence when they make the program behavior visible.
+Continue the same local project through the three checkpoint tasks. Open
+index.html in a browser without a server. The page controls and result areas
+are supplied; complete the functions in functions.js, arrays.js and objects.js.
+The starter reports unfinished tasks until those functions return useful values.
+Keep your completed files when continuing to the next task.
 
-**Evidence target:** A complete check-in has working code for every topic area, at least one custom test case beyond the provided prompt, and a short explanation of the bug or design choice that required the most careful reasoning.`,
+## Functions and complex conditionals
+
+Implement rollDie() to return one integer from 1 through 6 on every call.
+Math.random() includes 0 and excludes 1: multiplying by 6, taking Math.floor,
+then adding 1 gives the required range. The optional random parameter lets a
+fixed input be checked without waiting for a rare random event. Check inputs
+0 and 0.999999: the results must be 1 and 6. Math.ceil(random * 6) would give
+0 at the first boundary.
+
+Implement playJackpot(a,b) with a ternary expression: return "Jackpot!" when
+a+b is at least 10; otherwise return "Better luck next time!". For (4,5),
+(4,6) and (6,6), check the messages for sums 9, 10 and 12. Implement sum(a,b)
+to return the sum, and isOdd(number) to return a boolean. Check sum(2,3)=5,
+isOdd(3)=true, isOdd(2)=false, isOdd(0)=false and isOdd(-3)=true.
+
+Run Functions. The supplied runner calls rollDie 100 times and displays all
+100 values plus the number of sixes. A random count is not a fixed expected
+answer: every displayed roll must be an integer from 1 through 6 and the
+count must equal a manual count of sixes in that same list. The page also
+shows a jackpot result from two new rolls, the sum result and oddness checks.
+
+## Arrays
+
+Implement createDiceResults(count,random) using rollDie to generate count
+rolls. Use count=20 in the page. Implement countEvenRolls(values) to return
+the number divisible by two, and doubleResults(values) to return a new array
+with twice each corresponding value. Preserve the original array.
+
+Run Arrays. Display the original twenty values, the tenth element at index 9,
+the even count and the doubled array. Compare the tenth displayed value with
+the reported value. For fixed [1,2,3,4,5,6], the even count is 3 and the doubled
+array is [2,4,6,8,10,12]; the input still contains [1,2,3,4,5,6].
+Empty input produces zero even values and a new empty doubled array.
+An even count may range from 0 through 20 for twenty die rolls.
+
+## Objects and canvas
+
+Implement createCar() with make "Toyota", model "Corolla", year 1999,
+color "red" and damaged true. Read its year through the object property.
+
+Implement createCards(random) to return four card objects. Each stores text
+as an integer from 1 through 100, x=50, width=200, height=100, a color and a y
+value of 0, 150, 300 or 450. The canvas has a 1200 by 1200 drawing buffer;
+CSS scales its display while retaining those coordinates. Using height as
+the property name makes the rectangle's vertical dimension explicit.
+
+Implement drawCards(context,cards) to clear the old drawing, loop over the
+objects and draw their rectangles and centered number labels. Run Cards.
+All four labels must match the adjacent text list. Change one card's position
+or color in its object data and rerun; the rendering loop should stay the
+same. Repeated runs replace the prior drawing. The supplied text list keeps
+card data available when canvas drawing is unavailable.
+
+## Completion
+
+Keep the three task files, a result from every Run control, the fixed boundary
+checks, and one changed input with its predicted and observed result. Explain
+the difference between returning a value and printing it, why the tenth array
+element uses index 9, and how an object's coordinates control its rectangle.
+Use the reference after an attempt to compare the relevant functions.
+`,
 					solutionLink:
 						"https://codepen.io/junilearning/pen/bbb5cce14f0a1bc5c5c4b5582da67750"
 				},
 				{
 					title: "Check-In #1: Functions & Complex Conditionals",
-					content: `**Concept path:** Functions package repeatable logic, while conditionals decide which path runs for each value. This section checks whether a program can isolate one job per function and then combine those functions into a larger result.
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "assignment",
+					content: `Complete functions.js in the shared Check-In 1 project. README.md contains the complete checkpoint instructions and CASES.md supplies fixed traces. Work locally without a server and keep this project when continuing to Arrays and Objects.
 
-**Practice targets:** Create \`rollDie()\` so each call returns a random integer from 1 through 6. Run it 100 times, count how often the result is 6, and print both the raw count and a short interpretation. Build \`playJackpot()\` with a ternary expression for the win/loss message, then add a sum function and an \`isOdd\` function that return values instead of only printing.
+Implement rollDie(random) to return one integer from 1 through 6; test fixed inputs 0 and 0.999999 for results 1 and 6. Run Functions to generate exactly 100 rolls and count the sixes in that same list. A random count varies between runs; the range and count must agree with the displayed data.
 
-**Evidence target:** The output changes across runs because randomness is involved, but every die roll remains within range. The function calls are reusable, and the conditional logic can be checked with fixed test values before the random loop is trusted.`,
+Use a ternary expression in playJackpot(a,b): a sum at least 10 returns "Jackpot!", otherwise "Better luck next time!". Check (4,5), (4,6) and (6,6). Implement sum(a,b) and boolean isOdd(number); check sum(2,3)=5 and oddness for -3, 0, 2 and 3. Return values so the supplied page runner can display them.
+
+Retain the four functions, one complete 100-roll result, the fixed boundary cases and one changed input with its predicted and observed result. Explain why adding 1 after Math.floor gives the correct die range and why the function returns a value instead of only printing.`,
 					projectLink:
-						"https://codepen.io/junilearning/pen/f1b05b8f30ae178563d6ecd20e816e3f"
+						"https://codepen.io/junilearning/pen/f1b05b8f30ae178563d6ecd20e816e3f",
+					solutionLink:
+						"/course-assets/javascript-level-2/master-checkpoint-one-v1/reference/index.html.txt",
+					ideImport: true
 				},
 				{
 					title: "Check-In #1: Arrays",
-					content: `**Concept path:** Arrays preserve ordered data, so the index, length, and loop boundaries matter as much as the values themselves. This section connects random generation to later analysis.
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "assignment",
+					content: `Continue the same Check-In 1 project and complete arrays.js. Keep the finished functions.js; README.md and CASES.md contain the full assignment and fixed examples.
 
-**Practice targets:** Fill an array with 20 \`rollDie()\` results. Log the 10th element by using index 9, count how many rolls are even, and create doubled output without losing the original roll data. Use the array length rather than hard-coded loop limits when possible.
+Implement createDiceResults(count,random) by collecting calls to rollDie. Run Arrays with count=20 and display those twenty original values. Report the tenth element using index 9. Implement countEvenRolls(values) and doubleResults(values), returning a new doubled array without changing the original.
 
-**Evidence target:** The array contains exactly 20 values, every value is in the die range, the even count matches a manual scan of one printed sample, and the doubled values are derived from the original array rather than generated separately.`
+For [1,2,3,4,5,6], the even count is 3 and the doubled result is [2,4,6,8,10,12]. Check that the original still contains [1,2,3,4,5,6]. Empty input gives count 0 and a new empty doubled array. For the actual twenty rolls, compare the reported tenth value with the tenth displayed value and verify the even count manually.
+
+Keep the original list, tenth value, count, doubled list, fixed cases and one changed array with its expected result. Explain how array order and length determine the valid indices. Continue to Objects using these saved files.`,
+					projectLink:
+						"/course-assets/javascript-level-2/master-checkpoint-one-v1/starter/index.html.txt",
+					solutionLink:
+						"/course-assets/javascript-level-2/master-checkpoint-one-v1/reference/index.html.txt",
+					ideImport: true
 				},
 				{
 					title: "Check-In #1: Objects and the Canvas",
-					content: `**Concept path:** Objects group related properties under one name. Canvas drawing turns object state into visible geometry, which makes the connection between data and rendering concrete.
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "assignment",
+					content: `Continue the same Check-In 1 project and complete objects.js. README.md supplies the complete local task, and CASES.md lists its geometry checks.
 
-**Practice targets:** Create a car object with descriptive properties such as make, model, color, and year. Set up a 1200 by 1200 canvas, then build a cards array where each object stores at least x position, y position, width, height, and color. Render one card first, then render the full array with a loop.
+Create a car with make Toyota, model Corolla, year 1999, color red and damaged true. Read the year through its property. Create four card objects with integer text from 1 through 100, x=50, width=200, height=100, a color and y=0, 150, 300 or 450. Fixed random inputs 0 and 0.999999 must produce labels 1 and 100.
 
-**Evidence target:** Changing a card object's coordinates or color changes the drawing without rewriting the drawing logic. The card data and the rendering function stay separate enough that new cards can be added by changing the array.`
+The canvas buffer is 1200 by 1200. Implement drawCards(context,cards) to clear it before looping over card data, drawing each rectangle and centering its number. Run Cards and compare all four visible labels with the adjacent text list. Change a card's coordinates or color in the object data and rerun while keeping the drawing loop unchanged. Repeated drawing must replace the old image.
+
+Keep the car, four card objects, drawing function, a result for the original data and a changed-data result. The text list remains available when canvas is unavailable. Explain how object properties determine the visible rectangle and why CSS display size does not change the buffer coordinates.`,
+					projectLink:
+						"/course-assets/javascript-level-2/master-checkpoint-one-v1/starter/index.html.txt",
+					solutionLink:
+						"/course-assets/javascript-level-2/master-checkpoint-one-v1/reference/index.html.txt",
+					ideImport: true
 				},
 				{
 					title: "Check-In #1: Additional Practice Project",
-					content: `**Project target:** Build a 3 by 3 board where each cell randomly becomes either a square or a circle. The board represents both a data problem and a drawing problem: the program needs a way to generate the board state, render it, and decide whether every cell matches.
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "assignment",
+					content: `# Same-Shape Board
 
-**Build path:** Store the board in an array or two-dimensional array before drawing. Write a rendering function that clears the canvas and redraws the full board from the current data. Write a matching check that returns true only when every cell has the same shape.
+Build the original checkpoint's 3 by 3 board: each of its nine cells randomly
+contains a green circle or a red square. Keep generating and drawing boards
+until all nine shapes have the same type. The page supplies Start, Stop,
+one-board controls and a readable record of the current board.
 
-**Evidence target:** The board can redraw multiple times without leaving old shapes behind. The matching check works for a manually created all-square board, a manually created mixed board, and the random board produced by the program.`,
+Open index.html without a server. Complete createBoard(random),
+boardComplete(board) and drawBoard(context,board) in board.js. The interface
+code in script.js is supplied so this task focuses on arrays, objects,
+drawing and the completion condition.
+
+## Generate and draw
+
+createBoard returns an array of nine shape objects in column-major order.
+Use two loops from 0 through 2. For a circle in column i and row j, set
+type "circle", \`x=i*50+20\`, \`y=j*50+20\`, radius 20 and color "green".
+For a square, set type "square", \`x=i*50\`, \`y=j*50\`, length 40 and color "red".
+Choose each type independently with \`Math.floor(random()*2)\`. A supplied
+random function returning 0 should make nine circles; 0.75 should make nine
+squares. Alternating 0 and 0.75 should make a mixed board.
+
+drawBoard clears the 500 by 500 canvas before looping through the array.
+Use fillRect for squares and beginPath, arc and fill for circles. Drawing
+must read each object's stored properties rather than generating new random
+values: the text list and the canvas then describe the same board.
+The visible canvas scales to a narrow screen while its buffer remains 500
+by 500. Compare two successive one-board drawings for leftover shapes.
+
+## Decide when to stop
+
+boardComplete returns true only for exactly nine valid shapes of one type.
+Nine circles and nine squares are complete; a mixed array, an empty array,
+a partial board and an unknown type are incomplete. Compare every shape's
+type with the first after checking the length and valid types.
+
+Start draws one board per animation frame and stops as soon as the current
+board is complete. The supplied controller also stops after 2,000 attempts;
+it reports the limit instead of claiming a match. Randomness has no finite
+guarantee of a matching board. Stop cancels the pending frame. Starting again
+creates a fresh bounded attempt, and showing one board cancels any animation.
+Leaving or hiding the page also stops it. Keep the board state locally declared.
+
+## Completion
+
+Retain the three fixed generated boards, expected and observed completion
+values, a screenshot or text record of a match, and a stopped mixed run.
+Confirm that no extra frame runs after Stop or a match, that a second Start
+resets the attempt counter, and that reaching the limit reports the limit.
+Keep the array and text results available even when canvas is unavailable.
+Explain why a redraw clears the old image, why an empty array is not a full
+board, and why a bounded random run may finish without a match.
+`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/c9af625a0a84cbffef3dc7891aa804f9",
 					solutionLink:
-						"https://codepen.io/junilearning/pen/702bf96c0927e96b0089cdc58df366d0"
+						"https://codepen.io/junilearning/pen/702bf96c0927e96b0089cdc58df366d0",
+					ideImport: true
 				}
 			],
 			supplementalProjects: [
@@ -223,37 +373,51 @@ const javascriptLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "Check-In #2: Helper Functions and Event Listeners",
-					content: `**Concept path:** Helper functions reduce repeated code by naming one small operation. Event listeners connect browser actions to JavaScript functions, so a program can respond after the page loads.
-
-**Practice targets:** Refactor the starter code so repeated drawing, formatting, or calculation logic lives in named helpers. Add a canvas click listener that reads the event coordinates and logs both x and y. If the canvas is positioned with CSS, account for the canvas bounding rectangle before interpreting the click location.
-
-**Evidence target:** The refactored code has less repetition, the helper names describe their jobs, and clicking different canvas positions produces different coordinate output that matches the visible location.`,
+					contentKind: "assignment",
+					preserveAssignment: true,
+					ideImport: true,
+					preserveInstructions: true,
+					content:
+						"# Helpers and Canvas Events\n\nOpen the Core starter and complete sumEvens and canvasPoint in helpers.js. The supplied page connects the button and canvas click events to those functions; script.js contains those listeners.\n\nImplement sumEvens(values) with a named helper and a reduce total starting\nat 0. Preserve the input array. The original arrays [2,1,6,91,-1] and\n[0,3,2,91,-1] give 8 and 2. Also check [] gives 0, [1,2] gives 2,\n[-3,2] gives 2, and [-4,2] gives -2. Starting reduce without 0 would\nfail for [] and incorrectly include an odd first element.\n\nImplement canvasPoint(event,canvas). Read canvas.getBoundingClientRect(),\nsubtract rect.left and rect.top from clientX and clientY, then multiply\neach coordinate by its buffer-size/display-size ratio:\nx = (clientX - left) * canvas.width / rect.width\ny = (clientY - top) * canvas.height / rect.height\nA 500 by 500 buffer displayed at 250 by 250, with left=40 and top=60,\nmaps click (165,185) to (250,250). The top-left maps to (0,0).\nThe page deliberately scales the canvas. Click near the center and an edge,\nthen compare the visible position with the reported buffer coordinates.\n\n\nRetain expected and observed results for all six arrays, confirm the original inputs remain unchanged, and record two canvas clicks. Explain why helper return values can be reused and why client coordinates need both translation and scaling.",
 					projectLink:
-						"https://codepen.io/junilearning/pen/f6a04f3b9405ba212662f72a776bc0cd"
+						"https://codepen.io/junilearning/pen/f6a04f3b9405ba212662f72a776bc0cd",
+					solutionLink:
+						"/course-assets/javascript-level-2/master-checkpoint-two-v1/reference/index.html.txt"
 				},
 				{
 					title: "Check-In #2: APIs",
-					content: `**Concept path:** An API is a structured way for one program to request data from another program. In browser JavaScript, \`fetch\` starts the request and the response must be converted to usable data before the values can be read.
-
-**Practice targets:** Begin with the supplied PokéAPI-shaped fixture, inspect its top-level object, validate \`results\`, and display the first move name. Then optionally request \`https://pokeapi.co/api/v2/move/?limit=20\`, check \`response.ok\`, parse JSON, validate the same shape, and use an \`AbortController\` timeout. Keep loading, request, validation, state, and display code separate.
-
-**Evidence target:** The fixture route always produces the expected first name. A successful optional request uses the same rendering path, repeated reads use the cached result, and offline, timeout, non-OK, or malformed-data cases produce a visible message without erasing the last valid state.`
+					contentKind: "assignment",
+					preserveAssignment: true,
+					ideImport: true,
+					preserveInstructions: true,
+					content:
+						'# API Responses\n\nContinue the saved Core project and complete firstMove in helpers.js. fixture.js supplies this authored practice object:\n\n    {"results":[{"name":"pound","url":"https://pokeapi.co/api/v2/move/1/"},{"name":"karate-chop","url":"https://pokeapi.co/api/v2/move/2/"}]}\n\nfixture.js is a small authored practice object shaped like a move-list\nresponse. It is supplied with this project, rather than fetched on opening.\nImplement firstMove(data): call checkpointRemote.validateList(data) and\nreturn data.results[0].name. The fixture\'s first name is pound. Invalid,\nmissing or empty results must produce a useful error instead of a crash.\n\nUse practice fixture to display that result. Request 20 move names is\noptional and performs one public GET to the documented move-list endpoint.\nThe supplied remote.js checks response.ok, parses JSON, validates before\ncaching, and uses AbortController to abort after five seconds. Inspect how\nloading, request, validation, state and display have separate responsibilities.\nRepeated successful reads use the page\'s memory cache. Reload clears it.\nAn offline, non-OK, malformed or timeout response must retain the last valid\nname and source label while displaying an error. Avoid private records.\n\n\nRetain the fixture\'s expected and observed result, invalid-data expectations and one changed first name. For an optional live request, keep the displayed source and recovery result. Explain how the validated object reaches the page.',
+					projectLink:
+						"/course-assets/javascript-level-2/master-checkpoint-two-v1/starter/index.html.txt",
+					solutionLink:
+						"/course-assets/javascript-level-2/master-checkpoint-two-v1/reference/index.html.txt"
 				},
 				{
 					title: "Check-In #2: Databases",
-					content: `**Concept path:** Databases store related records so programs can create, read, update, and delete persistent data. SQL queries describe what data to retrieve and how tables relate.
-
-**Practice targets:** Define \`SELECT\`, \`WHERE\`, and \`JOIN\` using the supplied books-and-bookshelves rows. Draw a two-table schema locally, identify primary and foreign keys, predict each supplied query result, and map create, read, update, and delete to local app state. Optionally reproduce the diagram in dbdiagram after the local artifact is complete.
-
-**Evidence target:** The schema makes the relationship and constraints visible, each query prediction matches the supplied result, CRUD examples distinguish changing stored data from merely rendering it, and no hosted database, account, or real record is required.`
+					contentKind: "assignment",
+					preserveAssignment: true,
+					ideImport: true,
+					preserveInstructions: true,
+					content:
+						"# Books and bookshelves\n\nThese are fictional records supplied for this exercise. A database persists\nstored rows; rendering those rows into the page only changes a view.\n\nbookshelves\n\n| id | label |\n| --- | --- |\n| 1 | Fiction |\n| 2 | Science |\n\nbooks\n\n| id | title | shelf_id |\n| --- | --- | --- |\n| 10 | Moon Map | 1 |\n| 11 | River Robots | 1 |\n| 12 | Seed Lab | 2 |\n\nDraw two boxes for these tables. Each id is a primary key, unique within\nits table. Each books.shelf_id is a foreign key referring to bookshelves.id.\nOne shelf has many books; every book here belongs to one existing shelf.\nlibrary.sql supplies the schema, constraints, rows and two read queries.\nYou can predict their results without installing a database.\n\nSELECT chooses output columns; FROM chooses source rows; WHERE filters\nrows. Query A selects title from books with shelf_id=1, ordered by id:\nMoon Map\nRiver Robots\n\nJOIN combines rows whose shelf IDs match. Query B returns:\nMoon Map | Fiction\nRiver Robots | Fiction\nSeed Lab | Science\n\nWrite each predicted result before comparing it with these worked results.\nThen explain the same join as a JavaScript lookup by shelf_id.\n\nCRUD describes create, read, update and delete:\nCREATE: INSERT INTO books VALUES (13,'Star Garden',2);\nREAD: SELECT title FROM books WHERE id=13; gives Star Garden.\nUPDATE: UPDATE books SET shelf_id=1 WHERE id=13;\nREAD the join again: Star Garden now pairs with Fiction.\nDELETE: DELETE FROM books WHERE id=13;\nREAD again: the three original books remain.\n\nRun this sequence beginning from library.sql. Changing only a\ndisplayed title leaves a stored row unchanged. Changing an in-memory\nJavaScript array lasts only in that program until deliberately saved;\na SQL UPDATE changes stored data. Explain which action each example performs.\nAn insert using shelf_id=99 fails the foreign-key constraint. A repeated\nprimary-key id fails its uniqueness constraint. Record both predictions.\n\nIf SQLite is available, run library.sql in a temporary database, then the\nCRUD sequence above. Otherwise retain the diagram, query predictions and\nworked comparisons as the complete local artifact. An optional online\nschema diagram can reproduce these fictional tables after this work.\n\n\nKeep the two-table diagram, predictions for both queries, the CRUD sequence and the two constraint predictions. Continue with the same Core files; this worksheet needs no account or private data.",
+					projectLink:
+						"/course-assets/javascript-level-2/master-checkpoint-two-v1/starter/index.html.txt",
+					solutionLink:
+						"/course-assets/javascript-level-2/master-checkpoint-two-v1/reference/index.html.txt"
 				},
 				{
 					title: "Check-In #2: Additional Practice Project",
-					content: `**Project target:** Build a small move analyzer that counts types from a supplied PokéAPI-shaped fixture and displays the total for a form-selected type. An optional public GET refresh may replace the fixture after the local route works. The project combines resilient data loading, array/object traversal, input handling, and safe page output.
-
-**Build path:** Validate the fixture, normalize the form value so capitalization does not break comparison, and store counts in an object where each key is a type and each value is the number of matching moves. For an optional live refresh, check status, abort after a short timeout, cache the response, validate shape, and fall back to the fixture.
-
-**Evidence target:** The page displays correct counts for at least two types, handles unknown and empty values, remains usable offline or after malformed remote data, and includes a privacy-safe page trace naming whether fixture or live data produced the result.`,
+					contentKind: "assignment",
+					preserveAssignment: true,
+					ideImport: true,
+					preserveInstructions: true,
+					content:
+						'# Move Analyzer\n\nBuild a page that groups move objects by their nested type.name and counts\nthe form-selected type. The complete local fixture and page controls are\nsupplied. Open index.html directly and complete moves.js.\n\nfixture.js contains six authored practice records with fictional move names\nand the same nested name/type.name structure used by PokéAPI move objects.\nThe expected counts are fire=2, water=2, normal=1 and electric=1. This is a\nsix-record sample; its counts do not describe the complete API collection.\n\nImplement countTypes(moves): call moveData.validateMoves, loop over moves,\nread each move.type.name, and increment the matching counter. Return the\ncounts without changing the supplied array. Object.create(null) gives a\ndictionary without inherited property names. The four counts sum to six.\n\nImplement countForType(counts,input): convert input to a string, trim spaces\nand lowercase it. Empty input produces Enter a move type; an unrecognized\ntype produces an Unknown move type message. moveData.types supplies the\nrecognized types. A valid type absent from the sample has count0.\nReturn {type:key,count:number} and let the supplied interface render it with\ntextContent. Avoid a prompt loop or HTML interpolation.\n\nUse six-move practice fixture, then submit Fire, water, " WATER ", grass,\nan empty input and an unknown type. Expected: 2,2,2,0,empty-input message,\nunknown-type message. Compare the visible counts with the same six records\nand check that their names and nested types remain unchanged.\n\n## Optional live data\n\nRequest moves 1 through 6 is an explicit optional action. The supplied\ndata.js reads these six fixed IDs sequentially, one GET at a time. Every\nresponse must have a move name and a recognized type.name. remote.js\nchecks HTTP status, parses JSON, validates before caching and aborts each\nrequest after five seconds. Six requests are the fixed maximum for a new\ncomplete sample. A second successful read reuses those cached responses\nuntil reload. No requests run just by opening or typing into the page.\n\nCounts become current only after all six records succeed. If any request\nfails, the last valid sample, counts and source label remain visible with\nan error. A failed response is not cached. Describe what happens for offline,\ntimeout, non-OK and malformed responses; use the local fixture whenever a\nlive request is unavailable. Compare types within the actual returned sample,\nrather than assuming it matches the practice fixture or all available moves.\n\n## Completion\n\nKeep the six practice inputs and results, original data, counts summing to\nsix, source label and a changed fixture with its predicted counts. If using\nlive data, retain its visible source and a failed-refresh recovery result.\nExplain why ready must wait for every selected request, why one last-numbered\nrequest finishing does not establish that others finished, and how caching\nand the fixed request bound keep this project responsive.\n',
 					projectLink:
 						"https://codepen.io/junilearning/pen/a320051c74a1a5baa1358818c5bca5bc",
 					solutionLink:
@@ -370,11 +534,50 @@ Record the prompts, accepted words and expected scores in CASES.md. Check all-co
 				},
 				{
 					title: "JSM1 Project 2: Double or Nothing",
-					content: `**Project target:** Build a risk-and-reward coin-flip game. Each successful flip doubles the current dollars, and a losing flip ends the round with zero.
+					contentKind: "assignment",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					ideImport: true,
+					content: `Start with 1000 virtual dollars. Before each flip, ask whether to play or leave.
+Y plays; N or Cancel ends the game with the current balance. Other entries
+repeat the question without flipping. Heads doubles the balance; tails ends
+the game at zero. This exercise uses virtual dollars only.
 
-**Build path:** Start with 1000 virtual dollars. Before each flip, prompt for Y to play or N to stop; Cancel also stops and preserves the balance. Retry other entries without flipping. Use \`Math.floor(Math.random() * 2)\`: 0 means heads and doubles the balance, while 1 means tails, sets the balance to zero, and ends the game. Keep the choice, flip, and balance update separate.
+## Trace the loop
 
-**Evidence target:** A win doubles the displayed value, a loss resets the round correctly, stopping preserves the current total, and the game prints a final message for every ending path.`,
+Keep the balance in one variable. A while loop repeats the decision until a stop
+path returns that balance. Test the choice before drawing a random value.
+Normalize a string with trim().toUpperCase(); check Cancel (null) first.
+
+For Y, Y, N with heads then heads, trace 1000, 2000, 4000. N consumes no third
+random value. For Y and tails, return zero immediately. Cancel before the first
+flip returns 1000. An invalid choice asks again with the same balance.
+
+## Complete the starter
+
+Implement playDoubleOrNothing(ask = prompt, random = Math.random) in script.js.
+ask accepts the prompt message and returns the entered string or null.
+random returns a value in [0, 1). Compute Math.floor(random() * 2): zero means
+heads and one means tails. Separate choice handling, flips and balance changes.
+
+Return the final balance along every ending path. The supplied Start round
+button calls the function and printToScreen. The supplied D3 helper appends a
+readable text paragraph. text() treats the result as text. Keep game decisions
+outside this rendering helper. Each button click starts a fresh round at 1000
+and records one result.
+
+Validate the random value before using it. Values outside [0, 1) produce an
+error instead of a fabricated flip. If another heads would exceed
+Number.MAX_SAFE_INTEGER, preserve the current balance and end the round,
+keeping displayed dollar amounts exact.
+
+## Run and compare
+
+Keep all files together and open index.html in a browser without a server.
+Press Start round and use the actual Y/N/Cancel prompt. Complete the starter
+before comparing the reference. Save the same IDE attempt, export its ZIP and
+open that exported HTML. README.md explains the workflow; CASES.md supplies fixed traces; SOURCES.md identifies
+the original assignment and the offline output adaptation.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/546a7d889ffe394b3efeca62a005209c",
 					solutionLink:
@@ -384,11 +587,17 @@ Record the prompts, accepted words and expected scores in CASES.md. Check all-co
 				},
 				{
 					title: "Drawing in JavaScript",
-					content: `**Concept path:** SVG describes shapes as elements in the page, and D3 helps create or update those elements from JavaScript data. Unlike canvas, SVG shapes remain as individual DOM nodes that can be selected and styled.
+					contentKind: "assignment",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					ideImport: true,
+					content: `SVG describes shapes as elements in the page, and D3 helps create or update those elements from JavaScript data. Unlike canvas, SVG shapes remain as individual DOM nodes that can be selected and styled.
 
-**Practice targets:** Recreate the original 100 Squares project with D3: begin with one 50-by-50 square, make a row of 10, then use nested loops for 10 rows and 10 columns. Use a 1000-by-1000 SVG. Set each square's x and y positions to \`50 + column * 75\` and \`50 + row * 75\`. Choose red, green, and blue channel values from 1 through 255 and form a complete \`rgb(r, g, b)\` color string. Scale the SVG to fit narrower screens while retaining its coordinates.
+Recreate the original 100 Squares project with D3: begin with one 50-by-50 square, make a row of 10, then use nested loops for 10 rows and 10 columns. Use a 1000-by-1000 SVG. Set each square's x and y positions to \`50 + column * 75\` and \`50 + row * 75\`. Choose red, green, and blue channel values from 1 through 255 and form a complete \`rgb(r, g, b)\` color string. Scale the SVG to fit narrower screens while retaining its coordinates.
 
-**Evidence target:** The SVG contains exactly 100 rectangles with 10 distinct x positions and 10 distinct y positions. The first square begins at (50, 50), the last at (725, 725), and every square is 50-by-50. Rerunning changes colors while preserving the grid; narrow screens retain the full drawing.`,
+**Check:** The SVG contains exactly 100 rectangles with 10 distinct x positions and 10 distinct y positions. The first square begins at (50, 50), the last at (725, 725), and every square is 50-by-50. Rerunning changes colors while preserving the grid; narrow screens retain the full drawing.
+
+The imported \`README.md\` includes SVG setup and a worked one-square example. \`CASES.md\` supplies fixed coordinate and color checks.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/90973aa93a04ccb12c61f3a85280daed",
 					solutionLink:
@@ -396,11 +605,55 @@ Record the prompts, accepted words and expected scores in CASES.md. Check all-co
 				},
 				{
 					title: "HTML & CSS",
-					content: `**Concept path:** HTML gives page content structure, while CSS controls presentation. JavaScript can generate or modify page content, but the result remains easier to maintain when markup, style, and behavior each have a clear job.
+					contentKind: "assignment",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					ideImport: true,
+					content: `Build a three-row table with Name, Favorite Menu Item, and Photo or Illustration
+columns. The original task uses restaurant names, menu items and images.
+This pack supplies three original SVG food illustrations that work offline.
+Use the example restaurants or substitute three real or fictional choices.
 
-**Practice targets:** Build the Favorite Restaurants table with columns Name, Favorite Menu Item, and Photo or Illustration. Include three real or fictional restaurant rows, give each column a header, and add descriptive alternative text to each image. Use a photo or a self-made illustration for each row. Style spacing, font size, image width, and alternating rows with CSS; keep the full table readable on a narrow screen.
+## Build the table
 
-**Evidence target:** The table is readable without JavaScript console output, CSS selectors are specific enough to avoid accidental global changes, and the alternating-row styling still works after adding another row.`,
+A caption inside table identifies its data. Put column labels in a thead row
+with th scope="col". Put restaurant rows in tbody. Each tr has three cells
+in the same order: a td for the name, a td for its menu item, and a td for img.
+
+Begin with one complete row, then add two more. Use images/fries.svg,
+images/chicken.svg and images/bowl.svg as relative src paths. Each image needs
+alt text describing its food, rather than a filename. Keep the images folder
+with index.html when exporting. Drawing replacement illustrations is optional.
+
+Restaurant website links use HTTPS and descriptive names. The reference keeps
+the original three destination links and opens them in the same tab. The table
+and supplied images work without visiting those websites.
+
+## Style and check
+
+Use border-collapse: collapse for neighboring cell borders, with modest cell
+padding. Give images a practical width and max-width: 100%. Use
+tbody tr:nth-child(even) for alternate rows; selecting tbody keeps the header
+from shifting the pattern. Include visible keyboard focus for links.
+
+Keep all three columns aligned on narrow screens. Allow text to wrap, use
+table-layout: fixed with explicit column widths and reduce padding on smaller
+screens. At 390 pixels all columns and images remain visible without clipping.
+Check again at 200% text size. Long replacement names should wrap.
+
+The starter contains the page and supplied files. Complete its table head,
+three body rows and CSS. The reference shows one solution after an attempt.
+No JavaScript is required to display a semantic table or alternate its rows.
+
+## Run and verify
+
+Open index.html in a browser without a server. Check the caption, three column
+headers, three rows and three loaded images. Tab through the links.
+Temporarily add a fourth row and verify its background follows the selector.
+
+Save the same IDE attempt, export its ZIP and reopen the exported HTML.
+Relative images must still load. README.md, CASES.md and SOURCES.md travel
+with the table and record its expectations and original source boundary.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/90c67c576d9b57cccffe8a34b4b42525",
 					solutionLink:
@@ -852,11 +1105,52 @@ Trim text and compare city, school and subject without case differences. Cancel 
 				},
 				{
 					title: "JSM6 Project 2: My Favorite Businesses",
-					content: `**Project target:** Model favorite businesses as objects and render a readable summary for each one. The project combines arrays, objects, loops, and template strings.
+					contentKind: "assignment",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					ideImport: true,
+					content: `Create an array containing at least three business objects. Each object needs a name plus at least three other properties; one must be a products array containing at least three entries. Iterate over the objects and their product arrays. Use one or two \`printToScreen()\` calls per business to describe every property in one or two sentences.
 
-**Build path:** Create an array of business objects with properties such as name, category, location, rating, and products. Loop through the array and build a template-string summary for each business. Include a nested products array when a business sells more than one item.
+Use these fictional records for the supplied four-key path. Another dataset may keep the original minimums and document corresponding expected results.
 
-**Evidence target:** The page displays every business from the data array, adding a new business object adds a new rendered summary, and product lists render without hard-coded output for a specific business.`,
+\`\`\`json
+[
+  {
+    "name": "Cedar Trail Outfitters",
+    "location": "Fairhaven",
+    "CEO": "Rowan Patel",
+    "products": [
+      "Daypack",
+      "Trail Bottle",
+      "Rain Shell"
+    ]
+  },
+  {
+    "name": "Sunrise Bakery",
+    "location": "Mapleton",
+    "CEO": "Avery Kim",
+    "products": [
+      "Sourdough",
+      "Blueberry Muffin",
+      "Cinnamon Roll"
+    ]
+  },
+  {
+    "name": "Harbor Books",
+    "location": "Lakeside",
+    "CEO": "Morgan Reed",
+    "products": [
+      "Mystery Novel",
+      "Nature Guide",
+      "Sketchbook"
+    ]
+  }
+]
+\`\`\`
+
+Print a location/CEO sentence and a products sentence for each object. All property values are nonempty strings except the products array. The imported \`README.md\` and \`CASES.md\` supply complete inputs and six expected paragraphs. The blank starter retains the original assignment and supplied display helper.
+
+**Complete when:** All three business descriptions include every property and all products in array order. Adding a fourth valid object produces eight paragraphs without another hard-coded print call; changing a property or product changes its corresponding summary. Explain which loop visits businesses and which visits products.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/bcc6527a03ffb7ca42b705ff3f3910dd",
 					solutionLink:
@@ -864,20 +1158,19 @@ Trim text and compare city, school and subject without case differences. Cancel 
 				},
 				{
 					title: "Animations in the Canvas",
-					content: `**Concept path:** Canvas animation works by repeatedly clearing the previous frame, updating state, and drawing the next frame. \`requestAnimationFrame\` schedules drawing in sync with the browser.
-
-**Practice targets:** Create an object with position and velocity, update its position each frame, clear the canvas with \`clearRect\`, and redraw the object. Keep update logic separate from drawing logic so movement can be changed without rewriting the visual code.
-
-**Evidence target:** The animation moves smoothly, old frames do not leave trails unless trails are intentional, and pausing or changing velocity affects future frames predictably.`,
+					contentKind: "reading",
+					preserveInstructions: true,
+					content:
+						"The original worked example animates one black square on an 800-by-500 canvas. The square is 50 units wide and high, with its top at y = 50. Its state is stored in x and direction; move returns x + 1 when the direction is right and x - 1 otherwise.\n\nEach moveSquare call clears the whole canvas, draws at the current x, updates x, changes direction when the updated position reaches 0 or 500, and schedules the next call with requestAnimationFrame. Calling moveSquare once starts one animation chain.\n\n**Worked trace:** The first call draws at x = 0, then updates x to 1. A call drawing at 499 updates x to 500 and selects left. The next call draws at 500 and updates to 499. The later call drawing at 1 while moving left updates to 0 and selects right; the next draw is at 0. The turning positions are 0 and 500, even though the canvas extends to 800.\n\nClearing before every draw removes the previous square. Updating after drawing determines which position appears in the current frame. This example moves one unit per callback.",
 					projectLink: "https://codepen.io/junilearning/pen/zYBjpZE"
 				},
 				{
 					title: "JSM6 Project 3: Inflate and Deflate",
-					content: `**Project target:** Animate a ball object that grows and shrinks while changing color. The project uses object state to control radius, color, and animation phase.
-
-**Build path:** Store the ball's x position, y position, radius, color, and growth direction in an object. Write \`draw\`, \`inflate\`, and \`deflate\` functions, then call them from a \`requestAnimationFrame\` loop. Switch from inflating to deflating at a maximum radius and back again at a minimum radius.
-
-**Evidence target:** The ball stays centered while its radius changes, the color changes with the current phase, and the animation continues without the radius becoming negative or growing forever.`,
+					contentKind: "assignment",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content:
+						'Create a ball object with x, y, radius and color. Animate it growing to one size, changing color, shrinking to another size, then repeating.\n\n**Canvas setup:** Add `<canvas id="my-canvas"></canvas>` in HTML. In JavaScript, obtain that element with `document.getElementById("my-canvas")` and its 2D context with `getContext("2d")`. The starter has empty HTML/CSS and a JavaScript entry area; no external library is needed.\n\n**Build:** Write drawBall to begin a path, set the fill color, draw a full circle from the ball properties and fill it. Write inflate and deflate to change radius and color. In one pumpBall loop, clear the previous frame, select the phase, update the ball, draw it and schedule the next callback with requestAnimationFrame. Start that loop once.\n\n**Worked reference:** The canvas is 1000 by 800. The ball begins at (300,300), radius 20, green. Inflation adds 5 and uses green; deflation subtracts 5 and uses red. A separate inflating boolean stores the phase. The loop switches to deflation when the current radius is greater than 200 and to inflation when it is less than 10, then performs the update.\n\nThe first drawn radius is 25. Near the upper turn, rendered states are 200 green,205 green,200 red. Near the lower turn, they are 10 red,5 red,10 green. Those strict comparisons happen before a 5 unit step, so the reference\u2019s actual extrema are 5 and 205. A version intended to stop exactly at 10 and 200 needs explicit clamping or a different switching rule.\n\n**Check:** Show both colors and both direction changes over repeated cycles. Keep the center fixed, keep the radius positive and bounded, and clear the previous frame. Explain the reference\u2019s first drawn radius and both three-frame turn traces.',
 					projectLink:
 						"https://codepen.io/junilearning/pen/d0195323eaa77fa2a273961fa3df61c3",
 					solutionLink:
@@ -887,11 +1180,16 @@ Trim text and compare city, school and subject without case differences. Cancel 
 			supplementalProjects: [
 				{
 					title: "JSM6 Supplemental Project 1: My Favorite Businesses II",
-					content: `**Project target:** Extend the business data project into a richer interface with images, cards, and autocomplete. The focus is connecting object data to reusable UI rendering.
+					preserveInstructions: true,
+					content: `Extend My Favorite Businesses into a searchable directory. Copy at least three business objects, retaining name, location, CEO and products. Add logo_image and display_image. This optional project practices object data, Materialize autocomplete and D3 rendering.
 
-**Build path:** Add image URLs and product data to the business objects. Render each business into a Materialize card, then configure autocomplete choices from the same business data. Selecting a business fills the page with the matching card details.
+**Build:** Complete the local starter’s business array and renderBusiness function. The included HTML/CSS, libraries and six local example images run offline. Generate autocomplete names and logos from the same array. Choosing a suggestion or submitting Show business renders one card from the selected object.
 
-**Evidence target:** The autocomplete options are generated from the data array, cards render from object properties rather than copied markup, and missing images or unknown names produce a safe fallback.`,
+**Input rules:** Trim surrounding spaces and use exact names. Hide the previous card and show “No business found.” for blank or unknown input. Render data as text. Show an image fallback if a display image fails.
+
+**Worked inputs:** Cedar Trail Outfitters → Fairhaven, Rowan Patel, Daypack/Trail Bottle/Rain Shell. Sunrise Bakery → Mapleton, Avery Kim, Sourdough/Blueberry Muffin/Cinnamon Roll. Harbor Books → Lakeside, Morgan Reed, Mystery Novel/Nature Guide/Sketchbook. These are fictional records.
+
+**Check:** Choose an autocomplete result; submit every name, then No Such Business and blank input; change a display image to images/missing.svg. The current card, clear no-match state and image fallback should remain usable without exceptions. The imported \`README.md\` and \`CASES.md\` include setup and all expected results. Save, reopen and export the completed project.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/50854534e6dccd9c7bedc0a2d01aded7",
 					solutionLink:
@@ -899,11 +1197,18 @@ Trim text and compare city, school and subject without case differences. Cancel 
 				},
 				{
 					title: "JSM6 Supplemental Project 2: Circle March",
-					content: `**Project target:** Animate a grid of circles moving together across the canvas. The project practices arrays of objects, repeated drawing, and coordinated state updates.
+					preserveInstructions: true,
+					content: `Create an array of circle objects and animate them diagonally from the top left toward the bottom right. Store x, y, radius and color in each object; wrap each coordinate at its own canvas boundary.
 
-**Build path:** Store each circle as an object with position, radius, color, and velocity. Draw the full grid each frame, then update every circle's position before the next frame. Add wraparound or boundary logic so the animation remains on screen.
+**Setup:** Add \`<canvas id="canvas" width="500" height="200"></canvas>\` in HTML. In JavaScript, obtain that element with \`document.getElementById("canvas")\` and its drawing context with \`getContext("2d")\`. The original starter has empty HTML/CSS and a JavaScript comment area. No external library is needed.
 
-**Evidence target:** The grid contains multiple circles generated from data, every circle updates through the same loop, and the animation can run for many frames without drifting into an unusable state.`,
+**Build:** Draw each object as a filled circle using its properties. In one animation loop, clear the previous frame, update every circle’s coordinates, apply horizontal and vertical wrapping, draw all circles and schedule the next callback with requestAnimationFrame. Start the loop once.
+
+**Worked reference:** The canvas is 500 by 200. Nested loops create 25 columns and 10 rows: x = column × 20, y = row × 20, radius = 5. Each of the 250 circles receives an RGB color once during setup. Every frame adds 1 to both x and y. When x is greater than 500, subtract 500; when y is greater than 200, subtract 200. The reference uses fixed increments; it has no velocity property.
+
+The first drawn positions include (1,1) and (481,181). For the circle that begins at (480,180), frame 20 draws (500,200) and frame 21 draws (1,1). The strict greater-than rules retain the boundary coordinate for one frame. A circle may be partly clipped at an edge because its radius is 5.
+
+**Check:** Use the worked inputs to trace both coordinate updates and both wrap conditions. Verify the whole array is drawn each frame, colors remain attached to their circles, the old frame is cleared, and only one callback chain runs through repeated wraps.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/7ac4e84b6d1ce34caa732bc0945c6255",
 					solutionLink:
@@ -937,11 +1242,18 @@ Trim text and compare city, school and subject without case differences. Cancel 
 				},
 				{
 					title: "JSM7 Project 1: Refactory",
-					content: `**Project target:** Refactor a working starter into smaller helper functions without changing visible behavior. The purpose is to improve structure while preserving correctness.
+					preserveInstructions: true,
+					content: `**Project target:** Refactor the working widget factory into helper functions while keeping the same two reports. The original HTML and CSS panels are empty; the results are JavaScript console objects.
 
-**Build path:** Identify repeated blocks, name the shared job, extract parameters for the values that change, and replace repeated code with helper calls. Run the program after each extraction so regressions are easy to locate.
+**Inputs and expected results:** A heavy widget has name "heavy" and weight 500; a standard widget has name "standard" and weight 100. The first report contains two separate heavy widget objects and totalWeight 1000. The second contains three separate standard widget objects and totalWeight 300. Each report has a widgets array and totalWeight number. Preserve report order, widget order, names, weights and totals.
 
-**Evidence target:** The final output matches the starter behavior, repeated code is removed, and each helper name communicates its purpose without needing to inspect the full body.`,
+**Build path:** Run the working starter and record both reports. Extract a helper that creates a new widget from a model's name and weight. Extract an assembly helper that accepts a model and count, creates a fresh report, calls the widget helper once per loop iteration, pushes each new widget and accumulates its weight, then returns the report. Replace the two copied factory blocks with calls for two heavy widgets and three standard widgets. Returning a report lets the caller decide when to log or reuse it.
+
+**Worked check:** Two heavy widgets weigh 500 + 500 = 1000; three standard widgets weigh 100 + 100 + 100 = 300. A zero-count call returns an empty widgets array and totalWeight 0. Each call creates its own report and each produced widget is a separate object; editing one produced widget must preserve the model and its neighbors.
+
+**Local files:** Open the selected source in the site IDE after accepting the import. Open index.html to run the exported files without a server. README.md explains the files and CASES.md supplies the complete expected reports. The local report viewer displays the same logged objects on the page; script.js contains the factory work.
+
+**Completion evidence:** Compare the starter's and refactored program's two reports by their data. JSON object property order may differ; array order and every value must match. Show one additional model/count call without copying another assembly loop, and explain which helper creates a widget and which helper assembles a report.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/3a1383fc8a60d0ff0f55419c9b4940fe",
 					solutionLink:
@@ -957,11 +1269,16 @@ Trim text and compare city, school and subject without case differences. Cancel 
 				},
 				{
 					title: "JSM7 Project 2: Which Card",
-					content: `**Project target:** Extend the Colorful Cards project so clicking a card reports which card was selected. The project combines canvas geometry, event coordinates, and array data.
+					preserveInstructions: true,
+					content: `**Project target:** Add a click handler to the five-card drawing so each selected card logs its color. The local starter supplies the drawing prerequisite and leaves the handler unfinished.
 
-**Build path:** Reuse the card data from the previous project, add a canvas click listener, convert the click coordinates, and compare the click point with each card's rectangle. Print the selected color or a clear message when the click misses every card.
+**Drawing inputs:** Use \`<canvas id="my-canvas"></canvas>\`, its 2D context and a 1200-by-800 drawing size. The colors, in order, are green, red, blue, yellow and cyan. Card i has x = i * 200, y = 150, width = 150 and height = 100. Left edges are 0, 200, 400, 600 and 800, with 50-unit gaps.
 
-**Evidence target:** Clicking inside each card reports the correct color, clicking the gap between cards does not produce a false match, and changing card size or spacing only requires updating the card data or constants.`,
+**Build path:** Read \`canvas.getBoundingClientRect()\` and convert x = (event.clientX - rect.left) * canvas.width / rect.width and y = (event.clientY - rect.top) * canvas.height / rect.height. This handles offsets, scrolling and responsive scaling. Match both coordinates against the drawing geometry: left/top included, right/bottom excluded. Log the matched color once; gap or background clicks log no color.
+
+**Worked cases:** Centers (75,200), (275,200), (475,200), (675,200) and (875,200) select the palette in order. (1,151) selects green; (150,200), (175,200) and (75,260) select none. Repeat centers and gaps after resizing or scrolling.
+
+**Local files and evidence:** Accept the selected source import in the site IDE. Open index.html to run the exported files without a server. README.md gives the setup and mapping; CASES.md supplies fixed cases. The viewer mirrors console colors in its Click log. Show correct centers, edges, gaps and background results on a narrow or scrolled page.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/88140a4225b8cfb5468e91fbccfaa100",
 					solutionLink:
@@ -977,11 +1294,16 @@ Trim text and compare city, school and subject without case differences. Cancel 
 				},
 				{
 					title: "JSM7 Project 3: Paddle",
-					content: `**Project target:** Build a keyboard-controlled paddle that moves smoothly left and right. This creates the control foundation for later canvas games.
+					preserveInstructions: true,
+					content: `**Project target:** Build a keyboard-controlled black paddle on a 500-by-500 canvas. The local starter supplies the canvas, model and drawing loop; complete the input handlers and movement helper.
 
-**Build path:** Store paddle position, width, speed, and key state. On \`keydown\`, mark the matching direction active; on \`keyup\`, mark it inactive. In the animation loop, update the paddle position based on active keys and keep it inside the canvas bounds.
+**Input and geometry:** The paddle starts at (0,0), measures 100 by 20 and moves 10 logical units per animation frame. Focus the canvas before using Left or Right. Track ArrowLeft and ArrowRight on keydown/keyup, prevent their default action while focused, and clear held state when the canvas/window loses focus or the document becomes hidden.
 
-**Evidence target:** The paddle begins moving when an arrow key is held, stops when the key is released, cannot leave the canvas, and remains responsive when switching directions quickly.`,
+**Build path:** Compute direction as Number(right) - Number(left). Add direction * speed to x, then clamp x between 0 and canvas.width - paddle.width. Both directions held cancel. Update before clearing and drawing each frame. Key release leaves the paddle at its current position.
+
+**Worked checks:** From 200, one left frame gives 190 and one right frame gives 210. From 395, right gives 400; from 5, left gives 0. Holding either direction cannot move past 0 or 400. Both keys held at 200 leave 200. Releasing a key or leaving the page stops movement.
+
+**Local files and evidence:** Accept the selected source import in the site IDE. Open index.html to run the exported files without a server. README.md explains the state and frame model; CASES.md supplies fixed checks. Show both directions, both limits, release and focus-loss behavior, and explain how the loop uses key state.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/8ccc67de1bc03e5f2c81f78a411adee1",
 					solutionLink:
@@ -991,11 +1313,16 @@ Trim text and compare city, school and subject without case differences. Cancel 
 			supplementalProjects: [
 				{
 					title: "JSM7 Supplemental Project 1: Coastal Cruise",
-					content: `**Project target:** Model a cruise registration system with helper functions that manage passenger data and ship capacity.
+					preserveInstructions: true,
+					content: `**Project target:** Use seven helper functions to register named passengers in numbered seats until a ship is full. Set maxSeats to a positive whole number, initially 2. Each seat is a separate {name:"",open:true} object.
 
-**Build path:** Store seats or rooms in arrays, then write helpers to check whether space remains, register a passenger, remove or reject invalid entries, and print a manifest. Keep capacity checks separate from display formatting.
+**Helper contracts:** populateSeats creates the seat array. isOpen checks a valid zero-based seat index. registerSeat validates the name and index, rejects occupied seats without overwriting them, and returns whether registration succeeded. getNameAndNum prompts for a name and a one-based seat number, or returns null on Cancel. isShipFull checks whether every seat is occupied. printShip logs passengers in seat order. fillShip coordinates requests until full or cancelled, then prints a full ship's manifest.
 
-**Evidence target:** Full ships reject additional passengers, manifests match the stored passenger data, and helper functions can be tested with small sample ships before running the full scenario.`,
+**Input checks:** Trim names and reject empty values. Accept only integer seat numbers from 1 through maxSeats; convert to a zero-based index once before registration. Invalid requests preserve all seats and allow another attempt. Cancelling either prompt ends the run without announcing a full ship.
+
+**Worked check:** Ada/1 and Lin/2 produce "Seat 1: Ada" then "Seat 2: Lin". Trying Eve/1 after Ada/1 rejects the occupied seat and retains Ada. With maxSeats 3, enter Grace/3, Ada/1 and Lin/2; print in seat order 1,2,3.
+
+**Local files and evidence:** Accept the selected source import in the site IDE. Open index.html to run the exported files without a server. README.md explains every helper and CASES.md gives complete input traces. Show a full ship, duplicate-seat rejection, invalid input, cancellation and a changed capacity; explain how the helpers call each other.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/13e9d8e0ad56ecbaff7933d0e063d682",
 					solutionLink:
@@ -1003,11 +1330,16 @@ Trim text and compare city, school and subject without case differences. Cancel 
 				},
 				{
 					title: "JSM7 Supplemental Project 2: Juggling Paddle",
-					content: `**Project target:** Combine paddle controls with a falling ball to create a small juggling challenge. The project introduces collision checks between moving objects.
+					preserveInstructions: true,
+					content: `**Project target:** Extend the working paddle with a red ball that falls, bounces upward when it hits the paddle, turns downward at its upper endpoint, and falls off the screen on a miss. The local starter supplies the preceding paddle setup.
 
-**Build path:** Animate the ball with vertical velocity, control the paddle with keyboard input, and check whether the ball overlaps the paddle when it reaches paddle height. Reverse or reset the ball on a successful hit; end or mark a miss when the ball falls below the screen.
+**Model:** Use a 500-by-500 canvas. The black paddle starts at (200,300), is 100 by 20 and moves 10 units per frame. The ball starts at (250,100), has radius 10, fixed x=250 and vertical speed 1 unit per frame. isFalling controls its direction; its upward endpoint is center y=50. This uses fixed-speed motion. Scoring, lives and restart are optional remixes.
 
-**Evidence target:** The ball bounces only when it overlaps the paddle, misses are detected reliably, and score or lives update based on hit and miss events.`,
+**Build path:** Move the bounded paddle from held-key state. During descent, use the actual paddle rectangle and ball radius to find the contact surface, then detect crossing from oldY to nextY. A centered hit occurs at y=290 because 290+10=300. Clamp to that contact and turn upward. During ascent, turn downward when nextY reaches or crosses 50. A missed ball continues below the canvas; a ball already below the paddle does not bounce back. Update state before drawing.
+
+**Worked checks:** From y=289 while falling, the next frame is y=290 and rising. From y=50.5 while rising, the next frame is y=50 and falling. Moving the paddle to x=0 causes a miss. README.md derives the rounded-corner contact formula and CASES.md covers changed radius, paddle position and step size.
+
+**Local files and evidence:** Accept the selected source import in the site IDE. Open index.html to run the exported files without a server. Focus the canvas before using Left or Right. Show a hit, upward travel, the downward return at y=50 and a miss that leaves the screen; explain both direction changes and the circle-radius check.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/9c003b58d7ca7770e49f9243dbecb00f",
 					solutionLink:
@@ -1042,11 +1374,16 @@ Trim text and compare city, school and subject without case differences. Cancel 
 				},
 				{
 					title: "JSM8 Project 1: Circles Collide",
-					content: `**Project target:** Animate two circles moving toward each other and detect the moment they collide. This project connects motion state with a geometric condition.
+					preserveInstructions: true,
+					content: `Accept the selected role import in the site IDE. Open index.html to run exported files without a server. The 800-by-500 canvas begins with black circles at (50,250) and (500,250), both radius 20. Every 10 ms, move the first center one unit right and the second one unit left. They pass through each other; this assignment detects contact rather than simulating an elastic bounce.
 
-**Build path:** Store each circle's center, radius, velocity, and color. Update positions on a timed loop or animation frame, calculate center distance, and change fill color once the distance is less than or equal to the combined radii.
+Complete updateCircles and circlesTouch in the starter. The drawing loop is supplied. Calculate dx=a.x-b.x,dy=a.y-b.y and radius=a.size+b.size. Pythagoras gives distance squared=dx*dx+dy*dy. Contact or overlap means distance squared <= radius*radius. Change both circles to blue while true and black when separated. The size property is the radius.
 
-**Evidence target:** The circles change color at the collision boundary, not before they visibly meet and not after they pass through each other. Adjusting speed or radius still produces correct collision timing.`,
+Initially the distance is450. After 204 ticks it is42: black. Tick 205 gives centers255 and295, distance40: blue at exact contact. Tick 225 gives the same center: blue. Tick 245 touches again after passing;tick 246 separates and is black.
+
+The original reference uses strict horizontal overlap on a shared row and logs every tick. This complete reference applies the lesson's inclusive contact rule on both axes and keeps the original canvas, colors and movement. Different y values and unequal radii work. Faster motion may skip an entire contact interval between samples; continuous collision detection is a separate extension.
+
+Save a working checkpoint and demonstrate separated,touching,overlapping and separated-again states. CASES.md includes exact inputs and outputs.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/d4a36001e0d9b6e58c640ca0f280284a",
 					solutionLink:
@@ -1054,11 +1391,16 @@ Trim text and compare city, school and subject without case differences. Cancel 
 				},
 				{
 					title: "JSM8 Project 2: Rectangular Collision",
-					content: `**Project target:** Generate rectangles and detect whether they overlap. The core idea is that rectangles collide when their x-ranges and y-ranges overlap at the same time.
+					preserveInstructions: true,
+					content: `Accept the selected role import in the site IDE. Open index.html to run exported files without a server. Draw two random rectangles on the 550-by-500 canvas and display whether they touch or overlap. Reload for a new pair. The starter supplies random generation,drawing and result display;complete rectanglesTouch.
 
-**Build path:** Create rectangle objects with x, y, width, height, and color. Draw each rectangle, calculate left/right/top/bottom edges, and compare edges to detect overlap. Display a message showing whether the current rectangles collide.
+Each rectangle stores x,y,width,height and color. Generate width and height as integers 100..299 first. Choose x in 50..canvas.width-50-width and y in 50..canvas.height-50-height,including both endpoints. This leaves a 50-unit margin and keeps every edge visible. RGB components are integers 0..254,matching the original palette.
 
-**Evidence target:** The collision result matches visible overlap, touching edges are handled according to a documented rule, and random rectangles can be regenerated without breaking the check.`,
+Compute left=x,right=x+width,top=y,bottom=y+height. The x ranges touch/overlap if a.right>=b.left AND a.left<=b.right. Apply the same test vertically,and combine all four comparisons with AND. Edge and corner contact count as collision;separation on either axis means false. No rotation or negative dimensions are used.
+
+For a=(50,50,100,100) and b=(150,75,100,100),the rectangles touch at x150: true. Move b.x to151:false. For b=(75,150,100,100),they touch horizontally along y150:true. The original reference uses strict overlap and can clip randomly generated rectangles;this version follows the original task's touching rule and bounds both shapes.
+
+Show overlapping,edge-touching,corner-touching,contained and separated cases from CASES.md. Save the chosen fixed inputs when explaining a result.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/1c22a392782c8551073c92fe3e825849",
 					solutionLink:
@@ -1066,11 +1408,16 @@ Trim text and compare city, school and subject without case differences. Cancel 
 				},
 				{
 					title: "JSM8 Project 3: The Bouncy Ball",
-					content: `**Project target:** Simulate a bouncing ball with velocity, gravity, friction, and wall collisions. The project turns simple physics ideas into repeated state updates.
+					preserveInstructions: true,
+					content: `Accept the selected role import in the site IDE. Open index.html to run exported files without a server. The 480-by-320 canvas starts with a green ball at(240,290),radius 15,dx2 anddy-5. Each 10 ms tick applies gravity 0.08,then moves by velocity,handles collisions and draws. Damping is 0.8;stopSpeed is 0.1. Complete updateBall in the supplied drawing framework.
 
-**Build path:** Store position and velocity on both axes. Add gravity to vertical velocity each frame, update position, reverse velocity when the ball hits the ground or walls, and apply friction or damping so bounces gradually change.
+A center stays within x 15..465 and y 15..305. After movement,clamp an outward-moving ball to the crossed wall and reverse the perpendicular velocity,multiplying by 0.8. At the floor also multiply dx by 0.8. Positive dy moves downward. A top hit also loses speed,as the original assignment requires for every wall.
 
-**Evidence target:** The ball accelerates downward, bounces at boundaries, loses or preserves energy according to the chosen damping value, and does not sink through the floor or disappear past the canvas edges.`,
+When the new floor rebound magnitude is below 0.1,set dy=0 and grounded=true. A grounded ball stays at y305,receives no gravity and loses horizontal speed by 0.8 per tick. When its horizontal magnitude is below 0.1,set dx=dy=0 and resting=true. Return immediately on future resting ticks. This stable ground/rest state prevents gravity from restarting a stopped ball.
+
+The original reference applies gravity after its zero-velocity condition and omits top-wall damping. This implementation preserves the initial canvas,green ball,velocities,gravity and damping while making update order,bounds and stable rest explicit.
+
+Show an ascent,a damped rebound,the floor and eventual rest. CASES.md gives exact next-state checks and changed-speed boundary cases. Keyboard controls and scoring are optional extensions.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/1e97468ca0197dcf6ca6d933e175b6fb",
 					solutionLink:
@@ -1131,11 +1478,14 @@ Trim text and compare city, school and subject without case differences. Cancel 
 				},
 				{
 					title: "JSM9 Project 1: Falling Skies",
-					content: `**Project target:** Build a falling-object game where the player dodges or catches objects. The main challenge is coordinating spawn timing, movement, collision checks, and score updates inside one game loop.
+					preserveInstructions: true,
+					content: `The blue 30-by-60 player starts at (260,400) on a 550-by-500 canvas. Left and right move eight pixels per simulation tick and clamp the entire rectangle inside the canvas. After a three-second countdown, radius-15 circles fall eight pixels per tick, with a new circle every ten ticks. The score increases once per two seconds of survival. The simulation uses 60 ticks per second, independent of display refresh rate.
 
-**Build path:** Create player state, falling-object state, keyboard or mouse controls, and a loop that updates positions before drawing. Spawn new objects on a timer or frame count, remove off-screen objects, and update score or lives when collisions occur.
+Complete circleTouchesRectangle and stepGame in script.js. Clamp the circle center to the rectangle's nearest point. Compare squared distance to radius squared; equality is contact. Check every circle before declaring the player safe. Remove all circles beyond the bottom without skipping adjacent entries. A hit changes the state to lost once and freezes play. Restart creates a fresh countdown. Hold the arrow keys or the on-screen direction controls; releasing focus clears held input.
 
-**Evidence target:** Objects fall consistently, player controls remain responsive, collisions affect score or lives exactly once per event, and the game has a visible end or restart state.`,
+Trace a harmless first circle followed by a circle at the player's center: the second circle must end play. A circle centered at (245,400) exactly touches the player's left top corner; (246,386) is outside its radius despite overlapping bounding boxes. Review CASES.md, then compare the complete reference only after attempting both functions.
+
+Accept the selected starter or reference import in the site IDE. README.md contains the full assignment and CASES.md supplies the boundary checks. Open index.html without a server. Save edits,export the ZIP and reopen the saved project to compare the same files.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/8d640d76fa709de228ec6303625663e3",
 					solutionLink:
@@ -1143,11 +1493,14 @@ Trim text and compare city, school and subject without case differences. Cancel 
 				},
 				{
 					title: "JSM9 Project 2: 2D Breakout",
-					content: `**Project target:** Build a Breakout-style game with a paddle, ball, brick grid, collision response, and win condition.
+					preserveInstructions: true,
+					content: `The 480-by-320 canvas contains fifteen bricks, a radius-10 ball, a 75-by-10 paddle and three lives. The ball starts at (240,290), moving (2,-2) per simulation tick. A new life resets its motion to (3,-3), preserving the original reference's rule. Arrow keys move the paddle seven pixels per tick; pointer movement maps the displayed canvas position into its logical coordinates. The paddle remains wholly inside the canvas.
 
-**Build path:** Store bricks in an array or grid, draw the paddle and ball, update ball position each frame, and detect collisions with walls, paddle, and bricks. Remove or mark bricks after collision, then check whether all bricks are gone.
+Complete circleTouchesRectangle and stepGame in script.js. Compare the ball's radius with a brick's nearest point, mark a hit brick inactive, increase score once and reverse the collision axis. A downward crossing of the paddle top reflects the ball upward. Crossing completely below the canvas costs exactly one life. Reset the ball when lives remain; otherwise enter lost. Removing the fifteenth brick enters won. Both terminal states freeze the model until Restart, with a message on the canvas and in the status line.
 
-**Evidence target:** The ball bounces from the paddle and walls, bricks disappear only after collision, the score or remaining-brick count updates correctly, and a win state appears when no bricks remain.`,
+Use the CASES.md boundary checks: a ball can touch a brick before its center enters it; a miss costs one life, not one per later frame. Compare the saved reference after completing the starter. Hold a direction control or use the pointer to play; observe all three lives and restart without browser alerts.
+
+Accept the selected starter or reference import in the site IDE. README.md contains the full assignment and CASES.md supplies the boundary checks. Open index.html without a server. Save edits,export the ZIP and reopen the saved project to compare the same files.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/0d5f9c3b21921a4bc506a1139a3091bc",
 					solutionLink:
@@ -1155,11 +1508,14 @@ Trim text and compare city, school and subject without case differences. Cancel 
 				},
 				{
 					title: "JSM9 Project 3: Asteroids",
-					content: `**Project target:** Build an Asteroids-style game with ship rotation, movement, projectiles, asteroid collisions, scoring, and game-over logic.
+					preserveInstructions: true,
+					content: `The 550-by-500 canvas begins with the original triangular ship at (100,100). A and D rotate five degrees per simulation tick; W moves one pixel in the ship's forward direction. The on-screen controls provide the same actions. Space and F share one ten-tick firing cooldown. Bullets move five pixels per tick; radius-50 asteroids enter from a random edge every five seconds and move two pixels per tick. Motion uses 60 simulation ticks per second. The ship and asteroids wrap at the canvas boundary.
 
-**Build path:** Store ship angle, velocity, bullets, and asteroid objects. Convert angles into x/y movement, update bullets each frame, split or remove asteroids on hit, and detect collisions between the ship and asteroids.
+Complete shipTouchesCircle and stepGame in script.js. Rotate the three local triangle vertices around the ship center. A circle hits if its center lies inside the triangle or its distance from any edge is at most its radius. Bullet collision uses squared center distance and the combined radii. Remove the hit parent, add two half-radius children only when their radius exceeds ten, and score once. Keep bullets in the single game loop, removing spent or off-screen entries.
 
-**Evidence target:** Rotation affects movement direction, bullets travel independently from the ship, asteroid hits change the asteroid list and score, and game-over detection cannot be bypassed by fast motion.`,
+Death freezes firing, spawning and score until Restart. Focus loss releases all controls. Check CASES.md for the ten-tick cooldown, a single split and a stopped terminal state. Increasing bullet speed requires a swept collision method; this assignment's fixed speeds are the stated model. Compare the complete reference after attempting both functions.
+
+Accept the selected starter or reference import in the site IDE. README.md contains the full assignment and CASES.md supplies the boundary checks. Open index.html without a server. Save edits,export the ZIP and reopen the saved project to compare the same files.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/4d14f6e432dd3b2dcee15a9d95eac750",
 					solutionLink:
@@ -1167,11 +1523,14 @@ Trim text and compare city, school and subject without case differences. Cancel 
 				},
 				{
 					title: "JSM9 Project 4: Animated Starfield",
-					content: `**Project target:** Create an animated starfield using many small objects that move across the canvas. The project focuses on object arrays, repeated updates, and visual polish through simple rules.
+					preserveInstructions: true,
+					content: `Create a black field of one hundred white stars. Each object stores x, y, size and downward velocity. Sizes range from one to four pixels; velocities range from fifteen to thirty pixels per second. The original CodePen uses Babel, but this implementation uses ordinary browser JavaScript and needs no compiler or external scripts. Open index.html without a server.
 
-**Build path:** Generate star objects with x, y, size, speed, and brightness. Update each star every frame, redraw the scene, and wrap or reset stars that leave the screen. Add depth by varying speed or size.
+Complete stepGame and resizeStars in script.js. At thirty simulation ticks per second, a star moves velocity divided by thirty pixels per tick. When its y coordinate exceeds the field height, replace that entry with a new star at y=0. Preserve the array length. On resize, scale existing positions by new width/old width and new height/old height before storing the new dimensions. A single animation loop draws the black background and then the white squares.
 
-**Evidence target:** Many stars animate at once, motion continues smoothly after wraparound, and changing the star data generation changes the visual density or depth without rewriting the animation loop.`,
+In CASES.md, trace a star with velocity=30 from y=10 to y=11 after one tick. A star that moves past the bottom returns to the top without increasing density. Resize the window and confirm that all stars remain within the new field. Restart creates a fresh field without adding another loop.
+
+Accept the selected starter or reference import in the site IDE. README.md contains the full assignment and CASES.md supplies the boundary checks. Open index.html without a server. Save edits,export the ZIP and reopen the saved project to compare the same files.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/6d5f8181e8ea59009eadd259e249c5c5",
 					solutionLink:
@@ -1224,19 +1583,20 @@ Trim text and compare city, school and subject without case differences. Cancel 
 			curriculum: [
 				{
 					title: "APIs",
-					content: `**Concept path:** API requests are asynchronous because the browser must wait for another service to respond. \`fetch\` returns a promise, and the response body must be parsed, commonly with \`.json()\`, before the data can be used.
-
-**Practice targets:** Load a supplied JSON fixture through the same validation and rendering functions used by an optional public GET request. For the live route, check \`response.ok\`, parse JSON, validate the required fields, abort after a short timeout, cache repeated reads, and expose loading, success, empty, stale, and failure states.
-
-**Evidence target:** The page remains usable with the network disabled, distinguishes every request state, keeps the last valid result during a failed refresh, and reads only validated fields. No API key, browser write credential, personal input, or unbounded retry is present.`
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: javascriptApiResponsesReading
 				},
 				{
 					title: "JSM10 Project 1: Programming Jokes",
-					content: `**Project target:** Display programming jokes from the supplied fixture, then optionally refresh from the preserved public joke endpoint. The project practices promise handling, response validation, state, and data-driven rendering without making network availability a completion requirement.
+					preserveInstructions: true,
+					content: `Display one programming joke as a setup followed by its punchline. The supplied set has ten actual programming jokes from the original API project's public data. Saved responses cycle through those records. Live API requests use the original programming/random endpoint; a successful response may be an object or a one-item array. Keep its two pieces of text together.
 
-**Build path:** Validate whether the fixture or response contains an array or object, normalize it into one joke record, and render setup and punchline with \`textContent\`. Add a button that uses one active request, checks status, aborts after a timeout, and returns to fixture data when the endpoint is unavailable or changed.
+Complete loadJokeResponse, normalizeJoke and renderJoke in script.js. In the asynchronous loader, await fixtureResponse for saved data or await requestJson for the live endpoint, then return the validated record from its data field. Normalize an array by selecting its first record, reject empty data, and require nonempty setup and punchline strings of at most 500 characters. The supplied request.js checks HTTP status, JSON content type, a 512 KiB response limit and a four-second deadline. Parse and validate before changing the page. Use textContent and replace the previous two paragraphs instead of accumulating old output. A supplied color rule keeps the original colored-text idea while retaining readable contrast.
 
-**Evidence target:** The fixture always renders, repeated clicks do not create overlapping requests, malformed or failed responses display a readable status while keeping valid content, and text from the data cannot become page markup.`,
+Select Saved responses and load several jokes without a network. Then select Live API and inspect the request in the browser tools. One active request is allowed; Cancel aborts it. A failed or malformed refresh keeps the previous joke and shows a status. Random endpoints deliberately request a fresh value, while the shared helper retains a bounded cache for deterministic lookups. Check CASES.md before comparing the completed reference. Open index.html without a server.
+
+Accept the selected role in the site IDE. README.md contains the full assignment;CASES.md supplies the checks. Save,export and reopen the same files.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/55981d32b9659656bb8cc4a17a0526bc",
 					solutionLink:
@@ -1244,11 +1604,14 @@ Trim text and compare city, school and subject without case differences. Cancel 
 				},
 				{
 					title: "JSM10 Project 2: Random Fox Generator",
-					content: `**Project target:** Build an image-card generator from a supplied fictional-animal fixture, then optionally refresh the image URL from the preserved random-fox endpoint.
+					preserveInstructions: true,
+					content: `Add a fox photograph whenever the load button succeeds. Each valid response appends a fox photograph to the gallery. The gallery retains the newest twelve entries. Saved responses cycle through three real, public-domain fox photographs; their credits and source pages are included. Live API uses the original randomfox.ca/floof/ endpoint when available.
 
-**Build path:** Validate the data object and parse the candidate URL with the \`URL\` API. Permit only HTTPS from the reviewed fixture or provider origin, update one existing \`img\`, provide meaningful alt text from trusted local copy, and keep the old card visible while one cancelable request is pending.
+Complete loadFoxResponse, validateFox and appendFox in script.js. The asynchronous loader selects fixtureResponse or requestJson and returns the validated object before image decoding begins. Require an object with a valid image field. Saved image values must match the supplied fixtures; live values must use HTTPS, the exact randomfox.ca origin and an images/number.jpg, .jpeg or .png path. Reject query strings, fragments and unrelated origins. The supplied request helper checks status, JSON parsing, byte size and a four-second deadline. The supplied image helper waits for successful decoding before the new figure is attached, so broken images cannot displace valid ones.
 
-**Evidence target:** The local fixture works offline; valid refreshes update image and status together; an invalid protocol, unexpected origin, failed image load, timeout, or malformed response preserves a readable fallback and does not inject remote text or markup.`,
+Create meaningful alt text from trusted local copy, keep image proportions with CSS, and append a text credit link. Remove the oldest figure only after a thirteenth valid result is ready. Verify the gallery offline, then use Cancel and the failure cases in CASES.md. Failed requests or image loads keep earlier photographs. Photographs use their natural proportions at both display widths. Open index.html without a server.
+
+Accept the selected role in the site IDE. README.md contains the full assignment;CASES.md supplies the checks. Save,export and reopen the same files.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/93750fc08b5b2268a1d78b296295e2e8",
 					solutionLink:
@@ -1256,11 +1619,14 @@ Trim text and compare city, school and subject without case differences. Cancel 
 				},
 				{
 					title: "JSM10 Project 3: Pokedex",
-					content: `**Project target:** Build a small creature index that searches a supplied PokéAPI-shaped fixture and optionally refreshes a selected Pokémon with PokéAPI. The project combines form controls, cached public GET data, validation, error handling, and structured display.
+					preserveInstructions: true,
+					content: `Search the original 893-entry Pokémon index by name or numeric ID. Every entry includes its real name, one or two types, six base statistics and the corresponding supplied sprite. The local dataset is derived from pinned public PokéAPI CSV files and sprite sources, so every indexed lookup works offline. The datalist contains all 893 names. Live API optionally refreshes one selected record; loading the page never launches 893 requests.
 
-**Build path:** Use a labeled input and datalist, normalize the search term, look up local data first, and render name, id, type, and an approved image URL. The optional refresh checks status, timeout, shape, and provider origin, caches successful records, and follows PokéAPI fair-use guidance.
+Complete loadPokemonResponse, normalizePokemon and renderPokemon in script.js. The asynchronous loader selects the saved record or one live request, waits for validation, and returns its data plus cache status. Require an ID from 1 through 893, a normalized name, one or two type records, six numeric base statistics and a valid sprite. The complete reference accepts the supplied PNG data URLs locally and the exact reviewed PokéAPI sprite path for a live response. Render one result with DOM text, a labeled sprite and a definition list of statistics; replace previous details so repeated searches do not accumulate stale fields.
 
-**Evidence target:** Valid local searches render the correct details, invalid searches produce a clear inline message, the image and text update together, repeated searches use cached data, and the interface remains usable offline or after a failed or malformed request.`,
+The supplied request.js checks HTTP status, JSON type, a 512 KiB response cap, one active request and a four-second timeout. Successful live records enter a bounded sixty-second cache. Repeating the same lookup uses it; a failed refresh retains the previous record. Try bulbasaur, pikachu, 25 and 893, then an unknown name. Inspect CASES.md, including markup-shaped input, invalid records, sprite failure and cached reads. Open index.html without a server.
+
+Accept the selected role in the site IDE. README.md contains the full assignment;CASES.md supplies the checks. Save,export and reopen the same files.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/35923b1d6dee01a5f3004d67836eca46",
 					solutionLink:
@@ -1270,11 +1636,14 @@ Trim text and compare city, school and subject without case differences. Cancel 
 			supplementalProjects: [
 				{
 					title: "JSM10 Supplemental Project 1: Funny Meter",
-					content: `**Project target:** Build a joke-rating interface that loads a supplied set of fictional jokes, presents them one at a time, and records a rating for each. An optional public GET refresh may replace the fixture after the local state flow passes.
+					preserveInstructions: true,
+					content: `Rate exactly ten programming jokes, one at a time. This optional project extends the single-joke reader: the completed normalizeJoke helper is supplied, and the new work is validating the batch and recording decisions. Saved responses contain ten actual programming jokes. The Live API option uses the original programming/ten endpoint when available.
 
-**Build path:** Validate and cap the joke array, track the current index and ratings, advance only after a rating is recorded, and show a final summary. The optional request checks status, timeout, response shape, and active-request state before replacing the fixture.
+Complete loadTenJokesResponse, normalizeTenJokes and recordRating in script.js. The asynchronous loader awaits the saved response or the live programming/ten endpoint before creating the session. Require an array of exactly ten valid jokes, assign a stable session ID to each position, and reuse normalizeJoke for each setup and punchline. Store each accepted rating with the current joke's ID. Accept only yes or no; invalid input leaves the current position unchanged. The next joke is determined by the number of recorded ratings, not by an independently incremented prompt counter.
 
-**Evidence target:** The bounded fixture completes offline, each rating stays attached to the correct record, navigation does not skip or repeat accidentally, invalid ratings are rejected, and a failed refresh cannot erase an in-progress local session.`,
+The supplied renderer shows progress, the current joke and two native answer buttons. After ten answers it displays liked/disliked counts and whether the set was liked, disliked or tied. Buttons stop accepting ratings at completion. Restart clears ratings for the current set; a failed live refresh preserves it, and another load cannot erase a partly rated session. Use CASES.md to complete all-yes, all-no and tied sessions, plus invalid/duplicate/after-completion cases. Open index.html without a server.
+
+Accept the selected role in the site IDE. README.md contains the full assignment;CASES.md supplies the checks. Save,export and reopen the same files.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/bf88ab46e0b7314e0b0999ba35363519",
 					solutionLink:
@@ -1412,12 +1781,25 @@ Trim text and compare city, school and subject without case differences. Cancel 
 				{
 					title: "JSONBin Setup",
 					content:
-						'Review JSONBin v3 only as a preserved example of a hosted JSON API. Its write routes require an `X-Master-Key` or scoped `X-Access-Key`, so do not create, paste, or ship either key in CodePen or browser source. Build the required exercise with a versioned `{"notes": [{"id": "n1", "text": "fictional note", "complete": false}]}` fixture and `localStorage`. The key skill is separating local page state from persisted remote state; model that boundary with a storage adapter locally instead of exposing a remote credential. An optional demonstration may show request shapes with redacted placeholders or an isolated server-side proxy, but learner completion never depends on a hosted bin or remote write.'
+						'Review JSONBin v3 only as a preserved example of a hosted JSON API. Its write routes require an `X-Master-Key` or scoped `X-Access-Key`, so do not create, paste, or ship either key in CodePen or browser source. Build the required exercise with a versioned `{"schemaVersion": 1, "notes": [{"id": "n1", "text": "fictional note"}]}` fixture and `localStorage`. The key skill is separating local page state from persisted remote state; model that boundary with a storage adapter locally instead of exposing a remote credential. An optional demonstration may show request shapes with redacted placeholders or an isolated server-side proxy, but learner completion never depends on a hosted bin or remote write.'
+				},
+				{
+					title: "Local Documents and Stable IDs",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: javascriptLocalDocumentsReading
 				},
 				{
 					title: "JSM12 Project 1: To-Do List",
-					content:
-						"Build a persistent fictional to-do list by loading a versioned fixture or `localStorage`, validating the record shape, rendering notes with `textContent`, adding a normalized note from a labeled form, and saving the bounded array locally. Keep loading, parsing, state mutation, rendering, and persistence in separate named functions. Use stable IDs, cap note length and count, expose storage failures, and verify persistence by adding a note, refreshing, and confirming that it returns. The original hosted project remains a reference, but the required solution contains no JSONBin key or remote write.",
+					preserveInstructions: true,
+					content: `Build a note list from a version-one document with stable IDs. The two supplied notes make the initial state concrete. Complete addNote(state, value, id) and renderNotes(state) in script.js. addNote trims and validates a 1–200-character note, rejects a repeated ID or more than 100 records, pushes one {id, text} object and returns true. Use the supplied recordId and textField helpers. renderNotes creates a list item for each record and assigns its text with textContent. An empty array displays No notes.
+
+The supplied form generates an ID once per accepted submission. Its transaction helper clones state, applies the mutation, validates the complete document and saves JSON before replacing working state. Trace this route in storage.js and the perform function. A failed save keeps the previous document. Invalid or unsupported stored JSON stays available for recovery and produces a read-only example.
+
+Add two notes, including duplicate text, and refresh at the same origin. Each note must retain its own ID. Verify literal markup-shaped text, blank/overlength input, the record limit, failed saving and corrupted storage using CASES.md. This project supplies creation and rendering; deletion belongs to the next core project.
+
+Accept the selected role in the site IDE. README.md contains the complete assignment;CASES.md supplies the checks. Save,export and reopen the same files.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/1f218d8aafbcc33fd6409a8ab1616e29",
 					solutionLink: "https://codepen.io/junilearning/pen/MWZzbmK",
@@ -1426,8 +1808,14 @@ Trim text and compare city, school and subject without case differences. Cancel 
 				},
 				{
 					title: "JSM12 Project 2: Deleting Notes",
-					content:
-						"Extend the local to-do list with a `deleteNote(id)` function that removes only the record with the selected stable ID, re-renders from state, and persists the changed document to `localStorage`. Include a clearly named delete button beside each note, move focus to a predictable location after deletion, and verify the first, last, only, unknown-ID, repeated-delete, refresh, and storage-failure cases. Do not use array position as a persistent identity or send a browser-held write secret.",
+					preserveInstructions: true,
+					content: `Extend the completed local note list with deletion. Adding, validation, rendering and persistence are supplied from the earlier project. Complete deleteNote(state, id) in script.js. Find the note with the selected stable ID, remove exactly that record and return true. Return false for an unknown ID so no stored document is rewritten. Array positions describe display order; the stored ID identifies the record across changes.
+
+Each Delete button captures its note's ID. After a successful transaction the renderer rebuilds the list and focus returns to the note input. The storage helper validates and saves a cloned document first, so a quota or policy failure leaves the previous state intact.
+
+Delete the first, last and only note. Repeat a deletion with the removed ID, and try an ID that never existed. Add duplicate text to confirm the selected ID determines the deletion. Refresh after success and after a failed save. The list uses version one and has no completion checkbox; checking notes remains a separate optional project.
+
+Accept the selected role in the site IDE. README.md contains the complete assignment;CASES.md supplies the checks. Save,export and reopen the same files.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/f8f84204c272d2a6449cda485cbe7736",
 					solutionLink: "https://codepen.io/junilearning/pen/BavGpyN"
@@ -1436,8 +1824,16 @@ Trim text and compare city, school and subject without case differences. Cancel 
 			supplementalProjects: [
 				{
 					title: "JSM12 Supplemental Project 1: Checking Notes",
-					content:
-						"Extend the local to-do list so each item can be marked complete without deletion. Store completion state in versioned objects with stable IDs, use a native checkbox with an accessible name, and communicate completion with text or state as well as visual styling. Verify that completed and incomplete status survives refresh, toggling one note does not change another, corrupted storage falls back safely, and a schema migration converts the original string array without losing valid fictional notes.",
+					preserveInstructions: true,
+					content: `Add persistent completion state to the local note list. Adding, deleting, safe rendering and the storage transaction are supplied. Complete upgradeLegacyNotes(value) and setCompletion(state, id, checked) in script.js.
+
+Version two retains each note's ID and text and adds the Boolean done field. Upgrade a valid version-one document by preserving its records and assigning done: false. For the older string-array fixture, keep each valid nonblank note, including duplicate text, and assign a distinct legacy-position ID. Validate text and record limits and reject other shapes. Return the version-two document. The supplied normalizer validates the result and marks it as migrated; the next successful change saves that schema.
+
+setCompletion finds one note by ID, accepts only a Boolean checked value, assigns its done field and returns true. Unknown IDs or non-Boolean values return false. The native checkbox and Completed/Incomplete text show the same state. Focus returns to the corresponding checkbox after rendering.
+
+Use the two legacy fixtures in fixtures.js and CASES.md to verify migration, toggling one of two notes, repeated toggles, deletion after checking, refresh, corrupted data and failed saving. A failed migration preserves the original JSON for recovery. This is the optional extension of the two core note projects.
+
+Accept the selected role in the site IDE. README.md contains the complete assignment;CASES.md supplies the checks. Save,export and reopen the same files.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/ab6bf77b9d85e1b9a7452d5a307b6b7f",
 					solutionLink:
@@ -1476,11 +1872,26 @@ Trim text and compare city, school and subject without case differences. Cancel 
 			curriculum: [
 				{
 					title: "JSM13 Project 1: Message Board",
-					content:
-						"Build a single-browser fictional message board that stores versioned post objects in `localStorage` with a stable ID, title, reviewed HTTPS URL, optional reviewed image URL, and locally generated ordering value. The labeled form validates and caps every field, creates a post, persists local state, resets inputs, moves focus predictably, and renders newest posts with `textContent`. Parse URLs with the `URL` API, permit only reviewed protocols and origins, and provide text when an image fails. Verify multiple posts, refresh, malformed and corrupted storage, markup-shaped text, invalid URLs, record limits, and reset. The original remote-store CodePen remains reference material; no real identity, public posting, browser secret, or remote write is required.",
+					preserveInstructions: true,
+					content: `Build a single-browser topic board with separate title, site URL and optional image-address fields. Complete addTopic(state, title, url, imageUrl, id) and renderTopics(state) in script.js. The supplied version-one fixture contains two topics with stable IDs and ordering values.
+
+addTopic validates the ID, a 1–100-character title and the two addresses, then creates one post with a locally increasing order value. Reject repeated IDs and more than 30 topics. Use reviewedUrl for the explicit site/image origins in storage.js. An empty image address is valid and uses the supplied decorative illustration. A failed image load exposes a text fallback.
+
+renderTopics sorts a copy by descending order, builds each article with DOM methods, assigns the title with textContent and links to its reviewed site URL. Assign image addresses through the img src property and handle load failure. The supplied transaction saves a validated clone before changing working state. Reset requires confirmation; read-only recovery preserves original saved bytes.
+
+Create at least two new topics and check ordering, the three distinct fields, refresh, markup-shaped titles, disallowed URLs, image failure, record/document limits, corrupted storage and failed saving. Adding comments is a separate optional extension; this core board displays topics.
+
+Accept the selected role in the site IDE. README.md contains the complete assignment;CASES.md supplies the checks. Save,export and reopen the same files.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/6c0b3c5a207fc24b58c44a5f481922e3",
 					solutionLink: "https://codepen.io/junilearning/pen/GRPwwOg"
+				},
+				{
+					title: "Local Topics and Comments",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: javascriptLocalMessageBoardReading
 				},
 				{
 					title: "Message Board: Debugging and Failure Modes",
@@ -1510,8 +1921,16 @@ Trim text and compare city, school and subject without case differences. Cancel 
 			supplementalProjects: [
 				{
 					title: "JSM13 Supplemental Project 1: Adding Comments",
-					content:
-						"Add bounded fictional comments as nested objects under each locally stored message-board post. Each post exposes a labeled comment form tied to the post’s stable ID, renders comment text safely, updates only the intended record, announces the result, and persists the versioned board to `localStorage`. Test at least two posts, duplicate text, empty and overlength input, markup-shaped text, refresh, deletion or reset, and storage failure so comments do not accidentally attach to the wrong item or become executable markup.",
+					preserveInstructions: true,
+					content: `Extend the completed topic board with nested comments. Topic creation, URL validation, ordering, rendering, local transactions and a version-one upgrade are supplied. Complete addComment(state, postId, value, id) in script.js.
+
+Find the parent topic by stable ID. An unknown parent returns false without changing or saving the document. Validate a unique comment ID and trimmed text of 1–400 characters. Append one {id, text} object to that topic's comments array, with at most 20 comments per topic and 200 across the board. The full document must remain within 128 KiB.
+
+The renderer creates a labeled form for each topic and captures its ID. Adding a newer topic changes display positions while the captured ID still selects the intended parent. Duplicate comment text is allowed as distinct records. The supplied renderer uses textContent and restores focus to the appropriate new comment input.
+
+Comment on two topics, add a newer topic, comment again on an older one and refresh. Verify stable associations, duplicate and markup-shaped text, blank/overlength input, missing parents, limits, reset and storage failures using CASES.md. A failed save preserves the previous document. Reset restores the supplied example and clears its comments. This project remains optional.
+
+Accept the selected role in the site IDE. README.md contains the complete assignment;CASES.md supplies the checks. Save,export and reopen the same files.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/f40d31ed70aef27cee691e91d947ef14",
 					solutionLink:
@@ -1550,8 +1969,38 @@ Trim text and compare city, school and subject without case differences. Cancel 
 			curriculum: [
 				{
 					title: "JSM14 Project 1: Quiz Game",
-					content:
-						"Build a fictional region-and-capital quiz from the supplied local JSON fixture. Model loading, ready, asking, feedback, complete, and reset states explicitly; use a labeled form or native buttons for answers; update score exactly once per question; and render progress, feedback, and final result as DOM text. Canvas may color a decorative map or region diagram, but essential names, current question, score, status, and controls remain available outside it. Validate and cap fixture data, support keyboard and pointer use, preserve visible focus, respect reduced motion, and verify duplicate submit, wrong and correct answers, final question, empty fixture, malformed fixture, and restart. The preserved JSONBin-based CodePen is reference-only; no browser credential or remote write belongs in the required project.",
+					preserveInstructions: true,
+					content: `Implement a U.S. state-capitals quiz using the supplied fifty state records and map outlines. A correct answer colors that state green; an incorrect answer colors it red. The current question, feedback, answer count, score and completed results also appear as page text.
+
+## Trace the state machine
+
+Read model.js and the event handlers in script.js. createQuiz validates and copies the dataset, then produces a ready game with no current question and an empty answers array. Starting chooses one unanswered state and enters asking. An accepted answer is recorded once and changes the phase to feedback. The next action chooses another unanswered state or enters complete when no records remain.
+
+For a three-state trace containing Alabama, Alaska and Arizona, inject a random function that returns zero. Alabama is selected first. Submitting Montgomery records one correct answer. Submitting again during feedback returns false and keeps the answer count at one. Advancing selects Alaska. After all three answers, advancing returns no next question and completes a three-question game. The total comes from the data length; it is never a separate hard-coded guess limit.
+
+## Complete the three task functions
+
+Complete chooseQuestion(game, random), submitAnswer(game, value) and advanceQuiz(game, random) in model.js. Earlier validation, startup, reset, scoring, form events and rendering are supplied.
+
+chooseQuestion constructs the set of answered IDs, filters the dataset to unanswered states and returns null for an empty remainder. Validate that the random value is finite and within [0, 1), then choose Math.floor(value * remaining.length). A state ID stays the same throughout the quiz.
+
+submitAnswer accepts input only during asking. Normalize a capital name by trimming outer whitespace, collapsing repeated spaces and comparing without case. Preserve punctuation unless an explicitly listed alias permits another form. Minnesota supplies St. Paul, Saint Paul and St Paul as accepted forms. Reject blank or overlength input without consuming the question. Check the selected state's acceptedAnswers, append exactly one {id, answer, correct} result and enter feedback. A repeated submit leaves the result unchanged.
+
+advanceQuiz works only during feedback. Use chooseQuestion to obtain the next record. A returned record enters asking; null enters complete and clears the current question. Both the score and total are derived from the game, so a smaller validated dataset also finishes correctly.
+
+## Read the data and the map
+
+data.js contains suppliedJSON. JSON.parse turns that string into a dataset with schemaVersion, viewBox and states. Each state has a two-digit ID, name, capital, acceptedAnswers and a bounded path string. The validator checks versions, duplicate IDs and names, fields, answer aliases and map coordinates. It copies expected fields into a fresh document.
+
+The map renderer creates Path2D objects from those supplied paths, transforms their view box into the canvas and colors them from answer records. Alaska and Hawaii use insets. The results list repeats the meaningful answer outcomes as text. Rendering reads game state without adding answers or changing the score.
+
+The Dataset section accepts a local JSON file of at most one MiB. Invalid or empty data leaves the current quiz intact and displays its error. Use supplied data restores the included fifty-state dataset. No network request is required.
+
+## Run and verify
+
+Open index.html in a current browser. Keep all files together. Complete the starter functions, save the same IDE attempt, export its ZIP and open the exported HTML. README.md, CASES.md and SOURCES.md travel with the code.
+
+Check correct, wrong, blank, repeated and final answers with keyboard and pointer input. Verify the map and text results agree, all fifty distinct IDs occur once, reset clears the previous attempt, malformed data preserves a valid game and a smaller dataset uses its actual total. The reference provides one implementation for comparison after an attempt.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/f8ec7312634d2011e58c44d691d1da13",
 					solutionLink:
@@ -2168,9 +2617,9 @@ const JAVASCRIPT_LEVEL_2_MODULE_FLOW: Record<
 		],
 		practiceSection: "accessible-quiz-state-machine-case",
 		answerSection: "accessible-quiz-state-machine-key",
-		route: "Load a bounded fictional local fixture, model ready, asking, feedback, complete, and reset states, accept one answer per question, and render question, score, progress, feedback, and controls in the DOM. Canvas remains optional visual enhancement.",
+		route: "Build the U.S. state-capitals quiz from fifty supplied records and state outlines. Model ready, asking, feedback and complete states with an explicit reset action; accept one answer per question; color each answered state and show matching text results, score and progress. Finish from the actual dataset count.",
 		standardsRoute:
-			"Use labeled forms or native buttons, keyboard and pointer parity, visible focus, status announcements, reduced motion, and essential non-canvas content. No JSONBin, remote write, credential, or real learner result is required.",
+			"Use a labeled native form, visible keyboard focus and text results alongside map colors. Validate local JSON files, retain the current valid quiz after import errors and keep the text-based quiz usable when Canvas is unavailable.",
 		evidence:
 			"The quiz matrix covers correct, wrong, empty, duplicate submit, exact final question, score integrity, malformed and empty fixture, keyboard path, focus destination, canvas unavailable, complete state, and restart.",
 		primaryReference: {
@@ -2264,7 +2713,7 @@ function decorateJavaScriptLevel2Module(
 		curriculum: module.curriculum.map((item, index) => ({
 			...item,
 			content:
-				index === 0
+				index === 0 && module.title !== "JSM10 APIs and Requests"
 					? `**Course flow:** ${flow.stage}. ${flow.route}
 
 **Standards route:** ${flow.standardsRoute}

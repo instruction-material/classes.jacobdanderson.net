@@ -1,0 +1,18 @@
+function playDoubleOrNothing(ask = prompt, random = Math.random) {
+  // TODO: Trace Y, Y, N with two heads, then implement the decision loop.
+  // Return the final balance for N, Cancel or tails.
+  throw new Error("Complete playDoubleOrNothing in script.js.");
+}
+
+function printToScreen(text) {
+  d3.select("#results").append("p")
+    .attr("class", "round-result")
+    .style("color", "rgb(28, 87, 51)")
+    .text(text);
+}
+document.querySelector("#start").addEventListener("click", () => {
+  const status = document.querySelector("#status");
+  status.textContent = "";
+  try { printToScreen("You ended Double or Nothing with: $" + playDoubleOrNothing() + "."); }
+  catch (error) { status.textContent = error.message; }
+});

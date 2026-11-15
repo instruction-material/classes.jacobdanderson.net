@@ -1,0 +1,83 @@
+// Fictional exercise data.
+const businesses = [
+  {
+    "name": "Cedar Trail Outfitters",
+    "location": "Fairhaven",
+    "CEO": "Rowan Patel",
+    "products": [
+      "Daypack",
+      "Trail Bottle",
+      "Rain Shell"
+    ],
+    "logo_image": "images/business-1-logo.svg",
+    "display_image": "images/business-1.svg"
+  },
+  {
+    "name": "Sunrise Bakery",
+    "location": "Mapleton",
+    "CEO": "Avery Kim",
+    "products": [
+      "Sourdough",
+      "Blueberry Muffin",
+      "Cinnamon Roll"
+    ],
+    "logo_image": "images/business-2-logo.svg",
+    "display_image": "images/business-2.svg"
+  },
+  {
+    "name": "Harbor Books",
+    "location": "Lakeside",
+    "CEO": "Morgan Reed",
+    "products": [
+      "Mystery Novel",
+      "Nature Guide",
+      "Sketchbook"
+    ],
+    "logo_image": "images/business-3-logo.svg",
+    "display_image": "images/business-3.svg"
+  }
+];
+
+function renderBusiness(query) {
+  const name = query.trim();
+  const business = businesses.find(entry => entry.name === name);
+  const card = d3.select("#business-card");
+  if (!business) {
+    card.attr("hidden", "");
+    d3.select("#search-status").text("No business found.");
+    return;
+  }
+  card.attr("hidden", null);
+  d3.select("#search-status").text("");
+  d3.select("#business-title").text(business.name);
+  d3.select("#business-location").text("Located in: " + business.location);
+  d3.select("#business-ceo").text("CEO: " + business.CEO);
+  d3.select("#business-products").text("Products offered: " + business.products.join(", "));
+  const holder = d3.select("#business-image");
+  holder.selectAll("*").remove();
+  const fallback = holder.append("p").attr("class", "image-fallback")
+    .text("Image unavailable for " + business.name + ".");
+  if (business.display_image) {
+    const image = holder.append("img").attr("alt", business.name + " display image");
+    image.node().addEventListener("error", () => {
+      image.attr("hidden", "");
+      fallback.attr("hidden", null);
+    }, { once: true });
+    fallback.attr("hidden", "");
+    image.attr("src", business.display_image);
+  }
+}
+
+// Shared interface setup.
+const namesAndLogos = {};
+businesses.forEach(business => {
+  namesAndLogos[business.name] = business.logo_image || null;
+});
+M.Autocomplete.init(document.querySelectorAll(".autocomplete"), {
+  data: namesAndLogos,
+  onAutocomplete: name => renderBusiness(name)
+});
+d3.select("#business-search").on("submit", event => {
+  event.preventDefault();
+  renderBusiness(document.getElementById("business-input").value);
+});

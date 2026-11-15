@@ -1,0 +1,17 @@
+PRAGMA foreign_keys = ON;
+CREATE TABLE bookshelves (
+  id INTEGER PRIMARY KEY,
+  label TEXT NOT NULL UNIQUE
+);
+CREATE TABLE books (
+  id INTEGER PRIMARY KEY,
+  title TEXT NOT NULL,
+  shelf_id INTEGER NOT NULL REFERENCES bookshelves(id)
+);
+INSERT INTO bookshelves VALUES (1,'Fiction'),(2,'Science');
+INSERT INTO books VALUES (10,'Moon Map',1),(11,'River Robots',1),(12,'Seed Lab',2);
+-- Query A
+SELECT title FROM books WHERE shelf_id = 1 ORDER BY id;
+-- Query B
+SELECT books.title, bookshelves.label
+FROM books JOIN bookshelves ON books.shelf_id = bookshelves.id ORDER BY books.id;

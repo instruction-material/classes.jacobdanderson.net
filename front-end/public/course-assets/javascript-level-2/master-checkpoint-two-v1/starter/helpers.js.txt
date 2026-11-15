@@ -1,0 +1,16 @@
+(function () {
+"use strict";
+function sumEvens(values) {
+  // TODO: return the sum of even values, starting with total 0.
+  throw new Error("Complete sumEvens in helpers.js.");
+}
+function canvasPoint(event, canvas) {
+  // TODO: subtract the visible rectangle origin, then scale to buffer coordinates.
+  throw new Error("Complete canvasPoint in helpers.js.");
+}
+function firstMove(data) {
+  // TODO: validate with checkpointRemote.validateList and return the first move name.
+  throw new Error("Complete firstMove in helpers.js.");
+}
+globalThis.checkpoint = { sumEvens, canvasPoint, firstMove };
+})();

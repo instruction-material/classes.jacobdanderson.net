@@ -1,0 +1,147 @@
+{
+  "courseId": "javascript-level-2-javascript-master",
+  "moduleId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners",
+  "itemId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners-supplemental-jsm7-supplemental-project-2-juggling-paddle",
+  "originalCaptures": [
+    "https://codepen.io/junilearning/pen/9c003b58d7ca7770e49f9243dbecb00f",
+    "https://codepen.io/junilearning/pen/8f44f06f31939f0a56050f4718f0b608"
+  ],
+  "resources": [
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "juggling-paddle",
+      "title": "Juggling Paddle",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/9c003b58d7ca7770e49f9243dbecb00f",
+        "https://codepen.io/junilearning/pen/JjKZemR",
+        "/course-assets/javascript-level-2/juggling-paddle-v1/starter/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "juggling-paddle-v1/starter/CASES.md.txt",
+          "byteLength": 1120,
+          "sha256": "eda8756ffce011c8c3d11622b04598d7a9cd69167712af04331f384450fcf578"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "juggling-paddle-v1/starter/LICENSE-original.txt.txt",
+          "byteLength": 1172,
+          "sha256": "fed2a3fd3cc7178423627352f5e9f4fbc85c76f133e2004085fd2a402166efbd"
+        },
+        {
+          "name": "README.md",
+          "path": "juggling-paddle-v1/starter/README.md.txt",
+          "byteLength": 2503,
+          "sha256": "b3eb007769dfe42a616e5cbcc961dfe72ae4065073de1562020c86804c6b41e4"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "juggling-paddle-v1/starter/SOURCES.md.txt",
+          "byteLength": 1174,
+          "sha256": "70393249ee597b38b78fbd86269b2d4c957e23fc88235f08949bad98eec3f4e0"
+        },
+        {
+          "name": "index.html",
+          "path": "juggling-paddle-v1/starter/index.html.txt",
+          "byteLength": 554,
+          "sha256": "9681b0f0d456321a62320c7d3ac5ef735d125a21376290f57dfdd4ea1e78c982"
+        },
+        {
+          "name": "script.js",
+          "path": "juggling-paddle-v1/starter/script.js.txt",
+          "byteLength": 1837,
+          "sha256": "4c37435a38e169113f77e8c8d8d81c7783b531264b530c8958dcf93feae70279"
+        },
+        {
+          "name": "styles.css",
+          "path": "juggling-paddle-v1/starter/styles.css.txt",
+          "byteLength": 319,
+          "sha256": "c9136172202581a70997a2d7eb486d60d3b53bdd6dd4a05ac7e7f6fb97976833"
+        }
+      ],
+      "itemId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners-supplemental-jsm7-supplemental-project-2-juggling-paddle"
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "juggling-paddle",
+      "title": "Juggling Paddle",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/8f44f06f31939f0a56050f4718f0b608",
+        "https://codepen.io/junilearning/pen/jOrKQGQ/8f44f06f31939f0a56050f4718f0b608",
+        "/course-assets/javascript-level-2/juggling-paddle-v1/reference/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "juggling-paddle-v1/reference/CASES.md.txt",
+          "byteLength": 1120,
+          "sha256": "eda8756ffce011c8c3d11622b04598d7a9cd69167712af04331f384450fcf578"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "juggling-paddle-v1/reference/LICENSE-original.txt.txt",
+          "byteLength": 1172,
+          "sha256": "fed2a3fd3cc7178423627352f5e9f4fbc85c76f133e2004085fd2a402166efbd"
+        },
+        {
+          "name": "README.md",
+          "path": "juggling-paddle-v1/reference/README.md.txt",
+          "byteLength": 2503,
+          "sha256": "b3eb007769dfe42a616e5cbcc961dfe72ae4065073de1562020c86804c6b41e4"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "juggling-paddle-v1/reference/SOURCES.md.txt",
+          "byteLength": 1174,
+          "sha256": "70393249ee597b38b78fbd86269b2d4c957e23fc88235f08949bad98eec3f4e0"
+        },
+        {
+          "name": "index.html",
+          "path": "juggling-paddle-v1/reference/index.html.txt",
+          "byteLength": 554,
+          "sha256": "9681b0f0d456321a62320c7d3ac5ef735d125a21376290f57dfdd4ea1e78c982"
+        },
+        {
+          "name": "script.js",
+          "path": "juggling-paddle-v1/reference/script.js.txt",
+          "byteLength": 2243,
+          "sha256": "49e45679759fa8361dec8ce7fe81359c7face2fee4b83bf970bad7356cfa6c3a"
+        },
+        {
+          "name": "styles.css",
+          "path": "juggling-paddle-v1/reference/styles.css.txt",
+          "byteLength": 319,
+          "sha256": "c9136172202581a70997a2d7eb486d60d3b53bdd6dd4a05ac7e7f6fb97976833"
+        }
+      ],
+      "itemId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners-supplemental-jsm7-supplemental-project-2-juggling-paddle"
+    }
+  ],
+  "files": {
+    "starter": {
+      "CASES.md": "# Juggling Paddle cases\n\nDefault canvas 500 by 500; paddle (200,300),100 by 20; ball (250,100),radius 10.\nPaddle speed 10 and ball speed 1 are logical units per animation frame.\n\n| State before update | Expected |\n| --- | --- |\n| ball y 289,falling | y 290,rising:circle bottom touches paddle top |\n| ball y 50.5,rising | y 50,falling |\n| ball y 289,speed5,falling | y 290,rising:crossed surface is not skipped |\n| ball y 301,falling | y 302,falling:below-paddle motion does not bounce |\n| paddle x 0,ball falling | no collision;ball exits when y-radius>500 |\n| paddle y 200,ball y 189 | contact at y 190 |\n| radius 20,ball y 279 | contact at y 280 |\n| paddle x 255,ball y 291,falling | contact y 300-sqrt(75),rising |\n| paddle x 261,ball falling | horizontal distance 11 exceeds radius 10;miss |\n\nHolding both arrows leaves the paddle stationary. Releasing either held direction,\nblurring the canvas/window or hiding the page clears held input as applicable.\nThe unmodified starter keeps the ball at (250,100) until its update is implemented.\nChanging ballColor and the heading must survive save,reopen and ZIP export.\n",
+      "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/JjKZemR)\nFork of an original work that is now private.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "README.md": "# Juggling Paddle\n\nUse the working keyboard paddle to bounce a falling ball. Complete updateBall\nand paddleContactY in script.js. The starter supplies the preceding paddle project.\n\n## Files and execution\n\nOpen index.html in a browser without a server. The site IDE runs the same files.\nstyles.css fits the logical 500-by-500 canvas to the available width.\nFocus the canvas before holding Left or Right; a keyboard with arrow keys is needed.\nCASES.md gives fixed movement and collision cases.\n\n## Original game model\n\nThe black paddle starts at (200,300), measures 100 by 20 and moves 10 units/frame.\nIts valid x range is 0 through 400. Both arrows cancel; release or focus loss stops it.\nThe red ball starts at (250,100), has radius 10 and moves vertically 1 unit/frame.\nIt keeps x=250. isFalling chooses down or up; the upward endpoint is center y=50.\nThis is fixed-speed animation: a hit turns the ball upward and the apex turns it down.\nA miss continues below the canvas. Scoring, lives and automatic restart are optional\nremixes rather than required behavior.\n\n## Collision and update order\n\nUse the actual rectangle and circle geometry. For a centered hit, contact occurs\nwhen center y+radius equals paddle.y: 290+10=300.\nFor a rounded corner, clamp ball.x to the paddle's horizontal interval to get nearestX.\nSet dx=ball.x-nearestX. If abs(dx)>radius, no contact is possible.\nThe circle boundary satisfies dx*dx+dy*dy=radius*radius. Its vertical reach is\nsqrt(radius*radius-dx*dx), so contactY=paddle.y-sqrt(radius*radius-dx*dx).\n\nDuring descent, bounce only when oldY<=contactY and nextY>=contactY.\nSet y exactly to contactY and isFalling=false. This crossing check handles changed\nspeed and fractional contact positions. A ball already below the paddle keeps falling.\nDuring ascent, clamp at ball.apex and turn downward when nextY<=ball.apex.\nUpdate the paddle and ball before drawing their new state.\n\n## Worked results and evidence\n\nFrom y=289, one downward frame hits the centered paddle at y=290 and turns upward.\nFrom y=50.5 while rising, the next frame reaches 50 and turns downward.\nMove the paddle to x=0: the ball misses and eventually has y-radius>500.\nCASES.md also covers changed radius, shifted paddle, corner contact and larger steps.\n\nShow a hit, upward travel, return at y=50 and a miss that leaves the screen.\nExplain the two direction changes and why collision uses the ball radius.\nThe unchanged starter draws both objects and moves the paddle; ball updates remain assigned.\n",
+      "SOURCES.md": "# Sources\n\nAssignment:https://codepen.io/junilearning/pen/9c003b58d7ca7770e49f9243dbecb00f\nObserved alias:https://codepen.io/junilearning/pen/JjKZemR\nReference:https://codepen.io/junilearning/pen/8f44f06f31939f0a56050f4718f0b608\nObserved alias:https://codepen.io/junilearning/pen/jOrKQGQ/8f44f06f31939f0a56050f4718f0b608\n\nComplete panels/settings and official exports reviewed on 2026-11-14.\nBoth use no preprocessors,external resources or packages;HTML/CSS settings are\nNone/Neither. The starter has blank HTML/CSS and one task comment.\nThe reference actually assigns a500-by 500canvas;screenWidth 800 is unused.\n\nThese newly authored local teaching files preserve the original geometry,colors,\nfixed vertical speed,upward endpoint and miss-offscreen behavior. The preceding\nworking paddle setup is supplied. Collision uses actual geometry,crossing checks\nand the circle radius. The input handling retains the corrected bounded/focus-safe\npaddle from JSM7 Project 3.\nThe starter MIT notice is retained in LICENSE-original.txt. The reference export\nhas no separate license file;its source remains in the private audit capture\nand was not copied into these local role files.\n",
+      "index.html": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Juggling Paddle</title>\n<link rel=\"stylesheet\" href=\"styles.css\">\n<script src=\"script.js\" defer></script>\n</head>\n<body>\n<h1>Juggling Paddle</h1>\n<p id=\"controls\">Focus the canvas, then hold Left or Right. Release to stop.</p>\n<canvas id=\"my-canvas\" tabindex=\"0\" aria-label=\"Juggling paddle and falling ball\" aria-describedby=\"controls\">Paddle uses a canvas and a keyboard with arrow keys.</canvas>\n</body>\n</html>\n",
+      "script.js": "const canvas = document.getElementById(\"my-canvas\");\nconst ctx = canvas.getContext(\"2d\");\ncanvas.width = 500;\ncanvas.height = 500;\n\nconst paddleColor = \"black\";\nconst ballColor = \"red\";\nconst ball = { x: 250, y: 100, radius: 10, speed: 1, apex: 50, isFalling: true };\nconst paddle = { x: 200, y: 300, width: 100, height: 20, speed: 10 };\nconst keyState = { ArrowLeft: false, ArrowRight: false };\n\nfunction updatePaddle() {\n\tconst direction = Number(keyState.ArrowRight) - Number(keyState.ArrowLeft);\n\tpaddle.x = Math.max(0, Math.min(canvas.width - paddle.width, paddle.x + direction * paddle.speed));\n}\n\nfunction releaseKeys() {\n\tkeyState.ArrowLeft = false;\n\tkeyState.ArrowRight = false;\n}\n\ncanvas.addEventListener(\"keydown\", event => {\n\tif (Object.hasOwn(keyState, event.key)) {\n\t\tevent.preventDefault();\n\t\tkeyState[event.key] = true;\n\t}\n});\ncanvas.addEventListener(\"keyup\", event => {\n\tif (Object.hasOwn(keyState, event.key)) {\n\t\tevent.preventDefault();\n\t\tkeyState[event.key] = false;\n\t}\n});\ncanvas.addEventListener(\"blur\", releaseKeys);\nwindow.addEventListener(\"blur\", releaseKeys);\ndocument.addEventListener(\"visibilitychange\", () => {\n\tif (document.hidden) releaseKeys();\n});\n\nfunction paddleContactY() {\n\t// TODO: Use the actual ball radius and paddle rectangle to find top contact.\n\treturn null;\n}\nfunction updateBall() {\n\t// TODO: Fall by ball.speed, bounce upward on a crossed contact, and turn at ball.apex.\n\t// A missed ball continues down off the canvas.\n}\n\nfunction draw() {\n\tupdatePaddle();\n\tupdateBall();\n\tctx.clearRect(0, 0, canvas.width, canvas.height);\n\tctx.fillStyle = paddleColor;\n\tctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);\n\tctx.beginPath();\n\tctx.fillStyle = ballColor;\n\tctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);\n\tctx.fill();\n\tctx.closePath();\n\trequestAnimationFrame(draw);\n}\ndraw();\n",
+      "styles.css": "body { margin: 1rem; color: #17212b; background: white; font: 1rem/1.5 system-ui, sans-serif; }\nh1 { margin: 0 0 0.5rem; font-size: 1.5rem; }\np { max-width: 40rem; }\ncanvas { display: block; max-width: 100%; height: auto; background: #f8fafc; }\ncanvas:focus-visible { outline: 3px solid #334155; outline-offset: 3px; }\n"
+    },
+    "reference": {
+      "CASES.md": "# Juggling Paddle cases\n\nDefault canvas 500 by 500; paddle (200,300),100 by 20; ball (250,100),radius 10.\nPaddle speed 10 and ball speed 1 are logical units per animation frame.\n\n| State before update | Expected |\n| --- | --- |\n| ball y 289,falling | y 290,rising:circle bottom touches paddle top |\n| ball y 50.5,rising | y 50,falling |\n| ball y 289,speed5,falling | y 290,rising:crossed surface is not skipped |\n| ball y 301,falling | y 302,falling:below-paddle motion does not bounce |\n| paddle x 0,ball falling | no collision;ball exits when y-radius>500 |\n| paddle y 200,ball y 189 | contact at y 190 |\n| radius 20,ball y 279 | contact at y 280 |\n| paddle x 255,ball y 291,falling | contact y 300-sqrt(75),rising |\n| paddle x 261,ball falling | horizontal distance 11 exceeds radius 10;miss |\n\nHolding both arrows leaves the paddle stationary. Releasing either held direction,\nblurring the canvas/window or hiding the page clears held input as applicable.\nThe unmodified starter keeps the ball at (250,100) until its update is implemented.\nChanging ballColor and the heading must survive save,reopen and ZIP export.\n",
+      "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/JjKZemR)\nFork of an original work that is now private.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "README.md": "# Juggling Paddle\n\nUse the working keyboard paddle to bounce a falling ball. Complete updateBall\nand paddleContactY in script.js. The starter supplies the preceding paddle project.\n\n## Files and execution\n\nOpen index.html in a browser without a server. The site IDE runs the same files.\nstyles.css fits the logical 500-by-500 canvas to the available width.\nFocus the canvas before holding Left or Right; a keyboard with arrow keys is needed.\nCASES.md gives fixed movement and collision cases.\n\n## Original game model\n\nThe black paddle starts at (200,300), measures 100 by 20 and moves 10 units/frame.\nIts valid x range is 0 through 400. Both arrows cancel; release or focus loss stops it.\nThe red ball starts at (250,100), has radius 10 and moves vertically 1 unit/frame.\nIt keeps x=250. isFalling chooses down or up; the upward endpoint is center y=50.\nThis is fixed-speed animation: a hit turns the ball upward and the apex turns it down.\nA miss continues below the canvas. Scoring, lives and automatic restart are optional\nremixes rather than required behavior.\n\n## Collision and update order\n\nUse the actual rectangle and circle geometry. For a centered hit, contact occurs\nwhen center y+radius equals paddle.y: 290+10=300.\nFor a rounded corner, clamp ball.x to the paddle's horizontal interval to get nearestX.\nSet dx=ball.x-nearestX. If abs(dx)>radius, no contact is possible.\nThe circle boundary satisfies dx*dx+dy*dy=radius*radius. Its vertical reach is\nsqrt(radius*radius-dx*dx), so contactY=paddle.y-sqrt(radius*radius-dx*dx).\n\nDuring descent, bounce only when oldY<=contactY and nextY>=contactY.\nSet y exactly to contactY and isFalling=false. This crossing check handles changed\nspeed and fractional contact positions. A ball already below the paddle keeps falling.\nDuring ascent, clamp at ball.apex and turn downward when nextY<=ball.apex.\nUpdate the paddle and ball before drawing their new state.\n\n## Worked results and evidence\n\nFrom y=289, one downward frame hits the centered paddle at y=290 and turns upward.\nFrom y=50.5 while rising, the next frame reaches 50 and turns downward.\nMove the paddle to x=0: the ball misses and eventually has y-radius>500.\nCASES.md also covers changed radius, shifted paddle, corner contact and larger steps.\n\nShow a hit, upward travel, return at y=50 and a miss that leaves the screen.\nExplain the two direction changes and why collision uses the ball radius.\nThe unchanged starter draws both objects and moves the paddle; ball updates remain assigned.\n",
+      "SOURCES.md": "# Sources\n\nAssignment:https://codepen.io/junilearning/pen/9c003b58d7ca7770e49f9243dbecb00f\nObserved alias:https://codepen.io/junilearning/pen/JjKZemR\nReference:https://codepen.io/junilearning/pen/8f44f06f31939f0a56050f4718f0b608\nObserved alias:https://codepen.io/junilearning/pen/jOrKQGQ/8f44f06f31939f0a56050f4718f0b608\n\nComplete panels/settings and official exports reviewed on 2026-11-14.\nBoth use no preprocessors,external resources or packages;HTML/CSS settings are\nNone/Neither. The starter has blank HTML/CSS and one task comment.\nThe reference actually assigns a500-by 500canvas;screenWidth 800 is unused.\n\nThese newly authored local teaching files preserve the original geometry,colors,\nfixed vertical speed,upward endpoint and miss-offscreen behavior. The preceding\nworking paddle setup is supplied. Collision uses actual geometry,crossing checks\nand the circle radius. The input handling retains the corrected bounded/focus-safe\npaddle from JSM7 Project 3.\nThe starter MIT notice is retained in LICENSE-original.txt. The reference export\nhas no separate license file;its source remains in the private audit capture\nand was not copied into these local role files.\n",
+      "index.html": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Juggling Paddle</title>\n<link rel=\"stylesheet\" href=\"styles.css\">\n<script src=\"script.js\" defer></script>\n</head>\n<body>\n<h1>Juggling Paddle</h1>\n<p id=\"controls\">Focus the canvas, then hold Left or Right. Release to stop.</p>\n<canvas id=\"my-canvas\" tabindex=\"0\" aria-label=\"Juggling paddle and falling ball\" aria-describedby=\"controls\">Paddle uses a canvas and a keyboard with arrow keys.</canvas>\n</body>\n</html>\n",
+      "script.js": "const canvas = document.getElementById(\"my-canvas\");\nconst ctx = canvas.getContext(\"2d\");\ncanvas.width = 500;\ncanvas.height = 500;\n\nconst paddleColor = \"black\";\nconst ballColor = \"red\";\nconst ball = { x: 250, y: 100, radius: 10, speed: 1, apex: 50, isFalling: true };\nconst paddle = { x: 200, y: 300, width: 100, height: 20, speed: 10 };\nconst keyState = { ArrowLeft: false, ArrowRight: false };\n\nfunction updatePaddle() {\n\tconst direction = Number(keyState.ArrowRight) - Number(keyState.ArrowLeft);\n\tpaddle.x = Math.max(0, Math.min(canvas.width - paddle.width, paddle.x + direction * paddle.speed));\n}\n\nfunction releaseKeys() {\n\tkeyState.ArrowLeft = false;\n\tkeyState.ArrowRight = false;\n}\n\ncanvas.addEventListener(\"keydown\", event => {\n\tif (Object.hasOwn(keyState, event.key)) {\n\t\tevent.preventDefault();\n\t\tkeyState[event.key] = true;\n\t}\n});\ncanvas.addEventListener(\"keyup\", event => {\n\tif (Object.hasOwn(keyState, event.key)) {\n\t\tevent.preventDefault();\n\t\tkeyState[event.key] = false;\n\t}\n});\ncanvas.addEventListener(\"blur\", releaseKeys);\nwindow.addEventListener(\"blur\", releaseKeys);\ndocument.addEventListener(\"visibilitychange\", () => {\n\tif (document.hidden) releaseKeys();\n});\n\nfunction paddleContactY() {\n\tconst nearestX = Math.max(paddle.x, Math.min(ball.x, paddle.x + paddle.width));\n\tconst dx = ball.x - nearestX;\n\tif (Math.abs(dx) > ball.radius) return null;\n\treturn paddle.y - Math.sqrt(ball.radius * ball.radius - dx * dx);\n}\n\nfunction updateBall() {\n\tif (ball.isFalling) {\n\t\tconst nextY = ball.y + ball.speed;\n\t\tconst contactY = paddleContactY();\n\t\tif (contactY !== null && ball.y <= contactY && nextY >= contactY) {\n\t\t\tball.y = contactY;\n\t\t\tball.isFalling = false;\n\t\t} else {\n\t\t\tball.y = nextY;\n\t\t}\n\t} else {\n\t\tconst nextY = ball.y - ball.speed;\n\t\tif (nextY <= ball.apex) {\n\t\t\tball.y = ball.apex;\n\t\t\tball.isFalling = true;\n\t\t} else {\n\t\t\tball.y = nextY;\n\t\t}\n\t}\n}\n\nfunction draw() {\n\tupdatePaddle();\n\tupdateBall();\n\tctx.clearRect(0, 0, canvas.width, canvas.height);\n\tctx.fillStyle = paddleColor;\n\tctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);\n\tctx.beginPath();\n\tctx.fillStyle = ballColor;\n\tctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);\n\tctx.fill();\n\tctx.closePath();\n\trequestAnimationFrame(draw);\n}\ndraw();\n",
+      "styles.css": "body { margin: 1rem; color: #17212b; background: white; font: 1rem/1.5 system-ui, sans-serif; }\nh1 { margin: 0 0 0.5rem; font-size: 1.5rem; }\np { max-width: 40rem; }\ncanvas { display: block; max-width: 100%; height: auto; background: #f8fafc; }\ncanvas:focus-visible { outline: 3px solid #334155; outline-offset: 3px; }\n"
+    }
+  },
+  "revisionKind": "sha256-local-source-manifest",
+  "revision": "fb8dda0f150e191d364a1ad5764cc33173a13bbe7a7fec7f512692731cae3a40"
+}

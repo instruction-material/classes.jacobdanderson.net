@@ -6,6 +6,7 @@ import { join } from "node:path";
 import { createPinia, setActivePinia } from "pinia";
 import MarkdownIt from "markdown-it";
 import { expect, it } from "vitest";
+import smartMoneyAdditions from "../../test/fixtures/smart-money-restored-identities.json";
 import published from "../../test/fixtures/catalog-published-identities.json";
 import elementaryAdditions from "../../test/fixtures/early-elementary-a-restored-identities.json";
 import elementaryBAdditions from "../../test/fixtures/early-elementary-b-restored-identities.json";
@@ -47,6 +48,7 @@ import {
 	lateElementaryMathBCourse,
 	earlyElementaryJoyOfReadingCourse,
 	earlyElementaryPictureBookCourse,
+	smartMoneyPersonalFinanceCourse,
 	entrepreneurship101Course,
 	grammarMechanicsCourse,
 	introductionToPublicSpeakingCourse,
@@ -69,7 +71,8 @@ function isReviewedModule(id: string, title: string) {
 			"DPR2 Composing Methods",
 			"DPR3 Moving Features Between Objects",
 			"DPR4 Organizing Data",
-			"DPR5 Simplifying Conditional Expressions"
+			"DPR5 Simplifying Conditional Expressions",
+			"DPR6 Simplifying Method Calls"
 		].includes(title);
 	return true;
 }
@@ -77,7 +80,7 @@ const cases = [
 	{
 		id: "design-patterns-in-java-part-2",
 		source: designPatternsInJavaPart2Course,
-		readings: 5,
+		readings: 6,
 		additions: []
 	},
 	{
@@ -181,6 +184,12 @@ const cases = [
 		source: geometryACourse,
 		readings: 6,
 		additions: []
+	},
+	{
+		id: "smart-money-personal-finance",
+		source: smartMoneyPersonalFinanceCourse,
+		readings: 9,
+		additions: smartMoneyAdditions
 	},
 	{
 		id: "entrepreneurship-101",
@@ -479,6 +488,7 @@ it.each(
 			const completeAssignment =
 				focusedJavaTask ||
 				[
+					"smart-money-personal-finance",
 					"intro-to-environmental-science",
 					"elementary-science",
 					"intro-to-biology",
@@ -490,6 +500,7 @@ it.each(
 			const fullBlocks =
 				focusedJavaTask ||
 				[
+					"smart-money-personal-finance",
 					"intro-to-environmental-science",
 					"elementary-science",
 					"intro-to-biology",
@@ -607,6 +618,7 @@ it.each(
 									"algebra-1a",
 									"algebra-1b",
 									"introduction-to-public-speaking",
+                                    "middle-school-c-grammar",
 									"intro-to-physics",
 									"physics-level-2",
 									"pre-algebra-a",
@@ -647,6 +659,11 @@ it.each(
 					);
 				}
 			}
+            if (id === "middle-school-c-grammar" &&
+                (item.title.startsWith("Practice Map:") || item.title.startsWith("Extension Review:"))) {
+                expect(container.textContent!.trim().length, item.title).toBeGreaterThan(170);
+                expect(container.textContent, item.title).not.toContain("speech outline");
+            }
 			return {
 				id: item.id,
 				title: item.title,
@@ -727,20 +744,20 @@ it.each(
 			const reviewed = modules.filter(module =>
 				isReviewedModule(id, module.title)
 			);
-			expect(reviewed).toHaveLength(5);
-			expect(reviewed.flatMap(module => module.readings)).toHaveLength(5);
+			expect(reviewed).toHaveLength(6);
+			expect(reviewed.flatMap(module => module.readings)).toHaveLength(6);
 			const activities = reviewed.flatMap(module => [
 				...module.projects,
 				...module.optional
 			]);
-			expect(activities).toHaveLength(37);
+			expect(activities).toHaveLength(45);
 			expect(
 				activities.every(
 					item => item.assignmentTextScope === "complete"
 				)
 			).toBe(true);
 			expect(activities.flatMap(item => item.selfChecks)).toHaveLength(
-				74
+				90
 			);
 		} else if (id === "java-level-3") expect(modules).toHaveLength(25);
 		else if (algebra1)
@@ -905,7 +922,7 @@ it.each(
 							id === "design-patterns-in-java"
 								? "Complete primary course: ten teaching units, applied studios and three reference appendices. All 134 published identities covered by 32 complete readings, 102 activities and 204 input/answer case views per role/width profile."
 								: id === "design-patterns-in-java-part-2"
-									? "DPR1 through DPR5: five complete readings, thirty-seven activities and seventy-four input/answer case views per role/width profile. All 159 published course identities checked; the other refactoring units and clinics remain outside this teaching/runtime acceptance."
+									? "DPR1 through DPR6: six complete readings, forty-five activities and ninety input/answer case views per role/width profile. All 159 published course identities checked; the other refactoring units and clinics remain outside this teaching/runtime acceptance."
 									: id === "java-level-3"
 										? "AJ4 only: one reading, two core projects, three optional tasks and ten input/response views per profile. All 217 course identities checked; other Java units are outside this teaching and runtime acceptance."
 										: id ===

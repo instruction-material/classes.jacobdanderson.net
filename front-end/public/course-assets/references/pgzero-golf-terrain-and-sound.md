@@ -164,6 +164,70 @@ Rotation changes the Actor's bounding rectangle, so recheck wall and collision
 behavior. Transparent corners still lie inside that rectangle; a circular
 collision rule needs its own geometric test.
 
+## Showing one frame of a sprite sheet
+
+A sprite sheet stores several animation frames in one image. Select a source
+rectangle when copying a frame instead of manually saving a separate file for
+each frame. In a 64×32 sheet with two 32×32 cells, the rectangles start at
+`(0, 0)` and `(32, 0)`; each has width and height 32.
+
+The `area` argument of [Surface.blit](https://www.pygame.org/docs/ref/surface.html#pygame.Surface.blit)
+selects the source pixels. The destination position is separate. Pygame Zero's
+`screen.blit(surface, position)` displays the cropped result; its second argument
+is the destination, rather than a source rectangle.
+
+This complete example creates its own two-frame sheet, so it needs no image
+files. Save it as `sprite_sheet.py` and run it in PyGame mode or with
+`pgzrun sprite_sheet.py`:
+
+```python
+import pygame
+
+WIDTH = 320
+HEIGHT = 200
+FRAME_SIZE = 32
+FRAME_SECONDS = 0.2
+
+sheet = pygame.Surface((64, 32), pygame.SRCALPHA)
+pygame.draw.circle(sheet, (230, 80, 60), (16, 16), 12)
+pygame.draw.circle(sheet, (245, 190, 40), (48, 16), 8)
+frame = pygame.Surface((FRAME_SIZE, FRAME_SIZE), pygame.SRCALPHA)
+elapsed = 0.0
+frame_index = 0
+
+def draw():
+    screen.fill((30, 60, 90))
+    frame.fill((0, 0, 0, 0))
+    source_rect = Rect(frame_index * FRAME_SIZE, 0, FRAME_SIZE, FRAME_SIZE)
+    frame.blit(sheet, (0, 0), source_rect)
+    screen.blit(frame, (120, 80))
+
+def update(dt):
+    global elapsed, frame_index
+    elapsed = (elapsed + dt) % (FRAME_SECONDS * 2)
+    frame_index = int(elapsed / FRAME_SECONDS)
+```
+
+The source rectangle moves one cell right for frame one. Both frames retain the
+same 32×32 output size, keeping their positions aligned. Clear the reusable
+frame to transparent pixels before copying the next region, so a smaller shape
+does not leave pixels from the previous frame. Create the surfaces once,
+outside `draw()`. The elapsed time wraps through the two frames without pausing
+input or starting a second game loop.
+
+For a different sheet, record its actual pixel dimensions, cell width and height,
+row/column count and frame order. Keep each source rectangle within those bounds.
+A desktop image loaded with
+[pygame.image.load](https://www.pygame.org/docs/ref/image.html#pygame.image.load)
+retains the file's transparency; use `convert_alpha()` after the display is
+initialized when preparing an alpha-enabled desktop surface.
+
+Transfer the original PNG as a file, ZIP or direct download. A screenshot of a
+displayed sprite can include its preview background, and a photo-sharing route
+may re-encode it. Check the received file's format and transparency over light
+and dark backgrounds. Changing its extension cannot recover transparency that
+was lost.
+
 ## Verify and explain
 
 Trace entering, staying, leaving and reentering sand; remaining still inside;

@@ -1,0 +1,5 @@
+const originalLog = console.log.bind(console);
+console.log = (...values) => {
+  originalLog(...values);
+  document.getElementById("log").textContent += values.map(String).join(" ") + "\n";
+};

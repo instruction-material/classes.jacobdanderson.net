@@ -1,0 +1,24 @@
+// Draw 100 squares using D3, 10 rows by 10 columns. Start with 1 square. Then, use a for loop to draw 10 squares in a row. Finally, use a nested for loop to draw 10 of those rows. Use r,g,b and .attr("fill", `rgb(${r},${g},${b})`) to make each square a random color.
+
+// Solution: original grid geometry with responsive SVG.
+
+const svg = d3.select("#drawing").append("svg")
+  .attr("width", 1000)
+  .attr("height", 1000)
+  .attr("viewBox", "0 0 1000 1000")
+  .attr("role", "img")
+  .attr("aria-label", "100 random colored squares in a 10 by 10 grid");
+
+for (let column = 0; column < 10; column++) {
+  for (let row = 0; row < 10; row++) {
+    const r = Math.floor(Math.random() * 255) + 1;
+    const g = Math.floor(Math.random() * 255) + 1;
+    const b = Math.floor(Math.random() * 255) + 1;
+    svg.append("rect")
+      .attr("x", 50 + column * 75)
+      .attr("y", 50 + row * 75)
+      .attr("width", 50)
+      .attr("height", 50)
+      .attr("fill", `rgb(${r},${g},${b})`);
+  }
+}

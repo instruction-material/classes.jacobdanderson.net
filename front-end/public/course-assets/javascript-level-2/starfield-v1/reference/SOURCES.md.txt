@@ -1,0 +1,14 @@
+# Original sources
+
+starter: https://codepen.io/junilearning/pen/6d5f8181e8ea59009eadd259e249c5c5
+Observed alias: https://codepen.io/junilearning/pen/MWeBeoL
+Original official ZIP SHA256: 51333c0969a22163440f305bf86087227b8754a6001787003c65760e36fa57bd
+
+reference: https://codepen.io/junilearning/pen/ac7242107973239507eebc571a767c5a
+Observed alias: https://codepen.io/junilearning/pen/KKMRKRK/ac7242107973239507eebc571a767c5a
+Original official ZIP SHA256: 42ac1298eafc63216862fba6203a8559f65e86a3714822f7a29afdcc2f056dde
+
+Original HTML/CSS preprocessors: None. CSS base and prefixing: Neither. JavaScript preprocessor: Babel. External resources: none.
+
+This independently written local implementation preserves the assignment,initial geometry,palette and stated mechanics. It adds bounded input,one managed animation loop,explicit terminal states and the checks described in CASES.md.
+The original reference credits https://www.codeproject.com/Articles/642499/Learn-JavaScript-Part-1-Create-a-Starfield . This pack retains that attribution; its implementation is independently written.

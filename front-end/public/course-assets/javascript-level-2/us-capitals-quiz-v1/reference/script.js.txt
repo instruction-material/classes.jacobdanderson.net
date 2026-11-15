@@ -1,0 +1,190 @@
+let game = null,
+	loading = false,
+	loadVersion = 0;
+function setStatus(message, state = "success") {
+	const element = document.querySelector("#status");
+	element.textContent = message;
+	element.dataset.state = state;
+}
+function drawMap() {
+	const canvas = document.querySelector("#map"),
+		region = document.querySelector("#map-region"),
+		ratio = Math.min(devicePixelRatio || 1, 2);
+	let ctx;
+	try {
+		ctx = canvas.getContext("2d");
+	} catch {
+		ctx = null;
+	}
+	if (!ctx || typeof Path2D !== "function") {
+		region.hidden = true;
+		return;
+	}
+	region.hidden = false;
+	canvas.width = 1000 * ratio;
+	canvas.height = 650 * ratio;
+	ctx.setTransform(1, 0, 0, 1, 0, 0);
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	if (!game) return;
+	const box = game.dataset.viewBox,
+		scale = Math.min(1000 / box[2], 650 / box[3]),
+		x = (1000 - box[2] * scale) / 2,
+		y = (650 - box[3] * scale) / 2;
+	ctx.setTransform(
+		ratio * scale,
+		0,
+		0,
+		ratio * scale,
+		ratio * (x - box[0] * scale),
+		ratio * (y - box[1] * scale),
+	);
+	const answers = new Map(game.answers.map((answer) => [answer.id, answer]));
+	for (const state of game.dataset.states) {
+		const answer = answers.get(state.id),
+			path = new Path2D(state.path);
+		ctx.fillStyle = answer
+			? answer.correct
+				? "#22834c"
+				: "#bd3030"
+			: "#e5e7eb";
+		ctx.fill(path, "evenodd");
+		ctx.strokeStyle = "#17212b";
+		ctx.lineWidth = 0.6 / scale;
+		ctx.stroke(path);
+	}
+}
+function renderQuiz() {
+	const phase = game?.phase,
+		total = game?.dataset.states.length || 0,
+		answered = game?.answers.length || 0;
+	const asking = !loading && phase === "asking",
+		feedback = !loading && phase === "feedback";
+	document.querySelector("#answer").disabled = !asking;
+	document.querySelector("#submit").disabled = !asking;
+	document.querySelector("#start").hidden = phase !== "ready";
+	document.querySelector("#start").disabled = loading || !game;
+	document.querySelector("#next").hidden = !feedback;
+	document.querySelector("#next").textContent =
+		answered === total ? "Finish quiz" : "Next state";
+	document.querySelector("#reset").disabled = loading || !game;
+	document.querySelector("#dataset").disabled = loading;
+	document.querySelector("#progress").textContent = loading
+		? "Loading dataset…"
+		: game
+			? phase === "complete"
+				? quizScore(game) + " correct out of " + total + "."
+				: "Answered " +
+					answered +
+					" of " +
+					total +
+					". Score " +
+					quizScore(game) +
+					"."
+			: "Dataset unavailable.";
+	let question = "Ready";
+	if (phase === "asking")
+		question = "What is the capital of " + game.question.name + "?";
+	if (phase === "feedback") {
+		const latest = game.answers.at(-1);
+		question =
+			(latest.correct ? "Correct. " : "Incorrect. ") +
+			game.question.name +
+			": " +
+			game.question.capital +
+			".";
+	}
+	if (phase === "complete") question = "Quiz complete";
+	document.querySelector("#question").textContent = question;
+	const results = document.querySelector("#results");
+	results.replaceChildren();
+	for (const answer of game?.answers || []) {
+		const state = game.dataset.states.find((state) => state.id === answer.id),
+			item = document.createElement("li");
+		item.dataset.stateId = answer.id;
+		item.dataset.correct = String(answer.correct);
+		item.textContent =
+			state.name +
+			": " +
+			(answer.correct ? "Correct. " : "Incorrect. ") +
+			state.capital +
+			".";
+		results.append(item);
+	}
+	drawMap();
+}
+function perform(action, focus) {
+	if (loading || !game) return;
+	try {
+		action();
+		setStatus("");
+		renderQuiz();
+		document.querySelector(focus)?.focus();
+	} catch (error) {
+		setStatus(error.message, "error");
+	}
+}
+function useSupplied() {
+	loadVersion++;
+	loading = false;
+	try {
+		game = createQuiz(JSON.parse(suppliedJSON));
+		setStatus("");
+		renderQuiz();
+	} catch (error) {
+		setStatus(error.message, "error");
+		renderQuiz();
+	}
+}
+document
+	.querySelector("#start")
+	.addEventListener("click", () => perform(() => startQuiz(game), "#answer"));
+document.querySelector("#answer-form").addEventListener("submit", (event) => {
+	event.preventDefault();
+	perform(() => {
+		if (submitAnswer(game, document.querySelector("#answer").value))
+			document.querySelector("#answer").value = "";
+	}, "#next");
+});
+document
+	.querySelector("#next")
+	.addEventListener("click", () =>
+		perform(
+			() => advanceQuiz(game),
+			game?.answers.length === game?.dataset.states.length
+				? "#reset"
+				: "#answer",
+		),
+	);
+document
+	.querySelector("#reset")
+	.addEventListener("click", () => perform(() => resetQuiz(game), "#start"));
+document.querySelector("#supplied").addEventListener("click", () => {
+	useSupplied();
+	document.querySelector("#start").focus();
+});
+document.querySelector("#dataset").addEventListener("change", async (event) => {
+	const file = event.target.files?.[0];
+	if (!file) return;
+	const version = ++loadVersion;
+	loading = true;
+	setStatus("");
+	renderQuiz();
+	try {
+		if (file.size > 1048576)
+			throw new QuizProblem("Dataset file exceeds 1 MiB.");
+		const text = await file.text();
+		if (version !== loadVersion) return;
+		const candidate = createQuiz(JSON.parse(text));
+		game = candidate;
+		setStatus("Dataset loaded.");
+	} catch (error) {
+		if (version === loadVersion)
+			setStatus("Dataset rejected. " + error.message, "error");
+	} finally {
+		if (version === loadVersion) {
+			loading = false;
+			renderQuiz();
+		}
+	}
+});
+useSupplied();

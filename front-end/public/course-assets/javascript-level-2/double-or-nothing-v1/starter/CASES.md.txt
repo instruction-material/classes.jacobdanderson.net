@@ -1,0 +1,6 @@
+# Fixed traces
+
+N ->1000,0flips;Cancel ->1000,0flips;invalid then N ->1000,0flips.
+Y with random0 ->heads;Y with0.5 ->tails. Y,Y,N with0,0 ->4000,2flips.
+Y with1,negative,NaN or Infinity ->error. Repeated heads end before an unsafe integer.
+A fresh round starts at1000. Results wrap at390px and200%text size.

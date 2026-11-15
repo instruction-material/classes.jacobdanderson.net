@@ -1,0 +1,63 @@
+async function loadJokeResponse(local) {
+	return local
+		? await fixtureResponse(
+				[jokeFixtures[fixtureIndex % jokeFixtures.length]],
+				normalizeJoke,
+			)
+		: (
+				await requestJson(
+					"https://official-joke-api.appspot.com/jokes/programming/random",
+					normalizeJoke,
+					{ fresh: true },
+				)
+			).data;
+}
+
+function normalizeJoke(value) {
+	if (Array.isArray(value)) {
+		if (!value.length) throw new EmptyResponse("No jokes returned.");
+		value = value[0];
+	}
+	if (!value || typeof value !== "object")
+		throw new Error("Invalid joke response.");
+	return {
+		id: String(value.id ?? 1),
+		setup: textField(value.setup),
+		punchline: textField(value.punchline),
+	};
+}
+
+let current = null,
+	fixtureIndex = 0;
+function renderJoke(joke) {
+	const output = document.querySelector("#output");
+	const setup = document.createElement("p"),
+		punchline = document.createElement("p");
+	setup.id = "setup";
+	punchline.id = "punchline";
+	setup.textContent = joke.setup;
+	punchline.textContent = joke.punchline;
+	const shade = () => Math.floor(Math.random() * 120) + 1;
+	setup.style.color = "rgb(" + shade() + "," + shade() + "," + shade() + ")";
+	punchline.style.color = setup.style.color;
+	output.replaceChildren(setup, punchline);
+}
+async function loadJoke() {
+	if (activeRequest || document.querySelector("#load").disabled) return;
+	setBusy(true);
+	setStatus("Loading joke.", "loading");
+	try {
+		const local = document.querySelector("#source").value === "saved";
+		const data = await loadJokeResponse(local);
+		renderJoke(data);
+		current = data;
+		if (local) fixtureIndex++;
+		setStatus(local ? "Saved joke loaded." : "Live joke loaded.");
+	} catch (error) {
+		showProblem(error, !!current);
+	} finally {
+		setBusy(false);
+	}
+}
+document.querySelector("#load").addEventListener("click", loadJoke);
+loadJoke();

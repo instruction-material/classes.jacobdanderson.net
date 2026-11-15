@@ -42,8 +42,9 @@ const readingCounts = [22, 19, 19, 20, 8, 13, 15, 31, 10, 13, 14, 16, 20, 14, 9,
 assert.equal(readingCounts.length, courseIds.length);
 // Reading counts for explicitly selected teaching scopes.
 const focusedReadingCounts = {
+	"smart-money-personal-finance": 9,
 	"design-patterns-in-java": 32,
-	"design-patterns-in-java-part-2": 5,
+	"design-patterns-in-java-part-2": 6,
 	"java-level-3": 1,
 	"intro-to-environmental-science": 27,
 	"elementary-science": 36,
@@ -719,7 +720,7 @@ test(
 									name,
 									assignmentViews
 								);
-								if ((Object.hasOwn(focusedReadingCounts, id) && module.title === "GrS2 Loops") || (index === 0 && ["early-elementary-a-reading", "early-elementary-b-picture-book"].includes(id)) || module.projects.some(item => /^(?:Punctuation Treasure Hunt|Picture Book Assembly Portfolio)$/.test(item.title))) {
+								if ((id === "smart-money-personal-finance" && (index === 0 || index === 8)) || (Object.hasOwn(focusedReadingCounts, id) && module.title === "GrS2 Loops") || (index === 0 && ["early-elementary-a-reading", "early-elementary-b-picture-book"].includes(id)) || module.projects.some(item => /^(?:Punctuation Treasure Hunt|Picture Book Assembly Portfolio)$/.test(item.title))) {
 									await page.screenshot({ path: join(output, `${name}-${index + 1}-complete-projects.png`), fullPage: true });
 								}
 								await chooseView(page, 2);
@@ -732,6 +733,9 @@ test(
 									name,
 									assignmentViews
 								);
+								if (id === "smart-money-personal-finance" && (index === 0 || index === 8)) {
+									await page.screenshot({ path: join(output, `${name}-${index + 1}-complete-optional.png`), fullPage: true });
+								}
 								assignments.push({
 									module: module.id,
 									core,

@@ -1,0 +1,7 @@
+# Circle cases
+
+Default circles: tick 0 distance 450 black;204 distance42 black;205 distance40 blue;225 distance0 blue;245 distance40 blue;246 distance42 black.
+For a={x:0,y:0,size:25} and b={x:30,y:40,size:25}, return true because900+1600=2500. Change b.y to40.001: false.
+For a={x:0,y:0,size:10} and b={x:0,y:21,size:10}, return false despite matching x.
+For radii10 and30 with centers40 apart, return true;40.001 apart,false.
+The starter draws two static black circles until its assigned movement and collision functions are completed.

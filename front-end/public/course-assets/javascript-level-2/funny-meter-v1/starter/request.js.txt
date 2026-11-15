@@ -1,0 +1,157 @@
+const REQUEST_TIMEOUT = 4000;
+const MAX_RESPONSE_BYTES = 524288;
+const cache = new Map();
+let activeRequest = null;
+let cancelImage = null;
+class EmptyResponse extends Error {}
+function textField(value, limit = 500) {
+	if (typeof value !== "string" || !value.trim() || value.length > limit)
+		throw new Error("Invalid response text.");
+	return value.trim();
+}
+async function readJson(response) {
+	if (!response.ok)
+		throw new Error("Request failed (HTTP " + response.status + ").");
+	if (
+		!/application\/(?:[\w.-]+\+)?json/i.test(
+			response.headers.get("content-type") || "",
+		)
+	)
+		throw new Error("Response must be JSON.");
+	const declared = Number(response.headers.get("content-length"));
+	if (declared > MAX_RESPONSE_BYTES) {
+		await response.body?.cancel();
+		throw new Error("Response is too large.");
+	}
+	if (!response.body) throw new EmptyResponse("Empty response.");
+	const reader = response.body.getReader(),
+		chunks = [];
+	let length = 0;
+	try {
+		while (true) {
+			const { done, value } = await reader.read();
+			if (done) break;
+			length += value.length;
+			if (length > MAX_RESPONSE_BYTES)
+				throw new Error("Response is too large.");
+			chunks.push(value);
+		}
+	} finally {
+		await reader.cancel().catch(() => {});
+		reader.releaseLock();
+	}
+	if (!length) throw new EmptyResponse("Empty response.");
+	const bytes = new Uint8Array(length);
+	let offset = 0;
+	for (const chunk of chunks) {
+		bytes.set(chunk, offset);
+		offset += chunk.length;
+	}
+	try {
+		return JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(bytes));
+	} catch {
+		throw new Error("Response contains invalid JSON.");
+	}
+}
+async function fixtureResponse(value, validate) {
+	const response = new Response(JSON.stringify(value), {
+		headers: { "Content-Type": "application/json" },
+	});
+	return validate(await readJson(response), false);
+}
+async function requestJson(url, validate, { fresh = false } = {}) {
+	if (activeRequest) throw new Error("A request is already pending.");
+	const saved = cache.get(url);
+	if (!fresh && saved && Date.now() - saved.at < 60000)
+		return { data: structuredClone(saved.data), cached: true };
+	const controller = new AbortController();
+	activeRequest = controller;
+	let timedOut = false;
+	const stopped = new Promise((_, reject) =>
+		controller.signal.addEventListener(
+			"abort",
+			() =>
+				reject(
+					new Error(timedOut ? "Request timed out." : "Request canceled."),
+				),
+			{ once: true },
+		),
+	);
+	const timer = setTimeout(() => {
+		timedOut = true;
+		controller.abort();
+	}, REQUEST_TIMEOUT);
+	try {
+		const data = validate(
+			await Promise.race([
+				fetch(url, {
+					method: "GET",
+					credentials: "omit",
+					redirect: "error",
+					signal: controller.signal,
+				}).then(readJson),
+				stopped,
+			]),
+			true,
+		);
+		cache.delete(url);
+		cache.set(url, { at: Date.now(), data: structuredClone(data) });
+		while (cache.size > 32) cache.delete(cache.keys().next().value);
+		return { data, cached: false };
+	} finally {
+		clearTimeout(timer);
+		activeRequest = null;
+	}
+}
+function setStatus(message, state = "success") {
+	const status = document.querySelector("#status");
+	status.textContent = message;
+	status.dataset.state = state;
+}
+function setBusy(busy) {
+	document.querySelector("#source").disabled = busy;
+	document.querySelector("#load").disabled = busy;
+	const cancel = document.querySelector("#cancel");
+	cancel.hidden = !busy;
+}
+function showProblem(error, hasResult) {
+	setStatus(
+		(hasResult ? "Previous result kept. " : "") + error.message,
+		hasResult ? "stale" : error instanceof EmptyResponse ? "empty" : "error",
+	);
+}
+document.querySelector("#cancel").addEventListener("click", () => {
+	activeRequest?.abort();
+	cancelImage?.();
+});
+
+async function readyImage(src) {
+	const image = new Image();
+	let timer;
+	try {
+		await new Promise((resolve, reject) => {
+			timer = setTimeout(() => {
+				image.src = "";
+				reject(new Error("Image timed out."));
+			}, REQUEST_TIMEOUT);
+			cancelImage = () => {
+				image.src = "";
+				reject(new Error("Image canceled."));
+			};
+			image.onload = () =>
+				image
+					.decode()
+					.then(resolve, () =>
+						reject(new Error("Image could not be decoded.")),
+					);
+			image.onerror = () => reject(new Error("Image could not be loaded."));
+			image.src = src;
+		});
+		return image;
+	} finally {
+		clearTimeout(timer);
+		cancelImage = null;
+		image.onload = null;
+		image.onerror = null;
+	}
+}

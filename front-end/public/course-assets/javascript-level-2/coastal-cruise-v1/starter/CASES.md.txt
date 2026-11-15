@@ -1,0 +1,17 @@
+# Coastal Cruise cases
+
+| Inputs in prompt order | Expected |
+| --- | --- |
+| Ada,1,Lin,2 | Seat 1: Ada; Seat 2: Lin |
+| Ada,1,Eve,1,Lin,2 | Duplicate rejected; Ada retained; same final manifest |
+| space-only name,1,Ada,1,Lin,2 | Empty name rejected; same final manifest |
+| Ada,0,Ada,3,Ada,1.5,Ada,no,Ada,1,Lin,2 | Four invalid seats rejected; same final manifest |
+| Cancel at name prompt | Registration cancelled.; no full-ship announcement |
+| Ada,Cancel at seat prompt | Registration cancelled.; no full-ship announcement |
+| Ada,1,Lin,Cancel | Seat 1 retained; registration cancelled; ship remains unfinished |
+
+With maxSeats 3,enter Grace/3,Ada/1,Lin/2.
+Expected output: Seat 1: Ada; Seat 2: Lin; Seat 3: Grace.
+A long or markup-like name is literal text in the manifest.
+Changing one initialized seat object leaves the others unchanged.
+The unchanged starter imports and exports but has no completed registration behavior.

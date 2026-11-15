@@ -1,0 +1,26 @@
+(function () {
+"use strict";
+const cache = new Map();
+async function requestJson(url, validate, fetcher = globalThis.fetch, timeoutMs = 5000) {
+  if (cache.has(url)) return cache.get(url);
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetcher(url, { signal: controller.signal });
+    if (!response.ok) throw new Error("Request failed: HTTP " + response.status);
+    const data = validate(await response.json());
+    cache.set(url, data);
+    return data;
+  } catch (error) {
+    if (controller.signal.aborted) throw new Error("Request timed out.");
+    throw error;
+  } finally { clearTimeout(timer); }
+}
+function validateList(data) {
+  if (!data || !Array.isArray(data.results) || !data.results.length ||
+      data.results.some(move => !move || typeof move.name !== "string" || !move.name.trim()))
+    throw new Error("Expected a nonempty results array of named moves.");
+  return data;
+}
+globalThis.checkpointRemote = { requestJson, validateList };
+})();

@@ -1,0 +1,17 @@
+const maxSeats = 2;
+
+// TODO: Return maxSeats separate objects with name:"" and open:true.
+function populateSeats() { return []; }
+// TODO: Return whether a valid zero-based seatNum is open.
+function isOpen(ship, seatNum) { return false; }
+// TODO: Validate name/index, reject occupied seats and register one guest.
+function registerSeat(ship, name, seatNum) { return false; }
+// TODO: Prompt for name and one-based seat number; return null on Cancel.
+function getNameAndNum() { return null; }
+// TODO: Return whether every seat is occupied.
+function isShipFull(ship) { return false; }
+// TODO: Log "Seat 1: Ada", etc., in seat order.
+function printShip(ship) {}
+// TODO: Populate seats, repeat requests until full or cancelled, then print a full ship.
+function fillShip() {}
+fillShip();

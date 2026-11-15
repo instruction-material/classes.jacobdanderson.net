@@ -1,0 +1,87 @@
+const PROJECT_NAME = "message-board";
+function normalizeDocument(value) {
+	return validateBoard(value, false);
+}
+function seedDocument() {
+	return structuredClone(suppliedDocument);
+}
+function addTopic(state, title, url, imageUrl, id) {
+	// TODO: Implement the complete contract in README.md and check CASES.md.
+	throw new StoreProblem("Complete addTopic in script.js.");
+}
+
+function renderTopics(state) {
+	// TODO: Implement the complete contract in README.md and check CASES.md.
+	throw new StoreProblem("Complete renderTopics in script.js.");
+}
+const store = openDocument(
+	() => localStorage,
+	"classes-course:" + PROJECT_NAME + ":document",
+	normalizeDocument,
+	seedDocument,
+);
+function redraw() {
+	try {
+		renderTopics(store.state);
+		return null;
+	} catch (error) {
+		return error;
+	}
+}
+function perform(mutate, message) {
+	try {
+		const changed = commitDocument(store, mutate, normalizeDocument),
+			renderError = redraw();
+		setStatus(
+			renderError
+				? (changed ? "Saved locally. " : "") + renderError.message
+				: changed
+					? message
+					: "The selected topic is not present.",
+			renderError ? "error" : "success",
+		);
+		return changed;
+	} catch (error) {
+		redraw();
+		setStatus(error.message, "error");
+		return false;
+	}
+}
+document.querySelector("#topic-form").addEventListener("submit", (event) => {
+	event.preventDefault();
+	const title = document.querySelector("#title"),
+		url = document.querySelector("#url"),
+		image = document.querySelector("#image");
+	if (
+		perform(
+			(state) =>
+				addTopic(state, title.value, url.value, image.value, newRecordId()),
+			"Topic saved.",
+		)
+	) {
+		title.value = "";
+		url.value = "";
+		image.value = "";
+		title.focus();
+	}
+});
+document.querySelector("#reset").addEventListener("click", () => {
+	if (!confirm("Replace this project's local data with the supplied example?"))
+		return;
+	perform((state) => {
+		const seed = seedDocument();
+		state.schemaVersion = seed.schemaVersion;
+		state.posts = seed.posts;
+		return true;
+	}, "Example restored.");
+	document.querySelector("#title").focus();
+});
+showRecovery(store);
+const initialError = redraw();
+setStatus(
+	initialError ? initialError.message : store.message,
+	initialError || store.readOnly ? "error" : "success",
+);
+if (store.readOnly)
+	for (const control of document.querySelectorAll("button,input"))
+		control.disabled = true;

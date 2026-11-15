@@ -1,0 +1,4 @@
+Practice fire2,water2,normal1,electric1,total6. Fire and padded WATER normalize.
+Valid missing grass=0; empty/unknown messages. Input array preserved.
+Six sequential optional GETs,validated before ready; second read cached.
+Non-OK,malformed,offline,timeout retain previous sample. No fetch on open or query.

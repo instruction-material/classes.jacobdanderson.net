@@ -1,0 +1,8 @@
+# Programming Jokes cases
+
+1. Cycle ten saved records offline; setup and punchline remain paired.
+2. Both object and one-item-array live shapes render one joke.
+3. Empty, malformed, missing fields, invalid JSON, oversized and non-JSON responses preserve the previous result.
+4. HTTP503, network failure, timeout and Cancel show a status.
+5. Repeated loading clicks create one active request; a late canceled response cannot replace newer work.
+6. Markup-shaped joke text displays literally; mobile and enlarged text reflow.

@@ -1,0 +1,90 @@
+const PROJECT_NAME = "todo-list";
+
+function normalizeDocument(value) {
+	return { document: validateNotesV1(value), migrated: false };
+}
+function seedDocument() {
+	return structuredClone(suppliedDocument);
+}
+function addNote(state, value, id) {
+	const note = { id: recordId(id), text: textField(value, 200) };
+	if (state.notes.length >= 100 || state.notes.some((row) => row.id === id))
+		throw new StoreProblem("Note limit or repeated ID.");
+
+	state.notes.push(note);
+	return true;
+}
+
+function renderNotes(state) {
+	const output = document.querySelector("#notes");
+	output.replaceChildren();
+	for (const note of state.notes) {
+		const item = document.createElement("li"),
+			content = document.createElement("span");
+		item.dataset.noteId = note.id;
+		content.textContent = note.text;
+		item.append(content);
+		output.append(item);
+	}
+	if (!state.notes.length) {
+		const empty = document.createElement("li");
+		empty.textContent = "No notes.";
+		empty.className = "empty";
+		output.append(empty);
+	}
+}
+const store = openDocument(
+	() => localStorage,
+	"classes-course:" + PROJECT_NAME + ":document",
+	normalizeDocument,
+	seedDocument,
+);
+function redraw() {
+	try {
+		renderNotes(store.state);
+		return null;
+	} catch (error) {
+		return error;
+	}
+}
+function perform(mutate, message) {
+	try {
+		const changed = commitDocument(store, mutate, normalizeDocument),
+			renderError = redraw();
+		setStatus(
+			renderError
+				? (changed ? "Saved locally. " : "") + renderError.message
+				: changed
+					? message
+					: "The selected note is not present.",
+			renderError ? "error" : "success",
+		);
+		return changed;
+	} catch (error) {
+		redraw();
+		setStatus(error.message, "error");
+		return false;
+	}
+}
+document.querySelector("#note-form").addEventListener("submit", (event) => {
+	event.preventDefault();
+	const input = document.querySelector("#note-input");
+	if (
+		perform(
+			(state) => addNote(state, input.value, newRecordId()),
+			"Note saved.",
+		)
+	) {
+		input.value = "";
+		input.focus();
+	}
+});
+showRecovery(store);
+const initialError = redraw();
+setStatus(
+	initialError ? initialError.message : store.message,
+	initialError || store.readOnly ? "error" : "success",
+);
+if (store.readOnly)
+	for (const control of document.querySelectorAll("button,input"))
+		control.disabled = true;

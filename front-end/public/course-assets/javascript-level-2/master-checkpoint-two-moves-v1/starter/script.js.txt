@@ -1,0 +1,35 @@
+(function () {
+"use strict";
+const byId = id => document.getElementById(id);
+let state = null;
+function useMoves(moves, source) {
+  const counts = moveLesson.countTypes(moves);
+  state = { counts, source, total: moves.length };
+  byId("source").textContent = source + ": " + state.total + " moves in this sample";
+  byId("counts").textContent = JSON.stringify(counts, null, 2);
+  byId("result").textContent = "";
+}
+byId("query").addEventListener("submit", event => {
+  event.preventDefault();
+  try {
+    if (!state) throw new Error("Load the practice fixture or a live sample first.");
+    const result = moveLesson.countForType(state.counts, byId("type").value);
+    byId("result").textContent = result.type + ": " + result.count + " of " + state.total + " moves (" + state.source + ")";
+  } catch (error) { byId("result").textContent = error.message; }
+});
+byId("fixture").addEventListener("click", () => {
+  try { useMoves(moveFixture, "Practice fixture"); byId("status").textContent = ""; }
+  catch (error) { byId("status").textContent = error.message; }
+});
+byId("live").addEventListener("click", async () => {
+  byId("live").disabled = true; byId("fixture").disabled = true;
+  byId("status").textContent = "Loading six moves...";
+  try {
+    const moves = await moveData.readLiveMoves();
+    useMoves(moves, "Live IDs 1 through 6");
+    byId("status").textContent = "Ready.";
+  } catch (error) {
+    byId("status").textContent = error.message + (state ? " Showing the last valid sample." : " Use the practice fixture.");
+  } finally { byId("live").disabled = false; byId("fixture").disabled = false; }
+});
+})();

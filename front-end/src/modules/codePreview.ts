@@ -43,6 +43,8 @@ const GITHUB_HOST_RE = /^(?:www\.)?github\.com$/i;
 const GITHUB_RAW_HOST = "raw.githubusercontent.com";
 const GITHUB_API_HOST = "api.github.com";
 const MAX_FILE_BYTES = 120_000;
+const MAX_IMPORT_FILE_BYTES = 1_000_000;
+export const MAX_GITHUB_IMPORT_PROJECT_BYTES = 4_000_000;
 const MAX_PREVIEW_CHARS = 80_000;
 const MAX_DIRECTORY_DEPTH = 3;
 const MAX_DIRECTORY_FILES = 80;
@@ -284,7 +286,7 @@ function fileFromContentsItem(
 ): PreviewFile | null {
 	if (item.type !== "file") return null;
 	if (!isPreviewableCodePath(item.path)) return null;
-	if (item.size > MAX_FILE_BYTES) {
+	if (item.size > (complete ? MAX_IMPORT_FILE_BYTES : MAX_FILE_BYTES)) {
 		if (complete)
 			throw new Error(`Project file is too large: ${item.path}`);
 		return null;
@@ -338,6 +340,17 @@ async function listDirectoryFiles(
 			if (file) {
 				if (complete && collected.length >= MAX_DIRECTORY_FILES) {
 					throw new Error("This project exceeds the IDE file limit.");
+				}
+				if (
+					complete &&
+					collected.reduce(
+						(total, entry) => total + (entry.size ?? 0),
+						file.size ?? 0
+					) > MAX_GITHUB_IMPORT_PROJECT_BYTES
+				) {
+					throw new Error(
+						"This project exceeds the IDE import byte limit."
+					);
 				}
 				collected.push(file);
 			}
@@ -432,13 +445,52 @@ export function listPreviewFiles(url: string, fetcher: PreviewFetch = fetch) {
 	return pending;
 }
 
+async function readBoundedSourceText(response: Response, maxBytes: number) {
+	const reader = response.body?.getReader();
+	if (!reader) {
+		const content = await response.text();
+		if (new TextEncoder().encode(content).byteLength > maxBytes) {
+			throw new Error("This file is too large to preview or import.");
+		}
+		return content;
+	}
+	const chunks: Uint8Array[] = [];
+	let byteLength = 0;
+	let finished = false;
+	try {
+		while (true) {
+			const { done, value } = await reader.read();
+			if (done) {
+				finished = true;
+				break;
+			}
+			byteLength += value.byteLength;
+			if (byteLength > maxBytes) {
+				throw new Error("This file is too large to preview or import.");
+			}
+			chunks.push(value);
+		}
+	} finally {
+		if (!finished) await reader.cancel().catch(() => {});
+		reader.releaseLock();
+	}
+	const bytes = new Uint8Array(byteLength);
+	let offset = 0;
+	for (const chunk of chunks) {
+		bytes.set(chunk, offset);
+		offset += chunk.byteLength;
+	}
+	return new TextDecoder().decode(bytes);
+}
+
 async function loadFileWithoutCache(
 	file: PreviewFile,
 	fetcher: PreviewFetch,
 	complete = false
 ): Promise<PreviewFileContent> {
-	if (file.size !== null && file.size > MAX_FILE_BYTES) {
-		throw new Error("This file is too large to preview.");
+	const maxBytes = complete ? MAX_IMPORT_FILE_BYTES : MAX_FILE_BYTES;
+	if (file.size !== null && file.size > maxBytes) {
+		throw new Error("This file is too large to preview or import.");
 	}
 
 	const response = await fetcher(file.rawUrl);
@@ -447,14 +499,12 @@ async function loadFileWithoutCache(
 	}
 
 	const contentLength = Number(response.headers.get("content-length") ?? 0);
-	if (contentLength > MAX_FILE_BYTES) {
-		throw new Error("This file is too large to preview.");
-	}
-
-	const rawContent = await response.text();
-	if (new TextEncoder().encode(rawContent).byteLength > MAX_FILE_BYTES) {
+	if (contentLength > maxBytes) {
+		await response.body?.cancel();
 		throw new Error("This file is too large to preview or import.");
 	}
+
+	const rawContent = await readBoundedSourceText(response, maxBytes);
 	if (contentLooksBinary(rawContent)) {
 		throw new Error(
 			"This file appears to be binary and cannot be previewed."

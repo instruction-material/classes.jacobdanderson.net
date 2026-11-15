@@ -1,0 +1,50 @@
+# Refactory cases
+
+## Supplied reports
+
+First report:
+
+{
+  "widgets": [
+    {
+      "name": "heavy",
+      "weight": 500
+    },
+    {
+      "name": "heavy",
+      "weight": 500
+    }
+  ],
+  "totalWeight": 1000
+}
+
+Second report:
+
+{
+  "widgets": [
+    {
+      "name": "standard",
+      "weight": 100
+    },
+    {
+      "name": "standard",
+      "weight": 100
+    },
+    {
+      "name": "standard",
+      "weight": 100
+    }
+  ],
+  "totalWeight": 300
+}
+
+## Additional calls
+
+A model with name "sample" and weight 25, count 4: four separate objects, totalWeight 100.
+Count 0: an empty widgets array and totalWeight 0.
+Count 1, weight 0: one widget with weight 0 and totalWeight 0.
+Changing one produced widget preserves its neighbors and the model.
+Repeated calls create separate report objects and separate arrays.
+
+Counts in this exercise are nonnegative integers. Compare array order and property values;
+the order of object properties in the printed JSON may differ.

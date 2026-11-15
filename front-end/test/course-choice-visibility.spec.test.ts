@@ -4,6 +4,7 @@ import { afterEach, expect, it, vi } from "vitest";
 import CourseExplorer from "@/components/CourseExplorer.vue";
 import PathwaysPage from "@/pages/pathways.vue";
 import { coursePathwayMaps } from "@/modules/coursePathwayMaps";
+import { useCoursesStore } from "@/stores/courses";
 import {
 	courseCatalog,
 	getCourseCatalogEntry,
@@ -48,6 +49,7 @@ it("keeps Grammar and Public Speaking offered while retiring the requested seven
 it("offers only the listed courses in the actual public course selector", async () => {
 	const pinia = createPinia();
 	setActivePinia(pinia);
+	await useCoursesStore(pinia).loadCourseById(listedCourseCatalog[0].id);
 	window.history.replaceState({}, "", "/courses");
 	const wrapper = mount(CourseExplorer, {
 		props: { publicCatalog: true, browseAll: true },

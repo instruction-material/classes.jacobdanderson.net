@@ -1,0 +1,55 @@
+# Input and output cases
+
+All business records below are fictional exercise inputs. Each record has name,location,CEO and products.
+
+## Supplied three businesses
+
+[
+  {
+    "name": "Cedar Trail Outfitters",
+    "location": "Fairhaven",
+    "CEO": "Rowan Patel",
+    "products": [
+      "Daypack",
+      "Trail Bottle",
+      "Rain Shell"
+    ]
+  },
+  {
+    "name": "Sunrise Bakery",
+    "location": "Mapleton",
+    "CEO": "Avery Kim",
+    "products": [
+      "Sourdough",
+      "Blueberry Muffin",
+      "Cinnamon Roll"
+    ]
+  },
+  {
+    "name": "Harbor Books",
+    "location": "Lakeside",
+    "CEO": "Morgan Reed",
+    "products": [
+      "Mystery Novel",
+      "Nature Guide",
+      "Sketchbook"
+    ]
+  }
+]
+
+Expected six output paragraphs, in this order:
+
+1. Cedar Trail Outfitters is headquartered in Fairhaven and their CEO is Rowan Patel.
+2. Cedar Trail Outfitters offers: Daypack, Trail Bottle, Rain Shell.
+3. Sunrise Bakery is headquartered in Mapleton and their CEO is Avery Kim.
+4. Sunrise Bakery offers: Sourdough, Blueberry Muffin, Cinnamon Roll.
+5. Harbor Books is headquartered in Lakeside and their CEO is Morgan Reed.
+6. Harbor Books offers: Mystery Novel, Nature Guide, Sketchbook.
+
+## Transfer checks
+
+Add one fourth object with the same four keys and three products: eight output paragraphs.
+Add a fourth product to the first business: its second paragraph includes all four products in order.
+Change a location or CEO: the corresponding first paragraph changes without editing the renderer.
+Long names wrap on mobile and at 200% zoom. Markup characters in a name or product display as literal text.
+The unchanged starter displays no summaries until the missing project code is written.

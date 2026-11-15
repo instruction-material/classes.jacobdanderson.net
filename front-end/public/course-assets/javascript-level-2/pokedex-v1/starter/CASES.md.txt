@@ -1,0 +1,8 @@
+# Pokedex cases
+
+1. Every ID1–893 has its correct name,two-or-fewer types,six stats and actual PNG sprite.
+2. Name and numeric-ID lookup agree; repeat searches replace the sole result.
+3. A cached live lookup makes no second request during sixty seconds.
+4. Invalid name/ID, malformed stats, foreign sprite origin or empty response keep the last record.
+5. HTTP404/503, timeout, Cancel and image failure show readable status.
+6. Datalist has893 unique names; images and all six statistics remain visible offline and at200% text.

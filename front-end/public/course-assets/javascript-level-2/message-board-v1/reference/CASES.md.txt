@@ -1,0 +1,10 @@
+# Message Board cases
+
+1. Create two topics and verify title,site URL,image address and newest-first ordering.
+2. A reviewed raster URL loads;an unavailable one shows its text fallback.
+3. Blank image address uses the supplied illustration.
+4. Reject javascript:,embedded credentials,unreviewed origins and overlength fields.
+5. Markup-shaped titles render literally;no injected element appears.
+6. Reload after valid save and after quota failure;corrupt data stays preserved.
+7. Cancel reset keeps the document;confirmed reset restores the example.
+8. At most30topics and128KiB per encoded document;mobile and200%text reflow.

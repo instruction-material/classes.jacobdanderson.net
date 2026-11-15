@@ -1,0 +1,8 @@
+# 2D Breakout cases
+
+1. Brick x30,y30,width75,height20; ball center (20,40),radius10: contact.
+2. Ball (19,19),radius10: corner near-miss.
+3. Paddle pointer and keys clamp x in [0,405] at both display sizes.
+4. Three separate misses use three lives; later updates preserve lives0 and lost.
+5. Final live brick hit: score15,won; later updates preserve state.
+6. Restart resets all fifteen bricks,three lives and score0.

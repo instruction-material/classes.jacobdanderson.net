@@ -5,6 +5,14 @@ import type {
 	RawCourseModuleItem
 } from "./types";
 import aiSearchSetup from "@/assets/course-guides/ai-search-setup.md?raw";
+import aiStudioGuide7 from "@/assets/course-guides/ai-studio-marble-game.md?raw";
+import aiStudioGuide1 from "@/assets/course-guides/ai-studio-search-13.md?raw";
+import aiStudioGuide2 from "@/assets/course-guides/ai-studio-search-14.md?raw";
+import aiStudioGuide3 from "@/assets/course-guides/ai-studio-search-15.md?raw";
+import aiStudioGuide4 from "@/assets/course-guides/ai-studio-search-16.md?raw";
+import aiStudioGuide5 from "@/assets/course-guides/ai-studio-search-17.md?raw";
+import aiStudioGuide6 from "@/assets/course-guides/ai-studio-tic-tac-toe.md?raw";
+import { configureAiOptionalProjects } from "./aiOptionalProjects";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { buildProjectGuidance } from "./projectGuidance";
 import { buildSupportSectionGuidance } from "./supportSectionGuidance";
@@ -109,21 +117,21 @@ export const aiLevel1Course: RawCourse = {
 					content:
 						"The AI Level 1 workspace archive is a reference map for the course's Python search and game-AI materials. It identifies the folder layout, starter files, graph and grid examples, trace-output patterns, and earlier classroom variants that may clarify how a lab is organized. The archive is most useful for comparing state representation, action rules, search order, scoring logic, and reflection notes across projects. A strong use of the archive names the file being inspected, the behavior it demonstrates, and the part of the current project it helps verify; it is not a shortcut around explaining the algorithm.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12"
 				},
 				{
 					title: "Object Refresh: Dog Class",
 					content:
 						"Use a small class-design warmup to refresh attributes, methods, and state changes before graph and game objects enter the course. The goal is not the dog model itself; it is confidence with objects as containers for AI state.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI1-Dog-Class"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI1-Dog-Class"
 				},
 				{
 					title: "Object Refresh: Deck of Cards",
 					content:
 						"Review lists of objects, controlled randomness, and data modeling with a deck implementation. The deck gives state transitions a concrete form before search trees and game logic enter the course.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI1-Deck-of-Cards"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI1-Deck-of-Cards"
 				},
 				{
 					title: "The Marble Game AI",
@@ -134,7 +142,7 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: false
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI8-The-Marble-Game-AI-Copy"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI8-The-Marble-Game-AI-Copy"
 				}
 			]
 		},
@@ -171,9 +179,9 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: true
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI2-Node-and-Graph-Class-Starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI2-Node-and-Graph-Class-Starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI2-Node-and-Graph-Class"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI2-Node-and-Graph-Class"
 				}
 			],
 			supplementalProjects: [
@@ -182,23 +190,23 @@ export const aiLevel1Course: RawCourse = {
 					content:
 						"Build a reusable graph model with explicit nodes, adjacency, and helper methods for traversal. This is the foundational starter for later DFS, BFS, and heuristic search work.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI2-Node-and-Graph-Class-Starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI2-Node-and-Graph-Class-Starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI2-Node-and-Graph-Class"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI2-Node-and-Graph-Class"
 				},
 				{
 					title: "Project: Graphs with Network Visualization",
 					content:
 						"Use `networkx` to draw graph structures and make the difference between representation and traversal visible. A search algorithm is easier to debug when the structure is easy to inspect.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI-Graphs-with-Network-Updated"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI-Graphs-with-Network-Updated"
 				},
 				{
 					title: "Project: Airports Problem",
 					content:
 						"Model routes, hubs, and reachability in a graph-based setting. This keeps the early graph work grounded in a recognizable real-world system rather than a purely abstract diagram.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI3-Airports-Problem"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI3-Airports-Problem"
 				},
 				{
 					title: "Unit 1: AI Landscape and State Representation supplemental 4",
@@ -210,9 +218,9 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: true
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-01-unit-1-ai-landscape-and-state-representation-supplemental-4/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-01-unit-1-ai-landscape-and-state-representation-supplemental-4/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-01-unit-1-ai-landscape-and-state-representation-supplemental-4/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-01-unit-1-ai-landscape-and-state-representation-supplemental-4/solution"
 				}
 			]
 		},
@@ -249,7 +257,7 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: false
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI4-Practice-with-Stacks"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI4-Practice-with-Stacks"
 				}
 			],
 			supplementalProjects: [
@@ -258,21 +266,21 @@ export const aiLevel1Course: RawCourse = {
 					content:
 						"Work directly with LIFO behavior so that the mechanics behind backtracking become automatic. This warmup is intentionally small because the real value is the mental model it creates.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI4-Practice-with-Stacks"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI4-Practice-with-Stacks"
 				},
 				{
 					title: "Project: Practice with Queues",
 					content:
 						"Build fluency with FIFO behavior before BFS is introduced on graphs. Leave this project knowing exactly what comes out next and why.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI4-Practice-with-Queues"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI4-Practice-with-Queues"
 				},
 				{
 					title: "Project: Stacks and Queues Reference",
 					content:
 						"Keep a reference implementation of stack- and queue-based workflows nearby while later search code gets more complex. This separates data-structure confusion from algorithmic confusion.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI-Queues"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI-Queues"
 				},
 				{
 					title: "Unit 2: Stacks, Queues, and Traversal Intuition supplemental 4",
@@ -284,9 +292,9 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: true
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-02-unit-2-stacks-queues-and-traversal-intuition-supplemental-4/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-02-unit-2-stacks-queues-and-traversal-intuition-supplemental-4/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-02-unit-2-stacks-queues-and-traversal-intuition-supplemental-4/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-02-unit-2-stacks-queues-and-traversal-intuition-supplemental-4/solution"
 				}
 			]
 		},
@@ -322,7 +330,7 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: false
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI5-Implement-DFS"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI5-Implement-DFS"
 				}
 			],
 			supplementalProjects: [
@@ -331,30 +339,30 @@ export const aiLevel1Course: RawCourse = {
 					content:
 						"Build DFS explicitly rather than relying on library behavior. Explain every mutation of the stack, visited set, and current node during execution.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI5-Implement-DFS"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI5-Implement-DFS"
 				},
 				{
 					title: "Project: Implement BFS",
 					content:
 						"Build BFS with a queue, visited tracking, and path reconstruction. The emphasis is on why breadth-first ordering produces the right guarantee in an unweighted problem.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI6-Implement-BFS"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI6-Implement-BFS"
 				},
 				{
 					title: "Project: Magic Portals",
 					content:
 						"Use a graph puzzle with teleports and special moves to distinguish state transitions from physical movement on a simple map. This sharpens the habit of designing the right graph before running the algorithm.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI6-Magic-Portals"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI6-Magic-Portals"
 				},
 				{
 					title: "Project: Maze Solver",
 					content:
 						"Start with a constrained maze-search starter, then extend it into a working solver that traces paths and compares candidate routes. This becomes the anchor example for later informed search units.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI9-Maze-Solver-Starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI9-Maze-Solver-Starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI9-Maze-Solver"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI9-Maze-Solver"
 				}
 			]
 		},
@@ -390,7 +398,7 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: false
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI9-Implement-DLS"
+						"https://github.com/instruction-material/AI-Level-1/tree/372bffae4417395d527ccfd69ebd2530c2072619/FAI9-Implement-DLS"
 				}
 			],
 			supplementalProjects: [
@@ -399,35 +407,35 @@ export const aiLevel1Course: RawCourse = {
 					content:
 						"Add depth limits deliberately and observe what gets missed, what gets found, and what the algorithm spends time revisiting. This is a good lab for understanding search control rather than only search success.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI9-Implement-DLS"
+						"https://github.com/instruction-material/AI-Level-1/tree/372bffae4417395d527ccfd69ebd2530c2072619/FAI9-Implement-DLS"
 				},
 				{
 					title: "Project: Implement IDS",
 					content:
 						"Layer repeated depth-limited searches into an iterative-deepening workflow and compare its behavior to plain DFS. Identify when the extra repeated work is worth it.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI9-Implement-IDS"
+						"https://github.com/instruction-material/AI-Level-1/tree/372bffae4417395d527ccfd69ebd2530c2072619/FAI9-Implement-IDS"
 				},
 				{
 					title: "Project: Implement UCS",
 					content:
 						"Handle weighted paths and prove to yourself that expanding the shallowest path is not enough once costs differ. UCS becomes the clean stepping stone into heuristic search.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI9-Implement-UCS"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI9-Implement-UCS"
 				},
 				{
 					title: "Project: Compare A* and Greedy Search",
 					content:
 						"Run the same state space through greedy best-first search and A* to compare fast-looking decisions with cost-aware planning.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI10-Implement-A-Search"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI10-Implement-A-Search"
 				},
 				{
 					title: "Project: Greedy Search Lab",
 					content:
 						"Use a dedicated greedy search implementation to show how a heuristic can reduce work while still getting trapped by shortsighted choices.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI10-Implement-Greedy-Search"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI10-Implement-Greedy-Search"
 				}
 			]
 		},
@@ -464,7 +472,7 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: false
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI2-Adventure-Game"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI2-Adventure-Game"
 				}
 			],
 			supplementalProjects: [
@@ -473,14 +481,14 @@ export const aiLevel1Course: RawCourse = {
 					content:
 						"Use a branching text-style environment to manage inventory, location, and permitted actions. This is a good exercise in representing knowledge and gating decisions through explicit rules.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI2-Adventure-Game"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI2-Adventure-Game"
 				},
 				{
 					title: "Project: Puzzle Solver Warmup",
 					content:
 						"Frame a small puzzle in terms of state transitions and allowable moves before the capstone solver arrives. The lesson is to model the problem cleanly before choosing the search algorithm.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI-Puzzle"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI-Puzzle"
 				},
 				{
 					title: "Project: Book Rule System",
@@ -488,7 +496,7 @@ export const aiLevel1Course: RawCourse = {
 					content:
 						"Use a structured decision or lookup problem to practice explicit rules, routing, and explainability. Justify each program choice in natural language.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI5-Juni-Book"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI5-Juni-Book"
 				},
 				{
 					title: "Unit 5: Rule Based Systems and Puzzle Framing supplemental 4",
@@ -500,9 +508,9 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: true
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-03-unit-5-rule-based-systems-and-puzzle-framing-supplemental-4/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-03-unit-5-rule-based-systems-and-puzzle-framing-supplemental-4/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-03-unit-5-rule-based-systems-and-puzzle-framing-supplemental-4/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-03-unit-5-rule-based-systems-and-puzzle-framing-supplemental-4/solution"
 				}
 			]
 		},
@@ -538,7 +546,7 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: false
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI7-Tic-Tac-Toe-Tree-Node"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI7-Tic-Tac-Toe-Tree-Node"
 				}
 			],
 			supplementalProjects: [
@@ -547,28 +555,28 @@ export const aiLevel1Course: RawCourse = {
 					content:
 						"Build the board-state representation and successor logic that later AI strategies depend on. The quality of the tree structure determines how easy the rest of the project is to reason about.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI7-Tic-Tac-Toe-Tree-Node"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI7-Tic-Tac-Toe-Tree-Node"
 				},
 				{
 					title: "Project: Random Tic-Tac-Toe AI",
 					content:
 						"Start from a deliberately weak baseline so that later heuristic and search upgrades are easy to compare against. This makes evaluation visible rather than abstract.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI7-Random-Tic-Tac-Toe-AI"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI7-Random-Tic-Tac-Toe-AI"
 				},
 				{
 					title: "Project: Unbeatable Tic-Tac-Toe AI",
 					content:
 						"Push a simple game AI all the way to strong play and discuss what made the jump possible: better state modeling, lookahead, pruning of bad choices, and more disciplined scoring.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI7-Unbeatable-Tic-Tac-Toe-AI"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI7-Unbeatable-Tic-Tac-Toe-AI"
 				},
 				{
 					title: "Project: Marble Game AI",
 					content:
 						"Use a two-player strategy game to compare state explosion, heuristics, and planning depth in a setting that is different enough from tic-tac-toe to test whether the reasoning generalizes.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI8-The-Marble-Game-AI"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI8-The-Marble-Game-AI"
 				}
 			]
 		},
@@ -605,7 +613,7 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: false
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI10-Implement-Greedy-Search"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI10-Implement-Greedy-Search"
 				}
 			],
 			supplementalProjects: [
@@ -614,14 +622,14 @@ export const aiLevel1Course: RawCourse = {
 					content:
 						"Run multiple algorithms on related problems and compare memory use, runtime, and path quality. The real deliverable is the written comparison, not just the code output.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI10-Implement-Greedy-Search"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI10-Implement-Greedy-Search"
 				},
 				{
 					title: "Project: Water Jug Riddle",
 					content:
 						"Treat a classic reasoning puzzle as an exercise in formal state definition, action generation, and evaluation. This makes it easy to discuss how small changes in representation can completely change the search behavior.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI10-Water-Jug-Riddle"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI10-Water-Jug-Riddle"
 				},
 				{
 					title: "Unit 7: Features, Evaluation, and Responsible AI Extension Practice",
@@ -633,9 +641,9 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: true
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-04-unit-7-features-evaluation-and-responsible-ai-supplemental-3/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-04-unit-7-features-evaluation-and-responsible-ai-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-04-unit-7-features-evaluation-and-responsible-ai-supplemental-3/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-04-unit-7-features-evaluation-and-responsible-ai-supplemental-3/solution"
 				}
 			]
 		},
@@ -671,7 +679,7 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: false
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI11-8-Puzzle-Solver"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI11-8-Puzzle-Solver"
 				}
 			],
 			supplementalProjects: [
@@ -680,23 +688,23 @@ export const aiLevel1Course: RawCourse = {
 					content:
 						"Build a full puzzle solver that makes representation, heuristic choice, and evaluation visible. This is the natural capstone because it rewards careful modeling as much as algorithm selection.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI11-8-Puzzle-Solver"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI11-8-Puzzle-Solver"
 				},
 				{
 					title: "Capstone Option: Maze Solver Showcase",
 					content:
 						"Turn the earlier maze work into a polished search visualizer or comparison tool with cleaner reporting and a stronger interface for explaining results.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI9-Maze-Solver-Starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI9-Maze-Solver-Starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI9-Maze-Solver"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI9-Maze-Solver"
 				},
 				{
 					title: "Capstone Option: Marble Game Strategy Lab",
 					content:
 						"Promote the marble game into a stronger strategy project by comparing heuristics, search depth, and game balance over multiple runs.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI8-The-Marble-Game-AI"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI8-The-Marble-Game-AI"
 				}
 			]
 		},
@@ -711,7 +719,7 @@ export const aiLevel1Course: RawCourse = {
 				{
 					title: "Canonical Variants for Game AI",
 					content:
-						"Use `FAI7-Updated-Tic-Tac-Toe-AI` as the main optional advanced Tic-Tac-Toe follow-up and keep `FAI7-Unbeatable-Tic-Tac-Toe-AI-1` as an archive duplicate rather than a separate public requirement. Do the same for the marble-game branch by using the clean playable variant and hiding the `COPY` folder."
+						"Compare eager game-tree construction with cached Tic-Tac-Toe evaluation and bottom-up marble evaluation. Use timing and candidate-score logs to account for memory, repeated states, and runtime. The updated Tic-Tac-Toe example supplies a separate optional strategy comparison after the core studio."
 				},
 				{
 					title: "How to Use the Extra Repo Folders",
@@ -737,7 +745,7 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: false
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI-Special-Graphs"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI-Special-Graphs"
 				}
 			],
 			supplementalProjects: [
@@ -746,49 +754,49 @@ export const aiLevel1Course: RawCourse = {
 					content:
 						"Use alternate graph structures and examples to strengthen representation choices before later search and heuristic work.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI-Special-Graphs"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI-Special-Graphs"
 				},
 				{
 					title: "Extension: Practice with Stacks (Reference Bank)",
 					content:
 						"Use the dedicated stacks folder as extra frontier-order practice when DFS mechanics still feel shaky.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI-Stacks"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI-Stacks"
 				},
 				{
 					title: "Extension: BankAccount Class",
 					content:
 						"Keep a second lightweight class-design warmup available when object state needs more reinforcement before graph and game objects.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI1-Bank-Account-Class"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI1-Bank-Account-Class"
 				},
 				{
 					title: "Extension: DFS with a Stack Class",
 					content:
 						"Compare the earlier DFS implementation with a more class-structured stack-based version to show the same algorithm through a cleaner API boundary.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI5-DFS-With-a-Stack-Class"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI5-DFS-With-a-Stack-Class"
 				},
 				{
 					title: "Extension: BFS with a Queue Class",
 					content:
 						"Use a queue-centered class version of BFS to reinforce shortest-path intuition and explicit frontier management.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI6-BFS-With-a-Queue-Class"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI6-BFS-With-a-Queue-Class"
 				},
 				{
 					title: "Extension: Updated Tic-Tac-Toe AI",
 					content:
 						"Use the updated Tic-Tac-Toe branch as the canonical optional game-tree extension beyond the main course spine.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI7-Updated-Tic-Tac-Toe-AI"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI7-Updated-Tic-Tac-Toe-AI"
 				},
 				{
 					title: "Extension: Two-Player Marble Game",
 					content:
 						"Use the two-player marble variant as a lighter strategy and evaluation warmup before the stronger AI version.",
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI8-2-Player-Marble-Game"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI8-2-Player-Marble-Game"
 				}
 			]
 		},
@@ -805,11 +813,8 @@ export const aiLevel1Course: RawCourse = {
 				},
 				{
 					title: "AI Search Lab 13: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "AI/Python",
-						moduleTitle: "AI Search Lab 13: Practice Studio",
-						section: "example"
-					})
+					content: aiStudioGuide1,
+					contentKind: "reading"
 				},
 				{
 					title: "AI Search Lab 13: Core Project",
@@ -819,9 +824,9 @@ export const aiLevel1Course: RawCourse = {
 						section: "coreProject"
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-01-ai-search-lab-13/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-01-ai-search-lab-13/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-01-ai-search-lab-13/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-01-ai-search-lab-13/solution"
 				},
 				{
 					title: "AI Search Lab 13: Review and Reflection",
@@ -841,25 +846,25 @@ export const aiLevel1Course: RawCourse = {
 						section: "extension"
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-01-ai-search-lab-13/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-01-ai-search-lab-13/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-01-ai-search-lab-13/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-01-ai-search-lab-13/solution"
 				},
 				{
 					title: "Transfer Practice: AI Search Lab 13",
 					content: aiSearchSupplementalContent(13, "transfer"),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-05-applied-studio-11-ai-search-lab-13-supplemental-2/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-05-applied-studio-11-ai-search-lab-13-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-05-applied-studio-11-ai-search-lab-13-supplemental-2/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-05-applied-studio-11-ai-search-lab-13-supplemental-2/solution"
 				},
 				{
 					title: "Extension Practice: AI Search Lab 13",
 					content: aiSearchSupplementalContent(13, "extension"),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-06-applied-studio-11-ai-search-lab-13-supplemental-3/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-06-applied-studio-11-ai-search-lab-13-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-06-applied-studio-11-ai-search-lab-13-supplemental-3/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-06-applied-studio-11-ai-search-lab-13-supplemental-3/solution"
 				}
 			]
 		},
@@ -876,11 +881,8 @@ export const aiLevel1Course: RawCourse = {
 				},
 				{
 					title: "AI Search Lab 14: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "AI/Python",
-						moduleTitle: "AI Search Lab 14: Practice Studio",
-						section: "example"
-					})
+					content: aiStudioGuide2,
+					contentKind: "reading"
 				},
 				{
 					title: "AI Search Lab 14: Core Project",
@@ -890,9 +892,9 @@ export const aiLevel1Course: RawCourse = {
 						section: "coreProject"
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-02-ai-search-lab-14/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-02-ai-search-lab-14/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-02-ai-search-lab-14/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-02-ai-search-lab-14/solution"
 				},
 				{
 					title: "AI Search Lab 14: Review and Reflection",
@@ -912,25 +914,25 @@ export const aiLevel1Course: RawCourse = {
 						section: "extension"
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-02-ai-search-lab-14/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-02-ai-search-lab-14/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-02-ai-search-lab-14/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-02-ai-search-lab-14/solution"
 				},
 				{
 					title: "Transfer Practice: AI Search Lab 14",
 					content: aiSearchSupplementalContent(14, "transfer"),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-07-applied-studio-12-ai-search-lab-14-supplemental-2/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-07-applied-studio-12-ai-search-lab-14-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-07-applied-studio-12-ai-search-lab-14-supplemental-2/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-07-applied-studio-12-ai-search-lab-14-supplemental-2/solution"
 				},
 				{
 					title: "Extension Practice: AI Search Lab 14",
 					content: aiSearchSupplementalContent(14, "extension"),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-08-applied-studio-12-ai-search-lab-14-supplemental-3/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-08-applied-studio-12-ai-search-lab-14-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-08-applied-studio-12-ai-search-lab-14-supplemental-3/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-08-applied-studio-12-ai-search-lab-14-supplemental-3/solution"
 				}
 			]
 		},
@@ -947,11 +949,8 @@ export const aiLevel1Course: RawCourse = {
 				},
 				{
 					title: "AI Search Lab 15: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "AI/Python",
-						moduleTitle: "AI Search Lab 15: Practice Studio",
-						section: "example"
-					})
+					content: aiStudioGuide3,
+					contentKind: "reading"
 				},
 				{
 					title: "AI Search Lab 15: Core Project",
@@ -961,9 +960,9 @@ export const aiLevel1Course: RawCourse = {
 						section: "coreProject"
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-03-ai-search-lab-15/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-03-ai-search-lab-15/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-03-ai-search-lab-15/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-03-ai-search-lab-15/solution"
 				},
 				{
 					title: "AI Search Lab 15: Review and Reflection",
@@ -983,25 +982,25 @@ export const aiLevel1Course: RawCourse = {
 						section: "extension"
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-03-ai-search-lab-15/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-03-ai-search-lab-15/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-03-ai-search-lab-15/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-03-ai-search-lab-15/solution"
 				},
 				{
 					title: "Transfer Practice: AI Search Lab 15",
 					content: aiSearchSupplementalContent(15, "transfer"),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-09-applied-studio-13-ai-search-lab-15-supplemental-2/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-09-applied-studio-13-ai-search-lab-15-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-09-applied-studio-13-ai-search-lab-15-supplemental-2/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-09-applied-studio-13-ai-search-lab-15-supplemental-2/solution"
 				},
 				{
 					title: "Extension Practice: AI Search Lab 15",
 					content: aiSearchSupplementalContent(15, "extension"),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-10-applied-studio-13-ai-search-lab-15-supplemental-3/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-10-applied-studio-13-ai-search-lab-15-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-10-applied-studio-13-ai-search-lab-15-supplemental-3/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-10-applied-studio-13-ai-search-lab-15-supplemental-3/solution"
 				}
 			]
 		},
@@ -1018,11 +1017,8 @@ export const aiLevel1Course: RawCourse = {
 				},
 				{
 					title: "AI Search Lab 16: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "AI/Python",
-						moduleTitle: "AI Search Lab 16: Practice Studio",
-						section: "example"
-					})
+					content: aiStudioGuide4,
+					contentKind: "reading"
 				},
 				{
 					title: "AI Search Lab 16: Core Project",
@@ -1032,9 +1028,9 @@ export const aiLevel1Course: RawCourse = {
 						section: "coreProject"
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-04-ai-search-lab-16/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-04-ai-search-lab-16/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-04-ai-search-lab-16/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-04-ai-search-lab-16/solution"
 				},
 				{
 					title: "AI Search Lab 16: Review and Reflection",
@@ -1054,25 +1050,25 @@ export const aiLevel1Course: RawCourse = {
 						section: "extension"
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-04-ai-search-lab-16/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-04-ai-search-lab-16/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-04-ai-search-lab-16/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-04-ai-search-lab-16/solution"
 				},
 				{
 					title: "Transfer Practice: AI Search Lab 16",
 					content: aiSearchSupplementalContent(16, "transfer"),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-11-applied-studio-14-ai-search-lab-16-supplemental-2/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-11-applied-studio-14-ai-search-lab-16-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-11-applied-studio-14-ai-search-lab-16-supplemental-2/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-11-applied-studio-14-ai-search-lab-16-supplemental-2/solution"
 				},
 				{
 					title: "Extension Practice: AI Search Lab 16",
 					content: aiSearchSupplementalContent(16, "extension"),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-12-applied-studio-14-ai-search-lab-16-supplemental-3/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-12-applied-studio-14-ai-search-lab-16-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-12-applied-studio-14-ai-search-lab-16-supplemental-3/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-12-applied-studio-14-ai-search-lab-16-supplemental-3/solution"
 				}
 			]
 		},
@@ -1089,11 +1085,8 @@ export const aiLevel1Course: RawCourse = {
 				},
 				{
 					title: "AI Search Lab 17: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "AI/Python",
-						moduleTitle: "AI Search Lab 17: Practice Studio",
-						section: "example"
-					})
+					content: aiStudioGuide5,
+					contentKind: "reading"
 				},
 				{
 					title: "AI Search Lab 17: Core Project",
@@ -1103,9 +1096,9 @@ export const aiLevel1Course: RawCourse = {
 						section: "coreProject"
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-05-ai-search-lab-17/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-05-ai-search-lab-17/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-05-ai-search-lab-17/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-05-ai-search-lab-17/solution"
 				},
 				{
 					title: "AI Search Lab 17: Review and Reflection",
@@ -1125,25 +1118,25 @@ export const aiLevel1Course: RawCourse = {
 						section: "extension"
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-05-ai-search-lab-17/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-05-ai-search-lab-17/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-05-ai-search-lab-17/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-05-ai-search-lab-17/solution"
 				},
 				{
 					title: "Transfer Practice: AI Search Lab 17",
 					content: aiSearchSupplementalContent(17, "transfer"),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-13-applied-studio-15-ai-search-lab-17-supplemental-2/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-13-applied-studio-15-ai-search-lab-17-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-13-applied-studio-15-ai-search-lab-17-supplemental-2/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-13-applied-studio-15-ai-search-lab-17-supplemental-2/solution"
 				},
 				{
 					title: "Extension Practice: AI Search Lab 17",
 					content: aiSearchSupplementalContent(17, "extension"),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-14-applied-studio-15-ai-search-lab-17-supplemental-3/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-14-applied-studio-15-ai-search-lab-17-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-14-applied-studio-15-ai-search-lab-17-supplemental-3/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-14-applied-studio-15-ai-search-lab-17-supplemental-3/solution"
 				}
 			]
 		},
@@ -1161,12 +1154,8 @@ export const aiLevel1Course: RawCourse = {
 				},
 				{
 					title: "Unbeatable TicTacToe AI 1: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "AI/Python",
-						moduleTitle:
-							"Unbeatable TicTacToe AI 1: Practice Studio",
-						section: "example"
-					})
+					content: aiStudioGuide6,
+					contentKind: "reading"
 				},
 				{
 					title: "Unbeatable TicTacToe AI 1: Core Project",
@@ -1175,10 +1164,12 @@ export const aiLevel1Course: RawCourse = {
 						moduleTitle:
 							"Unbeatable TicTacToe AI 1: Practice Studio",
 						section: "coreProject",
-						hasReference: false
+						hasReference: true
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI7-Unbeatable-Tic-Tac-Toe-AI-1"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI7-Unbeatable-Tic-Tac-Toe-AI-1/starter",
+					solutionLink:
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI7-Unbeatable-Tic-Tac-Toe-AI-1/solution"
 				},
 				{
 					title: "Unbeatable TicTacToe AI 1: Review and Reflection",
@@ -1198,10 +1189,12 @@ export const aiLevel1Course: RawCourse = {
 						moduleTitle:
 							"Unbeatable TicTacToe AI 1: Practice Studio",
 						section: "extension",
-						hasReference: false
+						hasReference: true
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI7-Unbeatable-Tic-Tac-Toe-AI-1"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI7-Unbeatable-Tic-Tac-Toe-AI-1/starter",
+					solutionLink:
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI7-Unbeatable-Tic-Tac-Toe-AI-1/solution"
 				},
 				{
 					title: "Unbeatable TicTacToe AI 1 Transfer Practice",
@@ -1214,9 +1207,9 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: true
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-15-applied-studio-16-unbeatable-tictactoe-ai-1-supplemental-2/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-15-applied-studio-16-unbeatable-tictactoe-ai-1-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-15-applied-studio-16-unbeatable-tictactoe-ai-1-supplemental-2/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-15-applied-studio-16-unbeatable-tictactoe-ai-1-supplemental-2/solution"
 				},
 				{
 					title: "Unbeatable TicTacToe AI 1 Extension Practice",
@@ -1229,9 +1222,9 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: true
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-16-applied-studio-16-unbeatable-tictactoe-ai-1-supplemental-3/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-16-applied-studio-16-unbeatable-tictactoe-ai-1-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-16-applied-studio-16-unbeatable-tictactoe-ai-1-supplemental-3/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-16-applied-studio-16-unbeatable-tictactoe-ai-1-supplemental-3/solution"
 				}
 			]
 		},
@@ -1248,11 +1241,8 @@ export const aiLevel1Course: RawCourse = {
 				},
 				{
 					title: "The Marble Game AI: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "AI/Python",
-						moduleTitle: "The Marble Game AI: Practice Studio",
-						section: "example"
-					})
+					content: aiStudioGuide7,
+					contentKind: "reading"
 				},
 				{
 					title: "The Marble Game AI: Core Project",
@@ -1260,10 +1250,12 @@ export const aiLevel1Course: RawCourse = {
 						courseFamily: "AI/Python",
 						moduleTitle: "The Marble Game AI: Practice Studio",
 						section: "coreProject",
-						hasReference: false
+						hasReference: true
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI8-The-Marble-Game-AI-Copy"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI8-The-Marble-Game-AI-Copy/starter",
+					solutionLink:
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI8-The-Marble-Game-AI-Copy/solution"
 				},
 				{
 					title: "The Marble Game AI: Review and Reflection",
@@ -1281,10 +1273,12 @@ export const aiLevel1Course: RawCourse = {
 						courseFamily: "AI/Python",
 						moduleTitle: "The Marble Game AI: Practice Studio",
 						section: "extension",
-						hasReference: false
+						hasReference: true
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/FAI8-The-Marble-Game-AI-Copy"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI8-The-Marble-Game-AI-Copy/starter",
+					solutionLink:
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/FAI8-The-Marble-Game-AI-Copy/solution"
 				},
 				{
 					title: "Transfer Practice: The Marble Game AI",
@@ -1295,9 +1289,9 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: true
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-17-applied-studio-17-the-marble-game-ai-copy-supplemental-2/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-17-applied-studio-17-the-marble-game-ai-copy-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-17-applied-studio-17-the-marble-game-ai-copy-supplemental-2/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-17-applied-studio-17-the-marble-game-ai-copy-supplemental-2/solution"
 				},
 				{
 					title: "Extension Practice: The Marble Game AI",
@@ -1308,9 +1302,9 @@ export const aiLevel1Course: RawCourse = {
 						hasReference: true
 					}),
 					projectLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-18-applied-studio-17-the-marble-game-ai-copy-supplemental-3/starter",
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-18-applied-studio-17-the-marble-game-ai-copy-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/AI-Level-1/tree/main/AI-18-applied-studio-17-the-marble-game-ai-copy-supplemental-3/solution"
+						"https://github.com/instruction-material/AI-Level-1/tree/b18be61c865ae45d4ab15dc1b633c1c83d50da12/AI-18-applied-studio-17-the-marble-game-ai-copy-supplemental-3/solution"
 				}
 			]
 		}
@@ -1624,3 +1618,5 @@ for (const previousTitle of [
 	}
 	module.aliases = [...(module.aliases ?? []), previousTitle];
 }
+
+configureAiOptionalProjects(aiLevel1Course);

@@ -1,0 +1,145 @@
+class QuizProblem extends Error {}
+function normalizedAnswer(value) {
+	if (typeof value !== "string") throw new QuizProblem("Enter a capital name.");
+	const answer = value.trim().replace(/\s+/g, " ");
+	if (!answer || answer.length > 100)
+		throw new QuizProblem("Enter a capital name of 1–100 characters.");
+	return answer.toLocaleLowerCase("en-US");
+}
+function validateQuizDataset(value) {
+	if (
+		!value ||
+		value.schemaVersion !== 1 ||
+		!Array.isArray(value.states) ||
+		value.states.length < 1 ||
+		value.states.length > 50
+	)
+		throw new QuizProblem("Use a version-one dataset with 1–50 states.");
+	const viewBox = value.viewBox;
+	if (
+		!Array.isArray(viewBox) ||
+		viewBox.length !== 4 ||
+		viewBox.some((n) => !Number.isFinite(n) || Math.abs(n) > 5000) ||
+		viewBox[2] <= 0 ||
+		viewBox[3] <= 0
+	)
+		throw new QuizProblem("Invalid map view box.");
+	const ids = new Set(),
+		names = new Set();
+	const point = "-?\\d+(?:\\.\\d+)?,-?\\d+(?:\\.\\d+)?";
+	const pathRule = new RegExp("^(?:M" + point + "(?:L" + point + "){2,}Z)+$");
+	const states = value.states.map((state) => {
+		if (
+			!state ||
+			typeof state.id !== "string" ||
+			!/^\d{2}$/.test(state.id) ||
+			ids.has(state.id)
+		)
+			throw new QuizProblem("States need unique two-digit IDs.");
+		if (
+			typeof state.name !== "string" ||
+			!/^[A-Za-z ]{3,40}$/.test(state.name) ||
+			names.has(state.name)
+		)
+			throw new QuizProblem("States need distinct names.");
+		if (typeof state.capital !== "string" || state.capital.length > 60)
+			throw new QuizProblem("Invalid capital.");
+		const canonical = normalizedAnswer(state.capital);
+		if (
+			!Array.isArray(state.acceptedAnswers) ||
+			state.acceptedAnswers.length < 1 ||
+			state.acceptedAnswers.length > 4 ||
+			!state.acceptedAnswers.some(
+				(answer) => normalizedAnswer(answer) === canonical,
+			)
+		)
+			throw new QuizProblem("Accepted answers must include the capital.");
+		const answers = state.acceptedAnswers.map(normalizedAnswer);
+		if (new Set(answers).size !== answers.length)
+			throw new QuizProblem("Repeated answer alias.");
+		if (
+			typeof state.path !== "string" ||
+			state.path.length > 50000 ||
+			!pathRule.test(state.path)
+		)
+			throw new QuizProblem("Invalid bounded map path.");
+		const coordinates = state.path.match(/-?\d+(?:\.\d+)?/g).map(Number);
+		for (let i = 0; i < coordinates.length; i += 2) {
+			if (
+				coordinates[i] < viewBox[0] ||
+				coordinates[i] > viewBox[0] + viewBox[2] ||
+				coordinates[i + 1] < viewBox[1] ||
+				coordinates[i + 1] > viewBox[1] + viewBox[3]
+			)
+				throw new QuizProblem("Map path is outside its view box.");
+		}
+		ids.add(state.id);
+		names.add(state.name);
+		return {
+			id: state.id,
+			name: state.name,
+			capital: state.capital,
+			acceptedAnswers: [...state.acceptedAnswers],
+			path: state.path,
+		};
+	});
+	return { schemaVersion: 1, viewBox: [...viewBox], states };
+}
+function createQuiz(dataset) {
+	return {
+		phase: "ready",
+		dataset: validateQuizDataset(dataset),
+		question: null,
+		answers: [],
+	};
+}
+function chooseQuestion(game, random = Math.random) {
+	const answered = new Set(game.answers.map((answer) => answer.id));
+	const remaining = game.dataset.states.filter(
+		(state) => !answered.has(state.id),
+	);
+	if (!remaining.length) return null;
+	const value = random();
+	if (!Number.isFinite(value) || value < 0 || value >= 1)
+		throw new QuizProblem("Random value must be within [0,1).");
+	return remaining[Math.floor(value * remaining.length)];
+}
+function startQuiz(game, random = Math.random) {
+	if (game.phase !== "ready") return false;
+	const question = chooseQuestion(game, random);
+	if (!question) throw new QuizProblem("Dataset contains no states.");
+	game.question = question;
+	game.phase = "asking";
+	return true;
+}
+function submitAnswer(game, value) {
+	if (game.phase !== "asking" || !game.question) return false;
+	const answer = normalizedAnswer(value);
+	const question = game.question;
+	if (game.answers.some((row) => row.id === question.id)) return false;
+	const correct = question.acceptedAnswers.some(
+		(expected) => normalizedAnswer(expected) === answer,
+	);
+	game.answers.push({
+		id: question.id,
+		answer: value.trim().replace(/\s+/g, " "),
+		correct,
+	});
+	game.phase = "feedback";
+	return true;
+}
+function advanceQuiz(game, random = Math.random) {
+	if (game.phase !== "feedback") return false;
+	const question = chooseQuestion(game, random);
+	game.question = question;
+	game.phase = question ? "asking" : "complete";
+	return true;
+}
+function resetQuiz(game) {
+	game.answers = [];
+	game.question = null;
+	game.phase = "ready";
+}
+function quizScore(game) {
+	return game.answers.filter((answer) => answer.correct).length;
+}

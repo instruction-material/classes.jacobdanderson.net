@@ -1,0 +1,9 @@
+# Fixed checks
+
+Nine circles=true,nine squares=true,mixed=false,empty=false,partial=false,unknown types=false.
+Random0 generates all circles;random0.75 generates all squares.
+Alternating0/0.75 makes nine cells and does not match.
+One frame scheduled at a time;match stops immediately.
+Stop cancels a pending frame;Start resets attempts;one-board cancels animation.
+2000 mixed boards stop with an explicit limit result.
+Hidden/pagehide stops the pending callback. Missing canvas retains nine text cells.

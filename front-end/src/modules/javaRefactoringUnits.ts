@@ -208,10 +208,89 @@ export const javaConditionalFlowUnit = {
 		"The optional project has a separate saved attempt. Copy the completed GatePolicy.java from the core attempt before implementing optional fee/reporting TODOs."
 	]
 } as const;
+export const javaMethodCallsUnit = {
+	id: "method-calls",
+	courseID: "design-patterns-in-java-part-2",
+	revision: "51bfd80e0004a446246469b55b5f2e0c560cc207",
+	pack: "DPR6-Method-Calls-Packs",
+	layout: "src/dispatch, src/dispatch/optional and sources.txt",
+	moduleID: "design-patterns-in-java-part-2-dpr6-simplifying-method-calls",
+	readingID:
+		"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-simplifying-method-calls-core-concepts",
+	coreID: "design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-core-project-simplifying-method-calls",
+	sourceItems: [
+		"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-simplifying-method-calls-application-check",
+		"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-public-api-compatibility-contract",
+		"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-null-optional-and-exception-boundary",
+		"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-core-project-simplifying-method-calls",
+		"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-simplifying-method-calls-extension-practice"
+	],
+	independentItems: [
+		"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-simplifying-method-calls-extension-practice"
+	],
+	files: {
+		starter: [
+			"src/dispatch/DispatchService.java",
+			"ClientCompatibility.java",
+			"ContractChecks.java",
+			"Main.java",
+			"README.md",
+			"REFACTORING.md",
+			"SOURCES.md",
+			"sources.txt",
+			"src/dispatch/CompatibilityDesk.java",
+			"src/dispatch/DeliverySpeed.java",
+			"src/dispatch/DispatchLog.java",
+			"src/dispatch/LegacyDesk.java",
+			"src/dispatch/Parcel.java",
+			"src/dispatch/Quote.java",
+			"src/dispatch/optional/LabelQueue.java",
+			"src/dispatch/optional/LegacyQueueClient.java",
+			"src/dispatch/optional/OptionalChecks.java",
+			"src/dispatch/optional/QueueClient.java"
+		],
+		solution: [
+			"src/dispatch/DispatchService.java",
+			"ClientCompatibility.java",
+			"ContractChecks.java",
+			"Main.java",
+			"README.md",
+			"REFACTORING.md",
+			"SOURCES.md",
+			"sources.txt",
+			"src/dispatch/CompatibilityDesk.java",
+			"src/dispatch/DeliverySpeed.java",
+			"src/dispatch/DispatchLog.java",
+			"src/dispatch/LegacyDesk.java",
+			"src/dispatch/Parcel.java",
+			"src/dispatch/Quote.java",
+			"src/dispatch/optional/LabelQueue.java",
+			"src/dispatch/optional/LegacyQueueClient.java",
+			"src/dispatch/optional/OptionalChecks.java",
+			"src/dispatch/optional/QueueClient.java"
+		]
+	},
+	instructions: [
+		"Java 21 method-call migration and API compatibility",
+		'javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out "@sources.txt"',
+		"java -ea -cp out Main baseline",
+		"java -ea -cp out ContractChecks baseline",
+		"java -ea -cp out ContractChecks core",
+		"java -da -cp out ContractChecks core",
+		"java -ea -cp out Main core",
+		"Baseline covers 576 rows and 2319 checks. Completed core covers 576 rows and 9266 checks; both Main modes print the same six lines.",
+		"Required TODOs: DispatchService.quote, DispatchService.send and CompatibilityDesk.price.",
+		"Optional: java -ea -cp out dispatch.optional.OptionalChecks baseline",
+		"Optional completed client: java -ea -cp out dispatch.optional.OptionalChecks full",
+		"The optional queue covers 21 queue lengths and 507 checks; it has a separate saved attempt and does not depend on dispatch TODOs.",
+		"Run displays native Java commands. These programs read no standard input."
+	]
+} as const;
 export const javaRefactoringUnits = [
 	javaOwnershipUnit,
 	javaValueDataUnit,
-	javaConditionalFlowUnit
+	javaConditionalFlowUnit,
+	javaMethodCallsUnit
 ] as const;
 type Role = "starter" | "solution";
 export function javaRefactoringUnitURL(id: string, role: Role) {

@@ -1,0 +1,175 @@
+{
+  "courseId": "javascript-level-2-javascript-master",
+  "moduleId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners",
+  "itemId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners-curriculum-jsm7-project-2-which-card",
+  "originalCaptures": [
+    "https://codepen.io/junilearning/pen/88140a4225b8cfb5468e91fbccfaa100",
+    "https://codepen.io/junilearning/pen/1e1ad471f376b1364cd157bd9c96f9ab"
+  ],
+  "resources": [
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "which-card",
+      "title": "Which Card",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/88140a4225b8cfb5468e91fbccfaa100",
+        "https://codepen.io/junilearning/pen/YzWLLYB",
+        "/course-assets/javascript-level-2/which-card-v1/starter/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "which-card-v1/starter/CASES.md.txt",
+          "byteLength": 847,
+          "sha256": "73c735e6f8890dde106e382acbd4ccc11a5b0f7599e20f14e9e631705b554ee9"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "which-card-v1/starter/LICENSE-original.txt.txt",
+          "byteLength": 1202,
+          "sha256": "e4d5ded7e04bb895c4810097dbf17b909252df7012b4d62fa7630d8b18d7b2b7"
+        },
+        {
+          "name": "README.md",
+          "path": "which-card-v1/starter/README.md.txt",
+          "byteLength": 1904,
+          "sha256": "32a89dcb006d5e5ddda5d69af334057c3b3a877a57539eb608f491c9c6a5c353"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "which-card-v1/starter/SOURCES.md.txt",
+          "byteLength": 1355,
+          "sha256": "da0b9a247de3dd341f8bb9d5dd578b8fe042d273541d1b25d978ae2fb22497ef"
+        },
+        {
+          "name": "console-viewer.js",
+          "path": "which-card-v1/starter/console-viewer.js.txt",
+          "byteLength": 192,
+          "sha256": "7b330f9a40030dcef02611a57cdb0865a9ceb5df5c7865029b3769570de31648"
+        },
+        {
+          "name": "index.html",
+          "path": "which-card-v1/starter/index.html.txt",
+          "byteLength": 548,
+          "sha256": "a2e739a7ccc30626023f05870bcd61bf4f1416ecf9299ba0ba78aedc8afa992a"
+        },
+        {
+          "name": "script.js",
+          "path": "which-card-v1/starter/script.js.txt",
+          "byteLength": 560,
+          "sha256": "455bc59f275667e947c4bca40fcd58aa96603d7028e98b873f488d0a9b407644"
+        },
+        {
+          "name": "styles.css",
+          "path": "which-card-v1/starter/styles.css.txt",
+          "byteLength": 318,
+          "sha256": "aa45e0d3eddf943110333a5ea0703c07466cc4b49cfeb7a61006a3f1b214c827"
+        }
+      ],
+      "itemId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners-curriculum-jsm7-project-2-which-card"
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "which-card",
+      "title": "Which Card",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/1e1ad471f376b1364cd157bd9c96f9ab",
+        "https://codepen.io/junilearning/pen/NWrMMbP/1e1ad471f376b1364cd157bd9c96f9ab",
+        "/course-assets/javascript-level-2/which-card-v1/reference/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "which-card-v1/reference/CASES.md.txt",
+          "byteLength": 847,
+          "sha256": "73c735e6f8890dde106e382acbd4ccc11a5b0f7599e20f14e9e631705b554ee9"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "which-card-v1/reference/LICENSE-original.txt.txt",
+          "byteLength": 1202,
+          "sha256": "e4d5ded7e04bb895c4810097dbf17b909252df7012b4d62fa7630d8b18d7b2b7"
+        },
+        {
+          "name": "README.md",
+          "path": "which-card-v1/reference/README.md.txt",
+          "byteLength": 1904,
+          "sha256": "32a89dcb006d5e5ddda5d69af334057c3b3a877a57539eb608f491c9c6a5c353"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "which-card-v1/reference/SOURCES.md.txt",
+          "byteLength": 1355,
+          "sha256": "da0b9a247de3dd341f8bb9d5dd578b8fe042d273541d1b25d978ae2fb22497ef"
+        },
+        {
+          "name": "console-viewer.js",
+          "path": "which-card-v1/reference/console-viewer.js.txt",
+          "byteLength": 192,
+          "sha256": "7b330f9a40030dcef02611a57cdb0865a9ceb5df5c7865029b3769570de31648"
+        },
+        {
+          "name": "index.html",
+          "path": "which-card-v1/reference/index.html.txt",
+          "byteLength": 548,
+          "sha256": "a2e739a7ccc30626023f05870bcd61bf4f1416ecf9299ba0ba78aedc8afa992a"
+        },
+        {
+          "name": "script.js",
+          "path": "which-card-v1/reference/script.js.txt",
+          "byteLength": 1019,
+          "sha256": "eda00c155d184f9023f83c5f5bd0bbda17ea71e0070f897f8467e408b2489361"
+        },
+        {
+          "name": "styles.css",
+          "path": "which-card-v1/reference/styles.css.txt",
+          "byteLength": 318,
+          "sha256": "aa45e0d3eddf943110333a5ea0703c07466cc4b49cfeb7a61006a3f1b214c827"
+        }
+      ],
+      "itemId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners-curriculum-jsm7-project-2-which-card"
+    }
+  ],
+  "files": {
+    "starter": {
+      "CASES.md": "# Which Card cases\n\nThe drawing is 1200 by 800. Each rectangle has x = index * 200, y = 150,\nwidth = 150 and height = 100. The palette is green, red, blue, yellow and cyan.\nLeft/top edges are included; right/bottom edges are excluded.\n\n| Logical point | Expected new console line |\n| --- | --- |\n| (75,200) | green |\n| (275,200) | red |\n| (475,200) | blue |\n| (675,200) | yellow |\n| (875,200) | cyan |\n| (1,151) | green |\n| (149,249) | green |\n| (150,200) | none |\n| (175,200) | none |\n| (75,149) | none |\n| (75,250) | none |\n| (75,260) | none |\n\nRepeat centers and gaps after resizing and scrolling. For viewport left 24, top 80\nand display size 600 by 400, logical red center (275,200) is at client (161.5,180).\nThe coordinate conversion returns (275,200).\n\nThe unchanged starter draws the row and logs nothing until its handler is implemented.\n",
+      "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/YzWLLYB)\nFork of an original work Flashcards (https://codepen.io/gfting/pen/abNzpjg)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "README.md": "# Which Card\n\nExtend the working five-card drawing so clicking inside a card logs its color once.\nThe starter supplies the drawing prerequisite. Implement the handler in script.js.\n\n## Files and execution\n\nOpen index.html in a browser without a server. The site IDE runs the same local files.\nscript.js contains the data, drawing and handler work. styles.css fits the 1200-by-800\ndrawing to the available width. console-viewer.js mirrors console.log in the Click log\nwhile preserving console output. All files work offline.\n\n## Geometry and input mapping\n\nThe colors are green, red, blue, yellow and cyan. Card i has x = i * 200, y = 150,\nwidth = 150 and height = 100. Use the same geometry for drawing and hit testing.\nNeighboring cards have a 50-unit gap.\n\nRead canvas.getBoundingClientRect() and convert each click:\nx = (event.clientX - rect.left) * canvas.width / rect.width\ny = (event.clientY - rect.top) * canvas.height / rect.height\n\nA point matches when x >= left, x < left + width, y >= top and y < top + height.\nLog the matched color once. Background and gap clicks log no color.\n\n## Worked results and completion\n\nCenters (75,200), (275,200), (475,200), (675,200) and (875,200) log the palette in order.\n(1,151) selects green. (150,200), (175,200) and (75,260) select none.\nCASES.md gives complete edge, offset and scale cases. Repeat after resizing or scrolling.\nExplain why client coordinates need conversion and how shared geometry prevents mismatches.\n\nThe original starter contained only a prompt. The local starter supplies the drawing and\nleaves the handler unfinished. The original reference's hit boxes differ from its drawing\nby 10 units and use client coordinates directly. The newly authored local reference preserves\nits palette, drawing and requested console output while correcting those issues.\nSOURCES.md records the captures; LICENSE-original.txt retains the starter notice.\n",
+      "SOURCES.md": "# Original source record\n\nstarter: https://codepen.io/junilearning/pen/88140a4225b8cfb5468e91fbccfaa100\nObserved: https://codepen.io/junilearning/pen/YzWLLYB\nJavaScript SHA256: 805bc6ffa0a05ff397cb01c4e98250b79aa42fac1d5749d96a8822985e677027\n\nreference: https://codepen.io/junilearning/pen/1e1ad471f376b1364cd157bd9c96f9ab\nObserved: https://codepen.io/junilearning/pen/NWrMMbP/1e1ad471f376b1364cd157bd9c96f9ab\nJavaScript SHA256: 4db0569014395691c5af170d27c38b0892000bfe18efc0fe92a26103f38ee476\n\nComplete panels,official exports and all settings inspected2026-11-14. HTML/CSS preprocessors\nNone,CSS base/prefixing Neither,JS Babel,no external resources/packages. The local scripts use\nordinary modern JavaScript and need no Babel transform.\n\nThe original starter has only the task prompt. The local starter supplies the drawing prerequisite.\nThe original reference draws x=index*200,y150,size150by100 but tests client x10+index*200through\n160+index*200 and y160through260. Its observed canvas viewport offset is(8,8).\nThe newly authored local reference corrects coordinate conversion and matches the actual rectangles.\nResponsive HTML/CSS and the literal console viewer are declared additions.\nThe private reference archive contains no separate license file;its complete capture is audit evidence.\nLICENSE-original.txt retains the complete starter notice.\n",
+      "console-viewer.js": "const originalLog = console.log.bind(console);\nconsole.log = (...values) => {\n  originalLog(...values);\n  document.getElementById(\"log\").textContent += values.map(String).join(\" \") + \"\\n\";\n};\n",
+      "index.html": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Which Card</title>\n  <link rel=\"stylesheet\" href=\"styles.css\">\n  <script src=\"console-viewer.js\" defer></script>\n  <script src=\"script.js\" defer></script>\n</head>\n<body>\n  <main>\n    <h1>Which Card</h1>\n    <canvas id=\"my-canvas\" role=\"img\" aria-label=\"Five cards: green, red, blue, yellow and cyan\"></canvas>\n    <h2>Click log</h2>\n    <pre id=\"log\" aria-live=\"polite\"></pre>\n  </main>\n</body>\n</html>\n",
+      "script.js": "// Extend this working drawing so a card click logs its color.\nconst canvas = document.getElementById(\"my-canvas\");\nconst ctx = canvas.getContext(\"2d\");\ncanvas.width = 1200;\ncanvas.height = 800;\nconst colors = [\"green\", \"red\", \"blue\", \"yellow\", \"cyan\"];\nconst cards = colors.map((color, index) => ({\n  color, x: index * 200, y: 150, width: 150, height: 100\n}));\nfor (const card of cards) {\n  ctx.fillStyle = card.color;\n  ctx.fillRect(card.x, card.y, card.width, card.height);\n}\n\n// Add the canvas click handler below. Gaps and background clicks log no color.\n",
+      "styles.css": "* { box-sizing: border-box; }\nbody { margin: 0; color: #1c2530; background: #fff; font: 1rem/1.5 system-ui, sans-serif; }\nmain { max-width: 77rem; margin: 2rem auto; padding: 1rem; }\ncanvas { display: block; width: 100%; height: auto; outline: 1px solid #777; }\npre { white-space: pre-wrap; overflow-wrap: anywhere; }\n"
+    },
+    "reference": {
+      "CASES.md": "# Which Card cases\n\nThe drawing is 1200 by 800. Each rectangle has x = index * 200, y = 150,\nwidth = 150 and height = 100. The palette is green, red, blue, yellow and cyan.\nLeft/top edges are included; right/bottom edges are excluded.\n\n| Logical point | Expected new console line |\n| --- | --- |\n| (75,200) | green |\n| (275,200) | red |\n| (475,200) | blue |\n| (675,200) | yellow |\n| (875,200) | cyan |\n| (1,151) | green |\n| (149,249) | green |\n| (150,200) | none |\n| (175,200) | none |\n| (75,149) | none |\n| (75,250) | none |\n| (75,260) | none |\n\nRepeat centers and gaps after resizing and scrolling. For viewport left 24, top 80\nand display size 600 by 400, logical red center (275,200) is at client (161.5,180).\nThe coordinate conversion returns (275,200).\n\nThe unchanged starter draws the row and logs nothing until its handler is implemented.\n",
+      "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/YzWLLYB)\nFork of an original work Flashcards (https://codepen.io/gfting/pen/abNzpjg)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "README.md": "# Which Card\n\nExtend the working five-card drawing so clicking inside a card logs its color once.\nThe starter supplies the drawing prerequisite. Implement the handler in script.js.\n\n## Files and execution\n\nOpen index.html in a browser without a server. The site IDE runs the same local files.\nscript.js contains the data, drawing and handler work. styles.css fits the 1200-by-800\ndrawing to the available width. console-viewer.js mirrors console.log in the Click log\nwhile preserving console output. All files work offline.\n\n## Geometry and input mapping\n\nThe colors are green, red, blue, yellow and cyan. Card i has x = i * 200, y = 150,\nwidth = 150 and height = 100. Use the same geometry for drawing and hit testing.\nNeighboring cards have a 50-unit gap.\n\nRead canvas.getBoundingClientRect() and convert each click:\nx = (event.clientX - rect.left) * canvas.width / rect.width\ny = (event.clientY - rect.top) * canvas.height / rect.height\n\nA point matches when x >= left, x < left + width, y >= top and y < top + height.\nLog the matched color once. Background and gap clicks log no color.\n\n## Worked results and completion\n\nCenters (75,200), (275,200), (475,200), (675,200) and (875,200) log the palette in order.\n(1,151) selects green. (150,200), (175,200) and (75,260) select none.\nCASES.md gives complete edge, offset and scale cases. Repeat after resizing or scrolling.\nExplain why client coordinates need conversion and how shared geometry prevents mismatches.\n\nThe original starter contained only a prompt. The local starter supplies the drawing and\nleaves the handler unfinished. The original reference's hit boxes differ from its drawing\nby 10 units and use client coordinates directly. The newly authored local reference preserves\nits palette, drawing and requested console output while correcting those issues.\nSOURCES.md records the captures; LICENSE-original.txt retains the starter notice.\n",
+      "SOURCES.md": "# Original source record\n\nstarter: https://codepen.io/junilearning/pen/88140a4225b8cfb5468e91fbccfaa100\nObserved: https://codepen.io/junilearning/pen/YzWLLYB\nJavaScript SHA256: 805bc6ffa0a05ff397cb01c4e98250b79aa42fac1d5749d96a8822985e677027\n\nreference: https://codepen.io/junilearning/pen/1e1ad471f376b1364cd157bd9c96f9ab\nObserved: https://codepen.io/junilearning/pen/NWrMMbP/1e1ad471f376b1364cd157bd9c96f9ab\nJavaScript SHA256: 4db0569014395691c5af170d27c38b0892000bfe18efc0fe92a26103f38ee476\n\nComplete panels,official exports and all settings inspected2026-11-14. HTML/CSS preprocessors\nNone,CSS base/prefixing Neither,JS Babel,no external resources/packages. The local scripts use\nordinary modern JavaScript and need no Babel transform.\n\nThe original starter has only the task prompt. The local starter supplies the drawing prerequisite.\nThe original reference draws x=index*200,y150,size150by100 but tests client x10+index*200through\n160+index*200 and y160through260. Its observed canvas viewport offset is(8,8).\nThe newly authored local reference corrects coordinate conversion and matches the actual rectangles.\nResponsive HTML/CSS and the literal console viewer are declared additions.\nThe private reference archive contains no separate license file;its complete capture is audit evidence.\nLICENSE-original.txt retains the complete starter notice.\n",
+      "console-viewer.js": "const originalLog = console.log.bind(console);\nconsole.log = (...values) => {\n  originalLog(...values);\n  document.getElementById(\"log\").textContent += values.map(String).join(\" \") + \"\\n\";\n};\n",
+      "index.html": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Which Card</title>\n  <link rel=\"stylesheet\" href=\"styles.css\">\n  <script src=\"console-viewer.js\" defer></script>\n  <script src=\"script.js\" defer></script>\n</head>\n<body>\n  <main>\n    <h1>Which Card</h1>\n    <canvas id=\"my-canvas\" role=\"img\" aria-label=\"Five cards: green, red, blue, yellow and cyan\"></canvas>\n    <h2>Click log</h2>\n    <pre id=\"log\" aria-live=\"polite\"></pre>\n  </main>\n</body>\n</html>\n",
+      "script.js": "// Match clicks against the same card geometry used for drawing.\nconst canvas = document.getElementById(\"my-canvas\");\nconst ctx = canvas.getContext(\"2d\");\ncanvas.width = 1200;\ncanvas.height = 800;\nconst colors = [\"green\", \"red\", \"blue\", \"yellow\", \"cyan\"];\nconst cards = colors.map((color, index) => ({\n  color, x: index * 200, y: 150, width: 150, height: 100\n}));\nfor (const card of cards) {\n  ctx.fillStyle = card.color;\n  ctx.fillRect(card.x, card.y, card.width, card.height);\n}\n\nfunction canvasPoint(event) {\n  const rect = canvas.getBoundingClientRect();\n  return {\n    x: (event.clientX - rect.left) * canvas.width / rect.width,\n    y: (event.clientY - rect.top) * canvas.height / rect.height\n  };\n}\nfunction cardAt(point) {\n  return cards.find(card =>\n    point.x >= card.x && point.x < card.x + card.width &&\n    point.y >= card.y && point.y < card.y + card.height\n  );\n}\ncanvas.addEventListener(\"click\", event => {\n  const selected = cardAt(canvasPoint(event));\n  if (selected) console.log(selected.color);\n});\n",
+      "styles.css": "* { box-sizing: border-box; }\nbody { margin: 0; color: #1c2530; background: #fff; font: 1rem/1.5 system-ui, sans-serif; }\nmain { max-width: 77rem; margin: 2rem auto; padding: 1rem; }\ncanvas { display: block; width: 100%; height: auto; outline: 1px solid #777; }\npre { white-space: pre-wrap; overflow-wrap: anywhere; }\n"
+    }
+  },
+  "colors": [
+    "green",
+    "red",
+    "blue",
+    "yellow",
+    "cyan"
+  ],
+  "cardGeometry": {
+    "startX": 0,
+    "stepX": 200,
+    "y": 150,
+    "width": 150,
+    "height": 100
+  },
+  "revisionKind": "sha256-of-both-role-resource-inputs",
+  "revision": "4bbd254ae31fa73cc92461d056a8ef8f54eedb13577e55d20ff33d8d59497af6"
+}

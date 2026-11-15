@@ -1,0 +1,28 @@
+(() => {
+"use strict";
+const api=window.CheckInOne;
+const status=document.querySelector("#status");
+const run=(callback) => { try {callback();status.textContent="";} catch(error){status.textContent=error.message;} };
+document.querySelector("#functions").addEventListener("click",() => run(() => {
+ const rolls=Array.from({length:100},() => api.rollDie());
+ if (!rolls.every(value => Number.isInteger(value)&&value>=1&&value<=6)) throw new Error("Complete rollDie: every roll must be an integer from 1 through 6.");
+ const sixes=rolls.filter(value => value===6).length;
+ document.querySelector("#function-results").textContent="100 rolls: "+rolls.join(", ")+"\nSixes: "+sixes+"\n"+api.playJackpot(api.rollDie(),api.rollDie())+"\nsum(2,3): "+api.sum(2,3)+"\nisOdd(3): "+api.isOdd(3)+"; isOdd(2): "+api.isOdd(2);
+}));
+document.querySelector("#arrays").addEventListener("click",() => run(() => {
+ const values=api.createDiceResults(20);
+ if (values.length!==20||!values.every(value => Number.isInteger(value)&&value>=1&&value<=6)) throw new Error("Complete createDiceResults: return twenty die rolls.");
+ const doubled=api.doubleResults(values);
+ document.querySelector("#array-results").textContent="Original: "+values.join(", ")+"\nTenth (index 9): "+values[9]+"\nEven rolls: "+api.countEvenRolls(values)+"\nDoubled: "+doubled.join(", ")+"\nOriginal after doubling: "+values.join(", ");
+}));
+document.querySelector("#cards").addEventListener("click",() => run(() => {
+ const car=api.createCar();const cards=api.createCards();
+ if (!car||!Number.isInteger(car.year)||cards.length!==4) throw new Error("Complete createCar and createCards before drawing.");
+ document.querySelector("#car-results").textContent=car.make+" "+car.model+"; year: "+car.year+"; color: "+car.color+"; damaged: "+car.damaged;
+ const list=document.querySelector("#card-results");list.replaceChildren();
+ for (const card of cards) {const row=document.createElement("li");row.textContent="Card "+card.text+": x="+card.x+", y="+card.y+", width="+card.width+", height="+card.height+", color="+card.color;list.append(row);}
+ const canvas=document.querySelector("#canvas");let context=null;
+ try {context=canvas.getContext("2d");} catch {}
+ if(context) api.drawCards(context,cards);
+}));
+})();

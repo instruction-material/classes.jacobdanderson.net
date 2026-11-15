@@ -17,7 +17,10 @@ import restoredLiteratureProjects from "../../test/fixtures/middle-school-litera
 import restoredWritingProjects from "../../test/fixtures/middle-school-writing-restored-identities.json";
 import pictureBookAdditions from "../../test/fixtures/picture-book-restored-identities.json";
 import restoredSpeakingProjects from "../../test/fixtures/public-speaking-restored-identities.json";
+import restoredJavaScriptLocalReadings from "../../test/fixtures/javascript-local-persistence-reading-identities.json";
 import restoredPythonRecaps from "../../test/fixtures/python-level-1-restored-recap-identities.json";
+
+import restoredSmartMoneyProjects from "../../test/fixtures/smart-money-restored-identities.json";
 
 const baseline = JSON.parse(
 	readFileSync(
@@ -51,8 +54,10 @@ const addedIdentities: Record<
 	"late-elementary-b-math": lateElementaryBAdditions,
 	"early-elementary-a-reading": joyOfReadingAdditions,
 	"early-elementary-b-picture-book": pictureBookAdditions,
+	"smart-money-personal-finance": restoredSmartMoneyProjects,
 	"entrepreneurship-101": restoredEntrepreneurshipProjects,
 	"middle-school-c-grammar": restoredGrammarProjects,
+	"javascript-level-2-javascript-master": restoredJavaScriptLocalReadings,
 	"middle-school-a-literature": restoredLiteratureProjects,
 	"introduction-to-public-speaking": restoredSpeakingProjects,
 	...restoredWritingProjects,

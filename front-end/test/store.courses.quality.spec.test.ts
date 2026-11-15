@@ -58,6 +58,12 @@ import {
 } from "@/modules/courseAssetPreview";
 import { isGitHubUrl } from "@/modules/resourceUrls";
 
+import {
+	smartMoneyReadings,
+	smartMoneyActivities
+} from "@/stores/courses/smartMoneyReadings";
+import { formatAuthoredReading } from "@/stores/courses/authoredReading";
+
 const COURSE_SWEEP_TIMEOUT = 180000;
 const elementaryMaterials = {
 	"early-elementary-a-math": earlyElementaryAMaterials,
@@ -239,6 +245,7 @@ function wordCount(text: string) {
 }
 
 const authoredReadingCounts: Record<string, number> = {
+	"smart-money-personal-finance": 9,
 	"elementary-science": 8,
 	"intro-to-biology": 8,
 	"entrepreneurship-101": 10,
@@ -426,6 +433,42 @@ function completeSpeakingPractice(
 		Boolean(contract?.every(pattern => pattern.test(item.content))) &&
 		/compare|feedback|revision|revise|check|changed|observed|explain/i.test(
 			item.content
+		)
+	);
+}
+
+function completeSmartMoneyPractice(
+	courseId: string,
+	module: RawCourseModule,
+	item: RawCourseModuleItem
+) {
+	const activities = smartMoneyActivities[module.title];
+	const expected = item.title.startsWith("Practice Map:")
+		? activities?.practice
+		: item.title.startsWith("Extension Review:")
+			? activities?.extension
+			: undefined;
+	const reading = smartMoneyReadings[module.title];
+	return (
+		courseId === "smart-money-personal-finance" &&
+		Boolean(
+			expected && expected.includes("Check:") && /\d/.test(expected)
+		) &&
+		item.content === expected &&
+		item.contentKind === "assignment" &&
+		item.preserveInstructions === true &&
+		item.preserveAssignment === true &&
+		module.supplementalProjects.some(
+			candidate => candidate.id === item.id
+		) &&
+		Boolean(reading) &&
+		hasAuthoredModuleReading(module) &&
+		module.curriculum.some(
+			candidate =>
+				candidate.contentKind === "reading" &&
+				candidate.content.includes(
+					formatAuthoredReading(reading).trim()
+				)
 		)
 	);
 }
@@ -3934,9 +3977,7 @@ describe("course text quality normalization", () => {
 		expect(corpus).toContain(
 			"The key skill is separating local page state from persisted remote state"
 		);
-		expect(corpus).toContain(
-			"comments do not accidentally attach to the wrong item"
-		);
+		expect(corpus).toContain("Find the parent topic by stable ID");
 	});
 
 	it("keeps JavaScript Level 1 prompts student-readable and concrete", async () => {
@@ -4349,52 +4390,91 @@ describe("course text quality normalization", () => {
 		expect(course).not.toBeNull();
 		if (!course) return;
 
-		const expectedFocusByLab = new Map([
-			[13, "frontier instrumentation"],
-			[14, "depth limits"],
-			[15, "uniform-cost or A* cost accounting"],
-			[16, "greedy versus A* comparisons"],
-			[17, "game or puzzle search evaluation"]
+		const expectedCases = new Map<
+			number,
+			{ transfer: string[]; extension: string[] }
+		>([
+			[
+				13,
+				{
+					transfer: ['"path": ["A", "C", "G"]', "C → A"],
+					extension: ['"peak_frontier": 4', '"expanded": 8']
+				}
+			],
+			[
+				14,
+				{
+					transfer: ['"0": "cutoff"', '"3": "found"'],
+					extension: ['"attempts": 4', '"visits": 12']
+				}
+			],
+			[
+				15,
+				{
+					transfer: ['"A_pops": 2', '"cost": 4'],
+					extension: [
+						'"admissible_cost": 4',
+						'"overestimate_cost": 9'
+					]
+				}
+			],
+			[
+				16,
+				{
+					transfer: ['"greedy": 21', '"astar": 4'],
+					extension: ['"greedy": 4', '"astar": 4']
+				}
+			],
+			[
+				17,
+				{
+					transfer: ['"moves": [3, 2, 1, null]', "unreachable"],
+					extension: [
+						'"reachable": 12',
+						'"max_shortest_moves": 6',
+						'"false_zero_scores": 2'
+					]
+				}
+			]
 		]);
 		const checkedLabs: number[] = [];
-
-		for (const [labNumber, focus] of expectedFocusByLab) {
+		for (const [labNumber, cases] of expectedCases) {
 			const module = course.modules.find(
 				module =>
 					module.title ===
-					`AI Search Lab ${labNumber}: Practice Studio`
+					"AI Search Lab " + labNumber + ": Practice Studio"
 			);
-			expect(module, `AI Search Lab ${labNumber}`).toBeDefined();
+			expect(module, "AI Search Lab " + labNumber).toBeDefined();
 			if (!module) continue;
-
 			const transfer = module.supplementalProjects.find(
 				item =>
 					item.title ===
-					`Transfer Practice: AI Search Lab ${labNumber}`
+					"Transfer Practice: AI Search Lab " + labNumber
 			);
 			const extension = module.supplementalProjects.find(
 				item =>
 					item.title ===
-					`Extension Practice: AI Search Lab ${labNumber}`
+					"Extension Practice: AI Search Lab " + labNumber
 			);
 			expect(transfer, module.title).toBeDefined();
 			expect(extension, module.title).toBeDefined();
 			if (!transfer || !extension) continue;
-
-			expect(transfer.content, transfer.title).toContain(
-				"transfer-practice search lab"
-			);
-			expect(extension.content, extension.title).toContain(
-				"extension-practice search lab"
-			);
-			expect(transfer.content, transfer.title).toContain(focus);
-			expect(extension.content, extension.title).toContain(focus);
+			for (const [item, tokens] of [
+				[transfer, cases.transfer],
+				[extension, cases.extension]
+			] as const) {
+				expect(item.content, item.title).toContain(
+					"## Expected result"
+				);
+				expect(item.content, item.title).toContain("solve_extension");
+				for (const token of tokens)
+					expect(item.content, item.title).toContain(token);
+			}
 			expect(transfer.content, module.title).not.toEqual(
 				extension.content
 			);
 			checkedLabs.push(labNumber);
 		}
-
 		expect(checkedLabs).toEqual([13, 14, 15, 16, 17]);
 	});
 
@@ -5899,6 +5979,11 @@ describe("course text quality normalization", () => {
 											module,
 											item
 										) &&
+										!completeSmartMoneyPractice(
+											entry.id,
+											module,
+											item
+										) &&
 										!completePhysicsPractice(
 											entry.id,
 											module,
@@ -5979,6 +6064,7 @@ describe("course text quality normalization", () => {
 								item
 							) &&
 							!completeSpeakingPractice(id, module, item) &&
+							!completeSmartMoneyPractice(id, module, item) &&
 							!completePhysicsPractice(id, module, item) &&
 							!completeElementaryPractice(id, module, item) &&
 							!completeIntroBiologyActivity(id, module, item) &&
@@ -7357,6 +7443,60 @@ describe("course text quality normalization", () => {
 		COURSE_SWEEP_TIMEOUT
 	);
 
+	it("accepts concise finance cases only with their full supplied inputs, answers and teaching", async () => {
+		const course = (await loadRawCourse("smart-money-personal-finance"))!;
+		const modules = course.modules.filter(
+			module => module.kind !== "appendix"
+		);
+		expectAuthoredReadings(course, "smart-money-personal-finance");
+		let count = 0;
+		for (const module of modules) {
+			for (const item of module.supplementalProjects.filter(
+				item =>
+					item.title.startsWith("Practice Map:") ||
+					item.title.startsWith("Extension Review:")
+			)) {
+				expect(
+					completeSmartMoneyPractice(
+						"smart-money-personal-finance",
+						module,
+						item
+					),
+					item.title
+				).toBe(true);
+				for (const content of [
+					item.content.split("Check:")[0],
+					item.content.replace(/\d/, "unknown"),
+					"Compare two financial decisions. Check the answer."
+				]) {
+					expect(
+						completeSmartMoneyPractice(
+							"smart-money-personal-finance",
+							module,
+							{ ...item, content }
+						)
+					).toBe(false);
+				}
+				expect(
+					completeSmartMoneyPractice(
+						"smart-money-personal-finance",
+						{ ...module, curriculum: [] },
+						item
+					)
+				).toBe(false);
+				expect(
+					completeSmartMoneyPractice(
+						"money-minded-investing",
+						module,
+						item
+					)
+				).toBe(false);
+				count++;
+			}
+		}
+		expect(count).toBe(18);
+	});
+
 	it("builds substantive neutral source-library course modules", async () => {
 		const courseIds = [
 			"smart-money-personal-finance",
@@ -7480,6 +7620,36 @@ describe("course text quality normalization", () => {
 						}
 					}
 				}
+			} else if (courseId === "smart-money-personal-finance") {
+				const source = await courseCatalog
+					.find(entry => entry.id === courseId)!
+					.load();
+				let sourceTasks = 0;
+				for (const module of course.modules.filter(
+					module => module.kind !== "appendix"
+				)) {
+					for (const item of [
+						...module.curriculum,
+						...module.supplementalProjects
+					]) {
+						if (item.contentKind === "reading") continue;
+						const authoredPractice =
+							item.title.startsWith("Practice Map:") ||
+							item.title.startsWith("Extension Review:");
+						expect(
+							authoredPractice
+								? completeSmartMoneyPractice(
+										courseId,
+										module,
+										item
+									)
+								: completeSourceActivity(source, module, item),
+							item.title
+						).toBe(true);
+						if (!authoredPractice) sourceTasks++;
+					}
+				}
+				expect(sourceTasks).toBe(21);
 			} else {
 				expect(text).toContain("**Setup:**");
 				expect(text).toContain("**Process:**");
@@ -7505,7 +7675,12 @@ describe("course text quality normalization", () => {
 			.map(course => allCourseText(course!))
 			.join("\n");
 
-		expect(corpus).toContain("decision record with assumptions");
+		expect(allCourseText(smartMoney!)).toContain(
+			"20,310 − 29,528.37 = −$9,218.37"
+		);
+		expect(allCourseText(smartMoney!)).toContain(
+			"Include assumptions, source dates, monthly calculations, rejected options"
+		);
 		expect(allCourseText(publicSpeaking!)).toContain(
 			"Three-part outline with transitions and support for each main point."
 		);
@@ -7528,8 +7703,8 @@ describe("course text quality normalization", () => {
 		expect(allCourseText(publicSpeaking!)).toContain(
 			"Audience: members sharing one model-building table."
 		);
-		expect(nonProgrammingCorpus).toContain(
-			"the goal, assumptions, available evidence"
+		expect(allCourseText(smartMoney!)).toContain(
+			"income, spending, debts, savings, purchases and values"
 		);
 		expect(nonProgrammingCorpus).not.toMatch(
 			/core state, inputs, outputs|first runnable checkpoint|first runnable slice|data or state representation/i

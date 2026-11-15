@@ -1,0 +1,18 @@
+# Sources
+
+Assignment:https://codepen.io/junilearning/pen/13e9d8e0ad56ecbaff7933d0e063d682
+Observed alias:https://codepen.io/junilearning/pen/xxOjWGw
+Reference:https://codepen.io/junilearning/pen/8c0f86e9e4d1996ac073f2d675141072
+Observed alias:https://codepen.io/junilearning/pen/abZGqrb/8c0f86e9e4d1996ac073f2d675141072
+
+Both original panels/settings and official exports were reviewed on 2026-11-14.
+HTML/CSS are empty. JavaScript uses Babel with no external resources or packages.
+The original native reference accepted Ada/1 and Lin/2 and logged both seats.
+The starter task names all seven helpers and makes maxSeats adjustable.
+
+These newly authored local files preserve those helper names,seat-object model,
+prompt/alert workflow,one-based input,zero-based indexes and ordered manifest.
+They add validation before indexing,graceful cancellation and a literal-text
+console viewer. The starter's MIT notice is retained in LICENSE-original.txt.
+The reference export includes no separate license file;its original source
+remains in the private audit capture and was not copied into this pack.

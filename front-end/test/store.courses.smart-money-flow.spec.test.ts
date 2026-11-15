@@ -125,7 +125,7 @@ describe("Smart Money personal-finance learner flow", () => {
 		expect(
 			requireModule("PF3 How to Manage My Spending").curriculum[0]
 				?.content
-		).toContain("text table or instructor-supplied calculator");
+		).toContain("text table and the supplied calculations");
 		expect(
 			smartMoneyPersonalFinanceCourse.modules.some(
 				module => module.title === "Pending Static Assets"

@@ -1,0 +1,193 @@
+{
+  "courseId": "javascript-level-2-javascript-master",
+  "moduleId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners",
+  "itemId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners-curriculum-jsm7-project-1-refactory",
+  "originalCaptures": [
+    "https://codepen.io/junilearning/pen/3a1383fc8a60d0ff0f55419c9b4940fe",
+    "https://codepen.io/junilearning/pen/4e1986a769365ecdef09ebeea1144a4f"
+  ],
+  "resources": [
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "refactory",
+      "title": "Refactory",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/3a1383fc8a60d0ff0f55419c9b4940fe",
+        "https://codepen.io/junilearning/pen/mdELxmp",
+        "/course-assets/javascript-level-2/refactory-v1/starter/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "refactory-v1/starter/CASES.md.txt",
+          "byteLength": 967,
+          "sha256": "11aed37d6a82d41f9c467f1d0278c5fd3038780c8a3a7d9e528135ac4fef3ee1"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "refactory-v1/starter/LICENSE-original.txt.txt",
+          "byteLength": 1172,
+          "sha256": "25e8ea3dc1dd8ab9dd72f403a2c9cd340ae94ef9bdb2fbe0f10e4379359b0619"
+        },
+        {
+          "name": "README.md",
+          "path": "refactory-v1/starter/README.md.txt",
+          "byteLength": 2013,
+          "sha256": "8658203af55aec5a44b13e6e7064bfdbfdc288c89b6e693ad646612a09f70194"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "refactory-v1/starter/SOURCES.md.txt",
+          "byteLength": 1298,
+          "sha256": "f2bb3298aca0899064146c968683966cfceded943e7f051748d2521b91ad3b29"
+        },
+        {
+          "name": "index.html",
+          "path": "refactory-v1/starter/index.html.txt",
+          "byteLength": 415,
+          "sha256": "c47f6d4172064b527168b1d5ffd14f397cc2f053df3e0e8a3e27dc2e5c4e94e5"
+        },
+        {
+          "name": "report-viewer.js",
+          "path": "refactory-v1/starter/report-viewer.js.txt",
+          "byteLength": 337,
+          "sha256": "7e4401d683b31429acaeccb3795056aecf2a877fa3f6372b65b1fabe11bf64b4"
+        },
+        {
+          "name": "script.js",
+          "path": "refactory-v1/starter/script.js.txt",
+          "byteLength": 953,
+          "sha256": "4e59db768746010504bb7ea6d5e54a5f031bebeccb53c87d69de5dec821dca8d"
+        },
+        {
+          "name": "styles.css",
+          "path": "refactory-v1/starter/styles.css.txt",
+          "byteLength": 275,
+          "sha256": "ad38a07a23eb541249702e271301282facb020902868528fc6b9c9a6ac111c5b"
+        }
+      ],
+      "itemId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners-curriculum-jsm7-project-1-refactory"
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "refactory",
+      "title": "Refactory",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/4e1986a769365ecdef09ebeea1144a4f",
+        "https://codepen.io/junilearning/pen/ZEOoxez/4e1986a769365ecdef09ebeea1144a4f",
+        "/course-assets/javascript-level-2/refactory-v1/reference/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "refactory-v1/reference/CASES.md.txt",
+          "byteLength": 967,
+          "sha256": "11aed37d6a82d41f9c467f1d0278c5fd3038780c8a3a7d9e528135ac4fef3ee1"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "refactory-v1/reference/LICENSE-original.txt.txt",
+          "byteLength": 1172,
+          "sha256": "25e8ea3dc1dd8ab9dd72f403a2c9cd340ae94ef9bdb2fbe0f10e4379359b0619"
+        },
+        {
+          "name": "README.md",
+          "path": "refactory-v1/reference/README.md.txt",
+          "byteLength": 2013,
+          "sha256": "8658203af55aec5a44b13e6e7064bfdbfdc288c89b6e693ad646612a09f70194"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "refactory-v1/reference/SOURCES.md.txt",
+          "byteLength": 1298,
+          "sha256": "f2bb3298aca0899064146c968683966cfceded943e7f051748d2521b91ad3b29"
+        },
+        {
+          "name": "index.html",
+          "path": "refactory-v1/reference/index.html.txt",
+          "byteLength": 415,
+          "sha256": "c47f6d4172064b527168b1d5ffd14f397cc2f053df3e0e8a3e27dc2e5c4e94e5"
+        },
+        {
+          "name": "report-viewer.js",
+          "path": "refactory-v1/reference/report-viewer.js.txt",
+          "byteLength": 337,
+          "sha256": "7e4401d683b31429acaeccb3795056aecf2a877fa3f6372b65b1fabe11bf64b4"
+        },
+        {
+          "name": "script.js",
+          "path": "refactory-v1/reference/script.js.txt",
+          "byteLength": 613,
+          "sha256": "1bee4ea2a1b4d8ce7f60d6f4f67dd8450a108983384e4af0064cf87424be0a57"
+        },
+        {
+          "name": "styles.css",
+          "path": "refactory-v1/reference/styles.css.txt",
+          "byteLength": 275,
+          "sha256": "ad38a07a23eb541249702e271301282facb020902868528fc6b9c9a6ac111c5b"
+        }
+      ],
+      "itemId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners-curriculum-jsm7-project-1-refactory"
+    }
+  ],
+  "files": {
+    "starter": {
+      "CASES.md": "# Refactory cases\n\n## Supplied reports\n\nFirst report:\n\n{\n  \"widgets\": [\n    {\n      \"name\": \"heavy\",\n      \"weight\": 500\n    },\n    {\n      \"name\": \"heavy\",\n      \"weight\": 500\n    }\n  ],\n  \"totalWeight\": 1000\n}\n\nSecond report:\n\n{\n  \"widgets\": [\n    {\n      \"name\": \"standard\",\n      \"weight\": 100\n    },\n    {\n      \"name\": \"standard\",\n      \"weight\": 100\n    },\n    {\n      \"name\": \"standard\",\n      \"weight\": 100\n    }\n  ],\n  \"totalWeight\": 300\n}\n\n## Additional calls\n\nA model with name \"sample\" and weight 25, count 4: four separate objects, totalWeight 100.\nCount 0: an empty widgets array and totalWeight 0.\nCount 1, weight 0: one widget with weight 0 and totalWeight 0.\nChanging one produced widget preserves its neighbors and the model.\nRepeated calls create separate report objects and separate arrays.\n\nCounts in this exercise are nonnegative integers. Compare array order and property values;\nthe order of object properties in the printed JSON may differ.\n",
+      "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/mdELxmp)\nFork of an original work that is now private.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "README.md": "# Refactory\n\nRefactor a working widget factory into helper functions while preserving its two reports.\nThe starter already runs and contains the repeated code to extract. The reference uses one\nhelper to make a fresh widget and one to assemble a fresh report from a model and count.\n\n## Files and execution\n\nOpen index.html in a browser without a server. The site IDE can run the same local files.\nEdit script.js for the factory work. report-viewer.js displays console.log objects as readable\ntext and also keeps the original console output. index.html and styles.css supply the viewer.\nThe original source had blank HTML/CSS and logged reports only; the viewer adds their on-page\npresentation without changing report data. All files work offline.\n\n## Inputs and outputs\n\nA heavy widget has name \"heavy\" and weight 500; a standard widget has name \"standard\" and\nweight 100. Produce two heavy widgets first, totalWeight 1000, then three standard widgets,\ntotalWeight 300. Each report has widgets and totalWeight. CASES.md supplies both full reports\nand additional cases.\n\n## Refactoring path\n\nRecord the starter output. Extract a helper that returns a new object with name and weight.\nExtract an assembly helper taking a model and count. Create a fresh report, loop count times,\ncreate and append a separate widget each time, accumulate its weight, then return the report.\nUse the returned reports for the two original console.log calls. Run after each extraction.\n\nEach call owns its report and widget array; every widget is separate from its model and peers.\nKeep array order and all values. Object property order may differ. Add one new model/count\ncall without copying another assembly loop, and explain the two helpers' responsibilities.\n\nSOURCES.md records both original captures and declared adaptations. LICENSE-original.txt\nretains the complete starter notice. The local reference is newly authored against the\noriginal behavior and helper-function task; the original reference remains separately linked.\n",
+      "SOURCES.md": "# Source record\n\nstarter: https://codepen.io/junilearning/pen/3a1383fc8a60d0ff0f55419c9b4940fe\nObserved: https://codepen.io/junilearning/pen/mdELxmp\nJavaScript SHA256: 4e59db768746010504bb7ea6d5e54a5f031bebeccb53c87d69de5dec821dca8d\n\nreference: https://codepen.io/junilearning/pen/4e1986a769365ecdef09ebeea1144a4f\nObserved: https://codepen.io/junilearning/pen/ZEOoxez/4e1986a769365ecdef09ebeea1144a4f\nJavaScript SHA256: b07090ad699bf993930246e5be97be25f78cadec2c02eae767bec7d8869b900d\n\nBoth complete editor sources, official exports and HTML/CSS/JavaScript settings were inspected\non 2026-11-14. Both HTML/CSS panels are empty, all preprocessors are None, CSS base/prefixing\nare Neither, and no external resources or packages are configured.\n\nThe local starter script is byte-identical to the original. The local reference is newly\nauthored and preserves the two ordered reports, helper responsibilities and separate object\nidentities verified against the original reference. The original private reference export has\nno separate license file; its complete capture is retained as review evidence, while this pack\nuses the newly authored reference. LICENSE-original.txt retains the starter's complete notice.\nThe local HTML, styles and report-viewer.js display the existing console objects as text.\n",
+      "index.html": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Refactory</title>\n  <link rel=\"stylesheet\" href=\"styles.css\">\n  <script src=\"report-viewer.js\" defer></script>\n  <script src=\"script.js\" defer></script>\n</head>\n<body>\n  <main><h1>Refactory</h1><div id=\"reports\" aria-label=\"Widget reports\"></div></main>\n</body>\n</html>\n",
+      "report-viewer.js": "const originalLog = console.log.bind(console);\nconsole.log = (...values) => {\n  originalLog(...values);\n  const report = document.createElement(\"pre\");\n  report.textContent = values.map(value =>\n    typeof value === \"string\" ? value : JSON.stringify(value, null, 2)\n  ).join(\" \");\n  document.getElementById(\"reports\").append(report);\n};\n",
+      "script.js": "// This widget factory is incredibly inefficient. Break this long block of code into smaller, helper functions without altering how it works.\n\nconst standardWidgetName = \"standard\";\nconst standardWidgetWeight = 100;\nconst heavyWidgetName = \"heavy\";\nconst heavyWidgetWeight = 500;\n\nconst reportOne = {widgets: [], totalWeight: 0}\nconst reportTwo = {widgets: [], totalWeight: 0}\n\nfor (let i = 0; i < 2; i++) {\n  let widget = {};\n  widget.weight = heavyWidgetWeight;\n  widget.name = heavyWidgetName;\n  reportOne.widgets.push(widget);\n}\n\nreportOne.totalWeight = reportOne.widgets.reduce((acc, widget) => {\n  return acc + widget.weight;\n}, 0);\n\nfor (let i = 0; i < 3; i++) {\n  let widget = {};\n  widget.weight = standardWidgetWeight;\n  widget.name = standardWidgetName;\n  reportTwo.widgets.push(widget)\n}\n\nreportTwo.totalWeight = reportTwo.widgets.reduce((acc, widget) => {\n  return acc + widget.weight;\n}, 0);\n\nconsole.log(reportOne)\nconsole.log(reportTwo)\n",
+      "styles.css": "* { box-sizing: border-box; }\nbody { margin: 0; color: #1c2530; background: #fff; font: 1rem/1.5 system-ui, sans-serif; }\nmain { max-width: 48rem; margin: 2rem auto; padding: 1rem; }\npre { padding: 1rem; background: #eef1f4; white-space: pre-wrap; overflow-wrap: anywhere; }\n"
+    },
+    "reference": {
+      "CASES.md": "# Refactory cases\n\n## Supplied reports\n\nFirst report:\n\n{\n  \"widgets\": [\n    {\n      \"name\": \"heavy\",\n      \"weight\": 500\n    },\n    {\n      \"name\": \"heavy\",\n      \"weight\": 500\n    }\n  ],\n  \"totalWeight\": 1000\n}\n\nSecond report:\n\n{\n  \"widgets\": [\n    {\n      \"name\": \"standard\",\n      \"weight\": 100\n    },\n    {\n      \"name\": \"standard\",\n      \"weight\": 100\n    },\n    {\n      \"name\": \"standard\",\n      \"weight\": 100\n    }\n  ],\n  \"totalWeight\": 300\n}\n\n## Additional calls\n\nA model with name \"sample\" and weight 25, count 4: four separate objects, totalWeight 100.\nCount 0: an empty widgets array and totalWeight 0.\nCount 1, weight 0: one widget with weight 0 and totalWeight 0.\nChanging one produced widget preserves its neighbors and the model.\nRepeated calls create separate report objects and separate arrays.\n\nCounts in this exercise are nonnegative integers. Compare array order and property values;\nthe order of object properties in the printed JSON may differ.\n",
+      "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/mdELxmp)\nFork of an original work that is now private.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "README.md": "# Refactory\n\nRefactor a working widget factory into helper functions while preserving its two reports.\nThe starter already runs and contains the repeated code to extract. The reference uses one\nhelper to make a fresh widget and one to assemble a fresh report from a model and count.\n\n## Files and execution\n\nOpen index.html in a browser without a server. The site IDE can run the same local files.\nEdit script.js for the factory work. report-viewer.js displays console.log objects as readable\ntext and also keeps the original console output. index.html and styles.css supply the viewer.\nThe original source had blank HTML/CSS and logged reports only; the viewer adds their on-page\npresentation without changing report data. All files work offline.\n\n## Inputs and outputs\n\nA heavy widget has name \"heavy\" and weight 500; a standard widget has name \"standard\" and\nweight 100. Produce two heavy widgets first, totalWeight 1000, then three standard widgets,\ntotalWeight 300. Each report has widgets and totalWeight. CASES.md supplies both full reports\nand additional cases.\n\n## Refactoring path\n\nRecord the starter output. Extract a helper that returns a new object with name and weight.\nExtract an assembly helper taking a model and count. Create a fresh report, loop count times,\ncreate and append a separate widget each time, accumulate its weight, then return the report.\nUse the returned reports for the two original console.log calls. Run after each extraction.\n\nEach call owns its report and widget array; every widget is separate from its model and peers.\nKeep array order and all values. Object property order may differ. Add one new model/count\ncall without copying another assembly loop, and explain the two helpers' responsibilities.\n\nSOURCES.md records both original captures and declared adaptations. LICENSE-original.txt\nretains the complete starter notice. The local reference is newly authored against the\noriginal behavior and helper-function task; the original reference remains separately linked.\n",
+      "SOURCES.md": "# Source record\n\nstarter: https://codepen.io/junilearning/pen/3a1383fc8a60d0ff0f55419c9b4940fe\nObserved: https://codepen.io/junilearning/pen/mdELxmp\nJavaScript SHA256: 4e59db768746010504bb7ea6d5e54a5f031bebeccb53c87d69de5dec821dca8d\n\nreference: https://codepen.io/junilearning/pen/4e1986a769365ecdef09ebeea1144a4f\nObserved: https://codepen.io/junilearning/pen/ZEOoxez/4e1986a769365ecdef09ebeea1144a4f\nJavaScript SHA256: b07090ad699bf993930246e5be97be25f78cadec2c02eae767bec7d8869b900d\n\nBoth complete editor sources, official exports and HTML/CSS/JavaScript settings were inspected\non 2026-11-14. Both HTML/CSS panels are empty, all preprocessors are None, CSS base/prefixing\nare Neither, and no external resources or packages are configured.\n\nThe local starter script is byte-identical to the original. The local reference is newly\nauthored and preserves the two ordered reports, helper responsibilities and separate object\nidentities verified against the original reference. The original private reference export has\nno separate license file; its complete capture is retained as review evidence, while this pack\nuses the newly authored reference. LICENSE-original.txt retains the starter's complete notice.\nThe local HTML, styles and report-viewer.js display the existing console objects as text.\n",
+      "index.html": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Refactory</title>\n  <link rel=\"stylesheet\" href=\"styles.css\">\n  <script src=\"report-viewer.js\" defer></script>\n  <script src=\"script.js\" defer></script>\n</head>\n<body>\n  <main><h1>Refactory</h1><div id=\"reports\" aria-label=\"Widget reports\"></div></main>\n</body>\n</html>\n",
+      "report-viewer.js": "const originalLog = console.log.bind(console);\nconsole.log = (...values) => {\n  originalLog(...values);\n  const report = document.createElement(\"pre\");\n  report.textContent = values.map(value =>\n    typeof value === \"string\" ? value : JSON.stringify(value, null, 2)\n  ).join(\" \");\n  document.getElementById(\"reports\").append(report);\n};\n",
+      "script.js": "// Refactor the widget factory while preserving its ordered reports.\nconst standardWidget = { name: \"standard\", weight: 100 };\nconst heavyWidget = { name: \"heavy\", weight: 500 };\n\nfunction makeWidget(model) {\n  return { name: model.name, weight: model.weight };\n}\n\nfunction assemblyLine(model, count) {\n  const widgets = [];\n  let totalWeight = 0;\n  for (let i = 0; i < count; i++) {\n    const widget = makeWidget(model);\n    widgets.push(widget);\n    totalWeight += widget.weight;\n  }\n  return { widgets, totalWeight };\n}\n\nconsole.log(assemblyLine(heavyWidget, 2));\nconsole.log(assemblyLine(standardWidget, 3));\n",
+      "styles.css": "* { box-sizing: border-box; }\nbody { margin: 0; color: #1c2530; background: #fff; font: 1rem/1.5 system-ui, sans-serif; }\nmain { max-width: 48rem; margin: 2rem auto; padding: 1rem; }\npre { padding: 1rem; background: #eef1f4; white-space: pre-wrap; overflow-wrap: anywhere; }\n"
+    }
+  },
+  "expectedReports": [
+    {
+      "widgets": [
+        {
+          "name": "heavy",
+          "weight": 500
+        },
+        {
+          "name": "heavy",
+          "weight": 500
+        }
+      ],
+      "totalWeight": 1000
+    },
+    {
+      "widgets": [
+        {
+          "name": "standard",
+          "weight": 100
+        },
+        {
+          "name": "standard",
+          "weight": 100
+        },
+        {
+          "name": "standard",
+          "weight": 100
+        }
+      ],
+      "totalWeight": 300
+    }
+  ],
+  "revisionKind": "sha256-of-both-role-resource-inputs",
+  "revision": "66e02ac4dcda8af7c4cd3952d64dcff85b8f26b9c532d62ec68ce40db9d2cd48"
+}

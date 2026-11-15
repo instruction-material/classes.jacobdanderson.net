@@ -167,7 +167,7 @@ describe("code preview GitHub helpers", () => {
 		);
 		await expect(
 			loadGitHubProjectFile(file!, async () =>
-				textResponse("é".repeat(60001))
+				textResponse("é".repeat(500001))
 			)
 		).rejects.toThrow("too large");
 	});
@@ -203,7 +203,7 @@ describe("code preview GitHub helpers", () => {
 							type: "file",
 							name: "main.py",
 							path: "starter/main.py",
-							size: 120001
+							size: 1000001
 						}
 					])
 			)

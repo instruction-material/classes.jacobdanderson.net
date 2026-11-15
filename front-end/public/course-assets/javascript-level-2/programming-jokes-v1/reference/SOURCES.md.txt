@@ -1,0 +1,13 @@
+# Original assignment and supplied data
+
+starter: https://codepen.io/junilearning/pen/55981d32b9659656bb8cc4a17a0526bc
+Observed alias: https://codepen.io/junilearning/pen/yLJOBVO
+Original export SHA256: 4f60aff51f2385ef2dc5cfbd959bb1276f25c829fdcacd785b9ae1a35324da1f
+
+reference: https://codepen.io/junilearning/pen/e82a3c7cb28fcfba32ad765c0fe3009a
+Observed alias: https://codepen.io/junilearning/pen/pobGbQR/e82a3c7cb28fcfba32ad765c0fe3009a
+Original export SHA256: 2f596a4caedc8c5d489bfe6a65f6abb30fc070fa8fe97db2e0a44d80cbc37c6c
+
+The original HTML/CSS/JavaScript and external resource settings are retained in the audit. These independently written role packs preserve the project purpose,with bounded local responses and optional public GET requests.
+
+Joke fixture source: https://github.com/15Dkatz/official_joke_api/blob/98bf95d5bc769cd43bebafb3eb0aea7c02069397/jokes/index.json . Its MIT license is included. The ten programming records retain their source text;local IDs are assigned in fixture order.

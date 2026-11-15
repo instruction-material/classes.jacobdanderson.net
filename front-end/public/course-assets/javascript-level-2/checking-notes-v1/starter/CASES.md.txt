@@ -1,0 +1,8 @@
+# Checking Notes cases
+
+1. Toggle one of two notes;reload and verify only that ID changed.
+2. Migrate suppliedLegacyStrings with duplicate text;retain all nonblank valid entries as distinct IDs.
+3. Migrate suppliedVersionOne;preserve IDs/text and add false completion values.
+4. Invalid checked values or an unknown ID do not mutate state.
+5. Delete a completed note,then toggle the surviving note by ID.
+6. Malformed/unsupported storage and failed migration preserve raw data;failed saving preserves the prior document.

@@ -1,0 +1,52 @@
+const maxSeats = 2;
+
+function populateSeats() {
+	if (!Number.isInteger(maxSeats) || maxSeats < 1) throw new RangeError("maxSeats must be a positive whole number.");
+	return Array.from({ length: maxSeats }, () => ({ name: "", open: true }));
+}
+function isOpen(ship, seatNum) {
+	return Number.isInteger(seatNum) && seatNum >= 0 && seatNum < ship.length && ship[seatNum].open;
+}
+function registerSeat(ship, name, seatNum) {
+	if (typeof name !== "string" || !name.trim() || !Number.isInteger(seatNum) || seatNum < 0 || seatNum >= ship.length) {
+		alert("Enter a name and a whole seat number from 1 to " + ship.length + ".");
+		return false;
+	}
+	if (!isOpen(ship, seatNum)) {
+		alert("The seat was full. Please choose another seat.");
+		return false;
+	}
+	ship[seatNum].name = name.trim();
+	ship[seatNum].open = false;
+	alert("The seat was empty, and has been successfully entered!");
+	return true;
+}
+function getNameAndNum() {
+	const name = prompt("Enter a name:");
+	if (name === null) return null;
+	const raw = prompt("Enter a number, from 1 to " + maxSeats + ":");
+	if (raw === null) return null;
+	return { name, num: Number(raw) };
+}
+function isShipFull(ship) {
+	return ship.every(person => !person.open);
+}
+function printShip(ship) {
+	ship.forEach((person, index) => console.log("Seat " + (index + 1) + ": " + person.name));
+}
+function fillShip() {
+	const ship = populateSeats();
+	alert("Welcome to the ship! Enter names and seats until the ship is full!");
+	while (!isShipFull(ship)) {
+		const input = getNameAndNum();
+		if (input === null) {
+			console.log("Registration cancelled.");
+			return ship;
+		}
+		registerSeat(ship, input.name, input.num - 1);
+	}
+	alert("Woo! The ship is full, we're ready to go!");
+	printShip(ship);
+	return ship;
+}
+fillShip();

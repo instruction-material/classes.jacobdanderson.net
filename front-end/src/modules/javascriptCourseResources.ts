@@ -1,8 +1,14 @@
 import type { PythonIdeFile } from "@/modules/pythonIde";
 import { javascriptAdvancedConditionalsResources } from "@/modules/javascriptAdvancedConditionalsResources";
 import { javascriptAnimationResources } from "@/modules/javascriptAnimationResources";
+import { javascriptApiProjectResources } from "@/modules/javascriptApiProjectResources";
 import { javascriptBasicLayoutResources } from "@/modules/javascriptBasicLayoutResources";
+import { javascriptBusinessDirectoryResources } from "@/modules/javascriptBusinessDirectoryResources";
+import { javascriptBusinessesResources } from "@/modules/javascriptBusinessesResources";
+import { javascriptCanvasGamesResources } from "@/modules/javascriptCanvasGamesResources";
 import { javascriptCheckpointResources } from "@/modules/javascriptCheckpointResources";
+import { javascriptCoastalCruiseResources } from "@/modules/javascriptCoastalCruiseResources";
+import { javascriptCollisionResources } from "@/modules/javascriptCollisionResources";
 import { javascriptCombiningResources } from "@/modules/javascriptCombiningResources";
 import { javascriptConditionalsResources } from "@/modules/javascriptConditionalsResources";
 import { javascriptDrawingResources } from "@/modules/javascriptDrawingResources";
@@ -11,28 +17,40 @@ import { javascriptDynamicEventsResources } from "@/modules/javascriptDynamicEve
 import { javascriptFirstModuleResources } from "@/modules/javascriptFirstModuleResources";
 import { javascriptGridLayoutResources } from "@/modules/javascriptGridLayoutResources";
 import { javascriptHtmlCssResources } from "@/modules/javascriptHtmlCssResources";
+import { javascriptHundredSquaresResources } from "@/modules/javascriptHundredSquaresResources";
+import { javascriptJugglingPaddleResources } from "@/modules/javascriptJugglingPaddleResources";
+import { javascriptLocalPersistenceResources } from "@/modules/javascriptLocalPersistenceResources";
 import { javascriptLoopsResources } from "@/modules/javascriptLoopsResources";
 import { javascriptLyricsResources } from "@/modules/javascriptLyricsResources";
 import { javascriptMasterArraysResources } from "@/modules/javascriptMasterArraysResources";
 import { javascriptMasterCanvasResources } from "@/modules/javascriptMasterCanvasResources";
+import { javascriptMasterCheckpointOneResources } from "@/modules/javascriptMasterCheckpointOneResources";
+import { javascriptMasterCheckpointTwoResources } from "@/modules/javascriptMasterCheckpointTwoResources";
 import { javascriptMasterConditionalsResources } from "@/modules/javascriptMasterConditionalsResources";
 import { javascriptMasterFunctionsResources } from "@/modules/javascriptMasterFunctionsResources";
+import { javascriptMasterFundamentalsResources } from "@/modules/javascriptMasterFundamentalsResources";
 import { javascriptMasterProjectResources } from "@/modules/javascriptMasterProjectResources";
 import { javascriptMediaParallaxResources } from "@/modules/javascriptMediaParallaxResources";
 import { javascriptMoreHtmlCssResources } from "@/modules/javascriptMoreHtmlCssResources";
 import { javascriptNestedLoopsResources } from "@/modules/javascriptNestedLoopsResources";
 import { javascriptNewsResources } from "@/modules/javascriptNewsResources";
 import { javascriptOperatorsResources } from "@/modules/javascriptOperatorsResources";
+import { javascriptPaddleResources } from "@/modules/javascriptPaddleResources";
+import { javascriptRefactoryResources } from "@/modules/javascriptRefactoryResources";
 import { javascriptRestaurantResources } from "@/modules/javascriptRestaurantResources";
 import { javascriptShopResources } from "@/modules/javascriptShopResources";
 import { javascriptSmallTalkResources } from "@/modules/javascriptSmallTalkResources";
 import { javascriptSnowflakeResources } from "@/modules/javascriptSnowflakeResources";
+import { javascriptUsCapitalsResources } from "@/modules/javascriptUsCapitalsResources";
 import { javascriptWeatherResources } from "@/modules/javascriptWeatherResources";
+
+import { javascriptWhichCardResources } from "@/modules/javascriptWhichCardResources";
 
 const courseId = "javascript-level-1-javascript-superstar";
 const base = "/course-assets/javascript-level-1/";
 const masterBase = "/course-assets/javascript-level-2/";
 interface CourseRole {
+	workspaceItemId?: string;
 	courseId?: "javascript-level-2-javascript-master";
 	sharedWith?: readonly "javascript-level-2-javascript-master"[];
 	project: string;
@@ -71,13 +89,29 @@ const roles: readonly CourseRole[] = [
 	...javascriptRestaurantResources,
 	...javascriptNewsResources,
 	...javascriptShopResources,
+	...javascriptMasterFundamentalsResources,
+	...javascriptMasterCheckpointOneResources,
+	...javascriptMasterCheckpointTwoResources,
 	...javascriptMasterFunctionsResources,
 	...javascriptMasterConditionalsResources,
 	...javascriptMasterCanvasResources,
 	...javascriptMasterArraysResources,
 	...javascriptLyricsResources,
 	...javascriptWeatherResources,
-	...javascriptSmallTalkResources
+	...javascriptSmallTalkResources,
+	...javascriptBusinessesResources,
+	...javascriptBusinessDirectoryResources,
+	...javascriptHundredSquaresResources,
+	...javascriptRefactoryResources,
+	...javascriptWhichCardResources,
+	...javascriptPaddleResources,
+	...javascriptCoastalCruiseResources,
+	...javascriptJugglingPaddleResources,
+	...javascriptCollisionResources,
+	...javascriptCanvasGamesResources,
+	...javascriptApiProjectResources,
+	...javascriptLocalPersistenceResources,
+	...javascriptUsCapitalsResources
 ];
 
 export function javascriptCourseResource(
@@ -124,7 +158,7 @@ export function javascriptCourseProjectKey(
 	) {
 		throw new Error("This source does not match the selected course role.");
 	}
-	return `${selectedCourse}:${itemId}:${role}:${selected.project}:v${selected.version}`;
+	return `${selectedCourse}:${selected.workspaceItemId ?? itemId}:${role}:${selected.project}:v${selected.version}`;
 }
 
 async function readBytes(response: Response, byteLength: number) {

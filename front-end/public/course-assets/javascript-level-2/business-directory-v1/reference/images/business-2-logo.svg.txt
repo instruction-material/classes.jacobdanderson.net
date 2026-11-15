@@ -1,0 +1,1 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" role="img" aria-label="Sunrise Bakery"><rect width="80" height="80" fill="#8a451b"/><text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="sans-serif" font-size="22">2</text></svg>

@@ -1,0 +1,8 @@
+# Funny Meter cases
+
+1. Ten yes ratings give10liked/0disliked;ten no ratings give0/10;five each give an even split.
+2. Invalid/canceled answers do not advance;every accepted rating retains its joke ID.
+3. Further ratings after ten are ignored.
+4. Restart clears ratings but retains the current ten jokes.
+5. A partial session rejects another load;failed refresh retains the existing set.
+6. Short/long arrays,invalid joke fields,HTTP503,timeout and Cancel are handled without an unhandled error.

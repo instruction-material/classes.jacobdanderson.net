@@ -1,0 +1,77 @@
+
+const canvas=document.querySelector('canvas');
+const ctx=canvas.getContext('2d');
+const status=document.querySelector('[role="status"]');
+const setStatus=text=>{if(status.textContent!==text)status.textContent=text;};
+const keys={left:false,right:false,up:false,fire:false};
+
+const newGame = () => ({player:{x:100,y:100,angle:0},circles:[],bullets:[],ticks:0,cooldown:0,score:0,status:'playing'});
+const radians = degrees => degrees*Math.PI/180;
+function trianglePoints(p) {
+ const a=radians(p.angle),cos=Math.cos(a),sin=Math.sin(a);
+ return [[10,10],[0,-15],[-10,10]].map(([x,y])=>({x:p.x+x*cos-y*sin,y:p.y+x*sin+y*cos}));
+}
+function segmentDistanceSquared(c,a,b) {
+ const dx=b.x-a.x,dy=b.y-a.y;
+ const t=Math.max(0,Math.min(1,((c.x-a.x)*dx+(c.y-a.y)*dy)/(dx*dx+dy*dy)));
+ return (c.x-a.x-t*dx)**2+(c.y-a.y-t*dy)**2;
+}
+function shipTouchesCircle(p,c) {
+ const points=trianglePoints(p);
+ const cross=points.map((a,i)=>{const b=points[(i+1)%3];return (b.x-a.x)*(c.y-a.y)-(b.y-a.y)*(c.x-a.x);});
+ return cross.every(n=>n>=0)||cross.every(n=>n<=0)||points.some((a,i)=>segmentDistanceSquared(c,a,points[(i+1)%3])<=c.radius**2);
+}
+function spawnAsteroid(random=Math.random) {
+ const side=Math.floor(random()*4),along=random();
+ return {x:side===0||side===1?along*550:side===2?-50:600,y:side===2||side===3?along*500:side===0?-50:550,heading:[90,-90,0,180][side]+random()*180-90,radius:50};
+}
+function stepGame(s,keys,random=Math.random) {
+ if(s.status!=='playing')return;
+ const p=s.player;p.angle+=((keys.right?1:0)-(keys.left?1:0))*5;
+ if(keys.up){p.x+=Math.cos(radians(p.angle-90));p.y+=Math.sin(radians(p.angle-90));}
+ if(p.x<-15)p.x=565;if(p.x>565)p.x=-15;if(p.y<-15)p.y=515;if(p.y>515)p.y=-15;
+ if(s.cooldown>0)s.cooldown--;
+ if(keys.fire&&s.cooldown===0){s.bullets.push({x:p.x,y:p.y,heading:p.angle-90,radius:10});s.cooldown=10;}
+ s.ticks++;if(s.ticks%300===0)s.circles.push(spawnAsteroid(random));
+ for(const c of s.circles){c.x+=Math.cos(radians(c.heading))*2;c.y+=Math.sin(radians(c.heading))*2;if(c.x<-c.radius)c.x=550+c.radius;if(c.x>550+c.radius)c.x=-c.radius;if(c.y<-c.radius)c.y=500+c.radius;if(c.y>500+c.radius)c.y=-c.radius;}
+ for(const b of s.bullets){
+  b.x+=Math.cos(radians(b.heading))*5;b.y+=Math.sin(radians(b.heading))*5;
+  const i=s.circles.findIndex(c=>(b.x-c.x)**2+(b.y-c.y)**2<=(b.radius+c.radius)**2);
+  if(i<0)continue;
+  const c=s.circles.splice(i,1)[0];b.dead=true;s.score++;
+  if(c.radius/2>10)for(let k=0;k<2;k++)s.circles.push({x:c.x,y:c.y,radius:c.radius/2,heading:random()*360});
+ }
+ s.bullets=s.bullets.filter(b=>!b.dead&&b.x>=-10&&b.x<=560&&b.y>=-10&&b.y<=510);
+ if(s.circles.some(c=>shipTouchesCircle(p,c)))s.status='lost';
+}
+function paint(s) {
+ ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='black';ctx.strokeStyle='black';
+ for(const c of s.circles){ctx.beginPath();ctx.arc(c.x,c.y,c.radius,0,Math.PI*2);ctx.stroke();}
+ for(const b of s.bullets){ctx.beginPath();ctx.arc(b.x,b.y,b.radius,0,Math.PI*2);ctx.fill();}
+ const points=trianglePoints(s.player);ctx.beginPath();ctx.moveTo(points[0].x,points[0].y);for(const p of points.slice(1))ctx.lineTo(p.x,p.y);ctx.closePath();ctx.fill();
+ ctx.font='20px Arial';ctx.textAlign='right';ctx.fillText('Score: '+s.score,530,480);
+ if(s.status==='lost'){ctx.font='30px Arial';ctx.textAlign='center';ctx.fillText('You Lose',275,100);}
+ setStatus(s.status==='lost'?'You Lose. Score: '+s.score:'Score: '+s.score);
+}
+
+let game=newGame();
+const clearKeys=()=>{for(const key of Object.keys(keys))keys[key]=false;};
+const keyNames={ArrowLeft:'left',ArrowRight:'right',a:'left',d:'right',w:'up',' ':'fire',f:'fire'};
+window.addEventListener('keydown',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=true;}});
+window.addEventListener('keyup',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=false;}});
+window.addEventListener('blur',clearKeys);
+document.addEventListener('visibilitychange',()=>{if(document.hidden)clearKeys();});
+for(const button of document.querySelectorAll('[data-key]')){
+ button.addEventListener('pointerdown',e=>{e.preventDefault();button.setPointerCapture(e.pointerId);keys[button.dataset.key]=true;});
+ for(const name of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(name,()=>keys[button.dataset.key]=false);
+}
+document.querySelector('#restart').addEventListener('click',()=>{clearKeys();game=newGame();paint(game);canvas.focus();});
+
+let previous;
+let elapsed=0;
+function frame(time){
+ if(previous!==undefined)elapsed+=Math.min(100,Math.max(0,time-previous));previous=time;
+ while(elapsed>=1000/60){stepGame(game,keys);elapsed-=1000/60;}
+ paint(game);requestAnimationFrame(frame);
+}
+paint(game);requestAnimationFrame(frame);

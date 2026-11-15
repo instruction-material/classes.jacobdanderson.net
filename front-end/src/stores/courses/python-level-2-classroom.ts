@@ -18,7 +18,10 @@ function launchProject(
 		title,
 		content,
 		learningPath,
-		solutionLink: `${PYTHON_LEVEL_2_SOURCE}/${sourcePath}/solution`
+		solutionLink:
+			sourcePath === "PS13-Wordsmith"
+				? "https://github.com/instruction-material/Python-Level-2/tree/a840f54eb6a55718f6305544adc937c32fa516ee/PS13-Wordsmith/solution"
+				: `${PYTHON_LEVEL_2_SOURCE}/${sourcePath}/solution`
 	};
 }
 
@@ -99,9 +102,9 @@ During a class share, show one representative input, one boundary or invalid inp
 			"Launch Project 7: Wordsmith Challenge",
 			`The framework selects letters, loads valid words, times a round, and checks submitted words.
 
-**Normal:** Add one scoring or feedback rule that uses word length or letter use.
+**Normal:** Change the labeled word_score(word) helper to add one scoring rule based on word length or letter use; demonstrate an accepted word with the changed score.
 
-**Hard:** Add replay, difficulty levels, guaranteed vowels, or a high-score model while keeping duplicate and invalid submissions safe.`,
+**Hard:** Change the labeled choose_letters helper to guarantee a vowel, or add replay, difficulty or high scores while preserving duplicate rejection and the round deadline.`,
 			"PS13-Wordsmith",
 			"challenge"
 		),
@@ -131,7 +134,8 @@ For a showcase, demonstrate the working Normal result first. If Hard is complete
 
 **Hard:** Rebuild one small responsibility with a different data structure, then explain the behavior, readability, and duplicate-handling tradeoffs.`,
 			learningPath: "choice",
-			solutionLink: `${PYTHON_LEVEL_2_SOURCE}/PS13-Wordsmith/solution`
+			solutionLink:
+				"https://github.com/instruction-material/Python-Level-2/tree/a840f54eb6a55718f6305544adc937c32fa516ee/PS13-Wordsmith/solution"
 		},
 		{
 			title: "Launch Remix: Test Matrix",

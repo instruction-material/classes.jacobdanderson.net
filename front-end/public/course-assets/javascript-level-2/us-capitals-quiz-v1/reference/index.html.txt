@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>U.S. State Capitals Quiz</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<main>
+			<h1>U.S. State Capitals Quiz</h1>
+			<p id="progress" role="status" aria-live="polite"></p>
+			<h2 id="question">Ready</h2>
+			<form id="answer-form">
+				<label for="answer">Capital</label
+				><input
+					id="answer"
+					maxlength="100"
+					autocomplete="off"
+					required
+				/><button id="submit" type="submit">Submit answer</button>
+			</form>
+			<div class="controls">
+				<button id="start" type="button">Start quiz</button
+				><button id="next" type="button" hidden>Next state</button
+				><button id="reset" type="button">Reset quiz</button>
+			</div>
+			<p id="status" role="status" aria-live="polite"></p>
+			<div id="map-region">
+				<canvas
+					id="map"
+					width="1000"
+					height="650"
+					role="img"
+					aria-label="State map colored by answer result. The text results list the same answers."
+					>Answer results appear in the list below.</canvas
+				>
+				<p class="legend">
+					<span class="correct">Correct</span> ·
+					<span class="incorrect">Incorrect</span> · Unanswered
+				</p>
+				<p>Alaska and Hawaii are shown as insets.</p>
+			</div>
+			<ol id="results" aria-label="Answer results"></ol>
+			<details>
+				<summary>Dataset</summary>
+				<label for="dataset">Dataset JSON</label
+				><input
+					id="dataset"
+					type="file"
+					accept=".json,application/json"
+				/><button id="supplied" type="button">Use supplied data</button>
+			</details>
+		</main>
+		<script src="data.js"></script>
+		<script src="model.js"></script>
+		<script src="script.js"></script>
+	</body>
+</html>

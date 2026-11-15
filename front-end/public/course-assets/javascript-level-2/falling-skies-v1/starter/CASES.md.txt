@@ -1,0 +1,8 @@
+# Falling Skies cases
+
+1. First obstacle harmless, second centered on the player: lost.
+2. Tangent circle at (245,400),radius15: contact. Corner near-miss at (246,386): no contact.
+3. Hold either direction for 100 ticks: x stays in [0,520].
+4. Countdown 180 ticks: no falling objects before it ends. Survive 120 further ticks: score1.
+5. Put two consecutive circles below y515: both removed.
+6. After lost, 300 updates preserve all state; Restart resets score and countdown.

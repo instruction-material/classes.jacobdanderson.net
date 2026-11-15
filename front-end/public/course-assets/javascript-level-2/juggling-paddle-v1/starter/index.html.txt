@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Juggling Paddle</title>
+<link rel="stylesheet" href="styles.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<h1>Juggling Paddle</h1>
+<p id="controls">Focus the canvas, then hold Left or Right. Release to stop.</p>
+<canvas id="my-canvas" tabindex="0" aria-label="Juggling paddle and falling ball" aria-describedby="controls">Paddle uses a canvas and a keyboard with arrow keys.</canvas>
+</body>
+</html>

@@ -1,0 +1,19 @@
+# Input and self-check cases
+
+| Input or action | Expected result |
+| --- | --- |
+| Submit Cedar Trail Outfitters | Cedar Trail Outfitters; Located in: Fairhaven; CEO: Rowan Patel; Products offered: Daypack, Trail Bottle, Rain Shell |
+| Submit Sunrise Bakery | Sunrise Bakery; Located in: Mapleton; CEO: Avery Kim; Products offered: Sourdough, Blueberry Muffin, Cinnamon Roll |
+| Submit Harbor Books | Harbor Books; Located in: Lakeside; CEO: Morgan Reed; Products offered: Mystery Novel, Nature Guide, Sketchbook |
+| Type Cedar and choose its autocomplete suggestion | The name is completed and the Cedar card appears with its local display image. |
+| Submit a name with spaces around it | Surrounding spaces are ignored. |
+| Submit No Such Business after a successful match | The previous card is hidden; No business found. is shown; no exception. |
+| Submit an empty field or only spaces | Same no-match state. |
+| Submit cedar trail outfitters | No match; the reference uses exact case-sensitive names. |
+| Change a display_image to images/missing.svg and show that business | Image unavailable for followed by the business name; the other details remain usable. |
+| Put HTML-looking text in a location/product string | The characters display as text. |
+| Select two different businesses repeatedly | One current card and one current image/fallback, without old company details. |
+
+The stock starter remains unfinished until its array and renderBusiness are
+completed. For a browser check, complete it with the reference data and rendering,
+then add a fourth fictional business and retain the earlier three.

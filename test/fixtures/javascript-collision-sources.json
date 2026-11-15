@@ -1,0 +1,653 @@
+{
+  "courseId": "javascript-level-2-javascript-master",
+  "moduleId": "javascript-level-2-javascript-master-jsm8-collisions-and-controls",
+  "resources": [
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "circles-collide",
+      "itemId": "javascript-level-2-javascript-master-jsm8-collisions-and-controls-curriculum-jsm8-project-1-circles-collide",
+      "title": "Circles Collide",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/d4a36001e0d9b6e58c640ca0f280284a",
+        "https://codepen.io/junilearning/pen/vYKjjMo",
+        "/course-assets/javascript-level-2/circles-collide-v1/starter/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "circles-collide-v1/starter/CASES.md.txt",
+          "byteLength": 539,
+          "sha256": "6d0b37d201afd9f92fd64fa7781b743bff36485823d021c3722a88adb81cbe36"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "circles-collide-v1/starter/LICENSE-original.txt.txt",
+          "byteLength": 1229,
+          "sha256": "76f2507dc41227a7db9d186b94995c39e61e61e3192692ce4f43871db20cd949"
+        },
+        {
+          "name": "README.md",
+          "path": "circles-collide-v1/starter/README.md.txt",
+          "byteLength": 1455,
+          "sha256": "55d9aa255b687ae25a87eb98b6f41ff4fede348811f3bb1cd52596a697b27927"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "circles-collide-v1/starter/SOURCES.md.txt",
+          "byteLength": 534,
+          "sha256": "87b507723f027f73f528ba8d76e887a966f6c6c50a1bf014a50ce562586ed3b9"
+        },
+        {
+          "name": "index.html",
+          "path": "circles-collide-v1/starter/index.html.txt",
+          "byteLength": 345,
+          "sha256": "b4a29bd98193efa5562add5bdc3a747cfe2f7142479808917e7bffb278de7b88"
+        },
+        {
+          "name": "script.js",
+          "path": "circles-collide-v1/starter/script.js.txt",
+          "byteLength": 861,
+          "sha256": "6b8dde70625813f7cce8de5583be274f13e4d7bb4b91f07fa0c33d164198223b"
+        },
+        {
+          "name": "styles.css",
+          "path": "circles-collide-v1/starter/styles.css.txt",
+          "byteLength": 184,
+          "sha256": "23a3bd98c35e9cc9f1e1e9a0d6f3c1479d34d69693c21cca1d5591adbac157bf"
+        }
+      ]
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "circles-collide",
+      "itemId": "javascript-level-2-javascript-master-jsm8-collisions-and-controls-curriculum-jsm8-project-1-circles-collide",
+      "title": "Circles Collide",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/2cc6ea883fc971206d81c61a3f93582e",
+        "https://codepen.io/junilearning/pen/gOrWBVN",
+        "/course-assets/javascript-level-2/circles-collide-v1/reference/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "circles-collide-v1/reference/CASES.md.txt",
+          "byteLength": 539,
+          "sha256": "6d0b37d201afd9f92fd64fa7781b743bff36485823d021c3722a88adb81cbe36"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "circles-collide-v1/reference/LICENSE-original.txt.txt",
+          "byteLength": 1229,
+          "sha256": "76f2507dc41227a7db9d186b94995c39e61e61e3192692ce4f43871db20cd949"
+        },
+        {
+          "name": "README.md",
+          "path": "circles-collide-v1/reference/README.md.txt",
+          "byteLength": 1455,
+          "sha256": "55d9aa255b687ae25a87eb98b6f41ff4fede348811f3bb1cd52596a697b27927"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "circles-collide-v1/reference/SOURCES.md.txt",
+          "byteLength": 534,
+          "sha256": "87b507723f027f73f528ba8d76e887a966f6c6c50a1bf014a50ce562586ed3b9"
+        },
+        {
+          "name": "index.html",
+          "path": "circles-collide-v1/reference/index.html.txt",
+          "byteLength": 345,
+          "sha256": "b4a29bd98193efa5562add5bdc3a747cfe2f7142479808917e7bffb278de7b88"
+        },
+        {
+          "name": "script.js",
+          "path": "circles-collide-v1/reference/script.js.txt",
+          "byteLength": 876,
+          "sha256": "831cd0044e224f188ebd66cc0e68f96b82d15f397ff71f059337491845d26130"
+        },
+        {
+          "name": "styles.css",
+          "path": "circles-collide-v1/reference/styles.css.txt",
+          "byteLength": 184,
+          "sha256": "23a3bd98c35e9cc9f1e1e9a0d6f3c1479d34d69693c21cca1d5591adbac157bf"
+        }
+      ]
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "rectangle-collision",
+      "itemId": "javascript-level-2-javascript-master-jsm8-collisions-and-controls-curriculum-jsm8-project-2-rectangular-collision",
+      "title": "Rectangular Collision",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/1c22a392782c8551073c92fe3e825849",
+        "https://codepen.io/junilearning/pen/xxOjzqe",
+        "/course-assets/javascript-level-2/rectangle-collision-v1/starter/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "rectangle-collision-v1/starter/CASES.md.txt",
+          "byteLength": 521,
+          "sha256": "967f5dfcd844ef98deef17e255eccd1380f5fe99e9bd240cd01816ee91c847db"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "rectangle-collision-v1/starter/LICENSE-original.txt.txt",
+          "byteLength": 1172,
+          "sha256": "f3658c59362476b219221b8eaa03232935557dccbecf8f77f94d10c31666596b"
+        },
+        {
+          "name": "README.md",
+          "path": "rectangle-collision-v1/starter/README.md.txt",
+          "byteLength": 1402,
+          "sha256": "c69da6a5e410d1fe53ecdbc5e8a46dfe635edf5038f8ce10bacbe7a535f3d57e"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "rectangle-collision-v1/starter/SOURCES.md.txt",
+          "byteLength": 534,
+          "sha256": "5a7e11e993792d996c09ac71951b43aaa709c8875bef7979730162cf2d8e5093"
+        },
+        {
+          "name": "index.html",
+          "path": "rectangle-collision-v1/starter/index.html.txt",
+          "byteLength": 363,
+          "sha256": "0630e83c17231e2c3e0b2838e756a4dd994b7a2e5a43f4b2d8c0a48d2d969f34"
+        },
+        {
+          "name": "script.js",
+          "path": "rectangle-collision-v1/starter/script.js.txt",
+          "byteLength": 1247,
+          "sha256": "0a68ecaad7ff9e517985c0a4ccaad8788cdc6940c3f54baf1d6ab22a80554e9c"
+        },
+        {
+          "name": "styles.css",
+          "path": "rectangle-collision-v1/starter/styles.css.txt",
+          "byteLength": 184,
+          "sha256": "23a3bd98c35e9cc9f1e1e9a0d6f3c1479d34d69693c21cca1d5591adbac157bf"
+        }
+      ]
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "rectangle-collision",
+      "itemId": "javascript-level-2-javascript-master-jsm8-collisions-and-controls-curriculum-jsm8-project-2-rectangular-collision",
+      "title": "Rectangular Collision",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/ba1bd74c40cacbdddafc645ba3f7350a",
+        "https://codepen.io/junilearning/pen/VwabEpQ/ba1bd74c40cacbdddafc645ba3f7350a",
+        "/course-assets/javascript-level-2/rectangle-collision-v1/reference/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "rectangle-collision-v1/reference/CASES.md.txt",
+          "byteLength": 521,
+          "sha256": "967f5dfcd844ef98deef17e255eccd1380f5fe99e9bd240cd01816ee91c847db"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "rectangle-collision-v1/reference/LICENSE-original.txt.txt",
+          "byteLength": 1172,
+          "sha256": "f3658c59362476b219221b8eaa03232935557dccbecf8f77f94d10c31666596b"
+        },
+        {
+          "name": "README.md",
+          "path": "rectangle-collision-v1/reference/README.md.txt",
+          "byteLength": 1402,
+          "sha256": "c69da6a5e410d1fe53ecdbc5e8a46dfe635edf5038f8ce10bacbe7a535f3d57e"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "rectangle-collision-v1/reference/SOURCES.md.txt",
+          "byteLength": 534,
+          "sha256": "5a7e11e993792d996c09ac71951b43aaa709c8875bef7979730162cf2d8e5093"
+        },
+        {
+          "name": "index.html",
+          "path": "rectangle-collision-v1/reference/index.html.txt",
+          "byteLength": 363,
+          "sha256": "0630e83c17231e2c3e0b2838e756a4dd994b7a2e5a43f4b2d8c0a48d2d969f34"
+        },
+        {
+          "name": "script.js",
+          "path": "rectangle-collision-v1/reference/script.js.txt",
+          "byteLength": 1272,
+          "sha256": "68859ee399b6be6d0d8b611fe75df4c1255deb51b5effd524f6d594dbcb80f1c"
+        },
+        {
+          "name": "styles.css",
+          "path": "rectangle-collision-v1/reference/styles.css.txt",
+          "byteLength": 184,
+          "sha256": "23a3bd98c35e9cc9f1e1e9a0d6f3c1479d34d69693c21cca1d5591adbac157bf"
+        }
+      ]
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "bouncy-ball",
+      "itemId": "javascript-level-2-javascript-master-jsm8-collisions-and-controls-curriculum-jsm8-project-3-the-bouncy-ball",
+      "title": "The Bouncy Ball",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/1e97468ca0197dcf6ca6d933e175b6fb",
+        "https://codepen.io/junilearning/pen/bGeMKYr",
+        "/course-assets/javascript-level-2/bouncy-ball-v1/starter/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "bouncy-ball-v1/starter/CASES.md.txt",
+          "byteLength": 667,
+          "sha256": "8be106bc2246ba981ff9cdcae562ea5cd6965263251dcd1dc8bd4517d709799d"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "bouncy-ball-v1/starter/LICENSE-original.txt.txt",
+          "byteLength": 1172,
+          "sha256": "9225628a2ad681caa889fd69c93a6fb64b0951cef6de01072d6ece34e3020130"
+        },
+        {
+          "name": "README.md",
+          "path": "bouncy-ball-v1/starter/README.md.txt",
+          "byteLength": 1440,
+          "sha256": "016be2b6961e264e8a59544859767ca5db62034019c4654cb2f4ab12bce17e5c"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "bouncy-ball-v1/starter/SOURCES.md.txt",
+          "byteLength": 534,
+          "sha256": "8beeb5eea817429eb354499fb602a03a6b6797fb4bdb4c78579c258c71cafb33"
+        },
+        {
+          "name": "index.html",
+          "path": "bouncy-ball-v1/starter/index.html.txt",
+          "byteLength": 345,
+          "sha256": "79f059579ed71eabdcf5ec95596dd1e3f644de504f29b41485979701bf98ed2e"
+        },
+        {
+          "name": "script.js",
+          "path": "bouncy-ball-v1/starter/script.js.txt",
+          "byteLength": 735,
+          "sha256": "2feb32713c5ba804b10fcc37f03aafb9854bbfa561e73445f087970f6c290632"
+        },
+        {
+          "name": "styles.css",
+          "path": "bouncy-ball-v1/starter/styles.css.txt",
+          "byteLength": 184,
+          "sha256": "23a3bd98c35e9cc9f1e1e9a0d6f3c1479d34d69693c21cca1d5591adbac157bf"
+        }
+      ]
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "bouncy-ball",
+      "itemId": "javascript-level-2-javascript-master-jsm8-collisions-and-controls-curriculum-jsm8-project-3-the-bouncy-ball",
+      "title": "The Bouncy Ball",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/fb9156c7c34ad0319ba52c3c01b326c3",
+        "https://codepen.io/junilearning/pen/qBbzNpX/fb9156c7c34ad0319ba52c3c01b326c3",
+        "/course-assets/javascript-level-2/bouncy-ball-v1/reference/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "bouncy-ball-v1/reference/CASES.md.txt",
+          "byteLength": 667,
+          "sha256": "8be106bc2246ba981ff9cdcae562ea5cd6965263251dcd1dc8bd4517d709799d"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "bouncy-ball-v1/reference/LICENSE-original.txt.txt",
+          "byteLength": 1172,
+          "sha256": "9225628a2ad681caa889fd69c93a6fb64b0951cef6de01072d6ece34e3020130"
+        },
+        {
+          "name": "README.md",
+          "path": "bouncy-ball-v1/reference/README.md.txt",
+          "byteLength": 1440,
+          "sha256": "016be2b6961e264e8a59544859767ca5db62034019c4654cb2f4ab12bce17e5c"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "bouncy-ball-v1/reference/SOURCES.md.txt",
+          "byteLength": 534,
+          "sha256": "8beeb5eea817429eb354499fb602a03a6b6797fb4bdb4c78579c258c71cafb33"
+        },
+        {
+          "name": "index.html",
+          "path": "bouncy-ball-v1/reference/index.html.txt",
+          "byteLength": 345,
+          "sha256": "79f059579ed71eabdcf5ec95596dd1e3f644de504f29b41485979701bf98ed2e"
+        },
+        {
+          "name": "script.js",
+          "path": "bouncy-ball-v1/reference/script.js.txt",
+          "byteLength": 1751,
+          "sha256": "1ec839168a7f871e17c3e3c17cc4e142549e84db5c29cbe888bd85db3ebb8c5b"
+        },
+        {
+          "name": "styles.css",
+          "path": "bouncy-ball-v1/reference/styles.css.txt",
+          "byteLength": 184,
+          "sha256": "23a3bd98c35e9cc9f1e1e9a0d6f3c1479d34d69693c21cca1d5591adbac157bf"
+        }
+      ]
+    }
+  ],
+  "files": {
+    "circles-collide": {
+      "starter": {
+        "README.md": "# Circles Collide\n\nOpen index.html without a server. The 800-by-500 canvas begins with black circles at (50,250) and (500,250), both radius 20. Every 10 ms, move the first center one unit right and the second one unit left. They pass through each other; this assignment detects contact rather than simulating an elastic bounce.\n\nComplete updateCircles and circlesTouch in the starter. The drawing loop is supplied. Calculate dx=a.x-b.x,dy=a.y-b.y and radius=a.size+b.size. Pythagoras gives distance squared=dx*dx+dy*dy. Contact or overlap means distance squared <= radius*radius. Change both circles to blue while true and black when separated. The size property is the radius.\n\nInitially the distance is450. After 204 ticks it is42: black. Tick 205 gives centers255 and295, distance40: blue at exact contact. Tick 225 gives the same center: blue. Tick 245 touches again after passing;tick 246 separates and is black.\n\nThe original reference uses strict horizontal overlap on a shared row and logs every tick. This complete reference applies the lesson's inclusive contact rule on both axes and keeps the original canvas, colors and movement. Different y values and unequal radii work. Faster motion may skip an entire contact interval between samples; continuous collision detection is a separate extension.\n\nSave a working checkpoint and demonstrate separated,touching,overlapping and separated-again states. CASES.md includes exact inputs and outputs.\n",
+        "CASES.md": "# Circle cases\n\nDefault circles: tick 0 distance 450 black;204 distance42 black;205 distance40 blue;225 distance0 blue;245 distance40 blue;246 distance42 black.\nFor a={x:0,y:0,size:25} and b={x:30,y:40,size:25}, return true because900+1600=2500. Change b.y to40.001: false.\nFor a={x:0,y:0,size:10} and b={x:0,y:21,size:10}, return false despite matching x.\nFor radii10 and30 with centers40 apart, return true;40.001 apart,false.\nThe starter draws two static black circles until its assigned movement and collision functions are completed.\n",
+        "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/vYKjjMo)\nFork of an original work JSM8 Project 1: Circles Collide (https://codepen.io/junilearning/pen/gOrWBVN)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+        "SOURCES.md": "# Sources\n\nOriginal starter: https://codepen.io/junilearning/pen/d4a36001e0d9b6e58c640ca0f280284a\nOriginal reference: https://codepen.io/junilearning/pen/2cc6ea883fc971206d81c61a3f93582e\n\nAll original HTML,CSS,JavaScript and settings were reviewed with official exports. Preprocessors:none;CSSbase/prefixing:neither;external dependencies:none. The original notice is retained in LICENSE-original.txt. These local role programs and cases are authored adaptations;README.md states the behavior corrections. Browser exports run offline.\n",
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Circles Collide</title><link rel=\"stylesheet\" href=\"styles.css\"></head><body><h1>Circles Collide</h1><canvas id=\"my-canvas\" aria-label=\"Circles Collide\"></canvas><script src=\"script.js\"></script></body></html>\n",
+        "styles.css": "body { margin: 1rem; font: 1rem/1.5 system-ui,sans-serif; color: #111827; }\ncanvas { display: block; max-width: 100%; height: auto; background: #eee; }\nh1 { overflow-wrap: anywhere; }\n",
+        "script.js": "const canvas = document.getElementById(\"my-canvas\");\nconst ctx = canvas.getContext(\"2d\");\ncanvas.width = 800;\ncanvas.height = 500;\nconst circle1 = { x: 50, y: 250, size: 20 };\nconst circle2 = { x: 500, y: 250, size: 20 };\nfunction circlesTouch(a, b) {\n    // TODO: compare squared center distance with the squared radii sum.\n    return false;\n}\nfunction updateCircles() {\n    // TODO: move circle1 right and circle2 left by one unit per tick.\n}\nfunction drawCircles(color) {\n    ctx.clearRect(0, 0, canvas.width, canvas.height);\n    ctx.fillStyle = color;\n    for (const circle of [circle1, circle2]) {\n        ctx.beginPath();\n        ctx.arc(circle.x, circle.y, circle.size, 0, Math.PI * 2);\n        ctx.fill();\n    }\n}\ndrawCircles(\"black\");\nsetInterval(() => {\n    updateCircles();\n    drawCircles(circlesTouch(circle1, circle2) ? \"blue\" : \"black\");\n}, 10);\n"
+      },
+      "reference": {
+        "README.md": "# Circles Collide\n\nOpen index.html without a server. The 800-by-500 canvas begins with black circles at (50,250) and (500,250), both radius 20. Every 10 ms, move the first center one unit right and the second one unit left. They pass through each other; this assignment detects contact rather than simulating an elastic bounce.\n\nComplete updateCircles and circlesTouch in the starter. The drawing loop is supplied. Calculate dx=a.x-b.x,dy=a.y-b.y and radius=a.size+b.size. Pythagoras gives distance squared=dx*dx+dy*dy. Contact or overlap means distance squared <= radius*radius. Change both circles to blue while true and black when separated. The size property is the radius.\n\nInitially the distance is450. After 204 ticks it is42: black. Tick 205 gives centers255 and295, distance40: blue at exact contact. Tick 225 gives the same center: blue. Tick 245 touches again after passing;tick 246 separates and is black.\n\nThe original reference uses strict horizontal overlap on a shared row and logs every tick. This complete reference applies the lesson's inclusive contact rule on both axes and keeps the original canvas, colors and movement. Different y values and unequal radii work. Faster motion may skip an entire contact interval between samples; continuous collision detection is a separate extension.\n\nSave a working checkpoint and demonstrate separated,touching,overlapping and separated-again states. CASES.md includes exact inputs and outputs.\n",
+        "CASES.md": "# Circle cases\n\nDefault circles: tick 0 distance 450 black;204 distance42 black;205 distance40 blue;225 distance0 blue;245 distance40 blue;246 distance42 black.\nFor a={x:0,y:0,size:25} and b={x:30,y:40,size:25}, return true because900+1600=2500. Change b.y to40.001: false.\nFor a={x:0,y:0,size:10} and b={x:0,y:21,size:10}, return false despite matching x.\nFor radii10 and30 with centers40 apart, return true;40.001 apart,false.\nThe starter draws two static black circles until its assigned movement and collision functions are completed.\n",
+        "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/vYKjjMo)\nFork of an original work JSM8 Project 1: Circles Collide (https://codepen.io/junilearning/pen/gOrWBVN)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+        "SOURCES.md": "# Sources\n\nOriginal starter: https://codepen.io/junilearning/pen/d4a36001e0d9b6e58c640ca0f280284a\nOriginal reference: https://codepen.io/junilearning/pen/2cc6ea883fc971206d81c61a3f93582e\n\nAll original HTML,CSS,JavaScript and settings were reviewed with official exports. Preprocessors:none;CSSbase/prefixing:neither;external dependencies:none. The original notice is retained in LICENSE-original.txt. These local role programs and cases are authored adaptations;README.md states the behavior corrections. Browser exports run offline.\n",
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Circles Collide</title><link rel=\"stylesheet\" href=\"styles.css\"></head><body><h1>Circles Collide</h1><canvas id=\"my-canvas\" aria-label=\"Circles Collide\"></canvas><script src=\"script.js\"></script></body></html>\n",
+        "styles.css": "body { margin: 1rem; font: 1rem/1.5 system-ui,sans-serif; color: #111827; }\ncanvas { display: block; max-width: 100%; height: auto; background: #eee; }\nh1 { overflow-wrap: anywhere; }\n",
+        "script.js": "const canvas = document.getElementById(\"my-canvas\");\nconst ctx = canvas.getContext(\"2d\");\ncanvas.width = 800;\ncanvas.height = 500;\nconst circle1 = { x: 50, y: 250, size: 20 };\nconst circle2 = { x: 500, y: 250, size: 20 };\nfunction circlesTouch(a, b) {\n    const dx = a.x - b.x;\n    const dy = a.y - b.y;\n    const radius = a.size + b.size;\n    return dx * dx + dy * dy <= radius * radius;\n}\nfunction updateCircles() {\n    circle1.x += 1;\n    circle2.x -= 1;\n}\nfunction drawCircles(color) {\n    ctx.clearRect(0, 0, canvas.width, canvas.height);\n    ctx.fillStyle = color;\n    for (const circle of [circle1, circle2]) {\n        ctx.beginPath();\n        ctx.arc(circle.x, circle.y, circle.size, 0, Math.PI * 2);\n        ctx.fill();\n    }\n}\ndrawCircles(\"black\");\nsetInterval(() => {\n    updateCircles();\n    drawCircles(circlesTouch(circle1, circle2) ? \"blue\" : \"black\");\n}, 10);\n"
+      }
+    },
+    "rectangle-collision": {
+      "starter": {
+        "README.md": "# Rectangular Collision\n\nOpen index.html without a server. Draw two random rectangles on the 550-by-500 canvas and display whether they touch or overlap. Reload for a new pair. The starter supplies random generation,drawing and result display;complete rectanglesTouch.\n\nEach rectangle stores x,y,width,height and color. Generate width and height as integers 100..299 first. Choose x in 50..canvas.width-50-width and y in 50..canvas.height-50-height,including both endpoints. This leaves a 50-unit margin and keeps every edge visible. RGB components are integers 0..254,matching the original palette.\n\nCompute left=x,right=x+width,top=y,bottom=y+height. The x ranges touch/overlap if a.right>=b.left AND a.left<=b.right. Apply the same test vertically,and combine all four comparisons with AND. Edge and corner contact count as collision;separation on either axis means false. No rotation or negative dimensions are used.\n\nFor a=(50,50,100,100) and b=(150,75,100,100),the rectangles touch at x150: true. Move b.x to151:false. For b=(75,150,100,100),they touch horizontally along y150:true. The original reference uses strict overlap and can clip randomly generated rectangles;this version follows the original task's touching rule and bounds both shapes.\n\nShow overlapping,edge-touching,corner-touching,contained and separated cases from CASES.md. Save the chosen fixed inputs when explaining a result.\n",
+        "CASES.md": "# Rectangle cases\n\nUse a={x:50,y:50,width:100,height:100}.\nb=(150,75,100,100):true; b=(151,75,100,100):false.\nb=(75,150,100,100):true; b=(75,151,100,100):false.\nb=(150,150,100,100):true at a corner.\nb=(75,75,20,20):true for containment;identical rectangles:true.\nb=(50,300,100,100):false despite matching horizontal ranges.\nStub random to0,then0.999999; every generated rectangle remains between50 and canvas size minus50 at all edges,with sizes100..299.\nThe starter leaves the collision predicate false until completed.\n",
+        "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/xxOjzqe)\nFork of an original work that is now private.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+        "SOURCES.md": "# Sources\n\nOriginal starter: https://codepen.io/junilearning/pen/1c22a392782c8551073c92fe3e825849\nOriginal reference: https://codepen.io/junilearning/pen/ba1bd74c40cacbdddafc645ba3f7350a\n\nAll original HTML,CSS,JavaScript and settings were reviewed with official exports. Preprocessors:none;CSSbase/prefixing:neither;external dependencies:none. The original notice is retained in LICENSE-original.txt. These local role programs and cases are authored adaptations;README.md states the behavior corrections. Browser exports run offline.\n",
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Rectangular Collision</title><link rel=\"stylesheet\" href=\"styles.css\"></head><body><h1>Rectangular Collision</h1><canvas id=\"my-canvas\" aria-label=\"Rectangular Collision\"></canvas><script src=\"script.js\"></script></body></html>\n",
+        "styles.css": "body { margin: 1rem; font: 1rem/1.5 system-ui,sans-serif; color: #111827; }\ncanvas { display: block; max-width: 100%; height: auto; background: #eee; }\nh1 { overflow-wrap: anywhere; }\n",
+        "script.js": "const canvas = document.getElementById(\"my-canvas\");\nconst ctx = canvas.getContext(\"2d\");\ncanvas.width = 550;\ncanvas.height = 500;\nfunction randomInteger(min, max) {\n    return Math.floor(Math.random() * (max - min + 1)) + min;\n}\nfunction randomRectangle() {\n    const width = randomInteger(100, 299);\n    const height = randomInteger(100, 299);\n    return {\n        x: randomInteger(50, canvas.width - 50 - width),\n        y: randomInteger(50, canvas.height - 50 - height),\n        width, height,\n        color: \"rgb(\" + [randomInteger(0, 254), randomInteger(0, 254), randomInteger(0, 254)].join(\",\") + \")\"\n    };\n}\nfunction rectanglesTouch(a, b) {\n    // TODO: compare the left/right and top/bottom ranges on both axes.\n    return false;\n}\nconst rect1 = randomRectangle();\nconst rect2 = randomRectangle();\nfor (const rect of [rect1, rect2]) {\n    ctx.fillStyle = rect.color;\n    ctx.fillRect(rect.x, rect.y, rect.width, rect.height);\n}\nconst colliding = rectanglesTouch(rect1, rect2);\nconst message = colliding ? \"The rectangles are colliding!\" : \"The rectangles are separated.\";\nctx.fillStyle = \"black\";\nctx.font = \"24px Arial\";\nctx.textAlign = \"center\";\nctx.fillText(message, canvas.width / 2, 30);\ncanvas.setAttribute(\"aria-label\", message);\n"
+      },
+      "reference": {
+        "README.md": "# Rectangular Collision\n\nOpen index.html without a server. Draw two random rectangles on the 550-by-500 canvas and display whether they touch or overlap. Reload for a new pair. The starter supplies random generation,drawing and result display;complete rectanglesTouch.\n\nEach rectangle stores x,y,width,height and color. Generate width and height as integers 100..299 first. Choose x in 50..canvas.width-50-width and y in 50..canvas.height-50-height,including both endpoints. This leaves a 50-unit margin and keeps every edge visible. RGB components are integers 0..254,matching the original palette.\n\nCompute left=x,right=x+width,top=y,bottom=y+height. The x ranges touch/overlap if a.right>=b.left AND a.left<=b.right. Apply the same test vertically,and combine all four comparisons with AND. Edge and corner contact count as collision;separation on either axis means false. No rotation or negative dimensions are used.\n\nFor a=(50,50,100,100) and b=(150,75,100,100),the rectangles touch at x150: true. Move b.x to151:false. For b=(75,150,100,100),they touch horizontally along y150:true. The original reference uses strict overlap and can clip randomly generated rectangles;this version follows the original task's touching rule and bounds both shapes.\n\nShow overlapping,edge-touching,corner-touching,contained and separated cases from CASES.md. Save the chosen fixed inputs when explaining a result.\n",
+        "CASES.md": "# Rectangle cases\n\nUse a={x:50,y:50,width:100,height:100}.\nb=(150,75,100,100):true; b=(151,75,100,100):false.\nb=(75,150,100,100):true; b=(75,151,100,100):false.\nb=(150,150,100,100):true at a corner.\nb=(75,75,20,20):true for containment;identical rectangles:true.\nb=(50,300,100,100):false despite matching horizontal ranges.\nStub random to0,then0.999999; every generated rectangle remains between50 and canvas size minus50 at all edges,with sizes100..299.\nThe starter leaves the collision predicate false until completed.\n",
+        "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/xxOjzqe)\nFork of an original work that is now private.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+        "SOURCES.md": "# Sources\n\nOriginal starter: https://codepen.io/junilearning/pen/1c22a392782c8551073c92fe3e825849\nOriginal reference: https://codepen.io/junilearning/pen/ba1bd74c40cacbdddafc645ba3f7350a\n\nAll original HTML,CSS,JavaScript and settings were reviewed with official exports. Preprocessors:none;CSSbase/prefixing:neither;external dependencies:none. The original notice is retained in LICENSE-original.txt. These local role programs and cases are authored adaptations;README.md states the behavior corrections. Browser exports run offline.\n",
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Rectangular Collision</title><link rel=\"stylesheet\" href=\"styles.css\"></head><body><h1>Rectangular Collision</h1><canvas id=\"my-canvas\" aria-label=\"Rectangular Collision\"></canvas><script src=\"script.js\"></script></body></html>\n",
+        "styles.css": "body { margin: 1rem; font: 1rem/1.5 system-ui,sans-serif; color: #111827; }\ncanvas { display: block; max-width: 100%; height: auto; background: #eee; }\nh1 { overflow-wrap: anywhere; }\n",
+        "script.js": "const canvas = document.getElementById(\"my-canvas\");\nconst ctx = canvas.getContext(\"2d\");\ncanvas.width = 550;\ncanvas.height = 500;\nfunction randomInteger(min, max) {\n    return Math.floor(Math.random() * (max - min + 1)) + min;\n}\nfunction randomRectangle() {\n    const width = randomInteger(100, 299);\n    const height = randomInteger(100, 299);\n    return {\n        x: randomInteger(50, canvas.width - 50 - width),\n        y: randomInteger(50, canvas.height - 50 - height),\n        width, height,\n        color: \"rgb(\" + [randomInteger(0, 254), randomInteger(0, 254), randomInteger(0, 254)].join(\",\") + \")\"\n    };\n}\nfunction rectanglesTouch(a, b) {\n    return a.x + a.width >= b.x && a.x <= b.x + b.width &&\n        a.y + a.height >= b.y && a.y <= b.y + b.height;\n}\nconst rect1 = randomRectangle();\nconst rect2 = randomRectangle();\nfor (const rect of [rect1, rect2]) {\n    ctx.fillStyle = rect.color;\n    ctx.fillRect(rect.x, rect.y, rect.width, rect.height);\n}\nconst colliding = rectanglesTouch(rect1, rect2);\nconst message = colliding ? \"The rectangles are colliding!\" : \"The rectangles are separated.\";\nctx.fillStyle = \"black\";\nctx.font = \"24px Arial\";\nctx.textAlign = \"center\";\nctx.fillText(message, canvas.width / 2, 30);\ncanvas.setAttribute(\"aria-label\", message);\n"
+      }
+    },
+    "bouncy-ball": {
+      "starter": {
+        "README.md": "# The Bouncy Ball\n\nOpen index.html without a server. The 480-by-320 canvas starts with a green ball at(240,290),radius 15,dx2 anddy-5. Each 10 ms tick applies gravity 0.08,then moves by velocity,handles collisions and draws. Damping is 0.8;stopSpeed is 0.1. Complete updateBall in the supplied drawing framework.\n\nA center stays within x 15..465 and y 15..305. After movement,clamp an outward-moving ball to the crossed wall and reverse the perpendicular velocity,multiplying by 0.8. At the floor also multiply dx by 0.8. Positive dy moves downward. A top hit also loses speed,as the original assignment requires for every wall.\n\nWhen the new floor rebound magnitude is below 0.1,set dy=0 and grounded=true. A grounded ball stays at y305,receives no gravity and loses horizontal speed by 0.8 per tick. When its horizontal magnitude is below 0.1,set dx=dy=0 and resting=true. Return immediately on future resting ticks. This stable ground/rest state prevents gravity from restarting a stopped ball.\n\nThe original reference applies gravity after its zero-velocity condition and omits top-wall damping. This implementation preserves the initial canvas,green ball,velocities,gravity and damping while making update order,bounds and stable rest explicit.\n\nShow an ascent,a damped rebound,the floor and eventual rest. CASES.md gives exact next-state checks and changed-speed boundary cases. Keyboard controls and scoring are optional extensions.\n",
+        "CASES.md": "# Ball cases\n\nInitial first tick:dy=-4.92,x242,y285.08.\nAt x464,dx2,y100,dy0: clampx465 and reverse dx to-1.6.\nAt x16,dx-2,y100,dy0: clampx15 and reverse dx to1.6.\nAt y15.1,dy-2,x100,dx0: gravity yields-1.92;clampto15,newdy1.536.\nAt y304.9,dy2,dx2:gravityyields2.08;clampto305,newdy-1.664 anddx1.6.\nLarge changed velocities still clamp to radius-aware walls.\nAt floor y305,dy0,dx0,grounded=false:gravity 0.08 gives rebound-0.064;grounded=true,dx=dy0,resting=true. Another1000 ticks change nothing.\nWith grounded=true,y305,dy0,dx1:the first tickmovesx by1 and setsdx0.8;within20ticks it reaches stable rest.\nThe uncompleted starter keeps its initial green ball still.\n",
+        "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/bGeMKYr)\nFork of an original work that is now private.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+        "SOURCES.md": "# Sources\n\nOriginal starter: https://codepen.io/junilearning/pen/1e97468ca0197dcf6ca6d933e175b6fb\nOriginal reference: https://codepen.io/junilearning/pen/fb9156c7c34ad0319ba52c3c01b326c3\n\nAll original HTML,CSS,JavaScript and settings were reviewed with official exports. Preprocessors:none;CSSbase/prefixing:neither;external dependencies:none. The original notice is retained in LICENSE-original.txt. These local role programs and cases are authored adaptations;README.md states the behavior corrections. Browser exports run offline.\n",
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>The Bouncy Ball</title><link rel=\"stylesheet\" href=\"styles.css\"></head><body><h1>The Bouncy Ball</h1><canvas id=\"my-canvas\" aria-label=\"The Bouncy Ball\"></canvas><script src=\"script.js\"></script></body></html>\n",
+        "styles.css": "body { margin: 1rem; font: 1rem/1.5 system-ui,sans-serif; color: #111827; }\ncanvas { display: block; max-width: 100%; height: auto; background: #eee; }\nh1 { overflow-wrap: anywhere; }\n",
+        "script.js": "const canvas = document.getElementById(\"my-canvas\");\nconst ctx = canvas.getContext(\"2d\");\ncanvas.width = 480;\ncanvas.height = 320;\nconst ball = { x: 240, y: 290, size: 15, dx: 2, dy: -5, grounded: false, resting: false };\nconst gravity = 0.08;\nconst damping = 0.8;\nconst stopSpeed = 0.1;\nfunction updateBall() {\n    // TODO: gravity, movement, radius-aware wall clamps and damped reversals.\n    // TODO: ground a slow floor bounce and settle to stable zero velocity.\n}\nfunction drawBall() {\n    ctx.clearRect(0, 0, canvas.width, canvas.height);\n    ctx.beginPath();\n    ctx.arc(ball.x, ball.y, ball.size, 0, Math.PI * 2);\n    ctx.fillStyle = \"green\";\n    ctx.fill();\n}\ndrawBall();\nsetInterval(() => { updateBall(); drawBall(); }, 10);\n"
+      },
+      "reference": {
+        "README.md": "# The Bouncy Ball\n\nOpen index.html without a server. The 480-by-320 canvas starts with a green ball at(240,290),radius 15,dx2 anddy-5. Each 10 ms tick applies gravity 0.08,then moves by velocity,handles collisions and draws. Damping is 0.8;stopSpeed is 0.1. Complete updateBall in the supplied drawing framework.\n\nA center stays within x 15..465 and y 15..305. After movement,clamp an outward-moving ball to the crossed wall and reverse the perpendicular velocity,multiplying by 0.8. At the floor also multiply dx by 0.8. Positive dy moves downward. A top hit also loses speed,as the original assignment requires for every wall.\n\nWhen the new floor rebound magnitude is below 0.1,set dy=0 and grounded=true. A grounded ball stays at y305,receives no gravity and loses horizontal speed by 0.8 per tick. When its horizontal magnitude is below 0.1,set dx=dy=0 and resting=true. Return immediately on future resting ticks. This stable ground/rest state prevents gravity from restarting a stopped ball.\n\nThe original reference applies gravity after its zero-velocity condition and omits top-wall damping. This implementation preserves the initial canvas,green ball,velocities,gravity and damping while making update order,bounds and stable rest explicit.\n\nShow an ascent,a damped rebound,the floor and eventual rest. CASES.md gives exact next-state checks and changed-speed boundary cases. Keyboard controls and scoring are optional extensions.\n",
+        "CASES.md": "# Ball cases\n\nInitial first tick:dy=-4.92,x242,y285.08.\nAt x464,dx2,y100,dy0: clampx465 and reverse dx to-1.6.\nAt x16,dx-2,y100,dy0: clampx15 and reverse dx to1.6.\nAt y15.1,dy-2,x100,dx0: gravity yields-1.92;clampto15,newdy1.536.\nAt y304.9,dy2,dx2:gravityyields2.08;clampto305,newdy-1.664 anddx1.6.\nLarge changed velocities still clamp to radius-aware walls.\nAt floor y305,dy0,dx0,grounded=false:gravity 0.08 gives rebound-0.064;grounded=true,dx=dy0,resting=true. Another1000 ticks change nothing.\nWith grounded=true,y305,dy0,dx1:the first tickmovesx by1 and setsdx0.8;within20ticks it reaches stable rest.\nThe uncompleted starter keeps its initial green ball still.\n",
+        "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/bGeMKYr)\nFork of an original work that is now private.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+        "SOURCES.md": "# Sources\n\nOriginal starter: https://codepen.io/junilearning/pen/1e97468ca0197dcf6ca6d933e175b6fb\nOriginal reference: https://codepen.io/junilearning/pen/fb9156c7c34ad0319ba52c3c01b326c3\n\nAll original HTML,CSS,JavaScript and settings were reviewed with official exports. Preprocessors:none;CSSbase/prefixing:neither;external dependencies:none. The original notice is retained in LICENSE-original.txt. These local role programs and cases are authored adaptations;README.md states the behavior corrections. Browser exports run offline.\n",
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>The Bouncy Ball</title><link rel=\"stylesheet\" href=\"styles.css\"></head><body><h1>The Bouncy Ball</h1><canvas id=\"my-canvas\" aria-label=\"The Bouncy Ball\"></canvas><script src=\"script.js\"></script></body></html>\n",
+        "styles.css": "body { margin: 1rem; font: 1rem/1.5 system-ui,sans-serif; color: #111827; }\ncanvas { display: block; max-width: 100%; height: auto; background: #eee; }\nh1 { overflow-wrap: anywhere; }\n",
+        "script.js": "const canvas = document.getElementById(\"my-canvas\");\nconst ctx = canvas.getContext(\"2d\");\ncanvas.width = 480;\ncanvas.height = 320;\nconst ball = { x: 240, y: 290, size: 15, dx: 2, dy: -5, grounded: false, resting: false };\nconst gravity = 0.08;\nconst damping = 0.8;\nconst stopSpeed = 0.1;\nfunction updateBall() {\n    if (ball.resting) return;\n    const left = ball.size, right = canvas.width - ball.size;\n    const top = ball.size, bottom = canvas.height - ball.size;\n    if (ball.grounded) {\n        ball.y = bottom;\n        ball.dy = 0;\n        ball.x += ball.dx;\n        ball.dx *= damping;\n    } else {\n        ball.dy += gravity;\n        ball.x += ball.dx;\n        ball.y += ball.dy;\n    }\n    if (ball.x <= left && ball.dx < 0) {\n        ball.x = left;\n        ball.dx = Math.abs(ball.dx) * damping;\n    } else if (ball.x >= right && ball.dx > 0) {\n        ball.x = right;\n        ball.dx = -Math.abs(ball.dx) * damping;\n    }\n    if (!ball.grounded && ball.y <= top && ball.dy < 0) {\n        ball.y = top;\n        ball.dy = Math.abs(ball.dy) * damping;\n    } else if (!ball.grounded && ball.y >= bottom && ball.dy > 0) {\n        ball.y = bottom;\n        ball.dy = -Math.abs(ball.dy) * damping;\n        ball.dx *= damping;\n        if (Math.abs(ball.dy) < stopSpeed) {\n            ball.dy = 0;\n            ball.grounded = true;\n        }\n    }\n    if (ball.grounded && Math.abs(ball.dx) < stopSpeed) {\n        ball.dx = 0;\n        ball.dy = 0;\n        ball.resting = true;\n    }\n}\nfunction drawBall() {\n    ctx.clearRect(0, 0, canvas.width, canvas.height);\n    ctx.beginPath();\n    ctx.arc(ball.x, ball.y, ball.size, 0, Math.PI * 2);\n    ctx.fillStyle = \"green\";\n    ctx.fill();\n}\ndrawBall();\nsetInterval(() => { updateBall(); drawBall(); }, 10);\n"
+      }
+    }
+  },
+  "originalCaptures": [
+    "https://codepen.io/junilearning/pen/d4a36001e0d9b6e58c640ca0f280284a",
+    "https://codepen.io/junilearning/pen/2cc6ea883fc971206d81c61a3f93582e",
+    "https://codepen.io/junilearning/pen/1c22a392782c8551073c92fe3e825849",
+    "https://codepen.io/junilearning/pen/ba1bd74c40cacbdddafc645ba3f7350a",
+    "https://codepen.io/junilearning/pen/1e97468ca0197dcf6ca6d933e175b6fb",
+    "https://codepen.io/junilearning/pen/fb9156c7c34ad0319ba52c3c01b326c3"
+  ],
+  "projects": [
+    {
+      "project": "circles-collide",
+      "itemId": "javascript-level-2-javascript-master-jsm8-collisions-and-controls-curriculum-jsm8-project-1-circles-collide",
+      "title": "JSM8 Project 1: Circles Collide",
+      "originals": [
+        {
+          "at": "2026-11-14T10:26:24.749457+00:00",
+          "originalURL": "https://codepen.io/junilearning/pen/d4a36001e0d9b6e58c640ca0f280284a",
+          "observedURL": "https://codepen.io/junilearning/pen/vYKjjMo",
+          "title": "JSM8 Project 1: Circles Collide",
+          "role": "starter",
+          "completeSourceAndSettings": true,
+          "source": {
+            "html": "",
+            "css": "",
+            "javascript": "// Draw two circles, one on the leftmost side of the screen and one on the rightmost side. Animate the two circles to move towards each other, and when they are collding, change the color of the circles.\n"
+          },
+          "sourceSHA256": {
+            "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "javascript": "4273abcaadcc9f5814d9bc2240dab65bc1a96eae0efe4c598b5b85179dc724e0"
+          },
+          "settings": {
+            "htmlPreprocessor": "None",
+            "cssPreprocessor": "None",
+            "cssBase": "Neither",
+            "vendorPrefixing": "Neither",
+            "jsPreprocessor": "None",
+            "externalStylesheets": [],
+            "externalScripts": [],
+            "htmlClasses": "",
+            "headContent": ""
+          },
+          "archive": {
+            "file": "codepen-d4a3600-circles-collide-original-export-20261114.zip",
+            "bytes": 3028,
+            "sha256": "1a37e5cd8a41cb6bb4b164a8726a2fa57a3fdd47967d2c2bad5452bfa6878694"
+          },
+          "evidenceBoundary": "Allthreeeditorpanels andeachsettings tab observed;complete sources read fromofficialexport;blank HTML/CSS confirmed ineditor andomittedfromarchive. Original preview/nativegameplay not yet accepted."
+        },
+        {
+          "at": "2026-11-14T10:26:24.754389+00:00",
+          "originalURL": "https://codepen.io/junilearning/pen/2cc6ea883fc971206d81c61a3f93582e",
+          "observedURL": "https://codepen.io/junilearning/pen/gOrWBVN",
+          "title": "JSM8 Project 1: Circles Collide",
+          "role": "reference",
+          "completeSourceAndSettings": true,
+          "source": {
+            "html": "<canvas id=\"my-canvas\"></canvas>",
+            "css": "",
+            "javascript": "// Draw two circles, one on the leftmost side of the screen and one on the rightmost side. Animate the two circles to move towards each other, and when they are collding, change the color of the circles.\n\nconst canvas = document.getElementById(\"my-canvas\");\nconst ctx = canvas.getContext(\"2d\");\ncanvas.width = 800;\ncanvas.height = 500;\n\nlet circle1 = { x: 50, y: 250, size: 20 };\nlet circle2 = { x: 500, y: 250, size: 20 };\n\nconst drawCircles = () => {\n  ctx.beginPath();\n  ctx.arc(circle1.x, circle1.y, circle1.size, 0, Math.PI * 2, false);\n  ctx.fill();\n  ctx.closePath();\n\n  ctx.beginPath();\n  ctx.arc(circle2.x, circle2.y, circle2.size, 0, Math.PI * 2, false);\n  ctx.fill();\n  ctx.closePath();\n}\n\nconst draw = () => {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  circle1.x += 1;\n  circle2.x -= 1;\n\n  ctx.fillStyle = \"black\";\n  console.log(Math.abs(circle1.x - circle2.x));\n  if (Math.abs(circle1.x - circle2.x) < circle1.size + circle2.size) {\n    ctx.fillStyle = \"blue\";\n  }\n\n  drawCircles();\n}\n\nsetInterval(draw, 10);\n"
+          },
+          "sourceSHA256": {
+            "html": "bcdadb2f807fd06658a17466a9dd29fc39b8468f68770f5926dd817bdb6eb29a",
+            "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "javascript": "47b2a0d3a53413146ad1351ecd2fe7e0f3c1f9b4c350bce5de39f2ef5dd0c909"
+          },
+          "settings": {
+            "htmlPreprocessor": "None",
+            "cssPreprocessor": "None",
+            "cssBase": "Neither",
+            "vendorPrefixing": "Neither",
+            "jsPreprocessor": "None",
+            "externalStylesheets": [],
+            "externalScripts": [],
+            "htmlClasses": "",
+            "headContent": ""
+          },
+          "archive": {
+            "file": "codepen-2cc6ea8-circles-collide-original-export-20261114.zip",
+            "bytes": 4847,
+            "sha256": "01e49679ee883df777616ecc1da03f4bfcdf60be61b9272178cc70869e58b436"
+          },
+          "evidenceBoundary": "Allthreeeditorpanels andeachsettings tab observed;complete sources read fromofficialexport;blank HTML/CSS confirmed ineditor andomittedfromarchive. Original preview/nativegameplay not yet accepted."
+        }
+      ]
+    },
+    {
+      "project": "rectangle-collision",
+      "itemId": "javascript-level-2-javascript-master-jsm8-collisions-and-controls-curriculum-jsm8-project-2-rectangular-collision",
+      "title": "JSM8 Project 2: Rectangular Collision",
+      "originals": [
+        {
+          "at": "2026-11-14T10:29:33.737615+00:00",
+          "originalURL": "https://codepen.io/junilearning/pen/1c22a392782c8551073c92fe3e825849",
+          "observedURL": "https://codepen.io/junilearning/pen/xxOjzqe",
+          "title": "jsm8-project-2-rectangular-collision",
+          "role": "starter",
+          "completeSourceAndSettings": true,
+          "source": {
+            "html": "",
+            "css": "",
+            "javascript": "// Draw two rectangles of random width and height onto the canvas. If the two rectangles are touching, display \u201cthe rectangles are colliding\u201d on the canvas.\n"
+          },
+          "sourceSHA256": {
+            "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "javascript": "457ba0732c1966877b5c9cd7cab2bd615b940aafa066850169ecd1f5976c312b"
+          },
+          "settings": {
+            "htmlPreprocessor": "None",
+            "cssPreprocessor": "None",
+            "cssBase": "Neither",
+            "vendorPrefixing": "Neither",
+            "jsPreprocessor": "None",
+            "externalStylesheets": [],
+            "externalScripts": [],
+            "htmlClasses": "",
+            "headContent": ""
+          },
+          "archive": {
+            "file": "codepen-1c22a39-rectangle-collision-original-export-20261114.zip",
+            "bytes": 2957,
+            "sha256": "13e8043a4d3393207a775878e87630074d65a6d6cb41e4d0877431212740f9de"
+          },
+          "evidenceBoundary": "Allthreepanels andeachsettings tab observed;completecode read fromofficialexport. Blankpanels confirmedineditor. Originalnativepaint notyetaccepted."
+        },
+        {
+          "at": "2026-11-14T10:29:33.742845+00:00",
+          "originalURL": "https://codepen.io/junilearning/pen/ba1bd74c40cacbdddafc645ba3f7350a",
+          "observedURL": "https://codepen.io/junilearning/pen/VwabEpQ/ba1bd74c40cacbdddafc645ba3f7350a",
+          "title": "jsm8-project-2-rectangular-collision-solution",
+          "role": "reference",
+          "completeSourceAndSettings": true,
+          "source": {
+            "html": "<canvas id=\"my-canvas\">",
+            "css": "",
+            "javascript": "// Draw two rectangles of random width and height onto the canvas. If the two rectangles are touching, display \u201cthe rectangles are colliding\u201d on the canvas.\n\nconst canvas = document.getElementById('my-canvas');\nconst ctx = canvas.getContext('2d');\ncanvas.width = 550;\ncanvas.height = 500;\n  \nconst drawRandomRectangle = () => {\n  let cornerX = Math.floor(Math.random() * 450) + 50;\n  let cornerY = Math.floor(Math.random() * 400) + 50;\n  \n  let height = Math.floor(Math.random() * 200) + 100;\n  let width = Math.floor(Math.random() * 200) + 100;\n  \n  let r = Math.floor(Math.random() * 255);\n  let g = Math.floor(Math.random() * 255);\n  let b = Math.floor(Math.random() * 255);\n  \n  ctx.fillStyle = `rgb(${r}, ${g}, ${b})`\n  ctx.fillRect(cornerX, cornerY, width, height);\n  \n  return {x: cornerX, y: cornerY, width: width, height: height};\n}\n\nconst checkCollision = (rect1, rect2) => {\n  let colliding = false;\n  if (rect1.x + rect1.width > rect2.x && rect1.x < rect2.x + rect2.width){\n    if(rect1.y + rect1.height > rect2.y && rect1.y < rect2.y + rect2.height ){\n      colliding = true;\n    }\n  }\n  return colliding;\n}\n\n\n\nlet rect1 = drawRandomRectangle();\nlet rect2 = drawRandomRectangle();\n\nctx.fillStyle = \"black\";\n\nif (checkCollision(rect1, rect2)){\n  ctx.font = \"30px Arial\";\n  ctx.textAlign = \"center\";\n  ctx.fillText(\"The rectangles are colliding!\", canvas.width/2, 100);\n}"
+          },
+          "sourceSHA256": {
+            "html": "4d7741cbc51c60ce272994f40ca3d195a2f834747b79e5612c79ccc83151df8c",
+            "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "javascript": "1c571c24cd5401160671ede48e03cc7ac4ec2b6eac245ad22370d3f66955b3fe"
+          },
+          "settings": {
+            "htmlPreprocessor": "None",
+            "cssPreprocessor": "None",
+            "cssBase": "Neither",
+            "vendorPrefixing": "Neither",
+            "jsPreprocessor": "None",
+            "externalStylesheets": [],
+            "externalScripts": [],
+            "htmlClasses": "",
+            "headContent": ""
+          },
+          "archive": {
+            "file": "codepen-ba1bd74-rectangle-collision-original-export-20261114.zip",
+            "bytes": 4462,
+            "sha256": "3c84b6190f35b40e492875a4520849670da0e5843512248c385cfaf9df59aa28"
+          },
+          "evidenceBoundary": "Allthreepanels andeachsettings tab observed;completecode read fromofficialexport. Blankpanels confirmedineditor. Originalnativepaint notyetaccepted."
+        }
+      ]
+    },
+    {
+      "project": "bouncy-ball",
+      "itemId": "javascript-level-2-javascript-master-jsm8-collisions-and-controls-curriculum-jsm8-project-3-the-bouncy-ball",
+      "title": "JSM8 Project 3: The Bouncy Ball",
+      "originals": [
+        {
+          "at": "2026-11-14T10:29:33.743691+00:00",
+          "originalURL": "https://codepen.io/junilearning/pen/1e97468ca0197dcf6ca6d933e175b6fb",
+          "observedURL": "https://codepen.io/junilearning/pen/bGeMKYr",
+          "title": "jsm8-project-3-the-bouncy-ball",
+          "role": "starter",
+          "completeSourceAndSettings": true,
+          "source": {
+            "html": "<div>\n  <canvas id=\"my-canvas\" width=\"480\" height=\"320px\"></canvas>\n</div>\n\n\n\n",
+            "css": "* { padding: 0; margin: 0; }\ncanvas { background: #eee; display: block; margin: 0 auto;}\ndiv {padding-top: 100px}",
+            "javascript": "// Animate a ball which bounces around the canvas. The ball should lose speed every time it hits a wall until it ultimately comes to a rest.\n"
+          },
+          "sourceSHA256": {
+            "html": "1a8479cb514c6c368fcd000fba7c8781d799bd53ae49886fe39b0a77037d411d",
+            "css": "acdac192961e2722fb699416efc648c5c30bf2171c56e0b76e41ab8b9726aae0",
+            "javascript": "8ff161ccfa1b93882687e808886b43f9c7d7d60b19b36f142a7dda1ac97989dd"
+          },
+          "settings": {
+            "htmlPreprocessor": "None",
+            "cssPreprocessor": "None",
+            "cssBase": "Neither",
+            "vendorPrefixing": "Neither",
+            "jsPreprocessor": "None",
+            "externalStylesheets": [],
+            "externalScripts": [],
+            "htmlClasses": "",
+            "headContent": ""
+          },
+          "archive": {
+            "file": "codepen-1e97468-bouncy-ball-original-export-20261114.zip",
+            "bytes": 3863,
+            "sha256": "794bd1f5a3b8688e0b8bb1a80ea54a0e5debe3b013e65dd0a32b54d2af970780"
+          },
+          "evidenceBoundary": "Allthreepanels andeachsettings tab observed;completecode read fromofficialexport. Blankpanels confirmedineditor. Originalnativepaint notyetaccepted."
+        },
+        {
+          "at": "2026-11-14T10:29:33.745369+00:00",
+          "originalURL": "https://codepen.io/junilearning/pen/fb9156c7c34ad0319ba52c3c01b326c3",
+          "observedURL": "https://codepen.io/junilearning/pen/qBbzNpX/fb9156c7c34ad0319ba52c3c01b326c3",
+          "title": "jsm8-project-3-the-bouncy-ball-solution",
+          "role": "reference",
+          "completeSourceAndSettings": true,
+          "source": {
+            "html": "<div>\n  <canvas id=\"my-canvas\" width=\"480\" height=\"320px\"></canvas>\n</div>\n\n\n\n",
+            "css": "* { padding: 0; margin: 0; }\ncanvas { background: #eee; display: block; margin: 0 auto;}\ndiv {padding-top: 100px}",
+            "javascript": "// Animate a ball which bounces around the canvas. The ball should lose speed every time it hits a wall until it ultimately comes to a rest.\n\nvar canvas = document.getElementById(\"my-canvas\");\nvar ctx = canvas.getContext(\"2d\");\n\nvar x = canvas.width/2;\nvar y = canvas.height-30;\nvar size = 15;\n\nvar dx = 2;\nvar dy = -5;\n\nconst drawBall = () => {\n  ctx.beginPath();\n  ctx.arc(x, y, size, 0, Math.PI*2, false);\n  ctx.fillStyle = \"green\";\n  ctx.fill();\n  ctx.closePath();\n}\n\nconst draw = () => {\n  ctx.clearRect(0,0, canvas.width, canvas.height);\n  drawBall();\n  if (y + dy < size ){\n    dy = -dy;\n  }\n  if(y + dy > canvas.height - size){\n    dy = -dy * 0.8; \n    dx = dx * 0.8;\n  }\n  if (x + dx > canvas.width - size || x + dx < size){\n    dx = -dx * 0.8;\n  }\n\n  if (dx < 0.1 && dx > -0.1 && dy < 0.1 && dy > -0.1){\n    dx = 0;\n    dy = 0;\n  }\n\n  x+=dx;\n  y+=dy;\n  //size+=dsize;\n  dy+=.08;\n}\n\n//document.addEventListener(\"key\")\nsetInterval(draw, 10);"
+          },
+          "sourceSHA256": {
+            "html": "1a8479cb514c6c368fcd000fba7c8781d799bd53ae49886fe39b0a77037d411d",
+            "css": "acdac192961e2722fb699416efc648c5c30bf2171c56e0b76e41ab8b9726aae0",
+            "javascript": "42cb4b4920aa286a03164ddbfe1b6679f600cd44809b94ecd9b471ef23895236"
+          },
+          "settings": {
+            "htmlPreprocessor": "None",
+            "cssPreprocessor": "None",
+            "cssBase": "Neither",
+            "vendorPrefixing": "Neither",
+            "jsPreprocessor": "None",
+            "externalStylesheets": [],
+            "externalScripts": [],
+            "htmlClasses": "",
+            "headContent": ""
+          },
+          "archive": {
+            "file": "codepen-fb9156c-bouncy-ball-original-export-20261114.zip",
+            "bytes": 4324,
+            "sha256": "fa47b9bd2c65be5dfb1b3a638cb2b45dab7a24f20278be8d2990d0c4b3614277"
+          },
+          "evidenceBoundary": "Allthreepanels andeachsettings tab observed;completecode read fromofficialexport. Blankpanels confirmedineditor. Originalnativepaint notyetaccepted."
+        }
+      ]
+    }
+  ],
+  "revision": "de1d83b245bc6d8ff4f63d166a5b8d498b9b23592e791490c8f14cc939ff830c",
+  "revisionKind": "versioned-authored-complete-role-packs"
+}

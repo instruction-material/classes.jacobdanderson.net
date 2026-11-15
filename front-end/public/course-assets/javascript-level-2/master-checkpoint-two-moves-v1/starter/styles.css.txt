@@ -1,0 +1,6 @@
+*,*::before,*::after{box-sizing:border-box}
+body{font:1rem/1.5 system-ui,sans-serif;margin:0;color:#18252c;background:#f7f8fa;overflow-wrap:anywhere}
+main{max-width:48rem;margin:auto;padding:1rem}section{margin-block:1.5rem}
+button,input{font:inherit;max-width:100%;padding:.5rem;margin:.25rem}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}canvas{display:block;width:min(100%,250px);height:auto;aspect-ratio:1;border:0;background:#dce7f3}
+input{display:block;width:100%;margin-inline:0}

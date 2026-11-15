@@ -1,0 +1,1121 @@
+{
+  "courseId": "javascript-level-2-javascript-master",
+  "moduleId": "javascript-level-2-javascript-master-jsm9-games-in-the-canvas",
+  "resources": [
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "falling-skies",
+      "itemId": "javascript-level-2-javascript-master-jsm9-games-in-the-canvas-curriculum-jsm9-project-1-falling-skies",
+      "title": "Falling Skies",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/8d640d76fa709de228ec6303625663e3",
+        "https://codepen.io/junilearning/pen/RwRBaXa",
+        "/course-assets/javascript-level-2/falling-skies-v1/starter/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "falling-skies-v1/starter/CASES.md.txt",
+          "byteLength": 475,
+          "sha256": "d82931b37255bc56b5d0f79c5882b2093139a7b601d17ae6122dc1bd0402e81d"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "falling-skies-v1/starter/LICENSE-original.txt.txt",
+          "byteLength": 1263,
+          "sha256": "bea1ade481e04967624229f3af213bf4fd8d5518c1b93819a4d5cea3ba2c7f6a"
+        },
+        {
+          "name": "README.md",
+          "path": "falling-skies-v1/starter/README.md.txt",
+          "byteLength": 1432,
+          "sha256": "0a89bbdc2301505aff5d680d69cd57bd7a991fe304257eba52e489b53ff45d63"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "falling-skies-v1/starter/SOURCES.md.txt",
+          "byteLength": 852,
+          "sha256": "39e8003d28aed4e0f648c1e9c84fc8b9e93415c61fbb09c4aaf6bbfdd591811b"
+        },
+        {
+          "name": "index.html",
+          "path": "falling-skies-v1/starter/index.html.txt",
+          "byteLength": 607,
+          "sha256": "1a6c698ac2c17f094e079eda21a3d9badcc8e74e1a95bf590a8c53b2a4900295"
+        },
+        {
+          "name": "script.js",
+          "path": "falling-skies-v1/starter/script.js.txt",
+          "byteLength": 2619,
+          "sha256": "bca0afb431a51bede25065ca814a0bcf47b0e53abbe84c9fda06be28e80faf29"
+        },
+        {
+          "name": "styles.css",
+          "path": "falling-skies-v1/starter/styles.css.txt",
+          "byteLength": 568,
+          "sha256": "642c032dfd0af6616dd9c816f87ffb096373993ecc8ad52428fc2d8034a4d3fe"
+        }
+      ]
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "falling-skies",
+      "itemId": "javascript-level-2-javascript-master-jsm9-games-in-the-canvas-curriculum-jsm9-project-1-falling-skies",
+      "title": "Falling Skies",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/643e3bf98d5a641557276dbc1f269a02",
+        "https://codepen.io/junilearning/pen/zYqxoGw",
+        "/course-assets/javascript-level-2/falling-skies-v1/reference/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "falling-skies-v1/reference/CASES.md.txt",
+          "byteLength": 475,
+          "sha256": "d82931b37255bc56b5d0f79c5882b2093139a7b601d17ae6122dc1bd0402e81d"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "falling-skies-v1/reference/LICENSE-original.txt.txt",
+          "byteLength": 1263,
+          "sha256": "bea1ade481e04967624229f3af213bf4fd8d5518c1b93819a4d5cea3ba2c7f6a"
+        },
+        {
+          "name": "README.md",
+          "path": "falling-skies-v1/reference/README.md.txt",
+          "byteLength": 1433,
+          "sha256": "7c78b7add95f906242937bfff6114ff846a3f8be1f47271b77a3d08cc4a524d9"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "falling-skies-v1/reference/SOURCES.md.txt",
+          "byteLength": 852,
+          "sha256": "39e8003d28aed4e0f648c1e9c84fc8b9e93415c61fbb09c4aaf6bbfdd591811b"
+        },
+        {
+          "name": "index.html",
+          "path": "falling-skies-v1/reference/index.html.txt",
+          "byteLength": 607,
+          "sha256": "1a6c698ac2c17f094e079eda21a3d9badcc8e74e1a95bf590a8c53b2a4900295"
+        },
+        {
+          "name": "script.js",
+          "path": "falling-skies-v1/reference/script.js.txt",
+          "byteLength": 3063,
+          "sha256": "aa3250b7e4087f8c370698c371f898d77698758f362406f559205823a43fca1b"
+        },
+        {
+          "name": "styles.css",
+          "path": "falling-skies-v1/reference/styles.css.txt",
+          "byteLength": 568,
+          "sha256": "642c032dfd0af6616dd9c816f87ffb096373993ecc8ad52428fc2d8034a4d3fe"
+        }
+      ]
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "breakout",
+      "itemId": "javascript-level-2-javascript-master-jsm9-games-in-the-canvas-curriculum-jsm9-project-2-2d-breakout",
+      "title": "2D Breakout",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/0d5f9c3b21921a4bc506a1139a3091bc",
+        "https://codepen.io/junilearning/pen/zYBLBvX",
+        "/course-assets/javascript-level-2/breakout-v1/starter/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "breakout-v1/starter/CASES.md.txt",
+          "byteLength": 419,
+          "sha256": "ab51585517d75fea22f276bd70440b1eeb161e0a53013a256a45e0ea6cba3d18"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "breakout-v1/starter/LICENSE-original.txt.txt",
+          "byteLength": 194,
+          "sha256": "0f5ec841d77fb618d867b9355a9954dd2cbbdf1f56ee0c2257d01a8b8dd7c633"
+        },
+        {
+          "name": "README.md",
+          "path": "breakout-v1/starter/README.md.txt",
+          "byteLength": 1433,
+          "sha256": "c3b844f4bdb03bd443a2e19d09e46a6f73164a49c63165ba360e58aa98b15adf"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "breakout-v1/starter/SOURCES.md.txt",
+          "byteLength": 885,
+          "sha256": "06b2e515ae1514dd29d434a265d461c280d29c8e8a2589ac243404b87714d1be"
+        },
+        {
+          "name": "index.html",
+          "path": "breakout-v1/starter/index.html.txt",
+          "byteLength": 601,
+          "sha256": "819fb3b2fc6e9081cdce20ba1852cf5a0bec9d69073db4397d226f934fba7f76"
+        },
+        {
+          "name": "script.js",
+          "path": "breakout-v1/starter/script.js.txt",
+          "byteLength": 2827,
+          "sha256": "ea7486bfe103a7d1b60f37df4e66ef29fb14036dbcf9816303a877dc59b68f0b"
+        },
+        {
+          "name": "styles.css",
+          "path": "breakout-v1/starter/styles.css.txt",
+          "byteLength": 568,
+          "sha256": "642c032dfd0af6616dd9c816f87ffb096373993ecc8ad52428fc2d8034a4d3fe"
+        }
+      ]
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "breakout",
+      "itemId": "javascript-level-2-javascript-master-jsm9-games-in-the-canvas-curriculum-jsm9-project-2-2d-breakout",
+      "title": "2D Breakout",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/778b7aa1d7bcd942b617d87a517d35e2",
+        "https://codepen.io/junilearning/pen/OJXwXVm/778b7aa1d7bcd942b617d87a517d35e2",
+        "/course-assets/javascript-level-2/breakout-v1/reference/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "breakout-v1/reference/CASES.md.txt",
+          "byteLength": 419,
+          "sha256": "ab51585517d75fea22f276bd70440b1eeb161e0a53013a256a45e0ea6cba3d18"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "breakout-v1/reference/LICENSE-original.txt.txt",
+          "byteLength": 194,
+          "sha256": "0f5ec841d77fb618d867b9355a9954dd2cbbdf1f56ee0c2257d01a8b8dd7c633"
+        },
+        {
+          "name": "README.md",
+          "path": "breakout-v1/reference/README.md.txt",
+          "byteLength": 1434,
+          "sha256": "c6ad76e10846127b6f1a4331b16b708eff349026df0504afefd3aee72710cb5e"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "breakout-v1/reference/SOURCES.md.txt",
+          "byteLength": 885,
+          "sha256": "06b2e515ae1514dd29d434a265d461c280d29c8e8a2589ac243404b87714d1be"
+        },
+        {
+          "name": "index.html",
+          "path": "breakout-v1/reference/index.html.txt",
+          "byteLength": 601,
+          "sha256": "819fb3b2fc6e9081cdce20ba1852cf5a0bec9d69073db4397d226f934fba7f76"
+        },
+        {
+          "name": "script.js",
+          "path": "breakout-v1/reference/script.js.txt",
+          "byteLength": 3557,
+          "sha256": "200e7e2c3a71d3708d32bc513a31c6f175f9778a5e601cd1a2fb2523b660a743"
+        },
+        {
+          "name": "styles.css",
+          "path": "breakout-v1/reference/styles.css.txt",
+          "byteLength": 568,
+          "sha256": "642c032dfd0af6616dd9c816f87ffb096373993ecc8ad52428fc2d8034a4d3fe"
+        }
+      ]
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "asteroids",
+      "itemId": "javascript-level-2-javascript-master-jsm9-games-in-the-canvas-curriculum-jsm9-project-3-asteroids",
+      "title": "Asteroids",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/4d14f6e432dd3b2dcee15a9d95eac750",
+        "https://codepen.io/junilearning/pen/BazPzpm",
+        "/course-assets/javascript-level-2/asteroids-v1/starter/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "asteroids-v1/starter/CASES.md.txt",
+          "byteLength": 533,
+          "sha256": "57ec3815966bc36c2e9dcae1dc1f4d15735085bc7c6e55e1c7ea4fde15b1af9d"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "asteroids-v1/starter/LICENSE-original.txt.txt",
+          "byteLength": 194,
+          "sha256": "0f5ec841d77fb618d867b9355a9954dd2cbbdf1f56ee0c2257d01a8b8dd7c633"
+        },
+        {
+          "name": "README.md",
+          "path": "asteroids-v1/starter/README.md.txt",
+          "byteLength": 1505,
+          "sha256": "236ebf233277bfccb0e19210e0df7947b8591706b6915d9d25119b00a852a719"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "asteroids-v1/starter/SOURCES.md.txt",
+          "byteLength": 885,
+          "sha256": "299a3ed51a165a10f4b2bd4c18579a55b9953997d2ff9b61b3b9ab2bbe8d1d1c"
+        },
+        {
+          "name": "index.html",
+          "path": "asteroids-v1/starter/index.html.txt",
+          "byteLength": 731,
+          "sha256": "69a3c8ad6403b2ef96eb65e32301b8123adaab58fef08ffda6647444d54bb79d"
+        },
+        {
+          "name": "script.js",
+          "path": "asteroids-v1/starter/script.js.txt",
+          "byteLength": 3353,
+          "sha256": "79ca6dbbeca7286d80f635a2a164cfb8757d019cf8ac4f7df12683eb8695fd70"
+        },
+        {
+          "name": "styles.css",
+          "path": "asteroids-v1/starter/styles.css.txt",
+          "byteLength": 568,
+          "sha256": "642c032dfd0af6616dd9c816f87ffb096373993ecc8ad52428fc2d8034a4d3fe"
+        }
+      ]
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "asteroids",
+      "itemId": "javascript-level-2-javascript-master-jsm9-games-in-the-canvas-curriculum-jsm9-project-3-asteroids",
+      "title": "Asteroids",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/8a5307a6643fbf762925b08229b5a847",
+        "https://codepen.io/junilearning/pen/WNrqPQO/8a5307a6643fbf762925b08229b5a847",
+        "/course-assets/javascript-level-2/asteroids-v1/reference/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "asteroids-v1/reference/CASES.md.txt",
+          "byteLength": 533,
+          "sha256": "57ec3815966bc36c2e9dcae1dc1f4d15735085bc7c6e55e1c7ea4fde15b1af9d"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "asteroids-v1/reference/LICENSE-original.txt.txt",
+          "byteLength": 194,
+          "sha256": "0f5ec841d77fb618d867b9355a9954dd2cbbdf1f56ee0c2257d01a8b8dd7c633"
+        },
+        {
+          "name": "README.md",
+          "path": "asteroids-v1/reference/README.md.txt",
+          "byteLength": 1506,
+          "sha256": "b4d17db06cd335eed21f14b58354f9f1ef5598852ecefe97a6ef59a490326cdd"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "asteroids-v1/reference/SOURCES.md.txt",
+          "byteLength": 885,
+          "sha256": "299a3ed51a165a10f4b2bd4c18579a55b9953997d2ff9b61b3b9ab2bbe8d1d1c"
+        },
+        {
+          "name": "index.html",
+          "path": "asteroids-v1/reference/index.html.txt",
+          "byteLength": 731,
+          "sha256": "69a3c8ad6403b2ef96eb65e32301b8123adaab58fef08ffda6647444d54bb79d"
+        },
+        {
+          "name": "script.js",
+          "path": "asteroids-v1/reference/script.js.txt",
+          "byteLength": 4696,
+          "sha256": "89cf31ab49fbbdc26ccb4d6e581e7d8588e3c6bedd1890df6590fbbcb5686c75"
+        },
+        {
+          "name": "styles.css",
+          "path": "asteroids-v1/reference/styles.css.txt",
+          "byteLength": 568,
+          "sha256": "642c032dfd0af6616dd9c816f87ffb096373993ecc8ad52428fc2d8034a4d3fe"
+        }
+      ]
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "starfield",
+      "itemId": "javascript-level-2-javascript-master-jsm9-games-in-the-canvas-curriculum-jsm9-project-4-animated-starfield",
+      "title": "Animated Starfield",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/6d5f8181e8ea59009eadd259e249c5c5",
+        "https://codepen.io/junilearning/pen/MWeBeoL",
+        "/course-assets/javascript-level-2/starfield-v1/starter/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "starfield-v1/starter/CASES.md.txt",
+          "byteLength": 403,
+          "sha256": "3fd37d5b8a52904397d2b4771de004cad2948b80f2b6789ede11a43f1e7389e8"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "starfield-v1/starter/LICENSE-original.txt.txt",
+          "byteLength": 194,
+          "sha256": "0f5ec841d77fb618d867b9355a9954dd2cbbdf1f56ee0c2257d01a8b8dd7c633"
+        },
+        {
+          "name": "README.md",
+          "path": "starfield-v1/starter/README.md.txt",
+          "byteLength": 1304,
+          "sha256": "62324fa56a903d2a00fa58c44313cdbed8af4c442813bf009a47ceaa89641916"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "starfield-v1/starter/SOURCES.md.txt",
+          "byteLength": 1087,
+          "sha256": "4309ac88338c839017b654f0191f663aa007b9da3fad6503dcccde614f7acf6e"
+        },
+        {
+          "name": "index.html",
+          "path": "starfield-v1/starter/index.html.txt",
+          "byteLength": 518,
+          "sha256": "fbbd12faab9e65a702e8b84e9255d0702bdc846e40fb15de1434fb7b8ccd44c2"
+        },
+        {
+          "name": "script.js",
+          "path": "starfield-v1/starter/script.js.txt",
+          "byteLength": 2563,
+          "sha256": "61d5e7bc2de57d634485ce79f67db683cf160fad2952e6861dd25ff8dbc7550d"
+        },
+        {
+          "name": "styles.css",
+          "path": "starfield-v1/starter/styles.css.txt",
+          "byteLength": 568,
+          "sha256": "642c032dfd0af6616dd9c816f87ffb096373993ecc8ad52428fc2d8034a4d3fe"
+        }
+      ]
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "starfield",
+      "itemId": "javascript-level-2-javascript-master-jsm9-games-in-the-canvas-curriculum-jsm9-project-4-animated-starfield",
+      "title": "Animated Starfield",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/ac7242107973239507eebc571a767c5a",
+        "https://codepen.io/junilearning/pen/KKMRKRK/ac7242107973239507eebc571a767c5a",
+        "/course-assets/javascript-level-2/starfield-v1/reference/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "starfield-v1/reference/CASES.md.txt",
+          "byteLength": 403,
+          "sha256": "3fd37d5b8a52904397d2b4771de004cad2948b80f2b6789ede11a43f1e7389e8"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "starfield-v1/reference/LICENSE-original.txt.txt",
+          "byteLength": 194,
+          "sha256": "0f5ec841d77fb618d867b9355a9954dd2cbbdf1f56ee0c2257d01a8b8dd7c633"
+        },
+        {
+          "name": "README.md",
+          "path": "starfield-v1/reference/README.md.txt",
+          "byteLength": 1305,
+          "sha256": "f6ba4fdab792ba2605813b6ed5379e08900b2668ce334838e8e987ab00205ed9"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "starfield-v1/reference/SOURCES.md.txt",
+          "byteLength": 1087,
+          "sha256": "4309ac88338c839017b654f0191f663aa007b9da3fad6503dcccde614f7acf6e"
+        },
+        {
+          "name": "index.html",
+          "path": "starfield-v1/reference/index.html.txt",
+          "byteLength": 518,
+          "sha256": "fbbd12faab9e65a702e8b84e9255d0702bdc846e40fb15de1434fb7b8ccd44c2"
+        },
+        {
+          "name": "script.js",
+          "path": "starfield-v1/reference/script.js.txt",
+          "byteLength": 2697,
+          "sha256": "8b8dac44f31a02f89075390c39d8b19fff55d4d078da93c92520c41b6ec4c8f8"
+        },
+        {
+          "name": "styles.css",
+          "path": "starfield-v1/reference/styles.css.txt",
+          "byteLength": 568,
+          "sha256": "642c032dfd0af6616dd9c816f87ffb096373993ecc8ad52428fc2d8034a4d3fe"
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "project": "falling-skies",
+      "title": "Falling Skies",
+      "itemId": "javascript-level-2-javascript-master-jsm9-games-in-the-canvas-curriculum-jsm9-project-1-falling-skies",
+      "originals": [
+        {
+          "at": "2026-11-14T11:41:05.519468+00:00",
+          "originalURL": "https://codepen.io/junilearning/pen/643e3bf98d5a641557276dbc1f269a02",
+          "observedURL": "https://codepen.io/junilearning/pen/zYqxoGw",
+          "title": "jsm9-project-1-falling-skies (1)",
+          "role": "reference",
+          "completeSourceAndSettings": true,
+          "source": {
+            "html": "\n\n\n\n\n<div style = \"padding-top: 100px\">\n  <canvas id=\"canvas\" width=\"550px\" height=\"500px\"></canvas>\n</div>",
+            "css": "\n\n\n\n* { padding: 0; margin: 0; }\n    \tcanvas { background: #eee; display: block; margin: 0 auto;}",
+            "javascript": "\n\n\n\n\nlet rightPressed = false;\nlet leftPressed = false;\n\n//Handle all key down\nconst keyDownHandler = (e) => {\n  if (e.key == \"Right\" || e.key == \"ArrowRight\"){\n    rightPressed = true;\n  }\n  if (e.key == \"Left\" || e.key == \"ArrowLeft\"){\n    leftPressed = true;\n  }\n}\n\n//Handle all key up\nconst keyUpHandler = (e) => {\n  if (e.key == \"Right\" || e.key == \"ArrowRight\"){\n    rightPressed = false;\n  }\n  if (e.key == \"Left\" || e.key == \"ArrowLeft\"){\n    leftPressed = false;\n  }\n}\n\ndocument.addEventListener(\"keydown\", keyDownHandler, false);\ndocument.addEventListener(\"keyup\", keyUpHandler, false);\n\nconst canvas = document.getElementById('canvas');\nconst ctx = canvas.getContext('2d');\n\nlet playerWidth = 30;\nlet playerHeight = 60;\nlet playerX = canvas.width/2 - playerWidth /2;\nlet playerY = 400;\n\nlet circleRadius = 15;\nlet maxTimer = 10;\nlet timer = 300;\nlet fallingSpeed = 8;\nlet playerSpeed = 8;\nlet score = 0;\nlet scoreCount = 0;\n\nlet circles = [];\n\n\nconst createCircle = (x, y) => {\n  return {x: x, y: y};\n}\n\nconst spawnFalling = () => {\n  let x = Math.floor(Math.random() * 551);\n  let y = -20;\n  let newCircle = createCircle(x, y);\n  \n  circles.push(newCircle);\n}\n\n\nconst drawAndMoveCircles = () => {\n  for (let i = 0; i < circles.length; i++){\n    let circle = circles[i];\n    circle.y += fallingSpeed;\n    \n    \n    \n    ctx.beginPath();\n    ctx.arc(circle.x, circle.y, circleRadius, 0, Math.PI*2, false);\n    ctx.stroke();\n    ctx.closePath();\n    \n    if (circle.y > canvas.height + circleRadius){\n      circles.splice(i, 1);\n    }\n  }\n}\n\nconst playerHit = () => {\n  for (let i = 0; i < circles.length; i++){\n    let circle = circles[i];\n\n\n    \n    let distX = Math.abs(playerX + (playerWidth / 2) - circle.x);\n    let distY = Math.abs(playerY + (playerHeight / 2) - circle.y);\n    \n    if(distX < (playerWidth / 2) + circleRadius && distY < (playerHeight / 2) + circleRadius){\n      return true;\n    } else{\n      return false;\n    }\n  }\n}\n\n//main draw function, calls itself until the player loses\nconst draw = () => {\n  ctx.clearRect(0,0, canvas.width, canvas.height);\n  \n  if(timer > 200){\n    ctx.font = \"30px Arial\";\n    ctx.fillStyle = \"black\";\n    ctx.textAlign = \"center\";\n    ctx.fillText(\"Game Starting in 3...\", canvas.width/2, 100);\n  } else if (timer > 100) {\n    ctx.font = \"30px Arial\";\n    ctx.fillStyle = \"black\";\n    ctx.textAlign = \"center\";\n    ctx.fillText(\"Game Starting in 2...\", canvas.width/2, 100);\n  } else if (timer > 10) {\n    ctx.font = \"30px Arial\";\n    ctx.fillStyle = \"black\";\n    ctx.textAlign = \"center\";\n    ctx.fillText(\"Game Starting in 1...\", canvas.width/2, 100);\n  }\n  \n  ctx.textAlign = \"center\";\n  ctx.fillStyle = \"black\";\n  ctx.font = \"20px Arial\";\n  ctx.fillText(\"Score: \" + score, 450, 480);\n  \n  ctx.fillStyle = \"blue\"\n  ctx.fillRect(playerX, playerY, playerWidth, playerHeight);\n  \n  drawAndMoveCircles();\n  \n  if (rightPressed && playerX < canvas.width){\n    playerX += playerSpeed;\n  }\n  if (leftPressed && playerX > 0){\n    playerX -= playerSpeed;\n  }\n  \n  if (playerHit()){\n    ctx.font = \"30px Arial\";\n    ctx.textAlign = \"center\";\n    ctx.fillText(\"You Lose\", canvas.width/2, 100);\n  } else {\n    window.requestAnimationFrame(draw);\n    \n    timer -= 1;\n    if (timer <= 0){\n      scoreCount += 1;\n      if (scoreCount >= 5){\n        score += 1;\n        scoreCount = 0;\n      }\n      timer = maxTimer;\n      spawnFalling();\n    }\n  }\n}\n\n//function calls\nwindow.requestAnimationFrame(draw);\n\n\n"
+          },
+          "sourceSHA256": {
+            "html": "406aa7688f87d3be3266d581bec05b0f676b09b483d6b50332fd0fbc1d0e58d9",
+            "css": "9737a85902d8e0fd645e4de440fe490531a822be95ef02d4fee050451b17cd4b",
+            "javascript": "ce94b8ff97e760a2e0b9613d5b23ec7c8ac720008aedf1cf3ad00e5f9f54e145"
+          },
+          "settings": {
+            "htmlPreprocessor": "None",
+            "cssPreprocessor": "None",
+            "cssBase": "Neither",
+            "vendorPrefixing": "Neither",
+            "jsPreprocessor": "None",
+            "externalStylesheets": [],
+            "externalScripts": [],
+            "htmlClasses": "",
+            "headContent": ""
+          },
+          "archive": {
+            "file": "codepen-643e3bf-falling-skies-reference-original-export-20261114.zip",
+            "bytes": 10431,
+            "sha256": "a2f8a2e47ca5aeccbc355296b883cb0e3b9b6c519712466fbe83d4d11c45e4f2",
+            "members": [
+              {
+                "file": "jsm9-project-1-falling-skies/README.md",
+                "bytes": 167,
+                "sha256": "c8a5351e6a124fa88133f6d44c3afaf95dfaa7c7cd2f6da2a2fda2c4e7f3e26a"
+              },
+              {
+                "file": "jsm9-project-1-falling-skies/LICENSE.txt",
+                "bytes": 1126,
+                "sha256": "4fac6e9b9a7bdd9be79359566a44ce00138416df01fe219eca48220bdba1e9bd"
+              },
+              {
+                "file": "jsm9-project-1-falling-skies/src/index.html",
+                "bytes": 107,
+                "sha256": "406aa7688f87d3be3266d581bec05b0f676b09b483d6b50332fd0fbc1d0e58d9"
+              },
+              {
+                "file": "jsm9-project-1-falling-skies/src/style.css",
+                "bytes": 97,
+                "sha256": "9737a85902d8e0fd645e4de440fe490531a822be95ef02d4fee050451b17cd4b"
+              },
+              {
+                "file": "jsm9-project-1-falling-skies/src/script.js",
+                "bytes": 3459,
+                "sha256": "ce94b8ff97e760a2e0b9613d5b23ec7c8ac720008aedf1cf3ad00e5f9f54e145"
+              },
+              {
+                "file": "jsm9-project-1-falling-skies/dist/index.html",
+                "bytes": 359,
+                "sha256": "24658759dc8a2c89d3b6764e885cb7c58ae5291403ef88e4aee3d017363e9015"
+              },
+              {
+                "file": "jsm9-project-1-falling-skies/dist/style.css",
+                "bytes": 93,
+                "sha256": "e714c40ac006024cb41622094bd13fc0a280bc86844a6b1fad39213b7e81c8a2"
+              },
+              {
+                "file": "jsm9-project-1-falling-skies/dist/script.js",
+                "bytes": 3451,
+                "sha256": "833475aedef69fc700fc48ae9c85b39c723f79fab1b964753f15d73a9e0cdd67"
+              }
+            ]
+          },
+          "evidenceBoundary": "All three source panels and HTML/CSS/JS settings observed in CodePen; complete source read from official ZIP export. Blank starter HTML and CSS confirmed. Native gameplay and adapted workflow acceptance remain open."
+        },
+        {
+          "at": "2026-11-14T11:41:05.518451+00:00",
+          "originalURL": "https://codepen.io/junilearning/pen/8d640d76fa709de228ec6303625663e3",
+          "observedURL": "https://codepen.io/junilearning/pen/RwRBaXa",
+          "title": "jsm9-project-1-falling-skies",
+          "role": "starter",
+          "completeSourceAndSettings": true,
+          "source": {
+            "html": "",
+            "css": "",
+            "javascript": "// Make a game where you control a rectangle which can move left and right. Count down from 3, and then make circles fall from the sky. If any circles hit the rectangle, display game over. Every few seconds, increase the score by 1 and display it on the canvas."
+          },
+          "sourceSHA256": {
+            "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "javascript": "deb15c5c3d9a3998f5f448d27dbc06af903447f426c043fa7e895ef791e03e2c"
+          },
+          "settings": {
+            "htmlPreprocessor": "None",
+            "cssPreprocessor": "None",
+            "cssBase": "Neither",
+            "vendorPrefixing": "Neither",
+            "jsPreprocessor": "None",
+            "externalStylesheets": [],
+            "externalScripts": [],
+            "htmlClasses": "",
+            "headContent": ""
+          },
+          "archive": {
+            "file": "codepen-8d640d7-falling-skies-starter-original-export-20261114.zip",
+            "bytes": 3117,
+            "sha256": "0d2c98c255d388da676f7ffc0923c24f9ecbff0bb2098b304532142f8d3d7a06",
+            "members": [
+              {
+                "file": "jsm9-project-1-falling-skies/README.md",
+                "bytes": 167,
+                "sha256": "2be44becaf78c34a918175465de3f038fdec671a18e314fd6fbf8c78bc32dc75"
+              },
+              {
+                "file": "jsm9-project-1-falling-skies/LICENSE.txt",
+                "bytes": 1227,
+                "sha256": "fb0b71cfd77c53e85f5bd5d173254b7fd2f0bcc8876098e15ba50de11b2c12aa"
+              },
+              {
+                "file": "jsm9-project-1-falling-skies/src/script.js",
+                "bytes": 261,
+                "sha256": "deb15c5c3d9a3998f5f448d27dbc06af903447f426c043fa7e895ef791e03e2c"
+              },
+              {
+                "file": "jsm9-project-1-falling-skies/dist/index.html",
+                "bytes": 215,
+                "sha256": "8ab053cc95610dd3cc7cab9f71bff18c06dc28129b293fb9b9bfb90452bf9e8d"
+              },
+              {
+                "file": "jsm9-project-1-falling-skies/dist/script.js",
+                "bytes": 261,
+                "sha256": "deb15c5c3d9a3998f5f448d27dbc06af903447f426c043fa7e895ef791e03e2c"
+              }
+            ]
+          },
+          "evidenceBoundary": "All three source panels and HTML/CSS/JS settings observed in CodePen; complete source read from official ZIP export. Blank starter HTML and CSS confirmed. Native gameplay and adapted workflow acceptance remain open."
+        }
+      ],
+      "catalogTitle": "JSM9 Project 1: Falling Skies"
+    },
+    {
+      "project": "breakout",
+      "title": "2D Breakout",
+      "itemId": "javascript-level-2-javascript-master-jsm9-games-in-the-canvas-curriculum-jsm9-project-2-2d-breakout",
+      "originals": [
+        {
+          "at": "2026-11-14T11:41:05.520232+00:00",
+          "originalURL": "https://codepen.io/junilearning/pen/0d5f9c3b21921a4bc506a1139a3091bc",
+          "observedURL": "https://codepen.io/junilearning/pen/zYBLBvX",
+          "title": "jsm9-project-2-2d-breakout",
+          "role": "starter",
+          "completeSourceAndSettings": true,
+          "source": {
+            "html": "",
+            "css": "",
+            "javascript": "// Create the arcade classic breakout. Make a paddle which you can move right and left, a ball that bounces around the screen, and bricks that disappear when the ball hits them. Also set up and display lives and score on the canvas. Send the user a message when they win and when they lose.\n"
+          },
+          "sourceSHA256": {
+            "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "javascript": "b59c70a83b798376d0dd084502e8b8ae9737a920b955020f8de5f5eb47d86d49"
+          },
+          "settings": {
+            "htmlPreprocessor": "None",
+            "cssPreprocessor": "None",
+            "cssBase": "Neither",
+            "vendorPrefixing": "Neither",
+            "jsPreprocessor": "None",
+            "externalStylesheets": [],
+            "externalScripts": [],
+            "htmlClasses": "",
+            "headContent": ""
+          },
+          "archive": {
+            "file": "codepen-0d5f9c3-breakout-starter-original-export-20261114.zip",
+            "bytes": 3128,
+            "sha256": "95194c4010fc5818587f813b23a7bcc9cd4ab07ebe67d8ead2e6af25518d55ab",
+            "members": [
+              {
+                "file": "jsm9-project-2-2d-breakout/README.md",
+                "bytes": 165,
+                "sha256": "85610d2f4f195de06f222e417b42c7a5703135cca8005cf12320573ac22946a6"
+              },
+              {
+                "file": "jsm9-project-2-2d-breakout/LICENSE.txt",
+                "bytes": 1203,
+                "sha256": "ee569f49161e0f5a76ee16b6294a5f9eae62dd0b4b9f02bcdd312111f386932d"
+              },
+              {
+                "file": "jsm9-project-2-2d-breakout/src/script.js",
+                "bytes": 291,
+                "sha256": "b59c70a83b798376d0dd084502e8b8ae9737a920b955020f8de5f5eb47d86d49"
+              },
+              {
+                "file": "jsm9-project-2-2d-breakout/dist/index.html",
+                "bytes": 213,
+                "sha256": "50eede8907777999278ac5a9815cd7de20e3b2f6ff4e8f4666961b767a128272"
+              },
+              {
+                "file": "jsm9-project-2-2d-breakout/dist/script.js",
+                "bytes": 290,
+                "sha256": "077ad91df59e95518b89c8248c19dafd8b5a6c8a01a7e0980bd7a89eeca009d6"
+              }
+            ]
+          },
+          "evidenceBoundary": "All three source panels and HTML/CSS/JS settings observed in CodePen; complete source read from official ZIP export. Blank starter HTML and CSS confirmed. Native gameplay and adapted workflow acceptance remain open."
+        },
+        {
+          "at": "2026-11-14T11:41:05.520998+00:00",
+          "originalURL": "https://codepen.io/junilearning/pen/778b7aa1d7bcd942b617d87a517d35e2",
+          "observedURL": "https://codepen.io/junilearning/pen/OJXwXVm/778b7aa1d7bcd942b617d87a517d35e2",
+          "title": "jsm9-project-2-2d-breakout-solution",
+          "role": "reference",
+          "completeSourceAndSettings": true,
+          "source": {
+            "html": "<canvas id=\"my-canvas\"></canvas>",
+            "css": "* {\n\tpadding: 0;\n\tmargin: 0;\n}\n\ncanvas {\n\tbackground: #eee;\n\tdisplay: block;\n\tmargin: 0 auto;\n}\n",
+            "javascript": "// Create the arcade classic breakout. Make a paddle which you can move right and left, a ball that bounces around the screen, and bricks that dissappear when the ball hits them. Also set up and display lives and score on the canvas. Send the user a message when they win and when they lose.\n\nlet canvas = document.getElementById(\"my-canvas\");\ncanvas.height = 320;\ncanvas.width = 480;\nlet ctx = canvas.getContext(\"2d\");\nlet ballRadius = 10;\nlet x = canvas.width / 2;\nlet y = canvas.height - 30;\nlet dx = 2;\nlet dy = -2;\nlet paddleHeight = 10;\nlet paddleWidth = 75;\nlet paddleX = (canvas.width - paddleWidth) / 2;\nlet rightPressed = false;\nlet leftPressed = false;\nlet brickRowCount = 5;\nlet brickColumnCount = 3;\nlet brickWidth = 75;\nlet brickHeight = 20;\nlet brickPadding = 10;\nlet brickOffsetTop = 30;\nlet brickOffsetLeft = 30;\nlet score = 0;\nlet lives = 3;\nlet bricks = [];\nfor (let c = 0; c < brickColumnCount; c++) {\n\tbricks[c] = [];\n\tfor (let r = 0; r < brickRowCount; r++) {\n\t\tbricks[c][r] = {\n\t\t\tx: 0,\n\t\t\ty: 0,\n\t\t\tstatus: 1\n\t\t};\n\t}\n}\ndocument.addEventListener(\"keydown\", keyDownHandler, false);\ndocument.addEventListener(\"keyup\", keyUpHandler, false);\ndocument.addEventListener(\"mousemove\", mouseMoveHandler, false);\n\nfunction keyDownHandler(e) {\n\tif (e.keyCode == 39) {\n\t\trightPressed = true;\n\t} else if (e.keyCode == 37) {\n\t\tleftPressed = true;\n\t}\n}\n\nfunction keyUpHandler(e) {\n\tif (e.keyCode == 39) {\n\t\trightPressed = false;\n\t} else if (e.keyCode == 37) {\n\t\tleftPressed = false;\n\t}\n}\n\nfunction mouseMoveHandler(e) {\n\tlet relativeX = e.clientX - canvas.offsetLeft;\n\tif (relativeX > 0 && relativeX < canvas.width) {\n\t\tpaddleX = relativeX - paddleWidth / 2;\n\t}\n}\n\nfunction collisionDetection() {\n\tfor (let c = 0; c < brickColumnCount; c++) {\n\t\tfor (let r = 0; r < brickRowCount; r++) {\n\t\t\tlet b = bricks[c][r];\n\t\t\tif (b.status == 1) {\n\t\t\t\tif (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {\n\t\t\t\t\tdy = -dy;\n\t\t\t\t\tb.status = 0;\n\t\t\t\t\tscore++;\n\t\t\t\t\tif (score == brickRowCount * brickColumnCount) {\n\t\t\t\t\t\talert(\"YOU WIN, CONGRATS!\");\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}\n\nfunction drawBall() {\n\tctx.beginPath();\n\tctx.arc(x, y, ballRadius, 0, Math.PI * 2);\n\tctx.fillStyle = \"#0095DD\";\n\tctx.fill();\n\tctx.closePath();\n}\n\nfunction drawPaddle() {\n\tctx.beginPath();\n\tctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);\n\tctx.fillStyle = \"#0095DD\";\n\tctx.fill();\n\tctx.closePath();\n}\n\nfunction drawBricks() {\n\tfor (let c = 0; c < brickColumnCount; c++) {\n\t\tfor (let r = 0; r < brickRowCount; r++) {\n\t\t\tif (bricks[c][r].status == 1) {\n\t\t\t\tlet brickX = r * (brickWidth + brickPadding) + brickOffsetLeft;\n\t\t\t\tlet brickY = c * (brickHeight + brickPadding) + brickOffsetTop;\n\t\t\t\tbricks[c][r].x = brickX;\n\t\t\t\tbricks[c][r].y = brickY;\n\t\t\t\tctx.beginPath();\n\t\t\t\tctx.rect(brickX, brickY, brickWidth, brickHeight);\n\t\t\t\tctx.fillStyle = \"#0095DD\";\n\t\t\t\tctx.fill();\n\t\t\t\tctx.closePath();\n\t\t\t}\n\t\t}\n\t}\n}\n\nfunction drawScore() {\n\tctx.font = \"16px Arial\";\n\tctx.fillStyle = \"#0095DD\";\n\tctx.fillText(\"Score: \" + score, 8, 20);\n}\n\nfunction drawLives() {\n\tctx.font = \"16px Arial\";\n\tctx.fillStyle = \"#0095DD\";\n\tctx.fillText(\"Lives: \" + lives, canvas.width - 65, 20);\n}\n\nfunction draw() {\n\tctx.clearRect(0, 0, canvas.width, canvas.height);\n\tdrawBricks();\n\tdrawBall();\n\tdrawPaddle();\n\tdrawScore();\n\tdrawLives();\n\tcollisionDetection();\n\tif (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {\n\t\tdx = -dx;\n\t}\n\tif (y + dy < ballRadius) {\n\t\tdy = -dy;\n\t} else if (y + dy > canvas.height - ballRadius) {\n\t\tif (x > paddleX && x < paddleX + paddleWidth) {\n\t\t\tdy = -dy;\n\t\t} else {\n\t\t\tlives--;\n\t\t\tif (!lives) {\n\t\t\t\talert(\"GAME OVER\");\n\t\t\t} else {\n\t\t\t\tx = canvas.width / 2;\n\t\t\t\ty = canvas.height - 30;\n\t\t\t\tdx = 3;\n\t\t\t\tdy = -3;\n\t\t\t\tpaddleX = (canvas.width - paddleWidth) / 2;\n\t\t\t}\n\t\t}\n\t}\n\tif (rightPressed && paddleX < canvas.width - paddleWidth) {\n\t\tpaddleX += 7;\n\t} else if (leftPressed && paddleX > 0) {\n\t\tpaddleX -= 7;\n\t}\n\tx += dx;\n\ty += dy;\n\trequestAnimationFrame(draw);\n}\ndraw();\n"
+          },
+          "sourceSHA256": {
+            "html": "bcdadb2f807fd06658a17466a9dd29fc39b8468f68770f5926dd817bdb6eb29a",
+            "css": "3b0ec6e2d497631a06d36535d0baf39db80d8c2fcc7e5c73e87ae1f28d0c2d92",
+            "javascript": "697c00b27436f68cec183ac9e43acf04edefdd161e103920ff2d4745d1fba10c"
+          },
+          "settings": {
+            "htmlPreprocessor": "None",
+            "cssPreprocessor": "None",
+            "cssBase": "Neither",
+            "vendorPrefixing": "Neither",
+            "jsPreprocessor": "None",
+            "externalStylesheets": [],
+            "externalScripts": [],
+            "htmlClasses": "",
+            "headContent": ""
+          },
+          "archive": {
+            "file": "codepen-778b7aa-breakout-reference-original-export-20261114.zip",
+            "bytes": 10208,
+            "sha256": "3ae6e63190c8655d15fe57742663b3d8386df4693d57c7dfe9488f815ab5d0e4",
+            "members": [
+              {
+                "file": "jsm9-project-2-2d-breakout-solution/README.md",
+                "bytes": 240,
+                "sha256": "936ffa98132889a349b7db5633c09830b149e96dad19e1abd9405bf2f272ead5"
+              },
+              {
+                "file": "jsm9-project-2-2d-breakout-solution/src/index.html",
+                "bytes": 32,
+                "sha256": "bcdadb2f807fd06658a17466a9dd29fc39b8468f68770f5926dd817bdb6eb29a"
+              },
+              {
+                "file": "jsm9-project-2-2d-breakout-solution/src/style.css",
+                "bytes": 96,
+                "sha256": "3b0ec6e2d497631a06d36535d0baf39db80d8c2fcc7e5c73e87ae1f28d0c2d92"
+              },
+              {
+                "file": "jsm9-project-2-2d-breakout-solution/src/script.js",
+                "bytes": 3985,
+                "sha256": "697c00b27436f68cec183ac9e43acf04edefdd161e103920ff2d4745d1fba10c"
+              },
+              {
+                "file": "jsm9-project-2-2d-breakout-solution/dist/index.html",
+                "bytes": 296,
+                "sha256": "1ff1073d6f190888a5e8f0a284189ef253e92730b6f4402477cb4df22a5acf7e"
+              },
+              {
+                "file": "jsm9-project-2-2d-breakout-solution/dist/style.css",
+                "bytes": 95,
+                "sha256": "29202638e5f03ebe0459abf060fbbbe96225b055aa2d8a662300eb8f5e567655"
+              },
+              {
+                "file": "jsm9-project-2-2d-breakout-solution/dist/script.js",
+                "bytes": 3984,
+                "sha256": "0521b4e56ff581b2d35a565c9bcb2d62d8b353a6cb5760e570c67692aba56b59"
+              }
+            ]
+          },
+          "evidenceBoundary": "All three source panels and HTML/CSS/JS settings observed in CodePen; complete source read from official ZIP export. Blank starter HTML and CSS confirmed. Native gameplay and adapted workflow acceptance remain open.",
+          "originalPreviewObservation": "Repeated native game-over alerts interrupted source settings. The review tab's preview iframe was temporarily paused with supported debugger commands, then the temporary tab was closed after export; gameplay is not accepted."
+        }
+      ],
+      "catalogTitle": "JSM9 Project 2: 2D Breakout"
+    },
+    {
+      "project": "asteroids",
+      "title": "Asteroids",
+      "itemId": "javascript-level-2-javascript-master-jsm9-games-in-the-canvas-curriculum-jsm9-project-3-asteroids",
+      "originals": [
+        {
+          "at": "2026-11-14T11:41:05.521724+00:00",
+          "originalURL": "https://codepen.io/junilearning/pen/4d14f6e432dd3b2dcee15a9d95eac750",
+          "observedURL": "https://codepen.io/junilearning/pen/BazPzpm",
+          "title": "jsm9-project-3-asteroids",
+          "role": "starter",
+          "completeSourceAndSettings": true,
+          "source": {
+            "html": "",
+            "css": "",
+            "javascript": "// Create the classic arcade game asteroids, complete with full 2d motion! You control a spaceship which can move around the canvas, and spinning asteroids are speeding at you. You can break the asteroids by shooting them, which breaks them in half, and gives you a point.\n"
+          },
+          "sourceSHA256": {
+            "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "javascript": "7af994490bb0738ba804e92a787d70222fade837585e71d4e8fb7e6c91c950c3"
+          },
+          "settings": {
+            "htmlPreprocessor": "None",
+            "cssPreprocessor": "None",
+            "cssBase": "Neither",
+            "vendorPrefixing": "Neither",
+            "jsPreprocessor": "None",
+            "externalStylesheets": [],
+            "externalScripts": [],
+            "htmlClasses": "",
+            "headContent": ""
+          },
+          "archive": {
+            "file": "codepen-4d14f6e-asteroids-starter-original-export-20261114.zip",
+            "bytes": 3037,
+            "sha256": "c1f8805b626ab904146ea4c78f4dc6e991820952c471d9581e75803f99ab1994",
+            "members": [
+              {
+                "file": "jsm9-project-3-asteroids/README.md",
+                "bytes": 163,
+                "sha256": "6e83f49012e1991157187269a9b66b60f85c51aa84a526b5c592426674f19b3a"
+              },
+              {
+                "file": "jsm9-project-3-asteroids/LICENSE.txt",
+                "bytes": 1172,
+                "sha256": "f1fd379ece8d413f3a06d088bfe5975e0f6f8a2a56fccf380a1768b086721ed6"
+              },
+              {
+                "file": "jsm9-project-3-asteroids/src/script.js",
+                "bytes": 273,
+                "sha256": "7af994490bb0738ba804e92a787d70222fade837585e71d4e8fb7e6c91c950c3"
+              },
+              {
+                "file": "jsm9-project-3-asteroids/dist/index.html",
+                "bytes": 211,
+                "sha256": "bdf87b73d4bc30fbbdcb2f17ea368726c4d536378d42a1d2a0da84a55e337204"
+              },
+              {
+                "file": "jsm9-project-3-asteroids/dist/script.js",
+                "bytes": 272,
+                "sha256": "98cc2d70b9f58b04b575ceea000ec57b19ba992fe2b0ca5fb03d6937c8bbc902"
+              }
+            ]
+          },
+          "evidenceBoundary": "All three source panels and HTML/CSS/JS settings observed in CodePen; complete source read from official ZIP export. Blank starter HTML and CSS confirmed. Native gameplay and adapted workflow acceptance remain open."
+        },
+        {
+          "at": "2026-11-14T11:41:05.522550+00:00",
+          "originalURL": "https://codepen.io/junilearning/pen/8a5307a6643fbf762925b08229b5a847",
+          "observedURL": "https://codepen.io/junilearning/pen/WNrqPQO/8a5307a6643fbf762925b08229b5a847",
+          "title": "jsm9-project-3-asteroids-solution",
+          "role": "reference",
+          "completeSourceAndSettings": true,
+          "source": {
+            "html": "<canvas id=\"canvas\"></canvas>",
+            "css": "body {\n  overflow: none;\n}\n* { padding: 0; margin: 0; }\n    \tcanvas { background: #eee; display: block; margin: 10px auto;}",
+            "javascript": "// Create the classic arcade game asteroids, complete with full 2d motion! You control a spaceship which can move around the canvas, and spinning asteroids are speeding at you. You can break the asteroids by shooting them, which breaks them in half, and gives you a point.\n\nlet rightPressed = false;\nlet leftPressed = false;\nlet upPressed = false;\n\nlet cooldownTimer = 0;\nlet score = 0;\n\n//setup player triangle\n\n\n\nlet player = {x: 100, y: 100, rotation: 0, totalRotation: 0};\nlet playerTriangle = [[10,10], [0,-15], [-10, 10]];\nlet circles = [];\n\nconst createCircle = () => {\n  return {x: 0, y: 0, heading: 90, size: 50};\n}\n\nconst createBullet = (xPos, yPos, playerHeading) => {\n  return {x: xPos, y: yPos, heading: playerHeading, alive: true};\n}\n\n//Handle all key down\nconst keyDownHandler = (e) => {\n  if (e.key == \"d\"){\n    rightPressed = true;\n  }\n  if (e.key == \"a\"){\n    leftPressed = true;\n  }\n  if(e.key == \"w\"){\n    upPressed = true;\n  }\n  if(cooldownTimer == 0 && e.key == \" \" || e.key == \"f\" ){\n    Fire();\n    cooldownTimer = 10;\n  }\n}\n\n//Handle all key up\nconst keyUpHandler = (e) => {\n  if (e.key === \"d\") {\n    rightPressed = false;\n  }\n  if (e.key == \"a\"){\n    leftPressed = false;\n  }\n  if(e.key == \"w\"){\n    upPressed = false;\n  }\n}\n\n\ndocument.addEventListener(\"keydown\", keyDownHandler, false);\ndocument.addEventListener(\"keyup\", keyUpHandler, false);\n\nconst canvas = document.getElementById('canvas');\nconst ctx = canvas.getContext('2d');\n\n\n//Handle bullet firing\nconst Fire = () => {\n  let dir = player.totalRotation - 90;\n  let moveBullet;\n  let bullet = createBullet(player.x, player.y, player.heading);\n  \n  window.requestAnimationFrame(moveBullet = function(){\n    bullet.x += Math.cos(convertToRadians(dir)) * 5;\n    bullet.y += Math.sin(convertToRadians(dir)) * 5;\n              \n    ctx.beginPath();\n    ctx.arc(bullet.x, bullet.y, 10, 0, Math.PI*2, false);\n    ctx.fillStyle = \"black\";\n    ctx.fill();\n    ctx.closePath();\n    \n    //Loop through all the circles and check if any hit the bullet\n    for (let i = 0; i < circles.length; i++){\n      let circle = circles[i];\n      if (Math.abs(bullet.x - circle.x) < (circle.size + 10) && Math.abs(bullet.y - circle.y) < (circle.size + 10) && bullet.alive) {\n        \n        bullet.alive = false;\n        let halfRadius = circle.size / 2;\n        \n        //If still big enough, push 2 new circles of half size into its location with random degrees\n        if (halfRadius > 10){\n          let newX = circles[i].x;\n          let newY = circles[i].y;\n          for(let j = 0; j < 2; j++){\n            let dir = Math.floor(Math.random() * 361);\n            let splitCircle = createCircle();\n            splitCircle.heading = dir;\n            splitCircle.x = newX;\n            splitCircle.y = newY;\n            splitCircle.size = halfRadius;\n            circles.push(splitCircle);\n          }\n        }\n        \n        score += 1;\n        circles.splice(i, 1);\n      }\n    } \n    if(bullet.x < 560 && bullet.y < 510 && bullet.x > -10 && bullet.y > -10 && bullet.alive){\n      window.requestAnimationFrame(moveBullet);\n    }\n  });\n}\n\n\n//rotates an X coordinate around an origin by a number of degrees\nconst rotateX = (originalX, originalY, angleOfChange) => {\n  let tempPoint = (originalX * (Math.cos(angleOfChange)) + originalY * (Math.sin(angleOfChange)));\n  if (tempPoint < 0.0001 && tempPoint > -0.0001){\n    tempPoint = 0;\n  }\n  return tempPoint;\n}\n\n//rotates a Y coordinate around an origin by a number of degrees\nconst rotateY = (originalX, originalY, angleOfChange) => {\n  let tempPoint = -originalX * Math.sin(angleOfChange)  +  originalY * (Math.cos(angleOfChange));\n  if (tempPoint < 0.0001 && tempPoint > -0.0001) {\n    tempPoint = 0;\n  }\n  return tempPoint;\n}\n\n//converts degrees into radians\nconst convertToRadians = (angle) => {\n  return angle * (Math.PI / 180);\n}\n\n\n//copies a 2d array into a deep copy of itself\nfunction copyPoints(originalPoints){\n  let newList = [];\n  for (let i = 0; i < originalPoints.length; i++){\n    let partialList = [];\n    for (let j = 0; j < originalPoints[i].length; j++){\n      partialList.push(originalPoints[i][j]);\n    }\n    newList.push(partialList);\n  }\n  return newList;\n}\n\n\n//calculates the new points for a shape by rotating them by an angle of change\nconst calculatePoints = (angleOfChange, startingValues) => {\n  let newPoints = copyPoints(startingValues);\n  for (let i = 0; i < startingValues.length; i++){\n    newPoints[i][0] = rotateX(startingValues[i][0], startingValues[i][1], angleOfChange);\n    newPoints[i][1] = rotateY(startingValues[i][0], startingValues[i][1], angleOfChange);\n  }\n  return newPoints;\n}\n\n\n//draws a shape using the 2d array format for its points\nconst drawShape = (pointValues, middleX, middleY) => {\n  if(pointValues.length > 1){\n    ctx.beginPath();\n    ctx.moveTo(middleX + pointValues[0][0], middleY + pointValues[0][1]);\n    for(let i = 0; i < pointValues.length; i++){\n      ctx.lineTo(middleX + pointValues[i][0], middleY + pointValues[i][1]);\n    }\n    ctx.lineTo(middleX + pointValues[0][0], middleY + pointValues[0][1]);\n    ctx.fill();\n    ctx.closePath();\n   }\n}\n\n//spawns one circle in a random location and adds it to the circles list\nconst spawnCircle = () => {\n  let circle = createCircle();\n  let spawnSide = Math.floor(Math.random() * 4);\n\n  if (spawnSide == 0){\n    circle.x = Math.floor(Math.random() * 501);\n    circle.y = -50;\n    circle.heading = 90;\n  }\n  else if (spawnSide == 1){\n    circle.x = Math.floor(Math.random() * 501);\n    circle.y = 550;\n    circle.heading = -90;\n  }\n  else if (spawnSide == 2){\n    circle.x = -50;\n    circle.y = Math.floor(Math.random() * 501);\n    circle.heading = 0;\n  }\n  else{\n    circle.x = 550;\n    circle.y = Math.floor(Math.random() * 501);\n    circle.heading = 180;\n  }\n  circle.heading += Math.floor(Math.random() * 180) - 90;\n  circles.push(circle);\n}\n\n\n//draws all the circles and moves them, handling player collision\nconst drawAndMoveCircles = () => {\n  for (let i = 0; i < circles.length; i++){\n    let circle = circles[i];\n    \n    circle.x += Math.cos(convertToRadians(circle.heading)) * 2;\n    circle.y += Math.sin(convertToRadians(circle.heading)) * 2;\n    \n    if (circle.x < -50){\n      circle.x = 550;\n    }\n    if (circle.x > 600){\n      circle.x = -50;\n    }\n    if (circle.y < -50){\n      circle.y = 550;\n    }\n    if (circle.y > 550){\n      circle.y = -50;\n    }\n    \n    ctx.beginPath();\n    ctx.arc(circle.x, circle.y, circle.size, 0, Math.PI*2, false);\n    ctx.stroke();\n    ctx.closePath();\n    \n    if(Math.abs(player.x - circle.x) < 5 + circle.size && Math.abs(player.y - circle.y) < 5 + circle.size){\n      return false;\n    }\n  }\n  return true;\n}\n\ncanvas.width = 550;\ncanvas.height = 500;\n\nconst draw = () => {\n  ctx.clearRect(0,0, canvas.width, canvas.height);\n  \n  let playerAlive = drawAndMoveCircles();\n  \n  drawShape(playerTriangle, player.x, player.y);\n  \n  //Rotation of the shape is CCW, rotation of the vector for movement is CW\n  if (rightPressed){\n    player.rotation -= 5;\n    player.totalRotation += 5;\n  }\n  if (leftPressed){\n    player.rotation += 5;\n    player.totalRotation -= 5;\n  }\n  if(upPressed){\n      player.x += Math.cos(convertToRadians(player.totalRotation - 90));\n      player.y += Math.sin(convertToRadians(player.totalRotation - 90));\n  }\n  playerTriangle = calculatePoints(convertToRadians(player.rotation), playerTriangle);\n  player.rotation = 0;\n  \n  if(cooldownTimer > 0){\n    cooldownTimer -= 1;\n  }\n\n  ctx.font = \"20px Arial\";\n  ctx.fillText(\"Score: \" + score, 450, 480);\n  \n  if(playerAlive){\n    window.requestAnimationFrame(draw);\n  } else {\n    ctx.font = \"30px Arial\";\n    ctx.textAlign = \"center\";\n    ctx.fillText(\"You Lose\", canvas.width/2, 100);\n  }\n}\n\n//function calls\nwindow.requestAnimationFrame(draw);\nsetInterval(spawnCircle, 5000);\n\n"
+          },
+          "sourceSHA256": {
+            "html": "c945c044a619ad847b87a8358dc69e87e7f37460626173e05a700f44efb4a879",
+            "css": "6e44234bb6eb2b28760a4a5b2ffa02bb7ecd85ece779febb78d94cf25dc97b25",
+            "javascript": "c77f232a29c9f87a518a112fd4c3a261dccd189981d1a2a81eced9cb97475dfa"
+          },
+          "settings": {
+            "htmlPreprocessor": "None",
+            "cssPreprocessor": "None",
+            "cssBase": "Neither",
+            "vendorPrefixing": "Neither",
+            "jsPreprocessor": "None",
+            "externalStylesheets": [],
+            "externalScripts": [],
+            "htmlClasses": "",
+            "headContent": ""
+          },
+          "archive": {
+            "file": "codepen-8a5307a-asteroids-reference-original-export-20261114.zip",
+            "bytes": 17914,
+            "sha256": "be23564d7a73916066e62c71d9b919a2a14a6da7b43ee31fb3e6d12013ee160e",
+            "members": [
+              {
+                "file": "jsm9-project-3-asteroids-solution/README.md",
+                "bytes": 238,
+                "sha256": "94709aa6bcd223bc8dc48732980df5a2ee730cc8e342fea9d9de32f9279ef9d9"
+              },
+              {
+                "file": "jsm9-project-3-asteroids-solution/src/index.html",
+                "bytes": 29,
+                "sha256": "c945c044a619ad847b87a8358dc69e87e7f37460626173e05a700f44efb4a879"
+              },
+              {
+                "file": "jsm9-project-3-asteroids-solution/src/style.css",
+                "bytes": 123,
+                "sha256": "6e44234bb6eb2b28760a4a5b2ffa02bb7ecd85ece779febb78d94cf25dc97b25"
+              },
+              {
+                "file": "jsm9-project-3-asteroids-solution/src/script.js",
+                "bytes": 7830,
+                "sha256": "c77f232a29c9f87a518a112fd4c3a261dccd189981d1a2a81eced9cb97475dfa"
+              },
+              {
+                "file": "jsm9-project-3-asteroids-solution/dist/index.html",
+                "bytes": 291,
+                "sha256": "bc5b6300097d698b55a832c1d01cefc3695823deff0e016a1173e26c7091b79b"
+              },
+              {
+                "file": "jsm9-project-3-asteroids-solution/dist/style.css",
+                "bytes": 123,
+                "sha256": "6e44234bb6eb2b28760a4a5b2ffa02bb7ecd85ece779febb78d94cf25dc97b25"
+              },
+              {
+                "file": "jsm9-project-3-asteroids-solution/dist/script.js",
+                "bytes": 7828,
+                "sha256": "1ae00f17c240c40bce9c57f7dcce4ca40023e2dd0fb0b876a87e12bd17fd3099"
+              }
+            ]
+          },
+          "evidenceBoundary": "All three source panels and HTML/CSS/JS settings observed in CodePen; complete source read from official ZIP export. Blank starter HTML and CSS confirmed. Native gameplay and adapted workflow acceptance remain open."
+        }
+      ],
+      "catalogTitle": "JSM9 Project 3: Asteroids"
+    },
+    {
+      "project": "starfield",
+      "title": "Animated Starfield",
+      "itemId": "javascript-level-2-javascript-master-jsm9-games-in-the-canvas-curriculum-jsm9-project-4-animated-starfield",
+      "originals": [
+        {
+          "at": "2026-11-14T11:41:05.523278+00:00",
+          "originalURL": "https://codepen.io/junilearning/pen/6d5f8181e8ea59009eadd259e249c5c5",
+          "observedURL": "https://codepen.io/junilearning/pen/MWeBeoL",
+          "title": "jsm9-project-4-animated-starfield",
+          "role": "starter",
+          "completeSourceAndSettings": true,
+          "source": {
+            "html": "",
+            "css": "",
+            "javascript": "// Draw an animated starfield! White stars should cascade down a black canvas and create an artistic pattern.\n"
+          },
+          "sourceSHA256": {
+            "html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "javascript": "0ed314db5aeeb49e068a02f5cb91882ce860932a6467b282529a078334e5d227"
+          },
+          "settings": {
+            "htmlPreprocessor": "None",
+            "cssPreprocessor": "None",
+            "cssBase": "Neither",
+            "vendorPrefixing": "Neither",
+            "jsPreprocessor": "Babel",
+            "externalStylesheets": [],
+            "externalScripts": [],
+            "htmlClasses": "",
+            "headContent": ""
+          },
+          "archive": {
+            "file": "codepen-6d5f818-starfield-starter-original-export-20261114.zip",
+            "bytes": 2849,
+            "sha256": "51333c0969a22163440f305bf86087227b8754a6001787003c65760e36fa57bd",
+            "members": [
+              {
+                "file": "jsm9-project-4-animated-starfield/README.md",
+                "bytes": 172,
+                "sha256": "ab384b055235b5b1123ad149cb8f2c023fcc2ce31e382e81cb1204ae0dc5e4a6"
+              },
+              {
+                "file": "jsm9-project-4-animated-starfield/LICENSE.txt",
+                "bytes": 1202,
+                "sha256": "de5f84529336451a0a52e75b93ec3dc3a9ef37a660996967b51c0712423f1488"
+              },
+              {
+                "file": "jsm9-project-4-animated-starfield/src/script.js",
+                "bytes": 110,
+                "sha256": "0ed314db5aeeb49e068a02f5cb91882ce860932a6467b282529a078334e5d227"
+              },
+              {
+                "file": "jsm9-project-4-animated-starfield/dist/index.html",
+                "bytes": 220,
+                "sha256": "9e385f47cddcf2e3568e5ca38b73ea45142958ab6281a23537d263fac73191d9"
+              },
+              {
+                "file": "jsm9-project-4-animated-starfield/dist/script.js",
+                "bytes": 109,
+                "sha256": "419caae3f8fb817af578c5259e63c64b81835e9b9c808af6227d915da61acfd1"
+              }
+            ]
+          },
+          "evidenceBoundary": "All three source panels and HTML/CSS/JS settings observed in CodePen; complete source read from official ZIP export. Blank starter HTML and CSS confirmed. Native gameplay and adapted workflow acceptance remain open."
+        },
+        {
+          "at": "2026-11-14T11:41:05.524022+00:00",
+          "originalURL": "https://codepen.io/junilearning/pen/ac7242107973239507eebc571a767c5a",
+          "observedURL": "https://codepen.io/junilearning/pen/KKMRKRK/ac7242107973239507eebc571a767c5a",
+          "title": "jsm9-project-4-animated-starfield-solution",
+          "role": "reference",
+          "completeSourceAndSettings": true,
+          "source": {
+            "html": "<div id=\"container\"></div>",
+            "css": "body {\n\tmargin: 0px;\n\tpadding: 0px;\n\toverflow: hidden;\n}\n\ndiv {\n\twidth: 100%;\n\theight: 400vh;\n\tposition: absolute;\n\tleft: 0px;\n\ttop: 0px;\n\tz-index: -1;\n\toverflow: hidden;\n}\n",
+            "javascript": "// Draw an animated starfield! White stars should cascade down a black canvas and create an artistic pattern.\n\n// Define the starfield object\nconst starfield = {\n\tfps: 30,\n\tcanvas: null,\n\twidth: 0,\n\theight: 0,\n\tminVelocity: 15,\n\tmaxVelocity: 30,\n\tstarsCount: 100,\n\tintervalId: 0\n};\n\n// Initializes the starfield\nconst makeStarfield = (containerDiv) => {\n\t// Store the div.\n\tstarfield.containerDiv = containerDiv;\n\tstarfield.width = window.innerWidth;\n\tstarfield.height = window.innerHeight;\n\n\t//\tCreate the canvas.\n\tlet canvas = document.createElement(\"canvas\");\n\tcontainerDiv.appendChild(canvas);\n\tstarfield.canvas = canvas;\n\tstarfield.canvas.width = starfield.width;\n\tstarfield.canvas.height = starfield.height;\n};\n\nstarfield.start = () => {\n\t// Create the stars. We want to use a range based for loop here to make sure we're indexing the right objects.\n\tlet stars = [];\n\tfor (let i = 0; i < starfield.starsCount; i++) {\n\t\tstars[i] = makeStar(\n\t\t\tMath.random() * starfield.width,\n\t\t\tMath.random() * starfield.height,\n\t\t\tMath.random() * 3 + 1,\n\t\t\tMath.random() * (starfield.maxVelocity - starfield.minVelocity) +\n\t\t\t\tstarfield.minVelocity\n\t\t);\n\t}\n\n\tstarfield.stars = stars;\n\n\t// Start the timer.\n\tstarfield.intervalId = setInterval(function () {\n\t\tstarfield.update();\n\t\tstarfield.draw();\n\t}, 1000 / starfield.fps);\n};\n\nstarfield.update = () => {\n\tlet dt = 1 / starfield.fps;\n\tstarfield.stars.forEach((star, index) => {\n\t\tstar.y += dt * star.velocity;\n\t\t//\tIf the star has moved from the bottom of the screen, spawn it at the top.\n\t\tif (star.y > starfield.height) {\n\t\t\tstarfield.stars[index] = makeStar(\n\t\t\t\tMath.random() * starfield.width,\n\t\t\t\t0,\n\t\t\t\tMath.random() * 3 + 1,\n\t\t\t\tMath.random() * (starfield.maxVelocity - starfield.minVelocity) +\n\t\t\t\t\tstarfield.minVelocity\n\t\t\t);\n\t\t}\n\t});\n};\n\nconst makeStar = (x, y, size, velocity) => {\n\treturn { x, y, size, velocity };\n};\n\nstarfield.draw = () => {\n\t// Get the drawing context.\n\tlet ctx = starfield.canvas.getContext(\"2d\");\n\n\t// Draw the background.\n\tctx.fillStyle = \"#000000\";\n\tctx.fillRect(0, 0, starfield.width, starfield.height);\n\n\t// Draw stars.\n\tctx.fillStyle = \"#ffffff\";\n\n\tstarfield.stars.forEach((star) => {\n\t\tctx.fillRect(star.x, star.y, star.size, star.size);\n\t});\n};\n\nlet container = document.getElementById(\"container\");\nmakeStarfield(container);\nstarfield.start();\n\n// Credits: Adapted from https://www.codeproject.com/Articles/642499/Learn-JavaScript-Part-1-Create-a-Starfield\n"
+          },
+          "sourceSHA256": {
+            "html": "4764f3f14eda282f00d9472f61cc0130f9b415fe024e1d043443f73fc09f01ef",
+            "css": "d6f40b3ef62cddc09ff7e315a2243bbba9cd93a36ac856a4f7ec9b7454d3a93a",
+            "javascript": "b95e494470e89594596832f841ee2113984ab788cefa29ede742b7e0eded6512"
+          },
+          "settings": {
+            "htmlPreprocessor": "None",
+            "cssPreprocessor": "None",
+            "cssBase": "Neither",
+            "vendorPrefixing": "Neither",
+            "jsPreprocessor": "Babel",
+            "externalStylesheets": [],
+            "externalScripts": [],
+            "htmlClasses": "",
+            "headContent": ""
+          },
+          "archive": {
+            "file": "codepen-ac72421-starfield-reference-original-export-20261114.zip",
+            "bytes": 7439,
+            "sha256": "42ac1298eafc63216862fba6203a8559f65e86a3714822f7a29afdcc2f056dde",
+            "members": [
+              {
+                "file": "jsm9-project-4-animated-starfield-solution/README.md",
+                "bytes": 247,
+                "sha256": "6c6249c68b3520d7b48966d3393e47a9ad536f652edb23dcfd32da92254aee77"
+              },
+              {
+                "file": "jsm9-project-4-animated-starfield-solution/src/index.html",
+                "bytes": 26,
+                "sha256": "4764f3f14eda282f00d9472f61cc0130f9b415fe024e1d043443f73fc09f01ef"
+              },
+              {
+                "file": "jsm9-project-4-animated-starfield-solution/src/style.css",
+                "bytes": 173,
+                "sha256": "d6f40b3ef62cddc09ff7e315a2243bbba9cd93a36ac856a4f7ec9b7454d3a93a"
+              },
+              {
+                "file": "jsm9-project-4-animated-starfield-solution/src/script.js",
+                "bytes": 2442,
+                "sha256": "b95e494470e89594596832f841ee2113984ab788cefa29ede742b7e0eded6512"
+              },
+              {
+                "file": "jsm9-project-4-animated-starfield-solution/dist/index.html",
+                "bytes": 297,
+                "sha256": "e3bc126c0e2384a85e37966e5ee6f55fbfd0ab49ef4861c2ab1084bfc2236533"
+              },
+              {
+                "file": "jsm9-project-4-animated-starfield-solution/dist/style.css",
+                "bytes": 172,
+                "sha256": "d9d186ccf6cc9e7549e1e7d1095f0ef4592498e09e1f0853a8804a249dd780eb"
+              },
+              {
+                "file": "jsm9-project-4-animated-starfield-solution/dist/script.js",
+                "bytes": 2504,
+                "sha256": "d86485f801a8b590b8d26c3ee0230a06a50bb4b2cbca4b917422f18347c41c79"
+              }
+            ]
+          },
+          "evidenceBoundary": "All three source panels and HTML/CSS/JS settings observed in CodePen; complete source read from official ZIP export. Blank starter HTML and CSS confirmed. Native gameplay and adapted workflow acceptance remain open."
+        }
+      ],
+      "catalogTitle": "JSM9 Project 4: Animated Starfield"
+    }
+  ],
+  "files": {
+    "falling-skies": {
+      "starter": {
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Falling Skies</title><link rel=\"stylesheet\" href=\"styles.css\"></head><body><main><h1>Falling Skies</h1><canvas width=\"550\" height=\"500\" tabindex=\"0\" aria-label=\"Falling Skies play area\"></canvas><p role=\"status\" aria-live=\"polite\"></p><div class=\"controls\"><button type=\"button\" data-key=\"left\">Left</button><button type=\"button\" data-key=\"right\">Right</button><button type=\"button\" id=\"restart\">Restart</button></div></main><script src=\"script.js\"></script></body></html>\n",
+        "styles.css": "* { box-sizing: border-box; }\nbody { margin: 0; font: 1rem system-ui,sans-serif; color:#111827; background:white; }\nmain { width:min(100% - 2rem,70rem); margin:1rem auto; }\nh1 { font-size:1.5rem; overflow-wrap:anywhere; }\ncanvas { display:block; max-width:100%; height:auto; background:#eee; margin:auto; touch-action:none; }\n.controls { display:flex; flex-wrap:wrap; gap:.5rem; }\nbutton { font:inherit; padding:.6rem; touch-action:none; }\n[role=\"status\"] { min-height:1.5em; overflow-wrap:anywhere; }\n:focus-visible { outline:3px solid #0f766e; outline-offset:3px; }\n",
+        "script.js": "\nconst canvas=document.querySelector('canvas');\nconst ctx=canvas.getContext('2d');\nconst status=document.querySelector('[role=\"status\"]');\nconst setStatus=text=>{if(status.textContent!==text)status.textContent=text;};\nconst keys={left:false,right:false,up:false,fire:false};\n\nconst newGame = () => ({ x:260, y:400, width:30, height:60, circles:[], ticks:0, score:0, countdown:180, status:'starting' });\nfunction circleTouchesRectangle(c,r) {\n // TODO: Compare the nearest-point distance with the radius.\n return false;\n}\nfunction stepGame(s,keys,random=Math.random) {\n // TODO: Apply the rules and boundary cases in README.md and CASES.md.\n}\nfunction paint(s) {\n ctx.clearRect(0,0,canvas.width,canvas.height);\n ctx.fillStyle='blue';ctx.fillRect(s.x,s.y,s.width,s.height);\n ctx.strokeStyle='black';\n for(const c of s.circles){ctx.beginPath();ctx.arc(c.x,c.y,c.radius,0,Math.PI*2);ctx.stroke();}\n ctx.fillStyle='black';ctx.font='20px Arial';ctx.textAlign='right';ctx.fillText('Score: '+s.score,530,480);\n if(s.countdown||s.status==='lost'){ctx.font='30px Arial';ctx.textAlign='center';ctx.fillText(s.status==='lost'?'You Lose':'Game Starting in '+Math.ceil(s.countdown/60)+'...',275,100);}\n setStatus(s.status==='lost'?'You Lose. Score: '+s.score:s.countdown?'Game Starting in '+Math.ceil(s.countdown/60):'Score: '+s.score);\n}\n\nlet game=newGame();\nconst clearKeys=()=>{for(const key of Object.keys(keys))keys[key]=false;};\nconst keyNames={ArrowLeft:'left',ArrowRight:'right',a:'left',d:'right',w:'up',' ':'fire',f:'fire'};\nwindow.addEventListener('keydown',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=true;}});\nwindow.addEventListener('keyup',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=false;}});\nwindow.addEventListener('blur',clearKeys);\ndocument.addEventListener('visibilitychange',()=>{if(document.hidden)clearKeys();});\nfor(const button of document.querySelectorAll('[data-key]')){\n button.addEventListener('pointerdown',e=>{e.preventDefault();button.setPointerCapture(e.pointerId);keys[button.dataset.key]=true;});\n for(const name of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(name,()=>keys[button.dataset.key]=false);\n}\ndocument.querySelector('#restart').addEventListener('click',()=>{clearKeys();game=newGame();paint(game);canvas.focus();});\n\nlet previous;\nlet elapsed=0;\nfunction frame(time){\n if(previous!==undefined)elapsed+=Math.min(100,Math.max(0,time-previous));previous=time;\n while(elapsed>=1000/60){stepGame(game,keys);elapsed-=1000/60;}\n paint(game);requestAnimationFrame(frame);\n}\npaint(game);requestAnimationFrame(frame);\n",
+        "README.md": "# Falling Skies\n\nOpen index.html without a server. Edit script.js and reload the page.\n\nThe blue 30-by-60 player starts at (260,400) on a 550-by-500 canvas. Left and right move eight pixels per simulation tick and clamp the entire rectangle inside the canvas. After a three-second countdown, radius-15 circles fall eight pixels per tick, with a new circle every ten ticks. The score increases once per two seconds of survival. The simulation uses 60 ticks per second, independent of display refresh rate.\n\nComplete circleTouchesRectangle and stepGame in script.js. Clamp the circle center to the rectangle's nearest point. Compare squared distance to radius squared; equality is contact. Check every circle before declaring the player safe. Remove all circles beyond the bottom without skipping adjacent entries. A hit changes the state to lost once and freezes play. Restart creates a fresh countdown. Hold the arrow keys or the on-screen direction controls; releasing focus clears held input.\n\nTrace a harmless first circle followed by a circle at the player's center: the second circle must end play. A circle centered at (245,400) exactly touches the player's left top corner; (246,386) is outside its radius despite overlapping bounding boxes. Review CASES.md, then compare the complete reference only after attempting both functions.\n\nThe starter keeps the supplied renderer and input wiring; complete its two TODO functions.\n",
+        "CASES.md": "# Falling Skies cases\n\n1. First obstacle harmless, second centered on the player: lost.\n2. Tangent circle at (245,400),radius15: contact. Corner near-miss at (246,386): no contact.\n3. Hold either direction for 100 ticks: x stays in [0,520].\n4. Countdown 180 ticks: no falling objects before it ends. Survive 120 further ticks: score1.\n5. Put two consecutive circles below y515: both removed.\n6. After lost, 300 updates preserve all state; Restart resets score and countdown.\n",
+        "SOURCES.md": "# Original sources\n\nstarter: https://codepen.io/junilearning/pen/8d640d76fa709de228ec6303625663e3\nObserved alias: https://codepen.io/junilearning/pen/RwRBaXa\nOriginal official ZIP SHA256: 0d2c98c255d388da676f7ffc0923c24f9ecbff0bb2098b304532142f8d3d7a06\n\nreference: https://codepen.io/junilearning/pen/643e3bf98d5a641557276dbc1f269a02\nObserved alias: https://codepen.io/junilearning/pen/zYqxoGw\nOriginal official ZIP SHA256: a2f8a2e47ca5aeccbc355296b883cb0e3b9b6c519712466fbe83d4d11c45e4f2\n\nOriginal HTML/CSS preprocessors: None. CSS base and prefixing: Neither. JavaScript preprocessor: None. External resources: none.\n\nThis independently written local implementation preserves the assignment,initial geometry,palette and stated mechanics. It adds bounded input,one managed animation loop,explicit terminal states and the checks described in CASES.md.\n",
+        "LICENSE-original.txt": "This local pack is an independently written implementation of the visible assignment.\n\nOriginal export license retained for provenance:\n\nThe MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/zYqxoGw)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+      },
+      "reference": {
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Falling Skies</title><link rel=\"stylesheet\" href=\"styles.css\"></head><body><main><h1>Falling Skies</h1><canvas width=\"550\" height=\"500\" tabindex=\"0\" aria-label=\"Falling Skies play area\"></canvas><p role=\"status\" aria-live=\"polite\"></p><div class=\"controls\"><button type=\"button\" data-key=\"left\">Left</button><button type=\"button\" data-key=\"right\">Right</button><button type=\"button\" id=\"restart\">Restart</button></div></main><script src=\"script.js\"></script></body></html>\n",
+        "styles.css": "* { box-sizing: border-box; }\nbody { margin: 0; font: 1rem system-ui,sans-serif; color:#111827; background:white; }\nmain { width:min(100% - 2rem,70rem); margin:1rem auto; }\nh1 { font-size:1.5rem; overflow-wrap:anywhere; }\ncanvas { display:block; max-width:100%; height:auto; background:#eee; margin:auto; touch-action:none; }\n.controls { display:flex; flex-wrap:wrap; gap:.5rem; }\nbutton { font:inherit; padding:.6rem; touch-action:none; }\n[role=\"status\"] { min-height:1.5em; overflow-wrap:anywhere; }\n:focus-visible { outline:3px solid #0f766e; outline-offset:3px; }\n",
+        "script.js": "\nconst canvas=document.querySelector('canvas');\nconst ctx=canvas.getContext('2d');\nconst status=document.querySelector('[role=\"status\"]');\nconst setStatus=text=>{if(status.textContent!==text)status.textContent=text;};\nconst keys={left:false,right:false,up:false,fire:false};\n\nconst newGame = () => ({ x:260, y:400, width:30, height:60, circles:[], ticks:0, score:0, countdown:180, status:'starting' });\nfunction circleTouchesRectangle(c,r) {\n const x=Math.max(r.x,Math.min(c.x,r.x+r.width));\n const y=Math.max(r.y,Math.min(c.y,r.y+r.height));\n return (c.x-x)**2+(c.y-y)**2<=c.radius**2;\n}\nfunction stepGame(s,keys,random=Math.random) {\n if(s.status==='lost')return;\n s.x=Math.max(0,Math.min(520,s.x+((keys.right?1:0)-(keys.left?1:0))*8));\n if(s.countdown>0){s.countdown--;if(!s.countdown)s.status='playing';return;}\n s.ticks++;\n if(s.ticks%10===0)s.circles.push({x:15+random()*520,y:-20,radius:15});\n for(const c of s.circles)c.y+=8;\n s.circles=s.circles.filter(c=>c.y<=515);\n if(s.circles.some(c=>circleTouchesRectangle(c,s))){s.status='lost';return;}\n if(s.ticks%120===0)s.score++;\n}\nfunction paint(s) {\n ctx.clearRect(0,0,canvas.width,canvas.height);\n ctx.fillStyle='blue';ctx.fillRect(s.x,s.y,s.width,s.height);\n ctx.strokeStyle='black';\n for(const c of s.circles){ctx.beginPath();ctx.arc(c.x,c.y,c.radius,0,Math.PI*2);ctx.stroke();}\n ctx.fillStyle='black';ctx.font='20px Arial';ctx.textAlign='right';ctx.fillText('Score: '+s.score,530,480);\n if(s.countdown||s.status==='lost'){ctx.font='30px Arial';ctx.textAlign='center';ctx.fillText(s.status==='lost'?'You Lose':'Game Starting in '+Math.ceil(s.countdown/60)+'...',275,100);}\n setStatus(s.status==='lost'?'You Lose. Score: '+s.score:s.countdown?'Game Starting in '+Math.ceil(s.countdown/60):'Score: '+s.score);\n}\n\nlet game=newGame();\nconst clearKeys=()=>{for(const key of Object.keys(keys))keys[key]=false;};\nconst keyNames={ArrowLeft:'left',ArrowRight:'right',a:'left',d:'right',w:'up',' ':'fire',f:'fire'};\nwindow.addEventListener('keydown',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=true;}});\nwindow.addEventListener('keyup',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=false;}});\nwindow.addEventListener('blur',clearKeys);\ndocument.addEventListener('visibilitychange',()=>{if(document.hidden)clearKeys();});\nfor(const button of document.querySelectorAll('[data-key]')){\n button.addEventListener('pointerdown',e=>{e.preventDefault();button.setPointerCapture(e.pointerId);keys[button.dataset.key]=true;});\n for(const name of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(name,()=>keys[button.dataset.key]=false);\n}\ndocument.querySelector('#restart').addEventListener('click',()=>{clearKeys();game=newGame();paint(game);canvas.focus();});\n\nlet previous;\nlet elapsed=0;\nfunction frame(time){\n if(previous!==undefined)elapsed+=Math.min(100,Math.max(0,time-previous));previous=time;\n while(elapsed>=1000/60){stepGame(game,keys);elapsed-=1000/60;}\n paint(game);requestAnimationFrame(frame);\n}\npaint(game);requestAnimationFrame(frame);\n",
+        "README.md": "# Falling Skies\n\nOpen index.html without a server. Edit script.js and reload the page.\n\nThe blue 30-by-60 player starts at (260,400) on a 550-by-500 canvas. Left and right move eight pixels per simulation tick and clamp the entire rectangle inside the canvas. After a three-second countdown, radius-15 circles fall eight pixels per tick, with a new circle every ten ticks. The score increases once per two seconds of survival. The simulation uses 60 ticks per second, independent of display refresh rate.\n\nComplete circleTouchesRectangle and stepGame in script.js. Clamp the circle center to the rectangle's nearest point. Compare squared distance to radius squared; equality is contact. Check every circle before declaring the player safe. Remove all circles beyond the bottom without skipping adjacent entries. A hit changes the state to lost once and freezes play. Restart creates a fresh countdown. Hold the arrow keys or the on-screen direction controls; releasing focus clears held input.\n\nTrace a harmless first circle followed by a circle at the player's center: the second circle must end play. A circle centered at (245,400) exactly touches the player's left top corner; (246,386) is outside its radius despite overlapping bounding boxes. Review CASES.md, then compare the complete reference only after attempting both functions.\n\nThe reference completes both functions and supplies a comparison after the starter attempt.\n",
+        "CASES.md": "# Falling Skies cases\n\n1. First obstacle harmless, second centered on the player: lost.\n2. Tangent circle at (245,400),radius15: contact. Corner near-miss at (246,386): no contact.\n3. Hold either direction for 100 ticks: x stays in [0,520].\n4. Countdown 180 ticks: no falling objects before it ends. Survive 120 further ticks: score1.\n5. Put two consecutive circles below y515: both removed.\n6. After lost, 300 updates preserve all state; Restart resets score and countdown.\n",
+        "SOURCES.md": "# Original sources\n\nstarter: https://codepen.io/junilearning/pen/8d640d76fa709de228ec6303625663e3\nObserved alias: https://codepen.io/junilearning/pen/RwRBaXa\nOriginal official ZIP SHA256: 0d2c98c255d388da676f7ffc0923c24f9ecbff0bb2098b304532142f8d3d7a06\n\nreference: https://codepen.io/junilearning/pen/643e3bf98d5a641557276dbc1f269a02\nObserved alias: https://codepen.io/junilearning/pen/zYqxoGw\nOriginal official ZIP SHA256: a2f8a2e47ca5aeccbc355296b883cb0e3b9b6c519712466fbe83d4d11c45e4f2\n\nOriginal HTML/CSS preprocessors: None. CSS base and prefixing: Neither. JavaScript preprocessor: None. External resources: none.\n\nThis independently written local implementation preserves the assignment,initial geometry,palette and stated mechanics. It adds bounded input,one managed animation loop,explicit terminal states and the checks described in CASES.md.\n",
+        "LICENSE-original.txt": "This local pack is an independently written implementation of the visible assignment.\n\nOriginal export license retained for provenance:\n\nThe MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/zYqxoGw)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+      }
+    },
+    "breakout": {
+      "starter": {
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>2D Breakout</title><link rel=\"stylesheet\" href=\"styles.css\"></head><body><main><h1>2D Breakout</h1><canvas width=\"480\" height=\"320\" tabindex=\"0\" aria-label=\"2D Breakout play area\"></canvas><p role=\"status\" aria-live=\"polite\"></p><div class=\"controls\"><button type=\"button\" data-key=\"left\">Left</button><button type=\"button\" data-key=\"right\">Right</button><button type=\"button\" id=\"restart\">Restart</button></div></main><script src=\"script.js\"></script></body></html>\n",
+        "styles.css": "* { box-sizing: border-box; }\nbody { margin: 0; font: 1rem system-ui,sans-serif; color:#111827; background:white; }\nmain { width:min(100% - 2rem,70rem); margin:1rem auto; }\nh1 { font-size:1.5rem; overflow-wrap:anywhere; }\ncanvas { display:block; max-width:100%; height:auto; background:#eee; margin:auto; touch-action:none; }\n.controls { display:flex; flex-wrap:wrap; gap:.5rem; }\nbutton { font:inherit; padding:.6rem; touch-action:none; }\n[role=\"status\"] { min-height:1.5em; overflow-wrap:anywhere; }\n:focus-visible { outline:3px solid #0f766e; outline-offset:3px; }\n",
+        "script.js": "\nconst canvas=document.querySelector('canvas');\nconst ctx=canvas.getContext('2d');\nconst status=document.querySelector('[role=\"status\"]');\nconst setStatus=text=>{if(status.textContent!==text)status.textContent=text;};\nconst keys={left:false,right:false,up:false,fire:false};\n\nconst newGame = () => ({ x:240,y:290,dx:2,dy:-2,paddleX:202.5,score:0,lives:3,status:'playing',bricks:Array.from({length:15},(_,i)=>({x:30+(i%5)*85,y:30+Math.floor(i/5)*30,width:75,height:20,alive:true})) });\nfunction circleTouchesRectangle(c,r) {\n // TODO: Compare the nearest-point distance with the radius.\n return false;\n}\nfunction stepGame(s,keys,random=Math.random) {\n // TODO: Apply the rules and boundary cases in README.md and CASES.md.\n}\nfunction paint(s) {\n ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#0095DD';\n for(const b of s.bricks)if(b.alive)ctx.fillRect(b.x,b.y,b.width,b.height);\n ctx.beginPath();ctx.arc(s.x,s.y,10,0,Math.PI*2);ctx.fill();ctx.fillRect(s.paddleX,310,75,10);\n ctx.font='16px Arial';ctx.textAlign='left';ctx.fillText('Score: '+s.score,8,20);ctx.fillText('Lives: '+s.lives,405,20);\n if(s.status!=='playing'){ctx.font='28px Arial';ctx.textAlign='center';ctx.fillText(s.status==='won'?'YOU WIN, CONGRATS!':'GAME OVER',240,190);}\n setStatus(s.status==='won'?'YOU WIN, CONGRATS!':s.status==='lost'?'GAME OVER':'Score: '+s.score+'; Lives: '+s.lives);\n}\n\nlet game=newGame();\nconst clearKeys=()=>{for(const key of Object.keys(keys))keys[key]=false;};\nconst keyNames={ArrowLeft:'left',ArrowRight:'right',a:'left',d:'right',w:'up',' ':'fire',f:'fire'};\nwindow.addEventListener('keydown',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=true;}});\nwindow.addEventListener('keyup',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=false;}});\nwindow.addEventListener('blur',clearKeys);\ndocument.addEventListener('visibilitychange',()=>{if(document.hidden)clearKeys();});\nfor(const button of document.querySelectorAll('[data-key]')){\n button.addEventListener('pointerdown',e=>{e.preventDefault();button.setPointerCapture(e.pointerId);keys[button.dataset.key]=true;});\n for(const name of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(name,()=>keys[button.dataset.key]=false);\n}\ndocument.querySelector('#restart').addEventListener('click',()=>{clearKeys();game=newGame();paint(game);canvas.focus();});\ncanvas.addEventListener('pointermove',e=>{const r=canvas.getBoundingClientRect();game.paddleX=Math.max(0,Math.min(405,(e.clientX-r.left)*480/r.width-37.5));});\nlet previous;\nlet elapsed=0;\nfunction frame(time){\n if(previous!==undefined)elapsed+=Math.min(100,Math.max(0,time-previous));previous=time;\n while(elapsed>=1000/60){stepGame(game,keys);elapsed-=1000/60;}\n paint(game);requestAnimationFrame(frame);\n}\npaint(game);requestAnimationFrame(frame);\n",
+        "README.md": "# 2D Breakout\n\nOpen index.html without a server. Edit script.js and reload the page.\n\nThe 480-by-320 canvas contains fifteen bricks, a radius-10 ball, a 75-by-10 paddle and three lives. The ball starts at (240,290), moving (2,-2) per simulation tick. A new life resets its motion to (3,-3), preserving the original reference's rule. Arrow keys move the paddle seven pixels per tick; pointer movement maps the displayed canvas position into its logical coordinates. The paddle remains wholly inside the canvas.\n\nComplete circleTouchesRectangle and stepGame in script.js. Compare the ball's radius with a brick's nearest point, mark a hit brick inactive, increase score once and reverse the collision axis. A downward crossing of the paddle top reflects the ball upward. Crossing completely below the canvas costs exactly one life. Reset the ball when lives remain; otherwise enter lost. Removing the fifteenth brick enters won. Both terminal states freeze the model until Restart, with a message on the canvas and in the status line.\n\nUse the CASES.md boundary checks: a ball can touch a brick before its center enters it; a miss costs one life, not one per later frame. Compare the saved reference after completing the starter. Hold a direction control or use the pointer to play; observe all three lives and restart without browser alerts.\n\nThe starter keeps the supplied renderer and input wiring; complete its two TODO functions.\n",
+        "CASES.md": "# 2D Breakout cases\n\n1. Brick x30,y30,width75,height20; ball center (20,40),radius10: contact.\n2. Ball (19,19),radius10: corner near-miss.\n3. Paddle pointer and keys clamp x in [0,405] at both display sizes.\n4. Three separate misses use three lives; later updates preserve lives0 and lost.\n5. Final live brick hit: score15,won; later updates preserve state.\n6. Restart resets all fifteen bricks,three lives and score0.\n",
+        "SOURCES.md": "# Original sources\n\nstarter: https://codepen.io/junilearning/pen/0d5f9c3b21921a4bc506a1139a3091bc\nObserved alias: https://codepen.io/junilearning/pen/zYBLBvX\nOriginal official ZIP SHA256: 95194c4010fc5818587f813b23a7bcc9cd4ab07ebe67d8ead2e6af25518d55ab\n\nreference: https://codepen.io/junilearning/pen/778b7aa1d7bcd942b617d87a517d35e2\nObserved alias: https://codepen.io/junilearning/pen/OJXwXVm/778b7aa1d7bcd942b617d87a517d35e2\nOriginal official ZIP SHA256: 3ae6e63190c8655d15fe57742663b3d8386df4693d57c7dfe9488f815ab5d0e4\n\nOriginal HTML/CSS preprocessors: None. CSS base and prefixing: Neither. JavaScript preprocessor: None. External resources: none.\n\nThis independently written local implementation preserves the assignment,initial geometry,palette and stated mechanics. It adds bounded input,one managed animation loop,explicit terminal states and the checks described in CASES.md.\n",
+        "LICENSE-original.txt": "This local pack is an independently written implementation of the visible assignment.\nThe official original export contained no license file. The original attribution is retained in SOURCES.md.\n"
+      },
+      "reference": {
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>2D Breakout</title><link rel=\"stylesheet\" href=\"styles.css\"></head><body><main><h1>2D Breakout</h1><canvas width=\"480\" height=\"320\" tabindex=\"0\" aria-label=\"2D Breakout play area\"></canvas><p role=\"status\" aria-live=\"polite\"></p><div class=\"controls\"><button type=\"button\" data-key=\"left\">Left</button><button type=\"button\" data-key=\"right\">Right</button><button type=\"button\" id=\"restart\">Restart</button></div></main><script src=\"script.js\"></script></body></html>\n",
+        "styles.css": "* { box-sizing: border-box; }\nbody { margin: 0; font: 1rem system-ui,sans-serif; color:#111827; background:white; }\nmain { width:min(100% - 2rem,70rem); margin:1rem auto; }\nh1 { font-size:1.5rem; overflow-wrap:anywhere; }\ncanvas { display:block; max-width:100%; height:auto; background:#eee; margin:auto; touch-action:none; }\n.controls { display:flex; flex-wrap:wrap; gap:.5rem; }\nbutton { font:inherit; padding:.6rem; touch-action:none; }\n[role=\"status\"] { min-height:1.5em; overflow-wrap:anywhere; }\n:focus-visible { outline:3px solid #0f766e; outline-offset:3px; }\n",
+        "script.js": "\nconst canvas=document.querySelector('canvas');\nconst ctx=canvas.getContext('2d');\nconst status=document.querySelector('[role=\"status\"]');\nconst setStatus=text=>{if(status.textContent!==text)status.textContent=text;};\nconst keys={left:false,right:false,up:false,fire:false};\n\nconst newGame = () => ({ x:240,y:290,dx:2,dy:-2,paddleX:202.5,score:0,lives:3,status:'playing',bricks:Array.from({length:15},(_,i)=>({x:30+(i%5)*85,y:30+Math.floor(i/5)*30,width:75,height:20,alive:true})) });\nfunction circleTouchesRectangle(c,r) {\n const x=Math.max(r.x,Math.min(c.x,r.x+r.width));\n const y=Math.max(r.y,Math.min(c.y,r.y+r.height));\n return (c.x-x)**2+(c.y-y)**2<=c.radius**2;\n}\nfunction stepGame(s,keys) {\n if(s.status!=='playing')return;\n s.paddleX=Math.max(0,Math.min(405,s.paddleX+((keys.right?1:0)-(keys.left?1:0))*7));\n let nx=s.x+s.dx,ny=s.y+s.dy;\n if(nx<10||nx>470){s.dx=-s.dx;nx=Math.max(10,Math.min(470,nx));}\n if(ny<10){s.dy=Math.abs(s.dy);ny=10;}\n for(const b of s.bricks){\n  if(!b.alive||!circleTouchesRectangle({x:nx,y:ny,radius:10},b))continue;\n  b.alive=false;s.score++;\n  if(s.y+10<=b.y||s.y-10>=b.y+b.height)s.dy=-s.dy;else s.dx=-s.dx;\n  if(s.score===15)s.status='won';\n  break;\n }\n if(s.dy>0&&s.y+10<=310&&ny+10>=310&&nx+10>=s.paddleX&&nx-10<=s.paddleX+75){s.dy=-Math.abs(s.dy);ny=300;}\n if(ny-10>320){\n  s.lives--;if(s.lives===0){s.status='lost';return;}\n  Object.assign(s,{x:240,y:290,dx:3,dy:-3,paddleX:202.5});return;\n }\n s.x=nx;s.y=ny;\n}\nfunction paint(s) {\n ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#0095DD';\n for(const b of s.bricks)if(b.alive)ctx.fillRect(b.x,b.y,b.width,b.height);\n ctx.beginPath();ctx.arc(s.x,s.y,10,0,Math.PI*2);ctx.fill();ctx.fillRect(s.paddleX,310,75,10);\n ctx.font='16px Arial';ctx.textAlign='left';ctx.fillText('Score: '+s.score,8,20);ctx.fillText('Lives: '+s.lives,405,20);\n if(s.status!=='playing'){ctx.font='28px Arial';ctx.textAlign='center';ctx.fillText(s.status==='won'?'YOU WIN, CONGRATS!':'GAME OVER',240,190);}\n setStatus(s.status==='won'?'YOU WIN, CONGRATS!':s.status==='lost'?'GAME OVER':'Score: '+s.score+'; Lives: '+s.lives);\n}\n\nlet game=newGame();\nconst clearKeys=()=>{for(const key of Object.keys(keys))keys[key]=false;};\nconst keyNames={ArrowLeft:'left',ArrowRight:'right',a:'left',d:'right',w:'up',' ':'fire',f:'fire'};\nwindow.addEventListener('keydown',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=true;}});\nwindow.addEventListener('keyup',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=false;}});\nwindow.addEventListener('blur',clearKeys);\ndocument.addEventListener('visibilitychange',()=>{if(document.hidden)clearKeys();});\nfor(const button of document.querySelectorAll('[data-key]')){\n button.addEventListener('pointerdown',e=>{e.preventDefault();button.setPointerCapture(e.pointerId);keys[button.dataset.key]=true;});\n for(const name of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(name,()=>keys[button.dataset.key]=false);\n}\ndocument.querySelector('#restart').addEventListener('click',()=>{clearKeys();game=newGame();paint(game);canvas.focus();});\ncanvas.addEventListener('pointermove',e=>{const r=canvas.getBoundingClientRect();game.paddleX=Math.max(0,Math.min(405,(e.clientX-r.left)*480/r.width-37.5));});\nlet previous;\nlet elapsed=0;\nfunction frame(time){\n if(previous!==undefined)elapsed+=Math.min(100,Math.max(0,time-previous));previous=time;\n while(elapsed>=1000/60){stepGame(game,keys);elapsed-=1000/60;}\n paint(game);requestAnimationFrame(frame);\n}\npaint(game);requestAnimationFrame(frame);\n",
+        "README.md": "# 2D Breakout\n\nOpen index.html without a server. Edit script.js and reload the page.\n\nThe 480-by-320 canvas contains fifteen bricks, a radius-10 ball, a 75-by-10 paddle and three lives. The ball starts at (240,290), moving (2,-2) per simulation tick. A new life resets its motion to (3,-3), preserving the original reference's rule. Arrow keys move the paddle seven pixels per tick; pointer movement maps the displayed canvas position into its logical coordinates. The paddle remains wholly inside the canvas.\n\nComplete circleTouchesRectangle and stepGame in script.js. Compare the ball's radius with a brick's nearest point, mark a hit brick inactive, increase score once and reverse the collision axis. A downward crossing of the paddle top reflects the ball upward. Crossing completely below the canvas costs exactly one life. Reset the ball when lives remain; otherwise enter lost. Removing the fifteenth brick enters won. Both terminal states freeze the model until Restart, with a message on the canvas and in the status line.\n\nUse the CASES.md boundary checks: a ball can touch a brick before its center enters it; a miss costs one life, not one per later frame. Compare the saved reference after completing the starter. Hold a direction control or use the pointer to play; observe all three lives and restart without browser alerts.\n\nThe reference completes both functions and supplies a comparison after the starter attempt.\n",
+        "CASES.md": "# 2D Breakout cases\n\n1. Brick x30,y30,width75,height20; ball center (20,40),radius10: contact.\n2. Ball (19,19),radius10: corner near-miss.\n3. Paddle pointer and keys clamp x in [0,405] at both display sizes.\n4. Three separate misses use three lives; later updates preserve lives0 and lost.\n5. Final live brick hit: score15,won; later updates preserve state.\n6. Restart resets all fifteen bricks,three lives and score0.\n",
+        "SOURCES.md": "# Original sources\n\nstarter: https://codepen.io/junilearning/pen/0d5f9c3b21921a4bc506a1139a3091bc\nObserved alias: https://codepen.io/junilearning/pen/zYBLBvX\nOriginal official ZIP SHA256: 95194c4010fc5818587f813b23a7bcc9cd4ab07ebe67d8ead2e6af25518d55ab\n\nreference: https://codepen.io/junilearning/pen/778b7aa1d7bcd942b617d87a517d35e2\nObserved alias: https://codepen.io/junilearning/pen/OJXwXVm/778b7aa1d7bcd942b617d87a517d35e2\nOriginal official ZIP SHA256: 3ae6e63190c8655d15fe57742663b3d8386df4693d57c7dfe9488f815ab5d0e4\n\nOriginal HTML/CSS preprocessors: None. CSS base and prefixing: Neither. JavaScript preprocessor: None. External resources: none.\n\nThis independently written local implementation preserves the assignment,initial geometry,palette and stated mechanics. It adds bounded input,one managed animation loop,explicit terminal states and the checks described in CASES.md.\n",
+        "LICENSE-original.txt": "This local pack is an independently written implementation of the visible assignment.\nThe official original export contained no license file. The original attribution is retained in SOURCES.md.\n"
+      }
+    },
+    "asteroids": {
+      "starter": {
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Asteroids</title><link rel=\"stylesheet\" href=\"styles.css\"></head><body><main><h1>Asteroids</h1><canvas width=\"550\" height=\"500\" tabindex=\"0\" aria-label=\"Asteroids play area\"></canvas><p role=\"status\" aria-live=\"polite\"></p><div class=\"controls\"><button type=\"button\" data-key=\"left\">Turn left (A)</button><button type=\"button\" data-key=\"right\">Turn right (D)</button><button type=\"button\" data-key=\"up\">Thrust (W)</button><button type=\"button\" data-key=\"fire\">Fire (Space / F)</button><button type=\"button\" id=\"restart\">Restart</button></div></main><script src=\"script.js\"></script></body></html>\n",
+        "styles.css": "* { box-sizing: border-box; }\nbody { margin: 0; font: 1rem system-ui,sans-serif; color:#111827; background:white; }\nmain { width:min(100% - 2rem,70rem); margin:1rem auto; }\nh1 { font-size:1.5rem; overflow-wrap:anywhere; }\ncanvas { display:block; max-width:100%; height:auto; background:#eee; margin:auto; touch-action:none; }\n.controls { display:flex; flex-wrap:wrap; gap:.5rem; }\nbutton { font:inherit; padding:.6rem; touch-action:none; }\n[role=\"status\"] { min-height:1.5em; overflow-wrap:anywhere; }\n:focus-visible { outline:3px solid #0f766e; outline-offset:3px; }\n",
+        "script.js": "\nconst canvas=document.querySelector('canvas');\nconst ctx=canvas.getContext('2d');\nconst status=document.querySelector('[role=\"status\"]');\nconst setStatus=text=>{if(status.textContent!==text)status.textContent=text;};\nconst keys={left:false,right:false,up:false,fire:false};\n\nconst newGame = () => ({player:{x:100,y:100,angle:0},circles:[],bullets:[],ticks:0,cooldown:0,score:0,status:'playing'});\nconst radians = degrees => degrees*Math.PI/180;\nfunction trianglePoints(p) {\n const a=radians(p.angle),cos=Math.cos(a),sin=Math.sin(a);\n return [[10,10],[0,-15],[-10,10]].map(([x,y])=>({x:p.x+x*cos-y*sin,y:p.y+x*sin+y*cos}));\n}\nfunction segmentDistanceSquared(c,a,b) {\n const dx=b.x-a.x,dy=b.y-a.y;\n const t=Math.max(0,Math.min(1,((c.x-a.x)*dx+(c.y-a.y)*dy)/(dx*dx+dy*dy)));\n return (c.x-a.x-t*dx)**2+(c.y-a.y-t*dy)**2;\n}\nfunction shipTouchesCircle(p,c) {\n // TODO: Test triangle containment and distance from each edge.\n return false;\n}\nfunction spawnAsteroid(random=Math.random) {\n const side=Math.floor(random()*4),along=random();\n return {x:side===0||side===1?along*550:side===2?-50:600,y:side===2||side===3?along*500:side===0?-50:550,heading:[90,-90,0,180][side]+random()*180-90,radius:50};\n}\nfunction stepGame(s,keys,random=Math.random) {\n // TODO: Apply the rules and boundary cases in README.md and CASES.md.\n}\nfunction paint(s) {\n ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='black';ctx.strokeStyle='black';\n for(const c of s.circles){ctx.beginPath();ctx.arc(c.x,c.y,c.radius,0,Math.PI*2);ctx.stroke();}\n for(const b of s.bullets){ctx.beginPath();ctx.arc(b.x,b.y,b.radius,0,Math.PI*2);ctx.fill();}\n const points=trianglePoints(s.player);ctx.beginPath();ctx.moveTo(points[0].x,points[0].y);for(const p of points.slice(1))ctx.lineTo(p.x,p.y);ctx.closePath();ctx.fill();\n ctx.font='20px Arial';ctx.textAlign='right';ctx.fillText('Score: '+s.score,530,480);\n if(s.status==='lost'){ctx.font='30px Arial';ctx.textAlign='center';ctx.fillText('You Lose',275,100);}\n setStatus(s.status==='lost'?'You Lose. Score: '+s.score:'Score: '+s.score);\n}\n\nlet game=newGame();\nconst clearKeys=()=>{for(const key of Object.keys(keys))keys[key]=false;};\nconst keyNames={ArrowLeft:'left',ArrowRight:'right',a:'left',d:'right',w:'up',' ':'fire',f:'fire'};\nwindow.addEventListener('keydown',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=true;}});\nwindow.addEventListener('keyup',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=false;}});\nwindow.addEventListener('blur',clearKeys);\ndocument.addEventListener('visibilitychange',()=>{if(document.hidden)clearKeys();});\nfor(const button of document.querySelectorAll('[data-key]')){\n button.addEventListener('pointerdown',e=>{e.preventDefault();button.setPointerCapture(e.pointerId);keys[button.dataset.key]=true;});\n for(const name of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(name,()=>keys[button.dataset.key]=false);\n}\ndocument.querySelector('#restart').addEventListener('click',()=>{clearKeys();game=newGame();paint(game);canvas.focus();});\n\nlet previous;\nlet elapsed=0;\nfunction frame(time){\n if(previous!==undefined)elapsed+=Math.min(100,Math.max(0,time-previous));previous=time;\n while(elapsed>=1000/60){stepGame(game,keys);elapsed-=1000/60;}\n paint(game);requestAnimationFrame(frame);\n}\npaint(game);requestAnimationFrame(frame);\n",
+        "README.md": "# Asteroids\n\nOpen index.html without a server. Edit script.js and reload the page.\n\nThe 550-by-500 canvas begins with the original triangular ship at (100,100). A and D rotate five degrees per simulation tick; W moves one pixel in the ship's forward direction. The on-screen controls provide the same actions. Space and F share one ten-tick firing cooldown. Bullets move five pixels per tick; radius-50 asteroids enter from a random edge every five seconds and move two pixels per tick. Motion uses 60 simulation ticks per second. The ship and asteroids wrap at the canvas boundary.\n\nComplete shipTouchesCircle and stepGame in script.js. Rotate the three local triangle vertices around the ship center. A circle hits if its center lies inside the triangle or its distance from any edge is at most its radius. Bullet collision uses squared center distance and the combined radii. Remove the hit parent, add two half-radius children only when their radius exceeds ten, and score once. Keep bullets in the single game loop, removing spent or off-screen entries.\n\nDeath freezes firing, spawning and score until Restart. Focus loss releases all controls. Check CASES.md for the ten-tick cooldown, a single split and a stopped terminal state. Increasing bullet speed requires a swept collision method; this assignment's fixed speeds are the stated model. Compare the complete reference after attempting both functions.\n\nThe starter keeps the supplied renderer and input wiring; complete its two TODO functions.\n",
+        "CASES.md": "# Asteroids cases\n\n1. Hold Space or F for ten ticks: one shot; tick11 permits the next. Switching keys cannot bypass cooldown.\n2. Bullet touches a radius50 asteroid: score+1,two radius25 children,spent bullet removed.\n3. Hit radius12.5: score+1,no children.\n4. A circle touching a triangle edge or vertex hits; a bounding-box-only corner overlap does not.\n5. Death freezes bullet,asteroid and score state even while Fire remains held.\n6. Resize preserves logical550-by500 geometry; Restart resets ship,score,bullets and spawn timer.\n",
+        "SOURCES.md": "# Original sources\n\nstarter: https://codepen.io/junilearning/pen/4d14f6e432dd3b2dcee15a9d95eac750\nObserved alias: https://codepen.io/junilearning/pen/BazPzpm\nOriginal official ZIP SHA256: c1f8805b626ab904146ea4c78f4dc6e991820952c471d9581e75803f99ab1994\n\nreference: https://codepen.io/junilearning/pen/8a5307a6643fbf762925b08229b5a847\nObserved alias: https://codepen.io/junilearning/pen/WNrqPQO/8a5307a6643fbf762925b08229b5a847\nOriginal official ZIP SHA256: be23564d7a73916066e62c71d9b919a2a14a6da7b43ee31fb3e6d12013ee160e\n\nOriginal HTML/CSS preprocessors: None. CSS base and prefixing: Neither. JavaScript preprocessor: None. External resources: none.\n\nThis independently written local implementation preserves the assignment,initial geometry,palette and stated mechanics. It adds bounded input,one managed animation loop,explicit terminal states and the checks described in CASES.md.\n",
+        "LICENSE-original.txt": "This local pack is an independently written implementation of the visible assignment.\nThe official original export contained no license file. The original attribution is retained in SOURCES.md.\n"
+      },
+      "reference": {
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Asteroids</title><link rel=\"stylesheet\" href=\"styles.css\"></head><body><main><h1>Asteroids</h1><canvas width=\"550\" height=\"500\" tabindex=\"0\" aria-label=\"Asteroids play area\"></canvas><p role=\"status\" aria-live=\"polite\"></p><div class=\"controls\"><button type=\"button\" data-key=\"left\">Turn left (A)</button><button type=\"button\" data-key=\"right\">Turn right (D)</button><button type=\"button\" data-key=\"up\">Thrust (W)</button><button type=\"button\" data-key=\"fire\">Fire (Space / F)</button><button type=\"button\" id=\"restart\">Restart</button></div></main><script src=\"script.js\"></script></body></html>\n",
+        "styles.css": "* { box-sizing: border-box; }\nbody { margin: 0; font: 1rem system-ui,sans-serif; color:#111827; background:white; }\nmain { width:min(100% - 2rem,70rem); margin:1rem auto; }\nh1 { font-size:1.5rem; overflow-wrap:anywhere; }\ncanvas { display:block; max-width:100%; height:auto; background:#eee; margin:auto; touch-action:none; }\n.controls { display:flex; flex-wrap:wrap; gap:.5rem; }\nbutton { font:inherit; padding:.6rem; touch-action:none; }\n[role=\"status\"] { min-height:1.5em; overflow-wrap:anywhere; }\n:focus-visible { outline:3px solid #0f766e; outline-offset:3px; }\n",
+        "script.js": "\nconst canvas=document.querySelector('canvas');\nconst ctx=canvas.getContext('2d');\nconst status=document.querySelector('[role=\"status\"]');\nconst setStatus=text=>{if(status.textContent!==text)status.textContent=text;};\nconst keys={left:false,right:false,up:false,fire:false};\n\nconst newGame = () => ({player:{x:100,y:100,angle:0},circles:[],bullets:[],ticks:0,cooldown:0,score:0,status:'playing'});\nconst radians = degrees => degrees*Math.PI/180;\nfunction trianglePoints(p) {\n const a=radians(p.angle),cos=Math.cos(a),sin=Math.sin(a);\n return [[10,10],[0,-15],[-10,10]].map(([x,y])=>({x:p.x+x*cos-y*sin,y:p.y+x*sin+y*cos}));\n}\nfunction segmentDistanceSquared(c,a,b) {\n const dx=b.x-a.x,dy=b.y-a.y;\n const t=Math.max(0,Math.min(1,((c.x-a.x)*dx+(c.y-a.y)*dy)/(dx*dx+dy*dy)));\n return (c.x-a.x-t*dx)**2+(c.y-a.y-t*dy)**2;\n}\nfunction shipTouchesCircle(p,c) {\n const points=trianglePoints(p);\n const cross=points.map((a,i)=>{const b=points[(i+1)%3];return (b.x-a.x)*(c.y-a.y)-(b.y-a.y)*(c.x-a.x);});\n return cross.every(n=>n>=0)||cross.every(n=>n<=0)||points.some((a,i)=>segmentDistanceSquared(c,a,points[(i+1)%3])<=c.radius**2);\n}\nfunction spawnAsteroid(random=Math.random) {\n const side=Math.floor(random()*4),along=random();\n return {x:side===0||side===1?along*550:side===2?-50:600,y:side===2||side===3?along*500:side===0?-50:550,heading:[90,-90,0,180][side]+random()*180-90,radius:50};\n}\nfunction stepGame(s,keys,random=Math.random) {\n if(s.status!=='playing')return;\n const p=s.player;p.angle+=((keys.right?1:0)-(keys.left?1:0))*5;\n if(keys.up){p.x+=Math.cos(radians(p.angle-90));p.y+=Math.sin(radians(p.angle-90));}\n if(p.x<-15)p.x=565;if(p.x>565)p.x=-15;if(p.y<-15)p.y=515;if(p.y>515)p.y=-15;\n if(s.cooldown>0)s.cooldown--;\n if(keys.fire&&s.cooldown===0){s.bullets.push({x:p.x,y:p.y,heading:p.angle-90,radius:10});s.cooldown=10;}\n s.ticks++;if(s.ticks%300===0)s.circles.push(spawnAsteroid(random));\n for(const c of s.circles){c.x+=Math.cos(radians(c.heading))*2;c.y+=Math.sin(radians(c.heading))*2;if(c.x<-c.radius)c.x=550+c.radius;if(c.x>550+c.radius)c.x=-c.radius;if(c.y<-c.radius)c.y=500+c.radius;if(c.y>500+c.radius)c.y=-c.radius;}\n for(const b of s.bullets){\n  b.x+=Math.cos(radians(b.heading))*5;b.y+=Math.sin(radians(b.heading))*5;\n  const i=s.circles.findIndex(c=>(b.x-c.x)**2+(b.y-c.y)**2<=(b.radius+c.radius)**2);\n  if(i<0)continue;\n  const c=s.circles.splice(i,1)[0];b.dead=true;s.score++;\n  if(c.radius/2>10)for(let k=0;k<2;k++)s.circles.push({x:c.x,y:c.y,radius:c.radius/2,heading:random()*360});\n }\n s.bullets=s.bullets.filter(b=>!b.dead&&b.x>=-10&&b.x<=560&&b.y>=-10&&b.y<=510);\n if(s.circles.some(c=>shipTouchesCircle(p,c)))s.status='lost';\n}\nfunction paint(s) {\n ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='black';ctx.strokeStyle='black';\n for(const c of s.circles){ctx.beginPath();ctx.arc(c.x,c.y,c.radius,0,Math.PI*2);ctx.stroke();}\n for(const b of s.bullets){ctx.beginPath();ctx.arc(b.x,b.y,b.radius,0,Math.PI*2);ctx.fill();}\n const points=trianglePoints(s.player);ctx.beginPath();ctx.moveTo(points[0].x,points[0].y);for(const p of points.slice(1))ctx.lineTo(p.x,p.y);ctx.closePath();ctx.fill();\n ctx.font='20px Arial';ctx.textAlign='right';ctx.fillText('Score: '+s.score,530,480);\n if(s.status==='lost'){ctx.font='30px Arial';ctx.textAlign='center';ctx.fillText('You Lose',275,100);}\n setStatus(s.status==='lost'?'You Lose. Score: '+s.score:'Score: '+s.score);\n}\n\nlet game=newGame();\nconst clearKeys=()=>{for(const key of Object.keys(keys))keys[key]=false;};\nconst keyNames={ArrowLeft:'left',ArrowRight:'right',a:'left',d:'right',w:'up',' ':'fire',f:'fire'};\nwindow.addEventListener('keydown',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=true;}});\nwindow.addEventListener('keyup',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=false;}});\nwindow.addEventListener('blur',clearKeys);\ndocument.addEventListener('visibilitychange',()=>{if(document.hidden)clearKeys();});\nfor(const button of document.querySelectorAll('[data-key]')){\n button.addEventListener('pointerdown',e=>{e.preventDefault();button.setPointerCapture(e.pointerId);keys[button.dataset.key]=true;});\n for(const name of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(name,()=>keys[button.dataset.key]=false);\n}\ndocument.querySelector('#restart').addEventListener('click',()=>{clearKeys();game=newGame();paint(game);canvas.focus();});\n\nlet previous;\nlet elapsed=0;\nfunction frame(time){\n if(previous!==undefined)elapsed+=Math.min(100,Math.max(0,time-previous));previous=time;\n while(elapsed>=1000/60){stepGame(game,keys);elapsed-=1000/60;}\n paint(game);requestAnimationFrame(frame);\n}\npaint(game);requestAnimationFrame(frame);\n",
+        "README.md": "# Asteroids\n\nOpen index.html without a server. Edit script.js and reload the page.\n\nThe 550-by-500 canvas begins with the original triangular ship at (100,100). A and D rotate five degrees per simulation tick; W moves one pixel in the ship's forward direction. The on-screen controls provide the same actions. Space and F share one ten-tick firing cooldown. Bullets move five pixels per tick; radius-50 asteroids enter from a random edge every five seconds and move two pixels per tick. Motion uses 60 simulation ticks per second. The ship and asteroids wrap at the canvas boundary.\n\nComplete shipTouchesCircle and stepGame in script.js. Rotate the three local triangle vertices around the ship center. A circle hits if its center lies inside the triangle or its distance from any edge is at most its radius. Bullet collision uses squared center distance and the combined radii. Remove the hit parent, add two half-radius children only when their radius exceeds ten, and score once. Keep bullets in the single game loop, removing spent or off-screen entries.\n\nDeath freezes firing, spawning and score until Restart. Focus loss releases all controls. Check CASES.md for the ten-tick cooldown, a single split and a stopped terminal state. Increasing bullet speed requires a swept collision method; this assignment's fixed speeds are the stated model. Compare the complete reference after attempting both functions.\n\nThe reference completes both functions and supplies a comparison after the starter attempt.\n",
+        "CASES.md": "# Asteroids cases\n\n1. Hold Space or F for ten ticks: one shot; tick11 permits the next. Switching keys cannot bypass cooldown.\n2. Bullet touches a radius50 asteroid: score+1,two radius25 children,spent bullet removed.\n3. Hit radius12.5: score+1,no children.\n4. A circle touching a triangle edge or vertex hits; a bounding-box-only corner overlap does not.\n5. Death freezes bullet,asteroid and score state even while Fire remains held.\n6. Resize preserves logical550-by500 geometry; Restart resets ship,score,bullets and spawn timer.\n",
+        "SOURCES.md": "# Original sources\n\nstarter: https://codepen.io/junilearning/pen/4d14f6e432dd3b2dcee15a9d95eac750\nObserved alias: https://codepen.io/junilearning/pen/BazPzpm\nOriginal official ZIP SHA256: c1f8805b626ab904146ea4c78f4dc6e991820952c471d9581e75803f99ab1994\n\nreference: https://codepen.io/junilearning/pen/8a5307a6643fbf762925b08229b5a847\nObserved alias: https://codepen.io/junilearning/pen/WNrqPQO/8a5307a6643fbf762925b08229b5a847\nOriginal official ZIP SHA256: be23564d7a73916066e62c71d9b919a2a14a6da7b43ee31fb3e6d12013ee160e\n\nOriginal HTML/CSS preprocessors: None. CSS base and prefixing: Neither. JavaScript preprocessor: None. External resources: none.\n\nThis independently written local implementation preserves the assignment,initial geometry,palette and stated mechanics. It adds bounded input,one managed animation loop,explicit terminal states and the checks described in CASES.md.\n",
+        "LICENSE-original.txt": "This local pack is an independently written implementation of the visible assignment.\nThe official original export contained no license file. The original attribution is retained in SOURCES.md.\n"
+      }
+    },
+    "starfield": {
+      "starter": {
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Animated Starfield</title><link rel=\"stylesheet\" href=\"styles.css\"></head><body><main><h1>Animated Starfield</h1><canvas width=\"550\" height=\"500\" tabindex=\"0\" aria-label=\"Animated Starfield play area\"></canvas><p role=\"status\" aria-live=\"polite\"></p><div class=\"controls\"><button type=\"button\" id=\"restart\">Restart</button></div></main><script src=\"script.js\"></script></body></html>\n",
+        "styles.css": "* { box-sizing: border-box; }\nbody { margin: 0; font: 1rem system-ui,sans-serif; color:#111827; background:white; }\nmain { width:min(100% - 2rem,70rem); margin:1rem auto; }\nh1 { font-size:1.5rem; overflow-wrap:anywhere; }\ncanvas { display:block; max-width:100%; height:auto; background:#eee; margin:auto; touch-action:none; }\n.controls { display:flex; flex-wrap:wrap; gap:.5rem; }\nbutton { font:inherit; padding:.6rem; touch-action:none; }\n[role=\"status\"] { min-height:1.5em; overflow-wrap:anywhere; }\n:focus-visible { outline:3px solid #0f766e; outline-offset:3px; }\n",
+        "script.js": "\nconst canvas=document.querySelector('canvas');\nconst ctx=canvas.getContext('2d');\nconst status=document.querySelector('[role=\"status\"]');\nconst setStatus=text=>{if(status.textContent!==text)status.textContent=text;};\nconst keys={left:false,right:false,up:false,fire:false};\n\nconst makeStar = (width,height,random=Math.random) => ({x:random()*width,y:random()*height,size:random()*3+1,velocity:15+random()*15});\nconst newGame = () => ({width:canvas.width,height:canvas.height,stars:Array.from({length:100},()=>makeStar(canvas.width,canvas.height)),status:'playing'});\nfunction stepGame(s,keys,random=Math.random) {\n // TODO: Apply the rules and boundary cases in README.md and CASES.md.\n}\nfunction resizeStars(s,width,height) {\n // TODO: Scale each star position, then store the new dimensions.\n}\nfunction paint(s) {\n ctx.fillStyle='#000000';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#ffffff';\n for(const star of s.stars)ctx.fillRect(star.x,star.y,star.size,star.size);\n setStatus(s.stars.length+' stars');\n}\n\nlet game=newGame();\nconst clearKeys=()=>{for(const key of Object.keys(keys))keys[key]=false;};\nconst keyNames={ArrowLeft:'left',ArrowRight:'right',a:'left',d:'right',w:'up',' ':'fire',f:'fire'};\nwindow.addEventListener('keydown',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=true;}});\nwindow.addEventListener('keyup',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=false;}});\nwindow.addEventListener('blur',clearKeys);\ndocument.addEventListener('visibilitychange',()=>{if(document.hidden)clearKeys();});\nfor(const button of document.querySelectorAll('[data-key]')){\n button.addEventListener('pointerdown',e=>{e.preventDefault();button.setPointerCapture(e.pointerId);keys[button.dataset.key]=true;});\n for(const name of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(name,()=>keys[button.dataset.key]=false);\n}\ndocument.querySelector('#restart').addEventListener('click',()=>{clearKeys();game=newGame();paint(game);canvas.focus();});\nwindow.addEventListener('resize',()=>{const width=Math.max(200,Math.floor(document.querySelector('main').clientWidth)),height=Math.max(240,innerHeight-170);resizeStars(game,width,height);canvas.width=width;canvas.height=height;paint(game);});\nlet previous;\nlet elapsed=0;\nfunction frame(time){\n if(previous!==undefined)elapsed+=Math.min(100,Math.max(0,time-previous));previous=time;\n while(elapsed>=1000/30){stepGame(game,keys);elapsed-=1000/30;}\n paint(game);requestAnimationFrame(frame);\n}\npaint(game);requestAnimationFrame(frame);\n",
+        "README.md": "# Animated Starfield\n\nOpen index.html without a server. Edit script.js and reload the page.\n\nCreate a black field of one hundred white stars. Each object stores x, y, size and downward velocity. Sizes range from one to four pixels; velocities range from fifteen to thirty pixels per second. The original CodePen uses Babel, but this implementation uses ordinary browser JavaScript and needs no compiler or external scripts. Open index.html without a server.\n\nComplete stepGame and resizeStars in script.js. At thirty simulation ticks per second, a star moves velocity divided by thirty pixels per tick. When its y coordinate exceeds the field height, replace that entry with a new star at y=0. Preserve the array length. On resize, scale existing positions by new width/old width and new height/old height before storing the new dimensions. A single animation loop draws the black background and then the white squares.\n\nIn CASES.md, trace a star with velocity=30 from y=10 to y=11 after one tick. A star that moves past the bottom returns to the top without increasing density. Resize the window and confirm that all stars remain within the new field. Restart creates a fresh field without adding another loop.\n\nThe starter keeps the supplied renderer and input wiring; complete its two TODO functions.\n",
+        "CASES.md": "# Animated Starfield cases\n\n1. Velocity30,y10: after one tick,y11.\n2. A star crossing below height respawns at y0 with a valid x,size and velocity.\n3. All updates preserve exactly100 stars.\n4. Resize from550x500 to275x250 halves every position and retains100 entries.\n5. White star squares remain visible on black at mobile and desktop widths.\n6. Restart keeps one animation loop and one hundred stars.\n",
+        "SOURCES.md": "# Original sources\n\nstarter: https://codepen.io/junilearning/pen/6d5f8181e8ea59009eadd259e249c5c5\nObserved alias: https://codepen.io/junilearning/pen/MWeBeoL\nOriginal official ZIP SHA256: 51333c0969a22163440f305bf86087227b8754a6001787003c65760e36fa57bd\n\nreference: https://codepen.io/junilearning/pen/ac7242107973239507eebc571a767c5a\nObserved alias: https://codepen.io/junilearning/pen/KKMRKRK/ac7242107973239507eebc571a767c5a\nOriginal official ZIP SHA256: 42ac1298eafc63216862fba6203a8559f65e86a3714822f7a29afdcc2f056dde\n\nOriginal HTML/CSS preprocessors: None. CSS base and prefixing: Neither. JavaScript preprocessor: Babel. External resources: none.\n\nThis independently written local implementation preserves the assignment,initial geometry,palette and stated mechanics. It adds bounded input,one managed animation loop,explicit terminal states and the checks described in CASES.md.\nThe original reference credits https://www.codeproject.com/Articles/642499/Learn-JavaScript-Part-1-Create-a-Starfield . This pack retains that attribution; its implementation is independently written.\n",
+        "LICENSE-original.txt": "This local pack is an independently written implementation of the visible assignment.\nThe official original export contained no license file. The original attribution is retained in SOURCES.md.\n"
+      },
+      "reference": {
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Animated Starfield</title><link rel=\"stylesheet\" href=\"styles.css\"></head><body><main><h1>Animated Starfield</h1><canvas width=\"550\" height=\"500\" tabindex=\"0\" aria-label=\"Animated Starfield play area\"></canvas><p role=\"status\" aria-live=\"polite\"></p><div class=\"controls\"><button type=\"button\" id=\"restart\">Restart</button></div></main><script src=\"script.js\"></script></body></html>\n",
+        "styles.css": "* { box-sizing: border-box; }\nbody { margin: 0; font: 1rem system-ui,sans-serif; color:#111827; background:white; }\nmain { width:min(100% - 2rem,70rem); margin:1rem auto; }\nh1 { font-size:1.5rem; overflow-wrap:anywhere; }\ncanvas { display:block; max-width:100%; height:auto; background:#eee; margin:auto; touch-action:none; }\n.controls { display:flex; flex-wrap:wrap; gap:.5rem; }\nbutton { font:inherit; padding:.6rem; touch-action:none; }\n[role=\"status\"] { min-height:1.5em; overflow-wrap:anywhere; }\n:focus-visible { outline:3px solid #0f766e; outline-offset:3px; }\n",
+        "script.js": "\nconst canvas=document.querySelector('canvas');\nconst ctx=canvas.getContext('2d');\nconst status=document.querySelector('[role=\"status\"]');\nconst setStatus=text=>{if(status.textContent!==text)status.textContent=text;};\nconst keys={left:false,right:false,up:false,fire:false};\n\nconst makeStar = (width,height,random=Math.random) => ({x:random()*width,y:random()*height,size:random()*3+1,velocity:15+random()*15});\nconst newGame = () => ({width:canvas.width,height:canvas.height,stars:Array.from({length:100},()=>makeStar(canvas.width,canvas.height)),status:'playing'});\nfunction stepGame(s,keys,random=Math.random) {\n for(let i=0;i<s.stars.length;i++){\n  const star=s.stars[i];star.y+=star.velocity/30;\n  if(star.y>s.height)s.stars[i]={...makeStar(s.width,s.height,random),y:0};\n }\n}\nfunction resizeStars(s,width,height) {\n for(const star of s.stars){star.x*=width/s.width;star.y*=height/s.height;}\n s.width=width;s.height=height;\n}\nfunction paint(s) {\n ctx.fillStyle='#000000';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#ffffff';\n for(const star of s.stars)ctx.fillRect(star.x,star.y,star.size,star.size);\n setStatus(s.stars.length+' stars');\n}\n\nlet game=newGame();\nconst clearKeys=()=>{for(const key of Object.keys(keys))keys[key]=false;};\nconst keyNames={ArrowLeft:'left',ArrowRight:'right',a:'left',d:'right',w:'up',' ':'fire',f:'fire'};\nwindow.addEventListener('keydown',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=true;}});\nwindow.addEventListener('keyup',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=false;}});\nwindow.addEventListener('blur',clearKeys);\ndocument.addEventListener('visibilitychange',()=>{if(document.hidden)clearKeys();});\nfor(const button of document.querySelectorAll('[data-key]')){\n button.addEventListener('pointerdown',e=>{e.preventDefault();button.setPointerCapture(e.pointerId);keys[button.dataset.key]=true;});\n for(const name of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(name,()=>keys[button.dataset.key]=false);\n}\ndocument.querySelector('#restart').addEventListener('click',()=>{clearKeys();game=newGame();paint(game);canvas.focus();});\nwindow.addEventListener('resize',()=>{const width=Math.max(200,Math.floor(document.querySelector('main').clientWidth)),height=Math.max(240,innerHeight-170);resizeStars(game,width,height);canvas.width=width;canvas.height=height;paint(game);});\nlet previous;\nlet elapsed=0;\nfunction frame(time){\n if(previous!==undefined)elapsed+=Math.min(100,Math.max(0,time-previous));previous=time;\n while(elapsed>=1000/30){stepGame(game,keys);elapsed-=1000/30;}\n paint(game);requestAnimationFrame(frame);\n}\npaint(game);requestAnimationFrame(frame);\n",
+        "README.md": "# Animated Starfield\n\nOpen index.html without a server. Edit script.js and reload the page.\n\nCreate a black field of one hundred white stars. Each object stores x, y, size and downward velocity. Sizes range from one to four pixels; velocities range from fifteen to thirty pixels per second. The original CodePen uses Babel, but this implementation uses ordinary browser JavaScript and needs no compiler or external scripts. Open index.html without a server.\n\nComplete stepGame and resizeStars in script.js. At thirty simulation ticks per second, a star moves velocity divided by thirty pixels per tick. When its y coordinate exceeds the field height, replace that entry with a new star at y=0. Preserve the array length. On resize, scale existing positions by new width/old width and new height/old height before storing the new dimensions. A single animation loop draws the black background and then the white squares.\n\nIn CASES.md, trace a star with velocity=30 from y=10 to y=11 after one tick. A star that moves past the bottom returns to the top without increasing density. Resize the window and confirm that all stars remain within the new field. Restart creates a fresh field without adding another loop.\n\nThe reference completes both functions and supplies a comparison after the starter attempt.\n",
+        "CASES.md": "# Animated Starfield cases\n\n1. Velocity30,y10: after one tick,y11.\n2. A star crossing below height respawns at y0 with a valid x,size and velocity.\n3. All updates preserve exactly100 stars.\n4. Resize from550x500 to275x250 halves every position and retains100 entries.\n5. White star squares remain visible on black at mobile and desktop widths.\n6. Restart keeps one animation loop and one hundred stars.\n",
+        "SOURCES.md": "# Original sources\n\nstarter: https://codepen.io/junilearning/pen/6d5f8181e8ea59009eadd259e249c5c5\nObserved alias: https://codepen.io/junilearning/pen/MWeBeoL\nOriginal official ZIP SHA256: 51333c0969a22163440f305bf86087227b8754a6001787003c65760e36fa57bd\n\nreference: https://codepen.io/junilearning/pen/ac7242107973239507eebc571a767c5a\nObserved alias: https://codepen.io/junilearning/pen/KKMRKRK/ac7242107973239507eebc571a767c5a\nOriginal official ZIP SHA256: 42ac1298eafc63216862fba6203a8559f65e86a3714822f7a29afdcc2f056dde\n\nOriginal HTML/CSS preprocessors: None. CSS base and prefixing: Neither. JavaScript preprocessor: Babel. External resources: none.\n\nThis independently written local implementation preserves the assignment,initial geometry,palette and stated mechanics. It adds bounded input,one managed animation loop,explicit terminal states and the checks described in CASES.md.\nThe original reference credits https://www.codeproject.com/Articles/642499/Learn-JavaScript-Part-1-Create-a-Starfield . This pack retains that attribution; its implementation is independently written.\n",
+        "LICENSE-original.txt": "This local pack is an independently written implementation of the visible assignment.\nThe official original export contained no license file. The original attribution is retained in SOURCES.md.\n"
+      }
+    }
+  },
+  "revision": 1
+}

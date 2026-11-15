@@ -1,0 +1,10 @@
+# Adding Comments cases
+
+1. Comment on two parents,add a newer topic,then comment on an older ID;reload and verify associations.
+2. Duplicate text produces distinct comment IDs.
+3. Blank/overlength and markup-shaped comments are handled safely.
+4. Unknown parent,duplicate ID,21st per-topic comment and201st overall comment leave state unchanged.
+5. A version-one board upgrades with its existing IDs and fields intact.
+6. Cancel reset preserves comments;confirmed reset clears them with the example.
+7. Failed save and corrupt/unsupported storage preserve prior bytes.
+8. All native labels,focus and enlarged-text controls remain usable.

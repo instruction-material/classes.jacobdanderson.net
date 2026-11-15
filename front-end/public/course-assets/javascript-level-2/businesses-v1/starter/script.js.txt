@@ -1,0 +1,22 @@
+// Create an array that contains at least 3 objects of your favorite businesses. Each object should contain the name of the business and at least 3 other properties. One of those properties should be an array which contains at least three of the company’s products. Then, iterate through the object and use 1-2 printToScreen() calls to print all of the information from the company objects into a 1-2 sentence description of the company.
+
+// Please enter your code below this line.
+
+
+
+// Please don't alter the code below this line!
+
+function printToScreen(text) {
+  const colors = ["#0b2022", "#1235a8", "#4e175e", "#24551c"];
+  const color = colors[Math.floor(Math.random() * colors.length)];
+  const output = d3.select("#business-summaries").append("p")
+    .attr("class", "business-summary")
+    .style("color", color)
+    .style("transform", "translateX(-16px)")
+    .style("opacity", 0)
+    .text(text);
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  output.transition().duration(reducedMotion ? 0 : 1000)
+    .style("transform", "translateX(0px)")
+    .style("opacity", 1);
+}

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Favorite Businesses II</title>
+  <link rel="stylesheet" href="vendor/materialize.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="vendor/materialize.min.js" defer></script>
+  <script src="vendor/d3.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="container">
+    <h1>My Favorite Businesses II</h1>
+    <form id="business-search">
+      <div class="input-field">
+        <input id="business-input" type="text" class="autocomplete" autocomplete="off">
+        <label for="business-input">Business name</label>
+      </div>
+      <button class="btn" type="submit">Show business</button>
+    </form>
+    <p id="search-status" role="status" aria-live="polite"></p>
+    <article id="business-card" class="card" aria-labelledby="business-title" hidden>
+      <h2 id="business-title" class="card-title"></h2>
+      <div id="business-image"></div>
+      <div class="card-content">
+        <p id="business-location"></p>
+        <p id="business-ceo"></p>
+        <p id="business-products"></p>
+      </div>
+    </article>
+  </main>
+</body>
+</html>

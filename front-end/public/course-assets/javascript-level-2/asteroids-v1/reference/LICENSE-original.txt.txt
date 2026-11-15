@@ -1,0 +1,2 @@
+This local pack is an independently written implementation of the visible assignment.
+The official original export contained no license file. The original attribution is retained in SOURCES.md.

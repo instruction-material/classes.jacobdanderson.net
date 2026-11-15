@@ -1,0 +1,36 @@
+async function loadFoxResponse(local) {
+	// TODO: Complete the rule described in README.md and verify CASES.md.
+	throw new Error("Complete loadFoxResponse in script.js.");
+}
+
+let galleryCount = 0,
+	fixtureIndex = 0;
+function validateFox(value, live = false) {
+	// TODO: Complete the rule described in README.md and verify CASES.md.
+	throw new Error("Complete validateFox in script.js.");
+}
+function appendFox(fox, image) {
+	// TODO: Complete the rule described in README.md and verify CASES.md.
+	throw new Error("Complete appendFox in script.js.");
+}
+async function loadFox() {
+	if (activeRequest || document.querySelector("#load").disabled) return;
+	setBusy(true);
+	setStatus("Loading fox.", "loading");
+	try {
+		const local = document.querySelector("#source").value === "saved";
+		const fox = await loadFoxResponse(local);
+		const image = await readyImage(fox.image);
+		appendFox(fox, image);
+		if (local) fixtureIndex++;
+		setStatus(
+			galleryCount + " fox " + (galleryCount === 1 ? "image." : "images."),
+		);
+	} catch (error) {
+		showProblem(error, galleryCount > 0);
+	} finally {
+		setBusy(false);
+	}
+}
+document.querySelector("#load").addEventListener("click", loadFox);
+loadFox();

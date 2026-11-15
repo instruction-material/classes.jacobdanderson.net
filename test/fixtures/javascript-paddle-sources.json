@@ -1,0 +1,147 @@
+{
+  "courseId": "javascript-level-2-javascript-master",
+  "moduleId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners",
+  "itemId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners-curriculum-jsm7-project-3-paddle",
+  "originalCaptures": [
+    "https://codepen.io/junilearning/pen/8ccc67de1bc03e5f2c81f78a411adee1",
+    "https://codepen.io/junilearning/pen/f633db1559cc122a943d0a52bcf74ebc"
+  ],
+  "resources": [
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "paddle",
+      "title": "Paddle",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/8ccc67de1bc03e5f2c81f78a411adee1",
+        "https://codepen.io/junilearning/pen/bGeMMmp",
+        "/course-assets/javascript-level-2/paddle-v1/starter/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "paddle-v1/starter/CASES.md.txt",
+          "byteLength": 897,
+          "sha256": "39993487f91cc49ab68749890e55eb34299e71812c916bd8ad09349c80a97ba9"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "paddle-v1/starter/LICENSE-original.txt.txt",
+          "byteLength": 1198,
+          "sha256": "4e380444bb214c38a4a5756be5c3bc6d3e012507ae8f3fe225c0dcf466fc422d"
+        },
+        {
+          "name": "README.md",
+          "path": "paddle-v1/starter/README.md.txt",
+          "byteLength": 1871,
+          "sha256": "6808dbf4b826eb91317f3171dbe70d3983f4ea01bca314254ad1655cd3862d28"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "paddle-v1/starter/SOURCES.md.txt",
+          "byteLength": 1307,
+          "sha256": "7e23b847af0fd0be25e905ab082f49f89336606216e35ffd78f84dc6b8a98588"
+        },
+        {
+          "name": "index.html",
+          "path": "paddle-v1/starter/index.html.txt",
+          "byteLength": 530,
+          "sha256": "ab750dafcfc56840a5bfb08e8a1ac7ee803e4ccf0b55ee9fe9de6cf5149fad7c"
+        },
+        {
+          "name": "script.js",
+          "path": "paddle-v1/starter/script.js.txt",
+          "byteLength": 813,
+          "sha256": "609dd5862bcf55298f4ce98ade16be286f92d9010e7f4d8b1f3be9bbf8067d4b"
+        },
+        {
+          "name": "styles.css",
+          "path": "paddle-v1/starter/styles.css.txt",
+          "byteLength": 319,
+          "sha256": "c9136172202581a70997a2d7eb486d60d3b53bdd6dd4a05ac7e7f6fb97976833"
+        }
+      ],
+      "itemId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners-curriculum-jsm7-project-3-paddle"
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "paddle",
+      "title": "Paddle",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/f633db1559cc122a943d0a52bcf74ebc",
+        "https://codepen.io/junilearning/pen/gOMzzdO/f633db1559cc122a943d0a52bcf74ebc",
+        "/course-assets/javascript-level-2/paddle-v1/reference/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "paddle-v1/reference/CASES.md.txt",
+          "byteLength": 897,
+          "sha256": "39993487f91cc49ab68749890e55eb34299e71812c916bd8ad09349c80a97ba9"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "paddle-v1/reference/LICENSE-original.txt.txt",
+          "byteLength": 1198,
+          "sha256": "4e380444bb214c38a4a5756be5c3bc6d3e012507ae8f3fe225c0dcf466fc422d"
+        },
+        {
+          "name": "README.md",
+          "path": "paddle-v1/reference/README.md.txt",
+          "byteLength": 1871,
+          "sha256": "6808dbf4b826eb91317f3171dbe70d3983f4ea01bca314254ad1655cd3862d28"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "paddle-v1/reference/SOURCES.md.txt",
+          "byteLength": 1307,
+          "sha256": "7e23b847af0fd0be25e905ab082f49f89336606216e35ffd78f84dc6b8a98588"
+        },
+        {
+          "name": "index.html",
+          "path": "paddle-v1/reference/index.html.txt",
+          "byteLength": 530,
+          "sha256": "ab750dafcfc56840a5bfb08e8a1ac7ee803e4ccf0b55ee9fe9de6cf5149fad7c"
+        },
+        {
+          "name": "script.js",
+          "path": "paddle-v1/reference/script.js.txt",
+          "byteLength": 1291,
+          "sha256": "9d3f3305191564c97e28900da9fb30da9c4504f82bcf57dade47bb64a7b92431"
+        },
+        {
+          "name": "styles.css",
+          "path": "paddle-v1/reference/styles.css.txt",
+          "byteLength": 319,
+          "sha256": "c9136172202581a70997a2d7eb486d60d3b53bdd6dd4a05ac7e7f6fb97976833"
+        }
+      ],
+      "itemId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners-curriculum-jsm7-project-3-paddle"
+    }
+  ],
+  "files": {
+    "starter": {
+      "CASES.md": "# Paddle cases\n\nCanvas: 500 by 500. Paddle: x 0,y 0,width 100,height 20,speed 10 units/frame.\n\n| Starting x | Input | Frames | Expected final x |\n| --- | --- | --- | --- |\n| 200 | Left | 1 | 190 |\n| 200 | Right | 1 | 210 |\n| 395 | Right | 1 | 400 |\n| 5 | Left | 1 | 0 |\n| 0 | Right | 50 | 400 |\n| 400 | Left | 50 | 0 |\n| 200 | Left and Right | 10 | 200 |\n| 200 | Neither | 10 | 200 |\n\nRelease-to-stop:hold Right for 3 frames from 0 to 30, release, then 10 frames leave 30.\nFocus-loss:hold Right,blur the canvas or window,and verify subsequent frames stay fixed.\nVisibility:hide the document while a key is held;returning requires a new key press.\nUnrelated keys leave direction unchanged and keep their normal browser behavior.\nRepeat at a narrow viewport and with 200% text. Edited color/speed must survive save,\nreopen and ZIP export. The unchanged starter remains stationary until implemented.\n",
+      "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/bGeMMmp)\nFork of an original work Paddle (https://codepen.io/gfting/pen/OJNmEQG)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "README.md": "# Paddle\n\nBuild a keyboard-controlled paddle in script.js. The starter supplies a working\ncanvas, paddle model and animation loop. Complete its input handlers and updatePaddle.\n\n## Files and execution\n\nOpen index.html in a browser without a server. The site IDE uses the same local\nfiles. styles.css fits the logical 500-by-500 canvas to the page.\nFocus the canvas, then hold Left or Right. A keyboard with arrow keys is required.\nCASES.md gives the expected states; SOURCES.md records the original inputs.\n\n## Input and movement\n\nThe black paddle starts at x=0,y=0 and measures 100 by 20. Its speed is\n10 logical units per animation frame, matching the original exercise's frame-based\nmovement. Store ArrowLeft and ArrowRight as booleans. keydown sets the matching\nstate; keyup clears it. Handle only those keys and prevent their default action\nwhile the canvas is focused.\n\nEach animation frame computes direction = Number(right) - Number(left).\nAdd direction * speed to x, then clamp x to [0,canvas.width-paddle.width].\nBoth keys held cancel; neither key held leaves x unchanged. Update first, then\nclear and redraw the canvas so the displayed frame matches the current state.\n\nClear both states when the canvas or window loses focus and when the document\nbecomes hidden. A release outside the page must leave the paddle stopped.\n\n## Worked cases and completion\n\nFrom x=200, one left frame gives 190; one right frame gives 210.\nThe left limit is0 and the right limit is400. From 395 a right frame gives 400.\nFrom 5 a left frame gives 0. Both keys held at 200 leave 200.\nCASES.md includes held-key, release, blur and unchanged-starter checks.\n\nShow both directions, both limits, release-to-stop and focus-loss-to-stop.\nExplain why key state is read every frame instead of moving once per keydown.\nThe unmodified starter draws its initial paddle and remains stationary.\n",
+      "SOURCES.md": "# Sources\n\nOriginal Juni Learning assignment:\nhttps://codepen.io/junilearning/pen/8ccc67de1bc03e5f2c81f78a411adee1\nObserved public alias:https://codepen.io/junilearning/pen/bGeMMmp\n\nOriginal reference:\nhttps://codepen.io/junilearning/pen/f633db1559cc122a943d0a52bcf74ebc\nObserved reference alias:https://codepen.io/junilearning/pen/gOMzzdO/f633db1559cc122a943d0a52bcf74ebc\n\nAll original HTML,CSS,JavaScript and settings were reviewed on 2026-11-14 and\nretained with the official source exports. Both use Babel,no HTML/CSS preprocessor,\nno CSS base/prefixer and no external resources or packages.\nThe starter has blank HTML/CSS and a single task comment.\nThe reference actually assigns a500-by-500 canvas. Its unused screenWidth 800 constant\ndoes not describe the rendered surface.\n\nThese local teaching files are newly authored from the assignment behavior.\nThey preserve the black 100-by-20 paddle at (0,0),500-by-500 canvas,left/right input\nand 10 units/frame. They supply the missing starter setup,clamp movement at 0 and 400,\nuse named keys,and clear held input on focus/visibility loss.\nThe original starter MIT notice is retained in LICENSE-original.txt.\nThe reference export contains no separate license file;its source remains in the\nprivate audit capture and was not copied into these local files.\n",
+      "index.html": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Paddle</title>\n<link rel=\"stylesheet\" href=\"styles.css\">\n<script src=\"script.js\" defer></script>\n</head>\n<body>\n<h1>Paddle</h1>\n<p id=\"controls\">Focus the canvas, then hold Left or Right. Release to stop.</p>\n<canvas id=\"my-canvas\" tabindex=\"0\" aria-label=\"Keyboard-controlled paddle\" aria-describedby=\"controls\">Paddle uses a canvas and a keyboard with arrow keys.</canvas>\n</body>\n</html>\n",
+      "script.js": "const canvas = document.getElementById(\"my-canvas\");\nconst ctx = canvas.getContext(\"2d\");\ncanvas.width = 500;\ncanvas.height = 500;\n\nconst paddleColor = \"black\";\nconst paddle = { x: 0, y: 0, width: 100, height: 20, speed: 10 };\nconst keyState = { ArrowLeft: false, ArrowRight: false };\n\nfunction updatePaddle() {\n\t// TODO: Move by the held direction, then clamp x to 0 through canvas.width - paddle.width.\n}\n\n// TODO: On canvas keydown/keyup, track ArrowLeft and ArrowRight and prevent their default action.\n// TODO: Clear held keys on canvas/window blur and when the document becomes hidden.\n\nfunction draw() {\n\tupdatePaddle();\n\tctx.clearRect(0, 0, canvas.width, canvas.height);\n\tctx.fillStyle = paddleColor;\n\tctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);\n\trequestAnimationFrame(draw);\n}\ndraw();\n",
+      "styles.css": "body { margin: 1rem; color: #17212b; background: white; font: 1rem/1.5 system-ui, sans-serif; }\nh1 { margin: 0 0 0.5rem; font-size: 1.5rem; }\np { max-width: 40rem; }\ncanvas { display: block; max-width: 100%; height: auto; background: #f8fafc; }\ncanvas:focus-visible { outline: 3px solid #334155; outline-offset: 3px; }\n"
+    },
+    "reference": {
+      "CASES.md": "# Paddle cases\n\nCanvas: 500 by 500. Paddle: x 0,y 0,width 100,height 20,speed 10 units/frame.\n\n| Starting x | Input | Frames | Expected final x |\n| --- | --- | --- | --- |\n| 200 | Left | 1 | 190 |\n| 200 | Right | 1 | 210 |\n| 395 | Right | 1 | 400 |\n| 5 | Left | 1 | 0 |\n| 0 | Right | 50 | 400 |\n| 400 | Left | 50 | 0 |\n| 200 | Left and Right | 10 | 200 |\n| 200 | Neither | 10 | 200 |\n\nRelease-to-stop:hold Right for 3 frames from 0 to 30, release, then 10 frames leave 30.\nFocus-loss:hold Right,blur the canvas or window,and verify subsequent frames stay fixed.\nVisibility:hide the document while a key is held;returning requires a new key press.\nUnrelated keys leave direction unchanged and keep their normal browser behavior.\nRepeat at a narrow viewport and with 200% text. Edited color/speed must survive save,\nreopen and ZIP export. The unchanged starter remains stationary until implemented.\n",
+      "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/bGeMMmp)\nFork of an original work Paddle (https://codepen.io/gfting/pen/OJNmEQG)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "README.md": "# Paddle\n\nBuild a keyboard-controlled paddle in script.js. The starter supplies a working\ncanvas, paddle model and animation loop. Complete its input handlers and updatePaddle.\n\n## Files and execution\n\nOpen index.html in a browser without a server. The site IDE uses the same local\nfiles. styles.css fits the logical 500-by-500 canvas to the page.\nFocus the canvas, then hold Left or Right. A keyboard with arrow keys is required.\nCASES.md gives the expected states; SOURCES.md records the original inputs.\n\n## Input and movement\n\nThe black paddle starts at x=0,y=0 and measures 100 by 20. Its speed is\n10 logical units per animation frame, matching the original exercise's frame-based\nmovement. Store ArrowLeft and ArrowRight as booleans. keydown sets the matching\nstate; keyup clears it. Handle only those keys and prevent their default action\nwhile the canvas is focused.\n\nEach animation frame computes direction = Number(right) - Number(left).\nAdd direction * speed to x, then clamp x to [0,canvas.width-paddle.width].\nBoth keys held cancel; neither key held leaves x unchanged. Update first, then\nclear and redraw the canvas so the displayed frame matches the current state.\n\nClear both states when the canvas or window loses focus and when the document\nbecomes hidden. A release outside the page must leave the paddle stopped.\n\n## Worked cases and completion\n\nFrom x=200, one left frame gives 190; one right frame gives 210.\nThe left limit is0 and the right limit is400. From 395 a right frame gives 400.\nFrom 5 a left frame gives 0. Both keys held at 200 leave 200.\nCASES.md includes held-key, release, blur and unchanged-starter checks.\n\nShow both directions, both limits, release-to-stop and focus-loss-to-stop.\nExplain why key state is read every frame instead of moving once per keydown.\nThe unmodified starter draws its initial paddle and remains stationary.\n",
+      "SOURCES.md": "# Sources\n\nOriginal Juni Learning assignment:\nhttps://codepen.io/junilearning/pen/8ccc67de1bc03e5f2c81f78a411adee1\nObserved public alias:https://codepen.io/junilearning/pen/bGeMMmp\n\nOriginal reference:\nhttps://codepen.io/junilearning/pen/f633db1559cc122a943d0a52bcf74ebc\nObserved reference alias:https://codepen.io/junilearning/pen/gOMzzdO/f633db1559cc122a943d0a52bcf74ebc\n\nAll original HTML,CSS,JavaScript and settings were reviewed on 2026-11-14 and\nretained with the official source exports. Both use Babel,no HTML/CSS preprocessor,\nno CSS base/prefixer and no external resources or packages.\nThe starter has blank HTML/CSS and a single task comment.\nThe reference actually assigns a500-by-500 canvas. Its unused screenWidth 800 constant\ndoes not describe the rendered surface.\n\nThese local teaching files are newly authored from the assignment behavior.\nThey preserve the black 100-by-20 paddle at (0,0),500-by-500 canvas,left/right input\nand 10 units/frame. They supply the missing starter setup,clamp movement at 0 and 400,\nuse named keys,and clear held input on focus/visibility loss.\nThe original starter MIT notice is retained in LICENSE-original.txt.\nThe reference export contains no separate license file;its source remains in the\nprivate audit capture and was not copied into these local files.\n",
+      "index.html": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Paddle</title>\n<link rel=\"stylesheet\" href=\"styles.css\">\n<script src=\"script.js\" defer></script>\n</head>\n<body>\n<h1>Paddle</h1>\n<p id=\"controls\">Focus the canvas, then hold Left or Right. Release to stop.</p>\n<canvas id=\"my-canvas\" tabindex=\"0\" aria-label=\"Keyboard-controlled paddle\" aria-describedby=\"controls\">Paddle uses a canvas and a keyboard with arrow keys.</canvas>\n</body>\n</html>\n",
+      "script.js": "const canvas = document.getElementById(\"my-canvas\");\nconst ctx = canvas.getContext(\"2d\");\ncanvas.width = 500;\ncanvas.height = 500;\n\nconst paddleColor = \"black\";\nconst paddle = { x: 0, y: 0, width: 100, height: 20, speed: 10 };\nconst keyState = { ArrowLeft: false, ArrowRight: false };\n\nfunction updatePaddle() {\n\tconst direction = Number(keyState.ArrowRight) - Number(keyState.ArrowLeft);\n\tpaddle.x = Math.max(0, Math.min(canvas.width - paddle.width, paddle.x + direction * paddle.speed));\n}\n\nfunction releaseKeys() {\n\tkeyState.ArrowLeft = false;\n\tkeyState.ArrowRight = false;\n}\n\ncanvas.addEventListener(\"keydown\", event => {\n\tif (Object.hasOwn(keyState, event.key)) {\n\t\tevent.preventDefault();\n\t\tkeyState[event.key] = true;\n\t}\n});\ncanvas.addEventListener(\"keyup\", event => {\n\tif (Object.hasOwn(keyState, event.key)) {\n\t\tevent.preventDefault();\n\t\tkeyState[event.key] = false;\n\t}\n});\ncanvas.addEventListener(\"blur\", releaseKeys);\nwindow.addEventListener(\"blur\", releaseKeys);\ndocument.addEventListener(\"visibilitychange\", () => {\n\tif (document.hidden) releaseKeys();\n});\n\nfunction draw() {\n\tupdatePaddle();\n\tctx.clearRect(0, 0, canvas.width, canvas.height);\n\tctx.fillStyle = paddleColor;\n\tctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);\n\trequestAnimationFrame(draw);\n}\ndraw();\n",
+      "styles.css": "body { margin: 1rem; color: #17212b; background: white; font: 1rem/1.5 system-ui, sans-serif; }\nh1 { margin: 0 0 0.5rem; font-size: 1.5rem; }\np { max-width: 40rem; }\ncanvas { display: block; max-width: 100%; height: auto; background: #f8fafc; }\ncanvas:focus-visible { outline: 3px solid #334155; outline-offset: 3px; }\n"
+    }
+  },
+  "revisionKind": "sha256-local-source-manifest",
+  "revision": "3536aac61cf518de00b3fa6ed9845944335dd6aa8a9ea55e3a2d6de58d9a8f21"
+}

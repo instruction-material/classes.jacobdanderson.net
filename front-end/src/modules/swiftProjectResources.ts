@@ -31,7 +31,7 @@ export const swiftGalleryRevision = "507812397086107078b67dc193507e7c220f57a3";
 export const swiftGalleryRoot = `https://github.com/instruction-material/Swift/tree/${swiftGalleryRevision}/SAD2-Media-Gallery-App`;
 export const swiftHobbyRevision = "9c4599f12037847388a7760e82409c4481e0faf7";
 export const swiftHobbyRoot = `https://github.com/instruction-material/Swift/tree/${swiftHobbyRevision}/SAD3-Multi-Tab-Hobby-App`;
-export const swiftMapRevision = "a373ffaf1d3b34fe3476137ea357c787f433f21a";
+export const swiftMapRevision = "b0dad03ef2a12b8eecfc44a888155bd9b863b04f";
 export const swiftMapRoot = `https://github.com/instruction-material/Swift/tree/${swiftMapRevision}/SAD4-Map-Places-App`;
 export const swiftCapstoneRevision = "f562fa060de745466cfda5cb55e84c1811496ec5";
 export const swiftCapstoneRoot = `https://github.com/instruction-material/Swift/tree/${swiftCapstoneRevision}/SAD7-Publish-Ready-Capstone`;
@@ -139,6 +139,9 @@ export function swiftCourseResource(url: string) {
 			[
 				"main",
 				pack.revision,
+				...(pack.projectKey === "map-places"
+					? ["a373ffaf1d3b34fe3476137ea357c787f433f21a"]
+					: []),
 				...(pack.pack === swiftWelcomePack
 					? ["d632ceb25abfac35ec4604babc9ea385a6afbcc2"]
 					: []),

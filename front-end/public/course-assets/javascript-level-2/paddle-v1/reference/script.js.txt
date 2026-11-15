@@ -1,0 +1,45 @@
+const canvas = document.getElementById("my-canvas");
+const ctx = canvas.getContext("2d");
+canvas.width = 500;
+canvas.height = 500;
+
+const paddleColor = "black";
+const paddle = { x: 0, y: 0, width: 100, height: 20, speed: 10 };
+const keyState = { ArrowLeft: false, ArrowRight: false };
+
+function updatePaddle() {
+	const direction = Number(keyState.ArrowRight) - Number(keyState.ArrowLeft);
+	paddle.x = Math.max(0, Math.min(canvas.width - paddle.width, paddle.x + direction * paddle.speed));
+}
+
+function releaseKeys() {
+	keyState.ArrowLeft = false;
+	keyState.ArrowRight = false;
+}
+
+canvas.addEventListener("keydown", event => {
+	if (Object.hasOwn(keyState, event.key)) {
+		event.preventDefault();
+		keyState[event.key] = true;
+	}
+});
+canvas.addEventListener("keyup", event => {
+	if (Object.hasOwn(keyState, event.key)) {
+		event.preventDefault();
+		keyState[event.key] = false;
+	}
+});
+canvas.addEventListener("blur", releaseKeys);
+window.addEventListener("blur", releaseKeys);
+document.addEventListener("visibilitychange", () => {
+	if (document.hidden) releaseKeys();
+});
+
+function draw() {
+	updatePaddle();
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.fillStyle = paddleColor;
+	ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+	requestAnimationFrame(draw);
+}
+draw();

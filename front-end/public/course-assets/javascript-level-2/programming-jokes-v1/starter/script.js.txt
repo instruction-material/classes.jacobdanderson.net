@@ -1,0 +1,35 @@
+async function loadJokeResponse(local) {
+	// TODO: Complete the rule described in README.md and verify CASES.md.
+	throw new Error("Complete loadJokeResponse in script.js.");
+}
+
+function normalizeJoke(value) {
+	// TODO: Complete the rule described in README.md and verify CASES.md.
+	throw new Error("Complete normalizeJoke in script.js.");
+}
+
+let current = null,
+	fixtureIndex = 0;
+function renderJoke(joke) {
+	// TODO: Complete the rule described in README.md and verify CASES.md.
+	throw new Error("Complete renderJoke in script.js.");
+}
+async function loadJoke() {
+	if (activeRequest || document.querySelector("#load").disabled) return;
+	setBusy(true);
+	setStatus("Loading joke.", "loading");
+	try {
+		const local = document.querySelector("#source").value === "saved";
+		const data = await loadJokeResponse(local);
+		renderJoke(data);
+		current = data;
+		if (local) fixtureIndex++;
+		setStatus(local ? "Saved joke loaded." : "Live joke loaded.");
+	} catch (error) {
+		showProblem(error, !!current);
+	} finally {
+		setBusy(false);
+	}
+}
+document.querySelector("#load").addEventListener("click", loadJoke);
+loadJoke();

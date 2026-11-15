@@ -1,0 +1,8 @@
+globalThis.moveFixture = [
+  { name: "practice-flame-a", type: { name: "fire" } },
+  { name: "practice-flame-b", type: { name: "fire" } },
+  { name: "practice-wave-a", type: { name: "water" } },
+  { name: "practice-wave-b", type: { name: "water" } },
+  { name: "practice-tap", type: { name: "normal" } },
+  { name: "practice-spark", type: { name: "electric" } }
+];

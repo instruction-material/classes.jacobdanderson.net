@@ -1,0 +1,21 @@
+# Juggling Paddle cases
+
+Default canvas 500 by 500; paddle (200,300),100 by 20; ball (250,100),radius 10.
+Paddle speed 10 and ball speed 1 are logical units per animation frame.
+
+| State before update | Expected |
+| --- | --- |
+| ball y 289,falling | y 290,rising:circle bottom touches paddle top |
+| ball y 50.5,rising | y 50,falling |
+| ball y 289,speed5,falling | y 290,rising:crossed surface is not skipped |
+| ball y 301,falling | y 302,falling:below-paddle motion does not bounce |
+| paddle x 0,ball falling | no collision;ball exits when y-radius>500 |
+| paddle y 200,ball y 189 | contact at y 190 |
+| radius 20,ball y 279 | contact at y 280 |
+| paddle x 255,ball y 291,falling | contact y 300-sqrt(75),rising |
+| paddle x 261,ball falling | horizontal distance 11 exceeds radius 10;miss |
+
+Holding both arrows leaves the paddle stationary. Releasing either held direction,
+blurring the canvas/window or hiding the page clears held input as applicable.
+The unmodified starter keeps the ball at (250,100) until its update is implemented.
+Changing ballColor and the heading must survive save,reopen and ZIP export.

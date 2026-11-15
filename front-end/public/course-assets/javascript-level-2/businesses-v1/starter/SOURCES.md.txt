@@ -1,0 +1,28 @@
+# Source record
+
+Original starter: https://codepen.io/junilearning/pen/bcc6527a03ffb7ca42b705ff3f3910dd
+Observed starter: https://codepen.io/junilearning/pen/oNLdNdo
+Original JavaScript SHA256: e7506ec5777926ed0e42cf42fd4250b67436e7d2edb85b697dd3ff8be1d22f6d
+
+Original reference: https://codepen.io/junilearning/pen/c694262e464e83912c601ad1875d6cd2
+Observed reference: https://codepen.io/junilearning/pen/VwjxwxQ/c694262e464e83912c601ad1875d6cd2
+Original JavaScript SHA256: 8bf3e2d98c94bf36cf2218b3d2f026e7d6a4e87cdf2a312b4f5975968d1b622f
+
+Official source exports and visible HTML/CSS/JS settings were captured on 2026-11-14.
+Both originals have empty HTML/CSS, no preprocessors or external CSS, and D3 6.2.0.
+The original starter supplies the assignment, blank project area and display helper.
+The original reference loops over three business records and their nested products arrays,
+calling printToScreen twice for each record.
+
+The local roles preserve the original assignment minimums, blank starter area and helper API.
+The local reference supplies newly authored fictional records and a nested-loop implementation.
+The local helper replaces fixed-width SVG with wrapping D3 text paragraphs, a readable palette,
+absolute pixel entrance offsets and reduced-motion support. Complete local HTML/CSS, the
+already verified D3 7.9.0 distribution, fixed cases and original/D3 notices accompany each role.
+This implementation uses selection/appending/text/transition APIs without changed event arguments.
+
+LICENSE-original.txt reproduces the original starter export's MIT notice unchanged, including
+Juni Learning and its fork attribution. The reference export contained no separate license file.
+Its provenance and task constraints are retained; the new example data and revised reference
+implementation were authored for this pack. Corporate names/CEO data in the original capture
+are historical exercise inputs, not claims about current company leadership.

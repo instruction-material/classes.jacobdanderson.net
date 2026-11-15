@@ -1,0 +1,55 @@
+
+const canvas=document.querySelector('canvas');
+const ctx=canvas.getContext('2d');
+const status=document.querySelector('[role="status"]');
+const setStatus=text=>{if(status.textContent!==text)status.textContent=text;};
+const keys={left:false,right:false,up:false,fire:false};
+
+const newGame = () => ({ x:260, y:400, width:30, height:60, circles:[], ticks:0, score:0, countdown:180, status:'starting' });
+function circleTouchesRectangle(c,r) {
+ const x=Math.max(r.x,Math.min(c.x,r.x+r.width));
+ const y=Math.max(r.y,Math.min(c.y,r.y+r.height));
+ return (c.x-x)**2+(c.y-y)**2<=c.radius**2;
+}
+function stepGame(s,keys,random=Math.random) {
+ if(s.status==='lost')return;
+ s.x=Math.max(0,Math.min(520,s.x+((keys.right?1:0)-(keys.left?1:0))*8));
+ if(s.countdown>0){s.countdown--;if(!s.countdown)s.status='playing';return;}
+ s.ticks++;
+ if(s.ticks%10===0)s.circles.push({x:15+random()*520,y:-20,radius:15});
+ for(const c of s.circles)c.y+=8;
+ s.circles=s.circles.filter(c=>c.y<=515);
+ if(s.circles.some(c=>circleTouchesRectangle(c,s))){s.status='lost';return;}
+ if(s.ticks%120===0)s.score++;
+}
+function paint(s) {
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ ctx.fillStyle='blue';ctx.fillRect(s.x,s.y,s.width,s.height);
+ ctx.strokeStyle='black';
+ for(const c of s.circles){ctx.beginPath();ctx.arc(c.x,c.y,c.radius,0,Math.PI*2);ctx.stroke();}
+ ctx.fillStyle='black';ctx.font='20px Arial';ctx.textAlign='right';ctx.fillText('Score: '+s.score,530,480);
+ if(s.countdown||s.status==='lost'){ctx.font='30px Arial';ctx.textAlign='center';ctx.fillText(s.status==='lost'?'You Lose':'Game Starting in '+Math.ceil(s.countdown/60)+'...',275,100);}
+ setStatus(s.status==='lost'?'You Lose. Score: '+s.score:s.countdown?'Game Starting in '+Math.ceil(s.countdown/60):'Score: '+s.score);
+}
+
+let game=newGame();
+const clearKeys=()=>{for(const key of Object.keys(keys))keys[key]=false;};
+const keyNames={ArrowLeft:'left',ArrowRight:'right',a:'left',d:'right',w:'up',' ':'fire',f:'fire'};
+window.addEventListener('keydown',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=true;}});
+window.addEventListener('keyup',e=>{const key=keyNames[e.key];if(key){e.preventDefault();keys[key]=false;}});
+window.addEventListener('blur',clearKeys);
+document.addEventListener('visibilitychange',()=>{if(document.hidden)clearKeys();});
+for(const button of document.querySelectorAll('[data-key]')){
+ button.addEventListener('pointerdown',e=>{e.preventDefault();button.setPointerCapture(e.pointerId);keys[button.dataset.key]=true;});
+ for(const name of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(name,()=>keys[button.dataset.key]=false);
+}
+document.querySelector('#restart').addEventListener('click',()=>{clearKeys();game=newGame();paint(game);canvas.focus();});
+
+let previous;
+let elapsed=0;
+function frame(time){
+ if(previous!==undefined)elapsed+=Math.min(100,Math.max(0,time-previous));previous=time;
+ while(elapsed>=1000/60){stepGame(game,keys);elapsed-=1000/60;}
+ paint(game);requestAnimationFrame(frame);
+}
+paint(game);requestAnimationFrame(frame);

@@ -1,0 +1,64 @@
+// Create an array that contains at least 3 objects of your favorite businesses. Each object should contain the name of the business and at least 3 other properties. One of those properties should be an array which contains at least three of the company’s products. Then, iterate through the object and use 1-2 printToScreen() calls to print all of the information from the company objects into a 1-2 sentence description of the company.
+
+// Solution: fictional exercise data.
+
+const businesses = [
+  {
+    "name": "Cedar Trail Outfitters",
+    "location": "Fairhaven",
+    "CEO": "Rowan Patel",
+    "products": [
+      "Daypack",
+      "Trail Bottle",
+      "Rain Shell"
+    ]
+  },
+  {
+    "name": "Sunrise Bakery",
+    "location": "Mapleton",
+    "CEO": "Avery Kim",
+    "products": [
+      "Sourdough",
+      "Blueberry Muffin",
+      "Cinnamon Roll"
+    ]
+  },
+  {
+    "name": "Harbor Books",
+    "location": "Lakeside",
+    "CEO": "Morgan Reed",
+    "products": [
+      "Mystery Novel",
+      "Nature Guide",
+      "Sketchbook"
+    ]
+  }
+];
+
+businesses.forEach((business) => {
+  printToScreen(
+    `${business.name} is headquartered in ${business.location} and their CEO is ${business.CEO}.`
+  );
+  let products = "";
+  business.products.forEach((product, index) => {
+    products += (index === 0 ? "" : ", ") + product;
+  });
+  printToScreen(`${business.name} offers: ${products}.`);
+});
+
+// Please don't alter the code below this line!
+
+function printToScreen(text) {
+  const colors = ["#0b2022", "#1235a8", "#4e175e", "#24551c"];
+  const color = colors[Math.floor(Math.random() * colors.length)];
+  const output = d3.select("#business-summaries").append("p")
+    .attr("class", "business-summary")
+    .style("color", color)
+    .style("transform", "translateX(-16px)")
+    .style("opacity", 0)
+    .text(text);
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  output.transition().duration(reducedMotion ? 0 : 1000)
+    .style("transform", "translateX(0px)")
+    .style("opacity", 1);
+}

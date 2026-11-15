@@ -1194,6 +1194,86 @@ jobs:
                   JAVASCRIPT_WEATHER_BROWSER_DIR: output/javascript-weather-browser
               run: node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-weather-exported-browser.test.mjs
 
+            - name: Verify 100 Squares project consent, saved edits and actual downloads
+              env:
+                  JAVASCRIPT_HUNDRED_SQUARES_BROWSER_DIR: output/javascript-hundred-squares-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-hundred-squares-course-browser.test.mjs
+
+            - name: Run actual 100 Squares downloads offline through original grid geometry and color cases
+              env:
+                  JAVASCRIPT_HUNDRED_SQUARES_BROWSER_DIR: output/javascript-hundred-squares-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-hundred-squares-exported-browser.test.mjs
+
+            - name: Verify API project imports and saved response workspaces
+              env:
+                  JAVASCRIPT_API_PROJECTS_BROWSER_DIR: output/javascript-api-projects-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-api-projects-course-browser.test.mjs
+
+            - name: Run API project exports with offline data and locally fulfilled failure cases
+              env:
+                  JAVASCRIPT_API_PROJECTS_BROWSER_DIR: output/javascript-api-projects-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-api-projects-exported-browser.test.mjs
+
+            - name: Verify state-capitals quiz assignment, imports and saved source
+              env:
+                  JAVASCRIPT_US_CAPITALS_BROWSER_DIR: output/javascript-us-capitals-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-us-capitals-course-browser.test.mjs
+
+            - name: Run state-capitals exports through actual map colors and terminal cases
+              env:
+                  JAVASCRIPT_US_CAPITALS_BROWSER_DIR: output/javascript-us-capitals-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-us-capitals-exported-browser.test.mjs
+
+            - name: Verify original fundamentals assignment imports and saved work
+              env:
+                  JAVASCRIPT_MASTER_FUNDAMENTALS_BROWSER_DIR: output/javascript-master-fundamentals-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-master-fundamentals-course-browser.test.mjs
+
+            - name: Verify original fundamentals exported game and tables
+              env:
+                  JAVASCRIPT_MASTER_FUNDAMENTALS_BROWSER_DIR: output/javascript-master-fundamentals-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-master-fundamentals-exported-browser.test.mjs
+
+            - name: Verify local document imports, saved edits and actual downloads
+              env:
+                  JAVASCRIPT_LOCAL_PERSISTENCE_BROWSER_DIR: output/javascript-local-persistence-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-local-persistence-course-browser.test.mjs
+
+            - name: Run local document exports through stable IDs and recovery boundaries
+              env:
+                  JAVASCRIPT_LOCAL_PERSISTENCE_BROWSER_DIR: output/javascript-local-persistence-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-local-persistence-exported-browser.test.mjs
+
+            - name: Verify canvas game imports, saved edits and actual downloads
+              env:
+                  JAVASCRIPT_CANVAS_GAMES_BROWSER_DIR: output/javascript-canvas-games-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-canvas-games-course-browser.test.mjs
+
+            - name: Run actual canvas game downloads offline through gameplay and terminal boundaries
+              env:
+                  JAVASCRIPT_CANVAS_GAMES_BROWSER_DIR: output/javascript-canvas-games-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-canvas-games-exported-browser.test.mjs
+
+            - name: Verify Businesses project consent, saved edits and actual downloads
+              env:
+                  JAVASCRIPT_BUSINESSES_BROWSER_DIR: output/javascript-businesses-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-businesses-course-browser.test.mjs
+
+            - name: Run actual Businesses downloads offline through object/product and reduced-motion cases
+              env:
+                  JAVASCRIPT_BUSINESSES_BROWSER_DIR: output/javascript-businesses-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-businesses-exported-browser.test.mjs
+
+            - name: Verify Business directory project consent, saved edits and actual downloads
+              env:
+                  JAVASCRIPT_BUSINESS_DIRECTORY_BROWSER_DIR: output/javascript-business-directory-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-business-directory-course-browser.test.mjs
+
+            - name: Run actual Business directory downloads offline through object/product and reduced-motion cases
+              env:
+                  JAVASCRIPT_BUSINESS_DIRECTORY_BROWSER_DIR: output/javascript-business-directory-browser
+              run: node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-business-directory-exported-browser.test.mjs
+
             - name: Verify Small Talk project consent, saved edits and actual downloads
               env:
                   JAVASCRIPT_SMALL_TALK_BROWSER_DIR: output/javascript-small-talk-browser
@@ -1229,6 +1309,77 @@ jobs:
               with:
                   name: javascript-small-talk-workflows
                   path: output/javascript-small-talk-browser/
+                  if-no-files-found: warn
+                  retention-days: 14
+
+            - name: Retain Businesses source, saved downloads and offline evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-businesses-workflows
+                  path: output/javascript-businesses-browser/
+                  if-no-files-found: warn
+                  retention-days: 14
+            - name: Retain Business directory source, saved downloads and offline evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-business-directory-workflows
+                  path: output/javascript-business-directory-browser/
+                  if-no-files-found: warn
+                  retention-days: 14
+
+            - name: Retain API project source, downloads and response evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-api-projects-workflows
+                  path: output/javascript-api-projects-browser/
+                  if-no-files-found: warn
+                  retention-days: 14
+
+            - name: Retain state-capitals source, downloads and native map evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-us-capitals-workflows
+                  path: output/javascript-us-capitals-browser/
+                  if-no-files-found: warn
+                  retention-days: 14
+
+            - name: Retain original fundamentals source, downloads and native evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-master-fundamentals-workflows
+                  path: output/javascript-master-fundamentals-browser/
+                  if-no-files-found: warn
+                  retention-days: 14
+
+            - name: Retain local document source, downloads and recovery evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-local-persistence-workflows
+                  path: output/javascript-local-persistence-browser/
+                  if-no-files-found: warn
+                  retention-days: 14
+
+            - name: Retain canvas game source, downloads and offline evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-canvas-games-workflows
+                  path: output/javascript-canvas-games-browser/
+                  if-no-files-found: warn
+                  retention-days: 14
+
+            - name: Retain 100 Squares source, saved downloads and offline evidence
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+              with:
+                  name: javascript-hundred-squares-workflows
+                  path: output/javascript-hundred-squares-browser/
                   if-no-files-found: warn
                   retention-days: 14
 
@@ -2591,7 +2742,7 @@ jobs:
                   npm install --global npm@12.0.1
                   node scripts/classes-family-heavy-task.mjs -- npm ci
             - name: Verify exact data source and historical refactoring identities
-              run: node scripts/classes-family-heavy-task.mjs -- npm exec -w front-end -- vitest run test/java-value-data-workspace.spec.test.ts test/java-ownership-move-workspace.spec.test.ts test/java-conditional-flow-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+              run: node scripts/classes-family-heavy-task.mjs -- npm exec -w front-end -- vitest run test/java-value-data-workspace.spec.test.ts test/java-ownership-move-workspace.spec.test.ts test/java-conditional-flow-workspace.spec.test.ts test/java-method-calls-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
             - name: Build the course and IDE
               run: node scripts/classes-family-heavy-task.mjs -- npm run -w front-end build
             - name: Exercise actual role imports, saved edits and continuations
@@ -2607,6 +2758,15 @@ jobs:
               env:
                   JAVA_CONDITIONAL_FLOW_BROWSER_PROOF_DIR: output/java-conditional-flow
               run: node scripts/classes-family-heavy-task.mjs -- python3 -I -B test/java-conditional-flow-exported-native.py
+            - name: Exercise method-call imports, compatibility clients and optional attempts
+              env:
+                  JAVA_METHOD_CALLS_BROWSER_PROOF_DIR: output/java-method-calls
+                  COURSE_IMPORT_SCREENSHOT_DIR: output/java-method-calls/screenshots
+              run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/java-method-calls-course-browser.test.mjs
+            - name: Compile every original and edited method-call export
+              env:
+                  JAVA_METHOD_CALLS_BROWSER_PROOF_DIR: output/java-method-calls
+              run: node scripts/classes-family-heavy-task.mjs -- python3 -I -B test/java-method-calls-exported-native.py
             - name: Retain exact data source, browser and native evidence
               if: always()
               uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
@@ -2615,5 +2775,6 @@ jobs:
                   path: |
                       output/java-value-data/
                       output/java-conditional-flow/
+                      output/java-method-calls/
                   if-no-files-found: error
                   retention-days: 14

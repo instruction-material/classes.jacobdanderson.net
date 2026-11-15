@@ -1,0 +1,58 @@
+# Books and bookshelves
+
+These are fictional records supplied for this exercise. A database persists
+stored rows; rendering those rows into the page only changes a view.
+
+bookshelves
+
+| id | label |
+| --- | --- |
+| 1 | Fiction |
+| 2 | Science |
+
+books
+
+| id | title | shelf_id |
+| --- | --- | --- |
+| 10 | Moon Map | 1 |
+| 11 | River Robots | 1 |
+| 12 | Seed Lab | 2 |
+
+Draw two boxes for these tables. Each id is a primary key, unique within
+its table. Each books.shelf_id is a foreign key referring to bookshelves.id.
+One shelf has many books; every book here belongs to one existing shelf.
+library.sql supplies the schema, constraints, rows and two read queries.
+You can predict their results without installing a database.
+
+SELECT chooses output columns; FROM chooses source rows; WHERE filters
+rows. Query A selects title from books with shelf_id=1, ordered by id:
+Moon Map
+River Robots
+
+JOIN combines rows whose shelf IDs match. Query B returns:
+Moon Map | Fiction
+River Robots | Fiction
+Seed Lab | Science
+
+Write each predicted result before comparing it with these worked results.
+Then explain the same join as a JavaScript lookup by shelf_id.
+
+CRUD describes create, read, update and delete:
+CREATE: INSERT INTO books VALUES (13,'Star Garden',2);
+READ: SELECT title FROM books WHERE id=13; gives Star Garden.
+UPDATE: UPDATE books SET shelf_id=1 WHERE id=13;
+READ the join again: Star Garden now pairs with Fiction.
+DELETE: DELETE FROM books WHERE id=13;
+READ again: the three original books remain.
+
+Run this sequence beginning from library.sql. Changing only a
+displayed title leaves a stored row unchanged. Changing an in-memory
+JavaScript array lasts only in that program until deliberately saved;
+a SQL UPDATE changes stored data. Explain which action each example performs.
+An insert using shelf_id=99 fails the foreign-key constraint. A repeated
+primary-key id fails its uniqueness constraint. Record both predictions.
+
+If SQLite is available, run library.sql in a temporary database, then the
+CRUD sequence above. Otherwise retain the diagram, query predictions and
+worked comparisons as the complete local artifact. An optional online
+schema diagram can reproduce these fictional tables after this work.

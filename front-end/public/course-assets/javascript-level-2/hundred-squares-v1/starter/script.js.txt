@@ -1,0 +1,3 @@
+// Draw 100 squares using D3, 10 rows by 10 columns. Start with 1 square. Then, use a for loop to draw 10 squares in a row. Finally, use a nested for loop to draw 10 of those rows. Use r,g,b and .attr("fill", `rgb(${r},${g},${b})`) to make each square a random color.
+
+// Enter your code below this line

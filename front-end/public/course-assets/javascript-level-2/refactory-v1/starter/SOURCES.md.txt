@@ -1,0 +1,20 @@
+# Source record
+
+starter: https://codepen.io/junilearning/pen/3a1383fc8a60d0ff0f55419c9b4940fe
+Observed: https://codepen.io/junilearning/pen/mdELxmp
+JavaScript SHA256: 4e59db768746010504bb7ea6d5e54a5f031bebeccb53c87d69de5dec821dca8d
+
+reference: https://codepen.io/junilearning/pen/4e1986a769365ecdef09ebeea1144a4f
+Observed: https://codepen.io/junilearning/pen/ZEOoxez/4e1986a769365ecdef09ebeea1144a4f
+JavaScript SHA256: b07090ad699bf993930246e5be97be25f78cadec2c02eae767bec7d8869b900d
+
+Both complete editor sources, official exports and HTML/CSS/JavaScript settings were inspected
+on 2026-11-14. Both HTML/CSS panels are empty, all preprocessors are None, CSS base/prefixing
+are Neither, and no external resources or packages are configured.
+
+The local starter script is byte-identical to the original. The local reference is newly
+authored and preserves the two ordered reports, helper responsibilities and separate object
+identities verified against the original reference. The original private reference export has
+no separate license file; its complete capture is retained as review evidence, while this pack
+uses the newly authored reference. LICENSE-original.txt retains the starter's complete notice.
+The local HTML, styles and report-viewer.js display the existing console objects as text.

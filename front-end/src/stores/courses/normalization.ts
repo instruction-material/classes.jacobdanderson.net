@@ -1,4 +1,8 @@
 import type { RawCourse, RawCourseModule, RawCourseModuleItem } from "./types";
+import {
+	applyAiOptionalAssignments,
+	applyAiStudioReadings
+} from "./aiStudioReadings";
 import { applyAlgebraErrorAnalysisCases } from "./algebraErrorAnalysisCases";
 import { applyCourseImplementationArtifacts } from "./course-implementation-artifacts";
 import { applyEarlyElementaryAProjects } from "./earlyElementaryAProjects";
@@ -34,6 +38,7 @@ import { applyRustTraitPipelineCourseWorkflows } from "./rustTraitPipelineCourse
 import { applyRustTypedErrorsCourseWorkflows } from "./rustTypedErrorsCourseWorkflows";
 import { applyScratchBootcampReadings } from "./scratchBootcampReadings";
 import { applyScratchConceptReadings } from "./scratchConceptReadings";
+import { applySmartMoneyReadings } from "./smartMoneyReadings";
 import {
 	canonicalStaticMediaUrl,
 	hasPendingStaticMediaNotice,
@@ -1307,7 +1312,11 @@ function isProjectLikeItem(item: RawCourseModuleItem) {
 }
 
 function isConceptLessonItem(item: RawCourseModuleItem) {
-	return !isProjectLikeItem(item) && !isInformationalResourceItem(item);
+	return (
+		!(item.contentKind === "reading" && item.preserveAssignment) &&
+		!isProjectLikeItem(item) &&
+		!isInformationalResourceItem(item)
+	);
 }
 
 const genericSupportItemTitlePattern =
@@ -9870,6 +9879,12 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 	applyWebDeploymentWorkflow(course, id);
 	preserveMathArchiveProgress(course, id);
 	preserveDesignPatternsJavaProgress(course, id);
+	if (id === "ai-level-1") {
+		applyAiStudioReadings(course, rawCourse);
+		applyAiOptionalAssignments(course, rawCourse);
+	}
+	if (id === "smart-money-personal-finance")
+		applySmartMoneyReadings(course, rawCourse);
 	if (id === "entrepreneurship-101")
 		applyEntrepreneurshipReadings(course, rawCourse);
 	if (id === "middle-school-a-literature")

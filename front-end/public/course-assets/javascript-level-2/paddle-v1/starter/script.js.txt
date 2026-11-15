@@ -1,0 +1,24 @@
+const canvas = document.getElementById("my-canvas");
+const ctx = canvas.getContext("2d");
+canvas.width = 500;
+canvas.height = 500;
+
+const paddleColor = "black";
+const paddle = { x: 0, y: 0, width: 100, height: 20, speed: 10 };
+const keyState = { ArrowLeft: false, ArrowRight: false };
+
+function updatePaddle() {
+	// TODO: Move by the held direction, then clamp x to 0 through canvas.width - paddle.width.
+}
+
+// TODO: On canvas keydown/keyup, track ArrowLeft and ArrowRight and prevent their default action.
+// TODO: Clear held keys on canvas/window blur and when the document becomes hidden.
+
+function draw() {
+	updatePaddle();
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.fillStyle = paddleColor;
+	ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+	requestAnimationFrame(draw);
+}
+draw();

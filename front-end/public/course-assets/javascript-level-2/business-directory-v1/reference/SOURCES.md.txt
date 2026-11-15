@@ -1,0 +1,25 @@
+# Sources and adaptation
+
+Original assignment:
+https://codepen.io/junilearning/pen/50854534e6dccd9c7bedc0a2d01aded7
+
+Original reference:
+https://codepen.io/junilearning/pen/7cbfe6e04babe21bb34a6d6af1028f57
+
+Both complete original panels, all HTML/CSS/JS settings and official exports
+were retained and compared on 2026-11-14. The original starter has blank HTML
+and CSS and a comment brief. The reference uses Materialize 1.0.0 and D3 6.2.0
+to search a three-company array and fill one card.
+
+This local implementation supplies full HTML/CSS scaffolding, local example
+images, a deliberately unfinished starter and a separate working reference.
+Fictional records replace historical company facts. The no-match and failed-image
+branches satisfy the site's existing assignment. The unnecessary legacy
+jquery.materialize-autocomplete plug-in is omitted; Materialize's own
+M.Autocomplete provides the assigned behavior.
+
+D3 7.9.0 is the existing audited site adaptation, with the same selection/event
+API used here. Materialize is the existing pinned 1.0.0 course asset. Libraries
+and licenses are included. The original starter export's MIT notice is retained;
+the official reference export contained no separate license file. The local
+exercise implementation and SVG illustrations are newly authored.

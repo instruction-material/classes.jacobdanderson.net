@@ -307,6 +307,8 @@ async function retainRuntimeFailure(
 			const style = button ? getComputedStyle(button) : null;
 			return {
 				url: location.href,
+				importConfirmation: !!document.querySelector("[data-testid='ide-route-import-confirm']"),
+				pageText: document.body?.textContent.slice(-8000),
 				visibility: document.visibilityState,
 				activeElement: document.activeElement?.tagName,
 				runControl: button
@@ -909,6 +911,20 @@ nodeTest(
 							editedFiles: edited.files,
 							remoteWrites: state.remoteWrites
 						});
+					}
+					catch (error) {
+						await retainRuntimeFailure(
+							page,
+							null,
+							output,
+							{ name: `${activity.name}-${width}`, classroom: activity.course.endsWith("classroom"), course: activity.course, width },
+							"course-button-import-save-and-export",
+							error,
+							profiles,
+							runtimeProfiles,
+							{ ...state, requests: state.requests }
+						);
+						throw error;
 					}
 					finally {
 						await page.close();

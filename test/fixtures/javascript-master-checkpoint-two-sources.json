@@ -1,0 +1,440 @@
+{
+  "courseId": "javascript-level-2-javascript-master",
+  "moduleId": "javascript-level-2-javascript-master-check-in-2",
+  "revision": 1,
+  "projects": [
+    {
+      "project": "master-checkpoint-two",
+      "title": "Check-In 2: Helpers, Events, APIs and Data",
+      "folder": "Core",
+      "itemId": "javascript-level-2-javascript-master-check-in-2-curriculum-check-in-2-helper-functions-and-event-listeners",
+      "workspaceItemId": "javascript-level-2-javascript-master-check-in-2-curriculum-check-in-2-helper-functions-and-event-listeners",
+      "moduleId": "javascript-level-2-javascript-master-check-in-2",
+      "urls": [
+        "f6a04f3b9405ba212662f72a776bc0cd",
+        "7b72b5cd25d5372e9097f68de4b66db6"
+      ],
+      "continuationIds": [
+        "javascript-level-2-javascript-master-check-in-2-curriculum-check-in-2-apis",
+        "javascript-level-2-javascript-master-check-in-2-curriculum-check-in-2-databases"
+      ]
+    },
+    {
+      "project": "master-checkpoint-two-moves",
+      "title": "Move Analyzer",
+      "folder": "Move Analyzer",
+      "itemId": "javascript-level-2-javascript-master-check-in-2-curriculum-javascript-level-2-javascript-master-check-in-2-practice-project",
+      "workspaceItemId": "javascript-level-2-javascript-master-check-in-2-curriculum-javascript-level-2-javascript-master-check-in-2-practice-project",
+      "moduleId": "javascript-level-2-javascript-master-check-in-2",
+      "urls": [
+        "a320051c74a1a5baa1358818c5bca5bc",
+        "ba366d22ab4a98e653a5b2bcb4affba8"
+      ],
+      "continuationIds": []
+    }
+  ],
+  "resources": [
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "master-checkpoint-two",
+      "title": "Check-In 2: Helpers, Events, APIs and Data",
+      "itemId": "javascript-level-2-javascript-master-check-in-2-curriculum-check-in-2-helper-functions-and-event-listeners",
+      "workspaceItemId": "javascript-level-2-javascript-master-check-in-2-curriculum-check-in-2-helper-functions-and-event-listeners",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/f6a04f3b9405ba212662f72a776bc0cd",
+        "/course-assets/javascript-level-2/master-checkpoint-two-v1/starter/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "master-checkpoint-two-v1/starter/CASES.md.txt",
+          "byteLength": 450,
+          "sha256": "e80b210f39b8c83adbd489304d477a1195a52e7aa5fcfb8614f6a92b31677af5"
+        },
+        {
+          "name": "DATABASE.md",
+          "path": "master-checkpoint-two-v1/starter/DATABASE.md.txt",
+          "byteLength": 2221,
+          "sha256": "b62519601ccd74e34530da526536a78dfcee225c95a1e1833ae6955e0c9b2b25"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "master-checkpoint-two-v1/starter/LICENSE-original.txt.txt",
+          "byteLength": 1202,
+          "sha256": "0a3378822ec7cc08562b45cf1aaa3c27bd1b26e72a8ce9eb8578346532d832e8"
+        },
+        {
+          "name": "README.md",
+          "path": "master-checkpoint-two-v1/starter/README.md.txt",
+          "byteLength": 2959,
+          "sha256": "847db8855e0288e49cd0ff2a8f54536c2dac677c87d412132b0cb1150eec33f3"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "master-checkpoint-two-v1/starter/SOURCES.md.txt",
+          "byteLength": 853,
+          "sha256": "fc371ffea666846cc9f7c98d9566dad0427ca0e76fd0bc984ad79df5a0ee51c3"
+        },
+        {
+          "name": "fixture.js",
+          "path": "master-checkpoint-two-v1/starter/fixture.js.txt",
+          "byteLength": 188,
+          "sha256": "13530399d5f8d9da7fe4d6b134341d1724de82be23bf272aba7f40522b865359"
+        },
+        {
+          "name": "helpers.js",
+          "path": "master-checkpoint-two-v1/starter/helpers.js.txt",
+          "byteLength": 601,
+          "sha256": "230a068f0ceba2d0d8771023ade1364c7e0dc76e293969da0dba137e755a02ce"
+        },
+        {
+          "name": "index.html",
+          "path": "master-checkpoint-two-v1/starter/index.html.txt",
+          "byteLength": 962,
+          "sha256": "be2bd47a61ad3f3017f00de302a0437a1b82b2b36b8e8bc6d639c9c850fa7317"
+        },
+        {
+          "name": "library.sql",
+          "path": "master-checkpoint-two-v1/starter/library.sql.txt",
+          "byteLength": 581,
+          "sha256": "8bb4bc822cec6630b49b33490d687013c288cfb5a707094c2efae5368c9399dc"
+        },
+        {
+          "name": "remote.js",
+          "path": "master-checkpoint-two-v1/starter/remote.js.txt",
+          "byteLength": 1056,
+          "sha256": "56ace5f17315e9fef13f24ac414608af0a4021fe62467fed64ff51f9a852d5be"
+        },
+        {
+          "name": "script.js",
+          "path": "master-checkpoint-two-v1/starter/script.js.txt",
+          "byteLength": 2001,
+          "sha256": "2f70b72ac662c29ccfbdc8404013f152f4387c2a1e9fac182710c09bfdde95e3"
+        },
+        {
+          "name": "styles.css",
+          "path": "master-checkpoint-two-v1/starter/styles.css.txt",
+          "byteLength": 490,
+          "sha256": "f38d5c9930e54ace36c8ee04ede3f4ee69195c3fcda62af731a554bea9c78a81"
+        }
+      ]
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "master-checkpoint-two",
+      "title": "Check-In 2: Helpers, Events, APIs and Data",
+      "itemId": "javascript-level-2-javascript-master-check-in-2-curriculum-check-in-2-helper-functions-and-event-listeners",
+      "workspaceItemId": "javascript-level-2-javascript-master-check-in-2-curriculum-check-in-2-helper-functions-and-event-listeners",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/7b72b5cd25d5372e9097f68de4b66db6",
+        "/course-assets/javascript-level-2/master-checkpoint-two-v1/reference/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "master-checkpoint-two-v1/reference/CASES.md.txt",
+          "byteLength": 450,
+          "sha256": "e80b210f39b8c83adbd489304d477a1195a52e7aa5fcfb8614f6a92b31677af5"
+        },
+        {
+          "name": "DATABASE.md",
+          "path": "master-checkpoint-two-v1/reference/DATABASE.md.txt",
+          "byteLength": 2221,
+          "sha256": "b62519601ccd74e34530da526536a78dfcee225c95a1e1833ae6955e0c9b2b25"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "master-checkpoint-two-v1/reference/LICENSE-original.txt.txt",
+          "byteLength": 147,
+          "sha256": "8572188596af25acf9b652ded4ebec7da2ef90ae7294cad7bec85d3b11812cfd"
+        },
+        {
+          "name": "README.md",
+          "path": "master-checkpoint-two-v1/reference/README.md.txt",
+          "byteLength": 2959,
+          "sha256": "847db8855e0288e49cd0ff2a8f54536c2dac677c87d412132b0cb1150eec33f3"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "master-checkpoint-two-v1/reference/SOURCES.md.txt",
+          "byteLength": 853,
+          "sha256": "fc371ffea666846cc9f7c98d9566dad0427ca0e76fd0bc984ad79df5a0ee51c3"
+        },
+        {
+          "name": "fixture.js",
+          "path": "master-checkpoint-two-v1/reference/fixture.js.txt",
+          "byteLength": 188,
+          "sha256": "13530399d5f8d9da7fe4d6b134341d1724de82be23bf272aba7f40522b865359"
+        },
+        {
+          "name": "helpers.js",
+          "path": "master-checkpoint-two-v1/reference/helpers.js.txt",
+          "byteLength": 635,
+          "sha256": "f3417aec8979dc65761d03bbda65f8798058ba3dfed751fbc0e5f6b8bf91c05c"
+        },
+        {
+          "name": "index.html",
+          "path": "master-checkpoint-two-v1/reference/index.html.txt",
+          "byteLength": 962,
+          "sha256": "be2bd47a61ad3f3017f00de302a0437a1b82b2b36b8e8bc6d639c9c850fa7317"
+        },
+        {
+          "name": "library.sql",
+          "path": "master-checkpoint-two-v1/reference/library.sql.txt",
+          "byteLength": 581,
+          "sha256": "8bb4bc822cec6630b49b33490d687013c288cfb5a707094c2efae5368c9399dc"
+        },
+        {
+          "name": "remote.js",
+          "path": "master-checkpoint-two-v1/reference/remote.js.txt",
+          "byteLength": 1056,
+          "sha256": "56ace5f17315e9fef13f24ac414608af0a4021fe62467fed64ff51f9a852d5be"
+        },
+        {
+          "name": "script.js",
+          "path": "master-checkpoint-two-v1/reference/script.js.txt",
+          "byteLength": 2001,
+          "sha256": "2f70b72ac662c29ccfbdc8404013f152f4387c2a1e9fac182710c09bfdde95e3"
+        },
+        {
+          "name": "styles.css",
+          "path": "master-checkpoint-two-v1/reference/styles.css.txt",
+          "byteLength": 490,
+          "sha256": "f38d5c9930e54ace36c8ee04ede3f4ee69195c3fcda62af731a554bea9c78a81"
+        }
+      ]
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "master-checkpoint-two-moves",
+      "title": "Move Analyzer",
+      "itemId": "javascript-level-2-javascript-master-check-in-2-curriculum-javascript-level-2-javascript-master-check-in-2-practice-project",
+      "workspaceItemId": "javascript-level-2-javascript-master-check-in-2-curriculum-javascript-level-2-javascript-master-check-in-2-practice-project",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/a320051c74a1a5baa1358818c5bca5bc",
+        "/course-assets/javascript-level-2/master-checkpoint-two-moves-v1/starter/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "master-checkpoint-two-moves-v1/starter/CASES.md.txt",
+          "byteLength": 308,
+          "sha256": "f52ed0813be8424322988ac3d147b5cb5b7afaf6e3c9287e850ff60c72dbf5f1"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "master-checkpoint-two-moves-v1/starter/LICENSE-original.txt.txt",
+          "byteLength": 1172,
+          "sha256": "fc819a59f4e5503a37b8f724f6d29e6aae46b1f660051f7da783f90088ec82eb"
+        },
+        {
+          "name": "README.md",
+          "path": "master-checkpoint-two-moves-v1/starter/README.md.txt",
+          "byteLength": 2966,
+          "sha256": "909a6963f52d98aea4da6a1649bf432383d6e8f733773c423af1a320335aec24"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "master-checkpoint-two-moves-v1/starter/SOURCES.md.txt",
+          "byteLength": 853,
+          "sha256": "a02f3282d620d723bb681250249dfea08ec6725c87de353a5e4e9601fe568cf9"
+        },
+        {
+          "name": "data.js",
+          "path": "master-checkpoint-two-moves-v1/starter/data.js.txt",
+          "byteLength": 983,
+          "sha256": "fd06b14e49f7a78ba1189553ac15b5c0e6844a008d227f1718a6ee6408f82a8f"
+        },
+        {
+          "name": "fixture.js",
+          "path": "master-checkpoint-two-moves-v1/starter/fixture.js.txt",
+          "byteLength": 365,
+          "sha256": "8239bfef3d8cb984102ad158c351b2e24c80512e3c0d44da12849246047fd1df"
+        },
+        {
+          "name": "index.html",
+          "path": "master-checkpoint-two-moves-v1/starter/index.html.txt",
+          "byteLength": 977,
+          "sha256": "ecee9b58e261626a0ad00a343dea9c0df43c6f96511de54d1492685c4c016c0a"
+        },
+        {
+          "name": "moves.js",
+          "path": "master-checkpoint-two-moves-v1/starter/moves.js.txt",
+          "byteLength": 432,
+          "sha256": "caaad54f29a6798831845604dd1d8920a48a2e24b901af4eac4edcd4d051e360"
+        },
+        {
+          "name": "remote.js",
+          "path": "master-checkpoint-two-moves-v1/starter/remote.js.txt",
+          "byteLength": 1056,
+          "sha256": "56ace5f17315e9fef13f24ac414608af0a4021fe62467fed64ff51f9a852d5be"
+        },
+        {
+          "name": "script.js",
+          "path": "master-checkpoint-two-moves-v1/starter/script.js.txt",
+          "byteLength": 1619,
+          "sha256": "567c37630589dbffe999cf0cb980a8a80cdd38b9d9d35ff8e4019a2ccf410c9f"
+        },
+        {
+          "name": "styles.css",
+          "path": "master-checkpoint-two-moves-v1/starter/styles.css.txt",
+          "byteLength": 490,
+          "sha256": "f38d5c9930e54ace36c8ee04ede3f4ee69195c3fcda62af731a554bea9c78a81"
+        }
+      ]
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "master-checkpoint-two-moves",
+      "title": "Move Analyzer",
+      "itemId": "javascript-level-2-javascript-master-check-in-2-curriculum-javascript-level-2-javascript-master-check-in-2-practice-project",
+      "workspaceItemId": "javascript-level-2-javascript-master-check-in-2-curriculum-javascript-level-2-javascript-master-check-in-2-practice-project",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/ba366d22ab4a98e653a5b2bcb4affba8",
+        "/course-assets/javascript-level-2/master-checkpoint-two-moves-v1/reference/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "master-checkpoint-two-moves-v1/reference/CASES.md.txt",
+          "byteLength": 308,
+          "sha256": "f52ed0813be8424322988ac3d147b5cb5b7afaf6e3c9287e850ff60c72dbf5f1"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "master-checkpoint-two-moves-v1/reference/LICENSE-original.txt.txt",
+          "byteLength": 147,
+          "sha256": "8572188596af25acf9b652ded4ebec7da2ef90ae7294cad7bec85d3b11812cfd"
+        },
+        {
+          "name": "README.md",
+          "path": "master-checkpoint-two-moves-v1/reference/README.md.txt",
+          "byteLength": 2966,
+          "sha256": "909a6963f52d98aea4da6a1649bf432383d6e8f733773c423af1a320335aec24"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "master-checkpoint-two-moves-v1/reference/SOURCES.md.txt",
+          "byteLength": 853,
+          "sha256": "a02f3282d620d723bb681250249dfea08ec6725c87de353a5e4e9601fe568cf9"
+        },
+        {
+          "name": "data.js",
+          "path": "master-checkpoint-two-moves-v1/reference/data.js.txt",
+          "byteLength": 983,
+          "sha256": "fd06b14e49f7a78ba1189553ac15b5c0e6844a008d227f1718a6ee6408f82a8f"
+        },
+        {
+          "name": "fixture.js",
+          "path": "master-checkpoint-two-moves-v1/reference/fixture.js.txt",
+          "byteLength": 365,
+          "sha256": "8239bfef3d8cb984102ad158c351b2e24c80512e3c0d44da12849246047fd1df"
+        },
+        {
+          "name": "index.html",
+          "path": "master-checkpoint-two-moves-v1/reference/index.html.txt",
+          "byteLength": 977,
+          "sha256": "ecee9b58e261626a0ad00a343dea9c0df43c6f96511de54d1492685c4c016c0a"
+        },
+        {
+          "name": "moves.js",
+          "path": "master-checkpoint-two-moves-v1/reference/moves.js.txt",
+          "byteLength": 594,
+          "sha256": "141e97083d57d6c97df5728ca70dcd560803ff6f6ac7a72ec8f8f18754d85ddb"
+        },
+        {
+          "name": "remote.js",
+          "path": "master-checkpoint-two-moves-v1/reference/remote.js.txt",
+          "byteLength": 1056,
+          "sha256": "56ace5f17315e9fef13f24ac414608af0a4021fe62467fed64ff51f9a852d5be"
+        },
+        {
+          "name": "script.js",
+          "path": "master-checkpoint-two-moves-v1/reference/script.js.txt",
+          "byteLength": 1619,
+          "sha256": "567c37630589dbffe999cf0cb980a8a80cdd38b9d9d35ff8e4019a2ccf410c9f"
+        },
+        {
+          "name": "styles.css",
+          "path": "master-checkpoint-two-moves-v1/reference/styles.css.txt",
+          "byteLength": 490,
+          "sha256": "f38d5c9930e54ace36c8ee04ede3f4ee69195c3fcda62af731a554bea9c78a81"
+        }
+      ]
+    }
+  ],
+  "files": {
+    "master-checkpoint-two": {
+      "starter": {
+        "CASES.md": "Even sums: 8,2,0,2,2,-2 for the six page cases; inputs unchanged.\nCanvas: (165,185) => (250,250) in the supplied 250px rectangle; top-left => (0,0).\nFixture first name pound. Empty/missing/bad results rejected.\nOne successful optional list request cached; failures uncached, prior display retained.\nDatabase A: Moon Map,River Robots. B: each book with its matching shelf.\nForeign key99 and duplicate primary key rejected; CRUD returns original3rows.\n",
+        "DATABASE.md": "# Books and bookshelves\n\nThese are fictional records supplied for this exercise. A database persists\nstored rows; rendering those rows into the page only changes a view.\n\nbookshelves\n\n| id | label |\n| --- | --- |\n| 1 | Fiction |\n| 2 | Science |\n\nbooks\n\n| id | title | shelf_id |\n| --- | --- | --- |\n| 10 | Moon Map | 1 |\n| 11 | River Robots | 1 |\n| 12 | Seed Lab | 2 |\n\nDraw two boxes for these tables. Each id is a primary key, unique within\nits table. Each books.shelf_id is a foreign key referring to bookshelves.id.\nOne shelf has many books; every book here belongs to one existing shelf.\nlibrary.sql supplies the schema, constraints, rows and two read queries.\nYou can predict their results without installing a database.\n\nSELECT chooses output columns; FROM chooses source rows; WHERE filters\nrows. Query A selects title from books with shelf_id=1, ordered by id:\nMoon Map\nRiver Robots\n\nJOIN combines rows whose shelf IDs match. Query B returns:\nMoon Map | Fiction\nRiver Robots | Fiction\nSeed Lab | Science\n\nWrite each predicted result before comparing it with these worked results.\nThen explain the same join as a JavaScript lookup by shelf_id.\n\nCRUD describes create, read, update and delete:\nCREATE: INSERT INTO books VALUES (13,'Star Garden',2);\nREAD: SELECT title FROM books WHERE id=13; gives Star Garden.\nUPDATE: UPDATE books SET shelf_id=1 WHERE id=13;\nREAD the join again: Star Garden now pairs with Fiction.\nDELETE: DELETE FROM books WHERE id=13;\nREAD again: the three original books remain.\n\nRun this sequence beginning from library.sql. Changing only a\ndisplayed title leaves a stored row unchanged. Changing an in-memory\nJavaScript array lasts only in that program until deliberately saved;\na SQL UPDATE changes stored data. Explain which action each example performs.\nAn insert using shelf_id=99 fails the foreign-key constraint. A repeated\nprimary-key id fails its uniqueness constraint. Record both predictions.\n\nIf SQLite is available, run library.sql in a temporary database, then the\nCRUD sequence above. Otherwise retain the diagram, query predictions and\nworked comparisons as the complete local artifact. An optional online\nschema diagram can reproduce these fictional tables after this work.\n",
+        "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/QWKyJvY)\nFork of an original work Flashcards (https://codepen.io/gfting/pen/abNzpjg)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+        "README.md": "# Check-In 2: Helpers, Events, APIs and Data\n\nContinue the same Core project across Helpers, APIs and Databases. Open\nindex.html directly. The interface, request helper and fixtures are supplied;\ncomplete the three functions in helpers.js before comparing the reference.\n\n## Helpers and event coordinates\n\nImplement sumEvens(values) with a named helper and a reduce total starting\nat 0. Preserve the input array. The original arrays [2,1,6,91,-1] and\n[0,3,2,91,-1] give 8 and 2. Also check [] gives 0, [1,2] gives 2,\n[-3,2] gives 2, and [-4,2] gives -2. Starting reduce without 0 would\nfail for [] and incorrectly include an odd first element.\n\nImplement canvasPoint(event,canvas). Read canvas.getBoundingClientRect(),\nsubtract rect.left and rect.top from clientX and clientY, then multiply\neach coordinate by its buffer-size/display-size ratio:\nx = (clientX - left) * canvas.width / rect.width\ny = (clientY - top) * canvas.height / rect.height\nA 500 by 500 buffer displayed at 250 by 250, with left=40 and top=60,\nmaps click (165,185) to (250,250). The top-left maps to (0,0).\nThe page deliberately scales the canvas. Click near the center and an edge,\nthen compare the visible position with the reported buffer coordinates.\n\n## API data\n\nfixture.js is a small authored practice object shaped like a move-list\nresponse. It is supplied with this project, rather than fetched on opening.\nImplement firstMove(data): call checkpointRemote.validateList(data) and\nreturn data.results[0].name. The fixture's first name is pound. Invalid,\nmissing or empty results must produce a useful error instead of a crash.\n\nUse practice fixture to display that result. Request 20 move names is\noptional and performs one public GET to the documented move-list endpoint.\nThe supplied remote.js checks response.ok, parses JSON, validates before\ncaching, and uses AbortController to abort after five seconds. Inspect how\nloading, request, validation, state and display have separate responsibilities.\nRepeated successful reads use the page's memory cache. Reload clears it.\nAn offline, non-OK, malformed or timeout response must retain the last valid\nname and source label while displaying an error. Avoid private records.\n\n## Database worksheet\n\nRead DATABASE.md and library.sql. Both complete tables, keys, queries and\nworked results are provided locally. Predict SELECT/WHERE and JOIN outputs,\ndraw their relationship, and walk through the supplied CRUD sequence.\nDistinguish changing a view, an in-memory array and stored database rows.\nSQLite execution and a hosted diagram are optional.\n\n## Completion\n\nRetain expected and observed fixed sums, original-array preservation, two\ncanvas clicks with coordinate predictions, fixture output, and a database\ndiagram with query/CRUD predictions. If trying live requests, record the\nvisible source and recovery result. Change one input, predict its output,\nthen keep the observed result. Continue across tasks with these saved files.\n",
+        "SOURCES.md": "Original starter: https://codepen.io/junilearning/pen/f6a04f3b9405ba212662f72a776bc0cd\nOriginal reference: https://codepen.io/junilearning/pen/7b72b5cd25d5372e9097f68de4b66db6\n\nLocally authored adaptation of the original helper/event/API and move-counting tasks. The original ZIPs remain unchanged in Source Exports. Core corrects empty/odd-first reduce inputs and CSS-to-buffer coordinates, and supplies the complete fictional SQL worksheet. Move Analyzer replaces784unbounded simultaneous requests with a six-record authored practice fixture and six sequential optional cached GETs. Original D3 and unpinned jquery-latest dependencies are replaced by native DOM controls. Practice records are authored examples, not captured live responses. No current whole-API move count is asserted.\n\nAPI shapes, pagination and caching: https://pokeapi.co/docs/v2/\n",
+        "fixture.js": "globalThis.checkpointFixture = {\n  results: [\n    { name: \"pound\", url: \"https://pokeapi.co/api/v2/move/1/\" },\n    { name: \"karate-chop\", url: \"https://pokeapi.co/api/v2/move/2/\" }\n  ]\n};\n",
+        "helpers.js": "(function () {\n\"use strict\";\nfunction sumEvens(values) {\n  // TODO: return the sum of even values, starting with total 0.\n  throw new Error(\"Complete sumEvens in helpers.js.\");\n}\nfunction canvasPoint(event, canvas) {\n  // TODO: subtract the visible rectangle origin, then scale to buffer coordinates.\n  throw new Error(\"Complete canvasPoint in helpers.js.\");\n}\nfunction firstMove(data) {\n  // TODO: validate with checkpointRemote.validateList and return the first move name.\n  throw new Error(\"Complete firstMove in helpers.js.\");\n}\nglobalThis.checkpoint = { sumEvens, canvasPoint, firstMove };\n})();\n",
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Check-In 2</title><link rel=\"stylesheet\" href=\"styles.css\">\n<script src=\"fixture.js\" defer></script><script src=\"remote.js\" defer></script>\n<script src=\"helpers.js\" defer></script><script src=\"script.js\" defer></script></head>\n<body><main><h1>Check-In 2</h1>\n<section><h2>Even sums</h2><button id=\"sum\" type=\"button\">Run fixed sums</button><pre id=\"sums\" aria-live=\"polite\"></pre></section>\n<section><h2>Canvas coordinates</h2><canvas id=\"board\" width=\"500\" height=\"500\" aria-label=\"500 by 500 coordinate practice\"></canvas>\n<p id=\"position\" role=\"status\">Click the canvas.</p></section>\n<section><h2>Move names</h2><button id=\"fixture\" type=\"button\">Use practice fixture</button>\n<button id=\"live\" type=\"button\">Request 20 move names</button>\n<p id=\"status\" role=\"status\"></p><p id=\"move\"></p></section>\n</main></body></html>\n",
+        "library.sql": "PRAGMA foreign_keys = ON;\nCREATE TABLE bookshelves (\n  id INTEGER PRIMARY KEY,\n  label TEXT NOT NULL UNIQUE\n);\nCREATE TABLE books (\n  id INTEGER PRIMARY KEY,\n  title TEXT NOT NULL,\n  shelf_id INTEGER NOT NULL REFERENCES bookshelves(id)\n);\nINSERT INTO bookshelves VALUES (1,'Fiction'),(2,'Science');\nINSERT INTO books VALUES (10,'Moon Map',1),(11,'River Robots',1),(12,'Seed Lab',2);\n-- Query A\nSELECT title FROM books WHERE shelf_id = 1 ORDER BY id;\n-- Query B\nSELECT books.title, bookshelves.label\nFROM books JOIN bookshelves ON books.shelf_id = bookshelves.id ORDER BY books.id;\n",
+        "remote.js": "(function () {\n\"use strict\";\nconst cache = new Map();\nasync function requestJson(url, validate, fetcher = globalThis.fetch, timeoutMs = 5000) {\n  if (cache.has(url)) return cache.get(url);\n  const controller = new AbortController();\n  const timer = setTimeout(() => controller.abort(), timeoutMs);\n  try {\n    const response = await fetcher(url, { signal: controller.signal });\n    if (!response.ok) throw new Error(\"Request failed: HTTP \" + response.status);\n    const data = validate(await response.json());\n    cache.set(url, data);\n    return data;\n  } catch (error) {\n    if (controller.signal.aborted) throw new Error(\"Request timed out.\");\n    throw error;\n  } finally { clearTimeout(timer); }\n}\nfunction validateList(data) {\n  if (!data || !Array.isArray(data.results) || !data.results.length ||\n      data.results.some(move => !move || typeof move.name !== \"string\" || !move.name.trim()))\n    throw new Error(\"Expected a nonempty results array of named moves.\");\n  return data;\n}\nglobalThis.checkpointRemote = { requestJson, validateList };\n})();\n",
+        "script.js": "(function () {\n\"use strict\";\nconst byId = id => document.getElementById(id);\nconst status = byId(\"status\");\nlet current = null;\nfunction display(data, source) {\n  const name = checkpoint.firstMove(data);\n  current = { data, source, name };\n  byId(\"move\").textContent = \"First move: \" + name + \" (\" + source + \")\";\n}\nbyId(\"sum\").addEventListener(\"click\", () => {\n  try {\n    const cases = [[2,1,6,91,-1],[0,3,2,91,-1],[],[1,2],[-3,2],[-4,2]];\n    byId(\"sums\").textContent = cases.map(values => JSON.stringify(values) + \" => \" + checkpoint.sumEvens(values)).join(\"\\n\");\n  } catch (error) { byId(\"sums\").textContent = error.message; }\n});\nconst canvas = byId(\"board\");\nconst context = canvas.getContext(\"2d\");\nif (context) {\n  context.strokeStyle = \"#324b62\";\n  context.beginPath(); context.moveTo(250,0); context.lineTo(250,500);\n  context.moveTo(0,250); context.lineTo(500,250); context.stroke();\n}\ncanvas.addEventListener(\"click\", event => {\n  try {\n    const point = checkpoint.canvasPoint(event, canvas);\n    byId(\"position\").textContent = \"Buffer coordinates: \" + point.x.toFixed(1) + \", \" + point.y.toFixed(1);\n  } catch (error) { byId(\"position\").textContent = error.message; }\n});\nbyId(\"fixture\").addEventListener(\"click\", () => {\n  try { display(checkpointFixture, \"practice fixture\"); status.textContent = \"\"; }\n  catch (error) { status.textContent = error.message; }\n});\nbyId(\"live\").addEventListener(\"click\", async () => {\n  byId(\"live\").disabled = true;\n  byId(\"fixture\").disabled = true;\n  status.textContent = \"Loading move names...\";\n  try {\n    const data = await checkpointRemote.requestJson(\"https://pokeapi.co/api/v2/move/?limit=20\", checkpointRemote.validateList);\n    display(data, \"live list, cached for this page\");\n    status.textContent = \"Ready.\";\n  } catch (error) {\n    status.textContent = error.message + (current ? \" Showing the last valid data.\" : \" Use the practice fixture.\");\n  } finally { byId(\"live\").disabled = false; byId(\"fixture\").disabled = false; }\n});\n})();\n",
+        "styles.css": "*,*::before,*::after{box-sizing:border-box}\nbody{font:1rem/1.5 system-ui,sans-serif;margin:0;color:#18252c;background:#f7f8fa;overflow-wrap:anywhere}\nmain{max-width:48rem;margin:auto;padding:1rem}section{margin-block:1.5rem}\nbutton,input{font:inherit;max-width:100%;padding:.5rem;margin:.25rem}\npre{white-space:pre-wrap;overflow-wrap:anywhere}canvas{display:block;width:min(100%,250px);height:auto;aspect-ratio:1;border:0;background:#dce7f3}\ninput{display:block;width:100%;margin-inline:0}\n"
+      },
+      "reference": {
+        "CASES.md": "Even sums: 8,2,0,2,2,-2 for the six page cases; inputs unchanged.\nCanvas: (165,185) => (250,250) in the supplied 250px rectangle; top-left => (0,0).\nFixture first name pound. Empty/missing/bad results rejected.\nOne successful optional list request cached; failures uncached, prior display retained.\nDatabase A: Moon Map,River Robots. B: each book with its matching shelf.\nForeign key99 and duplicate primary key rejected; CRUD returns original3rows.\n",
+        "DATABASE.md": "# Books and bookshelves\n\nThese are fictional records supplied for this exercise. A database persists\nstored rows; rendering those rows into the page only changes a view.\n\nbookshelves\n\n| id | label |\n| --- | --- |\n| 1 | Fiction |\n| 2 | Science |\n\nbooks\n\n| id | title | shelf_id |\n| --- | --- | --- |\n| 10 | Moon Map | 1 |\n| 11 | River Robots | 1 |\n| 12 | Seed Lab | 2 |\n\nDraw two boxes for these tables. Each id is a primary key, unique within\nits table. Each books.shelf_id is a foreign key referring to bookshelves.id.\nOne shelf has many books; every book here belongs to one existing shelf.\nlibrary.sql supplies the schema, constraints, rows and two read queries.\nYou can predict their results without installing a database.\n\nSELECT chooses output columns; FROM chooses source rows; WHERE filters\nrows. Query A selects title from books with shelf_id=1, ordered by id:\nMoon Map\nRiver Robots\n\nJOIN combines rows whose shelf IDs match. Query B returns:\nMoon Map | Fiction\nRiver Robots | Fiction\nSeed Lab | Science\n\nWrite each predicted result before comparing it with these worked results.\nThen explain the same join as a JavaScript lookup by shelf_id.\n\nCRUD describes create, read, update and delete:\nCREATE: INSERT INTO books VALUES (13,'Star Garden',2);\nREAD: SELECT title FROM books WHERE id=13; gives Star Garden.\nUPDATE: UPDATE books SET shelf_id=1 WHERE id=13;\nREAD the join again: Star Garden now pairs with Fiction.\nDELETE: DELETE FROM books WHERE id=13;\nREAD again: the three original books remain.\n\nRun this sequence beginning from library.sql. Changing only a\ndisplayed title leaves a stored row unchanged. Changing an in-memory\nJavaScript array lasts only in that program until deliberately saved;\na SQL UPDATE changes stored data. Explain which action each example performs.\nAn insert using shelf_id=99 fails the foreign-key constraint. A repeated\nprimary-key id fails its uniqueness constraint. Record both predictions.\n\nIf SQLite is available, run library.sql in a temporary database, then the\nCRUD sequence above. Otherwise retain the diagram, query predictions and\nworked comparisons as the complete local artifact. An optional online\nschema diagram can reproduce these fictional tables after this work.\n",
+        "LICENSE-original.txt": "The original export contains no license file. No license is inferred. See SOURCES.md for attribution of the original and this separate adaptation.\n",
+        "README.md": "# Check-In 2: Helpers, Events, APIs and Data\n\nContinue the same Core project across Helpers, APIs and Databases. Open\nindex.html directly. The interface, request helper and fixtures are supplied;\ncomplete the three functions in helpers.js before comparing the reference.\n\n## Helpers and event coordinates\n\nImplement sumEvens(values) with a named helper and a reduce total starting\nat 0. Preserve the input array. The original arrays [2,1,6,91,-1] and\n[0,3,2,91,-1] give 8 and 2. Also check [] gives 0, [1,2] gives 2,\n[-3,2] gives 2, and [-4,2] gives -2. Starting reduce without 0 would\nfail for [] and incorrectly include an odd first element.\n\nImplement canvasPoint(event,canvas). Read canvas.getBoundingClientRect(),\nsubtract rect.left and rect.top from clientX and clientY, then multiply\neach coordinate by its buffer-size/display-size ratio:\nx = (clientX - left) * canvas.width / rect.width\ny = (clientY - top) * canvas.height / rect.height\nA 500 by 500 buffer displayed at 250 by 250, with left=40 and top=60,\nmaps click (165,185) to (250,250). The top-left maps to (0,0).\nThe page deliberately scales the canvas. Click near the center and an edge,\nthen compare the visible position with the reported buffer coordinates.\n\n## API data\n\nfixture.js is a small authored practice object shaped like a move-list\nresponse. It is supplied with this project, rather than fetched on opening.\nImplement firstMove(data): call checkpointRemote.validateList(data) and\nreturn data.results[0].name. The fixture's first name is pound. Invalid,\nmissing or empty results must produce a useful error instead of a crash.\n\nUse practice fixture to display that result. Request 20 move names is\noptional and performs one public GET to the documented move-list endpoint.\nThe supplied remote.js checks response.ok, parses JSON, validates before\ncaching, and uses AbortController to abort after five seconds. Inspect how\nloading, request, validation, state and display have separate responsibilities.\nRepeated successful reads use the page's memory cache. Reload clears it.\nAn offline, non-OK, malformed or timeout response must retain the last valid\nname and source label while displaying an error. Avoid private records.\n\n## Database worksheet\n\nRead DATABASE.md and library.sql. Both complete tables, keys, queries and\nworked results are provided locally. Predict SELECT/WHERE and JOIN outputs,\ndraw their relationship, and walk through the supplied CRUD sequence.\nDistinguish changing a view, an in-memory array and stored database rows.\nSQLite execution and a hosted diagram are optional.\n\n## Completion\n\nRetain expected and observed fixed sums, original-array preservation, two\ncanvas clicks with coordinate predictions, fixture output, and a database\ndiagram with query/CRUD predictions. If trying live requests, record the\nvisible source and recovery result. Change one input, predict its output,\nthen keep the observed result. Continue across tasks with these saved files.\n",
+        "SOURCES.md": "Original starter: https://codepen.io/junilearning/pen/f6a04f3b9405ba212662f72a776bc0cd\nOriginal reference: https://codepen.io/junilearning/pen/7b72b5cd25d5372e9097f68de4b66db6\n\nLocally authored adaptation of the original helper/event/API and move-counting tasks. The original ZIPs remain unchanged in Source Exports. Core corrects empty/odd-first reduce inputs and CSS-to-buffer coordinates, and supplies the complete fictional SQL worksheet. Move Analyzer replaces784unbounded simultaneous requests with a six-record authored practice fixture and six sequential optional cached GETs. Original D3 and unpinned jquery-latest dependencies are replaced by native DOM controls. Practice records are authored examples, not captured live responses. No current whole-API move count is asserted.\n\nAPI shapes, pagination and caching: https://pokeapi.co/docs/v2/\n",
+        "fixture.js": "globalThis.checkpointFixture = {\n  results: [\n    { name: \"pound\", url: \"https://pokeapi.co/api/v2/move/1/\" },\n    { name: \"karate-chop\", url: \"https://pokeapi.co/api/v2/move/2/\" }\n  ]\n};\n",
+        "helpers.js": "(function () {\n\"use strict\";\nfunction sumEvens(values) {\n  return values.reduce((total, value) => value % 2 === 0 ? total + value : total, 0);\n}\nfunction canvasPoint(event, canvas) {\n  const rect = canvas.getBoundingClientRect();\n  if (rect.width <= 0 || rect.height <= 0) throw new Error(\"Canvas has no visible size.\");\n  return { x: (event.clientX - rect.left) * canvas.width / rect.width,\n           y: (event.clientY - rect.top) * canvas.height / rect.height };\n}\nfunction firstMove(data) {\n  checkpointRemote.validateList(data);\n  return data.results[0].name;\n}\nglobalThis.checkpoint = { sumEvens, canvasPoint, firstMove };\n})();\n",
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Check-In 2</title><link rel=\"stylesheet\" href=\"styles.css\">\n<script src=\"fixture.js\" defer></script><script src=\"remote.js\" defer></script>\n<script src=\"helpers.js\" defer></script><script src=\"script.js\" defer></script></head>\n<body><main><h1>Check-In 2</h1>\n<section><h2>Even sums</h2><button id=\"sum\" type=\"button\">Run fixed sums</button><pre id=\"sums\" aria-live=\"polite\"></pre></section>\n<section><h2>Canvas coordinates</h2><canvas id=\"board\" width=\"500\" height=\"500\" aria-label=\"500 by 500 coordinate practice\"></canvas>\n<p id=\"position\" role=\"status\">Click the canvas.</p></section>\n<section><h2>Move names</h2><button id=\"fixture\" type=\"button\">Use practice fixture</button>\n<button id=\"live\" type=\"button\">Request 20 move names</button>\n<p id=\"status\" role=\"status\"></p><p id=\"move\"></p></section>\n</main></body></html>\n",
+        "library.sql": "PRAGMA foreign_keys = ON;\nCREATE TABLE bookshelves (\n  id INTEGER PRIMARY KEY,\n  label TEXT NOT NULL UNIQUE\n);\nCREATE TABLE books (\n  id INTEGER PRIMARY KEY,\n  title TEXT NOT NULL,\n  shelf_id INTEGER NOT NULL REFERENCES bookshelves(id)\n);\nINSERT INTO bookshelves VALUES (1,'Fiction'),(2,'Science');\nINSERT INTO books VALUES (10,'Moon Map',1),(11,'River Robots',1),(12,'Seed Lab',2);\n-- Query A\nSELECT title FROM books WHERE shelf_id = 1 ORDER BY id;\n-- Query B\nSELECT books.title, bookshelves.label\nFROM books JOIN bookshelves ON books.shelf_id = bookshelves.id ORDER BY books.id;\n",
+        "remote.js": "(function () {\n\"use strict\";\nconst cache = new Map();\nasync function requestJson(url, validate, fetcher = globalThis.fetch, timeoutMs = 5000) {\n  if (cache.has(url)) return cache.get(url);\n  const controller = new AbortController();\n  const timer = setTimeout(() => controller.abort(), timeoutMs);\n  try {\n    const response = await fetcher(url, { signal: controller.signal });\n    if (!response.ok) throw new Error(\"Request failed: HTTP \" + response.status);\n    const data = validate(await response.json());\n    cache.set(url, data);\n    return data;\n  } catch (error) {\n    if (controller.signal.aborted) throw new Error(\"Request timed out.\");\n    throw error;\n  } finally { clearTimeout(timer); }\n}\nfunction validateList(data) {\n  if (!data || !Array.isArray(data.results) || !data.results.length ||\n      data.results.some(move => !move || typeof move.name !== \"string\" || !move.name.trim()))\n    throw new Error(\"Expected a nonempty results array of named moves.\");\n  return data;\n}\nglobalThis.checkpointRemote = { requestJson, validateList };\n})();\n",
+        "script.js": "(function () {\n\"use strict\";\nconst byId = id => document.getElementById(id);\nconst status = byId(\"status\");\nlet current = null;\nfunction display(data, source) {\n  const name = checkpoint.firstMove(data);\n  current = { data, source, name };\n  byId(\"move\").textContent = \"First move: \" + name + \" (\" + source + \")\";\n}\nbyId(\"sum\").addEventListener(\"click\", () => {\n  try {\n    const cases = [[2,1,6,91,-1],[0,3,2,91,-1],[],[1,2],[-3,2],[-4,2]];\n    byId(\"sums\").textContent = cases.map(values => JSON.stringify(values) + \" => \" + checkpoint.sumEvens(values)).join(\"\\n\");\n  } catch (error) { byId(\"sums\").textContent = error.message; }\n});\nconst canvas = byId(\"board\");\nconst context = canvas.getContext(\"2d\");\nif (context) {\n  context.strokeStyle = \"#324b62\";\n  context.beginPath(); context.moveTo(250,0); context.lineTo(250,500);\n  context.moveTo(0,250); context.lineTo(500,250); context.stroke();\n}\ncanvas.addEventListener(\"click\", event => {\n  try {\n    const point = checkpoint.canvasPoint(event, canvas);\n    byId(\"position\").textContent = \"Buffer coordinates: \" + point.x.toFixed(1) + \", \" + point.y.toFixed(1);\n  } catch (error) { byId(\"position\").textContent = error.message; }\n});\nbyId(\"fixture\").addEventListener(\"click\", () => {\n  try { display(checkpointFixture, \"practice fixture\"); status.textContent = \"\"; }\n  catch (error) { status.textContent = error.message; }\n});\nbyId(\"live\").addEventListener(\"click\", async () => {\n  byId(\"live\").disabled = true;\n  byId(\"fixture\").disabled = true;\n  status.textContent = \"Loading move names...\";\n  try {\n    const data = await checkpointRemote.requestJson(\"https://pokeapi.co/api/v2/move/?limit=20\", checkpointRemote.validateList);\n    display(data, \"live list, cached for this page\");\n    status.textContent = \"Ready.\";\n  } catch (error) {\n    status.textContent = error.message + (current ? \" Showing the last valid data.\" : \" Use the practice fixture.\");\n  } finally { byId(\"live\").disabled = false; byId(\"fixture\").disabled = false; }\n});\n})();\n",
+        "styles.css": "*,*::before,*::after{box-sizing:border-box}\nbody{font:1rem/1.5 system-ui,sans-serif;margin:0;color:#18252c;background:#f7f8fa;overflow-wrap:anywhere}\nmain{max-width:48rem;margin:auto;padding:1rem}section{margin-block:1.5rem}\nbutton,input{font:inherit;max-width:100%;padding:.5rem;margin:.25rem}\npre{white-space:pre-wrap;overflow-wrap:anywhere}canvas{display:block;width:min(100%,250px);height:auto;aspect-ratio:1;border:0;background:#dce7f3}\ninput{display:block;width:100%;margin-inline:0}\n"
+      }
+    },
+    "master-checkpoint-two-moves": {
+      "starter": {
+        "CASES.md": "Practice fire2,water2,normal1,electric1,total6. Fire and padded WATER normalize.\nValid missing grass=0; empty/unknown messages. Input array preserved.\nSix sequential optional GETs,validated before ready; second read cached.\nNon-OK,malformed,offline,timeout retain previous sample. No fetch on open or query.\n",
+        "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/jOMqjeJ)\nFork of an original work that is now private.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+        "README.md": "# Move Analyzer\n\nBuild a page that groups move objects by their nested type.name and counts\nthe form-selected type. The complete local fixture and page controls are\nsupplied. Open index.html directly and complete moves.js.\n\nfixture.js contains six authored practice records with fictional move names\nand the same nested name/type.name structure used by Pok\u00e9API move objects.\nThe expected counts are fire=2, water=2, normal=1 and electric=1. This is a\nsix-record sample; its counts do not describe the complete API collection.\n\nImplement countTypes(moves): call moveData.validateMoves, loop over moves,\nread each move.type.name, and increment the matching counter. Return the\ncounts without changing the supplied array. Object.create(null) gives a\ndictionary without inherited property names. The four counts sum to six.\n\nImplement countForType(counts,input): convert input to a string, trim spaces\nand lowercase it. Empty input produces Enter a move type; an unrecognized\ntype produces an Unknown move type message. moveData.types supplies the\nrecognized types. A valid type absent from the sample has count0.\nReturn {type:key,count:number} and let the supplied interface render it with\ntextContent. Avoid a prompt loop or HTML interpolation.\n\nUse six-move practice fixture, then submit Fire, water, \" WATER \", grass,\nan empty input and an unknown type. Expected: 2,2,2,0,empty-input message,\nunknown-type message. Compare the visible counts with the same six records\nand check that their names and nested types remain unchanged.\n\n## Optional live data\n\nRequest moves 1 through 6 is an explicit optional action. The supplied\ndata.js reads these six fixed IDs sequentially, one GET at a time. Every\nresponse must have a move name and a recognized type.name. remote.js\nchecks HTTP status, parses JSON, validates before caching and aborts each\nrequest after five seconds. Six requests are the fixed maximum for a new\ncomplete sample. A second successful read reuses those cached responses\nuntil reload. No requests run just by opening or typing into the page.\n\nCounts become current only after all six records succeed. If any request\nfails, the last valid sample, counts and source label remain visible with\nan error. A failed response is not cached. Describe what happens for offline,\ntimeout, non-OK and malformed responses; use the local fixture whenever a\nlive request is unavailable. Compare types within the actual returned sample,\nrather than assuming it matches the practice fixture or all available moves.\n\n## Completion\n\nKeep the six practice inputs and results, original data, counts summing to\nsix, source label and a changed fixture with its predicted counts. If using\nlive data, retain its visible source and a failed-refresh recovery result.\nExplain why ready must wait for every selected request, why one last-numbered\nrequest finishing does not establish that others finished, and how caching\nand the fixed request bound keep this project responsive.\n",
+        "SOURCES.md": "Original starter: https://codepen.io/junilearning/pen/a320051c74a1a5baa1358818c5bca5bc\nOriginal reference: https://codepen.io/junilearning/pen/ba366d22ab4a98e653a5b2bcb4affba8\n\nLocally authored adaptation of the original helper/event/API and move-counting tasks. The original ZIPs remain unchanged in Source Exports. Core corrects empty/odd-first reduce inputs and CSS-to-buffer coordinates, and supplies the complete fictional SQL worksheet. Move Analyzer replaces784unbounded simultaneous requests with a six-record authored practice fixture and six sequential optional cached GETs. Original D3 and unpinned jquery-latest dependencies are replaced by native DOM controls. Practice records are authored examples, not captured live responses. No current whole-API move count is asserted.\n\nAPI shapes, pagination and caching: https://pokeapi.co/docs/v2/\n",
+        "data.js": "(function () {\n\"use strict\";\nconst types = new Set(\"normal fighting flying poison ground rock bug ghost steel fire water grass electric psychic ice dragon dark fairy\".split(\" \"));\nfunction validateMove(move) {\n  if (!move || typeof move.name !== \"string\" || !move.name.trim() ||\n      !move.type || !types.has(move.type.name))\n    throw new Error(\"Each move needs a name and a recognized type.name.\");\n  return move;\n}\nfunction validateMoves(moves) {\n  if (!Array.isArray(moves) || !moves.length) throw new Error(\"Expected a nonempty move array.\");\n  moves.forEach(validateMove);\n  return moves;\n}\nasync function readLiveMoves(fetcher = globalThis.fetch) {\n  const results = [];\n  for (const id of [1,2,3,4,5,6]) {\n    const move = await checkpointRemote.requestJson(\"https://pokeapi.co/api/v2/move/\" + id + \"/\", validateMove, fetcher);\n    results.push(move);\n  }\n  return validateMoves(results);\n}\nglobalThis.moveData = { types, validateMove, validateMoves, readLiveMoves };\n})();\n",
+        "fixture.js": "globalThis.moveFixture = [\n  { name: \"practice-flame-a\", type: { name: \"fire\" } },\n  { name: \"practice-flame-b\", type: { name: \"fire\" } },\n  { name: \"practice-wave-a\", type: { name: \"water\" } },\n  { name: \"practice-wave-b\", type: { name: \"water\" } },\n  { name: \"practice-tap\", type: { name: \"normal\" } },\n  { name: \"practice-spark\", type: { name: \"electric\" } }\n];\n",
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Move Analyzer</title><link rel=\"stylesheet\" href=\"styles.css\">\n<script src=\"fixture.js\" defer></script><script src=\"remote.js\" defer></script>\n<script src=\"data.js\" defer></script><script src=\"moves.js\" defer></script><script src=\"script.js\" defer></script></head>\n<body><main><h1>Move Analyzer</h1>\n<button id=\"fixture\" type=\"button\">Use six-move practice fixture</button>\n<button id=\"live\" type=\"button\">Request moves 1 through 6</button>\n<p id=\"status\" role=\"status\"></p><p id=\"source\"></p>\n<form id=\"query\"><label for=\"type\">Move type</label><input id=\"type\" name=\"type\" autocomplete=\"off\">\n<button type=\"submit\">Count type</button></form>\n<p id=\"result\" aria-live=\"polite\"></p><pre id=\"counts\"></pre>\n<p><a href=\"https://pokeapi.co/docs/v2/\" target=\"_blank\" rel=\"noopener noreferrer\">Pok\u00e9API documentation</a></p>\n</main></body></html>\n",
+        "moves.js": "(function () {\n\"use strict\";\nfunction countTypes(moves) {\n  // TODO: validate, then return one count per nested type.name.\n  throw new Error(\"Complete countTypes in moves.js.\");\n}\nfunction countForType(counts, input) {\n  // TODO: trim and lowercase input, reject empty or unknown types, then return {type,count}.\n  throw new Error(\"Complete countForType in moves.js.\");\n}\nglobalThis.moveLesson = { countTypes, countForType };\n})();\n",
+        "remote.js": "(function () {\n\"use strict\";\nconst cache = new Map();\nasync function requestJson(url, validate, fetcher = globalThis.fetch, timeoutMs = 5000) {\n  if (cache.has(url)) return cache.get(url);\n  const controller = new AbortController();\n  const timer = setTimeout(() => controller.abort(), timeoutMs);\n  try {\n    const response = await fetcher(url, { signal: controller.signal });\n    if (!response.ok) throw new Error(\"Request failed: HTTP \" + response.status);\n    const data = validate(await response.json());\n    cache.set(url, data);\n    return data;\n  } catch (error) {\n    if (controller.signal.aborted) throw new Error(\"Request timed out.\");\n    throw error;\n  } finally { clearTimeout(timer); }\n}\nfunction validateList(data) {\n  if (!data || !Array.isArray(data.results) || !data.results.length ||\n      data.results.some(move => !move || typeof move.name !== \"string\" || !move.name.trim()))\n    throw new Error(\"Expected a nonempty results array of named moves.\");\n  return data;\n}\nglobalThis.checkpointRemote = { requestJson, validateList };\n})();\n",
+        "script.js": "(function () {\n\"use strict\";\nconst byId = id => document.getElementById(id);\nlet state = null;\nfunction useMoves(moves, source) {\n  const counts = moveLesson.countTypes(moves);\n  state = { counts, source, total: moves.length };\n  byId(\"source\").textContent = source + \": \" + state.total + \" moves in this sample\";\n  byId(\"counts\").textContent = JSON.stringify(counts, null, 2);\n  byId(\"result\").textContent = \"\";\n}\nbyId(\"query\").addEventListener(\"submit\", event => {\n  event.preventDefault();\n  try {\n    if (!state) throw new Error(\"Load the practice fixture or a live sample first.\");\n    const result = moveLesson.countForType(state.counts, byId(\"type\").value);\n    byId(\"result\").textContent = result.type + \": \" + result.count + \" of \" + state.total + \" moves (\" + state.source + \")\";\n  } catch (error) { byId(\"result\").textContent = error.message; }\n});\nbyId(\"fixture\").addEventListener(\"click\", () => {\n  try { useMoves(moveFixture, \"Practice fixture\"); byId(\"status\").textContent = \"\"; }\n  catch (error) { byId(\"status\").textContent = error.message; }\n});\nbyId(\"live\").addEventListener(\"click\", async () => {\n  byId(\"live\").disabled = true; byId(\"fixture\").disabled = true;\n  byId(\"status\").textContent = \"Loading six moves...\";\n  try {\n    const moves = await moveData.readLiveMoves();\n    useMoves(moves, \"Live IDs 1 through 6\");\n    byId(\"status\").textContent = \"Ready.\";\n  } catch (error) {\n    byId(\"status\").textContent = error.message + (state ? \" Showing the last valid sample.\" : \" Use the practice fixture.\");\n  } finally { byId(\"live\").disabled = false; byId(\"fixture\").disabled = false; }\n});\n})();\n",
+        "styles.css": "*,*::before,*::after{box-sizing:border-box}\nbody{font:1rem/1.5 system-ui,sans-serif;margin:0;color:#18252c;background:#f7f8fa;overflow-wrap:anywhere}\nmain{max-width:48rem;margin:auto;padding:1rem}section{margin-block:1.5rem}\nbutton,input{font:inherit;max-width:100%;padding:.5rem;margin:.25rem}\npre{white-space:pre-wrap;overflow-wrap:anywhere}canvas{display:block;width:min(100%,250px);height:auto;aspect-ratio:1;border:0;background:#dce7f3}\ninput{display:block;width:100%;margin-inline:0}\n"
+      },
+      "reference": {
+        "CASES.md": "Practice fire2,water2,normal1,electric1,total6. Fire and padded WATER normalize.\nValid missing grass=0; empty/unknown messages. Input array preserved.\nSix sequential optional GETs,validated before ready; second read cached.\nNon-OK,malformed,offline,timeout retain previous sample. No fetch on open or query.\n",
+        "LICENSE-original.txt": "The original export contains no license file. No license is inferred. See SOURCES.md for attribution of the original and this separate adaptation.\n",
+        "README.md": "# Move Analyzer\n\nBuild a page that groups move objects by their nested type.name and counts\nthe form-selected type. The complete local fixture and page controls are\nsupplied. Open index.html directly and complete moves.js.\n\nfixture.js contains six authored practice records with fictional move names\nand the same nested name/type.name structure used by Pok\u00e9API move objects.\nThe expected counts are fire=2, water=2, normal=1 and electric=1. This is a\nsix-record sample; its counts do not describe the complete API collection.\n\nImplement countTypes(moves): call moveData.validateMoves, loop over moves,\nread each move.type.name, and increment the matching counter. Return the\ncounts without changing the supplied array. Object.create(null) gives a\ndictionary without inherited property names. The four counts sum to six.\n\nImplement countForType(counts,input): convert input to a string, trim spaces\nand lowercase it. Empty input produces Enter a move type; an unrecognized\ntype produces an Unknown move type message. moveData.types supplies the\nrecognized types. A valid type absent from the sample has count0.\nReturn {type:key,count:number} and let the supplied interface render it with\ntextContent. Avoid a prompt loop or HTML interpolation.\n\nUse six-move practice fixture, then submit Fire, water, \" WATER \", grass,\nan empty input and an unknown type. Expected: 2,2,2,0,empty-input message,\nunknown-type message. Compare the visible counts with the same six records\nand check that their names and nested types remain unchanged.\n\n## Optional live data\n\nRequest moves 1 through 6 is an explicit optional action. The supplied\ndata.js reads these six fixed IDs sequentially, one GET at a time. Every\nresponse must have a move name and a recognized type.name. remote.js\nchecks HTTP status, parses JSON, validates before caching and aborts each\nrequest after five seconds. Six requests are the fixed maximum for a new\ncomplete sample. A second successful read reuses those cached responses\nuntil reload. No requests run just by opening or typing into the page.\n\nCounts become current only after all six records succeed. If any request\nfails, the last valid sample, counts and source label remain visible with\nan error. A failed response is not cached. Describe what happens for offline,\ntimeout, non-OK and malformed responses; use the local fixture whenever a\nlive request is unavailable. Compare types within the actual returned sample,\nrather than assuming it matches the practice fixture or all available moves.\n\n## Completion\n\nKeep the six practice inputs and results, original data, counts summing to\nsix, source label and a changed fixture with its predicted counts. If using\nlive data, retain its visible source and a failed-refresh recovery result.\nExplain why ready must wait for every selected request, why one last-numbered\nrequest finishing does not establish that others finished, and how caching\nand the fixed request bound keep this project responsive.\n",
+        "SOURCES.md": "Original starter: https://codepen.io/junilearning/pen/a320051c74a1a5baa1358818c5bca5bc\nOriginal reference: https://codepen.io/junilearning/pen/ba366d22ab4a98e653a5b2bcb4affba8\n\nLocally authored adaptation of the original helper/event/API and move-counting tasks. The original ZIPs remain unchanged in Source Exports. Core corrects empty/odd-first reduce inputs and CSS-to-buffer coordinates, and supplies the complete fictional SQL worksheet. Move Analyzer replaces784unbounded simultaneous requests with a six-record authored practice fixture and six sequential optional cached GETs. Original D3 and unpinned jquery-latest dependencies are replaced by native DOM controls. Practice records are authored examples, not captured live responses. No current whole-API move count is asserted.\n\nAPI shapes, pagination and caching: https://pokeapi.co/docs/v2/\n",
+        "data.js": "(function () {\n\"use strict\";\nconst types = new Set(\"normal fighting flying poison ground rock bug ghost steel fire water grass electric psychic ice dragon dark fairy\".split(\" \"));\nfunction validateMove(move) {\n  if (!move || typeof move.name !== \"string\" || !move.name.trim() ||\n      !move.type || !types.has(move.type.name))\n    throw new Error(\"Each move needs a name and a recognized type.name.\");\n  return move;\n}\nfunction validateMoves(moves) {\n  if (!Array.isArray(moves) || !moves.length) throw new Error(\"Expected a nonempty move array.\");\n  moves.forEach(validateMove);\n  return moves;\n}\nasync function readLiveMoves(fetcher = globalThis.fetch) {\n  const results = [];\n  for (const id of [1,2,3,4,5,6]) {\n    const move = await checkpointRemote.requestJson(\"https://pokeapi.co/api/v2/move/\" + id + \"/\", validateMove, fetcher);\n    results.push(move);\n  }\n  return validateMoves(results);\n}\nglobalThis.moveData = { types, validateMove, validateMoves, readLiveMoves };\n})();\n",
+        "fixture.js": "globalThis.moveFixture = [\n  { name: \"practice-flame-a\", type: { name: \"fire\" } },\n  { name: \"practice-flame-b\", type: { name: \"fire\" } },\n  { name: \"practice-wave-a\", type: { name: \"water\" } },\n  { name: \"practice-wave-b\", type: { name: \"water\" } },\n  { name: \"practice-tap\", type: { name: \"normal\" } },\n  { name: \"practice-spark\", type: { name: \"electric\" } }\n];\n",
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Move Analyzer</title><link rel=\"stylesheet\" href=\"styles.css\">\n<script src=\"fixture.js\" defer></script><script src=\"remote.js\" defer></script>\n<script src=\"data.js\" defer></script><script src=\"moves.js\" defer></script><script src=\"script.js\" defer></script></head>\n<body><main><h1>Move Analyzer</h1>\n<button id=\"fixture\" type=\"button\">Use six-move practice fixture</button>\n<button id=\"live\" type=\"button\">Request moves 1 through 6</button>\n<p id=\"status\" role=\"status\"></p><p id=\"source\"></p>\n<form id=\"query\"><label for=\"type\">Move type</label><input id=\"type\" name=\"type\" autocomplete=\"off\">\n<button type=\"submit\">Count type</button></form>\n<p id=\"result\" aria-live=\"polite\"></p><pre id=\"counts\"></pre>\n<p><a href=\"https://pokeapi.co/docs/v2/\" target=\"_blank\" rel=\"noopener noreferrer\">Pok\u00e9API documentation</a></p>\n</main></body></html>\n",
+        "moves.js": "(function () {\n\"use strict\";\nfunction countTypes(moves) {\n  moveData.validateMoves(moves);\n  const counts = Object.create(null);\n  for (const move of moves) {\n    const name = move.type.name;\n    counts[name] = (counts[name] || 0) + 1;\n  }\n  return counts;\n}\nfunction countForType(counts, input) {\n  const key = String(input ?? \"\").trim().toLowerCase();\n  if (!key) throw new Error(\"Enter a move type.\");\n  if (!moveData.types.has(key)) throw new Error(\"Unknown move type: \" + key);\n  return { type: key, count: counts[key] || 0 };\n}\nglobalThis.moveLesson = { countTypes, countForType };\n})();\n",
+        "remote.js": "(function () {\n\"use strict\";\nconst cache = new Map();\nasync function requestJson(url, validate, fetcher = globalThis.fetch, timeoutMs = 5000) {\n  if (cache.has(url)) return cache.get(url);\n  const controller = new AbortController();\n  const timer = setTimeout(() => controller.abort(), timeoutMs);\n  try {\n    const response = await fetcher(url, { signal: controller.signal });\n    if (!response.ok) throw new Error(\"Request failed: HTTP \" + response.status);\n    const data = validate(await response.json());\n    cache.set(url, data);\n    return data;\n  } catch (error) {\n    if (controller.signal.aborted) throw new Error(\"Request timed out.\");\n    throw error;\n  } finally { clearTimeout(timer); }\n}\nfunction validateList(data) {\n  if (!data || !Array.isArray(data.results) || !data.results.length ||\n      data.results.some(move => !move || typeof move.name !== \"string\" || !move.name.trim()))\n    throw new Error(\"Expected a nonempty results array of named moves.\");\n  return data;\n}\nglobalThis.checkpointRemote = { requestJson, validateList };\n})();\n",
+        "script.js": "(function () {\n\"use strict\";\nconst byId = id => document.getElementById(id);\nlet state = null;\nfunction useMoves(moves, source) {\n  const counts = moveLesson.countTypes(moves);\n  state = { counts, source, total: moves.length };\n  byId(\"source\").textContent = source + \": \" + state.total + \" moves in this sample\";\n  byId(\"counts\").textContent = JSON.stringify(counts, null, 2);\n  byId(\"result\").textContent = \"\";\n}\nbyId(\"query\").addEventListener(\"submit\", event => {\n  event.preventDefault();\n  try {\n    if (!state) throw new Error(\"Load the practice fixture or a live sample first.\");\n    const result = moveLesson.countForType(state.counts, byId(\"type\").value);\n    byId(\"result\").textContent = result.type + \": \" + result.count + \" of \" + state.total + \" moves (\" + state.source + \")\";\n  } catch (error) { byId(\"result\").textContent = error.message; }\n});\nbyId(\"fixture\").addEventListener(\"click\", () => {\n  try { useMoves(moveFixture, \"Practice fixture\"); byId(\"status\").textContent = \"\"; }\n  catch (error) { byId(\"status\").textContent = error.message; }\n});\nbyId(\"live\").addEventListener(\"click\", async () => {\n  byId(\"live\").disabled = true; byId(\"fixture\").disabled = true;\n  byId(\"status\").textContent = \"Loading six moves...\";\n  try {\n    const moves = await moveData.readLiveMoves();\n    useMoves(moves, \"Live IDs 1 through 6\");\n    byId(\"status\").textContent = \"Ready.\";\n  } catch (error) {\n    byId(\"status\").textContent = error.message + (state ? \" Showing the last valid sample.\" : \" Use the practice fixture.\");\n  } finally { byId(\"live\").disabled = false; byId(\"fixture\").disabled = false; }\n});\n})();\n",
+        "styles.css": "*,*::before,*::after{box-sizing:border-box}\nbody{font:1rem/1.5 system-ui,sans-serif;margin:0;color:#18252c;background:#f7f8fa;overflow-wrap:anywhere}\nmain{max-width:48rem;margin:auto;padding:1rem}section{margin-block:1.5rem}\nbutton,input{font:inherit;max-width:100%;padding:.5rem;margin:.25rem}\npre{white-space:pre-wrap;overflow-wrap:anywhere}canvas{display:block;width:min(100%,250px);height:auto;aspect-ratio:1;border:0;background:#dce7f3}\ninput{display:block;width:100%;margin-inline:0}\n"
+      }
+    }
+  },
+  "assignmentTexts": {
+    "javascript-level-2-javascript-master-check-in-2-curriculum-check-in-2-helper-functions-and-event-listeners": "# Helpers and Canvas Events\n\nOpen the Core starter and complete sumEvens and canvasPoint in helpers.js. The supplied page connects the button and canvas click events to those functions; script.js contains those listeners.\n\nImplement sumEvens(values) with a named helper and a reduce total starting\nat 0. Preserve the input array. The original arrays [2,1,6,91,-1] and\n[0,3,2,91,-1] give 8 and 2. Also check [] gives 0, [1,2] gives 2,\n[-3,2] gives 2, and [-4,2] gives -2. Starting reduce without 0 would\nfail for [] and incorrectly include an odd first element.\n\nImplement canvasPoint(event,canvas). Read canvas.getBoundingClientRect(),\nsubtract rect.left and rect.top from clientX and clientY, then multiply\neach coordinate by its buffer-size/display-size ratio:\nx = (clientX - left) * canvas.width / rect.width\ny = (clientY - top) * canvas.height / rect.height\nA 500 by 500 buffer displayed at 250 by 250, with left=40 and top=60,\nmaps click (165,185) to (250,250). The top-left maps to (0,0).\nThe page deliberately scales the canvas. Click near the center and an edge,\nthen compare the visible position with the reported buffer coordinates.\n\n\nRetain expected and observed results for all six arrays, confirm the original inputs remain unchanged, and record two canvas clicks. Explain why helper return values can be reused and why client coordinates need both translation and scaling.",
+    "javascript-level-2-javascript-master-check-in-2-curriculum-check-in-2-apis": "# API Responses\n\nContinue the saved Core project and complete firstMove in helpers.js. fixture.js supplies this authored practice object:\n\n    {\"results\":[{\"name\":\"pound\",\"url\":\"https://pokeapi.co/api/v2/move/1/\"},{\"name\":\"karate-chop\",\"url\":\"https://pokeapi.co/api/v2/move/2/\"}]}\n\nfixture.js is a small authored practice object shaped like a move-list\nresponse. It is supplied with this project, rather than fetched on opening.\nImplement firstMove(data): call checkpointRemote.validateList(data) and\nreturn data.results[0].name. The fixture's first name is pound. Invalid,\nmissing or empty results must produce a useful error instead of a crash.\n\nUse practice fixture to display that result. Request 20 move names is\noptional and performs one public GET to the documented move-list endpoint.\nThe supplied remote.js checks response.ok, parses JSON, validates before\ncaching, and uses AbortController to abort after five seconds. Inspect how\nloading, request, validation, state and display have separate responsibilities.\nRepeated successful reads use the page's memory cache. Reload clears it.\nAn offline, non-OK, malformed or timeout response must retain the last valid\nname and source label while displaying an error. Avoid private records.\n\n\nRetain the fixture's expected and observed result, invalid-data expectations and one changed first name. For an optional live request, keep the displayed source and recovery result. Explain how the validated object reaches the page.",
+    "javascript-level-2-javascript-master-check-in-2-curriculum-check-in-2-databases": "# Books and bookshelves\n\nThese are fictional records supplied for this exercise. A database persists\nstored rows; rendering those rows into the page only changes a view.\n\nbookshelves\n\n| id | label |\n| --- | --- |\n| 1 | Fiction |\n| 2 | Science |\n\nbooks\n\n| id | title | shelf_id |\n| --- | --- | --- |\n| 10 | Moon Map | 1 |\n| 11 | River Robots | 1 |\n| 12 | Seed Lab | 2 |\n\nDraw two boxes for these tables. Each id is a primary key, unique within\nits table. Each books.shelf_id is a foreign key referring to bookshelves.id.\nOne shelf has many books; every book here belongs to one existing shelf.\nlibrary.sql supplies the schema, constraints, rows and two read queries.\nYou can predict their results without installing a database.\n\nSELECT chooses output columns; FROM chooses source rows; WHERE filters\nrows. Query A selects title from books with shelf_id=1, ordered by id:\nMoon Map\nRiver Robots\n\nJOIN combines rows whose shelf IDs match. Query B returns:\nMoon Map | Fiction\nRiver Robots | Fiction\nSeed Lab | Science\n\nWrite each predicted result before comparing it with these worked results.\nThen explain the same join as a JavaScript lookup by shelf_id.\n\nCRUD describes create, read, update and delete:\nCREATE: INSERT INTO books VALUES (13,'Star Garden',2);\nREAD: SELECT title FROM books WHERE id=13; gives Star Garden.\nUPDATE: UPDATE books SET shelf_id=1 WHERE id=13;\nREAD the join again: Star Garden now pairs with Fiction.\nDELETE: DELETE FROM books WHERE id=13;\nREAD again: the three original books remain.\n\nRun this sequence beginning from library.sql. Changing only a\ndisplayed title leaves a stored row unchanged. Changing an in-memory\nJavaScript array lasts only in that program until deliberately saved;\na SQL UPDATE changes stored data. Explain which action each example performs.\nAn insert using shelf_id=99 fails the foreign-key constraint. A repeated\nprimary-key id fails its uniqueness constraint. Record both predictions.\n\nIf SQLite is available, run library.sql in a temporary database, then the\nCRUD sequence above. Otherwise retain the diagram, query predictions and\nworked comparisons as the complete local artifact. An optional online\nschema diagram can reproduce these fictional tables after this work.\n\n\nKeep the two-table diagram, predictions for both queries, the CRUD sequence and the two constraint predictions. Continue with the same Core files; this worksheet needs no account or private data.",
+    "javascript-level-2-javascript-master-check-in-2-curriculum-javascript-level-2-javascript-master-check-in-2-practice-project": "# Move Analyzer\n\nBuild a page that groups move objects by their nested type.name and counts\nthe form-selected type. The complete local fixture and page controls are\nsupplied. Open index.html directly and complete moves.js.\n\nfixture.js contains six authored practice records with fictional move names\nand the same nested name/type.name structure used by Pok\u00e9API move objects.\nThe expected counts are fire=2, water=2, normal=1 and electric=1. This is a\nsix-record sample; its counts do not describe the complete API collection.\n\nImplement countTypes(moves): call moveData.validateMoves, loop over moves,\nread each move.type.name, and increment the matching counter. Return the\ncounts without changing the supplied array. Object.create(null) gives a\ndictionary without inherited property names. The four counts sum to six.\n\nImplement countForType(counts,input): convert input to a string, trim spaces\nand lowercase it. Empty input produces Enter a move type; an unrecognized\ntype produces an Unknown move type message. moveData.types supplies the\nrecognized types. A valid type absent from the sample has count0.\nReturn {type:key,count:number} and let the supplied interface render it with\ntextContent. Avoid a prompt loop or HTML interpolation.\n\nUse six-move practice fixture, then submit Fire, water, \" WATER \", grass,\nan empty input and an unknown type. Expected: 2,2,2,0,empty-input message,\nunknown-type message. Compare the visible counts with the same six records\nand check that their names and nested types remain unchanged.\n\n## Optional live data\n\nRequest moves 1 through 6 is an explicit optional action. The supplied\ndata.js reads these six fixed IDs sequentially, one GET at a time. Every\nresponse must have a move name and a recognized type.name. remote.js\nchecks HTTP status, parses JSON, validates before caching and aborts each\nrequest after five seconds. Six requests are the fixed maximum for a new\ncomplete sample. A second successful read reuses those cached responses\nuntil reload. No requests run just by opening or typing into the page.\n\nCounts become current only after all six records succeed. If any request\nfails, the last valid sample, counts and source label remain visible with\nan error. A failed response is not cached. Describe what happens for offline,\ntimeout, non-OK and malformed responses; use the local fixture whenever a\nlive request is unavailable. Compare types within the actual returned sample,\nrather than assuming it matches the practice fixture or all available moves.\n\n## Completion\n\nKeep the six practice inputs and results, original data, counts summing to\nsix, source label and a changed fixture with its predicted counts. If using\nlive data, retain its visible source and a failed-refresh recovery result.\nExplain why ready must wait for every selected request, why one last-numbered\nrequest finishing does not establish that others finished, and how caching\nand the fixed request bound keep this project responsive.\n"
+  }
+}

@@ -1,0 +1,56 @@
+const canvas = document.getElementById("my-canvas");
+const ctx = canvas.getContext("2d");
+canvas.width = 480;
+canvas.height = 320;
+const ball = { x: 240, y: 290, size: 15, dx: 2, dy: -5, grounded: false, resting: false };
+const gravity = 0.08;
+const damping = 0.8;
+const stopSpeed = 0.1;
+function updateBall() {
+    if (ball.resting) return;
+    const left = ball.size, right = canvas.width - ball.size;
+    const top = ball.size, bottom = canvas.height - ball.size;
+    if (ball.grounded) {
+        ball.y = bottom;
+        ball.dy = 0;
+        ball.x += ball.dx;
+        ball.dx *= damping;
+    } else {
+        ball.dy += gravity;
+        ball.x += ball.dx;
+        ball.y += ball.dy;
+    }
+    if (ball.x <= left && ball.dx < 0) {
+        ball.x = left;
+        ball.dx = Math.abs(ball.dx) * damping;
+    } else if (ball.x >= right && ball.dx > 0) {
+        ball.x = right;
+        ball.dx = -Math.abs(ball.dx) * damping;
+    }
+    if (!ball.grounded && ball.y <= top && ball.dy < 0) {
+        ball.y = top;
+        ball.dy = Math.abs(ball.dy) * damping;
+    } else if (!ball.grounded && ball.y >= bottom && ball.dy > 0) {
+        ball.y = bottom;
+        ball.dy = -Math.abs(ball.dy) * damping;
+        ball.dx *= damping;
+        if (Math.abs(ball.dy) < stopSpeed) {
+            ball.dy = 0;
+            ball.grounded = true;
+        }
+    }
+    if (ball.grounded && Math.abs(ball.dx) < stopSpeed) {
+        ball.dx = 0;
+        ball.dy = 0;
+        ball.resting = true;
+    }
+}
+function drawBall() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.size, 0, Math.PI * 2);
+    ctx.fillStyle = "green";
+    ctx.fill();
+}
+drawBall();
+setInterval(() => { updateBall(); drawBall(); }, 10);

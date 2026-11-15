@@ -1,0 +1,24 @@
+(function () {
+"use strict";
+const types = new Set("normal fighting flying poison ground rock bug ghost steel fire water grass electric psychic ice dragon dark fairy".split(" "));
+function validateMove(move) {
+  if (!move || typeof move.name !== "string" || !move.name.trim() ||
+      !move.type || !types.has(move.type.name))
+    throw new Error("Each move needs a name and a recognized type.name.");
+  return move;
+}
+function validateMoves(moves) {
+  if (!Array.isArray(moves) || !moves.length) throw new Error("Expected a nonempty move array.");
+  moves.forEach(validateMove);
+  return moves;
+}
+async function readLiveMoves(fetcher = globalThis.fetch) {
+  const results = [];
+  for (const id of [1,2,3,4,5,6]) {
+    const move = await checkpointRemote.requestJson("https://pokeapi.co/api/v2/move/" + id + "/", validateMove, fetcher);
+    results.push(move);
+  }
+  return validateMoves(results);
+}
+globalThis.moveData = { types, validateMove, validateMoves, readLiveMoves };
+})();

@@ -1,0 +1,25 @@
+// TODO: Copy at least three business objects from the earlier project.
+// Keep name, location, CEO and a products array. Add logo_image and display_image.
+// Six local example images are included in images/.
+const businesses = [];
+
+function renderBusiness(query) {
+  // TODO: Find the exact business name after trimming surrounding spaces.
+  // Hide the old card and show "No business found." for blank/unknown names.
+  // For a match, render its name, location, CEO, products and display image.
+  // Use text for data. Show a text fallback if an image fails.
+}
+
+// Shared interface setup.
+const namesAndLogos = {};
+businesses.forEach(business => {
+  namesAndLogos[business.name] = business.logo_image || null;
+});
+M.Autocomplete.init(document.querySelectorAll(".autocomplete"), {
+  data: namesAndLogos,
+  onAutocomplete: name => renderBusiness(name)
+});
+d3.select("#business-search").on("submit", event => {
+  event.preventDefault();
+  renderBusiness(document.getElementById("business-input").value);
+});

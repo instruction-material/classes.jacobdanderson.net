@@ -1,0 +1,81 @@
+const canvas = document.getElementById("my-canvas");
+const ctx = canvas.getContext("2d");
+canvas.width = 500;
+canvas.height = 500;
+
+const paddleColor = "black";
+const ballColor = "red";
+const ball = { x: 250, y: 100, radius: 10, speed: 1, apex: 50, isFalling: true };
+const paddle = { x: 200, y: 300, width: 100, height: 20, speed: 10 };
+const keyState = { ArrowLeft: false, ArrowRight: false };
+
+function updatePaddle() {
+	const direction = Number(keyState.ArrowRight) - Number(keyState.ArrowLeft);
+	paddle.x = Math.max(0, Math.min(canvas.width - paddle.width, paddle.x + direction * paddle.speed));
+}
+
+function releaseKeys() {
+	keyState.ArrowLeft = false;
+	keyState.ArrowRight = false;
+}
+
+canvas.addEventListener("keydown", event => {
+	if (Object.hasOwn(keyState, event.key)) {
+		event.preventDefault();
+		keyState[event.key] = true;
+	}
+});
+canvas.addEventListener("keyup", event => {
+	if (Object.hasOwn(keyState, event.key)) {
+		event.preventDefault();
+		keyState[event.key] = false;
+	}
+});
+canvas.addEventListener("blur", releaseKeys);
+window.addEventListener("blur", releaseKeys);
+document.addEventListener("visibilitychange", () => {
+	if (document.hidden) releaseKeys();
+});
+
+function paddleContactY() {
+	const nearestX = Math.max(paddle.x, Math.min(ball.x, paddle.x + paddle.width));
+	const dx = ball.x - nearestX;
+	if (Math.abs(dx) > ball.radius) return null;
+	return paddle.y - Math.sqrt(ball.radius * ball.radius - dx * dx);
+}
+
+function updateBall() {
+	if (ball.isFalling) {
+		const nextY = ball.y + ball.speed;
+		const contactY = paddleContactY();
+		if (contactY !== null && ball.y <= contactY && nextY >= contactY) {
+			ball.y = contactY;
+			ball.isFalling = false;
+		} else {
+			ball.y = nextY;
+		}
+	} else {
+		const nextY = ball.y - ball.speed;
+		if (nextY <= ball.apex) {
+			ball.y = ball.apex;
+			ball.isFalling = true;
+		} else {
+			ball.y = nextY;
+		}
+	}
+}
+
+function draw() {
+	updatePaddle();
+	updateBall();
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.fillStyle = paddleColor;
+	ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+	ctx.beginPath();
+	ctx.fillStyle = ballColor;
+	ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+	ctx.fill();
+	ctx.closePath();
+	requestAnimationFrame(draw);
+}
+draw();

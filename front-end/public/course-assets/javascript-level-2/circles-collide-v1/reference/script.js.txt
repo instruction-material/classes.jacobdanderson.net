@@ -1,0 +1,30 @@
+const canvas = document.getElementById("my-canvas");
+const ctx = canvas.getContext("2d");
+canvas.width = 800;
+canvas.height = 500;
+const circle1 = { x: 50, y: 250, size: 20 };
+const circle2 = { x: 500, y: 250, size: 20 };
+function circlesTouch(a, b) {
+    const dx = a.x - b.x;
+    const dy = a.y - b.y;
+    const radius = a.size + b.size;
+    return dx * dx + dy * dy <= radius * radius;
+}
+function updateCircles() {
+    circle1.x += 1;
+    circle2.x -= 1;
+}
+function drawCircles(color) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = color;
+    for (const circle of [circle1, circle2]) {
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circle.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+drawCircles("black");
+setInterval(() => {
+    updateCircles();
+    drawCircles(circlesTouch(circle1, circle2) ? "blue" : "black");
+}, 10);

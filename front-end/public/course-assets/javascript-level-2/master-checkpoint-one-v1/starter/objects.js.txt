@@ -1,0 +1,5 @@
+Object.assign(window.CheckInOne,{
+ createCar() { /* TODO: return the supplied five-property car. */ return null; },
+ createCards(random=Math.random) { /* TODO: return four numbered card objects. */ return []; },
+ drawCards(context,cards) { /* TODO: clear and draw rectangles/text from each object. */ }
+});

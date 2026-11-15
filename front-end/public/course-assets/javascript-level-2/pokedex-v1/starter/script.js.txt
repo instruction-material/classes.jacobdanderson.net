@@ -1,0 +1,73 @@
+async function loadPokemonResponse(record, local) {
+	// TODO: Complete the rule described in README.md and verify CASES.md.
+	throw new Error("Complete loadPokemonResponse in script.js.");
+}
+
+let current = null;
+function normalizePokemon(value, live = false) {
+	// TODO: Complete the rule described in README.md and verify CASES.md.
+	throw new Error("Complete normalizePokemon in script.js.");
+}
+function renderPokemon(pokemon, image) {
+	// TODO: Complete the rule described in README.md and verify CASES.md.
+	throw new Error("Complete renderPokemon in script.js.");
+}
+async function searchPokemon(event) {
+	event?.preventDefault();
+	if (activeRequest || document.querySelector("#load").disabled) return;
+	const query = document
+		.querySelector("#query")
+		.value.trim()
+		.toLowerCase()
+		.replace(/\s+/g, "-");
+	if (
+		!/^(?:[1-9]\d{0,2}|[a-z0-9]+(?:-[a-z0-9]+)*)$/.test(query) ||
+		query.length > 40
+	) {
+		showProblem(
+			new Error("Choose a name or ID from the supplied index."),
+			!!current,
+		);
+		return;
+	}
+	const record = pokemonFixtures.find(
+		(p) => p.name === query || String(p.id) === query,
+	);
+	if (!record) {
+		showProblem(
+			new Error("No matching Pokemon in the 893-entry index."),
+			!!current,
+		);
+		return;
+	}
+	setBusy(true);
+	setStatus("Loading " + record.name + ".", "loading");
+	try {
+		const local = document.querySelector("#source").value === "saved";
+		const loaded = await loadPokemonResponse(record, local);
+		const image = await readyImage(loaded.data.image);
+		renderPokemon(loaded.data, image);
+		current = loaded.data;
+		setStatus(
+			loaded.cached
+				? "Cached Pokemon loaded."
+				: local
+					? "Saved Pokemon loaded."
+					: "Live Pokemon loaded.",
+		);
+	} catch (error) {
+		showProblem(error, !!current);
+	} finally {
+		setBusy(false);
+	}
+}
+const options = document.querySelector("#pokemon-names");
+for (const record of pokemonFixtures) {
+	const option = document.createElement("option");
+	option.value = record.name;
+	options.append(option);
+}
+document
+	.querySelector("#search-form")
+	.addEventListener("submit", searchPokemon);
+searchPokemon();

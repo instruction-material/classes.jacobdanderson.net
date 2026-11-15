@@ -1,0 +1,5 @@
+body { margin: 1rem; color: #17212b; background: white; font: 1rem/1.5 system-ui, sans-serif; }
+h1 { margin: 0 0 0.5rem; font-size: 1.5rem; }
+p { max-width: 40rem; }
+canvas { display: block; max-width: 100%; height: auto; background: #f8fafc; }
+canvas:focus-visible { outline: 3px solid #334155; outline-offset: 3px; }

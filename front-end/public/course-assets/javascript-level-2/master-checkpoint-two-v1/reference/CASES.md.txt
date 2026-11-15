@@ -1,0 +1,6 @@
+Even sums: 8,2,0,2,2,-2 for the six page cases; inputs unchanged.
+Canvas: (165,185) => (250,250) in the supplied 250px rectangle; top-left => (0,0).
+Fixture first name pound. Empty/missing/bad results rejected.
+One successful optional list request cached; failures uncached, prior display retained.
+Database A: Moon Map,River Robots. B: each book with its matching shelf.
+Foreign key99 and duplicate primary key rejected; CRUD returns original3rows.

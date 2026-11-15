@@ -1,0 +1,8 @@
+# Random Fox Generator cases
+
+1. Three supplied real photographs load with alt text and credits offline.
+2. Thirteen valid loads retain the newest twelve figures.
+3. Invalid protocol, origin, path, malformed data and unexpected image URLs append nothing.
+4. An allowed URL with a failed image response keeps existing photographs.
+5. HTTP403, timeout, Cancel and malformed JSON leave earlier results visible.
+6. Image proportions, credits, keyboard control and enlarged text remain usable at both widths.

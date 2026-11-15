@@ -1,0 +1,179 @@
+async function loadPokemonResponse(record, local) {
+	const validate = (value, live) => {
+		const data = normalizePokemon(value, live);
+		if (data.id !== record.id || data.name !== record.name)
+			throw new Error("Response does not match the selected Pokemon.");
+		return data;
+	};
+	return local
+		? { data: await fixtureResponse(record, validate), cached: false }
+		: await requestJson(
+				"https://pokeapi.co/api/v2/pokemon/" + record.name,
+				validate,
+			);
+}
+
+let current = null;
+function normalizePokemon(value, live = false) {
+	if (
+		!value ||
+		typeof value !== "object" ||
+		!Number.isSafeInteger(value.id) ||
+		value.id < 1 ||
+		value.id > 893
+	)
+		throw new Error("Pokemon must belong to the supplied 893-entry index.");
+	const name = textField(value.name, 40);
+	if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(name))
+		throw new Error("Invalid Pokemon name.");
+	if (
+		!Array.isArray(value.types) ||
+		value.types.length < 1 ||
+		value.types.length > 2 ||
+		!Array.isArray(value.stats) ||
+		value.stats.length !== 6
+	)
+		throw new Error("Invalid Pokemon types or stats.");
+	const types = value.types.map((row) => textField(row?.type?.name, 30));
+	const allowedTypes = [
+		"normal",
+		"fighting",
+		"flying",
+		"poison",
+		"ground",
+		"rock",
+		"bug",
+		"ghost",
+		"steel",
+		"fire",
+		"water",
+		"grass",
+		"electric",
+		"psychic",
+		"ice",
+		"dragon",
+		"dark",
+		"fairy",
+	];
+	if (
+		new Set(types).size !== types.length ||
+		types.some((t) => !allowedTypes.includes(t))
+	)
+		throw new Error("Invalid Pokemon types.");
+	const stats = value.stats.map((row) => {
+		if (
+			!Number.isSafeInteger(row.base_stat) ||
+			row.base_stat < 1 ||
+			row.base_stat > 999
+		)
+			throw new Error("Invalid Pokemon stat.");
+		return { name: textField(row.stat?.name, 30), value: row.base_stat };
+	});
+	const expectedStats = [
+		"hp",
+		"attack",
+		"defense",
+		"special-attack",
+		"special-defense",
+		"speed",
+	];
+	if (
+		new Set(stats.map((s) => s.name)).size !== 6 ||
+		stats.some((s) => !expectedStats.includes(s.name))
+	)
+		throw new Error("Invalid Pokemon stats.");
+	const image = textField(value.sprites?.front_default, 90000);
+	if (live) {
+		const url = new URL(image);
+		if (
+			url.origin !== "https://raw.githubusercontent.com" ||
+			url.pathname !==
+				"/PokeAPI/sprites/master/sprites/pokemon/" + value.id + ".png" ||
+			url.search ||
+			url.hash
+		)
+			throw new Error("Unexpected Pokemon image URL.");
+	} else if (!/^data:image\/png;base64,[A-Za-z0-9+/]+=*$/.test(image))
+		throw new Error("Invalid saved sprite.");
+	return { id: value.id, name, types, stats, image };
+}
+function renderPokemon(pokemon, image) {
+	const output = document.querySelector("#output"),
+		heading = document.createElement("h2"),
+		id = document.createElement("p"),
+		types = document.createElement("p"),
+		stats = document.createElement("dl");
+	heading.textContent = pokemon.name;
+	image.alt = pokemon.name + " sprite";
+	image.width = 96;
+	image.height = 96;
+	id.textContent = "ID: " + pokemon.id;
+	types.textContent = "Types: " + pokemon.types.join(", ");
+	for (const stat of pokemon.stats) {
+		const term = document.createElement("dt"),
+			value = document.createElement("dd");
+		term.textContent = stat.name;
+		value.textContent = String(stat.value);
+		stats.append(term, value);
+	}
+	output.replaceChildren(heading, image, id, types, stats);
+}
+async function searchPokemon(event) {
+	event?.preventDefault();
+	if (activeRequest || document.querySelector("#load").disabled) return;
+	const query = document
+		.querySelector("#query")
+		.value.trim()
+		.toLowerCase()
+		.replace(/\s+/g, "-");
+	if (
+		!/^(?:[1-9]\d{0,2}|[a-z0-9]+(?:-[a-z0-9]+)*)$/.test(query) ||
+		query.length > 40
+	) {
+		showProblem(
+			new Error("Choose a name or ID from the supplied index."),
+			!!current,
+		);
+		return;
+	}
+	const record = pokemonFixtures.find(
+		(p) => p.name === query || String(p.id) === query,
+	);
+	if (!record) {
+		showProblem(
+			new Error("No matching Pokemon in the 893-entry index."),
+			!!current,
+		);
+		return;
+	}
+	setBusy(true);
+	setStatus("Loading " + record.name + ".", "loading");
+	try {
+		const local = document.querySelector("#source").value === "saved";
+		const loaded = await loadPokemonResponse(record, local);
+		const image = await readyImage(loaded.data.image);
+		renderPokemon(loaded.data, image);
+		current = loaded.data;
+		setStatus(
+			loaded.cached
+				? "Cached Pokemon loaded."
+				: local
+					? "Saved Pokemon loaded."
+					: "Live Pokemon loaded.",
+		);
+	} catch (error) {
+		showProblem(error, !!current);
+	} finally {
+		setBusy(false);
+	}
+}
+const options = document.querySelector("#pokemon-names");
+for (const record of pokemonFixtures) {
+	const option = document.createElement("option");
+	option.value = record.name;
+	options.append(option);
+}
+document
+	.querySelector("#search-form")
+	.addEventListener("submit", searchPokemon);
+searchPokemon();

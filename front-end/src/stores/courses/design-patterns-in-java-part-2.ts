@@ -3,6 +3,7 @@ import type { RawCourse, RawCourseModuleItem } from "./types";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { completeJavaComposingMethods } from "./javaComposingMethodsTeaching";
 import { completeJavaConditionalFlow } from "./javaConditionalFlowTeaching";
+import { completeJavaMethodCalls } from "./javaMethodCallsTeaching";
 import { completeJavaOwnershipMove } from "./javaOwnershipMoveTeaching";
 import { completeJavaRefactoringOpening } from "./javaRefactoringOpeningTeaching";
 import { completeJavaValueData } from "./javaValueDataTeaching";
@@ -1923,7 +1924,8 @@ const designPatternsJavaPart2PrimaryModules =
 		.map(completeJavaComposingMethods)
 		.map(completeJavaOwnershipMove)
 		.map(completeJavaValueData)
-		.map(completeJavaConditionalFlow);
+		.map(completeJavaConditionalFlow)
+		.map(completeJavaMethodCalls);
 const designPatternsJavaPart2Clinics =
 	designPatternsInJavaPart2SourceCourse.modules.filter(
 		module => !DESIGN_PATTERNS_JAVA_PART_2_PRIMARY_TITLES.has(module.title)

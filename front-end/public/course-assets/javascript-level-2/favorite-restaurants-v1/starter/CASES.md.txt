@@ -1,0 +1,6 @@
+# Table checks
+
+Three column headers,three body rows,three descriptive image alternatives and three loaded local images.
+All columns remain visible at390px and200%text size. A long name wraps.
+Add a fourth row:alternation follows tbody position automatically.
+Save,reopen and export:relative images and edits remain intact.

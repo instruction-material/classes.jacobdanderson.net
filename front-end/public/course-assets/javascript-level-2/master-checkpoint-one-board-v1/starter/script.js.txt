@@ -1,0 +1,32 @@
+(() => {
+"use strict";
+const api=window.ShapeBoard;const status=document.querySelector("#status");
+let frame=null;let attempts=0;let running=false;
+function stop(message) {running=false;if(frame!==null)cancelAnimationFrame(frame);frame=null;if(message)status.textContent=message;}
+function show() {
+ const board=api.createBoard();
+ if(board.length!==9)throw new Error("Complete createBoard: return nine shape objects.");
+ const list=document.querySelector("#board-results");list.replaceChildren();
+ board.forEach((shape,index)=>{const row=document.createElement("li");row.textContent="Cell "+(index+1)+": "+shape.type;list.append(row);});
+ let context=null;try {context=document.querySelector("#canvas").getContext("2d");} catch {}
+ if(context)api.drawBoard(context,board);
+ return board;
+}
+function step() {
+ frame=null;if(!running)return;
+ try {
+  const board=show();attempts++;
+  if(api.boardComplete(board))return stop("Match after "+attempts+" attempt(s).");
+  if(attempts>=2000)return stop("Stopped at 2000 attempts without a match.");
+  status.textContent="Attempt "+attempts+": mixed board.";
+  frame=requestAnimationFrame(step);
+ } catch(error){stop(error.message);}
+}
+document.querySelector("#start").addEventListener("click",()=>{stop();attempts=0;running=true;step();});
+document.querySelector("#stop").addEventListener("click",()=>stop("Stopped after "+attempts+" attempt(s)."));
+document.querySelector("#once").addEventListener("click",()=>{
+ stop();try {const board=show();status.textContent=api.boardComplete(board)?"One board: match.":"One board: mixed.";} catch(error){stop(error.message);}
+});
+document.addEventListener("visibilitychange",()=>{if(document.hidden)stop("Stopped while page is hidden.");});
+window.addEventListener("pagehide",()=>stop());
+})();

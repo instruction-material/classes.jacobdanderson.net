@@ -1,6 +1,6 @@
 name: Course preflight
 
-run-name: ${{ inputs.course == 'tracker-evidence' && inputs.browser_artifact_id != '' && 'Welcome native UI verification' || inputs.course == 'native-release-evidence' && 'Native release file verification' || inputs.course == 'tracker-evidence' && 'Retained Tracker failure evidence' || inputs.course == 'scratch-tasks' && 'Published Scratch project tasks' || inputs.course == 'course-audit' && 'Course audit follow-ups' || inputs.course == 'scratch-readings' && 'Scratch and self-study readings' || inputs.course == 'scratch-originals' && 'Original Scratch imports' || inputs.course == 'bootcamp' && 'Scratch Bootcamp pages' || inputs.course == 'self-study' && 'Self-study course pages' || inputs.course == 'physics-models' && 'Physics model workflows' || inputs.course == 'networking' && 'Swift Networking source evidence' || inputs.course == 'ai-setup' && 'AI setup reading' || 'PyGames core preflight' }}
+run-name: ${{ inputs.course == 'tracker-evidence' && inputs.browser_artifact_id != '' && 'Welcome native UI verification' || inputs.course == 'ai-studios' && 'AI search and game studios' || inputs.course == 'swift-map' && 'Swift Map course and native checks' || inputs.course == 'native-release-evidence' && 'Native release file verification' || inputs.course == 'tracker-evidence' && 'Retained Tracker failure evidence' || inputs.course == 'scratch-tasks' && 'Published Scratch project tasks' || inputs.course == 'course-audit' && 'Course audit follow-ups' || inputs.course == 'scratch-readings' && 'Scratch and self-study readings' || inputs.course == 'scratch-originals' && 'Original Scratch imports' || inputs.course == 'bootcamp' && 'Scratch Bootcamp pages' || inputs.course == 'self-study' && 'Self-study course pages' || inputs.course == 'physics-models' && 'Physics model workflows' || inputs.course == 'networking' && 'Swift Networking source evidence' || inputs.course == 'ai-setup' && 'AI setup reading' || 'PyGames core preflight' }}
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ on:
       course:
         description: Course verification to run
         type: choice
-        options: [javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
+        options: [ai-studios, swift-map, javascript-business-directory, java-method-calls, javascript-hundred-squares, javascript-businesses, javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
         default: pygames
       full_source_runtime:
         description: Also verify every pinned original PyGames runtime profile
@@ -306,6 +306,387 @@ jobs:
           path: output/javascript-small-talk-browser/
           if-no-files-found: error
           retention-days: 14
+
+
+  javascript-businesses:
+    if: inputs.course == 'javascript-businesses'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      CLASSES_FAMILY_TASK_ID: javascript-businesses-${{ github.run_id }}
+      JAVASCRIPT_BUSINESSES_BROWSER_DIR: output/javascript-businesses-browser
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - name: Pin npm and verify the root clean install
+        run: |
+          npm i -g npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+          node scripts/classes-family-heavy-task.mjs -- npm ci
+      - name: Require root and production dependency audits
+        run: |
+          mkdir -p output/javascript-businesses-browser/audits
+          npm audit --include=optional --json > output/javascript-businesses-browser/audits/root-full.json
+          npm audit --include=optional --omit=dev --json > output/javascript-businesses-browser/audits/root-production.json
+      - name: Verify the standalone backend graph and both audits
+        working-directory: back-end
+        run: |
+          node ../scripts/classes-family-heavy-task.mjs -- npm ci --include=optional --strict-allow-scripts --workspaces=false
+          npm ls --all --workspaces=false
+          npm audit --include=optional --workspaces=false --json > ../output/javascript-businesses-browser/audits/backend-full.json
+          npm audit --include=optional --omit=dev --workspaces=false --json > ../output/javascript-businesses-browser/audits/backend-production.json
+      - name: Verify JavaScript source roles, originals, saved projects and published identities
+        working-directory: front-end
+        run: >-
+          node ../scripts/classes-family-heavy-task.mjs --
+          npm exec -- vitest run
+          test/javascript-*.spec.test.ts
+          test/store.courses.catalog-identities.spec.test.ts
+          test/store.courses.progress-identity.spec.test.ts
+          test/store.courses.javascript-level-2-flow.spec.test.ts
+          test/store.courses.quality.spec.test.ts
+          test/store.courses.implementation-artifacts.spec.test.ts
+          --no-file-parallelism --maxWorkers=1
+      - name: Verify exact bundled D3 security fixes and bounded parser controls
+        env:
+          VENDORED_D3_PROOF_FILE: ${{ github.workspace }}/output/javascript-businesses-browser/vendored-d3-proof.json
+        run: |
+          node scripts/verify-vendored-d3.mjs
+          node scripts/check-vendored-d3-regressions.mjs
+      - name: Lint, typecheck and build both workspaces
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run lint
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+          node scripts/classes-family-heavy-task.mjs -- npm run build
+      - name: Verify original course buttons, consent, edits and actual ZIP exports
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-businesses-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-businesses-exported-browser.test.mjs
+      - name: Retain source, actual exports and rendered evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: javascript-businesses-source-workflows
+          path: output/javascript-businesses-browser/
+          if-no-files-found: error
+          retention-days: 14
+
+
+  javascript-business-directory:
+    if: inputs.course == 'javascript-business-directory'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      CLASSES_FAMILY_TASK_ID: javascript-business-directory-${{ github.run_id }}
+      JAVASCRIPT_BUSINESS_DIRECTORY_BROWSER_DIR: output/javascript-business-directory-browser
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - name: Pin npm and verify the root clean install
+        run: |
+          npm i -g npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+          node scripts/classes-family-heavy-task.mjs -- npm ci
+      - name: Require root and production dependency audits
+        run: |
+          mkdir -p output/javascript-business-directory-browser/audits
+          npm audit --include=optional --json > output/javascript-business-directory-browser/audits/root-full.json
+          npm audit --include=optional --omit=dev --json > output/javascript-business-directory-browser/audits/root-production.json
+      - name: Verify the standalone backend graph and both audits
+        working-directory: back-end
+        run: |
+          node ../scripts/classes-family-heavy-task.mjs -- npm ci --include=optional --strict-allow-scripts --workspaces=false
+          npm ls --all --workspaces=false
+          npm audit --include=optional --workspaces=false --json > ../output/javascript-business-directory-browser/audits/backend-full.json
+          npm audit --include=optional --omit=dev --workspaces=false --json > ../output/javascript-business-directory-browser/audits/backend-production.json
+      - name: Verify JavaScript source roles, originals, saved projects and published identities
+        working-directory: front-end
+        run: >-
+          node ../scripts/classes-family-heavy-task.mjs --
+          npm exec -- vitest run
+          test/javascript-*.spec.test.ts
+          test/store.courses.catalog-identities.spec.test.ts
+          test/store.courses.progress-identity.spec.test.ts
+          test/store.courses.javascript-level-2-flow.spec.test.ts
+          test/store.courses.quality.spec.test.ts
+          test/store.courses.implementation-artifacts.spec.test.ts
+          --no-file-parallelism --maxWorkers=1
+      - name: Verify exact bundled D3 security fixes and bounded parser controls
+        env:
+          VENDORED_D3_PROOF_FILE: ${{ github.workspace }}/output/javascript-business-directory-browser/vendored-d3-proof.json
+        run: |
+          node scripts/verify-vendored-d3.mjs
+          node scripts/check-vendored-d3-regressions.mjs
+      - name: Lint, typecheck and build both workspaces
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run lint
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+          node scripts/classes-family-heavy-task.mjs -- npm run build
+      - name: Verify original course buttons, consent, edits and actual ZIP exports
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-business-directory-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-business-directory-exported-browser.test.mjs
+      - name: Retain source, actual exports and rendered evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: javascript-business-directory-source-workflows
+          path: output/javascript-business-directory-browser/
+          if-no-files-found: error
+          retention-days: 14
+
+
+  javascript-hundred-squares:
+    if: inputs.course == 'javascript-hundred-squares'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      CLASSES_FAMILY_TASK_ID: javascript-hundred-squares-${{ github.run_id }}
+      JAVASCRIPT_HUNDRED_SQUARES_BROWSER_DIR: output/javascript-hundred-squares-browser
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - name: Pin npm and verify the root clean install
+        run: |
+          npm i -g npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+          node scripts/classes-family-heavy-task.mjs -- npm ci
+      - name: Require root and production dependency audits
+        run: |
+          mkdir -p output/javascript-hundred-squares-browser/audits
+          npm audit --include=optional --json > output/javascript-hundred-squares-browser/audits/root-full.json
+          npm audit --include=optional --omit=dev --json > output/javascript-hundred-squares-browser/audits/root-production.json
+      - name: Verify the standalone backend graph and both audits
+        working-directory: back-end
+        run: |
+          node ../scripts/classes-family-heavy-task.mjs -- npm ci --include=optional --strict-allow-scripts --workspaces=false
+          npm ls --all --workspaces=false
+          npm audit --include=optional --workspaces=false --json > ../output/javascript-hundred-squares-browser/audits/backend-full.json
+          npm audit --include=optional --omit=dev --workspaces=false --json > ../output/javascript-hundred-squares-browser/audits/backend-production.json
+      - name: Verify new checkpoint and legacy import contracts before the full corpus
+        if: inputs.self_study_courses == 'javascript-master-checkpoint-two'
+        working-directory: front-end
+        run: >-
+          node ../scripts/classes-family-heavy-task.mjs --
+          npm exec -- vitest run
+          test/ai-legacy-depth-import.spec.test.ts
+          test/javascript-master-checkpoint-two-workspace.spec.test.ts
+          --no-file-parallelism --maxWorkers=1
+          --reporter=default --reporter=json
+          --outputFile=../output/javascript-master-checkpoint-two-browser/tests.json
+      - name: Verify JavaScript source roles, originals, saved projects and published identities
+        working-directory: front-end
+        run: >-
+          node ../scripts/classes-family-heavy-task.mjs --
+          npm exec -- vitest run
+          test/javascript-*.spec.test.ts
+          test/store.courses.catalog-identities.spec.test.ts
+          test/store.courses.progress-identity.spec.test.ts
+          test/store.courses.javascript-level-2-flow.spec.test.ts
+          test/store.courses.quality.spec.test.ts
+          test/store.courses.implementation-artifacts.spec.test.ts
+          --no-file-parallelism --maxWorkers=1
+      - name: Verify exact bundled D3 security fixes and bounded parser controls
+        env:
+          VENDORED_D3_PROOF_FILE: ${{ github.workspace }}/output/javascript-hundred-squares-browser/vendored-d3-proof.json
+        run: |
+          node scripts/verify-vendored-d3.mjs
+          node scripts/check-vendored-d3-regressions.mjs
+      - name: Lint, typecheck and build both workspaces
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run lint
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+          node scripts/classes-family-heavy-task.mjs -- npm run build
+      - name: Verify original course buttons, consent, edits and actual ZIP exports
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one' && inputs.self_study_courses != 'javascript-master-checkpoint-two'
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-hundred-squares-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-hundred-squares-exported-browser.test.mjs
+      - name: Verify Refactory source roles, both catalog roles and saved workspace exports
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one' && inputs.self_study_courses != 'javascript-master-checkpoint-two'
+        run: npm exec -w front-end -- vitest run test/javascript-refactory-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+      - name: Verify Refactory consent, saved edits and actual offline report exports
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one' && inputs.self_study_courses != 'javascript-master-checkpoint-two'
+        env:
+          JAVASCRIPT_REFACTORY_BROWSER_DIR: output/javascript-refactory-browser
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-refactory-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-refactory-exported-browser.test.mjs
+      - name: Verify Which Card roles, saved work and coordinate boundaries
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one' && inputs.self_study_courses != 'javascript-master-checkpoint-two'
+        run: npm exec -w front-end -- vitest run test/javascript-which-card-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+      - name: Verify actual Which Card imports and offline pointer behavior
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one' && inputs.self_study_courses != 'javascript-master-checkpoint-two'
+        env:
+          JAVASCRIPT_WHICH_CARD_BROWSER_DIR: output/javascript-which-card-browser
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-which-card-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-which-card-exported-browser.test.mjs
+      - name: Verify Paddle source roles and keyboard state boundaries
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one' && inputs.self_study_courses != 'javascript-master-checkpoint-two'
+        run: npm exec -w front-end -- vitest run test/javascript-paddle-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+      - name: Verify actual Paddle imports and offline keyboard behavior
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one' && inputs.self_study_courses != 'javascript-master-checkpoint-two'
+        env:
+          JAVASCRIPT_PADDLE_BROWSER_DIR: output/javascript-paddle-browser
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-paddle-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-paddle-exported-browser.test.mjs
+      - name: Verify Coastal Cruise helpers and safe registration traces
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one' && inputs.self_study_courses != 'javascript-master-checkpoint-two'
+        run: npm exec -w front-end -- vitest run test/javascript-coastal-cruise-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+      - name: Verify Coastal Cruise imports and actual offline registration dialogs
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one' && inputs.self_study_courses != 'javascript-master-checkpoint-two'
+        env:
+          JAVASCRIPT_COASTAL_CRUISE_BROWSER_DIR: output/javascript-coastal-cruise-browser
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-coastal-cruise-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-coastal-cruise-exported-browser.test.mjs
+      - name: Verify Juggling Paddle roles and radius-aware bounce cases
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one' && inputs.self_study_courses != 'javascript-master-checkpoint-two'
+        run: npm exec -w front-end -- vitest run test/javascript-juggling-paddle-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+      - name: Verify actual Juggling Paddle imports and offline game flow
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one' && inputs.self_study_courses != 'javascript-master-checkpoint-two'
+        env:
+          JAVASCRIPT_JUGGLING_PADDLE_BROWSER_DIR: output/javascript-juggling-paddle-browser
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-juggling-paddle-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-juggling-paddle-exported-browser.test.mjs
+      - name: Verify complete Wordsmith imports and pinned classroom framework
+        if: inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one' && inputs.self_study_courses != 'javascript-master-checkpoint-two'
+        run: >-
+          npm exec -w front-end -- vitest run
+          test/python-wordsmith-import.spec.test.ts
+          test/python-wordsmith-course.spec.test.ts
+          test/codePreview.spec.test.ts
+          test/python-ide.module.spec.test.ts
+          test/store.courses.python-level-2-flow.spec.test.ts
+          test/store.courses.python-pygames-classroom.spec.test.ts
+          --no-file-parallelism --maxWorkers=1
+      - name: Verify actual Wordsmith role imports, saved scoring edits and complete dictionary exports
+        if: inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one' && inputs.self_study_courses != 'javascript-master-checkpoint-two'
+        env:
+          PYTHON_WORDSMITH_BROWSER_DIR: output/python-wordsmith-browser
+        run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/python-wordsmith-course-browser.test.mjs
+      - name: Verify collision role packs and exact geometry and rest boundaries
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one' && inputs.self_study_courses != 'javascript-master-checkpoint-two'
+        run: npm exec -w front-end -- vitest run test/javascript-collision-workspace.spec.test.ts --no-file-parallelism --maxWorkers=1
+      - name: Verify actual collision imports and all saved offline workspaces
+        if: inputs.self_study_courses != 'python-level-2,python-level-2-classroom' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one' && inputs.self_study_courses != 'javascript-master-checkpoint-two'
+        env:
+          JAVASCRIPT_COLLISION_BROWSER_DIR: output/javascript-collision-browser
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-collision-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-collision-exported-browser.test.mjs
+      - name: Verify canvas game imports and all saved offline workspaces
+        if: inputs.self_study_courses == 'javascript-canvas-games'
+        env:
+          JAVASCRIPT_CANVAS_GAMES_BROWSER_DIR: output/javascript-canvas-games-browser
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-canvas-games-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-canvas-games-exported-browser.test.mjs
+      - name: Verify API project imports and all saved offline response workflows
+        if: inputs.self_study_courses == 'javascript-api-projects'
+        env:
+          JAVASCRIPT_API_PROJECTS_BROWSER_DIR: output/javascript-api-projects-browser
+        run: |
+          npm exec -w front-end -- vitest run test/javascript-api-projects-workspace.spec.test.ts test/store.courses.javascript-level-2-flow.spec.test.ts --no-file-parallelism --maxWorkers=1
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-api-projects-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-api-projects-exported-browser.test.mjs
+      - name: Verify local document imports, recovery and complete exported applications
+        if: inputs.self_study_courses == 'javascript-local-persistence'
+        env:
+          JAVASCRIPT_LOCAL_PERSISTENCE_BROWSER_DIR: output/javascript-local-persistence-browser
+        run: |
+          npm exec -w front-end -- vitest run test/javascript-local-persistence-workspace.spec.test.ts test/store.courses.javascript-level-2-flow.spec.test.ts test/store.courses.catalog-identities.spec.test.ts --no-file-parallelism --maxWorkers=1
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-local-persistence-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-local-persistence-exported-browser.test.mjs
+      - name: Verify state-capitals assignment, imports and actual map-quiz exports
+        if: inputs.self_study_courses == 'javascript-us-capitals'
+        env:
+          JAVASCRIPT_US_CAPITALS_BROWSER_DIR: output/javascript-us-capitals-browser
+        run: |
+          npm exec -w front-end -- vitest run test/javascript-us-capitals-workspace.spec.test.ts test/store.courses.javascript-level-2-flow.spec.test.ts test/store.courses.catalog-identities.spec.test.ts --no-file-parallelism --maxWorkers=1
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-us-capitals-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-us-capitals-exported-browser.test.mjs
+      - name: Verify original fundamentals assignments and exported game and tables
+        if: inputs.self_study_courses == 'javascript-master-fundamentals'
+        env:
+          JAVASCRIPT_MASTER_FUNDAMENTALS_BROWSER_DIR: output/javascript-master-fundamentals-browser
+        run: |
+          npm exec -w front-end -- vitest run test/javascript-master-fundamentals-workspace.spec.test.ts test/store.courses.javascript-level-2-flow.spec.test.ts test/store.courses.catalog-identities.spec.test.ts --no-file-parallelism --maxWorkers=1
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-master-fundamentals-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-master-fundamentals-exported-browser.test.mjs
+      - name: Verify complete checkpoint tasks, saved continuations and actual dice and board exports
+        if: inputs.self_study_courses == 'javascript-master-checkpoint-one'
+        env:
+          JAVASCRIPT_MASTER_CHECKPOINT_ONE_BROWSER_DIR: output/javascript-master-checkpoint-one-browser
+        run: |
+          npm exec -w front-end -- vitest run test/javascript-master-checkpoint-one-workspace.spec.test.ts test/store.courses.javascript-level-2-flow.spec.test.ts test/store.courses.catalog-identities.spec.test.ts --no-file-parallelism --maxWorkers=1
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-master-checkpoint-one-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-master-checkpoint-one-exported-browser.test.mjs
+      - name: Check out the exact corrected legacy AI references
+        if: inputs.self_study_courses == 'javascript-master-checkpoint-two'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: instruction-material/AI-Level-1
+          ref: 372bffae4417395d527ccfd69ebd2530c2072619
+          path: .ai-work/ai-legacy-depth-source
+          persist-credentials: false
+      - name: Verify all source suites including legacy depth-limit regressions
+        if: inputs.self_study_courses == 'javascript-master-checkpoint-two'
+        run: >-
+          node scripts/classes-family-heavy-task.mjs --
+          bash .ai-work/ai-legacy-depth-source/verify-course-source.sh
+      - name: Verify complete second checkpoint, SQL cases and actual exported API workflows
+        if: inputs.self_study_courses == 'javascript-master-checkpoint-two'
+        env:
+          JAVASCRIPT_MASTER_CHECKPOINT_TWO_BROWSER_DIR: output/javascript-master-checkpoint-two-browser
+        run: |
+          node --test test/javascript-master-checkpoint-two-source.test.mjs
+          python3 test/javascript-master-checkpoint-two-database.py --proof output/javascript-master-checkpoint-two-browser/database-proof.json
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-master-checkpoint-two-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/javascript-master-checkpoint-two-exported-browser.test.mjs
+      - name: Retain source, actual exports and rendered evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: javascript-hundred-squares-source-workflows
+          path: |
+            output/javascript-hundred-squares-browser/
+            output/javascript-refactory-browser/
+            output/javascript-which-card-browser/
+            output/javascript-paddle-browser/
+            output/javascript-coastal-cruise-browser/
+            output/javascript-juggling-paddle-browser/
+            output/python-wordsmith-browser/
+            output/javascript-collision-browser/
+            output/javascript-canvas-games-browser/
+            output/javascript-api-projects-browser/
+            output/javascript-local-persistence-browser/
+            output/javascript-us-capitals-browser/
+            output/javascript-master-fundamentals-browser/
+            output/javascript-master-checkpoint-one-browser/
+            output/javascript-master-checkpoint-two-browser/
+          if-no-files-found: error
+          retention-days: 14
+
+
 
 
   javascript-weather:
@@ -675,6 +1056,135 @@ jobs:
           if-no-files-found: error
           retention-days: 14
 
+  swift-map-browser:
+    if: inputs.course == 'swift-map'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      CLASSES_FAMILY_TASK_ID: swift-map-browser-${{ github.run_id }}
+      SWIFT_MAP_BROWSER_DIR: output/swift-map-candidate/swift-map-browser
+      COURSE_IMPORT_SCREENSHOT_DIR: output/swift-map-candidate/screenshots
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - name: Pin npm and verify root clean install
+        run: |
+          npm i -g npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+          node scripts/classes-family-heavy-task.mjs -- npm ci
+      - name: Require root full and production audits
+        run: |
+          mkdir -p output/swift-map-candidate/audits
+          npm audit --include=optional --json > output/swift-map-candidate/audits/root-full.json
+          npm audit --include=optional --omit=dev --json > output/swift-map-candidate/audits/root-production.json
+      - name: Verify standalone backend clean install and both audits
+        working-directory: back-end
+        run: |
+          node ../scripts/classes-family-heavy-task.mjs -- npm ci --include=optional --strict-allow-scripts --workspaces=false
+          npm ls --all --workspaces=false
+          npm audit --include=optional --workspaces=false --json > ../output/swift-map-candidate/audits/backend-full.json
+          npm audit --include=optional --omit=dev --workspaces=false --json > ../output/swift-map-candidate/audits/backend-production.json
+      - name: Verify exact Swift source roles and preserved course identities
+        run: |
+          npm exec -w front-end -- vitest run test/swift-canonical-workspaces.spec.test.ts test/store.courses.intro-to-swift-flow.spec.test.ts test/store.courses.catalog-identities.spec.test.ts --no-file-parallelism --maxWorkers=1
+          python3 test/swift-canonical-project-identity.py
+      - name: Lint, typecheck and build both workspaces
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run lint
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+          node scripts/classes-family-heavy-task.mjs -- npm run build
+      - name: Verify actual Map course imports, saved roles and exports
+        run: node scripts/classes-family-heavy-task.mjs -- node --test --test-name-pattern="Swift map:" test/swift-canonical-course-browser.test.mjs
+      - name: Retain Map browser, source and original export evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: swift-map-candidate-workflows
+          path: output/swift-map-candidate/
+          if-no-files-found: error
+          retention-days: 14
+
+  swift-map-native:
+      needs: swift-map-browser
+      if: ${{ !cancelled() && inputs.course == 'swift-map' && needs.swift-map-browser.result == 'success' }}
+      runs-on: macos-26
+      timeout-minutes: 60
+      permissions:
+          contents: read
+          actions: read
+      env:
+          SWIFT_COURSE: map
+          CLASSES_FAMILY_TASK_ID: swift-canonical-ios-map
+          CLASSES_FAMILY_MIN_DISK_GB: 8
+          CLASSES_FAMILY_HEAVY_TIMEOUT_MS: 3300000
+      steps:
+          - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+            with:
+                persist-credentials: false
+
+          - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+            with:
+                node-version: 24.18.0
+
+          - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+            with:
+                name: swift-map-candidate-workflows
+                path: output/swift-map-candidate
+
+          - name: Wait for the hosted Mac to settle within the native load limit
+            run: |
+                python3 - <<'PY'
+                import datetime
+                import json
+                import os
+                from pathlib import Path
+                import time
+
+                proof = Path(os.environ["RUNNER_TEMP"]) / "swift-canonical-ios/runner-readiness.json"
+                proof.parent.mkdir(parents=True, exist_ok=True)
+                samples = []
+                deadline = time.monotonic() + 600
+                while True:
+                    load = os.getloadavg()[0]
+                    samples.append({"at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "load": load})
+                    ready = load <= 8
+                    proof.write_text(json.dumps({"ready": ready, "maximumLoad": 8, "samples": samples}, indent=2) + "\n")
+                    print(f"Hosted Mac load: {load:.2f}; required maximum: 8", flush=True)
+                    if ready:
+                        break
+                    if time.monotonic() >= deadline:
+                        raise SystemExit("Hosted Mac did not settle within ten minutes; native checks have not run")
+                    time.sleep(10)
+                PY
+
+          - name: Verify course scroll gesture geometry
+            if: inputs.course == 'swift-map'
+            run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-course-scroll-geometry.py
+
+          - name: Test selected course roles and largest text on two iPhone sizes
+            run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-welcome-exported-ios.py --course "$SWIFT_COURSE" --browser "output/swift-map-candidate/swift-map-browser" --proof "$RUNNER_TEMP/swift-canonical-ios/$SWIFT_COURSE/proof.json"
+
+          - name: Retain native Swift versions, process logs and UI results
+            if: always()
+            uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+            with:
+                name: swift-map-candidate-native-ios
+                path: |
+                    ${{ runner.temp }}/swift-canonical-ios/runner-readiness.json
+                    ${{ runner.temp }}/swift-canonical-ios/**/proof.json
+                    ${{ runner.temp }}/swift-canonical-ios/**/processes.jsonl
+                    ${{ runner.temp }}/swift-canonical-ios/**/logs/
+                    ${{ runner.temp }}/swift-canonical-ios/**/results/
+                    ${{ runner.temp }}/swift-canonical-ios/**/inputs.json
+                if-no-files-found: error
+                retention-days: 7
+
+
   tracker-evidence:
     if: inputs.course == 'tracker-evidence' && inputs.browser_artifact_id == ''
     runs-on: macos-26
@@ -923,17 +1433,15 @@ jobs:
           if-no-files-found: error
           retention-days: 14
 
-  welcome:
-    if: inputs.course == 'tracker-evidence' && inputs.browser_artifact_id != ''
-    runs-on: macos-26
-    timeout-minutes: 60
-    permissions:
-      contents: read
-      actions: read
+
+  ai-studios:
+    if: inputs.course == 'ai-studios'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
     env:
-      CLASSES_FAMILY_TASK_ID: swift-welcome-evidence-${{ github.run_id }}
-      CLASSES_FAMILY_MIN_DISK_GB: 8
-      CLASSES_FAMILY_HEAVY_TIMEOUT_MS: 3300000
+      CLASSES_FAMILY_TASK_ID: ai-studios-${{ github.run_id }}
+      AI_STUDIO_BROWSER_DIR: output/ai-studio-browser
+      COURSE_IMPORT_SCREENSHOT_DIR: output/ai-studio-browser/screenshots
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -941,118 +1449,73 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: 24.18.0
-      - name: Bind retained browser exports to the unchanged application source
-        env:
-          BROWSER_RUN_ID: ${{ inputs.browser_run_id }}
-          BROWSER_ARTIFACT_ID: ${{ inputs.browser_artifact_id }}
-          GH_TOKEN: ${{ github.token }}
+          cache: npm
+      - name: Verify the pinned root and standalone backend installs and audits
         run: |
-          python3 - <<'PY'
-          import datetime
-          import json
-          import os
-          from pathlib import Path
-          import urllib.request
-
-          repository = os.environ["GITHUB_REPOSITORY"]
-          assert repository in {"anderson-webops/classes.jacobdanderson.net", "instruction-material/classes.jacobdanderson.net"}
-          run_id = os.environ["BROWSER_RUN_ID"]
-          artifact_id = os.environ["BROWSER_ARTIFACT_ID"]
-          assert all(value.isascii() and value.isdecimal() and 0 < int(value) and len(value) < 21 for value in [run_id, artifact_id])
-
-          def api(path):
-              request = urllib.request.Request(
-                  "https://api.github.com/repos/" + repository + "/" + path,
-                  headers={"Authorization": "Bearer " + os.environ["GH_TOKEN"], "Accept": "application/vnd.github+json"}
-              )
-              with urllib.request.urlopen(request, timeout=60) as response:
-                  return json.load(response)
-
-          artifact = api("actions/artifacts/" + artifact_id)
-          origin = artifact["workflow_run"]
-          run = api("actions/runs/" + run_id)
-          jobs = api("actions/runs/" + run_id + "/jobs?per_page=100")["jobs"]
-          assert artifact["name"] == "swift-welcome-workflows" and not artifact["expired"]
-          assert 0 < artifact["size_in_bytes"] < 8 * 1024 * 1024
-          assert origin["id"] == run["id"] == int(run_id) and origin["head_sha"] == run["head_sha"]
-          assert run["repository"]["full_name"] == repository and run["path"] == ".github/workflows/ci.yml"
-          assert run["status"] in {"queued", "in_progress", "completed"}
-          assert run["conclusion"] in {None, "success", "cancelled", "failure", "timed_out"}
-          assert any(job["name"] == "swift-browser" and job["head_sha"] == run["head_sha"]
-                     and job["status"] == "completed" and job["conclusion"] == "success"
-                     and any(step["name"] == "Retain Swift profile browser and exported source evidence"
-                             and step["conclusion"] == "success" for step in job["steps"])
-                     for job in jobs)
-
-          def root_tree(revision):
-              commit = api("git/commits/" + revision)
-              return {entry["path"]: entry["sha"] for entry in api("git/trees/" + commit["tree"]["sha"])["tree"]}
-
-          previous = root_tree(origin["head_sha"])
-          current = root_tree(os.environ["GITHUB_SHA"])
-          unchanged = {name: current[name] for name in ["front-end", "back-end", "package.json", "package-lock.json"]}
-          assert all(previous[name] == digest for name, digest in unchanged.items())
-          proof = Path(os.environ["RUNNER_TEMP"]) / "swift-welcome-ios/browser-origin.json"
-          proof.parent.mkdir(parents=True, exist_ok=True)
-          proof.write_text(json.dumps({
-              "at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-              "repository": repository, "verificationHead": os.environ["GITHUB_SHA"],
-              "artifact": artifact, "browserProducerJobPassed": True,
-              "unchangedApplicationInputs": unchanged,
-              "scope": "Retained actual browser exports from identical application/dependency inputs; fresh native verification uses this checkout's harness."
-          }, indent=2) + "\n")
-          PY
-      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
-        with:
-          artifact-ids: ${{ inputs.browser_artifact_id }}
-          run-id: ${{ inputs.browser_run_id }}
-          github-token: ${{ github.token }}
-          path: output/swift-welcome-workflows
-          merge-multiple: true
-      - name: Wait for the hosted Mac to settle within the native load limit
-        run: |
-          python3 - <<'PY'
-          import datetime
-          import json
-          import os
-          from pathlib import Path
-          import time
-          proof = Path(os.environ["RUNNER_TEMP"]) / "swift-welcome-ios/runner-readiness.json"
-          samples = []
-          deadline = time.monotonic() + 600
-          while True:
-              load = os.getloadavg()[0]
-              samples.append({"at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "load": load})
-              ready = load <= 8
-              proof.write_text(json.dumps({"ready": ready, "maximumLoad": 8, "samples": samples}, indent=2) + "\n")
-              if ready:
-                  break
-              if time.monotonic() >= deadline:
-                  raise SystemExit("Hosted Mac did not settle; native checks have not run")
-              time.sleep(10)
-          PY
-      - name: Verify the original failure and both iPhone viewport geometries
-        run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-course-scroll-geometry.py
-      - name: Bind built and installed apps and run both roles on two iPhone sizes
+          npm i -g npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+          node scripts/classes-family-heavy-task.mjs -- npm ci
+          mkdir -p output/ai-studio-browser/audits
+          npm audit --include=optional --json > output/ai-studio-browser/audits/root-full.json
+          npm audit --include=optional --omit=dev --json > output/ai-studio-browser/audits/root-production.json
+          cd back-end
+          node ../scripts/classes-family-heavy-task.mjs -- npm ci --include=optional --strict-allow-scripts --workspaces=false
+          npm ls --all --workspaces=false
+          npm audit --include=optional --workspaces=false --json > ../output/ai-studio-browser/audits/backend-full.json
+          npm audit --include=optional --omit=dev --workspaces=false --json > ../output/ai-studio-browser/audits/backend-production.json
+      - name: Verify complete role imports, published identities and course flow
         run: >-
           node scripts/classes-family-heavy-task.mjs --
-          python3 test/swift-welcome-exported-ios.py --extended-welcome
-          --browser output/swift-welcome-workflows/swift-welcome-browser
-          --proof "$RUNNER_TEMP/swift-welcome-ios/proof.json"
-      - name: Retain complete Welcome source and native evidence
+          npm exec -w front-end -- vitest run
+          test/ai-studio-import.spec.test.ts
+          test/store.courses.ai-level-1-flow.spec.test.ts
+          test/store.courses.catalog-identities.spec.test.ts
+          test/store.courses.progress-identity.spec.test.ts
+          test/store.courses.quality.spec.test.ts
+          test/course-choice-visibility.spec.test.ts
+          --no-file-parallelism --maxWorkers=1
+          --reporter=default --reporter=json
+          --outputFile=../output/ai-studio-browser/tests.json
+      - name: Lint, typecheck and build both workspaces
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run lint
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+          node scripts/classes-family-heavy-task.mjs -- npm run build
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: instruction-material/AI-Level-1
+          ref: b18be61c865ae45d4ab15dc1b633c1c83d50da12
+          path: .ai-work/ai-studio-source
+          persist-credentials: false
+      - name: Execute all 25 independent source regression suites
+        run: >-
+          node scripts/classes-family-heavy-task.mjs --
+          bash .ai-work/ai-studio-source/verify-course-source.sh
+      - name: Verify representative core and multi-file optional workflows first
+        env:
+          AI_STUDIO_PROJECTS: search-13,optional-05
+        run: >-
+          node scripts/classes-family-heavy-task.mjs --
+          node --test test/ai-studio-course-browser.test.mjs
+      - name: Verify the remaining 23 complete project workflows
+        env:
+          AI_STUDIO_EXCLUDE_PROJECTS: search-13,optional-05
+        run: >-
+          node scripts/classes-family-heavy-task.mjs --
+          node --test test/ai-studio-course-browser.test.mjs
+      - name: Execute the exact original and edited ZIPs with native Python
+        run: >-
+          node scripts/classes-family-heavy-task.mjs --
+          python3 test/ai-studio-exported-native.py
+          --browser output/ai-studio-browser
+          --source .ai-work/ai-studio-source
+          --proof output/ai-studio-browser/native/proof.json
+      - name: Retain complete source, browser, native and dependency evidence
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
-          name: swift-welcome-source-evidence
-          path: |
-            output/swift-welcome-workflows/
-            ${{ runner.temp }}/swift-welcome-ios/browser-origin.json
-            ${{ runner.temp }}/swift-welcome-ios/runner-readiness.json
-            ${{ runner.temp }}/swift-welcome-ios/proof.json
-            ${{ runner.temp }}/swift-welcome-ios/processes.jsonl
-            ${{ runner.temp }}/swift-welcome-ios/logs/
-            ${{ runner.temp }}/swift-welcome-ios/results/
-            ${{ runner.temp }}/swift-welcome-ios/**/inputs.json
+          name: ai-studio-source-workflows
+          path: output/ai-studio-browser/
           if-no-files-found: error
           retention-days: 14
 
@@ -1091,13 +1554,13 @@ jobs:
           retention-days: 14
 
   self-study:
-    if: inputs.course == 'java-conditional-flow' || inputs.course == 'java-value-data' || inputs.course == 'java-ownership-move' || inputs.course == 'java-composing' || inputs.course == 'java-refactoring' || inputs.course == 'java-studios' || inputs.course == 'java-capstone' || inputs.course == 'java-judgment' || inputs.course == 'java-architecture' || inputs.course == 'java-collaboration' || inputs.course == 'java-behavioral' || inputs.course == 'java-structural' || inputs.course == 'java-boundary' || inputs.course == 'java-creational' || inputs.course == 'java-foundations' || inputs.course == 'java-patterns' || inputs.course == 'java-recursion' || inputs.course == 'self-study' || inputs.course == 'physics-models' || inputs.course == 'bootcamp' || inputs.course == 'scratch-originals' || inputs.course == 'scratch-readings' || inputs.course == 'course-audit' || inputs.course == 'scratch-tasks'
+    if: inputs.course == 'java-method-calls' || inputs.course == 'java-conditional-flow' || inputs.course == 'java-value-data' || inputs.course == 'java-ownership-move' || inputs.course == 'java-composing' || inputs.course == 'java-refactoring' || inputs.course == 'java-studios' || inputs.course == 'java-capstone' || inputs.course == 'java-judgment' || inputs.course == 'java-architecture' || inputs.course == 'java-collaboration' || inputs.course == 'java-behavioral' || inputs.course == 'java-structural' || inputs.course == 'java-boundary' || inputs.course == 'java-creational' || inputs.course == 'java-foundations' || inputs.course == 'java-patterns' || inputs.course == 'java-recursion' || inputs.course == 'self-study' || inputs.course == 'physics-models' || inputs.course == 'bootcamp' || inputs.course == 'scratch-originals' || inputs.course == 'scratch-readings' || inputs.course == 'course-audit' || inputs.course == 'scratch-tasks'
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     env:
       CLASSES_FAMILY_TASK_ID: self-study-courses-${{ github.run_id }}
       SELF_STUDY_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser
-      SELF_STUDY_BROWSER_COURSES: ${{ inputs.course == 'java-conditional-flow' && 'design-patterns-in-java-part-2' || inputs.course == 'java-value-data' && 'design-patterns-in-java-part-2' || inputs.course == 'java-ownership-move' && 'design-patterns-in-java-part-2' || inputs.course == 'java-composing' && 'design-patterns-in-java-part-2' || inputs.course == 'java-refactoring' && 'design-patterns-in-java,design-patterns-in-java-part-2' || inputs.course == 'java-studios' && 'design-patterns-in-java' || inputs.course == 'java-capstone' && 'design-patterns-in-java' || inputs.course == 'java-judgment' && 'design-patterns-in-java' || inputs.course == 'java-architecture' && 'design-patterns-in-java' || inputs.course == 'java-collaboration' && 'design-patterns-in-java' || inputs.course == 'java-behavioral' && 'design-patterns-in-java' || inputs.course == 'java-structural' && 'design-patterns-in-java' || inputs.course == 'java-boundary' && 'design-patterns-in-java' || inputs.course == 'java-creational' && 'design-patterns-in-java' || inputs.course == 'java-foundations' && 'design-patterns-in-java' || inputs.course == 'java-patterns' && 'design-patterns-in-java' || inputs.course == 'java-recursion' && 'java-level-3' || inputs.course == 'bootcamp' && 'scratch-level-1-bootcamp' || inputs.course == 'physics-models' && 'pre-algebra-a,intro-to-physics,physics-level-2' || inputs.course == 'self-study' && inputs.self_study_courses || '' }}
+      SELF_STUDY_BROWSER_COURSES: ${{ inputs.course == 'java-method-calls' && 'design-patterns-in-java-part-2' || inputs.course == 'java-conditional-flow' && 'design-patterns-in-java-part-2' || inputs.course == 'java-value-data' && 'design-patterns-in-java-part-2' || inputs.course == 'java-ownership-move' && 'design-patterns-in-java-part-2' || inputs.course == 'java-composing' && 'design-patterns-in-java-part-2' || inputs.course == 'java-refactoring' && 'design-patterns-in-java,design-patterns-in-java-part-2' || inputs.course == 'java-studios' && 'design-patterns-in-java' || inputs.course == 'java-capstone' && 'design-patterns-in-java' || inputs.course == 'java-judgment' && 'design-patterns-in-java' || inputs.course == 'java-architecture' && 'design-patterns-in-java' || inputs.course == 'java-collaboration' && 'design-patterns-in-java' || inputs.course == 'java-behavioral' && 'design-patterns-in-java' || inputs.course == 'java-structural' && 'design-patterns-in-java' || inputs.course == 'java-boundary' && 'design-patterns-in-java' || inputs.course == 'java-creational' && 'design-patterns-in-java' || inputs.course == 'java-foundations' && 'design-patterns-in-java' || inputs.course == 'java-patterns' && 'design-patterns-in-java' || inputs.course == 'java-recursion' && 'java-level-3' || inputs.course == 'bootcamp' && 'scratch-level-1-bootcamp' || inputs.course == 'physics-models' && 'pre-algebra-a,intro-to-physics,physics-level-2' || inputs.course == 'self-study' && inputs.self_study_courses || '' }}
       PHYSICS2_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/physics-models
       SCRATCH_ORIGINAL_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/scratch-originals
       COURSE_CATALOG_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/catalog
@@ -1145,6 +1608,7 @@ jobs:
           test/java-ownership-move-workspace.spec.test.ts
           test/java-value-data-workspace.spec.test.ts
           test/java-conditional-flow-workspace.spec.test.ts
+          test/java-method-calls-workspace.spec.test.ts
           test/java-composing-methods-workspace.spec.test.ts
           test/java-refactoring-opening-workspace.spec.test.ts
           test/store.courses.design-patterns-java-part-2-flow.spec.test.ts
@@ -1161,6 +1625,8 @@ jobs:
           test/java-patterns-workspace.spec.test.ts test/store.courses.design-patterns-java-flow.spec.test.ts
           test/java-recursion-workspace.spec.test.ts test/store.courses.java-level-3-flow.spec.test.ts
           test/store.courses.self-study-browser-manifest.spec.test.ts
+          test/store.courses.smart-money-content.spec.test.ts
+          test/store.courses.smart-money-flow.spec.test.ts
           test/store.courses.middle-school-integrated-science-flow.spec.test.ts
           test/store.courses.elementary-science-flow.spec.test.ts test/store.courses.intro-biology-flow.spec.test.ts
           test/store.courses.intro-chemistry-flow.spec.test.ts
@@ -1252,6 +1718,18 @@ jobs:
         env:
           SCRATCH_BROWSER_READING_ONLY: '1'
         run: node scripts/classes-family-heavy-task.mjs -- node --test test/scratch-browser.test.mjs
+      - name: Verify method-call imports, saved clients and separate optional attempts
+        id: java_method_calls_browser
+        if: always() && !cancelled() && inputs.course == 'java-method-calls' && steps.course_build.outcome == 'success'
+        env:
+          JAVA_METHOD_CALLS_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-method-calls
+          COURSE_IMPORT_SCREENSHOT_DIR: ${{ github.workspace }}/output/self-study-browser/java-method-calls/screenshots
+        run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/java-method-calls-course-browser.test.mjs
+      - name: Compile every actual method-call source export with Java 21
+        if: always() && !cancelled() && inputs.course == 'java-method-calls' && steps.java_method_calls_browser.outcome == 'success'
+        env:
+          JAVA_METHOD_CALLS_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-method-calls
+        run: node scripts/classes-family-heavy-task.mjs -- python3 -I -B test/java-method-calls-exported-native.py
       - name: Verify conditional refactoring consent, separate optional projects and saved source
         id: java_conditional_flow_browser
         if: always() && !cancelled() && inputs.course == 'java-conditional-flow' && steps.course_build.outcome == 'success'
@@ -1462,5 +1940,138 @@ jobs:
         with:
           name: ${{ inputs.course == 'scratch-tasks' && 'scratch-published-tasks' || inputs.course == 'course-audit' && 'course-audit-followups' || inputs.course == 'scratch-originals' && 'scratch-original-imports' || inputs.course == 'scratch-readings' && 'scratch-self-study-readings' || 'self-study-course-pages' }}
           path: output/self-study-browser/
+          if-no-files-found: error
+          retention-days: 14
+
+  welcome:
+    if: inputs.course == 'tracker-evidence' && inputs.browser_artifact_id != ''
+    runs-on: macos-26
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      actions: read
+    env:
+      CLASSES_FAMILY_TASK_ID: swift-welcome-evidence-${{ github.run_id }}
+      CLASSES_FAMILY_MIN_DISK_GB: 8
+      CLASSES_FAMILY_HEAVY_TIMEOUT_MS: 3300000
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+      - name: Bind retained browser exports to the unchanged application source
+        env:
+          BROWSER_RUN_ID: ${{ inputs.browser_run_id }}
+          BROWSER_ARTIFACT_ID: ${{ inputs.browser_artifact_id }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import datetime
+          import json
+          import os
+          from pathlib import Path
+          import urllib.request
+
+          repository = os.environ["GITHUB_REPOSITORY"]
+          assert repository in {"anderson-webops/classes.jacobdanderson.net", "instruction-material/classes.jacobdanderson.net"}
+          run_id = os.environ["BROWSER_RUN_ID"]
+          artifact_id = os.environ["BROWSER_ARTIFACT_ID"]
+          assert all(value.isascii() and value.isdecimal() and 0 < int(value) and len(value) < 21 for value in [run_id, artifact_id])
+
+          def api(path):
+              request = urllib.request.Request(
+                  "https://api.github.com/repos/" + repository + "/" + path,
+                  headers={"Authorization": "Bearer " + os.environ["GH_TOKEN"], "Accept": "application/vnd.github+json"}
+              )
+              with urllib.request.urlopen(request, timeout=60) as response:
+                  return json.load(response)
+
+          artifact = api("actions/artifacts/" + artifact_id)
+          origin = artifact["workflow_run"]
+          run = api("actions/runs/" + run_id)
+          jobs = api("actions/runs/" + run_id + "/jobs?per_page=100")["jobs"]
+          assert artifact["name"] == "swift-welcome-workflows" and not artifact["expired"]
+          assert 0 < artifact["size_in_bytes"] < 8 * 1024 * 1024
+          assert origin["id"] == run["id"] == int(run_id) and origin["head_sha"] == run["head_sha"]
+          assert run["repository"]["full_name"] == repository and run["path"] == ".github/workflows/ci.yml"
+          assert run["status"] in {"queued", "in_progress", "completed"}
+          assert run["conclusion"] in {None, "success", "cancelled", "failure", "timed_out"}
+          assert any(job["name"] == "swift-browser" and job["head_sha"] == run["head_sha"]
+                     and job["status"] == "completed" and job["conclusion"] == "success"
+                     and any(step["name"] == "Retain Swift profile browser and exported source evidence"
+                             and step["conclusion"] == "success" for step in job["steps"])
+                     for job in jobs)
+
+          def root_tree(revision):
+              commit = api("git/commits/" + revision)
+              return {entry["path"]: entry["sha"] for entry in api("git/trees/" + commit["tree"]["sha"])["tree"]}
+
+          previous = root_tree(origin["head_sha"])
+          current = root_tree(os.environ["GITHUB_SHA"])
+          unchanged = {name: current[name] for name in ["front-end", "back-end", "package.json", "package-lock.json"]}
+          assert all(previous[name] == digest for name, digest in unchanged.items())
+          proof = Path(os.environ["RUNNER_TEMP"]) / "swift-welcome-ios/browser-origin.json"
+          proof.parent.mkdir(parents=True, exist_ok=True)
+          proof.write_text(json.dumps({
+              "at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              "repository": repository, "verificationHead": os.environ["GITHUB_SHA"],
+              "artifact": artifact, "browserProducerJobPassed": True,
+              "unchangedApplicationInputs": unchanged,
+              "scope": "Retained actual browser exports from identical application/dependency inputs; fresh native verification uses this checkout's harness."
+          }, indent=2) + "\n")
+          PY
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          artifact-ids: ${{ inputs.browser_artifact_id }}
+          run-id: ${{ inputs.browser_run_id }}
+          github-token: ${{ github.token }}
+          path: output/swift-welcome-workflows
+          merge-multiple: true
+      - name: Wait for the hosted Mac to settle within the native load limit
+        run: |
+          python3 - <<'PY'
+          import datetime
+          import json
+          import os
+          from pathlib import Path
+          import time
+          proof = Path(os.environ["RUNNER_TEMP"]) / "swift-welcome-ios/runner-readiness.json"
+          samples = []
+          deadline = time.monotonic() + 600
+          while True:
+              load = os.getloadavg()[0]
+              samples.append({"at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "load": load})
+              ready = load <= 8
+              proof.write_text(json.dumps({"ready": ready, "maximumLoad": 8, "samples": samples}, indent=2) + "\n")
+              if ready:
+                  break
+              if time.monotonic() >= deadline:
+                  raise SystemExit("Hosted Mac did not settle; native checks have not run")
+              time.sleep(10)
+          PY
+      - name: Verify the original failure and both iPhone viewport geometries
+        run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-course-scroll-geometry.py
+      - name: Bind built and installed apps and run both roles on two iPhone sizes
+        run: >-
+          node scripts/classes-family-heavy-task.mjs --
+          python3 test/swift-welcome-exported-ios.py --extended-welcome
+          --browser output/swift-welcome-workflows/swift-welcome-browser
+          --proof "$RUNNER_TEMP/swift-welcome-ios/proof.json"
+      - name: Retain complete Welcome source and native evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: swift-welcome-source-evidence
+          path: |
+            output/swift-welcome-workflows/
+            ${{ runner.temp }}/swift-welcome-ios/browser-origin.json
+            ${{ runner.temp }}/swift-welcome-ios/runner-readiness.json
+            ${{ runner.temp }}/swift-welcome-ios/proof.json
+            ${{ runner.temp }}/swift-welcome-ios/processes.jsonl
+            ${{ runner.temp }}/swift-welcome-ios/logs/
+            ${{ runner.temp }}/swift-welcome-ios/results/
+            ${{ runner.temp }}/swift-welcome-ios/**/inputs.json
           if-no-files-found: error
           retention-days: 14

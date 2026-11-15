@@ -1,0 +1,75 @@
+{
+	"curriculum": [
+		{
+			"id": "design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-simplifying-method-calls-core-concepts",
+			"title": "Simplifying Method Calls Core Concepts",
+			"aliases": [
+				"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-core-concepts-and-learning-sequence",
+				"core-concepts",
+				"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-core-concepts"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-simplifying-method-calls-application-check",
+			"title": "Simplifying Method Calls Application Check",
+			"aliases": [
+				"application-check",
+				"mini-lab-reduce-call-site-noise-in-a-service-layer",
+				"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-application-check",
+				"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-mini-lab-reduce-call-site-noise-in-a-service-layer"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-reflection-question-what-makes-a-call-site-honest",
+			"title": "Reflection Question: What Makes a Call Site Honest?"
+		},
+		{
+			"id": "design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-public-api-compatibility-contract",
+			"title": "Public API Compatibility Contract"
+		},
+		{
+			"id": "design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-null-optional-and-exception-boundary",
+			"title": "Null, Optional, and Exception Boundary"
+		},
+		{
+			"id": "design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-core-project-simplifying-method-calls",
+			"title": "Core Project: Simplifying Method Calls",
+			"aliases": [
+				"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-core-project",
+				"dpr6-simplifying-method-calls-core-project",
+				"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-curriculum-dpr6-simplifying-method-calls-core-project"
+			]
+		}
+	],
+	"supplementalProjects": [
+		{
+			"id": "design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-understanding-check-simplifying-method-calls",
+			"title": "Understanding Check: Simplifying Method Calls",
+			"aliases": [
+				"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-dpr6-simplifying-method-calls-diagnostic-checkpoint",
+				"diagnostic-checkpoint-simplifying-method-calls",
+				"diagnostic-checkpoint",
+				"understanding-check",
+				"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-diagnostic-checkpoint-simplifying-method-calls",
+				"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-diagnostic-checkpoint",
+				"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-understanding-check"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-simplifying-method-calls-transfer-practice",
+			"title": "Simplifying Method Calls Transfer Practice",
+			"aliases": [
+				"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-transfer-practice-simplifying-method-calls",
+				"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-transfer-practice"
+			]
+		},
+		{
+			"id": "design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-simplifying-method-calls-extension-practice",
+			"title": "Simplifying Method Calls Extension Practice",
+			"aliases": [
+				"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-extension-practice-simplifying-method-calls",
+				"design-patterns-in-java-part-2-dpr6-simplifying-method-calls-supplemental-extension-practice"
+			]
+		}
+	]
+}

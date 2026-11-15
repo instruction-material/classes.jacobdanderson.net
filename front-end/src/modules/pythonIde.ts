@@ -17,6 +17,7 @@ import { codeIdeAccountRequest } from "@/modules/codeIdeAccountScope";
 import {
 	listGitHubProjectFiles,
 	loadGitHubProjectFile,
+	MAX_GITHUB_IMPORT_PROJECT_BYTES,
 	parseGitHubResource
 } from "@/modules/codePreview";
 import { courseReferenceExamples } from "@/modules/courseReferenceExamples";
@@ -3363,6 +3364,7 @@ export async function loadPythonIdeStarterFilesFromGitHub(
 	const previewFiles = await listGitHubProjectFiles(starterUrl);
 	const usedFileNames = new Set<string>();
 	const starterFiles: PythonIdeFile[] = [];
+	let importedBytes = 0;
 
 	for (const file of previewFiles) {
 		const name = safeProjectFileNameFromStarterPath(
@@ -3374,6 +3376,15 @@ export async function loadPythonIdeStarterFilesFromGitHub(
 		if (!name || !isPythonIdeTextFile(name)) continue;
 
 		const preview = await loadGitHubProjectFile(file);
+		importedBytes += new TextEncoder().encode(preview.content).byteLength;
+		if (
+			preview.truncated ||
+			importedBytes > MAX_GITHUB_IMPORT_PROJECT_BYTES
+		) {
+			throw new Error(
+				"This project exceeds the complete IDE import limits."
+			);
+		}
 		starterFiles.push({
 			name,
 			content: preview.content,

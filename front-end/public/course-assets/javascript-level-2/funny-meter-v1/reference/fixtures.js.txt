@@ -1,0 +1,63 @@
+const jokeFixtures = [
+	{
+		type: "programming",
+		setup: "Why would a guitarist become a good programmer?",
+		punchline: "He's adept at riffing in C#.",
+		id: 1,
+	},
+	{
+		type: "programming",
+		setup: "What's the best thing about a Boolean?",
+		punchline: "Even if you're wrong, you're only off by a bit.",
+		id: 2,
+	},
+	{
+		type: "programming",
+		setup: "What's the object-oriented way to become wealthy?",
+		punchline: "Inheritance",
+		id: 3,
+	},
+	{
+		type: "programming",
+		setup: "Where do programmers like to hangout?",
+		punchline: "The Foo Bar.",
+		id: 4,
+	},
+	{
+		type: "programming",
+		setup: "Why did the programmer quit his job?",
+		punchline: "Because he didn't get arrays.",
+		id: 5,
+	},
+	{
+		type: "programming",
+		setup: "A SQL query walks into a bar, walks up to two tables and asks...",
+		punchline: "'Can I join you?'",
+		id: 6,
+	},
+	{
+		type: "programming",
+		setup: "How many programmers does it take to change a lightbulb?",
+		punchline: "None that's a hardware problem",
+		id: 7,
+	},
+	{
+		type: "programming",
+		setup:
+			"If you put a million monkeys at a million keyboards, one of them will eventually write a Java program",
+		punchline: "the rest of them will write Perl",
+		id: 8,
+	},
+	{
+		type: "programming",
+		setup: "['hip', 'hip']",
+		punchline: "(hip hip array)",
+		id: 9,
+	},
+	{
+		type: "programming",
+		setup: "To understand what recursion is...",
+		punchline: "You must first understand what recursion is",
+		id: 10,
+	},
+];

@@ -1,0 +1,161 @@
+{
+  "courseId": "javascript-level-2-javascript-master",
+  "moduleId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners",
+  "itemId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners-supplemental-jsm7-supplemental-project-1-coastal-cruise",
+  "originalCaptures": [
+    "https://codepen.io/junilearning/pen/13e9d8e0ad56ecbaff7933d0e063d682",
+    "https://codepen.io/junilearning/pen/8c0f86e9e4d1996ac073f2d675141072"
+  ],
+  "resources": [
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "coastal-cruise",
+      "title": "Coastal Cruise",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "https://codepen.io/junilearning/pen/13e9d8e0ad56ecbaff7933d0e063d682",
+        "https://codepen.io/junilearning/pen/xxOjWGw",
+        "/course-assets/javascript-level-2/coastal-cruise-v1/starter/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "coastal-cruise-v1/starter/CASES.md.txt",
+          "byteLength": 932,
+          "sha256": "905ee3062edff8b1285e01a188bef6e1c0d2a780bf69ae47c8e4ca1ac1f018b2"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "coastal-cruise-v1/starter/LICENSE-original.txt.txt",
+          "byteLength": 1202,
+          "sha256": "825b01465f633c4921a8261ec088b1274774f67698d21735a9ec5ab6b5296292"
+        },
+        {
+          "name": "README.md",
+          "path": "coastal-cruise-v1/starter/README.md.txt",
+          "byteLength": 2193,
+          "sha256": "3c6bad9b5859495bde8657d88f0a6d16383ca573254292ec39d51661a9351f0e"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "coastal-cruise-v1/starter/SOURCES.md.txt",
+          "byteLength": 1096,
+          "sha256": "43eb7e9cba81d1d7ba7da8283cab5694ab4bd93b82c54f19c68f7d0b3b6df4e0"
+        },
+        {
+          "name": "console-viewer.js",
+          "path": "coastal-cruise-v1/starter/console-viewer.js.txt",
+          "byteLength": 192,
+          "sha256": "7b330f9a40030dcef02611a57cdb0865a9ceb5df5c7865029b3769570de31648"
+        },
+        {
+          "name": "index.html",
+          "path": "coastal-cruise-v1/starter/index.html.txt",
+          "byteLength": 411,
+          "sha256": "68eaa3d40c215180ce47401f4e5825cc531856bac8a89d7043584c6704ca311e"
+        },
+        {
+          "name": "script.js",
+          "path": "coastal-cruise-v1/starter/script.js.txt",
+          "byteLength": 788,
+          "sha256": "f7e529ae473c01b1bd4c6d715e681d80cf576811116153ca6c08e04c135ab48e"
+        },
+        {
+          "name": "styles.css",
+          "path": "coastal-cruise-v1/starter/styles.css.txt",
+          "byteLength": 212,
+          "sha256": "12f60c886849426fc962cace949e98933ade05b9635a79774d0a3d9d108c185b"
+        }
+      ],
+      "itemId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners-supplemental-jsm7-supplemental-project-1-coastal-cruise"
+    },
+    {
+      "courseId": "javascript-level-2-javascript-master",
+      "project": "coastal-cruise",
+      "title": "Coastal Cruise",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "https://codepen.io/junilearning/pen/8c0f86e9e4d1996ac073f2d675141072",
+        "https://codepen.io/junilearning/pen/abZGqrb/8c0f86e9e4d1996ac073f2d675141072",
+        "/course-assets/javascript-level-2/coastal-cruise-v1/reference/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "CASES.md",
+          "path": "coastal-cruise-v1/reference/CASES.md.txt",
+          "byteLength": 932,
+          "sha256": "905ee3062edff8b1285e01a188bef6e1c0d2a780bf69ae47c8e4ca1ac1f018b2"
+        },
+        {
+          "name": "LICENSE-original.txt",
+          "path": "coastal-cruise-v1/reference/LICENSE-original.txt.txt",
+          "byteLength": 1202,
+          "sha256": "825b01465f633c4921a8261ec088b1274774f67698d21735a9ec5ab6b5296292"
+        },
+        {
+          "name": "README.md",
+          "path": "coastal-cruise-v1/reference/README.md.txt",
+          "byteLength": 2193,
+          "sha256": "3c6bad9b5859495bde8657d88f0a6d16383ca573254292ec39d51661a9351f0e"
+        },
+        {
+          "name": "SOURCES.md",
+          "path": "coastal-cruise-v1/reference/SOURCES.md.txt",
+          "byteLength": 1096,
+          "sha256": "43eb7e9cba81d1d7ba7da8283cab5694ab4bd93b82c54f19c68f7d0b3b6df4e0"
+        },
+        {
+          "name": "console-viewer.js",
+          "path": "coastal-cruise-v1/reference/console-viewer.js.txt",
+          "byteLength": 192,
+          "sha256": "7b330f9a40030dcef02611a57cdb0865a9ceb5df5c7865029b3769570de31648"
+        },
+        {
+          "name": "index.html",
+          "path": "coastal-cruise-v1/reference/index.html.txt",
+          "byteLength": 411,
+          "sha256": "68eaa3d40c215180ce47401f4e5825cc531856bac8a89d7043584c6704ca311e"
+        },
+        {
+          "name": "script.js",
+          "path": "coastal-cruise-v1/reference/script.js.txt",
+          "byteLength": 1757,
+          "sha256": "597e6b0df31c861fd19425d9994cc2dca1a2de67a7ec5df53b10ab7459f8e27c"
+        },
+        {
+          "name": "styles.css",
+          "path": "coastal-cruise-v1/reference/styles.css.txt",
+          "byteLength": 212,
+          "sha256": "12f60c886849426fc962cace949e98933ade05b9635a79774d0a3d9d108c185b"
+        }
+      ],
+      "itemId": "javascript-level-2-javascript-master-jsm7-helper-functions-and-event-listeners-supplemental-jsm7-supplemental-project-1-coastal-cruise"
+    }
+  ],
+  "files": {
+    "starter": {
+      "CASES.md": "# Coastal Cruise cases\n\n| Inputs in prompt order | Expected |\n| --- | --- |\n| Ada,1,Lin,2 | Seat 1: Ada; Seat 2: Lin |\n| Ada,1,Eve,1,Lin,2 | Duplicate rejected; Ada retained; same final manifest |\n| space-only name,1,Ada,1,Lin,2 | Empty name rejected; same final manifest |\n| Ada,0,Ada,3,Ada,1.5,Ada,no,Ada,1,Lin,2 | Four invalid seats rejected; same final manifest |\n| Cancel at name prompt | Registration cancelled.; no full-ship announcement |\n| Ada,Cancel at seat prompt | Registration cancelled.; no full-ship announcement |\n| Ada,1,Lin,Cancel | Seat 1 retained; registration cancelled; ship remains unfinished |\n\nWith maxSeats 3,enter Grace/3,Ada/1,Lin/2.\nExpected output: Seat 1: Ada; Seat 2: Lin; Seat 3: Grace.\nA long or markup-like name is literal text in the manifest.\nChanging one initialized seat object leaves the others unchanged.\nThe unchanged starter imports and exports but has no completed registration behavior.\n",
+      "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/xxOjWGw)\nFork of an original work Flashcards (https://codepen.io/gfting/pen/abNzpjg)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "README.md": "# Coastal Cruise\n\nComplete seven helper functions that register named passengers in numbered seats.\n\n## Files and execution\n\nOpen index.html in a browser without a server. The site IDE uses the same local\nfiles. script.js contains the helpers and maxSeats. The reference starts with\nbrowser prompts; Cancel stops registration. console-viewer.js mirrors console.log\nas the passenger manifest and preserves console output. All files work offline.\nCASES.md supplies expected results.\n\n## Data and helper contracts\n\nmaxSeats is a positive whole number, initially 2. Each seat is a separate\n{name:\"\",open:true} object. Public seat numbers are 1 through maxSeats; array indexes\nare 0 through maxSeats-1. Convert once when calling registerSeat.\n\n- populateSeats():return a new array of maxSeats separate open-seat objects.\n- isOpen(ship,seatNum):return whether the zero-based index is valid and open.\n- registerSeat(ship,name,seatNum):validate a nonempty trimmed name and integer\n  index; reject occupied seats without overwriting; otherwise store the name,\n  mark open=false and return true. Rejected requests return false.\n- getNameAndNum():prompt for name and a one-based seat number; return {name,num},\n  or null when either prompt is cancelled.\n- isShipFull(ship):return whether every seat is occupied.\n- printShip(ship):log each seat's number and name in seat order.\n- fillShip():create seats,repeat requests until full or cancelled, and print the\n  manifest only after the ship is full. Cancellation leaves existing reservations\n  intact and ends the run.\n\n## Worked results and completion\n\nFor maxSeats 2, Ada/1 and Lin/2 produce:\nSeat 1: Ada\nSeat 2: Lin\n\nRegister Ada/1, then Eve/1:reject the duplicate and retain Ada. Register Lin/2\nto finish. Invalid names or seat numbers leave all reservations unchanged and\nallow a new attempt. Cancel stops instead of registering a null name or seat 0.\nChange maxSeats to 3 and fill seats 3,1,2;print in 1,2,3 order.\n\nThe starter contains function stubs and no completed registration loop.\nShow a complete manifest, an occupied-seat rejection, invalid input, cancellation\nand a changed capacity. Explain the call relationships among all seven helpers.\n",
+      "SOURCES.md": "# Sources\n\nAssignment:https://codepen.io/junilearning/pen/13e9d8e0ad56ecbaff7933d0e063d682\nObserved alias:https://codepen.io/junilearning/pen/xxOjWGw\nReference:https://codepen.io/junilearning/pen/8c0f86e9e4d1996ac073f2d675141072\nObserved alias:https://codepen.io/junilearning/pen/abZGqrb/8c0f86e9e4d1996ac073f2d675141072\n\nBoth original panels/settings and official exports were reviewed on 2026-11-14.\nHTML/CSS are empty. JavaScript uses Babel with no external resources or packages.\nThe original native reference accepted Ada/1 and Lin/2 and logged both seats.\nThe starter task names all seven helpers and makes maxSeats adjustable.\n\nThese newly authored local files preserve those helper names,seat-object model,\nprompt/alert workflow,one-based input,zero-based indexes and ordered manifest.\nThey add validation before indexing,graceful cancellation and a literal-text\nconsole viewer. The starter's MIT notice is retained in LICENSE-original.txt.\nThe reference export includes no separate license file;its original source\nremains in the private audit capture and was not copied into this pack.\n",
+      "console-viewer.js": "const originalLog = console.log.bind(console);\nconsole.log = (...values) => {\n  originalLog(...values);\n  document.getElementById(\"log\").textContent += values.map(String).join(\" \") + \"\\n\";\n};\n",
+      "index.html": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Coastal Cruise</title>\n<link rel=\"stylesheet\" href=\"styles.css\">\n<script src=\"console-viewer.js\" defer></script>\n<script src=\"script.js\" defer></script>\n</head>\n<body>\n<h1>Coastal Cruise</h1>\n<pre id=\"log\" aria-label=\"Passenger manifest\" role=\"log\"></pre>\n</body>\n</html>\n",
+      "script.js": "const maxSeats = 2;\n\n// TODO: Return maxSeats separate objects with name:\"\" and open:true.\nfunction populateSeats() { return []; }\n// TODO: Return whether a valid zero-based seatNum is open.\nfunction isOpen(ship, seatNum) { return false; }\n// TODO: Validate name/index, reject occupied seats and register one guest.\nfunction registerSeat(ship, name, seatNum) { return false; }\n// TODO: Prompt for name and one-based seat number; return null on Cancel.\nfunction getNameAndNum() { return null; }\n// TODO: Return whether every seat is occupied.\nfunction isShipFull(ship) { return false; }\n// TODO: Log \"Seat 1: Ada\", etc., in seat order.\nfunction printShip(ship) {}\n// TODO: Populate seats, repeat requests until full or cancelled, then print a full ship.\nfunction fillShip() {}\nfillShip();\n",
+      "styles.css": "body { margin: 1rem; color: #17212b; background: white; font: 1rem/1.5 system-ui,sans-serif; }\nh1 { margin: 0 0 0.5rem; font-size: 1.5rem; }\npre { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; }\n"
+    },
+    "reference": {
+      "CASES.md": "# Coastal Cruise cases\n\n| Inputs in prompt order | Expected |\n| --- | --- |\n| Ada,1,Lin,2 | Seat 1: Ada; Seat 2: Lin |\n| Ada,1,Eve,1,Lin,2 | Duplicate rejected; Ada retained; same final manifest |\n| space-only name,1,Ada,1,Lin,2 | Empty name rejected; same final manifest |\n| Ada,0,Ada,3,Ada,1.5,Ada,no,Ada,1,Lin,2 | Four invalid seats rejected; same final manifest |\n| Cancel at name prompt | Registration cancelled.; no full-ship announcement |\n| Ada,Cancel at seat prompt | Registration cancelled.; no full-ship announcement |\n| Ada,1,Lin,Cancel | Seat 1 retained; registration cancelled; ship remains unfinished |\n\nWith maxSeats 3,enter Grace/3,Ada/1,Lin/2.\nExpected output: Seat 1: Ada; Seat 2: Lin; Seat 3: Grace.\nA long or markup-like name is literal text in the manifest.\nChanging one initialized seat object leaves the others unchanged.\nThe unchanged starter imports and exports but has no completed registration behavior.\n",
+      "LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/xxOjWGw)\nFork of an original work Flashcards (https://codepen.io/gfting/pen/abNzpjg)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "README.md": "# Coastal Cruise\n\nComplete seven helper functions that register named passengers in numbered seats.\n\n## Files and execution\n\nOpen index.html in a browser without a server. The site IDE uses the same local\nfiles. script.js contains the helpers and maxSeats. The reference starts with\nbrowser prompts; Cancel stops registration. console-viewer.js mirrors console.log\nas the passenger manifest and preserves console output. All files work offline.\nCASES.md supplies expected results.\n\n## Data and helper contracts\n\nmaxSeats is a positive whole number, initially 2. Each seat is a separate\n{name:\"\",open:true} object. Public seat numbers are 1 through maxSeats; array indexes\nare 0 through maxSeats-1. Convert once when calling registerSeat.\n\n- populateSeats():return a new array of maxSeats separate open-seat objects.\n- isOpen(ship,seatNum):return whether the zero-based index is valid and open.\n- registerSeat(ship,name,seatNum):validate a nonempty trimmed name and integer\n  index; reject occupied seats without overwriting; otherwise store the name,\n  mark open=false and return true. Rejected requests return false.\n- getNameAndNum():prompt for name and a one-based seat number; return {name,num},\n  or null when either prompt is cancelled.\n- isShipFull(ship):return whether every seat is occupied.\n- printShip(ship):log each seat's number and name in seat order.\n- fillShip():create seats,repeat requests until full or cancelled, and print the\n  manifest only after the ship is full. Cancellation leaves existing reservations\n  intact and ends the run.\n\n## Worked results and completion\n\nFor maxSeats 2, Ada/1 and Lin/2 produce:\nSeat 1: Ada\nSeat 2: Lin\n\nRegister Ada/1, then Eve/1:reject the duplicate and retain Ada. Register Lin/2\nto finish. Invalid names or seat numbers leave all reservations unchanged and\nallow a new attempt. Cancel stops instead of registering a null name or seat 0.\nChange maxSeats to 3 and fill seats 3,1,2;print in 1,2,3 order.\n\nThe starter contains function stubs and no completed registration loop.\nShow a complete manifest, an occupied-seat rejection, invalid input, cancellation\nand a changed capacity. Explain the call relationships among all seven helpers.\n",
+      "SOURCES.md": "# Sources\n\nAssignment:https://codepen.io/junilearning/pen/13e9d8e0ad56ecbaff7933d0e063d682\nObserved alias:https://codepen.io/junilearning/pen/xxOjWGw\nReference:https://codepen.io/junilearning/pen/8c0f86e9e4d1996ac073f2d675141072\nObserved alias:https://codepen.io/junilearning/pen/abZGqrb/8c0f86e9e4d1996ac073f2d675141072\n\nBoth original panels/settings and official exports were reviewed on 2026-11-14.\nHTML/CSS are empty. JavaScript uses Babel with no external resources or packages.\nThe original native reference accepted Ada/1 and Lin/2 and logged both seats.\nThe starter task names all seven helpers and makes maxSeats adjustable.\n\nThese newly authored local files preserve those helper names,seat-object model,\nprompt/alert workflow,one-based input,zero-based indexes and ordered manifest.\nThey add validation before indexing,graceful cancellation and a literal-text\nconsole viewer. The starter's MIT notice is retained in LICENSE-original.txt.\nThe reference export includes no separate license file;its original source\nremains in the private audit capture and was not copied into this pack.\n",
+      "console-viewer.js": "const originalLog = console.log.bind(console);\nconsole.log = (...values) => {\n  originalLog(...values);\n  document.getElementById(\"log\").textContent += values.map(String).join(\" \") + \"\\n\";\n};\n",
+      "index.html": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Coastal Cruise</title>\n<link rel=\"stylesheet\" href=\"styles.css\">\n<script src=\"console-viewer.js\" defer></script>\n<script src=\"script.js\" defer></script>\n</head>\n<body>\n<h1>Coastal Cruise</h1>\n<pre id=\"log\" aria-label=\"Passenger manifest\" role=\"log\"></pre>\n</body>\n</html>\n",
+      "script.js": "const maxSeats = 2;\n\nfunction populateSeats() {\n\tif (!Number.isInteger(maxSeats) || maxSeats < 1) throw new RangeError(\"maxSeats must be a positive whole number.\");\n\treturn Array.from({ length: maxSeats }, () => ({ name: \"\", open: true }));\n}\nfunction isOpen(ship, seatNum) {\n\treturn Number.isInteger(seatNum) && seatNum >= 0 && seatNum < ship.length && ship[seatNum].open;\n}\nfunction registerSeat(ship, name, seatNum) {\n\tif (typeof name !== \"string\" || !name.trim() || !Number.isInteger(seatNum) || seatNum < 0 || seatNum >= ship.length) {\n\t\talert(\"Enter a name and a whole seat number from 1 to \" + ship.length + \".\");\n\t\treturn false;\n\t}\n\tif (!isOpen(ship, seatNum)) {\n\t\talert(\"The seat was full. Please choose another seat.\");\n\t\treturn false;\n\t}\n\tship[seatNum].name = name.trim();\n\tship[seatNum].open = false;\n\talert(\"The seat was empty, and has been successfully entered!\");\n\treturn true;\n}\nfunction getNameAndNum() {\n\tconst name = prompt(\"Enter a name:\");\n\tif (name === null) return null;\n\tconst raw = prompt(\"Enter a number, from 1 to \" + maxSeats + \":\");\n\tif (raw === null) return null;\n\treturn { name, num: Number(raw) };\n}\nfunction isShipFull(ship) {\n\treturn ship.every(person => !person.open);\n}\nfunction printShip(ship) {\n\tship.forEach((person, index) => console.log(\"Seat \" + (index + 1) + \": \" + person.name));\n}\nfunction fillShip() {\n\tconst ship = populateSeats();\n\talert(\"Welcome to the ship! Enter names and seats until the ship is full!\");\n\twhile (!isShipFull(ship)) {\n\t\tconst input = getNameAndNum();\n\t\tif (input === null) {\n\t\t\tconsole.log(\"Registration cancelled.\");\n\t\t\treturn ship;\n\t\t}\n\t\tregisterSeat(ship, input.name, input.num - 1);\n\t}\n\talert(\"Woo! The ship is full, we're ready to go!\");\n\tprintShip(ship);\n\treturn ship;\n}\nfillShip();\n",
+      "styles.css": "body { margin: 1rem; color: #17212b; background: white; font: 1rem/1.5 system-ui,sans-serif; }\nh1 { margin: 0 0 0.5rem; font-size: 1.5rem; }\npre { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; }\n"
+    }
+  },
+  "revisionKind": "sha256-local-source-manifest",
+  "revision": "791884784f4f785bf47dad87f6c30beac46c7c4d34fc052248ff0104f13ceb2a"
+}

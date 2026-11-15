@@ -1,0 +1,75 @@
+async function loadFoxResponse(local) {
+	return local
+		? await fixtureResponse(
+				foxFixtures[fixtureIndex % foxFixtures.length],
+				validateFox,
+			)
+		: (
+				await requestJson("https://randomfox.ca/floof/", validateFox, {
+					fresh: true,
+				})
+			).data;
+}
+
+let galleryCount = 0,
+	fixtureIndex = 0;
+function validateFox(value, live = false) {
+	if (!value || typeof value !== "object")
+		throw new Error("Invalid fox response.");
+	const image = textField(value.image, 700000);
+	if (live) {
+		const url = new URL(image);
+		if (
+			url.origin !== "https://randomfox.ca" ||
+			!/^\/images\/\d+\.(?:jpg|jpeg|png)$/.test(url.pathname) ||
+			url.search ||
+			url.hash
+		)
+			throw new Error("Unexpected fox image URL.");
+	} else if (!foxFixtures.some((fox) => fox.image === image))
+		throw new Error("Unknown saved fox image.");
+	return {
+		image,
+		alt: live ? "Red fox from RandomFox." : value.alt,
+		credit: live ? "RandomFox" : value.credit,
+		link: live ? "https://randomfox.ca/" : value.link,
+	};
+}
+function appendFox(fox, image) {
+	const figure = document.createElement("figure"),
+		caption = document.createElement("figcaption"),
+		credit = document.createElement("a");
+	image.alt = fox.alt;
+	image.width = 650;
+	image.height = 488;
+	image.loading = "lazy";
+	credit.href = fox.link;
+	credit.textContent = fox.credit;
+	caption.append(document.createTextNode(fox.alt + " "), credit);
+	figure.append(image, caption);
+	const output = document.querySelector("#output");
+	output.append(figure);
+	while (output.children.length > 12) output.firstElementChild.remove();
+	galleryCount = output.children.length;
+}
+async function loadFox() {
+	if (activeRequest || document.querySelector("#load").disabled) return;
+	setBusy(true);
+	setStatus("Loading fox.", "loading");
+	try {
+		const local = document.querySelector("#source").value === "saved";
+		const fox = await loadFoxResponse(local);
+		const image = await readyImage(fox.image);
+		appendFox(fox, image);
+		if (local) fixtureIndex++;
+		setStatus(
+			galleryCount + " fox " + (galleryCount === 1 ? "image." : "images."),
+		);
+	} catch (error) {
+		showProblem(error, galleryCount > 0);
+	} finally {
+		setBusy(false);
+	}
+}
+document.querySelector("#load").addEventListener("click", loadFox);
+loadFox();

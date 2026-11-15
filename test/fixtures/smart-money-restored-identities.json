@@ -1,0 +1,42 @@
+[
+	{
+		"moduleId": "smart-money-personal-finance-pf2-how-to-grow-my-income",
+		"id": "smart-money-personal-finance-pf2-how-to-grow-my-income-curriculum-income-streams-comparison",
+		"section": "core"
+	},
+	{
+		"moduleId": "smart-money-personal-finance-pf2-how-to-grow-my-income",
+		"id": "smart-money-personal-finance-pf2-how-to-grow-my-income-curriculum-wild-card-ledger",
+		"section": "core"
+	},
+	{
+		"moduleId": "smart-money-personal-finance-pf3-how-to-manage-my-spending",
+		"id": "smart-money-personal-finance-pf3-how-to-manage-my-spending-curriculum-spending-style-and-needs-versus-wants-budget",
+		"section": "core"
+	},
+	{
+		"moduleId": "smart-money-personal-finance-pf3-how-to-manage-my-spending",
+		"id": "smart-money-personal-finance-pf3-how-to-manage-my-spending-curriculum-profile-budget-revision",
+		"section": "core"
+	},
+	{
+		"moduleId": "smart-money-personal-finance-pf6-how-to-find-your-perfect-bank",
+		"id": "smart-money-personal-finance-pf6-how-to-find-your-perfect-bank-curriculum-checking-versus-savings-allocation",
+		"section": "core"
+	},
+	{
+		"moduleId": "smart-money-personal-finance-pf6-how-to-find-your-perfect-bank",
+		"id": "smart-money-personal-finance-pf6-how-to-find-your-perfect-bank-curriculum-savings-account-offer-case",
+		"section": "core"
+	},
+	{
+		"moduleId": "smart-money-personal-finance-pf7-how-to-plan-for-and-invest-in-your-future",
+		"id": "smart-money-personal-finance-pf7-how-to-plan-for-and-invest-in-your-future-curriculum-retirement-savings-calculator",
+		"section": "core"
+	},
+	{
+		"moduleId": "smart-money-personal-finance-pf7-how-to-plan-for-and-invest-in-your-future",
+		"id": "smart-money-personal-finance-pf7-how-to-plan-for-and-invest-in-your-future-curriculum-investment-account-allocation",
+		"section": "core"
+	}
+]

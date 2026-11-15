@@ -213,12 +213,12 @@ final class CanonicalCourseUITests: XCTestCase {
         XCTAssertTrue(app.navigationBars["Home"].waitForExistence(timeout: 15))
         if reference {
             let task = app.switches["Prepare TestFlight build"]
-            reveal(task, in: app)
+            revealFully(task, in: app)
             XCTAssertEqual(task.value as? String, "0")
-            retain("Capstone switch before press", in: app)
-            // The captured 50 ms contact landed inside this switch without changing its value.
+            retain("Capstone switch before tap", in: app)
+            // Use a tap; the retained long press left this switch unchanged.
             task.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5))
-                .press(forDuration: 0.15)
+                .tap()
             let checked = NSPredicate(format: "value == %@", "1")
             expectation(for: checked, evaluatedWith: task)
             waitForExpectations(timeout: 5)

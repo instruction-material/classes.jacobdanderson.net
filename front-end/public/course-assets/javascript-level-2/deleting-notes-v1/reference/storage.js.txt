@@ -1,0 +1,219 @@
+class StoreProblem extends Error {}
+const MAX_DOCUMENT_BYTES = 131072;
+function textField(value, limit) {
+	if (typeof value !== "string")
+		throw new StoreProblem("Enter text within the field limit.");
+	const normalized = value.trim();
+	if (!normalized || normalized.length > limit)
+		throw new StoreProblem("Enter text within the field limit.");
+	return normalized;
+}
+function recordId(value) {
+	if (typeof value !== "string" || !/^[A-Za-z0-9_-]{1,80}$/.test(value))
+		throw new StoreProblem("Invalid record ID.");
+	return value;
+}
+function boundedRows(value, limit) {
+	if (!Array.isArray(value) || value.length > limit)
+		throw new StoreProblem("Record limit exceeded.");
+	const seen = new Set();
+	for (const row of value) {
+		if (!row || typeof row !== "object" || seen.has(recordId(row.id)))
+			throw new StoreProblem("Repeated or invalid record ID.");
+		seen.add(row.id);
+	}
+	return value;
+}
+function validateNotesV1(value) {
+	if (!value || value.schemaVersion !== 1)
+		throw new StoreProblem("Unsupported note schema.");
+	return {
+		schemaVersion: 1,
+		notes: boundedRows(value.notes, 100).map((note) => ({
+			id: recordId(note.id),
+			text: textField(note.text, 200),
+		})),
+	};
+}
+function validateNotesV2(value) {
+	if (!value || value.schemaVersion !== 2)
+		throw new StoreProblem("Unsupported note schema.");
+	return {
+		schemaVersion: 2,
+		notes: boundedRows(value.notes, 100).map((note) => {
+			if (typeof note.done !== "boolean")
+				throw new StoreProblem("Invalid completion state.");
+			return {
+				id: recordId(note.id),
+				text: textField(note.text, 200),
+				done: note.done,
+			};
+		}),
+	};
+}
+const ARTICLE_ORIGINS = new Set([
+	"https://example.com",
+	"https://developer.mozilla.org",
+	"https://en.wikipedia.org",
+	"https://www.fws.gov",
+]);
+const IMAGE_ORIGINS = new Set([
+	"https://www.fws.gov",
+	"https://upload.wikimedia.org",
+]);
+function reviewedUrl(value, image = false) {
+	if (image && value === "") return "";
+	const source = textField(value, 1024);
+	let url;
+	try {
+		url = new URL(source);
+	} catch {
+		throw new StoreProblem("Enter a complete HTTPS address.");
+	}
+	if (
+		url.protocol !== "https:" ||
+		url.username ||
+		url.password ||
+		!(image ? IMAGE_ORIGINS : ARTICLE_ORIGINS).has(url.origin) ||
+		url.href.length > 1024
+	)
+		throw new StoreProblem(
+			image
+				? "Image address needs a reviewed HTTPS origin."
+				: "Site URL needs a reviewed HTTPS origin.",
+		);
+	if (image && !/\.(?:png|jpe?g|gif|webp)$/i.test(url.pathname))
+		throw new StoreProblem("Use a reviewed raster-image address.");
+	return url.href;
+}
+function validateBoard(value, comments = false) {
+	let migrated = false;
+	if (comments && value?.schemaVersion === 1) {
+		value = {
+			schemaVersion: 2,
+			posts: boundedRows(value.posts, 30).map((post) => ({
+				...post,
+				comments: [],
+			})),
+		};
+		migrated = true;
+	}
+	if (!value || value.schemaVersion !== (comments ? 2 : 1))
+		throw new StoreProblem("Unsupported board schema.");
+	const commentIds = new Set();
+	let commentCount = 0;
+	const posts = boundedRows(value.posts, 30).map((post) => {
+		if (
+			!Number.isSafeInteger(post.order) ||
+			post.order < 0 ||
+			post.order > 1000000000
+		)
+			throw new StoreProblem("Invalid post order.");
+		const result = {
+			id: recordId(post.id),
+			title: textField(post.title, 100),
+			url: reviewedUrl(post.url),
+			imageUrl: reviewedUrl(post.imageUrl, true),
+			order: post.order,
+		};
+		if (comments) {
+			result.comments = boundedRows(post.comments, 20).map((comment) => {
+				const id = recordId(comment.id);
+				if (commentIds.has(id) || ++commentCount > 200)
+					throw new StoreProblem("Comment limit or repeated ID.");
+				commentIds.add(id);
+				return { id, text: textField(comment.text, 400) };
+			});
+		}
+		return result;
+	});
+	return { document: { schemaVersion: comments ? 2 : 1, posts }, migrated };
+}
+function openDocument(storageProvider, key, validate, seed) {
+	let storage,
+		raw = null;
+	const fallback = () => structuredClone(validate(seed()).document);
+	try {
+		storage = storageProvider();
+		raw = storage.getItem(key);
+	} catch {
+		return {
+			storage: null,
+			key,
+			state: fallback(),
+			readOnly: true,
+			recoveryRaw: null,
+			message:
+				"Storage is unavailable. The supplied example is shown;no saved data was changed.",
+		};
+	}
+	if (raw === null)
+		return {
+			storage,
+			key,
+			state: fallback(),
+			readOnly: false,
+			recoveryRaw: null,
+			message: "New local document.",
+		};
+	try {
+		if (new TextEncoder().encode(raw).length > MAX_DOCUMENT_BYTES)
+			throw new StoreProblem("Stored document is too large.");
+		const normalized = validate(JSON.parse(raw));
+		return {
+			storage,
+			key,
+			state: normalized.document,
+			readOnly: false,
+			recoveryRaw: normalized.migrated ? raw : null,
+			message: normalized.migrated
+				? "Older data loaded. The next successful change saves the current schema."
+				: "Saved document loaded.",
+		};
+	} catch (error) {
+		const detail =
+			error instanceof StoreProblem
+				? error.message
+				: "The saved JSON could not be read.";
+		return {
+			storage,
+			key,
+			state: fallback(),
+			readOnly: true,
+			recoveryRaw: raw,
+			message:
+				detail + " The saved bytes are kept;the supplied example is shown.",
+		};
+	}
+}
+function commitDocument(store, mutate, validate) {
+	if (store.readOnly || !store.storage) throw new StoreProblem(store.message);
+	const next = structuredClone(store.state);
+	if (mutate(next) === false) return false;
+	const normalized = validate(next).document,
+		raw = JSON.stringify(normalized);
+	if (new TextEncoder().encode(raw).length > MAX_DOCUMENT_BYTES)
+		throw new StoreProblem("Document is too large.");
+	try {
+		store.storage.setItem(store.key, raw);
+	} catch {
+		throw new StoreProblem("Save failed. The prior document is kept.");
+	}
+	store.state = normalized;
+	store.recoveryRaw = null;
+	store.message = "Saved locally.";
+	return true;
+}
+function newRecordId() {
+	return crypto.randomUUID();
+}
+function setStatus(message, state = "success") {
+	const element = document.querySelector("#status");
+	element.textContent = message;
+	element.dataset.state = state;
+}
+function showRecovery(store) {
+	const region = document.querySelector("#recovery-region");
+	region.hidden = !store.readOnly || store.recoveryRaw === null;
+	document.querySelector("#recovery").value = store.recoveryRaw || "";
+}

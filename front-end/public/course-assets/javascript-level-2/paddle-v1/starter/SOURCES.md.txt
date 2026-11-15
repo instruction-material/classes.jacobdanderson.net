@@ -1,0 +1,24 @@
+# Sources
+
+Original Juni Learning assignment:
+https://codepen.io/junilearning/pen/8ccc67de1bc03e5f2c81f78a411adee1
+Observed public alias:https://codepen.io/junilearning/pen/bGeMMmp
+
+Original reference:
+https://codepen.io/junilearning/pen/f633db1559cc122a943d0a52bcf74ebc
+Observed reference alias:https://codepen.io/junilearning/pen/gOMzzdO/f633db1559cc122a943d0a52bcf74ebc
+
+All original HTML,CSS,JavaScript and settings were reviewed on 2026-11-14 and
+retained with the official source exports. Both use Babel,no HTML/CSS preprocessor,
+no CSS base/prefixer and no external resources or packages.
+The starter has blank HTML/CSS and a single task comment.
+The reference actually assigns a500-by-500 canvas. Its unused screenWidth 800 constant
+does not describe the rendered surface.
+
+These local teaching files are newly authored from the assignment behavior.
+They preserve the black 100-by-20 paddle at (0,0),500-by-500 canvas,left/right input
+and 10 units/frame. They supply the missing starter setup,clamp movement at 0 and 400,
+use named keys,and clear held input on focus/visibility loss.
+The original starter MIT notice is retained in LICENSE-original.txt.
+The reference export contains no separate license file;its source remains in the
+private audit capture and was not copied into these local files.

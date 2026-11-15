@@ -1,0 +1,9 @@
+Object.assign(window.CheckInOne,{
+ createDiceResults(count,random=Math.random) {
+  const results=[];
+  for(let i=0;i<count;i++) results.push(window.CheckInOne.rollDie(random));
+  return results;
+ },
+ countEvenRolls(values) { return values.filter(value=>value%2===0).length; },
+ doubleResults(values) { return values.map(value=>value*2); }
+});

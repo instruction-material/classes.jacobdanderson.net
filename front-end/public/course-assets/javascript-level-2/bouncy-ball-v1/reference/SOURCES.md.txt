@@ -1,0 +1,6 @@
+# Sources
+
+Original starter: https://codepen.io/junilearning/pen/1e97468ca0197dcf6ca6d933e175b6fb
+Original reference: https://codepen.io/junilearning/pen/fb9156c7c34ad0319ba52c3c01b326c3
+
+All original HTML,CSS,JavaScript and settings were reviewed with official exports. Preprocessors:none;CSSbase/prefixing:neither;external dependencies:none. The original notice is retained in LICENSE-original.txt. These local role programs and cases are authored adaptations;README.md states the behavior corrections. Browser exports run offline.

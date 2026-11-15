@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Checkpoint 1</title><link rel="stylesheet" href="styles.css"></head>
+<body><main><h1>Check-In 1: Functions, Arrays, Objects and Canvas</h1>
+<section><h2>Functions</h2><button id="functions" type="button">Run Functions</button><pre id="function-results" aria-live="polite"></pre></section>
+<section><h2>Arrays</h2><button id="arrays" type="button">Run Arrays</button><pre id="array-results" aria-live="polite"></pre></section>
+<section><h2>Objects and canvas</h2><button id="cards" type="button">Run Cards</button><pre id="car-results"></pre><ol id="card-results" aria-live="polite"></ol><canvas id="canvas" width="1200" height="1200" aria-label="Four numbered cards; their data is listed above"></canvas></section>
+<p id="status" role="status"></p>
+</main><script src="functions.js"></script><script src="arrays.js"></script><script src="objects.js"></script><script src="script.js"></script></body></html>

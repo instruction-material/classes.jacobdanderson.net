@@ -1,0 +1,12 @@
+(function () {
+"use strict";
+function countTypes(moves) {
+  // TODO: validate, then return one count per nested type.name.
+  throw new Error("Complete countTypes in moves.js.");
+}
+function countForType(counts, input) {
+  // TODO: trim and lowercase input, reject empty or unknown types, then return {type,count}.
+  throw new Error("Complete countForType in moves.js.");
+}
+globalThis.moveLesson = { countTypes, countForType };
+})();

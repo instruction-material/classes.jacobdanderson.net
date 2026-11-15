@@ -1,0 +1,21 @@
+// Refactor the widget factory while preserving its ordered reports.
+const standardWidget = { name: "standard", weight: 100 };
+const heavyWidget = { name: "heavy", weight: 500 };
+
+function makeWidget(model) {
+  return { name: model.name, weight: model.weight };
+}
+
+function assemblyLine(model, count) {
+  const widgets = [];
+  let totalWeight = 0;
+  for (let i = 0; i < count; i++) {
+    const widget = makeWidget(model);
+    widgets.push(widget);
+    totalWeight += widget.weight;
+  }
+  return { widgets, totalWeight };
+}
+
+console.log(assemblyLine(heavyWidget, 2));
+console.log(assemblyLine(standardWidget, 3));

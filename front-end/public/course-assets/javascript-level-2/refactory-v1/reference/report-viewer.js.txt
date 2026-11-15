@@ -1,0 +1,9 @@
+const originalLog = console.log.bind(console);
+console.log = (...values) => {
+  originalLog(...values);
+  const report = document.createElement("pre");
+  report.textContent = values.map(value =>
+    typeof value === "string" ? value : JSON.stringify(value, null, 2)
+  ).join(" ");
+  document.getElementById("reports").append(report);
+};

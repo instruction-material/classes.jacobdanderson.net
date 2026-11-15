@@ -1,0 +1,8 @@
+# Asteroids cases
+
+1. Hold Space or F for ten ticks: one shot; tick11 permits the next. Switching keys cannot bypass cooldown.
+2. Bullet touches a radius50 asteroid: score+1,two radius25 children,spent bullet removed.
+3. Hit radius12.5: score+1,no children.
+4. A circle touching a triangle edge or vertex hits; a bounding-box-only corner overlap does not.
+5. Death freezes bullet,asteroid and score state even while Fire remains held.
+6. Resize preserves logical550-by500 geometry; Restart resets ship,score,bullets and spawn timer.

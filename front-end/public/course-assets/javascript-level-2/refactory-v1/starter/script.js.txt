@@ -1,0 +1,34 @@
+// This widget factory is incredibly inefficient. Break this long block of code into smaller, helper functions without altering how it works.
+
+const standardWidgetName = "standard";
+const standardWidgetWeight = 100;
+const heavyWidgetName = "heavy";
+const heavyWidgetWeight = 500;
+
+const reportOne = {widgets: [], totalWeight: 0}
+const reportTwo = {widgets: [], totalWeight: 0}
+
+for (let i = 0; i < 2; i++) {
+  let widget = {};
+  widget.weight = heavyWidgetWeight;
+  widget.name = heavyWidgetName;
+  reportOne.widgets.push(widget);
+}
+
+reportOne.totalWeight = reportOne.widgets.reduce((acc, widget) => {
+  return acc + widget.weight;
+}, 0);
+
+for (let i = 0; i < 3; i++) {
+  let widget = {};
+  widget.weight = standardWidgetWeight;
+  widget.name = standardWidgetName;
+  reportTwo.widgets.push(widget)
+}
+
+reportTwo.totalWeight = reportTwo.widgets.reduce((acc, widget) => {
+  return acc + widget.weight;
+}, 0);
+
+console.log(reportOne)
+console.log(reportTwo)

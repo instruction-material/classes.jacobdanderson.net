@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Favorite Restaurants</title><link rel="stylesheet" href="styles.css"></head>
+<body><main><h1>Favorite Restaurants</h1><table><caption>Three restaurant choices and menu items</caption>
+<thead><tr><th scope="col">Name</th><th scope="col">Favorite Menu Item</th><th scope="col">Photo or Illustration</th></tr></thead>
+<tbody>
+<tr><td><a href="https://www.mcdonalds.com/us/en-us.html">McDonald's</a></td><td>Fries</td><td><img src="images/fries.svg" alt="Illustration of golden fries in a red carton" width="120" height="96"></td></tr>
+<tr><td><a href="https://www.pandaexpress.com/">Panda Express</a></td><td>Orange Chicken</td><td><img src="images/chicken.svg" alt="Illustration of glazed chicken pieces on a plate" width="120" height="96"></td></tr>
+<tr><td><a href="https://www.qdoba.com/">Qdoba</a></td><td>Taco Bowl</td><td><img src="images/bowl.svg" alt="Illustration of a bowl with rice and vegetables" width="120" height="96"></td></tr>
+</tbody>
+</table></main></body></html>

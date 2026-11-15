@@ -1,0 +1,470 @@
+{
+  "schemaVersion": 1,
+  "sources": {
+    "capitals": "https://www.lrl.mn.gov/docs/2013/other/130551.pdf#page=434",
+    "capitalPDFSHA256": "1dfd4a6d9364cf92bb2bc0cf18d3d281ec8a2811cfb05abb980392d1ac826ec0",
+    "geometry": "https://github.com/topojson/us-atlas/tree/v3.0.1",
+    "originalTopologySHA256": "6e7bb086a3c791490361968a3094f377f7726c5d0c4900fec03cc42db2305a3d",
+    "licenseSHA256": "8048290dfdb6e83fbed17e8985c8cfc4ce9da9b842642f3d3e497280790cfa31"
+  },
+  "viewBox": [
+    -67.634,
+    2.976,
+    1034.691,
+    613.593
+  ],
+  "states": [
+    {
+      "id": "01",
+      "name": "Alabama",
+      "capital": "Montgomery",
+      "acceptedAnswers": [
+        "Montgomery"
+      ],
+      "pathSHA256": "d3b192fee01cf6f5d84a98307610efd353b0a3584d81e930588355aecaa0b771"
+    },
+    {
+      "id": "02",
+      "name": "Alaska",
+      "capital": "Juneau",
+      "acceptedAnswers": [
+        "Juneau"
+      ],
+      "pathSHA256": "06ac50206c05d96e38043c33c3d1bf3b8fa096fa1f434037d9895b846310264d"
+    },
+    {
+      "id": "04",
+      "name": "Arizona",
+      "capital": "Phoenix",
+      "acceptedAnswers": [
+        "Phoenix"
+      ],
+      "pathSHA256": "5bfc2f47e8f2a8a54f7776fa2d8fc5f610281beb93827f3b0715e5f39a6303ef"
+    },
+    {
+      "id": "05",
+      "name": "Arkansas",
+      "capital": "Little Rock",
+      "acceptedAnswers": [
+        "Little Rock"
+      ],
+      "pathSHA256": "03e3ac4d26d90dd164778572cca08a3cef1a1927c3af1205549b7ca1cf53590d"
+    },
+    {
+      "id": "06",
+      "name": "California",
+      "capital": "Sacramento",
+      "acceptedAnswers": [
+        "Sacramento"
+      ],
+      "pathSHA256": "6109c964365a690851ebbcb4d321d5c87402f2ee5eefe7c66cf9bdb79e6e7aa1"
+    },
+    {
+      "id": "08",
+      "name": "Colorado",
+      "capital": "Denver",
+      "acceptedAnswers": [
+        "Denver"
+      ],
+      "pathSHA256": "7186dd7a78d17a0e606f259a74032ab8a259cbb27bfc3d66487e9e56ed960d7a"
+    },
+    {
+      "id": "09",
+      "name": "Connecticut",
+      "capital": "Hartford",
+      "acceptedAnswers": [
+        "Hartford"
+      ],
+      "pathSHA256": "ccfcc0218e7a5dfa6cb3705d091774ebf0120f7781995aba070523fcc7b11c49"
+    },
+    {
+      "id": "10",
+      "name": "Delaware",
+      "capital": "Dover",
+      "acceptedAnswers": [
+        "Dover"
+      ],
+      "pathSHA256": "794df8f6bbd211d2c0cb8d202d82fb782e81b56df1dde00a90377c2fb81c38ee"
+    },
+    {
+      "id": "12",
+      "name": "Florida",
+      "capital": "Tallahassee",
+      "acceptedAnswers": [
+        "Tallahassee"
+      ],
+      "pathSHA256": "b0938aed82f37408ad37d9ec6d5ec0c5a0670bdc12c36652e7dc7c5652f57e48"
+    },
+    {
+      "id": "13",
+      "name": "Georgia",
+      "capital": "Atlanta",
+      "acceptedAnswers": [
+        "Atlanta"
+      ],
+      "pathSHA256": "6169181a4ace751ee74a2cad81fe11cf6afd3b52e8d617f1cfc68b7847001b45"
+    },
+    {
+      "id": "15",
+      "name": "Hawaii",
+      "capital": "Honolulu",
+      "acceptedAnswers": [
+        "Honolulu"
+      ],
+      "pathSHA256": "f0ec4825ba6c73f20d63f7ec0569daf881ec4c217d194a37b230fa85132b13fc"
+    },
+    {
+      "id": "16",
+      "name": "Idaho",
+      "capital": "Boise",
+      "acceptedAnswers": [
+        "Boise"
+      ],
+      "pathSHA256": "d73dda31d6abc3b654e2d0afeadc9c2987159fe71e42b4265f9649da4de372c5"
+    },
+    {
+      "id": "17",
+      "name": "Illinois",
+      "capital": "Springfield",
+      "acceptedAnswers": [
+        "Springfield"
+      ],
+      "pathSHA256": "7fe8a36dfc4369e7b8f654a6542fdd33cd7e8c35ed89abb693ae36c2c6a00b62"
+    },
+    {
+      "id": "18",
+      "name": "Indiana",
+      "capital": "Indianapolis",
+      "acceptedAnswers": [
+        "Indianapolis"
+      ],
+      "pathSHA256": "fd227ebc97682b931ae5bb16e4ab67908a683654b3ce29d57b01891c4ad6f981"
+    },
+    {
+      "id": "19",
+      "name": "Iowa",
+      "capital": "Des Moines",
+      "acceptedAnswers": [
+        "Des Moines"
+      ],
+      "pathSHA256": "49035da7a0001aa5c05cff302b2258a8956e8c31ada2bf8c4bf29ee6a7b55f65"
+    },
+    {
+      "id": "20",
+      "name": "Kansas",
+      "capital": "Topeka",
+      "acceptedAnswers": [
+        "Topeka"
+      ],
+      "pathSHA256": "5e0ba9b45c57e94b45667dbbf854161ea150ea8eaca3260a1d41ae2201caff89"
+    },
+    {
+      "id": "21",
+      "name": "Kentucky",
+      "capital": "Frankfort",
+      "acceptedAnswers": [
+        "Frankfort"
+      ],
+      "pathSHA256": "113c63af01be6ffaf73b02112c2ac4f840ec5337d6f50df6ea1158c30b128b66"
+    },
+    {
+      "id": "22",
+      "name": "Louisiana",
+      "capital": "Baton Rouge",
+      "acceptedAnswers": [
+        "Baton Rouge"
+      ],
+      "pathSHA256": "94281d338ee141e18e29d98821ae061ee2c7a28b25b272ac4338f954c2ea4d05"
+    },
+    {
+      "id": "23",
+      "name": "Maine",
+      "capital": "Augusta",
+      "acceptedAnswers": [
+        "Augusta"
+      ],
+      "pathSHA256": "89133c4fbc0e7a8beff6e715adf4c8400e00f230a3e4ba8473223a85a163b0ff"
+    },
+    {
+      "id": "24",
+      "name": "Maryland",
+      "capital": "Annapolis",
+      "acceptedAnswers": [
+        "Annapolis"
+      ],
+      "pathSHA256": "8765b4dd2e376f285635c906e6aeaaad328d270a75f9d9e0ce1e6256a25bfda9"
+    },
+    {
+      "id": "25",
+      "name": "Massachusetts",
+      "capital": "Boston",
+      "acceptedAnswers": [
+        "Boston"
+      ],
+      "pathSHA256": "17d8580f3ca3ce7e0b36066184d5b5daaa274cbb4bc381140e84b0eafceb805f"
+    },
+    {
+      "id": "26",
+      "name": "Michigan",
+      "capital": "Lansing",
+      "acceptedAnswers": [
+        "Lansing"
+      ],
+      "pathSHA256": "9b3bcb26268f62cd846da941b76a73bcf885e73252e95c6421582e106a739390"
+    },
+    {
+      "id": "27",
+      "name": "Minnesota",
+      "capital": "St. Paul",
+      "acceptedAnswers": [
+        "St. Paul",
+        "Saint Paul",
+        "St Paul"
+      ],
+      "pathSHA256": "08f49546b271ccbb0bf76911de6566b96dea557cc4dc5d454f7bf5e4131c2822"
+    },
+    {
+      "id": "28",
+      "name": "Mississippi",
+      "capital": "Jackson",
+      "acceptedAnswers": [
+        "Jackson"
+      ],
+      "pathSHA256": "03e9d34cf8f3f587049f32dc89fed3aabc3e419ff675dfa545442b7fa630f1cf"
+    },
+    {
+      "id": "29",
+      "name": "Missouri",
+      "capital": "Jefferson City",
+      "acceptedAnswers": [
+        "Jefferson City"
+      ],
+      "pathSHA256": "16658529254ed7043b19cbe518bbad72ff9c3f14cd36ae971381848d7195737a"
+    },
+    {
+      "id": "30",
+      "name": "Montana",
+      "capital": "Helena",
+      "acceptedAnswers": [
+        "Helena"
+      ],
+      "pathSHA256": "cdbe29d86bd844632311a8bcf3687a5f7b17b8da0d529b2fdcf45162ecfcf7cb"
+    },
+    {
+      "id": "31",
+      "name": "Nebraska",
+      "capital": "Lincoln",
+      "acceptedAnswers": [
+        "Lincoln"
+      ],
+      "pathSHA256": "a9d6db5eeec2db051390ba1814f49cd76317ff0cbc8630800ab40d37a034c471"
+    },
+    {
+      "id": "32",
+      "name": "Nevada",
+      "capital": "Carson City",
+      "acceptedAnswers": [
+        "Carson City"
+      ],
+      "pathSHA256": "7bf51fe697e6b68b21fc5bf946abd0886b86fd25f24782c34d871ef5f1870154"
+    },
+    {
+      "id": "33",
+      "name": "New Hampshire",
+      "capital": "Concord",
+      "acceptedAnswers": [
+        "Concord"
+      ],
+      "pathSHA256": "869ff5eff079aee8ead154b15f50d86c70174fcb0feef8016cc81131e7aa147e"
+    },
+    {
+      "id": "34",
+      "name": "New Jersey",
+      "capital": "Trenton",
+      "acceptedAnswers": [
+        "Trenton"
+      ],
+      "pathSHA256": "249d554c19566aa89ab6abb19f3345ec6d25e30190ed2c33eeeec0f768501571"
+    },
+    {
+      "id": "35",
+      "name": "New Mexico",
+      "capital": "Santa Fe",
+      "acceptedAnswers": [
+        "Santa Fe"
+      ],
+      "pathSHA256": "8bd953ef53dcfb62c0ba090d182cd34115491bddc2aa57fec33a71c4d1a6e4e8"
+    },
+    {
+      "id": "36",
+      "name": "New York",
+      "capital": "Albany",
+      "acceptedAnswers": [
+        "Albany"
+      ],
+      "pathSHA256": "bf2e6904a72fbf59ec02d9b7cb4447daf63794feddc20ba302f3bf5f13253536"
+    },
+    {
+      "id": "37",
+      "name": "North Carolina",
+      "capital": "Raleigh",
+      "acceptedAnswers": [
+        "Raleigh"
+      ],
+      "pathSHA256": "e78bc35729c53c5ac0abe06df460711c3e889647827a92b57a4c9feb5977bd04"
+    },
+    {
+      "id": "38",
+      "name": "North Dakota",
+      "capital": "Bismarck",
+      "acceptedAnswers": [
+        "Bismarck"
+      ],
+      "pathSHA256": "69da4581d50629d5532a1d3350a854206fa3012866e9d5b22d84acabdc116d72"
+    },
+    {
+      "id": "39",
+      "name": "Ohio",
+      "capital": "Columbus",
+      "acceptedAnswers": [
+        "Columbus"
+      ],
+      "pathSHA256": "b1f3aca47b9a307fd527304868689fdb1a10ebe62f9a2b28b290ef5a9f9cbbb1"
+    },
+    {
+      "id": "40",
+      "name": "Oklahoma",
+      "capital": "Oklahoma City",
+      "acceptedAnswers": [
+        "Oklahoma City"
+      ],
+      "pathSHA256": "9f5a1b258027bac5b619b66a216801f69e908ee6b224b8c8e4b6b5ffceca281c"
+    },
+    {
+      "id": "41",
+      "name": "Oregon",
+      "capital": "Salem",
+      "acceptedAnswers": [
+        "Salem"
+      ],
+      "pathSHA256": "443d527b63f61c90da4621296191fd5bf2947b861d15e9216bd46e3b97466b05"
+    },
+    {
+      "id": "42",
+      "name": "Pennsylvania",
+      "capital": "Harrisburg",
+      "acceptedAnswers": [
+        "Harrisburg"
+      ],
+      "pathSHA256": "d8cad967ebf283e5a51765c74c874f58ad8d415c81c277230e17cacd21051b88"
+    },
+    {
+      "id": "44",
+      "name": "Rhode Island",
+      "capital": "Providence",
+      "acceptedAnswers": [
+        "Providence"
+      ],
+      "pathSHA256": "f8b96f4055547862dc45eb40ec669b7bde3df3a6eac057d12999af31fca393dc"
+    },
+    {
+      "id": "45",
+      "name": "South Carolina",
+      "capital": "Columbia",
+      "acceptedAnswers": [
+        "Columbia"
+      ],
+      "pathSHA256": "ab7b93c58146322212161bfd39ed6ddb4c7122a7ce96ae90f2bf19cb9b516827"
+    },
+    {
+      "id": "46",
+      "name": "South Dakota",
+      "capital": "Pierre",
+      "acceptedAnswers": [
+        "Pierre"
+      ],
+      "pathSHA256": "fc59c71d07f2adc1b750aa6099226576663d860353331802ac507cf68ff34037"
+    },
+    {
+      "id": "47",
+      "name": "Tennessee",
+      "capital": "Nashville",
+      "acceptedAnswers": [
+        "Nashville"
+      ],
+      "pathSHA256": "9fcd07b9f0567afcc2a646843aabd88bf286064db74b39a5c94c1b5bc587fd97"
+    },
+    {
+      "id": "48",
+      "name": "Texas",
+      "capital": "Austin",
+      "acceptedAnswers": [
+        "Austin"
+      ],
+      "pathSHA256": "0b6ac72e9cd323236e575a8d467a51e8755aae6fe04dddc6008f4dfc71989046"
+    },
+    {
+      "id": "49",
+      "name": "Utah",
+      "capital": "Salt Lake City",
+      "acceptedAnswers": [
+        "Salt Lake City"
+      ],
+      "pathSHA256": "0d2145d719c38c1f44039f311ada13747509af2447a7b920fd943dc081b207db"
+    },
+    {
+      "id": "50",
+      "name": "Vermont",
+      "capital": "Montpelier",
+      "acceptedAnswers": [
+        "Montpelier"
+      ],
+      "pathSHA256": "fb22f3c17ccf5d8eb7243a94678d09c143d8c47611b7d7393e3f7ab6e5917a77"
+    },
+    {
+      "id": "51",
+      "name": "Virginia",
+      "capital": "Richmond",
+      "acceptedAnswers": [
+        "Richmond"
+      ],
+      "pathSHA256": "5e0247665ad7b29763ef69c375db34ccb1a3c0fdce1bfdab1311cb20476390ba"
+    },
+    {
+      "id": "53",
+      "name": "Washington",
+      "capital": "Olympia",
+      "acceptedAnswers": [
+        "Olympia"
+      ],
+      "pathSHA256": "6a0d35889679674977aac45ac77604a158f031cc8f52f1c3d75242fc62c33b80"
+    },
+    {
+      "id": "54",
+      "name": "West Virginia",
+      "capital": "Charleston",
+      "acceptedAnswers": [
+        "Charleston"
+      ],
+      "pathSHA256": "77606eaa51803bf6121fbe09a0c5d16443bd043021221a8ccf3cd3e921eecac6"
+    },
+    {
+      "id": "55",
+      "name": "Wisconsin",
+      "capital": "Madison",
+      "acceptedAnswers": [
+        "Madison"
+      ],
+      "pathSHA256": "3f6b896c0901b67bf4e9601109795a0e96d56ca9ecf4045680c376b7ec8278e6"
+    },
+    {
+      "id": "56",
+      "name": "Wyoming",
+      "capital": "Cheyenne",
+      "acceptedAnswers": [
+        "Cheyenne"
+      ],
+      "pathSHA256": "7734ea795a5664e8ea9aba20496bfd30a810f1a67e06711fedb73104d54fab03"
+    }
+  ]
+}
