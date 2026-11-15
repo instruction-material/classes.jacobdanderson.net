@@ -311,7 +311,7 @@ const networkSystemsSourceCourse: RawCourse = {
 				{
 					title: "Ephemeral Ports and Client-Side Source Ports",
 					content:
-						"Explain ephemeral ports to avoid assuming the client side of every connection always uses the same number. This is especially important when reading `ss` output or packet captures and separating server ports from temporary client ports."
+						"When a TCP client connects without first binding a local port, Linux automatically assigns an available local port. The server keeps its listening port while each connection records both endpoints. For example, a local request may travel from 127.0.0.1:53042 to 127.0.0.1:8080: 53042 is the client source port and 8080 is the server destination port. Their source and destination roles reverse in the reply. Compare the actual endpoints in `ss -tnp` or the owned packet capture; the numbers in this example are illustrative. A later connection can use another client port, and an application can explicitly bind one. Local port selection alone does not identify an application or establish a successful HTTP response. See [Linux local port selection](https://man7.org/linux/man-pages/man7/ip.7.html)."
 				},
 				{
 					title: "Using ss, netstat, and lsof to Map Services",

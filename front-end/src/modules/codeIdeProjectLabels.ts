@@ -46,7 +46,8 @@ export function getCodeIdeProjectSubtitle(project: ProjectLabelMetadata) {
 				(variant === "native-linux" &&
 					project.mode === "linux" &&
 					courseID === "linux-systems") ||
-				(variant === "native-network" &&
+				((variant === "native-network" ||
+					variant === "native-network-v2") &&
 					project.mode === "linux" &&
 					courseID === "network-systems") ||
 				(variant === "juni-pygames" &&

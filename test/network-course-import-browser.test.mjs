@@ -32,6 +32,7 @@ const fixtures = (
 			"./fixtures/network-application-contracts.json",
 			"./fixtures/network-link-routing-contracts.json",
 			"./fixtures/network-capstone-contracts.json",
+			"./fixtures/network-capstone-optional-contracts.json",
 			"./fixtures/network-setup-contracts.json",
 			"./fixtures/network-transport-contracts.json",
 			"./fixtures/network-inventory-contracts.json",
@@ -46,24 +47,29 @@ const fixtures = (
 	.flat()
 	.filter(
 		fixture =>
-			process.env.NETWORK_DNS_OPTIONAL_ONLY !== "1" ||
-			fixture.mode?.startsWith("dns-")
+			process.env.NETWORK_DNS_OPTIONAL_ONLY !== "1"
+			|| fixture.mode?.startsWith("dns-")
 	)
 	.filter(
 		fixture =>
-			process.env.NETWORK_FIREWALL_OPTIONAL_ONLY !== "1" ||
-			fixture.mode?.startsWith("ufw-") ||
-			fixture.pack === "NS3-UFW-Web-Server-Policy"
+			process.env.NETWORK_FIREWALL_OPTIONAL_ONLY !== "1"
+			|| fixture.mode?.startsWith("ufw-")
+			|| fixture.pack === "NS3-UFW-Web-Server-Policy"
 	)
 	.filter(
 		fixture =>
-			process.env.NETWORK_KERNEL_OPTIONAL_ONLY !== "1" ||
-			fixture.mode?.startsWith("kernel-")
+			process.env.NETWORK_KERNEL_OPTIONAL_ONLY !== "1"
+			|| fixture.mode?.startsWith("kernel-")
 	)
 	.filter(
 		fixture =>
-			process.env.NETWORK_DIAGNOSTICS_FIVE_ONLY !== "1" ||
-			fixture.mode?.startsWith("diagnostics-")
+			process.env.NETWORK_DIAGNOSTICS_FIVE_ONLY !== "1"
+			|| fixture.mode?.startsWith("diagnostics-")
+	)
+	.filter(
+		fixture =>
+			process.env.NETWORK_CAPSTONE_OPTIONAL_ONLY !== "1"
+			|| fixture.mode?.startsWith("capstone-")
 	);
 
 const storageKey = "classes-python-ide-projects:anonymous";
@@ -113,8 +119,8 @@ async function savedProjects(page) {
 					transaction.onerror = transaction.onabort = () => {
 						database.close();
 						reject(
-							transaction.error ??
-								new Error("Primary store read failed")
+							transaction.error
+							?? new Error("Primary store read failed")
 						);
 					};
 				};
@@ -161,16 +167,14 @@ async function courseAction(
 			(element, selectedRole) =>
 				[...element.querySelectorAll("a.is-ide-starter")]
 					.find(link =>
-						new URL(link.href).searchParams
-							.get("starterUrl")
-							?.endsWith(`/${selectedRole}`)
+						new URL(link.href).searchParams.get("starterUrl")?.endsWith(`/${selectedRole}`)
 					)
 					?.getAttribute("href"),
 			role
 		);
 		if (href) {
-			const required =
-				fixture.continuationItems?.find(row => row.itemId === itemID)
+			const required
+				= fixture.continuationItems?.find(row => row.itemId === itemID)
 					?.requiredText ?? [];
 			if (required.length) {
 				const blocks = await page.$$(
@@ -189,8 +193,8 @@ async function courseAction(
 				}
 				await page.waitForFunction(
 					(selector, fragments) => {
-						const text =
-							document.querySelector(selector)?.textContent ?? "";
+						const text
+							= document.querySelector(selector)?.textContent ?? "";
 						return fragments.every(fragment =>
 							text.includes(fragment)
 						);
@@ -219,16 +223,16 @@ async function courseAction(
 nodeTest(
 	"Network course buttons, consent, exact role exports, saved edits, notebook continuation and optional attempt reuse",
 	{ timeout: timeoutMs },
-	async t => {
+	async (t) => {
 		let server, browser, context;
 		let outcome = "failed";
-		const taskId =
-			process.env.CLASSES_FAMILY_TASK_ID ??
-			"network-foundations-browser-ci";
+		const taskId
+			= process.env.CLASSES_FAMILY_TASK_ID
+				?? "network-foundations-browser-ci";
 		const startedAt = new Date().toISOString();
-		const output =
-			process.env.NETWORK_BROWSER_EXPORT_PROOF_DIR ??
-			"output/network-exports";
+		const output
+			= process.env.NETWORK_BROWSER_EXPORT_PROOF_DIR
+				?? "output/network-exports";
 		const screenshots = process.env.COURSE_IMPORT_SCREENSHOT_DIR;
 		const profiles = [];
 		const cleanup = async () => {
@@ -293,7 +297,11 @@ nodeTest(
 					for (const role of ["starter", "solution"]) {
 						const earlier = {
 							...earlierTemplate,
-							courseProjectKey: `network-systems:${fixture.coreItemId}:${role === "starter" ? "starter" : "reference"}`
+							courseProjectKey: `network-systems:${fixture.coreItemId}:${role === "starter" ? "starter" : "reference"}${
+								fixture.previousNativeAttempt
+									? ":native-network"
+									: ""
+							}`
 						};
 						const earlierProjects = [
 							earlier,
@@ -348,20 +356,20 @@ nodeTest(
 										);
 									}
 									const create = URL.createObjectURL;
-									URL.createObjectURL = blob => {
+									URL.createObjectURL = (blob) => {
 										if (blob.type === "application/zip")
 											window.__networkArchive = blob;
 										return create(blob);
 									};
-									const click =
-										HTMLAnchorElement.prototype.click;
-									HTMLAnchorElement.prototype.click =
-										function () {
+									const click
+										= HTMLAnchorElement.prototype.click;
+									HTMLAnchorElement.prototype.click
+										= function () {
 											if (
 												this.download.endsWith(
 													".zip"
-												) &&
-												this.href.startsWith("blob:")
+												)
+												&& this.href.startsWith("blob:")
 											) {
 												return;
 											}
@@ -372,7 +380,7 @@ nodeTest(
 								earlierProjects
 							);
 							await page.setRequestInterception(true);
-							page.on("request", request => {
+							page.on("request", (request) => {
 								const url = new URL(request.url());
 								if (
 									url.hostname === "raw.githubusercontent.com"
@@ -381,10 +389,10 @@ nodeTest(
 									const name = decodeURIComponent(
 										url.pathname.slice(prefix.length)
 									);
-									const file =
-										url.pathname.startsWith(prefix) &&
-										(name === "README.md" ||
-											name.startsWith(`${role}/`))
+									const file
+										= url.pathname.startsWith(prefix)
+											&& (name === "README.md"
+												|| name.startsWith(`${role}/`))
 											? fixture.files[name]
 											: null;
 									requests.push(name);
@@ -396,9 +404,10 @@ nodeTest(
 										},
 										body: file?.content ?? "Unknown source"
 									});
-								} else if (
-									url.origin !== origin ||
-									url.pathname.startsWith("/api/")
+								}
+								else if (
+									url.origin !== origin
+									|| url.pathname.startsWith("/api/")
 								) {
 									if (
 										!["GET", "OPTIONS"].includes(
@@ -409,30 +418,30 @@ nodeTest(
 									}
 									let body = {};
 									if (
-										catalog &&
-										url.pathname === "/api/accounts/me"
+										catalog
+										&& url.pathname === "/api/accounts/me"
 									) {
-										body =
-											role === "starter"
+										body
+											= role === "starter"
 												? { userID: learner._id }
 												: { tutorID: tutor._id };
 									}
 									if (
-										catalog &&
-										url.pathname === "/api/users/loggedin"
+										catalog
+										&& url.pathname === "/api/users/loggedin"
 									) {
 										body = { currentUser: learner };
 									}
 									if (
-										catalog &&
-										url.pathname === "/api/tutors/loggedin"
+										catalog
+										&& url.pathname === "/api/tutors/loggedin"
 									) {
 										body = { currentTutor: tutor };
 									}
 									if (
-										catalog &&
-										url.pathname ===
-											`/api/users/oftutor/${tutor._id}`
+										catalog
+										&& url.pathname
+										=== `/api/users/oftutor/${tutor._id}`
 									) {
 										body = [learner];
 									}
@@ -441,7 +450,8 @@ nodeTest(
 										contentType: "application/json",
 										body: JSON.stringify(body)
 									});
-								} else {
+								}
+								else {
 									void request.continue();
 								}
 							});
@@ -454,7 +464,11 @@ nodeTest(
 							);
 							const params = new URL(action.href, origin)
 								.searchParams;
-							const key = `network-systems:${fixture.coreItemId}:${role === "starter" ? "starter" : "reference"}:native-network`;
+							const key = `network-systems:${fixture.coreItemId}:${role === "starter" ? "starter" : "reference"}:native-network${
+								fixture.projectKeyVersion
+									? `-v${fixture.projectKeyVersion}`
+									: ""
+							}`;
 							assert.equal(params.get("projectKey"), key);
 							assert.equal(params.get("mode"), "linux");
 							assert.equal(
@@ -511,8 +525,8 @@ nodeTest(
 								Object.keys(fixture.files)
 									.filter(
 										name =>
-											name === "README.md" ||
-											name.startsWith(`${role}/`)
+											name === "README.md"
+											|| name.startsWith(`${role}/`)
 									)
 									.sort()
 							);
@@ -552,7 +566,8 @@ nodeTest(
 								command =>
 									document
 										.querySelector(".output-panel")
-										?.textContent.includes(command),
+										?.textContent
+										.includes(command),
 								{},
 								fixture.instructionCommand ?? "python3 main.py"
 							);
@@ -562,16 +577,16 @@ nodeTest(
 							);
 							assert.ok(
 								instructions.includes(
-									fixture.optionalProgrammingNote ??
-										"Python programming is optional"
+									fixture.optionalProgrammingNote
+									?? "Python programming is optional"
 								)
 							);
 							assert.ok(
 								!/bash main\.sh|Hello, Linux/.test(instructions)
 							);
 							if (
-								fixture.requiresRoot ??
-								Boolean(fixture.continuationItems)
+								fixture.requiresRoot
+								?? Boolean(fixture.continuationItems)
 							) {
 								assert.ok(instructions.includes("root access"));
 								assert.ok(
@@ -579,8 +594,8 @@ nodeTest(
 								);
 							}
 							if (
-								fixture.continuationItems &&
-								fixture.requiresRoot !== false
+								fixture.continuationItems
+								&& fixture.requiresRoot !== false
 							) {
 								assert.ok(
 									instructions.includes("--exposure-policy")
@@ -605,7 +620,7 @@ nodeTest(
 								: saved.activeFileName;
 							if (fixture.editTaskInBrowser) {
 								await page.select(
-									'select[aria-label="Active project file"]',
+									"select[aria-label=\"Active project file\"]",
 									editedFileName
 								);
 								await page.waitForFunction(
@@ -614,8 +629,8 @@ nodeTest(
 											".cm-content .cm-line"
 										)?.textContent === expected,
 									{},
-									fixture.editTaskFirstLine ??
-										"#!/usr/bin/env bash"
+									fixture.editTaskFirstLine
+									?? "#!/usr/bin/env bash"
 								);
 							}
 							await page.focus(".cm-content");
@@ -643,8 +658,8 @@ nodeTest(
 								if (
 									edited?.files.some(
 										file =>
-											file.name === editedFileName &&
-											file.content === changed
+											file.name === editedFileName
+											&& file.content === changed
 									)
 								) {
 									break;
@@ -656,8 +671,8 @@ nodeTest(
 							assert.ok(
 								edited.files.some(
 									file =>
-										file.name === editedFileName &&
-										file.content === changed
+										file.name === editedFileName
+										&& file.content === changed
 								)
 							);
 							await page.reload({
@@ -733,8 +748,8 @@ nodeTest(
 							assert.equal(reused._id, edited._id);
 							assert.deepEqual(reused.files, edited.files);
 							const capstoneContinuations = [];
-							for (const continuation of fixture.continuationItems ??
-								[]) {
+							for (const continuation of fixture.continuationItems
+								?? []) {
 								catalog = true;
 								const action = await courseAction(
 									page,
@@ -824,8 +839,8 @@ nodeTest(
 							assert.equal(
 								await page.evaluate(
 									() =>
-										document.documentElement.scrollWidth <=
-										innerWidth
+										document.documentElement.scrollWidth
+										<= innerWidth
 								),
 								true
 							);
@@ -885,7 +900,8 @@ nodeTest(
 									expected: fixtures.length * 4
 								})
 							);
-						} finally {
+						}
+						finally {
 							await page.close();
 							await context.close();
 							context = null;
@@ -899,7 +915,8 @@ nodeTest(
 				`${JSON.stringify({ profiles }, null, 2)}\n`
 			);
 			outcome = "passed";
-		} finally {
+		}
+		finally {
 			await cleanup();
 			console.log(
 				JSON.stringify({

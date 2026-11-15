@@ -42,7 +42,16 @@ export function networkBuildInstructions(files: PythonIdeFile[], url: string) {
 	const kernelCapture = networkKernelOptionalPacks.some(
 		item => item.pack === definition.pack && item.family === "capture"
 	);
-	const capstone = definition.pack === "NS-03-network-systems-lab-17";
+	const capstonePrefix =
+		definition.pack ===
+		"NS-33-applied-studio-17-network-systems-lab-17-supplemental-2";
+	const capstoneIdentity =
+		definition.pack ===
+		"NS-34-applied-studio-17-network-systems-lab-17-supplemental-3";
+	const capstone =
+		definition.pack === "NS-03-network-systems-lab-17" ||
+		capstonePrefix ||
+		capstoneIdentity;
 	const topology =
 		definition.pack === "NS6-Router-NAT-Topology-Lab" ||
 		Boolean(kernelOptional && !kernelCapture);
@@ -165,8 +174,12 @@ export function networkBuildInstructions(files: PythonIdeFile[], url: string) {
 			`Read README.md, then cd ${
 				role
 			}. Keep main.py, capstone_lab.py, case.json, network-notes.md and edge-cases.md together. Run sudo python3 main.py --output ./first-observation in that disposable Linux VM. Python3.10+, iproute2, iptables, util-linux, curl, dig, tcpdump and dnsmasq are required.`,
-			"The starter contains two deliberate case.json faults. Preserve the first failed attempt, correct only the IPv4 route and use --output ./route-corrected, then correct the loopback upstream port and use --output ./both-corrected. Every output folder must be new.",
-			"Repeat with sudo python3 main.py --alternate --output ./alternate-observation. Match actual A/AAAA answers to both family destinations, route and listener evidence, HTTP status and response token, denied controls and the bounded capture.pcap. Preserve both independent first-failing-layer diagnoses.",
+			capstonePrefix
+				? "Compare actual routeGetServerRouter4 for far-router .1 with routeGet4 for server .2. The /31 excludes .2; correct only ipv4_service_route to the complete supplied /30 server link, then run --output ./prefix-corrected. Keep the working IPv6 path and resolver evidence separate."
+				: capstoneIdentity
+					? "Preserve both HTTP 200 responses from owned-denial-control. Compare service.log proxyTarget 8088 with intended 127.0.0.1:9000, then correct only proxy_upstream_port and run --output ./identity-corrected. Require the correct fixture identity, token and body path."
+					: "The starter contains two deliberate case.json faults. Preserve the first failed attempt, correct only the IPv4 route and use --output ./route-corrected, then correct the loopback upstream port and use --output ./both-corrected. Every output folder must be new.",
+			"Repeat with sudo python3 main.py --alternate --output ./alternate-observation. Match A/AAAA answers to both family destinations, actual routes/listeners and service.log, the complete response fixture/token/path, denied controls and capture.pcap. Completion requires the intended loopback backend 9000. Preserve the original first-failing-boundary evidence.",
 			"Check allWorkersReaped, the empty remaining namespace list and the actual parent before/after comparison in receipt.json. Keep raw evidence and limits in network-notes.md and edge-cases.md. The Guided Example reopens the matching core project; the reference and optional challenge have separate saved attempts.",
 			"Python programming is optional. The required task is case configuration, predictions, real Linux observations and a complete operations runbook. Keep the supplied fixture unchanged."
 		];

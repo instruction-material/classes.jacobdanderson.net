@@ -311,7 +311,7 @@ export const networkLinkRoutingPacks = [
 ] as const;
 
 export const networkCapstoneSourceRevision =
-	"6aea0988ea51499a3225faf694ed3c3b48f9377a";
+	"efde30862ec77ba94f9c2ad3857a819fd902c23c";
 export const networkCapstonePacks = [
 	{
 		pack: "NS-03-network-systems-lab-17",
@@ -326,7 +326,36 @@ export const networkCapstonePacks = [
 		coreItemId:
 			"network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-core-project-operations-capstone-studio",
 		notebookItemId:
-			"network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-guided-example"
+			"network-systems-network-systems-lab-17-operations-capstone-studio-curriculum-operations-capstone-studio-guided-example",
+		projectKeyVersion: 2
+	},
+	{
+		pack: "NS-33-applied-studio-17-network-systems-lab-17-supplemental-2",
+		revision: networkCapstoneSourceRevision,
+		roleFiles: [
+			"network-notes.md",
+			"main.py",
+			"capstone_lab.py",
+			"case.json",
+			"edge-cases.md"
+		],
+		coreItemId:
+			"network-systems-network-systems-lab-17-operations-capstone-studio-supplemental-operations-capstone-transfer-practice",
+		notebookItemId: undefined
+	},
+	{
+		pack: "NS-34-applied-studio-17-network-systems-lab-17-supplemental-3",
+		revision: networkCapstoneSourceRevision,
+		roleFiles: [
+			"network-notes.md",
+			"main.py",
+			"capstone_lab.py",
+			"case.json",
+			"edge-cases.md"
+		],
+		coreItemId:
+			"network-systems-network-systems-lab-17-operations-capstone-studio-supplemental-operations-capstone-extension-practice",
+		notebookItemId: undefined
 	}
 ] as const;
 
@@ -514,7 +543,11 @@ export function networkCourseProjectKey(
 		continuationIDs.includes(itemID)
 			? selected.definition.coreItemId
 			: itemID;
-	return `${courseID}:${shared}:${role}:native-network`;
+	const version =
+		"projectKeyVersion" in selected.definition
+			? `-v${selected.definition.projectKeyVersion}`
+			: "";
+	return `${courseID}:${shared}:${role}:native-network${version}`;
 }
 
 export function networkImportFiles(url: string) {

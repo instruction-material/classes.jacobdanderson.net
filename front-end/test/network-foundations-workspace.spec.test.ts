@@ -78,6 +78,15 @@ const fixtures: Fixture[] = [
 		readFileSync(
 			resolve(
 				process.cwd(),
+				"../test/fixtures/network-capstone-optional-contracts.json"
+			),
+			"utf8"
+		)
+	),
+	...JSON.parse(
+		readFileSync(
+			resolve(
+				process.cwd(),
 				"../test/fixtures/network-diagnostics-five-contracts.json"
 			),
 			"utf8"
@@ -353,7 +362,10 @@ it.each(
 					`${base}${definition.revision}/${definition.pack}/${index ? "solution" : "starter"}`
 				);
 				expect(params.get("projectKey")).toBe(
-					`network-systems:${definition.coreItemId}:${index ? "reference" : "starter"}:native-network`
+					`network-systems:${definition.coreItemId}:${index ? "reference" : "starter"}:native-network` +
+						("projectKeyVersion" in definition
+							? "-v" + definition.projectKeyVersion
+							: "")
 				);
 			}
 		} finally {

@@ -5,6 +5,8 @@ import namingReading0 from "../../assets/course-guides/network-addresses.md?raw"
 import applicationReading2 from "../../assets/course-guides/network-application-boundaries.md?raw";
 import applicationReading1 from "../../assets/course-guides/network-application-conditions.md?raw";
 import applicationReading0 from "../../assets/course-guides/network-application-responses.md?raw";
+import capstoneIdentityReading from "../../assets/course-guides/network-capstone-identity.md?raw";
+import capstonePrefixReading from "../../assets/course-guides/network-capstone-prefix.md?raw";
 import kernelOptionalReading4 from "../../assets/course-guides/network-capture-evidence-transfer.md?raw";
 import kernelOptionalReading5 from "../../assets/course-guides/network-capture-selection-extension.md?raw";
 import diagnosticsReading2 from "../../assets/course-guides/network-diagnostics-address.md?raw";
@@ -19,17 +21,17 @@ import kernelOptionalReading2 from "../../assets/course-guides/network-exposure-
 import kernelOptionalReading3 from "../../assets/course-guides/network-exposure-translated-port-extension.md?raw";
 import firewallReading from "../../assets/course-guides/network-firewall-policy.md?raw";
 import firewallPortReading from "../../assets/course-guides/network-firewall-port-transfer.md?raw";
+
 import firewallProfileReading from "../../assets/course-guides/network-firewall-profile-extension.md?raw";
 import captureReading from "../../assets/course-guides/network-http-capture.md?raw";
-
 import inventoryTcpReading from "../../assets/course-guides/network-inventory-tcp.md?raw";
+
 import inventoryUdpReading from "../../assets/course-guides/network-inventory-udp.md?raw";
 import ipv6Reading0 from "../../assets/course-guides/network-ipv6-diagnostics.md?raw";
-
 import ipv6Reading2 from "../../assets/course-guides/network-ipv6-family-extension.md?raw";
+
 import ipv6Reading1 from "../../assets/course-guides/network-ipv6-prefix-transfer.md?raw";
 import linkRoutingReading2 from "../../assets/course-guides/network-link-routing-mapping.md?raw";
-
 import linkRoutingReading0 from "../../assets/course-guides/network-link-routing-observations.md?raw";
 import linkRoutingReading1 from "../../assets/course-guides/network-link-routing-paths.md?raw";
 import listenerReading from "../../assets/course-guides/network-listening-services.md?raw";
@@ -91,6 +93,10 @@ const readings: Record<string, string> = {
 	"NS-01-ns0-setup-and-tooling-supplemental-2": setupContextReading,
 	"NS-02-ns0-setup-and-tooling-supplemental-3": setupArgumentsReading,
 	"NS-03-network-systems-lab-17": capstoneReading,
+	"NS-33-applied-studio-17-network-systems-lab-17-supplemental-2":
+		capstonePrefixReading,
+	"NS-34-applied-studio-17-network-systems-lab-17-supplemental-3":
+		capstoneIdentityReading,
 	"NS-07-unit-3-switches-routers-nat-and-the-internet-edge":
 		linkRoutingReading0,
 	"NS-07-unit-3-switches-routers-nat-and-the-internet-edge-supplemental-2":
