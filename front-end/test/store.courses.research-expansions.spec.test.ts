@@ -238,6 +238,35 @@ describe("research-backed course family expansions", () => {
 						"JDK 21"
 					])
 						expect(roadmapText, courseId).toContain(detail);
+				} else if (courseId === "design-patterns-in-java-part-2") {
+					expect(roadmapModule!.curriculum).toHaveLength(4);
+					expect(
+						roadmapModule!.curriculum.every(
+							item => item.contentKind === "reading"
+						)
+					).toBe(true);
+					expect(roadmapModule!.supplementalProjects).toHaveLength(2);
+					for (const item of roadmapModule!.supplementalProjects) {
+						expect(item.contentKind, item.title).toBe("assignment");
+						expect(item.content, item.title).toContain(
+							"refactoring-final-inputs.md"
+						);
+						expect(item.content, item.title).toContain(
+							"refactoring-final-answers.md"
+						);
+					}
+					for (const detail of [
+						"DPR1",
+						"DPR10",
+						"Clinics 11-17",
+						"sources.txt",
+						"sample-input.txt",
+						"SessionBook.java",
+						"REFACTORING.md",
+						"validation",
+						"working public Java client"
+					])
+						expect(roadmapText, courseId).toContain(detail);
 				} else {
 					for (const label of [
 						"Map purpose",
