@@ -6389,7 +6389,7 @@ describe("course text quality normalization", () => {
 		expect(corpus).not.toMatch(/\bImplementation Lab\b/);
 		expect(corpus).not.toMatch(/\bSupplemental [23]\b/);
 		expect(corpus).not.toMatch(/\bMini Lab\b/);
-		expect(corpus).toContain("Refactoring Clinic 11: Practice Studio");
+		expect(corpus).toContain("Core Project: Refactoring Clinic 11");
 		expect(corpus).toContain("Refactoring Clinic 17 Extension Practice");
 		const composing = course!.modules.find(
 			module => module.title === "DPR2 Composing Methods"
