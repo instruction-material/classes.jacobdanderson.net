@@ -8324,7 +8324,10 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 								class="sidebar-collapse-toggle sidebar-collapse-toggle--inline"
 								title="Collapse project sidebar"
 								type="button"
-								@click="sidebarCollapsed = true"
+								@click="
+									sidebarCollapsed = true;
+									mobileProjectsOpen = false;
+								"
 							>
 								<span
 									class="sidebar-collapse-icon"

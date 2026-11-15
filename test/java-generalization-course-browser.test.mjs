@@ -82,6 +82,9 @@ for (const [group, selected] of Object.entries(unit.groups)) {
 							await page.keyboard.press("Enter");
 							await page.waitForFunction(name => document.querySelector("select[aria-label='Active project file']")?.value === name, {}, filename);
 							await page.locator("button[aria-label='Collapse project sidebar']").click();
+							if (width < 900) {
+								assert.equal(await page.$eval(".mobile-workspace-navigation button", b => b.getAttribute("aria-expanded")), "false");
+							}
 							if (width < 900) await page.locator(".mobile-view-picker button[data-view='code']").click();
 							const content = source("solution", filename);
 							await enterSource(page, content);
