@@ -368,3 +368,34 @@ it("starts a corrected legacy classroom model while retaining the earlier attemp
 		"random.randint(0, HEIGHT // 2)"
 	);
 });
+
+it.each(
+	ids.flatMap(id => [
+		{ id, staff: false },
+		{ id, staff: true }
+	])
+)(
+	"retains complete sprite-export and rotation teaching in $id for staff=$staff",
+	async ({ id, staff }) => {
+		const course = await loadCourse(id, staff);
+		const item = course.modules
+			.flatMap(module => [
+				...module.curriculum,
+				...module.supplementalProjects
+			])
+			.find(candidate =>
+				candidate.id.endsWith("-bonus-concepts-for-assets")
+			);
+		expect(item).toBeDefined();
+		expect(item!.content).toContain("PNG supports transparent pixels");
+		expect(item!.content).toContain(
+			"changing its Actor angle during update()"
+		);
+		expect(item!.content).toContain(
+			"/course-assets/references/pgzero-golf-terrain-and-sound.md#transparent-sprites-and-rotation"
+		);
+		expect(item!.content).toContain(
+			"/course-assets/references/pgzero-golf-terrain-and-sound.md#showing-one-frame-of-a-sprite-sheet"
+		);
+	}
+);
