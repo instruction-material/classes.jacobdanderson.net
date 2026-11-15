@@ -1,0 +1,165 @@
+"""Verify exact and actual browser-edited kernel projects before native execution."""
+import datetime
+import hashlib
+import io
+import json
+import os
+from pathlib import Path, PurePosixPath
+import signal
+import subprocess
+import sys
+import tempfile
+import zipfile
+
+
+def digest(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+def main():
+    root = Path(__file__).resolve().parents[1]
+    output = Path(sys.argv[1]).resolve()
+    fixtures = json.loads((root / "test/fixtures/network-kernel-optional-contracts.json").read_text())
+    verifier = json.loads((root / "test/fixtures/network-kernel-optional-source-verifiers.json").read_text())
+    assert len(fixtures) == 6
+    assert {fixture["revision"] for fixture in fixtures} == {verifier["revision"]}
+    for file in verifier["files"]:
+        assert digest(file["content"].encode()) == file["sha256"]
+    browser = json.loads((output / "network-browser-proof.json").read_text())
+    profiles = {(row["pack"], row["role"], row["width"]): row for row in browser["profiles"]}
+    assert len(profiles) == len(browser["profiles"]) == 24
+    accepted = output / "kernel-native/network-kernel-exported-native.json"
+    accepted.parent.mkdir(parents=True, exist_ok=True)
+    archives, comparisons, expected_hashes = {}, 0, {}
+    with tempfile.TemporaryDirectory(prefix="network-kernel-site-export-") as temporary:
+        work = Path(temporary)
+        for fixture in fixtures:
+            pack = fixture["pack"]
+            for name, file in fixture["files"].items():
+                assert digest(file["content"].encode()) == file["sha256"]
+                expected_hashes[pack + "/" + name] = file["sha256"]
+            for role in ["starter", "solution"]:
+                expected = {name: file for name, file in fixture["files"].items()
+                            if name == "README.md" or name.startswith(role + "/")}
+                assert len(expected) == 5
+                for width in [390, 1280]:
+                    profile = profiles[(pack, role, width)]
+                    assert profile["revision"] == verifier["revision"]
+                    assert profile["taskChoiceEdited"] is True
+                    assert profile["editedFileName"] == role + "/" + fixture["taskFile"]
+                    assert profile["editedSourceSHA256"] == digest(fixture["roleEdits"][role].encode())
+                    for field in ["consentBeforeFetch", "savedEditReopened", "primaryStoreRead",
+                                  "reopenedSameAttempt", "previousWorkPreserved", "nativeInstructions"]:
+                        assert profile[field] is True, (pack, role, width, field)
+                    for variant in ["exact", "edited"]:
+                        filename = f"{pack}-{role}-{width}-{variant}.zip"
+                        assert profile[variant + "Archive"] == filename
+                        raw = (output / filename).read_bytes()
+                        assert digest(raw) == profile[variant + "ArchiveSha256"]
+                        archives[filename] = digest(raw)
+                        with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+                            names = archive.namelist()
+                            assert len(names) == len(set(names)) == 5
+                            roots, actual = set(), {}
+                            for member in names:
+                                path = PurePosixPath(member)
+                                assert not path.is_absolute() and len(path.parts) >= 2
+                                assert ".." not in path.parts and "\\" not in member
+                                roots.add(path.parts[0])
+                                name = str(PurePosixPath(*path.parts[1:]))
+                                assert name not in actual
+                                actual[name] = archive.read(member)
+                            assert len(roots) == 1 and set(actual) == set(expected)
+                            for name, file in expected.items():
+                                content = file["content"]
+                                if variant == "edited" and name == role + "/" + fixture["taskFile"]:
+                                    content = fixture["roleEdits"][role]
+                                assert actual[name] == content.encode(), (filename, name)
+                                comparisons += 1
+                                if width == 390:
+                                    target = work / ("edited" if variant == "edited" else "original") / pack / name
+                                    target.parent.mkdir(parents=True, exist_ok=True)
+                                    if target.exists():
+                                        assert target.read_bytes() == actual[name]
+                                    else:
+                                        target.write_bytes(actual[name])
+
+
+        assert len(archives) == 48 and comparisons == 240
+        assert os.geteuid() == 0 and sys.platform == "linux"
+        source_root = work / "original"
+        expected_verifiers = {
+            "test/verify_topology.py", "test/verify_capture.py", "test/kernel_optional_source.py",
+            "test/network_kernel_optional_cases.json", "test/verify_routing_optional.py",
+            "test/verify_capture_optional.py"}
+        assert {file["path"] for file in verifier["files"]} == expected_verifiers
+        for file in verifier["files"]:
+            entry = source_root / file["path"]
+            entry.parent.mkdir(exist_ok=True)
+            entry.write_text(file["content"])
+        results = {}
+        def checked(argv, scope, timeout=600):
+            directory = accepted.parent / scope
+            directory.mkdir()
+            proof = directory / "native.json"
+            argv = argv + ["--proof", str(proof)]
+            started = datetime.datetime.now(datetime.timezone.utc).isoformat()
+            child = subprocess.Popen(argv, cwd=source_root, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                     start_new_session=True, env=dict(os.environ, PYTHONDONTWRITEBYTECODE="1"))
+            cleanup = "owned verifier and isolated lab children completed and were reaped"
+            try:
+                stdout, stderr = child.communicate(timeout=timeout)
+            except BaseException:
+                cleanup = "owned verifier interrupted and process group reaped"
+                for sig, seconds in [(signal.SIGINT, 10), (signal.SIGTERM, 25), (signal.SIGKILL, 3)]:
+                    try:
+                        os.killpg(child.pid, sig)
+                    except ProcessLookupError:
+                        pass
+                    try:
+                        child.communicate(timeout=seconds)
+                        break
+                    except subprocess.TimeoutExpired:
+                        continue
+                raise
+            finally:
+                record = {"parentTaskId": "network-kernel-site-export", "parentPID": os.getpid(),
+                          "command": argv, "cwd": str(source_root), "pid": child.pid, "startTime": started,
+                          "endTime": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                          "exitCode": child.returncode, "timeoutSeconds": timeout,
+                          "childProcessGroupCleanup": cleanup}
+                proof.with_suffix(".wrapper-processes.jsonl").write_text(json.dumps(record) + "\n")
+            proof.with_suffix(".stdout").write_bytes(stdout)
+            proof.with_suffix(".stderr").write_bytes(stderr)
+            sys.stdout.buffer.write(stdout)
+            sys.stderr.buffer.write(stderr)
+            assert child.returncode == 0, (scope, "Actual exported program verification failed")
+            return proof, json.loads(proof.read_text())
+        for scope, filename in [("routing", "verify_routing_optional.py"), ("capture", "verify_capture_optional.py")]:
+            argv = [sys.executable, "-B", str(source_root / "test" / filename), "--exported-source"]
+            proof, result = checked(argv, scope)
+            assert result["nativeAccepted"] is True
+            packs = {fixture["pack"] for fixture in fixtures if fixture["family"] == scope}
+            wanted = {name: sha for name, sha in expected_hashes.items() if name.split("/")[0] in packs}
+            assert result["sourceFiles"] == wanted
+            assert result["actualProfiles"] == (14 if scope == "routing" else 11)
+            results[scope] = {"proof": str(proof), "sha256": digest(proof.read_bytes()),
+                              "profiles": result["actualProfiles"]}
+        argv = [sys.executable, "-B", str(root / "test/network-kernel-optional-edited-native.py"),
+                "--source-root", str(source_root), "--edited-root", str(work / "edited")]
+        proof, result = checked(argv, "edited")
+        assert result["accepted"] and result["actualProfiles"] == 12
+        assert result["actualBrowserTaskEditsExecuted"] == 12
+        results["edited"] = {"proof": str(proof), "sha256": digest(proof.read_bytes()), "profiles": 12}
+    assert not Path(temporary).exists()
+    accepted.write_text(json.dumps({
+        "accepted": True, "sourceRevision": verifier["revision"], "browserProfiles": len(profiles),
+        "sourceArchivesSha256": archives, "browserExportMemberComparisons": comparisons,
+        "sourceFiles": expected_hashes, "native": results, "actualNativeProfiles": 37,
+        "actualBrowserTaskEditsExecuted": 12, "temporaryExportTreeRemoved": True,
+        "allViewportExportsByteVerified": True
+    }, indent=2) + "\n")
+
+
+if __name__ == "__main__":
+    main()

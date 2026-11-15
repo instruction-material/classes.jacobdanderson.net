@@ -5,28 +5,34 @@ import namingReading0 from "../../assets/course-guides/network-addresses.md?raw"
 import applicationReading2 from "../../assets/course-guides/network-application-boundaries.md?raw";
 import applicationReading1 from "../../assets/course-guides/network-application-conditions.md?raw";
 import applicationReading0 from "../../assets/course-guides/network-application-responses.md?raw";
+import kernelOptionalReading4 from "../../assets/course-guides/network-capture-evidence-transfer.md?raw";
+import kernelOptionalReading5 from "../../assets/course-guides/network-capture-selection-extension.md?raw";
 import dnsAliasReading from "../../assets/course-guides/network-dns-alias-transfer.md?raw";
 import dnsTransportReading from "../../assets/course-guides/network-dns-transport-extension.md?raw";
+import kernelOptionalReading2 from "../../assets/course-guides/network-exposure-bypass-transfer.md?raw";
+import kernelOptionalReading3 from "../../assets/course-guides/network-exposure-translated-port-extension.md?raw";
 import firewallReading from "../../assets/course-guides/network-firewall-policy.md?raw";
 import firewallPortReading from "../../assets/course-guides/network-firewall-port-transfer.md?raw";
-
 import firewallProfileReading from "../../assets/course-guides/network-firewall-profile-extension.md?raw";
 import captureReading from "../../assets/course-guides/network-http-capture.md?raw";
-import inventoryTcpReading from "../../assets/course-guides/network-inventory-tcp.md?raw";
 
+import inventoryTcpReading from "../../assets/course-guides/network-inventory-tcp.md?raw";
 import inventoryUdpReading from "../../assets/course-guides/network-inventory-udp.md?raw";
 import ipv6Reading0 from "../../assets/course-guides/network-ipv6-diagnostics.md?raw";
-import ipv6Reading2 from "../../assets/course-guides/network-ipv6-family-extension.md?raw";
 
+import ipv6Reading2 from "../../assets/course-guides/network-ipv6-family-extension.md?raw";
 import ipv6Reading1 from "../../assets/course-guides/network-ipv6-prefix-transfer.md?raw";
 import linkRoutingReading2 from "../../assets/course-guides/network-link-routing-mapping.md?raw";
+
 import linkRoutingReading0 from "../../assets/course-guides/network-link-routing-observations.md?raw";
 import linkRoutingReading1 from "../../assets/course-guides/network-link-routing-paths.md?raw";
 import listenerReading from "../../assets/course-guides/network-listening-services.md?raw";
 import capstoneReading from "../../assets/course-guides/network-operations-capstone.md?raw";
 import reachabilityReading from "../../assets/course-guides/network-reachability.md?raw";
 import resolutionReading from "../../assets/course-guides/network-resolution-comparison.md?raw";
+import kernelOptionalReading1 from "../../assets/course-guides/network-routing-dnat-extension.md?raw";
 import topologyReading from "../../assets/course-guides/network-routing-exposure.md?raw";
+import kernelOptionalReading0 from "../../assets/course-guides/network-routing-snat-transfer.md?raw";
 import setupArgumentsReading from "../../assets/course-guides/network-setup-arguments.md?raw";
 import setupContextReading from "../../assets/course-guides/network-setup-context.md?raw";
 import setupReading from "../../assets/course-guides/network-setup.md?raw";
@@ -41,6 +47,18 @@ import {
 } from "../../modules/networkProjectResources";
 
 const readings: Record<string, string> = {
+	"NS-15-unit-7-linux-interface-and-route-management-supplemental-2":
+		kernelOptionalReading0,
+	"NS-16-unit-7-linux-interface-and-route-management-supplemental-3":
+		kernelOptionalReading1,
+	"NS-25-unit-12-secure-exposure-of-services-supplemental-2":
+		kernelOptionalReading2,
+	"NS-26-unit-12-secure-exposure-of-services-supplemental-3":
+		kernelOptionalReading3,
+	"NS-21-unit-10-packet-capture-and-deep-inspection-supplemental-2":
+		kernelOptionalReading4,
+	"NS-22-unit-10-packet-capture-and-deep-inspection-supplemental-3":
+		kernelOptionalReading5,
 	"NS-19-unit-9-firewalls-and-host-policy-supplemental-2":
 		firewallPortReading,
 	"NS-20-unit-9-firewalls-and-host-policy-supplemental-3":

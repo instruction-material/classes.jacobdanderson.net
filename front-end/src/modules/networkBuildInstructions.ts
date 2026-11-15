@@ -1,6 +1,10 @@
 import type { PythonIdeFile } from "@/modules/pythonIde";
 import { networkDnsOptionalInstructions } from "./networkDnsOptionalResources";
 import { networkFirewallOptionalInstructions } from "./networkFirewallOptionalResources";
+import {
+	networkKernelOptionalInstructions,
+	networkKernelOptionalPacks
+} from "./networkKernelOptionalResources";
 import { networkCourseResource } from "./networkProjectResources";
 
 export function networkBuildInstructions(files: PythonIdeFile[], url: string) {
@@ -26,9 +30,19 @@ export function networkBuildInstructions(files: PythonIdeFile[], url: string) {
 		definition.pack ===
 		"NS-10-unit-4-ports-and-listening-services-supplemental-3";
 	const socketInventory = inventoryUdp || inventoryTcp;
+	const kernelOptional = networkKernelOptionalInstructions(
+		definition.pack,
+		role
+	);
+	const kernelCapture = networkKernelOptionalPacks.some(
+		item => item.pack === definition.pack && item.family === "capture"
+	);
 	const capstone = definition.pack === "NS-03-network-systems-lab-17";
-	const topology = definition.pack === "NS6-Router-NAT-Topology-Lab";
-	const capture = definition.pack === "NS5-Tcpdump-HTTP-Capture";
+	const topology =
+		definition.pack === "NS6-Router-NAT-Topology-Lab" ||
+		Boolean(kernelOptional && !kernelCapture);
+	const capture =
+		definition.pack === "NS5-Tcpdump-HTTP-Capture" || kernelCapture;
 	const firewallOptional = networkFirewallOptionalInstructions(
 		definition.pack,
 		role
@@ -97,6 +111,7 @@ export function networkBuildInstructions(files: PythonIdeFile[], url: string) {
 
 	const dnsOptional = networkDnsOptionalInstructions(definition.pack, role);
 	if (dnsOptional) return [...lines, ...dnsOptional];
+	if (kernelOptional) return [...lines, ...kernelOptional];
 	if (firewallOptional) return [...lines, ...firewallOptional];
 
 	if (socketInventory) {

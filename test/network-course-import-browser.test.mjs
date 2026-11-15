@@ -35,7 +35,8 @@ const fixtures = (
 			"./fixtures/network-setup-contracts.json",
 			"./fixtures/network-transport-contracts.json",
 			"./fixtures/network-inventory-contracts.json",
-			"./fixtures/network-dns-optional-contracts.json"
+			"./fixtures/network-dns-optional-contracts.json",
+			"./fixtures/network-kernel-optional-contracts.json"
 		].map(async path =>
 			JSON.parse(await readFile(new URL(path, import.meta.url), "utf8"))
 		)
@@ -52,7 +53,13 @@ const fixtures = (
 			process.env.NETWORK_FIREWALL_OPTIONAL_ONLY !== "1" ||
 			fixture.mode?.startsWith("ufw-") ||
 			fixture.pack === "NS3-UFW-Web-Server-Policy"
+	)
+	.filter(
+		fixture =>
+			process.env.NETWORK_KERNEL_OPTIONAL_ONLY !== "1" ||
+			fixture.mode?.startsWith("kernel-")
 	);
+
 const storageKey = "classes-python-ide-projects:anonymous";
 const earlierTemplate = {
 	_id: "earlier-network-work",
@@ -531,13 +538,30 @@ nodeTest(
 							await page.waitForSelector(".cm-content", {
 								visible: true
 							});
+							const editedFileName = fixture.editTaskInBrowser
+								? `${role}/${fixture.taskFile}`
+								: saved.activeFileName;
+							if (fixture.editTaskInBrowser) {
+								await page.select(
+									'select[aria-label="Active project file"]',
+									editedFileName
+								);
+								await page.waitForFunction(
+									() =>
+										document.querySelector(
+											".cm-content .cm-line"
+										)?.textContent === "#!/usr/bin/env bash"
+								);
+							}
 							await page.focus(".cm-content");
 							const modifier = await page.evaluate(() =>
 								/Mac/.test(navigator.platform)
 									? "Meta"
 									: "Control"
 							);
-							const changed = `${saved.files.find(file => file.name === saved.activeFileName).content}\nIndependent network observation ${width}\n`;
+							const changed = fixture.editTaskInBrowser
+								? fixture.roleEdits[role]
+								: `${saved.files.find(file => file.name === saved.activeFileName).content}\nIndependent network observation ${width}\n`;
 							await page.keyboard.down(modifier);
 							await page.keyboard.press("a");
 							await page.keyboard.up(modifier);
@@ -553,7 +577,9 @@ nodeTest(
 								);
 								if (
 									edited?.files.some(
-										file => file.content === changed
+										file =>
+											file.name === editedFileName &&
+											file.content === changed
 									)
 								)
 									break;
@@ -563,7 +589,9 @@ nodeTest(
 							}
 							assert.ok(
 								edited.files.some(
-									file => file.content === changed
+									file =>
+										file.name === editedFileName &&
+										file.content === changed
 								)
 							);
 							await page.reload({
@@ -758,6 +786,11 @@ nodeTest(
 								exactArchiveSha256: digest(exact),
 								editedArchive: `${name}-edited.zip`,
 								editedArchiveSha256: digest(editedBytes),
+								editedFileName,
+								editedSourceSHA256: digest(changed),
+								taskChoiceEdited: Boolean(
+									fixture.editTaskInBrowser
+								),
 								savedProjectID: edited._id,
 								primaryStoreRead: true,
 								savedEditReopened: true,

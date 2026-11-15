@@ -1,6 +1,7 @@
 import { githubRawUrl, parseGitHubResource } from "./codePreview";
 import { networkDnsOptionalPacks } from "./networkDnsOptionalResources";
 import { networkFirewallOptionalPacks } from "./networkFirewallOptionalResources";
+import { networkKernelOptionalPacks } from "./networkKernelOptionalResources";
 
 export const networkSourceRevision = "1fdd3faef06af8782a0d029ba880422b0a9775eb";
 export const networkFoundationPacks = [
@@ -434,6 +435,7 @@ export const networkVerifiedPacks = [
 	...networkCapturePacks,
 	...networkFirewallPacks,
 	...networkFirewallOptionalPacks,
+	...networkKernelOptionalPacks,
 	...networkReachabilityPacks,
 	...networkListenerPacks,
 	...networkResolutionPacks,
