@@ -441,6 +441,15 @@ export function applyPyGamesCourseWorkflows(
 			...module.supplementalProjects
 		]) {
 			if (!item.id) continue;
+			if (
+				classroom &&
+				item.id ===
+					"pygames-pyg12-master-project-curriculum-bonus-concepts-for-assets"
+			) {
+				item.content +=
+					"\n\n**Classroom checkpoint:** In a working game, partners alternate predicting and observing the angle after 15 updates at two degrees per update. Compare the PNG over light and dark backgrounds, then explain which visual change comes from transparency, rotation, or frame rate.";
+				continue;
+			}
 			const practice = pyGamesPracticeActivities[item.id];
 			if (practice) {
 				item.projectLink = classroom

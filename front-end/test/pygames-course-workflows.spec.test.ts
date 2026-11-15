@@ -387,6 +387,11 @@ it.each(
 				candidate.id.endsWith("-bonus-concepts-for-assets")
 			);
 		expect(item).toBeDefined();
+		if (id === "pygames-classroom") {
+			expect(item!.content).toContain(
+				"partners alternate predicting and observing the angle after 15 updates at two degrees per update"
+			);
+		}
 		expect(item!.content).toContain("PNG supports transparent pixels");
 		expect(item!.content).toContain(
 			"changing its Actor angle during update()"
