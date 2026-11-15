@@ -123,24 +123,23 @@ describe("Design Patterns in Java Part 2 learner flow", () => {
 		for (const title of [
 			"Core Project: Code Smells and Safe Refactoring Workflow",
 			"Core Project: Simplifying Conditional Expressions",
-			"DPR10 Capstone Refactoring Studio: Core Project",
-			"Refactoring Clinic 11: Core Project",
-			"Refactoring Clinic 12: Core Project",
-			"Refactoring Clinic 13: Core Project",
-			"Refactoring Clinic 14: Core Project",
-			"Refactoring Clinic 15: Core Project",
-			"Refactoring Clinic 16: Core Project",
-			"Refactoring Clinic 17: Core Project",
+			"Core Project: Capstone Refactoring Studio",
+			"Core Project: Refactoring Clinic 11",
+			"Core Project: Refactoring Clinic 12",
+			"Core Project: Refactoring Clinic 13",
+			"Core Project: Refactoring Clinic 14",
+			"Core Project: Refactoring Clinic 15",
+			"Core Project: Refactoring Clinic 16",
+			"Core Project: Refactoring Clinic 17",
 			"Refactoring Clinic 17 Extension Practice"
 		]) {
-			const collection =
-				title.startsWith("DPR") || title.startsWith("Core Project:")
-					? curriculumTitles
-					: optionTitles;
+			const collection = title.includes("Refactoring Clinic")
+				? optionTitles
+				: curriculumTitles;
 			expect(collection, title).toContain(title);
 		}
 		expect(moduleText("Optional Refactoring Clinics 11–17")).toContain(
-			"complete guided practice collection"
+			"independent tasks and saved attempts"
 		);
 	});
 

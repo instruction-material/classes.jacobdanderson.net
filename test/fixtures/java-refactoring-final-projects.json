@@ -1,0 +1,1879 @@
+{
+  "source": "29000ec4e21398f4fed4ac65cd73fbac97cfdf1a",
+  "plans": [
+    {
+      "label": "DPR10",
+      "unit": {
+        "id": "capstone-refactoring",
+        "courseID": "design-patterns-in-java-part-2",
+        "revision": "29000ec4e21398f4fed4ac65cd73fbac97cfdf1a",
+        "pack": "DPR10-Capstone-Refactoring-Packs",
+        "layout": "src package folders, sources.txt and README.md",
+        "moduleID": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio",
+        "readingID": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-capstone-launch-choose-a-messy-but-salvageable-java-app",
+        "coreID": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-core-project-capstone-refactoring-studio",
+        "sourceItems": [
+          "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-capstone-launch-choose-a-messy-but-salvageable-java-app",
+          "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-diagnosis-pass-smells-risks-and-refactor-sequence",
+          "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-execution-pass-small-safe-transformations",
+          "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-pattern-arrival-review",
+          "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-final-architecture-review",
+          "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-capstone-reflection-from-catalog-knowledge-to-judgment",
+          "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-capstone-change-ledger-and-stop-points",
+          "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-capstone-evidence-review",
+          "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-core-project-capstone-refactoring-studio",
+          "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-understanding-check-capstone-refactoring-studio",
+          "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-capstone-refactoring-studio-transfer-practice",
+          "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-capstone-refactoring-studio-extension-practice"
+        ],
+        "independentItems": [
+          "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-capstone-refactoring-studio-transfer-practice",
+          "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-capstone-refactoring-studio-extension-practice"
+        ],
+        "files": {
+          "starter": [
+            "Main.java",
+            "CompatibilityClient.java",
+            "ContractChecks.java",
+            "README.md",
+            "REFACTORING.md",
+            "SOURCES.md",
+            "sample-input.txt",
+            "sources.txt",
+            "src/api/DeskAPI.java",
+            "src/api/JoinStatus.java",
+            "src/api/Rules.java",
+            "src/api/SessionView.java",
+            "src/app/AppScript.java",
+            "src/app/WorkshopDesk.java",
+            "src/legacy/LegacyWorkshopDesk.java",
+            "src/preview/RenamePreview.java",
+            "src/trace/Equivalence.java",
+            "src/trace/Observation.java",
+            "src/trace/Step.java"
+          ],
+          "solution": [
+            "Main.java",
+            "CompatibilityClient.java",
+            "ContractChecks.java",
+            "README.md",
+            "REFACTORING.md",
+            "SOURCES.md",
+            "sample-input.txt",
+            "sources.txt",
+            "src/api/DeskAPI.java",
+            "src/api/JoinStatus.java",
+            "src/api/Rules.java",
+            "src/api/SessionView.java",
+            "src/app/AppScript.java",
+            "src/app/DeskReports.java",
+            "src/app/SessionBook.java",
+            "src/app/WorkshopDesk.java",
+            "src/legacy/LegacyWorkshopDesk.java",
+            "src/preview/RenamePreview.java",
+            "src/trace/Equivalence.java",
+            "src/trace/Observation.java",
+            "src/trace/Step.java"
+          ]
+        },
+        "instructions": [
+          "Java 21: Capstone Refactoring Studio",
+          "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+          "java -ea -cp out ContractChecks baseline",
+          "java -da -cp out ContractChecks baseline",
+          "java -cp out Main baseline",
+          "java -cp out Main core",
+          "java -ea -cp out ContractChecks core",
+          "java -da -cp out ContractChecks core",
+          "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+          "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+          "Script modes read standard input: java -cp out Main script-core < sample-input.txt",
+          "Demo and check modes need no input. Run displays native commands.",
+          "Core behavior checks pass before refactoring; retain actual source changes and a small step record to establish design improvement."
+        ],
+        "instructionsByItem": {
+          "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-capstone-refactoring-studio-transfer-practice": [
+            "Java 21: Capstone Refactoring Studio",
+            "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+            "java -ea -cp out ContractChecks baseline",
+            "java -da -cp out ContractChecks baseline",
+            "java -cp out Main baseline",
+            "java -cp out Main core",
+            "java -ea -cp out ContractChecks transfer",
+            "java -da -cp out ContractChecks transfer",
+            "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+            "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+            "Script modes read standard input: java -cp out Main script-core < sample-input.txt",
+            "Demo and check modes need no input. Run displays native commands."
+          ],
+          "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-capstone-refactoring-studio-extension-practice": [
+            "Java 21: Capstone Refactoring Studio",
+            "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+            "java -ea -cp out ContractChecks baseline",
+            "java -da -cp out ContractChecks baseline",
+            "java -cp out Main baseline",
+            "java -cp out Main core",
+            "java -ea -cp out ContractChecks extension",
+            "java -da -cp out ContractChecks extension",
+            "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+            "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+            "Script modes read standard input: java -cp out Main script-core < sample-input.txt",
+            "Demo and check modes need no input. Run displays native commands."
+          ]
+        },
+        "changesFiles": true
+      },
+      "identities": {
+        "curriculum": [
+          {
+            "id": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-capstone-launch-choose-a-messy-but-salvageable-java-app",
+            "title": "Capstone Launch: Choose a Messy but Salvageable Java App"
+          },
+          {
+            "id": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-diagnosis-pass-smells-risks-and-refactor-sequence",
+            "title": "Diagnosis Pass: Smells, Risks, and Refactor Sequence"
+          },
+          {
+            "id": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-execution-pass-small-safe-transformations",
+            "title": "Execution Pass: Small Safe Transformations"
+          },
+          {
+            "id": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-pattern-arrival-review",
+            "title": "Pattern Arrival Review"
+          },
+          {
+            "id": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-final-architecture-review",
+            "title": "Final Architecture Review"
+          },
+          {
+            "id": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-capstone-reflection-from-catalog-knowledge-to-judgment",
+            "title": "Capstone Reflection: From Catalog Knowledge to Judgment"
+          },
+          {
+            "id": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-capstone-change-ledger-and-stop-points",
+            "title": "Capstone Change Ledger and Stop Points"
+          },
+          {
+            "id": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-capstone-evidence-review",
+            "title": "Capstone Evidence Review"
+          },
+          {
+            "id": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-core-project-capstone-refactoring-studio",
+            "title": "Core Project: Capstone Refactoring Studio",
+            "aliases": [
+              "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-core-project",
+              "dpr10-capstone-refactoring-studio-core-project",
+              "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-dpr10-capstone-refactoring-studio-core-project"
+            ]
+          }
+        ],
+        "supplementalProjects": [
+          {
+            "id": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-understanding-check-capstone-refactoring-studio",
+            "title": "Understanding Check: Capstone Refactoring Studio",
+            "aliases": [
+              "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-dpr10-capstone-refactoring-studio-diagnostic-checkpoint",
+              "diagnostic-checkpoint-capstone-refactoring-studio",
+              "diagnostic-checkpoint",
+              "understanding-check",
+              "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-diagnostic-checkpoint-capstone-refactoring-studio",
+              "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-diagnostic-checkpoint",
+              "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-understanding-check"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-capstone-refactoring-studio-transfer-practice",
+            "title": "Capstone Refactoring Studio Transfer Practice",
+            "aliases": [
+              "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-transfer-practice-capstone-refactoring-studio",
+              "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-transfer-practice"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-capstone-refactoring-studio-extension-practice",
+            "title": "Capstone Refactoring Studio Extension Practice",
+            "aliases": [
+              "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-extension-practice-capstone-refactoring-studio",
+              "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-extension-practice"
+            ]
+          }
+        ]
+      },
+      "sourceQualification": "dpr10-first-native-independent-acceptance-20261115.json",
+      "modes": {
+        "core": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-core-project-capstone-refactoring-studio",
+        "transfer": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-capstone-refactoring-studio-transfer-practice",
+        "extension": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-capstone-refactoring-studio-extension-practice"
+      },
+      "groups": {
+        "core": {
+          "itemID": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-curriculum-core-project-capstone-refactoring-studio",
+          "replace": [
+            "src/app/WorkshopDesk.java"
+          ],
+          "add": [
+            "src/app/SessionBook.java",
+            "src/app/DeskReports.java"
+          ],
+          "remove": [],
+          "primary": "src/app/WorkshopDesk.java",
+          "checks": 8197
+        },
+        "transfer": {
+          "itemID": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-capstone-refactoring-studio-transfer-practice",
+          "replace": [
+            "src/trace/Equivalence.java"
+          ],
+          "add": [],
+          "remove": [],
+          "primary": "src/trace/Equivalence.java",
+          "checks": 15
+        },
+        "extension": {
+          "itemID": "design-patterns-in-java-part-2-dpr10-capstone-refactoring-studio-supplemental-capstone-refactoring-studio-extension-practice",
+          "replace": [
+            "src/preview/RenamePreview.java"
+          ],
+          "add": [],
+          "remove": [],
+          "primary": "src/preview/RenamePreview.java",
+          "checks": 24
+        }
+      },
+      "roleFileCounts": {
+        "starter": 19,
+        "solution": 21
+      },
+      "baselineChecks": 16394,
+      "fullChecks": 8236,
+      "unfinished": {
+        "core": null,
+        "transfer": "Complete trace comparison",
+        "extension": "Complete rename preview"
+      },
+      "demos": {
+        "baseline": "Workshops 2\nroom capacity=2 open=true\nenrolled=bo,cy\nwaiting=-\nquiet capacity=1 open=false\nenrolled=-\nwaiting=-\n2\nroom|2|open|bo,cy|-\nquiet|1|closed|-|-\n[open, join:ana:enrolled, join:bo:enrolled, join:cy:waiting, leave:ana:enrolled, promote:cy]\n",
+        "core": "Workshops 2\nroom capacity=2 open=true\nenrolled=bo,cy\nwaiting=-\nquiet capacity=1 open=false\nenrolled=-\nwaiting=-\n2\nroom|2|open|bo,cy|-\nquiet|1|closed|-|-\n[open, join:ana:enrolled, join:bo:enrolled, join:cy:waiting, leave:ana:enrolled, promote:cy]\n"
+      },
+      "scriptOutput": "opened\nENROLLED\nWAITLISTED\ntrue\n1\nroom|1|open|bo|-\ntrue\nerror:IllegalStateException:closed\n"
+    },
+    {
+      "label": "11",
+      "unit": {
+        "id": "clinic11-ownership",
+        "courseID": "design-patterns-in-java-part-2",
+        "revision": "29000ec4e21398f4fed4ac65cd73fbac97cfdf1a",
+        "pack": "Clinic11-Ownership-Packs",
+        "layout": "src package folders, sources.txt and README.md",
+        "moduleID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17",
+        "readingID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-core-concepts",
+        "coreID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-11",
+        "sourceItems": [
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-core-concepts",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-guided-example",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-11",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-11",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-11",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-transfer-practice",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-extension-practice"
+        ],
+        "independentItems": [
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-transfer-practice",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-extension-practice"
+        ],
+        "files": {
+          "starter": [
+            "Main.java",
+            "CompatibilityClient.java",
+            "ContractChecks.java",
+            "README.md",
+            "REFACTORING.md",
+            "SOURCES.md",
+            "sources.txt",
+            "src/api/PlannerAPI.java",
+            "src/api/Point.java",
+            "src/api/RouteData.java",
+            "src/app/TripPlanner.java",
+            "src/extension/WaypointEdit.java",
+            "src/legacy/LegacyPlanner.java",
+            "src/transfer/LongestLeg.java"
+          ],
+          "solution": [
+            "Main.java",
+            "CompatibilityClient.java",
+            "ContractChecks.java",
+            "README.md",
+            "REFACTORING.md",
+            "SOURCES.md",
+            "sources.txt",
+            "src/api/PlannerAPI.java",
+            "src/api/Point.java",
+            "src/api/RouteData.java",
+            "src/app/RoutePlan.java",
+            "src/app/TripPlanner.java",
+            "src/extension/WaypointEdit.java",
+            "src/legacy/LegacyPlanner.java",
+            "src/transfer/LongestLeg.java"
+          ]
+        },
+        "instructions": [
+          "Java 21: Refactoring Clinic 11",
+          "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+          "java -ea -cp out ContractChecks baseline",
+          "java -da -cp out ContractChecks baseline",
+          "java -cp out Main baseline",
+          "java -cp out Main core",
+          "java -ea -cp out ContractChecks core",
+          "java -da -cp out ContractChecks core",
+          "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+          "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+          "Demo and check modes read no standard input. Run displays native commands.",
+          "Core behavior checks pass before refactoring; retain actual source changes and a small step record to establish design improvement."
+        ],
+        "instructionsByItem": {
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-transfer-practice": [
+            "Java 21: Refactoring Clinic 11",
+            "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+            "java -ea -cp out ContractChecks baseline",
+            "java -da -cp out ContractChecks baseline",
+            "java -cp out Main baseline",
+            "java -cp out Main core",
+            "java -ea -cp out ContractChecks transfer",
+            "java -da -cp out ContractChecks transfer",
+            "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+            "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+            "Demo and check modes read no standard input. Run displays native commands."
+          ],
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-extension-practice": [
+            "Java 21: Refactoring Clinic 11",
+            "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+            "java -ea -cp out ContractChecks baseline",
+            "java -da -cp out ContractChecks baseline",
+            "java -cp out Main baseline",
+            "java -cp out Main core",
+            "java -ea -cp out ContractChecks extension",
+            "java -da -cp out ContractChecks extension",
+            "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+            "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+            "Demo and check modes read no standard input. Run displays native commands."
+          ]
+        },
+        "changesFiles": true
+      },
+      "identities": {
+        "curriculum": [],
+        "supplementalProjects": [
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-core-concepts",
+            "title": "Refactoring Clinic 11: Core Concepts",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-11-curriculum-refactoring-clinic-11-core-concepts"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-guided-example",
+            "title": "Refactoring Clinic 11: Guided Example",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-11-curriculum-refactoring-clinic-11-guided-example"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-11",
+            "title": "Core Project: Refactoring Clinic 11",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-11-curriculum-core-project-refactoring-clinic-11",
+              "design-patterns-in-java-part-2-refactoring-clinic-11-curriculum-core-project",
+              "design-patterns-in-java-part-2-refactoring-clinic-11-curriculum-refactoring-clinic-11-core-project",
+              "refactoring-clinic-11-core-project",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-core-project"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-11",
+            "title": "Review: Refactoring Clinic 11",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-11-curriculum-review-refactoring-clinic-11",
+              "design-patterns-in-java-part-2-refactoring-clinic-11-curriculum-refactoring-clinic-11-review-and-reflection",
+              "refactoring-clinic-11-review-and-reflection",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-review-and-reflection"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-11",
+            "title": "Extension Challenge: Refactoring Clinic 11",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-11-supplemental-extension-challenge-refactoring-clinic-11",
+              "design-patterns-in-java-part-2-refactoring-clinic-11-supplemental-extension-challenge",
+              "design-patterns-in-java-part-2-refactoring-clinic-11-supplemental-refactoring-clinic-11-extension-challenge",
+              "refactoring-clinic-11-extension-challenge",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-extension-challenge"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-transfer-practice",
+            "title": "Refactoring Clinic 11 Transfer Practice",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-11-supplemental-transfer-practice-refactoring-clinic-11",
+              "design-patterns-in-java-part-2-refactoring-clinic-11-supplemental-transfer-practice"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-extension-practice",
+            "title": "Refactoring Clinic 11 Extension Practice",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-11-supplemental-extension-practice-refactoring-clinic-11",
+              "design-patterns-in-java-part-2-refactoring-clinic-11-supplemental-extension-practice"
+            ]
+          }
+        ]
+      },
+      "sourceQualification": "clinic11-first-native-independent-acceptance-20261115.json",
+      "modes": {
+        "core": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-11",
+        "transfer": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-transfer-practice",
+        "extension": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-extension-practice"
+      },
+      "groups": {
+        "core": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-11",
+          "replace": [
+            "src/app/TripPlanner.java"
+          ],
+          "add": [
+            "src/app/RoutePlan.java"
+          ],
+          "remove": [],
+          "primary": "src/app/TripPlanner.java",
+          "checks": 1597
+        },
+        "transfer": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-transfer-practice",
+          "replace": [
+            "src/transfer/LongestLeg.java"
+          ],
+          "add": [],
+          "remove": [],
+          "primary": "src/transfer/LongestLeg.java",
+          "checks": 407
+        },
+        "extension": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-11-extension-practice",
+          "replace": [
+            "src/extension/WaypointEdit.java"
+          ],
+          "add": [],
+          "remove": [],
+          "primary": "src/extension/WaypointEdit.java",
+          "checks": 31
+        }
+      },
+      "roleFileCounts": {
+        "starter": 14,
+        "solution": 15
+      },
+      "baselineChecks": 3194,
+      "fullChecks": 2035,
+      "unfinished": {
+        "core": null,
+        "transfer": "Complete longest leg",
+        "extension": "Complete waypoint preview"
+      },
+      "demos": {
+        "baseline": "walk|stops=4|distance=7\n",
+        "core": "walk|stops=4|distance=7\n",
+        "transfer": "3\n",
+        "extension": "walk|stops=4|distance=15\n"
+      }
+    },
+    {
+      "label": "12",
+      "unit": {
+        "id": "clinic12",
+        "courseID": "design-patterns-in-java-part-2",
+        "revision": "29000ec4e21398f4fed4ac65cd73fbac97cfdf1a",
+        "pack": "Clinic12-Variant-Packs",
+        "layout": "src package folders, sources.txt and README.md",
+        "moduleID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17",
+        "readingID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-core-concepts",
+        "coreID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-12",
+        "sourceItems": [
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-core-concepts",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-guided-example",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-12",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-12",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-12",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-transfer-practice",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-extension-practice"
+        ],
+        "independentItems": [
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-transfer-practice",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-extension-practice"
+        ],
+        "files": {
+          "starter": [
+            "Main.java",
+            "CompatibilityClient.java",
+            "ContractChecks.java",
+            "README.md",
+            "REFACTORING.md",
+            "SOURCES.md",
+            "sources.txt",
+            "src/api/Messages.java",
+            "src/api/RenderRule.java",
+            "src/api/Rules.java",
+            "src/app/MessageService.java",
+            "src/check/Checks.java",
+            "src/extension/PrefixRule.java",
+            "src/legacy/LegacyMessages.java",
+            "src/transfer/RenderBatch.java"
+          ],
+          "solution": [
+            "Main.java",
+            "CompatibilityClient.java",
+            "ContractChecks.java",
+            "README.md",
+            "REFACTORING.md",
+            "SOURCES.md",
+            "sources.txt",
+            "src/api/Messages.java",
+            "src/api/RenderRule.java",
+            "src/api/Rules.java",
+            "src/app/CompactRule.java",
+            "src/app/MessageService.java",
+            "src/app/PlainRule.java",
+            "src/check/Checks.java",
+            "src/extension/PrefixRule.java",
+            "src/legacy/LegacyMessages.java",
+            "src/transfer/RenderBatch.java"
+          ]
+        },
+        "instructions": [
+          "Java 21: Refactoring Clinic 12",
+          "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+          "java -ea -cp out ContractChecks baseline",
+          "java -da -cp out ContractChecks baseline",
+          "java -cp out Main baseline",
+          "java -cp out Main core",
+          "java -ea -cp out ContractChecks core",
+          "java -da -cp out ContractChecks core",
+          "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+          "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+          "Demo and check modes read no standard input. Run displays native commands.",
+          "The original entry point works; post-refactor core checks remain unfinished until the required new design entry points are implemented."
+        ],
+        "instructionsByItem": {
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-transfer-practice": [
+            "Java 21: Refactoring Clinic 12",
+            "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+            "java -ea -cp out ContractChecks baseline",
+            "java -da -cp out ContractChecks baseline",
+            "java -cp out Main baseline",
+            "java -cp out Main core",
+            "java -ea -cp out ContractChecks transfer",
+            "java -da -cp out ContractChecks transfer",
+            "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+            "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+            "Demo and check modes read no standard input. Run displays native commands."
+          ],
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-extension-practice": [
+            "Java 21: Refactoring Clinic 12",
+            "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+            "java -ea -cp out ContractChecks baseline",
+            "java -da -cp out ContractChecks baseline",
+            "java -cp out Main baseline",
+            "java -cp out Main core",
+            "java -ea -cp out ContractChecks extension",
+            "java -da -cp out ContractChecks extension",
+            "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+            "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+            "Demo and check modes read no standard input. Run displays native commands."
+          ]
+        },
+        "changesFiles": true
+      },
+      "identities": {
+        "curriculum": [],
+        "supplementalProjects": [
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-core-concepts",
+            "title": "Refactoring Clinic 12: Core Concepts",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-12-curriculum-refactoring-clinic-12-core-concepts"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-guided-example",
+            "title": "Refactoring Clinic 12: Guided Example",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-12-curriculum-refactoring-clinic-12-guided-example"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-12",
+            "title": "Core Project: Refactoring Clinic 12",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-12-curriculum-core-project-refactoring-clinic-12",
+              "design-patterns-in-java-part-2-refactoring-clinic-12-curriculum-core-project",
+              "design-patterns-in-java-part-2-refactoring-clinic-12-curriculum-refactoring-clinic-12-core-project",
+              "refactoring-clinic-12-core-project",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-core-project"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-12",
+            "title": "Review: Refactoring Clinic 12",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-12-curriculum-review-refactoring-clinic-12",
+              "design-patterns-in-java-part-2-refactoring-clinic-12-curriculum-refactoring-clinic-12-review-and-reflection",
+              "refactoring-clinic-12-review-and-reflection",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-review-and-reflection"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-12",
+            "title": "Extension Challenge: Refactoring Clinic 12",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-12-supplemental-extension-challenge-refactoring-clinic-12",
+              "design-patterns-in-java-part-2-refactoring-clinic-12-supplemental-extension-challenge",
+              "design-patterns-in-java-part-2-refactoring-clinic-12-supplemental-refactoring-clinic-12-extension-challenge",
+              "refactoring-clinic-12-extension-challenge",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-extension-challenge"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-transfer-practice",
+            "title": "Refactoring Clinic 12 Transfer Practice",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-12-supplemental-transfer-practice-refactoring-clinic-12",
+              "design-patterns-in-java-part-2-refactoring-clinic-12-supplemental-transfer-practice"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-extension-practice",
+            "title": "Refactoring Clinic 12 Extension Practice",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-12-supplemental-extension-practice-refactoring-clinic-12",
+              "design-patterns-in-java-part-2-refactoring-clinic-12-supplemental-extension-practice"
+            ]
+          }
+        ]
+      },
+      "sourceQualification": "six-clinics-first-native-independent-acceptance-20261115.json",
+      "modes": {
+        "core": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-12",
+        "transfer": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-transfer-practice",
+        "extension": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-extension-practice"
+      },
+      "groups": {
+        "core": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-12",
+          "replace": [
+            "src/app/MessageService.java"
+          ],
+          "add": [
+            "src/app/PlainRule.java",
+            "src/app/CompactRule.java"
+          ],
+          "remove": [],
+          "primary": "src/app/MessageService.java",
+          "checks": 30
+        },
+        "transfer": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-transfer-practice",
+          "replace": [
+            "src/transfer/RenderBatch.java"
+          ],
+          "add": [],
+          "remove": [],
+          "primary": "src/transfer/RenderBatch.java",
+          "checks": 13
+        },
+        "extension": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-12-extension-practice",
+          "replace": [
+            "src/extension/PrefixRule.java"
+          ],
+          "add": [],
+          "remove": [],
+          "primary": "src/extension/PrefixRule.java",
+          "checks": 10
+        }
+      },
+      "roleFileCounts": {
+        "starter": 15,
+        "solution": 17
+      },
+      "baselineChecks": 38,
+      "fullChecks": 53,
+      "unfinished": {
+        "core": "Complete rule registry",
+        "transfer": "Complete batch rendering",
+        "extension": "Complete prefix rule"
+      },
+      "demos": {
+        "baseline": "text=go\n",
+        "core": "text=go\n",
+        "transfer": "2|go\n0|\n",
+        "extension": "!text=go\n"
+      }
+    },
+    {
+      "label": "13",
+      "unit": {
+        "id": "clinic13",
+        "courseID": "design-patterns-in-java-part-2",
+        "revision": "29000ec4e21398f4fed4ac65cd73fbac97cfdf1a",
+        "pack": "Clinic13-Parameter-Packs",
+        "layout": "src package folders, sources.txt and README.md",
+        "moduleID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17",
+        "readingID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-core-concepts",
+        "coreID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-13",
+        "sourceItems": [
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-core-concepts",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-guided-example",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-13",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-13",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-13",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-transfer-practice",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-extension-practice"
+        ],
+        "independentItems": [
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-transfer-practice",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-extension-practice"
+        ],
+        "files": {
+          "starter": [
+            "Main.java",
+            "CompatibilityClient.java",
+            "ContractChecks.java",
+            "README.md",
+            "REFACTORING.md",
+            "SOURCES.md",
+            "sources.txt",
+            "src/api/RangeRules.java",
+            "src/api/Ranges.java",
+            "src/app/RangeService.java",
+            "src/app/RangeSpec.java",
+            "src/check/Checks.java",
+            "src/extension/MergeRanges.java",
+            "src/legacy/LegacyRanges.java",
+            "src/transfer/EveryOther.java"
+          ],
+          "solution": [
+            "Main.java",
+            "CompatibilityClient.java",
+            "ContractChecks.java",
+            "README.md",
+            "REFACTORING.md",
+            "SOURCES.md",
+            "sources.txt",
+            "src/api/RangeRules.java",
+            "src/api/Ranges.java",
+            "src/app/RangeService.java",
+            "src/app/RangeSpec.java",
+            "src/check/Checks.java",
+            "src/extension/MergeRanges.java",
+            "src/legacy/LegacyRanges.java",
+            "src/transfer/EveryOther.java"
+          ]
+        },
+        "instructions": [
+          "Java 21: Refactoring Clinic 13",
+          "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+          "java -ea -cp out ContractChecks baseline",
+          "java -da -cp out ContractChecks baseline",
+          "java -cp out Main baseline",
+          "java -cp out Main core",
+          "java -ea -cp out ContractChecks core",
+          "java -da -cp out ContractChecks core",
+          "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+          "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+          "Demo and check modes read no standard input. Run displays native commands.",
+          "The original entry point works; post-refactor core checks remain unfinished until the required new design entry points are implemented."
+        ],
+        "instructionsByItem": {
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-transfer-practice": [
+            "Java 21: Refactoring Clinic 13",
+            "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+            "java -ea -cp out ContractChecks baseline",
+            "java -da -cp out ContractChecks baseline",
+            "java -cp out Main baseline",
+            "java -cp out Main core",
+            "java -ea -cp out ContractChecks transfer",
+            "java -da -cp out ContractChecks transfer",
+            "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+            "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+            "Demo and check modes read no standard input. Run displays native commands."
+          ],
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-extension-practice": [
+            "Java 21: Refactoring Clinic 13",
+            "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+            "java -ea -cp out ContractChecks baseline",
+            "java -da -cp out ContractChecks baseline",
+            "java -cp out Main baseline",
+            "java -cp out Main core",
+            "java -ea -cp out ContractChecks extension",
+            "java -da -cp out ContractChecks extension",
+            "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+            "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+            "Demo and check modes read no standard input. Run displays native commands."
+          ]
+        },
+        "changesFiles": true
+      },
+      "identities": {
+        "curriculum": [],
+        "supplementalProjects": [
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-core-concepts",
+            "title": "Refactoring Clinic 13: Core Concepts",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-13-curriculum-refactoring-clinic-13-core-concepts"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-guided-example",
+            "title": "Refactoring Clinic 13: Guided Example",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-13-curriculum-refactoring-clinic-13-guided-example"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-13",
+            "title": "Core Project: Refactoring Clinic 13",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-13-curriculum-core-project-refactoring-clinic-13",
+              "design-patterns-in-java-part-2-refactoring-clinic-13-curriculum-core-project",
+              "design-patterns-in-java-part-2-refactoring-clinic-13-curriculum-refactoring-clinic-13-core-project",
+              "refactoring-clinic-13-core-project",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-core-project"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-13",
+            "title": "Review: Refactoring Clinic 13",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-13-curriculum-review-refactoring-clinic-13",
+              "design-patterns-in-java-part-2-refactoring-clinic-13-curriculum-refactoring-clinic-13-review-and-reflection",
+              "refactoring-clinic-13-review-and-reflection",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-review-and-reflection"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-13",
+            "title": "Extension Challenge: Refactoring Clinic 13",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-13-supplemental-extension-challenge-refactoring-clinic-13",
+              "design-patterns-in-java-part-2-refactoring-clinic-13-supplemental-extension-challenge",
+              "design-patterns-in-java-part-2-refactoring-clinic-13-supplemental-refactoring-clinic-13-extension-challenge",
+              "refactoring-clinic-13-extension-challenge",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-extension-challenge"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-transfer-practice",
+            "title": "Refactoring Clinic 13 Transfer Practice",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-13-supplemental-transfer-practice-refactoring-clinic-13",
+              "design-patterns-in-java-part-2-refactoring-clinic-13-supplemental-transfer-practice"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-extension-practice",
+            "title": "Refactoring Clinic 13 Extension Practice",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-13-supplemental-extension-practice-refactoring-clinic-13",
+              "design-patterns-in-java-part-2-refactoring-clinic-13-supplemental-extension-practice"
+            ]
+          }
+        ]
+      },
+      "sourceQualification": "six-clinics-first-native-independent-acceptance-20261115.json",
+      "modes": {
+        "core": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-13",
+        "transfer": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-transfer-practice",
+        "extension": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-extension-practice"
+      },
+      "groups": {
+        "core": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-13",
+          "replace": [
+            "src/app/RangeSpec.java",
+            "src/app/RangeService.java"
+          ],
+          "add": [],
+          "remove": [],
+          "primary": "src/app/RangeSpec.java",
+          "checks": 152
+        },
+        "transfer": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-transfer-practice",
+          "replace": [
+            "src/transfer/EveryOther.java"
+          ],
+          "add": [],
+          "remove": [],
+          "primary": "src/transfer/EveryOther.java",
+          "checks": 17
+        },
+        "extension": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-13-extension-practice",
+          "replace": [
+            "src/extension/MergeRanges.java"
+          ],
+          "add": [],
+          "remove": [],
+          "primary": "src/extension/MergeRanges.java",
+          "checks": 10
+        }
+      },
+      "roleFileCounts": {
+        "starter": 15,
+        "solution": 15
+      },
+      "baselineChecks": 280,
+      "fullChecks": 179,
+      "unfinished": {
+        "core": "Complete parameter object",
+        "transfer": "Complete whole-list selection",
+        "extension": "Complete unique merge"
+      },
+      "demos": {
+        "baseline": "2..9/3:[2, 5, 8]\n",
+        "core": "2..9/3:[2, 5, 8]\n",
+        "transfer": "[2, 8]\n",
+        "extension": "[1, 2, 5, 8, 9]\n"
+      }
+    },
+    {
+      "label": "14",
+      "unit": {
+        "id": "clinic14",
+        "courseID": "design-patterns-in-java-part-2",
+        "revision": "29000ec4e21398f4fed4ac65cd73fbac97cfdf1a",
+        "pack": "Clinic14-Calculation-Packs",
+        "layout": "src package folders, sources.txt and README.md",
+        "moduleID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17",
+        "readingID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-core-concepts",
+        "coreID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-14",
+        "sourceItems": [
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-core-concepts",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-guided-example",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-14",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-14",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-14",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-transfer-practice",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-extension-practice"
+        ],
+        "independentItems": [
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-transfer-practice",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-extension-practice"
+        ],
+        "files": {
+          "starter": [
+            "Main.java",
+            "CompatibilityClient.java",
+            "ContractChecks.java",
+            "README.md",
+            "REFACTORING.md",
+            "SOURCES.md",
+            "sources.txt",
+            "src/api/BatchTotal.java",
+            "src/api/EnergyAPI.java",
+            "src/api/EnergyResult.java",
+            "src/api/EnergyRules.java",
+            "src/app/EnergyMeter.java",
+            "src/check/Checks.java",
+            "src/extension/EnergyBatch.java",
+            "src/legacy/LegacyEnergy.java",
+            "src/transfer/EnergyLoss.java"
+          ],
+          "solution": [
+            "Main.java",
+            "CompatibilityClient.java",
+            "ContractChecks.java",
+            "README.md",
+            "REFACTORING.md",
+            "SOURCES.md",
+            "sources.txt",
+            "src/api/BatchTotal.java",
+            "src/api/EnergyAPI.java",
+            "src/api/EnergyResult.java",
+            "src/api/EnergyRules.java",
+            "src/app/EnergyMeter.java",
+            "src/check/Checks.java",
+            "src/extension/EnergyBatch.java",
+            "src/legacy/LegacyEnergy.java",
+            "src/transfer/EnergyLoss.java"
+          ]
+        },
+        "instructions": [
+          "Java 21: Refactoring Clinic 14",
+          "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+          "java -ea -cp out ContractChecks baseline",
+          "java -da -cp out ContractChecks baseline",
+          "java -cp out Main baseline",
+          "java -cp out Main core",
+          "java -ea -cp out ContractChecks core",
+          "java -da -cp out ContractChecks core",
+          "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+          "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+          "Demo and check modes read no standard input. Run displays native commands.",
+          "The original entry point works; post-refactor core checks remain unfinished until the required new design entry points are implemented."
+        ],
+        "instructionsByItem": {
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-transfer-practice": [
+            "Java 21: Refactoring Clinic 14",
+            "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+            "java -ea -cp out ContractChecks baseline",
+            "java -da -cp out ContractChecks baseline",
+            "java -cp out Main baseline",
+            "java -cp out Main core",
+            "java -ea -cp out ContractChecks transfer",
+            "java -da -cp out ContractChecks transfer",
+            "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+            "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+            "Demo and check modes read no standard input. Run displays native commands."
+          ],
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-extension-practice": [
+            "Java 21: Refactoring Clinic 14",
+            "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+            "java -ea -cp out ContractChecks baseline",
+            "java -da -cp out ContractChecks baseline",
+            "java -cp out Main baseline",
+            "java -cp out Main core",
+            "java -ea -cp out ContractChecks extension",
+            "java -da -cp out ContractChecks extension",
+            "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+            "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+            "Demo and check modes read no standard input. Run displays native commands."
+          ]
+        },
+        "changesFiles": true
+      },
+      "identities": {
+        "curriculum": [],
+        "supplementalProjects": [
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-core-concepts",
+            "title": "Refactoring Clinic 14: Core Concepts",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-14-curriculum-refactoring-clinic-14-core-concepts"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-guided-example",
+            "title": "Refactoring Clinic 14: Guided Example",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-14-curriculum-refactoring-clinic-14-guided-example"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-14",
+            "title": "Core Project: Refactoring Clinic 14",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-14-curriculum-core-project-refactoring-clinic-14",
+              "design-patterns-in-java-part-2-refactoring-clinic-14-curriculum-core-project",
+              "design-patterns-in-java-part-2-refactoring-clinic-14-curriculum-refactoring-clinic-14-core-project",
+              "refactoring-clinic-14-core-project",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-core-project"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-14",
+            "title": "Review: Refactoring Clinic 14",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-14-curriculum-review-refactoring-clinic-14",
+              "design-patterns-in-java-part-2-refactoring-clinic-14-curriculum-refactoring-clinic-14-review-and-reflection",
+              "refactoring-clinic-14-review-and-reflection",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-review-and-reflection"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-14",
+            "title": "Extension Challenge: Refactoring Clinic 14",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-14-supplemental-extension-challenge-refactoring-clinic-14",
+              "design-patterns-in-java-part-2-refactoring-clinic-14-supplemental-extension-challenge",
+              "design-patterns-in-java-part-2-refactoring-clinic-14-supplemental-refactoring-clinic-14-extension-challenge",
+              "refactoring-clinic-14-extension-challenge",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-extension-challenge"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-transfer-practice",
+            "title": "Refactoring Clinic 14 Transfer Practice",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-14-supplemental-transfer-practice-refactoring-clinic-14",
+              "design-patterns-in-java-part-2-refactoring-clinic-14-supplemental-transfer-practice"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-extension-practice",
+            "title": "Refactoring Clinic 14 Extension Practice",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-14-supplemental-extension-practice-refactoring-clinic-14",
+              "design-patterns-in-java-part-2-refactoring-clinic-14-supplemental-extension-practice"
+            ]
+          }
+        ]
+      },
+      "sourceQualification": "six-clinics-first-native-independent-acceptance-20261115.json",
+      "modes": {
+        "core": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-14",
+        "transfer": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-transfer-practice",
+        "extension": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-extension-practice"
+      },
+      "groups": {
+        "core": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-14",
+          "replace": [
+            "src/app/EnergyMeter.java"
+          ],
+          "add": [],
+          "remove": [],
+          "primary": "src/app/EnergyMeter.java",
+          "checks": 143
+        },
+        "transfer": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-transfer-practice",
+          "replace": [
+            "src/transfer/EnergyLoss.java"
+          ],
+          "add": [],
+          "remove": [],
+          "primary": "src/transfer/EnergyLoss.java",
+          "checks": 669
+        },
+        "extension": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-14-extension-practice",
+          "replace": [
+            "src/extension/EnergyBatch.java"
+          ],
+          "add": [],
+          "remove": [],
+          "primary": "src/extension/EnergyBatch.java",
+          "checks": 7
+        }
+      },
+      "roleFileCounts": {
+        "starter": 16,
+        "solution": 16
+      },
+      "baselineChecks": 266,
+      "fullChecks": 819,
+      "unfinished": {
+        "core": "Complete named queries",
+        "transfer": "Complete loss percentage",
+        "extension": "Complete batch total"
+      },
+      "demos": {
+        "baseline": "EnergyResult[raw=99, usable=49, lost=50]\n",
+        "core": "EnergyResult[raw=99, usable=49, lost=50]\n",
+        "transfer": "50\n",
+        "extension": "BatchTotal[raw=199, usable=149, lost=50]\n"
+      }
+    },
+    {
+      "label": "15",
+      "unit": {
+        "id": "clinic15",
+        "courseID": "design-patterns-in-java-part-2",
+        "revision": "29000ec4e21398f4fed4ac65cd73fbac97cfdf1a",
+        "pack": "Clinic15-Workflow-Packs",
+        "layout": "src package folders, sources.txt and README.md",
+        "moduleID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17",
+        "readingID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-core-concepts",
+        "coreID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-15",
+        "sourceItems": [
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-core-concepts",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-guided-example",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-15",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-15",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-15",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-transfer-practice",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-extension-practice"
+        ],
+        "independentItems": [
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-transfer-practice",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-extension-practice"
+        ],
+        "files": {
+          "starter": [
+            "Main.java",
+            "CompatibilityClient.java",
+            "ContractChecks.java",
+            "README.md",
+            "REFACTORING.md",
+            "SOURCES.md",
+            "sources.txt",
+            "src/api/Documents.java",
+            "src/api/Rows.java",
+            "src/api/StepHook.java",
+            "src/app/DocumentService.java",
+            "src/app/DocumentTemplate.java",
+            "src/check/Checks.java",
+            "src/extension/NumberedRows.java",
+            "src/legacy/LegacyDocuments.java",
+            "src/transfer/WorkflowTrace.java"
+          ],
+          "solution": [
+            "Main.java",
+            "CompatibilityClient.java",
+            "ContractChecks.java",
+            "README.md",
+            "REFACTORING.md",
+            "SOURCES.md",
+            "sources.txt",
+            "src/api/Documents.java",
+            "src/api/Rows.java",
+            "src/api/StepHook.java",
+            "src/app/DocumentService.java",
+            "src/app/DocumentTemplate.java",
+            "src/app/MarkedDocument.java",
+            "src/app/PlainDocument.java",
+            "src/check/Checks.java",
+            "src/extension/NumberedRows.java",
+            "src/legacy/LegacyDocuments.java",
+            "src/transfer/WorkflowTrace.java"
+          ]
+        },
+        "instructions": [
+          "Java 21: Refactoring Clinic 15",
+          "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+          "java -ea -cp out ContractChecks baseline",
+          "java -da -cp out ContractChecks baseline",
+          "java -cp out Main baseline",
+          "java -cp out Main core",
+          "java -ea -cp out ContractChecks core",
+          "java -da -cp out ContractChecks core",
+          "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+          "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+          "Demo and check modes read no standard input. Run displays native commands.",
+          "The original entry point works; post-refactor core checks remain unfinished until the required new design entry points are implemented."
+        ],
+        "instructionsByItem": {
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-transfer-practice": [
+            "Java 21: Refactoring Clinic 15",
+            "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+            "java -ea -cp out ContractChecks baseline",
+            "java -da -cp out ContractChecks baseline",
+            "java -cp out Main baseline",
+            "java -cp out Main core",
+            "java -ea -cp out ContractChecks transfer",
+            "java -da -cp out ContractChecks transfer",
+            "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+            "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+            "Demo and check modes read no standard input. Run displays native commands."
+          ],
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-extension-practice": [
+            "Java 21: Refactoring Clinic 15",
+            "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+            "java -ea -cp out ContractChecks baseline",
+            "java -da -cp out ContractChecks baseline",
+            "java -cp out Main baseline",
+            "java -cp out Main core",
+            "java -ea -cp out ContractChecks extension",
+            "java -da -cp out ContractChecks extension",
+            "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+            "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+            "Demo and check modes read no standard input. Run displays native commands."
+          ]
+        },
+        "changesFiles": true
+      },
+      "identities": {
+        "curriculum": [],
+        "supplementalProjects": [
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-core-concepts",
+            "title": "Refactoring Clinic 15: Core Concepts",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-15-curriculum-refactoring-clinic-15-core-concepts"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-guided-example",
+            "title": "Refactoring Clinic 15: Guided Example",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-15-curriculum-refactoring-clinic-15-guided-example"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-15",
+            "title": "Core Project: Refactoring Clinic 15",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-15-curriculum-core-project-refactoring-clinic-15",
+              "design-patterns-in-java-part-2-refactoring-clinic-15-curriculum-core-project",
+              "design-patterns-in-java-part-2-refactoring-clinic-15-curriculum-refactoring-clinic-15-core-project",
+              "refactoring-clinic-15-core-project",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-core-project"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-15",
+            "title": "Review: Refactoring Clinic 15",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-15-curriculum-review-refactoring-clinic-15",
+              "design-patterns-in-java-part-2-refactoring-clinic-15-curriculum-refactoring-clinic-15-review-and-reflection",
+              "refactoring-clinic-15-review-and-reflection",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-review-and-reflection"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-15",
+            "title": "Extension Challenge: Refactoring Clinic 15",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-15-supplemental-extension-challenge-refactoring-clinic-15",
+              "design-patterns-in-java-part-2-refactoring-clinic-15-supplemental-extension-challenge",
+              "design-patterns-in-java-part-2-refactoring-clinic-15-supplemental-refactoring-clinic-15-extension-challenge",
+              "refactoring-clinic-15-extension-challenge",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-extension-challenge"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-transfer-practice",
+            "title": "Refactoring Clinic 15 Transfer Practice",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-15-supplemental-transfer-practice-refactoring-clinic-15",
+              "design-patterns-in-java-part-2-refactoring-clinic-15-supplemental-transfer-practice"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-extension-practice",
+            "title": "Refactoring Clinic 15 Extension Practice",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-15-supplemental-extension-practice-refactoring-clinic-15",
+              "design-patterns-in-java-part-2-refactoring-clinic-15-supplemental-extension-practice"
+            ]
+          }
+        ]
+      },
+      "sourceQualification": "six-clinics-first-native-independent-acceptance-20261115.json",
+      "modes": {
+        "core": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-15",
+        "transfer": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-transfer-practice",
+        "extension": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-extension-practice"
+      },
+      "groups": {
+        "core": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-15",
+          "replace": [
+            "src/app/DocumentService.java",
+            "src/app/DocumentTemplate.java"
+          ],
+          "add": [
+            "src/app/PlainDocument.java",
+            "src/app/MarkedDocument.java"
+          ],
+          "remove": [],
+          "primary": "src/app/DocumentService.java",
+          "checks": 41
+        },
+        "transfer": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-transfer-practice",
+          "replace": [
+            "src/transfer/WorkflowTrace.java"
+          ],
+          "add": [],
+          "remove": [],
+          "primary": "src/transfer/WorkflowTrace.java",
+          "checks": 10
+        },
+        "extension": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-15-extension-practice",
+          "replace": [
+            "src/extension/NumberedRows.java"
+          ],
+          "add": [],
+          "remove": [],
+          "primary": "src/extension/NumberedRows.java",
+          "checks": 6
+        }
+      },
+      "roleFileCounts": {
+        "starter": 16,
+        "solution": 18
+      },
+      "baselineChecks": 62,
+      "fullChecks": 57,
+      "unfinished": {
+        "core": "Complete template skeleton",
+        "transfer": "Complete workflow trace",
+        "extension": "Complete numbered rows"
+      },
+      "demos": {
+        "baseline": "begin\na\nb\nend\n",
+        "core": "begin\na\nb\nend\n",
+        "transfer": "[start, row:a, row:b, end]\n",
+        "extension": "ROWS\n1:a\n2:b\ntotal=2\n"
+      }
+    },
+    {
+      "label": "16",
+      "unit": {
+        "id": "clinic16",
+        "courseID": "design-patterns-in-java-part-2",
+        "revision": "29000ec4e21398f4fed4ac65cd73fbac97cfdf1a",
+        "pack": "Clinic16-Absence-Packs",
+        "layout": "src package folders, sources.txt and README.md",
+        "moduleID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17",
+        "readingID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-core-concepts",
+        "coreID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-16",
+        "sourceItems": [
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-core-concepts",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-guided-example",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-16",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-16",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-16",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-transfer-practice",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-extension-practice"
+        ],
+        "independentItems": [
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-transfer-practice",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-extension-practice"
+        ],
+        "files": {
+          "starter": [
+            "Main.java",
+            "CompatibilityClient.java",
+            "ContractChecks.java",
+            "README.md",
+            "REFACTORING.md",
+            "SOURCES.md",
+            "sources.txt",
+            "src/api/Greetings.java",
+            "src/api/Profile.java",
+            "src/app/GreetingService.java",
+            "src/check/Checks.java",
+            "src/extension/StrictGreeting.java",
+            "src/legacy/LegacyGreetings.java",
+            "src/transfer/ProfileLookup.java"
+          ],
+          "solution": [
+            "Main.java",
+            "CompatibilityClient.java",
+            "ContractChecks.java",
+            "README.md",
+            "REFACTORING.md",
+            "SOURCES.md",
+            "sources.txt",
+            "src/api/Greetings.java",
+            "src/api/Profile.java",
+            "src/app/GreetingService.java",
+            "src/app/GuestRecipient.java",
+            "src/app/KnownRecipient.java",
+            "src/app/Recipient.java",
+            "src/check/Checks.java",
+            "src/extension/StrictGreeting.java",
+            "src/legacy/LegacyGreetings.java",
+            "src/transfer/ProfileLookup.java"
+          ]
+        },
+        "instructions": [
+          "Java 21: Refactoring Clinic 16",
+          "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+          "java -ea -cp out ContractChecks baseline",
+          "java -da -cp out ContractChecks baseline",
+          "java -cp out Main baseline",
+          "java -cp out Main core",
+          "java -ea -cp out ContractChecks core",
+          "java -da -cp out ContractChecks core",
+          "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+          "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+          "Demo and check modes read no standard input. Run displays native commands.",
+          "Core behavior checks pass before refactoring; retain actual source changes and a small step record to establish design improvement."
+        ],
+        "instructionsByItem": {
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-transfer-practice": [
+            "Java 21: Refactoring Clinic 16",
+            "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+            "java -ea -cp out ContractChecks baseline",
+            "java -da -cp out ContractChecks baseline",
+            "java -cp out Main baseline",
+            "java -cp out Main core",
+            "java -ea -cp out ContractChecks transfer",
+            "java -da -cp out ContractChecks transfer",
+            "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+            "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+            "Demo and check modes read no standard input. Run displays native commands."
+          ],
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-extension-practice": [
+            "Java 21: Refactoring Clinic 16",
+            "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+            "java -ea -cp out ContractChecks baseline",
+            "java -da -cp out ContractChecks baseline",
+            "java -cp out Main baseline",
+            "java -cp out Main core",
+            "java -ea -cp out ContractChecks extension",
+            "java -da -cp out ContractChecks extension",
+            "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+            "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+            "Demo and check modes read no standard input. Run displays native commands."
+          ]
+        },
+        "changesFiles": true
+      },
+      "identities": {
+        "curriculum": [],
+        "supplementalProjects": [
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-core-concepts",
+            "title": "Refactoring Clinic 16: Core Concepts",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-16-curriculum-refactoring-clinic-16-core-concepts"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-guided-example",
+            "title": "Refactoring Clinic 16: Guided Example",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-16-curriculum-refactoring-clinic-16-guided-example"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-16",
+            "title": "Core Project: Refactoring Clinic 16",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-16-curriculum-core-project-refactoring-clinic-16",
+              "design-patterns-in-java-part-2-refactoring-clinic-16-curriculum-core-project",
+              "design-patterns-in-java-part-2-refactoring-clinic-16-curriculum-refactoring-clinic-16-core-project",
+              "refactoring-clinic-16-core-project",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-core-project"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-16",
+            "title": "Review: Refactoring Clinic 16",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-16-curriculum-review-refactoring-clinic-16",
+              "design-patterns-in-java-part-2-refactoring-clinic-16-curriculum-refactoring-clinic-16-review-and-reflection",
+              "refactoring-clinic-16-review-and-reflection",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-review-and-reflection"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-16",
+            "title": "Extension Challenge: Refactoring Clinic 16",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-16-supplemental-extension-challenge-refactoring-clinic-16",
+              "design-patterns-in-java-part-2-refactoring-clinic-16-supplemental-extension-challenge",
+              "design-patterns-in-java-part-2-refactoring-clinic-16-supplemental-refactoring-clinic-16-extension-challenge",
+              "refactoring-clinic-16-extension-challenge",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-extension-challenge"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-transfer-practice",
+            "title": "Refactoring Clinic 16 Transfer Practice",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-16-supplemental-transfer-practice-refactoring-clinic-16",
+              "design-patterns-in-java-part-2-refactoring-clinic-16-supplemental-transfer-practice"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-extension-practice",
+            "title": "Refactoring Clinic 16 Extension Practice",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-16-supplemental-extension-practice-refactoring-clinic-16",
+              "design-patterns-in-java-part-2-refactoring-clinic-16-supplemental-extension-practice"
+            ]
+          }
+        ]
+      },
+      "sourceQualification": "six-clinics-first-native-independent-acceptance-20261115.json",
+      "modes": {
+        "core": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-16",
+        "transfer": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-transfer-practice",
+        "extension": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-extension-practice"
+      },
+      "groups": {
+        "core": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-16",
+          "replace": [
+            "src/app/GreetingService.java"
+          ],
+          "add": [
+            "src/app/Recipient.java",
+            "src/app/GuestRecipient.java",
+            "src/app/KnownRecipient.java"
+          ],
+          "remove": [],
+          "primary": "src/app/GreetingService.java",
+          "checks": 42
+        },
+        "transfer": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-transfer-practice",
+          "replace": [
+            "src/transfer/ProfileLookup.java"
+          ],
+          "add": [],
+          "remove": [],
+          "primary": "src/transfer/ProfileLookup.java",
+          "checks": 11
+        },
+        "extension": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-16-extension-practice",
+          "replace": [
+            "src/extension/StrictGreeting.java"
+          ],
+          "add": [],
+          "remove": [],
+          "primary": "src/extension/StrictGreeting.java",
+          "checks": 4
+        }
+      },
+      "roleFileCounts": {
+        "starter": 14,
+        "solution": 17
+      },
+      "baselineChecks": 84,
+      "fullChecks": 57,
+      "unfinished": {
+        "core": null,
+        "transfer": "Complete explicit lookup",
+        "extension": "Complete required profile policy"
+      },
+      "demos": {
+        "baseline": "Hello, guest|screen\nHello, Ada|email\n",
+        "core": "Hello, guest|screen\nHello, Ada|email\n",
+        "transfer": "Optional[Profile[name=Ada, channel=email]]\n",
+        "extension": "Hello, Ada\n"
+      }
+    },
+    {
+      "label": "17",
+      "unit": {
+        "id": "clinic17",
+        "courseID": "design-patterns-in-java-part-2",
+        "revision": "29000ec4e21398f4fed4ac65cd73fbac97cfdf1a",
+        "pack": "Clinic17-Sequencing-Packs",
+        "layout": "src package folders, sources.txt and README.md",
+        "moduleID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17",
+        "readingID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-core-concepts",
+        "coreID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-17",
+        "sourceItems": [
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-core-concepts",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-guided-example",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-17",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-17",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-17",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-transfer-practice",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-extension-practice"
+        ],
+        "independentItems": [
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-transfer-practice",
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-extension-practice"
+        ],
+        "files": {
+          "starter": [
+            "Main.java",
+            "CompatibilityClient.java",
+            "ContractChecks.java",
+            "README.md",
+            "REFACTORING.md",
+            "SOURCES.md",
+            "sources.txt",
+            "src/api/BoardAPI.java",
+            "src/api/BoardRows.java",
+            "src/api/BoardStats.java",
+            "src/api/Task.java",
+            "src/app/BoardReport.java",
+            "src/check/Checks.java",
+            "src/extension/BoardPreview.java",
+            "src/legacy/LegacyBoard.java",
+            "src/transfer/SnapshotDiff.java"
+          ],
+          "solution": [
+            "Main.java",
+            "CompatibilityClient.java",
+            "ContractChecks.java",
+            "README.md",
+            "REFACTORING.md",
+            "SOURCES.md",
+            "sources.txt",
+            "src/api/BoardAPI.java",
+            "src/api/BoardRows.java",
+            "src/api/BoardStats.java",
+            "src/api/Task.java",
+            "src/app/BoardAnalysis.java",
+            "src/app/BoardReport.java",
+            "src/app/BoardText.java",
+            "src/check/Checks.java",
+            "src/extension/BoardPreview.java",
+            "src/legacy/LegacyBoard.java",
+            "src/transfer/SnapshotDiff.java"
+          ]
+        },
+        "instructions": [
+          "Java 21: Refactoring Clinic 17",
+          "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+          "java -ea -cp out ContractChecks baseline",
+          "java -da -cp out ContractChecks baseline",
+          "java -cp out Main baseline",
+          "java -cp out Main core",
+          "java -ea -cp out ContractChecks core",
+          "java -da -cp out ContractChecks core",
+          "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+          "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+          "Demo and check modes read no standard input. Run displays native commands.",
+          "Core behavior checks pass before refactoring; retain actual source changes and a small step record to establish design improvement."
+        ],
+        "instructionsByItem": {
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-transfer-practice": [
+            "Java 21: Refactoring Clinic 17",
+            "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+            "java -ea -cp out ContractChecks baseline",
+            "java -da -cp out ContractChecks baseline",
+            "java -cp out Main baseline",
+            "java -cp out Main core",
+            "java -ea -cp out ContractChecks transfer",
+            "java -da -cp out ContractChecks transfer",
+            "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+            "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+            "Demo and check modes read no standard input. Run displays native commands."
+          ],
+          "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-extension-practice": [
+            "Java 21: Refactoring Clinic 17",
+            "javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+            "java -ea -cp out ContractChecks baseline",
+            "java -da -cp out ContractChecks baseline",
+            "java -cp out Main baseline",
+            "java -cp out Main core",
+            "java -ea -cp out ContractChecks extension",
+            "java -da -cp out ContractChecks extension",
+            "Keep frozen APIs, legacy source and ContractChecks unchanged; add new Java files to sources.txt.",
+            "Use the optional projects as independent saved attempts. The README supplies their complete contracts.",
+            "Demo and check modes read no standard input. Run displays native commands."
+          ]
+        },
+        "changesFiles": true
+      },
+      "identities": {
+        "curriculum": [],
+        "supplementalProjects": [
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-core-concepts",
+            "title": "Refactoring Clinic 17: Core Concepts",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-17-curriculum-refactoring-clinic-17-core-concepts"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-guided-example",
+            "title": "Refactoring Clinic 17: Guided Example",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-17-curriculum-refactoring-clinic-17-guided-example"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-17",
+            "title": "Core Project: Refactoring Clinic 17",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-17-curriculum-core-project-refactoring-clinic-17",
+              "design-patterns-in-java-part-2-refactoring-clinic-17-curriculum-core-project",
+              "design-patterns-in-java-part-2-refactoring-clinic-17-curriculum-refactoring-clinic-17-core-project",
+              "refactoring-clinic-17-core-project",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-core-project"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-review-refactoring-clinic-17",
+            "title": "Review: Refactoring Clinic 17",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-17-curriculum-review-refactoring-clinic-17",
+              "design-patterns-in-java-part-2-refactoring-clinic-17-curriculum-refactoring-clinic-17-review-and-reflection",
+              "refactoring-clinic-17-review-and-reflection",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-review-and-reflection"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-extension-challenge-refactoring-clinic-17",
+            "title": "Extension Challenge: Refactoring Clinic 17",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-17-supplemental-extension-challenge-refactoring-clinic-17",
+              "design-patterns-in-java-part-2-refactoring-clinic-17-supplemental-extension-challenge",
+              "design-patterns-in-java-part-2-refactoring-clinic-17-supplemental-refactoring-clinic-17-extension-challenge",
+              "refactoring-clinic-17-extension-challenge",
+              "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-extension-challenge"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-transfer-practice",
+            "title": "Refactoring Clinic 17 Transfer Practice",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-17-supplemental-transfer-practice-refactoring-clinic-17",
+              "design-patterns-in-java-part-2-refactoring-clinic-17-supplemental-transfer-practice"
+            ]
+          },
+          {
+            "id": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-extension-practice",
+            "title": "Refactoring Clinic 17 Extension Practice",
+            "aliases": [
+              "design-patterns-in-java-part-2-refactoring-clinic-17-supplemental-extension-practice-refactoring-clinic-17",
+              "design-patterns-in-java-part-2-refactoring-clinic-17-supplemental-extension-practice"
+            ]
+          }
+        ]
+      },
+      "sourceQualification": "six-clinics-first-native-independent-acceptance-20261115.json",
+      "modes": {
+        "core": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-17",
+        "transfer": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-transfer-practice",
+        "extension": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-extension-practice"
+      },
+      "groups": {
+        "core": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-core-project-refactoring-clinic-17",
+          "replace": [
+            "src/app/BoardReport.java"
+          ],
+          "add": [
+            "src/app/BoardAnalysis.java",
+            "src/app/BoardText.java"
+          ],
+          "remove": [],
+          "primary": "src/app/BoardReport.java",
+          "checks": 553
+        },
+        "transfer": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-transfer-practice",
+          "replace": [
+            "src/transfer/SnapshotDiff.java"
+          ],
+          "add": [],
+          "remove": [],
+          "primary": "src/transfer/SnapshotDiff.java",
+          "checks": 11
+        },
+        "extension": {
+          "itemID": "design-patterns-in-java-part-2-optional-refactoring-clinics-11-17-supplemental-refactoring-clinic-17-extension-practice",
+          "replace": [
+            "src/extension/BoardPreview.java"
+          ],
+          "add": [],
+          "remove": [],
+          "primary": "src/extension/BoardPreview.java",
+          "checks": 7
+        }
+      },
+      "roleFileCounts": {
+        "starter": 16,
+        "solution": 18
+      },
+      "baselineChecks": 1106,
+      "fullChecks": 571,
+      "unfinished": {
+        "core": null,
+        "transfer": "Complete checkpoint comparison",
+        "extension": "Complete sorted preview"
+      },
+      "demos": {
+        "baseline": "tasks=3\ndone=1\nremaining=15\nopen=read,draw\n",
+        "core": "tasks=3\ndone=1\nremaining=15\nopen=read,draw\n",
+        "transfer": "1\n",
+        "extension": "[code, draw, read]\n"
+      }
+    }
+  ]
+}

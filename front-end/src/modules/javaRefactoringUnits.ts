@@ -1,4 +1,5 @@
 import { githubRawUrl, parseGitHubResource } from "@/modules/codePreview";
+import { javaRefactoringFinalUnits } from "./javaRefactoringFinalUnits";
 
 export const javaOwnershipUnit = {
 	id: "ownership-move",
@@ -647,7 +648,8 @@ export const javaRefactoringUnits = [
 	javaMethodCallsUnit,
 	javaGeneralizationUnit,
 	javaPatternJourneysUnit,
-	javaTestabilityUnit
+	javaTestabilityUnit,
+	...javaRefactoringFinalUnits
 ] as const;
 type Role = "starter" | "solution";
 export function javaRefactoringUnitURL(id: string, role: Role) {

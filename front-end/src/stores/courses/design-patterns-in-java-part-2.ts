@@ -7,6 +7,7 @@ import { completeJavaGeneralization } from "./javaGeneralizationTeaching";
 import { completeJavaMethodCalls } from "./javaMethodCallsTeaching";
 import { completeJavaOwnershipMove } from "./javaOwnershipMoveTeaching";
 import { completeJavaPatternJourneys } from "./javaPatternJourneysTeaching";
+import { completeJavaRefactoringFinalLesson } from "./javaRefactoringFinalTeaching";
 import { completeJavaRefactoringOpening } from "./javaRefactoringOpeningTeaching";
 import { completeJavaTestability } from "./javaTestabilityTeaching";
 import { completeJavaValueData } from "./javaValueDataTeaching";
@@ -1902,7 +1903,9 @@ function buildDesignPatternsJavaPart2ClinicAppendix(
 			{
 				title: "Refactoring Clinic Scope Guide",
 				content:
-					"**Course flow:** These seven clinics preserve the complete guided practice collection without presenting them as seven additional required units. Select the clinic that matches a diagnosed smell, preserve the original behavior first, complete its guided reconstruction, close reference code, and then attempt the transfer or extension from the last green baseline.",
+					"Choose an optional clinic from a diagnosed need after the matching core unit.\n\n| Clinic | Supplied application and focus | Useful after |\n| --- | --- | --- |\n| 11 | Route ownership and an unchanged client | DPR3 |\n| 12 | Message variants and caller-supplied rules | DPR5 or DPR8 |\n| 13 | Coherent range parameters and old-call adapters | DPR4 or DPR6 |\n| 14 | Energy intermediates and pure calculation queries | DPR2 |\n| 15 | Document workflow order and optional hooks | DPR7 or DPR8 |\n| 16 | Explicit guest, missing and invalid-profile policies | DPR5 or DPR6 |\n| 17 | A task-board refactor with recoverable checkpoints | DPR1 or DPR9 |\n\nStart with its complete concepts and working before design. Use the guided trace, refactor the core in small steps, then review the actual source and results. The continuation challenge shares that core attempt. Transfer and extension have independent tasks and saved attempts. Keep reference code closed until the attempt can be explained.",
+				contentKind: "reading",
+				preserveInstructions: true,
 				learningPath: "core"
 			}
 		],
@@ -1931,11 +1934,15 @@ const designPatternsJavaPart2PrimaryModules =
 		.map(completeJavaMethodCalls)
 		.map(completeJavaGeneralization)
 		.map(completeJavaPatternJourneys)
-		.map(completeJavaTestability);
+		.map(completeJavaTestability)
+		.map(completeJavaRefactoringFinalLesson);
 const designPatternsJavaPart2Clinics =
-	designPatternsInJavaPart2SourceCourse.modules.filter(
-		module => !DESIGN_PATTERNS_JAVA_PART_2_PRIMARY_TITLES.has(module.title)
-	);
+	designPatternsInJavaPart2SourceCourse.modules
+		.filter(
+			module =>
+				!DESIGN_PATTERNS_JAVA_PART_2_PRIMARY_TITLES.has(module.title)
+		)
+		.map(completeJavaRefactoringFinalLesson);
 
 export const designPatternsInJavaPart2Course: RawCourse = {
 	...designPatternsInJavaPart2SourceCourse,
