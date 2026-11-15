@@ -65,15 +65,13 @@ import { javaLevel3Course } from "@/stores/courses/java-level-3";
 
 function isReviewedModule(id: string, title: string) {
 	if (id === "java-level-3") return title === "AJ4 Recursion";
-	if (id === "design-patterns-in-java-part-2")
-		return title !== "Course Roadmap" && title !== "Project Practice Guide";
 	return true;
 }
 const cases = [
 	{
 		id: "design-patterns-in-java-part-2",
 		source: designPatternsInJavaPart2Course,
-		readings: 22,
+		readings: 30,
 		additions: []
 	},
 	{
@@ -745,29 +743,29 @@ it.each(
 			const reviewed = modules.filter(module =>
 				isReviewedModule(id, module.title)
 			);
-			expect(reviewed).toHaveLength(12);
+			expect(reviewed).toHaveLength(14);
 			expect(reviewed.flatMap(module => module.readings)).toHaveLength(
-				22
+				30
 			);
 			const activities = reviewed.flatMap(module => [
 				...module.projects,
 				...module.optional
 			]);
-			expect(activities).toHaveLength(122);
+			expect(activities).toHaveLength(129);
 			expect(
 				reviewed.flatMap(module => [
 					...module.readings,
 					...module.projects,
 					...module.optional
 				])
-			).toHaveLength(144);
+			).toHaveLength(159);
 			expect(
 				activities.every(
 					item => item.assignmentTextScope === "complete"
 				)
 			).toBe(true);
 			expect(activities.flatMap(item => item.selfChecks)).toHaveLength(
-				244
+				258
 			);
 		} else if (id === "java-level-3") expect(modules).toHaveLength(25);
 		else if (algebra1)
@@ -808,7 +806,11 @@ it.each(
 				expect(module.readings, module.title).toHaveLength(expected);
 			} else if (id === "design-patterns-in-java-part-2") {
 				expect(module.readings, module.title).toHaveLength(
-					module.title === "Standards Map"
+					[
+						"Standards Map",
+						"Course Roadmap",
+						"Project Practice Guide"
+					].includes(module.title)
 						? 4
 						: module.title === "Optional Refactoring Clinics 11–17"
 							? 8
@@ -940,7 +942,7 @@ it.each(
 							id === "design-patterns-in-java"
 								? "Complete primary course: ten teaching units, applied studios and three reference appendices. All 134 published identities covered by 32 complete readings, 102 activities and 204 input/answer case views per role/width profile."
 								: id === "design-patterns-in-java-part-2"
-									? "DPR1 through DPR10, optional clinics 11-17 and Standards Map: 22 complete readings, 122 activities and 244 input/answer case views per role/width profile covering 144 records. All 159 published course identities checked. The 15 Course Roadmap and Project Practice Guide records remain outside this teaching/runtime acceptance."
+									? "Complete course: DPR1-DPR10, seven optional clinics and three reference appendices. All159published identities are covered by30readings,129activities and258input/answer case views per role/width profile. Individual source-editor qualifications remain separately recorded."
 									: id === "java-level-3"
 										? "AJ4 only: one reading, two core projects, three optional tasks and ten input/response views per profile. All 217 course identities checked; other Java units are outside this teaching and runtime acceptance."
 										: id ===

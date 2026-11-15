@@ -220,3 +220,11 @@ The copied membership stays [ana]. join(null,null) reports NullPointerException(
 
 The parameter-object work fits DPR6/Clinic13, the runtime variant work fits DPR5 or DPR8/Clinic12, and the sequencing problem fits DPR1/DPR9/Clinic17. Start from each working baseline, retain a small first extraction and choose the next step from its result. Explain a different path with the same protected contract if it is better justified.
 
+
+## Refactoring prerequisite map
+
+A defensible core path is DPR1 characterization and recoverable changes, DPR2 method extraction, DPR3 ownership, DPR4 representation, DPR5 conditions, DPR6 public calls, DPR7 generalization, DPR8 pattern judgment, DPR9 effect seams, then DPR10. Some adjacent techniques can be revisited when a protected application exposes their need. Route ownership follows DPR3 and preserves distance 7; the range clinic follows DPR4/DPR6 and preserves [2,5,8] for (2,9,3); workflow hooks follow DPR7/DPR8 and preserve header/row/footer order; guest handling follows DPR5/DPR6 and distinguishes missing input from a present guest/email profile. Explain an alternative using the same prerequisites and observable promises.
+
+## Refactoring resource inventory
+
+Compile all Java paths named by sources.txt with javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt in the workshop role folder. Add src/app/SessionBook.java to that manifest, retain its package declaration and preserve the frozen API/client/check files. REFACTORING.md records the actual responsibility changes and passing source steps. Demo/check modes need no stdin; Main script-baseline and script-core read sample-input.txt through terminal redirection. In the editor role folder use its README command and -d classes; the full core includes document validation, listener capture/order and command lifecycle. A targeted event or undo experiment retains the other required core behavior. The starter is executable task material, the reference solution is a possible completed design, and the case/self-check pair supplies predictions and worked reasoning.

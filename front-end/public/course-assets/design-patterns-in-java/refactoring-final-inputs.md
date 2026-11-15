@@ -220,3 +220,11 @@ Snapshot [ana] before the caller appends bo. On an existing desk call join(null,
 
 Choose practice for a start/end/step clump, a caller-supplied rendering rule and a report with duplicate calculations plus mixed formatting.
 
+
+## Refactoring prerequisite map
+
+A Java application has working public calls but mixes input validation, calculation, mutable state and console output. A planned capstone must preserve its behavior while moving responsibilities. Place the ten core units in a defensible order. Add optional edges for route ownership, range arguments, document hooks and explicit guest handling. For each edge, name a value, failure or effect that must stay protected.
+
+## Refactoring resource inventory
+
+Compare the workshop starter and DPJ7 editor starter. In the workshop, a new src/app/SessionBook.java is extracted and Main script-core reads commands. Identify the compile inputs and the saved record of responsibility changes. In the editor, select EventBus or ReplaceCommand and identify which complete core behavior still needs protection. Keep reference code and worked answers separate from the starting program.

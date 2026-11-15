@@ -1813,6 +1813,7 @@ jobs:
           test/java-testability-workspace.spec.test.ts
           test/java-refactoring-final-source-bindings.spec.test.ts
           test/java-refactoring-final-teaching.spec.test.ts
+          test/java-refactoring-practice-source-bindings.spec.test.ts
           test/java-pattern-journeys-workspace.spec.test.ts
           test/java-generalization-workspace.spec.test.ts
           test/java-composing-methods-workspace.spec.test.ts
@@ -1937,6 +1938,18 @@ jobs:
         env:
           JAVA_REFACTORING_FINAL_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-refactoring-final
         run: node scripts/classes-family-heavy-task.mjs -- python3 -I -B test/java-refactoring-final-exported-native.py
+      - name: Verify five optional refactoring practice imports and separate saved attempts
+        id: java_refactoring_practice_browser
+        if: always() && !cancelled() && inputs.course == 'java-refactoring-final' && steps.course_build.outcome == 'success'
+        env:
+          JAVA_REFACTORING_PRACTICE_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-refactoring-practice
+          COURSE_IMPORT_SCREENSHOT_DIR: ${{ github.workspace }}/output/self-study-browser/java-refactoring-practice/screenshots
+        run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/java-refactoring-practice-course-browser.test.mjs
+      - name: Compile all actual optional refactoring practice exports with Java 21
+        if: always() && !cancelled() && inputs.course == 'java-refactoring-final' && steps.java_refactoring_practice_browser.outcome == 'success'
+        env:
+          JAVA_REFACTORING_PRACTICE_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-refactoring-practice
+        run: node scripts/classes-family-heavy-task.mjs -- python3 -I -B test/java-refactoring-practice-exported-native.py
       - name: Verify testability imports, saved clients and separate optional attempts
         id: java_testability_browser
         if: always() && !cancelled() && inputs.course == 'java-testability' && steps.course_build.outcome == 'success'
