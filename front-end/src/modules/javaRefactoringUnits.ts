@@ -413,12 +413,136 @@ export const javaGeneralizationUnit = {
 	},
 	changesFiles: true
 } as const;
+export const javaPatternJourneysUnit = {
+	id: "pattern-journeys",
+	courseID: "design-patterns-in-java-part-2",
+	revision: "9dc0cd44aab53f25982938676492c4980df3e682",
+	pack: "DPR8-Pattern-Journeys-Packs",
+	layout: "src/notices, src/tickets, src/editor and sources.txt",
+	moduleID: "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns",
+	readingID:
+		"design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-curriculum-refactoring-toward-patterns-core-concepts",
+	coreID: "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-curriculum-core-project-refactoring-toward-patterns",
+	sourceItems: [
+		"design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-curriculum-pattern-arrival-evidence-and-exit-trigger",
+		"design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-curriculum-core-project-refactoring-toward-patterns",
+		"design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-refactoring-toward-patterns-transfer-practice",
+		"design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-refactoring-toward-patterns-extension-practice"
+	],
+	independentItems: [
+		"design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-refactoring-toward-patterns-transfer-practice",
+		"design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-refactoring-toward-patterns-extension-practice"
+	],
+	files: {
+		starter: [
+			"Main.java",
+			"CompatibilityClient.java",
+			"ContractChecks.java",
+			"README.md",
+			"REFACTORING.md",
+			"SOURCES.md",
+			"sources.txt",
+			"src/editor/AncientDay.java",
+			"src/editor/Editor.java",
+			"src/editor/EditorAPI.java",
+			"src/editor/LegacyEditor.java",
+			"src/notices/LegacyNotices.java",
+			"src/notices/Notice.java",
+			"src/notices/NoticeAPI.java",
+			"src/notices/NoticeService.java",
+			"src/tickets/GuardTicket.java",
+			"src/tickets/LegacyTicket.java",
+			"src/tickets/StrategyTicket.java",
+			"src/tickets/Ticket.java",
+			"src/tickets/TicketAPI.java"
+		],
+		solution: [
+			"Main.java",
+			"CompatibilityClient.java",
+			"ContractChecks.java",
+			"README.md",
+			"REFACTORING.md",
+			"SOURCES.md",
+			"sources.txt",
+			"src/editor/AncientDay.java",
+			"src/editor/AppendCommand.java",
+			"src/editor/CommandHistory.java",
+			"src/editor/DayAdapter.java",
+			"src/editor/DayExtension.java",
+			"src/editor/EditCommand.java",
+			"src/editor/Editor.java",
+			"src/editor/EditorAPI.java",
+			"src/editor/LegacyEditor.java",
+			"src/editor/NoteDate.java",
+			"src/editor/TextBuffer.java",
+			"src/notices/BracketCreator.java",
+			"src/notices/LegacyNotices.java",
+			"src/notices/Notice.java",
+			"src/notices/NoticeAPI.java",
+			"src/notices/NoticeCreator.java",
+			"src/notices/NoticeLine.java",
+			"src/notices/NoticeService.java",
+			"src/notices/Ordering.java",
+			"src/notices/OriginalOrder.java",
+			"src/notices/ReversedOrder.java",
+			"src/notices/TextCreator.java",
+			"src/tickets/GuardTicket.java",
+			"src/tickets/LegacyTicket.java",
+			"src/tickets/StrategyTicket.java",
+			"src/tickets/Ticket.java",
+			"src/tickets/TicketAPI.java",
+			"src/tickets/TicketState.java"
+		]
+	},
+	instructions: [
+		"Java 21 notice creation and ordering",
+		"Add extracted Java types to sources.txt and preserve all package directories.",
+		"javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+		"java -ea -cp out Main baseline",
+		"java -ea -cp out ContractChecks baseline",
+		"java -ea -cp out Main core",
+		"java -ea -cp out ContractChecks core",
+		"java -da -cp out ContractChecks core",
+		"The three projects can be completed independently. Keep the frozen API, Legacy sources and checks unchanged.",
+		"Run displays native Java commands. These programs read no standard input."
+	],
+	instructionsByItem: {
+		"design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-refactoring-toward-patterns-transfer-practice":
+			[
+				"Java 21 optional state-transition comparison",
+				"Add extracted Java types to sources.txt and preserve all package directories.",
+				"javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+				"java -ea -cp out Main transfer-baseline",
+				"java -ea -cp out ContractChecks baseline",
+				"java -ea -cp out Main transfer",
+				"java -ea -cp out ContractChecks transfer",
+				"java -da -cp out ContractChecks transfer",
+				"The three projects can be completed independently. Keep the frozen API, Legacy sources and checks unchanged.",
+				"Run displays native Java commands. These programs read no standard input."
+			],
+		"design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-refactoring-toward-patterns-extension-practice":
+			[
+				"Java 21 optional editor boundaries and undo",
+				"Add extracted Java types to sources.txt and preserve all package directories.",
+				"javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+				"java -ea -cp out Main extension-baseline",
+				"java -ea -cp out ContractChecks baseline",
+				"java -ea -cp out Main extension",
+				"java -ea -cp out ContractChecks extension",
+				"java -da -cp out ContractChecks extension",
+				"The three projects can be completed independently. Keep the frozen API, Legacy sources and checks unchanged.",
+				"Run displays native Java commands. These programs read no standard input."
+			]
+	},
+	changesFiles: true
+} as const;
 export const javaRefactoringUnits = [
 	javaOwnershipUnit,
 	javaValueDataUnit,
 	javaConditionalFlowUnit,
 	javaMethodCallsUnit,
-	javaGeneralizationUnit
+	javaGeneralizationUnit,
+	javaPatternJourneysUnit
 ] as const;
 type Role = "starter" | "solution";
 export function javaRefactoringUnitURL(id: string, role: Role) {

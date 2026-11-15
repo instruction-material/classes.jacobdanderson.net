@@ -8,7 +8,7 @@ on:
       course:
         description: Course verification to run
         type: choice
-        options: [release-checks, ai-studios, swift-map, javascript-business-directory, java-generalization, java-method-calls, javascript-hundred-squares, javascript-businesses, javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
+        options: [release-checks, ai-studios, swift-map, javascript-business-directory, java-pattern-journeys, java-generalization, java-method-calls, javascript-hundred-squares, javascript-businesses, javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
         default: pygames
       full_source_runtime:
         description: Also verify every pinned original PyGames runtime profile
@@ -1755,13 +1755,13 @@ jobs:
           retention-days: 14
 
   self-study:
-    if: inputs.course == 'java-generalization' || inputs.course == 'java-method-calls' || inputs.course == 'java-conditional-flow' || inputs.course == 'java-value-data' || inputs.course == 'java-ownership-move' || inputs.course == 'java-composing' || inputs.course == 'java-refactoring' || inputs.course == 'java-studios' || inputs.course == 'java-capstone' || inputs.course == 'java-judgment' || inputs.course == 'java-architecture' || inputs.course == 'java-collaboration' || inputs.course == 'java-behavioral' || inputs.course == 'java-structural' || inputs.course == 'java-boundary' || inputs.course == 'java-creational' || inputs.course == 'java-foundations' || inputs.course == 'java-patterns' || inputs.course == 'java-recursion' || inputs.course == 'self-study' || inputs.course == 'physics-models' || inputs.course == 'bootcamp' || inputs.course == 'scratch-originals' || inputs.course == 'scratch-readings' || inputs.course == 'course-audit' || inputs.course == 'scratch-tasks'
+    if: inputs.course == 'java-pattern-journeys' || inputs.course == 'java-generalization' || inputs.course == 'java-method-calls' || inputs.course == 'java-conditional-flow' || inputs.course == 'java-value-data' || inputs.course == 'java-ownership-move' || inputs.course == 'java-composing' || inputs.course == 'java-refactoring' || inputs.course == 'java-studios' || inputs.course == 'java-capstone' || inputs.course == 'java-judgment' || inputs.course == 'java-architecture' || inputs.course == 'java-collaboration' || inputs.course == 'java-behavioral' || inputs.course == 'java-structural' || inputs.course == 'java-boundary' || inputs.course == 'java-creational' || inputs.course == 'java-foundations' || inputs.course == 'java-patterns' || inputs.course == 'java-recursion' || inputs.course == 'self-study' || inputs.course == 'physics-models' || inputs.course == 'bootcamp' || inputs.course == 'scratch-originals' || inputs.course == 'scratch-readings' || inputs.course == 'course-audit' || inputs.course == 'scratch-tasks'
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     env:
       CLASSES_FAMILY_TASK_ID: self-study-courses-${{ github.run_id }}
       SELF_STUDY_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser
-      SELF_STUDY_BROWSER_COURSES: ${{ inputs.course == 'java-generalization' && 'design-patterns-in-java-part-2' || inputs.course == 'java-method-calls' && 'design-patterns-in-java-part-2' || inputs.course == 'java-conditional-flow' && 'design-patterns-in-java-part-2' || inputs.course == 'java-value-data' && 'design-patterns-in-java-part-2' || inputs.course == 'java-ownership-move' && 'design-patterns-in-java-part-2' || inputs.course == 'java-composing' && 'design-patterns-in-java-part-2' || inputs.course == 'java-refactoring' && 'design-patterns-in-java,design-patterns-in-java-part-2' || inputs.course == 'java-studios' && 'design-patterns-in-java' || inputs.course == 'java-capstone' && 'design-patterns-in-java' || inputs.course == 'java-judgment' && 'design-patterns-in-java' || inputs.course == 'java-architecture' && 'design-patterns-in-java' || inputs.course == 'java-collaboration' && 'design-patterns-in-java' || inputs.course == 'java-behavioral' && 'design-patterns-in-java' || inputs.course == 'java-structural' && 'design-patterns-in-java' || inputs.course == 'java-boundary' && 'design-patterns-in-java' || inputs.course == 'java-creational' && 'design-patterns-in-java' || inputs.course == 'java-foundations' && 'design-patterns-in-java' || inputs.course == 'java-patterns' && 'design-patterns-in-java' || inputs.course == 'java-recursion' && 'java-level-3' || inputs.course == 'bootcamp' && 'scratch-level-1-bootcamp' || inputs.course == 'physics-models' && 'pre-algebra-a,intro-to-physics,physics-level-2' || inputs.course == 'self-study' && inputs.self_study_courses || '' }}
+      SELF_STUDY_BROWSER_COURSES: ${{ inputs.course == 'java-pattern-journeys' && 'design-patterns-in-java-part-2' || inputs.course == 'java-generalization' && 'design-patterns-in-java-part-2' || inputs.course == 'java-method-calls' && 'design-patterns-in-java-part-2' || inputs.course == 'java-conditional-flow' && 'design-patterns-in-java-part-2' || inputs.course == 'java-value-data' && 'design-patterns-in-java-part-2' || inputs.course == 'java-ownership-move' && 'design-patterns-in-java-part-2' || inputs.course == 'java-composing' && 'design-patterns-in-java-part-2' || inputs.course == 'java-refactoring' && 'design-patterns-in-java,design-patterns-in-java-part-2' || inputs.course == 'java-studios' && 'design-patterns-in-java' || inputs.course == 'java-capstone' && 'design-patterns-in-java' || inputs.course == 'java-judgment' && 'design-patterns-in-java' || inputs.course == 'java-architecture' && 'design-patterns-in-java' || inputs.course == 'java-collaboration' && 'design-patterns-in-java' || inputs.course == 'java-behavioral' && 'design-patterns-in-java' || inputs.course == 'java-structural' && 'design-patterns-in-java' || inputs.course == 'java-boundary' && 'design-patterns-in-java' || inputs.course == 'java-creational' && 'design-patterns-in-java' || inputs.course == 'java-foundations' && 'design-patterns-in-java' || inputs.course == 'java-patterns' && 'design-patterns-in-java' || inputs.course == 'java-recursion' && 'java-level-3' || inputs.course == 'bootcamp' && 'scratch-level-1-bootcamp' || inputs.course == 'physics-models' && 'pre-algebra-a,intro-to-physics,physics-level-2' || inputs.course == 'self-study' && inputs.self_study_courses || '' }}
       PHYSICS2_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/physics-models
       SCRATCH_ORIGINAL_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/scratch-originals
       COURSE_CATALOG_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/catalog
@@ -1810,6 +1810,7 @@ jobs:
           test/java-value-data-workspace.spec.test.ts
           test/java-conditional-flow-workspace.spec.test.ts
           test/java-method-calls-workspace.spec.test.ts
+          test/java-pattern-journeys-workspace.spec.test.ts
           test/java-generalization-workspace.spec.test.ts
           test/java-composing-methods-workspace.spec.test.ts
           test/java-refactoring-opening-workspace.spec.test.ts
@@ -1920,6 +1921,18 @@ jobs:
         env:
           SCRATCH_BROWSER_READING_ONLY: '1'
         run: node scripts/classes-family-heavy-task.mjs -- node --test test/scratch-browser.test.mjs
+      - name: Verify pattern-journeys imports, saved clients and separate optional attempts
+        id: java_pattern_journeys_browser
+        if: always() && !cancelled() && inputs.course == 'java-pattern-journeys' && steps.course_build.outcome == 'success'
+        env:
+          JAVA_PATTERN_JOURNEYS_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-pattern-journeys
+          COURSE_IMPORT_SCREENSHOT_DIR: ${{ github.workspace }}/output/self-study-browser/java-pattern-journeys/screenshots
+        run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/java-pattern-journeys-course-browser.test.mjs
+      - name: Compile every actual pattern-journeys source export with Java 21
+        if: always() && !cancelled() && inputs.course == 'java-pattern-journeys' && steps.java_pattern_journeys_browser.outcome == 'success'
+        env:
+          JAVA_PATTERN_JOURNEYS_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/java-pattern-journeys
+        run: node scripts/classes-family-heavy-task.mjs -- python3 -I -B test/java-pattern-journeys-exported-native.py
       - name: Verify generalization imports, saved clients and separate optional attempts
         id: java_generalization_browser
         if: always() && !cancelled() && inputs.course == 'java-generalization' && steps.course_build.outcome == 'success'

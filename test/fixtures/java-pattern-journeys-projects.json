@@ -1,0 +1,82 @@
+{
+  "pack": "DPR8-Pattern-Journeys-Packs",
+  "moduleID": "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns",
+  "courseID": "design-patterns-in-java-part-2",
+  "coreID": "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-curriculum-core-project-refactoring-toward-patterns",
+  "readingID": "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-curriculum-refactoring-toward-patterns-core-concepts",
+  "sourceItems": [
+    "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-curriculum-pattern-arrival-evidence-and-exit-trigger",
+    "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-curriculum-core-project-refactoring-toward-patterns",
+    "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-refactoring-toward-patterns-transfer-practice",
+    "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-refactoring-toward-patterns-extension-practice"
+  ],
+  "independentItems": [
+    "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-refactoring-toward-patterns-transfer-practice",
+    "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-refactoring-toward-patterns-extension-practice"
+  ],
+  "groups": {
+    "core": {
+      "itemID": "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-curriculum-core-project-refactoring-toward-patterns",
+      "primary": "src/notices/NoticeService.java",
+      "replace": [
+        "src/notices/NoticeService.java"
+      ],
+      "add": [
+        "src/notices/BracketCreator.java",
+        "src/notices/NoticeCreator.java",
+        "src/notices/NoticeLine.java",
+        "src/notices/Ordering.java",
+        "src/notices/OriginalOrder.java",
+        "src/notices/ReversedOrder.java",
+        "src/notices/TextCreator.java"
+      ],
+      "remove": [],
+      "checks": 2040
+    },
+    "transfer": {
+      "itemID": "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-refactoring-toward-patterns-transfer-practice",
+      "primary": "src/tickets/Ticket.java",
+      "replace": [
+        "src/tickets/Ticket.java"
+      ],
+      "add": [
+        "src/tickets/TicketState.java"
+      ],
+      "remove": [],
+      "checks": 24600
+    },
+    "extension": {
+      "itemID": "design-patterns-in-java-part-2-dpr8-refactoring-toward-patterns-supplemental-refactoring-toward-patterns-extension-practice",
+      "primary": "src/editor/Editor.java",
+      "replace": [
+        "src/editor/Editor.java"
+      ],
+      "add": [
+        "src/editor/AppendCommand.java",
+        "src/editor/CommandHistory.java",
+        "src/editor/DayAdapter.java",
+        "src/editor/DayExtension.java",
+        "src/editor/EditCommand.java",
+        "src/editor/NoteDate.java",
+        "src/editor/TextBuffer.java"
+      ],
+      "remove": [],
+      "checks": 9595
+    }
+  },
+  "baselineChecks": 19810,
+  "roleFileCounts": {
+    "starter": 20,
+    "solution": 35
+  },
+  "demos": {
+    "core": "Notes\n[kit:3]\n[lamp:2]\nend=2\n",
+    "transfer": "finish=false:DRAFT\napprove=true:READY\napprove=false:READY\nfinish=true:DONE\nreset=true:DRAFT\n[DRAFT->READY, READY->DONE, DONE->DRAFT]\n",
+    "extension": "2026-11-15 | lamp\n2026-11-16 | kit\nundo=true\n2026-11-15 | lamp\nredo=true\n2026-11-15 | lamp\n2026-11-16 | kit\n"
+  },
+  "unfinished": {
+    "core": "Unfinished extraction: notices.NoticeCreator",
+    "transfer": "Unfinished extraction: tickets.TicketState",
+    "extension": "Unfinished extraction: editor.TextBuffer"
+  }
+}

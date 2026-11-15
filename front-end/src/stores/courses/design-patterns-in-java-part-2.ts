@@ -6,6 +6,7 @@ import { completeJavaConditionalFlow } from "./javaConditionalFlowTeaching";
 import { completeJavaGeneralization } from "./javaGeneralizationTeaching";
 import { completeJavaMethodCalls } from "./javaMethodCallsTeaching";
 import { completeJavaOwnershipMove } from "./javaOwnershipMoveTeaching";
+import { completeJavaPatternJourneys } from "./javaPatternJourneysTeaching";
 import { completeJavaRefactoringOpening } from "./javaRefactoringOpeningTeaching";
 import { completeJavaValueData } from "./javaValueDataTeaching";
 import { buildProjectGuidance } from "./projectGuidance";
@@ -1927,7 +1928,8 @@ const designPatternsJavaPart2PrimaryModules =
 		.map(completeJavaValueData)
 		.map(completeJavaConditionalFlow)
 		.map(completeJavaMethodCalls)
-		.map(completeJavaGeneralization);
+		.map(completeJavaGeneralization)
+		.map(completeJavaPatternJourneys);
 const designPatternsJavaPart2Clinics =
 	designPatternsInJavaPart2SourceCourse.modules.filter(
 		module => !DESIGN_PATTERNS_JAVA_PART_2_PRIMARY_TITLES.has(module.title)
