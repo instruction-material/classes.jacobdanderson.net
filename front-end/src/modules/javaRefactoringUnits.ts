@@ -286,11 +286,139 @@ export const javaMethodCallsUnit = {
 		"Run displays native Java commands. These programs read no standard input."
 	]
 } as const;
+export const javaGeneralizationUnit = {
+	id: "generalization",
+	courseID: "design-patterns-in-java-part-2",
+	revision: "0a5f53be17db36972ec699584cf7c5b666fddd18",
+	pack: "DPR7-Generalization-Packs",
+	layout: "src/roster, src/reports, src/events and sources.txt",
+	moduleID: "design-patterns-in-java-part-2-dpr7-dealing-with-generalization",
+	readingID:
+		"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-dealing-with-generalization-core-concepts",
+	coreID: "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-core-project-dealing-with-generalization",
+	sourceItems: [
+		"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-dealing-with-generalization-application-check",
+		"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-substitutability-and-hierarchy-exit-contract",
+		"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-core-project-dealing-with-generalization",
+		"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dealing-with-generalization-transfer-practice",
+		"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dealing-with-generalization-extension-practice"
+	],
+	independentItems: [
+		"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dealing-with-generalization-transfer-practice",
+		"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dealing-with-generalization-extension-practice"
+	],
+	files: {
+		starter: [
+			"Main.java",
+			"src/roster/Roster.java",
+			"ContractChecks.java",
+			"README.md",
+			"REFACTORING.md",
+			"SOURCES.md",
+			"sources.txt",
+			"src/events/Counter.java",
+			"src/events/CounterAPI.java",
+			"src/events/EventBuffer.java",
+			"src/events/EventBufferAPI.java",
+			"src/events/EventFactory.java",
+			"src/events/LegacyEventModels.java",
+			"src/events/NamedCounter.java",
+			"src/events/NamedValue.java",
+			"src/reports/Format.java",
+			"src/reports/LegacyReports.java",
+			"src/reports/ReportService.java",
+			"src/reports/Row.java",
+			"src/roster/CompatibilityClient.java",
+			"src/roster/LegacyRoster.java",
+			"src/roster/Mentor.java",
+			"src/roster/MentorFormatter.java",
+			"src/roster/RoleFormatter.java",
+			"src/roster/RosterAPI.java",
+			"src/roster/SponsorBanner.java",
+			"src/roster/Volunteer.java",
+			"src/roster/VolunteerFormatter.java"
+		],
+		solution: [
+			"Main.java",
+			"src/roster/Roster.java",
+			"ContractChecks.java",
+			"README.md",
+			"REFACTORING.md",
+			"SOURCES.md",
+			"sources.txt",
+			"src/events/Counter.java",
+			"src/events/CounterAPI.java",
+			"src/events/EventBuffer.java",
+			"src/events/EventBufferAPI.java",
+			"src/events/EventFactory.java",
+			"src/events/LegacyEventModels.java",
+			"src/events/NamedCounter.java",
+			"src/events/NamedValue.java",
+			"src/reports/CsvReport.java",
+			"src/reports/Format.java",
+			"src/reports/LegacyReports.java",
+			"src/reports/PlainReport.java",
+			"src/reports/Report.java",
+			"src/reports/ReportService.java",
+			"src/reports/Row.java",
+			"src/roster/CompatibilityClient.java",
+			"src/roster/LegacyRoster.java",
+			"src/roster/LineSource.java",
+			"src/roster/Member.java",
+			"src/roster/Mentor.java",
+			"src/roster/RosterAPI.java",
+			"src/roster/SponsorBanner.java",
+			"src/roster/Volunteer.java"
+		]
+	},
+	instructions: [
+		"Java 21 generalization: roster hierarchy",
+		"Export every project file and keep the package directories. Add extracted types to sources.txt and remove retired formatter paths.",
+		"javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+		"java -ea -cp out Main baseline",
+		"java -ea -cp out ContractChecks baseline",
+		"java -ea -cp out Main core",
+		"java -ea -cp out ContractChecks core",
+		"java -da -cp out ContractChecks core",
+		"Core completes the roster hierarchy and common line interface. The optional report/event projects are independent.",
+		"Clean an earlier generated out directory after removing obsolete classes.",
+		"Run displays native Java commands. These programs read no standard input."
+	],
+	instructionsByItem: {
+		"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dealing-with-generalization-transfer-practice":
+			[
+				"Java 21 optional report-template project",
+				"Core roster files may remain at the starter design. Add Report, PlainReport and CsvReport paths to sources.txt.",
+				"javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+				"java -ea -cp out Main transfer-baseline",
+				"java -ea -cp out Main transfer",
+				"java -ea -cp out ContractChecks transfer",
+				"java -da -cp out ContractChecks transfer",
+				"Keep the common render order and move CSV-specific members into CsvReport.",
+				"Run displays native Java commands. These programs read no standard input."
+			],
+		"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dealing-with-generalization-extension-practice":
+			[
+				"Java 21 optional event/counter relationships",
+				"Core roster and report files may remain at their starter designs.",
+				"javac --release 21 -encoding UTF-8 -Xlint:all -Werror -d out @sources.txt",
+				"java -ea -cp out Main extension-baseline",
+				"java -ea -cp out Main extension",
+				"java -ea -cp out ContractChecks extension",
+				"java -da -cp out ContractChecks extension",
+				"Replace list inheritance with composition, remove DefaultEventBuffer and inherit the unchanged Counter contract.",
+				"Clean an earlier generated out directory after removing obsolete classes.",
+				"Run displays native Java commands. These programs read no standard input."
+			]
+	},
+	changesFiles: true
+} as const;
 export const javaRefactoringUnits = [
 	javaOwnershipUnit,
 	javaValueDataUnit,
 	javaConditionalFlowUnit,
-	javaMethodCallsUnit
+	javaMethodCallsUnit,
+	javaGeneralizationUnit
 ] as const;
 type Role = "starter" | "solution";
 export function javaRefactoringUnitURL(id: string, role: Role) {
@@ -381,9 +509,17 @@ export function javaRefactoringUnitNativeInstructions(
 		return null;
 	}
 	const files = unit.files[role === "starter" ? "starter" : "solution"];
-	return [
-		unit.instructions[0],
-		`Export all ${files.length} role files, including ${unit.layout}.`,
-		...unit.instructions.slice(1)
-	];
+	const instructions =
+		"instructionsByItem" in unit
+			? ((unit.instructionsByItem as Record<string, readonly string[]>)[
+					item
+				] ?? unit.instructions)
+			: unit.instructions;
+	const layout =
+		"changesFiles" in unit && unit.changesFiles
+			? "Export all project files, including extracted types and the current sources.txt."
+			: `Export all ${files.length} role files, including ${
+					unit.layout
+				}.`;
+	return [instructions[0], layout, ...instructions.slice(1)];
 }

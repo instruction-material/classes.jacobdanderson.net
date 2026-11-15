@@ -72,7 +72,8 @@ function isReviewedModule(id: string, title: string) {
 			"DPR3 Moving Features Between Objects",
 			"DPR4 Organizing Data",
 			"DPR5 Simplifying Conditional Expressions",
-			"DPR6 Simplifying Method Calls"
+			"DPR6 Simplifying Method Calls",
+			"DPR7 Dealing with Generalization"
 		].includes(title);
 	return true;
 }
@@ -80,7 +81,7 @@ const cases = [
 	{
 		id: "design-patterns-in-java-part-2",
 		source: designPatternsInJavaPart2Course,
-		readings: 6,
+		readings: 7,
 		additions: []
 	},
 	{
@@ -618,7 +619,7 @@ it.each(
 									"algebra-1a",
 									"algebra-1b",
 									"introduction-to-public-speaking",
-                                    "middle-school-c-grammar",
+									"middle-school-c-grammar",
 									"intro-to-physics",
 									"physics-level-2",
 									"pre-algebra-a",
@@ -659,11 +660,19 @@ it.each(
 					);
 				}
 			}
-            if (id === "middle-school-c-grammar" &&
-                (item.title.startsWith("Practice Map:") || item.title.startsWith("Extension Review:"))) {
-                expect(container.textContent!.trim().length, item.title).toBeGreaterThan(170);
-                expect(container.textContent, item.title).not.toContain("speech outline");
-            }
+			if (
+				id === "middle-school-c-grammar" &&
+				(item.title.startsWith("Practice Map:") ||
+					item.title.startsWith("Extension Review:"))
+			) {
+				expect(
+					container.textContent!.trim().length,
+					item.title
+				).toBeGreaterThan(170);
+				expect(container.textContent, item.title).not.toContain(
+					"speech outline"
+				);
+			}
 			return {
 				id: item.id,
 				title: item.title,
@@ -744,20 +753,20 @@ it.each(
 			const reviewed = modules.filter(module =>
 				isReviewedModule(id, module.title)
 			);
-			expect(reviewed).toHaveLength(6);
-			expect(reviewed.flatMap(module => module.readings)).toHaveLength(6);
+			expect(reviewed).toHaveLength(7);
+			expect(reviewed.flatMap(module => module.readings)).toHaveLength(7);
 			const activities = reviewed.flatMap(module => [
 				...module.projects,
 				...module.optional
 			]);
-			expect(activities).toHaveLength(45);
+			expect(activities).toHaveLength(52);
 			expect(
 				activities.every(
 					item => item.assignmentTextScope === "complete"
 				)
 			).toBe(true);
 			expect(activities.flatMap(item => item.selfChecks)).toHaveLength(
-				90
+				104
 			);
 		} else if (id === "java-level-3") expect(modules).toHaveLength(25);
 		else if (algebra1)
@@ -922,7 +931,7 @@ it.each(
 							id === "design-patterns-in-java"
 								? "Complete primary course: ten teaching units, applied studios and three reference appendices. All 134 published identities covered by 32 complete readings, 102 activities and 204 input/answer case views per role/width profile."
 								: id === "design-patterns-in-java-part-2"
-									? "DPR1 through DPR6: six complete readings, forty-five activities and ninety input/answer case views per role/width profile. All 159 published course identities checked; the other refactoring units and clinics remain outside this teaching/runtime acceptance."
+									? "DPR1 through DPR7: seven complete readings, fifty-two activities and one hundred four input/answer case views per role/width profile. All 159 published course identities checked; the other refactoring units and clinics remain outside this teaching/runtime acceptance."
 									: id === "java-level-3"
 										? "AJ4 only: one reading, two core projects, three optional tasks and ten input/response views per profile. All 217 course identities checked; other Java units are outside this teaching and runtime acceptance."
 										: id ===

@@ -1,0 +1,76 @@
+{
+	"pack": "DPR7-Generalization-Packs",
+	"moduleID": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization",
+	"courseID": "design-patterns-in-java-part-2",
+	"coreID": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-core-project-dealing-with-generalization",
+	"readingID": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-dealing-with-generalization-core-concepts",
+	"sourceItems": [
+		"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-dealing-with-generalization-application-check",
+		"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-substitutability-and-hierarchy-exit-contract",
+		"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-core-project-dealing-with-generalization",
+		"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dealing-with-generalization-transfer-practice",
+		"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dealing-with-generalization-extension-practice"
+	],
+	"independentItems": [
+		"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dealing-with-generalization-transfer-practice",
+		"design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dealing-with-generalization-extension-practice"
+	],
+	"groups": {
+		"core": {
+			"itemID": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-core-project-dealing-with-generalization",
+			"primary": "src/roster/Roster.java",
+			"replace": [
+				"src/roster/Roster.java",
+				"src/roster/Volunteer.java",
+				"src/roster/Mentor.java",
+				"src/roster/SponsorBanner.java"
+			],
+			"add": [
+				"src/roster/Member.java",
+				"src/roster/LineSource.java"
+			],
+			"remove": [
+				"src/roster/RoleFormatter.java",
+				"src/roster/VolunteerFormatter.java",
+				"src/roster/MentorFormatter.java"
+			],
+			"checks": 2739
+		},
+		"transfer": {
+			"itemID": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dealing-with-generalization-transfer-practice",
+			"primary": "src/reports/ReportService.java",
+			"replace": [
+				"src/reports/ReportService.java"
+			],
+			"add": [
+				"src/reports/Report.java",
+				"src/reports/PlainReport.java",
+				"src/reports/CsvReport.java"
+			],
+			"remove": [],
+			"checks": 147
+		},
+		"extension": {
+			"itemID": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dealing-with-generalization-extension-practice",
+			"primary": "src/events/EventBuffer.java",
+			"replace": [
+				"src/events/EventBuffer.java",
+				"src/events/EventFactory.java",
+				"src/events/NamedCounter.java"
+			],
+			"add": [],
+			"remove": [],
+			"checks": 3306
+		}
+	},
+	"demos": {
+		"core": "Ada | volunteer | 6\nBo | mentor | 14\ntotal=20\nSupported by North Lab\n",
+		"transfer": "Inventory\ntool, kit=2\nlamp=3\nitems=5\n---\nname,count\n\"tool, kit\",2\n\"lamp\",3\ntotal,5\n",
+		"extension": "[B, C]\nB\n[C]\nvisits=7\nreset=0\n"
+	},
+	"unfinished": {
+		"core": "Missing refactoring class: roster.Member",
+		"transfer": "Missing refactoring class: reports.Report",
+		"extension": "EventBuffer still exposes List"
+	}
+}

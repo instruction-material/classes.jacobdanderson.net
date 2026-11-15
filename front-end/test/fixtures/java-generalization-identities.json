@@ -1,0 +1,71 @@
+{
+  "curriculum": [
+    {
+      "id": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-dealing-with-generalization-core-concepts",
+      "title": "Dealing with Generalization Core Concepts",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-core-concepts-and-learning-sequence",
+        "core-concepts",
+        "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-core-concepts"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-dealing-with-generalization-application-check",
+      "title": "Dealing with Generalization Application Check",
+      "aliases": [
+        "application-check",
+        "mini-lab-repair-a-parallel-hierarchy",
+        "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-application-check",
+        "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-mini-lab-repair-a-parallel-hierarchy"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-reflection-question-which-abstraction-actually-earned-its-place",
+      "title": "Reflection Question: Which Abstraction Actually Earned Its Place?"
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-substitutability-and-hierarchy-exit-contract",
+      "title": "Substitutability and Hierarchy-Exit Contract"
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-core-project-dealing-with-generalization",
+      "title": "Core Project: Dealing with Generalization",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-core-project",
+        "dpr7-dealing-with-generalization-core-project",
+        "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-curriculum-dpr7-dealing-with-generalization-core-project"
+      ]
+    }
+  ],
+  "supplementalProjects": [
+    {
+      "id": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-understanding-check-dealing-with-generalization",
+      "title": "Understanding Check: Dealing with Generalization",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dpr7-dealing-with-generalization-diagnostic-checkpoint",
+        "diagnostic-checkpoint-dealing-with-generalization",
+        "diagnostic-checkpoint",
+        "understanding-check",
+        "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-diagnostic-checkpoint-dealing-with-generalization",
+        "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-diagnostic-checkpoint",
+        "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-understanding-check"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dealing-with-generalization-transfer-practice",
+      "title": "Dealing with Generalization Transfer Practice",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-transfer-practice-dealing-with-generalization",
+        "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-transfer-practice"
+      ]
+    },
+    {
+      "id": "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-dealing-with-generalization-extension-practice",
+      "title": "Dealing with Generalization Extension Practice",
+      "aliases": [
+        "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-extension-practice-dealing-with-generalization",
+        "design-patterns-in-java-part-2-dpr7-dealing-with-generalization-supplemental-extension-practice"
+      ]
+    }
+  ]
+}
