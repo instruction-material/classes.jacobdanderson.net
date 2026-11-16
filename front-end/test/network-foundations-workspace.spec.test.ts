@@ -419,6 +419,10 @@ it("preserves every published lesson while preserving core notebooks and distinc
 		)!;
 		const reading = source.files["README.md"].content
 			.replace(
+				/pause with an instructor at each evidence\s+boundary\./g,
+				"pause at each evidence boundary during a guided review."
+			)
+			.replace(
 				/This replaces the unrelated port-list exercise previously (?:present )?in this folder\./,
 				""
 			)
