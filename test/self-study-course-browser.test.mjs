@@ -763,7 +763,7 @@ test(
 							if (id === "late-elementary-b-math") assert.equal(resourceViews.length, 66);
 							if (id === "early-elementary-a-reading") assert.equal(resourceViews.length, 17);
 							if (id === "early-elementary-b-picture-book") assert.equal(resourceViews.length, 26);
-							if (id === "algebra-1a") assert.equal(resourceViews.length, 7);
+							if (id === "algebra-1a") assert.equal(resourceViews.length, 35);
 							if (id === "algebra-1b") assert.equal(resourceViews.length, 3);
 							if (id === "algebra-2a") assert.equal(resourceViews.length, 4);
 							if (id === "algebra-2b") assert.equal(resourceViews.length, 3);
