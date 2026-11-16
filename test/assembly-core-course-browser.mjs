@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { Buffer } from "node:buffer";
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
@@ -34,6 +35,7 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 	assert.equal(new Set(roles).size, roles.length);
 	assert.ok(roles.every(role => ["starter", "solution"].includes(role)));
 	const digest = value => createHash("sha256").update(value).digest("hex");
+	const fileDigest = file => digest(file.encoding === "base64" ? Buffer.from(file.content, "base64") : file.content);
 	async function savedProjects(page) {
 		return page.evaluate(
 			key =>
@@ -153,7 +155,12 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 				path.endsWith(`/${file.name}`)
 			);
 			assert.equal(matches.length, 1);
-			assert.equal(strFromU8(entries[matches[0]]), file.content);
+			if (file.encoding === "base64") {
+				assert.deepEqual(entries[matches[0]], Uint8Array.from(Buffer.from(file.content, "base64")));
+			}
+			else {
+				assert.equal(strFromU8(entries[matches[0]]), file.content);
+			}
 		}
 	}
 
@@ -418,11 +425,11 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 							requests.push(name);
 							void request.respond({
 								status: file ? 200 : 404,
-								contentType: "text/plain",
+								contentType: file?.encoding === "base64" ? (file.contentType ?? "application/octet-stream") : "text/plain",
 								headers: {
 									"access-control-allow-origin": "*"
 								},
-								body: file?.content ?? "Unknown source"
+								body: file?.encoding === "base64" ? Buffer.from(file.content, "base64") : file?.content ?? "Unknown source"
 							});
 						}
 						else if (
@@ -539,7 +546,7 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 					);
 					for (const file of saved.files) {
 						assert.equal(
-							digest(file.content),
+							fileDigest(file),
 							(
 								definition.expectedFile?.(role, file.name)
 								?? fixture.files[
@@ -789,7 +796,7 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 						continuationActions,
 						sourceFiles: saved.files.map(file => ({
 							name: file.name,
-							sha256: digest(file.content)
+							sha256: fileDigest(file)
 						})),
 						exactArchive: `${name}-exact.zip`,
 						exactArchiveSha256: digest(exact),
@@ -797,7 +804,7 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 						editedArchiveSha256: digest(editedBytes),
 						editedFiles: reused.files.map(file => ({
 							name: file.name,
-							sha256: digest(file.content)
+							sha256: fileDigest(file)
 						})),
 						consentBeforeFetch: true,
 						primaryStoreRead: true,

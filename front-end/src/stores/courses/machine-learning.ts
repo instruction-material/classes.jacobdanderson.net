@@ -1004,7 +1004,7 @@ const machineLearningSourceCourse: RawCourse = {
 - Compare predictions with true labels.
 - Discuss both success behavior and failure-mode behavior.
 - Summarize the dataset, split-by-source rule, model architecture, baseline comparison, class-level results, and images where the model struggled.
-- State that the linked Colab notebooks are preserved historical references and that the active source repository has no complete local ML7 implementation.`,
+- Distinguish the supplied authored weather-pattern CNN from the preserved historical Colab/Mendeley examples and real-photo recognition.`,
 					projectLink:
 						"https://colab.research.google.com/drive/12HpOOjmQgf5sLmrTgknSFX24aSln6rT6?usp=sharing",
 					solutionLink:
@@ -2207,6 +2207,13 @@ ${item.content}`
 function decorateMachineLearningAppendix(
 	module: RawCourse["modules"][number]
 ): RawCourse["modules"][number] {
+	module = {
+		...module,
+		curriculum: module.curriculum.map(withOwnedMachineLearningAssignment),
+		supplementalProjects: module.supplementalProjects.map(
+			withOwnedMachineLearningAssignment
+		)
+	};
 	const imageAppendix = module.title === "ML7 Image Classifier";
 	return {
 		...module,
@@ -2221,7 +2228,7 @@ function decorateMachineLearningAppendix(
 					"training-only augmentation",
 					"compute cap",
 					"per-class metrics",
-					"source gap"
+					"pixel CNN"
 				]
 			: [
 					"prior project",
@@ -2231,14 +2238,8 @@ function decorateMachineLearningAppendix(
 					"limitation",
 					"next step"
 				],
-		curriculum: module.curriculum.map((item, index) => ({
+		curriculum: module.curriculum.map(item => ({
 			...item,
-			content:
-				index === 0
-					? `**Optional appendix:** This material follows the complete ML0, ML7.5, ML1, ML2, ML3, ML3.5, ML5, ML4, ML6, and ML8 path. It does not add a hidden prerequisite. ${imageAppendix ? "The image-classification route is bounded, local, non-personal, and compute-capped; the active source repository does not contain a complete local implementation." : "Use this repeated studio only when another pass through the named project serves a specific transfer or support need."}
-
-${item.content}`
-					: item.content,
 			learningPath: "choice" as const
 		})),
 		supplementalProjects: module.supplementalProjects.map(item => ({

@@ -136,7 +136,9 @@ describe("Machine Learning learner flow", () => {
 		expect(moduleText("ML2 K-Nearest Neighbors")).toContain(
 			"OneHotEncoder"
 		);
-		expect(moduleText("ML2 K-Nearest Neighbors")).toContain("handle_unknown");
+		expect(moduleText("ML2 K-Nearest Neighbors")).toContain(
+			"handle_unknown"
+		);
 		expect(moduleText("ML2 K-Nearest Neighbors")).toContain(
 			"DummyClassifier"
 		);
@@ -153,13 +155,11 @@ describe("Machine Learning learner flow", () => {
 			"ML6 Regression with Neural Networks"
 		);
 		expect(neural).toContain("This is not a diagnosis");
-		expect(neural).toContain("learningPath\":\"choice");
+		expect(neural).toContain('learningPath":"choice');
 		expect(regression).toContain("country-year");
 		expect(regression).toContain("ecological fallacy");
 		expect(neuralRegression).toContain("California housing");
-		expect(neuralRegression).toContain(
-			"Boston Housing dataset"
-		);
+		expect(neuralRegression).toContain("Boston Housing dataset");
 		expect(neuralRegression).toContain("ethically problematic");
 	});
 
@@ -173,7 +173,8 @@ describe("Machine Learning learner flow", () => {
 		expect(text).toContain("Group originals, crops, and near-duplicates");
 		expect(text).toContain("augmentation to training only");
 		expect(text).toContain("Cap image count");
-		expect(text).toContain("no complete local ML7 implementation");
+		expect(text).toContain("260 trainable parameters");
+		expect(text).toContain("32");
 	});
 
 	it("publishes all practice cases and answer keys", () => {
@@ -208,10 +209,10 @@ describe("Machine Learning learner flow", () => {
 		expect(metadata?.courseBoundaries).toHaveLength(4);
 		expect(metadata?.capstoneExpectations).toHaveLength(6);
 		expect(metadata?.sourcePolicy).toContain("substantive legacy");
-		expect(metadata?.sourcePolicy).toContain("generic starter/solution");
-		expect(metadata?.sourcePolicy).toContain("short placeholder");
+		expect(metadata?.sourcePolicy).toContain("thirty numbered ML-*");
+		expect(metadata?.sourcePolicy).toContain("Five offline core pairs");
 		expect(metadata?.sourcePolicy).toContain(
-			"no active local ML7 image-classifier implementation"
+			"complete local weather-pattern CNN"
 		);
 	});
 });

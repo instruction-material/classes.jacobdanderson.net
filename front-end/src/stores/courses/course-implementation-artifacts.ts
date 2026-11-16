@@ -1161,7 +1161,7 @@ function sourcePolicyFor(courseId: string) {
 		}
 
 		if (courseId === "machine-learning") {
-			return `Source-backed course. Canonical source repository: ${url}. The named ML1–ML6 folders preserve substantive legacy scripts, notebooks, datasets, and images whose modeling choices vary in age and quality; they are teaching inputs to audit rather than production-ready reference implementations. The numbered ML-* folders are generic starter/solution wrappers, the ML8 workspace is a short placeholder, and no active local ML7 image-classifier implementation exists. Existing links remain traceable, while supplied practice cases and verification guidance provide the current leakage-safe, local-first evidence route.`;
+			return `Source-backed course. Canonical source repository: ${url}. The named ML1–ML6 folders preserve substantive legacy scripts, notebooks, datasets, and images whose modeling choices vary in age and quality; they are teaching inputs to audit rather than production-ready reference implementations. The thirty numbered ML-* starter/reference pairs now provide distinct model workflows. Five offline core pairs cover data preparation, evaluation, bounded regression, the complete local weather-pattern CNN, and model comparison. Current assignments pin the verified source revision and keep training, validation and test responsibilities explicit. The historical ML8 workspace and Colab notebooks remain source-audit references; the supplied practice cases and verification guidance support independent review.`;
 		}
 
 		return `Source-backed course. Canonical source repository: ${url}. Starter/reference links remain synchronized with catalog projects.`;

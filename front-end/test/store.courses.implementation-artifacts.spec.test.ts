@@ -590,8 +590,8 @@ describe("implemented course development artifacts", () => {
 		expectAuthoredSourcePair(
 			machineLearning,
 			"ML7.5 Model Evaluation, Comparison, and Dataset Strategy: Core Project",
-			"AI-Level-2/tree/b9525fbab49b69ed941d0e59bb3eb913b2353d63/ML7-5-Offline-Evaluation-Contract/starter",
-			"AI-Level-2/tree/b9525fbab49b69ed941d0e59bb3eb913b2353d63/ML7-5-Offline-Evaluation-Contract/solution"
+			"AI-Level-2/tree/34d579fe9f033e1944e3569ed32c1fb7635162b4/ML7-5-Offline-Evaluation-Contract/starter",
+			"AI-Level-2/tree/34d579fe9f033e1944e3569ed32c1fb7635162b4/ML7-5-Offline-Evaluation-Contract/solution"
 		);
 		expectAuthoredSourcePair(
 			machineLearning,

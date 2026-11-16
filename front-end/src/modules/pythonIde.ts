@@ -88,6 +88,7 @@ import {
 	linuxCourseResource,
 	linuxImportFiles
 } from "@/modules/linuxProjectResources";
+import { loadMachineLearningImageFiles } from "@/modules/machineLearningImageResources";
 import {
 	networkCourseResource,
 	networkImportFiles
@@ -3282,6 +3283,11 @@ export async function loadPythonIdeStarterFilesFromGitHub(
 				? "This source has no verified site import."
 				: "Only public GitHub starter links can open in the IDE."
 		);
+	}
+
+	if (mode === "data") {
+		const files = await loadMachineLearningImageFiles(starterUrl);
+		if (files) return files;
 	}
 
 	if (mode === "pgzero") {

@@ -199,7 +199,18 @@ for (const project of fixture.projects.filter(
 						project.itemId
 					}:${
 						role === "starter" ? "starter" : "reference"}`,
-				verifyRun: async () => {},
+				verifyRun: async (page, { role }) => {
+					if (role !== "starter") return;
+					await page.locator("button.run-control:not([disabled])").click();
+					await page.waitForFunction(
+						() => document.querySelector(".output-panel")?.textContent.includes("NotImplementedError"),
+						{ timeout: 90000 }
+					);
+					await page.waitForSelector("button.run-control:not([disabled])");
+					await page.evaluate(() => {
+						window.__mlInitialExerciseRan = true;
+					});
+				},
 				afterEdit: async (page) => {
 					await page.select(
 						"select[aria-label='Active project file']",
@@ -227,6 +238,7 @@ for (const project of fixture.projects.filter(
 					);
 					return {
 						completedAlgorithmExecuted: true,
+						initialExerciseErrorObserved: await page.evaluate(() => Boolean(window.__mlInitialExerciseRan)),
 						nestedModuleEdited: project.multipleModules,
 						output
 					};

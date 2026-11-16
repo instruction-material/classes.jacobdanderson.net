@@ -1,0 +1,236 @@
+{
+	"revision": "34d579fe9f033e1944e3569ed32c1fb7635162b4",
+	"packs": [
+		"ML-13-ml7-image-classifier-supplemental-2",
+		"ML-14-ml7-image-classifier-supplemental-3",
+		"ML7-Offline-Weather-Classifier"
+	],
+	"images": {
+		"images/cloudy-g0-v0.png": {
+			"sha256": "20c35f2f60ade4f800c9b8e021b2d40b771dfc9f96dec9a50df733ca3b987436",
+			"byteLength": 512
+		},
+		"images/cloudy-g0-v1.png": {
+			"sha256": "ef7e1942150b06efe5440a0e5bd955ef67d1f42f2a429a0b9adee7796075f7ac",
+			"byteLength": 512
+		},
+		"images/cloudy-g1-v0.png": {
+			"sha256": "198c02a8f7ac9ca7460c24449984e8a10f7abe835dadd1f7d44d623e9bf6f642",
+			"byteLength": 512
+		},
+		"images/cloudy-g1-v1.png": {
+			"sha256": "e0fcff7ad54ce39682da81652af893e5030a826fd5f0cac090daf91882a12c92",
+			"byteLength": 512
+		},
+		"images/cloudy-g2-v0.png": {
+			"sha256": "4ccae2710d58ff6e05e8b9420934c71c9172780a0e5f5c6f92c9c6a8f8c9c4c0",
+			"byteLength": 512
+		},
+		"images/cloudy-g2-v1.png": {
+			"sha256": "e907fc0ed53cf71ed80ec17e7adb911d04dca2e173435140197c4f761f0eb837",
+			"byteLength": 512
+		},
+		"images/cloudy-g3-v0.png": {
+			"sha256": "fe7117f830c742013941439cc35b28c8e8c45588d1189a4ba8b0fce77cc3c210",
+			"byteLength": 512
+		},
+		"images/cloudy-g3-v1.png": {
+			"sha256": "d6f1872c627973ef01ed2cb70c50180a0308582c71c9ec80262dd39b940f8606",
+			"byteLength": 512
+		},
+		"images/rainy-g0-v0.png": {
+			"sha256": "c82ceff735ea8728bf024013bf148e6bfc7f35a2f10a900318ea8a678ae1da23",
+			"byteLength": 512
+		},
+		"images/rainy-g0-v1.png": {
+			"sha256": "f0fbd810da4c8d834e65829349ee6d7a52dea0f95e68154cc17d047e6421b88c",
+			"byteLength": 512
+		},
+		"images/rainy-g1-v0.png": {
+			"sha256": "5d5ccedb66eb0114cd66e86f6e3b23295ac5298d98a3e7dc22138372df21ca69",
+			"byteLength": 512
+		},
+		"images/rainy-g1-v1.png": {
+			"sha256": "db739891ccbc5b6a1052ff52efe7cc705a30647ccf35625c1e726cd2570d30e0",
+			"byteLength": 512
+		},
+		"images/rainy-g2-v0.png": {
+			"sha256": "0961892504b386f41d7e1e0ab2f71c235f42d442771374ceb4f423b58975e60e",
+			"byteLength": 512
+		},
+		"images/rainy-g2-v1.png": {
+			"sha256": "e606924df3ee918c0f7a2c17f7c66f58332b02f48aaf5a28bb115afee16d00ef",
+			"byteLength": 512
+		},
+		"images/rainy-g3-v0.png": {
+			"sha256": "9869554ed531729f34d6c054a6a6466119d52434dbddfc29d124ae809159ae8e",
+			"byteLength": 512
+		},
+		"images/rainy-g3-v1.png": {
+			"sha256": "9979de360e3064a9c226df2e844372efcb246197d7bdfcdae8c2da4f68b43328",
+			"byteLength": 512
+		},
+		"images/sunny-g0-v0.png": {
+			"sha256": "79b4caebb97d40adaa526a9fa9f69292e40ca81a913c08bc544af9f780d4b390",
+			"byteLength": 512
+		},
+		"images/sunny-g0-v1.png": {
+			"sha256": "5628ebc6c89684c3db325aad3294ac8e32a46206a51875ff3c2566f1fa13d069",
+			"byteLength": 512
+		},
+		"images/sunny-g1-v0.png": {
+			"sha256": "585de1c454073ab4b25af59d9d6312359395b864e1401d85ee17dca9ec0ace75",
+			"byteLength": 512
+		},
+		"images/sunny-g1-v1.png": {
+			"sha256": "98db497b8ccae3821a06b687e15ddd21b2bd89c00e43fef9f6887567c222dd3f",
+			"byteLength": 512
+		},
+		"images/sunny-g2-v0.png": {
+			"sha256": "3a709b1325f8b830aa6becb837f7bb323964f752476feb7eb2e1fff70123acf9",
+			"byteLength": 512
+		},
+		"images/sunny-g2-v1.png": {
+			"sha256": "05a6457b706abca47ee82ec37a39dd39adfdf2dc6544e62d9123bd2b47235c42",
+			"byteLength": 512
+		},
+		"images/sunny-g3-v0.png": {
+			"sha256": "acb73798a609871c621cbda786cde9d1ec891a2a386662ca3016a9217d977fe6",
+			"byteLength": 512
+		},
+		"images/sunny-g3-v1.png": {
+			"sha256": "f4e5cea1bac4234d31cd3944ea750e34137dc72f80a39771c700fef2d01628b5",
+			"byteLength": 512
+		},
+		"images/sunrise-g0-v0.png": {
+			"sha256": "c6944398a43d93f1aabd4c0d97f2941af9d657f45293501c6f23d390542b3fc6",
+			"byteLength": 512
+		},
+		"images/sunrise-g0-v1.png": {
+			"sha256": "a979b17671b9a108e80e8c82b14f003efe799513c6c0f30f97391c86c0622dd3",
+			"byteLength": 512
+		},
+		"images/sunrise-g1-v0.png": {
+			"sha256": "ac1b1800eda8c4887350c67cddaa5e0d148b746857d47d531646861fd5d2847e",
+			"byteLength": 512
+		},
+		"images/sunrise-g1-v1.png": {
+			"sha256": "f5bb1853dda987cc645faa65952a8ad4c6ef8c187aab7b52f71f305f5bc5d0bf",
+			"byteLength": 512
+		},
+		"images/sunrise-g2-v0.png": {
+			"sha256": "d8d6670b54a3122d6ff7b9a92e5f490c90d737779d6fa303be66d527ae3dc501",
+			"byteLength": 512
+		},
+		"images/sunrise-g2-v1.png": {
+			"sha256": "16e68191561be7c63c1f2879f7ad55d6133ee9563830629bb87bd93ddaa101c5",
+			"byteLength": 512
+		},
+		"images/sunrise-g3-v0.png": {
+			"sha256": "6c9785a1d360840cda9270889a8c8bc001ee3d8c4a37c5a20df11ddb4c9fc98a",
+			"byteLength": 512
+		},
+		"images/sunrise-g3-v1.png": {
+			"sha256": "6f7755aa853eafe5d98bea1f35837887eaf30bc8461041f2a898aade84946667",
+			"byteLength": 512
+		}
+	},
+	"sources": {
+		"ML-13-ml7-image-classifier-supplemental-2/solution/README.md": {
+			"sha256": "974995d4f7a608a1b64b8b18dd9b339aab33c5effd98654ae2a722a8a90a9849",
+			"byteLength": 4799
+		},
+		"ML-13-ml7-image-classifier-supplemental-2/solution/main.py": {
+			"sha256": "0bf82b171b14ad3b45e182339845ef55519bcbd600362c3346c7cea20491616f",
+			"byteLength": 9084
+		},
+		"ML-13-ml7-image-classifier-supplemental-2/solution/metadata.csv": {
+			"sha256": "2231aa7762d90b2a8c9f80a3aa63fc9744bcd4212a1c697ae8258f9b0f148a00",
+			"byteLength": 3406
+		},
+		"ML-13-ml7-image-classifier-supplemental-2/solution/model.py": {
+			"sha256": "356b1300f30e8707c44ebf5eebd9386f80fd77be6193cd5ad837e9f5580baf04",
+			"byteLength": 10975
+		},
+		"ML-13-ml7-image-classifier-supplemental-2/starter/README.md": {
+			"sha256": "76aabf19342d8cdd021ddbefa37a2e51b8bb33326e4f65130da34c38b60ecf93",
+			"byteLength": 4798
+		},
+		"ML-13-ml7-image-classifier-supplemental-2/starter/main.py": {
+			"sha256": "0bf82b171b14ad3b45e182339845ef55519bcbd600362c3346c7cea20491616f",
+			"byteLength": 9084
+		},
+		"ML-13-ml7-image-classifier-supplemental-2/starter/metadata.csv": {
+			"sha256": "2231aa7762d90b2a8c9f80a3aa63fc9744bcd4212a1c697ae8258f9b0f148a00",
+			"byteLength": 3406
+		},
+		"ML-13-ml7-image-classifier-supplemental-2/starter/model.py": {
+			"sha256": "57ad8157dd24f3015e4dfc5b337d185cceb1a2ea41ce53f0f471e54ea7502d33",
+			"byteLength": 10462
+		},
+		"ML-14-ml7-image-classifier-supplemental-3/solution/README.md": {
+			"sha256": "9f8d2a9bf1ed14934c485ac9fce9bd35448c1bb0b8a39774c9eec5307b2b8268",
+			"byteLength": 4675
+		},
+		"ML-14-ml7-image-classifier-supplemental-3/solution/main.py": {
+			"sha256": "7560f3c0573132dff056d53941392a5788b90dd24a9704d95dda7ea60d028627",
+			"byteLength": 9082
+		},
+		"ML-14-ml7-image-classifier-supplemental-3/solution/metadata.csv": {
+			"sha256": "2231aa7762d90b2a8c9f80a3aa63fc9744bcd4212a1c697ae8258f9b0f148a00",
+			"byteLength": 3406
+		},
+		"ML-14-ml7-image-classifier-supplemental-3/solution/model.py": {
+			"sha256": "356b1300f30e8707c44ebf5eebd9386f80fd77be6193cd5ad837e9f5580baf04",
+			"byteLength": 10975
+		},
+		"ML-14-ml7-image-classifier-supplemental-3/starter/README.md": {
+			"sha256": "1f59534d7074ffc754f8d47c2655916f4651cfa30efd071579fe019fe7716865",
+			"byteLength": 4674
+		},
+		"ML-14-ml7-image-classifier-supplemental-3/starter/main.py": {
+			"sha256": "7560f3c0573132dff056d53941392a5788b90dd24a9704d95dda7ea60d028627",
+			"byteLength": 9082
+		},
+		"ML-14-ml7-image-classifier-supplemental-3/starter/metadata.csv": {
+			"sha256": "2231aa7762d90b2a8c9f80a3aa63fc9744bcd4212a1c697ae8258f9b0f148a00",
+			"byteLength": 3406
+		},
+		"ML-14-ml7-image-classifier-supplemental-3/starter/model.py": {
+			"sha256": "f7278b9ee6909a598994de511f01a82fdf80f81a7ce703973e28bb3236459ea2",
+			"byteLength": 10148
+		},
+		"ML7-Offline-Weather-Classifier/solution/README.md": {
+			"sha256": "bc8a0040c2744211ba125c5a381133c259818df4d1bf736e7d2fac8143ec16d3",
+			"byteLength": 4870
+		},
+		"ML7-Offline-Weather-Classifier/solution/main.py": {
+			"sha256": "074ae265c015da407df79d5d94028471df803138824adddfabfafde4997498d0",
+			"byteLength": 9076
+		},
+		"ML7-Offline-Weather-Classifier/solution/metadata.csv": {
+			"sha256": "2231aa7762d90b2a8c9f80a3aa63fc9744bcd4212a1c697ae8258f9b0f148a00",
+			"byteLength": 3406
+		},
+		"ML7-Offline-Weather-Classifier/solution/model.py": {
+			"sha256": "356b1300f30e8707c44ebf5eebd9386f80fd77be6193cd5ad837e9f5580baf04",
+			"byteLength": 10975
+		},
+		"ML7-Offline-Weather-Classifier/starter/README.md": {
+			"sha256": "dd88a90bea61a7cf935329158436825aa10bdd6301e62b09a5c510d9a9db6bcd",
+			"byteLength": 4869
+		},
+		"ML7-Offline-Weather-Classifier/starter/main.py": {
+			"sha256": "074ae265c015da407df79d5d94028471df803138824adddfabfafde4997498d0",
+			"byteLength": 9076
+		},
+		"ML7-Offline-Weather-Classifier/starter/metadata.csv": {
+			"sha256": "2231aa7762d90b2a8c9f80a3aa63fc9744bcd4212a1c697ae8258f9b0f148a00",
+			"byteLength": 3406
+		},
+		"ML7-Offline-Weather-Classifier/starter/model.py": {
+			"sha256": "df5ae5133bb1ef87b3b22c3f7da37f276ca88372b004c286462bd6e021498f75",
+			"byteLength": 10118
+		}
+	}
+}
