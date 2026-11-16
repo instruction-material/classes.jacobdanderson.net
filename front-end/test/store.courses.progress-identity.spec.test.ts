@@ -1881,7 +1881,7 @@ describe("saved course progress identities", () => {
 			},
 			{
 				courseId: "ai-level-1",
-				currentTitle: "Project: Book Rule System",
+				currentTitle: "Project: Friendship Groups",
 				oldId: "ai-level-1-unit-5-rule-based-systems-and-puzzle-framing-supplemental-project-juni-book-rule-system"
 			},
 			{
