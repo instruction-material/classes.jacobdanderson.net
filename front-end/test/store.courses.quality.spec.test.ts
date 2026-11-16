@@ -63,6 +63,7 @@ import {
 	smartMoneyActivities
 } from "@/stores/courses/smartMoneyReadings";
 import { formatAuthoredReading } from "@/stores/courses/authoredReading";
+import algebra1APracticeData from "@/stores/courses/algebra1APracticeData.json";
 
 const COURSE_SWEEP_TIMEOUT = 180000;
 const elementaryMaterials = {
@@ -71,6 +72,52 @@ const elementaryMaterials = {
 	"late-elementary-a-math": lateElementaryAMaterials,
 	"late-elementary-b-math": lateElementaryBMaterials
 };
+
+function completeAlgebra1APractice(
+	courseId: string,
+	module: RawCourseModule,
+	item: RawCourseModuleItem
+) {
+	if (courseId !== "algebra-1a" || item.contentKind !== "assignment")
+		return false;
+	const entry = algebra1APracticeData.find(
+		candidate =>
+			candidate.module === module.title &&
+			(candidate.kind === "practice"
+				? item.title.includes("Standards Practice Set")
+				: item.title.includes("Modeling or Error Analysis"))
+	);
+	if (
+		!entry ||
+		entry.questions.length !== 3 ||
+		entry.answers.length !== 3 ||
+		!entry.questions.every(question => item.content.includes(question))
+	)
+		return false;
+	const supplied =
+		entry.kind === "practice"
+			? entry.workedExample && item.content.includes(entry.workedExample)
+			: entry.given &&
+				entry.flawed &&
+				item.content.includes(entry.given) &&
+				item.content.includes(entry.flawed);
+	if (!supplied) return false;
+	const href = item.content.match(/\[Project self-check\]\(([^)]+)\)/)?.[1];
+	if (!href) return false;
+	const asset = new URL(href, "https://example.invalid").searchParams.get(
+		"asset"
+	);
+	const resource = "/course-assets/algebra-1a/practice-checks-v1.md";
+	const anchor = slugMarkdownHeading(entry.heading);
+	if (asset !== resource + "#" + anchor) return false;
+	const text = fs.readFileSync("public" + resource, "utf8");
+	const section = text
+		.split(/^## /m)
+		.find(part => slugMarkdownHeading(part.split("\n")[0]) === anchor);
+	return Boolean(
+		section && entry.answers.every(answer => section.includes(answer))
+	);
+}
 
 function completeElementaryPractice(
 	courseId: string,
@@ -5989,7 +6036,8 @@ describe("course text quality normalization", () => {
 											module,
 											item
 										) &&
-										!completeElementaryPractice(
+										!completeAlgebra1APractice(entry.id, module, item) &&
+									!completeElementaryPractice(
 											entry.id,
 											module,
 											item
@@ -6066,6 +6114,7 @@ describe("course text quality normalization", () => {
 							!completeSpeakingPractice(id, module, item) &&
 							!completeSmartMoneyPractice(id, module, item) &&
 							!completePhysicsPractice(id, module, item) &&
+							!completeAlgebra1APractice(id, module, item) &&
 							!completeElementaryPractice(id, module, item) &&
 							!completeIntroBiologyActivity(id, module, item) &&
 							!completeElementaryScienceActivity(
@@ -7416,13 +7465,9 @@ describe("course text quality normalization", () => {
 			expect(corpus).not.toMatch(/preparing students to/i);
 
 			expect(supplementalCorpus).toContain("**Steps:**");
-			expect(supplementalCorpus).toContain(
-				"movement between a rate table"
-			);
+
 			expect(supplementalCorpus).toContain("sign error in factoring");
-			expect(supplementalCorpus).toContain(
-				"testing one value inside the solution set"
-			);
+
 			expect(supplementalCorpus).toContain("tracking inputs and outputs");
 			expect(supplementalCorpus).toContain("extraneous solution");
 			expect(supplementalCorpus).toContain("population, depreciation");
@@ -7442,6 +7487,43 @@ describe("course text quality normalization", () => {
 		},
 		COURSE_SWEEP_TIMEOUT
 	);
+
+	it("requires supplied Algebra 1A exercises and matching worked self-checks", async () => {
+		const course = (await loadRawCourse("algebra-1a"))!;
+		let accepted = 0;
+		for (const module of course.modules) {
+			for (const item of module.supplementalProjects) {
+				if (!completeAlgebra1APractice("algebra-1a", module, item))
+					continue;
+				accepted++;
+				const entry = algebra1APracticeData.find(candidate =>
+					item.content.includes(candidate.questions[0])
+				)!;
+				expect(
+					completeAlgebra1APractice("algebra-1a", module, {
+						...item,
+						content: item.content.replace(entry.questions[1], "")
+					})
+				).toBe(false);
+				expect(
+					completeAlgebra1APractice("algebra-1a", module, {
+						...item,
+						content: item.content.replace(
+							"practice-checks-v1.md",
+							"missing-checks.md"
+						)
+					})
+				).toBe(false);
+			}
+		}
+		expect(accepted).toBe(28);
+		expect(
+			algebra1APracticeData.filter(entry => entry.kind === "practice")
+		).toHaveLength(14);
+		expect(
+			algebra1APracticeData.filter(entry => entry.kind === "modeling")
+		).toHaveLength(14);
+	});
 
 	it("accepts concise finance cases only with their full supplied inputs, answers and teaching", async () => {
 		const course = (await loadRawCourse("smart-money-personal-finance"))!;

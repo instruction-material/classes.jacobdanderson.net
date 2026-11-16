@@ -3,6 +3,7 @@ import {
 	applyAiOptionalAssignments,
 	applyAiStudioReadings
 } from "./aiStudioReadings";
+import { applyAlgebra1APractice } from "./algebra1APractice";
 import { applyAlgebraErrorAnalysisCases } from "./algebraErrorAnalysisCases";
 import { applyCourseImplementationArtifacts } from "./course-implementation-artifacts";
 import { applyEarlyElementaryAProjects } from "./earlyElementaryAProjects";
@@ -9850,6 +9851,7 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 	}
 	restoreScratchProjectInstructions(course, preservedScratchInstructions);
 	applyAlgebraErrorAnalysisCases(id, course);
+	if (id === "algebra-1a") applyAlgebra1APractice(course);
 	if (id === "early-elementary-a-math")
 		applyEarlyElementaryAProjects(course, rawCourse);
 	if (id === "early-elementary-b-math")
