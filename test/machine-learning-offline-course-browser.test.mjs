@@ -157,6 +157,11 @@ for (const project of fixture.projects.filter(
 						}-${
 							project.itemId
 						} .item-content-markdown`;
+					await page.waitForFunction(
+						value => Boolean(document.querySelector(value)?.textContent.trim()),
+						{ timeout: 15000 },
+						selector
+					);
 					const expected = await page.evaluate((html) => {
 						const element = document.createElement("div");
 						element.innerHTML = html;

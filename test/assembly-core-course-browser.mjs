@@ -824,7 +824,7 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 								url: page.url(),
 								requests,
 								error: String(error),
-								savedProjects: await savedProjects(page),
+								savedProjects: await savedProjects(page).catch(failure => ({ unavailable: String(failure) })),
 								profiles
 							},
 							null,
