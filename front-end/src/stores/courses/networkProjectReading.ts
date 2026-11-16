@@ -175,6 +175,10 @@ export function withNetworkProjectReadings(
 					: readings[selected.pack]
 		)
 			.replace(
+				"2001:db8:32::2. The default name",
+				"2001:db8:32::2.\n\nThe default name"
+			)
+			.replace(
 				/pause with an instructor at each evidence\s+boundary\./g,
 				"pause at each evidence boundary during a guided review."
 			)

@@ -205,7 +205,7 @@ $ curl -6 -sS http://app.blue-lantern.test:8080/health
 curl: (7) Failed to connect
 ```
 
-Identify address scopes, resolver expectations, route, listener family, and first failing IPv6 gate. Explain why IPv4 success does not verify IPv6 and what evidence changes when a link-local address requires an interface zone.
+Identify address scopes and the observed missing IPv6 listener. Separate that server-side gap from the client's unrecorded AAAA answer, selected destination and selected route. State which earlier gates remain unknown before localizing its failure. Explain why IPv4 success does not verify IPv6 and why a link-local destination needs interface context.
 
 ## Firewall Policy and Rollback Case
 
@@ -239,7 +239,7 @@ Capture boundary: owned loopback interface, host `127.0.0.1`, TCP port `8080`, m
 12:00:01.020 IP 127.0.0.1.49152 > 127.0.0.1.8080: Flags [F.], ack 597
 ```
 
-Interpret tuple, flags, sequence of events, answer to the declared question, and limits of the excerpt. List the minimum fields that belong in a redacted submission and the stop condition that ends a live lab capture.
+Interpret tuple, flags and the observed sequence. State what remains unanswered when HTTP payload bytes and the closing exchange are absent. List the application evidence needed to establish a completed HTTP response, the minimum fields for a redacted submission and the stop condition for a live capture.
 
 ## Protocol and TLS Visibility Case
 
@@ -250,7 +250,7 @@ Location: https://app.blue-lantern.test/health
 
 $ openssl s_client -connect 192.0.2.10:8443 -servername app.blue-lantern.test
 Protocol  : TLSv1.3
-Peer name: app.blue-lantern.test
+Requested SNI: app.blue-lantern.test
 Verify return code: 0 (ok)
 
 Packet summary:
@@ -261,7 +261,7 @@ server -> client TLS ServerHello
 encrypted application data
 ```
 
-Compare HTTP status, TLS version, certificate name, transport evidence, and the content no longer visible after encryption begins. Explain why a conventional port number alone cannot prove which protocol or identity is present.
+Separate the redirect, negotiated TLS version, requested SNI, certificate-chain result and hostname-verification result. The displayed SNI is a label in this constructed summary. The command has no -verify_hostname option, so the supplied result leaves the intended hostname match unestablished. Identify the next owned-lab check using -verify_hostname and -verify_return_error with the lab's trusted CA configuration. No live TLS connection or CA file is required for this supplied-case diagnosis. See the [OpenSSL s_client options](https://docs.openssl.org/3.5/man1/openssl-s_client/).
 
 ## Least Exposure Service Case
 
@@ -284,7 +284,7 @@ $ nc -vz -w 2 192.0.2.10 8080
 connection refused
 ```
 
-Map service identity, upstream bind, proxy listener, route, client policy, Host header, application response, blocked alternatives, logs, and cleanup. Preserve the upstream as loopback-only and remove the proxy listener plus policy after verification.
+Treat the shown commands as server-local observations. Map service identity, upstream bind, proxy listener, route, intended client policy and Host header. Keep the declared allowed and blocked clients separate from measured reachability: this excerpt supplies no request from either client. Name the additional bounded client observations, policy records and logs needed for those claims. Preserve the upstream as loopback-only and include proxy/policy cleanup in a live runbook.
 
 ## Routed Operations Capstone Case
 

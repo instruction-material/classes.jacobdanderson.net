@@ -71,7 +71,7 @@ Compare this guide only after recording an independent diagnosis. Equivalent com
 - `::1` is loopback, `fe80::10` is link-local, and `2001:db8:10::10` is documentation-only global-unicast-shaped evidence.
 - The route table contains the local IPv6 prefix, but the listener output contains only an IPv4 wildcard.
 - IPv4 application success does not verify IPv6.
-- The first failing IPv6 gate is listener family, before host policy or application content.
+- The displayed server lacks an IPv6 listener. The client's selected AAAA destination and selected IPv6 route are absent, so this excerpt does not establish its first failing gate. Obtain those earlier observations before attributing the client failure.
 - A link-local request needs a zone identifier because the same prefix can exist on multiple interfaces.
 
 ## Firewall Policy and Rollback Key
@@ -85,15 +85,15 @@ Compare this guide only after recording an independent diagnosis. Equivalent com
 ## Bounded Packet Capture Key
 
 - SYN, SYN/ACK, and ACK complete the TCP handshake.
-- PSH/ACK in both directions indicates application bytes moved.
-- No RST appears, and FIN begins an orderly close; the supplied flow completed rather than being reset.
-- The excerpt cannot prove application semantics beyond the visible fields and declared generated flow.
+- The nonzero TCP payload lengths show bytes moving in both directions. The PSH flag alone identifies neither HTTP content nor a complete message.
+- No RST appears in this excerpt; FIN starts a closing exchange. The omitted flow tail leaves complete TCP closure unestablished.
+- HTTP status, framing and complete response bytes are absent. This excerpt does not establish a completed HTTP operation; retain the application exchange to answer that question.
 - A valid record includes authority, interface, exact filter, packet or time limit, stop condition, generated traffic, minimal fields, redaction, conclusion, and uncertainty.
 
 ## Protocol and TLS Visibility Key
 
 - HTTP returns a redirect that identifies the next URL.
-- The TLS evidence reports TLS 1.3, the expected peer name, and successful verification.
+- The supplied summary reports TLS 1.3 and a successful certificate-chain result. -servername selects SNI; it does not request hostname verification. The intended hostname match remains unestablished without the corresponding verification check and trusted lab CA context.
 - The trace exposes transport setup and TLS handshake metadata, then labels application data as encrypted.
 - Port 8443 is a convention chosen by this lab, not proof of TLS or application identity.
 - The packet summary cannot reveal encrypted request content, credentials, or response body.
@@ -102,7 +102,7 @@ Compare this guide only after recording an independent diagnosis. Equivalent com
 
 - The toy application remains on loopback 8080 and the proxy is the only lab-interface listener.
 - The proxy request succeeds with the fictional Host header, while direct access to 8080 through the lab address is refused.
-- The intended policy permits only `192.0.2.20` to the proxy port and preserves denial for `192.0.2.30`.
+- The declared policy names `192.0.2.20` as allowed and `192.0.2.30` as blocked. The shown server-local commands supply neither client's observation, so their actual reachability remains unestablished.
 - Verification covers process, listener, route, policy, direct upstream health, proxied response, logs, and blocked alternatives.
 - Cleanup removes the proxy listener and lab policy while leaving the application baseline known and local.
 

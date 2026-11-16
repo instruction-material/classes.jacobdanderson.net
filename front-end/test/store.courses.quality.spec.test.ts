@@ -4763,7 +4763,7 @@ describe("course text quality normalization", () => {
 			"UFW provides a safe, readable host-policy layer"
 		);
 		expect(corpus).toContain(
-			"Safe port forwarding is a last-mile exposure step"
+			"The required course pass stays inside its owned isolated topology"
 		);
 		expect(corpus).toContain("Network Stack Transfer Practice");
 		expect(corpus).toContain("DNS Resolution Transfer Practice");

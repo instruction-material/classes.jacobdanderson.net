@@ -648,7 +648,7 @@ const networkSystemsSourceCourse: RawCourse = {
 				{
 					title: "UFW versus iptables and nftables",
 					content:
-						"Explain UFW as a policy layer over lower-level packet filtering instead of treating it as a completely separate system. The abstraction remains visible without forcing raw packet-filter syntax too early."
+						"UFW expresses host policy through Linux packet filtering. Its allow, deny and limit rules are a management layer over the underlying filtering implementation. Compare the intended source, destination, transport and port with the actual family-specific rules and observed requests. A rule listing establishes configured policy; a successful or denied connection is separate evidence."
 				},
 				{
 					title: "Project: Build and Verify a UFW Policy for a Web Server",
@@ -844,12 +844,12 @@ const networkSystemsSourceCourse: RawCourse = {
 				{
 					title: "Safe Port Forwarding and External Validation",
 					content:
-						"Safe port forwarding is a last-mile exposure step that must be paired with limited scope and outside verification. Testing from the same host is not enough once the real question is whether another machine on another segment can reach the service."
+						"A forwarding or proxy rule exposes a particular destination to a declared source and path. Verify the request from the intended client position and compare a separately defined blocked path. The required course pass stays inside its owned isolated topology; another namespace or lab segment supplies that client position. Public router forwarding, real certificates and Internet exposure require a separate authorized context."
 				},
 				{
 					title: "Project Pass: Validate the NAT and Exposure Topology from Outside",
 					content:
-						"Return to the router and NAT lab and treat it as the capstone exposure exercise: decide which service is reachable, limit what is exposed, and verify the result from another network position. The project ties together routing, firewalls, listening services, and diagnostics into one defensible path explanation.",
+						"Continue the saved router and NAT lab for this exposure pass. Keep the intended application on server loopback, expose only the declared proxy path, and compare actual requests from the client namespace with the configured policy and listener evidence. Retain the earlier routing cases and complete the separate exposure-policy run. This Unit12 continuation prepares for the later routed operations capstone.",
 					projectLink:
 						"https://github.com/instruction-material/Network-Systems/tree/main/NS6-Router-NAT-Topology-Lab/starter",
 					solutionLink:
@@ -900,22 +900,22 @@ const networkSystemsSourceCourse: RawCourse = {
 				{
 					title: "VPN and Tunneling Concepts",
 					content:
-						"Offer VPN and tunneling as the next step after interfaces, routes, and exposure boundaries are already clear. These topics make far more sense after ordinary reachability works without the tunnel."
+						"A tunnel carries an inner packet or stream inside another connection. Its outer path still needs working addresses, routes and an endpoint; the inner path has its own routing and access boundaries. Encryption and peer authentication depend on the selected protocol and configuration. The archive compares those claims with the measured baseline; its supplied captures establish no VPN tunnel."
 				},
 				{
 					title: "BGP and Internet Routing at a High Level",
 					content:
-						"Treat BGP and broader internet routing as an advanced appendix rather than a prerequisite. The useful outcome is seeing how route announcements and policy shape the public internet beyond the single-host route table used in the core course."
+						"BGP exchanges reachability information between routing peers, including networks operated as separate autonomous systems. Import and export policies influence which announced paths are accepted and advertised. A local route-table entry is a different observation from a BGP exchange. This conceptual appendix identifies the additional peer, announcement and policy evidence needed before making a BGP claim; the course captures contain none of those exchanges."
 				},
 				{
 					title: "Wireless and Home-Network Variations",
 					content:
-						"Add wireless networking and WPA or WPA2 basics as a follow-on topic that changes the link layer but still preserves much of the same routing, addressing, and service-diagnostic logic from the course."
+						"Wireless association and link authentication establish a different boundary from IP address configuration, route selection, DNS and application response. A device can join a wireless network while a later service path fails. Identify the link-security mode from supplied configuration, then keep each later diagnostic gate separate. This conceptual comparison changes no home-router settings and measures no wireless exchange."
 				},
 				{
 					title: "Cloud Networking Patterns",
 					content:
-						"Use cloud networking patterns such as security groups, load balancers, and VPC boundaries as the natural next specialization for deployment or infrastructure work. These ideas land better once host firewalls, ports, routes, and controlled exposure already feel concrete."
+						"A cloud virtual network has address and routing boundaries; security groups express traffic policy, while load balancers introduce a separate client-facing service path and backend checks. A reachable load balancer does not by itself establish that every backend or private route works. Map those roles to the course's client, router, proxy and application, while retaining their different implementations. The supplied local topology establishes no cloud configuration or public ingress result."
 				},
 				{
 					title: "NS13 Expansion Ideas and Next Steps: Core Project",

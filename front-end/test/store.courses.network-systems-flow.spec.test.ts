@@ -256,7 +256,7 @@ describe("Network Systems learner flow", () => {
 			"UFW provides a safe, readable host-policy layer"
 		);
 		expect(text).toContain(
-			"Safe port forwarding is a last-mile exposure step"
+			"The required course pass stays inside its owned isolated topology"
 		);
 		for (const folder of [
 			"NS1-Listening-Services-Map",
