@@ -1,0 +1,6 @@
+canvas {
+  position: absolute;
+  left: 20%;
+  top: 20%;
+  border: 1px solid grey;
+}

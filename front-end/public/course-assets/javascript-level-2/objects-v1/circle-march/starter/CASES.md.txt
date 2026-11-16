@@ -1,0 +1,9 @@
+# Circle March checks
+
+The reference draws 250 circles each frame. The first frame draws circle zero at (1, 1) and the last circle at (481, 181). The last circle reaches (500, 200) on frame 20 and wraps to (1, 1) on frame 21. The strict greater-than test retains a boundary coordinate for one frame.
+
+Circle zero reaches y=200 on frame 200, then y=1 on frame 201. It reaches x=500 on frame 500, then x=1 on frame 501. Check both boundaries over repeated cycles. A radius-5 circle can be partially clipped at an edge.
+
+Colors are assigned during setup and stay attached to their circles. The old frame is cleared. One callback schedules one next callback; restarting an additional chain changes the update rate. CSS scaling changes display size while the canvas drawing resolution stays 500 by 200.
+
+The unfinished original starter has no canvas or implementation. Add the setup and a small working circle before expanding to the grid. A blank preview before those edits is consistent with that unfinished state.

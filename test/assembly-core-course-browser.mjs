@@ -7,7 +7,7 @@ import process from "node:process";
 import { fileURLToPath } from "node:url";
 import { strFromU8, unzipSync } from "fflate";
 import puppeteer from "puppeteer";
-import { preview } from "vite";
+import { createServer, preview } from "vite";
 import {
 	confirmProjectImport,
 	downloadProjectZip
@@ -206,10 +206,26 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 	try {
 		await mkdir(output, { recursive: true });
 		if (screenshots) await mkdir(screenshots, { recursive: true });
-		server = await preview({
-			root,
-			preview: { host: "127.0.0.1", port: 0, strictPort: true }
-		});
+		if (process.env.COURSE_WORKFLOW_DEV_SERVER === "1") {
+			const previousDirectory = process.cwd();
+			try {
+				process.chdir(root);
+				server = await createServer({
+					root,
+					server: { host: "127.0.0.1", port: 0, strictPort: true }
+				});
+				await server.listen();
+			}
+			finally {
+				process.chdir(previousDirectory);
+			}
+		}
+		else {
+			server = await preview({
+				root,
+				preview: { host: "127.0.0.1", port: 0, strictPort: true }
+			});
+		}
 		const origin = server.resolvedUrls.local[0].replace(/\/$/, "");
 		const executablePath = [
 			process.env.PUPPETEER_EXECUTABLE_PATH,
@@ -582,11 +598,10 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 							filename
 						);
 						await page.waitForFunction(
-							text =>
-								document
-									.querySelector(".cm-content")
-									?.textContent
-									.includes(text),
+							(text) => {
+								const content = document.querySelector(".cm-content")?.textContent;
+								return text === "" ? content === "" : content?.includes(text);
+							},
 							{},
 							saved.files
 								.find(file => file.name === filename)
@@ -804,6 +819,7 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 								url: page.url(),
 								requests,
 								error: String(error),
+								savedProjects: await savedProjects(page),
 								profiles
 							},
 							null,

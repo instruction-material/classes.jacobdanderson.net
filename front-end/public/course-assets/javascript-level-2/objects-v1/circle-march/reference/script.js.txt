@@ -1,0 +1,53 @@
+// Create an array of circle objects and let them march from the top left corner to the bottom right corner!
+
+// Solution
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+canvas.height = 200
+canvas.width = 500
+
+const circles = [];
+const rad = 5;
+
+for (let i = 0; i < 25; i++) {
+  for (let j = 0; j < 10; j++) {
+    
+    let randColor = `rgb(${Math.floor(Math.random() * 256)},${Math.floor( Math.random() * 256)},${Math.floor(Math.random() * 256)})`;
+    
+    const circle = { x: i * 20, y: j * 20, radius: rad, color: randColor };
+    
+    circles.push(circle);
+  }
+}
+
+const drawCircles = () => {
+  circles.forEach((c) => {
+    ctx.beginPath();
+    ctx.fillStyle = c.color;
+    ctx.arc(c.x, c.y, c.radius, 0, Math.PI * 2, false);
+    ctx.fill();
+    ctx.closePath();
+  });
+};
+
+const circleMarch = () => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  circles.forEach((c) => {
+    c.x += 1;
+    c.y += 1;
+
+    if (c.x > 500) {
+      c.x -= 500;
+    }
+    if (c.y > 200) {
+      c.y -= 200;
+    }
+  });
+
+  drawCircles();
+  requestAnimationFrame(circleMarch);
+};
+
+circleMarch();

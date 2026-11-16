@@ -1,0 +1,11 @@
+# Sources
+
+Original reference: https://codepen.io/junilearning/pen/abdb1b2dadb02ac244d8cf862bd9b321
+
+The captured HTML fragment appears unchanged in the local document wrapper. styles.css and script.js retain the exact original panel bytes. viewport.css supplies a separate responsive presentation layer. No external dependencies or preprocessing were declared in the retained original settings.
+
+html SHA256: c945c044a619ad847b87a8358dc69e87e7f37460626173e05a700f44efb4a879
+css SHA256: 9fbf051eb70bf4675207db351f1fb608ed0f27a57b2c3a891d8e003b5dd25969
+javascript SHA256: 2840f7bafbb5be892c52ad0de4926d02ea584952c649251f3a3ec05974471a16
+
+The retained reference export did not include a separate license file. Its original source attribution is retained above.

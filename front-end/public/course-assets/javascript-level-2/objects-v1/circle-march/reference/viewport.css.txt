@@ -1,0 +1,4 @@
+html { color-scheme: light; }
+body { margin: 0; padding: 1rem; }
+.circle-preview { width: 100%; max-width: 502px; margin: 0 auto; }
+.circle-preview canvas { position: static; display: block; box-sizing: border-box; max-width: 100%; height: auto; }

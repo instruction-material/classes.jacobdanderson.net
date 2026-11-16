@@ -1,0 +1,152 @@
+{
+	"courseId": "javascript-level-2-javascript-master",
+	"moduleId": "javascript-level-2-javascript-master-jsm6-objects-and-properties",
+	"itemId": "javascript-level-2-javascript-master-jsm6-objects-and-properties-supplemental-jsm6-supplemental-project-2-circle-march",
+	"originalCaptures": [
+		"codepen-7ac4e84-circle-march-starter-original-capture-20261114.json",
+		"codepen-abdb1b2-circle-march-reference-original-capture-20261114.json"
+	],
+	"resources": [
+		{
+			"courseId": "javascript-level-2-javascript-master",
+			"project": "circle-march",
+			"title": "Circle March",
+			"version": 1,
+			"role": "starter",
+			"urls": [
+				"https://codepen.io/junilearning/pen/7ac4e84b6d1ce34caa732bc0945c6255",
+				"/course-assets/javascript-level-2/objects-v1/circle-march/starter/index.html.txt"
+			],
+			"files": [
+				{
+					"name": "index.html",
+					"path": "objects-v1/circle-march/starter/index.html.txt",
+					"byteLength": 376,
+					"sha256": "19dbcaac005b7e0b726ca1ac10e479acba6a9e66202da165cd21105d1b43babe"
+				},
+				{
+					"name": "styles.css",
+					"path": "objects-v1/circle-march/starter/styles.css.txt",
+					"byteLength": 0,
+					"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+				},
+				{
+					"name": "viewport.css",
+					"path": "objects-v1/circle-march/starter/viewport.css.txt",
+					"byteLength": 248,
+					"sha256": "00057b3bbe940d69e1e9922fbbb9a4b00d902a7df3128e42e77d8e0bf6beb445"
+				},
+				{
+					"name": "script.js",
+					"path": "objects-v1/circle-march/starter/script.js.txt",
+					"byteLength": 145,
+					"sha256": "d82cf7f57ec2abafe3a4bfcead4487154bf948fe4230e0c91495e05913ddd35e"
+				},
+				{
+					"name": "README.md",
+					"path": "objects-v1/circle-march/starter/README.md.txt",
+					"byteLength": 1731,
+					"sha256": "bf620b9978535a256deed1f247002222ae92508964f20367bbb2d6cce5b5b5b0"
+				},
+				{
+					"name": "CASES.md",
+					"path": "objects-v1/circle-march/starter/CASES.md.txt",
+					"byteLength": 1012,
+					"sha256": "c00252351bda24aff1723aaa3b907a86f755db38f1af304b61a2117e604046dc"
+				},
+				{
+					"name": "SOURCES.md",
+					"path": "objects-v1/circle-march/starter/SOURCES.md.txt",
+					"byteLength": 783,
+					"sha256": "b63a5d467c48fba22d4f5c7050d9e75a27f5823d9f0e779da5aaa4ad2cd39ebb"
+				},
+				{
+					"name": "LICENSE-original.txt",
+					"path": "objects-v1/circle-march/starter/LICENSE-original.txt.txt",
+					"byteLength": 1232,
+					"sha256": "d609722720af72192372c5dc0d58ec736ee59daf312318a1f40954a16c6a3bfe"
+				}
+			],
+			"itemId": "javascript-level-2-javascript-master-jsm6-objects-and-properties-supplemental-jsm6-supplemental-project-2-circle-march"
+		},
+		{
+			"courseId": "javascript-level-2-javascript-master",
+			"project": "circle-march",
+			"title": "Circle March",
+			"version": 1,
+			"role": "reference",
+			"urls": [
+				"https://codepen.io/junilearning/pen/abdb1b2dadb02ac244d8cf862bd9b321",
+				"/course-assets/javascript-level-2/objects-v1/circle-march/reference/index.html.txt"
+			],
+			"files": [
+				{
+					"name": "index.html",
+					"path": "objects-v1/circle-march/reference/index.html.txt",
+					"byteLength": 415,
+					"sha256": "c03266e5af05c5e8e68187044fd2726c41866d3fdce432cbbc8f95d56703ffa9"
+				},
+				{
+					"name": "styles.css",
+					"path": "objects-v1/circle-march/reference/styles.css.txt",
+					"byteLength": 83,
+					"sha256": "9fbf051eb70bf4675207db351f1fb608ed0f27a57b2c3a891d8e003b5dd25969"
+				},
+				{
+					"name": "viewport.css",
+					"path": "objects-v1/circle-march/reference/viewport.css.txt",
+					"byteLength": 248,
+					"sha256": "00057b3bbe940d69e1e9922fbbb9a4b00d902a7df3128e42e77d8e0bf6beb445"
+				},
+				{
+					"name": "script.js",
+					"path": "objects-v1/circle-march/reference/script.js.txt",
+					"byteLength": 1124,
+					"sha256": "2840f7bafbb5be892c52ad0de4926d02ea584952c649251f3a3ec05974471a16"
+				},
+				{
+					"name": "README.md",
+					"path": "objects-v1/circle-march/reference/README.md.txt",
+					"byteLength": 1731,
+					"sha256": "bf620b9978535a256deed1f247002222ae92508964f20367bbb2d6cce5b5b5b0"
+				},
+				{
+					"name": "CASES.md",
+					"path": "objects-v1/circle-march/reference/CASES.md.txt",
+					"byteLength": 1012,
+					"sha256": "c00252351bda24aff1723aaa3b907a86f755db38f1af304b61a2117e604046dc"
+				},
+				{
+					"name": "SOURCES.md",
+					"path": "objects-v1/circle-march/reference/SOURCES.md.txt",
+					"byteLength": 759,
+					"sha256": "97c86a777b9b1cb894c0f3bc32af29802a7cc6b36d4b6a122268cba9414bef54"
+				}
+			],
+			"itemId": "javascript-level-2-javascript-master-jsm6-objects-and-properties-supplemental-jsm6-supplemental-project-2-circle-march"
+		}
+	],
+	"files": {
+		"starter": {
+			"index.html": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Circle March</title>\n<link rel=\"stylesheet\" href=\"styles.css\">\n<link rel=\"stylesheet\" href=\"viewport.css\">\n</head>\n<body>\n<main class=\"circle-preview\" aria-label=\"Circle March\">\n\n</main>\n<script src=\"script.js\"></script>\n</body>\n</html>\n",
+			"styles.css": "",
+			"viewport.css": "html { color-scheme: light; }\nbody { margin: 0; padding: 1rem; }\n.circle-preview { width: 100%; max-width: 502px; margin: 0 auto; }\n.circle-preview canvas { position: static; display: block; box-sizing: border-box; max-width: 100%; height: auto; }\n",
+			"script.js": "// Create an array of circle objects and let them march from the top left corner to the bottom right corner!\n\n// Enter your code below this line.",
+			"README.md": "# Circle March\n\nCreate an array of circle objects and animate every object diagonally. Each object stores x, y, radius and color. Keep the learner attempt separate from the worked reference.\n\n## Files and setup\n\nThe local index.html document connects the original panels in styles.css and script.js. viewport.css adapts the display to the available width; the original reference canvas retains its 500 by 200 drawing resolution. No library or preprocessor is used. Open index.html in a browser to run the exported project without a server.\n\nThe original learner HTML and CSS panels are empty. Add a canvas with id canvas and width 500, height 200 inside the document's main element. In script.js, obtain that element and its 2D context before drawing. The retained starter comment is followed by the learner's implementation.\n\n## Build and check\n\nCreate the circle array, draw each filled circle from its properties, and use one requestAnimationFrame chain. Clear the previous frame, update both coordinates, apply the separate horizontal and vertical wrap conditions, and draw every circle.\n\nThe worked reference uses 25 columns and 10 rows at 20-pixel intervals, radius 5, and one random RGB color per circle. A frame adds 1 to each coordinate. An x value greater than 500 subtracts 500; a y value greater than 200 subtracts 200. The reference stores four properties and uses fixed increments.\n\nPredict the first and last grid positions before opening the reference. In an independent attempt, explain one update and one wrap before running. A guided review pauses at the canvas setup, array construction, first frame and first wrap. Save, reopen and export each role independently. CASES.md supplies the complete worked checks.\n",
+			"CASES.md": "# Circle March checks\n\nThe reference draws 250 circles each frame. The first frame draws circle zero at (1, 1) and the last circle at (481, 181). The last circle reaches (500, 200) on frame 20 and wraps to (1, 1) on frame 21. The strict greater-than test retains a boundary coordinate for one frame.\n\nCircle zero reaches y=200 on frame 200, then y=1 on frame 201. It reaches x=500 on frame 500, then x=1 on frame 501. Check both boundaries over repeated cycles. A radius-5 circle can be partially clipped at an edge.\n\nColors are assigned during setup and stay attached to their circles. The old frame is cleared. One callback schedules one next callback; restarting an additional chain changes the update rate. CSS scaling changes display size while the canvas drawing resolution stays 500 by 200.\n\nThe unfinished original starter has no canvas or implementation. Add the setup and a small working circle before expanding to the grid. A blank preview before those edits is consistent with that unfinished state.\n",
+			"SOURCES.md": "# Sources\n\nOriginal starter: https://codepen.io/junilearning/pen/7ac4e84b6d1ce34caa732bc0945c6255\n\nThe captured HTML fragment appears unchanged in the local document wrapper. styles.css and script.js retain the exact original panel bytes. viewport.css supplies a separate responsive presentation layer. No external dependencies or preprocessing were declared in the retained original settings.\n\nhtml SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\ncss SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\njavascript SHA256: d82cf7f57ec2abafe3a4bfcead4487154bf948fe4230e0c91495e05913ddd35e\n\nLICENSE-original.txt retains the complete MIT notice supplied with the original starter export, including its original author and fork attribution.\n",
+			"LICENSE-original.txt": "The MIT License (MIT)\n\nCopyright (c) 2026 Juni Learning (https://codepen.io/junilearning/pen/WNxJNJq)\nFork of an original work JSM6 Project 5: Circle March Solution (https://codepen.io/Gaster623/pen/XWKXLQQ)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+		},
+		"reference": {
+			"index.html": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Circle March reference</title>\n<link rel=\"stylesheet\" href=\"styles.css\">\n<link rel=\"stylesheet\" href=\"viewport.css\">\n</head>\n<body>\n<main class=\"circle-preview\" aria-label=\"Circle March\">\n<canvas id=\"canvas\"></canvas>\n</main>\n<script src=\"script.js\"></script>\n</body>\n</html>\n",
+			"styles.css": "canvas {\n  position: absolute;\n  left: 20%;\n  top: 20%;\n  border: 1px solid grey;\n}",
+			"viewport.css": "html { color-scheme: light; }\nbody { margin: 0; padding: 1rem; }\n.circle-preview { width: 100%; max-width: 502px; margin: 0 auto; }\n.circle-preview canvas { position: static; display: block; box-sizing: border-box; max-width: 100%; height: auto; }\n",
+			"script.js": "// Create an array of circle objects and let them march from the top left corner to the bottom right corner!\n\n// Solution\n\nconst canvas = document.getElementById(\"canvas\");\nconst ctx = canvas.getContext(\"2d\");\ncanvas.height = 200\ncanvas.width = 500\n\nconst circles = [];\nconst rad = 5;\n\nfor (let i = 0; i < 25; i++) {\n  for (let j = 0; j < 10; j++) {\n    \n    let randColor = `rgb(${Math.floor(Math.random() * 256)},${Math.floor( Math.random() * 256)},${Math.floor(Math.random() * 256)})`;\n    \n    const circle = { x: i * 20, y: j * 20, radius: rad, color: randColor };\n    \n    circles.push(circle);\n  }\n}\n\nconst drawCircles = () => {\n  circles.forEach((c) => {\n    ctx.beginPath();\n    ctx.fillStyle = c.color;\n    ctx.arc(c.x, c.y, c.radius, 0, Math.PI * 2, false);\n    ctx.fill();\n    ctx.closePath();\n  });\n};\n\nconst circleMarch = () => {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n\n  circles.forEach((c) => {\n    c.x += 1;\n    c.y += 1;\n\n    if (c.x > 500) {\n      c.x -= 500;\n    }\n    if (c.y > 200) {\n      c.y -= 200;\n    }\n  });\n\n  drawCircles();\n  requestAnimationFrame(circleMarch);\n};\n\ncircleMarch();\n",
+			"README.md": "# Circle March\n\nCreate an array of circle objects and animate every object diagonally. Each object stores x, y, radius and color. Keep the learner attempt separate from the worked reference.\n\n## Files and setup\n\nThe local index.html document connects the original panels in styles.css and script.js. viewport.css adapts the display to the available width; the original reference canvas retains its 500 by 200 drawing resolution. No library or preprocessor is used. Open index.html in a browser to run the exported project without a server.\n\nThe original learner HTML and CSS panels are empty. Add a canvas with id canvas and width 500, height 200 inside the document's main element. In script.js, obtain that element and its 2D context before drawing. The retained starter comment is followed by the learner's implementation.\n\n## Build and check\n\nCreate the circle array, draw each filled circle from its properties, and use one requestAnimationFrame chain. Clear the previous frame, update both coordinates, apply the separate horizontal and vertical wrap conditions, and draw every circle.\n\nThe worked reference uses 25 columns and 10 rows at 20-pixel intervals, radius 5, and one random RGB color per circle. A frame adds 1 to each coordinate. An x value greater than 500 subtracts 500; a y value greater than 200 subtracts 200. The reference stores four properties and uses fixed increments.\n\nPredict the first and last grid positions before opening the reference. In an independent attempt, explain one update and one wrap before running. A guided review pauses at the canvas setup, array construction, first frame and first wrap. Save, reopen and export each role independently. CASES.md supplies the complete worked checks.\n",
+			"CASES.md": "# Circle March checks\n\nThe reference draws 250 circles each frame. The first frame draws circle zero at (1, 1) and the last circle at (481, 181). The last circle reaches (500, 200) on frame 20 and wraps to (1, 1) on frame 21. The strict greater-than test retains a boundary coordinate for one frame.\n\nCircle zero reaches y=200 on frame 200, then y=1 on frame 201. It reaches x=500 on frame 500, then x=1 on frame 501. Check both boundaries over repeated cycles. A radius-5 circle can be partially clipped at an edge.\n\nColors are assigned during setup and stay attached to their circles. The old frame is cleared. One callback schedules one next callback; restarting an additional chain changes the update rate. CSS scaling changes display size while the canvas drawing resolution stays 500 by 200.\n\nThe unfinished original starter has no canvas or implementation. Add the setup and a small working circle before expanding to the grid. A blank preview before those edits is consistent with that unfinished state.\n",
+			"SOURCES.md": "# Sources\n\nOriginal reference: https://codepen.io/junilearning/pen/abdb1b2dadb02ac244d8cf862bd9b321\n\nThe captured HTML fragment appears unchanged in the local document wrapper. styles.css and script.js retain the exact original panel bytes. viewport.css supplies a separate responsive presentation layer. No external dependencies or preprocessing were declared in the retained original settings.\n\nhtml SHA256: c945c044a619ad847b87a8358dc69e87e7f37460626173e05a700f44efb4a879\ncss SHA256: 9fbf051eb70bf4675207db351f1fb608ed0f27a57b2c3a891d8e003b5dd25969\njavascript SHA256: 2840f7bafbb5be892c52ad0de4926d02ea584952c649251f3a3ec05974471a16\n\nThe retained reference export did not include a separate license file. Its original source attribution is retained above.\n"
+		}
+	},
+	"revisionKind": "registered-local-files-sha256",
+	"revision": "4a37016f6176a61f989e0b1f49a2122c85976deaf91531993379c461edeb61e1"
+}
