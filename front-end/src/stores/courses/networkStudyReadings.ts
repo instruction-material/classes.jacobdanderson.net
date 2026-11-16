@@ -66,7 +66,7 @@ export function applyNetworkStudyReadings(course: RawCourse) {
 				? `\n\n## Complete source guide\n\n${guides[entry.guide]
 						.replace(/instructor/gi, "guided review")
 						.replace(
-							/for the learner\s+attempt/g,
+							/for\s+the\s+learner\s+attempt/g,
 							"for the independent attempt"
 						)
 						.replace(
