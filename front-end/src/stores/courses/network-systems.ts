@@ -13,17 +13,17 @@ const networkSystemsSourceCourse: RawCourse = {
 				{
 					title: "Preferred IDE and Real Linux Environment",
 					content:
-						"Standardize on `VS Code` and make the real requirement a usable Linux shell rather than the editor itself. This course is command-line and lab oriented, so plan to run diagnostics and configuration changes on a Linux VM, remote server, WSL instance, or disposable cloud host rather than only from a local desktop shell."
+						"A terminal runs commands on its current host and network namespace. VS Code is an optional editor; the site IDE supplies saved project files. Live command and socket labs use an ordinary account in an owned Linux environment. Privileged route, firewall and capture labs use a disposable Linux VM with the namespace capabilities named in their README. The supplied transcripts and recorded capstone packet provide the independent reasoning route when that environment is unavailable."
 				},
 				{
 					title: "macOS and Windows Walkthroughs",
 					content:
-						"On macOS, install VS Code, add the `code` command to PATH, and plan to run labs against a Linux VM, Docker-based lab, or remote host. On Windows, install WSL2 plus Ubuntu, keep the workspace inside the Linux filesystem, and verify that commands are running in Linux before starting route, firewall, or packet-capture labs."
+						"A macOS terminal remains a macOS terminal when a Linux file is open in its editor. Use the terminal of an owned Linux VM or an already authorized Linux host for live Linux work. A Windows WSL terminal can support the ordinary-account exercises when their required tools and loopback operations are available. A live privileged exercise additionally needs its documented network and mount namespace capabilities; its supplied-case alternative remains available. Record uname -s, hostname, pwd and the relevant tool versions in the same terminal that runs the exercise."
 				},
 				{
 					title: "Core Tooling and Remote Access",
 					content:
-						"Verify `ssh`, `curl`, `dig`, and `traceroute` early, then add `Remote - SSH`, `Remote - WSL`, `Docker`, `YAML`, and `EditorConfig` support as needed. Diagnostics, packet capture, firewall editing, and routing changes often happen over a remote shell instead of a local GUI."
+						"The selected project's README names its required tools and exact commands. ip and ss observe address, route and socket state; dig observes a chosen DNS view; curl observes an application exchange. An editor extension neither installs those tools on the selected host nor establishes permission to change that host. Prepare the owned environment before running the project and use the recorded route when a required capability is absent."
 				},
 				{
 					title: "Positioning, Prerequisites, and Core Outcomes",
@@ -93,7 +93,7 @@ const networkSystemsSourceCourse: RawCourse = {
 				{
 					title: "TCP versus UDP",
 					content:
-						"Compare TCP and UDP in terms of connection behavior, retransmission expectations, and where reliability lives. Keep the comparison practical: explain why an application chose one or the other and what that choice changes about debugging."
+						"TCP exposes an ordered byte stream. A receiver can obtain one application's message in several reads, so the application must define its own boundary, such as a length or newline. UDP preserves individual datagram boundaries and supplies no automatic application retry. A valid empty UDP datagram is different from TCP receive EOF. In the supplied transport comparison, TCP can finish sending six bytes without the application's required newline; the transport has finished while that message remains incomplete. A UDP buffer holding only three bytes can discard the remainder of a longer datagram. Use the exact recorded bytes, EOF and truncation flag to distinguish these cases."
 				},
 				{
 					title: "Client and Server Flow",
@@ -171,12 +171,12 @@ const networkSystemsSourceCourse: RawCourse = {
 				{
 					title: "Public versus Private Addressing",
 					content:
-						"Private IPv4 ranges and public internet addresses explain why many devices can talk locally without being directly reachable from outside. This connects directly to NAT and to the difference between a home network and a public server."
+						"The private IPv4 ranges are 10.0.0.0/8, 172.16.0.0/12 and 192.168.0.0/16. Documentation ranges such as 192.0.2.0/24 are a separate category used in the supplied cases. Neither an address's category nor NAT alone establishes whether a particular service is reachable. A prefix states the leading address bits in a network block: 192.0.2.130/26 lies in 192.0.2.128–191. On an ordinary IPv4 LAN, .128 is the network value and .191 is the broadcast value. IPv6 uses different rules and has no broadcast address."
 				},
 				{
 					title: "IPv6 Address Categories in Practice",
 					content:
-						"Loopback, link-local, and global unicast addresses are practical address families that show up in diagnostics. This prevents the common confusion where every IPv6 address is assumed to be globally routed in the same way."
+						"Loopback, link-local and global unicast describe IPv6 address types and scope within the same IPv6 address family. ::1 stays in the current node or namespace; fe80::/10 addresses need link/interface context. A global-unicast-shaped address does not by itself establish a working route or application. The course's 2001:db8::/32 examples are reserved documentation addresses. Trace lookup, selected route, neighbor where applicable, listener and application separately."
 				},
 				{
 					title: "DNS Names versus Actual Endpoints",
@@ -514,7 +514,7 @@ const networkSystemsSourceCourse: RawCourse = {
 				{
 					title: "ARP, Neighbor Discovery, and ip neigh",
 					content:
-						"Use `ip neigh` to connect route choice back to link-layer neighbor resolution. The point is to show that once a host chooses the next hop, it still needs a local-link mapping before traffic can leave on the wire."
+						"Use ip neigh to connect route choice back to link-layer neighbor resolution. For an on-link destination or next hop, ARP supplies IPv4 neighbor information and Neighbor Discovery supplies IPv6 neighbor information. Read the entry for the selected interface and next hop. A failed entry on an unused interface does not establish failure of the selected route, and loopback does not require a physical-link neighbor."
 				},
 				{
 					title: "Project: Simulate a Router and NAT Lab in a Disposable Linux Topology",
@@ -643,7 +643,7 @@ const networkSystemsSourceCourse: RawCourse = {
 				{
 					title: "Application Profiles, Logging, and Safe Rollout",
 					content:
-						"Application profiles, logging, and staged rule rollout treat firewall changes as operational changes with recovery plans. SSH access comes first, intended exposure is documented, and rules are verified from another session before assuming the host is still reachable."
+						"An application profile expands a named service into policy details; inspect its actual protocols and ports before using it. Keep the intended client, listener and family explicit. A listed allow rule is configured policy, while a request is a separate measurement. Live changes require the owned VM's console or a tested alternate access path. When management uses SSH, retain its declared path and verify that session separately; this course's toy HTTP observations do not measure an SSH login."
 				},
 				{
 					title: "UFW versus iptables and nftables",

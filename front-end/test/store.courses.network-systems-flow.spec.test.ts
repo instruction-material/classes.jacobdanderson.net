@@ -232,7 +232,10 @@ describe("Network Systems learner flow", () => {
 		);
 
 		for (const module of core) {
-			const text = JSON.stringify(module);
+			const text = JSON.stringify(module).replace(
+				/\/course-resource\?asset=([^)"\s]+)/g,
+				(_, asset: string) => decodeURIComponent(asset)
+			);
 			expect(text, module.title).toContain(
 				"/course-assets/network/network-systems-practice-pack.md#"
 			);

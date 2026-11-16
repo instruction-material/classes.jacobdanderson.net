@@ -39,7 +39,8 @@ const fixtures = (
 			"./fixtures/network-dns-optional-contracts.json",
 			"./fixtures/network-kernel-optional-contracts.json",
 			"./fixtures/network-diagnostics-five-contracts.json",
-			"./fixtures/network-archive-six-contracts.json"
+			"./fixtures/network-archive-six-contracts.json",
+			"./fixtures/network-practice-contracts.json"
 		].map(async path =>
 			JSON.parse(await readFile(new URL(path, import.meta.url), "utf8"))
 		)
@@ -72,7 +73,8 @@ const fixtures = (
 			process.env.NETWORK_CAPSTONE_OPTIONAL_ONLY !== "1"
 			|| fixture.mode?.startsWith("capstone-")
 	)
-	.filter(fixture => process.env.NETWORK_ARCHIVE_SIX_ONLY !== "1" || fixture.mode?.startsWith("archive-"));
+	.filter(fixture => process.env.NETWORK_ARCHIVE_SIX_ONLY !== "1" || fixture.mode?.startsWith("archive-"))
+	.filter(fixture => process.env.NETWORK_PRACTICE_ONLY !== "1" || fixture.mode?.startsWith("practice-"));
 
 const storageKey = "classes-python-ide-projects:anonymous";
 const earlierTemplate = {
@@ -176,8 +178,9 @@ async function courseAction(
 		);
 		if (href) {
 			const required
-				= fixture.continuationItems?.find(row => row.itemId === itemID)
-					?.requiredText ?? [];
+				= (itemID === fixture.coreItemId ? fixture.practiceRequiredText : null)
+					?? fixture.continuationItems?.find(row => row.itemId === itemID)
+						?.requiredText ?? [];
 			if (required.length) {
 				const blocks = await page.$$(
 					`${card} .assignment-content .item-content-markdown`
@@ -318,6 +321,20 @@ nodeTest(
 						};
 						const earlierProjects = [
 							earlier,
+							...(fixture.originalCoreItemId
+								? ["starter", "reference"].map(savedRole => ({
+										...earlier,
+										_id: `preserved-core-${savedRole}`,
+										title: `Preserved core ${savedRole}`,
+										courseProjectKey: `network-systems:${
+											fixture.originalCoreItemId}:${
+											savedRole}:native-network`,
+										files: [{
+											name: "network-notes.md",
+											content: "Original core observations retained.\\n"
+										}]
+									}))
+								: []),
 							...(fixture.continuationItems ?? []).map(
 								(continuation, index) => ({
 									...earlier,
@@ -642,7 +659,8 @@ nodeTest(
 											".cm-content .cm-line"
 										)?.textContent === expected,
 									{},
-									fixture.editTaskFirstLine
+									fixture.roleEditFirstLines?.[role]
+									?? fixture.editTaskFirstLine
 									?? "#!/usr/bin/env bash"
 								);
 							}

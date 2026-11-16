@@ -62,12 +62,19 @@ import {
 import { designPatternsInJavaCourse } from "@/stores/courses/design-patterns-in-java";
 import { designPatternsInJavaPart2Course } from "@/stores/courses/design-patterns-in-java-part-2";
 import { javaLevel3Course } from "@/stores/courses/java-level-3";
+import { networkSystemsCourse } from "@/stores/courses/network-systems";
 
 function isReviewedModule(id: string, title: string) {
 	if (id === "java-level-3") return title === "AJ4 Recursion";
 	return true;
 }
 const cases = [
+	{
+		id: "network-systems",
+		source: networkSystemsCourse,
+		readings: 56,
+		additions: []
+	},
 	{
 		id: "design-patterns-in-java-part-2",
 		source: designPatternsInJavaPart2Course,
@@ -480,6 +487,7 @@ it.each(
 				focusedJavaTask ||
 				[
 					"smart-money-personal-finance",
+					"network-systems",
 					"intro-to-environmental-science",
 					"elementary-science",
 					"intro-to-biology",
@@ -492,6 +500,7 @@ it.each(
 				focusedJavaTask ||
 				[
 					"smart-money-personal-finance",
+					"network-systems",
 					"intro-to-environmental-science",
 					"elementary-science",
 					"intro-to-biology",
@@ -625,6 +634,7 @@ it.each(
 			if (
 				completeAssignment &&
 				![
+					"network-systems",
 					"middle-school-integrated-science",
 					"elementary-science",
 					"intro-to-biology",
@@ -649,6 +659,10 @@ it.each(
 						evidence.textContent!.replace(/\s+/g, " ").trim()
 					);
 				}
+			}
+			if (id === "network-systems" && item.learningPath === "core") {
+				expect(item.content, item.title).toMatch(/network-notes\.md|notebook/i);
+				expect(container.textContent!.trim().length, item.title).toBeGreaterThan(300);
 			}
 			if (
 				id === "middle-school-c-grammar" &&
@@ -767,6 +781,14 @@ it.each(
 			expect(activities.flatMap(item => item.selfChecks)).toHaveLength(
 				258
 			);
+		} else if (id === "network-systems") {
+			expect(modules).toHaveLength(21);
+			expect(modules.filter(module => module.kind === "module")).toHaveLength(14);
+			expect(modules.filter(module => module.kind === "appendix")).toHaveLength(7);
+			expect(modules.flatMap(module => module.readings)).toHaveLength(56);
+			const activities = modules.flatMap(module => [...module.projects, ...module.optional]);
+			expect(activities).toHaveLength(79);
+			expect(activities.every(item => item.assignmentTextScope === "complete")).toBe(true);
 		} else if (id === "java-level-3") expect(modules).toHaveLength(25);
 		else if (algebra1)
 			expect(modules).toHaveLength(id === "algebra-1a" ? 21 : 25);
@@ -795,7 +817,20 @@ it.each(
 			);
 		for (const module of modules) {
 			if (!isReviewedModule(id, module.title)) continue;
-			if (id === "design-patterns-in-java") {
+			if (id === "network-systems") {
+				const expected = {
+					"Standards Map": 6,
+					"Course Roadmap": 6,
+					"Project Practice Guide": 4,
+					"Network Systems: Systems and Security Lab Safety Policy": 4,
+					"Network Systems: Defensive Lab Contract": 4,
+					"Network Systems: Toolchain and Version Assumptions": 4,
+					"Optional Network Expansion and Integration Studio Archive": 11,
+					"Network Systems Lab 17: Operations Capstone Studio": 3,
+					"Unit 2: Addresses and Naming": 2
+				}[module.title] ?? 1;
+				expect(module.readings, module.title).toHaveLength(expected);
+			} else if (id === "design-patterns-in-java") {
 				const expected =
 					{
 						"Optional Applied Java Pattern Studios": 7,

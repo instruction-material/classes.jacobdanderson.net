@@ -21,6 +21,7 @@ import { mapMarkdownProse } from "./markdownProse";
 import { applyMiddleSchoolLiteratureReadings } from "./middleSchoolLiteratureReadings";
 import { applyMiddleSchoolScienceReferences } from "./middleSchoolScienceReferences";
 import { applyMiddleSchoolWritingReadings } from "./middleSchoolWritingReadings";
+import { applyNetworkStudyReadings } from "./networkStudyReadings";
 import { applyNovelWritingReadings } from "./novelWritingReadings";
 import { applyPhysicsLevel2References } from "./physicsLevel2References";
 import { applyPictureBookGuidance } from "./pictureBookProjects";
@@ -9911,5 +9912,6 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 	) {
 		applyMiddleSchoolWritingReadings(course, rawCourse);
 	}
+	if (id === "network-systems") applyNetworkStudyReadings(course);
 	return course;
 }
