@@ -3045,7 +3045,8 @@ export function isValidPythonFileName(
 
 	if (
 		CODE_EXTENSION_RE.test(value) ||
-		NESTED_DATA_FILE_RE.test(value) ||
+		((mode === "python" || mode === "data") &&
+			NESTED_DATA_FILE_RE.test(value)) ||
 		baseName(value) === "CMakeLists.txt" ||
 		NATIVE_WORKSHEET_FILE_RE.test(value) ||
 		rustPath ||
@@ -3229,7 +3230,8 @@ function safeProjectFileNameFromStarterPath(
 	path: string,
 	resourceBasePath: string,
 	usedFileNames: Set<string>,
-	preserveSourceLayout = false
+	preserveSourceLayout = false,
+	mode: PythonIdeMode = "python"
 ) {
 	const basePath = resourceBasePath.replace(/\/+$/, "");
 	const relativePath =
@@ -3243,11 +3245,11 @@ function safeProjectFileNameFromStarterPath(
 			: relativePath.replace(STARTER_RELATIVE_PREFIX_RE, "")
 	).replace(/^\/+/, "");
 	const candidatePath = normalizePythonFileName(normalizedRelativePath);
-	let fileName = isValidPythonFileName(candidatePath)
+	let fileName = isValidPythonFileName(candidatePath, mode)
 		? candidatePath
 		: normalizePythonFileName(baseName(normalizedRelativePath));
 
-	if (!isValidPythonFileName(fileName)) return "";
+	if (!isValidPythonFileName(fileName, mode)) return "";
 
 	if (usedFileNames.has(fileName)) {
 		const extension = fileName.match(FILE_EXTENSION_RE)?.[0] ?? "";
@@ -3373,7 +3375,8 @@ export async function loadPythonIdeStarterFilesFromGitHub(
 			file.path,
 			resource.path,
 			usedFileNames,
-			mode === "java"
+			mode === "java",
+			mode
 		);
 		if (!name || !isPythonIdeTextFile(name)) continue;
 

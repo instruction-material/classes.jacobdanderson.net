@@ -111,7 +111,7 @@ function isSafeProjectFileName(value: string, mode: PythonProjectMode = "python"
 	if (mode === "swift") return isSwiftProjectTextPath(value);
 	if (mode === "web") return isWebProjectTextPath(value);
 
-	if (NESTED_DATA_FILE_RE.test(value) || PYTHON_FILE_NAME_RE.test(value) || JAVA_FILE_NAME_RE.test(value) || C_FILE_NAME_RE.test(value) || ASSEMBLY_FILE_NAME_RE.test(value) || CPP_TEXT_FILE_NAME_RE.test(value) || segments.at(-1) === "CMakeLists.txt" || NATIVE_WORKSHEET_FILE_RE.test(value) || linuxPath || (mode === "rust" && isRustProjectTextPath(value))) {
+	if (((mode === "python" || mode === "data") && NESTED_DATA_FILE_RE.test(value)) || PYTHON_FILE_NAME_RE.test(value) || JAVA_FILE_NAME_RE.test(value) || C_FILE_NAME_RE.test(value) || ASSEMBLY_FILE_NAME_RE.test(value) || CPP_TEXT_FILE_NAME_RE.test(value) || segments.at(-1) === "CMakeLists.txt" || NATIVE_WORKSHEET_FILE_RE.test(value) || linuxPath || (mode === "rust" && isRustProjectTextPath(value))) {
 		const rootDirectory = segments[0]?.toLowerCase();
 		return !rootDirectory || !ASSET_DIRECTORY_NAMES.has(rootDirectory);
 	}
@@ -129,7 +129,7 @@ const projectFileSchema = z.object({
 		.min(1)
 		.max(80)
 		.refine(
-			value => isSafeProjectFileName(value, "linux") || isSafeProjectFileName(value, "rust") || isSafeProjectFileName(value, "web") || isSafeProjectFileName(value, "swift"),
+			value => isSafeProjectFileName(value, "python") || isSafeProjectFileName(value, "linux") || isSafeProjectFileName(value, "rust") || isSafeProjectFileName(value, "web") || isSafeProjectFileName(value, "swift"),
 			"Use a safe code file, root data/text file, or images/, sounds/, or music/ asset file that does not use a runtime-reserved module name"
 		),
 	content: z.string().max(MAX_FILE_LENGTH),

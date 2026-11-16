@@ -5684,6 +5684,11 @@ else:
 		expect(isValidPythonFileName("sounds/eep.py")).toBe(false);
 		expect(isValidPythonFileName("package/data.csv")).toBe(true);
 		expect(isValidPythonFileName("package/data.tsv")).toBe(true);
+		expect(isValidPythonFileName("data/scores.csv", "data")).toBe(true);
+		for (const mode of ["cpp", "c", "java", "turtle", "pgzero"] as const) {
+			expect(isValidPythonFileName("data/scores.csv", mode), mode).toBe(false);
+			expect(isValidPythonFileName("scores.csv", mode), mode).toBe(true);
+		}
 		expect(isValidPythonFileName("data/holdout/scores.csv", "data")).toBe(
 			true
 		);
