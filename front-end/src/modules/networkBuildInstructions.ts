@@ -1,4 +1,5 @@
 import type { PythonIdeFile } from "@/modules/pythonIde";
+import { networkArchiveSixInstructions } from "./networkArchiveSixResources";
 import { networkDiagnosticsFiveInstructions } from "./networkDiagnosticsFiveResources";
 import { networkDnsOptionalInstructions } from "./networkDnsOptionalResources";
 import { networkFirewallOptionalInstructions } from "./networkFirewallOptionalResources";
@@ -12,6 +13,7 @@ export function networkBuildInstructions(files: PythonIdeFile[], url: string) {
 	const selected = networkCourseResource(url);
 	if (!selected) return null;
 	const { role, definition } = selected;
+	const archiveSix = networkArchiveSixInstructions(definition.pack, role);
 	const setupContext =
 		definition.pack === "NS-01-ns0-setup-and-tooling-supplemental-2";
 	const setupArguments =
@@ -92,28 +94,32 @@ export function networkBuildInstructions(files: PythonIdeFile[], url: string) {
 		"NS-06-unit-2-addresses-and-naming-supplemental-3":
 			"Repeat with python3 main.py --lookup 127.0.0.1. Compare resolver families, actual listener ownership and the IPv6 probe. The IPv6 documentation-prefix table is a separate calculation, not proof of DNS or internet reachability."
 	};
-	const lines = setup
+	const lines = archiveSix
 		? [
-				"Save and download the ZIP. Extract it in an owned Linux lab using an ordinary non-root account, Python3.10+, /bin/sh and /bin/bash.",
-				"The browser edits and saves the configuration and notebooks. Run the actual command-context or shell-argument observations in the external Linux terminal."
+				"Save and download the ZIP. Extract it using an ordinary account and Python 3.10 or later. The default task interprets supplied recorded network observations."
 			]
-		: topology || capture || firewall || linkRouting || capstone
+		: setup
 			? [
-					`Save and download the ZIP. Extract it in an owned disposable Linux VM with root access and the tools listed in README.md. This kernel lab requires ${capture ? "an owned network namespace" : "network and mount namespaces"}.`,
-					"The browser edits and saves the source and notebook. Run the selected real network experiment in that external VM; the browser cannot perform these Linux kernel operations."
+					"Save and download the ZIP. Extract it in an owned Linux lab using an ordinary non-root account, Python3.10+, /bin/sh and /bin/bash.",
+					"The browser edits and saves the configuration and notebooks. Run the actual command-context or shell-argument observations in the external Linux terminal."
 				]
-			: reachability ||
-				  listeners ||
-				  resolution ||
-				  Boolean(diagnosticsFive)
+			: topology || capture || firewall || linkRouting || capstone
 				? [
-						"Save and download the ZIP. Extract it in an owned Linux lab or WSL environment with an ordinary account and the tools listed in README.md.",
-						"The browser edits and saves the source and notebook. Run the bounded Linux observations in that external environment; the browser does not execute the system commands."
+						`Save and download the ZIP. Extract it in an owned disposable Linux VM with root access and the tools listed in README.md. This kernel lab requires ${capture ? "an owned network namespace" : "network and mount namespaces"}.`,
+						"The browser edits and saves the source and notebook. Run the selected real network experiment in that external VM; the browser cannot perform these Linux kernel operations."
 					]
-				: [
-						"Save and download the ZIP. Extract it in an owned Linux lab or WSL environment with an ordinary account, Python3.10+ and the tools listed in README.md.",
-						"The browser edits and saves the source and notebook. Run the real socket experiments in that external Linux terminal; browser Python does not provide these Linux observations."
-					];
+				: reachability ||
+					  listeners ||
+					  resolution ||
+					  Boolean(diagnosticsFive)
+					? [
+							"Save and download the ZIP. Extract it in an owned Linux lab or WSL environment with an ordinary account and the tools listed in README.md.",
+							"The browser edits and saves the source and notebook. Run the bounded Linux observations in that external environment; the browser does not execute the system commands."
+						]
+					: [
+							"Save and download the ZIP. Extract it in an owned Linux lab or WSL environment with an ordinary account, Python3.10+ and the tools listed in README.md.",
+							"The browser edits and saves the source and notebook. Run the real socket experiments in that external Linux terminal; browser Python does not provide these Linux observations."
+						];
 	if (
 		!files.some(file => file.name === "README.md") ||
 		definition.roleFiles.some(
@@ -126,6 +132,7 @@ export function networkBuildInstructions(files: PythonIdeFile[], url: string) {
 		];
 	}
 
+	if (archiveSix) return [...lines, ...archiveSix];
 	const dnsOptional = networkDnsOptionalInstructions(definition.pack, role);
 	if (dnsOptional) return [...lines, ...dnsOptional];
 	if (kernelOptional) return [...lines, ...kernelOptional];

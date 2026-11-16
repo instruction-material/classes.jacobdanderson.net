@@ -722,6 +722,7 @@ describe("python project routes", () => {
 
 	it.each(
 		[
+			"network-archive-six-contracts.json",
 			"network-foundations-contracts.json",
 			"network-naming-contracts.json",
 			"network-topology-contracts.json",

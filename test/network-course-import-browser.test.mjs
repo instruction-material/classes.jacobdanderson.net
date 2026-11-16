@@ -9,7 +9,7 @@ import { test as nodeTest } from "node:test";
 import { fileURLToPath } from "node:url";
 import { strFromU8, unzipSync } from "fflate";
 import puppeteer from "puppeteer";
-import { preview } from "vite";
+import { createServer, preview } from "vite";
 import {
 	confirmProjectImport,
 	downloadProjectZip
@@ -38,7 +38,8 @@ const fixtures = (
 			"./fixtures/network-inventory-contracts.json",
 			"./fixtures/network-dns-optional-contracts.json",
 			"./fixtures/network-kernel-optional-contracts.json",
-			"./fixtures/network-diagnostics-five-contracts.json"
+			"./fixtures/network-diagnostics-five-contracts.json",
+			"./fixtures/network-archive-six-contracts.json"
 		].map(async path =>
 			JSON.parse(await readFile(new URL(path, import.meta.url), "utf8"))
 		)
@@ -70,7 +71,8 @@ const fixtures = (
 		fixture =>
 			process.env.NETWORK_CAPSTONE_OPTIONAL_ONLY !== "1"
 			|| fixture.mode?.startsWith("capstone-")
-	);
+	)
+	.filter(fixture => process.env.NETWORK_ARCHIVE_SIX_ONLY !== "1" || fixture.mode?.startsWith("archive-"));
 
 const storageKey = "classes-python-ide-projects:anonymous";
 const earlierTemplate = {
@@ -271,10 +273,21 @@ nodeTest(
 		try {
 			await mkdir(output, { recursive: true });
 			if (screenshots) await mkdir(screenshots, { recursive: true });
-			server = await preview({
-				root,
-				preview: { host: "127.0.0.1", port: 0, strictPort: true }
-			});
+			if (process.env.COURSE_WORKFLOW_DEV_SERVER === "1") {
+				const previousDirectory = process.cwd();
+				try {
+					process.chdir(root);
+					server = await createServer({ root, server: { host: "127.0.0.1", port: 0, strictPort: true } });
+					await server.listen();
+				}
+				finally { process.chdir(previousDirectory); }
+			}
+			else {
+				server = await preview({
+					root,
+					preview: { host: "127.0.0.1", port: 0, strictPort: true }
+				});
+			}
 			const origin = server.resolvedUrls.local[0].replace(/\/$/, "");
 			const executablePath = [
 				process.env.PUPPETEER_EXECUTABLE_PATH,

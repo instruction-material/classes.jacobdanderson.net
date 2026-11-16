@@ -4,7 +4,7 @@ export const linuxFileSegmentPattern = /^[\w-](?:[\w .-]*[\w.-])?$/;
 export function isLinuxProjectTextPath(value: string) {
 	return (
 		/^(?:starter|solution)\/web-stack\.profile$/.test(value) ||
-		/^(?:starter|solution)\/(?:config|candidate|release-manifest|data|case)\.json$/.test(
+		/^(?:starter|solution)\/(?:config|candidate|release-manifest|data|case|assessment|observations)\.json$/.test(
 			value
 		) ||
 		/^(?:starter|solution)\/settings\.env$/.test(value) ||
@@ -17,7 +17,7 @@ export function isLinuxProjectTextPath(value: string) {
 			value
 		) ||
 		value.split("/").at(-1) === "crontab.example" ||
-		/^(?:starter|solution)\/(?:ipv6-practice-case|application-cases|edge-cases)\.md$/.test(
+		/^(?:starter|solution)\/(?:ipv6-practice-case|application-cases|edge-cases|SOURCES)\.md$/.test(
 			value
 		) ||
 		/^(?:starter|solution)\/(?:permissions|compare-notes|service-notes|service-transfer-notes|service-extension-notes|incident-notes|application-notes|retention-notes|edit-notes|environment-notes|replacement-notes|process-notes|pipeline-notes|adoption-notes|package-notes|manual-notes|dependency-notes|network-notes|listener-notes|resolver-notes|restore-notes|integrity-notes|backup-retention-notes|search-notes|path-notes|filesystem-notes|unlink-notes|umask-notes|lookup-notes|launch-notes|calendar-notes|timer-notes|host-notes|validator-notes|deployment-notes|artifact-notes|locking-notes|operations-notes|recovery-notes|observability-notes|backup-notes)\.md$/.test(

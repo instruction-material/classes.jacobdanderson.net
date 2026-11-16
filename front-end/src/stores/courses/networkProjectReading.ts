@@ -5,6 +5,12 @@ import namingReading0 from "../../assets/course-guides/network-addresses.md?raw"
 import applicationReading2 from "../../assets/course-guides/network-application-boundaries.md?raw";
 import applicationReading1 from "../../assets/course-guides/network-application-conditions.md?raw";
 import applicationReading0 from "../../assets/course-guides/network-application-responses.md?raw";
+import archiveReading2 from "../../assets/course-guides/network-archive-expansion-claims.md?raw";
+import archiveReading0 from "../../assets/course-guides/network-archive-expansion-plan.md?raw";
+import archiveReading1 from "../../assets/course-guides/network-archive-expansion-transfer.md?raw";
+import archiveReading3 from "../../assets/course-guides/network-archive-exposure-core.md?raw";
+import archiveReading4 from "../../assets/course-guides/network-archive-exposure-families.md?raw";
+import archiveReading5 from "../../assets/course-guides/network-archive-exposure-policy.md?raw";
 import capstoneIdentityReading from "../../assets/course-guides/network-capstone-identity.md?raw";
 import capstonePrefixReading from "../../assets/course-guides/network-capstone-prefix.md?raw";
 import kernelOptionalReading4 from "../../assets/course-guides/network-capture-evidence-transfer.md?raw";
@@ -55,6 +61,14 @@ import {
 } from "../../modules/networkProjectResources";
 
 const readings: Record<string, string> = {
+	"NS-10-ns13-expansion-ideas-and-next-steps": archiveReading0,
+	"NS-27-ns13-expansion-ideas-and-next-steps-supplemental-2": archiveReading1,
+	"NS-28-ns13-expansion-ideas-and-next-steps-supplemental-3": archiveReading2,
+	"NS-02-network-systems-lab-16": archiveReading3,
+	"NS-31-applied-studio-16-network-systems-lab-16-supplemental-2":
+		archiveReading4,
+	"NS-32-applied-studio-16-network-systems-lab-16-supplemental-3":
+		archiveReading5,
 	"NS-13-unit-6-core-diagnostics-supplemental-2": diagnosticsReading0,
 	"NS-14-unit-6-core-diagnostics-supplemental-3": diagnosticsReading1,
 	"NS-01-network-systems-lab-15": diagnosticsReading2,
@@ -150,10 +164,15 @@ export function withNetworkProjectReadings(
 			"NS-07-unit-3-switches-routers-nat-and-the-internet-edge";
 		const exposure = topology && module.title.startsWith("Unit 12:");
 		const reading = (
-			selected.pack === "NS-01-network-systems-lab-15" &&
+			selected.pack === "NS-02-network-systems-lab-16" &&
 			/^Extension Challenge:|: Extension Challenge$/.test(item.title)
-				? diagnosticsContinuation
-				: readings[selected.pack]
+				? "## Service exposure: before and after\n\nContinue the saved service-exposure attempt. Preserve the wrong-upstream response before comparing it with the baseline after the upstream correction. Record both address families, the requested front endpoint, the application identity and the remaining public-exposure limit in network-notes.md. Use the full core-card guide and imported README.md for setup and complete input inventory."
+				: selected.pack === "NS-01-network-systems-lab-15" &&
+					  /^Extension Challenge:|: Extension Challenge$/.test(
+							item.title
+					  )
+					? diagnosticsContinuation
+					: readings[selected.pack]
 		)
 			.replace(
 				/This replaces the unrelated port-list exercise previously (?:present )?in this folder\./,

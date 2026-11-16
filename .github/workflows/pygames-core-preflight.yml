@@ -8,7 +8,7 @@ on:
       course:
         description: Course verification to run
         type: choice
-        options: [javascript-circle-march, network-capstone-optional, network-diagnostics-five, network-kernel-optional, network-firewall-optional, network-dns-optional, java-refactoring-followup, java-refactoring-final, release-checks, ai-studios, swift-map, javascript-business-directory, java-testability, java-pattern-journeys, java-generalization, java-method-calls, javascript-hundred-squares, javascript-businesses, javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
+        options: [network-archive-six, javascript-circle-march, network-capstone-optional, network-diagnostics-five, network-kernel-optional, network-firewall-optional, network-dns-optional, java-refactoring-followup, java-refactoring-final, release-checks, ai-studios, swift-map, javascript-business-directory, java-testability, java-pattern-journeys, java-generalization, java-method-calls, javascript-hundred-squares, javascript-businesses, javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
         default: pygames
       full_source_runtime:
         description: Also verify every pinned original PyGames runtime profile
@@ -116,6 +116,77 @@ jobs:
           path: output/network-capstone-optional/
           if-no-files-found: error
           retention-days: 30
+
+  network-archive-six:
+    if: inputs.course == 'network-archive-six'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      CLASSES_FAMILY_TASK_ID: network-archive-six-${{ github.run_id }}
+      NETWORK_ARCHIVE_SIX_ONLY: '1'
+      NETWORK_BROWSER_EXPORT_PROOF_DIR: output/network-archive-six
+      COURSE_IMPORT_SCREENSHOT_DIR: output/network-archive-six/screenshots
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - name: Verify the locked root installation and complete dependency graph
+        run: |
+          npm install --global npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+          mkdir -p output/network-archive-six/audits
+          node scripts/classes-family-heavy-task.mjs -- npm ci
+          npm run check:dependencies
+          npm run lock:provenance:check
+          npm audit --include=optional --json > output/network-archive-six/audits/root-full.json
+          npm audit --include=optional --omit=dev --json > output/network-archive-six/audits/root-production.json
+      - name: Verify archive imports, existing network projects and preserved course identities
+        run: >-
+          node scripts/classes-family-heavy-task.mjs --
+          npm exec -w front-end -- vitest run
+          test/network-archive-six-workspace.spec.test.ts
+          test/network-kernel-optional-workspace.spec.test.ts
+          test/network-dns-optional-workspace.spec.test.ts
+          test/network-firewall-optional-workspace.spec.test.ts
+          test/network-foundations-workspace.spec.test.ts
+          test/store.courses.network-systems-flow.spec.test.ts
+          test/store.courses.catalog-identities.spec.test.ts
+          test/store.courses.progress-identity.spec.test.ts
+          --no-file-parallelism --maxWorkers=1
+          --reporter=default --reporter=json
+          --outputFile=../output/network-archive-six/unit-tests.json
+      - name: Lint, check types and build the actual application
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run lint
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+          node scripts/classes-family-heavy-task.mjs -- npm run build
+      - name: Verify real course buttons, consent, independent attempts, edits and exports
+        run: node scripts/classes-family-heavy-task.mjs -- node --test test/network-course-import-browser.test.mjs
+      - name: Run exact and browser-edited exported assessments
+        run: node scripts/classes-family-heavy-task.mjs -- python3 -B test/network-archive-six-exported-contracts.py output/network-archive-six
+      - name: Make owned native evidence readable for publication
+        if: always()
+        run: |
+          if [ -d output/network-archive-six ]; then sudo chmod -R a+rX output/network-archive-six; fi
+      - name: Preserve exact candidate identity and process records
+        if: always()
+        run: |
+          git rev-parse HEAD > output/network-archive-six/site-source.txt
+          git diff --name-only > output/network-archive-six/tracked-changes.txt
+          cp /tmp/classes-family-heavy-tasks.log output/network-archive-six/processes.jsonl
+      - name: Retain original browser exports and assessment results
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: network-archive-six-workflows
+          path: output/network-archive-six/
+          if-no-files-found: error
+          retention-days: 30
+
 
   network-diagnostics-five:
     if: inputs.course == 'network-diagnostics-five'
