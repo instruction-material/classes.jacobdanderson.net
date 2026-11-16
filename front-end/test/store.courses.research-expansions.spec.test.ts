@@ -78,7 +78,7 @@ describe("research-backed course family expansions", () => {
 				expect(profile, courseId).toBeDefined();
 
 				const referenceExpansionTitles = [
-					"Standards Map",
+					courseId === "algebra-1a" ? "Algebra 1A Reference" : "Standards Map",
 					"Course Roadmap",
 					"Project Practice Guide"
 				];
@@ -122,9 +122,22 @@ describe("research-backed course family expansions", () => {
 				expect(expansionText, courseId).toContain(
 					`${courseLabel} Module Alignment Guide`
 				);
+				if (courseId === "algebra-1a") {
+					const reference = expansionModules.find(module => module.title === "Algebra 1A Reference")!;
+					expect(reference.id).toBe("algebra-1a-standards-map");
+					const readings = [...reference.curriculum, ...reference.supplementalProjects];
+					expect(readings.map(item => item.title)).toEqual([
+						"Equations and domains", "Lines and representations",
+						"Inequalities and systems", "Models, rates and units",
+						"Prerequisite arithmetic and coordinates", "Choosing a solution method"
+					]);
+					expect(readings.every(item => item.contentKind === "reading")).toBe(true);
+					expect(course!.modules.filter(module => module.internal)).toHaveLength(5);
+				} else {
 				expect(expansionText, courseId).toContain(
 					`${courseLabel} Reference Guide`
 				);
+				}
 				expect(expansionText, courseId).toContain(
 					`${courseLabel} Prerequisite Map`
 				);

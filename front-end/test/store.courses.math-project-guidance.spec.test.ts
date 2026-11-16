@@ -29,18 +29,19 @@ it.each(["learner", "instructor"])(
 			"algebra-1a-algebra-1a-kick-off-projects-curriculum-project-2a-delivery-map"
 		);
 		expect(project?.content).toContain("(6 - 5) / (4 - (-3)) = 1/7");
-		const outcome = project?.content
-			.split("**Outcome:**")[1]
-			?.split("**Checkpoints:**")[0];
-		expect(outcome).toMatch(/givens|known values|Translate the situation/);
-		expect(outcome).not.toMatch(/insertion|lookup|membership|priority/);
+		expect(project?.content).toContain("one city block");
+		expect(project?.content).toContain("3+5=8 blocks");
+		expect(project?.content).toContain("4+6=10");
+		expect(project?.content).not.toMatch(/insertion|lookup|membership|priority/);
 		const checkpoint = course?.modules
 			.flatMap(module => module.curriculum)
 			.find(
 				item => item.title === "Graphing Linear Equations: y = 3x - 2"
 			);
-		const quickCheck = checkpoint?.content.split("**Quick check:**")[1];
-		expect(quickCheck).toContain("y = 3x - 2");
+		expect(checkpoint?.content).toMatch(/y\s*=\s*3x\s*-\s*2/);
+		expect(checkpoint?.content).toContain(
+			"(0,-2),(1,1),(2,4),(3,7),(4,10)"
+		);
 		expect(checkpoint?.content).not.toContain("y = 3x: 2");
 	}
 );

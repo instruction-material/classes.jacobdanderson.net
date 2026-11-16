@@ -86,7 +86,7 @@
 	{
 		"module": "Algebra 1A Kick-Off and Placement",
 		"title": "Project 2A: Delivery Map",
-		"content": "A restaurant is at (0,0) on a street grid. Deliveries go to A=(-3,5) and B=(4,6), where each coordinate unit is one city block. Travel follows horizontal and vertical streets.\n\n1. Plot the restaurant and both drop-offs, labeling the axes.\n2. Find the shortest grid distance from the restaurant to each drop-off. Which is closer, and by how many blocks? Describe one shortest route.\n3. Find the slope of the direct line from A to B. Explain how its horizontal and vertical changes differ from the driver's grid distance.\n\n**Self-check**\n\nA requires 3+5=8 blocks, while B requires 4+6=10. A is closer by 2 blocks; one route is 3 blocks west, then 5 north. From A to B, the horizontal change is 4-(-3)=7 and the vertical change is 6-5=1, so slope=1/7."
+		"content": "A restaurant is at (0,0) on a street grid. Deliveries go to A=(-3,5) and B=(4,6), where each coordinate unit is one city block. Travel follows horizontal and vertical streets.\n\n1. Plot the restaurant and both drop-offs, labeling the axes.\n2. Find the shortest grid distance from the restaurant to each drop-off. Which is closer, and by how many blocks? Describe one shortest route.\n3. Find the slope of the direct line from A to B. Explain how its horizontal and vertical changes differ from the driver's grid distance.\n\n**Self-check**\n\nA requires 3+5=8 blocks, while B requires 4+6=10. A is closer by 2 blocks; one route is 3 blocks west, then 5 north. From A to B, the horizontal change is 4-(-3)=7 and the vertical change is 6-5=1, so slope=(6 - 5) / (4 - (-3)) = 1/7."
 	},
 	{
 		"module": "Check-In #2",
