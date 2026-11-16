@@ -50,11 +50,15 @@ it("keeps the required capstone, paced continuation and optional challenge disti
 	const concept = module.curriculum.find(item =>
 		item.title.endsWith("Core Concepts")
 	)!;
-	expect(concept.content).toContain(fixture.files["README.md"].content);
-	expect(concept.content).toContain("eight to twelve sessions");
+	expect(core.content).toContain(fixture.files["README.md"].content);
+	expect(concept.contentKind).toBe("reading");
+	expect(concept.content).toContain("198.18.99.0/30");
+	expect(concept.content).toContain("9001");
+	expect(concept.content).toContain("recorded-capstone-observations-v1.md");
 	expect(continuation.content).toContain("route-corrected");
 	expect(continuation.content).toContain("502");
 	expect(module.estimatedTime).toContain("8–12");
+	expect(module.estimatedTime).toContain("45–60");
 	for (const role of ["starter", "reference"] as const) {
 		const url = role === "starter" ? core.projectLink! : core.solutionLink!;
 		const key = networkCourseProjectKey(course.id, core.id, role, url);

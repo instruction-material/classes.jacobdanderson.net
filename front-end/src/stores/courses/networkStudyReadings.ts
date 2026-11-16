@@ -66,6 +66,10 @@ export function applyNetworkStudyReadings(course: RawCourse) {
 				? `\n\n## Complete source guide\n\n${guides[entry.guide]
 						.replace(/instructor/gi, "guided review")
 						.replace(
+							/for the learner\s+attempt/g,
+							"for the independent attempt"
+						)
+						.replace(
 							"addresses and server local/peer addresses should agree",
 							"addresses and server local/peer addresses are expected to agree"
 						)

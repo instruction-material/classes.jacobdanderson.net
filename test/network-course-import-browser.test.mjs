@@ -325,6 +325,8 @@ nodeTest(
 								? ["starter", "reference"].map(savedRole => ({
 										...earlier,
 										_id: `preserved-core-${savedRole}`,
+										mode: "linux",
+										activeFileName: "network-notes.md",
 										title: `Preserved core ${savedRole}`,
 										courseProjectKey: `network-systems:${
 											fixture.originalCoreItemId}:${

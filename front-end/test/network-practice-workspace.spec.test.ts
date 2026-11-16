@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import { createPinia, setActivePinia } from "pinia";
 import { expect, it } from "vitest";
 import {
@@ -132,4 +134,61 @@ it("keeps every existing module and item reachable while classifying references"
 	expect(example.content).toContain("empty");
 	expect(example.content).toContain("owned-denial-control");
 	expect(example.content).toContain("owned-operations-capstone");
+});
+
+it("retains the actual starter and intermediate failure before optional recorded variations", () => {
+	const packet = fs.readFileSync(
+		path.resolve(
+			__dirname,
+			"../public/course-assets/network/recorded-capstone-observations-v1.md"
+		),
+		"utf8"
+	);
+	const fixture = JSON.parse(
+		fs.readFileSync(
+			path.resolve(
+				__dirname,
+				"../../test/fixtures/network-capstone-contracts.json"
+			),
+			"utf8"
+		)
+	)[0];
+	const fence = String.fromCharCode(96).repeat(3);
+	const blocks = (heading: string) => {
+		const section = packet
+			.split("## " + heading + "\n")[1]
+			.split("\n## ")[0];
+		return [
+			...section.matchAll(
+				new RegExp(fence + "json\\n([\\s\\S]+?)\\n" + fence, "g")
+			)
+		].map(match => JSON.parse(match[1]));
+	};
+	const initial = blocks("Initial starter");
+	const corrected = blocks("Route-only correction");
+	const baseline = blocks("Baseline");
+	expect(initial.find(block => block.case).case).toEqual(
+		JSON.parse(fixture.files["starter/case.json"].content)
+	);
+	expect(baseline.find(block => block.case).case).toEqual(
+		JSON.parse(fixture.files["solution/case.json"].content)
+	);
+	expect(initial.find(block => block.http6).http6.status).toBe("502");
+	expect(corrected.find(block => block.http4).http4.status).toBe("502");
+	expect(corrected.find(block => block.http6).http6.status).toBe("502");
+	expect(baseline.find(block => block.http4).http4.status).toBe("200");
+	expect(baseline.find(block => block.http6).http6.status).toBe("200");
+	for (const heading of [
+		"Initial starter",
+		"Route-only correction",
+		"Baseline",
+		"Route gap",
+		"Wrong upstream"
+	]) {
+		const cleanup = blocks(heading).find(
+			block => "allWorkersReaped" in block
+		);
+		expect(cleanup.allWorkersReaped).toBe(true);
+		expect(cleanup.remainingNamespaces).toBe("");
+	}
 });

@@ -2,9 +2,1727 @@
 
 These are preserved Linux runs of the owned, isolated course fixture, not commands executed by opening this page. Each case retains its own run token, command results and cleanup evidence. Diagnose the first unsupported boundary in each address family before comparing the cases.
 
-The original source is [Network Systems at efde308](https://github.com/instruction-material/Network-Systems/tree/efde30862ec77ba94f9c2ad3857a819fd902c23c); the [original Linux qualification](https://github.com/instruction-material/Network-Systems/actions/runs/43762738707) produced these records. The baseline uses the completed configuration; the other two cases isolate the route and backend-identity failures. They differ from the separate constructed practice-pack scenario.
+The original source is [Network Systems at efde308](https://github.com/instruction-material/Network-Systems/tree/efde30862ec77ba94f9c2ad3857a819fd902c23c); the [original Linux qualification](https://github.com/instruction-material/Network-Systems/actions/runs/43762738707) produced these records.
+
+The initial starter has the wrong IPv4 route and an unavailable loopback upstream. The route-only correction reaches the proxy in both families but leaves its upstream unavailable. The baseline has the completed configuration. Two additional controlled comparisons isolate a prefix-coverage gap and a responding wrong backend. Keep those optional variations distinct from the starter's two-fault history and from the separate constructed practice-pack scenario.
 
 Read the configured route, DNS result, connection and application identity separately. Within each case, match responses to that case's token; tokens differ across runs. Cleanup is a separate claim from service correctness.
+
+## Initial starter
+
+### Configuration and execution boundary
+
+```json
+{
+  "case": {
+    "ipv4_service_route": "198.18.99.0/30",
+    "proxy_upstream_port": 9001
+  },
+  "client4": "198.18.31.2",
+  "client6": "2001:db8:31::2",
+  "server4": "198.18.32.2",
+  "server6": "2001:db8:32::2",
+  "publicPort": 8080,
+  "name": "blue.capstone.test",
+  "token": "ed0516e8553cbe676294",
+  "identities": {
+    "network": "net:[4026532268]",
+    "mount": "mnt:[4026532267]",
+    "parentNetwork": "net:[4026531833]",
+    "parentMount": "mnt:[4026531832]"
+  }
+}
+```
+
+### Addresses, routes and forwarding
+
+```json
+{
+  "addresses": {
+    "ncap-client": {
+      "ipv4": {
+        "parentTaskId": "network-operations-capstone",
+        "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+        "command": [
+          "ip",
+          "-n",
+          "ncap-client",
+          "-4",
+          "-j",
+          "address",
+          "show"
+        ],
+        "pid": 3106,
+        "parentPid": 3043,
+        "processGroup": 3043,
+        "startTime": "2026-11-15T21:16:38.015320+00:00",
+        "endTime": "2026-11-15T21:16:38.017385+00:00",
+        "exitCode": 0,
+        "timeoutSeconds": 8,
+        "childProcessGroupCleanup": "child exited in the supervised lab process group",
+        "stdout": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"qdisc\":\"noqueue\",\"operstate\":\"UNKNOWN\",\"group\":\"default\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet\",\"local\":\"127.0.0.1\",\"prefixlen\":8,\"scope\":\"host\",\"label\":\"lo\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":3,\"link_index\":2,\"ifname\":\"c-r\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"noqueue\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_netnsid\":1,\"addr_info\":[{\"family\":\"inet\",\"local\":\"198.18.31.2\",\"prefixlen\":30,\"scope\":\"global\",\"label\":\"c-r\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]\n",
+        "stderr": ""
+      },
+      "ipv6": {
+        "parentTaskId": "network-operations-capstone",
+        "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+        "command": [
+          "ip",
+          "-n",
+          "ncap-client",
+          "-6",
+          "-j",
+          "address",
+          "show"
+        ],
+        "pid": 3107,
+        "parentPid": 3043,
+        "processGroup": 3043,
+        "startTime": "2026-11-15T21:16:38.017400+00:00",
+        "endTime": "2026-11-15T21:16:38.018906+00:00",
+        "exitCode": 0,
+        "timeoutSeconds": 8,
+        "childProcessGroupCleanup": "child exited in the supervised lab process group",
+        "stdout": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"operstate\":\"UNKNOWN\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet6\",\"local\":\"::1\",\"prefixlen\":128,\"scope\":\"host\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":3,\"link\":\"if2\",\"ifname\":\"c-r\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"operstate\":\"UP\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet6\",\"local\":\"2001:db8:31::2\",\"prefixlen\":64,\"scope\":\"global\",\"nodad\":true,\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295},{\"family\":\"inet6\",\"local\":\"fe80::a09b:18ff:fef5:aaec\",\"prefixlen\":64,\"scope\":\"link\",\"tentative\":true,\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]\n",
+        "stderr": ""
+      }
+    },
+    "ncap-router": {
+      "ipv4": {
+        "parentTaskId": "network-operations-capstone",
+        "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+        "command": [
+          "ip",
+          "-n",
+          "ncap-router",
+          "-4",
+          "-j",
+          "address",
+          "show"
+        ],
+        "pid": 3108,
+        "parentPid": 3043,
+        "processGroup": 3043,
+        "startTime": "2026-11-15T21:16:38.018918+00:00",
+        "endTime": "2026-11-15T21:16:38.020356+00:00",
+        "exitCode": 0,
+        "timeoutSeconds": 8,
+        "childProcessGroupCleanup": "child exited in the supervised lab process group",
+        "stdout": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"qdisc\":\"noqueue\",\"operstate\":\"UNKNOWN\",\"group\":\"default\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet\",\"local\":\"127.0.0.1\",\"prefixlen\":8,\"scope\":\"host\",\"label\":\"lo\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":2,\"link_index\":3,\"ifname\":\"r-c\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"noqueue\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_netnsid\":0,\"addr_info\":[{\"family\":\"inet\",\"local\":\"198.18.31.1\",\"prefixlen\":30,\"scope\":\"global\",\"label\":\"r-c\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":5,\"link_index\":4,\"ifname\":\"r-s\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"noqueue\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_netnsid\":2,\"addr_info\":[{\"family\":\"inet\",\"local\":\"198.18.32.1\",\"prefixlen\":30,\"scope\":\"global\",\"label\":\"r-s\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]\n",
+        "stderr": ""
+      },
+      "ipv6": {
+        "parentTaskId": "network-operations-capstone",
+        "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+        "command": [
+          "ip",
+          "-n",
+          "ncap-router",
+          "-6",
+          "-j",
+          "address",
+          "show"
+        ],
+        "pid": 3109,
+        "parentPid": 3043,
+        "processGroup": 3043,
+        "startTime": "2026-11-15T21:16:38.020368+00:00",
+        "endTime": "2026-11-15T21:16:38.021881+00:00",
+        "exitCode": 0,
+        "timeoutSeconds": 8,
+        "childProcessGroupCleanup": "child exited in the supervised lab process group",
+        "stdout": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"operstate\":\"UNKNOWN\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet6\",\"local\":\"::1\",\"prefixlen\":128,\"scope\":\"host\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":2,\"link\":\"if3\",\"ifname\":\"r-c\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"operstate\":\"UP\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet6\",\"local\":\"2001:db8:31::1\",\"prefixlen\":64,\"scope\":\"global\",\"nodad\":true,\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295},{\"family\":\"inet6\",\"local\":\"fe80::84d0:20ff:fe4b:6499\",\"prefixlen\":64,\"scope\":\"link\",\"tentative\":true,\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":5,\"link\":\"if4\",\"ifname\":\"r-s\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"operstate\":\"UP\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet6\",\"local\":\"2001:db8:32::1\",\"prefixlen\":64,\"scope\":\"global\",\"nodad\":true,\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295},{\"family\":\"inet6\",\"local\":\"fe80::c89e:e5ff:fe63:8bfd\",\"prefixlen\":64,\"scope\":\"link\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]\n",
+        "stderr": ""
+      }
+    },
+    "ncap-server": {
+      "ipv4": {
+        "parentTaskId": "network-operations-capstone",
+        "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+        "command": [
+          "ip",
+          "-n",
+          "ncap-server",
+          "-4",
+          "-j",
+          "address",
+          "show"
+        ],
+        "pid": 3110,
+        "parentPid": 3043,
+        "processGroup": 3043,
+        "startTime": "2026-11-15T21:16:38.021892+00:00",
+        "endTime": "2026-11-15T21:16:38.023289+00:00",
+        "exitCode": 0,
+        "timeoutSeconds": 8,
+        "childProcessGroupCleanup": "child exited in the supervised lab process group",
+        "stdout": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"qdisc\":\"noqueue\",\"operstate\":\"UNKNOWN\",\"group\":\"default\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet\",\"local\":\"127.0.0.1\",\"prefixlen\":8,\"scope\":\"host\",\"label\":\"lo\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":4,\"link_index\":5,\"ifname\":\"s-r\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"noqueue\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_netnsid\":0,\"addr_info\":[{\"family\":\"inet\",\"local\":\"198.18.32.2\",\"prefixlen\":30,\"scope\":\"global\",\"label\":\"s-r\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]\n",
+        "stderr": ""
+      },
+      "ipv6": {
+        "parentTaskId": "network-operations-capstone",
+        "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+        "command": [
+          "ip",
+          "-n",
+          "ncap-server",
+          "-6",
+          "-j",
+          "address",
+          "show"
+        ],
+        "pid": 3111,
+        "parentPid": 3043,
+        "processGroup": 3043,
+        "startTime": "2026-11-15T21:16:38.023300+00:00",
+        "endTime": "2026-11-15T21:16:38.024705+00:00",
+        "exitCode": 0,
+        "timeoutSeconds": 8,
+        "childProcessGroupCleanup": "child exited in the supervised lab process group",
+        "stdout": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"operstate\":\"UNKNOWN\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet6\",\"local\":\"::1\",\"prefixlen\":128,\"scope\":\"host\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":4,\"link\":\"if5\",\"ifname\":\"s-r\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"operstate\":\"UP\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet6\",\"local\":\"2001:db8:32::2\",\"prefixlen\":64,\"scope\":\"global\",\"nodad\":true,\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295},{\"family\":\"inet6\",\"local\":\"fe80::507c:40ff:fe05:fffd\",\"prefixlen\":64,\"scope\":\"link\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]\n",
+        "stderr": ""
+      }
+    }
+  },
+  "forwarding": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+    "command": [
+      "ip",
+      "netns",
+      "exec",
+      "ncap-router",
+      "sysctl",
+      "net.ipv4.ip_forward",
+      "net.ipv6.conf.all.forwarding"
+    ],
+    "pid": 3112,
+    "parentPid": 3043,
+    "processGroup": 3043,
+    "startTime": "2026-11-15T21:16:38.024745+00:00",
+    "endTime": "2026-11-15T21:16:38.027770+00:00",
+    "exitCode": 0,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "net.ipv4.ip_forward = 1\nnet.ipv6.conf.all.forwarding = 1\n",
+    "stderr": ""
+  },
+  "routes4": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+    "command": [
+      "ip",
+      "-n",
+      "ncap-client",
+      "-4",
+      "route",
+      "show"
+    ],
+    "pid": 3113,
+    "parentPid": 3043,
+    "processGroup": 3043,
+    "startTime": "2026-11-15T21:16:38.027782+00:00",
+    "endTime": "2026-11-15T21:16:38.029228+00:00",
+    "exitCode": 0,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "198.18.31.0/30 dev c-r proto kernel scope link src 198.18.31.2 \n198.18.99.0/30 via 198.18.31.1 dev c-r \n",
+    "stderr": ""
+  },
+  "routes6": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+    "command": [
+      "ip",
+      "-n",
+      "ncap-client",
+      "-6",
+      "route",
+      "show"
+    ],
+    "pid": 3114,
+    "parentPid": 3043,
+    "processGroup": 3043,
+    "startTime": "2026-11-15T21:16:38.029246+00:00",
+    "endTime": "2026-11-15T21:16:38.030670+00:00",
+    "exitCode": 0,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "2001:db8:31::/64 dev c-r proto kernel metric 256 pref medium\n2001:db8:32::/64 via 2001:db8:31::1 dev c-r metric 1024 pref medium\nfe80::/64 dev c-r proto kernel metric 256 pref medium\n",
+    "stderr": ""
+  },
+  "routeGet4": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+    "command": [
+      "ip",
+      "-n",
+      "ncap-client",
+      "-4",
+      "route",
+      "get",
+      "198.18.32.2"
+    ],
+    "pid": 3115,
+    "parentPid": 3043,
+    "processGroup": 3043,
+    "startTime": "2026-11-15T21:16:38.030682+00:00",
+    "endTime": "2026-11-15T21:16:38.032066+00:00",
+    "exitCode": 2,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "",
+    "stderr": "RTNETLINK answers: Network is unreachable\n"
+  },
+  "routeGetServerRouter4": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+    "command": [
+      "ip",
+      "-n",
+      "ncap-client",
+      "-4",
+      "route",
+      "get",
+      "198.18.32.1"
+    ],
+    "pid": 3116,
+    "parentPid": 3043,
+    "processGroup": 3043,
+    "startTime": "2026-11-15T21:16:38.032077+00:00",
+    "endTime": "2026-11-15T21:16:38.033423+00:00",
+    "exitCode": 2,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "",
+    "stderr": "RTNETLINK answers: Network is unreachable\n"
+  },
+  "routeGet6": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+    "command": [
+      "ip",
+      "-n",
+      "ncap-client",
+      "-6",
+      "route",
+      "get",
+      "2001:db8:32::2"
+    ],
+    "pid": 3117,
+    "parentPid": 3043,
+    "processGroup": 3043,
+    "startTime": "2026-11-15T21:16:38.033434+00:00",
+    "endTime": "2026-11-15T21:16:38.034825+00:00",
+    "exitCode": 0,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "2001:db8:32::2 from :: via 2001:db8:31::1 dev c-r src 2001:db8:31::2 metric 1024 pref medium\n",
+    "stderr": ""
+  }
+}
+```
+
+### Name service, sockets and policy
+
+```json
+{
+  "dns": {
+    "A": {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-client",
+        "dig",
+        "@2001:db8:32::2",
+        "-p",
+        "15353",
+        "blue.capstone.test",
+        "A",
+        "+short",
+        "+time=1",
+        "+tries=1"
+      ],
+      "pid": 3124,
+      "parentPid": 3043,
+      "processGroup": 3043,
+      "startTime": "2026-11-15T21:16:38.079877+00:00",
+      "endTime": "2026-11-15T21:16:38.101022+00:00",
+      "exitCode": 0,
+      "timeoutSeconds": 8,
+      "childProcessGroupCleanup": "child exited in the supervised lab process group",
+      "stdout": "198.18.32.2\n",
+      "stderr": ""
+    },
+    "AAAA": {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-client",
+        "dig",
+        "@2001:db8:32::2",
+        "-p",
+        "15353",
+        "blue.capstone.test",
+        "AAAA",
+        "+short",
+        "+time=1",
+        "+tries=1"
+      ],
+      "pid": 3129,
+      "parentPid": 3043,
+      "processGroup": 3043,
+      "startTime": "2026-11-15T21:16:38.101040+00:00",
+      "endTime": "2026-11-15T21:16:38.121482+00:00",
+      "exitCode": 0,
+      "timeoutSeconds": 8,
+      "childProcessGroupCleanup": "child exited in the supervised lab process group",
+      "stdout": "2001:db8:32::2\n",
+      "stderr": ""
+    }
+  },
+  "dns4": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+    "command": [
+      "ip",
+      "netns",
+      "exec",
+      "ncap-client",
+      "dig",
+      "@198.18.32.2",
+      "-p",
+      "15353",
+      "blue.capstone.test",
+      "A",
+      "+short",
+      "+time=1",
+      "+tries=1"
+    ],
+    "pid": 3134,
+    "parentPid": 3043,
+    "processGroup": 3043,
+    "startTime": "2026-11-15T21:16:38.121504+00:00",
+    "endTime": "2026-11-15T21:16:38.141759+00:00",
+    "exitCode": 9,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": ";; UDP setup with 198.18.32.2#15353(198.18.32.2) for blue.capstone.test failed: network unreachable.\n;; no servers could be reached\n",
+    "stderr": ""
+  },
+  "resolvedDestinations": {
+    "A": "198.18.32.2",
+    "AAAA": "2001:db8:32::2"
+  },
+  "listeners": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+    "command": [
+      "ip",
+      "netns",
+      "exec",
+      "ncap-server",
+      "ss",
+      "-H",
+      "-lntup"
+    ],
+    "pid": 3118,
+    "parentPid": 3043,
+    "processGroup": 3043,
+    "startTime": "2026-11-15T21:16:38.034837+00:00",
+    "endTime": "2026-11-15T21:16:38.073935+00:00",
+    "exitCode": 0,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "udp UNCONN 0      0           198.18.32.2:15353 0.0.0.0:* users:((\"dnsmasq\",pid=3088,fd=4))\nudp UNCONN 0      0      [2001:db8:32::2]:15353    [::]:* users:((\"dnsmasq\",pid=3088,fd=6))\ntcp LISTEN 0      32          198.18.32.2:15353 0.0.0.0:* users:((\"dnsmasq\",pid=3088,fd=5))\ntcp LISTEN 0      5             127.0.0.1:9000  0.0.0.0:* users:((\"python3\",pid=3089,fd=3))\ntcp LISTEN 0      5               0.0.0.0:8088  0.0.0.0:* users:((\"python3\",pid=3089,fd=6))\ntcp LISTEN 0      5               0.0.0.0:8080  0.0.0.0:* users:((\"python3\",pid=3089,fd=4))\ntcp LISTEN 0      32     [2001:db8:32::2]:15353    [::]:* users:((\"dnsmasq\",pid=3088,fd=7))\ntcp LISTEN 0      5                  [::]:8088     [::]:* users:((\"python3\",pid=3089,fd=7))\ntcp LISTEN 0      5                  [::]:8080     [::]:* users:((\"python3\",pid=3089,fd=5))\n",
+    "stderr": ""
+  },
+  "policy4": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+    "command": [
+      "ip",
+      "netns",
+      "exec",
+      "ncap-server",
+      "iptables",
+      "-S"
+    ],
+    "pid": 3122,
+    "parentPid": 3043,
+    "processGroup": 3043,
+    "startTime": "2026-11-15T21:16:38.073958+00:00",
+    "endTime": "2026-11-15T21:16:38.077059+00:00",
+    "exitCode": 0,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "-P INPUT DROP\n-P FORWARD ACCEPT\n-P OUTPUT ACCEPT\n-A INPUT -i lo -j ACCEPT\n-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT\n-A INPUT -s 198.18.31.2/32 -p udp -m udp --dport 15353 -j ACCEPT\n-A INPUT -s 198.18.31.2/32 -p tcp -m tcp --dport 8080 -j ACCEPT\n",
+    "stderr": ""
+  },
+  "policy6": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+    "command": [
+      "ip",
+      "netns",
+      "exec",
+      "ncap-server",
+      "ip6tables",
+      "-S"
+    ],
+    "pid": 3123,
+    "parentPid": 3043,
+    "processGroup": 3043,
+    "startTime": "2026-11-15T21:16:38.077077+00:00",
+    "endTime": "2026-11-15T21:16:38.079847+00:00",
+    "exitCode": 0,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "-P INPUT DROP\n-P FORWARD ACCEPT\n-P OUTPUT ACCEPT\n-A INPUT -i lo -j ACCEPT\n-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT\n-A INPUT -p ipv6-icmp -j ACCEPT\n-A INPUT -s 2001:db8:31::2/128 -p udp -m udp --dport 15353 -j ACCEPT\n-A INPUT -s 2001:db8:31::2/128 -p tcp -m tcp --dport 8080 -j ACCEPT\n",
+    "stderr": ""
+  }
+}
+```
+
+### Application and denied controls
+
+```json
+{
+  "http4": {
+    "command": {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-client",
+        "curl",
+        "--noproxy",
+        "*",
+        "-g",
+        "--silent",
+        "--show-error",
+        "--max-time",
+        "1",
+        "--header",
+        "Host: blue.capstone.test",
+        "--output",
+        "/tmp/network-capstone-contracts-qi55y1g4/starter-default/http4.body",
+        "--write-out",
+        "%{http_code}",
+        "http://198.18.32.2:8080/health"
+      ],
+      "pid": 3139,
+      "parentPid": 3043,
+      "processGroup": 3043,
+      "startTime": "2026-11-15T21:16:38.141920+00:00",
+      "endTime": "2026-11-15T21:16:38.149377+00:00",
+      "exitCode": 7,
+      "timeoutSeconds": 3,
+      "childProcessGroupCleanup": "child exited in the supervised lab process group",
+      "stdout": "000",
+      "stderr": "curl: (7) Failed to connect to 198.18.32.2 port 8080 after 0 ms: Couldn't connect to server\n"
+    },
+    "status": "000",
+    "body": ""
+  },
+  "http6": {
+    "command": {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-client",
+        "curl",
+        "--noproxy",
+        "*",
+        "-g",
+        "--silent",
+        "--show-error",
+        "--max-time",
+        "1",
+        "--header",
+        "Host: blue.capstone.test",
+        "--output",
+        "/tmp/network-capstone-contracts-qi55y1g4/starter-default/http6.body",
+        "--write-out",
+        "%{http_code}",
+        "http://[2001:db8:32::2]:8080/health"
+      ],
+      "pid": 3140,
+      "parentPid": 3043,
+      "processGroup": 3043,
+      "startTime": "2026-11-15T21:16:38.149449+00:00",
+      "endTime": "2026-11-15T21:16:38.157036+00:00",
+      "exitCode": 0,
+      "timeoutSeconds": 3,
+      "childProcessGroupCleanup": "child exited in the supervised lab process group",
+      "stdout": "502",
+      "stderr": ""
+    },
+    "status": "502",
+    "body": "{\"error\":\"owned upstream connection failed\"}"
+  },
+  "missingPath": {
+    "command": {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-client",
+        "curl",
+        "--noproxy",
+        "*",
+        "-g",
+        "--silent",
+        "--show-error",
+        "--max-time",
+        "1",
+        "--header",
+        "Host: blue.capstone.test",
+        "--output",
+        "/tmp/network-capstone-contracts-qi55y1g4/starter-default/missing.body",
+        "--write-out",
+        "%{http_code}",
+        "http://[2001:db8:32::2]:8080/missing"
+      ],
+      "pid": 3142,
+      "parentPid": 3043,
+      "processGroup": 3043,
+      "startTime": "2026-11-15T21:16:38.157135+00:00",
+      "endTime": "2026-11-15T21:16:38.164368+00:00",
+      "exitCode": 0,
+      "timeoutSeconds": 3,
+      "childProcessGroupCleanup": "child exited in the supervised lab process group",
+      "stdout": "502",
+      "stderr": ""
+    },
+    "status": "502",
+    "body": "{\"error\":\"owned upstream connection failed\"}"
+  },
+  "denied4": {
+    "command": {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-client",
+        "curl",
+        "--noproxy",
+        "*",
+        "-g",
+        "--silent",
+        "--show-error",
+        "--max-time",
+        "1",
+        "--header",
+        "Host: blue.capstone.test",
+        "--output",
+        "/tmp/network-capstone-contracts-qi55y1g4/starter-default/denied4.body",
+        "--write-out",
+        "%{http_code}",
+        "http://198.18.32.2:8088/health"
+      ],
+      "pid": 3144,
+      "parentPid": 3043,
+      "processGroup": 3043,
+      "startTime": "2026-11-15T21:16:38.164458+00:00",
+      "endTime": "2026-11-15T21:16:38.171013+00:00",
+      "exitCode": 7,
+      "timeoutSeconds": 3,
+      "childProcessGroupCleanup": "child exited in the supervised lab process group",
+      "stdout": "000",
+      "stderr": "curl: (7) Failed to connect to 198.18.32.2 port 8088 after 0 ms: Couldn't connect to server\n"
+    },
+    "status": "000",
+    "body": ""
+  },
+  "denied6": {
+    "command": {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-client",
+        "curl",
+        "--noproxy",
+        "*",
+        "-g",
+        "--silent",
+        "--show-error",
+        "--max-time",
+        "1",
+        "--header",
+        "Host: blue.capstone.test",
+        "--output",
+        "/tmp/network-capstone-contracts-qi55y1g4/starter-default/denied6.body",
+        "--write-out",
+        "%{http_code}",
+        "http://[2001:db8:32::2]:8088/health"
+      ],
+      "pid": 3145,
+      "parentPid": 3043,
+      "processGroup": 3043,
+      "startTime": "2026-11-15T21:16:38.171065+00:00",
+      "endTime": "2026-11-15T21:16:39.179155+00:00",
+      "exitCode": 28,
+      "timeoutSeconds": 3,
+      "childProcessGroupCleanup": "child exited in the supervised lab process group",
+      "stdout": "000",
+      "stderr": "curl: (28) Connection timed out after 1001 milliseconds\n"
+    },
+    "status": "000",
+    "body": ""
+  },
+  "directUpstream": {
+    "command": {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-client",
+        "curl",
+        "--noproxy",
+        "*",
+        "-g",
+        "--silent",
+        "--show-error",
+        "--max-time",
+        "1",
+        "--header",
+        "Host: blue.capstone.test",
+        "--output",
+        "/tmp/network-capstone-contracts-qi55y1g4/starter-default/direct-upstream.body",
+        "--write-out",
+        "%{http_code}",
+        "http://[2001:db8:32::2]:9000/health"
+      ],
+      "pid": 3146,
+      "parentPid": 3043,
+      "processGroup": 3043,
+      "startTime": "2026-11-15T21:16:39.179251+00:00",
+      "endTime": "2026-11-15T21:16:40.188100+00:00",
+      "exitCode": 28,
+      "timeoutSeconds": 3,
+      "childProcessGroupCleanup": "child exited in the supervised lab process group",
+      "stdout": "000",
+      "stderr": "curl: (28) Connection timed out after 1001 milliseconds\n"
+    },
+    "status": "000",
+    "body": ""
+  }
+}
+```
+
+### Bounded packet reading
+
+```json
+{
+  "packetRead": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+    "command": [
+      "tcpdump",
+      "-n",
+      "-r",
+      "/tmp/network-capstone-contracts-qi55y1g4/starter-default/capture.pcap"
+    ],
+    "pid": 3151,
+    "parentPid": 3043,
+    "processGroup": 3043,
+    "startTime": "2026-11-15T21:16:40.214353+00:00",
+    "endTime": "2026-11-15T21:16:40.226041+00:00",
+    "exitCode": 0,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "21:16:38.089328 IP6 2001:db8:31::2.51672 > 2001:db8:32::2.15353: UDP, length 59\n21:16:38.089442 IP6 2001:db8:32::2.15353 > 2001:db8:31::2.51672: UDP, length 63\n21:16:38.109614 IP6 2001:db8:31::2.52425 > 2001:db8:32::2.15353: UDP, length 59\n21:16:38.109717 IP6 2001:db8:32::2.15353 > 2001:db8:31::2.52425: UDP, length 75\n21:16:38.155183 IP6 2001:db8:31::2.34660 > 2001:db8:32::2.8080: Flags [S], seq 4179023420, win 64800, options [mss 1440,sackOK,TS val 566251190 ecr 0,nop,wscale 10], length 0\n21:16:38.155215 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.34660: Flags [S.], seq 422489729, ack 4179023421, win 64260, options [mss 1440,sackOK,TS val 1388081445 ecr 566251190,nop,wscale 10], length 0\n21:16:38.155235 IP6 2001:db8:31::2.34660 > 2001:db8:32::2.8080: Flags [.], ack 1, win 64, options [nop,nop,TS val 566251190 ecr 1388081445], length 0\n21:16:38.155388 IP6 2001:db8:31::2.34660 > 2001:db8:32::2.8080: Flags [P.], seq 1:88, ack 1, win 64, options [nop,nop,TS val 566251190 ecr 1388081445], length 87: HTTP: GET /health HTTP/1.1\n21:16:38.155397 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.34660: Flags [.], ack 88, win 63, options [nop,nop,TS val 1388081445 ecr 566251190], length 0\n21:16:38.156029 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.34660: Flags [P.], seq 1:197, ack 88, win 63, options [nop,nop,TS val 1388081446 ecr 566251190], length 196: HTTP: HTTP/1.0 502 Bad Gateway\n21:16:38.156049 IP6 2001:db8:31::2.34660 > 2001:db8:32::2.8080: Flags [.], ack 197, win 64, options [nop,nop,TS val 566251191 ecr 1388081446], length 0\n21:16:38.156067 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.34660: Flags [P.], seq 197:241, ack 88, win 63, options [nop,nop,TS val 1388081446 ecr 566251191], length 44: HTTP\n21:16:38.156075 IP6 2001:db8:31::2.34660 > 2001:db8:32::2.8080: Flags [.], ack 241, win 64, options [nop,nop,TS val 566251191 ecr 1388081446], length 0\n21:16:38.156102 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.34660: Flags [F.], seq 241, ack 88, win 63, options [nop,nop,TS val 1388081446 ecr 566251191], length 0\n21:16:38.156141 IP6 2001:db8:31::2.34660 > 2001:db8:32::2.8080: Flags [F.], seq 88, ack 242, win 64, options [nop,nop,TS val 566251191 ecr 1388081446], length 0\n21:16:38.156151 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.34660: Flags [.], ack 89, win 63, options [nop,nop,TS val 1388081446 ecr 566251191], length 0\n21:16:38.162878 IP6 2001:db8:31::2.34664 > 2001:db8:32::2.8080: Flags [S], seq 3858197575, win 64800, options [mss 1440,sackOK,TS val 2301123833 ecr 0,nop,wscale 10], length 0\n21:16:38.162892 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.34664: Flags [S.], seq 500771864, ack 3858197576, win 64260, options [mss 1440,sackOK,TS val 238242453 ecr 2301123833,nop,wscale 10], length 0\n21:16:38.162905 IP6 2001:db8:31::2.34664 > 2001:db8:32::2.8080: Flags [.], ack 1, win 64, options [nop,nop,TS val 2301123833 ecr 238242453], length 0\n21:16:38.162952 IP6 2001:db8:31::2.34664 > 2001:db8:32::2.8080: Flags [P.], seq 1:89, ack 1, win 64, options [nop,nop,TS val 2301123833 ecr 238242453], length 88: HTTP: GET /missing HTTP/1.1\n21:16:38.162958 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.34664: Flags [.], ack 89, win 63, options [nop,nop,TS val 238242453 ecr 2301123833], length 0\n21:16:38.163392 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.34664: Flags [P.], seq 1:197, ack 89, win 63, options [nop,nop,TS val 238242453 ecr 2301123833], length 196: HTTP: HTTP/1.0 502 Bad Gateway\n21:16:38.163411 IP6 2001:db8:31::2.34664 > 2001:db8:32::2.8080: Flags [.], ack 197, win 64, options [nop,nop,TS val 2301123833 ecr 238242453], length 0\n21:16:38.163427 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.34664: Flags [P.], seq 197:241, ack 89, win 63, options [nop,nop,TS val 238242453 ecr 2301123833], length 44: HTTP\n21:16:38.163434 IP6 2001:db8:31::2.34664 > 2001:db8:32::2.8080: Flags [.], ack 241, win 64, options [nop,nop,TS val 2301123833 ecr 238242453], length 0\n21:16:38.163458 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.34664: Flags [F.], seq 241, ack 89, win 63, options [nop,nop,TS val 238242453 ecr 2301123833], length 0\n21:16:38.163497 IP6 2001:db8:31::2.34664 > 2001:db8:32::2.8080: Flags [F.], seq 89, ack 242, win 64, options [nop,nop,TS val 2301123833 ecr 238242453], length 0\n21:16:38.163507 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.34664: Flags [.], ack 90, win 63, options [nop,nop,TS val 238242453 ecr 2301123833], length 0\n",
+    "stderr": "reading from file /tmp/network-capstone-contracts-qi55y1g4/starter-default/capture.pcap, link-type EN10MB (Ethernet), snapshot length 262144\n"
+  }
+}
+```
+
+### Cleanup
+
+```json
+{
+  "completed": false,
+  "interrupted": false,
+  "workers": [
+    {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-server",
+        "dnsmasq",
+        "--no-daemon",
+        "--conf-file=/dev/null",
+        "--no-hosts",
+        "--no-resolv",
+        "--no-poll",
+        "--cache-size=0",
+        "--user=root",
+        "--bind-interfaces",
+        "--port=15353",
+        "--listen-address=198.18.32.2",
+        "--listen-address=2001:db8:32::2",
+        "--address=/blue.capstone.test/198.18.32.2",
+        "--address=/blue.capstone.test/2001:db8:32::2",
+        "--pid-file=/tmp/network-capstone-contracts-qi55y1g4/starter-default/dnsmasq.pid",
+        "--log-queries"
+      ],
+      "pid": 3088,
+      "parentPid": 3043,
+      "processGroup": 3043,
+      "startTime": "2026-11-15T21:16:36.694316+00:00",
+      "timeoutSeconds": 35,
+      "log": "dns.log",
+      "endTime": "2026-11-15T21:16:40.208400+00:00",
+      "exitCode": 0,
+      "childProcessGroupCleanup": "owned worker reaped in enclosing supervised lab group"
+    },
+    {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-server",
+        "/usr/bin/python3",
+        "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter/capstone_lab.py",
+        "_serve",
+        "8080",
+        "9001",
+        "ed0516e8553cbe676294"
+      ],
+      "pid": 3089,
+      "parentPid": 3043,
+      "processGroup": 3043,
+      "startTime": "2026-11-15T21:16:36.694760+00:00",
+      "timeoutSeconds": 35,
+      "log": "service.log",
+      "endTime": "2026-11-15T21:16:40.207256+00:00",
+      "exitCode": -15,
+      "childProcessGroupCleanup": "owned worker reaped in enclosing supervised lab group"
+    },
+    {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/home/runner/work/Network-Systems/Network-Systems/NS-03-network-systems-lab-17/starter",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-server",
+        "tcpdump",
+        "-i",
+        "s-r",
+        "-s",
+        "0",
+        "-n",
+        "-U",
+        "-c",
+        "160",
+        "-w",
+        "/tmp/network-capstone-contracts-qi55y1g4/starter-default/capture.pcap",
+        "tcp port 8080 or udp port 15353"
+      ],
+      "pid": 3105,
+      "parentPid": 3043,
+      "processGroup": 3043,
+      "startTime": "2026-11-15T21:16:37.984792+00:00",
+      "timeoutSeconds": 35,
+      "log": "capture.log",
+      "endTime": "2026-11-15T21:16:40.203678+00:00",
+      "exitCode": 0,
+      "childProcessGroupCleanup": "owned worker reaped in enclosing supervised lab group"
+    }
+  ],
+  "remainingNamespaces": "",
+  "allWorkersReaped": true
+}
+```
+
+The recorded parent comparison reports identical before/after snapshots. The matching canonical snapshot SHA-256 is `1b300eafe4841cb56b265ce46a7c2f107aed21e27f600e5e8e8be06540c19494`. Compared fields: ipv4Policy, ipv4Routes, ipv6Policy, ipv6Routes, links. This covers those recorded fields; the parent host's unrelated configuration contents are omitted.
+
+Inside-record SHA-256: 60c3a466272fc63a2d45f0b9d7e7878cb787cf1d12c1cc1559876ad0ca9d8642.
+
+## Route-only correction
+
+### Configuration and execution boundary
+
+```json
+{
+  "case": {
+    "ipv4_service_route": "198.18.32.0/30",
+    "proxy_upstream_port": 9001
+  },
+  "client4": "198.18.31.2",
+  "client6": "2001:db8:31::2",
+  "server4": "198.18.32.2",
+  "server6": "2001:db8:32::2",
+  "publicPort": 8080,
+  "name": "blue.capstone.test",
+  "token": "591626f92194ffd770c5",
+  "identities": {
+    "network": "net:[4026532268]",
+    "mount": "mnt:[4026532267]",
+    "parentNetwork": "net:[4026531833]",
+    "parentMount": "mnt:[4026531832]"
+  }
+}
+```
+
+### Addresses, routes and forwarding
+
+```json
+{
+  "addresses": {
+    "ncap-client": {
+      "ipv4": {
+        "parentTaskId": "network-operations-capstone",
+        "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+        "command": [
+          "ip",
+          "-n",
+          "ncap-client",
+          "-4",
+          "-j",
+          "address",
+          "show"
+        ],
+        "pid": 3914,
+        "parentPid": 3848,
+        "processGroup": 3848,
+        "startTime": "2026-11-15T21:17:10.213392+00:00",
+        "endTime": "2026-11-15T21:17:10.215118+00:00",
+        "exitCode": 0,
+        "timeoutSeconds": 8,
+        "childProcessGroupCleanup": "child exited in the supervised lab process group",
+        "stdout": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"qdisc\":\"noqueue\",\"operstate\":\"UNKNOWN\",\"group\":\"default\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet\",\"local\":\"127.0.0.1\",\"prefixlen\":8,\"scope\":\"host\",\"label\":\"lo\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":3,\"link_index\":2,\"ifname\":\"c-r\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"noqueue\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_netnsid\":1,\"addr_info\":[{\"family\":\"inet\",\"local\":\"198.18.31.2\",\"prefixlen\":30,\"scope\":\"global\",\"label\":\"c-r\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]\n",
+        "stderr": ""
+      },
+      "ipv6": {
+        "parentTaskId": "network-operations-capstone",
+        "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+        "command": [
+          "ip",
+          "-n",
+          "ncap-client",
+          "-6",
+          "-j",
+          "address",
+          "show"
+        ],
+        "pid": 3915,
+        "parentPid": 3848,
+        "processGroup": 3848,
+        "startTime": "2026-11-15T21:17:10.215134+00:00",
+        "endTime": "2026-11-15T21:17:10.216569+00:00",
+        "exitCode": 0,
+        "timeoutSeconds": 8,
+        "childProcessGroupCleanup": "child exited in the supervised lab process group",
+        "stdout": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"operstate\":\"UNKNOWN\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet6\",\"local\":\"::1\",\"prefixlen\":128,\"scope\":\"host\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":3,\"link\":\"if2\",\"ifname\":\"c-r\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"operstate\":\"UP\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet6\",\"local\":\"2001:db8:31::2\",\"prefixlen\":64,\"scope\":\"global\",\"nodad\":true,\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295},{\"family\":\"inet6\",\"local\":\"fe80::c3b:b4ff:fe7b:1f22\",\"prefixlen\":64,\"scope\":\"link\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]\n",
+        "stderr": ""
+      }
+    },
+    "ncap-router": {
+      "ipv4": {
+        "parentTaskId": "network-operations-capstone",
+        "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+        "command": [
+          "ip",
+          "-n",
+          "ncap-router",
+          "-4",
+          "-j",
+          "address",
+          "show"
+        ],
+        "pid": 3916,
+        "parentPid": 3848,
+        "processGroup": 3848,
+        "startTime": "2026-11-15T21:17:10.216583+00:00",
+        "endTime": "2026-11-15T21:17:10.218017+00:00",
+        "exitCode": 0,
+        "timeoutSeconds": 8,
+        "childProcessGroupCleanup": "child exited in the supervised lab process group",
+        "stdout": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"qdisc\":\"noqueue\",\"operstate\":\"UNKNOWN\",\"group\":\"default\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet\",\"local\":\"127.0.0.1\",\"prefixlen\":8,\"scope\":\"host\",\"label\":\"lo\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":2,\"link_index\":3,\"ifname\":\"r-c\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"noqueue\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_netnsid\":0,\"addr_info\":[{\"family\":\"inet\",\"local\":\"198.18.31.1\",\"prefixlen\":30,\"scope\":\"global\",\"label\":\"r-c\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":5,\"link_index\":4,\"ifname\":\"r-s\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"noqueue\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_netnsid\":2,\"addr_info\":[{\"family\":\"inet\",\"local\":\"198.18.32.1\",\"prefixlen\":30,\"scope\":\"global\",\"label\":\"r-s\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]\n",
+        "stderr": ""
+      },
+      "ipv6": {
+        "parentTaskId": "network-operations-capstone",
+        "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+        "command": [
+          "ip",
+          "-n",
+          "ncap-router",
+          "-6",
+          "-j",
+          "address",
+          "show"
+        ],
+        "pid": 3917,
+        "parentPid": 3848,
+        "processGroup": 3848,
+        "startTime": "2026-11-15T21:17:10.218029+00:00",
+        "endTime": "2026-11-15T21:17:10.219466+00:00",
+        "exitCode": 0,
+        "timeoutSeconds": 8,
+        "childProcessGroupCleanup": "child exited in the supervised lab process group",
+        "stdout": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"operstate\":\"UNKNOWN\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet6\",\"local\":\"::1\",\"prefixlen\":128,\"scope\":\"host\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":2,\"link\":\"if3\",\"ifname\":\"r-c\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"operstate\":\"UP\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet6\",\"local\":\"2001:db8:31::1\",\"prefixlen\":64,\"scope\":\"global\",\"nodad\":true,\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295},{\"family\":\"inet6\",\"local\":\"fe80::98d7:dfff:fe51:a6cc\",\"prefixlen\":64,\"scope\":\"link\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":5,\"link\":\"if4\",\"ifname\":\"r-s\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"operstate\":\"UP\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet6\",\"local\":\"2001:db8:32::1\",\"prefixlen\":64,\"scope\":\"global\",\"nodad\":true,\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295},{\"family\":\"inet6\",\"local\":\"fe80::78aa:7fff:fe64:bcba\",\"prefixlen\":64,\"scope\":\"link\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]\n",
+        "stderr": ""
+      }
+    },
+    "ncap-server": {
+      "ipv4": {
+        "parentTaskId": "network-operations-capstone",
+        "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+        "command": [
+          "ip",
+          "-n",
+          "ncap-server",
+          "-4",
+          "-j",
+          "address",
+          "show"
+        ],
+        "pid": 3918,
+        "parentPid": 3848,
+        "processGroup": 3848,
+        "startTime": "2026-11-15T21:17:10.219478+00:00",
+        "endTime": "2026-11-15T21:17:10.220904+00:00",
+        "exitCode": 0,
+        "timeoutSeconds": 8,
+        "childProcessGroupCleanup": "child exited in the supervised lab process group",
+        "stdout": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"qdisc\":\"noqueue\",\"operstate\":\"UNKNOWN\",\"group\":\"default\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet\",\"local\":\"127.0.0.1\",\"prefixlen\":8,\"scope\":\"host\",\"label\":\"lo\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":4,\"link_index\":5,\"ifname\":\"s-r\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"noqueue\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_netnsid\":0,\"addr_info\":[{\"family\":\"inet\",\"local\":\"198.18.32.2\",\"prefixlen\":30,\"scope\":\"global\",\"label\":\"s-r\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]\n",
+        "stderr": ""
+      },
+      "ipv6": {
+        "parentTaskId": "network-operations-capstone",
+        "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+        "command": [
+          "ip",
+          "-n",
+          "ncap-server",
+          "-6",
+          "-j",
+          "address",
+          "show"
+        ],
+        "pid": 3919,
+        "parentPid": 3848,
+        "processGroup": 3848,
+        "startTime": "2026-11-15T21:17:10.220915+00:00",
+        "endTime": "2026-11-15T21:17:10.222275+00:00",
+        "exitCode": 0,
+        "timeoutSeconds": 8,
+        "childProcessGroupCleanup": "child exited in the supervised lab process group",
+        "stdout": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"operstate\":\"UNKNOWN\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet6\",\"local\":\"::1\",\"prefixlen\":128,\"scope\":\"host\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":4,\"link\":\"if5\",\"ifname\":\"s-r\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"operstate\":\"UP\",\"txqlen\":1000,\"addr_info\":[{\"family\":\"inet6\",\"local\":\"2001:db8:32::2\",\"prefixlen\":64,\"scope\":\"global\",\"nodad\":true,\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295},{\"family\":\"inet6\",\"local\":\"fe80::bc23:1cff:feda:7dd2\",\"prefixlen\":64,\"scope\":\"link\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]\n",
+        "stderr": ""
+      }
+    }
+  },
+  "forwarding": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+    "command": [
+      "ip",
+      "netns",
+      "exec",
+      "ncap-router",
+      "sysctl",
+      "net.ipv4.ip_forward",
+      "net.ipv6.conf.all.forwarding"
+    ],
+    "pid": 3920,
+    "parentPid": 3848,
+    "processGroup": 3848,
+    "startTime": "2026-11-15T21:17:10.222288+00:00",
+    "endTime": "2026-11-15T21:17:10.225354+00:00",
+    "exitCode": 0,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "net.ipv4.ip_forward = 1\nnet.ipv6.conf.all.forwarding = 1\n",
+    "stderr": ""
+  },
+  "routes4": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+    "command": [
+      "ip",
+      "-n",
+      "ncap-client",
+      "-4",
+      "route",
+      "show"
+    ],
+    "pid": 3921,
+    "parentPid": 3848,
+    "processGroup": 3848,
+    "startTime": "2026-11-15T21:17:10.225371+00:00",
+    "endTime": "2026-11-15T21:17:10.226757+00:00",
+    "exitCode": 0,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "198.18.31.0/30 dev c-r proto kernel scope link src 198.18.31.2 \n198.18.32.0/30 via 198.18.31.1 dev c-r \n",
+    "stderr": ""
+  },
+  "routes6": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+    "command": [
+      "ip",
+      "-n",
+      "ncap-client",
+      "-6",
+      "route",
+      "show"
+    ],
+    "pid": 3922,
+    "parentPid": 3848,
+    "processGroup": 3848,
+    "startTime": "2026-11-15T21:17:10.226769+00:00",
+    "endTime": "2026-11-15T21:17:10.228252+00:00",
+    "exitCode": 0,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "2001:db8:31::/64 dev c-r proto kernel metric 256 pref medium\n2001:db8:32::/64 via 2001:db8:31::1 dev c-r metric 1024 pref medium\nfe80::/64 dev c-r proto kernel metric 256 pref medium\n",
+    "stderr": ""
+  },
+  "routeGet4": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+    "command": [
+      "ip",
+      "-n",
+      "ncap-client",
+      "-4",
+      "route",
+      "get",
+      "198.18.32.2"
+    ],
+    "pid": 3923,
+    "parentPid": 3848,
+    "processGroup": 3848,
+    "startTime": "2026-11-15T21:17:10.228263+00:00",
+    "endTime": "2026-11-15T21:17:10.229606+00:00",
+    "exitCode": 0,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "198.18.32.2 via 198.18.31.1 dev c-r src 198.18.31.2 uid 0 \n    cache \n",
+    "stderr": ""
+  },
+  "routeGetServerRouter4": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+    "command": [
+      "ip",
+      "-n",
+      "ncap-client",
+      "-4",
+      "route",
+      "get",
+      "198.18.32.1"
+    ],
+    "pid": 3924,
+    "parentPid": 3848,
+    "processGroup": 3848,
+    "startTime": "2026-11-15T21:17:10.229616+00:00",
+    "endTime": "2026-11-15T21:17:10.230957+00:00",
+    "exitCode": 0,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "198.18.32.1 via 198.18.31.1 dev c-r src 198.18.31.2 uid 0 \n    cache \n",
+    "stderr": ""
+  },
+  "routeGet6": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+    "command": [
+      "ip",
+      "-n",
+      "ncap-client",
+      "-6",
+      "route",
+      "get",
+      "2001:db8:32::2"
+    ],
+    "pid": 3925,
+    "parentPid": 3848,
+    "processGroup": 3848,
+    "startTime": "2026-11-15T21:17:10.230968+00:00",
+    "endTime": "2026-11-15T21:17:10.232303+00:00",
+    "exitCode": 0,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "2001:db8:32::2 from :: via 2001:db8:31::1 dev c-r src 2001:db8:31::2 metric 1024 pref medium\n",
+    "stderr": ""
+  }
+}
+```
+
+### Name service, sockets and policy
+
+```json
+{
+  "dns": {
+    "A": {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-client",
+        "dig",
+        "@2001:db8:32::2",
+        "-p",
+        "15353",
+        "blue.capstone.test",
+        "A",
+        "+short",
+        "+time=1",
+        "+tries=1"
+      ],
+      "pid": 3929,
+      "parentPid": 3848,
+      "processGroup": 3848,
+      "startTime": "2026-11-15T21:17:10.254831+00:00",
+      "endTime": "2026-11-15T21:17:10.275432+00:00",
+      "exitCode": 0,
+      "timeoutSeconds": 8,
+      "childProcessGroupCleanup": "child exited in the supervised lab process group",
+      "stdout": "198.18.32.2\n",
+      "stderr": ""
+    },
+    "AAAA": {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-client",
+        "dig",
+        "@2001:db8:32::2",
+        "-p",
+        "15353",
+        "blue.capstone.test",
+        "AAAA",
+        "+short",
+        "+time=1",
+        "+tries=1"
+      ],
+      "pid": 3934,
+      "parentPid": 3848,
+      "processGroup": 3848,
+      "startTime": "2026-11-15T21:17:10.275450+00:00",
+      "endTime": "2026-11-15T21:17:10.295655+00:00",
+      "exitCode": 0,
+      "timeoutSeconds": 8,
+      "childProcessGroupCleanup": "child exited in the supervised lab process group",
+      "stdout": "2001:db8:32::2\n",
+      "stderr": ""
+    }
+  },
+  "dns4": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+    "command": [
+      "ip",
+      "netns",
+      "exec",
+      "ncap-client",
+      "dig",
+      "@198.18.32.2",
+      "-p",
+      "15353",
+      "blue.capstone.test",
+      "A",
+      "+short",
+      "+time=1",
+      "+tries=1"
+    ],
+    "pid": 3939,
+    "parentPid": 3848,
+    "processGroup": 3848,
+    "startTime": "2026-11-15T21:17:10.295673+00:00",
+    "endTime": "2026-11-15T21:17:10.316280+00:00",
+    "exitCode": 0,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "198.18.32.2\n",
+    "stderr": ""
+  },
+  "resolvedDestinations": {
+    "A": "198.18.32.2",
+    "AAAA": "2001:db8:32::2"
+  },
+  "listeners": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+    "command": [
+      "ip",
+      "netns",
+      "exec",
+      "ncap-server",
+      "ss",
+      "-H",
+      "-lntup"
+    ],
+    "pid": 3926,
+    "parentPid": 3848,
+    "processGroup": 3848,
+    "startTime": "2026-11-15T21:17:10.232315+00:00",
+    "endTime": "2026-11-15T21:17:10.248955+00:00",
+    "exitCode": 0,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "udp UNCONN 0      0           198.18.32.2:15353 0.0.0.0:* users:((\"dnsmasq\",pid=3891,fd=4))\nudp UNCONN 0      0      [2001:db8:32::2]:15353    [::]:* users:((\"dnsmasq\",pid=3891,fd=6))\ntcp LISTEN 0      32          198.18.32.2:15353 0.0.0.0:* users:((\"dnsmasq\",pid=3891,fd=5))\ntcp LISTEN 0      5             127.0.0.1:9000  0.0.0.0:* users:((\"python3\",pid=3892,fd=3))\ntcp LISTEN 0      5               0.0.0.0:8088  0.0.0.0:* users:((\"python3\",pid=3892,fd=6))\ntcp LISTEN 0      5               0.0.0.0:8080  0.0.0.0:* users:((\"python3\",pid=3892,fd=4))\ntcp LISTEN 0      32     [2001:db8:32::2]:15353    [::]:* users:((\"dnsmasq\",pid=3891,fd=7))\ntcp LISTEN 0      5                  [::]:8088     [::]:* users:((\"python3\",pid=3892,fd=7))\ntcp LISTEN 0      5                  [::]:8080     [::]:* users:((\"python3\",pid=3892,fd=5))\n",
+    "stderr": ""
+  },
+  "policy4": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+    "command": [
+      "ip",
+      "netns",
+      "exec",
+      "ncap-server",
+      "iptables",
+      "-S"
+    ],
+    "pid": 3927,
+    "parentPid": 3848,
+    "processGroup": 3848,
+    "startTime": "2026-11-15T21:17:10.248974+00:00",
+    "endTime": "2026-11-15T21:17:10.252066+00:00",
+    "exitCode": 0,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "-P INPUT DROP\n-P FORWARD ACCEPT\n-P OUTPUT ACCEPT\n-A INPUT -i lo -j ACCEPT\n-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT\n-A INPUT -s 198.18.31.2/32 -p udp -m udp --dport 15353 -j ACCEPT\n-A INPUT -s 198.18.31.2/32 -p tcp -m tcp --dport 8080 -j ACCEPT\n",
+    "stderr": ""
+  },
+  "policy6": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+    "command": [
+      "ip",
+      "netns",
+      "exec",
+      "ncap-server",
+      "ip6tables",
+      "-S"
+    ],
+    "pid": 3928,
+    "parentPid": 3848,
+    "processGroup": 3848,
+    "startTime": "2026-11-15T21:17:10.252082+00:00",
+    "endTime": "2026-11-15T21:17:10.254814+00:00",
+    "exitCode": 0,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "-P INPUT DROP\n-P FORWARD ACCEPT\n-P OUTPUT ACCEPT\n-A INPUT -i lo -j ACCEPT\n-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT\n-A INPUT -p ipv6-icmp -j ACCEPT\n-A INPUT -s 2001:db8:31::2/128 -p udp -m udp --dport 15353 -j ACCEPT\n-A INPUT -s 2001:db8:31::2/128 -p tcp -m tcp --dport 8080 -j ACCEPT\n",
+    "stderr": ""
+  }
+}
+```
+
+### Application and denied controls
+
+```json
+{
+  "http4": {
+    "command": {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-client",
+        "curl",
+        "--noproxy",
+        "*",
+        "-g",
+        "--silent",
+        "--show-error",
+        "--max-time",
+        "1",
+        "--header",
+        "Host: blue.capstone.test",
+        "--output",
+        "/tmp/network-capstone-contracts-qi55y1g4/route-only-output/http4.body",
+        "--write-out",
+        "%{http_code}",
+        "http://198.18.32.2:8080/health"
+      ],
+      "pid": 3944,
+      "parentPid": 3848,
+      "processGroup": 3848,
+      "startTime": "2026-11-15T21:17:10.316453+00:00",
+      "endTime": "2026-11-15T21:17:10.324410+00:00",
+      "exitCode": 0,
+      "timeoutSeconds": 3,
+      "childProcessGroupCleanup": "child exited in the supervised lab process group",
+      "stdout": "502",
+      "stderr": ""
+    },
+    "status": "502",
+    "body": "{\"error\":\"owned upstream connection failed\"}"
+  },
+  "http6": {
+    "command": {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-client",
+        "curl",
+        "--noproxy",
+        "*",
+        "-g",
+        "--silent",
+        "--show-error",
+        "--max-time",
+        "1",
+        "--header",
+        "Host: blue.capstone.test",
+        "--output",
+        "/tmp/network-capstone-contracts-qi55y1g4/route-only-output/http6.body",
+        "--write-out",
+        "%{http_code}",
+        "http://[2001:db8:32::2]:8080/health"
+      ],
+      "pid": 3946,
+      "parentPid": 3848,
+      "processGroup": 3848,
+      "startTime": "2026-11-15T21:17:10.324523+00:00",
+      "endTime": "2026-11-15T21:17:10.332227+00:00",
+      "exitCode": 0,
+      "timeoutSeconds": 3,
+      "childProcessGroupCleanup": "child exited in the supervised lab process group",
+      "stdout": "502",
+      "stderr": ""
+    },
+    "status": "502",
+    "body": "{\"error\":\"owned upstream connection failed\"}"
+  },
+  "missingPath": {
+    "command": {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-client",
+        "curl",
+        "--noproxy",
+        "*",
+        "-g",
+        "--silent",
+        "--show-error",
+        "--max-time",
+        "1",
+        "--header",
+        "Host: blue.capstone.test",
+        "--output",
+        "/tmp/network-capstone-contracts-qi55y1g4/route-only-output/missing.body",
+        "--write-out",
+        "%{http_code}",
+        "http://[2001:db8:32::2]:8080/missing"
+      ],
+      "pid": 3948,
+      "parentPid": 3848,
+      "processGroup": 3848,
+      "startTime": "2026-11-15T21:17:10.332323+00:00",
+      "endTime": "2026-11-15T21:17:10.339548+00:00",
+      "exitCode": 0,
+      "timeoutSeconds": 3,
+      "childProcessGroupCleanup": "child exited in the supervised lab process group",
+      "stdout": "502",
+      "stderr": ""
+    },
+    "status": "502",
+    "body": "{\"error\":\"owned upstream connection failed\"}"
+  },
+  "denied4": {
+    "command": {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-client",
+        "curl",
+        "--noproxy",
+        "*",
+        "-g",
+        "--silent",
+        "--show-error",
+        "--max-time",
+        "1",
+        "--header",
+        "Host: blue.capstone.test",
+        "--output",
+        "/tmp/network-capstone-contracts-qi55y1g4/route-only-output/denied4.body",
+        "--write-out",
+        "%{http_code}",
+        "http://198.18.32.2:8088/health"
+      ],
+      "pid": 3950,
+      "parentPid": 3848,
+      "processGroup": 3848,
+      "startTime": "2026-11-15T21:17:10.339636+00:00",
+      "endTime": "2026-11-15T21:17:11.347979+00:00",
+      "exitCode": 28,
+      "timeoutSeconds": 3,
+      "childProcessGroupCleanup": "child exited in the supervised lab process group",
+      "stdout": "000",
+      "stderr": "curl: (28) Connection timed out after 1001 milliseconds\n"
+    },
+    "status": "000",
+    "body": ""
+  },
+  "denied6": {
+    "command": {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-client",
+        "curl",
+        "--noproxy",
+        "*",
+        "-g",
+        "--silent",
+        "--show-error",
+        "--max-time",
+        "1",
+        "--header",
+        "Host: blue.capstone.test",
+        "--output",
+        "/tmp/network-capstone-contracts-qi55y1g4/route-only-output/denied6.body",
+        "--write-out",
+        "%{http_code}",
+        "http://[2001:db8:32::2]:8088/health"
+      ],
+      "pid": 3951,
+      "parentPid": 3848,
+      "processGroup": 3848,
+      "startTime": "2026-11-15T21:17:11.348079+00:00",
+      "endTime": "2026-11-15T21:17:12.357354+00:00",
+      "exitCode": 28,
+      "timeoutSeconds": 3,
+      "childProcessGroupCleanup": "child exited in the supervised lab process group",
+      "stdout": "000",
+      "stderr": "curl: (28) Connection timed out after 1001 milliseconds\n"
+    },
+    "status": "000",
+    "body": ""
+  },
+  "directUpstream": {
+    "command": {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-client",
+        "curl",
+        "--noproxy",
+        "*",
+        "-g",
+        "--silent",
+        "--show-error",
+        "--max-time",
+        "1",
+        "--header",
+        "Host: blue.capstone.test",
+        "--output",
+        "/tmp/network-capstone-contracts-qi55y1g4/route-only-output/direct-upstream.body",
+        "--write-out",
+        "%{http_code}",
+        "http://[2001:db8:32::2]:9000/health"
+      ],
+      "pid": 3952,
+      "parentPid": 3848,
+      "processGroup": 3848,
+      "startTime": "2026-11-15T21:17:12.357457+00:00",
+      "endTime": "2026-11-15T21:17:13.366099+00:00",
+      "exitCode": 28,
+      "timeoutSeconds": 3,
+      "childProcessGroupCleanup": "child exited in the supervised lab process group",
+      "stdout": "000",
+      "stderr": "curl: (28) Connection timed out after 1001 milliseconds\n"
+    },
+    "status": "000",
+    "body": ""
+  }
+}
+```
+
+### Bounded packet reading
+
+```json
+{
+  "packetRead": {
+    "parentTaskId": "network-operations-capstone",
+    "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+    "command": [
+      "tcpdump",
+      "-n",
+      "-r",
+      "/tmp/network-capstone-contracts-qi55y1g4/route-only-output/capture.pcap"
+    ],
+    "pid": 3957,
+    "parentPid": 3848,
+    "processGroup": 3848,
+    "startTime": "2026-11-15T21:17:13.391451+00:00",
+    "endTime": "2026-11-15T21:17:13.394918+00:00",
+    "exitCode": 0,
+    "timeoutSeconds": 8,
+    "childProcessGroupCleanup": "child exited in the supervised lab process group",
+    "stdout": "21:17:10.263692 IP6 2001:db8:31::2.51525 > 2001:db8:32::2.15353: UDP, length 59\n21:17:10.263834 IP6 2001:db8:32::2.15353 > 2001:db8:31::2.51525: UDP, length 63\n21:17:10.283976 IP6 2001:db8:31::2.33641 > 2001:db8:32::2.15353: UDP, length 59\n21:17:10.284070 IP6 2001:db8:32::2.15353 > 2001:db8:31::2.33641: UDP, length 75\n21:17:10.304483 IP 198.18.31.2.57968 > 198.18.32.2.15353: UDP, length 59\n21:17:10.304593 IP 198.18.32.2.15353 > 198.18.31.2.57968: UDP, length 63\n21:17:10.322654 IP 198.18.31.2.34454 > 198.18.32.2.8080: Flags [S], seq 3289390010, win 64240, options [mss 1460,sackOK,TS val 2291045046 ecr 0,nop,wscale 10], length 0\n21:17:10.322677 IP 198.18.32.2.8080 > 198.18.31.2.34454: Flags [S.], seq 531175687, ack 3289390011, win 65160, options [mss 1460,sackOK,TS val 2396229016 ecr 2291045046,nop,wscale 10], length 0\n21:17:10.322694 IP 198.18.31.2.34454 > 198.18.32.2.8080: Flags [.], ack 1, win 63, options [nop,nop,TS val 2291045046 ecr 2396229016], length 0\n21:17:10.322774 IP 198.18.31.2.34454 > 198.18.32.2.8080: Flags [P.], seq 1:88, ack 1, win 63, options [nop,nop,TS val 2291045047 ecr 2396229016], length 87: HTTP: GET /health HTTP/1.1\n21:17:10.322782 IP 198.18.32.2.8080 > 198.18.31.2.34454: Flags [.], ack 88, win 64, options [nop,nop,TS val 2396229017 ecr 2291045047], length 0\n21:17:10.323384 IP 198.18.32.2.8080 > 198.18.31.2.34454: Flags [P.], seq 1:197, ack 88, win 64, options [nop,nop,TS val 2396229017 ecr 2291045047], length 196: HTTP: HTTP/1.0 502 Bad Gateway\n21:17:10.323402 IP 198.18.31.2.34454 > 198.18.32.2.8080: Flags [.], ack 197, win 63, options [nop,nop,TS val 2291045047 ecr 2396229017], length 0\n21:17:10.323418 IP 198.18.32.2.8080 > 198.18.31.2.34454: Flags [P.], seq 197:241, ack 88, win 64, options [nop,nop,TS val 2396229017 ecr 2291045047], length 44: HTTP\n21:17:10.323426 IP 198.18.31.2.34454 > 198.18.32.2.8080: Flags [.], ack 241, win 63, options [nop,nop,TS val 2291045047 ecr 2396229017], length 0\n21:17:10.323452 IP 198.18.32.2.8080 > 198.18.31.2.34454: Flags [F.], seq 241, ack 88, win 64, options [nop,nop,TS val 2396229017 ecr 2291045047], length 0\n21:17:10.323491 IP 198.18.31.2.34454 > 198.18.32.2.8080: Flags [F.], seq 88, ack 242, win 63, options [nop,nop,TS val 2291045047 ecr 2396229017], length 0\n21:17:10.323503 IP 198.18.32.2.8080 > 198.18.31.2.34454: Flags [.], ack 89, win 64, options [nop,nop,TS val 2396229017 ecr 2291045047], length 0\n21:17:10.330653 IP6 2001:db8:31::2.59806 > 2001:db8:32::2.8080: Flags [S], seq 1396496667, win 64800, options [mss 1440,sackOK,TS val 745656146 ecr 0,nop,wscale 10], length 0\n21:17:10.330673 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.59806: Flags [S.], seq 1609930144, ack 1396496668, win 64260, options [mss 1440,sackOK,TS val 1913988757 ecr 745656146,nop,wscale 10], length 0\n21:17:10.330688 IP6 2001:db8:31::2.59806 > 2001:db8:32::2.8080: Flags [.], ack 1, win 64, options [nop,nop,TS val 745656146 ecr 1913988757], length 0\n21:17:10.330762 IP6 2001:db8:31::2.59806 > 2001:db8:32::2.8080: Flags [P.], seq 1:88, ack 1, win 64, options [nop,nop,TS val 745656147 ecr 1913988757], length 87: HTTP: GET /health HTTP/1.1\n21:17:10.330769 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.59806: Flags [.], ack 88, win 63, options [nop,nop,TS val 1913988758 ecr 745656147], length 0\n21:17:10.331201 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.59806: Flags [P.], seq 1:197, ack 88, win 63, options [nop,nop,TS val 1913988758 ecr 745656147], length 196: HTTP: HTTP/1.0 502 Bad Gateway\n21:17:10.331220 IP6 2001:db8:31::2.59806 > 2001:db8:32::2.8080: Flags [.], ack 197, win 64, options [nop,nop,TS val 745656147 ecr 1913988758], length 0\n21:17:10.331235 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.59806: Flags [P.], seq 197:241, ack 88, win 63, options [nop,nop,TS val 1913988758 ecr 745656147], length 44: HTTP\n21:17:10.331243 IP6 2001:db8:31::2.59806 > 2001:db8:32::2.8080: Flags [.], ack 241, win 64, options [nop,nop,TS val 745656147 ecr 1913988758], length 0\n21:17:10.331267 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.59806: Flags [F.], seq 241, ack 88, win 63, options [nop,nop,TS val 1913988758 ecr 745656147], length 0\n21:17:10.331300 IP6 2001:db8:31::2.59806 > 2001:db8:32::2.8080: Flags [F.], seq 88, ack 242, win 64, options [nop,nop,TS val 745656147 ecr 1913988758], length 0\n21:17:10.331313 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.59806: Flags [.], ack 89, win 63, options [nop,nop,TS val 1913988758 ecr 745656147], length 0\n21:17:10.338113 IP6 2001:db8:31::2.59816 > 2001:db8:32::2.8080: Flags [S], seq 2572274104, win 64800, options [mss 1440,sackOK,TS val 2268725475 ecr 0,nop,wscale 10], length 0\n21:17:10.338127 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.59816: Flags [S.], seq 3167041366, ack 2572274105, win 64260, options [mss 1440,sackOK,TS val 3466779260 ecr 2268725475,nop,wscale 10], length 0\n21:17:10.338141 IP6 2001:db8:31::2.59816 > 2001:db8:32::2.8080: Flags [.], ack 1, win 64, options [nop,nop,TS val 2268725475 ecr 3466779260], length 0\n21:17:10.338204 IP6 2001:db8:31::2.59816 > 2001:db8:32::2.8080: Flags [P.], seq 1:89, ack 1, win 64, options [nop,nop,TS val 2268725475 ecr 3466779260], length 88: HTTP: GET /missing HTTP/1.1\n21:17:10.338212 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.59816: Flags [.], ack 89, win 63, options [nop,nop,TS val 3466779260 ecr 2268725475], length 0\n21:17:10.338608 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.59816: Flags [P.], seq 1:197, ack 89, win 63, options [nop,nop,TS val 3466779260 ecr 2268725475], length 196: HTTP: HTTP/1.0 502 Bad Gateway\n21:17:10.338626 IP6 2001:db8:31::2.59816 > 2001:db8:32::2.8080: Flags [.], ack 197, win 64, options [nop,nop,TS val 2268725475 ecr 3466779260], length 0\n21:17:10.338641 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.59816: Flags [P.], seq 197:241, ack 89, win 63, options [nop,nop,TS val 3466779260 ecr 2268725475], length 44: HTTP\n21:17:10.338649 IP6 2001:db8:31::2.59816 > 2001:db8:32::2.8080: Flags [.], ack 241, win 64, options [nop,nop,TS val 2268725475 ecr 3466779260], length 0\n21:17:10.338669 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.59816: Flags [F.], seq 241, ack 89, win 63, options [nop,nop,TS val 3466779260 ecr 2268725475], length 0\n21:17:10.338697 IP6 2001:db8:31::2.59816 > 2001:db8:32::2.8080: Flags [F.], seq 89, ack 242, win 64, options [nop,nop,TS val 2268725475 ecr 3466779260], length 0\n21:17:10.338709 IP6 2001:db8:32::2.8080 > 2001:db8:31::2.59816: Flags [.], ack 90, win 63, options [nop,nop,TS val 3466779260 ecr 2268725475], length 0\n",
+    "stderr": "reading from file /tmp/network-capstone-contracts-qi55y1g4/route-only-output/capture.pcap, link-type EN10MB (Ethernet), snapshot length 262144\n"
+  }
+}
+```
+
+### Cleanup
+
+```json
+{
+  "completed": false,
+  "interrupted": false,
+  "workers": [
+    {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-server",
+        "dnsmasq",
+        "--no-daemon",
+        "--conf-file=/dev/null",
+        "--no-hosts",
+        "--no-resolv",
+        "--no-poll",
+        "--cache-size=0",
+        "--user=root",
+        "--bind-interfaces",
+        "--port=15353",
+        "--listen-address=198.18.32.2",
+        "--listen-address=2001:db8:32::2",
+        "--address=/blue.capstone.test/198.18.32.2",
+        "--address=/blue.capstone.test/2001:db8:32::2",
+        "--pid-file=/tmp/network-capstone-contracts-qi55y1g4/route-only-output/dnsmasq.pid",
+        "--log-queries"
+      ],
+      "pid": 3891,
+      "parentPid": 3848,
+      "processGroup": 3848,
+      "startTime": "2026-11-15T21:17:08.025069+00:00",
+      "timeoutSeconds": 35,
+      "log": "dns.log",
+      "endTime": "2026-11-15T21:17:13.386016+00:00",
+      "exitCode": 0,
+      "childProcessGroupCleanup": "owned worker reaped in enclosing supervised lab group"
+    },
+    {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-server",
+        "/usr/bin/python3",
+        "/tmp/network-capstone-contracts-qi55y1g4/route-only/capstone_lab.py",
+        "_serve",
+        "8080",
+        "9001",
+        "591626f92194ffd770c5"
+      ],
+      "pid": 3892,
+      "parentPid": 3848,
+      "processGroup": 3848,
+      "startTime": "2026-11-15T21:17:08.025469+00:00",
+      "timeoutSeconds": 35,
+      "log": "service.log",
+      "endTime": "2026-11-15T21:17:13.384889+00:00",
+      "exitCode": -15,
+      "childProcessGroupCleanup": "owned worker reaped in enclosing supervised lab group"
+    },
+    {
+      "parentTaskId": "network-operations-capstone",
+      "cwd": "/tmp/network-capstone-contracts-qi55y1g4/route-only",
+      "command": [
+        "ip",
+        "netns",
+        "exec",
+        "ncap-server",
+        "tcpdump",
+        "-i",
+        "s-r",
+        "-s",
+        "0",
+        "-n",
+        "-U",
+        "-c",
+        "160",
+        "-w",
+        "/tmp/network-capstone-contracts-qi55y1g4/route-only-output/capture.pcap",
+        "tcp port 8080 or udp port 15353"
+      ],
+      "pid": 3913,
+      "parentPid": 3848,
+      "processGroup": 3848,
+      "startTime": "2026-11-15T21:17:10.182962+00:00",
+      "timeoutSeconds": 35,
+      "log": "capture.log",
+      "endTime": "2026-11-15T21:17:13.381619+00:00",
+      "exitCode": 0,
+      "childProcessGroupCleanup": "owned worker reaped in enclosing supervised lab group"
+    }
+  ],
+  "remainingNamespaces": "",
+  "allWorkersReaped": true
+}
+```
+
+The recorded parent comparison reports identical before/after snapshots. The matching canonical snapshot SHA-256 is `1b300eafe4841cb56b265ce46a7c2f107aed21e27f600e5e8e8be06540c19494`. Compared fields: ipv4Policy, ipv4Routes, ipv6Policy, ipv6Routes, links. This covers those recorded fields; the parent host's unrelated configuration contents are omitted.
+
+Inside-record SHA-256: 2b53a87f92e67eb0d9f7d169af524a195f00124a695a1bc417a3be716095a824.
 
 ## Baseline
 

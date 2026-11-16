@@ -1129,7 +1129,7 @@ function sourcePolicyFor(courseId: string) {
 		}
 
 		if (courseId === "network-systems") {
-			return `Source-backed course. Canonical source repository: ${url}. NS1–NS6 are the primary operational shell labs; the numbered NS-* folders are lightweight Python port-normalization checkpoints or studio practice. Existing starter/solution URLs remain traceable, while supplied network evidence prevents a generic checkpoint from being treated as a live infrastructure exercise.`;
+			return `Source-backed course. Canonical source repository: ${url}. NS1–NS6 are the primary operational shell labs. The numbered NS-* packs provide subject-specific Python instrumentation, configuration cases or recorded-evidence analysis. Each pinned pack supplies its complete role files and README, execution boundary and cleanup. Browser work edits, saves and exports those files; live commands run in the documented owned Linux environment. Archived-evidence analysis records no fresh kernel execution and leaves written notebook review open.`;
 		}
 
 		if (courseId === "network-security") {

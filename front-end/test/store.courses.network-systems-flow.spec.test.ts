@@ -287,7 +287,7 @@ describe("Network Systems learner flow", () => {
 			"NS1–NS6 are the primary operational shell labs"
 		);
 		expect(metadata?.sourcePolicy).toContain(
-			"numbered NS-* folders are lightweight Python port-normalization checkpoints"
+			"numbered NS-* packs provide subject-specific Python instrumentation"
 		);
 	});
 });

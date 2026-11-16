@@ -136,7 +136,19 @@ describe("research-backed course family expansions", () => {
 				);
 				expect(roadmapModule, courseId).toBeDefined();
 				const roadmapText = moduleText(roadmapModule!);
-				if (courseId === "physics-level-2") {
+				if (courseId === "network-systems") {
+					const items = [...roadmapModule!.curriculum, ...roadmapModule!.supplementalProjects];
+					expect(items).toHaveLength(6);
+					expect(items.every(item =>
+						item.contentKind === "reading" && item.learningPath === "choice"
+					)).toBe(true);
+					for (const phrase of [
+						"separate starter and reference roles",
+						"A selected route uses a destination address",
+						"an installed manual defines command options",
+						"recorded-capstone-observations-v1.md"
+					]) expect(roadmapText, courseId).toContain(phrase);
+				} else if (courseId === "physics-level-2") {
 					for (const phrase of [
 						"PHY8 constant-acceleration equations",
 						"PHY9 free-body diagrams and PHY10 rope constraints",
