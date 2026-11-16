@@ -322,5 +322,228 @@
 		"title": "Core Project: Repo Extension Bank and Canonical Variants",
 		"contentKind": "assignment",
 		"content": "As an optional graph exercise, run the linked Special Graphs example in the local graphics environment from the setup reading. Identify the cyclic, acyclic and directed outputs. For each, record vertices, edges and whether direction changes reachability.\n\n**Checkpoints:** Represent one small graph as an adjacency dictionary. Predict a BFS route between two chosen vertices, then compare it with an actual trace. Keep the generated image and source dictionary together. The non-graphics route uses the dictionary and trace directly."
+	},
+	{
+		"module": "FAI0 Setup and Tooling",
+		"title": "Reference Archive: AI Level 1 Workspace",
+		"contentKind": "assignment",
+		"content": "Choose one named example from the repository archive: FAI-Stacks, FAI-Queues or FAI6-Magic-Portals. Open that folder's main.py and record whether it is a completed example or an unfinished exercise. Use the folder's own source action elsewhere in the course when importing into the IDE; the archive link itself represents the whole repository.\n\nBefore running the chosen example, predict either the removal order for its four values or the number of portals from Tokyo to London. Compare the run with the prediction: the stack removes 4,3,2,1; the queue removes 1,2,3,4; Tokyo to London needs three portals. Explain the first operation that determines the result. Save the selected file and observation separately from the archive."
+	},
+	{
+		"module": "FAI0 Setup and Tooling",
+		"title": "Object Refresh: Dog Class",
+		"contentKind": "assignment",
+		"content": "Use the linked completed Dog example to practice independent object state. Create Dog(\"Fido\",4) and Dog(\"Luna\",2). Print each dog's name, age, tricks and sitting state. Call learn_trick(\"roll\") only on Fido, then call sit_down() and stand_up() while printing get_state() after each change.\n\nCheckpoints: Fido's tricks become [\"roll\"], Luna's stay [], and the two states read \"Fido is sitting\" then \"Fido is standing\". With no learned tricks, do_trick() returns the named dog's no-tricks message. With exactly one trick it returns that trick without a random-choice ambiguity. Add a second trick and verify that every returned choice belongs to that dog's list. Keep the before/after observations and explain why tricks must be an instance attribute."
+	},
+	{
+		"module": "FAI0 Setup and Tooling",
+		"title": "Object Refresh: Deck of Cards",
+		"contentKind": "assignment",
+		"content": "Use the completed Card and Deck example. Before shuffling, collect the pairs (card.value,card.suit) from deck.deck. Check that there are 52 distinct pairs: values 1 through 13 in each of Spades, Hearts, Clubs and Diamonds. Shuffle, then compare the pair collection with the original; the order can change while membership stays the same.\n\nDraw one card with draw_card() and check that 51 remain. Draw the rest, confirming that each original card appears exactly once. A further draw prints the empty-deck message and returns None. Repeat with a fresh deck so the previous experiment's mutations cannot affect the next one. Save the checks and explain why observing one shuffled order cannot establish whether all orders are equally likely."
+	},
+	{
+		"module": "Unit 1: AI Landscape and State Representation",
+		"title": "Project: Node and Graph Class",
+		"contentKind": "assignment",
+		"content": "Complete Graph in the linked starter using its supplied Node class. Store nodes in the graph dictionary, add nodes through add_node(), and implement add_edge() as an undirected connection between two registered nodes. Implement __str__() so the nodes and their neighbor keys can be inspected.\n\nCreate nodes a,b,c,d, register all four and add edges a-b and b-c. Checkpoints: a lists b; b lists a and c; c lists b; d has no neighbors. An edge to an unregistered node must produce a clear failure without changing existing adjacency. State whether repeated edges are allowed and demonstrate that contract. Keep this object exercise separate from Unit 1's directed adjacency dictionary: one undirected edge must be traversable in both directions. Submit the completed starter and these observations."
+	},
+	{
+		"module": "Unit 1: AI Landscape and State Representation",
+		"title": "Project: Graphs with Network Visualization",
+		"contentKind": "assignment",
+		"content": "Run the linked completed example in the local graphics environment from the setup reading. It produces basic_graph.png and acyclic_graph.png. For the first graph, list vertices a,b,c,d and undirected edges a-b,a-c,c-d,d-a. For the second, list a-b,a-c,d-a. Compare the saved images with those exact lists; drawing positions can vary between runs.\n\nCheckpoints: both images contain four labeled vertices. The first has the cycle a,c,d,a; the second is connected with three edges and has no cycle. Remove edge d-a from the first graph in a separate copy and predict how its cycle changes before generating another image. Keep the two originals and changed output with their edge lists. The image shows adjacency; it does not record a search algorithm's visit order."
+	},
+	{
+		"module": "Unit 1: AI Landscape and State Representation",
+		"title": "Project: Airports Problem",
+		"contentKind": "assignment",
+		"content": "Run the linked directed weighted airport example. Starting in Boston, enter ny, sf, la. The travel times are 1,6,1 hours, so the printed total must be eight hours. Run again with dc, s, sf, la; times 2,7,3,1 total thirteen hours. Record the selected keys and accumulated time after each flight.\n\nCheckpoints: the eight-hour route and thirteen-hour route both arrive in Los Angeles. An unavailable destination must repeat the choice without moving or charging time. Spaces and letter case are normalized by the input handler. Explain why a flight from one city does not imply a reverse flight in this graph. Add a new airport and one outgoing flight in a copy; document its time and test the new transition."
+	},
+	{
+		"module": "Unit 2: Stacks, Queues, and Traversal Intuition",
+		"title": "Project: Practice with Stacks",
+		"contentKind": "assignment",
+		"content": "Use the linked completed stack exercises as examples, then write independent checks for their behavior. Push integers 1 through 10 and repeatedly pop; the removal order is 10 down to 1. Trace the contents after every removal. Check isPalindrome(\"racecar\"), isPalindrome(\"mom\") and isPalindrome(\"hello world\"); expect True, True and False. State that the supplied comparison is literal and case-sensitive.\n\nFor evaluateExpression(), check \"2 3 +\" gives 5, \"1 3 -\" gives -2 and \"3 5 + 4 *\" gives 32. Explain why subtraction uses the second popped operand first. In a separate version, reject expressions with too few operands or multiple leftover values. Keep valid results and the chosen invalid-input behavior in the observation record."
+	},
+	{
+		"module": "Unit 2: Stacks, Queues, and Traversal Intuition",
+		"title": "Project: Practice with Queues",
+		"contentKind": "assignment",
+		"content": "Trace the linked completed queue exercises before changing them. Enqueue 1 through 10 and remove from the front; expect 1 through 10 in the same order. In buildQueueString(), each ordinary character enters the queue and each * removes its front character into the output. Check \"H*ELL**O**\" produces \"HELLO\"; also trace \"AB**\" to \"AB\".\n\nFor getEvens([1,2,6,5,4,6]), expect [2,6,4,6], preserving order and duplicates. The supplied function consumes its input list; show that the original list is empty afterward. In a separate variant, preserve the caller's list while producing the same result. Test an empty list and an all-odd list. Record how an unmatched * is handled before adding validation for that case."
+	},
+	{
+		"module": "Unit 2: Stacks, Queues, and Traversal Intuition",
+		"title": "Project: Stacks and Queues Reference",
+		"contentKind": "assignment",
+		"content": "Trace the four-value queue in the linked reference. It appends 1,2,3,4, peeks at index zero, removes the front value, checks emptiness and then drains the queue. Write down each printed value before execution. The sequence is 1,1,False,2,3,4: peeking observes the first 1 without removing it.\n\nMake an independent stack version with the same inserted values, using the last position for both peek and pop. Its corresponding sequence is 4,4,False,3,2,1. Check the length after peeking and after removal to distinguish observation from mutation. Guard peek and removal on an empty container with a stated exception or return value. Save the two small versions and their traces as a reference for frontier ordering."
+	},
+	{
+		"module": "Unit 3: DFS, BFS, and Reachability",
+		"title": "Project: Implement DFS",
+		"contentKind": "assignment",
+		"content": "Run both DFS methods in the linked example on its undirected graph with edges a-b,a-c,b-d,b-e. The iterative version appends neighbors in their stored order and pops from the end; expect a,c,b,e,d. The recursive version follows the first unvisited neighbor immediately; expect a,b,d,e,c. Record when each node becomes visited.\n\nCheckpoints: both methods visit the same five vertices once despite their different orders. Add an isolated vertex z and verify that traversal from a does not reach it. Add an edge e-a to make a cycle and confirm termination. In a separate copy, reverse the iterative neighbor insertion order and compare the new trace. Explain why a valid DFS traversal need not be a shortest route to every vertex."
+	},
+	{
+		"module": "Unit 3: DFS, BFS, and Reachability",
+		"title": "Project: Implement BFS",
+		"contentKind": "assignment",
+		"content": "Use the linked BFS example on the undirected graph a-b,a-c,b-d,b-e. Predict its queue after expanding a and after expanding b. The resulting visit order is a,b,c,d,e because newly discovered neighbors join the back. Record each first discovery and its parent.\n\nExtend a copy to return a route to a named target rather than only printing all reachable nodes. The route a,b,e contains two edges. Check start=a,goal=a returns [a], and an added isolated target z has no route. Mark a node discovered when enqueueing it so a cycle does not create repeated queued copies. Retain the original traversal example and the route-returning variant with these checks. State the equal-edge-cost condition behind BFS's minimum-edge guarantee."
+	},
+	{
+		"module": "Unit 3: DFS, BFS, and Reachability",
+		"title": "Project: Magic Portals",
+		"contentKind": "assignment",
+		"content": "Run the linked city graph and verify its four distances: San Francisco to Dubai is 1, Tokyo to Dubai is 2, New York to Dubai is 2 and Tokyo to London is 3. Each graph edge counts as one action regardless of geographical distance. Draw the city adjacency that supports the Tokyo,San Francisco,Washington D.C,London route.\n\nCheckpoints: a city to itself takes zero portals; an added isolated city is unreachable; a city not registered in the graph is rejected. The supplied method returns None when no route is found. In a copy, also return the sequence of city keys and verify every consecutive pair is connected. Keep the distance result separate from the route itself. Explain why the shared visited set prevents cycles from being explored forever."
+	},
+	{
+		"module": "Unit 3: DFS, BFS, and Reachability",
+		"title": "Project: Maze Solver",
+		"contentKind": "assignment",
+		"content": "The linked folder is a starter: main.py draws the maze, while maze.py prints a supplied path; neither file implements search. Retain both files in the same project. Add a solver in a separate helper or main.py using cell coordinates (row,column), start (0,0), goal (2,0) and moves through open passages only.\n\nFor a hand-checkable independent representation, use adjacency (0,0):[(0,1),(1,0)], (0,1):[(0,0),(0,2)], (0,2):[(0,1),(1,2)], (1,0):[(0,0),(1,1)], (1,1):[(1,0),(2,1)], (1,2):[(0,2),(2,2)], (2,0):[(2,1)], (2,1):[(1,1),(2,0),(2,2)], (2,2):[(1,2),(2,1)]. BFS reaches the goal in four moves via (1,1). Record parents and render the recovered path. Treat quicksand costs as a later weighted extension; first verify legal movement and unreachable/start-equals-goal cases."
+	},
+	{
+		"module": "Unit 4: Informed and Bounded Search",
+		"title": "Project: Implement DLS",
+		"contentKind": "assignment",
+		"content": "Trace the linked depth-limited search on edges a-b,a-c,b-e,c-d,d-e. Run limits 0,1,2,3. The printed orders are respectively a; a,c,b; a,c,d,b,e; and a,c,d,e,b. Depth counts edges from the start. Record the pending (node,depth) pairs to explain each limit's reachable set.\n\nThe method records the best depth discovered for each node. Explain why reaching a node later by a shallower route can permit further expansion even if that node was already printed. Check a negative limit produces no visits, a zero limit includes only the start, and limit 4 reaches the same set as limit 3. Retain the observations and add a target-returning variant that distinguishes a found route from a depth cutoff."
+	},
+	{
+		"module": "Unit 4: Informed and Bounded Search",
+		"title": "Project: Implement IDS",
+		"contentKind": "assignment",
+		"content": "Run the linked iterative-deepening example with max_depth=4. It performs depth-limited traversals for limits 0 through 4, including both endpoints. On its supplied graph the lines are a; a,c,b; a,c,d,b,e; a,c,d,e,b; and a,c,d,e,b. Record each limit and its printed order in a table.\n\nCompare this repeated work with one depth-limited traversal at limit 4. Explain why earlier depths are visited again and why visited/depth information must reset between iterations. Add a target-returning variant that stops at the first depth where the target is found; for target e in the supplied graph that depth is 2. Check start=goal at depth zero and an isolated target with a finite maximum depth. Report cutoff separately from a proof that no route exists."
+	},
+	{
+		"module": "Unit 4: Informed and Bounded Search",
+		"title": "Project: Implement UCS",
+		"contentKind": "assignment",
+		"content": "Trace the linked uniform-cost search on weighted edges a-b:3,a-c:5,a-e:15,b-d:1,b-e:6. Edges are undirected in this implementation. The settled nodes and costs are a:0,b:3,d:4,c:5,e:9; the cheaper route to e is a,b,e rather than the direct edge of cost 15.\n\nRecord each removed priority and explain why a later queued copy of e is skipped after e has been settled. Add a separate isolated node and verify that it is absent from traversal started at a. Add a zero-cost edge in a copy and compare the resulting costs with hand sums. Preserve the nonnegative-cost assumption; negative edges require a different method. Submit the trace and a route-reconstruction extension with an explicit no-route result."
+	},
+	{
+		"module": "Unit 4: Informed and Bounded Search",
+		"title": "Project: Compare A* and Greedy Search",
+		"contentKind": "assignment",
+		"content": "Run the linked A* example and the Greedy Search Lab example using their shared undirected graph S-A:1,A-G:20,S-B:5,B-G:1. Their heuristic values are S:0,A:0,B:1,G:0. A* orders pending states by g+h; greedy uses h alone. Predict each next expansion from its priority.\n\nCheckpoints: A* returns S,B,G at cost 6; greedy returns S,A,G at cost 21. Compare routes using the same edge-cost sum, and record expansion orders separately from returned paths. Repeat with a start-equals-goal request and an isolated target added to each graph. Change all heuristics to zero in a copy and explain the change in A* ordering. A favorable result on this graph alone does not establish heuristic quality on other problems."
+	},
+	{
+		"module": "Unit 4: Informed and Bounded Search",
+		"title": "Project: Greedy Search Lab",
+		"contentKind": "assignment",
+		"content": "Use the linked completed greedy example with graph S-A:1,A-G:20,S-B:5,B-G:1 and estimates S:0,A:0,B:1,G:0. Trace discovery of A and B after expanding S. The smaller estimate at A is selected first; G is then selected, yielding S,A,G at cost 21.\n\nCheckpoints: independently sum the returned path's edge costs. Compare it with S,B,G at cost 6 to demonstrate the cost of that choice. Verify start=goal returns a zero-cost single-node path and an isolated goal returns no path with cost None. In a copy, change A's estimate to 2 and predict which route greedy finds before running. Record the actual route and expansions. Explain that selecting by an estimate alone gives no general minimum-cost guarantee."
+	},
+	{
+		"module": "Unit 5: Rule-Based Systems and Puzzle Framing",
+		"title": "Project: Adventure Game State Tracker",
+		"contentKind": "assignment",
+		"content": "Run the linked completed directed adventure. Check the paths start→leave and start→explore→check it out; they reach different terminal messages. Enter an unavailable choice first, then a valid choice. The handler must repeat the prompt without changing the current node, and it accepts surrounding spaces and letter-case changes.\n\nExtend a copy with an inventory-bearing state (location,has_key). Add hall→store, store→hall while acquiring a key, and hall→outside only when the key is present. Check hall→outside is blocked before collection; hall→store→hall→outside succeeds afterward. Keep the two hall states distinct when searching: location alone cannot capture the gate. Submit the state transitions and recorded paths. This inventory rule is the new extension; the supplied theme-park example represents location choices."
+	},
+	{
+		"module": "Unit 5: Rule-Based Systems and Puzzle Framing",
+		"title": "Project: Puzzle Solver Warmup",
+		"contentKind": "assignment",
+		"content": "Use the linked completed sliding-puzzle example to inspect representation before building a larger solver. Its board contains strings \"1\" through \"8\" and a single space for the blank. Set the start rows to [\"1\",\"2\",\"3\"],[\"4\",\"5\",\"6\"],[\" \",\"7\",\"8\"]. The goal rows end with [\"7\",\"8\",\" \"].\n\nCheckpoints: generate_neighbors() produces only boards formed by one orthogonal blank swap, without changing the original board. Moving the blank right twice solves the supplied case in two moves. The numbered-tile Manhattan estimate is 2 initially and 0 at the goal. Swap 7 and 8 in the goal to obtain an unsolvable odd-parity board. Record what bfs() and astarsearch() return for each case, including their different no-solution result formats, and explain how repeated states are recognized."
+	},
+	{
+		"module": "Unit 5: Rule-Based Systems and Puzzle Framing",
+		"title": "Project: Book Rule System",
+		"contentKind": "assignment",
+		"content": "The linked example implements friendship groups with FriendGraph; its task is connected-component counting. Use the two supplied graphs and predict count_groups(): the first returns 1 and the second returns 3. In the second graph, a,b,c form one component while d and e each form their own.\n\nBuild another graph with vertices p,q,r,s and only edge p-q. It has three components; adding r-s leaves two, and adding q-r leaves one. Check an empty graph has zero groups and a graph with one isolated vertex has one. Record the visited set after each component search. Explain why a friendship edge is undirected in this example. Submit the component memberships with their counts; the supplied source counts connectivity rather than inferring book recommendations.",
+		"displayTitle": "Project: Friendship Groups"
+	},
+	{
+		"module": "Unit 6: Heuristics and Game AI",
+		"title": "Project: Tic-Tac-Toe Tree Nodes",
+		"contentKind": "assignment",
+		"content": "Inspect the linked TreeNode example. A node stores a 3×3 board, the player whose turn comes next and a children list; empty cells use \"-\". Its supplied empty board returns (None,False) from check_win(), while the diagonal X board returns (\"X\",True). Draw the diagonal that establishes the win.\n\nAdd independent row, column and draw cases. For a draw, use rows X,O,X / X,O,O / O,X,X and expect (\"draw\",True). Create one legal child of the empty root by placing X in the center, switching the child's player to O and preserving the root board. Check that modifying a copied child cannot change its parent. Keep terminal-result checks separate from move selection: this file supplies a node representation, not a complete opponent."
+	},
+	{
+		"module": "Unit 6: Heuristics and Game AI",
+		"title": "Project: Random Tic-Tac-Toe AI",
+		"contentKind": "assignment",
+		"content": "Use the linked completed random-opponent program as a baseline. Empty cells use \"-\", X moves first and the computer plays O. Record one complete legal game, including the position before each random move and the set of empty cells available then. Each chosen move must occupy exactly one previously empty cell.\n\nTo inspect tree generation without building the entire empty-board tree, use a near-terminal root with rows X,X,- / O,O,- / -,-,- and X to move. Its legal first children place X in one of five empty cells; placing X at (0,2) ends the game immediately. Compare those children with the parent to check copying and turn switching. Repeat recorded trials with a fixed random seed when comparing implementations; a seed supports reproducibility, not a claim of optimal play."
+	},
+	{
+		"module": "Unit 6: Heuristics and Game AI",
+		"title": "Project: Unbeatable Tic-Tac-Toe AI",
+		"contentKind": "assignment",
+		"content": "Use the linked minimax example with \"-\" for empty cells. Scores are from O's perspective: O wins +10, X wins -10 and a draw is 0. O maximizes and X minimizes. Start with near-terminal positions so the full continuation tree is small enough to inspect.\n\nFor rows X,X,- / O,O,- / -,-,- with X to move, the best child places X at (0,2) for an immediate win. For rows O,O,- / X,-,- / -,X,- with X to move, the best child blocks (0,2). Check a terminal root has no best child and retains its terminal score. Then compare play from the empty board with an independently optimal opponent; optimal play draws. Save the boards, chosen children and score perspective alongside the source."
+	},
+	{
+		"module": "Unit 6: Heuristics and Game AI",
+		"title": "Project: Marble Game AI",
+		"contentKind": "assignment",
+		"content": "Use the linked five-marble game. A turn removes 1,2 or 3 marbles without taking more than remain; taking the last marble wins. TreeNode(num_marbles,is_AI) records whose turn is next. Its score is positive for a human win and negative for an AI win, so AI turns minimize the score.\n\nCheckpoints: one remaining marble is winning for the player to move; four remaining marbles are losing against optimal opposition. From five, the winning first move removes one and leaves four. Inspect legal children and best_child for these small positions before playing the interactive version. Check no child has a negative count and a zero-marble node is terminal. Record a complete five-marble game and explain the terminal score using the next-player flag."
+	},
+	{
+		"module": "Unit 7: Features, Evaluation, and Responsible AI",
+		"title": "Project: Search Strategy Comparison Lab",
+		"contentKind": "assignment",
+		"content": "Compare the linked greedy example with A* from the informed-search unit. Use three shared cases: the weighted S,A,B,G graph with costs 1,20,5,1; a chain S→M→G with unit costs and zero estimates; and start=goal. Expected route costs are greedy [21,2,0] and A* [6,2,0].\n\nRecord returned route, summed cost, expanded-state count and largest frontier for each run. Add measurement counters in separate copies and state whether the goal removal is counted. If timing is reported, use the same interpreter and repeated runs; separate construction from search. The mean costs are 23/3 and 8/3 for these cases. Report unreachable cases separately rather than averaging None as zero. Explain one limitation of comparing algorithms on only these three fixtures."
+	},
+	{
+		"module": "Unit 7: Features, Evaluation, and Responsible AI",
+		"title": "Project: Water Jug Riddle",
+		"contentKind": "assignment",
+		"content": "Run the linked 3-litre/5-litre jug example. A state (x,y) records water in the 3L and 5L jugs, with 0≤x≤3 and 0≤y≤5. Legal actions fill, empty or pour from one jug into the other until the source empties or destination fills. The goal is four litres in the 5L jug.\n\nCheckpoints: verify the six-action route (0,0)→(0,5)→(3,2)→(0,2)→(2,0)→(2,5)→(3,4). Each transition must match one legal action. Compare greedy_solve() and a_star_solve() by route length and states searched. The remaining-volume estimate used by greedy can overestimate actions; A* uses its separate admissible estimate. Check an already solved state (0,4) returns a zero-action route, and explain why both jug amounts belong in the visited-state key."
+	},
+	{
+		"module": "Unit 8: Capstone and Portfolio Build",
+		"title": "Capstone: 8-Puzzle Solver",
+		"contentKind": "assignment",
+		"content": "Run the linked complete solver, then build a documented variant with the same public inputs. Boards are 3×3 lists of strings \"1\" through \"8\" plus one space. Use start rows [\"1\",\"2\",\"3\"],[\"4\",\"5\",\"6\"],[\" \",\"7\",\"8\"] and the goal ending [\"7\",\"8\",\" \"]. Both bfs_solve() and a_star_solve() should return a two-move path.\n\nCheckpoints: every adjacent returned board differs by one legal blank swap; the first and last boards match the requested endpoints. Check an already solved board returns zero moves. Swapping 7 and 8 at the goal must be rejected as unsolvable before a large search. Compare states searched using the same counting convention and confirm Manhattan distance excludes the blank. Deliver the source, three case results and an explanation of the parity and heuristic assumptions."
+	},
+	{
+		"module": "Unit 8: Capstone and Portfolio Build",
+		"title": "Capstone Option: Maze Solver Showcase",
+		"contentKind": "assignment",
+		"content": "Extend the earlier maze starter after completing its legal-move BFS solver. Keep the provided main.py and maze.py together. Use the same start (0,0), goal (2,0) and passage graph from the Maze Solver assignment; the unweighted shortest route uses four moves and crosses quicksand at (1,1).\n\nDefine weighted cost explicitly: leaving (1,1) costs 5 and leaving any other cell costs 1. The four-move route costs 8, while the six-move route along the top and right side costs 6. Compare BFS with uniform-cost search using these exact weights. Check the returned path against walls before displaying it, and report both move count and total cost. Add start=goal and unreachable-target cases. Deliver the visual trace with the passage dictionary and measurement results."
+	},
+	{
+		"module": "Unit 8: Capstone and Portfolio Build",
+		"title": "Capstone Option: Marble Game Strategy Lab",
+		"contentKind": "assignment",
+		"content": "Extend the linked complete marble opponent by comparing a random legal policy with full minimax on starting piles 1 through 8. Each move removes 1,2 or 3; taking the last marble wins. Record the player to move as part of every state. Against optimal play, positive multiples of four are losing starting positions; every other listed count has a move leaving a multiple of four.\n\nCheckpoints: 1,2,3 each have an immediate winning move; 4 is losing; from 5 remove one. Verify legal children and terminal handling before collecting game results. Use a fixed seed for repeated random-policy trials and alternate which policy moves first. Record wins by starting pile and starting player. Explain why a random opponent's win rate does not establish strength against optimal opposition."
+	},
+	{
+		"module": "Unit 9: Repo Extension Bank and Canonical Variants",
+		"title": "Extension: Special Graphs",
+		"contentKind": "assignment",
+		"content": "Run the linked completed graphics example in the setup reading's local environment. Retain basic_graph.png, acyclic_graph.png, weighted_graph.png and directed_graph.png. Compare each image with the edge list immediately above its drawing code; layout coordinates may change between runs.\n\nCheckpoints: the weighted graph uses a-b:3,a-c:0,c-d:1,d-a:6, so a→c→d costs 1 while a→d costs 6. The directed graph has a→b,a→c,c→d,d→a; b cannot reach a because it has no outgoing edge. Verify those claims with adjacency or a manual route before adding programmatic checks. A zero-weight edge remains an edge. Submit the four images, route sums and one changed graph whose reachability or minimum-cost route differs from the original."
+	},
+	{
+		"module": "Unit 9: Repo Extension Bank and Canonical Variants",
+		"title": "Extension: Practice with Stacks (Reference Bank)",
+		"contentKind": "assignment",
+		"content": "Use this small stack reference to isolate push, peek and pop from the larger expression exercises. It appends 1,2,3,4, peeks at the last value, removes it, checks emptiness and drains the remaining stack. Predict the print sequence 4,4,False,3,2,1 before running.\n\nCheckpoints: peek leaves length four; the first pop leaves length three; the final stack is empty. Add a safe-pop wrapper with a stated empty-stack result and test it once more after draining. Compare the same operations with the queue reference from Unit 2 to identify exactly which endpoint changes. Keep the traces beside both versions. As a small extension, insert a new value after two removals and predict the remaining order before execution."
+	},
+	{
+		"module": "Unit 9: Repo Extension Bank and Canonical Variants",
+		"title": "Extension: BankAccount Class",
+		"contentKind": "assignment",
+		"content": "Use the linked completed BankAccount object as a state-transition exercise. Create an account with interest_rate=0.10, deposit 1000, calculate_interest(), withdraw 1000 and attempt to withdraw 150. Expected balances are 1000,1100,100,100; the last withdrawal reports insufficient funds and preserves the balance.\n\nCheckpoints: a separate account starts at zero and is unaffected by the first account's changes. Zero deposits and withdrawals leave the balance unchanged. Negative or nonfinite amounts raise ValueError before mutation. In a separate copy, document the order of operations for two consecutive interest calculations and compare their result with one calculation. Save the transition log and explain which attributes define account state. This is a class-behavior example; its simplified arithmetic does not specify a real bank's money or interest rules."
+	},
+	{
+		"module": "Unit 9: Repo Extension Bank and Canonical Variants",
+		"title": "Extension: DFS with a Stack Class",
+		"contentKind": "assignment",
+		"content": "Compare the linked Stack API with the earlier list-based DFS. The stack's push appends, peek observes the last value, pop removes it and isEmpty() reports whether values remain. In the supplied check, pushing 1,2,3 yields peek 3, followed by pops 3,2,1 and True for emptiness.\n\nFor graph edges a-b,a-c,b-d,b-e, dfs_with_stack_class(a) prints a,c,b,e,d. Trace the Stack calls and compare that order with the earlier iterative DFS under the same neighbor insertion order. Add edge e-a and verify each reachable vertex is still printed once. Test an empty graph and an isolated registered start separately. Submit the API trace and traversal comparison, explaining which changes concern data representation and which concern the search algorithm."
+	},
+	{
+		"module": "Unit 9: Repo Extension Bank and Canonical Variants",
+		"title": "Extension: BFS with a Queue Class",
+		"contentKind": "assignment",
+		"content": "Compare the linked Queue API with the earlier list-based BFS. enqueue appends, peek observes the front, dequeue removes the front and isEmpty() reports whether values remain. In the supplied check, enqueueing 1,2,3 yields peek 1, followed by removals 1,2,3 and True for emptiness.\n\nFor graph edges a-b,a-c,b-d,b-e, bfs_with_queue_class(a) prints a,b,c,d,e. Trace the Queue calls and compare them with the earlier BFS using the same adjacency order. Add a cycle and confirm discovery-time visited tracking prevents duplicate queued vertices. Test an empty graph and an isolated registered start separately. Extend a copy to return a route to e and verify its two edges. Submit the trace and explain why a different queue representation preserves FIFO behavior."
+	},
+	{
+		"module": "Unit 9: Repo Extension Bank and Canonical Variants",
+		"title": "Extension: Updated Tic-Tac-Toe AI",
+		"contentKind": "assignment",
+		"content": "Compare the linked shared-state game graph with the earlier full game tree. This variant uses a space for an empty cell, while the earlier version uses \"-\". It stores previously generated board nodes so different move orders can reuse the same position. Record that representation difference before copying a board between versions.\n\nCheckpoints: use X,X,blank / O,O,blank / blank,blank,blank with X to move and verify the immediate winning move at (0,2). Also check the forced block from O,O,blank / X,blank,blank / blank,X,blank. Compare scores and legal moves with the earlier minimax after converting empty markers. The program can save its own data.pkl cache; compare first construction with loading only that locally generated cache. Report node reuse separately from search quality and record which work each timing includes."
+	},
+	{
+		"module": "Unit 9: Repo Extension Bank and Canonical Variants",
+		"title": "Extension: Two-Player Marble Game",
+		"contentKind": "assignment",
+		"content": "Use the linked two-player five-marble example before adding an automated opponent. Each player may remove 1,2 or 3 without taking more than remain; whoever takes the last marble wins. Trace a game in which Player 1 takes one, Player 2 takes three and Player 1 takes one. The final winner is Player 1.\n\nCheckpoints: no child state has a negative count; a zero-count state has no children. Try taking four or taking zero and verify the game repeats the current player's choice without changing the pile. Draw the full legal move tree from a pile of three, labeling whose turn follows every edge. Keep the transcript and tree. As an extension, choose moves that leave a multiple of four and explain the connection with the later minimax opponent."
 	}
 ]

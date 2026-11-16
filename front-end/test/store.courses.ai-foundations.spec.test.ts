@@ -82,3 +82,38 @@ it("keeps planning archives internal and supplied projects available to learner 
 		).toContain("/AI-03-ai-search-lab-15/starter");
 	}
 });
+
+it("checks legacy brief predictions against the actual pinned originals", () => {
+	const result = JSON.parse(
+		execFileSync("python3", ["../test/ai-legacy-brief-contracts.py"], {
+			encoding: "utf8"
+		})
+	);
+	expect(result.accepted).toBe(true);
+	expect(result.actualPinnedSourcePrograms).toBe(19);
+});
+it("supplies concrete tasks across the complete AI course while retaining the renamed source identity", async () => {
+	const course = (await loadRawCourse("ai-level-1"))!;
+	const assignments = course.modules
+		.filter(m => !m.internal)
+		.flatMap(m => [...m.curriculum, ...m.supplementalProjects])
+		.filter(item => item.contentKind !== "reading");
+	expect(assignments).toHaveLength(88);
+	for (const item of assignments) {
+		expect(item.content, item.title).not.toContain(
+			"data and model reasoning"
+		);
+		expect(item.content, item.title).not.toContain(
+			"dataset assumptions, measured output"
+		);
+	}
+	const group = course.modules
+		.flatMap(m => m.supplementalProjects)
+		.find(item => item.title === "Project: Friendship Groups")!;
+	expect(group.id).toBe(
+		"ai-level-1-unit-5-rule-based-systems-and-puzzle-framing-supplemental-project-book-rule-system"
+	);
+	expect(group.aliases).toContain("Project: Book Rule System");
+	expect(group.projectLink).toContain("/FAI5-Juni-Book");
+	expect(group.content).toContain("FriendGraph");
+});

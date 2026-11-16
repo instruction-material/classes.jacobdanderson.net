@@ -1284,9 +1284,11 @@ describe("course text quality normalization", () => {
 				itemTitle: "Reference Archive: AI Level 1 Workspace",
 				minWords: 80,
 				required: [
-					/state representation/i,
-					/search order/i,
-					/algorithm/i
+					/FAI-Stacks/,
+					/FAI-Queues/,
+					/FAI6-Magic-Portals/,
+					/completed example or an unfinished exercise/,
+					/Tokyo to London needs three portals/
 				]
 			},
 			{
@@ -7302,7 +7304,7 @@ describe("course text quality normalization", () => {
 		expect(corpus).toContain("Fictional Language Verifier");
 		expect(corpus).toContain("Command Assistant");
 		expect(corpus).toContain("Theme Park Planner");
-		expect(corpus).toContain("Book Rule System");
+		expect(corpus).toContain("Friendship Groups");
 		expect(corpus).toContain("Bakery Model");
 		expect(corpus).toContain("Mini Search Engine");
 		expect(corpus).toContain("Restaurant Splash Page");
