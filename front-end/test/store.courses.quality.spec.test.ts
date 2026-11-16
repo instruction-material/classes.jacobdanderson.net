@@ -1,3 +1,4 @@
+import aiFoundationReadings from "@/stores/courses/aiFoundationReadingsData.json";
 import { beforeEach, describe, expect, it } from "vitest";
 import fs from "node:fs";
 import { createHash } from "node:crypto";
@@ -72,6 +73,34 @@ const elementaryMaterials = {
 	"late-elementary-a-math": lateElementaryAMaterials,
 	"late-elementary-b-math": lateElementaryBMaterials
 };
+
+function completeAiStudioActivity(
+	courseId: string,
+	module: RawCourseModule,
+	item: RawCourseModuleItem
+) {
+	if (
+		courseId !== "ai-level-1" ||
+		item.contentKind !== "assignment" ||
+		!module.title.endsWith(": Practice Studio")
+	)
+		return false;
+	const authored = aiFoundationReadings.find(
+		row =>
+			row.module === module.title &&
+			row.title === item.title &&
+			row.contentKind === "assignment"
+	);
+	if (!authored || item.content !== authored.content) return false;
+	return module.curriculum.some(
+		reading =>
+			reading.contentKind === "reading" &&
+			reading.title.endsWith(": Guided Example") &&
+			/^## Worked cases?$/m.test(reading.content) &&
+			/^## Build and verify$/m.test(reading.content) &&
+			wordCount(reading.content) >= 120
+	);
+}
 
 function completeAlgebra1APractice(
 	courseId: string,
@@ -1837,7 +1866,9 @@ describe("course text quality normalization", () => {
 			);
 			expect(corpus).toContain("opening the starter resource");
 			expect(corpus).toContain("Open the starter resource");
-			expect(corpus).toContain("as an AI/Python project");
+			expect(corpus).toContain(
+				"Reconstruct the returned route from parents"
+			);
 			expect(corpus).toContain("replace one unfinished body at a time");
 			expect(corpus).toContain(
 				"Build the web-development extension challenge for **JSM1 Fundamentals Review** as a browser-visible feature with clear state, interaction, and error-handling evidence"
@@ -2701,13 +2732,11 @@ describe("course text quality normalization", () => {
 		);
 
 		expect(corpus).toContain(
-			"AI is a family of approaches: rules, search, planning, heuristics, machine learning, and modern generative systems."
+			"A search program chooses a sequence of allowed actions."
 		);
+		expect(corpus).toContain("BFS explores a FIFO frontier.");
 		expect(corpus).toContain(
-			"DFS is a systematic way to explore one branch fully, record visited nodes, and backtrack cleanly."
-		);
-		expect(corpus).toContain(
-			"Heuristic evaluation is a practical compromise when exhaustive search is too expensive."
+			"A heuristic estimates a nonterminal position when full expansion is too expensive."
 		);
 		expect(source).not.toMatch(/This section covers/i);
 		expect(source).not.toMatch(/Key idea:/i);
@@ -6036,8 +6065,17 @@ describe("course text quality normalization", () => {
 											module,
 											item
 										) &&
-										!completeAlgebra1APractice(entry.id, module, item) &&
-									!completeElementaryPractice(
+										!completeAlgebra1APractice(
+											entry.id,
+											module,
+											item
+										) &&
+										!completeAiStudioActivity(
+											entry.id,
+											module,
+											item
+										) &&
+										!completeElementaryPractice(
 											entry.id,
 											module,
 											item
@@ -6115,6 +6153,7 @@ describe("course text quality normalization", () => {
 							!completeSmartMoneyPractice(id, module, item) &&
 							!completePhysicsPractice(id, module, item) &&
 							!completeAlgebra1APractice(id, module, item) &&
+							!completeAiStudioActivity(id, module, item) &&
 							!completeElementaryPractice(id, module, item) &&
 							!completeIntroBiologyActivity(id, module, item) &&
 							!completeElementaryScienceActivity(
@@ -6282,11 +6321,9 @@ describe("course text quality normalization", () => {
 			?.curriculum.find(item => /Core Concepts$/i.test(item.title));
 		expect(aiLandscape).toBeDefined();
 		expect(aiLandscape!.content).toContain(
-			"Strong representations are easy to inspect"
+			"A state with no successors still appears with an empty list."
 		);
-		expect(aiLandscape!.content).toContain(
-			"once the necessary information has been identified"
-		);
+		expect(aiLandscape!.content).toContain("(room,has_key)");
 		expect(aiLandscape!.content).not.toMatch(/\bcourse should\b/i);
 		expect(aiLandscape!.content).not.toMatch(/\bShow why\b/);
 	});

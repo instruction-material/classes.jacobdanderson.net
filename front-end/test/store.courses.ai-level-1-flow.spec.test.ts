@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { aiLevel1Course } from "@/stores/courses/ai-level-1";
 import { loadRawCourse } from "@/stores/courses/index";
+import foundationReadings from "@/stores/courses/aiFoundationReadingsData.json";
 
 const EXPECTED_TEACHING_MODULES = [
 	"FAI0 Setup and Tooling",
@@ -40,7 +41,7 @@ describe("AI Level 1 learner flow", () => {
 			"Bridge Positioning between Core Python and ML",
 			"How to Read an AI Problem Statement"
 		]) {
-			const authored = aiLevel1Course.modules[0].curriculum.find(
+			const authored = foundationReadings.find(
 				item => item.title === title
 			)!;
 			const displayed = course.modules[0].curriculum.find(

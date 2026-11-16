@@ -1,0 +1,326 @@
+[
+	{
+		"module": "FAI0 Setup and Tooling",
+		"title": "Python Environment for Search and Graph Labs",
+		"contentKind": "reading",
+		"content": "A [virtual environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/) keeps this workspace's packages separate from other Python projects. Use Python 3.12, 3.13 or 3.14, which are supported by the current [NetworkX release](https://networkx.org/documentation/stable/install.html). PyCharm or VS Code can use the same environment as the terminal.\n\n## Create the environment\n\nOpen a terminal in the folder where the search and graph labs will be saved. Check the selected Python version with `python3 --version` on macOS/Linux or `py -3 --version` on Windows. If several versions are installed, select a supported one before creating the environment.\n\nOn macOS or Linux:\n\n```sh\npython3 -m venv .venv\nsource .venv/bin/activate\n```\n\nIn Windows PowerShell:\n\n```powershell\npy -3 -m venv .venv\n.\\.venv\\Scripts\\Activate.ps1\n```\n\nIf activation is unavailable, use `.venv/bin/python` on macOS/Linux or `.venv\\Scripts\\python.exe` on Windows in place of `python` below. Activation changes which interpreter the terminal finds; the environment also works through its explicit interpreter path.\n\nInstall the graph, plotting and notebook tools:\n\n```sh\npython -m pip install networkx matplotlib jupyterlab\n```\n\nIf a selected lab supplies `requirements.txt`, use `python -m pip install -r requirements.txt` for its declared dependencies. Record the versions that work in this environment with `python -m pip freeze > requirements-local.txt`.\n\n## Run a checkable example\n\nSave the following as `check_environment.py`:\n\n```python\nimport sys\nimport networkx as nx\nimport matplotlib\n\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\n\ngraph = nx.path_graph(3)\nprint(sys.executable)\nprint(nx.shortest_path(graph, 0, 2))\nnx.draw_networkx(graph, pos={node: (node, 0) for node in graph})\nplt.axis(\"off\")\nplt.savefig(\"graph-check.png\", bbox_inches=\"tight\")\nplt.close()\n```\n\nRun `python check_environment.py`. The first line should point inside `.venv`; the second should be `[0, 1, 2]`. Open `graph-check.png`: nodes 0, 1 and 2 should form a connected path. The `Agg` plotting backend saves the image without opening a desktop window. The [NetworkX tutorial](https://networkx.org/documentation/stable/tutorial.html) explains the graph operations; the [Matplotlib guide](https://matplotlib.org/stable/users/explain/quick_start.html) explains figures and plotting.\n\n## Keep the interpreter consistent\n\nSelect this same `.venv` interpreter in the editor. For notebook work, run `python -m jupyterlab` from the workspace folder, create a Python notebook, and check `import sys; print(sys.executable)` in its first cell. A different path means the notebook is using a different environment, which can explain imports working in the terminal but failing in the notebook. See [starting JupyterLab](https://jupyterlab.readthedocs.io/en/stable/getting_started/starting.html) for the notebook interface.\n\nKeep an experiment log beside the lab: the command used, the input graph or state, the expected result and the observed result. For this check, record the interpreter path, `[0, 1, 2]` and the generated image.\n\n\n**Course flow:** Establish one reproducible graph-and-search workspace and a short experiment-log format. Refresh objects only when the state model shows a concrete prerequisite gap."
+	},
+	{
+		"module": "FAI0 Setup and Tooling",
+		"title": "Bridge Positioning between Core Python and ML",
+		"contentKind": "reading",
+		"content": "## State and decision systems\n\nA search program chooses a sequence of allowed actions. Its inputs are an initial state, transition rules and a goal test. Its output can be a route and an explanation of the choices. A rule system applies conditions written by its author. A learned model instead fits behavior from examples.\n\nFor a delivery robot, a state might be its room; a move follows a doorway; the goal is a named destination. Breadth-first search can find a minimum-doorway route when every move has equal cost. If the battery level restricts movement, room alone is insufficient: the state must also record the remaining charge.\n\nThe Python prerequisites are functions, lists, dictionaries, sets and simple classes. A list can hold pending states; a dictionary can map a discovered state to its parent. Graph search, rules and game evaluation are the core of this course. Machine Learning develops fitting and evaluating learned models; Data Science in Python develops questions, data preparation and analysis. A search trace supports a claim about the supplied problem and rules, rather than a claim of general intelligence."
+	},
+	{
+		"module": "FAI0 Setup and Tooling",
+		"title": "How to Read an AI Problem Statement",
+		"contentKind": "reading",
+		"content": "## Specify a problem before searching\n\nUse the directed graph `S: [A, B], A: [G], B: [], G: []`. The initial state is S. Legal actions follow listed arrows; the goal test is equality with G. Each action costs one. A valid solution is S,A,G, with two actions. Reaching B is a dead end, not success.\n\nA state must contain everything needed to determine future legal actions and outcomes. Two visits to the same room with different keys may be different states. An action generator returns only legal successors; a goal test checks the complete requirement. Cost measures the route already taken, whereas a heuristic estimates work still remaining.\n\nAn output contract removes ambiguity: a found route includes start and goal; start=goal has a one-state route and zero actions; an unreachable goal has an empty route and no route cost. Invalid input and a valid problem with no solution are different outcomes. Record the neighbor order and tie rule when comparing traces. Several correct algorithms can find different routes with the same cost."
+	},
+	{
+		"module": "FAI0 Setup and Tooling",
+		"title": "Experiment Logging and Reflection",
+		"contentKind": "assignment",
+		"content": "Trace the graph S:[A,B], A:[G], B:[], G:[] with a FIFO frontier. Record the initial queue [S], then the expanded state, queue after its expansion and newly assigned parents at each step. Check the goal when removing a state from the frontier. Predict the route before running the setup program.\n\nRepeat with goal S and with an isolated goal Z added as Z:[]. Keep the input graph, algorithm, neighbor order, expected route, observed route, action count and outcome in a short observation record. The ordinary route is S,A,G with two actions; start=goal has zero actions; Z is unreachable. Explain any mismatch using the first incorrect trace row. Record an unexecuted prediction as a prediction."
+	},
+	{
+		"module": "FAI0 Setup and Tooling",
+		"title": "Core Project: AI Level 1",
+		"contentKind": "assignment",
+		"content": "Create main.py in a Python workspace using the standard library. Define the graph S:[A,B], A:[G], B:[], G:[], Z:[] and a queue-based search that returns a route, including both endpoints. The setup reading supplies the queue, parent-map and reconstruction pattern.\n\nRun three calls: S to G returns [S,A,G]; S to S returns [S]; S to Z returns []. Print the route and number of actions, using no route cost for the unreachable case. Include one trace row per state removed from the queue.\n\nSave, reopen and download main.py, then run the extracted file with python3 main.py. Keep the same three results and an observation record identifying the Python version. The graph and these cases require no external packages."
+	},
+	{
+		"module": "Unit 1: AI Landscape and State Representation",
+		"title": "AI Landscape and State Representation Core Concepts",
+		"contentKind": "reading",
+		"content": "## Represent states and transitions\n\nA graph consists of states and connections between them. In a directed graph, S→A permits travel from S to A; it does not imply A→S. An adjacency dictionary represents the directed graph below. A state with no successors still appears with an empty list.\n\n```python\ngraph = {\"S\": [\"A\", \"B\"], \"A\": [\"G\"], \"B\": [], \"G\": []}\n```\n\n## Worked route and state identity\n\nThe keys are stable state identifiers. The neighbor lists describe allowed transitions, in a reproducible order. S,A,G is a legal route; S,B,G is illegal because B has no edge to G. A route cost is the sum of its edge costs. In this unweighted example each transition costs one, so the route has cost two.\n\nA Node object can hold an identifier and neighbors; a Graph object can look up nodes and add edges. Keep identifiers unique. Decide whether adding an edge creates a directed connection or two undirected connections, and implement that contract consistently. Check that both endpoint nodes exist before changing adjacency.\n\nState equality is a modeling choice. For a locked-door problem, (room,has_key) distinguishes visits that allow different actions. A representation that keeps only room can discard a necessary return visit after obtaining a key.\n\nA graph records possible transitions. The search frontier records which discovered states still need examination. Keeping those responsibilities separate allows BFS, DFS and cost-based searches to use the same problem model."
+	},
+	{
+		"module": "Unit 1: AI Landscape and State Representation",
+		"title": "Core Project: AI Landscape and State Representation",
+		"contentKind": "assignment",
+		"content": "Implement the Node and Graph starter using its supplied names. Add nodes S,A,B,G,Z and the directed connections S→A, S→B and A→G. If the supplied add_edge operation is undirected, retain that contract and label it; also represent the directed fixture separately with an adjacency dictionary.\n\nPrint each node and its neighbors. Verify S,A,G is legal, S,B,G is illegal and Z is isolated. Attempt to add an edge to a missing node and report the result without corrupting the existing graph. Keep repeated identifiers from silently creating two different meanings for one state.\n\nWrite a small legal_path helper that checks every consecutive pair against adjacency. Test [S,A,G], [S,B,G], [S] and []. State the convention chosen for an empty path. Compare graph behavior with the reference after recording the starter's results; preserve the original starter and the completed attempt separately."
+	},
+	{
+		"module": "Unit 2: Stacks, Queues, and Traversal Intuition",
+		"title": "Stacks, Queues, and Traversal Intuition Core Concepts",
+		"contentKind": "reading",
+		"content": "## A frontier has an order\n\nA stack removes its newest entry first: last in, first out. A queue removes its oldest entry first: first in, first out. Both can hold pending states, but they choose different next steps.\n\nFor a stack, `append` pushes and `pop()` removes the last list entry. For a queue, `collections.deque` supplies `append` and `popleft` without repeatedly shifting a list. An empty removal requires an explicit contract, such as a check before removal or a documented exception.\n\n## Worked frontier trace\n\nStart with S. Remove it and insert A then B. The stack next removes B; the queue next removes A. After a queue removes A and inserts C, its contents are [B,C], so B is next. This is the mechanism behind breadth-first exploration.\n\nFor DFS that should visit A before B, place B on the stack before A. State both the neighbor order and push order: saying only 'use a stack' does not determine the trace. A frontier entry can carry a state or an entire candidate route. The route representation makes a first experiment easier to inspect; a parent map avoids copying whole routes later.\n\nThe frontier may contain discovered states not yet expanded. A visited or discovered set prevents cycles from creating endless work. In BFS, marking on insertion ensures a state is queued once. A failed empty removal is a data-structure issue; finding no route after exhausting a valid frontier is a search outcome."
+	},
+	{
+		"module": "Unit 2: Stacks, Queues, and Traversal Intuition",
+		"title": "Core Project: Stacks, Queues, and Traversal Intuition",
+		"contentKind": "assignment",
+		"content": "Use the linked stack example as a starting point and make a queue version with deque. Apply the same operations to each: insert S; remove one; insert A then B; remove one; insert C; remove until empty. Log the returned value and full pending contents after every removal.\n\nExpected stack removals are S,B,C,A. Expected queue removals are S,A,B,C. Then try one more removal and demonstrate the chosen empty-container contract. Keep the stack and queue implementations in separate helpers so their ordering can be compared directly.\n\nUse the graph S:[A,B], A:[C], B:[G], C:[G], G:[] as a second experiment. Predict which pending state is selected next before every operation. Explain why pushing neighbors in reverse order changes DFS's visit order, while queue insertion keeps the written order."
+	},
+	{
+		"module": "Unit 3: DFS, BFS, and Reachability",
+		"title": "DFS, BFS, and Reachability Core Concepts",
+		"contentKind": "reading",
+		"content": "## Search and reconstruct a route\n\nBFS explores a FIFO frontier. On a finite graph with equal-cost edges, its first discovered route to a state uses the fewest edges. DFS follows one branch before returning to alternatives; it finds reachable states but does not generally find a minimum-edge route.\n\n## Worked BFS trace\n\nUse S:[A,B], A:[C], B:[G], C:[G], G:[]. With written neighbor order, BFS removes S,A,B,C,G. Its discovered parents are A←S, B←S, C←A, G←B. Following parents from G and reversing yields S,B,G: two edges. Visit order S,A,B,C,G is not a route, because A→B is absent.\n\n```python\nfrom collections import deque\n\ndef bfs(graph, start, goal):\n    frontier = deque([start])\n    parent = {start: None}\n    while frontier:\n        state = frontier.popleft()\n        if state == goal:\n            path = []\n            while state is not None:\n                path.append(state)\n                state = parent[state]\n            return list(reversed(path))\n        for neighbor in graph.get(state, []):\n            if neighbor not in parent:\n                parent[neighbor] = state\n                frontier.append(neighbor)\n    return []\n```\n\nThe parent dictionary also marks discovered states. Recording a parent when enqueuing avoids duplicate discoveries and parent overwrites. Adding G→S creates a cycle but cannot enqueue S again.\n\nFor DFS that selects A before B, use a stack and reverse the insertion order. A depth-first route can be S,A,C,G, with three edges. A correct DFS route can therefore be longer than a BFS route on the same graph. Both searches need a defined unreachable outcome and a goal check that accepts start=goal."
+	},
+	{
+		"module": "Unit 3: DFS, BFS, and Reachability",
+		"title": "Core Project: DFS, BFS, and Reachability",
+		"contentKind": "assignment",
+		"content": "Use the linked DFS example and the BFS example in this module on S:[A,B], A:[C], B:[G], C:[G], G:[], Z:[]. Record the frontier, selected state, discovered set and parent links. Use written neighbor order for BFS; for DFS, state whether reversed push order is used.\n\nReconstruct the returned route from parents rather than copying the visit order. Verify every consecutive route pair is an edge. BFS must find a two-edge route S,B,G; a valid A-first DFS route is S,A,C,G. Do not require DFS to have BFS's shortest-route guarantee.\n\nRepeat for S→S, S→Z and the added edge G→S. Confirm termination and preserve earlier trace snapshots when later parents are added. Compare the predicted trace with the actual one before continuing to Search Lab 13."
+	},
+	{
+		"module": "Unit 4: Informed and Bounded Search",
+		"title": "Informed and Bounded Search Core Concepts",
+		"contentKind": "reading",
+		"content": "## Limits, path costs and estimates\n\nDepth counts edges from the start. Depth-limited search (DLS) explores at most a chosen depth. A goal exactly at the limit is accepted. A cutoff means a legal continuation was excluded by the limit; failure means all allowed cycle-free possibilities were exhausted. A cutoff alone does not prove a goal unreachable.\n\n## Worked depth and cost cases\n\nOn S:[A,B], A:[C], C:[G], B:[], G:[], limits 0,1,2 produce cutoffs; limit 3 finds S,A,C,G. Iterative deepening repeats DLS at 0,1,2,3. It trades repeated shallow work for a small depth-first frontier. Track repeated states on the current path: a global closed set can incorrectly suppress a later shallower arrival.\n\nFor weighted paths, g(n) is accumulated route cost. Uniform-cost search orders by g. Greedy search orders by remaining-cost estimate h(n). A* orders by f(n)=g(n)+h(n).\n\nUse edges S-A=1, A-G=20, S-B=5, B-G=1 and estimates h(S)=0,h(A)=0,h(B)=1,h(G)=0. Greedy chooses S,A,G with cost 21. A* compares its cost 21 goal candidate with B's f=6, then finds S,B,G with cost 6. Low h alone does not account for an expensive incoming route.\n\nFor these finite examples use nonnegative finite costs. UCS stops when the cheapest queued goal is removed, rather than when any goal is first generated. A* additionally needs admissible estimates, h(goal)=0 and reopening after cheaper arrivals for its cheapest-path guarantee. An admissible estimate never exceeds the true cheapest remaining cost. Queue entries can become stale when a cheaper arrival is found; skip them."
+	},
+	{
+		"module": "Unit 4: Informed and Bounded Search",
+		"title": "Core Project: Informed and Bounded Search",
+		"contentKind": "assignment",
+		"content": "Run the linked corrected DLS example and the IDS example in this module, following each README's graph and maximum-depth parameter. First reproduce the documented results. Then use S:[A,B], A:[C], C:[G], B:[], G:[] and compare limits 0,1,2,3. Record found/cutoff/failure, route and visit count for every attempt.\n\nCheck a goal at depth zero, one exactly at the limit, an unreachable goal and a cycle. Explain which cutoff prevents a conclusion about unreachability. Demonstrate a node first reached along a deep route and later along a shorter route; a path-local cycle check must allow the latter.\n\nFor the supplied weighted A*/greedy references, reproduce cost 6 versus cost 21 on their shared README graph. Record the selected priorities and route costs separately. The later studios add UCS, trace instrumentation and misleading-heuristic cases without changing the meaning of g,h or f."
+	},
+	{
+		"module": "Unit 5: Rule-Based Systems and Puzzle Framing",
+		"title": "Rule-Based Systems and Puzzle Framing Core Concepts",
+		"contentKind": "reading",
+		"content": "## Rules act on complete state\n\nA rule is an explicit condition and consequence. A small adventure may have a room, an inventory and a set of unlocked doors. A legal action checks those facts before producing a new state. Rule order matters when several conditions match.\n\n## Worked locked-door rules\n\nConsider state (room,has_key), initially (hall,False). Moving to store obtains a key and returns to (hall,True). The exit action is legal only from (hall,True). Treating both hall states as equal can make search incorrectly discard the successful return visit.\n\nA pure transition helper makes the rule inspectable:\n\n```python\ndef act(state, action):\n    room, has_key = state\n    if room == \"hall\" and action == \"store\":\n        return (\"store\", has_key)\n    if room == \"store\" and action == \"return\":\n        return (\"hall\", True)\n    if room == \"hall\" and has_key and action == \"exit\":\n        return (\"outside\", True)\n    return state\n```\n\nThe goal test checks room==\"outside\". The successful action sequence is store,return,exit. Trying exit at the start leaves the state unchanged. Invalid actions must not grant keys, unlock doors or move the player.\n\nDirect rules are suitable when the condition is known, such as checking possession of a key. Search is useful when choosing an action sequence among alternatives. Search still needs rules to generate legal successors. A feature, such as the number of locked doors remaining, can summarize a state for scoring; it does not replace the full state needed for legal actions."
+	},
+	{
+		"module": "Unit 5: Rule-Based Systems and Puzzle Framing",
+		"title": "Core Project: Rule-Based Systems and Puzzle Framing",
+		"contentKind": "assignment",
+		"content": "Run the linked adventure. Reproduce the routes leave and explore→check it out, and enter an unavailable choice to observe the allowed-choice prompt. Preserve this working example.\n\nAdd a small independent locked-door scenario using state (room,has_key). Start at (hall,False); store moves to (store,False); return changes this to (hall,True); exit reaches (outside,True). An exit without a key and an unknown action leave the state unchanged. Keep the original theme-park route working.\n\nWrite a transition table before coding, then record the exact three-action successful route and both rejected cases. Explain why (hall,False) and (hall,True) must remain distinct if search is later added. Compare direct rule evaluation with searching for a sequence of allowed actions."
+	},
+	{
+		"module": "Unit 6: Heuristics and Game AI",
+		"title": "Heuristics and Game AI Core Concepts",
+		"contentKind": "reading",
+		"content": "## Evaluate a game tree\n\nA game state includes the board and whose turn it is. Legal actions produce successor states. A terminal test stops expansion after a win or draw. Game-tree branches represent possible continuations, not promises about an opponent's actual move.\n\n## Worked game positions\n\nFor Tic-Tac-Toe, number cells 0..8 in row-major order. X moves first. After two moves by each player, the board XX-/OO-/--- has X to move. Index2 wins immediately. On OO-/X--/-X-, X must block the top row at index 2 before considering a longer plan.\n\nChoose a fixed scoring perspective. In the later O-agent studio, an O win scores +1, an X win -1 and a draw 0. At O turns maximize successor values; at X turns minimize them. The value of the empty board under complete optimal play is 0. Immediate win/block rules are a useful improvement over random choice, but fork positions show why they are not a complete strategy.\n\nA heuristic estimates a nonterminal position when full expansion is too expensive. A minimax value from complete search is an exact outcome under the modeled rules and optimal future play. Neither is a probability of beating every human.\n\nCreate fresh child boards rather than mutating one board shared by siblings. Stop generating moves from terminal states, reject occupied cells and verify turn counts. Log each legal candidate and its score. A deterministic tie rule, such as lowest index, makes repeated comparisons reproducible."
+	},
+	{
+		"module": "Unit 6: Heuristics and Game AI",
+		"title": "Core Project: Heuristics and Game AI",
+		"contentKind": "assignment",
+		"content": "Use the linked tree-node example to inspect board state, turn, successors and terminal detection. Keep an untouched copy. Add an observation driver that prints legal move indices and child boards for XX-/OO-/--- and OO-/X--/-X-, both with X to move.\n\nConfirm index 2 wins the first case and prevents O's immediate win in the second. A won or full board must offer no next moves. Changing one child must leave the original board and other children unchanged.\n\nAdd a lowest-index legal policy as a reproducible baseline. Record its selected move, then compare an immediate-win/block policy on the same two cases. Explain why two successful cases do not establish unbeatable play. Continue to the Tic-Tac-Toe studio for complete minimax, fork handling and its explicit O-centered scoring contract."
+	},
+	{
+		"module": "Unit 7: Features, Evaluation, and Responsible AI",
+		"title": "Features, Evaluation, and Responsible AI Core Concepts",
+		"contentKind": "reading",
+		"content": "## Features and evaluation\n\nA feature is a measurable property of state: distance remaining, legal-move count or accumulated cost. A feature can help order choices, but it need not determine the goal. The blank can be in its goal cell while other puzzle tiles are wrong.\n\nEvaluate against a stated contract. For search, record whether a valid route was returned, its edge cost, number of expanded states and whether the algorithm terminated. Separate invalid input from a valid unreachable problem. Compare algorithms on the same graphs, costs, neighbor order and stopping rule.\n\n## Worked comparison\n\nUse three solvable cases: the reference weighted graph has greedy cost 21 and A* cost 6; a single edge S-G=2 has cost 2 for both; start=goal has cost 0. Both solve 3/3, while mean route cost over those cases is 23/3 for greedy and 8/3 for A*. The success count hides the cost difference. Add a fourth valid case with an isolated G: both should report no route. Do not record that expected outcome as a discovered route.\n\nA benchmark is a chosen collection of cases. Report per-case results and failure slices before a combined average. A set containing only direct edges cannot expose greedy's weighted detour. Timing also depends on machine and setup, so keep expansion counts and measurement conditions alongside elapsed time.\n\nResponsible evaluation names affected people, a plausible failure and a response. A toy route planner that ignores stair access can return a mathematically short route that a traveler cannot use. Include accessibility in legal actions and allow a person to inspect or reject the proposed route. These toy fixtures establish behavior under their stated rules."
+	},
+	{
+		"module": "Unit 7: Features, Evaluation, and Responsible AI",
+		"title": "Core Project: Features, Evaluation, and Responsible AI",
+		"contentKind": "assignment",
+		"content": "Use the linked greedy reference and its A* companion with the same four cases: their shared weighted graph; a direct S-G edge ofcost 2; start=goal; and an isolated goal. For each, save validity, route, cost, expansion order and termination. Use zero estimates for the last three cases.\n\nConfirm the three solvable costs 21,2,0 for greedy and 6,2,0 for A*. Report success on solvable cases separately from the correct no-route outcome. Calculate mean route cost only over solved comparable cases and state its denominator.\n\nAdd a misleading heuristic and record whether it violates admissibility. Describe one missing state variable or legal-action constraint, the affected traveler and a human review step. Preserve inputs and raw results so the reported comparison can be reproduced; the report must not turn a small fixture result into a universal performance claim."
+	},
+	{
+		"module": "Unit 7: Features, Evaluation, and Responsible AI",
+		"title": "Labels, Benchmarks, and Success Criteria",
+		"contentKind": "reading",
+		"content": "## Decide what counts as success\n\nA reachable label answers whether a legal route exists; it does not identify the cheapest route. Check reachability independently on a tiny graph before evaluating a policy. A candidate route passes validity only when its endpoints match the request and every consecutive transition is legal.\n\nFor a minimum-cost task, compare the reported cost with the sum of actual edge costs and with a trusted small-case optimum. A program that returns a valid cost 21 route when a cost 6 route exists passes reachability and fails minimum-cost success. A fast timeout passes neither requirement.\n\nKeep the number of cases visible in each measure. Solved/solvable is a different fraction from correctly handled/all cases. An intentionally unreachable graph belongs in the latter measure; excluding every failure from an average can make a weak policy look better. Report failures and exclusions beside the average."
+	},
+	{
+		"module": "Unit 8: Capstone and Portfolio Build",
+		"title": "Capstone and Portfolio Build Core Concepts",
+		"contentKind": "reading",
+		"content": "## A capstone with a checkable baseline\n\nThe required starting scope is a 3×3 sliding 8-puzzle. Its board contains tiles 1..8 and one blank, each exactly once. A legal move swaps the blank with one orthogonal neighbor. The goal is `123/456/78_`, where _ denotes the blank. Every move costs one.\n\n## Worked two-move puzzle\n\nUse start `123/456/_78`. Moving tile 7 left gives `123/456/7_8`; moving 8 left reaches the goal. This is a two-move route. Count transitions, rather than displayed boards: three boards represent two moves.\n\nBFS provides a minimum-move baseline. A* can use Manhattan distance: for each numbered tile, add its row and column displacement from its goal cell; exclude the blank. The example start has estimate 2. One move changes the distance of one numbered tile by one, so this estimate never exceeds the minimum remaining moves. A* must still track cheapest arrivals and skip stale queued entries.\n\nA valid board can be unsolvable. On an odd-width 3×3 board, remove the blank and count inverted numbered-tile pairs. Odd parity cannot reach the ordered goal. The board `123/456/87_` has one inversion and must return an unsolvable result.\n\nA finishable capstone preserves the working baseline, adds one justified comparison and supplies a reproducible report. Changing presentation alone does not establish an algorithmic improvement. Route legality, move count and unsolvable detection remain acceptance conditions when a visualizer is added."
+	},
+	{
+		"module": "Unit 8: Capstone and Portfolio Build",
+		"title": "Core Project: Capstone and Portfolio Build",
+		"contentKind": "assignment",
+		"content": "Run the linked completed 8-puzzle reference with python3 main.py and reproduce its two-move default. Create a separate capstone working copy and preserve the reference.\n\nRecord BFS and A* results for `123/456/_78`, the goal `123/456/78_`, and unsolvable `123/456/87_`. Expect two moves, zero moves and an explicit unsolvable outcome. Validate that each returned board uses every tile exactly once and each transition is one orthogonal blank swap.\n\nAdd one chosen valid board with at least four legal moves from the goal, recording how it was generated. Compare expanded states and returned move counts for BFS and Manhattan A* under the same limits. A scramble can immediately undo a move, so scramble length alone is not a shortest-distance label.\n\nDeliver the board fixtures, reproducible commands, route validator, result table and a short explanation of the chosen improvement and limitations. If time or expansion limits stop a run, record an incomplete result rather than an invented route. Maze or marble-game alternatives retain the same baseline/comparison/report requirements with their own rules."
+	},
+	{
+		"module": "Unit 8: Capstone and Portfolio Build",
+		"title": "Build for Explanation, Not Just Output",
+		"contentKind": "reading",
+		"content": "## Make the result inspectable\n\nA puzzle report connects an initial board to a sequence of legal moves. Keep the initial board, each move, resulting board, goal check and total move count. A trace also records why the frontier selected the next state: queue order for BFS, or g,h and g+h for A*.\n\nUse a result table with the same fields for both algorithms: case, outcome, valid route, moves, expanded states and limit. Keep the original raw output with the report. A summary that says 'A* is faster' needs matching inputs and measurements; a smaller expansion count on one board supports a claim about that board.\n\nIf the next project studies learned models, distinguish explicit search rules from fitted behavior. If it studies data analysis, distinguish the recorded algorithm observations from the questions asked of that data. The capstone's explanation should identify a justified next investigation from the observed results."
+	},
+	{
+		"module": "AI Search Lab 13: Practice Studio",
+		"title": "AI Search Lab 13: Core Concepts",
+		"contentKind": "reading",
+		"content": "A BFS trace explains first discovery. The FIFO frontier contains discovered states waiting for expansion; the parent map records the edge that first discovered each state. Snapshot the queue and parents after each expansion so the final route can be reconstructed independently of visit order."
+	},
+	{
+		"module": "AI Search Lab 13: Practice Studio",
+		"title": "Core Project: AI Search Lab 13",
+		"contentKind": "assignment",
+		"content": "Implement breadth_first_search(graph,start,goal) and breadth_first_path in the selected main.py, following the complete trace contract in the Guided Example. Use A:[B,C], B:[D], C:[E,F], D:[], E:[], F:[]. Expect path A,C,F and removal order A,B,C,D,E,F. Record node,frontier,visited and a copied parent map in every trace row. Add start=goal, unreachable and C→A cycle cases. Save and reopen the edited project, export all files and run python3 main.py in its selected role folder."
+	},
+	{
+		"module": "AI Search Lab 13: Practice Studio",
+		"title": "Review: AI Search Lab 13",
+		"contentKind": "assignment",
+		"content": "Explain why A,B,C,D,E,F is a visit order rather than a legal solution route. Trace F←C←A and count two edges. Add a second route to F and explain which parent wins under the written neighbor order. Confirm an earlier trace row does not acquire parent entries discovered later."
+	},
+	{
+		"module": "AI Search Lab 14: Practice Studio",
+		"title": "AI Search Lab 14: Core Concepts",
+		"contentKind": "reading",
+		"content": "A depth limit counts edges from the start. DLS distinguishes found, cutoff and exhausted failure. IDS repeats DLS at increasing limits. Keeping cycle detection local to the current path allows a later shallower arrival that a global closed set might discard."
+	},
+	{
+		"module": "AI Search Lab 14: Practice Studio",
+		"title": "Core Project: AI Search Lab 14",
+		"contentKind": "assignment",
+		"content": "Implement depth_limited_search and iterative_deepening in main.py, preserving the documented status,path,visits and attempts fields. On S:[A,B], A:[C], C:[G], B:[], G:[], limits 0,1,2 cut off and limit 3 finds S,A,C,G. Test a goal at the limit, start=goal, a dead end, a cycle and an invalid limit. Compare total IDS visits across attempts with one limit 3 run. Save, reopen, export every file and run the extracted role folder."
+	},
+	{
+		"module": "AI Search Lab 14: Practice Studio",
+		"title": "Review: AI Search Lab 14",
+		"contentKind": "assignment",
+		"content": "Explain why a dead end at the limit is failure while an excluded legal continuation is cutoff. Count the four visits to S across IDS limits 0..3. Supply a state reached deeply before a later shallow route and show why path-local cycle handling matters. Keep a cutoff outcome separate from proven unreachability."
+	},
+	{
+		"module": "AI Search Lab 15: Practice Studio",
+		"title": "AI Search Lab 15: Core Concepts",
+		"contentKind": "reading",
+		"content": "Path cost g and remaining-cost estimate h are different quantities. UCS orders by g; A* orders by g+h. A newly generated goal may still be more expensive than a route remaining in the frontier. Cheaper arrivals must update costs and invalidate older queued entries."
+	},
+	{
+		"module": "AI Search Lab 15: Practice Studio",
+		"title": "Core Project: AI Search Lab 15",
+		"contentKind": "assignment",
+		"content": "Implement search(graph,start,goal,heuristic,mode) for ucs and astar. Use S→A(2),B(1); A→G(2); B→G(8), with h(S)=3,h(A)=2,h(B)=0,h(G)=0. Both modes must return S,A,G with cost 4. Setting h(A)=100 demonstrates cost 9 under a nonadmissible heuristic. Record node,g,h,f and priority; reopen after a cheaper arrival and skip stale entries. Check an unreachable goal, zero-cost cycle, negative cost and nonfinite cost. Save, reopen, export and run the extracted role files."
+	},
+	{
+		"module": "AI Search Lab 15: Practice Studio",
+		"title": "Review: AI Search Lab 15",
+		"contentKind": "assignment",
+		"content": "Find the moment a cost 9 goal enters the queue and explain why stopping then is premature. Verify the eventual cost 4 route by summing its edges. Explain why h(A)=100 overestimates the true remainingcost 2. Give a graph where a cheaper second arrival requires updating a parent."
+	},
+	{
+		"module": "AI Search Lab 16: Practice Studio",
+		"title": "AI Search Lab 16: Core Concepts",
+		"contentKind": "reading",
+		"content": "Greedy best-first search uses h alone, while A* accounts for both route cost and estimated remaining cost. Comparing them requires the same graph, heuristic, neighbor order and stopping convention. A small h is a preference rather than a complete route-cost calculation."
+	},
+	{
+		"module": "AI Search Lab 16: Practice Studio",
+		"title": "Core Project: AI Search Lab 16",
+		"contentKind": "assignment",
+		"content": "Implement greedy and astar using the same search contract and graph from the Guided Example: S→A(2),B(1); A→G(2); B→G(8), h=(S:3,A:2,B:0,G:0). Greedy returns S,B,G with cost 9; A* returns S,A,G with cost 4. Record every selected state's priority and accumulated cost. Test zero estimates, an unreachable goal, a zero-cost cycle and invalid edge costs. Preserve exact trace fields, then save, reopen, export and run the selected role folder."
+	},
+	{
+		"module": "AI Search Lab 16: Practice Studio",
+		"title": "Review: AI Search Lab 16",
+		"contentKind": "assignment",
+		"content": "After B is expanded, compare greedy's priorities G=0,A=2 with A*'s priorities G=9,A=4. Explain the resulting next choice in each algorithm. With h=0, show why A* becomes UCS while greedy depends on queue tie order. Keep the observed comparison limited to the supplied cases."
+	},
+	{
+		"module": "AI Search Lab 17: Practice Studio",
+		"title": "AI Search Lab 17: Core Concepts",
+		"contentKind": "reading",
+		"content": "A puzzle state contains the whole board. Legal actions swap the blank with an orthogonal neighbor. A heuristic ranks states; a separate equality test decides whether the goal is reached. An estimate of zero can occur at a non-goal board when the estimate ignores numbered-tile positions."
+	},
+	{
+		"module": "AI Search Lab 17: Practice Studio",
+		"title": "Core Project: AI Search Lab 17",
+		"contentKind": "assignment",
+		"content": "Implement neighbors and solve(start,strategy,heuristic) for the 2×2 puzzle with goal (1,2,3,0). Return path,moves,decisions, including candidate states and scores. Verify the one-move case (1,0,3,2) and the four-move case (2,3,1,0) from the Guided Example. Compare BFS with greedy using misplaced tiles and blank distance. Validate every blank swap; reject duplicate or missing tiles. Test the goal and unreachable(1,3,2,0). Save, reopen, export and run the role folder."
+	},
+	{
+		"module": "AI Search Lab 17: Practice Studio",
+		"title": "Review: AI Search Lab 17",
+		"contentKind": "assignment",
+		"content": "Explain why blank-distance zero at (2,3,1,0) fails to establish the goal. Check all four transitions in its supplied shortest route. Enumerate the 24 permutations and distinguish 12 reachable boards from the unreachable half. Compare legal-route validity and move counts without claiming every greedy route is shortest."
+	},
+	{
+		"module": "Unbeatable TicTacToe AI 1: Practice Studio",
+		"title": "Unbeatable TicTacToe AI 1: Core Concepts",
+		"contentKind": "reading",
+		"content": "Complete Tic-Tac-Toe search evaluates every legal continuation under the chosen player's scoring perspective. The role packs score from O's perspective, maximize at O turns and minimize at X turns. Fresh boards, correct terminal tests and deterministic ties are part of the strategy contract."
+	},
+	{
+		"module": "Unbeatable TicTacToe AI 1: Practice Studio",
+		"title": "Core Project: Unbeatable TicTacToe AI 1",
+		"contentKind": "assignment",
+		"content": "Complete the selected role's legal board model, play,candidate_scores and best_move functions, then compare random legal choice, immediate win/block rules and minimax. Use the three worked boards in the Guided Example: forced block at index 2, immediate O win at index 5 and fork avoidance at index 1 under the lowest-index tie rule. Test an occupied cell, invalid move, impossible turn counts, draw and won board. Save and reopen the work, export every file and run python3 main.py in the selected role folder. The completed reference provides a console game and candidate-score output; the unfinished starter's TODOs are the exercise."
+	},
+	{
+		"module": "Unbeatable TicTacToe AI 1: Practice Studio",
+		"title": "Review: Unbeatable TicTacToe AI 1",
+		"contentKind": "assignment",
+		"content": "Trace one complete minimax choice using O win=+1, X win=-1, draw=0. Explain why an immediate win precedes a block and why blocking one threat can fail against a fork. Confirm the empty board value 0 and that terminal best_move returns None. Compare cached reached-state evaluation with the separate eager-tree example without changing scoring perspective."
+	},
+	{
+		"module": "The Marble Game AI: Practice Studio",
+		"title": "The Marble Game AI: Core Concepts",
+		"contentKind": "reading",
+		"content": "The marble game's terminal rule determines its strategy. Taking 1, 2 or 3 is legal while enough marbles remain; taking the last marble wins. Bottom-up evaluation uses smaller piles to decide whether a legal action leaves the opponent a losing position."
+	},
+	{
+		"module": "The Marble Game AI: Practice Studio",
+		"title": "Core Project: The Marble Game AI",
+		"contentKind": "assignment",
+		"content": "Complete legal_moves,take,candidate_scores and best_move for piles 0..100 with the Guided Example's last-take-wins rule. Verify piles 1,4,5,7: take 1 at 1, no guaranteed win at 4, take 1 at 5 and take 3 at 7. Compare the exact policy with lowest-legal or seeded-random choice. Reject zero,negative,over 3 and over-pile takes; best_move(0) returns None. Save, reopen, export all files and run the selected role folder. Preserve the console reference's reprompting and candidate-score output."
+	},
+	{
+		"module": "The Marble Game AI: Practice Studio",
+		"title": "Review: The Marble Game AI",
+		"contentKind": "assignment",
+		"content": "Derive why pile 4 loses and pile 5 wins from the smaller positions. Explain why the positive multiples of 4 remain losing under these rules. Check that each candidate score describes the resulting opponent state. State how a last-take-loses variation would require a different terminal rule and new evaluation."
+	},
+	{
+		"module": "Standards Map",
+		"title": "AI Level 1 Reference Guide",
+		"contentKind": "reading",
+		"content": "## Search assumptions\n\nA problem identifies state, legal actions, initial state, goal and cost. A frontier selects pending work; a discovered set and parent map record progress. On finite graphs, record cycle handling and tie rules alongside a trace.\n\nBFS minimizes edge count when steps have equal cost. DFS is a reachability method and can return a longer route. UCS minimizes nonnegative finite route cost. A* orders by g+h; its cheapest-path contract requires an admissible estimate, h(goal)=0 and correct handling of cheaper arrivals. Greedy orders by h and does not generally minimize route cost.\n\nDepth limits count edges. A goal at the limit is valid. A cutoff records an excluded continuation; it differs from exhausted failure.\n\nReferences: [UC Berkeley uninformed search](https://inst.eecs.berkeley.edu/~cs188/textbook/search/uninformed.html) and [informed search](https://inst.eecs.berkeley.edu/~cs188/textbook/search/informed.html).",
+		"displayTitle": "Search Assumptions"
+	},
+	{
+		"module": "Standards Map",
+		"title": "AI Level 1 Core Skills",
+		"contentKind": "reading",
+		"content": "## Debug a state transition\n\nCheck representation before frontier policy. A missing key, incorrect turn or shared mutable board changes the problem even when the search loop is correct.\n\nFor a returned route, verify the initial state, goal and every legal edge. Recompute cost from the edges. For each parent link, confirm that the parent could generate the child. A visited-order list cannot replace these checks.\n\nCompare the first differing trace row with a hand calculation. Inspect its selected state, pending frontier, cost and new discoveries. Copy mutable trace collections to preserve earlier snapshots. Change one condition at a time: neighbor order, edge cost, limit or heuristic.\n\nFor game search, state the player perspective and terminal utility. The maximizing and minimizing turns alternate under that fixed perspective. [UC Berkeley minimax](https://inst.eecs.berkeley.edu/~cs188/textbook/games/minimax.html) develops this rule.",
+		"displayTitle": "Debugging State and Search"
+	},
+	{
+		"module": "Standards Map",
+		"title": "AI Level 1 Next Topics",
+		"contentKind": "reading",
+		"content": "## Extend a completed investigation\n\nKeep a baseline case and its raw result before changing the problem. Transfer practice changes a state space or constraint; an extension adds a comparison or diagnostic. The eighteen optional project packs supply their own readings, fixtures and role files.\n\nChoose a graph extension for reachability or cost, a puzzle extension for representation and heuristics, or a game extension for evaluation. Record the new input, prediction, actual result and reason for any difference. Preserve the original completion checks.\n\nThe optional reference bank contains completed demonstrations and earlier variants. Copy a completed example for an experiment, then implement and verify the assigned modification.",
+		"displayTitle": "Transfer and Extension Work"
+	},
+	{
+		"module": "Standards Map",
+		"title": "AI Level 1 Boundaries",
+		"contentKind": "reading",
+		"content": "## Bound the claim\n\nAn algorithm's guarantee depends on its model and assumptions. A shortest walking route can be unsuitable when legal actions ignore stairs or closed doors. Identify those constraints before using a result to guide a decision.\n\nUse fictional graphs, puzzles and game positions in these labs. A claim about learning from data requires an actual training process; these search and rule examples use authored transitions and scores.\n\nA benchmark reports its cases, success contract, failures and limits. Keep timing conditions, random seeds and tie rules reproducible. A timed-out run remains incomplete. Human review can reject a result when important constraints are missing.",
+		"displayTitle": "Evaluation Limits"
+	},
+	{
+		"module": "Standards Map",
+		"title": "AI Level 1 Prerequisite Check",
+		"contentKind": "reading",
+		"content": "## Python prerequisite check\n\nThe course uses functions, lists, dictionaries, sets, tuples and simple classes. A dictionary retrieves a state's neighbors; a set tracks discovery; a tuple can act as a stable board key. Lists and dictionaries are mutable, so copy snapshots that must retain an earlier state.\n\nFor a stack, use append then pop. For a queue, use collections.deque with append and popleft. A single item is removed first by either structure. Inserting A then B exposes the ordering difference.\n\nTrace insert S, remove, insert A, insert B, remove, insert C, remove, remove. The stack returns S,B,C,A; the queue returns S,A,B,C. Check for empty before another removal or use a documented exception.\n\n[Python deque documentation](https://docs.python.org/3/library/collections.html#collections.deque) describes these operations.",
+		"displayTitle": "Python Collections Refresher"
+	},
+	{
+		"module": "Standards Map",
+		"title": "AI Level 1 Pathway Map",
+		"contentKind": "reading",
+		"content": "## Choose a continuation\n\nAI Level 1 develops explicit state, rules, search, heuristics and game evaluation. Machine Learning develops fitted models and their validation. Data Science in Python develops data questions, preparation, analysis and interpretation.\n\nAn algorithmic continuation can deepen search and proofs. A learned-model continuation can use meaningful state features as inputs with training and evaluation data. A data-focused continuation can analyze recorded experiments while retaining denominators and failure cases.\n\nKeep a portfolio example with reproducible inputs, a working baseline, one justified improvement and an explanation of limits. That evidence identifies what is ready to build on and what needs further practice.",
+		"displayTitle": "Further Study"
+	},
+	{
+		"module": "Unit 9: Repo Extension Bank and Canonical Variants",
+		"title": "Repo Extension Bank and Canonical Variants Core Concepts",
+		"contentKind": "reading",
+		"content": "## Compare implementations\n\nThe reference bank provides optional graph, class, frontier and game demonstrations. The canonical Tic-Tac-Toe tree and its copy are different variants. The two marble-tree copies retain the same implementation; their filenames do not establish different learning outcomes.\n\nThe core studios evaluate reached Tic-Tac-Toe states with caching and marble positions from zero upward. Earlier tree examples eagerly construct future states. Compare initialization cost, repeated states, candidate scores and selected moves on the same legal positions. Keep each version's scoring perspective and terminal rule explicit.\n\nSmall stack, queue and class examples refresh prerequisites. The visualization examples use networkx and matplotlib in the local environment from the setup reading. To investigate an algorithm without graphics, use the supplied adjacency lists and search traces."
+	},
+	{
+		"module": "Unit 9: Repo Extension Bank and Canonical Variants",
+		"title": "Verification Review: Repo Extension Bank and Canonical Variants",
+		"contentKind": "assignment",
+		"content": "Choose one optional variant and identify the exact file, input state and behavior being compared. For stack/queue work, reuse the four-removal case from Unit 2. For game evaluation, reuse a documented terminal or forced-move position and state the scoring perspective.\n\nRecord both results, tie handling and whether construction or search was timed. Explain one representation or resource tradeoff. One matching move establishes agreement on that position, rather than equivalence across all states."
+	},
+	{
+		"module": "Unit 9: Repo Extension Bank and Canonical Variants",
+		"title": "Core Project: Repo Extension Bank and Canonical Variants",
+		"contentKind": "assignment",
+		"content": "As an optional graph exercise, run the linked Special Graphs example in the local graphics environment from the setup reading. Identify the cyclic, acyclic and directed outputs. For each, record vertices, edges and whether direction changes reachability.\n\n**Checkpoints:** Represent one small graph as an adjacency dictionary. Predict a BFS route between two chosen vertices, then compare it with an actual trace. Keep the generated image and source dictionary together. The non-graphics route uses the dictionary and trace directly."
+	}
+]

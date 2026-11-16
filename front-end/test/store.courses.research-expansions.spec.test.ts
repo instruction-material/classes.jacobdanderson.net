@@ -78,7 +78,11 @@ describe("research-backed course family expansions", () => {
 				expect(profile, courseId).toBeDefined();
 
 				const referenceExpansionTitles = [
-					courseId === "algebra-1a" ? "Algebra 1A Reference" : "Standards Map",
+					courseId === "algebra-1a"
+						? "Algebra 1A Reference"
+						: courseId === "ai-level-1"
+							? "AI Level 1 Reference"
+							: "Standards Map",
 					"Course Roadmap",
 					"Project Practice Guide"
 				];
@@ -123,20 +127,55 @@ describe("research-backed course family expansions", () => {
 					`${courseLabel} Module Alignment Guide`
 				);
 				if (courseId === "algebra-1a") {
-					const reference = expansionModules.find(module => module.title === "Algebra 1A Reference")!;
+					const reference = expansionModules.find(
+						module => module.title === "Algebra 1A Reference"
+					)!;
 					expect(reference.id).toBe("algebra-1a-standards-map");
-					const readings = [...reference.curriculum, ...reference.supplementalProjects];
+					const readings = [
+						...reference.curriculum,
+						...reference.supplementalProjects
+					];
 					expect(readings.map(item => item.title)).toEqual([
-						"Equations and domains", "Lines and representations",
-						"Inequalities and systems", "Models, rates and units",
-						"Prerequisite arithmetic and coordinates", "Choosing a solution method"
+						"Equations and domains",
+						"Lines and representations",
+						"Inequalities and systems",
+						"Models, rates and units",
+						"Prerequisite arithmetic and coordinates",
+						"Choosing a solution method"
 					]);
-					expect(readings.every(item => item.contentKind === "reading")).toBe(true);
-					expect(course!.modules.filter(module => module.internal)).toHaveLength(5);
+					expect(
+						readings.every(item => item.contentKind === "reading")
+					).toBe(true);
+					expect(
+						course!.modules.filter(module => module.internal)
+					).toHaveLength(5);
+				} else if (courseId === "ai-level-1") {
+					const reference = expansionModules.find(
+						module => module.title === "AI Level 1 Reference"
+					)!;
+					expect(reference.id).toBe("ai-level-1-standards-map");
+					const readings = [
+						...reference.curriculum,
+						...reference.supplementalProjects
+					];
+					expect(readings.map(item => item.title)).toEqual([
+						"Search Assumptions",
+						"Debugging State and Search",
+						"Transfer and Extension Work",
+						"Evaluation Limits",
+						"Python Collections Refresher",
+						"Further Study"
+					]);
+					expect(
+						readings.every(item => item.contentKind === "reading")
+					).toBe(true);
+					expect(
+						course!.modules.filter(module => module.internal)
+					).toHaveLength(6);
 				} else {
-				expect(expansionText, courseId).toContain(
-					`${courseLabel} Reference Guide`
-				);
+					expect(expansionText, courseId).toContain(
+						courseLabel + " Reference Guide"
+					);
 				}
 				expect(expansionText, courseId).toContain(
 					`${courseLabel} Prerequisite Map`
@@ -150,17 +189,25 @@ describe("research-backed course family expansions", () => {
 				expect(roadmapModule, courseId).toBeDefined();
 				const roadmapText = moduleText(roadmapModule!);
 				if (courseId === "network-systems") {
-					const items = [...roadmapModule!.curriculum, ...roadmapModule!.supplementalProjects];
+					const items = [
+						...roadmapModule!.curriculum,
+						...roadmapModule!.supplementalProjects
+					];
 					expect(items).toHaveLength(6);
-					expect(items.every(item =>
-						item.contentKind === "reading" && item.learningPath === "choice"
-					)).toBe(true);
+					expect(
+						items.every(
+							item =>
+								item.contentKind === "reading" &&
+								item.learningPath === "choice"
+						)
+					).toBe(true);
 					for (const phrase of [
 						"separate starter and reference roles",
 						"A selected route uses a destination address",
 						"an installed manual defines command options",
 						"recorded-capstone-observations-v1.md"
-					]) expect(roadmapText, courseId).toContain(phrase);
+					])
+						expect(roadmapText, courseId).toContain(phrase);
 				} else if (courseId === "physics-level-2") {
 					for (const phrase of [
 						"PHY8 constant-acceleration equations",

@@ -1,4 +1,5 @@
 import type { RawCourse, RawCourseModule, RawCourseModuleItem } from "./types";
+import { applyAiFoundationReadings } from "./aiFoundationReadings";
 import {
 	applyAiOptionalAssignments,
 	applyAiStudioReadings
@@ -9887,6 +9888,7 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 	if (id === "ai-level-1") {
 		applyAiStudioReadings(course, rawCourse);
 		applyAiOptionalAssignments(course, rawCourse);
+		applyAiFoundationReadings(course, historicalCourseProgressId);
 	}
 	if (id === "smart-money-personal-finance")
 		applySmartMoneyReadings(course, rawCourse);

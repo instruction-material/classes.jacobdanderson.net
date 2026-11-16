@@ -64,12 +64,14 @@ import { designPatternsInJavaCourse } from "@/stores/courses/design-patterns-in-
 import { designPatternsInJavaPart2Course } from "@/stores/courses/design-patterns-in-java-part-2";
 import { javaLevel3Course } from "@/stores/courses/java-level-3";
 import { networkSystemsCourse } from "@/stores/courses/network-systems";
+import { aiLevel1Course } from "@/stores/courses/ai-level-1";
 
 function isReviewedModule(id: string, title: string) {
 	if (id === "java-level-3") return title === "AJ4 Recursion";
 	return true;
 }
 const cases = [
+	{ id: "ai-level-1", source: aiLevel1Course, readings: 34, additions: [] },
 	{
 		id: "network-systems",
 		source: networkSystemsCourse,
@@ -415,7 +417,9 @@ it.each(
 				const item = [
 					...module.curriculum,
 					...module.supplementalProjects
-				].find(item => item.title === (entry.displayTitle ?? entry.title))!;
+				].find(
+					item => item.title === (entry.displayTitle ?? entry.title)
+				)!;
 				expect(item, entry.title).toBeDefined();
 				const fullContent = entry.content
 					.split(/\n\n\*\*(?:Concept path|Quick check|Goal):\*\*/)[0]
@@ -462,13 +466,23 @@ it.each(
 				...module.curriculum,
 				...module.supplementalProjects
 			])
-			.filter(item => item.content.startsWith("**Project goal:**"));
+			// AI's former generated briefs are replaced by the complete authored
+			// directives tested in ai-foundations and bound below to full browser text.
+			.filter(
+				item =>
+					id !== "ai-level-1" &&
+					item.content.startsWith("**Project goal:**")
+			);
 		const all = course.modules.flatMap(module => [
 			...module.curriculum,
 			...module.supplementalProjects
 		]);
 		for (const project of sourceProjects) {
-			const item = all.find(item => item.title === project.title)!;
+			const item = all.find(
+				item =>
+					item.title === project.title ||
+					item.aliases?.includes(project.title)
+			)!;
 			expect(item, project.title).toBeDefined();
 			expect(isLessonLearningItem(item), item.title).toBe(false);
 			expect(item.learningPath, item.title).toBe(project.learningPath);
@@ -507,6 +521,7 @@ it.each(
 			const completeAssignment =
 				focusedJavaTask ||
 				[
+					"ai-level-1",
 					"smart-money-personal-finance",
 					"network-systems",
 					"algebra-1a",
@@ -521,6 +536,7 @@ it.each(
 			const fullBlocks =
 				focusedJavaTask ||
 				[
+					"ai-level-1",
 					"smart-money-personal-finance",
 					"network-systems",
 					"intro-to-environmental-science",
@@ -656,6 +672,7 @@ it.each(
 			if (
 				completeAssignment &&
 				![
+					"ai-level-1",
 					"network-systems",
 					"algebra-1a",
 					"middle-school-integrated-science",
@@ -684,8 +701,13 @@ it.each(
 				}
 			}
 			if (id === "network-systems" && item.learningPath === "core") {
-				expect(item.content, item.title).toMatch(/network-notes\.md|notebook/i);
-				expect(container.textContent!.trim().length, item.title).toBeGreaterThan(300);
+				expect(item.content, item.title).toMatch(
+					/network-notes\.md|notebook/i
+				);
+				expect(
+					container.textContent!.trim().length,
+					item.title
+				).toBeGreaterThan(300);
 			}
 			if (
 				id === "middle-school-c-grammar" &&
@@ -806,20 +828,66 @@ it.each(
 			);
 		} else if (id === "network-systems") {
 			expect(modules).toHaveLength(21);
-			expect(modules.filter(module => module.kind === "module")).toHaveLength(14);
-			expect(modules.filter(module => module.kind === "appendix")).toHaveLength(7);
+			expect(
+				modules.filter(module => module.kind === "module")
+			).toHaveLength(14);
+			expect(
+				modules.filter(module => module.kind === "appendix")
+			).toHaveLength(7);
 			expect(modules.flatMap(module => module.readings)).toHaveLength(56);
-			const activities = modules.flatMap(module => [...module.projects, ...module.optional]);
+			const activities = modules.flatMap(module => [
+				...module.projects,
+				...module.optional
+			]);
 			expect(activities).toHaveLength(79);
-			expect(activities.every(item => item.assignmentTextScope === "complete")).toBe(true);
+			expect(
+				activities.every(
+					item => item.assignmentTextScope === "complete"
+				)
+			).toBe(true);
 		} else if (id === "java-level-3") expect(modules).toHaveLength(25);
 		else if (id === "algebra-1a") {
 			expect(modules).toHaveLength(22);
-			expect(modules.filter(module => module.kind === "appendix").map(module => module.title)).toEqual(["Algebra 1A Reference"]);
+			expect(
+				modules
+					.filter(module => module.kind === "appendix")
+					.map(module => module.title)
+			).toEqual(["Algebra 1A Reference"]);
 			expect(modules.flatMap(module => module.readings)).toHaveLength(21);
-			const activities = modules.flatMap(module => [...module.projects, ...module.optional]);
+			const activities = modules.flatMap(module => [
+				...module.projects,
+				...module.optional
+			]);
 			expect(activities).toHaveLength(63);
-			expect(activities.every(item => item.assignmentTextScope === "complete")).toBe(true);
+			expect(
+				activities.every(
+					item => item.assignmentTextScope === "complete"
+				)
+			).toBe(true);
+		} else if (id === "ai-level-1") {
+			expect(modules).toHaveLength(18);
+			expect(
+				modules.filter(module => module.kind === "module")
+			).toHaveLength(16);
+			expect(
+				modules
+					.filter(module => module.kind === "appendix")
+					.map(module => module.title)
+			).toEqual([
+				"Unit 9: Repo Extension Bank and Canonical Variants",
+				"AI Level 1 Reference"
+			]);
+			expect(modules.flatMap(module => module.readings)).toHaveLength(34);
+			const activities = modules.flatMap(module => [
+				...module.projects,
+				...module.optional
+			]);
+			expect(activities).toHaveLength(88);
+			expect(
+				activities.every(
+					item => item.assignmentTextScope === "complete"
+				)
+			).toBe(true);
 		} else if (algebra1) expect(modules).toHaveLength(25);
 		else if (algebra)
 			expect(modules).toHaveLength(id === "algebra-2a" ? 15 : 12);
@@ -846,18 +914,32 @@ it.each(
 			);
 		for (const module of modules) {
 			if (!isReviewedModule(id, module.title)) continue;
-			if (id === "network-systems") {
-				const expected = {
-					"Standards Map": 6,
-					"Course Roadmap": 6,
-					"Project Practice Guide": 4,
-					"Network Systems: Systems and Security Lab Safety Policy": 4,
-					"Network Systems: Defensive Lab Contract": 4,
-					"Network Systems: Toolchain and Version Assumptions": 4,
-					"Optional Network Expansion and Integration Studio Archive": 11,
-					"Network Systems Lab 17: Operations Capstone Studio": 3,
-					"Unit 2: Addresses and Naming": 2
-				}[module.title] ?? 1;
+			if (id === "ai-level-1") {
+				const expected =
+					module.title === "AI Level 1 Reference"
+						? 6
+						: module.title.startsWith("FAI0")
+							? 3
+							: module.title.startsWith("Unit 9:")
+								? 1
+								: module.title.endsWith(": Practice Studio") ||
+									  /^Unit [78]:/.test(module.title)
+									? 2
+									: 1;
+				expect(module.readings, module.title).toHaveLength(expected);
+			} else if (id === "network-systems") {
+				const expected =
+					{
+						"Standards Map": 6,
+						"Course Roadmap": 6,
+						"Project Practice Guide": 4,
+						"Network Systems: Systems and Security Lab Safety Policy": 4,
+						"Network Systems: Defensive Lab Contract": 4,
+						"Network Systems: Toolchain and Version Assumptions": 4,
+						"Optional Network Expansion and Integration Studio Archive": 11,
+						"Network Systems Lab 17: Operations Capstone Studio": 3,
+						"Unit 2: Addresses and Naming": 2
+					}[module.title] ?? 1;
 				expect(module.readings, module.title).toHaveLength(expected);
 			} else if (id === "design-patterns-in-java") {
 				const expected =
