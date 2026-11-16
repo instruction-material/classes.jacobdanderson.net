@@ -34,7 +34,8 @@ async function withPythonProjectRoute<T>(
 				_id: courseCodeLearnerID,
 				courseID
 			};
-		} else {
+		}
+		else {
 			req.currentUser = {
 				_id: userID
 			};
@@ -43,7 +44,7 @@ async function withPythonProjectRoute<T>(
 	});
 	app.post("/users/loggedin/python-projects", createPythonProject);
 
-	const server = await new Promise<Server>(resolve => {
+	const server = await new Promise<Server>((resolve) => {
 		const instance = app.listen(0, "127.0.0.1", () => resolve(instance));
 	});
 	const address = server.address();
@@ -53,9 +54,10 @@ async function withPythonProjectRoute<T>(
 
 	try {
 		return await run(`http://127.0.0.1:${address.port}`);
-	} finally {
+	}
+	finally {
 		await new Promise<void>((resolve, reject) => {
-			server.close(error => {
+			server.close((error) => {
 				if (error) {
 					reject(error);
 					return;
@@ -178,22 +180,17 @@ describe("python project routes", () => {
 
 	it.each(["starter", "solution"] as const)(
 		"stores complete Swift %s source for user and assigned course owners",
-		async role => {
+		async (role) => {
 			const fixture = JSON.parse(
 				readFileSync(
-					resolve(
-						process.cwd(),
-						"../test/fixtures/swift-welcome-source.json"
-					),
+					resolve(process.cwd(), "../test/fixtures/swift-welcome-source.json"),
 					"utf8"
 				)
 			);
 			const files = ["ContentView.swift", "WelcomeProfileApp.swift"].map(
-				name => ({
+				(name) => ({
 					name: `${role}/${name}`,
-					content:
-						fixture.files[`${fixture.pack}/${role}/${name}`]
-							.content,
+					content: fixture.files[`${fixture.pack}/${role}/${name}`].content,
 					encoding: "text"
 				})
 			);
@@ -204,7 +201,7 @@ describe("python project routes", () => {
 			});
 			for (const owner of ["user", "course-code"] as const) {
 				await withPythonProjectRoute(
-					async baseUrl => {
+					async (baseUrl) => {
 						const response = await postJson(baseUrl, {
 							mode: "swift",
 							files,
@@ -229,7 +226,7 @@ describe("python project routes", () => {
 
 	it.each(["starter", "solution"] as const)(
 		"stores the complete networking %s pack for both owner types",
-		async role => {
+		async (role) => {
 			const fixture = JSON.parse(
 				readFileSync(
 					resolve(
@@ -391,17 +388,17 @@ describe("python project routes", () => {
 		{ name: "secret.env", encoding: "text" },
 		{ name: "main.py", encoding: "text" },
 		{ name: "tools/verify-networking.py", encoding: "text" },
-		{ name: "tools/verify-tracker.py", encoding: "text" },
-		{ name: "tools/verify-persistence.py", encoding: "text" },
-		{ name: "Verify-persistence.py", encoding: "text" },
+        { name: "tools/verify-tracker.py", encoding: "text" },
+        { name: "tools/verify-persistence.py", encoding: "text" },
+        { name: "Verify-persistence.py", encoding: "text" },
 		{ name: "Verify-networking.py", encoding: "text" },
 		{ name: "verify-networking.py", encoding: "base64" },
 		{ name: "photo.png", encoding: "base64" },
 		{ name: "ContentView.swift", encoding: "base64" }
 	])(
 		"rejects unsupported Swift source $name/$encoding before storage",
-		async file => {
-			await withPythonProjectRoute(async baseUrl => {
+		async (file) => {
+			await withPythonProjectRoute(async (baseUrl) => {
 				const response = await postJson(baseUrl, {
 					mode: "swift",
 					files: [
@@ -464,7 +461,7 @@ describe("python project routes", () => {
 	});
 	it.each(["starter", "solution"] as const)(
 		"stores the exact record %s role and trace for both owner types",
-		async role => {
+		async (role) => {
 			const fixture = JSON.parse(
 				readFileSync(
 					resolve(
@@ -479,8 +476,8 @@ describe("python project routes", () => {
 			)
 				.filter(
 					([path]) =>
-						path.startsWith(`${fixture.pack}/${role}/`) ||
-						path === `${fixture.pack}/README.md`
+						path.startsWith(`${fixture.pack}/${role}/`)
+						|| path === `${fixture.pack}/README.md`
 				)
 				.map(([path, file]) => ({
 					name: path.slice(fixture.pack.length + 1),
@@ -489,7 +486,7 @@ describe("python project routes", () => {
 				}));
 			expect(files).toHaveLength(8);
 			for (const owner of ["user", "course-code"] as const) {
-				await withPythonProjectRoute(async baseUrl => {
+				await withPythonProjectRoute(async (baseUrl) => {
 					const activeFileName = `${role}/trace.md`;
 					const response = await postJson(baseUrl, {
 						mode: "assembly",
@@ -528,8 +525,8 @@ describe("python project routes", () => {
 			)
 				.filter(
 					([path]) =>
-						path.startsWith(`${fixture.pack}/${role}/`) ||
-						path === `${fixture.pack}/README.md`
+						path.startsWith(`${fixture.pack}/${role}/`)
+						|| path === `${fixture.pack}/README.md`
 				)
 				.map(([path, file]) => ({
 					name: path.slice(fixture.pack.length + 1),
@@ -538,7 +535,7 @@ describe("python project routes", () => {
 				}));
 			expect(files).toHaveLength(7);
 			for (const owner of ["user", "course-code"] as const) {
-				await withPythonProjectRoute(async baseUrl => {
+				await withPythonProjectRoute(async (baseUrl) => {
 					const activeFileName = `${role}/trace.md`;
 					const response = await postJson(baseUrl, {
 						mode: "assembly",
@@ -572,8 +569,8 @@ describe("python project routes", () => {
 			)
 				.filter(
 					([path]) =>
-						path.startsWith(`${fixture.pack}/${role}/`) ||
-						path === `${fixture.pack}/README.md`
+						path.startsWith(`${fixture.pack}/${role}/`)
+						|| path === `${fixture.pack}/README.md`
 				)
 				.map(([path, file]) => ({
 					name: path.slice(fixture.pack.length + 1),
@@ -582,7 +579,7 @@ describe("python project routes", () => {
 				}));
 			expect(files).toHaveLength(11);
 			for (const owner of ["user", "course-code"] as const) {
-				await withPythonProjectRoute(async baseUrl => {
+				await withPythonProjectRoute(async (baseUrl) => {
 					const activeFileName = `${role}/trace.md`;
 					const response = await postJson(baseUrl, {
 						mode: "assembly",
@@ -608,7 +605,7 @@ describe("python project routes", () => {
 		"hardening-trace"
 	] as const)(
 		"stores exact nested %s pack files for user and course-code owners",
-		async mode => {
+		async (mode) => {
 			const requestedMode = mode === "c" ? "c" : "assembly";
 			const fixture = JSON.parse(
 				readFileSync(
@@ -625,12 +622,12 @@ describe("python project routes", () => {
 					"utf8"
 				)
 			);
-			const pack =
-				mode === "c"
+			const pack
+				= mode === "c"
 					? "CSE-06-unit-1-why-c-for-systems-work"
 					: fixture.pack;
-			const activeFileName =
-				mode === "hardening-trace"
+			const activeFileName
+				= mode === "hardening-trace"
 					? "starter/trace.md"
 					: mode === "compiler" || mode === "hardening"
 						? "starter/analysis.md"
@@ -642,8 +639,8 @@ describe("python project routes", () => {
 			)
 				.filter(
 					([path]) =>
-						path.startsWith(`${pack}/starter/`) ||
-						path === `${pack}/README.md`
+						path.startsWith(`${pack}/starter/`)
+						|| path === `${pack}/README.md`
 				)
 				.map(([path, file]) => ({
 					name: path.slice(pack.length + 1),
@@ -651,7 +648,7 @@ describe("python project routes", () => {
 					encoding: "text"
 				}));
 			for (const owner of ["user", "course-code"] as const) {
-				await withPythonProjectRoute(async baseUrl => {
+				await withPythonProjectRoute(async (baseUrl) => {
 					const response = await postJson(baseUrl, {
 						mode: requestedMode,
 						files,
@@ -701,12 +698,12 @@ describe("python project routes", () => {
 				}));
 			const activeFileName = files.find(
 				file =>
-					file.name.endsWith(".sh") ||
-					file.name.endsWith(".py") ||
-					file.name.endsWith(".conf")
+					file.name.endsWith(".sh")
+					|| file.name.endsWith(".py")
+					|| file.name.endsWith(".conf")
 			)!.name;
 			for (const owner of ["user", "course-code"] as const) {
-				await withPythonProjectRoute(async baseUrl => {
+				await withPythonProjectRoute(async (baseUrl) => {
 					const response = await postJson(baseUrl, {
 						mode: requestedMode,
 						files,
@@ -778,7 +775,7 @@ describe("python project routes", () => {
 			const starterUrl = `https://github.com/instruction-material/Network-Systems/tree/${fixture.revision}/${fixture.pack}/${role}`;
 			for (const owner of ["user", "course-code"] as const) {
 				await withPythonProjectRoute(
-					async baseUrl => {
+					async (baseUrl) => {
 						const response = await postJson(baseUrl, {
 							title: "Network observation",
 							mode: "linux",
@@ -827,7 +824,7 @@ describe("python project routes", () => {
 
 	it.each(["user", "course-code"] as const)(
 		"saves an edited capstone JSON case and selected file for the %s owner",
-		async owner => {
+		async (owner) => {
 			const fixture = JSON.parse(
 				readFileSync(
 					resolve(
@@ -858,7 +855,7 @@ describe("python project routes", () => {
 						name === "starter/case.json" ? corrected : file.content,
 					encoding: "text"
 				}));
-			await withPythonProjectRoute(async baseUrl => {
+			await withPythonProjectRoute(async (baseUrl) => {
 				const response = await postJson(baseUrl, {
 					mode: "linux",
 					files,
@@ -873,7 +870,7 @@ describe("python project routes", () => {
 	);
 
 	it("preserves a Linux Python app after companion files are removed", async () => {
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			const files = [
 				{
 					name: "app.py",
@@ -894,7 +891,7 @@ describe("python project routes", () => {
 	});
 
 	it("rejects unsafe Linux paths and encoded source before persistence", async () => {
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			const source = {
 				name: "main.sh",
 				content: "#!/usr/bin/env bash\n"
@@ -945,7 +942,7 @@ describe("python project routes", () => {
 	});
 
 	it("requires text C code and preserves bounded safe-path rules", async () => {
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			const source = {
 				name: "main.c",
 				content: "int main(void) { return 0; }"
@@ -999,7 +996,7 @@ describe("python project routes", () => {
 	});
 
 	it("rejects binary Assembly sources, missing routines and unsafe pack paths", async () => {
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			const source = {
 				name: "starter/routine.S",
 				content: ".intel_syntax noprefix\nret\n"
@@ -1038,7 +1035,7 @@ describe("python project routes", () => {
 			exec: vi.fn().mockResolvedValue(200)
 		});
 
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			const response = await postJson(baseUrl, {
 				files: [{ name: "main.py", content: "print('hello')" }],
 				title: "Over quota"
@@ -1056,7 +1053,7 @@ describe("python project routes", () => {
 			{ name: "player2.in", content: "4 8\n5 6\n" }
 		];
 		for (const owner of ["user", "course-code"] as const) {
-			await withPythonProjectRoute(async baseUrl => {
+			await withPythonProjectRoute(async (baseUrl) => {
 				const response = await postJson(baseUrl, {
 					files,
 					title: "Conway",
@@ -1105,7 +1102,7 @@ describe("python project routes", () => {
 			{ name: "pom.xml", content: "<project/>\n" }
 		];
 		for (const owner of ["user", "course-code"] as const) {
-			await withPythonProjectRoute(async baseUrl => {
+			await withPythonProjectRoute(async (baseUrl) => {
 				const response = await postJson(baseUrl, {
 					files,
 					activeFileName: "bphoto.out",
@@ -1221,7 +1218,7 @@ describe("python project routes", () => {
 	});
 
 	it("accepts nested Python package files for signed-in IDE projects", async () => {
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			const response = await postJson(baseUrl, {
 				activeFileName: "package/util.py",
 				files: [
@@ -1265,7 +1262,7 @@ describe("python project routes", () => {
 	});
 
 	it("stores a course-code learner project under only the granted course", async () => {
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			const response = await postJson(baseUrl, {
 				activeFileName: "main.py",
 				courseID: "java-level-1",
@@ -1286,7 +1283,7 @@ describe("python project routes", () => {
 	});
 
 	it("accepts nested Java package files for signed-in IDE projects", async () => {
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			const response = await postJson(baseUrl, {
 				activeFileName: "src/main/java/Main.java",
 				files: [
@@ -1334,7 +1331,7 @@ describe("python project routes", () => {
 	});
 
 	it("allows Java packages and case-distinct Python packages outside shim paths", async () => {
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			const javaResponse = await postJson(baseUrl, {
 				files: [
 					{
@@ -1360,7 +1357,7 @@ describe("python project routes", () => {
 	});
 
 	it("accepts Turtle PostScript files saved by the browser runtime", async () => {
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			const response = await postJson(baseUrl, {
 				activeFileName: "main.py",
 				files: [
@@ -1389,7 +1386,7 @@ describe("python project routes", () => {
 	});
 
 	it("accepts the editor's 40-file project limit", async () => {
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			const files = Array.from({ length: 40 }, (_value, index) => ({
 				content: `print(${index})\n`,
 				name: index === 0 ? "main.py" : `helper_${index}.py`
@@ -1412,7 +1409,7 @@ describe("python project routes", () => {
 	});
 
 	it("rejects projects above the editor's 40-file project limit", async () => {
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			const files = Array.from({ length: 41 }, (_value, index) => ({
 				content: `print(${index})\n`,
 				name: index === 0 ? "main.py" : `helper_${index}.py`
@@ -1428,7 +1425,7 @@ describe("python project routes", () => {
 	});
 
 	it("accepts Java and Karel IDE payloads as browser-only stored projects", async () => {
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			const payloads = [
 				{
 					activeFileName: "Main.java",
@@ -1515,7 +1512,7 @@ describe("python project routes", () => {
 	});
 
 	it("uses generalized fallback titles for untitled Code IDE projects", async () => {
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			const defaultResponse = await postJson(baseUrl, {});
 			const javaResponse = await postJson(baseUrl, {
 				activeFileName: "Main.java",
@@ -1600,8 +1597,8 @@ describe("python project routes", () => {
 			const files = Object.entries(fixture.files)
 				.filter(
 					([name]) =>
-						name === `${prefix}README.md` ||
-						name.startsWith(`${prefix}starter/`)
+						name === `${prefix}README.md`
+						|| name.startsWith(`${prefix}starter/`)
 				)
 				.map(([name, row]) => ({
 					name: name.slice(prefix.length),
@@ -1610,7 +1607,7 @@ describe("python project routes", () => {
 			expect(files).toHaveLength(fileCount);
 			for (const owner of ["user", "course-code"] as const) {
 				await withPythonProjectRoute(
-					async baseUrl => {
+					async (baseUrl) => {
 						const response = await postJson(baseUrl, {
 							mode: "rust",
 							files,
@@ -1645,7 +1642,7 @@ describe("python project routes", () => {
 			[valid[0], { ...valid[1], name: "../main.rs" }],
 			[valid[0], { ...valid[1], encoding: "base64" }]
 		];
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			for (const files of invalid) {
 				expect(
 					(await postJson(baseUrl, { mode: "rust", files })).status
@@ -1658,9 +1655,9 @@ describe("python project routes", () => {
 		const files = [
 			{
 				name: "main.cpp",
-				content: '#include "include/Task.hpp"\nint main() {}\n'
+				content: "#include \"include/Task.hpp\"\nint main() {}\n"
 			},
-			{ name: "src/Task.cc", content: '#include "include/Task.hpp"\n' },
+			{ name: "src/Task.cc", content: "#include \"include/Task.hpp\"\n" },
 			{ name: "include/Task.hpp", content: "#pragma once\n" },
 			{ name: "README.md", content: "Build both sources.\n" },
 			{
@@ -1669,7 +1666,7 @@ describe("python project routes", () => {
 			}
 		];
 		for (const owner of ["user", "course-code"] as const) {
-			await withPythonProjectRoute(async baseUrl => {
+			await withPythonProjectRoute(async (baseUrl) => {
 				const response = await postJson(baseUrl, {
 					mode: "cpp",
 					files,
@@ -1708,7 +1705,7 @@ describe("python project routes", () => {
 			}
 		];
 		for (const owner of ["user", "course-code"] as const) {
-			await withPythonProjectRoute(async baseUrl => {
+			await withPythonProjectRoute(async (baseUrl) => {
 				const response = await postJson(baseUrl, {
 					mode: "cpp",
 					files,
@@ -1737,7 +1734,7 @@ describe("python project routes", () => {
 	});
 
 	it("keeps tab-separated data at safe root paths and rejects a data-only C++ project", async () => {
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			for (const name of [
 				"../scores.tsv",
 				"src/scores.tsv",
@@ -1764,7 +1761,7 @@ describe("python project routes", () => {
 	});
 
 	it("keeps build files inert and rejects unsupported build-file paths", async () => {
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			for (const name of ["../Makefile", "src/Makefile", "Makefile.sh"]) {
 				const response = await postJson(baseUrl, {
 					mode: "cpp",
@@ -1785,7 +1782,7 @@ describe("python project routes", () => {
 	});
 
 	it("rejects C++ header-only, wrong-language and unsafe path projects", async () => {
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			for (const name of [
 				"Only.h",
 				"main.py",
@@ -1805,7 +1802,7 @@ describe("python project routes", () => {
 	});
 
 	it("rejects project payloads that do not include a code file for the selected mode", async () => {
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			for (const payload of [
 				{
 					files: [
@@ -1838,7 +1835,7 @@ describe("python project routes", () => {
 			Math.ceil((2 * 1024 * 1024) / 3) * 4
 		);
 
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			const response = await postJson(baseUrl, {
 				files: [
 					{
@@ -1856,8 +1853,8 @@ describe("python project routes", () => {
 			});
 
 			expect(response.status).toBe(201);
-			const createdProject =
-				modelMocks.pythonProjectCreate.mock.calls.at(-1)?.[0];
+			const createdProject
+				= modelMocks.pythonProjectCreate.mock.calls.at(-1)?.[0];
 			const assetFile = createdProject.files.find(
 				(file: { name: string }) => file.name === "images/player.png"
 			);
@@ -1886,10 +1883,10 @@ describe("python project routes", () => {
 		expect(limiterSource).toContain("(?=\\/|$)");
 		expect(payloadSource).toContain("CODE_IDE_PROJECT_BODY_LIMIT");
 		expect(payloadSource).toContain("PYTHON_IDE_PROJECT_BODY_LIMIT");
-		expect(payloadSource).toContain('"80mb"');
+		expect(payloadSource).toContain("\"80mb\"");
 		expect(payloadSource).toContain("inflate: false");
 		expect(serverSource).toContain("limitProjectBody(projectJson)");
-		expect(serverSource).toContain('bodyParser.json({ limit: "1mb" })');
+		expect(serverSource).toContain("bodyParser.json({ limit: \"1mb\" })");
 	});
 
 	it("composes pre-parser auth and terminal reservation ownership", () => {
@@ -1925,7 +1922,7 @@ describe("python project routes", () => {
 			parser
 		);
 		const routes = serverSource.indexOf(
-			'app.use("/users", userRoutes)',
+			"app.use(\"/users\", userRoutes)",
 			claim
 		);
 
@@ -1939,12 +1936,12 @@ describe("python project routes", () => {
 
 		const compactRoutes = routeSource.replace(/\s+/g, " ");
 		for (const route of [
-			'router.post( "/loggedin/python-projects", validProjectAccountSession, requireCodeIdeAccountMatch, withCodeIdeProjectPayloadReservation(createPythonProject) )',
-			'router.put( "/loggedin/python-projects/:projectID", validProjectAccountSession, requireCodeIdeAccountMatch, withCodeIdeProjectPayloadReservation(updatePythonProject) )',
-			'router.put( "/loggedin/python-projects/:projectID/share", validProjectAccountSession, requireCodeIdeAccountMatch, withCodeIdeProjectPayloadReservation(updatePythonProjectShare) )',
-			'router.delete( "/loggedin/python-projects/:projectID", validProjectAccountSession, requireCodeIdeAccountMatch, withCodeIdeProjectPayloadReservation(deletePythonProject) )',
-			'router.post( "/:userID/python-projects/:projectID/review", validManagedProjectSession, withCodeIdeProjectPayloadReservation(createPythonProjectReview) )',
-			'router.put( "/:userID/python-projects/:projectID/review/:reviewID", validManagedProjectSession, withCodeIdeProjectPayloadReservation(updatePythonProjectReview) )'
+			"router.post( \"/loggedin/python-projects\", validProjectAccountSession, requireCodeIdeAccountMatch, withCodeIdeProjectPayloadReservation(createPythonProject) )",
+			"router.put( \"/loggedin/python-projects/:projectID\", validProjectAccountSession, requireCodeIdeAccountMatch, withCodeIdeProjectPayloadReservation(updatePythonProject) )",
+			"router.put( \"/loggedin/python-projects/:projectID/share\", validProjectAccountSession, requireCodeIdeAccountMatch, withCodeIdeProjectPayloadReservation(updatePythonProjectShare) )",
+			"router.delete( \"/loggedin/python-projects/:projectID\", validProjectAccountSession, requireCodeIdeAccountMatch, withCodeIdeProjectPayloadReservation(deletePythonProject) )",
+			"router.post( \"/:userID/python-projects/:projectID/review\", validManagedProjectSession, withCodeIdeProjectPayloadReservation(createPythonProjectReview) )",
+			"router.put( \"/:userID/python-projects/:projectID/review/:reviewID\", validManagedProjectSession, withCodeIdeProjectPayloadReservation(updatePythonProjectReview) )"
 		]) {
 			expect(compactRoutes).toContain(route);
 		}
@@ -1967,7 +1964,7 @@ describe("python project routes", () => {
 		) as string[];
 		expect(runtimeModules.length).toBeGreaterThan(0);
 
-		await withPythonProjectRoute(async baseUrl => {
+		await withPythonProjectRoute(async (baseUrl) => {
 			for (const reservedFileName of [
 				"turtle.py",
 				"pygame.py",
@@ -2035,7 +2032,7 @@ describe("python project routes", () => {
 			)
 		].join("\n");
 
-		expect(sources).toContain('app.get("/healthz"');
+		expect(sources).toContain("app.get(\"/healthz\"");
 		expect(sources).toContain("ROOT_TEXT_FILE_RE =");
 		expect(sources).toContain("java|json");
 		expect(sources).not.toMatch(/node:child_process|child_process/);
