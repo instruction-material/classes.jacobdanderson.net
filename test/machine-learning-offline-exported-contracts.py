@@ -1,5 +1,6 @@
 import hashlib
 import json
+import os
 from pathlib import Path, PurePosixPath
 import subprocess
 import sys
@@ -8,8 +9,12 @@ import zipfile
 
 root = Path(sys.argv[1])
 fixture = json.loads(Path("test/fixtures/machine-learning-offline-sources.json").read_text())
+selected = [value for value in os.environ.get("ML_OFFLINE_PROJECTS", "").split(",") if value]
+assert all(value in {p["caseId"] for p in fixture["projects"]} for value in selected)
+projects = [p for p in fixture["projects"] if not selected or p["caseId"] in selected]
+assert projects
 records = []
-for project in fixture["projects"]:
+for project in projects:
     directory = root / project["caseId"]
     for archive in sorted(directory.glob("*.zip")):
         role = archive.name.split("-")[0]
@@ -39,9 +44,9 @@ for project in fixture["projects"]:
                 if edited:
                     assert "ML workflow verified: " + project["caseId"] in result.stdout
                 assert not result.stderr, (archive, result.stderr)
-            records.append({"project": project["caseId"], "archive": archive.name, "sourceRole": role, "edited": edited})
+            records.append({"project": project["caseId"], "archive": archive.name, "sourceRole": role, "edited": edited, "executed": edited or role == "solution"})
     matching = [r for r in records if r["project"] == project["caseId"]]
     assert len(matching) == 8, (project["caseId"], len(matching))
-proof = {"source": fixture["revision"], "projects": len(fixture["projects"]), "archives": len(records), "records": records}
+proof = {"source": fixture["revision"], "projects": len(projects), "archives": len(records), "nativeExecutions": sum(r["executed"] for r in records), "records": records}
 (root / "native-exports.json").write_text(json.dumps(proof, indent=2) + "\n")
 print(json.dumps({"projects": proof["projects"], "archives": proof["archives"], "source": proof["source"]}))
