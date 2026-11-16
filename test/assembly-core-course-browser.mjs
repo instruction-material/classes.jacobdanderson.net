@@ -367,20 +367,25 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 						) {
 							directoryRequests.push(request.url());
 							const directory = `${pack}/${sourceRole}`;
-							const valid = request.method() === "GET"
-								&& url.pathname === `/repos/instruction-material/${sourceRepository}/contents/${directory}`
-								&& url.searchParams.get("ref") === fixture.revision;
-							const entries = Object.entries(fixture.files)
-								.filter(([path]) => path.startsWith(`${directory}/`) && !path.slice(directory.length + 1).includes("/"))
-								.map(([path, file]) => ({
-									type: "file",
-									name: path.split("/").at(-1),
-									path,
-									size: file.byteLength,
-									sha: file.gitBlob,
-									html_url: `https://github.com/instruction-material/${sourceRepository}/blob/${fixture.revision}/${path}`,
-									download_url: `https://raw.githubusercontent.com/instruction-material/${sourceRepository}/${fixture.revision}/${path}`
-								}));
+							const suppliedListing = definition.githubDirectoryListing?.({ url, role: sourceRole });
+							const valid = suppliedListing
+								? suppliedListing.valid
+								: request.method() === "GET"
+									&& url.pathname === `/repos/instruction-material/${sourceRepository}/contents/${directory}`
+									&& url.searchParams.get("ref") === fixture.revision;
+							const entries = suppliedListing
+								? suppliedListing.entries
+								: Object.entries(fixture.files)
+										.filter(([path]) => path.startsWith(`${directory}/`) && !path.slice(directory.length + 1).includes("/"))
+										.map(([path, file]) => ({
+											type: "file",
+											name: path.split("/").at(-1),
+											path,
+											size: file.byteLength,
+											sha: file.gitBlob,
+											html_url: `https://github.com/instruction-material/${sourceRepository}/blob/${fixture.revision}/${path}`,
+											download_url: `https://raw.githubusercontent.com/instruction-material/${sourceRepository}/${fixture.revision}/${path}`
+										}));
 							void request.respond({
 								status: valid && entries.length ? 200 : 404,
 								contentType: "application/json",

@@ -4,57 +4,34 @@ Use these supplied, fictional, and low-stakes cases when a remote dataset, noteb
 
 ## Environment and Data Card Case
 
-You receive `garden_growth.csv`, a fictional 120-row table with:
+Download [garden_growth.csv](/course-assets/machine-learning/garden_growth.csv),or open the ML0 data-card starter. The supplied 120-row table has plot_id,sun_hours,water_liters,soil_type and growth_cm. One row is one fictional plot after six weeks. Features describe daily sun,weekly water and clay/loam/sand soil; growth_cm is the measured target and plot_id is an identifier.
 
-- `plot_id`: stable row identifier
-- `sun_hours`: numeric hours per day
-- `water_liters`: numeric weekly amount
-- `soil_type`: `clay`, `loam`, or `sand`
-- `growth_cm`: numeric target measured after six weeks
+Implement inspect_fixture from the complete starter instructions. Record ordered columns,row count,missing cells,soil counts and SHA-256. Record the actual Python and optional package versions,including any package reported as not installed. The offline implementation uses the standard library.
 
-Create an environment record with Python, scikit-learn, pandas, NumPy, and notebook versions. Write a data-and-problem card naming the unit of observation, target, prediction-time features, source, license assumption, intended classroom use, non-goals, missing-value check, likely leakage, and privacy boundary.
-
-Then:
-
-1. Load the fixture description into a small local DataFrame or create equivalent synthetic rows.
-2. Reserve 20% as a held-out test set.
-3. Restart the kernel or process.
-4. Rerun from the first cell without relying on hidden state.
-5. Record expected and observed row counts and columns.
-
-Do not train a model yet.
+Reserve 20% of raw row IDs with local seed 42 before fitting transformations. Restart the process and reproduce the record from the unchanged file. Write the data card's units,source,intended use,limitations and leakage boundary. This preparatory case fits no model.
 
 ## Evaluation Contract Case
 
-A fictional support desk has 240 supplied ticket summaries labeled `question`, `bug`, or `request`. The classes occur in a 120/80/40 ratio.
+Download [support_tickets.csv](/course-assets/machine-learning/support_tickets.csv),or open the ML7.5 evaluation-contract starter. Its 240 fictional summaries have 120 question,80 bug and 40 request labels. ticket_id traces rows; template_family groups repeated wording; summary is the prediction-time input.
 
-Before training, write:
+Before training,implement build_contract using the complete starter instructions. Keep each template family in one partition. Sort labels and families,then shuffle each class's families with local seed 42. Reserve max(1,round(0.2*family_count)) families each for test and validation; use the remainder for training. Whole-group rounding makes the partitions approximately 60/20/20.
 
-- the unit of observation and target;
-- a stratified train/test split and validation or cross-validation plan;
-- a `DummyClassifier` strategy;
-- one primary and one secondary metric;
-- the exact point where vectorization is fitted;
-- two error slices, such as short versus long messages and messages containing an error code;
-- the rule for preferring a simpler model;
-- the condition that permits opening the test set.
-
-Explain why raw accuracy could hide weak performance on `request`, and why fitting a vectorizer before the split would leak vocabulary information.
+Record split IDs,families and class counts,a most-frequent dummy baseline,macro F1 and balanced accuracy,training-only CountVectorizer inside each candidate pipeline,and two grouped folds within training. Record short/long and error-code slices. Prefer the simpler candidate unless validation macro F1 improves by at least 0.02. Freeze preprocessing,candidates and parameters before test evaluation. Explain both vocabulary leakage and repeated-template leakage.
 
 ## Clustering Stability Case
 
 Use these eight fictional shop points:
 
-| ID | visits | spend |
-| --- | ---: | ---: |
-| A | 1 | 12 |
-| B | 2 | 15 |
-| C | 2 | 18 |
-| D | 8 | 78 |
-| E | 9 | 82 |
-| F | 10 | 76 |
-| G | 5 | 43 |
-| H | 5 | 47 |
+| ID  | visits | spend |
+| --- | -----: | ----: |
+| A   |      1 |    12 |
+| B   |      2 |    15 |
+| C   |      2 |    18 |
+| D   |      8 |    78 |
+| E   |      9 |    82 |
+| F   |     10 |    76 |
+| G   |      5 |    43 |
+| H   |      5 |    47 |
 
 First, trace one assignment and centroid-update iteration by hand for `k=3`. Then inspect a supplied manual-loop design with three defects: exact floating-point equality as the only stop rule, no maximum iteration count, and division by zero when a cluster becomes empty.
 
@@ -145,19 +122,42 @@ Compare against a dummy and logistic-regression baseline. Record precision, reca
 
 ## Neural Regression Case
 
-Use a supplied synthetic housing table, or scikit-learn California housing only when already cached locally. Do not require a network download.
+[Download synthetic_housing.csv](/course-assets/machine-learning/synthetic_housing.csv). Open the ML6 offline housing-comparison starter for all code and the same data.
 
-Compare:
+Compare a training-median baseline, a least-squares linear regressor and a small neural regressor on the supplied 120-row fictional housing table. The fixed split is 72 training, 24 validation and 24 test rows. Features are area_m2 and rooms. region supports error analysis,while house_id and split identify records. value_k is a value in thousands of fictional units. This is authored numerical practice,not real property data or an appraisal.
 
-1. `DummyRegressor`;
-2. a linear-regression pipeline;
-3. a small neural-network regressor.
+The default neural model has two inputs,one hidden layer of three tanh units and a linear output. Feature and target means and population standard deviations are fitted on training rows only. A constant column uses scale 1. Targets are restored to original units before calculating MAE and RMSE.
 
-Reserve the test set before fitting a scaler. Fix seeds and cap rows, layers, epochs, batch size, and CPU time. Select the stopping point using validation evidence only.
+The code uses Python 3.10 or later and its standard library. Each role contains all required code and data. Run python3 main.py from that role,or use an absolute script path from any directory. Run python3 main.py --output results to retain report.json,epochs.csv,residuals.csv and three SVG plots. Open training.svg,predicted-observed.svg and residuals.svg in a browser. The prediction plot includes y=x; residual means prediction minus observation.
 
-Report held-out MAE and RMSE, a residual plot or table, and error slices by target range and one geographic or synthetic region field. Explain whether the network materially improves the result and why the output is an educational estimate rather than an appraisal.
+### Implement the learner role
 
-Optional legacy audit: identify the ethically problematic `B` variable in the historical Boston Housing dataset and explain why that dataset is not the required benchmark.
+The starter leaves train_network unfinished. The supplied helpers implement data validation,training-only scaling,network evaluation and gradients,baselines,metrics and plotting. The solution completes the same workflow. Implement the bounded training loop:
+
+1. Transform training and validation features with the already fitted training scaler. Initialize parameters from the declared seed.
+2. Record epoch 0 training and validation MAE; retain a copy of the initial parameters.
+3. Shuffle training-row indices with a local seeded generator. Iterate batches; use the provided loss_gradient and subtract learning_rate*gradient.
+4. Check the CPU budget between batches. At each completed epoch,record both MAEs in original target units.
+5. Copy parameters when validation MAE improves by more than 0.000001. Stop after six consecutive completed epochs without improvement.
+6. Return the best validation parameters and their epoch,history,completed epochs and actual stopping reason.
+
+The return contract below defines every required output key. The standard budget is at most 500 total rows,30 epochs,32 rows per batch,eight hidden units in one layer,and 3 CPU seconds for neural training. CLI flags can reduce the budget; enforced maxima remain 500 rows,30 epochs,32batch rows and 5 CPU seconds. The default batch is 16 and learning rate 0.04.
+
+### Worked values
+
+For actual targets [10,20] and predictions [12,17],MAE=(2+3)/2=2.5 and RMSE=sqrt((4+9)/2)=sqrt(6.5). A median baseline uses only training targets. For an even training count,it averages the two middle sorted targets.
+
+With a zero-output neuron,prediction 0 and scaled target 2,the squared loss is 4 and the output derivative is -4. The output is linear; a sigmoid would constrain predictions to [0,1] and change this regression model. Hidden tanh derivatives use 1-h*h. All derivatives are averaged over the current training batch.
+
+Model selection uses validation MAE. Prefer the simplest of median,linear and neural that lies within 1.0 fictional value unit of the best validation MAE. This rule is fixed before opening test targets. The final test scores for all three fixed candidates then explain the comparison; they cannot change the chosen model or stopping point.
+
+### Complete the comparison
+
+Record the data identity,feature meanings,seed,budget,training scaler and selected epoch. Compare validation and test MAE/RMSE for all three candidates. Inspect every test prediction and error slices by region and by the training-median target threshold. Use the curves and plots to explain whether the neural model earns its added complexity. Preserve the report and restart from the first command without hidden state.
+
+Historical Boston Housing scripts remain unchanged in ML6-Predicting-House-Prices for the optional dataset and migration audit. This complete offline workspace is the assigned implementation.
+
+[Neural regression reference](https://scikit-learn.org/stable/modules/neural_networks_supervised.html).
 
 ## Model Comparison Capstone Case
 

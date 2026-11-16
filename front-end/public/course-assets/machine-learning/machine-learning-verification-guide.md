@@ -4,15 +4,19 @@ Open this guide only after recording an independent attempt. The entries describ
 
 ## Environment and Data Card Key
 
-A complete record names Python 3.14, scikit-learn 1.9, the other imported package versions, and whether execution used local Jupyter or VS Code. Colab is optional and should be labeled separately.
+The data-card reference loads 120 rows with five ordered columns and zero missing cells. Each soil occurs 40 times. Seed 42 reserves 24 IDs and retains 96 for training,with no overlap; a fresh process reproduces the same IDs. Compare the recorded byte hash with [the fixture manifest](/course-assets/machine-learning/manifest.json).
 
-The unit of observation is one fictional garden plot after six weeks. `growth_cm` is the target; `plot_id` is an identifier and should not become a predictive feature. The source is course supplied, the data contains no people, and the intended use is learning a regression workflow—not agricultural advice. A valid run reloads 120 rows and the expected columns after restart without hidden variables.
+Record the actual Python and installed package versions. The supplied core runs with Python 3.10 or later and the standard library; a missing optional library is reported truthfully. Later library-based projects have their own environment requirements.
+
+One fictional plot after six weeks is the observation,growth_cm is the target,and plot_id is an identifier. Record feature units,authored source,classroom purpose and the absence of real agricultural validity. The supplied CSV includes no third-party data or external license.
 
 ## Evaluation Contract Key
 
-Use a stratified held-out split and training-only cross-validation. A defensible baseline predicts according to the training distribution or the most frequent class. Macro F1 is a useful primary metric because each ticket class matters; accuracy can remain secondary.
+Seed 42 gives 132 training,54 validation and 54 test rows. The corresponding question/bug/request counts are 72/40/20,24/20/10 and 24/20/10. All 240 IDs and all template families are disjoint across partitions. The grouped allocation deliberately approximates 60/20/20; exact row stratification could leak repeated templates.
 
-`CountVectorizer` belongs inside a pipeline and is fitted only on training folds. The test set opens only after the metric, baseline, candidate set, preprocessing, and selection rule are frozen. A simpler model wins when its cross-validated performance is practically similar and its operational or explanatory cost is lower.
+The contract names summary as input,label as target,template_family as the split group and ticket_id as trace metadata. Use a most-frequent dummy baseline,macro F1 primary and balanced accuracy secondary. Fit CountVectorizer only on training summaries within candidate pipelines and grouped training folds.
+
+Freeze preprocessing,candidate choice and parameters before final test predictions. Prefer the simpler model unless validation macro F1 improves by at least 0.02. The contract records a plan; it does not fit a classifier.
 
 ## Clustering Stability Key
 
@@ -58,9 +62,23 @@ A trained network is acceptable only with fixed seeds, stated sample and archite
 
 ## Neural Regression Key
 
-The complete offline route uses the synthetic fixture. California housing is acceptable when cached and its source is recorded. Boston Housing is optional ethics history, not the benchmark; its `B` variable encodes a racially derived assumption that scikit-learn explicitly warns against.
+The supplied fixture has 120 invented rows split into 72 training,24 validation and 24 test rows. Features are area_m2 and rooms; region supports error slices. value_k uses fictional thousands. Fit feature and target scaling only on training rows and restore target units before metrics.
 
-Fit the scaler on training data only. Select epochs from validation evidence, then evaluate once on held-out data. Report MAE, RMSE, residual slices, runtime, and the exact resource cap. Prefer the linear model when the neural model does not earn its complexity.
+The median baseline,least-squares linear regressor and three-hidden-unit tanh network use the same split. MSE gradients are averaged over batches; the numeric output is linear. Default seed 42,batch 16,learning rate 0.04 and 30 epochs remain within the documented CPU budget. Validation MAE selects the saved epoch; final test targets cannot change fitting,stopping or model selection.
+
+train_network returns a dictionary with parameters (the saved numeric list), hidden_units, best_epoch, completed_epochs, stop_reason, history, cpu_seconds, seed, batch_size and l2. Each history entry has epoch, train_mae and validation_mae. Epoch 0 is the initial model. stop_reason is max_epochs, validation_patience or cpu_budget. If the budget stops before a completed epoch, return the initial saved checkpoint. Preserve input rows and the training-fitted scaler.
+
+The default fixture and seed 42 complete 30 epochs and select the linear baseline. Reference held-out results, rounded to six decimals:
+
+| Model                            |       MAE |      RMSE |
+| -------------------------------- | --------: | --------: |
+| Training median                  | 38.824833 | 48.648618 |
+| Linear regression                |  5.676861 |  7.629158 |
+| Three-hidden-unit neural network |  7.621252 |  9.462846 |
+
+The corresponding validation MAEs are 44.048083, 6.169554 and 7.240817. The linear model earns the selection under the predeclared one-unit simplicity margin. Explain this result from the validation evidence before opening test targets.
+
+Retain the epoch table,all predictions,region and training-median error slices,and three SVG plots. Cached California housing is an optional later comparison. The unchanged historical Boston Housing dataset is an optional ethics and migration audit; its ethically problematic B feature is excluded from the assigned benchmark.
 
 ## Model Comparison Capstone Key
 

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "source": "Course-authored deterministic fictional data; no external records.",
+  "generatorSeed": 42,
+  "fixtureIdentity": "ml-offline-cases-v1",
+  "files": {
+    "garden_growth.csv": {
+      "rows": 120,
+      "columns": [
+        "plot_id",
+        "sun_hours",
+        "water_liters",
+        "soil_type",
+        "growth_cm"
+      ],
+      "sha256": "a3e78b000ec17c7264bbd50a2551ebe5834dc93788c1510a6ee79b168fbc25d7"
+    },
+    "support_tickets.csv": {
+      "rows": 240,
+      "columns": [
+        "ticket_id",
+        "summary",
+        "label",
+        "template_family"
+      ],
+      "sha256": "2d7915affe02677fcf4550ea0f0ddbc431d260935732e4b981ce437bd2eab9b6"
+    },
+    "synthetic_housing.csv": {
+      "rows": 120,
+      "columns": [
+        "house_id",
+        "area_m2",
+        "rooms",
+        "region",
+        "value_k",
+        "split"
+      ],
+      "sha256": "91a613cd4f18eb25b77f400a82940e2e58e1e0aaed69a665f758dc677e701be9"
+    }
+  }
+}

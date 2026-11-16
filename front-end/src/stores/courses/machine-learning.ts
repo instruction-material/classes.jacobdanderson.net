@@ -1,5 +1,6 @@
 import type { RawCourse } from "./types";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
+import { withOwnedMachineLearningAssignment } from "./machineLearningOwnedAssignments";
 import { buildProjectGuidance } from "./projectGuidance";
 import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
 import { buildSupportSectionGuidance } from "./supportSectionGuidance";
@@ -53,7 +54,7 @@ const machineLearningSourceCourse: RawCourse = {
 				{
 					title: "Preferred Tools and Environment",
 					content:
-						"Use Python 3.14 with a recorded isolated environment, scikit-learn 1.9, pandas, NumPy, matplotlib, seaborn, and local Jupyter or VS Code as the complete course workflow. Run a supplied import-and-version check, restart the kernel, and rerun from the first cell before the first model. Google Colab remains an optional convenience when a learner knowingly chooses an account-based notebook host; it is never the only way to complete a lesson."
+						"The supplied offline data-card, evaluation-contract and housing workspaces run with Python 3.10 or later and its standard library. Record the actual Python and installed package versions; unavailable optional packages are reported as not installed. For the later library-based projects, use a recorded isolated environment with Python 3.14, scikit-learn 1.9, pandas, NumPy, matplotlib, seaborn, and local Jupyter or VS Code. Restart the kernel and rerun from the first cell before the first model. Google Colab remains an optional convenience when a learner knowingly chooses an account-based notebook host; it is never the only way to complete a lesson."
 				},
 				{
 					title: "Notebook Cells vs. Reusable Python Modules",
@@ -2138,6 +2139,13 @@ function isMachineLearningChoice(title: string) {
 function decorateMachineLearningCoreModule(
 	module: RawCourse["modules"][number]
 ): RawCourse["modules"][number] {
+	module = {
+		...module,
+		curriculum: module.curriculum.map(withOwnedMachineLearningAssignment),
+		supplementalProjects: module.supplementalProjects.map(
+			withOwnedMachineLearningAssignment
+		)
+	};
 	const flow =
 		MACHINE_LEARNING_MODULE_FLOW[
 			module.title as (typeof MACHINE_LEARNING_CORE_SEQUENCE)[number]
