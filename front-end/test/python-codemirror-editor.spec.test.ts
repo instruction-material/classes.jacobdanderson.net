@@ -2210,6 +2210,82 @@ describe("python IDE CodeMirror editor", () => {
 		expect(labels).not.toContain("put");
 	});
 
+	it("bounds declared-receiver scanning across the whole Java or Karel document", () => {
+		const limit = 16384;
+		for (const mode of ["java", "karel"] as const) {
+			for (const hostile of [
+				"List<".repeat(4000),
+				"Item <".repeat(4000)
+			]) {
+				for (const before of [true, false]) {
+					const doc = before
+						? `/* ${hostile} */\nitems.`
+						: `items.\n/* ${hostile} */`;
+					const pos = before ? doc.length : "items.".length;
+					const state = EditorState.create({
+						doc,
+						extensions: createPythonCodeMirrorExtensions({
+							mode,
+							onChange: vi.fn(),
+							onCursorCountChange: vi.fn()
+						})
+					});
+					const sources = state.languageDataAt<TestCompletionSource>(
+						"autocomplete",
+						pos
+					);
+					const materialize = vi
+						.spyOn(state.doc, "toString")
+						.mockImplementation(() => {
+							throw new Error(
+								"Large-document completion materialized source"
+							);
+						});
+					try {
+						const labels = sources.flatMap(
+							source =>
+								source({
+									explicit: true,
+									pos,
+									state,
+									matchBefore: expression =>
+										completionMatchBefore(
+											doc,
+											pos,
+											expression
+										)
+								})?.options?.map(option => option.label) ?? []
+						);
+						expect(materialize).not.toHaveBeenCalled();
+						expect(labels).toEqual(
+							javaIdeCompletionsForMode(mode, "items").map(
+								option => option.label
+							)
+						);
+					} finally {
+						materialize.mockRestore();
+					}
+				}
+			}
+		}
+		const declaration = "ArrayList<String> names = new ArrayList<>();\n";
+		const end = "\nnames.";
+		const atLimit =
+			declaration +
+			"//" +
+			"a".repeat(limit - declaration.length - end.length - 2) +
+			end;
+		expect(atLimit).toHaveLength(limit);
+		expect(autocompleteLabelsForDoc("java", atLimit)).toContain("add");
+		expect(
+			autocompleteLabelsForDoc("java", atLimit.replace("//", "//a"))
+		).toEqual(
+			javaIdeCompletionsForMode("java", "names").map(
+				option => option.label
+			)
+		);
+	});
+
 	it("handles near-limit adversarial Java declarations without backtracking", () => {
 		const doc = `Foo ${" ".repeat(3000)}<${" ".repeat(10)}\nitem.`;
 		const labels = autocompleteLabelsForDoc("java", doc);

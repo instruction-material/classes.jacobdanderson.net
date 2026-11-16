@@ -139,6 +139,7 @@ const pythonTurtleColorStringCompletionValidForRegex = /^[A-Z_ ]*$/i;
 const karelColorStringCompletionValidForRegex = /^[A-Z_ ]*$/i;
 const pythonIdentifierRegex = /^[A-Z_]\w*$/i;
 const completionLineLimit = 1024;
+const javaDeclarationCompletionDocumentLimit = 16384;
 const closingBrackets = new Set(Object.values(openingBracketToClosingBracket));
 const pythonCompletionBlockedNodeNames = new Set([
 	"BlockComment",
@@ -2769,7 +2770,13 @@ function javaDeclaredReceiverCompletions(
 	mode: PythonIdeMode,
 	receiver: string
 ) {
-	if (!isJavaCodeMirrorMode(mode) || !javaIdentifierRegex.test(receiver)) {
+	if (
+		!isJavaCodeMirrorMode(mode) ||
+		!javaIdentifierRegex.test(receiver) ||
+		state.doc.length > javaDeclarationCompletionDocumentLimit
+	) {
+		// Optional declaration hints must not scan an unbounded shared project.
+		// The caller retains static, generic and Karel member suggestions.
 		return null;
 	}
 	const escapedReceiver = escapeRegExpText(receiver);
