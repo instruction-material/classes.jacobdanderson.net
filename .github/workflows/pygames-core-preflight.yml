@@ -38,7 +38,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: pygames-core-preflight-${{ github.ref }}-${{ inputs.course == 'course-choices' && 'course-choices' || (inputs.course == 'tracker-evidence' || inputs.course == 'native-release-evidence') && 'evidence' || 'validation' }}
+  group: pygames-core-preflight-${{ github.ref }}-${{ inputs.course == 'network-archive-six' && 'network-archive-six' || inputs.course == 'course-choices' && 'course-choices' || (inputs.course == 'tracker-evidence' || inputs.course == 'native-release-evidence') && 'evidence' || 'validation' }}
   cancel-in-progress: false
 
 jobs:

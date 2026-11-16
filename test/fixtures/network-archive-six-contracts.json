@@ -89,7 +89,8 @@
 				"sha256": "800515b9df9e82924d7c0006b0c4f74f91054b1f18005c942a18e8d0299c1a9f"
 			}
 		},
-		"title": "Expansion Ideas and Next Steps"
+		"title": "Expansion Ideas and Next Steps",
+		"learningPath": "choice"
 	},
 	{
 		"pack": "NS-27-ns13-expansion-ideas-and-next-steps-supplemental-2",
@@ -181,7 +182,8 @@
 				"sha256": "800515b9df9e82924d7c0006b0c4f74f91054b1f18005c942a18e8d0299c1a9f"
 			}
 		},
-		"title": "Next Steps Transfer Practice"
+		"title": "Next Steps Transfer Practice",
+		"learningPath": "choice"
 	},
 	{
 		"pack": "NS-28-ns13-expansion-ideas-and-next-steps-supplemental-3",
@@ -273,7 +275,8 @@
 				"sha256": "800515b9df9e82924d7c0006b0c4f74f91054b1f18005c942a18e8d0299c1a9f"
 			}
 		},
-		"title": "Next Steps Extension Practice"
+		"title": "Next Steps Extension Practice",
+		"learningPath": "challenge"
 	},
 	{
 		"pack": "NS-02-network-systems-lab-16",
@@ -374,7 +377,8 @@
 				"moduleId": "network-systems-optional-network-expansion-and-integration-studio-archive",
 				"requiredText": ["wrong-upstream", "before", "after"]
 			}
-		]
+		],
+		"learningPath": "choice"
 	},
 	{
 		"pack": "NS-31-applied-studio-16-network-systems-lab-16-supplemental-2",
@@ -466,7 +470,8 @@
 				"sha256": "800515b9df9e82924d7c0006b0c4f74f91054b1f18005c942a18e8d0299c1a9f"
 			}
 		},
-		"title": "Service Exposure Transfer Practice"
+		"title": "Service Exposure Transfer Practice",
+		"learningPath": "choice"
 	},
 	{
 		"pack": "NS-32-applied-studio-16-network-systems-lab-16-supplemental-3",
@@ -558,6 +563,7 @@
 				"sha256": "800515b9df9e82924d7c0006b0c4f74f91054b1f18005c942a18e8d0299c1a9f"
 			}
 		},
-		"title": "Service Exposure Extension Practice"
+		"title": "Service Exposure Extension Practice",
+		"learningPath": "challenge"
 	}
 ]

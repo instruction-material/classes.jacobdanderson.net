@@ -120,7 +120,7 @@ export function networkArchiveSixInstructions(pack: string, role: string) {
 	if (!selected) return null;
 	return [
 		"Keep all seven role files and the shared README.md together. Python programming is optional; complete assessment.json and explain the cited network observations in network-notes.md.",
-		`Change into ${role} and run python3 main.py with Python 3.10 or later.`,
+		`Run cd ${role}, then python3 main.py with Python 3.10 or later.`,
 		"Read a captured command with python3 main.py --show route-gap --field routeGet4. Use --show wrong-upstream --field http4 for its actual responding application.",
 		"Exit 1 means the factual assessment is incomplete or disagrees with the supplied observations; exit 2 means invalid input; exit 0 leaves notebook review open.",
 		"These commands analyze recorded isolated-Linux observations. README.md also supplies the separately owned Linux capstone route for collecting and inspecting a fresh inside.json.",

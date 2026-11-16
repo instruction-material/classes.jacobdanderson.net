@@ -78,6 +78,15 @@ const fixtures: Fixture[] = [
 		readFileSync(
 			resolve(
 				process.cwd(),
+				"../test/fixtures/network-archive-six-contracts.json"
+			),
+			"utf8"
+		)
+	),
+	...JSON.parse(
+		readFileSync(
+			resolve(
+				process.cwd(),
 				"../test/fixtures/network-capstone-optional-contracts.json"
 			),
 			"utf8"
@@ -468,7 +477,7 @@ it("preserves every published lesson while preserving core notebooks and distinc
 			expect(source.learningPath).toMatch(/choice|challenge/);
 			continue;
 		}
-		expect(notebook.learningPath).toBe("core");
+		expect(notebook.learningPath).toBe(core.learningPath);
 		expect(core.ideImport).toBe(true);
 		expect(notebook.ideImport).toBe(true);
 		expect(notebook.projectLink).toBe(core.projectLink);
