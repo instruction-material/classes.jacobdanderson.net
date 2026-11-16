@@ -3,6 +3,7 @@ import {
 	applyAiOptionalAssignments,
 	applyAiStudioReadings
 } from "./aiStudioReadings";
+import { applyAlgebra1ACourseReadings } from "./algebra1ACourseReadings";
 import { applyAlgebra1APractice } from "./algebra1APractice";
 import { applyAlgebraErrorAnalysisCases } from "./algebraErrorAnalysisCases";
 import { applyCourseImplementationArtifacts } from "./course-implementation-artifacts";
@@ -9915,5 +9916,7 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 		applyMiddleSchoolWritingReadings(course, rawCourse);
 	}
 	if (id === "network-systems") applyNetworkStudyReadings(course);
+	if (id === "algebra-1a")
+		applyAlgebra1ACourseReadings(course, historicalCourseProgressId);
 	return course;
 }

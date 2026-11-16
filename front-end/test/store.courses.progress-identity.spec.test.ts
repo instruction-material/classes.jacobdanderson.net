@@ -1212,7 +1212,7 @@ describe("saved course progress identities", () => {
 			expect(course, courseId).not.toBeNull();
 			for (const configuration of renamedItems) {
 				const module = course?.modules.find(
-					entry => entry.title === configuration.moduleTitle
+					entry => entry.id === historicalId(`${courseId}-${configuration.moduleSuffix}`)
 				);
 				expect(
 					module,

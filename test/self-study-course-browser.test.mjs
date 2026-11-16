@@ -38,7 +38,7 @@ const courseIds = [
 	"geometry-b",
 	"middle-school-integrated-science"
 ];
-const readingCounts = [22, 19, 19, 20, 8, 13, 15, 31, 10, 13, 14, 16, 20, 14, 9, 4, 27, 22, 37, 38, 11, 6, 11, 65];
+const readingCounts = [22, 19, 19, 20, 8, 13, 21, 31, 10, 13, 14, 16, 20, 14, 9, 4, 27, 22, 37, 38, 11, 6, 11, 65];
 assert.equal(readingCounts.length, courseIds.length);
 // Reading counts for explicitly selected teaching scopes.
 const focusedReadingCounts = {

@@ -27,6 +27,7 @@ import { normalizeInlineCourseMarkdown } from "@/modules/courseMarkdown";
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
 import { algebra1ACourse } from "@/stores/courses/algebra-1a";
+import algebra1ACourseReadings from "@/stores/courses/algebra1ACourseReadingsData.json";
 import { algebra1BCourse } from "@/stores/courses/algebra-1b";
 import { algebraErrorAnalysisCases } from "@/stores/courses/algebraErrorAnalysisCases";
 import { algebra2ACourse } from "@/stores/courses/algebra-2a";
@@ -162,7 +163,7 @@ const cases = [
 	{
 		id: "algebra-1a",
 		source: algebra1ACourse,
-		readings: 15,
+		readings: 21,
 		additions: []
 	},
 	{
@@ -402,6 +403,26 @@ it.each(
 		);
 		expect(identities).toHaveLength(published[id].items + additions.length);
 		expect(digest(JSON.stringify(originals))).toBe(published[id].sha256);
+		if (id === "algebra-1a") {
+			for (const entry of algebra1ACourseReadings) {
+				const moduleTitle =
+					entry.module === "Standards Map"
+						? "Algebra 1A Reference"
+						: entry.module;
+				const module = course.modules.find(
+					module => module.title === moduleTitle
+				)!;
+				const item = [
+					...module.curriculum,
+					...module.supplementalProjects
+				].find(item => item.title === (entry.displayTitle ?? entry.title))!;
+				expect(item, entry.title).toBeDefined();
+				const fullContent = entry.content
+					.split(/\n\n\*\*(?:Concept path|Quick check|Goal):\*\*/)[0]
+					.trim();
+				expect(item.content, entry.title).toBe(fullContent);
+			}
+		}
 		for (const added of additions)
 			expect(identities.filter(item => item.id === added.id)).toEqual([
 				added
@@ -488,6 +509,7 @@ it.each(
 				[
 					"smart-money-personal-finance",
 					"network-systems",
+					"algebra-1a",
 					"intro-to-environmental-science",
 					"elementary-science",
 					"intro-to-biology",
@@ -635,6 +657,7 @@ it.each(
 				completeAssignment &&
 				![
 					"network-systems",
+					"algebra-1a",
 					"middle-school-integrated-science",
 					"elementary-science",
 					"intro-to-biology",
@@ -699,7 +722,7 @@ it.each(
 					!module.internal &&
 					(!(
 						algebra ||
-						algebra1 ||
+						id === "algebra-1b" ||
 						[
 							"early-elementary-a-math",
 							"early-elementary-b-math",
@@ -790,8 +813,14 @@ it.each(
 			expect(activities).toHaveLength(79);
 			expect(activities.every(item => item.assignmentTextScope === "complete")).toBe(true);
 		} else if (id === "java-level-3") expect(modules).toHaveLength(25);
-		else if (algebra1)
-			expect(modules).toHaveLength(id === "algebra-1a" ? 21 : 25);
+		else if (id === "algebra-1a") {
+			expect(modules).toHaveLength(22);
+			expect(modules.filter(module => module.kind === "appendix").map(module => module.title)).toEqual(["Algebra 1A Reference"]);
+			expect(modules.flatMap(module => module.readings)).toHaveLength(21);
+			const activities = modules.flatMap(module => [...module.projects, ...module.optional]);
+			expect(activities).toHaveLength(63);
+			expect(activities.every(item => item.assignmentTextScope === "complete")).toBe(true);
+		} else if (algebra1) expect(modules).toHaveLength(25);
 		else if (algebra)
 			expect(modules).toHaveLength(id === "algebra-2a" ? 15 : 12);
 		else
@@ -934,7 +963,7 @@ it.each(
 			for (const reading of module.readings) {
 				expect(
 					reading.expectedText.length,
-					module.title
+					module.title + " / " + reading.title
 				).toBeGreaterThan(150);
 				expect(reading.paragraphBreaks, reading.title).toBe(
 					intentionalMathLineBreaks[id]?.[reading.title] ?? 0
