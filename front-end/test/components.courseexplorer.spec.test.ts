@@ -4072,4 +4072,131 @@ describe("CourseExplorer.vue", () => {
 		expect(api.put).not.toHaveBeenCalled();
 		wrapper.unmount();
 	});
+
+	it.each(
+		["learner", "instructor"].flatMap(role => [
+			{
+				role,
+				module: "ai-level-1-fai0-setup-and-tooling",
+				folders: ["FAI1-Dog-Class", "FAI1-Deck-of-Cards"]
+			},
+			{
+				role,
+				module: "ai-level-1-unit-2-stacks-queues-and-traversal-intuition",
+				folders: [
+					"FAI4-Practice-with-Stacks",
+					"FAI4-Practice-with-Queues",
+					"FAI-Queues"
+				]
+			}
+		])
+	)(
+		"offers legacy AI source actions from $module for $role",
+		async ({ role, module, folders }) => {
+			const pinia = createPinia();
+			setActivePinia(pinia);
+			const app = useAppStore();
+			app.setCurrentUser({
+				_id: "ai-leaf-learner",
+				name: "Learner",
+				email: "learner@example.invalid",
+				age: 14,
+				state: "GA",
+				courseAccess: ["ai-level-1"],
+				courseProgress: [],
+				editUsers: false,
+				saveEdit: "Save"
+			});
+			if (role === "instructor") {
+				app.setCurrentTutor({
+					_id: "ai-leaf-tutor",
+					name: "Tutor",
+					email: "tutor@example.invalid",
+					age: 30,
+					state: "GA",
+					coursePermissions: ["ai-level-1"],
+					usersOfTutorLength: 0,
+					editTutors: false,
+					saveEdit: "Save"
+				});
+				app.setUsers([app.currentUser!]);
+				vi.mocked(api.get).mockResolvedValueOnce({
+					data: [app.currentUser!]
+				});
+			}
+			window.history.replaceState({}, "", "/courses#" + module);
+			const wrapper = mount(CourseExplorer, {
+				global: { plugins: [pinia] }
+			});
+			try {
+				await flushPromises();
+				await vi.waitFor(() =>
+					expect(wrapper.find(".lesson-view-toggle").exists()).toBe(
+						true
+					)
+				);
+				await wrapper
+					.findAll(".lesson-view-toggle button")
+					.find(button => button.text() === "Projects")!
+					.trigger("click");
+				await flushPromises();
+				const actions = wrapper
+					.findAll("a.is-ide-starter")
+					.map(
+						link =>
+							new URL(
+								link.attributes("href"),
+								"https://example.invalid"
+							)
+					);
+				await wrapper
+					.findAll(".lesson-view-toggle button")
+					.find(button => button.text() === "Supplemental Projects")!
+					.trigger("click");
+				await flushPromises();
+				actions.push(
+					...wrapper
+						.findAll("a.is-ide-starter")
+						.map(
+							link =>
+								new URL(
+									link.attributes("href"),
+									"https://example.invalid"
+								)
+						)
+				);
+				for (const folder of folders) {
+					const matches = actions.filter(url =>
+						url.searchParams
+							.get("starterUrl")
+							?.endsWith("/" + folder)
+					);
+					expect(matches.length, folder).toBeGreaterThan(0);
+					for (const action of matches) {
+						expect(action.pathname).toBe("/ide");
+						expect(action.searchParams.get("course")).toBe(
+							"ai-level-1"
+						);
+						expect(action.searchParams.get("mode")).toBe("data");
+						expect(action.searchParams.get("projectKey")).toContain(
+							"ai-level-1:"
+						);
+						expect(action.searchParams.get("starterUrl")).toMatch(
+							/\/tree\/[a-f0-9]{40}\//
+						);
+					}
+				}
+				expect(
+					actions.some(url =>
+						/\/tree\/[a-f0-9]{40}$/.test(
+							url.searchParams.get("starterUrl") ?? ""
+						)
+					)
+				).toBe(false);
+				expect(api.put).not.toHaveBeenCalled();
+			} finally {
+				wrapper.unmount();
+			}
+		}
+	);
 });

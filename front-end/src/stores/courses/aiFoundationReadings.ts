@@ -32,6 +32,13 @@ export function applyAiFoundationReadings(
 			...module.curriculum,
 			...module.supplementalProjects
 		]) {
+			if (
+				/^https:\/\/github\.com\/instruction-material\/AI-Level-1\/tree\/[a-f0-9]{40}\/.+$/i.test(
+					item.projectLink ?? ""
+				)
+			) {
+				item.ideImport = true;
+			}
 			const entry = readings.find(
 				row => row.module === previousTitle && row.title === item.title
 			);

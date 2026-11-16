@@ -4,6 +4,7 @@ import { isLessonLearningItem } from "@/modules/courseLessonPresentation";
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
 import { aiLevel1Course } from "@/stores/courses/ai-level-1";
+import aiFoundationReadings from "@/stores/courses/aiFoundationReadingsData.json";
 import { apComputerScienceACourse } from "@/stores/courses/ap-computer-science-a";
 
 it("keeps authored introductory readings in Learn for learners and instructors", async () => {
@@ -57,7 +58,11 @@ it("keeps authored introductory readings in Learn for learners and instructors",
 					item => item.title === title
 				)!;
 				expect(displayed.content, `${role}: ${title}`).toBe(
-					authored.content
+					entry.id === "ai-level-1"
+						? aiFoundationReadings.find(
+								reading => reading.title === title
+							)!.content
+						: authored.content
 				);
 				expect(displayed.contentKind, title).toBe("reading");
 				expect(isLessonLearningItem(displayed), title).toBe(true);
