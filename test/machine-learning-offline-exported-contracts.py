@@ -1,6 +1,6 @@
 import hashlib
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import subprocess
 import sys
 import tempfile
@@ -19,7 +19,11 @@ for project in fixture["projects"]:
             with zipfile.ZipFile(archive) as z:
                 for name in z.namelist():
                     assert not name.startswith("/") and ".." not in Path(name).parts
+                roots = {PurePosixPath(name).parts[0] for name in z.namelist()}
+                assert len(roots) == 1 and all(len(PurePosixPath(name).parts) > 1 for name in z.namelist())
+                assert all((z.getinfo(name).external_attr >> 16) & 0o170000 != 0o120000 for name in z.namelist())
                 z.extractall(target)
+                target = target / next(iter(roots))
             names = {p.relative_to(target).as_posix() for p in target.rglob("*") if p.is_file()}
             expected = {name.removeprefix(project["folder"] + "/" + role + "/"): value
                         for name, value in fixture["files"].items()
