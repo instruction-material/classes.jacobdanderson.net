@@ -1443,7 +1443,7 @@ pgzrun.go()
 				encoding: "text"
 			},
 			{
-				name: "scores.csv",
+				name: "data/scores.csv",
 				content: "name,score\nAri,10\n",
 				encoding: "text"
 			}
@@ -5682,8 +5682,20 @@ else:
 		expect(isValidPythonFileName("images/player.py")).toBe(false);
 		expect(isValidPythonFileName("images/Robot.java")).toBe(false);
 		expect(isValidPythonFileName("sounds/eep.py")).toBe(false);
-		expect(isValidPythonFileName("package/data.csv")).toBe(false);
-		expect(isValidPythonFileName("package/data.tsv")).toBe(false);
+		expect(isValidPythonFileName("package/data.csv")).toBe(true);
+		expect(isValidPythonFileName("package/data.tsv")).toBe(true);
+		expect(isValidPythonFileName("data/holdout/scores.csv", "data")).toBe(
+			true
+		);
+		for (const path of [
+			"data/../scores.csv",
+			"/data/scores.csv",
+			"data//scores.csv",
+			"data/.hidden.csv",
+			"images/scores.csv",
+			"sounds/scores.tsv"
+		])
+			expect(isValidPythonFileName(path, "data"), path).toBe(false);
 		expect(isValidPythonFileName("../scores.tsv")).toBe(false);
 		expect(isValidPythonFileName("script.exe")).toBe(false);
 		expect(isPythonIdeRuntimeReservedPath("turtle.py")).toBe(true);
