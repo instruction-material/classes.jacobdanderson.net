@@ -16,32 +16,37 @@ async function main() {
 	const puppeteer = require("puppeteer");
 
 	const markdown = new MarkdownIt();
-	const directory = join(
-		checkout,
-		"front-end/src/stores/courses/readings/machine-learning-worked-cores"
-	);
 	const definition = JSON.parse(
 		await readFile(
-			join(
+			resolve(
 				checkout,
-				"test/fixtures/machine-learning-worked-reading-cases.json"
+				process.argv[5] ??
+					"test/fixtures/machine-learning-worked-reading-cases.json"
 			),
 			"utf8"
 		)
 	);
-	assert.equal(definition.items, 13);
+	assert.equal(definition.items, definition.cases.length);
+	assert.ok(definition.items > 0);
+	const courseId = definition.courseId ?? "machine-learning";
+	const directory = resolve(
+		checkout,
+		definition.readingDirectory ??
+			"front-end/src/stores/courses/readings/machine-learning-worked-cores"
+	);
 	const cases = definition.cases.map(item => [
-		item.moduleId.replace(/^machine-learning-/, ""),
+		item.moduleId,
 		item.title,
 		item.file,
 		item.view,
 		item.staticAudit
 	]);
-	assert.equal(cases.length, 13);
+	const expectedViews = definition.items * 4;
 	process.chdir(join(checkout, "front-end"));
 	await mkdir(output, { recursive: true });
 	let server, browser, context, page;
 	const profiles = [];
+	let nativeCSSPractice = null;
 	const startedAt = new Date().toISOString();
 	let activeCase;
 	console.log(
@@ -89,7 +94,10 @@ async function main() {
 			"/usr/bin/chromium",
 			"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 		].find(path => typeof path === "string" && path && existsSync(path));
-		assert.ok(executablePath, "An existing Chrome installation is required");
+		assert.ok(
+			executablePath,
+			"An existing Chrome installation is required"
+		);
 		browser = await puppeteer.launch({
 			executablePath,
 			headless: true,
@@ -110,35 +118,35 @@ async function main() {
 					email: "learner@example.invalid",
 					age: 14,
 					state: "GA",
-					courseAccess: ["machine-learning"],
+					courseAccess: [courseId],
 					courseProgress: []
 				};
 				await page.setRequestInterception(true);
-				page.on("request", (request) => {
+				page.on("request", request => {
 					if (request.isInterceptResolutionHandled()) return;
 					const url = new URL(request.url());
 					if (
-						url.origin !== origin
-						|| url.pathname.startsWith("/api/")
+						url.origin !== origin ||
+						url.pathname.startsWith("/api/")
 					) {
 						if (!["GET", "OPTIONS"].includes(request.method()))
 							writes++;
 						let body = {};
 						if (url.pathname === "/api/accounts/me") {
-							body
-								= role === "instructor"
+							body =
+								role === "instructor"
 									? { tutorID: "ml-reading-tutor" }
 									: { userID: user._id };
 						}
 						if (
-							url.pathname === "/api/users/loggedin"
-							&& role === "learner"
+							url.pathname === "/api/users/loggedin" &&
+							role === "learner"
 						) {
 							body = { currentUser: user };
 						}
 						if (
-							url.pathname === "/api/tutors/loggedin"
-							&& role === "instructor"
+							url.pathname === "/api/tutors/loggedin" &&
+							role === "instructor"
 						) {
 							body = {
 								currentTutor: {
@@ -148,15 +156,15 @@ async function main() {
 									age: 30,
 									state: "GA",
 									usersOfTutorLength: 1,
-									coursePermissions: ["machine-learning"],
+									coursePermissions: [courseId],
 									editTutors: false,
 									saveEdit: "Save"
 								}
 							};
 						}
 						if (
-							url.pathname
-							=== "/api/users/oftutor/ml-reading-tutor"
+							url.pathname ===
+							"/api/users/oftutor/ml-reading-tutor"
 						) {
 							body = [user];
 						}
@@ -188,10 +196,10 @@ async function main() {
 						definition.cases.find(item => item.file === file)
 							.sourceSHA256
 					);
-					await page.goto(
-						`${origin}/courses#machine-learning-${module}`,
-						{ waitUntil: "domcontentloaded", timeout: 60000 }
-					);
+					await page.goto(`${origin}/courses#${module}`, {
+						waitUntil: "domcontentloaded",
+						timeout: 60000
+					});
 					const view = expectedView;
 					await page.waitForSelector(
 						`.lesson-view-toggle button:nth-child(${view})`
@@ -200,7 +208,7 @@ async function main() {
 						`.lesson-view-toggle button:nth-child(${view})`
 					);
 					const target = {
-						prefix: `machine-learning-${module}-`,
+						prefix: `${module}-`,
 						title
 					};
 					await page.waitForFunction(
@@ -211,8 +219,8 @@ async function main() {
 								)
 							).some(
 								item =>
-									item.id.startsWith(prefix)
-									&& item.textContent.includes(title)
+									item.id.startsWith(prefix) &&
+									item.textContent.includes(title)
 							),
 						{},
 						target
@@ -222,8 +230,8 @@ async function main() {
 						(items, { prefix, title }) =>
 							items.find(
 								item =>
-									item.id.startsWith(prefix)
-									&& item.textContent.includes(title)
+									item.id.startsWith(prefix) &&
+									item.textContent.includes(title)
 							).id,
 						target
 					);
@@ -231,8 +239,9 @@ async function main() {
 						element.scrollIntoView({
 							behavior: "instant",
 							block: "start"
-						}));
-					const expected = await page.evaluate((html) => {
+						})
+					);
+					const expected = await page.evaluate(html => {
 						const element = document.createElement("div");
 						element.innerHTML = html;
 						return element.textContent.replace(/\s+/g, " ").trim();
@@ -242,8 +251,7 @@ async function main() {
 							document
 								.getElementById(anchor)
 								?.querySelector(".item-content-markdown")
-								?.textContent
-								.replace(/\s+/g, " ")
+								?.textContent.replace(/\s+/g, " ")
 								.trim() === expected,
 						{},
 						{ anchor, expected }
@@ -274,7 +282,11 @@ async function main() {
 							"The source-only historical audit is not an executable IDE task"
 						);
 						assert.ok(
-							links.every(href => new URL(href, origin).hostname === "github.com"),
+							links.every(
+								href =>
+									new URL(href, origin).hostname ===
+									"github.com"
+							),
 							"Historical source filenames must not become unrelated domain links"
 						);
 						assert.ok(
@@ -288,8 +300,8 @@ async function main() {
 					assert.equal(
 						await page.evaluate(
 							() =>
-								document.documentElement.scrollWidth
-								<= innerWidth + 2
+								document.documentElement.scrollWidth <=
+								innerWidth + 2
 						),
 						true,
 						`${file}: viewport fits`
@@ -308,7 +320,7 @@ async function main() {
 							})
 					);
 					await page.waitForFunction(
-						(anchor) => {
+						anchor => {
 							const element = document.querySelector(
 								`#${anchor} .item-content-markdown`
 							)?.lastElementChild;
@@ -353,16 +365,108 @@ async function main() {
 				context = null;
 			}
 		}
-		assert.equal(profiles.length, 52);
+
+		if (definition.localCSSPractice) {
+			context = await browser.createBrowserContext();
+			page = await context.newPage();
+			await page.setViewport({ width: 1280, height: 900 });
+			const htmlFromReading = async file => {
+				const source = await readFile(join(directory, file), "utf8");
+				const match = source.match(/^```html\n([\s\S]+?)\n```/m);
+				assert.ok(
+					match,
+					file + " has the supplied complete HTML example"
+				);
+				return match[1];
+			};
+			await page.setContent(
+				await htmlFromReading("css-selectors-practice.md")
+			);
+			const selections = await page.evaluate(() =>
+				[
+					[".menu > p", ["Soup", "Salad"]],
+					[".menu p.special", ["Soup", "Pie"]],
+					["#lunch + p", ["After"]]
+				].map(([selector, expected]) => ({
+					selector,
+					expected,
+					actual: Array.from(document.querySelectorAll(selector)).map(
+						element => element.textContent.trim()
+					)
+				}))
+			);
+			for (const selection of selections)
+				assert.deepEqual(selection.actual, selection.expected);
+			await page.setContent(
+				"<style>*{box-sizing:border-box}body{margin:0}.cards{display:flex;flex-wrap:wrap;gap:12px;width:480px}.card{flex:0 0 140px;padding:8px;border:1px solid}</style>" +
+					(await htmlFromReading("flexbox-practice.md"))
+			);
+			const layouts = [];
+			for (const width of [480, 280]) {
+				await page.$eval(
+					".cards",
+					(element, width) => {
+						element.style.width = width + "px";
+					},
+					width
+				);
+				const layout = await page.$eval(".cards", element => ({
+					cards: Array.from(element.children).map(card => ({
+						text: card.textContent.trim(),
+						width: card.getBoundingClientRect().width,
+						top: card.getBoundingClientRect().top
+					})),
+					pageFits: document.documentElement.scrollWidth <= innerWidth
+				}));
+				assert.deepEqual(
+					layout.cards.map(card => card.text),
+					["One", "Two", "Three"]
+				);
+				assert.ok(layout.cards.every(card => card.width === 140));
+				assert.equal(
+					new Set(layout.cards.map(card => card.top)).size,
+					width === 480 ? 1 : 3
+				);
+				assert.ok(layout.pageFits);
+				layouts.push({ containerWidth: width, ...layout });
+			}
+			nativeCSSPractice = {
+				accepted: true,
+				selections,
+				layouts,
+				externalDependencies: false
+			};
+			await context.close();
+			context = null;
+		}
+
+		assert.equal(profiles.length, expectedViews);
 		await writeFile(
 			join(output, "accepted.json"),
-			`${JSON.stringify({ at: new Date().toISOString(), sourceMode: config ? "actual application dev server" : "exact built application preview", accepted: true, fullLessonViews: 52, actualRoles: ["learner", "instructor"], widths: [390, 1280], allCompleteRenderedLessonTextsMatch: true, allLastParagraphsVisible: true, allApplicationWritesLocallyBlocked: true, profiles }, null, 2)}\n`
+			`${JSON.stringify(
+				{
+					at: new Date().toISOString(),
+					sourceMode: config
+						? "actual application dev server"
+						: "exact built application preview",
+					accepted: true,
+					fullLessonViews: expectedViews,
+					actualRoles: ["learner", "instructor"],
+					widths: [390, 1280],
+					allCompleteRenderedLessonTextsMatch: true,
+					allLastParagraphsVisible: true,
+					allApplicationWritesLocallyBlocked: true,
+					nativeCSSPractice,
+					profiles
+				},
+				null,
+				2
+			)}\n`
 		);
 		console.log(
 			JSON.stringify({ accepted: true, fullLessonViews: profiles.length })
 		);
-	}
-	catch (error) {
+	} catch (error) {
 		process.exitCode = 1;
 		if (page && !page.isClosed()) {
 			await writeFile(
@@ -371,7 +475,14 @@ async function main() {
 					{
 						error: String(error),
 						activeCase,
-						markdown: await page.$$eval(".item-content-markdown", elements => elements.map(element => ({ text: element.textContent, html: element.innerHTML }))).catch(() => []),
+						markdown: await page
+							.$$eval(".item-content-markdown", elements =>
+								elements.map(element => ({
+									text: element.textContent,
+									html: element.innerHTML
+								}))
+							)
+							.catch(() => []),
 						url: page.url(),
 						body: await page
 							.$eval("body", element => element.textContent)
@@ -383,8 +494,7 @@ async function main() {
 			);
 		}
 		throw error;
-	}
-	finally {
+	} finally {
 		await context?.close();
 		await browser?.close();
 		await server?.close();
@@ -403,7 +513,7 @@ async function main() {
 	}
 }
 
-main().catch((error) => {
+main().catch(error => {
 	console.error(error);
 	process.exitCode = 1;
 });

@@ -102,7 +102,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				{
 					title: "Check-In #1 Overview",
 					content:
-						"Use this checkpoint as a review of JavaScript variables, operators, randomness, loops, conditionals, SVG drawing, and nested loops. Each prompt produces a small runnable example and a short explanation of why the chosen JavaScript structure fits the task. The checkpoint identifies which fundamentals are fluent and which ones need more practice before the next project sequence.",
+						"Review JavaScript variables, operators, randomness, loops, conditionals, SVG drawing, and nested loops. Each prompt produces a small runnable example and a short explanation of why the chosen JavaScript structure fits the task. The checkpoint identifies which fundamentals are fluent and which ones need more practice before the next project sequence.",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/9023ac5a2ab1213c64d59d7b864aef8d"
 				},
@@ -196,7 +196,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				{
 					title: "Check-In #2 Overview",
 					content:
-						"Use this checkpoint to review the web-development half of JavaScript Level 1: HTML structure, CSS layout, D3 animation, DOM events, components, and responsive page layout. Each task connects a visible result to the underlying markup, style rule, or JavaScript event that created it.",
+						"Review the web-development half of JavaScript Level 1: HTML structure, CSS layout, D3 animation, DOM events, components, and responsive page layout. Each task connects a visible result to the underlying markup, style rule, or JavaScript event that created it.",
 					solutionLink:
 						"https://codepen.io/junilearning/pen/ce3da888e3e72bcaff1251f225b2f6fa"
 				},
@@ -1927,17 +1927,11 @@ function decorateJavaScriptLevel1Module(
 			...item,
 			content:
 				index === 0
-					? `**Course flow:** ${flow.stage}. ${flow.route}
+					? `${module.title.startsWith("Check-In") ? `${flow.route}\n\n` : ""}${item.content}
 
-**Standards route:** ${flow.standardsRoute}
+[Practice](${practiceLink}) · [Self-check](${verificationLink})
 
-**Evidence gate:** ${flow.evidence}
-
-**Local continuity:** Complete the [supplied browser case](${practiceLink}) before comparing it with the [verification guide](${verificationLink}). This route uses fictional inputs and local files, so CodePen, a CDN, and pending demonstration media are optional.
-
-**Current references:** ${references}. Record the browser and viewport, and record any D3, Materialize, font, icon, media, or host version that affects the result.
-
-${item.content}`
+References: ${references}.`
 					: item.content,
 			learningPath: "core" as const,
 			...(item.projectLink

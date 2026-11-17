@@ -1,0 +1,88 @@
+{
+  "courseId": "javascript-level-1-javascript-superstar",
+  "readingDirectory": "front-end/src/stores/courses/readings/javascript-superstar",
+  "items": 10,
+  "cases": [
+    {
+      "moduleId": "javascript-level-1-javascript-superstar-jss1-variables-and-data-types",
+      "title": "Variables and Data Types Core Concepts",
+      "file": "variables-and-input.md",
+      "sourceSHA256": "88650d7019528515bdf8eda8622c18002b54b90b66a555b1777a792e2479965f",
+      "view": 3,
+      "staticAudit": false
+    },
+    {
+      "moduleId": "javascript-level-1-javascript-superstar-jss2-operators-and-math",
+      "title": "Math Methods",
+      "file": "operators-and-randomness.md",
+      "sourceSHA256": "b6bba729fd20b4e97fbebcc0aa15086a208a21d9fa52b4f30586310edfb99468",
+      "view": 3,
+      "staticAudit": false
+    },
+    {
+      "moduleId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops",
+      "title": "JavaScript Level 1: JavaScript Superstar For Loops",
+      "file": "for-loops.md",
+      "sourceSHA256": "d316183ed1e31917770b09c77daa93254a5d5159f7c8cdf3be3f1e95540e9846",
+      "view": 3,
+      "staticAudit": false
+    },
+    {
+      "moduleId": "javascript-level-1-javascript-superstar-jss3-for-and-while-loops",
+      "title": "JavaScript Level 1: JavaScript Superstar While Loops",
+      "file": "while-loops.md",
+      "sourceSHA256": "65a132d705740fb94471e92547f4785909f4f7279eafd23c234eab1a25404419",
+      "view": 3,
+      "staticAudit": false
+    },
+    {
+      "moduleId": "javascript-level-1-javascript-superstar-jss4-combining-loops-and-variables",
+      "title": "Combining Loops and Variables",
+      "file": "accumulators-and-functions.md",
+      "sourceSHA256": "6cae0aa2623eb9ff8c5aeb3b6d0a875280e2851d7872048c594509b0fd618a74",
+      "view": 3,
+      "staticAudit": false
+    },
+    {
+      "moduleId": "javascript-level-1-javascript-superstar-jss4-combining-loops-and-variables",
+      "title": "ASCII",
+      "file": "character-codes.md",
+      "sourceSHA256": "05dc5aae828e6653dd413992eb162a95e6c0d84ae68c05a5f88eaad3942e2e25",
+      "view": 3,
+      "staticAudit": false
+    },
+    {
+      "moduleId": "javascript-level-1-javascript-superstar-jss5-conditionals",
+      "title": "Conditionals Core Concepts",
+      "file": "conditionals.md",
+      "sourceSHA256": "29939f57e0ecd386cd21f79d5a02919b2b4dd46a36f4b7249a08bc7f470a0c69",
+      "view": 3,
+      "staticAudit": false
+    },
+    {
+      "moduleId": "javascript-level-1-javascript-superstar-jss6-advanced-conditionals",
+      "title": "Advanced Conditionals Core Concepts",
+      "file": "advanced-conditionals.md",
+      "sourceSHA256": "dc90f8fbe5ad1f7ca729f7e1270c0839685225453da353f306c7a13fc1c748fa",
+      "view": 3,
+      "staticAudit": false
+    },
+    {
+      "moduleId": "javascript-level-1-javascript-superstar-jss9-introduction-to-html-css",
+      "title": "JSS9 Supplemental Project 1: Practice with CSS Selectors",
+      "file": "css-selectors-practice.md",
+      "sourceSHA256": "fa7b1aecb1a32583f5fffdb639ce098a01418e928444a0255099cfaf4a771e47",
+      "view": 2,
+      "staticAudit": false
+    },
+    {
+      "moduleId": "javascript-level-1-javascript-superstar-jss9-introduction-to-html-css",
+      "title": "JSS9 Supplemental Project 2: Practice with Flexbox",
+      "file": "flexbox-practice.md",
+      "sourceSHA256": "344d6401cfed4be51622f1c2b8c6d298cf7d94934a088cc4916b0b0c23aada08",
+      "view": 2,
+      "staticAudit": false
+    }
+  ],
+  "localCSSPractice": true
+}

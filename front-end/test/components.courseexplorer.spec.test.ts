@@ -47,6 +47,47 @@ function installLocalStorageStub() {
 }
 
 describe("CourseExplorer.vue", () => {
+	it("hides maintenance extras while retaining the original checkpoint tasks", async () => {
+		const pinia = createPinia();
+		setActivePinia(pinia);
+		useAppStore().setCurrentUser({
+			_id: "superstar-learner",
+			name: "Learner",
+			email: "learner@example.invalid",
+			age: 14,
+			state: "GA",
+			courseAccess: ["javascript-level-1-javascript-superstar"],
+			courseProgress: [],
+			editUsers: false,
+			saveEdit: "Save"
+		});
+		vi.mocked(api.get).mockResolvedValue({ data: [] });
+		window.history.replaceState(
+			{},
+			"",
+			"/courses#javascript-level-1-javascript-superstar-check-in-1"
+		);
+		const wrapper = mount(CourseExplorer, { global: { plugins: [pinia] } });
+		try {
+			await flushPromises();
+			await vi.waitFor(() =>
+				expect(
+					wrapper.find(".lesson-view-toggle button").exists()
+				).toBe(true)
+			);
+			await wrapper.find(".lesson-view-toggle button").trigger("click");
+			await vi.waitFor(() =>
+				expect(wrapper.text()).toContain("userColor")
+			);
+			expect(wrapper.findAll(".lesson-item")).toHaveLength(3);
+			expect(wrapper.text()).not.toContain("Extension Challenge");
+			expect(wrapper.text()).not.toContain("Transfer Practice");
+			expect(wrapper.text()).not.toContain("Extension Practice");
+			expect(wrapper.text()).not.toContain("Pending Demo Media");
+		} finally {
+			wrapper.unmount();
+		}
+	});
 	it.each(["learner", "instructor"])(
 		"offers original Scratch imports with %s role visibility",
 		async role => {

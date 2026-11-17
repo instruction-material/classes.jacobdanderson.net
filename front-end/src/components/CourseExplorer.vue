@@ -35,6 +35,7 @@ import {
 	lessonContentSections
 } from "@/modules/courseLessonPresentation";
 import { unmatchedCourseProgress } from "@/modules/courseProgressHistory";
+import { visibleCourseModules } from "@/modules/courseVisibility";
 import { javaRecursionProjectKey } from "@/modules/javaRecursionResources";
 import { javaRefactoringProjectKey } from "@/modules/javaRefactoringResources";
 import {
@@ -621,7 +622,7 @@ const completedItemIdSet = computed(
 );
 
 const courseModules = computed(() =>
-	(selectedCourse.value?.modules ?? []).filter(module => !module.internal)
+	visibleCourseModules(selectedCourse.value?.modules ?? [])
 );
 const coreCourseModules = computed(() =>
 	courseModules.value.filter(isCoreModule)

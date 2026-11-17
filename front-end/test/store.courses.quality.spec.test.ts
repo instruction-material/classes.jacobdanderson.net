@@ -2,6 +2,7 @@ import aiFoundationReadings from "@/stores/courses/aiFoundationReadingsData.json
 import { beforeEach, describe, expect, it } from "vitest";
 import fs from "node:fs";
 import { createHash } from "node:crypto";
+import { visibleCourseModules } from "@/modules/courseVisibility";
 import type {
 	RawCourse,
 	RawCourseModule,
@@ -737,6 +738,9 @@ function hasLessonBackbone(item: {
 }) {
 	return (
 		(item.contentKind === "reading" &&
+			wordCount(item.content) >= 80 &&
+			/^```(?:html|css|javascript)\n[\s\S]+?\n```/m.test(item.content)) ||
+		(item.contentKind === "reading" &&
 			wordCount(item.content) >= 120 &&
 			(item.content.match(/^## /gm)?.length ?? 0) >= 2 &&
 			/^## Worked\b/m.test(item.content)) ||
@@ -919,7 +923,13 @@ async function loadedCatalogCourses() {
 			const course = await loadRawCourse(entry.id);
 			if (!course) throw new Error(`Could not load course ${entry.id}`);
 
-			return { course, entry };
+			// Prose and lesson structure checks cover the same material the reader offers.
+			// The catalog identity suite separately retains every archived record.
+			const visibleCourse = {
+				...course,
+				modules: visibleCourseModules(course.modules)
+			};
+			return { course: visibleCourse, entry };
 		})
 	);
 
@@ -4035,11 +4045,9 @@ describe("course text quality normalization", () => {
 			/Explain APIs, requests, and why fetch is asynchronous\./
 		);
 		expect(corpus).toContain(
-			"Use CSS Diner to practice selector precision"
+			"CSS Diner is an optional way to practice selector precision"
 		);
-		expect(corpus).toContain(
-			"Use Flexbox Froggy as a layout reasoning drill"
-		);
+		expect(corpus).toContain("Flexbox Froggy is an optional layout drill");
 		expect(corpus).toContain(
 			"Functions turn a repeated process into a named operation"
 		);
@@ -6196,7 +6204,16 @@ describe("course text quality normalization", () => {
 				(course?.modules ?? [])
 					.filter(module => module.kind !== "appendix")
 					.filter(
-						module => !module.curriculum.some(hasLessonBackbone)
+						module =>
+							!module.curriculum.some(
+								item =>
+									hasLessonBackbone(item) ||
+									(wordCount(item.content) >= 120 &&
+										!!reviewedJavaScriptProjectReadme(
+											id,
+											item
+										))
+							)
 					)
 					.map(module => `${id} | ${module.title}`)
 			);

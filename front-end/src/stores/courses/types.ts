@@ -3,6 +3,8 @@ export type CourseItemLearningPath = "core" | "choice" | "challenge";
 export interface RawCourseModuleItem {
 	id?: string;
 	aliases?: string[];
+	/** Retain a maintenance record with its original progress identity. */
+	internal?: boolean;
 	title: string;
 	content: string;
 	/** Explicit content classification takes precedence over title heuristics. */

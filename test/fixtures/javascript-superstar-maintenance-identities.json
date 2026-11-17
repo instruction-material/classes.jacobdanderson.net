@@ -1,0 +1,134 @@
+[
+	{
+		"module": "Check-In #1",
+		"title": "JavaScript Level 1: JavaScript Superstar Check-In 1 Extension Challenge",
+		"id": "javascript-level-1-javascript-superstar-check-in-1-supplemental-javascript-level-1-javascript-superstar-check-in-1-extension-challenge",
+		"aliases": [
+			"javascript-level-1-javascript-superstar-check-in-1-supplemental-extension-challenge",
+			"check-in-1-extension-challenge",
+			"extension-challenge-check-in-1",
+			"javascript-level-1-javascript-superstar-check-in-1-supplemental-check-in-1-extension-challenge",
+			"javascript-level-1-javascript-superstar-check-in-1-supplemental-extension-challenge-check-in-1"
+		]
+	},
+	{
+		"module": "Check-In #1",
+		"title": "JavaScript Level 1: JavaScript Superstar Check-In 1 Transfer Practice",
+		"id": "javascript-level-1-javascript-superstar-check-in-1-supplemental-javascript-level-1-javascript-superstar-check-in-1-transfer-practice",
+		"aliases": [
+			"javascript-level-1-javascript-superstar-check-in-1-supplemental-transfer-practice",
+			"javascript-level-1-javascript-superstar-check-in-1-supplemental-transfer-practice-check-in-1",
+			"check-in-1-transfer-practice",
+			"javascript-level-1-javascript-superstar-check-in-1-supplemental-check-in-1-transfer-practice"
+		]
+	},
+	{
+		"module": "Check-In #1",
+		"title": "JavaScript Level 1: JavaScript Superstar Check-In 1 Extension Practice",
+		"id": "javascript-level-1-javascript-superstar-check-in-1-supplemental-javascript-level-1-javascript-superstar-check-in-1-extension-practice",
+		"aliases": [
+			"javascript-level-1-javascript-superstar-check-in-1-supplemental-extension-practice",
+			"javascript-level-1-javascript-superstar-check-in-1-supplemental-extension-practice-check-in-1",
+			"check-in-1-extension-practice",
+			"javascript-level-1-javascript-superstar-check-in-1-supplemental-check-in-1-extension-practice"
+		]
+	},
+	{
+		"module": "JSS9 Introduction to HTML & CSS",
+		"title": "Introduction to HTML & CSS Extension Practice",
+		"id": "javascript-level-1-javascript-superstar-jss9-introduction-to-html-css-supplemental-introduction-to-html-css-extension-practice",
+		"aliases": [
+			"javascript-level-1-javascript-superstar-jss9-introduction-to-html-css-supplemental-extension-practice"
+		]
+	},
+	{
+		"module": "JSS10 Animations in JavaScript",
+		"title": "Animations in JavaScript Extension Practice",
+		"id": "javascript-level-1-javascript-superstar-jss10-animations-in-javascript-supplemental-animations-in-javascript-extension-practice",
+		"aliases": [
+			"javascript-level-1-javascript-superstar-jss10-animations-in-javascript-supplemental-extension-practice"
+		]
+	},
+	{
+		"module": "JSS11 More HTML & CSS",
+		"title": "More HTML & CSS Transfer Practice",
+		"id": "javascript-level-1-javascript-superstar-jss11-more-html-css-supplemental-more-html-css-transfer-practice",
+		"aliases": [
+			"javascript-level-1-javascript-superstar-jss11-more-html-css-supplemental-transfer-practice"
+		]
+	},
+	{
+		"module": "JSS11 More HTML & CSS",
+		"title": "More HTML & CSS Extension Practice",
+		"id": "javascript-level-1-javascript-superstar-jss11-more-html-css-supplemental-more-html-css-extension-practice",
+		"aliases": [
+			"javascript-level-1-javascript-superstar-jss11-more-html-css-supplemental-extension-practice"
+		]
+	},
+	{
+		"module": "JSS12 Basic Website Layout",
+		"title": "Basic Website Layout Transfer Practice",
+		"id": "javascript-level-1-javascript-superstar-jss12-basic-website-layout-supplemental-basic-website-layout-transfer-practice",
+		"aliases": [
+			"javascript-level-1-javascript-superstar-jss12-basic-website-layout-supplemental-transfer-practice"
+		]
+	},
+	{
+		"module": "JSS12 Basic Website Layout",
+		"title": "Basic Website Layout Extension Practice",
+		"id": "javascript-level-1-javascript-superstar-jss12-basic-website-layout-supplemental-basic-website-layout-extension-practice",
+		"aliases": [
+			"javascript-level-1-javascript-superstar-jss12-basic-website-layout-supplemental-extension-practice"
+		]
+	},
+	{
+		"module": "JSS13 The Grid Layout",
+		"title": "The Grid Layout Extension Practice",
+		"id": "javascript-level-1-javascript-superstar-jss13-the-grid-layout-supplemental-the-grid-layout-extension-practice",
+		"aliases": [
+			"javascript-level-1-javascript-superstar-jss13-the-grid-layout-supplemental-extension-practice"
+		]
+	},
+	{
+		"module": "JSS14 Dynamic Websites with JavaScript",
+		"title": "Dynamic Websites with JavaScript Extension Practice",
+		"id": "javascript-level-1-javascript-superstar-jss14-dynamic-websites-with-javascript-supplemental-dynamic-websites-with-javascript-extension-practice",
+		"aliases": [
+			"javascript-level-1-javascript-superstar-jss14-dynamic-websites-with-javascript-supplemental-extension-practice"
+		]
+	},
+	{
+		"module": "Check-In #2",
+		"title": "JavaScript Level 1: JavaScript Superstar Check-In 2 Extension Challenge",
+		"id": "javascript-level-1-javascript-superstar-check-in-2-supplemental-javascript-level-1-javascript-superstar-check-in-2-extension-challenge",
+		"aliases": [
+			"javascript-level-1-javascript-superstar-check-in-2-supplemental-extension-challenge",
+			"check-in-2-extension-challenge",
+			"extension-challenge-check-in-2",
+			"javascript-level-1-javascript-superstar-check-in-2-supplemental-check-in-2-extension-challenge",
+			"javascript-level-1-javascript-superstar-check-in-2-supplemental-extension-challenge-check-in-2"
+		]
+	},
+	{
+		"module": "Check-In #2",
+		"title": "JavaScript Level 1: JavaScript Superstar Check-In 2 Transfer Practice",
+		"id": "javascript-level-1-javascript-superstar-check-in-2-supplemental-javascript-level-1-javascript-superstar-check-in-2-transfer-practice",
+		"aliases": [
+			"javascript-level-1-javascript-superstar-check-in-2-supplemental-transfer-practice",
+			"javascript-level-1-javascript-superstar-check-in-2-supplemental-transfer-practice-check-in-2",
+			"check-in-2-transfer-practice",
+			"javascript-level-1-javascript-superstar-check-in-2-supplemental-check-in-2-transfer-practice"
+		]
+	},
+	{
+		"module": "Check-In #2",
+		"title": "JavaScript Level 1: JavaScript Superstar Check-In 2 Extension Practice",
+		"id": "javascript-level-1-javascript-superstar-check-in-2-supplemental-javascript-level-1-javascript-superstar-check-in-2-extension-practice",
+		"aliases": [
+			"javascript-level-1-javascript-superstar-check-in-2-supplemental-extension-practice",
+			"javascript-level-1-javascript-superstar-check-in-2-supplemental-extension-practice-check-in-2",
+			"check-in-2-extension-practice",
+			"javascript-level-1-javascript-superstar-check-in-2-supplemental-check-in-2-extension-practice"
+		]
+	}
+]

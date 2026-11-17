@@ -16,6 +16,7 @@ import { applyGrammarMechanicsReadings } from "./grammarMechanicsReadings";
 import { applyIntroPhysicsReferences } from "./introPhysicsReferences";
 import { applyJavaPatternReferences } from "./javaPatternReferences";
 import { applyJavaRefactoringReferences } from "./javaRefactoringReferences";
+import { applyJavaScriptSuperstarReadings } from "./javascriptSuperstarReadings";
 import { applyJoyOfReadingGuidance } from "./joyOfReadingProjects";
 import { isJuniScratchProjectTitle } from "./juniScratchProjects";
 import { applyLateElementaryAProjects } from "./lateElementaryAProjects";
@@ -9920,6 +9921,8 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 	) {
 		applyMiddleSchoolWritingReadings(course, rawCourse);
 	}
+	if (id === "javascript-level-1-javascript-superstar")
+		applyJavaScriptSuperstarReadings(course, rawCourse);
 	if (id === "network-systems") applyNetworkStudyReadings(course);
 	if (id === "machine-learning") {
 		applyMachineLearningClusteringReadings(course);

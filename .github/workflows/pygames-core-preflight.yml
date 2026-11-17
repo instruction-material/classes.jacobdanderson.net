@@ -1,6 +1,6 @@
 name: Course preflight
 
-run-name: ${{ inputs.course == 'machine-learning-neurons' && 'Worked machine learning lessons and Python workflows' || inputs.course == 'machine-learning' && 'Machine Learning offline core and source workflows' || inputs.course == 'network-practice' && 'Network complete teaching and practice workflows' || inputs.course == 'tracker-evidence' && inputs.browser_artifact_id != '' && 'Welcome native UI verification' || inputs.course == 'network-capstone-optional' && 'Network capstone identity and optional workflows' || inputs.course == 'network-diagnostics-five' && 'Network diagnostics workflows' || inputs.course == 'network-kernel-optional' && 'Network routing and capture workflows' || inputs.course == 'network-firewall-optional' && 'Network optional firewall workflows' || inputs.course == 'network-dns-optional' && 'Network optional DNS workflows' || inputs.course == 'ai-studios' && 'AI search and game studios' || inputs.course == 'swift-map' && 'Swift Map course and native checks' || inputs.course == 'native-release-evidence' && 'Native release file verification' || inputs.course == 'tracker-evidence' && 'Retained Tracker failure evidence' || inputs.course == 'scratch-tasks' && 'Published Scratch project tasks' || inputs.course == 'course-audit' && 'Course audit follow-ups' || inputs.course == 'scratch-readings' && 'Scratch and self-study readings' || inputs.course == 'scratch-originals' && 'Original Scratch imports' || inputs.course == 'bootcamp' && 'Scratch Bootcamp pages' || inputs.course == 'self-study' && 'Self-study course pages' || inputs.course == 'physics-models' && 'Physics model workflows' || inputs.course == 'networking' && 'Swift Networking source evidence' || inputs.course == 'ai-setup' && 'AI setup reading' || 'PyGames core preflight' }}
+run-name: ${{ inputs.course == 'javascript-superstar-readings' && 'JavaScript Superstar complete lessons and local CSS practice' || inputs.course == 'machine-learning-neurons' && 'Worked machine learning lessons and Python workflows' || inputs.course == 'machine-learning' && 'Machine Learning offline core and source workflows' || inputs.course == 'network-practice' && 'Network complete teaching and practice workflows' || inputs.course == 'tracker-evidence' && inputs.browser_artifact_id != '' && 'Welcome native UI verification' || inputs.course == 'network-capstone-optional' && 'Network capstone identity and optional workflows' || inputs.course == 'network-diagnostics-five' && 'Network diagnostics workflows' || inputs.course == 'network-kernel-optional' && 'Network routing and capture workflows' || inputs.course == 'network-firewall-optional' && 'Network optional firewall workflows' || inputs.course == 'network-dns-optional' && 'Network optional DNS workflows' || inputs.course == 'ai-studios' && 'AI search and game studios' || inputs.course == 'swift-map' && 'Swift Map course and native checks' || inputs.course == 'native-release-evidence' && 'Native release file verification' || inputs.course == 'tracker-evidence' && 'Retained Tracker failure evidence' || inputs.course == 'scratch-tasks' && 'Published Scratch project tasks' || inputs.course == 'course-audit' && 'Course audit follow-ups' || inputs.course == 'scratch-readings' && 'Scratch and self-study readings' || inputs.course == 'scratch-originals' && 'Original Scratch imports' || inputs.course == 'bootcamp' && 'Scratch Bootcamp pages' || inputs.course == 'self-study' && 'Self-study course pages' || inputs.course == 'physics-models' && 'Physics model workflows' || inputs.course == 'networking' && 'Swift Networking source evidence' || inputs.course == 'ai-setup' && 'AI setup reading' || 'PyGames core preflight' }}
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ on:
       course:
         description: Course verification to run
         type: choice
-        options: [machine-learning-neurons, machine-learning, network-practice, network-archive-six, javascript-circle-march, network-capstone-optional, network-diagnostics-five, network-kernel-optional, network-firewall-optional, network-dns-optional, java-refactoring-followup, java-refactoring-final, release-checks, ai-studios, swift-map, javascript-business-directory, java-testability, java-pattern-journeys, java-generalization, java-method-calls, javascript-hundred-squares, javascript-businesses, javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
+        options: [javascript-superstar-readings, machine-learning-neurons, machine-learning, network-practice, network-archive-six, javascript-circle-march, network-capstone-optional, network-diagnostics-five, network-kernel-optional, network-firewall-optional, network-dns-optional, java-refactoring-followup, java-refactoring-final, release-checks, ai-studios, swift-map, javascript-business-directory, java-testability, java-pattern-journeys, java-generalization, java-method-calls, javascript-hundred-squares, javascript-businesses, javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
         default: pygames
       full_source_runtime:
         description: Also verify every pinned original PyGames runtime profile
@@ -555,7 +555,7 @@ jobs:
 
 
   release-checks:
-    if: inputs.course == 'release-checks' || inputs.course == 'machine-learning' || inputs.course == 'machine-learning-neurons'
+    if: inputs.course == 'release-checks' || inputs.course == 'machine-learning' || inputs.course == 'machine-learning-neurons' || inputs.course == 'javascript-superstar-readings'
     runs-on: ubuntu-24.04
     timeout-minutes: ${{ inputs.course == 'machine-learning' && 90 || 45 }}
     env:
@@ -634,6 +634,11 @@ jobs:
           node scripts/classes-family-heavy-task.mjs -- node scripts/run-course-browser-phase.mjs test/machine-learning-neuron-course-browser.test.mjs output/release-checks/ml-neuron-browser-rerun-state.json
           python3 -B test/machine-learning-neuron-exported-contracts.py output/release-checks/machine-learning-neurons
           node scripts/classes-family-heavy-task.mjs -- node test/machine-learning-worked-readings-browser.mjs "$PWD" output/release-checks/machine-learning-worked-readings
+      - name: Verify complete JavaScript Superstar lessons and local CSS activities
+        if: inputs.course == 'javascript-superstar-readings'
+        run: |
+          node test/javascript-superstar-worked-examples.mjs front-end/src/stores/courses/readings/javascript-superstar output/release-checks/javascript-superstar-native-examples.json
+          node scripts/classes-family-heavy-task.mjs -- node test/machine-learning-worked-readings-browser.mjs "$PWD" output/release-checks/javascript-superstar-readings "" test/fixtures/javascript-superstar-worked-reading-cases.json
       - name: Verify the standalone backend locked graph and both audits
         working-directory: back-end
         run: |
@@ -711,6 +716,32 @@ jobs:
                   assert {(row["role"], row["width"]) for row in profiles} == {("learner", 390), ("learner", 1280), ("instructor", 390), ("instructor", 1280)}
                   assert all(row["sourceSHA256"] == case["sourceSHA256"] and row["lastParagraphVisible"] for row in profiles)
               proof["machineLearningWorkedReadings"] = {"items": 13, "completeViews": 52, "lastParagraphsVisible": True}
+          if os.environ["ML_COURSE_PREFLIGHT"] == "javascript-superstar-readings":
+              readings = json.loads((out / "javascript-superstar-readings/accepted.json").read_text())
+              native = json.loads((out / "javascript-superstar-native-examples.json").read_text())
+              fixtures = json.loads(Path("test/fixtures/javascript-superstar-worked-reading-cases.json").read_text())
+              assert fixtures["items"] == len(fixtures["cases"]) == 10
+              assert readings["accepted"] and readings["fullLessonViews"] == 40
+              assert readings["sourceMode"] == "exact built application preview"
+              assert readings["allCompleteRenderedLessonTextsMatch"] and readings["allLastParagraphsVisible"]
+              assert set(readings["actualRoles"]) == {"learner", "instructor"} and readings["widths"] == [390, 1280]
+              for case in fixtures["cases"]:
+                  profiles = [row for row in readings["profiles"] if row["file"] == case["file"]]
+                  assert len(profiles) == 4
+                  assert {(row["role"], row["width"]) for row in profiles} == {("learner", 390), ("learner", 1280), ("instructor", 390), ("instructor", 1280)}
+                  assert all(row["sourceSHA256"] == case["sourceSHA256"] and row["lastParagraphVisible"] for row in profiles)
+              assert readings["nativeCSSPractice"]["accepted"]
+              assert len(readings["nativeCSSPractice"]["selections"]) == 3
+              assert [row["containerWidth"] for row in readings["nativeCSSPractice"]["layouts"]] == [480, 280]
+              assert native["acceptedWithinNativeExampleScope"] and native["readingFiles"] == 8
+              assert native["fencedPrograms"] == 20 and native["nativeExecutions"] == 40
+              assert all(row["matched"] for row in native["runs"])
+              for name, value in native["files"].items():
+                  assert next(row["sourceSHA256"] for row in fixtures["cases"] if row["file"] == name) == value
+              proof["javascriptSuperstarReadings"] = {"items": 10, "completeViews": 40,
+                                                    "nativeJavaScriptExamples": 20, "nativeJavaScriptExecutions": 40,
+                                                    "nativeCSSSelectorChecks": 3, "nativeCSSLayoutWidths": [480, 280],
+                                                    "lastParagraphsVisible": True}
           (out / "accepted.json").write_text(json.dumps(proof, indent=2) + "\n")
           PY
           cp /tmp/classes-family-heavy-tasks.log output/release-checks/processes.jsonl
