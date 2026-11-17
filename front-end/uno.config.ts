@@ -1,3 +1,4 @@
+import process from "node:process";
 import { createLocalFontProcessor } from "@unocss/preset-web-fonts/local";
 import {
 	defineConfig,
@@ -11,6 +12,17 @@ import {
 } from "unocss";
 
 const isVitest = process.env.VITEST === "true";
+
+// Raw imports are lesson text and program data, not class declarations.
+const variantGroups = transformerVariantGroup();
+const literalSafeVariantGroups = {
+	...variantGroups,
+	codeFilter(code: string, id: string) {
+		const query = id.split("?", 2)[1] ?? "";
+		if (new URLSearchParams(query).has("raw")) return false;
+		return variantGroups.codeFilter?.(code, id) ?? true;
+	}
+};
 
 export default defineConfig({
 	shortcuts: [
@@ -43,6 +55,6 @@ export default defineConfig({
 					})
 				])
 	],
-	transformers: [transformerDirectives(), transformerVariantGroup()],
+	transformers: [transformerDirectives(), literalSafeVariantGroups],
 	safelist: "prose prose-sm m-auto text-left".split(" ")
 });
