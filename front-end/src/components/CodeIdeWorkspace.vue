@@ -8967,7 +8967,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 						:data-view="view"
 						type="button"
 						:aria-pressed="mobileView === view"
-						:disabled="view === 'canvas' && !usesVisualOutput"
+						:disabled="view === 'canvas' && !hasRuntimeVisuals"
 						@click="selectMobileView(view)"
 					>
 						{{

@@ -183,7 +183,7 @@ describe("Machine Learning owned assignments and supplied data", () => {
 					...module.curriculum,
 					...module.supplementalProjects
 				]);
-				expect(owned).toHaveLength(39);
+				expect(owned).toHaveLength(52);
 				for (const raw of owned) {
 					const item = all.find(
 						candidate => candidate.title === raw.title

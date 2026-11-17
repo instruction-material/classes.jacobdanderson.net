@@ -411,10 +411,10 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 							url.hostname === "raw.githubusercontent.com"
 						) {
 							const prefix = `/instruction-material/${sourceRepository}/${fixture.revision}/${pack}/`;
-							const name = decodeURIComponent(
+							let name = decodeURIComponent(
 								url.pathname.slice(prefix.length)
 							);
-							const file
+							let file
 								= url.pathname.startsWith(prefix)
 									&& ((
 										definition.sharedFiles ?? ["README.md"]
@@ -422,6 +422,11 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 									|| name.startsWith(`${sourceRole}/`))
 									? fixture.files[`${pack}/${name}`]
 									: null;
+							const supplied = definition.githubRawFile?.({ url, role: sourceRole });
+							if (supplied) {
+								name = supplied.name;
+								file = supplied.file;
+							}
 							requests.push(name);
 							void request.respond({
 								status: file ? 200 : 404,
@@ -833,6 +838,12 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 								url: page.url(),
 								requests,
 								error: String(error),
+								output: await page.$eval(".output-panel", element => element.textContent).catch(() => null),
+								mobileView: await page.$eval(".mobile-view-picker", element => element.innerHTML).catch(() => null),
+								runtimeFrames: await Promise.all(page.frames().map(async frame => ({
+									url: frame.url(),
+									charts: await frame.$$eval(".artifact-card img", images => images.map(image => ({ complete: image.complete, width: image.naturalWidth, height: image.naturalHeight }))).catch(() => [])
+								}))),
 								savedProjects: await savedProjects(page).catch(failure => ({ unavailable: String(failure) })),
 								profiles
 							},
