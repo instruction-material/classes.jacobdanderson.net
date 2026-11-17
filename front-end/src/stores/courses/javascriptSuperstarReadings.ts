@@ -128,6 +128,21 @@ export function applyJavaScriptSuperstarReadings(
 			.join("\n\n");
 		setText(find("Check-In #1", title), content);
 	}
+	const checkpointItems = [
+		find(
+			"Check-In #1",
+			"JavaScript Level 1: JavaScript Superstar Check-In 1 Overview"
+		),
+		...groups.map(([title]) => find("Check-In #1", title))
+	];
+	for (const item of checkpointItems) {
+		const path =
+			"/course-assets/javascript-level-1/fundamentals-checkpoint-v1";
+		item.projectLink = `${path}/starter/index.html.txt`;
+		item.solutionLink = `${path}/reference/index.html.txt`;
+		item.ideImport = true;
+	}
+	checkpointItems[0].contentKind = "reading";
 	setText(
 		find(
 			"JSS15 Master Project",
@@ -142,7 +157,10 @@ export function applyJavaScriptSuperstarReadings(
 		"Drawing Arcs",
 		"Nested Loops",
 		"Introduction to HTML",
+		"Document Object Model (DOM)",
 		"The Box Model",
+		"Component Libraries",
+		"Material Icons",
 		"Introduction to CSS Grid",
 		"Manipulating HTML with JavaScript",
 		"JavaScript Components",
@@ -190,6 +208,22 @@ export function applyJavaScriptSuperstarReadings(
 	);
 	find("Check-In #2", "Check-In #2: Website Layout").contentKind =
 		"assignment";
+
+	const webCheckpoint = find("Check-In #2", "Check-In #2: HTML & CSS");
+	if (!webCheckpoint.projectLink || !webCheckpoint.solutionLink) {
+		throw new Error("Missing JavaScript web checkpoint roles");
+	}
+	for (const title of [
+		"Check-In #2: Animations and JavaScript Components",
+		"Check-In #2: Website Layout"
+	]) {
+		const item = find("Check-In #2", title);
+		const path =
+			"/course-assets/javascript-level-1/checkpoints-v1/web-checkpoint";
+		item.projectLink = `${path}/starter/index.html.txt`;
+		item.solutionLink = `${path}/reference/index.html.txt`;
+		item.ideImport = true;
+	}
 
 	// Keep maintenance records and historical progress identities outside the learner sequence.
 	for (const module of course.modules) {

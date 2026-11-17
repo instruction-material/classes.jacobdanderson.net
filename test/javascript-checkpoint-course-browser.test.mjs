@@ -8,7 +8,10 @@ import { editedCheckpointSource } from "./javascript-checkpoint-browser-cases.mj
 
 const fixture = JSON.parse(
 	readFileSync(
-		new URL("./fixtures/javascript-checkpoint-sources.json", import.meta.url),
+		new URL(
+			"./fixtures/javascript-checkpoint-sources.json",
+			import.meta.url
+		),
 		"utf8"
 	)
 );
@@ -37,7 +40,7 @@ for (const project of projects) {
 	const roles = selected.some(row => row.role === "reference")
 		? ["starter", "solution"]
 		: ["starter"];
-	const select = (role) => {
+	const select = role => {
 		const selectedRole = role === "starter" ? "starter" : "reference";
 		const found = selected.filter(row => row.role === selectedRole);
 		assert.equal(found.length, 1);
@@ -46,7 +49,7 @@ for (const project of projects) {
 	test(
 		`JavaScript ${project}: original assignment consent, saved source and complete ZIPs`,
 		{ timeout: 180000 },
-		async (t) => {
+		async t => {
 			await runAssemblyCoreCourseWorkflow(t, {
 				kind: `javascript-${project}`,
 				courseID: fixture.courseId,
@@ -55,7 +58,15 @@ for (const project of projects) {
 				roles,
 				mode: "web",
 				fixturePath: "./fixtures/javascript-checkpoint-sources.json",
-				sourceUrl: role => select(role).urls[0],
+				sourceUrl: (role, itemID) =>
+					project === "web-checkpoint" &&
+					itemID &&
+					itemID !== selected[0].itemId
+						? "/course-assets/javascript-level-1/" +
+							select(role).files.find(
+								file => file.name === "index.html"
+							).path
+						: select(role).urls[0],
 				localSource: {
 					prefix: "/course-assets/javascript-level-1/",
 					files: role => select(role).files
@@ -66,13 +77,31 @@ for (const project of projects) {
 				fileCount: role => select(role).files.length,
 				initialFile: "index.html",
 				primaryFile: "index.html",
-				editFiles: ["index.html", "styles.css", "README.md", "script.js"],
+				editFiles: [
+					"index.html",
+					"styles.css",
+					"README.md",
+					"script.js"
+				],
 				editContent: ({ role, filename, original }) =>
 					["index.html", "styles.css", "script.js"].includes(filename)
-						? editedCheckpointSource(select(role), filename, original)
+						? editedCheckpointSource(
+								select(role),
+								filename,
+								original
+							)
 						: undefined,
 				taskFile: "README.md",
-				continuationIDs: [selected[0].itemId],
+				continuationIDs:
+					project === "web-checkpoint"
+						? [
+								selected[0].itemId,
+								selected[0].moduleId +
+									"-curriculum-check-in-2-animations-and-javascript-components",
+								selected[0].moduleId +
+									"-curriculum-check-in-2-website-layout"
+							]
+						: [selected[0].itemId],
 				projectKey: role =>
 					`${fixture.courseId}:${select(role).itemId}:${select(role).role}:${project}:v${select(role).version}`,
 				previousProject: () => ({

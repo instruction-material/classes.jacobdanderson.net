@@ -1,0 +1,130 @@
+import { javascriptCheckpointResources } from "@/modules/javascriptCheckpointResources";
+
+export const javascriptFundamentalsCheckpointResources = [
+	{
+		project: "fundamentals-checkpoint",
+		title: "Fundamentals checkpoint",
+		version: 1,
+		role: "starter",
+		workspaceItemId:
+			"javascript-level-1-javascript-superstar-check-in-1-curriculum-javascript-level-1-javascript-superstar-check-in-1-overview",
+		urls: [
+			"/course-assets/javascript-level-1/fundamentals-checkpoint-v1/starter/index.html.txt"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "fundamentals-checkpoint-v1/starter/index.html.txt",
+				byteLength: 816,
+				sha256: "13ce73b7768ba97cc8a801d051ce292c10c9a4a85805db26c2107d89100dc72b"
+			},
+			{
+				name: "styles.css",
+				path: "fundamentals-checkpoint-v1/starter/styles.css.txt",
+				byteLength: 278,
+				sha256: "81e6735ecf470d4cfa3273d93029a169f2fde5bbd8520287942b088d4f5499de"
+			},
+			{
+				name: "script.js",
+				path: "fundamentals-checkpoint-v1/starter/script.js.txt",
+				byteLength: 1229,
+				sha256: "0b74a122633e4c47c7f5f590e48ff1f7aeb6e006b0f4dd99a0ee7fbcddfd63fc"
+			},
+			{
+				name: "README.md",
+				path: "fundamentals-checkpoint-v1/starter/README.md.txt",
+				byteLength: 2848,
+				sha256: "be55490cc6ccaa39d635914d7996a7dc2aebcbc7fba204301484b332e5fc8ac5"
+			},
+			{
+				name: "SOURCES.md",
+				path: "fundamentals-checkpoint-v1/starter/SOURCES.md.txt",
+				byteLength: 876,
+				sha256: "4dfedcab3637dccc7e4d8d4d9a9fb4248d27d5e9df5bbdbbaab7e455dbbc57be"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "first-module-shared-v1/vendor/d3.min.js.txt",
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "first-module-shared-v1/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			}
+		]
+	},
+	{
+		project: "fundamentals-checkpoint",
+		title: "Fundamentals checkpoint",
+		version: 1,
+		role: "reference",
+		workspaceItemId:
+			"javascript-level-1-javascript-superstar-check-in-1-curriculum-javascript-level-1-javascript-superstar-check-in-1-overview",
+		urls: [
+			"/course-assets/javascript-level-1/fundamentals-checkpoint-v1/reference/index.html.txt",
+			"https://codepen.io/junilearning/pen/9023ac5a2ab1213c64d59d7b864aef8d"
+		],
+		files: [
+			{
+				name: "index.html",
+				path: "fundamentals-checkpoint-v1/reference/index.html.txt",
+				byteLength: 816,
+				sha256: "13ce73b7768ba97cc8a801d051ce292c10c9a4a85805db26c2107d89100dc72b"
+			},
+			{
+				name: "styles.css",
+				path: "fundamentals-checkpoint-v1/reference/styles.css.txt",
+				byteLength: 278,
+				sha256: "81e6735ecf470d4cfa3273d93029a169f2fde5bbd8520287942b088d4f5499de"
+			},
+			{
+				name: "script.js",
+				path: "fundamentals-checkpoint-v1/reference/script.js.txt",
+				byteLength: 3297,
+				sha256: "6c8ffb04fdbba9aa75b19aa53ddb43ce78987e0e7eb754bd510491e4b3073d20"
+			},
+			{
+				name: "README.md",
+				path: "fundamentals-checkpoint-v1/reference/README.md.txt",
+				byteLength: 2848,
+				sha256: "be55490cc6ccaa39d635914d7996a7dc2aebcbc7fba204301484b332e5fc8ac5"
+			},
+			{
+				name: "SOURCES.md",
+				path: "fundamentals-checkpoint-v1/reference/SOURCES.md.txt",
+				byteLength: 876,
+				sha256: "4dfedcab3637dccc7e4d8d4d9a9fb4248d27d5e9df5bbdbbaab7e455dbbc57be"
+			},
+			{
+				name: "vendor/d3.min.js",
+				path: "first-module-shared-v1/vendor/d3.min.js.txt",
+				byteLength: 248435,
+				sha256: "010856c8fc4ff4370b9ce0bafbca99b82d63e74cafbddcb25be05a74007f4832"
+			},
+			{
+				name: "LICENSE-d3.txt",
+				path: "first-module-shared-v1/LICENSE-d3.txt.txt",
+				byteLength: 1475,
+				sha256: "7a3cb0e5055874e67db9aa2d5fe26de23204fa994ffbad198901ffe9c812a717"
+			}
+		]
+	},
+
+	// Add local aliases for continuations while retaining every original CodePen namespace.
+	...javascriptCheckpointResources
+		.filter(resource => resource.project === "web-checkpoint")
+		.map(resource => ({
+			...resource,
+			workspaceItemId:
+				"javascript-level-1-javascript-superstar-check-in-2-curriculum-check-in-2-html-css",
+			urls: [
+				`/course-assets/javascript-level-1/${
+					resource.files.find(file => file.name === "index.html")!
+						.path
+				}`
+			]
+		}))
+] as const;
