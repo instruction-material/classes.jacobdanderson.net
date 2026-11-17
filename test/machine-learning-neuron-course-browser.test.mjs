@@ -208,7 +208,7 @@ for (const project of fixture.projects.filter(
 						} .item-content-markdown`;
 					await page.waitForSelector(coreSelector);
 					await page.$eval(coreSelector, element =>
-						element.scrollIntoView({ block: "start" }));
+						element.scrollIntoView({ behavior: "instant", block: "start" }));
 					const expectedCore = await page.evaluate((html) => {
 						const element = document.createElement("div");
 						element.innerHTML = html;
@@ -250,6 +250,7 @@ for (const project of fixture.projects.filter(
 					});
 					await page.$eval(coreSelector, element =>
 						element.lastElementChild.scrollIntoView({
+							behavior: "instant",
 							block: "end"
 						}));
 					await page.screenshot({

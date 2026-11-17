@@ -6861,9 +6861,8 @@ describe("course text quality normalization", () => {
 		);
 
 		const masterProject = findItem(course!, /Master Project Planning/);
-		expect(masterProject.content).toContain(
-			"The result can be evaluated with an appropriate metric"
-		);
+		expect(masterProject.preserveInstructions).toBe(true);
+		expect(masterProject.content).toContain("Freeze the selected model");
 	});
 
 	it("keeps representative original Juni Scratch project wording", async () => {

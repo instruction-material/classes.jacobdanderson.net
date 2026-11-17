@@ -1,0 +1,118 @@
+{
+  "cases": [
+    {
+      "moduleId": "machine-learning-ml2-k-nearest-neighbors",
+      "title": "K-Nearest Neighbors Core Concepts",
+      "file": "nearest-neighbors.md",
+      "sourceSHA256": "edc40bf508551973d54f471c853b758c0374fdc298201318463e6b8f223c68d5",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-ml3-naive-bayes",
+      "title": "Naive Bayes Overview",
+      "file": "naive-bayes.md",
+      "sourceSHA256": "d7231bff949230683d74c91e55a3a9463d1e8a5b5c47282439081da45f723fcc",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-ml5-introduction-to-regression",
+      "title": "Introduction to Regression Core Concepts",
+      "file": "least-squares.md",
+      "sourceSHA256": "3aa38f402d0bd58012d69dd534c406175a79385b31f980b66ed4b39615e49547",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-ml3-5-decision-trees-and-interpretable-models",
+      "title": "5 Decision Trees and Interpretable Models Core Concepts",
+      "file": "decision-trees.md",
+      "sourceSHA256": "df55f1968e87122451d6f0459c663b5967d5599290a30a2af66b15a080078e31",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-ml6-regression-with-neural-networks",
+      "title": "Neural Networks for Regression",
+      "file": "neural-regression.md",
+      "sourceSHA256": "8a9323e5439f7b04baa7feff9d35255e6731b8f18c3ec1ac473e78c041223956",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-ml7-image-classifier",
+      "title": "Image Data and Classification",
+      "file": "image-classification.md",
+      "sourceSHA256": "cc6c36b200792a7e5d72e56d281a10466c27e83856a5ffac64226b80f4a4c215",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-ml4-neural-networks",
+      "title": "ML4 Choice Audit: Historical Diabetes-Risk Dataset",
+      "file": "historical-health-audit.md",
+      "sourceSHA256": "a3b79596f4296a4d57a18936e79cf747eb7d6b471a79f9f5f29df5573c6162c1",
+      "staticAudit": true,
+      "view": 1
+    },
+    {
+      "moduleId": "machine-learning-ml8-master-project",
+      "title": "Master Project Planning",
+      "file": "capstone-planning.md",
+      "sourceSHA256": "93b3e0b1c183080c4d61210a2ab6119f01177754b01528d8956a090182b2a27a",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-ml8-master-project",
+      "title": "Master Project Examples",
+      "file": "capstone-examples.md",
+      "sourceSHA256": "0fc4cff2ed36931900f1abb80fb98bf68b44500698bb6a014872d8b89f3fbfbf",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-ml8-master-project",
+      "title": "Machine Learning Master Project Presentation",
+      "file": "capstone-presentation.md",
+      "sourceSHA256": "d11e74fbadeaef09774a7d22750b3691b3d4e08c516e7e1ef05979e950f0b769",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-ml4-neural-networks",
+      "title": "Neural Networks Core Concepts",
+      "file": "../machine-learning-neurons/core-concepts.md",
+      "sourceSHA256": "c7f1fa8eca91c51a3722f48bbb6baf1c62cceaa6acdc8cea4ed8599a6ea5b03f",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-ml4-neural-networks",
+      "title": "ML4 Project 1: Build a Neuron Class",
+      "file": "../machine-learning-neurons/neuron-class.md",
+      "sourceSHA256": "373ad48b2a5ff9f124842dc12b6d5b98f9114cffbe3aae41eca73c191cc377e9",
+      "staticAudit": false,
+      "view": 1
+    },
+    {
+      "moduleId": "machine-learning-ml4-neural-networks",
+      "title": "ML4 Project 2: Simple Neural Network Simulation",
+      "file": "../machine-learning-neurons/forward-pass.md",
+      "sourceSHA256": "e2821a812ee6b74f2167c3e031d3cbc52d375096a2b0a6653813ef9659652f11",
+      "staticAudit": false,
+      "view": 1
+    }
+  ],
+  "items": 13,
+  "expectedFullViews": 52,
+  "widths": [
+    390,
+    1280
+  ],
+  "roles": [
+    "learner",
+    "instructor"
+  ]
+}
