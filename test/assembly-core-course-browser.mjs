@@ -9,6 +9,7 @@ import { fileURLToPath } from "node:url";
 import { strFromU8, unzipSync } from "fflate";
 import puppeteer from "puppeteer";
 import { createServer, preview } from "vite";
+import { captureCourseWorkflowFailure } from "./course-workflow-failure-evidence.mjs";
 import {
 	confirmProjectImport,
 	downloadProjectZip
@@ -286,6 +287,15 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 				context = await browser.createBrowserContext();
 				const page = await context.newPage();
 				const requests = [];
+				const browserSignals = [];
+				const recordSignal = (type, detail) => {
+					if (browserSignals.length < 100)
+						browserSignals.push({ at: new Date().toISOString(), type, detail: String(detail).slice(0, 1000) });
+				};
+				page.on("console", message => recordSignal(`console:${message.type()}`, message.text()));
+				page.on("pageerror", error => recordSignal("pageerror", error));
+				page.on("error", error => recordSignal("crash", error));
+				page.on("requestfailed", request => recordSignal("requestfailed", `${request.url()}: ${request.failure()?.errorText}`));
 				const directoryRequests = [];
 				const sourceRole = definition.sourceRole?.(role) ?? role;
 				let catalog = true;
@@ -825,32 +835,17 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 					});
 				}
 				catch (error) {
-					await page
-						.screenshot({
-							path: join(output, `${name}-failed.png`),
-							fullPage: true
-						})
-						.catch(() => {});
-					await writeFile(
-						join(output, `${name}-failed.json`),
-						JSON.stringify(
-							{
-								url: page.url(),
-								requests,
-								error: String(error),
-								output: await page.$eval(".output-panel", element => element.textContent).catch(() => null),
-								mobileView: await page.$eval(".mobile-view-picker", element => element.innerHTML).catch(() => null),
-								runtimeFrames: await Promise.all(page.frames().map(async frame => ({
-									url: frame.url(),
-									charts: await frame.$$eval(".artifact-card img", images => images.map(image => ({ complete: image.complete, width: image.naturalWidth, height: image.naturalHeight }))).catch(() => [])
-								}))),
-								savedProjects: await savedProjects(page).catch(failure => ({ unavailable: String(failure) })),
-								profiles
-							},
-							null,
-							2
-						)
-					);
+					const attempt = process.env.COURSE_BROWSER_PHASE_ATTEMPT;
+					await captureCourseWorkflowFailure({
+						page,
+						error,
+						output,
+						requests,
+						profiles,
+						browserSignals,
+						name: attempt ? `${name}-attempt-${attempt}` : name,
+						readSavedProjects: () => savedProjects(page)
+					});
 					throw error;
 				}
 				finally {

@@ -596,13 +596,18 @@ jobs:
         run: |
           node scripts/classes-family-heavy-task.mjs -- npm run build
           node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+      - name: Verify bounded browser diagnostics and failed-case retry behavior
+        if: inputs.course == 'machine-learning'
+        run: >-
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1
+          test/course-browser-phase-recovery.test.mjs test/course-workflow-failure-evidence.test.mjs
       - name: Verify complete ML tasks, consent, nested inputs, saved work and Python exports
         if: inputs.course == 'machine-learning'
         env:
           ML_OFFLINE_BROWSER_DIR: output/release-checks/machine-learning
           COURSE_IMPORT_SCREENSHOT_DIR: output/release-checks/machine-learning/screenshots
         run: |
-          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/machine-learning-offline-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node scripts/run-course-browser-phase.mjs test/machine-learning-offline-course-browser.test.mjs output/release-checks/ml-browser-rerun-state.json
           python3 -B test/machine-learning-offline-exported-contracts.py output/release-checks/machine-learning
       - name: Verify original clustering tasks, charts and native exports
         if: inputs.course == 'machine-learning'
@@ -618,7 +623,7 @@ jobs:
           python3 -m pip install --require-hashes -r output/release-checks/ml-python-locks/verification.txt
           python3 -m pip_audit --format json --output output/release-checks/ml-python-full-audit.json
           python3 -m pip_audit --require-hashes --no-deps --disable-pip -r output/release-checks/ml-python-locks/runtime.txt --format json --output output/release-checks/ml-python-runtime-audit.json
-          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/machine-learning-legacy-clustering-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node scripts/run-course-browser-phase.mjs test/machine-learning-legacy-clustering-course-browser.test.mjs output/release-checks/ml-legacy-browser-rerun-state.json
           node scripts/classes-family-heavy-task.mjs -- python3 -B test/machine-learning-legacy-clustering-exported-contracts.py output/release-checks/machine-learning-legacy
       - name: Verify the standalone backend locked graph and both audits
         working-directory: back-end
@@ -652,6 +657,11 @@ jobs:
               "fullFrontendAndBackendUnits": True, "lint": True, "types": True,
               "bothBuilds": True, "fourAuditsZero": True, "trackedTreeUnchanged": True}
           if os.environ["ML_COURSE_PREFLIGHT"] == "machine-learning":
+              for phase in ("ml-browser-rerun-state.json", "ml-legacy-browser-rerun-state.json"):
+                  retry = json.loads((out / (phase + ".attempts.json")).read_text())
+                  assert retry["accepted"] and retry["initialStateFileAbsent"] and retry["testFileUnchanged"]
+                  assert 1 <= len(retry["attempts"]) <= retry["maximumAttempts"] == 2
+                  assert retry["attempts"][-1]["exitCode"] == 0 and retry["attempts"][-1]["signal"] is None
               for name, count in (("ml-python-full-audit.json", 44), ("ml-python-runtime-audit.json", 18)):
                   dependencies = json.loads((out / name).read_text())["dependencies"]
                   assert len(dependencies) == count
