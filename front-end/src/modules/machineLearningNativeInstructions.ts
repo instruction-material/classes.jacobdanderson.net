@@ -30,11 +30,25 @@ export function machineLearningNativeResource(url: string) {
 	) {
 		return {
 			kind: "library" as const,
+			project: parts[1]!,
 			role: parts[2],
 			dataset: datasets[parts[1]!] ?? null
 		};
 	}
 	return null;
+}
+
+export function machineLearningLibraryProjectKey(
+	courseId: string,
+	itemId: string,
+	role: "starter" | "reference",
+	url: string
+) {
+	const base = `${courseId}:${itemId}:${role}`;
+	const resource = machineLearningNativeResource(url);
+	return courseId === "machine-learning" && resource
+		? `${base}:ml-library-${resource.project}-v1`
+		: base;
 }
 
 export function machineLearningNativeRunInstructions(

@@ -205,6 +205,8 @@ for project in projects:
     course = json.loads((directory / ("data-" + project["caseId"] + "-course-proof.json")).read_text())
     assert {(row["role"], row["width"]) for row in course["profiles"]} == {(role, width) for role in ("starter", "solution") for width in (390, 1280)}
     for profile in course["profiles"]:
+        role_key = "starter" if profile["role"] == "starter" else "reference"
+        assert profile["key"] == f"machine-learning:{project['itemId']}:{role_key}:ml-library-{project['project']}-v1"
         assert profile["revision"] == fixture["revision"] and profile["nativeInstructions"]
         assert profile["lessonEvidence"]["completeAssignmentText"] and profile["consentBeforeFetch"]
         assert profile["codeAndTraceSaved"] and profile["sameAttemptReused"] and profile["previousWorkPreserved"]
