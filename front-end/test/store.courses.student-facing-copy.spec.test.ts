@@ -5,6 +5,7 @@ import { proseForCopyChecks, rawCourseProse } from "./courseProse";
 import { describe, expect, it } from "vitest";
 import { courseCatalog, loadRawCourse } from "@/stores/courses/index";
 import { isJuniScratchProjectTitle } from "@/stores/courses/juniScratchProjects";
+import { visibleCourseModules } from "@/modules/courseVisibility";
 
 const testDir = dirname(fileURLToPath(import.meta.url));
 const frontEndDir = resolve(testDir, "..");
@@ -499,7 +500,7 @@ describe("student-facing course copy", () => {
 					continue;
 				}
 
-				for (const module of course.modules) {
+				for (const module of visibleCourseModules(course.modules)) {
 					const fields = [
 						{
 							label: "module title",
