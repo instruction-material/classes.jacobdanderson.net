@@ -86,6 +86,17 @@ for (const project of fixture.projects.filter(
 						path.startsWith(`${project.sources[role]}/`)
 					).length,
 				expectedFile: file,
+				githubRawFile: ({ url, role }) => {
+					const prefix = `/instruction-material/AI-Level-2/${
+						fixture.revision}/${project.sources[role]}/`;
+					const name = decodeURIComponent(url.pathname.slice(prefix.length));
+					const valid = url.pathname.startsWith(prefix)
+						&& !name.split("/").some(part => ["", ".", ".."].includes(part));
+					return {
+						name,
+						file: valid ? fixture.files[`${project.sources[role]}/${name}`] : null
+					};
+				},
 				githubDirectoryListing: ({ url, role }) => {
 					const prefix
 						= "/repos/instruction-material/AI-Level-2/contents/";
