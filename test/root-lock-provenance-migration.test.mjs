@@ -24,13 +24,14 @@ import {
 	validateNodeGuards,
 	validateRegistryVersion,
 	validateVendoredBraces,
-	VENDORED_BRACES
+	validateVendoredPicomatch,
+	VENDORED_BRACES,
+	VENDORED_PICOMATCH
 } from "../scripts/migrate-root-lock-provenance.mjs";
 
 const repositoryRoot = resolve(import.meta.dirname, "..");
 const npmRoot
-	= process.env.NPM_CLI_ROOT
-		?? npmRootFromExecPath(process.env.npm_execpath);
+	= process.env.NPM_CLI_ROOT ?? npmRootFromExecPath(process.env.npm_execpath);
 assert.ok(npmRoot, "NPM_CLI_ROOT must point to pinned npm 12.0.1.");
 const pinned = loadPinnedNpm(npmRoot);
 const sriA = `sha512-${Buffer.alloc(64, 1).toString("base64")}`;
@@ -81,7 +82,13 @@ it("repository root lock has trusted provenance on every registry edge", async (
 		occurrences.length + excluded.length + vendored.length,
 		Object.keys(lock.packages).length
 	);
-	assert.deepEqual(vendored, ["node_modules/braces"]);
+	assert.deepEqual(
+		vendored.sort(),
+		[
+			"node_modules/braces",
+			...VENDORED_PICOMATCH.map(row => row.location)
+		].sort()
+	);
 	for (const occurrence of occurrences) {
 		await validateRegistryVersion(
 			occurrence.name,
@@ -121,7 +128,10 @@ it("only permits the reviewed local braces identity, edges, and archive", async 
 		{ integrity: sriA }
 	]) {
 		await assert.rejects(
-			validateVendoredBraces(repositoryRoot, node, { ...VENDORED_BRACES, ...patch }),
+			validateVendoredBraces(repositoryRoot, node, {
+				...VENDORED_BRACES,
+				...patch
+			}),
 			/unrecognized/i
 		);
 	}
@@ -135,13 +145,20 @@ it("only permits the reviewed local braces identity, edges, and archive", async 
 		{ edgesIn: new Set([{ ...edge, valid: false }]) }
 	]) {
 		await assert.rejects(
-			validateVendoredBraces(repositoryRoot, { ...node, ...patch }, VENDORED_BRACES),
+			validateVendoredBraces(
+				repositoryRoot,
+				{ ...node, ...patch },
+				VENDORED_BRACES
+			),
 			/unrecognized/i
 		);
 	}
 	const fixture = await mkdtemp(join(tmpdir(), "classes-braces-integrity-"));
 	await mkdir(join(fixture, "vendor"));
-	await writeFile(join(fixture, VENDORED_BRACES.resolved.slice(5)), "tampered");
+	await writeFile(
+		join(fixture, VENDORED_BRACES.resolved.slice(5)),
+		"tampered"
+	);
 	await assert.rejects(
 		validateVendoredBraces(fixture, node, VENDORED_BRACES),
 		/does not match reviewed bytes/
@@ -475,4 +492,68 @@ it("fails instead of overwriting conflicting existing provenance", async () => {
 		}),
 		/conflicts with registry metadata/u
 	);
+});
+
+it("only permits each reviewed picomatch major at its exact edge and archive", async () => {
+	for (const expected of VENDORED_PICOMATCH) {
+		const edge = {
+			name: "picomatch",
+			spec: expected.resolved,
+			valid: true,
+			satisfiedBy: () => true
+		};
+		const node = {
+			name: "picomatch",
+			location: expected.location,
+			version: expected.version,
+			package: { name: expected.name },
+			edgesIn: new Set([edge])
+		};
+		const metadata = { ...expected };
+		delete metadata.location;
+		await validateVendoredPicomatch(repositoryRoot, node, metadata);
+		for (const patch of [
+			{ name: "picomatch" },
+			{ version: "4.0.7" },
+			{ resolved: "file:../other.tgz" },
+			{ integrity: sriA }
+		]) {
+			await assert.rejects(
+				validateVendoredPicomatch(repositoryRoot, node, {
+					...metadata,
+					...patch
+				}),
+				/unrecognized/i
+			);
+		}
+		for (const patch of [
+			{ location: "node_modules/other/node_modules/picomatch" },
+			{ isRegistryDependency: true },
+			{ isLink: true },
+			{ inBundle: true },
+			{ extraneous: true },
+			{ edgesIn: new Set() },
+			{ edgesIn: new Set([{ ...edge, valid: false }]) },
+			{ edgesIn: new Set([{ ...edge, spec: "^4" }]) },
+			{ edgesIn: new Set([{ ...edge, satisfiedBy: () => false }]) }
+		]) {
+			await assert.rejects(
+				validateVendoredPicomatch(
+					repositoryRoot,
+					{ ...node, ...patch },
+					metadata
+				),
+				/unrecognized/i
+			);
+		}
+		const fixture = await mkdtemp(
+			join(tmpdir(), "classes-picomatch-integrity-")
+		);
+		await mkdir(join(fixture, "vendor"));
+		await writeFile(join(fixture, expected.resolved.slice(5)), "tampered");
+		await assert.rejects(
+			validateVendoredPicomatch(fixture, node, metadata),
+			/does not match reviewed bytes/
+		);
+	}
 });

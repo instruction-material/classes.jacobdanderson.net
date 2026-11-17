@@ -58,7 +58,8 @@
 		"tsx": "^4.22.4",
 		"typescript": "^6.0.3",
 		"typescript-eslint": "^8.59.0",
-		"vitest": "^4.1.12"
+		"vitest": "^4.1.12",
+		"picomatch": "file:../vendor/classes-picomatch-4.0.7-classes.1.tgz"
 	},
 	"overrides": {
 		"minimatch": "11.0.2",
@@ -72,6 +73,7 @@
 		"qs": "6.16.1",
 		"proxy-addr": "2.0.8",
 		"source-map-js": "1.2.2",
-		"vite": "8.1.6"
+		"vite": "8.1.6",
+		"picomatch": "$picomatch"
 	}
 }
