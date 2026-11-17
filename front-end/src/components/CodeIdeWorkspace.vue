@@ -58,6 +58,10 @@ import { javascriptCourseResource } from "@/modules/javascriptCourseResources";
 import { createKarelWorldPlaybackController } from "@/modules/karelWorldPlayback";
 import { linuxBuildInstructions } from "@/modules/linuxBuildInstructions";
 import {
+	machineLearningNativeResource,
+	machineLearningNativeRunInstructions
+} from "@/modules/machineLearningNativeInstructions";
+import {
 	addPythonIdeClassroomSections,
 	createPythonIdeProject,
 	createRemotePythonIdeProject,
@@ -1172,8 +1176,16 @@ const selectedModeLabel = computed(() =>
 		? getPythonIdeProjectKindLabel(selectedProject.value)
 		: "Code"
 );
+const usesNativeMachineLearning = computed(
+	() =>
+		selectedProject.value?.mode === "data" &&
+		machineLearningNativeResource(
+			selectedProject.value.starterUrl ?? ""
+		) !== null
+);
 const usesNativeSourceWorkspace = computed(
 	() =>
+		usesNativeMachineLearning.value ||
 		selectedProject.value?.mode === "web" ||
 		selectedProject.value?.mode === "linux" ||
 		selectedProject.value?.mode === "assembly" ||
@@ -1181,6 +1193,14 @@ const usesNativeSourceWorkspace = computed(
 		selectedProject.value?.mode === "cpp" ||
 		selectedProject.value?.mode === "swift" ||
 		selectedProject.value?.mode === "rust"
+);
+const nativeInstructionLabel = computed(() =>
+	selectedProject.value?.mode === "linux"
+		? "Linux instructions"
+		: selectedProject.value?.mode === "web" ||
+			  usesNativeMachineLearning.value
+			? "Run instructions"
+			: "Build instructions"
 );
 const webProjectRequirement = computed(() => {
 	if (javascriptCourseResource(selectedProject.value?.starterUrl ?? ""))
@@ -1192,21 +1212,24 @@ const webProjectRequirement = computed(() => {
 		: "Requires Node.js 24 and the complete source repository's lockfile.";
 });
 const nativeSourceLanguage = computed(() =>
-	selectedProject.value?.mode === "swift"
-		? "SwiftUI"
-		: selectedProject.value?.mode === "web"
-			? "Web"
-			: selectedProject.value?.mode === "rust"
-				? "Rust"
-				: selectedProject.value?.mode === "linux"
-					? "Linux"
-					: selectedProject.value?.mode === "assembly"
-						? "Assembly (Linux x86-64)"
-						: selectedProject.value?.mode === "c"
-							? "C17"
-							: "C++"
+	usesNativeMachineLearning.value
+		? "Python"
+		: selectedProject.value?.mode === "swift"
+			? "SwiftUI"
+			: selectedProject.value?.mode === "web"
+				? "Web"
+				: selectedProject.value?.mode === "rust"
+					? "Rust"
+					: selectedProject.value?.mode === "linux"
+						? "Linux"
+						: selectedProject.value?.mode === "assembly"
+							? "Assembly (Linux x86-64)"
+							: selectedProject.value?.mode === "c"
+								? "C17"
+								: "C++"
 );
 const mobileWorkspaceViews = computed(() =>
+	usesNativeMachineLearning.value ||
 	selectedProject.value?.mode === "web" ||
 	selectedProject.value?.mode === "swift" ||
 	selectedProject.value?.mode === "rust" ||
@@ -1217,10 +1240,12 @@ const mobileWorkspaceViews = computed(() =>
 		: (["code", "canvas", "console"] as const)
 );
 watch(
-	() => selectedProject.value?.mode,
-	mode => {
+	() =>
+		[selectedProject.value?.mode, usesNativeMachineLearning.value] as const,
+	([mode, nativeMachineLearning]) => {
 		if (
-			(mode === "web" ||
+			(nativeMachineLearning ||
+				mode === "web" ||
 				mode === "swift" ||
 				mode === "rust" ||
 				mode === "linux" ||
@@ -7127,6 +7152,19 @@ async function runCurrentProject() {
 		turtleAnimationBudget = createTurtleAnimationBudget();
 
 	clearOutput();
+	const nativeMachineLearning =
+		project.mode === "data"
+			? machineLearningNativeRunInstructions(
+					project.files,
+					project.starterUrl ?? ""
+				)
+			: null;
+	if (nativeMachineLearning) {
+		for (const line of nativeMachineLearning) appendOutput("system", line);
+		runMessage.value = "Local Python run instructions";
+		diagnosticStage.value = "completed";
+		return;
+	}
 	if (project.mode === "swift") {
 		for (const line of swiftBuildInstructions(project.files))
 			appendOutput("system", line);
@@ -8803,11 +8841,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 								runControlIsStop
 									? "Stop"
 									: usesNativeSourceWorkspace
-										? selectedProject?.mode === "web"
-											? "Run instructions"
-											: selectedProject?.mode === "linux"
-												? "Linux instructions"
-												: "Build instructions"
+										? nativeInstructionLabel
 										: "Run"
 							}}
 						</button>
@@ -8817,9 +8851,13 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 				<section
 					v-if="usesNativeSourceWorkspace"
 					class="site-surface cpp-build-panel"
-					:aria-label="`${nativeSourceLanguage} ${selectedProject?.mode === 'linux' || selectedProject?.mode === 'web' ? 'execution' : 'build'} workflow`"
+					:aria-label="`${nativeSourceLanguage} ${selectedProject?.mode === 'linux' || selectedProject?.mode === 'web' || usesNativeMachineLearning ? 'execution' : 'build'} workflow`"
 				>
-					<p v-if="selectedProject?.mode === 'linux'">
+					<p v-if="usesNativeMachineLearning">
+						Requires local Python 3.14 and the libraries in
+						requirements.txt.
+					</p>
+					<p v-else-if="selectedProject?.mode === 'linux'">
 						Edit and save Linux scripts, configuration and
 						observations here. Download and extract the ZIP, then
 						follow its README in an owned Linux lab or WSL terminal.
@@ -9113,17 +9151,8 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 					>
 						<div class="panel-header">
 							<span>{{
-								selectedProject?.mode === "web" ||
-								selectedProject?.mode === "swift" ||
-								selectedProject?.mode === "rust" ||
-								selectedProject?.mode === "c" ||
-								selectedProject?.mode === "assembly" ||
-								selectedProject?.mode === "linux"
-									? selectedProject?.mode === "web"
-										? "Run instructions"
-										: selectedProject?.mode === "linux"
-											? "Linux instructions"
-											: "Build instructions"
+								usesNativeSourceWorkspace
+									? nativeInstructionLabel
 									: consoleExpanded
 										? "Console"
 										: usesKarelWorld
@@ -9388,9 +9417,12 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 								>
 									{{
 										usesNativeSourceWorkspace
-											? selectedProject?.mode === "linux"
-												? "Select Linux instructions for this lab's execution and verification steps."
-												: "Select Build instructions for this project's native compiler command."
+											? usesNativeMachineLearning
+												? "Run instructions provide the local Python commands."
+												: selectedProject?.mode ===
+													  "linux"
+													? "Select Linux instructions for this lab's execution and verification steps."
+													: "Select Build instructions for this project's native compiler command."
 											: selectedNativeJavaInstructions
 												? "Select Run for this project's native Java build and input/output instructions."
 												: "Output will appear here after a run."

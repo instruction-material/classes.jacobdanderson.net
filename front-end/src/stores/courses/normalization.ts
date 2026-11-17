@@ -21,6 +21,7 @@ import { applyJoyOfReadingGuidance } from "./joyOfReadingProjects";
 import { isJuniScratchProjectTitle } from "./juniScratchProjects";
 import { applyLateElementaryAProjects } from "./lateElementaryAProjects";
 import { applyLateElementaryBProjects } from "./lateElementaryBProjects";
+import { applyMachineLearningCarStudioReadings } from "./machineLearningCarStudioReadings";
 import { applyMachineLearningClusteringReadings } from "./machineLearningClusteringReadings";
 import { applyMachineLearningNeuronWorkflows } from "./machineLearningNeuronWorkflows";
 import { applyMachineLearningWorkedCoreReadings } from "./machineLearningWorkedCoreReadings";
@@ -9928,6 +9929,7 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 		applyMachineLearningClusteringReadings(course);
 		applyMachineLearningNeuronWorkflows(course);
 		applyMachineLearningWorkedCoreReadings(course);
+		applyMachineLearningCarStudioReadings(course);
 	}
 	if (id === "algebra-1a")
 		applyAlgebra1ACourseReadings(course, historicalCourseProgressId);
