@@ -1,6 +1,9 @@
+import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
+import neuronFixture from "../../test/fixtures/machine-learning-neuron-sources.json";
+import readingFixture from "../../test/fixtures/machine-learning-worked-reading-cases.json";
 import { loadRawCourse } from "@/stores/courses/index";
 import { machineLearningCourse } from "@/stores/courses/machine-learning";
 
@@ -196,6 +199,44 @@ describe("Machine Learning learner flow", () => {
 			expect(JSON.stringify(machineLearningCourse), section).toContain(
 				`machine-learning-verification-guide.md#${section}`
 			);
+		}
+	});
+
+	it("binds browser proof fixtures to complete current authored lesson bytes", async () => {
+		const course = await loadRawCourse("machine-learning");
+		const items = course!.modules.flatMap(module => module.curriculum);
+		const readingRoot = path.resolve(
+			__dirname,
+			"../src/stores/courses/readings/machine-learning-worked-cores"
+		);
+		for (const entry of readingFixture.cases) {
+			const content = fs.readFileSync(
+				path.resolve(readingRoot, entry.file),
+				"utf8"
+			);
+			expect(
+				createHash("sha256").update(content).digest("hex"),
+				entry.title
+			).toBe(entry.sourceSHA256);
+			expect(
+				items.find(item => item.title === entry.title)?.content,
+				entry.title
+			).toBe(content);
+		}
+		expect(neuronFixture.coreReading.content).toBe(
+			fs.readFileSync(
+				path.resolve(
+					readingRoot,
+					"../machine-learning-neurons/core-concepts.md"
+				),
+				"utf8"
+			)
+		);
+		for (const project of neuronFixture.projects) {
+			expect(
+				items.find(item => item.title === project.title)?.content,
+				project.title
+			).toBe(project.assignmentText);
 		}
 	});
 
