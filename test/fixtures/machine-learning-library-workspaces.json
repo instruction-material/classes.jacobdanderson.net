@@ -12,6 +12,10 @@
 			"rawTitle": "ML2 Project 1: KNN Customer Segment Classification",
 			"section": "curriculum",
 			"analysis": false,
+			"previousSources": {
+				"starter": "https://github.com/instruction-material/AI-Level-2/tree/main/ML2-KNN-Customer-Segmentation-Classification-Updated",
+				"solution": "https://github.com/instruction-material/AI-Level-2/tree/main/ML2-KNN-Customer-Segmentation-Classification-Updated"
+			},
 			"sources": {
 				"starter": "ML-Library-Workspaces/customer-neighbors/starter",
 				"solution": "ML-Library-Workspaces/customer-neighbors/solution"
@@ -26,6 +30,10 @@
 			"rawTitle": "ML2 Project 2: KNN Car Classification",
 			"section": "curriculum",
 			"analysis": false,
+			"previousSources": {
+				"starter": "https://github.com/instruction-material/AI-Level-2/tree/main/ML2-KNN-Car-Classification-Starter",
+				"solution": "https://github.com/instruction-material/AI-Level-2/tree/main/ML2-KNN-Car-Classification-Starter"
+			},
 			"sources": {
 				"starter": "ML-Library-Workspaces/car-neighbors/starter",
 				"solution": "ML-Library-Workspaces/car-neighbors/solution"
@@ -40,6 +48,10 @@
 			"rawTitle": "ML3 Project 1: Iris Dataset Classification",
 			"section": "curriculum",
 			"analysis": false,
+			"previousSources": {
+				"starter": "https://github.com/instruction-material/AI-Level-2/tree/main/ML3-Naive-Bayes-Iris-Flowers-Classification",
+				"solution": "https://github.com/instruction-material/AI-Level-2/tree/main/ML3-Naive-Bayes-Iris-Flowers-Classification"
+			},
 			"sources": {
 				"starter": "ML-Library-Workspaces/iris-naive-bayes/starter",
 				"solution": "ML-Library-Workspaces/iris-naive-bayes/solution"
@@ -54,6 +66,10 @@
 			"rawTitle": "ML3 Project 2: Email Spam Classification",
 			"section": "curriculum",
 			"analysis": false,
+			"previousSources": {
+				"starter": "https://github.com/instruction-material/AI-Level-2/tree/main/ML3-Email-Spam-Classification",
+				"solution": "https://github.com/instruction-material/AI-Level-2/tree/main/ML3-Email-Spam-Classification"
+			},
 			"sources": {
 				"starter": "ML-Library-Workspaces/email-naive-bayes/starter",
 				"solution": "ML-Library-Workspaces/email-naive-bayes/solution"
@@ -68,6 +84,10 @@
 			"rawTitle": "ML5 Project 1: Simple Linear Regression",
 			"section": "curriculum",
 			"analysis": false,
+			"previousSources": {
+				"starter": "https://github.com/instruction-material/AI-Level-2/tree/main/ML5-Simple-Linear-Regression-Starter",
+				"solution": "https://github.com/instruction-material/AI-Level-2/tree/main/ML5-Simple-Linear-Regression-Starter"
+			},
 			"sources": {
 				"starter": "ML-Library-Workspaces/linear-regression/starter",
 				"solution": "ML-Library-Workspaces/linear-regression/solution"
@@ -82,6 +102,10 @@
 			"rawTitle": "ML5 Project 2: Simple Polynomial Regression",
 			"section": "curriculum",
 			"analysis": false,
+			"previousSources": {
+				"starter": "https://github.com/instruction-material/AI-Level-2/tree/main/ML-Simple-Polynomial-Regression-Starter-Updated",
+				"solution": "https://github.com/instruction-material/AI-Level-2/tree/main/ML-Simple-Polynomial-Regression-Starter-Updated"
+			},
 			"sources": {
 				"starter": "ML-Library-Workspaces/polynomial-regression/starter",
 				"solution": "ML-Library-Workspaces/polynomial-regression/solution"
@@ -96,6 +120,10 @@
 			"rawTitle": "ML5 Choice Audit: Country-Year Life-Expectancy Estimates",
 			"section": "curriculum",
 			"analysis": false,
+			"previousSources": {
+				"starter": "https://github.com/instruction-material/AI-Level-2/tree/main/ML5-Predicting-Life-Expectancy",
+				"solution": "https://github.com/instruction-material/AI-Level-2/tree/main/ML5-Predicting-Life-Expectancy"
+			},
 			"sources": {
 				"starter": "ML-Library-Workspaces/country-year-regression/starter",
 				"solution": "ML-Library-Workspaces/country-year-regression/solution"
@@ -110,6 +138,10 @@
 			"rawTitle": "K Nearest Neighbors: Extension Challenge",
 			"section": "supplementalProjects",
 			"analysis": true,
+			"previousSources": {
+				"starter": "https://github.com/instruction-material/AI-Level-2/tree/main/ML2-KNN-Customer-Segmentation-Classification-Updated",
+				"solution": "https://github.com/instruction-material/AI-Level-2/tree/main/ML2-KNN-Customer-Segmentation-Classification-Updated"
+			},
 			"sources": {
 				"starter": "ML-Library-Workspaces/customer-neighbors/starter",
 				"solution": "ML-Library-Workspaces/customer-neighbors/solution"
@@ -124,6 +156,10 @@
 			"rawTitle": "Naive Bayes: Extension Challenge",
 			"section": "supplementalProjects",
 			"analysis": true,
+			"previousSources": {
+				"starter": "https://github.com/instruction-material/AI-Level-2/tree/main/ML3-Naive-Bayes-Iris-Flowers-Classification",
+				"solution": "https://github.com/instruction-material/AI-Level-2/tree/main/ML3-Naive-Bayes-Iris-Flowers-Classification"
+			},
 			"sources": {
 				"starter": "ML-Library-Workspaces/iris-naive-bayes/starter",
 				"solution": "ML-Library-Workspaces/iris-naive-bayes/solution"
@@ -138,6 +174,10 @@
 			"rawTitle": "Introduction to Regression: Extension Challenge",
 			"section": "supplementalProjects",
 			"analysis": true,
+			"previousSources": {
+				"starter": "https://github.com/instruction-material/AI-Level-2/tree/main/ML5-Simple-Linear-Regression-Starter",
+				"solution": "https://github.com/instruction-material/AI-Level-2/tree/main/ML5-Simple-Linear-Regression-Starter"
+			},
 			"sources": {
 				"starter": "ML-Library-Workspaces/linear-regression/starter",
 				"solution": "ML-Library-Workspaces/linear-regression/solution"
@@ -152,6 +192,10 @@
 			"rawTitle": "KNN Car Classification: Core Project",
 			"section": "curriculum",
 			"analysis": true,
+			"previousSources": {
+				"starter": "https://github.com/instruction-material/AI-Level-2/tree/main/ML2-KNN-Car-Classification-Updated",
+				"solution": "https://github.com/instruction-material/AI-Level-2/tree/main/ML2-KNN-Car-Classification-Updated"
+			},
 			"sources": {
 				"starter": "ML-Library-Workspaces/car-neighbors/starter",
 				"solution": "ML-Library-Workspaces/car-neighbors/solution"
@@ -166,6 +210,10 @@
 			"rawTitle": "KNN Car Classification: Extension Challenge",
 			"section": "supplementalProjects",
 			"analysis": true,
+			"previousSources": {
+				"starter": "https://github.com/instruction-material/AI-Level-2/tree/main/ML2-KNN-Car-Classification-Updated",
+				"solution": "https://github.com/instruction-material/AI-Level-2/tree/main/ML2-KNN-Car-Classification-Updated"
+			},
 			"sources": {
 				"starter": "ML-Library-Workspaces/car-neighbors/starter",
 				"solution": "ML-Library-Workspaces/car-neighbors/solution"

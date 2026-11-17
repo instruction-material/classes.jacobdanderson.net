@@ -38,10 +38,10 @@ for (const project of fixture.projects.filter(
 			const marker = `ML workflow verified: ${project.caseId}`;
 			await runAssemblyCoreCourseWorkflow(t, {
 				kind: project.caseId,
-				previousProject: () => ({
+				previousProject: role => ({
 					_id: `earlier-${project.caseId}`,
 					title: "Earlier work",
-					mode: "python",
+					mode: "data",
 					files: [
 						{
 							name: "main.py",
@@ -51,9 +51,8 @@ for (const project of fixture.projects.filter(
 					],
 					activeFileName: "main.py",
 					courseID: fixture.courseId,
-					courseProjectKey: `${fixture.courseId}:earlier-${
-						project.caseId
-					}:starter`,
+					courseProjectKey: `${fixture.courseId}:${project.itemId}:${role === "starter" ? "starter" : "reference"}`,
+					starterUrl: project.previousSources[role],
 					createdAt: "2026-10-01T12:00:00.000Z",
 					updatedAt: "2026-10-01T12:00:00.000Z"
 				}),
@@ -205,7 +204,7 @@ for (const project of fixture.projects.filter(
 				projectKey: role =>
 					`${fixture.courseId}:${project.itemId}:${
 						role === "starter" ? "starter" : "reference"
-					}`,
+					}:ml-library-${project.project}-v1`,
 
 				verifyRun: async page => {
 					assert.equal(

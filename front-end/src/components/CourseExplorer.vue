@@ -44,6 +44,7 @@ import {
 } from "@/modules/javascriptCourseResources";
 import { javaStudioProjectKey } from "@/modules/javaStudioResources";
 import { linuxCourseProjectKey } from "@/modules/linuxProjectResources";
+import { machineLearningLibraryProjectKey } from "@/modules/machineLearningNativeInstructions";
 import { fetchManagedLearners } from "@/modules/managedLearners";
 import { networkCourseProjectKey } from "@/modules/networkProjectResources";
 import { pyGamesCourseProjectKey } from "@/modules/pyGamesProjectResources";
@@ -1755,49 +1756,55 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 		mode,
 		projectKey: (verifiedJavaScript
 			? javascriptCourseProjectKey
-			: mode === "swift"
-				? swiftCourseProjectKey
-				: mode === "web"
-					? webCourseProjectKey
-					: ["pygames", "pygames-classroom"].includes(
-								selectedCourse.value.id
-						  )
-						? pyGamesCourseProjectKey
-						: selectedCourse.value.id === "rust-systems-security"
-							? rustCourseProjectKey
-							: selectedCourse.value.id === "network-systems"
-								? networkCourseProjectKey
-								: selectedCourse.value.id === "linux-systems"
-									? linuxCourseProjectKey
-									: selectedCourse.value.id === "assembly"
-										? assemblyCourseProjectKey
-										: selectedCourse.value.id ===
-											  "c-systems-engineering"
-											? c17CourseProjectKey
+			: selectedCourse.value.id === "machine-learning"
+				? machineLearningLibraryProjectKey
+				: mode === "swift"
+					? swiftCourseProjectKey
+					: mode === "web"
+						? webCourseProjectKey
+						: ["pygames", "pygames-classroom"].includes(
+									selectedCourse.value.id
+							  )
+							? pyGamesCourseProjectKey
+							: selectedCourse.value.id ===
+								  "rust-systems-security"
+								? rustCourseProjectKey
+								: selectedCourse.value.id === "network-systems"
+									? networkCourseProjectKey
+									: selectedCourse.value.id ===
+										  "linux-systems"
+										? linuxCourseProjectKey
+										: selectedCourse.value.id === "assembly"
+											? assemblyCourseProjectKey
 											: selectedCourse.value.id ===
-												  "java-level-3"
-												? javaRecursionProjectKey
+												  "c-systems-engineering"
+												? c17CourseProjectKey
 												: selectedCourse.value.id ===
-													  "design-patterns-in-java"
-													? javaStudioProjectKey
+													  "java-level-3"
+													? javaRecursionProjectKey
 													: selectedCourse.value
 																.id ===
-														  "design-patterns-in-java-part-2"
-														? javaRefactoringProjectKey
+														  "design-patterns-in-java"
+														? javaStudioProjectKey
 														: selectedCourse.value
 																	.id ===
-																	"usaco-bronze" ||
-															  selectedCourse
-																	.value
-																	.id ===
-																	"usaco-bronze-on-demand"
-															? bronzeRequiredProjectKey
+															  "design-patterns-in-java-part-2"
+															? javaRefactoringProjectKey
 															: selectedCourse
 																		.value
 																		.id ===
-																  "usaco-silver"
-																? silverJavaProjectKey
-																: goldHistoricalProjectKey)(
+																		"usaco-bronze" ||
+																  selectedCourse
+																		.value
+																		.id ===
+																		"usaco-bronze-on-demand"
+																? bronzeRequiredProjectKey
+																: selectedCourse
+																			.value
+																			.id ===
+																	  "usaco-silver"
+																	? silverJavaProjectKey
+																	: goldHistoricalProjectKey)(
 			selectedCourse.value.id,
 			item.id,
 			resource.kind === "solution" ? "reference" : "starter",

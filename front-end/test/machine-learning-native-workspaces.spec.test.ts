@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { createPinia, setActivePinia } from "pinia";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import {
+	machineLearningLibraryProjectKey,
 	machineLearningNativeResource,
 	machineLearningNativeRunInstructions
 } from "@/modules/machineLearningNativeInstructions";
@@ -23,6 +24,44 @@ const roots = [
 afterEach(() => vi.unstubAllGlobals());
 
 describe("native Machine Learning library workspaces", () => {
+	it("keeps new library attempts separate from older saved work for the same lesson", () => {
+		const keys = [];
+		for (const project of fixture.projects) {
+			for (const role of ["starter", "reference"] as const) {
+				const root =
+					project.sources[
+						role === "starter" ? "starter" : "solution"
+					];
+				const old = `machine-learning:${project.itemId}:${role}`;
+				const current = machineLearningLibraryProjectKey(
+					"machine-learning",
+					project.itemId,
+					role,
+					`${base}/tree/${fixture.revision}/${root}`
+				);
+				expect(current).toBe(`${old}:ml-library-${project.project}-v1`);
+				keys.push(current);
+			}
+		}
+		expect(new Set(keys).size).toBe(24);
+		expect(
+			machineLearningLibraryProjectKey(
+				"machine-learning",
+				"existing-lesson",
+				"starter",
+				`${base}/tree/main/ML0-Offline-Data-Card/starter`
+			)
+		).toBe("machine-learning:existing-lesson:starter");
+		expect(
+			machineLearningLibraryProjectKey(
+				"machine-learning",
+				"existing-clustering",
+				"reference",
+				`${base}/tree/main/ML1-Flower-Clustering`
+			)
+		).toBe("machine-learning:existing-clustering:reference");
+	});
+
 	it("imports all fourteen complete roles with their committed data and runtime lock", async () => {
 		vi.stubGlobal(
 			"fetch",
