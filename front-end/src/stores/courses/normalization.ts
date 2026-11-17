@@ -20,6 +20,7 @@ import { applyJoyOfReadingGuidance } from "./joyOfReadingProjects";
 import { isJuniScratchProjectTitle } from "./juniScratchProjects";
 import { applyLateElementaryAProjects } from "./lateElementaryAProjects";
 import { applyLateElementaryBProjects } from "./lateElementaryBProjects";
+import { applyMachineLearningClusteringReadings } from "./machineLearningClusteringReadings";
 import { mapMarkdownProse } from "./markdownProse";
 import { applyMiddleSchoolLiteratureReadings } from "./middleSchoolLiteratureReadings";
 import { applyMiddleSchoolScienceReferences } from "./middleSchoolScienceReferences";
@@ -9918,6 +9919,8 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 		applyMiddleSchoolWritingReadings(course, rawCourse);
 	}
 	if (id === "network-systems") applyNetworkStudyReadings(course);
+	if (id === "machine-learning")
+		applyMachineLearningClusteringReadings(course);
 	if (id === "algebra-1a")
 		applyAlgebra1ACourseReadings(course, historicalCourseProgressId);
 	return course;

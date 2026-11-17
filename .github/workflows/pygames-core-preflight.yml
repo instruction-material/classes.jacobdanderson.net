@@ -568,6 +568,10 @@ jobs:
         with:
           node-version: 24.18.0
           cache: npm
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        if: inputs.course == 'machine-learning'
+        with:
+          python-version: "3.14"
       - name: Verify the locked root install and complete dependency tree
         run: |
           npm i -g npm@12.0.1
@@ -599,6 +603,22 @@ jobs:
         run: |
           node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/machine-learning-offline-course-browser.test.mjs
           python3 -B test/machine-learning-offline-exported-contracts.py output/release-checks/machine-learning
+      - name: Verify original clustering tasks, charts and native exports
+        if: inputs.course == 'machine-learning'
+        env:
+          ML_LEGACY_BROWSER_DIR: output/release-checks/machine-learning-legacy
+          COURSE_IMPORT_SCREENSHOT_DIR: output/release-checks/machine-learning-legacy/screenshots
+          MPLBACKEND: Agg
+          OMP_NUM_THREADS: "1"
+          OPENBLAS_NUM_THREADS: "1"
+          MKL_NUM_THREADS: "1"
+        run: |
+          python3 -B test/machine-learning-legacy-clustering-exported-contracts.py --write-locks output/release-checks/ml-python-locks
+          python3 -m pip install --require-hashes -r output/release-checks/ml-python-locks/verification.txt
+          python3 -m pip_audit --format json --output output/release-checks/ml-python-full-audit.json
+          python3 -m pip_audit --require-hashes --no-deps --disable-pip -r output/release-checks/ml-python-locks/runtime.txt --format json --output output/release-checks/ml-python-runtime-audit.json
+          node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/machine-learning-legacy-clustering-course-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- python3 -B test/machine-learning-legacy-clustering-exported-contracts.py output/release-checks/machine-learning-legacy
       - name: Verify the standalone backend locked graph and both audits
         working-directory: back-end
         run: |
@@ -607,10 +627,13 @@ jobs:
           npm audit --include=optional --workspaces=false --json > ../output/release-checks/backend-full.json
           npm audit --include=optional --omit=dev --workspaces=false --json > ../output/release-checks/backend-production.json
       - name: Bind the successful gates to the unchanged candidate
+        env:
+          ML_COURSE_PREFLIGHT: ${{ inputs.course }}
         run: |
           python3 - <<'PY'
           import hashlib
           import json
+          import os
           from pathlib import Path
           import subprocess
 
@@ -627,6 +650,21 @@ jobs:
               "cleanLockedRootInstall": True, "cleanStandaloneBackendInstall": True,
               "fullFrontendAndBackendUnits": True, "lint": True, "types": True,
               "bothBuilds": True, "fourAuditsZero": True, "trackedTreeUnchanged": True}
+          if os.environ["ML_COURSE_PREFLIGHT"] == "machine-learning":
+              for name, count in (("ml-python-full-audit.json", 44), ("ml-python-runtime-audit.json", 18)):
+                  dependencies = json.loads((out / name).read_text())["dependencies"]
+                  assert len(dependencies) == count
+                  assert all(not row.get("vulns") and "skip_reason" not in row for row in dependencies)
+              legacy = json.loads((out / "machine-learning-legacy/native-exports.json").read_text())
+              assert legacy["accepted"] and legacy["projects"] == 13 and legacy["archives"] == 104
+              assert legacy["nativeExecutions"] == 104 and legacy["successfulCompletedExecutions"] == 86
+              assert legacy["intentionalStarterStops"] == 18
+              retained = json.loads((out / "machine-learning/native-exports.json").read_text())
+              assert retained["projects"] == 37 and retained["archives"] == 296 and retained["nativeExecutions"] == 222
+              proof["machineLearning"] = {"retainedContexts": 37, "newClusteringContexts": 13, "allContexts": 50,
+                                           "allExportedArchives": 400, "allNativeExecutions": 326,
+                                           "newCompletedNativeExecutions": 86, "intentionalStarterStops": 18,
+                                           "fullAndRuntimePythonAuditsZeroWithNoSkippedPackages": True}
           (out / "accepted.json").write_text(json.dumps(proof, indent=2) + "\n")
           PY
           cp /tmp/classes-family-heavy-tasks.log output/release-checks/processes.jsonl
