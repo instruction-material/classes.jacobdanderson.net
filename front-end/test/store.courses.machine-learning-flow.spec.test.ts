@@ -170,9 +170,9 @@ describe("Machine Learning learner flow", () => {
 		expect(imageModule?.kind).toBe("appendix");
 		const text = JSON.stringify(imageModule);
 		expect(text).toContain("non-personal");
-		expect(text).toContain("Group originals, crops, and near-duplicates");
+		expect(text).toContain("Group originals and related images");
 		expect(text).toContain("augmentation to training only");
-		expect(text).toContain("Cap image count");
+		expect(text).toContain("twelve training CPU seconds");
 		expect(text).toContain("260 trainable parameters");
 		expect(text).toContain("32");
 	});

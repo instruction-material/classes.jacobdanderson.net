@@ -82,7 +82,10 @@ it.each(roles)(
 		expect(fetcher).toHaveBeenCalledTimes(36);
 		expect(files).toHaveLength(36);
 		expect(files.filter(f => f.encoding === "base64")).toHaveLength(32);
-		const project = createPythonIdeProject("data", { files });
+		const project = createPythonIdeProject("data", {
+			title: "Weather source import",
+			files
+		});
 		saveLocalPythonProjects([project]);
 		const saved = loadLocalPythonProjects()[0]!;
 		expect(saved.files).toEqual(files);
