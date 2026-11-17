@@ -1,6 +1,6 @@
 # Practice a wrapping row of cards
 
-Flexbox Froggy is an optional layout drill. A local browser project can demonstrate the same main-axis, cross-axis and wrapping decisions.
+[Flexbox Froggy](https://flexboxfroggy.com/) is an optional layout drill. A local browser project can demonstrate the same main-axis, cross-axis and wrapping decisions.
 
 ```html
 <div class="cards">

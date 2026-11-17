@@ -176,6 +176,11 @@ export function applyJavaScriptSuperstarReadings(
 		if (!item) throw new Error(`Missing JavaScript CSS practice: ${title}`);
 		setText(item, content);
 		item.contentKind = "assignment";
+		const project = content === selectorsPractice ? "selectors" : "flexbox";
+		const path = `/course-assets/javascript-level-1/css-practice-v1/${project}`;
+		item.projectLink = `${path}/starter/index.html.txt`;
+		item.solutionLink = `${path}/reference/index.html.txt`;
+		item.ideImport = true;
 		delete item.datasetLink;
 		delete item.mediaLink;
 	}

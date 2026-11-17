@@ -1,0 +1,145 @@
+{
+  "courseId": "javascript-level-1-javascript-superstar",
+  "moduleId": "javascript-level-1-javascript-superstar-jss9-introduction-to-html-css",
+  "resources": [
+    {
+      "project": "css-practice-selectors",
+      "title": "Practice CSS selectors",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "/course-assets/javascript-level-1/css-practice-v1/selectors/starter/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "css-practice-v1/selectors/starter/index.html.txt",
+          "byteLength": 378,
+          "sha256": "eed28a5d8571ae285ba1234a7a16f866e6da839c3d3394d54c750dc70e2e86bb"
+        },
+        {
+          "name": "styles.css",
+          "path": "css-practice-v1/selectors/starter/styles.css.txt",
+          "byteLength": 122,
+          "sha256": "cf00b81ef50fe08d3f990b48730d44316fd09e3e809607946b97464140ae72c8"
+        },
+        {
+          "name": "README.md",
+          "path": "css-practice-v1/selectors/starter/README.md.txt",
+          "byteLength": 1615,
+          "sha256": "47a2c5262dd0154ec9e3c39f1fc92ffc705460c8950184532589b3ee84474cbb"
+        }
+      ],
+      "itemId": "javascript-level-1-javascript-superstar-jss9-introduction-to-html-css-supplemental-jss9-supplemental-project-1-practice-with-css-selectors",
+      "assignmentTitle": "JSS9 Supplemental Project 1: Practice with CSS Selectors",
+      "moduleId": "javascript-level-1-javascript-superstar-jss9-introduction-to-html-css",
+      "section": "supplemental",
+      "optionalGame": "https://flukeout.github.io/"
+    },
+    {
+      "project": "css-practice-selectors",
+      "title": "Practice CSS selectors",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "/course-assets/javascript-level-1/css-practice-v1/selectors/reference/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "css-practice-v1/selectors/reference/index.html.txt",
+          "byteLength": 378,
+          "sha256": "eed28a5d8571ae285ba1234a7a16f866e6da839c3d3394d54c750dc70e2e86bb"
+        },
+        {
+          "name": "styles.css",
+          "path": "css-practice-v1/selectors/reference/styles.css.txt",
+          "byteLength": 188,
+          "sha256": "70b650f40f86b6e07d968c12ab83117b0b05b40aff674e3b756da80d2ddaab35"
+        },
+        {
+          "name": "README.md",
+          "path": "css-practice-v1/selectors/reference/README.md.txt",
+          "byteLength": 1851,
+          "sha256": "ecf60251215de41ff68fa810f344799dbfe5318dc7b312033140fec37fd0f43f"
+        }
+      ],
+      "itemId": "javascript-level-1-javascript-superstar-jss9-introduction-to-html-css-supplemental-jss9-supplemental-project-1-practice-with-css-selectors",
+      "assignmentTitle": "JSS9 Supplemental Project 1: Practice with CSS Selectors",
+      "moduleId": "javascript-level-1-javascript-superstar-jss9-introduction-to-html-css",
+      "section": "supplemental",
+      "optionalGame": "https://flukeout.github.io/"
+    },
+    {
+      "project": "css-practice-flexbox",
+      "title": "Practice a wrapping row of cards",
+      "version": 1,
+      "role": "starter",
+      "urls": [
+        "/course-assets/javascript-level-1/css-practice-v1/flexbox/starter/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "css-practice-v1/flexbox/starter/index.html.txt",
+          "byteLength": 378,
+          "sha256": "5e9f5d89c33df7e6c7a46e9af79e1b61f6f416a5fa6059dd4fbc2003824b80db"
+        },
+        {
+          "name": "styles.css",
+          "path": "css-practice-v1/flexbox/starter/styles.css.txt",
+          "byteLength": 122,
+          "sha256": "458789e37d169b26d2e7752d9c116863d308129a809ab4dd46e1b93a0fd2b9be"
+        },
+        {
+          "name": "README.md",
+          "path": "css-practice-v1/flexbox/starter/README.md.txt",
+          "byteLength": 1757,
+          "sha256": "2bf1360b1d707ce796c113d772518bb4c6db347a7a0310403776abb96b1a255a"
+        }
+      ],
+      "itemId": "javascript-level-1-javascript-superstar-jss9-introduction-to-html-css-supplemental-jss9-supplemental-project-2-practice-with-flexbox",
+      "assignmentTitle": "JSS9 Supplemental Project 2: Practice with Flexbox",
+      "moduleId": "javascript-level-1-javascript-superstar-jss9-introduction-to-html-css",
+      "section": "supplemental",
+      "optionalGame": "https://flexboxfroggy.com/"
+    },
+    {
+      "project": "css-practice-flexbox",
+      "title": "Practice a wrapping row of cards",
+      "version": 1,
+      "role": "reference",
+      "urls": [
+        "/course-assets/javascript-level-1/css-practice-v1/flexbox/reference/index.html.txt"
+      ],
+      "files": [
+        {
+          "name": "index.html",
+          "path": "css-practice-v1/flexbox/reference/index.html.txt",
+          "byteLength": 378,
+          "sha256": "5e9f5d89c33df7e6c7a46e9af79e1b61f6f416a5fa6059dd4fbc2003824b80db"
+        },
+        {
+          "name": "styles.css",
+          "path": "css-practice-v1/flexbox/reference/styles.css.txt",
+          "byteLength": 298,
+          "sha256": "aadd54ae41fab4c9386e16a5f62e31145a8767dcb6b25a31f53133ba2845c170"
+        },
+        {
+          "name": "README.md",
+          "path": "css-practice-v1/flexbox/reference/README.md.txt",
+          "byteLength": 1991,
+          "sha256": "4365231e144741d66c603ddcab0ca361c8a7e47873ba98561b41e675a795924b"
+        }
+      ],
+      "itemId": "javascript-level-1-javascript-superstar-jss9-introduction-to-html-css-supplemental-jss9-supplemental-project-2-practice-with-flexbox",
+      "assignmentTitle": "JSS9 Supplemental Project 2: Practice with Flexbox",
+      "moduleId": "javascript-level-1-javascript-superstar-jss9-introduction-to-html-css",
+      "section": "supplemental",
+      "optionalGame": "https://flexboxfroggy.com/"
+    }
+  ],
+  "sourceKind": "authored local CSS exercises; optional original games retained in the readings",
+  "revisionKind": "authored local CSS practice v1",
+  "revision": "css-practice-v1"
+}
