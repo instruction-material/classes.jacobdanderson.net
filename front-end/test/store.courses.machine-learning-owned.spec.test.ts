@@ -183,8 +183,8 @@ describe("Machine Learning owned assignments and supplied data", () => {
 					...module.curriculum,
 					...module.supplementalProjects
 				]);
-				// Retained source tasks plus four independently readable worked lessons.
-				expect(owned).toHaveLength(56);
+				// Retained tasks and worked lessons, including three preserved neuron items.
+				expect(owned).toHaveLength(59);
 				for (const raw of owned) {
 					const item = all.find(
 						candidate => candidate.title === raw.title
