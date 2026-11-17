@@ -20,10 +20,11 @@ import PythonWorker from "../workers/pythonIdePlainWorker?worker&inline";
 export { pythonIdeImportedTopLevelModules } from "@/modules/pythonImportScanner";
 
 const PROJECT_ROOT = "/home/pyodide/classes_project";
-const PYTHON_IDE_RUNTIME_BOOTSTRAP_VERSION =
-	"2026-10-23-conditional-turtle-loops";
+const PYTHON_IDE_RUNTIME_BOOTSTRAP_VERSION = "2026-11-17-bounded-data-compute";
 const PYTHON_EXTENSION_RE = /\.py$/i;
 const FOR_LOOP_ITERATION_LIMIT = 500000;
+const DATA_FOR_LOOP_ITERATION_LIMIT = 5000000;
+const DATA_COMPUTE_SECONDS = 30;
 const WHILE_LOOP_ITERATION_LIMIT = 25000;
 const TURTLE_COOPERATIVE_WHILE_LOOP_ITERATION_LIMIT = 0;
 const TURTLE_COOPERATIVE_LOOP_DELAY_MS = 8;
@@ -776,8 +777,9 @@ _classes_project_root_resolved = __classes_project_root_resolved
 _classes_reserved_import_roots = __classes_reserved_import_roots
 _ClassesProjectImportFinder__classes_reserved_import_roots = _classes_reserved_import_roots
 __classes_loop_iterations = {"for": 0, "while": 0}
+__classes_data_deadline = __classes_time.monotonic() + ${DATA_COMPUTE_SECONDS}
 __classes_loop_iteration_limits = {
-    "for": ${FOR_LOOP_ITERATION_LIMIT},
+    "for": ${mode === "data" ? DATA_FOR_LOOP_ITERATION_LIMIT : FOR_LOOP_ITERATION_LIMIT},
     "while": ${WHILE_LOOP_ITERATION_LIMIT},
     "turtle while": ${TURTLE_COOPERATIVE_WHILE_LOOP_ITERATION_LIMIT},
 }
@@ -890,6 +892,8 @@ def __classes_sleep(_seconds=0):
 __classes_time.sleep = __classes_sleep
 
 def __classes_loop_guard__(kind):
+    if __classes_python_ide_mode == "data" and __classes_time.monotonic() > __classes_data_deadline:
+        raise RuntimeError("Data computation exceeded the ${DATA_COMPUTE_SECONDS}-second runtime budget.")
     limit = __classes_loop_iteration_limits.get(kind, ${WHILE_LOOP_ITERATION_LIMIT})
     if limit <= 0:
         return
@@ -5406,11 +5410,8 @@ for __classes_path in sorted(__classes_project_root.rglob("*")):
     if __classes_path.suffix.lower() not in __classes_text_suffixes:
         continue
     try:
-        if __classes_path.suffix.lower() == ".in":
-            with __classes_path.open("r", encoding="utf-8", newline="") as __classes_input:
-                __classes_content = __classes_input.read()
-        else:
-            __classes_content = __classes_path.read_text(encoding="utf-8")
+        with __classes_path.open("r", encoding="utf-8", newline="") as __classes_input:
+            __classes_content = __classes_input.read()
     except UnicodeDecodeError:
         continue
     __classes_files.append({

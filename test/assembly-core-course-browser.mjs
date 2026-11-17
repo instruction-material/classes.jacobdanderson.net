@@ -611,6 +611,8 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 						);
 						await page.waitForFunction(
 							(text) => {
+								const scroller = document.querySelector(".cm-scroller");
+								if (scroller) scroller.scrollTop = 0;
 								const content = document.querySelector(".cm-content")?.textContent;
 								return text === "" ? content === "" : content?.includes(text);
 							},

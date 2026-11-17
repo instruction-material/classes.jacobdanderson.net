@@ -2623,7 +2623,7 @@ pgzrun.go()
 			"const PYTHON_IDE_RUNTIME_BOOTSTRAP_VERSION"
 		);
 		expect(runtimeSource).toContain("__classes_runtime_bootstrap_version");
-		expect(runtimeSource).toContain("2026-10-23-conditional-turtle-loops");
+		expect(runtimeSource).toContain("2026-11-17-bounded-data-compute");
 		expect(runtimeSource).toContain("const WHILE_LOOP_ITERATION_LIMIT");
 		expect(runtimeSource).toContain(
 			"const TURTLE_COOPERATIVE_WHILE_LOOP_ITERATION_LIMIT"
@@ -5264,7 +5264,7 @@ else:
 			"function deleteCodeEditorStateForProject"
 		);
 		expect(pageSource).toContain('CodeEditorViewState["ranges"][number]');
-		expect(pageSource).toContain(
+		expect(pageSource.replaceAll(/\s+/g, " ")).toContain(
 			"savedState?.doc.toString() === activeFileContent.value"
 		);
 		expect(pageSource).toContain("state: restoredState");
@@ -5686,7 +5686,9 @@ else:
 		expect(isValidPythonFileName("package/data.tsv")).toBe(true);
 		expect(isValidPythonFileName("data/scores.csv", "data")).toBe(true);
 		for (const mode of ["cpp", "c", "java", "turtle", "pgzero"] as const) {
-			expect(isValidPythonFileName("data/scores.csv", mode), mode).toBe(false);
+			expect(isValidPythonFileName("data/scores.csv", mode), mode).toBe(
+				false
+			);
 			expect(isValidPythonFileName("scores.csv", mode), mode).toBe(true);
 		}
 		expect(isValidPythonFileName("data/holdout/scores.csv", "data")).toBe(

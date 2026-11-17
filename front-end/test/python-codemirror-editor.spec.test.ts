@@ -289,7 +289,7 @@ describe("python IDE CodeMirror editor", () => {
 		);
 		expect(pageSource).toContain("activeCodeEditorViewStateKey = nextKey;");
 		expect(pageSource).toContain('import("@codemirror/state")');
-		expect(pageSource).toContain(
+		expect(pageSource.replaceAll(/\s+/g, " ")).toContain(
 			"savedState?.doc.toString() === activeFileContent.value"
 		);
 		expect(pageSource).toContain("state: restoredState");
