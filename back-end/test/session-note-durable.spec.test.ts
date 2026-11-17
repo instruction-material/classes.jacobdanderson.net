@@ -27,7 +27,7 @@ import {
 	ensureNoteWorkflowIndexes,
 	ORPHAN_AFTER_MS
 } from "../src/services/sessionNoteSending.js";
-import { metadataHash } from "../src/utils/sessionNoteIdentity.js";
+import { metadataHash, NoteWorkflowError } from "../src/utils/sessionNoteIdentity.js";
 import { noteVerificationMetadata } from "../src/utils/sessionNoteVerificationMetadata.js";
 import {
 	confirmedArchiveAppend,
@@ -387,6 +387,50 @@ describe.skipIf(!existsSync(mongod))(
 			await Promise.all([w.dispatch(a._id), w.dispatch(b._id)]);
 			expect(received).toBe(1);
 			expect(archive).toHaveBeenCalledTimes(1);
+		});
+
+		it.each(["prior", "duplicate insert"])("returns the accepted operation after a stale preparing %s read", async (path) => {
+			const snapshot = note();
+			const input = {
+				actorId: new Types.ObjectId().toString(),
+				keyHash: metadataHash("stale-prepare-key"),
+				payloadHash: metadataHash(snapshot),
+				note: snapshot
+			};
+			const interrupted = workflow({ ensureNote: async () => { throw new Error("Synthetic preparation interruption"); } });
+			await expect(interrupted.prepare(input)).rejects.toThrow("Synthetic preparation interruption");
+			const stale = await mongoNoteSendStore.byKey(input.actorId, input.keyHash);
+			expect(stale!.state).toBe("preparing");
+			const owner = workflow();
+			const queued = await owner.prepare(input);
+			expect(await owner.dispatch(queued._id)).toMatchObject({ evidenceStatus: "smtp_accepted" });
+			const byKey = vi.fn();
+			if (path === "duplicate insert") byKey.mockResolvedValueOnce(null);
+			byKey.mockResolvedValueOnce(stale);
+			const competitor = workflow({ store: { ...mongoNoteSendStore, byKey } });
+			const replay = await competitor.prepare(input);
+			expect(replay._id).toBe(queued._id);
+			expect(replay.state).toBe("smtp_accepted");
+			expect(await competitor.dispatch(replay._id)).toMatchObject({ evidenceStatus: "smtp_accepted" });
+			expect(received).toBe(1);
+			expect(await SessionNoteSend.countDocuments()).toBe(1);
+			expect(await SessionNote.countDocuments()).toBe(1);
+			expect(archive).toHaveBeenCalledTimes(1);
+		});
+		it("keeps a stale preparing conflict when durable acceptance is absent", async () => {
+			const snapshot = note();
+			const input = {
+				actorId: new Types.ObjectId().toString(),
+				keyHash: metadataHash("unconfirmed-prepare-key"),
+				payloadHash: metadataHash(snapshot),
+				note: snapshot
+			};
+			const conflict = new NoteWorkflowError(409, "saved_note_already_sent");
+			const w = workflow({ ensureNote: async () => { throw conflict; } });
+			await expect(w.prepare(input)).rejects.toBe(conflict);
+			await expect(w.prepare(input)).rejects.toBe(conflict);
+			expect((await mongoNoteSendStore.byKey(input.actorId, input.keyHash))!.state).toBe("preparing");
+			expect(received).toBe(0);
 		});
 		it("rejects changed payloads using an existing key", async () => {
 			const w = workflow();
