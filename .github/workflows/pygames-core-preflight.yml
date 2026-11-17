@@ -1,6 +1,6 @@
 name: Course preflight
 
-run-name: ${{ inputs.course == 'machine-learning-neurons' && 'Original neuron lessons and Python workflows' || inputs.course == 'machine-learning' && 'Machine Learning offline core and source workflows' || inputs.course == 'network-practice' && 'Network complete teaching and practice workflows' || inputs.course == 'tracker-evidence' && inputs.browser_artifact_id != '' && 'Welcome native UI verification' || inputs.course == 'network-capstone-optional' && 'Network capstone identity and optional workflows' || inputs.course == 'network-diagnostics-five' && 'Network diagnostics workflows' || inputs.course == 'network-kernel-optional' && 'Network routing and capture workflows' || inputs.course == 'network-firewall-optional' && 'Network optional firewall workflows' || inputs.course == 'network-dns-optional' && 'Network optional DNS workflows' || inputs.course == 'ai-studios' && 'AI search and game studios' || inputs.course == 'swift-map' && 'Swift Map course and native checks' || inputs.course == 'native-release-evidence' && 'Native release file verification' || inputs.course == 'tracker-evidence' && 'Retained Tracker failure evidence' || inputs.course == 'scratch-tasks' && 'Published Scratch project tasks' || inputs.course == 'course-audit' && 'Course audit follow-ups' || inputs.course == 'scratch-readings' && 'Scratch and self-study readings' || inputs.course == 'scratch-originals' && 'Original Scratch imports' || inputs.course == 'bootcamp' && 'Scratch Bootcamp pages' || inputs.course == 'self-study' && 'Self-study course pages' || inputs.course == 'physics-models' && 'Physics model workflows' || inputs.course == 'networking' && 'Swift Networking source evidence' || inputs.course == 'ai-setup' && 'AI setup reading' || 'PyGames core preflight' }}
+run-name: ${{ inputs.course == 'machine-learning-neurons' && 'Worked machine learning lessons and Python workflows' || inputs.course == 'machine-learning' && 'Machine Learning offline core and source workflows' || inputs.course == 'network-practice' && 'Network complete teaching and practice workflows' || inputs.course == 'tracker-evidence' && inputs.browser_artifact_id != '' && 'Welcome native UI verification' || inputs.course == 'network-capstone-optional' && 'Network capstone identity and optional workflows' || inputs.course == 'network-diagnostics-five' && 'Network diagnostics workflows' || inputs.course == 'network-kernel-optional' && 'Network routing and capture workflows' || inputs.course == 'network-firewall-optional' && 'Network optional firewall workflows' || inputs.course == 'network-dns-optional' && 'Network optional DNS workflows' || inputs.course == 'ai-studios' && 'AI search and game studios' || inputs.course == 'swift-map' && 'Swift Map course and native checks' || inputs.course == 'native-release-evidence' && 'Native release file verification' || inputs.course == 'tracker-evidence' && 'Retained Tracker failure evidence' || inputs.course == 'scratch-tasks' && 'Published Scratch project tasks' || inputs.course == 'course-audit' && 'Course audit follow-ups' || inputs.course == 'scratch-readings' && 'Scratch and self-study readings' || inputs.course == 'scratch-originals' && 'Original Scratch imports' || inputs.course == 'bootcamp' && 'Scratch Bootcamp pages' || inputs.course == 'self-study' && 'Self-study course pages' || inputs.course == 'physics-models' && 'Physics model workflows' || inputs.course == 'networking' && 'Swift Networking source evidence' || inputs.course == 'ai-setup' && 'AI setup reading' || 'PyGames core preflight' }}
 
 on:
   workflow_dispatch:
@@ -633,6 +633,7 @@ jobs:
         run: |
           node scripts/classes-family-heavy-task.mjs -- node scripts/run-course-browser-phase.mjs test/machine-learning-neuron-course-browser.test.mjs output/release-checks/ml-neuron-browser-rerun-state.json
           python3 -B test/machine-learning-neuron-exported-contracts.py output/release-checks/machine-learning-neurons
+          node scripts/classes-family-heavy-task.mjs -- node test/machine-learning-worked-readings-browser.mjs "$PWD" output/release-checks/machine-learning-worked-readings
       - name: Verify the standalone backend locked graph and both audits
         working-directory: back-end
         run: |
@@ -697,6 +698,19 @@ jobs:
               proof["machineLearningNeurons"] = {key: neurons[key] for key in
                   ("source", "projects", "courseProfiles", "completeCoreReadingProfiles", "archives",
                    "nativeExecutions", "successfulCompletedExecutions", "intentionalStarterStops")}
+              readings = json.loads((out / "machine-learning-worked-readings/accepted.json").read_text())
+              assert readings["accepted"] and readings["fullLessonViews"] == 52
+              assert readings["sourceMode"] == "exact built application preview"
+              assert readings["allCompleteRenderedLessonTextsMatch"] and readings["allLastParagraphsVisible"]
+              assert set(readings["actualRoles"]) == {"learner", "instructor"} and readings["widths"] == [390, 1280]
+              fixtures = json.loads(Path("test/fixtures/machine-learning-worked-reading-cases.json").read_text())
+              assert fixtures["items"] == 13 and len(fixtures["cases"]) == 13
+              for case in fixtures["cases"]:
+                  profiles = [row for row in readings["profiles"] if row["file"] == case["file"]]
+                  assert len(profiles) == 4
+                  assert {(row["role"], row["width"]) for row in profiles} == {("learner", 390), ("learner", 1280), ("instructor", 390), ("instructor", 1280)}
+                  assert all(row["sourceSHA256"] == case["sourceSHA256"] and row["lastParagraphVisible"] for row in profiles)
+              proof["machineLearningWorkedReadings"] = {"items": 13, "completeViews": 52, "lastParagraphsVisible": True}
           (out / "accepted.json").write_text(json.dumps(proof, indent=2) + "\n")
           PY
           cp /tmp/classes-family-heavy-tasks.log output/release-checks/processes.jsonl
