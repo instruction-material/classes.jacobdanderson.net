@@ -84,7 +84,7 @@ async function main() {
 		browser = await puppeteer.launch({
 			executablePath:
 				process.env.PUPPETEER_EXECUTABLE_PATH
-				?? puppeteer.executablePath(),
+				?? await puppeteer.executablePath(),
 			headless: true,
 			args: ["--no-sandbox"]
 		});

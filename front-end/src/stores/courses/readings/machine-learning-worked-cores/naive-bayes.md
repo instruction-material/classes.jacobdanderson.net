@@ -8,14 +8,14 @@ Use a fixed vocabulary in the order free, offer, meeting. Two fictional classes 
 
 With Laplace smoothing alpha=1, add one to each token count and add the vocabulary size three to each denominator. The conditional token probabilities are S:(5/9,3/9,1/9) and H:(1/9,2/9,6/9). Without smoothing, an unseen class/token pair would make the entire product zero.
 
-The message free meeting has count vector (1,0,1). Its unnormalized scores are:
+The message `free meeting` has count vector (1,0,1). Its unnormalized scores are:
 
 - S: `(1/2)*(5/9)*(1/9) = 5/162`.
 - H: `(1/2)*(1/9)*(6/9) = 6/162`.
 
 The larger score selects H. Dividing by their sum gives S:5/11 and H:6/11. These are outputs under this tiny assumed model, not independently established confidence in real messages.
 
-For free free, use the repeated count: the free likelihood is squared. The normalized S result becomes 25/26. A count model records repetitions; a binary word-presence model is a different likelihood model.
+For `free free`, use the repeated count: the free likelihood is squared. The normalized S result becomes 25/26. A count model records repetitions; a binary word-presence model is a different likelihood model.
 
 Implementations normally sum log priors and count-weighted log likelihoods instead of multiplying many small values. Freeze the vocabulary and smoothing choice from training evidence; transform later messages with that same vocabulary.
 
