@@ -4,6 +4,7 @@ import type { CourseModule, CourseModuleItem } from "@/stores/courses";
 import { computed } from "vue";
 import HistoricalCourseProgress from "@/components/HistoricalCourseProgress.vue";
 import WorkspaceDisclosure from "@/components/WorkspaceDisclosure.vue";
+import { visibleCourseModules } from "@/modules/courseVisibility";
 
 const props = defineProps<{
 	courseLabel: (courseId: string) => string;
@@ -124,7 +125,9 @@ function toggleItem(item: CourseModuleItem, event: Event) {
 
 			<div v-else-if="selectedCourse" class="progress-outline">
 				<WorkspaceDisclosure
-					v-for="module in selectedCourse.modules"
+					v-for="module in visibleCourseModules(
+						selectedCourse.modules
+					)"
 					:key="module.id"
 					class="progress-module"
 					trigger-class="progress-module-summary"

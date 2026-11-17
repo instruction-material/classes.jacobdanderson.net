@@ -638,6 +638,7 @@ function normalizeCourse(
 								...(item.contentKind
 									? { contentKind: item.contentKind }
 									: {}),
+								...(item.internal ? { internal: true } : {}),
 								ideImport: item.ideImport,
 								projectLink: (() => {
 									if (

@@ -125,7 +125,7 @@ describe("JavaScript Level 1 learner flow", () => {
 		}
 	});
 
-	it("adds a bounded schedule and six-part reasoning map to every core module", () => {
+	it("keeps module timing and direct practice links without repeated planning prose", () => {
 		const modules = javascriptLevel1Course.modules.filter(
 			module => module.kind !== "appendix"
 		);
@@ -135,19 +135,16 @@ describe("JavaScript Level 1 learner flow", () => {
 			expect(module.estimatedTime, module.title).toMatch(/session/u);
 			expect(module.keyBlocks, module.title).toHaveLength(6);
 			expect(module.curriculum[0].content, module.title).toContain(
-				"**Course flow:**"
+				"[Practice]"
 			);
 			expect(module.curriculum[0].content, module.title).toContain(
-				"**Standards route:**"
+				"[Self-check]"
 			);
 			expect(module.curriculum[0].content, module.title).toContain(
+				"References:"
+			);
+			expect(module.curriculum[0].content, module.title).not.toContain(
 				"**Evidence gate:**"
-			);
-			expect(module.curriculum[0].content, module.title).toContain(
-				"**Local continuity:**"
-			);
-			expect(module.curriculum[0].content, module.title).toContain(
-				"**Current references:**"
 			);
 		}
 	});
@@ -174,9 +171,16 @@ describe("JavaScript Level 1 learner flow", () => {
 			expect(item.solutionLink, item.title).not.toBe(item.projectLink);
 		}
 		for (const item of projectItems) {
-			if (item.projectLink === "https://codepen.io/junilearning/pen/vYGWvaq") {
-				expect(item.datasetLink).toBe("/course-assets/javascript-level-1/snowflake-pattern-checks.md#pattern-inputs");
-				const slugs = markdownHeadingSlugs(assetText("snowflake-pattern-checks.md"));
+			if (
+				item.projectLink ===
+				"https://codepen.io/junilearning/pen/vYGWvaq"
+			) {
+				expect(item.datasetLink).toBe(
+					"/course-assets/javascript-level-1/snowflake-pattern-checks.md#pattern-inputs"
+				);
+				const slugs = markdownHeadingSlugs(
+					assetText("snowflake-pattern-checks.md")
+				);
 				expect(slugs).toContain("pattern-inputs");
 				expect(slugs).toContain("pattern-answers");
 			} else {
