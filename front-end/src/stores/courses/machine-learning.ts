@@ -2,6 +2,12 @@ import type { RawCourse } from "./types";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { withOwnedMachineLearningAssignment } from "./machineLearningOwnedAssignments";
 import { buildProjectGuidance } from "./projectGuidance";
+import modelComparisonReading from "./readings/machine-learning-foundations/choose-model-before-test.md?raw";
+import classificationMeasuresReading from "./readings/machine-learning-foundations/classification-measures.md?raw";
+import clusteringUnitPractice from "./readings/machine-learning-foundations/clustering-unit-variation.md?raw";
+import missingMeasurementPractice from "./readings/machine-learning-foundations/inspect-missing-measurement.md?raw";
+import notebookModulesReading from "./readings/machine-learning-foundations/notebooks-and-modules.md?raw";
+import regressionErrorsReading from "./readings/machine-learning-foundations/regression-errors.md?raw";
 import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
 import { buildSupportSectionGuidance } from "./supportSectionGuidance";
 
@@ -58,8 +64,10 @@ const machineLearningSourceCourse: RawCourse = {
 				},
 				{
 					title: "Notebook Cells vs. Reusable Python Modules",
-					content:
-						"Keep notebooks useful for quick exploration while still organizing reusable helpers, cleaning steps, and plotting logic into functions that can move into `.py` files later. This keeps the course from feeling like one long sequence of disconnected notebook cells."
+					content: notebookModulesReading,
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true
 				},
 				{
 					title: "Data Cleaning and Visualization First",
@@ -93,6 +101,14 @@ const machineLearningSourceCourse: RawCourse = {
 					}),
 					projectLink:
 						"https://github.com/instruction-material/AI-Level-2/tree/main/ML2-KNN-Customer-Segmentation-Classification"
+				},
+				{
+					title: "Setup, Tooling, and Data Workflow Data Variation Practice",
+					content: missingMeasurementPractice,
+					contentKind: "assignment",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					learningPath: "choice"
 				}
 			]
 		},
@@ -217,6 +233,18 @@ const machineLearningSourceCourse: RawCourse = {
 						"https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/639388c2cbc2120a14dcf466e85730eb8be498bb/iris.csv",
 					mediaLink:
 						"https://static.classes.jacobdanderson.net/ml1_supplemental_project_1.mp4"
+				},
+				{
+					title: "K-Means Clustering Transfer Practice",
+					aliases: [
+						"machine-learning-ml1-k-means-clustering-supplemental-applied-challenge",
+						"machine-learning-ml1-k-means-clustering-supplemental-transfer-practice"
+					],
+					content: clusteringUnitPractice,
+					contentKind: "assignment",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					learningPath: "choice"
 				}
 			]
 		},
@@ -1089,8 +1117,14 @@ const machineLearningSourceCourse: RawCourse = {
 				},
 				{
 					title: "Compare at Least Two Models per Serious Project",
-					content:
-						"Include a dummy baseline and short comparison note whenever two plausible models can be tried on the same problem. Use one fixed split or cross-validation plan, one reproducible pipeline per candidate, the same metrics, and a written reason to prefer the simpler model when performance is meaningfully similar."
+					content: [
+						modelComparisonReading,
+						classificationMeasuresReading,
+						regressionErrorsReading
+					].join("\n\n"),
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true
 				},
 				{
 					title: "ML7.5 Model Evaluation, Comparison, and Dataset Strategy: Core Project",
