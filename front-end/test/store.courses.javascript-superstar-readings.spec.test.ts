@@ -7,6 +7,7 @@ import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
 import { loadRawCourse } from "@/stores/courses/index";
 import maintenance from "../../test/fixtures/javascript-superstar-maintenance-identities.json";
+import cssPractice from "../../test/fixtures/javascript-css-practice-sources.json";
 import fixture from "../../test/fixtures/javascript-superstar-worked-reading-cases.json";
 
 const id = "javascript-level-1-javascript-superstar";
@@ -70,7 +71,15 @@ describe("complete JavaScript Superstar readings", () => {
 					row.view === 3 ? "reading" : "assignment"
 				);
 				if (row.view === 2) {
-					expect(item?.projectLink, row.title).toMatch(/^https:\/\//);
+					const starter = cssPractice.resources.find(
+						resource =>
+							resource.assignmentTitle === row.title &&
+							resource.role === "starter"
+					)!;
+					expect(item?.projectLink, row.title).toBe(starter.urls[0]);
+					expect(item?.content, row.title).toContain(
+						starter.optionalGame
+					);
 					expect(item?.datasetLink, row.title).toBeUndefined();
 					expect(item?.mediaLink, row.title).toBeUndefined();
 				}

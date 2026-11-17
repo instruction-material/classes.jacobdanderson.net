@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Flexbox Cards</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="cards">
+	<article class="card">One</article>
+	<article class="card">Two</article>
+	<article class="card">Three</article>
+</div>
+</body>
+</html>

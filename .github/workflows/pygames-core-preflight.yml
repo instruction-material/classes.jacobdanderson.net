@@ -638,9 +638,14 @@ jobs:
           node scripts/classes-family-heavy-task.mjs -- node test/machine-learning-worked-readings-browser.mjs "$PWD" output/release-checks/machine-learning-worked-readings
       - name: Verify complete JavaScript Superstar lessons and local CSS activities
         if: inputs.course == 'javascript-superstar-readings'
+        env:
+          JAVASCRIPT_CSS_PRACTICE_BROWSER_DIR: output/release-checks/javascript-css-practice
+          COURSE_IMPORT_SCREENSHOT_DIR: output/release-checks/javascript-css-practice/screenshots
         run: |
           node test/javascript-superstar-worked-examples.mjs front-end/src/stores/courses/readings/javascript-superstar output/release-checks/javascript-superstar-native-examples.json
           node scripts/classes-family-heavy-task.mjs -- node test/machine-learning-worked-readings-browser.mjs "$PWD" output/release-checks/javascript-superstar-readings "" test/fixtures/javascript-superstar-worked-reading-cases.json
+          node scripts/classes-family-heavy-task.mjs -- node scripts/run-course-browser-phase.mjs test/javascript-css-practice-course-browser.test.mjs output/release-checks/javascript-css-practice-rerun-state.json
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-css-practice-exported-browser.test.mjs
       - name: Verify the standalone backend locked graph and both audits
         working-directory: back-end
         run: |
@@ -733,6 +738,11 @@ jobs:
                   assert {(row["role"], row["width"]) for row in profiles} == {("learner", 390), ("learner", 1280), ("instructor", 390), ("instructor", 1280)}
                   assert all(row["sourceSHA256"] == case["sourceSHA256"] and row["lastParagraphVisible"] for row in profiles)
               assert readings["nativeCSSPractice"]["accepted"]
+              css = json.loads((out / "javascript-css-practice/native-browser-proof.json").read_text())
+              assert css["accepted"] and css["actualNativeExecutions"] == 16
+              assert css["savedVisualEdits"] == 8 and css["allNativeRequestsOffline"]
+              assert len(css["exports"]) == 16 and all(row["passed"] for row in css["results"])
+              proof["javascriptCSSPracticeIDE"] = {"projects": 2, "roleProfiles": 8, "archives": 16, "nativeExecutions": 16}
               assert len(readings["nativeCSSPractice"]["selections"]) == 3
               assert [row["containerWidth"] for row in readings["nativeCSSPractice"]["layouts"]] == [480, 280]
               assert native["acceptedWithinNativeExampleScope"] and native["readingFiles"] == 8

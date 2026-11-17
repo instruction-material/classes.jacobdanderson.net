@@ -12,6 +12,7 @@ import { javascriptCoastalCruiseResources } from "@/modules/javascriptCoastalCru
 import { javascriptCollisionResources } from "@/modules/javascriptCollisionResources";
 import { javascriptCombiningResources } from "@/modules/javascriptCombiningResources";
 import { javascriptConditionalsResources } from "@/modules/javascriptConditionalsResources";
+import { javascriptCssPracticeResources } from "@/modules/javascriptCssPracticeResources";
 import { javascriptDrawingResources } from "@/modules/javascriptDrawingResources";
 import { javascriptDynamicComponentsResources } from "@/modules/javascriptDynamicComponentsResources";
 import { javascriptDynamicEventsResources } from "@/modules/javascriptDynamicEventsResources";
@@ -78,6 +79,7 @@ const roles: readonly CourseRole[] = [
 	...javascriptDrawingResources,
 	...javascriptNestedLoopsResources,
 	...javascriptHtmlCssResources,
+	...javascriptCssPracticeResources,
 	...javascriptAnimationResources,
 	...javascriptMoreHtmlCssResources,
 	...javascriptBasicLayoutResources,

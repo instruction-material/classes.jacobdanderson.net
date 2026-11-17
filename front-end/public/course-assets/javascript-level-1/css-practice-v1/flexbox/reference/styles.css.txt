@@ -1,0 +1,21 @@
+body {
+	font-family: sans-serif;
+	margin: 16px;
+}
+
+.cards {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	width: min(480px, 100%);
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.card {
+	box-sizing: border-box;
+	flex: 0 0 140px;
+	width: 140px;
+	border: 1px solid #145a75;
+	padding: 8px;
+}

@@ -4045,9 +4045,11 @@ describe("course text quality normalization", () => {
 			/Explain APIs, requests, and why fetch is asynchronous\./
 		);
 		expect(corpus).toContain(
-			"CSS Diner is an optional way to practice selector precision"
+			"[CSS Diner](https://flukeout.github.io/) is an optional way to practice selector precision"
 		);
-		expect(corpus).toContain("Flexbox Froggy is an optional layout drill");
+		expect(corpus).toContain(
+			"[Flexbox Froggy](https://flexboxfroggy.com/) is an optional layout drill"
+		);
 		expect(corpus).toContain(
 			"Functions turn a repeated process into a named operation"
 		);

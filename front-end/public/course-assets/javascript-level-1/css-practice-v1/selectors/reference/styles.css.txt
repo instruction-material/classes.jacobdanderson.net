@@ -1,0 +1,16 @@
+body {
+	font-family: sans-serif;
+	margin: 16px;
+}
+
+.menu > p {
+	border: 2px solid #145a75;
+}
+
+.menu p.special {
+	outline: 2px dashed #8a4312;
+}
+
+#lunch + p {
+	border: 2px solid #315e24;
+}

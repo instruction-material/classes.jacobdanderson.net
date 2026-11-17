@@ -1,6 +1,6 @@
 # Practice CSS selectors
 
-CSS Diner is an optional way to practice selector precision. The same skills can be checked in a local browser workspace with this HTML:
+[CSS Diner](https://flukeout.github.io/) is an optional way to practice selector precision. The same skills can be checked in a local browser workspace with this HTML:
 
 ```html
 <section class="menu" id="lunch">
