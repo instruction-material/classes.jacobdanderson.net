@@ -2,11 +2,11 @@
 
 This optional activity audits the preserved scripts and notebooks as source documents. Use the fictional OR/XOR and neuron workspaces for executable neural-network practice.
 
-Read Diabetes-Neural-Net-Starter.py, Diabetes-Neural-Net.py, DiabetesNeuralNetStarter.ipynb and DiabetesNeuralNet.ipynb in the linked repository folder. Record the file and statement supporting each observation. Historical stored notebook outputs are records of earlier execution; distinguish them from a result reproduced in a current environment.
+Read `Diabetes-Neural-Net-Starter.py`, `Diabetes-Neural-Net.py`, `DiabetesNeuralNetStarter.ipynb` and `DiabetesNeuralNet.ipynb` in the linked repository folder. Record the file and statement supporting each observation. Historical stored notebook outputs are records of earlier execution; distinguish them from a result reproduced in a current environment.
 
 ## Follow the actual data path
 
-The scripts load a remote CSV from the classes media host. The notebooks name an older Juni-hosted CSV. A local diabetes.csv is retained in the folder, but those source loaders do not read that file. Record all three identities rather than assuming that a nearby filename determines the executed input.
+The scripts load a remote CSV from the classes media host. The notebooks name an older Juni-hosted CSV. A local `diabetes.csv` is retained in the folder, but those source loaders do not read that file. Record all three identities rather than assuming that a nearby filename determines the executed input.
 
 The retained CSV has 768 rows and eight measurement columns plus Outcome. The label counts are 500 zeros and 268 ones. Glucose, BloodPressure, SkinThickness, Insulin and BMI contain zeros; counting them identifies a representation question. The file alone does not establish whether every zero is a measurement or a missing-value code. Identify what a data dictionary would need to resolve before proposing a transformation.
 

@@ -267,6 +267,10 @@ async function main() {
 							"The source-only historical audit is not an executable IDE task"
 						);
 						assert.ok(
+							links.every(href => new URL(href, origin).hostname === "github.com"),
+							"Historical source filenames must not become unrelated domain links"
+						);
+						assert.ok(
 							links.some(href =>
 								href.includes(
 									"/tree/7c7ee0ccee9967b38cb0a0fa4a22c6621b7c7a9b/ML4-Diabetes-Diagnosis-With-Neural-Networks"

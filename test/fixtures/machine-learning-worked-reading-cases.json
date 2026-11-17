@@ -52,7 +52,7 @@
       "moduleId": "machine-learning-ml4-neural-networks",
       "title": "ML4 Choice Audit: Historical Diabetes-Risk Dataset",
       "file": "historical-health-audit.md",
-      "sourceSHA256": "a3b79596f4296a4d57a18936e79cf747eb7d6b471a79f9f5f29df5573c6162c1",
+      "sourceSHA256": "4da9d0b8611f4571a36fb51f166a8201e78fb837700197f659411477b5bfb8d5",
       "staticAudit": true,
       "view": 1
     },
