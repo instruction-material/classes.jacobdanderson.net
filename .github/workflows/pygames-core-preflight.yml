@@ -557,7 +557,7 @@ jobs:
   release-checks:
     if: inputs.course == 'release-checks' || inputs.course == 'machine-learning'
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: ${{ inputs.course == 'machine-learning' && 60 || 45 }}
     env:
       CLASSES_FAMILY_TASK_ID: release-checks-${{ github.run_id }}
     steps:

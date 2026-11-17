@@ -596,14 +596,14 @@ describe("implemented course development artifacts", () => {
 		expectAuthoredSourcePair(
 			machineLearning,
 			"Customer Segmentation Starter Build: Core Project",
-			"AI-Level-2/tree/main/ML1-Customer-Segmentation-Starter",
-			"AI-Level-2/tree/main/ML1-Customer-Segmentation"
+			"AI-Level-2/tree/a445184d038e4fcbf552b87c91fa99a42af59f08/ML1-Customer-Segmentation-Starter",
+			"AI-Level-2/tree/a445184d038e4fcbf552b87c91fa99a42af59f08/ML1-Customer-Segmentation"
 		);
 		expectAuthoredSourcePair(
 			machineLearning,
 			"Disney Movie Clustering Starter Build: Core Project",
-			"AI-Level-2/tree/main/ML1-Disney-Movie-Clustering-Starter",
-			"AI-Level-2/tree/main/ML1-Disney-Movie-Clustering"
+			"AI-Level-2/tree/a445184d038e4fcbf552b87c91fa99a42af59f08/ML1-Disney-Movie-Clustering-Starter",
+			"AI-Level-2/tree/a445184d038e4fcbf552b87c91fa99a42af59f08/ML1-Disney-Movie-Clustering"
 		);
 	});
 
@@ -750,8 +750,8 @@ describe("implemented course development artifacts", () => {
 			/^https:\/\/www\.kaggle\.com\/(?!datasets\/)/i.test(link)
 		);
 		const expectedCsvLinks = [
-			"AI-Level-2/blob/main/ML1-Customer-Segmentation-Starter-Updated/customers.csv",
-			"AI-Level-2/blob/main/ML1-Disney-Movie-Clustering-Starter-Updated/disney.csv",
+			"AI-Level-2/blob/a445184d038e4fcbf552b87c91fa99a42af59f08/ML1-Customer-Segmentation-Starter-Updated/customers.csv",
+			"AI-Level-2/blob/a445184d038e4fcbf552b87c91fa99a42af59f08/ML1-Disney-Movie-Clustering-Starter-Updated/disney.csv",
 			"AI-Level-2/blob/main/ML2-KNN-Customer-Segmentation-Classification-Updated/customers.csv",
 			"AI-Level-2/blob/main/ML3-Email-Spam-Classification/emails.csv",
 			"AI-Level-2/blob/main/ML4-Diabetes-Diagnosis-With-Neural-Networks/diabetes.csv",
@@ -760,9 +760,13 @@ describe("implemented course development artifacts", () => {
 
 		expect(staleDatasetPages).toEqual([]);
 		expect(courseText).not.toContain("Upload the Kaggle");
-		expect(courseText).toContain(
-			"linked customer segmentation CSV from the course source repository"
+		const customer = courseItems(course).find(
+			item => item.title === "ML1 Project 1: Customer Segmentation"
 		);
+		expect(customer?.content).toContain(
+			"customers.csv contains 200 observations"
+		);
+		expect(customer?.content).toContain("Annual Income and Spending Score");
 		for (const csvLink of expectedCsvLinks) {
 			expect(datasetLinks.some(link => link.includes(csvLink))).toBe(
 				true
