@@ -26,7 +26,8 @@ export const VENDORED_BRACES = Object.freeze({
 	name: "@classes/braces",
 	version: "3.0.3-classes.1",
 	resolved: "file:vendor/classes-braces-3.0.3-classes.1.tgz",
-	integrity: "sha512-CvnqWaCXetG3nKnHDvxhuL4r8NbU+x+9aw3DqOCQBY9wZzbwK7iVdSkTl20Ddmgu12wIF004obCkseb4ORkVZQ=="
+	integrity:
+		"sha512-CvnqWaCXetG3nKnHDvxhuL4r8NbU+x+9aw3DqOCQBY9wZzbwK7iVdSkTl20Ddmgu12wIF004obCkseb4ORkVZQ=="
 });
 
 // One reviewed local security fork, not a general exception for file/alias edges.
@@ -42,8 +43,9 @@ export async function validateVendoredBraces(repository, node, metadata) {
 		|| node.package?.inBundle
 		|| node.extraneous
 		|| !node.edgesIn?.size
-		|| Object.entries(VENDORED_BRACES).some(([key, value]) =>
-			metadata[key] !== value)
+		|| Object.entries(VENDORED_BRACES).some(
+			([key, value]) => metadata[key] !== value
+		)
 	) {
 		fail("Unrecognized vendored braces identity or provenance.");
 	}
@@ -63,6 +65,65 @@ export async function validateVendoredBraces(repository, node, metadata) {
 	const integrity = `sha512-${createHash("sha512").update(archive).digest("base64")}`;
 	if (integrity !== VENDORED_BRACES.integrity) {
 		fail("Vendored braces archive does not match reviewed bytes.");
+	}
+}
+
+export const VENDORED_PICOMATCH = Object.freeze([
+	{
+		location: "node_modules/picomatch",
+		name: "@classes/picomatch",
+		version: "4.0.7-classes.1",
+		resolved: "file:vendor/classes-picomatch-4.0.7-classes.1.tgz",
+		integrity:
+			"sha512-SDpjhO8QV31gRQv+u/iiZmeux2K8/lybjF3K8KEOyHj8Bz2oZ51EU5YMuZo87Qq/aqpgCnhGMkAJC15jCnNm+Q=="
+	},
+	{
+		location: "node_modules/micromatch/node_modules/picomatch",
+		name: "@classes/picomatch",
+		version: "2.3.2-classes.1",
+		resolved: "file:vendor/classes-picomatch-2.3.2-classes.1.tgz",
+		integrity:
+			"sha512-29K0u6gPpOvmtV3HP6LHHpzdMW/Tl70zuWCgbDd0GHzQsVBiRNHVV9Pq1j2h8AuMByzJ/UbJKSoW93lltqka2Q=="
+	}
+]);
+
+export async function validateVendoredPicomatch(repository, node, metadata) {
+	const expected = VENDORED_PICOMATCH.find(
+		row => row.location === node.location
+	);
+	if (
+		!expected
+		|| node.name !== "picomatch"
+		|| node.version !== expected.version
+		|| node.package?.name !== expected.name
+		|| node.isRegistryDependency
+		|| node.isLink
+		|| node.inBundle
+		|| node.package?.inBundle
+		|| node.extraneous
+		|| !node.edgesIn?.size
+		|| ["name", "version", "resolved", "integrity"].some(
+			key => metadata[key] !== expected[key]
+		)
+	) {
+		fail("Unrecognized vendored picomatch identity or provenance.");
+	}
+	for (const edge of node.edgesIn) {
+		if (
+			edge.name !== "picomatch"
+			|| edge.spec !== expected.resolved
+			|| edge.valid !== true
+			|| edge.satisfiedBy(node) !== true
+		) {
+			fail("Unrecognized vendored picomatch incoming edge.");
+		}
+	}
+	const archive = await readFile(
+		join(repository, expected.resolved.slice("file:".length))
+	);
+	const integrity = `sha512-${createHash("sha512").update(archive).digest("base64")}`;
+	if (integrity !== expected.integrity) {
+		fail("Vendored picomatch archive does not match reviewed bytes.");
 	}
 }
 
@@ -513,8 +574,21 @@ export async function collectOccurrences(repository, lock, runtime) {
 			continue;
 		}
 
+		if (node.name === "picomatch" && !node.isRegistryDependency) {
+			await validateVendoredPicomatch(
+				repository,
+				node,
+				lock.packages[location]
+			);
+			vendored.push(location);
+			continue;
+		}
 		if (node.name === "braces" && !node.isRegistryDependency) {
-			await validateVendoredBraces(repository, node, lock.packages[location]);
+			await validateVendoredBraces(
+				repository,
+				node,
+				lock.packages[location]
+			);
 			vendored.push(location);
 			continue;
 		}
@@ -750,8 +824,7 @@ function parseArguments(argv) {
 	if (!Number.isInteger(options.concurrency) || options.concurrency < 1) {
 		fail("--concurrency must be a positive integer.");
 	}
-	options.npmRoot
-		??= npmRootFromExecPath(process.env.npm_execpath);
+	options.npmRoot ??= npmRootFromExecPath(process.env.npm_execpath);
 	return options;
 }
 

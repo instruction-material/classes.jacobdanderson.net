@@ -592,6 +592,8 @@ jobs:
           node scripts/classes-family-heavy-task.mjs -- npm run -w front-end test:unit
           node scripts/classes-family-heavy-task.mjs -- npm run -w back-end test
           npm run test:braces-security
+          npm run test:picomatch-security
+          npm run test:lock-provenance
       - name: Build both workspaces and recheck generated types
         run: |
           node scripts/classes-family-heavy-task.mjs -- npm run build

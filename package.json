@@ -42,7 +42,8 @@
 		"up": "npm exec -- taze major --include-locked --recursive",
 		"verify:native-release": "node scripts/verify-native-release.mjs",
 		"verify:production": "node scripts/production-security-headers-smoke.mjs && node scripts/production-ide-smoke.mjs && node scripts/production-graph-sketcher-smoke.mjs",
-		"test:braces-security": "node --test --test-timeout=10000 test/braces-security.test.mjs"
+		"test:braces-security": "node --test --test-timeout=10000 test/braces-security.test.mjs",
+		"test:picomatch-security": "node --test --test-timeout=10000 test/picomatch-security.test.mjs"
 	},
 	"overrides": {
 		"defu": "6.1.6",
@@ -53,24 +54,24 @@
 		"ip-address": "10.7.4",
 		"path-to-regexp": "8.4.2",
 		"serialize-javascript": "7.0.5",
-		"picomatch": "4.0.5",
+		"picomatch": "$picomatch",
 		"anymatch": {
-			"picomatch": "2.3.2"
+			"picomatch": "file:vendor/classes-picomatch-2.3.2-classes.1.tgz"
 		},
 		"micromatch": {
-			"picomatch": "2.3.2"
+			"picomatch": "file:vendor/classes-picomatch-2.3.2-classes.1.tgz"
 		},
 		"readdirp": {
-			"picomatch": "2.3.2"
+			"picomatch": "file:vendor/classes-picomatch-2.3.2-classes.1.tgz"
 		},
 		"@rollup/plugin-babel": {
 			"@rollup/pluginutils": {
-				"picomatch": "2.3.2"
+				"picomatch": "file:vendor/classes-picomatch-2.3.2-classes.1.tgz"
 			}
 		},
 		"@rollup/plugin-replace": {
 			"@rollup/pluginutils": {
-				"picomatch": "2.3.2"
+				"picomatch": "file:vendor/classes-picomatch-2.3.2-classes.1.tgz"
 			}
 		},
 		"vue-i18n": "^11.4.17",
@@ -121,6 +122,7 @@
 		"puppeteer": "^25.16.0",
 		"taze": "^19.11.0",
 		"typescript": "^6.0.3",
-		"vitest": "^4.1.12"
+		"vitest": "^4.1.12",
+		"picomatch": "file:vendor/classes-picomatch-4.0.7-classes.1.tgz"
 	}
 }
