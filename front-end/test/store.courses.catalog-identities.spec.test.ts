@@ -19,6 +19,7 @@ import pictureBookAdditions from "../../test/fixtures/picture-book-restored-iden
 import restoredSpeakingProjects from "../../test/fixtures/public-speaking-restored-identities.json";
 import restoredJavaScriptLocalReadings from "../../test/fixtures/javascript-local-persistence-reading-identities.json";
 import restoredPythonRecaps from "../../test/fixtures/python-level-1-restored-recap-identities.json";
+import restoredMachineLearningPresentation from "../../test/fixtures/machine-learning-restored-presentation-identity.json";
 
 import restoredSmartMoneyProjects from "../../test/fixtures/smart-money-restored-identities.json";
 
@@ -48,6 +49,7 @@ const addedIdentities: Record<
 	string,
 	{ moduleId: string; id: string; section: string }[]
 > = {
+	"machine-learning": restoredMachineLearningPresentation,
 	"early-elementary-a-math": elementaryAdditions,
 	"early-elementary-b-math": elementaryBAdditions,
 	"late-elementary-a-math": lateElementaryAAdditions,
