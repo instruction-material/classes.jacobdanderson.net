@@ -12,7 +12,7 @@
       "moduleId": "machine-learning-ml3-naive-bayes",
       "title": "Naive Bayes Overview",
       "file": "naive-bayes.md",
-      "sourceSHA256": "d7231bff949230683d74c91e55a3a9463d1e8a5b5c47282439081da45f723fcc",
+      "sourceSHA256": "6ddf91b2ed98d95d243af4af16b41301c8653f982b11e9297cc63566afd894ed",
       "staticAudit": false,
       "view": 3
     },
@@ -52,7 +52,7 @@
       "moduleId": "machine-learning-ml4-neural-networks",
       "title": "ML4 Choice Audit: Historical Diabetes-Risk Dataset",
       "file": "historical-health-audit.md",
-      "sourceSHA256": "4da9d0b8611f4571a36fb51f166a8201e78fb837700197f659411477b5bfb8d5",
+      "sourceSHA256": "100375a5e55c4fad37ba28cdf83f17ef4e2a4ee37ae38ae260d4fd5ceeca0eb3",
       "staticAudit": true,
       "view": 1
     },
@@ -84,7 +84,7 @@
       "moduleId": "machine-learning-ml4-neural-networks",
       "title": "Neural Networks Core Concepts",
       "file": "../machine-learning-neurons/core-concepts.md",
-      "sourceSHA256": "c7f1fa8eca91c51a3722f48bbb6baf1c62cceaa6acdc8cea4ed8599a6ea5b03f",
+      "sourceSHA256": "3e6aa12252b96bc4ce7fa359ff8a7d0cb51d4c470fafcfe24b61513d57bd3dc1",
       "staticAudit": false,
       "view": 3
     },

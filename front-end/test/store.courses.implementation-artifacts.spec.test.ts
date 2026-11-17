@@ -754,7 +754,6 @@ describe("implemented course development artifacts", () => {
 			"AI-Level-2/blob/a445184d038e4fcbf552b87c91fa99a42af59f08/ML1-Disney-Movie-Clustering-Starter-Updated/disney.csv",
 			"AI-Level-2/blob/main/ML2-KNN-Customer-Segmentation-Classification-Updated/customers.csv",
 			"AI-Level-2/blob/main/ML3-Email-Spam-Classification/emails.csv",
-			"AI-Level-2/blob/main/ML4-Diabetes-Diagnosis-With-Neural-Networks/diabetes.csv",
 			"AI-Level-2/blob/main/ML5-Predicting-Life-Expectancy/life_expectancy.csv"
 		];
 
@@ -767,6 +766,18 @@ describe("implemented course development artifacts", () => {
 			"customers.csv contains 200 observations"
 		);
 		expect(customer?.content).toContain("Annual Income and Spending Score");
+		const historicalHealthAudit = courseItems(course).find(
+			item =>
+				item.title ===
+				"ML4 Choice Audit: Historical Diabetes-Risk Dataset"
+		);
+		expect(historicalHealthAudit?.projectLink).toBe(
+			"https://github.com/instruction-material/AI-Level-2/tree/7c7ee0ccee9967b38cb0a0fa4a22c6621b7c7a9b/ML4-Diabetes-Diagnosis-With-Neural-Networks"
+		);
+		expect(historicalHealthAudit?.datasetLink).toBeUndefined();
+		expect(historicalHealthAudit?.solutionLink).toBeUndefined();
+		expect(historicalHealthAudit?.ideImport).toBe(false);
+		expect(historicalHealthAudit?.learningPath).toBe("choice");
 		for (const csvLink of expectedCsvLinks) {
 			expect(datasetLinks.some(link => link.includes(csvLink))).toBe(
 				true

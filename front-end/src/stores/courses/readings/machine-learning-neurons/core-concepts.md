@@ -4,7 +4,7 @@ A neuron computes a weighted sum, then applies an activation. For two inputs, `z
 
 Two activations used in these projects are sigmoid, `sigmoid(z) = 1/(1+exp(-z))`, and ReLU, `relu(z) = max(0,z)`. Sigmoid maps finite real logits into (0,1); floating-point arithmetic can round extreme values to an endpoint. ReLU returns zero for negative inputs and preserves positive inputs. Nonlinear activations let composed layers represent more than a single affine transformation.
 
-## Calculate a neuron
+## Worked neuron calculation
 
 Use `x1=0`, `x2=1`, weights `w1=1` and `w2=2`, and bias `b=1`. The weighted sum is `0*1 + 1*2 + 1 = 3`; sigmoid gives approximately `0.952574`.
 
