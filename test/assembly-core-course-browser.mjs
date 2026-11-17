@@ -617,7 +617,7 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 							{},
 							saved.files
 								.find(file => file.name === filename)
-								.content.split("\n")[0]
+								.content.split(/\r\n?|\n/)[0]
 						);
 						await page.waitForSelector(".cm-content", {
 							visible: true

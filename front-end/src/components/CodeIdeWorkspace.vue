@@ -3639,7 +3639,8 @@ async function resetCodeEditor() {
 		: null;
 	const restoredState =
 		!useFreshCodeEditorStateOnNextReset &&
-		savedState?.doc.toString() === activeFileContent.value
+		savedState?.doc.toString() ===
+			activeFileContent.value.replace(/\r\n?/g, "\n")
 			? savedState
 			: null;
 	useFreshCodeEditorStateOnNextReset = false;
@@ -3649,6 +3650,8 @@ async function resetCodeEditor() {
 		lineWrappingEnabled: editorLineWrapEnabled.value,
 		mode: selectedProject.value?.mode ?? "python",
 		onChange(content) {
+			if (content === activeFileContent.value.replace(/\r\n?/g, "\n"))
+				return;
 			syncingCodeMirrorContent = true;
 			activeFileContent.value = content;
 			void nextTick(() => {
@@ -3690,7 +3693,8 @@ async function resetCodeEditor() {
 
 function syncCodeEditorContent(content: string) {
 	if (syncingCodeMirrorContent || !codeEditorView) return;
-	if (codeEditorView.state.doc.toString() === content) return;
+	if (codeEditorView.state.doc.toString() === content.replace(/\r\n?/g, "\n"))
+		return;
 
 	codeEditorView.dispatch({
 		changes: {

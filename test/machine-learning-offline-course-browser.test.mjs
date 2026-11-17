@@ -188,7 +188,7 @@ for (const project of fixture.projects.filter(
 					? ["main.py", "model.py"]
 					: ["main.py"],
 				editContent: ({ filename }) =>
-					file("solution", filename).content
+					file("solution", filename).content.replaceAll(/\r\n?/g, "\n")
 					+ (filename === "main.py"
 						? `\nprint(${JSON.stringify(marker)})\n`
 						: "\n# Saved ML model edit\n"),
