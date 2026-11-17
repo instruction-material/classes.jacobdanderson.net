@@ -109,7 +109,7 @@ const javascriptLevel1SourceCourse: RawCourse = {
 				{
 					title: "Check-In #1: Variables",
 					content:
-						"Create variables for three different kinds of data: a number, a string, and a boolean. Then ask for a favorite color with `prompt()`, store the response in `userColor`, and use the value in two outputs: a `printToScreen()` sentence and an `alert()`. Check that the variable name, stored value, and printed message all match."
+						"Create variables for three different kinds of data: a number, a string, and a boolean. Collect a favorite color with `prompt()`, store the response in `userColor`, and use the value in two outputs: a `printToScreen()` sentence and an `alert()`. Check that the variable name, stored value, and printed message all match."
 				},
 				{
 					title: "Check-In #1: Mathematical Operators and Randomness",
