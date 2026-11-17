@@ -6848,8 +6848,10 @@ describe("course text quality normalization", () => {
 
 		const customerSegmentation = findItem(course!, /Customer Segmentation/);
 		expect(customerSegmentation.content).toContain(
-			"The algorithm is run more than once so random initialization is visible"
+			"Compare k=3 and k=5 across seeds 7, 19 and 31"
 		);
+		expect(customerSegmentation.content).toContain("all six runs");
+		expect(customerSegmentation.content).toContain("## Hand-worked check");
 
 		const spamClassification = findItem(course!, /Email Spam/);
 		expect(spamClassification.content).toContain(
