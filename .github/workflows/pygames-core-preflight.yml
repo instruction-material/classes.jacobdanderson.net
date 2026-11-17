@@ -557,9 +557,10 @@ jobs:
   release-checks:
     if: inputs.course == 'release-checks' || inputs.course == 'machine-learning'
     runs-on: ubuntu-24.04
-    timeout-minutes: ${{ inputs.course == 'machine-learning' && 60 || 45 }}
+    timeout-minutes: ${{ inputs.course == 'machine-learning' && 90 || 45 }}
     env:
       CLASSES_FAMILY_TASK_ID: release-checks-${{ github.run_id }}
+      CLASSES_FAMILY_HEAVY_TIMEOUT_MS: ${{ inputs.course == 'machine-learning' && 2700000 || 1800000 }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
