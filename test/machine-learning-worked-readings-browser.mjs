@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
+import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { createRequire } from "node:module";
 import { join, resolve } from "node:path";
@@ -81,10 +82,16 @@ async function main() {
 				});
 		if (config) await server.listen();
 		const origin = server.resolvedUrls.local[0].replace(/\/$/, "");
+		const executablePath = [
+			process.env.PUPPETEER_EXECUTABLE_PATH,
+			await puppeteer.executablePath(),
+			"/usr/bin/google-chrome",
+			"/usr/bin/chromium",
+			"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+		].find(path => typeof path === "string" && path && existsSync(path));
+		assert.ok(executablePath, "An existing Chrome installation is required");
 		browser = await puppeteer.launch({
-			executablePath:
-				process.env.PUPPETEER_EXECUTABLE_PATH
-				?? await puppeteer.executablePath(),
+			executablePath,
 			headless: true,
 			args: ["--no-sandbox"]
 		});
