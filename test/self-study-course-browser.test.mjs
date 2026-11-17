@@ -42,6 +42,7 @@ const readingCounts = [22, 19, 19, 20, 8, 13, 21, 31, 10, 13, 14, 16, 20, 14, 9,
 assert.equal(readingCounts.length, courseIds.length);
 // Reading counts for explicitly selected teaching scopes.
 const focusedReadingCounts = {
+	"pre-algebra-b": 11,
 	"ai-level-1": 34,
 	"network-systems": 56,
 	"smart-money-personal-finance": 9,

@@ -42,6 +42,7 @@ import { introToChemistryCourse } from "@/stores/courses/intro-to-chemistry";
 import { introToEnvironmentalScienceCourse } from "@/stores/courses/intro-to-environmental-science";
 import { elementaryScienceCourse } from "@/stores/courses/elementary-science";
 import { preAlgebraACourse } from "@/stores/courses/pre-algebra-a";
+import { preAlgebraBCourse } from "@/stores/courses/pre-algebra-b";
 import {
 	earlyElementaryMathACourse,
 	earlyElementaryMathBCourse,
@@ -71,6 +72,12 @@ function isReviewedModule(id: string, title: string) {
 	return true;
 }
 const cases = [
+	{
+		id: "pre-algebra-b",
+		source: preAlgebraBCourse,
+		readings: 11,
+		additions: []
+	},
 	{ id: "ai-level-1", source: aiLevel1Course, readings: 34, additions: [] },
 	{
 		id: "network-systems",
@@ -521,6 +528,7 @@ it.each(
 			const completeAssignment =
 				focusedJavaTask ||
 				[
+					"pre-algebra-b",
 					"ai-level-1",
 					"smart-money-personal-finance",
 					"network-systems",
@@ -536,6 +544,7 @@ it.each(
 			const fullBlocks =
 				focusedJavaTask ||
 				[
+					"pre-algebra-b",
 					"ai-level-1",
 					"smart-money-personal-finance",
 					"network-systems",
@@ -672,6 +681,7 @@ it.each(
 			if (
 				completeAssignment &&
 				![
+					"pre-algebra-b",
 					"ai-level-1",
 					"network-systems",
 					"algebra-1a",
@@ -775,7 +785,23 @@ it.each(
 				.filter(module => isReviewedModule(id, module.title))
 				.flatMap(module => module.readings)
 		).toHaveLength(count);
-		if (id === "design-patterns-in-java") {
+		if (id === "pre-algebra-b") {
+			expect(modules).toHaveLength(10);
+			expect(
+				modules.filter(module => module.kind === "module")
+			).toHaveLength(9);
+			expect(modules.flatMap(module => module.readings)).toHaveLength(11);
+			const activities = modules.flatMap(module => [
+				...module.projects,
+				...module.optional
+			]);
+			expect(activities).toHaveLength(34);
+			expect(
+				activities.every(item => item.assignmentTextScope === "complete")
+			).toBe(true);
+			expect(activities.flatMap(item => item.selfChecks)).toHaveLength(14);
+		}
+		else if (id === "design-patterns-in-java") {
 			expect(modules).toHaveLength(14);
 			const activities = modules.flatMap(module => [
 				...module.projects,
@@ -914,7 +940,16 @@ it.each(
 			);
 		for (const module of modules) {
 			if (!isReviewedModule(id, module.title)) continue;
-			if (id === "ai-level-1") {
+			if (id === "pre-algebra-b") {
+				expect(module.readings, module.title).toHaveLength(
+					module.kind === "appendix"
+						? 1
+						: /^PAB(?:1|6|10|15|20)-/.test(module.title)
+							? 2
+							: 0
+				);
+			}
+			else if (id === "ai-level-1") {
 				const expected =
 					module.title === "AI Level 1 Reference"
 						? 6
