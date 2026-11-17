@@ -1,6 +1,6 @@
 name: Course preflight
 
-run-name: ${{ inputs.course == 'machine-learning' && 'Machine Learning offline core and source workflows' || inputs.course == 'network-practice' && 'Network complete teaching and practice workflows' || inputs.course == 'tracker-evidence' && inputs.browser_artifact_id != '' && 'Welcome native UI verification' || inputs.course == 'network-capstone-optional' && 'Network capstone identity and optional workflows' || inputs.course == 'network-diagnostics-five' && 'Network diagnostics workflows' || inputs.course == 'network-kernel-optional' && 'Network routing and capture workflows' || inputs.course == 'network-firewall-optional' && 'Network optional firewall workflows' || inputs.course == 'network-dns-optional' && 'Network optional DNS workflows' || inputs.course == 'ai-studios' && 'AI search and game studios' || inputs.course == 'swift-map' && 'Swift Map course and native checks' || inputs.course == 'native-release-evidence' && 'Native release file verification' || inputs.course == 'tracker-evidence' && 'Retained Tracker failure evidence' || inputs.course == 'scratch-tasks' && 'Published Scratch project tasks' || inputs.course == 'course-audit' && 'Course audit follow-ups' || inputs.course == 'scratch-readings' && 'Scratch and self-study readings' || inputs.course == 'scratch-originals' && 'Original Scratch imports' || inputs.course == 'bootcamp' && 'Scratch Bootcamp pages' || inputs.course == 'self-study' && 'Self-study course pages' || inputs.course == 'physics-models' && 'Physics model workflows' || inputs.course == 'networking' && 'Swift Networking source evidence' || inputs.course == 'ai-setup' && 'AI setup reading' || 'PyGames core preflight' }}
+run-name: ${{ inputs.course == 'machine-learning-neurons' && 'Original neuron lessons and Python workflows' || inputs.course == 'machine-learning' && 'Machine Learning offline core and source workflows' || inputs.course == 'network-practice' && 'Network complete teaching and practice workflows' || inputs.course == 'tracker-evidence' && inputs.browser_artifact_id != '' && 'Welcome native UI verification' || inputs.course == 'network-capstone-optional' && 'Network capstone identity and optional workflows' || inputs.course == 'network-diagnostics-five' && 'Network diagnostics workflows' || inputs.course == 'network-kernel-optional' && 'Network routing and capture workflows' || inputs.course == 'network-firewall-optional' && 'Network optional firewall workflows' || inputs.course == 'network-dns-optional' && 'Network optional DNS workflows' || inputs.course == 'ai-studios' && 'AI search and game studios' || inputs.course == 'swift-map' && 'Swift Map course and native checks' || inputs.course == 'native-release-evidence' && 'Native release file verification' || inputs.course == 'tracker-evidence' && 'Retained Tracker failure evidence' || inputs.course == 'scratch-tasks' && 'Published Scratch project tasks' || inputs.course == 'course-audit' && 'Course audit follow-ups' || inputs.course == 'scratch-readings' && 'Scratch and self-study readings' || inputs.course == 'scratch-originals' && 'Original Scratch imports' || inputs.course == 'bootcamp' && 'Scratch Bootcamp pages' || inputs.course == 'self-study' && 'Self-study course pages' || inputs.course == 'physics-models' && 'Physics model workflows' || inputs.course == 'networking' && 'Swift Networking source evidence' || inputs.course == 'ai-setup' && 'AI setup reading' || 'PyGames core preflight' }}
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ on:
       course:
         description: Course verification to run
         type: choice
-        options: [machine-learning, network-practice, network-archive-six, javascript-circle-march, network-capstone-optional, network-diagnostics-five, network-kernel-optional, network-firewall-optional, network-dns-optional, java-refactoring-followup, java-refactoring-final, release-checks, ai-studios, swift-map, javascript-business-directory, java-testability, java-pattern-journeys, java-generalization, java-method-calls, javascript-hundred-squares, javascript-businesses, javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
+        options: [machine-learning-neurons, machine-learning, network-practice, network-archive-six, javascript-circle-march, network-capstone-optional, network-diagnostics-five, network-kernel-optional, network-firewall-optional, network-dns-optional, java-refactoring-followup, java-refactoring-final, release-checks, ai-studios, swift-map, javascript-business-directory, java-testability, java-pattern-journeys, java-generalization, java-method-calls, javascript-hundred-squares, javascript-businesses, javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
         default: pygames
       full_source_runtime:
         description: Also verify every pinned original PyGames runtime profile
@@ -555,7 +555,7 @@ jobs:
 
 
   release-checks:
-    if: inputs.course == 'release-checks' || inputs.course == 'machine-learning'
+    if: inputs.course == 'release-checks' || inputs.course == 'machine-learning' || inputs.course == 'machine-learning-neurons'
     runs-on: ubuntu-24.04
     timeout-minutes: ${{ inputs.course == 'machine-learning' && 90 || 45 }}
     env:
@@ -570,7 +570,7 @@ jobs:
           node-version: 24.18.0
           cache: npm
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
-        if: inputs.course == 'machine-learning'
+        if: inputs.course == 'machine-learning' || inputs.course == 'machine-learning-neurons'
         with:
           python-version: "3.14"
       - name: Verify the locked root install and complete dependency tree
@@ -625,6 +625,14 @@ jobs:
           python3 -m pip_audit --require-hashes --no-deps --disable-pip -r output/release-checks/ml-python-locks/runtime.txt --format json --output output/release-checks/ml-python-runtime-audit.json
           node scripts/classes-family-heavy-task.mjs -- node scripts/run-course-browser-phase.mjs test/machine-learning-legacy-clustering-course-browser.test.mjs output/release-checks/ml-legacy-browser-rerun-state.json
           node scripts/classes-family-heavy-task.mjs -- python3 -B test/machine-learning-legacy-clustering-exported-contracts.py output/release-checks/machine-learning-legacy
+      - name: Verify original neuron lessons, roles, saved projects and native exports
+        if: inputs.course == 'machine-learning-neurons'
+        env:
+          ML_NEURON_BROWSER_DIR: output/release-checks/machine-learning-neurons
+          COURSE_IMPORT_SCREENSHOT_DIR: output/release-checks/machine-learning-neurons/screenshots
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- node scripts/run-course-browser-phase.mjs test/machine-learning-neuron-course-browser.test.mjs output/release-checks/ml-neuron-browser-rerun-state.json
+          python3 -B test/machine-learning-neuron-exported-contracts.py output/release-checks/machine-learning-neurons
       - name: Verify the standalone backend locked graph and both audits
         working-directory: back-end
         run: |
@@ -676,6 +684,19 @@ jobs:
                                            "allExportedArchives": 400, "allNativeExecutions": 326,
                                            "newCompletedNativeExecutions": 86, "intentionalStarterStops": 18,
                                            "fullAndRuntimePythonAuditsZeroWithNoSkippedPackages": True}
+          if os.environ["ML_COURSE_PREFLIGHT"] == "machine-learning-neurons":
+              retry = json.loads((out / "ml-neuron-browser-rerun-state.json.attempts.json").read_text())
+              assert retry["accepted"] and retry["initialStateFileAbsent"] and retry["testFileUnchanged"]
+              assert 1 <= len(retry["attempts"]) <= retry["maximumAttempts"] == 2
+              assert retry["attempts"][-1]["exitCode"] == 0 and retry["attempts"][-1]["signal"] is None
+              neurons = json.loads((out / "machine-learning-neurons/native-exports.json").read_text())
+              assert neurons["accepted"] and neurons["projects"] == 2 and neurons["courseProfiles"] == 8
+              assert neurons["completeCoreReadingProfiles"] == 8
+              assert neurons["archives"] == neurons["nativeExecutions"] == 16
+              assert neurons["successfulCompletedExecutions"] == 12 and neurons["intentionalStarterStops"] == 4
+              proof["machineLearningNeurons"] = {key: neurons[key] for key in
+                  ("source", "projects", "courseProfiles", "completeCoreReadingProfiles", "archives",
+                   "nativeExecutions", "successfulCompletedExecutions", "intentionalStarterStops")}
           (out / "accepted.json").write_text(json.dumps(proof, indent=2) + "\n")
           PY
           cp /tmp/classes-family-heavy-tasks.log output/release-checks/processes.jsonl

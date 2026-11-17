@@ -6218,7 +6218,7 @@ describe("course text quality normalization", () => {
 		expect(calendarMachine.content.length).toBeGreaterThan(500);
 	});
 
-	it("formats grouped lesson arcs as readable ordered markdown lists", async () => {
+	it("formats grouped lesson arcs and preserves authored readings", async () => {
 		const store = useCoursesStore();
 		const [
 			course,
@@ -6306,13 +6306,15 @@ describe("course text quality normalization", () => {
 			.find(module => module.title === "ML4 Neural Networks")
 			?.curriculum.find(item => /Core Concepts$/i.test(item.title));
 		expect(neuralNetworks).toBeDefined();
+		expect(neuralNetworks).toMatchObject({
+			contentKind: "reading",
+			preserveInstructions: true
+		});
 		expect(neuralNetworks!.content).toContain(
-			"A sigmoid graph is useful here because the sigmoid function always returns a value between 0 and 1."
+			"Sigmoid maps finite real logits into (0,1)"
 		);
-		expect(neuralNetworks!.content).toContain("**Details:**");
-		expect(neuralNetworks!.content).not.toMatch(
-			/value between 0 and\s+\n\s*\n\s*1\. Some common activation/
-		);
+		expect(neuralNetworks!.content).toMatch(/^## \S.+/m);
+		expect(neuralNetworks!.content).not.toMatch(/\(0,\s*\n\s*1\)/);
 
 		const aiLandscape = aiLevel1!.modules
 			.find(

@@ -1,0 +1,102 @@
+{
+	"repository": "AI-Level-2",
+	"revision": "7c7ee0ccee9967b38cb0a0fa4a22c6621b7c7a9b",
+	"courseId": "machine-learning",
+	"sourceTree": "d3ee5a5e5cbad8f8313ed7f0660ef98292e75c2d",
+	"sourcePR": "https://github.com/instruction-material/AI-Level-2/pull/18",
+	"projects": [
+		{
+			"folder": "ML4-Neuron-Implementation",
+			"caseId": "neuron-class",
+			"title": "ML4 Project 1: Build a Neuron Class",
+			"moduleId": "machine-learning-ml4-neural-networks",
+			"itemId": "machine-learning-ml4-neural-networks-curriculum-ml4-project-1-build-a-neuron-class",
+			"assignmentText": "# Build a two-input neuron\n\nComplete `Neuron.__init__` and `Neuron.run` in `main.py`. Store `w1`, `w2` and the activation callable on each instance. Return the activation of `x1*w1+x2*w2+b` from `run(x1,x2,b)`. The stable sigmoid helper is supplied.\n\nRun `python3 main.py`. The untouched starter stops at its named task. With inputs `(0,1)`, weights `(1,2)` and bias 1, the completed program prints approximately `0.9525741268224334`.\n\nChange only the active weight `w2` to 1: expect approximately `0.8807970779778823`. Changing only `w1` leaves this example unchanged because `x1=0`. Then change the bias and explain its separate effect.\n\nPass a ReLU callable through the same constructor. For weighted sum -2, its output must be zero. Compare the worked reference after attempting the class.\n\nUse Python 3.10+ and its standard library. Each role contains its own code and task notes; the two-input neuron reading supplies the formula and hand calculations.\n",
+			"multipleModules": false,
+			"sources": {
+				"starter": "ML4-Neuron-Implementation-Starter",
+				"solution": "ML4-Neuron-Implementation"
+			},
+			"nativeExpectedValues": [0.9525741268224334]
+		},
+		{
+			"folder": "ML4-Simple-Neural-Network",
+			"caseId": "neuron-forward-pass",
+			"title": "ML4 Project 2: Simple Neural Network Simulation",
+			"moduleId": "machine-learning-ml4-neural-networks",
+			"itemId": "machine-learning-ml4-neural-networks-curriculum-ml4-project-2-simple-neural-network-simulation",
+			"assignmentText": "# Wire the tiny neural network\n\nComplete `simulate` in `main.py` using the supplied `Neuron` class and activation helpers. Create two hidden sigmoid neurons with weights `(1,2)` and `(3,1)`, then a ReLU output neuron with weights `(3,5)`. All three neurons use bias 1.\n\nFeed the original inputs to both hidden neurons. Feed the two hidden outputs to the output neuron. Return `(hidden1_output, hidden2_output, output)`; the supplied main program prints that tuple's values on separate lines.\n\nFor default inputs `(0,1)`, expect approximately:\n\n```text\n0.9525741268224334\n0.8807970779778823\n8.261707770356711\n```\n\nTrace the weighted sums 3 and 2 before calculating the hidden activations. The final weighted sum is `3*hidden1+5*hidden2+1` and stays positive through ReLU.\n\nChange `x2` to zero. Both hidden logits become 1, and the final output becomes approximately 6.848469. Compare each intermediate result, not only the last number.\n\nUse Python 3.10+ and its standard library; run `python3 main.py` from the selected role folder. The untouched starter stops at `simulate`. This is a forward-pass simulation with fixed parameters. Compare the reference after attempting the wiring.\n",
+			"multipleModules": false,
+			"sources": {
+				"starter": "ML4-Simple-Neural-Network-Starter",
+				"solution": "ML4-Simple-Neural-Network"
+			},
+			"nativeExpectedValues": [
+				0.9525741268224334, 0.8807970779778823, 8.261707770356711
+			]
+		}
+	],
+	"files": {
+		"ML4-Neuron-Implementation-Starter/main.py": {
+			"content": "\"\"\"Build a two-input neuron. Python 3.10+; standard library only.\"\"\"\nimport math\n\n\nclass Neuron:\n    def __init__(self, w1, w2, activ_fn):\n        \"\"\"Store both weights and the activation function on this instance.\"\"\"\n        raise NotImplementedError(\"Store the Neuron weights and activation function.\")\n\n    def run(self, x1, x2, b):\n        \"\"\"Return activ_fn(x1*w1 + x2*w2 + b) using this neuron's stored values.\"\"\"\n        raise NotImplementedError(\"Implement the Neuron weighted sum and activation.\")\n\n\ndef sigmoid(x):\n    \"\"\"Return the logistic activation without exponentiating a large positive value.\"\"\"\n    if x >= 0:\n        return 1 / (1 + math.exp(-x))\n    exp_x = math.exp(x)\n    return exp_x / (1 + exp_x)\n\n\nif __name__ == \"__main__\":\n    n = Neuron(1, 2, sigmoid)\n    print(n.run(0, 1, 1))\n",
+			"encoding": "text",
+			"byteLength": 806,
+			"sha256": "af1e34c2f5d55827efae2e660b0a261d502aaaca81616187ec88b4dcc9485e1a",
+			"gitBlob": "71b45f636aa869f01e5c8bf9c7286c46c24d1bf3"
+		},
+		"ML4-Neuron-Implementation-Starter/README.md": {
+			"content": "# Two-input neuron\n\nThis folder is the learner starter. Use Python 3.10 or later with its standard library.\n\nComplete `Neuron.__init__` and `Neuron.run` in the starter. Store `w1`, `w2` and activ_fn, then compute `z=x1*w1+x2*w2+b` and return the activation of z. The supplied stable sigmoid handles large positive and negative logits.\n\nRun `python3 main.py` from this folder, or run its absolute path from another directory. The untouched starter raises `NotImplementedError` at its named task. The reference prints approximately 0.9525741268224334.\n\nFor `x1=0, x2=1`, weights 1 and 2, and bias 1, `z=3` and `sigmoid(z)=1/(1+exp(-3))`. Change `w2` to 1: `z=2` and the output is approximately 0.8807970779778823. Changing only `w1` has no effect while `x1=0`. Explain the effect of changing bias by one.\n\nSupply a different callable activation, such as max(0,z), through the constructor. Check `z=-2` with ReLU: the output is 0. Inspect the reference after attempting the class. This exercise computes a forward value; it does not fit weights.\n",
+			"encoding": "text",
+			"byteLength": 1043,
+			"sha256": "0bce9b0e443f6336252aa042f718516a512dcb6e89fa58c761215441e5241636",
+			"gitBlob": "42f4165f0dbe178131b9babf047c3aa456cf1159"
+		},
+		"ML4-Neuron-Implementation/main.py": {
+			"content": "\"\"\"Worked two-input neuron. Python 3.10+; standard library only.\"\"\"\nimport math\n\n\nclass Neuron:\n    \"\"\"A two-input weighted sum followed by the supplied activation.\"\"\"\n\n    def __init__(self, w1, w2, activ_fn):\n        self.w1 = w1\n        self.w2 = w2\n        self.activation_function = activ_fn\n\n    def run(self, x1, x2, b):\n        return self.activation_function(x1 * self.w1 + x2 * self.w2 + b)\n\n\ndef sigmoid(x):\n    \"\"\"Return the logistic activation without exponentiating a large positive value.\"\"\"\n    if x >= 0:\n        return 1 / (1 + math.exp(-x))\n    exp_x = math.exp(x)\n    return exp_x / (1 + exp_x)\n\n\nif __name__ == \"__main__\":\n    n = Neuron(1, 2, sigmoid)\n    print(n.run(0, 1, 1))\n",
+			"encoding": "text",
+			"byteLength": 700,
+			"sha256": "9430b5260a512a9f1ac56d8a801cebfbbfb07591e6b4db890036e1fbf206026c",
+			"gitBlob": "dbebb455b8469d5e1fd73f0623b161c814b52f35"
+		},
+		"ML4-Neuron-Implementation/README.md": {
+			"content": "# Two-input neuron\n\nThis folder is the worked reference. Use Python 3.10 or later with its standard library.\n\nComplete `Neuron.__init__` and `Neuron.run` in the starter. Store `w1`, `w2` and activ_fn, then compute `z=x1*w1+x2*w2+b` and return the activation of z. The supplied stable sigmoid handles large positive and negative logits.\n\nRun `python3 main.py` from this folder, or run its absolute path from another directory. The untouched starter raises `NotImplementedError` at its named task. The reference prints approximately 0.9525741268224334.\n\nFor `x1=0, x2=1`, weights 1 and 2, and bias 1, `z=3` and `sigmoid(z)=1/(1+exp(-3))`. Change `w2` to 1: `z=2` and the output is approximately 0.8807970779778823. Changing only `w1` has no effect while `x1=0`. Explain the effect of changing bias by one.\n\nSupply a different callable activation, such as max(0,z), through the constructor. Check `z=-2` with ReLU: the output is 0. Inspect the reference after attempting the class. This exercise computes a forward value; it does not fit weights.\n",
+			"encoding": "text",
+			"byteLength": 1044,
+			"sha256": "7f94c51a3e7ecbc66be26955684d32e2df203d45f55b19169766efd2d66cb786",
+			"gitBlob": "3bf34b185703dd40ca55d8d427acc26bab93710f"
+		},
+		"ML4-Simple-Neural-Network-Starter/main.py": {
+			"content": "\"\"\"Complete the forward pass using the supplied Neuron and activations.\"\"\"\nimport math\n\n\nclass Neuron:\n    \"\"\"A two-input weighted sum followed by the supplied activation.\"\"\"\n\n    def __init__(self, w1, w2, activ_fn):\n        self.w1 = w1\n        self.w2 = w2\n        self.activation_function = activ_fn\n\n    def run(self, x1, x2, b):\n        return self.activation_function(x1 * self.w1 + x2 * self.w2 + b)\n\n\ndef sigmoid(x):\n    \"\"\"Return the logistic activation without exponentiating a large positive value.\"\"\"\n    if x >= 0:\n        return 1 / (1 + math.exp(-x))\n    exp_x = math.exp(x)\n    return exp_x / (1 + exp_x)\n\n\ndef relu(x):\n    return max(0, x)\n\n\ndef simulate(x1=0, x2=1, b=1):\n    \"\"\"Return the two hidden activations and final output without fitting weights.\"\"\"\n    raise NotImplementedError(\n        \"Connect the two hidden neurons to the output neuron; return all three outputs.\"\n    )\n\n\nif __name__ == \"__main__\":\n    for value in simulate():\n        print(value)\n",
+			"encoding": "text",
+			"byteLength": 982,
+			"sha256": "bc33691adbbb08b8377b78aa50b27bbd18bc5da1d06597177bc4458a40539e92",
+			"gitBlob": "d6f67bff854547a567845cf4ce952ab456d7ca0c"
+		},
+		"ML4-Simple-Neural-Network-Starter/README.md": {
+			"content": "# Tiny neural-network forward pass\n\nThis folder is the learner starter. Use Python 3.10 or later with its standard library. Neuron, stable sigmoid and ReLU are supplied.\n\nComplete `simulate` in the starter. Create hidden sigmoid neurons with weights (1,2) and (3,1), and a ReLU output neuron with weights (3,5). Use `x1=0, x2=1` and bias `b=1` at every neuron. Return a tuple `(hidden1_output, hidden2_output, output)`.\n\nThe first hidden logit is `0*1+1*2+1=3`; `sigmoid(3)` is approximately 0.9525741268224334. The second is `0*3+1*1+1=2`; `sigmoid(2)` is approximately 0.8807970779778823. The output logit is `3*hidden1+5*hidden2+1`, approximately 8.261707770356711; ReLU preserves this positive value. These are fixed forward-pass computations, not training results or class probabilities.\n\nRun `python3 main.py` from this folder, or run its absolute path from any directory. The untouched starter raises `NotImplementedError` at `simulate`. The reference prints the three values on separate lines. Change x2 from 1 to 0, trace both hidden logits and the final output, then compare the printed intermediate values with the hand calculation.\n\nTry a sigmoid output activation while preserving the hidden values. Explain its (0,1) range compared with ReLU's nonnegative unbounded range. A classification threshold would be an additional declared rule. Inspect the reference after attempting the wiring.\n",
+			"encoding": "text",
+			"byteLength": 1403,
+			"sha256": "1ea5d4524fa09ed29e815f38575aa0a01dc4e7830e2d03153c258accec04f761",
+			"gitBlob": "00d624b08fcb3c3287fe5d58030feb55843c7fcf"
+		},
+		"ML4-Simple-Neural-Network/main.py": {
+			"content": "\"\"\"Worked forward pass: two hidden sigmoid neurons and one ReLU output.\"\"\"\nimport math\n\n\nclass Neuron:\n    \"\"\"A two-input weighted sum followed by the supplied activation.\"\"\"\n\n    def __init__(self, w1, w2, activ_fn):\n        self.w1 = w1\n        self.w2 = w2\n        self.activation_function = activ_fn\n\n    def run(self, x1, x2, b):\n        return self.activation_function(x1 * self.w1 + x2 * self.w2 + b)\n\n\ndef sigmoid(x):\n    \"\"\"Return the logistic activation without exponentiating a large positive value.\"\"\"\n    if x >= 0:\n        return 1 / (1 + math.exp(-x))\n    exp_x = math.exp(x)\n    return exp_x / (1 + exp_x)\n\n\ndef relu(x):\n    return max(0, x)\n\n\ndef simulate(x1=0, x2=1, b=1):\n    \"\"\"Return the two hidden activations and final output without fitting weights.\"\"\"\n    hidden_neuron1 = Neuron(1, 2, sigmoid)\n    hidden_neuron2 = Neuron(3, 1, sigmoid)\n    output_neuron = Neuron(3, 5, relu)\n    hidden1_output = hidden_neuron1.run(x1, x2, b)\n    hidden2_output = hidden_neuron2.run(x1, x2, b)\n    output = output_neuron.run(hidden1_output, hidden2_output, b)\n    return hidden1_output, hidden2_output, output\n\n\nif __name__ == \"__main__\":\n    for value in simulate():\n        print(value)\n",
+			"encoding": "text",
+			"byteLength": 1199,
+			"sha256": "5bfb19ee7ff9ef644605068b64b95f99f7436c76ab46b8a9d1612ec6b26ddf07",
+			"gitBlob": "9c9c6dd1bbd54e2164f3963c44dd4a93533b947b"
+		},
+		"ML4-Simple-Neural-Network/README.md": {
+			"content": "# Tiny neural-network forward pass\n\nThis folder is the worked reference. Use Python 3.10 or later with its standard library. Neuron, stable sigmoid and ReLU are supplied.\n\nComplete `simulate` in the starter. Create hidden sigmoid neurons with weights (1,2) and (3,1), and a ReLU output neuron with weights (3,5). Use `x1=0, x2=1` and bias `b=1` at every neuron. Return a tuple `(hidden1_output, hidden2_output, output)`.\n\nThe first hidden logit is `0*1+1*2+1=3`; `sigmoid(3)` is approximately 0.9525741268224334. The second is `0*3+1*1+1=2`; `sigmoid(2)` is approximately 0.8807970779778823. The output logit is `3*hidden1+5*hidden2+1`, approximately 8.261707770356711; ReLU preserves this positive value. These are fixed forward-pass computations, not training results or class probabilities.\n\nRun `python3 main.py` from this folder, or run its absolute path from any directory. The untouched starter raises `NotImplementedError` at `simulate`. The reference prints the three values on separate lines. Change x2 from 1 to 0, trace both hidden logits and the final output, then compare the printed intermediate values with the hand calculation.\n\nTry a sigmoid output activation while preserving the hidden values. Explain its (0,1) range compared with ReLU's nonnegative unbounded range. A classification threshold would be an additional declared rule. Inspect the reference after attempting the wiring.\n",
+			"encoding": "text",
+			"byteLength": 1404,
+			"sha256": "fe2074460f27740611e1332a4cfee26c3de34db3c7c43c68d38788d339a8ae5d",
+			"gitBlob": "adae5d21a4e7aca06eea6dd9a11cab0430d1c2e5"
+		}
+	},
+	"coreReading": {
+		"moduleId": "machine-learning-ml4-neural-networks",
+		"itemId": "machine-learning-ml4-neural-networks-curriculum-neural-networks-core-concepts",
+		"content": "# Neurons, forward passes and one learning step\n\nA neuron computes a weighted sum, then applies an activation. For two inputs, `z = x1*w1 + x2*w2 + b`. The weights multiply their respective inputs; the bias shifts the sum even when both inputs are zero.\n\nTwo activations used in these projects are sigmoid, `sigmoid(z) = 1/(1+exp(-z))`, and ReLU, `relu(z) = max(0,z)`. Sigmoid maps finite real logits into (0,1); floating-point arithmetic can round extreme values to an endpoint. ReLU returns zero for negative inputs and preserves positive inputs. Nonlinear activations let composed layers represent more than a single affine transformation.\n\n## Calculate a neuron\n\nUse `x1=0`, `x2=1`, weights `w1=1` and `w2=2`, and bias `b=1`. The weighted sum is `0*1 + 1*2 + 1 = 3`; sigmoid gives approximately `0.952574`.\n\nChange only `w2` to 1: the sum becomes 2 and the output is approximately `0.880797`. Changing `w1` alone has no effect while `x1=0`. Increasing the bias from 1 to 2 instead raises the original sum from 3 to 4. A weight's effect depends on its input; a bias acts independently of that input.\n\nThe supplied implementation uses two branches to avoid evaluating an exponentially large intermediate:\n\n```python\nimport math\n\ndef sigmoid(z):\n    if z >= 0:\n        return 1 / (1 + math.exp(-z))\n    exp_z = math.exp(z)\n    return exp_z / (1 + exp_z)\n```\n\nFor example, `sigmoid(-1000)` returns 0.0 at machine precision, without an overflow exception. The neuron class stores both weights and the activation callable; its `run(x1,x2,b)` method applies that callable to the weighted sum.\n\n## Trace the tiny network\n\nBoth hidden neurons receive the same two inputs. Their outputs become the two inputs of a third neuron. The project's fixed inputs are `(0,1)`, and every neuron uses bias 1.\n\n| Neuron | Weighted sum | Activation | Output |\n| --- | --- | --- | --- |\n| First hidden | `0*1+1*2+1 = 3` | Sigmoid | 0.9525741268 |\n| Second hidden | `0*3+1*1+1 = 2` | Sigmoid | 0.8807970780 |\n| Output | `3*hidden1+5*hidden2+1` | ReLU | 8.2617077704 |\n\nThe output neuron consumes the hidden activations, not the original inputs again. Its positive weighted sum passes unchanged through ReLU. These are fixed forward-pass results; this program has no loss calculation or parameter-update loop.\n\nWith `x2=0` and all other values unchanged, both hidden logits are 1. Each hidden activation is approximately 0.731059, and the final output becomes `8*sigmoid(1)+1`, approximately 6.848469. Trace those intermediate values before running the changed case.\n\n## Turn loss into an update\n\nTraining adds labelled examples, a loss and a rule for changing parameters. Consider just the first sigmoid neuron, its original inputs and a target label `y=1`. Binary cross-entropy for this one example is `-log(p)`, where `p=sigmoid(3)`. The loss is approximately 0.048587.\n\nFor sigmoid followed by binary cross-entropy, the derivative with respect to the logit is `p-y`, approximately -0.047426. The weight derivatives are `(p-y)*x1` and `(p-y)*x2`; the bias derivative is `p-y`. Thus the first weight derivative is zero, while the second weight and bias derivatives are both negative.\n\nGradient descent subtracts `learning_rate*derivative`. At rate 0.5, `w1` remains 1, `w2` becomes approximately 2.023713, and `b` becomes approximately 1.023713. The new logit is approximately 3.047426, moving the probability toward the target 1. Backpropagation obtains such derivatives through the computation graph using the chain rule; an optimizer applies the updates. For a mean batch loss, average the per-example derivatives before updating.\n\nOne successful training example does not establish performance on new data. Model selection uses training/validation evidence; the held-out test remains separate.\n\n## Map an output to a class\n\nA binary sigmoid classifier needs an explicit decision rule, for example `p >= 0.5` gives class 1, otherwise class 0. This makes `p=0.5` class 1; Python's `round` is a different operation. The fixed network above has a ReLU output of about 8.26, so its output is not a class probability.\n\nA multiclass output often uses softmax: `p_i = exp(z_i)/sum_j(exp(z_j))`. It produces one probability per class, summing to 1. The architecture, loss and interpretation must agree with the task.\n\nComplete the neuron-class project before wiring the tiny simulation. The later OR and XOR practice supplies actual bounded training loops and gradient checks.\n"
+	}
+}
