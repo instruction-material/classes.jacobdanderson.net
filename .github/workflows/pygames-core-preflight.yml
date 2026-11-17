@@ -646,6 +646,17 @@ jobs:
           node scripts/classes-family-heavy-task.mjs -- node test/machine-learning-worked-readings-browser.mjs "$PWD" output/release-checks/javascript-superstar-readings "" test/fixtures/javascript-superstar-worked-reading-cases.json
           node scripts/classes-family-heavy-task.mjs -- node scripts/run-course-browser-phase.mjs test/javascript-css-practice-course-browser.test.mjs output/release-checks/javascript-css-practice-rerun-state.json
           node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-css-practice-exported-browser.test.mjs
+      - name: Verify shared JavaScript fundamentals checkpoint roles and native cases
+        if: inputs.course == 'javascript-superstar-readings'
+        env:
+          JAVASCRIPT_FUNDAMENTALS_CHECKPOINT_BROWSER_DIR: output/release-checks/javascript-fundamentals-checkpoint
+          JAVASCRIPT_CHECKPOINT_BROWSER_DIR: output/release-checks/javascript-checkpoint-continuations
+          COURSE_IMPORT_SCREENSHOT_DIR: output/release-checks/javascript-fundamentals-checkpoint/screenshots
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- node scripts/run-course-browser-phase.mjs test/javascript-fundamentals-checkpoint-course-browser.test.mjs output/release-checks/javascript-fundamentals-checkpoint-rerun-state.json
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-fundamentals-checkpoint-exported-browser.test.mjs
+          node scripts/classes-family-heavy-task.mjs -- node scripts/run-course-browser-phase.mjs test/javascript-checkpoint-course-browser.test.mjs output/release-checks/javascript-checkpoint-continuations-rerun-state.json
+          node scripts/classes-family-heavy-task.mjs -- node --test test/javascript-checkpoint-exported-browser.test.mjs
       - name: Verify the standalone backend locked graph and both audits
         working-directory: back-end
         run: |
@@ -743,6 +754,17 @@ jobs:
               assert css["savedVisualEdits"] == 8 and css["allNativeRequestsOffline"]
               assert len(css["exports"]) == 16 and all(row["passed"] for row in css["results"])
               proof["javascriptCSSPracticeIDE"] = {"projects": 2, "roleProfiles": 8, "archives": 16, "nativeExecutions": 16}
+              checkpoint = json.loads((out / "javascript-fundamentals-checkpoint/native-browser-proof.json").read_text())
+              assert checkpoint["accepted"] and checkpoint["actualNativeExecutions"] == 8
+              assert checkpoint["savedVisualEdits"] == 4 and checkpoint["allNativeRequestsOffline"]
+              assert len(checkpoint["exports"]) == 8 and all(row["passed"] for row in checkpoint["results"])
+              assert sum(row["rendered"]["scenarioExecutions"] for row in checkpoint["results"]) == 108
+              proof["javascriptFundamentalsCheckpointIDE"] = {"projects": 1, "roleProfiles": 4, "archives": 8, "nativeExecutions": 8, "scenarioExecutions": 108}
+              continuations = json.loads((out / "javascript-checkpoint-continuations/native-browser-proof.json").read_text())
+              assert continuations["accepted"] and continuations["actualNativeExecutions"] == 24
+              assert continuations["savedVisualEdits"] == 8 and continuations["allNativeRequestsOffline"]
+              assert len(continuations["exports"]) == 16 and all(row["passed"] for row in continuations["results"])
+              proof["javascriptCheckpointContinuations"] = {"projects": 2, "roleProfiles": 8, "archives": 16, "nativeExecutions": 24}
               assert len(readings["nativeCSSPractice"]["selections"]) == 3
               assert [row["containerWidth"] for row in readings["nativeCSSPractice"]["layouts"]] == [480, 280]
               assert native["acceptedWithinNativeExampleScope"] and native["readingFiles"] == 8

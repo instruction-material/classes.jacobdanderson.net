@@ -1,0 +1,118 @@
+function variables() {
+	const someNum = 10;
+	const someStr = "hello world";
+	const boolean = true;
+	printToScreen(someNum + " " + someStr + " " + boolean);
+	const userColor = prompt("Please enter your favorite color!");
+	if (userColor === null) {
+	 printToScreen("Color entry cancelled.");
+	 return;
+	}
+	const message = "Your favorite color is " + userColor;
+	printToScreen(message);
+	alert(message);
+}
+
+function math() {
+	const original = Math.floor(Math.random() * 256) + 1;
+	printToScreen("Original: " + original);
+	printToScreen("Plus 5: " + (original + 5));
+	printToScreen("Times 10: " + (original * 10));
+	printToScreen("Remainder by 3: " + (original % 3));
+}
+
+function loops() {
+	printToScreen("For loop");
+	for (let value = 0; value <= 20; value += 2) printToScreen(value);
+	printToScreen("While loop");
+	let value = 0;
+	while (value <= 20) {
+	 printToScreen(value);
+	 value += 2;
+	}
+	printToScreen("Six random integers");
+	let total = 0;
+	for (let count = 0; count < 6; count += 1) {
+	 const number = Math.floor(Math.random() * 11);
+	 total += number;
+	 printToScreen(number);
+	}
+	printToScreen("Total: " + total);
+}
+
+function conditionals() {
+	const response = prompt("Enter a number to compare with 50");
+	if (response === null || response.trim() === "" || !Number.isFinite(Number(response))) {
+	 printToScreen("Enter a finite number.");
+	 return;
+	}
+	const number = Number(response);
+	if (number <= 50) {
+		printToScreen("Success: number is at most 50.");
+	} else {
+		printToScreen("Sorry: number is greater than 50.");
+	}
+	const readingIsFinished = true;
+	const choresAreFinished = false;
+	if (readingIsFinished && choresAreFinished) {
+		printToScreen("Both rule: you can go outside.");
+	} else {
+		printToScreen("Both rule: you cannot go outside.");
+	}
+	if (readingIsFinished || choresAreFinished) {
+		printToScreen("Either rule: you can go outside.");
+	} else {
+		printToScreen("Either rule: you cannot go outside.");
+	}
+}
+
+function drawing() {
+	const x = 100;
+	const y = 120;
+	const size = 200;
+	const svg = d3.select("#output").append("svg")
+	 .attr("width", 500).attr("height", 500)
+	 .attr("viewBox", "0 0 500 500")
+	 .attr("role", "img").attr("aria-label", "Blue circle centered in a green square");
+	svg.append("rect").attr("x", x).attr("y", y)
+	 .attr("width", size).attr("height", size).attr("fill", "green");
+	svg.append("circle").attr("cx", x + size / 2).attr("cy", y + size / 2)
+	 .attr("r", 50).attr("fill", "blue");
+}
+
+function nested() {
+	printToScreen("For loops");
+	for (let row = 4; row >= 1; row -= 1) {
+	 let line = "";
+	 for (let column = 0; column < row; column += 1) line += "*";
+	 printToScreen(line);
+	}
+	printToScreen("While loops");
+	let row = 4;
+	while (row >= 1) {
+	 let line = "";
+	 let column = 0;
+	 while (column < row) {
+	  line += "*";
+	  column += 1;
+	 }
+	 printToScreen(line);
+	 row -= 1;
+	}
+}
+
+
+// Provided output and exercise controls.
+function printToScreen(value) {
+	d3.select("#output").append("p").text(String(value));
+}
+
+const exercises = { variables, math, loops, conditionals, drawing, nested };
+document.querySelector("#run").addEventListener("click", () => {
+	document.querySelector("#output").replaceChildren();
+	try {
+	 exercises[document.querySelector("#exercise").value]();
+	} catch (error) {
+	 printToScreen(error.message);
+	}
+});

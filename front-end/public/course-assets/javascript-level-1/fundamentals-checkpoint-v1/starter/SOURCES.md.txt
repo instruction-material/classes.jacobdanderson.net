@@ -1,0 +1,9 @@
+# Source record
+
+Original checkpoint reference: https://codepen.io/junilearning/pen/9023ac5a2ab1213c64d59d7b864aef8d
+
+Original JavaScript SHA256: a5a902eb4d9e721965902be7ef01982d47c81cc45aa8a32218484ed797eb0bc3
+
+The complete original source/settings/export are retained in the private course audit. The six runnable roles follow the current course prompts: integer ranges 1..256 and 0..10, multiplication by 10, a green 200-pixel square centered at (200,220), and four decreasing star rows. The examples run independently. The provided output helper uses safe text output and the original D3 5.16.0 API.
+
+D3 is the existing locally vendored 5.16.0 course build with its retained color-parser security backport and license. The starter leaves each task unfinished; the reference supplies the six implementations. No remote scripts, stylesheets, fonts or requests are required.

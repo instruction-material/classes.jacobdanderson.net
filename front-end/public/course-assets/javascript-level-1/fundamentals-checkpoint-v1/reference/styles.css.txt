@@ -1,0 +1,21 @@
+body {
+	font-family: sans-serif;
+	margin: 16px;
+}
+select, button {
+	font: inherit;
+	margin: 4px;
+	max-width: 100%;
+}
+#output {
+	margin-top: 16px;
+}
+#output p {
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+}
+#output svg {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}

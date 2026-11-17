@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
-import { mkdir, mkdtemp, readFile, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import process from "node:process";
@@ -17,9 +17,9 @@ test(
 	"executes actual checkpoint pattern ZIPs and visible saved edits offline",
 	{ timeout: 360000 },
 	async () => {
-		const output
-			= process.env.JAVASCRIPT_CHECKPOINT_BROWSER_DIR
-				?? "output/javascript-checkpoint-browser";
+		const output =
+			process.env.JAVASCRIPT_CHECKPOINT_BROWSER_DIR ??
+			"output/javascript-checkpoint-browser";
 		const fixture = JSON.parse(
 			await readFile(
 				new URL(
@@ -30,10 +30,12 @@ test(
 			)
 		);
 		assert.equal(fixture.resources.length, 4);
-		const temporary = await mkdtemp(join(tmpdir(), "classes-checkpoint-native-"));
-		const taskId
-			= process.env.CLASSES_FAMILY_TASK_ID
-				?? "javascript-checkpoint-native-ci";
+		const temporary = await mkdtemp(
+			join(tmpdir(), "classes-checkpoint-native-")
+		);
+		const taskId =
+			process.env.CLASSES_FAMILY_TASK_ID ??
+			"javascript-checkpoint-native-ci";
 		const startedAt = new Date().toISOString();
 		const exports = [];
 		const results = [];
@@ -101,16 +103,16 @@ test(
 					])
 				);
 				for (const profile of proof.profiles) {
-					const role
-						= profile.role === "starter" ? "starter" : "reference";
+					const role =
+						profile.role === "starter" ? "starter" : "reference";
 					const resource = fixture.resources.find(
 						r => r.project === project && r.role === role
 					);
 					assert.equal(profile.revision, fixture.revision);
 					assert.ok(
-						profile.consentBeforeFetch
-						&& profile.sameAttemptReused
-						&& profile.previousWorkPreserved
+						profile.consentBeforeFetch &&
+							profile.sameAttemptReused &&
+							profile.previousWorkPreserved
 					);
 					assert.equal(profile.additionalSourceRequests, 0);
 					assert.equal(profile.remoteWrites, 0);
@@ -120,12 +122,15 @@ test(
 						);
 						assert.equal(sha(raw), profile[`${kind}ArchiveSha256`]);
 						const archive = unzipSync(raw);
-						const files
-							= profile[
+						const files =
+							profile[
 								kind === "exact" ? "sourceFiles" : "editedFiles"
 							];
 						assert.equal(files.length, resource.files.length);
-						assert.equal(Object.keys(archive).length, resource.files.length);
+						assert.equal(
+							Object.keys(archive).length,
+							resource.files.length
+						);
 						const label = `${project}-${role}-${profile.width}-${kind}`;
 						const targetRoot = join(temporary, label);
 						for (const file of files) {
@@ -133,9 +138,9 @@ test(
 								resource.files.some(f => f.name === file.name)
 							);
 							assert.ok(
-								!file.name.startsWith("/")
-								&& !file.name.includes("\\")
-								&& !file.name.split("/").includes("..")
+								!file.name.startsWith("/") &&
+									!file.name.includes("\\") &&
+									!file.name.split("/").includes("..")
 							);
 							const names = Object.keys(archive).filter(n =>
 								n.endsWith(`/${file.name}`)
@@ -169,27 +174,51 @@ test(
 							const errors = [];
 							let outsideRequests = 0;
 							page.on("pageerror", error =>
-								errors.push(String(error)));
+								errors.push(String(error))
+							);
 							await page.setRequestInterception(true);
 							const allowed = pathToFileURL(
 								`${targetRoot}/`
 							).href;
-							const embeddedFontURL = ["web-checkpoint"].includes(resource.project)
-								? (await readFile(join(targetRoot, "vendor/material-icons.css"), "utf8")).match(/url\((data:font\/woff2;base64,[^)]+)\)/)?.[1]
+							const embeddedFontURL = ["web-checkpoint"].includes(
+								resource.project
+							)
+								? (
+										await readFile(
+											join(
+												targetRoot,
+												"vendor/material-icons.css"
+											),
+											"utf8"
+										)
+									).match(
+										/url\((data:font\/woff2;base64,[^)]+)\)/
+									)?.[1]
 								: undefined;
-							if (["web-checkpoint"].includes(resource.project)) assert.ok(embeddedFontURL);
+							if (["web-checkpoint"].includes(resource.project))
+								assert.ok(embeddedFontURL);
 							const embeddedImageURLs = new Set();
-							for (const file of resource.files.filter(file => file.name.endsWith(".svg"))) {
-								const svg = await readFile(join(targetRoot, file.name), "utf8");
-								const match = svg.match(/href="(data:image\/(?:png|jpeg);base64,[A-Za-z0-9+/=]+)"/);
+							for (const file of resource.files.filter(file =>
+								file.name.endsWith(".svg")
+							)) {
+								const svg = await readFile(
+									join(targetRoot, file.name),
+									"utf8"
+								);
+								const match = svg.match(
+									/href="(data:image\/(?:png|jpeg);base64,[A-Za-z0-9+/=]+)"/
+								);
 								assert.ok(match);
 								embeddedImageURLs.add(match[1]);
 							}
-							page.on("request", (request) => {
-								if (request.url().startsWith(allowed) || request.url() === embeddedFontURL || embeddedImageURLs.has(request.url())) {
+							page.on("request", request => {
+								if (
+									request.url().startsWith(allowed) ||
+									request.url() === embeddedFontURL ||
+									embeddedImageURLs.has(request.url())
+								) {
 									void request.continue();
-								}
-								else {
+								} else {
 									outsideRequests++;
 									void request.abort();
 								}
@@ -210,15 +239,28 @@ test(
 							const breakpointChecks = [];
 							if (["web-checkpoint"].includes(resource.project)) {
 								for (const width of [600, 601, 992, 993]) {
-									await page.setViewport({ width, height: 900 });
-									breakpointChecks.push({ width, rendered: await inspectCheckpoint(page, resource, kind) });
+									await page.setViewport({
+										width,
+										height: 900
+									});
+									breakpointChecks.push({
+										width,
+										rendered: await inspectCheckpoint(
+											page,
+											resource,
+											kind
+										)
+									});
 								}
-								await page.setViewport({ width: profile.width, height: 900 });
+								await page.setViewport({
+									width: profile.width,
+									height: 900
+								});
 							}
 							let screenshot;
 							if (
-								(kind === "exact" && role === "reference")
-								|| (kind === "edited" && role === "starter")
+								(kind === "exact" && role === "reference") ||
+								(kind === "edited" && role === "starter")
 							) {
 								screenshot = join(
 									directory,
@@ -231,17 +273,68 @@ test(
 							}
 							const zoomedReflow = await page.evaluate(() => {
 								document.body.style.zoom = "2";
-								const fits = { accepted: document.documentElement.scrollWidth <= innerWidth, viewport: innerWidth, scrollWidth: document.documentElement.scrollWidth, body: document.body.getBoundingClientRect().toJSON(), overflow: [...document.querySelectorAll("body *")].map(node => ({ tag: node.tagName, text: node.textContent.slice(0, 50), box: node.getBoundingClientRect().toJSON() })).filter(node => node.box.right > innerWidth + 1) };
+								const fits = {
+									accepted:
+										document.documentElement.scrollWidth <=
+										innerWidth,
+									viewport: innerWidth,
+									scrollWidth:
+										document.documentElement.scrollWidth,
+									body: document.body
+										.getBoundingClientRect()
+										.toJSON(),
+									overflow: [
+										...document.querySelectorAll("body *")
+									]
+										.map(node => ({
+											tag: node.tagName,
+											text: node.textContent.slice(0, 50),
+											box: node
+												.getBoundingClientRect()
+												.toJSON()
+										}))
+										.filter(
+											node =>
+												node.box.right > innerWidth + 1
+										)
+								};
 								document.body.style.zoom = "";
 								return fits;
 							});
-							assert.ok(zoomedReflow.accepted, `${label}: ${JSON.stringify(zoomedReflow)}`);
+							assert.ok(
+								zoomedReflow.accepted,
+								`${label}: ${JSON.stringify(zoomedReflow)}`
+							);
 							if (resource.project === "web-checkpoint") {
-								await page.emulateMediaFeatures([{ name: "prefers-reduced-motion", value: "reduce" }]);
+								await page.emulateMediaFeatures([
+									{
+										name: "prefers-reduced-motion",
+										value: "reduce"
+									}
+								]);
 								await page.reload({ waitUntil: "load" });
-								const reducedRendered = await inspectCheckpoint(page, resource, kind);
-								assert.ok(await page.evaluate(() => matchMedia("(prefers-reduced-motion: reduce)").matches));
-								results.push({ label, reducedMotion: true, passed: true, savedVisualEdit: kind === "edited", outsideRequests, errors, rendered: reducedRendered });
+								const reducedRendered = await inspectCheckpoint(
+									page,
+									resource,
+									kind
+								);
+								assert.ok(
+									await page.evaluate(
+										() =>
+											matchMedia(
+												"(prefers-reduced-motion: reduce)"
+											).matches
+									)
+								);
+								results.push({
+									label,
+									reducedMotion: true,
+									passed: true,
+									savedVisualEdit: kind === "edited",
+									outsideRequests,
+									errors,
+									rendered: reducedRendered
+								});
 							}
 							results.push({
 								reducedMotion: false,
@@ -255,8 +348,7 @@ test(
 								rendered,
 								screenshot
 							});
-						}
-						finally {
+						} finally {
 							await page?.close().catch(() => {});
 							await context.close();
 						}
@@ -265,15 +357,19 @@ test(
 			}
 			assert.equal(exports.length, 16);
 			assert.equal(results.length, 24);
-			assert.equal(results.filter(r => r.savedVisualEdit && !r.reducedMotion).length, 8);
+			assert.equal(
+				results.filter(r => r.savedVisualEdit && !r.reducedMotion)
+					.length,
+				8
+			);
 			await writeFile(
 				join(output, "native-browser-proof.json"),
-				`${JSON.stringify({ accepted: true, revision: fixture.revision, exports, actualNativeExecutions: 24, savedVisualEdits: 8, results, allNativeRequestsOffline: true, browserVersion: await browser.version(), platform: process.platform, architecture: process.arch, assets: temporary }, null, 2)}\n`
+				`${JSON.stringify({ accepted: true, revision: fixture.revision, exports, actualNativeExecutions: 24, savedVisualEdits: 8, results, allNativeRequestsOffline: true, browserVersion: await browser.version(), platform: process.platform, architecture: process.arch, extractionRemovedAfterVerification: true }, null, 2)}\n`
 			);
 			outcome = "passed";
-		}
-		finally {
+		} finally {
 			await browser?.close();
+			await rm(temporary, { recursive: true, force: true });
 			console.log(
 				JSON.stringify({
 					event: "end",

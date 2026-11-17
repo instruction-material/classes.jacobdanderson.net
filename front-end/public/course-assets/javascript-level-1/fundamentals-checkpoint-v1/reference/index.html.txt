@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Fundamentals checkpoint</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="vendor/d3.min.js" defer></script>
+	<script src="script.js" defer></script>
+</head>
+<body>
+	<h1>Fundamentals checkpoint</h1>
+	<label for="exercise">Exercise</label>
+	<select id="exercise">
+	 <option value="variables">Variables</option>
+	 <option value="math">Math and randomness</option>
+	 <option value="loops">Loops</option>
+	 <option value="conditionals">Conditionals</option>
+	 <option value="drawing">Drawing</option>
+	 <option value="nested">Nested loops</option>
+	</select>
+	<button id="run" type="button">Run</button>
+	<div id="output" aria-live="polite"></div>
+</body>
+</html>

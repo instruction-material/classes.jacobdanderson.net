@@ -1,0 +1,45 @@
+function variables() {
+	// TODO: complete the variables prompt in README.md.
+	throw new Error("Implement the variables exercise.");
+}
+
+function math() {
+	// TODO: complete the math prompt in README.md.
+	throw new Error("Implement the math exercise.");
+}
+
+function loops() {
+	// TODO: complete the loops prompt in README.md.
+	throw new Error("Implement the loops exercise.");
+}
+
+function conditionals() {
+	// TODO: complete the conditionals prompt in README.md.
+	throw new Error("Implement the conditionals exercise.");
+}
+
+function drawing() {
+	// TODO: complete the drawing prompt in README.md.
+	throw new Error("Implement the drawing exercise.");
+}
+
+function nested() {
+	// TODO: complete the nested prompt in README.md.
+	throw new Error("Implement the nested exercise.");
+}
+
+
+// Provided output and exercise controls.
+function printToScreen(value) {
+	d3.select("#output").append("p").text(String(value));
+}
+
+const exercises = { variables, math, loops, conditionals, drawing, nested };
+document.querySelector("#run").addEventListener("click", () => {
+	document.querySelector("#output").replaceChildren();
+	try {
+	 exercises[document.querySelector("#exercise").value]();
+	} catch (error) {
+	 printToScreen(error.message);
+	}
+});

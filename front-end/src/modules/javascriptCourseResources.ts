@@ -17,6 +17,7 @@ import { javascriptDrawingResources } from "@/modules/javascriptDrawingResources
 import { javascriptDynamicComponentsResources } from "@/modules/javascriptDynamicComponentsResources";
 import { javascriptDynamicEventsResources } from "@/modules/javascriptDynamicEventsResources";
 import { javascriptFirstModuleResources } from "@/modules/javascriptFirstModuleResources";
+import { javascriptFundamentalsCheckpointResources } from "@/modules/javascriptFundamentalsCheckpointResources";
 import { javascriptGridLayoutResources } from "@/modules/javascriptGridLayoutResources";
 import { javascriptHtmlCssResources } from "@/modules/javascriptHtmlCssResources";
 import { javascriptHundredSquaresResources } from "@/modules/javascriptHundredSquaresResources";
@@ -70,6 +71,7 @@ interface CourseRole {
 
 const roles: readonly CourseRole[] = [
 	...javascriptCheckpointResources,
+	...javascriptFundamentalsCheckpointResources,
 	...javascriptFirstModuleResources,
 	...javascriptOperatorsResources,
 	...javascriptLoopsResources,
