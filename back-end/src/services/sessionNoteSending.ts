@@ -104,14 +104,35 @@ export function createNoteSendWorkflow(deps: NoteSendDependencies) {
 	const project = deps.projectAcceptance ?? projectAcceptance;
 	const event = deps.event ?? noteOperationalEvent;
 	const enabled = deps.enabled ?? (() => env.SESSION_NOTES_SEND_ENABLED === "true");
+
+	async function finishPreparing(record: SessionNoteSendRecord) {
+		try {
+			await saveNote(record);
+		}
+		catch (error) {
+			if (!(error instanceof NoteWorkflowError) || error.code !== "saved_note_already_sent") throw error;
+			// A concurrent equivalent request can finish after this caller read preparing.
+			const latest = await store.get(record._id);
+			if (latest?.state === "smtp_accepted"
+				&& latest._id === record._id
+				&& latest.actorId === record.actorId
+				&& latest.keyHash === record.keyHash
+				&& latest.payloadHash === record.payloadHash
+				&& latest.noteId === record.noteId
+				&& latest.noteVersion === record.noteVersion) {
+				return latest;
+			}
+			throw error;
+		}
+		return await store.change(record._id, { state: "preparing" }, { $set: { state: "queued" } })
+			?? await store.get(record._id) ?? record;
+	}
+
 	async function prepare(input: { actorId: string; keyHash: string; payloadHash: string; note: NoteSnapshot; noteId?: string }) {
 		const prior = await store.byKey(input.actorId, input.keyHash);
 		if (prior) {
 			if (prior.payloadHash !== input.payloadHash) throw new NoteWorkflowError(409, "idempotency_payload_conflict");
-			if (prior.state === "preparing") {
-				await saveNote(prior);
-				return await store.change(prior._id, { state: "preparing" }, { $set: { state: "queued" } }) ?? prior;
-			}
+			if (prior.state === "preparing") return finishPreparing(prior);
 			return prior;
 		}
 		const now = new Date();
@@ -143,10 +164,7 @@ export function createNoteSendWorkflow(deps: NoteSendDependencies) {
 			if (!duplicate || duplicate.payloadHash !== input.payloadHash) throw new NoteWorkflowError(409, "idempotency_payload_conflict");
 			record = duplicate;
 		}
-		if (record.state === "preparing") {
-			await saveNote(record);
-			record = await store.change(record._id, { state: "preparing" }, { $set: { state: "queued" } }) ?? await store.get(record._id) ?? record;
-		}
+		if (record.state === "preparing") return finishPreparing(record);
 		return record;
 	}
 	async function archive(id: string) {
