@@ -656,7 +656,7 @@ export const geometryBCourse: RawCourse = {
 						].join("\n"),
 						[
 							"**Reference links**",
-							"- Pyramid volume visualization: http://pythagoreanmath.com/wp-content/uploads/2014/08/deriving-the-volume-of-a-pyramid.png",
+							"![A prism and pyramid share a square base of side 6 and perpendicular height 4. Their volumes are 144 and 48 cubic units, respectively.](/course-assets/geometry-b/prism-pyramid-volume.svg)",
 							"- Sphere volume comparison visual: https://ds055uzetaobb.cloudfront.net/brioche/uploads/Fv9rxkzWWN-90675.svg?width=350",
 							"- Sphere surface-area comparison visual: https://www.mathsisfun.com/geometry/images/sphere-cylinder-area2.svg"
 						].join("\n")
@@ -841,6 +841,8 @@ const pendingAssets = geometryBCourse.modules.find(
 );
 if (!pendingAssets) throw new Error("Missing Geometry B asset record");
 pendingAssets.internal = true;
+pendingAssets.curriculum[0].content +=
+	"\n\nOriginal pyramid illustration source: http://pythagoreanmath.com/wp-content/uploads/2014/08/deriving-the-volume-of-a-pyramid.png";
 
 const capstone = geometryBCourse.modules.find(
 	module => module.title === "Check-In #2 and Geometry B Capstone"
