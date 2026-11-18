@@ -1,5 +1,5 @@
 {
-  "items": 17,
+  "items": 23,
   "courseId": "machine-learning",
   "readingDirectory": "front-end/src/stores/courses/readings/machine-learning-worked-cores",
   "cases": [
@@ -138,6 +138,54 @@
       "sourceSHA256": "3045bd87ec3f6af13d470f1545a4fa6429b57ac531e83ae48e2f6b0189615759",
       "staticAudit": false,
       "view": 2
+    },
+    {
+      "moduleId": "machine-learning-ml6-regression-with-neural-networks",
+      "title": "Evaluating Regression Models",
+      "file": "regression-metrics.md",
+      "sourceSHA256": "38a7263237e4604bb9be8f9cdac3f9e6761a147f58c2fc04e492d252a4f6340e",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-ml6-regression-with-neural-networks",
+      "title": "Verification Review: Regression with Neural Networks",
+      "file": "housing-review.md",
+      "sourceSHA256": "06f699c8988aa1e3a1e989fcd530b1e5241938bf06791d463872c4c42289fd0e",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-ml8-master-project",
+      "title": "Master Project Implementation",
+      "file": "capstone-implementation.md",
+      "sourceSHA256": "4bdf5e19f557d01c5326980a466af8039b1afa9ae348a95eb692683f5f6d91d2",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-ml8-master-project",
+      "title": "Course Recap & Next Steps",
+      "file": "course-next-steps.md",
+      "sourceSHA256": "de7a187485a2f1db50f1955e08d2696ac3d899598c11d9ae2d437b3da413eec7",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-ml7-image-classifier",
+      "title": "Further Reading on ML Models",
+      "file": "image-further-reading.md",
+      "sourceSHA256": "b51d1ffc312c404de19eccaf75f12beac19e5bee36610cb9adf0f59b5ba2abc2",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-ml7-image-classifier",
+      "title": "Verification Review: Image Classifier",
+      "file": "image-review.md",
+      "sourceSHA256": "3ee60084b5a85686235c1381cad2814fd5ea57248b702b9e093863f5f1e15369",
+      "staticAudit": false,
+      "view": 3
     }
   ]
 }
