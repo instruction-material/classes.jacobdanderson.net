@@ -20,8 +20,8 @@ async function main() {
 		await readFile(
 			resolve(
 				checkout,
-				process.argv[5] ??
-					"test/fixtures/machine-learning-worked-reading-cases.json"
+				process.argv[5]
+				?? "test/fixtures/machine-learning-worked-reading-cases.json"
 			),
 			"utf8"
 		)
@@ -31,15 +31,18 @@ async function main() {
 	const courseId = definition.courseId ?? "machine-learning";
 	const directory = resolve(
 		checkout,
-		definition.readingDirectory ??
-			"front-end/src/stores/courses/readings/machine-learning-worked-cores"
+		definition.readingDirectory
+		?? "front-end/src/stores/courses/readings/machine-learning-worked-cores"
 	);
 	const cases = definition.cases.map(item => [
 		item.moduleId,
 		item.title,
 		item.file,
 		item.view,
-		item.staticAudit
+		item.staticAudit,
+		item.sourceFile ?? item.file,
+		item.sourcePath,
+		item.sourceSHA256
 	]);
 	const expectedViews = definition.items * 4;
 	process.chdir(join(checkout, "front-end"));
@@ -122,31 +125,31 @@ async function main() {
 					courseProgress: []
 				};
 				await page.setRequestInterception(true);
-				page.on("request", request => {
+				page.on("request", (request) => {
 					if (request.isInterceptResolutionHandled()) return;
 					const url = new URL(request.url());
 					if (
-						url.origin !== origin ||
-						url.pathname.startsWith("/api/")
+						url.origin !== origin
+						|| url.pathname.startsWith("/api/")
 					) {
 						if (!["GET", "OPTIONS"].includes(request.method()))
 							writes++;
 						let body = {};
 						if (url.pathname === "/api/accounts/me") {
-							body =
-								role === "instructor"
+							body
+								= role === "instructor"
 									? { tutorID: "ml-reading-tutor" }
 									: { userID: user._id };
 						}
 						if (
-							url.pathname === "/api/users/loggedin" &&
-							role === "learner"
+							url.pathname === "/api/users/loggedin"
+							&& role === "learner"
 						) {
 							body = { currentUser: user };
 						}
 						if (
-							url.pathname === "/api/tutors/loggedin" &&
-							role === "instructor"
+							url.pathname === "/api/tutors/loggedin"
+							&& role === "instructor"
 						) {
 							body = {
 								currentTutor: {
@@ -163,8 +166,8 @@ async function main() {
 							};
 						}
 						if (
-							url.pathname ===
-							"/api/users/oftutor/ml-reading-tutor"
+							url.pathname
+							=== "/api/users/oftutor/ml-reading-tutor"
 						) {
 							body = [user];
 						}
@@ -181,20 +184,29 @@ async function main() {
 					title,
 					file,
 					expectedView,
-					staticAudit
+					staticAudit,
+					sourceFile,
+					sourcePath,
+					expectedSHA256
 				] of cases) {
 					activeCase = { module, title, file };
-					const source = await readFile(
-						join(directory, file),
+					const serialized = await readFile(
+						join(directory, sourceFile),
 						"utf8"
 					);
+					const source = sourcePath
+						? sourcePath.reduce(
+								(value, key) => value[key],
+								JSON.parse(serialized)
+							)
+						: serialized;
+					assert.equal(typeof source, "string");
 					const sourceSHA256 = createHash("sha256")
 						.update(source)
 						.digest("hex");
 					assert.equal(
 						sourceSHA256,
-						definition.cases.find(item => item.file === file)
-							.sourceSHA256
+						expectedSHA256
 					);
 					await page.goto(`${origin}/courses#${module}`, {
 						waitUntil: "domcontentloaded",
@@ -219,8 +231,8 @@ async function main() {
 								)
 							).some(
 								item =>
-									item.id.startsWith(prefix) &&
-									item.textContent.includes(title)
+									item.id.startsWith(prefix)
+									&& item.textContent.includes(title)
 							),
 						{},
 						target
@@ -230,8 +242,8 @@ async function main() {
 						(items, { prefix, title }) =>
 							items.find(
 								item =>
-									item.id.startsWith(prefix) &&
-									item.textContent.includes(title)
+									item.id.startsWith(prefix)
+									&& item.textContent.includes(title)
 							).id,
 						target
 					);
@@ -239,9 +251,8 @@ async function main() {
 						element.scrollIntoView({
 							behavior: "instant",
 							block: "start"
-						})
-					);
-					const expected = await page.evaluate(html => {
+						}));
+					const expected = await page.evaluate((html) => {
 						const element = document.createElement("div");
 						element.innerHTML = html;
 						return element.textContent.replace(/\s+/g, " ").trim();
@@ -251,7 +262,8 @@ async function main() {
 							document
 								.getElementById(anchor)
 								?.querySelector(".item-content-markdown")
-								?.textContent.replace(/\s+/g, " ")
+								?.textContent
+								.replace(/\s+/g, " ")
 								.trim() === expected,
 						{},
 						{ anchor, expected }
@@ -284,8 +296,8 @@ async function main() {
 						assert.ok(
 							links.every(
 								href =>
-									new URL(href, origin).hostname ===
-									"github.com"
+									new URL(href, origin).hostname
+										=== "github.com"
 							),
 							"Historical source filenames must not become unrelated domain links"
 						);
@@ -300,8 +312,8 @@ async function main() {
 					assert.equal(
 						await page.evaluate(
 							() =>
-								document.documentElement.scrollWidth <=
-								innerWidth + 2
+								document.documentElement.scrollWidth
+								<= innerWidth + 2
 						),
 						true,
 						`${file}: viewport fits`
@@ -320,7 +332,7 @@ async function main() {
 							})
 					);
 					await page.waitForFunction(
-						anchor => {
+						(anchor) => {
 							const element = document.querySelector(
 								`#${anchor} .item-content-markdown`
 							)?.lastElementChild;
@@ -370,12 +382,12 @@ async function main() {
 			context = await browser.createBrowserContext();
 			page = await context.newPage();
 			await page.setViewport({ width: 1280, height: 900 });
-			const htmlFromReading = async file => {
+			const htmlFromReading = async (file) => {
 				const source = await readFile(join(directory, file), "utf8");
 				const match = source.match(/^```html\n([\s\S]+?)\n```/m);
 				assert.ok(
 					match,
-					file + " has the supplied complete HTML example"
+					`${file} has the supplied complete HTML example`
 				);
 				return match[1];
 			};
@@ -398,15 +410,15 @@ async function main() {
 			for (const selection of selections)
 				assert.deepEqual(selection.actual, selection.expected);
 			await page.setContent(
-				"<style>*{box-sizing:border-box}body{margin:0}.cards{display:flex;flex-wrap:wrap;gap:12px;width:480px}.card{flex:0 0 140px;padding:8px;border:1px solid}</style>" +
-					(await htmlFromReading("flexbox-practice.md"))
+				`<style>*{box-sizing:border-box}body{margin:0}.cards{display:flex;flex-wrap:wrap;gap:12px;width:480px}.card{flex:0 0 140px;padding:8px;border:1px solid}</style>${
+					await htmlFromReading("flexbox-practice.md")}`
 			);
 			const layouts = [];
 			for (const width of [480, 280]) {
 				await page.$eval(
 					".cards",
 					(element, width) => {
-						element.style.width = width + "px";
+						element.style.width = `${width}px`;
 					},
 					width
 				);
@@ -466,7 +478,8 @@ async function main() {
 		console.log(
 			JSON.stringify({ accepted: true, fullLessonViews: profiles.length })
 		);
-	} catch (error) {
+	}
+	catch (error) {
 		process.exitCode = 1;
 		if (page && !page.isClosed()) {
 			await writeFile(
@@ -480,8 +493,7 @@ async function main() {
 								elements.map(element => ({
 									text: element.textContent,
 									html: element.innerHTML
-								}))
-							)
+								})))
 							.catch(() => []),
 						url: page.url(),
 						body: await page
@@ -494,7 +506,8 @@ async function main() {
 			);
 		}
 		throw error;
-	} finally {
+	}
+	finally {
 		await context?.close();
 		await browser?.close();
 		await server?.close();
@@ -513,7 +526,7 @@ async function main() {
 	}
 }
 
-main().catch(error => {
+main().catch((error) => {
 	console.error(error);
 	process.exitCode = 1;
 });
