@@ -183,8 +183,8 @@ describe("Machine Learning owned assignments and supplied data", () => {
 					...module.curriculum,
 					...module.supplementalProjects
 				]);
-				// Retained tasks, library activities, studio readings and Gaussian Iris.
-				expect(owned).toHaveLength(102);
+				// Retained tasks, library activities and complete authored readings.
+				expect(owned).toHaveLength(108);
 				for (const raw of owned) {
 					const item = all.find(
 						candidate => candidate.title === raw.title
