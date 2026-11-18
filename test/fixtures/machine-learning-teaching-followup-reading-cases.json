@@ -1,5 +1,5 @@
 {
-  "items": 25,
+  "items": 28,
   "courseId": "machine-learning",
   "readingDirectory": "front-end/src/stores/courses/readings/machine-learning-worked-cores",
   "cases": [
@@ -200,6 +200,30 @@
       "title": "Extension Challenge: Machine Learning",
       "file": "capstone-frozen-probe.md",
       "sourceSHA256": "f196f7e67919f3cfaf95afd7c14ed1e57c9c967dd36530be03a520e3becaa557",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-ml3-5-decision-trees-and-interpretable-models",
+      "title": "Decision Tree Lab",
+      "file": "decision-tree-lab.md",
+      "sourceSHA256": "4a45f1b3ccb298735b4c6833ed0f2a09fa30f4a10d9d682e1546b656b48afe1c",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-ml3-5-decision-trees-and-interpretable-models",
+      "title": "Core Project: Decision Trees and Interpretable Models",
+      "file": "decision-tree-selection.md",
+      "sourceSHA256": "fead247621b763663eb4e0411e632dabc03594aa0975e5f7bfdf270f5c2bdf64",
+      "staticAudit": false,
+      "view": 1
+    },
+    {
+      "moduleId": "machine-learning-ml3-5-decision-trees-and-interpretable-models",
+      "title": "Extension Challenge: Decision Trees and Interpretable Models",
+      "file": "decision-tree-boundary-probe.md",
+      "sourceSHA256": "060f485351e4d5b849fde383532d4ba58b952310c1ed0175af786943540f92d5",
       "staticAudit": false,
       "view": 2
     }

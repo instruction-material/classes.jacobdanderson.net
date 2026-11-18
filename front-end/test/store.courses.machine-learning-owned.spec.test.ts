@@ -210,7 +210,7 @@ describe("Machine Learning owned assignments and supplied data", () => {
 					"Machine Learning Pathway Map"
 				);
 				// Retained tasks, library activities and complete authored readings.
-				expect(owned).toHaveLength(124);
+				expect(owned).toHaveLength(127);
 				for (const raw of owned) {
 					const item = all.find(
 						candidate => candidate.title === raw.title
