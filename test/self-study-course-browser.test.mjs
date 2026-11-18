@@ -9,6 +9,7 @@ import { test } from "node:test";
 import { fileURLToPath } from "node:url";
 import puppeteer from "puppeteer";
 import { createServer, preview } from "vite";
+import { browserTimeoutMs } from "../scripts/self-study-browser-batch-proof.mjs";
 import { checkOrbitExperiment } from "./orbit-experiment-browser.mjs";
 
 const root = fileURLToPath(new URL("../front-end/", import.meta.url));
@@ -72,6 +73,15 @@ const expectedReadingViews = selectedCourseIds.reduce(
 	0
 );
 const digest = value => createHash("sha256").update(value).digest("hex");
+const manifestDirectory = resolve(process.env.SELF_STUDY_BROWSER_PROOF_DIR ?? "output/self-study-browser");
+const budgetManifests = Object.fromEntries(await Promise.all(selectedCourseIds.map(async id => [
+	id,
+	Object.fromEntries(await Promise.all(["learner", "instructor"].map(async role => [
+		role,
+		JSON.parse(await readFile(join(manifestDirectory, `${id}-${role}.json`), "utf8"))
+	])))
+])));
+const timeoutMs = browserTimeoutMs(selectedCourseIds, budgetManifests);
 
 function account(path, role) {
 	const learner = {
@@ -357,7 +367,7 @@ async function checkCards(page, module, expected, optional, resourceViews, profi
 
 test(
 	"reviewed self-study readings and assignments in both roles and viewport sizes",
-	{ timeout: 900000 },
+	{ timeout: timeoutMs },
 	async () => {
 		const previous = process.cwd();
 		const output = resolve(
@@ -380,7 +390,7 @@ test(
 				command: "self-study-course-browser",
 				pid: process.pid,
 				startedAt,
-				timeoutMs: 900000
+				timeoutMs
 			})
 		);
 		try {

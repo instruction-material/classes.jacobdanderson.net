@@ -559,8 +559,17 @@ it.each(
 							...module.supplementalProjects
 						].some(row => row.id === item.id)
 				);
+			const completeMathAssignment = [
+				"early-elementary-a-math",
+				"early-elementary-b-math",
+				"late-elementary-a-math",
+				"algebra-1b",
+				"algebra-2a",
+				"algebra-2b"
+			].includes(id);
 			const completeAssignment =
 				focusedJavaTask ||
+				completeMathAssignment ||
 				[
 					"pre-algebra-b",
 					"ai-level-1",
@@ -680,9 +689,15 @@ it.each(
 					})
 					.join("\n\n");
 			}
-			const directive = item.content.match(
-				/^(?:\*\*(?:Project )?goal:\*\*\s*)?([\s\S]+?)\s*\*\*Completion evidence:\*\*/i
-			)?.[1];
+			const completionIndex = item.content
+				.toLowerCase()
+				.indexOf("**completion evidence:**");
+			const directive = completionIndex < 0
+				? undefined
+				: item.content
+						.slice(0, completionIndex)
+						.replace(/^\*\*(?:Project )?goal:\*\*\s*/i, "")
+						.trim();
 			const container = document.createElement("div");
 			container.innerHTML = markdown.render(
 				normalizeInlineCourseMarkdown(
@@ -714,6 +729,7 @@ it.each(
 			);
 			if (
 				completeAssignment &&
+				!completeMathAssignment &&
 				![
 					"pre-algebra-b",
 					"ai-level-1",
@@ -771,6 +787,7 @@ it.each(
 				title: item.title,
 				learningPath: item.learningPath,
 				selfChecks,
+				sourceContentSHA256: digest(item.content),
 				assignmentTextScope: completeAssignment
 					? "complete"
 					: "directive",

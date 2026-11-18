@@ -13,6 +13,30 @@ export function readingCount(manifest) {
 		.reduce((sum, module) => sum + module.readings.length, 0);
 }
 
+// Budget complete page work, including the navigation to and from each resource.
+// Per-page assertions and their own timeouts remain unchanged.
+export function browserTimeoutMs(ids, manifests) {
+	assert.ok(ids.length > 0 && new Set(ids).size === ids.length);
+	let readings = 0;
+	let assignments = 0;
+	let resources = 0;
+	for (const id of ids) {
+		for (const role of ["learner", "instructor"]) {
+			const manifest = manifests[id][role];
+			for (const module of manifest.modules) {
+				if (manifest.reviewedModuleIds && !manifest.reviewedModuleIds.includes(module.id)) continue;
+				readings += module.readings.length * 2;
+				const items = [...(module.projects ?? []), ...(module.optional ?? [])];
+				assignments += items.length * 2;
+				resources += items.reduce((sum, item) => sum + (item.selfChecks?.length ?? 0), 0) * 2;
+			}
+		}
+	}
+	const timeout = Math.max(900000, 60000 + readings * 500 + assignments * 250 + resources * 750);
+	assert.ok(Number.isSafeInteger(timeout));
+	return timeout;
+}
+
 export function aggregateProofs(scope, results) {
 	const { ids, sourceCommit, sourceMode, manifests } = scope;
 	assert.ok(ids.length > 0 && new Set(ids).size === ids.length);

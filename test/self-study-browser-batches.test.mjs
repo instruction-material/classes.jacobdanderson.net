@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 // eslint-disable-next-line test/no-import-node-test -- Native CI batch runner contracts.
 import { it } from "node:test";
-import { aggregateProofs, planBatches } from "../scripts/self-study-browser-batch-proof.mjs";
+import { aggregateProofs, browserTimeoutMs, planBatches } from "../scripts/self-study-browser-batch-proof.mjs";
 
 const sourceCommit = "a".repeat(40);
 const ids = ["reading", "writing"];
@@ -58,4 +58,35 @@ it("reject duplicate, missing, failed or foreign results instead of accepting a 
 	}
 	assert.throws(() => aggregateProofs(scope, [result(["reading"]), result(["reading"])]));
 	assert.throws(() => aggregateProofs(scope, [result(["other"])]));
+});
+
+it("resource-heavy batches retain enough time for all roles and widths", () => {
+	const lessons = Array.from({ length: 100 }, (_, index) => ({
+		id: `lesson-${index}`,
+		readings: [{}],
+		projects: [{ selfChecks: [{}, {}, {}, {}] }],
+		optional: [{ selfChecks: [{}, {}] }]
+	}));
+	const heavy = { dense: Object.fromEntries(["learner", "instructor"].map(role => [role, { modules: lessons }])) };
+	assert.ok(browserTimeoutMs(["dense"], heavy) > 924130, "Outgrown batch must fit beyond the observed original failure");
+	const withMore = structuredClone(heavy);
+	withMore.dense.instructor.modules[0].optional[0].selfChecks.push({});
+	assert.ok(browserTimeoutMs(["dense"], withMore) > browserTimeoutMs(["dense"], heavy));
+	assert.equal(browserTimeoutMs(ids, manifests), 900000, "Small reviews retain the existing floor");
+	assert.throws(() => browserTimeoutMs([], manifests));
+	assert.throws(() => browserTimeoutMs(["reading", "reading"], manifests));
+	assert.throws(() => browserTimeoutMs(["missing"], manifests));
+});
+
+it("budget only the explicitly reviewed modules without changing the review set", () => {
+	const modules = [
+		{ id: "selected", readings: [{}], projects: [], optional: [] },
+		{ id: "unreviewed", readings: [], projects: [{ selfChecks: Array.from({ length: 1000 }, () => ({})) }], optional: [] }
+	];
+	const selected = { course: Object.fromEntries(["learner", "instructor"].map(role => [role, { modules, reviewedModuleIds: ["selected"] }])) };
+	const full = structuredClone(selected);
+	for (const role of ["learner", "instructor"]) delete full.course[role].reviewedModuleIds;
+	assert.equal(browserTimeoutMs(["course"], selected), 900000);
+	assert.ok(browserTimeoutMs(["course"], full) > browserTimeoutMs(["course"], selected));
+	assert.deepEqual(selected.course.learner.reviewedModuleIds, ["selected"]);
 });
