@@ -26,6 +26,10 @@ import {
 	completeElementaryScienceActivity,
 	completeIntroBiologyActivity
 } from "./middleSchoolScienceReview";
+import {
+	earlyElementaryJoyOfReadingCourse,
+	earlyElementaryPictureBookCourse
+} from "@/stores/courses/source-library-courses";
 import { pictureBookTaskInputs } from "@/stores/courses/pictureBookTaskInputs";
 import {
 	pyGamesCoreResource,
@@ -3071,8 +3075,9 @@ describe("course text quality normalization", () => {
 					...module.supplementalProjects
 				]) {
 					const title =
-						item.aliases?.find(alias => originalItemTitles.has(alias)) ??
-						item.title;
+						item.aliases?.find(alias =>
+							originalItemTitles.has(alias)
+						) ?? item.title;
 					originalItemTitles.add(title);
 					const contents = itemContentByTitle.get(title) ?? [];
 					contents.push(item.content.replace(/\s+/g, " ").trim());
@@ -8119,6 +8124,14 @@ describe("course text quality normalization", () => {
 		if (!course) return;
 
 		const text = allCourseText(course);
+		const originalText = allCourseText(earlyElementaryPictureBookCourse);
+		const anchoredTitles = course.modules
+			.flatMap(module =>
+				[...module.curriculum, ...module.supplementalProjects].flatMap(
+					item => [item.title, ...(item.aliases ?? [])]
+				)
+			)
+			.join("\n");
 		const expectedAnchors = [
 			"Favorite Ideas Opinion Board",
 			"Opinion Book Seed",
@@ -8143,14 +8156,14 @@ describe("course text quality normalization", () => {
 		];
 
 		expect(text).not.toContain("Source Activity Anchors:");
-		expect(text).toContain("opinion book");
-		expect(text).toContain("common noun and proper noun");
-		expect(text).toContain("markers, pens, colored pencils");
-		expect(text).toContain("beast, creature, and animal");
-		expect(text).toContain("Gabby Tries");
-		expect(text).toContain("**Completion evidence:**");
+		expect(originalText).toContain("opinion book");
+		expect(originalText).toContain("common noun and proper noun");
+		expect(originalText).toContain("markers, pens, colored pencils");
+		expect(originalText).toContain("beast, creature, and animal");
+		expect(originalText).toContain("Gabby Tries");
+		expect(originalText).toContain("**Completion evidence:**");
 		for (const anchor of expectedAnchors) {
-			expect(text).toContain(anchor);
+			expect(anchoredTitles).toContain(anchor);
 		}
 
 		expect(text).not.toMatch(
@@ -8549,6 +8562,14 @@ describe("course text quality normalization", () => {
 		if (!course) return;
 
 		const text = allCourseText(course);
+		const originalText = allCourseText(earlyElementaryJoyOfReadingCourse);
+		const anchoredTitles = course.modules
+			.flatMap(module =>
+				[...module.curriculum, ...module.supplementalProjects].flatMap(
+					item => [item.title, ...(item.aliases ?? [])]
+				)
+			)
+			.join("\n");
 		const expectedAnchors = [
 			"Character Investigator Report",
 			"Sweet Sixteen Character Evidence",
@@ -8564,17 +8585,17 @@ describe("course text quality normalization", () => {
 		];
 
 		expect(text).not.toContain("Source Activity Anchors:");
-		expect(text).toContain("The Secret Ingredient");
-		expect(text).toContain("Moira, Sunli, and Zaira");
-		expect(text).toContain("The Faithful Friend");
-		expect(text).toContain("Ancient megalodon sharks were huge!");
-		expect(text).toContain("hard nut to crack");
-		expect(text).toContain("Kevin's Crafts");
-		expect(text).toContain("Bacon and Mittens");
-		expect(text).toContain("Four-year-old makes a big discovery!");
-		expect(text).toContain("**Completion evidence:**");
+		expect(originalText).toContain("The Secret Ingredient");
+		expect(originalText).toContain("Moira, Sunli, and Zaira");
+		expect(originalText).toContain("The Faithful Friend");
+		expect(originalText).toContain("Ancient megalodon sharks were huge!");
+		expect(originalText).toContain("hard nut to crack");
+		expect(originalText).toContain("Kevin's Crafts");
+		expect(originalText).toContain("Bacon and Mittens");
+		expect(originalText).toContain("Four-year-old makes a big discovery!");
+		expect(originalText).toContain("**Completion evidence:**");
 		for (const anchor of expectedAnchors) {
-			expect(text).toContain(anchor);
+			expect(anchoredTitles).toContain(anchor);
 		}
 
 		expect(text).not.toMatch(

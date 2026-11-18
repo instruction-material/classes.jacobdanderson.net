@@ -34,7 +34,11 @@ export function applyPictureBookGuidance(course: RawCourse, raw: RawCourse) {
 				const previous = [
 					...displayed.curriculum,
 					...displayed.supplementalProjects
-				].find(row => row.title === item.title);
+				].find(
+					row =>
+						row.title === item.title ||
+						row.aliases?.includes(item.title)
+				);
 				const supplied = pictureBookTaskInputs[item.title];
 				return {
 					...item,
@@ -43,9 +47,33 @@ export function applyPictureBookGuidance(course: RawCourse, raw: RawCourse) {
 						previous?.id ??
 						item.id ??
 						itemId(original.title, item.title),
+					title:
+						item.title === "Gabby Tries Narrative Map"
+							? "Nico Poster Narrative Map"
+							: (previous?.title ?? item.title),
+					aliases:
+						item.title === "Gabby Tries Narrative Map"
+							? [
+									...new Set([
+										...(previous?.aliases ??
+											item.aliases ??
+											[]),
+										item.title
+									])
+								]
+							: (previous?.aliases ?? item.aliases),
 					content:
-						item.content.replace(/^\*\*Project goal:\*\*\s*/i, "") +
-						(supplied ? `\n\n${supplied}` : ""),
+						item.title === "Gabby Tries Narrative Map"
+							? supplied!
+							: (
+									item.content.replace(
+										/^\*\*Project goal:\*\*\s*/i,
+										""
+									) + (supplied ? `\n\n${supplied}` : "")
+								).replaceAll(
+									"Gabby Tries",
+									"the supplied Nico poster story"
+								),
 					learningPath: "core",
 					contentKind: "assignment",
 					preserveInstructions: true,
