@@ -6,6 +6,7 @@ import { join } from "node:path";
 import { createPinia, setActivePinia } from "pinia";
 import MarkdownIt from "markdown-it";
 import { expect, it } from "vitest";
+import moneyMindedAdditions from "../../test/fixtures/money-minded-restored-identities.json";
 import smartMoneyAdditions from "../../test/fixtures/smart-money-restored-identities.json";
 import published from "../../test/fixtures/catalog-published-identities.json";
 import elementaryAdditions from "../../test/fixtures/early-elementary-a-restored-identities.json";
@@ -51,6 +52,7 @@ import {
 	earlyElementaryJoyOfReadingCourse,
 	earlyElementaryPictureBookCourse,
 	smartMoneyPersonalFinanceCourse,
+	moneyMindedInvestingCourse,
 	entrepreneurship101Course,
 	grammarMechanicsCourse,
 	introductionToPublicSpeakingCourse,
@@ -72,6 +74,12 @@ function isReviewedModule(id: string, title: string) {
 	return true;
 }
 const cases = [
+	{
+		id: "money-minded-investing",
+		source: moneyMindedInvestingCourse,
+		readings: 11,
+		additions: moneyMindedAdditions
+	},
 	{
 		id: "pre-algebra-b",
 		source: preAlgebraBCourse,
@@ -574,6 +582,7 @@ it.each(
 					"pre-algebra-b",
 					"ai-level-1",
 					"smart-money-personal-finance",
+					"money-minded-investing",
 					"network-systems",
 					"algebra-1a",
 					"intro-to-environmental-science",
@@ -590,6 +599,7 @@ it.each(
 					"pre-algebra-b",
 					"ai-level-1",
 					"smart-money-personal-finance",
+					"money-minded-investing",
 					"network-systems",
 					"intro-to-environmental-science",
 					"elementary-science",
@@ -732,6 +742,7 @@ it.each(
 				!completeMathAssignment &&
 				![
 					"pre-algebra-b",
+					"money-minded-investing",
 					"ai-level-1",
 					"network-systems",
 					"algebra-1a",

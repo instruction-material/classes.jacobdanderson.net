@@ -34,6 +34,7 @@ import { mapMarkdownProse } from "./markdownProse";
 import { applyMiddleSchoolLiteratureReadings } from "./middleSchoolLiteratureReadings";
 import { applyMiddleSchoolScienceReferences } from "./middleSchoolScienceReferences";
 import { applyMiddleSchoolWritingReadings } from "./middleSchoolWritingReadings";
+import { applyMoneyMindedReadings } from "./moneyMindedReadings";
 import { applyNetworkStudyReadings } from "./networkStudyReadings";
 import { applyNovelWritingReadings } from "./novelWritingReadings";
 import { applyPhysicsLevel2References } from "./physicsLevel2References";
@@ -9902,6 +9903,8 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 	}
 	if (id === "smart-money-personal-finance")
 		applySmartMoneyReadings(course, rawCourse);
+	if (id === "money-minded-investing")
+		applyMoneyMindedReadings(course, rawCourse);
 	if (id === "entrepreneurship-101")
 		applyEntrepreneurshipReadings(course, rawCourse);
 	if (id === "middle-school-a-literature")

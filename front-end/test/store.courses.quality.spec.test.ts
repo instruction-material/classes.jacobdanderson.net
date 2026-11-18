@@ -1,3 +1,4 @@
+import moneyMindedMaterials from "@/stores/courses/moneyMindedMaterials.json";
 import aiFoundationReadings from "@/stores/courses/aiFoundationReadingsData.json";
 import { beforeEach, describe, expect, it } from "vitest";
 import fs from "node:fs";
@@ -326,6 +327,7 @@ function wordCount(text: string) {
 }
 
 const authoredReadingCounts: Record<string, number> = {
+	"money-minded-investing": 11,
 	"smart-money-personal-finance": 9,
 	"elementary-science": 8,
 	"intro-to-biology": 8,
@@ -550,6 +552,54 @@ function completeSmartMoneyPractice(
 				candidate.content.includes(
 					formatAuthoredReading(reading).trim()
 				)
+		)
+	);
+}
+
+function completeMoneyMindedActivity(
+	courseId: string,
+	module: RawCourseModule,
+	item: RawCourseModuleItem
+) {
+	if (
+		courseId !== "money-minded-investing" ||
+		item.contentKind !== "assignment" ||
+		!item.preserveInstructions ||
+		!item.preserveAssignment ||
+		!hasAuthoredModuleReading(module)
+	)
+		return false;
+	const unit = moneyMindedMaterials.find(unit =>
+		module.title.startsWith(unit.code + " ")
+	);
+	const task = unit?.tasks.find(task => task.title === item.title);
+	if (!unit || !task || wordCount(task.prompt) < 20) return false;
+	const asset =
+		"/course-assets/money-minded/exercise-checks-v1.md#" + task.anchor;
+	const href =
+		"/course-resource?asset=" +
+		encodeURIComponent(asset) +
+		"&label=" +
+		encodeURIComponent("Exercise self-check");
+	const expected =
+		formatAuthoredReading(task.prompt) +
+		"\n\n[Project self-check](" +
+		href +
+		")";
+	const checks = fs.readFileSync(
+		"public/course-assets/money-minded/exercise-checks-v1.md",
+		"utf8"
+	);
+	const answer = checks
+		.split("## " + task.title + "\n\n")[1]
+		?.split("\n## ")[0];
+	return (
+		item.content === expected &&
+		Boolean(answer && wordCount(answer) >= 10) &&
+		module.curriculum.some(
+			reading =>
+				reading.contentKind === "reading" &&
+				reading.content === formatAuthoredReading(unit.reading)
 		)
 	);
 }
@@ -6084,6 +6134,7 @@ describe("course text quality normalization", () => {
 											module,
 											item
 										) &&
+										!completeMoneyMindedActivity(entry.id, module, item) &&
 										!completePhysicsPractice(
 											entry.id,
 											module,
@@ -6175,6 +6226,7 @@ describe("course text quality normalization", () => {
 							) &&
 							!completeSpeakingPractice(id, module, item) &&
 							!completeSmartMoneyPractice(id, module, item) &&
+							!completeMoneyMindedActivity(id, module, item) &&
 							!completePhysicsPractice(id, module, item) &&
 							!completeAlgebra1APractice(id, module, item) &&
 							!completeAiStudioActivity(id, module, item) &&
@@ -7986,21 +8038,32 @@ describe("course text quality normalization", () => {
 		expect(text).not.toContain("Source Activity Anchors:");
 		expect(text).toContain("Apple (AAPL)");
 		expect(text).toContain("imaginary $100,000");
-		expect(text).toContain("S&P 500, Dow Jones, and Nasdaq");
+		for (const name of ["S&P 500", "Dow Jones", "Nasdaq"])
+			expect(text).toContain(name);
 		expect(text).toContain("Rule of 72");
 		expect(text).toContain("Sharpe Ratio");
-		expect(text).toContain("SPY, QQQ, and DIA");
+		for (const name of ["SPY", "QQQ", "DIA"])
+			expect(text).toContain(name);
 		expect(text).toContain("BOTZ");
-		expect(text).toContain(
-			"cyclical, defensive, growth, blue-chip, or IPO"
-		);
+		for (const category of ["cyclical", "defensive", "growth", "blue-chip", "IPO"])
+			expect(text).toMatch(new RegExp(category, "i"));
 		expect(text).toContain("Tesla with GM");
 		expect(text).toContain("Republic.co");
 		expect(text).toContain("Alphabet, Disney, and PepsiCo");
 		expect(text).toContain("Jordans resale analogy");
 		expect(text).toContain("GameStop");
 		expect(text).toContain("Bitcoin, Ethereum, and Dogecoin");
-		expect(text).toContain("**Completion evidence:**");
+		expectAuthoredReadings(course, "money-minded-investing");
+		for (const module of course.modules.filter(module => !module.internal)) {
+			for (const item of [
+				...module.curriculum.slice(1),
+				...module.supplementalProjects
+			])
+				expect(
+					completeMoneyMindedActivity("money-minded-investing", module, item),
+					item.title
+				).toBe(true);
+		}
 		for (const anchor of expectedAnchors) {
 			expect(text).toContain(anchor);
 		}
@@ -8929,7 +8992,7 @@ describe("course text quality normalization", () => {
 				expect(text, courseId).toContain("**Concept path:**");
 				expect(text, courseId).toContain("Core topics in this module:");
 			}
-			if (courseId in elementaryMaterials) {
+			if (courseId in elementaryMaterials || courseId === "money-minded-investing") {
 				expect(text, courseId).toContain("Project self-check");
 			} else expect(text, courseId).toContain("**Completion evidence:**");
 			expect(text, courseId).not.toMatch(

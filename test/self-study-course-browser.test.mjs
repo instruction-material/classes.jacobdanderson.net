@@ -47,6 +47,7 @@ const focusedReadingCounts = {
 	"ai-level-1": 34,
 	"network-systems": 56,
 	"smart-money-personal-finance": 9,
+	"money-minded-investing": 11,
 	"design-patterns-in-java": 32,
 	"design-patterns-in-java-part-2": 30,
 	"java-level-3": 1,

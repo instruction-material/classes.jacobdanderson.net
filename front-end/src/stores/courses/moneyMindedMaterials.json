@@ -1,0 +1,293 @@
+[
+	{
+		"code": "INV 1",
+		"reading": "## Stock ownership\n\nA stock is a share of ownership in a company. A public company makes ownership\nshares available in public markets and provides required disclosures.\nA familiar brand can belong to a private company; popularity alone says nothing\nabout whether its shares trade publicly or whether its price is attractive.\nA ticker identifies a traded security on an exchange. A stock market connects\nbuyers and sellers. In a new share issue a company can raise money; an ordinary\nlater exchange trade transfers ownership between investors.\n\nShareholders can benefit from price increases and dividends, which are cash\ndistributions when declared. They face price declines, uncertain dividends and\npossible loss of the entire amount invested. Ownership is different from lending:\na bond is a debt claim. Public reporting helps research, but does not guarantee\na profitable investment. A company gains access to capital and takes on reporting\ncosts; investors gain a way to exchange ownership and bear business and market risk.\nSee the [SEC stock overview](https://www.investor.gov/introduction-investing/investing-basics/investment-products/stocks).\n\n## Worked paper-portfolio baseline\n\nUse one imaginary $100,000 opening balance. Save the first allocation as the\nbaseline hypothesis, then keep dated versions of later proposed allocations\nin the same workbook. A scenario starts from a named version. The examples\ndo not add another $100,000 to that workbook.\n\nAll C1, C2, C3 and index/fund figures in this course are fictional classroom\ndata, not prices or results of actual companies. The snapshot is S0; T1 to T4\nare the ends of four successive quarters. Cash earns zero; shares allow fractions.\nAssume zero dividends, trading costs and taxes in this replay.\n\n| Time | C1 household goods | C2 software | C3 utility | Index X | Index Y | Index Z |\n| --- | ---: | ---: | ---: | ---: | ---: | ---: |\n| S0 | $40 | $25 | $50 | 100 | 100 | 100 |\n| T1 | $32 | $30 | $51 | 95 | 98 | 90 |\n| T2 | $48 | $20 | $52 | 105 | 101 | 112 |\n| T3 | $36 | $27.50 | $53 | 100 | 99 | 95 |\n| T4 | $60 | $22.50 | $52.50 | 110 | 103 | 118 |\n\nA modeled $20,000 purchase of C1 at $40 buys 500 shares and leaves $80,000 cash.\nAt T1 the shares are worth $16,000, making the total $96,000. At T4 they are\nworth $30,000, making the total $110,000. Portfolio return is\n(ending value − opening value) / opening value: 10% over this one-year replay.\nThe stock's 50% price increase and the whole portfolio's 10% return measure\ndifferent exposures. Record quantities, prices, cash and total value separately.\nAn investment thesis states a reason, evidence, uncertainty and what observation\nwould cause revision; a profitable replay alone cannot establish a reliable rule.",
+		"tasks": [
+			{
+				"title": "Public Company and Stock Market Tour",
+				"prompt": "Use these fictional S0 company descriptions. C1 is publicly traded and sells\nrepeat-purchase household goods; its next-year demand is uncertain. C2 is publicly\ntraded software with growing sales and strong competition. P1 is a privately owned\nlocal bakery with loyal customers and no publicly traded shares.\nDefine public company, stock, ticker, stock market, dividend and investor risk.\nCompare C1 and P1 from both company and investor perspectives; explain why being\npopular cannot establish that P1 can be bought on a stock exchange.\nFor an optional real-company version, research Apple (AAPL) and another familiar\ncompany through their investor-relations pages, recording source and observation\ndates. Keep those observations separate from the fictional replay.",
+				"anchor": "public-company-and-stock-market-tour"
+			},
+			{
+				"title": "First Simulated Portfolio Entry",
+				"prompt": "Use INV 1's S0 table and the single $100,000 workbook. Choose C1, C2 or C3 for a\n$20,000 baseline purchase; retain $80,000 cash. Calculate share count and position\npercentage, then replay T1 and T4 without further trades. Write a purchase thesis,\none risk and an observation that would change it. Place the other two companies\nand Index X on a research watchlist, each with a question to investigate.\nSave the baseline rather than overwriting it with a later proposal.",
+				"anchor": "first-simulated-portfolio-entry"
+			},
+			{
+				"title": "Practice Map: Picking My First Stock",
+				"prompt": "From INV 1's S0 table, use a $10,000 C2 position and $90,000 cash.\nCalculate shares, T1 value, T4 value and whole-portfolio returns at both dates.\nExplain why the two company returns differ from the portfolio returns.",
+				"anchor": "practice-map-picking-my-first-stock"
+			},
+			{
+				"title": "Extension Review: Picking My First Stock",
+				"prompt": "A fictional quote lists Company H at $2 with 1,000,000 common shares outstanding\nand Company J at $50 with 20,000 common shares outstanding. Calculate each equity\nmarket capitalization as price × shares outstanding. Explain whether a lower\nshare price alone shows that H is the smaller or cheaper business. Name two facts\nstill needed to assess either business.",
+				"anchor": "extension-review-picking-my-first-stock"
+			}
+		]
+	},
+	{
+		"code": "INV 2",
+		"reading": "## Indexes and comparisons\n\nAn index summarizes a specified group of securities under a stated weighting rule.\nA benchmark is a comparison selected for the question being asked. A portfolio\ncontaining mostly cash and one stock can differ greatly from an all-stock index.\nFor a price-only return, divide ending price minus opening price by opening price.\nA total-return comparison also includes distributions and their reinvestment terms.\nUse the same dates, currency, costs and distribution convention for both sides.\n\n## Worked hold versus timing replay\n\nUse INV 1's complete S0–T4 table. Holding 500 C1 shares plus $80,000 cash ends at\n$110,000. A fixed alternative sells all 500 at T2 ($48), retains the proceeds,\nthen reinvests those $24,000 at T3 ($36). Fractional shares are allowed:\n24,000 / 36 = 666⅔ shares. At T4 those shares are worth $40,000; total value is\n$120,000. If re-entry instead occurs at T4, the final total is $104,000.\nThis is a comparison of supplied paths. Selecting the best dates after seeing\nthe table gives hindsight an advantage unavailable when the initial decision\nwas made. A claim to beat the market needs a predeclared rule and a suitable\nbenchmark over more than a convenient window.\n\nIndex X changes 100 to 110 over S0–T4, a 10% price gain. A separate comparison\nallocation of $20,000 to X and $80,000 to cash would end at $102,000. The\nbaseline C1 portfolio gains 10% while that matching-exposure benchmark gains 2%.\nAn unscaled comparison with the index's 10% gain would conceal the cash difference.\n\nBull describes a broadly rising market; bear describes a broadly falling one.\nThresholds and dates matter. A crash is a sharp fall over a short interval;\na long-term trend uses a longer window. These descriptions cannot determine\nthe next movement. C1 falls from $48 to $36 between T2 and T3, a 25% decline,\nwhile rising over S0–T4. Naming the window makes both observations interpretable.\n\nThe fictional X/Y/Z series stand in for comparing differently constructed indexes,\nnot actual S&P 500, Dow Jones or Nasdaq history. A real-index alternative needs\ndated observations and each index's exact name and return convention.",
+		"tasks": [
+			{
+				"title": "Time-the-Market Comparison",
+				"prompt": "Use INV 1's C1 replay with $20,000 invested at S0 and $80,000 cash. Compare\n(A) holding through T4, (B) selling at T2 and reinvesting all proceeds at T3,\nand (C) selling at T2 and reinvesting at T4. Allow fractional shares; use zero\ndividends, costs, taxes and cash interest. Show every cash/share transition,\nending portfolio value and return. Explain what an S0 decision-maker could\nknow and what the replay reveals only later.\nThe original Quartz timing activity is an optional alternative:\n[Time the Market](https://data.qz.com/2015/time-the-market/).",
+				"anchor": "time-the-market-comparison"
+			},
+			{
+				"title": "Index and Portfolio Strategy Check",
+				"prompt": "Calculate S0–T4 price returns for X, Y and Z from INV 1. Then compare the C1\nbaseline with a hypothetical $20,000 X/$80,000 cash allocation over those same\ndates. Explain why comparing a 20%-stock portfolio with an unscaled index can\nmislead. Save a proposed allocation version with amounts, quantities at S0 and\na reason for each exposure, while retaining the original baseline.\nAn optional actual-index comparison uses S&P 500, Dow Jones Industrial Average\nand a precisely named Nasdaq index over one common dated year, with sources\nand a common price-only or total-return convention.",
+				"anchor": "index-and-portfolio-strategy-check"
+			},
+			{
+				"title": "Practice Map: Strategically Choosing My Stocks",
+				"prompt": "For C1, calculate the T2–T3 percentage change and the S0–T4 percentage\nchange. Use the supplied INV 1 prices $48, $36, $40 and $60, respectively.\nExplain how opposite signs can describe the same stock correctly.",
+				"anchor": "practice-map-strategically-choosing-my-stocks"
+			},
+			{
+				"title": "Extension Review: Strategically Choosing My Stocks",
+				"prompt": "An analyst tests 20 timing rules against the same replay, reports only the\nbest one, and proposes it for the future. Identify two selection problems.\nSpecify a fairer comparison using a rule fixed before an unseen window, matching\ncash exposure, and a record of all tested results. No additional market data\nis needed for this method critique.",
+				"anchor": "extension-review-strategically-choosing-my-stocks"
+			}
+		]
+	},
+	{
+		"code": "INV 3",
+		"reading": "## Growth and purchasing power\n\nCompound growth applies a rate to the entire current balance, including earlier\ngrowth. With starting amount P, constant annual rate r expressed as a decimal\nand n whole years, A = P(1 + r)^n when no money is added or withdrawn.\nSimple growth instead adds P × r each year. At $100 and 10%, compounding gives\n$110 after year one and $121 after year two; simple growth gives $120 at year two.\n\nInflation means a rise in the general price level. Under a constant 2% annual\ninflation assumption, a future amount A has starting-year purchasing power\nA / 1.02^n. Thus $121 after two years has purchasing power about $116.30.\nA nominal dollar amount and its purchasing power are two views of the same\nmoney, not two balances to add together. Cash held at zero interest loses\npurchasing power under positive inflation.\n\n## Worked contributions and timing\n\nBeginning with zero, adding $1,000 at each year-end at a constant 5% model rate\nuses next balance = current balance × 1.05 + 1,000.\nYear one ends at $1,000; year two at $2,050; year three at $3,152.50.\nAn initial lump sum, year-start deposits and year-end deposits have different\ngrowth periods. State the sequence before calculating.\n[The SEC compound-interest calculator](https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator)\nis optional; repeated multiplication and a written table reproduce these cases.\n\nThe Rule of 72 estimates doubling years as 72 divided by a positive annual\nrate written in percent. At 6%, the estimate is 12 years. Annual multiplication\ngives $100 × 1.06^11 ≈ $189.83 and × 1.06^12 ≈ $201.22, so the first whole-year\ncrossing is year 12. At 10%, 7.2 estimated years falls between whole-year checks:\nyear seven is about $194.87 and year eight $214.36.\nThe rule is approximate and assumes continuing positive compound growth.\nZero growth never doubles; a constant negative rate between −100% and 0% shrinks\nthe balance. At −100% it reaches zero. A past stock-price change supplies no\npromise that the same rate will recur. All rates here are hypothetical inputs;\nfees, taxes, variable returns and losses can change actual outcomes.",
+		"tasks": [
+			{
+				"title": "Compounding and Inflation Scenarios",
+				"prompt": "Compare a $100 birthday gift held as zero-interest cash, saved at constant 2%,\nand modeled at constant 10% annual compounding. For 1, 5 and 10 years calculate\nA = 100(1 + r)^n, then purchasing power A / 1.02^n under constant 2% inflation.\nUse no contributions, fees or taxes and round displayed amounts to cents only\nafter calculating. In a separate model, start at zero at age 25 or 35, deposit\n$1,000 at each year-end at constant 5%, and stop at 65: 40 or 30 deposits.\nShow contributed totals, ending balances and growth beyond contributions using\nthe lesson recurrence. Explain the difference between these assumptions and\na forecast. This exercise does not add money to the paper portfolio.",
+				"anchor": "compounding-and-inflation-scenarios"
+			},
+			{
+				"title": "Rule of 72 Portfolio Projection",
+				"prompt": "Compute observed one-year price-only changes for $100→$110, $100→$80 and\n$100→$100 using (end − start) / start × 100. Exclude dividends, fees and taxes.\nSeparately assume constant positive annual rates of 2%, 6% and 10%.\nEstimate doubling years with 72 / rate in percent, then repeatedly multiply\n$100 by 1 + rate / 100 until the first whole year at or above $200.\nRecord the preceding balance too. Explain zero and constant negative growth\nand why the observed changes do not establish future rates.",
+				"anchor": "rule-of-72-portfolio-projection"
+			},
+			{
+				"title": "Practice Map: Understanding Compounding Returns",
+				"prompt": "Compare $100 at constant 10% for two years under simple and compound\ngrowth. Apply constant 2% inflation to both ending amounts. Explain which\nquantity represents growth on earlier growth.",
+				"anchor": "practice-map-understanding-compounding-returns"
+			},
+			{
+				"title": "Extension Review: Understanding Compounding Returns",
+				"prompt": "Compare three $1,000 deposits made at year-end versus year-start over\nthree years, both starting at zero with constant 5% annual growth.\nWrite the update order and ending amount for each. Explain why the difference\ndoes not represent an extra contribution.",
+				"anchor": "extension-review-understanding-compounding-returns"
+			}
+		]
+	},
+	{
+		"code": "INV 4",
+		"reading": "## Risk and return\n\nRisk includes uncertainty about outcomes and possible loss. Return measures gain\nor loss relative to the amount exposed. Volatility measures variation in returns;\nit does not capture every risk, such as needing cash before an asset can be sold.\nRisk tolerance describes willingness to accept uncertainty; risk capacity concerns\nthe ability to absorb loss given goals and obligations. A short time horizon can\nmake a volatile allocation unsuitable for a supplied goal even when its owner\nis comfortable with risk.\n\n## Worked equal-average comparison\n\nIn the dice model independent rolls of a fair six-sided die have probability 1/6 for each face.\nPay $1 before each round, select g distinct faces, receive $6/g including the\nstake on a match, or zero on a miss. The possible net results are 6/g − 1\nand −1. Their weighted average is\n(g/6)(6/g − 1) + (1 − g/6)(−1) = 0.\nFor g = 6 every round nets zero; for g = 1 a round gains $5 or loses $1.\nEqual expected net results therefore do not mean equal uncertainty.\nA short replay can finish above or below its expectation.\n\n## Optional Sharpe calculation\n\nFor a backward-looking comparison, subtract a benchmark return from each\nportfolio return in the same period and units. The historical Sharpe ratio\nis the mean of these differential returns divided by their standard deviation.\nUse sample standard deviation here: subtract the mean, square the differences,\nsum them, divide by n − 1, then take the square root. At least two observations\nand a nonzero standard deviation are needed for this calculation.\n[Sharpe's original explanation](https://web.stanford.edu/~wfsharpe/art/sr/sr.htm)\ndescribes the historical ratio and its limitations.\n\nFor quarterly portfolio returns 2%, −1%, 3%, 0% and a constant quarterly\nbenchmark of 0.25%, differentials are 1.75%, −1.25%, 2.75%, −0.25%.\nTheir mean is 0.75 percentage points. Squared deviations from that mean sum\nto 10 squared percentage points; sample deviation is √(10/3) ≈ 1.8257\npercentage points. The quarterly ratio is 0.75 / 1.8257 ≈ 0.4108.\nThere is no annualization in this exercise. A benchmark called risk-free in a\nmodel is an assumption for that period; choosing it does not remove portfolio\nrisk. The ratio summarizes this sample and cannot guarantee future results.",
+		"tasks": [
+			{
+				"title": "Dice Risk Ledger",
+				"prompt": "Start each of three separate replays with $20. Pay $1 before every round.\nWith g distinct guessed faces, a match pays $6/g including the stake;\na miss pays $0. Payouts for g = 1/2/3/4/5/6 are $6/$3/$2/$1.50/$1.20/$1.\nFor g = 1, 3 and 6 always select faces 1 through g, then use rolls\n2, 5, 1, 6, 3. Record opening balance, cost, match, payout and closing balance\nfor all five rounds. Compare the possible net round outcomes, expected net\nresult and actual replay result. Explain why a replay cannot predict a portfolio.",
+				"anchor": "dice-risk-ledger"
+			},
+			{
+				"title": "Sharpe Ratio Portfolio Review",
+				"prompt": "Use quarterly returns 2%, −1%, 3%, 0% and constant quarterly benchmark 0.25%.\nCalculate differential returns, their mean and sample standard deviation\n(divide squared-deviation sum by 3), then the unannualized historical Sharpe\nratio. Use identical percent units throughout. Repeat conceptually for four\nidentical differential returns of 1% and explain why the ordinary ratio is\nundefined. State one risk the ratio leaves out and one limitation of four quarters.",
+				"anchor": "sharpe-ratio-portfolio-review"
+			},
+			{
+				"title": "Practice Map: Assessing My Portfolio's Risk",
+				"prompt": "For g = 2 in the lesson dice model, write match probability, net gain on a\nmatch, net loss on a miss and expected net per round. Explain why five consecutive\nmisses remain possible even though expected net is zero.",
+				"anchor": "practice-map-assessing-my-portfolios-risk"
+			},
+			{
+				"title": "Extension Review: Assessing My Portfolio's Risk",
+				"prompt": "Two fictional goals each have $2,000: A needs the full amount for a fixed\nbill next month; B is a discretionary purchase ten years away.\nA supplied risky scenario can reduce either balance by 30%; a cash scenario\nearns zero with immediate access. Calculate the risky ending amount and each\ngoal's shortfall relative to $2,000. Explain how timing and flexibility affect\ncapacity without declaring one risk tolerance for every person.",
+				"anchor": "extension-review-assessing-my-portfolios-risk"
+			}
+		]
+	},
+	{
+		"code": "INV 5",
+		"reading": "## Bonds and funds\n\nA bond is a loan to an issuer. Face value is the amount scheduled for repayment\nat maturity; a coupon is a contractual interest payment, subject to the issuer's\nability to pay. A fictional $1,000 face-value, three-year bond with a 4% annual\ncoupon pays $40 at each year-end, with $1,000 principal also due at year three.\nTotal scheduled receipts are $1,120. A $40 coupon is 4% of face value; it is not\nautomatically the return of someone buying the bond at a different market price.\nWhen market interest rates rise, an existing fixed-rate bond generally becomes\nless attractive and its market price can fall. Default, inflation and selling\nbefore maturity create additional uncertainty.\nSee [bond basics](https://www.investor.gov/introduction-investing/investing-basics/investment-products/bonds-or-fixed-income-products/bonds).\n\nA fund pools investors' money to hold assets. An ETF is a fund whose shares\ntrade on an exchange. An index fund follows an index strategy; ETF describes a\nvehicle and index describes a strategy. A specialized ETF can concentrate in\none sector. A bond fund holds bonds but its share price can change; owning its\nshares is different from receiving one individual bond's scheduled principal.\nLiquidity concerns access to a sale and its price, not a guarantee against loss.\nSee the [SEC fund overview](https://www.investor.gov/introduction-investing/investing-basics/investment-products/mutual-funds-and-exchange-traded-2).\n\n## Worked fund comparison\n\n| Fund | Holdings | S0 share price | Annual expense ratio |\n| --- | --- | ---: | ---: |\n| B | 40% C1, 30% C2, 30% C3 | $50 | 0.20% |\n| T | 100% C2 | $25 | 0.60% |\n| G | Fictional fixed-rate bond pool | $100 | 0.30% |\n\nB is a three-company teaching index fund, not a broad market in itself.\nT adds the same company exposure as buying C2 directly.\nAt a constant $20,000 average balance, 0.20% represents about $40 annual\nfund expenses. Actual expenses depend on the fund's method and assets.\nA return explicitly stated as net of expenses already includes that deduction.\n\nFor a proposal using the same $100,000 opening balance, $40,000 in B buys\n800 shares, $30,000 in G buys 300, and $30,000 remains cash.\nUnder a separate one-year scenario with B +8%, G +2% and cash 0%, all net\nof fund expenses, ending value is $43,200 + $30,600 + $30,000 = $103,800.\nDo not subtract the expense ratios again. This scenario is independent of\nINV 1's quarter-price replay; it is a planning comparison, not an observed result.",
+		"tasks": [
+			{
+				"title": "ETF and Bond Fund Allocation",
+				"prompt": "Use the fictional S0 fund sheet in INV 5. Propose $40,000 B, $30,000 G and\n$30,000 cash from the existing $100,000 opening balance. Calculate share counts,\npercentages and approximate annual fund expenses under constant opening balances.\nSeparately apply net one-year returns B +8%, G +2%, cash 0%.\nExplain T's overlap with C2 and why G's shares are different from one bond's\nmaturity payment. Save the proposal as a new workbook version.\nOptional actual-fund research may compare SPY, QQQ, DIA, BOTZ and a bond fund\nusing dated issuer fact sheets and holdings; those tickers are not the fictional funds.",
+				"anchor": "etf-and-bond-fund-allocation"
+			},
+			{
+				"title": "Build Your Stax Diversification Review",
+				"prompt": "Use this supplied alternative to the optional [Build Your Stax](https://buildyourstax.com/)\ngame. Compare two separate $1,000 allocations: A all C2; B $500 C2/$500 cash.\nScenario up: C2 +20%, cash 0%; scenario down: C2 −20%, cash 0%.\nCompute both outcomes for both allocations. Then compare these supplied descriptions:\n\n- Stock: ownership with variable price/distributions.\n- CD: bank time deposit with specified terms and possible early-withdrawal penalty.\n- Mutual fund: pooled investments.\n- Index fund: index strategy.\n- ETF: exchange traded fund.\n- Bond: issuer debt claim.\n\nIdentify which descriptions can overlap.\nState one liquidity, fee or loss question needed for an actual product.",
+				"anchor": "build-your-stax-diversification-review"
+			},
+			{
+				"title": "Practice Map: Investing in Bonds and ETFs",
+				"prompt": "For $20,000 held at a constant average balance for one year, estimate\nexpenses for B at .20%, T at .60% and G at .30%. Explain why the lowest fee alone\ncannot decide between these funds, using their INV 5 holdings.",
+				"anchor": "practice-map-investing-in-bonds-and-etfs"
+			},
+			{
+				"title": "Extension Review: Investing in Bonds and ETFs",
+				"prompt": "The lesson's $1,000 face-value bond pays 4% annually for three years and\nrepays principal at year three if the issuer performs. List all scheduled cash\nflows and total receipts. A buyer pays $950 instead of $1,000 and holds to\nmaturity; calculate total receipts minus purchase cost, before taxes or fees.\nExplain why dividing the annual $40 coupon by face value does not calculate\nthat buyer's complete holding-period return.",
+				"anchor": "extension-review-investing-in-bonds-and-etfs"
+			}
+		]
+	},
+	{
+		"code": "INV 6",
+		"reading": "## Underlying exposure and concentration\n\nDiversification spreads exposure among assets whose outcomes can differ.\nConcentration means much of the result depends on one company, sector or other\nshared risk. Owning many fund names can still concentrate in the same holdings.\nLook through each fund: amount in a company = direct amount + fund amount\nmultiplied by that company's fund weight. Portfolio weights sum to 100%.\n\n## Worked underlying exposure\n\nUse the fictional INV 5 fund sheet. Proposal A holds 40% C2, 40% T and 20% cash.\nBecause T holds only C2, total C2 exposure is 80%.\nProposal B holds 20% C2, 40% B, 20% G and 20% cash.\nB contributes 16% C1, 12% C2 and 12% C3, so total exposures are\n16% C1, 32% C2, 12% C3, 20% bonds and 20% cash.\nFor these instantaneous shock comparisons ignore fund expenses and hold\nfund weights fixed. With hypothetical company returns C1 −10%, C2 −20%, C3 +5% and bonds/cash 0%,\nA changes by 80% × −20% = −16%. B changes by\n16% × −10% + 32% × −20% + 12% × 5% = −7.4%.\nIn a different shock with only C3 −50%, A is unchanged and B loses 6%.\nDiversification changes exposure; it cannot assure a gain or outperform in\nevery scenario. The [SEC allocation overview](https://www.investor.gov/introduction-investing/getting-started/asset-allocation)\nconnects this principle to goals and risk.\n\nCyclical businesses are sensitive to economic activity; defensive businesses\nsell goods/services with comparatively steady demand. Growth describes expected\nbusiness expansion, not a guaranteed share return. Blue-chip is an informal\ndescription of an established major company, not a safety certification.\nAn IPO is an initial public offering, an event rather than a permanent sector.\nThese categories overlap. A large software company can be established, growth\noriented and economically sensitive at the same time.\n\nSector rotation changes industry allocations as conditions or expectations change.\nThe optional exercise compares supplied historical-style fictional snapshots;\nit does not teach that a cycle label predicts future winners.",
+		"tasks": [
+			{
+				"title": "Category-Based Portfolio Diversification",
+				"prompt": "Use proposals A and B from INV 6, funded from the same $100,000 opening balance.\nList direct holdings and underlying company/sector exposures after looking\nthrough B and T. Apply the two supplied shocks and calculate ending values.\nFor each proposal, explain one concentration and one tradeoff. Save a revised\nproposal with amounts and quantities at S0; preserve earlier workbook versions.\nThe three supplied companies represent three sectors, not all possible industries.\nAn optional research expansion adds two actual companies per selected category,\nwith dated sources and any overlapping category labels.",
+				"anchor": "category-based-portfolio-diversification"
+			},
+			{
+				"title": "Stock Category and Sector Rotation Map",
+				"prompt": "Use these fictional descriptions:\n\n- R sells discretionary travel and recently completed an IPO.\n- S is an established household-goods company.\n- V sells utility services.\n- W is an established software company with expected revenue growth.\n\nAssign possible cyclical/defensive/growth/blue-chip/IPO labels and explain overlap.\nFor a fictional period P, supplied sector returns are travel +12%, household\ngoods +3%, utilities −2%, software +8%. In period Q they are −15%, +2%, +4%, −10%.\nCompare the rankings and show why P's leader would fail to lead in Q.\nState the extra business/economic evidence needed to interpret either period.",
+				"anchor": "stock-category-and-sector-rotation-map"
+			},
+			{
+				"title": "Practice Map: Diversifying My Stock Portfolio",
+				"prompt": "A fictional proposal holds $30,000 C2, $50,000 T and $20,000 cash.\nUsing T's 100% C2 holdings, calculate underlying software exposure.\nCompare it with $20,000 C2/$40,000 B/$20,000 G/$20,000 cash.\nIdentify which company is still largest in the second proposal.",
+				"anchor": "practice-map-diversifying-my-stock-portfolio"
+			},
+			{
+				"title": "Extension Review: Diversifying My Stock Portfolio",
+				"prompt": "Use proposal B's underlying weights from INV 6. A proposed revision\nmoves its entire 20% bond allocation into C2 while keeping the other weights.\nCalculate revised company/sector exposures and the result under the lesson's\nC1−10%,C2−20%,C3+5%,cash0% shock. Explain the new concentration.",
+				"anchor": "extension-review-diversifying-my-stock-portfolio"
+			}
+		]
+	},
+	{
+		"code": "INV 7",
+		"reading": "## Business results and price\n\nRevenue is the amount earned from sales during a period; expenses are costs\nrecognized for that period. Net income is revenue minus all applicable\nexpenses. An income statement reports these flows over time; a balance sheet\nreports assets and liabilities at one date; a cash-flow statement explains\ncash movements. Profit can differ from cash received because the timing and\nrecognition rules differ. Read the period, currency and units before comparing.\nThe [SEC financial-statement guide](https://www.sec.gov/about/reports-publications/investorpubsbegfinstmtguide)\nexplains these distinctions.\n\n## Worked matched annual statements\n\nEach cell below is revenue / total expenses in millions of dollars. Assume\nno preferred shares and constant common-share counts for this simplified EPS.\nFY-A, FY-B and FY-C are consecutive complete years, all ending before S0.\n\n| Company | FY-A | FY-B | FY-C | Common shares, millions | S0 price |\n| --- | ---: | ---: | ---: | ---: | ---: |\n| C1 | 100 / 85 | 110 / 94 | 120 / 102 | 10 | $40 |\n| C2 | 80 / 75 | 120 / 110 | 150 / 145 | 10 | $25 |\n| C3 | 150 / 135 | 154 / 139 | 160 / 144 | 20 | $50 |\n\nC1's net incomes are $15m, $16m and $18m. Latest margin is 18/120 = 15%.\n\nSimplified earnings per share (EPS) are net income divided by common shares:\n$18m/10m = $1.80. Trailing price/earnings (P/E) compares S0 price with latest\ncomplete-year EPS: 40/1.80 ≈22.22. Use one consistent reporting window and\ndistinguish trailing earnings from forecasts.\n\nC2 grows revenue from $80m to $150m while latest net income returns to $5m;\nmore sales alone do not establish improving profit.\nA company with negative or zero EPS has no meaningful positive P/E comparison\nunder this method. A negative arithmetic quotient is unsuitable for ranking alongside positive\nmultiples as evidence of a cheap business.\n\nUndervaluation is a thesis that price is low relative to a reasoned estimate\nof value. A low P/E alone does not prove it: falling earnings, debt, poor cash\ngeneration or different growth expectations can explain different multiples.\nA usable thesis states supporting facts, contrary evidence, missing information\nand a condition for revision. A strong business and an attractive purchase\nprice are separate questions.\n\nPrivate-company information may be limited, and shares may be difficult to sell.\nA research ranking needs customer demand, differentiation, team capability,\nbusiness economics, mission and runway: months before cash is exhausted under\na stated spending model. A ranking of supplied cases is not an instruction\nto invest or evidence that an offering is accessible.",
+		"tasks": [
+			{
+				"title": "Financial Statement and P/E Ratio Review",
+				"prompt": "Use INV 7's matched FY-A/B/C statements and S0 prices. For each company compute\nthree annual net incomes, latest net margin, latest EPS and trailing P/E.\nCompare C1 and C2's sales/profit trends, then explain whether their multiples\nalone establish a better purchase. Keep millions consistent in EPS calculations.\nFor the original optional research alternative, compare Tesla with GM using\ndated issuer filings for matched complete periods and one common price date.\nThe supplied C1/C2 figures are not Tesla or GM results.",
+				"anchor": "financial-statement-and-pe-ratio-review"
+			},
+			{
+				"title": "Undervalued Stock Candidate Review",
+				"prompt": "Compare C1/C2/C3 using the supplied INV 7 table, with all values measured at S0.\nChoose one or two candidates for further research, calculate their latest P/E\nand state a provisional value thesis with one contrary fact and one missing\nfact. A fourth fictional company D has FY-C net loss $2m, 4m common shares and\nS0 price $10. Explain how D changes a simple 'lowest P/E wins' ranking.\nRecord a hold/research/revise decision for the paper portfolio, with a reason.",
+				"anchor": "undervalued-stock-candidate-review"
+			},
+			{
+				"title": "Private Company Ranking Case",
+				"prompt": "Use three fictional snapshots; figures are claims awaiting verification.\nA: repairable household sensor, two experienced engineers, 18 paid trials with\n12 repeat users, 8 months runway, mission reducing waste.\nB: crowded delivery app, three experienced operators, 60 trials with 40 repeat\nusers, 3 months runway, mission improving delivery access.\nC: novel water filter, one first-time founder, 4 unpaid pilots and 0 repeat\norders yet, 12 months runway, mission cleaner water.\nRank all three with five equally weighted criteria: differentiation, team,\nproduct/demand, mission evidence and survival/runway. Give each 0–2\n(0=missing/weak evidence,1=mixed,2=stronger supplied evidence), state the reason,\nand test a ranking with runway weighted twice. Different trial populations\nand product-use cycles limit direct comparisons. Public [Republic.co](https://republic.co/) research\nis an optional substitute with dated sources; no account is needed.",
+				"anchor": "private-company-ranking-case"
+			},
+			{
+				"title": "Practice Map: Assessing a Company's Success",
+				"prompt": "A fictional income statement reports $200m revenue and $184m total\nexpenses, with 8m common shares and price $30. Calculate net income, margin,\nEPS and trailing P/E. Identify the error in dividing $16m by the number 8\nand calling the answer dollars per share.",
+				"anchor": "practice-map-assessing-a-companys-success"
+			},
+			{
+				"title": "Extension Review: Assessing a Company's Success",
+				"prompt": "C1's FY-C EPS is $1.80 and S0 price $40. For a separate forward scenario,\nsuppose net income falls to $9m with the same 10m common shares and unchanged\nprice. Compute the new EPS and price/EPS multiple; compare with the original.\nExplain how a seemingly low trailing multiple could coexist with falling value.",
+				"anchor": "extension-review-assessing-a-companys-success"
+			}
+		]
+	},
+	{
+		"code": "INV 8",
+		"reading": "## ESG evidence\n\nEnvironmental criteria concern effects such as energy, waste and emissions.\nSocial criteria concern relationships with employees, customers, communities\nand suppliers. Governance concerns how a company is directed and held accountable,\nincluding oversight, reporting and shareholder rights.\nA policy states an intention; a measured outcome needs a definition, date,\nboundary and evidence. 'We will reduce emissions' differs from a verified\nyear-to-year change measured on the same basis.\n\nScores combine selected observations using a method. Check scale direction,\nweights, missing data, industry comparisons, dates and conflicts of interest.\nTwo providers may ask different questions and disagree without either number\nbeing a universal ethical verdict.\nThe [SEC ESG bulletin](https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/environmental-social-and-governance-esg-funds-investor-bulletin)\ndescribes differences among approaches and ratings.\n\n## Worked fictional methods\n\nHigher is better on every supplied 0–100 scale. C1 has E90/S40/G60;\nC2 has E50/S80/G90. Method M uses .7E + .3S; method N uses .3E + .7S.\nM gives C1 75 and C2 59; N gives C1 55 and C2 71.\nThe ranking reverses solely because weights change. Both methods omit governance;\nneither result is a complete assessment or an actual company's score.\n\nFor a simple evidence check, C1 reports 100 tonnes of emissions in year A\nand 80 in year B under the same boundary, with independent measurement supplied\nfor this case. That is a 20% reduction. If its output fell from 100 to 50 units,\nemissions per unit increased from 1 to 1.6 tonnes, a 60% rise. Absolute and\nintensity measures answer different questions.\nA values-based allocation must specify its criterion, evidence standard and\ntradeoffs with concentration, financial risk and missing data. A high score\ndoes not establish an attractive price or future return.",
+		"tasks": [
+			{
+				"title": "ESG Criteria and Reliability Review",
+				"prompt": "Use the fictional C1/C2 E/S/G scores and both methods in INV 8. Calculate the\nfour composite scores, rank each method and identify an omitted category.\nThen compare C1's absolute emissions with emissions intensity using the supplied\n100→80 tonnes and 100→50 output units. Write a claim that both measures support\nwithout hiding either result. An optional Alphabet, Disney, and PepsiCo comparison\nuses dated company evidence and named rating methods; the classroom scores\nare not actual ratings for those companies.",
+				"anchor": "esg-criteria-and-reliability-review"
+			},
+			{
+				"title": "Values-Aligned Portfolio Update",
+				"prompt": "Use the supplied scores for C1/C2 in INV 8. For C3 use E70/S70/G80.\nCompare two classroom criteria: (A) E at least70 and G at least70;\n(B) equal-weight mean E/S/G at least70. Calculate eligibility under each.\nFrom one existing portfolio version, propose a new $100,000 allocation using\neligible companies and/or cash; sum it and identify concentration and missing\nimpact evidence. If retaining B, look through its C1/C2/C3 holdings before\nclaiming all holdings meet a screen. Record an alternative decision under\nthe other criterion. No single values choice is prescribed.",
+				"anchor": "values-aligned-portfolio-update"
+			},
+			{
+				"title": "Practice Map: Holding Companies Socially Responsible",
+				"prompt": "Classify each supplied statement and name the missing evidence:\n'We aim to halve waste by year5'; 'a verified meter measured80 tonnes in yearB';\n'the board has three independent members out of five'; 'our product is ethical'.\nExplain why a policy and a measured result need distinct labels.",
+				"anchor": "practice-map-holding-companies-socially-responsible"
+			},
+			{
+				"title": "Extension Review: Holding Companies Socially Responsible",
+				"prompt": "For C1 E90/S40/G60 and C2 E50/S80/G90, let a method use E weight w\nand S weight1−w, omitting G. Solve the equality point, then evaluate w=.25\nand w=.75. Explain what changes when weights change while inputs stay fixed.",
+				"anchor": "extension-review-holding-companies-socially-responsible"
+			}
+		]
+	},
+	{
+		"code": "INV 9",
+		"reading": "## Borrowed shares and loss risk\n\nA short sale begins by borrowing shares, selling them, later buying shares to\nreturn to the lender, and settling borrowing obligations. A lower repurchase\nprice can produce a gain; a higher price produces a loss. Sale proceeds are\naccompanied by the obligation to return shares, not unrestricted new wealth.\nThis lesson is paper analysis of the mechanism.\nThe [SEC short-sale bulletin](https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-51)\ndescribes borrowing, fees and loss risk.\n\n## Worked short ledger\n\nIn a deliberately simplified model, borrow and sell 10 shares at $50, receiving\n$500. Assume a fixed $5 total borrowing/transaction charge, no dividends,\nno tax and no other charges. Cover means buy shares to return.\nCovering at $30 costs $300 and leaves profit $500 − $300 − $5 = $195.\nCovering at $80 costs $800 and creates loss $500 − $800 − $5 = −$305.\nA long purchase of the same shares for $500 can lose its $500 purchase cost;\na short position's repurchase price has no finite upper bound in this model.\nA planned exit price alone cannot establish a hard maximum loss.\n\nA short squeeze is a price rise that pressures short sellers to buy shares to\ncover, potentially adding demand and further upward pressure. Other buying,\nlimited liquidity and other market conditions can also influence prices.\nIn a supplied fictional sequence $50→$65→$80, the short's cost to cover rises\nfrom $500 to $650 to $800. A correct concern about business fundamentals does\nnot ensure that a short position survives a price rise.\n\nFor a separate exit scenario, the plan says 'review/cover at $55', but the next\navailable simulated execution is $80. The modeled loss remains $305.\nThis case assumes that fill price; it does not promise a particular market\norder execution or teach operational trading. A hypothetical loss budget must\nbe tested against gaps, fees and inability to close at the preferred price.\n\n## Jordans resale analogy\n\nFor a fictional borrowing agreement, receive one specified pair of Jordans,\nsell it for $200, then buy an equivalent pair to return by the agreed date.\nIgnore charges and assume the agreement permits this resale and replacement.\nAt a $150 replacement price the net result is +$50; at $300 it is −$100.\nThe obligation remains after the first sale. Real shoes can differ in condition,\nsize and availability; the analogy illustrates the return obligation, not\nidentical market mechanics.\n\n## GameStop historical case\n\nThe [SEC staff report on early 2021 markets](https://www.sec.gov/files/staff-report-equity-options-market-struction-conditions-early-2021.pdf),\nsection 3.4 and Figure 6, examines January 2021 GameStop trading.\nStaff observed buying by short-covering participants during some sharp price\nincreases, while attributing the sustained multiweek rise to broader positive\nsentiment rather than covering alone. A covering mechanism and an explanation\nof the entire event are different claims. This summary supplies the historical\ncontext for the local ledger; its $50/$65/$80 path is fictional, not GameStop data.",
+		"tasks": [
+			{
+				"title": "Short Selling and Short Squeeze Case",
+				"prompt": "Use the lesson's 10-share $50 short with fixed $5 total charge and no dividends,\ntaxes or other costs. Draw the borrow/sell/buy/return sequence. Compute cash\nreceived, cost to cover and net result at $30, $65 and $80. Explain why receiving\n$500 on sale does not create $500 of net wealth. In the supplied $50→$65→$80\nsequence, describe how covering could add buying pressure and name another\npossible reason for rising prices. Keep the case separate from the long-only\npaper-portfolio allocation; it is a counterfactual risk exercise.\n\nApply the lesson's Jordans resale analogy at $150 and $300 replacement\nprices. Then explain, using the supplied GameStop report summary, why evidence\nof some covering does not establish that covering caused the entire rise.",
+				"anchor": "short-selling-and-short-squeeze-case"
+			},
+			{
+				"title": "Overvalued Company Short Plan",
+				"prompt": "Use the fictional INV 7 candidates: C2 price $25/EPS $.50; C3 price $50/EPS $.80.\nChoose one as a provisional overvaluation research hypothesis, stating missing\nevidence. For a separate modeled position, short10 shares of a candidate at\n$50 with a fixed $5 charge. A plan targets $30, reviews at $55 and budgets $60\nof loss. Compute results at cover prices $30,$55 and a supplied gap execution\nof $80. Decide whether the claimed $60 cap holds. A defensible final plan may\nreject the position; a price target is not a guaranteed future execution.",
+				"anchor": "overvalued-company-short-plan"
+			},
+			{
+				"title": "Practice Map: Shorting Stocks",
+				"prompt": "Compare buying10 shares at $50 with shorting10 at $50. Ignore all charges\nin this separate comparison. Compute profit/loss when final price is $0,$30,$80.\nExplain the different worst-loss boundaries in this model.",
+				"anchor": "practice-map-shorting-stocks"
+			},
+			{
+				"title": "Extension Review: Shorting Stocks",
+				"prompt": "For a fictional short sale of5 shares at $40 with a fixed $4 total charge,\nwrite net profit as a function of cover price p. Solve the zero-profit price.\nEvaluate p=$30 and p=$70, then explain why an optimistic business thesis does\nnot fund the loss in the second case.",
+				"anchor": "extension-review-shorting-stocks"
+			}
+		]
+	},
+	{
+		"code": "INV 10",
+		"reading": "## Money and transaction networks\n\nFiat currency is government-issued money whose value is not a promise to redeem\na fixed quantity of a commodity. Acceptance, institutions, supply and demand\naffect its purchasing power. Cryptocurrency uses cryptography and a network's\nrules to record and transfer units. A blockchain groups records into linked\nblocks; participating computers maintain and check a ledger. A private key\ncan authorize transfers, so loss or theft of access is a separate risk from\nprice fluctuation. Custody means responsibility for that access.\n\n[Bitcoin's explanation](https://bitcoin.org/en/how-it-works) describes a shared\ntransaction ledger and peer-to-peer transfers.\n[Ethereum](https://ethereum.org/what-is-ethereum/) supports programmable\napplications as well as transfers; ether is its native cryptocurrency.\n[Dogecoin](https://dogecoin.com/dogepedia/articles/what-is-dogecoin/) is a\npeer-to-peer cryptocurrency with a public ledger.\nA technical purpose and a community's enthusiasm do not establish a fair price.\nNetwork rules, issuance and control differ across assets; 'decentralized' needs\na specific question about who validates, controls changes or holds the units.\nCurrency use, speculative demand, fees, access, custody and volatility can\nproduce different benefits and risks.\nThe [SEC crypto overview](https://www.investor.gov/introduction-investing/investing-basics/investment-products/crypto-asset-related-investments)\nprovides additional risk context.\n\n## Worked valuation and price path\n\nCoin R has price $2 and circulating supply1,000: circulating market capitalization\nis $2,000. Coin S has price $50 and circulating supply20: capitalization is $1,000.\nA lower unit price does not make R smaller or demonstrate a bargain.\nMarket capitalization is price × a stated supply measure, not a cash reserve\navailable to holders. Circulating, total and maximum supply are different inputs.\n\nFor a separate fictional path, prices at dates A/B/C/D are $.25/$10/$2/$4.\nA $100 purchase at A buys400 units and ends D at $1,600 (+1,500%).\nAt B it buys10 units and ends at $40 (−60%); at C it buys50 and ends at $200 (+100%).\nAssume fractional units allowed, no interest, fees or tax, and unchanged units held.\nThe path is not Bitcoin history and its early low price is not a generally\navailable opportunity. Entry dates, access, costs and losses matter to any\nhistorical comparison. The lesson uses supplied data; wallet setup and purchases\nare outside its completion requirements.",
+		"tasks": [
+			{
+				"title": "Cryptocurrency Value Comparison",
+				"prompt": "Use INV 10's descriptions of fiat money, Bitcoin, Ethereum, and Dogecoin to\ncompare issuer/network, transfer record, possible purpose and one unresolved\nrisk. Distinguish a network's purpose from evidence of price value.\nCalculate circulating capitalization for fictional R($2,1,000units) and\nS($50,20units). In a separate algebra scenario, R's supply doubles to2,000\nwhile its total capitalization is held fixed at $2,000. Calculate implied\nunit price and explain why that assumption is not a prediction.\nOptional public Bitcoin/Ether/Dogecoin directory research must label every\nprice/supply observation with source, date and supply definition.",
+				"anchor": "cryptocurrency-value-comparison"
+			},
+			{
+				"title": "Bitcoin Historical Return Case",
+				"prompt": "For a complete local calculation, use the explicitly fictional INV 10 price\npath A/B/C/D=$.25/$10/$2/$4. Compare three separate $100 purchases at A,B,C\nheld to D with no fees,taxes,interest or new units. Compute units, ending\nvalue and percentage gain/loss, and explain entry-date selection bias.\nThese figures are not actual Bitcoin prices or 2018 observations.\nFor the original historical alternative, use a public\n[Bitcoin price chart](https://www.coindesk.com/price/bitcoin), name exact early,\n2018 peak, post-crash and terminal dates, and retain same-currency price\nobservations and source dates. If that evidence is unavailable, submit the\nsupplied path with its fictional label and state the historical limitation.",
+				"anchor": "bitcoin-historical-return-case"
+			},
+			{
+				"title": "Practice Map: Understanding the Value of Cryptocurrency",
+				"prompt": "A fictional coin price falls from $10 to $2, then rises from $2 to $4.\nCompute both percentage changes and the overall $10→$4 change.\nExplain why adding the two percentages gives the wrong overall result.",
+				"anchor": "practice-map-understanding-the-value-of-cryptocurrency"
+			},
+			{
+				"title": "Extension Review: Understanding the Value of Cryptocurrency",
+				"prompt": "A paper portfolio version allocates $5,000 to fictional coin R and $95,000\nto zero-interest cash. Scenario1:R−80%; scenario2:R+100%.\nCompute portfolio endings and returns. Apply a supplied classroom maximum\ncrypto weight of5% at the opening date. Explain why meeting that limit neither\nguarantees principal nor establishes that this exposure fits a real goal.",
+				"anchor": "extension-review-understanding-the-value-of-cryptocurrency"
+			}
+		]
+	},
+	{
+		"code": "INV 11",
+		"reading": "## Portfolio reasoning\n\nAn analytical strategy brief makes a portfolio proposal reproducible.\nState its opening snapshot, goal and time horizon; list dollar amounts,\nprices, quantities and cash; total the weights; then look through funds\nfor repeated holdings. Connect evidence to each choice and state uncertainty\nand conditions that would change it. A private written brief or presentation can use the same evidence record.\n\n## Worked capstone version\n\nUse the fictional S0 prices from INV 1/5, the same $100,000 opening balance,\nzero trading costs/taxes and these proposed allocations:\n\n| Holding | Dollars | S0 price | Quantity | Opening weight |\n| --- | ---: | ---: | ---: | ---: |\n| C1 | $10,000 | $40 | 250 | 10% |\n| C2 | $10,000 | $25 | 400 | 10% |\n| C3 | $10,000 | $50 | 200 | 10% |\n| B | $30,000 | $50 | 600 | 30% |\n| G | $30,000 | $100 | 300 | 30% |\n| Cash | $10,000 | — | — | 10% |\n\nUnderlying exposure is C1 22%, C2 19%, C3 19%, bonds30%,cash10%.\nThe case's classroom limits are each company at most25%, each stock sector\nat most35%, cash at least10% and optional crypto at most5%, all measured at\nthe opening snapshot. These are exercise constraints, not universal advice.\n\nUse a one-year scenario separate from the earlier price replay. In scenario U,\neach direct stock returns+10%, B's gross basket return is+10%, G's gross\nreturn is+2%, and cash earns0%. For this simplified fee model, deduct fund\nexpenses once at year-end as .20% of B's opening balance and .30% of G's\nopening balance. B's net return is+9.8%, G's+1.7%; ending value is $106,450.\nIn scenario D, each direct stock and B's gross basket return−20%, G's gross\nreturn−5%, and cash0%. After the same opening-balance expense charges,\nB's net return is−20.2%, G's−5.3%; ending value is $86,350. State both results. An allocation must\nnot be described as loss-proof because it passes an opening limit.\nThe classroom opening-balance expense charge is .002×30,000 + .003×30,000=$150;\ndo not subtract it again from these net scenario results.\n\nA review rule names a cadence and a trigger. This example reviews quarterly,\nchecks underlying weights against the supplied limits, and records the reason\nfor holding or rebalancing. Rebalancing restores chosen weights by changing\npositions; it can create costs and does not predict the market.\nA projection states assumptions and scenarios; expected return requires\nadditional assumptions about probabilities. Without probabilities, a midpoint\nof U and D is merely a midpoint, not an established expectation.\n\nThe final brief retains the baseline and a change log, sources/dates for real\nresearch, model labels for fictional data, evidence of loss risk and a\nmonitoring rule. It evaluates the proposal; public promotion and real\ntransactions are outside this course's completion requirements.",
+		"tasks": [
+			{
+				"title": "Investment Strategy Pitch",
+				"prompt": "Reproduce the INV 11 capstone allocation, quantities and underlying exposures.\nCheck every supplied company/sector/cash/crypto constraint. Calculate the U and D\nending values without double-counting fund expenses; identify the difference\nbetween a scenario and a forecast. Then propose one justified revision, showing\na balanced $100,000 allocation and its changed exposure. Present a private\nanalytical brief with goal, horizon, evidence, contrary evidence, uncertainty,\nquarterly review trigger and a change log from the INV 1 baseline.\nNo actual return probability or future market return is supplied.",
+				"anchor": "investment-strategy-pitch"
+			},
+			{
+				"title": "Private Company Re-Evaluation",
+				"prompt": "Use the three fictional startups in INV 7, whether or not its optional task\nwas completed. Apply the five equally weighted0–2 criteria described there,\nthen add these new snapshot facts: A has12 of18 repeat users and2 months runway;\nB has40 of60 repeat users and9 months runway; C still has no paid repeat orders\nbut an independently confirmed filter test, with10 months runway.\nRe-rank with unchanged criteria first, then compare a version giving runway\ndouble weight. Explain which new facts, changed criteria or unresolved evidence\ncause each ranking change. Keep both snapshots; do not treat a technical test\nas proof of customer demand.",
+				"anchor": "private-company-re-evaluation"
+			},
+			{
+				"title": "Practice Map: Money-Minded Master Project",
+				"prompt": "For the supplied INV 11 capstone, calculate direct-company weights and\nunderlying weights after B. Explain the incorrect claim 'C1 is only10%'.\nState which opening classroom limit would be crossed if $10,000 cash moved\nentirely into C1, leaving all other holdings unchanged.",
+				"anchor": "practice-map-money-minded-master-project"
+			},
+			{
+				"title": "Extension Review: Money-Minded Master Project",
+				"prompt": "Start from the INV 11 capstone and its scenario D ending values.\nCompute underlying C1 exposure after the scenario, assuming B retains its\n40/30/30 holdings in the supplied snapshot. Calculate cash weight and compare\nwith opening limits. For a separate withdrawal of $10,000 cash immediately after\nthat scenario, calculate remaining portfolio value and cash, and explain why\nthe original opening percentages cannot describe it.",
+				"anchor": "extension-review-money-minded-master-project"
+			}
+		]
+	}
+]
