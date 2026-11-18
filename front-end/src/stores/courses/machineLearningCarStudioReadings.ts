@@ -1,7 +1,7 @@
 import type { RawCourse } from "./types";
-import encoding from "./readings/machine-learning-car-studio/encoding.md?raw";
-import probe from "./readings/machine-learning-car-studio/probe.md?raw";
-import review from "./readings/machine-learning-car-studio/review.md?raw";
+import encoding from "./readings/machine-learning-studios/car-encoding.md?raw";
+import probe from "./readings/machine-learning-studios/car-probe.md?raw";
+import review from "./readings/machine-learning-studios/car-review.md?raw";
 
 export function applyMachineLearningCarStudioReadings(course: RawCourse) {
 	const module = course.modules.find(

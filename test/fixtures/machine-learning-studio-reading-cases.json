@@ -1,0 +1,151 @@
+{
+  "items": 18,
+  "courseId": "machine-learning",
+  "readingDirectory": "front-end/src/stores/courses/readings/machine-learning-studios",
+  "cases": [
+    {
+      "moduleId": "machine-learning-customer-segmentation-starter-build-practice-studio",
+      "title": "Customer Segmentation Starter Build: Core Concepts",
+      "file": "customer-loop-concepts.md",
+      "sourceSHA256": "06c59626765420894bd157343f89b26fb06c051c268b839e6a7a4c9fd8b15e06",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-customer-segmentation-starter-build-practice-studio",
+      "title": "Customer Segmentation Starter Build: Guided Example",
+      "file": "customer-loop-example.md",
+      "sourceSHA256": "f87e4c67aa06a6286cf9c5a299f81f54c03123bf311162fb816d6ab666d0061b",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-customer-segmentation-starter-build-practice-studio",
+      "title": "Review: Customer Segmentation Starter Build",
+      "file": "customer-loop-review.md",
+      "sourceSHA256": "5a6c9845329210264862d0f26e6a3bd6f9a23dcfaaef058ec3fb1e60210d5e9c",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-customer-segmentation-interview-practice-studio",
+      "title": "Customer Segmentation Interview: Core Concepts",
+      "file": "centroid-concepts.md",
+      "sourceSHA256": "13e72a45ae6e2d39f8e150ced520c38e4b2fc30a7579ae1ca6f2b1f1ce3f2208",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-customer-segmentation-interview-practice-studio",
+      "title": "Customer Segmentation Interview: Guided Example",
+      "file": "centroid-example.md",
+      "sourceSHA256": "1d6d7b7ad4c1258944808e3a08c189378d6bf3dadae2b69bff46a34ace90adcd",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-customer-segmentation-interview-practice-studio",
+      "title": "Review: Customer Segmentation Interview",
+      "file": "centroid-review.md",
+      "sourceSHA256": "072fe96eb077d9bb1aebc972a7f008d32850907cd3465e0f79e6602445c77d50",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-customer-segmentation-practice-studio",
+      "title": "Customer Segmentation: Core Concepts",
+      "file": "customer-analysis-concepts.md",
+      "sourceSHA256": "e96cbe28644ac81b2f484f0d11621d8db2ee34f94a48ba06f3f2084a561656c1",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-customer-segmentation-practice-studio",
+      "title": "Customer Segmentation: Guided Example",
+      "file": "customer-analysis-example.md",
+      "sourceSHA256": "2b2617be85cd81118d4a0a5952c7e050279e6497c7e45e050285162573f972c5",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-customer-segmentation-practice-studio",
+      "title": "Review: Customer Segmentation",
+      "file": "customer-analysis-review.md",
+      "sourceSHA256": "8ae9db4daf48a5425cf7ddfedaa942e86f04cd18a70c7f46d14438894fbde257",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-disney-movie-clustering-starter-build-practice-studio",
+      "title": "Disney Movie Clustering Starter Build: Core Concepts",
+      "file": "movie-pipeline-concepts.md",
+      "sourceSHA256": "731c20b14eb2a7bd156212c8f4d39af811982fe93ab81aa26a0f8f6704df2179",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-disney-movie-clustering-starter-build-practice-studio",
+      "title": "Disney Movie Clustering Starter Build: Guided Example",
+      "file": "movie-pipeline-example.md",
+      "sourceSHA256": "9fed0fbc61dc26109e1edb3c1776b254eb4a450b02db22a40076b76d5f633f66",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-disney-movie-clustering-starter-build-practice-studio",
+      "title": "Review: Disney Movie Clustering Starter Build",
+      "file": "movie-pipeline-review.md",
+      "sourceSHA256": "0180ce51bea32bf800cebafd1d486d344907509ff60d54f65104fa5d53250e65",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-disney-movie-clustering-practice-studio",
+      "title": "Disney Movie Clustering: Core Concepts",
+      "file": "movie-analysis-concepts.md",
+      "sourceSHA256": "9554027cca953f6ef653404422cff70b362c66edfdeab5ca56df521af29bd144",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-disney-movie-clustering-practice-studio",
+      "title": "Disney Movie Clustering: Guided Example",
+      "file": "movie-analysis-example.md",
+      "sourceSHA256": "56756a5491a7781437160a85702e8b22884726fac8cf6c44a9a25083eda7828b",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-disney-movie-clustering-practice-studio",
+      "title": "Review: Disney Movie Clustering",
+      "file": "movie-analysis-review.md",
+      "sourceSHA256": "c44a43c7fa87fbb505a0b5cdf200c5db364c10621c131d7d673a23bfbd2710e4",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-knn-car-classification-practice-studio",
+      "title": "KNN Car Classification: Core Concepts",
+      "file": "car-encoding.md",
+      "sourceSHA256": "a90fc3d4d67b88abdc792f43981e3d4102c7c76316baf09efab7fde398482fc0",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-knn-car-classification-practice-studio",
+      "title": "KNN Car Classification: Guided Example",
+      "file": "car-probe.md",
+      "sourceSHA256": "3cafd41501de64513c3648c97681b0351aed677de01d26030b9acc5414940fbb",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-knn-car-classification-practice-studio",
+      "title": "Review: KNN Car Classification",
+      "file": "car-review.md",
+      "sourceSHA256": "80e478dd9f480d7a6921068560ef10a6d191c1161b8bfc9305f63b671c7e0d3a",
+      "staticAudit": false,
+      "view": 3
+    }
+  ]
+}

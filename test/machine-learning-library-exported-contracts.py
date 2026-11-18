@@ -83,6 +83,49 @@ def check_metrics(actual, expected):
                 close(actual[name], value)
 
 
+def verify_studio_arithmetic():
+    points = [0., 2., 10., 12.]
+    centers = [sum(points[:2]) / 2, sum(points[2:]) / 2]
+    inertia = sum(min((point - center) ** 2 for center in centers) for point in points)
+    assert centers == [1., 11.] and inertia == 4
+    close(np.var(points), 26)
+    repaired = [sum(points[:3]) / 3, points[-1]]
+    assert repaired == [4., 12.]
+    assert sum(min((point-center) ** 2 for center in repaired) for point in points) == 24
+    rows = np.array([[2.,4.], [6.,8.]])
+    np.testing.assert_allclose(rows.mean(axis=0), [4,6])
+    np.testing.assert_allclose(np.vstack([rows, [100,100]]).mean(axis=0), [36,112/3])
+    np.testing.assert_allclose((rows + [10,0]).mean(axis=0), [14,6])
+    def adjusted_rand(left, right):
+        joint = sum(math.comb(sum(a == x and b == y for a,b in zip(left,right)), 2)
+                    for x in set(left) for y in set(right))
+        a = sum(math.comb(left.count(x), 2) for x in set(left))
+        b = sum(math.comb(right.count(y), 2) for y in set(right))
+        expected = a * b / math.comb(len(left), 2)
+        return (joint-expected) / ((a+b)/2-expected)
+    close(adjusted_rand([0,0,1,1],[1,1,0,0]), 1)
+    close(adjusted_rand([0,0,1,1],[0,1,0,1]), -.5)
+    silhouette = sum([(11-2)/11, (9-2)/9, (9-2)/9, (11-2)/11]) / 4
+    close(silhouette, 79/99)
+    movies = np.array([[2000.,100.], [2002.,300.]])
+    mean, scale = movies.mean(axis=0), movies.std(axis=0)
+    standardized = (movies-mean)/scale
+    np.testing.assert_allclose(standardized, [[-1,-1],[1,1]])
+    np.testing.assert_allclose(np.array([0,0])*scale+mean, [2001,200])
+    close(np.sum(standardized**2), 4)
+    close(np.sum((movies-mean)**2), 20002)
+    thousands = movies * [1,.001]
+    np.testing.assert_allclose((thousands-thousands.mean(axis=0))/thousands.std(axis=0), standardized)
+    known, other, unknown = np.array([1,0,1,0]), np.array([0,1,0,1]), np.array([0,0,1,0])
+    assert sum((known-other)**2) == 4 and sum((unknown-known)**2) == 1 and sum((unknown-other)**2) == 3
+    majority = classification(["A","A","A","B"], ["A"]*4, ["A","B"])
+    close(majority["accuracy"], .75)
+    close(majority["balanced_accuracy"], .5)
+    close(majority["macro_f1"], 3/7)
+    return {"accepted": True, "checks": 8, "rawInertia": inertia, "silhouette": silhouette,
+            "cases": ["Lloyd update and scaling", "empty-group repair", "coordinate mean and outlier", "adjusted Rand membership", "silhouette", "movie coordinate transform", "positive unit invariance", "one-hot distance and majority metrics"]}
+
+
 def check_outputs(case, directory, stdout, source):
     report_name = {"customer-neighbors": "classification-report.json", "car-neighbors": "classification-report.json",
                    "email-naive-bayes": "spam-report.json", "country-year-regression": "regression-report.json"}.get(case)
@@ -195,6 +238,7 @@ def execute(script, cwd):
         with log_path.open("a") as log: log.write(json.dumps(dict(event, event="end", endTime=now(), exitCode=process.returncode, childProcessGroupCleanup=cleanup)) + "\n")
 
 
+worked_studio_arithmetic = verify_studio_arithmetic()
 for source in fixture["files"].values():
     raw = source["content"].encode()
     assert len(raw) == source["byteLength"] and digest(raw) == source["sha256"]
@@ -259,7 +303,7 @@ for project in projects:
                                 edited=edited, sha256=digest(archive.read_bytes()), nativeExecuted=True, intentionalStarterStop=stopped,
                                 exitCode=code, stdout=stdout, stderr=stderr, independentOutputEvidence=evidence))
 
-proof = dict(accepted=True, source=fixture["revision"], projects=len(projects), courseProfiles=len(profiles), archives=len(records),
+proof = dict(accepted=True, source=fixture["revision"], workedStudioArithmetic=worked_studio_arithmetic, projects=len(projects), courseProfiles=len(profiles), archives=len(records),
              nativeExecutions=len(records), successfulCompletedExecutions=sum(not row["intentionalStarterStop"] for row in records),
              intentionalStarterStops=sum(row["intentionalStarterStop"] for row in records), profiles=profiles, records=records)
 assert proof["courseProfiles"] == len(projects) * 4 and proof["archives"] == proof["nativeExecutions"] == len(projects) * 8

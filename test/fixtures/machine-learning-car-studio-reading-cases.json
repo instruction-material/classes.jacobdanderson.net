@@ -1,12 +1,12 @@
 {
   "items": 3,
   "courseId": "machine-learning",
-  "readingDirectory": "front-end/src/stores/courses/readings/machine-learning-car-studio",
+  "readingDirectory": "front-end/src/stores/courses/readings/machine-learning-studios",
   "cases": [
     {
       "moduleId": "machine-learning-knn-car-classification-practice-studio",
       "title": "KNN Car Classification: Core Concepts",
-      "file": "encoding.md",
+      "file": "car-encoding.md",
       "sourceSHA256": "a90fc3d4d67b88abdc792f43981e3d4102c7c76316baf09efab7fde398482fc0",
       "staticAudit": false,
       "view": 3
@@ -14,7 +14,7 @@
     {
       "moduleId": "machine-learning-knn-car-classification-practice-studio",
       "title": "KNN Car Classification: Guided Example",
-      "file": "probe.md",
+      "file": "car-probe.md",
       "sourceSHA256": "3cafd41501de64513c3648c97681b0351aed677de01d26030b9acc5414940fbb",
       "staticAudit": false,
       "view": 3
@@ -22,7 +22,7 @@
     {
       "moduleId": "machine-learning-knn-car-classification-practice-studio",
       "title": "Review: KNN Car Classification",
-      "file": "review.md",
+      "file": "car-review.md",
       "sourceSHA256": "80e478dd9f480d7a6921068560ef10a6d191c1161b8bfc9305f63b671c7e0d3a",
       "staticAudit": false,
       "view": 3
