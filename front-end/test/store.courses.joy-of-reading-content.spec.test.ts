@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { loadRawCourse } from "@/stores/courses/index";
+import { earlyElementaryJoyOfReadingCourse } from "@/stores/courses/source-library-courses";
 import { joyOfReadingGuidance } from "@/stores/courses/joyOfReadingGuidance";
 
 describe("Joy of Reading on-site explanations and practice", () => {
@@ -34,7 +35,7 @@ describe("Joy of Reading on-site explanations and practice", () => {
 		expect(module.curriculum.map(item => item.title)).toEqual([
 			"Characters Core Concepts",
 			"Character Investigator Report",
-			"Sweet Sixteen Character Evidence"
+			"Character Inference Report"
 		]);
 		expect(
 			module.curriculum
@@ -55,13 +56,26 @@ describe("Joy of Reading on-site explanations and practice", () => {
 		expect(module.curriculum[1].content).toContain(
 			"Complete the selected response and document one revision."
 		);
+		const originalTitles = [
+			"Bacon and Mittens Review or Figurative Art",
+			"Dinosaur Footprint Interview or News Report"
+		];
 		const choices = module.supplementalProjects.filter(item =>
-			[
-				"Bacon and Mittens Review or Figurative Art",
-				"Dinosaur Footprint Interview or News Report"
-			].includes(item.title)
+			originalTitles.some(
+				title => item.title === title || item.aliases?.includes(title)
+			)
 		);
 		expect(choices).toHaveLength(2);
+		for (const title of [
+			"Practice Map: Master Project",
+			"Extension Review: Master Project"
+		]) {
+			expect(
+				module.supplementalProjects.find(item => item.title === title)
+					?.internal,
+				title
+			).toBe(true);
+		}
 		expect(
 			choices.every(
 				item =>
@@ -86,10 +100,84 @@ describe("Joy of Reading on-site explanations and practice", () => {
 		);
 		expect(module.curriculum[1].content).toContain("Project self-check");
 	});
-	it("keeps the unresolved original-text dependency explicit", async () => {
-		const course = await loadRawCourse("early-elementary-a-reading");
-		const text = course!.modules[0].curriculum[0].content;
-		expect(text).toContain("The named story texts are not included");
-		expect(text).not.toContain("Break a typical problem");
+	it("gives all ten text-dependent tasks a complete supplied passage", async () => {
+		const course = (await loadRawCourse("early-elementary-a-reading"))!;
+		const visible = course.modules
+			.flatMap(module => [
+				...module.curriculum,
+				...module.supplementalProjects
+			])
+			.filter(item => !item.internal);
+		const cases = [
+			["Character Investigator Report", "Eli’s boots were yellow"],
+			["Sweet Sixteen Character Evidence", "Mara ran toward the gate"],
+			[
+				"Faithful Friend Plot Diagram",
+				"A class needs a sign for its garden"
+			],
+			[
+				"Happy Halloween Plot and Character Check",
+				"Tavi’s group has to move a stack of books"
+			],
+			[
+				"Groceries Storyboard",
+				"Pia promises a banner for the class play"
+			],
+			[
+				"Megalodon News Report",
+				"Brook Library team added four low shelves"
+			],
+			["Kevin's Crafts Story Review", "Mina says her first drawing"],
+			["Lab-Grown Meat Main Idea Report", "A school tried two labels"],
+			[
+				"Bacon and Mittens Review or Figurative Art",
+				"Omi wants a display that can travel"
+			],
+			[
+				"Dinosaur Footprint Interview or News Report",
+				"Pine School club placed six new route signs"
+			]
+		];
+		for (const [originalTitle, passage] of cases) {
+			const matches = visible.filter(
+				item =>
+					item.title === originalTitle ||
+					item.aliases?.includes(originalTitle)
+			);
+			expect(matches, originalTitle).toHaveLength(1);
+			expect(matches[0].content, originalTitle).toContain(passage);
+			expect(matches[0].content, originalTitle).toContain(
+				"Project self-check"
+			);
+			expect(matches[0].contentKind).toBe("assignment");
+		}
+	});
+	it("uses supplied complete text while retaining original Juni task records", async () => {
+		const course = (await loadRawCourse("early-elementary-a-reading"))!;
+		const original = JSON.stringify(earlyElementaryJoyOfReadingCourse);
+		expect(original).toContain("The Secret Ingredient");
+		expect(original).toContain("Moira, Sunli, and Zaira");
+		const first = course.modules.find(
+			module => module.title === "JoR1 Characters"
+		)!;
+		expect(first.curriculum[1].content).toContain(
+			"Eli’s boots were yellow"
+		);
+		expect(first.curriculum[2].content).toContain(
+			"Mara ran toward the gate"
+		);
+		expect(first.curriculum[2].aliases).toContain(
+			"Sweet Sixteen Character Evidence"
+		);
+		expect(first.curriculum[2].content).toContain("Compare Mara with Eli");
+		const visible = course.modules
+			.flatMap(module => [
+				...module.curriculum,
+				...module.supplementalProjects
+			])
+			.filter(item => !item.internal);
+		expect(visible.map(item => item.content).join("\n")).not.toMatch(
+			/require a separate copy|Read The Secret Ingredient|Read Sweet Sixteen/
+		);
 	});
 });

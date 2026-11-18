@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { loadRawCourse } from "@/stores/courses/index";
+import { earlyElementaryPictureBookCourse } from "@/stores/courses/source-library-courses";
 import { pictureBookGuidance } from "@/stores/courses/pictureBookGuidance";
 
 describe("Picture book complete writing instruction", () => {
@@ -42,7 +43,7 @@ describe("Picture book complete writing instruction", () => {
 			module => module.title === "WYB9 Narrative Writing"
 		)!;
 		expect(module.curriculum.slice(1).map(item => item.title)).toEqual([
-			"Gabby Tries Narrative Map",
+			"Nico Poster Narrative Map",
 			"Brainstorm Bonanza Story Plan",
 			"Picture Book Plot Diagram"
 		]);
@@ -82,18 +83,36 @@ describe("Picture book complete writing instruction", () => {
 		)!;
 		expect(agreement.method).toContain("I and you use the base form");
 	});
-	it("keeps the original named-text dependency distinct from new model stories", async () => {
+	it("supplies the complete Nico default and preserves the original task identity", async () => {
 		const course = (await loadRawCourse(
 			"early-elementary-b-picture-book"
 		))!;
 		const module = course.modules.find(
 			module => module.title === "WYB9 Narrative Writing"
 		)!;
-		expect(module.curriculum[1].content).toContain(
-			"The text of Gabby Tries is not included"
+		const task = module.curriculum[1];
+		expect(task.title).toBe("Nico Poster Narrative Map");
+		expect(task.aliases).toContain("Gabby Tries Narrative Map");
+		expect(task.content).toContain(
+			"Nico wants to hang a poster for a park concert."
 		);
+		expect(task.content).toContain(
+			"The poster stays open, and the visitors find the concert."
+		);
+		expect(task.content).toContain("no directly quoted dialogue");
+		expect(task.content).toContain("label it as a new line");
 		expect(module.curriculum[0].content).toContain(
-			"original Nico practice story"
+			"complete Nico poster story"
 		);
+		expect(JSON.stringify(earlyElementaryPictureBookCourse)).toContain(
+			"Gabby Tries"
+		);
+		const performance = course.modules
+			.flatMap(module => module.curriculum)
+			.find(
+				item => item.title === "Dramatic Reading with Visual Backdrop"
+			)!;
+		expect(performance.content).toContain("Nico wants to hang a poster");
+		expect(performance.content).toContain("one specific change to pacing");
 	});
 });
