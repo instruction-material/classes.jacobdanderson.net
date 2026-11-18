@@ -2,7 +2,9 @@ import type { RawCourse } from "./types";
 import content8 from "./readings/machine-learning-worked-cores/capstone-examples.md?raw";
 import content7 from "./readings/machine-learning-worked-cores/capstone-planning.md?raw";
 import content9 from "./readings/machine-learning-worked-cores/capstone-presentation.md?raw";
+import dataWorkflow from "./readings/machine-learning-worked-cores/data-workflow.md?raw";
 import content3 from "./readings/machine-learning-worked-cores/decision-trees.md?raw";
+import evaluationContract from "./readings/machine-learning-worked-cores/evaluation-contract.md?raw";
 import content6 from "./readings/machine-learning-worked-cores/historical-health-audit.md?raw";
 import content5 from "./readings/machine-learning-worked-cores/image-classification.md?raw";
 import content2 from "./readings/machine-learning-worked-cores/least-squares.md?raw";
@@ -11,6 +13,20 @@ import content0 from "./readings/machine-learning-worked-cores/nearest-neighbors
 import content4 from "./readings/machine-learning-worked-cores/neural-regression.md?raw";
 
 const definitions = [
+	{
+		moduleTitle: "ML0 Setup, Tooling, and Data Workflow",
+		title: "Setup, Tooling, and Data Workflow Core Concepts",
+		content: dataWorkflow,
+		staticAudit: false,
+		projectLink: null
+	},
+	{
+		moduleTitle: "ML7.5 Model Evaluation, Comparison, and Dataset Strategy",
+		title: "5 Model Evaluation, Comparison, and Dataset Strategy Core Concepts",
+		content: evaluationContract,
+		staticAudit: false,
+		projectLink: null
+	},
 	{
 		moduleTitle: "ML2 K-Nearest Neighbors",
 		title: "K-Nearest Neighbors Core Concepts",
