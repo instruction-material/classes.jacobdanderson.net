@@ -8,6 +8,7 @@ import clusteringUnitPractice from "./readings/machine-learning-foundations/clus
 import missingMeasurementPractice from "./readings/machine-learning-foundations/inspect-missing-measurement.md?raw";
 import notebookModulesReading from "./readings/machine-learning-foundations/notebooks-and-modules.md?raw";
 import regressionErrorsReading from "./readings/machine-learning-foundations/regression-errors.md?raw";
+import gaussianIrisReading from "./readings/machine-learning-worked-cores/gaussian-iris.md?raw";
 import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
 import { buildSupportSectionGuidance } from "./supportSectionGuidance";
 
@@ -387,8 +388,10 @@ const machineLearningSourceCourse: RawCourse = {
 				},
 				{
 					title: "Naive Bayes with the Iris Dataset",
-					content:
-						"The iris flower dataset (sepal length, sepal width, petal length, petal width, species) is a practical Naive Bayes classification example. The labels are the three species setosa, versicolor, and virginica, and the feature vector is [sepal_length, sepal_width, petal_length, petal_width]. Feature order is fixed. The process is: split the data into training and testing sets, use the training data to estimate probabilities for each species, and classify new feature vectors by choosing the label with the highest conditional probability. Accuracy improves when features are informative and when there is enough training data."
+					content: gaussianIrisReading,
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true
 				},
 				{
 					title: "ML3 Project 1: Iris Dataset Classification",

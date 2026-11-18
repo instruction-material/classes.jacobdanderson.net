@@ -1,0 +1,31 @@
+{
+  "items": 3,
+  "courseId": "machine-learning",
+  "readingDirectory": "front-end/src/stores/courses/readings/machine-learning-worked-cores",
+  "cases": [
+    {
+      "moduleId": "machine-learning-ml3-naive-bayes",
+      "title": "Naive Bayes with the Iris Dataset",
+      "file": "gaussian-iris.md",
+      "sourceSHA256": "57da744d58a36d25304c6a78273554d91c69c8e903ae171d4506153023ee180a",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-ml0-setup-tooling-and-data-workflow",
+      "title": "Setup, Tooling, and Data Workflow Core Concepts",
+      "file": "data-workflow.md",
+      "sourceSHA256": "e2c8d98cb7cb26b562a105f3fa7c7f72b6e8c5ddbde4f6d6cc4d49dc17bea01e",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-ml7-5-model-evaluation-comparison-and-dataset-strategy",
+      "title": "5 Model Evaluation, Comparison, and Dataset Strategy Core Concepts",
+      "file": "evaluation-contract.md",
+      "sourceSHA256": "ef4ba4ff9ad98a74a4e6ef7e86cce5085140ec38be6bc210f953ae898a12ee11",
+      "staticAudit": false,
+      "view": 3
+    }
+  ]
+}
