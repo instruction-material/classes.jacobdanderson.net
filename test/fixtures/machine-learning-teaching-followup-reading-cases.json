@@ -1,5 +1,5 @@
 {
-  "items": 3,
+  "items": 9,
   "courseId": "machine-learning",
   "readingDirectory": "front-end/src/stores/courses/readings/machine-learning-worked-cores",
   "cases": [
@@ -26,6 +26,54 @@
       "sourceSHA256": "ef4ba4ff9ad98a74a4e6ef7e86cce5085140ec38be6bc210f953ae898a12ee11",
       "staticAudit": false,
       "view": 3
+    },
+    {
+      "moduleId": "machine-learning-machine-learning-toolchain-and-version-assumptions",
+      "title": "Machine Learning Setup Assumptions",
+      "file": "toolchain-setup.md",
+      "sourceSHA256": "a874776f178d23cdc04348ace647db206aa812082f14049ca52700494442b480",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-machine-learning-toolchain-and-version-assumptions",
+      "title": "Machine Learning Upgrade Rule",
+      "file": "toolchain-version-recovery.md",
+      "sourceSHA256": "837b6d023ee98ffab8383905afd14e41d86ece0644a38d4a231349e510379a72",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-machine-learning-toolchain-and-version-assumptions",
+      "title": "Machine Learning Platform Fallbacks",
+      "file": "toolchain-platforms.md",
+      "sourceSHA256": "a8a241fd33fcfb41729586ccb6d7e6109164ed12d2a84c4f695ef24775efd60b",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-machine-learning-toolchain-and-version-assumptions",
+      "title": "Machine Learning Reproducibility Notes",
+      "file": "toolchain-reproducibility.md",
+      "sourceSHA256": "69091fdc23a99073105e4092e4c329520cc605345d455879b06c8a85ddbcd634",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-machine-learning-toolchain-and-version-assumptions",
+      "title": "Machine Learning First-Run Smoke Test",
+      "file": "toolchain-import-check.md",
+      "sourceSHA256": "dbe13196c48405e9a0c78604a26b491e5f26f7ac8733e1e0f31c763b97737878",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-machine-learning-toolchain-and-version-assumptions",
+      "title": "Machine Learning Version Drift Review",
+      "file": "toolchain-compare-environments.md",
+      "sourceSHA256": "b1ebfdbe494773b885e827187eba153a0754c5c2ae1cf742303eb1c7d183c01a",
+      "staticAudit": false,
+      "view": 2
     }
   ]
 }
