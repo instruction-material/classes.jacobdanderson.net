@@ -72,14 +72,14 @@ import { pythonicDesignPatternsCourse } from "@/stores/courses/pythonic-design-p
 
 function isReviewedModule(id: string, title: string) {
 	if (id === "java-level-3") return title === "AJ4 Recursion";
-	if (id === "pythonic-design-patterns") return /^PDP[01234] /.test(title);
+	if (id === "pythonic-design-patterns") return /^PDP[0-6] /.test(title);
 	return true;
 }
 const cases = [
 	{
 		id: "pythonic-design-patterns",
 		source: pythonicDesignPatternsCourse,
-		readings: 17,
+		readings: 23,
 		additions: []
 	},
 	{
@@ -889,15 +889,15 @@ it.each(
 			const reviewed = modules.filter(module =>
 				isReviewedModule(id, module.title)
 			);
-			expect(reviewed).toHaveLength(5);
+			expect(reviewed).toHaveLength(7);
 			expect(reviewed.flatMap(module => module.readings)).toHaveLength(
-				17
+				23
 			);
 			const tasks = reviewed.flatMap(module => [
 				...module.projects,
 				...module.optional
 			]);
-			expect(tasks).toHaveLength(19);
+			expect(tasks).toHaveLength(27);
 			expect(
 				tasks.every(task => task.assignmentTextScope === "complete")
 			).toBe(true);
@@ -1244,7 +1244,7 @@ it.each(
 							: {}),
 						reviewScope:
 							id === "pythonic-design-patterns"
-								? "PDP0-PDP4 scope: seventeen complete readings,five core tasks and fourteen supplemental activities per role/width profile. All111course identities and complete navigation are retained;the other course bodies,source families and IDE workflows require separate acceptance."
+								? "PDP0-PDP6 scope: twenty-three complete readings, seven core tasks and twenty supplemental activities per role/width profile. All 111 course identities and complete navigation are retained; the other course bodies, source families and IDE workflows require separate acceptance."
 								: id === "design-patterns-in-java"
 									? "Complete primary course: ten teaching units, applied studios and three reference appendices. All 134 published identities covered by 32 complete readings, 102 activities and 204 input/answer case views per role/width profile."
 									: id === "design-patterns-in-java-part-2"

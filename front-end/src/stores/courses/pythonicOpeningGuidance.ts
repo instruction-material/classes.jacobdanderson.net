@@ -13,7 +13,13 @@ const folders = {
 	bestScores: "PDP-06-pdp3-strategy-without-ceremony-supplemental-3",
 	reportKit: "PDP2-Factory-and-Builder-Config-Kit",
 	immutableReport: "PDP-07-pdp4-factory-and-builder-in-python-supplemental-2",
-	providers: "PDP-08-pdp4-factory-and-builder-in-python-supplemental-3"
+	providers: "PDP-08-pdp4-factory-and-builder-in-python-supplemental-3",
+	eventHub: "PDP3-Observer-Notification-Hub",
+	eventSnapshot: "PDP-09-pdp5-observer-events-and-callbacks-supplemental-2",
+	subscriptions: "PDP-10-pdp5-observer-events-and-callbacks-supplemental-3",
+	wrapperToolkit: "PDP4-Decorator-Proxy-Facade-Toolkit",
+	wrapperTrace: "PDP-11-pdp6-decorator-proxy-and-facade-supplemental-2",
+	resourceStack: "PDP-12-pdp6-decorator-proxy-and-facade-supplemental-3"
 };
 const labTitles: Record<keyof typeof folders, string> = {
 	callables: "Callable comparison",
@@ -25,7 +31,13 @@ const labTitles: Record<keyof typeof folders, string> = {
 	bestScores: "Compare Named Score Rules",
 	reportKit: "Factory and Builder Config Kit",
 	immutableReport: "Immutable Report Construction",
-	providers: "Provider Discovery Boundary"
+	providers: "Provider Discovery Boundary",
+	eventHub: "Observer Notification Hub",
+	eventSnapshot: "Snapshot Event Fan-Out",
+	subscriptions: "Owned Subscription Lifetime",
+	wrapperToolkit: "Decorator, Proxy and Facade Toolkit",
+	wrapperTrace: "Transparent Wrapper Order",
+	resourceStack: "ExitStack Resource Lifecycle"
 };
 interface OpeningItem {
 	kind: "reading" | "assignment";
