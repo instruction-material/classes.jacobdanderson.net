@@ -4,7 +4,7 @@ import { existsSync } from "node:fs";
 import { appendFile, copyFile, mkdir, readdir, readFile, rename, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import process from "node:process";
-import { aggregateProofs, planBatches } from "./self-study-browser-batch-proof.mjs";
+import { aggregateProofs, browserTimeoutMs, planBatches } from "./self-study-browser-batch-proof.mjs";
 
 const output = resolve(process.env.SELF_STUDY_BROWSER_PROOF_DIR ?? "output/self-study-browser");
 const taskId = process.env.CLASSES_FAMILY_TASK_ID ?? "self-study-browser-batches";
@@ -48,7 +48,7 @@ async function runBatch(batch, directory) {
 		child.once("error", reject);
 		child.once("close", (exitCode, signal) => accept({ exitCode, signal }));
 	});
-	const record = { parentTask: taskId, parentPid: process.pid, cwd: process.cwd(), command: [process.execPath, ...argv], pid: child.pid, startTime, timeoutMs: 930000, courses: batch };
+	const record = { parentTask: taskId, parentPid: process.pid, cwd: process.cwd(), command: [process.execPath, ...argv], pid: child.pid, startTime, timeoutMs: browserTimeoutMs(batch, manifests) + 30000, courses: batch };
 	await appendFile(journal, `${JSON.stringify({ ...record, event: "start" })}\n`);
 	let stopped = false;
 	const stop = (signal) => {
