@@ -42,6 +42,7 @@ import { applyPictureBookGuidance } from "./pictureBookProjects";
 import { buildProjectGuidance } from "./projectGuidance";
 import { applyPublicSpeakingReadings } from "./publicSpeakingReadings";
 import { applyPyGamesCourseWorkflows } from "./pyGamesCourseWorkflows";
+import { applyPythonicOpeningGuidance } from "./pythonicOpeningGuidance";
 import { applyResearchBackedExpansions } from "./research-expansions";
 import { applyRustBorrowingCourseWorkflows } from "./rustBorrowingCourseWorkflows";
 import { applyRustBoundedCliCourseWorkflows } from "./rustBoundedCliCourseWorkflows";
@@ -9946,5 +9947,7 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 	}
 	if (id === "algebra-1a")
 		applyAlgebra1ACourseReadings(course, historicalCourseProgressId);
+	if (id === "pythonic-design-patterns")
+		applyPythonicOpeningGuidance(course, historicalCourseProgressId);
 	return course;
 }

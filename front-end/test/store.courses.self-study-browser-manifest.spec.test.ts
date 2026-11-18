@@ -68,12 +68,20 @@ import { designPatternsInJavaPart2Course } from "@/stores/courses/design-pattern
 import { javaLevel3Course } from "@/stores/courses/java-level-3";
 import { networkSystemsCourse } from "@/stores/courses/network-systems";
 import { aiLevel1Course } from "@/stores/courses/ai-level-1";
+import { pythonicDesignPatternsCourse } from "@/stores/courses/pythonic-design-patterns";
 
 function isReviewedModule(id: string, title: string) {
 	if (id === "java-level-3") return title === "AJ4 Recursion";
+	if (id === "pythonic-design-patterns") return /^PDP[01] /.test(title);
 	return true;
 }
 const cases = [
+	{
+		id: "pythonic-design-patterns",
+		source: pythonicDesignPatternsCourse,
+		readings: 7,
+		additions: []
+	},
 	{
 		id: "money-minded-investing",
 		source: moneyMindedInvestingCourse,
@@ -514,11 +522,13 @@ it.each(
 				...module.curriculum,
 				...module.supplementalProjects
 			])
-			// AI's former generated briefs are replaced by the complete authored
-			// directives tested in ai-foundations and bound below to full browser text.
+			// AI and the reviewed Pythonic opening replace generic generated briefs
+			// with authored contracts. Their focused tests and complete browser-body
+			// hashes below establish the new directives; all published IDs stay checked.
 			.filter(
 				item =>
 					id !== "ai-level-1" &&
+					id !== "pythonic-design-patterns" &&
 					item.content.startsWith("**Project goal:**")
 			);
 		const all = course.modules.flatMap(module => [
@@ -567,6 +577,16 @@ it.each(
 							...module.supplementalProjects
 						].some(row => row.id === item.id)
 				);
+			const focusedPythonicTask =
+				id === "pythonic-design-patterns" &&
+				course.modules.some(
+					module =>
+						isReviewedModule(id, module.title) &&
+						[
+							...module.curriculum,
+							...module.supplementalProjects
+						].some(row => row.id === item.id)
+				);
 			const completeMathAssignment = [
 				"early-elementary-a-math",
 				"early-elementary-b-math",
@@ -577,6 +597,7 @@ it.each(
 			].includes(id);
 			const completeAssignment =
 				focusedJavaTask ||
+				focusedPythonicTask ||
 				completeMathAssignment ||
 				[
 					"pre-algebra-b",
@@ -595,6 +616,7 @@ it.each(
 				].includes(id);
 			const fullBlocks =
 				focusedJavaTask ||
+				focusedPythonicTask ||
 				[
 					"pre-algebra-b",
 					"ai-level-1",
@@ -702,12 +724,13 @@ it.each(
 			const completionIndex = item.content
 				.toLowerCase()
 				.indexOf("**completion evidence:**");
-			const directive = completionIndex < 0
-				? undefined
-				: item.content
-						.slice(0, completionIndex)
-						.replace(/^\*\*(?:Project )?goal:\*\*\s*/i, "")
-						.trim();
+			const directive =
+				completionIndex < 0
+					? undefined
+					: item.content
+							.slice(0, completionIndex)
+							.replace(/^\*\*(?:Project )?goal:\*\*\s*/i, "")
+							.trim();
 			const container = document.createElement("div");
 			container.innerHTML = markdown.render(
 				normalizeInlineCourseMarkdown(
@@ -859,7 +882,24 @@ it.each(
 				.filter(module => isReviewedModule(id, module.title))
 				.flatMap(module => module.readings)
 		).toHaveLength(count);
-		if (id === "pre-algebra-b") {
+		if (id === "pythonic-design-patterns") {
+			expect(
+				modules.filter(module => module.kind === "module")
+			).toHaveLength(13);
+			const reviewed = modules.filter(module =>
+				isReviewedModule(id, module.title)
+			);
+			expect(reviewed).toHaveLength(2);
+			expect(reviewed.flatMap(module => module.readings)).toHaveLength(7);
+			const tasks = reviewed.flatMap(module => [
+				...module.projects,
+				...module.optional
+			]);
+			expect(tasks).toHaveLength(7);
+			expect(
+				tasks.every(task => task.assignmentTextScope === "complete")
+			).toBe(true);
+		} else if (id === "pre-algebra-b") {
 			expect(modules).toHaveLength(10);
 			expect(
 				modules.filter(module => module.kind === "module")
@@ -1017,7 +1057,11 @@ it.each(
 			);
 		for (const module of modules) {
 			if (!isReviewedModule(id, module.title)) continue;
-			if (id === "pre-algebra-b") {
+			if (id === "pythonic-design-patterns") {
+				expect(module.readings).toHaveLength(
+					module.title.startsWith("PDP0 ") ? 3 : 4
+				);
+			} else if (id === "pre-algebra-b") {
 				expect(module.readings, module.title).toHaveLength(
 					module.kind === "appendix"
 						? 1
@@ -1183,6 +1227,7 @@ it.each(
 						sourceProjects: sourceProjects.length,
 						modules,
 						...([
+							"pythonic-design-patterns",
 							"java-level-3",
 							"design-patterns-in-java-part-2",
 							"design-patterns-in-java"
@@ -1196,32 +1241,56 @@ it.each(
 								}
 							: {}),
 						reviewScope:
-							id === "design-patterns-in-java"
-								? "Complete primary course: ten teaching units, applied studios and three reference appendices. All 134 published identities covered by 32 complete readings, 102 activities and 204 input/answer case views per role/width profile."
-								: id === "design-patterns-in-java-part-2"
-									? "Complete course: DPR1-DPR10, seven optional clinics and three reference appendices. All159published identities are covered by30readings,129activities and258input/answer case views per role/width profile. Individual source-editor qualifications remain separately recorded."
-									: id === "java-level-3"
-										? "AJ4 only: one reading, two core projects, three optional tasks and ten input/response views per profile. All 217 course identities checked; other Java units are outside this teaching and runtime acceptance."
-										: id ===
-											  "intro-to-environmental-science"
-											? "Complete Environmental Science teaching and tasks:27readings,17coreactivities,24optionalactivities and82input/response views per profile;all68published identities retained. Owned photosynthesis model and supplied climate/pollution practice cases;legacy image record retained internally."
-											: id === "intro-to-chemistry"
-												? "Complete Chemistry teaching and tasks:62readings,14coreactivities,37optionalactivities and102input/response views per profile;all113published identities retained. Original video evidence remains distinct from authored text alternatives."
-												: id === "intro-to-biology"
-													? "Eight worked body-systems units:8readings,36coreactivities,24optionalprojects and120input/response views per profile;all68published identities retained. Original three legacy images remain separately identified."
-													: id ===
-														  "elementary-science"
-														? "Eight teaching units and six reference appendices:36readings,48coreactivities,16optionalprojects and11optionalreferenceactivities;all111published identities checked."
+							id === "pythonic-design-patterns"
+								? "PDP0/PDP1 opening only: seven complete readings,two core tasks and five supplemental activities per role/width profile. All111course identities and complete navigation are retained;the other course bodies,source families and IDE workflows require separate acceptance."
+								: id === "design-patterns-in-java"
+									? "Complete primary course: ten teaching units, applied studios and three reference appendices. All 134 published identities covered by 32 complete readings, 102 activities and 204 input/answer case views per role/width profile."
+									: id === "design-patterns-in-java-part-2"
+										? "Complete course: DPR1-DPR10, seven optional clinics and three reference appendices. All159published identities are covered by30readings,129activities and258input/answer case views per role/width profile. Individual source-editor qualifications remain separately recorded."
+										: id === "java-level-3"
+											? "AJ4 only: one reading, two core projects, three optional tasks and ten input/response views per profile. All 217 course identities checked; other Java units are outside this teaching and runtime acceptance."
+											: id ===
+												  "intro-to-environmental-science"
+												? "Complete Environmental Science teaching and tasks:27readings,17coreactivities,24optionalactivities and82input/response views per profile;all68published identities retained. Owned photosynthesis model and supplied climate/pollution practice cases;legacy image record retained internally."
+												: id === "intro-to-chemistry"
+													? "Complete Chemistry teaching and tasks:62readings,14coreactivities,37optionalactivities and102input/response views per profile;all113published identities retained. Original video evidence remains distinct from authored text alternatives."
+													: id === "intro-to-biology"
+														? "Eight worked body-systems units:8readings,36coreactivities,24optionalprojects and120input/response views per profile;all68published identities retained. Original three legacy images remain separately identified."
 														: id ===
-															  "middle-school-integrated-science"
-															? "Complete ten teaching units and five reference appendices:65readings,58complete optional/required activities and117input/response views per role/width profile;all123published identities retained."
+															  "elementary-science"
+															? "Eight teaching units and six reference appendices:36readings,48coreactivities,16optionalprojects and11optionalreferenceactivities;all111published identities checked."
 															: id ===
-																  "early-elementary-a-reading"
-																? "Complete on-site explanations and supplied-text task defaults; original Juni named texts are retained as historical provenance,not claimed as recovered."
+																  "middle-school-integrated-science"
+																? "Complete ten teaching units and five reference appendices:65readings,58complete optional/required activities and117input/response views per role/width profile;all123published identities retained."
 																: id ===
-																	  "early-elementary-b-picture-book"
-																	? "Complete supplied teaching,practice,Nico narrative/performance inputs and briefs;the historical Gabby Tries text is not claimed as recovered."
-																	: "complete course reading and assignment view",
+																	  "early-elementary-a-reading"
+																	? "Complete on-site explanations and supplied-text task defaults; original Juni named texts are retained as historical provenance,not claimed as recovered."
+																	: id ===
+																		  "early-elementary-b-picture-book"
+																		? "Complete supplied teaching,practice,Nico narrative/performance inputs and briefs;the historical Gabby Tries text is not claimed as recovered."
+																		: "complete course reading and assignment view",
+						...(id === "pythonic-design-patterns"
+							? {
+									executableSourceAssignments: course.modules
+										.filter(module =>
+											isReviewedModule(id, module.title)
+										)
+										.flatMap(module => [
+											...module.curriculum,
+											...module.supplementalProjects
+										])
+										.filter(item =>
+											item.projectLink?.includes(
+												"github.com/instruction-material/Pythonic-Design-Patterns/"
+											)
+										)
+										.map(item => ({
+											id: item.id,
+											starterUrl: item.projectLink
+										})),
+									remainingCourseScopeAccepted: false
+								}
+							: {}),
 						internalModules: course.modules
 							.filter(module => module.internal)
 							.map(module => ({
