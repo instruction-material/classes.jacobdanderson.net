@@ -58,7 +58,7 @@ afterEach(() => {
 	window.history.replaceState({}, "", "/courses");
 });
 
-async function openLesson(hash = "", staff = false) {
+async function openLesson(hash = "", staff = false, withConceptReading = true) {
 	window.history.replaceState({}, "", "/courses" + hash);
 	const pinia = createPinia();
 	setActivePinia(pinia);
@@ -68,10 +68,16 @@ async function openLesson(hash = "", staff = false) {
 		id: course.id,
 		name: course.name,
 		modules: [
-			module,
+			{
+				...module,
+				curriculum: withConceptReading
+					? module.curriculum
+					: module.curriculum.filter(item => item.id !== "concept")
+			},
 			{
 				id: "module-2",
 				title: "Next Lesson",
+				keyBlocks: ["game design"],
 				curriculum: [
 					{
 						id: "next",
@@ -170,6 +176,20 @@ describe("course lesson views", () => {
 		expect(wrapper.text()).not.toContain("Move a sprite with arrow keys.");
 	});
 
+	it("keeps embedded learning available without standalone reading cards", async () => {
+		const { wrapper } = await openLesson("", false, false);
+		const learn = wrapper
+			.findAll(".lesson-view-toggle button")
+			.find(button => button.text() === "Learn");
+		expect(learn).toBeDefined();
+		await learn!.trigger("click");
+		await flushPromises();
+		expect(wrapper.findAll(".lesson-card")).toHaveLength(0);
+		expect(wrapper.get(".learning-card").text()).toContain(
+			"Learn coordinates."
+		);
+	});
+
 	it.each([
 		["extra", "supplemental", "Maze Project"],
 		["concept", "learn", "Event Concepts"]
@@ -206,6 +226,11 @@ describe("course lesson views", () => {
 		await wrapper
 			.get('[aria-label="Show module 2: Next Lesson"]')
 			.trigger("click");
+		expect(
+			wrapper
+				.findAll(".lesson-view-toggle button")
+				.map(button => button.text())
+		).toEqual(["Projects", "Supplemental Projects"]);
 		expect(
 			wrapper
 				.get(".lesson-view-toggle button:first-child")

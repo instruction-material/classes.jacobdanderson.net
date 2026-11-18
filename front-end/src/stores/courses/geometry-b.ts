@@ -659,7 +659,7 @@ export const geometryBCourse: RawCourse = {
 							"![A prism and pyramid share a square base of side 6 and perpendicular height 4. Their volumes are 144 and 48 cubic units, respectively.](/course-assets/geometry-b/prism-pyramid-volume.svg)",
 							"- Sphere volume comparison visual: https://ds055uzetaobb.cloudfront.net/brioche/uploads/Fv9rxkzWWN-90675.svg?width=350",
 							"- Sphere surface-area comparison visual: https://www.mathsisfun.com/geometry/images/sphere-cylinder-area2.svg"
-						].join("\n")
+						].join("\n\n")
 					].join("\n\n")
 				)
 			],

@@ -574,7 +574,19 @@ test(
 								if (fixture.reviewedModuleIds && !fixture.reviewedModuleIds.includes(module.id)) continue;
 								const groupIndex = fixture.modules.slice(0, index).filter(candidate => candidate.kind === module.kind).length;
 								await chooseModule(page, module, groupIndex);
-								await chooseView(page, 3);
+								const learnViewButton = await page.$(
+									".lesson-view-toggle button:nth-child(3)"
+								);
+								if (module.readings.length || learnViewButton) {
+									await chooseView(page, 3);
+								}
+								if (!module.readings.length && learnViewButton) {
+									assert.ok(
+										await page.$$eval(".learning-card", cards =>
+											cards.some(card => card.textContent.trim().length > 0)),
+										"Learn has substantive embedded material"
+									);
+								}
 								for (const item of module.readings) {
 									const anchor = `${module.id}-${item.id}`;
 									await page.waitForFunction(

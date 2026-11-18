@@ -1642,7 +1642,7 @@ describe("CourseExplorer.vue", () => {
 		).toBe(true);
 	});
 
-	it("separates projects, supplemental projects and key blocks into lesson views", async () => {
+	it("keeps key blocks with assignments when no learning material exists", async () => {
 		const pinia = createPinia();
 		setActivePinia(pinia);
 
@@ -1731,7 +1731,7 @@ describe("CourseExplorer.vue", () => {
 		expect(wrapper.text()).not.toContain("Estimated pace");
 		expect(wrapper.text()).not.toContain("1 optional session");
 		expect(wrapper.text()).not.toContain("Lesson guide");
-		expect(wrapper.text()).not.toContain("repeat → loop");
+		expect(wrapper.text()).toContain("repeat → loop");
 		expect(wrapper.findAll(".lesson-card")).toHaveLength(1);
 		expect(wrapper.text()).toContain("Translation Build");
 		expect(wrapper.text()).not.toContain("Choose a Translation");
@@ -1742,11 +1742,13 @@ describe("CourseExplorer.vue", () => {
 		expect(wrapper.findAll(".lesson-card")).toHaveLength(2);
 		expect(wrapper.text()).toContain("Choose a Translation");
 		expect(wrapper.text()).not.toContain("Translation Build");
-		await wrapper
-			.get(".lesson-view-toggle button:last-child")
-			.trigger("click");
+		expect(
+			wrapper
+				.findAll(".lesson-view-toggle button")
+				.map(button => button.text())
+		).toEqual(["Projects", "Supplemental Projects"]);
 		expect(wrapper.text()).toContain("repeat → loop");
-		expect(wrapper.findAll(".lesson-card")).toHaveLength(0);
+		expect(wrapper.findAll(".lesson-card")).toHaveLength(2);
 		expect(wrapper.find(".lesson-kicker").exists()).toBe(false);
 		expect(wrapper.text()).not.toContain("Mark next step complete");
 	});

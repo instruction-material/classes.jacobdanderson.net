@@ -804,6 +804,14 @@ const learningTopics = computed(() =>
 		}))
 		.filter(topic => topic.sections.length)
 );
+const hasLearningMaterial = computed(
+	() =>
+		lessonItemsByView.value.learn.length > 0 ||
+		learningTopics.value.length > 0
+);
+const availableLessonViews = computed(() =>
+	lessonViews.filter(view => view.id !== "learn" || hasLearningMaterial.value)
+);
 const lessonViewLabel = computed(
 	() =>
 		lessonViews.find(view => view.id === lessonView.value)?.label ??
@@ -811,7 +819,13 @@ const lessonViewLabel = computed(
 );
 
 watch(
-	[activeModule, selectedCourseId, currentHashAnchor, normalizedQuery],
+	[
+		activeModule,
+		selectedCourseId,
+		currentHashAnchor,
+		normalizedQuery,
+		availableLessonViews
+	],
 	([module, courseId, anchor, query], previous) => {
 		const moduleChanged =
 			module?.id !== previous?.[0]?.id || courseId !== previous?.[1];
@@ -833,6 +847,13 @@ watch(
 				)
 			);
 			if (matchingView) lessonView.value = matchingView.id;
+		}
+		if (
+			!availableLessonViews.value.some(
+				view => view.id === lessonView.value
+			)
+		) {
+			lessonView.value = "projects";
 		}
 		if (query && !activeLessonItems.value.length) {
 			const matchingView = lessonViews.find(
@@ -2301,7 +2322,7 @@ function writeStoredValue(key: string, value: string) {
 						aria-label="Lesson view"
 					>
 						<button
-							v-for="view in lessonViews"
+							v-for="view in availableLessonViews"
 							:key="view.id"
 							type="button"
 							:aria-pressed="lessonView === view.id"
@@ -2319,7 +2340,8 @@ function writeStoredValue(key: string, value: string) {
 					>
 						<div
 							v-if="
-								lessonView === 'learn' &&
+								(lessonView === 'learn' ||
+									!hasLearningMaterial) &&
 								activeModule.keyBlocks?.length
 							"
 							class="learning-overview"
