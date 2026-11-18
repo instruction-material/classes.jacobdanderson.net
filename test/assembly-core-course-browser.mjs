@@ -629,12 +629,14 @@ export async function runAssemblyCoreCourseWorkflow(t, definition) {
 								const scroller = document.querySelector(".cm-scroller");
 								if (scroller) scroller.scrollTop = 0;
 								const content = document.querySelector(".cm-content")?.textContent;
-								return text === "" ? content === "" : content?.includes(text);
+								return text === "" ? content?.trim() === "" : content?.includes(text);
 							},
 							{},
 							saved.files
 								.find(file => file.name === filename)
-								.content.split(/\r\n?|\n/)[0]
+								.content
+								.split(/\r\n?|\n/)
+								.find(line => line.trim().length > 0) ?? ""
 						);
 						await page.waitForSelector(".cm-content", {
 							visible: true
