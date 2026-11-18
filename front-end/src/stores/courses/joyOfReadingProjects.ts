@@ -51,6 +51,10 @@ const courseTextDefaults: Record<
 };
 
 const responseExtensions: Record<string, string> = {
+	"Character Investigator Report":
+		"\n\nExplain how trying the second pin supports the inference.",
+	"Kevin's Crafts Story Review":
+		"\n\nExplain how Jo’s comment helps cause that change.",
 	"Sweet Sixteen Character Evidence":
 		"\n\nCompare Mara with Eli in the Character Investigator Report. Write three sentences with one supported action from each passage and one detail that Mara’s passage leaves unknown.",
 	"Groceries Storyboard":
@@ -58,6 +62,29 @@ const responseExtensions: Record<string, string> = {
 	"Megalodon News Report":
 		"\n\nUse the report for a short news-style reading with an introduction, key details and a closing. Introduce it as an invented practice notice."
 };
+
+const completionStarts: Record<string, string> = {
+	"Character Investigator Report": "Separate one appearance detail",
+	"Sweet Sixteen Character Evidence": "A reader calls Mara careless",
+	"Faithful Friend Plot Diagram": "Name the problem",
+	"Happy Halloween Plot and Character Check": "Describe one supported trait",
+	"Groceries Storyboard": "Make six numbered scene captions",
+	"Megalodon News Report": "Identify the central idea",
+	"Kevin's Crafts Story Review": "Write a short review",
+	"Lab-Grown Meat Main Idea Report": "Give the central idea",
+	"Bacon and Mittens Review or Figurative Art":
+		"Write a four-sentence review",
+	"Dinosaur Footprint Interview or News Report":
+		"Write either a short news script"
+};
+function suppliedReadingTask(prompt: string, originalTitle: string) {
+	const start = prompt.indexOf(completionStarts[originalTitle]);
+	if (start < 0)
+		throw new Error(`Missing supplied reading task: ${originalTitle}`);
+	return `${prompt
+		.slice(0, start)
+		.trimEnd()}\n\n**Completion evidence:**\n\n${prompt.slice(start)}`;
+}
 
 function itemId(module: string, title: string, section = "curriculum") {
 	return `early-elementary-a-reading-${module}-${section}-${title}`
@@ -117,7 +144,7 @@ export function applyJoyOfReadingGuidance(course: RawCourse, raw: RawCourse) {
 						]
 					: (previous?.aliases ?? item.aliases),
 				content: supplied
-					? `**Course-authored reading and task**\n\n${supplied.prompt}${responseExtensions[item.title] ?? ""}${item.title === "Bacon and Mittens Review or Figurative Art" ? `\n\nFor a figurative-art response instead, use these supplied contexts: After several failed attempts, the puzzle was a hard nut to crack. The test was a breeze, so the class finished early. The sunflower was as tall as a giraffe. Draw a literal picture for each phrase, explain its intended meaning and label the figure. Add a supported lesson from Omi’s story.\n\n${sampleResponse("figurative-language-drawing-set").replace("Project self-check", "Figurative-language self-check")}` : ""}\n\n${sampleResponse(supplied.anchor)}`
+					? `**Course-authored reading and task**\n\n${suppliedReadingTask(supplied.prompt, item.title)}${responseExtensions[item.title] ?? ""}${item.title === "Bacon and Mittens Review or Figurative Art" ? `\n\nFor a figurative-art response instead, use these supplied contexts: After several failed attempts, the puzzle was a hard nut to crack. The test was a breeze, so the class finished early. The sunflower was as tall as a giraffe. Draw a literal picture for each phrase, explain its intended meaning and label the figure. Add a supported lesson from Omi’s story.\n\n${sampleResponse("figurative-language-drawing-set").replace("Project self-check", "Figurative-language self-check")}` : ""}\n\n${sampleResponse(supplied.anchor)}`
 					: item.content.replace(/^\*\*Project goal:\*\*\s*/i, "") +
 						(item.title === "Figurative Language Drawing Set"
 							? `\n\n${sampleResponse(

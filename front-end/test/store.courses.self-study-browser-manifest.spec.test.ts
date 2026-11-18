@@ -467,6 +467,39 @@ it.each(
 				}
 			}
 		}
+		const legacyReadingProjectIds = new Map<object, string>();
+		if (
+			id === "early-elementary-a-reading" ||
+			id === "early-elementary-b-picture-book"
+		) {
+			for (const module of source.modules) {
+				for (const section of [
+					"curriculum",
+					"supplementalProjects"
+				] as const) {
+					for (const item of module[section]) {
+						const sectionId =
+							section === "curriculum"
+								? "curriculum"
+								: "supplemental";
+						const originalId = [
+							id,
+							module.title,
+							sectionId,
+							item.title
+						]
+							.join("-")
+							.toLowerCase()
+							.replace(/[^a-z0-9]+/g, "-")
+							.replace(/^-|-$/g, "");
+						legacyReadingProjectIds.set(
+							item,
+							item.id ?? originalId
+						);
+					}
+				}
+			}
+		}
 		const sourceProjects = source.modules
 			.filter(module => isReviewedModule(id, module.title))
 			.flatMap(module => [
@@ -488,7 +521,8 @@ it.each(
 			const item = all.find(
 				item =>
 					item.title === project.title ||
-					item.aliases?.includes(project.title)
+					item.aliases?.includes(project.title) ||
+					item.id === legacyReadingProjectIds.get(project)
 			)!;
 			expect(item, project.title).toBeDefined();
 			expect(isLessonLearningItem(item), item.title).toBe(false);
@@ -570,7 +604,7 @@ it.each(
 			const selfChecks = fullBlocks
 				? [
 						...item.content.matchAll(
-							/\[(Check answers and reasoning|Project self-check|Case inputs|Runoff inputs)\]\(([^)]+)\)/g
+							/\[(Check answers and reasoning|Project self-check|Figurative-language self-check|Case inputs|Runoff inputs)\]\(([^)]+)\)/g
 						)
 					].map(([, label, href]) => {
 						const url = new URL(href, "https://example.invalid");
@@ -770,14 +804,26 @@ it.each(
 				id: module.id,
 				title: module.title,
 				kind: module.kind ?? "module",
+				retainedInternalItems: [
+					...module.curriculum,
+					...module.supplementalProjects
+				]
+					.filter(item => item.internal)
+					.map(item => ({ id: item.id, title: item.title })),
 				readings: [...module.curriculum, ...module.supplementalProjects]
-					.filter(isLessonLearningItem)
+					.filter(
+						item => !item.internal && isLessonLearningItem(item)
+					)
 					.map(reading),
 				projects: module.curriculum
-					.filter(item => !isLessonLearningItem(item))
+					.filter(
+						item => !item.internal && !isLessonLearningItem(item)
+					)
 					.map(card),
 				optional: module.supplementalProjects
-					.filter(item => !isLessonLearningItem(item))
+					.filter(
+						item => !item.internal && !isLessonLearningItem(item)
+					)
 					.map(card)
 			}));
 		expect(
@@ -797,11 +843,14 @@ it.each(
 			]);
 			expect(activities).toHaveLength(34);
 			expect(
-				activities.every(item => item.assignmentTextScope === "complete")
+				activities.every(
+					item => item.assignmentTextScope === "complete"
+				)
 			).toBe(true);
-			expect(activities.flatMap(item => item.selfChecks)).toHaveLength(14);
-		}
-		else if (id === "design-patterns-in-java") {
+			expect(activities.flatMap(item => item.selfChecks)).toHaveLength(
+				14
+			);
+		} else if (id === "design-patterns-in-java") {
 			expect(modules).toHaveLength(14);
 			const activities = modules.flatMap(module => [
 				...module.projects,
@@ -948,8 +997,7 @@ it.each(
 							? 2
 							: 0
 				);
-			}
-			else if (id === "ai-level-1") {
+			} else if (id === "ai-level-1") {
 				const expected =
 					module.title === "AI Level 1 Reference"
 						? 6
@@ -1141,10 +1189,10 @@ it.each(
 															? "Complete ten teaching units and five reference appendices:65readings,58complete optional/required activities and117input/response views per role/width profile;all123published identities retained."
 															: id ===
 																  "early-elementary-a-reading"
-																? "Complete on-site explanations and briefs; the ten named reading texts remain unavailable."
+																? "Complete on-site explanations and supplied-text task defaults; original Juni named texts are retained as historical provenance,not claimed as recovered."
 																: id ===
 																	  "early-elementary-b-picture-book"
-																	? "Complete supplied teaching,practice,case inputs and briefs;original Gabby Tries text remains unavailable."
+																	? "Complete supplied teaching,practice,Nico narrative/performance inputs and briefs;the historical Gabby Tries text is not claimed as recovered."
 																	: "complete course reading and assignment view",
 						internalModules: course.modules
 							.filter(module => module.internal)
