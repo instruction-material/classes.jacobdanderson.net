@@ -226,7 +226,6 @@ const introToEnvironmentalScienceSourceCourse: RawCourse = {
 						`![Carbon dioxide and water enter photosynthesis. Light supplies energy to build sugars, and oxygen is released.](${PHOTOSYNTHESIS_DIAGRAM})`,
 						"[Photosynthesis overview](https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis)"
 					].join("\n\n"),
-					mediaLink: PHOTOSYNTHESIS_DIAGRAM,
 					sourceMedia: {
 						original: staticMediaUrl(
 							ORIGINAL_PHOTOSYNTHESIS_DIAGRAM

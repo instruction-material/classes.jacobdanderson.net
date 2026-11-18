@@ -162,6 +162,11 @@ describe("Intro to Environmental Science learner flow", () => {
 
 	it("provides the photosynthesis diagram with a complete text equivalent", () => {
 		const flora = moduleText("ES2 Flora and Decomposers");
+		const reference = requireModule(
+			"ES2 Flora and Decomposers"
+		).curriculum.find(
+			item => item.title === "Photosynthesis Diagram Reference"
+		);
 		const diagram = fs.readFileSync(
 			"public/course-assets/environmental-science/photosynthesis.svg",
 			"utf8"
@@ -172,6 +177,12 @@ describe("Intro to Environmental Science learner flow", () => {
 		);
 		expect(flora).toContain("carbon dioxide enters from the air");
 		expect(flora).toContain("oxygen is released");
+		expect(reference?.mediaLink).toBeUndefined();
+		expect(
+			reference?.content.match(
+				/!\[[^\]]*\]\(\/course-assets\/environmental-science\/photosynthesis\.svg\)/g
+			)
+		).toHaveLength(1);
 		expect(flora).not.toMatch(
 			/Pending media:|pending photosynthesis|convert energy into organic matter/i
 		);
@@ -311,9 +322,10 @@ describe("Intro to Environmental Science learner flow", () => {
 		expect(answers).toContain("## Capstone Decision and Monitoring Rubric");
 		for (const link of resourceText()
 			.split("\n")
-			.filter(link =>
-				link.startsWith("/course-assets/environmental-science/") &&
-				/\.md(?:#|$)/.test(link)
+			.filter(
+				link =>
+					link.startsWith("/course-assets/environmental-science/") &&
+					/\.md(?:#|$)/.test(link)
 			)) {
 			const [pathname, fragment] = link.split("#");
 			expect(fragment, link).toBeTruthy();

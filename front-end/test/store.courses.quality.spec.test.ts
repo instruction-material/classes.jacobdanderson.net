@@ -10418,9 +10418,7 @@ describe("course text quality normalization", () => {
 		expect(text).not.toMatch(
 			/Juni|Recording Studio|Environmental Science Club|your instructor|Learning Targets/i
 		);
-		expect(mediaLinks).toEqual([
-			"/course-assets/environmental-science/photosynthesis.svg"
-		]);
+		expect(mediaLinks).toEqual([]);
 	});
 
 	it("keeps Intro to Chemistry authored, deduplicated, and resource-specific", async () => {
@@ -10680,7 +10678,10 @@ describe("course text quality normalization", () => {
 							expect(isStaticMediaUrl(original)).toBe(true);
 							const filename = staticMediaFilename(original);
 							expect(original).toBe(staticMediaUrl(filename));
-							expect(item.mediaLink).toBe(replacement);
+							expect(
+								item.mediaLink === replacement ||
+									item.content.includes(`](${replacement})`)
+							).toBe(true);
 							expect(replacement).toMatch(
 								/^\/course-assets\/(?:[\w-]+\/)+[\w.-]+\.(?:svg|png|jpe?g|webp|gif|mp4|webm)$/i
 							);
