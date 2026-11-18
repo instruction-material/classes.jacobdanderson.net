@@ -392,7 +392,7 @@ describe("implemented course development artifacts", () => {
 			"CS235/CS236-Inspired Mini Build"
 		);
 		expect(allText(await requireCourse("machine-learning"))).toContain(
-			"Dataset, Model, and Evaluation Catalog"
+			"Datasets and Model Reports"
 		);
 		expect(
 			allText(await requireCourse("data-science-in-python"))

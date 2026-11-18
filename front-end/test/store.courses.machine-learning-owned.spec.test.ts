@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { createPinia, setActivePinia } from "pinia";
 import { describe, expect, it } from "vitest";
+import { visibleCourseModules } from "@/modules/courseVisibility";
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
 import { normalizeRawCourse } from "@/stores/courses/normalization";
@@ -183,8 +184,21 @@ describe("Machine Learning owned assignments and supplied data", () => {
 					...module.curriculum,
 					...module.supplementalProjects
 				]);
+				const visible = visibleCourseModules(course.modules);
+				const visibleItems = visible.flatMap(module => [
+					...module.curriculum,
+					...module.supplementalProjects
+				]);
+				expect(all).toHaveLength(156);
+				expect(visible).toHaveLength(21);
+				expect(visibleItems).toHaveLength(129);
+				for (const item of all.filter(item => item.ideImport))
+					expect(visibleItems.some(visible => visible.id === item.id), item.title).toBe(true);
+				expect(visible.map(module => module.title)).not.toContain("Course Roadmap");
+				expect(visible.map(module => module.title)).not.toContain("Pending Static Assets");
+				expect(visibleItems.map(item => item.title)).not.toContain("Machine Learning Pathway Map");
 				// Retained tasks, library activities and complete authored readings.
-				expect(owned).toHaveLength(108);
+				expect(owned).toHaveLength(116);
 				for (const raw of owned) {
 					const item = all.find(
 						candidate => candidate.title === raw.title

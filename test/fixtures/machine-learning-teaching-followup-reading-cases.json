@@ -1,5 +1,5 @@
 {
-  "items": 9,
+  "items": 17,
   "courseId": "machine-learning",
   "readingDirectory": "front-end/src/stores/courses/readings/machine-learning-worked-cores",
   "cases": [
@@ -72,6 +72,70 @@
       "title": "Machine Learning Version Drift Review",
       "file": "toolchain-compare-environments.md",
       "sourceSHA256": "b1ebfdbe494773b885e827187eba153a0754c5c2ae1cf742303eb1c7d183c01a",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-standards-map",
+      "title": "Course reference",
+      "file": "reference-guide.md",
+      "sourceSHA256": "f6376f13cab78bc08a0b953716a2216c5320bd4b4f8f91e6d213819dcf254554",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-project-practice-guide",
+      "title": "Review criteria",
+      "file": "model-review.md",
+      "sourceSHA256": "96688ba74032fddb55651c7bed8a39d5cfcf8deec22c1e367cb9c740ef7a5174",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-dataset-model-and-evaluation-catalog",
+      "title": "Supplied datasets",
+      "file": "dataset-catalog.md",
+      "sourceSHA256": "b3288105d271b6246a07d6dfc1c8d3fe53502d1c2ca5274a152f0b677063c451",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-dataset-model-and-evaluation-catalog",
+      "title": "Reproduce a comparison",
+      "file": "reproduce-comparison.md",
+      "sourceSHA256": "1b03b37b962ceb214898ee1afa088994c0df1fd2eb6400b83dcf8fa8a338d43d",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-dataset-model-and-evaluation-catalog",
+      "title": "Interpret an evaluation",
+      "file": "evaluation-interpretation.md",
+      "sourceSHA256": "7700cd5636605f912c50bfc58967d8b2f5c7533d27171d20068bdb06073b63d8",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-dataset-model-and-evaluation-catalog",
+      "title": "Model use and limits",
+      "file": "model-use-limits.md",
+      "sourceSHA256": "c9fcf963e362aafa0cb861df4acd89f870e37d373145e2653fbc5616392df453",
+      "staticAudit": false,
+      "view": 3
+    },
+    {
+      "moduleId": "machine-learning-dataset-model-and-evaluation-catalog",
+      "title": "Dataset readiness card",
+      "file": "readiness-card.md",
+      "sourceSHA256": "e9e22bed904a51ba430c8cdaebd1188299382602044dec3496dff3bec8fedc29",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-dataset-model-and-evaluation-catalog",
+      "title": "Evaluation report",
+      "file": "evaluation-report.md",
+      "sourceSHA256": "3045bd87ec3f6af13d470f1545a4fa6429b57ac531e83ae48e2f6b0189615759",
       "staticAudit": false,
       "view": 2
     }

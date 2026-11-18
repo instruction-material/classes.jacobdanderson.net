@@ -3053,12 +3053,15 @@ describe("course text quality normalization", () => {
 
 		for (const appendixTitle of appendixTitles) {
 			const itemContentByTitle = new Map<string, string[]>();
+			const originalItemTitles = new Set<string>();
 
 			for (const { courseId, course } of courses) {
 				if (!course) continue;
 
 				const module = course.modules.find(
-					module => module.title === appendixTitle
+					module =>
+						module.title === appendixTitle ||
+						module.aliases?.includes(appendixTitle)
 				);
 				expect(module, `${courseId}: ${appendixTitle}`).toBeTruthy();
 				if (!module) continue;
@@ -3067,9 +3070,13 @@ describe("course text quality normalization", () => {
 					...module.curriculum,
 					...module.supplementalProjects
 				]) {
-					const contents = itemContentByTitle.get(item.title) ?? [];
+					const title =
+						item.aliases?.find(alias => originalItemTitles.has(alias)) ??
+						item.title;
+					originalItemTitles.add(title);
+					const contents = itemContentByTitle.get(title) ?? [];
 					contents.push(item.content.replace(/\s+/g, " ").trim());
-					itemContentByTitle.set(item.title, contents);
+					itemContentByTitle.set(title, contents);
 				}
 			}
 
