@@ -170,11 +170,21 @@ for (const project of fixture.projects.filter(
 						{ timeout: 15000 },
 						selector
 					);
-					const expected = await page.evaluate(html => {
-						const element = document.createElement("div");
-						element.innerHTML = html;
-						return element.textContent.replace(/\s+/g, " ").trim();
-					}, new MarkdownIt().render(project.assignmentText));
+					const expected = await page.evaluate(
+						html => {
+							const element = document.createElement("div");
+							element.innerHTML = html;
+							return element.textContent
+								.replace(/\s+/g, " ")
+								.trim();
+						},
+						new MarkdownIt().render(
+							project.assignmentText.replace(
+								/^\*\*Goal:\*\*\s*/,
+								""
+							)
+						)
+					);
 					const actual = await page.$eval(selector, element => ({
 						text: element.textContent.replace(/\s+/g, " ").trim(),
 						overflow: element.scrollWidth > element.clientWidth + 1,
