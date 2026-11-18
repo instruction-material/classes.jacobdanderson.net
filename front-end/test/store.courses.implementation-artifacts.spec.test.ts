@@ -752,9 +752,9 @@ describe("implemented course development artifacts", () => {
 		const expectedCsvLinks = [
 			"AI-Level-2/blob/a445184d038e4fcbf552b87c91fa99a42af59f08/ML1-Customer-Segmentation-Starter-Updated/customers.csv",
 			"AI-Level-2/blob/a445184d038e4fcbf552b87c91fa99a42af59f08/ML1-Disney-Movie-Clustering-Starter-Updated/disney.csv",
-			"AI-Level-2/blob/main/ML2-KNN-Customer-Segmentation-Classification-Updated/customers.csv",
-			"AI-Level-2/blob/main/ML3-Email-Spam-Classification/emails.csv",
-			"AI-Level-2/blob/main/ML5-Predicting-Life-Expectancy/life_expectancy.csv"
+			"AI-Level-2/blob/609c914d179ffde8518cfbfdb74f6739f9a0418d/ML-Library-Workspaces/customer-neighbors/starter/customers.csv",
+			"AI-Level-2/blob/609c914d179ffde8518cfbfdb74f6739f9a0418d/ML-Library-Workspaces/email-naive-bayes/starter/fictional-emails.csv",
+			"AI-Level-2/blob/609c914d179ffde8518cfbfdb74f6739f9a0418d/ML-Library-Workspaces/country-year-regression/starter/life_expectancy.csv"
 		];
 
 		expect(staleDatasetPages).toEqual([]);
