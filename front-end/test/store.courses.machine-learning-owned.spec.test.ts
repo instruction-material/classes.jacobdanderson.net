@@ -198,7 +198,7 @@ describe("Machine Learning owned assignments and supplied data", () => {
 				expect(visible.map(module => module.title)).not.toContain("Pending Static Assets");
 				expect(visibleItems.map(item => item.title)).not.toContain("Machine Learning Pathway Map");
 				// Retained tasks, library activities and complete authored readings.
-				expect(owned).toHaveLength(116);
+				expect(owned).toHaveLength(122);
 				for (const raw of owned) {
 					const item = all.find(
 						candidate => candidate.title === raw.title
