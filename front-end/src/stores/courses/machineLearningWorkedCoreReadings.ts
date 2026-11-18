@@ -106,7 +106,9 @@ export function applyMachineLearningWorkedCoreReadings(course: RawCourse) {
 			candidate => candidate.title === definition.moduleTitle
 		);
 		const item = module?.curriculum.find(
-			candidate => candidate.title === definition.title
+			candidate =>
+				candidate.title === definition.title ||
+				candidate.aliases?.includes(definition.title)
 		);
 		if (!item) {
 			throw new Error(

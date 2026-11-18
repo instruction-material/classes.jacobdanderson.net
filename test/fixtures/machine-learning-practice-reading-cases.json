@@ -61,7 +61,7 @@
     },
     {
       "moduleId": "machine-learning-ml3-5-decision-trees-and-interpretable-models",
-      "title": "Transfer Practice: 5 Decision Trees and Interpretable Models",
+      "title": "Transfer Practice: Decision Trees and Interpretable Models",
       "file": "supplemental-ML-05-ml3-5-decision-trees-and-interpretable-models-supplemental-2.md",
       "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
       "sourcePath": [
@@ -75,7 +75,7 @@
     },
     {
       "moduleId": "machine-learning-ml3-5-decision-trees-and-interpretable-models",
-      "title": "Extension Practice: 5 Decision Trees and Interpretable Models",
+      "title": "Extension Practice: Decision Trees and Interpretable Models",
       "file": "supplemental-ML-06-ml3-5-decision-trees-and-interpretable-models-supplemental-3.md",
       "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
       "sourcePath": [
@@ -369,7 +369,7 @@
     },
     {
       "moduleId": "machine-learning-ml7-5-model-evaluation-comparison-and-dataset-strategy",
-      "title": "Core Project: 5 Model Evaluation, Comparison, and Dataset Strategy",
+      "title": "Core Project: Model Evaluation, Comparison, and Dataset Strategy",
       "file": "core-ML7-5-Offline-Evaluation-Contract.md",
       "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
       "sourcePath": [
@@ -411,7 +411,7 @@
     },
     {
       "moduleId": "machine-learning-ml7-5-model-evaluation-comparison-and-dataset-strategy",
-      "title": "Extension Challenge: 5 Model Evaluation, Comparison, and Dataset Strategy",
+      "title": "Extension Challenge: Model Evaluation, Comparison, and Dataset Strategy",
       "file": "context-ML7-5-Offline-Evaluation-Contract-8dc80d88.md",
       "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
       "sourcePath": [

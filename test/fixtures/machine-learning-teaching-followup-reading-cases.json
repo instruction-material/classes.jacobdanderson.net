@@ -1,5 +1,5 @@
 {
-  "items": 23,
+  "items": 25,
   "courseId": "machine-learning",
   "readingDirectory": "front-end/src/stores/courses/readings/machine-learning-worked-cores",
   "cases": [
@@ -21,7 +21,7 @@
     },
     {
       "moduleId": "machine-learning-ml7-5-model-evaluation-comparison-and-dataset-strategy",
-      "title": "5 Model Evaluation, Comparison, and Dataset Strategy Core Concepts",
+      "title": "Model Evaluation, Comparison, and Dataset Strategy Core Concepts",
       "file": "evaluation-contract.md",
       "sourceSHA256": "ef4ba4ff9ad98a74a4e6ef7e86cce5085140ec38be6bc210f953ae898a12ee11",
       "staticAudit": false,
@@ -186,6 +186,22 @@
       "sourceSHA256": "3ee60084b5a85686235c1381cad2814fd5ea57248b702b9e093863f5f1e15369",
       "staticAudit": false,
       "view": 3
+    },
+    {
+      "moduleId": "machine-learning-ml4-neural-networks",
+      "title": "Extension Challenge: Neural Networks",
+      "file": "neuron-sensitivity.md",
+      "sourceSHA256": "29a525a74dd8b2b5a96bd62a6919925ef3c2512faa140e1a26c0d2b843cd6694",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-ml8-master-project",
+      "title": "Extension Challenge: Machine Learning",
+      "file": "capstone-frozen-probe.md",
+      "sourceSHA256": "f196f7e67919f3cfaf95afd7c14ed1e57c9c967dd36530be03a520e3becaa557",
+      "staticAudit": false,
+      "view": 2
     }
   ]
 }

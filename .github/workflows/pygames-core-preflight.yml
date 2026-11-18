@@ -729,7 +729,7 @@ jobs:
                                            "fullAndRuntimePythonAuditsZeroWithNoSkippedPackages": True}
           if os.environ["ML_COURSE_PREFLIGHT"] == "machine-learning-library":
               for directory, fixture, expected_items in (
-                  ("machine-learning-teaching-followups", "machine-learning-teaching-followup-reading-cases.json", 23),
+                  ("machine-learning-teaching-followups", "machine-learning-teaching-followup-reading-cases.json", 25),
                   ("machine-learning-practice-checks", "machine-learning-practice-reading-cases.json", 35),
               ):
                   reading = json.loads((out / directory / "accepted.json").read_text())
