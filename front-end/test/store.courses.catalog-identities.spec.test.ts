@@ -22,6 +22,7 @@ import restoredPythonRecaps from "../../test/fixtures/python-level-1-restored-re
 import restoredMachineLearningPresentation from "../../test/fixtures/machine-learning-restored-presentation-identity.json";
 
 import restoredSmartMoneyProjects from "../../test/fixtures/smart-money-restored-identities.json";
+import restoredMoneyMindedProjects from "../../test/fixtures/money-minded-restored-identities.json";
 
 const baseline = JSON.parse(
 	readFileSync(
@@ -57,6 +58,7 @@ const addedIdentities: Record<
 	"early-elementary-a-reading": joyOfReadingAdditions,
 	"early-elementary-b-picture-book": pictureBookAdditions,
 	"smart-money-personal-finance": restoredSmartMoneyProjects,
+	"money-minded-investing": restoredMoneyMindedProjects,
 	"entrepreneurship-101": restoredEntrepreneurshipProjects,
 	"middle-school-c-grammar": restoredGrammarProjects,
 	"javascript-level-2-javascript-master": restoredJavaScriptLocalReadings,
