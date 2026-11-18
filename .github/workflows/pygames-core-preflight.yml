@@ -643,7 +643,7 @@ jobs:
           python3 -m pip_audit --require-hashes --no-deps --disable-pip -r output/release-checks/ml-python-locks/runtime.txt --format json --output output/release-checks/ml-python-runtime-audit.json
           node scripts/classes-family-heavy-task.mjs -- node scripts/run-course-browser-phase.mjs test/machine-learning-library-course-browser.test.mjs output/release-checks/ml-library-browser-rerun-state.json
           node scripts/classes-family-heavy-task.mjs -- python3 -B test/machine-learning-library-exported-contracts.py output/release-checks/machine-learning-library
-          node scripts/classes-family-heavy-task.mjs -- node test/machine-learning-worked-readings-browser.mjs "$PWD" output/release-checks/machine-learning-car-readings "" test/fixtures/machine-learning-car-studio-reading-cases.json
+          node scripts/classes-family-heavy-task.mjs -- node test/machine-learning-worked-readings-browser.mjs "$PWD" output/release-checks/machine-learning-studio-readings "" test/fixtures/machine-learning-studio-reading-cases.json
       - name: Verify original neuron lessons, roles, saved projects and native exports
         if: inputs.course == 'machine-learning-neurons'
         env:
@@ -737,22 +737,23 @@ jobs:
               library = json.loads((out / "machine-learning-library/native-exports.json").read_text())
               assert library["accepted"] and library["projects"] == 12 and library["courseProfiles"] == 48
               assert library["archives"] == library["nativeExecutions"] == 96
+              assert library["workedStudioArithmetic"]["accepted"] and library["workedStudioArithmetic"]["checks"] == 8
               assert library["successfulCompletedExecutions"] == 72 and library["intentionalStarterStops"] == 24
               proof["machineLearningLibrary"] = {key: library[key] for key in
-                  ("source", "projects", "courseProfiles", "archives", "nativeExecutions", "successfulCompletedExecutions", "intentionalStarterStops")}
+                  ("source", "projects", "courseProfiles", "archives", "nativeExecutions", "successfulCompletedExecutions", "intentionalStarterStops", "workedStudioArithmetic")}
               readings = json.loads((out / "machine-learning-car-readings/accepted.json").read_text())
-              assert readings["accepted"] and readings["fullLessonViews"] == 12
+              assert readings["accepted"] and readings["fullLessonViews"] == 72
               assert readings["sourceMode"] == "exact built application preview"
               assert readings["allCompleteRenderedLessonTextsMatch"] and readings["allLastParagraphsVisible"]
               assert set(readings["actualRoles"]) == {"learner", "instructor"} and readings["widths"] == [390, 1280]
-              fixtures = json.loads(Path("test/fixtures/machine-learning-car-studio-reading-cases.json").read_text())
-              assert fixtures["items"] == len(fixtures["cases"]) == 3
+              fixtures = json.loads(Path("test/fixtures/machine-learning-studio-reading-cases.json").read_text())
+              assert fixtures["items"] == len(fixtures["cases"]) == 18
               for case in fixtures["cases"]:
                   profiles = [row for row in readings["profiles"] if row["file"] == case["file"]]
                   assert len(profiles) == 4
                   assert {(row["role"], row["width"]) for row in profiles} == {("learner", 390), ("learner", 1280), ("instructor", 390), ("instructor", 1280)}
                   assert all(row["sourceSHA256"] == case["sourceSHA256"] and row["lastParagraphVisible"] for row in profiles)
-              proof["machineLearningCarReadings"] = {"items": 3, "completeViews": 12, "lastParagraphsVisible": True}
+              proof["machineLearningStudioReadings"] = {"items": 18, "completeViews": 72, "lastParagraphsVisible": True}
           if os.environ["ML_COURSE_PREFLIGHT"] == "machine-learning-neurons":
               retry = json.loads((out / "ml-neuron-browser-rerun-state.json.attempts.json").read_text())
               assert retry["accepted"] and retry["initialStateFileAbsent"] and retry["testFileUnchanged"]

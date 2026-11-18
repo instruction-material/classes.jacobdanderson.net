@@ -1,5 +1,6 @@
 import { Buffer } from "node:buffer";
 import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 import { createPinia, setActivePinia } from "pinia";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import {
@@ -11,6 +12,7 @@ import { loadPythonIdeStarterFilesFromGitHub } from "@/modules/pythonIde";
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
 import fixture from "../../test/fixtures/machine-learning-library-workspaces.json";
+import studioReadings from "../../test/fixtures/machine-learning-studio-reading-cases.json";
 
 const base = "https://github.com/instruction-material/AI-Level-2";
 const roots = [
@@ -195,6 +197,31 @@ describe("native Machine Learning library workspaces", () => {
 				);
 				expect(item.ideImport).toBe(true);
 				if (project.analysis) expect(item.content).toMatch(/completed/);
+			}
+			expect(studioReadings.cases).toHaveLength(18);
+			for (const reading of studioReadings.cases) {
+				const module = course.modules.find(
+					row => row.id === reading.moduleId
+				)!;
+				const item = module.curriculum.find(
+					row => row.title === reading.title
+				)!;
+				const text = readFileSync(
+					new URL(
+						"../src/stores/courses/readings/machine-learning-studios/" +
+							reading.file,
+						import.meta.url
+					),
+					"utf8"
+				);
+				expect(createHash("sha256").update(text).digest("hex")).toBe(
+					reading.sourceSHA256
+				);
+				expect(item.content, reading.title).toBe(text.trim());
+				expect(item.contentKind).toBe("reading");
+				expect(item.content).not.toContain(
+					"Core topics in this module:"
+				);
 			}
 			const car = course.modules.find(
 				row => row.title === "KNN Car Classification: Practice Studio"
