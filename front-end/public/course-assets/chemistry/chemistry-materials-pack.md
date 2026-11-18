@@ -375,7 +375,7 @@ This authored schematic follows pure water at approximately 1 atm. The invented 
 
 ## Phase Diagram Data
 
-These approximate water phase points support coordinate reading. They are selected points rather than a complete boundary curve. The low-pressure ice-vapor boundary near -10 C is about 0.002 atm (0.20 kPa), far below 0.2 atm.
+These approximate water phase points support coordinate reading. They are selected points rather than a complete boundary curve. The low-pressure ice-vapor boundary at -10 C is about 0.0026 atm (0.26 kPa), far below 0.2 atm.
 
 | Point | Temperature (C) | Pressure (atm) | Region or Boundary                        |
 | ----- | --------------: | -------------: | ----------------------------------------- |
@@ -384,12 +384,12 @@ These approximate water phase points support coordinate reading. They are select
 | C     |             120 |            1.0 | gas region                                |
 | D     |               0 |            1.0 | melting/freezing boundary                 |
 | E     |             100 |            1.0 | boiling/condensing boundary               |
-| F     |             -10 |          0.002 | approximate ice/vapor coexistence         |
+| F     |             -10 |         0.0026 | approximate ice/vapor coexistence         |
 | G     |              25 |            3.0 | liquid remains favored at higher pressure |
 
 **Coordinate practice:** Name the phases at A, B and C. Interpret coexistence at D, E and F. Compare B with G at the same temperature, then explain why F cannot be used as a boundary for carbon dioxide. Selected points alone do not locate every transition along an arbitrary path.
 
-[Phase-change reference](https://openstax.org/books/chemistry-2e/pages/10-3-phase-transitions); [water and carbon dioxide phase diagrams](https://openstax.org/books/chemistry-2e/pages/10-4-phase-diagrams).
+[Phase-change reference](https://openstax.org/books/chemistry-2e/pages/10-3-phase-transitions); [water and carbon dioxide phase diagrams](https://openstax.org/books/chemistry-2e/pages/10-4-phase-diagrams); [IAPWS sublimation-pressure correlation](https://iapws.org/public/documents/MdUFK/MeltSub2011.pdf), used for point F and rounded to two significant figures.
 
 ## Gas Law Scenarios
 

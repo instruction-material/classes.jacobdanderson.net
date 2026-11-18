@@ -276,7 +276,7 @@ Strong phase-diagram reasoning treats the diagram as a map of conditions:
 
 1. Point A is solid, B is liquid, and C is gas in the simplified model.
 2. Point D is on the melting/freezing boundary.
-3. Point E is on the boiling/condensing boundary. Point F is approximately on the ice/vapor boundary at -10 C and 0.002 atm; this pressure is about 0.20 kPa.
+3. Point E is on the boiling/condensing boundary. Point F is approximately on the ice/vapor boundary at -10 C and 0.0026 atm; this pressure is about 0.26 kPa.
 4. Moving right usually increases temperature; moving up increases pressure.
 5. A response should state both coordinates before naming the state.
 

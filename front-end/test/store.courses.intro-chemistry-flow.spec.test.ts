@@ -1,3 +1,4 @@
+import fs from "node:fs";
 import { describe, expect, it } from "vitest";
 import { introToChemistryCourse } from "@/stores/courses/intro-to-chemistry";
 
@@ -216,6 +217,45 @@ describe("Intro to Chemistry learner flow", () => {
 		expect(quantitative).toContain(
 			"formula mass, equation balance, reciprocal ratio"
 		);
+	});
+
+	it("matches the ice-vapor phase point to the IAPWS reference correlation", () => {
+		const materials = fs.readFileSync(
+			"public/course-assets/chemistry/chemistry-materials-pack.md",
+			"utf8"
+		);
+		const phase = materials
+			.split("## Phase Diagram Data\n")[1]
+			?.split("\n## ")[0];
+		expect(phase).toBeTypeOf("string");
+		const point = phase!.match(
+			/^\| F\s*\|\s*(-?[\d.]+)\s*\|\s*([\d.]+)\s*\|/m
+		);
+		expect(point).not.toBeNull();
+		// IAPWS R14-08(2011), equation 6 and table 3 (pressures in Pa).
+		const sublimationPressure = (temperature: number) => {
+			const theta = temperature / 273.16;
+			const terms = [
+				[-21.2144006, 0.00333333333],
+				[27.3203819, 1.20666667],
+				[-6.1059813, 1.70333333]
+			];
+			return (
+				611.657 *
+				Math.exp(
+					terms.reduce(
+						(sum, [coefficient, exponent]) =>
+							sum + coefficient * theta ** exponent,
+						0
+					) / theta
+				)
+			);
+		};
+		expect(sublimationPressure(230)).toBeCloseTo(8.94735, 5);
+		const reference =
+			sublimationPressure(Number(point![1]) + 273.15) / 101325;
+		// The classroom point is rounded to two significant figures.
+		expect(Math.abs(Number(point![2]) / reference - 1)).toBeLessThan(0.02);
 	});
 
 	it("ends with bounded advanced previews and a defensible capstone", () => {
