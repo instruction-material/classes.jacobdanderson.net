@@ -118,6 +118,15 @@ export function applyMachineLearningSupportReadings(
 			"supplementalProjects"
 		] as const) {
 			for (const item of module[collection]) {
+				if (moduleTitles[previousTitle]) {
+					item.id ??= progressId(
+						`${module.id}-${
+							collection === "curriculum"
+								? "curriculum"
+								: "supplemental"
+						}-${item.title}`
+					);
+				}
 				const entry = definitions.find(
 					row =>
 						row.module === previousTitle &&
