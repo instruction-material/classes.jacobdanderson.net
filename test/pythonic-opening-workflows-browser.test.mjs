@@ -251,6 +251,12 @@ test(
 		try {
 			assert.ok(["build", "dev"].includes(sourceMode));
 			await mkdir(output, { recursive: true });
+			// Validate frozen inventory before launching any browser work.
+			assert.equal(fixture.activities.length, 22);
+			assert.equal(new Set(fixture.activities.map(activity => activity.folder)).size, 16);
+			assert.equal(Object.keys(fixture.files).length, 128);
+			assert.equal(activities.length, 8);
+			assert.equal(new Set(activities.map(activity => activity.folder)).size, 6);
 			process.chdir(root);
 			for (const [path, file] of Object.entries(fixture.files)) {
 				assert.equal(Buffer.byteLength(file.content), file.bytes, path);
@@ -646,9 +652,6 @@ test(
 					}
 				}
 			}
-			assert.equal(fixture.activities.length, 14);
-			assert.equal(activities.length, 8);
-			assert.equal(new Set(activities.map(activity => activity.folder)).size, 6);
 			assert.equal(profiles.length, activities.length * 4);
 			exitCode = 0;
 		}
