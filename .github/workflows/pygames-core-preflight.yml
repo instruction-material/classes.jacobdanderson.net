@@ -741,7 +741,7 @@ jobs:
               assert library["successfulCompletedExecutions"] == 72 and library["intentionalStarterStops"] == 24
               proof["machineLearningLibrary"] = {key: library[key] for key in
                   ("source", "projects", "courseProfiles", "archives", "nativeExecutions", "successfulCompletedExecutions", "intentionalStarterStops", "workedStudioArithmetic")}
-              readings = json.loads((out / "machine-learning-car-readings/accepted.json").read_text())
+              readings = json.loads((out / "machine-learning-studio-readings/accepted.json").read_text())
               assert readings["accepted"] and readings["fullLessonViews"] == 72
               assert readings["sourceMode"] == "exact built application preview"
               assert readings["allCompleteRenderedLessonTextsMatch"] and readings["allLastParagraphsVisible"]
