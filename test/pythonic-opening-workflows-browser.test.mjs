@@ -25,6 +25,7 @@ const fixture = JSON.parse(
 		"utf8"
 	)
 );
+const activities = fixture.activities.filter(activity => !fixture.ideModuleIds || fixture.ideModuleIds.includes(activity.module));
 const output = resolve(
 	process.env.PYTHONIC_OPENING_BROWSER_PROOF_DIR ?? "output/pythonic-opening"
 );
@@ -299,7 +300,7 @@ test(
 					for (const [
 						index,
 						activity
-					] of fixture.activities.entries()) {
+					] of activities.entries()) {
 						currentLabel = `${role}-${width}-${index}`;
 						context = await browser.createBrowserContext();
 						page = await context.newPage();
@@ -560,7 +561,7 @@ test(
 							imported,
 							`${currentLabel}-original`
 						);
-						const before = await runPython(page, width, activity, true);
+						const before = await runPython(page, width, activity, Boolean(activity.unfinishedMarker));
 						const marker = `pythonic_browser_edit_${currentLabel.replaceAll("-", "_")}`;
 						const completed = `${fixture.files[`${activity.folder}/solution/main.py`].content}\nprint(${JSON.stringify(marker)})\n`;
 						const edited = await editMain(
@@ -645,9 +646,10 @@ test(
 					}
 				}
 			}
-			assert.equal(fixture.activities.length, 6);
-			assert.equal(new Set(fixture.activities.map(activity => activity.folder)).size, 4);
-			assert.equal(profiles.length, fixture.activities.length * 4);
+			assert.equal(fixture.activities.length, 14);
+			assert.equal(activities.length, 8);
+			assert.equal(new Set(activities.map(activity => activity.folder)).size, 6);
+			assert.equal(profiles.length, activities.length * 4);
 			exitCode = 0;
 		}
 		catch (error) {
@@ -672,7 +674,7 @@ test(
 			const endedAt = new Date().toISOString();
 			await writeFile(
 				join(output, "summary.json"),
-				`${JSON.stringify({ taskId, sourceCommit: process.env.GITHUB_SHA ?? null, sourceMode, fixtureRepository: fixture.repository, fixtureRevision: fixture.revision, scope: fixture.scope, pid: process.pid, startedAt, endedAt, exitCode, profiles, browserProcesses, errors, cleanup: "contexts, browser and server closed" }, null, 2)}\n`
+				`${JSON.stringify({ taskId, sourceCommit: process.env.GITHUB_SHA ?? null, sourceMode, fixtureRepository: fixture.repository, fixtureRevision: fixture.revision, scope: fixture.scope, selectedActivityIds: activities.map(activity => activity.item), selectedSourceFamilies: [...new Set(activities.map(activity => activity.folder))], pid: process.pid, startedAt, endedAt, exitCode, profiles, browserProcesses, errors, cleanup: "contexts, browser and server closed" }, null, 2)}\n`
 			);
 			console.log(
 				JSON.stringify({

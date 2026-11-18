@@ -7,13 +7,25 @@ const folders = {
 	registry:
 		"PDP-02-pdp1-why-python-changes-the-design-patterns-conversation-supplemental-3",
 	composition: "PDP-03-pdp2-design-foundations-in-python-supplemental-2",
-	records: "PDP-04-pdp2-design-foundations-in-python-supplemental-3"
+	records: "PDP-04-pdp2-design-foundations-in-python-supplemental-3",
+	pricing: "PDP1-Strategy-Rulebook",
+	scoreRules: "PDP-05-pdp3-strategy-without-ceremony-supplemental-2",
+	bestScores: "PDP-06-pdp3-strategy-without-ceremony-supplemental-3",
+	reportKit: "PDP2-Factory-and-Builder-Config-Kit",
+	immutableReport: "PDP-07-pdp4-factory-and-builder-in-python-supplemental-2",
+	providers: "PDP-08-pdp4-factory-and-builder-in-python-supplemental-3"
 };
 const labTitles: Record<keyof typeof folders, string> = {
 	callables: "Callable comparison",
 	registry: "Named callable registry",
 	composition: "Composed notice delivery",
-	records: "Owned mutable records"
+	records: "Owned mutable records",
+	pricing: "Strategy Rulebook",
+	scoreRules: "Configured Score Callables",
+	bestScores: "Compare Named Score Rules",
+	reportKit: "Factory and Builder Config Kit",
+	immutableReport: "Immutable Report Construction",
+	providers: "Provider Discovery Boundary"
 };
 interface OpeningItem {
 	kind: "reading" | "assignment";
