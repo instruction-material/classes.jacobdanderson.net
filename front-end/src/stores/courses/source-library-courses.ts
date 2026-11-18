@@ -1763,30 +1763,30 @@ const investingCourses = {
 			"INV 3 Understanding Compounding Returns": [
 				{
 					title: "Compounding and Inflation Scenarios",
-					prompt: "Compare a $100 birthday gift kept in a piggy bank, placed in savings at a hypothetical 2%, and invested under a hypothetical 10% average-return assumption. Extend the comparison to 1, 5, and 10 years, then model 2% inflation as a scenario rather than a forecast or guarantee.",
+					prompt: "Compare a $100 birthday gift kept as cash, saved at an assumed constant 2% annual compound rate, and modeled at an assumed constant 10% annual compound rate. With no contributions, fees or taxes, calculate A = 100(1 + r)^n for 1, 5 and 10 years, using r as a decimal. Model purchasing power as A / 1.02^n under an assumed constant 2% inflation rate. For a separate starting-age comparison, begin with $0 at age 25 or age 35, add $1,000 at the end of every year and stop at age 65. Use an assumed constant 5% annual compound rate: next balance = current balance * 1.05 + 1000. There are 40 or 30 end-of-year contributions. Compare amounts contributed, ending balances and growth beyond contributions. These fixed-rate classroom models supply assumptions, rather than forecasts.",
 					evidence: [
 						"Table comparing piggy bank, savings, and investing outcomes after 1, 5, and 10 years.",
 						"Inflation-adjusted note explaining buying power rather than only nominal dollars.",
-						"Comparison of early investing and late investing using the age 25 versus age 35 scenarios from the source course."
+						"Starting-age comparison showing 40 versus 30 end-of-year contributions, total amounts contributed, ending balances and the effect of the stated assumptions."
 					]
 				},
 				{
 					title: "Rule of 72 Portfolio Projection",
-					prompt: "For each simulated stock, estimate one-year return with `(current value - value one year ago) / value one year ago * 100`, then use the Rule of 72 to estimate doubling time.",
+					prompt: "Calculate observed one-year price change as `(end price - start price) / start price * 100`, with a positive start price. Use three classroom cases: $100 to $110, $100 to $80 and $100 to $100. These price-only examples exclude dividends, fees and taxes. For a separate constant-growth model, assume positive annual compound rates of 2%, 6% and 10%, then estimate doubling time in years as `72 / rate in percent`. Check the estimates by repeatedly multiplying $100 by `1 + rate / 100` and finding the first whole year at or above $200. At 0% the balance stays constant; a constant negative rate above -100% shrinks it. An observed one-year price change does not establish a continuing future rate.",
 					evidence: [
-						"One-year return calculation for at least two stocks.",
-						"Rule of 72 doubling-time estimate for each calculated return.",
-						"Portfolio revision note explaining whether a 10% average return seems realistic for the chosen stocks."
+						"Three observed price-change calculations, including a gain, a loss and no change.",
+						"Separate positive-rate model table with Rule of 72 estimates and annual-compounding checks; explain why zero and negative rates have no future doubling time in these models.",
+						"Assumption note separating the supplied fixed positive rates from the observed stock-price changes and explaining why an estimate is not a forecast."
 					]
 				}
 			],
 			"INV 4 Assessing My Portfolio's Risk": [
 				{
 					title: "Dice Risk Ledger",
-					prompt: "Model risk with a five-round dice game that starts at $20, costs $1 per round, and changes reward or loss based on how many guesses are allowed.",
+					prompt: "Use this complete classroom dice model. Start with $20 and pay $1 before each round. Select g distinct faces of a fair six-sided die. A match pays $6 / g including the stake; a miss pays $0. The payouts for g = 1, 2, 3, 4, 5 and 6 are $6, $3, $2, $1.50, $1.20 and $1. Use the fixed replay rolls 2, 5, 1, 6, 3. For each of g = 1, 3 and 6, always predict faces 1 through g before checking a roll. Record starting balance, cost, match, payout and ending balance for all five rounds. Compare the possible one-round gains/losses and the replay balances. A supplied replay illustrates outcomes; it does not establish future results or an investment strategy.",
 					evidence: [
 						"Five-round ledger with guesses allowed, result, money won or lost, and ending balance.",
-						"Risk-reward explanation using the source table: 6 guesses has low reward and low loss, while 1 guess has high reward and high loss.",
+						"Risk-reward explanation using the supplied payout rules: six guesses returns the $1 stake for no net change; one guess can gain $5 or lose $1.",
 						"Pressure and strategy note connecting the game to portfolio risk tolerance."
 					]
 				},
