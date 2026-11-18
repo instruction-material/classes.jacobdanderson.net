@@ -68,7 +68,13 @@ function normalizeProse(prose: string) {
 				);
 			}
 
-			return normalized;
+			return normalized.replace(
+				/https?:\/\/[^\s<>]+|\[[^\]\n]*\]\([^\n]*?\)|(?<![\w@:/.-])(?:[\w.-]+\/)*[\w.-]+\.py\b/g,
+				match =>
+					match.startsWith("http") || match.startsWith("[")
+						? match
+						: `\`${match}\``
+			);
 		})
 		.join("\n");
 }

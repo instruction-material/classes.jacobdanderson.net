@@ -192,11 +192,23 @@ describe("Machine Learning owned assignments and supplied data", () => {
 				expect(all).toHaveLength(156);
 				expect(visible).toHaveLength(21);
 				expect(visibleItems).toHaveLength(129);
+				expect(
+					visibleItems.map(item => item.content).join("\n")
+				).not.toMatch(/^\s*Role:\s*(?:starter|solution)\./m);
 				for (const item of all.filter(item => item.ideImport))
-					expect(visibleItems.some(visible => visible.id === item.id), item.title).toBe(true);
-				expect(visible.map(module => module.title)).not.toContain("Course Roadmap");
-				expect(visible.map(module => module.title)).not.toContain("Pending Static Assets");
-				expect(visibleItems.map(item => item.title)).not.toContain("Machine Learning Pathway Map");
+					expect(
+						visibleItems.some(visible => visible.id === item.id),
+						item.title
+					).toBe(true);
+				expect(visible.map(module => module.title)).not.toContain(
+					"Course Roadmap"
+				);
+				expect(visible.map(module => module.title)).not.toContain(
+					"Pending Static Assets"
+				);
+				expect(visibleItems.map(item => item.title)).not.toContain(
+					"Machine Learning Pathway Map"
+				);
 				// Retained tasks, library activities and complete authored readings.
 				expect(owned).toHaveLength(122);
 				for (const raw of owned) {

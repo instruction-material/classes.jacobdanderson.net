@@ -1,3 +1,4 @@
+import MarkdownIt from "markdown-it";
 import { describe, expect, it } from "vitest";
 import {
 	isLessonLearningItem,
@@ -140,6 +141,32 @@ describe("lesson content presentation", () => {
 		expect(
 			normalizeInlineCourseMarkdown("• Add a sprite.\n    • literal")
 		).toBe("- Add a sprite.\n    • literal");
+	});
+
+	it("keeps bare Python filenames from becoming unrelated website links", () => {
+		const text = normalizeInlineCourseMarkdown(
+			"Run main.py with starter/model.py and exercise.py."
+		);
+		const html = new MarkdownIt({ linkify: true }).render(text);
+		expect(html).toContain("<code>main.py</code>");
+		expect(html).toContain("<code>starter/model.py</code>");
+		expect(html).toContain("<code>exercise.py</code>");
+		expect(html).not.toContain("<a ");
+	});
+
+	it("preserves explicit source links, code literals and programs", () => {
+		const content = [
+			"[main.py](https://example.invalid/source/main.py)",
+			"https://example.invalid/model.py",
+			"`exercise.py`",
+			"",
+			"```python",
+			"filename = 'main.py'",
+			"```",
+			"",
+			"    filename = 'model.py'"
+		].join("\n");
+		expect(normalizeInlineCourseMarkdown(content)).toBe(content);
 	});
 
 	it("moves conceptual items to Learn but keeps linked projects and tasks", () => {

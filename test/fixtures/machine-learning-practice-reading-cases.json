@@ -1,0 +1,497 @@
+{
+  "items": 35,
+  "courseId": "machine-learning",
+  "readingDirectory": ".",
+  "cases": [
+    {
+      "moduleId": "machine-learning-ml2-k-nearest-neighbors",
+      "title": "K Nearest Neighbors Transfer Practice",
+      "file": "supplemental-ML-01-ml2-k-nearest-neighbors-supplemental-2.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-01-ml2-k-nearest-neighbors-supplemental-2/starter",
+        "content"
+      ],
+      "sourceSHA256": "b4376a22671dbceb7523295e03e3da7835bb45e25aec728d927db170b546d552",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-ml2-k-nearest-neighbors",
+      "title": "K Nearest Neighbors Extension Practice",
+      "file": "supplemental-ML-02-ml2-k-nearest-neighbors-supplemental-3.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-02-ml2-k-nearest-neighbors-supplemental-3/starter",
+        "content"
+      ],
+      "sourceSHA256": "f883b24475fc5f86de65d1c5819255ab40114824b6cc759fae65e27142208697",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-ml3-naive-bayes",
+      "title": "Naive Bayes Transfer Practice",
+      "file": "supplemental-ML-03-ml3-naive-bayes-supplemental-2.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-03-ml3-naive-bayes-supplemental-2/starter",
+        "content"
+      ],
+      "sourceSHA256": "80718ddec562285a4e2ba6bbd1a7c6a24da20d74148913e3da414e48db66f439",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-ml3-naive-bayes",
+      "title": "Naive Bayes Extension Practice",
+      "file": "supplemental-ML-04-ml3-naive-bayes-supplemental-3.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-04-ml3-naive-bayes-supplemental-3/starter",
+        "content"
+      ],
+      "sourceSHA256": "ac12a3f938f6d0ad227297e4aab54f48351e82382abb591b9869dcc511230010",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-ml3-5-decision-trees-and-interpretable-models",
+      "title": "Transfer Practice: 5 Decision Trees and Interpretable Models",
+      "file": "supplemental-ML-05-ml3-5-decision-trees-and-interpretable-models-supplemental-2.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-05-ml3-5-decision-trees-and-interpretable-models-supplemental-2/starter",
+        "content"
+      ],
+      "sourceSHA256": "a382b167e05ec8dde1749f5b8d67952c49305141072319f18f01f3a070346ab9",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-ml3-5-decision-trees-and-interpretable-models",
+      "title": "Extension Practice: 5 Decision Trees and Interpretable Models",
+      "file": "supplemental-ML-06-ml3-5-decision-trees-and-interpretable-models-supplemental-3.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-06-ml3-5-decision-trees-and-interpretable-models-supplemental-3/starter",
+        "content"
+      ],
+      "sourceSHA256": "f7cca2561a0c8e169280b162e210bbfb75fbf6c4b8124bff71b8300ce13f4aa1",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-ml4-neural-networks",
+      "title": "Neural Networks Transfer Practice",
+      "file": "supplemental-ML-07-ml4-neural-networks-supplemental-2.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-07-ml4-neural-networks-supplemental-2/starter",
+        "content"
+      ],
+      "sourceSHA256": "cd4ad7327631802218c4f4fb307f8a35b1a2913ade19cbbb978ae4559e858131",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-ml4-neural-networks",
+      "title": "Neural Networks Extension Practice",
+      "file": "supplemental-ML-08-ml4-neural-networks-supplemental-3.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-08-ml4-neural-networks-supplemental-3/starter",
+        "content"
+      ],
+      "sourceSHA256": "70187544d51dd6779c09ed71608dadae78f40892a67558bf08e1985820332fd2",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-ml5-introduction-to-regression",
+      "title": "Introduction to Regression Transfer Practice",
+      "file": "supplemental-ML-09-ml5-introduction-to-regression-supplemental-2.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-09-ml5-introduction-to-regression-supplemental-2/starter",
+        "content"
+      ],
+      "sourceSHA256": "2c5fd99f75f73f648da349faee1d8438c798d869e0dfba5a4035e196ecd381d6",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-ml5-introduction-to-regression",
+      "title": "Introduction to Regression Extension Practice",
+      "file": "supplemental-ML-10-ml5-introduction-to-regression-supplemental-3.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-10-ml5-introduction-to-regression-supplemental-3/starter",
+        "content"
+      ],
+      "sourceSHA256": "1872b8aeb9fed464c5520384ec8a04a8454e696bc234e5a9e1f477a47173858e",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-ml6-regression-with-neural-networks",
+      "title": "Regression with Neural Networks Transfer Practice",
+      "file": "supplemental-ML-11-ml6-regression-with-neural-networks-supplemental-2.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-11-ml6-regression-with-neural-networks-supplemental-2/starter",
+        "content"
+      ],
+      "sourceSHA256": "ad3689cdfa35e26502790437f3c06c16d45cac13bd794e8932a2010d3d11cd1b",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-ml6-regression-with-neural-networks",
+      "title": "Regression with Neural Networks Extension Practice",
+      "file": "supplemental-ML-12-ml6-regression-with-neural-networks-supplemental-3.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-12-ml6-regression-with-neural-networks-supplemental-3/starter",
+        "content"
+      ],
+      "sourceSHA256": "430e9160cca73617ccbafc8dd9c81fc5fb5dbe9f046c62d7d4700ef353e3c4ad",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-ml7-image-classifier",
+      "title": "Image Classifier Extension Practice",
+      "file": "supplemental-ML-14-ml7-image-classifier-supplemental-3.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-14-ml7-image-classifier-supplemental-3/starter",
+        "content"
+      ],
+      "sourceSHA256": "189e85ade1e5c074bf49abe1c3ad64f63e45ea479660cfc678561b854c8a5627",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-ml8-master-project",
+      "title": "Machine Learning Master Project Transfer Practice",
+      "file": "supplemental-ML-17-ml8-master-project-supplemental-2.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-17-ml8-master-project-supplemental-2/starter",
+        "content"
+      ],
+      "sourceSHA256": "2efac97b99ff1dafb77a6f7d3401a499d2428be237bb18ef5bfb7e543fc93216",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-ml8-master-project",
+      "title": "Machine Learning Master Project Extension Practice",
+      "file": "supplemental-ML-18-ml8-master-project-supplemental-3.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-18-ml8-master-project-supplemental-3/starter",
+        "content"
+      ],
+      "sourceSHA256": "02d903a3ca5df14e6b1b51f30a3b4e0f6aa35be86d4ea14a460ba921e864b546",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-customer-segmentation-starter-build-practice-studio",
+      "title": "Customer Segmentation Starter Build Extension Practice",
+      "file": "supplemental-ML-20-applied-studio-12-customer-segmentation-supplemental-3.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-20-applied-studio-12-customer-segmentation-supplemental-3/starter",
+        "content"
+      ],
+      "sourceSHA256": "e725e1cf2ce4fbbe407c36558cc45ce72aed457f38e03a4faeab181f8f870d7a",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-customer-segmentation-interview-practice-studio",
+      "title": "Customer Segmentation Interview Transfer Practice",
+      "file": "supplemental-ML-21-applied-studio-13-customer-segmentation-interview-supplemental-2.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-21-applied-studio-13-customer-segmentation-interview-supplemental-2/starter",
+        "content"
+      ],
+      "sourceSHA256": "20353dbda3adc95112e6b3c32853f94a9d417bb2e4675bfd5fe9a0990008fcb4",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-customer-segmentation-interview-practice-studio",
+      "title": "Customer Segmentation Interview Extension Practice",
+      "file": "supplemental-ML-22-applied-studio-13-customer-segmentation-interview-supplemental-3.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-22-applied-studio-13-customer-segmentation-interview-supplemental-3/starter",
+        "content"
+      ],
+      "sourceSHA256": "da9acb90c61be4cb7fb9e8765ba2e0b163c3fae8f481fb7e006634ef3cb6ef3e",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-customer-segmentation-practice-studio",
+      "title": "Customer Segmentation Transfer Practice",
+      "file": "supplemental-ML-23-applied-studio-14-customer-segmentation-supplemental-2.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-23-applied-studio-14-customer-segmentation-supplemental-2/starter",
+        "content"
+      ],
+      "sourceSHA256": "5c09540302f671a4e1ab48fb0a800185f590bec61c90497fe21a84e3bf572b24",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-customer-segmentation-practice-studio",
+      "title": "Customer Segmentation Extension Practice",
+      "file": "supplemental-ML-24-applied-studio-14-customer-segmentation-supplemental-3.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-24-applied-studio-14-customer-segmentation-supplemental-3/starter",
+        "content"
+      ],
+      "sourceSHA256": "38bdec96202f336c5211f90c0afcd77ec51dc57cb7756557616dd1697775e30c",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-disney-movie-clustering-starter-build-practice-studio",
+      "title": "Disney Movie Clustering Starter Build Extension Practice",
+      "file": "supplemental-ML-26-applied-studio-15-disney-movie-clustering-supplemental-3.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-26-applied-studio-15-disney-movie-clustering-supplemental-3/starter",
+        "content"
+      ],
+      "sourceSHA256": "0988b9cd47b7864810fd64e36184d10ee09ba9072ab4b5c80c00f0ca15287536",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-disney-movie-clustering-practice-studio",
+      "title": "Disney Movie Clustering Transfer Practice",
+      "file": "supplemental-ML-27-applied-studio-16-disney-movie-clustering-supplemental-2.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-27-applied-studio-16-disney-movie-clustering-supplemental-2/starter",
+        "content"
+      ],
+      "sourceSHA256": "484c7f6a0b098de5d4c4d05e84a1772ce0532f04033f35e5f23ee37af9ec6726",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-disney-movie-clustering-practice-studio",
+      "title": "Disney Movie Clustering Extension Practice",
+      "file": "supplemental-ML-28-applied-studio-16-disney-movie-clustering-supplemental-3.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-28-applied-studio-16-disney-movie-clustering-supplemental-3/starter",
+        "content"
+      ],
+      "sourceSHA256": "acd07430b59cce3dca53436cb90e6d7c46815f16d9570e0dd6badef09986fdb4",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-knn-car-classification-practice-studio",
+      "title": "KNN Car Classification Transfer Practice",
+      "file": "supplemental-ML-29-applied-studio-17-knn-car-classification-supplemental-2.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-29-applied-studio-17-knn-car-classification-supplemental-2/starter",
+        "content"
+      ],
+      "sourceSHA256": "bf4a4d5d1f6d07e05bb21ed30f513f04269c46aa110233593493c7a6386cff86",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-knn-car-classification-practice-studio",
+      "title": "KNN Car Classification Extension Practice",
+      "file": "supplemental-ML-30-applied-studio-17-knn-car-classification-supplemental-3.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byProjectLink",
+        "https://github.com/instruction-material/AI-Level-2/tree/main/ML-30-applied-studio-17-knn-car-classification-supplemental-3/starter",
+        "content"
+      ],
+      "sourceSHA256": "7cd0d59c12a5c7d63686d723f33a785590e3000843eebf2b88e5d1fe128d5c8b",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-ml0-setup-tooling-and-data-workflow",
+      "title": "Core Project: Setup, Tooling, and Data Workflow",
+      "file": "core-ML0-Offline-Data-Card.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byTitle",
+        "ML0 Setup, Tooling, and Data Workflow: Core Project",
+        "content"
+      ],
+      "sourceSHA256": "835006de07e9884af3185c3bd9523b13e350c8769b2d9df62cd500d232d7dbf4",
+      "staticAudit": false,
+      "view": 1
+    },
+    {
+      "moduleId": "machine-learning-ml7-5-model-evaluation-comparison-and-dataset-strategy",
+      "title": "Core Project: 5 Model Evaluation, Comparison, and Dataset Strategy",
+      "file": "core-ML7-5-Offline-Evaluation-Contract.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byTitle",
+        "ML7.5 Model Evaluation, Comparison, and Dataset Strategy: Core Project",
+        "content"
+      ],
+      "sourceSHA256": "0785f6350a2e23ee6452ead86fe150c14550332bcf8debb303f4f41f43948ee6",
+      "staticAudit": false,
+      "view": 1
+    },
+    {
+      "moduleId": "machine-learning-ml6-regression-with-neural-networks",
+      "title": "ML6 Project 1: Comparing Housing-Value Regression Models",
+      "file": "core-ML6-Offline-Housing-Comparison.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byTitle",
+        "ML6 Project 1: Comparing Housing-Value Regression Models",
+        "content"
+      ],
+      "sourceSHA256": "0bd1a0a37d291a71321ef092bbfac0d3bbf8ba41af6908c3b3ce0784734f7d96",
+      "staticAudit": false,
+      "view": 1
+    },
+    {
+      "moduleId": "machine-learning-ml0-setup-tooling-and-data-workflow",
+      "title": "Extension Challenge: Setup, Tooling, and Data Workflow",
+      "file": "context-ML0-Offline-Data-Card-904ae151.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byTitle",
+        "ML0 Setup, Tooling, and Data Workflow: Extension Challenge",
+        "content"
+      ],
+      "sourceSHA256": "ab85694302bc0d93e35bbed227f231312a55043137bb61a9f62ed4f1a4d470b0",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-ml7-5-model-evaluation-comparison-and-dataset-strategy",
+      "title": "Extension Challenge: 5 Model Evaluation, Comparison, and Dataset Strategy",
+      "file": "context-ML7-5-Offline-Evaluation-Contract-8dc80d88.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byTitle",
+        "ML7.5 Model Evaluation, Comparison, and Dataset Strategy: Extension Challenge",
+        "content"
+      ],
+      "sourceSHA256": "715603d7df7ee33f93a277475fd97f272f02c9f65c95973bb98404a2b3089538",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-customer-segmentation-starter-build-practice-studio",
+      "title": "Extension Challenge: Customer Segmentation Starter Build",
+      "file": "customer-segmentation-starter-build-extension-challenge.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byTitle",
+        "Customer Segmentation Starter Build: Extension Challenge",
+        "content"
+      ],
+      "sourceSHA256": "8180795173f18c372173cbed8ae11f6ba4fb58edefb8ddb8ed6963a414095ddb",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-customer-segmentation-interview-practice-studio",
+      "title": "Extension Challenge: Customer Segmentation Interview",
+      "file": "customer-segmentation-interview-extension-challenge.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byTitle",
+        "Customer Segmentation Interview: Extension Challenge",
+        "content"
+      ],
+      "sourceSHA256": "9b7c93873f38fc93a587fe23e605dd20049e4b66c83ef53cc4f42ff87b2e4573",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-customer-segmentation-practice-studio",
+      "title": "Extension Challenge: Customer Segmentation",
+      "file": "customer-segmentation-extension-challenge.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byTitle",
+        "Customer Segmentation: Extension Challenge",
+        "content"
+      ],
+      "sourceSHA256": "fb863c753f00c2771164acdaf0eeb48c09a2ce3e06dfb9fabeeb1e80dd69463b",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-disney-movie-clustering-starter-build-practice-studio",
+      "title": "Extension Challenge: Disney Movie Clustering Starter Build",
+      "file": "disney-movie-clustering-starter-build-extension-challenge.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byTitle",
+        "Disney Movie Clustering Starter Build: Extension Challenge",
+        "content"
+      ],
+      "sourceSHA256": "88cbe273144a700c677457c011aba12159354dfe48c8eec495d19d2ff4897627",
+      "staticAudit": false,
+      "view": 2
+    },
+    {
+      "moduleId": "machine-learning-disney-movie-clustering-practice-studio",
+      "title": "Extension Challenge: Disney Movie Clustering",
+      "file": "disney-movie-clustering-extension-challenge.md",
+      "sourceFile": "front-end/src/stores/courses/machine-learning-owned-assignments.json",
+      "sourcePath": [
+        "byTitle",
+        "Disney Movie Clustering: Extension Challenge",
+        "content"
+      ],
+      "sourceSHA256": "3209152cb5f8bbc164cede0f4d2beda84e6a76f479041a67cd108fc58593640b",
+      "staticAudit": false,
+      "view": 2
+    }
+  ]
+}

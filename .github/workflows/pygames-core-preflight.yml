@@ -644,6 +644,8 @@ jobs:
           node scripts/classes-family-heavy-task.mjs -- node scripts/run-course-browser-phase.mjs test/machine-learning-library-course-browser.test.mjs output/release-checks/ml-library-browser-rerun-state.json
           node scripts/classes-family-heavy-task.mjs -- python3 -B test/machine-learning-library-exported-contracts.py output/release-checks/machine-learning-library
           node scripts/classes-family-heavy-task.mjs -- node test/machine-learning-worked-readings-browser.mjs "$PWD" output/release-checks/machine-learning-studio-readings "" test/fixtures/machine-learning-studio-reading-cases.json
+          node scripts/classes-family-heavy-task.mjs -- node test/machine-learning-worked-readings-browser.mjs "$PWD" output/release-checks/machine-learning-teaching-followups "" test/fixtures/machine-learning-teaching-followup-reading-cases.json
+          node scripts/classes-family-heavy-task.mjs -- node test/machine-learning-worked-readings-browser.mjs "$PWD" output/release-checks/machine-learning-practice-checks "" test/fixtures/machine-learning-practice-reading-cases.json
       - name: Verify original neuron lessons, roles, saved projects and native exports
         if: inputs.course == 'machine-learning-neurons'
         env:
@@ -726,6 +728,23 @@ jobs:
                                            "newCompletedNativeExecutions": 86, "intentionalStarterStops": 18,
                                            "fullAndRuntimePythonAuditsZeroWithNoSkippedPackages": True}
           if os.environ["ML_COURSE_PREFLIGHT"] == "machine-learning-library":
+              for directory, fixture, expected_items in (
+                  ("machine-learning-teaching-followups", "machine-learning-teaching-followup-reading-cases.json", 23),
+                  ("machine-learning-practice-checks", "machine-learning-practice-reading-cases.json", 35),
+              ):
+                  reading = json.loads((out / directory / "accepted.json").read_text())
+                  cases = json.loads((Path("test/fixtures") / fixture).read_text())
+                  assert cases["items"] == len(cases["cases"]) == expected_items
+                  assert reading["accepted"] and reading["fullLessonViews"] == expected_items * 4
+                  assert reading["sourceMode"] == "exact built application preview"
+                  assert reading["allCompleteRenderedLessonTextsMatch"] and reading["allLastParagraphsVisible"]
+                  assert set(reading["actualRoles"]) == {"learner", "instructor"} and reading["widths"] == [390, 1280]
+                  for case in cases["cases"]:
+                      profiles = [row for row in reading["profiles"] if row["file"] == case["file"]]
+                      assert len(profiles) == 4
+                      assert {(row["role"], row["width"]) for row in profiles} == {("learner", 390), ("learner", 1280), ("instructor", 390), ("instructor", 1280)}
+                      assert all(row["sourceSHA256"] == case["sourceSHA256"] and row["lastParagraphVisible"] for row in profiles)
+                  proof[directory] = {"items": expected_items, "fullLessonViews": expected_items * 4, "bothRolesAndWidths": True}
               retry = json.loads((out / "ml-library-browser-rerun-state.json.attempts.json").read_text())
               assert retry["accepted"] and retry["initialStateFileAbsent"] and retry["testFileUnchanged"]
               assert 1 <= len(retry["attempts"]) <= retry["maximumAttempts"] == 2
