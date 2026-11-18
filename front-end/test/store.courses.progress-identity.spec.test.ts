@@ -1212,7 +1212,11 @@ describe("saved course progress identities", () => {
 			expect(course, courseId).not.toBeNull();
 			for (const configuration of renamedItems) {
 				const module = course?.modules.find(
-					entry => entry.id === historicalId(`${courseId}-${configuration.moduleSuffix}`)
+					entry =>
+						entry.id ===
+						historicalId(
+							`${courseId}-${configuration.moduleSuffix}`
+						)
 				);
 				expect(
 					module,
@@ -1761,8 +1765,9 @@ describe("saved course progress identities", () => {
 		const store = useCoursesStore();
 		const course = await store.loadCourseById("machine-learning");
 		const module = course?.modules.find(
-			entry => entry.title === "Standards Map"
+			entry => entry.id === "machine-learning-standards-map"
 		);
+		expect(module?.title).toBe("Machine Learning Reference");
 		expect(module?.supplementalProjects[1].aliases).toContain(
 			"machine-learning-course-foundations-supplemental-machine-learning-learning-sequence"
 		);

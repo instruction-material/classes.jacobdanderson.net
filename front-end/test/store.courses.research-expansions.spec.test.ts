@@ -82,9 +82,13 @@ describe("research-backed course family expansions", () => {
 						? "Algebra 1A Reference"
 						: courseId === "ai-level-1"
 							? "AI Level 1 Reference"
-							: "Standards Map",
+							: courseId === "machine-learning"
+								? "Machine Learning Reference"
+								: "Standards Map",
 					"Course Roadmap",
-					"Project Practice Guide"
+					courseId === "machine-learning"
+						? "Model Review"
+						: "Project Practice Guide"
 				];
 				const titles = course!.modules.map(module => module.title);
 				for (const title of referenceExpansionTitles) {
@@ -119,7 +123,7 @@ describe("research-backed course family expansions", () => {
 					.map(moduleText)
 					.join("\n");
 				const referenceAndRoadmapText = expansionModules
-					.filter(module => module.title !== "Project Practice Guide")
+					.filter(module => module.title !== referenceExpansionTitles[2])
 					.map(moduleText)
 					.join("\n");
 				const courseLabel = course!.name.trim() || profile.family;
@@ -172,6 +176,18 @@ describe("research-backed course family expansions", () => {
 					expect(
 						course!.modules.filter(module => module.internal)
 					).toHaveLength(6);
+				} else if (courseId === "machine-learning") {
+					const reference = expansionModules.find(
+						module => module.id === "machine-learning-standards-map"
+					)!;
+					expect(
+						reference.curriculum
+							.filter(item => !item.internal)
+							.map(item => item.title)
+					).toEqual(["Course reference"]);
+					expect(moduleText(reference)).toContain(
+						"https://scikit-learn.org/stable/modules/model_evaluation.html"
+					);
 				} else {
 					expect(expansionText, courseId).toContain(
 						courseLabel + " Reference Guide"
@@ -452,7 +468,9 @@ describe("research-backed course family expansions", () => {
 		expect(corpus).toContain("ACS Chemistry Guidelines");
 		expect(corpus).toContain("ISO C++ Core Guidelines");
 		expect(corpus).toContain("OWASP Web Security Testing Guide");
-		expect(corpus).toContain("scikit-learn Model Evaluation");
+		expect(corpus).toContain(
+			"https://scikit-learn.org/stable/modules/model_evaluation.html"
+		);
 		expect(corpus).toContain("Unity Learn");
 		expect(corpus).toContain("No physical supplies beyond paper");
 		expect(corpus).toContain("Practice Project:");
