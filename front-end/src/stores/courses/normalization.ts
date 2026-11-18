@@ -24,6 +24,7 @@ import { applyLateElementaryBProjects } from "./lateElementaryBProjects";
 import { applyMachineLearningCarStudioReadings } from "./machineLearningCarStudioReadings";
 import { applyMachineLearningClusteringReadings } from "./machineLearningClusteringReadings";
 import { applyMachineLearningClusteringStudioReadings } from "./machineLearningClusteringStudioReadings";
+import { applyMachineLearningFinalTeaching } from "./machineLearningFinalTeaching";
 import { applyMachineLearningNeuronWorkflows } from "./machineLearningNeuronWorkflows";
 import { applyMachineLearningReviewReadings } from "./machineLearningReviewReadings";
 import { applyMachineLearningSupportReadings } from "./machineLearningSupportReadings";
@@ -9938,6 +9939,7 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 		applyMachineLearningToolchainReadings(course);
 		applyMachineLearningSupportReadings(course, historicalCourseProgressId);
 		applyMachineLearningReviewReadings(course);
+		applyMachineLearningFinalTeaching(course, historicalCourseProgressId);
 	}
 	if (id === "algebra-1a")
 		applyAlgebra1ACourseReadings(course, historicalCourseProgressId);

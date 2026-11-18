@@ -26,7 +26,7 @@
     },
     {
       "moduleId": "machine-learning-ml3-5-decision-trees-and-interpretable-models",
-      "title": "5 Decision Trees and Interpretable Models Core Concepts",
+      "title": "Decision Trees and Interpretable Models Core Concepts",
       "file": "decision-trees.md",
       "sourceSHA256": "df55f1968e87122451d6f0459c663b5967d5599290a30a2af66b15a080078e31",
       "staticAudit": false,
