@@ -1204,7 +1204,7 @@ it.each(
 										? "AJ4 only: one reading, two core projects, three optional tasks and ten input/response views per profile. All 217 course identities checked; other Java units are outside this teaching and runtime acceptance."
 										: id ===
 											  "intro-to-environmental-science"
-											? "Complete Environmental Science teaching and tasks:27readings,17coreactivities,24optionalactivities and82input/response views per profile;all68published identities retained. Original photosynthesis-image fidelity remains separate."
+											? "Complete Environmental Science teaching and tasks:27readings,17coreactivities,24optionalactivities and82input/response views per profile;all68published identities retained. Owned photosynthesis model and supplied climate/pollution practice cases;legacy image record retained internally."
 											: id === "intro-to-chemistry"
 												? "Complete Chemistry teaching and tasks:62readings,14coreactivities,37optionalactivities and102input/response views per profile;all113published identities retained. Original video evidence remains distinct from authored text alternatives."
 												: id === "intro-to-biology"

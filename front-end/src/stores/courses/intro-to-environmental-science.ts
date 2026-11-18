@@ -1,11 +1,13 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
-import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
+import { staticMediaUrl } from "./staticMedia";
 
 const NASA_BIOMES = "https://earthobservatory.nasa.gov/biome";
 const NASA_GRASSLAND =
 	"https://earthobservatory.nasa.gov/biome/biograssland.php";
 const NASA_WATER_CYCLE = "https://gpm.nasa.gov/education/water-cycle";
 const PHOTOSYNTHESIS_DIAGRAM =
+	"/course-assets/environmental-science/photosynthesis.svg";
+const ORIGINAL_PHOTOSYNTHESIS_DIAGRAM =
 	"c009b919-101b-4a4d-8f19-74885e8f62c0_Photosynthesis-01_577acc78_670x451.png";
 
 const ENVIRONMENTAL_REFERENCES = {
@@ -204,7 +206,7 @@ const introToEnvironmentalScienceSourceCourse: RawCourse = {
 				{
 					title: "Primary Production",
 					content: concept({
-						model: "Most food webs begin with primary producers that convert energy into organic matter. In many ecosystems, plants and algae use photosynthesis to transform carbon dioxide, water, and light energy into sugars and oxygen. This producer layer supports consumers above it.",
+						model: "Most food webs begin with primary producers that use light or chemical energy to build organic matter from inorganic materials. In many ecosystems, plants and algae use light energy to make sugars from carbon dioxide and water, releasing oxygen through photosynthesis. This producer layer supports consumers above it.",
 						vocabulary: [
 							"primary producer",
 							"photosynthesis",
@@ -221,9 +223,16 @@ const introToEnvironmentalScienceSourceCourse: RawCourse = {
 					title: "Photosynthesis Diagram Reference",
 					content: [
 						"In this photosynthesis model, light energy is captured by chlorophyll, carbon dioxide enters from the air, water moves through the plant, glucose stores usable chemical energy, and oxygen is released. Producers transform light energy into stored chemical energy that supports consumers and decomposers. The material inputs are carbon dioxide and water; light supplies energy rather than matter.",
-						pendingStaticMediaNotice(PHOTOSYNTHESIS_DIAGRAM)
+						`![Carbon dioxide and water enter photosynthesis. Light supplies energy to build sugars, and oxygen is released.](${PHOTOSYNTHESIS_DIAGRAM})`,
+						"[Photosynthesis overview](https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis)"
 					].join("\n\n"),
-					mediaLink: staticMediaUrl(PHOTOSYNTHESIS_DIAGRAM)
+					mediaLink: PHOTOSYNTHESIS_DIAGRAM,
+					sourceMedia: {
+						original: staticMediaUrl(
+							ORIGINAL_PHOTOSYNTHESIS_DIAGRAM
+						),
+						replacement: PHOTOSYNTHESIS_DIAGRAM
+					}
 				},
 				{
 					title: "Food Webs and Decomposers",
@@ -246,7 +255,7 @@ const introToEnvironmentalScienceSourceCourse: RawCourse = {
 					content: terminology([
 						[
 							"Primary producer",
-							"An organism, often a plant or photosynthetic microorganism, that creates organic matter from light or chemical energy."
+							"An organism, such as a plant or photosynthetic microorganism, that uses light or chemical energy to build organic matter from inorganic carbon."
 						],
 						[
 							"Photosynthesis",
@@ -909,7 +918,7 @@ const introToEnvironmentalScienceSourceCourse: RawCourse = {
 			"Claim-evidence-reasoning"
 		],
 		sourcePolicy:
-			"Built from the ES1-ES8 sequence with neutral wording, remote-safe activities, vetted public references, and a pending static-media entry for the photosynthesis diagram.",
+			"Built from the ES1-ES8 sequence with neutral wording, remote-safe activities, vetted public references, and an owned photosynthesis diagram. The original legacy filename remains in the internal static-media inventory.",
 		assessmentCadence: [
 			"One model, map, or report per module",
 			"One vocabulary-backed evidence explanation per module",
@@ -944,7 +953,6 @@ const introToEnvironmentalScienceSourceCourse: RawCourse = {
 		],
 		recommendedNextWork: [
 			"Add a local Environmental Science reference pack with selected NASA, NOAA, USGS, and EPA data sources by module.",
-			"Upload the reserved photosynthesis diagram or replace it with an owned/source-safe visual.",
 			"Add optional data tables for water, climate, energy, and land-use comparisons."
 		]
 	}
@@ -1441,11 +1449,6 @@ function introEnvironmentalProjectPath(title: string) {
 		: ("choice" as const);
 }
 
-function introEnvironmentalMediaAlternative(mediaLink: string | undefined) {
-	if (!mediaLink) return "";
-	return "**Accessible media alternative:** The Food Web and Biodiversity Cases provide a text-described producer, consumer, decomposer, and reservoir pathway. Use that supplied case when the pending photosynthesis image is unavailable or unhelpful; no color, image inspection, or asset download is required.";
-}
-
 function preserveEnvironmentalTeaching(
 	item: RawCourseModuleItem,
 	contentKind: "reading" | "assignment",
@@ -1482,9 +1485,6 @@ export const introToEnvironmentalScienceCourse: RawCourse = {
 	modules: introToEnvironmentalScienceSourceCourse.modules.map(module => {
 		const flow = INTRO_ENVIRONMENTAL_FLOW[module.title];
 		const curriculum = module.curriculum.map((item, index) => {
-			const mediaAlternative = introEnvironmentalMediaAlternative(
-				item.mediaLink
-			);
 			return {
 				...item,
 				content: [
@@ -1492,8 +1492,7 @@ export const introToEnvironmentalScienceCourse: RawCourse = {
 					item.content,
 					`**Module evidence gate:** ${flow.evidenceGate}`,
 					`**System and claim boundary:** ${flow.boundaryCheck}`,
-					`**Authoritative reference:** [Open the module reference](${flow.referenceLink}).`,
-					mediaAlternative
+					`**Authoritative reference:** [Open the module reference](${flow.referenceLink}).`
 				]
 					.filter(Boolean)
 					.join("\n\n"),
@@ -1597,7 +1596,6 @@ export const introToEnvironmentalScienceCourse: RawCourse = {
 			"Adaptation or rollback trigger plus before-and-after revision defense"
 		],
 		recommendedNextWork: [
-			"Replace the pending legacy photosynthesis image with a licensed, locally archived, text-described diagram while retaining the supplied nonvisual pathway.",
 			"Add anonymized exemplar biome portfolios and capstone decisions at multiple proficiency levels using the common evidence rubric.",
 			"Cross-link Intro to Biology, Earth Science, chemistry, data-science, and energy pathways when those transitions have dedicated readiness maps."
 		]

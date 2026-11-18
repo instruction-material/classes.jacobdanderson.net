@@ -20,6 +20,11 @@ export interface RawCourseModuleItem {
 	solutionLink?: string;
 	datasetLink?: string;
 	mediaLink?: string;
+	/** Retain the original media reference when a local asset replaces it. */
+	sourceMedia?: {
+		original: string;
+		replacement: string;
+	};
 }
 
 export interface RawCourseModule {

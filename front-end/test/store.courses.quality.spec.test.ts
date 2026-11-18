@@ -10419,7 +10419,7 @@ describe("course text quality normalization", () => {
 			/Juni|Recording Studio|Environmental Science Club|your instructor|Learning Targets/i
 		);
 		expect(mediaLinks).toEqual([
-			"https://static.classes.jacobdanderson.net/c009b919-101b-4a4d-8f19-74885e8f62c0_Photosynthesis-01_577acc78_670x451.png"
+			"/course-assets/environmental-science/photosynthesis.svg"
 		]);
 	});
 
@@ -10658,7 +10658,7 @@ describe("course text quality normalization", () => {
 	);
 
 	it(
-		"keeps unavailable static source media represented by explicit placeholders",
+		"accounts for unavailable static source media with placeholders or owned replacements",
 		async () => {
 			const pendingFilenames = new Set(
 				KNOWN_PENDING_STATIC_MEDIA_FILENAMES
@@ -10675,6 +10675,20 @@ describe("course text quality normalization", () => {
 						...module.curriculum,
 						...module.supplementalProjects
 					]) {
+						if (item.sourceMedia) {
+							const { original, replacement } = item.sourceMedia;
+							expect(isStaticMediaUrl(original)).toBe(true);
+							const filename = staticMediaFilename(original);
+							expect(original).toBe(staticMediaUrl(filename));
+							expect(item.mediaLink).toBe(replacement);
+							expect(replacement).toMatch(
+								/^\/course-assets\/(?:[\w-]+\/)+[\w.-]+\.(?:svg|png|jpe?g|webp|gif|mp4|webm)$/i
+							);
+							expect(fs.existsSync(`public${replacement}`)).toBe(
+								true
+							);
+							unresolvedPendingFilenames.delete(filename);
+						}
 						const links = [
 							item.mediaLink,
 							item.datasetLink,

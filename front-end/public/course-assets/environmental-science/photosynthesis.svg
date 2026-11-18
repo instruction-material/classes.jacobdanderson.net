@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="680" viewBox="0 0 560 680" role="img" aria-labelledby="title description">
+	<title id="title">Photosynthesis: matter and energy</title>
+	<desc id="description">Carbon dioxide and water supply matter for photosynthesis. Chlorophyll captures light energy that helps plant cells build sugars. Oxygen is released, and sugars store chemical energy.</desc>
+	<defs>
+		<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+			<path d="M0 0 L10 5 L0 10 Z" fill="#364152"/>
+		</marker>
+	</defs>
+	<rect width="560" height="680" rx="16" fill="#fff"/>
+	<g fill="none" stroke="#364152" stroke-width="3" marker-end="url(#arrow)">
+		<path d="M280 100 V308"/>
+		<path d="M140 244 V275 L225 308"/>
+		<path d="M420 244 V275 L335 308"/>
+		<path d="M200 420 L140 476"/>
+		<path d="M360 420 L420 476"/>
+	</g>
+	<g font-family="system-ui, sans-serif" text-anchor="middle" fill="#172b28">
+		<rect x="140" y="16" width="280" height="84" rx="12" fill="#fff3c4" stroke="#806100"/>
+		<text x="280" y="51" font-size="25" font-weight="600">Light energy</text>
+		<text x="280" y="81" font-size="20">captured by chlorophyll</text>
+		<rect x="20" y="154" width="240" height="90" rx="12" fill="#eef4f6" stroke="#526b75"/>
+		<text x="140" y="192" font-size="25" font-weight="600">Carbon dioxide</text>
+		<text x="140" y="224" font-size="23">CO₂</text>
+		<rect x="300" y="154" width="240" height="90" rx="12" fill="#eef4f6" stroke="#526b75"/>
+		<text x="420" y="192" font-size="25" font-weight="600">Water</text>
+		<text x="420" y="224" font-size="23">H₂O</text>
+		<rect x="60" y="320" width="440" height="100" rx="12" fill="#183d37"/>
+		<text x="280" y="360" font-size="26" font-weight="600" fill="#fff">Photosynthesis in plant cells</text>
+		<text x="280" y="394" font-size="22" fill="#fff">Light energy helps build sugars.</text>
+		<rect x="20" y="490" width="240" height="90" rx="12" fill="#eef6f0" stroke="#416650"/>
+		<text x="140" y="528" font-size="25" font-weight="600">Sugars</text>
+		<text x="140" y="560" font-size="20">store chemical energy</text>
+		<rect x="300" y="490" width="240" height="90" rx="12" fill="#eef6f0" stroke="#416650"/>
+		<text x="420" y="528" font-size="25" font-weight="600">Oxygen released</text>
+		<text x="420" y="560" font-size="23">O₂</text>
+		<text x="280" y="622" font-size="21">Carbon dioxide and water supply matter.</text>
+		<text x="280" y="653" font-size="21">Light supplies energy.</text>
+	</g>
+</svg>

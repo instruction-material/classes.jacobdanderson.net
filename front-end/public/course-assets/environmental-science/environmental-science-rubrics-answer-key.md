@@ -42,6 +42,21 @@ Weather concerns short-term conditions; climate concerns distributions and patte
 
 The instructional station series supports a warming-pattern claim within the supplied baseline, but station movement and one incomplete period require review. Attribution relies on multiple lines of evidence and physical mechanisms. A policy preference requires additional feasibility, distribution, and values analysis.
 
+### Six climate claim responses
+
+- **C1 — Event:** A dated observation or weather record could establish the rainstorm. The station summary does not establish yesterday's event.
+- **C2 — Descriptive comparison:** The table directly gives 8 and 19 hot days, a difference of 11. Period lengths, definitions, missing coverage and station movement need review before a stronger trend comparison.
+- **C3 — Changed event likelihood:** A doubling claim needs an event definition, observations, an attribution method, a comparison climate and uncertainty. It cannot be calculated from the supplied station summary.
+- **C4 — Forcing attribution:** The table alone cannot assign all change to one cause. Physical mechanisms, multiple observations and comparisons of possible causes are needed; station changes remain relevant.
+- **C5 — Impact:** A 40% electricity-use claim needs evidence about buildings, cooling equipment, population, behavior and energy use. A temperature pattern alone does not quantify this impact.
+- **C6 — Response preference:** Compare barriers with no action and other responses using local flood evidence, feasibility, costs, ecological effects, distribution and values. The data do not establish one universally best choice.
+
+### Climate revision responses
+
+- **R1:** A snowy day describes weather and cannot establish a long-term climate trend. A trend claim needs a long, comparable, quality-controlled record with a stated baseline.
+- **R2:** The supplied series shows a temperature pattern, with coverage and station-change limitations. Attribution requires additional physical and comparative evidence; this table cannot determine the fraction caused by any forcing.
+- **R3:** Evaluate each source at the scale of the claim. One weather anecdote and a long-term evidence synthesis answer different questions, so equal space does not imply equal evidential support. Represent the actual limits and uncertainty of each source.
+
 ## Water and Ocean Systems Key
 
 Watersheds are defined by drainage to an outlet. Downstream water condition can reflect land cover, runoff, groundwater, infrastructure, discharge, season, and sampling design. Central has the highest impervious cover and storm turbidity; South has the highest nitrate index. Neither observation alone proves one source.
@@ -59,6 +74,19 @@ A recommendation is conditional when evidence is qualitative or incomplete. “R
 Release, concentration, exposure, dose, risk, and observed health outcome are distinct. Zone A has the highest reported-release index, while Zone B has the highest modeled-exposure indicator and largest represented population. That difference demonstrates why facility releases cannot substitute for an exposure analysis.
 
 Distributional review compares environmental burdens, benefits, representation, uncertainty, and cumulative conditions without inferring individual health or collecting private demographic data.
+
+### Ten pollution claim responses
+
+- **P1 — Reported release:** An index of reported facility releases. It does not measure ambient concentration or contact with a receptor.
+- **P2 — Environmental concentration:** Mass per air volume during a sampling period at one monitor. Location, duration and method limit what it represents.
+- **P3 — Exposure:** Contact with the substance over time. Contact duration alone does not establish the absorbed amount.
+- **P4 — Absorbed dose:** The amount entering the receptor in the stated period. Dose is not itself a diagnosis or a risk estimate.
+- **P5 — Modeled risk:** An estimate under stated assumptions, not an observed case count. The hazard model, exposure assumptions, population and uncertainty need review.
+- **P6 — Observed health outcome:** An aggregate count in a defined population and time. The count alone does not identify a cause or the number attributable to one facility.
+- **P7 — Modeled exposure proxy:** The supplied index is higher for B than A. Its model and coverage matter; it is not a direct absorbed-dose measurement or individual health prediction.
+- **P8 — Unsupported release-to-risk inference:** Chemical hazard, transport, concentration, contact and uptake can differ. A smaller release index cannot guarantee lower risk.
+- **P9 — Unsupported causal outcome claim:** Spatial overlap alone cannot establish attribution. Timing, exposure pathways, comparison groups and other causes require investigation.
+- **P10 — Unsupported concentration-to-dose inference:** Absorbed dose also depends on contact duration, route and uptake. A lower monitor value alone cannot establish that it fell.
 
 ## Scenario Modeling Key
 

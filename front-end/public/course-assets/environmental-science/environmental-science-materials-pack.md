@@ -87,9 +87,29 @@ One snowy day is weather. A long, quality-controlled series can support a climat
 2. The event's frequency or intensity differs from a historical baseline.
 3. A broader climate trend changes the event's likelihood or severity.
 4. A specified forcing contributes to the broader trend.
-5. A particular response option is preferable.
+5. A specified environmental or human impact follows.
+6. A particular response option is preferable.
 
 Each rung needs different evidence. Accepting one does not automatically prove the next.
+
+### Six climate claim statements
+
+These statements concern a fictional study watershed. Classify C1–C6 by the claim ladder, identify the evidence each would require, and flag conclusions that the station table cannot establish.
+
+- **C1:** A heavy rainstorm occurred in the study watershed yesterday.
+- **C2:** The supplied station table has 8 hot days in period A and 19 in period D.
+- **C3:** Climate warming doubled the likelihood of yesterday's storm.
+- **C4:** Human greenhouse-gas emissions caused all of the station's temperature change.
+- **C5:** The warmer conditions will increase the community's electricity use by 40%.
+- **C6:** Flood barriers are always the best response for this watershed.
+
+### Climate revision prompts
+
+Revise each statement into a claim that its evidence can support, and name the evidence needed for a stronger conclusion.
+
+- **R1 — Weather anecdote:** A snowy day proves that the long-term climate has stopped warming.
+- **R2 — Attribution overclaim:** Human greenhouse-gas emissions caused all of the station's temperature change, so station movement and missing years need no review.
+- **R3 — False balance:** A climate evidence brief should give one snowy-day anecdote and NASA's long-term evidence equal evidential weight simply because they disagree.
 
 ## Watershed and Water Quality Cases
 
@@ -140,6 +160,21 @@ Four fictional zones surround an industrial corridor:
 | D    |                     10 |                         22 |                 15,000 |                35 | boundary changed          |
 
 A reported release is not the same as exposure, dose, risk, or observed health effect. Compare environmental burden, uncertainty, population, access to benefits, and data coverage without collecting personal demographic or health information.
+
+### Ten pollution claim statements
+
+P1–P10 are fictional practice statements, not measured health evidence or safety thresholds. Identify the measure or claim type. For statements that connect different claim types, state what additional evidence the inference needs.
+
+- **P1:** Zone A's reported-release index is 80.
+- **P2:** A fixed monitor measured 7 micrograms of Substance Q per cubic metre of air during the stated sampling period.
+- **P3:** A fictional receptor was in contact with that air for two hours.
+- **P4:** The receptor absorbed 6 micrograms of Substance Q during the specified period.
+- **P5:** Under stated hazard and exposure assumptions, a model estimates one additional specified health outcome per 10,000 comparable exposed receptors.
+- **P6:** A fictional aggregate health record counts 12 diagnosed cases among 10,000 people last year.
+- **P7:** Zone B's modeled-exposure indicator is 61, while Zone A's is 54.
+- **P8:** A lower reported-release index guarantees lower health risk.
+- **P9:** Map overlap proves that the facility caused the recorded diagnoses.
+- **P10:** A lower monitor concentration proves a lower absorbed dose, even though contact duration and uptake are unknown.
 
 ## Past Present Future Scenario Table
 

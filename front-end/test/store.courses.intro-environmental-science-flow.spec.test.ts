@@ -155,7 +155,66 @@ describe("Intro to Environmental Science learner flow", () => {
 		expect(allText).not.toContain(
 			"Compare a current or sample diet with a revised diet"
 		);
-		expect(allText).toContain("**Accessible media alternative:**");
+		expect(allText).toContain(
+			"The material inputs are carbon dioxide and water; light supplies energy rather than matter."
+		);
+	});
+
+	it("provides the photosynthesis diagram with a complete text equivalent", () => {
+		const flora = moduleText("ES2 Flora and Decomposers");
+		const diagram = fs.readFileSync(
+			"public/course-assets/environmental-science/photosynthesis.svg",
+			"utf8"
+		);
+
+		expect(flora).toContain(
+			"/course-assets/environmental-science/photosynthesis.svg"
+		);
+		expect(flora).toContain("carbon dioxide enters from the air");
+		expect(flora).toContain("oxygen is released");
+		expect(flora).not.toMatch(
+			/Pending media:|pending photosynthesis|convert energy into organic matter/i
+		);
+		expect(diagram).toContain('aria-labelledby="title description"');
+		expect(diagram).toContain("Carbon dioxide and water supply matter.");
+		expect(diagram).toContain("Light supplies energy.");
+	});
+
+	it("supplies every requested climate and pollution statement with a worked response", () => {
+		const materials = fs.readFileSync(
+			"public/course-assets/environmental-science/environmental-science-materials-pack.md",
+			"utf8"
+		);
+		const answers = fs.readFileSync(
+			"public/course-assets/environmental-science/environmental-science-rubrics-answer-key.md",
+			"utf8"
+		);
+
+		for (const [prefix, count] of [
+			["C", 6],
+			["R", 3],
+			["P", 10]
+		] as const) {
+			const pattern = new RegExp(
+				`^- \\*\\*(${prefix}\\d+)(?::| —)`,
+				"gm"
+			);
+			const expected = Array.from(
+				{ length: count },
+				(_, index) => `${prefix}${index + 1}`
+			);
+			expect(
+				[...materials.matchAll(pattern)].map(match => match[1])
+			).toEqual(expected);
+			expect(
+				[...answers.matchAll(pattern)].map(match => match[1])
+			).toEqual(expected);
+		}
+		expect(materials).toContain(
+			"5. A specified environmental or human impact follows."
+		);
+		expect(answers).toContain("a difference of 11");
+		expect(answers).toContain("Unsupported release-to-risk inference");
 	});
 
 	it("separates energy flow, nutrient cycling, biodiversity, and population evidence", () => {
@@ -253,7 +312,8 @@ describe("Intro to Environmental Science learner flow", () => {
 		for (const link of resourceText()
 			.split("\n")
 			.filter(link =>
-				link.startsWith("/course-assets/environmental-science/")
+				link.startsWith("/course-assets/environmental-science/") &&
+				/\.md(?:#|$)/.test(link)
 			)) {
 			const [pathname, fragment] = link.split("#");
 			expect(fragment, link).toBeTruthy();
