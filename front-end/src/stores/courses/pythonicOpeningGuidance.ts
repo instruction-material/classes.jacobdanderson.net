@@ -5,7 +5,15 @@ const folders = {
 	callables:
 		"PDP-01-pdp1-why-python-changes-the-design-patterns-conversation-supplemental-2",
 	registry:
-		"PDP-02-pdp1-why-python-changes-the-design-patterns-conversation-supplemental-3"
+		"PDP-02-pdp1-why-python-changes-the-design-patterns-conversation-supplemental-3",
+	composition: "PDP-03-pdp2-design-foundations-in-python-supplemental-2",
+	records: "PDP-04-pdp2-design-foundations-in-python-supplemental-3"
+};
+const labTitles: Record<keyof typeof folders, string> = {
+	callables: "Callable comparison",
+	registry: "Named callable registry",
+	composition: "Composed notice delivery",
+	records: "Owned mutable records"
 };
 interface OpeningItem {
 	kind: "reading" | "assignment";
@@ -53,10 +61,7 @@ export function applyPythonicOpeningGuidance(
 						item.title
 					}:current-pack-v2`,
 					starterUrl: item.projectLink,
-					starterTitle:
-						entry.lab === "callables"
-							? "Callable comparison"
-							: "Named callable registry",
+					starterTitle: labTitles[entry.lab],
 					starterLabel: "Current learner starter",
 					lesson: progressId(
 						`pythonic-design-patterns-${module.title}`

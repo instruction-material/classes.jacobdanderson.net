@@ -98,7 +98,7 @@ describe("Pythonic opening independent teaching and source roles", () => {
 		expect(text).toContain("python3.14 -m venv .venv");
 		expect(text).toContain("-m pip install -r requirements-dev.txt");
 		expect(text).toContain(
-			"-m mypy --strict --python-version 3.14 main.py"
+			"-m mypy --strict --no-incremental --python-version 3.14 main.py"
 		);
 		expect(text).toContain("-p test_contract.py");
 		expect(text).toContain('["Design Patterns", ""]');

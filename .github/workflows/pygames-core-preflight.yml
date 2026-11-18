@@ -2647,6 +2647,7 @@ jobs:
           test/store.courses.intro-chemistry-flow.spec.test.ts
           test/store.courses.pythonic-design-patterns-flow.spec.test.ts
           test/store.courses.pythonic-opening.spec.test.ts
+          test/store.courses.pythonic-foundations.spec.test.ts
           test/store.courses.intro-environmental-science-flow.spec.test.ts
           test/store.courses.depth.spec.test.ts test/store.courses.research-expansions.spec.test.ts
           test/store.courses.python-level-1-foundations.spec.test.ts

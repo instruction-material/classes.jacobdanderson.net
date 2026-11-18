@@ -72,14 +72,14 @@ import { pythonicDesignPatternsCourse } from "@/stores/courses/pythonic-design-p
 
 function isReviewedModule(id: string, title: string) {
 	if (id === "java-level-3") return title === "AJ4 Recursion";
-	if (id === "pythonic-design-patterns") return /^PDP[01] /.test(title);
+	if (id === "pythonic-design-patterns") return /^PDP[012] /.test(title);
 	return true;
 }
 const cases = [
 	{
 		id: "pythonic-design-patterns",
 		source: pythonicDesignPatternsCourse,
-		readings: 7,
+		readings: 10,
 		additions: []
 	},
 	{
@@ -889,13 +889,15 @@ it.each(
 			const reviewed = modules.filter(module =>
 				isReviewedModule(id, module.title)
 			);
-			expect(reviewed).toHaveLength(2);
-			expect(reviewed.flatMap(module => module.readings)).toHaveLength(7);
+			expect(reviewed).toHaveLength(3);
+			expect(reviewed.flatMap(module => module.readings)).toHaveLength(
+				10
+			);
 			const tasks = reviewed.flatMap(module => [
 				...module.projects,
 				...module.optional
 			]);
-			expect(tasks).toHaveLength(7);
+			expect(tasks).toHaveLength(11);
 			expect(
 				tasks.every(task => task.assignmentTextScope === "complete")
 			).toBe(true);
@@ -1059,7 +1061,7 @@ it.each(
 			if (!isReviewedModule(id, module.title)) continue;
 			if (id === "pythonic-design-patterns") {
 				expect(module.readings).toHaveLength(
-					module.title.startsWith("PDP0 ") ? 3 : 4
+					module.title.startsWith("PDP1 ") ? 4 : 3
 				);
 			} else if (id === "pre-algebra-b") {
 				expect(module.readings, module.title).toHaveLength(
@@ -1242,7 +1244,7 @@ it.each(
 							: {}),
 						reviewScope:
 							id === "pythonic-design-patterns"
-								? "PDP0/PDP1 opening only: seven complete readings,two core tasks and five supplemental activities per role/width profile. All111course identities and complete navigation are retained;the other course bodies,source families and IDE workflows require separate acceptance."
+								? "PDP0-PDP2 opening/foundations only: ten complete readings,three core tasks and eight supplemental activities per role/width profile. All111course identities and complete navigation are retained;the other course bodies,source families and IDE workflows require separate acceptance."
 								: id === "design-patterns-in-java"
 									? "Complete primary course: ten teaching units, applied studios and three reference appendices. All 134 published identities covered by 32 complete readings, 102 activities and 204 input/answer case views per role/width profile."
 									: id === "design-patterns-in-java-part-2"
