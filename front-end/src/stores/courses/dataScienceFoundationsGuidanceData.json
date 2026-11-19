@@ -157,7 +157,7 @@
 		"group": "supplementalProjects",
 		"contentKind": "assignment",
 		"folder": "DSP-07-module-3-pandas-foundations-supplemental-2",
-		"content": "Complete `select_trips(frame, minimum)` in the transfer starter. Keep observations with `trips >= minimum` and return `trip_id`, `site`, and `trips`. Use trips descending and trip ID ascending to resolve ties. The supplied run uses a minimum of 6.\n\n**Completion checks:** Predict R06, R03 and R05 in order. R05 lies exactly on the boundary. Copy the input, add `R07,north,6,2`, and rerun with the copy as `--input` in a terminal. Expect R05 ahead of R07 and the other positions unchanged. Record the matching IDs and why the tie rule makes the result repeatable."
+		"content": "Complete `select_trips(frame, minimum)` in the transfer starter. Keep observations with `trips >= minimum` and return `trip_id`, `site`, and `trips`. Use trips descending and trip ID ascending to resolve ties. The supplied run uses a minimum of 6.\n\nPredict R06, R03 and R05 in order. R05 lies exactly on the boundary. Copy the input, add `R07,north,6,2`, and rerun with the copy as `--input` in a terminal. Expect R05 ahead of R07 and the other positions unchanged. Record the matching IDs and why the tie rule makes the result repeatable.\n\nRun a second boundary check by calling `select_trips(frame, 13)`. Expect zero matching rows and the same three output columns. Record how that result differs from a dataset that could not be loaded."
 	},
 	{
 		"module": "Module 3: pandas Foundations",
