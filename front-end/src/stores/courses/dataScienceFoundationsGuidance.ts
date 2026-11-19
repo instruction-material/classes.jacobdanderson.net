@@ -1,5 +1,5 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
-import { dataScienceFoundationsRevision } from "@/modules/dataScienceFoundationsResources";
+import { dataScienceFoundationsSource } from "@/modules/dataScienceFoundationsResources";
 import guidance from "./dataScienceFoundationsGuidanceData.json";
 
 export function applyDataScienceFoundationsGuidance(course: RawCourse) {
@@ -26,7 +26,13 @@ export function applyDataScienceFoundationsGuidance(course: RawCourse) {
 		delete item.datasetLink;
 		if (entry.folder) {
 			const repo = "https://github.com/instruction-material/Data-Science";
-			const source = `${dataScienceFoundationsRevision}/${entry.folder}`;
+			const pack = dataScienceFoundationsSource(entry.folder);
+			if (!pack) {
+				throw new Error(
+					`Missing Data Science source pack: ${entry.folder}`
+				);
+			}
+			const source = `${pack.revision}/${entry.folder}`;
 			item.projectLink = `${repo}/tree/${source}/starter`;
 			item.solutionLink = `${repo}/tree/${source}/solution`;
 			item.ideImport = true;

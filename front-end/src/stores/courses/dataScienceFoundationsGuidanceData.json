@@ -126,5 +126,85 @@
 		"contentKind": "assignment",
 		"folder": "DSP-06-module-2-notebook-workflow-and-reproducibility-supplemental-3",
 		"content": "Complete `write_report(output, summary, input_path)` in the supplied extension starter. The report records the SHA-256 digest of the selected CSV bytes alongside the filename and results. The report identifies the retained input, count, total, mean or undefined-mean state, and the units used. Keep the source CSV unchanged and store generated output separately.\n\nRun `python main.py`, reopen `outputs/report.json` and compare each number with the console and hand calculation. Copy the CSV to `data/changed.csv` and replace its last value with 18. Run `python main.py --input data/changed.csv --output outputs/changed.json` to retain both reports. The new report must contain total 38 and mean 6.33, rather than retaining the earlier 32 and 5.33.\n\nRecord what generated the report and which earlier report was retained or replaced. A fresh rerun with the same input reproduces its numerical content. A report's existence alone does not establish that it came from the current input."
+	},
+	{
+		"module": "Module 3: pandas Foundations",
+		"title": "pandas Foundations Core Concepts",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "One row in the practice CSV represents one synthetic trip record. `trip_id` identifies it, `site` names its site, and `trips` and `hours` are whole-number measurements. Start with a question: what is the mean number of trips per record at each site?\n\n```csv\ntrip_id,site,trips,hours\nR01,north,2,1\nR02,north,4,2\nR03,south,8,4\nR04,west,0,0\nR05,west,6,3\nR06,west,12,3\n```\n\nSave the table as `data/sample.csv` in a script's working folder, or use the supplied copy in the project. Inspect the table before calculating:\n\n```python\nimport pandas as pd\n\nframe = pd.read_csv(\"data/sample.csv\")\nprint(frame.shape, frame.columns.tolist())\nprint(frame.head(3))\nprint(frame.dtypes)\n```\n\nExpect six rows, four columns and IDs R01 through R03 in the preview. Identify which field is the group and which field is measured. This dataset has no missing observations. The recorded zero is part of the west total and denominator.\n\n`frame.loc[frame[\"trips\"].ge(6), [\"trip_id\", \"trips\"]]` keeps R03, R05 and R06 in source order. Sorting can change their order without changing which records match. A separate grouping uses all six rows and combines each site's observations:\n\n```python\ngroups = frame.groupby(\"site\", as_index=False).agg(\n    records=(\"trips\", \"size\"),\n    total_trips=(\"trips\", \"sum\"),\n    mean_trips=(\"trips\", \"mean\"),\n)\nprint(groups)\n```\n\nNorth is 6 ÷ 2 = 3, south is 8 ÷ 1 = 8, and west is 18 ÷ 3 = 6. South's mean comes from one record, so the counts belong beside the means. For a different question, divide each row's trips by its hours only when hours is nonzero. R04 has an undefined rate. A measured rate of zero instead requires recorded zero trips and positive hours.\n\n[CSV input in pandas](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html) · [Grouping in pandas](https://pandas.pydata.org/docs/user_guide/groupby.html)"
+	},
+	{
+		"module": "Module 3: pandas Foundations",
+		"title": "Core Project: pandas Foundations",
+		"group": "curriculum",
+		"contentKind": "assignment",
+		"folder": "DSP-10-module-3-pandas-foundations",
+		"content": "Complete `summarize_sites(frame)` in the starter. Return a table with one row per site in alphabetical order and columns `site`, `records`, `total_trips`, and `mean_trips`. Keep all six supplied rows, including R04's recorded zero. The program reports the input shape and the ordered source columns alongside the site summaries.\n\nOpen the starter in the site IDE and run `main.py`. For a local run, install the pandas version listed in the project README and start `python main.py`. Keep `data/sample.csv` as supplied. Verify the north, south, and west rows against 2/6/3, 1/8/8 and 3/18/6, in count/total/mean order.\n\nNext copy the CSV and add `R07,north,6,2`. Run the new input with `python main.py --input data/changed.csv` in a terminal, or load that file explicitly in a notebook. Expect seven rows and north 3/12/4. Retain both results and describe why the single south observation needs to remain visible in any comparison."
+	},
+	{
+		"module": "Module 3: pandas Foundations",
+		"title": "Analysis Log: pandas Foundations",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Record the site question, which CSV was used, its row and column counts, and the column that names the site. Add one hand check that shows the records, their values, the sum and the denominator. For west on the original input, use 0, 6 and 12 trips to check 18 ÷ 3 = 6.\n\nInclude the original and changed north results from the core project. Explain how selecting columns can preserve the analytical population, while selecting rows changes it. Identify one conclusion that is limited by the one-record south group. Supply the chosen code expression and the verification result, so another reader can rerun the same check."
+	},
+	{
+		"module": "Module 3: pandas Foundations",
+		"title": "Transfer Practice: pandas Foundations",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-07-module-3-pandas-foundations-supplemental-2",
+		"content": "Complete `select_trips(frame, minimum)` in the transfer starter. Keep observations with `trips >= minimum` and return `trip_id`, `site`, and `trips`. Use trips descending and trip ID ascending to resolve ties. The supplied run uses a minimum of 6.\n\nPredict R06, R03 and R05 in order. R05 lies exactly on the boundary. Copy the input, add `R07,north,6,2`, and rerun with the copy as `--input` in a terminal. Expect R05 ahead of R07 and the other positions unchanged. Record the matching IDs and why the tie rule makes the result repeatable."
+	},
+	{
+		"module": "Module 3: pandas Foundations",
+		"title": "Extension Practice: pandas Foundations",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-08-module-3-pandas-foundations-supplemental-3",
+		"content": "Complete `derive_rates(frame)` in the extension starter. Add `trips_per_hour` to a new frame while preserving the original columns and input rows. Use an undefined rate when hours is zero. The JSON report represents an undefined value as `null`.\n\nVerify the rates in record order: 2, 2, 2, undefined, 2 and 4 trips per hour. In a separate input copy, change R01 to zero trips with one hour and check that its rate is now 0, while R04 is still undefined. Explain how a mean of row rates differs from dividing total trips by total hours. When answering either question, state which records were used and how their hours influence the answer."
+	},
+	{
+		"module": "Module 4: Cleaning and Validation",
+		"title": "Cleaning and Validation Core Concepts",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "The question for this module is how many trips are supported by valid, distinct records. Start by preserving the raw table. A cleaning audit records one outcome per input record so each inclusion and exclusion can be inspected.\n\n```csv\ntrip_id,site,trips,hours\nR01, North ,2,1\nR02,north,4,2\nR02,NORTH,4,2\nR03,south,,4\nR04,west,nope,0\nR05,west,-1,3\nR06,west,0,0\nR07,west,12,3\nR08,,3,1\nR09,East,6,3\n```\n\nRead initially as text. This preserves a blank and a malformed number as different evidence. For the provided CSV, inspect the original numeric text before classifying:\n\n```python\nimport pandas as pd\n\nraw = pd.read_csv(\"data/sample.csv\", dtype=\"string\", keep_default_na=False)\ntrips_text = raw[\"trips\"].str.strip()\nnumeric = pd.to_numeric(trips_text, errors=\"coerce\")\nmissing = trips_text.eq(\"\")\nmalformed = ~missing & numeric.isna()\noutside_range = (numeric.lt(0) | numeric.gt(1000)).fillna(False)\nprint(raw.loc[missing | malformed | outside_range, [\"trip_id\", \"trips\"]])\n```\n\nThis preview identifies R03, R04 and R05. The full project also validates whole numbers, checks hours from 0 through 24, and accepts site labels east, north, south or west after the declared repair. If fields fail in the same row, record the first outcome in ID, site, trips, then hours order. Zero is allowed. R08 has a missing site even though it has a recorded trip count.\n\nTrim and lowercase known labels before comparing valid rows that share a trip ID. The two R02 rows then agree, so keep the first and count the second as a duplicate. When the same ID has two different valid measurements, hold both for review. This policy protects the distinct-record total from a guess about which measurement is correct.\n\nCheck the accounting: 10 original rows = 5 accepted + 1 repeat + 4 invalid. Two accepted labels were repaired. The accepted total is 24 trips; that total describes the retained records and does not establish what the missing or invalid observations would have contributed.\n\n[Numeric conversion in pandas](https://pandas.pydata.org/docs/reference/api/pandas.to_numeric.html) · [Duplicate row selection in pandas](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.duplicated.html)"
+	},
+	{
+		"module": "Module 4: Cleaning and Validation",
+		"title": "Core Project: Cleaning and Validation",
+		"group": "curriculum",
+		"contentKind": "assignment",
+		"folder": "DSP-11-module-4-cleaning-and-validation",
+		"content": "Complete `validation_reasons(raw, rows, repair_labels=...)` in the cleaning starter. Return one status per input row. Use the first failing field in the order trip ID, site, trips, hours. Accept trip IDs of the form R followed by digits and site labels east, north, south or west, after trimming and lowercasing when label repair is enabled. Classify blanks as missing, invalid whole-number text as malformed, and parsed counts outside 0–1000 trips or 0–24 hours as out of range.\n\nRun `main.py` with the provided input. The rest of the pipeline assigns duplicate and conflicting ID outcomes. Confirm that every source record appears in the audit, including the rows it excludes. Expect five acceptances, one duplicate and four invalid records. Confirm that R06's recorded zero remains and the accepted total is 24 trips.\n\nIn a copy of the CSV, try a record with 25 hours or a blank hours field. Predict which outcome changes before rerunning the copy. Retain the original and changed input with their reports. Explain how one row can have several defects while the audit still accounts for it once."
+	},
+	{
+		"module": "Module 4: Cleaning and Validation",
+		"title": "Analysis Log: Cleaning and Validation",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Write a decision log for the original ten-row input. Retain each tested rule, the expected outcome, one example record and the observed count. Include missing measurement, malformed number, out-of-range value, missing site and duplicate ID. Identify R06 as an accepted recorded zero and state the separate count of two repaired labels.\n\nReconcile accepted and excluded records to ten, and tie the total of 24 trips to the five accepted records. For one change to a rule, describe which original records might move between categories and what evidence would justify the change. Preserve the raw CSV so the comparison can be repeated."
+	},
+	{
+		"module": "Module 4: Cleaning and Validation",
+		"title": "Transfer Practice: Cleaning and Validation",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-09-module-4-cleaning-and-validation-supplemental-2",
+		"content": "Complete `mark_duplicates(rows, reasons)` in the transfer starter. Compare site, trips and hours only among rows that have already passed field validation. If normalized measurements agree, keep the first row for that ID and classify the repeats as duplicates. If valid measurements differ, mark every valid row for that ID as `conflicting_id`.\n\nThe supplied input adds a second R07 with 13 trips instead of 12. Verify that both R07 records are held and only the later R02 is a duplicate. Expect eleven input records, four accepted and an accepted total of twelve trips. Retain the two source record numbers for R07 and explain why the conflict changes the denominator."
+	},
+	{
+		"module": "Module 4: Cleaning and Validation",
+		"title": "Extension Practice: Cleaning and Validation",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-10-module-4-cleaning-and-validation-supplemental-3",
+		"content": "Complete `compare_policies(raw)` in the extension starter. Run the same validation pipeline with normalized labels and with exact labels only. Keep the input fixed and emit both summaries, the difference in accepted records and the difference in accepted trip totals.\n\nExpect five accepted records and 24 trips with repair. Expect three accepted records and 16 trips with the exact-label policy. Both start from ten original records. Inspect the accepted ID lists and explain why only R01 and R09 contribute to the change of two records and eight trips. Identify the operational assumption behind each policy and which evidence would support it."
 	}
 ]
