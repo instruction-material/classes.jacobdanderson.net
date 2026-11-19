@@ -11,7 +11,7 @@ import { fileURLToPath } from "node:url";
 import { unzipSync } from "fflate";
 import puppeteer from "puppeteer";
 import { createServer, preview } from "vite";
-import { confirmProjectImport } from "./ide-workspace-controls.mjs";
+import { confirmProjectImport, openProjectSidebar } from "./ide-workspace-controls.mjs";
 import {
 	exportedBytes,
 	savedProjects,
@@ -188,6 +188,7 @@ async function addReferenceModule(page, width, key, fileName, content) {
 	if (width < 900) {
 		await page.locator(".mobile-view-picker button[data-view='code']").click();
 	}
+	await openProjectSidebar(page);
 	const toggle = "button[aria-label='Add or import project files']";
 	if (await page.$eval(toggle, element => element.getAttribute("aria-expanded")) !== "true") {
 		await page.locator(toggle).click();
@@ -197,6 +198,7 @@ async function addReferenceModule(page, width, key, fileName, content) {
 	await page.focus(input);
 	await page.keyboard.press("Enter");
 	await waitSaved(page, key, project => project.files.some(file => file.name === fileName));
+	await page.locator("button[aria-label='Collapse project sidebar']").click();
 	return editMain(page, width, key, content, fileName);
 }
 
