@@ -1341,7 +1341,11 @@ describe("course text quality normalization", () => {
 				itemTitle:
 					"Reference Archive: Data Science in Python Workspace",
 				minWords: 85,
-				required: [/folder layout/i, /sample data/i, /limitation/i]
+				required: [
+					/source repository/i,
+					/exact selected folder and its supplied data/i,
+					/record the source revision/i
+				]
 			},
 			{
 				courseId: "ai-level-1",
@@ -2831,12 +2835,9 @@ describe("course text quality normalization", () => {
 			"utf8"
 		);
 
-		expect(corpus).toContain(
-			"Strong data science can provide real value before training any model."
-		);
-		expect(corpus).toContain(
-			"Notebooks are communication tools, not just places to run code."
-		);
+		expect(corpus).toContain("This course emphasizes descriptive work");
+		expect(corpus).toContain("A fresh top-to-bottom run prints 14.");
+		expect(corpus).toContain("The correct new total is 32.");
 		expect(corpus).toContain(
 			"Dashboard design needs restraint: clear controls, few charts, obvious labels, and a visible explanation of what the user is seeing."
 		);

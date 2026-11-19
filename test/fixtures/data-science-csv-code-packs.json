@@ -154,42 +154,6 @@
 			"sourceFree": false
 		},
 		{
-			"module": "data-science-in-python-module-1-what-data-science-is",
-			"item": "data-science-in-python-module-1-what-data-science-is-supplemental-analysis-log-what-data-science-is",
-			"title": "Analysis Log: What Data Science Is",
-			"group": "supplementalProjects",
-			"content": "Keep a compact analysis log for what data science is that records the question being asked, the dataset assumptions being made, the exact columns or calculations used, and one short note about why the chosen question is worth answering with data in the first place. The log makes the question, assumptions, and value of the analysis visible before any code is judged.\n\nUse one small question from the current analysis. Record the source, the population the rows represent, the unit for each measurement, and which records are absent. For a four-row sample with values 4, 8, 11 and 17, the mean is 10; the log may report that sample mean but cannot claim a population mean or a cause. Deliver the question, assumptions, one checked calculation and one limitation. Update the log when the question or data changes.",
-			"contentKind": "assignment",
-			"sourceFree": true
-		},
-		{
-			"module": "data-science-in-python-module-2-notebook-workflow-and-reproducibility",
-			"item": "data-science-in-python-module-2-notebook-workflow-and-reproducibility-supplemental-analysis-log-notebook-workflow-and-reproducibility",
-			"title": "Analysis Log: Notebook Workflow and Reproducibility",
-			"group": "supplementalProjects",
-			"content": "Keep a compact analysis log for notebook workflow and reproducibility that records the question being asked, the dataset assumptions being made, the exact columns or calculations used, and one short note about which parts of the analysis are exploratory and which belong in stable steps. The log separates exploratory notebook work from stable steps that reproduce cleanly.\n\nFor the current notebook, record the input filename, package versions and the order of transformations. Mark exploratory cells separately from the steps needed for the final answer. Restart the kernel and run the required cells from top to bottom. Record whether that fresh run reproduces the same row count and result. A result depending on a variable created in an unrecorded earlier cell is still unresolved. Deliver the run record and a correction for any hidden dependency.",
-			"contentKind": "assignment",
-			"sourceFree": true
-		},
-		{
-			"module": "data-science-in-python-module-3-pandas-foundations",
-			"item": "data-science-in-python-module-3-pandas-foundations-supplemental-analysis-log-pandas-foundations",
-			"title": "Analysis Log: pandas Foundations",
-			"group": "supplementalProjects",
-			"content": "Keep a compact analysis log for pandas foundations that records the question being asked, the dataset assumptions being made, the exact columns or calculations used, and one short note about which transformations are merely helpful and which ones materially change the meaning of the dataset. The log makes it possible to review both the calculation and the meaning of each transformation.\n\nChoose one filtering or column transformation from the current table. Record the original columns and row count, the exact expression used, and the resulting columns and count. Include a small before/after table and explain whether the operation changes which observations the conclusion describes. For example, filtering six rows down to four changes the population summarized even if no numeric cell changes. Deliver the trace and one check that the selected rows match the intended rule.",
-			"contentKind": "assignment",
-			"sourceFree": true
-		},
-		{
-			"module": "data-science-in-python-module-4-cleaning-and-validation",
-			"item": "data-science-in-python-module-4-cleaning-and-validation-supplemental-analysis-log-cleaning-and-validation",
-			"title": "Analysis Log: Cleaning and Validation",
-			"group": "supplementalProjects",
-			"content": "Keep a compact analysis log for cleaning and validation that records the question being asked, the dataset assumptions being made, the exact columns or calculations used, and one short note about which cleaning decision had the biggest effect on the final answer. The log links the final answer back to the cleaning decisions that changed it most.\n\nRecord each applied cleaning rule, the reason for it, affected row identifiers and counts before and after. Distinguish an observed problem from an assumption about how to repair it. Check that accepted and rejected row counts sum to the original count. If a rule changes a reported mean, retain both results and explain which rows caused the difference. Deliver the rule log, that check and one remaining uncertainty.",
-			"contentKind": "assignment",
-			"sourceFree": true
-		},
-		{
 			"module": "data-science-in-python-dsp11-applied-studio-cleaning-missing-and-invalid-rows",
 			"item": "data-science-in-python-dsp11-applied-studio-cleaning-missing-and-invalid-rows-supplemental-data-quality-checklist",
 			"title": "Data-Quality Checklist",

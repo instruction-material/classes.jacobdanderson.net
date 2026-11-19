@@ -43,6 +43,28 @@ function requireSourceModule(title: string) {
 }
 
 describe("Data Science in Python learner flow", () => {
+	it("assigns each lesson to one guidance file", () => {
+		const files = import.meta.glob<
+			{ module: string; group: string; title: string }[]
+		>("../src/stores/courses/dataScience*GuidanceData.json", {
+			eager: true,
+			import: "default"
+		});
+		expect(Object.keys(files).length).toBeGreaterThan(1);
+		const owners = new Map<string, string>();
+		for (const [file, entries] of Object.entries(files)) {
+			for (const { module, group, title } of entries) {
+				const section = group === "curriculum" ? group : "supplementalProjects";
+				const key = JSON.stringify([module, section, title]);
+				expect(
+					owners.get(key),
+					`${title} appears again in ${file}`
+				).toBeUndefined();
+				owners.set(key, file);
+			}
+		}
+	});
+
 	it("recognizes the published applied-studio progress IDs before title changes", async () => {
 		setActivePinia(createPinia());
 		const course = await useCoursesStore().loadCourseById(
