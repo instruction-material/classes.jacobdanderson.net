@@ -293,7 +293,7 @@ test("Data Science complete CSV teaching, confirmed imports, continuation and ex
 				await context.close(); context = null;
 			}
 		}
-		assert.equal(readingViews.length, 92);
+		assert.equal(readingViews.length, 84);
 		assert.equal(profiles.length, 22);
 		complete = true;
 	} catch (error) {
@@ -304,7 +304,7 @@ test("Data Science complete CSV teaching, confirmed imports, continuation and ex
 		await cleanup();
 		process.chdir(previousDirectory);
 		await mkdir(output, { recursive: true });
-		await writeFile(join(output, "proof.json"), JSON.stringify({ startedAt, finishedAt: new Date().toISOString(), sourceCommit, sourceRevision: fixture.revision, complete, expectedReadingViews: 92, expectedProfiles: 22, profiles, readingViews, errors, wholeCourseAccepted: false, browserPath: "Browser plugin not available; existing repository Puppeteer workflow", targetFlow: "Course reading and task -> confirmed CSV import -> actual Python -> edited saved work -> continued extension and exact ZIP", cleanup: "Pages, contexts, browser and preview server closed in finally." }, null, 2) + "\n");
+		await writeFile(join(output, "proof.json"), JSON.stringify({ startedAt, finishedAt: new Date().toISOString(), sourceCommit, sourceRevision: fixture.revision, complete, expectedReadingViews: 84, expectedProfiles: 22, profiles, readingViews, errors, wholeCourseAccepted: false, browserPath: "Browser plugin not available; existing repository Puppeteer workflow", targetFlow: "Course reading and task -> confirmed CSV import -> actual Python -> edited saved work -> continued extension and exact ZIP", cleanup: "Pages, contexts, browser and preview server closed in finally." }, null, 2) + "\n");
 		console.log(JSON.stringify({ event: "end", taskId, pid: process.pid, endedAt: new Date().toISOString(), exitCode: complete ? 0 : 1, childProcessGroupCleanup: "closed browser contexts, browser and preview server", profiles: profiles.length, readingViews: readingViews.length }));
 	}
 });

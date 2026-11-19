@@ -226,24 +226,6 @@
 			"sourceFree": true
 		},
 		{
-			"module": "data-science-in-python-dsp14-applied-studio-reproducible-mini-reports",
-			"item": "data-science-in-python-dsp14-applied-studio-reproducible-mini-reports-supplemental-reproducibility-appendix",
-			"title": "Reproducibility Appendix",
-			"group": "supplementalProjects",
-			"content": "Add a small appendix that records package versions, file names, or command-line run instructions so the analysis can be repeated later.\n\nAttach this appendix to the current mini report. Record the input files and their source/version, required Python and package versions, the command or notebook execution order, and the expected output filenames. Include one observed row count or summary value as a run check. Reproduce the report from a fresh session using those notes, then record the result and any missing step. Deliver the appendix with the report it documents; reuse that report's project rather than importing a new program.",
-			"contentKind": "assignment",
-			"sourceFree": true
-		},
-		{
-			"module": "data-science-in-python-dsp14-applied-studio-reproducible-mini-reports",
-			"item": "data-science-in-python-dsp14-applied-studio-reproducible-mini-reports-supplemental-mini-report-peer-review",
-			"title": "Mini Report Peer Review",
-			"group": "supplementalProjects",
-			"content": "Create a peer-review checklist for mini reports and apply it to one previous project.\n\nReview one completed mini report using a table with criterion, evidence and suggested revision. Check the question, source and units, cleaning decisions, one independently checked result, the match between chart and claim, and the stated limitation. Separate an arithmetic error from an interpretation disagreement. Apply the checklist to specific passages or outputs and name the highest-priority revision. Deliver the completed review; if working independently, apply the same criteria to the report after a fresh read.",
-			"contentKind": "assignment",
-			"sourceFree": true
-		},
-		{
 			"module": "data-science-in-python-module-7-dashboards-with-altair-and-streamlit",
 			"item": "data-science-in-python-module-7-dashboards-with-altair-and-streamlit-supplemental-analysis-log-dashboards-with-altair-and-streamlit",
 			"title": "Analysis Log: Dashboards with Altair and Streamlit",

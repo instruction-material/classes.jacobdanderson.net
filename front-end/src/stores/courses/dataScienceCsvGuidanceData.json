@@ -109,20 +109,6 @@
 		"contentKind": "assignment"
 	},
 	{
-		"module": "DSP14 Applied Studio: Reproducible Mini Reports",
-		"group": "supplementalProjects",
-		"title": "Reproducibility Appendix",
-		"content": "Add a small appendix that records package versions, file names, or command-line run instructions so the analysis can be repeated later.\n\nAttach this appendix to the current mini report. Record the input files and their source/version, required Python and package versions, the command or notebook execution order, and the expected output filenames. Include one observed row count or summary value as a run check. Reproduce the report from a fresh session using those notes, then record the result and any missing step. Deliver the appendix with the report it documents; reuse that report's project rather than importing a new program.",
-		"contentKind": "assignment"
-	},
-	{
-		"module": "DSP14 Applied Studio: Reproducible Mini Reports",
-		"group": "supplementalProjects",
-		"title": "Mini Report Peer Review",
-		"content": "Create a peer-review checklist for mini reports and apply it to one previous project.\n\nReview one completed mini report using a table with criterion, evidence and suggested revision. Check the question, source and units, cleaning decisions, one independently checked result, the match between chart and claim, and the stated limitation. Separate an arithmetic error from an interpretation disagreement. Apply the checklist to specific passages or outputs and name the highest-priority revision. Deliver the completed review; if working independently, apply the same criteria to the report after a fresh read.",
-		"contentKind": "assignment"
-	},
-	{
 		"module": "Module 7: Dashboards with Altair and Streamlit",
 		"group": "supplementalProjects",
 		"title": "Analysis Log: Dashboards with Altair and Streamlit",
