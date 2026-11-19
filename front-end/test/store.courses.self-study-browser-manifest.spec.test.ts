@@ -20,6 +20,7 @@ import { algebra1BCourse } from "@/stores/courses/algebra-1b";
 import { algebra2ACourse } from "@/stores/courses/algebra-2a";
 import { algebra2BCourse } from "@/stores/courses/algebra-2b";
 import { algebraErrorAnalysisCases } from "@/stores/courses/algebraErrorAnalysisCases";
+import { dataScienceInPythonCourse } from "@/stores/courses/data-science-in-python";
 import { designPatternsInJavaCourse } from "@/stores/courses/design-patterns-in-java";
 import { designPatternsInJavaPart2Course } from "@/stores/courses/design-patterns-in-java-part-2";
 import { elementaryScienceCourse } from "@/stores/courses/elementary-science";
@@ -75,6 +76,12 @@ function isReviewedModule(id: string, title: string) {
 	return true;
 }
 const cases = [
+	{
+		id: "data-science-in-python",
+		source: dataScienceInPythonCourse,
+		readings: 53,
+		additions: []
+	},
 	{
 		id: "pythonic-design-patterns",
 		source: pythonicDesignPatternsCourse,
@@ -524,13 +531,14 @@ it.each(
 				...module.curriculum,
 				...module.supplementalProjects
 			])
-			// AI and the reviewed Pythonic opening replace generic generated briefs
+			// AI, Data Science and the Pythonic opening replace generic briefs
 			// with authored contracts. Their focused tests and complete browser-body
 			// hashes below establish the new directives; all published IDs stay checked.
 			.filter(
 				item =>
 					id !== "ai-level-1"
 					&& id !== "pythonic-design-patterns"
+					&& id !== "data-science-in-python"
 					&& item.content.startsWith("**Project goal:**")
 			);
 		const all = course.modules.flatMap(module => [
@@ -608,6 +616,7 @@ it.each(
 						"smart-money-personal-finance",
 						"money-minded-investing",
 						"entrepreneurship-101",
+						"data-science-in-python",
 						"network-systems",
 						"algebra-1a",
 						"intro-to-environmental-science",
@@ -627,6 +636,7 @@ it.each(
 						"smart-money-personal-finance",
 						"money-minded-investing",
 						"entrepreneurship-101",
+						"data-science-in-python",
 						"network-systems",
 						"intro-to-environmental-science",
 						"elementary-science",
@@ -769,6 +779,7 @@ it.each(
 			if (
 				completeAssignment
 				&& !completeMathAssignment
+				&& id !== "data-science-in-python"
 				&& ![
 					"pre-algebra-b",
 					"money-minded-investing",
@@ -907,6 +918,21 @@ it.each(
 			expect(tasks).toHaveLength(60);
 			expect(
 				tasks.every(task => task.assignmentTextScope === "complete")
+			).toBe(true);
+		}
+		else if (id === "data-science-in-python") {
+			expect(modules).toHaveLength(23);
+			const activities = modules.flatMap(module => [
+				...module.projects,
+				...module.optional
+			]);
+			expect(activities).toHaveLength(87);
+			expect(
+				activities.every(
+					item =>
+						item.assignmentTextScope === "complete"
+						&& item.requiredDirective.length > 0
+				)
 			).toBe(true);
 		}
 		else if (id === "pre-algebra-b") {
@@ -1230,7 +1256,7 @@ it.each(
 					module.title
 				).toEqual(expected);
 			}
-			else if (!algebra && !algebra1) {
+			else if (!algebra && !algebra1 && id !== "data-science-in-python") {
 				expect(module.readings, module.title).toHaveLength(1);
 			}
 			else if (algebra && module.readings.length === 0) {
