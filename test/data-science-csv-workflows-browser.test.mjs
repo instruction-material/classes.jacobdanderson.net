@@ -70,17 +70,16 @@ async function run(page, width, expected) {
 	if (width < 900) await page.locator(".mobile-view-picker button[data-view='code']").click();
 	await page.locator("button.run-control").click();
 	if (width < 900) await page.locator(".mobile-view-picker button[data-view='console']").click();
-	await page.waitForFunction(expected => {
+	await page.waitForFunction(() => {
 		const status = document.querySelector("[data-testid='ide-run-status']")?.textContent.trim();
-		if (status === "Run failed" || status === "Run finished with issues") return true;
-		return status === "Run complete" && [...document.querySelectorAll(".output-line--stdout")].map(node => node.textContent).join("\n") === expected;
-	}, { timeout: 90000 }, expected);
+		return ["Analysis ready", "Run failed", "Run finished with issues"].includes(status);
+	}, { timeout: 90000 });
 	const observed = await page.evaluate(() => ({
 		status: document.querySelector("[data-testid='ide-run-status']")?.textContent.trim(),
 		stdout: [...document.querySelectorAll(".output-line--stdout")].map(node => node.textContent).join("\n"),
 		stderr: [...document.querySelectorAll(".output-line--stderr")].map(node => node.textContent).join("\n")
 	}));
-	assert.equal(observed.status, "Run complete", JSON.stringify(observed));
+	assert.equal(observed.status, "Analysis ready", JSON.stringify(observed));
 	assert.equal(observed.stderr, "");
 	assert.equal(observed.stdout, expected);
 	return observed;
