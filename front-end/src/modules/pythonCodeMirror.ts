@@ -3093,7 +3093,9 @@ export function createPythonCodeMirrorExtensions(
 	options: PythonCodeMirrorOptions
 ): Extension[] {
 	const mode = options.mode ?? "python";
-	const isPythonMode = isPythonCodeMirrorMode(mode);
+	const isPythonMode =
+		isPythonCodeMirrorMode(mode) &&
+		(options.fileName === undefined || /\.py$/i.test(options.fileName));
 	const isJavaMode =
 		isJavaCodeMirrorMode(mode) &&
 		(options.fileName === undefined || /\.java$/i.test(options.fileName));

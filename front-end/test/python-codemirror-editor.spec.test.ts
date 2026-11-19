@@ -2501,6 +2501,23 @@ describe("python IDE CodeMirror editor", () => {
 		);
 	});
 
+	it.each(["python", "data", "turtle", "pgzero"] as const)(
+		"keeps documentation and data files free of Python diagnostics in %s projects",
+		mode => {
+			const options = { mode, onChange: vi.fn(), onCursorCountChange: vi.fn() };
+			for (const fileName of ["report.md", "data/sample.csv", "notes.txt", "settings.json"]) {
+				const doc = "# Weekly report\n\nRecorded weeks: 4; mean: 7.00 trips per week.\n";
+				const note = EditorState.create({ doc, extensions: createPythonCodeMirrorExtensions({ ...options, fileName }) });
+				expect(note.doc.toString()).toBe(doc);
+				expect(note.languageDataAt("autocomplete", 0), fileName).toEqual([]);
+				expect(pythonSyntaxDiagnostics(note), fileName).toEqual([]);
+			}
+			const source = EditorState.create({ doc: "if True\n    print('missing colon')", extensions: createPythonCodeMirrorExtensions({ ...options, fileName: "main.py" }) });
+			expect(source.languageDataAt("autocomplete", 0)).not.toEqual([]);
+			expect(pythonSyntaxDiagnostics(source).length).toBeGreaterThan(0);
+		}
+	);
+
 	it("does not parse project notes as Java source", () => {
 		const options = {
 			mode: "java" as const,

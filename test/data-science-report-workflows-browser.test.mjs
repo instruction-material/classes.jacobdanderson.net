@@ -314,6 +314,14 @@ test("Data Science complete mini-report teaching, confirmed imports, continuatio
 						assert.equal(await page.$("[data-testid='ide-route-import-confirm']"), null);
 						const resumed = await run(page, width, `${expected[activity.title]}\n${marker}`);
 						const editedExport = await zip(page, reopened, `${currentLabel}-edited`);
+						let savedMarkdownEditorChecked = false;
+						if (activity.title === "Script and Markdown Conversion") {
+							if (width < 900) await page.locator(".mobile-view-picker button[data-view='code']").click();
+							assert.equal(await page.$eval("select[aria-label='Active project file']", element => element.value), "report.md");
+							await new Promise(resolve => setTimeout(resolve, 650));
+							assert.equal(await page.$$eval(".cm-lintRange-error, .cm-lint-marker-error", elements => elements.length), 0, "Saved Markdown must not receive Python syntax errors");
+							savedMarkdownEditorChecked = true;
+						}
 						if (activity.title === "Reproducible Mini Report" && sourceRole === "starter") {
 							const extension = fixture.activities.find(item => item.title === "Reproducibility Appendix");
 							inIde = false;
@@ -336,7 +344,7 @@ test("Data Science complete mini-report teaching, confirmed imports, continuatio
 						assert.deepEqual(pageErrors, []);
 						assert.equal(writes, 0);
 						await page.screenshot({ path: join(output, `${currentLabel}.png`) });
-						profiles.push({ label: currentLabel, role, width, activity: activity.item, sourceRole, key, originalExport, editedExport, before, after, resumed, consentVerified: true, earlierAttemptPreserved: true, continuedWithoutImport: true });
+						profiles.push({ label: currentLabel, role, width, activity: activity.item, sourceRole, key, originalExport, editedExport, before, after, resumed, consentVerified: true, earlierAttemptPreserved: true, continuedWithoutImport: true, savedMarkdownEditorChecked });
 					}
 				}
 				await context.close();
