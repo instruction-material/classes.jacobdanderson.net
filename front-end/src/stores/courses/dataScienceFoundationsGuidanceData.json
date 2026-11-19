@@ -484,5 +484,37 @@
 		"folder": "DSP-practice-final",
 		"learningPath": "challenge",
 		"content": "Open the starter and complete `build_views(rows)` before adapting it to an independent question. The bundled example includes the Domain Projects data and adds a route with zero coverage. North has 77 trips over nine measured days, and West has an unavailable rate.\n\nChoose a question and audience. Use the provided route-week data from Domain Projects or bring a documented dataset with suitable coverage. Write one claim supported by a table or chart and add a second view that checks it from another angle. For example, compare routes using trips per covered day, then show weekly coverage to explain how much evidence each comparison uses.\n\nDeliver a script, notebook or dashboard that regenerates the two views. Include the exact input, one hand-checked value, a missing-data or filter check, the final claim and an important limitation. For the supplied transit fallback, a site with no covered days must display an unavailable rate.\n\nKeep the question narrow enough that a reader can rerun the first version and identify which record or calculation supports the claim."
+	},
+	{
+		"module": "Module 9: Data Science Capstone",
+		"title": "Build a Dashboard or Narrative Notebook",
+		"group": "curriculum",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Use the laptop-loan data from the core capstone or another documented dataset with the same question and coverage checks. Choose a dashboard when the audience needs to compare several selections. Choose a narrative notebook when the audience needs a fixed walk-through from input to conclusion.\n\nFor a dashboard, add a phase control with **Both**, **Before** and **After**. Show the selected phase, measured hours and loan rate together. With Both selected, the sample rates are 3.00 and 4.00 loans per measured hour. With Before selected, retain 14 measured hours and label the excluded week. Try a selection containing zero measured hours and replace the rate with an explanation.\n\nFor a notebook, order the cells as source and units, coverage check, grouped calculation, labeled comparison and conclusion. Restart the kernel and run every cell in order. The Before result is 42 loans over 14 measured hours. Verify that the narrative and chart show the same denominator.\n\nDeliver the exact input and run instructions. Include the default result, one boundary check and the limit of the before-and-after comparison."
+	},
+	{
+		"module": "Module 9: Data Science Capstone",
+		"title": "Core Project: Data Science Capstone",
+		"group": "curriculum",
+		"contentKind": "assignment",
+		"folder": "DSP-14-module-9-data-science-capstone",
+		"content": "Open **Compare Laptop Loan Rates** and complete `summarize(observations)`. The supplied fictional observations contain one phase-week per row. A zero loan count with positive observed hours is a measurement. A blank loan count or zero hours leaves that row outside the rate calculation. Preserve an exclusion count for each phase.\n\nUse total measured loans divided by total measured hours. The sample Before phase has 42 loans and 14 hours, or 3.00 per hour. After has 60 loans and 15 hours, or 4.00 per hour. Run the project to produce `report.md`. Check one value by hand and verify that the saved table and console agree.\n\nRun a second input where one phase lacks measured hours. Confirm that the report omits the numeric comparison and names the coverage limit. Submit the code, exact input, reproducible report and one reason the observed rate difference cannot establish the effect of the pilot."
+	},
+	{
+		"module": "Module 9: Data Science Capstone",
+		"title": "Transfer Practice: Data Science Capstone",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-18-module-9-data-science-capstone-supplemental-2",
+		"content": "Open **Verify a Data Revision**. Complete `changes(previous, revised)` to report added and removed phase-week records and field changes. Compare the two supplied snapshots by their phase and week keys. The output records the exact file fingerprints without changing the input.\n\nIn the default example, the After W3 loan count changes from 8 to 11. Total After loans rise from 60 to 63 while measured hours stay at 15. Check that the reported rate changes from 4.00 to 4.20. Reorder the original rows in a copy and compare it to the original. Its file fingerprint changes while its record comparison reports no changes.\n\nDeliver both file versions, the changed-field log and a sentence naming which result needs rechecking before reusing the report."
+	},
+	{
+		"module": "Module 9: Data Science Capstone",
+		"title": "Extension Practice: Data Science Capstone",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-19-module-9-data-science-capstone-supplemental-3",
+		"content": "Open **Stress-Test Coverage**. Complete `coverage_summary(observations, minimum_hours)` so both phases use the same minimum. Compare the baseline of one hour with the default threshold of seven. For each phase, display the remaining measured rows and hours beside the recalculated rate.\n\nWith seven hours, the Before rate stays at 3.00 while measured hours fall from 14 to 8. The After rate increases from 4.00 to 4.86 while its measured hours fall from 15 to 7. Check that a threshold of nine makes both rates unavailable. Cite the remaining hours when interpreting any difference.\n\nDeliver both settings, the two comparison outputs and a conclusion explaining how the stricter rule changes the amount of evidence available."
 	}
 ]

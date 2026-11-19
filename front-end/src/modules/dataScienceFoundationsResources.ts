@@ -33,6 +33,12 @@ const practiceFolders = new Set([
 	"DSP-practice-final"
 ]);
 
+const capstoneFolders = new Set([
+	"DSP-14-module-9-data-science-capstone",
+	"DSP-18-module-9-data-science-capstone-supplemental-2",
+	"DSP-19-module-9-data-science-capstone-supplemental-3"
+]);
+
 export function dataScienceFoundationsSource(folder: string) {
 	if (reproducibilityFolders.has(folder)) {
 		return {
@@ -59,6 +65,13 @@ export function dataScienceFoundationsSource(folder: string) {
 		return {
 			revision: "f61098dfc5e48ef13aeda2d138ffb49806f6ffdf",
 			keySuffix: "practice-v1",
+			datasetPath: "data/sample.csv"
+		};
+	}
+	if (capstoneFolders.has(folder)) {
+		return {
+			revision: "13e4ec875633a2f94ca5f75f8081d223b4485c14",
+			keySuffix: "capstone-v1",
 			datasetPath: "data/sample.csv"
 		};
 	}
