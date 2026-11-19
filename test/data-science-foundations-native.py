@@ -118,7 +118,9 @@ def verify():
                 assert record["name"].endswith(".zip") and PurePosixPath(record["name"]).name == record["name"]
                 role = "solution" if stage == "edited" else original_role
                 expected = pack["roles"][role]
-                files = dict(expected["files"])
+                # The browser edits main.py in the imported project. Its other
+                # files, including the starter README, retain their original bytes.
+                files = dict(pack["roles"][original_role]["files"])
                 output = expected["stdout"]
                 if stage == "edited":
                     edited = pinned[pack["revision"]][f"{folder}/solution/main.py"] + "\nprint(" + json.dumps(profile["marker"]) + ")\n"
@@ -142,7 +144,7 @@ def verify():
                             relative[child] = zipped.read(name)
                         assert len(roots) == 1
                         generated = expected.get("generated", {})
-                        assert {name: digest(data) for name, data in relative.items()} == files | generated
+                        assert {name: digest(data) for name, data in relative.items()} == files | generated, record["name"]
                         for name, data in relative.items():
                             target = project / name
                             target.parent.mkdir(parents=True, exist_ok=True)
