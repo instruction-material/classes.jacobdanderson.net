@@ -5685,10 +5685,18 @@ else:
 		expect(isValidPythonFileName("package/data.csv")).toBe(true);
 		expect(isValidPythonFileName("package/data.tsv")).toBe(true);
 		expect(isValidPythonFileName("data/scores.csv", "data")).toBe(true);
+		expect(isValidPythonFileName("outputs/report.json")).toBe(true);
+		expect(isValidPythonFileName("outputs/report.json", "data")).toBe(
+			true
+		);
 		for (const mode of ["cpp", "c", "java", "turtle", "pgzero"] as const) {
 			expect(isValidPythonFileName("data/scores.csv", mode), mode).toBe(
 				false
 			);
+			expect(
+				isValidPythonFileName("outputs/report.json", mode),
+				mode
+			).toBe(false);
 			expect(isValidPythonFileName("scores.csv", mode), mode).toBe(true);
 		}
 		expect(isValidPythonFileName("data/holdout/scores.csv", "data")).toBe(
@@ -5699,8 +5707,11 @@ else:
 			"/data/scores.csv",
 			"data//scores.csv",
 			"data/.hidden.csv",
+			"outputs/../report.json",
+			"outputs/.hidden.json",
 			"images/scores.csv",
-			"sounds/scores.tsv"
+			"sounds/scores.tsv",
+			"sounds/report.json"
 		])
 			expect(isValidPythonFileName(path, "data"), path).toBe(false);
 		expect(isValidPythonFileName("../scores.tsv")).toBe(false);

@@ -138,7 +138,7 @@ const JAVA_SERVICE_PROVIDER_PATH_RE =
 	/^META-INF\/services\/[A-Z_a-z]\w*(?:\.[A-Z_a-z]\w*)+$/;
 const NATIVE_WORKSHEET_FILE_RE =
 	/^(?:starter|solution)\/(?:analysis|trace)\.md$/i;
-const NESTED_DATA_FILE_RE = /\.(?:csv|tsv)$/i;
+const NESTED_DATA_FILE_RE = /\.(?:csv|json|tsv)$/i;
 const ROOT_TEXT_FILE_RE =
 	/^(?:makefile|\w[\w.-]*\.(?:[sch]|cc|cpp|cxx|hpp|csv|eps|expected|in|java|json|md|out|ps|py|svg|tsv|txt|xml))$/i;
 const IMAGE_FILE_RE = /^images\/\w[\w.-]*\.(?:gif|jpe?g|png|svg|webp)$/i;
