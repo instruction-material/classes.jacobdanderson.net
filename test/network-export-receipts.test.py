@@ -1,6 +1,8 @@
 """Regressions for distinct saved projects sharing one Network source pack."""
 import copy
 import hashlib
+import subprocess
+import sys
 from pathlib import Path
 import tempfile
 import unittest
@@ -31,6 +33,21 @@ class ExportReceiptTests(unittest.TestCase):
             profile[variant + "Archive"] = name
             profile[variant + "ArchiveSha256"] = hashlib.sha256(raw).hexdigest()
         return profile
+
+    def test_all_ten_native_entrypoints_load_with_isolated_python(self):
+        root = Path(__file__).resolve().parent
+        families = ["capstone", "setup", "transport", "inventory", "dns-optional",
+                    "kernel-optional", "firewall-optional", "capstone-optional",
+                    "diagnostics-five", "archive-six"]
+        for family in families:
+            script = root / ("network-" + family + "-exported-contracts.py")
+            with self.subTest(family=family):
+                code = "import runpy; scope = runpy.run_path(" + repr(str(script)) + "); assert callable(scope['export_profile']) and callable(scope['read_export'])"
+                result = subprocess.run([sys.executable, "-I", "-B", "-c", code],
+                                        cwd=self.output, capture_output=True, text=True, timeout=10)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertEqual(result.stdout, "")
+                self.assertEqual(result.stderr, "")
 
     def test_shared_pack_selects_the_requested_saved_project(self):
         actual = export_profile(self.browser, self.fixture, "starter", 390)

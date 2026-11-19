@@ -11,7 +11,14 @@ import tempfile
 import zipfile
 from pathlib import Path, PurePosixPath
 
-from network_export_receipts import export_profile, read_export
+# Resolve the sibling verifier by its trusted source path, including python -I.
+import importlib.util
+
+_receipt_spec = importlib.util.spec_from_file_location(
+    "network_export_receipts", Path(__file__).resolve().with_name("network_export_receipts.py"))
+_receipts = importlib.util.module_from_spec(_receipt_spec)
+_receipt_spec.loader.exec_module(_receipts)
+export_profile, read_export = _receipts.export_profile, _receipts.read_export
 
 
 def digest(data):
