@@ -516,5 +516,29 @@
 		"contentKind": "assignment",
 		"folder": "DSP-19-module-9-data-science-capstone-supplemental-3",
 		"content": "Open **Stress-Test Coverage**. Complete `coverage_summary(observations, minimum_hours)` so both phases use the same minimum. Compare the baseline of one hour with the default threshold of seven. For each phase, display the remaining measured rows and hours beside the recalculated rate.\n\nWith seven hours, the Before rate stays at 3.00 while measured hours fall from 14 to 8. The After rate increases from 4.00 to 4.86 while its measured hours fall from 15 to 7. Check that a threshold of nine makes both rates unavailable. Cite the remaining hours when interpreting any difference.\n\nDeliver both settings, the two comparison outputs and a conclusion explaining how the stricter rule changes the amount of evidence available."
+	},
+	{
+		"module": "Module 7: Dashboards with Altair and Streamlit",
+		"title": "Core Project: Dashboards with Altair and Streamlit",
+		"group": "curriculum",
+		"contentKind": "assignment",
+		"folder": "DSP-13-module-7-dashboards-with-altair-and-streamlit",
+		"content": "Open **Compare Room Check-ins by Day** and complete `summarize_day(rows, day)`. The fictional dataset contains one room and day per row. Calculate the total from exactly the selected rows and reuse those rows for the chart and table.\n\nThe IDE runs the calculation in `main.py`. Monday contains 6 Quiet and 12 Studio check-ins, totaling 18. Change the command's default day to Tuesday in the IDE or run `python main.py --day Tuesday` locally. Tuesday includes an observed zero for Quiet and 9 arrivals at Studio. Check both totals by hand.\n\nFollow the README to launch `dashboard.py` with Streamlit locally. Use the Day control and check that the Altair chart, table, total and caption change together. Deliver evidence of both day selections and explain that repeat visits contribute to check-in counts."
+	},
+	{
+		"module": "Module 7: Dashboards with Altair and Streamlit",
+		"title": "Transfer Practice: Dashboards with Altair and Streamlit",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-14-module-7-dashboards-with-altair-and-streamlit-supplemental-2",
+		"content": "Open **Distinguish Empty Filters from Zero** and complete `filter_observations(rows, day, room)`. Match the selected day and room. The All rooms selection applies the day filter while retaining every room observed that day.\n\nIn the IDE, run the default view and change the default Day and Room values to test two boundaries. Tuesday Quiet has a measured count of zero. Wednesday Quiet has no matching observation. In the local dashboard, confirm that the first case retains a table and chart and the second shows a clear unavailable message.\n\nSwitch the Room control from Quiet to All rooms while keeping Wednesday selected. Studio's four check-ins appear in the chart, table and total. Save evidence of all three states and explain the coverage represented by each."
+	},
+	{
+		"module": "Module 7: Dashboards with Altair and Streamlit",
+		"title": "Extension Practice: Dashboards with Altair and Streamlit",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-15-module-7-dashboards-with-altair-and-streamlit-supplemental-3",
+		"content": "Open **Keep a Common Scale for Day Comparisons** and complete `comparable_panels(rows, first_day, second_day)`. Filter the days independently and obtain the common upper limit from the full dataset. The bundled data gives both charts a range of 0 to 12 observed check-ins.\n\nRun the calculation in the IDE and compare Monday with Tuesday. Then use the native dashboard controls to compare Tuesday with Wednesday. Wednesday's Studio value is 4, and both charts retain the 0 to 12 range. Check that each table lists only the observed rooms for its selected day.\n\nSubmit both filtered tables, the two chart views, and a sentence explaining why a common scale makes values comparable. Repeat with an all-zero sample and verify that the chart domain retains room to display zero."
 	}
 ]

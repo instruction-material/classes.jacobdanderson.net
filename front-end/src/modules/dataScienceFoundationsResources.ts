@@ -39,6 +39,12 @@ const capstoneFolders = new Set([
 	"DSP-19-module-9-data-science-capstone-supplemental-3"
 ]);
 
+const dashboardFolders = new Set([
+	"DSP-13-module-7-dashboards-with-altair-and-streamlit",
+	"DSP-14-module-7-dashboards-with-altair-and-streamlit-supplemental-2",
+	"DSP-15-module-7-dashboards-with-altair-and-streamlit-supplemental-3"
+]);
+
 export function dataScienceFoundationsSource(folder: string) {
 	if (reproducibilityFolders.has(folder)) {
 		return {
@@ -72,6 +78,13 @@ export function dataScienceFoundationsSource(folder: string) {
 		return {
 			revision: "13e4ec875633a2f94ca5f75f8081d223b4485c14",
 			keySuffix: "capstone-v1",
+			datasetPath: "data/sample.csv"
+		};
+	}
+	if (dashboardFolders.has(folder)) {
+		return {
+			revision: "a204c5bd882e77cb8d5de645cf4993ca4396dd14",
+			keySuffix: "dashboard-room-v1",
 			datasetPath: "data/sample.csv"
 		};
 	}
