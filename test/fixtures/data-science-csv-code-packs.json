@@ -208,15 +208,6 @@
 			"sourceFree": true
 		},
 		{
-			"module": "data-science-in-python-dsp13-applied-studio-visualization-choice-and-chart-integrity",
-			"item": "data-science-in-python-dsp13-applied-studio-visualization-choice-and-chart-integrity-supplemental-chart-critique",
-			"title": "Chart Critique",
-			"group": "supplementalProjects",
-			"content": "Write a chart critique that identifies the intended audience, the visual claim, the evidence, and one way the chart could mislead a reader.\n\nChoose one chart from the current visualization work. Identify its question, audience, variables, units and source. Inspect scale limits, labels, grouping and any omitted observations. Explain one specific risk, such as a truncated bar-chart baseline exaggerating a difference, then propose a correction that preserves the measured values. Deliver an annotated chart or an equivalent written reference to its visible features, the supported claim and one remaining limitation.",
-			"contentKind": "assignment",
-			"sourceFree": true
-		},
-		{
 			"module": "data-science-in-python-module-6-storytelling-with-data",
 			"item": "data-science-in-python-module-6-storytelling-with-data-supplemental-analysis-log-storytelling-with-data",
 			"title": "Analysis Log: Storytelling with Data",

@@ -8,6 +8,7 @@ import { applyAlgebra1ACourseReadings } from "./algebra1ACourseReadings";
 import { applyAlgebra1APractice } from "./algebra1APractice";
 import { applyAlgebraErrorAnalysisCases } from "./algebraErrorAnalysisCases";
 import { applyCourseImplementationArtifacts } from "./course-implementation-artifacts";
+import { applyDataScienceChartGuidance } from "./dataScienceChartGuidance";
 import { applyDataScienceCleaningGuidance } from "./dataScienceCleaningGuidance";
 import { applyDataScienceCsvGuidance } from "./dataScienceCsvGuidance";
 import { applyDataScienceGroupedGuidance } from "./dataScienceGroupedGuidance";
@@ -9958,6 +9959,7 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 		applyDataScienceCleaningGuidance(course);
 		applyDataScienceGroupedGuidance(course);
 		applyDataScienceReportGuidance(course);
+		applyDataScienceChartGuidance(course);
 	}
 	return course;
 }

@@ -18,7 +18,7 @@ browser = json.loads((output / 'proof.json').read_text())
 head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=root, text=True).strip()
 assert browser['complete'] and browser['sourceCommit'] == head
 assert browser['sourceRevision'] == fixture['revision']
-assert len(browser['profiles']) == 22 and len(browser['readingViews']) == 84
+assert len(browser['profiles']) == 22 and len(browser['readingViews']) == 80
 assert sys.version_info[:2] == (3, 14)
 source_activity = {a['item']: a for a in fixture['activities']}
 results = []

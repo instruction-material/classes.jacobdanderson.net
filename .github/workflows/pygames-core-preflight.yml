@@ -8,7 +8,7 @@ on:
       course:
         description: Course verification to run
         type: choice
-        options: [data-science-report, data-science-grouped, data-science-cleaning, data-science-csv, machine-learning-library, javascript-superstar-readings, machine-learning-neurons, machine-learning, network-practice, network-archive-six, javascript-circle-march, network-capstone-optional, network-diagnostics-five, network-kernel-optional, network-firewall-optional, network-dns-optional, java-refactoring-followup, java-refactoring-final, release-checks, ai-studios, swift-map, javascript-business-directory, java-testability, java-pattern-journeys, java-generalization, java-method-calls, javascript-hundred-squares, javascript-businesses, javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
+        options: [data-science-chart, data-science-report, data-science-grouped, data-science-cleaning, data-science-csv, machine-learning-library, javascript-superstar-readings, machine-learning-neurons, machine-learning, network-practice, network-archive-six, javascript-circle-march, network-capstone-optional, network-diagnostics-five, network-kernel-optional, network-firewall-optional, network-dns-optional, java-refactoring-followup, java-refactoring-final, release-checks, ai-studios, swift-map, javascript-business-directory, java-testability, java-pattern-journeys, java-generalization, java-method-calls, javascript-hundred-squares, javascript-businesses, javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
         default: pygames
       full_source_runtime:
         description: Also verify every pinned original PyGames runtime profile
@@ -2849,6 +2849,101 @@ jobs:
         with:
           name: data-science-report-workflows
           path: output/data-science-report/
+          if-no-files-found: error
+          retention-days: 14
+
+
+
+  data-science-chart:
+    if: inputs.course == 'data-science-chart'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      CLASSES_FAMILY_TASK_ID: data-science-chart-${{ github.run_id }}
+      DATA_SCIENCE_REPORT_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/data-science-chart
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: "3.14.10"
+      - name: Verify both locked installations and all dependency audit scopes
+        run: |
+          npm install --global npm@12.0.1
+          test "$(npm --version)" = "12.0.1"
+          mkdir -p output/data-science-chart/audits
+          node scripts/classes-family-heavy-task.mjs -- npm ci
+          npm run check:dependencies
+          npm run lock:provenance:check
+          npm audit --json --audit-level=info > output/data-science-chart/audits/root-full.json
+          npm audit --omit=dev --json --audit-level=info > output/data-science-chart/audits/root-production.json
+          node --test test/standalone-backend-install-policy.test.mjs
+      - name: Verify standalone backend installation and both audits
+        working-directory: back-end
+        run: |
+          node ../scripts/classes-family-heavy-task.mjs -- npm ci --include=optional --strict-allow-scripts --workspaces=false
+          npm ls --all --workspaces=false
+          npm audit --include=optional --workspaces=false --json --audit-level=info > "$GITHUB_WORKSPACE/output/data-science-chart/audits/backend-full.json"
+          npm audit --include=optional --omit=dev --workspaces=false --json --audit-level=info > "$GITHUB_WORKSPACE/output/data-science-chart/audits/backend-production.json"
+      - name: Verify Network export receipt selection and archive integrity
+        run: python3 -B test/network-export-receipts.test.py
+      - name: Verify complete chart imports, saved work, course flow and historical identities
+        run: >-
+          node scripts/classes-family-heavy-task.mjs -- npm exec -w front-end -- vitest run
+          test/data-science-chart-workspace.spec.test.ts test/data-science-report-workspace.spec.test.ts test/python-codemirror-editor.spec.test.ts test/data-science-grouped-workspace.spec.test.ts test/data-science-cleaning-workspace.spec.test.ts test/data-science-csv-workspace.spec.test.ts test/store.courses.student-facing-copy.spec.test.ts test/store.courses.data-science-flow.spec.test.ts
+          test/store.courses.catalog-identities.spec.test.ts test/store.courses.progress-identity.spec.test.ts
+          test/python-ide.module.spec.test.ts test/components.courseexplorer.spec.test.ts
+          --no-file-parallelism --maxWorkers=1
+      - name: Verify complete course quality, lint, types and build both workspaces
+        run: |
+          node scripts/classes-family-heavy-task.mjs -- npm run -w front-end test:course-quality
+          node scripts/classes-family-heavy-task.mjs -- npm run lint
+          node scripts/classes-family-heavy-task.mjs -- npm run typecheck
+          node scripts/classes-family-heavy-task.mjs -- npm run build
+      - name: Verify actual readings, consent, Python runs, saved continuation and browser ZIPs
+        id: chart_browser
+        run: node scripts/classes-family-heavy-task.mjs -- node --test test/data-science-chart-workflows-browser.test.mjs
+      - name: Install and audit the exact native Matplotlib dependency graphs
+        if: steps.chart_browser.outcome == 'success'
+        env:
+          MPLBACKEND: Agg
+        run: |
+          python3 -I -B - <<'PY'
+          from pathlib import Path
+          import hashlib, json
+          fixture = json.loads(Path("test/fixtures/data-science-chart-code-packs.json").read_text())
+          output = Path("output/data-science-chart")
+          locks = {"requirements-ci.txt": fixture["nativeCIRequirements"]}
+          locks["requirements.txt"] = next(v for k, v in fixture["files"].items() if k.endswith("/requirements.txt"))
+          for name, record in locks.items():
+              assert hashlib.sha256(record["content"].encode()).hexdigest() == record["sha256"]
+              (output / name).write_text(record["content"])
+          PY
+          python3 -m pip install --require-hashes -r output/data-science-chart/requirements-ci.txt
+          python3 -m pip check
+          python3 -m pip_audit --strict --require-hashes --disable-pip -r output/data-science-chart/requirements.txt --format json --output output/data-science-chart/audits/native-runtime.json
+          python3 -m pip_audit --strict --require-hashes --disable-pip -r output/data-science-chart/requirements-ci.txt --format json --output output/data-science-chart/audits/native-full.json
+      - name: Execute every actual browser ZIP in native Python 3.14
+        if: steps.chart_browser.outcome == 'success'
+        run: node scripts/classes-family-heavy-task.mjs -- python3 -I -B test/data-science-chart-exported-native.py
+      - name: Retain exact application identity and process records
+        if: always()
+        run: |
+          mkdir -p output/data-science-chart
+          git rev-parse HEAD > output/data-science-chart/site-source.txt
+          git diff --name-only > output/data-science-chart/tracked-changes.txt
+          cp /tmp/classes-family-heavy-tasks.log output/data-science-chart/processes.jsonl
+      - name: Retain original browser exports, screenshots, native runs and audits
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: data-science-chart-workflows
+          path: output/data-science-chart/
           if-no-files-found: error
           retention-days: 14
 

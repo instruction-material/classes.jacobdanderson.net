@@ -36,6 +36,7 @@ import {
 } from "@/modules/courseLessonPresentation";
 import { unmatchedCourseProgress } from "@/modules/courseProgressHistory";
 import { visibleCourseModules } from "@/modules/courseVisibility";
+import { dataScienceChartProjectKey } from "@/modules/dataScienceChartResources";
 import { dataScienceCleaningProjectKey } from "@/modules/dataScienceCleaningResources";
 import { dataScienceCsvProjectKey } from "@/modules/dataScienceCsvResources";
 import { dataScienceGroupedProjectKey } from "@/modules/dataScienceGroupedResources";
@@ -1843,12 +1844,18 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 	if (selectedCourse.value.id === "data-science-in-python") {
 		params.set(
 			"projectKey",
-			dataScienceReportProjectKey(
+			dataScienceChartProjectKey(
 				selectedCourse.value.id,
 				item.id,
 				resource.kind === "solution" ? "reference" : "starter",
 				starterUrl
 			) ??
+				dataScienceReportProjectKey(
+					selectedCourse.value.id,
+					item.id,
+					resource.kind === "solution" ? "reference" : "starter",
+					starterUrl
+				) ??
 				dataScienceGroupedProjectKey(
 					selectedCourse.value.id,
 					item.id,

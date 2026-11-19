@@ -95,13 +95,6 @@
 		"contentKind": "assignment"
 	},
 	{
-		"module": "DSP13 Applied Studio: Visualization Choice and Chart Integrity",
-		"group": "supplementalProjects",
-		"title": "Chart Critique",
-		"content": "Write a chart critique that identifies the intended audience, the visual claim, the evidence, and one way the chart could mislead a reader.\n\nChoose one chart from the current visualization work. Identify its question, audience, variables, units and source. Inspect scale limits, labels, grouping and any omitted observations. Explain one specific risk, such as a truncated bar-chart baseline exaggerating a difference, then propose a correction that preserves the measured values. Deliver an annotated chart or an equivalent written reference to its visible features, the supported claim and one remaining limitation.",
-		"contentKind": "assignment"
-	},
-	{
 		"module": "Module 6: Storytelling with Data",
 		"group": "supplementalProjects",
 		"title": "Analysis Log: Storytelling with Data",
