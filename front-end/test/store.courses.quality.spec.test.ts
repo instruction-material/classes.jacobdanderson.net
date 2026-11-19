@@ -5396,7 +5396,7 @@ describe("course text quality normalization", () => {
 
 		for (const phrase of [
 			"no observations supplied a measured mean",
-			"Cleaning is an analytical decision",
+			"A cleaning policy makes each row decision visible",
 			"Grouped summaries answer different questions",
 			"A chart is an argument",
 			"rerun the analysis",

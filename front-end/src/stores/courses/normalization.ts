@@ -8,6 +8,7 @@ import { applyAlgebra1ACourseReadings } from "./algebra1ACourseReadings";
 import { applyAlgebra1APractice } from "./algebra1APractice";
 import { applyAlgebraErrorAnalysisCases } from "./algebraErrorAnalysisCases";
 import { applyCourseImplementationArtifacts } from "./course-implementation-artifacts";
+import { applyDataScienceCleaningGuidance } from "./dataScienceCleaningGuidance";
 import { applyDataScienceCsvGuidance } from "./dataScienceCsvGuidance";
 import { applyEarlyElementaryAProjects } from "./earlyElementaryAProjects";
 import { applyEarlyElementaryBProjects } from "./earlyElementaryBProjects";
@@ -9951,5 +9952,7 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 	if (id === "pythonic-design-patterns")
 		applyPythonicOpeningGuidance(course, historicalCourseProgressId);
 	if (id === "data-science-in-python") applyDataScienceCsvGuidance(course);
+	if (id === "data-science-in-python")
+		applyDataScienceCleaningGuidance(course);
 	return course;
 }
