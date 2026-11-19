@@ -2210,7 +2210,7 @@ describe("course text quality normalization", () => {
 				"Define the Project: Function Port Pack (PTJ1 Functions, Parameters, and Return Types) hosts, addresses, ports, routes, protocols, and trust boundaries before running diagnostics"
 			);
 			expect(corpus).toContain(
-				"Add one transfer case to the program that changes the input, representation, or success condition"
+				"Add a reversed-stage trace showing 1 becomes 3"
 			);
 			expect(corpus).toContain(
 				"Add one rule, control, level, reset, or feedback variation while preserving the main play goal"
