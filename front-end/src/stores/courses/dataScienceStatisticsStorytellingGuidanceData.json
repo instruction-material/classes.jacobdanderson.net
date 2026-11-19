@@ -1,0 +1,79 @@
+[
+	{
+		"module": "Module 5: Visualization and Statistics in Context",
+		"group": "curriculum",
+		"title": "Visualization and Statistics in Context Core Concepts",
+		"contentKind": "reading",
+		"content": "## First name the comparison\n\nA bar chart compares categories, a line chart follows a meaningful order such as time, and a scatterplot shows paired values. A histogram groups numeric measurements into intervals. A box plot summarizes parts of an ordered distribution. A table is useful when exact observations or denominators matter.\n\nA bar's length represents its value, so use a common baseline for bars that are compared by length. When showing a narrow range with points or a line, label the visible scale and explain the restricted range. To compare distributions, use the same bins and units. The same observations can show two peaks with narrow bins and one peak with wider bins.\n\n## Worked statistics check\n\nThe mixed sample is 32, 43, 87, 56, 34, 21, 21, 90, 76, 72 and 63. Eleven observations sum to 595. The arithmetic mean is 595 ÷ 11, about 54.09. The sixth value of the ordered list is 56, the median. The range is 90 − 21 = 69. Add a hypothetical 180 to a separate copy and check the new mean of about 64.58, median of 59.5 and range of 159. The original values remain the evidence for the original calculation.\n\n## Keep paired records together\n\nIn session A, temperatures 10, 11 and 12°C pair with 3, 2 and 1 visits. In session B, 20, 21 and 22°C pair with 8, 7 and 6 visits. A scatterplot can show both sets with distinct labels. The pooled linear correlation is positive, while each session slopes down. The sessions cover different temperature ranges. A pooled relationship alone cannot establish that a warmer reading caused more visits.\n\n[Python statistics reference](https://docs.python.org/3/library/statistics.html#statistics.correlation)"
+	},
+	{
+		"module": "Module 5: Visualization and Statistics in Context",
+		"group": "curriculum",
+		"title": "Core Project: Visualization and Statistics in Context",
+		"contentKind": "assignment",
+		"content": "Open the Simple Stats starter. Complete mean and median for the three retained input lists. For the median, order a copy of the values and use the one middle value for odd length or the mean of the middle pair for even length. An empty input has no measured mean or median, represented here by None.\n\nFor the mixed sample, report count 11, total 595, mean 595 ÷ 11 and median 56. Check that the original list order is unchanged. Use [4, 1, 3, 2] to check that the even median is 2.5, and an empty list to verify both functions return None. Report the statistic alongside the count and explain one situation where the mean alone would hide variation.",
+		"pack": "simple-stats"
+	},
+	{
+		"module": "Module 5: Visualization and Statistics in Context",
+		"group": "supplementalProjects",
+		"title": "Project: Simple Stats Starter",
+		"contentKind": "assignment",
+		"content": "Continue the saved Simple Stats core project. Keep an original copy of the mixed sample and add 180 to a new copy. Compare the mean and median of the two lists, and calculate each range from its minimum and maximum.\n\nThe original has 11 observations, mean about 54.09, median 56 and range 69. The changed list has 12 observations, mean about 64.58, median 59.5 and range 159. Record why the mean and range move, and why the large difference is evidence about sensitivity rather than a reason to delete an observation.\n\nRecalculate after removing only the added value. The original results return. Use a two-row comparison table with count, mean, median and range so each change can be inspected.",
+		"pack": "simple-stats"
+	},
+	{
+		"module": "Module 5: Visualization and Statistics in Context",
+		"group": "supplementalProjects",
+		"title": "Project: Mode Finder",
+		"contentKind": "assignment",
+		"content": "Complete mode(values) in the Mode Finder starter. Build a frequency table, find the maximum frequency, and return each value at that frequency in first-seen order. Return an empty list for empty input. When every value occurs once, report that all values tie; the result supplies no single typical value.\n\nThe retained repeated sample has modes 54, 56 and 57, each occurring three times. Trace [2, 1, 2, 1, 3] to [2, 1] and verify that the original list is unchanged. Explain how changing one observation can break a tie.\n\nIn a copied version of the repeated sample, append one 54. Expect only 54 as the mode. Report the frequencies before and after to show how the tie was resolved.",
+		"pack": "mode-finder"
+	},
+	{
+		"module": "Module 5: Visualization and Statistics in Context",
+		"group": "supplementalProjects",
+		"title": "Extension Practice: Visualization and Statistics in Context",
+		"contentKind": "assignment",
+		"content": "Complete split_sessions(rows) in the correlation starter. Preserve each temperature and visit count as a pair. Summarize the number of pairs and Pearson r for all rows, then for each session separately. A case with fewer than two pairs or a constant variable has an undefined r.\n\nThe pooled result has six pairs and r about 0.888. Sessions A and B each have three pairs and r = −1. Sketch the points with distinct session labels and describe how combining the two sets changes the apparent direction. State what further information would be needed before proposing a causal explanation.\n\nCreate a second file in which all three temperatures in session A are 10°C. Run that input and confirm that session A still has three pairs but its correlation is undefined.",
+		"pack": "DSP-11-module-5-visualization-and-statistics-in-context-supplemental-3"
+	},
+	{
+		"module": "Module 6: Storytelling with Data",
+		"group": "curriculum",
+		"title": "Storytelling with Data Core Concepts",
+		"contentKind": "reading",
+		"content": "## Compare the quantity in the question\n\n\"Did recorded bookings increase?\" asks about counts. \"Were a larger share of offered seats booked?\" asks about a rate. Both questions use the same observations but can give different answers.\n\n## Worked booking comparison\n\n| Period | Booked seats | Offered seats |\n| --- | ---: | ---: |\n| Early, session 1 | 10 | 12 |\n| Early, session 2 | 8 | 12 |\n| Late, session 1 | 14 | 20 |\n| Late, session 2 | 10 | 20 |\n\nAdd the numerator and denominator within each period. The early period has 18 of 24 seats booked, 75%. The late period has 24 of 40, 60%. There are six more bookings and the share is 15 percentage points lower. The additional capacity changes the denominator. Dividing by seats answers a different question than dividing by the number of sessions.\n\n## Keep the claim within the records\n\nA short club update can state both figures and their direction. A planning note can use the same figures and identify attendance and turnaways as additional evidence before changing capacity. This dataset reports bookings. Attendance, demand and explanations of what caused the comparison need separate evidence. If a period offered zero seats, its share is undefined. If it offered ten seats and booked none, its share is a measured zero."
+	},
+	{
+		"module": "Module 6: Storytelling with Data",
+		"group": "curriculum",
+		"title": "Core Project: Storytelling with Data",
+		"contentKind": "assignment",
+		"content": "Open the supplied starter and complete evidence(rows). Total booked and offered seats separately within each period. Keep the numerator and denominator together when calculating the share. The report includes both periods, the booking change and the booking-share change in percentage points.\n\nThe supplied input reports early 18 of 24 (75.0%) and late 24 of 40 (60.0%), an increase of six bookings and a decrease of 15 percentage points. Write two sentences that accurately state both comparisons and one limit. Retain the CSV, the run and those sentences so another reader can check the claim.\n\nIn a separate input, add an early record with 2 of 8 seats booked. Rerun the report and check that early is now 20 of 32, or 62.5%.",
+		"pack": "DSP-12-module-6-storytelling-with-data"
+	},
+	{
+		"module": "Module 6: Storytelling with Data",
+		"group": "supplementalProjects",
+		"title": "Analysis Log: Storytelling with Data",
+		"contentKind": "assignment",
+		"content": "Record the claim, the four input rows, and which values contribute to each numerator and denominator. Include a hand check of 18 ÷ 24 and 24 ÷ 40, the difference of six bookings, and the difference of −15 percentage points.\n\nUnderline each claim that follows directly from the input. Write one separate question about actual attendance or unmet demand, and identify what additional records would answer it. Include the file name and its role in the analysis so the log can be checked independently.\n\nKeep the observation and the inference on separate lines. A reader can compare the arithmetic to the CSV, then see which attendance or demand information would still be needed."
+	},
+	{
+		"module": "Module 6: Storytelling with Data",
+		"group": "supplementalProjects",
+		"title": "Transfer Practice: Storytelling with Data",
+		"contentKind": "assignment",
+		"content": "Complete captions(comparison) from the transfer starter. Produce a club update and a capacity-planning note. Both versions use the same denominators and make it clear they are describing recorded bookings. Choose one mention of missing evidence that matters for the planning decision.\n\nBoth captions preserve 18 of 24 (75.0%) and 24 of 40 (60.0%). Only the planning version needs the next evidence request. Compare your result with the supplied reference and explain why changing the audience does not change the underlying observation.\n\nRead each caption aloud and mark where it gives the denominator. If a shorter version omits offered seats, check whether a reader could still interpret the comparison correctly.",
+		"pack": "DSP-12-module-6-storytelling-with-data-supplemental-2"
+	},
+	{
+		"module": "Module 6: Storytelling with Data",
+		"group": "supplementalProjects",
+		"title": "Extension Practice: Storytelling with Data",
+		"contentKind": "assignment",
+		"content": "Complete scope(comparison) in the extension starter. The supplied file has no offered seats in the early period and 24 bookings out of 40 seats in the late period. The report must keep both counts and flag that a rate change is undefined.\n\nKeep the supplied file and try a second input with early zero bookings and ten offered seats. The first comparison has an undefined change. The second has a measured early share of zero and a change of 60 percentage points. Write one conclusion for each result and explain how the denominator determines which conclusion is supported.\n\nRetain both input files and both reports. Name the exact field that makes the first result undefined so the reason survives if the report is copied without the lesson.",
+		"pack": "DSP-13-module-6-storytelling-with-data-supplemental-3"
+	}
+]

@@ -43,6 +43,7 @@ import { dataScienceDashboardProjectKey } from "@/modules/dataScienceDashboardRe
 import { dataScienceFoundationsProjectKey } from "@/modules/dataScienceFoundationsResources";
 import { dataScienceGroupedProjectKey } from "@/modules/dataScienceGroupedResources";
 import { dataScienceReportProjectKey } from "@/modules/dataScienceReportResources";
+import { dataScienceStatisticsStorytellingProjectKey } from "@/modules/dataScienceStatisticsStorytellingResources";
 import { javaRecursionProjectKey } from "@/modules/javaRecursionResources";
 import { javaRefactoringProjectKey } from "@/modules/javaRefactoringResources";
 import {
@@ -1846,10 +1847,14 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 	if (selectedCourse.value.id === "data-science-in-python") {
 		params.set(
 			"projectKey",
-			dataScienceFoundationsProjectKey(
+			dataScienceStatisticsStorytellingProjectKey(
 				resource.kind === "solution" ? "reference" : "starter",
 				starterUrl
 			) ??
+				dataScienceFoundationsProjectKey(
+					resource.kind === "solution" ? "reference" : "starter",
+					starterUrl
+				) ??
 				dataScienceDashboardProjectKey(
 					selectedCourse.value.id,
 					item.id,
@@ -2325,7 +2330,12 @@ function writeStoredValue(key: string, value: string) {
 				>
 					<header class="reader-header">
 						<div class="reader-copy">
-							<p class="reader-eyebrow">
+							<p
+								v-if="
+									!/^Module \d+\b/i.test(activeModule.title)
+								"
+								class="reader-eyebrow"
+							>
 								{{ moduleKindLabel(activeModule) }}
 								{{ activeModule.position }}
 							</p>

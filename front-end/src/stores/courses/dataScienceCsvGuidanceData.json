@@ -67,13 +67,6 @@
 		"contentKind": "assignment"
 	},
 	{
-		"module": "Module 6: Storytelling with Data",
-		"group": "supplementalProjects",
-		"title": "Analysis Log: Storytelling with Data",
-		"content": "Keep a compact analysis log for storytelling with data that records the question being asked, the dataset assumptions being made, the exact columns or calculations used, and one short note about which part of the story is genuinely supported and which part is still only a hypothesis. The log separates supported claims from hypotheses that still need more evidence.\n\nUse one claim in the current data story. Record the exact table or chart supporting it, the measurement and comparison, and a sentence limiting the claim to the observed evidence. Separate a measured association from a proposed explanation. For example, a larger value after an event does not establish that the event caused the change. Deliver the claim-to-evidence link, one alternative explanation and a revision that avoids overstating the result.",
-		"contentKind": "assignment"
-	},
-	{
 		"module": "Module 7: Dashboards with Altair and Streamlit",
 		"group": "supplementalProjects",
 		"title": "Analysis Log: Dashboards with Altair and Streamlit",

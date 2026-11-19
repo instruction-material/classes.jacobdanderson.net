@@ -172,15 +172,6 @@
 			"sourceFree": true
 		},
 		{
-			"module": "data-science-in-python-module-6-storytelling-with-data",
-			"item": "data-science-in-python-module-6-storytelling-with-data-supplemental-analysis-log-storytelling-with-data",
-			"title": "Analysis Log: Storytelling with Data",
-			"group": "supplementalProjects",
-			"content": "Keep a compact analysis log for storytelling with data that records the question being asked, the dataset assumptions being made, the exact columns or calculations used, and one short note about which part of the story is genuinely supported and which part is still only a hypothesis. The log separates supported claims from hypotheses that still need more evidence.\n\nUse one claim in the current data story. Record the exact table or chart supporting it, the measurement and comparison, and a sentence limiting the claim to the observed evidence. Separate a measured association from a proposed explanation. For example, a larger value after an event does not establish that the event caused the change. Deliver the claim-to-evidence link, one alternative explanation and a revision that avoids overstating the result.",
-			"contentKind": "assignment",
-			"sourceFree": true
-		},
-		{
 			"module": "data-science-in-python-module-7-dashboards-with-altair-and-streamlit",
 			"item": "data-science-in-python-module-7-dashboards-with-altair-and-streamlit-supplemental-analysis-log-dashboards-with-altair-and-streamlit",
 			"title": "Analysis Log: Dashboards with Altair and Streamlit",

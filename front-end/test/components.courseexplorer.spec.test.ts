@@ -47,6 +47,40 @@ function installLocalStorageStub() {
 }
 
 describe("CourseExplorer.vue", () => {
+	it("shows the title number once for a numbered module", async () => {
+		const pinia = createPinia();
+		setActivePinia(pinia);
+		useAppStore().setCurrentUser({
+			_id: "data-science-learner",
+			name: "Learner",
+			email: "learner@example.invalid",
+			age: 14,
+			state: "GA",
+			courseAccess: ["data-science-in-python"],
+			courseProgress: [],
+			editUsers: false,
+			saveEdit: "Save"
+		});
+		vi.mocked(api.get).mockResolvedValue({ data: [] });
+		window.history.replaceState(
+			{},
+			"",
+			"/courses#data-science-in-python-module-4-cleaning-and-validation"
+		);
+		const wrapper = mount(CourseExplorer, { global: { plugins: [pinia] } });
+		try {
+			await vi.waitFor(() => {
+				expect(wrapper.get("#course-reader-panel h3").text()).toBe(
+					"Module 4: Cleaning and Validation"
+				);
+			});
+			expect(wrapper.find(".reader-eyebrow").exists()).toBe(false);
+		} finally {
+			wrapper.unmount();
+			window.history.replaceState({}, "", "/courses");
+		}
+	});
+
 	it("hides maintenance extras while retaining the original checkpoint tasks", async () => {
 		const pinia = createPinia();
 		setActivePinia(pinia);
