@@ -91,8 +91,16 @@ try:
             progress = observed_browser['dependencyProgress']
             packages = 'Pillow, contourpy, cycler, fonttools, kiwisolver, matplotlib, numpy, packaging, pyparsing, python-dateutil, pytz, six'
             assert progress in [[], ['Loading ' + packages, 'Loaded ' + packages]]
-            expected = observed_browser['programStdout']
-            assert observed_browser['stdout'] == ('\n'.join(progress) + '\n' if progress else '') + expected
+            browser_expected = observed_browser['programStdout']
+            expected = observed_browser['expectedNativeProgramStdout']
+            dropped = observed_browser['consoleBatchOmittedFinalPrompt']
+            prompt = 'Site (all, a label or quit): '
+            expected_drop = (stage == 'originalExport' and not extension and
+                             activity['title'] == 'Filtered Dashboard Build' and
+                             profile.get('sourceRole') == 'reference')
+            assert dropped == expected_drop
+            assert expected == browser_expected + ('\n' + prompt if dropped else '')
+            assert observed_browser['stdout'] == ('\n'.join(progress) + '\n' if progress else '') + browser_expected
             original = stage == 'originalExport' and not extension
             role = 'solution' if profile.get('sourceRole') == 'reference' else 'starter'
             names_expected = {'main.py', 'data/sample.csv', 'README.md'}
@@ -131,7 +139,8 @@ try:
                 if activity['title'] == 'Filtered Summary Export' and (not original or role == 'solution'):
                     assert (project / 'filtered-summary.csv').read_bytes() == (csv_all if original else csv_selected)
                 results.append(dict(file=receipt['file'], sha256=receipt['sha256'], actualStdout=observed,
-                    browserStdout=observed_browser['stdout'], browserProgramStdout=expected, dependencyProgress=progress,
+                    browserStdout=observed_browser['stdout'], browserProgramStdout=browser_expected, expectedNativeProgramStdout=expected,
+                    consoleBatchOmittedFinalPrompt=dropped, dependencyProgress=progress,
                     inputText=observed_browser['inputText'], everyArchiveMemberCompared=True,
                     exactEditedSourceVerified=True, exactGeneratedCSVVerified=exported_csv,
                     nativePythonVersion=platform.python_version(), matched=True))
@@ -143,6 +152,6 @@ finally:
     (output / 'native-acceptance.json').write_text(json.dumps(dict(
         accepted=accepted, sourceCommit=head, sourceRevision=fixture['revision'], pythonVersion=sys.version,
         startedAt=started, finishedAt=time.time(), actualExports=len(results), results=results, processes=processes,
-        comparisonBoundary='Every original ZIP byte and member is retained. Native Python runs the exact archived source with the original browser input. Only console empty-line batching and the separately retained exact paired runtime package-loading messages are accounted for. Generated CSV bytes include exact UTF-8 field order, filter metadata and CRLF line endings.',
+        comparisonBoundary='Every original ZIP byte and member is retained. Native Python runs the exact archived source with the original browser input. Only console empty-line batching, the two reference profiles: exact unterminated final quit prompt and the separately retained exact paired runtime package-loading messages are accounted for. Every native quit prompt remains checked. Generated CSV bytes include exact UTF-8 field order, filter metadata and CRLF line endings.',
         wholeCourseAccepted=False, liveDeploymentClaimed=False), indent=2) + '\n')
 print(json.dumps(dict(accepted=accepted, actualExports=len(results), pythonVersion=sys.version)))

@@ -79,7 +79,12 @@ function programOutput(stdout) {
 
 async function run(page, width, expectedText, inputText = "") {
 	// Console batching omits empty lines; the exported files retain their bytes.
-	const expected = expectedText.split("\n").filter(line => line !== "").join("\n");
+	const expectedNativeProgramStdout = expectedText.split("\n").filter(line => line !== "").join("\n");
+	// Pyodide batches complete lines. Only the terminal's final quit prompt lacks a newline.
+	const consoleBatchOmittedFinalPrompt = expectedNativeProgramStdout.endsWith(`\n${prompt}`);
+	const expected = consoleBatchOmittedFinalPrompt
+		? expectedNativeProgramStdout.slice(0, -(`\n${prompt}`).length)
+		: expectedNativeProgramStdout;
 	if (width < 900) await page.locator(".mobile-view-picker button[data-view='code']").click();
 	if (width < 900) await page.locator(".mobile-view-picker button[data-view='console']").click();
 	await page.locator(".stdin-panel textarea").fill(inputText);
@@ -113,6 +118,8 @@ async function run(page, width, expectedText, inputText = "") {
 	observed.dependencyProgress = observed.programStdout === observed.stdout ? [] : dependencyMessage.split("\n");
 	assert.equal(observed.programStdout, expected, JSON.stringify(observed));
 	observed.inputText = inputText;
+	observed.consoleBatchOmittedFinalPrompt = consoleBatchOmittedFinalPrompt;
+	observed.expectedNativeProgramStdout = expectedNativeProgramStdout;
 	return observed;
 }
 
