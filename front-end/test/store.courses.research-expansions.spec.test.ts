@@ -153,7 +153,8 @@ describe("research-backed course family expansions", () => {
 					expect(
 						course!.modules.filter(module => module.internal)
 					).toHaveLength(5);
-				} else if (courseId === "ai-level-1") {
+				}
+				else if (courseId === "ai-level-1") {
 					const reference = expansionModules.find(
 						module => module.title === "AI Level 1 Reference"
 					)!;
@@ -176,7 +177,8 @@ describe("research-backed course family expansions", () => {
 					expect(
 						course!.modules.filter(module => module.internal)
 					).toHaveLength(6);
-				} else if (courseId === "machine-learning") {
+				}
+				else if (courseId === "machine-learning") {
 					const reference = expansionModules.find(
 						module => module.id === "machine-learning-standards-map"
 					)!;
@@ -188,9 +190,10 @@ describe("research-backed course family expansions", () => {
 					expect(moduleText(reference)).toContain(
 						"https://scikit-learn.org/stable/modules/model_evaluation.html"
 					);
-				} else {
+				}
+				else {
 					expect(expansionText, courseId).toContain(
-						courseLabel + " Reference Guide"
+						`${courseLabel} Reference Guide`
 					);
 				}
 				expect(expansionText, courseId).toContain(
@@ -213,8 +216,8 @@ describe("research-backed course family expansions", () => {
 					expect(
 						items.every(
 							item =>
-								item.contentKind === "reading" &&
-								item.learningPath === "choice"
+								item.contentKind === "reading"
+								&& item.learningPath === "choice"
 						)
 					).toBe(true);
 					for (const phrase of [
@@ -224,7 +227,8 @@ describe("research-backed course family expansions", () => {
 						"recorded-capstone-observations-v1.md"
 					])
 						expect(roadmapText, courseId).toContain(phrase);
-				} else if (courseId === "physics-level-2") {
+				}
+				else if (courseId === "physics-level-2") {
 					for (const phrase of [
 						"PHY8 constant-acceleration equations",
 						"PHY9 free-body diagrams and PHY10 rope constraints",
@@ -233,7 +237,8 @@ describe("research-backed course family expansions", () => {
 						"/course-assets/physics/physics-level-2-rubrics-answer-key.md"
 					])
 						expect(roadmapText, courseId).toContain(phrase);
-				} else if (courseId === "intro-to-physics") {
+				}
+				else if (courseId === "intro-to-physics") {
 					expect(roadmapText, courseId).toContain(
 						"PHY2 signed velocity, PHY3 external forces and PHY4 kinetic energy before PHY8 momentum"
 					);
@@ -251,7 +256,8 @@ describe("research-backed course family expansions", () => {
 							`/course-assets/physics/${pack}`
 						);
 					}
-				} else if (courseId === "middle-school-integrated-science") {
+				}
+				else if (courseId === "middle-school-integrated-science") {
 					const roadmapItems = [
 						...roadmapModule!.curriculum,
 						...roadmapModule!.supplementalProjects
@@ -280,7 +286,8 @@ describe("research-backed course family expansions", () => {
 						"A notebook or digital document is sufficient."
 					])
 						expect(roadmapText, courseId).toContain(phrase);
-				} else if (courseId === "elementary-science") {
+				}
+				else if (courseId === "elementary-science") {
 					const roadmapItems = [
 						...roadmapModule!.curriculum,
 						...roadmapModule!.supplementalProjects
@@ -309,7 +316,8 @@ describe("research-backed course family expansions", () => {
 						"Each required activity links a local case-input section and an answer section"
 					])
 						expect(roadmapText, courseId).toContain(phrase);
-				} else if (courseId === "design-patterns-in-java") {
+				}
+				else if (courseId === "design-patterns-in-java") {
 					const items = [
 						...roadmapModule!.curriculum,
 						...roadmapModule!.supplementalProjects
@@ -326,7 +334,8 @@ describe("research-backed course family expansions", () => {
 						"JDK 21"
 					])
 						expect(roadmapText, courseId).toContain(detail);
-				} else if (courseId === "design-patterns-in-java-part-2") {
+				}
+				else if (courseId === "design-patterns-in-java-part-2") {
 					expect(roadmapModule!.curriculum).toHaveLength(4);
 					expect(
 						roadmapModule!.curriculum.every(
@@ -355,7 +364,20 @@ describe("research-backed course family expansions", () => {
 						"working public Java client"
 					])
 						expect(roadmapText, courseId).toContain(detail);
-				} else {
+				}
+				else if (courseId === "pythonic-design-patterns") {
+					expect(roadmapModule!.curriculum).toHaveLength(4);
+					expect(roadmapModule!.curriculum.every(item => item.contentKind === "reading")).toBe(true);
+					expect(roadmapModule!.supplementalProjects).toHaveLength(2);
+					for (const item of roadmapModule!.supplementalProjects) {
+						expect(item.contentKind, item.title).toBe("assignment");
+						expect(item.projectLink, item.title).toBeUndefined();
+						expect(item.solutionLink, item.title).toBeUndefined();
+					}
+					for (const detail of ["PDP9", "PDP12", "models.py", "test_contract.py", "requirements-dev.txt", "complete export", "dependency diagram", "successful clean reproduction"])
+						expect(roadmapText, courseId).toContain(detail);
+				}
+				else {
 					for (const label of [
 						"Map purpose",
 						"Map reading",
@@ -420,7 +442,7 @@ describe("research-backed course family expansions", () => {
 				"The order follows prerequisite dependency so each extension builds on skills already practiced.",
 				"**Useful module pattern:** A complete module states the concept, explains why it matters, includes one worked example, provides one practice task, checks understanding quickly, and offers one extension.",
 				"Links that are only background references are labeled that way so they do not look like required assignments.",
-				'Each edge explains the dependency in plain language, such as "requires arrays before 2D grids" or "requires variables before simulation state."',
+				"Each edge explains the dependency in plain language, such as \"requires arrays before 2D grids\" or \"requires variables before simulation state.\"",
 				"AP Computer Science An edge",
 				"The first version stays narrow, demonstrable, and easy to verify before optional polish is added.",
 				"**Required capstone brief:** Name the target user or problem, the exact project result, the core concept being reused from earlier modules, the minimum viable first version, and the evidence that will prove the first version works."
