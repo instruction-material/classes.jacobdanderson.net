@@ -206,5 +206,101 @@
 		"contentKind": "assignment",
 		"folder": "DSP-10-module-4-cleaning-and-validation-supplemental-3",
 		"content": "Complete `compare_policies(raw)` in the extension starter. Run the same validation pipeline with normalized labels and with exact labels only. Keep the input fixed and emit both summaries, the difference in accepted records and the difference in accepted trip totals.\n\nExpect five accepted records and 24 trips with repair. Expect three accepted records and 16 trips with the exact-label policy. Both start from ten original records. Inspect the accepted ID lists and explain why only R01 and R09 contribute to the change of two records and eight trips. Identify the operational assumption behind each policy and which evidence would support it."
+	},
+	{
+		"module": "Standards Map",
+		"title": "Data Science in Python Reference Guide",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "## Check a library operation\n\nUse the documentation for the installed version when a method's defaults matter. In the [pandas documentation](https://pandas.pydata.org/docs/), look up the operation, its missing-value behavior, and one example. Try the smallest input that distinguishes the two outcomes before applying the operation to a whole table.\n\n## Worked check\n\nFor a column containing 0, a missing value, and 6, the count of rows is three and the count of measured values is two. Averaging the measured values gives 3. Filling the missing value with zero first gives 2. Write down the rule you used and report the denominator alongside the mean.\n\nWhen a decision affects people, record who is represented in the table and who might be absent. An analysis with a correct calculation can still support an overly broad claim."
+	},
+	{
+		"module": "Standards Map",
+		"title": "Data Science in Python Core Skills",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "## Evidence for each skill\n\n- **Read a dataset.** Name the unit of observation, the column types, and the meaning of a missing value.\n- **Validate a transformation.** Retain the raw file and reconcile the accepted and rejected rows.\n- **Summarize a comparison.** Report the measurement, group size, and comparison window.\n- **Communicate a result.** Choose a display that makes the comparison readable and explain one limitation.\n- **Reproduce the result.** Run the saved analysis with identified inputs and compare the output with a separate check.\n\n## Worked check\n\nSite A has 2 and 4 trips. Site B has 8 trips in one record. A's mean is 3, B's is 8, and the mean across all records is 14 ÷ 3. Explain why the overall mean is different from the average of the two site means."
+	},
+	{
+		"module": "Standards Map",
+		"title": "Data Science in Python Next Topics",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "## Choose a question that extends the analysis\n\nAn exploratory analysis can lead to more careful measurement, a different graphical comparison, or a model. Pick the extension that would resolve an open question in the original report. A question about a seasonal pattern calls for comparable time windows. A question about differences between sites calls for checking coverage and group sizes.\n\n## Worked extension\n\nSuppose an observed trip count increases from 20 to 24. With one day of coverage in each period, the observed daily count rises by four. If the second period contains two days, its daily mean is 12. Add coverage dates before explaining what changed.\n\nWhen the comparison is reproducible, consider statistical inference for a sampling question, or Machine Learning for a prediction question with a defined target and an independent evaluation set."
+	},
+	{
+		"module": "Standards Map",
+		"title": "Data Science in Python Boundaries",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "## What a descriptive report can support\n\nState a claim about the records you analyzed. Identify the population you would need to observe to make a broader claim. For a comparison over time, check the coverage and how the measurement was collected. For a claim about causes, other plausible explanations and an appropriate study design matter.\n\n## Worked boundary check\n\nSuppose an event is followed by more bookings in the current table. Check how many days were observed on each side of the event and whether weekend days are represented equally. A defensible caption can report the observed comparison and name these differences as limits on the interpretation.\n\nUse published example data or synthetic records for sharing. Before publishing working files, check the dataset terms and remove personal identifiers that the analysis can do without."
+	},
+	{
+		"module": "Standards Map",
+		"title": "Data Science in Python Prerequisite Check",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Write the results of a four-row check before starting a spreadsheet or Python analysis. The input rows have trip counts 5, 0, blank, and 7. Record the row count, measured count, total, and mean of the measured values. Explain why the zero belongs in the denominator and the blank is treated separately. Recompute the mean after replacing the blank with zero, and state the assumption implicit in that decision.\n\nWrite one row of a data dictionary for this field. Include its name, units, valid values, and how the file signals a missing entry. Compare your two expected means with a hand calculation. Keep both results and explain which rule you would use with an unfamiliar source."
+	},
+	{
+		"module": "Standards Map",
+		"title": "Data Science in Python Pathway Map",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Choose one next step from stronger data preparation, a clearer report, or an introductory prediction project. Start with a result you can already reproduce. Name the current input, the exact calculation or chart, and the evidence that it works. Write the new question and one prerequisite that the new work will need.\n\nFor example, a report of mean trips by site can lead to a comparison across weeks. Before combining weeks, identify the coverage dates and decide how a missing day will be recorded. Set a small success check, such as reconciling the observed day counts for each site. Deliver the question, prerequisite, and check together with a short explanation of why you chose this next step."
+	},
+	{
+		"module": "Course Roadmap",
+		"title": "Data Science in Python Follow-Up Path",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "## Build on a finished report\n\nKeep one reproducible report as a baseline when moving to a harder problem. When the cleaning decisions are hard to explain, spend the next pass on data provenance and validation. When the comparison is difficult to read, revise the display or summarize the same measurement by a relevant group. When the question is predictive, write down the target and how the prediction would be evaluated on later observations.\n\n## Worked choice\n\nA transit report compares daily totals across routes. One route has fewer recorded days. A useful next project compares the number of observations per route and daily rates over a common period. Record the original result, the new question, and the specific evidence that changed the conclusion."
+	},
+	{
+		"module": "Course Roadmap",
+		"title": "Data Science in Python Resource Map",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "## Choose the material needed for the next action\n\nOpen **Learn** for explanations and worked examples. Use **Projects** for the central practice and **Supplemental Projects** for transfer and extension. A starter provides the initial files for a coding task. A dataset supplies the recorded values and their units. A reference implementation lets you check the behavior of a completed program.\n\n## Worked choice\n\nFor a cleaning task, inspect the original CSV before modifying the starter. Use a worked example to decide what the rule should do. Compare the output from your solution with the expected row counts. Save the resulting code in the same project, then download a copy if it needs to run outside the site.\n\nFor an open-data project, record the publisher, date range, license or use terms, and any transformations alongside the copy you analyzed."
+	},
+	{
+		"module": "Course Roadmap",
+		"title": "Data Science in Python Module Alignment Guide",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "## Move from evidence to a report\n\n| Section | Work to keep |\n| --- | --- |\n| Setup and notebook workflow | One rerun with recorded inputs and versions |\n| pandas foundations | A table with named columns, types, and a checked calculation |\n| Cleaning and validation | A decision log with original, accepted, and rejected counts |\n| Visualization and statistics | A display with units and an interpretable comparison |\n| Storytelling and dashboards | A claim tied to the data supporting it |\n| Domain projects and capstone | A report another reader can reproduce |\n\n## Worked transition\n\nA clean table alone does not answer a question. After validating a column of trip counts, choose a comparison such as mean trips by site. Record each site's group size and explain whether the comparison describes a typical row or a typical site."
+	},
+	{
+		"module": "Course Roadmap",
+		"title": "Data Science in Python Reference Map",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "## Find a check for each stage\n\nThe Standards Map explains what a course result should establish. The practice guide helps choose a next project and review the work. Use the toolchain notes when an external Python setup needs the packages or file structure required by a project.\n\n## Worked route\n\nFor a capstone that reports a mean by category, start with the earlier pandas example and save a tiny input whose result you can compute by hand. Consult cleaning and validation when fields are missing or duplicated. Review the matching chart example before writing a caption. Store the source, script, output, and assumptions together when you submit the report.\n\nWhen a reference example has several files, compare the result with the source files it ran on. This makes it possible to tell whether a mismatch came from the code or the inputs."
+	},
+	{
+		"module": "Course Roadmap",
+		"title": "Data Science in Python Prerequisite Map",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Trace the inputs to a proposed report for a new dataset. Name the observation unit, one comparison, and a useful final display. List what must exist before each step and how you will verify it. For example, a comparison of daily rates needs a measurement total and coverage days for each group. If one period has 40 trips across two days and another has 48 across four days, check the rates before designing the chart.\n\nMark the first missing prerequisite and add a concrete check that resolves it. Deliver a small dependency map plus two hand calculations whose answers a reader can reproduce. Point to the module where you would practice the missing skill."
+	},
+	{
+		"module": "Course Roadmap",
+		"title": "Data Science in Python Resource Inventory",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Prepare a one-page inventory for an analysis another reader can rerun. Record the original data file and publisher, observation date range, fields used, script or notebook, package versions, and the report or chart that makes the claim. Give each file one role. Include how to start the analysis and how the reader can check one result independently.\n\nRun the analysis once from the saved project or notebook and record the output of the check. For example, for a table of four measured counts 2, 5, 0, and 9, verify that the total is 16 and the mean is 4. Record whether that check used a supplied dataset or a separate test fixture. Keep dataset use terms with the inventory."
 	}
 ]
