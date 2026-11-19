@@ -144,7 +144,10 @@ async function runPython(page, width, activity, unfinished, marker = "") {
 		for (const expected of activity.expectedOutput) assert.ok(result.stdout.includes(expected), result.stdout);
 		assert.ok(!result.stdout.includes("starter unfinished"));
 	}
-	if (marker) assert.ok(result.stdout.includes(marker), result.stdout);
+	if (marker) {
+		assert.ok(result.stdout.includes(marker), result.stdout);
+		for (const expected of activity.comparisonClient?.expectedOutput ?? []) assert.ok(result.stdout.includes(expected), result.stdout);
+	}
 	return result;
 }
 
@@ -252,11 +255,19 @@ test(
 			assert.ok(["build", "dev"].includes(sourceMode));
 			await mkdir(output, { recursive: true });
 			// Validate frozen inventory before launching any browser work.
-			assert.equal(fixture.activities.length, 22);
-			assert.equal(new Set(fixture.activities.map(activity => activity.folder)).size, 16);
-			assert.equal(Object.keys(fixture.files).length, 128);
+			assert.equal(fixture.activities.length, 30);
+			assert.equal(new Set(fixture.activities.map(activity => activity.folder)).size, 22);
+			assert.equal(Object.keys(fixture.files).length, 176);
 			assert.equal(activities.length, 8);
 			assert.equal(new Set(activities.map(activity => activity.folder)).size, 6);
+			assert.equal(activities.filter(activity => activity.comparisonClient).length, 2);
+			for (const activity of activities.filter(activity => activity.comparisonClient)) {
+				const client = activity.comparisonClient;
+				assert.equal(digest(client.append), client.appendSHA256);
+				assert.equal(digest(client.standaloneSource), client.standaloneSHA256);
+				assert.equal(fixture.files[client.sourceReadme].sha256, client.sourceReadmeSHA256);
+				assert.ok(fixture.files[client.sourceReadme].content.includes(client.standaloneSource));
+			}
 			process.chdir(root);
 			for (const [path, file] of Object.entries(fixture.files)) {
 				assert.equal(Buffer.byteLength(file.content), file.bytes, path);
@@ -569,7 +580,8 @@ test(
 						);
 						const before = await runPython(page, width, activity, Boolean(activity.unfinishedMarker));
 						const marker = `pythonic_browser_edit_${currentLabel.replaceAll("-", "_")}`;
-						const completed = `${fixture.files[`${activity.folder}/solution/main.py`].content}\nprint(${JSON.stringify(marker)})\n`;
+						const comparison = activity.comparisonClient?.append ?? "";
+						const completed = `${fixture.files[`${activity.folder}/solution/main.py`].content}\n${comparison}\nprint(${JSON.stringify(marker)})\n`;
 						const edited = await editMain(
 							page,
 							width,

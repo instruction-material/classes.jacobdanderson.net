@@ -19,7 +19,15 @@ const folders = {
 	subscriptions: "PDP-10-pdp5-observer-events-and-callbacks-supplemental-3",
 	wrapperToolkit: "PDP4-Decorator-Proxy-Facade-Toolkit",
 	wrapperTrace: "PDP-11-pdp6-decorator-proxy-and-facade-supplemental-2",
-	resourceStack: "PDP-12-pdp6-decorator-proxy-and-facade-supplemental-3"
+	resourceStack: "PDP-12-pdp6-decorator-proxy-and-facade-supplemental-3",
+	questLoop: "PDP5-State-Command-Quest-Loop",
+	capturedQueue: "PDP-13-pdp7-state-and-command-supplemental-2",
+	editorUndo: "PDP-14-pdp7-state-and-command-supplemental-3",
+	leadPipeline: "PDP6-Adapter-Template-Import-Pipeline",
+	measurementAdapter:
+		"PDP-15-pdp8-adapter-and-integration-boundaries-supplemental-2",
+	vendorBoundary:
+		"PDP-16-pdp8-adapter-and-integration-boundaries-supplemental-3"
 };
 const labTitles: Record<keyof typeof folders, string> = {
 	callables: "Callable comparison",
@@ -37,7 +45,13 @@ const labTitles: Record<keyof typeof folders, string> = {
 	subscriptions: "Owned Subscription Lifetime",
 	wrapperToolkit: "Decorator, Proxy and Facade Toolkit",
 	wrapperTrace: "Transparent Wrapper Order",
-	resourceStack: "ExitStack Resource Lifecycle"
+	resourceStack: "ExitStack Resource Lifecycle",
+	questLoop: "State and Command Quest Loop",
+	capturedQueue: "Captured Callable Queue",
+	editorUndo: "Bounded Editor Undo",
+	leadPipeline: "Adapter and Import Pipeline",
+	measurementAdapter: "Versioned Measurement Adapter",
+	vendorBoundary: "Injected Vendor Boundary"
 };
 interface OpeningItem {
 	kind: "reading" | "assignment";
