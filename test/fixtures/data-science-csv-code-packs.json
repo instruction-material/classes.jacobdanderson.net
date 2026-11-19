@@ -1,0 +1,301 @@
+{
+	"repository": "instruction-material/Data-Science",
+	"revision": "b0f82992a9bd38039971d31f6e4b2f86beaefd82",
+	"files": {
+		"DSP-01-data-analysis-lab-11/solution/data/sample.csv": {
+			"content": "label,value\nalpha,4\nbeta,8\ngamma,11\ndelta,17\n",
+			"sha256": "ea15065339a3b2871ed3f503a85fefa9c589cbb2e7ad5a53dfd59b4bcff4e77c",
+			"bytes": 45
+		},
+		"DSP-01-data-analysis-lab-11/solution/main.py": {
+			"content": "import csv\nfrom pathlib import Path\n\nNumber = int | float\nDATA_FILE = Path(__file__).resolve().parent / \"data\" / \"sample.csv\"\n\n\ndef load_values(path: str | Path = DATA_FILE) -> list[float]:\n    \"\"\"Read the named numeric column from a well-formed CSV.\"\"\"\n    with Path(path).open(encoding=\"utf-8\", newline=\"\") as handle:\n        return [float(row[\"value\"]) for row in csv.DictReader(handle)]\n\n\ndef summarize(values: list[Number]) -> dict[str, Number | None]:\n    \"\"\"Describe the supplied values; an empty sample has no mean.\"\"\"\n    count = len(values)\n    total = sum(values)\n    return {\"count\": count, \"total\": total,\n            \"average\": total / count if count else None}\n\n\ndef extended_summary(values: list[Number]) -> dict[str, Number | None]:\n    \"\"\"Optional minimum/maximum/range comparison; preserve the input.\"\"\"\n    minimum = min(values) if values else None\n    maximum = max(values) if values else None\n    return {**summarize(values), \"minimum\": minimum, \"maximum\": maximum,\n            \"range\": maximum - minimum if values else None}\n\n\nif __name__ == \"__main__\":\n    try:\n        print(summarize(load_values()))\n    except NotImplementedError as error:\n        print(error)\n",
+			"sha256": "370c1be67bf77bc014c8185a349698ac65596e3f5142179df46d975947718d43",
+			"bytes": 1188
+		},
+		"DSP-01-data-analysis-lab-11/starter/data/sample.csv": {
+			"content": "label,value\nalpha,4\nbeta,8\ngamma,11\ndelta,17\n",
+			"sha256": "ea15065339a3b2871ed3f503a85fefa9c589cbb2e7ad5a53dfd59b4bcff4e77c",
+			"bytes": 45
+		},
+		"DSP-01-data-analysis-lab-11/starter/main.py": {
+			"content": "import csv\nfrom pathlib import Path\n\nNumber = int | float\nDATA_FILE = Path(__file__).resolve().parent / \"data\" / \"sample.csv\"\n\n\ndef load_values(path: str | Path = DATA_FILE) -> list[float]:\n    \"\"\"Read the named numeric column from a well-formed CSV.\"\"\"\n    with Path(path).open(encoding=\"utf-8\", newline=\"\") as handle:\n        return [float(row[\"value\"]) for row in csv.DictReader(handle)]\n\n\ndef summarize(values: list[Number]) -> dict[str, Number | None]:\n    # Empty input has count 0, total 0 and average None.\n    raise NotImplementedError(\"TODO: compute count, total, and mean.\")\n\n\ndef extended_summary(values: list[Number]) -> dict[str, Number | None]:\n    # Optional extension: add minimum, maximum and range without changing values.\n    raise NotImplementedError(\"TODO: add the optional minimum, maximum, and range.\")\n\n\nif __name__ == \"__main__\":\n    try:\n        print(summarize(load_values()))\n    except NotImplementedError as error:\n        print(error)\n",
+			"sha256": "99bb5ab16b45191a82019ff360414bd47794e3a14c5992744d96155111c06c09",
+			"bytes": 967
+		},
+		"DSP-20-applied-studio-11-data-analysis-lab-11-supplemental-2/solution/data/sample.csv": {
+			"content": "label,value\nalpha,4\nbeta,8\ngamma,11\ndelta,17\n",
+			"sha256": "ea15065339a3b2871ed3f503a85fefa9c589cbb2e7ad5a53dfd59b4bcff4e77c",
+			"bytes": 45
+		},
+		"DSP-20-applied-studio-11-data-analysis-lab-11-supplemental-2/solution/main.py": {
+			"content": "import csv\nfrom pathlib import Path\n\nNumber = int | float\nDATA_FILE = Path(__file__).resolve().parent / \"data\" / \"sample.csv\"\n\n\ndef load_values(path: str | Path = DATA_FILE) -> list[float]:\n    \"\"\"Read the named numeric column from a well-formed CSV.\"\"\"\n    with Path(path).open(encoding=\"utf-8\", newline=\"\") as handle:\n        return [float(row[\"value\"]) for row in csv.DictReader(handle)]\n\n\ndef summarize(values: list[Number]) -> dict[str, Number | None]:\n    \"\"\"Describe the supplied values; an empty sample has no mean.\"\"\"\n    count = len(values)\n    total = sum(values)\n    return {\"count\": count, \"total\": total,\n            \"average\": total / count if count else None}\n\n\ndef median(values: list[Number]) -> Number | None:\n    \"\"\"Find the middle of a sorted copy, averaging an even middle pair.\"\"\"\n    if not values:\n        return None\n    ordered = sorted(values)\n    middle = len(ordered) // 2\n    if len(ordered) % 2:\n        return ordered[middle]\n    return (ordered[middle - 1] + ordered[middle]) / 2\n\n\ndef modes(values: list[Number]) -> list[Number]:\n    \"\"\"Return every most-frequent value, in first-appearance order.\"\"\"\n    counts: dict[Number, int] = {}\n    for value in values:\n        counts[value] = counts.get(value, 0) + 1\n    highest = max(counts.values(), default=0)\n    return [value for value, count in counts.items() if count == highest]\n\n\ndef summarize_distribution(values: list[Number]) -> dict[str, object]:\n    \"\"\"Keep mean, median and all tied modes visible together.\"\"\"\n    return {**summarize(values), \"median\": median(values), \"modes\": modes(values)}\n\n\nif __name__ == \"__main__\":\n    try:\n        print(summarize_distribution(load_values()))\n    except NotImplementedError as error:\n        print(error)\n",
+			"sha256": "d31d61456922e98cac5b942136709c68ae5d77a22b8e3b5427339e3f1390a9a1",
+			"bytes": 1739
+		},
+		"DSP-20-applied-studio-11-data-analysis-lab-11-supplemental-2/starter/data/sample.csv": {
+			"content": "label,value\nalpha,4\nbeta,8\ngamma,11\ndelta,17\n",
+			"sha256": "ea15065339a3b2871ed3f503a85fefa9c589cbb2e7ad5a53dfd59b4bcff4e77c",
+			"bytes": 45
+		},
+		"DSP-20-applied-studio-11-data-analysis-lab-11-supplemental-2/starter/main.py": {
+			"content": "import csv\nfrom pathlib import Path\n\nNumber = int | float\nDATA_FILE = Path(__file__).resolve().parent / \"data\" / \"sample.csv\"\n\n\ndef load_values(path: str | Path = DATA_FILE) -> list[float]:\n    \"\"\"Read the named numeric column from a well-formed CSV.\"\"\"\n    with Path(path).open(encoding=\"utf-8\", newline=\"\") as handle:\n        return [float(row[\"value\"]) for row in csv.DictReader(handle)]\n\n\ndef summarize(values: list[Number]) -> dict[str, Number | None]:\n    \"\"\"Describe the supplied values; an empty sample has no mean.\"\"\"\n    count = len(values)\n    total = sum(values)\n    return {\"count\": count, \"total\": total,\n            \"average\": total / count if count else None}\n\n\ndef median(values: list[Number]) -> Number | None:\n    # Work from a sorted copy; average both middle values for an even count.\n    raise NotImplementedError(\"TODO: find the median without changing the input.\")\n\n\ndef modes(values: list[Number]) -> list[Number]:\n    # Return every tied mode in first-appearance order; [] has no modes.\n    raise NotImplementedError(\"TODO: count occurrences and return all tied modes.\")\n\n\ndef summarize_distribution(values: list[Number]) -> dict[str, object]:\n    return {**summarize(values), \"median\": median(values), \"modes\": modes(values)}\n\n\nif __name__ == \"__main__\":\n    try:\n        print(summarize_distribution(load_values()))\n    except NotImplementedError as error:\n        print(error)\n",
+			"sha256": "b9f50256ef1d3832c626f5550c969e7b84e30dec0c84d7d5ed5945ba6036fef6",
+			"bytes": 1406
+		},
+		"DSP-21-applied-studio-11-data-analysis-lab-11-supplemental-3/solution/data/sample.csv": {
+			"content": "label,value\nalpha,4\nbeta,8\ngamma,11\ndelta,17\n",
+			"sha256": "ea15065339a3b2871ed3f503a85fefa9c589cbb2e7ad5a53dfd59b4bcff4e77c",
+			"bytes": 45
+		},
+		"DSP-21-applied-studio-11-data-analysis-lab-11-supplemental-3/solution/main.py": {
+			"content": "import csv\nfrom pathlib import Path\n\nNumber = int | float\nDATA_FILE = Path(__file__).resolve().parent / \"data\" / \"sample.csv\"\n\n\ndef load_values(path: str | Path = DATA_FILE) -> list[float]:\n    \"\"\"Read the named numeric column from a well-formed CSV.\"\"\"\n    with Path(path).open(encoding=\"utf-8\", newline=\"\") as handle:\n        return [float(row[\"value\"]) for row in csv.DictReader(handle)]\n\n\ndef summarize(values: list[Number]) -> dict[str, Number | None]:\n    \"\"\"Describe the supplied values; an empty sample has no mean.\"\"\"\n    count = len(values)\n    total = sum(values)\n    return {\"count\": count, \"total\": total,\n            \"average\": total / count if count else None}\n\n\ndef format_report(filename: str, values: list[Number]) -> str:\n    \"\"\"Report the measured rows separately from their interpretation.\"\"\"\n    summary = summarize(values)\n    average = summary[\"average\"]\n    mean_text = f\"{average:g}\" if average is not None else \"undefined (no rows)\"\n    return (f\"Source: {filename}\\n\"\n            f\"Rows: {summary['count']}\\n\"\n            f\"Total: {summary['total']:g}\\n\"\n            f\"Mean: {mean_text}\\n\"\n            \"Caution: This describes the loaded rows; it does not establish a cause.\")\n\n\nif __name__ == \"__main__\":\n    try:\n        print(format_report(DATA_FILE.name, load_values()))\n    except NotImplementedError as error:\n        print(error)\n",
+			"sha256": "4df3dbc545041bcf8bc5f447fb74b2b3ab24bc033a42c534e056889cd02618c5",
+			"bytes": 1365
+		},
+		"DSP-21-applied-studio-11-data-analysis-lab-11-supplemental-3/starter/data/sample.csv": {
+			"content": "label,value\nalpha,4\nbeta,8\ngamma,11\ndelta,17\n",
+			"sha256": "ea15065339a3b2871ed3f503a85fefa9c589cbb2e7ad5a53dfd59b4bcff4e77c",
+			"bytes": 45
+		},
+		"DSP-21-applied-studio-11-data-analysis-lab-11-supplemental-3/starter/main.py": {
+			"content": "import csv\nfrom pathlib import Path\n\nNumber = int | float\nDATA_FILE = Path(__file__).resolve().parent / \"data\" / \"sample.csv\"\n\n\ndef load_values(path: str | Path = DATA_FILE) -> list[float]:\n    \"\"\"Read the named numeric column from a well-formed CSV.\"\"\"\n    with Path(path).open(encoding=\"utf-8\", newline=\"\") as handle:\n        return [float(row[\"value\"]) for row in csv.DictReader(handle)]\n\n\ndef summarize(values: list[Number]) -> dict[str, Number | None]:\n    \"\"\"Describe the supplied values; an empty sample has no mean.\"\"\"\n    count = len(values)\n    total = sum(values)\n    return {\"count\": count, \"total\": total,\n            \"average\": total / count if count else None}\n\n\ndef format_report(filename: str, values: list[Number]) -> str:\n    # Include source, rows, total, mean and one interpretation limit.\n    # An empty dataset has an undefined mean, rather than a measured zero.\n    raise NotImplementedError(\"TODO: format a readable summary report.\")\n\n\nif __name__ == \"__main__\":\n    try:\n        print(format_report(DATA_FILE.name, load_values()))\n    except NotImplementedError as error:\n        print(error)\n",
+			"sha256": "26c97aab5df7aa61a471577e703ff219f4de701f82b0db441d04c8b7a2ffd3ad",
+			"bytes": 1119
+		}
+	},
+	"activities": [
+		{
+			"module": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks",
+			"item": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks-curriculum-csv-summary-builder",
+			"title": "CSV Summary Builder",
+			"folder": "DSP-01-data-analysis-lab-11"
+		},
+		{
+			"module": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks",
+			"item": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks-supplemental-min-max-and-outlier-extension",
+			"title": "Min-Max and Outlier Extension",
+			"folder": "DSP-01-data-analysis-lab-11"
+		},
+		{
+			"module": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks",
+			"item": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks-supplemental-median-and-mode-practice",
+			"title": "Median and Mode Practice",
+			"folder": "DSP-20-applied-studio-11-data-analysis-lab-11-supplemental-2"
+		},
+		{
+			"module": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks",
+			"item": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks-supplemental-readable-summary-report",
+			"title": "Readable Summary Report",
+			"folder": "DSP-21-applied-studio-11-data-analysis-lab-11-supplemental-3"
+		}
+	],
+	"bodies": [
+		{
+			"module": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks",
+			"item": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks-curriculum-csv-summaries-and-sanity-checks-concepts",
+			"title": "CSV Summaries and Sanity Checks Concepts",
+			"group": "curriculum",
+			"content": "A CSV stores rows as text fields. For this studio, the bundled synthetic file is `data/sample.csv`:\n\n```csv\nlabel,value\nalpha,4\nbeta,8\ngamma,11\ndelta,17\n```\n\nThe `label` column identifies rows; the `value` column contains their measurements. `csv.DictReader` makes each row a dictionary; `row[\"value\"]` is text, so `float(row[\"value\"])` converts it before arithmetic. Reading four rows produces `[4.0, 8.0, 11.0, 17.0]`. The loader accepts well-formed CSVs with a `value` header and finite numeric cells. Cleaning missing or invalid cells is the next studio's task.\n\nFor values `v`, count is `len(v)`, total is `sum(v)`, and mean is total divided by count. Here the count is 4, total is 40, and mean is 10. These describe the rows that were loaded. A sample this small does not establish a population average or a cause.\n\nAn empty file with only the header produces `[]`. Its count and total are 0, while its average is `None`: no observations supplied a measured mean. Returning zero for that average would confuse missing evidence with an actual zero result. Keep the input list unchanged so later comparisons use the same observations.\n\n**Check:** `[6]` has count 1, total 6 and mean 6. `[-2, 2, 6]` has count 3, total 6 and mean 2. For `[0.5, 1.5]`, the mean is 1. Explain what would go wrong if numeric cells stayed strings.",
+			"contentKind": "reading",
+			"sourceFree": true
+		},
+		{
+			"module": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks",
+			"item": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks-curriculum-csv-summaries-and-sanity-checks-worked-example",
+			"title": "CSV Summaries and Sanity Checks Worked Example",
+			"group": "curriculum",
+			"content": "Read the bundled four-row CSV through the supplied loader, then trace the calculation before completing the starter:\n\n```python\nvalues = [4.0, 8.0, 11.0, 17.0]\ncount = len(values)                  # 4\nrunning_total = 0.0\nfor value in values:\n    running_total += value           # 4, 12, 23, 40\naverage = running_total / count     # 10.0\nprint(count, running_total, average)\n```\n\nThe output is `4 40.0 10.0`. The running total is a trace of the same calculation that `sum(values)` performs. In a summary function, compute the count first and use `total / count if count else None` so an empty sample never divides by zero.\n\nThe starter provides `load_values(path=DATA_FILE)`. Its default path is resolved beside `main.py`, so `python3 /path/to/starter/main.py` reads the same bundled CSV even from another working directory. A custom CSV can be passed as `load_values(\"/path/to/custom.csv\")`; its header must still be `value`. The project import includes the CSV along with the Python file.\n\n**Failure case:** If the file has a `score` header, looking up `row[\"value\"]` raises `KeyError`. Align the column selection with the actual schema. A file path, a column name and a numeric conversion are separate assumptions; changing one does not update the others.\n\n**Transfer check:** Trace `[-2, 2, 6]` through the loop. The running totals are -2, 0 and 6, so its mean is 2.",
+			"contentKind": "reading",
+			"sourceFree": true
+		},
+		{
+			"module": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks",
+			"item": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks-curriculum-csv-summary-builder",
+			"title": "CSV Summary Builder",
+			"group": "curriculum",
+			"content": "Complete `summarize(values)` in the learner starter. Return a dictionary with `count`, `total` and `average`. Keep the supplied CSV loader and entry point, and preserve the caller's input list.\n\nUse the bundled synthetic `data/sample.csv` with its `value` column. Before running, record the expected count 4, total 40 and average 10. Then run `main.py` and compare the actual dictionary with that prediction. The unfinished starter prints a `TODO` message; replace its unfinished function body with the calculation.\n\n**Required checks:**\n\n| Input | Count | Total | Average |\n| --- | ---: | ---: | ---: |\n| `[]` | 0 | 0 | `None` |\n| `[6]` | 1 | 6 | 6 |\n| `[4, 8, 11, 17]` | 4 | 40 | 10 |\n| `[-2, 2, 6]` | 3 | 6 | 2 |\n\nRetain the source, actual output and a short verification note naming the file, column and one hand calculation. State that the result describes these loaded rows. Compare the completed reference after recording the independent attempt.",
+			"contentKind": "assignment",
+			"sourceFree": false
+		},
+		{
+			"module": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks",
+			"item": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks-curriculum-review-csv-summaries-and-sanity-checks",
+			"title": "Review: CSV Summaries and Sanity Checks",
+			"group": "curriculum",
+			"content": "Review the completed CSV summary using the same four supplied observations. Identify the file, the `value` column, the converted numeric list, the returned dictionary and the empty-input result. Verify that count is 4, total is 40 and average is 10, then explain why the empty average is `None`.\n\nChange only the data to `[-2, 2, 6]` and predict the result before rerunning. Its count is 3, total is 6 and mean is 2. Retain both expected and actual output. If they differ, inspect row loading, column selection, numeric conversion and arithmetic separately.\n\nWrite one sentence limiting the claim to the loaded rows. Explain what additional context would be needed before comparing the result with another dataset, including units and how observations were collected. This review is a written artifact attached to the completed analysis; it requires no separate starter program.",
+			"contentKind": "assignment",
+			"sourceFree": true
+		},
+		{
+			"module": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks",
+			"item": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks-supplemental-min-max-and-outlier-extension",
+			"title": "Min-Max and Outlier Extension",
+			"group": "supplementalProjects",
+			"content": "After the summary works, complete `extended_summary(values)` in the same saved project. Return the original count/total/average fields plus `minimum`, `maximum` and `range`, where range is maximum minus minimum. For `[]`, the three added values are `None`; for `[6]`, they are 6, 6 and 0. Preserve the input order.\n\nFor `[4, 8, 11, 17]`, minimum is 4, maximum is 17, range is 13 and mean is 10. Append 100 and recalculate: minimum 4, maximum 100, range 96 and mean 28. Record both sets of output and explain which statistics changed most.\n\nThe new value is deliberately surprising. Decide what source or measurement context would be needed to classify it as a valid extreme observation or a data-entry error. A large value alone does not justify deleting a row. Deliver the extended function, the two checked results and that interpretation note.",
+			"contentKind": "assignment",
+			"sourceFree": false
+		},
+		{
+			"module": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks",
+			"item": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks-supplemental-median-and-mode-practice",
+			"title": "Median and Mode Practice",
+			"group": "supplementalProjects",
+			"content": "Use the separate median/mode starter. Its CSV loader and count/total/mean helper are already complete. Implement `median(values)` using a sorted copy: return the middle value for an odd count, average the two middle values for an even count, and return `None` for an empty list. Preserve the caller's list.\n\nImplement `modes(values)` by counting occurrences. Return every value tied for highest frequency in first-appearance order, or `[]` for empty input. When all values occur once, all are tied; this does not identify one especially common value.\n\n| Values | Mean | Median | Modes |\n| --- | ---: | ---: | --- |\n| `[4, 8, 11, 17]` | 10 | 9.5 | `[4, 8, 11, 17]` |\n| `[1, 2, 2, 3, 100]` | 21.6 | 2 | `[2]` |\n| `[3, 1, 3, 1]` | 2 | 2 | `[3, 1]` |\n\nRun `summarize_distribution(values)` for the supplied sample and each check above. Also verify empty and singleton inputs. Deliver the two functions, expected/actual results and a short explanation of why the extreme value affects mean more than median. These statistics describe distributions; neither decides whether that extreme row is erroneous.",
+			"contentKind": "assignment",
+			"sourceFree": false
+		},
+		{
+			"module": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks",
+			"item": "data-science-in-python-dsp10-applied-studio-csv-summaries-and-sanity-checks-supplemental-readable-summary-report",
+			"title": "Readable Summary Report",
+			"group": "supplementalProjects",
+			"content": "Use the separate report starter. Its loader and numeric summary are complete. Implement `format_report(filename, values)` to return five readable lines. The bundled synthetic sample must produce:\n\n```text\nSource: sample.csv\nRows: 4\nTotal: 40\nMean: 10\nCaution: This describes the loaded rows; it does not establish a cause.\n```\n\nUse the `filename` argument rather than hard-coding the source name. For `format_report(\"empty.csv\", [])`, report 0 rows, total 0 and `Mean: undefined (no rows)`. Check `format_report(\"custom.csv\", [-2, 2, 6])` as well: it reports 3 rows, total 6 and mean 2. Preserve the input list.\n\nReturn the report string from the function; the supplied entry point prints it. This keeps formatting separate from CSV loading and makes the same report usable with another input file. Deliver the function and the three exact outputs. Keep source identity, measured results and the interpretation limit visible together.",
+			"contentKind": "assignment",
+			"sourceFree": false
+		},
+		{
+			"module": "data-science-in-python-module-1-what-data-science-is",
+			"item": "data-science-in-python-module-1-what-data-science-is-supplemental-analysis-log-what-data-science-is",
+			"title": "Analysis Log: What Data Science Is",
+			"group": "supplementalProjects",
+			"content": "Keep a compact analysis log for what data science is that records the question being asked, the dataset assumptions being made, the exact columns or calculations used, and one short note about why the chosen question is worth answering with data in the first place. The log makes the question, assumptions, and value of the analysis visible before any code is judged.\n\nUse one small question from the current analysis. Record the source, the population the rows represent, the unit for each measurement, and which records are absent. For a four-row sample with values 4, 8, 11 and 17, the mean is 10; the log may report that sample mean but cannot claim a population mean or a cause. Deliver the question, assumptions, one checked calculation and one limitation. Update the log when the question or data changes.",
+			"contentKind": "assignment",
+			"sourceFree": true
+		},
+		{
+			"module": "data-science-in-python-module-2-notebook-workflow-and-reproducibility",
+			"item": "data-science-in-python-module-2-notebook-workflow-and-reproducibility-supplemental-analysis-log-notebook-workflow-and-reproducibility",
+			"title": "Analysis Log: Notebook Workflow and Reproducibility",
+			"group": "supplementalProjects",
+			"content": "Keep a compact analysis log for notebook workflow and reproducibility that records the question being asked, the dataset assumptions being made, the exact columns or calculations used, and one short note about which parts of the analysis are exploratory and which belong in stable steps. The log separates exploratory notebook work from stable steps that reproduce cleanly.\n\nFor the current notebook, record the input filename, package versions and the order of transformations. Mark exploratory cells separately from the steps needed for the final answer. Restart the kernel and run the required cells from top to bottom. Record whether that fresh run reproduces the same row count and result. A result depending on a variable created in an unrecorded earlier cell is still unresolved. Deliver the run record and a correction for any hidden dependency.",
+			"contentKind": "assignment",
+			"sourceFree": true
+		},
+		{
+			"module": "data-science-in-python-module-3-pandas-foundations",
+			"item": "data-science-in-python-module-3-pandas-foundations-supplemental-analysis-log-pandas-foundations",
+			"title": "Analysis Log: pandas Foundations",
+			"group": "supplementalProjects",
+			"content": "Keep a compact analysis log for pandas foundations that records the question being asked, the dataset assumptions being made, the exact columns or calculations used, and one short note about which transformations are merely helpful and which ones materially change the meaning of the dataset. The log makes it possible to review both the calculation and the meaning of each transformation.\n\nChoose one filtering or column transformation from the current table. Record the original columns and row count, the exact expression used, and the resulting columns and count. Include a small before/after table and explain whether the operation changes which observations the conclusion describes. For example, filtering six rows down to four changes the population summarized even if no numeric cell changes. Deliver the trace and one check that the selected rows match the intended rule.",
+			"contentKind": "assignment",
+			"sourceFree": true
+		},
+		{
+			"module": "data-science-in-python-module-4-cleaning-and-validation",
+			"item": "data-science-in-python-module-4-cleaning-and-validation-supplemental-analysis-log-cleaning-and-validation",
+			"title": "Analysis Log: Cleaning and Validation",
+			"group": "supplementalProjects",
+			"content": "Keep a compact analysis log for cleaning and validation that records the question being asked, the dataset assumptions being made, the exact columns or calculations used, and one short note about which cleaning decision had the biggest effect on the final answer. The log links the final answer back to the cleaning decisions that changed it most.\n\nRecord each applied cleaning rule, the reason for it, affected row identifiers and counts before and after. Distinguish an observed problem from an assumption about how to repair it. Check that accepted and rejected row counts sum to the original count. If a rule changes a reported mean, retain both results and explain which rows caused the difference. Deliver the rule log, that check and one remaining uncertainty.",
+			"contentKind": "assignment",
+			"sourceFree": true
+		},
+		{
+			"module": "data-science-in-python-dsp11-applied-studio-cleaning-missing-and-invalid-rows",
+			"item": "data-science-in-python-dsp11-applied-studio-cleaning-missing-and-invalid-rows-supplemental-data-quality-checklist",
+			"title": "Data-Quality Checklist",
+			"group": "supplementalProjects",
+			"content": "Build a data-quality checklist for a CSV before analysis begins. Include schema, units, missing values, duplicates, impossible values, and date or category consistency.\n\nUse one actual input table from the cleaning studio. Make a checklist with columns for rule, reason, observed evidence and action. Inspect the header, units, blanks, repeated identifiers, impossible values for the stated domain, and date/category formats. Record an issue as unknown when the available source cannot settle it. A repeated value is not automatically a duplicate record. Deliver the completed checklist with at least one observed issue and one justified decision to retain, repair or exclude a row.",
+			"contentKind": "assignment",
+			"sourceFree": true
+		},
+		{
+			"module": "data-science-in-python-dsp11-applied-studio-cleaning-missing-and-invalid-rows",
+			"item": "data-science-in-python-dsp11-applied-studio-cleaning-missing-and-invalid-rows-supplemental-before-and-after-cleaning-summary",
+			"title": "Before-and-After Cleaning Summary",
+			"group": "supplementalProjects",
+			"content": "Write a before-and-after cleaning summary that compares the original and cleaned datasets and identifies one conclusion that would change if invalid rows were kept.\n\nName the actual original table and the exact cleaning rule. Show original, accepted and rejected row counts, one statistic before and after, and the resulting interpretation. As a separate synthetic check, suppose nonnegative measurements are required: [4, 8, -6] has mean 2 before rejection and [4, 8] has mean 6 afterward. The arithmetic alone does not justify the nonnegative rule; its domain and units must. Deliver the real comparison and explain how exclusions could change representativeness.",
+			"contentKind": "assignment",
+			"sourceFree": true
+		},
+		{
+			"module": "data-science-in-python-dsp13-applied-studio-visualization-choice-and-chart-integrity",
+			"item": "data-science-in-python-dsp13-applied-studio-visualization-choice-and-chart-integrity-supplemental-chart-critique",
+			"title": "Chart Critique",
+			"group": "supplementalProjects",
+			"content": "Write a chart critique that identifies the intended audience, the visual claim, the evidence, and one way the chart could mislead a reader.\n\nChoose one chart from the current visualization work. Identify its question, audience, variables, units and source. Inspect scale limits, labels, grouping and any omitted observations. Explain one specific risk, such as a truncated bar-chart baseline exaggerating a difference, then propose a correction that preserves the measured values. Deliver an annotated chart or an equivalent written reference to its visible features, the supported claim and one remaining limitation.",
+			"contentKind": "assignment",
+			"sourceFree": true
+		},
+		{
+			"module": "data-science-in-python-module-6-storytelling-with-data",
+			"item": "data-science-in-python-module-6-storytelling-with-data-supplemental-analysis-log-storytelling-with-data",
+			"title": "Analysis Log: Storytelling with Data",
+			"group": "supplementalProjects",
+			"content": "Keep a compact analysis log for storytelling with data that records the question being asked, the dataset assumptions being made, the exact columns or calculations used, and one short note about which part of the story is genuinely supported and which part is still only a hypothesis. The log separates supported claims from hypotheses that still need more evidence.\n\nUse one claim in the current data story. Record the exact table or chart supporting it, the measurement and comparison, and a sentence limiting the claim to the observed evidence. Separate a measured association from a proposed explanation. For example, a larger value after an event does not establish that the event caused the change. Deliver the claim-to-evidence link, one alternative explanation and a revision that avoids overstating the result.",
+			"contentKind": "assignment",
+			"sourceFree": true
+		},
+		{
+			"module": "data-science-in-python-dsp14-applied-studio-reproducible-mini-reports",
+			"item": "data-science-in-python-dsp14-applied-studio-reproducible-mini-reports-supplemental-reproducibility-appendix",
+			"title": "Reproducibility Appendix",
+			"group": "supplementalProjects",
+			"content": "Add a small appendix that records package versions, file names, or command-line run instructions so the analysis can be repeated later.\n\nAttach this appendix to the current mini report. Record the input files and their source/version, required Python and package versions, the command or notebook execution order, and the expected output filenames. Include one observed row count or summary value as a run check. Reproduce the report from a fresh session using those notes, then record the result and any missing step. Deliver the appendix with the report it documents; reuse that report's project rather than importing a new program.",
+			"contentKind": "assignment",
+			"sourceFree": true
+		},
+		{
+			"module": "data-science-in-python-dsp14-applied-studio-reproducible-mini-reports",
+			"item": "data-science-in-python-dsp14-applied-studio-reproducible-mini-reports-supplemental-mini-report-peer-review",
+			"title": "Mini Report Peer Review",
+			"group": "supplementalProjects",
+			"content": "Create a peer-review checklist for mini reports and apply it to one previous project.\n\nReview one completed mini report using a table with criterion, evidence and suggested revision. Check the question, source and units, cleaning decisions, one independently checked result, the match between chart and claim, and the stated limitation. Separate an arithmetic error from an interpretation disagreement. Apply the checklist to specific passages or outputs and name the highest-priority revision. Deliver the completed review; if working independently, apply the same criteria to the report after a fresh read.",
+			"contentKind": "assignment",
+			"sourceFree": true
+		},
+		{
+			"module": "data-science-in-python-module-7-dashboards-with-altair-and-streamlit",
+			"item": "data-science-in-python-module-7-dashboards-with-altair-and-streamlit-supplemental-analysis-log-dashboards-with-altair-and-streamlit",
+			"title": "Analysis Log: Dashboards with Altair and Streamlit",
+			"group": "supplementalProjects",
+			"content": "Keep a compact analysis log for dashboards with Altair and Streamlit that records the question being asked, the dataset assumptions being made, the exact columns or calculations used, and one short note about which interactions actually help the user answer the question faster. The log shows which controls sharpen the answer and which interactions only add noise.\n\nChoose one dashboard question and trace a control from input to displayed result. Record the initial filter, visible row count, selected filter and resulting count or chart. Explain why the interaction helps answer the question. Also record what appears when no rows match. Deliver the two ordinary observations, the empty-result observation and one decision to keep, revise or remove a control based on its analytical purpose.",
+			"contentKind": "assignment",
+			"sourceFree": true
+		},
+		{
+			"module": "data-science-in-python-dsp15-applied-studio-lightweight-dashboards-and-filters",
+			"item": "data-science-in-python-dsp15-applied-studio-lightweight-dashboards-and-filters-supplemental-dashboard-test-plan",
+			"title": "Dashboard Test Plan",
+			"group": "supplementalProjects",
+			"content": "Create a dashboard test plan with three scenarios: default data, a normal filter, and a filter that leaves no matching rows.\n\nUse the current dashboard and name its dataset and filter. Write three cases: the default state, one normal filter and a filter matching no rows. For each case, record the input selection, expected row count or result, actual observation and pass/fail. An empty result should be identified as no matching observations; it should not display an old chart as though it were current. Deliver the completed plan and a correction or explicit unresolved issue for each failed case.",
+			"contentKind": "assignment",
+			"sourceFree": true
+		},
+		{
+			"module": "data-science-in-python-dsp16-applied-studio-capstone-data-story-readiness",
+			"item": "data-science-in-python-dsp16-applied-studio-capstone-data-story-readiness-curriculum-capstone-readiness-brief",
+			"title": "Capstone Readiness Brief",
+			"group": "curriculum",
+			"content": "Create a capstone readiness brief that defines the question, dataset, columns, cleaning plan, summary or visualization plan, evidence of correctness, and final presentation format. The brief is detailed enough to start the capstone without redesigning the whole project.\n\nPrepare the brief for the selected capstone question. Name the audience, data source and available columns, intended cleaning decisions, two complementary analytical views and the final presentation format. Test a tiny slice of the actual data and record one hand-checked result. Identify the evidence that would answer the question and a narrower fallback if the dataset cannot support it. Deliver the brief and the small checked output before expanding the project.",
+			"contentKind": "assignment",
+			"sourceFree": true
+		},
+		{
+			"module": "data-science-in-python-dsp16-applied-studio-capstone-data-story-readiness",
+			"item": "data-science-in-python-dsp16-applied-studio-capstone-data-story-readiness-supplemental-capstone-risk-register",
+			"title": "Capstone Risk Register",
+			"group": "supplementalProjects",
+			"content": "Create a risk register for the capstone with likely data problems, interpretation risks, and fallback plans.\n\nUse a table with risk, evidence or warning sign, effect, response and fallback. Include at least one data-availability risk, one data-quality risk and one interpretation risk for the actual capstone. For example, missing dates may prevent a trend comparison even when other columns remain usable. Make each fallback concrete, such as narrowing the period or answering a different question supported by existing rows. Deliver the register and mark which risks have already occurred.\n\n**Verification:** Check that each warning sign leads to a response the project can actually carry out, then test one fallback against the available columns.",
+			"contentKind": "assignment",
+			"sourceFree": true
+		},
+		{
+			"module": "data-science-in-python-dsp16-applied-studio-capstone-data-story-readiness",
+			"item": "data-science-in-python-dsp16-applied-studio-capstone-data-story-readiness-supplemental-first-slide-or-readme-section",
+			"title": "First Slide or README Section",
+			"group": "supplementalProjects",
+			"content": "Create the first slide or README section for the capstone, including the question, why it matters, and what evidence will be shown.\n\nDraft the opening for the actual capstone audience. Include the question, why its answer matters, the source and scope of the data, and the evidence the project will show. Distinguish a planned analysis from a measured finding. If the work is unfinished, state the question and planned evidence without inventing an outcome. Deliver the opening together with a source note and one sentence describing the main limitation.",
+			"contentKind": "assignment",
+			"sourceFree": true
+		},
+		{
+			"module": "data-science-in-python-module-9-data-science-capstone",
+			"item": "data-science-in-python-module-9-data-science-capstone-supplemental-analysis-log-data-science-capstone",
+			"title": "Analysis Log: Data Science Capstone",
+			"group": "supplementalProjects",
+			"content": "Keep a compact analysis log for data science capstone that records the question being asked, the dataset assumptions being made, the exact columns or calculations used, and one short note about what claim the project ultimately makes and what evidence best supports it. The log turns the capstone into an evidence-backed argument rather than a collection of outputs.\n\nConnect each final claim to its supporting output and the method producing it. Record the source/version, relevant cleaning decisions, the comparison or calculation, one checked value and the main limitation. Note any question that the project cannot answer with its current observations. Deliver the log with the final report, notebook or dashboard so another reader can trace a claim back to the evidence and reproduce the important result.",
+			"contentKind": "assignment",
+			"sourceFree": true
+		}
+	]
+}

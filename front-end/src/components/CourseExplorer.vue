@@ -36,6 +36,7 @@ import {
 } from "@/modules/courseLessonPresentation";
 import { unmatchedCourseProgress } from "@/modules/courseProgressHistory";
 import { visibleCourseModules } from "@/modules/courseVisibility";
+import { dataScienceCsvProjectKey } from "@/modules/dataScienceCsvResources";
 import { javaRecursionProjectKey } from "@/modules/javaRecursionResources";
 import { javaRefactoringProjectKey } from "@/modules/javaRefactoringResources";
 import {
@@ -1836,6 +1837,17 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 		starterLabel: resource.label,
 		lesson: itemAnchorId(activeModuleId.value, item.id)
 	});
+	if (selectedCourse.value.id === "data-science-in-python") {
+		params.set(
+			"projectKey",
+			dataScienceCsvProjectKey(
+				selectedCourse.value.id,
+				item.id,
+				resource.kind === "solution" ? "reference" : "starter",
+				starterUrl
+			)
+		);
+	}
 	return `/ide?${params.toString()}`;
 }
 

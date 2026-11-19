@@ -164,18 +164,29 @@ describe("Data Science in Python learner flow", () => {
 		).toContain("tiny data slice");
 	});
 
-	it("attaches the available dataset to the first complete analysis studio", () => {
-		const csvStudio = requireSourceModule(
-			"DSP10 Applied Studio: CSV Summaries and Sanity Checks"
-		);
-		const summaryBuilder = csvStudio.curriculum.find(
-			item => item.title === "CSV Summary Builder"
-		);
-
-		expect(summaryBuilder?.datasetLink).toBe(
+	it("retains the optional domain dataset separately from the bundled CSV exercise", async () => {
+		const course = await loadRawCourse("data-science-in-python");
+		const datasetReference = course!.modules
+			.find(module => module.title === "Module 8: Domain Projects")
+			?.curriculum.find(
+				item => item.title === "Domain Projects Core Concepts"
+			);
+		expect(datasetReference?.datasetLink).toBe(
 			"https://static.classes.jacobdanderson.net/life_expectancy.csv"
 		);
-		expect(summaryBuilder?.content).toContain("**Provided dataset:**");
+		const summaryBuilder = course!.modules
+			.find(
+				module =>
+					module.title ===
+					"DSP10 Applied Studio: CSV Summaries and Sanity Checks"
+			)
+			?.curriculum.find(item => item.title === "CSV Summary Builder");
+		expect(summaryBuilder?.datasetLink).toMatch(
+			/\/starter\/data\/sample\.csv$/
+		);
+		expect(summaryBuilder?.content).toContain(
+			"count 4, total 40 and average 10"
+		);
 	});
 
 	it("keeps the normalized learner path free of asset backlog details", async () => {

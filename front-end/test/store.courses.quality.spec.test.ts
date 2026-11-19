@@ -3658,10 +3658,20 @@ describe("course text quality normalization", () => {
 		expect(course).not.toBeNull();
 
 		const summaryBuilder = findItem(course!, /CSV Summary Builder/);
-		expect(summaryBuilder.datasetLink).toBe(
+		expect(summaryBuilder.datasetLink).toMatch(
+			/^https:\/\/github\.com\/instruction-material\/Data-Science\/blob\/[0-9a-f]{40}\/DSP-01-data-analysis-lab-11\/starter\/data\/sample\.csv$/
+		);
+		expect(summaryBuilder.content).toContain("`data/sample.csv`");
+		const domainConcepts = findItem(
+			course!,
+			/^Domain Projects Core Concepts$/
+		);
+		expect(domainConcepts.datasetLink).toBe(
 			staticMediaUrl("life_expectancy.csv")
 		);
-		expect(summaryBuilder.content).toContain("**Provided dataset:**");
+		expect(domainConcepts.content).toContain(
+			"**Optional domain dataset:**"
+		);
 		expect(
 			course!.modules.find(
 				module => module.title === "Static Data and Media Status"
@@ -5385,7 +5395,7 @@ describe("course text quality normalization", () => {
 		).toEqual([]);
 
 		for (const phrase of [
-			"empty-dataset behavior",
+			"no observations supplied a measured mean",
 			"Cleaning is an analytical decision",
 			"Grouped summaries answer different questions",
 			"A chart is an argument",
@@ -6431,21 +6441,18 @@ describe("course text quality normalization", () => {
 		const csvStudio = findItem(
 			dataScience!,
 			/^CSV Summaries and Sanity Checks Concepts$/,
-			/CSV loading, numeric summaries/
+			/csv\.DictReader/
 		);
+		expect(csvStudio.content).toContain("label,value\nalpha,4");
 		expect(csvStudio.content).toContain(
-			"before interpreting the average.\n\n**Expected outcome:**"
+			"count is 4, total is 40, and mean is 10"
 		);
+		expect(csvStudio.content).toContain("average is `None`");
 		expect(csvStudio.content).toContain(
-			"Include one small hand-checkable case before accepting any larger dataset result.\n\n**Result quality:**"
+			"`[-2, 2, 6]` has count 3, total 6 and mean 2"
 		);
-		expect(csvStudio.content).not.toContain(
-			"any larger dataset result is accepted.\n\n**Readable output:**"
-		);
-		expect(csvStudio.content).toContain("**Build steps:**\n-");
-		expect(csvStudio.content).toMatch(
-			/(dataset or search space|hypothesis, evidence source|data source)/
-		);
+		expect(csvStudio.content).toContain("Keep the input list unchanged");
+		expect(csvStudio.content).not.toContain("**Build steps:**");
 		expect(csvStudio.content).not.toContain(
 			"Define the Concept Path for DSP10"
 		);
