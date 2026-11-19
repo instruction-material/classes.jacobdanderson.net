@@ -2175,18 +2175,18 @@ const investingCourses = {
 					evidence: [
 						"Brand identity draft with name, logo concept, tagline, and reason each choice fits the customer.",
 						"Survey with open-ended questions about usefulness, price, concerns, and likelihood of use.",
-						"Feedback plan naming three to five possible respondents and what each can evaluate."
+						"Feedback plan identifying three to five possible roles, such as user or purchaser, and what each can evaluate."
 					]
 				}
 			],
 			"ENT4 Identifying the Ideal Customer": [
 				{
 					title: "Coffee Shop Customer Needs Simulation",
-					prompt: "Use the coffee shop simulation at [coolmathgames.com/0-coffee-shop](https://www.coolmathgames.com/0-coffee-shop) as a customer-needs case study. Track how price, recipe, weather, and customer comments affect sales.",
+					prompt: "Use the simulated coffee-shop table in the lesson or run the [coffee shop game](https://www.coolmathgames.com/0-coffee-shop). Record price and cups sold for each day, then calculate revenue. Record the purchase rate when visitor counts are available.",
 					evidence: [
-						"Daily notes recording price, recipe choices, sales, and customer feedback patterns.",
-						"Observation explaining how one customer complaint led to a changed business decision.",
-						"Conclusion about why a product that is technically good can still fail if the buyer rejects price or fit."
+						"Daily price, sales, and revenue table, with visitor counts and purchase rates when available.",
+						"Comparison that identifies one change across days, such as price or weather, and explains what the records can show about it.",
+						"Recommendation for one further test, with the variables that should stay constant."
 					],
 					learningPath: "choice"
 				},

@@ -353,6 +353,154 @@ reasoned venture design, with uncertainty still visible.
 `.trim()
 };
 
+interface SupplementalExercises {
+	practice: string;
+	challenge: string;
+}
+
+const practiceByModule: Record<string, SupplementalExercises | undefined> = {
+	ENT1: {
+		practice: `
+Sort these Desk Pouch notes into observation and assumption: "The ruler
+took 25 seconds to find" and "More pockets will solve the problem." Write a
+need statement using the observation. Sketch two ways to meet that need and
+describe a fair retrieval test.
+`,
+		challenge: `
+In two trials, the divided pouch takes 12 and 14 seconds to open and
+retrieve a ruler. The loose bag takes 20 and 18 seconds. Calculate each
+average. If the pouch still exceeds a 10-second target, identify a change
+to test and keep the same retrieval steps.
+`
+	},
+	ENT2: {
+		practice: `
+A fictional team can sketch and sew but has little experience estimating
+labor. Assign one task to each strength and choose a person or source that
+can help estimate labor. Write one action that shows how the team will
+report an unsuccessful test.
+`,
+		challenge: `
+A prototype test fails just before the team presents its idea. Write a two-
+sentence update that preserves the original test result and describes the
+next step. Explain which detail a buyer and a teammate would each need to
+evaluate the update.
+`
+	},
+	ENT3: {
+		practice: `
+A learner loses time searching for a ruler during room changes. Write a
+one-sentence problem, then label a prototype feature and the benefit it
+aims to provide. Walk through packing, carrying and retrieving the ruler.
+Mark one step the prototype can test.
+`,
+		challenge: `
+Revise the pouch for a learner who uses one hand to open it. Compare two
+paper closures against the same two criteria: opening with one hand and
+keeping supplies from falling out. Record one prediction, the model result
+and a change to test next.
+`
+	},
+	ENT4: {
+		practice: `
+Use the four fictional survey responses in the lesson to write one need
+shared by two or more respondents and one disagreement. Draft an open
+question that would help resolve the disagreement. State what the four
+responses can support.
+`,
+		challenge: `
+Compare the learner who carries the pouch with the purchaser who pays for
+it. Give each role one decision criterion and one neutral question grounded
+in that criterion. Explain how the two answers could lead to different
+design revisions.
+`
+	},
+	ENT5: {
+		practice: `
+Organize three fictional comments: keep the pouch compact, add room for a
+long ruler and add more pockets even if it grows. Group the comments into
+keep, change and conflict. Choose one revision and say which comments it
+addresses.
+`,
+		challenge: `
+Set a test for a removable divider using the same packing list on both
+prototypes. Predict an improvement, record one effect that would count
+against it and state what outcome would justify keeping the original
+divider.
+`
+	},
+	ENT6: {
+		practice: `
+Compare a free cardboard divider, a $6 plain pouch and an $18 organizer.
+Rate each on price and how easily a long ruler can be retrieved, using one
+reason per rating. Place Desk Pouch at a tentative position and state which
+rating still needs a test.
+`,
+		challenge: `
+Suppose the $6 pouch adds a visible ruler pocket and keeps its price.
+Update your positioning matrix. Name one way Desk Pouch could still serve a
+distinct need and define evidence a buyer could use to compare the two
+offers.
+`
+	},
+	ENT7: {
+		practice: `
+At $18 per sale, $10 in variable cost and $2,400 in fixed costs, calculate
+revenue, total cost and profit at 500 sales. Find the contribution per sale
+as price minus variable cost, and divide fixed costs by that amount to
+check break-even.
+`,
+		challenge: `
+Repeat the 500-sale case after variable cost increases by $2. Compare the
+two profits and break-even quantities. Explain how many additional sales
+the new costs require to break even and which cost estimate should be
+checked first.
+`
+	},
+	ENT8: {
+		practice: `
+Write a value proposition that names the Desk Pouch buyer, the retrieval
+problem and one supported benefit. Draft one private launch message and a
+call to action. Check that the message describes a result the prototype
+test can support.
+`,
+		challenge: `
+Compare a short product demonstration for a learner with a one-page order
+mockup for a purchaser. Use the same offer for both. Identify one response
+to measure for each audience and explain how a successful response would
+inform the next revision.
+`
+	},
+	ENT9: {
+		practice: `
+Compare standard packaging with an option that adds $1 per unit and uses 15
+grams less material per shipment. For 500 units, calculate the added
+expense and material reduction. Identify one measurement that would help
+assess the actual environmental impact.
+`,
+		challenge: `
+Write a product-page claim supported by the package weight comparison.
+State the specific comparison and units. Then revise the claim for a
+supplier whose package is lighter but has an undocumented material source.
+Record which evidence would support a stronger claim.
+`
+	},
+	ENT10: {
+		practice: `
+Select one portfolio decision and label its assumption, test, result and
+revision. Place the supporting artifact next to the corresponding Lean
+Canvas box. Draft a short pitch sentence that makes the result and its
+limit clear.
+`,
+		challenge: `
+Suppose the prototype meets its retrieval target but the updated forecast
+needs more customers to break even. Revise the feasibility section of the
+pitch. Keep the two results distinct and state the next piece of evidence
+needed before launching.
+`
+	}
+};
+
 export function applyEntrepreneurshipReadings(
 	course: RawCourse,
 	source: RawCourse
@@ -368,14 +516,36 @@ export function applyEntrepreneurshipReadings(
 		const flow = original?.curriculum[0]?.content.match(
 			/\*\*Course flow:\*\* [\s\S]+$/
 		)?.[0];
-		if (!module || !original || !item || !flow) {
-			throw new Error(
-				`Missing Entrepreneurship reading or flow: ${title}`
-			);
+		const activities = practiceByModule[title.split(" ", 1)[0]!];
+		if (!module || !original || !item || !flow || !activities) {
+			throw new Error(`Missing Entrepreneurship material: ${title}`);
 		}
 		item.content = formatAuthoredReading(`${content}\n\n${flow}`);
 		item.contentKind = "reading";
 		item.preserveInstructions = true;
+		for (const supplemental of module.supplementalProjects) {
+			if (supplemental.title.startsWith("Practice Map: ")) {
+				supplemental.content = formatAuthoredReading(
+					activities.practice
+				).trim();
+			} else if (supplemental.title.startsWith("Extension Review: ")) {
+				supplemental.content = formatAuthoredReading(
+					activities.challenge
+				).trim();
+			} else {
+				const project = original.supplementalProjects.find(
+					project => project.title === supplemental.title
+				);
+				if (!project) continue;
+				supplemental.content = formatAuthoredAssignment(
+					project.content
+				);
+			}
+			supplemental.contentKind = "assignment";
+			supplemental.preserveAssignment = true;
+			supplemental.preserveInstructions = true;
+		}
+
 		// Retain the published reading identity and independently assignable projects.
 		module.curriculum = [
 			item,
