@@ -70,10 +70,19 @@ async function run(page, width, expected) {
 	if (width < 900) await page.locator(".mobile-view-picker button[data-view='code']").click();
 	await page.locator("button.run-control").click();
 	if (width < 900) await page.locator(".mobile-view-picker button[data-view='console']").click();
-	await page.waitForFunction(() => {
+	await page.waitForFunction(expected => {
 		const status = document.querySelector("[data-testid='ide-run-status']")?.textContent.trim();
-		return ["Analysis ready", "Run failed", "Run finished with issues"].includes(status);
-	}, { timeout: 90000 });
+		if (["Run failed", "Run finished with issues"].includes(status)) return true;
+		const stdout = [...document.querySelectorAll(".output-line--stdout")].map(node => node.textContent).join("\n");
+		return status === "Analysis ready" && stdout === expected;
+	}, { timeout: 90000 }, expected).catch(async error => {
+		const observed = await page.evaluate(() => ({
+			status: document.querySelector("[data-testid='ide-run-status']")?.textContent.trim(),
+			stdout: [...document.querySelectorAll(".output-line--stdout")].map(node => node.textContent).join("\n"),
+			stderr: [...document.querySelectorAll(".output-line--stderr")].map(node => node.textContent).join("\n")
+		}));
+		throw new Error(`Analysis did not produce the expected output: ${JSON.stringify({ expected, observed })}`, { cause: error });
+	});
 	const observed = await page.evaluate(() => ({
 		status: document.querySelector("[data-testid='ide-run-status']")?.textContent.trim(),
 		stdout: [...document.querySelectorAll(".output-line--stdout")].map(node => node.textContent).join("\n"),
