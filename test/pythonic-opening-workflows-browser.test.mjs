@@ -649,7 +649,7 @@ test(
 						assert.deepEqual(preserved.files, earlier.files);
 						assert.equal(
 							requests.length,
-							5,
+							roleFiles(activity.folder, "starter").length + 1,
 							"Reopening retains edits without a new source fetch"
 						);
 						assert.equal(writes, 0);
