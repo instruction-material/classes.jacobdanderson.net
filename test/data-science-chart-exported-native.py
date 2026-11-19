@@ -48,7 +48,7 @@ def svg_contract(data, metric='mean', weak=False):
     if weak:
         return dict(deliberatelyWeak=True, sha256=digest(data), labels=labels)
     geometry = []
-    for index in [2, 3, 4]:
+    for index in [3, 4, 5]:
         group = next(e for e in tree.iter() if e.get('id') == 'patch_' + str(index))
         path = next(e for e in group.iter() if e.tag.endswith('}path'))
         points = [(float(x), float(y)) for x, y in re.findall(r'[ML]\s+([-\d.]+)\s+([-\d.]+)', path.get('d'))]
@@ -98,7 +98,12 @@ try:
                 continue
             archive = (output / receipt['file']).read_bytes()
             assert digest(archive) == receipt['sha256']
-            expected = profile['before' if stage == 'originalExport' else 'after']['stdout']
+            browser_run = profile['before' if stage == 'originalExport' else 'after']
+            expected = browser_run['programStdout']
+            progress = browser_run['dependencyProgress']
+            names = 'Pillow, contourpy, cycler, fonttools, kiwisolver, matplotlib, numpy, packaging, pyparsing, python-dateutil, pytz, six'
+            assert progress in [[], ['Loading ' + names, 'Loaded ' + names]]
+            assert browser_run['stdout'] == ('\n'.join(progress) + '\n' if progress else '') + expected
             original_stage = stage == 'originalExport' and not profile.get('extensionOf')
             names_expected = {'main.py', 'data/sample.csv', 'README.md', 'requirements.txt'}
             if not original_stage:
@@ -149,7 +154,8 @@ try:
                 native_figures = {name: svg_contract((project / name).read_bytes(), 'total' if name == 'totals.svg' else 'mean', name.endswith('-weak.svg')) for name in sorted(native_names)}
                 assert all(native_figures[name]['labels'] == figure['labels'] for name, figure in browser_figures.items())
                 results.append(dict(file=receipt['file'], sha256=receipt['sha256'], actualStdout=observed,
-                    browserStdout=expected, matchedAfterDestinationPathNormalization=True,
+                    browserStdout=browser_run['stdout'], browserProgramStdout=expected, dependencyProgress=progress,
+                    matchedAfterDestinationPathNormalization=True,
                     browserFigures=browser_figures, nativeFigures=native_figures, sourceFilesByteExact=True,
                     nativePythonVersion=platform.python_version(), nativeMatplotlibVersion=matplotlib.__version__, matched=True))
     assert len(results) == 28
@@ -159,6 +165,6 @@ finally:
         accepted=accepted, sourceCommit=head, sourceRevision=fixture['revision'],
         pythonVersion=sys.version, matplotlibVersion=matplotlib.__version__, startedAt=started, finishedAt=time.time(),
         actualExports=len(results), results=results, processes=processes,
-        comparisonBoundary='Original ZIP bytes and every member retained. Interpreter-dependent SVG metadata and IDs are preserved; chart labels and bar proportions are independently checked. Console destination directories alone are normalized.',
+        comparisonBoundary='Original ZIP bytes and every member retained. Interpreter-dependent SVG metadata and IDs are preserved; chart labels and bar proportions are independently checked. The exact paired Matplotlib package-loading messages are retained separately from program output; console destination directories are normalized.',
         wholeCourseAccepted=False, liveDeploymentClaimed=False), indent=2) + '\n')
 print(json.dumps(dict(accepted=accepted, actualExports=len(results), pythonVersion=sys.version, matplotlibVersion=matplotlib.__version__)))
