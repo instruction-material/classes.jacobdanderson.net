@@ -5689,6 +5689,17 @@ else:
 		expect(isValidPythonFileName("outputs/report.json", "data")).toBe(
 			true
 		);
+		expect(
+			isValidPythonFileName("outputs/archive/report.json", "data")
+		).toBe(true);
+		for (const mode of ["python", "data"] as const) {
+			expect(isValidPythonFileName("solution/data.json", mode)).toBe(
+				false
+			);
+			expect(
+				isValidPythonFileName("starter/release-manifest.json", mode)
+			).toBe(false);
+		}
 		for (const mode of ["cpp", "c", "java", "turtle", "pgzero"] as const) {
 			expect(isValidPythonFileName("data/scores.csv", mode), mode).toBe(
 				false
