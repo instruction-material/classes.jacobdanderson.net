@@ -190,6 +190,43 @@ it("keeps independent construction, staff references and the completed classroom
 	expect(classItem.content).toContain("**Hard:**");
 });
 
+it.each(ids.flatMap(id => [false, true].map(staff => ({ id, staff }))))(
+	"opens the Check-In 2 starter from $id for staff=$staff",
+	async ({ id, staff }) => {
+		const course = await loadCourse(id, staff);
+		const lesson = course.modules
+			.flatMap(module => module.curriculum)
+			.find(item =>
+				item.id.endsWith(
+					"-check-in-2-gravity-friction-platforms-curriculum-gravity-friction-platforms-core-concepts"
+				)
+			)!;
+		const route = new URL(lesson.projectLink!, "https://classes.local");
+		const filename = "Check-in-2-Starter.py";
+		const source = fixture.programs[filename];
+		expect(route.pathname).toBe("/ide");
+		expect(route.searchParams.get("course")).toBe(id);
+		expect(route.searchParams.get("mode")).toBe("pgzero");
+		expect(route.searchParams.get("classroom")).toBe(
+			id === "pygames-classroom" ? "1" : null
+		);
+		expect(route.searchParams.get("projectKey")).toBe(
+			`${id}:${lesson.id}:starter`
+		);
+		expect(route.searchParams.get("starterUrl")).toBe(
+			`https://github.com/instruction-material/PyGames/blob/${source.revision ?? fixture.revision}/${filename}`
+		);
+		expect(lesson.ideImport).toBe(true);
+		expect(lesson.content).toContain("update_bigfoot()");
+		expect(lesson.content).toContain("update_shuffleboard()");
+		expect(lesson.content).toContain("first top crossed");
+		expect(lesson.content.includes("**Normal:**")).toBe(
+			id === "pygames-classroom"
+		);
+		expect(lesson.content).not.toContain("check_in_2_starter.py");
+	}
+);
+
 it.each(ids)(
 	"makes %s setup and capstone cards open real workspaces with shared continuation keys",
 	async id => {

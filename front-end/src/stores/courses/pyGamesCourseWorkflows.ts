@@ -417,6 +417,26 @@ function coreReading(kind: string, classroom: boolean) {
 ${reading}`;
 }
 
+const checkIn2Reading = `Open the checkpoint starter and run it once before making changes. Keep the imported file with \`STARTER_GAME = "bigfoot"\` for gravity and platforms. In the same workspace, add \`shuffleboard.py\`, copy in the starter code and set \`STARTER_GAME = "shuffleboard"\`. Select a file before running its game.
+
+### Gravity and jumping
+
+The arrow keys already move Bigfoot sideways. In \`update_bigfoot()\`, increase \`bigfoot.yspeed\` by a positive gravity value, then add that speed to \`bigfoot.y\`. Screen coordinates increase downward. With a starting speed of 0 and gravity of 0.5, the first two updates move Bigfoot down 0.5 and then 1 pixel.
+
+When the actor reaches the floor, set \`bigfoot.bottom = HEIGHT\` and reset vertical speed to zero. Track whether Bigfoot is grounded. In the existing Up-key handler, give grounded Bigfoot a negative vertical speed and clear the grounded state. Verify that Bigfoot falls, jumps once per landing and comes to rest with feet on the floor.
+
+### Friction and stopping distance
+
+In the Shuffleboard copy, begin each run with the same puck position and speed. In \`update_shuffleboard()\`, multiply \`puck.xspeed\` by a factor between 0 and 1 each frame. Try 0.967 first, then set the speed to zero when it falls below a small threshold such as 0.05. Measure where the puck stops relative to the bullseye. Compare a smaller and larger factor from the same starting state and tune the factor using the observed stopping positions.
+
+### One platform, then many
+
+Create and draw a 200-by-20 \`ZRect\` near the middle of the screen. Before updating vertical position, save Bigfoot's previous bottom. Land only when Bigfoot is descending, overlaps the platform horizontally, and the previous and new bottom cross the platform top. Snap the feet to the top and reset vertical speed. Check a landing from above, a jump from below, and a sideways miss.
+
+Give the platform a horizontal speed. Clamp it inside the screen before reversing its speed at either edge. In a separate copy, store ten platforms in a list and apply the same drawing and landing rules to each one. Use fixed positions while debugging, then vary sizes, positions and colors. If one step crosses more than one top, land on the first top crossed.
+
+Record the expected and actual result of one jump, one missed platform and one puck run. Keep the working Bigfoot checkpoint for the optional gravity-reversal project.`;
+
 const capstoneReading = `**Goal:** Design and finish one original playable game using the course’s actors, input events, update/draw loop and state management. Reuse earlier work deliberately and credit any supplied model or media.
 
 Write a one-paragraph pitch naming the player action, goal, progress feedback and failure or completion condition. Draw a state diagram containing at least start, play and end states with a restart path. Choose one finishable vertical slice before adding a second mechanic.
@@ -440,6 +460,24 @@ export function applyPyGamesCourseWorkflows(
 			...module.curriculum,
 			...module.supplementalProjects
 		]) {
+			if (
+				item.aliases?.includes(
+					"pygames-check-in-2-gravity-friction-platforms-curriculum-check-in-2-gravity-bigfoot-game"
+				)
+			) {
+				item.id ??= `${courseID}-check-in-2-gravity-friction-platforms-curriculum-gravity-friction-platforms-core-concepts`;
+				item.projectLink = workspace(
+					courseID,
+					item,
+					"Check-in-2-Starter.py"
+				);
+				item.ideImport = true;
+				item.preserveInstructions = true;
+				item.content = classroom
+					? `${checkIn2Reading}\n\n**Normal:** Work with a partner to predict the next two frames of a falling actor, then compare with the game. Demonstrate a floor and single-platform landing, and record one puck run.\n\n**Hard:** Add moving platforms to the list. Demonstrate why the actor lands on the first top crossed when two platforms overlap in the direction of the fall.`
+					: checkIn2Reading;
+				continue;
+			}
 			if (!item.id) continue;
 			if (
 				classroom &&

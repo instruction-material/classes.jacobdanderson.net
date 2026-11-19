@@ -42,6 +42,20 @@ const practice
 const correctedCheckpoint
 	= "pygames-check-in-3-system-control-projectiles-enemy-ai-curriculum-check-in-3-additional-practice-project";
 const activities = [
+	...["pygames", "pygames-classroom"].flatMap(course =>
+		[false, true].map(staff => {
+			const item = `${course}-check-in-2-gravity-friction-platforms-curriculum-gravity-friction-platforms-core-concepts`;
+			return {
+				name: `check-in-2-${course}-${staff ? "instructor" : "learner"}`,
+				course,
+				module: "pygames-check-in-2-gravity-friction-platforms",
+				item,
+				key: `${course}:${item}:starter`,
+				file: "Check-in-2-Starter.py",
+				staff
+			};
+		})
+	),
 	{
 		name: "classroom-corrected-checkpoint",
 		course: "pygames-classroom",
@@ -1111,7 +1125,7 @@ nodeTest(
 				}
 			}
 			await closeBrowser("all runtime profiles complete");
-			assert.equal(profiles.length, 12);
+			assert.equal(profiles.length, 20);
 			assert.equal(runtimeProfiles.length, 86);
 			assert.ok([...mediaRequests].some(p => /\/images\//.test(p)));
 			await writeFile(
