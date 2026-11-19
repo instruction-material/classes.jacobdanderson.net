@@ -468,7 +468,16 @@ test(
 									? " .item-content-markdown"
 									: " .assignment-content");
 						const textMode = reading ? "textContent" : "innerText";
-						await page.waitForSelector(selector);
+						// Assignment headings render before their lazy Markdown bodies.
+						await page.waitForFunction(
+							({ selector, textMode, expected }) =>
+								document
+									.querySelector(selector)?.[textMode]
+									.replace(/\s+/gu, " ")
+									.trim() === expected,
+							{},
+							{ selector, textMode, expected }
+						);
 						const actual = await page.$eval(
 							selector,
 							(node, mode) =>
