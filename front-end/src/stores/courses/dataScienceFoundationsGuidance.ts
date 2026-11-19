@@ -24,6 +24,7 @@ export function applyDataScienceFoundationsGuidance(course: RawCourse) {
 		delete item.solutionLink;
 		delete item.ideImport;
 		delete item.datasetLink;
+		if (entry.datasetLink) item.datasetLink = entry.datasetLink;
 		if (entry.folder) {
 			const repo = "https://github.com/instruction-material/Data-Science";
 			const pack = dataScienceFoundationsSource(entry.folder);
@@ -36,7 +37,9 @@ export function applyDataScienceFoundationsGuidance(course: RawCourse) {
 			item.projectLink = `${repo}/tree/${source}/starter`;
 			item.solutionLink = `${repo}/tree/${source}/solution`;
 			item.ideImport = true;
-			item.datasetLink = `${repo}/blob/${source}/starter/data/sample.csv`;
+			if (pack.datasetPath) {
+				item.datasetLink = `${repo}/blob/${source}/starter/${pack.datasetPath}`;
+			}
 		}
 	}
 }

@@ -382,5 +382,62 @@
 		"contentKind": "reading",
 		"folder": null,
 		"content": "## Define an answerable first version\n\nWrite the audience, question, input, output and one previously checked calculation before building. Pick a normal case and a case that could expose a wrong result or a misleading display. List a fallback for a missing input or a tool that cannot run on the available device.\n\n## Worked brief\n\nA program coordinator needs to compare daily trips at two sites during one week. The first version uses a CSV with site, date and trips, checks coverage, and gives each site's daily rate and observation count. A hand calculation supplies the expected result for one site. A site with zero measured days produces an unavailable rate. A larger date range belongs in a later version once this one can be rerun."
+	},
+	{
+		"module": "Module 8: Domain Projects",
+		"title": "Domain Projects Core Concepts",
+		"datasetLink": "https://static.classes.jacobdanderson.net/life_expectancy.csv",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "## Match the question to the records\n\nName what one row represents, the measured quantities and who or what the records cover. A sports row might describe one team-game. A transit row can describe one route-week, with trips accumulated over a given number of observed days. Keep the observation unit and measurement units with each result.\n\n## Worked transit example\n\nNorth reports 20 trips over two days in Week 1 and 24 over four days in Week 2. The combined rate is (20 + 24) ÷ (2 + 4), or about 7.33 trips per covered day. Averaging the two weekly rates gives 8 because it gives each week equal weight. Choose the denominator that matches the question.\n\nA missing trip count represents an unmeasured value. A report with zero trips and two covered days represents a measured rate of zero. Compare routes to describe differences between services, then group by week to check whether the same pattern appears across periods. Put the input, method, both views and a limitation into one report.\n\nFor an optional second domain, use the life expectancy dataset. Compare one country across years or compare two countries in the same year. Check which years and values are present before interpreting a trend."
+	},
+	{
+		"module": "Module 8: Domain Projects",
+		"title": "Core Project: Domain Projects",
+		"group": "curriculum",
+		"contentKind": "assignment",
+		"folder": "DSP-domain-trip-coverage",
+		"content": "Open the starter for **Compare Trip Rates by Route and Week**. Use the supplied fictional transit CSV. Complete `summarize(reports, key)` to add trips and covered days separately within each group, then compute trips per covered day. Use the same function to make one view by route and another by week. Sort both views by label.\n\nCheck that North has 77 trips over nine days, about 8.56 trips per day. Week W2 has 45 trips over nine route-days, or 5.00 trips per route-day. Two routes measured on the same date contribute two route-days. Check that a file with only a blank trip count reports no measured rows.\n\nDeliver the two views and a short statement identifying the observation unit, how a measured zero differs from a missing value, and one reason the observed rates may differ from rates for a full season."
+	},
+	{
+		"module": "Module 8: Domain Projects",
+		"title": "Project: Simple Sort and Ranking Warmup",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DM7-Simple-Sort",
+		"content": "Open the ranking starter. Practice selection sorting by repeatedly moving the next highest trips-per-day value into a new list. When rates tie, use route name order. The input is a list of tuples containing a route name, trips and positive covered days. Keep that list unchanged.\n\nThe sample shows North at 12 trips in three days and South at eight in two. Both rates equal four, so North comes before South. East follows them. Verify the order, the unchanged input and the output for an empty list. A pair such as 5 ÷ 3 and 10 ÷ 6 also ties. Use exact fractions when comparing rates before displaying decimals."
+	},
+	{
+		"module": "Module 8: Domain Projects",
+		"title": "Transfer Practice: Domain Projects",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-16-module-8-domain-projects-supplemental-2",
+		"content": "Open **Audit a Route-Week Dataset**. Complete `audit_reports(rows)` so each input row is either kept or assigned one rejection reason. Use the order in the starter README. The first valid record for a route-week stays. Return the kept route-weeks in input order and the counts by reason.\n\nFor the supplied file, reconcile ten rows to six kept and four rejected. Verify one count each for invalid data, missing trips, no coverage and duplicates. Then put an unmeasured row before a valid zero-trip row for the same route-week. The zero with observed days remains valid.\n\nKeep the original input and report which rule decided each sample rejection. Explain what the duplicate count would mean if the dataset recorded several observations per route-week."
+	},
+	{
+		"module": "Module 8: Domain Projects",
+		"title": "Extension Practice: Domain Projects",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-17-module-8-domain-projects-supplemental-3",
+		"content": "Open **Check Sensitivity to Coverage**. Complete `compare_coverage(reports, minimum_days)` so each route has an overall rate and a rate using only reports with at least the chosen number of covered days. Include the number of reports behind each rate and report an unavailable result when all measured rows for a route are filtered out.\n\nUse the default cutoff of three days. North changes from 8.56 to 8.14 trips per day and South stays at 6.50. East has a measured zero before the cutoff and an unavailable result afterward. Run a cutoff of one day and check that both columns agree.\n\nWrite which conclusions survived the coverage rule and why changes in the included records can change the reported rates without showing a change in demand."
+	},
+	{
+		"module": "Module 7: Dashboards with Altair and Streamlit",
+		"title": "Dashboards with Altair and Streamlit Core Concepts",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "## Connect one control to one question\n\nAltair describes how fields control chart properties. A site label is nominal, so map it to the category axis. A trip count is quantitative, so map it to bar length. Streamlit can present the chart in a web page and supply a selected site. With the default widget behavior, choosing a site reruns the script using the new value.\n\n## Worked dashboard\n\nSave this example as `app.py` in a Python environment with pandas, Altair and Streamlit. Run `python -m streamlit run app.py` from that folder. The example data are fictional.\n\n```python\nimport altair as alt\nimport pandas as pd\nimport streamlit as st\n\nreports = pd.DataFrame({\"site\": [\"North\", \"South\"], \"trips\": [12, 8]})\nsite = st.selectbox(\"Site\", [\"All\", \"North\", \"South\", \"East\"])\nselected = reports if site == \"All\" else reports[reports[\"site\"] == site]\n\nif selected.empty:\n    st.write(\"No matching reports\")\nelse:\n    st.metric(\"Observed trips\", int(selected[\"trips\"].sum()))\n    st.altair_chart(\n        alt.Chart(selected).mark_bar().encode(\n            x=alt.X(\"site:N\", title=\"Site\"),\n            y=alt.Y(\"trips:Q\", title=\"Observed trips\"),\n        )\n    )\n```\n\nThe default view shows two bars and 20 trips. North shows one bar and 12 trips. East shows the no-match message. Check that the chart, count and caption use the same filtered rows in each state. These are total trips over the supplied observations. Comparing daily rates would require a day count for each site.\n\n[Altair encodings](https://altair-viz.github.io/user_guide/encodings/index.html) · [Streamlit widget behavior](https://docs.streamlit.io/develop/concepts/architecture/widget-behavior)"
+	},
+	{
+		"module": "Module 9: Data Science Capstone",
+		"title": "Data Science Capstone Core Concepts",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "## Build an analysis that another reader can rerun\n\nStart with a question the records can answer. Name the audience, input source, unit of observation and comparison window. Keep the raw input and document changes before calculating a metric. Save the code or notebook, the chart or table, and the exact command or steps needed to regenerate the result.\n\n## Worked capstone check\n\nA report compares trips per covered day at two sites. North records 24 trips over four days and South records 18 over three days. North has more recorded trips, yet both rates are six per day. Show both the count and the coverage so a reader can see why the comparisons differ. If a third site has no observed days, show its rate as unavailable.\n\nA narrative notebook fits a fixed argument that benefits from explanation beside each step. A dashboard fits a question the audience answers by changing a filter. Whichever format is used, keep one hand calculation, one missing-data or empty-filter check, and a statement of what the result can support."
 	}
 ]

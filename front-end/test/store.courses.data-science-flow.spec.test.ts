@@ -1,5 +1,6 @@
 import { createPinia, setActivePinia } from "pinia";
 import { describe, expect, it } from "vitest";
+import { dataScienceFoundationsProjectKey } from "@/modules/dataScienceFoundationsResources";
 import { dataScienceInPythonCourse } from "@/stores/courses/data-science-in-python";
 import { loadRawCourse } from "@/stores/courses/index";
 import { useCoursesStore } from "@/stores/courses";
@@ -63,6 +64,44 @@ describe("Data Science in Python learner flow", () => {
 				owners.set(key, file);
 			}
 		}
+	});
+
+
+	it("gives each Domain Projects assignment a distinct starter", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById(
+			"data-science-in-python"
+		);
+		const module = course!.modules.find(
+			module => module.title === "Module 8: Domain Projects"
+		)!;
+		const core = module.curriculum.find(
+			item => item.title === "Core Project: Domain Projects"
+		)!;
+		const warmup = module.supplementalProjects.find(
+			item => item.title === "Project: Simple Sort and Ranking Warmup"
+		)!;
+		const transfer = module.supplementalProjects.find(
+			item => item.title === "Transfer Practice: Domain Projects"
+		)!;
+		const extension = module.supplementalProjects.find(
+			item => item.title === "Extension Practice: Domain Projects"
+		)!;
+		const projects = [core, warmup, transfer, extension];
+		const keys = projects.map(item => {
+			expect(item.contentKind).toBe("assignment");
+			expect(item.projectLink).toBeDefined();
+			expect(item.solutionLink).toBeUndefined();
+			const key = dataScienceFoundationsProjectKey(
+				"starter",
+				item.projectLink!
+			);
+			expect(key).toMatch(/:starter:domain-v1$/);
+			return key;
+		});
+		expect(new Set(keys).size).toBe(projects.length);
+		expect(core.datasetLink).toMatch(/starter\/data\/sample\.csv$/);
+		expect(warmup.datasetLink).toBeUndefined();
 	});
 
 	it("recognizes the published applied-studio progress IDs before title changes", async () => {

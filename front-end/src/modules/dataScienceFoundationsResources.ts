@@ -18,17 +18,33 @@ const tabularFolders = new Set([
 	"DSP-10-module-4-cleaning-and-validation-supplemental-3"
 ]);
 
+const domainFolders = new Set([
+	"DSP-domain-trip-coverage",
+	"DM7-Simple-Sort",
+	"DSP-16-module-8-domain-projects-supplemental-2",
+	"DSP-17-module-8-domain-projects-supplemental-3"
+]);
+
 export function dataScienceFoundationsSource(folder: string) {
 	if (reproducibilityFolders.has(folder)) {
 		return {
 			revision: dataScienceFoundationsRevision,
-			keySuffix: "reproducibility-v1"
+			keySuffix: "reproducibility-v1",
+			datasetPath: "data/sample.csv"
 		};
 	}
 	if (tabularFolders.has(folder)) {
 		return {
 			revision: "693f9b92c3da20526a4a37e80f19f9f0a6ee84f2",
-			keySuffix: "tabular-v1"
+			keySuffix: "tabular-v1",
+			datasetPath: "data/sample.csv"
+		};
+	}
+	if (domainFolders.has(folder)) {
+		return {
+			revision: "6c0b419db4b6df06a38dd194a8a11dac8fadd8bc",
+			keySuffix: "domain-v1",
+			datasetPath: folder === "DM7-Simple-Sort" ? null : "data/sample.csv"
 		};
 	}
 	return null;
