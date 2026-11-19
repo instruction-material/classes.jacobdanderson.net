@@ -11,10 +11,13 @@ import tempfile
 import zipfile
 from pathlib import Path
 
+from network_export_receipts import export_profile, read_export
+
 
 def main():
     root = Path(__file__).resolve().parents[1]
     output = Path(sys.argv[1]).resolve()
+    browser = json.loads((output / "network-browser-proof.json").read_text())
     fixture = json.loads((root / "test/fixtures/network-capstone-contracts.json").read_text())[0]
     pack = fixture["pack"]
     proof = output / "native/network-capstone-native.json"
@@ -23,7 +26,8 @@ def main():
     with tempfile.TemporaryDirectory(prefix="network-capstone-site-export-") as temporary:
         work = Path(temporary)
         for role in ["starter", "solution"]:
-            raw = (output / (pack + "-" + role + "-390-exact.zip")).read_bytes()
+            profile = export_profile(browser, fixture, role, 390)
+            filename, raw = read_export(output, profile, "exact")
             expected = {name: file for name, file in fixture["files"].items()
                         if name == "README.md" or name.startswith(role + "/")}
             assert len(expected) == 6

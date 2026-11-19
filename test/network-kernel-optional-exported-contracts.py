@@ -5,6 +5,8 @@ import io
 import json
 import os
 from pathlib import Path, PurePosixPath
+
+from network_export_receipts import export_profile, read_export
 import signal
 import subprocess
 import sys
@@ -43,7 +45,7 @@ def main():
                             if name == "README.md" or name.startswith(role + "/")}
                 assert len(expected) == 5
                 for width in [390, 1280]:
-                    profile = profiles[(pack, role, width)]
+                    profile = export_profile(browser, fixture, role, width)
                     assert profile["revision"] == verifier["revision"]
                     assert profile["taskChoiceEdited"] is True
                     assert profile["editedFileName"] == role + "/" + fixture["taskFile"]
@@ -52,9 +54,7 @@ def main():
                                   "reopenedSameAttempt", "previousWorkPreserved", "nativeInstructions"]:
                         assert profile[field] is True, (pack, role, width, field)
                     for variant in ["exact", "edited"]:
-                        filename = f"{pack}-{role}-{width}-{variant}.zip"
-                        assert profile[variant + "Archive"] == filename
-                        raw = (output / filename).read_bytes()
+                        filename, raw = read_export(output, profile, variant)
                         assert digest(raw) == profile[variant + "ArchiveSha256"]
                         archives[filename] = digest(raw)
                         with zipfile.ZipFile(io.BytesIO(raw)) as archive:

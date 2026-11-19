@@ -2056,6 +2056,9 @@ jobs:
                       output/javascript-animation-screenshots/
                   retention-days: 7
 
+            - name: Verify Network export receipt selection and archive integrity
+              run: python3 -B test/network-export-receipts.test.py
+
             - name: Verify Network Systems foundation imports and notebook reuse
               env:
                   NETWORK_BROWSER_EXPORT_PROOF_DIR: output/network-exports

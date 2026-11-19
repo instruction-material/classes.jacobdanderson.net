@@ -11,10 +11,13 @@ import tempfile
 import zipfile
 from pathlib import Path
 
+from network_export_receipts import export_profile, read_export
+
 
 def main():
     root = Path(__file__).resolve().parents[1]
     output = Path(sys.argv[1]).resolve()
+    browser = json.loads((output / "network-browser-proof.json").read_text())
     fixtures = json.loads((root / "test/fixtures/network-transport-contracts.json").read_text())
     verifier_source = json.loads((root / "test/fixtures/network-transport-source-verifier.json").read_text())
     assert {fixture["revision"] for fixture in fixtures} == {verifier_source["revision"]}
@@ -27,7 +30,8 @@ def main():
         for fixture in fixtures:
             pack = fixture["pack"]
             for role in ["starter", "solution"]:
-                raw = (output / (pack + "-" + role + "-390-exact.zip")).read_bytes()
+                profile = export_profile(browser, fixture, role, 390)
+                filename, raw = read_export(output, profile, "exact")
                 exports[pack + "/" + role] = hashlib.sha256(raw).hexdigest()
                 expected = {name: file for name, file in fixture["files"].items()
                             if name == "README.md" or name.startswith(role + "/")}

@@ -2740,6 +2740,8 @@ jobs:
           npm ls --all --workspaces=false
           npm audit --include=optional --workspaces=false --json --audit-level=info > "$GITHUB_WORKSPACE/output/data-science-grouped/audits/backend-full.json"
           npm audit --include=optional --omit=dev --workspaces=false --json --audit-level=info > "$GITHUB_WORKSPACE/output/data-science-grouped/audits/backend-production.json"
+      - name: Verify Network export receipt selection and archive integrity
+        run: python3 -B test/network-export-receipts.test.py
       - name: Verify complete grouped imports, saved work, course flow and historical identities
         run: >-
           node scripts/classes-family-heavy-task.mjs -- npm exec -w front-end -- vitest run
