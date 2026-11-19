@@ -365,12 +365,25 @@ Sort these Desk Pouch notes into observation and assumption: "The ruler
 took 25 seconds to find" and "More pockets will solve the problem." Write a
 need statement using the observation. Sketch two ways to meet that need and
 describe a fair retrieval test.
+
+**Completion evidence:**
+- Record what the 25-second trial measured and one detail that was held
+  fixed, such as the ruler position.
+- Label each sketch with the need it addresses. In both trials start with
+  the pouch closed and stop the timer when the ruler is in hand.
 `,
 		challenge: `
 In two trials, the divided pouch takes 12 and 14 seconds to open and
 retrieve a ruler. The loose bag takes 20 and 18 seconds. Calculate each
 average. If the pouch still exceeds a 10-second target, identify a change
 to test and keep the same retrieval steps.
+
+**Completion evidence:**
+- Show the two arithmetic means and the six-second difference using the
+  four observed times.
+- Compare the pouch mean with the ten-second target. Specify a single
+  prototype change and hold the ruler position and retrieval procedure
+  constant when repeating the test.
 `
 	},
 	ENT2: {
@@ -379,12 +392,26 @@ A fictional team can sketch and sew but has little experience estimating
 labor. Assign one task to each strength and choose a person or source that
 can help estimate labor. Write one action that shows how the team will
 report an unsuccessful test.
+
+**Completion evidence:**
+- List each task beside the skill used to complete it. Include who will
+  estimate labor, the unit of time and the pieces of work that need an
+  estimate.
+- Give a sample sentence that communicates a failed result and what remains
+  uncertain.
 `,
 		challenge: `
 A prototype test fails just before the team presents its idea. Write a two-
 sentence update that preserves the original test result and describes the
 next step. Explain which detail a buyer and a teammate would each need to
 evaluate the update.
+
+**Completion evidence:**
+- Retain the date and observation from the original test so the result can
+  be checked.
+- Name one detail that helps a buyer judge whether the prototype is usable
+  and one that helps a teammate reproduce the failure. Include a plan to
+  try the next change.
 `
 	},
 	ENT3: {
@@ -393,12 +420,25 @@ A learner loses time searching for a ruler during room changes. Write a
 one-sentence problem, then label a prototype feature and the benefit it
 aims to provide. Walk through packing, carrying and retrieving the ruler.
 Mark one step the prototype can test.
+
+**Completion evidence:**
+- Use a sketch or flowchart to show the start and end of the retrieval
+  step.
+- Write a test observation that a second person could record, such as
+  elapsed seconds from opening the pouch to holding the ruler. State which
+  part of the solution the prototype leaves untested.
 `,
 		challenge: `
 Revise the pouch for a learner who uses one hand to open it. Compare two
 paper closures against the same two criteria: opening with one hand and
 keeping supplies from falling out. Record one prediction, the model result
 and a change to test next.
+
+**Completion evidence:**
+- Use the same set of supplies and opening steps for both closure tests.
+- Keep one record per design of whether it opened with one hand and whether
+  anything fell out. Use the results to explain which design to change and
+  what to test again.
 `
 	},
 	ENT4: {
@@ -407,12 +447,25 @@ Use the four fictional survey responses in the lesson to write one need
 shared by two or more respondents and one disagreement. Draft an open
 question that would help resolve the disagreement. State what the four
 responses can support.
+
+**Completion evidence:**
+- Cite the response letters that support the shared need and the
+  disagreement. If a need is inferred, label it as an interpretation.
+- Write the follow-up question so it can collect either answer. Explain the
+  limit on drawing conclusions from four fictional responses.
 `,
 		challenge: `
 Compare the learner who carries the pouch with the purchaser who pays for
 it. Give each role one decision criterion and one neutral question grounded
 in that criterion. Explain how the two answers could lead to different
 design revisions.
+
+**Completion evidence:**
+- Choose one criterion for assessing the pouch during use and another for
+  evaluating it before making a purchase decision.
+- Link each question to a possible revision. For example, a question about
+  carrying space could inform size, and a question about replacement cost
+  could inform durability.
 `
 	},
 	ENT5: {
@@ -421,12 +474,24 @@ Organize three fictional comments: keep the pouch compact, add room for a
 long ruler and add more pockets even if it grows. Group the comments into
 keep, change and conflict. Choose one revision and say which comments it
 addresses.
+
+**Completion evidence:**
+- Show the two comments that create a size tradeoff. Label the compact size
+  as evidence to retain and note what an added pocket might cost in space.
+- Choose one revision to try first and describe one observation that would
+  make you reconsider it.
 `,
 		challenge: `
 Set a test for a removable divider using the same packing list on both
 prototypes. Predict an improvement, record one effect that would count
 against it and state what outcome would justify keeping the original
 divider.
+
+**Completion evidence:**
+- Use the same items, packing order and retrieval target for both versions.
+  Record seconds to retrieve the ruler and whether any item was displaced.
+- Give a rule for keeping the original, such as when the new divider makes
+  retrieval harder or fails to keep supplies in place.
 `
 	},
 	ENT6: {
@@ -435,12 +500,25 @@ Compare a free cardboard divider, a $6 plain pouch and an $18 organizer.
 Rate each on price and how easily a long ruler can be retrieved, using one
 reason per rating. Place Desk Pouch at a tentative position and state which
 rating still needs a test.
+
+**Completion evidence:**
+- Share a two-axis sketch or table and label its price units. Use
+  observable features such as a visible opening or slot to justify
+  tentative retrieval ratings.
+- Identify one rating that needs a timed trial and describe the setup that
+  would make the test comparable across options.
 `,
 		challenge: `
 Suppose the $6 pouch adds a visible ruler pocket and keeps its price.
 Update your positioning matrix. Name one way Desk Pouch could still serve a
 distinct need and define evidence a buyer could use to compare the two
 offers.
+
+**Completion evidence:**
+- Keep the two original axes and show which point moved. Identify what
+  evidence supports the changed placement.
+- Distinguish a proposed advantage from a result that was measured. Specify
+  a brief comparison with both pouches and the same ruler and supplies.
 `
 	},
 	ENT7: {
@@ -449,12 +527,26 @@ At $18 per sale, $10 in variable cost and $2,400 in fixed costs, calculate
 revenue, total cost and profit at 500 sales. Find the contribution per sale
 as price minus variable cost, and divide fixed costs by that amount to
 check break-even.
+
+**Completion evidence:**
+- Show 500 sales times the price, and add fixed cost once to the variable
+  cost for 500 units.
+- Check that expected profit is $1,600 and that 300 sales cover the
+  original fixed costs. Label which figures are estimates and state the
+  period they describe.
 `,
 		challenge: `
 Repeat the 500-sale case after variable cost increases by $2. Compare the
 two profits and break-even quantities. Explain how many additional sales
-the new costs require to break even and which cost estimate should be
-checked first.
+the new costs require to break even and which cost estimate to
+check first.
+
+**Completion evidence:**
+- Show the new contribution per sale and use the same fixed costs and
+  500-sales case.
+- Check the revised profit of $600 and break-even at 400 sales. Connect the
+  100 extra sales to the change in per-unit contribution and name a way to
+  verify the labor or materials estimate.
 `
 	},
 	ENT8: {
@@ -463,12 +555,24 @@ Write a value proposition that names the Desk Pouch buyer, the retrieval
 problem and one supported benefit. Draft one private launch message and a
 call to action. Check that the message describes a result the prototype
 test can support.
+
+**Completion evidence:**
+- Underline the buyer and benefit in the value proposition. Include the
+  private message and a single action it asks the audience to take.
+- Pair the benefit with one observation from the prototype. Revise any
+  wording that promises a result outside what that observation measures.
 `,
 		challenge: `
 Compare a short product demonstration for a learner with a one-page order
 mockup for a purchaser. Use the same offer for both. Identify one response
 to measure for each audience and explain how a successful response would
 inform the next revision.
+
+**Completion evidence:**
+- Keep the price, features and stated benefit the same in both versions.
+- Name a measurable response for each format, such as successful retrieval
+  in the demonstration or correct identification of the offer on the
+  mockup. Explain what you would revise if that response were missed.
 `
 	},
 	ENT9: {
@@ -477,12 +581,26 @@ Compare standard packaging with an option that adds $1 per unit and uses 15
 grams less material per shipment. For 500 units, calculate the added
 expense and material reduction. Identify one measurement that would help
 assess the actual environmental impact.
+
+**Completion evidence:**
+- Show the arithmetic in both dollars and grams, then convert the material
+  difference to kilograms.
+- Check that 500 shipments add $500 and reduce packaging weight by 7.5
+  kilograms. State an input, such as material source or transport distance,
+  needed for a broader impact assessment.
 `,
 		challenge: `
 Write a product-page claim supported by the package weight comparison.
 State the specific comparison and units. Then revise the claim for a
 supplier whose package is lighter but has an undocumented material source.
 Record which evidence would support a stronger claim.
+
+**Completion evidence:**
+- Quote the limited comparison a customer could confirm, such as 15 grams
+  less packaging per shipment than the standard pack.
+- Identify a missing supplier record for the material source. Describe the
+  specific claim that record would let you support and what would still
+  require measurement.
 `
 	},
 	ENT10: {
@@ -491,12 +609,26 @@ Select one portfolio decision and label its assumption, test, result and
 revision. Place the supporting artifact next to the corresponding Lean
 Canvas box. Draft a short pitch sentence that makes the result and its
 limit clear.
+
+**Completion evidence:**
+- Label where the supporting file belongs, such as a cost calculation next
+  to Cost Structure or retrieval-test results next to Key Metrics.
+- Include an original assumption and a corrected statement. Give the pitch
+  sentence a scale or comparison so another reader can trace it to the
+  evidence.
 `,
 		challenge: `
 Suppose the prototype meets its retrieval target but the updated forecast
 needs more customers to break even. Revise the feasibility section of the
 pitch. Keep the two results distinct and state the next piece of evidence
 needed before launching.
+
+**Completion evidence:**
+- State the retrieval outcome and new break-even estimate in separate
+  sentences and explain what each one measures.
+- State an unresolved feasibility question and name a small check before
+  launch, such as collecting a production quote or verifying a price
+  assumption with a private offer mockup.
 `
 	}
 };

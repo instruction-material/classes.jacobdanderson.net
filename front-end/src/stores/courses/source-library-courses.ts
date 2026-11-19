@@ -2186,7 +2186,7 @@ const investingCourses = {
 					evidence: [
 						"Daily price, sales, and revenue table, with visitor counts and purchase rates when available.",
 						"Comparison that identifies one change across days, such as price or weather, and explains what the records can show about it.",
-						"Recommendation for one further test, with the variables that should stay constant."
+						"Recommendation for one further test and the variables to keep constant."
 					],
 					learningPath: "choice"
 				},
