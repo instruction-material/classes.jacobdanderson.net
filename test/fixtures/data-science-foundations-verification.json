@@ -11,7 +11,7 @@
 		{
 			"module": "data-science-in-python-dsp0-setup-and-tooling",
 			"item": "data-science-in-python-dsp0-setup-and-tooling-curriculum-notebook-first-and-script-first-workflow",
-			"contentSHA256": "0f6d5fa0e708beb0c5631ce8998c107a883334e70761581d11f72b403b186c50"
+			"contentSHA256": "ae618e87e3b0eb34931ce47de8471bbbfeb443ae22a003fdf33e11af06b51048"
 		},
 		{
 			"module": "data-science-in-python-dsp0-setup-and-tooling",
@@ -41,7 +41,7 @@
 		{
 			"module": "data-science-in-python-module-1-what-data-science-is",
 			"item": "data-science-in-python-module-1-what-data-science-is-curriculum-what-data-science-is-core-concepts",
-			"contentSHA256": "2d82f33a629ba7d94d463d18ada2d0bd6bed90dc548cbbd69a9af5c32810cb93"
+			"contentSHA256": "446437d078dbc35947e6e3f516be09cee30200e06b0966acd02d5b73d3ea1fbb"
 		},
 		{
 			"module": "data-science-in-python-module-1-what-data-science-is",
@@ -66,7 +66,7 @@
 		{
 			"module": "data-science-in-python-module-2-notebook-workflow-and-reproducibility",
 			"item": "data-science-in-python-module-2-notebook-workflow-and-reproducibility-curriculum-notebook-workflow-and-reproducibility-core-concepts",
-			"contentSHA256": "e261318f20faa65bd3d8a0fc97ac639c6a9937f7b67331a768a7df4dd1d44f9c"
+			"contentSHA256": "7534f2b51ef6f80d0f0a57a1c90ffa4c7c8265e93f0f233a3bb247d734625a1b"
 		},
 		{
 			"module": "data-science-in-python-module-2-notebook-workflow-and-reproducibility",
@@ -91,7 +91,7 @@
 		{
 			"module": "data-science-in-python-module-3-pandas-foundations",
 			"item": "data-science-in-python-module-3-pandas-foundations-curriculum-pandas-foundations-core-concepts",
-			"contentSHA256": "f78c9fe5fa6892fff7b5ea0b1701260b557418283a463216111ad3c8d941155f"
+			"contentSHA256": "0e32bb9cee251ec9c3ec7ee8b9d17009d99eba080b668843b390c97868252f10"
 		},
 		{
 			"module": "data-science-in-python-module-3-pandas-foundations",
@@ -106,7 +106,7 @@
 		{
 			"module": "data-science-in-python-module-3-pandas-foundations",
 			"item": "data-science-in-python-module-3-pandas-foundations-supplemental-transfer-practice-pandas-foundations",
-			"contentSHA256": "a37d4e500abd81cd86a5a4dbd07eec2d5e2359a0e1606d816945c0f03dcd76f0"
+			"contentSHA256": "1dfd0c1243e7699fbcbcbf4ec949efce92f0e7169530a2f8a896e1f1508c4e1e"
 		},
 		{
 			"module": "data-science-in-python-module-3-pandas-foundations",
