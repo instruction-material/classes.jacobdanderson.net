@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { visibleCourseModules } from "@/modules/courseVisibility";
 import { apCalculusCourse } from "@/stores/courses/ap-calculus";
 
 const AB_ROUTE_TITLES = [
@@ -57,6 +58,17 @@ describe("AP Calculus learner flow", () => {
 				.filter(module => module.kind === "appendix")
 				.map(module => module.title)
 		).toEqual(["AP Calculus Reference Archive", "Pending Static Assets"]);
+	});
+
+	it("keeps unavailable media inventory out of the course reader", () => {
+		const inventory = requireModule("Pending Static Assets");
+		expect(inventory.internal).toBe(true);
+		expect(inventory.curriculum[0]?.content).toContain("Pending media");
+		expect(
+			visibleCourseModules(apCalculusCourse.modules)
+				.filter(module => module.kind === "appendix")
+				.map(module => module.title)
+		).toEqual(["AP Calculus Reference Archive"]);
 	});
 
 	it("states the AB and BC routes in the diagnostic module", () => {

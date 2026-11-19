@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { visibleCourseModules } from "@/modules/courseVisibility";
 import { preCalculusBCourse } from "@/stores/courses/pre-calculus-b";
 
 const EXPECTED_MODULE_SEQUENCE = [
@@ -42,6 +43,17 @@ describe("Pre-Calculus B learner flow", () => {
 			"Pre-Calculus B Reference Archive",
 			"Pending Static Assets"
 		]);
+	});
+
+	it("keeps unavailable media inventory out of the course reader", () => {
+		const inventory = requireModule("Pending Static Assets");
+		expect(inventory.internal).toBe(true);
+		expect(inventory.curriculum[0]?.content).toContain("Pending media");
+		expect(
+			visibleCourseModules(preCalculusBCourse.modules)
+				.filter(module => module.kind === "appendix")
+				.map(module => module.title)
+		).toEqual(["Pre-Calculus B Reference Archive"]);
 	});
 
 	it("adds pacing, targets, flow notes, and explicit paths", () => {
