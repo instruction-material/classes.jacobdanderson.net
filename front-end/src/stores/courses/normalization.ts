@@ -11,6 +11,7 @@ import { applyCourseImplementationArtifacts } from "./course-implementation-arti
 import { applyDataScienceCleaningGuidance } from "./dataScienceCleaningGuidance";
 import { applyDataScienceCsvGuidance } from "./dataScienceCsvGuidance";
 import { applyDataScienceGroupedGuidance } from "./dataScienceGroupedGuidance";
+import { applyDataScienceReportGuidance } from "./dataScienceReportGuidance";
 import { applyEarlyElementaryAProjects } from "./earlyElementaryAProjects";
 import { applyEarlyElementaryBProjects } from "./earlyElementaryBProjects";
 import { applyElementaryScienceReferences } from "./elementaryScienceReferences";
@@ -9956,6 +9957,7 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 		applyDataScienceCsvGuidance(course);
 		applyDataScienceCleaningGuidance(course);
 		applyDataScienceGroupedGuidance(course);
+		applyDataScienceReportGuidance(course);
 	}
 	return course;
 }

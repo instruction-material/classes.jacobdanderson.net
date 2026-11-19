@@ -39,6 +39,7 @@ import { visibleCourseModules } from "@/modules/courseVisibility";
 import { dataScienceCleaningProjectKey } from "@/modules/dataScienceCleaningResources";
 import { dataScienceCsvProjectKey } from "@/modules/dataScienceCsvResources";
 import { dataScienceGroupedProjectKey } from "@/modules/dataScienceGroupedResources";
+import { dataScienceReportProjectKey } from "@/modules/dataScienceReportResources";
 import { javaRecursionProjectKey } from "@/modules/javaRecursionResources";
 import { javaRefactoringProjectKey } from "@/modules/javaRefactoringResources";
 import {
@@ -1842,12 +1843,18 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 	if (selectedCourse.value.id === "data-science-in-python") {
 		params.set(
 			"projectKey",
-			dataScienceGroupedProjectKey(
+			dataScienceReportProjectKey(
 				selectedCourse.value.id,
 				item.id,
 				resource.kind === "solution" ? "reference" : "starter",
 				starterUrl
 			) ??
+				dataScienceGroupedProjectKey(
+					selectedCourse.value.id,
+					item.id,
+					resource.kind === "solution" ? "reference" : "starter",
+					starterUrl
+				) ??
 				dataScienceCleaningProjectKey(
 					selectedCourse.value.id,
 					item.id,

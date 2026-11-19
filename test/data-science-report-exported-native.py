@@ -1,0 +1,120 @@
+"""Independently execute the actual report studio ZIPs retained by browser CI."""
+from pathlib import Path
+import hashlib
+import io
+import json
+import os
+import platform
+import re
+import signal
+import subprocess
+import sys
+import tempfile
+import time
+import zipfile
+
+root = Path(__file__).resolve().parents[1]
+output = Path(os.environ.get('DATA_SCIENCE_REPORT_BROWSER_PROOF_DIR', 'output/data-science-report')).resolve()
+fixture = json.loads((root / 'test/fixtures/data-science-report-code-packs.json').read_text())
+browser = json.loads((output / 'proof.json').read_text())
+head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=root, text=True).strip()
+assert browser['complete'] and browser['sourceCommit'] == head
+assert browser['sourceRevision'] == fixture['revision']
+assert len(browser['profiles']) == 16 and len(browser['readingViews']) == 28
+assert sys.version_info[:2] == (3, 14)
+source_activity = {a['item']: a for a in fixture['activities']}
+results = []
+processes = []
+started = time.time()
+
+def run(directory, script, *arguments):
+    command = [sys.executable, '-I', '-B', script, *arguments]
+    row = dict(parentTask=os.environ.get('CLASSES_FAMILY_TASK_ID', 'data-science-report-native'), parentPid=os.getpid(),
+               cwd=str(directory), command=command, startTime=time.time(), timeoutSeconds=15)
+    child = subprocess.Popen(command, cwd=directory, stdout=subprocess.PIPE, stderr=subprocess.PIPE, start_new_session=True)
+    row['pid'] = child.pid
+    try:
+        stdout, stderr = child.communicate(timeout=15)
+        row.update(exitCode=child.returncode, stdout=stdout.decode(), stderr=stderr.decode(), childProcessGroupCleanup='not needed')
+    except subprocess.TimeoutExpired:
+        os.killpg(child.pid, signal.SIGTERM)
+        try: child.communicate(timeout=5)
+        except subprocess.TimeoutExpired:
+            os.killpg(child.pid, signal.SIGKILL)
+            child.communicate()
+        row.update(exitCode=124, childProcessGroupCleanup='terminated process group')
+        raise
+    finally:
+        row['endTime'] = time.time()
+        processes.append(row)
+    assert child.returncode == 0 and stderr == b'', row
+    return stdout.decode().removesuffix('\n')
+
+accepted = False
+try:
+    for profile in browser['profiles']:
+        activity = source_activity[profile['activity']]
+        for stage in ['originalExport', 'editedExport']:
+            receipt = profile.get(stage)
+            if not receipt: continue
+            archive = (output / receipt['file']).read_bytes()
+            assert hashlib.sha256(archive).hexdigest() == receipt['sha256']
+            expected = profile['before' if stage == 'originalExport' else 'after']['stdout']
+            with tempfile.TemporaryDirectory(prefix='csv-browser-export-') as temporary:
+                directory = Path(temporary)
+                with zipfile.ZipFile(io.BytesIO(archive)) as zipped:
+                    names = zipped.namelist()
+                    assert len(names) == (3 if activity['title'] == 'Script and Markdown Conversion' and stage == 'editedExport' else 2)
+                    tops = set()
+                    for name in names:
+                        path = Path(name)
+                        assert not path.is_absolute() and '..' not in path.parts
+                        tops.add(path.parts[0])
+                        data = zipped.read(name)
+                        assert hashlib.sha256(data).hexdigest() == receipt['members'][name]
+                        target = directory / path
+                        target.parent.mkdir(parents=True, exist_ok=True)
+                        target.write_bytes(data)
+                    assert len(tops) == 1
+                project = directory / next(iter(tops))
+                wanted = {'main.py', 'data/sample.csv'}
+                if activity['title'] == 'Script and Markdown Conversion' and stage == 'editedExport': wanted.add('report.md')
+                assert {str(p.relative_to(project)) for p in project.rglob('*') if p.is_file()} == wanted
+                csv = fixture['files'][activity['folder'] + '/starter/data/sample.csv']
+                assert hashlib.sha256((project / 'data/sample.csv').read_bytes()).hexdigest() == csv['sha256']
+                if stage == 'originalExport' and not profile.get('extensionOf'):
+                    role = 'solution' if profile['sourceRole'] == 'reference' else 'starter'
+                    expected_main = fixture['files'][activity['folder'] + '/' + role + '/main.py']
+                    assert hashlib.sha256((project / 'main.py').read_bytes()).hexdigest() == expected_main['sha256']
+                observed = run(project, 'main.py')
+                comparison_expected = expected
+                browser_python = None
+                if profile.get('extensionOf'):
+                    pattern = r'^Python: ([0-9]+\.[0-9]+\.[0-9]+); dependencies: standard library only\.$'
+                    browser_versions = re.findall(pattern, expected, re.M)
+                    native_versions = re.findall(pattern, observed, re.M)
+                    assert len(browser_versions) == len(native_versions) == 1
+                    assert native_versions[0] == platform.python_version()
+                    browser_python = browser_versions[0]
+                    comparison_expected = re.sub(pattern, 'Python: ' + platform.python_version() + '; dependencies: standard library only.', expected, flags=re.M)
+                assert observed == comparison_expected, (receipt['file'], comparison_expected, observed)
+                if 'report.md' in wanted:
+                    report = (project / 'report.md').read_text()
+                    assert report == '# Synthetic weekly trip report\n\n## Question\nWhat is the average recorded weekly trip count in this CSV?\n\n## Data source\nSynthetic CSV: data/sample.csv; each row records one week and its trip count.\n\n## Method\nAdd the trip counts and divide by the number of recorded weeks; keep all recorded weeks in the denominator.\n\n## Results\n| Recorded week | Trips |\n| --- | ---: |\n| week-1 | 4 |\n| week-2 | 7 |\n| week-3 | 7 |\n| week-4 | 10 |\n\nRecorded weeks: 4; total trips: 28; mean: 7.00 trips per recorded week.\n\n## Interpretation\nThe mean summarizes this file. It does not show how trips were spread within a week.\n\n## Limitation\nThese synthetic practice weeks illustrate reporting; they describe no real traveler or population.\n\n## Next question\nHow would the result change with additional observed weeks and documented collection rules?\n'
+                    assert observed == report.removesuffix('\n') + '\n' + 'csv_saved_' + profile['label'].replace('-', '_')
+                    saved_report_hash = hashlib.sha256((project / 'report.md').read_bytes()).hexdigest()
+                    generated = project / 'native-generated-report.md'
+                    # The provided CLI save path must reproduce the browser-retained artifact.
+                    run(project, 'main.py', str(generated))
+                    assert hashlib.sha256(generated.read_bytes()).hexdigest() == saved_report_hash
+                results.append(dict(file=receipt['file'], sha256=receipt['sha256'], actualStdout=observed,
+                                    browserStdout=expected, comparedStdout=comparison_expected, browserPythonVersion=browser_python, nativePythonVersion=platform.python_version(), matched=True))
+    assert len(results) == 28
+    accepted = True
+finally:
+    (output / 'native-acceptance.json').write_text(json.dumps(dict(
+        accepted=accepted, sourceCommit=head, sourceRevision=fixture['revision'],
+        pythonVersion=sys.version, startedAt=started, finishedAt=time.time(),
+        actualExports=len(results), results=results, processes=processes,
+        wholeCourseAccepted=False, liveDeploymentClaimed=False), indent=2) + '\n')
+print(json.dumps(dict(accepted=accepted, actualExports=len(results), pythonVersion=sys.version)))
