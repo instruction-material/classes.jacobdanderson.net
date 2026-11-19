@@ -1,0 +1,210 @@
+[
+	{
+		"module": "DSP15 Applied Studio: Lightweight Dashboards and Filters",
+		"title": "Lightweight Dashboards and Filters Concepts",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "A dashboard is useful when it answers a focused follow-up question without requiring a code edit. This studio uses a small console menu: select a site, inspect the selected-record summary, then choose another site or quit. The same calculation serves every selection.\n\nSeparate three operations. Loading reads and validates the original rows. Filtering selects the rows that match the current controls. Summarizing calculates count, total and mean from that selected subset. Keep the original rows intact so returning to the all-data view starts from the complete input.\n\nThe synthetic CSV has columns `site` and `trips`. Each row is one recorded nonnegative whole trip count. Several rows may share a site label. The mean is the selected total divided by the selected record count. A filter changes both values; keeping the original denominator after filtering produces an incorrect mean.\n\nThe default view includes all records. A selected site includes only matching labels. A selection with no rows displays `No matching records`; it has no measured mean. One recorded zero has count 1, total 0 and mean 0.00. A one-row result can be calculated, but its displayed record count and insufficient-record notice should make its limited evidence clear.\n\nKeep the current filter beside the result. A saved summary must also record that selection, otherwise the reader cannot tell which rows produced it. A second filter combines with the first using an explicit rule: selected site **and** trips at least the chosen minimum.\n\nThese synthetic records support practice calculations. They describe no real travelers or population, and changing a filter does not establish why groups differ."
+	},
+	{
+		"module": "DSP15 Applied Studio: Lightweight Dashboards and Filters",
+		"title": "Lightweight Dashboards and Filters Worked Example",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "Use these six complete synthetic records:\n\n```csv\nsite,trips\nnorth,2\nnorth,4\nsouth,8\nwest,0\nwest,6\nwest,12\n```\n\nThe default selection has count 6 and total `2 + 4 + 8 + 0 + 6 + 12 = 32`. Its mean is `32 / 6`, displayed as 5.33 trips per record. Selecting west retains 0, 6 and 12: count 3, total 18 and mean 6.00. Selecting south leaves one record with mean 8.00 and a one-record limitation. A label absent from the input leaves no measured mean.\n\nThis complete small example shows the filtering boundary:\n\n```python\nrows = [\n    {\"site\": \"north\", \"trips\": 2},\n    {\"site\": \"north\", \"trips\": 4},\n    {\"site\": \"south\", \"trips\": 8},\n    {\"site\": \"west\", \"trips\": 0},\n    {\"site\": \"west\", \"trips\": 6},\n    {\"site\": \"west\", \"trips\": 12},\n]\nselected = [row for row in rows if row[\"site\"] == \"west\"]\ncount = len(selected)\ntotal = sum(row[\"trips\"] for row in selected)\nmean = total / count if count else None\nprint(count, total, mean)\nprint(len(rows))\n```\n\nExpected output is `3 18 6.0`, then `6`. The original input still contains six records. Replacing the condition with `row[\"site\"] == \"west\" and row[\"trips\"] >= 5` selects 6 and 12: count 2, total 18 and mean 9.00. The total stays the same because the excluded observation was zero; the denominator changes. This is a selected-subset result, not a change in the underlying records."
+	},
+	{
+		"module": "DSP15 Applied Studio: Lightweight Dashboards and Filters",
+		"title": "Filtered Dashboard Build",
+		"group": "curriculum",
+		"contentKind": "assignment",
+		"folder": "DSP-06-data-analysis-lab-16",
+		"content": "Build the supplied console dashboard around the bundled six-row CSV. Complete `select_rows(rows, site=None, minimum=None)` so it returns the matching records without mutating the original list or its row dictionaries. The core menu exposes the site choice: `site=None` selects every site and a supplied label uses exact equality. Leave the minimum argument at its default in the core menu. Its inclusive threshold behavior and a second user control belong to the optional second-filter extension.\n\nThe starter supplies loading, validation, summary calculation and a repeated menu. Run it first to see the unfinished-selection message. After completing the function, start with the default all-data view, select west, return to all records, then quit. Repeated selections must use the original input rather than successively filtering the previous subset.\n\nThe default six records produce count 6, total 32 and mean 5.33. West produces count 3, total 18 and mean 6.00. An absent label produces count 0 and `No matching records`, with no measured mean. South produces count 1 and mean 8.00 together with a one-record limitation. A separate single zero record produces a measured mean of 0.00.\n\nRun `python main.py` from a role folder in native Python, or use the site IDE's input control for the console selections. The source locates the bundled CSV beside `main.py` when launched from another directory. Notebook cells use the role directory or pass an explicit input path. The project uses the Python standard library.\n\nRetain the selected records or their identities, the displayed summary and a short explanation of its denominator. Verify a normal selection, no matches, a zero observation and restoration of the complete input before starting the second-filter extension."
+	},
+	{
+		"module": "DSP15 Applied Studio: Lightweight Dashboards and Filters",
+		"title": "Dashboard Behavior Review",
+		"group": "curriculum",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Review the dashboard through an actual sequence: open the default view, select west, select a missing label, return to all records and quit. For each selection, record its filter, selected-row count, total and mean or missing-result state.\n\nCheck the bundled input by hand. All records: count 6, total 32, mean 5.33. West: count 3, total 18, mean 6.00. The absent-label view has no measured mean. Returning to all records restores count 6; a smaller result indicates that earlier filtering destroyed or replaced the original data.\n\nCompare the displayed filter with the actual retained rows. A mean calculated from the entire input while the interface names one site is a behavior error, even if the arithmetic itself is correct. One zero-valued observation must remain distinguishable from no observations. A one-record result should retain its count and limitation.\n\nIf the second filter is present, select west with minimum 5. The retained values 6 and 12 have count 2, total 18 and mean 9.00. Both conditions apply together. Review the exported summary, if present, using the same selection and expected values. Record the observed behavior, one interpretation limit and a specific correction supported by the evidence."
+	},
+	{
+		"module": "DSP15 Applied Studio: Lightweight Dashboards and Filters",
+		"title": "Second Filter or Summary Card",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-06-data-analysis-lab-16",
+		"content": "Continue the saved Filtered Dashboard Build project. Add a minimum-trip control to the existing site selection and display the retained record count beside the mean. Reuse `select_rows(rows, site=None, minimum=None)`; preserve the completed site filter and the original input.\n\nThe selection rule is site match **and** trips at least the minimum. With west and minimum 5, retain 6 and 12: count 2, total 18, mean 9.00. With west and minimum 0, retain 0, 6 and 12: count 3, total 18, mean 6.00. With west and minimum 13, retain no rows and display no measured mean. Clearing both controls restores all six records.\n\nAccept nonnegative whole-number minima. A negative, fractional or unparseable value needs a meaningful input error; silently replacing it with zero changes the user's selection. Record the active site and minimum beside the summary so the two controls explain the result together.\n\nSave, reopen and rerun the project with the same selections. The code and input must be retained, and earlier work must remain available. Submit the two-filter result, its hand calculation and one limitation. The minimum changes the selected sample, so it supports a subset description rather than a general claim about a site."
+	},
+	{
+		"module": "DSP15 Applied Studio: Lightweight Dashboards and Filters",
+		"title": "Dashboard Test Plan",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Write a test plan for the dashboard using the six-row synthetic input in the worked example. Keep each scenario's selection, expected retained rows, count, total, mean and visible state together.\n\n| Scenario | Selection | Expected result |\n| --- | --- | --- |\n| Default | All sites, no minimum | 6 rows, total 32, mean 5.33 |\n| Normal filter | West | Values 0, 6, 12; 3 rows, total 18, mean 6.00 |\n| Empty result | A label absent from the CSV | 0 rows and no measured mean; `No matching records` |\n| Observed zero | A separate one-row CSV with `west,0` | 1 row, total 0, mean 0.00 |\n| Return to default | West, then all sites | All original 6 rows restored |\n| Combined controls | West and minimum 5 | Values 6, 12; 2 rows, total 18, mean 9.00 |\n\nAdd an invalid minimum and a missing or invalid CSV count. Specify the meaningful error expected in each case. An empty selection and invalid input require different outcomes.\n\nFor each executed scenario, record the observed result and whether it matches the stated expectation. Leave unexecuted cases clearly marked. This is a written artifact; use the dashboard project to carry out its scenarios."
+	},
+	{
+		"module": "DSP15 Applied Studio: Lightweight Dashboards and Filters",
+		"title": "Filtered Summary Export",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-31-applied-studio-16-data-analysis-lab-16-supplemental-3",
+		"content": "Build the distinct filtered-summary exporter from its own starter. Complete the supplied export function so it writes the current site/minimum selection together with its selected count, total and mean to UTF-8 CSV. Keep filtering and summary calculation separate from file writing so the saved result can be checked against the displayed result.\n\nUse the bundled synthetic rows. A west selection has count 3, total 18 and mean 6.00; west with minimum 5 has count 2, total 18 and mean 9.00. The output must record the filter that produced each result. For no matching records, retain count 0 and an empty mean field, with an explicit missing-result state. One real zero observation has a numeric mean of 0.00.\n\nThe starter supplies the CSV schema and calling code. Preserve the stated column order, use `csv.DictWriter` with `newline=\"\"` and UTF-8 encoding, and retain the original input. Exporting twice with the same selection should produce the same report bytes. Change the filter and verify that the report records the new selection and result.\n\nRun the script in the site IDE and inspect the saved CSV among the project files. In native Python, use the documented command-line input, site, minimum and output options from the included README. Download the project ZIP, rerun it and compare the saved report with a hand calculation. Retain the source CSV, code and generated report. This practice result describes synthetic selected records and establishes no real-world site ranking."
+	},
+	{
+		"module": "DSP16 Applied Studio: Capstone Data Story Readiness",
+		"title": "Capstone Data Story Readiness Concepts",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "A capstone data story begins with a question answerable from available evidence. Readiness connects that question to actual columns, a reproducible calculation, a small verified result and a deliverable with clear limits.\n\nFor the bundled synthetic `site,trips` data, \u201cWhich site's recorded rows have the largest mean trip count?\u201d is answerable. \u201cWhy do people at one site travel more?\u201d needs evidence about real people, collection methods and alternative causes that these synthetic rows do not contain. Keep the descriptive question and state its boundary.\n\nA readiness brief records the source and permission to use the data, what one row represents, the relevant columns and units, validation or cleaning rules, the calculation, candidate table or chart, a hand-checkable case, a limitation and a feasible final format. For the bundled practice file, identify it as generated synthetic data rather than inventing a collector or license.\n\nUse a tiny prototype to test the complete path from CSV to evidence before expanding the scope. Keep the original input, name every row decision and expose counts as well as averages. A failure to read the file or define the denominator is a feasibility issue to resolve before designing a presentation.\n\nA risk register connects each likely problem to a detection check and a fallback. Missing columns can halt the run with a meaningful error. Unequal group counts require visible denominators. A very small sample requires a narrow claim. A missing external source needs a recorded availability decision rather than an invented replacement.\n\nThe final plan should say what the available evidence can establish, what it leaves unresolved and how another reader can rerun the proposed analysis."
+	},
+	{
+		"module": "DSP16 Applied Studio: Capstone Data Story Readiness",
+		"title": "Capstone Data Story Readiness Worked Example",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "Consider the complete six-row synthetic `site,trips` CSV from the chart and dashboard studios. North has values 2 and 4; south has 8; west has 0, 6 and 12.\n\nQuestion A: **Which site's recorded rows have the largest mean trip count?** The required columns are present. Group by site, calculate count/total/mean, and compare recorded means. North has count 2, total 6 and mean 3; south has count 1, total 8 and mean 8; west has count 3, total 18 and mean 6. The recorded maximum is south's mean 8, based on one row.\n\nQuestion B: **Which real site causes people to travel more?** The input has no real sites, participant records, assignment mechanism or causal comparison. That question exceeds the data.\n\nThis complete prototype exposes the calculation:\n\n```python\nrows = [(\"north\", 2), (\"north\", 4), (\"south\", 8),\n        (\"west\", 0), (\"west\", 6), (\"west\", 12)]\ngroups = {}\nfor site, trips in rows:\n    groups.setdefault(site, []).append(trips)\nfor site in sorted(groups):\n    values = groups[site]\n    print(site, len(values), sum(values), sum(values) / len(values))\n```\n\nExpected lines are `north 2 6 3.0`, `south 1 8 8.0` and `west 3 18 6.0`. A zero-baseline mean bar chart may accompany the table, with each group's count visible.\n\nA feasible brief chooses Question A, names the bundled synthetic source, rejects missing labels or invalid counts, keeps observed zeros, provides this calculation as its first check, and plans a short README with a table, rerun command and limitation. Its fallback is the verified six-row table if a larger permitted dataset is unavailable. That fallback preserves a practice analysis; it provides no evidence about real travelers."
+	},
+	{
+		"module": "DSP16 Applied Studio: Capstone Data Story Readiness",
+		"title": "Capstone Readiness Brief",
+		"group": "curriculum",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Write a readiness brief detailed enough to begin a small, reproducible data story. Use a permitted dataset with a concrete source and available bytes, or explicitly choose the bundled six-row synthetic practice CSV. Record what one row represents, the column names and units, and the dataset's permission or synthetic origin.\n\nState one descriptive question supported by those columns. For the bundled input, use \u201cWhich site's recorded rows have the largest mean trip count?\u201d Define each group's mean as total trips divided by its recorded-row count. Keep zero observations, reject missing labels or invalid counts, and leave the mean absent when no rows remain.\n\nName the output: a grouped count/total/mean table and a short README, optionally with a labeled zero-baseline bar chart. Include the expected six-row values: north 2/6/3, south 1/8/8, west 3/18/6 for count/total/mean. The result identifies the largest recorded mean; it makes no causal or population claim.\n\nAdd a correctness check, the rerun command or notebook order, a likely risk, a detection method and a fallback scope. Keep any proposed expansion separate from the result already verified. A reader should be able to locate the input, follow the calculation, recognize the expected first result and assess the limitation from the brief itself. This is a written planning artifact; the optional tiny prototype carries the runnable implementation."
+	},
+	{
+		"module": "DSP16 Applied Studio: Capstone Data Story Readiness",
+		"title": "Capstone Scope Review",
+		"group": "curriculum",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Review the readiness brief by tracing its question through the actual data and planned evidence. Name the relevant columns, what one row represents, the calculation's denominator and the output that will answer the question.\n\nFor the bundled synthetic input, the recorded means 3, 8 and 6 support a description of those rows. South's value 8 is based on one record. A claim about why real travelers differ is unsupported. Rewrite any such claim as a descriptive question about the available records.\n\nCheck feasibility in a fresh session: the source bytes are available, permissions or synthetic origin are recorded, validation decisions are explicit, and the small hand calculation matches the proposed output. The plan retains zeros and distinguishes an empty input from a measured zero. Any external dataset expansion has its own source and availability record.\n\nRecord one supported claim, one unsupported inference to remove, one concrete verification case and the fallback artifact if expansion fails. Keep unresolved collection or interpretation questions visible in the review. This is a written review of the brief and prototype evidence."
+	},
+	{
+		"module": "DSP16 Applied Studio: Capstone Data Story Readiness",
+		"title": "Tiny Capstone Prototype",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-07-data-analysis-lab-17",
+		"content": "Use the separate tiny-prototype starter to prove a complete CSV-to-evidence path before building a larger data story. The bundled input contains six synthetic `site,trips` rows. Complete the supplied grouped-evidence function so each sorted site retains its record count, total trips and mean trips per record.\n\nThe expected table is north: count 2, total 6, mean 3; south: count 1, total 8, mean 8; west: count 3, total 18, mean 6. Identify every site tied for the largest recorded mean in sorted order. An empty input has no winning site and no measured means. A zero-valued record remains an observation with count 1.\n\nThe starter provides loading, input validation and the report entrypoint. Complete the analysis without mutating the input. Preserve the code, source CSV, grouped table and a short interpretation. The largest recorded mean answers the narrow question in the readiness brief; unequal counts and synthetic origin limit the conclusion.\n\nRun in the site IDE or use `python main.py` from a role folder. The standard-library source resolves its bundled CSV beside the script; notebook cells use that directory or pass an explicit path. Verify the six-row calculation, a tie, an empty input and one zero observation. Save, reopen, export and rerun the same input before planning a larger dataset."
+	},
+	{
+		"module": "DSP16 Applied Studio: Capstone Data Story Readiness",
+		"title": "Capstone Risk Register",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Write a short risk register connecting each material risk to a check and a fallback. Use the actual readiness question and input rather than a generic list of possible project problems.\n\n| Risk | Detection evidence | Response or fallback |\n| --- | --- | --- |\n| Missing or renamed columns | Inspect CSV header and run validation | Record the schema problem; correct the source mapping before analysis |\n| Invalid or negative trip count | Record-specific validation error | Investigate the input; retain the original bytes and document any justified change |\n| Unequal or tiny groups | Count displayed beside each mean | Narrow the interpretation to the recorded rows |\n| Empty filtered input | Count 0 and no measured mean | Report no matching evidence; revise the selection explicitly |\n| Unsupported causal claim | Compare the claim with available columns and collection design | Replace it with the supported descriptive question |\n| Planned external dataset unavailable or not permitted | Verify its source, access and usage conditions | Retain the explicitly synthetic six-row practice scope |\n\nAdd the observed status and owner or next action for each risk that affects the current project. Keep unresolved risks separate from checks already performed. Submit this written register with the brief; its purpose is to make the next project decision concrete."
+	},
+	{
+		"module": "DSP16 Applied Studio: Capstone Data Story Readiness",
+		"title": "First Slide or README Section",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Create the opening slide or README section for the planned data story. Include its precise question, the available source, the evidence to be shown and the boundary of the claim.\n\nFor the bundled practice analysis, a complete opening is:\n\n> **Recorded trip means in a synthetic practice dataset**\n>\n> Question: Which site's recorded rows have the largest mean trip count?\n>\n> Source: The bundled six-row generated `site,trips` CSV. Each row is one recorded trip count.\n>\n> Evidence: A grouped table showing count, total and mean for each site, checked against the original rows. The recorded means are north 3 (n=2), south 8 (n=1) and west 6 (n=3).\n>\n> Limitation: Synthetic records and unequal group counts establish no real-world or causal ranking.\n\nAdapt this opening to the dataset actually chosen in the brief. Explain its relevance through the concrete question rather than an invented claim about impact. Identify a planned result as planned until the calculation runs. Retain a link or path to the input, code and rerun instructions in the full README. This is a written presentation artifact."
+	},
+	{
+		"module": "Dataset, Model, and Evaluation Catalog",
+		"title": "Approved Dataset and Fixture Sources",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "A dataset is suitable for a question when its records, units, origin and permitted use are understood. A large download or a repository name alone provides none of those guarantees.\n\nThe [provided synthetic trip CSV](https://github.com/instruction-material/Data-Science/blob/5cd0d1b4c2158c5a16b85e28c92f404bf023c787/DSP-06-data-analysis-lab-16/starter/data/sample.csv) is the fixed input for the dashboard examples: `site` is a synthetic collection label and `trips` is a nonnegative whole count for one record. Its six rows total 32 trips. It contains no dates, measured exposure or description of a real population. It supports checking calculations and filters; it cannot establish which real location is safer, busier or better served. Preserve the supplied rows when checking the worked examples.\n\nFor an external weather project, start with [NOAA's GHCN-Daily documentation](https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily). Record the station, dates, selected measurements, units and quality-flag policy. Coverage differs between stations, and observations can be revised. Retain a dated local input snapshot and its source reference so a rerun uses the same evidence.\n\nFor another tabular source, record the original publisher and the dataset's own license or usage terms. A mirror or listing is a discovery route; check its specific dataset record before redistributing data. Define one answerable question, inspect the relevant columns and missing values, and select a small documented subset before beginning analysis."
+	},
+	{
+		"module": "Dataset, Model, and Evaluation Catalog",
+		"title": "Reproducibility Contract",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "A reproducible result can be regenerated from the retained input and recorded steps in a fresh process. Saving a finished chart alone does not preserve how its values were obtained.\n\nKeep the input snapshot, source reference, column definitions, cleaning decisions, code and environment notes together. Record the Python version and any installed packages with their versions. Identify the entrypoint and working directory, such as running `python3 main.py` from the imported role folder. Relative paths must resolve to the intended `data/sample.csv`, rather than an unrelated file in another directory.\n\nIn a notebook, restart the kernel and run cells from the top. A result that requires a variable left by an earlier execution is incomplete. In a script, run a new process. If a method uses randomness, record its seed and the method and environment; explain any variability that still remains.\n\nFor the synthetic fixture, a fresh run should recover six records, 32 total trips and an overall mean displayed as 5.33 trips per record. Keep the original file and compare the rerun's values with that hand calculation. Display rounding is separate from the precision used in calculations."
+	},
+	{
+		"module": "Dataset, Model, and Evaluation Catalog",
+		"title": "Evaluation and Limitation Notes",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "Evaluation checks whether the evidence answers the stated question and whether the calculations are credible. A descriptive analysis can use a hand-calculated example, a known fixture, a previous period or an explicitly defined comparison group. It does not require a predictive model.\n\nFor the synthetic trip rows, north has two records totaling six trips, south has one totaling eight, and west has three totaling eighteen. South has the greatest mean per record, eight; west has the greatest total, eighteen. A conclusion must name which quantity is compared and show the record counts. Different questions can produce different valid rankings.\n\nCheck cleaning choices, missing and duplicate records, group sizes, units and chart scales. Keep a zero measurement distinct from a missing observation. Describe the strongest limitation that affects the conclusion, then state a follow-up that would address it. Unequal record counts and absent exposure data prevent treating these synthetic group summaries as population rates.\n\nWhen a separate project predicts an unseen outcome, it also needs an appropriate baseline, evaluation metric and held-out evaluation design. Those requirements belong with predictive model work. The descriptive course report is assessed on traceable calculations and a claim supported by its data."
+	},
+	{
+		"module": "Dataset, Model, and Evaluation Catalog",
+		"title": "Responsible Use Check",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "Responsible use begins with a concrete audience and decision. Identify who could rely on a result, what they might do with it and how an error could affect them. Record the origin and permitted use of the data and whether personal information is necessary for that question.\n\nA useful risk statement connects a cause to a consequence. For example, a chart of total trips could be mistaken for an exposure-adjusted rate and influence a location comparison. Show the denominator that is actually available, label the measure and narrow the conclusion. If the needed denominator is absent, record that limitation before the chart is shared.\n\nHuman review needs a specific action: inspect the source rows, recompute a displayed value, examine omitted observations or check whether a caption claims causation. State who reviews the artifact and what would require revision or withholding it.\n\nThe [NIST AI RMF 1.0 Core](https://airc.nist.gov/airmf-resources/airmf/5-sec-core/) provides related vocabulary for context, measurement, risk management and oversight when an artifact involves AI. This course uses those ideas as a discussion aid. A short classroom card records the relevant reasoning; it does not establish certification or a complete organizational risk program."
+	},
+	{
+		"module": "Dataset, Model, and Evaluation Catalog",
+		"title": "Catalog Project: Dataset Readiness Card",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Prepare a readiness card for the provided synthetic trip CSV or one documented external dataset before analysis begins. The card should let a reader decide whether the input can answer a narrow question.\n\nRecord the source or supplied origin, retained filename or version, applicable usage note, unit represented by one row, relevant column meanings and units, expected record count, missing-value conventions and one quality concern. State the question and the comparison or calculation needed to answer it. If a usage term is unresolved, identify it explicitly and resolve it before redistributing the source.\n\nFor the supplied fixture, a suitable question is \u201cWhat mean trip count is recorded for each synthetic site?\u201d The fields are `site` and `trips`; six records total 32 trips. One sanity check is that west retains three records with values zero, six and twelve, totaling eighteen. The absence of real sampling or exposure information is a limitation on interpretation.\n\n**Verification:** Submit the card with a reference to the exact retained input and a recorded sanity-check result. The question, units and calculation agree, and the limitation names a claim the input cannot support."
+	},
+	{
+		"module": "Dataset, Model, and Evaluation Catalog",
+		"title": "Catalog Project: Evaluation Report",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Write a short evaluation report for a completed descriptive analysis. Begin with one question and the evidence used to answer it. Include a readable table or chart, the cleaning decisions that affect it, a justified comparison, the result and its strongest limitation.\n\nFor the trip fixture, distinguish a mean-per-record question from a total-count question. A report comparing means should show north 3.00 from two records, south 8.00 from one, and west 6.00 from three. Include a hand check such as west's eighteen trips divided by three records. Explain why those values describe recorded synthetic rows and do not identify a superior real location.\n\nEnd with a follow-up that would change confidence or scope, such as obtaining a defined sampling period and exposure measure. State which new evidence would be needed; do not present the proposed follow-up as an observed result.\n\n**Verification:** Another reader can trace one displayed value to the retained rows, reproduce the stated comparison, find the relevant cleaning choices and identify both the supported conclusion and its limitation."
+	},
+	{
+		"module": "Data Science, AI Foundations, and Machine Learning Boundary Map",
+		"title": "Artifact Boundary",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "The main artifact and the reasoning being assessed distinguish the adjacent courses.\n\n- **Data Science:** a reproducible descriptive analysis, cleaned input and human-readable report. Assessment emphasizes data quality, correct summaries, useful visual evidence and a defensible conclusion.\n- **AI Foundations:** a solver or agent with a clear state representation, available actions and reasoning procedure. Assessment emphasizes how the procedure searches, plans or chooses actions.\n- **Machine Learning:** a fitted predictive model and evaluation on appropriately separated data. Assessment emphasizes generalization, a baseline, suitable metrics and the limits of evaluation.\n\nA transit dashboard that summarizes recorded trips belongs in Data Science. A route-search solver emphasizes AI Foundations. A model predicting future demand emphasizes Machine Learning. The same subject can support different courses when the question, artifact and rubric make the distinct learning objective visible. A final Data Science artifact should remain complete without adding model training solely because a neighboring course covers it."
+	},
+	{
+		"module": "Data Science, AI Foundations, and Machine Learning Boundary Map",
+		"title": "Required Responsible-Use Checkpoint",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "Before presenting a final analysis, connect its strongest limitation to the actual audience and claim. Record the intended reader, source and question; the important assumption; a plausible misleading interpretation; and the review action that addresses it.\n\nFor a chart comparing synthetic sites, a plausible mistake is reading the highest total as the highest rate. The checkpoint should identify the unequal record counts, label the total precisely and explain that exposure was not measured. The reviewer checks the denominator and caption against the source rows before sharing the report.\n\nDescribe uncertainty as uncertainty. Missing sampling information leaves representativeness unresolved; it does not prove the calculation is wrong. A calculation error requires correction, while a scope limitation requires a narrower claim or additional evidence. Keep the completed checkpoint with the final report so its conclusion is read in context."
+	},
+	{
+		"module": "Data Science, AI Foundations, and Machine Learning Boundary Map",
+		"title": "Reproducible Artifact Requirement",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "A final artifact includes enough evidence for another person to reproduce and interpret the result: the precise question, retained input and origin, row and column meanings, transformation steps, source code or notebook, environment and run instructions, output and limitations.\n\nOrganize the report so its claim refers to an identifiable table or figure. Preserve the input used to produce it and any separately exported cleaned or summarized data. Record which filters were active. A CSV containing a selected summary should state its filter, record count, total and mean so it can be understood outside the dashboard.\n\nPerform one fresh-process or restarted-kernel rerun using the documented path. Compare a displayed value with a hand calculation and record the result. If an input cannot be redistributed, provide its permitted retrieval method and a distributable fixture for checking the workflow; keep the distinction between fixture output and real-data output explicit."
+	},
+	{
+		"module": "Data Science, AI Foundations, and Machine Learning Boundary Map",
+		"title": "Anti-Overlap Review",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "Review a proposed project by naming what the learner must produce and what successful reasoning looks like. Topic names alone are insufficient to place it in a course.\n\nFor a weather analysis, Data Science can assess documented cleaning, summaries and an explanation of station coverage. An AI Foundations version would need an explicit decision problem, state and action representation, and a search or planning procedure. A Machine Learning version would need a predictive target, fitting process, baseline and evaluation of generalization.\n\nWrite the primary deliverable and two assessment criteria before adding tools. If most criteria assess prediction or agent behavior, place that work with the corresponding course or clearly label it as a later extension. Keep the Data Science project centered on evidence and communication. Reusing a dataset is useful when the courses teach different reasoning and retain a clear prerequisite relationship."
+	},
+	{
+		"module": "Data Science, AI Foundations, and Machine Learning Boundary Map",
+		"title": "Boundary Project: Artifact Classification",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Classify these three proposals and justify each placement: a report comparing recorded trip counts; a solver finding a path through a transport graph; and a model predicting the next period's demand.\n\nFor each, name the main artifact and the skill assessed. Explain one concrete rubric change needed to move it into an adjacent course. A descriptive trip report, for example, can be checked through cleaning records, hand calculations and claim limits. A predictive version needs a target and evidence of performance on data excluded from fitting.\n\n**Verification:** Submit three classifications with their deliverables and assessment criteria. Each explanation identifies why that course fits, and each proposed move changes the reasoning being assessed rather than merely changing a library or title."
+	},
+	{
+		"module": "Data Science, AI Foundations, and Machine Learning Boundary Map",
+		"title": "Boundary Project: Responsible-Use Card",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Prepare a responsible-use card for one completed Data Science report. Use the actual dataset and conclusion from that report so the card can affect how the result is interpreted.\n\nInclude the intended use and audience, source, one important assumption, the strongest limitation, a plausible misleading conclusion, a specific review action and a mitigation. Separate an observed error from an unresolved uncertainty. Record any revision the review causes.\n\nFor the synthetic trip comparison, the card could flag an unsupported claim that a real site is busiest. The source contains practice records with unequal group counts and no exposure measure. A reviewer recomputes the summary and changes the caption to describe only the recorded synthetic trips. A future real-world comparison would require suitable sampling and measurement evidence.\n\n**Verification:** The card cites the report's actual table or figure, explains a consequence of misinterpretation, assigns a concrete review action and records a mitigation that changes the artifact or narrows its use."
+	}
+]

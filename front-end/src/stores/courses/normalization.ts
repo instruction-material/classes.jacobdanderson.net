@@ -11,6 +11,7 @@ import { applyCourseImplementationArtifacts } from "./course-implementation-arti
 import { applyDataScienceChartGuidance } from "./dataScienceChartGuidance";
 import { applyDataScienceCleaningGuidance } from "./dataScienceCleaningGuidance";
 import { applyDataScienceCsvGuidance } from "./dataScienceCsvGuidance";
+import { applyDataScienceDashboardGuidance } from "./dataScienceDashboardGuidance";
 import { applyDataScienceGroupedGuidance } from "./dataScienceGroupedGuidance";
 import { applyDataScienceReportGuidance } from "./dataScienceReportGuidance";
 import { applyEarlyElementaryAProjects } from "./earlyElementaryAProjects";
@@ -9960,6 +9961,7 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 		applyDataScienceGroupedGuidance(course);
 		applyDataScienceReportGuidance(course);
 		applyDataScienceChartGuidance(course);
+		applyDataScienceDashboardGuidance(course);
 	}
 	return course;
 }

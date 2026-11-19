@@ -109,34 +109,6 @@
 		"contentKind": "assignment"
 	},
 	{
-		"module": "DSP15 Applied Studio: Lightweight Dashboards and Filters",
-		"group": "supplementalProjects",
-		"title": "Dashboard Test Plan",
-		"content": "Create a dashboard test plan with three scenarios: default data, a normal filter, and a filter that leaves no matching rows.\n\nUse the current dashboard and name its dataset and filter. Write three cases: the default state, one normal filter and a filter matching no rows. For each case, record the input selection, expected row count or result, actual observation and pass/fail. An empty result should be identified as no matching observations; it should not display an old chart as though it were current. Deliver the completed plan and a correction or explicit unresolved issue for each failed case.",
-		"contentKind": "assignment"
-	},
-	{
-		"module": "DSP16 Applied Studio: Capstone Data Story Readiness",
-		"group": "curriculum",
-		"title": "Capstone Readiness Brief",
-		"content": "Create a capstone readiness brief that defines the question, dataset, columns, cleaning plan, summary or visualization plan, evidence of correctness, and final presentation format. The brief is detailed enough to start the capstone without redesigning the whole project.\n\nPrepare the brief for the selected capstone question. Name the audience, data source and available columns, intended cleaning decisions, two complementary analytical views and the final presentation format. Test a tiny slice of the actual data and record one hand-checked result. Identify the evidence that would answer the question and a narrower fallback if the dataset cannot support it. Deliver the brief and the small checked output before expanding the project.",
-		"contentKind": "assignment"
-	},
-	{
-		"module": "DSP16 Applied Studio: Capstone Data Story Readiness",
-		"group": "supplementalProjects",
-		"title": "Capstone Risk Register",
-		"content": "Create a risk register for the capstone with likely data problems, interpretation risks, and fallback plans.\n\nUse a table with risk, evidence or warning sign, effect, response and fallback. Include at least one data-availability risk, one data-quality risk and one interpretation risk for the actual capstone. For example, missing dates may prevent a trend comparison even when other columns remain usable. Make each fallback concrete, such as narrowing the period or answering a different question supported by existing rows. Deliver the register and mark which risks have already occurred.\n\n**Verification:** Check that each warning sign leads to a response the project can actually carry out, then test one fallback against the available columns.",
-		"contentKind": "assignment"
-	},
-	{
-		"module": "DSP16 Applied Studio: Capstone Data Story Readiness",
-		"group": "supplementalProjects",
-		"title": "First Slide or README Section",
-		"content": "Create the first slide or README section for the capstone, including the question, why it matters, and what evidence will be shown.\n\nDraft the opening for the actual capstone audience. Include the question, why its answer matters, the source and scope of the data, and the evidence the project will show. Distinguish a planned analysis from a measured finding. If the work is unfinished, state the question and planned evidence without inventing an outcome. Deliver the opening together with a source note and one sentence describing the main limitation.",
-		"contentKind": "assignment"
-	},
-	{
 		"module": "Module 9: Data Science Capstone",
 		"group": "supplementalProjects",
 		"title": "Analysis Log: Data Science Capstone",
