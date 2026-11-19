@@ -97,7 +97,8 @@ try:
                     assert native_versions[0] == platform.python_version()
                     browser_python = browser_versions[0]
                     comparison_expected = re.sub(pattern, 'Python: ' + platform.python_version() + '; dependencies: standard library only.', expected, flags=re.M)
-                assert observed == comparison_expected, (receipt['file'], comparison_expected, observed)
+                observed_console = '\n'.join(line for line in observed.split('\n') if line != '')
+                assert observed_console == comparison_expected, (receipt['file'], comparison_expected, observed_console)
                 if 'report.md' in wanted:
                     report = (project / 'report.md').read_text()
                     assert report == '# Synthetic weekly trip report\n\n## Question\nWhat is the average recorded weekly trip count in this CSV?\n\n## Data source\nSynthetic CSV: data/sample.csv; each row records one week and its trip count.\n\n## Method\nAdd the trip counts and divide by the number of recorded weeks; keep all recorded weeks in the denominator.\n\n## Results\n| Recorded week | Trips |\n| --- | ---: |\n| week-1 | 4 |\n| week-2 | 7 |\n| week-3 | 7 |\n| week-4 | 10 |\n\nRecorded weeks: 4; total trips: 28; mean: 7.00 trips per recorded week.\n\n## Interpretation\nThe mean summarizes this file. It does not show how trips were spread within a week.\n\n## Limitation\nThese synthetic practice weeks illustrate reporting; they describe no real traveler or population.\n\n## Next question\nHow would the result change with additional observed weeks and documented collection rules?\n'
@@ -108,7 +109,7 @@ try:
                     run(project, 'main.py', str(generated))
                     assert hashlib.sha256(generated.read_bytes()).hexdigest() == saved_report_hash
                 results.append(dict(file=receipt['file'], sha256=receipt['sha256'], actualStdout=observed,
-                                    browserStdout=expected, comparedStdout=comparison_expected, browserPythonVersion=browser_python, nativePythonVersion=platform.python_version(), matched=True))
+                                    browserStdout=expected, comparedStdout=comparison_expected, observedConsoleStdout=observed_console, browserPythonVersion=browser_python, nativePythonVersion=platform.python_version(), matched=True))
     assert len(results) == 28
     accepted = True
 finally:

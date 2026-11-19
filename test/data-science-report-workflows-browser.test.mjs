@@ -91,7 +91,9 @@ function normalizeProvenance(text) {
 	return text.replace(lines[0], "Python: __PYTHON_VERSION__; dependencies: standard library only.");
 }
 
-async function run(page, width, expected) {
+async function run(page, width, expectedText) {
+	// The console omits empty batched lines; project Markdown keeps every byte.
+	const expected = expectedText.split("\n").filter(line => line !== "").join("\n");
 	if (width < 900) await page.locator(".mobile-view-picker button[data-view='code']").click();
 	await page.locator("button.run-control").click();
 	if (width < 900) await page.locator(".mobile-view-picker button[data-view='console']").click();
