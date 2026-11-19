@@ -365,6 +365,24 @@ describe("research-backed course family expansions", () => {
 					])
 						expect(roadmapText, courseId).toContain(detail);
 				}
+				else if (courseId === "data-science-in-python") {
+					expect(roadmapModule!.curriculum).toHaveLength(4);
+					for (const item of roadmapModule!.curriculum)
+						expect(item.contentKind, item.title).toBe("reading");
+					expect(roadmapModule!.supplementalProjects).toHaveLength(2);
+					for (const item of roadmapModule!.supplementalProjects) {
+						expect(item.contentKind, item.title).toBe("assignment");
+						expect(item.projectLink, item.title).toBeUndefined();
+						expect(item.solutionLink, item.title).toBeUndefined();
+					}
+					for (const detail of [
+						"One rerun with recorded inputs and versions",
+						"40 trips across two days",
+						"package versions",
+						"how the reader can check one result independently"
+					])
+						expect(roadmapText, courseId).toContain(detail);
+				}
 				else if (courseId === "pythonic-design-patterns") {
 					expect(roadmapModule!.curriculum).toHaveLength(4);
 					expect(roadmapModule!.curriculum.every(item => item.contentKind === "reading")).toBe(true);

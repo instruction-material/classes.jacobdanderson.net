@@ -3188,175 +3188,72 @@ describe("CourseExplorer.vue", () => {
 		);
 	});
 
-	it("surfaces Pre-Calculus A reserved static media through reference search", async () => {
-		const pinia = createPinia();
-		setActivePinia(pinia);
+	it.each([
+		{
+			id: "pre-calculus-a",
+			title: "Pre-Calculus and Trigonometry A",
+			archive: "Pre-Calculus A Reference Archive",
+			filename: "pcta12_pset2_40.png"
+		},
+		{
+			id: "pre-calculus-b",
+			title: "Pre-Calculus and Trigonometry B",
+			archive: "Pre-Calculus B Reference Archive",
+			filename: "pctb3_pset4_20.png"
+		},
+		{
+			id: "ap-calculus",
+			title: "AP Calculus",
+			archive: "AP Calculus Reference Archive",
+			filename: "apc21_concept3_24.png"
+		}
+	])(
+		"keeps $title pending media out of learner search and displays its archive",
+		async ({ id, title, archive, filename }) => {
+			const pinia = createPinia();
+			setActivePinia(pinia);
 
-		const appStore = useAppStore();
-		const pendingSourceImage = staticMediaUrl("pcta12_pset2_40.png");
+			useAppStore().setCurrentUser({
+				_id: "user-1",
+				name: "Student",
+				email: "student@example.com",
+				age: 12,
+				state: "GA",
+				courseAccess: [id],
+				courseProgress: [],
+				editUsers: false,
+				saveEdit: "Save"
+			});
 
-		appStore.setCurrentUser({
-			_id: "user-1",
-			name: "Student",
-			email: "student@example.com",
-			age: 12,
-			state: "GA",
-			courseAccess: ["pre-calculus-a"],
-			courseProgress: [],
-			editUsers: false,
-			saveEdit: "Save"
-		});
-
-		const wrapper = mount(CourseExplorer, {
-			global: {
-				plugins: [pinia]
-			}
-		});
-		await flushPromises();
-
-		await vi.waitFor(
-			() => {
-				const heading = wrapper.find("#course-select option:checked");
-				expect(heading.exists()).toBe(true);
-				expect(heading.text()).toContain(
-					"Pre-Calculus and Trigonometry A"
-				);
+			const wrapper = mount(CourseExplorer, {
+				global: { plugins: [pinia] }
+			});
+			await vi.waitFor(() => {
+				expect(
+					wrapper.get("#course-select option:checked").text()
+				).toContain(title);
 				expect(wrapper.text()).not.toContain("Loading course");
-			},
-			{ timeout: 5000 }
-		);
+			});
 
-		await wrapper.get("#course-search").setValue("pcta12_pset2_40.png");
-		await flushPromises();
-
-		await vi.waitFor(() => {
-			expect(wrapper.text()).toContain("Pending Static Assets");
-		});
-		expect(wrapper.text()).toContain("References");
-		expect(wrapper.text()).toContain(
-			"Pre-Calculus A Pending Static Assets"
-		);
-		await vi.waitFor(() => {
-			expect(wrapper.text()).toContain("pcta12_pset2_40.png");
-			expect(wrapper.text()).toContain("Pending media");
-			expect(wrapper.text()).toContain(pendingSourceImage);
+			const search = wrapper.get("#course-search");
+			await search.setValue(filename);
+			await vi.waitFor(() => {
+				expect(wrapper.text()).toContain("No matches yet");
+			});
+			expect(wrapper.text()).not.toContain("Pending Static Assets");
 			expect(
-				wrapper.find(`a[href="${pendingSourceImage}"]`).exists()
-			).toBe(true);
-		});
-	});
+				wrapper.find(`a[href="${staticMediaUrl(filename)}"]`).exists()
+			).toBe(false);
 
-	it("surfaces Pre-Calculus B reserved static media through reference search", async () => {
-		const pinia = createPinia();
-		setActivePinia(pinia);
-
-		const appStore = useAppStore();
-		const pendingSourceImage = staticMediaUrl("pctb3_pset4_20.png");
-
-		appStore.setCurrentUser({
-			_id: "user-1",
-			name: "Student",
-			email: "student@example.com",
-			age: 12,
-			state: "GA",
-			courseAccess: ["pre-calculus-b"],
-			courseProgress: [],
-			editUsers: false,
-			saveEdit: "Save"
-		});
-
-		const wrapper = mount(CourseExplorer, {
-			global: {
-				plugins: [pinia]
-			}
-		});
-		await flushPromises();
-
-		await vi.waitFor(
-			() => {
-				const heading = wrapper.find("#course-select option:checked");
-				expect(heading.exists()).toBe(true);
-				expect(heading.text()).toContain(
-					"Pre-Calculus and Trigonometry B"
-				);
-				expect(wrapper.text()).not.toContain("Loading course");
-			},
-			{ timeout: 5000 }
-		);
-
-		await wrapper.get("#course-search").setValue("pctb3_pset4_20.png");
-		await flushPromises();
-
-		await vi.waitFor(() => {
-			expect(wrapper.text()).toContain("Pending Static Assets");
-		});
-		expect(wrapper.text()).toContain("References");
-		expect(wrapper.text()).toContain(
-			"Pre-Calculus B Pending Static Assets"
-		);
-		await vi.waitFor(() => {
-			expect(wrapper.text()).toContain("pctb3_pset4_20.png");
-			expect(wrapper.text()).toContain("Pending media");
-			expect(wrapper.text()).toContain(pendingSourceImage);
-			expect(
-				wrapper.find(`a[href="${pendingSourceImage}"]`).exists()
-			).toBe(true);
-		});
-	});
-
-	it("surfaces AP Calculus reserved static media through reference search", async () => {
-		const pinia = createPinia();
-		setActivePinia(pinia);
-
-		const appStore = useAppStore();
-		const pendingSourceImage = staticMediaUrl("apc21_concept3_24.png");
-
-		appStore.setCurrentUser({
-			_id: "user-1",
-			name: "Student",
-			email: "student@example.com",
-			age: 12,
-			state: "GA",
-			courseAccess: ["ap-calculus"],
-			courseProgress: [],
-			editUsers: false,
-			saveEdit: "Save"
-		});
-
-		const wrapper = mount(CourseExplorer, {
-			global: {
-				plugins: [pinia]
-			}
-		});
-		await flushPromises();
-
-		await vi.waitFor(
-			() => {
-				const heading = wrapper.find("#course-select option:checked");
-				expect(heading.exists()).toBe(true);
-				expect(heading.text()).toContain("AP Calculus");
-				expect(wrapper.text()).not.toContain("Loading course");
-			},
-			{ timeout: 5000 }
-		);
-
-		await wrapper.get("#course-search").setValue("apc21_concept3_24.png");
-		await flushPromises();
-
-		await vi.waitFor(() => {
-			expect(wrapper.text()).toContain("Pending Static Assets");
-		});
-		expect(wrapper.text()).toContain("References");
-		expect(wrapper.text()).toContain("AP Calculus Pending Static Assets");
-		await vi.waitFor(() => {
-			expect(wrapper.text()).toContain("apc21_concept3_24.png");
-			expect(wrapper.text()).toContain("Pending media");
-			expect(wrapper.text()).toContain(pendingSourceImage);
-			expect(
-				wrapper.find(`a[href="${pendingSourceImage}"]`).exists()
-			).toBe(true);
-		});
-	});
+			await search.setValue(archive);
+			await vi.waitFor(() => {
+				expect(wrapper.text()).toContain(archive);
+				expect(wrapper.text()).toContain("Reference links");
+			});
+			expect(wrapper.text()).not.toContain("Pending Static Assets");
+			wrapper.unmount();
+		}
+	);
 
 	it("points supplemental pending media to the future class static URL", async () => {
 		const pinia = createPinia();
