@@ -135,7 +135,15 @@ test("Data Science complete CSV teaching, confirmed imports, continuation and ex
 		assert.ok(existsSync(join(root, "dist/index.html")));
 		server = await preview({ root, preview: { host: "127.0.0.1", port: 0, strictPort: true } });
 		const origin = `http://127.0.0.1:${server.httpServer.address().port}`;
-		browser = await puppeteer.launch({ headless: true, args: ["--no-sandbox"] });
+		const executablePath = [
+			process.env.PUPPETEER_EXECUTABLE_PATH,
+			puppeteer.executablePath(),
+			"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+			"/usr/bin/google-chrome",
+			"/usr/bin/chromium"
+		].find(path => path && existsSync(path));
+		assert.ok(executablePath, "Chrome is required");
+		browser = await puppeteer.launch({ executablePath, headless: true, args: ["--no-sandbox"] });
 		const browserPid = browser.process()?.pid;
 		console.log(JSON.stringify({ event: "browser-start", taskId, pid: browserPid, parentPid: process.pid, command: browser.process()?.spawnargs, startTime: new Date().toISOString() }));
 		for (const role of ["learner", "instructor"]) {
