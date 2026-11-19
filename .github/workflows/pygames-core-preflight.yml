@@ -2671,7 +2671,7 @@ jobs:
       - name: Verify complete cleaning imports, saved work, course flow and historical identities
         run: >-
           node scripts/classes-family-heavy-task.mjs -- npm exec -w front-end -- vitest run
-          test/data-science-cleaning-workspace.spec.test.ts test/data-science-csv-workspace.spec.test.ts test/store.courses.data-science-flow.spec.test.ts
+          test/data-science-cleaning-workspace.spec.test.ts test/data-science-csv-workspace.spec.test.ts test/store.courses.student-facing-copy.spec.test.ts test/store.courses.data-science-flow.spec.test.ts
           test/store.courses.catalog-identities.spec.test.ts test/store.courses.progress-identity.spec.test.ts
           test/python-ide.module.spec.test.ts test/components.courseexplorer.spec.test.ts
           --no-file-parallelism --maxWorkers=1
