@@ -302,5 +302,85 @@
 		"contentKind": "assignment",
 		"folder": null,
 		"content": "Prepare a one-page inventory for an analysis another reader can rerun. Record the original data file and publisher, observation date range, fields used, script or notebook, package versions, and the report or chart that makes the claim. Give each file one role. Include how to start the analysis and how the reader can check one result independently.\n\nRun the analysis once from the saved project or notebook and record the output of the check. For example, for a table of four measured counts 2, 5, 0, and 9, verify that the total is 16 and the mean is 4. Record whether that check used a supplied dataset or a separate test fixture. Keep dataset use terms with the inventory."
+	},
+	{
+		"module": "Data Science in Python: Toolchain and Version Assumptions",
+		"title": "Data Science in Python Setup Assumptions",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "## Record the runtime and inputs\n\nA repeatable project records the Python version, the package versions it uses, the project revision, and the input filename. In Python, `sys.version` identifies the runtime. In a pandas project, `pandas.__version__` gives the installed pandas version. Read the project README for packages and the command that runs the script.\n\n## Worked setup\n\nStart with the supplied `data/sample.csv` for the reproducibility project. It has six measured rows with a total of 32 trips. A completed project should report six records, 32 total trips and a mean of 5.33. Save those three values with your runtime and package versions. An outside CSV can have a different schema or count, so use the supplied fixture to check setup first."
+	},
+	{
+		"module": "Data Science in Python: Toolchain and Version Assumptions",
+		"title": "Data Science in Python Upgrade Rule",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "## Compare results before changing versions\n\nKeep a known-working copy of the starter, its input and its expected output. Try the new version in a separate environment and rerun the same input. Compare the actual output and warnings with the baseline. If a default changes, choose the behavior explicitly in the code and record it in the README.\n\n## Worked upgrade\n\nSuppose a date parser begins interpreting a field differently after a package update. Test a fixture containing `2026-02-01` and one invalid date. The valid value should represent February 1 and the invalid row should follow the project's error rule. Retain the previous environment until the new one passes the fixture and the full project."
+	},
+	{
+		"module": "Data Science in Python: Toolchain and Version Assumptions",
+		"title": "Data Science in Python Platform Fallbacks",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "## Pick a place to run the project\n\nUse the course IDE for projects whose starter opens there. The IDE runs Python in the browser. To run an exported starter on a computer, preserve its folders, follow the README in a fresh environment, and install the dependencies the project names. Notebook and dashboard projects may require a local notebook or app runner listed in their instructions.\n\n## Worked fallback\n\nIf the browser cannot load a package for a CSV project, download the starter ZIP and extract it with its `data/` folder. From the extracted project directory, run the README command on `data/sample.csv`. Compare the result with the lesson's expected summary. If the file cannot be found, check the working directory and the extracted path before changing the analysis."
+	},
+	{
+		"module": "Data Science in Python: Toolchain and Version Assumptions",
+		"title": "Data Science in Python Reproducibility Notes",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "## Keep enough information to rerun\n\nSave the input file or a versioned source reference, the code or notebook, the run command, dependency versions and the expected result. Record assumptions about missing values, row coverage, units and grouping alongside the result. A chart alone leaves out the rules that produced it.\n\n## Worked note\n\nA saved site-summary project uses `data/sample.csv` and groups measured trip counts by site. Record the exact input, script and Python version. State whether blank measurements were excluded and whether zeros were retained. Save the count and sum for one group as an independent check. Rerun from a newly extracted copy to find files or assumptions accidentally left in the original workspace."
+	},
+	{
+		"module": "Data Science in Python: Toolchain and Version Assumptions",
+		"title": "Data Science in Python First-Run Smoke Test",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Open the starter from **Core Project: Notebook Workflow and Reproducibility**. Run it without edits. The line `TODO: complete summarize` shows that Python started and reached the starter's placeholder. Record the runtime, input path, action or command, and the first output line.\n\nOnce you complete the earlier project, run it again on the supplied CSV. Check for six records, 32 total trips and a mean of 5.33. If the starter fails before the placeholder, record the first error and whether it concerns the runtime, an import or an input path. Adjust one setup detail and rerun."
+	},
+	{
+		"module": "Data Science in Python: Toolchain and Version Assumptions",
+		"title": "Data Science in Python Version Drift Review",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Use one supplied CSV project in two supported environments, or compare one actual run with an earlier recorded run of the same starter and input. Record Python and the packages used. Check the input version, row count, one numeric result and any warnings so a package change can be distinguished from a changed dataset.\n\nKeep a short table with the two environments, the expected value, each observed value and one decision. If the results differ, choose a small input that isolates the difference. If they agree, list the behavior the comparison established and one behavior it leaves unchecked."
+	},
+	{
+		"module": "Project Practice Guide",
+		"title": "Data Science in Python Project Ladder",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "## Move from a checked input to an independent report\n\nStart by describing a public or supplied dataset and calculating one result by hand. In the cleaning challenge, keep the original file and explain each rejection or repair. In the chart redesign, use the checked values to compare two displays. The trend project adds a time window and a fair comparison. The final story combines these skills around a question chosen by the author.\n\n## Worked progression\n\nSuppose two sites each report trip counts. First verify each site's count of measured rows. Next clean an invalid field and repeat the count. Compare sites in a chart with labeled units and note the number of measurements behind each value. Reuse those checks before reporting a difference between months."
+	},
+	{
+		"module": "Project Practice Guide",
+		"title": "Data Science in Python Checkpoints",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "## Verify one result at a time\n\n1. Name the observation unit, what each field measures, and how the input marks a missing value.\n2. Reconcile the original, accepted and rejected rows after cleaning.\n3. Calculate one group total or rate by hand and compare it with the program.\n4. Check that the chart labels and caption describe the same filtered data.\n5. Rerun the saved project with its recorded input and compare the result.\n\n## Worked checkpoint\n\nA table has five trip measurements: 0, blank, 4, 6 and an invalid value written as `n/a?`. With a rule that excludes the blank and invalid entry, three rows are measured. Their total is 10 and the mean is 10 ÷ 3. If the program reports two measured rows or a mean of 5, check whether it dropped the valid zero."
+	},
+	{
+		"module": "Project Practice Guide",
+		"title": "Data Science in Python Rubric",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "## Use evidence to assess a report\n\n| Criterion | Evidence to inspect |\n| --- | --- |\n| Question and coverage | A named population or time range, the unit of observation and a matching dataset |\n| Cleaning and analysis | A data dictionary, logged exclusions and one independent calculation |\n| Communication | A labeled table or chart, a claim supported by it and one consequence of a limitation |\n| Reproducibility | The exact input, code and instructions needed to regenerate the result |\n\n## Worked review\n\nA caption says Service A was “used most often.” The chart shows trips per day, and the file has different numbers of observed days for each service. The chart supports a claim about rates over the observed days. It takes a separate total or equal coverage to support a claim about total use."
+	},
+	{
+		"module": "Project Practice Guide",
+		"title": "Data Science in Python Capstone Gate",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "## Define an answerable first version\n\nWrite the audience, question, input, output and one previously checked calculation before building. Pick a normal case and a case that could expose a wrong result or a misleading display. List a fallback for a missing input or a tool that cannot run on the available device.\n\n## Worked brief\n\nA program coordinator needs to compare daily trips at two sites during one week. The first version uses a CSV with site, date and trips, checks coverage, and gives each site's daily rate and observation count. A hand calculation supplies the expected result for one site. A site with zero measured days produces an unavailable rate. A larger date range belongs in a later version once this one can be rerun."
 	}
 ]
