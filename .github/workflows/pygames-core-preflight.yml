@@ -8,7 +8,7 @@ on:
       course:
         description: Course verification to run
         type: choice
-        options: [data-science-dashboard, data-science-chart, data-science-report, data-science-grouped, data-science-cleaning, data-science-csv, machine-learning-library, javascript-superstar-readings, machine-learning-neurons, machine-learning, network-practice, network-archive-six, javascript-circle-march, network-capstone-optional, network-diagnostics-five, network-kernel-optional, network-firewall-optional, network-dns-optional, java-refactoring-followup, java-refactoring-final, release-checks, ai-studios, swift-map, javascript-business-directory, java-testability, java-pattern-journeys, java-generalization, java-method-calls, javascript-hundred-squares, javascript-businesses, javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
+        options: [data-science-foundations, data-science-dashboard, data-science-chart, data-science-report, data-science-grouped, data-science-cleaning, data-science-csv, machine-learning-library, javascript-superstar-readings, machine-learning-neurons, machine-learning, network-practice, network-archive-six, javascript-circle-march, network-capstone-optional, network-diagnostics-five, network-kernel-optional, network-firewall-optional, network-dns-optional, java-refactoring-followup, java-refactoring-final, release-checks, ai-studios, swift-map, javascript-business-directory, java-testability, java-pattern-journeys, java-generalization, java-method-calls, javascript-hundred-squares, javascript-businesses, javascript-small-talk, java-conditional-flow, javascript-lyrics, javascript-weather, vendored-d3, java-value-data, course-choices, javascript-checkpoints, javascript-snowflake, dependency-repair, java-ownership-move, java-composing, java-refactoring, java-studios, java-capstone, java-judgment, java-architecture, java-collaboration, java-behavioral, java-structural, java-boundary, java-creational, java-foundations, java-patterns, java-recursion, pygames, networking, ai-setup, self-study, physics-models, bootcamp, scratch-originals, scratch-readings, course-audit, scratch-tasks, tracker-evidence, native-release-evidence]
         default: pygames
       full_source_runtime:
         description: Also verify every pinned original PyGames runtime profile
@@ -3553,11 +3553,13 @@ jobs:
           retention-days: 14
 
   data-science-dashboard:
-    if: inputs.course == 'data-science-dashboard'
+    if: inputs.course == 'data-science-dashboard' || inputs.course == 'data-science-foundations'
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     env:
-      CLASSES_FAMILY_TASK_ID: data-science-dashboard-${{ github.run_id }}
+      CLASSES_FAMILY_TASK_ID: ${{ inputs.course }}-${{ github.run_id }}
+      DATA_SCIENCE_PROOF_PATH: output/${{ inputs.course }}
+      DATA_SCIENCE_FOUNDATIONS_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/data-science-foundations
       DATA_SCIENCE_DASHBOARD_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/data-science-dashboard
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
@@ -3574,20 +3576,20 @@ jobs:
         run: |
           npm install --global npm@12.0.1
           test "$(npm --version)" = "12.0.1"
-          mkdir -p output/data-science-dashboard/audits
+          mkdir -p "$DATA_SCIENCE_PROOF_PATH/audits"
           node scripts/classes-family-heavy-task.mjs -- npm ci
           npm run check:dependencies
           npm run lock:provenance:check
-          npm audit --json --audit-level=info > output/data-science-dashboard/audits/root-full.json
-          npm audit --omit=dev --json --audit-level=info > output/data-science-dashboard/audits/root-production.json
+          npm audit --json --audit-level=info > "$DATA_SCIENCE_PROOF_PATH/audits/root-full.json"
+          npm audit --omit=dev --json --audit-level=info > "$DATA_SCIENCE_PROOF_PATH/audits/root-production.json"
           node --test test/standalone-backend-install-policy.test.mjs
       - name: Verify standalone backend installation and both audits
         working-directory: back-end
         run: |
           node ../scripts/classes-family-heavy-task.mjs -- npm ci --include=optional --strict-allow-scripts --workspaces=false
           npm ls --all --workspaces=false
-          npm audit --include=optional --workspaces=false --json --audit-level=info > "$GITHUB_WORKSPACE/output/data-science-dashboard/audits/backend-full.json"
-          npm audit --include=optional --omit=dev --workspaces=false --json --audit-level=info > "$GITHUB_WORKSPACE/output/data-science-dashboard/audits/backend-production.json"
+          npm audit --include=optional --workspaces=false --json --audit-level=info > "$GITHUB_WORKSPACE/$DATA_SCIENCE_PROOF_PATH/audits/backend-full.json"
+          npm audit --include=optional --omit=dev --workspaces=false --json --audit-level=info > "$GITHUB_WORKSPACE/$DATA_SCIENCE_PROOF_PATH/audits/backend-production.json"
       - name: Verify Network export receipt selection and archive integrity
         run: python3 -B test/network-export-receipts.test.py
       - name: Verify complete dashboard and capstone imports, saved work, course flow and historical identities
@@ -3605,22 +3607,40 @@ jobs:
           node scripts/classes-family-heavy-task.mjs -- npm run build
       - name: Verify actual readings, consent, Python runs, saved continuation and browser ZIPs
         id: dashboard_browser
+        if: inputs.course == 'data-science-dashboard'
         run: node scripts/classes-family-heavy-task.mjs -- node --test test/data-science-dashboard-workflows-browser.test.mjs
       - name: Execute every actual browser ZIP in native Python 3.14
         if: steps.dashboard_browser.outcome == 'success'
         run: node scripts/classes-family-heavy-task.mjs -- python3 -I -B test/data-science-dashboard-exported-native.py
+      - name: Download and verify the two pinned Data Science source revisions
+        if: inputs.course == 'data-science-foundations'
+        run: python3 -I -B test/data-science-foundations-native.py prepare
+      - name: Verify foundations lessons, imports, saved revisions and browser ZIPs
+        id: foundations_browser
+        if: inputs.course == 'data-science-foundations'
+        run: node scripts/classes-family-heavy-task.mjs -- node --test test/data-science-foundations-browser.test.mjs
+      - name: Install and audit the exact native pandas dependency graphs
+        if: steps.foundations_browser.outcome == 'success'
+        run: |
+          python3 -m pip install --require-hashes -r "$DATA_SCIENCE_PROOF_PATH/requirements-ci.txt"
+          python3 -m pip check
+          python3 -m pip_audit --strict --require-hashes --disable-pip -r "$DATA_SCIENCE_PROOF_PATH/requirements.txt" --format json --output "$DATA_SCIENCE_PROOF_PATH/audits/native-runtime.json"
+          python3 -m pip_audit --strict --require-hashes --disable-pip -r "$DATA_SCIENCE_PROOF_PATH/requirements-ci.txt" --format json --output "$DATA_SCIENCE_PROOF_PATH/audits/native-full.json"
+      - name: Execute the actual foundations browser ZIPs in native Python
+        if: steps.foundations_browser.outcome == 'success'
+        run: node scripts/classes-family-heavy-task.mjs -- python3 -I -B test/data-science-foundations-native.py verify
       - name: Retain exact application identity and process records
         if: always()
         run: |
-          mkdir -p output/data-science-dashboard
-          git rev-parse HEAD > output/data-science-dashboard/site-source.txt
-          git diff --name-only > output/data-science-dashboard/tracked-changes.txt
-          cp /tmp/classes-family-heavy-tasks.log output/data-science-dashboard/processes.jsonl
+          mkdir -p "$DATA_SCIENCE_PROOF_PATH"
+          git rev-parse HEAD > "$DATA_SCIENCE_PROOF_PATH/site-source.txt"
+          git diff --name-only > "$DATA_SCIENCE_PROOF_PATH/tracked-changes.txt"
+          cp /tmp/classes-family-heavy-tasks.log "$DATA_SCIENCE_PROOF_PATH/processes.jsonl"
       - name: Retain original browser exports, screenshots, native runs and audits
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
-          name: data-science-dashboard-workflows
-          path: output/data-science-dashboard/
+          name: ${{ inputs.course }}-workflows
+          path: output/${{ inputs.course }}/
           if-no-files-found: error
           retention-days: 14

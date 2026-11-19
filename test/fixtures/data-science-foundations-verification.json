@@ -1,0 +1,358 @@
+{
+	"repository": "instruction-material/Data-Science",
+	"nativeLocks": {
+		"revision": "693f9b92c3da20526a4a37e80f19f9f0a6ee84f2",
+		"files": {
+			"requirements.txt": "56e961f0f56ed31753286b5516ebed8c415899a2d3bc49d90cc0e342ec6a037b",
+			"requirements-ci.txt": "29ba540548eee06c12953c2104fffebd5493140ba29064bc25b4c8acb42b0cf6"
+		}
+	},
+	"bodies": [
+		{
+			"module": "data-science-in-python-dsp0-setup-and-tooling",
+			"item": "data-science-in-python-dsp0-setup-and-tooling-curriculum-notebook-first-and-script-first-workflow",
+			"contentSHA256": "0f6d5fa0e708beb0c5631ce8998c107a883334e70761581d11f72b403b186c50"
+		},
+		{
+			"module": "data-science-in-python-dsp0-setup-and-tooling",
+			"item": "data-science-in-python-dsp0-setup-and-tooling-curriculum-data-science-in-python-core-concepts",
+			"contentSHA256": "af98a85b6f53da80e6c22542216c00389133a964ddbfc75ac763d54a5cdc99aa"
+		},
+		{
+			"module": "data-science-in-python-dsp0-setup-and-tooling",
+			"item": "data-science-in-python-dsp0-setup-and-tooling-curriculum-core-project-data-science-in-python",
+			"contentSHA256": "d4eeff1b0778d48dde118da1a1a6bb9225a44a9ae9b00eb2d9939a180a887463"
+		},
+		{
+			"module": "data-science-in-python-dsp0-setup-and-tooling",
+			"item": "data-science-in-python-dsp0-setup-and-tooling-supplemental-reference-archive-data-science-in-python-workspace",
+			"contentSHA256": "654070772212dc5a96c4b7150765806673b68ed46fcd6fc1b838b11d07c6fd6b"
+		},
+		{
+			"module": "data-science-in-python-dsp0-setup-and-tooling",
+			"item": "data-science-in-python-dsp0-setup-and-tooling-supplemental-data-science-in-python-setup-transfer-practice",
+			"contentSHA256": "e177a0e259416245d257341975f601385873e553efb6aa5920adf12dbbee0f8e"
+		},
+		{
+			"module": "data-science-in-python-dsp0-setup-and-tooling",
+			"item": "data-science-in-python-dsp0-setup-and-tooling-supplemental-data-science-in-python-setup-extension-practice",
+			"contentSHA256": "2914287ded9b99d2c3985a44b65f078b4e63f5fd79a28cdae65f4210481b630f"
+		},
+		{
+			"module": "data-science-in-python-module-1-what-data-science-is",
+			"item": "data-science-in-python-module-1-what-data-science-is-curriculum-what-data-science-is-core-concepts",
+			"contentSHA256": "2d82f33a629ba7d94d463d18ada2d0bd6bed90dc548cbbd69a9af5c32810cb93"
+		},
+		{
+			"module": "data-science-in-python-module-1-what-data-science-is",
+			"item": "data-science-in-python-module-1-what-data-science-is-curriculum-core-project-what-data-science-is",
+			"contentSHA256": "35c0ab633db190cc34a5741d88d95e9f529d707f5c39f94d93c924931722e04e"
+		},
+		{
+			"module": "data-science-in-python-module-1-what-data-science-is",
+			"item": "data-science-in-python-module-1-what-data-science-is-supplemental-analysis-log-what-data-science-is",
+			"contentSHA256": "088c575d95cb10e0741805a80636f8a843f8276fdb2da8fd28bfafc4b2037552"
+		},
+		{
+			"module": "data-science-in-python-module-1-what-data-science-is",
+			"item": "data-science-in-python-module-1-what-data-science-is-supplemental-transfer-practice-what-data-science-is",
+			"contentSHA256": "4d9f51647b93737f0c9045d22b3be308e031a2fa4abbbfcfc76075c01fcc2dc6"
+		},
+		{
+			"module": "data-science-in-python-module-1-what-data-science-is",
+			"item": "data-science-in-python-module-1-what-data-science-is-supplemental-extension-practice-what-data-science-is",
+			"contentSHA256": "2c08398b32a6363fbb62bc7b07c220e1bd584470578e688c2e51b30ff23a3d2c"
+		},
+		{
+			"module": "data-science-in-python-module-2-notebook-workflow-and-reproducibility",
+			"item": "data-science-in-python-module-2-notebook-workflow-and-reproducibility-curriculum-notebook-workflow-and-reproducibility-core-concepts",
+			"contentSHA256": "e261318f20faa65bd3d8a0fc97ac639c6a9937f7b67331a768a7df4dd1d44f9c"
+		},
+		{
+			"module": "data-science-in-python-module-2-notebook-workflow-and-reproducibility",
+			"item": "data-science-in-python-module-2-notebook-workflow-and-reproducibility-curriculum-core-project-notebook-workflow-and-reproducibility",
+			"contentSHA256": "394630f1179f68d8f52f556eae13eefcdefcfb715eb4bbcd019c6c05c7b2b51e"
+		},
+		{
+			"module": "data-science-in-python-module-2-notebook-workflow-and-reproducibility",
+			"item": "data-science-in-python-module-2-notebook-workflow-and-reproducibility-supplemental-analysis-log-notebook-workflow-and-reproducibility",
+			"contentSHA256": "189689892e617ca5fe5efd7f312b15d4e405d7683cdaf178728c90966320b750"
+		},
+		{
+			"module": "data-science-in-python-module-2-notebook-workflow-and-reproducibility",
+			"item": "data-science-in-python-module-2-notebook-workflow-and-reproducibility-supplemental-transfer-practice-notebook-workflow-and-reproducibility",
+			"contentSHA256": "4e76fdddb259d8f5248f70e51d7fd94b7d2673449d5a94562b2df54c4add0d64"
+		},
+		{
+			"module": "data-science-in-python-module-2-notebook-workflow-and-reproducibility",
+			"item": "data-science-in-python-module-2-notebook-workflow-and-reproducibility-supplemental-extension-practice-notebook-workflow-and-reproducibility",
+			"contentSHA256": "bb7219d74ce00f5fde12bc974843a68ad7cca2374953933831ef3aed476bede1"
+		},
+		{
+			"module": "data-science-in-python-module-3-pandas-foundations",
+			"item": "data-science-in-python-module-3-pandas-foundations-curriculum-pandas-foundations-core-concepts",
+			"contentSHA256": "f78c9fe5fa6892fff7b5ea0b1701260b557418283a463216111ad3c8d941155f"
+		},
+		{
+			"module": "data-science-in-python-module-3-pandas-foundations",
+			"item": "data-science-in-python-module-3-pandas-foundations-curriculum-core-project-pandas-foundations",
+			"contentSHA256": "b596c6b441a2b3e6a619ff47955417baa33b30ac05ca90cbbaf5a56349271aba"
+		},
+		{
+			"module": "data-science-in-python-module-3-pandas-foundations",
+			"item": "data-science-in-python-module-3-pandas-foundations-supplemental-analysis-log-pandas-foundations",
+			"contentSHA256": "1118dc23d8cfe2f82c5aeeb3fc9d43327c1a8e7aafba8c4056779dd7d0e0372e"
+		},
+		{
+			"module": "data-science-in-python-module-3-pandas-foundations",
+			"item": "data-science-in-python-module-3-pandas-foundations-supplemental-transfer-practice-pandas-foundations",
+			"contentSHA256": "a37d4e500abd81cd86a5a4dbd07eec2d5e2359a0e1606d816945c0f03dcd76f0"
+		},
+		{
+			"module": "data-science-in-python-module-3-pandas-foundations",
+			"item": "data-science-in-python-module-3-pandas-foundations-supplemental-extension-practice-pandas-foundations",
+			"contentSHA256": "ba56faa05ef36e3c55517ccd4b0871a873d53ed2ba9bf1b8d66466fd1f14db86"
+		},
+		{
+			"module": "data-science-in-python-module-4-cleaning-and-validation",
+			"item": "data-science-in-python-module-4-cleaning-and-validation-curriculum-cleaning-and-validation-core-concepts",
+			"contentSHA256": "a1684dcfceffd0986f7b2e81e725ec4814ad15db8431578d4849bcc4092136e4"
+		},
+		{
+			"module": "data-science-in-python-module-4-cleaning-and-validation",
+			"item": "data-science-in-python-module-4-cleaning-and-validation-curriculum-core-project-cleaning-and-validation",
+			"contentSHA256": "eccec66d5d096a73324d7a3450084b5a929a28c9ad6390fe88255d807392ed3a"
+		},
+		{
+			"module": "data-science-in-python-module-4-cleaning-and-validation",
+			"item": "data-science-in-python-module-4-cleaning-and-validation-supplemental-analysis-log-cleaning-and-validation",
+			"contentSHA256": "bfcb8175b670fc9ab632cf11d2202f9f4500ab828d1f02918bfa647fe642fb64"
+		},
+		{
+			"module": "data-science-in-python-module-4-cleaning-and-validation",
+			"item": "data-science-in-python-module-4-cleaning-and-validation-supplemental-transfer-practice-cleaning-and-validation",
+			"contentSHA256": "7d16d4d6ba50624f9ab78f436d5b00a825c3fafdfe2eb895b76b62acb432389d"
+		},
+		{
+			"module": "data-science-in-python-module-4-cleaning-and-validation",
+			"item": "data-science-in-python-module-4-cleaning-and-validation-supplemental-extension-practice-cleaning-and-validation",
+			"contentSHA256": "aad361ea0187b9ec064384d105605089592b81e81e89edf8891a42238de8faa9"
+		}
+	],
+	"packs": {
+		"DSP-09-module-2-notebook-workflow-and-reproducibility": {
+			"revision": "a56978e9116a6d7121fffa08aea490e905a99a5d",
+			"keySuffix": "reproducibility-v1",
+			"roles": {
+				"starter": {
+					"files": {
+						"main.py": "7189b22359e2652d744077ccc16d5f3cbb3aa84f63bbdd17af44ca4c1bff11e7",
+						"README.md": "c74e3f3bbd1d96a17850105c856e22865b06cc0a92108992d9b4aa304f240329",
+						"data/sample.csv": "ac9851d88be9a0075d9fb0fe51a2ba29d4087310f131f5573923898cc958853f"
+					},
+					"stdout": "TODO: complete summarize\n"
+				},
+				"solution": {
+					"files": {
+						"main.py": "ba45d3a78c8210ca29d7aebb8d0d5378640d60dfb19be818606b5aaa8b56af22",
+						"README.md": "d943814dcde47c9493084173a3c8f87a6136c1a373943f9398cf2b7a196835e7",
+						"data/sample.csv": "ac9851d88be9a0075d9fb0fe51a2ba29d4087310f131f5573923898cc958853f"
+					},
+					"stdout": "Records: 6\nTotal trips: 32\nMean trips per record: 5.33\n"
+				}
+			},
+			"item": "data-science-in-python-module-2-notebook-workflow-and-reproducibility-curriculum-core-project-notebook-workflow-and-reproducibility"
+		},
+		"DSP-05-module-2-notebook-workflow-and-reproducibility-supplemental-2": {
+			"revision": "a56978e9116a6d7121fffa08aea490e905a99a5d",
+			"keySuffix": "reproducibility-v1",
+			"roles": {
+				"starter": {
+					"files": {
+						"main.py": "94f127eb05475ef29c8ea7ab886d3ffe0980055184e40e6ec6afca64ccb1d769",
+						"README.md": "23d1851fb736489f4e9fed00855dbb15c6f1fdf12f9b3cdfc3f135378ea9e2de",
+						"data/empty.csv": "ca43df8846db81acb0786234f43fbdc46f58fb7fadabcd75a6a7dc27156c2f4b",
+						"data/sample.csv": "ac9851d88be9a0075d9fb0fe51a2ba29d4087310f131f5573923898cc958853f",
+						"data/zero.csv": "00170a6e803ffcd5b6c7bd6b94ea45f2cd9f169d0f063931781ef5201e193eba"
+					},
+					"stdout": "TODO: complete format_summary\n"
+				},
+				"solution": {
+					"files": {
+						"main.py": "ba45d3a78c8210ca29d7aebb8d0d5378640d60dfb19be818606b5aaa8b56af22",
+						"README.md": "210f575f83639f71e37e0fd95c7320feb90fe7cb655cb6c1615e739e64fd0cb5",
+						"data/empty.csv": "ca43df8846db81acb0786234f43fbdc46f58fb7fadabcd75a6a7dc27156c2f4b",
+						"data/sample.csv": "ac9851d88be9a0075d9fb0fe51a2ba29d4087310f131f5573923898cc958853f",
+						"data/zero.csv": "00170a6e803ffcd5b6c7bd6b94ea45f2cd9f169d0f063931781ef5201e193eba"
+					},
+					"stdout": "Records: 6\nTotal trips: 32\nMean trips per record: 5.33\n"
+				}
+			},
+			"item": "data-science-in-python-module-2-notebook-workflow-and-reproducibility-supplemental-transfer-practice-notebook-workflow-and-reproducibility"
+		},
+		"DSP-06-module-2-notebook-workflow-and-reproducibility-supplemental-3": {
+			"revision": "a56978e9116a6d7121fffa08aea490e905a99a5d",
+			"keySuffix": "reproducibility-v1",
+			"roles": {
+				"starter": {
+					"files": {
+						"main.py": "a746257537347159741ee36a444922b7b131474c3c889f1c70f532b087cd2d2e",
+						"README.md": "3e99143172cfe45c85071ed5a7699100669951ccc6466188029f4af47641c7cd",
+						"data/sample.csv": "ac9851d88be9a0075d9fb0fe51a2ba29d4087310f131f5573923898cc958853f"
+					},
+					"stdout": "Records: 6\nTotal trips: 32\nMean trips per record: 5.33\nTODO: complete write_report\n"
+				},
+				"solution": {
+					"files": {
+						"main.py": "5e128ac393e2348652b493e2d8a1ea38c27e4167065e0c9942c613273ff10553",
+						"README.md": "6bb4ca01945dc05b51d575aa99697057ce98c76111e6ddfc8152dd84cfaacc34",
+						"data/sample.csv": "ac9851d88be9a0075d9fb0fe51a2ba29d4087310f131f5573923898cc958853f"
+					},
+					"stdout": "Records: 6\nTotal trips: 32\nMean trips per record: 5.33\nSaved outputs/report.json\n",
+					"generated": {
+						"outputs/report.json": "a399f64760eefad0a7d39509c304c600c51b3794b1441d07922a517db71d5575"
+					}
+				}
+			},
+			"item": "data-science-in-python-module-2-notebook-workflow-and-reproducibility-supplemental-extension-practice-notebook-workflow-and-reproducibility"
+		},
+		"DSP-10-module-3-pandas-foundations": {
+			"revision": "693f9b92c3da20526a4a37e80f19f9f0a6ee84f2",
+			"keySuffix": "tabular-v1",
+			"roles": {
+				"starter": {
+					"files": {
+						"README.md": "b242254bff374cb84d59b41e0acb861cc43f04c96b9bd98f19d500c0c0b302a0",
+						"main.py": "5d41bb19202fc80ddbf209a10609f1bed0976fd681b303fa96ab4e553687af0b",
+						"data/sample.csv": "28449dddf4e05fe55dcfeefcab7dc53b7b19c5a0c77c8e50d327d017f17ad46e"
+					},
+					"stdout": "Complete summarize_sites before comparing results.\n"
+				},
+				"solution": {
+					"files": {
+						"README.md": "92b4c88ff869f1e69d406eea5360331e7a3598718bf3aaf3cbaa84871ef9c8bf",
+						"main.py": "aaf9ee961b6d3b177a33fa0be15ff891628f927a4abee8d00330b7a9a56a720b",
+						"data/sample.csv": "28449dddf4e05fe55dcfeefcab7dc53b7b19c5a0c77c8e50d327d017f17ad46e"
+					},
+					"stdout": "{\n  \"shape\": [\n    6,\n    4\n  ],\n  \"columns\": [\n    \"trip_id\",\n    \"site\",\n    \"trips\",\n    \"hours\"\n  ],\n  \"sites\": [\n    {\n      \"site\": \"north\",\n      \"records\": 2,\n      \"total_trips\": 6,\n      \"mean_trips\": 3.0\n    },\n    {\n      \"site\": \"south\",\n      \"records\": 1,\n      \"total_trips\": 8,\n      \"mean_trips\": 8.0\n    },\n    {\n      \"site\": \"west\",\n      \"records\": 3,\n      \"total_trips\": 18,\n      \"mean_trips\": 6.0\n    }\n  ]\n}\n"
+				}
+			},
+			"item": "data-science-in-python-module-3-pandas-foundations-curriculum-core-project-pandas-foundations"
+		},
+		"DSP-07-module-3-pandas-foundations-supplemental-2": {
+			"revision": "693f9b92c3da20526a4a37e80f19f9f0a6ee84f2",
+			"keySuffix": "tabular-v1",
+			"roles": {
+				"starter": {
+					"files": {
+						"README.md": "27032903248865736b36846ab314828428ca2d1033aafdc56bc65121ad0598e8",
+						"main.py": "26ac9e0fd3a7fa7baf33457bf09a9529d57160142858fa64508dd3eb6ad63da7",
+						"data/sample.csv": "28449dddf4e05fe55dcfeefcab7dc53b7b19c5a0c77c8e50d327d017f17ad46e"
+					},
+					"stdout": "Complete select_trips before comparing results.\n"
+				},
+				"solution": {
+					"files": {
+						"README.md": "6b86569a722500c4f1d22c3148540fbc4a0338f630a1e81447975c66394c1e76",
+						"main.py": "0d8434cff2132dcbeb5e82e42dc26fd7a784b21a5fe44b39a8257e599cd87cf2",
+						"data/sample.csv": "28449dddf4e05fe55dcfeefcab7dc53b7b19c5a0c77c8e50d327d017f17ad46e"
+					},
+					"stdout": "{\n  \"minimum\": 6,\n  \"rows\": [\n    {\n      \"trip_id\": \"R06\",\n      \"site\": \"west\",\n      \"trips\": 12\n    },\n    {\n      \"trip_id\": \"R03\",\n      \"site\": \"south\",\n      \"trips\": 8\n    },\n    {\n      \"trip_id\": \"R05\",\n      \"site\": \"west\",\n      \"trips\": 6\n    }\n  ]\n}\n"
+				}
+			},
+			"item": "data-science-in-python-module-3-pandas-foundations-supplemental-transfer-practice-pandas-foundations"
+		},
+		"DSP-08-module-3-pandas-foundations-supplemental-3": {
+			"revision": "693f9b92c3da20526a4a37e80f19f9f0a6ee84f2",
+			"keySuffix": "tabular-v1",
+			"roles": {
+				"starter": {
+					"files": {
+						"README.md": "ebee7af480a956c721ed803b0ff268c602df0f49942609bea12cdff0a6d69c8f",
+						"main.py": "15edfa312a0d73a412e89ca82c42b5f53cbada334c5bb6fce3bf59a3518838f2",
+						"data/sample.csv": "28449dddf4e05fe55dcfeefcab7dc53b7b19c5a0c77c8e50d327d017f17ad46e"
+					},
+					"stdout": "Complete derive_rates before comparing results.\n"
+				},
+				"solution": {
+					"files": {
+						"README.md": "21a7b1dc5fbbe8247092c17f8ccc903478ebe5f19a3d3b5d763a23a62b177832",
+						"main.py": "d73c5ea5b0feb356fd8ecfb0e87231e36187a385ebda35d039cf651344979246",
+						"data/sample.csv": "28449dddf4e05fe55dcfeefcab7dc53b7b19c5a0c77c8e50d327d017f17ad46e"
+					},
+					"stdout": "{\n  \"rows\": [\n    {\n      \"trip_id\": \"R01\",\n      \"trips_per_hour\": 2.0\n    },\n    {\n      \"trip_id\": \"R02\",\n      \"trips_per_hour\": 2.0\n    },\n    {\n      \"trip_id\": \"R03\",\n      \"trips_per_hour\": 2.0\n    },\n    {\n      \"trip_id\": \"R04\",\n      \"trips_per_hour\": null\n    },\n    {\n      \"trip_id\": \"R05\",\n      \"trips_per_hour\": 2.0\n    },\n    {\n      \"trip_id\": \"R06\",\n      \"trips_per_hour\": 4.0\n    }\n  ]\n}\n"
+				}
+			},
+			"item": "data-science-in-python-module-3-pandas-foundations-supplemental-extension-practice-pandas-foundations"
+		},
+		"DSP-11-module-4-cleaning-and-validation": {
+			"revision": "693f9b92c3da20526a4a37e80f19f9f0a6ee84f2",
+			"keySuffix": "tabular-v1",
+			"roles": {
+				"starter": {
+					"files": {
+						"README.md": "f8cf31c461125790f2fadf62551492a2b74ff00a3285391fdec8acf16e76f00d",
+						"main.py": "4d80ffc8e34dba690d374780e04c22827ef32d3e507ea338d2d02151def2a74b",
+						"data/sample.csv": "c6c4a9ffd60c9d2e0821b90618a34cf8dce9384cee88eb852f4956fff36bc76c"
+					},
+					"stdout": "Complete validation_reasons before comparing results.\n"
+				},
+				"solution": {
+					"files": {
+						"README.md": "444496dec2868be1f54c458860056951bb4c10f9337f86664278f208d6a6b571",
+						"main.py": "05a1d1700ff148de5c00d3ccbd1240dc9d02ebd6d795d106688d4ef92ead5dbf",
+						"data/sample.csv": "c6c4a9ffd60c9d2e0821b90618a34cf8dce9384cee88eb852f4956fff36bc76c"
+					},
+					"stdout": "{\n  \"summary\": {\n    \"loaded\": 10,\n    \"accepted\": 5,\n    \"total_trips\": 24,\n    \"repaired_labels\": 2,\n    \"outcomes\": {\n      \"accepted\": 5,\n      \"duplicate\": 1,\n      \"invalid_trips\": 1,\n      \"missing_site\": 1,\n      \"missing_trips\": 1,\n      \"range_trips\": 1\n    },\n    \"accepted_ids\": [\n      \"R01\",\n      \"R02\",\n      \"R06\",\n      \"R07\",\n      \"R09\"\n    ]\n  },\n  \"audit\": [\n    {\n      \"source_record\": 1,\n      \"trip_id\": \"R01\",\n      \"status\": \"accepted\",\n      \"label_repaired\": true\n    },\n    {\n      \"source_record\": 2,\n      \"trip_id\": \"R02\",\n      \"status\": \"accepted\",\n      \"label_repaired\": false\n    },\n    {\n      \"source_record\": 3,\n      \"trip_id\": \"R02\",\n      \"status\": \"duplicate\",\n      \"label_repaired\": false\n    },\n    {\n      \"source_record\": 4,\n      \"trip_id\": \"R03\",\n      \"status\": \"missing_trips\",\n      \"label_repaired\": false\n    },\n    {\n      \"source_record\": 5,\n      \"trip_id\": \"R04\",\n      \"status\": \"invalid_trips\",\n      \"label_repaired\": false\n    },\n    {\n      \"source_record\": 6,\n      \"trip_id\": \"R05\",\n      \"status\": \"range_trips\",\n      \"label_repaired\": false\n    },\n    {\n      \"source_record\": 7,\n      \"trip_id\": \"R06\",\n      \"status\": \"accepted\",\n      \"label_repaired\": false\n    },\n    {\n      \"source_record\": 8,\n      \"trip_id\": \"R07\",\n      \"status\": \"accepted\",\n      \"label_repaired\": false\n    },\n    {\n      \"source_record\": 9,\n      \"trip_id\": \"R08\",\n      \"status\": \"missing_site\",\n      \"label_repaired\": false\n    },\n    {\n      \"source_record\": 10,\n      \"trip_id\": \"R09\",\n      \"status\": \"accepted\",\n      \"label_repaired\": true\n    }\n  ]\n}\n"
+				}
+			},
+			"item": "data-science-in-python-module-4-cleaning-and-validation-curriculum-core-project-cleaning-and-validation"
+		},
+		"DSP-09-module-4-cleaning-and-validation-supplemental-2": {
+			"revision": "693f9b92c3da20526a4a37e80f19f9f0a6ee84f2",
+			"keySuffix": "tabular-v1",
+			"roles": {
+				"starter": {
+					"files": {
+						"README.md": "ebb00ffa52515ef77e97db529af988b5efc859e95aaac5abe1c93e4193da93c2",
+						"main.py": "53850e71eba024f1884b011a87d9f952d634095af03bfca6de71d61cb75d7085",
+						"data/sample.csv": "b85e3dd8f6186ee4c972606c33eb02a4327fd1e72e255681d992c56df47aa0c9"
+					},
+					"stdout": "Complete mark_duplicates before comparing results.\n"
+				},
+				"solution": {
+					"files": {
+						"README.md": "1c59324afd0e3fc3fbd26a6f989d2cfeca994f62b1fa708c3b11670b010dbf70",
+						"main.py": "b3aec9c53f4d98efc356905ba755c543b454d60ffbb42a7f85339de65df12d50",
+						"data/sample.csv": "b85e3dd8f6186ee4c972606c33eb02a4327fd1e72e255681d992c56df47aa0c9"
+					},
+					"stdout": "{\n  \"summary\": {\n    \"loaded\": 11,\n    \"accepted\": 4,\n    \"total_trips\": 12,\n    \"repaired_labels\": 2,\n    \"outcomes\": {\n      \"accepted\": 4,\n      \"conflicting_id\": 2,\n      \"duplicate\": 1,\n      \"invalid_trips\": 1,\n      \"missing_site\": 1,\n      \"missing_trips\": 1,\n      \"range_trips\": 1\n    },\n    \"accepted_ids\": [\n      \"R01\",\n      \"R02\",\n      \"R06\",\n      \"R09\"\n    ]\n  },\n  \"conflicts\": [\n    {\n      \"source_record\": 8,\n      \"trip_id\": \"R07\",\n      \"status\": \"conflicting_id\",\n      \"label_repaired\": false\n    },\n    {\n      \"source_record\": 11,\n      \"trip_id\": \"R07\",\n      \"status\": \"conflicting_id\",\n      \"label_repaired\": false\n    }\n  ]\n}\n"
+				}
+			},
+			"item": "data-science-in-python-module-4-cleaning-and-validation-supplemental-transfer-practice-cleaning-and-validation"
+		},
+		"DSP-10-module-4-cleaning-and-validation-supplemental-3": {
+			"revision": "693f9b92c3da20526a4a37e80f19f9f0a6ee84f2",
+			"keySuffix": "tabular-v1",
+			"roles": {
+				"starter": {
+					"files": {
+						"README.md": "c32d2610d4ef512382ee96ed4dde7597b6cc9f62e38f004fb8491abaceaa4d1b",
+						"main.py": "ade817014091e35cc90d9e46b1147f732aa3f64d3e1c4fd1167ecbe3c28d2fab",
+						"data/sample.csv": "c6c4a9ffd60c9d2e0821b90618a34cf8dce9384cee88eb852f4956fff36bc76c"
+					},
+					"stdout": "Complete compare_policies before comparing results.\n"
+				},
+				"solution": {
+					"files": {
+						"README.md": "290d1db98f239f5e8802da305ea7ac4dd67ff5e496be137de77ba60eb5e1e51d",
+						"main.py": "11eb5fe7f781daf1469ac12ef8fb5c560bd170d39e5ac18731773e975153e094",
+						"data/sample.csv": "c6c4a9ffd60c9d2e0821b90618a34cf8dce9384cee88eb852f4956fff36bc76c"
+					},
+					"stdout": "{\n  \"label_repair\": {\n    \"loaded\": 10,\n    \"accepted\": 5,\n    \"total_trips\": 24,\n    \"repaired_labels\": 2,\n    \"outcomes\": {\n      \"accepted\": 5,\n      \"duplicate\": 1,\n      \"invalid_trips\": 1,\n      \"missing_site\": 1,\n      \"missing_trips\": 1,\n      \"range_trips\": 1\n    },\n    \"accepted_ids\": [\n      \"R01\",\n      \"R02\",\n      \"R06\",\n      \"R07\",\n      \"R09\"\n    ]\n  },\n  \"exact_labels_only\": {\n    \"loaded\": 10,\n    \"accepted\": 3,\n    \"total_trips\": 16,\n    \"repaired_labels\": 0,\n    \"outcomes\": {\n      \"accepted\": 3,\n      \"invalid_site\": 3,\n      \"invalid_trips\": 1,\n      \"missing_site\": 1,\n      \"missing_trips\": 1,\n      \"range_trips\": 1\n    },\n    \"accepted_ids\": [\n      \"R02\",\n      \"R06\",\n      \"R07\"\n    ]\n  },\n  \"accepted_delta\": 2,\n  \"total_trips_delta\": 8\n}\n"
+				}
+			},
+			"item": "data-science-in-python-module-4-cleaning-and-validation-supplemental-extension-practice-cleaning-and-validation"
+		}
+	}
+}
