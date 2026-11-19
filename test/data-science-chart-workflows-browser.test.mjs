@@ -109,6 +109,13 @@ function assertSVG(svg, metric = "mean", weak = false) {
 	return { metric, geometry, labels: wanted };
 }
 
+async function figureFrame(page) {
+	const host = await page.waitForSelector(".python-sandbox-host > iframe", { visible: true });
+	const frame = await host.contentFrame();
+	assert.ok(frame, "The isolated chart output frame exists");
+	return frame;
+}
+
 async function savedFigures(page, key, names) {
 	const project = await waitSaved(page, key, project => names.every(name => project.files.some(file => file.name === name)));
 	const figures = names.map(name => {
@@ -116,7 +123,8 @@ async function savedFigures(page, key, names) {
 		return { name, sha256: digest(file.content), ...assertSVG(file.content, name === "totals.svg" ? "total" : "mean", name.endsWith("-weak.svg")) };
 	});
 	if (await page.evaluate(() => innerWidth < 900)) await page.locator(".mobile-view-picker button[data-view='canvas']").click();
-	await page.waitForFunction(count => [...document.querySelectorAll(".artifact-card img")].filter(image => image.complete && image.naturalWidth > 0).length === count, {}, names.length);
+	const frame = await figureFrame(page);
+	await frame.waitForFunction(count => [...document.querySelectorAll(".artifact-card img")].filter(image => image.complete && image.naturalWidth > 0).length === count, {}, names.length);
 	return { project, figures };
 }
 
@@ -378,7 +386,8 @@ test("Data Science complete chart teaching, visible figures, saved continuation 
 						assert.deepEqual(pageErrors, []);
 						assert.equal(writes, 0);
 						if (width < 900) await page.locator(".mobile-view-picker button[data-view='canvas']").click();
-						await page.$eval(".artifact-card img", image => image.scrollIntoView({ block: "center", behavior: "instant" }));
+						const frame = await figureFrame(page);
+						await frame.$eval(".artifact-card img", image => image.scrollIntoView({ block: "center", behavior: "instant" }));
 						assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
 						await page.screenshot({ path: join(output, `${currentLabel}.png`) });
 						profiles.push({ label: currentLabel, role, width, activity: activity.item, sourceRole, key, originalExport, editedExport, before, after, resumed, consentVerified: true, earlierAttemptPreserved: true, continuedWithoutImport: true, originalFigures, figures: retained.figures });

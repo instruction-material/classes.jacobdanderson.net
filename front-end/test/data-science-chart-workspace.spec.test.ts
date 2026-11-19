@@ -17,6 +17,7 @@ import {
 	loadPythonIdeStarterFilesFromGitHub,
 	saveLocalPythonProjects
 } from "@/modules/pythonIde";
+import { sandboxFiles } from "@/modules/pythonSandbox";
 import { dataScienceInPythonCourse } from "@/stores/courses/data-science-in-python";
 import guidance from "@/stores/courses/dataScienceChartGuidanceData.json";
 import { normalizeRawCourse } from "@/stores/courses/normalization";
@@ -95,6 +96,72 @@ afterEach(() => {
 });
 
 describe("Data Science chart studio source and saved work", () => {
+	it("retains a generated root SVG through runtime validation, reopening and ZIP export", () => {
+		const svg =
+			'<svg xmlns="http://www.w3.org/2000/svg"><text>Mean trips: 3, 8, 6</text></svg>\n';
+		const files = sandboxFiles(
+			[
+				{
+					name: "main.py",
+					content: "print('chart')\n",
+					encoding: "text"
+				},
+				{ name: "chart.svg", content: svg, encoding: "text" }
+			],
+			true
+		);
+		expect(files).not.toBeNull();
+		const project = createPythonIdeProject("data", {
+			title: "saved chart",
+			files: files!
+		});
+		saveLocalPythonProjects([project]);
+		const reopened = loadLocalPythonProjects()[0]!;
+		expect(
+			reopened.files.find(file => file.name === "chart.svg")?.content
+		).toBe(svg);
+		const archive = unzipSync(createProjectArchive(reopened));
+		expect(
+			new TextDecoder().decode(archive[`${project.title}/chart.svg`])
+		).toBe(svg);
+	});
+
+	it("keeps traversal, duplicate and binary runtime SVG results outside the saved project", () => {
+		for (const name of [
+			"../chart.svg",
+			"/chart.svg",
+			"data/../chart.svg"
+		]) {
+			expect(
+				sandboxFiles(
+					[{ name, content: "<svg/>", encoding: "text" }],
+					true
+				)
+			).toBeNull();
+		}
+		expect(
+			sandboxFiles(
+				[
+					{ name: "chart.svg", content: "<svg/>", encoding: "text" },
+					{ name: "Chart.svg", content: "<svg/>", encoding: "text" }
+				],
+				true
+			)
+		).toBeNull();
+		expect(
+			sandboxFiles(
+				[
+					{
+						name: "chart.svg",
+						content: "PHN2Zy8+",
+						encoding: "base64"
+					}
+				],
+				true
+			)
+		).toBeNull();
+	});
+
 	it("places its complete explanations in Learn and keeps written artifacts source-free", () => {
 		const course = normalizeRawCourse(
 			"data-science-in-python",
