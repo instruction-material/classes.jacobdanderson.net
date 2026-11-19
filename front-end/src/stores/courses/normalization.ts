@@ -12,6 +12,7 @@ import { applyDataScienceChartGuidance } from "./dataScienceChartGuidance";
 import { applyDataScienceCleaningGuidance } from "./dataScienceCleaningGuidance";
 import { applyDataScienceCsvGuidance } from "./dataScienceCsvGuidance";
 import { applyDataScienceDashboardGuidance } from "./dataScienceDashboardGuidance";
+import { applyDataScienceFoundationsGuidance } from "./dataScienceFoundationsGuidance";
 import { applyDataScienceGroupedGuidance } from "./dataScienceGroupedGuidance";
 import { applyDataScienceReportGuidance } from "./dataScienceReportGuidance";
 import { applyEarlyElementaryAProjects } from "./earlyElementaryAProjects";
@@ -9962,6 +9963,7 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 		applyDataScienceReportGuidance(course);
 		applyDataScienceChartGuidance(course);
 		applyDataScienceDashboardGuidance(course);
+		applyDataScienceFoundationsGuidance(course);
 	}
 	return course;
 }

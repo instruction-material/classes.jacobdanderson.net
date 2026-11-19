@@ -1,0 +1,36 @@
+import type { RawCourse, RawCourseModuleItem } from "./types";
+import { dataScienceFoundationsRevision } from "@/modules/dataScienceFoundationsResources";
+import guidance from "./dataScienceFoundationsGuidanceData.json";
+
+export function applyDataScienceFoundationsGuidance(course: RawCourse) {
+	for (const entry of guidance) {
+		const module = course.modules.find(
+			candidate => candidate.title === entry.module
+		);
+		const items =
+			entry.group === "curriculum"
+				? module?.curriculum
+				: module?.supplementalProjects;
+		const item = items?.find(candidate => candidate.title === entry.title);
+		if (!item) {
+			throw new Error(`Missing Data Science activity: ${entry.title}`);
+		}
+		item.content = entry.content;
+		item.contentKind =
+			entry.contentKind as RawCourseModuleItem["contentKind"];
+		item.preserveInstructions = true;
+		item.preserveAssignment = true;
+		delete item.projectLink;
+		delete item.solutionLink;
+		delete item.ideImport;
+		delete item.datasetLink;
+		if (entry.folder) {
+			const repo = "https://github.com/instruction-material/Data-Science";
+			const source = `${dataScienceFoundationsRevision}/${entry.folder}`;
+			item.projectLink = `${repo}/tree/${source}/starter`;
+			item.solutionLink = `${repo}/tree/${source}/solution`;
+			item.ideImport = true;
+			item.datasetLink = `${repo}/blob/${source}/starter/data/sample.csv`;
+		}
+	}
+}

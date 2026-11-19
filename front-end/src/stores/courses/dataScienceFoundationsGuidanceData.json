@@ -1,0 +1,130 @@
+[
+	{
+		"module": "DSP0 Setup and Tooling",
+		"title": "Notebook-First and Script-First Workflow",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "A notebook keeps code, written reasoning and displayed results in one document. A Python script runs a saved sequence of statements. Use a notebook for short exploratory steps and an explanation beside each result; use a script when the same calculation needs a repeatable run. Both workflows need the input, code and assumptions that produced the result.\n\nThe site IDE runs Python scripts and retains project files. Its console is not a Jupyter notebook kernel. A notebook workflow uses a notebook application such as Jupyter or Colab. Native scripts run through a local Python interpreter. Record which workflow and Python version produced an output; success in one environment does not establish success in another.\n\nFor a small analysis, keep `main.py` or `analysis.ipynb`, an unchanged input in `data/`, a short `README.md` and separately generated outputs. A filename alone does not identify a dataset version, so retain the exact input used. Keep raw data distinct from cleaned data.\n\nIn a notebook, restart the kernel and run the cells from the top. In a script, start a new Python process and run the saved file. Compare the resulting values with a small hand calculation. A displayed result left from an earlier execution is evidence about that earlier execution.\n\nThe same six trip counts, `2, 4, 8, 0, 6, 12`, have count 6, total 32 and mean about 5.33 trips per record. Record the count and unit alongside the mean. A reproducible calculation can still have a limited interpretation: these synthetic observations describe no real population."
+	},
+	{
+		"module": "DSP0 Setup and Tooling",
+		"title": "Data Science in Python Core Concepts",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "The course begins with core Python: variables, sequences, loops, functions and reading text files. Its central work is descriptive analysis: understanding a question, inspecting and cleaning input, calculating summaries, visualizing evidence and communicating a conclusion within the data's limits. Predictive modeling has a separate purpose in Machine Learning.\n\nInstall packages when an activity needs them. The opening arithmetic, CSV and reproducibility exercises use Python's standard library. Later DataFrame work introduces pandas; numerical-array work uses NumPy; static charts use Matplotlib. A console dashboard can use ordinary input and printing. Altair, Streamlit and scikit-learn are not prerequisites for every project.\n\nFor native work, create a project-specific virtual environment. On macOS or Linux:\n\n```sh\npython3 -m venv .venv\n.venv/bin/python -c \"import sys; print(sys.version)\"\n```\n\nOn Windows:\n\n```powershell\npy -m venv .venv\n.venv\\Scripts\\python.exe -c \"import sys; print(sys.version)\"\n```\n\nUse that same environment's Python when installing a required package and running the project. Follow the selected project's dependency instructions and retain the versions used. The site IDE manages its browser runtime separately; these terminal commands apply to native Python.\n\nA useful setup check runs a small program, saves it, closes it and runs the saved version again. Preserve its input, output and Python version. The [Python virtual-environment guide](https://docs.python.org/3/tutorial/venv.html) describes the environment commands."
+	},
+	{
+		"module": "DSP0 Setup and Tooling",
+		"title": "Core Project: Data Science in Python",
+		"group": "curriculum",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Create a small analysis workspace and verify that saved code can reproduce a known result. Keep a script named `main.py`, a `README.md` stating the workflow and Python version, and a `data/` folder reserved for retained input files.\n\nPlace this complete first calculation in `main.py`:\n\n```python\ntrips = [2, 4, 8, 0, 6, 12]\ncount = len(trips)\ntotal = sum(trips)\nmean = total / count if count else None\nprint(f\"Records: {count}\")\nprint(f\"Total trips: {total}\")\nprint(\"Mean trips per record: \" + (f\"{mean:.2f}\" if mean is not None else \"undefined\"))\n```\n\nThe expected three lines are `Records: 6`, `Total trips: 32` and `Mean trips per record: 5.33`. Check the total by hand. Save the file and rerun it from a fresh script process or a restarted notebook kernel. A notebook version uses the same statements in a code cell, with the hand calculation in a Markdown cell.\n\nChange the final value from 12 to 18. Predict the new total 38 and displayed mean 6.33 before running. Save this as a separate checkpoint so the original version remains available.\n\n**Verification:** Retain both code versions, their observed outputs, the hand checks and the environment note. Explain that the results summarize six synthetic records and do not measure a real site's typical traffic."
+	},
+	{
+		"module": "DSP0 Setup and Tooling",
+		"title": "Reference Archive: Data Science in Python Workspace",
+		"group": "supplementalProjects",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "The [Data Science source repository](https://github.com/instruction-material/Data-Science) contains the course's project folders. Use the starter or reference attached to the selected activity; the repository root is an archive of multiple projects.\n\nA starter contains an unfinished part for the assigned task. A reference provides one completed implementation for comparison after an attempt. A repository-wide download can include unrelated packages and exercises, so retain the exact selected folder and its supplied data when recording a result.\n\nKeep an earlier working copy before trying a new variant. Record the source revision or download date with the project. A link to an archive establishes where material can be found; the assigned lesson establishes the question, expected behavior and evidence required."
+	},
+	{
+		"module": "DSP0 Setup and Tooling",
+		"title": "Data Science in Python Setup Transfer Practice",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Repeat the setup calculation using the new values `1, 1, 4, 10`. Create a separate saved copy, predict the count, total and mean, then run it using the same workflow as the core project.\n\nExpected values are count 4, total 16 and mean 4.00. Verify that the output's denominator is four records rather than the original six. Reopen the original version and check that its values and output remain unchanged.\n\nRecord the input, observed output, Python version and location of each saved version. Explain which parts of the program stayed the same and why the mean changed. Changing data while retaining the same calculation is the transfer being checked; switching editors is optional."
+	},
+	{
+		"module": "DSP0 Setup and Tooling",
+		"title": "Data Science in Python Setup Extension Practice",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Extend the setup calculation with two separate inputs: an empty list and one list containing a recorded zero, `[0]`.\n\nBefore running, predict both outcomes. Empty input has count 0, total 0 and an undefined mean. One recorded zero has count 1, total 0 and mean 0.00. The conditional expression in the core example prevents division by zero while preserving this distinction.\n\nSave and rerun both cases. Keep the printed count beside the result and explain why an undefined mean cannot be reported as an observed zero. Retain these boundary checks with the original six-record calculation."
+	},
+	{
+		"module": "Module 1: What Data Science Is",
+		"title": "What Data Science Is Core Concepts",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "A descriptive question names the records being compared and the quantity to calculate. “Which synthetic site has the largest total trip count in these records?” is answerable from the complete table below. “Which real site is busiest?” needs evidence about sampling, time and exposure that this fixture does not provide.\n\n| Site | Trips |\n| --- | ---: |\n| north | 2 |\n| north | 4 |\n| south | 8 |\n| west | 0 |\n| west | 6 |\n| west | 12 |\n\nEach row is one synthetic observation. A repeated site label represents another observation, not automatically a duplicate error. A recorded zero is a value. A missing value would require a separate rule and explanation.\n\nNorth totals 6 trips across two records, south totals 8 across one, and west totals 18 across three. West has the largest recorded total. The per-record means are north 3.00, south 8.00 and west 6.00, so south has the largest mean. The two rankings answer different questions.\n\nAn analysis connects its question, source, calculation, result and limitation. A chart can communicate that chain, but cannot supply missing evidence. A larger sample or a fitted model also needs a defined question and suitable evidence. This course emphasizes descriptive work; an AI search procedure or a predictive model changes the main task and evaluation."
+	},
+	{
+		"module": "Module 1: What Data Science Is",
+		"title": "Core Project: What Data Science Is",
+		"group": "curriculum",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Write a question-and-evidence brief for the six synthetic observations in the lesson. This is a written analysis; code is optional for checking arithmetic.\n\nChoose either total trips by site or mean trips per recorded observation. State the question, unit represented by one row, columns used, calculation and audience. Work out every site's result by hand before choosing how to display it.\n\nFor totals, expected values are north 6, south 8 and west 18. For means, use the matching record counts: north 2, south 1 and west 3, giving 3.00, 8.00 and 6.00 trips per record. Check that group counts sum to 6 and group totals sum to 32.\n\nWrite one supported conclusion using the words “synthetic records.” Then identify a stronger real-world claim these records cannot establish and the missing evidence needed to assess it. A useful brief makes the denominator and scope visible without requiring a reader to inspect code."
+	},
+	{
+		"module": "Module 1: What Data Science Is",
+		"title": "Analysis Log: What Data Science Is",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Keep an analysis log for the question-and-evidence brief. Record the precise question, retained six-row input, row meaning, columns and units, chosen calculation, hand-check result and limitation.\n\nAdd two entries: the initial plan and the completed calculation. If the question or denominator changes, record why and which earlier result is affected. Separate an observed result such as west's recorded total 18 from an interpretation such as a claim about real traffic.\n\n**Verification:** Another reader can trace one reported number back to the listed records, identify what changed between entries and find a limitation that affects the conclusion. This log records decisions and evidence; it does not require a separate program or a repeated copy of the report."
+	},
+	{
+		"module": "Module 1: What Data Science Is",
+		"title": "Transfer Practice: What Data Science Is",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Transfer the descriptive question to these four synthetic observations: east has trip counts 1 and 5; west has trip counts 4 and 4.\n\nWrite two questions, one comparing totals and one comparing means. Both sites total 6 and 8 respectively, with means 3.00 and 4.00. Check count 4 and overall total 14. State whether the same site leads under both questions.\n\nCompare this case with the lesson's original six observations, where the largest total and largest mean belonged to different sites. Explain how equal group sizes affect the relationship between total and mean rankings. The exercise supports a numerical observation about the given records, rather than a general claim that group sizes are always equal."
+	},
+	{
+		"module": "Module 1: What Data Science Is",
+		"title": "Extension Practice: What Data Science Is",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Assess the claim “West is the busiest site” using the lesson's six synthetic observations. Identify at least two possible meanings of busiest, such as largest recorded total or largest mean per observation, and calculate each relevant result.\n\nRewrite the claim so its quantity, input and scope are explicit. Then propose one additional measurement that would support a different question: a common observation period, a defined sampling rule or an exposure measure. Describe how that measurement would enter the comparison.\n\n**Verification:** The response distinguishes the west total 18 from the south mean 8.00, retains each group's record count and explains why proposed future evidence is not an observed result. The deliverable is a claim critique and revised question."
+	},
+	{
+		"module": "Module 2: Notebook Workflow and Reproducibility",
+		"title": "Notebook Workflow and Reproducibility Core Concepts",
+		"group": "curriculum",
+		"contentKind": "reading",
+		"folder": null,
+		"content": "A notebook kernel stores values from executed cells. The displayed order of cells can differ from the order they were executed. This creates hidden state when a later result depends on a value that the saved top-to-bottom sequence does not reproduce.\n\nConsider two cells in this order:\n\n```python\n# Cell 1\ntrips = [2, 4, 8]\n```\n\n```python\n# Cell 2\nprint(sum(trips))\n```\n\nA fresh top-to-bottom run prints 14. If Cell 1 is changed to `[2, 4, 8, 0, 6, 12]` and Cell 2 is run without first rerunning Cell 1, the kernel still holds the earlier list and can print 14. The correct new total is 32. Saving edited text does not by itself execute it.\n\nAfter a meaningful change, restart the kernel and run the saved cells in order. In a script workflow, run the saved script in a new process. Record the exact input and environment, compare an output with a hand calculation and keep the explanation beside the result.\n\nFile location is another dependency. A script can find bundled data relative to its own `__file__`; a notebook usually needs a documented working directory or an explicit input path. A path that works in one editor session can fail when another person launches from elsewhere. The [Jupyter notebook documentation](https://jupyter-notebook.readthedocs.io/en/stable/notebook.html) describes the relationship between saved cells, execution and kernel state."
+	},
+	{
+		"module": "Module 2: Notebook Workflow and Reproducibility",
+		"title": "Core Project: Notebook Workflow and Reproducibility",
+		"group": "curriculum",
+		"contentKind": "assignment",
+		"folder": "DSP-09-module-2-notebook-workflow-and-reproducibility",
+		"content": "Build a reproducible small analysis that reads the supplied six-row `data/sample.csv`, calculates record count, total trips and mean, and prints the result with its units. Keep the raw CSV unchanged.\n\nOpen the starter in the course IDE and complete `summarize(values)`. Run `main.py` with the bundled input. In a local terminal, run `python main.py` from the starter folder. The script locates the CSV beside the saved file. A notebook version records its input path and places loading before calculation in the visible cell sequence.\n\nPredict count 6, total 32 and mean 5.33. Run from a fresh process or restarted kernel, then repeat without editing input or code. Compare both results with the hand check. Also launch the native script from a different working directory using its full path; the bundled input must still be found.\n\nCopy `data/sample.csv` to `data/changed.csv` and change the last value from 12 to 18. In a terminal, rerun with `python main.py --input data/changed.csv`. From a notebook, pass the same input path to `main`. Predict count 6, total 38 and mean 6.33. Retain the original and changed inputs with their distinct output records.\n\n**Verification:** The saved artifact includes code, both retained inputs, run instructions, environment information and the observed comparisons. A missing input produces a visible error rather than silently substituting another dataset."
+	},
+	{
+		"module": "Module 2: Notebook Workflow and Reproducibility",
+		"title": "Analysis Log: Notebook Workflow and Reproducibility",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": null,
+		"content": "Create a run log for the reproducibility project. Each entry names the saved code version, exact input path or retained input version, Python environment, launch method, observed count/total/mean and hand-check result.\n\nInclude the fresh default run, a second unchanged run, launch from another working directory and the changed-input run. For a notebook, additionally record the restart-and-run-all result. For a script-only workflow, mark notebook execution as outside that run's scope.\n\nSeparate experiments from established steps. An exploratory edited cell becomes part of the reproducible analysis only after the saved ordered sequence produces its result from a fresh start. Record any mismatch and the correction that resolves it."
+	},
+	{
+		"module": "Module 2: Notebook Workflow and Reproducibility",
+		"title": "Transfer Practice: Notebook Workflow and Reproducibility",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-05-module-2-notebook-workflow-and-reproducibility-supplemental-2",
+		"content": "Complete `format_summary(summary)` in the supplied transfer starter. The bundle includes `data/empty.csv` with a header only and `data/zero.csv` with one record, `west,0`.\n\nRun `python main.py --input data/empty.csv` and `python main.py --input data/zero.csv` from the project folder. Expect empty input to have zero records, total zero and no measured mean. Expect the zero-valued record to have count one, total zero and mean 0.00. Preserve the original fixture and confirm that returning to it restores 6, 32 and 5.33.\n\nRepeat the runs from a fresh process or restarted notebook kernel. Record each input with its output and explain how explicitly selecting the input prevents an earlier dataset from silently remaining in use. The transfer checks a changed data condition while retaining the analysis sequence."
+	},
+	{
+		"module": "Module 2: Notebook Workflow and Reproducibility",
+		"title": "Extension Practice: Notebook Workflow and Reproducibility",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-06-module-2-notebook-workflow-and-reproducibility-supplemental-3",
+		"content": "Complete `write_report(output, summary, input_path)` in the supplied extension starter. The report records the SHA-256 digest of the selected CSV bytes alongside the filename and results. The report identifies the retained input, count, total, mean or undefined-mean state, and the units used. Keep the source CSV unchanged and store generated output separately.\n\nRun `python main.py`, reopen `outputs/report.json` and compare each number with the console and hand calculation. Copy the CSV to `data/changed.csv` and replace its last value with 18. Run `python main.py --input data/changed.csv --output outputs/changed.json` to retain both reports. The new report must contain total 38 and mean 6.33, rather than retaining the earlier 32 and 5.33.\n\nRecord what generated the report and which earlier report was retained or replaced. A fresh rerun with the same input reproduces its numerical content. A report's existence alone does not establish that it came from the current input."
+	}
+]
