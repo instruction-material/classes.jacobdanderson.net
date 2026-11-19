@@ -1732,8 +1732,9 @@ describe("course text quality normalization", () => {
 			expect(dataScienceText).not.toContain(
 				"equipment-free investigation writeup"
 			);
+			expect(dataScienceText).toContain("source code or notebook");
 			expect(dataScienceText).toContain(
-				"a notebook or script that turns a defined dataset"
+				"fresh-process or restarted-kernel rerun"
 			);
 			expect(elementaryScienceText).not.toContain(
 				"a notebook or script that turns a defined dataset"
@@ -2433,8 +2434,11 @@ describe("course text quality normalization", () => {
 			expect(corpus).toContain(
 				"traces the Java idea from data shape to public behavior"
 			);
-			expect(corpus).toMatch(
-				/\*\*Extension:\*\* Add a second (?:[^.\n]+ )?metric, comparison, or visualization[^.\n]*and explain what it changes/
+			expect(corpus).toContain(
+				"site match **and** trips at least the minimum"
+			);
+			expect(corpus).toContain(
+				"Clearing both controls restores all six records"
 			);
 			expect(corpus).toMatch(
 				/the evidence identifies whether the next step is vocabulary, representation choice, algebraic procedure, graph or table reading, or reasonableness/i
@@ -3101,8 +3105,20 @@ describe("course text quality normalization", () => {
 
 			const label = courseLabels[courseId];
 			const text = allCourseText(course);
-			expect(text, courseId).toContain(`${label} uses`);
-			expect(text, courseId).toContain(`For ${label}`);
+			if (courseId === "data-science-in-python") {
+				expect(text).toContain(
+					"**Data Science:** a reproducible descriptive analysis"
+				);
+				expect(text).toContain(
+					"**AI Foundations:** a solver or agent"
+				);
+				expect(text).toContain(
+					"**Machine Learning:** a fitted predictive model"
+				);
+			} else {
+				expect(text, courseId).toContain(`${label} uses`);
+				expect(text, courseId).toContain(`For ${label}`);
+			}
 		}
 
 		for (const appendixTitle of appendixTitles) {

@@ -396,7 +396,9 @@ describe("implemented course development artifacts", () => {
 		);
 		expect(
 			allText(await requireCourse("data-science-in-python"))
-		).toContain("NOAA daily weather observations");
+		).toContain(
+			"https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily"
+		);
 		expect(allText(await requireCourse("network-security"))).toContain(
 			"Systems and Security Lab Safety Policy"
 		);
