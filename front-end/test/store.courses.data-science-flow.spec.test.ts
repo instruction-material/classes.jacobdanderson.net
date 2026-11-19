@@ -55,7 +55,8 @@ describe("Data Science in Python learner flow", () => {
 		const owners = new Map<string, string>();
 		for (const [file, entries] of Object.entries(files)) {
 			for (const { module, group, title } of entries) {
-				const section = group === "curriculum" ? group : "supplementalProjects";
+				const section =
+					group === "curriculum" ? group : "supplementalProjects";
 				const key = JSON.stringify([module, section, title]);
 				expect(
 					owners.get(key),
@@ -65,7 +66,6 @@ describe("Data Science in Python learner flow", () => {
 			}
 		}
 	});
-
 
 	it("gives each Domain Projects assignment a distinct starter", async () => {
 		setActivePinia(createPinia());
@@ -102,6 +102,52 @@ describe("Data Science in Python learner flow", () => {
 		expect(new Set(keys).size).toBe(projects.length);
 		expect(core.datasetLink).toMatch(/starter\/data\/sample\.csv$/);
 		expect(warmup.datasetLink).toBeUndefined();
+	});
+
+	it("keeps the five practice projects optional with distinct role imports", async () => {
+		const course = await loadRawCourse("data-science-in-python");
+		const rawGuide = course!.modules.find(
+			module => module.title === "Project Practice Guide"
+		)!;
+		setActivePinia(createPinia());
+		const learner = await useCoursesStore().loadCourseById(
+			"data-science-in-python"
+		);
+		const learnerGuide = learner!.modules.find(
+			module => module.title === rawGuide.title
+		)!;
+
+		const sourceRoot =
+			"https://github.com/instruction-material/Data-Science/tree/f61098dfc5e48ef13aeda2d138ffb49806f6ffdf";
+		const names = [
+			"public-dataset",
+			"cleaning",
+			"chart-redesign",
+			"trend",
+			"final"
+		];
+		expect(learnerGuide.supplementalProjects).toHaveLength(names.length);
+		for (const [index, name] of names.entries()) {
+			const item = learnerGuide.supplementalProjects[index];
+			const folder = `DSP-practice-${name}`;
+			const raw = rawGuide.supplementalProjects.find(
+				candidate => candidate.title === item.title
+			)!;
+			expect(item.contentKind).toBe("assignment");
+			expect(item.learningPath).toMatch(/^(choice|challenge)$/);
+			expect(item.projectLink).toBe(`${sourceRoot}/${folder}/starter`);
+			expect(item.solutionLink).toBeUndefined();
+			expect(item.datasetLink).toContain(
+				`/${folder}/starter/data/sample.csv`
+			);
+			expect(raw.solutionLink).toBe(`${sourceRoot}/${folder}/solution`);
+			expect(
+				dataScienceFoundationsProjectKey("starter", item.projectLink!)
+			).toBe(`data-science-in-python:${folder}:starter:practice-v1`);
+			expect(
+				dataScienceFoundationsProjectKey("reference", raw.solutionLink!)
+			).toBe(`data-science-in-python:${folder}:reference:practice-v1`);
+		}
 	});
 
 	it("recognizes the published applied-studio progress IDs before title changes", async () => {

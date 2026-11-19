@@ -18,6 +18,12 @@ export function applyDataScienceFoundationsGuidance(course: RawCourse) {
 		item.content = entry.content;
 		item.contentKind =
 			entry.contentKind as RawCourseModuleItem["contentKind"];
+		if (
+			entry.learningPath === "choice" ||
+			entry.learningPath === "challenge"
+		) {
+			item.learningPath = entry.learningPath;
+		}
 		item.preserveInstructions = true;
 		item.preserveAssignment = true;
 		delete item.projectLink;

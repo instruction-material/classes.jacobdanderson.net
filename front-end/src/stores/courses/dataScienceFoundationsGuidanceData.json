@@ -439,5 +439,50 @@
 		"contentKind": "reading",
 		"folder": null,
 		"content": "## Build an analysis that another reader can rerun\n\nStart with a question the records can answer. Name the audience, input source, unit of observation and comparison window. Keep the raw input and document changes before calculating a metric. Save the code or notebook, the chart or table, and the exact command or steps needed to regenerate the result.\n\n## Worked capstone check\n\nA report compares trips per covered day at two sites. North records 24 trips over four days and South records 18 over three days. North has more recorded trips, yet both rates are six per day. Show both the count and the coverage so a reader can see why the comparisons differ. If a third site has no observed days, show its rate as unavailable.\n\nA narrative notebook fits a fixed argument that benefits from explanation beside each step. A dashboard fits a question the audience answers by changing a filter. Whichever format is used, keep one hand calculation, one missing-data or empty-filter check, and a statement of what the result can support."
+	},
+	{
+		"module": "Project Practice Guide",
+		"title": "Practice Project: Public Dataset Exploratory Report",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-practice-public-dataset",
+		"learningPath": "choice",
+		"content": "Open the starter and complete `summarize(rows, start_year, end_year)`. Use `--year 2020` when checking the case with no overlapping observations.\n\nUse the supplied six observations from the course life expectancy dataset. Compare Canada and Japan in the last observed year, then describe each country's change from 2013 to 2015. State that each row is one country-year and that the values measure life expectancy in years. Keep the original country and year labels.\n\nIn 2015 the values are 82.2 and 83.7, a difference of 1.5 years. The rounded changes from 2013 are 0.4 years for Canada and 0.2 years for Japan. Verify those values against the CSV and check what the report displays for a requested year outside the sample.\n\nDeliver a small table, a source note, a chart or concise comparison, and one limitation. For extension, choose another set of country-year records and check their coverage before comparing them."
+	},
+	{
+		"module": "Project Practice Guide",
+		"title": "Practice Project: Messy CSV Cleaning Challenge",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-practice-cleaning",
+		"learningPath": "choice",
+		"content": "Open the starter and complete `classify(rows)`. The program prints a clean CSV and rejection log that can each be saved as a separate file. Keep the original CSV for the reconciliation.\n\nKeep a copy of the supplied station CSV. Read it with a CSV parser so the comma within “North, Annex” stays in one field. Accept a non-negative integer rider count, including zero. Keep the first valid record for each ID. Give every other row an outcome such as duplicate, missing count or invalid count.\n\nThe sample contains eight rows. Check that four are accepted, with 25 riders in total. The accepted rows include the measured zero. Deliver the clean rows and a rejection log with record ID and reason. Reconcile the two outputs to the original count.\n\nAdd one invalid row before a valid record with the same ID as a second check. Explain where the first valid record rule matters."
+	},
+	{
+		"module": "Project Practice Guide",
+		"title": "Practice Project: Visualization Redesign Project",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-practice-chart-redesign",
+		"learningPath": "choice",
+		"content": "Open the starter and complete `draw_bars(observations)`. Use the same scale for both bars and keep the exact counts in their labels. Check an all-zero input as well as equal positive counts.\n\nCompare two displays of the supplied trip counts. Service A has 42 and Service B has 49. A draft bar chart begins at 40, leaving bar lengths of 2 and 9. Calculate the difference of seven trips from the actual data and explain how the cropped baseline exaggerates it.\n\nRedesign the chart using a zero baseline for the bars or a labeled dot plot that conveys position. Include a title, units and values a reader can verify. Use the same data in both displays and compare how each one answers the question.\n\nReplace both sample values with the same count and verify that the redesign shows equality. Include an accessible text summary with the updated chart."
+	},
+	{
+		"module": "Project Practice Guide",
+		"title": "Practice Project: Weather, Sports, Transit, or Education Trend Analysis",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-practice-trend",
+		"learningPath": "choice",
+		"content": "Open the starter and complete `compare_weeks(rows)`. Keep the source week order. A measured zero with positive coverage produces a zero rate, while a missing trip count produces an unavailable rate.\n\nUse the supplied weekly transit observations as a starting case. Week 1 records 20 trips in two days and Week 2 records 30 in three days. Both rates are 10 per day. Week 3 has no measured trips and zero covered days. Week 4 records 36 in four days, or nine per day.\n\nCreate a labeled table of the weeks, observed counts, days and rates. Show the missing week as unavailable and leave a gap in any line that would imply a continuous observed trend. Explain why the change in raw counts can tell a different story from the change in rates.\n\nApply the same approach to a public weather, sports, transit or education series if a suitable input is available. State the time unit, measurement units and what a missing period means for that series."
+	},
+	{
+		"module": "Project Practice Guide",
+		"title": "Practice Project: Self-directed Final Data Story with Conclusions and Limitations",
+		"group": "supplementalProjects",
+		"contentKind": "assignment",
+		"folder": "DSP-practice-final",
+		"learningPath": "challenge",
+		"content": "Open the starter and complete `build_views(rows)` before adapting it to an independent question. The bundled example includes the Domain Projects data and adds a route with zero coverage. North has 77 trips over nine measured days, and West has an unavailable rate.\n\nChoose a question and audience. Use the provided route-week data from Domain Projects or bring a documented dataset with suitable coverage. Write one claim supported by a table or chart and add a second view that checks it from another angle. For example, compare routes using trips per covered day, then show weekly coverage to explain how much evidence each comparison uses.\n\nDeliver a script, notebook or dashboard that regenerates the two views. Include the exact input, one hand-checked value, a missing-data or filter check, the final claim and an important limitation. For the supplied transit fallback, a site with no covered days must display an unavailable rate.\n\nKeep the question narrow enough that a reader can rerun the first version and identify which record or calculation supports the claim."
 	}
 ]

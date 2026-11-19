@@ -25,6 +25,14 @@ const domainFolders = new Set([
 	"DSP-17-module-8-domain-projects-supplemental-3"
 ]);
 
+const practiceFolders = new Set([
+	"DSP-practice-public-dataset",
+	"DSP-practice-cleaning",
+	"DSP-practice-chart-redesign",
+	"DSP-practice-trend",
+	"DSP-practice-final"
+]);
+
 export function dataScienceFoundationsSource(folder: string) {
 	if (reproducibilityFolders.has(folder)) {
 		return {
@@ -45,6 +53,13 @@ export function dataScienceFoundationsSource(folder: string) {
 			revision: "6c0b419db4b6df06a38dd194a8a11dac8fadd8bc",
 			keySuffix: "domain-v1",
 			datasetPath: folder === "DM7-Simple-Sort" ? null : "data/sample.csv"
+		};
+	}
+	if (practiceFolders.has(folder)) {
+		return {
+			revision: "f61098dfc5e48ef13aeda2d138ffb49806f6ffdf",
+			keySuffix: "practice-v1",
+			datasetPath: "data/sample.csv"
 		};
 	}
 	return null;
