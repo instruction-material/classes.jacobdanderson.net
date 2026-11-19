@@ -45,6 +45,11 @@ const dashboardFolders = new Set([
 	"DSP-15-module-7-dashboards-with-altair-and-streamlit-supplemental-3"
 ]);
 
+const setupPracticeFolders = new Set([
+	"DSP-01-dsp0-setup-and-tooling-supplemental-2",
+	"DSP-02-dsp0-setup-and-tooling-supplemental-3"
+]);
+
 export function dataScienceFoundationsSource(folder: string) {
 	if (reproducibilityFolders.has(folder)) {
 		return {
@@ -85,6 +90,13 @@ export function dataScienceFoundationsSource(folder: string) {
 		return {
 			revision: "a204c5bd882e77cb8d5de645cf4993ca4396dd14",
 			keySuffix: "dashboard-room-v1",
+			datasetPath: "data/sample.csv"
+		};
+	}
+	if (setupPracticeFolders.has(folder)) {
+		return {
+			revision: "4f0ce434a03df2fe790865d3acfc918a01ae4fe6",
+			keySuffix: "setup-practice-v1",
 			datasetPath: "data/sample.csv"
 		};
 	}

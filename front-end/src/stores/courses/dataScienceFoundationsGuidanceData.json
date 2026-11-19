@@ -36,16 +36,16 @@
 		"title": "Data Science in Python Setup Transfer Practice",
 		"group": "supplementalProjects",
 		"contentKind": "assignment",
-		"folder": null,
-		"content": "Repeat the setup calculation using the new values `1, 1, 4, 10`. Create a separate saved copy, predict the count, total and mean, then run it using the same workflow as the core project.\n\nExpected values are count 4, total 16 and mean 4.00. Verify that the output's denominator is four records rather than the original six. Reopen the original version and check that its values and output remain unchanged.\n\nRecord the input, observed output, Python version and location of each saved version. Explain which parts of the program stayed the same and why the mean changed. Changing data while retaining the same calculation is the transfer being checked; switching editors is optional."
+		"folder": "DSP-01-dsp0-setup-and-tooling-supplemental-2",
+		"content": "Open the starter to run the original six-record calculation. Save a separate IDE project and update the input filename to `practice.csv` in that copy.\n\nRepeat the setup calculation using the new values `1, 1, 4, 10`. Create a separate saved copy, predict the count, total and mean, then run it using the same workflow as the core project.\n\nExpected values are count 4, total 16 and mean 4.00. Verify that the output's denominator is four records rather than the original six. Reopen the original version and check that its values and output remain unchanged.\n\nRecord the input, observed output, Python version and location of each saved version. Explain which parts of the program stayed the same and why the mean changed. Changing data while retaining the same calculation is the transfer being checked; switching editors is optional."
 	},
 	{
 		"module": "DSP0 Setup and Tooling",
 		"title": "Data Science in Python Setup Extension Practice",
 		"group": "supplementalProjects",
 		"contentKind": "assignment",
-		"folder": null,
-		"content": "Extend the setup calculation with two separate inputs: an empty list and one list containing a recorded zero, `[0]`.\n\nBefore running, predict both outcomes. Empty input has count 0, total 0 and an undefined mean. One recorded zero has count 1, total 0 and mean 0.00. The conditional expression in the core example prevents division by zero while preserving this distinction.\n\nSave and rerun both cases. Keep the printed count beside the result and explain why an undefined mean cannot be reported as an observed zero. Retain these boundary checks with the original six-record calculation."
+		"folder": "DSP-02-dsp0-setup-and-tooling-supplemental-3",
+		"content": "Open the starter and run its baseline. Change the default inputs in `main.py` to `empty.csv` and `zero.csv`. Both files are supplied.\n\nExtend the setup calculation with two separate inputs: an empty list and one list containing a recorded zero, `[0]`.\n\nBefore running, predict both outcomes. Empty input has count 0, total 0 and an undefined mean. One recorded zero has count 1, total 0 and mean 0.00. The conditional expression in the core example prevents division by zero while preserving this distinction.\n\nSave and rerun both cases. Keep the printed count beside the result and explain why an undefined mean cannot be reported as an observed zero. Retain these boundary checks with the original six-record calculation."
 	},
 	{
 		"module": "Module 1: What Data Science Is",
