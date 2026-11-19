@@ -34,6 +34,14 @@ const digest = value => createHash("sha256").update(value).digest("hex");
 const storageKey = "classes-python-ide-projects:anonymous";
 const courseID = "pythonic-design-patterns";
 
+function roleFiles(folder, role) {
+	const prefix = `${folder}/${role}/`;
+	return Object.entries(fixture.files)
+		.filter(([path]) => path.startsWith(prefix))
+		.map(([path, file]) => ({ name: path.slice(prefix.length), ...file }))
+		.sort((left, right) => left.name.localeCompare(right.name));
+}
+
 function account(path, instructor, inIde) {
 	if (inIde) return {};
 	const learner = {
@@ -151,13 +159,13 @@ async function runPython(page, width, activity, unfinished, marker = "") {
 	return result;
 }
 
-async function editMain(page, width, key, content) {
+async function editMain(page, width, key, content, fileName = "main.py") {
 	if (width < 900) {
 		await page
 			.locator(".mobile-view-picker button[data-view='code']")
 			.click();
 	}
-	await page.select("select[aria-label='Active project file']", "main.py");
+	await page.select("select[aria-label='Active project file']", fileName);
 	await page.waitForSelector(".cm-content", { visible: true });
 	await page.focus(".cm-content");
 	const modifier = await page.evaluate(() =>
@@ -172,14 +180,30 @@ async function editMain(page, width, key, content) {
 	await page.keyboard.up(modifier);
 	return waitSaved(page, key, project =>
 		project.files.some(
-			file => file.name === "main.py" && file.content === content
+			file => file.name === fileName && file.content === content
 		));
+}
+
+async function addReferenceModule(page, width, key, fileName, content) {
+	if (width < 900) {
+		await page.locator(".mobile-view-picker button[data-view='code']").click();
+	}
+	const toggle = "button[aria-label='Add or import project files']";
+	if (await page.$eval(toggle, element => element.getAttribute("aria-expanded")) !== "true") {
+		await page.locator(toggle).click();
+	}
+	const input = "input[aria-label='New project file name']";
+	await page.locator(input).fill(fileName);
+	await page.focus(input);
+	await page.keyboard.press("Enter");
+	await waitSaved(page, key, project => project.files.some(file => file.name === fileName));
+	return editMain(page, width, key, content, fileName);
 }
 
 async function retainZip(page, project, label) {
 	const bytes = await exportedBytes(page);
 	const members = unzipSync(bytes);
-	assert.equal(Object.keys(members).length, 4);
+	assert.equal(Object.keys(members).length, project.files.length);
 	for (const file of project.files) {
 		const names = Object.keys(members).filter(path =>
 			path.endsWith(`/${file.name}`)
@@ -255,18 +279,19 @@ test(
 			assert.ok(["build", "dev"].includes(sourceMode));
 			await mkdir(output, { recursive: true });
 			// Validate frozen inventory before launching any browser work.
-			assert.equal(fixture.activities.length, 30);
-			assert.equal(new Set(fixture.activities.map(activity => activity.folder)).size, 22);
-			assert.equal(Object.keys(fixture.files).length, 176);
-			assert.equal(activities.length, 8);
-			assert.equal(new Set(activities.map(activity => activity.folder)).size, 6);
-			assert.equal(activities.filter(activity => activity.comparisonClient).length, 2);
+			assert.equal(fixture.activities.length, 50);
+			assert.equal(new Set(fixture.activities.map(activity => activity.folder)).size, 31);
+			assert.equal(Object.keys(fixture.files).length, 266);
+			assert.equal(activities.length, 20);
+			assert.equal(new Set(activities.map(activity => activity.folder)).size, 14);
+			assert.equal(activities.filter(activity => activity.comparisonClient).length, 3);
 			for (const activity of activities.filter(activity => activity.comparisonClient)) {
 				const client = activity.comparisonClient;
 				assert.equal(digest(client.append), client.appendSHA256);
 				assert.equal(digest(client.standaloneSource), client.standaloneSHA256);
-				assert.equal(fixture.files[client.sourceReadme].sha256, client.sourceReadmeSHA256);
-				assert.ok(fixture.files[client.sourceReadme].content.includes(client.standaloneSource));
+				const source = fixture.files[client.sourceFile ?? client.sourceReadme];
+				assert.equal(source.sha256, client.sourceFileSHA256 ?? client.sourceReadmeSHA256);
+				assert.ok(source.content.includes(client.standaloneSource));
 			}
 			process.chdir(root);
 			for (const [path, file] of Object.entries(fixture.files)) {
@@ -411,7 +436,7 @@ test(
 													download_url: `https://raw.githubusercontent.com/${fixture.repository}/main/${name}`
 												}))
 										: [];
-									assert.equal(files.length, 4, path);
+									assert.equal(files.length, roleFiles(activity.folder, "starter").length, path);
 									requests.push({
 										type: "directory",
 										path,
@@ -550,17 +575,12 @@ test(
 						const imported = await waitSaved(
 							page,
 							key,
-							project => project.files.length === 4
+							project => project.files.length === roleFiles(activity.folder, "starter").length
 						);
 						assert.equal(imported.mode, "python");
 						assert.deepEqual(
 							imported.files.map(file => file.name).sort(),
-							[
-								"README.md",
-								"main.py",
-								"requirements-dev.txt",
-								"test_contract.py"
-							]
+							roleFiles(activity.folder, "starter").map(file => file.name).sort()
 						);
 						for (const file of imported.files) {
 							assert.equal(
@@ -571,7 +591,7 @@ test(
 								file.name
 							);
 						}
-						assert.equal(requests.length, 5);
+						assert.equal(requests.length, roleFiles(activity.folder, "starter").length + 1);
 						assert.ok(requests.every(request => request.inIde));
 						const originalExport = await retainZip(
 							page,
@@ -579,6 +599,9 @@ test(
 							`${currentLabel}-original`
 						);
 						const before = await runPython(page, width, activity, Boolean(activity.unfinishedMarker));
+						for (const name of activity.solutionExtraFiles ?? []) {
+							await addReferenceModule(page, width, key, name, fixture.files[`${activity.folder}/solution/${name}`].content);
+						}
 						const marker = `pythonic_browser_edit_${currentLabel.replaceAll("-", "_")}`;
 						const comparison = activity.comparisonClient?.append ?? "";
 						const completed = `${fixture.files[`${activity.folder}/solution/main.py`].content}\n${comparison}\nprint(${JSON.stringify(marker)})\n`;

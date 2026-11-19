@@ -27,7 +27,22 @@ const folders = {
 	measurementAdapter:
 		"PDP-15-pdp8-adapter-and-integration-boundaries-supplemental-2",
 	vendorBoundary:
-		"PDP-16-pdp8-adapter-and-integration-boundaries-supplemental-3"
+		"PDP-16-pdp8-adapter-and-integration-boundaries-supplemental-3",
+	namedStages:
+		"PDP-17-pdp9-template-method-versus-higher-order-functions-supplemental-2",
+	managedGenerator:
+		"PDP-18-pdp9-template-method-versus-higher-order-functions-supplemental-3",
+	applicationFactory:
+		"PDP-19-pdp10-singleton-global-state-and-module-patterns",
+	requestContext: "PDP-20-pdp10-singleton-global-state-and-module-patterns",
+	characterization:
+		"PDP-21-pdp11-refactoring-python-code-smells-supplemental-2",
+	pureWrites: "PDP-22-pdp11-refactoring-python-code-smells-supplemental-3",
+	dependencyMap:
+		"PDP-23-pdp12-capstone-pythonic-refactor-studio-supplemental-2",
+	rendererBoundary:
+		"PDP-24-pdp12-capstone-pythonic-refactor-studio-supplemental-3",
+	refactorCapstone: "PDP7-Pythonic-Refactor-Capstone"
 };
 const labTitles: Record<keyof typeof folders, string> = {
 	callables: "Callable comparison",
@@ -51,7 +66,16 @@ const labTitles: Record<keyof typeof folders, string> = {
 	editorUndo: "Bounded Editor Undo",
 	leadPipeline: "Adapter and Import Pipeline",
 	measurementAdapter: "Versioned Measurement Adapter",
-	vendorBoundary: "Injected Vendor Boundary"
+	vendorBoundary: "Injected Vendor Boundary",
+	namedStages: "Named Stages and Template Hooks",
+	managedGenerator: "Managed Generator Lifetime",
+	applicationFactory: "Application Factory and Owned Services",
+	requestContext: "Request Context and Module Cache",
+	characterization: "Characterization Before Extraction",
+	pureWrites: "Pure Preparation and External Writes",
+	dependencyMap: "Dependency Map and Change Surface",
+	rendererBoundary: "Replace a Renderer Through a Boundary",
+	refactorCapstone: "Pythonic Refactor Studio"
 };
 interface OpeningItem {
 	kind: "reading" | "assignment";
