@@ -3,23 +3,9 @@ import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { createPinia, setActivePinia } from "pinia";
 import MarkdownIt from "markdown-it";
+import { createPinia, setActivePinia } from "pinia";
 import { expect, it } from "vitest";
-import moneyMindedAdditions from "../../test/fixtures/money-minded-restored-identities.json";
-import smartMoneyAdditions from "../../test/fixtures/smart-money-restored-identities.json";
-import published from "../../test/fixtures/catalog-published-identities.json";
-import elementaryAdditions from "../../test/fixtures/early-elementary-a-restored-identities.json";
-import elementaryBAdditions from "../../test/fixtures/early-elementary-b-restored-identities.json";
-import lateElementaryAAdditions from "../../test/fixtures/late-elementary-a-restored-identities.json";
-import lateElementaryBAdditions from "../../test/fixtures/late-elementary-b-restored-identities.json";
-import joyOfReadingAdditions from "../../test/fixtures/joy-of-reading-restored-identities.json";
-import pictureBookAdditions from "../../test/fixtures/picture-book-restored-identities.json";
-import ventureAdditions from "../../test/fixtures/entrepreneurship-restored-core-identities.json";
-import grammarAdditions from "../../test/fixtures/grammar-mechanics-restored-identities.json";
-import literatureAdditions from "../../test/fixtures/middle-school-literature-restored-identities.json";
-import writingAdditions from "../../test/fixtures/middle-school-writing-restored-identities.json";
-import speakingAdditions from "../../test/fixtures/public-speaking-restored-identities.json";
 import {
 	isLessonLearningItem,
 	lessonContentSections
@@ -27,59 +13,72 @@ import {
 import { normalizeInlineCourseMarkdown } from "@/modules/courseMarkdown";
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
-import { algebra1ACourse } from "@/stores/courses/algebra-1a";
+import { aiLevel1Course } from "@/stores/courses/ai-level-1";
 import algebra1ACourseReadings from "@/stores/courses/algebra1ACourseReadingsData.json";
+import { algebra1ACourse } from "@/stores/courses/algebra-1a";
 import { algebra1BCourse } from "@/stores/courses/algebra-1b";
-import { algebraErrorAnalysisCases } from "@/stores/courses/algebraErrorAnalysisCases";
 import { algebra2ACourse } from "@/stores/courses/algebra-2a";
 import { algebra2BCourse } from "@/stores/courses/algebra-2b";
-import { introToPhysicsCourse } from "@/stores/courses/intro-to-physics";
-import { physicsLevel2Course } from "@/stores/courses/physics-level-2";
+import { algebraErrorAnalysisCases } from "@/stores/courses/algebraErrorAnalysisCases";
+import { designPatternsInJavaCourse } from "@/stores/courses/design-patterns-in-java";
+import { designPatternsInJavaPart2Course } from "@/stores/courses/design-patterns-in-java-part-2";
+import { elementaryScienceCourse } from "@/stores/courses/elementary-science";
 import { geometryACourse } from "@/stores/courses/geometry-a";
 import { geometryBCourse } from "@/stores/courses/geometry-b";
-import { middleSchoolIntegratedScienceCourse } from "@/stores/courses/middle-school-integrated-science";
 import { introToBiologyCourse } from "@/stores/courses/intro-to-biology";
 import { introToChemistryCourse } from "@/stores/courses/intro-to-chemistry";
 import { introToEnvironmentalScienceCourse } from "@/stores/courses/intro-to-environmental-science";
-import { elementaryScienceCourse } from "@/stores/courses/elementary-science";
+import { introToPhysicsCourse } from "@/stores/courses/intro-to-physics";
+import { javaLevel3Course } from "@/stores/courses/java-level-3";
+import { middleSchoolIntegratedScienceCourse } from "@/stores/courses/middle-school-integrated-science";
+import { networkSystemsCourse } from "@/stores/courses/network-systems";
+import { physicsLevel2Course } from "@/stores/courses/physics-level-2";
 import { preAlgebraACourse } from "@/stores/courses/pre-algebra-a";
 import { preAlgebraBCourse } from "@/stores/courses/pre-algebra-b";
+import { pythonicDesignPatternsCourse } from "@/stores/courses/pythonic-design-patterns";
 import {
+	earlyElementaryJoyOfReadingCourse,
 	earlyElementaryMathACourse,
 	earlyElementaryMathBCourse,
-	lateElementaryMathACourse,
-	lateElementaryMathBCourse,
-	earlyElementaryJoyOfReadingCourse,
 	earlyElementaryPictureBookCourse,
-	smartMoneyPersonalFinanceCourse,
-	moneyMindedInvestingCourse,
 	entrepreneurship101Course,
 	grammarMechanicsCourse,
 	introductionToPublicSpeakingCourse,
+	lateElementaryMathACourse,
+	lateElementaryMathBCourse,
 	middleSchoolLiteratureCourse,
 	middleSchoolWritingCourse,
 	middleSchoolWritingRetakeCourse,
+	moneyMindedInvestingCourse,
 	novelWritingCourse,
-	scratchLevel1BootcampCourse
+	scratchLevel1BootcampCourse,
+	smartMoneyPersonalFinanceCourse
 } from "@/stores/courses/source-library-courses";
+import published from "../../test/fixtures/catalog-published-identities.json";
+import elementaryAdditions from "../../test/fixtures/early-elementary-a-restored-identities.json";
+import elementaryBAdditions from "../../test/fixtures/early-elementary-b-restored-identities.json";
+import ventureAdditions from "../../test/fixtures/entrepreneurship-restored-core-identities.json";
+import grammarAdditions from "../../test/fixtures/grammar-mechanics-restored-identities.json";
+import joyOfReadingAdditions from "../../test/fixtures/joy-of-reading-restored-identities.json";
+import lateElementaryAAdditions from "../../test/fixtures/late-elementary-a-restored-identities.json";
+import lateElementaryBAdditions from "../../test/fixtures/late-elementary-b-restored-identities.json";
 
-import { designPatternsInJavaCourse } from "@/stores/courses/design-patterns-in-java";
-import { designPatternsInJavaPart2Course } from "@/stores/courses/design-patterns-in-java-part-2";
-import { javaLevel3Course } from "@/stores/courses/java-level-3";
-import { networkSystemsCourse } from "@/stores/courses/network-systems";
-import { aiLevel1Course } from "@/stores/courses/ai-level-1";
-import { pythonicDesignPatternsCourse } from "@/stores/courses/pythonic-design-patterns";
+import literatureAdditions from "../../test/fixtures/middle-school-literature-restored-identities.json";
+import writingAdditions from "../../test/fixtures/middle-school-writing-restored-identities.json";
+import moneyMindedAdditions from "../../test/fixtures/money-minded-restored-identities.json";
+import pictureBookAdditions from "../../test/fixtures/picture-book-restored-identities.json";
+import speakingAdditions from "../../test/fixtures/public-speaking-restored-identities.json";
+import smartMoneyAdditions from "../../test/fixtures/smart-money-restored-identities.json";
 
 function isReviewedModule(id: string, title: string) {
 	if (id === "java-level-3") return title === "AJ4 Recursion";
-	if (id === "pythonic-design-patterns") return /^PDP[0-8] /.test(title);
 	return true;
 }
 const cases = [
 	{
 		id: "pythonic-design-patterns",
 		source: pythonicDesignPatternsCourse,
-		readings: 28,
+		readings: 51,
 		additions: []
 	},
 	{
@@ -295,8 +294,9 @@ const cases = [
 	}
 ] as const;
 const markdown = new MarkdownIt({ breaks: true, html: false, linkify: true });
-const digest = (value: string) =>
-	createHash("sha256").update(value).digest("hex");
+function digest(value: string) {
+	return createHash("sha256").update(value).digest("hex");
+}
 const chemistryModuleCounts: Record<string, [number, number, number]> = {
 	CHM1: [6, 1, 2],
 	CHM2: [5, 1, 4],
@@ -358,10 +358,10 @@ function reading(item: CourseModuleItem) {
 				src: image.getAttribute("src"),
 				alt: image.alt
 			})),
-			...(item.mediaLink &&
-			/(?:course-assets|static\.classes\.jacobdanderson\.net)\/algebra-2[ab]\/.+\.svg$/.test(
-				item.mediaLink
-			)
+			...(item.mediaLink
+				&& /(?:course-assets|static\.classes\.jacobdanderson\.net)\/algebra-2[ab]\/.+\.svg$/.test(
+					item.mediaLink
+				)
 				? [
 						{
 							src: item.mediaLink,
@@ -381,7 +381,7 @@ it.each(
 	"binds complete browser expectations for $id $role",
 	async ({ id, role, source, readings: count, additions }) => {
 		setActivePinia(createPinia());
-		if (role === "instructor")
+		if (role === "instructor") {
 			useAppStore().setCurrentTutor({
 				_id: "self-study-tutor",
 				name: "Tutor",
@@ -393,6 +393,7 @@ it.each(
 				editTutors: false,
 				saveEdit: "Save"
 			});
+		}
 		const course = (await useCoursesStore().loadCourseById(id))!;
 		for (const entry of algebraErrorAnalysisCases.filter(
 			entry => entry.course === id
@@ -430,8 +431,8 @@ it.each(
 		expect(digest(JSON.stringify(originals))).toBe(published[id].sha256);
 		if (id === "algebra-1a") {
 			for (const entry of algebra1ACourseReadings) {
-				const moduleTitle =
-					entry.module === "Standards Map"
+				const moduleTitle
+					= entry.module === "Standards Map"
 						? "Algebra 1A Reference"
 						: entry.module;
 				const module = course.modules.find(
@@ -450,10 +451,11 @@ it.each(
 				expect(item.content, entry.title).toBe(fullContent);
 			}
 		}
-		for (const added of additions)
+		for (const added of additions) {
 			expect(identities.filter(item => item.id === added.id)).toEqual([
 				added
 			]);
+		}
 		if (
 			["intro-to-chemistry", "intro-to-environmental-science"].includes(
 				id
@@ -485,8 +487,8 @@ it.each(
 		}
 		const legacyReadingProjectIds = new Map<object, string>();
 		if (
-			id === "early-elementary-a-reading" ||
-			id === "early-elementary-b-picture-book"
+			id === "early-elementary-a-reading"
+			|| id === "early-elementary-b-picture-book"
 		) {
 			for (const module of source.modules) {
 				for (const section of [
@@ -494,8 +496,8 @@ it.each(
 					"supplementalProjects"
 				] as const) {
 					for (const item of module[section]) {
-						const sectionId =
-							section === "curriculum"
+						const sectionId
+							= section === "curriculum"
 								? "curriculum"
 								: "supplemental";
 						const originalId = [
@@ -527,9 +529,9 @@ it.each(
 			// hashes below establish the new directives; all published IDs stay checked.
 			.filter(
 				item =>
-					id !== "ai-level-1" &&
-					id !== "pythonic-design-patterns" &&
-					item.content.startsWith("**Project goal:**")
+					id !== "ai-level-1"
+					&& id !== "pythonic-design-patterns"
+					&& item.content.startsWith("**Project goal:**")
 			);
 		const all = course.modules.flatMap(module => [
 			...module.curriculum,
@@ -538,9 +540,9 @@ it.each(
 		for (const project of sourceProjects) {
 			const item = all.find(
 				item =>
-					item.title === project.title ||
-					item.aliases?.includes(project.title) ||
-					item.id === legacyReadingProjectIds.get(project)
+					item.title === project.title
+					|| item.aliases?.includes(project.title)
+					|| item.id === legacyReadingProjectIds.get(project)
 			)!;
 			expect(item, project.title).toBeDefined();
 			expect(isLessonLearningItem(item), item.title).toBe(false);
@@ -559,34 +561,35 @@ it.each(
 					"introduction-to-public-speaking",
 					"middle-school-a-literature"
 				].includes(id)
-			)
+			) {
 				expect(displayedPrompt, project.title).toBe(originalPrompt);
+			}
 		}
 		const card = (item: CourseModuleItem) => {
-			const focusedJavaTask =
-				[
+			const focusedJavaTask
+				= [
 					"java-level-3",
 					"design-patterns-in-java",
 					"design-patterns-in-java-part-2"
-				].includes(id) &&
-				course.modules.some(
+				].includes(id)
+				&& course.modules.some(
 					module =>
-						isReviewedModule(id, module.title) &&
-						[
+						isReviewedModule(id, module.title)
+						&& [
 							...module.curriculum,
 							...module.supplementalProjects
 						].some(row => row.id === item.id)
 				);
-			const focusedPythonicTask =
-				id === "pythonic-design-patterns" &&
-				course.modules.some(
-					module =>
-						isReviewedModule(id, module.title) &&
-						[
-							...module.curriculum,
-							...module.supplementalProjects
-						].some(row => row.id === item.id)
-				);
+			const focusedPythonicTask
+				= id === "pythonic-design-patterns"
+					&& course.modules.some(
+						module =>
+							isReviewedModule(id, module.title)
+							&& [
+								...module.curriculum,
+								...module.supplementalProjects
+							].some(row => row.id === item.id)
+					);
 			const completeMathAssignment = [
 				"early-elementary-a-math",
 				"early-elementary-b-math",
@@ -595,53 +598,53 @@ it.each(
 				"algebra-2a",
 				"algebra-2b"
 			].includes(id);
-			const completeAssignment =
-				focusedJavaTask ||
-				focusedPythonicTask ||
-				completeMathAssignment ||
-				[
-					"pre-algebra-b",
-					"ai-level-1",
-					"smart-money-personal-finance",
-					"money-minded-investing",
-					"network-systems",
-					"algebra-1a",
-					"intro-to-environmental-science",
-					"elementary-science",
-					"intro-to-biology",
-					"intro-to-chemistry",
-					"middle-school-integrated-science",
-					"early-elementary-a-reading",
-					"early-elementary-b-picture-book"
-				].includes(id);
-			const fullBlocks =
-				focusedJavaTask ||
-				focusedPythonicTask ||
-				[
-					"pre-algebra-b",
-					"ai-level-1",
-					"smart-money-personal-finance",
-					"money-minded-investing",
-					"network-systems",
-					"intro-to-environmental-science",
-					"elementary-science",
-					"intro-to-biology",
-					"intro-to-chemistry",
-					"middle-school-integrated-science",
-					"early-elementary-a-math",
-					"early-elementary-b-math",
-					"late-elementary-a-math",
-					"late-elementary-b-math",
-					"early-elementary-a-reading",
-					"early-elementary-b-picture-book",
-					"algebra-1a",
-					"algebra-1b",
-					"pre-algebra-a",
-					"geometry-a",
-					"geometry-b",
-					"algebra-2a",
-					"algebra-2b"
-				].includes(id);
+			const completeAssignment
+				= focusedJavaTask
+					|| focusedPythonicTask
+					|| completeMathAssignment
+					|| [
+						"pre-algebra-b",
+						"ai-level-1",
+						"smart-money-personal-finance",
+						"money-minded-investing",
+						"network-systems",
+						"algebra-1a",
+						"intro-to-environmental-science",
+						"elementary-science",
+						"intro-to-biology",
+						"intro-to-chemistry",
+						"middle-school-integrated-science",
+						"early-elementary-a-reading",
+						"early-elementary-b-picture-book"
+					].includes(id);
+			const fullBlocks
+				= focusedJavaTask
+					|| focusedPythonicTask
+					|| [
+						"pre-algebra-b",
+						"ai-level-1",
+						"smart-money-personal-finance",
+						"money-minded-investing",
+						"network-systems",
+						"intro-to-environmental-science",
+						"elementary-science",
+						"intro-to-biology",
+						"intro-to-chemistry",
+						"middle-school-integrated-science",
+						"early-elementary-a-math",
+						"early-elementary-b-math",
+						"late-elementary-a-math",
+						"late-elementary-b-math",
+						"early-elementary-a-reading",
+						"early-elementary-b-picture-book",
+						"algebra-1a",
+						"algebra-1b",
+						"pre-algebra-a",
+						"geometry-a",
+						"geometry-b",
+						"algebra-2a",
+						"algebra-2b"
+					].includes(id);
 			const selfChecks = fullBlocks
 				? [
 						...item.content.matchAll(
@@ -678,7 +681,8 @@ it.each(
 							asset,
 							heading: section!.split("\n", 1)[0].trim(),
 							expectedText: container
-								.textContent!.replace(/\s+/g, " ")
+								.textContent!
+								.replace(/\s+/g, " ")
 								.trim()
 						};
 					})
@@ -695,8 +699,8 @@ it.each(
 						)
 				: item.content;
 			if (
-				completeAssignment ||
-				[
+				completeAssignment
+				|| [
 					"algebra-1a",
 					"algebra-1b",
 					"early-elementary-a-math"
@@ -711,10 +715,10 @@ it.each(
 					item.title
 				).toBe(false);
 				fullAssignment = sections
-					.map(section => {
-						const label =
-							section.kind === "optional" &&
-							section.label !== "Optional"
+					.map((section) => {
+						const label
+							= section.kind === "optional"
+								&& section.label !== "Optional"
 								? `Optional · ${section.label}`
 								: section.label;
 						return `### ${label}\n\n${section.content}`;
@@ -724,8 +728,8 @@ it.each(
 			const completionIndex = item.content
 				.toLowerCase()
 				.indexOf("**completion evidence:**");
-			const directive =
-				completionIndex < 0
+			const directive
+				= completionIndex < 0
 					? undefined
 					: item.content
 							.slice(0, completionIndex)
@@ -736,34 +740,34 @@ it.each(
 				normalizeInlineCourseMarkdown(
 					completeAssignment
 						? fullAssignment
-						: (directive ??
-								([
-									"early-elementary-a-math",
-									"early-elementary-b-math",
-									"late-elementary-a-math",
-									"late-elementary-b-math",
-									"early-elementary-a-reading",
-									"early-elementary-b-picture-book",
-									"algebra-1a",
-									"algebra-1b",
-									"introduction-to-public-speaking",
-									"middle-school-c-grammar",
-									"intro-to-physics",
-									"physics-level-2",
-									"pre-algebra-a",
-									"geometry-a",
-									"geometry-b",
-									"algebra-2a",
-									"algebra-2b"
-								].includes(id)
-									? fullAssignment
-									: ""))
+						: (directive
+							?? ([
+								"early-elementary-a-math",
+								"early-elementary-b-math",
+								"late-elementary-a-math",
+								"late-elementary-b-math",
+								"early-elementary-a-reading",
+								"early-elementary-b-picture-book",
+								"algebra-1a",
+								"algebra-1b",
+								"introduction-to-public-speaking",
+								"middle-school-c-grammar",
+								"intro-to-physics",
+								"physics-level-2",
+								"pre-algebra-a",
+								"geometry-a",
+								"geometry-b",
+								"algebra-2a",
+								"algebra-2b"
+							].includes(id)
+								? fullAssignment
+								: ""))
 				)
 			);
 			if (
-				completeAssignment &&
-				!completeMathAssignment &&
-				![
+				completeAssignment
+				&& !completeMathAssignment
+				&& ![
 					"pre-algebra-b",
 					"money-minded-investing",
 					"ai-level-1",
@@ -804,9 +808,9 @@ it.each(
 				).toBeGreaterThan(300);
 			}
 			if (
-				id === "middle-school-c-grammar" &&
-				(item.title.startsWith("Practice Map:") ||
-					item.title.startsWith("Extension Review:"))
+				id === "middle-school-c-grammar"
+				&& (item.title.startsWith("Practice Map:")
+					|| item.title.startsWith("Extension Review:"))
 			) {
 				expect(
 					container.textContent!.trim().length,
@@ -827,7 +831,8 @@ it.each(
 					: "directive",
 				directiveTextMode: fullBlocks ? "innerText" : "textContent",
 				requiredDirective: container
-					.textContent!.replace(/\s+/g, " ")
+					.textContent!
+					.replace(/\s+/g, " ")
 					.trim()
 			};
 		};
@@ -836,11 +841,11 @@ it.each(
 		const modules = course.modules
 			.filter(
 				module =>
-					!module.internal &&
-					(!(
-						algebra ||
-						id === "algebra-1b" ||
-						[
+					!module.internal
+					&& (!(
+						algebra
+						|| id === "algebra-1b"
+						|| [
 							"early-elementary-a-math",
 							"early-elementary-b-math",
 							"late-elementary-a-math",
@@ -848,8 +853,8 @@ it.each(
 							"early-elementary-a-reading",
 							"early-elementary-b-picture-book"
 						].includes(id)
-					) ||
-						module.kind !== "appendix")
+					)
+					|| module.kind !== "appendix")
 			)
 			.map(module => ({
 				id: module.id,
@@ -889,19 +894,20 @@ it.each(
 			const reviewed = modules.filter(module =>
 				isReviewedModule(id, module.title)
 			);
-			expect(reviewed).toHaveLength(9);
+			expect(reviewed).toHaveLength(16);
 			expect(reviewed.flatMap(module => module.readings)).toHaveLength(
-				28
+				51
 			);
 			const tasks = reviewed.flatMap(module => [
 				...module.projects,
 				...module.optional
 			]);
-			expect(tasks).toHaveLength(35);
+			expect(tasks).toHaveLength(60);
 			expect(
 				tasks.every(task => task.assignmentTextScope === "complete")
 			).toBe(true);
-		} else if (id === "pre-algebra-b") {
+		}
+		else if (id === "pre-algebra-b") {
 			expect(modules).toHaveLength(10);
 			expect(
 				modules.filter(module => module.kind === "module")
@@ -920,7 +926,8 @@ it.each(
 			expect(activities.flatMap(item => item.selfChecks)).toHaveLength(
 				14
 			);
-		} else if (id === "design-patterns-in-java") {
+		}
+		else if (id === "design-patterns-in-java") {
 			expect(modules).toHaveLength(14);
 			const activities = modules.flatMap(module => [
 				...module.projects,
@@ -942,7 +949,8 @@ it.each(
 			expect(activities.flatMap(item => item.selfChecks)).toHaveLength(
 				204
 			);
-		} else if (id === "design-patterns-in-java-part-2") {
+		}
+		else if (id === "design-patterns-in-java-part-2") {
 			expect(modules).toHaveLength(14);
 			const reviewed = modules.filter(module =>
 				isReviewedModule(id, module.title)
@@ -971,7 +979,8 @@ it.each(
 			expect(activities.flatMap(item => item.selfChecks)).toHaveLength(
 				258
 			);
-		} else if (id === "network-systems") {
+		}
+		else if (id === "network-systems") {
 			expect(modules).toHaveLength(21);
 			expect(
 				modules.filter(module => module.kind === "module")
@@ -990,7 +999,10 @@ it.each(
 					item => item.assignmentTextScope === "complete"
 				)
 			).toBe(true);
-		} else if (id === "java-level-3") expect(modules).toHaveLength(25);
+		}
+		else if (id === "java-level-3") {
+			expect(modules).toHaveLength(25);
+		}
 		else if (id === "algebra-1a") {
 			expect(modules).toHaveLength(22);
 			expect(
@@ -1009,7 +1021,8 @@ it.each(
 					item => item.assignmentTextScope === "complete"
 				)
 			).toBe(true);
-		} else if (id === "ai-level-1") {
+		}
+		else if (id === "ai-level-1") {
 			expect(modules).toHaveLength(18);
 			expect(
 				modules.filter(module => module.kind === "module")
@@ -1033,10 +1046,14 @@ it.each(
 					item => item.assignmentTextScope === "complete"
 				)
 			).toBe(true);
-		} else if (algebra1) expect(modules).toHaveLength(25);
-		else if (algebra)
+		}
+		else if (algebra1) {
+			expect(modules).toHaveLength(25);
+		}
+		else if (algebra) {
 			expect(modules).toHaveLength(id === "algebra-2a" ? 15 : 12);
-		else
+		}
+		else {
 			expect(
 				modules.filter(module => module.kind === "module")
 			).toHaveLength(
@@ -1045,25 +1062,28 @@ it.each(
 					: id === "pre-algebra-a"
 						? 8
 						: ["intro-to-physics", "physics-level-2"].includes(id)
-							? 17
-							: id === "middle-school-integrated-science"
-								? 10
-								: [
+								? 17
+								: id === "middle-school-integrated-science"
+									? 10
+									: [
 											"elementary-science",
 											"intro-to-environmental-science"
-									  ].includes(id)
-									? 8
-									: id === "intro-to-chemistry"
-										? 11
-										: count
+										].includes(id)
+											? 8
+											: id === "intro-to-chemistry"
+												? 11
+												: count
 			);
+		}
 		for (const module of modules) {
 			if (!isReviewedModule(id, module.title)) continue;
 			if (id === "pythonic-design-patterns") {
+				const number = /^PDP(\d+) /.exec(module.title)?.[1];
 				expect(module.readings).toHaveLength(
-					/^PDP8 /.test(module.title) ? 2 : /^PDP[14] /.test(module.title) ? 4 : 3
+					number === undefined ? 4 : [3, 4, 3, 3, 4, 3, 3, 3, 2, 3, 2, 2, 4][Number(number)]
 				);
-			} else if (id === "pre-algebra-b") {
+			}
+			else if (id === "pre-algebra-b") {
 				expect(module.readings, module.title).toHaveLength(
 					module.kind === "appendix"
 						? 1
@@ -1071,22 +1091,24 @@ it.each(
 							? 2
 							: 0
 				);
-			} else if (id === "ai-level-1") {
-				const expected =
-					module.title === "AI Level 1 Reference"
+			}
+			else if (id === "ai-level-1") {
+				const expected
+					= module.title === "AI Level 1 Reference"
 						? 6
 						: module.title.startsWith("FAI0")
 							? 3
 							: module.title.startsWith("Unit 9:")
 								? 1
-								: module.title.endsWith(": Practice Studio") ||
-									  /^Unit [78]:/.test(module.title)
+								: module.title.endsWith(": Practice Studio")
+									|| /^Unit [78]:/.test(module.title)
 									? 2
 									: 1;
 				expect(module.readings, module.title).toHaveLength(expected);
-			} else if (id === "network-systems") {
-				const expected =
-					{
+			}
+			else if (id === "network-systems") {
+				const expected
+					= {
 						"Standards Map": 6,
 						"Course Roadmap": 6,
 						"Project Practice Guide": 4,
@@ -1098,16 +1120,18 @@ it.each(
 						"Unit 2: Addresses and Naming": 2
 					}[module.title] ?? 1;
 				expect(module.readings, module.title).toHaveLength(expected);
-			} else if (id === "design-patterns-in-java") {
-				const expected =
-					{
+			}
+			else if (id === "design-patterns-in-java") {
+				const expected
+					= {
 						"Optional Applied Java Pattern Studios": 7,
 						"Standards Map": 5,
 						"Course Roadmap": 6,
 						"Project Practice Guide": 4
 					}[module.title] ?? 1;
 				expect(module.readings, module.title).toHaveLength(expected);
-			} else if (id === "design-patterns-in-java-part-2") {
+			}
+			else if (id === "design-patterns-in-java-part-2") {
 				expect(module.readings, module.title).toHaveLength(
 					[
 						"Standards Map",
@@ -1119,7 +1143,8 @@ it.each(
 							? 8
 							: 1
 				);
-			} else if (id === "geometry-a")
+			}
+			else if (id === "geometry-a") {
 				expect(module.readings, module.title).toHaveLength(
 					module.title.startsWith("Check-In")
 						? 0
@@ -1127,7 +1152,8 @@ it.each(
 							? 2
 							: 1
 				);
-			else if (id === "geometry-b")
+			}
+			else if (id === "geometry-b") {
 				expect(module.readings, module.title).toHaveLength(
 					module.title.startsWith("Check-In #1")
 						? 0
@@ -1135,46 +1161,52 @@ it.each(
 							? 2
 							: 1
 				);
-			else if (id === "pre-algebra-a")
+			}
+			else if (id === "pre-algebra-a") {
 				expect(module.readings, module.title).toHaveLength(
-					module.title === "Pre-Algebra A Kick-Off" ||
-						module.title === "Check-In #1"
+					module.title === "Pre-Algebra A Kick-Off"
+					|| module.title === "Check-In #1"
 						? 0
 						: /^(?:PAA3|PAA8|PAA13|PAA18)/.test(module.title)
 							? 2
 							: 1
 				);
+			}
 			else if (
-				["intro-to-physics", "physics-level-2"].includes(id) &&
-				module.kind === "appendix"
-			)
+				["intro-to-physics", "physics-level-2"].includes(id)
+				&& module.kind === "appendix"
+			) {
 				expect(module.readings.length, module.title).toBeGreaterThan(0);
-			else if (id === "physics-level-2")
+			}
+			else if (id === "physics-level-2") {
 				expect(module.readings, module.title).toHaveLength(
 					module.title.startsWith("PHY8 ") ? 2 : 1
 				);
-			else if (id === "elementary-science")
+			}
+			else if (id === "elementary-science") {
 				expect(module.readings).toHaveLength(
 					module.kind === "appendix"
 						? ["Standards Map", "Course Roadmap"].includes(
 								module.title
 							)
-							? 6
-							: 4
+								? 6
+								: 4
 						: 1
 				);
-			else if (id === "middle-school-integrated-science")
+			}
+			else if (id === "middle-school-integrated-science") {
 				expect(module.readings).toHaveLength(
 					module.kind === "appendix"
 						? ["Standards Map", "Course Roadmap"].includes(
 								module.title
 							)
-							? 6
-							: 4
+								? 6
+								: 4
 						: module.title.startsWith("MS9 ")
 							? 5
 							: 4
 				);
+			}
 			else if (
 				[
 					"intro-to-chemistry",
@@ -1195,14 +1227,17 @@ it.each(
 					],
 					module.title
 				).toEqual(expected);
-			} else if (!algebra && !algebra1)
+			}
+			else if (!algebra && !algebra1) {
 				expect(module.readings, module.title).toHaveLength(1);
-			else if (algebra && module.readings.length === 0)
+			}
+			else if (algebra && module.readings.length === 0) {
 				expect(module.title).toMatch(/capstone/i);
+			}
 			for (const reading of module.readings) {
 				expect(
 					reading.expectedText.length,
-					module.title + " / " + reading.title
+					`${module.title} / ${reading.title}`
 				).toBeGreaterThan(150);
 				expect(reading.paragraphBreaks, reading.title).toBe(
 					intentionalMathLineBreaks[id]?.[reading.title] ?? 0
@@ -1214,12 +1249,12 @@ it.each(
 			mkdirSync(output, { recursive: true });
 			writeFileSync(
 				join(output, `${id}-${role}.json`),
-				JSON.stringify(
+				`${JSON.stringify(
 					{
 						schemaVersion: 1,
 						sourceCommit:
-							process.env.GITHUB_SHA ??
-							execFileSync("git", ["rev-parse", "HEAD"], {
+							process.env.GITHUB_SHA
+							?? execFileSync("git", ["rev-parse", "HEAD"], {
 								encoding: "utf8"
 							}).trim(),
 						id,
@@ -1244,31 +1279,31 @@ it.each(
 							: {}),
 						reviewScope:
 							id === "pythonic-design-patterns"
-								? "PDP0-PDP8 scope: twenty-eight complete readings, nine core tasks and twenty-six supplemental activities per role/width profile. All 111 course identities and complete navigation are retained; the other course bodies, source families and IDE workflows require separate acceptance."
+								? "Complete Pythonic course: sixteen units including three support appendices, fifty-one complete readings and sixty complete tasks per role/width profile. All 111 course identities and complete navigation are retained. Source-native and IDE workflow acceptance are recorded separately."
 								: id === "design-patterns-in-java"
 									? "Complete primary course: ten teaching units, applied studios and three reference appendices. All 134 published identities covered by 32 complete readings, 102 activities and 204 input/answer case views per role/width profile."
 									: id === "design-patterns-in-java-part-2"
 										? "Complete course: DPR1-DPR10, seven optional clinics and three reference appendices. All159published identities are covered by30readings,129activities and258input/answer case views per role/width profile. Individual source-editor qualifications remain separately recorded."
 										: id === "java-level-3"
 											? "AJ4 only: one reading, two core projects, three optional tasks and ten input/response views per profile. All 217 course identities checked; other Java units are outside this teaching and runtime acceptance."
-											: id ===
-												  "intro-to-environmental-science"
+											: id
+												=== "intro-to-environmental-science"
 												? "Complete Environmental Science teaching and tasks:27readings,17coreactivities,24optionalactivities and82input/response views per profile;all68published identities retained. Owned photosynthesis model and supplied climate/pollution practice cases;legacy image record retained internally."
 												: id === "intro-to-chemistry"
 													? "Complete Chemistry teaching and tasks:62readings,14coreactivities,37optionalactivities and102input/response views per profile;all113published identities retained. Original video evidence remains distinct from authored text alternatives."
 													: id === "intro-to-biology"
 														? "Eight worked body-systems units:8readings,36coreactivities,24optionalprojects and120input/response views per profile;all68published identities retained. Original three legacy images remain separately identified."
-														: id ===
-															  "elementary-science"
+														: id
+															=== "elementary-science"
 															? "Eight teaching units and six reference appendices:36readings,48coreactivities,16optionalprojects and11optionalreferenceactivities;all111published identities checked."
-															: id ===
-																  "middle-school-integrated-science"
+															: id
+																=== "middle-school-integrated-science"
 																? "Complete ten teaching units and five reference appendices:65readings,58complete optional/required activities and117input/response views per role/width profile;all123published identities retained."
-																: id ===
-																	  "early-elementary-a-reading"
+																: id
+																	=== "early-elementary-a-reading"
 																	? "Complete on-site explanations and supplied-text task defaults; original Juni named texts are retained as historical provenance,not claimed as recovered."
-																	: id ===
-																		  "early-elementary-b-picture-book"
+																	: id
+																		=== "early-elementary-b-picture-book"
 																		? "Complete supplied teaching,practice,Nico narrative/performance inputs and briefs;the historical Gabby Tries text is not claimed as recovered."
 																		: "complete course reading and assignment view",
 						...(id === "pythonic-design-patterns"
@@ -1290,7 +1325,7 @@ it.each(
 											id: item.id,
 											starterUrl: item.projectLink
 										})),
-									remainingCourseScopeAccepted: false
+									remainingCourseScopeAccepted: true
 								}
 							: {}),
 						internalModules: course.modules
@@ -1302,8 +1337,8 @@ it.each(
 						referenceModules: course.modules
 							.filter(
 								module =>
-									!module.internal &&
-									module.kind === "appendix"
+									!module.internal
+									&& module.kind === "appendix"
 							)
 							.map(module => ({
 								id: module.id,
@@ -1312,7 +1347,7 @@ it.each(
 					},
 					null,
 					2
-				) + "\n"
+				)}\n`
 			);
 		}
 	}
