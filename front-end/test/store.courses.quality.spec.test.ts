@@ -2839,7 +2839,7 @@ describe("course text quality normalization", () => {
 		expect(corpus).toContain("A fresh top-to-bottom run prints 14.");
 		expect(corpus).toContain("The correct new total is 32.");
 		expect(corpus).toContain(
-			"Dashboard design needs restraint: clear controls, few charts, obvious labels, and a visible explanation of what the user is seeing."
+			"Check that the chart, count and caption use the same filtered rows in each state."
 		);
 		expect(corpus).toContain(
 			"The log turns the capstone into an evidence-backed argument rather than a collection of outputs."
@@ -3687,7 +3687,7 @@ describe("course text quality normalization", () => {
 			staticMediaUrl("life_expectancy.csv")
 		);
 		expect(domainConcepts.content).toContain(
-			"**Optional domain dataset:**"
+			"For an optional second domain, use the life expectancy dataset."
 		);
 		expect(
 			course!.modules.find(
