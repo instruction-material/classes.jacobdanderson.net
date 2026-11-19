@@ -141,7 +141,7 @@ test("Data Science complete CSV teaching, confirmed imports, continuation and ex
 			"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
 			"/usr/bin/google-chrome",
 			"/usr/bin/chromium"
-		].find(path => path && existsSync(path));
+		].find(path => typeof path === "string" && existsSync(path));
 		assert.ok(executablePath, "Chrome is required");
 		browser = await puppeteer.launch({ executablePath, headless: true, args: ["--no-sandbox"] });
 		const browserPid = browser.process()?.pid;
@@ -195,6 +195,7 @@ test("Data Science complete CSV teaching, confirmed imports, continuation and ex
 					})().catch(error => { pageErrors.push(String(error)); void request.abort().catch(() => {}); });
 				});
 				for (const body of fixture.bodies) {
+					currentLabel = `${role}-${width}-reading-${body.item}`;
 					inIde = false;
 					await page.goto(`${origin}/courses#${body.module}`, { waitUntil: "domcontentloaded" });
 					const position = body.contentKind === "reading" ? 3 : body.group === "curriculum" ? 1 : 2;
@@ -203,20 +204,26 @@ test("Data Science complete CSV teaching, confirmed imports, continuation and ex
 					await page.waitForSelector(`${view}[aria-pressed='true']`);
 					const selector = `#${body.module}-${body.item}`;
 					await page.waitForSelector(selector);
-					const expectedText = await page.evaluate(html => { const div = document.createElement("div"); div.innerHTML = html; return div.textContent.replace(/\s+/g, " ").trim(); }, markdown.render(body.content));
+					const displayedContent = body.contentKind === "reading" ? body.content
+						: "### Assignment\n\n" + body.content.replace(/^\*\*Verification:\*\*/gm, "### Verification\n\n");
+					const expectedText = await page.evaluate(html => { const div = document.createElement("div"); div.innerHTML = html; return div.textContent.replace(/\s+/g, " ").trim(); }, markdown.render(displayedContent));
 					const contentSelector = `${selector} ${body.contentKind === "reading" ? ".item-content-markdown" : ".assignment-content"}`;
-					await page.waitForFunction(({ selector, text }) => document.querySelector(selector)?.textContent.replace(/\s+/g, " ").trim() === text, {}, { selector: contentSelector, text: expectedText });
+					const textMode = body.contentKind === "reading" ? "textContent" : "innerText";
+					await page.waitForFunction(({ selector, text, mode }) => document.querySelector(selector)?.[mode].replace(/\s+/g, " ").trim() === text, {}, { selector: contentSelector, text: expectedText, mode: textMode })
+						.catch(async error => { const actual = await page.$eval(contentSelector, (node, mode) => node[mode].replace(/\s+/g, " ").trim(), textMode); throw new Error(`${body.title}: complete text mismatch. Expected: ${expectedText}\nActual: ${actual}`, { cause: error }); });
 					if (body.sourceFree) assert.equal((await page.$$eval(`${selector} a`, links => links.map(link => link.getAttribute("href")))).filter(href => href?.startsWith("/ide?")).length, 0);
 					assert.equal(await page.$("vite-error-overlay"), null);
 					assert.ok((await page.title()).length > 0);
 					assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
 					readingViews.push({ role, width, item: body.item, completeTextSHA256: digest(expectedText), sourceFree: body.sourceFree });
+					console.log(JSON.stringify({ event: "reading-accepted", role, width, item: body.item }));
 				}
 				assert.equal(requests.length, 0, "Reading does not download starter code");
 				const unique = fixture.activities.filter(activity => activity.title !== "Min-Max and Outlier Extension");
 				for (const activity of unique) {
 					for (const sourceRole of role === "instructor" ? ["starter", "reference"] : ["starter"]) {
 						currentLabel = `${role}-${width}-${unique.indexOf(activity)}-${sourceRole}`;
+						console.log(JSON.stringify({ event: "ide-profile-start", label: currentLabel }));
 						const key = keyFor(activity, sourceRole);
 						inIde = false;
 						const href = await courseAction(page, origin, { ...activity, key, name: activity.title });
