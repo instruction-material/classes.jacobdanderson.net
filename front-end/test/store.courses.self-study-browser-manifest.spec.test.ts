@@ -71,6 +71,12 @@ import pictureBookAdditions from "../../test/fixtures/picture-book-restored-iden
 import speakingAdditions from "../../test/fixtures/public-speaking-restored-identities.json";
 import smartMoneyAdditions from "../../test/fixtures/smart-money-restored-identities.json";
 
+const writingAssignmentCounts = new Map([
+	["middle-school-b-writing", 48],
+	["middle-school-b-writing-retake", 54],
+	["novel-writing", 44]
+]);
+
 function isReviewedModule(id: string, title: string) {
 	if (id === "java-level-3") return title === "AJ4 Recursion";
 	return true;
@@ -610,6 +616,7 @@ it.each(
 				= focusedJavaTask
 					|| focusedPythonicTask
 					|| completeMathAssignment
+					|| writingAssignmentCounts.has(id)
 					|| [
 						"pre-algebra-b",
 						"ai-level-1",
@@ -842,7 +849,10 @@ it.each(
 				assignmentTextScope: completeAssignment
 					? "complete"
 					: "directive",
-				directiveTextMode: fullBlocks ? "innerText" : "textContent",
+				directiveTextMode:
+					fullBlocks || writingAssignmentCounts.has(id)
+						? "innerText"
+						: "textContent",
 				requiredDirective: container
 					.textContent!
 					.replace(/\s+/g, " ")
@@ -900,6 +910,34 @@ it.each(
 				.filter(module => isReviewedModule(id, module.title))
 				.flatMap(module => module.readings)
 		).toHaveLength(count);
+		const writingAssignmentCount = writingAssignmentCounts.get(id);
+		if (writingAssignmentCount) {
+			const cards = modules.flatMap(module => [
+				...module.projects,
+				...module.optional
+			]);
+			expect(cards).toHaveLength(writingAssignmentCount);
+			expect(
+				cards.every(card =>
+					card.assignmentTextScope === "complete"
+					&& card.directiveTextMode === "innerText"
+				)
+			).toBe(true);
+			const exercises = modules.flatMap(module =>
+				module.optional.filter(card =>
+					/^(?:Practice Map|Extension Review):/.test(card.title)
+				)
+			);
+			expect(exercises).toHaveLength(2 * count);
+			expect(
+				new Set(exercises.map(card => card.requiredDirective)).size
+			).toBe(exercises.length);
+			for (const exercise of exercises) {
+				expect(exercise.requiredDirective, exercise.title).not.toMatch(
+					/one typical case and one changed case|number set, passage detail, scenario|extension keeps the original idea/
+				);
+			}
+		}
 		if (id === "pythonic-design-patterns") {
 			expect(
 				modules.filter(module => module.kind === "module")

@@ -3,6 +3,7 @@ import {
 	formatAuthoredAssignment,
 	formatAuthoredReading
 } from "./authoredReading";
+import { applyWritingPractice, novelWritingPractice } from "./writingPractice";
 
 const readings: Record<string, string> = {
 	"NW1 Course Overview & Goal Setting": `
@@ -363,5 +364,6 @@ export function applyNovelWritingReadings(
 			optional.contentKind = "assignment";
 			optional.content = formatAuthoredAssignment(optional.content);
 		}
+		applyWritingPractice(module, novelWritingPractice);
 	}
 }

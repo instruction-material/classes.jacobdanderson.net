@@ -3,6 +3,10 @@ import {
 	formatAuthoredAssignment,
 	formatAuthoredReading
 } from "./authoredReading";
+import {
+	applyWritingPractice,
+	middleSchoolWritingPractice
+} from "./writingPractice";
 
 const carRide = `
 ## Original practice passage: Car Ride
@@ -416,6 +420,9 @@ export function applyMiddleSchoolWritingReadings(
 	course: RawCourse,
 	source: RawCourse
 ) {
+	const retake = source.modules.some(
+		module => module.title === "MSB Retake Entry Diagnostic"
+	);
 	for (const original of source.modules) {
 		const content = readings[original.title];
 		const module = course.modules.find(
@@ -472,5 +479,6 @@ export function applyMiddleSchoolWritingReadings(
 				project => !sourceTitles.has(project.title)
 			)
 		];
+		applyWritingPractice(module, middleSchoolWritingPractice, retake);
 	}
 }
