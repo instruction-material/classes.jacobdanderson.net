@@ -5,6 +5,7 @@ import { strFromU8, unzipSync } from "fflate";
 import { createPinia, setActivePinia } from "pinia";
 import { afterEach, expect, it, vi } from "vitest";
 import { getCodeIdeProjectSubtitle } from "@/modules/codeIdeProjectLabels";
+import { lessonContentSections } from "@/modules/courseLessonPresentation";
 import { createProjectArchive } from "@/modules/projectArchive";
 import {
 	pyGamesCourseProjectKey,
@@ -21,6 +22,7 @@ import {
 import { externalDatasetResourceLabel } from "@/modules/resourceUrls";
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
+import { pyGamesClassroomCourse } from "@/stores/courses/pygames-classroom";
 
 const fixture = JSON.parse(
 	readFileSync(
@@ -72,6 +74,48 @@ afterEach(() => {
 	vi.unstubAllGlobals();
 	clearLocalPythonProjects();
 });
+
+it.each([false, true])(
+	"preserves the twelve authored classroom tasks and separates Hard for staff=%s",
+	async staff => {
+		const rawLaunch = pyGamesClassroomCourse.modules[0]!;
+		const authored = [
+			...rawLaunch.curriculum,
+			...rawLaunch.supplementalProjects
+		].filter(item => item.contentKind === "assignment");
+		expect(authored).toHaveLength(12);
+
+		const course = await loadCourse("pygames-classroom", staff);
+		const launch = course.modules.find(module => module.id === rawLaunch.id)!;
+		const assignments = [
+			...launch.curriculum,
+			...launch.supplementalProjects
+		];
+
+		for (const expected of authored) {
+			const item = assignments.find(candidate => candidate.id === expected.id)!;
+			expect(item.content).toBe(expected.content);
+			expect(item.learningPath).toBe(expected.learningPath);
+			const sections = lessonContentSections(item.content, item.contentKind);
+			expect(
+				sections.map(({ kind, label }) => [kind, label])
+			).toEqual([
+				["assignment", "Assignment"],
+				["assignment", "Normal"],
+				["optional", "Hard"],
+				["assignment", "Success criteria"]
+			]);
+
+			const file = expected.solutionLink!.split("/").at(-1)!;
+			const route = new URL(item.projectLink!, "https://classes.local");
+			expect(route.pathname).toBe("/ide");
+			expect(route.searchParams.get("classroom")).toBe("1");
+			expect(route.searchParams.get("starterUrl")).toBe(
+				pyGamesPinnedSourceUrl(file)
+			);
+		}
+	}
+);
 
 it.each(ids)(
 	"preserves every published %s identity and replaces arithmetic packs with distinct game practice",
