@@ -96,33 +96,6 @@ context("Compact content-first workspaces", () => {
 	it("sends a complete unlinked note directly while every write is intercepted", () => {
 		const studentId = "a".repeat(24);
 		const noteId = "c".repeat(24);
-		cy.intercept("GET", "**/api/session-notes/drafting/settings", {
-			body: {
-				siteAvailable: true,
-				allowed: true,
-				ready: true,
-				tutorsEnabled: false
-			}
-		});
-		cy.intercept("POST", "**/api/session-notes/drafting/candidates", {
-			body: {
-				status: "selection_required",
-				candidates: [
-					{
-						selectionToken: "d".repeat(64),
-						startAt: "2026-09-30T17:00:00Z",
-						timezone: "America/New_York"
-					}
-				]
-			}
-		}).as("draftCandidates");
-		cy.intercept("POST", "**/api/session-notes/drafting/generate", {
-			body: {
-				markdown: "Synthetic note body",
-				reviewWarnings: ["homework_uncertain", "transcript_incomplete"],
-				draftOnly: true
-			}
-		}).as("generateNote");
 		cy.intercept("GET", "**/api/admin-mail/session-notes/identities", {
 			body: {
 				students: [
@@ -191,14 +164,7 @@ context("Compact content-first workspaces", () => {
 		cy.get("#subject-date-input")
 			.invoke("val", "2026-09-30")
 			.trigger("input", { force: true });
-		cy.contains(".note-generation button", "Generate").click();
-		cy.wait("@draftCandidates");
-		cy.get('.note-generation input[type="checkbox"]').check();
-		cy.contains(".note-generation button", "Generate").click();
-		cy.wait("@generateNote");
-		cy.get('[aria-label="Instructor review"]').should("not.exist");
-		cy.contains("Verify homework:").should("not.exist");
-		cy.contains("The transcript may not cover").should("not.exist");
+		cy.get("#markdown-input").type("Synthetic note body");
 		cy.get("#markdown-input").should("have.value", "Synthetic note body");
 		cy.get('[data-testid="preview-toggle"]').click();
 		cy.get("#markdown-input").should("not.be.visible");

@@ -8,7 +8,7 @@ import {
 	validateSecurityHeaders
 } from "./production-security-headers.mjs";
 
-const origin = process.env.CLASSES_SITE_ORIGIN || "https://classes.jacobdanderson.net";
+const origin = process.env.CLASSES_SITE_ORIGIN || "https://example.com";
 const timeoutMs = Number(process.env.CLASSES_SITE_SMOKE_TIMEOUT_MS || 15_000);
 let currentProbe = "initialization";
 const allowedRedirectStatuses = new Set([301, 302, 303, 307, 308]);
