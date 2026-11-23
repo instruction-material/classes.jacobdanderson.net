@@ -48,9 +48,9 @@ const primaryLinks = computed<NavLink[]>(() => {
 
 	if (isLoggedIn.value && !isAdmin.value && !currentTutor.value) {
 		links.push({
-			label: "Join class on Zoom",
+			label: siteLabels.join,
 			to: classMeetingUrl,
-			external: true
+			external: false
 		});
 	}
 
@@ -67,7 +67,7 @@ const primaryLinks = computed<NavLink[]>(() => {
 		links.push({
 			label: siteLabels.join,
 			to: classMeetingUrl,
-			external: true
+			external: false
 		});
 	}
 
@@ -121,9 +121,7 @@ function isLinkActive(link: NavLink) {
 			<nav class="navbar navbar-expand-xl site-nav">
 				<div class="site-nav__inner site-surface site-surface--strong">
 					<router-link class="site-brand" to="/">
-						<span class="site-brand__title"
-							>Classes with Jacob</span
-						>
+						<span class="site-brand__title">Classes</span>
 					</router-link>
 					<button
 						aria-controls="siteNavbar"

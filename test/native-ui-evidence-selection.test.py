@@ -18,12 +18,13 @@ def archive(course="capstone", role="solution", size="small",
     data = io.BytesIO()
     profiles = [dict(role=role, size=size, variant=variant, passed=False)
                 for _ in range(failures)]
+    prefix = "" if course == "welcome" else course + "/"
     with zipfile.ZipFile(data, "w") as bundle:
-        bundle.writestr(course + "/proof.json", json.dumps(
-            dict(simulatorTests=profiles)))
-        bundle.writestr(course + "/results/" + role + "-" + size + "-"
+        bundle.writestr(prefix + "proof.json", json.dumps(
+            dict(course=course, simulatorTests=profiles)))
+        bundle.writestr(prefix + "results/" + role + "-" + size + "-"
                         + variant + ".xcresult/Info.plist", "result")
-        bundle.writestr(course + "/results/starter-large-standard.xcresult/Info.plist",
+        bundle.writestr(prefix + "results/starter-large-standard.xcresult/Info.plist",
                         "unrelated successful result")
         if second_course:
             bundle.writestr(second_course + "/proof.json", "{}")
@@ -40,6 +41,29 @@ class NativeResultSelectionTests(unittest.TestCase):
         self.assertEqual(selected["testId"],
                          "CanonicalCourseUITests/testCourseWorkflow()")
         self.assertEqual(len(selected["selected"]), 2)
+
+    def test_selects_exact_welcome_root_result(self):
+        with archive(course="welcome", size="large") as bundle:
+            selected = inspector.select_failed_result(bundle)
+        self.assertEqual(selected["course"], "welcome")
+        self.assertEqual(selected["result"],
+                         "results/solution-large-standard.xcresult")
+        self.assertEqual(selected["testId"],
+                         "WelcomeProfileUITests/testProfileNavigationAndState()")
+        self.assertEqual(len(selected["selected"]), 2)
+
+    def test_selects_welcome_long_note_and_rejects_other_variants(self):
+        with archive(course="welcome", variant="long-note") as bundle:
+            self.assertTrue(inspector.select_failed_result(bundle)["result"]
+                            .endswith("small-long-note.xcresult"))
+        with archive(course="welcome", variant="largest-text") as bundle:
+            with self.assertRaises(AssertionError):
+                inspector.select_failed_result(bundle)
+
+    def test_rejects_mixed_welcome_and_other_course_proofs(self):
+        with archive(course="welcome", second_course="capstone") as bundle:
+            with self.assertRaises(AssertionError):
+                inspector.select_failed_result(bundle)
 
     def test_preserves_original_tracker_profile(self):
         with archive(course="tracker", size="large") as bundle:
@@ -119,6 +143,13 @@ class FailedProducerSelectionTests(unittest.TestCase):
     def test_authenticates_completed_failure_while_other_jobs_continue(self):
         self.assertEqual(self.select()["job"]["id"], 789)
         self.assertEqual(self.select()["course"], "tracker")
+
+    def test_binds_welcome_upload_to_its_exact_failed_job(self):
+        self.artifact["name"] = "swift-welcome-ios"
+        self.job["name"] = "swift-ios"
+        self.assertEqual(self.select()["course"], "welcome")
+        with self.assertRaises(AssertionError):
+            self.select([dict(self.job, name="swift-ios-other")])
 
     def test_accepts_terminal_failed_run_and_earlier_attempt(self):
         self.run.update(status="completed", conclusion="failure")
