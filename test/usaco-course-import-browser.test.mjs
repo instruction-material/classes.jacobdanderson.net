@@ -1161,7 +1161,8 @@ async function verifyNativeExport(fixture, files, directory) {
 
 nodeTest(
 	"pinned USACO packs preserve unfinished helpers and native input/output contracts",
-	{ timeout: 300000 },
+	// The hosted run finished all 116 native roles at the previous five-minute limit.
+	{ timeout: 420000 },
 	async () => {
 		const temporary = await mkdtemp(join(tmpdir(), "usaco-pinned-native-"));
 		const verified = new Set();

@@ -23,6 +23,8 @@ const axeSource = createRequire(import.meta.url).resolve("axe-core/axe.min.js");
 const productionAnalyticsPattern = "*://analytics.jacobdanderson.net/*";
 // Exact published learner source, not synthetic answers or mutable main bytes.
 const searchSourceRevision = "2473272796d28401c2b8a3f50b472070d9272e3a";
+const functionAnalysisStarter =
+	"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM6-Function-Analysis/starter";
 const searchPacks = [
 	{
 		folder: "AM7-Reverse-Number-Guesser",
@@ -649,11 +651,12 @@ nodeTest(
 					if (url.hostname === "api.github.com") {
 						sourceRequests++;
 						if (searchPack) {
+							const revision = searchPack.revision ?? searchSourceRevision;
 							assert.equal(
 								url.pathname,
 								`/repos/instruction-material/Python-Level-3/contents/${searchPack.folder}/starter`
 							);
-							assert.equal(url.searchParams.get("ref"), "main");
+							assert.equal(url.searchParams.get("ref"), revision);
 							void request.respond({
 								status: 200,
 								contentType: "application/json",
@@ -665,8 +668,8 @@ nodeTest(
 											name,
 											path: `${searchPack.folder}/starter/${name}`,
 											size: Buffer.byteLength(source),
-											html_url: `https://github.com/instruction-material/Python-Level-3/blob/main/${searchPack.folder}/starter/${name}`,
-											download_url: `https://raw.githubusercontent.com/instruction-material/Python-Level-3/main/${searchPack.folder}/starter/${name}`
+											html_url: `https://github.com/instruction-material/Python-Level-3/blob/${revision}/${searchPack.folder}/starter/${name}`,
+											download_url: `https://raw.githubusercontent.com/instruction-material/Python-Level-3/${revision}/${searchPack.folder}/starter/${name}`
 										})
 									)
 								)
@@ -720,9 +723,10 @@ nodeTest(
 						sourceRequests++;
 						if (searchPack) {
 							const name = url.pathname.split("/").at(-1);
+							const revision = searchPack.revision ?? searchSourceRevision;
 							assert.equal(
 								url.pathname,
-								`/instruction-material/Python-Level-3/main/${searchPack.folder}/starter/${name}`
+								`/instruction-material/Python-Level-3/${revision}/${searchPack.folder}/starter/${name}`
 							);
 							assert.ok(Object.hasOwn(searchFiles, name));
 							void request.respond({
@@ -929,7 +933,7 @@ nodeTest(
 					assert.equal(query.get("mode"), "python");
 					assert.equal(
 						query.get("starterUrl"),
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM6-Function-Analysis/starter"
+						functionAnalysisStarter
 					);
 					assert.equal(
 						sourceRequests,
@@ -1220,7 +1224,7 @@ nodeTest(
 					const params = new URLSearchParams({
 						mode: "python",
 						projectKey: `browser:${pack.folder}:starter`,
-						starterUrl: `https://github.com/instruction-material/Python-Level-3/tree/main/${pack.folder}/starter`,
+						starterUrl: `https://github.com/instruction-material/Python-Level-3/tree/${pack.revision ?? searchSourceRevision}/${pack.folder}/starter`,
 						starterTitle: pack.folder
 					});
 					await page.goto(`${origin}/ide?${params}`, {

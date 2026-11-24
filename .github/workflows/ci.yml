@@ -2611,17 +2611,25 @@ jobs:
                   name: swift-tracker-workflows
                   path: output/swift-tracker-workflows
 
-            - name: Wait for the hosted Mac to settle within the native load limit
+            - name: Exercise actual exported tracker apps on two iPhone sizes
               run: |
                   python3 - <<'PY'
                   import datetime
                   import json
                   import os
                   from pathlib import Path
+                  import subprocess
                   import time
 
                   proof = Path(os.environ["RUNNER_TEMP"]) / "swift-tracker-ui/runner-readiness.json"
                   proof.parent.mkdir(parents=True, exist_ok=True)
+                  course = os.environ["TRACKER_COURSE"]
+                  command = [
+                      "node", "scripts/classes-family-heavy-task.mjs", "--", "python3",
+                      "test/swift-tracker-exported-ios.py", "--course", course,
+                      "--browser", f"output/swift-tracker-workflows/swift-{course}-browser",
+                      "--proof", str(proof.parent / course / "proof.json"),
+                  ]
                   samples = []
                   deadline = time.monotonic() + 600
                   while True:
@@ -2631,14 +2639,15 @@ jobs:
                       proof.write_text(json.dumps({"ready": ready, "maximumLoad": 8, "samples": samples}, indent=2) + "\n")
                       print(f"Hosted Mac load: {load:.2f}; required maximum: 8", flush=True)
                       if ready:
-                          break
+                          result = subprocess.run(command, check=False)
+                          if result.returncode != 75:
+                              raise SystemExit(result.returncode)
+                          samples[-1]["wrapperDeferred"] = True
+                          proof.write_text(json.dumps({"ready": False, "maximumLoad": 8, "samples": samples}, indent=2) + "\n")
                       if time.monotonic() >= deadline:
-                          raise SystemExit("Hosted Mac did not settle within ten minutes; native checks have not run")
+                          raise SystemExit("Hosted Mac deferred the native checks for ten minutes")
                       time.sleep(10)
                   PY
-
-            - name: Exercise actual exported tracker apps on two iPhone sizes
-              run: node scripts/classes-family-heavy-task.mjs -- python3 test/swift-tracker-exported-ios.py --course "$TRACKER_COURSE" --browser "output/swift-tracker-workflows/swift-${TRACKER_COURSE}-browser" --proof "$RUNNER_TEMP/swift-tracker-ui/$TRACKER_COURSE/proof.json"
 
             - name: Retain original tracker app inputs, versions, process logs and UI results
               if: always()
