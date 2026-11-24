@@ -207,16 +207,18 @@ Tap right twice and left once. Compare x position, Steps and Distance with 10, 3
 	"GS4 Master Project": [
 		{
 			title: "Practice Map: Master Project",
+			projectLink: "/ide?mode=scratch",
 			learningPath: "choice",
 			contentKind: "assignment",
 			preserveInstructions: true,
 			preserveAssignment: true,
-			content: `Reopen the saved game from Bootcamp Game Selection. Test one successful action and one near miss from the same starting state. For Spider Smash or Hungry Shark, compare contact while pressing the mouse button with contact while the button is released. For Save the Princess, compare a dragon reaching the lower boundary with a dragon touching the princess.
+			content: `Reopen the .sb3 you downloaded in Playable Scratch Game Build. Test one successful action and one near miss from the same starting state. For Spider Smash or Hungry Shark, compare contact while pressing the mouse button with contact while the button is released. For Save the Princess, compare a dragon reaching the lower boundary with a dragon touching the princess.
 
 Record the starting Score or Lives, the input, and the ending value in each run. A miss leaves that value unchanged. A single scoring contact changes it once. If holding an input counts the same contact repeatedly, move the actor away on contact or wait until contact ends before allowing another change. Retest the same two cases.`
 		},
 		{
 			title: "Extension Review: Master Project",
+			projectLink: "/ide?mode=scratch",
 			learningPath: "challenge",
 			contentKind: "assignment",
 			preserveInstructions: true,

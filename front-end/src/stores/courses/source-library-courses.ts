@@ -6749,7 +6749,8 @@ const sourceVariantCourses = {
 					id: "scratch-level-1-bootcamp-gs1-event-listeners-and-movement-curriculum-source-activity-anchors-event-listeners-and-movement",
 					learningPath: "core",
 					title: "Scratch Account and First Project Tour",
-					prompt: "Create or open a Scratch project and identify the stage, sprite list, code area, costumes, sounds, and save state. Use this setup pass to connect the project workspace to later movement, sound, and event-listener work.",
+					projectLink: "/ide?mode=scratch",
+					prompt: "Open the Scratch IDE and select a sprite. Find the stage, sprite list, Code, Costumes and Sounds. Add a move block, run it, and give the project a title. Select Download project to save a .sb3 file. In New / open, use Open .sb3 to reopen your file and check that the block is still there.",
 					evidence: [
 						"A project workspace is open and saved with a clear title.",
 						"The stage, sprites, costumes, sounds, and code blocks can be named from the interface.",
@@ -6785,7 +6786,11 @@ const sourceVariantCourses = {
 					projectLink: "https://scratch.mit.edu/projects/287738652/",
 					solutionLink: scratchBootcampReferenceHref("287738652"),
 					title: "Pencil Drawing Program Controls",
-					prompt: "Use the drawing-program activity at https://scratch.mit.edu/projects/287738652/ to combine movement, turning, pen control, color changes, pen-size changes, and a reset event into one reusable drawing tool.",
+					prompt: `Build a drawing tool with the Pen extension.
+
+1. Use the up and down arrows to move the pencil forward and backward. Use left and right to turn 10 degrees in either direction.
+2. Lower the pen with 1 and lift it with 2. Click the pencil to change the ink color. Increase the pen size with 3 and decrease it with 4.
+3. On the green flag, erase the drawing, lift the pen, return to the center facing right, and reset pen size and color. Try tracing a shape on another backdrop.`,
 					evidence: [
 						"Forward, backward, left-turn, and right-turn controls are attached to key events.",
 						"Pen-up, pen-down, color, and size controls change the visible drawing behavior.",
@@ -6797,7 +6802,7 @@ const sourceVariantCourses = {
 					projectLink: "https://scratch.mit.edu/projects/287920173/",
 					solutionLink: scratchBootcampReferenceHref("287920173"),
 					title: "Arrow Direction and Mouse Targeting",
-					prompt: "Use https://scratch.mit.edu/projects/287920173/ as a reference for direction events. Program an arrow sprite to point in the four arrow-key directions, rotate with letter keys, and point toward the mouse when the space key is pressed.",
+					prompt: "On the green flag, point the arrow right. Give each arrow key its own event that points the sprite in that direction. Turn 15 degrees left with A and 15 degrees right with D. On space, point toward the mouse pointer. Move the pointer and press space again to test a different heading.",
 					evidence: [
 						"The arrow keys map to up, down, left, and right headings.",
 						"Letter-key rotation changes the heading by a consistent number of degrees.",
@@ -6809,11 +6814,11 @@ const sourceVariantCourses = {
 					projectLink: "https://scratch.mit.edu/projects/287924505/",
 					solutionLink: scratchBootcampReferenceHref("287924505"),
 					title: "Ball Looks and Motion Event Set",
-					prompt: "Use https://scratch.mit.edu/projects/287924505/ to build a small event set for a ball sprite. Combine random starting position, movement with edge bounce, backdrop changes, size changes, sound, and color effects.",
+					prompt: "On the green flag, send the ball to a random position. On space, move 10 steps and bounce if on edge. Use the right arrow to change the backdrop, the up arrow to grow the ball and the down arrow to shrink it. On a ball click, play a sound and change its color. Test space near a stage edge.",
 					evidence: [
-						"The green flag randomizes or resets the ball state.",
+						"The green flag sends the ball to a random position.",
 						"Movement includes edge-bounce behavior instead of leaving the stage permanently.",
-						"At least three visible feedback events change sound, size, color, or backdrop."
+						"The arrow keys change the backdrop and size, and a click produces both sound and color."
 					]
 				}
 			],
@@ -6875,7 +6880,9 @@ const sourceVariantCourses = {
 					projectLink: "https://scratch.mit.edu/projects/327610777/",
 					solutionLink: scratchBootcampReferenceHref("327610777"),
 					title: "Crab Catching Game",
-					prompt: "Use https://scratch.mit.edu/projects/327610777/ as the falling-object game reference. Move the crab with arrow keys, make the cheesy puffs fall from random top positions, reset missed puffs, and increase a score when the crab catches one.",
+					prompt: `Move the crab left and right with the arrow keys. On the green flag, reset the score to zero and place the cheesy puffs at a random x position near the top. Make the puffs fall by decreasing y in a loop. A missed puff returns to a random x at the top without changing the score.
+
+On contact, add one point, switch the crab to its eating costume, play Chomp, and restore its resting costume. Return the caught puff to the top so the same contact counts only once.`,
 					evidence: [
 						"The crab movement stays responsive during the falling-object loop.",
 						"Cheesy puffs restart near the top after being caught or missed.",
@@ -6887,7 +6894,7 @@ const sourceVariantCourses = {
 					projectLink: "https://scratch.mit.edu/projects/327635693/",
 					solutionLink: scratchBootcampReferenceHref("327635693"),
 					title: "Zebra Step Counter",
-					prompt: "Use https://scratch.mit.edu/projects/327635693/ as the step-count reference. Create a steps variable, reset it with the green flag, move the zebra with arrow keys, switch costumes during movement, and count each step.",
+					prompt: "Reset the step counter to zero on the green flag. Use the left and right arrow keys to move the zebra in the corresponding direction. Each movement switches to the next costume and adds one step. Move right and then left. Check that the zebra returns to its starting position with two steps counted.",
 					evidence: [
 						"The steps variable starts at zero on a fresh run.",
 						"Each movement event changes the costume or animation state.",
@@ -6919,7 +6926,8 @@ ${scratchBootcampTask("608770708")}`,
 				{
 					learningPath: "core",
 					title: "Playable Scratch Game Build",
-					prompt: "Continue the game chosen in Bootcamp Game Selection. Open its project or upload the saved .sb3 if work has already started. Build the controls, the repeated movement and the collision rule from the plan. Give the round a visible ending: time runs out in Spider Smash, a target score or time limit ends Hungry Shark, and losing the last life or reaching the time limit ends Save the Princess. Play through the ending, try one more input, then restart and check the starting values.",
+					projectLink: "/ide?mode=scratch",
+					prompt: "Continue the game chosen in Bootcamp Game Selection. If starting from scratch, open the chosen starter in Bootcamp Game Selection. To continue a saved game, open the IDE and choose New / open, then Open .sb3. Build the controls, the repeated movement and the collision rule from the plan. Give the round a visible ending: time runs out in Spider Smash, a target score or time limit ends Hungry Shark, and losing the last life or reaching the time limit ends Save the Princess. Play through the ending, try one more input, then restart and check the starting values. Download the playable .sb3 so you can reopen it for playtesting.",
 					evidence: [
 						"The game can be started from a fresh green-flag run.",
 						"Player action changes the game state in a way that can be seen or measured.",

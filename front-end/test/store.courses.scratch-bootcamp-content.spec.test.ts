@@ -45,6 +45,20 @@ it.each(["learner", "instructor"])(
 				"size by -10",
 				"wait 1 second"
 			],
+			"Pencil Drawing Program Controls": [
+				"turn 10 degrees",
+				"size with 3"
+			],
+			"Arrow Direction and Mouse Targeting": [
+				"left with A",
+				"right with D"
+			],
+			"Ball Looks and Motion Event Set": [
+				"move 10 steps",
+				"play a sound and change its color"
+			],
+			"Crab Catching Game": ["eating costume", "play Chomp"],
+			"Zebra Step Counter": ["left and right", "adds one step"],
 			"Mouse Shape Loops": ["1 key", "2 key", "octagon"],
 			"Button Click Timer Game": [
 				"Seconds left",
@@ -70,6 +84,7 @@ it.each(["learner", "instructor"])(
 		);
 		let tasks = 0;
 		let sourceLinks = 0;
+		const workspaceTasks: string[] = [];
 		for (const original of scratchLevel1BootcampCourse.modules) {
 			const module = modules.find(
 				module => module.title === original.title
@@ -143,7 +158,9 @@ it.each(["learner", "instructor"])(
 					for (const text of required[project.title] ?? [])
 						expect(current.content, project.title).toContain(text);
 					tasks += 1;
-					if (project.projectLink) sourceLinks += 1;
+					if (current.projectLink === "/ide?mode=scratch")
+						workspaceTasks.push(current.title);
+					else if (current.projectLink) sourceLinks += 1;
 				}
 			}
 		}
@@ -157,5 +174,11 @@ it.each(["learner", "instructor"])(
 				.filter(item => item.content.startsWith("**Project goal:**"))
 		).toHaveLength(14);
 		expect(sourceLinks).toBe(17);
+		expect(workspaceTasks).toEqual([
+			"Scratch Account and First Project Tour",
+			"Playable Scratch Game Build",
+			"Practice Map: Master Project",
+			"Extension Review: Master Project"
+		]);
 	}
 );
