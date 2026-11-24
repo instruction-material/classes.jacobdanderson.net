@@ -4,40 +4,34 @@ Use fictional data and localhost throughout. Record expected behavior before run
 
 ## Toolchain Preflight Case
 
-- Record the operating system, Node.js 24 LTS version, npm version, repository revision, package file, and lockfile state.
-- Identify the documented install, development, build, preview, and start scripts without running an invented command.
-- Start the project on loopback, capture the page, terminal state, browser console, and network result, then stop it cleanly.
-- Introduce or inspect one safe startup failure, state the first useful evidence, correct it, and repeat the clean start.
+Use the starter in the [four-file portfolio](https://github.com/instruction-material/Web-Development-Foundations/tree/5bfdf1b25452fb65aa36d38cea6d836fdf6ae5cc/WDF1-Portfolio-Custom-Domain/basics) with Node 24 and the complete repository’s root lockfile. Record your operating system, revision, working directory, Node and npm versions. Read the starter package scripts and use the pack’s workspace install command if dependencies are missing.
+
+From the repository root, run `npm run dev --workspace WDF1-Portfolio-Custom-Domain/basics/starter -- --host 127.0.0.1 --port 5173 --strictPort` on a free port. Inspect the document, stylesheet and module requests. Count the rendered checklist items and record the footer. While the server is running, run the same command in a second terminal. Predict which page remains reachable. Stop only the server you started and repeat the command. If analyzing the supplied trace on paper, use “first process listening on 5173; second process reports port 5173 already in use” and label the result a prediction.
 
 ## Course Path Map Case
 
-Trace a fictional contact request from a labeled browser control through client state, HTTP request, server validation, persistence or test transport, response, rendered status, deployment configuration, and logs. Mark:
+Use the [four-file portfolio](https://github.com/instruction-material/Web-Development-Foundations/tree/5bfdf1b25452fb65aa36d38cea6d836fdf6ae5cc/WDF1-Portfolio-Custom-Domain/basics) to map a reload at `http://127.0.0.1:5173`. Inspect `index.html`, `styles.css`, `main.js`, `#deployment-list` and `#year`. Trace one checklist string to the DOM. Change one card in the Elements panel, reload, then change it in the saved HTML and reload. Name the owner and lifetime of each value.
 
-- data owner and data shape at each boundary;
-- trusted and untrusted input;
-- secret location;
-- expected failure and recovery evidence;
-- course module that teaches the missing skill.
+On a separate diagram design a future “Save note” action with JSON `{"title":"Workshop","body":"Bring paper.","tags":[]}`. Mark where validation, storage, a response and a status message belong. Compare a whitespace-only title, unavailable storage and a response lost after the write. Identify which later modules supply the service and persistence evidence. Explain where a private database setting would belong.
 
 ## Local Workflow Case
 
-Move a supplied browser feature into a project with named HTML, CSS, JavaScript, asset, and configuration files. Inspect or initialize Git, run the recorded npm script, and diagnose:
+Use a disposable working copy of the [four-file portfolio](https://github.com/instruction-material/Web-Development-Foundations/tree/5bfdf1b25452fb65aa36d38cea6d836fdf6ae5cc/WDF1-Portfolio-Custom-Domain/basics) starter. Run its README’s loopback dev command. Save the original files and apply one change at a time, restoring it before the next.
 
-1. one markup or accessibility defect;
-2. one layout defect;
-3. one JavaScript state defect;
-4. one missing or failed request.
+| File | Change to investigate |
+| --- | --- |
+| index.html | Change only the list ID from `deployment-list` to `deployment-items`. |
+| styles.css | Replace the grid’s 14rem minimum with 60rem and inspect the grid and viewport widths at 390 CSS pixels. |
+| main.js | Change `document.createElement("li")` to `document.createElementX("li")`. |
+| index.html | Change only the stylesheet URL to `missing.css`. |
 
-Save the diff, commit message, browser evidence, wrong hypothesis, correction, and clean retest.
+Record the first distinguishing DOM, layout, Console or Network observation for each fault. Compare the list **and** the year in the two JavaScript/selector cases. After recovery, make one intended card-text change. Review the diff, commit that change in the exercise copy, build the selected workspace and inspect the local preview.
 
 ## Portfolio Build Case
 
-Use the portfolio scaffold to add one original section and one fictional contact or project-interest form.
+Open the starter in the [module portfolio](https://github.com/instruction-material/Web-Development-Foundations/tree/5bfdf1b25452fb65aa36d38cea6d836fdf6ae5cc/WDF1-Portfolio-Custom-Domain). Transfer your intended portfolio text from the earlier four-file edition. Add one section for a fictional workshop and complete the existing `validateProjectIdea` function in `project-idea.js` using the README contract.
 
-- Keep headings, landmarks, labels, focus, source order, and safe text explicit.
-- Separate source assets from generated output.
-- Build with the scaffolded Vite version.
-- Check keyboard operation, 200% zoom, a narrow viewport, a desktop viewport, console state, asset paths, and the locally previewed build.
+Preview title `  Supply map  `, type `website`, goal `  Locate the paper bins.  `. Try an empty title and a spaces-only title. Call the validator directly with type `poster` and otherwise valid fields. Submit two different valid ideas, then clear the form. Record normalization, first invalid field and the contents of the preview after each action. Check keyboard order, visible focus, safe literal text, 390/1280 CSS pixels and 200% zoom. From the repository root build and preview `WDF1-Portfolio-Custom-Domain/starter` using its README commands. Confirm the new section, CSS and module still load.
 
 ## Front-End State Case
 
@@ -58,9 +52,13 @@ Select **Load notifications**, then use the keyboard to move among **All**, **Me
 
 ## Validated API Case
 
-Define a fictional contact request with `name`, `replyTo`, `topic`, and `message`. Implement or analyze a loopback Express route with a stream or test email transport.
+Use the [Contact pack](https://github.com/instruction-material/Web-Development-Foundations/tree/aed8ef2fcd7488c25c0b977b2099640e7431c55a/WDF3-Booking-Contact-App) starter and its JSON-only mail transport. From its complete repository run `npm run start --workspace WDF3-Booking-Contact-App/starter`. Try the form before and after completing `parseContact`. For the completed route, send this JSON to `POST /api/contact` on loopback port 3002 with content type `application/json`:
 
-Test valid, missing, malformed, overlength, wrong-content-type, repeated, timeout, and simulated-delivery-failure requests. Record expected status and body, observed status and body, redacted log event, health response, shutdown, restart, and recovery. No real address or SMTP credential is used.
+```json
+{"name":"Workshop Host","replyTo":"host@example.invalid","topic":"lesson","message":"Please prepare three notebooks."}
+```
+
+Change one input per request: omit `topic`, send the single character `{` as the body, use a 2,001-letter ASCII message, then send the valid body as `text/plain`. From a fresh ten-second window send seven rapid valid submissions. Separately restart with `CONTACT_SCENARIO=fail`, then `CONTACT_SCENARIO=timeout`. Compare health, status, safe error code and the draft on screen. Restart normally and submit once. Record the redacted log fields and distinguish a simulated delivery from an inbox receipt.
 
 ## Persistence Boundary Case
 

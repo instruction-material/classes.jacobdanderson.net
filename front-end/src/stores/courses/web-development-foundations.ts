@@ -1472,8 +1472,6 @@ const webDevelopmentFoundationsSourceCourse: RawCourse = {
 
 const WEB_DEVELOPMENT_FOUNDATIONS_PRACTICE_PACK =
 	"/course-assets/web-development-foundations/web-development-foundations-practice-pack.md";
-const WEB_DEVELOPMENT_FOUNDATIONS_VERIFICATION_GUIDE =
-	"/course-assets/web-development-foundations/web-development-foundations-verification-guide.md";
 
 const WEB_DEVELOPMENT_FOUNDATIONS_SEQUENCE = [
 	"WDF0 Setup and Tooling",
@@ -1503,7 +1501,6 @@ interface WebDevelopmentFoundationsModuleFlow {
 	estimatedTime: string;
 	keyBlocks: [string, string, string, string, string, string];
 	practiceSection: string;
-	answerSection: string;
 	route: string;
 	standardsRoute: string;
 	evidence: string;
@@ -1527,7 +1524,6 @@ const WEB_DEVELOPMENT_FOUNDATIONS_MODULE_FLOW: Record<
 			"evidence log"
 		],
 		practiceSection: "toolchain-preflight-case",
-		answerSection: "toolchain-preflight-key",
 		route: "Install or select Node.js 24 LTS, open the supplied project folder, record the package and lockfile state, run only the documented scripts, and capture one successful and one failed startup.",
 		standardsRoute:
 			"Use the project-pinned package versions, ignored environment files, browser developer tools, and a local-only server. Do not treat a global package or editor extension as part of the application contract.",
@@ -1556,7 +1552,6 @@ const WEB_DEVELOPMENT_FOUNDATIONS_MODULE_FLOW: Record<
 			"operations"
 		],
 		practiceSection: "course-path-map-case",
-		answerSection: "course-path-map-key",
 		route: "Trace one fictional feature from a semantic control through browser state, an HTTP request, server validation, storage, response rendering, deployment configuration, and operational evidence. Mark prior knowledge and genuine new boundaries.",
 		standardsRoute:
 			"Use one architecture map and plain-language contracts instead of selecting a framework by popularity. Keep authentication, production operations, and public deployment visible as later boundaries rather than pretending they are already solved.",
@@ -1579,7 +1574,6 @@ const WEB_DEVELOPMENT_FOUNDATIONS_MODULE_FLOW: Record<
 			"debug record"
 		],
 		practiceSection: "local-workflow-case",
-		answerSection: "local-workflow-key",
 		route: "Move a supplied browser feature into a named local project, initialize or inspect Git history, run the documented npm script, diagnose one HTML, CSS, JavaScript, and request failure, and commit the correction with a useful message.",
 		standardsRoute:
 			"Keep source, configuration, dependencies, generated output, and secrets visibly separate. Use browser and terminal evidence before changing code, and preserve a clean reset route.",
@@ -1608,7 +1602,6 @@ const WEB_DEVELOPMENT_FOUNDATIONS_MODULE_FLOW: Record<
 			"static smoke check"
 		],
 		practiceSection: "portfolio-build-case",
-		answerSection: "portfolio-build-key",
 		route: "Use the portfolio scaffold to organize source and assets, add one purposeful module and validated form, produce a Vite build, and inspect the built result locally at narrow and desktop widths.",
 		standardsRoute:
 			"Use semantic HTML, native controls, labels, keyboard access, visible focus, safe text, no secret in client environment variables, and a source order that remains useful before visual layout.",
@@ -1637,7 +1630,6 @@ const WEB_DEVELOPMENT_FOUNDATIONS_MODULE_FLOW: Record<
 			"bounded history"
 		],
 		practiceSection: "front-end-state-case",
-		answerSection: "front-end-state-key",
 		route: "Build a multi-view notification interface from a supplied local event stream. Separate event normalization, state transition, route selection, and rendering; expose ready, loading, connected, empty, error, reconnecting, and reset states.",
 		standardsRoute:
 			"Use semantic navigation, safe text, labeled controls, keyboard and pointer parity, visible focus, live status that does not over-announce, reduced motion, and bounded history. Socket.IO is an optional later transport, not the source of the state model.",
@@ -1666,7 +1658,6 @@ const WEB_DEVELOPMENT_FOUNDATIONS_MODULE_FLOW: Record<
 			"shutdown"
 		],
 		practiceSection: "validated-api-case",
-		answerSection: "validated-api-key",
 		route: "Build the contact API on loopback with fictional input, explicit request and response contracts, server-side schema validation, stable errors, bounded bodies, a stream or test email transport, health behavior, and clean shutdown.",
 		standardsRoute:
 			"Use Node.js 24 LTS and the scaffolded Express 5 and Nodemailer 10 versions. Keep credentials server-side, validate again at the server, return no stack trace or raw provider error, and make real SMTP optional.",
@@ -1695,7 +1686,6 @@ const WEB_DEVELOPMENT_FOUNDATIONS_MODULE_FLOW: Record<
 			"restore"
 		],
 		practiceSection: "persistence-boundary-case",
-		answerSection: "persistence-boundary-key",
 		route: "Define a versioned fictional note model and CRUD contract against a supplied in-memory adapter, then optionally switch the same service boundary to an isolated local MongoDB database. Tie each index to a named query.",
 		standardsRoute:
 			"Use Node.js 24 LTS with the scaffolded Mongoose 9 version, deterministic seed data, stable IDs, schema and route validation, bounded records, explicit not-found and conflict behavior, and no cloud database requirement.",
@@ -1724,7 +1714,6 @@ const WEB_DEVELOPMENT_FOUNDATIONS_MODULE_FLOW: Record<
 			"rollback"
 		],
 		practiceSection: "deployment-preflight-case",
-		answerSection: "deployment-preflight-key",
 		route: "Review the separate-deployment scaffold locally, map each process, artifact, environment value, origin, route, proxy hop, database dependency, log, health check, backup, and rollback before any optional publishing.",
 		standardsRoute:
 			"Treat TLS, proxy trust, CORS, secrets, least exposure, redacted logs, resource limits, health and readiness, restore, and rollback as release gates. Public hosting and DNS changes remain optional.",
@@ -1753,7 +1742,6 @@ const WEB_DEVELOPMENT_FOUNDATIONS_MODULE_FLOW: Record<
 			"limitation"
 		],
 		practiceSection: "feature-slice-capstone-case",
-		answerSection: "feature-slice-capstone-key",
 		route: "Choose one fictional user task and complete the smallest useful path from semantic control through browser state, validated route, local data adapter, response, rendered status, and reset before adding breadth.",
 		standardsRoute:
 			"Use one named contract at each boundary, preserve accessibility and local continuity, and defer authentication, live delivery, public deployment, and extra features unless they are required by the chosen task.",
@@ -1776,7 +1764,6 @@ const WEB_DEVELOPMENT_FOUNDATIONS_MODULE_FLOW: Record<
 			"observability"
 		],
 		practiceSection: "api-integration-capstone-case",
-		answerSection: "api-integration-capstone-key",
 		route: "Expand the feature slice with a documented request and response schema, consistent status and error behavior, timeout and retry boundaries, one safe log event, and browser handling for every state.",
 		standardsRoute:
 			"Keep the service on loopback, cap body and collection size, validate before business logic, expose no stack or secret, and avoid automatic retries for state-changing requests.",
@@ -1799,7 +1786,6 @@ const WEB_DEVELOPMENT_FOUNDATIONS_MODULE_FLOW: Record<
 			"restore"
 		],
 		practiceSection: "data-persistence-capstone-case",
-		answerSection: "data-persistence-capstone-key",
 		route: "Replace or extend the local adapter with a documented persistence model, deterministic seed, one query-driven index, version or migration note, backup, restore to a separate target, and integrity comparison.",
 		standardsRoute:
 			"Use fictional bounded data, server-side validation, stable IDs, explicit not-found and conflict behavior, and a complete supplied-data route when local MongoDB is unavailable.",
@@ -1822,7 +1808,6 @@ const WEB_DEVELOPMENT_FOUNDATIONS_MODULE_FLOW: Record<
 			"demonstration"
 		],
 		practiceSection: "deployment-readiness-capstone-case",
-		answerSection: "deployment-readiness-capstone-key",
 		route: "Bring one local full-stack project through clean start, browser and API smoke checks, persistence verification, injected failure, diagnosis, correction, restart, restore, and rollback planning. Optional public deployment follows only after every local gate passes.",
 		standardsRoute:
 			"Record exact runtime and package versions, configuration and secrets boundaries, proxy and CORS assumptions, TLS plan, redacted logs, health and readiness, resource caps, backup, restore, rollback, privacy, attribution, and known limitations.",
@@ -1837,10 +1822,6 @@ const WEB_DEVELOPMENT_FOUNDATIONS_MODULE_FLOW: Record<
 
 function webDevelopmentFoundationsPracticeLink(section: string) {
 	return `${WEB_DEVELOPMENT_FOUNDATIONS_PRACTICE_PACK}#${section}`;
-}
-
-function webDevelopmentFoundationsVerificationLink(section: string) {
-	return `${WEB_DEVELOPMENT_FOUNDATIONS_VERIFICATION_GUIDE}#${section}`;
 }
 
 function renderWebDevelopmentFoundationsReferences(
@@ -1875,9 +1856,6 @@ function decorateWebDevelopmentFoundationsModule(
 	const practiceLink = webDevelopmentFoundationsPracticeLink(
 		flow.practiceSection
 	);
-	const verificationLink = webDevelopmentFoundationsVerificationLink(
-		flow.answerSection
-	);
 	const references = renderWebDevelopmentFoundationsReferences(flow);
 
 	return {
@@ -1899,7 +1877,7 @@ function decorateWebDevelopmentFoundationsModule(
 
 **Evidence gate:** ${flow.evidence}
 
-**Local continuity:** Complete the [supplied foundations case](${practiceLink}) before comparing it with the [verification guide](${verificationLink}). Localhost, fixtures, test transports, local adapters, and supplied evidence remain the completion route when a database, SMTP provider, cloud account, domain, or public deployment is unavailable.
+**Local continuity:** Complete the [supplied foundations case](${practiceLink}). Localhost, fixtures, test transports, local adapters, and supplied evidence remain the completion route when a database, SMTP provider, cloud account, domain, or public deployment is unavailable.
 
 **Current references:** ${references}. Record Node and npm versions, package and lockfile state, browser and viewport, scaffold dependency versions, and every service, database, proxy, or host assumption that affects the result.
 

@@ -188,7 +188,7 @@ describe("Web Development Foundations learner flow", () => {
 		}
 	});
 
-	it("keeps every practice and verification anchor valid", () => {
+	it("keeps every practice and verification anchor valid", async () => {
 		const practiceSlugs = markdownHeadingSlugs(
 			assetText("web-development-foundations-practice-pack.md")
 		);
@@ -203,21 +203,20 @@ describe("Web Development Foundations learner flow", () => {
 			expect(answerSlugs, section).toContain(section);
 		}
 
-		for (const module of webDevelopmentFoundationsCourse.modules.filter(
-			candidate => candidate.kind !== "appendix"
-		)) {
-			const content = module.curriculum[0].content;
-			const practiceMatch = content.match(
-				/\/course-assets\/web-development-foundations\/web-development-foundations-practice-pack\.md#([a-z0-9-]+)/u
+		const course = await requireWebDevelopmentFoundationsCourse();
+		const required = course.modules.filter(
+			module => module.kind !== "appendix"
+		);
+		expect(required).toHaveLength(PRACTICE_SECTIONS.length);
+		for (const [index, module] of required.entries()) {
+			const reading = module.curriculum[0];
+			expect(reading.datasetLink).toContain(
+				"practice-pack.md#" + PRACTICE_SECTIONS[index]
 			);
-			const answerMatch = content.match(
-				/\/course-assets\/web-development-foundations\/web-development-foundations-verification-guide\.md#([a-z0-9-]+)/u
+			expect(reading.solutionLink).toContain(
+				"verification-guide.md#" + ANSWER_SECTIONS[index]
 			);
-
-			expect(practiceMatch, module.title).not.toBeNull();
-			expect(answerMatch, module.title).not.toBeNull();
-			expect(practiceSlugs, module.title).toContain(practiceMatch?.[1]);
-			expect(answerSlugs, module.title).toContain(answerMatch?.[1]);
+			expect(reading.content).not.toContain("verification-guide.md#");
 		}
 	});
 

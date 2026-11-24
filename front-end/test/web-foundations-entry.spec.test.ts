@@ -134,7 +134,12 @@ describe("web foundations entry progression", () => {
 			expect(learnerItems.map(row => row.content)).toEqual(
 				staffItems.map(row => row.content)
 			);
-			expect(staffItems.filter(row => row.solutionLink)).toHaveLength(4);
+			expect(
+				staffItems.filter(row => row.projectLink && row.solutionLink)
+			).toHaveLength(4);
+			expect(staffModule.curriculum[0].solutionLink).toContain(
+				"verification-guide.md#"
+			);
 			expect(learnerItems.every(row => !row.solutionLink)).toBe(true);
 		}
 	});

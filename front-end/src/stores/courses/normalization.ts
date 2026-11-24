@@ -78,6 +78,7 @@ import {
 import { applySwiftReferenceReadings } from "./swiftReferenceReadings";
 import { applyRestoredUsacoProjects } from "./usacoRestoredProjectBriefs";
 import { applyWebContactWorkflow } from "./webContactWorkflow";
+import { applyWebPracticeRoutes } from "./webPracticeRoutes";
 import { applyWebDeploymentWorkflow } from "./webDeploymentWorkflow";
 import { applyWebFoundationsEntryWorkflows } from "./webFoundationsEntryWorkflows";
 import { applyWebNotesWorkflow } from "./webNotesWorkflow";
@@ -9862,6 +9863,7 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 	applyWebContactWorkflow(course, id);
 	applyWebNotesWorkflow(course, id);
 	applyWebDeploymentWorkflow(course, id);
+	if (id === "web-development-foundations") applyWebPracticeRoutes(course);
 	preserveMathArchiveProgress(course, id);
 	preserveDesignPatternsJavaProgress(course, id);
 	if (id === "ai-level-1") {

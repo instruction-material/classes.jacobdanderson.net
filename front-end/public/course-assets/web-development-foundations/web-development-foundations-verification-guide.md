@@ -4,19 +4,19 @@ Compare only after completing the matching practice case. Equivalent implementat
 
 ## Toolchain Preflight Key
 
-A complete record names Node.js 24 LTS, npm, operating system, repository revision, package and lockfile state, exact documented script, localhost URL, expected page, observed page, console and terminal state, clean stop, one failed start, first useful evidence, correction, and successful retest. Global packages and editor extensions are not hidden project dependencies.
+The four role files are index.html, styles.css, main.js and package.json. The root lockfile supplies the dependency graph. The starter script appends three checklist entries and writes `Updated` followed by the local year. The second strict-port process exits because the first owns the port. The first still serves the page. Once that process stops, a fresh run can bind the same port. Record the actual URLs, response types, console state and successful restart for an executed check.
 
 ## Course Path Map Key
 
-The trace starts with a semantic control and ends with observable release evidence. Each boundary names its data shape, owner, trust level, failure, and recovery signal. Browser code contains no secret. Authentication, live delivery, cloud persistence, and public deployment are labeled later responsibilities rather than implied capabilities.
+The document loads the stylesheet and module from the portfolio origin. The checklist comes from the JavaScript array, the year from the browser clock. A temporary DOM edit disappears after reload; a saved HTML edit is served again. The proposed note starts as form state. The server validates its JSON before the adapter writes. In the Notes contract a valid create returns 201 with an ID, a blank title gives 400 and unavailable storage gives 503. After a lost response, query the exact title before deciding to retry. WDF5 teaches the HTTP boundary; WDF6 adds the adapter and recovery. The browser can read public configuration. A database credential belongs in the server environment.
 
 ## Local Workflow Key
 
-The project separates source, configuration, dependencies, generated output, and ignored secrets. The Git diff contains only intended work. Browser and terminal evidence precedes each correction. The final state has a useful commit message, clean console, successful network result, repeatable script, and documented reset.
+With the renamed ID, the optional append skips the missing list while the year still renders. With `createElementX`, the loop throws before the year assignment. A 60rem minimum track overflows the narrow container; restoring 14rem allows the grid to reflow. For missing.css, inspect response type as well as status: a development fallback can return HTML. Restore the stylesheet URL and verify the grid’s computed styles. A clean retest has three entries, the current year and working CSS. The retained diff contains the intended card edit. Rebuild before comparing the preview with the saved source.
 
 ## Portfolio Build Key
 
-The source uses semantic landmarks and headings, native labeled controls, visible focus, safe text, and a useful reading order. The Vite build succeeds with the recorded scaffold version. Keyboard, 200% zoom, narrow and desktop layout, console, asset, and local preview checks all have observed results and any limitation is explicit.
+The untouched validator reports an unfinished title rule. After completion the first sample returns `{ ok: true, value: { projectTitle: "Supply map", projectType: "website", goal: "Locate the paper bins." } }`. A missing title is stopped by native required validation; a spaces-only title reaches JavaScript, fails after trimming and focuses the title control. The direct call with `poster` reports a projectType error. Each valid preview replaces the previous one using text nodes. Clear empties it and reports “Draft cleared.” The static form makes no delivery request. Check the rebuilt page for the added section, original list/year, wrapped content and keyboard behavior.
 
 ## Front-End State Key
 
@@ -35,7 +35,9 @@ Render event text as text, retain keyboard focus during updates, and make status
 
 ## Validated API Key
 
-The loopback service rejects missing, malformed, overlength, wrong-content-type, and excessive requests before delivery logic. Success and failure bodies use stable safe shapes. Logs redact message and address content. The test transport proves delivery behavior without SMTP. Health, shutdown, restart, timeout, provider failure, and recovery are reproducible.
+A valid request on the unfinished starter gives 501 `not_implemented`. On completion it returns 202 `{"ok":true,"delivery":"simulated"}`. Omitting topic gives 400 `invalid_contact` with the field `topic`. Malformed JSON gives 400 `invalid_json`. A 2,001-letter message is within the request byte limit but outside the field limit: 400 `invalid_contact` for `message`. The wrong media type gives 415 `unsupported_media_type`. Errors carry `ok: false` and an error object with a code.
+
+In a fresh window the seventh attempt returns 429 `rate_limited` with Retry-After. Simulated failure gives 503 `delivery_unavailable`; exceeding the 750 ms delivery deadline gives 504 `delivery_timeout`. The draft remains available, and /health can still return 200. A normal restart and valid submission restore 202. A success log contains event `contact_request`, status 202 and outcome `simulated`. It contains neither the message nor the address.
 
 ## Persistence Boundary Key
 
