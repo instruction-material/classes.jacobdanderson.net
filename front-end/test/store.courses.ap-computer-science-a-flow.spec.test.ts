@@ -98,6 +98,19 @@ function courseText() {
 }
 
 describe("AP Computer Science A learner flow", () => {
+
+	it.each([
+		["APCS1 Variables and Input/Output", "Scanners, Formatting, and Casting"],
+		["APCS4 Selection, Iteration, and Runtime Reasoning", "Nested Loops and Runtime Error Reasoning"]
+	])("preserves the worked Java example when %s groups %s", async (moduleTitle, title) => {
+		setActivePinia(createPinia());
+		const source = requireModule(moduleTitle).curriculum.find(item => item.title === title)!;
+		const block = source.content.match(/^```java\n[\s\S]*?^```$/m)![0];
+		const course = (await useCoursesStore().loadCourseById("ap-computer-science-a"))!;
+		const lesson = course.modules.find(module => module.title === moduleTitle)!
+			.curriculum.find(item => item.content.includes(title))!;
+		expect(lesson.content.replace(/^ {3}/gm, "")).toContain(block);
+	});
 	it("keeps the exam-framework reading separate from generated coding tasks", async () => {
 		const title = "Current Four-Unit Framework and Digital Exam";
 		const authored = apComputerScienceACourse.modules[0].curriculum.find(

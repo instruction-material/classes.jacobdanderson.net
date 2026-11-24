@@ -342,19 +342,29 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			curriculum: [
 				{
 					title: "Variables, Primitive Types, and Strings",
-					content:
-						"`int`, `double`, `boolean`, and `String` are the basic vocabulary of Java programs. The working target is to declare, initialize, print, and update values without syntax friction."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"A variable declaration names a type and a place to store a value. Here `int` stores a whole number, `double` stores a floating-point number, and `boolean` stores true or false. `String` is a class. A String variable holds a reference to text.",
+						'```java\nint trays = 2;\ndouble price = 1.25;\nString fruit = "pears";\ntrays = trays + 1;\nboolean enough = trays >= 3;\nSystem.out.println(trays + " trays of " + fruit);\nSystem.out.println(trays * price);\nSystem.out.println(enough);\n```',
+						"Trace the assignment before predicting the three lines. Java reads the old value of trays on the right, adds one, then stores 3 on the left. The program prints `3 trays of pears`, `3.75`, and `true`. Change the initial count to 1. Which outputs change?"
+					].join("\n\n")
 				},
 				{
 					title: "Scanners, Formatting, and Casting",
-					content:
-						"`Scanner`-based input and explicit casting make the stored values and expression results visible enough to reason about precisely."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Put `import java.util.Scanner;` above the class. In a console program, values are typed by the user and Scanner reads them in order. `nextLine()` reads an entire line, including spaces between words. `nextInt()` reads an integer token. For this example enter `North Pier` on the first line and `7` on the second.",
+						'```java\nScanner input = new Scanner(System.in);\nString stop = input.nextLine();\nint riders = input.nextInt();\nSystem.out.println(stop + " / " + riders);\nSystem.out.println(riders / 2);\nSystem.out.println((double) riders / 2);\n```',
+						"Predict each line before running. The label is `North Pier / 7`. Dividing two integers gives 3 because integer division discards the fractional part. Casting riders to double before division gives 3.5. Compare that with `(double) (riders / 2)`, which converts the integer result to 3.0."
+					].join("\n\n")
 				},
 				{
 					title: "Core Project: Mad Libs",
 					content: [
 						"Build a travel story from four lines of input: an adjective, a place, a plural noun, and a game. Read each whole line with Scanner.nextLine() so names can contain spaces. The starter reads the adjective and shows where the next three inputs belong. Replace each sample string with its own prompt and read.",
-						"Test with misty, Cedar Falls, paper boats, and table tennis on separate lines. The story should read: We reached misty Cedar Falls. We raced paper boats and played table tennis. Try another place with two words and check spacing and punctuation."
+						"Test with misty, Cedar Falls, paper boats, and table tennis on separate lines. Expected story: We reached misty Cedar Falls. We raced paper boats and played table tennis. Change only the place to West Bay. Check that both words appear in the first sentence and the game in the second sentence stays the same."
 					].join("\n\n"),
 					projectLink:
 						apStoryShuffleTraceResources["mad-libs"].starter,
@@ -368,7 +378,7 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				{
 					title: "Barron's Chapter 2 Habit",
 					content:
-						"Use the supplied expression or the free course-description sample questions to practice casting, output, and evaluation. Predict the exact result and justify each line. The matching textbook questions offer additional practice."
+						"Predict the type and value of each expression before running it: `9 / 4`, `(double) 9 / 4`, and `(double) (9 / 4)`. Check each step: the first gives the int 2, the second gives the double 2.25, and the third gives the double 2.0 because division happens before the cast. Repeat with 11 and 4. The matching textbook chapter offers additional practice."
 				}
 			],
 			supplementalProjects: [
@@ -454,13 +464,23 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			curriculum: [
 				{
 					title: "Arithmetic and Update Operators",
-					content:
-						"Arithmetic expressions, operator precedence, `%`, and update patterns like `+=`, `++`, and `--` are the basic mechanics for manipulating numeric state. Trace each expression before running it so precedence and mutation order are explicit."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Multiplication, division, and remainder are evaluated before addition and subtraction. Operators at the same level in this example run left to right. Remainder gives the part left over after whole groups are removed.",
+						"```java\nint seats = 17;\nint rows = seats / 5;\nint left = seats % 5;\nseats += 2 * left;\nrows++;\nSystem.out.println(seats);\nSystem.out.println(rows);\n```",
+						"Record seats, rows, and left after each assignment. Seventeen seats fill three rows of five with two left over. The update adds four to seats. The final lines are 21 and 4. Replace `rows++` with `rows--` and predict the second line."
+					].join("\n\n")
 				},
 				{
 					title: "Relational and Logical Operators",
-					content:
-						"Evaluate compound boolean expressions exactly, including short-circuit behavior and correct `String` equality with `.equals()`. The goal is to justify why an expression is true or false, not just guess from the final output."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"A comparison produces a boolean. With `&&`, Java stops as soon as an operand is false. With `||`, it stops as soon as an operand is true. String.equals compares character content. For objects, `==` compares references.",
+						'```java\nString first = new String("oak");\nString second = new String("oak");\nint groups = 0;\nSystem.out.println(first == second);\nSystem.out.println(first.equals(second));\nSystem.out.println(groups != 0 && 12 / groups >= 3);\n```',
+						"The first line is false because each constructor created a distinct object. The second is true. The last line is false, and the division is skipped. Predict the last line for groups equal to 3, then 6."
+					].join("\n\n")
 				},
 				{
 					title: "Core Project: Verifying Expressions",
@@ -584,13 +604,23 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			curriculum: [
 				{
 					title: "Conditionals, Scope, and Nesting",
-					content:
-						"`if`, `else if`, and `else` are precise control-flow tools. A correct explanation names which branch runs and why, especially in nested cases."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"An if/else-if/else chain runs the first branch whose condition is true, or the final else if all conditions are false. A nested if runs only when execution enters its containing block. A local variable declared inside braces can be used only within its scope.",
+						"```java\nint tickets = 4;\nboolean member = true;\nint price;\nif (tickets >= 5) {\n    price = 6;\n} else if (tickets >= 2) {\n    int base = 9;\n    price = base;\n    if (member) {\n        price = base - 1;\n    }\n} else {\n    price = 12;\n}\nSystem.out.println(price);\n```",
+						"At four tickets the middle branch runs. Membership changes the price from 9 to 8. Predict the prices at five tickets and at one ticket (6 and 12). Explain why printing base after the chain would fail to compile while printing price works."
+					].join("\n\n")
 				},
 				{
 					title: "Packages, Math, and Randomness",
-					content:
-						"Package imports, `Math` methods, and `Math.random()` introduce library code while preserving careful tracing of local control flow."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Java groups library classes into packages. Math is in java.lang and can be used directly. A static method such as `Math.abs(-4)` is called on the class. Math.random() returns a double at least zero and strictly less than one.",
+						"```java\ndouble sample = 0.75;\nint face = 1 + (int) (sample * 6);\nSystem.out.println(Math.abs(-4));\nSystem.out.println(face);\n```",
+						"The lines are 4 and 5. To build a die roll, replace 0.75 with Math.random(). Multiplication gives a value from 0 up to but excluding 6. Casting gives 0 through 5 and adding 1 gives 1 through 6. Trace 0.0 and 0.99 by hand. What changes if the cast occurs before multiplication?"
+					].join("\n\n")
 				},
 				{
 					title: "Core Project: Elevator Warning",
@@ -763,13 +793,23 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			curriculum: [
 				{
 					title: "For Loops, While Loops, and Infinite Loop Risk",
-					content:
-						"Counted loops and condition-driven loops are separate tools with separate failure modes. The central reasoning question is when a loop terminates and what state changes make that possible."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"A for loop performs its initialization once, tests before each iteration, and updates after the body. A while loop tests before each iteration too. Write its initial state and update explicitly.",
+						"```java\nfor (int index = 1; index < 6; index += 2) {\n    System.out.println(index);\n}\nint next = 1;\nwhile (next < 6) {\n    System.out.println(next);\n    next += 2;\n}\n```",
+						"Each loop prints 1, 3, 5, then tests 7 and stops. Starting at 6 would skip both bodies. Trace what would happen if the while update were removed: the next test would still see 1."
+					].join("\n\n")
 				},
 				{
 					title: "Nested Loops and Early Exception Reasoning",
-					content:
-						"Nested loops create patterns and tables, then connect loop correctness to common runtime errors like bounds issues and arithmetic mistakes."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"The inner loop starts again each time the outer loop enters its body. Track the two counters separately. Here the outer counter determines how many times the inner one runs.",
+						"```java\nint visits = 0;\nfor (int row = 1; row <= 3; row++) {\n    for (int col = 0; col < row; col++) {\n        visits++;\n    }\n    System.out.println(visits);\n}\n```",
+						"Rows 1, 2, and 3 add one, two, and three visits. The printed totals are 1, 3, and 6. To diagnose a failure, locate the first unsafe operation. If the inner body instead evaluated `12 / col`, integer division would fail on row 1, column 0. If it read `data[col]` from a two-element array, row 3, column 2 would be the first invalid access."
+					].join("\n\n")
 				},
 				{
 					title: "Core Project: Translating Loops",
@@ -1273,7 +1313,7 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 					content: [
 						"Model one day on a farm. Each Farm instance tracks its own cow and goat counts and three flags for chores. Animals start unfed and the cows start unmilked. Constructor counts must be nonnegative.",
 						"Use feedCows as the pattern for feedGoats. A feeding or milking succeeds once for a nonempty herd. A sale succeeds whenever at least one animal of that species remains. On failure return false and preserve every field. On success update only the relevant field and return true. In this model milk applies to cows.",
-						"Run `javac Main.java Farm.java` followed by `java Main`. With one goat, predict the results of two feedings and two sales. Each pair should give true then false. A second farm should still have its original goat and feeding flag. Add a check for milking a farm with zero cows."
+						"Run `javac Main.java Farm.java` followed by `java Main`. With one goat, predict the results of two feedings and two sales. Each pair returns true, then false. A second farm retains its original goat and feeding flag. Add a check for milking a farm with zero cows."
 					].join("\n\n"),
 					projectLink: apFarmAndShapeResources["farm-class"].starter,
 					solutionLink:
@@ -1966,8 +2006,8 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				{
 					title: "Project: Card Shuffler",
 					content: [
-						"Start with the thirteen hearts in rank order. Build a new list by repeatedly choosing a random index from the remaining cards, removing that card, and appending it to the result. The original list passed to shuffle should keep its order. Copy it into a working list first.",
-						"Use Random.nextInt(remaining.size()) only while the working list has cards. After each draw, its size plus the result size should still equal the input size. Independent runs can give the same ordering. Look for all thirteen different hearts exactly once rather than expecting a particular first card. Also try an empty list and a single card.",
+						"Start with the thirteen hearts in rank order. Build a new list by repeatedly choosing a random index from the remaining cards, removing that card, and appending it to the result. Keep the original list in its initial order. Copy it into a working list first.",
+						"Use Random.nextInt(remaining.size()) only while the working list has cards. After each draw, its size plus the result size equals the input size. Independent runs can give the same ordering. Look for all thirteen different hearts exactly once rather than expecting a particular first card. Also try an empty list and a single card.",
 						"Download and extract the ZIP. Run `javac Main.java Card.java` then `java Main`. The starter prints the original suit and an empty result until the draw loop is completed."
 					].join("\n\n"),
 					projectLink:
@@ -3145,9 +3185,7 @@ function strengthenApCsaItem(item: RawCourseModuleItem): RawCourseModuleItem {
 	if (item.title === "Nested Loops and Early Exception Reasoning") {
 		return {
 			...item,
-			title: "Nested Loops and Runtime Error Reasoning",
-			content:
-				"Trace nested loops by row, column, and total execution count, then diagnose bounds, arithmetic, and termination failures from the exact state that causes them. Formal try-catch design remains programming enrichment rather than required exam content."
+			title: "Nested Loops and Runtime Error Reasoning"
 		};
 	}
 

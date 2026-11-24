@@ -1431,6 +1431,7 @@ function neutralizeLessonPointText(text: string) {
 }
 
 function formatLessonArcPointContent(content: string) {
+	if (/^[ \t]*(?:`{3}|~{3})/m.test(content)) return content.trim();
 	const formatted = neutralizeLessonPointText(content);
 	if (
 		preservesBlockStructure(formatted) ||
