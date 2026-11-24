@@ -55,14 +55,14 @@ Order these actions: verify compatibility, install/open Xcode, install a simulat
 
 ```text
 FirstLaunchApp.swift -> WindowGroup -> ContentView
-ContentView.swift -> ProfileHeader -> Assets.xcassets/ProfilePlaceholder
-FirstLaunchTests -> model tests only
+ContentView.swift -> ProfileHeader -> Assets.xcassets/ProfileAccent.colorset
+FirstLaunchUITests -> launches FirstLaunch and reads its heading
 Scheme FirstLaunch -> target FirstLaunch -> iPhone simulator
 ```
 
 ### Task
 
-Label entry point, scene, root view, child view, asset, target, test target, scheme, and destination. Case A: `ProfileHeader.swift` exists but has no target membership. Case B: code requests `profile-placeholder`, while the catalog name is `ProfilePlaceholder`. Identify the first useful Xcode surface and the narrowest correction for each.
+Label entry point, scene, root view, child view, asset, target, test target, scheme, and destination. Case A: `ProfileHeader.swift` exists but has no target membership. Case B: the header requests the color `profile-accent`, while the catalog name is `ProfileAccent`. Identify the first useful Xcode surface and the narrowest correction for each.
 
 ## SwiftUI Views Layout and Modifiers Case
 
@@ -119,17 +119,17 @@ Predict the labels for planned, active at 0, 0.5 and 1, and complete on the supp
 ### Supplied files
 
 ```text
-HobbyApp.swift
+HobbyMapApp.swift
 ContentView.swift
 Hobby.swift
 HobbyCard.swift
 SampleData.swift
-Assets.xcassets
+Tests/HobbyMapUITests.swift
 ```
 
 ### Task
 
-Trace launch from `@main` to the visible card. Place model, reusable view, preview/sample data, and bundled assets on an architecture map. Compare keeping all six responsibilities in `ContentView.swift` with the supplied split; choose the smallest structure that makes data ownership and testing understandable.
+Trace launch from `@main` to the visible card. Place model, reusable view, sample records and UI test on an architecture map. Trace Hiking to its Water bottle detail. Compare keeping the three supporting declarations in `ContentView.swift` with the supplied split; choose the smallest structure that makes data ownership and testing understandable.
 
 ## State and Data Flow Case
 

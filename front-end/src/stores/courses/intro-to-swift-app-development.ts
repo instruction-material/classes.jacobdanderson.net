@@ -11,12 +11,16 @@ import swiftDebuggingReading from "@/assets/course-guides/swift-tracker-debuggin
 import swiftTrackerReading from "@/assets/course-guides/swift-tracker.md?raw";
 import swiftWelcomeReading from "@/assets/course-guides/swift-welcome-profile.md?raw";
 import {
+	swiftAccessibleTasksRoot,
 	swiftCapstoneRoot,
 	swiftCourseResource,
 	swiftDataTrackerRoot,
 	swiftDebuggingRoot,
+	swiftFavoriteEditorRoot,
+	swiftFirstLaunchRoot,
 	swiftGalleryRoot,
 	swiftHobbyRoot,
+	swiftHobbyStructureRoot,
 	swiftLessonCardsRoot,
 	swiftMapRoot,
 	swiftNetworkingRoot,
@@ -143,43 +147,63 @@ Start with the tester's observed installation and work back one handoff at a tim
 			curriculum: [
 				{
 					title: "Machine Requirements and Platform Reality",
-					content:
-						"Real iOS building, simulator use, signing, archiving, and App Store publishing require macOS and Xcode. Windows can support note-taking or light Swift syntax exploration, but it is not a complete replacement for the practical parts of the course. Establish this workflow boundary early so the project setup remains viable later."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `An iOS build starts with three choices: a Mac that can run the selected Xcode release, support for the app's platform, and a simulator that can run the target's minimum iOS version. Xcode's version, the Swift language mode, the target's deployment version and the simulator OS answer different questions. Record each one from its own setting.
+
+## Worked example
+
+FirstLaunch targets iOS 17. A compatible iPhone simulator can launch it even when no phone is connected. Opening the source in the site IDE lets the title be edited and saved. The native launch supplies the missing observation: the built app actually displays the changed text on the selected simulator.
+
+## Check the destination
+
+If the scheme lists only a generic destination, look for an installed compatible runtime and simulator before changing the source. Record the destination that actually launched. A template or preview screenshot alone cannot identify that run.`
 				},
 				{
 					title: "Practical Walkthrough: Installing Xcode and Simulators",
-					content:
-						"Confirm macOS compatibility, install Xcode, open it once for first-run components, and review storage expectations for simulator downloads and updates. Explain why Xcode updates can affect simulator availability, build settings, and course pacing."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Check the linked Xcode compatibility table against the Mac's macOS version. Install the supported Xcode release, open it to complete its first-run setup, and install the iOS platform and a simulator runtime if prompted. With the FirstLaunch scheme selected, choose an installed iPhone in the run destination menu. A generic build destination does not give the app a simulated screen.
+
+If a named phone is missing, inspect the installed runtime and the available simulated devices. Record which component is missing. Reinstalling the app's Swift files cannot supply a runtime.`
 				},
 				{
 					title: "Practical Walkthrough: Apple ID Sign-In and Folder Organization",
-					content:
-						"Sign in with an Apple ID in Xcode and explain when a paid Apple Developer membership is required. Create a clean app-development folder structure for projects, screenshots, app icons, metadata drafts, and notes so the workflow starts with manageable organization."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Keep the extracted role folder together: its project refers to the adjacent Swift files, Tests folder, and asset catalog by relative path. Moving only FirstLaunch.xcodeproj breaks that relationship. Keep the original starter separate from the solution and put launch notes beside the working folder.
+
+The simulator exercise uses bundled sample data and requires no Apple account. Signing into an account becomes relevant when a physical device or a distribution team enters the workflow. For this launch, record the scheme and destination and leave account settings alone.`
 				},
 				{
 					title: "First Blank SwiftUI App Studio",
-					content:
-						"Create a new iOS App project in Xcode, run it in the preview canvas and simulator, and confirm that scheme selection, destination choice, and project naming make sense. This lab is about environmental confidence, not visual polish."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Choose the iOS App template in Xcode, select SwiftUI and Swift, and create a small practice app. The generated App supplies a WindowGroup whose content is the first view. Change one Text value in that view, choose an iPhone simulator and run it. Stop, edit the value again, then launch again to show that this build contains the new edit.
+
+Compare that project with the supplied FirstLaunch example. Identify its app entry point and root view, then name the scheme you used for each run. Keeping both names in the record helps explain an unexpected old heading.`
 				},
 				{
 					title: "SAD2 Mac Setup and Project Tooling: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD2 Mac Setup and Project Tooling",
-						projectKind: "core",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod1Pro1"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content: `Open the FirstLaunch starter in the site IDE and export it. Keep the directory layout together and open FirstLaunch.xcodeproj from the extracted role folder. Run the supplied project on an installed iPhone simulator. Change the heading in ContentView.swift from Ready to launch to First verified launch and run it again. For a resumed project that already shows the assigned title, make a temporary distinctive edit, observe it on launch, and restore the assigned text.
+
+Record the scheme, destination, OS, Xcode version and Swift language mode beside the two observations. Run the supplied UI test and explain its mismatch with the original expected label. Update the expectation to the intended text and rerun. Use the README to compare the project with a new SwiftUI App template.`,
+					ideImport: true,
+					projectLink: `${swiftFirstLaunchRoot}/starter`,
+					solutionLink: `${swiftFirstLaunchRoot}/solution`
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Diagnostic Checkpoint",
-					content:
-						"Readiness check: explain why a Mac is required for practical iOS shipping work and create a new project without getting lost in Xcode's initial templates. Prompt: identify where screenshots, exported builds, and app notes belong before real app work begins.",
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod1Pro1"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content: `Reopen the saved FirstLaunch project. Identify the app entry file, active scheme and simulator destination. Compare the heading in ContentView.swift with what appeared in the launched app. For a stale heading, name the next check that would distinguish an old build from editing a different project. If a simulator is unavailable, use the supplied environment record and label the launch as a prediction. Compare the expected heading in the test with the string passed into ProfileHeader and describe the result if only one of them changes.`,
+					ideImport: true,
+					projectLink: `${swiftFirstLaunchRoot}/starter`,
+					solutionLink: `${swiftFirstLaunchRoot}/solution`
 				},
 				{
 					title: "Mac Setup and Project Tooling Transfer Practice",
@@ -489,43 +513,65 @@ Include version 1.0 and the build number on each observation. A tester's success
 			curriculum: [
 				{
 					title: "Entry Point, Lifecycle, Scenes, and Views",
-					content:
-						"Explain what an app is structurally before diving deeper into Swift syntax. Cover the app entry point, scenes, views, navigation, assets, and data flow so each later topic fits inside a coherent architecture."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Launching the app starts the type marked @main. Its body describes one or more scenes. In HobbyMap, WindowGroup creates a window containing ContentView. That root view describes a navigation stack with a list of hobby records. A view’s body may be evaluated again when its inputs change; a new evaluation does not mean that the whole app launched again.
+
+## Worked example
+
+Choose Hiking. The row supplies the Hiking record to HobbyCard, which displays Bring: Water bottle. Going back removes the detail from the visible navigation path. Sketching still has its own record, so selecting it displays Bring: Pencil. The fixture did not need to be loaded again or copied into a new app entry point.
+
+## Trace the boundary
+
+Find the line that creates the root view and the line that creates a detail card. Predict which file would change to rename a hobby and which would change to give every detail a larger heading.`
 				},
 				{
 					title: "Navigation, Assets, and Data as App Systems",
-					content:
-						"Compare what belongs in view code, what belongs in assets, and what belongs in the app's data model. Treat navigation and data flow as structural systems rather than decorative extras."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `NavigationStack supplies the context for moving from the list into a detail. Each link passes the selected Hobby value into a new card. The card can describe what to bring because the value already contains a supply. It has no need to find the selected row through a global variable.
+
+A model holds information such as name and supply. A bundled resource could hold an illustration, while the view decides how to present it. In this exercise the two hobby records are built into SampleData. Adding a new supply changes a value in that fixture, not the way the app creates its window.`
 				},
 				{
 					title: "Worked Example Set: Reading a Tiny App Blueprint",
-					content:
-						"Take a small app and identify where the app launches, which views it owns, how navigation branches, and where user-facing data is stored or derived. Treat this as architecture reading, not just code reading."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Start with Hiking on the list. Find its stable ID in SampleData, trace the record into NavigationLink, and follow the same value into HobbyCard. Now change only its supply to Rain jacket. Predict the changed detail before running it. Sketching still shows Pencil.
+
+Moving HobbyCard into its own file preserves the behavior of both routes. If the compiler reports a duplicate declaration after the move, search for both copies. If it cannot find HobbyCard, check that the new file belongs to the app target and imports SwiftUI.`
 				},
 				{
 					title: "Reflection Question: Stable App Structure",
-					content:
-						"Compare core structure with surface-level UI and explain which decisions stay stable and which remain easy to revise. This builds architectural judgment before the app grows past a few screens."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Suppose the list gains a third hobby and the card later gains a new text style. The first change belongs to the sample records, the second to the reusable presentation. Keeping those responsibilities separate makes the effect of each change easier to predict. A tiny app still needs only one type for each job.
+
+Use the two existing hobbies to distinguish a structural change from a behavior change. Describe a test that keeps passing after a file move and one expectation that needs updating if a supply is renamed.`
 				},
 				{
 					title: "SAD6 What an App Is Structurally: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD6 What an App Is Structurally",
-						projectKind: "core",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod2Pro2"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content: `Open HobbyMap.xcodeproj and run both hobby selections. Record the hobby names and the supplies shown on their cards. The starter keeps the model, sample data and card together in ContentView.swift. Move those three declarations to Hobby.swift, SampleData.swift and HobbyCard.swift. The destination files already belong to the app target. Build after each move, remove the original declaration, and import SwiftUI in the file that defines the card.
+
+Repeat both selections and run Product > Test. Change only Hiking’s supply to Rain jacket and predict which test assertion becomes stale. Restore the original fixture and verify the original test again. Annotate the launch path from @main through WindowGroup and ContentView to the selected card, naming the input handed across each boundary.`,
+					ideImport: true,
+					projectLink: `${swiftHobbyStructureRoot}/starter`,
+					solutionLink: `${swiftHobbyStructureRoot}/solution`
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Diagnostic Checkpoint",
-					content:
-						"Readiness check: label the app entry point, scene, view hierarchy, navigation model, and data model responsibilities in a small example. The structure is explainable without relying on memorized code fragments.",
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod2Pro2"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content: `Use the saved HobbyMap project to trace Sketching from the sample record to Bring: Pencil. Name the type that supplies the scene, the view that offers navigation, and the property that gives the card its hobby. Predict the effect of moving SampleData without changing either record. Then predict the effect of changing only the pencil supply to a different word. Identify which prediction requires a new expected label in the UI test.
+
+Compare both paths in the reference. Record one responsibility a card can own and one that would make the card harder to reuse if moved into it. Include the actual source filename for each decision.`,
+					ideImport: true,
+					projectLink: `${swiftHobbyStructureRoot}/starter`,
+					solutionLink: `${swiftHobbyStructureRoot}/solution`
 				},
 				{
 					title: "What an App Is Structurally Transfer Practice",
@@ -560,43 +606,63 @@ Include version 1.0 and the build number on each observation. A tester's success
 			curriculum: [
 				{
 					title: "Navigating an Xcode Project",
-					content:
-						"Review the project navigator, targets, schemes, asset catalogs, preview canvas, and configuration files at a practical level. The purpose is not memorizing every panel but knowing where common app-development work actually lives."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `An Xcode project describes files, products and how to build them. The navigator groups files for browsing. A target determines which source and resources form one product. A scheme selects the target and the action to perform. The destination tells Xcode where that action runs.
+
+## Worked example
+
+FirstLaunchApp creates a WindowGroup containing ContentView. ContentView passes a title into ProfileHeader. The paper plane in that header is a system symbol. Its color comes from the ProfileAccent color set in the app's asset catalog. Changing the title argument changes the text. Changing the catalog color changes the plane's tint. The UI test is part of a separate bundle and reads the launched app's heading through its accessibility identifier.
+
+## Trace a change
+
+Select the app target and inspect Compile Sources and Copy Bundle Resources. Identify the header in the first list and the catalog in the second. In the scheme's Test action, find the target that supplies the launch test.`
 				},
 				{
 					title: "Practical Walkthrough: Templates, Targets, and Schemes",
-					content:
-						"Create a new project and explain the role of the selected template, target, and scheme. Connect scheme choice to build destinations and target settings to bundle identity and app capabilities."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `The iOS App template creates a starting project. The template choice is historical; the current target's settings determine the built product. In FirstLaunch, the app target produces FirstLaunch.app, while FirstLaunchUITests builds a test bundle that launches the app and checks a label. Both participate in the same scheme, but Product > Run and Product > Test select different actions.
+
+Trace ProfileHeader.swift into the app's Compile Sources list. If the file appears in the navigator and the compiler reports that ProfileHeader is missing, check its target membership. A navigator group alone does not compile its contents.`
 				},
 				{
 					title: "Practical Walkthrough: Asset Catalogs and Preview Canvas",
-					content:
-						"Images, icons, and colors belong in dedicated asset containers, and the preview canvas supports fast SwiftUI iteration. Dedicated asset containers keep resources discoverable and maintainable instead of scattering file imports across views."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Open Assets.xcassets and select ProfileAccent. The color set stores a named color; the SwiftUI header looks it up by its exact name. The paper-plane shape comes from a system symbol, so there is no matching plane image file to edit. Set the color to blue-green, refresh the preview, then launch the app to verify the color in the built product.
+
+If the text updates but the tint does not, compare the requested name with the catalog, check the catalog belongs to the app target, and confirm that the expected destination is running.`
 				},
 				{
 					title: "Reflection Question: Which Xcode Areas Do You Need Every Day?",
-					content:
-						"Identify which Xcode panes matter for everyday app work and which ones are more occasional configuration tools. This helps reduce cognitive overload when the interface feels large."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Use the observed failure to choose the next inspection. A missing Swift type points toward the source file, its spelling, or target membership. A missing color points toward the catalog name and bundled resources. An unexpected heading in a successfully launched app calls for checking the active scheme, destination and saved source.
+
+For each of the two supplied anatomy cases, identify one Xcode panel to inspect, the evidence that would confirm the cause, and the narrowest correction. Repeat the original action afterward and record the result.`
 				},
 				{
 					title: "SAD7 Xcode Project Anatomy: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD7 Xcode Project Anatomy",
-						projectKind: "core",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod3Pro1"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content: `Continue the saved FirstLaunch project from SW1. Trace the displayed heading through FirstLaunchApp, WindowGroup, ContentView and ProfileHeader. Open the app target's Build Phases and locate the header and the asset catalog. In the shared scheme, find the test target that checks the visible heading.
+
+Change the color set named ProfileAccent from gray to blue-green, then add Flight journal as a second line inside ProfileHeader. Run on the same destination as the baseline. Add an assertion for the secondary line to the UI test and run the tests. Record the visible tint separately: a test that reads a text label supplies no observation of color. Compare your saved starter with the reference after recording the result.`,
+					ideImport: true,
+					projectLink: `${swiftFirstLaunchRoot}/starter`,
+					solutionLink: `${swiftFirstLaunchRoot}/solution`
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Diagnostic Checkpoint",
-					content:
-						"Readiness check: locate the file navigator, target settings, assets, and previews fast enough to support normal app iteration. A helpful checkpoint identifies where to change the bundle ID or add a new image.",
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod3Pro1"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content: `Follow ProfileHeader from its Swift file to the app target and follow ProfileAccent from the catalog to the rendered plane. Explain why the app can compile and still look wrong when the color name is misspelled. In the supplied cases, distinguish a missing compiled type from an asset lookup failure, and record which change and retest would resolve each. Open the FirstLaunch scheme’s Test action and identify the bundle that inspects the heading. Explain why its passing label check leaves the color change to be verified separately.`,
+					ideImport: true,
+					projectLink: `${swiftFirstLaunchRoot}/starter`,
+					solutionLink: `${swiftFirstLaunchRoot}/solution`
 				},
 				{
 					title: "Xcode Project Anatomy Transfer Practice",
@@ -947,43 +1013,65 @@ The output is \`7 Map a trail\` followed by \`7 Map a river\`. The ID still iden
 			curriculum: [
 				{
 					title: "`@State`, `@Binding`, and Observable Data",
-					content:
-						"`@State`, `@Binding`, `@StateObject`, and the broader observation model answer the question: who owns this data and who is allowed to change it? Focus on ownership first so the wrappers feel motivated instead of magical."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `A shared value needs one durable owner for the views that use it. FavoriteNote’s root form shows a count and its child editor changes a stop’s favorite status. The number displayed at the top can be derived from one Boolean. Storing a second copy in the editor creates two answers to the same question.
+
+## Worked example
+
+Both starter values begin as false. Tap Favorite stop. The child changes its own value to true and changes the button label. The parent still reads false, so the count stays zero. A binding changes the path of that write: the child writes the parent’s storage and both displays update from the same value.
+
+## Trace a different value
+
+Type Water break in the note field. The draft belongs to the editor while typing. Save note commits the draft into the shared saved note. A temporary difference between the draft and saved value is part of that editing interaction.`
 				},
 				{
 					title: "Worked Example Set: Local State vs Shared State",
-					content:
-						"Compare local toggle state, editable form state, and a small shared store so each pattern has a clear ownership boundary. Use examples that show how state bugs happen when ownership is vague or duplicated."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Use @State for transient view-owned data, pass a Binding to one editor that can change it, and pass a plain value to a view that only displays it. A child that needs to read and write its parent’s state can declare @Binding instead. In FavoriteNote, the parent passes $isFavorite to the editor. The child reads isFavorite to choose its button label and toggles the same value in its action.
+
+A child that only displays the saved text needs just a value. Giving every display a writable binding obscures which views are supposed to change it. Draw the read and write paths separately for the button, the count, the draft field and the saved summary.`
 				},
 				{
 					title: "Practice Lab: Favorite Toggle and Editable Notes",
-					content:
-						"Build one small interaction that is purely local and one shared across multiple views. Explain why the two interactions do not deserve the same state approach."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Compare three moments in the editor: before typing, after typing Water break, and after selecting Save note. Only the draft changes at the second moment. At the third, the saved summary changes too. Reset clears both text values and returns the favorite to false.
+
+If typing immediately changes the summary, inspect the binding passed to TextField. If the button changes its label but the count stays at zero, inspect the owner of the favorite. These two failures have opposite causes: one shares edits too early, the other keeps changes in a private copy.`
 				},
 				{
 					title: "Reflection Question: What Does It Mean to Own State?",
-					content:
-						"Define state ownership in plain language and connect it to the app bugs they are most likely to create at this stage. Clear reasoning here pays off heavily in later CRUD and networking modules."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `For a one-stop form, a Boolean and a saved note can live in the common parent. A larger list could keep its records in a shared model and derive the favorite count from that collection. Observation integration begins with iOS 17-era platform availability. A shared @Observable class can hold the stops so that the count and list read from the same collection. For an app supporting older iOS versions, @StateObject and ObservableObject remain a compatibility route: the owning view keeps the model in @StateObject, and the model marks changing properties with @Published. In either design, decide which edits become part of the model only when Save is selected.
+
+Predict the visible results after toggling twice, saving an empty draft, resetting, and relaunching. Mark which results come from the reset action and which come from the lifetime of in-memory state. A passing toggle test alone cannot establish that the app persists data between launches.`
 				},
 				{
 					title: "SAD11 State and Data Flow: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD11 State and Data Flow",
-						projectKind: "core",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod4Pro2"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content: `Open FavoriteNote.xcodeproj and reproduce the starter mismatch. Tap Favorite stop and record the button label and summary count. Save a draft and reset to establish which other actions already work. In the child editor replace its private favorite state with a binding. Pass the parent’s projected value into FavoriteEditor. Keep draft local and savedNote shared, and derive the count directly from the favorite value.
+
+Run the same sequence again. The starter UI test preserves the original observed zero after the first tap. Change that post-tap expectation to one after repairing the owner, and retain both the initial zero and the reset zero. Record the two source locations that now connect the action to the count.`,
+					ideImport: true,
+					projectLink: `${swiftFavoriteEditorRoot}/starter`,
+					solutionLink: `${swiftFavoriteEditorRoot}/solution`
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Diagnostic Checkpoint",
-					content:
-						"Readiness check: point to the single owner of a value and explain why a child view might need a binding rather than its own duplicate state. Prompt: predict what happens if two views each keep their own unsynchronized copy of the same setting.",
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod4Pro2"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content: `Predict the parent count and button label after one tap and after two taps in FavoriteNote. Compare both predictions with the running starter before examining the reference. Name the owner of the changed value and the reader that remained stale. Trace the equivalent binding in the repaired version from the parent through the editor initializer into the button action.
+
+Now enter a draft and close the keyboard without saving. Explain why the saved summary still shows its previous value, then save and reset. Record the two visible results that establish that saved text and draft text have different responsibilities.`,
+					ideImport: true,
+					projectLink: `${swiftFavoriteEditorRoot}/starter`,
+					solutionLink: `${swiftFavoriteEditorRoot}/solution`
 				},
 				{
 					title: "State and Data Flow Transfer Practice",
@@ -1439,43 +1527,65 @@ Compare that with a report that the keyboard hides Save task at large text. Name
 			curriculum: [
 				{
 					title: "Readability, Spacing, and Touch Targets",
-					content:
-						"Design quality is part of app quality rather than an optional finishing layer. Typography, spacing, visual hierarchy, touch target sizing, dark-mode resilience, and accessible structure all affect whether the app is usable."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `An accessible task screen needs a readable title, discoverable controls and a status that survives changes in how the screen is perceived. In TaskReview the starter draws the long task name in a fixed height and uses a colored dot for completion. Increasing the system text size exposes the limits of that layout. Removing color from the display exposes the missing status wording.
+
+## Worked example
+
+Follow a task from its title to saving it. An unlabeled image may be visually recognizable while the accessibility tree provides little information about its action. A native button with the text Save task supplies an action name. A Saved message then gives a separate observation that the action finished.
+
+## Compare the result
+
+Try the flow with larger text and inspect the controls in order. Record the specific title, action or status that can now be reached. A single successful path leaves other settings and interactions open for further testing.`
 				},
 				{
 					title: "Worked Example Set: Polishing a Rough Screen",
-					content:
-						"Take a rough SwiftUI screen and improve hierarchy, spacing, labeling, and contrast deliberately. Many 'ugly app' problems are really clarity problems."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `In the rough screen, the caption about how long notes are kept precedes the task and competes with the action. Move the task title and status before the controls and put the caption about how long notes are kept afterward. Use a semantic font that responds to Dynamic Type and let the title wrap. Increasing its fixed frame by a few points can help at one size and still clip at another.
+
+Compare the original and revised layouts using the same title and text-size setting. Describe which words became readable. Then check the order of accessible elements separately; spacing that looks correct does not establish the order a screen reader presents.`
 				},
 				{
 					title: "Practice Lab: Accessibility Labels and Content Review",
-					content:
-						"Add accessibility labels to interactive controls and review whether the screen still makes sense with large text and clear spoken descriptions. Accessibility belongs in the baseline design habit instead of being treated as a late compliance task."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Inspect the save button’s role and accessible name. Read its label as a verb and object: Save task. Leave the system symbol as a visual cue in the native labeled control. Test both the control and the confirmation text. A good label explains the action; the confirmation reports its result.
+
+Open deletion. In the revised app Cancel keeps the task and Confirm deletion removes it. Restore sample creates a fresh exercise. Check each branch in order. A recovery button can help after deletion, while cancellation protects work before the destructive change occurs.`
 				},
 				{
 					title: "Reflection Question: What Makes an App Feel Intentionally Designed?",
-					content:
-						"Identify the difference between a screen that merely functions and a screen that feels deliberate, readable, and respectful of the user. A strong response references both aesthetics and accessibility."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `A report such as “the screen looks cleaner” gives another person little to verify. A report that names the original clipped words, the text-size setting, the control’s missing name and the effect of a concrete revision can be repeated. Keep visual inspection, accessibility-tree inspection and an actual spoken VoiceOver run as separate observations.
+
+Prioritize one barrier by its effect on saving or reading a task. Include a second setting that could still expose a problem. For example, large text tests layout; displaying a status word alongside color also needs a check with color cues removed.`
 				},
 				{
 					title: "SAD18 App Design and Accessibility: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD18 App Design and Accessibility",
-						projectKind: "core",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod5Pro1"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content: `Open TaskReview.xcodeproj and run the rough task screen. Inspect the complete title in the source, then compare it with the display at standard and large text sizes. Trace the save action, color-only status and immediate deletion. Record the first barrier that prevents someone from finishing the task, including the control or words affected.
+
+Repair the title layout and font, label the native save control, use an explicit completion status, and move the caption about how long notes are kept after the actionable content. Give deletion a cancel path and keep sample restoration. Run Save, cancel deletion, confirm deletion and restore. Compare the starter’s UI test with the reference’s large-text check. Keep actual listening or inspector results distinct from the named-control assertions.`,
+					ideImport: true,
+					projectLink: `${swiftAccessibleTasksRoot}/starter`,
+					solutionLink: `${swiftAccessibleTasksRoot}/solution`
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Diagnostic Checkpoint",
-					content:
-						"Readiness check: identify at least three design or accessibility problems in a rough screen and suggest concrete fixes. Prompt: 'Would this still work well with large dynamic type?'",
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod5Pro1"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content: `Use TaskReview to identify three barriers affecting different actions. Record one observation about the long title at a large text size, one about the save button’s accessible name and one about the deletion path. Predict how each proposed change alters what a person can read, hear or undo.
+
+Run the same sequence after the change with the same title and settings. Preserve a before-and-after observation for at least one control, and identify what the UI test actually asserted. If VoiceOver was unavailable, describe the observed accessibility-tree order and leave the spoken order for a listening test. Explain any remaining difference between restoring a sample and undoing a user’s edits.`,
+					ideImport: true,
+					projectLink: `${swiftAccessibleTasksRoot}/starter`,
+					solutionLink: `${swiftAccessibleTasksRoot}/solution`
 				},
 				{
 					title: "App Design and Accessibility Transfer Practice",
@@ -1837,7 +1947,7 @@ const SWIFT_COURSE_FLOW: SwiftCourseModuleFlow[] = [
 		verification:
 			"A submission includes the Xcode version, Swift language mode, deployment target, simulator model and OS, one visible code change, and evidence that the launched build contains that change.",
 		boundary:
-			"A supported Mac and Xcode are required for the practical iOS route. The supplied project map and screenshots preserve a planning route when installation is unavailable; a paid developer membership is not required for this module.",
+			"A supported Mac and Xcode are required for the practical iOS route. The supplied project map and environment record preserve a planning route when installation is unavailable; a paid developer membership is not required for this module.",
 		referenceLink: SWIFT_REFERENCES.xcodeRequirements,
 		projectCore:
 			"Create, rename, run, and archive notes for a blank SwiftUI app without changing signing or distribution settings.",

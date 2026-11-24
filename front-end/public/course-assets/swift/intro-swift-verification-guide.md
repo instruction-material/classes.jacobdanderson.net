@@ -22,12 +22,12 @@ Core readiness is 9 of 12 with no zero in evidence or access/privacy. A project 
 - Correct order begins with compatibility and installation, then project creation, destination selection, build, run, and evidence.
 - Preview and simulator are separate processes. A stale simulator result can come from launching the wrong scheme/destination, running an older build, or editing a file outside the active target.
 - Evidence names the visible text and the environment; “it worked” alone is insufficient.
-- Paid membership is not part of this key.
+- The simulator path needs no account sign-in. After changing the heading, the original UI test reports a label mismatch. Updating its expected label and rerunning verifies the intended text.
 
 ## Xcode Project Anatomy Key
 
 - `FirstLaunchApp.swift` contains the app entry point, `WindowGroup` supplies the scene content, and `ContentView` is the root view in the supplied trace.
-- A source file without target membership is not compiled into that target.
+- In case A, inspect the app target’s Compile Sources list and restore ProfileHeader.swift to that target. In case B, use `Color("ProfileAccent")` to match the bundled color set. Rebuild and compare the plane’s tint.
 - Asset names are exact identifiers; correcting the source reference or catalog name is narrower than changing the target or reinstalling Xcode.
 - Project, target, scheme, and destination receive distinct labels.
 
@@ -123,7 +123,7 @@ The first four labels start with `Map a trail:` followed by `Planned`, `0%`, `50
 - The launch trace is `@main App` → scene/`WindowGroup` → root view → reusable child.
 - Model and sample data remain separate concepts even if a tiny project keeps them nearby.
 - A good file boundary has a change or testing reason; more files alone do not earn credit.
-- Assets remain resources referenced by stable names rather than embedded personal files.
+- Hiking passes its Water bottle supply into HobbyCard, while Sketching passes Pencil. Moving the declarations preserves both labels. The UI test checks the two navigation paths.
 
 ## State and Data Flow Key
 

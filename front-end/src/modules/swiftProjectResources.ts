@@ -46,7 +46,76 @@ export const swiftLessonCardsRoot = `https://github.com/instruction-material/Swi
 const swiftDebuggingRevision = "cd273ea9177ebd80a02bd54e51971901012572c2";
 export const swiftDebuggingRoot = `https://github.com/instruction-material/Swift/tree/${swiftDebuggingRevision}/SW13-Tracker-Debugging`;
 
+const swiftFirstLaunchRevision = "52b702e2f263b1f8e1971d0c9a108219abf4aecf";
+export const swiftFirstLaunchRoot = `https://github.com/instruction-material/Swift/tree/${swiftFirstLaunchRevision}/SW1-2-First-Launch`;
+
+const swiftInteractionRevision = "388c69232f89e5b136147f917997d93eab7ddd90";
+export const swiftHobbyStructureRoot = `https://github.com/instruction-material/Swift/tree/${swiftInteractionRevision}/SW6-Hobby-Structure`;
+
+export const swiftFavoriteEditorRoot = `https://github.com/instruction-material/Swift/tree/${swiftInteractionRevision}/SW7-Favorite-Editor`;
+
+export const swiftAccessibleTasksRoot = `https://github.com/instruction-material/Swift/tree/${swiftInteractionRevision}/SW14-Accessible-Tasks`;
+
 const swiftPacks = [
+	{
+		pack: "SW14-Accessible-Tasks",
+		revision: swiftInteractionRevision,
+		projectKey: "accessible-tasks",
+		roleFiles: [
+			"ContentView.swift",
+			"TaskReview.xcodeproj/project.pbxproj",
+			"TaskReview.xcodeproj/xcshareddata/xcschemes/TaskReview.xcscheme",
+			"TaskReviewApp.swift",
+			"Tests/TaskReviewUITests.swift"
+		],
+		sharedFiles: ["README.md"]
+	},
+	{
+		pack: "SW7-Favorite-Editor",
+		revision: swiftInteractionRevision,
+		projectKey: "favorite-editor",
+		roleFiles: [
+			"ContentView.swift",
+			"FavoriteEditor.swift",
+			"FavoriteNote.xcodeproj/project.pbxproj",
+			"FavoriteNote.xcodeproj/xcshareddata/xcschemes/FavoriteNote.xcscheme",
+			"FavoriteNoteApp.swift",
+			"Tests/FavoriteNoteUITests.swift"
+		],
+		sharedFiles: ["README.md"]
+	},
+	{
+		pack: "SW6-Hobby-Structure",
+		revision: swiftInteractionRevision,
+		projectKey: "hobby-structure",
+		roleFiles: [
+			"ContentView.swift",
+			"Hobby.swift",
+			"HobbyCard.swift",
+			"HobbyMap.xcodeproj/project.pbxproj",
+			"HobbyMap.xcodeproj/xcshareddata/xcschemes/HobbyMap.xcscheme",
+			"HobbyMapApp.swift",
+			"SampleData.swift",
+			"Tests/HobbyMapUITests.swift"
+		],
+		sharedFiles: ["README.md"]
+	},
+	{
+		pack: "SW1-2-First-Launch",
+		revision: swiftFirstLaunchRevision,
+		projectKey: "first-launch",
+		roleFiles: [
+			"ContentView.swift",
+			"FirstLaunchApp.swift",
+			"ProfileHeader.swift",
+			"Assets.xcassets/Contents.json",
+			"Assets.xcassets/ProfileAccent.colorset/Contents.json",
+			"Tests/FirstLaunchUITests.swift",
+			"FirstLaunch.xcodeproj/project.pbxproj",
+			"FirstLaunch.xcodeproj/xcshareddata/xcschemes/FirstLaunch.xcscheme"
+		],
+		sharedFiles: ["README.md"]
+	},
 	{
 		pack: "SW13-Tracker-Debugging",
 		revision: swiftDebuggingRevision,

@@ -276,6 +276,34 @@ describe("python project routes", () => {
 		}
 	);
 
+	it.each([
+		["first-launch", 9], ["hobby-structure", 9], ["favorite-editor", 7], ["accessible-tasks", 6]
+	] as const)(
+		"retains both %s Xcode projects and shared schemes",
+		async (key, count) => {
+			const fixture = JSON.parse(readFileSync(
+				resolve(process.cwd(), `../test/fixtures/swift-${key}-source.json`), "utf8"
+			));
+			for (const role of ["starter", "solution"]) {
+				const files = Object.entries(fixture.files as Record<string, { content: string }>)
+					.filter(([path]) => path.startsWith(`${fixture.pack}/${role}/`) || path === `${fixture.pack}/README.md`)
+					.map(([path, file]) => ({ name: path.slice(fixture.pack.length + 1), content: file.content, encoding: "text" }));
+				expect(files).toHaveLength(count);
+				for (const owner of ["user", "course-code"] as const) {
+					await withPythonProjectRoute(async baseUrl => {
+						const response = await postJson(baseUrl, {
+							mode: "swift", files, activeFileName: `${role}/ContentView.swift`,
+							courseID: "intro-to-swift-app-development",
+							courseProjectKey: `intro-to-swift-app-development:${key}:${role === "starter" ? "starter" : "reference"}:native-swift-v1`
+						});
+						expect(response.status).toBe(201);
+						expect((await response.json()).project.files).toEqual(files);
+					}, owner, "intro-to-swift-app-development");
+				}
+			}
+		}
+	);
+
 	it.each(["starter", "solution"] as const)(
 		"stores the complete tracker %s pack for both owner types",
 		async role => {

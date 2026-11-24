@@ -10,9 +10,53 @@ const welcome = JSON.parse(
 		"utf8"
 	)
 );
+const anatomyModule = `${courseID}-sw2-xcode-project-anatomy`;
+const anatomyTasks = [
+	`${anatomyModule}-curriculum-core-project-xcode-project-anatomy`,
+	`${anatomyModule}-supplemental-sw2-xcode-project-anatomy-readiness-check`
+];
 const projects = [
 	{
+		name: "accessible-tasks",
+		module: "sw14-app-design-and-accessibility",
+		coreSuffix: "curriculum-core-project-app-design-and-accessibility",
+		key: "accessible-tasks",
+		readiness: true,
+		fileCount: 6,
+		instructionTokens: ["TaskReview.xcodeproj", "Product > Test", "README.md"]
+	},
+	{
+		name: "favorite-editor",
+		module: "sw7-state-and-data-flow",
+		coreSuffix: "curriculum-core-project-state-and-data-flow",
+		key: "favorite-editor",
+		readiness: true,
+		fileCount: 7,
+		instructionTokens: ["FavoriteNote.xcodeproj", "Product > Test", "README.md"]
+	},
+	{
+		name: "hobby-structure",
+		module: "sw6-app-structure-and-lifecycle",
+		coreSuffix: "curriculum-core-project-what-an-app-is-structurally",
+		key: "hobby-structure",
+		readiness: true,
+		fileCount: 9,
+		instructionTokens: ["HobbyMap.xcodeproj", "Product > Test", "README.md"]
+	},
+	{
+		name: "first-launch",
+		module: "sw1-mac-setup-and-first-launch",
+		coreSuffix: "curriculum-core-project-mac-setup-and-project-tooling",
+		key: "first-launch",
+		readiness: true,
+		fileCount: 9,
+		linkedTasks: anatomyTasks,
+		itemModules: Object.fromEntries(anatomyTasks.map(id => [id, anatomyModule])),
+		instructionTokens: ["FirstLaunch.xcodeproj", "Product > Test", "README.md"]
+	},
+	{
 		name: "tracker-debugging",
+		instructionTokens: ["Tests/TrackerTests.swift", "run swift test", "one @main"],
 		module: "sw13-debugging-and-swift-testing",
 		coreSuffix: "curriculum-core-project-debugging-and-testing",
 		key: "tracker-debugging",
@@ -123,8 +167,10 @@ for (const project of projects) {
 					createdAt: "2026-10-01T12:00:00.000Z",
 					updatedAt: "2026-10-01T12:00:00.000Z"
 				}),
+				itemModules: project.itemModules,
 				continuationIDs: [
 					coreID,
+					...(project.linkedTasks ?? []),
 					...(project.readiness
 						? [
 								`${moduleID}-supplemental-${
@@ -133,7 +179,7 @@ for (const project of projects) {
 							]
 						: [])
 				],
-				instructionTokens: ["one @main", "iOS simulator", "README.md"],
+				instructionTokens: project.instructionTokens ?? ["one @main", "iOS simulator", "README.md"],
 				readyToken: "Xcode",
 				outputEnv: `SWIFT_${project.name.toUpperCase().replaceAll("-", "_")}_BROWSER_DIR`,
 				defaultOutput: `output/swift-${project.name}-browser`

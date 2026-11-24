@@ -4,6 +4,10 @@ import { createPinia, setActivePinia } from "pinia";
 import { describe, expect, it } from "vitest";
 import {
 	swiftCapstoneRoot,
+	swiftAccessibleTasksRoot,
+	swiftFavoriteEditorRoot,
+	swiftFirstLaunchRoot,
+	swiftHobbyStructureRoot,
 	swiftGalleryRoot,
 	swiftHobbyRoot,
 	swiftMapRoot,
@@ -272,6 +276,13 @@ describe("intro to Swift App Development learner flow", () => {
 				expect(item.ideImport).toBe(true);
 				expect(item.content).toContain("camera");
 				expect(item.content).toContain("simulator-and-device-validation-case");
+			}
+			else if ([swiftFirstLaunchRoot, swiftAccessibleTasksRoot, swiftFavoriteEditorRoot, swiftHobbyStructureRoot]
+				.some(root => item.projectLink === `${root}/starter`)) {
+				expect(item.ideImport).toBe(true);
+				expect(item.solutionLink).toBe(item.projectLink!.replace(/\/starter$/, "/solution"));
+				expect(item.content).toMatch(/FirstLaunch|TaskReview|FavoriteNote|HobbyMap/);
+				expect(item.content).toContain("[Practice case]");
 			}
 			else if (item.title === "Project: Welcome Profile App") {
 				for (const section of [
