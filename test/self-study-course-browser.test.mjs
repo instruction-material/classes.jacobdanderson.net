@@ -43,6 +43,7 @@ const readingCounts = [22, 19, 19, 20, 8, 13, 21, 31, 10, 13, 14, 16, 20, 14, 9,
 assert.equal(readingCounts.length, courseIds.length);
 // Reading counts for explicitly selected teaching scopes.
 const focusedReadingCounts = {
+	"unity-game-development": 36,
 	"data-science-in-python": 53,
 	"pythonic-design-patterns": 51,
 	"python-to-java-and-cpp-bridge": 8,
@@ -370,6 +371,27 @@ async function checkCards(page, module, expected, optional, resourceViews, profi
 	return rows.map(row => row.id);
 }
 
+async function checkUnityLinks(page, module, items, role, links) {
+	const expectedStarter = "https://github.com/instruction-material/Unity-Game-Development/tree/main/UGD-full-project-starter";
+	const expectedSolution = "https://github.com/instruction-material/Unity-Game-Development/tree/main/UGD-full-project-solution";
+	for (const item of items) {
+		const row = await page.$eval(
+			`[id=${JSON.stringify(`${module.id}-${item.id}`)}]`,
+			card => ({
+				starter: card.querySelector("a.resource-link.is-project")?.getAttribute("href") ?? null,
+				solution: card.querySelector("a.resource-link.is-solution")?.getAttribute("href") ?? null,
+				browserImport: Boolean(card.querySelector("a.is-ide-starter"))
+			})
+		);
+		assert.deepEqual(row, {
+			starter: expectedStarter,
+			solution: role === "instructor" ? expectedSolution : null,
+			browserImport: false
+		}, `${item.title}: native project and role links`);
+		links.push({ item: item.id, ...row });
+	}
+}
+
 test(
 	"reviewed self-study readings and assignments in both roles and viewport sizes",
 	{ timeout: timeoutMs },
@@ -459,6 +481,7 @@ test(
 						const readings = [];
 						const assignments = [];
 						const resourceViews = [];
+						const unityLinks = [];
 						const assignmentViews = [];
 						try {
 							await page.setViewport({ width, height: 900 });
@@ -578,11 +601,26 @@ test(
 								if (fixture.reviewedModuleIds && !fixture.reviewedModuleIds.includes(module.id)) continue;
 								const groupIndex = fixture.modules.slice(0, index).filter(candidate => candidate.kind === module.kind).length;
 								await chooseModule(page, module, groupIndex);
+								const unity = id === "unity-game-development";
+								const learnPosition = unity ? 2 : 3;
+								if (unity) {
+									const tabs = await page.$$eval(".lesson-view-toggle button", buttons =>
+										buttons.map(button => button.textContent.trim())
+									);
+									assert.deepEqual(tabs, [
+										module.projects.length ? "Projects" : "Supplemental Projects",
+										"Learn"
+									]);
+									assert.equal(await page.$eval(
+										".lesson-view-toggle [aria-pressed='true']",
+										button => button.textContent.trim()
+									), "Learn");
+								}
 								const learnViewButton = await page.$(
-									".lesson-view-toggle button:nth-child(3)"
+									`.lesson-view-toggle button:nth-child(${learnPosition})`
 								);
 								if (module.readings.length || learnViewButton) {
-									await chooseView(page, 3);
+									await chooseView(page, learnPosition);
 								}
 								if (!module.readings.length && learnViewButton) {
 									assert.ok(
@@ -706,6 +744,9 @@ test(
 									true,
 									`${module.title}: no page overflow`
 								);
+								if (id === "unity-game-development") {
+									await checkUnityLinks(page, module, module.readings, role, unityLinks);
+								}
 								if (
 									index === 0
 									|| (["intro-to-physics", "physics-level-2"].includes(id) && /^(?:Standards Map|Course Roadmap)$/.test(module.title))
@@ -740,29 +781,41 @@ test(
 										)
 									});
 								}
-								await chooseView(page, 1);
-								const core = await checkCards(
-									page,
-									module,
-									module.projects,
-									false,
-									resourceViews,
-									name,
-									assignmentViews
-								);
+								let core = [];
+								if (!unity || module.projects.length) {
+									await chooseView(page, 1);
+									core = await checkCards(
+										page,
+										module,
+										module.projects,
+										false,
+										resourceViews,
+										name,
+										assignmentViews
+									);
+								}
+								if (id === "unity-game-development") {
+									await checkUnityLinks(page, module, module.projects, role, unityLinks);
+								}
 								if ((id === "smart-money-personal-finance" && (index === 0 || index === 8)) || (Object.hasOwn(focusedReadingCounts, id) && module.title === "GrS2 Loops") || (index === 0 && ["early-elementary-a-reading", "early-elementary-b-picture-book"].includes(id)) || module.projects.some(item => /^(?:Punctuation Treasure Hunt|Picture Book Assembly Portfolio)$/.test(item.title))) {
 									await page.screenshot({ path: join(output, `${name}-${index + 1}-complete-projects.png`), fullPage: true });
 								}
-								await chooseView(page, 2);
-								const optional = await checkCards(
-									page,
-									module,
-									module.optional,
-									true,
-									resourceViews,
-									name,
-									assignmentViews
-								);
+								let optional = [];
+								if (!unity || module.optional.length) {
+									await chooseView(page, unity ? 1 : 2);
+									optional = await checkCards(
+										page,
+										module,
+										module.optional,
+										true,
+										resourceViews,
+										name,
+										assignmentViews
+									);
+								}
+								if (id === "unity-game-development") {
+									await checkUnityLinks(page, module, module.optional, role, unityLinks);
+								}
 								if (id === "smart-money-personal-finance" && (index === 0 || index === 8)) {
 									await page.screenshot({ path: join(output, `${name}-${index + 1}-complete-optional.png`), fullPage: true });
 								}
@@ -796,6 +849,10 @@ test(
 							if (id === "algebra-1b") assert.equal(resourceViews.length, 3);
 							if (id === "algebra-2a") assert.equal(resourceViews.length, 4);
 							if (id === "algebra-2b") assert.equal(resourceViews.length, 3);
+							if (id === "unity-game-development") {
+								assert.equal(resourceViews.length, 18);
+								assert.equal(unityLinks.length, 54);
+							}
 							assert.deepEqual(pageErrors, []);
 							profiles.push({
 								id,
@@ -807,6 +864,7 @@ test(
 								reviewedModuleIds: fixture.reviewedModuleIds,
 								completeReadings: readings,
 								resourceViews,
+								...(id === "unity-game-development" ? { nativeProjectLinks: unityLinks } : {}),
 								assignmentViews,
 								assignments,
 								orbitExperiment,

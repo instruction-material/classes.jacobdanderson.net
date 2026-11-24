@@ -207,6 +207,35 @@ describe("Unity Game Development learner flow", () => {
 		);
 	});
 
+	it("guides learners from the published source folders to a runnable scene", async () => {
+		const modules = unityModules(await requireUnityCourse());
+		const reader = (moduleIndex: number, title: string) =>
+			modules[moduleIndex].curriculum.find(item => item.title === title)
+				?.content;
+		const practice = assetText("unity-game-development-practice-pack.md");
+
+		expect(reader(0, "Unity Version and Hub Setup")).toContain(
+			"ProjectSettings/ProjectVersion.txt"
+		);
+		expect(reader(0, "First Scene Smoke Test")).toContain(
+			"Create and save `Assets/Scenes/SmokeTest.unity`"
+		);
+		expect(reader(2, "Input to Intent")).toContain(
+			"Active Input Handling to Both"
+		);
+		expect(reader(7, "Unity Test Framework")).toContain(
+			"Verify the saved scene separately"
+		);
+		expect(reader(8, "Repository Shape")).toContain(
+			"Scene and prefab folders contain setup notes"
+		);
+		expect(practice).toContain("Debug.Log(\"Smoke scene ready\")");
+		expect(practice).toContain("GameManager.StartGame()");
+		expect(practice).toContain("three coins in the starter");
+		expect(practice).toContain("For the solution, place five coins");
+		expect(practice).toContain("Builds/DesktopDevelopment");
+	});
+
 	it("keeps hardware, paid assets, accounts, and personal data out of core completion", async () => {
 		const course = await requireUnityCourse();
 		const text = JSON.stringify(course);

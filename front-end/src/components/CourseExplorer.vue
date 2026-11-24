@@ -791,20 +791,28 @@ const canEditActiveModuleProgress = computed(
 		!!activeModule.value &&
 		isCoreModule(activeModule.value)
 );
+const isUnityCourse = computed(
+	() => selectedCourse.value?.id === "unity-game-development"
+);
 
 const lessonItemsByView = computed(() => {
 	const module = activeModule.value;
+	const curriculum = module?.curriculum ?? [];
+	const practice = module?.supplementalProjects ?? [];
+	// Unity's required practice keeps its published supplemental item IDs.
+	const requiredPractice = (item: CourseModuleItem) =>
+		isUnityCourse.value &&
+		item.learningPath === "core" &&
+		!isLessonLearningItem(item);
 	return {
-		projects: (module?.curriculum ?? []).filter(
-			item => !isLessonLearningItem(item)
+		projects: [
+			...curriculum.filter(item => !isLessonLearningItem(item)),
+			...practice.filter(requiredPractice)
+		],
+		supplemental: practice.filter(
+			item => !isLessonLearningItem(item) && !requiredPractice(item)
 		),
-		supplemental: (module?.supplementalProjects ?? []).filter(
-			item => !isLessonLearningItem(item)
-		),
-		learn: [
-			...(module?.curriculum ?? []),
-			...(module?.supplementalProjects ?? [])
-		].filter(isLessonLearningItem)
+		learn: [...curriculum, ...practice].filter(isLessonLearningItem)
 	};
 });
 const activeLessonItems = computed(
@@ -830,7 +838,12 @@ const hasLearningMaterial = computed(
 		learningTopics.value.length > 0
 );
 const availableLessonViews = computed(() =>
-	lessonViews.filter(view => view.id !== "learn" || hasLearningMaterial.value)
+	lessonViews.filter(view =>
+		view.id === "learn"
+			? hasLearningMaterial.value
+			: !isUnityCourse.value ||
+				lessonItemsByView.value[view.id].length > 0
+	)
 );
 const lessonViewLabel = computed(
 	() =>
@@ -851,8 +864,9 @@ watch(
 			module?.id !== previous?.[0]?.id || courseId !== previous?.[1];
 		if (moduleChanged) {
 			lessonView.value =
-				!lessonItemsByView.value.projects.length &&
-				lessonItemsByView.value.learn.length
+				lessonItemsByView.value.learn.length &&
+				(isUnityCourse.value ||
+					!lessonItemsByView.value.projects.length)
 					? "learn"
 					: "projects";
 		}
