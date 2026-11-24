@@ -791,27 +791,27 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "DPC10 Patterns for Resource Management: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC10 Patterns for Resource Management",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Open the texture manager starter and build main.cpp with C++20. Add terrain twice with player between the requests. Keep the display order and store reusable textures inside PreviewRenderer::Impl. Keep TextureHandle move-only. Add a guard so draw runs one cleanup callback when its scope ends.\n\n**Checkpoints:** Three display entries share two acquired handles. Match each release to its acquisition. Compare the normal exit trace with a case that throws after constructing a guard, catches outside its scope and still observes one callback.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC7-RAII-Resource-Manager/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/d97f1ff13b14ceef33ed62f88455ce576bf5dd76/DPC7-RAII-Resource-Manager/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC7-RAII-Resource-Manager/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/d97f1ff13b14ceef33ed62f88455ce576bf5dd76/DPC7-RAII-Resource-Manager/solution"
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Project: RAII Resource Manager",
+					preserveInstructions: true,
+					contentKind: "assignment",
 					content:
-						"Wrap fake engine resources in move-only handles, hide details behind `pImpl`, and compare direct ownership with a small cache. This lab translates resource-management pressure into concrete design choices.",
+						"Trace ownership when a cleanup guard moves into a nested scope. Use a nonthrowing callback that increments a counter, move the guard and throw inside the nested scope. Catch the exception outside that scope. Then let the moved-from guard go out of scope.\n\n**Checkpoints:** The counter reads one after the catch and one after both destructors. Show that attempting to copy the guard is rejected at compile time. Explain why moving transfers the obligation and why the moved-from guard has no work left.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC7-RAII-Resource-Manager/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/d97f1ff13b14ceef33ed62f88455ce576bf5dd76/DPC7-RAII-Resource-Manager/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC7-RAII-Resource-Manager/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/d97f1ff13b14ceef33ed62f88455ce576bf5dd76/DPC7-RAII-Resource-Manager/solution"
 				},
 				{
 					title: "RAII Wrapper Transfer Practice",
