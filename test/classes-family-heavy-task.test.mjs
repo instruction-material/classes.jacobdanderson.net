@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
+import { once } from "node:events";
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -168,10 +169,17 @@ test(
 			assert.deepEqual(await waitForExit(contender, 3000), { code: 75, signal: null });
 			assert.equal(existsSync(lockPath), true);
 			assert.equal(isAlive(active.pid), true);
+			contender = spawn(process.execPath, [wrapperPath, "--", process.execPath, "-e", "process.exit(0)"], {
+				env: { ...env, CLASSES_FAMILY_START_WAIT_MS: "1000" },
+				stdio: ["ignore", "ignore", "pipe"]
+			});
+			const contenderExit = waitForExit(contender, 3000);
+			const [message] = await once(contender.stderr, "data");
+			assert.match(message.toString(), /heavy task is already running/);
+			assert.equal(isAlive(active.pid), true);
 			process.kill(-active.pid, "SIGKILL");
 			await activeExit;
-			contender = spawn(process.execPath, [wrapperPath, "--", process.execPath, "-e", "process.exit(0)"], { env, stdio: "ignore" });
-			assert.deepEqual(await waitForExit(contender, 3000), { code: 0, signal: null });
+			assert.deepEqual(await contenderExit, { code: 0, signal: null });
 			assert.equal(existsSync(lockPath), false);
 		} finally {
 			owner?.kill("SIGKILL");

@@ -4,10 +4,12 @@ import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileS
 import { loadavg } from "node:os";
 import { basename, dirname, join } from "node:path";
 import { cwd, exit, kill, pid, platform } from "node:process";
+import { setTimeout as delay } from "node:timers/promises";
 
 const LOCK_PATH = process.env.CLASSES_FAMILY_LOCK ?? "/tmp/classes-family-heavy-task.lock";
 const LOG_PATH = process.env.CLASSES_FAMILY_HEAVY_LOG ?? "/tmp/classes-family-heavy-tasks.log";
 const TIMEOUT_MS = numberFromEnv("CLASSES_FAMILY_HEAVY_TIMEOUT_MS", 30 * 60 * 1000);
+const START_WAIT_MS = numberFromEnv("CLASSES_FAMILY_START_WAIT_MS", 0);
 const MAX_LOAD = numberFromEnv("CLASSES_FAMILY_MAX_LOAD", 8);
 const MIN_DISK_GB = numberFromEnv("CLASSES_FAMILY_MIN_DISK_GB", 40);
 const TASK_ID = process.env.CLASSES_FAMILY_TASK_ID ?? `manual-${Date.now()}-${pid}`;
@@ -20,9 +22,12 @@ if (command.length === 0) {
 	exit(64);
 }
 
-ensureSystemCanStart();
-
-acquireLock();
+const startDeadline = performance.now() + START_WAIT_MS;
+while (!systemCanStart() || !acquireLock()) {
+	const remainingWait = startDeadline - performance.now();
+	if (remainingWait <= 0) exit(75);
+	await delay(Math.min(10_000, remainingWait));
+}
 const startedAt = new Date();
 let child = null;
 let timeout = null;
@@ -154,9 +159,9 @@ function numberFromEnv(name, fallback) {
 	return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
 }
 
-function ensureSystemCanStart() {
-	if (process.env.CLASSES_FAMILY_ALLOW_HIGH_LOAD === "1") return;
-	if (platform !== "darwin") return;
+function systemCanStart() {
+	if (process.env.CLASSES_FAMILY_ALLOW_HIGH_LOAD === "1") return true;
+	if (platform !== "darwin") return true;
 
 	const [oneMinuteLoad] = loadavg();
 	if (oneMinuteLoad > MAX_LOAD) {
@@ -164,7 +169,7 @@ function ensureSystemCanStart() {
 			`System load is ${oneMinuteLoad.toFixed(2)}, above ${MAX_LOAD}. Deferring heavy task. ` +
 				"Set CLASSES_FAMILY_ALLOW_HIGH_LOAD=1 to override."
 		);
-		exit(75);
+		return false;
 	}
 
 	const freeGb = availableDiskGb(cwd());
@@ -173,8 +178,9 @@ function ensureSystemCanStart() {
 			`Available disk is ${freeGb.toFixed(1)} GB, below ${MIN_DISK_GB} GB. Deferring heavy task. ` +
 				"Set CLASSES_FAMILY_ALLOW_HIGH_LOAD=1 to override."
 		);
-		exit(75);
+		return false;
 	}
+	return true;
 }
 
 function availableDiskGb(path) {
@@ -194,7 +200,7 @@ function acquireLock() {
 	try {
 		mkdirSync(LOCK_PATH);
 		writeLockMetadata(new Date(), null);
-		return;
+		return true;
 	} catch (error) {
 		if (error?.code !== "EEXIST") throw error;
 
@@ -206,14 +212,14 @@ function acquireLock() {
 			rmSync(LOCK_PATH, { force: true, recursive: true });
 			mkdirSync(LOCK_PATH);
 			writeLockMetadata(new Date(), null);
-			return;
+			return true;
 		}
 
-		console.error("Another classes/scheduler.classes heavy task is already running; skipping.");
+		console.error("Another classes/scheduler.classes heavy task is already running; deferring.");
 		if (existing) {
 			console.error(JSON.stringify(existing, null, 2));
 		}
-		exit(75);
+		return false;
 	}
 }
 
