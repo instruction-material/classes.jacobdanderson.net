@@ -395,6 +395,22 @@ describe("research-backed course family expansions", () => {
 					for (const detail of ["PDP9", "PDP12", "models.py", "test_contract.py", "requirements-dev.txt", "complete export", "dependency diagram", "successful clean reproduction"])
 						expect(roadmapText, courseId).toContain(detail);
 				}
+				else if (courseId === "intro-to-swift-app-development") {
+					const items = [...roadmapModule!.curriculum, ...roadmapModule!.supplementalProjects];
+					const expected = [
+						["Follow-Up Path", "submit-or-hold decision in SW20"],
+						["Resource Map", "[Mac Setup and Project Tooling](/courses#"],
+						["Module Alignment Guide", "[Map Places App](/courses#"],
+						["Reference Map", "[Swift Testing](https://"],
+						["Prerequisite Map", "SW10 list example for stable row identity"],
+						["Resource Inventory", "compare malformed JSON with an HTTP failure"]
+					];
+					expect(items).toHaveLength(expected.length);
+					for (const [title, detail] of expected) {
+						const item = items.find(row => row.title === `Intro to Swift App Development ${title}`);
+						expect(item?.content, title).toContain(detail);
+					}
+				}
 				else if (courseId === "ap-computer-science-a") {
 					const readings = [...roadmapModule!.curriculum, ...roadmapModule!.supplementalProjects];
 					expect(readings).toHaveLength(6);

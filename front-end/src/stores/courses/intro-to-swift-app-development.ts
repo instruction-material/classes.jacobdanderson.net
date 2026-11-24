@@ -1006,7 +1006,7 @@ The output is \`7 Map a trail\` followed by \`7 Map a river\`. The ID still iden
 					contentKind: "assignment",
 					ideImport: false,
 					content:
-						"Design a model operation that accepts an active fraction only from 0 through 1. Try −0.1, 0, 0.5, 1 and 1.1 on separate copies of planned lesson 7. Write one expectation for each result. A rejected value must leave the card planned. At 1 the card stays active until a completion date is supplied. Which checks can run without a view?"
+						"Design a model operation that accepts an active fraction only from 0 through 1. Try −0.1, 0, 0.5, 1 and 1.1 on separate copies of lesson 7 with status `planned`. Write one expectation for each result. A rejected value must leave the card planned. At 1 the card stays active until a completion date is supplied. Which checks can run without a view?"
 				}
 			]
 		},
