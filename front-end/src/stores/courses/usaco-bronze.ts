@@ -648,27 +648,19 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Ski Course Design",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 13 Combination Lock Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"For this Python exercise, put `5` in skidesign.in, followed by 20, 4, 1, 24 and 21 on separate lines. Mark those heights on a number line. The band [4,21] leaves three hills alone and changes the outer two by three each, so skidesign.out contains 18. Compare your cost with a partner’s choice of band.\n\n**Checkpoints:** Replace the input with two hills at 5 and 9. Their spread is already within 17, so the answer is 0. If your minimum still has its initial value, trace whether any candidate band was considered.",
 					projectLink:
-						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB15-Ski-Course-Design/starter",
+						"https://github.com/instruction-material/USACO-Bronze/tree/354eb28d3f0b990bbb781cf4396df774cacedfe3/UB15-Ski-Course-Design/starter",
 					solutionLink:
-						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB15-Ski-Course-Design/solution"
+						"https://github.com/instruction-material/USACO-Bronze/tree/354eb28d3f0b990bbb781cf4396df774cacedfe3/UB15-Ski-Course-Design/solution"
 				},
 				{
 					title: "Block Game",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 13 Combination Lock Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"In Python, read `2` and the lines `aba bc` and `bb ac` from blocks.in. Work with a partner: each person picks one face from each board and spells the two visible words. Which choices demand the most a blocks? Repeat for b and c. Take each letter’s maximum over the four possible displays. The result starts with 3, 3 and 2, each on its own line in blocks.out.\n\n**Checkpoints:** Flip both boards by exchanging the words on each line. Check that the same three counts and 23 trailing zero lines come back.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB17-Block-Game/starter",
 					solutionLink:
@@ -721,13 +713,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "The Cow Signal",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 14 Prime Cryptarithm Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Write `2 3 2` followed by `X..` and `.XX` in cowsignal.in, one row per line. For this Python exercise, one partner can sketch the enlarged image while the other predicts its dimensions. Four rows of six characters are needed. The first two lines of cowsignal.out should read `XX....`, the next two `..XXXX`. A period occupies a cell just as an X does.\n\n**Checkpoints:** Exchange the input rows. The two `..XXXX` lines move above the two `XX....` lines. Check the order as well as the number of characters.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB18-The-Cow-Signal/starter",
 					solutionLink:
@@ -754,60 +742,43 @@ const usacoBronzeSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "UB 15 Ski Course Design Java: Core Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 15 Ski Course Design Java: Practice Studio",
-						section: "concepts"
-					})
+					preserveInstructions: true,
+					content:
+						"A ski course can keep any hill whose height falls inside a chosen band of width 17. A hill below the band rises to its lower edge, and one above it falls to the upper edge. Moving a hill by d costs d². On a number line, place hills at 0 and 21. Four units of excess height must come out of the spread. What happens to the bill if each hill moves two units? Compare that with moving just one hill by four."
 				},
 				{
 					title: "UB 15 Ski Course Design Java: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 15 Ski Course Design Java: Practice Studio",
-						section: "example"
-					})
+					preserveInstructions: true,
+					content:
+						"For hills at 0 and 21, compare bands [1,18] and [2,19]. The first costs 1² + 3² = 10. The second costs 2² + 2² = 8. Now add a second hill at 0. Each low hill must be moved and paid for separately. The same bands now cost 11 and 12. Which band wins, and why did adding a hill change the answer even though the two extreme heights stayed the same?"
 				},
 				{
 					title: "UB 15 Ski Course Design Java: Core Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 15 Ski Course Design Java: Practice Studio",
-						section: "coreProject",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Read the hill count from skidesign.in, then one height per line. In Java, try integer lower edges from 0 through 83. For each band ending 17 higher, sum the squared adjustments for hills outside it. Write the smallest sum to skidesign.out. Start with heights 0 and 21 and compare the result with the hand calculation of 8.\n\n**Checkpoints:** Try 0 and 17, then 5 and 9. Each pair can stay where it is, so both outputs must be 0. A single hill at 7 also costs 0.",
 					projectLink:
-						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-15-Ski-Course-Design-Java/starter",
+						"https://github.com/instruction-material/USACO-Bronze/tree/354eb28d3f0b990bbb781cf4396df774cacedfe3/UB-15-Ski-Course-Design-Java/starter",
 					solutionLink:
-						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-15-Ski-Course-Design-Java/solution"
+						"https://github.com/instruction-material/USACO-Bronze/tree/354eb28d3f0b990bbb781cf4396df774cacedfe3/UB-15-Ski-Course-Design-Java/solution"
 				},
 				{
 					title: "UB 15 Ski Course Design Java: Review and Reflection",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 15 Ski Course Design Java: Practice Studio",
-						section: "review"
-					})
+					preserveInstructions: true,
+					content:
+						"For heights 0, 0 and 21, a program reports 8. On paper, mark the adjustment for each of the three hills in [2,19]. The cost is 12, and the cheaper band [1,18] costs 11. Which hill did the program lose if it kept just the distinct heights? Shift all three original heights up by one. Explain why the best band shifts by the same amount and the minimum cost remains 11."
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "UB 15 Ski Course Design Java: Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 15 Ski Course Design Java: Practice Studio",
-						section: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Can two placements tie for the minimum? Put `2`, `0`, and `20` on separate lines in skidesign.in. The three excess units can be split as one and two in either order. Both [1,18] and [2,19] cost 5. Sketch each placement before running the program.\n\n**Checkpoints:** Reverse the input heights. Check that skidesign.out still contains one line with 5. The judge asks for the cost, so the two optimal placements produce a single answer.",
 					projectLink:
-						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-15-Ski-Course-Design-Java/starter",
+						"https://github.com/instruction-material/USACO-Bronze/tree/354eb28d3f0b990bbb781cf4396df774cacedfe3/UB-15-Ski-Course-Design-Java/starter",
 					solutionLink:
-						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-15-Ski-Course-Design-Java/solution"
+						"https://github.com/instruction-material/USACO-Bronze/tree/354eb28d3f0b990bbb781cf4396df774cacedfe3/UB-15-Ski-Course-Design-Java/solution"
 				},
 				{
 					title: "Your Ride Is Here Java",
@@ -840,28 +811,21 @@ const usacoBronzeSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "UB 16 Wormholes Java: Core Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 16 Wormholes Java: Practice Studio",
-						section: "concepts"
-					})
+					preserveInstructions: true,
+					content:
+						"Draw A at (0,0) and B at (2,0) and connect them as partners. Starting just left of B, Bessie enters B, exits at A, and walks right into B again. That pairing permits a cycle. Move B to (2,1). There is still exactly one way to pair the holes, but neither exit has another hole directly to its right on the same row. Distinguish the number of possible pairings from the number that permit a loop."
 				},
 				{
 					title: "UB 16 Wormholes Java: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 16 Wormholes Java: Practice Studio",
-						section: "example"
-					})
+					preserveInstructions: true,
+					content:
+						"Label A=(0,0), B=(2,0), C=(0,1), D=(2,1). Pair A with D and B with C. Starting at the entrance B, teleport to C and walk right to D. Teleport to A and walk right to B. Mark the repeated entrance. Now pair A with C and B with D: both right-hand entrances teleport to the rightmost point on the opposite row and escape. Check the remaining pairing, A with B and C with D. Two of the three pairings loop."
 				},
 				{
 					title: "UB 16 Wormholes Java: Core Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 16 Wormholes Java: Practice Studio",
-						section: "coreProject",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Read an even number of distinct points from wormhole.in, one coordinate pair per line after the count. For each hole find the closest hole strictly to its right on the same row. Pair the first free hole with each possible free partner in turn. At a complete pairing, start at each entrance, teleport, then take one rightward step to the next hole. A repeated entrance proves a cycle. Count that pairing once in wormhole.out.\n\n**Checkpoints:** The two points (0,0) and (2,0) give 1. Move the second to (2,1) for 0. The four corners (0,0), (2,0), (0,1), (2,1) give 2.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-16-Wormholes-Java/starter",
 					solutionLink:
@@ -869,22 +833,17 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "UB 16 Wormholes Java: Review and Reflection",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 16 Wormholes Java: Practice Studio",
-						section: "review"
-					})
+					preserveInstructions: true,
+					content:
+						"On the four corners (0,0), (2,0), (0,1), (2,1), a pair on each horizontal row makes a loop on both rows. Should the counter advance once or twice? The answer counts whole pairings, so record that arrangement once as soon as any start loops. With four holes there are only three possible pairings. Reverse the input rows, redraw the same partner lines and check that the total remains 2."
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "UB 16 Wormholes Java: Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 16 Wormholes Java: Practice Studio",
-						section: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Place four holes at x = 0, 1, 2 and 3, all on y = 0. List the three perfect pairings. Two allow a loop. For the pairing 0 with 2 and 1 with 3, trace from each entrance until the cow walks past the last hole. At every exit she must enter the nearest hole to the right.\n\n**Checkpoints:** Keep the same x-coordinates and set each y equal to its x. No two holes now share a row. The three possible pairings remain, but wormhole.out becomes 0.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-16-Wormholes-Java/starter",
 					solutionLink:
@@ -923,28 +882,21 @@ const usacoBronzeSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "UB 17 Block Game Java: Core Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 17 Block Game Java: Practice Studio",
-						section: "concepts"
-					})
+					preserveInstructions: true,
+					content:
+						"Each board shows one of two words. How many copies of each letter must be on hand to spell whatever the boards show? Compare `aa` with `ab` on opposite sides of one board. Two a blocks cover the worst case for a, and one b block covers the worst case for b. The two worst cases can occur on different faces. With `aba` and `bc`, make the same comparison for a, b and c: the board needs 2, 1 and 1."
 				},
 				{
 					title: "UB 17 Block Game Java: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 17 Block Game Java: Practice Studio",
-						section: "example"
-					})
+					preserveInstructions: true,
+					content:
+						"Draw two boards with sides `aba / bc` and `bb / ac`. For a, the largest count on the first board is 2 and on the second it is 1, giving 3. For b, the maxima are 1 and 2, also giving 3. For c, each board can show one, giving 2. Which two faces would use both c blocks at once? Compare that choice with the faces that use all three a blocks."
 				},
 				{
 					title: "UB 17 Block Game Java: Core Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 17 Block Game Java: Practice Studio",
-						section: "coreProject",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"In Main.java read the board count from blocks.in, followed by two lowercase words per line. Count the letters on each face separately. For each letter add the larger face count to its running total, then clear the face counts for the next board. Print exactly 26 totals in alphabetic order, one integer per line in blocks.out.\n\n**Checkpoints:** With `2` followed by `aba bc` and `bb ac`, the first three lines read 3, 3 and 2. The remaining 23 lines are zero. With one board `z z`, only the last line is 1.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-17-Block-Game-Java/starter",
 					solutionLink:
@@ -952,22 +904,17 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "UB 17 Block Game Java: Review and Reflection",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 17 Block Game Java: Practice Studio",
-						section: "review"
-					})
+					preserveInstructions: true,
+					content:
+						"One board with `aa` on both sides needs two a blocks. A program asks for four. Mark the instruction that combines the two sides: only one face can be visible. Now use two boards, both reading `aa ab`. They can show `aa` at the same time, so the a total is 4. They can also both show `ab`, so the b total is 2. Why does the operation change when you move from one board to two?"
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "UB 17 Block Game Java: Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 17 Block Game Java: Practice Studio",
-						section: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Flip both boards in the input: replace `aba bc` and `bb ac` with `bc aba` and `ac bb`. Predict all 26 output lines before rerunning the program. The first three remain 3, 3 and 2 and the rest remain zero. Swapping faces cannot change a per-letter maximum.\n\n**Checkpoints:** Try two copies of `aa ab`. The first two lines become 4 and 2, followed by 24 zeros. If duplicating a board has no effect, check where you accumulate its contribution.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-17-Block-Game-Java/starter",
 					solutionLink:
@@ -1006,31 +953,21 @@ const usacoBronzeSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "UB 18 The Cow Signal Java: Core Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 18 The Cow Signal Java: Practice Studio",
-						section: "concepts"
-					})
+					preserveInstructions: true,
+					content:
+						"Draw one row with a marked cell and an empty cell, `X.`. At scale 2, each original cell occupies a two-by-two square. Both enlarged rows read `XX..`. Copying the whole original row twice across would instead produce `X.X.`. Point to the two neighboring cells descended from the first X. If the input were a single X at scale 3, what would the height, width and number of marked cells become?"
 				},
 				{
 					title: "UB 18 The Cow Signal Java: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 18 The Cow Signal Java: Practice Studio",
-						section: "example"
-					})
+					preserveInstructions: true,
+					content:
+						"Sketch a two-row signal, `X..` above `.XX`. With scale 2, read the top row from left to right and expand each cell: `XX`, `..`, `..`. Join them into `XX....`, then put an identical row underneath. Expand the second source row into `..XXXX` and repeat it too. Trace the empty cell at the start of the second row to its four positions. Which mistake would put its copies two rows apart?"
 				},
 				{
 					title: "UB 18 The Cow Signal Java: Core Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 18 The Cow Signal Java: Practice Studio",
-						section: "coreProject",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Read M, N and K from cowsignal.in in that order: rows, columns and scale. Read M strings of length N. Build an expanded row by copying each character K times. Write that completed row K times before moving to the next source row. Preserve periods as cells. Write the image alone to cowsignal.out.\n\n**Checkpoints:** Use `2 3 2` followed by `X..` and `.XX`. Expect two lines of `XX....` followed by two of `..XXXX`. Change K to 1 and compare both output rows character for character with the original.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-18-The-Cow-Signal-Java/starter",
 					solutionLink:
@@ -1038,24 +975,17 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "UB 18 The Cow Signal Java: Review and Reflection",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 18 The Cow Signal Java: Practice Studio",
-						section: "review"
-					})
+					preserveInstructions: true,
+					content:
+						"A program enlarges `X..` above `.XX` to the correct size, four rows by six columns, but alternates `XX....` and `..XXXX`. Place a finger on the original top-left X and mark its four descendants. In which two rows must they appear? Move the row-repetition loop so those rows are adjacent. Exchange the two source rows and confirm that `..XXXX` now appears twice at the top and `XX....` twice below."
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "UB 18 The Cow Signal Java: Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 18 The Cow Signal Java: Practice Studio",
-						section: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Use `1 2 3` followed by `.X`. Before running Main.java, draw the boundary between the empty and marked regions. The three output rows each read `...XXX`. Next transpose the original two-by-three picture `X.. / .XX` to three rows `X.`, `.X`, `.X` and use scale 2.\n\n**Checkpoints:** The transposed result has six rows and four columns. The first two rows are `XX..` and the last four are `..XX`. Compare the four descendants of one source cell before and after transposing.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-18-The-Cow-Signal-Java/starter",
 					solutionLink:
