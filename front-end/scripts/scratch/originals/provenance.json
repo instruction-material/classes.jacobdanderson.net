@@ -1448,6 +1448,42 @@
 			"shared": "2021-10-29T16:52:11.000Z"
 		}
 	},
+	"592123430": {
+		"instructions": "Help the hungry shark eat as many fish as possible. Make sure to avoid pufferfish though!\n\n1. Let's start with the code for the shark. When the green flag is clicked, make the shark go to the mouse-pointer forever.\n2. If the mouse is down, then make the shark switch to the costume where its mouth is closed and play the whoosh sound.\n3. Program the code for the spider. When the green flag is clicked, make the fish go to a random position and then wait two seconds (doing this forever).\n4. There are two conditions that need to be true for the fish to be eaten (and for us to get a point!). Check forever if the mouse is down and if the fish is touching the shark.\n5. When these things are true, then add a point to the score, make the fish go to a random location, and play the \"bubbles\" sound.\n6. Next, program the pufferfish. They should behave similarly to the regular fish, but you should lose a point if the shark eats one.\n7. You can also add a timer so that you only have a certain amount of time to get as many points as possible.",
+		"credits": "",
+		"history": {
+			"created": "2021-10-29T20:47:32.000Z",
+			"modified": "2021-11-29T20:57:03.000Z",
+			"shared": "2021-10-29T20:55:35.000Z"
+		}
+	},
+	"593357343": {
+		"instructions": "Help the Princess avoid the fire-breathing dragon!\n\n1. Program the princess to move left and right when the arrow keys are pressed.\n2. Next it's time to program the dragon! Make the dragon continually fall from the sky.\n3. Once the dragon reaches the bottom of the screen or touches the princess, it should go back to the top of the screen at a random place.\n4. Next, create a variable to keep track of the number of lives the player has.\n5. Set the lives variable to 3 at the beginning each game, and make the player loses a life every time the dragon touches the princess.\n6. Lastly, create a timer variable that counts down from 60 to 0, and make it so that the game ends when the time runs out.",
+		"credits": "",
+		"history": {
+			"created": "2021-11-01T17:04:18.000Z",
+			"modified": "2021-11-29T21:02:04.000Z",
+			"shared": "2021-11-01T17:15:23.000Z"
+		}
+	},
+	"594925637": {
+		"instructions": "Let's make this dragonfly more interesting by having it react to our keyboard and mouse!\n\n1. When the green flag is clicked, make the dragonfly go to a random spot on the stage.\n2. When the space bar is pressed, make the dragonfly make a popping sound.\n3. When the dragonfly is clicked, make the dragonfly say something (\"Buzzzz\", for example).",
+		"credits": "",
+		"history": {
+			"created": "2021-11-03T21:14:40.000Z",
+			"modified": "2021-11-03T21:16:19.000Z",
+			"shared": "2021-11-03T21:15:40.000Z"
+		}
+	},
+	"601696898": {
+		"instructions": "Now that we know about loops, let's help the mouse make some shapes and interesting designs!\n\n1. Add an event listener so that when the flag is clicked, everything gets erased.\n2. Add an event listener so that when the 1 key is pressed, the mouse draws a triangle.\n3. Add an event listener so that when the 2 key is pressed, the mouse draws a circle.\n4. What other shapes can you create? Make some other sets of blocks that draw other shapes (e.g. an octagon, a star, a spiral, etc.).",
+		"credits": "",
+		"history": {
+			"created": "2021-11-15T19:47:41.000Z",
+			"modified": "2021-11-15T19:53:53.000Z",
+			"shared": "2021-11-15T19:51:31.000Z"
+		}
+	},
 	"601699148": {
 		"instructions": "Now that we know about loops, let's help the mouse make some shapes and interesting designs!\n\n1. Add an event listener so that when the flag is clicked, everything gets erased.\n2. Add an event listener so that when the 1 key is pressed, the mouse draws a triangle.\n3. Add an event listener so that when the 2 key is pressed, the mouse draws a circle.\n4. What other shapes can you create? Make some other sets of blocks that draw other shapes (e.g. an octagon, a star, a spiral, etc.).",
 		"credits": "",

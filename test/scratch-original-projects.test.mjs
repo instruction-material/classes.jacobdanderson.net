@@ -293,7 +293,7 @@ function verifyAndRestoreDotty(loaded, source) {
 }
 
 test("all original Scratch archives retain upstream bytes and only declared corrections", async () => {
-	assert.equal(originalScratchProjects.length, 164);
+	assert.equal(originalScratchProjects.length, 168);
 	const assets = new Set();
 	const records = [];
 	const correctedProjects = new Set();
@@ -532,7 +532,7 @@ test("all original Scratch archives retain upstream bytes and only declared corr
 				process.env.SCRATCH_ORIGINAL_BROWSER_PROOF_DIR,
 				"archive-identity.json"
 			),
-			`${JSON.stringify({ projects: 164, assets: 505, originalSourceBytesRetained: true, unchangedPrograms: 154, declaredProgramCorrections: programCorrections, onlyDeclaredAttributionSvgAndProgramChanges: true, compatibilityAssets: correctedAssets.size, compatibilityProjects: correctedProjects.size, records }, null, 2)}\n`
+			`${JSON.stringify({ projects: 168, assets: 505, originalSourceBytesRetained: true, unchangedPrograms: 158, declaredProgramCorrections: programCorrections, onlyDeclaredAttributionSvgAndProgramChanges: true, compatibilityAssets: correctedAssets.size, compatibilityProjects: correctedProjects.size, records }, null, 2)}\n`
 		);
 	}
 });
@@ -1078,5 +1078,36 @@ test("Check-In random classification stores one draw at all branch boundaries", 
 				: "Whoa, that's a big number!",
 			"The remainder of dividing 11 by 2 is: 1"
 		]);
+	}
+});
+
+test("Bootcamp remixes keep upstream source, credits and media with the editable answer", async () => {
+	const references = JSON.parse(await readFile(new URL(
+		"../front-end/scripts/scratch/bootcamp-references.json", import.meta.url
+	)));
+	for (const ref of Object.values(references).filter(id => id.endsWith("-reference"))) {
+		const id = ref.split("-")[0];
+		const base = await createOriginalProject(id);
+		const remix = await createOriginalProject(id, true);
+		const sourceFiles = unzipSync(base.archive);
+		const remixFiles = unzipSync(remix.archive);
+		for (const [name, bytes] of Object.entries(sourceFiles)) {
+			if (name !== "project.json" && name !== "SOURCE.txt") assert.deepEqual(remixFiles[name], bytes, ref + "/" + name);
+		}
+		assert.notDeepEqual(remix.project.targets.map(t => t.blocks), base.project.targets.map(t => t.blocks));
+		const credit = remix.project.targets[0].comments[originalAttributionId(id)].text;
+		assert.ok(credit.includes(base.original.url) && credit.includes(base.original.author));
+		assert.match(credit, /Bootcamp instructor remix/);
+		for (const target of remix.project.targets) {
+			for (const [blockId, block] of Object.entries(target.blocks)) {
+				if (Array.isArray(block)) continue;
+				if (block.topLevel) assert.equal(block.parent, null, blockId);
+				if (block.next) assert.equal(target.blocks[block.next].parent, blockId);
+				for (const input of Object.values(block.inputs)) {
+					assert.ok(Array.isArray(input), "SB3 input on " + blockId);
+					if (typeof input[1] === "string") assert.equal(target.blocks[input[1]].parent, blockId);
+				}
+			}
+		}
 	}
 });

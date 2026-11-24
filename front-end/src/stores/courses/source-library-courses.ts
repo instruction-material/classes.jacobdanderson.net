@@ -1,3 +1,4 @@
+import { scratchBootcampReferenceHref } from "../../modules/scratch/bootcamp";
 import type {
 	CourseItemLearningPath,
 	RawCourse,
@@ -31,6 +32,7 @@ interface SourceActivityAnchor {
 	preserveAssignment?: boolean;
 	preserveInstructions?: boolean;
 	projectLink?: string;
+	solutionLink?: string;
 	title: string;
 	prompt: string;
 	evidence: string[];
@@ -1099,6 +1101,9 @@ function createSourceActivityAnchorItems(
 					...anchor.evidence.map(item => `- ${item}`)
 				].join("\n"),
 				learningPath: "core" as const,
+				...(anchor.solutionLink
+					? { solutionLink: anchor.solutionLink }
+					: {}),
 				...(anchor.projectLink
 					? { projectLink: anchor.projectLink }
 					: {})
@@ -1141,6 +1146,9 @@ function createSourceActivityPracticeItems(
 				...anchor.evidence.map(item => `- ${item}`)
 			].join("\n"),
 			learningPath: anchor.learningPath ?? ("choice" as const),
+			...(anchor.solutionLink
+				? { solutionLink: anchor.solutionLink }
+				: {}),
 			...(anchor.projectLink ? { projectLink: anchor.projectLink } : {})
 		}));
 }
@@ -6751,6 +6759,7 @@ const sourceVariantCourses = {
 				{
 					learningPath: "core",
 					projectLink: "https://scratch.mit.edu/projects/592006491/",
+					solutionLink: scratchBootcampReferenceHref("592006491"),
 					title: "Dragonfly Event Listener Remix",
 					prompt: scratchBootcampTask("592006491"),
 					evidence: [
@@ -6762,6 +6771,7 @@ const sourceVariantCourses = {
 				{
 					learningPath: "choice",
 					projectLink: "https://scratch.mit.edu/projects/592008620/",
+					solutionLink: scratchBootcampReferenceHref("592008620"),
 					title: "Beetle Keyboard Drawing Controls",
 					prompt: scratchBootcampTask("592008620"),
 					evidence: [
@@ -6773,6 +6783,7 @@ const sourceVariantCourses = {
 				{
 					learningPath: "choice",
 					projectLink: "https://scratch.mit.edu/projects/287738652/",
+					solutionLink: scratchBootcampReferenceHref("287738652"),
 					title: "Pencil Drawing Program Controls",
 					prompt: "Use the drawing-program activity at https://scratch.mit.edu/projects/287738652/ to combine movement, turning, pen control, color changes, pen-size changes, and a reset event into one reusable drawing tool.",
 					evidence: [
@@ -6784,6 +6795,7 @@ const sourceVariantCourses = {
 				{
 					learningPath: "choice",
 					projectLink: "https://scratch.mit.edu/projects/287920173/",
+					solutionLink: scratchBootcampReferenceHref("287920173"),
 					title: "Arrow Direction and Mouse Targeting",
 					prompt: "Use https://scratch.mit.edu/projects/287920173/ as a reference for direction events. Program an arrow sprite to point in the four arrow-key directions, rotate with letter keys, and point toward the mouse when the space key is pressed.",
 					evidence: [
@@ -6795,6 +6807,7 @@ const sourceVariantCourses = {
 				{
 					learningPath: "challenge",
 					projectLink: "https://scratch.mit.edu/projects/287924505/",
+					solutionLink: scratchBootcampReferenceHref("287924505"),
 					title: "Ball Looks and Motion Event Set",
 					prompt: "Use https://scratch.mit.edu/projects/287924505/ to build a small event set for a ball sprite. Combine random starting position, movement with edge bounce, backdrop changes, size changes, sound, and color effects.",
 					evidence: [
@@ -6808,6 +6821,7 @@ const sourceVariantCourses = {
 				{
 					learningPath: "choice",
 					projectLink: "https://scratch.mit.edu/projects/592014695/",
+					solutionLink: scratchBootcampReferenceHref("592014695"),
 					title: "Elephant Repeat and Forever Effects",
 					prompt: scratchBootcampTask("592014695"),
 					evidence: [
@@ -6820,6 +6834,7 @@ const sourceVariantCourses = {
 					id: "scratch-level-1-bootcamp-gs2-loops-curriculum-source-activity-anchors-loops",
 					learningPath: "core",
 					projectLink: "https://scratch.mit.edu/projects/601699148/",
+					solutionLink: scratchBootcampReferenceHref("601699148"),
 					title: "Mouse Shape Loops",
 					prompt: scratchBootcampTask("601699148"),
 					evidence: [
@@ -6831,6 +6846,7 @@ const sourceVariantCourses = {
 				{
 					learningPath: "choice",
 					projectLink: "https://scratch.mit.edu/projects/291117784/",
+					solutionLink: scratchBootcampReferenceHref("291117784"),
 					title: "Hot Cross Buns Music Loop",
 					prompt: "Use https://scratch.mit.edu/projects/291117784/ as the music-loop reference. Recreate the note pattern EDC twice, followed by CCCC, DDDD, and EDC, then use loops to reduce repetition and play the full phrase twice.",
 					evidence: [
@@ -6845,6 +6861,7 @@ const sourceVariantCourses = {
 					id: "scratch-level-1-bootcamp-gs3-conditionals-and-variables-curriculum-source-activity-anchors-conditionals-and-variables",
 					learningPath: "core",
 					projectLink: "https://scratch.mit.edu/projects/592019210/",
+					solutionLink: scratchBootcampReferenceHref("592019210"),
 					title: "Button Click Timer Game",
 					prompt: scratchBootcampTask("592019210"),
 					evidence: [
@@ -6856,6 +6873,7 @@ const sourceVariantCourses = {
 				{
 					learningPath: "challenge",
 					projectLink: "https://scratch.mit.edu/projects/327610777/",
+					solutionLink: scratchBootcampReferenceHref("327610777"),
 					title: "Crab Catching Game",
 					prompt: "Use https://scratch.mit.edu/projects/327610777/ as the falling-object game reference. Move the crab with arrow keys, make the cheesy puffs fall from random top positions, reset missed puffs, and increase a score when the crab catches one.",
 					evidence: [
@@ -6867,6 +6885,7 @@ const sourceVariantCourses = {
 				{
 					learningPath: "choice",
 					projectLink: "https://scratch.mit.edu/projects/327635693/",
+					solutionLink: scratchBootcampReferenceHref("327635693"),
 					title: "Zebra Step Counter",
 					prompt: "Use https://scratch.mit.edu/projects/327635693/ as the step-count reference. Create a steps variable, reset it with the green flag, move the zebra with arrow keys, switch costumes during movement, and count each step.",
 					evidence: [

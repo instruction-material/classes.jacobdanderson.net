@@ -3,6 +3,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { strToU8, zipSync } from "fflate";
+import { bootcampPrograms } from "./bootcamp-programs.mjs";
 import { applyOriginalProgramCorrection } from "./program-corrections.mjs";
 
 const root = new URL("./originals/", import.meta.url);
@@ -51,7 +52,7 @@ async function originalAsset(name) {
 }
 
 /** Retain the complete upstream source beside narrowly corrected display assets. */
-export async function createOriginalProject(id) {
+export async function createOriginalProject(id, bootcampReference = false) {
 	const original = originalScratchProjects.find(project => project.id === id);
 	if (!original || !/^[1-9]\d{0,11}$/.test(id))
 		throw new Error("Unknown original Scratch project");
@@ -110,6 +111,7 @@ export async function createOriginalProject(id) {
 			compatibilityChanges.set(name, { original: name, ...correction });
 		}
 	}
+	if (bootcampReference) bootcampPrograms[id](project);
 	const credit = [
 		`${original.name} by ${original.author}`,
 		`Source: ${original.url}`,
@@ -120,6 +122,9 @@ export async function createOriginalProject(id) {
 		compatibilityChanges.size
 			? "Changes: attribution comment and SVG compatibility corrections. The course’s supplied archive retains the unchanged original definition and media."
 			: "Changes: attribution comment added.",
+		bootcampReference
+			? "Bootcamp instructor remix: completed scripts added by Classes with Jacob."
+			: "",
 		programCorrection
 			? `Program correction: ${programCorrection.summary}`
 			: ""
@@ -167,22 +172,30 @@ export async function generateOriginalProjects(
 	await mkdir(output, { recursive: true });
 	const inventory = [];
 	for (const original of originalScratchProjects) {
-		const { archive } = await createOriginalProject(original.id);
-		const destination = path.join(output, `${original.id}.sb3`);
-		const digest = sha256(archive);
-		let current;
-		try {
-			current = sha256(await readFile(destination));
-		} catch {
-			/* First generation. */
+		for (const reference of bootcampPrograms[original.id]
+			? [false, true]
+			: [false]) {
+			const id = reference ? original.id + "-reference" : original.id;
+			const { archive } = await createOriginalProject(
+				original.id,
+				reference
+			);
+			const destination = path.join(output, `${id}.sb3`);
+			const digest = sha256(archive);
+			let current;
+			try {
+				current = sha256(await readFile(destination));
+			} catch {
+				/* First generation. */
+			}
+			if (current !== digest) await writeFile(destination, archive);
+			inventory.push({
+				id,
+				sourceSHA256: original.sourceSHA256,
+				sha256: digest,
+				bytes: archive.length
+			});
 		}
-		if (current !== digest) await writeFile(destination, archive);
-		inventory.push({
-			id: original.id,
-			sourceSHA256: original.sourceSHA256,
-			sha256: digest,
-			bytes: archive.length
-		});
 	}
 	await writeFile(
 		path.join(output, "catalog.json"),

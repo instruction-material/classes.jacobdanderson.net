@@ -2868,6 +2868,76 @@
 			]
 		},
 		{
+			"id": "592123430",
+			"name": "Hungry Shark - Solution (Bootcamp)",
+			"author": "JuniLearningScratch",
+			"url": "https://scratch.mit.edu/projects/592123430/",
+			"sourceSHA256": "8a118af4f8fbac470156f42ddce90bd6bc227741be93d8b962280bdd2aa0b8bc",
+			"shared": "2021-10-29T20:55:35.000Z",
+			"modified": "2021-11-29T20:57:03.000Z",
+			"providedCode": true,
+			"extensions": [],
+			"bindings": [
+				{
+					"courseId": "scratch-level-1-bootcamp",
+					"role": "reference"
+				}
+			]
+		},
+		{
+			"id": "593357343",
+			"name": "Save the Princess - Solution (Bootcamp)",
+			"author": "JuniLearningScratch",
+			"url": "https://scratch.mit.edu/projects/593357343/",
+			"sourceSHA256": "5204b0cb2e3a143818360c60eb04d36aaa4593a835281200684117f3f232bba3",
+			"shared": "2021-11-01T17:15:23.000Z",
+			"modified": "2021-11-29T21:02:04.000Z",
+			"providedCode": true,
+			"extensions": [],
+			"bindings": [
+				{
+					"courseId": "scratch-level-1-bootcamp",
+					"role": "reference"
+				}
+			]
+		},
+		{
+			"id": "594925637",
+			"name": "Dragonfly Events - Solution (Bootcamp)",
+			"author": "JuniLearningScratch",
+			"url": "https://scratch.mit.edu/projects/594925637/",
+			"sourceSHA256": "f9c1e4c52b762f444d263f0bd449a4c187d145d82fe5f3c41688d259473d76c0",
+			"shared": "2021-11-03T21:15:40.000Z",
+			"modified": "2021-11-03T21:16:19.000Z",
+			"providedCode": true,
+			"extensions": [],
+			"bindings": [
+				{
+					"courseId": "scratch-level-1-bootcamp",
+					"role": "reference"
+				}
+			]
+		},
+		{
+			"id": "601696898",
+			"name": "Drawing Mouse - Solution (Bootcamp)",
+			"author": "JuniLearningScratch",
+			"url": "https://scratch.mit.edu/projects/601696898/",
+			"sourceSHA256": "9218d3e2932e5d21b245cebc7b67c4654a62861ee1b3cd936695940f724e46eb",
+			"shared": "2021-11-15T19:51:31.000Z",
+			"modified": "2021-11-15T19:53:53.000Z",
+			"providedCode": true,
+			"extensions": [
+				"pen"
+			],
+			"bindings": [
+				{
+					"courseId": "scratch-level-1-bootcamp",
+					"role": "reference"
+				}
+			]
+		},
+		{
 			"id": "601699148",
 			"name": "Drawing Mouse (Bootcamp)",
 			"author": "JuniLearningScratch",

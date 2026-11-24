@@ -1,3 +1,4 @@
+import { bootcampReferenceSourceId } from "./bootcamp";
 import catalog from "../../../scripts/scratch/originals/catalog.json";
 import corrections from "../../../scripts/scratch/originals/program-corrections.json";
 import { scratchProjectLimit } from "./frame";
@@ -14,6 +15,8 @@ export interface ScratchOriginalProject {
 }
 
 export function scratchOriginalCorrection(project: ScratchOriginalProject) {
+	if (project.id.endsWith("-reference"))
+		return "Instructor remix by Classes with Jacob.";
 	return corrections.find(
 		record =>
 			record.id === project.id &&
@@ -26,6 +29,17 @@ export function scratchOriginalProject(
 	courseId: unknown,
 	role: unknown = "project"
 ): ScratchOriginalProject | undefined {
+	if (
+		courseId === "scratch-level-1-bootcamp" &&
+		role === "reference" &&
+		typeof id === "string"
+	) {
+		const sourceId = bootcampReferenceSourceId(id);
+		const source = catalog.projects.find(
+			project => project.id === sourceId
+		);
+		if (source) return { ...source, id };
+	}
 	if (
 		typeof id !== "string" ||
 		!/^[1-9]\d{0,11}$/.test(id) ||
@@ -62,7 +76,8 @@ export function scratchOriginalArchiveUrl(project: ScratchOriginalProject) {
 	if (
 		!catalog.projects.some(
 			item =>
-				item.id === project.id &&
+				(item.id === project.id ||
+					item.id === bootcampReferenceSourceId(project.id)) &&
 				item.sourceSHA256 === project.sourceSHA256
 		)
 	) {

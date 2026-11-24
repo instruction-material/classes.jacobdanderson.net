@@ -118,6 +118,16 @@ it.each(["learner", "instructor"])(
 					expect(current.projectLink, project.title).toBe(
 						project.projectLink
 					);
+					if (project.solutionLink) {
+						expect(current.solutionLink).toBe(
+							role === "instructor"
+								? project.solutionLink
+								: undefined
+						);
+						expect(
+							current.playableSolutionEmbedUrl
+						).toBeUndefined();
+					}
 					const directive = project.content.match(
 						/^\*\*Project goal:\*\*\s*([\s\S]+?)\s*\*\*Completion evidence:\*\*/
 					)?.[1];

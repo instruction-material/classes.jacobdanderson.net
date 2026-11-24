@@ -1,5 +1,7 @@
 import type { RawCourseModuleItem } from "./types";
 
+import { scratchBootcampReferenceHref } from "../../modules/scratch/bootcamp";
+
 export const scratchBootcampTasks = [
 	{
 		id: "592006491",
@@ -128,6 +130,7 @@ export const scratchBootcampPractice: Record<string, RawCourseModuleItem[]> = {
 			preserveInstructions: true,
 			preserveAssignment: true,
 			projectLink: "https://scratch.mit.edu/projects/592006491/",
+			solutionLink: scratchBootcampReferenceHref("592006491"),
 			content: `Find a misplaced block in a Dragonfly remix. On the dragonfly, attach go to random position to the green flag. Under when space key pressed, attach start sound pop and say Buzzzz for two seconds. Leave the sprite-click hat empty. Predict what pressing space and clicking the sprite will each do, then run both tests.
 
 Move one block so space triggers only the sound and a click triggers only speech. Repeat both tests and restart with the flag. Record the input and observed response before and after the move. Explain why adding a new click hat without attaching the speech block leaves the behavior unchanged.`

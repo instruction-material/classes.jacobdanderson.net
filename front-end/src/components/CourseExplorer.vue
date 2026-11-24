@@ -70,6 +70,7 @@ import {
 	isScratchProjectUrl
 } from "@/modules/resourceUrls";
 import { rustCourseProjectKey } from "@/modules/rustProjectResources";
+import { scratchBootcampReferenceHref } from "@/modules/scratch/bootcamp";
 import { scratchOriginalResource } from "@/modules/scratch/originals";
 import {
 	swiftCourseProjectKey,
@@ -1715,6 +1716,18 @@ function resourceLinks(item: CourseModuleItem): ResourceLink[] {
 					url: original.url,
 					host: "scratch.mit.edu"
 				});
+				const reference =
+					selectedCourse.value.id === "scratch-level-1-bootcamp" &&
+					canViewSolutions.value
+						? scratchBootcampReferenceHref(original.id)
+						: undefined;
+				if (reference)
+					links.push({
+						kind: "solution",
+						label: original.name + " reference",
+						url: reference,
+						host: "Browser workspace"
+					});
 			}
 		}
 	}
@@ -1948,20 +1961,14 @@ function courseAssetPreviewResources(
 	);
 }
 
-function resourceOpenUrl(resource: ResourceLink) {
+function resourceOpenUrl(resource: ResourceLink, item: CourseModuleItem) {
 	if (resource.url.startsWith("/ide?") && selectedCourse.value) {
 		const url = new URL(resource.url, "https://classes.local");
 		url.searchParams.set("course", selectedCourse.value.id);
-		const item = [
-			...(activeModule.value?.curriculum ?? []),
-			...(activeModule.value?.supplementalProjects ?? [])
-		].find(item => item.projectLink === resource.url);
-		if (item) {
-			url.searchParams.set(
-				"lesson",
-				itemAnchorId(activeModuleId.value, item.id)
-			);
-		}
+		url.searchParams.set(
+			"lesson",
+			itemAnchorId(activeModuleId.value, item.id)
+		);
 		return `${url.pathname}${url.search}`;
 	}
 	return courseAssetViewerUrl(resource.url, resource.label);
@@ -2543,13 +2550,16 @@ function writeStoredValue(key: string, value: string) {
 											v-for="resource in resourceLinks(
 												item
 											)"
-											:key="`${item.id}-${resource.kind}`"
+											:key="`${resource.kind}-${resource.url}`"
 										>
 											<a
 												class="resource-link"
 												:class="[`is-${resource.kind}`]"
 												:href="
-													resourceOpenUrl(resource)
+													resourceOpenUrl(
+														resource,
+														item
+													)
 												"
 												rel="noopener noreferrer"
 												target="_blank"

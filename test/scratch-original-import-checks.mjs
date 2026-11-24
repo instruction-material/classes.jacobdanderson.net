@@ -283,7 +283,7 @@ export async function checkScratchOriginalImports(page, { origin, files, loaded,
 				await page.waitForFunction(() => document.querySelector(".scratch-status")?.textContent.includes("Ready."));
 			}
 		}
-		assert.equal(records.length, 164);
+		assert.equal(records.length, originalScratchProjects.length);
 		const speedClick = originalScratchProjects.find(project => project.id === "299311602");
 		await route(sourceHref(speedClick));
 		assert.match(await page.$eval(".scratch-original-import", element => element.textContent), /Reference correction: clicks score only during an active round/);

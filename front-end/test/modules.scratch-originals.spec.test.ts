@@ -170,3 +170,21 @@ it.each(["source", "checksum", "size", "oversize"])(
 		);
 	}
 );
+
+it("opens Bootcamp answers under their own archive identity and reference role", () => {
+	const course = "scratch-level-1-bootcamp";
+	for (const id of ["601696898", "592123430", "593357343"]) {
+		const ref = id + "-reference";
+		expect(scratchOriginalProject(ref, course, "project")).toBeUndefined();
+		expect(
+			scratchOriginalProject(ref, "scratch-level-1", "reference")
+		).toBeUndefined();
+		const source = scratchOriginalProject(id, course, "reference")!;
+		expect(scratchOriginalProject(ref, course, "reference")).toMatchObject({
+			id: ref,
+			url: source.url,
+			sourceSHA256: source.sourceSHA256
+		});
+		expect(scratchOriginalProject(id, course, "project")).toBeUndefined();
+	}
+});
