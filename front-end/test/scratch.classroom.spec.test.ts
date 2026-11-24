@@ -86,6 +86,26 @@ describe("Scratch classroom", () => {
 			expect(item?.content).toContain("Open .sb3");
 		}
 	});
+	it("keeps the five published transfer checks attached to their classroom starters", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById("scratch-level-1-classroom");
+		const starters = ["two-arrows", "dress-up", "scene-switch", "patrol", "maze-reset"];
+		for (const [index, starter] of starters.entries()) {
+			const checks = course!.modules[index].supplementalProjects.filter(item =>
+				item.id.startsWith("scratch-level-1-classroom-")
+			);
+			expect(checks).toHaveLength(1);
+			expect(checks[0].projectLink).toBe(`/ide?mode=scratch&starter=${starter}`);
+			expect(checks[0].learningPath).toBe("choice");
+		}
+	});
+	it("retains the capstone plan, build, partner check and portable blank archive on the displayed course", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById("scratch-level-1-classroom");
+		const item = course!.modules.at(-1)!.curriculum.find(row => row.id === "scratch-classroom-independent-game")!;
+		for (const text of ["**Plan:**", "**Build:**", "**Check:**", "/scratch-projects/blank.sb3"])
+			expect(item.content).toContain(text);
+	});
 	it("launches independent work without starter scripts or a solution", () => {
 		const independent = scratchLevel1ClassroomCourse.modules
 			.flatMap(module => module.curriculum)

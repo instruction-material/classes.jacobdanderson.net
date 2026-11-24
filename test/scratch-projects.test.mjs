@@ -65,6 +65,16 @@ nodeTest("keyboard warmup is four blocks; dress-up retains an example and two st
 		);
 	}
 });
+nodeTest("Two Arrows keeps ten-step starters and completes the twenty-step Normal change", () => {
+	for (const [solution, distance] of [[false, 10], [true, 20]]) {
+		const player = createProject("two-arrows", solution).project.targets[1];
+		for (const hat of Object.values(player.blocks).filter(block => block.topLevel)) {
+			const direction = hat.fields.KEY_OPTION[0];
+			assert.equal(Number(player.blocks[hat.next].inputs.DX[1][1]),
+				direction === "left arrow" ? -distance : distance);
+		}
+	}
+});
 nodeTest("published starters match the reproducible generator and do not include solutions", async () => {
 	for (const lesson of lessons) {
 		assert.deepEqual(

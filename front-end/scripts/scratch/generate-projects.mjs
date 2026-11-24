@@ -262,16 +262,16 @@ function buildProject(id, role) {
 		player.x = -120;
 		return s;
 	}
-	function arrows(all = false) {
-		stack(player, [key("left arrow"), x(-10)]);
-		stack(player, [key("right arrow"), x(10)]);
+	function arrows(all = false, distance = 10) {
+		stack(player, [key("left arrow"), x(-distance)]);
+		stack(player, [key("right arrow"), x(distance)]);
 		if (all) {
 			stack(player, [key("up arrow"), y(10)]);
 			stack(player, [key("down arrow"), y(-10)]);
 		}
 	}
 	if (id === "two-arrows" || id === "third-direction") {
-		arrows();
+		arrows(false, id === "two-arrows" && solution ? 20 : 10);
 		if (solution && id === "third-direction")
 			stack(player, [key("up arrow"), y(10)]);
 	}

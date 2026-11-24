@@ -24,7 +24,7 @@
 		"concept": "Reuse a familiar pattern for a new input.",
 		"normal": "Left and right already work. Add an up-arrow event that changes y by 10.",
 		"hard": "Add down movement and a Space event that returns the sprite to the center.",
-		"check": "Left and right change x; up and down change y."
+		"check": "From the center, press right and then up. Check for x = 10 and y = 10. If you added the Hard controls, press down and then Space to test the return to center."
 	},
 	{
 		"id": "click-reactions",
@@ -42,7 +42,7 @@
 		"concept": "A reset restores the starting scene.",
 		"normal": "The hat is a worked example. Complete the badge's green-flag reset and click-to-glide scripts. Drag it first, read x and y, then add the motion block.",
 		"hard": "Complete the boots too. Use front/back layers deliberately and compare go to with glide.",
-		"check": "Dress the robot, press the flag, and confirm every accessory returns to its starting position."
+		"check": "Put on Hat and Badge, then press the flag. Both return to the rack. If you completed Boots in Hard, check its reset too."
 	},
 	{
 		"id": "scene-switch",
