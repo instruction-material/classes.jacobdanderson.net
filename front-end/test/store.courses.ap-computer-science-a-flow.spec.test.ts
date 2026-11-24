@@ -784,6 +784,46 @@ describe("AP Computer Science A learner flow", () => {
 		}
 	});
 
+	it.each([
+		["APCS7 Inheritance Multiple Choice Reference", "1B, 2A, 3C"],
+		["Polymorphism Reference", "ClassCastException"],
+		["APCS8 Polymorphism Multiple Choice Reference", "43, 32"],
+		["APCS11 ArrayList Multiple Choice Reference", "[2, 4, 2, 1, 8]"],
+		["Deck Spec / Specification", "both scores"],
+		["2020 Repo Practice Exam", "first Oak/6 object"]
+	])("provides %s as a worksheet with checks and no IDE imports", (title, check) => {
+		const item = apComputerScienceACourse.modules
+			.flatMap(module => module.supplementalProjects)
+			.find(item => item.title === title);
+
+		expect(item?.contentKind).toBe("reading");
+		expect(item?.content).toContain(check);
+		expect(item?.projectLink).toBeUndefined();
+		expect(item?.solutionLink).toBeUndefined();
+		expect(item?.ideImport).toBeUndefined();
+	});
+
+	it("routes the introductory legacy exam entry to the complete worksheet", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById(
+			"ap-computer-science-a"
+		);
+		const module = course!.modules.find(
+			module => module.title === "APCS17 Master Projects and Test Prep"
+		)!;
+		const target = module.supplementalProjects.find(
+			item => item.title === "2020 Repo Practice Exam"
+		)!;
+		const intro = requireModule(
+			"General: Course Introduction and Setup"
+		).supplementalProjects.find(item => item.title === "2020 Practice Exam")!;
+
+		expect(intro.content).toContain(`/courses#${module.id}-${target.id}`);
+		expect(intro.contentKind).toBe("reading");
+		expect(intro.projectLink).toBeUndefined();
+		expect(intro.solutionLink).toBeUndefined();
+	});
+
 	it("matches the current four-unit, digital-exam, and Java scope contract", () => {
 		const text = courseText();
 

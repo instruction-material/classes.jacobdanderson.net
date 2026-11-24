@@ -247,10 +247,10 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "2020 Practice Exam",
+					contentKind: "reading",
+					preserveInstructions: true,
 					content:
-						"Keep the repo practice exam available as a later-course benchmark, but introduce it here so the AP end state is visible early. It does not need to be attempted at the start of the course. Its purpose is to show the final mixture of tracing, object modeling, arrays/lists, recursion, searching, sorting, and written reasoning. Use it later as a timed or semi-timed diagnostic, then sort missed questions by unit rather than treating the score as the only feedback. The review result produces a short targeted practice list.",
-					projectLink: repo("APCS-A-2020-Practice-Exam/starter"),
-					solutionLink: repo("APCS-A-2020-Practice-Exam/solution")
+						"After practicing methods and lists, use the [APCS17 legacy diagnostic](/courses#ap-computer-science-a-apcs17-master-projects-and-test-prep-ap-computer-science-a-apcs17-master-projects-and-test-prep-supplemental-2020-repo-practice-exam) to review method control, class state, and list traversal. The worksheet includes the inputs and checks for both prompts."
 				}
 			]
 		},
@@ -1332,14 +1332,33 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "APCS7 Inheritance Multiple Choice Reference",
-					content:
-						"The APCS7 multiple-choice reference reinforces inheritance vocabulary and trace reasoning. Justify each answer by constructor order, inherited member access, or overridden method behavior. Use it after coding a subclass so the terminology stays tied to actual Java behavior. The expected evidence is one eliminated answer for each common misconception: assuming private fields are inherited as directly accessible, skipping `super(...)`, or forgetting that an override changes which method body runs. Add a constructor trace that lists superclass initialization before subclass initialization and labels any compile-time access error separately from runtime dispatch.",
-					projectLink: repo(
-						"APCS7-Multiple-Choice-Reference/starter"
-					),
-					solutionLink: repo(
-						"APCS7-Multiple-Choice-Reference/solution"
-					)
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Trace constructor order and private-member access in this optional Java inheritance worksheet.",
+						"```java",
+						"class Account {",
+						"    private int balance;",
+						"    Account(int opening) {",
+						"        balance = opening;",
+						'        System.out.println("account");',
+						"    }",
+						"    int balance() { return balance; }",
+						"}",
+						"class StudentAccount extends Account {",
+						"    StudentAccount(int opening) {",
+						"        super(opening);",
+						'        System.out.println("student");',
+						"    }",
+						"}",
+						"```",
+						"",
+						"1. For `new StudentAccount(20)`, choose the output order: A. student then account, B. account then student, C. student only.",
+						"2. If `super(opening)` is removed, choose the result: A. the compiler inserts `super()` and rejects the constructor, B. the compiler inserts `super(opening)`, C. the balance becomes zero and construction succeeds.",
+						"3. Inside a new subclass method, choose a valid way to read the balance: A. `this.balance`, B. `super.balance`, C. `balance()`.",
+						"",
+						"**Check after tracing:** 1B, 2A, 3C. The superclass initializes before the subclass prints. `Account` has only its one-argument constructor. Its private field is available through the accessible method."
+					].join("\n")
 				}
 			]
 		},
@@ -1368,21 +1387,58 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			supplementalProjects: [
 				{
 					title: "Polymorphism Reference",
-					content:
-						"The reference pack gives short, explicit examples of superclass references and overridden methods. For each example, identify the declared reference type, actual object type, visible methods, and method body that runs. Use it to separate compile-time visibility from runtime dispatch. A strong trace explains why one method call compiles, why another call fails before running, and why an overridden method body can still run through a superclass reference. Add one cast example and state whether the cast is unnecessary, safe, or a possible `ClassCastException`.",
-					projectLink: repo("APCS8-Polymorphism-Reference/starter"),
-					solutionLink: repo("APCS8-Polymorphism-Reference/solution")
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Use this optional Java polymorphism worksheet to separate which method calls compile from which method bodies run.",
+						"```java",
+						'class Dog { String sound() { return "woof"; } }',
+						"class Poodle extends Dog {",
+						'    @Override String sound() { return "yip"; }',
+						"}",
+						"class MiniPoodle extends Poodle {",
+						'    String prance() { return "step"; }',
+						"}",
+						"class Pug extends Dog {}",
+						"// These declarations are inside a method:",
+						"// Poodle mini = new MiniPoodle();",
+						"// Dog pug = new Pug();",
+						"```",
+						"",
+						"Trace each expression independently. Record the declared type, actual type, and value or failure for `mini.sound()`, `mini.prance()`, `((MiniPoodle) mini).prance()`, and `((Poodle) pug).sound()`.",
+						"",
+						"**Check after tracing:** The results are `yip`, a compile-time error, `step`, and a runtime `ClassCastException`. `Poodle` declares the override and has no `prance()` method. The first cast succeeds because the object is a `MiniPoodle`. A `Pug` is a `Dog` and has no `Poodle` subtype relationship."
+					].join("\n")
 				},
 				{
 					title: "APCS8 Polymorphism Multiple Choice Reference",
-					content:
-						"The APCS8 multiple-choice reference helps when a polymorphic model is easier to code than to trace. The target is eliminating answer choices by compile-time type rules and dynamic dispatch behavior. Use it to practice the two-step AP habit: first list what the reference type permits, then decide which implementation runs from the actual object type. The final explanation makes clear whether an error is compile-time, runtime, or simply the expected override behavior. Mark every answer choice with one of those categories before selecting the final letter.",
-					projectLink: repo(
-						"APCS8-Multiple-Choice-Reference/starter"
-					),
-					solutionLink: repo(
-						"APCS8-Multiple-Choice-Reference/solution"
-					)
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Trace an inherited method that calls an overridden method in this optional Java polymorphism worksheet. Amounts are whole units.",
+						"```java",
+						"class Account {",
+						"    int balance;",
+						"    Account(int opening) { balance = opening; }",
+						"    void withdraw(int amount) { balance -= amount; }",
+						"    void transfer(Account target, int amount) {",
+						"        withdraw(amount);",
+						"        target.balance += amount;",
+						"    }",
+						"}",
+						"class Checking extends Account {",
+						"    Checking(int opening) { super(opening); }",
+						"    @Override void withdraw(int amount) {",
+						"        super.withdraw(amount);",
+						"        if (balance < 50) balance -= 2;",
+						"    }",
+						"}",
+						"```",
+						"",
+						"Inside a method, declare `Account from = new Checking(65);` and `Account to = new Account(12);`. Execute `from.transfer(to, 20);`. Which pair of balances results? A. (45, 32), B. (43, 32), C. (43, 34), D. the call cannot compile. Name the class that supplies each method body in call order.",
+						"",
+						"**Check after tracing:** B. `Account.transfer` calls `Checking.withdraw`, which calls `Account.withdraw` through `super`. The fee changes only the sender. Repeat with fresh accounts and amount 15. The sender lands on 50 and pays no fee."
+					].join("\n")
 				}
 			]
 		},
@@ -1458,14 +1514,28 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "APCS11 ArrayList Multiple Choice Reference",
-					content:
-						"The APCS11 multiple-choice reference belongs here because the check-in's later prompts rely on strong collection tracing. The focus is index shifting, removal effects, and wrapper-class constraints rather than memorizing method names only. Use each question as a mini-trace: write the list contents after each operation, mark the current index, and identify whether a primitive value was autoboxed into an object. The right answer follows from the trace, not from recognition of the method name. Add one eliminated answer choice with the exact operation where its imagined list state diverges from Java's actual `ArrayList` behavior.",
-					projectLink: repo(
-						"APCS11-Multiple-Choice-Reference/starter"
-					),
-					solutionLink: repo(
-						"APCS11-Multiple-Choice-Reference/solution"
-					)
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Trace list insertion, replacement, and index shifts. This snippet is inside a method with `java.util.ArrayList` imported.",
+						"```java",
+						"ArrayList<Integer> values = new ArrayList<Integer>();",
+						"values.add(6);",
+						"values.add(1);",
+						"values.add(8);",
+						"int originalSize = values.size();",
+						"for (int i = 0; i < originalSize; i++) {",
+						"    values.add(i + 1, i);",
+						"    values.set(i, i + 2);",
+						"}",
+						"```",
+						"",
+						"1. Which list remains? A. [2, 3, 4], B. [2, 3, 4, 2, 1, 8], C. [2, 0, 3, 1, 4, 2]. Record the list after each loop pass.",
+						"2. Then evaluate `int first = values.remove(1);`. Is `first` 1, 2, or 3? Record the resulting list.",
+						"3. Explain why the declaration uses `Integer` and which conversion occurs in `values.add(6)`.",
+						"",
+						"**Check after tracing:** 1B. The passes leave [2, 0, 1, 8], [2, 3, 1, 1, 8], and [2, 3, 4, 2, 1, 8]. The integer argument in `remove(1)` selects the index overload. It returns 3, which unboxes to `int`, and the list becomes [2, 4, 2, 1, 8]. Generic type arguments use reference types and 6 autoboxes to `Integer`."
+					].join("\n")
 				}
 			]
 		},
@@ -1497,10 +1567,17 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			supplementalProjects: [
 				{
 					title: "Deck Spec / Specification",
-					content:
-						"Use the deck-specification project to practice reading incomplete requirements, identifying missing decisions, and refining the spec before implementation.",
-					projectLink: repo("APCS9-Specification/starter"),
-					solutionLink: repo("APCS9-Specification/solution")
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"**Draft requirements:** Two players each have a deck. Each draws one card per round. The higher card wins. Diamonds outrank hearts, hearts outrank spades, and spades outrank clubs. A drawn card leaves its deck. The dealer records remaining cards and wins.",
+						"",
+						"1. Add rules for rank order, whether rank or suit takes priority, equal cards, and a round with an empty deck.",
+						"2. Specify how `Card`, `Deck`, and the dealer divide responsibilities. Write contracts for comparison, drawing, and playing a round. Use a predetermined top card in each test so draw order is repeatable.",
+						"3. Write the expected winner or tie, both remaining deck sizes, and both win counts for three independent cases. With zero prior wins, use 2 of diamonds versus king of clubs, an ace of clubs in both decks, then an empty first deck versus a one-card second deck. Each occupied deck starts with one card.",
+						"",
+						"**Example contract:** Rank takes priority, with ace highest and suit breaking rank ties. Equal cards record a tie. An empty deck stops the round before either draw. Under these rules the second player wins the first case and the two decks become empty. The second case leaves both decks empty with neither win count increased. The third case preserves the second player's card and both scores."
+					].join("\n")
 				},
 				{
 					title: "Robust Input Reference Review",
@@ -2599,10 +2676,19 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "2020 Repo Practice Exam",
-					content:
-						"The 2020 practice exam is an additional full-run benchmark for timing, stamina, and mixed-topic switching when those matter more than another isolated concept drill. Use it after the major Java and data-structure topics have appeared. The post-exam review classifies misses by unit and by error type, then chooses one targeted project, trace drill, or FRQ correction before attempting another full mixed set. Record score, timing, skipped questions, and confidence level so the next practice run measures a specific improvement rather than repeating the same mixed review.",
-					projectLink: repo("APCS-A-2020-Practice-Exam/starter"),
-					solutionLink: repo("APCS-A-2020-Practice-Exam/solution")
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"The 2020 repository exam predates the current framework. These two original diagnostic prompts practice skills from the legacy exercises. Type both responses, then compare the behavior with the supplied cases.",
+						"",
+						"**Methods and class state.** A `CodeChecker` starts with zero failures. Write the instance method `boolean record(int value)` and the required field. The input is a three-digit positive integer. Its final digit must equal the sum of its first two digits modulo 10. Increment the field exactly once per invalid value. Give a read-only method `int getFailures()`.",
+						"",
+						"**List traversal.** An `ArrayList<Item>` contains non-null items with methods `String getMaker()` and `int getPrice()`. Write `Item cheapestByMaker(ArrayList<Item> items, String maker)`. Return the lowest-priced matching item, keeping the first in a tie. Return `null` if there is no match. Inputs and maker fields are non-null, and the method leaves the list unchanged.",
+						"",
+						"**Check the responses.** Calls with 235, 453, and 987 return true, false, and true, leaving one failure. For the items Oak/9, Pine/4, Oak/6, Oak/6 in that order, searching Oak returns the first Oak/6 object. Searching Ash or using an empty list returns `null`. Use content equality for the maker and replace the best match only for a strictly lower price.",
+						"",
+						`For published exam practice, see the [College Board free-response archive](${AP_FRQ_ARCHIVE}).`
+					].join("\n")
 				}
 			]
 		}
@@ -2994,14 +3080,6 @@ function strengthenApCsaItem(item: RawCourseModuleItem): RawCourseModuleItem {
 			...item,
 			content:
 				"**Legacy practice:** The 2022 FRQs and scoring guidelines predate the Fall 2025 revision. Use only questions or parts that map cleanly to a current method/control, class-design, ArrayList, or 2D-array target, and label any out-of-scope inheritance or legacy format before assigning the task. Record the mapped current FRQ family, attempted rubric rows, first lost behavior, and corrected response so older material remains targeted practice rather than a substitute exam blueprint."
-		};
-	}
-
-	if (item.title === "2020 Repo Practice Exam") {
-		return {
-			...item,
-			content:
-				"**Legacy practice:** The 2020 repository exam predates the Fall 2025 framework and the fully digital format. Use selected aligned questions for stamina or mixed tracing, never as the current exam blueprint; map every assigned question to one of the four units and record any excluded topic."
 		};
 	}
 
