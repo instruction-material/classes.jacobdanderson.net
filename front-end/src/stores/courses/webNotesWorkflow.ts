@@ -31,7 +31,10 @@ export function applyWebNotesWorkflow(course: RawCourse, courseId: string) {
 		.join("\n\n---\n\n");
 	reading.preserveInstructions = true;
 	delete reading.projectLink;
-	delete reading.solutionLink;
+	const worksheetRoot =
+		"/course-assets/web-development-foundations/web-development-foundations";
+	reading.datasetLink = `${worksheetRoot}-practice-pack.md#persistence-boundary-case`;
+	reading.solutionLink = `${worksheetRoot}-verification-guide.md#persistence-boundary-key`;
 	delete reading.ideImport;
 	module.curriculum[1].id = `${id}-curriculum-core-project-databases-and-data-models`;
 	for (const [index, suffix] of [

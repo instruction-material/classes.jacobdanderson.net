@@ -75,6 +75,9 @@ describe("notes API course workspace", () => {
 			)
 			.join("\n\n---\n\n");
 		expect(learner.curriculum[0].content).toBe(reading);
+		expect(learner.curriculum[0].datasetLink).toMatch(/practice-pack\.md#persistence-boundary-case$/);
+		expect(staff.curriculum[0].solutionLink).toMatch(/verification-guide\.md#persistence-boundary-key$/);
+		expect(learner.curriculum[0].solutionLink).toBeUndefined();
 		for (const token of [
 			"validateNoteInput",
 			"replaceMemoryNote",
