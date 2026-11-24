@@ -2,6 +2,7 @@ import fs from "node:fs";
 import { createPinia, setActivePinia } from "pinia";
 import { describe, expect, it } from "vitest";
 import {
+	apAdvancedPracticeResources,
 	apBinarySearchResources,
 	apBlobEraseResources,
 	apCheckInAndFrqResources,
@@ -669,6 +670,38 @@ describe("AP Computer Science A learner flow", () => {
 			"ap-computer-science-a-apcs11-arraylists-supplemental-free-response-practice",
 			"choice",
 			"Delimiters.java"
+		],
+		[
+			"Check-In #4",
+			"Additional Practice: Inversion Counting",
+			"inversion-counting",
+			"ap-computer-science-a-check-in-4-supplemental-additional-practice-inversion-counting",
+			"challenge",
+			null
+		],
+		[
+			"APCS15 Recursion",
+			"Reference: Stack Overflow",
+			"stack-overflow-reference",
+			"ap-computer-science-a-apcs15-recursion-supplemental-reference-stack-overflow",
+			"choice",
+			null
+		],
+		[
+			"APCS17 Master Projects and Test Prep",
+			"Master Project: Decode",
+			"decode",
+			"ap-computer-science-a-apcs17-master-projects-and-test-prep-supplemental-master-project-decode",
+			"challenge",
+			"Message.java Tower.java"
+		],
+		[
+			"APCS17 Master Projects and Test Prep",
+			"Master Project: Elevens",
+			"elevens",
+			"ap-computer-science-a-apcs17-master-projects-and-test-prep-supplemental-master-project-elevens",
+			"challenge",
+			"Card.java Deck.java Elevens.java Suit.java"
 		]
 	] as const)("opens both Java roles for %s / %s", async (moduleTitle, title, kind, itemId, path, classFile) => {
 		setActivePinia(createPinia());
@@ -684,7 +717,8 @@ describe("AP Computer Science A learner flow", () => {
 			...apExpressionsAndClassResources,
 			...apClassesAndArraysResources,
 			...apListsAndAlgorithmsResources,
-			...apCheckInAndFrqResources
+			...apCheckInAndFrqResources,
+			...apAdvancedPracticeResources
 		}[kind];
 		expect(item.id).toBe(itemId);
 		expect(rawItem).toMatchObject({

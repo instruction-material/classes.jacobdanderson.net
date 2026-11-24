@@ -27,6 +27,9 @@ const listsAndAlgorithmsPacks =
 const checkInAndFrqPacks =
 	"https://github.com/instruction-material/APCS/tree/2c31ff05f50d2ba581a70422ccd64997f07f2c53";
 
+const advancedPracticePacks =
+	"https://github.com/instruction-material/APCS/tree/6475cc8387dde39aaa92509143f957ef0fb4cc93";
+
 function projectRoles(pack: string) {
 	return {
 		starter: `${pack}/starter`,
@@ -213,6 +216,17 @@ export const apCheckInAndFrqResources = {
 	)
 };
 
+export const apAdvancedPracticeResources = {
+	"inversion-counting": projectRoles(
+		`${advancedPracticePacks}/APCS-Check-in-4-Additional-Practice-Project`
+	),
+	"stack-overflow-reference": projectRoles(
+		`${advancedPracticePacks}/APCS15-Stack-Overflow-Reference`
+	),
+	decode: projectRoles(`${advancedPracticePacks}/APCS17-Decode`),
+	elevens: projectRoles(`${advancedPracticePacks}/APCS17-Elevens`)
+};
+
 const restoredProjects = {
 	"binary-search-trace": apBinarySearchResources,
 	"recursion-practice": apRecursionPracticeResources,
@@ -228,7 +242,8 @@ const restoredProjects = {
 	...apExpressionsAndClassResources,
 	...apClassesAndArraysResources,
 	...apListsAndAlgorithmsResources,
-	...apCheckInAndFrqResources
+	...apCheckInAndFrqResources,
+	...apAdvancedPracticeResources
 };
 
 export function apComputerScienceAProjectKey(
@@ -298,6 +313,14 @@ const nativeClassWorkspaces = {
 	"delimiters-frq": {
 		item: "ap-computer-science-a-apcs11-arraylists-supplemental-free-response-practice",
 		files: ["Delimiters.java"]
+	},
+	decode: {
+		item: "ap-computer-science-a-apcs17-master-projects-and-test-prep-supplemental-master-project-decode",
+		files: ["Message.java", "Tower.java"]
+	},
+	elevens: {
+		item: "ap-computer-science-a-apcs17-master-projects-and-test-prep-supplemental-master-project-elevens",
+		files: ["Card.java", "Deck.java", "Elevens.java", "Suit.java"]
 	}
 };
 

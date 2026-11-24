@@ -1,5 +1,6 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
 import {
+	apAdvancedPracticeResources,
 	apBinarySearchResources,
 	apBlobEraseResources,
 	apCheckInAndFrqResources,
@@ -1890,14 +1891,31 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			supplementalProjects: [
 				{
 					title: "Additional Practice: Inversion Counting",
-					content:
-						"Inversion counting after the check-in gives one more applied problem connecting sorting and runtime ideas. The important reasoning is how pair comparisons reveal disorder and why a brute-force count has quadratic cost.",
-					projectLink: repo(
-						"APCS-Check-in-4-Additional-Practice-Project/starter"
-					),
-					solutionLink: repo(
-						"APCS-Check-in-4-Additional-Practice-Project/solution"
-					)
+					content: apProject({
+						goal: "Count pairs whose earlier value is strictly greater than their later value.",
+						steps: [
+							"Implement `pairCount` by comparing each index with the indexes that follow it. Leave the input intact.",
+							"Trace the provided insertion sort and count each shift. Compare the result with the pair count.",
+							"In the merge, take equal values from the left. When taking a smaller right value, count the remaining left values it passes."
+						],
+						apReasoning:
+							"The direct method considers every pair. The merge method counts a run of inversions at once while sorting.",
+						checks: [
+							"`[3, 1, 2, 1]` has four inversions. `[4, 3, 2, 1]` has six. Equal values and empty arrays add none.",
+							"Both sorting variants leave their arrays in ascending order and return the same count as the pair method."
+						],
+						extension:
+							"For length n, explain why pair counting checks n(n−1)/2 pairs and why merge counting processes each element once per merge level."
+					}),
+					projectLink:
+						apAdvancedPracticeResources["inversion-counting"]
+							.starter,
+					solutionLink:
+						apAdvancedPracticeResources["inversion-counting"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				},
 				{
 					title: "Project: Minimum and Maximum",
@@ -2316,27 +2334,28 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				{
 					title: "Reference: Stack Overflow",
 					content: apProject({
-						goal: "Diagnose recursive methods that compile but do not terminate safely.",
+						goal: "Diagnose a recursive call that moves away from its base case.",
 						steps: [
-							"Identify the base case and the recursive call.",
-							"Trace two or three calls to see whether the input approaches the base case.",
-							"Name the first repeated pattern that proves the recursion will continue indefinitely.",
-							"Repair the stop condition or shrinking step and trace again."
+							"Read the first four inputs printed by the bounded trace. Each is the input an incorrect recursive call would receive.",
+							"In `render`, return `Done` at zero. For a positive length, return one dash followed by the result for a smaller length.",
+							"Run the repaired method for lengths 3, 0, and 21. The exercise accepts lengths from 0 through 20."
 						],
 						apReasoning:
-							"AP CSA Java reasoning treats stack overflow as evidence of a failed recursive structure, not as a random runtime event.",
+							"An increasing input moves away from zero. Each unfinished call needs a stack frame, so recursion that fails to make progress can exhaust stack space.",
 						checks: [
-							"The diagnosis cites a specific input and method line.",
-							"The repaired version reaches the base case.",
-							"The explanation separates infinite recursion from a long but finite recursion."
+							"The incorrect trace is 3, 4, 5, 6. The repaired calls reach zero through 3, 2, 1, 0.",
+							"Length 3 produces `---Done`. Length 0 produces `Done`. Length 21 reports `Length out of range`."
 						]
 					}),
-					projectLink: repo(
-						"APCS15-Stack-Overflow-Reference/starter"
-					),
-					solutionLink: repo(
-						"APCS15-Stack-Overflow-Reference/solution"
-					)
+					projectLink:
+						apAdvancedPracticeResources["stack-overflow-reference"]
+							.starter,
+					solutionLink:
+						apAdvancedPracticeResources["stack-overflow-reference"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			]
 		},
@@ -2524,49 +2543,51 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				{
 					title: "Master Project: Elevens",
 					content: apProject({
-						goal: "Implement the Elevens card-game variation with deck state, hand state, move validation, and replenishment after removals.",
+						goal: "Validate and apply moves to a hand of up to nine cards.",
 						steps: [
-							"Reuse or adapt the deck/card model from earlier modules.",
-							"Deal a nine-card hand while cards remain available.",
-							"Detect valid moves: pairs summing to eleven or a Jack-Queen-King group.",
-							"Remove selected cards, refill the hand, and stop when the deck is cleared or no move remains."
+							"Accept distinct slots for either a pair totaling eleven or one jack, one queen and one king. Ace is 1. Suits do not affect moves.",
+							"Remove a legal selection from highest slot to lowest. Refill from the stock up to nine cards.",
+							"Compile the ZIP with `javac Main.java Card.java Deck.java Elevens.java Suit.java`. Run `java Main --demo` for the fixed hand."
 						],
 						apReasoning:
-							"Elevens combines ArrayList mutation, object modeling, conditionals, and game-state loops. The hardest part is keeping collection changes correct while validating legal moves.",
+							"Validate every slot before the first removal. A game is won when both stock and hand are empty. If cards remain and no legal selection exists, the game stops.",
 						checks: [
-							"Removing cards does not skip or corrupt later indexes.",
-							"The game detects both winning and no-move ending states.",
-							"Ace, face-card, and suit behavior matches the stated rules."
+							"In the demo, reject `4 4` without changing the hand. Use `4 5` to remove the 6 and 5, then `1 2 3` to clear the three face cards.",
+							"An empty stock can leave a playable hand. A hand of three queens has no move."
 						],
 						extension:
-							"Add a move suggester that lists all valid moves and compare its output with manual traces."
+							"List the legal moves for a fixed hand and compare the result with a manual trace."
 					}),
-					projectLink: repo("APCS17-Elevens/starter"),
-					solutionLink: repo("APCS17-Elevens/solution"),
+					projectLink: apAdvancedPracticeResources.elevens.starter,
+					solutionLink: apAdvancedPracticeResources.elevens.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs17-master-project-2-elevens.mp4")
 				},
 				{
 					title: "Master Project: Decode",
 					content: apProject({
-						goal: "Build a message-and-tower communication model where matching secret numbers allow encoded messages to be decoded correctly.",
+						goal: "Model towers sending and receiving letter-shifted messages in memory.",
 						steps: [
-							"Define a `Message` class that stores text and can shift letters forward or backward.",
-							"Define a `Tower` class with a secret number used for transmission and receiving.",
-							"Preserve spaces, punctuation, or nonletters according to a stated rule.",
-							"Test two towers with matching and non-matching secret numbers."
+							"Normalize shifts modulo 26. Move ASCII letters within their own case and copy other characters.",
+							"Let a tower create a shifted message when sending and reverse the shift when receiving. Keep both earlier messages intact.",
+							"Compile the ZIP with `javac Main.java Message.java Tower.java` and run `java Main`."
 						],
 						apReasoning:
-							"Decode is AP CSA Java reasoning for strings, methods, object state, and encapsulation. The important design question is which class owns the shifting behavior and which class owns the secret key.",
+							"Message owns the letter transform. Tower owns the shift number. The letter shift illustrates state and methods without protecting real messages.",
 						checks: [
-							"Encoding and decoding with the same number restores the original message.",
-							"Different tower numbers produce unreadable or different text.",
-							"Wraparound behavior for letters is specified and tested."
+							"Key 5 sends `Az za! 2` as `Fe ef! 2`. Key 5 restores the original. Key 2 gives `Dc cd! 2`.",
+							"Compare keys of -1 and 25. Verify that punctuation, emoji and other non-ASCII characters keep their original positions."
 						],
 						extension:
-							"Add a simple history of sent messages or support different shift strategies without exposing tower internals."
+							"Keep a history of original and encoded messages. Show that receiving one leaves that history intact."
 					}),
-					projectLink: repo("APCS17-Decode/starter"),
-					solutionLink: repo("APCS17-Decode/solution"),
+					projectLink: apAdvancedPracticeResources.decode.starter,
+					solutionLink: apAdvancedPracticeResources.decode.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs17-master-project-3-decode.mp4")
 				},
 				{
