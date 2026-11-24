@@ -15,6 +15,9 @@ const foundationsSupplementalPacks =
 const variablesAndLoopsPacks =
 	"https://github.com/instruction-material/APCS/tree/4c47eb1c12154f8ca8cb7f864d7f3a7b6a52685e";
 
+const expressionsAndClassPacks =
+	"https://github.com/instruction-material/APCS/tree/c1a6918718a986c8ef4a7a400dda0eb5a90b9bff";
+
 function projectRoles(pack: string) {
 	return {
 		starter: `${pack}/starter`,
@@ -115,6 +118,30 @@ export const apVariablesAndLoopsResources = {
 	)
 };
 
+export const apExpressionsAndClassResources = {
+	"verifying-expressions": projectRoles(
+		`${expressionsAndClassPacks}/APCS2-Verifying-Expressions`
+	),
+	"translating-loops": projectRoles(
+		`${expressionsAndClassPacks}/APCS4-Translating-Loops`
+	),
+	"method-practice": projectRoles(
+		`${expressionsAndClassPacks}/APCS5-Practice-with-Methods`
+	),
+	"store-class": projectRoles(
+		`${expressionsAndClassPacks}/APCS5-Store-Class`
+	),
+	"spreadsheet-width": projectRoles(
+		`${expressionsAndClassPacks}/APCS5-Spreadsheet-Width`
+	),
+	"class-constructor": projectRoles(
+		`${expressionsAndClassPacks}/APCS5-Class-Example`
+	),
+	"this-fields": projectRoles(
+		`${expressionsAndClassPacks}/APCS6-This-Reference`
+	)
+};
+
 const restoredProjects = {
 	"binary-search-trace": apBinarySearchResources,
 	"recursion-practice": apRecursionPracticeResources,
@@ -126,7 +153,8 @@ const restoredProjects = {
 	...apRemainingCoreResources,
 	...apIntroductoryResources,
 	...apFoundationsSupplementalResources,
-	...apVariablesAndLoopsResources
+	...apVariablesAndLoopsResources,
+	...apExpressionsAndClassResources
 };
 
 export function apComputerScienceAProjectKey(
@@ -142,4 +170,44 @@ export function apComputerScienceAProjectKey(
 		([, links]) => url === links[role]
 	);
 	return restored ? `${base}:${restored[0]}` : base;
+}
+
+const nativeClassWorkspaces = {
+	"store-class": {
+		item: "ap-computer-science-a-apcs5-classes-part-i-supplemental-project-store-class",
+		file: "Store.java"
+	},
+	"class-constructor": {
+		item: "ap-computer-science-a-check-in-2-supplemental-class-example",
+		file: "TestClass.java"
+	},
+	"this-fields": {
+		item: "ap-computer-science-a-check-in-2-supplemental-this-reference",
+		file: "Counter.java"
+	}
+};
+
+export function apComputerScienceANativeInstructions(
+	courseProjectKey?: string
+) {
+	const [course, item, role, kind, extra] = (courseProjectKey ?? "").split(
+		":"
+	);
+	if (
+		course !== "ap-computer-science-a" ||
+		extra !== undefined ||
+		(role !== "starter" && role !== "reference")
+	) {
+		return null;
+	}
+	const target = Object.entries(nativeClassWorkspaces).find(
+		([key, workspace]) => key === kind && workspace.item === item
+	)?.[1];
+	if (!target) return null;
+	return [
+		"Save the project and download its ZIP. Extract the files and open the project folder in a terminal with JDK 17 or later.",
+		`javac Main.java ${target.file}`,
+		"java Main",
+		"Compare the terminal output with the checks in the project guide."
+	];
 }

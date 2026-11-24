@@ -1,3 +1,4 @@
+import { apComputerScienceANativeInstructions } from "./apComputerScienceAResources";
 import {
 	javaArchitectureCoreID,
 	javaArchitectureReadingID
@@ -165,6 +166,9 @@ const fruitFeastItem =
 export function javaNativeBuildInstructions(
 	courseProjectKey?: string
 ): string[] | null {
+	const apInstructions =
+		apComputerScienceANativeInstructions(courseProjectKey);
+	if (apInstructions) return apInstructions;
 	const unitInstructions =
 		javaRefactoringUnitNativeInstructions(courseProjectKey);
 	if (unitInstructions) return unitInstructions;

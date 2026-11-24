@@ -3,6 +3,7 @@ import {
 	apBinarySearchResources,
 	apBlobEraseResources,
 	apElevatorWarningResources,
+	apExpressionsAndClassResources,
 	apFoundationsSupplementalResources,
 	apIntroductoryResources,
 	apMergeSortResources,
@@ -433,10 +434,29 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Core Project: Verifying Expressions",
-					content:
-						"This project develops expression tracing and boolean reasoning. The checkpoint is being able to evaluate each subexpression in order, name the final boolean result, and explain any short-circuit behavior.",
-					projectLink: repo("APCS2-Verifying-Expressions/starter"),
-					solutionLink: repo("APCS2-Verifying-Expressions/solution")
+					content: apProject({
+						goal: "Predict each expression's type and value before running it.",
+						steps: [
+							"Open `Main.java` and trace the supplied comparison with `40.0`. Add a test for `35 <= forty`.",
+							"Cast `40.0` to `int` and compare the result with its original value. Repeat the cast and equality check with `35.5`.",
+							"Copy the second Boolean result into another Boolean variable. Print the copy and compare the two Boolean values. For the last test, use `divisor = 0` and check `divisor != 0 && 40 / divisor > 2`."
+						],
+						apReasoning:
+							"Compare values after the cast rather than before it. Assignment preserves the Boolean value. With `&&`, Java tests the right operand only when the left operand is true.",
+						checks: [
+							"The eight labeled results are false, true, 40, true, false, false, true, and false.",
+							"Explain why the final expression completes without dividing by zero."
+						]
+					}),
+					projectLink:
+						apExpressionsAndClassResources["verifying-expressions"]
+							.starter,
+					solutionLink:
+						apExpressionsAndClassResources["verifying-expressions"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				},
 				{
 					title: "Chapter 2 Multiple Choice Focus",
@@ -723,10 +743,29 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Core Project: Translating Loops",
-					content:
-						"This project translates between `for` and `while` forms while preserving exact behavior. The important check is that initialization, condition, update, and output stay equivalent after the rewrite.",
-					projectLink: repo("APCS4-Translating-Loops/starter"),
-					solutionLink: repo("APCS4-Translating-Loops/solution"),
+					content: apProject({
+						goal: "Translate `for` loops into `while` loops with matching sequences and stopping behavior.",
+						steps: [
+							"Trace the supplied ascending pair in `Main.java`. Identify the initialization, condition, body, and update in each.",
+							"Complete the descending and doubling `while` methods. Move initialization before the loop and keep the update inside it.",
+							"Complete `untilMultipleWhile`. Record the current value before the break test. Compare both versions when the initial value is 1 and when it is 0."
+						],
+						apReasoning:
+							"A `break` skips the remaining loop body, including an update after the break test. The conditions must be checked at the same point in the original and translated versions.",
+						checks: [
+							"The first two pairs give 0 through 9 and 0 through -9. The doubling pair prints 1, 2, 4, 8.",
+							"Starting at 1, both break sequences print 1, 2, 3. Starting at 0, both print 0 once."
+						]
+					}),
+					projectLink:
+						apExpressionsAndClassResources["translating-loops"]
+							.starter,
+					solutionLink:
+						apExpressionsAndClassResources["translating-loops"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs4-project-2-translating-loops.mp4")
 				},
 				{
@@ -877,17 +916,53 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Class Example",
-					content:
-						"This short class example reinforces constructor syntax and instance variables. It makes the relationship between a class definition, a constructed object, and the object's stored fields concrete.",
-					projectLink: repo("APCS5-Class-Example/starter"),
-					solutionLink: repo("APCS5-Class-Example/solution")
+					content: apProject({
+						goal: "Trace a constructor argument into an object's field and distinguish printing from returning.",
+						steps: [
+							"Read `Main.java` and `TestClass.java`. Identify the argument sent to each constructor and the field set by it.",
+							"Run the example and compare the two values printed from inside the method with the values received by `main`. Return the field value so both match.",
+							"Save and download the ZIP. In the extracted folder, run `javac Main.java TestClass.java`, then `java Main`."
+						],
+						apReasoning:
+							"Each object keeps a separate copy of its field. Printing is a side effect. A returned value can also be stored by the caller.",
+						checks: [
+							"The two objects store Fern and Moss.",
+							"The first call prints and returns Fern. The second prints and returns Moss."
+						]
+					}),
+					projectLink:
+						apExpressionsAndClassResources["class-constructor"]
+							.starter,
+					solutionLink:
+						apExpressionsAndClassResources["class-constructor"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				},
 				{
 					title: "This Reference",
-					content:
-						"The `this` reference pack clarifies constructor syntax and `this.field`. The checkpoint is distinguishing a parameter name from the instance variable that belongs to the current object. Use it when constructor code compiles but stores the wrong value or leaves a field unchanged. The evidence includes a shadowed-parameter example, the corrected `this.field = parameter` assignment, and a printed object state proving the field was initialized. Add one explanation of when `this` is optional for Java but still useful for readability and one case where omitting it changes which variable is updated.",
-					projectLink: repo("APCS6-This-Reference/starter"),
-					solutionLink: repo("APCS6-This-Reference/solution")
+					content: apProject({
+						goal: "Use `this` to refer to a field when a constructor parameter has the same name.",
+						steps: [
+							"Open `Counter.java` and `Main.java`. Trace the one-argument constructor, whose parameter is named `initialValue`.",
+							"Complete the two-argument constructor with `this.value = value` and `this.step = step`. Trace both sides of each assignment.",
+							"Save and download the ZIP. In the extracted folder, run `javac Main.java Counter.java`, then `java Main`. Advance only the custom counter."
+						],
+						apReasoning:
+							"The qualified name refers to the current object. The bare parameter name inside the shadowing constructor refers to the supplied argument. The counters have independent state.",
+						checks: [
+							"The standard counter starts at 4. The custom counter starts at 10 and advances to 13.",
+							"The standard counter still reads 4 after the custom counter advances."
+						]
+					}),
+					projectLink:
+						apExpressionsAndClassResources["this-fields"].starter,
+					solutionLink:
+						apExpressionsAndClassResources["this-fields"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			]
 		},
@@ -939,26 +1014,83 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			supplementalProjects: [
 				{
 					title: "Project: Method Practice",
-					content:
-						"The APCS5 method-practice project gives short parameter and return-value repetitions. Each method identifies its inputs, output, side effects if any, and one call from `main` that proves the method contract is being used correctly.",
-					projectLink: repo("APCS5-Practice-with-Methods/starter"),
-					solutionLink: repo("APCS5-Practice-with-Methods/solution"),
+					content: apProject({
+						goal: "Implement methods that turn parameters into returned values.",
+						steps: [
+							"Use the supplied `sum` as a model. Complete `factorial` for 0 through 12 and `exponent` for bases -10 through 10 and powers 0 through 9.",
+							"Count the letters A, E, I, O, and U regardless of case. Treat an empty string as zero vowels.",
+							"Return false for integers below 2. Test divisibility from 2 up to the square root. The condition `candidate <= number / candidate` expresses this bound without multiplying the candidate."
+						],
+						apReasoning:
+							"Keep the method parameter, local accumulator, and returned result separate. Values printed by `main` come from the method returns.",
+						checks: [
+							"`factorial(0)` and `exponent(-3, 0)` both return 1. `factorial(5)` returns 120.",
+							'`numVowels("apple")` returns 2 and `numVowels("IDEA")` returns 3.',
+							"23 and 2 are prime. 49 has a factor of 7, and 1 is below the smallest prime."
+						]
+					}),
+					projectLink:
+						apExpressionsAndClassResources["method-practice"]
+							.starter,
+					solutionLink:
+						apExpressionsAndClassResources["method-practice"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs5-project-1-method-practice.mp4")
 				},
 				{
 					title: "Project: Store Class",
-					content:
-						"Store Class gives another object model with a small but meaningful state transition. The useful evidence is a before-and-after object state, such as inventory, price, or balance changing through a method rather than direct field access.",
-					projectLink: repo("APCS5-Store-Class/starter"),
-					solutionLink: repo("APCS5-Store-Class/solution"),
+					content: apProject({
+						goal: "Update a store's inventory through a method that rejects invalid orders.",
+						steps: [
+							"Read `Main.java` and `Store.java`. Start with the supplied apple branch. Add pear and hose branches with unit prices 7 and 15.",
+							"Allow a positive quantity up to the available stock. Reduce stock once for a successful purchase and return the price. Return 0 for an unknown item, a nonpositive quantity, or insufficient stock.",
+							"Save and download the ZIP. In the extracted folder, run `javac Main.java Store.java`, then `java Main`."
+						],
+						apReasoning:
+							"Private fields hold inventory. `quantity` reads the state and `buy` changes it only when the order satisfies the contract.",
+						checks: [
+							"Buying five pears costs 35 and leaves 95. Rejected orders leave 95 pears.",
+							"Buying the last 20 apples costs 80 and leaves zero. One hose costs 15, leaving 14.",
+							"A second `Store` begins with its own inventory."
+						]
+					}),
+					projectLink:
+						apExpressionsAndClassResources["store-class"].starter,
+					solutionLink:
+						apExpressionsAndClassResources["store-class"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs5-project-3-store-class.mp4")
 				},
 				{
 					title: "Supplemental: Spreadsheet Width",
-					content:
-						"This supplemental build gives precise method specs more implementation practice. The task is useful because it forces careful interpretation of inputs, return values, edge cases, and formatting rules before implementation starts.",
-					projectLink: repo("APCS5-Spreadsheet-Width/starter"),
-					solutionLink: repo("APCS5-Spreadsheet-Width/solution"),
+					content: apProject({
+						goal: "Return text padded or trimmed to an exact cell width.",
+						steps: [
+							"Implement `formatCell` in `Main.java`. Start with ordinary text and a width from 0 through 20.",
+							"Trim longer text to its first `width` characters. Pad shorter text with spaces. Keep exact-width text as supplied.",
+							"Place one visible bar on each side after the interior is ready. Return the complete string to the caller."
+						],
+						apReasoning:
+							"The width is measured between the two bars. At width zero the interior is empty, so no text or padding appears.",
+						checks: [
+							"At width 5, potato gives `|potat|`, pea gives `|pea  |`, and apple gives `|apple|`.",
+							"Empty text at width 3 gives `|   |`. At width 0, pear gives `||`."
+						]
+					}),
+					projectLink:
+						apExpressionsAndClassResources["spreadsheet-width"]
+							.starter,
+					solutionLink:
+						apExpressionsAndClassResources["spreadsheet-width"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media(
 						"apcs5-supplemental-project-1-spreadsheet-width.mp4"
 					)

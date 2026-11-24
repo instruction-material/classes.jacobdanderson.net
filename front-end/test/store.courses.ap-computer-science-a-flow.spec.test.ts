@@ -6,6 +6,7 @@ import {
 	apBlobEraseResources,
 	apComputerScienceAProjectKey,
 	apElevatorWarningResources,
+	apExpressionsAndClassResources,
 	apFoundationsSupplementalResources,
 	apIntroductoryResources,
 	apMergeSortResources,
@@ -15,6 +16,7 @@ import {
 	apStudentClassResources,
 	apVariablesAndLoopsResources
 } from "@/modules/apComputerScienceAResources";
+import { javaNativeBuildInstructions } from "@/modules/javaNativeBuildInstructions";
 import { pythonIdeModeForCourseResource } from "@/modules/pythonIde";
 import { useCoursesStore } from "@/stores/courses";
 import { apComputerScienceACourse } from "@/stores/courses/ap-computer-science-a";
@@ -438,6 +440,97 @@ describe("AP Computer Science A learner flow", () => {
 		expect(entry.projectLink).toBeUndefined();
 		expect(entry.solutionLink).toBeUndefined();
 		expect(canonical.ideImport).toBe(true);
+	});
+
+	it.each([
+		[
+			"APCS2 Operators",
+			"Core Project: Verifying Expressions",
+			"verifying-expressions",
+			"ap-computer-science-a-apcs2-operators-curriculum-core-project-verifying-expressions",
+			"core",
+			null
+		],
+		[
+			"APCS4 Selection, Iteration, and Runtime Reasoning",
+			"Core Project: Translating Loops",
+			"translating-loops",
+			"ap-computer-science-a-apcs4-selection-iteration-and-runtime-reasoning-curriculum-core-project-translating-loops",
+			"core",
+			null
+		],
+		[
+			"APCS5 Classes Part I",
+			"Project: Method Practice",
+			"method-practice",
+			"ap-computer-science-a-apcs5-classes-part-i-supplemental-project-method-practice",
+			"choice",
+			null
+		],
+		[
+			"APCS5 Classes Part I",
+			"Project: Store Class",
+			"store-class",
+			"ap-computer-science-a-apcs5-classes-part-i-supplemental-project-store-class",
+			"choice",
+			"Store.java"
+		],
+		[
+			"APCS5 Classes Part I",
+			"Supplemental: Spreadsheet Width",
+			"spreadsheet-width",
+			"ap-computer-science-a-apcs5-classes-part-i-supplemental-supplemental-spreadsheet-width",
+			"choice",
+			null
+		],
+		[
+			"Check-In #2",
+			"Class Example",
+			"class-constructor",
+			"ap-computer-science-a-check-in-2-supplemental-class-example",
+			"choice",
+			"TestClass.java"
+		],
+		[
+			"Check-In #2",
+			"This Reference",
+			"this-fields",
+			"ap-computer-science-a-check-in-2-supplemental-this-reference",
+			"choice",
+			"Counter.java"
+		]
+	] as const)("opens both Java roles for %s / %s", async (moduleTitle, title, kind, itemId, path, classFile) => {
+		setActivePinia(createPinia());
+		const courseId = "ap-computer-science-a";
+		const course = (await useCoursesStore().loadCourseById(courseId))!;
+		const module = course.modules.find(candidate => candidate.title === moduleTitle)!;
+		const items = path === "core" ? module.curriculum : module.supplementalProjects;
+		const item = items.find(candidate => candidate.title === title)!;
+		const rawModule = requireModule(moduleTitle);
+		const rawItems = path === "core" ? rawModule.curriculum : rawModule.supplementalProjects;
+		const rawItem = rawItems.find(candidate => candidate.title === title)!;
+		const links = apExpressionsAndClassResources[kind];
+		expect(item.id).toBe(itemId);
+		expect(rawItem).toMatchObject({
+			learningPath: path,
+			ideImport: true,
+			projectLink: links.starter,
+			solutionLink: links.reference
+		});
+
+		for (const role of ["starter", "reference"] as const) {
+			const base = `${courseId}:${itemId}:${role}`;
+			const key = apComputerScienceAProjectKey(courseId, itemId, role, links[role]);
+			expect(key).toBe(`${base}:${kind}`);
+			expect(javaNativeBuildInstructions(base)).toBeNull();
+			if (classFile) {
+				expect(javaNativeBuildInstructions(key)).toContain(`javac Main.java ${classFile}`);
+				expect(javaNativeBuildInstructions(key)).toContain("java Main");
+				expect(javaNativeBuildInstructions(`${key}:extra`)).toBeNull();
+			} else {
+				expect(javaNativeBuildInstructions(key)).toBeNull();
+			}
+		}
 	});
 
 	it("preserves inherited source projects while moving references out of the required path", () => {
