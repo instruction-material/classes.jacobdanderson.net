@@ -62,13 +62,20 @@ Test valid, missing, malformed, overlength, wrong-content-type, repeated, timeou
 
 ## Persistence Boundary Case
 
-Use this versioned note shape:
+Use the WDF6 Notes project with its memory adapter. In the unchanged starter, create and replace return 501 until the two functions in the project reading are complete. Use the completed workspace for the cases below.
 
-```json
-{ "version": 1, "id": "n1", "title": "Fictional task", "body": "Local course data", "tags": ["class"] }
-```
+1. Send this JSON to `POST /api/notes` with content type `application/json`. Record the returned ID and timestamps.
 
-Implement the contract with an in-memory adapter first. Optionally repeat against isolated local MongoDB. Test deterministic seed, create, read, update, delete, duplicate ID, malformed record, unknown ID, unavailable adapter, restart, reset or migration, backup, restore to a separate target, and integrity comparison. Tie one index to one named query.
+   ```json
+   { "title": "Fictional task", "body": "Local course data", "tags": ["class"] }
+   ```
+
+2. Read the returned ID with `GET /api/notes/<id>`. Replace the note with `PUT` at the same URL, retaining its title and changing its body. Compare the ID and creation time before and after. Query `GET /api/notes?title=Fictional%20task` and explain which field an index would use.
+3. Predict three outcomes, then try them separately. Create another note with the same title. Submit the original JSON with the extra field `"version": 1`. Read a well-formed UUID absent from the list. Record the status and error code for each.
+4. Save `GET /api/notes/snapshot` before deleting anything. Start a separate memory instance on another free loopback port with `NOTES_SEED_FILE` set to the absolute path of that file. Compare the two snapshots by ID, text, tags and timestamps. Delete your note on the restored instance only. Read the note on both instances.
+5. Restart the original memory instance without a seed file. Compare its notes with the initial seed. In a disposable copy of the saved snapshot, duplicate a record with the same ID or change `schemaVersion` to an unsupported value. Attempt a separate restore and record the startup result. Keep the working snapshot for recovery.
+
+To test unavailable storage, start a separate instance with `NOTES_SCENARIO=unavailable`. Compare the health and readiness responses with a note read. The same API can also be exercised against the optional isolated MongoDB adapter described in the project reading.
 
 ## Deployment Preflight Case
 

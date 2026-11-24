@@ -28,7 +28,18 @@ The loopback service rejects missing, malformed, overlength, wrong-content-type,
 
 ## Persistence Boundary Key
 
-The same versioned note contract works through the in-memory adapter and optional local MongoDB adapter. IDs are stable and validated, duplicate and unknown IDs are explicit, record counts and fields are bounded, and one index supports a named query. Seed, CRUD, unavailable storage, restart, migration or reset, backup, separate-target restore, and integrity checks are documented.
+The create request supplies `title`, `body` and optional `tags`. The completed service returns 201 and assigns a UUID and timestamps. A full replacement returns 200 and keeps the ID and creation time. Looking up the exact, case-sensitive title returns the updated record. The MongoDB adapter has a unique title index for this query.
+
+| Observation | Expected result |
+| --- | --- |
+| Create the same title twice | The second request returns 409 `note_conflict`. |
+| Include `version` or an `id` in a create request | 400 `invalid_note`. The request contains an unknown field. |
+| Read an absent, well-formed UUID | 404 `note_not_found`. A malformed ID such as `n1` instead returns 400 `invalid_id`. |
+| Export and restore into a second memory instance | The snapshot has the shape `{ "schemaVersion": 1, "notes": [...] }`. Each restored record retains its UUID, creation time, update time and field values. |
+| Delete only on the restored instance | DELETE returns 204 with an empty body. The next read there returns 404. The original still returns 200 for the same ID. |
+| Restart memory without a seed file | The default fictional seed returns. Saving a snapshot alone does not load it at startup. |
+| Restore an unsupported version or a duplicate ID | Validation rejects the snapshot before the new instance starts serving. The original file remains usable. |
+| Run the unavailable-storage scenario | The process health endpoint responds. Readiness and note reads return 503. Restarting with the normal memory adapter restores service. |
 
 ## Deployment Preflight Key
 
