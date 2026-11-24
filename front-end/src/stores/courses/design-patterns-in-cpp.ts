@@ -565,49 +565,49 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "DPC7 Command and State: Core Project",
+					preserveInstructions: true,
+					contentKind: "assignment",
 					content:
-						"Extend the command editor with a tiny scanner that turns text commands into command objects.",
+						"Build the command editor in main.cpp with a C++20 compiler. The starter applies commands immediately and saves a copy of the document after each accepted request begins. Move the work into a queue of uniquely owned command objects. When the queue runs, ask the current mode whether each command may execute. Give each accepted command the information it needs to undo its own edit, then move it to history.\n\n**Checkpoints:** Append Sprint notes and then a second phrase in draft mode. In review mode, reject a replacement, accept an appended approval, and undo once. The original two phrases should remain. Explain why rejected commands never enter history.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC5-Command-and-State-Editor/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC5-Command-and-State-Editor/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC5-Command-and-State-Editor/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC5-Command-and-State-Editor/solution"
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Project: Command and State Editor",
+					preserveInstructions: true,
+					contentKind: "assignment",
 					content:
-						"Build a tiny editor that changes behavior by mode and records work through commands instead of sprawling control flow. The important judgment move is deciding what belongs in the command, what belongs in the state, and what stays simple.",
+						"Use the editor to investigate when a queued edit receives permission. Put a replacement in the queue while draft mode is active. Switch to review mode before running the queue and predict what will happen to the edit. Repeat with a replacement queued in review and executed in draft. Record the state at enqueue, the state at execution, and the final document for each trial.\n\n**Checkpoints:** A replacement executed in review leaves the text unchanged. A replacement executed in draft changes it. Undo once after each sequence and explain which earlier operation, if any, supplied the history entry.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC5-Command-and-State-Editor/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC5-Command-and-State-Editor/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC5-Command-and-State-Editor/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC5-Command-and-State-Editor/solution"
 				},
 				{
 					title: "Command State Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC7 Command and State",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Extend the scanner for a command-line editor. Compile main.cpp as C++20 and enter one instruction per line. The starter recognizes mode draft, mode review and undo. Add append and replace, each followed by one quoted string. Check the opening quote and use std::quoted to read spaces, escaped quotes and empty text. Reject unfinished strings or extra tokens before sending a command to the editor.\n\n**Checkpoints:** Append \"first draft\", enter review mode, try a quoted replacement, append \"!\" and undo. The document finishes as first draft. An unquoted replacement reports a syntax error. A quoted replacement in review reaches the editor and reports a mode rejection.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-15-dpc7-command-and-state-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC-15-dpc7-command-and-state-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-15-dpc7-command-and-state-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC-15-dpc7-command-and-state-supplemental-2/solution"
 				},
 				{
 					title: "Undo State Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC7 Command and State",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Extend the command editor so a user can redo an undone edit. Run the starter with a C++20 compiler. Follow each command as it moves from the execution queue to history. On undo, restore the document and move the command to a redo stack. On redo, check the current mode before applying the command and returning it to history. A new accepted edit clears the redo branch.\n\n**Checkpoints:** Append A and B, undo B, then redo to recover AB. Repeat the undo and try a rejected replacement in review mode. Redo still restores AB. Undo again and append C. A final redo leaves AC. Test two consecutive undos followed by two redos.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-16-dpc7-command-and-state-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC-16-dpc7-command-and-state-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-16-dpc7-command-and-state-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC-16-dpc7-command-and-state-supplemental-3/solution"
 				}
 			]
 		},
