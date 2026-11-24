@@ -275,6 +275,8 @@ Write the supported claims and the claims that remain untested. Diagnose the cli
 
 ## Apple Development and Distribution Map Case
 
+Trail Notes 1.0 (7) opened the note list on an iPhone simulator. That is the only observed result in the core case. For the reverse walkthrough, assume an external tester successfully installed the same build through TestFlight. Treat that installation as a separate scenario.
+
 ### Supplied stages
 
 | Stage                | Audience         | Resource                            |
@@ -289,6 +291,8 @@ Write the supported claims and the claims that remain untested. Diagnose the cli
 Add input artifact, output, required role, and one blocker to each stage. Mark the complete free learning route. Create a classroom simulation that shares neither credentials nor real tester contact information.
 
 ## Signing Teams and Bundle IDs Case
+
+Team Oak owns the fictional tracker app. The intended release target is `net.example.tracker`; its separate gallery demo is `net.example.gallery`. The simulator build and the release archive use different destinations. Work from the following four independent observations. Where the record is silent, identify the missing evidence.
 
 ### Supplied failures
 
@@ -315,6 +319,8 @@ For each case, identify bundle identifier, team, certificate, profile, capabilit
 | Build age            | 12 days                                         |
 | First external build | yes                                             |
 
+For the extension, QA reports that the empty-list recovery button is clipped on a small simulator at large text. Build 8 contains a layout change. Classroom Review has received no invitation and the export-compliance question is unresolved. Decide which group and build can supply the retest and which distribution decision still requires an authorized response.
+
 ### Task
 
 Order app record, upload, processing, compliance response, group assignment, beta information, first external review, invitation, feedback, revision, and expiration. Compare internal and external tester constraints. Use fictional tester labels only.
@@ -334,6 +340,8 @@ Define minimum flow, non-goals, data model, state ownership, navigation map, emp
 ### Supplied preflight discrepancy
 
 The build says version 1.0 (8), screenshots show a feature removed in build 8, the description still promises that feature, the privacy answer says no data collection, and an included third-party SDK reports diagnostics. Reviewer notes do not explain the app's sample-data mode.
+
+The review sheet identifies the selected build. Its support-link check, privacy-link check and final smoke-test fields are blank. Use an open evidence request for each blank. For the extension, a reviewer reports being unable to reach the sample list and requests reproduction steps. Build 8 opens the list from **Explore sample data** on the welcome screen. Explain when a notes-only correction suffices and when a new build is needed.
 
 ### Task
 

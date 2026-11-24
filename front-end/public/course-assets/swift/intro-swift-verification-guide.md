@@ -197,25 +197,26 @@ The supplied JSON decodes into two entries in order, titled `SwiftUI views` and 
 
 ## Apple Development and Distribution Map Key
 
-- Xcode simulator work is the complete free core.
-- A free Apple Account can support personal-device testing subject to Apple's current conditions.
-- TestFlight and App Store distribution require enrolled-team and role access.
-- App Store Connect manages records, builds, testers, metadata, privacy, and submission state; it is not the compiler.
+| Stage | Input and result | Who can use the result? |
+| --- | --- | --- |
+| Simulator | Source and local build settings produce a running simulator app. | The person using that simulator. A missing runtime blocks this run. |
+| Personal device | A compatible signed development build can be installed on an eligible device. | The person testing that installation. Device signing can block this step. |
+| TestFlight | The team uploads an archive. After processing, the team assigns an eligible build to a testing group and meets the applicable review requirements. | Testers with access to that build. Processing alone gives them no invitation. |
+| App Store | The team selects a build, completes the version record, submits it, and follows through on review and release. | Customers where and when the app becomes available. A draft submission or pending review still leaves this stage open. |
+
+For the core case, circle only the simulator result. For the reverse trace, an external beta installation supports the TestFlight claim. Look for the released version's store availability before making the public claim.
 
 ## Signing Teams and Bundle IDs Key
 
-- Case 1 is an app identifier/profile mismatch.
-- Case 2 is a capability/entitlement configuration mismatch.
-- Case 3 is a role/authorization boundary, not a coding defect.
-- Case 4 requires archive/distribution-signing evidence even though simulator execution passed.
-- No correction asks a learner to transmit credentials or private signing material.
+In case 1 the release target asks for `net.example.tracker` and the selected profile authorizes `net.example.gallery`. Compare the selected team and profile with the intended tracker target. An authorized team member can select or generate the matching profile, archive the same target, and inspect the resulting signing record. Preserve the app's intended identity.
+
+For a capability error, compare the target entitlements, the registered App ID's enabled capabilities, and the profile's entitlements. After an App ID capability change, the distribution profile may need regeneration. In case 3 capture the role restriction and refer the operation to a team member authorized to manage that signing asset. In case 4 the first archive error is missing. A working simulator supplies no certificate or profile diagnosis.
 
 ## App Store Connect and TestFlight Key
 
-- Correct flow includes upload and processing before tester assignment.
-- Internal and external testers have different role/review conditions; the first external build may require beta review.
-- Test information and feedback route are part of the release packet.
-- A TestFlight build has a limited testing lifetime; the current first-party reference governs the exact operational value.
+Start with the app record and uploaded build 1.0 (7). Processing must finish before that build can be used. Prepare test instructions and groups in parallel. Resolve applicable compliance questions, select the eligible build for QA, and record its group assignment. For Classroom Review, complete the external test information and applicable beta review before inviting testers. Record a tester's installation or feedback separately from an invitation.
+
+Tie QA's report to build 7. Retest the empty-list recovery action on build 8 at the same small size and large text setting. A pass belongs to build 8. The pending external group and open compliance question still require their own evidence.
 
 ## Capstone Build and User Testing Key
 
@@ -234,11 +235,9 @@ Readiness is 18 of 24, no zero-point area, and a complete primary flow. Extra fe
 
 ## Final Publishing Walkthrough Key
 
-- The supplied packet receives a hold decision.
-- Screenshots and description must match build 8, or the intended feature must return in a newly validated build.
-- Privacy answers account for third-party SDK behavior and remain accurate.
-- Reviewer notes explain sample-data mode and any access needed.
-- Placeholder, privacy, crash, access, or metadata blockers remain release blockers.
+Hold build 8. Replace the obsolete screenshot and description, verify how the SDK handles diagnostics, reconcile the privacy answers, and give the reviewer reproducible sample-mode steps. Assign the blank link checks and smoke run to a named role and keep each open until someone records the result. After correcting only the screenshot, the other issues still justify a hold.
+
+Adding the version to a draft leaves it ready for the authorized submitter's decision. For the reviewer's sample-list question, test **Explore sample data** on the selected build. If it works, update the review notes with the verified steps. If it fails, correct the app, select the new build, and repeat the affected tests and metadata checks.
 
 ## Shapes and Legacy Reference Key
 

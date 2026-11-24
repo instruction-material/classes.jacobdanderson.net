@@ -240,6 +240,18 @@ describe("intro to Swift App Development learner flow", () => {
 
 		for (const item of items) {
 			if (
+				item.preserveInstructions &&
+				item.contentKind === "assignment" &&
+				item.ideImport === false
+			) {
+				expect(item.content).toContain(item.projectLink!);
+				expect(item.content).toContain(item.solutionLink!);
+				expect(item.projectLink).toContain(
+					"/course-assets/swift/intro-swift-practice-pack.md#"
+				);
+				expect(item.datasetLink).toBeUndefined();
+			}
+			else if (
 				item.projectLink?.startsWith(
 					"/course-assets/swift/intro-swift-practice-pack.md#"
 				)
@@ -298,6 +310,14 @@ describe("intro to Swift App Development learner flow", () => {
 				expect(item.ideImport).toBe(true);
 				expect(item.preserveInstructions).toBe(true);
 			}
+			else if (
+				item.contentKind === "reading" &&
+				item.preserveInstructions &&
+				!FOUNDATION_EXAMPLES[item.title]
+			) {
+				expect(item.content).toContain("[Practice case]");
+				expect(item.content).toContain("[Check the result]");
+			}
 			else if (FOUNDATION_EXAMPLES[item.title]) {
 				expect(item.content).toContain(FOUNDATION_EXAMPLES[item.title]);
 				expect(item.preserveInstructions).toBe(true);
@@ -334,7 +354,7 @@ describe("intro to Swift App Development learner flow", () => {
 				"/course-assets/swift/intro-swift-practice-pack.md#"
 			)
 		);
-		expect(cases).toHaveLength(41);
+		expect(cases).toHaveLength(50);
 		for (const item of cases) {
 			expect(item.ideImport).toBe(false);
 			expect(item.datasetLink).toBeUndefined();
@@ -363,6 +383,27 @@ describe("intro to Swift App Development learner flow", () => {
 				expect(transfer.content.split("## Evidence")[0]).not.toBe(
 					extension.content.split("## Evidence")[0]
 				);
+			}
+		}
+	});
+
+	it("opens the distribution records from each publishing assignment", () => {
+		for (const [index, section] of [
+			[15, "apple-development-and-distribution-map"],
+			[16, "signing-teams-and-bundle-ids"],
+			[17, "app-store-connect-and-testflight"],
+			[19, "final-publishing-walkthrough"]
+		] as const) {
+			const module = introToSwiftAppDevelopmentCourse.modules[index];
+			const tasks = [module.curriculum.at(-1)!, ...module.supplementalProjects];
+			for (const task of tasks) {
+				expect(task.projectLink, task.title).toBe(
+					`/course-assets/swift/intro-swift-practice-pack.md#${section}-case`
+				);
+				expect(task.solutionLink, task.title).toBe(
+					`/course-assets/swift/intro-swift-verification-guide.md#${section}-key`
+				);
+				expect(task.ideImport, task.title).toBe(false);
 			}
 		}
 	});
@@ -574,8 +615,11 @@ describe("intro to Swift App Development learner flow", () => {
 				LEGACY_SEQUENCE[index]
 			);
 			const first = module.curriculum[0];
+			const releaseExample =
+				first.contentKind === "reading" && first.preserveInstructions;
 			expect(first.content, module.title).toContain(
-				FOUNDATION_EXAMPLES[first.title] ?? "**Course position:**"
+				FOUNDATION_EXAMPLES[first.title] ??
+					(releaseExample ? "## Worked example" : "**Course position:**")
 			);
 		}
 

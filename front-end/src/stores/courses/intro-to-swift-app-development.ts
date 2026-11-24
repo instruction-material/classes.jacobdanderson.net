@@ -56,54 +56,70 @@ const introToSwiftAppDevelopmentSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "The Apple Development Pipeline",
-					content:
-						"Start the course with the ecosystem itself, not with random SwiftUI snippets. Define what Xcode, the Apple Developer Program, App Store Connect, and TestFlight each do, and explain the difference between building locally, testing internally, distributing to testers, and publishing publicly. Make the pipeline visible early so later setup and publishing steps feel connected."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Xcode turns a project into a build for a chosen destination. A simulator run lets its author try the app on a Mac. A signed device build can run on an authorized iPhone. For distribution, the team archives a device build, uploads it to App Store Connect, and waits for processing. TestFlight makes an eligible build available to a beta group. App Review evaluates a submission for the store. Each step changes the signing requirements, metadata expectations, and audience that can access the build.
+
+## Worked example
+
+Trail Notes opens on the simulator. A classmate asks for an invitation link. The simulator result proves the local build launched. The team still needs an eligible uploaded build and a tester group before an invitation can reach that classmate.
+
+## Check
+
+Name the earliest point where another person could test a distributed build and the separate decision that controls public availability.`
 				},
 				{
 					title: "Apple Platforms at a High Level",
-					content:
-						"Compare iPhone, iPad, Mac, and watchOS at a high level and explain why this course focuses first on iPhone-style SwiftUI apps. The scope is a practical path to a first shipped app, not every Apple platform all at once."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `The same Swift model can represent a note on a phone, tablet, watch, or Mac. The screen, input method, and available APIs depend on the selected platform. An iPhone row can open a detail screen by touch. An iPad layout can show the list beside the detail. A watch might show only the next note; a Mac could expose the list to keyboard navigation.
+
+For Trail Notes, choose one iPhone simulator as the first destination. Sketch what changes on a watch and identify which model field can remain identical. A phone run supplies evidence for that destination. Testing another platform requires its own target and checks.`
 				},
 				{
 					title: "Practical Walkthrough: Local Build vs TestFlight vs App Store",
-					content:
-						"The release ladder is concrete: run in Xcode, test on simulator, test on device, archive, upload, distribute through TestFlight, and finally prepare for App Review. Each step changes the signing requirements, metadata expectations, and audience that can access the build."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Follow version 1.0, build 7 of Trail Notes. First, run the main task in Xcode and record the destination and result. Next, suppose the release team archives and uploads build 7. Processing makes that build available for eligible uses in App Store Connect. Adding it to an internal TestFlight group gives that group a beta to try. For a store submission, the team selects the build on the version record, completes its metadata, and submits it for review.
+
+Draw one box for each handoff. Put the artifact inside the box and its audience underneath. An uploaded build with no tester group and no store submission has reached neither audience.`
 				},
 				{
 					title: "Reflection Question: Where Does Publishing Friction Come From?",
-					content:
-						"Explain which parts of the Apple app pipeline are technical, which are organizational, and which are account-related. Making these invisible dependencies explicit early reduces confusion during later signing, testing, and publishing work."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Build 7 compiles, but the team cannot invite its beta group. Consider three observations separately: the archive fails to sign, processing has not finished, or the signed-in account cannot manage the group. For each, identify who can investigate, what evidence they can inspect, and the next action. Only the first observation points directly to the archive's signing configuration.
+
+Write one sentence explaining why changing the app's SwiftUI layout would leave all three obstacles unresolved.`
 				},
 				{
 					title: "SAD1 Apple Developer Ecosystem Overview: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD1 Apple Developer Ecosystem Overview",
-						projectKind: "core",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/legacy"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Make a distribution map for Trail Notes. Start with the simulator result “build 7 opened the note list.” Use the four stages in the case to show the next artifact, audience, and access requirement at each stage. Circle the last step you actually observed. Label subsequent steps as planned. A complete map explains how a classmate could receive a beta and how a public customer could later obtain the app.
+
+**Completion checks:** Two people can follow the map from the same archive to different audiences. Mark the build identifier at each handoff and point to the first place external beta review can affect the route.`
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Diagnostic Checkpoint",
-					content:
-						"Readiness check: accurately describe the role of Xcode, TestFlight, App Store Connect, and the Apple Developer Program without blending them together. Prompt: 'What can you do with a local simulator build that you cannot do with an App Store listing?'",
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/legacy"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `A teammate reports “version 1.0 is available” after seeing build 7 in App Store Connect. Write two questions that distinguish a processed upload, a beta assigned to a group, and a released store version. For each answer, name one record that would confirm the audience.
+
+**Completion checks:** A convincing answer asks which build was processed and who can install it. Use an assigned testing group to support a beta claim and store availability for the chosen region to support a public claim.`
 				},
 				{
 					title: "Mod5Pro3",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD1 Apple Developer Ecosystem Overview",
-						projectKind: "core",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod5Pro3"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Trace build 7 backward. An external tester sees the beta in TestFlight. Identify the group and eligible build that made access possible, then trace the build to its upload and archive. Mark which of these records could establish a public store release. Explain what additional record the public-release claim would need.
+
+**Completion checks:** Start with the tester's observed installation and work back one handoff at a time. Identify the earliest claim the evidence supports. Mark public availability as unknown until the store record supplies that evidence.`
 				},
 				{
 					title: "Apple Developer Ecosystem Overview Extension Practice",
@@ -196,44 +212,60 @@ const introToSwiftAppDevelopmentSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "What Code Signing Actually Means",
-					content:
-						"Code signing is proof of authorship and permission rather than a mysterious Xcode checkbox. Teams, bundle identifiers, development signing, and distribution signing make more sense when the concepts are clear before the errors appear in practice."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `A signature binds an app's contents to a signing identity. A certificate identifies the signer, and signing uses the corresponding private key. The bundle identifier identifies the app. A provisioning profile links an allowed app identity, signing certificate, and authorized capabilities for a particular distribution route. A development profile can also restrict the devices that can install the build.
+
+## Worked example
+
+The target is net.example.tracker, but the profile describes net.example.gallery. Even with a valid signing identity, the app identity and profile disagree. Compare the target's bundle identifier and team with the profile selected for that configuration.
+
+## Check
+
+Explain why changing a screen title leaves this mismatch in place. Use fictional identifiers for the exercise.`
 				},
 				{
 					title: "Practical Walkthrough: Team Selection and Bundle IDs",
-					content:
-						"Show where team selection lives in Xcode and how a bundle identifier uniquely names an app. Connect bundle IDs to device builds, archived uploads, and App Store records so naming decisions have an explicit practical purpose."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `In Xcode, select the app target and its Signing & Capabilities settings. Read the selected team, bundle identifier, and signing mode for the configuration being built. Compare those values with the app identity the team intends to ship. Automatic signing can manage compatible signing assets when the account has the necessary access.
+
+In the case, Team Oak owns net.example.tracker and Team Pine owns a separate demo. The release configuration selects Pine. Record the intended team and target before proposing a change. Switching the release configuration to Oak requires an authorized team member. Changing an established app identifier merely to satisfy the demo profile would change which app the build identifies.`
 				},
 				{
 					title: "Troubleshooting Lab: Why Provisioning Problems Happen",
-					content:
-						"Review common signing failures such as mismatched bundle IDs, missing capabilities, or the wrong team/account context. The important habit is reading the error message, identifying which layer failed, and fixing the configuration instead of clicking random settings."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Separate the first signing error from the later build failures it triggers. If the error names an identifier mismatch, compare app and profile identifiers. If it names a missing entitlement, compare the target's requested capability, its registered App ID, and the profile. If the account lacks a required role, route that operation to the team member with permission.
+
+Apply this sequence to case 4. A simulator launch succeeded, and the archive failed. Those facts narrow the investigation to the archive path, but they do not identify the failing setting. Request the first signing error and the release target's configuration before proposing a repair.`
 				},
 				{
 					title: "Reflection Question: Which Part of Signing Is Conceptual vs Configurational?",
+					preserveInstructions: true,
+					contentKind: "reading",
 					content:
-						"Separate the big idea of trusted app identity from the specific Xcode settings that implement it. This makes later troubleshooting much calmer and more systematic."
+						"A certificate identifies a signer; a bundle identifier identifies an app. A profile authorizes a combination of settings. Suppose the team renews a certificate but the release configuration still selects a profile for a different app. Which relationship changed, and which mismatch remains? Support the answer with the tracker and gallery identifiers in the case. Explain which values a teammate can compare without receiving a private key."
 				},
 				{
 					title: "SAD3 Certificates, Signing, and Bundle IDs: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle:
-							"SAD3 Certificates, Signing, and Bundle IDs",
-						projectKind: "core",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod1Pro2"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Prepare a signing diagnosis for case 1. Record the target, intended team, app identifier, selected profile identifier, and the exact disagreement. State one narrow correction and how a fresh archive of the same target would test it. Then read case 4. List the missing evidence that prevents you from assigning it the same cause.
+
+**Completion checks:** Your diagnosis names both conflicting identifiers and treats the first archive error as missing evidence in case 4. Work from the supplied records. Certificates, private keys, provisioning files, passwords, recovery codes, and team invitations are never submitted or shared.`
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Diagnostic Checkpoint",
-					content:
-						"Readiness check: define a bundle identifier, explain what 'team' means in Xcode, and say why a locally runnable build still depends on signing context. Prompt: 'Why can two apps not share the same production bundle identifier?'",
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod1Pro2"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `A simulator build launches. An archive for the same target reports that its profile lacks a requested capability. Identify the evidence supplied by each result. List the three capability records to compare and explain when the team would need a newly generated profile.
+
+**Completion checks:** Mark the simulator result and archive error as separate observations. State which change would restore alignment among the app's requested entitlements, the registered capabilities and the profile, and what one new archive can demonstrate.`
 				},
 				{
 					title: "Certificates, Signing, and Bundle IDs Transfer Practice",
@@ -341,44 +373,60 @@ const introToSwiftAppDevelopmentSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Metadata, Builds, and Reviewer Context",
-					content:
-						"App Store Connect is the operational side of app distribution: metadata, screenshots, versions, build numbers, testers, review notes, and release control. Publishing is partly a product-communication task, not only a code task."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `An app record identifies the product. Its version record describes a planned release. An uploaded build contains the executable code, and its build number distinguishes attempts at the same version. Test information tells a beta group which flow to try and how to report a problem.
+
+## Worked example
+
+Version 1.0, build 7 asks testers to create a tracker entry, edit it, and recover from an empty list. Feedback that names build 6 belongs to a different executable until the team reproduces it on build 7. Keep the version, build, steps, observed result, and destination together.
+
+## Check
+
+Write a one-line beta instruction that makes the recovery step observable. Identify which record changes when the next upload fixes a bug but keeps version 1.0.`
 				},
 				{
 					title: "Practical Walkthrough: Internal vs External Testing",
-					content:
-						"Explain the difference between internal and external TestFlight groups, what information each workflow requires, and why beta notes and review context matter. TestFlight sits between private development and public release, so it needs both technical readiness and clear communication."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `The QA Team is an internal group of eligible App Store Connect users with access to the app. Classroom Review represents external testers. A team can assign an eligible processed build to its internal group. External distribution requires test information and the applicable TestFlight review before testers can receive that build.
+
+Draw the two paths for build 7. Put a gate on the external path for review. Use fictional tester labels. A passing internal check supplies useful feedback, but it does not record the external group's review or invitation.`
 				},
 				{
 					title: "Practical Walkthrough: Version Numbers, Build Numbers, and Assets",
-					content:
-						"Review screenshots, app icons, version numbers, build numbers, descriptions, and support information. Connect each item to the practical reality of uploading a build later in the course."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `The release record pairs a user-facing version, 1.0, with build 7. A correction can arrive as 1.0 (8). Before asking testers to retest a report, confirm which build their group has and which build appears in the report. Screenshots and beta instructions must describe the selected build's actual screens.
+
+Suppose build 8 renames Add topic to New topic. Revise one test step and one screenshot caption. Keep the old report tied to build 7 and add a fresh result for build 8 so a later reader can reconstruct what changed.`
 				},
 				{
 					title: "Reflection Question: What Makes an App Feel Release-Ready?",
+					preserveInstructions: true,
+					contentKind: "reading",
 					content:
-						"Explain why a stable build can still be unready for testing or review if the metadata and presentation are weak. A strong response identifies at least one non-code requirement that affects the shipping pipeline."
+						"QA can add a tracker item, but new testers cannot find the empty-list recovery action. Classify the evidence: the feature works once found, the discovery step fails for those testers, and there is still no retest showing that a change helped. Write one revision to the interface or instructions and one measurable retest. Name the build and the tester group that will supply the result."
 				},
 				{
 					title: "SAD5 App Store Connect and TestFlight Workflow: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle:
-							"SAD5 App Store Connect and TestFlight Workflow",
-						projectKind: "core",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod2Pro1"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Build a timeline for version 1.0 (7) using the supplied release record. Place upload, processing, any required compliance response, internal assignment, external test information, external review, and invitation in their required relationships. Separate tasks that can be prepared early from gates that must finish before testers receive the build. Identify which group could test first and what evidence would show that Classroom Review actually received access.
+
+**Completion checks:** The timeline identifies a build, group and gate for each testing path. Someone reading it can tell a processed build from an assigned build and an invitation from a confirmed installation.`
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Diagnostic Checkpoint",
-					content:
-						"Readiness check: distinguish a build number from a version number and explain why screenshots and descriptions are part of the release process. Prompt: 'What can stop a release even if the code itself is fine?'",
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod2Pro1"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `The internal QA Team has reported a defect on build 7. The external group's invitation is still pending. Write the build identifier to put on the defect and the group status to check before sending instructions. For a corrected build 8, identify which earlier result needs a fresh test and why.
+
+**Completion checks:** Include version 1.0 and the build number on each observation. A tester's successful recovery on build 8 can close that reproduction on build 8. An outstanding external invitation remains a separate question.`
 				},
 				{
 					title: "App Store Connect and TestFlight Workflow Transfer Practice",
@@ -1420,43 +1468,60 @@ The output is \`7 Map a trail\` followed by \`7 Map a river\`. The ID still iden
 			curriculum: [
 				{
 					title: "Archive, Upload, and Release Checklists",
-					content:
-						"The final publishing path is an ordered workflow: archive build, upload process, App Store Connect checklists, TestFlight release, and review basics. Release is a sequence of visible checks rather than one mysterious final button. Track the bundle identifier, signing team, version number, build number, screenshots, privacy answers, tester notes, and crash-free smoke test as separate release evidence. Even when publishing is simulated, the walkthrough distinguishes local build validation, App Store Connect steps, and the requirements before another person can install the app."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `An archive preserves one built version of the app. Uploading it starts processing for distribution. On the store version record, the team selects the processed build, completes the listing and review information, then prepares its submission. Adding a version to a draft submission and sending that submission to App Review are distinct actions.
+
+## Worked example
+
+Trail Notes 1.0 (8) is selected. Its screenshot still shows a feature removed from build 8. A successful upload leaves the mismatch intact. Capture the corrected screen from build 8 and update the listing before the authorized submitter sends the draft.
+
+## Check
+
+What can the team verify immediately from the archive, and what requires inspecting the store record? Give one example of each.`
 				},
 				{
 					title: "Practical Walkthrough: Build Metadata and Preflight Review",
-					content:
-						"Check version/build numbers, screenshots, descriptions, icons, support information, and tester notes as one preflight package. Connect this directly to capstone needs even if the publishing path is simulated."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Put the selected version and build number at the top of the review sheet. Read the description and screenshots against that build. Trace the advertised task on the candidate, confirm the reviewer can reach sample data, and verify the support and privacy links. Record any missing evidence with an owner.
+
+In the supplied case an SDK sends diagnostics, while the listing claims no data collection. Inspect the SDK configuration and actual data behavior, then reconcile the disclosure using Apple's privacy definitions. A marketing description alone cannot settle whether a particular data type is collected. [Apple privacy guidance](https://developer.apple.com/app-store/app-privacy-details/)`
 				},
 				{
 					title: "Practical Walkthrough: TestFlight and Submission Basics",
-					content:
-						"Compare releasing to internal testers, preparing an external test, and sending an app to App Review. Explain what happens after upload so the administrative side of shipping is visible."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `A TestFlight group can try a beta and send feedback. The store submission selects a version and build for App Review. Passing a beta test answers a question about that tested flow. Sending the store submission also requires accurate metadata and review information for the chosen build.
+
+For build 8, write down the last beta result and the store issues still open. In a real team an authorized submitter checks the selected build, adds the version to a draft, checks the draft contents, and submits it. For this exercise, deliver a written decision and leave the release simulated.`
 				},
 				{
 					title: "Reflection Question: What Still Needs to Be True After the App 'Works'?",
+					preserveInstructions: true,
+					contentKind: "reading",
 					content:
-						"List the non-code requirements that must still be satisfied after the product itself feels feature-complete. This reinforces the full-stack product mindset of the course."
+						"Build 8 opens and its main task passes, but its screenshots, privacy statements, and reviewer instructions each disagree with the candidate. Which issue could prevent a reviewer from reproducing the main task? Which issue could misinform a customer before download? Which requires evidence from an included dependency? Explain what would count as resolution for each claim and identify one check to repeat if the executable changes."
 				},
 				{
 					title: "SAD19 Final Publishing Walkthrough: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD19 Final Publishing Walkthrough",
-						projectKind: "core",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod5Pro2"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Audit the supplied build 8 packet. Make one row for each mismatch and record the affected artifact, evidence, correction, owner, and condition for closure. Decide whether to submit now. Then assume only the screenshot was corrected. Reassess the decision and name what still blocks it. Use the answer guide after recording both decisions.
+
+**Completion checks:** Keep the two decisions side by side. Someone reading the second one can see which row closed, why other rows remain open, and whether each correction changes listing text or the build itself.`
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Diagnostic Checkpoint",
-					content:
-						"Readiness check: outline the order of archive, upload, metadata review, TestFlight, and App Review without skipping critical steps. Prompt: identify which publishing artifact is prepared before the final upload begins.",
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod5Pro2"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `An operator has added version 1.0 (8) to a draft review submission. The description is accurate, but the SDK diagnostic disclosure remains unresolved. State the current submission status, the evidence needed to resolve the disclosure, and who can make the final submission decision. Explain why fixing the screenshot alone cannot close this issue.
+
+**Completion checks:** Distinguish the draft from a submission sent to App Review. Name the person or team responsible for checking the SDK and the authorized account role responsible for submitting the reconciled version.`
 				},
 				{
 					title: "Final Publishing Walkthrough Transfer Practice",
@@ -1698,11 +1763,11 @@ const SWIFT_REFERENCES = {
 	runApp: "https://developer.apple.com/documentation/xcode/running-your-app-in-simulator-or-on-a-device",
 	membership: "https://developer.apple.com/support/compare-memberships/",
 	signing:
-		"https://developer.apple.com/help/account/certificates/create-a-certificate-signing-request",
+		"https://developer.apple.com/help/account/provisioning-profiles/create-an-app-store-provisioning-profile/",
 	testFlight:
 		"https://developer.apple.com/help/app-store-connect/test-a-beta-version/testflight-overview",
 	appReview: "https://developer.apple.com/app-store/review/guidelines/",
-	submit: "https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-app-for-review",
+	submit: "https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-app",
 	path: "https://developer.apple.com/documentation/swiftui/path"
 } as const;
 
@@ -2429,6 +2494,9 @@ function contextualizeSwiftItem(
 		/\/Swift\/tree\/[^/]+\/SAD-\d{2}-[^/]+\/starter$/u.test(
 			item.projectLink ?? ""
 		);
+	const usesCaseResource =
+		suppliedCasePractice ||
+		(item.contentKind === "assignment" && item.ideImport === false);
 	const previousPracticeTitle = practiceMatch
 		? `${practiceMatch[2]} Practice: ${practiceMatch[1]}`
 		: null;
@@ -2440,7 +2508,8 @@ function contextualizeSwiftItem(
 	const isExtension =
 		flow.stage === "Optional enrichment" ||
 		item.title.includes("Extension") ||
-		item.title.includes("Transfer Practice");
+		item.title.includes("Transfer Practice") ||
+		item.title === "Mod5Pro3";
 	const completionRoute = isSupplemental
 		? `**Completion route:** Core: ${flow.projectCore} Stretch: ${flow.projectStretch}`
 		: `**Practice route:** Core: ${flow.coreRoute} Stretch: ${flow.stretchRoute}`;
@@ -2536,17 +2605,17 @@ ${completionRoute}
 				: isExtension
 					? "choice"
 					: "core",
-		projectLink: suppliedCasePractice
+		projectLink: usesCaseResource
 			? practiceLink
 			: workspaceRoot
 				? `${workspaceRoot}/starter`
 				: (item.projectLink ?? flow.referenceLink),
-		solutionLink: suppliedCasePractice
+		solutionLink: usesCaseResource
 			? verificationLink
 			: workspaceRoot
 				? `${workspaceRoot}/solution`
 				: (item.solutionLink ?? verificationLink),
-		datasetLink: suppliedCasePractice ? undefined : practiceLink,
+		datasetLink: usesCaseResource ? undefined : practiceLink,
 		mediaLink: item.mediaLink ?? flow.referenceLink
 	};
 }
