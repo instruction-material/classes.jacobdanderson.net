@@ -2897,6 +2897,9 @@ function evaluateNumericExpression(
 			}
 			const constant = javaMathConstantValue(token ?? "");
 			if (constant !== null) return javaNumber(constant, true);
+			if (token === "Integer.MIN_VALUE")
+				return javaNumber(-2_147_483_648);
+			if (token === "Integer.MAX_VALUE") return javaNumber(2_147_483_647);
 			const variable = context?.variables.get(token ?? "");
 			if (variable) return variable;
 			const value = Number(token);

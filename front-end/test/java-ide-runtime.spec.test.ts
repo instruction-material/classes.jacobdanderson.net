@@ -714,6 +714,10 @@ public class Main {
         System.out.println(Math.max(4, 7));
         System.out.println(Math.round(Math.PI * 100));
         System.out.println((int) Math.E);
+        System.out.println(Integer.MIN_VALUE);
+        System.out.println(Integer.MAX_VALUE);
+        System.out.println(Integer.MAX_VALUE / 2);
+        System.out.println(-1 > Integer.MIN_VALUE);
         System.out.println(2 + 3 + " points");
         System.out.println("points " + 2 + 3);
         System.out.println(letter);
@@ -751,6 +755,10 @@ public class Main {
 			"7",
 			"314",
 			"2",
+			"-2147483648",
+			"2147483647",
+			"1073741823",
+			"true",
 			"5 points",
 			"points 23",
 			"c",
