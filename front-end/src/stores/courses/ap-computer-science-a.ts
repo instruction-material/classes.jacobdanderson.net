@@ -2,8 +2,10 @@ import type { RawCourse, RawCourseModuleItem } from "./types";
 import {
 	apBinarySearchResources,
 	apBlobEraseResources,
+	apElevatorWarningResources,
 	apMergeSortResources,
-	apRecursionPracticeResources
+	apRecursionPracticeResources,
+	apStudentClassResources
 } from "@/modules/apComputerScienceAResources";
 import { gitCourseGuideLink } from "./classroomReferenceGuides";
 import {
@@ -400,10 +402,28 @@ const apComputerScienceASourceCourse: RawCourse = {
 				},
 				{
 					title: "Core Project: Elevator Warning",
-					content:
-						"Elevator Warning is a focused APCS3 project for threshold checks, conditionals, and readable output. The decision structure makes the unsafe condition obvious and handles boundary values exactly, not just typical inputs.",
-					projectLink: repo("APCS3-Elevator-Warning/starter"),
-					solutionLink: repo("APCS3-Elevator-Warning/solution"),
+					content: apProject({
+						goal: "Compare an elevator load with its 1500 lb limit and report the result.",
+						steps: [
+							"Run Main.java. The starter prints 1499, 1500, and 1501 lb with placeholder comparisons.",
+							"In loadStatus, compare the weight to the limit. When the weight exceeds the limit, subtract the limit from the weight.",
+							"Report equality separately. For a weight below the limit, subtract the weight from the limit."
+						],
+						apReasoning:
+							"Trace which comparison succeeds for each input. Only a value strictly greater than the limit triggers a warning.",
+						checks: [
+							"1499 lb reports 1 lb under the limit.",
+							"1500 lb reports that the load is at the limit.",
+							"1501 lb reports 1 lb over the limit."
+						],
+						extension:
+							"Add calls for loads of 0 lb and 3000 lb. Predict both differences before running."
+					}),
+					projectLink: apElevatorWarningResources.starter,
+					solutionLink: apElevatorWarningResources.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs3-project-3-elevator-warning.mp4")
 				},
 				{
@@ -578,10 +598,26 @@ const apComputerScienceASourceCourse: RawCourse = {
 				},
 				{
 					title: "Core Project: Student Class",
-					content:
-						"The Student Class build is the main APCS5 implementation checkpoint because it is a clean class-with-state project in this course sequence.",
-					projectLink: repo("APCS5-Student-Class/starter"),
-					solutionLink: repo("APCS5-Student-Class/solution"),
+					content: apProject({
+						goal: "Keep a student's grade in a Java object and derive the school type from that grade.",
+						steps: [
+							"Run Main.java. Inspect how Student.java stores the names and starting grade for each object.",
+							"Complete getSchoolType. Use grades 1–5 for elementary, 6–8 for middle, 9–12 for high school, and 13 for college.",
+							"Complete passGrade. Grades 1–12 advance by one. Grade 13 stays fixed."
+						],
+						apReasoning:
+							"Use the current field value to decide what a call returns. A change to one student object affects only that object.",
+						checks: [
+							"Grade 5 moves to middle school and grade 8 moves to high school.",
+							"Grade 12 moves to college. Grade 13 stays at college.",
+							"Two students created with the same grade can have different grades after calling passGrade on just one."
+						]
+					}),
+					projectLink: apStudentClassResources.starter,
+					solutionLink: apStudentClassResources.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs5-project-2-student-class.mp4")
 				},
 				{

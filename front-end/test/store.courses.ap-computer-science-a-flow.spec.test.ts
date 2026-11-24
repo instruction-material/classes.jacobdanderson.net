@@ -4,8 +4,10 @@ import {
 	apBinarySearchResources,
 	apBlobEraseResources,
 	apComputerScienceAProjectKey,
+	apElevatorWarningResources,
 	apMergeSortResources,
-	apRecursionPracticeResources
+	apRecursionPracticeResources,
+	apStudentClassResources
 } from "@/modules/apComputerScienceAResources";
 import { pythonIdeModeForCourseResource } from "@/modules/pythonIde";
 import { apComputerScienceACourse } from "@/stores/courses/ap-computer-science-a";
@@ -194,7 +196,7 @@ describe("AP Computer Science A learner flow", () => {
 		}
 	});
 
-	it("preserves the runnable merge trace and three optional projects", () => {
+	it("opens restored required and optional roles as distinct Java projects", () => {
 		const recursion = requireModule("APCS15 Recursion");
 		const sorting = requireModule("APCS16 Binary Search and Merge Sort");
 		const tasks = [
@@ -213,6 +215,16 @@ describe("AP Computer Science A learner flow", () => {
 			[
 				sorting.supplementalProjects, "Project: Merge Sort", "challenge",
 				apMergeSortResources, "merge-sort"
+			],
+			[
+				requireModule("APCS3 Conditionals and Packages").curriculum,
+				"Core Project: Elevator Warning", "core",
+				apElevatorWarningResources, "elevator-warning"
+			],
+			[
+				requireModule("APCS5 Classes Part I").curriculum,
+				"Core Project: Student Class", "core",
+				apStudentClassResources, "student-class"
 			]
 		] as const;
 		for (const [items, title, learningPath, links, projectKind] of tasks) {

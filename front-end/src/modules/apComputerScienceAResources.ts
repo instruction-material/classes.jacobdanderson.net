@@ -2,6 +2,8 @@ const binarySearchPack =
 	"https://github.com/instruction-material/APCS/tree/b12cdaaa9bc35a88d281666f0060bc8a90d470ad/APCS16-Binary-Search";
 const algorithmPacks =
 	"https://github.com/instruction-material/APCS/tree/34f8f99a5ab4b895521c8827fa70c892bc4150fa";
+const earlyCorePacks =
+	"https://github.com/instruction-material/APCS/tree/932287d8e26661b0635478f9215ec7e7e12c74ad";
 
 function projectRoles(pack: string) {
 	return {
@@ -20,12 +22,20 @@ export const apBlobEraseResources = projectRoles(
 export const apMergeSortResources = projectRoles(
 	`${algorithmPacks}/APCS16-Merge-Sort`
 );
+export const apElevatorWarningResources = projectRoles(
+	`${earlyCorePacks}/APCS3-Elevator-Warning`
+);
+export const apStudentClassResources = projectRoles(
+	`${earlyCorePacks}/APCS5-Student-Class`
+);
 
 const restoredProjects = {
 	"binary-search-trace": apBinarySearchResources,
 	"recursion-practice": apRecursionPracticeResources,
 	"blob-erase": apBlobEraseResources,
-	"merge-sort": apMergeSortResources
+	"merge-sort": apMergeSortResources,
+	"elevator-warning": apElevatorWarningResources,
+	"student-class": apStudentClassResources
 };
 
 export function apComputerScienceAProjectKey(
