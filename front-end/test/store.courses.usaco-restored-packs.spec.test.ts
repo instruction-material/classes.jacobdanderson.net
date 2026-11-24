@@ -1088,7 +1088,7 @@ describe("restored USACO project workflows", () => {
 	});
 
 	it("provides C++20 native instructions only for the relevant projects", () => {
-		for (const id of ["usaco-silver", "usaco-gold"]) {
+		for (const id of ["usaco-silver", "usaco-gold", "design-patterns-in-cpp"]) {
 			expect(
 				cppBuildInstructions(
 					[{ name: "main.cpp", content: "" }],
@@ -1098,8 +1098,7 @@ describe("restored USACO project workflows", () => {
 		}
 		expect(
 			cppBuildInstructions(
-				[{ name: "main.cpp", content: "" }],
-				"design-patterns-in-cpp:item:starter"
+				[{ name: "main.cpp", content: "" }]
 			).join("\n")
 		).toContain("-std=c++17");
 	});

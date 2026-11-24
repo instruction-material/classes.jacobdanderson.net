@@ -13,7 +13,7 @@ export function cppBuildInstructions(
 	const cmake = files.find(
 		file => file.name === "CMakeLists.txt" && file.encoding !== "base64"
 	);
-	if (cmake) {
+	if (cmake?.content.trim()) {
 		const instructions = [
 			...intro,
 			"From the directory containing CMakeLists.txt:",
