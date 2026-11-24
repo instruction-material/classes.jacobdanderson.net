@@ -63,13 +63,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "UB 23 Why Did the Cow Cross the Road II Java",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 23 Why Did the Cow Cross the Road II Java",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Read one line from circlecross.in containing the 52 boundary points, with each letter A through Z appearing twice. Draw chords between matching letters. Two cows must cross when exactly one endpoint of the second cow lies between the first cow’s endpoints. Predict the count with ABAB followed by each letter C through Z doubled in order. Only A and B alternate, so circlecross.out is 1. Change the prefix to ABBA: nesting gives 0. Count each unordered pair once. The Java starter folder contains a README; write Main.java and run it beside the input.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-23-Why-Did-the-Cow-Cross-the-Road-II-Java/starter",
 					solutionLink:
@@ -77,13 +73,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "UB 24 Why Did the Cow Cross the Road III Java",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 24 Why Did the Cow Cross the Road III Java",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Read N from cowqueue.in, then N pairs of arrival time and questioning duration. Draw a timeline in arrival order: each cow starts when both it and the gate are ready. Try two input rows, 2 2 then 1 4. The first arrival finishes at 5 and the waiting cow finishes at 7, so cowqueue.out contains 7. Change the rows to 4 2 then 1 1: the gate is idle from 2 to 4 and the last cow finishes at 6. Start Main.java from a blank file and explain why summing durations alone misses idle time.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-24-Why-Did-the-Cow-Cross-the-Road-III-Java/starter",
 					solutionLink:
@@ -102,7 +94,7 @@ const usacoBronzeSourceCourse: RawCourse = {
 				{
 					title: "Follow the Rules Exactly",
 					content:
-						"Bronze problems often reward literal implementation of a process. Resist inventing shortcuts until they can restate the official rules precisely and prove their simulation matches them."
+						"Bronze problems often reward literal implementation of a process. In The Lost Cow, Farmer John aims first one unit right of his original position, then two left, then four right. Each leg begins where the previous leg ended. Stop at the first sighting, even partway through a leg."
 				},
 				{
 					title: "Make Small Custom Tests",
@@ -112,7 +104,7 @@ const usacoBronzeSourceCourse: RawCourse = {
 				{
 					title: "Use Tables and Traces",
 					content:
-						"Use tables of values, timeline traces, and manual updates. Bronze-level debugging becomes much easier when the evolving state is visible on paper."
+						"Trace lostcow.in containing 3 1 together. The legs from 3 to 4 and from 4 to 1 cost 1 and 3, giving 4 in lostcow.out. Now predict the result for 3 5 before your partner reveals the last leg. From 1 the next endpoint is 7, but the search stops at 5. The distances 1, 3 and 4 give 8. Charging the entire final leg would give 10."
 				},
 				{
 					title: "Unit 1: Simulation and Careful Translation: Core Project",
@@ -141,8 +133,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Problem: Your Ride Is Here",
+					preserveInstructions: true,
 					content:
-						"Use a classic warmup to reinforce modular arithmetic, string processing, and exact interpretation of a quirky problem statement.",
+						"Read two uppercase names of one to six letters from ride.in, one per line. Give A the value 1 through Z the value 26. Multiply each name’s letter values and compare the remainders modulo 47. Before running, ask your partner whether unequal products can match. For BX and A, the products 48 and 1 both leave remainder 1, so ride.out contains GO. Change BX to BY: 50 leaves remainder 3, so the answer becomes STAY. Start a blank Python file; the starter folder contains a README. Write just the decision and a newline.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB2-Your-Ride-Is-Here/starter",
 					solutionLink:
@@ -223,8 +216,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Problem: Barn Repair",
+					preserveInstructions: true,
 					content:
-						"Use a clean greedy idea to decide where not to cover space, which is a great Bronze introduction to minimizing wasted coverage.",
+						"Mark occupied stalls 1, 2, 9 and 10 on a line of 12. With one board the covered span is 10. Ask where to split it if two boards are available: skipping stalls 3 through 8 saves six, giving 4. In barn1.in enter 2 12 4 followed by the four occupied numbers on separate lines. Start a blank Python file and compare barn1.out with your drawing. Try the same positions in reverse input order; the answer should still be 4.\n\n**Completion checks:** Mark the two board endpoints in each drawing. Compare their total length with the program output.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB12-Barn-Repair/starter",
 					solutionLink:
@@ -559,28 +553,21 @@ const usacoBronzeSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "UB 12 Barn Repair Java: Core Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 12 Barn Repair Java: Practice Studio",
-						section: "concepts"
-					})
+					preserveInstructions: true,
+					content:
+						"A board covers a continuous run of stalls, including both endpoints. Cover every occupied stall with at most M boards while minimizing total covered stalls. Sort the occupied positions. Begin with one board from the first cow to the last. Each extra board lets you leave one internal gap uncovered. Which gap would you skip first, and why?"
 				},
 				{
 					title: "UB 12 Barn Repair Java: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 12 Barn Repair Java: Practice Studio",
-						section: "example"
-					})
+					preserveInstructions: true,
+					content:
+						"Draw stalls 1 through 12 with cows at 1, 2, 9 and 10. Predict the answer with one board before drawing it: stalls 1 through 10 cost 10. With two boards, cover 1–2 and 9–10. The six empty stalls between the groups account for the change from 10 to 4. Ask a partner why the two empty stalls after stall 10 never enter the calculation."
 				},
 				{
 					title: "UB 12 Barn Repair Java: Core Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 12 Barn Repair Java: Practice Studio",
-						section: "coreProject",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Start a blank Main.java. In barn1.in the first line gives M (board limit), S (stall count), and C (occupied stalls), followed by C lines with one occupied stall each. Write the minimum total covered length and a newline to barn1.out. Sort the stall numbers, compute gaps between consecutive cows, and deduct at most M−1 of the largest gaps from the inclusive span. Test 2 12 4 followed by 9, 1, 10, 2 on separate lines. The result should be 4 even with unsorted input. Compile with javac Main.java and run java Main in the input directory.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-12-Barn-Repair-Java/starter",
 					solutionLink:
@@ -588,22 +575,17 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "UB 12 Barn Repair Java: Review and Reflection",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 12 Barn Repair Java: Practice Studio",
-						section: "review"
-					})
+					preserveInstructions: true,
+					content:
+						"For cows at 1, 4 and 7 with two boards, there are two equally large gaps. Draw both optimal covers. Either choice saves two stalls from the span of seven, giving 5. Explain why subtracting the distance between cows would save one stall too many."
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "UB 12 Barn Repair Java: Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 12 Barn Repair Java: Practice Studio",
-						section: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Predict how allowing more boards changes the answer for cows at 1, 4 and 7. Run separate cases with limits of one, two and four boards. Expect 7, 5 and 3. Explain why the last answer cannot fall below the number of occupied stalls.\n\n**Completion checks:** Draw both optimal two-board placements. Label the unused gap and the total length in each drawing.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-12-Barn-Repair-Java/starter",
 					solutionLink:
@@ -879,13 +861,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Your Ride Is Here Java",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 15 Ski Course Design Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Use this mirror to transfer the two-name test to Java. Start Main.java from a blank file. Read two lines from ride.in. For each uppercase letter, multiply the running product by letter - 'A' + 1 and reduce modulo 47. Compare the two final remainders and write GO or STAY plus a newline to ride.out. Predict BX with A, then BY with A. Compile with javac Main.java and run java Main from the input directory. Compare the output files to GO and STAY respectively before opening the reference.\n\n**Completion checks:** Record the two residues for each test so a mismatch can be traced to multiplication or comparison.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB2-Your-Ride-Is-Here-Java/starter",
 					solutionLink:
@@ -1550,7 +1528,7 @@ function strengthenBronzeItem(item: RawCourseModuleItem): RawCourseModuleItem {
 		return {
 			...item,
 			content:
-				"Build a correct baseline and a tiny hand-worked oracle before optimizing. Then compare the baseline's operation count with the largest legal input; if it is too large, preserve the tested behavior while changing the representation or repeated work. Record the first counterexample whenever an optimization changes the answer."
+				"Build a correct baseline and a tiny hand-worked oracle before optimizing. Then compare the baseline's operation count with the largest legal input; if it is too large, preserve the tested behavior while changing the representation or repeated work. For the road-crossing project, trace observations (cow, side) of (1, 0), (2, 1), (1, 0). Ask which earlier sighting belongs to cow 1. Neither cow has changed sides, so crossroad.out contains 0. Change only the last side to 1 and the output becomes 1. Record the first observation where a program that compares adjacent rows disagrees with your trace."
 		};
 	}
 
@@ -1603,6 +1581,7 @@ function decorateBronzeModule(
 	if (module.title === "USB0 Setup and Contest Workflow") {
 		curriculum = insertBronzeItem(curriculum, coreProjectTitle, {
 			title: "Current USACO Contest Contract",
+			preserveInstructions: true,
 			content: [
 				"**Format:** A contest typically contains three or four algorithmic problems in one contiguous four-to-five-hour personal window. Scoring is by test cases, so a correct subtask can earn partial credit even when the full constraints remain unsolved.",
 				"",
@@ -1615,12 +1594,13 @@ function decorateBronzeModule(
 		});
 		curriculum = insertBronzeItem(curriculum, coreProjectTitle, {
 			title: "Contest Integrity and Protected Mode",
+			preserveInstructions: true,
 			content: [
 				"**Active-contest boundary:** Work alone. Generative AI, Copilot-style assistance, discussion, shared code, prewritten templates, solution resources, and automated submissions are prohibited. Only references for basic language syntax, libraries, and input/output are permitted.",
 				"",
 				"**Course practice:** Hints, reviews, and solution comparison happen only outside active contests and after an honest attempt. Protected mocks use the stricter active-contest boundary so independent readiness is measured accurately.",
 				"",
-				"**Evidence:** Begin from an empty solution file, retain the submitted source and result, and write the postmortem only after the timer or practice window ends."
+				"**Evidence:** Begin from an empty solution file, retain the submitted source and result, and write the postmortem only after the timer or practice window ends.\n\n**Completion checks:** Date the attempt and record which resources were used before and after the timer."
 			].join("\n"),
 			projectLink: USACO_CONTEST_RULES,
 			learningPath: "core"
@@ -1657,10 +1637,11 @@ function decorateBronzeModule(
 	if (module.title === "Unit 3: Counting, Sorting, and Ranking") {
 		curriculum = insertBronzeItem(curriculum, coreProjectTitle, {
 			title: "Frequency Maps, Sets, and Prefix Counts",
+			preserveInstructions: true,
 			content: [
 				"Choose a direct array when the value range is small and known, a map for sparse key counts, a set for distinct membership, sorting when order exposes the structure, and prefix counts when many range or before/after queries repeat.",
 				"",
-				"Use the 2025 official Bronze problem as a modern calibration: its input reaches one million values, asks for distinct ordered patterns, arrives through standard input, and explicitly warns that the answer may need 64-bit storage. Solve a tiny version first, then justify the full-input representation."
+				"Use the 2025 official Bronze problem as a modern calibration: its input reaches one million values, asks for distinct ordered patterns, arrives through standard input, and explicitly warns that the answer may need 64-bit storage. A moo is a subsequence a,b,b with a different from b. Group index triples by their values before counting. Ask a partner to trace 1 2 2 2: three index triples give the same moo, so print 1. Reorder the input to 2 2 2 1 and print 0. For a fixed b, which distinct values can appear before its second-to-last occurrence?"
 			].join("\n"),
 			projectLink: USACO_2025_BRONZE_PROBLEM,
 			learningPath: "core"
@@ -1670,10 +1651,11 @@ function decorateBronzeModule(
 	if (module.title === "Unit 4: Search-Flavored Bronze Problems") {
 		curriculum = insertBronzeItem(curriculum, coreProjectTitle, {
 			title: "Complete Search and Constructive Output Contract",
+			preserveInstructions: true,
 			content: [
 				"**Complete search:** Define the candidate state space, count its worst-case size, reject duplicates or invalid states early, and prove every legal candidate is considered.",
 				"**Structured simulation:** Prefer a direct invariant when enumerating all states is unnecessary.",
-				"**Constructive output:** When the task asks for both feasibility and an example, validate the witness by replaying it against the original rules rather than checking only YES or NO.",
+				"**Constructive output:** For the linked keyboard problem, M appends M. O flips every earlier letter, then appends O. To validate the witness, ask a partner to replay MO: M becomes OO. Compare OM: O becomes OM. The last displayed letter always identifies the last key. To undo O, remove it and flip the remaining prefix; to undo M, just remove it. Reversing the steps gives exactly one sequence per target. Print YES alone for k=0, or YES and the keystrokes on the next line for k=1.",
 				"**Multiple cases:** Reset all per-case state and use the stated total-input bound to justify aggregate runtime."
 			].join("\n"),
 			projectLink: USACO_2026_BRONZE_PROBLEM,
@@ -1698,6 +1680,7 @@ function decorateBronzeModule(
 		});
 		curriculum = insertBronzeItem(curriculum, coreProjectTitle, {
 			title: "Mock Contest and Postmortem Contract",
+			preserveInstructions: true,
 			content: [
 				"**Mock:** Use three unseen Bronze problems, one continuous timer, an empty file per problem, permitted syntax/library references only, and no AI, hints, discussion, templates, or solution viewing.",
 				"**During the timer:** Record first-read complexity, attempt order, submission time, and judge outcome without turning the log into outside assistance.",

@@ -7067,6 +7067,31 @@ interface UsacoOnDemandStageSpec {
 	curriculum: RawCourseModuleItem[];
 }
 
+const bronzeIndependentReadings: Record<string, string> = {
+	"Concepts: Welcome to USACO Bronze!":
+		"Choose two unfamiliar problems from the contest archive and record their names before reading any analysis. For each one, write down the input source, the required output, your approach and the result of one hand-checked input. A mismatch before the sample runs points to setup or file handling. A mismatch only on a larger case calls for another trace or a new complexity estimate. Use those records for the placement decision above.",
+	"Practice Map: Welcome to USACO Bronze!":
+		"Use a finished practice attempt to diagnose the next one. Record which file or stream supplied the input, the first output you predicted, what you actually got and the first line or state where they diverged. Rerun that case after one correction. Keep the original prediction beside the result.\n\n**Completion checks:** Write the smallest input that still shows the original error. Explain why the old program fails on it. Run the corrected program on both that input and one earlier passing input, and record the two expected outputs alongside the observed ones.",
+	"Extension Review: Welcome to USACO Bronze!":
+		"Two days after placement, open a blank file and retry one problem without the previous code. Change one legal input and predict its output first. Use the earliest mismatch to decide whether to revisit input handling, the model or its running time.\n\n**Completion checks:** Save the changed input, expected output and actual output with the new attempt. Identify the statement detail that determines the expected output. If both attempts pass, choose an edge case and explain which line of the solution it exercises.",
+	"Practice Map: Square Pasture":
+		"Put 0 0 1 2 and 3 0 4 1 on separate lines in square.in. Predict the minimum side and area, then swap the input lines. Both runs should write 16 to square.out. If the result depends on line order, mark which rectangle supplied each extreme.\n\n**Completion checks:** List the minimum and maximum on each axis for both runs. Show how those bounds determine the longer span. Move the shorter rectangle inside the first and predict which bounds change before running the same calculation again.",
+	"Extension Review: Square Pasture":
+		"Move the rectangles from (0,0)–(1,2) and (3,0)–(4,1) one unit right and two units up. Predict the new bounds before running. The width and height stay 4 and 2, so the area stays 16. Now enlarge only the rightmost x-coordinate from 5 to 6. The area becomes 25. Explain why a translation and a stretch behaved differently.\n\n**Completion checks:** Record the x and y spans of the original, translated and stretched boxes in a table. Use the longer span to calculate each expected area before comparing it with the output file.",
+	"Concepts: Barn Repair":
+		"Each board covers consecutive stalls from its first to its last, inclusive. Cover all occupied stalls using at most M boards. For cows at stalls 1, 2, 9 and 10 in a barn of 12 stalls, one board covers 10 stalls. A second board can skip stalls 3 through 8, reducing the total to 4. Each additional cut saves one gap; compare gap lengths to decide which cuts help most.",
+	"Practice Map: Barn Repair":
+		"Create barn1.in. Start with 2 12 4 (boards, stalls, cows), followed by 9, 1, 10 and 2 on separate lines. Predict barn1.out before sorting the stalls. Check for a single line containing 4. Run again with only one board: the answer becomes 10. If it becomes 9, count both endpoints.\n\n**Completion checks:** Mark the occupied stalls and highlight the skipped gap. Compare its length with the difference between the one-board and two-board outputs.",
+	"Extension Review: Barn Repair":
+		"With cows at 1, 4 and 7 and a two-board limit, draw two different minimum covers. Predict their total lengths before testing. Both cost 5. Retry with four boards: the answer is 3, since each cow still needs one covered stall.",
+	"Concepts: Your Ride Is Here":
+		"Read a comet name and a group name from ride.in, one per line. Each has one to six uppercase letters. Give A through Z the values 1 through 26. Multiply each name’s letter values and take the remainder modulo 47. Equal remainders mean GO; otherwise write STAY. For BX and A the products are 48 and 1. Both leave remainder 1, so ride.out contains GO. For BY and A the products are 50 and 1, giving STAY.",
+	"Practice Map: Your Ride Is Here":
+		"Start a blank file. Predict the decision for X and BC, then for F and BC. Write each pair on separate lines in ride.in and compare your single output line in ride.out. The products are 24 and 6 in the first run (STAY), and 6 and 6 in the second (GO). If both runs say GO, check that each product starts at 1 and is reset for the second name.\n\n**Completion checks:** Record both remainders for each pair. A correct comparison uses the two remainders from the same run.",
+	"Extension Review: Your Ride Is Here":
+		"Close your solution. Predict what rearranging the letters or inserting A will do to a product. Rebuild the calculation on a later day and test CB with F, then CBA with F. Both should give GO. Replace the A with B: CBB with F should give STAY. Explain which edit changed the remainder."
+};
+
 const usacoBronzeOnDemandSourceCourse =
 	sourceVariantCourses.usacoBronzeOnDemand;
 const usacoBronzeOnDemandSourceModules =
@@ -7120,6 +7145,7 @@ function buildUsacoOnDemandStage(
 			})),
 			...sourceModule.curriculum.map((item, index) => ({
 				...item,
+				content: bronzeIndependentReadings[item.title] ?? item.content,
 				learningPath: "core" as const,
 				...(index === 0 && anchorPath
 					? {
@@ -7131,6 +7157,10 @@ function buildUsacoOnDemandStage(
 		],
 		supplementalProjects: sourceModule.supplementalProjects.map(item => ({
 			...item,
+			...(bronzeIndependentReadings[item.title] && {
+				content: bronzeIndependentReadings[item.title],
+				preserveInstructions: true
+			}),
 			learningPath: usacoOnDemandOptionPath(item.title)
 		}))
 	};
@@ -7166,6 +7196,10 @@ function buildUsacoOnDemandArchive(
 				item => ({
 					...item,
 					title: `${module.title}: ${item.title}`,
+					...(bronzeIndependentReadings[item.title] && {
+						content: bronzeIndependentReadings[item.title],
+						preserveInstructions: true
+					}),
 					learningPath: usacoOnDemandOptionPath(item.title)
 				})
 			);
@@ -7190,10 +7224,11 @@ const usacoBronzeOnDemandPrimaryModules = [
 		curriculum: [
 			{
 				title: "Current USACO Contest and I/O Contract",
+				preserveInstructions: true,
 				content: [
 					"Current contests generally contain three or four algorithmic problems in one four-to-five-hour personal window and award partial credit by test case. Promotion thresholds, schedules, language versions, and certification details can change, so the live instructions and contest page remain authoritative.",
 					"",
-					"Current problems use terminal-based standard input and output. Many problems from before December 2020 use exact, case-sensitive filenames listed in the statement. Match the specified mode, print only the requested output, and classify judge results as accepted, wrong answer, time limit, runtime or memory error, compile failure, or output-format failure."
+					"Current problems use terminal-based standard input and output. Many problems from before December 2020 use exact, case-sensitive filenames listed in the statement. Match the specified mode, print only the requested output, and classify judge results as accepted, wrong answer, time limit, runtime or memory error, compile failure, or output-format failure.\n\n**Completion checks:** For each selected problem, record its actual I/O mode and one exact sample output before coding."
 				].join("\n"),
 				projectLink: USACO_ON_DEMAND_RULES
 			},
@@ -7209,6 +7244,7 @@ const usacoBronzeOnDemandPrimaryModules = [
 			},
 			{
 				title: "Help Ladder and Contest Integrity",
+				preserveInstructions: true,
 				content: [
 					"**Course practice:** First preserve the attempt and name the blocked step. Next use one diagnostic hint, return to the problem, and compare a solution only after the attempt can no longer progress. Close all reference code before completing a later independent rewrite.",
 					"",
@@ -7237,10 +7273,10 @@ const usacoBronzeOnDemandPrimaryModules = [
 			{
 				title: "Simulation Attempt Protocol",
 				content: [
-					"**Before code:** Name the full state, one legal transition, update order, stopping condition, and answer update.",
-					"**Tiny oracle:** Hand-compute a minimum case, a typical case, and a boundary or overshoot case.",
-					"**After code:** Compare each state change with the oracle, then add a test where changing update order changes the result.",
-					"**Complexity:** Count simulated steps and compare that count with the largest legal input."
+					"**Before code:** Square Pasture has a fixed input of two rectangles. After reading each one, keep the smallest and largest x and y seen. Reversing the two input lines must preserve all four bounds.",
+					"**Predict:** Put 0 0 1 2 and 3 0 4 1 on separate lines in square.in. Draw the enclosing box and predict square.out. Then replace the second line with 0 4 1 5 and predict again.",
+					"**Check:** The first box spans 4 by 2, so the square area is 16. The second spans 1 by 5, so the area is 25. If you got 8 or 5, compare the box with a square of equal sides. Reverse the input lines and rerun both cases from your own file.",
+					"**Transfer:** This calculation uses a fixed number of comparisons. For a moving simulation at the mastery gate, also trace the position after each step and identify the step where motion stops."
 				].join("\n")
 			},
 			{
@@ -7272,7 +7308,7 @@ const usacoBronzeOnDemandPrimaryModules = [
 			{
 				title: "Stage 2 Mastery Gate",
 				content:
-					"Solve one unseen string or modular-arithmetic problem and one small grid transformation from an empty file. For each, provide a non-example that distinguishes the chosen rule from a tempting wrong rule. Use the Foundation Archive for targeted repair when either representation remains unclear."
+					"Solve one unseen string or modular-arithmetic problem and one small grid transformation from an empty file. For each, provide a non-example that distinguishes the chosen rule from a tempting wrong rule. For modular arithmetic, retry Your Ride Is Here in the Foundation Archive before returning to a fresh problem. For grid errors, check your asymmetric pattern against each transformation in statement order."
 			}
 		]
 	}),
@@ -7301,7 +7337,7 @@ const usacoBronzeOnDemandPrimaryModules = [
 			{
 				title: "Stage 3 Mastery Gate",
 				content:
-					"Complete one fresh interval or counting task with a constraint table, safe numeric types, a one-pass or sorted invariant, and tests for touching, nested, disjoint, and extreme cases. Use the Classical Search and Simulation Archive for one spaced retry before Stage 4."
+					"Complete one fresh interval or counting task with a constraint table, safe numeric types, and a one-pass or sorted invariant. For intervals test touching, nested and disjoint ranges; for counting test a single value, repeats and distinct values. Use the Classical Search and Simulation Archive for one spaced retry before Stage 4."
 			}
 		]
 	}),
@@ -7351,14 +7387,16 @@ const usacoBronzeOnDemandPrimaryModules = [
 		curriculum: [
 			{
 				title: "Current Counting and Large-Input Calibration",
+				preserveInstructions: true,
 				content:
-					"Use the official 2025 Bronze problem as a current calibration. Its input reaches one million values, asks for distinct ordered patterns, uses standard input, and warns that the answer may need 64-bit storage. Compare a direct array, map, set, sorting, and prefix-count approach before choosing the representation that fits the value range and query shape.",
+					"Use the official 2025 Bronze problem as a current calibration. Its input reaches one million values, asks for distinct ordered patterns, uses standard input, and warns that the answer may need 64-bit storage. A moo consists of values a,b,b in that order with a different from b; positions may be skipped. Predict the output for N=5 and values 1 2 3 3 3. List distinct value triples, then compare: (1,3,3) and (2,3,3) give 2. Move the three 3s to the front and the answer becomes 0. If you counted six in the first case, check whether you counted ways to select positions. Use enumeration only as a tiny-case oracle; for the full bound, count distinct earlier values before the second-to-last copy of each repeated value.",
 				projectLink: USACO_ON_DEMAND_2025_BRONZE
 			},
 			{
 				title: "Constructive and Multi-Test Contract",
+				preserveInstructions: true,
 				content:
-					"When a problem asks for feasibility and an example, validate the witness by replaying it against the original rules rather than checking only YES or NO. Reset every per-case data structure, use the total-input bound to justify aggregate runtime, and test one impossible case, one minimum witness, and one case with several valid witnesses.",
+					"For the linked problem, M appends M. O flips every letter already on screen, then appends O. Predict which keys produce OO and MO. Work backward: the last displayed letter identifies the last key. Remove it; if it was O, undo its flip on the remaining letters. This gives one sequence for every target. Compare your predictions by replay: MO produces OO, while OO produces MO. With k=0 each case prints just YES. With k=1, print YES then the keys on their own line. Test the one-letter target O before the two longer targets and reset between cases. To meet the total-input bound of 400,000 characters, scan right to left and track flip parity instead of rewriting each prefix.",
 				projectLink: USACO_ON_DEMAND_2026_BRONZE
 			},
 			{
@@ -7384,17 +7422,19 @@ const usacoBronzeOnDemandPrimaryModules = [
 		curriculum: [
 			{
 				title: "Protected Mock Contract",
+				preserveInstructions: true,
 				content: [
 					"Use three unseen Bronze problems, one continuous timer, an empty file per problem, permitted syntax/library references only, and no AI, hints, discussion, templates, or solution viewing.",
 					"",
-					"Record first-read complexity, attempt order, submission time, and judge outcome. A partial-credit plan may target a correct subtask before the full constraints, but every submitted approach still needs an honest complexity bound."
+					"Record first-read complexity, attempt order, submission time, and judge outcome. A partial-credit plan may target a correct subtask before the full constraints, but every submitted approach still needs an honest complexity bound.\n\n**Completion checks:** After the timer ends, label each submission with the intended subtask or full constraint, its predicted runtime and the judge result. For one unsuccessful submission, name the first assumption to test during the postmortem."
 				].join("\n"),
 				projectLink: USACO_ON_DEMAND_RULES
 			},
 			{
 				title: "Postmortem and Delayed Rewrite",
+				preserveInstructions: true,
 				content:
-					"For every unsolved or partially solved problem, preserve the last attempt, classify the failure as statement, model, complexity, implementation, test design, or I/O, and find the smallest counterexample. Study the official explanation only after this record exists. Close all reference code, wait until a later study block, and produce a clean rewrite from an empty file.",
+					"For every unsolved or partially solved problem, preserve the last attempt, classify the failure as statement, model, complexity, implementation, test design, or I/O, and find the smallest counterexample. Study the official explanation only after this record exists. Close all reference code, wait until a later study block, and produce a clean rewrite from an empty file.\n\n**Completion checks:** Run the saved counterexample against both versions. Record the old failure and the repaired output, then choose a new boundary input. Explain why the same correction should cover it before running the new test.",
 				projectLink: USACO_ON_DEMAND_2026_RESULTS
 			}
 		]

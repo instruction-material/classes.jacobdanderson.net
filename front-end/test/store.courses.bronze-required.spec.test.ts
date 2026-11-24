@@ -477,3 +477,26 @@ describe("bronze required source roles and sequences", () => {
 		).toBeNull();
 	});
 });
+
+describe("Bronze reading contracts after course normalization", () => {
+	beforeEach(() => setActivePinia(createPinia()));
+	it("retains coached feedback, the independent help boundary and the linked keyboard task", async () => {
+		const store = useCoursesStore();
+		async function body(courseId: string, title: string) {
+			const course = await store.loadCourseById(courseId);
+			const item = course?.modules.flatMap(module => [
+				...module.curriculum,
+				...module.supplementalProjects
+			]).find(item => item.title === title);
+			expect(item, title).toBeDefined();
+			return item!.content;
+		}
+		expect(await body("usaco-bronze", "Current USACO Contest Contract")).toContain("partial credit");
+		expect(await body("usaco-bronze", "Mock Contest and Postmortem Contract")).toContain("smallest counterexample");
+		expect(await body("usaco-bronze-on-demand", "Help Ladder and Contest Integrity")).toContain("Active contests and protected mocks");
+		const keyboard = await body("usaco-bronze-on-demand", "Constructive and Multi-Test Contract");
+		expect(keyboard).toContain("MO produces OO");
+		expect(keyboard).toContain("OO produces MO");
+		expect(keyboard).not.toContain("test one impossible case");
+	});
+});

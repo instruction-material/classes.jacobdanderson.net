@@ -254,7 +254,7 @@ const briefs: Record<
 			"The December 2016 Bronze problem gives two nonoverlapping, nontouching rectangles. Each of the two input lines contains x1 y1 x2 y2, lower-left then upper-right coordinates from 0 through 10; both dimensions are positive. Return the area of the smallest axis-aligned square covering both rectangles. Its placement need not be unique.",
 		model: "Find the leftmost, rightmost, lowest and highest boundaries across both rectangles. Their differences give the enclosing width and height. A square must cover both spans, so its side is the larger span and its area is side squared. Explain why a smaller side fails and why the selected side is sufficient; do not return the side or perimeter.",
 		tasks: "Complete the three geometry tasks in minimum_square_area. The Python driver supplies file reading and output; the untouched helper raises NotImplementedError before opening the answer file.",
-		sample: "The supplied rectangles are (6,6)–(8,8) and (1,8)–(4,9). Width 7 and height 3 require side 7, so the output is 49.",
+		sample: "The supplied rectangles are (6,6)–(8,8) and (1,8)–(4,9). Width 7 and height 3 require side 7, so the output is 49. The learner driver ends the line with a newline. The historical reference writes just the digits; compare the integer when checking the two roles.",
 		checks: "Draw horizontal and vertical separation, reverse the rectangle order, vary unequal dimensions, and include extreme coordinates. For tiny coordinates, enumerate candidate square placements as an independent oracle.",
 		cost: "A fixed number of boundary comparisons takes O(1) time and space."
 	},
